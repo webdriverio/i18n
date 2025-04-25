@@ -186,7 +186,7 @@ async function main() {
     }
   }
 
-  writeCache(cache);
+  //writeCache(cache);
 }
 
 main().catch(console.error);
