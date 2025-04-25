@@ -1,0 +1,19 @@
+{
+    "name": "webdriver-translator",
+    "version": "1.0.0",
+    "description": "WebDriverTranslator using Anthropic API",
+    "main": "translate.ts",
+    "scripts": {
+        "start": "ts-node translate.ts"
+    },
+    "type": "module",
+    "dependencies": {
+        "dotenv": "^16.5.0",
+        "node-fetch": "^3.3.2"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.6",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    }
+}
