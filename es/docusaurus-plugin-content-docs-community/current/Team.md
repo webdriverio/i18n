@@ -63,7 +63,7 @@ El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolla
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    Arquitecto Senior de Soluciones <a href="https://saucelabs.com/">@saucelabs</a>.
+    Arquitecto de Soluciones Senior <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 ## Colaboradores del Proyecto
