@@ -1,14 +1,18 @@
-export const LANGUAGES_TO_TRANSLATE = [
-    'de',
-    'es',
-    'fr',
-    // 'it',
-    // 'ja',
-    // 'ko',
-    // 'nl',
-    // 'pl',
-    // 'pt',
-    // 'ru',
-    // 'tr',
-    // 'zh'
-];
+export const LANGUAGES_TO_TRANSLATE = {
+    // ar: 'Arabic',
+    // be: 'Belarusian',
+    // bg: 'Bulgarian',
+    de: 'German',
+    es: 'Spanish',
+    // fa: 'Persian',
+    fr: 'French',
+    // hi: 'Hindi',
+    // it: 'Italian',
+    // ja: 'Japanese',
+    // pl: 'Polish',
+    // pt: 'Portuguese',
+    // ru: 'Russian',
+    // ta: 'Tamil',
+    // uk: 'Ukrainian',
+    // zh: 'Chinese',
+} as const;

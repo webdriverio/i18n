@@ -8,7 +8,7 @@ import { anthropic } from '@ai-sdk/anthropic'
 import dotenv from 'dotenv';
 
 import cache from './cache.json' with { type: 'json' };
-
+import { LANGUAGES_TO_TRANSLATE } from './constants.js';
 // Load environment variables
 dotenv.config();
 
@@ -151,7 +151,7 @@ async function translateContent(content: string, language: string): Promise<stri
         const { text } = await generateText({
             model: anthropic('claude-3-7-sonnet-20250219'),
             prompt: [
-                `Translate the following Markdown content from English to ${language}.`,
+                `Translate the following Markdown content from English to ${LANGUAGES_TO_TRANSLATE[language]}.`,
                 'The document is a Docusaurus documentation page and separated in frontmatter and body.',
                 'The frontmatter is the first block of the document, and the body is the rest of the document.',
                 'Only translate the "title" and "description" fields in the frontmatter.',

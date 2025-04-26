@@ -6,7 +6,7 @@ async function main() {
     await downloadDocs('website/docs', 'main', 'en/docusaurus-plugin-content-docs/current');
     await downloadDocs('website/community', 'main', 'en/docusaurus-plugin-content-docs-community/current');
 
-    for (const language of LANGUAGES_TO_TRANSLATE) {
+    for (const language of Object.keys(LANGUAGES_TO_TRANSLATE)) {
         await translate(language);
     }
 }
