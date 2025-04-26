@@ -1,0 +1,100 @@
+{
+  "en/docusaurus-plugin-content-docs/current/API.md": {
+    "hash": "6c707ce0b1803f1caab1ed2a8397dbd939ad4b6c6bff200e55336c835aabc47e",
+    "languages": [
+      "de",
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/Appium.md": {
+    "hash": "2b58e7fbcb6c085036cad00813d2adf3a4d03a8071ee5a3e489c55adc995e7e2",
+    "languages": [
+      "de",
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/Assertion.md": {
+    "hash": "f592ddbb5904b0fa17c72392dfd29df17eaaa83f38b9d55a4cab08a7176fdab0",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/AutoWait.md": {
+    "hash": "3332f05329438568fa0f7857536c4de7f763d1ea93fa1136722cb0c8eb5cb85e",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/Autocompletion.md": {
+    "hash": "2441a110823469aacc8f373d787ae13e872ac867903979e45e1f141be69142e3",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/AutomationProtocols.md": {
+    "hash": "b72a16afb4627c995379cbdad02eb48e4d531875ced5e867a05d54142ad70f86",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/BambooIntegration.md": {
+    "hash": "b0db5caa56de31e55abf23be986831462d6c832817f055211d732ec5e1510ea7",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/BestPractices.md": {
+    "hash": "e64dd71abe7c9d2cac99d288c11a5f402f0ab98866f28b65a1fb4c31d8e10a0d",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/BoilerplateProjects.md": {
+    "hash": "3f6419c65e9c020264bbb317ce0bdc08ef70b4ddf2acea0079450a740ed4aa72",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/Capabilities.md": {
+    "hash": "afddce59357e49296effcb9472afc4919df61195b4e59f2ea50f7e9005825818",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/CloudServices.md": {
+    "hash": "1ac8ac96c7e658a145a23ad67829219d6d6f6881b60b84bf02c985e983e83cdc",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/ComponentTesting.md": {
+    "hash": "852820378b3b43fe68c803a2b8e41df1a44333074c09ceb886b540a65a0090ae",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/Configuration.md": {
+    "hash": "86d236e6ad7cf0ab840a218742e9ef3711e02ec2f42c69203e7ab1b408e14bb4",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/ConfigurationFile.md": {
+    "hash": "ca6d4607528104677bdccf03033ffd952cc96fdd6de5d7b57e0c88451756feb4",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/CustomCommands.md": {
+    "hash": "f4ce1097f8350af8ff715441038839eda882884237b01c2118948847b37c9d4f",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/CustomMatchers.md": {
+    "hash": "46e6fe96fa451792aa8e70e06c0ee35c9ed086c1acef62f0127fbdea3c89945a",
+    "languages": [
+      "es"
+    ]
+  }
+}

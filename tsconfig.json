@@ -1,13 +1,14 @@
 {
     "compilerOptions": {
-      "module": "ESNext",           
-      "moduleResolution": "node",   
-      "target": "ESNext",           
-      "outDir": "./dist",           
-      "esModuleInterop": true,      
-      "allowSyntheticDefaultImports": true
+      "module": "NodeNext",
+      "moduleResolution": "node16",
+      "target": "ESNext",
+      "noEmit": true,
+      "sourceMap": false,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true
     },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules"]
   }
-  

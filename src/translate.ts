@@ -1,192 +1,200 @@
-import 'dotenv/config';
+import url from 'node:url'
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import crypto from 'node:crypto';
 
-import fs from 'fs';
-import path from 'path';
-import crypto from 'crypto';
-import fetch from 'node-fetch';
-import { mkdirSync, readFileSync, writeFileSync, existsSync, readdirSync } from 'fs';
+import { generateText } from 'ai';
+import { anthropic } from '@ai-sdk/anthropic'
+import dotenv from 'dotenv';
 
-const ROOT_DIR = '.';
-const LANGUAGES = [
-  'ar', 'be', 'bg', 'de', 'es', 'fa', 'fr', 'hi',
-  'it', 'ja', 'pl', 'pt', 'ru', 'ta', 'uk', 'zh'
-];
-const MAX_CHUNK_SIZE = 8000;
-const API_URL = 'https://api.anthropic.com/v1/messages/batches';
-const API_KEY = process.env.API_KEY || ''; // fallback vazio se não definido
-const CACHE_FILE = path.join('.cache-shasum.json');
+import cache from './cache.json' with { type: 'json' };
 
-interface CacheMap {
-  [filePath: string]: string;
-}
+// Load environment variables
+dotenv.config();
 
-function computeShasum(content: string): string {
-  return crypto.createHash('sha1').update(content, 'utf8').digest('hex');
-}
+// Get the current directory
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const rootDir = path.resolve(__dirname, '..');
 
-function readCache(): CacheMap {
-  if (!existsSync(CACHE_FILE)) return {};
-  return JSON.parse(readFileSync(CACHE_FILE, 'utf-8'));
-}
+// Cache file path
+const CACHE_FILE_PATH = path.join(rootDir, 'src', 'cache.json');
 
-function writeCache(cache: CacheMap) {
-  writeFileSync(CACHE_FILE, JSON.stringify(cache, null, 2), 'utf-8');
-  console.log("Cache saved with", Object.keys(cache).length, "entries.");
-}
+const translationCache = cache as unknown as Map<string, { hash: string, languages: string[] }>;
 
-function getAllMarkdownFiles(baseDir: string): string[] {
-  let results: string[] = [];
-  if (!existsSync(baseDir)) return results;
-  const list = readdirSync(baseDir, { withFileTypes: true });
-  for (const file of list) {
-    const filePath = path.join(baseDir, file.name);
-    if (file.isDirectory()) {
-      results = results.concat(getAllMarkdownFiles(filePath));
-    } else if (file.name.endsWith('.md')) {
-      results.push(filePath);
+// Save the cache file
+async function updateCache(cacheKey: string, contentShasum: string, language: string) {
+    try {
+        const { languages } = translationCache[cacheKey] || { languages: [] };
+        translationCache[cacheKey] = { hash: contentShasum, languages: [...languages, language] };
+        await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(translationCache, null, 2), 'utf-8');
+    } catch (error) {
+        console.error('Error saving cache file:', error);
     }
-  }
-  return results;
 }
 
-function splitBySecondLevelHeading(text: string): string[] {
-  return text.split(/^##\s+/gm).map((s, i) => (i === 0 ? s : '## ' + s)).filter(s => s.trim());
+// Calculate SHA-256 hash of content
+function calculateShasum(content: string): string {
+    return crypto.createHash('sha256').update(content).digest('hex');
 }
 
-function chunkBuckets(buckets: string[], maxLength: number): string[] {
-  const chunks: string[] = [];
-  let current = '';
-  for (const bucket of buckets) {
-    if (bucket.length > maxLength) {
-      if (current.length > 0) {
-        chunks.push(current);
-        current = '';
-      }
-      for (let i = 0; i < bucket.length; i += maxLength) {
-        chunks.push(bucket.slice(i, i + maxLength));
-      }
-      continue;
-    }
-    if ((current.length + bucket.length + 2) > maxLength) {
-      chunks.push(current);
-      current = '';
-    }
-    current += (current.length > 0 ? '\n\n' : '') + bucket;
-  }
-  if (current.length > 0) chunks.push(current);
-  return chunks;
-}
+export async function translate(language: string) {
+    console.log(`Translating docs for ${language}`);
 
-async function translateChunk(text: string, lang: string): Promise<string> {
-  const body = {
-    requests: [
-      {
-        custom_id: 'translation-prompt',
-        params: {
-          model: 'claude-3-5-haiku-20241022',
-          max_tokens: 4096,
-          messages: [
-            {
-              role: 'user',
-              content: `Translate the following text from English to ${lang} and keep the Markdown formatting and do not enter any additional comments.\n\n${text}`,
-            },
-          ],
-        },
-      },
-    ],
-  };
+    // Define source directories
+    const sourceDirectories = [
+        path.join(rootDir, 'en', 'docusaurus-plugin-content-docs'),
+        path.join(rootDir, 'en', 'docusaurus-plugin-content-docs-community')
+    ];
 
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-    },
-    body: JSON.stringify(body),
-  });
-
-  const json = await res.json() as { id?: string; [key: string]: any };
-  if (!json.id) throw new Error('API error: ' + JSON.stringify(json));
-  const resultUrl = await checkProcessingStatus(json.id);
-  const resultRes = await fetch(resultUrl, {
-    headers: {
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-    },
-  });
-  const resultData = await resultRes.json();
-  if (typeof resultData !== 'object' || resultData === null) {
-    throw new Error('Invalid resultData format');
-  }
-  const content = (resultData as any).result?.message?.content?.[0]?.text || '[Error: Missing content]';
-  return content;
-}
-
-async function checkProcessingStatus(batchId: string): Promise<string> {
-  const url = `https://api.anthropic.com/v1/messages/batches/${batchId}`;
-  while (true) {
-    const res = await fetch(url, {
-      headers: {
-        'x-api-key': API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
+    // Create target directories if they don't exist
+    const targetDirectories = sourceDirectories.map(srcDir => {
+        const relPath = path.relative(path.join(rootDir, 'en'), srcDir);
+        return path.join(rootDir, language, relPath);
     });
-    const json = await res.json() as { processing_status?: string; results_url?: string };
-    if (json.processing_status !== 'in_progress') {
-      if (!json.results_url) {
-        throw new Error('API error: results_url is undefined');
-      }
-      return json.results_url;
+
+    // Ensure target directories exist
+    for (const dir of targetDirectories) {
+        await fs.mkdir(dir, { recursive: true });
     }
-    console.log('Still processing... retrying in 5 seconds.');
-    await new Promise(res => setTimeout(res, 5000));
-  }
-}
 
-async function translateFile(filePath: string, lang: string, cache: CacheMap) {
-  const content = readFileSync(filePath, 'utf-8');
-  const shasum = computeShasum(content);
-  const cacheKey = `${lang}:${filePath}`;
+    // Process each source directory
+    for (let i = 0; i < sourceDirectories.length; i++) {
+        const sourceDir = sourceDirectories[i];
+        const targetDir = targetDirectories[i];
 
-  if (cache[cacheKey] === shasum) {
-    console.log(`Skipped (no changes): ${filePath} => ${lang}`);
-    return;
-  }
-
-  const buckets = splitBySecondLevelHeading(content);
-  const chunks = chunkBuckets(buckets, MAX_CHUNK_SIZE);
-  const translatedChunks: string[] = [];
-
-  for (let i = 0; i < chunks.length; i++) {
-    console.log(`Translating [${lang}] ${filePath} (chunk ${i + 1}/${chunks.length})`);
-    const translated = await translateChunk(chunks[i], lang);
-    translatedChunks.push(translated);
-    await new Promise(r => setTimeout(r, 2000));
-  }
-
-  writeFileSync(filePath, translatedChunks.join('\n\n'), 'utf-8');
-  console.log(`✅ Translation finished: ${filePath} => ${lang}`);
-
-  cache[cacheKey] = shasum;
-  writeCache(cache); //
-}
-
-
-
-async function main() {
-  const cache = readCache();
-
-  for (const lang of LANGUAGES) {
-    const basePath = path.join(ROOT_DIR, lang, 'docusaurus-plugin-content-docs', 'current');
-    const files = getAllMarkdownFiles(basePath);
-
-    for (const file of files) {
-      await translateFile(file, lang, cache);
+        // Process the directory recursively
+        await processDirectory(sourceDir, targetDir, language);
     }
-  }
 
-  //writeCache(cache);
+    console.log(`Translation to ${language} completed!`);
 }
 
-main().catch(console.error);
+async function processDirectory(sourceDir: string, targetDir: string, language: string) {
+    try {
+        // Read all files and directories in the source directory
+        const entries = await fs.readdir(sourceDir, { withFileTypes: true });
+
+        // Process each entry
+        for (const entry of entries) {
+            const sourcePath = path.join(sourceDir, entry.name);
+            const targetPath = path.join(targetDir, entry.name);
+
+            if (entry.isDirectory()) {
+                // Create target directory if it doesn't exist
+                await fs.mkdir(targetPath, { recursive: true });
+
+                // Process the subdirectory recursively
+                await processDirectory(sourcePath, targetPath, language);
+            } else if (entry.name.endsWith('.md')) {
+                // Process markdown files
+                await translateFile(sourcePath, targetPath, language);
+            } else if (entry.name.endsWith('.json')) {
+                // Handle JSON files with caching
+                const cacheKey = path.relative(rootDir, sourcePath);
+                const content = await fs.readFile(sourcePath, 'utf-8');
+                const needToTranslate = await checkNeedToTranslate(cacheKey, targetPath, content, language);
+                if (!needToTranslate) {
+                    console.log(`Skipping translation for ${sourcePath} - content unchanged`);
+                    continue;
+                }
+
+                // Copy JSON file and update cache
+                await fs.copyFile(sourcePath, targetPath);
+                console.log(`Copied JSON file ${entry.name}`);
+
+                // Save the updated cache
+                const contentShasum = calculateShasum(content);
+                await updateCache(cacheKey, contentShasum, language);
+            }
+        }
+    } catch (error) {
+        console.error(`Error processing directory ${sourceDir}:`, error);
+    }
+}
+
+async function translateFile(sourcePath: string, targetPath: string, language: string) {
+    try {
+        console.log(`Processing ${sourcePath} for ${language}...`);
+
+        // Read the markdown content
+        const content = await fs.readFile(sourcePath, 'utf-8');
+
+        // Calculate the shasum of the source content
+        const contentShasum = calculateShasum(content);
+
+        // Create a relative path as the cache key to make it more portable
+        const cacheKey = path.relative(rootDir, sourcePath);
+        const needToTranslate = await checkNeedToTranslate(cacheKey, targetPath, content, language);
+        if (!needToTranslate) {
+            console.log(`Skipping translation for ${sourcePath} - content unchanged`);
+            return;
+        }
+
+        // Translate the body content using Anthropic
+        const translatedContent = await translateContent(content, language);
+
+        // Write the translated content to the target file
+        await fs.writeFile(targetPath, translatedContent, 'utf-8');
+
+        // Save the updated cache
+        await updateCache(cacheKey, contentShasum, language);
+
+        console.log(`Successfully translated ${path.basename(sourcePath)} to ${language}`);
+    } catch (error) {
+        console.error(`Error translating file ${sourcePath}:`, error);
+    }
+}
+
+async function translateContent(content: string, language: string): Promise<string> {
+    try {
+        const { text } = await generateText({
+            model: anthropic('claude-3-7-sonnet-20250219'),
+            prompt: [
+                `Translate the following Markdown content from English to ${language}.`,
+                'The document is a Docusaurus documentation page and separated in frontmatter and body.',
+                'The frontmatter is the first block of the document, and the body is the rest of the document.',
+                'Only translate the "title" and "description" fields in the frontmatter.',
+                'In the body: keep all Markdown formatting intact, don\'t add any headings if they don\'t exist in the original content',
+                'Also ignore any links, code blocks (except comments), and other syntax within tick characters (`).',
+                'Do not translate code inside code blocks, variable names, or technical terms that should remain in English.',
+                'Do not translate HTML tags or attributes.',
+                'Do not change URLs.',
+                'Here is the content to translate:',
+                '',
+                `${content}`
+            ].join('\n'),
+            temperature: 0.1,
+        });
+
+        return text.slice(text.indexOf('---'));
+    } catch (error) {
+        console.error('Error calling Anthropic API:', error);
+        throw error;
+    }
+}
+
+/**
+ * Check if the file needs to be translated
+ * @param sourcePath - The path to the source file
+ * @param targetPath - The path to the target file
+ * @param content - The content of the source file
+ * @param language - The language to translate to
+ * @returns true if the file needs to be translated, which is the case if:
+ * - the source content has changed
+ * - the file is not translated to the target language
+ * - the file does not exist
+ */
+async function checkNeedToTranslate(cacheKey: string, targetPath: string, content: string, language: string): Promise<boolean> {
+    const contentShasum = calculateShasum(content);
+    const translatedFileExists = await fs.access(targetPath).then(() => true, () => false);
+    const { hash, languages } = translationCache[cacheKey] || { hash: '', languages: [] };
+
+    /**
+     * skip if:
+     * - the file has not changed
+     * - the file is already translated to the target language
+     * - the file exists
+     */
+    return hash !== contentShasum || !languages.includes(language) || !translatedFileExists
+}
