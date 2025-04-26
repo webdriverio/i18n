@@ -14,5 +14,5 @@ async function main() {
 // Check if this file is being run directly
 const isMainModule = import.meta.url === `file://${process.argv[1]}`
 if (isMainModule) {
-    main().catch(console.error);
+    await main()
 }
