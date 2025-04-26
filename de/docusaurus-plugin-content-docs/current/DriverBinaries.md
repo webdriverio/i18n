@@ -1,13 +1,13 @@
 ---
 id: driverbinaries
-title: Browser Treiber
+title: Treiber-Binärdateien
 ---
 
-Um Automation basierend auf dem WebDriver-Protokoll auszuführen, benötigen Sie Browser-Treiber, die die Automatisierungsbefehle übersetzen und im Browser ausführen können.
+Um Automatisierung basierend auf dem WebDriver-Protokoll auszuführen, benötigen Sie Browser-Treiber, die die Automatisierungsbefehle übersetzen und im Browser ausführen können.
 
 ## Automatisierte Einrichtung
 
-Mit WebdriverIO `v8.14` und höher ist es nicht mehr nötig, Browser-Treiber manuell herunterzuladen und einzurichten, da dies von WebdriverIO übernommen wird. Sie müssen lediglich den Browser angeben, den Sie testen möchten, und WebdriverIO erledigt den Rest.
+Mit WebdriverIO `v8.14` und höher ist es nicht mehr notwendig, Browser-Treiber manuell herunterzuladen und einzurichten, da dies von WebdriverIO übernommen wird. Sie müssen lediglich den Browser angeben, den Sie testen möchten, und WebdriverIO erledigt den Rest.
 
 ### Anpassung des Automatisierungsgrads
 
@@ -15,7 +15,7 @@ WebdriverIO bietet drei Automatisierungsstufen:
 
 **1. Herunterladen und Installieren des Browsers mit [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
 
-Wenn Sie eine `browserName`/`browserVersion`-Kombination in der [capabilities](configuration#capabilities-1)-Konfiguration angeben, wird WebdriverIO die angeforderte Kombination herunterladen und installieren, unabhängig davon, ob auf dem Gerät bereits eine Installation vorhanden ist. Wenn Sie `browserVersion` weglassen, versucht WebdriverIO zunächst, eine vorhandene Installation mit [locate-app](https://www.npmjs.com/package/locate-app) zu finden und zu verwenden. Andernfalls wird die aktuelle stabile Browser-Version heruntergeladen und installiert. Weitere Details zu `browserVersion` finden Sie [hier](capabilities#automate-different-browser-channels).
+Wenn Sie eine Kombination aus `browserName`/`browserVersion` in der [Capabilities](configuration#capabilities-1)-Konfiguration angeben, wird WebdriverIO die angeforderte Kombination herunterladen und installieren, unabhängig davon, ob bereits eine Installation auf dem Gerät vorhanden ist. Wenn Sie `browserVersion` weglassen, versucht WebdriverIO zunächst, eine vorhandene Installation mit [locate-app](https://www.npmjs.com/package/locate-app) zu finden und zu verwenden, andernfalls wird die aktuelle stabile Browser-Version heruntergeladen und installiert. Weitere Details zu `browserVersion` finden Sie [hier](capabilities#automate-different-browser-channels).
 
 :::caution
 
@@ -23,14 +23,14 @@ Die automatisierte Browser-Einrichtung unterstützt Microsoft Edge nicht. Derzei
 
 :::
 
-Wenn Sie eine Browser-Installation an einem Ort haben, der von WebdriverIO nicht automatisch erkannt werden kann, können Sie die Browser-Binary angeben, was den automatischen Download und die Installation deaktiviert.
+Wenn Sie eine Browser-Installation an einem Ort haben, der von WebdriverIO nicht automatisch erkannt werden kann, können Sie die Browser-Binärdatei angeben, wodurch der automatische Download und die Installation deaktiviert werden.
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox' or 'chromium'
-            'goog:chromeOptions': { // or 'moz:firefoxOptions' or 'wdio:chromedriverOptions'
+            browserName: 'chrome', // oder 'firefox' oder 'chromium'
+            'goog:chromeOptions': { // oder 'moz:firefoxOptions' oder 'wdio:chromedriverOptions'
                 binary: '/path/to/chrome'
             },
         }
@@ -46,9 +46,9 @@ WebdriverIO wird dies immer tun, es sei denn, der Treiber [binary](capabilities#
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox', 'msedge', 'safari', 'chromium'
-            'wdio:chromedriverOptions': { // or 'wdio:geckodriverOptions', 'wdio:edgedriverOptions'
-                binary: '/path/to/chromedriver' // or 'geckodriver', 'msedgedriver'
+            browserName: 'chrome', // oder 'firefox', 'msedge', 'safari', 'chromium'
+            'wdio:chromedriverOptions': { // oder 'wdio:geckodriverOptions', 'wdio:edgedriverOptions'
+                binary: '/path/to/chromedriver' // oder 'geckodriver', 'msedgedriver'
             }
         }
     ]
@@ -63,13 +63,13 @@ WebdriverIO lädt den Safari-Treiber nicht automatisch herunter, da er bereits a
 
 :::caution
 
-Vermeiden Sie es, eine `binary` für den Browser anzugeben und die entsprechende Treiber-`binary` wegzulassen oder umgekehrt. Wenn nur einer der `binary`-Werte angegeben wird, versucht WebdriverIO, einen damit kompatiblen Browser/Treiber zu verwenden oder herunterzuladen. In einigen Szenarien kann dies jedoch zu einer inkompatiblen Kombination führen. Daher wird empfohlen, immer beide anzugeben, um Probleme durch Versionsinkompatibilitäten zu vermeiden.
+Vermeiden Sie es, eine `binary` für den Browser anzugeben und die entsprechende Treiber-`binary` wegzulassen oder umgekehrt. Wenn nur einer der `binary`-Werte angegeben ist, versucht WebdriverIO, einen kompatiblen Browser/Treiber zu verwenden oder herunterzuladen. In einigen Szenarien kann dies jedoch zu einer inkompatiblen Kombination führen. Daher wird empfohlen, immer beide anzugeben, um Probleme durch Versionsinkompatibilitäten zu vermeiden.
 
 :::
 
 **3. Starten/Stoppen des Treibers.**
 
-Standardmäßig startet und stoppt WebdriverIO den Treiber automatisch unter Verwendung eines beliebigen ungenutzten Ports. Die Angabe einer der folgenden Konfigurationen deaktiviert diese Funktion, was bedeutet, dass Sie den Treiber manuell starten und stoppen müssen:
+Standardmäßig startet und stoppt WebdriverIO den Treiber automatisch unter Verwendung eines beliebigen ungenutzten Ports. Wenn Sie eine der folgenden Konfigurationen angeben, wird diese Funktion deaktiviert, was bedeutet, dass Sie den Treiber manuell starten und stoppen müssen:
 
 - Jeder Wert für [port](configuration#port).
 - Jeder Wert, der vom Standardwert für [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path) abweicht.
@@ -81,19 +81,19 @@ Im Folgenden wird beschrieben, wie Sie jeden Treiber individuell einrichten kön
 
 :::tip
 
-Wenn Sie das Testen von mobilen und anderen UI-Plattformen einrichten möchten, werfen Sie einen Blick in unser [Appium Setup](appium) -Guide.
+Wenn Sie mobile und andere UI-Plattformen einrichten möchten, schauen Sie sich unseren [Appium Setup](appium)-Leitfaden an.
 
 :::
 
 ### Chromedriver
 
-Um Chrome zu automatisieren, können Sie Chromedriver direkt auf der [-Projektwebsite](http://chromedriver.chromium.org/downloads) oder über das NPM-Paket herunterladen:
+Um Chrome zu automatisieren, können Sie Chromedriver direkt auf der [Projektwebsite](http://chromedriver.chromium.org/downloads) oder über das NPM-Paket herunterladen:
 
 ```bash npm2yarn
 npm install -g chromedriver
 ```
 
-Sie können dann den Treiber starten mit:
+Sie können es dann über folgenden Befehl starten:
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,17 +101,17 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-Um Firefox zu automatisieren, laden Sie die neueste Version von `geckodriver` für Ihre Umgebung herunter und entpacken Sie sie in Ihr Projektverzeichnis:
+Um Firefox zu automatisieren, laden Sie die neueste Version von `geckodriver` für Ihre Umgebung herunter und entpacken Sie sie in Ihrem Projektverzeichnis:
 
 <Tabs
   defaultValue="npm"
   values={[
     {label: 'NPM', value: 'npm'},
- {label: 'Curl', value: 'curl'},
- {label: 'Brew', value: 'brew'},
- {label: 'Windows (64 bit / Chocolatey)', value: 'chocolatey'},
- {label: 'Windows (64 bit / Powershell) DevTools', value: 'powershell'},
- ]
+    {label: 'Curl', value: 'curl'},
+    {label: 'Brew', value: 'brew'},
+    {label: 'Windows (64 bit / Chocolatey)', value: 'chocolatey'},
+    {label: 'Windows (64 bit / Powershell) DevTools', value: 'powershell'},
+  ]
 }>
 <TabItem value="npm">
 
@@ -152,30 +152,30 @@ choco install selenium-gecko-driver
 <TabItem value="powershell">
 
 ```sh
-# Als privilegierte Sitzung ausführen. Rechtsklick und 'Als Administrator ausführen' wählen
-# Verwenden Sie geckodriver-v0.24.0-win32.zip für 32-Bit-Windows
+# Run as privileged session. Right-click and set 'Run as Administrator'
+# Use geckodriver-v0.24.0-win32.zip for 32 bit Windows
 $url = "https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-win64.zip"
-$output = "geckodriver.zip" # wird im aktuellen Verzeichnis abgelegt, sofern nicht anders definiert
-$unzipped_file = "geckodriver" # wird in diesen Ordnernamen entpackt
+$output = "geckodriver.zip" # will drop into current directory unless defined otherwise
+$unzipped_file = "geckodriver" # will unzip to this folder name
 
-# Standardmäßig verwendet Powershell TLS 1.0, die Webseitensicherheit erfordert TLS 1.2
+# By default, Powershell uses TLS 1.0 the site security requires TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Lädt Geckodriver herunter
+# Downloads Geckodriver
 Invoke-WebRequest -Uri $url -OutFile $output
 
-# Entpackt Geckodriver
+# Unzip Geckodriver
 Expand-Archive $output -DestinationPath $unzipped_file
 cd $unzipped_file
 
-# Setzt Geckodriver global in PATH
+# Globally Set Geckodriver to PATH
 [System.Environment]::SetEnvironmentVariable("PATH", "$Env:Path;$pwd\geckodriver.exe", [System.EnvironmentVariableTarget]::Machine)
 ```
 
 </TabItem>
 </Tabs>
 
-**Hinweis:** Andere `geckodriver`-Versionen sind [hier](https://github.com/mozilla/geckodriver/releases) verfügbar. Nach dem Herunterladen können Sie den Treiber starten mit:
+**Hinweis:** Andere `geckodriver`-Versionen sind [hier](https://github.com/mozilla/geckodriver/releases) verfügbar. Nach dem Download können Sie den Treiber über folgenden Befehl starten:
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -187,12 +187,12 @@ Sie können den Treiber für Microsoft Edge auf der [Projektwebsite](https://dev
 
 ```sh
 npm install -g edgedriver
-edgedriver --version # gibt aus: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
+edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
 ```
 
 ### Safaridriver
 
-Der Safari Treiber ist auf Ihrem MacOS vorinstalliert und kann direkt gestartet werden mit:
+Safaridriver ist auf Ihrem MacOS vorinstalliert und kann direkt über folgenden Befehl gestartet werden:
 
 ```sh
 safaridriver -p 4444

@@ -1,29 +1,29 @@
 ---
 id: support
-title: Brauchen Sie Hilfe?
+title: Benötigen Sie Hilfe?
 ---
 
-Dieses Projekt wird von einer engagierten Gruppe von Leuten betreut.
+Dieses Projekt wird von einer engagierten Gruppe von Personen gepflegt.
 
-Wenn Sie daran interessiert sind, dem WebdriverIO-Projekt zu helfen, schaue dir [unser kostenloses "Open Office" Programm](/blog/2020/07/01/office-hours) an, um dir bei deinen Anstrengungen zu unterstützen.
+Wenn Sie an einem Beitrag zum WebdriverIO-Projekt interessiert sind, schauen Sie sich [das kostenlose "Office Hours"-Programm](/blog/2020/07/01/office-hours) an, um Ihnen bei Ihren Bemühungen zu helfen.
 
-Wenn Sie sofortige Hilfe für Ihr eigenes Projekt suchen, wenden Sie sich an einen vertrauenswürdigen WebdriverIO-Experte:
+Wenn Sie sofortige Hilfe für Ihr eigenes Projekt suchen, wenden Sie sich an einen vertrauenswürdigen WebdriverIO-Experten:
 
 - [Kevin Lamping](https://www.codementor.io/@kevinlamping)
-- [Füge deinen Namen zu dieser Liste hinzu](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
+- [Fügen Sie Ihren Namen zu dieser Liste hinzu](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
 
 ## Stack Overflow
 
-Stack Overflow ist ein beliebtes Forum, um Fragen auf Code-Ebene zu stellen oder wenn ihr bei bestimmten Fehlern nicht weiter kommt. Lest euch die [bereits existierenden Fragen](https://stackoverflow.com/questions/tagged/docusaurus) getagged mit**webdriver-io** durch oder [stellt eure eigenen](https://stackoverflow.com/questions/ask?tags=docusaurus)!
+Stack Overflow ist ein beliebtes Forum, um Fragen auf Code-Ebene zu stellen oder wenn Sie bei einem bestimmten Fehler feststecken. Lesen Sie die [bestehenden Fragen](https://stackoverflow.com/questions/tagged/webdriver-io), die mit webdriver-io getaggt sind, oder [stellen Sie Ihre eigene Frage](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
 
-## Diskussionsforum
+## Diskussionsforen
 
-Es gibt viele Online-Foren, die ein großartiger Ort für Diskussionen über WebdriverIO Features, Probleme und Bugs sind, z.B.:
+Es gibt viele Online-Foren, die ein großartiger Ort für Diskussionen über WebdriverIO-Funktionen, Probleme und Fehler sind, z.B.:
 
 - [GitHub Discussions](https://github.com/webdriverio/webdriverio/discussions)
-- [Discord-Community-Server](https://discord.webdriver.io)
-- [#webdriverio Kanal in SeleniumHQ Slack](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
+- [Discord Community Server](https://discord.webdriver.io)
+- [#webdriverio Channel auf SeleniumHQ Slack](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
 
-## Nachrichten
+## Neuigkeiten
 
-Für die neuesten Nachrichten über WebdriverIO, [folgen Sie @webdriverio auf Twitter](https://twitter.com/webdriverio) und dem offiziellen [WebdriverIO Blog](/blog) auf dieser Website.
+Für die neuesten Nachrichten über WebdriverIO, [folgen Sie @webdriverio auf Twitter](https://twitter.com/webdriverio) und dem offiziellen [WebdriverIO-Blog](/blog) auf dieser Website.

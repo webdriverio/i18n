@@ -1,76 +1,76 @@
 ---
 id: customservices
-title: Benutzerdefinierte Plugins
+title: Benutzerdefinierte Dienste
 ---
 
-Sie können ihr eigenes benutzerdefiniertes Plugin für den WDIO-Testrunner schreiben, der auf Ihre Bedürfnisse zugeschnitten ist.
+Sie können Ihren eigenen benutzerdefinierten Dienst für den WDIO-Testrunner schreiben, um Ihre Bedürfnisse individuell zu erfüllen.
 
-Services sind Add-Ons, die wiederverwendbare Logik erhalten, um Tests zu vereinfachen, Ihre Testsuite zu verwalten und mit Dritt-Anbieter zu integrieren. Dienste haben Zugriff auf dieselben [Hooks](/docs/configurationfile) die in `wdio.conf.js`verfügbar sind.
+Dienste sind Add-ons, die für wiederverwendbare Logik erstellt werden, um Tests zu vereinfachen, Ihre Testsuite zu verwalten und Ergebnisse zu integrieren. Dienste haben Zugriff auf alle [Hooks](/docs/configurationfile), die in der `wdio.conf.js` verfügbar sind.
 
-Es gibt zwei Arten von Services: ein Launcher-Service, der nur Zugriff auf die Hooks `onPrepare`, `onWorkerStart`, `onWorkerEnd` und `onComplete` hat, die nur einmal pro Testlauf ausgeführt werden, und ein Worker-Service, der Zugriff auf alle anderen Hooks hat und von jedem Worker ausgeführt wird. Beachten Sie, dass Sie (globale) Variablen nicht zwischen beiden Arten von Services gemeinsam nutzen können, da Worker-Dienste in einem anderen (Worker-)Prozess ausgeführt werden.
+Es gibt zwei Arten von Diensten, die definiert werden können: ein Launcher-Dienst, der nur Zugriff auf die Hooks `onPrepare`, `onWorkerStart`, `onWorkerEnd` und `onComplete` hat, die nur einmal pro Testlauf ausgeführt werden, und ein Worker-Dienst, der Zugriff auf alle anderen Hooks hat und für jeden Worker ausgeführt wird. Beachten Sie, dass Sie keine (globalen) Variablen zwischen beiden Arten von Diensten teilen können, da Worker-Dienste in einem anderen (Worker-)Prozess laufen.
 
 Ein Launcher-Dienst kann wie folgt definiert werden:
 
 ```js
 export default class CustomLauncherService {
-    // If a hook returns a promise, WebdriverIO will wait until that promise is resolved to continue.
+    // Wenn ein Hook ein Promise zurückgibt, wartet WebdriverIO, bis dieses Promise aufgelöst ist, um fortzufahren.
     async onPrepare(config, capabilities) {
-        // TODO: something before all workers launch
+        // TODO: etwas vor dem Start aller Worker
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: something after the workers shutdown
+        // TODO: etwas nach dem Herunterfahren der Worker
     }
 
-    // custom service methods ...
+    // benutzerdefinierte Dienstmethoden ...
 }
 ```
 
-Wohingegen ein Worker-Service wie folgt aussehen sollte:
+Während ein Worker-Dienst so aussehen sollte:
 
 ```js
 export default class CustomWorkerService {
     /**
-     * `serviceOptions` contains all options specific to the service
-     * e.g. if defined as follows:
+     * `serviceOptions` enthält alle dienstspezifischen Optionen
+     * z.B. wenn wie folgt definiert:
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * the `serviceOptions` parameter will be: `{ foo: 'bar' }`
+     * wird der Parameter `serviceOptions` sein: `{ foo: 'bar' }`
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * this browser object is passed in here for the first time
+     * dieses Browser-Objekt wird hier zum ersten Mal übergeben
      */
     async before(config, capabilities, browser) {
         this.browser = browser
 
-        // TODO: something before all tests are run, e.g.:
+        // TODO: etwas vor der Ausführung aller Tests, z.B.:
         await this.browser.setWindowSize(1024, 768)
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: something after all tests are run
+        // TODO: etwas nach der Ausführung aller Tests
     }
 
     beforeTest(test, context) {
-        // TODO: something before each Mocha/Jasmine test run
+        // TODO: etwas vor jedem Mocha/Jasmine-Test
     }
 
     beforeScenario(test, context) {
-        // TODO: something before each Cucumber scenario run
+        // TODO: etwas vor jedem Cucumber-Szenario
     }
 
-    // other hooks or custom service methods ...
+    // andere Hooks oder benutzerdefinierte Dienstmethoden ...
 }
 ```
 
-Es wird empfohlen, das Browser-Objekt über den übergebenen Parameter im Konstruktor zu speichern. Exportieren Sie dann beide Arten von Services wie folgt:
+Es wird empfohlen, das Browser-Objekt über den übergebenen Parameter im Konstruktor zu speichern. Schließlich stellen Sie beide Arten von Workern wie folgt bereit:
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-Wenn Sie TypeScript verwenden und sicherstellen möchten, dass die Hook-Methodenparameter typsicher sind, können Sie Ihre Dienstklasse wie folgt definieren:
+Wenn Sie TypeScript verwenden und sicherstellen möchten, dass die Parameter der Hook-Methoden typsicher sind, können Sie Ihre Dienstklasse wie folgt definieren:
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -89,7 +89,7 @@ export default class CustomWorkerService implements Services.ServiceInstance {
     constructor (
         private _options: MyServiceOptions,
         private _capabilities: Capabilities.RemoteCapability,
-        private _config: Options.Testrunner
+        private _config: WebdriverIO.Config,
     ) {
         // ...
     }
@@ -98,29 +98,29 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## Service Fehler Handhabung
+## Fehlerbehandlung im Dienst
 
-Wenn in einer Ihrer Service Funktionen ein Fehler geworfen wird, wird dieser vom Runner nur geloggt und der Test weiter ausgeführt. Wenn ein Hook in Ihrem Service entscheidend für die Einrichtung oder den Abbau des Test-Runners ist, kann der `SevereServiceError`, der aus dem Paket `webdriverio` verfügbar gemacht wird, verwendet werden, um den Runner zu stoppen.
+Ein Fehler, der während eines Dienst-Hooks auftritt, wird protokolliert, während der Runner weiterläuft. Wenn ein Hook in Ihrem Dienst für die Einrichtung oder den Abbau des Testrunners kritisch ist, kann der `SevereServiceError`, der aus dem Paket `webdriverio` exportiert wird, verwendet werden, um den Runner zu stoppen.
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: something critical for setup before all workers launch
+        // TODO: etwas Kritisches für die Einrichtung vor dem Start aller Worker
 
-        throw new SevereServiceError('Something went wrong.')
+        throw new SevereServiceError('Etwas ist schiefgelaufen.')
     }
 
-    // custom service methods ...
+    // benutzerdefinierte Dienstmethoden ...
 }
 ```
 
-## Services Importieren
+## Dienst aus Modul importieren
 
-Um den Service nutzen zu können, müssen Sie ihn jetzt nur noch der Eigenschaft `services` in Ihrer `wdio.conf.js` zuweisen.
+Das Einzige, was jetzt zu tun ist, um diesen Dienst zu verwenden, ist, ihn der Eigenschaft `services` zuzuweisen.
 
-Ihre Konfigurations-Datei sollte so aussehen:
+Ändern Sie Ihre `wdio.conf.js`-Datei wie folgt:
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -129,13 +129,13 @@ export const config = {
     // ...
     services: [
         /**
-         * use imported service class
+         * importierte Dienstklasse verwenden
          */
         [CustomService, {
             someOption: true
         }],
         /**
-         * use absolute path to service
+         * absoluten Pfad zum Dienst verwenden
          */
         ['/path/to/service.js', {
             someOption: true
@@ -145,19 +145,19 @@ export const config = {
 }
 ```
 
-## Veröffentlichen Sie Service-Plugins auf NPM
+## Dienst auf NPM veröffentlichen
 
-Damit Services von der WebdriverIO-Community leichter genutzt und entdeckt werden kann, befolgen Sie bitte diese Empfehlungen:
+Um Dienste für die WebdriverIO-Community leichter nutzbar und auffindbar zu machen, befolgen Sie bitte diese Empfehlungen:
 
-* Services sollten diese Namenskonvention verwenden: `wdio-*-service`
+* Dienste sollten diese Namenskonvention verwenden: `wdio-*-service`
 * Verwenden Sie NPM-Schlüsselwörter: `wdio-plugin`, `wdio-service`
-* Das Service Modul sollte eine Instanz des Services exportieren.
-* Sie können sich an folgenden Beispiel Service orientieren: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* Der `main`-Eintrag sollte eine Instanz des Dienstes `exportieren`
+* Beispieldienste: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-Das Befolgen der empfohlenen Namenskonvention ermöglicht das Hinzufügen von Services nach Namen, z.B. wenn sie einen `wdio-custom-service` veröffentlichen, kann dieser folgendermaßen eingerichtet werden:
+Die Einhaltung des empfohlenen Namensmusters ermöglicht es, Dienste nach Namen hinzuzufügen:
 
 ```js
-// Add wdio-custom-service
+// wdio-custom-service hinzufügen
 export const config = {
     // ...
     services: ['custom'],
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### Veröffentlichte Service-Plugins zum WDIO CLI und der Dokumentation hinzufügen
+### Veröffentlichten Dienst zur WDIO CLI und Dokumentation hinzufügen
 
-Wir schätzen wirklich jedes neue Plugin, das anderen helfen könnte, bessere Tests durchzuführen! Wenn Sie ein solches Plugin erstellt haben, ziehen Sie bitte in Betracht, es zum CLI und der Dokumentation hinzuzufügen, damit es leichter gefunden werden kann.
+Wir schätzen jeden neuen Plugin, der anderen Menschen helfen könnte, bessere Tests durchzuführen! Wenn Sie einen solchen Plugin erstellt haben, sollten Sie in Erwägung ziehen, ihn zu unserer CLI und Dokumentation hinzuzufügen, damit er leichter gefunden werden kann.
 
-Bitte stellen Sie einen Pull-Request mit den folgenden Änderungen:
+Bitte stellen Sie einen Pull Request mit den folgenden Änderungen:
 
-- Fügen Sie Ihren Service zur Liste der [unterstützten Services](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128) im CLI-Modul hinzu
-- Erweitern Sie die [Service Liste](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json), um Ihre Dokumentation zur offiziellen Webdriver.io-Seite hinzuzufügen
+- Fügen Sie Ihren Dienst zur Liste der [unterstützten Dienste](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) im CLI-Modul hinzu
+- Erweitern Sie die [Dienstliste](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json), um Ihre Dokumentation zur offiziellen Webdriver.io-Seite hinzuzufügen

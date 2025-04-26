@@ -3,28 +3,28 @@ id: modules
 title: Module
 ---
 
-WebdriverIO veröffentlicht verschiedene Module für NPM und andere Anbieter, die Sie verwenden können, um Ihr eigenes Automatisierungs-Framework zu erstellen. Weitere Dokumentation zu WebdriverIO Einrichtungstypen [finden Sie hier](/docs/setuptypes).
+WebdriverIO veröffentlicht verschiedene Module auf NPM und anderen Registries, die Sie zum Aufbau Ihres eigenen Automatisierungsframeworks verwenden können. Weitere Dokumentation zu WebdriverIO-Setup-Typen finden Sie [hier](/docs/setuptypes).
 
 ## `webdriver` und `devtools`
 
-Die Protokollpakete ([`webdriver`](https://www.npmjs.com/package/webdriver) und [`devtools`](https://www.npmjs.com/package/devtools)) exportieren eine Klasse mit den folgenden statischen Funktionen, die Ihnen erlauben, Sitzungen zu initiieren:
+Die Protokollpakete ([`webdriver`](https://www.npmjs.com/package/webdriver) und [`devtools`](https://www.npmjs.com/package/devtools)) stellen eine Klasse mit den folgenden statischen Funktionen zur Verfügung, mit denen Sie Sitzungen initiieren können:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Startet eine neue Sitzung mit bestimmten Fähigkeiten. Basierend auf der Session-Antwort stehen Ihnen verschiedene Befehle zu Verfügung.
+Startet eine neue Sitzung mit spezifischen Capabilities. Basierend auf der Sitzungsantwort werden Befehle aus verschiedenen Protokollen bereitgestellt.
 
-##### Parameter
+##### Paramaters
 
-- `options`: [WebDriver Optionen](/docs/configuration#webdriver-options)
-- `modifier`: Funktion, die es erlaubt, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
-- `userPrototype`: Prototyp-Objekt, mit dem der Prototyp der Instanz erweitert werden kann
-- `customCommandWrapper`: Funktion, die die Funktionalität von Protokoll-Befehle beeinflussen kann.
+- `options`: [WebDriver Options](/docs/configuration#webdriver-options)
+- `modifier`: Funktion, die es ermöglicht, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
+- `userPrototype`: Eigenschaftsobjekt, das es ermöglicht, den Instanzprototyp zu erweitern
+- `customCommandWrapper`: Funktion, die es ermöglicht, Funktionalität um Funktionsaufrufe zu wickeln
 
-##### Rückgabewert:
+##### Returns
 
 - [Browser](/docs/api/browser) Objekt
 
-##### Beispiel
+##### Example
 
 ```js
 const client = await WebDriver.newSession({
@@ -34,20 +34,20 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-Verbindet sich mit einer bereits laufenden Automatisierungs-Session.
+Verbindet sich mit einer laufenden WebDriver- oder DevTools-Sitzung.
 
-##### Parameter
+##### Paramaters
 
-- `attachInstance`: Instanz, um eine Sitzung mit einer Eigenschaft `sessionId` (z.B. `{ sessionId: 'xxx' }`)
-- `modifier`: Funktion, die es erlaubt, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
-- `userPrototype`: Prototyp-Objekt, mit dem der Prototyp der Instanz erweitert werden kann
-- `customCommandWrapper`: Funktion, die die Funktionalität von Protokoll-Befehle beeinflussen kann.
+- `attachInstance`: Instanz, mit der eine Sitzung verbunden werden soll, oder mindestens ein Objekt mit einer Eigenschaft `sessionId` (z.B. `{ sessionId: 'xxx' }`)
+- `modifier`: Funktion, die es ermöglicht, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
+- `userPrototype`: Eigenschaftsobjekt, das es ermöglicht, den Instanzprototyp zu erweitern
+- `customCommandWrapper`: Funktion, die es ermöglicht, Funktionalität um Funktionsaufrufe zu wickeln
 
-##### Rückgabewert:
+##### Returns
 
-- [Browser](/docs/api/browser) object
+- [Browser](/docs/api/browser) Objekt
 
-##### Beispiel
+##### Example
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -56,13 +56,13 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-Lädt eine angegebene Instanz neu.
+Lädt eine Sitzung mit der bereitgestellten Instanz neu.
 
-##### Parameter
+##### Paramaters
 
-- `instance`: Paket Instanz, die neu geladen werden soll
+- `instance`: Paketinstanz zum Neuladen
 
-##### Beispiel
+##### Example
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -71,22 +71,22 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-Ähnlich wie bei den Protokollpaketen (`webdriver` und `devtools`) können Sie auch die APIs des WebdriverIO-Pakets zur Verwaltung von Sessions verwenden. Die APIs können mit `import { remote, attach, multiremote } from 'webdriverio'` importiert werden und enthalten folgende Funktionalität:
+Ähnlich wie bei den Protokollpaketen (`webdriver` und `devtools`) können Sie auch die WebdriverIO-Paket-APIs verwenden, um Sitzungen zu verwalten. Die APIs können mit `import { remote, attach, multiremote } from 'webdriverio'` importiert werden und enthalten die folgende Funktionalität:
 
 #### `remote(options, modifier)`
 
-Startet eine WebdriverIO-Sitzung. Die Instanz enthält alle Protokoll befehle, jedoch mit zusätzlichen Funktionen, siehe [API-Dokumentation](/docs/api).
+Startet eine WebdriverIO-Sitzung. Die Instanz enthält alle Befehle wie das Protokollpaket, jedoch mit zusätzlichen Funktionen höherer Ordnung, siehe [API-Dokumentation](/docs/api).
 
-##### Parameter
+##### Paramaters
 
-- `Optionen`: [WebdriverIO-Optionen](/docs/configuration#webdriverio)
-- `modifier`: Funktion, die es erlaubt, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
+- `options`: [WebdriverIO Options](/docs/configuration#webdriverio)
+- `modifier`: Funktion, die es ermöglicht, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
 
-##### Rückgabewert:
+##### Returns
 
 - [Browser](/docs/api/browser) Objekt
 
-##### Beispiel
+##### Example
 
 ```js
 import { remote } from 'webdriverio'
@@ -98,17 +98,17 @@ const browser = await remote({
 
 #### `attach(attachOptions)`
 
-Verbindet sich mit einer bereits laufenden Automatisierungs-Session.
+Verbindet sich mit einer laufenden WebdriverIO-Sitzung.
 
-##### Parameter
+##### Paramaters
 
-- `attachInstance`: Instanz, um eine Sitzung mit einer Eigenschaft `sessionId` (z.B. `{ sessionId: 'xxx' }`)
+- `attachOptions`: Instanz, mit der eine Sitzung verbunden werden soll, oder mindestens ein Objekt mit einer Eigenschaft `sessionId` (z.B. `{ sessionId: 'xxx' }`)
 
-##### Rückgabewert:
+##### Returns
 
 - [Browser](/docs/api/browser) Objekt
 
-##### Beispiel
+##### Example
 
 ```js
 import { remote, attach } from 'webdriverio'
@@ -119,17 +119,17 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-Startet eine Multi-Remote-Instanz, mit der Sie mehrere Browser oder Mobile Endgeräte innerhalb einer Instanz steuern können. Schauen Sie sich unsere [Multiremote Beispiele](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) für konkrete Anwendungsfälle an.
+Initiiert eine Multiremote-Instanz, mit der Sie mehrere Sitzungen innerhalb einer einzigen Instanz steuern können. Schauen Sie sich unsere [Multiremote-Beispiele](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) für konkrete Anwendungsfälle an.
 
-##### Parameter
+##### Paramaters
 
-- `multiremoteOptions`: ein Objekt mit Eigenschaften, die den Browsernamen und seine [WebdriverIO Optionen repräsentieren](/docs/configuration#webdriverio).
+- `multiremoteOptions`: ein Objekt mit Schlüsseln, die den Browsernamen und ihren [WebdriverIO Options](/docs/configuration#webdriverio) entsprechen.
 
-##### Rückgabewert:
+##### Returns
 
 - [Browser](/docs/api/browser) Objekt
 
-##### Beispiel
+##### Example
 
 ```js
 import { multiremote } from 'webdriverio'
@@ -151,14 +151,14 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-Anstatt den Befehl `wdio` aufzurufen, können Sie den Testrunner auch als Modul einbinden und in einer beliebigen Umgebung ausführen. Dazu benötigen Sie das Paket `@wdio/cli` als Modul, etwa so:
+Anstatt den Befehl `wdio` aufzurufen, können Sie den Testrunner auch als Modul einbinden und in einer beliebigen Umgebung ausführen. Dafür müssen Sie das `@wdio/cli`-Paket als Modul einbinden, wie folgt:
 
 <Tabs
   defaultValue="esm"
   values={[
     {label: 'EcmaScript Modules', value: 'esm'},
- {label: 'CommonJS', value: 'cjs'}
- ]
+    {label: 'CommonJS', value: 'cjs'}
+  ]
 }>
 <TabItem value="esm">
 
@@ -176,18 +176,18 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-Erstellen Sie danach eine Instanz des Launchers und führen Sie den Test aus.
+Danach erstellen Sie eine Instanz des Launchers und führen den Test aus.
 
 #### `Launcher(configPath, opts)`
 
-Der `Launcher` Klassenkonstruktor erwartet die URL zur Konfigurationsdatei und ein `opts` Objekt mit Einstellungen, die diejenigen in der Konfiguration überschreiben.
+Der Konstruktor der `Launcher`-Klasse erwartet die URL zur Konfigurationsdatei und ein `opts`-Objekt mit Einstellungen, die die in der Konfiguration überschreiben.
 
-##### Parameter
+##### Paramaters
 
-- `configPath`: Pfad zu `wdio.conf.js` zum Ausführen
-- `opt`: Argumente ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) um Werte aus der Konfigurationsdatei zu überschreiben
+- `configPath`: Pfad zur `wdio.conf.js`, die ausgeführt werden soll
+- `opts`: Argumente ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)), um Werte aus der Konfigurationsdatei zu überschreiben
 
-##### Beispiel
+##### Example
 
 ```js
 const wdio = new Launcher(
@@ -203,36 +203,36 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-Der Befehl `run` gibt ein [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)zurück. Es wird resolved, wenn Tests erfolgreich ausgeführt oder fehlgeschlagen sind, und ein Fehler wird geworfen, wenn der Launcher die Tests nicht starten konnte.
+Der Befehl `run` gibt ein [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) zurück. Es wird aufgelöst, wenn Tests erfolgreich ausgeführt wurden oder fehlgeschlagen sind, und es wird abgelehnt, wenn der Launcher die Tests nicht starten konnte.
 
 ## `@wdio/browser-runner`
 
-Wenn Sie Unit- oder Komponententests mit WebdriverIOs [Browser Runner](/docs/runner#browser-runner) ausführen, können Sie Mocking Funktionalitäten für Ihre Tests importieren, z.B.:
+Wenn Sie Unit- oder Komponententests mit WebdriverIOs [Browser-Runner](/docs/runner#browser-runner) ausführen, können Sie Mocking-Hilfsmittel für Ihre Tests importieren, z.B.:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-Die folgenden Variablen stehen zur Verfügung:
+Die folgenden benannten Exporte sind verfügbar:
 
 #### `fn`
 
-Mock-Funktion, siehe mehr in den offiziellen [Vitest-Dokumenten](https://vitest.dev/api/mock.html#mock-functions).
+Mock-Funktion, weitere Informationen in der offiziellen [Vitest-Dokumentation](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
-Spionagefunktion, siehe mehr in den offiziellen [Vitest-Dokumenten](https://vitest.dev/api/mock.html#mock-functions).
+Spy-Funktion, weitere Informationen in der offiziellen [Vitest-Dokumentation](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
-Methode zum Mocken einer Datei oder einer Dependency.
+Methode zum Mocken von Dateien oder Abhängigkeitsmodulen.
 
-##### Parameter
+##### Paramaters
 
-- `moduleName`: entweder ein relativer Pfad zu der Datei, die gemockt werden soll, oder ein Modulname.
-- `Factory`: Funktion zum Zurückgeben des gemockten Modules (optional)
+- `moduleName`: entweder ein relativer Pfad zur zu mockenden Datei oder ein Modulname.
+- `factory`: Funktion, die den gemockten Wert zurückgibt (optional)
 
-##### Beispiel
+##### Example
 
 ```js
 mock('../src/constants.ts', () => ({
@@ -250,13 +250,13 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-Mock Setting aufheben, die im manuellen Mock-Verzeichnis (`__mocks__`) definiert ist.
+Hebt das Mocking einer Abhängigkeit auf, die im manuellen Mock-Verzeichnis (`__mocks__`) definiert ist.
 
-##### Parameter
+##### Paramaters
 
-- `moduleName`: Name des zu entmockenden Moduls.
+- `moduleName`: Name des Moduls, dessen Mocking aufgehoben werden soll.
 
-##### Beispiel
+##### Example
 
 ```js
 unmock('lodash')

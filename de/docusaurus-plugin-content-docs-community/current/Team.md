@@ -3,16 +3,16 @@ id: team
 title: Team
 ---
 
-Die WebdriverIO Entwicklung wird von einem engagierten Team von Entwicklern und SDETs aus verschiedenen Unternehmen sowie von Menschen aus der ganzen Welt geleitet.
+Die WebdriverIO-Entwicklung wird von einem engagierten Team von Entwicklern und SDETs aus verschiedenen Unternehmen sowie durch Beiträge von Menschen aus der ganzen Welt geleitet.
 
-## Technical Steering Committee
+## Technisches Lenkungskomitee
 
 <Card
     name="Adam Bjerstedt"
     avatar="https://avatars2.githubusercontent.com/u/4043890?s=460"
     github="abjerstedt"
 >
-    Senior Software Engineer - Android at <a href="https://www.target.com/">Target</a>.
+    Senior Software Engineer - Android bei <a href="https://www.target.com/">Target</a>.
 </Card>
 
 <Card
@@ -21,7 +21,7 @@ Die WebdriverIO Entwicklung wird von einem engagierten Team von Entwicklern und 
     github="christian-bromann"
     twitter="bromann"
 >
-    Staff Software Engineer at the Open Source Program Office <a href="https://saucelabs.com/">@saucelabs</a>.
+    Staff Software Engineer im Open Source Program Office <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 <Card
@@ -29,8 +29,7 @@ Die WebdriverIO Entwicklung wird von einem engagierten Team von Entwicklern und 
     avatar="https://avatars.githubusercontent.com/u/15839059?s=460"
     github="erwinheitzman"
 >
-    Senior Test Automation Engineer at <a href="https://detesters.nl/">deTesters</a>.
-
+    Senior Test Automation Engineer bei <a href="https://detesters.nl/">deTesters</a>.
 </Card>
 
 <Card
@@ -55,7 +54,7 @@ Die WebdriverIO Entwicklung wird von einem engagierten Team von Entwicklern und 
     avatar="https://avatars3.githubusercontent.com/u/1300981?s=460"
     github="WillBrock"
 >
-    Automation Engineering Manager at <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
+    Automation Engineering Manager bei <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
 </Card>
 
 <Card
@@ -65,10 +64,9 @@ Die WebdriverIO Entwicklung wird von einem engagierten Team von Entwicklern und 
     twitter="wswebcreation"
 >
     Senior Solutions Architect <a href="https://saucelabs.com/">@saucelabs</a>.
-
 </Card>
 
-## Projektzusammenarbeit
+## Projekt-Mitarbeiter
 
 <Card
     name="Baruch Velez"
@@ -86,4 +84,4 @@ Die WebdriverIO Entwicklung wird von einem engagierten Team von Entwicklern und 
 >
 </Card>
 
-and [many many more](https://github.com/orgs/webdriverio/people).
+und [viele, viele mehr](https://github.com/orgs/webdriverio/people).

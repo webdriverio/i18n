@@ -3,7 +3,7 @@ id: testrunner
 title: Testrunner
 ---
 
-WebdriverIO wird mit einem eigenen Testrunner geliefert, damit Sie so schnell wie möglich mit dem Schreiben und Ausführen von Tests beginnen können. It is supposed to do all the work for you, allows integrate to 3rd party services, and helps you to run your tests as efficiently as possible.
+WebdriverIO kommt mit seinem eigenen Testrunner, um Ihnen zu helfen, so schnell wie möglich mit dem Testen zu beginnen. Er soll die gesamte Arbeit für Sie erledigen, ermöglicht die Integration in Dienste von Drittanbietern und hilft Ihnen, Ihre Tests so effizient wie möglich auszuführen.
 
 Der Testrunner von WebdriverIO ist separat im NPM-Paket `@wdio/cli` gebündelt.
 
@@ -13,7 +13,7 @@ Installieren Sie es wie folgt:
 npm install @wdio/cli
 ```
 
-Um die Hilfe der Befehlszeilenschnittstelle anzuzeigen, geben Sie den folgenden Befehl in Ihr Terminal ein:
+Um die Hilfe zur Befehlszeilenschnittstelle zu sehen, geben Sie den folgenden Befehl in Ihr Terminal ein:
 
 ```sh
 $ npx wdio --help
@@ -34,21 +34,21 @@ Options:
   --help     Show help                                                 [boolean]
 ```
 
-Großartig! Jetzt müssen Sie eine Konfigurationsdatei definieren, in der alle Informationen zu Ihren Tests, Fähigkeiten und Einstellungen festgelegt sind. Switch over to the [Configuration File](/docs/configuration)  section to see what that file should look like.
+Super! Jetzt müssen Sie eine Konfigurationsdatei definieren, in der alle Informationen zu Ihren Tests, Fähigkeiten und Einstellungen festgelegt sind. Wechseln Sie zum Abschnitt [Konfigurationsdatei](/docs/configuration), um zu sehen, wie diese Datei aussehen sollte.
 
-Mit dem `wdio` Konfigurationshelfer ist es super einfach, Ihre Konfigurationsdatei zu generieren. Führen Sie einfach folgendes aus:
+Mit dem `wdio`-Konfigurationshelfer ist es super einfach, Ihre Konfigurationsdatei zu erstellen. Führen Sie einfach aus:
 
 ```sh
 $ npx wdio config
 ```
 
-... und es startet das Hilfsprogramm.
+...und es startet das Hilfsprogramm.
 
-Es wird Ihnen Fragen stellen und in weniger als einer Minute eine Konfigurationsdatei für Sie generieren.
+Es stellt Ihnen Fragen und generiert in weniger als einer Minute eine Konfigurationsdatei für Sie.
 
-![WDIO-Konfigurationsprogramm](/img/config-utility.gif)
+![WDIO-Konfigurationsdienstprogramm](/img/config-utility.gif)
 
-Sobald Sie Ihre Konfigurationsdatei eingerichtet haben, können Sie Ihre Tests starten, indem Sie Folgendes ausführen:
+Sobald Sie Ihre Konfigurationsdatei eingerichtet haben, können Sie Ihre Tests starten, indem Sie ausführen:
 
 ```sh
 npx wdio run wdio.conf.js
@@ -60,13 +60,13 @@ Sie können Ihren Testlauf auch ohne den Befehl `run` initialisieren:
 npx wdio wdio.conf.js
 ```
 
-Das war's! Nun können Sie über die globale Variable `browser` auf die Browser-Instanz zugreifen.
+Das ist alles! Jetzt können Sie über die globale Variable `browser` auf die Selenium-Instanz zugreifen.
 
 ## Befehle
 
 ### `wdio config`
 
-Der Befehl `config` führt den WebdriverIO-Konfigurationshelfer aus. Dieser Helfer stellt Ihnen ein paar Fragen zu Ihrem WebdriverIO-Projekt und erstellt eine `wdio.conf.js` Datei basierend auf Ihren Antworten.
+Der Befehl `config` führt den WebdriverIO-Konfigurationshelfer aus. Dieser Helfer stellt Ihnen einige Fragen zu Ihrem WebdriverIO-Projekt und erstellt basierend auf Ihren Antworten eine `wdio.conf.js`-Datei.
 
 Beispiel:
 
@@ -125,10 +125,10 @@ Optionen:
 --cucumberOpts        Cucumber options
 ```
 
-> Note: Autocompiling can be easily controlled with `tsx` ENV Vars. See also the [TypeScript documentation](/docs/typescript).
+> Hinweis: Autokompilierung kann leicht mit `tsx` ENV-Variablen gesteuert werden. Siehe auch die [TypeScript-Dokumentation](/docs/typescript).
 
 ### `wdio install`
-Mit dem Befehl `install` können Sie Reporter und Dienste über die CLI zu Ihren WebdriverIO-Projekten hinzufügen.
+Mit dem Befehl `install` können Sie Reporter und Dienste zu Ihren WebdriverIO-Projekten über die CLI hinzufügen.
 
 Beispiel:
 
@@ -138,13 +138,13 @@ wdio install reporter dot # installs @wdio/dot-reporter
 wdio install framework mocha # installs @wdio/mocha-framework
 ```
 
-Wenn Sie die Pakete stattdessen mit `yarn` installieren möchten, können Sie den Parameter `--yarn` an den Befehl übergeben:
+Wenn Sie die Pakete mit `yarn` installieren möchten, können Sie dem Befehl das Flag `--yarn` übergeben:
 
 ```sh
 wdio install service sauce --yarn
 ```
 
-Sie können auch einen benutzerdefinierten Konfigurationspfad übergeben, wenn sich Ihre WDIO-Konfigurationsdatei nicht in demselben Ordner befindet, an dem Sie gerade arbeiten:
+Sie können auch einen benutzerdefinierten Konfigurationspfad übergeben, wenn sich Ihre WDIO-Konfigurationsdatei nicht in dem Ordner befindet, in dem Sie arbeiten:
 
 ```sh
 wdio install service sauce --config="./path/to/wdio.conf.js"
@@ -196,15 +196,15 @@ cucumber
 
 ### `wdio repl`
 
-Der Befehl repl ermöglicht das Starten einer interaktiven Befehlszeilenschnittstelle zum Ausführen von WebdriverIO-Befehlen. Es kann zu Testzwecken oder zum schnellen Hochfahren der WebdriverIO-Sitzung verwendet werden.
+Der Befehl repl ermöglicht es, eine interaktive Befehlszeilenschnittstelle zu starten, um WebdriverIO-Befehle auszuführen. Er kann zu Testzwecken oder einfach zum schnellen Starten einer WebdriverIO-Sitzung verwendet werden.
 
-Zum Beispiel: führen Sie Tests in lokalem Chrome aus:
+Tests im lokalen Chrome ausführen:
 
 ```sh
 wdio repl chrome
 ```
 
-oder Tests auf Sauce Labs durchführen:
+oder Tests auf Sauce Labs ausführen:
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY

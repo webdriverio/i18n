@@ -3,10 +3,10 @@ id: bamboo
 title: Bamboo
 ---
 
-WebdriverIO bietet eine enge Integration in CI-Systeme wie [Bamboo](https://www.atlassian.com/software/bamboo). Mit dem [JUnit](https://webdriver.io/docs/junit-reporter.html) oder [Allure](https://webdriver.io/docs/allure-reporter.html) Reporter können Sie Ihre Tests einfach debuggen und Ihre Testergebnisse verfolgen. Die Integration ist ziemlich einfach.
+WebdriverIO bietet eine enge Integration in CI-Systeme wie [Bamboo](https://www.atlassian.com/software/bamboo). Mit dem [JUnit](https://webdriver.io/docs/junit-reporter.html) oder [Allure](https://webdriver.io/docs/allure-reporter.html) Reporter können Sie Ihre Tests leicht debuggen und Ihre Testergebnisse verfolgen. Die Integration ist ziemlich einfach.
 
-1. Installieren Sie den JUnit-Testreporter: `$ npm install @wdio/junit-reporter --save-dev`)
-1. Aktualisieren Sie Ihre Konfiguration, um Ihre JUnit-Ergebnisse dort zu speichern, wo Bamboo sie finden kann (und geben Sie den Reporter `junit` an):
+1. Installieren Sie den JUnit-Testberichterstatter: `$ npm install @wdio/junit-reporter --save-dev`)
+1. Aktualisieren Sie Ihre Konfiguration, um Ihre JUnit-Ergebnisse dort zu speichern, wo Bamboo sie finden kann (und geben Sie den `junit`-Reporter an):
 
 ```js
 // wdio.conf.js
@@ -21,7 +21,7 @@ module.exports = {
     // ...
 }
 ```
-Hinweis: *Es ist immer ein guter Standard, die Testergebnisse in einem anderen Ordner als im Stammordner aufzubewahren.*
+Hinweis: *Es ist immer ein guter Standard, die Testergebnisse in einem separaten Ordner und nicht im Stammordner zu speichern.*
 
 ```js
 // wdio.conf.js - For tests running in parallel
@@ -40,45 +40,47 @@ module.exports = {
 }
 ```
 
-Die Berichte sind für alle Frameworks ähnlich und Sie können jeden verwenden: Mocha, Jasmine oder Cucumber.
+Die Berichte werden für alle Frameworks ähnlich sein und Sie können jedes verwenden: Mocha, Jasmine oder Cucumber.
 
-Wir glauben, dass Sie zu diesem Zeitpunkt die Tests geschrieben haben und die Ergebnisse im Ordner `./testresults/` generiert werden und Ihr Bamboo betriebsbereit ist.
+Zu diesem Zeitpunkt gehen wir davon aus, dass Sie die Tests geschrieben haben und die Ergebnisse im Ordner ```./testresults/``` generiert werden, und Ihr Bamboo läuft.
 
 ## Integrieren Sie Ihre Tests in Bamboo
 
 1. Öffnen Sie Ihr Bamboo-Projekt
+    > Erstellen Sie einen neuen Plan, verknüpfen Sie Ihr Repository (stellen Sie sicher, dass es immer auf die neueste Version Ihres Repositorys zeigt) und erstellen Sie Ihre Phasen
 
-    > Erstellen Sie einen neuen Plan, verknüpfen Sie Ihr Repository (stellen Sie sicher, dass es immer auf die neueste Version Ihres Repositorys verweist) und erstellen Sie Ihre Stufen
+    ![Plan Details](/img/bamboo/plancreation.png "Plan Details")
 
-    ![Plan-Details](/img/bamboo/plancreation.png "Plan-Details")
+    Ich werde mit der Standardphase und dem Standardjob fortfahren. In Ihrem Fall können Sie Ihre eigenen Phasen und Jobs erstellen
 
-    Ich werde mit der Standardstufe und dem Standardjob fortfahren. In Ihrem Fall können Sie Ihre eigenen Stufen und Jobs erstellen
+    ![Default Stage](/img/bamboo/defaultstage.png "Default Stage")
+2. Öffnen Sie Ihren Testjob und erstellen Sie Aufgaben, um Ihre Tests in Bamboo auszuführen
+    >**Aufgabe 1:** Source Code Checkout
 
-    ![Standardstufe](/img/bamboo/defaultstage.png "Standardstufe")
-2. Open your testing job and create tasks to run your tests in Bamboo > **Task 1:** Source Code Checkout
-> **Aufgabe 1:** Quellcode-Checkout
-> **Task 2:** Starte deine Tests mit `npm i && npm run test`. Du kannst den *Script* Task und *Shell Interpreter* verwenden, um obige Befehle auszuführen (dies wird Ihre Test Ergebnisse erzeugen und im `./testresults/` Ordner ablegen)
+    >**Aufgabe 2:** Führen Sie Ihre Tests aus ```npm i && npm run test```. Sie können die *Script*-Aufgabe und den *Shell Interpreter* verwenden, um die obigen Befehle auszuführen (Dies generiert die Testergebnisse und speichert sie im Ordner ```./testresults/```)
 
-    ![Testlauf](/img/bamboo/testrun.png "Testlauf")
-> **Aufgabe: 3** Fügen Sie *jUnit Parser* Aufgabe hinzu, um Ihre gespeicherten Testergebnisse zu parsen. Bitte geben Sie hier das Verzeichnis der Testergebnisse an (Sie können auch Muster im Ant-Stil verwenden)
+    ![Test Run](/img/bamboo/testrun.png "Test Run")
 
-    ![jUnit-Parser](/img/bamboo/junitparser.png "jUnit-Parser")
+    >**Aufgabe: 3** Fügen Sie die Aufgabe *jUnit Parser* hinzu, um Ihre gespeicherten Testergebnisse zu analysieren. Bitte geben Sie hier das Testergebnisverzeichnis an (Sie können auch Ant-Stilmuster verwenden)
 
-    Hinweis: *Stellen Sie sicher, dass sie den Ergebnisse Parser Task in der *Final* Section behalten, sodass es auch dann ausgeführt wird, wenn der Test fehlschlägt*
-> **Aufgabe 1:** Quellcode-Checkout **Aufgabe 1:** Quellcode-Checkout **Aufgabe: 4** (optional) Um sicherzustellen, dass Ihre Testergebnisse nicht mit alten Dateien durcheinandergebracht werden, können Sie eine Aufgabe erstellen, um den Ordner `./testresults/` nach einem erfolgreichen Parsen zu Bamboo zu entfernen. Sie können ein Shell-Skript wie `rm -f ./testresults/*.xml` hinzufügen, um die Ergebnisse zu entfernen, oder `rm -r testresults`, um den gesamten Ordner zu entfernen
+    ![jUnit Parser](/img/bamboo/junitparser.png "jUnit Parser")
 
-Sobald die obige *Raketenwissenschaft* fertig ist, aktivieren Sie bitte den Plan und führen Sie ihn aus. Ihre endgültige Ausgabe wird wie folgt aussehen:
+    Hinweis: *Stellen Sie sicher, dass Sie die Ergebnisparser-Aufgabe im Abschnitt *Final* halten, damit sie immer ausgeführt wird, auch wenn Ihre Testaufgabe fehlschlägt*
+
+    >**Aufgabe: 4** (optional) Um sicherzustellen, dass Ihre Testergebnisse nicht mit alten Dateien durcheinander geraten, können Sie eine Aufgabe erstellen, um den Ordner ```./testresults/``` nach einer erfolgreichen Analyse in Bamboo zu entfernen. Sie können ein Shell-Skript wie ```rm -f ./testresults/*.xml``` hinzufügen, um die Ergebnisse zu entfernen, oder ```rm -r testresults```, um den gesamten Ordner zu entfernen
+
+Sobald die obige *Raketenwissenschaft* erledigt ist, aktivieren Sie bitte den Plan und führen Sie ihn aus. Ihr endgültiges Ergebnis wird wie folgt aussehen:
 
 ## Erfolgreicher Test
 
-![Erfolgreicher Test](/img/bamboo/successfulltest.png "Erfolgreicher Test")
+![Successful Test](/img/bamboo/successfulltest.png "Successful Test")
 
 ## Fehlgeschlagener Test
 
-![Fehlgeschlagener Test](/img/bamboo/failedtest.png "Fehlgeschlagener Test")
+![Failed Test](/img/bamboo/failedtest.png "Failed Test")
 
 ## Fehlgeschlagen und Behoben
 
-![Fehlgeschlagen und Behoben](/img/bamboo/failedandfixed.png "Fehlgeschlagen und Behoben")
+![Failed and Fixed](/img/bamboo/failedandfixed.png "Failed and Fixed")
 
-Yay!! Das war es schon! Sie haben Ihre WebdriverIO-Tests erfolgreich in Bamboo integriert.
+Juhu!! Das ist alles. Sie haben Ihre WebdriverIO-Tests erfolgreich in Bamboo integriert.

@@ -1,24 +1,24 @@
 ---
 id: proxy
-title: Proxy-Setup
+title: Proxy-Einrichtung
 ---
 
 Sie können zwei verschiedene Arten von Anfragen durch einen Proxy tunneln:
 
-- Verbindung zwischen Ihrem Testskript und dem Browsertreiber (oder WebDriver-Endpunkt)
-- Verbindung zwischen Browser und Internet
+- Verbindung zwischen Ihrem Testskript und dem Browser-Treiber (oder WebDriver-Endpunkt)
+- Verbindung zwischen dem Browser und dem Internet
 
 ## Proxy zwischen Treiber und Test
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+Wenn Ihr Unternehmen einen Unternehmens-Proxy (z.B. auf `http://my.corp.proxy.com:9090`) für alle ausgehenden Anfragen hat, folgen Sie den unten stehenden Schritten, um [undici](https://github.com/nodejs/undici) zu installieren und zu konfigurieren.
 
-### Install undici
+### Undici installieren
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### Fügen Sie undici setGlobalDispatcher zu Ihrer Konfigurationsdatei hinzu
 
 Fügen Sie die folgende require-Anweisung am Anfang Ihrer Konfigurationsdatei hinzu.
 
@@ -33,9 +33,9 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+Weitere Informationen zur Konfiguration des Proxys finden Sie [hier](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+Wenn Sie [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5) verwenden, starten Sie ihn über:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
@@ -43,27 +43,13 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 
 ## Proxy zwischen Browser und Internet
 
-Um die Verbindung zwischen dem Browser und dem Internet zu tunneln, können Sie einen Proxy einrichten, der nützlich sein kann, um (zum Beispiel) Netzwerkinformationen und andere Daten mit Tools wie [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy)zu erfassen.
+Um die Verbindung zwischen dem Browser und dem Internet zu tunneln, können Sie einen Proxy einrichten, der nützlich sein kann, um (zum Beispiel) Netzwerkinformationen und andere Daten mit Tools wie [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) zu erfassen.
 
-Die `Proxy-` Parameter können wie folgt über die Standardfunktionen angewendet werden:
+Die `proxy`-Parameter können über die Standardfähigkeiten auf folgende Weise angewendet werden:
 
 ```js title="wdio.conf.js"
 export const config = {
     // ...
-    capabilities: [{
-        browserName: 'chrome',
-        // ...
-        proxy: {
-            proxyType: "manual",
-            httpProxy: "corporate.proxy:8080",
-            socksUsername: "codeceptjs",
-            socksPassword: "secret",
-            noProxy: "127.0.0.1,localhost"
-        },
-        // ...
-    }],
-    // ...
-}
     capabilities: [{
         browserName: 'chrome',
         // ...

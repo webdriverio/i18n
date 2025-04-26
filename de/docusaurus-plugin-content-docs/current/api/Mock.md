@@ -3,30 +3,33 @@ id: mock
 title: Das Mock-Objekt
 ---
 
-Das Mock-Objekt ist ein Objekt, das ein Netzwerk-Mock repräsentiert und Informationen über Anfragen enthält, die mit der `url` und `filterOptions` übereinstimmen. Es kann über den [`mock`](/docs/api/browser/mock) Befehl erstellt werden.
+Das Mock-Objekt ist ein Objekt, das einen Netzwerk-Mock repräsentiert und Informationen über Anfragen enthält, die mit der angegebenen `url` und den `filterOptions` übereinstimmen. Es kann mit dem Befehl [`mock`](/docs/api/browser/mock) empfangen werden.
 
 :::info
 
-Beachten Sie, dass die Verwendung des `mock` Befehls Unterstützung für das Chrome DevTools Protokoll erfordert. Diese Unterstützung wird gewährt, wenn Sie lokal Tests im Chromium-Browser ausführen oder wenn Sie ein Selenium Grid v4 oder höher verwenden. Dieser Befehl kann __nicht__ beim Ausführen von automatisierten Tests in der Cloud verwendet werden. Erfahren Sie mehr im Bereich [Automation Protocols](/docs/automationProtocols).
+Beachten Sie, dass die Verwendung des `mock`-Befehls die Unterstützung des Chrome DevTools-Protokolls erfordert.
+Diese Unterstützung ist gegeben, wenn Sie Tests lokal in einem Chromium-basierten Browser ausführen oder
+wenn Sie Selenium Grid v4 oder höher verwenden. Dieser Befehl kann __nicht__ verwendet werden, wenn
+automatisierte Tests in der Cloud ausgeführt werden. Weitere Informationen finden Sie im Abschnitt [Automation Protocols](/docs/automationProtocols).
 
 :::
 
-Sie können mehr über Mocking Requests und Antworten in WebdriverIO in unserem [Mocks und Spione](/docs/mocksandspies) Guide lesen.
+Mehr über das Mocken von Anfragen und Antworten in WebdriverIO können Sie in unserem [Mocks and Spies](/docs/mocksandspies) Leitfaden lesen.
 
 ## Eigenschaften
 
-Ein Mock-Objekt hat folgende Eigenschaften:
+Ein Mock-Objekt enthält die folgenden Eigenschaften:
 
-| Namen           | Typ        | Details                                                                                                                                                                        |
-| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `url`           | `String`   | Die Url, die an den Mock-Befehl übergeben wurde                                                                                                                                |
-| `filterOptions` | `Object`   | Die Ressourcenfilter-Optionen, die an den Mock-Befehl übergeben wurde                                                                                                          |
-| `browser`       | `Object`   | Das [Browser-Objekt](/docs/api/browser), von dem aus der Mock Befehl ausgeführt wurde.                                                                                         |
-| `calls`         | `Object[]` | Informationen über passende Browser-Anfragen mit Eigenschaften wie `url`, `Methode`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` und `body` |
+| Name | Typ | Details |
+| ---- | ---- | ------- |
+| `url` | `String` | Die URL, die an den Mock-Befehl übergeben wurde |
+| `filterOptions` | `Object` | Die Ressourcen-Filteroptionen, die an den Mock-Befehl übergeben wurden |
+| `browser` | `Object` | Das [Browser-Objekt](/docs/api/browser), das verwendet wurde, um das Mock-Objekt zu erhalten. |
+| `calls` | `Object[]` | Informationen über übereinstimmende Browser-Anfragen, die Eigenschaften wie `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` und `body` enthalten |
 
 ## Methoden
 
-Mock-Objekte liefern verschiedene Befehle, die im `-Mock-` Abschnitt aufgelistet sind. Sie erlauben Benutzern das Verhalten der Netzwerk Anfrage oder der Server Antwort zu ändern.
+Mock-Objekte bieten verschiedene Befehle, die im Abschnitt `mock` aufgeführt sind und es Benutzern ermöglichen, das Verhalten der Anfrage oder Antwort zu modifizieren.
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -37,17 +40,17 @@ Mock-Objekte liefern verschiedene Befehle, die im `-Mock-` Abschnitt aufgelistet
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
 
-## Ereignisse
+## Events
 
-Das Mock-Objekt ist ein EventEmitter und ein paar Ereignisse werden für Ihren Gebrauch emittiert.
+Das Mock-Objekt ist ein EventEmitter und es werden einige Events für Ihre Anwendungsfälle ausgelöst.
 
-Hier ist eine Liste der Ereignisse.
+Hier ist eine Liste der Events.
 
 ### `request`
 
-Dieses Ereignis wird emittiert, wenn eine Netzwerkanfrage gestartet wird, die mit Mock-Patterns übereinstimmt. Anfrage wird bei einem Rückruf übergeben.
+Dieses Event wird ausgelöst, wenn eine Netzwerkanfrage gestartet wird, die mit den Mock-Mustern übereinstimmt. Die Anfrage wird im Event-Callback übergeben.
 
-Anfrage-Interface:
+Request-Interface:
 ```ts
 interface RequestEvent {
     requestId: number
@@ -59,9 +62,9 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Dieses Ereignis wird emittiert, wenn die Netzwerkantwort mit [`respond`](/docs/api/mock/respond) oder [`respondOnce`](/docs/api/mock/respondOnce) verändert wurde. Anfrage wird bei einem Callback übergeben.
+Dieses Event wird ausgelöst, wenn die Netzwerkantwort mit [`respond`](/docs/api/mock/respond) oder [`respondOnce`](/docs/api/mock/respondOnce) überschrieben wird. Die Antwort wird im Event-Callback übergeben.
 
-Anfrage-Interface:
+Response-Interface:
 ```ts
 interface OverwriteEvent {
     requestId: number
@@ -73,9 +76,9 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Dieses Ereignis wird emittiert, wenn die Netzwerkantwort mit [`abort`](/docs/api/mock/abort) oder [`abortOnce`](/docs/api/mock/abortOnce) verändert wurde. Fehler wird bei einem Rückruf übergeben.
+Dieses Event wird ausgelöst, wenn die Netzwerkanfrage mit [`abort`](/docs/api/mock/abort) oder [`abortOnce`](/docs/api/mock/abortOnce) abgebrochen wird. Der Fehler wird im Event-Callback übergeben.
 
-Fehlerschnittstelle:
+Fail-Interface:
 ```ts
 interface FailEvent {
     requestId: number
@@ -85,9 +88,9 @@ interface FailEvent {
 
 ### `match`
 
-Dieses Ereignis wird abgesendet, wenn ein neues Match hinzugefügt wird, bevor `continue` oder `overwrite` emittiert wurde. Match wird bei einem Rückruf übergeben.
+Dieses Event wird ausgelöst, wenn eine neue Übereinstimmung hinzugefügt wird, vor `continue` oder `overwrite`. Die Übereinstimmung wird im Event-Callback übergeben.
 
-Match Interface:
+Match-Interface:
 ```ts
 interface MatchEvent {
     url: string // Request URL (without fragment).
@@ -109,11 +112,11 @@ interface MatchEvent {
 
 ### `continue`
 
-Dieses Ereignis wird emittiert, wenn die Netzwerk-Antwort weder überschrieben noch unterbrochen wurde oder wenn die Antwort bereits von einem anderen Mock gesendet wurde. `requestId` wird im Event Callback übergeben.
+Dieses Event wird ausgelöst, wenn die Netzwerkantwort weder überschrieben noch unterbrochen wurde, oder wenn die Antwort bereits von einem anderen Mock gesendet wurde. `requestId` wird im Event-Callback übergeben.
 
 ## Beispiele
 
-Eine Anzahl ausstehender Anfragen:
+Ermitteln der Anzahl ausstehender Anfragen:
 
 ```js
 let pendingRequests = 0
@@ -128,7 +131,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Einen Fehler im Falle eines fehlgeschlagenen Requests werden:
+Einen Fehler bei einem 404-Netzwerkfehler auslösen:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -157,7 +160,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Festellen, ob Mock Resultat genutzt wurde:
+Feststellen, ob der Mock-Antwortwert verwendet wurde:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -179,4 +182,4 @@ secondMock.on('continue', () => {
 })
 ```
 
-In diesem Beispiel wurde `firstMock` zuerst definiert und hat eine `respondOnce` anrufen, so dass der `secondMock` Antwortwert nicht für die erste Anfrage verwendet wird aber wird für den Rest von ihnen verwendet.
+In diesem Beispiel wurde `firstMock` zuerst definiert und hat einen `respondOnce`-Aufruf, daher wird der Antwortwert von `secondMock` für die erste Anfrage nicht verwendet, aber für alle weiteren Anfragen.

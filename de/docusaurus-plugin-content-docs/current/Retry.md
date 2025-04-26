@@ -1,19 +1,19 @@
 ---
 id: retry
-title: Fehlerhafte Tests Wiederholen
+title: Flaky Tests wiederholen
 ---
 
-Sie können bestimmte Tests mit dem WebdriverIO-Testrunner wiederholen, die sich aufgrund von verschiedenen Faktoren, wie einem unbeständigen Netzwerk oder anderen Zufälligkeiten als instabil herausstellen. Es wird jedoch nicht empfohlen, die Wiederholungsrate einfach zu erhöhen, wenn Tests instabil werden!
+Mit dem WebdriverIO Testrunner können Sie bestimmte Tests wiederholen, die aufgrund von Faktoren wie instabilen Netzwerken oder Race Conditions unzuverlässig sind. (Es wird jedoch nicht empfohlen, einfach die Wiederholungsrate zu erhöhen, wenn Tests instabil werden!)
 
-## Wiederholen von Mocha Tests
+## Suites in Mocha wiederholen
 
-In Mocha können Sie ganze Testsuiten erneut ausführen (alles innerhalb eines `describe` -Blocks). Wenn Sie Mocha verwenden, sollten Sie diesen Retry-Mechanismus der WebdriverIO-Implementierung vorziehen, die es Ihnen nur erlaubt, bestimmte Testblöcke (alles innerhalb eines `it` Blocks) erneut auszuführen. Um die Methode `this.retries()` zu verwenden, muss der Suite-Block `describe` als eine ungebundene Funktion `function(){}` statt einer Pfeil-Funktion `() => {}` geschrieben werde. So wird es in der  [Mocha-Dokumentation](https://mochajs.org/#arrow-functions) beschrieben. Mit Mocha können Sie auch einen Wiederholunglimit für alle Tests festlegen, indem Sie `mochaOpts.retries` in Ihrer `wdio.conf.js` angeben.
+Seit Version 3 von Mocha können Sie ganze Test-Suites wiederholen (alles innerhalb eines `describe`-Blocks). Wenn Sie Mocha verwenden, sollten Sie diesen Wiederholungsmechanismus bevorzugen, anstatt die WebdriverIO-Implementierung zu nutzen, die nur das Wiederholen bestimmter Testblöcke (alles innerhalb eines `it`-Blocks) erlaubt. Um die `this.retries()`-Methode zu verwenden, muss der Suite-Block `describe` eine ungebundene Funktion `function(){}` anstelle einer Fat-Arrow-Funktion `() => {}` verwenden, wie in der [Mocha-Dokumentation](https://mochajs.org/#arrow-functions) beschrieben. Mit Mocha können Sie auch eine Wiederholungsanzahl für alle Specs mit `mochaOpts.retries` in Ihrer `wdio.conf.js` festlegen.
 
 Hier ist ein Beispiel:
 
 ```js
 describe('retries', function () {
-    // Retry all tests in this suite up to 4 times
+    // Alle Tests in dieser Suite bis zu 4 Mal wiederholen
     this.retries(4)
 
     beforeEach(async () => {
@@ -21,7 +21,7 @@ describe('retries', function () {
     })
 
     it('should succeed on the 3rd try', async function () {
-        // Specify this test to only retry up to 2 times
+        // Legt fest, dass dieser Test nur bis zu 2 Mal wiederholt wird
         this.retries(2)
         console.log('run')
         await expect($('.foo')).toBeDisplayed()
@@ -29,16 +29,16 @@ describe('retries', function () {
 })
 ```
 
-## Wiederholen von Jasmine oder Mocha Tests
+## Einzelne Tests in Jasmine oder Mocha wiederholen
 
-Um einen bestimmten Testblock erneut auszuführen, können Sie einfach die Anzahl der Wiederholungen als letzten Parameter nach der Testblockfunktion anwenden:
+Um einen bestimmten Testblock zu wiederholen, können Sie einfach die Anzahl der Wiederholungen als letzten Parameter nach der Testblock-Funktion angeben:
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -54,7 +54,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+Das Gleiche funktioniert auch für Hooks:
 
 ```js
 describe('my flaky app', () => {
@@ -84,7 +84,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+Das Gleiche funktioniert auch für Hooks:
 
 ```js
 describe('my flaky app', () => {
@@ -99,22 +99,22 @@ describe('my flaky app', () => {
 })
 ```
 
-Wenn Sie Jasmine verwenden, ist der zweite Parameter für Timeout reserviert. Um einen Wiederholungsparameter anzugeben, müssen Sie das Zeitlimit auf den Standardwert „jasmine.DEFAULT_TIMEOUT_INTERVAL“ setzen und dann Ihre Wiederholungsanzahl benennen.
+Wenn Sie Jasmine verwenden, ist der zweite Parameter für das Timeout reserviert. Um einen Wiederholungsparameter anzuwenden, müssen Sie das Timeout auf seinen Standardwert `jasmine.DEFAULT_TIMEOUT_INTERVAL` setzen und dann Ihre Wiederholungsanzahl angeben.
 
 </TabItem>
 </Tabs>
 
-Dieser Wiederholungsmechanismus erlaubt nur die Wiederholung einzelner Hooks oder Testblöcke. Wenn Ihr Test von einer Hook zum Einrichten Ihrer Anwendung begleitet wird, wird diese Hook nicht ausgeführt. [Mocha bietet](https://mochajs.org/#retry-tests) native Testwiederholungen, die dieses Verhalten bereitstellen, während Jasmine dies nicht tut. Sie können auf die Anzahl der ausgeführten Wiederholungen im Hook `afterTest` zugreifen.
+Dieser Wiederholungsmechanismus erlaubt nur das Wiederholen einzelner Hooks oder Testblöcke. Wenn Ihr Test mit einem Hook zur Einrichtung Ihrer Anwendung einhergeht, wird dieser Hook nicht ausgeführt. [Mocha bietet](https://mochajs.org/#retry-tests) native Testwiederholungen, die dieses Verhalten ermöglichen, während Jasmine dies nicht tut. Sie können auf die Anzahl der ausgeführten Wiederholungen im `afterTest`-Hook zugreifen.
 
-## Wiederholung von Cucumber Tests
+## Wiederholungen in Cucumber
 
-### Vollständige Suiten in Cucumber erneut ausführen
+### Vollständige Suites in Cucumber wiederholen
 
-Für Cucumber >=6 können Sie die Konfigurationsoption [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) zusammen mit einem optionalen Parameter `retryTagFilter` bereitstellen, damit alle oder einige Ihrer fehlgeschlagenen Szenarien wiederholt werden, bis sie erfolgreich sind. Damit diese Funktion funktioniert, müssen Sie den `scenarioLevelReporter` auf `true`setzen.
+Für Cucumber >=6 können Sie die [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests)-Konfigurationsoption zusammen mit einem optionalen `retryTagFilter`-Parameter angeben, damit alle oder einige Ihrer fehlgeschlagenen Szenarien zusätzliche Wiederholungen erhalten, bis sie erfolgreich sind. Damit diese Funktion funktioniert, müssen Sie `scenarioLevelReporter` auf `true` setzen.
 
-### Schrittdefinitionen in Cucumber erneut ausführen
+### Step Definitions in Cucumber wiederholen
 
-Um die Anzahl der Wiederholungen für eine bestimmte Schrittdefinition zu definieren, wenden Sie einfach die Wiederholungsoption darauf an, wie zum Beispiel:
+Um eine Wiederholungsrate für bestimmte Step Definitions zu definieren, wenden Sie einfach eine Retry-Option darauf an, wie:
 
 ```js
 export default function () {
@@ -128,15 +128,15 @@ export default function () {
 })
 ```
 
-Wiederholungen können nur in Ihrer Test-Datei definiert werden, niemals in Ihrer Feature-Datei.
+Wiederholungen können nur in Ihrer Step-Definitions-Datei definiert werden, niemals in Ihrer Feature-Datei.
 
-## Fügen Sie Wiederholungen pro Spezifikationsdatei hinzu
+## Wiederholungen auf Basis einzelner Specdateien hinzufügen
 
-Zuvor waren nur Wiederholungsversuche auf Test- und Suite-Ebene verfügbar, was in den meisten Fällen in Ordnung ist.
+Bisher waren nur Test- und Suite-Level-Wiederholungen verfügbar, was in den meisten Fällen ausreicht.
 
-Aber bei allen Tests, die einen Status beinhalten (wie auf einem Server oder in einer Datenbank), kann der Status nach dem ersten fehlgeschlagenen Test ungültig bleiben. Alle nachfolgenden Wiederholungsversuche haben aufgrund des ungültigen Status, mit dem sie beginnen würden, möglicherweise keine Chance zu bestehen.
+Aber bei Tests, die Zustandsänderungen beinhalten (wie auf einem Server oder in einer Datenbank), kann der Zustand nach dem ersten Testfehler ungültig bleiben. Nachfolgende Wiederholungen haben möglicherweise keine Chance zu bestehen, da sie mit einem ungültigen Zustand beginnen würden.
 
-Für jede Test-Datei wird eine neue `browser` Session erstellt, was dies zu einem idealen Ort macht, um alle anderen Zustände (Server, Datenbanken) zu verknüpfen und einzurichten. Wiederholungen auf dieser Ebene bedeuten, dass der gesamte Setup-Prozess einfach wiederholt wird, als ob es sich um eine neue Spezifikationsdatei handeln würde.
+Für jede Specdatei wird eine neue `browser`-Instanz erstellt, was dies zu einem idealen Ort macht, um andere Zustände (Server, Datenbanken) einzurichten. Wiederholungen auf dieser Ebene bedeuten, dass der gesamte Einrichtungsprozess einfach wiederholt wird, genau wie bei einer neuen Specdatei.
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -156,15 +156,15 @@ export const config = {
 }
 ```
 
-## Wiederholen spezifischer Tests
+## Einen bestimmten Test mehrmals ausführen
 
-Dadurch soll verhindert werden, dass unzuverlässige Tests in eine Codebasis eingeführt werden. By adding the `--repeat` cli option it will run the specified specs or suites N times. Bei Verwendung dieses CLI-Flags muss auch das Flag `--spec` oder `--suite` angegeben werden.
+Dies soll verhindern, dass flaky Tests in eine Codebasis eingeführt werden. Durch Hinzufügen der `--repeat`-CLI-Option werden die angegebenen Specs oder Suites N-mal ausgeführt. Bei Verwendung dieses CLI-Flags muss auch das `--spec`- oder `--suite`-Flag angegeben werden.
 
-When adding new tests to a codebase, especially through a CI/CD process the tests could pass and get merged but become flaky later on. Diese Fehlerbeständigkeit kann von einer Reihe von Dingen wie Netzwerkproblemen, Serverlast, Datenbankgröße usw. erzeugt werden. Using the `--repeat` flag in your CD/CD process can help catch these flaky tests before they get merged to a main codebase.
+Wenn neue Tests zu einer Codebasis hinzugefügt werden, insbesondere durch einen CI/CD-Prozess, könnten die Tests bestehen und zusammengeführt werden, aber später instabil werden. Diese Instabilität kann durch verschiedene Faktoren wie Netzwerkprobleme, Serverauslastung, Datenbankgröße usw. verursacht werden. Die Verwendung des `--repeat`-Flags in Ihrem CI/CD-Prozess kann helfen, diese flaky Tests zu erkennen, bevor sie in eine Hauptcodebasis zusammengeführt werden.
 
-One strategy to use is run your tests like regular in your CI/CD process but if you're introducing a new test you can then run another set of tests with the new spec specified in `--spec` along with `--repeat` so it runs the new test x number of times. Wenn der Test in einem dieser Fälle fehlschlägt, muss der Test erst untersucht werden und stabiler gemacht werden.
+Eine Strategie besteht darin, Ihre Tests wie gewohnt in Ihrem CI/CD-Prozess auszuführen, aber wenn Sie einen neuen Test einführen, können Sie einen weiteren Testsatz mit dem neuen Spec ausführen, der in `--spec` zusammen mit `--repeat` angegeben ist, sodass der neue Test x-mal ausgeführt wird. Wenn der Test bei einem dieser Durchläufe fehlschlägt, wird der Test nicht zusammengeführt und muss untersucht werden, warum er fehlgeschlagen ist.
 
 ```sh
-# This will run the example.e2e.js spec 5 times
+# Dies führt die example.e2e.js-Spec 5 Mal aus
 npx wdio run ./wdio.conf.js --spec example.e2e.js --repeat 5
 ```

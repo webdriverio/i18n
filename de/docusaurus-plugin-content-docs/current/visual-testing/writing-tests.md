@@ -1,27 +1,29 @@
 ---
 id: writing-tests
-title: Tests Schreiben
+title: Tests schreiben
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ## Unterstützung für Testrunner-Frameworks
 
-`@wdio/visual-service` ist Framework-unabhängig, was bedeutet, dass Sie es mit allen von WebdriverIO unterstützten Frameworks verwenden können, wie:
+`@wdio/visual-service` ist unabhängig vom Test-Runner-Framework, was bedeutet, dass Sie es mit allen Frameworks verwenden können, die WebdriverIO unterstützt, wie:
 
-- [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
-- [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
-- [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
+-   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
+-   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
+-   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-Innerhalb Ihrer Tests können Sie Screenshots _speichern_ oder den aktuellen visuellen Zustand Ihrer Anwendung mit einer Baseline vergleichen. Dafür bietet der Service [benutzerdefinierte Matcher](/docs/api/expect-webdriverio#visual-matcher) sowie _Check_-Methoden:
+In Ihren Tests können Sie Screenshots _speichern_ oder den aktuellen visuellen Zustand Ihrer Anwendung mit einer Baseline vergleichen. Dafür bietet der Service [benutzerdefinierte Matcher](/docs/api/expect-webdriverio#visual-matcher) sowie _check_-Methoden:
 
 <Tabs
-defaultValue="mocha"
-values={[
-{label: 'Mocha', value: 'mocha'},
-{label: 'Jasmine', value: 'jasmine'},
-{label: 'CucumberJS', value: 'cucumberjs'},
-]}
+    defaultValue="mocha"
+    values={[
+        {label: 'Mocha', value: 'mocha'},
+        {label: 'Jasmine', value: 'jasmine'},
+        {label: 'CucumberJS', value: 'cucumberjs'},
+    ]}
 >
-
 <TabItem value="mocha">
 
 ```ts
@@ -355,6 +357,7 @@ Dieser Service bietet `save`- und `check`-Methoden. Wenn Sie Ihre Tests zum erst
 #####################################################################################
 ```
 
+
 Wenn Sie [das automatische Speichern von Baseline-Bildern deaktiviert haben](service-options#autosavebaseline), wird die Promise mit der folgenden Warnung abgelehnt.
 
 ```sh
@@ -365,6 +368,6 @@ Wenn Sie [das automatische Speichern von Baseline-Bildern deaktiviert haben](ser
 #####################################################################################
 ```
 
-Das bedeutet, dass der aktuelle Screenshot im Actual-Ordner gespeichert wird und Sie ihn **manuell in Ihre Baseline kopieren müssen**. Wenn Sie `@wdio/visual-service` mit [`autoSaveBaseline: true`](./service-options#autosavebaseline) initialisieren, wird das Bild automatisch im Baseline-Ordner gespeichert.
+Dies bedeutet, dass der aktuelle Screenshot im actual-Ordner gespeichert wird und Sie ihn **manuell in Ihre Baseline kopieren müssen**. Wenn Sie `@wdio/visual-service` mit [`autoSaveBaseline: true`](./service-options#autosavebaseline) initialisieren, wird das Bild automatisch im Baseline-Ordner gespeichert.
 
 :::

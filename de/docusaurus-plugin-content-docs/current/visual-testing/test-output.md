@@ -5,7 +5,7 @@ title: Testausgabe
 
 :::info
 
-Für die Beispielbildausgabe wurde [diese WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) Demo-Seite verwendet.
+[Diese WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) Demo-Seite wurde für die Beispielbildausgabe verwendet.
 
 :::
 
@@ -37,21 +37,19 @@ Die Bildausgabe für die [Service-Optionen](./service-options#enablelayouttestin
 ### Bildausgabe
 
 <Tabs
-defaultValue="saveelement"
-values={[
-{label: 'saveElement | checkElement', value: 'saveelement'},
-{label: 'saveScreen | checkScreen', value: 'savescreen'},
-{label: 'saveFullPageScreen | checkFullPageScreen', value: 'savefullpagescreen'},
-{label: 'saveTabbablePage | checkTabbablePage', value: 'saveTabbablePage'},
-]}
-
+    defaultValue="saveelement"
+    values={[
+        {label: 'saveElement | checkElement', value: 'saveelement'},
+        {label: 'saveScreen | checkScreen', value: 'savescreen'},
+        {label: 'saveFullPageScreen | checkFullPageScreen', value: 'savefullpagescreen'},
+        {label: 'saveTabbablePage | checkTabbablePage', value: 'saveTabbablePage'},
+    ]}
 >
-
 <TabItem value="saveelement">
 
 ```js
 await browser.saveElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
-// Oder
+// Or
 await browser.checkElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
 ```
 
@@ -73,7 +71,7 @@ await browser.saveScreen("example-page-tag")
 
 ```js
 await browser.saveFullPageScreen("full-page-tag")
-// Oder
+// Or
 await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -85,7 +83,7 @@ await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 
 ```js
 await browser.saveTabbablePage("tabbable-page-tag")
-// Oder
+// Or
 await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -93,6 +91,7 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 
 </TabItem>
 </Tabs>
+
 
 ## save(Screen/Element/FullPageScreen)
 
@@ -105,7 +104,7 @@ const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // Das Gerätepixelverhältnis der ausgeführten Instanz
+ *   // Das Gerätepixelverhältnis der Instanz, die ausgeführt wurde
  *   devicePixelRatio: 1,
  *   // Der formatierte Dateiname, abhängig von der Option `formatImageName`
  *   fileName: "examplePage-chrome-latest-1366x768.png",
@@ -118,15 +117,13 @@ console.log(saveResults)
 ### Bildausgabe
 
 <Tabs
-defaultValue="saveelement"
-values={[
-{label: 'saveElement', value: 'saveelement'},
-{label: 'saveScreen', value: 'savescreen'},
-{label: 'saveFullPageScreen', value: 'savefullpagescreen'},
-]}
-
+    defaultValue="saveelement"
+    values={[
+        {label: 'saveElement', value: 'saveelement'},
+        {label: 'saveScreen', value: 'savescreen'},
+        {label: 'saveFullPageScreen', value: 'savefullpagescreen'},
+    ]}
 >
-
 <TabItem value="saveelement">
 
 ```js
@@ -134,15 +131,13 @@ await browser.saveElement(".hero__title-logo", "example-element-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android', value: 'android'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android', value: 'android'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveElement Desktop](/img/visual/wdioLogo-chrome-latest-1-1366x768.png)
 </TabItem>
@@ -162,16 +157,14 @@ await browser.saveScreen("example-page-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android ChromeDriver', value: 'android-chromedriver'},
-{label: 'Android nativeWebScreenshot', value: 'android-native'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android ChromeDriver', value: 'android-chromedriver'},
+        {label: 'Android nativeWebScreenshot', value: 'android-native'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveScreen Desktop](/img/visual/examplePage-chrome-latest-1366x768.png)
 </TabItem>
@@ -184,7 +177,7 @@ values={[
 <TabItem value="ios">
 
 :::info TIPP
-iOS `saveScreen`-Ausführungen enthalten standardmäßig nicht die Geräterahmenecken. Um diese zu erhalten, fügen Sie bitte die Option `addIOSBezelCorners:true` beim Instanziieren des Services hinzu, siehe [hier](./service-options#addiosbezelcorners)
+iOS `saveScreen`-Ausführungen haben standardmäßig keine Geräterahmenecken. Um diese zu haben, fügen Sie bitte die Option `addIOSBezelCorners:true` beim Instanziieren des Dienstes hinzu, siehe [hier](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -199,15 +192,13 @@ await browser.saveFullPageScreen("full-page-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android', value: 'android'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android', value: 'android'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveFullPageScreens Desktop](/img/visual/fullPage-chrome-latest-1366x768.png)
 </TabItem>
@@ -225,7 +216,7 @@ values={[
 
 ### Konsolenausgabe
 
-Standardmäßig liefern die `check(Screen/Element/FullPageScreen)`-Methoden nur einen Abweichungsprozentsatz wie `1.23`, aber wenn das Plugin die Option `returnAllCompareData: true` hat, werden folgende Informationen nach der Ausführung der Methode bereitgestellt:
+Standardmäßig liefern die `check(Screen/Element/FullPageScreen)`-Methoden nur einen Abweichungsprozentsatz wie `1.23`, aber wenn das Plugin die Option `returnAllCompareData: true` hat, werden die folgenden Informationen nach der Ausführung der Methode bereitgestellt:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
@@ -235,12 +226,12 @@ console.log(checkResult)
  *     // Der formatierte Dateiname, abhängig von der Option `formatImageName`
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // Der Ordner für die tatsächlichen Bilder und der Dateiname
+ *         // Der tatsächliche Ordner und der Dateiname
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *         // Der Baseline-Ordner und der Dateiname
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // Dieser folgende Ordner ist optional und nur vorhanden, wenn es eine Abweichung gibt
+ *         // Der folgende Ordner ist optional und nur bei einer Abweichung vorhanden
  *         // Der Ordner, der die Unterschiede und den Dateinamen enthält
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
@@ -253,19 +244,17 @@ console.log(checkResult)
 ### Bildausgabe
 
 :::info
-Die folgenden Bilder zeigen nur Unterschiede als Ergebnis der Ausführung der Check-Befehle. Es wird nur die Differenz in einem Browser angezeigt, aber die Ausgabe für Android und iOS ist die gleiche.
+Die folgenden Bilder zeigen nur Unterschiede als Ergebnis der Ausführung der Prüfbefehle. Es wird nur die Differenz in einem Browser angezeigt, aber die Ausgabe für Android und iOS ist identisch.
 :::
 
 <Tabs
-defaultValue="checkelement"
-values={[
-{label: 'checkElement', value: 'checkelement'},
-{label: 'checkScreen', value: 'checkscreen'},
-{label: 'checkFullPageScreen', value: 'checkfullpagescreen'},
-]}
-
+    defaultValue="checkelement"
+    values={[
+        {label: 'checkElement', value: 'checkelement'},
+        {label: 'checkScreen', value: 'checkscreen'},
+        {label: 'checkFullPageScreen', value: 'checkfullpagescreen'},
+    ]}
 >
-
 <TabItem value="checkelement">
 
 ```js
@@ -273,11 +262,10 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-Der Button-Text wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
+Der Buttontext wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
-
 </TabItem>
 
 <TabItem value="checkscreen">
@@ -287,7 +275,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-Der Button-Text wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
+Der Buttontext wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -301,7 +289,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-Der Button-Text wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
+Der Buttontext wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -312,17 +300,15 @@ Der Button-Text wurde von `Get Started` zu `Getting Started!` geändert und als 
 
 ## Ausblendungen
 
-Hier finden Sie ein Beispiel für Ausblendungen in Android NativeWebScreenshot und iOS, bei denen der Status+Adressbereich und die Symbolleiste ausgeblendet sind.
+Hier finden Sie ein Beispiel für Ausblendungen in Android NativeWebScreenshot und iOS, bei denen Status+Adresse und Symbolleiste ausgeblendet sind.
 
 <Tabs
-defaultValue="nativeWebScreenshot"
-values={[
-{label: 'Android nativeWebScreenshot', value: 'nativeWebScreenshot'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="nativeWebScreenshot"
+    values={[
+        {label: 'Android nativeWebScreenshot', value: 'nativeWebScreenshot'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="nativeWebScreenshot">
 
 ![Blockouts Android](/img/visual/android.blockouts.png)

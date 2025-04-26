@@ -1,55 +1,55 @@
 ---
 id: cli-wizard
-title: CLI Wizard
+title: CLI-Assistent
 ---
 
-You can validate which text can be found in an image without running a test by using the OCR CLI Wizard. The only thing that are needed are:
+Sie können überprüfen, welcher Text in einem Bild gefunden werden kann, ohne einen Test auszuführen, indem Sie den OCR-CLI-Assistenten verwenden. Die einzigen Voraussetzungen sind:
 
-- you have installed the `@wdio/ocr-service` as a dependency, see [Getting Started](./getting-started)
-- an image that you want to process
+-   Sie haben den `@wdio/ocr-service` als Abhängigkeit installiert, siehe [Erste Schritte](./getting-started)
+-   ein Bild, das Sie verarbeiten möchten
 
-Then run the following command to start the wizard
+Führen Sie dann den folgenden Befehl aus, um den Assistenten zu starten
 
 ```sh
 npx ocr-service
 ```
 
-This will start a wizard that will guide you through the steps to select an image and use a haystack plus advanced mode. The following questions are asked
+Dies startet einen Assistenten, der Sie durch die Schritte zur Auswahl eines Bildes und zur Verwendung eines Heuhaufens plus erweitertem Modus führt. Die folgenden Fragen werden gestellt
 
-## How would you like to specify the file?
+## Wie möchten Sie die Datei angeben?
 
-The following options can be selected
+Die folgenden Optionen können ausgewählt werden
 
-- Use a "file explorer"
-- Type the file path manually
+-   Verwenden Sie einen "Datei-Explorer"
+-   Geben Sie den Dateipfad manuell ein
 
-### Use a "file explorer"
+### Verwenden Sie einen "Datei-Explorer"
 
-The CLI wizard provides an option to use a "file explorer" to search for files on your system. It starts from the folder you call the command. After selecting an image (use your arrow keys and the ENTER key) you will proceed to the next question
+Der CLI-Assistent bietet die Möglichkeit, einen "Datei-Explorer" zu verwenden, um nach Dateien auf Ihrem System zu suchen. Er beginnt in dem Ordner, aus dem Sie den Befehl aufrufen. Nach der Auswahl eines Bildes (verwenden Sie die Pfeiltasten und die ENTER-Taste) gelangen Sie zur nächsten Frage
 
-### Type the file path manually
+### Geben Sie den Dateipfad manuell ein
 
-This is a direct path to a file somewhere on your local machine
+Dies ist ein direkter Pfad zu einer Datei irgendwo auf Ihrem lokalen Computer
 
-### Would you like to use a haystack?
+### Möchten Sie einen Heuhaufen verwenden?
 
-Here you have the option to select an area that needs to be processed. This can speed up the process or reduce/narrow down the amount of text the OCR engine might find. You need to provide `x`, `y`, `width`, `height` data based on the following questions:
+Hier haben Sie die Möglichkeit, einen Bereich auszuwählen, der verarbeitet werden soll. Dies kann den Prozess beschleunigen oder die Menge an Text, die die OCR-Engine finden könnte, reduzieren/eingrenzen. Sie müssen `x`, `y`, `width`, `height` Daten basierend auf den folgenden Fragen angeben:
 
-- Enter the x coordinate:
-- Enter the y coordinate:
-- Enter the width:
-- Enter the height:
+-   Geben Sie die x-Koordinate ein:
+-   Geben Sie die y-Koordinate ein:
+-   Geben Sie die Breite ein:
+-   Geben Sie die Höhe ein:
 
-## Do you want to use the advanced mode?
+## Möchten Sie den erweiterten Modus verwenden?
 
-Advanced mode will hold extra features like:
+Der erweiterte Modus bietet zusätzliche Funktionen wie:
 
-- setting the contrast
-- more to follow in the future
+-   Einstellen des Kontrasts
+-   weitere Funktionen folgen in Zukunft
 
 ## Demo
 
-Here's a demo
+Hier ist eine Demo
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

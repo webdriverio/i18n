@@ -3,7 +3,7 @@ id: clock
 title: Das Clock-Objekt
 ---
 
-Sie können die Systemuhr des Browsers mit dem Befehl [`emulate`](/docs/emulation) modifizieren. Dieser überschreibt native globale Funktionen, die mit der Zeit zusammenhängen, und ermöglicht es, sie synchron über `clock.tick()` oder das erzeugte Clock-Objekt zu steuern. Dies umfasst die Kontrolle über:
+Sie können die Browser-Systemuhr mit dem Befehl [`emulate`](/docs/emulation) modifizieren. Dies überschreibt native globale Funktionen im Zusammenhang mit der Zeit und ermöglicht deren synchrone Steuerung über `clock.tick()` oder das erzeugte Clock-Objekt. Dies umfasst die Kontrolle über:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ Sie können die Systemuhr des Browsers mit dem Befehl [`emulate`](/docs/emulatio
 - `clearInterval`
 - `Date Objects`
 
-Die Uhr beginnt beim Unix-Epochenzeitpunkt (Zeitstempel 0). Das bedeutet, wenn Sie in Ihrer Anwendung ein neues Date-Objekt instanziieren, wird es die Zeit vom 1. Januar 1970 haben, sofern Sie keine anderen Optionen für den `emulate`-Befehl angeben.
+Die Uhr beginnt bei der Unix-Epoche (Zeitstempel 0). Das bedeutet, wenn Sie in Ihrer Anwendung ein neues Date-Objekt instanziieren, wird es die Zeit des 1. Januar 1970 haben, sofern Sie keine anderen Optionen an den Befehl `emulate` übergeben.
 
 ## Beispiel
 
-Wenn Sie `browser.emulate('clock', { ... })` aufrufen, werden die globalen Funktionen für die aktuelle Seite sowie für alle folgenden Seiten sofort überschrieben, z.B.:
+Wenn Sie `browser.emulate('clock', { ... })` aufrufen, werden sofort die globalen Funktionen für die aktuelle Seite sowie alle folgenden Seiten überschrieben, z.B.:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })

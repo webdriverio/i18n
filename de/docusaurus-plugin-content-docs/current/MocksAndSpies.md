@@ -1,19 +1,19 @@
 ---
 id: mocksandspies
-title: Request Mocks und Spione
+title: Anfrage-Mocks und Spies
 ---
 
-WebdriverIO comes with built-in support for modifying network responses that allows you to focus testing your frontend application without having to setup your backend or a mock server. Sie können benutzerdefinierte Antworten für Webressourcen wie REST-API-Requests in Ihrem Test definieren und dynamisch ändern.
+WebdriverIO bietet integrierte Unterstützung für die Modifikation von Netzwerkantworten, damit Sie sich auf das Testen Ihrer Frontend-Anwendung konzentrieren können, ohne ein Backend oder einen Mock-Server einrichten zu müssen. Sie können benutzerdefinierte Antworten für Web-Ressourcen wie REST-API-Anfragen in Ihrem Test definieren und diese dynamisch ändern.
 
 :::info
 
-Note that using the `mock` command requires support for Chrome DevTools protocol. That support is given if you run tests locally in a Chromium-based browser, via a Selenium Grid v4 or higher, or through a cloud vendor with support for the Chrome DevTools protocol (e.g. SauceLabs, BrowserStack, LambdaTest). Full cross-browser support will be available once the required primitives land in [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) and get implemented in the respective browser.
+Beachten Sie, dass die Verwendung des `mock`-Befehls Unterstützung für das Chrome DevTools-Protokoll erfordert. Diese Unterstützung ist gegeben, wenn Sie Tests lokal in einem Chromium-basierten Browser ausführen, über ein Selenium Grid v4 oder höher oder über einen Cloud-Anbieter mit Unterstützung für das Chrome DevTools-Protokoll (z.B. SauceLabs, BrowserStack, LambdaTest). Vollständige browserübergreifende Unterstützung wird verfügbar sein, sobald die erforderlichen Grundlagen in [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) implementiert und in den jeweiligen Browsern umgesetzt werden.
 
 :::
 
-## Mock Erstellen
+## Erstellen eines Mocks
 
-Bevor Sie Responsen ändern können, müssen Sie zuerst einen Mock definieren. Dieser Mock wird durch die Ressourcen-URL beschrieben und kann durch die [-Anfragemethode](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) oder [Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)gefiltert werden. Die Ressource unterstützt Glob-Ausdrücke von [minimatch](https://www.npmjs.com/package/minimatch):
+Bevor Sie Antworten modifizieren können, müssen Sie zuerst einen Mock definieren. Dieser Mock wird durch die Ressourcen-URL beschrieben und kann nach der [Anfragemethode](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) oder [Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) gefiltert werden. Die Ressource unterstützt Glob-Ausdrücke durch [minimatch](https://www.npmjs.com/package/minimatch):
 
 ```js
 // mock all resources ending with "/users/list"
@@ -29,13 +29,13 @@ const strictMock = await browser.mock('**', {
 })
 ```
 
-## Angeben Benutzerdefinierter Responses
+## Festlegen benutzerdefinierter Antworten
 
-Sobald Sie einen Mock definiert haben, können Sie benutzerdefinierte Responses dafür definieren. Diese benutzerdefinierten Responses können entweder ein Objekt oder ein JSON zurückgeben, auf eine lokale Datei verweisen oder auf eine andere Webressource weiterleiten.
+Sobald Sie einen Mock definiert haben, können Sie benutzerdefinierte Antworten dafür festlegen. Diese benutzerdefinierten Antworten können entweder ein Objekt sein, um eine JSON-Antwort zu geben, eine lokale Datei, um mit einem benutzerdefinierten Fixture zu antworten, oder eine Web-Ressource, um die Antwort mit einer Ressource aus dem Internet zu ersetzen.
 
-### Mocking API Requests
+### Mocken von API-Anfragen
 
-Um API-Anfragen zu simulieren, bei denen Sie eine JSON-Antwort erwarten, müssen Sie lediglich `respond` für das Mock-Objekt mit einem beliebigen Objekt aufrufen, das Sie zurückgeben möchten, z.B.:
+Um API-Anfragen zu mocken, bei denen Sie eine JSON-Antwort erwarten, müssen Sie lediglich `respond` auf dem Mock-Objekt mit einem beliebigen Objekt aufrufen, das Sie zurückgeben möchten, z.B.:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -62,7 +62,7 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // outputs: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-Sie können auch die Antwortheader sowie den Statuscode ändern, indem Sie wie folgt einige Parameter übergeben:
+Sie können auch die Antwort-Header sowie den Statuscode ändern, indem Sie einige Mock-Antwortparameter wie folgt übergeben:
 
 ```js
 mock.respond({ ... }, {
@@ -73,7 +73,7 @@ mock.respond({ ... }, {
 })
 ```
 
-Wenn Sie möchten, dass der Mock das Backend überhaupt nicht aufruft, können Sie `false` für via `fetchResponse` übergeben.
+Wenn Sie möchten, dass der Mock das Backend überhaupt nicht aufruft, können Sie `false` für das Flag `fetchResponse` übergeben.
 
 ```js
 mock.respond({ ... }, {
@@ -82,7 +82,7 @@ mock.respond({ ... }, {
 })
 ```
 
-Es wird empfohlen, benutzerdefinierte Antworten in Fixture-Dateien zu speichern und diese wie folgt in Ihrem Test laden:
+Es wird empfohlen, benutzerdefinierte Antworten in Fixture-Dateien zu speichern, damit Sie sie in Ihrem Test einfach importieren können:
 
 ```js
 // requires Node.js v16.14.0 or higher to support JSON import assertions
@@ -90,9 +90,9 @@ import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'js
 mock.respond(responseFixture)
 ```
 
-### Mocking von Textressourcen
+### Mocken von Textressourcen
 
-Wenn Sie Textressourcen wie JavaScript, CSS-Dateien oder andere textbasierte Ressourcen ändern möchten, können Sie einfach einen Dateipfad übergeben und WebdriverIO ersetzt die ursprüngliche Ressource damit, z.B.:
+Wenn Sie Textressourcen wie JavaScript, CSS-Dateien oder andere textbasierte Ressourcen modifizieren möchten, können Sie einfach einen Dateipfad übergeben, und WebdriverIO ersetzt die ursprüngliche Ressource damit, z.B.:
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
@@ -102,9 +102,9 @@ scriptMock.respond('./tests/fixtures/script.js')
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
-### Web-Ressourcen Umleiten
+### Umleiten von Web-Ressourcen
 
-Sie können eine Webressource auch einfach durch eine andere Webressource ersetzen, wenn Ihre gewünschte Antwort bereits im Web gehostet wird. Dies funktioniert sowohl mit einzelnen Seitenressourcen als auch mit einer Webseite selbst, z.B.:
+Sie können auch einfach eine Web-Ressource durch eine andere Web-Ressource ersetzen, wenn Ihre gewünschte Antwort bereits im Web gehostet wird. Dies funktioniert sowohl mit einzelnen Seitenressourcen als auch mit einer Webseite selbst, z.B.:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -113,9 +113,9 @@ await browser.url('https://google.com')
 console.log(await browser.getTitle()) // returns "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js"
 ```
 
-### Dynamische Responsen
+### Dynamische Antworten
 
-Wenn Ihre Mock-Antwort von der ursprünglichen Ressourcenantwort abhängt, können Sie die Ressource auch dynamisch ändern, indem Sie eine Funktion übergeben, die die ursprüngliche Antwort als Parameter erhält und die Mock basierend auf dem Rückgabewert festlegt, z.B.:
+Wenn Ihre Mock-Antwort von der ursprünglichen Ressourcenantwort abhängt, können Sie die Ressource auch dynamisch modifizieren, indem Sie eine Funktion übergeben, die die ursprüngliche Antwort als Parameter erhält und den Mock basierend auf dem Rückgabewert setzt, z.B.:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -141,9 +141,9 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 // ]
 ```
 
-## Mocks Fehlschlagen
+## Abbrechen von Mocks
 
-Anstatt eine benutzerdefinierte Antwort zurückzugeben, können Sie die Anfrage auch einfach mit einem der folgenden HTTP-Fehler fehlschlagen lassen:
+Anstatt eine benutzerdefinierte Antwort zurückzugeben, können Sie die Anfrage auch einfach mit einem der folgenden HTTP-Fehler abbrechen:
 
 - Failed
 - Aborted
@@ -160,16 +160,16 @@ Anstatt eine benutzerdefinierte Antwort zurückzugeben, können Sie die Anfrage 
 - BlockedByClient
 - BlockedByResponse
 
-Dies ist sehr nützlich, wenn Sie Skripte von Drittanbietern von Ihrer Seite blockieren möchten, wenn diese auf den Test Einfluss nehmen. Sie können einen Mock fehlschlagen lassen, indem Sie einfach `abort` oder `abortOnce` aufrufen, z.B.:
+Dies ist sehr nützlich, wenn Sie Skripte von Drittanbietern von Ihrer Seite blockieren möchten, die einen negativen Einfluss auf Ihren Funktionstest haben. Sie können einen Mock abbrechen, indem Sie einfach `abort` oder `abortOnce` aufrufen, z.B.:
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/**')
 mock.abort('Failed')
 ```
 
-## Spione
+## Spies
 
-Jeder Mock ist automatisch ein Spion, der die Anzahl der Anfragen zählt, die der Browser an diese Ressource gestellt hat. Wenn Sie dem Mock keine benutzerdefinierte Antwort oder Abbruchursache zuweisen, wird es mit der Standardantwort fortgesetzt, die Sie normalerweise erhalten würden. So können Sie überprüfen, wie oft der Browser die Anfrage gestellt hat, z.B.: an einen bestimmten API-Endpunkt.
+Jeder Mock ist automatisch ein Spy, der die Anzahl der Anfragen zählt, die der Browser an diese Ressource gestellt hat. Wenn Sie keine benutzerdefinierte Antwort oder keinen Abbruchgrund auf den Mock anwenden, wird mit der Standardantwort fortgefahren, die Sie normalerweise erhalten würden. Dies ermöglicht es Ihnen zu überprüfen, wie oft der Browser die Anfrage gestellt hat, z.B. an einen bestimmten API-Endpunkt.
 
 ```js
 const mock = await browser.mock('**/user', { method: 'post' })

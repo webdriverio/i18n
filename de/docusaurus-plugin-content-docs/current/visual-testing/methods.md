@@ -8,7 +8,7 @@ Die folgenden Methoden werden dem globalen WebdriverIO [`browser`](/docs/api/bro
 ## Speichermethoden
 
 :::info TIPP
-Verwenden Sie die Speichermethoden nur, wenn Sie Bildschirme **nicht** vergleichen, sondern nur einen Element-/Screenshot haben möchten.
+Verwenden Sie die Speichermethoden nur, wenn Sie Bildschirme **nicht** vergleichen möchten, sondern nur ein Element-/Screenshot haben möchten.
 :::
 
 ### `saveElement`
@@ -34,20 +34,20 @@ await browser.saveElement(
 
 - Desktop-Browser
 - Mobile Browser
-- Mobile Hybride Apps
+- Mobile Hybrid Apps
 - Mobile Native Apps
 
 #### Parameter
 
-- **`element`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** WebdriverIO Element
-- **`tag`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** string
-- **`saveElementOptions`:**
-  - **Obligatorisch:** Nein
-  - **Typ:** Ein Objekt mit Optionen, siehe [Speicheroptionen](./method-options#save-options)
+-   **`element`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** WebdriverIO Element
+-   **`tag`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** string
+-   **`saveElementOptions`:**
+    -   **Pflichtfeld:** Nein
+    -   **Typ:** ein Objekt mit Optionen, siehe [Speicheroptionen](./method-options#save-options)
 
 #### Ausgabe:
 
@@ -74,17 +74,16 @@ await browser.saveScreen(
 
 - Desktop-Browser
 - Mobile Browser
-- Mobile Hybride Apps
+- Mobile Hybrid Apps
 - Mobile Native Apps
 
 #### Parameter
-
-- **`tag`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** string
-- **`saveScreenOptions`:**
-  - **Obligatorisch:** Nein
-  - **Typ:** Ein Objekt mit Optionen, siehe [Speicheroptionen](./method-options#save-options)
+-   **`tag`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** string
+-   **`saveScreenOptions`:**
+    -   **Pflichtfeld:** Nein
+    -   **Typ:** ein Objekt mit Optionen, siehe [Speicheroptionen](./method-options#save-options)
 
 #### Ausgabe:
 
@@ -94,7 +93,7 @@ Siehe die Seite [Testausgabe](./test-output#savescreenelementfullpagescreen).
 
 #### Verwendung
 
-Speichert ein Bild des vollständigen Bildschirms.
+Speichert ein Bild des kompletten Bildschirms.
 
 ```ts
 await browser.saveFullPageScreen(
@@ -113,13 +112,12 @@ await browser.saveFullPageScreen(
 - Mobile Browser
 
 #### Parameter
-
-- **`tag`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** string
-- **`saveFullPageScreenOptions`:**
-  - **Obligatorisch:** Nein
-  - **Typ:** Ein Objekt mit Optionen, siehe [Speicheroptionen](./method-options#save-options)
+-   **`tag`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** string
+-   **`saveFullPageScreenOptions`:**
+    -   **Pflichtfeld:** Nein
+    -   **Typ:** ein Objekt mit Optionen, siehe [Speicheroptionen](./method-options#save-options)
 
 #### Ausgabe:
 
@@ -127,7 +125,7 @@ Siehe die Seite [Testausgabe](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Speichert ein Bild des vollständigen Bildschirms mit den tabulierbaren Linien und Punkten.
+Speichert ein Bild des kompletten Bildschirms mit den tabulierbaren Linien und Punkten.
 
 #### Verwendung
 
@@ -147,13 +145,12 @@ await browser.saveTabbablePage(
 - Desktop-Browser
 
 #### Parameter
-
-- **`tag`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** string
-- **`saveTabbableOptions`:**
-  - **Obligatorisch:** Nein
-  - **Typ:** Ein Objekt mit Optionen, siehe [Speicheroptionen](./method-options#save-options)
+-   **`tag`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** string
+-   **`saveTabbableOptions`:**
+    -   **Pflichtfeld:** Nein
+    -   **Typ:** ein Objekt mit Optionen, siehe [Speicheroptionen](./method-options#save-options)
 
 #### Ausgabe:
 
@@ -162,14 +159,15 @@ Siehe die Seite [Testausgabe](./test-output#savescreenelementfullpagescreen).
 ## Prüfmethoden
 
 :::info TIPP
+Wenn die `check`-Methoden zum ersten Mal verwendet werden, sehen Sie die folgende Warnung in den Logs. Dies bedeutet, dass Sie die `save`- und `check`-Methoden nicht kombinieren müssen, wenn Sie Ihre Baseline erstellen möchten.
 
 ```shell
 #####################################################################################
- Baseline-Bild nicht gefunden, speichern Sie das aktuelle Bild manuell als Baseline.
- Das Bild finden Sie hier:
+ Baseline image not found, save the actual image manually to the baseline.
+ The image can be found here:
  /Users/wswebcreation/project/.tmp/actual/desktop_chrome/examplePage-chrome-latest-1366x768.png
- Wenn Sie möchten, dass das Modul ein nicht existierendes Bild automatisch in der Baseline speichert,
- können Sie 'autoSaveBaseline: true' zu den Optionen hinzufügen.
+ If you want the module to auto save a non existing image to the baseline you
+ can provide 'autoSaveBaseline: true' to the options.
 #####################################################################################
 ```
 
@@ -198,20 +196,19 @@ await browser.checkElement(
 
 - Desktop-Browser
 - Mobile Browser
-- Mobile Hybride Apps
+- Mobile Hybrid Apps
 - Mobile Native Apps
 
 #### Parameter
-
-- **`element`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** WebdriverIO Element
-- **`tag`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** string
-- **`checkElementOptions`:**
-  - **Obligatorisch:** Nein
-  - **Typ:** Ein Objekt mit Optionen, siehe [Vergleichs-/Prüfoptionen](./method-options#compare-check-options)
+-   **`element`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** WebdriverIO Element
+-   **`tag`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** string
+-   **`checkElementOptions`:**
+    -   **Pflichtfeld:** Nein
+    -   **Typ:** ein Objekt mit Optionen, siehe [Vergleichs-/Prüfoptionen](./method-options#compare-check-options)
 
 #### Ausgabe:
 
@@ -238,17 +235,16 @@ await browser.checkScreen(
 
 - Desktop-Browser
 - Mobile Browser
-- Mobile Hybride Apps
+- Mobile Hybrid Apps
 - Mobile Native Apps
 
 #### Parameter
-
-- **`tag`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** string
-- **`checkScreenOptions`:**
-  - **Obligatorisch:** Nein
-  - **Typ:** Ein Objekt mit Optionen, siehe [Vergleichs-/Prüfoptionen](./method-options#compare-check-options)
+-   **`tag`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** string
+-   **`checkScreenOptions`:**
+    -   **Pflichtfeld:** Nein
+    -   **Typ:** ein Objekt mit Optionen, siehe [Vergleichs-/Prüfoptionen](./method-options#compare-check-options)
 
 #### Ausgabe:
 
@@ -256,7 +252,7 @@ Siehe die Seite [Testausgabe](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
-Vergleicht ein Bild des vollständigen Bildschirms mit einem Baseline-Bild.
+Vergleicht ein Bild des kompletten Bildschirms mit einem Baseline-Bild.
 
 #### Verwendung
 
@@ -277,13 +273,12 @@ await browser.checkFullPageScreen(
 - Mobile Browser
 
 #### Parameter
-
-- **`tag`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** string
-- **`checkFullPageOptions`:**
-  - **Obligatorisch:** Nein
-  - **Typ:** Ein Objekt mit Optionen, siehe [Vergleichs-/Prüfoptionen](./method-options#compare-check-options)
+-   **`tag`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** string
+-   **`checkFullPageOptions`:**
+    -   **Pflichtfeld:** Nein
+    -   **Typ:** ein Objekt mit Optionen, siehe [Vergleichs-/Prüfoptionen](./method-options#compare-check-options)
 
 #### Ausgabe:
 
@@ -291,7 +286,7 @@ Siehe die Seite [Testausgabe](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Vergleicht ein Bild des vollständigen Bildschirms mit den tabulierbaren Linien und Punkten mit einem Baseline-Bild.
+Vergleicht ein Bild des kompletten Bildschirms mit den tabulierbaren Linien und Punkten mit einem Baseline-Bild.
 
 #### Verwendung
 
@@ -311,13 +306,12 @@ await browser.checkTabbablePage(
 - Desktop-Browser
 
 #### Parameter
-
-- **`tag`:**
-  - **Obligatorisch:** Ja
-  - **Typ:** string
-- **`checkTabbableOptions`:**
-  - **Obligatorisch:** Nein
-  - **Typ:** Ein Objekt mit Optionen, siehe [Vergleichs-/Prüfoptionen](./method-options#compare-check-options)
+-   **`tag`:**
+    -   **Pflichtfeld:** Ja
+    -   **Typ:** string
+-   **`checkTabbableOptions`:**
+    -   **Pflichtfeld:** Nein
+    -   **Typ:** ein Objekt mit Optionen, siehe [Vergleichs-/Prüfoptionen](./method-options#compare-check-options)
 
 #### Ausgabe:
 

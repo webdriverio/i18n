@@ -3,12 +3,12 @@ id: seleniumgrid
 title: Selenium Grid
 ---
 
-You can use WebdriverIO with your existing Selenium Grid instance. To connect your tests to Selenium Grid, you just need to update the options in your test runner configurations.
+Sie können WebdriverIO mit Ihrer bestehenden Selenium Grid-Instanz verwenden. Um Ihre Tests mit Selenium Grid zu verbinden, müssen Sie lediglich die Optionen in Ihren Testrunner-Konfigurationen aktualisieren.
 
-Here is a code snippet from sample wdio.conf.ts.
+Hier ist ein Codeausschnitt aus einer Beispiel-wdio.conf.ts.
 
 ```ts title=wdio.conf.ts
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     // ...
     protocol: 'https',
     hostname: 'yourseleniumgridhost.yourdomain.com',
@@ -18,12 +18,11 @@ export const config: Options.Testrunner = {
 
 }
 ```
-
-You need to provide the appropriate values for the protocol, hostname, port, and path based on your Selenium Grid setup.
-If you are running Selenium Grid on the same machine as your test scripts, here are some typical options:
+Sie müssen die entsprechenden Werte für Protokoll, Hostname, Port und Pfad basierend auf Ihrer Selenium Grid-Einrichtung angeben.
+Wenn Sie Selenium Grid auf demselben Computer wie Ihre Testskripte ausführen, sind hier einige typische Optionen:
 
 ```ts title=wdio.conf.ts
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     // ...
     protocol: 'http',
     hostname: 'localhost',
@@ -34,30 +33,30 @@ export const config: Options.Testrunner = {
 }
 ```
 
-### Basic authentication with protected Selenium Grid
+### Basis-Authentifizierung mit geschütztem Selenium Grid
 
-It is highly recommended to secure your Selenium Grid. If you have a protected Selenium Grid that requires authentication, you can pass authentication headers via options.
-Please refer to the [headers](https://webdriver.io/docs/configuration/#headers) section in the documentation for more information.
+Es wird dringend empfohlen, Ihr Selenium Grid zu sichern. Wenn Sie ein geschütztes Selenium Grid haben, das eine Authentifizierung erfordert, können Sie Authentifizierungs-Header über Optionen übergeben. 
+Weitere Informationen finden Sie im Abschnitt [headers](https://webdriver.io/docs/configuration/#headers) in der Dokumentation.
 
-### Timeout configurations with dynamic Selenium Grid
+### Timeout-Konfigurationen mit dynamischem Selenium Grid
 
-When using a dynamic Selenium Grid where browser pods are spun up on demand, session creation may face a cold start. In such cases, it is advised to increase the session creation timeouts. The default value in the options is 120 seconds, but you can increase it if your grid takes more time to create a new session.
+Bei der Verwendung eines dynamischen Selenium Grids, bei dem Browser-Pods bei Bedarf gestartet werden, kann die Sitzungserstellung einen Kaltstart erfahren. In solchen Fällen wird empfohlen, die Timeouts für die Sitzungserstellung zu erhöhen. Der Standardwert in den Optionen beträgt 120 Sekunden, aber Sie können ihn erhöhen, wenn Ihr Grid mehr Zeit benötigt, um eine neue Sitzung zu erstellen.
 
 ```ts
 connectionRetryTimeout: 180000,
 ```
 
-### Advanced configurations
+### Erweiterte Konfigurationen
 
-For advanced configurations, please refer to the Testrunner [configuration file](https://webdriver.io/docs/configurationfile).
+Für erweiterte Konfigurationen beachten Sie bitte die Testrunner [Konfigurationsdatei](https://webdriver.io/docs/configurationfile).
 
-### File operations with Selenium Grid
+### Dateioperationen mit Selenium Grid
 
-When running test cases with a remote Selenium Grid, the browser runs on a remote machine, and you need to take special care with test cases involving file uploads and downloads.
+Wenn Sie Testfälle mit einem Remote-Selenium-Grid ausführen, läuft der Browser auf einem entfernten Computer, und Sie müssen besondere Vorsicht bei Testfällen walten lassen, die Datei-Uploads und -Downloads beinhalten.
 
-### File downloads
+### Datei-Downloads
 
-For Chromium-based browsers, you can refer to the [Download file](https://webdriver.io/docs/api/browser/downloadFile) documentation. If your test scripts need to read the content of a downloaded file, you need to download it from the remote Selenium node to the test runner machine. Here is an example code snippet from the sample `wdio.conf.ts` configuration for the Chrome browser:
+Für Chromium-basierte Browser können Sie die [Download file](https://webdriver.io/docs/api/browser/downloadFile) Dokumentation konsultieren. Wenn Ihre Testskripte den Inhalt einer heruntergeladenen Datei lesen müssen, müssen Sie diese vom Remote-Selenium-Node auf den Testrunner-Computer herunterladen. Hier ist ein Beispiel-Codeausschnitt aus der Beispiel-`wdio.conf.ts`-Konfiguration für den Chrome-Browser:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
@@ -75,16 +74,17 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-### File upload with remote Selenium Grid
+### Datei-Upload mit Remote-Selenium-Grid
 
-To upload a file to a web app in the remote browser, you first need to upload the file to the remote grid. You can refer to the [uploadFile](https://webdriver.io/docs/api/browser/uploadFile) documentation for details.
+Um eine Datei in eine Web-App im Remote-Browser hochzuladen, müssen Sie zuerst die Datei zum Remote-Grid hochladen. Details finden Sie in der [uploadFile](https://webdriver.io/docs/api/browser/uploadFile) Dokumentation.
 
-### Other file/grid operations
+### Andere Datei-/Grid-Operationen
 
-There are a few more operations that you can perform with Selenium Grid. The instructions for Selenium Standalone should work fine with Selenium Grid as well. Please refer to the [Selenium Standalone](https://webdriver.io/docs/api/selenium/) documentation for available options.
+Es gibt noch einige weitere Operationen, die Sie mit Selenium Grid durchführen können. Die Anweisungen für Selenium Standalone sollten auch mit Selenium Grid gut funktionieren. Bitte beachten Sie die [Selenium Standalone](https://webdriver.io/docs/api/selenium/) Dokumentation für verfügbare Optionen.
 
-### Selenium Grid Official documentation
 
-For more information on Selenium Grid, you can refer to the official Selenium Grid [documentation](https://www.selenium.dev/documentation/grid/).
+### Offizielle Dokumentation zu Selenium Grid
 
-If you wish to run Selenium Grid in Docker, Docker compose or Kubernetes, please refer to the Selenium-Docker [GitHub repository](https://github.com/SeleniumHQ/docker-selenium).
+Weitere Informationen zu Selenium Grid finden Sie in der offiziellen Selenium Grid [Dokumentation](https://www.selenium.dev/documentation/grid/).
+
+Wenn Sie Selenium Grid in Docker, Docker Compose oder Kubernetes ausführen möchten, beachten Sie bitte das Selenium-Docker [GitHub-Repository](https://github.com/SeleniumHQ/docker-selenium).

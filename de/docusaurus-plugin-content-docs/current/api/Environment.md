@@ -3,16 +3,16 @@ id: environment
 title: Umgebungsvariablen
 ---
 
-WebdriverIO setzt die folgenden Umgebungsvariablen in jedem Worker Prozess:
+WebdriverIO setzt die folgenden Umgebungsvariablen innerhalb jedes Workers:
 
 ## `NODE_ENV`
 
-Gesetzt mit `'test'` wenn es nicht bereits auf etwas anderes definiert ist.
+Wird auf `'test'` gesetzt, wenn es nicht bereits auf etwas anderes gesetzt ist.
 
 ## `WDIO_LOG_LEVEL`
 
-Kann folgender Werte beinhalten: `trace`, `debug`, `info`, `warn`, `error` oder `silent`. Hat Priorität über dem übergebenen `LogLevel` Wert.
+Kann auf die Werte `trace`, `debug`, `info`, `warn`, `error`, `silent` gesetzt werden, um Logs mit entsprechenden Details zu schreiben. Hat Priorität über den übergebenen `logLevel`-Wert.
 
 ## `WDIO_WORKER_ID`
 
-Eine einzigartige Id, die dabei hilft, den Worker-Prozess zu identifizieren. Diese hat folgenden Format: `{number}-{number}` , die erste Zahl identifiziert die Remote Umgebung und die zweite die Test Datei. `0-5` identifiziert den ersten Worker, welcher die sechste Test Datei ausführt.
+Eine eindeutige ID, die hilft, den Worker-Prozess zu identifizieren. Sie hat das Format `{number}-{number}`, wobei die erste Zahl die Capability und die zweite die Spec-Datei identifiziert, die diese Capability ausführt, z.B. bedeutet `0-5` einen Worker, der die 6. Spec-Datei für die erste Capability ausführt.

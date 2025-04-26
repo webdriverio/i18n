@@ -108,4 +108,4 @@ describe('Other element', () => {
 });
 ```
 
-Um zu migrieren, würden Sie nach und nach jede Chai-Assertion zu expect-webdriverio umstellen. Sobald alle Chai-Assertions in der gesamten Codebasis ersetzt wurden, kann der "before"-Hook gelöscht werden. Eine globale Suchen-und-Ersetzen-Funktion, um alle Instanzen von `wdioExpect` durch `expect` zu ersetzen, wird dann die Migration abschließen.
+Für die Migration würden Sie nach und nach jede Chai-Assertion zu expect-webdriverio umstellen. Sobald alle Chai-Assertions in der gesamten Codebasis ersetzt wurden, kann der "before"-Hook gelöscht werden. Eine globale Suchen-und-Ersetzen-Funktion, um alle Instanzen von `wdioExpect` durch `expect` zu ersetzen, wird dann die Migration abschließen.

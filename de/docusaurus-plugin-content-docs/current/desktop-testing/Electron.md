@@ -3,24 +3,27 @@ id: electron
 title: Electron
 ---
 
-Electron ist ein Framework zur Erstellung von Desktop-Anwendungen mit JavaScript, HTML und CSS. Durch die Einbettung von Chromium und Node.js in seine Binärdatei ermöglicht Electron die Pflege einer einzigen JavaScript-Codebasis und die Erstellung plattformübergreifender Apps, die auf Windows, macOS und Linux funktionieren – ohne dass Erfahrung in nativer Entwicklung erforderlich ist.
+Electron ist ein Framework zum Erstellen von Desktop-Anwendungen mit JavaScript, HTML und CSS. Durch die Einbettung von Chromium und Node.js in seine Binärdatei ermöglicht Electron die Pflege einer JavaScript-Codebasis und die Erstellung plattformübergreifender Apps, die auf Windows, macOS und Linux funktionieren - ohne dass Erfahrung in nativer Entwicklung erforderlich ist.
 
 WebdriverIO bietet einen integrierten Service, der die Interaktion mit Ihrer Electron-App vereinfacht und das Testen sehr einfach macht. Die Vorteile der Verwendung von WebdriverIO zum Testen von Electron-Anwendungen sind:
 
-- 🚗 Automatische Einrichtung des erforderlichen Chromedrivers
-- 📦 Automatische Pfaderkennung Ihrer Electron-Anwendung - unterstützt [Electron Forge](https://www.electronforge.io/) und [Electron Builder](https://www.electron.build/)
-- 🧩 Zugriff auf Electron-APIs in Ihren Tests
+- 🚗 automatisches Setup des erforderlichen Chromedrivers
+- 📦 automatische Pfaderkennung Ihrer Electron-Anwendung - unterstützt [Electron Forge](https://www.electronforge.io/) und [Electron Builder](https://www.electron.build/)
+- 🧩 Zugriff auf Electron-APIs innerhalb Ihrer Tests
 - 🕵️ Mocking von Electron-APIs über eine Vitest-ähnliche API
 
-Sie benötigen nur wenige einfache Schritte, um loszulegen. Schauen Sie sich dieses einfache Schritt-für-Schritt-Video-Tutorial vom [WebdriverIO YouTube](https://www.youtube.com/@webdriverio)-Kanal an:
+Sie benötigen nur wenige einfache Schritte, um loszulegen. Schauen Sie sich dieses einfache Schritt-für-Schritt-Tutorial für Einsteiger vom [WebdriverIO YouTube](https://www.youtube.com/@webdriverio)-Kanal an:
 
-<LiteYouTubeEmbed id="iQNxTdWedk0" title="Getting Started with ElectronJS Testing in WebdriverIO" />
+<LiteYouTubeEmbed
+    id="iQNxTdWedk0"
+    title="Getting Started with ElectronJS Testing in WebdriverIO"
+/>
 
 Oder folgen Sie der Anleitung im folgenden Abschnitt.
 
 ## Erste Schritte
 
-Um ein neues WebdriverIO-Projekt zu starten, führen Sie folgenden Befehl aus:
+Um ein neues WebdriverIO-Projekt zu starten, führen Sie aus:
 
 ```sh
 npm create wdio@latest ./
