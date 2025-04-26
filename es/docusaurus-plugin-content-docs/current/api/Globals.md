@@ -3,15 +3,15 @@ id: globals
 title: Globales
 ---
 
-En sus archivos de prueba, WebdriverIO coloca cada uno de estos métodos y objetos en el entorno global. No tiene que importar nada para utilizarlos. Sin embargo, si prefiere importaciones expresas, puede hacer `import { browser, $, $$, expect } de '@wdio/globals'` y establecer `injectGlobals: false` en su configuración de WDIO.
+En tus archivos de prueba, WebdriverIO coloca cada uno de estos métodos y objetos en el entorno global. No necesitas importar nada para usarlos. Sin embargo, si prefieres importaciones explícitas, puedes hacer `import { browser, $, $$, expect } from '@wdio/globals'` y configurar `injectGlobals: false` en tu configuración de WDIO.
 
-Los siguientes objetos globales son fijados si no se configuran de otra manera:
+Los siguientes objetos globales se establecen si no se configura lo contrario:
 
-- `browser`: WebdriverIO [Objeto navegador](https://webdriver.io/docs/api/browser)
-- `driver`: alias de `browser` (se utiliza al ejecutar pruebas móviles)
-- `multiremotebrowser`: alias de `browser` o `driver` pero sólo se establece para sesiones [Multiremote](/docs/multiremote)
-- `$`: comando para obtener un elemento (ver más en [API docs](/docs/api/browser/$))
-- `$$`: comando para obtener elementos (ver más en [API docs](/docs/api/browser/$$))
-- `expect`: marco de aserción para WebdriverIO (consulte [API docs](/docs/api/expect-webdriverio))
+- `browser`: [Objeto Browser](https://webdriver.io/docs/api/browser) de WebdriverIO
+- `driver`: alias de `browser` (usado cuando se ejecutan pruebas móviles)
+- `multiremotebrowser`: alias de `browser` o `driver` pero solo establecido para sesiones [Multiremote](/docs/multiremote)
+- `$`: comando para buscar un elemento (ver más en [API docs](/docs/api/browser/$))
+- `$$`: comando para buscar elementos (ver más en [API docs](/docs/api/browser/$$))
+- `expect`: framework de aserciones para WebdriverIO (ver [API docs](/docs/api/expect-webdriverio))
 
-__Nota:__ WebdriverIO no tiene control sobre los marcos de trabajo utilizados (por ejemplo, Mocha o Jasmine) que establecen variables globales al arrancar su entorno.
+__Nota:__ WebdriverIO no tiene control sobre los frameworks utilizados (por ejemplo, Mocha o Jasmine) que establecen variables globales al iniciar su entorno.

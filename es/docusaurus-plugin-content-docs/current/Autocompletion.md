@@ -5,27 +5,27 @@ title: Autocompletado
 
 ## IntelliJ
 
-La autofinalización funciona de forma automática en IDEA y Webstorm.
+El autocompletado funciona de forma inmediata en IDEA y WebStorm.
 
-Si ha estado escribiendo código de programa durante un tiempo, probablemente le vaya a gustar el autocompletado. Autocompletado está disponible en muchos editores de código.
+Si has estado escribiendo código de programación durante un tiempo, probablemente te guste el autocompletado. El autocompletado está disponible de forma inmediata en muchos editores de código.
 
-![Autocompletado](/img/autocompletion/0.png)
+![Autocompletion](/img/autocompletion/0.png)
 
-Las definiciones de tipo basadas en [JSDoc](http://usejsdoc.org/) se utilizan para documentar el código. Ayuda a ver más detalles adicionales acerca de los parámetros y sus tipos.
+Las definiciones de tipo basadas en [JSDoc](http://usejsdoc.org/) se utilizan para documentar el código. Ayuda a ver más detalles adicionales sobre los parámetros y sus tipos.
 
-![Autocompletado](/img/autocompletion/1.png)
+![Autocompletion](/img/autocompletion/1.png)
 
-Utilice los atajos estándar <kbd>+ + + + SPACE</kbd> en la Plataforma de IntelliJ para ver la documentación disponible
+Utiliza los atajos estándar <kbd>⇧ + ⌥ + SPACE</kbd> en la plataforma IntelliJ para ver la documentación disponible:
 
-![Autocompletado](/img/autocompletion/2.png)
+![Autocompletion](/img/autocompletion/2.png)
 
-## Visual Studio Code (VSCode),
+## Visual Studio Code (VSCode)
 
-El Visual Studio Code normalmente tiene soporte de tipo integrado automáticamente y no hay acción necesaria.
+Visual Studio Code generalmente tiene soporte de tipos integrado automáticamente y no se necesita ninguna acción.
 
-![Autocompletado](/img/autocompletion/14.png)
+![Autocompletion](/img/autocompletion/14.png)
 
-Si usa vanilla JavaScript y quiere tener el soporte adecuado de tipos, tienes que crear un `jsconfig. hijo` en la raíz de tu proyecto y consulta los paquetes wdio usados, por ejemplo:
+Si utilizas JavaScript puro y quieres tener un soporte de tipos adecuado, debes crear un `jsconfig.json` en la raíz de tu proyecto y hacer referencia a los paquetes wdio utilizados, por ejemplo:
 
 ```json title="jsconfig.json"
 {

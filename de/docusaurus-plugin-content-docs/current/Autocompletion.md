@@ -5,27 +5,27 @@ title: Autovervollständigung
 
 ## IntelliJ
 
-Die automatische Vervollständigung funktioniert in IDEA und WebStorm out-of-the-box.
+Die Autovervollständigung funktioniert in IDEA und WebStorm ohne zusätzliche Konfiguration.
 
 Wenn Sie schon eine Weile Programmcode schreiben, mögen Sie wahrscheinlich die Autovervollständigung. Die automatische Vervollständigung ist in vielen Code-Editoren standardmäßig verfügbar.
 
-![Autovervollständigung](/img/autocompletion/0.png)
+![Autocompletion](/img/autocompletion/0.png)
 
-Typdefinitionen basierend auf [JSDoc](http://usejsdoc.org/) wird zum Dokumentieren von Code verwendet. Es hilft, weitere Details zu Parametern und ihren Typen anzuzeigen.
+Typdefinitionen basierend auf [JSDoc](http://usejsdoc.org/) werden zur Dokumentation des Codes verwendet. Dies hilft, weitere Details über Parameter und deren Typen zu sehen.
 
-![Autovervollständigung](/img/autocompletion/1.png)
+![Autocompletion](/img/autocompletion/1.png)
 
-Verwenden Sie die Standard-Shortcuts <kbd>⇧ + ⌥ + SPACE</kbd> auf der IntelliJ-Plattform, um die verfügbare Dokumentation anzuzeigen:
+Verwenden Sie die Standardtastenkombination <kbd>⇧ + ⌥ + SPACE</kbd> auf der IntelliJ-Plattform, um die verfügbare Dokumentation anzuzeigen:
 
-![Autovervollständigung](/img/autocompletion/2.png)
+![Autocompletion](/img/autocompletion/2.png)
 
-## Visual Studio-Code (VSCode)
+## Visual Studio Code (VSCode)
 
-In Visual Studio Code ist normalerweise Typunterstützung automatisch integriert, und es ist keine besonder Einstellung erforderlich.
+Visual Studio Code hat in der Regel automatisch integrierte Typunterstützung und es sind keine weiteren Maßnahmen erforderlich.
 
-![Autovervollständigung](/img/autocompletion/14.png)
+![Autocompletion](/img/autocompletion/14.png)
 
-Wenn Sie Vanilla-JavaScript verwenden und die richtige Typunterstützung haben möchten, müssen Sie eine `jsconfig.json` in Ihrem Projekt erstellen und auf verwendete WDIO-Pakete verweisen, z.B.:
+Wenn Sie vanilla JavaScript verwenden und eine ordnungsgemäße Typunterstützung haben möchten, müssen Sie eine `jsconfig.json` im Projektstamm erstellen und auf die verwendeten wdio-Pakete verweisen, z.B.:
 
 ```json title="jsconfig.json"
 {

@@ -1,9 +1,9 @@
 ---
 id: team
-title: El equipo
+title: Equipo
 ---
 
-El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolladores y SDET de varias empresas, así como contribuciones de personas de todo el mundo.
+El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolladores y SDETs de varias empresas, así como contribuciones de personas de todo el mundo.
 
 ## Comité Directivo Técnico
 
@@ -21,7 +21,7 @@ El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolla
     github="christian-bromann"
     twitter="bromann"
 >
-    Ingeniero de software de plantilla en la Oficina del Programa de Código Abierto <a href="https://saucelabs.com/">@saucelabs</a>.
+    Ingeniero de Software Staff en la Oficina de Programas de Código Abierto <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 <Card
@@ -38,7 +38,7 @@ El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolla
     github="klamping"
     twitter="klamping"
 >
-    Ingeniero Senior Front End.
+    Ingeniero Front End Senior.
 </Card>
 
 <Card
@@ -46,7 +46,7 @@ El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolla
     avatar="https://avatars0.githubusercontent.com/u/25589559?s=460"
     github="mgrybyk"
 >
-    Ingeniero superior de desarrollo de software en pruebas.
+    Ingeniero Senior de Desarrollo de Software en Pruebas.
 </Card>
 
 <Card
@@ -54,7 +54,7 @@ El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolla
     avatar="https://avatars3.githubusercontent.com/u/1300981?s=460"
     github="WillBrock"
 >
-    Director de Ingeniería de Automatización en <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
+    Gerente de Ingeniería de Automatización en <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
 </Card>
 
 <Card
@@ -63,10 +63,10 @@ El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolla
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    Arquitecto de soluciones Senior <a href="https://saucelabs.com/">@saucelabs</a>.
+    Arquitecto Senior de Soluciones <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
-## Colaboradores en el proyecto
+## Colaboradores del Proyecto
 
 <Card
     name="Baruch Velez"
@@ -84,4 +84,4 @@ El desarrollo de WebdriverIO está dirigido por un equipo dedicado de desarrolla
 >
 </Card>
 
-Y [muchos más](https://github.com/orgs/webdriverio/people).
+y [muchos más](https://github.com/orgs/webdriverio/people).

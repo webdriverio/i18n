@@ -1,26 +1,26 @@
 ---
 id: proxy
-title: Configuración del proxy
+title: Configuración de Proxy
 ---
 
-Puede canalizar dos tipos diferentes de solicitud a través de un proxy:
+Puedes canalizar dos tipos diferentes de solicitudes a través de un proxy:
 
-- conexión entre su script de prueba y el controlador del navegador (o el punto final WebDriver)
+- conexión entre tu script de prueba y el controlador del navegador (o punto final de WebDriver)
 - conexión entre el navegador e internet
 
-## Proxy entre controlador y prueba
+## Proxy Entre el Controlador y la Prueba
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+Si tu empresa tiene un proxy corporativo (por ejemplo, en `http://my.corp.proxy.com:9090`) para todas las solicitudes salientes, sigue los pasos a continuación para instalar y configurar [undici](https://github.com/nodejs/undici).
 
-### Install undici
+### Instalar undici
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### Añadir undici setGlobalDispatcher a tu archivo de configuración
 
-Añada la siguiente instrucción requerir al principio de su archivo de configuración.
+Añade la siguiente declaración require en la parte superior de tu archivo de configuración.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+Información adicional sobre la configuración del proxy se puede encontrar [aquí](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+Si utilizas [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), inícialo mediante:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy entre el navegador e Internet
+## Proxy Entre el Navegador e Internet
 
-Para canalizar la conexión entre el navegador e Internet, puede configurar un proxy que puede ser útil (por ejemplo) para capturar información de la red y otros datos con herramientas como [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+Para canalizar la conexión entre el navegador e internet, puedes configurar un proxy que puede ser útil para (por ejemplo) capturar información de red y otros datos con herramientas como [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-Los parámetros del proxy `` se pueden aplicar a través de las capacidades estándar de la siguiente manera:
+Los parámetros de `proxy` se pueden aplicar a través de las capacidades estándar de la siguiente manera:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-Para obtener más información, consulte la [especificación de WebDriver](https://w3c.github.io/webdriver/#proxy).
+Para más información, consulta la [especificación de WebDriver](https://w3c.github.io/webdriver/#proxy).

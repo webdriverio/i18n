@@ -1,26 +1,26 @@
 ---
 id: faq
-title: FAQ
+title: Preguntas frecuentes
 ---
 
-### Do I need to use a `save(Screen/Element/FullPageScreen)` methods when I want to run `check(Screen/Element/FullPageScreen)`?
+### ¿Necesito usar los métodos `save(Screen/Element/FullPageScreen)` cuando quiero ejecutar `check(Screen/Element/FullPageScreen)`?
 
-No, you don't need to do this. The `check(Screen/Element/FullPageScreen)` will do this automatically for you.
+No, no necesitas hacer esto. El método `check(Screen/Element/FullPageScreen)` lo hará automáticamente por ti.
 
-### My visual tests fail with a difference, how can I update my baseline?
+### Mis pruebas visuales fallan con una diferencia, ¿cómo puedo actualizar mi línea base?
 
-You can update the baseline images through the command line by adding the argument `--update-visual-baseline`. This will
+Puedes actualizar las imágenes de línea base a través de la línea de comandos agregando el argumento `--update-visual-baseline`. Esto:
 
-- automatically copy the actual take screenshot and put it in the baseline folder
-- if there are differences it will let the test pass because the baseline has been updated
+-   copiará automáticamente la captura de pantalla actual y la colocará en la carpeta de línea base
+-   si hay diferencias, permitirá que la prueba pase porque la línea base ha sido actualizada
 
-**Usage:**
+**Uso:**
 
 ```sh
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-When running logs info/debug mode you will see the following logs added
+Cuando se ejecutan los registros en modo info/debug, verás los siguientes registros añadidos
 
 ```logs
 [0-0] ..............
@@ -32,15 +32,15 @@ When running logs info/debug mode you will see the following logs added
 [0-0] ..........
 ```
 
-### Width and height cannot be negative
+### El ancho y la altura no pueden ser negativos
 
-It could be that the error `Width and height cannot be negative` is thrown. 9 out of 10 times this is related to creating an image of an element that is not in the view. Please be sure you always make sure the element in is in the view before you try to make an image of the element.
+Podría ser que se lance el error `Width and height cannot be negative`. 9 de cada 10 veces esto está relacionado con la creación de una imagen de un elemento que no está en la vista. Asegúrate siempre de que el elemento esté en la vista antes de intentar hacer una imagen del elemento.
 
-### Installation of Canvas on Windows failed with Node-Gyp logs
+### La instalación de Canvas en Windows falló con registros de Node-Gyp
 
-If you encounter issues with Canvas installation on Windows due to Node-Gyp errors, please note that this applies only to Version 4 and lower. To avoid these issues, consider updating to Version 5 or higher, which does not have these dependencies and uses [Jimp](https://github.com/jimp-dev/jimp) for image processing.
+Si encuentras problemas con la instalación de Canvas en Windows debido a errores de Node-Gyp, ten en cuenta que esto solo se aplica a la Versión 4 y anteriores. Para evitar estos problemas, considera actualizar a la Versión 5 o superior, que no tiene estas dependencias y utiliza [Jimp](https://github.com/jimp-dev/jimp) para el procesamiento de imágenes.
 
-If you still need to resolve the issues with Version 4, please check:
+Si aún necesitas resolver los problemas con la Versión 4, por favor revisa:
 
-- the Node Canvas section in the [Getting Started](/docs/visual-testing#system-requirements) guide
-- [this post](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/) for Fixing Node-Gyp Issues on Windows. (Thanks to [IgorSasovets](https://github.com/IgorSasovets))
+-   la sección de Node Canvas en la guía de [Primeros pasos](/docs/visual-testing#system-requirements)
+-   [este post](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/) para solucionar problemas de Node-Gyp en Windows. (Gracias a [IgorSasovets](https://github.com/IgorSasovets))

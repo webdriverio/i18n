@@ -1,21 +1,21 @@
 ---
 id: pageobjects
-title: Patrón de objetos de página
+title: Patrón de Objeto de Página
 ---
 
-La versión 5 de WebdriverIO fue diseñada teniendo en cuenta el soporte del Patrón de objetos de página. Al introducir el principio de "los elementos como ciudadanos de primera clase", ahora es posible construir grandes suites de pruebas utilizando este patrón.
+La versión 5 de WebdriverIO fue diseñada teniendo en cuenta el soporte para el Patrón de Objeto de Página. Al introducir el principio de "elementos como ciudadanos de primera clase", ahora es posible construir grandes conjuntos de pruebas utilizando este patrón.
 
-No se requiere ningún paquete adicional para crear objetos de página. Resulta que las clases limpias y modernas proporcionan todas las características necesarias que necesitamos:
+No se requieren paquetes adicionales para crear objetos de página. Resulta que las clases limpias y modernas proporcionan todas las características necesarias que necesitamos:
 
 - herencia entre objetos de página
-- carga de elementos lenta
+- carga diferida de elementos
 - encapsulación de métodos y acciones
 
-El objetivo de utilizar objetos de página es abstractar cualquier información de página lejos de las pruebas reales. Idealmente, debe almacenar todos los selectores o instrucciones específicas que sean únicas para una determinada página en un objeto de página, para que pueda ejecutar su prueba después de que haya rediseñado completamente su página.
+El objetivo de usar objetos de página es abstraer cualquier información de la página de las pruebas reales. Idealmente, deberías almacenar todos los selectores o instrucciones específicas que son únicas para una determinada página en un objeto de página, para que puedas seguir ejecutando tu prueba después de haber rediseñado completamente tu página.
 
-## Crear un objeto de página
+## Creando un Objeto de Página
 
-Primero, necesitamos un objeto de página principal que llamamos `Page.js`. Contendrá selectores generales o métodos de los que heredarán todos los objetos de página.
+En primer lugar, necesitamos un objeto de página principal que llamaremos `Page.js`. Contendrá selectores o métodos generales que todos los objetos de página heredarán.
 
 ```js
 // Page.js
@@ -30,15 +30,15 @@ export default class Page {
 }
 ```
 
-Siempre exportaremos `` una instancia de un objeto de página, y nunca crearemos esa instancia en la prueba. Como estamos escribiendo pruebas de punto a punto, siempre consideramos la página como una construcción sin estado&mdash;así como cada petición HTTP es una construcción sin estado.
+Siempre `export` una instancia de un objeto de página, y nunca creamos esa instancia en la prueba. Como estamos escribiendo pruebas de extremo a extremo, siempre consideramos la página como una construcción sin estado&mdash;al igual que cada solicitud HTTP es una construcción sin estado.
 
-Claro que el navegador puede llevar información de sesión y por lo tanto puede mostrar diferentes páginas basadas en diferentes sesiones, pero esto no debe reflejarse dentro de un objeto de página. Este tipo de cambios de estado deberían estar en tus pruebas reales.
+Claro, el navegador puede llevar información de sesión y, por lo tanto, puede mostrar diferentes páginas basadas en diferentes sesiones, pero esto no debería reflejarse dentro de un objeto de página. Este tipo de cambios de estado deberían estar en tus pruebas reales.
 
-Vamos a comenzar probando la primera página. Para propósitos de la demostración, utilizaremos [El sitio web de Internet](http://the-internet.herokuapp.com) de [Elemental Selenium](http://elementalselenium.com) como guiso. Intentemos crear un ejemplo de objeto de página para la [página de inicio de sesión](http://the-internet.herokuapp.com/login).
+Comencemos a probar la primera página. Para fines de demostración, usamos el sitio web [The Internet](http://the-internet.herokuapp.com) de [Elemental Selenium](http://elementalselenium.com) como conejillo de indias. Intentemos construir un ejemplo de objeto de página para la [página de inicio de sesión](http://the-internet.herokuapp.com/login).
 
-## `Obtén` -tus selectores
+## Obteniendo tus selectores con `Get`
 
-El primer paso es escribir todos los selectores importantes que son requeridos en nuestro objeto `login.page` como funciones getter:
+El primer paso es escribir todos los selectores importantes que se requieren en nuestro objeto `login.page` como funciones getter:
 
 ```js
 // login.page.js
@@ -65,17 +65,17 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Definir selectores en las funciones getter puede parecer un poco extraño, pero es realmente útil. Estas funciones son evaluadas _cuando accede a la propiedad_, no cuando genera el objeto. Con esto usted siempre pide el elemento antes de realizar una acción.
+Definir selectores en funciones getter puede parecer un poco extraño, pero es realmente útil. Estas funciones se evalúan _cuando accedes a la propiedad_, no cuando generas el objeto. Con eso, siempre solicitas el elemento antes de realizar una acción sobre él.
 
-## Comandos de cadena
+## Encadenando Comandos
 
-WebdriverIO recuerda internamente el último resultado de un comando. Si encadena un comando de elemento con un comando de acción, encuentra el elemento del comando anterior y utiliza el resultado para ejecutar la acción. Con esto se puede eliminar el selector (primer parámetro) y el comando se ve tan simple como:
+WebdriverIO internamente recuerda el último resultado de un comando. Si encadenas un comando de elemento con un comando de acción, encuentra el elemento del comando anterior y usa el resultado para ejecutar la acción. Con eso puedes eliminar el selector (primer parámetro) y el comando se ve tan simple como:
 
 ```js
 await LoginPage.username.setValue('Max Mustermann')
 ```
 
-Lo cual es básicamente lo mismo como:
+Lo cual es básicamente lo mismo que:
 
 ```js
 let elem = await $('#username')
@@ -88,13 +88,13 @@ o
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Utilizar objetos de página en tus pruebas
+## Usando Objetos de Página en tus Pruebas
 
-Después de haber definido los elementos y métodos necesarios para la página, puede comenzar a escribir la prueba para ella. Todo lo que necesitas hacer para usar el objeto de página es `importar` (o `requerir`). ¡Eso es todo!
+Después de haber definido los elementos y métodos necesarios para la página, puedes comenzar a escribir la prueba para ella. Todo lo que necesitas hacer para usar el objeto de página es `import` (o `require`). ¡Eso es todo!
 
-Desde que exportó una instancia ya creada del objeto de página, importarla le permite empezar a usarla de inmediato.
+Como exportaste una instancia ya creada del objeto de página, importarla te permite comenzar a usarla de inmediato.
 
-Si usas un framework de afirmación, tus pruebas pueden ser aún más expresivas:
+Si usas un framework de aserciones, tus pruebas pueden ser aún más expresivas:
 
 ```js
 // login.spec.js
@@ -121,10 +121,10 @@ describe('login form', () => {
 })
 ```
 
-Desde el lado estructural, tiene sentido separar los archivos de especificaciones y los objetos de página en diferentes directorios. Además, puede dar a cada objeto de página el finalizado: `.page.js`. Esto deja más claro que se importa un objeto de página.
+Desde el lado estructural, tiene sentido separar los archivos de especificaciones y los objetos de página en diferentes directorios. Además, puedes dar a cada objeto de página la terminación: `.page.js`. Esto hace más claro que estás importando un objeto de página.
 
-## Más adelante
+## Yendo más allá
 
-Este es el principio básico de cómo escribir objetos de páginas con WebdriverIO. ¡Pero puedes construir estructuras de objetos de página más complejas que esto! Por ejemplo, puede tener objetos específicos de página para modales, o dividir un gran objeto de página en diferentes clases (cada una representa una parte diferente de la página web) que heredan del objeto de la página principal. El patrón proporciona muchas oportunidades para separar la información de la página de sus pruebas, que es importante para mantener su suite de pruebas estructurada y clara en momentos en los que el proyecto y el número de pruebas crecen.
+Este es el principio básico de cómo escribir objetos de página con WebdriverIO. ¡Pero puedes construir estructuras de objetos de página mucho más complejas que esta! Por ejemplo, podrías tener objetos de página específicos para modales, o dividir un objeto de página enorme en diferentes clases (cada una representando una parte diferente de la página web general) que heredan del objeto de página principal. El patrón realmente proporciona muchas oportunidades para separar la información de la página de tus pruebas, lo cual es importante para mantener tu suite de pruebas estructurada y clara en tiempos donde el proyecto y el número de pruebas crece.
 
-Puedes encontrar este ejemplo (e incluso más ejemplos de objetos de página) en la carpeta [`ejemplo`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) en GitHub.
+Puedes encontrar este ejemplo (e incluso más ejemplos de objetos de página) en la [`carpeta de ejemplos`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) en GitHub.

@@ -1,19 +1,19 @@
 ---
 id: organizingsuites
-title: Organización de la suite de pruebas
+title: Organizando Suite de Pruebas
 ---
 
-A medida que crecen los proyectos, inevitablemente se agregan más y más pruebas de integración. Esto aumenta el tiempo de construcción y reduce la productividad.
+A medida que los proyectos crecen, inevitablemente se añaden más y más pruebas de integración. Esto aumenta el tiempo de compilación y ralentiza la productividad.
 
-Para evitar esto, debe ejecutar sus pruebas en paralelo. WebdriverIO ya prueba cada especificación (o _archivo de características_ en Cucumber) en paralelo dentro de una sola sesión. En general, intente probar solo una función por archivo de especificaciones. Intente no tener demasiadas o muy pocas pruebas en un solo archivo. (Sin embargo, no existe una regla de oro.)
+Para evitar esto, deberías ejecutar tus pruebas en paralelo. WebdriverIO ya prueba cada especificación (o _archivo de características_ en Cucumber) en paralelo dentro de una sola sesión. En general, intenta probar solo una característica por archivo de especificación. Trata de no tener demasiadas o muy pocas pruebas en un archivo. (Sin embargo, no hay una regla de oro aquí).
 
-Una vez que sus pruebas tengan varios archivos de especificaciones, debe comenzar a ejecutar sus pruebas al mismo tiempo. Para ello, ajuste la propiedad `maxInstances` en su archivo de configuración. WebdriverIO le permite ejecutar sus pruebas con la máxima concurrencia, lo que significa que no importa cuántos archivos y pruebas tenga, todos pueden ejecutarse en paralelo.  (Esto todavía está sujeto a ciertos límites, como la CPU de su computadora, restricciones de concurrencia, etc.)
+Una vez que tus pruebas tienen varios archivos de especificación, deberías comenzar a ejecutar tus pruebas concurrentemente. Para hacerlo, ajusta la propiedad `maxInstances` en tu archivo de configuración. WebdriverIO te permite ejecutar tus pruebas con máxima concurrencia, lo que significa que no importa cuántos archivos y pruebas tengas, todos pueden ejecutarse en paralelo. (Esto sigue estando sujeto a ciertos límites, como la CPU de tu computadora, restricciones de concurrencia, etc.)
 
-> Supongamos que tiene 3 capacidades diferentes (Chrome, Firefox y Safari) y ha configurado `maxInstances` a `1`. El corredor de prueba WDIO generará 3 procesos. Por lo tanto, si tiene 10 archivos de especificaciones y configura `maxInstances` a `10`, _los_ archivos de especificaciones se probarán simultáneamente y se generarán 30 procesos.
+> Supongamos que tienes 3 capacidades diferentes (Chrome, Firefox y Safari) y has establecido `maxInstances` en `1`. El ejecutor de pruebas WDIO generará 3 procesos. Por lo tanto, si tienes 10 archivos de especificación y estableces `maxInstances` en `10`, _todos_ los archivos de especificación se probarán simultáneamente, y se generarán 30 procesos.
 
-Puede definir globalmente la propiedad `maxInstances` para establecer el atributo para todos los navegadores.
+Puedes definir la propiedad `maxInstances` globalmente para establecer el atributo para todos los navegadores.
 
-Si ejecuta su propia cuadrícula de WebDriver, puede (por ejemplo) tener más capacidad para un navegador que para otro. En ese caso, puedes _limitar_ el `maxInstances` en tu objeto de capacidad:
+Si ejecutas tu propia red WebDriver, es posible que (por ejemplo) tengas más capacidad para un navegador que para otro. En ese caso, puedes _limitar_ el `maxInstances` en tu objeto de capacidad:
 
 ```js
 // wdio.conf.js
@@ -36,11 +36,11 @@ export const config = {
 
 ## Heredar del archivo de configuración principal
 
-Si ejecuta su conjunto de pruebas en varios entornos (p. ej., desarrollo e integración), puede ser útil usar varios archivos de configuración para mantener las cosas manejables.
+Si ejecutas tu suite de pruebas en múltiples entornos (por ejemplo, desarrollo e integración), puede ser útil usar múltiples archivos de configuración para mantener las cosas manejables.
 
-Similar al concepto de objeto de página [](pageobjects), lo primero que necesitará es un archivo de configuración principal. Contiene todas las configuraciones que comparte a través de entornos.
+Similar al [concepto de objeto de página](pageobjects), lo primero que necesitarás es un archivo de configuración principal. Contiene todas las configuraciones que compartes entre entornos.
 
-A continuación, cree otro archivo de configuración para cada entorno, y complemente la configuración principal con la específica del entorno:
+Luego crea otro archivo de configuración para cada entorno, y complementa la configuración principal con las específicas del entorno:
 
 ```js
 // wdio.dev.config.js
@@ -64,11 +64,11 @@ export const config = deepmerge(wdioConf.config, {
 config.reporters.push('allure')
 ```
 
-## Grupación de pruebas en las suites
+## Agrupando especificaciones de prueba en suites
 
-Puede agrupar especificaciones de prueba en suites y ejecutar suites individuales específicas en lugar de todas.
+Puedes agrupar especificaciones de prueba en suites y ejecutar suites específicas individuales en lugar de todas ellas.
 
-Primero, defina sus suites en su configuración WDIO:
+Primero, define tus suites en tu configuración WDIO:
 
 ```js
 // wdio.conf.js
@@ -90,7 +90,7 @@ export const config = {
 }
 ```
 
-Ahora, si sólo quiere ejecutar una sola suite, puede pasar el nombre de la suite como un argumento CLI:
+Ahora, si quieres ejecutar solo una suite, puedes pasar el nombre de la suite como un argumento CLI:
 
 ```sh
 wdio wdio.conf.js --suite login
@@ -102,11 +102,11 @@ O, ejecutar múltiples suites a la vez:
 wdio wdio.conf.js --suite login --suite otherFeature
 ```
 
-## Agrupación de especificaciones de prueba para ejecutar secuencialmente
+## Agrupando especificaciones de prueba para ejecutar secuencialmente
 
-Como se describió anteriormente, existen beneficios al ejecutar las pruebas simultáneamente. Sin embargo, hay casos en los que sería beneficioso agrupar las pruebas de forma secuencial en un solo caso. Ejemplos de esto son principalmente donde hay un gran costo de configuración p.ej. transcompilar código o proporcionar instancias en la nube, pero también hay modelos de uso avanzados que se benefician de esta capacidad.
+Como se describió anteriormente, hay beneficios en ejecutar las pruebas concurrentemente. Sin embargo, hay casos en los que sería beneficioso agrupar pruebas para ejecutarlas secuencialmente en una sola instancia. Ejemplos de esto son principalmente donde hay un gran costo de configuración, por ejemplo, transpilación de código o aprovisionamiento de instancias en la nube, pero también hay modelos de uso avanzados que se benefician de esta capacidad.
 
-Para agrupar pruebas a ejecutar en una sola instancia, definirlas como una matriz dentro de la definición de especificaciones.
+Para agrupar pruebas para ejecutarlas en una sola instancia, defínelas como un array dentro de la definición de specs.
 
 ```json
     "specs": [
@@ -118,9 +118,9 @@ Para agrupar pruebas a ejecutar en una sola instancia, definirlas como una matri
         "./test/specs/test_b*.js",
     ],
 ```
-En el ejemplo anterior, las pruebas 'test_login.js', 'test_product_order.js' y 'test_checkout. s' se ejecutará secuencialmente en una sola instancia y cada una de las pruebas "test_b*" se ejecutarán simultáneamente en instancias individuales.
+En el ejemplo anterior, las pruebas 'test_login.js', 'test_product_order.js' y 'test_checkout.js' se ejecutarán secuencialmente en una sola instancia y cada una de las pruebas "test_b*" se ejecutará concurrentemente en instancias individuales.
 
-También es posible agrupar especificaciones definidas en conjuntos, por lo que ahora también puede definir conjuntos como este:
+También es posible agrupar especificaciones definidas en suites, por lo que ahora también puedes definir suites así:
 ```json
     "suites": {
         end2end: [
@@ -135,7 +135,7 @@ También es posible agrupar especificaciones definidas en conjuntos, por lo que 
 ```
 y en este caso todas las pruebas de la suite "end2end" se ejecutarían en una sola instancia.
 
-Al ejecutar pruebas secuencialmente usando un patrón, ejecutará los archivos de especificaciones en orden alfabético
+Cuando se ejecutan pruebas secuencialmente usando un patrón, ejecutará los archivos de especificación en orden alfabético
 
 ```json
   "suites": {
@@ -153,136 +153,137 @@ Esto ejecutará los archivos que coincidan con el patrón anterior en el siguien
   ]
 ```
 
-## Ejecutar las pruebas seleccionadas
+## Ejecutar pruebas seleccionadas
 
-En algunos casos, es posible que desee ejecutar solo una prueba (o un subconjunto de pruebas) de sus suites.
+En algunos casos, es posible que desees ejecutar solo una prueba (o un subconjunto de pruebas) de tus suites.
 
-Con el parámetro `--spec` , puede especificar qué _suite_ (Mocha, Jasmine) o _feature_ (Cucumber) deben ejecutarse. La ruta se resuelve relativa desde su directorio de trabajo actual.
+Con el parámetro `--spec`, puedes especificar qué _suite_ (Mocha, Jasmine) o _característica_ (Cucumber) debe ejecutarse. La ruta se resuelve en relación con tu directorio de trabajo actual.
 
-Por ejemplo, para ejecutar sólo su prueba de login:
+Por ejemplo, para ejecutar solo tu prueba de inicio de sesión:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js
 ```
 
-Para imprimir varios pedidos a la vez:
+O ejecutar múltiples especificaciones a la vez:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/signup.js --spec ./test/specs/forgot-password.js
 ```
 
-Si el valor `--spec` no apunta a un archivo específico en particular, se utiliza para filtrar los nombres de archivo especificados en la configuración.
+Si el valor de `--spec` no apunta a un archivo de especificación particular, se usa para filtrar los nombres de archivo de especificación definidos en tu configuración.
 
-Para ejecutar todas las especificaciones con la palabra “diálogo” en los nombres de los archivos especificados, puede usar:
+Para ejecutar todas las especificaciones con la palabra "dialog" en los nombres de archivo de especificación, podrías usar:
 
 ```sh
 wdio wdio.conf.js --spec dialog
 ```
 
-Tenga en cuenta que cada archivo de prueba se está ejecutando en un único proceso de ejecución de pruebas. Puesto que no escaneamos los archivos de antemano (ver la siguiente sección para obtener información sobre los nombres de archivo de la tubería a `wdio`), usted _no puede_ usar (por ejemplo) `describe. nly` en la parte superior de tu archivo de especialización para indicar a Mocha que ejecute sólo esa suite.
+Ten en cuenta que cada archivo de prueba se ejecuta en un solo proceso de ejecución de prueba. Como no escaneamos archivos por adelantado (consulta la siguiente sección para obtener información sobre cómo canalizar nombres de archivo a `wdio`), _no puedes_ usar (por ejemplo) `describe.only` en la parte superior de tu archivo de especificación para indicar a Mocha que ejecute solo esa suite.
 
-Esta característica le ayudará a lograr el mismo objetivo.
+Esta característica te ayudará a lograr el mismo objetivo.
 
-Cuando se proporciona la opción `--spec` , sobreescribirá cualquier patrón definido por el parámetro `especificaciones` del nivel de configuración o capacidad.
+Cuando se proporciona la opción `--spec`, anulará cualquier patrón definido por el parámetro `specs` a nivel de configuración o capacidad.
 
-## Excluir las pruebas seleccionadas
+## Excluir pruebas seleccionadas
 
-Cuando sea necesario, si necesita excluir archivo(s) específicos de una ejecución, puedes usar el parámetro `--exclude` (Mocha, Jasmine) o función (Cupeber).
+Cuando sea necesario, si necesitas excluir archivos de especificación particulares de una ejecución, puedes usar el parámetro `--exclude` (Mocha, Jasmine) o característica (Cucumber).
 
-Por ejemplo, para excluir su prueba de inicio de sesión de la ejecución de la prueba:
+Por ejemplo, para excluir tu prueba de inicio de sesión de la ejecución de la prueba:
 
 ```sh
 wdio wdio.conf.js --exclude ./test/specs/e2e/login.js
 ```
 
-O, excluir múltiples especificaciones:
+O, excluir múltiples archivos de especificación:
 
  ```sh
 wdio wdio.conf.js --exclude ./test/specs/signup.js --exclude ./test/specs/forgot-password.js
 ```
 
-O, excluir un archivo de especificaciones al filtrar usando una suite:
+O, excluir un archivo de especificación al filtrar usando una suite:
 
 ```sh
 wdio wdio.conf.js --suite login --exclude ./test/specs/e2e/login.js
 ```
 
-If the `--exclude` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+Si el valor de `--exclude` no apunta a un archivo de especificación particular, se usa para filtrar los nombres de archivo de especificación definidos en tu configuración.
 
-To exclude all specs with the word “dialog” in the spec file names, you could use:
+Para excluir todas las especificaciones con la palabra "dialog" en los nombres de archivo de especificación, podrías usar:
 
 ```sh
 wdio wdio.conf.js --exclude dialog
 ```
 
-Cuando se proporciona la opción `--spec` , sobreescribirá cualquier patrón definido por el parámetro `especificaciones` del nivel de configuración o capacidad.
+Cuando se proporciona la opción `--exclude`, anulará cualquier patrón definido por el parámetro `exclude` a nivel de configuración o capacidad.
 
-## Ejecutar suites y pruebas
+## Ejecutar suites y especificaciones de prueba
 
-Ejecute una suite completa junto con especificaciones individuales.
+Ejecuta una suite completa junto con especificaciones individuales.
 
 ```sh
 wdio wdio.conf.js --suite login --spec ./test/specs/signup.js
 ```
 
-## Ejecutar Múltiples Especificaciones de Prueba
+## Ejecutar múltiples especificaciones de prueba específicas
 
-A veces es necesario&mdash;en el contexto de la integración continua y, de lo contrario&mdash;para especificar múltiples conjuntos de especificaciones para ejecutar. La utilidad de línea de comandos `wdio` de WebdriverIO acepta nombres de archivos canalizados (de `find`, `grep`u otros).
+A veces es necesario, en el contexto de la integración continua y de otro modo, especificar múltiples conjuntos de especificaciones para ejecutar. La utilidad de línea de comandos `wdio` de WebdriverIO acepta nombres de archivo canalizados (de `find`, `grep` u otros).
 
-Los nombres de archivo canalizados anulan la lista de globs o nombres de archivo especificados en la lista `spec` de la configuración.
+Los nombres de archivo canalizados anulan la lista de patrones globales o nombres de archivo especificados en la lista `spec` de la configuración.
 
 ```sh
 grep -r -l --include "*.js" "myText" | wdio wdio.conf.js
 ```
 
-_**Nota:** Esto_ no _anulará el indicador `--spec` para ejecutar una única especificación._
+_**Nota:** Esto_ no _anulará la bandera `--spec` para ejecutar una sola especificación._
 
-## Ejecutando Pruebas Específicas con MochaOpts
+## Ejecutar pruebas específicas con MochaOpts
 
-También puede filtrar qué `suite|describe` y/o `it|test` específico desea ejecutar pasando un argumento específico de mocha: `--mochaOpts.grep` a la CLI de wdio.
+También puedes filtrar qué `suite|describe` y/o `it|test` específicos quieres ejecutar pasando un argumento específico de mocha: `--mochaOpts.grep` a la CLI de wdio.
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep myText
 wdio wdio.conf.js --mochaOpts.grep "Text with spaces"
 ```
 
-_**Nota:** Mocha filtrará las pruebas después de que el ejecutor de pruebas WDIO cree las instancias, por lo que es posible que vea varias instancias generadas pero que no se ejecutan realmente._
+_**Nota:** Mocha filtrará las pruebas después de que el ejecutor de pruebas WDIO cree las instancias, por lo que es posible que veas varias instancias generadas pero no ejecutadas realmente._
 
-## Exclude Specific Tests with MochaOpts
+## Excluir pruebas específicas con MochaOpts
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to exclude by passing a mocha specific argument: `--mochaOpts.invert` to the wdio CLI. `--mochaOpts.invert` performs opposite of `--mochaOpts.grep`
+También puedes filtrar qué `suite|describe` y/o `it|test` específicos quieres excluir pasando un argumento específico de mocha: `--mochaOpts.invert` a la CLI de wdio. `--mochaOpts.invert` realiza lo opuesto a `--mochaOpts.grep`
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**Nota:** Mocha filtrará las pruebas después de que el ejecutor de pruebas WDIO cree las instancias, por lo que es posible que veas varias instancias generadas pero no ejecutadas realmente._
 
-## Detener la prueba después de un error
+## Detener las pruebas después de un fallo
 
-Con la opción `bail` , puede decirle a WebdriverIO que detenga la prueba después de que falle cualquier prueba.
+Con la opción `bail`, puedes indicar a WebdriverIO que detenga las pruebas después de que falle cualquier prueba.
 
-Esto es útil con conjuntos de pruebas grandes cuando ya sabe que su compilación fallará, pero desea evitar la larga espera de una ejecución de prueba completa.
+Esto es útil con grandes conjuntos de pruebas cuando ya sabes que tu compilación se romperá, pero quieres evitar la larga espera de una ejecución completa de pruebas.
 
-La opción `bail` espera un número, que especifica cuántas fallas de prueba pueden ocurrir antes de que WebDriver detenga la ejecución de prueba completa. El valor predeterminado es `0`, lo que significa que siempre ejecuta todas las especificaciones de prueba que puede encontrar.
+La opción `bail` espera un número, que especifica cuántos fallos de prueba pueden ocurrir antes de que WebDriver detenga toda la ejecución de pruebas. El valor predeterminado es `0`, lo que significa que siempre ejecuta todas las especificaciones de prueba que puede encontrar.
 
-[Consulte la página](configuration) de Opcionespara obtener información adicional sobre la configuración de la fianza.
-## Ejecutar jerarquía de opciones
+Consulta la [Página de opciones](configuration) para obtener información adicional sobre la configuración de bail.
+## Jerarquía de opciones de ejecución
 
-Al declarar qué especificaciones ejecutar, hay una cierta jerarquía que define qué patrón tendrá prioridad. Actualmente, así es como funciona, de mayor a menor prioridad:
+Al declarar qué especificaciones ejecutar, hay una cierta jerarquía que define qué patrón tendrá prioridad. Actualmente, así es como funciona, de mayor prioridad a menor:
 
-> CLI `--spec` argument > capability `specs` pattern > config `specs` pattern CLI `--exclude` argument > config `exclude` pattern > capability `exclude` pattern
+> Argumento CLI `--spec` > patrón `specs` de capacidad > patrón `specs` de configuración
+> Argumento CLI `--exclude` > patrón `exclude` de configuración > patrón `exclude` de capacidad
 
-Si solo se proporciona el parámetro de configuración, se utilizará para todas las funciones. Sin embargo, si define el patrón en el nivel de capacidad, se utilizará en lugar del patrón de configuración. Finalmente, cualquier patrón de especificación definido en la línea de comandos anulará todos los demás patrones dados.
+Si solo se proporciona el parámetro de configuración, se utilizará para todas las capacidades. Sin embargo, si se define el patrón a nivel de capacidad, se utilizará en lugar del patrón de configuración. Finalmente, cualquier patrón de especificación definido en la línea de comandos anulará todos los demás patrones dados.
 
 ### Uso de patrones de especificación definidos por capacidad
 
-Cuando define un patrón de especificación en el nivel de capacidad, anulará cualquier patrón definido en el nivel de configuración. Esto es útil cuando es necesario separar las pruebas en función de la diferenciación de las capacidades del dispositivo. En casos como este, es más útil usar un patrón de especificación genérico en el nivel de configuración y patrones más específicos en el nivel de capacidad.
+Cuando defines un patrón de especificación a nivel de capacidad, anulará cualquier patrón definido a nivel de configuración. Esto es útil cuando se necesita separar pruebas basadas en capacidades de dispositivos diferenciadas. En casos como este, es más útil usar un patrón de especificación genérico a nivel de configuración y patrones más específicos a nivel de capacidad.
 
-Por ejemplo, digamos que tenías dos directorios, uno para pruebas de Android, y otro para pruebas de iOS.
+Por ejemplo, digamos que tienes dos directorios, uno para pruebas de Android y otro para pruebas de iOS.
 
-Su archivo de configuración puede definir el patrón como tal, para pruebas de dispositivos no específicos:
+Tu archivo de configuración puede definir el patrón de la siguiente manera, para pruebas de dispositivos no específicos:
 
 ```js
 {
@@ -290,7 +291,7 @@ Su archivo de configuración puede definir el patrón como tal, para pruebas de 
 }
 ```
 
-pero luego, tendrá diferentes capacidades para sus dispositivos Android e iOS, donde los patrones podrían verse así:
+pero luego, tendrás diferentes capacidades para tus dispositivos Android e iOS, donde los patrones podrían verse así:
 
 ```json
 {
@@ -310,30 +311,4 @@ pero luego, tendrá diferentes capacidades para sus dispositivos Android e iOS, 
 }
 ```
 
-Si necesita ambas capacidades en su archivo de configuración, entonces el dispositivo Android solo ejecutará las pruebas bajo el espacio de nombres "android", y las pruebas de iOS solo ejecutarán las pruebas bajo el espacio de nombres "ios".
-
-```js
-//wdio.conf.js
-export const config = {
-    "specs": [
-        "tests/general/**/*.js"
-    ],
-    "capabilities": [
-        {
-            platformName: "Android",
-            specs: ["tests/android/**/*.js"],
-            //...
-        },
-        {
-            platformName: "iOS",
-            specs: ["tests/ios/**/*.js"],
-            //...
-        },
-        {
-            platformName: "Chrome",
-            //config level specs will be used
-        }
-    ]
-}
-```
-
+Si requieres ambas capacidades en tu archivo de configuración, ¡entonces el dispositivo Android solo ejecutará las pruebas

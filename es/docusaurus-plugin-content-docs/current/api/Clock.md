@@ -1,9 +1,9 @@
 ---
 id: clock
-title: The Clock Object
+title: El Objeto Clock
 ---
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+Puedes modificar el reloj del sistema del navegador usando el comando [`emulate`](/docs/emulation). Este comando sobrescribe las funciones globales nativas relacionadas con el tiempo, permitiendo controlarlas de forma sincrónica mediante `clock.tick()` o el objeto clock generado. Esto incluye el control de:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). Esto significa que cuando instancie 'new Date' en su aplicación, la misma tendrá un valor de '1 de enero, 1970' a menos que le pase alguna otra opción al comando 'emulate'.
+El reloj comienza en la época unix (marca de tiempo 0). Esto significa que cuando instancias un nuevo Date en tu aplicación, tendrá una hora del 1 de enero de 1970 si no pasas otras opciones al comando `emulate`.
 
 ## Ejemplo
 
-Al llamar a `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+Al llamar a `browser.emulate('clock', { ... })` sobrescribirá inmediatamente las funciones globales para la página actual y todas las páginas siguientes, por ejemplo:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -37,4 +37,4 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+Puedes modificar la hora del sistema llamando a [`setSystemTime`](/docs/api/clock/setSystemTime) o [`tick`](/docs/api/clock/tick).

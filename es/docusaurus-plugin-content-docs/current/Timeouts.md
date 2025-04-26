@@ -3,9 +3,9 @@ id: timeouts
 title: Tiempos de espera
 ---
 
-Cada comando en WebdriverIO es una operación asíncrona. Se lanza una solicitud al servidor de Selenium (o un servicio en la nube como [Sauce Labs](https://saucelabs.com)), y su respuesta contiene el resultado una vez que la acción ha finalizado o fallado.
+Cada comando en WebdriverIO es una operación asíncrona. Se envía una solicitud al servidor de Selenium (o a un servicio en la nube como [Sauce Labs](https://saucelabs.com)), y su respuesta contiene el resultado una vez que la acción se ha completado o ha fallado.
 
-Por lo tanto, el tiempo es un componente crucial en todo el proceso de prueba. Cuando una acción determinada depende del estado de una acción diferente, es necesario asegurarse de que se ejecutan en el orden correcto. Los tiempos de espera desempeñan un papel importante a la hora de abordar estas cuestiones.
+Por lo tanto, el tiempo es un componente crucial en todo el proceso de prueba. Cuando una determinada acción depende del estado de una acción diferente, debes asegurarte de que se ejecuten en el orden correcto. Los tiempos de espera juegan un papel importante cuando se trata de estos problemas.
 
 <LiteYouTubeEmbed
     id="5oI37h4qxEw"
@@ -14,9 +14,9 @@ Por lo tanto, el tiempo es un componente crucial en todo el proceso de prueba. C
 
 ## Tiempos de espera de WebDriver
 
-### Tiempo de espera de actividad de sesión
+### Tiempo de espera de script de sesión
 
-Una sesión tiene un tiempo de espera de secuencia de comandos asociado que especifica un tiempo para esperar a que se ejecuten scripts asíncronos. A menos que se indique lo contrario, es de 30 segundos. Puede establecer este tiempo de espera así:
+Una sesión tiene un tiempo de espera de script de sesión asociado que especifica un tiempo para esperar a que se ejecuten scripts asíncronos. A menos que se indique lo contrario, es de 30 segundos. Puedes configurar este tiempo de espera así:
 
 ```js
 await browser.setTimeout({ 'script': 60000 })
@@ -28,31 +28,31 @@ await browser.executeAsync((done) => {
 
 ### Tiempo de espera de carga de página de sesión
 
-Una sesión tiene un tiempo de espera de secuencia de comandos asociado que especifica un tiempo para esperar a que se ejecuten scripts asíncronos. A menos que se indique lo contrario, es de 300,000 segundos.
+Una sesión tiene un tiempo de espera de carga de página de sesión asociado que especifica un tiempo para esperar a que se complete la carga de la página. A menos que se indique lo contrario, es de 300,000 milisegundos.
 
-Puede establecer este tiempo de espera así:
+Puedes configurar este tiempo de espera así:
 
 ```js
 await browser.setTimeout({ 'pageLoad': 10000 })
 ```
 
-> La palabra clave `pageLoad` es parte de la especificación oficial de WebDriver [](https://www.w3.org/TR/webdriver/#set-timeouts), pero podría no ser [soportado](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) para su navegador (el nombre anterior es `carga de página`).
+> La palabra clave `pageLoad` es parte de la [especificación](https://www.w3.org/TR/webdriver/#set-timeouts) oficial de WebDriver, pero podría no estar [soportada](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) para tu navegador (el nombre anterior es `page load`).
 
-### Tiempo de espera de sesión implícita
+### Tiempo de espera implícito de sesión
 
-Una sesión tiene una sesión asociada de espera implícita. Esto especifica el tiempo para esperar a la estrategia de ubicación implícita del elemento al localizar elementos usando los comandos [`findElement`](/docs/api/webdriver#findelement) o [`findElements`](/docs/api/webdriver#findelements) ([`$`](/docs/api/browser/$) o [`$$`](/docs/api/browser/$$), respectivamente, al ejecutar WebdriverIO con o sin el testrunner WDIO). A menos que se indique lo contrario, es de 0 segundos.
+Una sesión tiene un tiempo de espera implícito de sesión asociado. Esto especifica el tiempo de espera para la estrategia de ubicación implícita de elementos al localizar elementos usando los comandos [`findElement`](/docs/api/webdriver#findelement) o [`findElements`](/docs/api/webdriver#findelements) ([`$`](/docs/api/browser/$) o [`$$`](/docs/api/browser/$$), respectivamente, cuando se ejecuta WebdriverIO con o sin el ejecutor de pruebas WDIO). A menos que se indique lo contrario, es de 0 milisegundos.
 
-Puede establecer este tiempo de espera así:
+Puedes configurar este tiempo de espera a través de:
 
 ```js
 await browser.setTimeout({ 'implicit': 5000 })
 ```
 
-## Tiempo de espera relacionado con WebdriverIO
+## Tiempos de espera relacionados con WebdriverIO
 
-### `Espera*` tiempo de espera
+### Tiempo de espera `WaitFor*`
 
-WebdriverIO proporciona múltiples comandos para esperar en elementos para alcanzar un cierto estado (por ejemplo, habilitado, visible, existente). Estos comandos toman un argumento de selector y un número de tiempo de espera, que determina cuánto debe esperar la instancia a que ese elemento llegue al estado. La opción `waitforTimeout` le permite establecer el tiempo de espera global para todos los comandos `waitFor*`, así que no necesita establecer el mismo tiempo de espera una y otra vez. _(Observe la minúscula `f`!)_
+WebdriverIO proporciona múltiples comandos para esperar a que los elementos alcancen un cierto estado (por ejemplo, habilitado, visible, existente). Estos comandos toman un argumento selector y un número de tiempo de espera, que determina cuánto tiempo debe esperar la instancia para que ese elemento alcance el estado. La opción `waitforTimeout` te permite establecer el tiempo de espera global para todos los comandos `waitFor*`, por lo que no necesitas establecer el mismo tiempo de espera una y otra vez. _(¡Nota la 'f' minúscula!)_
 
 ```js
 // wdio.conf.js
@@ -63,23 +63,23 @@ export const config = {
 }
 ```
 
-En sus pruebas, ahora puede hacer esto:
+En tus pruebas, ahora puedes hacer esto:
 
 ```js
 const myElem = await $('#myElem')
 await myElem.waitForDisplayed()
 
-// you can also overwrite the default timeout if needed
+// también puedes sobrescribir el tiempo de espera predeterminado si es necesario
 await myElem.waitForDisplayed({ timeout: 10000 })
 ```
 
-## Tiempo de espera del framework
+## Tiempos de espera relacionados con el framework
 
-El framework de pruebas que está utilizando con WebdriverIO tiene que hacer frente a los tiempos de espera, especialmente porque todo es asíncrono. Esto asegura que el proceso de prueba no se atasca si algo sale mal.
+El framework de pruebas que estás utilizando con WebdriverIO tiene que lidiar con tiempos de espera, especialmente porque todo es asíncrono. Asegura que el proceso de prueba no se quede atascado si algo sale mal.
 
-Por defecto, el tiempo de espera es de 10 segundos, lo que significa que una sola prueba no debe demorar más de eso.
+Por defecto, el tiempo de espera es de 10 segundos, lo que significa que una sola prueba no debería tomar más tiempo que ese.
 
-Una única prueba en Mocha se ve como:
+Una prueba individual en Mocha se ve así:
 
 ```js
 it('should login into the application', async () => {
@@ -97,15 +97,15 @@ it('should login into the application', async () => {
 })
 ```
 
-En Cucumber, el tiempo de espera se aplica a una definición de un solo paso. Sin embargo, si desea aumentar el tiempo de espera porque su prueba toma más tiempo que el valor predeterminado, necesita configurarlo en las opciones del framework.
+En Cucumber, el tiempo de espera se aplica a una sola definición de paso. Sin embargo, si deseas aumentar el tiempo de espera porque tu prueba toma más tiempo que el valor predeterminado, debes establecerlo en las opciones del framework.
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- {label: 'Cucumber', value: 'cucumber'}
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+    {label: 'Cucumber', value: 'cucumber'}
+  ]
 }>
 <TabItem value="mocha">
 

@@ -1,38 +1,39 @@
 ---
 id: enterprise
-title: WebdriverIO para Enterprise
+title: WebdriverIO para Empresas
 ---
 
-## Disponible como parte de la suscripción Tidelift
+## Disponible como parte de la Suscripción Tidelift
 
-Tidelift está trabajando con los mantenedores de WebdriverIO y miles de otros proyectos de código abierto para proporcionar soporte comercial y mantenimiento para las dependencias de código abierto que utiliza para construir sus aplicaciones. Ahorre tiempo, reduzca el riesgo y mejore la salud del código, mientras paga a los mantenedores de las dependencias exactas que utilice.
+Tidelift está trabajando con los mantenedores de WebdriverIO y miles de otros
+proyectos de código abierto para ofrecer soporte comercial y mantenimiento para las dependencias de código abierto que utilizas para construir tus aplicaciones. Ahorra tiempo, reduce riesgos y mejora la salud del código, mientras pagas a los mantenedores de las dependencias exactas que utilizas.
 
-#### Software de código abierto listo para su empresa — administrado por usted
-La Suscripción Tidelift es una suscripción de código abierto administrada para dependencias de aplicaciones que cubre millones de proyectos de código abierto en JavaScript, Python, Java, PHP, Ruby, .
+#### Software de código abierto listo para empresas—gestionado para ti
+La Suscripción Tidelift es una suscripción gestionada de código abierto para dependencias de aplicaciones que cubre millones de proyectos de código abierto en JavaScript, Python, Java, PHP, Ruby, .NET y más.
 
-#### La suscripción incluye:
+#### Tu suscripción incluye:
 
 ##### Actualizaciones de seguridad
-El equipo de respuesta de seguridad de Tidelift coordina parches para nuevas vulnerabilidades de seguridad de ruptura y alertas inmediatamente a través de un canal privado, para que su cadena de suministro de software esté siempre segura.
+El equipo de respuesta de seguridad de Tidelift coordina parches para nuevas vulnerabilidades de seguridad críticas y alerta inmediatamente a través de un canal privado, para que tu cadena de suministro de software esté siempre segura.
 
-##### Verificación de licencias y mitigación
-Tidelift verifica la información de la licencia para permitir la aplicación de políticas fácil y añade derechos de propiedad intelectual para cubrir a los creadores y usuarios en caso de que algo vaya mal. Usted siempre tiene una factura de materiales 100% actualizada para que sus dependencias compartan con su equipo legal, clientes o socios.
+##### Verificación de licencias e indemnización
+Tidelift verifica la información de licencias para facilitar la aplicación de políticas y añade indemnización de propiedad intelectual para proteger a creadores y usuarios en caso de problemas. Siempre tendrás un inventario 100% actualizado de tus dependencias para compartir con tu equipo legal, clientes o socios.
 
 ##### Mantenimiento y mejora del código
-Tidelift asegura que el software en el que usted confía siga funcionando siempre que usted lo necesite para funcionar. Sus dependencias administradas son mantenidas activamente y reclutamos mantenedores adicionales cuando sea necesario.
+Tidelift asegura que el software del que dependes siga funcionando mientras lo necesites. Tus dependencias gestionadas se mantienen activamente y reclutamos mantenedores adicionales cuando es necesario.
 
-##### Selección de paquetes y guía de versión
-Le ayudamos a elegir los mejores paquetes de código abierto desde el principio, y luego le guiamos a través de actualizaciones para permanecer en las mejores versiones a medida que surjan nuevos problemas.
+##### Selección de paquetes y orientación de versiones
+Te ayudamos a elegir los mejores paquetes de código abierto desde el principio—y luego te guiamos a través de actualizaciones para mantenerte en las mejores versiones a medida que surgen nuevos problemas.
 
-##### Entrada de Hoja de Ruta
-Tome un asiento en la mesa con los creadores detrás del software que utiliza. Los mantenedores participantes de Tidelift ganan más ingresos a medida que su software es utilizado por más suscriptores, por lo que están interesados en saber lo que usted necesita.
+##### Aportación a la hoja de ruta
+Toma asiento en la mesa con los creadores detrás del software que utilizas. Los mantenedores participantes de Tidelift ganan más ingresos a medida que su software es utilizado por más suscriptores, por lo que están interesados en conocer lo que necesitas.
 
-##### Integración de la nube y herramientas
-Tidelift funciona con GitHub, GitLab, BitBucket y más. Apoyamos todas las plataformas en la nube (y también otros objetivos de implementación).
+##### Integración con herramientas y la nube
+Tidelift funciona con GitHub, GitLab, BitBucket y más. Soportamos todas las plataformas en la nube (y otros objetivos de implementación también).
 
-¿Resultado final? Todas las capacidades que usted espera del software de grado comercial, para el abanico completo de código abierto que usted utiliza. Eso significa menos tiempo lidiando con la trivia esotérica de código abierto, y más tiempo construyendo sus propias aplicaciones, y su negocio.
+¿El resultado final? Todas las capacidades que esperas del software de nivel comercial, para toda la amplitud de código abierto que utilizas. Eso significa menos tiempo lidiando con detalles esotéricos de código abierto y más tiempo construyendo tus propias aplicaciones—y tu negocio.
 
 <div class="learnmore">
-    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Más información</a>
-    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Solicitar una demostración</a>
+    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Saber Más</a>
+    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Solicitar una demo</a>
 </div>

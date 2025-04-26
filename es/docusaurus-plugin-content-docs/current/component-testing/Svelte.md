@@ -3,11 +3,11 @@ id: svelte
 title: Svelte
 ---
 
-[Svelte](https://svelte.dev/) es un nuevo enfoque radical para crear interfaces de usuario. En marcos tradicionales como React y Vue hacen la mayor parte de su trabajo en el navegador, Svelte desplaza que trabajan en un paso de compilación que ocurre cuando construyes tu aplicación. Puede probar los componentes de React directamente en un navegador real usando WebdriverIO y su [gestor de navegadores](/docs/runner#browser-runner).
+[Svelte](https://svelte.dev/) es un enfoque radicalmente nuevo para construir interfaces de usuario. Mientras que los frameworks tradicionales como React y Vue realizan la mayor parte de su trabajo en el navegador, Svelte traslada ese trabajo a un paso de compilación que ocurre cuando construyes tu aplicación. Puedes probar componentes Svelte directamente en un navegador real usando WebdriverIO y su [ejecutor de navegador](/docs/runner#browser-runner).
 
 ## Configuración
 
-Para configurar WebdriverIO en su proyecto Svelte, siga las [instrucciones](/docs/component-testing#set-up) en nuestros documentos de prueba de componentes. Asegúrese de seleccionar `preact` como preset dentro de sus opciones corredoras, por ejemplo:
+Para configurar WebdriverIO dentro de tu proyecto Svelte, sigue las [instrucciones](/docs/component-testing#set-up) en nuestra documentación de pruebas de componentes. Asegúrate de seleccionar `svelte` como preset dentro de tus opciones de ejecutor, por ejemplo:
 
 ```js
 // wdio.conf.js
@@ -22,25 +22,25 @@ export const config = {
 
 :::info
 
-Si ya está usando [Vite](https://vitejs.dev/) como servidor de desarrollo también puede volver a usar tu configuración en `vite. onfig.ts` dentro de su configuración WebdriverIO. Para más información, consulte `viteConfig` en [opciones de corredor](/docs/runner#runner-options).
+Si ya estás utilizando [Vite](https://vitejs.dev/) como servidor de desarrollo, también puedes reutilizar tu configuración en `vite.config.ts` dentro de tu configuración de WebdriverIO. Para más información, consulta `viteConfig` en [opciones del ejecutor](/docs/runner#runner-options).
 
 :::
 
-El preset de Svelte requiere `@sveltejs/vite-plugin-svelte` para estar instalado. También recomendamos utilizar [Testing Library](https://testing-library.com/) para renderizar el componente en la página de prueba. Por lo tanto, tendrá que instalar las siguientes dependencias adicionales:
+El preset de Svelte requiere que `@sveltejs/vite-plugin-svelte` esté instalado. También recomendamos usar [Testing Library](https://testing-library.com/) para renderizar el componente en la página de prueba. Por lo tanto, necesitarás instalar las siguientes dependencias adicionales:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
 ```
 
-Luego puede iniciar las pruebas ejecutando:
+Luego puedes iniciar las pruebas ejecutando:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## Pruebas de escritura
+## Escribiendo Pruebas
 
-Dado que tiene el siguiente componente Svelte:
+Dado que tienes el siguiente componente Svelte:
 
 ```html title="./components/Component.svelte"
 <script>
@@ -57,7 +57,7 @@ Dado que tiene el siguiente componente Svelte:
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-En su prueba utilice el método `render` de `@testing-library/preact` para adjuntar el componente a la página de prueba. Para interactuar con el componente recomendamos utilizar comandos WebdriverIO ya que se comportan más cerca de las interacciones reales del usuario, por ejemplo:
+En tu prueba, utiliza el método `render` de `@testing-library/svelte` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar comandos de WebdriverIO ya que se comportan más cerca de las interacciones reales del usuario, por ejemplo:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'
@@ -78,5 +78,4 @@ describe('Svelte Component Testing', () => {
 })
 ```
 
-Puede encontrar un ejemplo completo de una suite de pruebas de componentes WebdriverIO para Svelte en nuestro [repositorio de ejemplo](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite).
-
+Puedes encontrar un ejemplo completo de un conjunto de pruebas de componentes WebdriverIO para Svelte en nuestro [repositorio de ejemplos](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite).

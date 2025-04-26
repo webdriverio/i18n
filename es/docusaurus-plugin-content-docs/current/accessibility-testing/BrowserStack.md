@@ -1,34 +1,34 @@
 ---
 id: browserstack
-title: BrowserStack Accessibility Testing
+title: Pruebas de Accesibilidad de BrowserStack
 ---
 
 # BrowserStack Accessibility Testing
 
-Puede fácilmente integrar las pruebas de accesibilidad de sus suites de pruebas de WebdriverIO utilizando la función de [Pruebas automatizadas de Testeos de Accesibilidad de BrowserStack](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+Puedes integrar fácilmente pruebas de accesibilidad en tus suites de pruebas de WebdriverIO utilizando la [función de pruebas automatizadas de BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-## Advantages of Automated Tests in BrowserStack Accessibility Testing
+## Ventajas de las Pruebas Automatizadas en BrowserStack Accessibility Testing
 
-To use Automated tests in BrowserStack Accessibility Testing, your tests should be running on BrowserStack Automate.
+Para utilizar las pruebas automatizadas en BrowserStack Accessibility Testing, tus pruebas deben ejecutarse en BrowserStack Automate.
 
-The following are the advantages of Automated tests:
+Las siguientes son las ventajas de las pruebas automatizadas:
 
-- Seamlessly integrates into your pre-existing automation test suite.
-- No code changes are required in test cases.
-- Requires zero additional maintenance for accessibility testing.
-- Understand historical trends and gain test-case insights.
+* Se integra perfectamente en tu suite de pruebas de automatización preexistente.
+* No se requieren cambios de código en los casos de prueba.
+* No requiere mantenimiento adicional para las pruebas de accesibilidad.
+* Comprende tendencias históricas y obtén información sobre casos de prueba.
 
-## Get Started with BrowserStack Accessibility Testing
+## Comenzar con BrowserStack Accessibility Testing
 
-Follow these steps to integrate your WebdriverIO test suites with BrowserStack's Accessibility Testing:
+Sigue estos pasos para integrar tus suites de pruebas de WebdriverIO con las Pruebas de Accesibilidad de BrowserStack:
 
-1. Install `@wdio/browserstack-service` npm package.
+1. Instala el paquete npm `@wdio/browserstack-service`.
 
 ```bash npm2yarn
 npm install --save-dev @wdio/browserstack-service
 ```
 
-2. Update `wdio.conf.js` config file.
+2. Actualiza el archivo de configuración `wdio.conf.js`.
 
 ```javascript
 exports.config = {
@@ -37,22 +37,22 @@ exports.config = {
     key: '<browserstack_access_key>' || process.env.BROWSERSTACK_ACCESS_KEY,
     commonCapabilities: {
       'bstack:options': {
-        projectName: "Ingrese el nombre de su proyecto estático aqui",
-        buildName: "Ingrese el nombre de su build/job aqui"
+        projectName: "Your static project name goes here",
+        buildName: "Your static build/job name goes here"
       }
     },
     services: [
       ['browserstack', {
         accessibility: true,
-        // Opciones de configuración opcionales
+        // Optional configuration options
         accessibilityOptions: {
           'wcagVersion': 'wcag21a',
           'includeIssueType': {
             'bestPractice': false,
             'needsReview': true
           },
-          'includeTagsInTestingScope': ['Especifique las etiquetas de los casos de test a ser incluídos'],
-          'excludeTagsInTestingScope': ['Especifique las etiquetas de los casos de test a ser excluídos']
+          'includeTagsInTestingScope': ['Specify tags of test cases to be included'],
+          'excludeTagsInTestingScope': ['Specify tags of test cases to be excluded']
         },
       }]
     ],
@@ -60,4 +60,4 @@ exports.config = {
   };
 ```
 
-You can view detailed instructions [here](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+Puedes ver instrucciones detalladas [aquí](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).

@@ -1,76 +1,76 @@
 ---
 id: customservices
-title: Servicios personalizados
+title: Servicios Personalizados
 ---
 
-Puede escribir su propio servicio personalizado para que el corredor de pruebas WDIO se adapte a sus necesidades.
+Puedes escribir tu propio servicio personalizado para el ejecutor de pruebas WDIO para adaptarlo a tus necesidades.
 
-Los servicios son complementos creados para la lógica reutilizable que simplifica las pruebas, administra tu suite de pruebas e integra resultados. Los servicios tienen acceso a todos los mismos [hooks](/docs/configurationfile) disponibles en `wdio.conf.js`.
+Los servicios son complementos creados para lógica reutilizable que simplifica las pruebas, gestiona tu suite de pruebas e integra resultados. Los servicios tienen acceso a todos los mismos [hooks](/docs/configurationfile) disponibles en el `wdio.conf.js`.
 
-Hay dos tipos de servicios que se pueden definir: un servicio de lanzador que sólo tiene acceso al `onPrepare`, `onWorkerStart`, `onWorkerEnd` y `onComplete` gancho que solo son ejecutados una vez por ejecución de prueba, y un servicio de trabajador que tiene acceso a todos los otros ganchos y que está siendo ejecutado por cada trabajador. Tenga en cuenta que no puede compartir variables (globales) entre ambos tipos de servicios mientras los servicios de worker se ejecutan en un proceso diferente (worker).
+Hay dos tipos de servicios que se pueden definir: un servicio lanzador que solo tiene acceso a los hooks `onPrepare`, `onWorkerStart`, `onWorkerEnd` y `onComplete` que solo se ejecutan una vez por ejecución de prueba, y un servicio de trabajador que tiene acceso a todos los demás hooks y se ejecuta para cada trabajador. Ten en cuenta que no puedes compartir variables (globales) entre ambos tipos de servicios, ya que los servicios de trabajador se ejecutan en un proceso (trabajador) diferente.
 
-Un servicio de lanzador puede ser definido de la siguiente manera:
+Un servicio lanzador se puede definir de la siguiente manera:
 
 ```js
 export default class CustomLauncherService {
-    // If a hook returns a promise, WebdriverIO will wait until that promise is resolved to continue.
+    // Si un hook devuelve una promesa, WebdriverIO esperará hasta que esa promesa se resuelva para continuar.
     async onPrepare(config, capabilities) {
-        // TODO: something before all workers launch
+        // TODO: algo antes de que se lancen todos los trabajadores
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: something after the workers shutdown
+        // TODO: algo después de que los trabajadores se apaguen
     }
 
-    // custom service methods ...
+    // métodos de servicio personalizados ...
 }
 ```
 
-Donde un servicio de trabajador debería verse así:
+Mientras que un servicio de trabajador debería verse así:
 
 ```js
 export default class CustomWorkerService {
     /**
-     * `serviceOptions` contains all options specific to the service
-     * e.g. if defined as follows:
+     * `serviceOptions` contiene todas las opciones específicas del servicio
+     * por ejemplo, si se define de la siguiente manera:
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * the `serviceOptions` parameter will be: `{ foo: 'bar' }`
+     * el parámetro `serviceOptions` será: `{ foo: 'bar' }`
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * this browser object is passed in here for the first time
+     * este objeto de navegador se pasa aquí por primera vez
      */
     async before(config, capabilities, browser) {
         this.browser = browser
 
-        // TODO: something before all tests are run, e.g.:
+        // TODO: algo antes de que se ejecuten todas las pruebas, por ejemplo:
         await this.browser.setWindowSize(1024, 768)
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: something after all tests are run
+        // TODO: algo después de que se ejecuten todas las pruebas
     }
 
     beforeTest(test, context) {
-        // TODO: something before each Mocha/Jasmine test run
+        // TODO: algo antes de cada ejecución de prueba de Mocha/Jasmine
     }
 
     beforeScenario(test, context) {
-        // TODO: something before each Cucumber scenario run
+        // TODO: algo antes de cada ejecución de escenario de Cucumber
     }
 
-    // other hooks or custom service methods ...
+    // otros hooks o métodos de servicio personalizados ...
 }
 ```
 
-Es recomendable almacenar el objeto del navegador a través del parámetro pasado en el constructor. Por último, exponer ambos tipos de trabajadores de la siguiente manera:
+Se recomienda almacenar el objeto del navegador a través del parámetro pasado en el constructor. Por último, exponer ambos tipos de trabajadores de la siguiente manera:
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-Si está utilizando TypeScript y quiere asegurarse de que el parámetro de métodos ganok son seguros, puede definir su clase de servicio de la siguiente manera:
+Si estás usando TypeScript y quieres asegurarte de que los parámetros de los métodos hook sean seguros en cuanto a tipos, puedes definir tu clase de servicio de la siguiente manera:
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -89,7 +89,7 @@ export default class CustomWorkerService implements Services.ServiceInstance {
     constructor (
         private _options: MyServiceOptions,
         private _capabilities: Capabilities.RemoteCapability,
-        private _config: Options.Testrunner
+        private _config: WebdriverIO.Config,
     ) {
         // ...
     }
@@ -98,29 +98,29 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## Error de servicio
+## Manejo de Errores del Servicio
 
-Un error arrojado durante un gancho de servicio será registrado mientras el corredor continúa. Si un gancho en su servicio es crítico para la configuración o desmontaje del corredor de pruebas, el `SevereServiceError` expuesto desde el paquete `webdriverio` se puede utilizar para detener el ejecutor.
+Un error lanzado durante un hook de servicio se registrará mientras el ejecutor continúa. Si un hook en tu servicio es crítico para la configuración o el desmontaje del ejecutor de pruebas, se puede usar el `SevereServiceError` expuesto desde el paquete `webdriverio` para detener el ejecutor.
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: something critical for setup before all workers launch
+        // TODO: algo crítico para la configuración antes de que se lancen todos los trabajadores
 
-        throw new SevereServiceError('Something went wrong.')
+        throw new SevereServiceError('Algo salió mal.')
     }
 
-    // custom service methods ...
+    // métodos de servicio personalizados ...
 }
 ```
 
-## Importar servicio desde el módulo
+## Importar Servicio desde Módulo
 
-Lo único que hay que hacer ahora para usar este servicio es asignarlo a la propiedad de `services`.
+Lo único que hay que hacer ahora para usar este servicio es asignarlo a la propiedad `services`.
 
-Modifique su archivo `wdio.conf.js` para que se vea así:
+Modifica tu archivo `wdio.conf.js` para que se vea así:
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -129,13 +129,13 @@ export const config = {
     // ...
     services: [
         /**
-         * use imported service class
+         * usar clase de servicio importada
          */
         [CustomService, {
             someOption: true
         }],
         /**
-         * use absolute path to service
+         * usar ruta absoluta al servicio
          */
         ['/path/to/service.js', {
             someOption: true
@@ -145,19 +145,19 @@ export const config = {
 }
 ```
 
-## Publicar servicio en NPM
+## Publicar Servicio en NPM
 
-Para facilitar el consumo y descubrimiento de servicios por parte de la comunidad WebdriverIO, por favor sigue estas recomendaciones:
+Para hacer que los servicios sean más fáciles de consumir y descubrir por la comunidad de WebdriverIO, sigue estas recomendaciones:
 
-* Los servicios deben utilizar esta convención de nomenclatura: `wdio-*-service`
-* Usar palabras clave NPM: `wdio-plugin`, `wdio-service`
-* La entrada `principal` debería `exportar` una instancia del servicio
-* Ejemplo de reportero: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* Los servicios deben usar esta convención de nomenclatura: `wdio-*-service`
+* Usar palabras clave de NPM: `wdio-plugin`, `wdio-service`
+* La entrada `main` debe `exportar` una instancia del servicio
+* Servicios de ejemplo: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-Siguiendo el patrón de nomenclatura recomendado permite que los servicios se añadan por nombre:
+Seguir el patrón de nomenclatura recomendado permite que los servicios se agreguen por nombre:
 
 ```js
-// Add wdio-custom-service
+// Agregar wdio-custom-service
 export const config = {
     // ...
     services: ['custom'],
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### Añadir Servicio Publicado a WDIO CLI y Docs
+### Agregar Servicio Publicado a WDIO CLI y Docs
 
-Realmente apreciamos cada nuevo plugin que podría ayudar a otras personas a hacer mejores pruebas! Si has creado un plugin de este tipo, por favor considera añadirlo a nuestro CLI y documentos para que sea más fácil de encontrar. Si has creado un plugin de este tipo, por favor considera añadirlo a nuestro CLI y documentos para que sea más fácil de encontrar.
+¡Realmente apreciamos cada nuevo plugin que pueda ayudar a otras personas a ejecutar mejores pruebas! Si has creado un plugin así, considera agregarlo a nuestra CLI y documentación para que sea más fácil de encontrar.
 
-Por favor, envíe un pull request con los siguientes cambios:
+Por favor, crea una solicitud de extracción con los siguientes cambios:
 
-- añade tu servicio a la lista de [reporters soportados](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) en el módulo CLI
-- mejorar la lista de reporteros [](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) para añadir sus documentos a la página oficial de Webdriver.io
+- agrega tu servicio a la lista de [servicios compatibles](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) en el módulo CLI
+- mejora la [lista de servicios](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) para agregar tu documentación a la página oficial de Webdriver.io

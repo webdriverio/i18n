@@ -1,53 +1,53 @@
 ---
 id: custommatchers
-title: Custom Matchers
+title: Matchers Personalizados
 ---
 
-WebdriverIO uses a Jest style [`expect`](https://webdriver.io/docs/api/expect-webdriverio) assertion library that comes with special features and custom matchers specific for running web and mobile tests. While the library of matchers is big, it certainly doesn't fit all possible situations. Therefore it is possible to extend the existing matchers with custom ones defined by you.
+WebdriverIO utiliza una biblioteca de aserciones estilo Jest [`expect`](https://webdriver.io/docs/api/expect-webdriverio) que viene con características especiales y matchers personalizados específicos para ejecutar pruebas web y móviles. Aunque la biblioteca de matchers es grande, ciertamente no se adapta a todas las situaciones posibles. Por lo tanto, es posible extender los matchers existentes con otros personalizados definidos por ti.
 
 :::warning
 
-While there is currently no difference in how matchers are defined that are specific to the [`browser`](/docs/api/browser) object or an [element](/docs/api/element) instance, this certainly might change in the future. Keep an eye on [`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) for further information on this development.
+Aunque actualmente no hay diferencia en cómo se definen los matchers que son específicos para el objeto [`browser`](/docs/api/browser) o una instancia de [element](/docs/api/element), esto ciertamente podría cambiar en el futuro. Mantén un ojo en [`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) para más información sobre este desarrollo.
 
 :::
 
-## Custom Browser Matchers
+## Matchers Personalizados para el Navegador
 
-To register a custom browser matcher, call `extend` on the `expect` object either in your spec file directly or as part of the e.g. `before` hook in your `wdio.conf.js`:
+Para registrar un matcher personalizado para el navegador, llama a `extend` en el objeto `expect` ya sea directamente en tu archivo de especificación o como parte del hook `before` en tu `wdio.conf.js`:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L3-L18
 ```
 
-As shown in the example the matcher function takes the expected object, e.g. the browser or element object, as the first parameter and the expected value as the second. You can then use the matcher as follows:
+Como se muestra en el ejemplo, la función matcher toma el objeto esperado, por ejemplo, el objeto browser o element, como primer parámetro y el valor esperado como segundo. Luego puedes usar el matcher de la siguiente manera:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L50-L52
 ```
 
-## Custom Element Matchers
+## Matchers Personalizados para Elementos
 
-Similar to custom browser matchers, element matchers don't differ. Here is an example of how to create a custom matcher to assert the aria-label of an element:
+Similar a los matchers personalizados del navegador, los matchers de elementos no difieren. Aquí hay un ejemplo de cómo crear un matcher personalizado para afirmar el aria-label de un elemento:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L20-L38
 ```
 
-This allows you to call the assertion as follows:
+Esto te permite llamar a la aserción de la siguiente manera:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L54-L57
 ```
 
-## TypeScript Support
+## Soporte para TypeScript
 
-If you are using TypeScript, one more step is required to ensure the type safety of your custom matchers. By extending the `Matcher` interface with your custom matchers, all type issues vanish:
+Si estás usando TypeScript, se requiere un paso más para garantizar la seguridad de tipos de tus matchers personalizados. Al extender la interfaz `Matcher` con tus matchers personalizados, todos los problemas de tipo desaparecen:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L40-L47
 ```
 
-If you created a custom [asymmetric matcher](https://jestjs.io/docs/expect#expectextendmatchers), you can similarly extend the `expect` types as follows:
+Si creaste un [matcher asimétrico](https://jestjs.io/docs/expect#expectextendmatchers) personalizado, puedes extender los tipos de `expect` de manera similar de la siguiente manera:
 
 ```ts
 declare global {

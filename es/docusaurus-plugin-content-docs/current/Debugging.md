@@ -1,13 +1,13 @@
 ---
 id: debugging
-title: Depuración (Debug)
+title: Depuración
 ---
 
-La depuración es significativamente más difícil cuando varios procesos generan docenas de pruebas en varios navegadores.
+La depuración es significativamente más difícil cuando varios procesos generan docenas de pruebas en múltiples navegadores.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_bw_VWn5IzU" frameborder="0" allowFullScreen></iframe>
 
-Para empezar, es muy útil limitar el paralelismo estableciendo `maxInstances` a `1`, y sólo apuntar a aquellas especificaciones y navegadores que necesitan ser depurados.
+Para empezar, es extremadamente útil limitar el paralelismo estableciendo `maxInstances` a `1`, y apuntando solo a aquellas especificaciones y navegadores que necesitan ser depurados.
 
 En `wdio.conf`:
 
@@ -25,15 +25,15 @@ export const config = {
 }
 ```
 
-## Comando Debug
+## El Comando Debug
 
-En muchos casos, puede utilizar [`browser.debug()`](/docs/api/browser/debug) para pausar su prueba e inspeccionar el navegador.
+En muchos casos, puedes usar [`browser.debug()`](/docs/api/browser/debug) para pausar tu prueba e inspeccionar el navegador.
 
-La interfaz de línea de comandos también cambiará al modo REPL. Este modo te permite acercarte con comandos y elementos en la página. En modo REPL, puedes acceder al objeto `navegador`&mdash;o `$` y `$$` funciones&mdash;como puedes en tus pruebas.
+Tu interfaz de línea de comandos también cambiará al modo REPL. Este modo te permite experimentar con comandos y elementos en la página. En el modo REPL, puedes acceder al objeto `browser`&mdash;o a las funciones `$` y `$$`&mdash;como lo haces en tus pruebas.
 
-Al usar el navegador `. ebug()`, es probable que necesite aumentar el tiempo de espera del corredor de pruebas para evitar que el corredor de pruebas falle la prueba durante un largo tiempo.  Ejemplo:
+Cuando uses `browser.debug()`, probablemente necesitarás aumentar el tiempo de espera del ejecutor de pruebas para evitar que el ejecutor falle la prueba por tardar demasiado. Por ejemplo:
 
-In `wdio.conf`:
+En `wdio.conf`:
 
 ```js
 jasmineOpts: {
@@ -41,14 +41,14 @@ jasmineOpts: {
 }
 ```
 
-Vea [tiempos de espera](timeouts) para más información sobre cómo hacer eso utilizando otros frameworks.
+Consulta [timeouts](timeouts) para obtener más información sobre cómo hacer esto usando otros frameworks.
 
-Para continuar con las pruebas después de la depuración, en el intérprete de comandos, utilice el acceso directo `^C` o el comando `.exit`.
+Para continuar con las pruebas después de la depuración, en la terminal usa el atajo `^C` o el comando `.exit`.
 ## Configuración dinámica
 
-Tenga en cuenta que `wdio.conf.js` puede contener Javascript. Dado que probablemente no desea cambiar permanentemente su valor de tiempo de espera a 1 día, puede ser útil cambiar estos ajustes desde la línea de comandos usando una variable de entorno.
+Ten en cuenta que `wdio.conf.js` puede contener Javascript. Como probablemente no quieras cambiar permanentemente tu valor de tiempo de espera a 1 día, a menudo puede ser útil cambiar estas configuraciones desde la línea de comandos usando una variable de entorno.
 
-Utilizando esta técnica, puede cambiar dinámicamente la configuración:
+Usando esta técnica, puedes cambiar dinámicamente la configuración:
 
 ```js
 const debug = process.env.DEBUG
@@ -68,33 +68,33 @@ export const config = {
 }
 ```
 
-A continuación, puede prefijar el comando `wdio` con la bandera `debug`:
+Luego puedes prefijar el comando `wdio` con la bandera `debug`:
 
 ```
 $ DEBUG=true npx wdio wdio.conf.js --spec ./tests/e2e/myspec.test.js
 ```
 
-...y depurar tu archivo de especificaciones con las DevTools!
+...¡y depurar tu archivo de especificación con DevTools!
 
-## Depurando con Visual Studio Code (VSCode)
+## Depuración con Visual Studio Code (VSCode)
 
-If you want to debug your tests with breakpoints in latest VSCode, you have two options for starting the debugger of which option 1 is the easiest method:
- 1. automatically attaching the debugger
- 2. attaching the debugger using a configuration file
+Si quieres depurar tus pruebas con puntos de interrupción en la última versión de VSCode, tienes dos opciones para iniciar el depurador, de las cuales la opción 1 es el método más fácil:
+ 1. adjuntar automáticamente el depurador
+ 2. adjuntar el depurador usando un archivo de configuración
 
 ### VSCode Toggle Auto Attach
 
-You can automatically attach the debugger by following these steps in VSCode:
- - Press CMD + Shift + P (Linux and Macos) or CTRL + Shift + P (Windows)
- - Type "attach" into the input field
- - Select "Debug: Toggle Auto Attach"
- - Select "Only With Flag"
+Puedes adjuntar automáticamente el depurador siguiendo estos pasos en VSCode:
+ - Presiona CMD + Shift + P (Linux y MacOS) o CTRL + Shift + P (Windows)
+ - Escribe "attach" en el campo de entrada
+ - Selecciona "Debug: Toggle Auto Attach"
+ - Selecciona "Only With Flag"
 
- That's it! Now when you run your tests (remember you will need the --inspect flag set in your config as shown earlier) it will automatically start the debugger and stop on the first breakpoint that it reaches.
+ ¡Eso es todo! Ahora cuando ejecutes tus pruebas (recuerda que necesitarás la bandera --inspect establecida en tu configuración como se mostró anteriormente) automáticamente iniciará el depurador y se detendrá en el primer punto de interrupción que encuentre.
 
-### VSCode Configuration file
+### Archivo de configuración de VSCode
 
-Es posible ejecutar todo o especificaciones seleccionadas. Las configuraciones de depuración tienen que ser añadidas a `.vscode/launch.json`, para depurar las especificaciones seleccionadas, añadir la siguiente configuración:
+Es posible ejecutar todos o archivos de especificación seleccionados. Las configuraciones de depuración deben agregarse a `.vscode/launch.json`, para depurar una especificación seleccionada agrega la siguiente configuración:
 ```
 {
     "name": "run select spec",
@@ -113,47 +113,51 @@ Es posible ejecutar todo o especificaciones seleccionadas. Las configuraciones d
 },
 ```
 
-Para ejecutar todos los archivos de especificaciones, elimina `"--spec", "${file}"` de `"args"`
+Para ejecutar todos los archivos de especificación, elimina `"--spec", "${file}"` de `"args"`
 
 Ejemplo: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
 
 Información adicional: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 
-## Repl Dinámico con Atom
+## Repl dinámico con Atom
 
-Si eres un hacker [Atom](https://atom.io/) puedes probar [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) por [@kurtharriger](https://github.com/kurtharriger) que es un repl dinámico que te permite ejecutar líneas de código único en Atom. Mira [este](https://www.youtube.com/watch?v=kdM05ChhLQE) vídeo de YouTube para ver una demo.
+Si eres un hacker de [Atom](https://atom.io/), puedes probar [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) de [@kurtharriger](https://github.com/kurtharriger), que es un repl dinámico que te permite ejecutar líneas de código individuales en Atom. Mira [este](https://www.youtube.com/watch?v=kdM05ChhLQE) video de YouTube para ver una demostración.
 
 ## Depuración con WebStorm / Intellij
-Puede crear un node.js configuración de depuración así: ![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png) Mira este [YouTube Video](https://www.youtube.com/watch?v=Qcqnmle6Wu8) para más información sobre cómo hacer una configuración.
+Puedes crear una configuración de depuración de node.js así:
+![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png)
+Mira este [Video de YouTube](https://www.youtube.com/watch?v=Qcqnmle6Wu8) para más información sobre cómo hacer una configuración.
 
-## Debugging flaky tests
+## Depuración de pruebas inestables
 
-Flaky tests can be really hard to debug so here are some tips how you can try and get that flaky result you got in your CI, reproduced locally.
+Las pruebas inestables pueden ser realmente difíciles de depurar, así que aquí hay algunos consejos sobre cómo puedes intentar reproducir localmente ese resultado inestable que obtuviste en tu CI.
 
-### Network
-To debug network related flakiness use the [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) command.
+### Red
+Para depurar la inestabilidad relacionada con la red, usa el comando [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork).
 ```js
 await browser.throttleNetwork('Regular3G')
 ```
 
-### Rendering speed
-To debug device speed related flakiness use the [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) command. This will cause your pages to render slower which can be caused by many things like running multiple processes in your CI which could be slowing down your tests.
+### Velocidad de renderizado
+Para depurar la inestabilidad relacionada con la velocidad del dispositivo, usa el comando [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU).
+Esto hará que tus páginas se rendericen más lentamente, lo que puede ser causado por muchas cosas, como ejecutar múltiples procesos en tu CI que podrían estar ralentizando tus pruebas.
 ```js
 await browser.throttleCPU(4)
 ```
 
-### Test execution speed
+### Velocidad de ejecución de pruebas
 
-If your tests do not seem to be affected it is possible that WebdriverIO is faster than the update from the frontend framework / browser. This happens when using synchronous assertions since WebdriverIO has no chance to retry these assertions anymore. Some examples of code that can break because of this:
+Si tus pruebas no parecen verse afectadas, es posible que WebdriverIO sea más rápido que la actualización del framework frontend / navegador. Esto sucede cuando se utilizan aserciones sincrónicas, ya que WebdriverIO no tiene oportunidad de reintentar estas aserciones. Algunos ejemplos de código que pueden fallar debido a esto:
 ```js
-expect(elementList.length).toEqual(7) // list might not be populated at the time of the assertion
-expect(await elem.getText()).toEqual('this button was clicked 3 times') // text might not be updated yet at the time of assertion resulting in an error ("this button was clicked 2 times" does not match the expected "this button was clicked 3 times")
-expect(await elem.isDisplayed()).toBe(true) // might not be displayed yet
+expect(elementList.length).toEqual(7) // la lista podría no estar poblada en el momento de la aserción
+expect(await elem.getText()).toEqual('this button was clicked 3 times') // el texto podría no estar actualizado aún en el momento de la aserción, resultando en un error ("this button was clicked 2 times" no coincide con el esperado "this button was clicked 3 times")
+expect(await elem.isDisplayed()).toBe(true) // podría no estar mostrado aún
 ```
-To resolve this problem, asynchronous assertions should be used instead. The above examples would looks like this:
+Para resolver este problema, se deben usar aserciones asíncronas. Los ejemplos anteriores se verían así:
 ```js
 await expect(elementList).toBeElementsArrayOfSize(7)
 await expect(elem).toHaveText('this button was clicked 3 times')
 await expect(elem).toBeDisplayed()
 ```
-Using these assertions, WebdriverIO will automatically wait until the condition matches. When asserting text this means that the element needs to exist and the text needs to be equal to the expected value. We talk more about this in our [Best Practices Guide](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).
+Usando estas aserciones, WebdriverIO esperará automáticamente hasta que la condición coincida. Al afirmar texto, esto significa que el elemento debe existir y el texto debe ser igual al valor esperado.
+Hablamos más sobre esto en nuestra [Guía de Mejores Prácticas](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).

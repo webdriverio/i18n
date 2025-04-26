@@ -1,24 +1,24 @@
 ---
 id: bestpractices
-title: Best Practices
+title: Mejores Prácticas
 ---
 
-# Best Practices
+# Mejores Prácticas
 
-This guide aims to share our best practices that help you write performant and resilient tests.
+Esta guía tiene como objetivo compartir nuestras mejores prácticas que te ayudarán a escribir pruebas eficientes y resilientes.
 
-## Use resilient selectors
+## Usa selectores resilientes
 
-Using selectors that are resilient to changes in the DOM, you'll have a less or even no tests failing when the for example a class is removed from an element.
+Usando selectores que son resistentes a cambios en el DOM, tendrás menos o incluso ninguna prueba fallando cuando, por ejemplo, se elimina una clase de un elemento.
 
-Classes can be applied to multiple elements and should be avoided if possible unless you deliberately want to fetch all elements with that class.
+Las clases pueden aplicarse a múltiples elementos y deben evitarse si es posible, a menos que deliberadamente quieras obtener todos los elementos con esa clase.
 
 ```js
 // 👎
 await $('.button')
 ```
 
-All these selectors should return a single element.
+Todos estos selectores deberían devolver un solo elemento.
 
 ```js
 // 👍
@@ -27,79 +27,82 @@ await $('[test-id="submit-button"]')
 await $('#submit-button')
 ```
 
-__Note:__ To find out all the possible selectors WebdriverIO supports, checkout our [Selectors](./Selectors.md) page.
+__Nota:__ Para descubrir todos los selectores posibles que WebdriverIO soporta, consulta nuestra página de [Selectores](./Selectors.md).
 
-## Limit the amount of element queries
+## Limita la cantidad de consultas de elementos
 
-Every time you use the [`$`](https://webdriver.io/docs/api/browser/$) or [`$$`](https://webdriver.io/docs/api/browser/$$) command (this includes chaining them), WebdriverIO tries to locate the element in the DOM. These queries are expensive so you should try to limit them as much as possible.
+Cada vez que usas el comando [`$`](https://webdriver.io/docs/api/browser/$) o [`$$`](https://webdriver.io/docs/api/browser/$$) (esto incluye encadenarlos), WebdriverIO intenta localizar el elemento en el DOM. Estas consultas son costosas, por lo que deberías intentar limitarlas tanto como sea posible.
 
-Queries three elements.
+Consulta tres elementos.
 
 ```js
 // 👎
 await $('table').$('tr').$('td')
 ```
 
-Queries only one element.
+Consulta solo un elemento.
 
 ``` js
 // 👍
 await $('table tr td')
 ```
 
-The only time you should use chaining is when you want to combine different [selector strategies](https://webdriver.io/docs/selectors/#custom-selector-strategies). In the example we use the [Deep Selectors](https://webdriver.io/docs/selectors#deep-selectors), which is a strategy to go inside the shadow DOM of an element.
+El único momento en que deberías usar encadenamiento es cuando quieres combinar diferentes [estrategias de selector](https://webdriver.io/docs/selectors/#custom-selector-strategies).
+En el ejemplo usamos los [Selectores Profundos](https://webdriver.io/docs/selectors#deep-selectors), que es una estrategia para entrar en el shadow DOM de un elemento.
 
 ``` js
 // 👍
 await $('custom-datepicker').$('#calendar').$('aria/Select')
 ```
 
-### Prefer locating a single element instead of taking one from a list
+### Prefiere localizar un solo elemento en lugar de tomar uno de una lista
 
-It isn't always possible to do this but using CSS pseudo-classes like [:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child) you can match elements based on the indexes of the elements in the child list of their parents.
+No siempre es posible hacer esto, pero usando pseudo-clases CSS como [:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child) puedes hacer coincidir elementos basados en los índices de los elementos en la lista de hijos de sus padres.
 
-Queries all table rows.
+Consulta todas las filas de la tabla.
 
 ```js
 // 👎
 await $$('table tr')[15]
 ```
 
-Queries a single table row.
+Consulta una sola fila de la tabla.
 
 ```js
 // 👍
 await $('table tr:nth-child(15)')
 ```
 
-## Use the built-in assertions
+## Usa las aserciones incorporadas
 
-Don't use manual assertions that do not automatically wait for the results to match as this will cause for flaky tests.
+No uses aserciones manuales que no esperan automáticamente a que los resultados coincidan, ya que esto causará pruebas inestables.
 
 ```js
 // 👎
 expect(await button.isDisplayed()).toBe(true)
 ```
 
-By using the built-in assertions WebdriverIO will automatically wait for the actual result to match the expected result, resulting in resilient tests. It achieves this by automatically retrying the assertion until it passes or times out.
+Al usar las aserciones incorporadas, WebdriverIO esperará automáticamente a que el resultado real coincida con el resultado esperado, resultando en pruebas resilientes.
+Lo logra reintentando automáticamente la aserción hasta que pasa o se agota el tiempo.
 
 ```js
 // 👍
 await expect(button).toBeDisplayed()
 ```
 
-## Lazy loading and promise chaining
+## Carga perezosa y encadenamiento de promesas
 
-WebdriverIO has some tricks up it's sleeve when it comes to writing clean code as it can lazy load the element which allows you to chain your promises and reduces the amount of `await`. This also allows you to pass the element as a ChainablePromiseElement instead of an Element and for easier use with page objects.
+WebdriverIO tiene algunos trucos bajo la manga cuando se trata de escribir código limpio, ya que puede cargar perezosamente el elemento, lo que te permite encadenar tus promesas y reducir la cantidad de `await`. Esto también te permite pasar el elemento como un ChainablePromiseElement en lugar de un Element y para un uso más fácil con objetos de página.
 
-So when do you have to use `await`? You should always use `await` with the exception of the `$` and `$$` command.
+Entonces, ¿cuándo tienes que usar `await`?
+Siempre deberías usar `await` con la excepción de los comandos `$` y `$$`.
 
 ```js
 // 👎
 const div = await $('div')
 const button = await div.$('button')
 await button.click()
-// or
+// o
 await (await (await $('div')).$('button')).click()
 ```
 
@@ -107,13 +110,13 @@ await (await (await $('div')).$('button')).click()
 // 👍
 const button = $('div').$('button')
 await button.click()
-// or
+// o
 await $('div').$('button').click()
 ```
 
-## Don't overuse commands and assertions
+## No abuses de comandos y aserciones
 
-When using expect.toBeDisplayed you implicitly also wait for the element to exist. There isn't a need to use the waitForXXX commands when you already have an assertion doing the same thing.
+Cuando usas expect.toBeDisplayed, implícitamente también esperas a que el elemento exista. No hay necesidad de usar los comandos waitForXXX cuando ya tienes una aserción haciendo lo mismo.
 
 ```js
 // 👎
@@ -128,7 +131,7 @@ await expect(button).toBeDisplayed()
 await expect(button).toBeDisplayed()
 ```
 
-No need to wait for an element to exist or be displayed when interacting or when asserting something like it's text unless the element can explicitly be invisible (opacity: 0 for example) or can explicitly be disabled (disabled attribute for example) in which case waiting for the element to be displayed makes sense.
+No es necesario esperar a que un elemento exista o se muestre al interactuar o al afirmar algo como su texto, a menos que el elemento pueda estar explícitamente invisible (opacity: 0 por ejemplo) o pueda estar explícitamente deshabilitado (atributo disabled por ejemplo), en cuyo caso esperar a que el elemento se muestre tiene sentido.
 
 ```js
 // 👎
@@ -152,22 +155,22 @@ await button.click()
 await expect(button).toHaveText('Submit')
 ```
 
-## Dynamic Tests
+## Pruebas Dinámicas
 
-Use environment variables to store dynamic test data e.g. secret credentials, within your environment rather than hard code them into the test. Head over to the [Parameterize Tests](parameterize-tests) page for more information on this topic.
+Usa variables de entorno para almacenar datos de prueba dinámicos, por ejemplo, credenciales secretas, dentro de tu entorno en lugar de codificarlos directamente en la prueba. Dirígete a la página [Parametrizar Pruebas](parameterize-tests) para más información sobre este tema.
 
-## Lint your code
+## Lintea tu código
 
-Using eslint to lint your code you can potentionally catch errors early, use our [linting rules](https://www.npmjs.com/package/eslint-plugin-wdio) to make sure that some of the best practices are always applied.
+Usando eslint para lintear tu código, puedes detectar errores temprano, usa nuestras [reglas de linting](https://www.npmjs.com/package/eslint-plugin-wdio) para asegurarte de que algunas de las mejores prácticas siempre se apliquen.
 
-## Don't pause
+## No uses pause
 
-It can be tempting to use the pause command but using this is a bad idea as it isn't resilient and will only cause for flaky tests in the long run.
+Puede ser tentador usar el comando pause, pero usarlo es una mala idea ya que no es resiliente y solo causará pruebas inestables a largo plazo.
 
 ```js
 // 👎
 await nameInput.setValue('Bob')
-await browser.pause(200) // wait for submit button to enable
+await browser.pause(200) // esperar a que el botón de envío se habilite
 await submitFormButton.click()
 
 // 👍
@@ -176,15 +179,16 @@ await submitFormButton.waitForEnabled()
 await submitFormButton.click()
 ```
 
-## Async loops
+## Bucles asíncronos
 
-When you have some asynchronous code that you want to repeat, it is important to know that not all loops can do this. For example, the Array's forEach function does not allow for asynchronous callbacks as can be read over on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
+Cuando tienes algún código asíncrono que quieres repetir, es importante saber que no todos los bucles pueden hacer esto.
+Por ejemplo, la función forEach de Array no permite callbacks asíncronos como se puede leer en [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
 
-__Note:__ You can still use these when you do not need the operation to be synchronous like in shown in this example `console.log(await $$('h1').map((h1) => h1.getText()))`.
+__Nota:__ Aún puedes usar estos cuando no necesites que la operación sea síncrona como se muestra en este ejemplo `console.log(await $$('h1').map((h1) => h1.getText()))`.
 
-Below are some examples of what this means.
+A continuación se muestran algunos ejemplos de lo que esto significa.
 
-The following will not work as asynchronous callback are not supported.
+Lo siguiente no funcionará ya que no se admiten callbacks asíncronos.
 
 ```js
 // 👎
@@ -194,7 +198,7 @@ characters.forEach(async (character) => {
 })
 ```
 
-The following will work.
+Lo siguiente funcionará.
 
 ```js
 // 👍
@@ -204,17 +208,17 @@ for (const character of characters) {
 }
 ```
 
-## Keep it simple
+## Mantenlo simple
 
-Sometimes we see our users map data like text or values. This often isn't needed and is often a code smell, check the examples below why this is the case.
+A veces vemos a nuestros usuarios mapear datos como texto o valores. Esto a menudo no es necesario y suele ser un indicio de código problemático, comprueba los ejemplos a continuación para ver por qué es el caso.
 
 ```js
-// 👎 too complex, synchronous assertion, use the built-in assertions to prevent flaky tests
+// 👎 demasiado complejo, aserción síncrona, usa las aserciones incorporadas para prevenir pruebas inestables
 const headerText = ['Products', 'Prices']
 const texts = await $$('th').map(e => e.getText());
 expect(texts).toBe(headerText)
 
-// 👎 too complex
+// 👎 demasiado complejo
 const headerText = ['Products', 'Prices']
 const columns = await $$('th');
 await expect(columns).toBeElementsArrayOfSize(2);
@@ -222,19 +226,19 @@ for (let i = 0; i < columns.length; i++) {
     await expect(columns[i]).toHaveText(headerText[i]);
 }
 
-// 👎 finds elements by their text but does not take into account the position of the elements
+// 👎 encuentra elementos por su texto pero no tiene en cuenta la posición de los elementos
 await expect($('th=Products')).toExist();
 await expect($('th=Prices')).toExist();
 ```
 
 ```js
-// 👍 use unique identifiers (often used for custom elements)
+// 👍 usa identificadores únicos (a menudo utilizados para elementos personalizados)
 await expect($('[data-testid="Products"]')).toHaveText('Products');
-// 👍 accessibility names (often used for native html elements)
+// 👍 nombres de accesibilidad (a menudo utilizados para elementos html nativos)
 await expect($('aria/Product Prices')).toHaveText('Prices');
 ```
 
-Another thing we sometimes see is that simple things have an overcomplicated solution.
+Otra cosa que a veces vemos es que las cosas simples tienen una solución excesivamente complicada.
 
 ```js
 // 👎
@@ -280,11 +284,11 @@ class BetterExample {
 }
 ```
 
-## Executing code in parallel
+## Ejecutando código en paralelo
 
-If you do not care about the order in which some code is ran you can utilise [`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) to speed up the execution.
+Si no te importa el orden en el que se ejecuta algún código, puedes utilizar [`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) para acelerar la ejecución.
 
-__Note:__ Since this makes the code harder to read you could abstract this away using a page object or a function, although you should also question if the benefit in performance is worth the cost of readability.
+__Nota:__ Dado que esto hace que el código sea más difícil de leer, podrías abstraerlo usando un objeto de página o una función, aunque también deberías cuestionar si el beneficio en rendimiento vale el costo de legibilidad.
 
 ```js
 // 👎
@@ -304,7 +308,7 @@ await submitFormButton.waitForEnabled()
 await submitFormButton.click()
 ```
 
-If abstracted away it could look something like below where the logic is put in a method called submitWithDataOf and the data is retrieved by the Person class.
+Si se abstrae, podría verse algo como lo siguiente, donde la lógica se coloca en un método llamado submitWithDataOf y los datos se obtienen mediante la clase Person.
 
 ```js
 // 👍
