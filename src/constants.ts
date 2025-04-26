@@ -1,5 +1,5 @@
 export const LANGUAGES_TO_TRANSLATE = [
-    // 'de',
+    'de',
     'es',
     // 'fr',
     // 'it',
