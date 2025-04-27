@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## file
-Datei auf den Remote-Rechner hochladen, auf dem der Browser läuft.<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.seleniumhq.org/).
+Laden Sie eine Datei auf die Remote-Maschine hoch, auf der der Browser läuft.<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.seleniumhq.org/).
 
 ##### Usage
 
@@ -26,7 +26,7 @@ browser.file(file)
     <tr>
       <td><code><var>file</var></code></td>
       <td>string</td>
-      <td>Base64-kodiertes ZIP-Archiv, das __eine einzige__ Datei zum Hochladen enthält. Falls die Base64-kodierten Daten kein ZIP-Archiv darstellen oder das Archiv mehr als eine Datei enthält, wird ein unbekannter Fehler ausgelöst.</td>
+      <td>Base64-kodiertes ZIP-Archiv, das __eine einzige__ Datei zum Hochladen enthält. Falls die base64-kodierte Daten kein ZIP-Archiv darstellen oder das Archiv mehr als eine Datei enthält, wird ein unbekannter Fehler ausgelöst.</td>
     </tr>
   </tbody>
 </table>
@@ -35,13 +35,13 @@ browser.file(file)
 ##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>path</var></code>:** Absoluter Pfad der hochgeladenen Datei auf dem Remote-Rechner.
+            **<code><var>path</var></code>:** Absoluter Pfad der hochgeladenen Datei auf der Remote-Maschine.
 
 
 ---
 
 ## getDownloadableFiles
-Liste der auf dem Remote-Rechner zum Download verfügbaren Dateien.<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.seleniumhq.org/).
+Listet Dateien von der Remote-Maschine auf, die zum Download verfügbar sind.<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.seleniumhq.org/).
 
 ##### Usage
 
@@ -53,13 +53,13 @@ browser.getDownloadableFiles()
 ##### Returns
 
 - **&lt;Object&gt;**
-            **<code><var>names</var></code>:** Objekt, das eine Liste der herunterladbaren Dateien auf dem Remote-Rechner enthält.
+            **<code><var>names</var></code>:** Objekt mit einer Liste von herunterladbaren Dateien auf der Remote-Maschine.
 
 
 ---
 
 ## download
-Datei vom Remote-Rechner herunterladen, auf dem der Browser läuft.<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.seleniumhq.org/).
+Laden Sie eine Datei von der Remote-Maschine herunter, auf der der Browser läuft.<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.seleniumhq.org/).
 
 ##### Usage
 
@@ -89,13 +89,13 @@ browser.download(name)
 ##### Returns
 
 - **&lt;Object&gt;**
-            **<code><var>data</var></code>:** Objekt, das den heruntergeladenen Dateinamen und seinen Inhalt enthält
+            **<code><var>data</var></code>:** Objekt mit dem Namen der heruntergeladenen Datei und ihrem Inhalt
 
 
 ---
 
 ## deleteDownloadableFiles
-Entfernt alle herunterladbaren Dateien vom Remote-Rechner, auf dem der Browser läuft.<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.seleniumhq.org/).
+Entfernt alle herunterladbaren Dateien von der Remote-Maschine, auf der der Browser läuft.<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.seleniumhq.org/).
 
 ##### Usage
 
@@ -108,7 +108,7 @@ browser.deleteDownloadableFiles()
 ---
 
 ## getHubConfig
-Hub-Konfiguration remote abrufen.<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
+Empfangen Sie die Hub-Konfiguration aus der Ferne.<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
 
 ##### Usage
 
@@ -126,7 +126,7 @@ browser.getHubConfig()
 ---
 
 ## gridTestSession
-Details zum Selenium Grid-Knoten abrufen, der eine Sitzung ausführt.<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapitestsession).
+Erhalten Sie die Details des Selenium Grid-Knotens, der eine Sitzung ausführt.<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapitestsession).
 
 ##### Usage
 
@@ -162,7 +162,7 @@ browser.gridTestSession(session)
 ---
 
 ## gridProxyDetails
-Proxy-Details abrufen.<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapiproxy).
+Proxy-Details abrufen.<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapiproxy).
 
 ##### Usage
 
@@ -198,7 +198,7 @@ browser.gridProxyDetails(id)
 ---
 
 ## manageSeleniumHubLifecycle
-Lebenszyklus des Hub-Knotens verwalten.<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#lifecycle-manager).
+Verwalten Sie den Lebenszyklus des Hub-Knotens.<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#lifecycle-manager).
 
 ##### Usage
 
@@ -229,7 +229,7 @@ browser.manageSeleniumHubLifecycle(action)
 ---
 
 ## queryGrid
-GraphQL-Abfragen an den Selenium-Server (Hub oder Knoten) senden, um Daten abzurufen. (Nur mit Selenium v4 Server unterstützt)<br /><br />Selenium Standalone-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.selenium.dev/documentation/grid/advanced_features/graphql_support/).
+Senden Sie GraphQL-Abfragen an den Selenium-Server (Hub oder Knoten), um Daten abzurufen. (Nur mit Selenium v4 Server unterstützt)<br /><br />Selenium Standalone Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://www.selenium.dev/documentation/grid/advanced_features/graphql_support/).
 
 ##### Usage
 

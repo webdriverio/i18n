@@ -4,19 +4,19 @@ title: WebDriver Bidi Protokoll
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/webdriverBidi.ts
 ---
 
-Diese Protokollbefehle werden basierend auf der aktuellen
-[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) Spezifikation generiert. Um das Protokoll
-für Ihren Test zu aktivieren, stellen Sie sicher, dass Sie `webSocketUrl: true` in Ihren Capabilities gesetzt haben.
+These protocol commands are generated based on the current living
+[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) specification. To enable the protocol
+for your test make sure to have `webSocketUrl: true` set in your capabilities.
 
-:::caution Mit Vorsicht verwenden!
+:::caution Use with Caution!
 
-Die Browserunterstützung ist nicht garantiert und Schnittstellen können sich in Zukunft ändern. Der Standard
-wird derzeit entwickelt und Browserhersteller werden diese Funktionen nach ihrem
-eigenen Zeitplan hinzufügen.
+Browser support is not guaranteed and interfaces can change in the future. The standard
+is currently under development and browser vendors will add these capabilities based on their
+own timelines.
 
 :::
 
-Letztes Update: Sat Apr 26 2025 17:10:07 GMT-0700 (Pacific Daylight Time)
+Last Updated: Sat Apr 26 2025 17:10:07 GMT-0700 (Pacific Daylight Time)
 
 ---
 
@@ -1506,5 +1506,4 @@ browser.inputSetFiles(params)
     </tr>
   </tbody>
 </table>
-
 

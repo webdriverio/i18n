@@ -6,7 +6,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 Alle Befehle werden nur für Chrome mit Sauce Labs
 [Extended Debugging](https://docs.saucelabs.com/insights/debug/#enabling-extended-debugging)
--Fähigkeiten unterstützt. Sie können diese aktivieren, indem Sie die folgenden Sauce-Optionen festlegen:
+Funktionen unterstützt. Sie können diese aktivieren, indem Sie die folgenden Sauce-Optionen setzen:
 
 
 ```js
@@ -23,7 +23,7 @@ Alle Befehle werden nur für Chrome mit Sauce Labs
 ---
 
 ## getPageLogs
-Erhalten Sie webseiten-spezifische Protokollinformationen basierend auf dem letzten Seitenladevorgang.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/insights/debug/#network-logs).
+Erhalten Sie webseiten-spezifische Log-Informationen basierend auf dem letzten Seitenladevorgang.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/insights/debug/#network-logs).
 
 ##### Verwendung
 
@@ -44,7 +44,7 @@ browser.getPageLogs(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>string</td>
-      <td>Protokolltyp (z.B. 'sauce:network', 'sauce:performance')</td>
+      <td>Log-Typ (z.B. 'sauce:network', 'sauce:performance')</td>
     </tr>
   </tbody>
 </table>
@@ -92,16 +92,16 @@ console.log(browser.getPageLogs('sauce:performance'));
 ```
 
 
-##### Gibt zurück
+##### Rückgabewert
 
 - **&lt;object&gt;**
-            **<code><var>log</var></code>:** Protokollausgabe des gewünschten Typs (siehe Beispiel)
+            **<code><var>log</var></code>:** Log-Ausgabe des gewünschten Typs (siehe Beispiel)
 
 
 ---
 
 ## sauceThrottleNetwork
-Mit der Netzwerkbedingung können Sie Ihre Website auf verschiedenen Netzwerkverbindungen testen, einschließlich Edge, 3G und sogar Offline. Sie können den Datendurchsatz drosseln, einschließlich des maximalen Download- und Upload-Durchsatzes, und die Latenzmanipulation verwenden, um eine Mindestverzögerung in der Verbindungszeit (RTT) zu erzwingen.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
+Mit Netzwerkbedingungen können Sie Ihre Website auf verschiedenen Netzwerkverbindungen testen, einschließlich Edge, 3G und sogar offline. Sie können den Datendurchsatz drosseln, einschließlich des maximalen Download- und Upload-Durchsatzes, und Latenzmanipulation verwenden, um eine Mindestverzögerung in der Verbindungs-Rundumlaufzeit (RTT) zu erzwingen.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
 
 ##### Verwendung
 
@@ -122,7 +122,7 @@ browser.sauceThrottleNetwork(condition)
     <tr>
       <td><code><var>condition</var></code></td>
       <td>string, object</td>
-      <td>festzulegende Netzwerkbedingung (z.B. 'online', 'offline', 'GPRS', 'Regular 2G', 'Good 2G', 'Regular 3G', 'Good 3G', 'Regular 4G', 'DSL', 'Wifi')</td>
+      <td>Netzwerkbedingung, die eingestellt werden soll (z.B. 'online', 'offline', 'GPRS', 'Regular 2G', 'Good 2G', 'Regular 3G', 'Good 3G', 'Regular 4G', 'DSL', 'Wifi')</td>
     </tr>
   </tbody>
 </table>
@@ -150,7 +150,7 @@ browser.sauceThrottleNetwork({
 ---
 
 ## throttleCPU
-Sie können die CPU in DevTools drosseln, um zu verstehen, wie Ihre Seite unter dieser Einschränkung funktioniert.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
+Sie können die CPU in DevTools drosseln, um zu verstehen, wie Ihre Seite unter dieser Einschränkung funktioniert.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
 
 ##### Verwendung
 
@@ -195,7 +195,7 @@ browser.throttleCPU(0)
 ---
 
 ## interceptRequest
-Ermöglicht das Ändern von Anfragen, die vom Browser gestellt werden. Sie können diese nach Bedarf für Ihre Tests auf die schwarze Liste setzen, ändern oder umleiten.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
+Ermöglicht die Modifikation jeder vom Browser getätigten Anfrage. Sie können diese Anfragen nach Bedarf für Ihre Tests auf die schwarze Liste setzen, modifizieren oder umleiten.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
 
 ##### Verwendung
 
@@ -216,7 +216,7 @@ browser.interceptRequest(rule)
     <tr>
       <td><code><var>rule</var></code></td>
       <td>object</td>
-      <td>Eine Regel, die die Anforderungsabfangung beschreibt.</td>
+      <td>Eine Regel, die die Anfragenabfangung beschreibt.</td>
     </tr>
   </tbody>
 </table>
@@ -265,7 +265,7 @@ browser.interceptRequest({
 ---
 
 ## assertPerformance
-Prüfen Sie gegen die Leistungsbaseline Ihrer App.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
+Prüfen Sie gegen die Performance-Baseline Ihrer App.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
 
 ##### Verwendung
 
@@ -291,7 +291,7 @@ browser.assertPerformance(name, metrics)
     <tr>
       <td><code><var>metrics</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>string[]</td>
-      <td>Name der Metriken, gegen die Sie die Baseline prüfen möchten.</td>
+      <td>Name der Metriken, die Sie gegen die Baseline prüfen möchten.</td>
     </tr>
   </tbody>
 </table>
@@ -309,16 +309,16 @@ const hasRegression = browser.assertPerformance({
 ```
 
 
-##### Gibt zurück
+##### Rückgabewert
 
 - **&lt;object&gt;**
-            **<code><var>hasRegression</var></code>:** Ein Objekt, das das Ergebnis sowie Metriken zum Ergebnis enthält.
+            **<code><var>hasRegression</var></code>:** Ein Objekt, das das Ergebnis sowie Metriken über das Ergebnis enthält.
 
 
 ---
 
 ## jankinessCheck
-Führt einen Scrolltest durch, der die Ruckeligkeit der Anwendung bewertet.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
+Führen Sie einen Scrolltest durch, der die Ruckeligkeit der Anwendung auswertet.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
 
 ##### Verwendung
 
@@ -336,16 +336,16 @@ browser.jankinessCheck()
 ```
 
 
-##### Gibt zurück
+##### Rückgabewert
 
 - **&lt;object&gt;**
-            **<code><var>testResults</var></code>:** Ein Objekt, das die Punktzahl sowie Metriken zur Benutzerfreundlichkeit der Seite während des Tests enthält.
+            **<code><var>testResults</var></code>:** Ein Objekt, das die Punktzahl sowie Metriken zur Geschmeidigkeit der UX der Seite während des Tests enthält.
 
 
 ---
 
 ## mockRequest
-Mockt eine Netzwerkressource.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/).
+Mockt eine Netzwerkressource.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/).
 
 ##### Verwendung
 
@@ -366,7 +366,7 @@ browser.mockRequest(url, filterOptions)
     <tr>
       <td><code><var>url</var></code></td>
       <td>string</td>
-      <td>URL-Glob zur Übereinstimmung mit der zu mockenden URL.</td>
+      <td>URL-Glob, um die zu mockende URL abzugleichen.</td>
     </tr>
     <tr>
       <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">optional</span></td>
@@ -377,16 +377,16 @@ browser.mockRequest(url, filterOptions)
 </table>
 
 
-##### Gibt zurück
+##### Rückgabewert
 
 - **&lt;object&gt;**
-            **<code><var>mockId</var></code>:** Ein Objekt, das die ID einer simulierten Ressource enthält.
+            **<code><var>mockId</var></code>:** Ein Objekt, das die ID einer Mock-Ressource enthält.
 
 
 ---
 
 ## getMockCalls
-Erhalten Sie Anforderungsinformationen zu Anfragen, die mit der simulierten Ressource übereinstimmen.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/).
+Erhalten Sie Anfrageinformationen über Anfragen, die mit der gemockten Ressource übereinstimmen.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/).
 
 ##### Verwendung
 
@@ -413,16 +413,16 @@ browser.getMockCalls(mockId)
 </table>
 
 
-##### Gibt zurück
+##### Rückgabewert
 
 - **&lt;object&gt;**
-            **<code><var>requests</var></code>:** Eine Liste von Anforderungsinformationen.
+            **<code><var>requests</var></code>:** Eine Liste von Anfrageinformationen.
 
 
 ---
 
 ## clearMockCalls
-Liste der Mock-Aufrufe löschen.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/).
+Leeren Sie die Liste der Mock-Aufrufe.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/).
 
 ##### Verwendung
 
@@ -458,7 +458,7 @@ browser.clearMockCalls(mockId, restore)
 ---
 
 ## respondMock
-Antworten, wenn Mock einer bestimmten Ressource entspricht.<br /><br />Sauce Labs-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://docs.saucelabs.com/).
+Antworten, wenn der Mock einer bestimmten Ressource entspricht.<br /><br />Sauce Labs Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://docs.saucelabs.com/).
 
 ##### Verwendung
 
@@ -488,5 +488,3 @@ browser.respondMock(mockId, payload)
     </tr>
   </tbody>
 </table>
-
-

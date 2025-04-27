@@ -930,7 +930,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_appium.md": {
-    "hash": "54183436f79b8d8c8bd548af9f7dd5f3d1fceb157965b1e32810c0351c20d699",
+    "hash": "9e702983ae8907d17d859c346228dd278f993a5b04b1c77d3a7f28cf661c33b8",
     "languages": [
       "de",
       "es",
@@ -946,18 +946,16 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_selenium.md": {
-    "hash": "8b84861f2e827341ce7265dc823838dd984e3161201386e9f9bf286a86e91880",
+    "hash": "9039b7e74f16352091b426556cc528b5c9d4e32f6aded5e1e7f6d8e7869f486f",
     "languages": [
-      "de",
       "de",
       "es",
       "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_saucelabs.md": {
-    "hash": "5f6f6a6e6060f7f914af3603fee3a49dfe2eab96eccef2af30056fc52a14285e",
+    "hash": "a568ab797c2314729a83d861ab982f9469555be12ac5fef95d6f381059a66703",
     "languages": [
-      "de",
       "de",
       "es",
       "fr"
@@ -996,7 +994,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_mjsonwp.md": {
-    "hash": "95085098fe3783619154e581f2037b7018f5c1803b5ec5b8205d2e942adebf91",
+    "hash": "93cddd21163ba208275633ca519efe704b9fdf815f3f8dca45489d9a6ebea8c1",
     "languages": [
       "de",
       "es",
@@ -1020,7 +1018,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_webdriverBidi.md": {
-    "hash": "d3235d0bf99af0c7a7d7f556e99064ec803134037da56bbb086e7c24ec6c3bb6",
+    "hash": "76aba05b242d5a6ffd0c4188c6095bf28a52f32b38513cc8f8ec6c585d283678",
     "languages": [
       "de",
       "es",
@@ -1028,7 +1026,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_chromium.md": {
-    "hash": "0222ff70b93d2931f4a9494f2d17f8f98786896a733ada42189fca990d440afe",
+    "hash": "e89afa26515ef6507d0dfc33758478d9f311f2bbaafee277ff90d212e98fb14e",
     "languages": [
       "de",
       "es",
@@ -1108,7 +1106,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_webdriver.md": {
-    "hash": "e619bfe8fa695c8226ef69dddcaa2a5fa2d97e083204b4c041a8d5ad0d8cc66d",
+    "hash": "73dace0b7459a629b1ebc686da44103adbb50526bbed5b69d8820501975cc7fb",
     "languages": [
       "de",
       "es",
@@ -1868,7 +1866,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_gecko.md": {
-    "hash": "c45842ba6d79ec414ad58b6432cc9c5513a28dd3c354ccf7f0a2fcacb523a6b8",
+    "hash": "e4dfda9f9bf9d84bbe8cfb218514adde5fa672e1f451392aff3f21558b9d8917",
     "languages": [
       "es",
       "de",

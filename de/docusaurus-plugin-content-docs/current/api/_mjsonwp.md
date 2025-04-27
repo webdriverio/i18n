@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## getPageIndex
-Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
+Mobile JSON Wire Protocol-Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
 :::caution
 
 Dieser Protokollbefehl ist veraltet<br />In Appium 2.0 ist diese Methode als veraltet markiert und hat derzeit keine verfügbaren Alternativen.
@@ -27,7 +27,7 @@ driver.getPageIndex()
 ---
 
 ## getNetworkConnection
-Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+Mobile JSON Wire Protocol-Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
 
 ##### Usage
 
@@ -45,7 +45,7 @@ driver.getNetworkConnection()
 ---
 
 ## setNetworkConnection
-Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+Mobile JSON Wire Protocol-Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
 
 ##### Usage
 
@@ -66,7 +66,7 @@ driver.setNetworkConnection(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>number</td>
-      <td>eine Bitmaske, die bei der Serialisierung in einen ganzzahligen Wert übersetzt werden sollte</td>
+      <td>eine Bitmaske, die beim Serialisieren in einen Ganzzahlwert übersetzt werden sollte</td>
     </tr>
   </tbody>
 </table>
@@ -76,7 +76,7 @@ driver.setNetworkConnection(type)
 ---
 
 ## touchPerform
-Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
+Mobile JSON Wire Protocol-Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
 
 ##### Usage
 
@@ -97,7 +97,7 @@ driver.touchPerform(actions)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>eine Liste von Objekten, von denen jedes eine Eingabequelle und ihre zugehörigen Aktionen darstellt</td>
+      <td>eine Liste von Objekten, von denen jedes eine Eingabequelle und die zugehörigen Aktionen darstellt</td>
     </tr>
   </tbody>
 </table>
@@ -107,7 +107,7 @@ driver.touchPerform(actions)
 ---
 
 ## multiTouchPerform
-Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
+Mobile JSON Wire Protocol-Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
 
 ##### Usage
 
@@ -128,12 +128,12 @@ driver.multiTouchPerform(actions, elementId)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>eine Liste von Objekten, von denen jedes eine Eingabequelle und ihre zugehörigen Aktionen darstellt</td>
+      <td>eine Liste von Objekten, von denen jedes eine Eingabequelle und die zugehörigen Aktionen darstellt</td>
     </tr>
     <tr>
       <td><code><var>elementId</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>object[]</td>
-      <td>die ID eines Elements, die in einem vorherigen Aufruf von Find Element(s) zurückgegeben wurde</td>
+      <td>die ID eines Elements, das in einem vorherigen Aufruf von Find Element(s) zurückgegeben wurde</td>
     </tr>
   </tbody>
 </table>
@@ -143,7 +143,7 @@ driver.multiTouchPerform(actions, elementId)
 ---
 
 ## receiveAsyncResponse
-Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
+Mobile JSON Wire Protocol-Befehl. Weitere Details finden Sie in der [offiziellen Protokoll-Dokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
 
 ##### Usage
 

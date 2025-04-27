@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## fullPageScreenshot
-Erstellt einen Screenshot der gesamten Seite.<br /><br />Firefox-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://phabricator.services.mozilla.com/source/mozilla-central/browse/default/testing/geckodriver/src/command.rs$43-46).
+Erfasst einen Screenshot der gesamten Seite.<br /><br />Firefox-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://phabricator.services.mozilla.com/source/mozilla-central/browse/default/testing/geckodriver/src/command.rs$43-46).
 
 ##### Usage
 
@@ -17,13 +17,13 @@ browser.fullPageScreenshot()
 ##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>screenshot</var></code>:** Die Base64-codierten PNG-Bilddaten, die den Screenshot der gesamten Seite umfassen.
+            **<code><var>screenshot</var></code>:** Die base64-kodierte PNG-Bilddaten, die den Screenshot der gesamten Seite umfassen.
 
 
 ---
 
 ## getMozContext
-Ruft den aktuell gültigen Kontext ab, z.B. `CHROME` oder `CONTENT`.<br /><br />Firefox-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L622).
+Ruft den aktuell geltenden Kontext ab, z.B. `CHROME` oder `CONTENT`.<br /><br />Firefox-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L622).
 
 ##### Usage
 
@@ -48,7 +48,7 @@ console.log(await browser.getMozContext()); // outputs: 'CHROME'
 ---
 
 ## setMozContext
-Ändert den Zielkontext für Befehle zwischen Chrome und Content.<br /><br />Das Ändern des aktuellen Kontexts hat einen zustandsbehafteten Einfluss auf alle nachfolgenden Befehle. Der `CONTENT`-Kontext hat normale Webplattform-Dokumentberechtigungen, als ob Sie beliebiges JavaScript auswerten würden. Der `CHROME`-Kontext erhält erweiterte Berechtigungen, mit denen Sie die Browser-Chrome selbst manipulieren können, mit vollem Zugriff auf das XUL-Toolkit.<br /><br />Firefox-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645).
+Ändert den Zielkontext für Befehle zwischen Chrome und Content.<br /><br />Das Ändern des aktuellen Kontexts hat einen statusbehafteten Einfluss auf alle nachfolgenden Befehle. Der `CONTENT`-Kontext hat normale Webplattform-Dokumentenberechtigungen, als ob Sie beliebiges JavaScript auswerten würden. Der `CHROME`-Kontext erhält erweiterte Berechtigungen, mit denen Sie das Browser-Chrome selbst manipulieren können, mit vollem Zugriff auf das XUL-Toolkit.<br /><br />Firefox-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645).
 
 ##### Usage
 
@@ -114,7 +114,7 @@ browser.installAddOn(addon, temporary)
     <tr>
       <td><code><var>temporary</var></code></td>
       <td>boolean</td>
-      <td>Temporäres Flag, das angibt, ob die Erweiterung temporär installiert werden soll - wird beim Neustart entfernt</td>
+      <td>Flag, das angibt, ob die Erweiterung temporär installiert werden soll - wird beim Neustart entfernt</td>
     </tr>
   </tbody>
 </table>
@@ -176,5 +176,3 @@ const id = await browser.installAddOn(extension.toString('base64'), false);
 // ...
 await browser.uninstallAddOn(id)
 ```
-
-
