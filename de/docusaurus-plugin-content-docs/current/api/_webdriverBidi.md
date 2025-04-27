@@ -19,10 +19,9 @@ eigenen Zeitplan hinzufügen.
 Letztes Update: Sat Apr 26 2025 17:10:07 GMT-0700 (Pacific Daylight Time)
 
 ---
+
 ## send
 Send socket commands via WebDriver Bidi<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://github.com/w3c/webdriver-bidi).
-
-
 
 ##### Usage
 
@@ -56,10 +55,9 @@ browser.send(params)
 
 
 ---
+
 ## sendAsync
 Send asynchronous socket commands via WebDriver Bidi<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://github.com/w3c/webdriver-bidi).
-
-
 
 ##### Usage
 
@@ -93,10 +91,9 @@ browser.sendAsync(params)
 
 
 ---
+
 ## sessionStatus
 WebDriver Bidi command to send command method "session.status" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-session-status).
-
-
 
 ##### Usage
 
@@ -136,10 +133,9 @@ browser.sessionStatus(params)
 
 
 ---
+
 ## sessionNew
 WebDriver Bidi command to send command method "session.new" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-session-new).
-
-
 
 ##### Usage
 
@@ -188,10 +184,9 @@ browser.sessionNew(params)
 
 
 ---
+
 ## sessionEnd
 WebDriver Bidi command to send command method "session.end" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-session-end).
-
-
 
 ##### Usage
 
@@ -219,13 +214,10 @@ browser.sessionEnd(params)
 
 
 
-
-
 ---
+
 ## sessionSubscribe
 WebDriver Bidi command to send command method "session.subscribe" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-session-subscribe).
-
-
 
 ##### Usage
 
@@ -253,13 +245,10 @@ browser.sessionSubscribe(params)
 
 
 
-
-
 ---
+
 ## sessionUnsubscribe
 WebDriver Bidi command to send command method "session.unsubscribe" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-session-unsubscribe).
-
-
 
 ##### Usage
 
@@ -287,13 +276,10 @@ browser.sessionUnsubscribe(params)
 
 
 
-
-
 ---
+
 ## browserClose
 WebDriver Bidi command to send command method "browser.close" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browser-close).
-
-
 
 ##### Usage
 
@@ -321,13 +307,10 @@ browser.browserClose(params)
 
 
 
-
-
 ---
+
 ## browserCreateUserContext
 WebDriver Bidi command to send command method "browser.createUserContext" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browser-createUserContext).
-
-
 
 ##### Usage
 
@@ -364,10 +347,9 @@ browser.browserCreateUserContext(params)
 
 
 ---
+
 ## browserGetUserContexts
 WebDriver Bidi command to send command method "browser.getUserContexts" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browser-getUserContexts).
-
-
 
 ##### Usage
 
@@ -406,10 +388,9 @@ browser.browserGetUserContexts(params)
 
 
 ---
+
 ## browserRemoveUserContext
 WebDriver Bidi command to send command method "browser.removeUserContext" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browser-removeUserContext).
-
-
 
 ##### Usage
 
@@ -437,13 +418,10 @@ browser.browserRemoveUserContext(params)
 
 
 
-
-
 ---
+
 ## browsingContextActivate
 WebDriver Bidi command to send command method "browsingContext.activate" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-activate).
-
-
 
 ##### Usage
 
@@ -471,13 +449,10 @@ browser.browsingContextActivate(params)
 
 
 
-
-
 ---
+
 ## browsingContextCaptureScreenshot
 WebDriver Bidi command to send command method "browsingContext.captureScreenshot" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-captureScreenshot).
-
-
 
 ##### Usage
 
@@ -516,10 +491,9 @@ browser.browsingContextCaptureScreenshot(params)
 
 
 ---
+
 ## browsingContextClose
 WebDriver Bidi command to send command method "browsingContext.close" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-close).
-
-
 
 ##### Usage
 
@@ -547,13 +521,10 @@ browser.browsingContextClose(params)
 
 
 
-
-
 ---
+
 ## browsingContextCreate
 WebDriver Bidi command to send command method "browsingContext.create" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-create).
-
-
 
 ##### Usage
 
@@ -592,10 +563,9 @@ browser.browsingContextCreate(params)
 
 
 ---
+
 ## browsingContextGetTree
 WebDriver Bidi command to send command method "browsingContext.getTree" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-getTree).
-
-
 
 ##### Usage
 
@@ -634,10 +604,9 @@ browser.browsingContextGetTree(params)
 
 
 ---
+
 ## browsingContextHandleUserPrompt
 WebDriver Bidi command to send command method "browsingContext.handleUserPrompt" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-handleUserPrompt).
-
-
 
 ##### Usage
 
@@ -665,13 +634,10 @@ browser.browsingContextHandleUserPrompt(params)
 
 
 
-
-
 ---
+
 ## browsingContextLocateNodes
 WebDriver Bidi command to send command method "browsingContext.locateNodes" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes).
-
-
 
 ##### Usage
 
@@ -710,10 +676,9 @@ browser.browsingContextLocateNodes(params)
 
 
 ---
+
 ## browsingContextNavigate
 WebDriver Bidi command to send command method "browsingContext.navigate" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-navigate).
-
-
 
 ##### Usage
 
@@ -753,10 +718,9 @@ browser.browsingContextNavigate(params)
 
 
 ---
+
 ## browsingContextPrint
 WebDriver Bidi command to send command method "browsingContext.print" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-print).
-
-
 
 ##### Usage
 
@@ -795,10 +759,9 @@ browser.browsingContextPrint(params)
 
 
 ---
+
 ## browsingContextReload
 WebDriver Bidi command to send command method "browsingContext.reload" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-reload).
-
-
 
 ##### Usage
 
@@ -826,13 +789,10 @@ browser.browsingContextReload(params)
 
 
 
-
-
 ---
+
 ## browsingContextSetViewport
 WebDriver Bidi command to send command method "browsingContext.setViewport" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-setViewport).
-
-
 
 ##### Usage
 
@@ -860,13 +820,10 @@ browser.browsingContextSetViewport(params)
 
 
 
-
-
 ---
+
 ## browsingContextTraverseHistory
 WebDriver Bidi command to send command method "browsingContext.traverseHistory" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-browsingContext-traverseHistory).
-
-
 
 ##### Usage
 
@@ -894,13 +851,10 @@ browser.browsingContextTraverseHistory(params)
 
 
 
-
-
 ---
+
 ## networkAddIntercept
 WebDriver Bidi command to send command method "network.addIntercept" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-network-addIntercept).
-
-
 
 ##### Usage
 
@@ -939,10 +893,9 @@ browser.networkAddIntercept(params)
 
 
 ---
+
 ## networkContinueRequest
 WebDriver Bidi command to send command method "network.continueRequest" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-network-continueRequest).
-
-
 
 ##### Usage
 
@@ -970,13 +923,10 @@ browser.networkContinueRequest(params)
 
 
 
-
-
 ---
+
 ## networkContinueResponse
 WebDriver Bidi command to send command method "network.continueResponse" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-network-continueResponse).
-
-
 
 ##### Usage
 
@@ -1004,13 +954,10 @@ browser.networkContinueResponse(params)
 
 
 
-
-
 ---
+
 ## networkContinueWithAuth
 WebDriver Bidi command to send command method "network.continueWithAuth" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-network-continueWithAuth).
-
-
 
 ##### Usage
 
@@ -1038,13 +985,10 @@ browser.networkContinueWithAuth(params)
 
 
 
-
-
 ---
+
 ## networkFailRequest
 WebDriver Bidi command to send command method "network.failRequest" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-network-failRequest).
-
-
 
 ##### Usage
 
@@ -1072,13 +1016,10 @@ browser.networkFailRequest(params)
 
 
 
-
-
 ---
+
 ## networkProvideResponse
 WebDriver Bidi command to send command method "network.provideResponse" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-network-provideResponse).
-
-
 
 ##### Usage
 
@@ -1106,13 +1047,10 @@ browser.networkProvideResponse(params)
 
 
 
-
-
 ---
+
 ## networkRemoveIntercept
 WebDriver Bidi command to send command method "network.removeIntercept" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-network-removeIntercept).
-
-
 
 ##### Usage
 
@@ -1140,13 +1078,10 @@ browser.networkRemoveIntercept(params)
 
 
 
-
-
 ---
+
 ## scriptAddPreloadScript
 WebDriver Bidi command to send command method "script.addPreloadScript" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-script-addPreloadScript).
-
-
 
 ##### Usage
 
@@ -1185,10 +1120,9 @@ browser.scriptAddPreloadScript(params)
 
 
 ---
+
 ## scriptDisown
 WebDriver Bidi command to send command method "script.disown" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-script-disown).
-
-
 
 ##### Usage
 
@@ -1216,13 +1150,10 @@ browser.scriptDisown(params)
 
 
 
-
-
 ---
+
 ## scriptCallFunction
 WebDriver Bidi command to send command method "script.callFunction" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-script-callFunction).
-
-
 
 ##### Usage
 
@@ -1250,13 +1181,10 @@ browser.scriptCallFunction(params)
 
 
 
-
-
 ---
+
 ## scriptEvaluate
 WebDriver Bidi command to send command method "script.evaluate" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-script-evaluate).
-
-
 
 ##### Usage
 
@@ -1293,10 +1221,9 @@ browser.scriptEvaluate(params)
 
 
 ---
+
 ## scriptGetRealms
 WebDriver Bidi command to send command method "script.getRealms" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-script-getRealms).
-
-
 
 ##### Usage
 
@@ -1335,10 +1262,9 @@ browser.scriptGetRealms(params)
 
 
 ---
+
 ## scriptRemovePreloadScript
 WebDriver Bidi command to send command method "script.removePreloadScript" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-script-removePreloadScript).
-
-
 
 ##### Usage
 
@@ -1366,13 +1292,10 @@ browser.scriptRemovePreloadScript(params)
 
 
 
-
-
 ---
+
 ## storageGetCookies
 WebDriver Bidi command to send command method "storage.getCookies" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-storage-getCookies).
-
-
 
 ##### Usage
 
@@ -1412,10 +1335,9 @@ browser.storageGetCookies(params)
 
 
 ---
+
 ## storageSetCookie
 WebDriver Bidi command to send command method "storage.setCookie" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-storage-setCookie).
-
-
 
 ##### Usage
 
@@ -1454,10 +1376,9 @@ browser.storageSetCookie(params)
 
 
 ---
+
 ## storageDeleteCookies
 WebDriver Bidi command to send command method "storage.deleteCookies" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-storage-deleteCookies).
-
-
 
 ##### Usage
 
@@ -1496,10 +1417,9 @@ browser.storageDeleteCookies(params)
 
 
 ---
+
 ## inputPerformActions
 WebDriver Bidi command to send command method "input.performActions" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-input-performActions).
-
-
 
 ##### Usage
 
@@ -1527,13 +1447,10 @@ browser.inputPerformActions(params)
 
 
 
-
-
 ---
+
 ## inputReleaseActions
 WebDriver Bidi command to send command method "input.releaseActions" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-input-releaseActions).
-
-
 
 ##### Usage
 
@@ -1561,13 +1478,10 @@ browser.inputReleaseActions(params)
 
 
 
-
-
 ---
+
 ## inputSetFiles
 WebDriver Bidi command to send command method "input.setFiles" with parameters.<br /><br />WebDriver Bidi Protocol command. More details can be found in the [official protocol docs](https://w3c.github.io/webdriver-bidi/#command-input-setFiles).
-
-
 
 ##### Usage
 
@@ -1592,7 +1506,5 @@ browser.inputSetFiles(params)
     </tr>
   </tbody>
 </table>
-
-
 
 

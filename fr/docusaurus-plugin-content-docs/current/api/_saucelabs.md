@@ -4,7 +4,7 @@ title: Sauce Labs
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/saucelabs.ts
 ---
 
-Toutes les commandes ne sont prises en charge que sur Chrome en utilisant les capacités de 
+Toutes les commandes ne sont prises en charge que sur Chrome en utilisant les capacités de
 [Débogage étendu](https://docs.saucelabs.com/insights/debug/#enabling-extended-debugging)
 de Sauce Labs. Vous pouvez les activer en définissant les options Sauce suivantes :
 
@@ -21,10 +21,9 @@ de Sauce Labs. Vous pouvez les activer en définissant les options Sauce suivant
 ```
 
 ---
+
 ## getPageLogs
 Obtenez des informations de journal spécifiques à la page web basées sur le dernier chargement de page.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/insights/debug/#network-logs).
-
-
 
 ##### Usage
 
@@ -96,14 +95,13 @@ console.log(browser.getPageLogs('sauce:performance'));
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>log</var></code>:** sortie de journal du type souhaité (voir exemple)    
+            **<code><var>log</var></code>:** sortie de journal du type souhaité (voir exemple)
 
 
 ---
+
 ## sauceThrottleNetwork
 Avec le conditionnement réseau, vous pouvez tester votre site sur diverses connexions réseau, y compris Edge, 3G et même hors ligne. Vous pouvez limiter le débit de données, y compris le débit maximum de téléchargement et d'envoi, et utiliser la manipulation de latence pour imposer un délai minimum au temps d'aller-retour de connexion (RTT).<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
-
-
 
 ##### Usage
 
@@ -149,13 +147,10 @@ browser.sauceThrottleNetwork({
 
 
 
-
-
 ---
+
 ## throttleCPU
 Vous pouvez limiter le CPU dans DevTools pour comprendre comment votre page fonctionne sous cette contrainte.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
-
-
 
 ##### Usage
 
@@ -197,13 +192,10 @@ browser.throttleCPU(0)
 
 
 
-
-
 ---
+
 ## interceptRequest
 Permet de modifier toute requête effectuée par le navigateur. Vous pouvez mettre sur liste noire, modifier ou rediriger ces requêtes selon les besoins de vos tests.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
-
-
 
 ##### Usage
 
@@ -270,13 +262,10 @@ browser.interceptRequest({
 
 
 
-
-
 ---
+
 ## assertPerformance
 Vérifier par rapport à la base de performance de votre application.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
-
-
 
 ##### Usage
 
@@ -323,22 +312,19 @@ const hasRegression = browser.assertPerformance({
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>hasRegression</var></code>:** Un objet contenant le résultat ainsi que des métriques sur le résultat.    
+            **<code><var>hasRegression</var></code>:** Un objet contenant le résultat ainsi que des métriques sur le résultat.
 
 
 ---
+
 ## jankinessCheck
 Effectuez un test de défilement qui évalue la fluidité de l'application.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
-
-
 
 ##### Usage
 
 ```js
 browser.jankinessCheck()
 ```
-
-
 
 ##### Example
 
@@ -353,14 +339,13 @@ browser.jankinessCheck()
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>testResults</var></code>:** Un objet contenant le score ainsi que des métriques sur la fluidité de l'UX de la page pendant le test.    
+            **<code><var>testResults</var></code>:** Un objet contenant le score ainsi que des métriques sur la fluidité de l'UX de la page pendant le test.
 
 
 ---
+
 ## mockRequest
 Simule une ressource réseau.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/).
-
-
 
 ##### Usage
 
@@ -395,14 +380,13 @@ browser.mockRequest(url, filterOptions)
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>mockId</var></code>:** Un objet contenant l'identifiant d'une ressource simulée.    
+            **<code><var>mockId</var></code>:** Un objet contenant l'identifiant d'une ressource simulée.
 
 
 ---
+
 ## getMockCalls
 Recevoir des informations sur les requêtes qui correspondent à la ressource simulée.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/).
-
-
 
 ##### Usage
 
@@ -432,14 +416,13 @@ browser.getMockCalls(mockId)
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>requests</var></code>:** Une liste d'informations sur les requêtes.    
+            **<code><var>requests</var></code>:** Une liste d'informations sur les requêtes.
 
 
 ---
+
 ## clearMockCalls
 Effacer la liste des appels simulés.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/).
-
-
 
 ##### Usage
 
@@ -472,13 +455,10 @@ browser.clearMockCalls(mockId, restore)
 
 
 
-
-
 ---
+
 ## respondMock
 Répondre si la simulation correspond à une ressource spécifique.<br /><br />Commande Sauce Labs. Plus de détails peuvent être trouvés dans la [documentation officielle du protocole](https://docs.saucelabs.com/).
-
-
 
 ##### Usage
 

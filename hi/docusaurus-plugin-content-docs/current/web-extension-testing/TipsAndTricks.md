@@ -11,8 +11,6 @@ title: सलाह व सुझाव
 
 क्रोम में यह एक्सटेंशन आईडी को पुनः प्राप्त करके और `browser.url('...')`के माध्यम से पॉपअप पेज खोलकर काम करता है। उस पृष्ठ पर व्यवहार पॉपअप के समान ही होगा। ऐसा करने के लिए हम निम्नलिखित कस्टम कमांड लिखने की सलाह देते हैं:
 
-
-
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
   if ((this.capabilities as WebdriverIO.Capabilities).browserName !== 'chrome') {
@@ -46,8 +44,6 @@ declare global {
 
 आपके `wdio.conf.js` में आप इस फ़ाइल को इम्पोर्ट कर सकते हैं और कस्टम कमांड को अपने `before` हुक में रजिस्टर कर सकते हैं, जैसे:
 
-
-
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'
 
@@ -63,8 +59,6 @@ export const config: WebdriverIO.Config = {
 
 
 अब, अपने परीक्षण में, आप पॉपअप पेज को इसके माध्यम से एक्सेस कर सकते हैं:
-
-
 
 ```ts
 await browser.openExtensionPopup('My Web Extension')

@@ -3,14 +3,13 @@ id: mjsonwp
 title: Mobile JSON Wire Protocol
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/mjsonwp.ts
 ---
+
 ## getPageIndex
 Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
 :::caution
 
 Dieser Protokollbefehl ist veraltet<br />In Appium 2.0 ist diese Methode als veraltet markiert und hat derzeit keine verfügbaren Alternativen.
 :::
-
-
 
 ##### Usage
 
@@ -19,19 +18,16 @@ driver.getPageIndex()
 ```
 
 
-
-
 ##### Returns
 
 - **&lt;string&gt;**
-    
+
 
 
 ---
+
 ## getNetworkConnection
 Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
-
-
 
 ##### Usage
 
@@ -40,19 +36,16 @@ driver.getNetworkConnection()
 ```
 
 
-
-
 ##### Returns
 
 - **&lt;number&gt;**
-            **<code><var>connectionType</var></code>:** siehe https://appium.github.io/appium.io/docs/en/writing-running-appium/other/network-connection/    
+            **<code><var>connectionType</var></code>:** siehe https://appium.github.io/appium.io/docs/en/writing-running-appium/other/network-connection/
 
 
 ---
+
 ## setNetworkConnection
 Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
-
-
 
 ##### Usage
 
@@ -80,13 +73,10 @@ driver.setNetworkConnection(type)
 
 
 
-
-
 ---
+
 ## touchPerform
 Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
-
-
 
 ##### Usage
 
@@ -114,13 +104,10 @@ driver.touchPerform(actions)
 
 
 
-
-
 ---
+
 ## multiTouchPerform
 Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
-
-
 
 ##### Usage
 
@@ -153,13 +140,10 @@ driver.multiTouchPerform(actions, elementId)
 
 
 
-
-
 ---
+
 ## receiveAsyncResponse
 Mobile JSON Wire Protocol Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
-
-
 
 ##### Usage
 

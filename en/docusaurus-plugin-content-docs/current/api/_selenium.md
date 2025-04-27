@@ -3,10 +3,9 @@ id: selenium
 title: Selenium Standalone
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/selenium.ts
 ---
+
 ## file
 Upload a file to remote machine on which the browser is running.<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://www.seleniumhq.org/).
-
-
 
 ##### Usage
 
@@ -36,14 +35,13 @@ browser.file(file)
 ##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>path</var></code>:** Absolute path of uploaded file on remote machine.    
+            **<code><var>path</var></code>:** Absolute path of uploaded file on remote machine.
 
 
 ---
+
 ## getDownloadableFiles
 List files from remote machine available for download.<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://www.seleniumhq.org/).
-
-
 
 ##### Usage
 
@@ -52,19 +50,16 @@ browser.getDownloadableFiles()
 ```
 
 
-
-
 ##### Returns
 
 - **&lt;Object&gt;**
-            **<code><var>names</var></code>:** Object containing a list of downloadable files on remote machine.    
+            **<code><var>names</var></code>:** Object containing a list of downloadable files on remote machine.
 
 
 ---
+
 ## download
 Download a file from remote machine on which the browser is running.<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://www.seleniumhq.org/).
-
-
 
 ##### Usage
 
@@ -94,14 +89,13 @@ browser.download(name)
 ##### Returns
 
 - **&lt;Object&gt;**
-            **<code><var>data</var></code>:** Object containing downloaded file name and its content    
+            **<code><var>data</var></code>:** Object containing downloaded file name and its content
 
 
 ---
+
 ## deleteDownloadableFiles
 Remove all downloadable files from remote machine on which the browser is running.<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://www.seleniumhq.org/).
-
-
 
 ##### Usage
 
@@ -111,15 +105,10 @@ browser.deleteDownloadableFiles()
 
 
 
-
-
-
-
 ---
+
 ## getHubConfig
 Receive hub config remotely.<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
-
-
 
 ##### Usage
 
@@ -128,19 +117,16 @@ browser.getHubConfig()
 ```
 
 
-
-
 ##### Returns
 
 - **&lt;Object&gt;**
-            **<code><var>config</var></code>:** Returns the hub config with slotCount, timeouts and other information.    
+            **<code><var>config</var></code>:** Returns the hub config with slotCount, timeouts and other information.
 
 
 ---
+
 ## gridTestSession
 Get the details of the Selenium Grid node running a session.<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://github.com/nicegraham/selenium-grid2-api#gridapitestsession).
-
-
 
 ##### Usage
 
@@ -170,14 +156,13 @@ browser.gridTestSession(session)
 ##### Returns
 
 - **&lt;Object&gt;**
-            **<code><var>details</var></code>:** Object containing information about session details.    
+            **<code><var>details</var></code>:** Object containing information about session details.
 
 
 ---
+
 ## gridProxyDetails
 Get proxy details.<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://github.com/nicegraham/selenium-grid2-api#gridapiproxy).
-
-
 
 ##### Usage
 
@@ -207,14 +192,13 @@ browser.gridProxyDetails(id)
 ##### Returns
 
 - **&lt;Object&gt;**
-            **<code><var>details</var></code>:** Object containing information about proxy.    
+            **<code><var>details</var></code>:** Object containing information about proxy.
 
 
 ---
+
 ## manageSeleniumHubLifecycle
 Manage lifecycle of hub node.<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://github.com/nicegraham/selenium-grid2-api#lifecycle-manager).
-
-
 
 ##### Usage
 
@@ -242,13 +226,10 @@ browser.manageSeleniumHubLifecycle(action)
 
 
 
-
-
 ---
+
 ## queryGrid
 Send GraphQL queries to the Selenium (hub or node) server to fetch data. (Only supported with Selenium v4 Server)<br /><br />Selenium Standalone command. More details can be found in the [official protocol docs](https://www.selenium.dev/documentation/grid/advanced_features/graphql_support/).
-
-
 
 ##### Usage
 
@@ -299,5 +280,5 @@ console.log(JSON.stringify(result, null, 4))
 ##### Returns
 
 - **&lt;Object&gt;**
-            **<code><var>data</var></code>:** Result of the GraphQL query.    
+            **<code><var>data</var></code>:** Result of the GraphQL query.
 

@@ -3,10 +3,9 @@ id: appium
 title: Appium
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/appium.ts
 ---
+
 ## getAppiumContext
 Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
-
-
 
 ##### Verwendung
 
@@ -15,19 +14,16 @@ driver.getAppiumContext()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;Context&gt;**
-            **<code><var>context</var></code>:** ein String, der den aktuellen Kontext repräsentiert oder null, der 'keinen Kontext' repräsentiert    
+            **<code><var>context</var></code>:** ein String, der den aktuellen Kontext repräsentiert oder null, der 'keinen Kontext' repräsentiert
 
 
 ---
+
 ## switchAppiumContext
 Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
-
-
 
 ##### Verwendung
 
@@ -55,13 +51,10 @@ driver.switchAppiumContext(name)
 
 
 
-
-
 ---
+
 ## getAppiumContexts
 Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
-
-
 
 ##### Verwendung
 
@@ -70,19 +63,16 @@ driver.getAppiumContexts()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;Context[]&gt;**
-            **<code><var>contexts</var></code>:** ein Array von Strings, die verfügbare Kontexte repräsentieren, z.B. 'WEBVIEW' oder 'NATIVE'    
+            **<code><var>contexts</var></code>:** ein Array von Strings, die verfügbare Kontexte repräsentieren, z.B. 'WEBVIEW' oder 'NATIVE'
 
 
 ---
+
 ## shake
 Führt eine Schüttel-Aktion auf dem Gerät aus.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/shake/).
-
-
 
 ##### Verwendung
 
@@ -93,17 +83,14 @@ driver.shake()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 
 ---
+
 ## lock
 Sperrt das Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/lock/).
-
-
 
 ##### Verwendung
 
@@ -130,8 +117,6 @@ driver.lock(seconds)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
@@ -139,10 +124,9 @@ driver.lock(seconds)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## unlock
 Entsperrt das Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/unlock/).
-
-
 
 ##### Verwendung
 
@@ -153,18 +137,15 @@ driver.unlock()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## isLocked
 Überprüft, ob das Gerät gesperrt ist oder nicht.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/is-locked/).
-
-
 
 ##### Verwendung
 
@@ -173,12 +154,10 @@ driver.isLocked()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;boolean&gt;**
-            **<code><var>isLocked</var></code>:** True, wenn das Gerät gesperrt ist, false wenn nicht    
+            **<code><var>isLocked</var></code>:** True, wenn das Gerät gesperrt ist, false wenn nicht
 
 ##### Unterstützung
 
@@ -186,10 +165,9 @@ driver.isLocked()
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## startRecordingScreen
 Startet die Bildschirmaufnahme.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/start-recording-screen/).
-
-
 
 ##### Verwendung
 
@@ -216,8 +194,6 @@ driver.startRecordingScreen(options)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -225,10 +201,9 @@ driver.startRecordingScreen(options)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## stopRecordingScreen
 Stoppt die Bildschirmaufnahme<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/stop-recording-screen/).
-
-
 
 ##### Verwendung
 
@@ -273,7 +248,7 @@ driver.stopRecordingScreen(remotePath, username, password, method)
 ##### Gibt zurück
 
 - **&lt;string&gt;**
-            **<code><var>response</var></code>:** Base64-kodierter String. Wenn remote_path gesetzt ist, ist die Antwort ein leerer String    
+            **<code><var>response</var></code>:** Base64-kodierter String. Wenn remote_path gesetzt ist, ist die Antwort ein leerer String
 
 ##### Unterstützung
 
@@ -282,10 +257,9 @@ driver.stopRecordingScreen(remotePath, username, password, method)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## getPerformanceDataTypes
 Gibt die Informationstypen des Systemzustands zurück, die für das Lesen unterstützt werden, wie z.B. CPU, Speicher, Netzwerkverkehr und Batterie.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/performance-data-types/).
-
-
 
 ##### Verwendung
 
@@ -294,22 +268,19 @@ driver.getPerformanceDataTypes()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;string[]&gt;**
-            **<code><var>performanceTypes</var></code>:** Die verfügbaren Performance-Datentypen (cpuinfo|batteryinfo|networkinfo|memoryinfo)    
+            **<code><var>performanceTypes</var></code>:** Die verfügbaren Performance-Datentypen (cpuinfo|batteryinfo|networkinfo|memoryinfo)
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getPerformanceData
 Gibt Informationen über den Systemzustand zurück, die für das Lesen unterstützt werden, wie z.B. CPU, Speicher, Netzwerkverkehr und Batterie.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/get-performance-data/).
-
-
 
 ##### Verwendung
 
@@ -349,17 +320,16 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
 ##### Gibt zurück
 
 - **&lt;string[]&gt;**
-            **<code><var>performanceData</var></code>:** Der Informationstyp des Systemzustands, der für das Lesen unterstützt wird, wie z.B. CPU, Speicher, Netzwerkverkehr und Batterie    
+            **<code><var>performanceData</var></code>:** Der Informationstyp des Systemzustands, der für das Lesen unterstützt wird, wie z.B. CPU, Speicher, Netzwerkverkehr und Batterie
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## pressKeyCode
 Drückt eine bestimmte Taste auf dem Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/press-keycode/).
-
-
 
 ##### Verwendung
 
@@ -396,17 +366,14 @@ driver.pressKeyCode(keycode, metastate, flags)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## longPressKeyCode
 Drückt und hält einen bestimmten Keycode auf dem Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/long-press-keycode/).
-
-
 
 ##### Verwendung
 
@@ -443,17 +410,14 @@ driver.longPressKeyCode(keycode, metastate, flags)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## sendKeyEvent
 Sendet einen Keycode an das Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
-
-
 
 ##### Verwendung
 
@@ -485,17 +449,14 @@ driver.sendKeyEvent(keycode, metastate)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## rotateDevice
 Dreht das Gerät in drei Dimensionen.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-rotation).
-
-
 
 ##### Verwendung
 
@@ -532,18 +493,15 @@ driver.rotateDevice(x, y, z)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getCurrentActivity
 Gibt den Namen der aktuellen Android-Aktivität zurück.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-activity/).
-
-
 
 ##### Verwendung
 
@@ -552,22 +510,19 @@ driver.getCurrentActivity()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;string&gt;**
-            **<code><var>activity</var></code>:** Name der aktuellen Aktivität    
+            **<code><var>activity</var></code>:** Name der aktuellen Aktivität
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getCurrentPackage
 Gibt den Namen des aktuellen Android-Pakets zurück.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-package/).
-
-
 
 ##### Verwendung
 
@@ -576,22 +531,19 @@ driver.getCurrentPackage()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;string&gt;**
-            **<code><var>package</var></code>:** Name des aktuellen Pakets    
+            **<code><var>package</var></code>:** Name des aktuellen Pakets
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## installApp
 Installiert die angegebene App auf dem Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/install-app/).
-
-
 
 ##### Verwendung
 
@@ -618,18 +570,15 @@ driver.installApp(appPath)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## activateApp
 Aktiviert die angegebene App auf dem Gerät<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/activate-app/).
-
-
 
 ##### Verwendung
 
@@ -656,18 +605,15 @@ driver.activateApp(appId)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## removeApp
 Entfernt eine App vom Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/remove-app/).
-
-
 
 ##### Verwendung
 
@@ -694,18 +640,15 @@ driver.removeApp(appId)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## terminateApp
 Beendet die angegebene App auf dem Gerät<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/terminate-app/).
-
-
 
 ##### Verwendung
 
@@ -737,18 +680,15 @@ driver.terminateApp(appId, options)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## isAppInstalled
 Überprüft, ob die angegebene App auf dem Gerät installiert ist.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/is-app-installed/).
-
-
 
 ##### Verwendung
 
@@ -778,7 +718,7 @@ driver.isAppInstalled(appId)
 ##### Gibt zurück
 
 - **&lt;boolean&gt;**
-            **<code><var>isAppInstalled</var></code>:** Gibt true zurück, wenn installiert, false wenn nicht    
+            **<code><var>isAppInstalled</var></code>:** Gibt true zurück, wenn installiert, false wenn nicht
 
 ##### Unterstützung
 
@@ -786,10 +726,9 @@ driver.isAppInstalled(appId)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## queryAppState
 Gibt den Status der angegebenen App auf dem Gerät zurück<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/app-state/).
-
-
 
 ##### Verwendung
 
@@ -819,7 +758,7 @@ driver.queryAppState(appId)
 ##### Gibt zurück
 
 - **&lt;number&gt;**
-            **<code><var>appStatus</var></code>:** 0 bedeutet nicht installiert. 1 bedeutet nicht ausgeführt. 2 bedeutet im Hintergrund ausgeführt oder angehalten. 3 bedeutet im Hintergrund ausgeführt. 4 bedeutet im Vordergrund ausgeführt    
+            **<code><var>appStatus</var></code>:** 0 bedeutet nicht installiert. 1 bedeutet nicht ausgeführt. 2 bedeutet im Hintergrund ausgeführt oder angehalten. 3 bedeutet im Hintergrund ausgeführt. 4 bedeutet im Vordergrund ausgeführt
 
 ##### Unterstützung
 
@@ -827,10 +766,9 @@ driver.queryAppState(appId)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## hideKeyboard
 Verbirgt die Bildschirmtastatur.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/hide-keyboard/).
-
-
 
 ##### Verwendung
 
@@ -872,8 +810,6 @@ driver.hideKeyboard(strategy, key, keyCode, keyName)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
@@ -881,10 +817,9 @@ driver.hideKeyboard(strategy, key, keyCode, keyName)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## isKeyboardShown
 Ob die Bildschirmtastatur angezeigt wird oder nicht.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/is-keyboard-shown/).
-
-
 
 ##### Verwendung
 
@@ -893,12 +828,10 @@ driver.isKeyboardShown()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;boolean&gt;**
-            **<code><var>isKeyboardShown</var></code>:** True, wenn die Tastatur angezeigt wird    
+            **<code><var>isKeyboardShown</var></code>:** True, wenn die Tastatur angezeigt wird
 
 ##### Unterstützung
 
@@ -907,10 +840,9 @@ driver.isKeyboardShown()
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## pushFile
 Platziert eine Datei an einem bestimmten Ort auf dem Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/push-file/).
-
-
 
 ##### Verwendung
 
@@ -942,8 +874,6 @@ driver.pushFile(path, data)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
@@ -951,10 +881,9 @@ driver.pushFile(path, data)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## pullFile
 Ruft eine Datei vom Dateisystem des Geräts ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-file/).
-
-
 
 ##### Verwendung
 
@@ -984,7 +913,7 @@ driver.pullFile(path)
 ##### Gibt zurück
 
 - **&lt;string&gt;**
-            **<code><var>response</var></code>:** Inhalt der Datei in Base64    
+            **<code><var>response</var></code>:** Inhalt der Datei in Base64
 
 ##### Unterstützung
 
@@ -993,10 +922,9 @@ driver.pullFile(path)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## pullFolder
 Ruft einen Ordner vom Dateisystem des Geräts ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-folder/).
-
-
 
 ##### Verwendung
 
@@ -1023,8 +951,6 @@ driver.pullFolder(path)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
@@ -1032,10 +958,9 @@ driver.pullFolder(path)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## toggleAirplaneMode
 Schaltet den Flugzeugmodus auf dem Gerät um.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-airplane-mode/).
-
-
 
 ##### Verwendung
 
@@ -1046,17 +971,14 @@ driver.toggleAirplaneMode()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## toggleData
 Schaltet den Zustand des Datendienstes um.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-data/).
-
-
 
 ##### Verwendung
 
@@ -1067,17 +989,14 @@ driver.toggleData()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## toggleWiFi
 Schaltet den Zustand des WLAN-Dienstes um.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-wifi/).
-
-
 
 ##### Verwendung
 
@@ -1088,17 +1007,14 @@ driver.toggleWiFi()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## toggleLocationServices
 Schaltet den Zustand des Ortungsdienstes um.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-location-services/).
-
-
 
 ##### Verwendung
 
@@ -1109,17 +1025,14 @@ driver.toggleLocationServices()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## toggleNetworkSpeed
 Stellt die Netzwerkgeschwindigkeit ein (nur Emulator)<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/network-speed/).
-
-
 
 ##### Verwendung
 
@@ -1146,17 +1059,14 @@ driver.toggleNetworkSpeed(netspeed)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## openNotifications
 Öffnet Android-Benachrichtigungen (nur Emulator).<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/open-notifications/).
-
-
 
 ##### Verwendung
 
@@ -1167,17 +1077,14 @@ driver.openNotifications()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## startActivity
 Startet eine Android-Aktivität durch Angabe des Paketnamens und des Aktivitätsnamens.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/start-activity/).
-
-
 
 ##### Verwendung
 
@@ -1244,17 +1151,14 @@ driver.startActivity(appPackage, appActivity, appWaitPackage, appWaitActivity, i
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getSystemBars
 Ruft Informationen über die Sichtbarkeit und Grenzen der Status- und Navigationsleisten ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/system-bars/).
-
-
 
 ##### Verwendung
 
@@ -1263,22 +1167,19 @@ driver.getSystemBars()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;object[]&gt;**
-            **<code><var>systemBars</var></code>:** Informationen über Sichtbarkeit und Grenzen der Status- und Navigationsleiste    
+            **<code><var>systemBars</var></code>:** Informationen über Sichtbarkeit und Grenzen der Status- und Navigationsleiste
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getDeviceTime
 Gibt die Uhrzeit auf dem Gerät zurück.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/system-time/).
-
-
 
 ##### Verwendung
 
@@ -1287,12 +1188,10 @@ driver.getDeviceTime()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;string&gt;**
-            **<code><var>time</var></code>:** Zeit auf dem Gerät    
+            **<code><var>time</var></code>:** Zeit auf dem Gerät
 
 ##### Unterstützung
 
@@ -1300,10 +1199,9 @@ driver.getDeviceTime()
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getDisplayDensity
 Ruft die Anzeigedichte vom Gerät ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
-
-
 
 ##### Verwendung
 
@@ -1312,22 +1210,19 @@ driver.getDisplayDensity()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;*&gt;**
-    
+
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## touchId
 Simuliert ein [Touch-ID](https://support.apple.com/en-ca/ht201371)-Ereignis (nur iOS-Simulator). Um diese Funktion zu aktivieren, muss die gewünschte Capability `allowTouchIdEnroll` auf true gesetzt sein und der Simulator muss [registriert](https://support.apple.com/en-ca/ht201371) sein. Wenn Sie allowTouchIdEnroll auf true setzen, wird der Simulator standardmäßig registriert. Der Registrierungsstatus kann [umgeschaltet](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/index.html) werden. Dieser Aufruf funktioniert nur, wenn der Appium-Prozess oder seine übergeordnete Anwendung (z.B. Terminal.app oder Appium.app) Zugriff auf die Mac OS-Bedienungshilfen in Systemeinstellungen > Sicherheit & Datenschutz > Datenschutz > Bedienungshilfen hat.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/simulator/touch-id/).
-
-
 
 ##### Verwendung
 
@@ -1354,17 +1249,14 @@ driver.touchId(match)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## toggleEnrollTouchId
 Schaltet um, ob der Simulator [registriert](https://support.apple.com/en-ca/ht201371) ist, um TouchID zu akzeptieren (nur iOS-Simulator). Um diese Funktion zu aktivieren, muss die gewünschte Capability `allowTouchIdEnroll` auf true gesetzt sein. Wenn `allowTouchIdEnroll` auf true gesetzt ist, wird der Simulator standardmäßig registriert, und 'Toggle Touch ID Enrollment' ändert den Registrierungsstatus. Dieser Aufruf funktioniert nur, wenn der Appium-Prozess oder seine übergeordnete Anwendung (z.B. Terminal.app oder Appium.app) Zugriff auf die Mac OS-Bedienungshilfen in Systemeinstellungen > Sicherheit & Datenschutz > Datenschutz > Bedienungshilfen hat.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/).
-
-
 
 ##### Verwendung
 
@@ -1391,21 +1283,18 @@ driver.toggleEnrollTouchId(enabled)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## launchApp
 Startet eine App auf dem Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/launch-app/).
 :::caution
 
 Dieser Protokollbefehl ist veraltet<br />Verwenden Sie für iOS `driver.execute('mobile: launchApp', { ... })` und für Android `driver.execute('mobile: activateApp', { ... })`.
 :::
-
-
 
 ##### Verwendung
 
@@ -1416,22 +1305,19 @@ driver.launchApp()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## closeApp
 Schließt eine App auf dem Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/close-app/).
 :::caution
 
 Dieser Protokollbefehl ist veraltet<br />Verwenden Sie stattdessen `driver.execute('mobile: terminateApp', { ... })`
 :::
-
-
 
 ##### Verwendung
 
@@ -1442,22 +1328,19 @@ driver.closeApp()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## background
 Sendet die aktuell laufende App für diese Sitzung in den Hintergrund.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/background-app/).
 :::caution
 
 Dieser Protokollbefehl ist veraltet<br />Verwenden Sie stattdessen `driver.execute('mobile: backgroundApp', { ... })`
 :::
-
-
 
 ##### Verwendung
 
@@ -1484,18 +1367,15 @@ driver.background(seconds)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## endCoverage
 Ruft Testabdeckungsdaten ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/end-test-coverage/).
-
-
 
 ##### Verwendung
 
@@ -1527,17 +1407,14 @@ driver.endCoverage(intent, path)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getStrings
 Ruft App-Strings ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/get-app-strings/).
-
-
 
 ##### Verwendung
 
@@ -1572,7 +1449,7 @@ driver.getStrings(language, stringFile)
 ##### Gibt zurück
 
 - **&lt;object&gt;**
-            **<code><var>appStrings</var></code>:** alle definierten Strings aus einer App für die angegebene Sprache und den Dateinamen der Strings    
+            **<code><var>appStrings</var></code>:** alle definierten Strings aus einer App für die angegebene Sprache und den Dateinamen der Strings
 
 ##### Unterstützung
 
@@ -1580,10 +1457,9 @@ driver.getStrings(language, stringFile)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## setValueImmediate
 Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
-
-
 
 ##### Verwendung
 
@@ -1615,18 +1491,15 @@ driver.setValueImmediate(elementId, text)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## replaceValue
 Ersetzt den Wert direkt im Element.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
-
-
 
 ##### Verwendung
 
@@ -1658,18 +1531,15 @@ driver.replaceValue(elementId, value)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getSettings
 Ruft die aktuellen Einstellungen auf dem Gerät ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/session/settings/get-settings/).
-
-
 
 ##### Verwendung
 
@@ -1678,12 +1548,10 @@ driver.getSettings()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;object&gt;**
-            **<code><var>settings</var></code>:** JSON-Hash aller derzeit angegebenen Einstellungen, siehe Settings API    
+            **<code><var>settings</var></code>:** JSON-Hash aller derzeit angegebenen Einstellungen, siehe Settings API
 
 ##### Unterstützung
 
@@ -1692,10 +1560,9 @@ driver.getSettings()
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## updateSettings
 Aktualisiert die aktuelle Einstellung auf dem Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/session/settings/update-settings/).
-
-
 
 ##### Verwendung
 
@@ -1722,8 +1589,6 @@ driver.updateSettings(settings)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
@@ -1731,10 +1596,9 @@ driver.updateSettings(settings)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## receiveAsyncResponse
 Callback-URL für asynchrone Ausführung von JavaScript.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
-
-
 
 ##### Verwendung
 
@@ -1761,17 +1625,14 @@ driver.receiveAsyncResponse(response)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 
 ---
+
 ## gsmCall
 Tätigt GSM-Anruf (nur Emulator).<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-call/).
-
-
 
 ##### Verwendung
 
@@ -1803,17 +1664,14 @@ driver.gsmCall(phoneNumber, action)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## gsmSignal
 Stellt die GSM-Signalstärke ein (nur Emulator).<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-signal/).
-
-
 
 ##### Verwendung
 
@@ -1845,17 +1703,14 @@ driver.gsmSignal(signalStrength, signalStrengh)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## powerCapacity
 Stellt den Batterieprozentsatz ein (nur Emulator).<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_capacity/).
-
-
 
 ##### Verwendung
 
@@ -1882,17 +1737,14 @@ driver.powerCapacity(percent)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## powerAC
 Stellt den Zustand des Batterieladegeräts auf verbunden oder nicht verbunden ein (nur Emulator).<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_ac/).
-
-
 
 ##### Verwendung
 
@@ -1919,17 +1771,14 @@ driver.powerAC(state)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## gsmVoice
 Stellt den GSM-Sprachzustand ein (nur Emulator).<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-voice/).
-
-
 
 ##### Verwendung
 
@@ -1956,17 +1805,14 @@ driver.gsmVoice(state)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## sendSms
 Simuliert eine SMS-Nachricht (nur Emulator).<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/send-sms/).
-
-
 
 ##### Verwendung
 
@@ -1998,17 +1844,14 @@ driver.sendSms(phoneNumber, message)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## fingerPrint
 Authentifiziert Benutzer durch Fingerabdruckscans auf unterstützten Emulatoren.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/authentication/finger-print/).
-
-
 
 ##### Verwendung
 
@@ -2035,17 +1878,14 @@ driver.fingerPrint(fingerprintId)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## setClipboard
 Setzt den Inhalt der Systemzwischenablage<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/clipboard/set-clipboard/).
-
-
 
 ##### Verwendung
 
@@ -2085,7 +1925,7 @@ driver.setClipboard(content, contentType, label)
 ##### Gibt zurück
 
 - **&lt;string&gt;**
-            **<code><var>response</var></code>:** Antwort vom Appium-Server    
+            **<code><var>response</var></code>:** Antwort vom Appium-Server
 
 ##### Unterstützung
 
@@ -2093,10 +1933,9 @@ driver.setClipboard(content, contentType, label)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getClipboard
 Ruft den Inhalt der Systemzwischenablage ab<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/clipboard/get-clipboard/).
-
-
 
 ##### Verwendung
 
@@ -2126,7 +1965,7 @@ driver.getClipboard(contentType)
 ##### Gibt zurück
 
 - **&lt;string&gt;**
-            **<code><var>response</var></code>:** Zwischenablageinhalt als Base64-kodierter String oder ein leerer String, wenn die Zwischenablage leer ist    
+            **<code><var>response</var></code>:** Zwischenablageinhalt als Base64-kodierter String oder ein leerer String, wenn die Zwischenablage leer ist
 
 ##### Unterstützung
 
@@ -2134,10 +1973,9 @@ driver.getClipboard(contentType)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## touchPerform
 Diese Funktionalität ist nur innerhalb eines nativen Kontexts verfügbar. 'Touch Perform' funktioniert ähnlich wie die anderen einzelnen Touch-Interaktionen, mit dem Unterschied, dass Sie hier mehr als eine Touch-Aktion als einen Befehl verketten können. Dies ist nützlich, weil Appium-Befehle über das Netzwerk gesendet werden und es eine Latenz zwischen den Befehlen gibt. Diese Latenz kann bestimmte Touch-Interaktionen unmöglich machen, weil einige Interaktionen in einer Sequenz ausgeführt werden müssen. Vertikales Wischen erfordert beispielsweise das Drücken, Bewegen zu einer anderen y-Koordinate und dann Loslassen. Damit es funktioniert, darf es keine Verzögerung zwischen den Interaktionen geben.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/touch-perform/).
-
-
 
 ##### Verwendung
 
@@ -2205,8 +2043,6 @@ driver.touchPerform([
 ```
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -2214,10 +2050,9 @@ driver.touchPerform([
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## multiTouchPerform
 Diese Funktionalität ist nur innerhalb eines nativen Kontexts verfügbar. Führt eine Multi-Touch-Aktionssequenz aus.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/multi-touch-perform/).
-
-
 
 ##### Verwendung
 
@@ -2244,8 +2079,6 @@ driver.multiTouchPerform(actions)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -2253,10 +2086,9 @@ driver.multiTouchPerform(actions)
 ![Support for Windows (10+)](/img/icons/windows.svg)
 
 ---
+
 ## executeDriverScript
 Mit diesem Befehl können Sie ein WebdriverIO-Skript als String angeben und es zur lokalen Ausführung auf dem Appium-Server selbst übertragen. Dieser Ansatz hilft, potenzielle Latenz im Zusammenhang mit jedem Befehl zu minimieren. ***Um diesen Befehl mit Appium 2.0 zu verwenden, müssen Sie das [`execute-driver-plugin`](https://github.com/appium/appium/tree/master/packages/execute-driver-plugin) Plugin installiert haben.***<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/execute-driver.md).
-
-
 
 ##### Verwendung
 
@@ -2296,14 +2128,13 @@ driver.executeDriverScript(script, type, timeout)
 ##### Gibt zurück
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** Ein Objekt mit zwei Feldern: 'result', das der Rückgabewert des Skripts selbst ist, und 'logs', das 3 innere Felder enthält, 'log', 'warn' und 'error', die ein Array von Strings enthalten, die durch console.log, console.warn und console.error in der Skriptausführung protokolliert wurden.    
+            **<code><var>result</var></code>:** Ein Objekt mit zwei Feldern: 'result', das der Rückgabewert des Skripts selbst ist, und 'logs', das 3 innere Felder enthält, 'log', 'warn' und 'error', die ein Array von Strings enthalten, die durch console.log, console.warn und console.error in der Skriptausführung protokolliert wurden.
 
 
 ---
+
 ## getEvents
 Ruft im Appium-Server gespeicherte Ereignisse ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/events/get-events.md).
-
-
 
 ##### Verwendung
 
@@ -2333,7 +2164,7 @@ driver.getEvents(type)
 ##### Gibt zurück
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** Ein JSON-Hash von Ereignissen wie `{'commands' => [{'cmd' => 123455, ....}], 'startTime' => 1572954894127, }`.    
+            **<code><var>result</var></code>:** Ein JSON-Hash von Ereignissen wie `{'commands' => [{'cmd' => 123455, ....}], 'startTime' => 1572954894127, }`.
 
 ##### Unterstützung
 
@@ -2341,10 +2172,9 @@ driver.getEvents(type)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## logEvent
 Speichert ein benutzerdefiniertes Ereignis.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/events/log-event.md).
-
-
 
 ##### Verwendung
 
@@ -2376,18 +2206,15 @@ driver.logEvent(vendor, event)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## compareImages
 Diese Funktion führt Bildvergleiche unter Verwendung der Fähigkeiten des OpenCV-Frameworks durch. Bitte beachten Sie, dass für diese Funktionalität sowohl das OpenCV-Framework als auch das opencv4nodejs-Modul auf dem Computer installiert sein müssen, auf dem der Appium-Server betrieben wird. ***Darüber hinaus müssen Sie das [`images-plugin`](https://github.com/appium/appium/tree/master/packages/images-plugin) Plugin installiert haben, um diese Funktion mit Appium 2.0 zu verwenden.***<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://appium.github.io/appium.io/docs/en/writing-running-appium/image-comparison/).
-
-
 
 ##### Verwendung
 
@@ -2432,14 +2259,13 @@ driver.compareImages(mode, firstImage, secondImage, options)
 ##### Gibt zurück
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** Der Inhalt des resultierenden Wörterbuchs hängt von den tatsächlichen `mode`- und `options`-Werten ab. Siehe die Dokumentation zum Modul `appium-support` für weitere Details.    
+            **<code><var>result</var></code>:** Der Inhalt des resultierenden Wörterbuchs hängt von den tatsächlichen `mode`- und `options`-Werten ab. Siehe die Dokumentation zum Modul `appium-support` für weitere Details.
 
 
 ---
+
 ## implicitWait
 Legt fest, wie lange der Treiber beim Suchen nach Elementen warten soll. Bei der Suche nach einem einzelnen Element sollte der Treiber die Seite abfragen, bis ein Element gefunden wird oder das Timeout abläuft, je nachdem, was zuerst eintritt. Bei der Suche nach mehreren Elementen sollte der Treiber die Seite abfragen, bis mindestens ein Element gefunden wird oder das Timeout abläuft, woraufhin er eine leere Liste zurückgeben sollte. Wenn dieser Befehl niemals gesendet wird, sollte der Treiber standardmäßig ein implizites Warten von 0ms verwenden.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2466,18 +2292,15 @@ driver.implicitWait(ms)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## getLocationInView
 Bestimmt die Position eines Elements auf dem Bildschirm, nachdem es in die Ansicht gescrollt wurde.<br /><br />__Hinweis:__ Dies wird als interner Befehl betrachtet und sollte nur verwendet werden, um die Position eines Elements für die korrekte Erzeugung nativer Ereignisse zu bestimmen.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2507,7 +2330,7 @@ driver.getLocationInView(elementId)
 ##### Gibt zurück
 
 - **&lt;Object&gt;**
-            **<code><var>location</var></code>:** Die X- und Y-Koordinaten für das Element auf der Seite.    
+            **<code><var>location</var></code>:** Die X- und Y-Koordinaten für das Element auf der Seite.
 
 ##### Unterstützung
 
@@ -2515,10 +2338,9 @@ driver.getLocationInView(elementId)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## sendKeys
 Sendet eine Folge von Tastenanschlägen an das aktive Element<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2545,18 +2367,15 @@ driver.sendKeys(value)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## availableIMEEngines
 Listet alle verfügbaren Engines auf dem Computer auf. Um eine Engine zu verwenden, muss sie in dieser Liste vorhanden sein.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2565,22 +2384,19 @@ driver.availableIMEEngines()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;String[]&gt;**
-            **<code><var>engines</var></code>:** Eine Liste verfügbarer Engines    
+            **<code><var>engines</var></code>:** Eine Liste verfügbarer Engines
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getActiveIMEEngine
 Gibt den Namen der aktiven IME-Engine zurück. Der Name der Zeichenfolge ist plattformspezifisch.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2589,22 +2405,19 @@ driver.getActiveIMEEngine()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;String&gt;**
-            **<code><var>engine</var></code>:** Der Name der aktiven IME-Engine    
+            **<code><var>engine</var></code>:** Der Name der aktiven IME-Engine
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## isIMEActivated
 Gibt an, ob IME-Eingabe im Moment aktiv ist<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2613,22 +2426,19 @@ driver.isIMEActivated()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;Boolean&gt;**
-            **<code><var>isActive</var></code>:** true, wenn IME-Eingabe verfügbar und derzeit aktiv ist, sonst false    
+            **<code><var>isActive</var></code>:** true, wenn IME-Eingabe verfügbar und derzeit aktiv ist, sonst false
 
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## deactivateIMEEngine
 Deaktiviert die aktuell aktive IME-Engine.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2639,17 +2449,14 @@ driver.deactivateIMEEngine()
 
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## activateIMEEngine
 Aktiviert eine verfügbare Engine<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2676,17 +2483,14 @@ driver.activateIMEEngine(engine)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## asyncScriptTimeout
 Legt die Zeit in Millisekunden fest, die asynchrone Skripte, die von `/session/:sessionId/execute_async` ausgeführt werden, laufen dürfen, bevor sie abgebrochen werden und ein `Timeout`-Fehler an den Client zurückgegeben wird.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2713,17 +2517,14 @@ driver.asyncScriptTimeout(ms)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## submit
 Sendet ein Formularelement ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2750,17 +2551,14 @@ driver.submit(elementId)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## getElementSize
 Bestimmt die Größe eines Elements in Pixeln. Die Größe wird als JSON-Objekt mit den Eigenschaften `width` und `height` zurückgegeben.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2790,7 +2588,7 @@ driver.getElementSize(elementId)
 ##### Gibt zurück
 
 - **&lt;Object&gt;**
-            **<code><var>size</var></code>:** Die Breite und Höhe des Elements in Pixeln.    
+            **<code><var>size</var></code>:** Die Breite und Höhe des Elements in Pixeln.
 
 ##### Unterstützung
 
@@ -2798,10 +2596,9 @@ driver.getElementSize(elementId)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## getElementLocation
 Bestimmt die Position eines Elements auf der Seite. Der Punkt `(0, 0)` bezieht sich auf die obere linke Ecke der Seite. Die Koordinaten des Elements werden als JSON-Objekt mit den Eigenschaften `x` und `y` zurückgegeben.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2831,7 +2628,7 @@ driver.getElementLocation(elementId)
 ##### Gibt zurück
 
 - **&lt;Object&gt;**
-            **<code><var>location</var></code>:** Die X- und Y-Koordinaten für das Element auf der Seite.    
+            **<code><var>location</var></code>:** Die X- und Y-Koordinaten für das Element auf der Seite.
 
 ##### Unterstützung
 
@@ -2839,10 +2636,9 @@ driver.getElementLocation(elementId)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## touchClick
 Einzelner Tap auf dem berührungsempfindlichen Gerät.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2869,18 +2665,15 @@ driver.touchClick(element)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## touchDown
 Finger auf dem Bildschirm nach unten.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2912,17 +2705,14 @@ driver.touchDown(x, y)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## touchUp
 Finger auf dem Bildschirm nach oben.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2954,17 +2744,14 @@ driver.touchUp(x, y)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## touchMove
 Finger auf dem Bildschirm bewegen.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -2996,17 +2783,14 @@ driver.touchMove(x, y)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## touchLongClick
 Langer Druck auf dem Touchscreen mit Fingerbewegungsereignissen.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -3033,17 +2817,14 @@ driver.touchLongClick(element)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## touchFlick
 Wischen auf dem Touchscreen mit Fingerbewegungsereignissen. Dieser Wisch-Befehl beginnt an einer bestimmten Bildschirmposition.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -3095,17 +2876,14 @@ driver.touchFlick(xoffset, yoffset, element, speed, xspeed, yspeed)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
+
 ## getOrientation
 Gibt die aktuelle Geräteausrichtung zurück.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -3114,12 +2892,10 @@ driver.getOrientation()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;String&gt;**
-            **<code><var>orientation</var></code>:** Die aktuelle Ausrichtung entsprechend einem in ScreenOrientation definierten Wert: `LANDSCAPE|PORTRAIT`.    
+            **<code><var>orientation</var></code>:** Die aktuelle Ausrichtung entsprechend einem in ScreenOrientation definierten Wert: `LANDSCAPE|PORTRAIT`.
 
 ##### Unterstützung
 
@@ -3127,10 +2903,9 @@ driver.getOrientation()
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## setOrientation
 Legt die Geräteausrichtung fest<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -3157,18 +2932,15 @@ driver.setOrientation(orientation)
 </table>
 
 
-
-
 ##### Unterstützung
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## getLogs
 Ruft das Protokoll für einen bestimmten Protokolltyp ab. Der Protokollpuffer wird nach jeder Anfrage zurückgesetzt.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -3198,7 +2970,7 @@ driver.getLogs(type)
 ##### Gibt zurück
 
 - **&lt;Object[]&gt;**
-            **<code><var>logs</var></code>:** Die Liste der Protokolleinträge.    
+            **<code><var>logs</var></code>:** Die Liste der Protokolleinträge.
 
 ##### Unterstützung
 
@@ -3206,10 +2978,9 @@ driver.getLogs(type)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
+
 ## getLogTypes
 Ruft verfügbare Protokolltypen ab.<br /><br />Appium-Befehl. Weitere Details finden Sie in der [offiziellen Protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
-
-
 
 ##### Verwendung
 
@@ -3218,12 +2989,10 @@ driver.getLogTypes()
 ```
 
 
-
-
 ##### Gibt zurück
 
 - **&lt;String[]&gt;**
-            **<code><var>logTypes</var></code>:** Die Liste der verfügbaren Protokolltypen.    
+            **<code><var>logTypes</var></code>:** Die Liste der verfügbaren Protokolltypen.
 
 ##### Unterstützung
 

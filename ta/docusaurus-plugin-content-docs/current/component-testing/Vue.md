@@ -9,8 +9,6 @@ title: Vue.js
 
 உங்கள் Vue.js திட்டத்தில் WebdriverIO ஐ அமைக்க, எங்கள் காம்போனென்ட் டெஸ்ட் ஆவணத்தின் [instructions](/docs/component-testing#set-up) வழிமுறைகளைப் பின்பற்றவும். உங்கள் ரன்னர் விருப்பங்களுக்குள் முன்னமைவாக `vue` ஐத் தேர்ந்தெடுக்கவும், எ.கா.:
 
-
-
 ```js
 // wdio.conf.js
 export const config = {
@@ -31,8 +29,6 @@ export const config = {
 
 Vue முன்னமைவுக்கு `@vitejs/plugin-vue` நிறுவ வேண்டும். டெஸ்ட் பக்கத்தில் காம்போனென்டுகளை வழங்குவதற்கு [Testing Library](https://testing-library.com/) ஐப் பயன்படுத்தவும் பரிந்துரைக்கிறோம். எனவே நீங்கள் பின்வரும் கூடுதல் சார்புகளை நிறுவ வேண்டும்:
 
-
-
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
 ```
@@ -40,20 +36,14 @@ npm install --save-dev @testing-library/vue @vitejs/plugin-vue
 
 பின்னர் நீங்கள் டெஸ்டுகளை ரன் செய்வதன் மூலம் தொடங்கலாம்:
 
-
-
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
 
-
-
 ## டெஸ்டுகளை எழுதுதல்
 
 பின்வரும் Vue.js காம்போனென்ட் உங்களிடம் உள்ளது:
-
-
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -147,13 +137,9 @@ describe('Vue Component Testing', () => {
 
 Vue.js க்கான WebdriverIO காம்போனென்ட் டெஸ்ட் தொகுப்பின் முழு உதாரணத்தையும் எங்களின் [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) இல் காணலாம்.
 
-
-
 ## Testing Async Components in Vue3
 
 If you are using Vue v3 and are testing [async components](https://vuejs.org/guide/built-ins/suspense.html#async-setup) like the following:
-
-
 
 ```vue
 <script setup>
@@ -168,8 +154,6 @@ const posts = await res.json()
 
 
 We recommend to use [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) and a little suspense wrapper to get the component rendered. Unfortunately [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) has no support for this yet. Create a `helper.ts` file with the following content:
-
-
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -213,8 +197,6 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 
 Then import and test the component as following:
 
-
-
 ```ts
 import { $, expect } from '@wdio/globals'
 
@@ -238,8 +220,6 @@ describe('Testing Async Components', () => {
 ```
 
 
-
-
 ## Testing Vue Components in Nuxt
 
 If you are using the web framework [Nuxt](https://nuxt.com/), WebdriverIO will automatically enable the [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) feature and makes testing your Vue components and Nuxt pages easy. However any [Nuxt modules](https://nuxt.com/modules) that you might define in your config and requires context to the Nuxt application can not be supported.
@@ -255,13 +235,9 @@ WebdriverIO also provides a service for running e2e tests on Nuxt applications, 
 
 :::
 
-
-
 ### Mocking built-in composables
 
 In case your component uses a native Nuxt composable, e.g. [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO will automatically mock these functions and allows you to modify their behavior or assert against them, e.g.:
-
-
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
@@ -277,13 +253,9 @@ mocked(useNuxtData).mockReturnValue({
 ```
 
 
-
-
 ### Handling 3rd party composables
 
 All [3rd party modules](https://nuxt.com/modules) that can supercharge your Nuxt project can't automatically get mocked. In those cases you need to manually mock them, e.g. given your application uses the [Supabase](https://nuxt.com/modules/supabase) module plugin:
-
-
 
 ```js title=""
 export default defineNuxtConfig({
@@ -298,8 +270,6 @@ export default defineNuxtConfig({
 
 and you create an instance of Supabase somewhere in your composables, e.g.:
 
-
-
 ```ts
 const superbase = useSupabaseClient()
 ```
@@ -307,16 +277,12 @@ const superbase = useSupabaseClient()
 
 the test will fail due to:
 
-
-
 ```
 ReferenceError: useSupabaseClient is not defined
 ```
 
 
 Here, we recommend to either mock out the whole module that uses the `useSupabaseClient` function or create a global variable that mocks this function, e.g.:
-
-
 
 ```ts
 import { fn } from '@wdio/browser-runner'

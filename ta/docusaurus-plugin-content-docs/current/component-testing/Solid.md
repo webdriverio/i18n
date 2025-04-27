@@ -29,8 +29,6 @@ export const config = {
 
 SolidJS முன்னமைவுக்கு `vite-plugin-solid` நிறுவப்பட வேண்டும்:
 
-
-
 ```sh npm2yarn
 npm install --save-dev vite-plugin-solid
 ```
@@ -38,20 +36,14 @@ npm install --save-dev vite-plugin-solid
 
 பின்னர் நீங்கள் டெஸ்டுகளை ரன் செய்வதன் மூலம் தொடங்கலாம்:
 
-
-
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
 
-
-
 ## டெஸ்டுகளை எழுதுதல்
 
 பின்வரும் SolidJS கூறு உங்களிடம் இருப்பதால்:
-
-
 
 ```html title="./components/Component.tsx"
 import { createSignal } from 'solid-js'
@@ -74,8 +66,6 @@ export default App
 
 
 உங்கள் டெஸ்டில் `solid-js/web` இலிருந்து ` render ` முறையைப் பயன்படுத்தி டெஸ்ட் பக்கத்துடன் காம்போனென்டுகளை இணைக்கவும். காம்போனென்டுகளுடன் தொடர்பு கொள்ள WebdriverIO கட்டளைகளைப் பயன்படுத்தப் பரிந்துரைக்கிறோம், ஏனெனில் அவை உண்மையான பயனர் தொடர்புகளுக்கு மிகவும் நெருக்கமாகச் செயல்படுகின்றன, எ.கா.:
-
-
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'

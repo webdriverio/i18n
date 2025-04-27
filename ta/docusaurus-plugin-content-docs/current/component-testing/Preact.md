@@ -11,8 +11,6 @@ title: Preact
 
  வழிமுறைகளைப் பின்பற்றவும். உங்கள் ரன்னர் விருப்பங்களுக்குள் `preact` முன்னமைவாகத் தேர்ந்தெடுக்கவும், எ.கா.:
 
-
-
 ```js
 // wdio.conf.js
 export const config = {
@@ -33,8 +31,6 @@ export const config = {
 
 The Preact preset requires `@preact/preset-vite` to be installed. டெஸ்ட் பக்கத்தில் காம்போனென்டுகளை வழங்குவதற்கு [Testing Library](https://testing-library.com/) ஐப் பயன்படுத்தவும் பரிந்துரைக்கிறோம். எனவே நீங்கள் பின்வரும் கூடுதல் சார்புகளை நிறுவ வேண்டும்:
 
-
-
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
 ```
@@ -42,20 +38,14 @@ npm install --save-dev @testing-library/preact @preact/preset-vite
 
 பின்னர் நீங்கள் டெஸ்டுகளை ரன் செய்வதன் மூலம் தொடங்கலாம்:
 
-
-
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
 
-
-
 ## டெஸ்டுகளை எழுதுதல்
 
 உங்களிடம் பின்வரும் Preact காம்போனென்ட் உள்ளது:
-
-
 
 ```tsx title="./components/Component.jsx"
 import { h } from 'preact'
@@ -81,8 +71,6 @@ export function Counter({ initialCount }: Props) {
 
 
 உங்கள் டெஸ்டில் `@testing-library/preact` இலிருந்து ` render ` மெத்தடை பயன்படுத்தி டெஸ்ட் பக்கத்துடன் காம்போனென்டுகளை இணைக்கவும். காம்போனென்டுகளுடன் தொடர்பு கொள்ள WebdriverIO கட்டளைகளைப் பயன்படுத்தப் பரிந்துரைக்கிறோம், ஏனெனில் அவை உண்மையான பயனர் தொடர்புகளுக்கு மிகவும் நெருக்கமாகச் செயல்படுகின்றன, எ.கா.:
-
-
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'

@@ -3,10 +3,9 @@ id: webdriver
 title: Protocolo WebDriver
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/webdriver.ts
 ---
+
 ## newSession
 El comando New Session crea una nueva sesión WebDriver con el nodo endpoint. Si la creación falla, se devuelve un error de sesión no creada.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-new-sessions).
-
-
 
 ##### Uso
 
@@ -36,14 +35,13 @@ browser.newSession(capabilities)
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>session</var></code>:** Objeto que contiene sessionId y capabilities de la sesión WebDriver creada.    
+            **<code><var>session</var></code>:** Objeto que contiene sessionId y capabilities de la sesión WebDriver creada.
 
 
 ---
+
 ## deleteSession
 El comando Delete Session cierra cualquier contexto de navegación de nivel superior asociado con la sesión actual, termina la conexión y finalmente cierra la sesión actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-delete-session).
-
-
 
 ##### Uso
 
@@ -71,13 +69,10 @@ browser.deleteSession(deleteSessionOpts)
 
 
 
-
-
 ---
+
 ## status
 El comando Status devuelve información sobre si un extremo remoto está en un estado en el que puede crear nuevas sesiones y puede incluir adicionalmente metainformación arbitraria que es específica de la implementación.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-status).
-
-
 
 ##### Uso
 
@@ -85,27 +80,22 @@ El comando Status devuelve información sobre si un extremo remoto está en un e
 browser.status()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L5-L16
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>status</var></code>:** Objeto que contiene el estado del driver.    
+            **<code><var>status</var></code>:** Objeto que contiene el estado del driver.
 
 
 ---
+
 ## getTimeouts
 El comando Get Timeouts obtiene las duraciones de timeout asociadas con la sesión actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-timeouts).
-
-
 
 ##### Uso
 
@@ -113,27 +103,22 @@ El comando Get Timeouts obtiene las duraciones de timeout asociadas con la sesi�
 browser.getTimeouts()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L20-L24
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>timeouts</var></code>:** Objeto que contiene duraciones de timeout para `script`, `pageLoad` e `implicit`.    
+            **<code><var>timeouts</var></code>:** Objeto que contiene duraciones de timeout para `script`, `pageLoad` e `implicit`.
 
 
 ---
+
 ## setTimeouts
 El comando Set Timeouts establece duraciones de timeout asociadas con la sesión actual. Los timeouts que se pueden controlar se enumeran en la tabla de timeouts de sesión a continuación.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-set-timeouts).
-
-
 
 ##### Uso
 
@@ -178,13 +163,10 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## getUrl
 El comando Get Current URL devuelve la URL del contexto de navegación de nivel superior actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-current-url).
-
-
 
 ##### Uso
 
@@ -192,23 +174,20 @@ El comando Get Current URL devuelve la URL del contexto de navegación de nivel 
 browser.getUrl()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L39-L43
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>url</var></code>:** URL del documento activo del contexto de navegación de nivel superior actual    
+            **<code><var>url</var></code>:** URL del documento activo del contexto de navegación de nivel superior actual
 
 
 ---
+
 ## navigateTo
 El comando navigateTo (go) se utiliza para hacer que el agente de usuario navegue en el contexto de navegación de nivel superior actual a una nueva ubicación.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-navigate-to).
 
@@ -252,21 +231,16 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## back
 El comando Back hace que el navegador recorra un paso hacia atrás en el historial de sesión conjunto del contexto de navegación de nivel superior actual. Esto es equivalente a presionar el botón de retroceso en el chrome del navegador o llamar a `window.history.back`.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-back).
-
-
 
 ##### Uso
 
 ```js
 browser.back()
 ```
-
-
 
 ##### Ejemplo
 
@@ -277,21 +251,16 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## forward
 El comando Forward hace que el navegador recorra un paso hacia adelante en el historial de sesión conjunto del contexto de navegación de nivel superior actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-forward).
-
-
 
 ##### Uso
 
 ```js
 browser.forward()
 ```
-
-
 
 ##### Ejemplo
 
@@ -302,21 +271,16 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## refresh
 El comando Refresh hace que el navegador recargue la página en el contexto de navegación de nivel superior actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-refresh).
-
-
 
 ##### Uso
 
 ```js
 browser.refresh()
 ```
-
-
 
 ##### Ejemplo
 
@@ -327,13 +291,10 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## getTitle
 El comando Get Title devuelve el título del documento del contexto de navegación de nivel superior actual, equivalente a llamar a `document.title`.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-title).
-
-
 
 ##### Uso
 
@@ -341,27 +302,22 @@ El comando Get Title devuelve el título del documento del contexto de navegaci�
 browser.getTitle()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L82-L86
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>title</var></code>:** Devuelve una cadena que es la misma que `document.title` del contexto de navegación de nivel superior actual.    
+            **<code><var>title</var></code>:** Devuelve una cadena que es la misma que `document.title` del contexto de navegación de nivel superior actual.
 
 
 ---
+
 ## getWindowHandle
 El comando Get Window Handle devuelve el identificador de ventana para el contexto de navegación de nivel superior actual. Se puede usar como argumento para Switch To Window.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-window-handle).
-
-
 
 ##### Uso
 
@@ -369,35 +325,28 @@ El comando Get Window Handle devuelve el identificador de ventana para el contex
 browser.getWindowHandle()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L90-L93
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>handle</var></code>:** Devuelve una cadena que es el identificador de ventana para el contexto de navegación de nivel superior actual.    
+            **<code><var>handle</var></code>:** Devuelve una cadena que es el identificador de ventana para el contexto de navegación de nivel superior actual.
 
 
 ---
+
 ## closeWindow
 El comando Close Window cierra el contexto de navegación de nivel superior actual. Una vez hecho esto, si no hay más contextos de navegación de nivel superior abiertos, la sesión WebDriver en sí se cierra.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-close-window).
-
-
 
 ##### Uso
 
 ```js
 browser.closeWindow()
 ```
-
-
 
 ##### Ejemplo
 
@@ -408,9 +357,8 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## switchToWindow
 El comando Switch To Window se usa para seleccionar el contexto de navegación de nivel superior actual para la sesión actual, es decir, el que se usará para procesar comandos.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-switch-to-window).
 
@@ -454,13 +402,10 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## createWindow
 Crea un nuevo contexto de navegación de nivel superior.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#new-window).
-
-
 
 ##### Uso
 
@@ -492,19 +437,16 @@ browser.createWindow(type)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L134-L136
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>window</var></code>:** Objeto de nueva ventana que contiene 'handle' con el valor del identificador y 'type' con el valor del tipo de ventana creada    
+            **<code><var>window</var></code>:** Objeto de nueva ventana que contiene 'handle' con el valor del identificador y 'type' con el valor del tipo de ventana creada
 
 
 ---
+
 ## getWindowHandles
 El comando Get Window Handles devuelve una lista de identificadores de ventana para cada contexto de navegación de nivel superior abierto. El orden en que se devuelven los identificadores de ventana es arbitrario.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-window-handles).
-
-
 
 ##### Uso
 
@@ -512,27 +454,22 @@ El comando Get Window Handles devuelve una lista de identificadores de ventana p
 browser.getWindowHandles()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L140-L143
 ```
 
-
-
 ##### Retorna
 
 - **&lt;String[]&gt;**
-            **<code><var>handles</var></code>:** Una matriz que es una lista de identificadores de ventana.    
+            **<code><var>handles</var></code>:** Una matriz que es una lista de identificadores de ventana.
 
 
 ---
+
 ## printPage
 El comando Print Page renderiza el documento a un documento PDF paginado. __Nota:__ Chrome actualmente solo admite esto en [modo headless](https://webdriver.io/docs/capabilities/#run-browser-headless), ver [`crbug753118`](https://bugs.chromium.org/p/chromium/issues/detail?id=753118)).<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#print-page).
-
-
 
 ##### Uso
 
@@ -614,23 +551,20 @@ browser.printPage(orientation, scale, background, width, height, top, bottom, le
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L150-L151
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>pdf</var></code>:** La representación PDF codificada en base64 del documento paginado.    
+            **<code><var>pdf</var></code>:** La representación PDF codificada en base64 del documento paginado.
 
 
 ---
+
 ## switchToFrame
 El comando Switch To Frame se utiliza para seleccionar el contexto de navegación de nivel superior actual o un contexto de navegación secundario del contexto de navegación actual para usarlo como el contexto de navegación actual para comandos subsiguientes.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-switch-to-frame).
 :::caution
 
 Este comando de protocolo está obsoleto<br />Este comando está obsoleto y recomendamos a todos que usen `switchFrame` en su lugar para cambiar a frames. Lea más sobre este comando en https://webdriver.io/docs/api/browser/switchFrame.
 :::
-
-
 
 ##### Uso
 
@@ -665,21 +599,16 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## switchToParentFrame
 El comando Switch to Parent Frame establece el contexto de navegación actual para futuros comandos al padre del contexto de navegación actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-switch-to-parent-frame).
-
-
 
 ##### Uso
 
 ```js
 browser.switchToParentFrame()
 ```
-
-
 
 ##### Ejemplo
 
@@ -690,9 +619,8 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## getWindowRect
 El comando Get Window Rect devuelve el tamaño y la posición en la pantalla de la ventana del sistema operativo correspondiente al contexto de navegación de nivel superior actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-window-rect).
 
@@ -709,23 +637,20 @@ Este comando de protocolo está incorporado en el siguiente método conveniente:
 browser.getWindowRect()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L193-L196
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect". Esto tiene 4 propiedades: `x`, `y`, `width` y `height`.    
+            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect". Esto tiene 4 propiedades: `x`, `y`, `width` y `height`.
 
 
 ---
+
 ## setWindowRect
 El comando Set Window Rect altera el tamaño y la posición de la ventana del sistema operativo correspondiente al contexto de navegación de nivel superior actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-set-window-rect).
 
@@ -781,19 +706,16 @@ browser.setWindowRect(x, y, width, height)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L200-L204
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect" basado en el nuevo estado de la ventana.    
+            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect" basado en el nuevo estado de la ventana.
 
 
 ---
+
 ## maximizeWindow
 El comando Maximize Window invoca la operación específica del administrador de ventanas "maximizar", si existe, en la ventana que contiene el contexto de navegación de nivel superior actual. Esto generalmente aumenta la ventana al tamaño máximo disponible sin ir a pantalla completa.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-maximize-window).
-
-
 
 ##### Uso
 
@@ -801,27 +723,22 @@ El comando Maximize Window invoca la operación específica del administrador de
 browser.maximizeWindow()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L208-L212
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect" basado en el nuevo estado de la ventana.    
+            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect" basado en el nuevo estado de la ventana.
 
 
 ---
+
 ## minimizeWindow
 El comando Minimize Window invoca la operación específica del administrador de ventanas "minimizar", si existe, en la ventana que contiene el contexto de navegación de nivel superior actual. Esto generalmente oculta la ventana en la bandeja del sistema.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-minimize-window).
-
-
 
 ##### Uso
 
@@ -830,19 +747,16 @@ browser.minimizeWindow()
 ```
 
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect" del contexto de navegación de nivel superior (nuevo) actual.    
+            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect" del contexto de navegación de nivel superior (nuevo) actual.
 
 
 ---
+
 ## fullscreenWindow
 El comando Fullscreen Window invoca la operación específica del administrador de ventanas "pantalla completa", si existe, en la ventana que contiene el contexto de navegación de nivel superior actual. Esto generalmente aumenta la ventana al tamaño de la pantalla física y puede ocultar elementos del chrome del navegador como barras de herramientas.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-fullscreen-window).
-
-
 
 ##### Uso
 
@@ -851,15 +765,14 @@ browser.fullscreenWindow()
 ```
 
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect" del contexto de navegación de nivel superior (nuevo) actual.    
+            **<code><var>windowRect</var></code>:** Una representación JSON de un objeto "window rect" del contexto de navegación de nivel superior (nuevo) actual.
 
 
 ---
+
 ## findElement
 El comando Find Element se usa para encontrar un elemento en el contexto de navegación actual que puede ser usado para comandos futuros. Este comando devuelve una representación JSON del elemento que puede pasarse al comando $ para transformar la referencia en un elemento WebdriverIO extendido.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-find-element).
 
@@ -905,15 +818,14 @@ browser.findElement(using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L226-L232
 ```
 
-
-
 ##### Retorna
 
 - **&lt;object&gt;**
-            **<code><var>element</var></code>:** Una representación JSON de un objeto elemento, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
+            **<code><var>element</var></code>:** Una representación JSON de un objeto elemento, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
 
 
 ---
+
 ## findElementFromShadowRoot
 El comando Find Element From Shadow Root se usa para encontrar un elemento dentro del shadow root de un elemento que puede ser usado para comandos futuros. Este comando devuelve una representación JSON del elemento que puede pasarse al comando $ para transformar la referencia en un elemento WebdriverIO extendido.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#find-element-from-shadow-root).
 
@@ -964,15 +876,14 @@ browser.findElementFromShadowRoot(shadowId, using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L236-L248
 ```
 
-
-
 ##### Retorna
 
 - **&lt;object&gt;**
-            **<code><var>element</var></code>:** Una representación JSON de un objeto elemento shadow, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
+            **<code><var>element</var></code>:** Una representación JSON de un objeto elemento shadow, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
 
 
 ---
+
 ## findElements
 El comando Find Elements se usa para encontrar elementos en el contexto de navegación actual que pueden ser usados para comandos futuros. Este comando devuelve un array de representación JSON de los elementos que pueden pasarse al comando $ para transformar la referencia en un elemento WebdriverIO extendido (Ver findElement).<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-find-elements).
 
@@ -1018,15 +929,14 @@ browser.findElements(using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L252-L254
 ```
 
-
-
 ##### Retorna
 
 - **&lt;object[]&gt;**
-            **<code><var>elements</var></code>:** Una lista JSON (posiblemente vacía) de representaciones de un objeto elemento, p. ej. `[{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }]`.    
+            **<code><var>elements</var></code>:** Una lista JSON (posiblemente vacía) de representaciones de un objeto elemento, p. ej. `[{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }]`.
 
 
 ---
+
 ## findElementsFromShadowRoot
 El comando Find Elements se usa para encontrar elementos dentro del shadow root de un elemento que pueden ser usados para comandos futuros. Este comando devuelve un array de representación JSON de los elementos que pueden pasarse al comando $ para transformar la referencia en un elemento WebdriverIO extendido (Ver findElement).<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#find-elements-from-shadow-root).
 
@@ -1077,15 +987,14 @@ browser.findElementsFromShadowRoot(shadowId, using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L258-L268
 ```
 
-
-
 ##### Retorna
 
 - **&lt;object[]&gt;**
-            **<code><var>elements</var></code>:** Una lista JSON (posiblemente vacía) de representaciones de un objeto elemento, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
+            **<code><var>elements</var></code>:** Una lista JSON (posiblemente vacía) de representaciones de un objeto elemento, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
 
 
 ---
+
 ## findElementFromElement
 El comando Find Element From Element se usa para encontrar un elemento desde un elemento web en el contexto de navegación actual que puede ser usado para comandos futuros. Este comando devuelve una representación JSON del elemento que puede pasarse al comando $ para transformar la referencia en un elemento WebdriverIO extendido (Ver findElement).<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-find-element-from-element).
 
@@ -1136,15 +1045,14 @@ browser.findElementFromElement(elementId, using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L272-L279
 ```
 
-
-
 ##### Retorna
 
 - **&lt;object&gt;**
-            **<code><var>element</var></code>:** Una representación JSON de un objeto elemento, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
+            **<code><var>element</var></code>:** Una representación JSON de un objeto elemento, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
 
 
 ---
+
 ## findElementsFromElement
 El comando Find Elements From Element se usa para encontrar elementos desde un elemento web en el contexto de navegación actual que pueden ser usados para comandos futuros. Este comando devuelve un array de representación JSON de los elementos que pueden pasarse al comando $ para transformar la referencia en un elemento WebdriverIO extendido (Ver findElement).<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-find-elements-from-element).
 
@@ -1195,15 +1103,14 @@ browser.findElementsFromElement(elementId, using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L283-L290
 ```
 
-
-
 ##### Retorna
 
 - **&lt;object[]&gt;**
-            **<code><var>elements</var></code>:** Una lista JSON (posiblemente vacía) de representaciones de un objeto elemento, p. ej. `[{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }]`.    
+            **<code><var>elements</var></code>:** Una lista JSON (posiblemente vacía) de representaciones de un objeto elemento, p. ej. `[{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }]`.
 
 
 ---
+
 ## getElementShadowRoot
 Obtiene el objeto shadow root de un elemento. El objeto resultante puede usarse para buscar elementos dentro de este shadow root usando, por ejemplo, findElementFromShadowRoots o findElementsFromShadowRoots.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-active-element).
 
@@ -1244,19 +1151,16 @@ browser.getElementShadowRoot(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L294-L305
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>shadowRoot</var></code>:** Una representación JSON de un shadow root de elemento, p. ej. `{ 'shadow-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
+            **<code><var>shadowRoot</var></code>:** Una representación JSON de un shadow root de elemento, p. ej. `{ 'shadow-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
 
 
 ---
+
 ## getActiveElement
 Get Active Element devuelve el elemento activo del elemento de documento del contexto de navegación actual. Este comando devuelve una representación JSON del elemento que puede pasarse al comando $ para transformar la referencia en un elemento WebdriverIO extendido (Ver findElement).<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-active-element).
-
-
 
 ##### Uso
 
@@ -1264,23 +1168,20 @@ Get Active Element devuelve el elemento activo del elemento de documento del con
 browser.getActiveElement()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L309-L316
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>element</var></code>:** Una representación JSON de un objeto elemento, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
+            **<code><var>element</var></code>:** Una representación JSON de un objeto elemento, p. ej. `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
 
 
 ---
+
 ## isElementSelected
 Is Element Selected determina si el elemento referenciado está seleccionado o no. Esta operación solo tiene sentido en elementos de entrada de los estados Checkbox y Radio Button, o elementos option.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-is-element-selected).
 
@@ -1321,15 +1222,14 @@ browser.isElementSelected(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L322-L325
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Boolean&gt;**
-            **<code><var>isSelected</var></code>:** `true` o `false` basado en el estado seleccionado.    
+            **<code><var>isSelected</var></code>:** `true` o `false` basado en el estado seleccionado.
 
 
 ---
+
 ## isElementDisplayed
 Is Element Displayed determina la visibilidad de un elemento que se guía por lo que es perceptivamente visible para el ojo humano. En este contexto, la visibilidad de un elemento no se relaciona con las propiedades de estilo `visibility` o `display`.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#element-displayedness).
 
@@ -1370,15 +1270,14 @@ browser.isElementDisplayed(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L331-L333
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Boolean&gt;**
-            **<code><var>isDisplayed</var></code>:** `true` o `false` basado en el estado visible.    
+            **<code><var>isDisplayed</var></code>:** `true` o `false` basado en el estado visible.
 
 
 ---
+
 ## getElementAttribute
 El comando Get Element Attribute devolverá el atributo de un elemento web.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-element-attribute).
 
@@ -1424,15 +1323,14 @@ browser.getElementAttribute(elementId, name)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L339-L341
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>attribute</var></code>:** El atributo nombrado del elemento.    
+            **<code><var>attribute</var></code>:** El atributo nombrado del elemento.
 
 
 ---
+
 ## getElementProperty
 El comando Get Element Property devolverá el resultado de obtener una propiedad de un elemento.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-element-property).
 
@@ -1478,15 +1376,14 @@ browser.getElementProperty(elementId, name)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L347-L349
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>property</var></code>:** La propiedad nombrada del elemento, accedida llamando a GetOwnProperty en el objeto del elemento.    
+            **<code><var>property</var></code>:** La propiedad nombrada del elemento, accedida llamando a GetOwnProperty en el objeto del elemento.
 
 
 ---
+
 ## getElementCSSValue
 El comando Get Element CSS Value recupera el valor calculado de la propiedad CSS dada del elemento web dado.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-element-css-value).
 
@@ -1532,19 +1429,16 @@ browser.getElementCSSValue(elementId, propertyName)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L355-L357
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>cssValue</var></code>:** El valor calculado del parámetro correspondiente al nombre de la propiedad de las declaraciones de estilo del elemento (a menos que el tipo de documento sea xml, en cuyo caso el valor de retorno es simplemente la cadena vacía).    
+            **<code><var>cssValue</var></code>:** El valor calculado del parámetro correspondiente al nombre de la propiedad de las declaraciones de estilo del elemento (a menos que el tipo de documento sea xml, en cuyo caso el valor de retorno es simplemente la cadena vacía).
 
 
 ---
+
 ## getElementText
 El comando Get Element Text pretende devolver el texto de un elemento "como se renderiza". El texto renderizado de un elemento también se usa para localizar elementos por su texto de enlace y texto parcial de enlace.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-element-text).
-
-
 
 ##### Uso
 
@@ -1576,15 +1470,14 @@ browser.getElementText(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L363-L365
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>text</var></code>:** El texto visible del elemento (incluidos los elementos secundarios), siguiendo el algoritmo definido en los Selenium Atoms para [`bot.dom.getVisibleText`](https://github.com/SeleniumHQ/selenium/blob/e09e28f016c9f53196cf68d6f71991c5af4a35d4/javascript/atoms/dom.js#L981).    
+            **<code><var>text</var></code>:** El texto visible del elemento (incluidos los elementos secundarios), siguiendo el algoritmo definido en los Selenium Atoms para [`bot.dom.getVisibleText`](https://github.com/SeleniumHQ/selenium/blob/e09e28f016c9f53196cf68d6f71991c5af4a35d4/javascript/atoms/dom.js#L981).
 
 
 ---
+
 ## getElementTagName
 El comando Get Element Tag Name devuelve el nombre calificado del elemento dado.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-element-tag-name).
 
@@ -1625,15 +1518,14 @@ browser.getElementTagName(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L371-L373
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>text</var></code>:** El atributo tagName del elemento.    
+            **<code><var>text</var></code>:** El atributo tagName del elemento.
 
 
 ---
+
 ## getElementRect
 El comando Get Element Rect devuelve las dimensiones y coordenadas del elemento web dado.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-element-rect).
 
@@ -1674,15 +1566,14 @@ browser.getElementRect(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L379-L381
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>elementRect</var></code>:** Un objeto JSON que representa la posición y el rectángulo delimitador del elemento.    
+            **<code><var>elementRect</var></code>:** Un objeto JSON que representa la posición y el rectángulo delimitador del elemento.
 
 
 ---
+
 ## isElementEnabled
 Is Element Enabled determina si el elemento referenciado está habilitado o no. Esta operación solo tiene sentido en controles de formulario.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-is-element-enabled).
 
@@ -1723,15 +1614,14 @@ browser.isElementEnabled(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L387-L390
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Boolean&gt;**
-            **<code><var>isEnabled</var></code>:** Si el elemento está en un documento xml, o es un control de formulario deshabilitado: `false`, de lo contrario, `true`.    
+            **<code><var>isEnabled</var></code>:** Si el elemento está en un documento xml, o es un control de formulario deshabilitado: `false`, de lo contrario, `true`.
 
 
 ---
+
 ## elementClick
 El comando Element Click desplaza a la vista el elemento si aún no es interactuable con el puntero, y hace clic en su punto central visible. Si el punto central del elemento está oscurecido por otro elemento, se devuelve un error de clic de elemento interceptado. Si el elemento está fuera de la ventana gráfica, se devuelve un error de elemento no interactuable.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-element-click).
 
@@ -1775,9 +1665,8 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## elementClear
 El comando Element Clear desplaza a la vista un elemento editable o restablecible y luego intenta borrar sus archivos seleccionados o contenido de texto.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-element-clear).
 
@@ -1821,9 +1710,8 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## elementSendKeys
 El comando Element Send Keys desplaza a la vista el elemento de control de formulario y luego envía las teclas proporcionadas al elemento. En caso de que el elemento no sea interactuable con el teclado, se devuelve un error de elemento no interactuable.<br /><br />El estado de entrada de teclas utilizado para la entrada puede borrarse a mitad de "escritura" enviando la tecla nula, que es U+E000 (NULL).<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-element-send-keys).
 
@@ -1872,13 +1760,10 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## getPageSource
 El comando Get Page Source devuelve una serialización de cadena del DOM del documento activo del contexto de navegación actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-page-source).
-
-
 
 ##### Uso
 
@@ -1886,23 +1771,20 @@ El comando Get Page Source devuelve una serialización de cadena del DOM del doc
 browser.getPageSource()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L420-L421
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>pageSource</var></code>:** el DOM del documento activo del contexto de navegación actual    
+            **<code><var>pageSource</var></code>:** el DOM del documento activo del contexto de navegación actual
 
 
 ---
+
 ## executeScript
 El comando Execute Script ejecuta una función JavaScript en el contexto del contexto de navegación actual y devuelve el valor de retorno de la función.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-execute-script).
 
@@ -1948,15 +1830,14 @@ browser.executeScript(script, args)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L425-L426
 ```
 
-
-
 ##### Retorna
 
 - **&lt;*&gt;**
-            **<code><var>result</var></code>:** Ya sea el valor de retorno de su script, el cumplimiento de la Promesa devuelta por su script, o el error que fue la razón del rechazo de la Promesa devuelta por su script.    
+            **<code><var>result</var></code>:** Ya sea el valor de retorno de su script, el cumplimiento de la Promesa devuelta por su script, o el error que fue la razón del rechazo de la Promesa devuelta por su script.
 
 
 ---
+
 ## executeAsyncScript
 El comando Execute Async Script hace que JavaScript se ejecute como una función anónima. A diferencia del comando Execute Script, se ignora el resultado de la función. En su lugar, se proporciona un argumento adicional como argumento final a la función. Esta es una función que, cuando se llama, devuelve su primer argumento como respuesta.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-execute-async-script).
 
@@ -2002,19 +1883,16 @@ browser.executeAsyncScript(script, args)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L430-L434
 ```
 
-
-
 ##### Retorna
 
 - **&lt;*&gt;**
-            **<code><var>result</var></code>:** Ya sea el valor de retorno de su script, el cumplimiento de la Promesa devuelta por su script, o el error que fue la razón del rechazo de la Promesa devuelta por su script.    
+            **<code><var>result</var></code>:** Ya sea el valor de retorno de su script, el cumplimiento de la Promesa devuelta por su script, o el error que fue la razón del rechazo de la Promesa devuelta por su script.
 
 
 ---
+
 ## getAllCookies
 El comando Get All Cookies devuelve todas las cookies asociadas con la dirección del documento activo del contexto de navegación actual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-all-cookies).
-
-
 
 ##### Uso
 
@@ -2022,27 +1900,22 @@ El comando Get All Cookies devuelve todas las cookies asociadas con la direcció
 browser.getAllCookies()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L438-L455
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object[]&gt;**
-            **<code><var>cookies</var></code>:** Una lista de cookies serializadas. Cada cookie serializada tiene una serie de campos opcionales que pueden o no ser devueltos además de `name` y `value`.    
+            **<code><var>cookies</var></code>:** Una lista de cookies serializadas. Cada cookie serializada tiene una serie de campos opcionales que pueden o no ser devueltos además de `name` y `value`.
 
 
 ---
+
 ## addCookie
 El comando Add Cookie agrega una sola cookie al almacén de cookies asociado con la dirección del documento activo.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-adding-a-cookie).
-
-
 
 ##### Uso
 
@@ -2077,21 +1950,16 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## deleteAllCookies
 El comando Delete All Cookies permite la eliminación de todas las cookies asociadas con la dirección del documento activo.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-delete-all-cookies).
-
-
 
 ##### Uso
 
 ```js
 browser.deleteAllCookies()
 ```
-
-
 
 ##### Ejemplo
 
@@ -2102,13 +1970,10 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## getNamedCookie
 El comando Get Named Cookie devuelve la cookie con el nombre solicitado de las cookies asociadas en el almacén de cookies del documento activo del contexto de navegación actual. Si no se encuentra ninguna cookie, se devuelve un error de no existe tal cookie.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-named-cookie).
-
-
 
 ##### Uso
 
@@ -2140,19 +2005,16 @@ browser.getNamedCookie(name)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L489-L503
 ```
 
-
-
 ##### Retorna
 
 - **&lt;Object&gt;**
-            **<code><var>cookie</var></code>:** Una cookie serializada, con campos name y value. Hay una serie de campos opcionales como `path`, `domain` y `expiry-time` que también pueden estar presentes.    
+            **<code><var>cookie</var></code>:** Una cookie serializada, con campos name y value. Hay una serie de campos opcionales como `path`, `domain` y `expiry-time` que también pueden estar presentes.
 
 
 ---
+
 ## deleteCookie
 El comando Delete Cookie te permite eliminar una sola cookie por nombre de parámetro, o todas las cookies asociadas con la dirección del documento activo si el nombre no está definido.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-delete-cookie).
-
-
 
 ##### Uso
 
@@ -2187,13 +2049,10 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## performActions
 El comando Perform Actions se utiliza para ejecutar acciones complejas del usuario. Ver [spec](https://github.com/jlipps/simple-wd-spec#perform-actions) para más detalles.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-perform-actions).
-
-
 
 ##### Uso
 
@@ -2221,13 +2080,10 @@ browser.performActions(actions)
 
 
 
-
-
 ---
+
 ## releaseActions
 El comando Release Actions se utiliza para liberar todas las teclas y botones del puntero que están actualmente presionados. Esto hace que se disparen eventos como si el estado se liberara mediante una serie explícita de acciones. También borra todo el estado interno de los dispositivos virtuales.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-release-actions).
-
-
 
 ##### Uso
 
@@ -2237,23 +2093,16 @@ browser.releaseActions()
 
 
 
-
-
-
-
 ---
+
 ## dismissAlert
 El comando Dismiss Alert desestima un diálogo simple si está presente, de lo contrario error. Una solicitud para desestimar una alerta de solicitud de usuario, que puede no tener necesariamente un botón de rechazo, tiene el mismo efecto que aceptarla.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-dismiss-alert).
-
-
 
 ##### Uso
 
 ```js
 browser.dismissAlert()
 ```
-
-
 
 ##### Ejemplo
 
@@ -2264,13 +2113,10 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
-
-
 ---
+
 ## acceptAlert
 El comando Accept Alert acepta un diálogo simple si está presente, de lo contrario error.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-accept-alert).
-
-
 
 ##### Uso
 
@@ -2280,15 +2126,10 @@ browser.acceptAlert()
 
 
 
-
-
-
-
 ---
+
 ## getAlertText
 El comando Get Alert Text devuelve el mensaje de la solicitud de usuario actual. Si no hay solicitud de usuario actual, devuelve un error.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-get-alert-text).
-
-
 
 ##### Uso
 
@@ -2296,27 +2137,22 @@ El comando Get Alert Text devuelve el mensaje de la solicitud de usuario actual.
 browser.getAlertText()
 ```
 
-
-
 ##### Ejemplo
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L521-L522
 ```
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>alertText</var></code>:** El mensaje de la solicitud de usuario.    
+            **<code><var>alertText</var></code>:** El mensaje de la solicitud de usuario.
 
 
 ---
+
 ## sendAlertText
 El comando Send Alert Text establece el campo de texto de una ventana de solicitud de usuario window.prompt al valor dado.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-send-alert-text).
-
-
 
 ##### Uso
 
@@ -2344,13 +2180,10 @@ browser.sendAlertText(text)
 
 
 
-
-
 ---
+
 ## takeScreenshot
 El comando Take Screenshot toma una captura de pantalla de la ventana gráfica del contexto de navegación de nivel superior.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-take-screenshot).
-
-
 
 ##### Uso
 
@@ -2359,19 +2192,16 @@ browser.takeScreenshot()
 ```
 
 
-
-
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>screenshot</var></code>:** Los datos de imagen PNG codificados en base64 que comprenden la captura de pantalla de la ventana gráfica inicial.    
+            **<code><var>screenshot</var></code>:** Los datos de imagen PNG codificados en base64 que comprenden la captura de pantalla de la ventana gráfica inicial.
 
 
 ---
+
 ## takeElementScreenshot
 El comando Take Element Screenshot toma una captura de pantalla de la región visible abarcada por el rectángulo delimitador de un elemento.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#dfn-take-element-screenshot).
-
-
 
 ##### Uso
 
@@ -2406,14 +2236,13 @@ browser.takeElementScreenshot(elementId, scroll)
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>screenshot</var></code>:** Los datos de imagen PNG codificados en base64 que comprenden la captura de pantalla de la región visible del rectángulo delimitador de un elemento después de que se ha desplazado a la vista.    
+            **<code><var>screenshot</var></code>:** Los datos de imagen PNG codificados en base64 que comprenden la captura de pantalla de la región visible del rectángulo delimitador de un elemento después de que se ha desplazado a la vista.
 
 
 ---
+
 ## getElementComputedRole
 Obtiene el rol WAI-ARIA calculado de un elemento.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#get-computed-role).
-
-
 
 ##### Uso
 
@@ -2443,14 +2272,13 @@ browser.getElementComputedRole(elementId)
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>role</var></code>:** El resultado de calcular el rol WAI-ARIA del elemento.    
+            **<code><var>role</var></code>:** El resultado de calcular el rol WAI-ARIA del elemento.
 
 
 ---
+
 ## getElementComputedLabel
 Obtiene el nombre accesible del elemento.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/webdriver/#get-computed-label).
-
-
 
 ##### Uso
 
@@ -2480,14 +2308,13 @@ browser.getElementComputedLabel(elementId)
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>label</var></code>:** El resultado de una Computación de Nombre y Descripción Accesible para el Nombre Accesible del elemento.    
+            **<code><var>label</var></code>:** El resultado de una Computación de Nombre y Descripción Accesible para el Nombre Accesible del elemento.
 
 
 ---
+
 ## setPermissions
 Simula la modificación por parte del usuario del estado de permisos de un PermissionDescriptor. __Nota:__ esta función aún no ha llegado a todos los navegadores.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/permissions/#set-permission-command).
-
-
 
 ##### Uso
 
@@ -2544,13 +2371,10 @@ const clipboardText = await browser.execute(() => navigator.clipboard.readText()
 
 
 
-
-
 ---
+
 ## generateTestReport
 Genera un informe para pruebas. Extensión para [Reporting API](https://developers.google.com/web/updates/2018/09/reportingapi). __Nota:__ esta función aún no ha llegado a todos los navegadores.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/reporting/#automation).
-
-
 
 ##### Uso
 
@@ -2583,13 +2407,10 @@ browser.generateTestReport(message, group)
 
 
 
-
-
 ---
+
 ## createMockSensor
 Crea un sensor simulado para emular sensores como el Sensor de Luz Ambiental. __Nota:__ esta función aún no ha llegado a todos los navegadores.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/sensors/#create-mock-sensor-command).
-
-
 
 ##### Uso
 
@@ -2627,13 +2448,10 @@ browser.createMockSensor(mockSensorType, maxSamplingFrequency, minSamplingFreque
 
 
 
-
-
 ---
+
 ## getMockSensor
 Recupera información sobre un tipo dado de sensor simulado. __Nota:__ esta función aún no ha llegado a todos los navegadores.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/sensors/#get-mock-sensor-command).
-
-
 
 ##### Uso
 
@@ -2663,14 +2481,13 @@ browser.getMockSensor(type)
 ##### Retorna
 
 - **&lt;object&gt;**
-            **<code><var>sensorReading</var></code>:** Valores de la lectura del sensor simulado.    
+            **<code><var>sensorReading</var></code>:** Valores de la lectura del sensor simulado.
 
 
 ---
+
 ## updateMockSensor
 Actualiza el tipo de sensor simulado. __Nota:__ esta función aún no ha llegado a todos los navegadores.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/sensors/#update-mock-sensor-reading-command).
-
-
 
 ##### Uso
 
@@ -2713,13 +2530,10 @@ browser.updateMockSensor(type, mockSensorType, maxSamplingFrequency, minSampling
 
 
 
-
-
 ---
+
 ## deleteMockSensor
 El comando Delete Session cierra cualquier contexto de navegación de nivel superior asociado con la sesión actual, termina la conexión y finalmente cierra la sesión actual. __Nota:__ esta función aún no ha llegado a todos los navegadores.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/sensors/#delete-mock-sensor-command).
-
-
 
 ##### Uso
 
@@ -2747,13 +2561,10 @@ browser.deleteMockSensor(type)
 
 
 
-
-
 ---
+
 ## setTimeZone
 Simula el cambio de una zona horaria con fines de prueba. __Nota:__ esta función aún no ha llegado a todos los navegadores.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://w3c.github.io/sensors/#create-mock-sensor-command).
-
-
 
 ##### Uso
 
@@ -2781,13 +2592,10 @@ browser.setTimeZone(time_zone)
 
 
 
-
-
 ---
+
 ## addVirtualAuthenticator
 Crea un [Autenticador Virtual](https://www.w3.org/TR/webauthn-2/#virtual-authenticators) de software.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://www.w3.org/TR/webauthn-2/#sctn-automation-add-virtual-authenticator).
-
-
 
 ##### Uso
 
@@ -2852,14 +2660,13 @@ browser.addVirtualAuthenticator(protocol, transport, hasResidentKey, hasUserVeri
 ##### Retorna
 
 - **&lt;string&gt;**
-            **<code><var>authenticatorId</var></code>:** Devuelve el ID de cadena del autenticador.    
+            **<code><var>authenticatorId</var></code>:** Devuelve el ID de cadena del autenticador.
 
 
 ---
+
 ## removeVirtualAuthenticator
 Elimina un Autenticador Virtual creado previamente.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-virtual-authenticator).
-
-
 
 ##### Uso
 
@@ -2887,13 +2694,10 @@ browser.removeVirtualAuthenticator(authenticatorId)
 
 
 
-
-
 ---
+
 ## addCredential
 Inyecta una Fuente de Credencial de Clave Pública en un Autenticador Virtual existente.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://www.w3.org/TR/webauthn-2/#sctn-automation-add-credential).
-
-
 
 ##### Uso
 
@@ -2956,13 +2760,10 @@ browser.addCredential(authenticatorId, credentialId, isResidentCredential, rpId,
 
 
 
-
-
 ---
+
 ## getCredentials
 Devuelve un objeto de Parámetros de Credencial para cada Fuente de Credencial de Clave Pública almacenada en un Autenticador Virtual, independientemente de si fueron almacenadas usando Add Credential o `navigator.credentials.create()`.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://www.w3.org/TR/webauthn-2/#sctn-automation-get-credentials).
-
-
 
 ##### Uso
 
@@ -2992,14 +2793,13 @@ browser.getCredentials(authenticatorId)
 ##### Retorna
 
 - **&lt;object[]&gt;**
-            **<code><var>credentials</var></code>:** Devuelve un array de credenciales.    
+            **<code><var>credentials</var></code>:** Devuelve un array de credenciales.
 
 
 ---
+
 ## removeAllCredentials
 Elimina todas las Fuentes de Credencial de Clave Pública almacenadas en un Autenticador Virtual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-all-credentials).
-
-
 
 ##### Uso
 
@@ -3027,13 +2827,10 @@ browser.removeAllCredentials(authenticatorId)
 
 
 
-
-
 ---
+
 ## removeCredential
 Elimina una Fuente de Credencial de Clave Pública almacenada en un Autenticador Virtual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-credential).
-
-
 
 ##### Uso
 
@@ -3066,13 +2863,10 @@ browser.removeCredential(authenticatorId, credentialId)
 
 
 
-
-
 ---
+
 ## setUserVerified
 El comando de extensión Set User Verified establece la propiedad isUserVerified en el Autenticador Virtual.<br /><br />Comando del Protocolo WebDriver. Se pueden encontrar más detalles en los [documentos oficiales del protocolo](https://www.w3.org/TR/webauthn-2/#sctn-automation-set-user-verified).
-
-
 
 ##### Uso
 
@@ -3097,7 +2891,5 @@ browser.setUserVerified(authenticatorId)
     </tr>
   </tbody>
 </table>
-
-
 
 

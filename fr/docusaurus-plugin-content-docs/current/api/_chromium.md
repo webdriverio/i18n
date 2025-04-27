@@ -3,18 +3,15 @@ id: chromium
 title: Chromium
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/chromium.ts
 ---
+
 ## isAlertOpen
 Indique si une boîte de dialogue simple est actuellement ouverte.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/alert_commands.cc#L42-L49).
-
-
 
 ##### Utilisation
 
 ```js
 browser.isAlertOpen()
 ```
-
-
 
 ##### Exemple
 
@@ -29,14 +26,13 @@ console.log(browser.isAlertOpen()); // affiche: true
 ##### Retourne
 
 - **&lt;Boolean&gt;**
-            **<code><var>isAlertOpen</var></code>:** `true` ou `false` selon qu'une boîte de dialogue simple est présente ou non.    
+            **<code><var>isAlertOpen</var></code>:** `true` ou `false` selon qu'une boîte de dialogue simple est présente ou non.
 
 
 ---
+
 ## isAutoReporting
 Indique s'il génère automatiquement des erreurs sur les journaux du navigateur.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://codereview.chromium.org/101203012).
-
-
 
 ##### Utilisation
 
@@ -45,19 +41,16 @@ browser.isAutoReporting()
 ```
 
 
-
-
 ##### Retourne
 
 - **&lt;Boolean&gt;**
-            **<code><var>isAutoReporting</var></code>:** `true` ou `false` selon que le rapport automatique est activé.    
+            **<code><var>isAutoReporting</var></code>:** `true` ou `false` selon que le rapport automatique est activé.
 
 
 ---
+
 ## setAutoReporting
 Active ou désactive le retour de réponse avec une erreur inconnue contenant la première erreur du navigateur (par exemple, échec de chargement d'une ressource en raison d'une réponse 403/404) pour toutes les commandes suivantes (une fois activé).<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://codereview.chromium.org/101203012).
-
-
 
 ##### Utilisation
 
@@ -106,22 +99,19 @@ browser.setAutoReporting(true);
 ##### Retourne
 
 - **&lt;Object|Null&gt;**
-            **<code><var>firstBrowserError</var></code>:** Dans le cas où la première erreur du navigateur s'est déjà produite avant l'exécution de cette commande, elle lancera une erreur inconnue en réponse, qui est un objet avec une clé 'message' décrivant la première erreur du navigateur. Sinon, elle renvoie `null` en cas de succès.    
+            **<code><var>firstBrowserError</var></code>:** Dans le cas où la première erreur du navigateur s'est déjà produite avant l'exécution de cette commande, elle lancera une erreur inconnue en réponse, qui est un objet avec une clé 'message' décrivant la première erreur du navigateur. Sinon, elle renvoie `null` en cas de succès.
 
 
 ---
+
 ## isLoading
 Détermine l'état de chargement de la fenêtre active.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L783-L802).
-
-
 
 ##### Utilisation
 
 ```js
 browser.isLoading()
 ```
-
-
 
 ##### Exemple
 
@@ -136,14 +126,13 @@ console.log(browser.isLoading()); // affiche: true
 ##### Retourne
 
 - **&lt;Boolean&gt;**
-            **<code><var>isLoading</var></code>:** `true` ou `false` selon que la fenêtre active est en cours de chargement ou non.    
+            **<code><var>isLoading</var></code>:** `true` ou `false` selon que la fenêtre active est en cours de chargement ou non.
 
 
 ---
+
 ## takeHeapSnapshot
 Prend un instantané de la mémoire du contexte d'exécution actuel.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/web_view.h#L198-L202).
-
-
 
 ##### Utilisation
 
@@ -152,27 +141,22 @@ browser.takeHeapSnapshot()
 ```
 
 
-
-
 ##### Retourne
 
 - **&lt;Object&gt;**
-            **<code><var>heapSnapshot</var></code>:** Une représentation JSON de l'instantané de la mémoire. Qui peut être inspecté en le chargeant comme fichier dans Chrome DevTools.    
+            **<code><var>heapSnapshot</var></code>:** Une représentation JSON de l'instantané de la mémoire. Qui peut être inspecté en le chargeant comme fichier dans Chrome DevTools.
 
 
 ---
+
 ## getNetworkConnection
 Obtient le type de connexion pour l'émulation réseau. Cette commande n'est applicable que lorsque l'extrémité distante répond avec la capacité `networkConnectionEnabled` définie sur `true`.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
-
-
 
 ##### Utilisation
 
 ```js
 browser.getNetworkConnection()
 ```
-
-
 
 ##### Exemple
 
@@ -194,14 +178,13 @@ console.log(browser.getNetworkConnection()); // affiche: 6 (Wi-Fi et données)
 ##### Retourne
 
 - **&lt;Number&gt;**
-            **<code><var>connectionType</var></code>:** Un masque binaire pour représenter le type de connexion réseau. Mode Avion (`1`), Wi-Fi uniquement (`2`), Wi-Fi et données (`6`), 4G (`8`), 3G (`10`), 2G (`20`). Par défaut, [Wi-Fi et données sont activés](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/chrome_desktop_impl.cc#L36-L37).    
+            **<code><var>connectionType</var></code>:** Un masque binaire pour représenter le type de connexion réseau. Mode Avion (`1`), Wi-Fi uniquement (`2`), Wi-Fi et données (`6`), 4G (`8`), 3G (`10`), 2G (`20`). Par défaut, [Wi-Fi et données sont activés](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/chrome_desktop_impl.cc#L36-L37).
 
 
 ---
+
 ## setNetworkConnection
 Change le type de connexion pour la connexion réseau. Cette commande n'est applicable que lorsque l'extrémité distante répond avec la capacité `networkConnectionEnabled` définie sur `true`.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
-
-
 
 ##### Utilisation
 
@@ -247,14 +230,13 @@ console.log(browser.setNetworkConnection({ type: 1 })); // affiche: 1 (Mode Avio
 ##### Retourne
 
 - **&lt;Number&gt;**
-            **<code><var>connectionType</var></code>:** Un masque binaire pour représenter le type de connexion réseau. La valeur doit correspondre au `type` spécifié dans l'objet, cependant, l'appareil peut ne pas être capable du type de connexion réseau demandé.    
+            **<code><var>connectionType</var></code>:** Un masque binaire pour représenter le type de connexion réseau. La valeur doit correspondre au `type` spécifié dans l'objet, cependant, l'appareil peut ne pas être capable du type de connexion réseau demandé.
 
 
 ---
+
 ## getNetworkConditions
 Obtient les conditions réseau actuelles utilisées pour l'émulation.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L839-L859).
-
-
 
 ##### Utilisation
 
@@ -263,19 +245,16 @@ browser.getNetworkConditions()
 ```
 
 
-
-
 ##### Retourne
 
 - **&lt;Object&gt;**
-            **<code><var>networkConditions</var></code>:** Objet contenant les conditions réseau pour `offline`, `latency`, `download_throughput` et `upload_throughput`. Les conditions réseau doivent être définies avant de pouvoir les récupérer.    
+            **<code><var>networkConditions</var></code>:** Objet contenant les conditions réseau pour `offline`, `latency`, `download_throughput` et `upload_throughput`. Les conditions réseau doivent être définies avant de pouvoir les récupérer.
 
 
 ---
+
 ## setNetworkConditions
 Définit les conditions réseau utilisées pour l'émulation en limitant la connexion.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1663-L1722).
-
-
 
 ##### Utilisation
 
@@ -334,13 +313,10 @@ browser.setNetworkConditions({}, 'Good 3G');
 
 
 
-
-
 ---
+
 ## deleteNetworkConditions
 Désactive toute limitation réseau qui pourrait avoir été définie. Équivalent à définir le préréglage `No throttling`.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1724-L1745).
-
-
 
 ##### Utilisation
 
@@ -350,15 +326,10 @@ browser.deleteNetworkConditions()
 
 
 
-
-
-
-
 ---
+
 ## sendCommand
 Envoie une commande au débogueur DevTools.<br />Pour une liste des commandes disponibles et leurs paramètres, consultez le [Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/).<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1290-L1304).
-
-
 
 ##### Utilisation
 
@@ -391,13 +362,10 @@ browser.sendCommand(cmd, params)
 
 
 
-
-
 ---
+
 ## sendCommandAndGetResult
 Envoie une commande au débogueur DevTools et attend le résultat.<br />Pour une liste des commandes disponibles et leurs paramètres, consultez le [Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/).<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1306-L1320).
-
-
 
 ##### Utilisation
 
@@ -432,14 +400,13 @@ browser.sendCommandAndGetResult(cmd, params)
 ##### Retourne
 
 - **&lt;*&gt;**
-            **<code><var>result</var></code>:** Soit la valeur de retour de votre commande, soit l'erreur qui était la raison de l'échec de votre commande.    
+            **<code><var>result</var></code>:** Soit la valeur de retour de votre commande, soit l'erreur qui était la raison de l'échec de votre commande.
 
 
 ---
+
 ## file
 Téléverse un fichier sur la machine distante sur laquelle le navigateur s'exécute.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L1037-L1065).
-
-
 
 ##### Utilisation
 
@@ -469,14 +436,13 @@ browser.file(file)
 ##### Retourne
 
 - **&lt;String&gt;**
-            **<code><var>path</var></code>:** Chemin absolu du fichier téléversé sur la machine distante.    
+            **<code><var>path</var></code>:** Chemin absolu du fichier téléversé sur la machine distante.
 
 
 ---
+
 ## launchChromeApp
 Lance une application Chrome par identifiant spécifié.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L521-L539).
-
-
 
 ##### Utilisation
 
@@ -524,13 +490,10 @@ browser.launchChromeApp('aohghmighlieiainnegkcijnfilokake')); // Google Docs (ht
 
 
 
-
-
 ---
+
 ## getElementValue
 Récupère la valeur d'un élément de contrôle de formulaire donné.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L431-L443).
-
-
 
 ##### Utilisation
 
@@ -560,14 +523,13 @@ browser.getElementValue(elementId)
 ##### Retourne
 
 - **&lt;String|Null&gt;**
-            **<code><var>value</var></code>:** Valeur actuelle de l'élément. Si l'élément spécifié n'est pas un élément de contrôle de formulaire, elle renverra `null`.    
+            **<code><var>value</var></code>:** Valeur actuelle de l'élément. Si l'élément spécifié n'est pas un élément de contrôle de formulaire, elle renverra `null`.
 
 
 ---
+
 ## elementHover
 Active l'état de survol pour un élément, qui est réinitialisé lors de la prochaine interaction.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L126-L146).
-
-
 
 ##### Utilisation
 
@@ -595,13 +557,10 @@ browser.elementHover(elementId)
 
 
 
-
-
 ---
+
 ## touchPinch
 Déclenche un effet de zoom par pincement.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L813-L827).
-
-
 
 ##### Utilisation
 
@@ -639,13 +598,10 @@ browser.touchPinch(x, y, scale)
 
 
 
-
-
 ---
+
 ## freeze
 Gèle la page actuelle. Extension pour [Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api).<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L625-L633).
-
-
 
 ##### Utilisation
 
@@ -655,15 +611,10 @@ browser.freeze()
 
 
 
-
-
-
-
 ---
+
 ## resume
 Reprend la page actuelle. Extension pour [Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api).<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L635-L645).
-
-
 
 ##### Utilisation
 
@@ -673,15 +624,10 @@ browser.resume()
 
 
 
-
-
-
-
 ---
+
 ## getCastSinks
 Renvoie la liste des récepteurs de diffusion (appareils Cast) disponibles pour le routeur multimédia Chrome.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#748).
-
-
 
 ##### Utilisation
 
@@ -690,19 +636,16 @@ browser.getCastSinks()
 ```
 
 
-
-
 ##### Retourne
 
 - **&lt;string[]&gt;**
-            **<code><var>sinks</var></code>:** Liste des récepteurs disponibles.    
+            **<code><var>sinks</var></code>:** Liste des récepteurs disponibles.
 
 
 ---
+
 ## selectCastSink
 Sélectionne un récepteur de diffusion (appareil Cast) comme destinataire des intentions du routeur multimédia (connexion ou lecture).<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#737).
-
-
 
 ##### Utilisation
 
@@ -730,13 +673,10 @@ browser.selectCastSink(sinkName)
 
 
 
-
-
 ---
+
 ## startCastTabMirroring
 Initie la mise en miroir de l'onglet pour l'onglet actuel du navigateur sur l'appareil spécifié.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#741).
-
-
 
 ##### Utilisation
 
@@ -764,13 +704,10 @@ browser.startCastTabMirroring(sinkName)
 
 
 
-
-
 ---
+
 ## getCastIssueMessage
 Renvoie un message d'erreur s'il y a un problème dans une session Cast.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#751).
-
-
 
 ##### Utilisation
 
@@ -779,19 +716,16 @@ browser.getCastIssueMessage()
 ```
 
 
-
-
 ##### Retourne
 
 - **&lt;String&gt;**
-            **<code><var>message</var></code>:** Message d'erreur, le cas échéant.    
+            **<code><var>message</var></code>:** Message d'erreur, le cas échéant.
 
 
 ---
+
 ## stopCasting
 Arrête la diffusion du routeur multimédia vers l'appareil spécifié, si connecté.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#744).
-
-
 
 ##### Utilisation
 
@@ -819,13 +753,10 @@ browser.stopCasting(sinkName)
 
 
 
-
-
 ---
+
 ## shutdown
 Arrête le processus ChromeDriver et par conséquent termine toutes les sessions actives.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L489-L498).
-
-
 
 ##### Utilisation
 
@@ -835,15 +766,10 @@ browser.shutdown()
 
 
 
-
-
-
-
 ---
+
 ## takeElementScreenshot
 La commande Take Element Screenshot prend une capture d'écran de la région visible englobée par le rectangle délimitant d'un élément.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://w3c.github.io/webdriver/#dfn-take-element-screenshot).
-
-
 
 ##### Utilisation
 
@@ -878,14 +804,13 @@ browser.takeElementScreenshot(elementId, scroll)
 ##### Retourne
 
 - **&lt;String&gt;**
-            **<code><var>screenshot</var></code>:** Les données d'image PNG encodées en base64 constituant la capture d'écran de la région visible du rectangle délimitant d'un élément après qu'il ait été défilé pour être visible.    
+            **<code><var>screenshot</var></code>:** Les données d'image PNG encodées en base64 constituant la capture d'écran de la région visible du rectangle délimitant d'un élément après qu'il ait été défilé pour être visible.
 
 
 ---
+
 ## getLogTypes
 Obtient les types de journaux disponibles.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlogtypes).
-
-
 
 ##### Utilisation
 
@@ -894,19 +819,16 @@ browser.getLogTypes()
 ```
 
 
-
-
 ##### Retourne
 
 - **&lt;String[]&gt;**
-            **<code><var>logTypes</var></code>:** La liste des types de journaux disponibles, exemple : browser, driver.    
+            **<code><var>logTypes</var></code>:** La liste des types de journaux disponibles, exemple : browser, driver.
 
 
 ---
+
 ## getLogs
 Obtient le journal pour un type de journal donné. Le tampon du journal est réinitialisé après chaque demande.<br /><br />Commande Chromium non officielle et non documentée. Plus d'informations sur cette commande peuvent être trouvées [ici](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlog).
-
-
 
 ##### Utilisation
 

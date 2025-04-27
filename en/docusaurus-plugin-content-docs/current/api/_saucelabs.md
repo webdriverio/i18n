@@ -21,10 +21,9 @@ capabilities. You can enable these by setting the following Sauce options:
 ```
 
 ---
+
 ## getPageLogs
 Get webpage specific log information based on the last page load.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/insights/debug/#network-logs).
-
-
 
 ##### Usage
 
@@ -96,14 +95,13 @@ console.log(browser.getPageLogs('sauce:performance'));
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>log</var></code>:** log output of desired type (see example)    
+            **<code><var>log</var></code>:** log output of desired type (see example)
 
 
 ---
+
 ## sauceThrottleNetwork
 With network conditioning you can test your site on a variety of network connections, including Edge, 3G, and even offline. You can throttle the data throughput, including the maximum download and upload throughput, and use latency manipulation to enforce a minimum delay in connection round-trip time (RTT).<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
-
-
 
 ##### Usage
 
@@ -149,13 +147,10 @@ browser.sauceThrottleNetwork({
 
 
 
-
-
 ---
+
 ## throttleCPU
 You can throttle the CPU in DevTools to understand how your page performs under that constraint.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
-
-
 
 ##### Usage
 
@@ -197,13 +192,10 @@ browser.throttleCPU(0)
 
 
 
-
-
 ---
+
 ## interceptRequest
 Allows modifying any request made by the browser. You can blacklist, modify, or redirect these as required for your tests.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
-
-
 
 ##### Usage
 
@@ -270,13 +262,10 @@ browser.interceptRequest({
 
 
 
-
-
 ---
+
 ## assertPerformance
 Assert against the performance baseline of your app.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
-
-
 
 ##### Usage
 
@@ -323,22 +312,19 @@ const hasRegression = browser.assertPerformance({
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>hasRegression</var></code>:** An object containing the result as well as metrics about the result.    
+            **<code><var>hasRegression</var></code>:** An object containing the result as well as metrics about the result.
 
 
 ---
+
 ## jankinessCheck
 Perform a scroll test that evaluates the jankiness of the application.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
-
-
 
 ##### Usage
 
 ```js
 browser.jankinessCheck()
 ```
-
-
 
 ##### Example
 
@@ -353,14 +339,13 @@ browser.jankinessCheck()
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>testResults</var></code>:** An object containing the score as well as metrics around how smooth the UX of the page was during the test.    
+            **<code><var>testResults</var></code>:** An object containing the score as well as metrics around how smooth the UX of the page was during the test.
 
 
 ---
+
 ## mockRequest
 Mocks a network resource.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/).
-
-
 
 ##### Usage
 
@@ -395,14 +380,13 @@ browser.mockRequest(url, filterOptions)
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>mockId</var></code>:** An object containing the id of a mock resource.    
+            **<code><var>mockId</var></code>:** An object containing the id of a mock resource.
 
 
 ---
+
 ## getMockCalls
 Receive request information about requests that match the mocked resource.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/).
-
-
 
 ##### Usage
 
@@ -432,14 +416,13 @@ browser.getMockCalls(mockId)
 ##### Returns
 
 - **&lt;object&gt;**
-            **<code><var>requests</var></code>:** A list of request information.    
+            **<code><var>requests</var></code>:** A list of request information.
 
 
 ---
+
 ## clearMockCalls
 Clear list of mock calls.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/).
-
-
 
 ##### Usage
 
@@ -472,13 +455,10 @@ browser.clearMockCalls(mockId, restore)
 
 
 
-
-
 ---
+
 ## respondMock
 Respond if mock matches a specific resource.<br /><br />Sauce Labs command. More details can be found in the [official protocol docs](https://docs.saucelabs.com/).
-
-
 
 ##### Usage
 
@@ -508,7 +488,5 @@ browser.respondMock(mockId, payload)
     </tr>
   </tbody>
 </table>
-
-
 
 
