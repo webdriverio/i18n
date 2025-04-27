@@ -1,23 +1,23 @@
 ---
 id: web-extensions
-title: Web Extension Testing
+title: Web 扩展测试
 ---
 
-WebdriverIO is the ideal tool to automate a browser. Web Extensions are a part of the browser and can be automated in the same way. Whenever your web extension uses content scripts to run JavaScript on websites or offer a popup modal, you can run an e2e test for that using WebdriverIO.
+WebdriverIO 是自动化浏览器的理想工具。Web 扩展是浏览器的一部分，可以以相同的方式进行自动化测试。无论您的 Web 扩展使用内容脚本在网站上运行 JavaScript 或提供弹出模态框，您都可以使用 WebdriverIO 为其运行端到端测试。
 
-## Loading a Web Extension into the Browser
+## 将 Web 扩展加载到浏览器中
 
-As a first step we have to load the extension under test into the browser as part of our session. This works differently for Chrome and Firefox.
+作为第一步，我们必须将要测试的扩展作为会话的一部分加载到浏览器中。这在 Chrome 和 Firefox 中的工作方式不同。
 
 :::info
 
-These docs leave out Safari web extensions as their support for it is way behind and user demand not high. If you are building a web extension for Safari, please [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) and collaborate on including it here as well.
+这些文档省略了 Safari Web 扩展，因为它们的支持远远落后，用户需求不高。如果您正在为 Safari 构建 Web 扩展，请[提出问题](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E)并协作在此处也包含它。
 
 :::
 
 ### Chrome
 
-Loading a web extension in Chrome can be done through providing a `base64` encoded string of the `crx` file or by providing a path to the web extension folder. The easiest is just to do the latter by defining your Chrome capabilities as following:
+在 Chrome 中加载 Web 扩展可以通过提供 `crx` 文件的 `base64` 编码字符串或提供 Web 扩展文件夹的路径来完成。最简单的方法是通过定义 Chrome 功能如下来实现后者：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -30,8 +30,8 @@ export const config = {
     capabilities: [{
         browserName,
         'goog:chromeOptions': {
-            // given your wdio.conf.js is in the root directory and your compiled
-            // web extension files are located in the `./dist` folder
+            // 假设您的 wdio.conf.js 位于根目录中，并且编译好的
+            // Web 扩展文件位于 `./dist` 文件夹中
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -40,11 +40,11 @@ export const config = {
 
 :::info
 
-If you automate a different browser than Chrome, e.g. Brave, Edge or Opera, chances are that the browser option match with the example above, just using a different capability name, e.g. `ms:edgeOptions`.
+如果您自动化的是 Chrome 以外的浏览器，例如 Brave、Edge 或 Opera，很可能浏览器选项与上面的示例匹配，只是使用不同的功能名称，例如 `ms:edgeOptions`。
 
 :::
 
-If you compile your extension as `.crx` file using e.g. the [crx](https://www.npmjs.com/package/crx) NPM package, you can also inject the bundled extension via:
+如果您使用例如 [crx](https://www.npmjs.com/package/crx) NPM 包将扩展编译为 `.crx` 文件，您还可以通过以下方式注入打包的扩展：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +67,7 @@ export const config = {
 
 ### Firefox
 
-To create a Firefox profile that includes extensions you can use the [Firefox Profile Service](/docs/firefox-profile-service) to set up your session accordingly. However you might run into issues where your local developed extension can't be loaded due to signing issues. In this case you can also load an extension in the `before` hook via the [`installAddOn`](/docs/api/gecko#installaddon) command, e.g.:
+要创建包含扩展的 Firefox 配置文件，您可以使用 [Firefox 配置文件服务](/docs/firefox-profile-service)来相应地设置会话。但是，您可能会遇到由于签名问题而无法加载本地开发的扩展的情况。在这种情况下，您还可以通过 [`installAddOn`](/docs/api/gecko#installaddon) 命令在 `before` 钩子中加载扩展，例如：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,21 +88,21 @@ export const config = {
 }
 ```
 
-In order to generate an `.xpi` file, it is recommended to use the [`web-ext`](https://www.npmjs.com/package/web-ext) NPM package. You can bundle your extension using the following example command:
+为了生成 `.xpi` 文件，建议使用 [`web-ext`](https://www.npmjs.com/package/web-ext) NPM 包。您可以使用以下示例命令打包扩展：
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
-## Tips & Tricks
+## 技巧与诀窍
 
-The following section contains a set useful tips and tricks that can be helpful when testing a web extension.
+以下部分包含一组在测试 Web 扩展时可能有用的技巧和诀窍。
 
-### Test Popup Modal in Chrome
+### 在 Chrome 中测试弹出模态框
 
-If you define a `default_popup` browser action entry in your [extension manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) you can test that HTML page directly, since clicking on the extension icon in the browser top bar won't work. Instead, you have to open the popup html file directly.
+如果您在[扩展清单](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action)中定义了 `default_popup` 浏览器操作条目，您可以直接测试该 HTML 页面，因为点击浏览器顶部栏中的扩展图标将不起作用。相反，您必须直接打开弹出 HTML 文件。
 
-In Chrome this works by retrieving the extension ID and opening the popup page through `browser.url('...')`. The behavior on that page will be the same as within the popup. To do so we recommend to write the following custom command:
+在 Chrome 中，这可以通过检索扩展 ID 并通过 `browser.url('...')` 打开弹出页面来实现。该页面上的行为将与弹出窗口中的行为相同。为此，我们建议编写以下自定义命令：
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -134,7 +134,7 @@ declare global {
 }
 ```
 
-In your `wdio.conf.js` you can import this file and register the custom command in your `before` hook, e.g.:
+在您的 `wdio.conf.js` 中，您可以导入此文件并在 `before` 钩子中注册自定义命令，例如：
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'
@@ -149,7 +149,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Now, in your test, you can access the popup page via:
+现在，在您的测试中，您可以通过以下方式访问弹出页面：
 
 ```ts
 await browser.openExtensionPopup('My Web Extension')

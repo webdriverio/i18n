@@ -1,34 +1,34 @@
 ---
 id: runner
-title: Runner
+title: 运行器
 ---
 
 import CodeBlock from '@theme/CodeBlock';
 
-A runner in WebdriverIO orchestrates how and where tests are being run when using the testrunner. WebdriverIO currently supports two different types of runner: local and browser runner.
+WebdriverIO中的运行器负责协调测试如何以及在何处运行，当使用测试运行器时。WebdriverIO目前支持两种不同类型的运行器：本地运行器和浏览器运行器。
 
-## Local Runner
+## 本地运行器
 
-The [Local Runner](https://www.npmjs.com/package/@wdio/local-runner) initiates your framework (e.g. Mocha, Jasmine or Cucumber) within worker a process and runs all your test files within your Node.js environment. Every test file is being run in a separate worker process per capability allowing for maximum concurrency. Every worker process uses a single browser instance and therefore runs its own browser session allowing for maximum isolation.
+[本地运行器](https://www.npmjs.com/package/@wdio/local-runner)在工作进程中启动您的框架（例如Mocha、Jasmine或Cucumber），并在您的Node.js环境中运行所有测试文件。每个测试文件都在一个单独的工作进程中运行（每个能力），从而实现最大并发性。每个工作进程使用一个浏览器实例，因此运行自己的浏览器会话，允许最大程度的隔离。
 
-Given every test is run in its own isolated process, it is not possible to share data across test files. There are two ways to work around this:
+由于每个测试都在自己的隔离进程中运行，因此无法在测试文件之间共享数据。有两种方法可以解决这个问题：
 
-- use the [`@wdio/shared-store-service`](https://www.npmjs.com/package/@wdio/shared-store-service) to share data across all workers
-- group spec files (read more in [Organizing Test Suite](https://webdriver.io/docs/organizingsuites#grouping-test-specs-to-run-sequentially))
+- 使用[`@wdio/shared-store-service`](https://www.npmjs.com/package/@wdio/shared-store-service)来在所有工作进程之间共享数据
+- 对规格文件进行分组（在[组织测试套件](https://webdriver.io/docs/organizingsuites#grouping-test-specs-to-run-sequentially)中阅读更多内容）
 
-If nothing else is defined in the `wdio.conf.js` the Local Runner is the default runner in WebdriverIO.
+如果在`wdio.conf.js`中没有定义其他内容，本地运行器是WebdriverIO中的默认运行器。
 
-### Install
+### 安装
 
-To use the Local Runner you can install it via:
+要使用本地运行器，您可以通过以下方式安装：
 
 ```sh
 npm install --save-dev @wdio/local-runner
 ```
 
-### Setup
+### 设置
 
-The Local Runner is the default runner in WebdriverIO so there is no need to define it within your `wdio.conf.js`. If you want to explicitly set it, you can define it as follows:
+本地运行器是WebdriverIO中的默认运行器，因此不需要在`wdio.conf.js`中定义它。如果您想明确设置它，可以按如下方式定义：
 
 ```js
 // wdio.conf.js
@@ -39,24 +39,24 @@ export const {
 }
 ```
 
-## Browser Runner
+## 浏览器运行器
 
-As opposed to the [Local Runner](https://www.npmjs.com/package/@wdio/local-runner) the [Browser Runner](https://www.npmjs.com/package/@wdio/browser-runner) initiates and executes the framework within the browser. This allows you to run unit tests or component tests in an actual browser rather than in a JSDOM like many other test frameworks.
+与[本地运行器](https://www.npmjs.com/package/@wdio/local-runner)不同，[浏览器运行器](https://www.npmjs.com/package/@wdio/browser-runner)在浏览器内启动和执行框架。这允许您在实际浏览器中运行单元测试或组件测试，而不是像许多其他测试框架那样在JSDOM中运行。
 
-While [JSDOM](https://www.npmjs.com/package/jsdom) is widely used for testing purposes, it is in the end not an actual browser nor can you emulate mobile environments with it. With this runner WebdriverIO enables you to easily run your tests in the browser and use WebDriver commands to interact with elements rendered on the page.
+虽然[JSDOM](https://www.npmjs.com/package/jsdom)被广泛用于测试目的，但它最终不是一个真正的浏览器，也不能用它模拟移动环境。通过这个运行器，WebdriverIO使您能够轻松地在浏览器中运行测试，并使用WebDriver命令与页面上渲染的元素进行交互。
 
-Here is an overview of running tests within JSDOM vs. WebdriverIOs Browser Runner
+以下是在JSDOM与WebdriverIO浏览器运行器中运行测试的对比：
 
-|    | JSDOM                                                                                                                                                           | WebdriverIO Browser Runner                                                                            |
-| -- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| 1. | Runs your tests within Node.js using a re-implementation of web standards, notably the WHATWG DOM and HTML Standards                                            | Executes your test in an actual browser and runs the code in an environment that your users use       |
-| 2. | Interactions with components can only be imitated via JavaScript                                                                                                | You can use the [WebdriverIO API](api) to interact with elements through the WebDriver protocol       |
-| 3. | Canvas support requires [additional dependencies](https://www.npmjs.com/package/canvas) and [has limitations](https://github.com/Automattic/node-canvas/issues) | You have access to the real [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) |
-| 4. | JSDOM has some [caveats](https://github.com/jsdom/jsdom#caveats) and unsupported Web APIs                                                                       | All Web APIs are supported as test run in an actual browser                                           |
-| 5. | Impossible to detect errors cross browser                                                                                                                       | Support for all browsers including mobile browser                                                     |
-| 6. | Can __not__ test for element pseudo states                                                                                                                      | Support for pseudo states such as `:hover` or `:active`                                               |
+| | JSDOM | WebdriverIO浏览器运行器 |
+|-|-------|----------------------------|
+|1.| 在Node.js中运行您的测试，使用Web标准的重新实现，特别是WHATWG DOM和HTML标准 | 在实际浏览器中执行您的测试，并在您的用户使用的环境中运行代码 |
+|2.| 与组件的交互只能通过JavaScript模拟 | 您可以使用[WebdriverIO API](api)通过WebDriver协议与元素交互 |
+|3.| Canvas支持需要[额外的依赖](https://www.npmjs.com/package/canvas)并且[有限制](https://github.com/Automattic/node-canvas/issues) | 您可以访问真正的[Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) |
+|4.| JSDOM有一些[注意事项](https://github.com/jsdom/jsdom#caveats)和不支持的Web API | 所有Web API都受支持，因为测试在实际浏览器中运行 |
+|5.| 不可能跨浏览器检测错误 | 支持所有浏览器，包括移动浏览器 |
+|6.| __不能__测试元素伪状态 | 支持伪状态，如`:hover`或`:active` |
 
-This runner uses [Vite](https://vitejs.dev/) to compile your test code and load it in the browser. It comes with presets for the following component frameworks:
+此运行器使用[Vite](https://vitejs.dev/)来编译您的测试代码并将其加载到浏览器中。它为以下组件框架提供预设：
 
 - React
 - Preact
@@ -65,19 +65,19 @@ This runner uses [Vite](https://vitejs.dev/) to compile your test code and load 
 - SolidJS
 - Stencil
 
-Every test file / test file group runs within a single page which means that between each test the page is being reloaded to guarantee isolation between tests.
+每个测试文件/测试文件组在单个页面内运行，这意味着在每个测试之间，页面都会重新加载，以确保测试之间的隔离。
 
-### Install
+### 安装
 
-To use the Browser Runner you can install it via:
+要使用浏览器运行器，您可以通过以下方式安装：
 
 ```sh
 npm install --save-dev @wdio/browser-runner
 ```
 
-### Setup
+### 设置
 
-To use the Browser runner, you have to define a `runner` property within your `wdio.conf.js` file, e.g.:
+要使用浏览器运行器，您必须在`wdio.conf.js`文件中定义一个`runner`属性，例如：
 
 ```js
 // wdio.conf.js
@@ -88,15 +88,16 @@ export const {
 }
 ```
 
-### Runner Options
+### 运行器选项
 
-The Browser runner allows following configurations:
+浏览器运行器允许以下配置：
 
 #### `preset`
 
-If you test components using one of the mentioned frameworks above, you can define a preset that ensures everything is configured out of the box. This option can't be used together with `viteConfig`.
+如果您使用上述提到的框架之一测试组件，可以定义一个预设，确保一切都已配置好。此选项不能与`viteConfig`一起使用。
 
-__Type:__ `vue` | `svelte` | `solid` | `react` | `preact` | `stencil`<br /> __Example:__
+__类型:__ `vue` | `svelte` | `solid` | `react` | `preact` | `stencil`<br />
+__示例:__
 
 ```js title="wdio.conf.js"
 export const {
@@ -110,9 +111,10 @@ export const {
 
 #### `viteConfig`
 
-Define your own [Vite configuration](https://vitejs.dev/config/). You can either pass in a custom object or import an existing `vite.conf.ts` file if you use Vite.js for development. Note that WebdriverIO keeps custom Vite configurations to set up the test harness.
+定义您自己的[Vite配置](https://vitejs.dev/config/)。您可以传入自定义对象或导入现有的`vite.conf.ts`文件（如果您使用Vite.js进行开发）。请注意，WebdriverIO保留自定义Vite配置以设置测试环境。
 
-__Type:__ `string` or [`UserConfig`](https://github.com/vitejs/vite/blob/52e64eb43287d241f3fd547c332e16bd9e301e95/packages/vite/src/node/config.ts#L119-L272) or `(env: ConfigEnv) => UserConfig | Promise<UserConfig>`<br /> __Example:__
+__类型:__ `string`或[`UserConfig`](https://github.com/vitejs/vite/blob/52e64eb43287d241f3fd547c332e16bd9e301e95/packages/vite/src/node/config.ts#L119-L272)或`(env: ConfigEnv) => UserConfig | Promise<UserConfig>`<br />
+__示例:__
 
 ```js title="wdio.conf.ts"
 import viteConfig from '../vite.config.ts'
@@ -120,10 +122,10 @@ import viteConfig from '../vite.config.ts'
 export const {
     // ...
     runner: ['browser', { viteConfig }],
-    // or just:
+    // 或者简单地：
     runner: ['browser', { viteConfig: '../vites.config.ts' }],
-    // or use a function if your vite config contains a lot of plugins
-    // which you only want to resolve when value is read
+    // 或者使用函数，如果您的vite配置包含许多插件，
+    // 您只想在读取值时解析它们
     runner: ['browser', {
         viteConfig: () => ({
             // ...
@@ -135,43 +137,49 @@ export const {
 
 #### `headless`
 
-If set to `true` the runner will update capabilities to run tests headless. By default this is enabled within CI environments where a `CI` environment variable is set to `'1'` or `'true'`.
+如果设置为`true`，运行器将更新功能以无头方式运行测试。默认情况下，在CI环境中启用此功能，其中`CI`环境变量设置为`'1'`或`'true'`。
 
-__Type:__ `boolean`<br /> __Default:__ `false`, set to `true` if `CI` environment variable is set
+__类型:__ `boolean`<br />
+__默认值:__ `false`，如果设置了`CI`环境变量则为`true`
 
 #### `rootDir`
 
-Project root directory.
+项目根目录。
 
-__Type:__ `string`<br /> __Default:__ `process.cwd()`
+__类型:__ `string`<br />
+__默认值:__ `process.cwd()`
 
 #### `coverage`
 
-WebdriverIO supports test coverage reporting through [`istanbul`](https://istanbul.js.org/). See [Coverage Options](#coverage-options) for more details.
+WebdriverIO支持通过[`istanbul`](https://istanbul.js.org/)进行测试覆盖率报告。有关更多详细信息，请参阅[覆盖率选项](#coverage-options)。
 
-__Type:__ `object`<br /> __Default:__ `undefined`
+__类型:__ `object`<br />
+__默认值:__ `undefined`
 
-### Coverage Options
+### 覆盖率选项
 
-The following options allow to configure coverage reporting.
+以下选项允许配置覆盖率报告。
 
 #### `enabled`
 
-Enables coverage collection.
+启用覆盖率收集。
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__类型:__ `boolean`<br />
+__默认值:__ `false`
 
 #### `include`
 
-List of files included in coverage as glob patterns.
+覆盖率中包含的文件列表，使用glob模式。
 
-__Type:__ `string[]`<br /> __Default:__ `[**]`
+__类型:__ `string[]`<br />
+__默认值:__ `[**]`
 
 #### `exclude`
 
-List of files excluded in coverage as glob patterns.
+覆盖率中排除的文件列表，使用glob模式。
 
-__Type:__ `string[]`<br /> __Default:__
+__类型:__ `string[]`<br />
+__默认值:__
 
 ```
 [
@@ -192,65 +200,73 @@ __Type:__ `string[]`<br /> __Default:__
 
 #### `extension`
 
-List of file extensions the report should include.
+报告应包含的文件扩展名列表。
 
-__Type:__ `string | string[]`<br /> __Default:__ `['.js', '.cjs', '.mjs', '.ts', '.mts', '.cts', '.tsx', '.jsx', '.vue', '.svelte']`
+__类型:__ `string | string[]`<br />
+__默认值:__ `['.js', '.cjs', '.mjs', '.ts', '.mts', '.cts', '.tsx', '.jsx', '.vue', '.svelte']`
 
 #### `reportsDirectory`
 
-Directory to write coverage report to.
+写入覆盖率报告的目录。
 
-__Type:__ `string`<br /> __Default:__ `./coverage`
+__类型:__ `string`<br />
+__默认值:__ `./coverage`
 
 #### `reporter`
 
-Coverage reporters to use. See [istanbul documentation](https://istanbul.js.org/docs/advanced/alternative-reporters/) for detailed list of all reporters.
+要使用的覆盖率报告器。有关所有报告器的详细列表，请参阅[istanbul文档](https://istanbul.js.org/docs/advanced/alternative-reporters/)。
 
-__Type:__ `string[]`<br /> __Default:__ `['text', 'html', 'clover', 'json-summary']`
+__类型:__ `string[]`<br />
+__默认值:__ `['text', 'html', 'clover', 'json-summary']`
 
 #### `perFile`
 
-Check thresholds per file. See `lines`, `functions`, `branches` and `statements` for the actual thresholds.
+按文件检查阈值。有关实际阈值，请参阅`lines`、`functions`、`branches`和`statements`。
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__类型:__ `boolean`<br />
+__默认值:__ `false`
 
 #### `clean`
 
-Clean coverage results before running tests.
+在运行测试之前清除覆盖率结果。
 
-__Type:__ `boolean`<br /> __Default:__ `true`
+__类型:__ `boolean`<br />
+__默认值:__ `true`
 
 #### `lines`
 
-Threshold for lines.
+行的阈值。
 
-__Type:__ `number`<br /> __Default:__ `undefined`
+__类型:__ `number`<br />
+__默认值:__ `undefined`
 
 #### `functions`
 
-Threshold for functions.
+函数的阈值。
 
-__Type:__ `number`<br /> __Default:__ `undefined`
+__类型:__ `number`<br />
+__默认值:__ `undefined`
 
 #### `branches`
 
-Threshold for branches.
+分支的阈值。
 
-__Type:__ `number`<br /> __Default:__ `undefined`
+__类型:__ `number`<br />
+__默认值:__ `undefined`
 
 #### `statements`
 
-Threshold for statements.
+语句的阈值。
 
-__Type:__ `number`<br /> __Default:__ `undefined`
+__类型:__ `number`<br />
+__默认值:__ `undefined`
 
-### Limitations
+### 限制
 
-When using the WebdriverIO browser runner, it's important to note that thread blocking dialogs like `alert` or `confirm` cannot be used natively. This is because they block the web page, which means WebdriverIO cannot continue communicating with the page, causing the execution to hang.
+在使用WebdriverIO浏览器运行器时，需要注意的是，线程阻塞对话框如`alert`或`confirm`不能原生使用。这是因为它们会阻塞网页，这意味着WebdriverIO无法继续与页面通信，导致执行挂起。
 
-In such situations, WebdriverIO provides default mocks with default returned values for these APIs. This ensures that if the user accidentally uses synchronous popup web APIs, the execution would not hang. However, it's still recommended for the user to mock these web APIs for better experience. Read more in [Mocking](/docs/component-testing/mocking).
+在这种情况下，WebdriverIO为这些API提供默认的模拟，并返回默认值。这确保了如果用户意外使用同步弹出式Web API，执行不会挂起。但是，仍然建议用户为这些Web API进行模拟以获得更好的体验。在[模拟](/docs/component-testing/mocking)中了解更多。
 
-### Examples
+### 示例
 
-Make sure to check out the docs around [component testing](https://webdriver.io/docs/component-testing) and have a look into the [example repository](https://github.com/webdriverio/component-testing-examples) for examples using these and various other frameworks.
-
+请务必查看[组件测试](https://webdriver.io/docs/component-testing)相关文档，并查看[示例仓库](https://github.com/webdriverio/component-testing-examples)，了解使用这些和其他各种框架的示例。

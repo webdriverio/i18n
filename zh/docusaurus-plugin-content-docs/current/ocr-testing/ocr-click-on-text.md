@@ -3,7 +3,7 @@ id: ocr-click-on-text
 title: ocrClickOnText
 ---
 
-Click on an element based on the provided texts. The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+基于提供的文本点击元素。该命令将搜索提供的文本，并尝试使用[Fuse.js](https://fusejs.io/)的模糊逻辑找到匹配项。这意味着即使你提供了带有拼写错误的选择器，或者找到的文本可能不是100%匹配，它仍然会尝试返回一个元素。查看下面的[日志](#logs)。
 
 ## Usage
 
@@ -24,7 +24,7 @@ await browser.ocrClickOnText({ text: "Start3d" });
 
 ### Image
 
-You will find an image in your (default)[`imagesFolder`](./getting-started#imagesfolder) with a target to show you where the module has clicked.
+你将在你的(默认)[`imagesFolder`](./getting-started#imagesfolder)中找到一张带有目标标记的图片，显示模块点击的位置。
 
 ![Process steps](/img/ocr/ocr-click-on-text-target.jpg)
 
@@ -32,10 +32,10 @@ You will find an image in your (default)[`imagesFolder`](./getting-started#image
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **Type:** `string`
+-   **Mandatory:** yes
 
-The text you want to search for to click on.
+你要搜索并点击的文本。
 
 #### Example
 
@@ -45,11 +45,11 @@ await browser.ocrClickOnText({ text: "WebdriverIO" });
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **Type:** `number`
+-   **Mandatory:** no
+-   **Default:** `500` milliseconds
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+这是点击的持续时间。如果需要，你也可以通过增加时间来创建"长按点击"。
 
 #### Example
 
@@ -62,11 +62,11 @@ await browser.ocrClickOnText({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **Type:** `number`
+-   **Mandatory:** no
+-   **Default:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+对比度越高，图像越暗，反之亦然。这可以帮助在图像中找到文本。它接受介于`-1`和`1`之间的值。
 
 #### Example
 
@@ -79,10 +79,10 @@ await browser.ocrClickOnText({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Type:** `number`
+-   **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+这是屏幕上OCR需要寻找文本的搜索区域。可以是一个元素或包含`x`、`y`、`width`和`height`的矩形。
 
 #### Example
 
@@ -112,11 +112,11 @@ await browser.ocrClickOnText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseract将识别的语言。更多信息可以在[这里](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)找到，支持的语言可以在[这里](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)找到。
 
 #### Example
 
@@ -131,32 +131,32 @@ await browser.ocrClickOnText({
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **Type:** `object`
+-   **Mandatory:** no
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+你可以相对于匹配元素在屏幕上点击。这可以基于匹配元素`上方`、`右侧`、`下方`或`左侧`的相对像素来完成。
 
 :::note
 
-The following combinations are allowed
+允许以下组合：
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   单个属性
+-   `above` + `left` 或 `above` + `right`
+-   `below` + `left` 或 `below` + `right`
 
-The following combinations are **NOT** allowed
+以下组合是**不**允许的：
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` 加 `below`
+-   `left` 加 `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Type:** `number`
+-   **Mandatory:** no
 
-Click x pixels `above` the matching element.
+在匹配元素`上方`点击x像素。
 
 ##### Example
 
@@ -171,10 +171,10 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Type:** `number`
+-   **Mandatory:** no
 
-Click x pixels `right` from the matching element.
+在匹配元素`右侧`点击x像素。
 
 ##### Example
 
@@ -189,10 +189,10 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Type:** `number`
+-   **Mandatory:** no
 
-Click x pixels `below` the matching element.
+在匹配元素`下方`点击x像素。
 
 ##### Example
 
@@ -207,10 +207,10 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Type:** `number`
+-   **Mandatory:** no
 
-Click x pixels `left` from the matching element.
+在匹配元素`左侧`点击x像素。
 
 ##### Example
 
@@ -225,15 +225,15 @@ await browser.ocrClickOnText({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+你可以通过以下选项调整查找文本的模糊逻辑。这可能有助于找到更好的匹配。
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **Type:** `number`
+-   **Mandatory:** no
+-   **Default:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+确定匹配项必须与模糊位置（由location指定）有多接近。距离模糊位置distance个字符的精确字母匹配将被评分为完全不匹配。距离为0要求匹配在指定的精确位置。使用0.8的阈值，距离为1000将要求完美匹配在位置的800个字符内才能被找到。
 
 ##### Example
 
@@ -248,11 +248,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **Type:** `number`
+-   **Mandatory:** no
+-   **Default:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+大致确定在文本中预期在哪里找到模式。
 
 ##### Example
 
@@ -267,11 +267,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **Type:** `number`
+-   **Mandatory:** no
+-   **Default:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+匹配算法在什么点放弃。阈值为0需要完美匹配（字母和位置都匹配），阈值为1.0将匹配任何内容。
 
 ##### Example
 
@@ -286,11 +286,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **Type:** `boolean`
+-   **Mandatory:** no
+-   **Default:** false
 
-Whether the search should be case sensitive.
+搜索是否区分大小写。
 
 ##### Example
 
@@ -305,11 +305,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **Type:** `number`
+-   **Mandatory:** no
+-   **Default:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+只返回长度超过此值的匹配项。（例如，如果你想在结果中忽略单个字符的匹配，将其设置为2）
 
 ##### Example
 
@@ -324,11 +324,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **Type:** `number`
+-   **Mandatory:** no
+-   **Default:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+当为`true`时，即使在字符串中已经找到完美匹配，匹配函数也会继续到搜索模式的末尾。
 
 ##### Example
 

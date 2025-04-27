@@ -1,38 +1,37 @@
 ---
 id: record
-title: Record Tests
+title: 记录测试
 ---
 
-Chrome DevTools has a _Recorder_ panel that allows users to record and playback automated steps within Chrome. These steps can be [exported into WebdriverIO tests with an extension](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn?hl=en) making writing test very easy.
+Chrome DevTools 有一个 _Recorder_ 面板，允许用户在Chrome中记录和回放自动化步骤。这些步骤可以[通过扩展导出为WebdriverIO测试](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn?hl=en)，使编写测试变得非常容易。
 
-## What is Chrome DevTools Recorder
+## 什么是Chrome DevTools Recorder
 
-The [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/) is a tool which allows you to record and replay test actions directly in the browser and also export them as JSON (or export them in e2e test), as well as measure test performance.
+[Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/)是一个工具，它允许你直接在浏览器中记录和回放测试操作，并将它们导出为JSON（或导出为e2e测试），以及测量测试性能。
 
-The tool is straightforward, and since it’s plugged into the browser, we have the convenience of not switching the context or dealing with any third-party tool.
+这个工具非常直观，由于它集成在浏览器中，我们可以方便地不切换上下文或处理任何第三方工具。
 
-## How to Record a Test with Chrome DevTools Recorder
+## 如何使用Chrome DevTools Recorder记录测试
 
-If you have the latest Chrome you will have the Recorder already installed and available for you. Just open any website, do a Right-Click and select _"Inspect"_. Within DevTools you can open the Recorder by pressing `CMD/Control` + `Shift` + `p` and enter _"Show Recorder"_.
+如果你使用最新版本的Chrome，你已经安装了Recorder并可以使用它。只需打开任何网站，右键点击并选择_"检查"_。在DevTools中，你可以通过按`CMD/Control` + `Shift` + `p`并输入_"Show Recorder"_来打开Recorder。
 
 ![Chrome DevTools Recorder](/img/recorder/recorder.png)
 
-To start recording a user journey, click on _"Start new recording"_, give your test a name and then use the browser to record your test:
+要开始记录用户旅程，点击_"Start new recording"_，给你的测试命名，然后使用浏览器记录你的测试：
 
 ![Chrome DevTools Recorder](/img/recorder/demo.gif)
 
-Next step, click on _"Replay"_ to check if the recording was successful and does what you wanted to do. If everything is ok, click on the [export](https://developer.chrome.com/docs/devtools/recorder/reference/#recorder-extension) icon and select _"Export as a WebdriverIO Test Script"_:
+下一步，点击_"Replay"_检查记录是否成功并执行你想要的操作。如果一切正常，点击[导出](https://developer.chrome.com/docs/devtools/recorder/reference/#recorder-extension)图标并选择_"Export as a WebdriverIO Test Script"_：
 
-The _"Export as a WebdriverIO Test Script"_ option only available if you install the [WebdriverIO Chrome Recorder](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn) extension.
-
+只有安装了[WebdriverIO Chrome Recorder](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn)扩展后，_"Export as a WebdriverIO Test Script"_选项才可用。
 
 ![Chrome DevTools Recorder](/img/recorder/export.gif)
 
-That's it!
+就是这样！
 
-## Export Recording
+## 导出记录
 
-If you exported the flow as WebdriverIO test script, it should download script that you can copy&paste in your test suite. For example the above recording looks as follows:
+如果你将流程导出为WebdriverIO测试脚本，它应该会下载一个脚本，你可以复制粘贴到你的测试套件中。例如，上面的记录看起来如下：
 
 ```ts
 describe("My WebdriverIO Test", function () {
@@ -50,13 +49,13 @@ describe("My WebdriverIO Test", function () {
 });
 ```
 
-Make sure you revisit some of the locators and replace them with more resilient [selector types](/docs/selectors) one if necessary. You can also export the flow as JSON file and use the [`@wdio/chrome-recorder`](https://github.com/webdriverio/chrome-recorder) package to transform it into an actual test script.
+确保你重新审视一些定位器，如有必要，将它们替换为更具弹性的[选择器类型](/docs/selectors)。你也可以将流程导出为JSON文件，并使用[`@wdio/chrome-recorder`](https://github.com/webdriverio/chrome-recorder)包将其转换为实际的测试脚本。
 
-## Next Steps
+## 下一步
 
-You can use this flow to easily create tests for your applications. The Chrome DevTools Recorder has various additional features, e.g.:
+你可以使用这个流程轻松地为你的应用创建测试。Chrome DevTools Recorder有各种额外功能，例如：
 
-- [Simulate slow network](https://developer.chrome.com/docs/devtools/recorder/#simulate-slow-network) or
-- [Measure performance of your tests](https://developer.chrome.com/docs/devtools/recorder/#measure)
+- [模拟慢网络](https://developer.chrome.com/docs/devtools/recorder/#simulate-slow-network) 或者
+- [测量你的测试性能](https://developer.chrome.com/docs/devtools/recorder/#measure)
 
-Make sure to check out their [docs](https://developer.chrome.com/docs/devtools/recorder).
+确保查看他们的[文档](https://developer.chrome.com/docs/devtools/recorder)。

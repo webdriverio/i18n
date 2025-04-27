@@ -1,9 +1,9 @@
 ---
 id: service-options
-title: Service Options
+title: 服务选项
 ---
 
-Service options are the options that can be set when the service is instantiated and will be used for each method call.
+服务选项是在实例化服务时设置的选项，将用于每个方法调用。
 
 ```js
 // wdio.conf.(js|ts)
@@ -24,95 +24,97 @@ export const config = {
 };
 ```
 
-## Default Options
+## 默认选项
 
 ### `addressBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6`
-- **Supported:** Web
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** `6`
+-   **支持:** Web
 
-The padding needs to be added to the address bar on iOS and Android to do a proper cutout of the viewport.
+需要添加到iOS和Android地址栏的填充，以便正确裁剪视口。
 
 ### `autoElementScroll`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `true`
+-   **支持:** Web, Hybrid App (Webview)
 
-This option allows you to disable the automatic scrolling of the element into the view when an element screenshot is created.
+此选项允许您在创建元素截图时禁用元素自动滚动到视图中。
 
 ### `addIOSBezelCorners`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **支持:** Web, Hybrid App (Webview), Native App
 
-Add bezel corners and notch/dynamic island to the screenshot for iOS devices.
+为iOS设备的截图添加边框角和刘海/灵动岛。
 
-:::info NOTE
+:::info 注意
+这只能在设备名称**能够**自动确定并匹配以下标准化设备名称列表时完成。标准化将由此模块完成。
+**iPhone:**
 
-- iPhone X: `iphonex`
-- iPhone XS: `iphonexs`
-- iPhone XS Max: `iphonexsmax`
-- iPhone XR: `iphonexr`
-- iPhone 11: `iphone11`
-- iPhone 11 Pro: `iphone11pro`
-- iPhone 11 Pro Max: `iphone11promax`
-- iPhone 12: `iphone12`
-- iPhone 12 Mini: `iphone12mini`
-- iPhone 12 Pro: `iphone12pro`
-- iPhone 12 Pro Max: `iphone12promax`
-- iPhone 13: `iphone13`
-- iPhone 13 Mini: `iphone13mini`
-- iPhone 13 Pro: `iphone13pro`
-- iPhone 13 Pro Max: `iphone13promax`
-- iPhone 14: `iphone14`
-- iPhone 14 Plus: `iphone14plus`
-- iPhone 14 Pro: `iphone14pro`
-- iPhone 14 Pro Max: `iphone14promax`
+-   iPhone X: `iphonex`
+-   iPhone XS: `iphonexs`
+-   iPhone XS Max: `iphonexsmax`
+-   iPhone XR: `iphonexr`
+-   iPhone 11: `iphone11`
+-   iPhone 11 Pro: `iphone11pro`
+-   iPhone 11 Pro Max: `iphone11promax`
+-   iPhone 12: `iphone12`
+-   iPhone 12 Mini: `iphone12mini`
+-   iPhone 12 Pro: `iphone12pro`
+-   iPhone 12 Pro Max: `iphone12promax`
+-   iPhone 13: `iphone13`
+-   iPhone 13 Mini: `iphone13mini`
+-   iPhone 13 Pro: `iphone13pro`
+-   iPhone 13 Pro Max: `iphone13promax`
+-   iPhone 14: `iphone14`
+-   iPhone 14 Plus: `iphone14plus`
+-   iPhone 14 Pro: `iphone14pro`
+-   iPhone 14 Pro Max: `iphone14promax`
     **iPads:**
-- iPad Mini 6th Generation: `ipadmini`
-- iPad Air 4th Generation: `ipadair`
-- iPad Air 5th Generation: `ipadair`
-- iPad Pro (11-inch) 1st Generation: `ipadpro11`
-- iPad Pro (11-inch) 2nd Generation: `ipadpro11`
-- iPad Pro (11-inch) 3rd Generation: `ipadpro11`
-- iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+-   iPad Mini 6th Generation: `ipadmini`
+-   iPad Air 4th Generation: `ipadair`
+-   iPad Air 5th Generation: `ipadair`
+-   iPad Pro (11-inch) 1st Generation: `ipadpro11`
+-   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
+-   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
+-   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
 
 :::
 
 ### `autoSaveBaseline`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `true`
+-   **支持:** Web, Hybrid App (Webview), Native App
 
-If no baseline image is found during the comparison the image is automatically copied to the baseline folder.
+如果在比较过程中找不到基准图像，则自动将图像复制到基准文件夹。
 
 ### `baselineFolder`
 
-- **Type:** `string|()=> string`
-- **Mandatory:** No
-- **Default:** `.path/to/testfile/__snapshots__/`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `string|()=> string`
+-   **必填:** 否
+-   **默认值:** `.path/to/testfile/__snapshots__/`
+-   **支持:** Web, Hybrid App (Webview), Native App
 
-The directory that will hold all the baseline images that are used during the comparison. If not set, the default value will be used which will store the files in a `__snapshots__/`-folder next to the spec that executes the visual tests. A function that returns a `string` can also be used to set the `baselineFolder` value:
+将保存所有在比较期间使用的基准图像的目录。如果未设置，将使用默认值，即将文件存储在执行视觉测试的规格旁边的`__snapshots__/`文件夹中。也可以使用返回`string`的函数来设置`baselineFolder`值：
 
 ```js
 {
     baselineFolder: path.join(process.cwd(), 'foo', 'bar', 'baseline')
 },
-// OR
+// 或者
 {
     baselineFolder: () => {
-        // Do some magic here
+        // 在这里做一些魔法操作
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -120,24 +122,24 @@ The directory that will hold all the baseline images that are used during the co
 
 ### `clearRuntimeFolder`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **支持:** Web, Hybrid App (Webview), Native App
 
-Delete runtime folder (`actual` & \`diff) on initialization
+在初始化时删除运行时文件夹（`actual`和`diff`）
 
-:::info NOTE
-This will only work when the [`screenshotPath`](#screenshotpath) is set through the plugin options, and **WILL NOT WORK** when you set the folders in the methods
+:::info 注意
+这只有在通过插件选项设置[`screenshotPath`](#screenshotpath)时才会生效，**不会**在方法中设置文件夹时生效
 :::
 
-### `createJsonReportFiles` **(NEW)**
+### `createJsonReportFiles` **(新功能)**
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
 
-You now have the option to export the compare results into a JSON report file. By providing the option `createJsonReportFiles: true`, each image that is compared will create a report stored in the `actual` folder, next to each `actual` image result. The output will look like this:
+现在您可以选择将比较结果导出到JSON报告文件。通过提供选项`createJsonReportFiles: true`，每个被比较的图像都会创建一个报告，存储在`actual`文件夹中，与每个`actual`图像结果放在一起。输出将如下所示：
 
 ```json
 {
@@ -200,14 +202,14 @@ You now have the option to export the compare results into a JSON report file. B
 }
 ```
 
-When all tests are executed, a new JSON file with the collection of the comparisons will be generated and can be found in the root of your `actual` folder. The data is grouped by:
+当所有测试执行完毕后，将生成一个包含比较集合的新JSON文件，可以在`actual`文件夹的根目录中找到。数据按以下方式分组：
 
-- `describe` for Jasmine/Mocha or `Feature` for CucumberJS
-- `it` for Jasmine/Mocha or `Scenario` for CucumberJS
-    and then sorted by:
-- `commandName`, which are the compare method names used to compare the images
-- `instanceData`, browser first, then device, then platform
-    it will look like this
+-   Jasmine/Mocha的`describe`或CucumberJS的`Feature`
+-   Jasmine/Mocha的`it`或CucumberJS的`Scenario`
+    然后按以下方式排序：
+-   `commandName`，即用于比较图像的比较方法名称
+-   `instanceData`，先是浏览器，然后是设备，最后是平台
+    它将看起来像这样
 
 ```json
 [
@@ -250,150 +252,146 @@ When all tests are executed, a new JSON file with the collection of the comparis
 ]
 ```
 
-The report data will give you the opportunity to build your own visual report without doing all the magic and data collection yourself.
+报告数据将使您有机会构建自己的视觉报告，而无需自己完成所有的魔法和数据收集。
 
-:::info NOTE
-You need to use `@wdio/visual-testing` version `5.2.0` or higher
+:::info 注意
+您需要使用`@wdio/visual-testing`版本`5.2.0`或更高版本
 :::
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **支持:** Web, Hybrid App (Webview)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+启用/禁用应用程序中所有`input`、`textarea`、`[contenteditable]`光标的"闪烁"。如果设置为`true`，截图前光标将被设置为`transparent`，
+完成后恢复
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **支持:** Web, Hybrid App (Webview)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+启用/禁用应用程序中的所有CSS动画。如果设置为`true`，截图前将禁用所有动画，
+完成后恢复
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **支持:** Web
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+这将隐藏页面上的所有文本，因此只使用布局进行比较。隐藏将通过向**每个**元素添加样式`'color': 'transparent !important'`来完成。
 
-For the output see [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+输出结果请参见[测试输出](/docs/visual-testing/test-output#enablelayouttesting)
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+使用此标志，每个包含文本的元素（不仅是`p, h1, h2, h3, h4, h5, h6, span, a, li`，还包括`div|button|..`）都将获得此属性。**没有**选项可以定制这一点。
 :::
 
 ### `formatImageName`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
+-   **支持:** Web, Hybrid App (Webview), Native App
 
-The name of the saved images can be customized by passing the parameter `formatImageName` with a format string like:
+保存的图像名称可以通过传递带有格式字符串的`formatImageName`参数来自定义，例如：
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-The following variables can be passed to format the string and will automatically be read from the instance capabilities.
-If they can't be determined the defaults will be used.
+以下变量可以传递给格式字符串，并将自动从实例功能中读取。
+如果无法确定，将使用默认值。
 
-- `browserName`: The name of the browser in the provided capabilities
-- `browserVersion`: The version of the browser provided in the capabilities
-- `deviceName`: The device name from the capabilities
-- `dpr`: The device pixel ratio
-- `height`: The height of the screen
-- `logName`: The logName from capabilities
-- `mobile`: This will add `_app`, or the browser name after the `deviceName` to distinguish app screenshots from browser screenshots
-- `platformName`: The name of the platform in the provided capabilities
-- `platformVersion`: The version of the platform provided in the capabilities
-- `tag`: The tag that is provided in the methods that is being called
-- `width`: The width of the screen
+-   `browserName`: 提供的功能中的浏览器名称
+-   `browserVersion`: 功能中提供的浏览器版本
+-   `deviceName`: 功能中的设备名称
+-   `dpr`: 设备像素比
+-   `height`: 屏幕高度
+-   `logName`: 功能中的logName
+-   `mobile`: 这将在`deviceName`后添加`_app`或浏览器名称，以区分应用截图和浏览器截图
+-   `platformName`: 提供的功能中的平台名称
+-   `platformVersion`: 功能中提供的平台版本
+-   `tag`: 在调用的方法中提供的标签
+-   `width`: 屏幕宽度
 
 :::info
 
-You can not provide custom paths/folders in the `formatImageName`. If you want to change the path then please check changing the following options:
+您不能在`formatImageName`中提供自定义路径/文件夹。如果要更改路径，请查看更改以下选项：
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) per method
+- 每个方法的[`folderOptions`](/docs/visual-testing/method-options#folder-options)
 
 :::
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Supported:** Web
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** `1500`
+-   **支持:** Web
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+滚动后等待的超时时间（毫秒）。这可能有助于识别具有懒加载的页面。
+
+:::info
+
+这只有在服务/方法选项`userBasedFullPageScreenshot`设置为`true`时才会生效，另见[`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
+
+:::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `true`
+-   **支持:** Web, Hybrid App (Webview)
 
-Hide scrollbars in the application. If set to true all scrollbars will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
-
-### `isHybridApp`
-
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Hybrid App
-
-Tell the module if the used app is a Hybrid app, this will not calculate the address bar height because it is not there.
+隐藏应用程序中的滚动条。如果设置为true，截图前将禁用所有滚动条。这默认设置为`true`以防止额外问题。
 
 ### `logLevel`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `info`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** `info`
+-   **支持:** Web, Hybrid App (Webview), Native App
 
-Adds extra logs, options are `debug | info | warn | silent`
+添加额外日志，选项有 `debug | info | warn | silent`
 
-Errors are always logged to the console.
+错误始终记录到控制台。
 
 ### `savePerInstance`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **支持:** Web, Hybrid App (Webview), Native App
 
-Save the images per instance in a separate folder so for example all Chrome screenshots will be saved in a Chrome folder like `desktop_chrome`.
+每个实例在单独的文件夹中保存图像，例如所有Chrome截图将保存在名为`desktop_chrome`的Chrome文件夹中。
 
 ### `screenshotPath`
 
-- **Type:** `string | () => string`
-- **Default:** `.tmp/`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `string | () => string`
+-   **默认值:** `.tmp/`
+-   **必填:** 否
+-   **支持:** Web, Hybrid App (Webview), Native App
 
-The directory that will hold all the actual/different screenshots. If not set, the default value will be used. A function that
-returns a string can also be used to set the screenshotPath value:
+将保存所有实际/不同截图的目录。如果未设置，将使用默认值。也可以使用返回字符串的函数来设置screenshotPath值：
 
 ```js
 {
     screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
 },
-// OR
+// 或者
 {
     screenshotPath: () => {
-        // Do some magic here
+        // 在这里做一些魔法操作
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -401,158 +399,170 @@ returns a string can also be used to set the screenshotPath value:
 
 ### `toolBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6` for Android and `15` for iOS (`6` by default and `9` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)
-- **Supported:** Web
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** Android为`6`，iOS为`15`（默认为`6`，对于带有刘海的iPhone或带有主页栏的iPad，会自动添加`9`）
+-   **支持:** Web
 
-The padding which needs to be added to the toolbar bar on iOS and Android to do a proper cutout of the viewport.
+需要添加到iOS和Android工具栏的填充，以正确裁剪视口。
+
+### `userBasedFullPageScreenshot`
+
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **支持:** Web, Hybrid App (Webview) **在visual-service@7.0.0中引入**
+
+默认情况下，桌面网页的全页截图使用WebDriver BiDi协议捕获，该协议支持快速、稳定且一致的截图，无需滚动。
+当userBasedFullPageScreenshot设置为true时，截图过程模拟真实用户：滚动页面，捕获视口大小的截图，并将它们拼接在一起。这种方法适用于具有懒加载内容或依赖于滚动位置的动态渲染的页面。
+
+如果您的页面依赖于滚动时加载的内容，或者您想保留旧截图方法的行为，请使用此选项。
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `true`
+-   **支持:** Web, Hybrid App (Webview)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+字体（包括第三方字体）可以同步或异步加载。异步加载意味着字体可能会在WebdriverIO确定页面已完全加载后才加载。为防止字体渲染问题，默认情况下，此模块会在截图前等待所有字体加载完成。
 
-## Tabbable Options
+## Tabbable选项
 
-:::info NOTE
+:::info 注意
 
-This module also supports drawing the way a user would use his keyboard to _tab_ through the website by drawing lines and dots from tabbable element to tabbable element.<br/>
-The work is inspired by [Viv Richards](https://github.com/vivrichards600) his blog post about ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-The way tabbable elements are selected is based on the module [tabbable](https://github.com/davidtheclark/tabbable). If there are any issues regarding the tabbing please check the [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) and especially the [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+此模块还支持通过从可选中元素到可选中元素绘制线条和点来描绘用户如何使用键盘_tab_浏览网站。<br/>
+这项工作的灵感来自[Viv Richards](https://github.com/vivrichards600)的博客文章["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript)。<br/>
+选择可选中元素的方式基于模块[tabbable](https://github.com/davidtheclark/tabbable)。如果有关于标签切换的任何问题，请查看[README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md)，特别是[More details部分](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)。
 
 :::
 
 ### `tabbableOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `object`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The options that can be changed for the lines and dots if you use the `{save|check}Tabbable`-methods. The options are explained below.
+如果使用`{save|check}Tabbable`方法，可以更改线条和点的选项。选项说明如下。
 
 #### `tabbableOptions.circle`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `object`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The options to change the circle.
+更改圆圈的选项。
 
 ##### `tabbableOptions.circle.backgroundColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The background color of the circle.
+圆圈的背景颜色。
 
 ##### `tabbableOptions.circle.borderColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The border color of the circle.
+圆圈的边框颜色。
 
 ##### `tabbableOptions.circle.borderWidth`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The border width of the circle.
+圆圈的边框宽度。
 
 ##### `tabbableOptions.circle.fontColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The color of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+圆圈中文本的字体颜色。仅当[`showNumber`](./#tabbableoptionscircleshownumber)设置为`true`时才会显示。
 
 ##### `tabbableOptions.circle.fontFamily`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The family of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+圆圈中文本的字体系列。仅当[`showNumber`](./#tabbableoptionscircleshownumber)设置为`true`时才会显示。
 
-Make sure to set fonts that are supported by the browsers.
+确保设置浏览器支持的字体。
 
 ##### `tabbableOptions.circle.fontSize`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The size of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+圆圈中文本的字体大小。仅当[`showNumber`](./#tabbableoptionscircleshownumber)设置为`true`时才会显示。
 
 ##### `tabbableOptions.circle.size`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The size of the circle.
+圆圈的大小。
 
 ##### `tabbableOptions.circle.showNumber`
 
-- **Type:** `showNumber`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `showNumber`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-Show the tab sequence number in the circle.
+在圆圈中显示标签序列号。
 
 #### `tabbableOptions.line`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `object`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The options to change the line.
+更改线条的选项。
 
 ##### `tabbableOptions.line.color`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The color of the line.
+线条的颜色。
 
 ##### `tabbableOptions.line.width`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)
+-   **支持:** Web
 
-The width of the line.
+线条的宽度。
 
-## Compare options
+## 比较选项
 
 ### `compareOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values
-- **Supported:** Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)
+-   **类型:** `object`
+-   **必填:** 否
+-   **默认值:** 所有默认值见[这里](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60)
+-   **支持:** Web, Hybrid App (Webview), Native App（更多信息请参见[方法比较选项](./method-options#compare-check-options)）
 
-The compare options can also be set as service options, they are described in the [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+比较选项也可以设置为服务选项，它们在[方法比较选项](/docs/visual-testing/method-options#compare-check-options)中有描述

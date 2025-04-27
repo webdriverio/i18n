@@ -5,7 +5,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Appium.md": {
@@ -14,7 +15,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Assertion.md": {
@@ -23,7 +25,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/AutoWait.md": {
@@ -32,7 +35,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Autocompletion.md": {
@@ -41,7 +45,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/AutomationProtocols.md": {
@@ -50,7 +55,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BambooIntegration.md": {
@@ -59,7 +65,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BestPractices.md": {
@@ -68,7 +75,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BoilerplateProjects.md": {
@@ -77,7 +85,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Capabilities.md": {
@@ -86,7 +95,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CloudServices.md": {
@@ -95,7 +105,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ComponentTesting.md": {
@@ -104,7 +115,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Configuration.md": {
@@ -113,7 +125,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ConfigurationFile.md": {
@@ -122,7 +135,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomCommands.md": {
@@ -131,7 +145,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomMatchers.md": {
@@ -140,7 +155,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomReporter.md": {
@@ -149,7 +165,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomServices.md": {
@@ -158,7 +175,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Debugging.md": {
@@ -167,7 +185,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Docker.md": {
@@ -176,7 +195,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/DriverBinaries.md": {
@@ -185,7 +205,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Emulation.md": {
@@ -194,7 +215,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Enterprise.md": {
@@ -203,7 +225,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Frameworks.md": {
@@ -212,7 +235,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/GettingStarted.md": {
@@ -221,7 +245,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/GithubActions.md": {
@@ -230,7 +255,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/JenkinsIntegration.md": {
@@ -239,7 +265,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/MocksAndSpies.md": {
@@ -248,7 +275,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Multiremote.md": {
@@ -257,7 +285,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/OrganizingTestSuites.md": {
@@ -266,7 +295,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/PageObjects.md": {
@@ -275,7 +305,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ParameterizeTests.md": {
@@ -284,7 +315,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ProtractorMigration.md": {
@@ -293,7 +325,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Proxy.md": {
@@ -302,7 +335,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Record.md": {
@@ -311,7 +345,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Retry.md": {
@@ -320,7 +355,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Runner.md": {
@@ -329,7 +365,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Selectors.md": {
@@ -338,7 +375,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/SeleniumGrid.md": {
@@ -347,7 +385,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/SetupTypes.md": {
@@ -356,7 +395,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Sharding.md": {
@@ -365,7 +405,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Snapshot.md": {
@@ -374,7 +415,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Sponsor.md": {
@@ -383,7 +425,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/SyncAsyncMigration.md": {
@@ -392,7 +435,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Testrunner.md": {
@@ -401,7 +445,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Timeouts.md": {
@@ -410,7 +455,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/TypeScript.md": {
@@ -419,7 +465,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/VisualTesting.md": {
@@ -428,7 +475,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/WatchFiles.md": {
@@ -437,7 +485,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/WhyWebdriverIO.md": {
@@ -446,7 +495,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/accessibility-testing/AxeCore.md": {
@@ -455,7 +505,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/accessibility-testing/BrowserStack.md": {
@@ -464,7 +515,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Environment.md": {
@@ -473,7 +525,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Dialog.md": {
@@ -482,7 +535,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Browser.md": {
@@ -491,7 +545,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Clock.md": {
@@ -500,7 +555,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Element.md": {
@@ -509,7 +565,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Globals.md": {
@@ -518,7 +575,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Mobile.md": {
@@ -527,7 +585,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Mock.md": {
@@ -536,7 +595,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Modules.md": {
@@ -545,7 +605,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Protocols.md": {
@@ -554,7 +615,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/best-practices/BrowserLogs.md": {
@@ -563,7 +625,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/best-practices/FileDownloads.md": {
@@ -572,7 +635,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Lit.md": {
@@ -581,7 +645,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Preact.md": {
@@ -590,7 +655,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/React.md": {
@@ -599,7 +665,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Solid.md": {
@@ -608,7 +675,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Stencil.md": {
@@ -617,7 +685,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Svelte.md": {
@@ -626,7 +695,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Vue.md": {
@@ -635,7 +705,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/coverage.md": {
@@ -644,7 +715,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/mocking.md": {
@@ -653,7 +725,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/Electron.md": {
@@ -662,7 +735,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/MacOS.md": {
@@ -671,7 +745,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/Windows.md": {
@@ -680,7 +755,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/extension-testing/VSCodeExtension.md": {
@@ -689,7 +765,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/extension-testing/WebExtension.md": {
@@ -698,7 +775,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/CreateLocalWorkerProcess.md": {
@@ -707,7 +785,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/HighLevelOverview.md": {
@@ -716,7 +795,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/TestExecution.md": {
@@ -725,7 +805,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/WDIOCommands.md": {
@@ -734,7 +815,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/cli-wizard.md": {
@@ -743,7 +825,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/getting-started.md": {
@@ -752,7 +835,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/more-test-optimization.md": {
@@ -761,7 +845,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-click-on-text.md": {
@@ -770,7 +855,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-faq.md": {
@@ -779,7 +865,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-get-element-position-by-text.md": {
@@ -788,7 +875,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-get-text.md": {
@@ -797,7 +885,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-set-value.md": {
@@ -806,7 +895,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-wait-for-text-displayed.md": {
@@ -815,7 +905,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/what-is-wdio-ocr-service.md": {
@@ -824,7 +915,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/percy-overview.md": {
@@ -833,7 +925,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/repl.md": {
@@ -842,7 +935,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/v6Migration.md": {
@@ -851,7 +945,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/v7Migration.md": {
@@ -860,7 +955,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/Considerations.md": {
@@ -869,7 +965,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/argos.md": {
@@ -878,7 +975,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/compare-options.md": {
@@ -887,7 +985,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/faq.md": {
@@ -896,7 +995,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/integrate-with-app-percy.md": {
@@ -905,7 +1005,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/integrate-with-percy.md": {
@@ -914,7 +1015,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/method-options.md": {
@@ -923,7 +1025,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/methods.md": {
@@ -932,7 +1035,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/reporter.md": {
@@ -941,7 +1045,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/service-options.md": {
@@ -950,7 +1055,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/test-output.md": {
@@ -959,7 +1065,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/writing-tests.md": {
@@ -968,7 +1075,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current.json": {
@@ -977,7 +1085,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Donate.md": {
@@ -986,7 +1095,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Events.md": {
@@ -995,7 +1105,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Materials.md": {
@@ -1004,7 +1115,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/OpenOfficeHours.md": {
@@ -1013,7 +1125,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Support.md": {
@@ -1022,7 +1135,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current.json": {
@@ -1031,7 +1145,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Team.md": {
@@ -1040,7 +1155,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_appium.md": {
@@ -1049,7 +1165,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_tick.md": {
@@ -1058,7 +1175,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_selenium.md": {
@@ -1067,7 +1185,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_saucelabs.md": {
@@ -1076,7 +1195,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_message.md": {
@@ -1085,7 +1205,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_dismiss.md": {
@@ -1094,7 +1215,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_setSystemTime.md": {
@@ -1103,7 +1225,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_defaultValue.md": {
@@ -1112,7 +1235,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_mjsonwp.md": {
@@ -1121,7 +1245,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_expect-webdriverio.md": {
@@ -1130,7 +1255,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_action.md": {
@@ -1139,7 +1265,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_webdriverBidi.md": {
@@ -1148,7 +1275,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_chromium.md": {
@@ -1157,7 +1285,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_addCommand.md": {
@@ -1166,7 +1295,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_$$.md": {
@@ -1175,7 +1305,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_actions.md": {
@@ -1184,7 +1315,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_$.md": {
@@ -1193,7 +1325,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_type.md": {
@@ -1202,7 +1335,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_downloadFile.md": {
@@ -1211,7 +1345,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_deleteCookies.md": {
@@ -1220,7 +1355,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_custom$.md": {
@@ -1229,7 +1365,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_restore.md": {
@@ -1238,7 +1375,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_webdriver.md": {
@@ -1247,7 +1385,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_call.md": {
@@ -1256,7 +1395,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getPuppeteer.md": {
@@ -1265,7 +1405,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mockClearAll.md": {
@@ -1274,7 +1415,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_keys.md": {
@@ -1283,7 +1425,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getCookies.md": {
@@ -1292,7 +1435,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mock.md": {
@@ -1301,7 +1445,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mockRestoreAll.md": {
@@ -1310,7 +1455,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_pause.md": {
@@ -1319,7 +1465,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_reloadSession.md": {
@@ -1328,7 +1475,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_accept.md": {
@@ -1337,7 +1485,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_custom$$.md": {
@@ -1346,7 +1495,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_saveRecordingScreen.md": {
@@ -1355,7 +1505,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_restore.md": {
@@ -1364,7 +1515,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_getContexts.md": {
@@ -1373,7 +1525,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_swipe.md": {
@@ -1382,7 +1535,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_deepLink.md": {
@@ -1391,7 +1545,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_tap.md": {
@@ -1400,7 +1555,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_switchContext.md": {
@@ -1409,7 +1565,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_zoom.md": {
@@ -1418,7 +1575,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_restore.md": {
@@ -1427,7 +1585,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_custom$.md": {
@@ -1436,7 +1595,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_click.md": {
@@ -1445,7 +1605,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_dragAndDrop.md": {
@@ -1454,7 +1615,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_abortOnce.md": {
@@ -1463,7 +1625,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_request.md": {
@@ -1472,7 +1635,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_execute.md": {
@@ -1481,7 +1645,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_addValue.md": {
@@ -1490,7 +1655,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getElement.md": {
@@ -1499,7 +1665,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_relaunchActiveApp.md": {
@@ -1508,7 +1675,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_requestOnce.md": {
@@ -1517,7 +1685,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getLocation.md": {
@@ -1526,7 +1695,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getProperty.md": {
@@ -1535,7 +1705,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getHTML.md": {
@@ -1544,7 +1715,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getElements.md": {
@@ -1553,7 +1725,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getComputedRole.md": {
@@ -1562,7 +1735,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_pinch.md": {
@@ -1571,7 +1745,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_$.md": {
@@ -1580,7 +1755,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_$$.md": {
@@ -1589,7 +1765,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_clear.md": {
@@ -1598,7 +1775,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isEnabled.md": {
@@ -1607,7 +1785,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isDisplayed.md": {
@@ -1616,7 +1795,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getText.md": {
@@ -1625,7 +1805,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getTagName.md": {
@@ -1634,7 +1815,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getAttribute.md": {
@@ -1643,7 +1825,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_dragAndDrop.md": {
@@ -1652,7 +1835,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isSelected.md": {
@@ -1661,7 +1845,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isFocused.md": {
@@ -1670,7 +1855,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_longPress.md": {
@@ -1679,7 +1865,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isStable.md": {
@@ -1688,7 +1875,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_getContext.md": {
@@ -1697,7 +1885,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_react$$.md": {
@@ -1706,7 +1895,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_saveScreenshot.md": {
@@ -1715,7 +1905,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_previousElement.md": {
@@ -1724,7 +1915,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_react$.md": {
@@ -1733,7 +1925,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByAttribute.md": {
@@ -1742,7 +1935,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isExisting.md": {
@@ -1751,7 +1945,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_scrollIntoView.md": {
@@ -1760,7 +1955,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByVisibleText.md": {
@@ -1769,7 +1965,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_shadow$$.md": {
@@ -1778,7 +1975,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByIndex.md": {
@@ -1787,7 +1985,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_shadow$.md": {
@@ -1796,7 +1995,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_setValue.md": {
@@ -1805,7 +2005,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getCSSProperty.md": {
@@ -1814,7 +2015,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForStable.md": {
@@ -1823,7 +2025,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForClickable.md": {
@@ -1832,7 +2035,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitUntil.md": {
@@ -1841,7 +2045,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_touchAction.md": {
@@ -1850,7 +2055,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForDisplayed.md": {
@@ -1859,7 +2065,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForExist.md": {
@@ -1868,7 +2075,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getSize.md": {
@@ -1877,7 +2085,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForEnabled.md": {
@@ -1886,7 +2095,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_addInitScript.md": {
@@ -1895,7 +2105,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_debug.md": {
@@ -1904,7 +2115,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_executeAsync.md": {
@@ -1913,7 +2125,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getWindowSize.md": {
@@ -1922,7 +2135,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_executeAsync.md": {
@@ -1931,7 +2145,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_execute.md": {
@@ -1940,7 +2155,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_emulate.md": {
@@ -1949,7 +2165,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_nextElement.md": {
@@ -1958,7 +2175,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getComputedLabel.md": {
@@ -1967,7 +2185,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_react$$.md": {
@@ -1976,7 +2195,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_moveTo.md": {
@@ -1985,7 +2205,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_react$.md": {
@@ -1994,7 +2215,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_overwriteCommand.md": {
@@ -2003,7 +2225,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_newWindow.md": {
@@ -2012,7 +2235,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_scroll.md": {
@@ -2021,7 +2245,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_saveScreenshot.md": {
@@ -2030,7 +2255,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_setCookies.md": {
@@ -2039,7 +2265,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_parentElement.md": {
@@ -2048,7 +2275,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_throttleCPU.md": {
@@ -2057,7 +2285,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_switchWindow.md": {
@@ -2066,7 +2295,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_doubleClick.md": {
@@ -2075,7 +2305,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isClickable.md": {
@@ -2084,7 +2315,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_touchAction.md": {
@@ -2093,7 +2325,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_gecko.md": {
@@ -2102,7 +2335,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isEqual.md": {
@@ -2111,7 +2345,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_url.md": {
@@ -2120,7 +2355,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_custom$$.md": {
@@ -2129,7 +2365,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_throttle.md": {
@@ -2138,7 +2375,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_scrollIntoView.md": {
@@ -2147,7 +2385,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_respondOnce.md": {
@@ -2156,7 +2395,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_clearValue.md": {
@@ -2165,7 +2405,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_redirect.md": {
@@ -2174,7 +2415,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getValue.md": {
@@ -2183,7 +2425,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_abort.md": {
@@ -2192,7 +2435,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_setWindowSize.md": {
@@ -2201,7 +2445,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_respond.md": {
@@ -2210,7 +2455,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_waitUntil.md": {
@@ -2219,7 +2465,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_savePDF.md": {
@@ -2228,7 +2475,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_switchFrame.md": {
@@ -2237,7 +2485,8 @@
       "es",
       "de",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_setViewport.md": {
@@ -2246,7 +2495,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_throttleNetwork.md": {
@@ -2255,7 +2505,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_setTimeout.md": {
@@ -2264,7 +2515,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_uploadFile.md": {
@@ -2273,7 +2525,8 @@
       "de",
       "es",
       "fr",
-      "hi"
+      "hi",
+      "zh"
     ]
   }
 }

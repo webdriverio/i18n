@@ -1,21 +1,21 @@
 ---
 id: clock
-title: The Clock Object
+title: 时钟对象
 ---
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+您可以使用[`emulate`](/docs/emulation)命令修改浏览器系统时钟。它会覆盖与时间相关的原生全局函数，使其可以通过`clock.tick()`或返回的时钟对象进行同步控制。这包括控制：
 
 - `setTimeout`
 - `clearTimeout`
 - `setInterval`
 - `clearInterval`
-- `Date Objects`
+- `Date对象`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+时钟从unix纪元开始（时间戳为0）。这意味着当您在应用程序中实例化新的Date对象时，如果没有向`emulate`命令传递其他选项，它的时间将是1970年1月1日。
 
-## Example
+## 示例
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+调用`browser.emulate('clock', { ... })`时，它会立即覆盖当前页面以及所有后续页面的全局函数，例如：
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -37,4 +37,4 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+您可以通过调用[`setSystemTime`](/docs/api/clock/setSystemTime)或[`tick`](/docs/api/clock/tick)来修改系统时间。

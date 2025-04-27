@@ -1,137 +1,137 @@
 ---
 id: compare-options
-title: Compare Options
+title: 对比选项
 ---
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+对比选项是影响由 [ResembleJS](https://github.com/Huddle/Resemble.js) 执行的比较方式的选项。
 
-:::info NOTE
-All compare options can be used during service instantiation or for each single `checkElement`,`checkScreen` and `checkFullPageScreen`. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
+:::info 注意
+所有对比选项都可以在服务实例化期间或针对每个单独的 `checkElement`、`checkScreen` 和 `checkFullPageScreen` 使用。如果方法选项与在服务实例化期间设置的选项具有相同的键，则方法对比选项将覆盖服务对比选项的值。
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Compare images and discard alpha.
+比较图像并忽略透明度。
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. It will override the plugin setting. This is **iPad only**_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _只能用于 `checkScreen()`。它将覆盖插件设置。这**仅适用于 iPad**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+在横向模式下自动屏蔽 iPad 的侧边栏进行比较。这可以防止在标签/私密/书签原生组件上出现失败。
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置。这**仅适用于移动设备**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+在比较过程中自动屏蔽状态栏和地址栏。这可以防止因时间、Wi-Fi 或电池状态导致的失败。
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置。这**仅适用于移动设备**_
 
-Automatically block out the toolbar.
+自动屏蔽工具栏。
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Compare images and discard anti-aliasing.
+比较图像并忽略抗锯齿。
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Even though the images are in color, the comparison will compare 2 black/white images
+即使图像是彩色的，比较也将比较两个黑白图像。
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+比较图像，并使用 `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240` 进行比较。
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+比较图像，并使用 `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255` 进行比较。
 
 ### `ignoreTransparentPixel`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Compare images and it will ignore all pixels that have some transparency in one of the images
+比较图像时，它将忽略在任一图像中具有一定透明度的所有像素。
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+如果为 true，返回的百分比将类似于 `0.12345678`，默认为 `0.12`。
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-This will return all compare data, not only the mismatch percentage
+这将返回所有比较数据，而不仅仅是不匹配百分比。
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `number`
+-   **默认值:** `0`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+防止保存具有差异的图像的 `misMatchPercentage` 的可允许值。
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `number`
+-   **默认值:** `0`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+比较大型图像可能导致性能问题。
+当在此处提供像素数（高于 0）时，如果图像宽度或高度大于 `largeImageThreshold` 像素，比较算法将跳过像素。
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
+-   **备注:** _也可用于 `checkElement`、`checkScreen()` 和 `checkFullPageScreen()`。它将覆盖插件设置_
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+在比较执行前将 2 个图像缩放到相同大小。强烈建议启用 `ignoreAntialiasing` 和 `ignoreAlpha`

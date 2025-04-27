@@ -1,26 +1,26 @@
 ---
 id: faq
-title: FAQ
+title: 常见问题
 ---
 
-### Do I need to use a `save(Screen/Element/FullPageScreen)` methods when I want to run `check(Screen/Element/FullPageScreen)`?
+### 当我想运行`check(Screen/Element/FullPageScreen)`时，是否需要使用`save(Screen/Element/FullPageScreen)`方法？
 
-No, you don't need to do this. The `check(Screen/Element/FullPageScreen)` will do this automatically for you.
+不，你不需要这样做。`check(Screen/Element/FullPageScreen)`会自动为你完成这项工作。
 
-### My visual tests fail with a difference, how can I update my baseline?
+### 我的视觉测试因差异而失败，如何更新我的基准图像？
 
-You can update the baseline images through the command line by adding the argument `--update-visual-baseline`. This will
+你可以通过在命令行中添加参数`--update-visual-baseline`来更新基准图像。这将：
 
-- automatically copy the actual take screenshot and put it in the baseline folder
-- if there are differences it will let the test pass because the baseline has been updated
+-   自动复制实际截取的屏幕截图并将其放入基准文件夹
+-   如果有差异，它会让测试通过，因为基准已经更新
 
-**Usage:**
+**用法：**
 
 ```sh
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-When running logs info/debug mode you will see the following logs added
+在运行日志信息/调试模式时，你将看到以下添加的日志
 
 ```logs
 [0-0] ..............
@@ -32,15 +32,15 @@ When running logs info/debug mode you will see the following logs added
 [0-0] ..........
 ```
 
-### Width and height cannot be negative
+### 宽度和高度不能为负值
 
-It could be that the error `Width and height cannot be negative` is thrown. 9 out of 10 times this is related to creating an image of an element that is not in the view. Please be sure you always make sure the element in is in the view before you try to make an image of the element.
+可能会抛出错误`Width and height cannot be negative`。十之八九，这与创建视图之外的元素图像有关。请确保在尝试创建元素图像之前，元素始终在视图中。
 
-### Installation of Canvas on Windows failed with Node-Gyp logs
+### Windows上安装Canvas失败并显示Node-Gyp日志
 
-If you encounter issues with Canvas installation on Windows due to Node-Gyp errors, please note that this applies only to Version 4 and lower. To avoid these issues, consider updating to Version 5 or higher, which does not have these dependencies and uses [Jimp](https://github.com/jimp-dev/jimp) for image processing.
+如果你在Windows上安装Canvas时遇到Node-Gyp错误的问题，请注意这仅适用于版本4及更低版本。为了避免这些问题，请考虑更新到版本5或更高版本，这些版本不再有这些依赖关系，而是使用[Jimp](https://github.com/jimp-dev/jimp)进行图像处理。
 
-If you still need to resolve the issues with Version 4, please check:
+如果你仍需要解决版本4的问题，请查看：
 
-- the Node Canvas section in the [Getting Started](/docs/visual-testing#system-requirements) guide
-- [this post](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/) for Fixing Node-Gyp Issues on Windows. (Thanks to [IgorSasovets](https://github.com/IgorSasovets))
+-   [入门指南](/docs/visual-testing#system-requirements)中的Node Canvas部分
+-   [这篇文章](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/)，了解如何修复Windows上的Node-Gyp问题。(感谢[IgorSasovets](https://github.com/IgorSasovets))

@@ -3,15 +3,15 @@ id: ocr-set-value
 title: ocrSetValue
 ---
 
-Send a sequence of key strokes to an element. It will:
+向元素发送一系列按键。它将：
 
-- automatically detect the element
-- put focus on the field by clicking on it
-- set the value in the field
+-   自动检测元素
+-   通过点击元素将焦点放在字段上
+-   在字段中设置值
 
-The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+该命令将搜索提供的文本，并尝试基于[Fuse.js](https://fusejs.io/)的模糊逻辑找到匹配项。这意味着即使你提供的选择器有拼写错误，或找到的文本可能不是100%匹配，它仍会尝试返回一个元素。请参见下面的[日志](#logs)。
 
-## Usage
+## 用法
 
 ```js
 await brower.ocrSetValue({
@@ -20,9 +20,9 @@ await brower.ocrSetValue({
 });
 ```
 
-## Output
+## 输出
 
-### Logs
+### 日志
 
 ```log
 [0-0] 2024-05-26T04:17:51.355Z INFO webdriver: COMMAND ocrSetValue(<object>)
@@ -30,16 +30,16 @@ await brower.ocrSetValue({
 [0-0] 2024-05-26T04:17:52.356Z INFO @wdio/ocr-service:ocrGetElementPositionByText: We searched for the word "docs" and found one match "docs" with score "100%"
 ```
 
-## Options
+## 选项
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **类型:** `string`
+-   **必填:** 是
 
-The text you want to search for to click on.
+你想要搜索并点击的文本。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -50,12 +50,12 @@ await browser.ocrSetValue({
 
 ### `value`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **类型:** `string`
+-   **必填:** 是
 
-Value to be added.
+要添加的值。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -66,13 +66,13 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** `false`
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
 
-If the value also needs to be submitted into the input field. This means an "ENTER" will be send at the end of the string.
+如果值还需要提交到输入字段。这意味着在字符串结尾会发送一个"ENTER"键。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -84,31 +84,31 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** `500` 毫秒
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+这是点击的持续时间。如果需要，你也可以通过增加时间来创建"长按点击"。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // 这是3秒
 });
 ```
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+对比度越高，图像越暗，反之亦然。这可以帮助在图像中找到文本。它接受`-1`和`1`之间的值。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -120,12 +120,12 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **类型:** `number`
+-   **必填:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+这是屏幕中OCR需要查找文本的搜索区域。可以是元素或包含`x`、`y`、`width`和`height`的矩形。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -134,14 +134,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// OR
+// 或
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// 或
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,54 +156,54 @@ await browser.ocrSetValue({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseract将识别的语言。更多信息可以在[这里](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)找到，支持的语言可以在[这里](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)找到。
 
-#### Example
+#### 示例
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // 使用荷兰语作为语言
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **类型:** `object`
+-   **必填:** 否
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+你可以相对于匹配元素在屏幕上点击。这可以基于相对像素在匹配元素的`above`、`right`、`below`或`left`位置进行。
 
 :::note
 
-The following combinations are allowed
+允许以下组合：
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   单个属性
+-   `above` + `left` 或 `above` + `right`
+-   `below` + `left` 或 `below` + `right`
 
-The following combinations are **NOT** allowed
+以下组合**不**允许：
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` 加 `below`
+-   `left` 加 `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **类型:** `number`
+-   **必填:** 否
 
-Click x pixels `above` the matching element.
+在匹配元素上方x像素点击。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -217,12 +217,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **类型:** `number`
+-   **必填:** 否
 
-Click x pixels `right` from the matching element.
+在匹配元素右侧x像素点击。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -236,12 +236,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **类型:** `number`
+-   **必填:** 否
 
-Click x pixels `below` the matching element.
+在匹配元素下方x像素点击。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -255,12 +255,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **类型:** `number`
+-   **必填:** 否
 
-Click x pixels `left` from the matching element.
+在匹配元素左侧x像素点击。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -274,17 +274,17 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+你可以通过以下选项更改查找文本的模糊逻辑。这可能有助于找到更好的匹配
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+确定匹配项必须与模糊位置（由location指定）的接近程度。距离模糊位置一定字符距离的精确字母匹配将被评分为完全不匹配。距离为0要求匹配必须在指定的精确位置。距离为1000在使用0.8的阈值时，会要求完美匹配在离位置800个字符内。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -298,13 +298,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+大致确定在文本中预期在哪里找到模式。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -318,13 +318,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+匹配算法在什么时候放弃。阈值为0需要完美匹配（字母和位置都要匹配），阈值为1.0将匹配任何内容。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -338,13 +338,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** false
 
-Whether the search should be case sensitive.
+搜索是否应区分大小写。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -358,13 +358,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+只有长度超过此值的匹配项才会被返回。（例如，如果你想在结果中忽略单个字符的匹配，请将其设置为2）
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({
@@ -378,13 +378,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+当为`true`时，即使在字符串中已经找到完美匹配，匹配函数也会继续到搜索模式的末尾。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrSetValue({

@@ -1,15 +1,15 @@
 ---
 id: customservices
-title: Custom Services
+title: 自定义服务
 ---
 
-You can write your own custom service for the WDIO test runner to custom-fit your needs.
+您可以为WDIO测试运行器编写自己的自定义服务，以满足您的特定需求。
 
-Services are add-ons that are created for reusable logic to simplify tests, manage your test suite and integrate results. Services have access to all the same [hooks](/docs/configurationfile) available in the `wdio.conf.js`.
+服务是为了简化测试、管理测试套件和集成结果而创建的可重用逻辑的附加组件。服务可以访问`wdio.conf.js`中提供的所有相同[钩子](/docs/configurationfile)。
 
-There are two types of services that can be defined: a launcher service that only has access to the `onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete` hook which are only executed once per test run, and a worker service that has access to all other hooks and is being executed for each worker. Note that you can not share (global) variables between both types of services as worker services run in a different (worker) process.
+有两种类型的服务可以定义：启动器服务只能访问`onPrepare`、`onWorkerStart`、`onWorkerEnd`和`onComplete`钩子，这些钩子在每次测试运行中只执行一次；工作器服务可以访问所有其他钩子，并为每个工作器执行。请注意，您不能在这两种类型的服务之间共享（全局）变量，因为工作器服务在不同的（工作器）进程中运行。
 
-A launcher service can be defined as follows:
+启动器服务可以按如下方式定义：
 
 ```js
 export default class CustomLauncherService {
@@ -26,7 +26,7 @@ export default class CustomLauncherService {
 }
 ```
 
-Whereas a worker service should look like this:
+而工作器服务应该如下所示：
 
 ```js
 export default class CustomWorkerService {
@@ -70,7 +70,7 @@ export default class CustomWorkerService {
 }
 ```
 
-It is recommended to store the browser object through the passed in parameter in the constructor. Lastly expose both types of workers as following:
+建议通过构造函数中传入的参数存储浏览器对象。最后，按照以下方式公开两种类型的工作器：
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-If you are using TypeScript and want to make sure that hook methods parameter are type safe, you can define your service class as follows:
+如果您使用TypeScript并想确保钩子方法参数是类型安全的，可以按如下方式定义服务类：
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -89,7 +89,7 @@ export default class CustomWorkerService implements Services.ServiceInstance {
     constructor (
         private _options: MyServiceOptions,
         private _capabilities: Capabilities.RemoteCapability,
-        private _config: Options.Testrunner
+        private _config: WebdriverIO.Config,
     ) {
         // ...
     }
@@ -98,9 +98,9 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## Service Error Handling
+## 服务错误处理
 
-An Error thrown during a service hook will be logged while the runner continues. If a hook in your service is critical to the setup or teardown of the test runner, the `SevereServiceError` exposed from the `webdriverio` package can be used to stop the runner.
+在服务钩子期间抛出的错误将被记录，而运行器会继续执行。如果服务中的钩子对测试运行器的设置或拆卸至关重要，可以使用从`webdriverio`包中公开的`SevereServiceError`来停止运行器。
 
 ```js
 import { SevereServiceError } from 'webdriverio'
@@ -116,11 +116,11 @@ export default class CustomServiceLauncher {
 }
 ```
 
-## Import Service from Module
+## 从模块导入服务
 
-The only thing to do now in order to use this service is to assign it to the `services` property.
+现在要使用此服务，唯一要做的就是将其分配给`services`属性。
 
-Modify your `wdio.conf.js` file to look like this:
+修改您的`wdio.conf.js`文件，使其看起来像这样：
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -145,16 +145,16 @@ export const config = {
 }
 ```
 
-## Publish Service on NPM
+## 在NPM上发布服务
 
-To make services easier to consume and discover by the WebdriverIO community, please follow these recommendations:
+为了使服务更容易被WebdriverIO社区使用和发现，请遵循以下建议：
 
-* Services should use this naming convention: `wdio-*-service`
-* Use NPM keywords: `wdio-plugin`, `wdio-service`
-* The `main` entry should `export` an instance of the service
-* Example services: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* 服务应使用此命名约定：`wdio-*-service`
+* 使用NPM关键字：`wdio-plugin`、`wdio-service`
+* `main`入口应`export`服务的实例
+* 示例服务：[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-Following the recommended naming pattern allows services to be added by name:
+遵循推荐的命名模式允许按名称添加服务：
 
 ```js
 // Add wdio-custom-service
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### Add Published Service to WDIO CLI and Docs
+### 将已发布的服务添加到WDIO CLI和文档
 
-We really appreciate every new plugin that could help other people run better tests! If you have created such a plugin, please consider adding it to our CLI and docs to make it easier to be found.
+我们非常感谢每一个可以帮助其他人运行更好测试的新插件！如果您已经创建了这样的插件，请考虑将其添加到我们的CLI和文档中，以便更容易被发现。
 
-Please raise a pull request with the following changes:
+请提交一个包含以下更改的拉取请求：
 
-- add your service to the list of [supported services](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) in the CLI module
-- enhance the [service list](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) for adding your docs to the official Webdriver.io page
+- 将您的服务添加到CLI模块中的[支持服务列表](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128))中
+- 增强[服务列表](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json)，将您的文档添加到官方Webdriver.io页面

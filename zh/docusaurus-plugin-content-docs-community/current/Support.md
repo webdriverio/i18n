@@ -1,29 +1,29 @@
 ---
 id: support
-title: Need Help?
+title: 需要帮助？
 ---
 
-This project is maintained by a dedicated group of people.
+本项目由一群专注的人员维护。
 
-If you're interested in making a contribution to the WebdriverIO project, check out [the free "Office Hours" program](/blog/2020/07/01/office-hours) to help you with your efforts.
+如果你有兴趣为WebdriverIO项目做出贡献，请查看[免费的"办公时间"计划](/blog/2020/07/01/office-hours)，以帮助你完成工作。
 
-If you're seeking immediate help with your own project, reach out to a trusted WebdriverIO expert:
+如果你正在寻求关于自己项目的即时帮助，请联系可信赖的WebdriverIO专家：
 
 - [Kevin Lamping](https://www.codementor.io/@kevinlamping)
-- [Add your name to this list](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
+- [将你的名字添加到这个列表](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
 
 ## Stack Overflow
 
-Stack Overflow is a popular forum to ask code-level questions or if you’re stuck with a specific error. Read through the [existing questions](https://stackoverflow.com/questions/tagged/webdriver-io) tagged with webdriver-io or [ask your own](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
+Stack Overflow是一个流行的论坛，用于提问代码级别的问题或当你被特定错误卡住时。阅读已有的标记为webdriver-io的[问题](https://stackoverflow.com/questions/tagged/webdriver-io)或[提出你自己的问题](https://stackoverflow.com/questions/ask?tags=webdriver-io)！
 
-## Discussion Forums
+## 讨论论坛
 
-There are many online forums which are a great place for discussion about WebdriverIO features, problems and bugs, e.g.:
+有许多在线论坛是讨论WebdriverIO功能、问题和bug的绝佳场所，例如：
 
-- [GitHub Discussions](https://github.com/webdriverio/webdriverio/discussions)
-- [Discord Community Server](https://discord.webdriver.io)
-- [#webdriverio Channel on SeleniumHQ Slack](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
+- [GitHub讨论区](https://github.com/webdriverio/webdriverio/discussions)
+- [Discord社区服务器](https://discord.webdriver.io)
+- [SeleniumHQ Slack上的#webdriverio频道](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
 
-## News
+## 新闻
 
-For the latest news about WebdriverIO, [follow @webdriverio on Twitter](https://twitter.com/webdriverio) and the official [WebdriverIO blog](/blog) on this website.
+关于WebdriverIO的最新消息，请在Twitter上[关注@webdriverio](https://twitter.com/webdriverio)以及本网站上的官方[WebdriverIO博客](/blog)。

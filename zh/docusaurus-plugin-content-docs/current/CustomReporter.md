@@ -1,13 +1,13 @@
 ---
 id: customreporter
-title: Custom Reporter
+title: 自定义报告器
 ---
 
-You can write your own custom reporter for the WDIO test runner that is tailored to your needs. And it’s easy!
+你可以为WDIO测试运行器编写自己的自定义报告器，以满足你的需求。而且这很简单！
 
-All you need to do is to create a node module that inherits from the `@wdio/reporter` package, so it can receive messages from the test.
+你需要做的就是创建一个继承自`@wdio/reporter`包的Node模块，以便它可以接收来自测试的消息。
 
-The basic setup should look like:
+基本设置应该如下所示：
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -27,10 +27,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-To use this reporter, all you need to do is assign it to the `reporter` property in your configuration.
+要使用这个报告器，你只需要在配置中将其分配给`reporter`属性。
 
-
-Your `wdio.conf.js` file should look like this:
+你的`wdio.conf.js`文件应该如下所示：
 
 ```js
 import CustomReporter from './reporter/my.custom.reporter'
@@ -55,15 +54,15 @@ export const config = {
 }
 ```
 
-You can also publish the reporter to NPM so everyone can use it. Name the package like other reporters `wdio-<reportername>-reporter`, and tag it with keywords like `wdio` or `wdio-reporter`.
+你也可以将报告器发布到NPM，这样每个人都可以使用它。将包命名为类似其他报告器的方式`wdio-<reportername>-reporter`，并使用关键字如`wdio`或`wdio-reporter`标记它。
 
-## Event Handler
+## 事件处理器
 
-You can register an event handler for several events which are triggered during testing. All of the following handlers will receive payloads with useful information about the current state and progress.
+你可以为测试过程中触发的多个事件注册事件处理器。以下所有处理器都将接收包含有关当前状态和进度的有用信息的有效载荷。
 
-The structure of these payload objects depend on the event, and are unified across the frameworks (Mocha, Jasmine, and Cucumber). Once you implement a custom reporter, it should work for all frameworks.
+这些有效载荷对象的结构取决于事件，并在各框架（Mocha、Jasmine和Cucumber）之间统一。一旦你实现了自定义报告器，它应该适用于所有框架。
 
-The following list contains all possible methods you can add to your reporter class:
+以下列表包含所有可以添加到报告器类中的可能方法：
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -85,9 +84,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-The method names are pretty self explanatory.
+方法名称相当自解释。
 
-To print something on a certain event, use the `this.write(...)` method, which is provided by the parent `WDIOReporter` class. It either streams the content to `stdout`, or to a log file (depending on the options of the reporter).
+要在某个事件上打印内容，请使用由父类`WDIOReporter`提供的`this.write(...)`方法。它要么将内容流式传输到`stdout`，要么传输到日志文件（取决于报告器的选项）。
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -99,15 +98,15 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-Note that you cannot defer the test execution in any way.
+请注意，你不能以任何方式延迟测试执行。
 
-All event handlers should execute synchronous routines (or you'll run into race conditions).
+所有事件处理器应执行同步例程（否则你会遇到竞态条件）。
 
-Be sure to check out the [example section](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) where you can find an example custom reporter that prints the event name for each event.
+请务必查看[示例部分](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio)，你可以找到一个自定义报告器的示例，它会为每个事件打印事件名称。
 
-If you have implemented a custom reporter that could be useful for the community, don't hesitate to make a Pull Request so we can make the reporter available for the public!
+如果你实现了对社区有用的自定义报告器，请随时提交Pull Request，以便我们可以将该报告器公开给公众！
 
-Also, if you run the WDIO testrunner via the `Launcher` interface, you can't apply a custom reporter as function as follows:
+另外，如果你通过`Launcher`接口运行WDIO测试运行器，你不能像下面这样将自定义报告器应用为函数：
 
 ```js
 import Launcher from '@wdio/cli'
@@ -120,9 +119,9 @@ const launcher = new Launcher('/path/to/config.file.js', {
 })
 ```
 
-## Wait Until `isSynchronised`
+## 等待直到`isSynchronised`
 
-If your reporter has to execute async operations to report the data (e.g. upload of log files or other assets) you can overwrite the `isSynchronised` method in your custom reporter to let the WebdriverIO runner wait until you have computed everything. An example of this can be seen in the [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
+如果你的报告器必须执行异步操作来报告数据（例如上传日志文件或其他资产），你可以在自定义报告器中覆盖`isSynchronised`方法，让WebdriverIO运行器等待，直到你计算完所有内容。这方面的一个例子可以在[`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts)中看到：
 
 ```js
 export default class SumoLogicReporter extends WDIOReporter {
@@ -161,18 +160,18 @@ export default class SumoLogicReporter extends WDIOReporter {
 }
 ```
 
-This way the runner will wait until all log information are uploaded.
+这样，运行器将等待直到所有日志信息都上传完成。
 
-## Publish Reporter on NPM
+## 在NPM上发布报告器
 
-To make reporter easier to consume and discover by the WebdriverIO community, please follow these recommendations:
+为使报告器更容易被WebdriverIO社区使用和发现，请遵循以下建议：
 
-* Services should use this naming convention: `wdio-*-reporter`
-* Use NPM keywords: `wdio-plugin`, `wdio-reporter`
-* The `main` entry should `export` an instance of the reporter
-* Example reporter: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
+* 服务应使用此命名约定：`wdio-*-reporter`
+* 使用NPM关键字：`wdio-plugin`、`wdio-reporter`
+* `main`入口应该`export`报告器的实例
+* 示例报告器：[`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
-Following the recommended naming pattern allows services to be added by name:
+遵循推荐的命名模式允许通过名称添加服务：
 
 ```js
 // Add wdio-custom-reporter
@@ -183,11 +182,11 @@ export const config = {
 }
 ```
 
-### Add Published Service to WDIO CLI and Docs
+### 将已发布的服务添加到WDIO CLI和文档
 
-We really appreciate every new plugin that could help other people run better tests! If you have created such a plugin, please consider adding it to our CLI and docs to make it easier to be found.
+我们非常感谢每一个可以帮助他人运行更好测试的新插件！如果你创建了这样的插件，请考虑将其添加到我们的CLI和文档中，以便更容易被发现。
 
-Please raise a pull request with the following changes:
+请提交一个包含以下更改的pull request：
 
-- add your service to the list of [supported reporters](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) in the CLI module
-- enhance the [reporter list](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/reporters.json) for adding your docs to the official Webdriver.io page
+- 将你的服务添加到CLI模块中的[支持的报告器列表](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91))
+- 增强[报告器列表](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/reporters.json)，将你的文档添加到官方Webdriver.io页面

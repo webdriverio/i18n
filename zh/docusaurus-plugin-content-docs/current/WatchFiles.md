@@ -1,15 +1,15 @@
 ---
 id: watcher
-title: Watch Test Files
+title: 监视测试文件
 ---
 
-With the WDIO testrunner you can watch files while you are working on them. They automatically rerun if you change either something in your app or in your test files. By adding a `--watch` flag when calling the `wdio` command the testrunner will wait for file changes after it ran all tests, e.g.
+使用WDIO测试运行器，你可以在处理文件时监视它们。当你在应用程序或测试文件中更改内容时，测试会自动重新运行。通过在调用`wdio`命令时添加`--watch`标志，测试运行器将在运行完所有测试后等待文件更改，例如：
 
 ```sh
 wdio wdio.conf.js --watch
 ```
 
-By default it only watches for changes in your `specs` files. However by setting a `filesToWatch` property in your `wdio.conf.js` that contains a list of file paths (globbing supported) it will also watch for these files to be changed in order to rerun the whole suite. This is useful if you want to automatically rerun all your tests if you have changed your application code, e.g.
+默认情况下，它只监视`specs`文件的更改。但是，通过在`wdio.conf.js`中设置`filesToWatch`属性，其中包含文件路径列表（支持全局模式），它还会监视这些文件的更改以重新运行整个测试套件。如果你想在更改应用程序代码时自动重新运行所有测试，这非常有用，例如：
 
 ```js
 // wdio.conf.js
@@ -24,5 +24,5 @@ export const config = {
 ```
 
 :::info
-Try to run tests in parallel as much as possible. E2E tests are, by nature, slow. Rerunning tests is only useful if you can keep the individual test run time short. In order to save time, the testrunner keeps WebDriver sessions alive while waiting for file changes. Make sure your WebDriver backend can be modified so that it doesn't automatically close the session if no command was executed after some duration of time.
+尽可能地并行运行测试。本质上，E2E测试速度较慢。只有在单个测试运行时间较短的情况下，重新运行测试才有用。为了节省时间，测试运行器在等待文件更改时保持WebDriver会话处于活动状态。确保你的WebDriver后端可以被修改，以便在一段时间内没有执行命令后不会自动关闭会话。
 :::

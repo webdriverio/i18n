@@ -3,9 +3,9 @@ id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
 ---
 
-Wait for a specific text to be displayed on the screen.
+等待屏幕上显示特定文本。
 
-## Usage
+## 使用方法
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -13,9 +13,9 @@ await browser.ocrWaitForTextDisplayed({
 });
 ```
 
-## Output
+## 输出
 
-### Logs
+### 日志
 
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
@@ -24,16 +24,16 @@ await browser.ocrWaitForTextDisplayed({
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
-## Options
+## 选项
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **类型：** `string`
+-   **必填：** 是
 
-The text you want to search for to click on.
+您要搜索并点击的文本。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
@@ -41,30 +41,30 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 18000 (18 seconds)
+-   **类型：** `number`
+-   **必填：** 否
+-   **默认值：** 18000（18秒）
 
-Time in milliseconds. Be aware that the OCR process can take some time, so don't set it too low.
+超时时间（毫秒）。请注意，OCR处理可能需要一些时间，所以不要设置得太低。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // wait for 25 seconds
+    timeout: 25000 // 等待25秒
 });
 ```
 
 ### `timeoutMsg`
 
-- **Type:** `string`
-- **Mandatory:** no
-- **Default:** `Could not find the text "{selector}" within the requested time.`
+-   **类型：** `string`
+-   **必填：** 否
+-   **默认值：** `Could not find the text "{selector}" within the requested time.`
 
-It overrides the default error message.
+覆盖默认错误消息。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -75,13 +75,13 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **类型：** `number`
+-   **必填：** 否
+-   **默认值：** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+对比度越高，图像越暗，反之亦然。这可以帮助在图像中找到文本。接受-1到1之间的值。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -92,12 +92,12 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **类型：** `number`
+-   **必填：** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+这是屏幕中OCR需要查找文本的搜索区域。可以是元素或包含`x`、`y`、`width`和`height`的矩形。
 
-#### Example
+#### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -105,13 +105,13 @@ await browser.ocrWaitForTextDisplayed({
     haystack: $("elementSelector"),
 });
 
-// OR
+// 或者
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// 或者
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: {
@@ -125,36 +125,36 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **类型：** `string`
+-   **必填：** 否
+-   **默认值：** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseract将识别的语言。更多信息可以在[这里](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)找到，支持的语言可以在[这里](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)找到。
 
-#### Example
+#### 示例
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Use Dutch as a language
+    // 使用荷兰语作为语言
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+您可以通过以下选项改变模糊逻辑以找到文本。这可能有助于找到更好的匹配。
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **类型：** `number`
+-   **必填：** 否
+-   **默认值：** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+确定匹配必须与模糊位置（由location指定）的接近程度。距离模糊位置为distance字符的精确字母匹配将被评分为完全不匹配。距离为0要求匹配位于指定的确切位置。使用0.8的阈值，距离为1000将要求完美匹配在位置800个字符内才能被找到。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -167,13 +167,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **类型：** `number`
+-   **必填：** 否
+-   **默认值：** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+确定模式预计在文本中大约的位置。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -186,13 +186,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **类型：** `number`
+-   **必填：** 否
+-   **默认值：** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+匹配算法在什么阈值放弃。阈值为0要求完全匹配（字母和位置都要匹配），阈值为1.0将匹配任何内容。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -205,13 +205,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **类型：** `boolean`
+-   **必填：** 否
+-   **默认值：** false
 
-Whether the search should be case sensitive.
+搜索是否区分大小写。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -224,13 +224,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **类型：** `number`
+-   **必填：** 否
+-   **默认值：** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+只返回长度超过此值的匹配项。（例如，如果您想在结果中忽略单字符匹配，请将其设置为2）
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -243,13 +243,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **类型：** `number`
+-   **必填：** 否
+-   **默认值：** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+当为`true`时，即使已经在字符串中找到完美匹配，匹配函数也将继续到搜索模式的末尾。
 
-##### Example
+##### 示例
 
 ```js
 await browser.ocrWaitForTextDisplayed({

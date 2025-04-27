@@ -1,11 +1,11 @@
 ---
 id: cloudservices
-title: 云服务
+title: 使用云服务
 ---
 
-Using on-demand services like Sauce Labs, Browserstack, TestingBot, LambdaTest or Perfecto with WebdriverIO is pretty simple. 您需要在您的配置中设置您服务的 `user` 和 `key`。
+在WebdriverIO中使用按需服务，如Sauce Labs、Browserstack、TestingBot、LambdaTest或Perfecto非常简单。您只需要在配置选项中设置您的服务的`user`和`key`。
 
-Optionally, you can also parametrize your test by setting cloud-specific capabilities like `build`. If you only want to run cloud services in Travis, you can use the `CI` environment variable to check if you are in Travis and modify the config accordingly.
+另外，您还可以通过设置特定云服务的能力（capabilities）如`build`来参数化您的测试。如果您只想在Travis中运行云服务，可以使用`CI`环境变量来检查是否在Travis环境中，并相应地修改配置。
 
 ```js
 // wdio.conf.js
@@ -18,31 +18,31 @@ if (process.env.CI) {
 
 ## Sauce Labs
 
-You can set up your tests to run remotely in [Sauce Labs](https://saucelabs.com).
+您可以设置测试在[Sauce Labs](https://saucelabs.com)远程运行。
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your Sauce Labs username and access key.
+唯一的要求是在您的配置中设置`user`和`key`（可以通过`wdio.conf.js`导出或传入`webdriverio.remote(...)`）为您的Sauce Labs用户名和访问密钥。
 
-You can also pass in any optional [test configuration option](https://docs.saucelabs.com/dev/test-configuration-options/) as a key/value in the capabilities for any browser.
+您还可以在任何浏览器的capabilities中，以键/值形式传入任何可选的[测试配置选项](https://docs.saucelabs.com/dev/test-configuration-options/)。
 
 ### Sauce Connect
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
+如果您想对互联网无法访问的服务器（如`localhost`）运行测试，那么您需要使用[Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy)。
 
-It is out of the scope of WebdriverIO to support this, so you'll have to start it by yourself.
+WebdriverIO的范围不包括支持这一功能，所以您必须自己启动它。
 
-If you are using the WDIO testrunner download and configure the [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) in your `wdio.conf.js`. It helps getting Sauce Connect running and comes with additional features that better integrate your tests into the Sauce service.
+如果您使用WDIO测试运行器，请在您的`wdio.conf.js`中下载并配置[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)。它有助于运行Sauce Connect，并带有其他功能，可以更好地将您的测试集成到Sauce服务中。
 
-### With Travis CI
+### 与Travis CI集成
 
-Travis CI, however, does [have support](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect) for starting Sauce Connect before each test, so following their directions for that is an option.
+不过，Travis CI[确实支持](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect)在每次测试前启动Sauce Connect，所以按照他们的指示操作是一个选择。
 
-If you do so, you must set the `tunnel-identifier` test configuration option in each browser's `capabilities`. Travis sets this to the `TRAVIS_JOB_NUMBER` environmental variable by default.
+如果这样做，您必须在每个浏览器的`capabilities`中设置`tunnel-identifier`测试配置选项。Travis默认将其设置为`TRAVIS_JOB_NUMBER`环境变量。
 
-Also, if you want to have Sauce Labs group your tests by build number, you can set the `build` to `TRAVIS_BUILD_NUMBER`.
+此外，如果您希望Sauce Labs按构建号对测试进行分组，可以将`build`设置为`TRAVIS_BUILD_NUMBER`。
 
-Lastly, if you set `name`, this changes the name of this test in Sauce Labs for this build. If you are using the WDIO testrunner combined with the [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service), WebdriverIO automatically sets a proper name for the test.
+最后，如果您设置了`name`，这将更改此构建在Sauce Labs中的测试名称。如果您使用WDIO测试运行器结合[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)，WebdriverIO会自动为测试设置一个合适的名称。
 
-Example `capabilities`:
+`capabilities`示例：
 
 ```javascript
 browserName: 'chrome',
@@ -53,35 +53,35 @@ name: 'integration',
 build: process.env.TRAVIS_BUILD_NUMBER
 ```
 
-### Timeouts
+### 超时
 
-Since you are running your tests remotely, it might be necessary to increase some timeouts.
+由于您是远程运行测试，可能需要增加一些超时时间。
 
-You can change the [idle timeout](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) by passing `idle-timeout` as a test configuration option. This controls how long Sauce will wait between commands before closing the connection.
+您可以通过传递`idle-timeout`作为测试配置选项来更改[空闲超时](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout)。这控制了Sauce在命令之间等待多长时间后关闭连接。
 
 ## BrowserStack
 
-WebdriverIO also has a [Browserstack](https://www.browserstack.com) integration built-in.
+WebdriverIO还内置了[Browserstack](https://www.browserstack.com)集成。
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your Browserstack automate username and access key.
+唯一的要求是在您的配置中设置`user`和`key`（可以通过`wdio.conf.js`导出或传入`webdriverio.remote(...)`）为您的Browserstack自动化用户名和访问密钥。
 
-You can also pass in any optional [supported capabilities](https://www.browserstack.com/automate/capabilities) as a key/value in the capabilities for any browser. If you set `browserstack.debug` to `true` it will record a screencast of the session, which might be helpful.
+您还可以在任何浏览器的capabilities中，以键/值形式传入任何可选的[支持的功能](https://www.browserstack.com/automate/capabilities)。如果您将`browserstack.debug`设置为`true`，它将记录会话的屏幕录像，这可能会有所帮助。
 
-### Local Testing
+### 本地测试
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://www.browserstack.com/local-testing#command-line).
+如果您想对互联网无法访问的服务器（如`localhost`）运行测试，那么您需要使用[本地测试](https://www.browserstack.com/local-testing#command-line)。
 
-It is out of the scope of WebdriverIO to support this, so you must start it by yourself.
+WebdriverIO的范围不包括支持这一功能，所以您必须自己启动它。
 
-If you do use local, you should set `browserstack.local` to `true` in your capabilities.
+如果您使用本地测试，应该在您的capabilities中将`browserstack.local`设置为`true`。
 
-If you are using the WDIO testrunner, download and configure the [`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service) in your `wdio.conf.js`. It helps get BrowserStack running, and comes with additional features that better integrate your tests into the BrowserStack service.
+如果您使用WDIO测试运行器，请在您的`wdio.conf.js`中下载并配置[`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service)。它有助于运行BrowserStack，并带有其他功能，可以更好地将您的测试集成到BrowserStack服务中。
 
-### With Travis CI
+### 与Travis CI集成
 
-If you want to add Local Testing in Travis, you have to start it by yourself.
+如果您想在Travis中添加本地测试，您必须自己启动它。
 
-The following script will download and start it in the background. You should run this in Travis before starting the tests.
+以下脚本将下载并在后台启动它。您应该在开始测试之前在Travis中运行这个脚本。
 
 ```sh
 wget https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
@@ -90,9 +90,9 @@ unzip BrowserStackLocal-linux-x64.zip
 sleep 3
 ```
 
-Also, you might wish set the `build` to the Travis build number.
+此外，您可能希望将`build`设置为Travis构建号。
 
-Example `capabilities`:
+`capabilities`示例：
 
 ```javascript
 browserName: 'chrome',
@@ -105,41 +105,41 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## TestingBot
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your [TestingBot](https://testingbot.com) username and secret key.
+唯一的要求是在您的配置中设置`user`和`key`（可以通过`wdio.conf.js`导出或传入`webdriverio.remote(...)`）为您的[TestingBot](https://testingbot.com)用户名和密钥。
 
-You can also pass in any optional [supported capabilities](https://testingbot.com/support/other/test-options) as a key/value in the capabilities for any browser.
+您还可以在任何浏览器的capabilities中，以键/值形式传入任何可选的[支持的功能](https://testingbot.com/support/other/test-options)。
 
-### Local Testing
+### 本地测试
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://testingbot.com/support/other/tunnel). TestingBot provides a Java-based tunnel to allow you to test websites not accessible from the internet.
+如果您想对互联网无法访问的服务器（如`localhost`）运行测试，那么您需要使用[本地测试](https://testingbot.com/support/other/tunnel)。TestingBot提供基于Java的隧道，允许您测试互联网无法访问的网站。
 
-Their tunnel support page contains the information necessary to get this up and running.
+他们的隧道支持页面包含了使其启动和运行所需的信息。
 
-If you are using the WDIO testrunner, download and configure the [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) in your `wdio.conf.js`. It helps get TestingBot running, and comes with additional features that better integrate your tests into the TestingBot service.
+如果您使用WDIO测试运行器，请在您的`wdio.conf.js`中下载并配置[`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service)。它有助于运行TestingBot，并带有其他功能，可以更好地将您的测试集成到TestingBot服务中。
 
 ## LambdaTest
 
-[LambdaTest](https://www.lambdatest.com) integration is also built-in.
+[LambdaTest](https://www.lambdatest.com)集成也是内置的。
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your LambdaTest account username and access key.
+唯一的要求是在您的配置中设置`user`和`key`（可以通过`wdio.conf.js`导出或传入`webdriverio.remote(...)`）为您的LambdaTest账户用户名和访问密钥。
 
-You can also pass in any optional [supported capabilities](https://www.lambdatest.com/capabilities-generator/) as a key/value in the capabilities for any browser. If you set `visual` to `true` it will record a screencast of the session, which might be helpful.
+您还可以在任何浏览器的capabilities中，以键/值形式传入任何可选的[支持的功能](https://www.lambdatest.com/capabilities-generator/)。如果您将`visual`设置为`true`，它将记录会话的屏幕录像，这可能会有所帮助。
 
-### Tunnel for local testing
+### 本地测试隧道
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/).
+如果您想对互联网无法访问的服务器（如`localhost`）运行测试，那么您需要使用[本地测试](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/)。
 
-It is out of the scope of WebdriverIO to support this, so you must start it by yourself.
+WebdriverIO的范围不包括支持这一功能，所以您必须自己启动它。
 
-If you do use local, you should set `tunnel` to `true` in your capabilities.
+如果您使用本地测试，应该在您的capabilities中将`tunnel`设置为`true`。
 
-If you are using the WDIO testrunner, download and configure the [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) in your `wdio.conf.js`. It helps get LambdaTest running, and comes with additional features that better integrate your tests into the LambdaTest service.
+如果您使用WDIO测试运行器，请在您的`wdio.conf.js`中下载并配置[`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service)。它有助于运行LambdaTest，并带有其他功能，可以更好地将您的测试集成到LambdaTest服务中。
 
-### With Travis CI
+### 与Travis CI集成
 
-If you want to add Local Testing in Travis, you have to start it by yourself.
+如果您想在Travis中添加本地测试，您必须自己启动它。
 
-The following script will download and start it in the background. You should run this in Travis before starting the tests.
+以下脚本将下载并在后台启动它。您应该在开始测试之前在Travis中运行这个脚本。
 
 ```sh
 wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
@@ -148,9 +148,9 @@ unzip LT_Linux.zip
 sleep 3
 ```
 
-Also, you might wish set the `build` to the Travis build number.
+此外，您可能希望将`build`设置为Travis构建号。
 
-Example `capabilities`:
+`capabilities`示例：
 
 ```javascript
 platform: 'Windows 10',
@@ -163,7 +163,7 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## Perfecto
 
-When using wdio with [`Perfecto`](https://www.perfecto.io), you need to create a security token for each user and add this in the capabilities structure (in addition to other capabilities), as follows:
+当使用wdio与[`Perfecto`](https://www.perfecto.io)时，您需要为每个用户创建安全令牌，并将其添加到capabilities结构中（除了其他capabilities外），如下所示：
 
 ```js
 export const config = {
@@ -173,7 +173,7 @@ export const config = {
   }],
 ```
 
-In addition, you need to add cloud configuration, as follows:
+此外，您需要添加云配置，如下所示：
 
 ```js
   hostname: "your_cloud_name.perfectomobile.com",

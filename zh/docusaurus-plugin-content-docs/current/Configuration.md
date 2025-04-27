@@ -3,114 +3,128 @@ id: configuration
 title: 配置
 ---
 
-Based on the [setup type](/docs/setuptypes) (e.g. using the raw protocol bindings, WebdriverIO as standalone package or the WDIO testrunner) there is a different set of options available to control the environment.
+根据[安装类型](/docs/setuptypes)（例如使用原始协议绑定、作为独立包的WebdriverIO或WDIO测试运行器），有不同的选项集可用于控制环境。
 
 ## WebDriver 选项
 
-[`webdriver`](https://www.npmjs.com/package/webdriver) 协议包提供以下选项：
+使用[`webdriver`](https://www.npmjs.com/package/webdriver)协议包时，定义了以下选项：
 
 ### protocol
 
-与驱动服务器交流时使用的协议。
+与驱动程序服务器通信时使用的协议。
 
-Type: `String`<br /> Default: `http`
+类型：`String`<br />
+默认值：`http`
 
 ### hostname
 
-驱动服务器主机。
+驱动程序服务器的主机。
 
-Type: `String`<br /> Default: `0.0.0.0`
+类型：`String`<br />
+默认值：`0.0.0.0`
 
 ### port
 
-驱动服务器监听端口。
+驱动程序服务器所在的端口。
 
-Type: `Number`<br /> Default: `undefined`
+类型：`Number`<br />
+默认值：`undefined`
 
 ### path
 
-驱动服务器端点路径。
+驱动程序服务器端点的路径。
 
-Type: `String`<br /> Default: `/`
+类型：`String`<br />
+默认值：`/`
 
 ### queryParams
 
-Query parameters that are propagated to the driver server.
+传播到驱动程序服务器的查询参数。
 
-Type: `Object`<br /> Default: `undefined`
+类型：`Object`<br />
+默认值：`undefined`
 
 ### user
 
-Your cloud service username (only works for [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) or [LambdaTest](https://www.lambdatest.com) accounts). If set, WebdriverIO will automatically set connection options for you. If you don't use a cloud provider this can be used to authenticate any other WebDriver backend.
+您的云服务用户名（仅适用于[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)或[LambdaTest](https://www.lambdatest.com)账户）。如果设置，WebdriverIO将自动为您设置连接选项。如果您不使用云提供商，这可用于验证任何其他WebDriver后端。
 
-Type: `String`<br /> Default: `undefined`
+类型：`String`<br />
+默认值：`undefined`
 
 ### key
 
-Your cloud service access key or secret key (only works for [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) or [LambdaTest](https://www.lambdatest.com) accounts). If set, WebdriverIO will automatically set connection options for you. If you don't use a cloud provider this can be used to authenticate any other WebDriver backend.
+您的云服务访问密钥或秘密密钥（仅适用于[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)或[LambdaTest](https://www.lambdatest.com)账户）。如果设置，WebdriverIO将自动为您设置连接选项。如果您不使用云提供商，这可用于验证任何其他WebDriver后端。
 
-Type: `String`<br /> Default: `undefined`
+类型：`String`<br />
+默认值：`undefined`
 
 ### capabilities
 
-Defines the capabilities you want to run in your WebDriver session. Check out the [WebDriver Protocol](https://w3c.github.io/webdriver/#capabilities) for more details. If you run an older driver that doesn't support the WebDriver protocol, you’ll need to use the [JSONWireProtocol capabilities](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) to successfully run a session.
+定义要在WebDriver会话中运行的功能。查看[WebDriver协议](https://w3c.github.io/webdriver/#capabilities)了解更多详情。如果您运行的是不支持WebDriver协议的旧驱动程序，则需要使用[JSONWireProtocol功能](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities)才能成功运行会话。
 
-Next to the WebDriver based capabilities you can apply browser and vendor specific options that allow deeper configuration to the remote browser or device. These are documented in the corresponding vendor docs, e.g.:
+除了基于WebDriver的功能外，您还可以应用浏览器和供应商特定的选项，以便更深入地配置远程浏览器或设备。这些在相应的供应商文档中有记录，例如：
 
-- `goog:chromeOptions`: for [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
-- `moz:firefoxOptions`: for [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
-- `ms:edgeOptions`: for [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)
-- `sauce:options`: for [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)
-- `bstack:options`: for [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
-- `selenoid:options`: for [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
+- `goog:chromeOptions`：用于[Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
+- `moz:firefoxOptions`：用于[Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
+- `ms:edgeOptions`：用于[Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)
+- `sauce:options`：用于[Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)
+- `bstack:options`：用于[BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
+- `selenoid:options`：用于[Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
 
-Additionally, a useful utility is the Sauce Labs [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/), which helps you create this object by clicking together your desired capabilities.
+此外，Sauce Labs的[自动测试配置器](https://docs.saucelabs.com/basics/platform-configurator/)是一个有用的工具，它可以通过点击组合您所需的功能来帮助您创建此对象。
 
-Type: `Object`<br /> Default: `null`
+类型：`Object`<br />
+默认值：`null`
 
-**Example:**
+**示例：**
 
 ```js
 {
-    browserName: 'chrome', // options: `chrome`, `edge`, `firefox`, `safari`
-    browserVersion: '27.0', // browser version
-    platformName: 'Windows 10' // OS platform
+    browserName: 'chrome', // 选项: `chrome`, `edge`, `firefox`, `safari`
+    browserVersion: '27.0', // 浏览器版本
+    platformName: 'Windows 10' // 操作系统平台
 }
 ```
 
-If you’re running web or native tests on mobile devices, `capabilities` differs from the WebDriver protocol. See the [Appium Docs](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/) for more details.
+如果您在移动设备上运行Web或原生测试，`capabilities`与WebDriver协议不同。有关更多详细信息，请参阅[Appium文档](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)。
 
 ### logLevel
 
-Level of logging verbosity.
+日志记录的详细程度。
 
-Type: `String`<br /> Default: `info`<br /> Options: `trace` | `debug` | `info` | `warn` | `error` | `silent`
+类型：`String`<br />
+默认值：`info`<br />
+选项：`trace` | `debug` | `info` | `warn` | `error` | `silent`
 
 ### outputDir
 
-Directory to store all testrunner log files (including reporter logs and `wdio` logs). If not set, all logs are streamed to `stdout`. Since most reporters are made to log to `stdout`, it is recommended to only use this option for specific reporters where it makes more sense to push report into a file (like the `junit` reporter, for example).
+存储所有测试运行器日志文件的目录（包括报告器日志和`wdio`日志）。如果未设置，所有日志将流式传输到`stdout`。由于大多数报告器都是为日志记录到`stdout`而设计的，因此建议仅针对特定报告器使用此选项，这些报告器更适合将报告推送到文件中（例如`junit`报告器）。
 
-When running in standalone mode, the only log generated by WebdriverIO will be the `wdio` log.
+在独立模式下运行时，WebdriverIO生成的唯一日志将是`wdio`日志。
 
-Type: `String`<br /> Default: `null`
+类型：`String`<br />
+默认值：`null`
 
 ### connectionRetryTimeout
 
-Timeout for any WebDriver request to a driver or grid.
+任何WebDriver请求到驱动程序或网格的超时时间。
 
-Type: `Number`<br /> Default: `120000`
+类型：`Number`<br />
+默认值：`120000`
 
 ### connectionRetryCount
 
-Maximum count of request retries to the Selenium server.
+向Selenium服务器重试请求的最大次数。
 
-Type: `Number`<br /> Default: `3`
+类型：`Number`<br />
+默认值：`3`
 
 ### agent
 
-Allows you to use a custom`http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) to make requests.
+允许您使用自定义的`http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent)发出请求。
 
-Type: `Object`<br /> Default:
+类型：`Object`<br />
+默认值：
 
 ```js
 {
@@ -121,7 +135,7 @@ Type: `Object`<br /> Default:
 
 ### headers
 
-Specify custom `headers` to pass into every WebDriver request. If your Selenium Grid requires Basic Authentification we recommend to pass in an `Authorization` header through this option to authenticate your WebDriver requests, e.g.:
+指定要传递到每个WebDriver请求的自定义`headers`。如果您的Selenium网格需要基本身份验证，我们建议通过此选项传递`Authorization`头来验证您的WebDriver请求，例如：
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
@@ -143,49 +157,57 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Type: `Object`<br /> Default: `{}`
+类型：`Object`<br />
+默认值：`{}`
 
 ### transformRequest
 
-Function intercepting [HTTP request options](https://github.com/sindresorhus/got#options) before a WebDriver request is made
+在发出WebDriver请求之前拦截[HTTP请求选项](https://github.com/sindresorhus/got#options)的函数
 
-Type: `(RequestOptions) => RequestOptions`<br /> Default: *none*
+类型：`(RequestOptions) => RequestOptions`<br />
+默认值：*无*
 
 ### transformResponse
 
-Function intercepting HTTP response objects after a WebDriver response has arrived. The function is passed the original response object as the first and the corresponding `RequestOptions` as the second argument.
+WebDriver响应到达后拦截HTTP响应对象的函数。该函数接收原始响应对象作为第一个参数，相应的`RequestOptions`作为第二个参数。
 
-Type: `(Response, RequestOptions) => Response`<br /> Default: *none*
+类型：`(Response, RequestOptions) => Response`<br />
+默认值：*无*
 
 ### strictSSL
 
-Whether it does not require SSL certificate to be valid. It can be set via an environment variables as `STRICT_SSL` or `strict_ssl`.
+是否不要求SSL证书有效。
+可以通过环境变量`STRICT_SSL`或`strict_ssl`设置。
 
-Type: `Boolean`<br /> Default: `true`
+类型：`Boolean`<br />
+默认值：`true`
 
 ### enableDirectConnect
 
-Whether enable [Appium direct connection feature](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments). It does nothing if the response did not have proper keys while the flag is enabled.
+是否启用[Appium直接连接功能](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments)。
+如果响应在启用标志的情况下没有适当的键，它不会做任何事情。
 
-Type: `Boolean`<br /> Default: `true`
+类型：`Boolean`<br />
+默认值：`true`
 
 ### cacheDir
 
-The path to the root of the cache directory. This directory is used to store all drivers that are downloaded when attempting to start a session.
+缓存目录的根路径。该目录用于存储尝试启动会话时下载的所有驱动程序。
 
-Type: `String`<br /> Default: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+类型：`String`<br />
+默认值：`process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ---
 
 ## WebdriverIO
 
-The following options (including the ones listed above) can be used with WebdriverIO in standalone:
+以下选项（包括上面列出的选项）可以与独立模式的WebdriverIO一起使用：
 
 ### automationProtocol
 
-Define the protocol you want to use for your browser automation. Currently only [`webdriver`](https://www.npmjs.com/package/webdriver) is supported, as it is the main browser automation technology WebdriverIO uses.
+定义要用于浏览器自动化的协议。目前仅支持[`webdriver`](https://www.npmjs.com/package/webdriver)，因为它是WebdriverIO使用的主要浏览器自动化技术。
 
-If you want to automate the browser using a different automation technology, make you set this property to a path that resolves to a module that adheres to the following interface:
+如果您想使用不同的自动化技术来自动化浏览器，请确保将此属性设置为解析为遵循以下接口的模块的路径：
 
 ```ts
 import type { Capabilities } from '@wdio/types';
@@ -235,182 +257,194 @@ export default class YourAutomationLibrary {
 }
 ```
 
-Type: `String`<br />
-Default: `webdriver`
+类型：`String`<br />
+默认值：`webdriver`
 
 ### baseUrl
 
-Shorten `url` command calls by setting a base URL.
-- If your `url` parameter starts with `/`, then `baseUrl` is prepended (except the `baseUrl` path, if it has one).
-- If your `url` parameter starts without a scheme or `/` (like `some/path`), then the full `baseUrl` is prepended directly.
+通过设置基本URL来缩短`url`命令调用。
+- 如果您的`url`参数以`/`开头，则会预置`baseUrl`（除了`baseUrl`路径，如果它有的话）。
+- 如果您的`url`参数没有以方案或`/`开头（如`some/path`），则直接预置完整的`baseUrl`。
 
-Type: `String`<br /> Default: `null`
+类型：`String`<br />
+默认值：`null`
 
 ### waitforTimeout
 
-Default timeout for all `waitFor*` commands. (Note the lowercase `f` in the option name.) This timeout __only__ affects commands starting with `waitFor*` and their default wait time.
+所有`waitFor*`命令的默认超时时间。（请注意选项名称中的小写`f`。）此超时__仅__影响以`waitFor*`开头的命令及其默认等待时间。
 
-To increase the timeout for a _test_, please see the framework docs.
+要增加_测试_的超时时间，请参阅框架文档。
 
-Type: `Number`<br /> Default: `5000`
+类型：`Number`<br />
+默认值：`5000`
 
 ### waitforInterval
 
-Default interval for all `waitFor*` commands to check if an expected state (e.g., visibility) has been changed.
+所有`waitFor*`命令检查预期状态（例如可见性）是否已更改的默认间隔。
 
-Type: `Number`<br /> Default: `100`
+类型：`Number`<br />
+默认值：`100`
 
 ### region
 
-If running on Sauce Labs, you can choose to run tests between different data centers: US or EU. To change your region to EU, add `region: 'eu'` to your config.
+如果在Sauce Labs上运行，您可以选择在不同的数据中心之间运行测试：美国或欧盟。
+要将您的区域更改为欧盟，请在配置中添加`region: 'eu'`。
 
-__Note:__ This only has an effect if you provide `user` and `key` options that are connected to your Sauce Labs account.
+__注意：__这仅在您提供与Sauce Labs帐户关联的`user`和`key`选项时才有效。
 
-Type: `String`<br /> Default: `us`
+类型：`String`<br />
+默认值：`us`
 
-*(only for vm and or em/simulators)*
+*（仅适用于vm和/或em/模拟器）*
 
 ---
 
-## Testrunner Options
+## 测试运行器选项
 
-The following options (including the ones listed above) are defined only for running WebdriverIO with the WDIO testrunner:
+以下选项（包括上面列出的选项）仅针对使用WDIO测试运行器运行WebdriverIO定义：
 
 ### specs
 
-Define specs for test execution. You can either specify a glob pattern to match multiple files at once or wrap a glob or set of paths into an array to run them within a single worker process. All paths are seen as relative from the config file path.
+定义测试执行的规范。您可以指定一个glob模式一次匹配多个文件，或者将glob或一组路径包装到数组中，在单个工作进程中运行它们。所有路径都被视为相对于配置文件路径。
 
-Type: `(String | String[])[]`<br /> Default: `[]`
+类型：`(String | String[])[]`<br />
+默认值：`[]`
 
 ### exclude
 
-Exclude specs from test execution. All paths are seen as relative from the config file path.
+从测试执行中排除规范。所有路径都被视为相对于配置文件路径。
 
-Type: `String[]`<br /> Default: `[]`
+类型：`String[]`<br />
+默认值：`[]`
 
 ### suites
 
-An object describing various of suites, which you can then specify with the `--suite` option on the `wdio` CLI.
+描述各种套件的对象，您可以在`wdio` CLI上使用`--suite`选项指定。
 
-Type: `Object`<br /> Default: `{}`
+类型：`Object`<br />
+默认值：`{}`
 
 ### capabilities
 
-The same as the `capabilities` section described above, except with the option to specify either a [`multiremote`](/docs/multiremote) object, or multiple WebDriver sessions in an array for parallel execution.
+与上面描述的`capabilities`部分相同，但有选项可以指定[`multiremote`](/docs/multiremote)对象，或者在数组中指定多个WebDriver会话以进行并行执行。
 
-You can apply the same vendor and browser specific capabilities as defined [above](/docs/configuration#capabilities).
+您可以应用与[上面](/docs/configuration#capabilities)定义的相同的供应商和浏览器特定功能。
 
-Type: `Object`|`Object[]`<br /> Default: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
+类型：`Object`|`Object[]`<br />
+默认值：`[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
 
 ### maxInstances
 
-Maximum number of total parallel running workers.
+并行运行的工作程序的最大总数。
 
-__Note:__ that it may be a number as high as `100`, when the tests are being performed on some external vendors such as Sauce Labs's machines. There, the tests are not tested on a single machine, but rather, on multiple VMs. If the tests are to be run on a local development machine, use a number that is more reasonable, such as `3`, `4`, or `5`. Essentially, this is the number of browsers that will be concurrently started and running your tests at the same time, so it depends on how much RAM there is on your machine, and how many other apps are running on your machine.
+__注意：__当测试在某些外部供应商（如Sauce Labs）的机器上执行时，这个数字可能高达`100`。在那里，测试不是在单台机器上测试，而是在多个虚拟机上测试。如果测试要在本地开发机器上运行，请使用更合理的数字，如`3`、`4`或`5`。本质上，这是将同时启动并同时运行测试的浏览器数量，因此它取决于您的机器上有多少RAM以及您的机器上运行的其他应用程序数量。
 
-You can also apply `maxInstances` within your capability objects using the `wdio:maxInstances` capability. This will limit the amount of parallel sessions for that particular capability.
+您还可以使用`wdio:maxInstances`功能在功能对象中应用`maxInstances`。这将限制该特定功能的并行会话数量。
 
-Type: `Number`<br /> Default: `100`
+类型：`Number`<br />
+默认值：`100`
 
 ### maxInstancesPerCapability
 
-Maximum number of total parallel running workers per capability.
+每种功能的并行运行的工作程序的最大总数。
 
-Type: `Number`<br /> Default: `100`
+类型：`Number`<br />
+默认值：`100`
 
 ### injectGlobals
 
-Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment. If you set to `false`, you should import from `@wdio/globals`, e.g.:
+将WebdriverIO的全局变量（例如`browser`、`$`和`$$`）插入到全局环境中。
+如果设置为`false`，您应该从`@wdio/globals`导入，例如：
 
 ```ts
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-Note: WebdriverIO doesn't handle injection of test framework specific globals.
+注意：WebdriverIO不处理测试框架特定全局变量的注入。
 
-Type: `Boolean`<br /> Default: `true`
+类型：`Boolean`<br />
+默认值：`true`
 
 ### bail
 
-If you want your test run to stop after a specific number of test failures, use `bail`. (It defaults to `0`, which runs all tests no matter what.) **Note:** A test in this context are all tests within a single spec file (when using Mocha or Jasmine) or all steps within a feature file (when using Cucumber). If you want to control the bail behavior within tests of a single test file, take a look at the available [framework](frameworks) options.
+如果您希望测试运行在特定数量的测试失败后停止，请使用`bail`。
+（默认为`0`，无论如何都会运行所有测试。）**注意：**在这种情况下，测试是指单个规范文件中的所有测试（使用Mocha或Jasmine时）或特性文件中的所有步骤（使用Cucumber时）。如果您想控制单个测试文件中测试的bail行为，请查看可用的[框架](frameworks)选项。
 
-Type: `Number`<br /> Default: `0` (don't bail; run all tests)
+类型：`Number`<br />
+默认值：`0`（不退出；运行所有测试）
 
 ### specFileRetries
 
-The number of times to retry an entire specfile when it fails as a whole.
+当整个规范文件作为一个整体失败时重试的次数。
 
-Type: `Number`<br /> Default: `0`
+类型：`Number`<br />
+默认值：`0`
 
 ### specFileRetriesDelay
 
-Delay in seconds between the spec file retry attempts
+规范文件重试尝试之间的延迟（以秒为单位）
 
-Type: `Number`<br /> Default: `0`
+类型：`Number`<br />
+默认值：`0`
 
 ### specFileRetriesDeferred
 
-Whether or not retried spec files should be retried immediately or deferred to the end of the queue.
+重试的规范文件是立即重试还是推迟到队列末尾。
 
-Type: `Boolean`<br />
-Default: `true`
-
-### groupLogsByTestSpec
-
-Choose the log output view.
-
-If set to `false` logs from different test files will be printed in real-time. Please note that this may result in the mixing of log outputs from different files when running in parallel.
-
-If set to `true` log outputs will be grouped by Test Spec and printed only when the Test Spec is completed.
-
-By default, it is set to `false` so logs are printed in real-time.
-
-Type: `Boolean`<br />
-Default: `false`
+类型：`Boolean`<br />
+默认值：`true`
 
 ### groupLogsByTestSpec
 
-Choose the log output view.
+选择日志输出视图。
 
-If set to `false` logs from different test files will be printed in real-time. Please note that this may result in the mixing of log outputs from different files when running in parallel.
+如果设置为`false`，来自不同测试文件的日志将实时打印。请注意，并行运行时，这可能会导致来自不同文件的日志输出混合。
 
-If set to `true` log outputs will be grouped by Test Spec and printed only when the Test Spec is completed.
+如果设置为`true`，日志输出将按测试规范分组，并且仅在测试规范完成时打印。
 
-By default, it is set to `false` so logs are printed in real-time.
+默认情况下，它设置为`false`，因此日志是实时打印的。
 
-Type: `Boolean`<br /> Default: `false`
+类型：`Boolean`<br />
+默认值：`false`
 
 ### services
 
-Services take over a specific job you don't want to take care of. They enhance your test setup with almost no effort.
+服务接管您不想关心的特定工作。它们几乎不费力地增强您的测试设置。
 
-Type: `String[]|Object[]`<br /> Default: `[]`
+类型：`String[]|Object[]`<br />
+默认值：`[]`
 
 ### framework
 
-Defines the test framework to be used by the WDIO testrunner.
+定义WDIO测试运行器使用的测试框架。
 
-Type: `String`<br /> Default: `mocha`<br /> Options: `mocha` | `jasmine`
+类型：`String`<br />
+默认值：`mocha`<br />
+选项：`mocha` | `jasmine`
 
-### mochaOpts, jasmineOpts and cucumberOpts
+### mochaOpts, jasmineOpts和cucumberOpts
 
-Specific framework-related options. See the framework adapter documentation on which options are available. Read more on this in [Frameworks](frameworks).
+特定框架相关的选项。有关哪些选项可用，请参阅框架适配器文档。在[框架](frameworks)中了解更多相关信息。
 
-Type: `Object`<br /> Default: `{ timeout: 10000 }`
+类型：`Object`<br />
+默认值：`{ timeout: 10000 }`
 
 ### cucumberFeaturesWithLineNumbers
 
-List of cucumber features with line numbers (when [using cucumber framework](./Frameworks.md#using-cucumber)).
+带行号的cucumber特性列表（当[使用cucumber框架](./Frameworks.md#using-cucumber)时）。
 
-Type: `String[]` Default: `[]`
+类型：`String[]`
+默认值：`[]`
 
 ### reporters
 
-List of reporters to use. A reporter can be either a string, or an array of `['reporterName', { /* reporter options */}]` where the first element is a string with the reporter name and the second element an object with reporter options.
+要使用的报告器列表。报告器可以是字符串，也可以是
+`['reporterName', { /* reporter options */}]`数组，其中第一个元素是带有报告器名称的字符串，第二个元素是带有报告器选项的对象。
 
-Type: `String[]|Object[]`<br /> Default: `[]`
+类型：`String[]|Object[]`<br />
+默认值：`[]`
 
-Example:
+示例：
 
 ```js
 reporters: [
@@ -425,37 +459,42 @@ reporters: [
 
 ### reporterSyncInterval
 
-Determines in which interval the reporter should check if they are synchronized if they report their logs asynchronously (e.g. if logs are streamed to a 3rd party vendor).
+确定报告器检查它们是否同步的时间间隔，如果它们异步报告其日志（例如，如果日志流式传输到第三方供应商）。
 
-Type: `Number`<br /> Default: `100` (ms)
+类型：`Number`<br />
+默认值：`100`（毫秒）
 
 ### reporterSyncTimeout
 
-Determines the maximum time reporters have to finish uploading all their logs until an error is being thrown by the testrunner.
+确定报告器完成上传所有日志的最长时间，直到测试运行器抛出错误。
 
-Type: `Number`<br /> Default: `5000` (ms)
+类型：`Number`<br />
+默认值：`5000`（毫秒）
 
 ### execArgv
 
-Node arguments to specify when launching child processes.
+启动子进程时要指定的Node参数。
 
-Type: `String[]`<br /> Default: `null`
+类型：`String[]`<br />
+默认值：`null`
 
 ### filesToWatch
 
-A list of glob supporting string patterns that tell the testrunner to have it additionally watch other files, e.g. application files, when running it with the `--watch` flag. By default the testrunner already watches all spec files.
+支持glob的字符串模式列表，告诉测试运行器在使用`--watch`标志运行时额外监视其他文件，例如应用程序文件。默认情况下，测试运行器已经监视所有规范文件。
 
-Type: `String[]`<br /> Default: `[]`
+类型：`String[]`<br />
+默认值：`[]`
 
 ### updateSnapshots
 
-Set to true if you want to update your snapshots. Ideally used as part of a CLI parameter, e.g. `wdio run wdio.conf.js --s`.
+如果要更新快照，则设置为true。理想情况下作为CLI参数的一部分使用，例如`wdio run wdio.conf.js --s`。
 
-Type: `'new' | 'all' | 'none'`<br /> Default: `none` if not provided and tests run in CI, `new` if not provided, otherwise what's been provided
+类型：`'new' | 'all' | 'none'`<br />
+默认值：如果未提供且测试在CI中运行，则为`none`；如果未提供，则为`new`；否则为提供的值
 
 ### resolveSnapshotPath
 
-Overrides default snapshot path. For example, to store snapshots next to test files.
+覆盖默认快照路径。例如，将快照存储在测试文件旁边。
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -463,278 +502,280 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Type: `(testPath: string, snapExtension: string) => string`<br /> Default: stores snapshot files in `__snapshots__` directory next to test file
+类型：`(testPath: string, snapExtension: string) => string`<br />
+默认值：在测试文件旁边的`__snapshots__`目录中存储快照文件
 
 ### tsConfigPath
 
-WDIO uses `tsx` to compile TypeScript files.  Your TSConfig is automatically detected from the current working directory but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH environment variable.
+WDIO使用`tsx`编译TypeScript文件。自动从当前工作目录检测您的TSConfig，但您可以在此处指定自定义路径或通过设置TSX_TSCONFIG_PATH环境变量来指定。
 
-See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+请参阅`tsx`文档：https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
 
-Type: `String`<br /> Default: `null`<br />
+类型：`String`<br />
+默认值：`null`<br />
 
-## Hooks
+## 钩子
 
-The WDIO testrunner allows you to set hooks to be triggered at specific times of the test lifecycle. This allows custom actions (e.g. take screenshot if a test fails).
+WDIO测试运行器允许您设置钩子，以便在测试生命周期的特定时间触发。这允许自定义操作（例如，如果测试失败则拍摄屏幕截图）。
 
-Every hook has as parameter specific information about the lifecycle (e.g. information about the test suite or test). Read more about all hook properties in [our example config](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
+每个钩子都以生命周期的特定信息作为参数（例如有关测试套件或测试的信息）。在[我们的示例配置](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326)中阅读有关所有钩子属性的更多信息。
 
-**Note:** Some hooks (`onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete`) are executed in a different process and therefore can not share any global data with the other hooks that live in the worker process.
+**注意：**某些钩子（`onPrepare`、`onWorkerStart`、`onWorkerEnd`和`onComplete`）在不同的进程中执行，因此不能与工作进程中的其他钩子共享任何全局数据。
 
 ### onPrepare
 
-Gets executed once before all workers get launched.
+在所有工作程序启动前执行一次。
 
-Parameters:
+参数：
 
-- `config` (`object`): WebdriverIO configuration object
-- `param` (`object[]`): list of capabilities details
+- `config` (`object`)：WebdriverIO配置对象
+- `param` (`object[]`)：功能详情列表
 
 ### onWorkerStart
 
-Gets executed before a worker process is spawned and can be used to initialize specific service for that worker as well as modify runtime environments in an async fashion.
+在生成工作进程之前执行，可用于初始化该工作进程的特定服务以及以异步方式修改运行时环境。
 
-Parameters:
+参数：
 
-- `cid` (`string`): capability id (e.g 0-0)
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
-- `args` (`object`): object that will be merged with the main configuration once worker is initialized
-- `execArgv` (`string[]`): list of string arguments passed to the worker process
+- `cid` (`string`)：功能ID（例如0-0）
+- `caps` (`object`)：包含将在工作进程中生成的会话的功能
+- `specs` (`string[]`)：要在工作进程中运行的规范
+- `args` (`object`)：工作进程初始化后将与主配置合并的对象
+- `execArgv` (`string[]`)：传递给工作进程的字符串参数列表
 
 ### onWorkerEnd
 
-Gets executed just after a worker process has exited.
+在工作进程退出后立即执行。
 
-Parameters:
+参数：
 
-- `cid` (`string`): capability id (e.g 0-0)
-- `exitCode` (`number`): 0 - success, 1 - fail
-- `specs` (`string[]`): specs to be run in the worker process
-- `retries` (`number`): number of spec level retries used as defined in [_"Add retries on a per-specfile basis"_](./Retry.md#add-retries-on-a-per-specfile-basis)
+- `cid` (`string`)：功能ID（例如0-0）
+- `exitCode` (`number`)：0 - 成功，1 - 失败
+- `specs` (`string[]`)：要在工作进程中运行的规范
+- `retries` (`number`)：按照[_"按规范文件基础添加重试"_](./Retry.md#add-retries-on-a-per-specfile-basis)中定义的规范级别重试次数
 
 ### beforeSession
 
-Gets executed just before initializing the webdriver session and test framework. It allows you to manipulate configurations depending on the capability or spec.
+在初始化webdriver会话和测试框架之前执行。它允许您根据功能或规范操作配置。
 
-Parameters:
+参数：
 
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `config` (`object`)：WebdriverIO配置对象
+- `caps` (`object`)：包含将在工作进程中生成的会话的功能
+- `specs` (`string[]`)：要在工作进程中运行的规范
 
 ### before
 
-Gets executed before test execution begins. At this point you can access to all global variables like `browser`. It is the perfect place to define custom commands.
+在测试执行开始之前执行。此时，您可以访问所有全局变量，如`browser`。这是定义自定义命令的理想位置。
 
-Parameters:
+参数：
 
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
-- `browser` (`object`): instance of created browser/device session
+- `caps` (`object`)：包含将在工作进程中生成的会话的功能
+- `specs` (`string[]`)：要在工作进程中运行的规范
+- `browser` (`object`)：创建的浏览器/设备会话实例
 
 ### beforeSuite
 
-Hook that gets executed before the suite starts (in Mocha/Jasmine only)
+在套件开始之前执行的钩子（仅在Mocha/Jasmine中）
 
-Parameters:
+参数：
 
-- `suite` (`object`): suite details
+- `suite` (`object`)：套件详情
 
 ### beforeHook
 
-Hook that gets executed *before* a hook within the suite starts (e.g. runs before calling beforeEach in Mocha)
+在套件中的钩子开始*之前*执行的钩子（例如，在Mocha中调用beforeEach之前运行）
 
-Parameters:
+参数：
 
-- `test` (`object`): test details
-- `context` (`object`): test context (represents World object in Cucumber)
+- `test` (`object`)：测试详情
+- `context` (`object`)：测试上下文（在Cucumber中代表World对象）
 
 ### afterHook
 
-Hook that gets executed *after* a hook within the suite ends (e.g. runs after calling afterEach in Mocha)
+在套件中的钩子结束*之后*执行的钩子（例如，在Mocha中调用afterEach之后运行）
 
-Parameters:
+参数：
 
-- `test` (`object`): test details
-- `context` (`object`): test context (represents World object in Cucumber)
-- `result` (`object`): hook result (contains `error`, `result`, `duration`, `passed`, `retries` properties)
+- `test` (`object`)：测试详情
+- `context` (`object`)：测试上下文（在Cucumber中代表World对象）
+- `result` (`object`)：钩子结果（包含`error`、`result`、`duration`、`passed`、`retries`属性）
 
 ### beforeTest
 
-Function to be executed before a test (in Mocha/Jasmine only).
+在测试之前执行的函数（仅在Mocha/Jasmine中）。
 
-Parameters:
+参数：
 
-- `test` (`object`): test details
-- `context` (`object`): scope object the test was executed with
+- `test` (`object`)：测试详情
+- `context` (`object`)：测试执行时的作用域对象
 
 ### beforeCommand
 
-Runs before a WebdriverIO command gets executed.
+在执行WebdriverIO命令之前运行。
 
-Parameters:
+参数：
 
-- `commandName` (`string`): command name
-- `args` (`*`): arguments that command would receive
+- `commandName` (`string`)：命令名称
+- `args` (`*`)：命令将接收的参数
 
 ### afterCommand
 
-Runs after a WebdriverIO command gets executed.
+在执行WebdriverIO命令之后运行。
 
-Parameters:
+参数：
 
-- `commandName` (`string`): command name
-- `args` (`*`): arguments that command would receive
-- `result` (`number`): 0 - command success, 1 - command error
-- `error` (`Error`): error object if any
+- `commandName` (`string`)：命令名称
+- `args` (`*`)：命令将接收的参数
+- `result` (`number`)：0 - 命令成功，1 - 命令错误
+- `error` (`Error`)：如果有错误对象
 
 ### afterTest
 
-Function to be executed after a test (in Mocha/Jasmine) ends.
+测试（在Mocha/Jasmine中）结束后要执行的函数。
 
-Parameters:
+参数：
 
-- `test` (`object`): test details
-- `context` (`object`): scope object the test was executed with
-- `result.error` (`Error`): error object in case the test fails, otherwise `undefined`
-- `result.result` (`Any`): return object of test function
-- `result.duration` (`Number`): duration of test
-- `result.passed` (`Boolean`): true if test has passed, otherwise false
-- `result.retries` (`Object`): information about single test related retries as defined for [Mocha and Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) as well as [Cucumber](./Retry.md#rerunning-in-cucumber), e.g. `{ attempts: 0, limit: 0 }`, see
-- `result` (`object`): hook result (contains `error`, `result`, `duration`, `passed`, `retries` properties)
+- `test` (`object`)：测试详情
+- `context` (`object`)：测试执行时的作用域对象
+- `result.error` (`Error`)：测试失败时的错误对象，否则为`undefined`
+- `result.result` (`Any`)：测试函数的返回对象
+- `result.duration` (`Number`)：测试持续时间
+- `result.passed` (`Boolean`)：如果测试通过则为true，否则为false
+- `result.retries` (`Object`)：有关单个测试相关重试的信息，如为[Mocha和Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha)以及[Cucumber](./Retry.md#rerunning-in-cucumber)定义的，例如`{ attempts: 0, limit: 0 }`，请参见
+- `result` (`object`)：钩子结果（包含`error`、`result`、`duration`、`passed`、`retries`属性）
 
 ### afterSuite
 
-Hook that gets executed after the suite has ended (in Mocha/Jasmine only)
+套件结束后执行的钩子（仅在Mocha/Jasmine中）
 
-Parameters:
+参数：
 
-- `suite` (`object`): suite details
+- `suite` (`object`)：套件详情
 
 ### after
 
-Gets executed after all tests are done. You still have access to all global variables from the test.
+所有测试完成后执行。您仍然可以访问测试中的所有全局变量。
 
-Parameters:
+参数：
 
-- `result` (`number`): 0 - test pass, 1 - test fail
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `result` (`number`)：0 - 测试通过，1 - 测试失败
+- `caps` (`object`)：包含将在工作进程中生成的会话的功能
+- `specs` (`string[]`)：要在工作进程中运行的规范
 
 ### afterSession
 
-Gets executed right after terminating the webdriver session.
+在终止webdriver会话后立即执行。
 
-Parameters:
+参数：
 
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `config` (`object`)：WebdriverIO配置对象
+- `caps` (`object`)：包含将在工作进程中生成的会话的功能
+- `specs` (`string[]`)：要在工作进程中运行的规范
 
 ### onComplete
 
-Gets executed after all workers got shut down and the process is about to exit. An error thrown in the onComplete hook will result in the test run failing.
+在所有工作进程关闭且进程即将退出后执行。在onComplete钩子中抛出的错误将导致测试运行失败。
 
-Parameters:
+参数：
 
-- `exitCode` (`number`): 0 - success, 1 - fail
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `result` (`object`): results object containing test results
+- `exitCode` (`number`)：0 - 成功，1 - 失败
+- `config` (`object`)：WebdriverIO配置对象
+- `caps` (`object`)：包含将在工作进程中生成的会话的功能
+- `result` (`object`)：包含测试结果的结果对象
 
 ### onReload
 
-Gets executed when a refresh happens.
+在刷新发生时执行。
 
-Parameters:
+参数：
 
-- `oldSessionId` (`string`): session ID of the old session
-- `newSessionId` (`string`): session ID of the new session
+- `oldSessionId` (`string`)：旧会话的会话ID
+- `newSessionId` (`string`)：新会话的会话ID
 
 ### beforeFeature
 
-Runs before a Cucumber Feature.
+在Cucumber特性之前运行。
 
-Parameters:
+参数：
 
-- `uri` (`string`): path to feature file
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
+- `uri` (`string`)：特性文件的路径
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17))：Cucumber特性对象
 
 ### afterFeature
 
-Runs after a Cucumber Feature.
+在Cucumber特性之后运行。
 
-Parameters:
+参数：
 
-- `uri` (`string`): path to feature file
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
+- `uri` (`string`)：特性文件的路径
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17))：Cucumber特性对象
 
 ### beforeScenario
 
-Runs before a Cucumber Scenario.
+在Cucumber场景之前运行。
 
-Parameters:
+参数：
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): world object containing information on pickle and test step
-- `context` (`object`): Cucumber World object
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15))：包含有关pickle和测试步骤信息的world对象
+- `context` (`object`)：Cucumber World对象
 
 ### afterScenario
 
-Runs after a Cucumber Scenario.
+在Cucumber场景之后运行。
 
-Parameters:
+参数：
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): world object containing information on pickle and test step
-- `result` (`object`): results object containing scenario results
-- `result.passed` (`boolean`): true if scenario has passed
-- `result.error` (`string`): error stack if scenario failed
-- `result.duration` (`number`): duration of scenario in milliseconds
-- `context` (`object`): Cucumber World object
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15))：包含有关pickle和测试步骤信息的world对象
+- `result` (`object`)：包含场景结果的结果对象
+- `result.passed` (`boolean`)：如果场景通过则为true
+- `result.error` (`string`)：如果场景失败则为错误堆栈
+- `result.duration` (`number`)：场景持续时间（毫秒）
+- `context` (`object`)：Cucumber World对象
 
 ### beforeStep
 
-Runs before a Cucumber Step.
+在Cucumber步骤之前运行。
 
-Parameters:
+参数：
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
-- `context` (`object`): Cucumber World object
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49))：Cucumber步骤对象
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175))：Cucumber场景对象
+- `context` (`object`)：Cucumber World对象
 
 ### afterStep
 
-Runs after a Cucumber Step.
+在Cucumber步骤之后运行。
 
-Parameters:
+参数：
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
-- `result`: (`object`): results object containing step results
-- `result.passed` (`boolean`): true if scenario has passed
-- `result.error` (`string`): error stack if scenario failed
-- `result.duration` (`number`): duration of scenario in milliseconds
-- `context` (`object`): Cucumber World object
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49))：Cucumber步骤对象
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175))：Cucumber场景对象
+- `result`: (`object`)：包含步骤结果的结果对象
+- `result.passed` (`boolean`)：如果场景通过则为true
+- `result.error` (`string`)：如果场景失败则为错误堆栈
+- `result.duration` (`number`)：场景持续时间（毫秒）
+- `context` (`object`)：Cucumber World对象
 
 ### beforeAssertion
 
-Hook that gets executed before a WebdriverIO assertion happens.
+在WebdriverIO断言发生之前执行的钩子。
 
-Parameters:
+参数：
 
-- `params`: assertion information
-- `params.matcherName` (`string`): name of the matcher (e.g. `toHaveTitle`)
-- `params.expectedValue`: value that is passed into the matcher
-- `params.options`: assertion options
+- `params`：断言信息
+- `params.matcherName` (`string`)：匹配器的名称（例如`toHaveTitle`）
+- `params.expectedValue`：传递给匹配器的值
+- `params.options`：断言选项
 
 ### afterAssertion
 
-Hook that gets executed after a WebdriverIO assertion happened.
+在WebdriverIO断言发生后执行的钩子。
 
-Parameters:
+参数：
 
-- `params`: assertion information
-- `params.matcherName` (`string`): name of the matcher (e.g. `toHaveTitle`)
-- `params.expectedValue`: value that is passed into the matcher
-- `params.options`: assertion options
-- `params.result`: assertion results
+- `params`：断言信息
+- `params.matcherName` (`string`)：匹配器的名称（例如`toHaveTitle`）
+- `params.expectedValue`：传递给匹配器的值
+- `params.options`：断言选项
+- `params.result`：断言结果

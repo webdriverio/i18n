@@ -1,36 +1,39 @@
 ---
 id: gettingstarted
-title: Getting Started
+title: 入门指南
 ---
 
-Welcome to the WebdriverIO documentation. It will help you to get started fast. If you run into problems, you can find help and answers on our [Discord Support Server](https://discord.webdriver.io) or you can hit me on [Twitter](https://twitter.com/webdriverio).
+欢迎来到WebdriverIO文档。它将帮助你快速上手。如果遇到问题，你可以在我们的[Discord支持服务器](https://discord.webdriver.io)上寻求帮助和答案，或者你可以在[Twitter](https://twitter.com/webdriverio)上联系我。
 
 :::info
-These are the docs for the latest version (__>=9.x__) of WebdriverIO. If you are still using an older version, please visit the [old documentation websites](/versions)!
+这是最新版本(__>=9.x__)的WebdriverIO文档。如果你仍在使用旧版本，请访问[旧文档网站](/versions)！
 :::
 
-<LiteYouTubeEmbed id="rA4IFNyW54c" title="Getting Started with WebdriverIO" />
+<LiteYouTubeEmbed
+    id="rA4IFNyW54c"
+    title="Getting Started with WebdriverIO"
+/>
 
-:::tip Official YouTube Channel 🎥
+:::tip 官方YouTube频道 🎥
 
-You can find more videos around WebdriverIO on the [official YouTube channel](https://youtube.com/@webdriverio). Make sure you subscribe!
+你可以在[官方YouTube频道](https://youtube.com/@webdriverio)上找到更多关于WebdriverIO的视频。别忘了订阅！
 
 :::
 
-## Initiate a WebdriverIO Setup
+## 初始化WebdriverIO设置
 
-To add a full WebdriverIO setup to an existing or new project using the [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio), run:
+要使用[WebdriverIO启动工具包](https://www.npmjs.com/package/create-wdio)将完整的WebdriverIO设置添加到现有或新项目中，请运行：
 
-If you're in the root directory of an existing project, run:
+如果你在现有项目的根目录中，请运行：
 
 <Tabs
   defaultValue="npm"
   values={[
     {label: 'NPM', value: 'npm'},
- {label: 'Yarn', value: 'yarn'},
- {label: 'pnpm', value: 'pnpm'},
- {label: 'bun', value: 'bun'},
- ]
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'},
+    {label: 'bun', value: 'bun'},
+  ]
 }>
 <TabItem value="npm">
 
@@ -38,7 +41,7 @@ If you're in the root directory of an existing project, run:
 npm init wdio@latest .
 ```
 
-or if you want to create a new project:
+或者如果你想创建一个新项目：
 
 ```sh
 npm init wdio@latest ./path/to/new/project
@@ -51,7 +54,7 @@ npm init wdio@latest ./path/to/new/project
 yarn create wdio .
 ```
 
-or if you want to create a new project:
+或者如果你想创建一个新项目：
 
 ```sh
 yarn create wdio ./path/to/new/project
@@ -64,7 +67,7 @@ yarn create wdio ./path/to/new/project
 pnpm create wdio@latest .
 ```
 
-or if you want to create a new project:
+或者如果你想创建一个新项目：
 
 ```sh
 pnpm create wdio@latest ./path/to/new/project
@@ -77,7 +80,7 @@ pnpm create wdio@latest ./path/to/new/project
 bun create wdio@latest .
 ```
 
-or if you want to create a new project:
+或者如果你想创建一个新项目：
 
 ```sh
 bun create wdio@latest ./path/to/new/project
@@ -86,20 +89,20 @@ bun create wdio@latest ./path/to/new/project
 </TabItem>
 </Tabs>
 
-This single command downloads the WebdriverIO CLI tool and runs a configuration wizard that helps you to configure your test suite.
+这一条命令下载WebdriverIO CLI工具并运行配置向导，帮助你配置测试套件。
 
 <CreateProjectAnimation />
 
-The wizard will prompt a set questions that guides you through the setup. You can pass a `--yes` parameter to pick a default set up which will use Mocha with Chrome using the [Page Object](https://martinfowler.com/bliki/PageObject.html) pattern.
+该向导会提出一系列问题来引导你完成设置。你可以传递`--yes`参数以选择默认设置，该设置将使用Mocha和Chrome，并采用[页面对象](https://martinfowler.com/bliki/PageObject.html)模式。
 
 <Tabs
   defaultValue="npm"
   values={[
     {label: 'NPM', value: 'npm'},
- {label: 'Yarn', value: 'yarn'},
- {label: 'pnpm', value: 'pnpm'},
- {label: 'bun', value: 'bun'},
- ]
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'},
+    {label: 'bun', value: 'bun'},
+  ]
 }>
 <TabItem value="npm">
 
@@ -131,57 +134,57 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-## Install CLI Manually
+## 手动安装CLI
 
-You can also add the CLI package to your project manually via:
+你也可以通过以下方式手动将CLI包添加到你的项目中：
 
 ```sh
 npm i --save-dev @wdio/cli
-npx wdio --version # prints e.g. `8.13.10`
+npx wdio --version # 打印如 `8.13.10`
 
-# run configuration wizard
+# 运行配置向导
 npx wdio config
 ```
 
-## Run Test
+## 运行测试
 
-You can start your test suite by using the `run` command and pointing to the WebdriverIO config that you just created:
+你可以使用`run`命令并指向你刚刚创建的WebdriverIO配置来启动测试套件：
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-If you like to run specific test files you can add a `--spec` parameter:
+如果你想运行特定的测试文件，可以添加`--spec`参数：
 
 ```sh
 npx wdio run ./wdio.conf.js --spec example.e2e.js
 ```
 
-or define suites in your config file and run just the test files defined by in a suite:
+或者在配置文件中定义套件，然后只运行套件中定义的测试文件：
 
 ```sh
 npx wdio run ./wdio.conf.js --suite exampleSuiteName
 ```
 
-## Run in a script
+## 在脚本中运行
 
-If you would like to use WebdriverIO as an automation engine in [Standalone Mode](/docs/setuptypes#standalone-mode) within a Node.JS script you can also directly install WebdriverIO and use it as a package, e.g. to generate a screenshot of a website:
+如果你想在Node.JS脚本中以[独立模式](/docs/setuptypes#standalone-mode)使用WebdriverIO作为自动化引擎，你也可以直接安装WebdriverIO并将其作为包使用，例如生成网站的截图：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
 ```
 
-__Note:__ all WebdriverIO commands are asynchronous and need to be properly handled using [`async/await`](https://javascript.info/async-await).
+__注意：__所有WebdriverIO命令都是异步的，需要使用[`async/await`](https://javascript.info/async-await)正确处理。
 
-## Record tests
+## 录制测试
 
-WebdriverIO provides tools to help you get started by recording your test actions on screen and generate WebdriverIO test scripts automatically. See [Recorder tests with Chrome DevTools Recorder](/docs/record) for more information.
+WebdriverIO提供了工具，通过在屏幕上记录你的测试操作并自动生成WebdriverIO测试脚本，帮助你入门。有关更多信息，请参阅[使用Chrome DevTools Recorder录制测试](/docs/record)。
 
-## System Requirements
+## 系统要求
 
-You’ll need [Node.js](http://nodejs.org) installed.
+你需要安装[Node.js](http://nodejs.org)。
 
-- Install at least v18.20.0 or higher as this is the oldest active LTS version
-- Only releases that are or will become an LTS release are officially supported
+- 安装至少v18.20.0或更高版本，因为这是最老的活跃LTS版本
+- 只有当前是或将成为LTS版本的发布才受官方支持
 
-If Node is not currently installed on your system, we suggest utilizing a tool such as [NVM](https://github.com/creationix/nvm) or [Volta](https://volta.sh/) to assist in managing multiple active Node.js versions. NVM is a popular choice, while Volta is also a good alternative.
+如果你的系统当前没有安装Node，我们建议使用[NVM](https://github.com/creationix/nvm)或[Volta](https://volta.sh/)等工具来帮助管理多个活跃的Node.js版本。NVM是一个流行的选择，而Volta也是一个不错的替代方案。

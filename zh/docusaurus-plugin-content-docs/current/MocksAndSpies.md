@@ -1,19 +1,19 @@
 ---
 id: mocksandspies
-title: Request Mocks and Spies
+title: 请求模拟和监听
 ---
 
-WebdriverIO comes with built-in support for modifying network responses that allows you to focus testing your frontend application without having to setup your backend or a mock server. You can define custom responses for web resources like REST API requests in your test and modify them dynamically.
+WebdriverIO 内置了修改网络响应的支持，让您可以专注于测试前端应用程序，而无需设置后端或模拟服务器。您可以在测试中为REST API请求等网络资源定义自定义响应，并动态修改它们。
 
 :::info
 
-Note that using the `mock` command requires support for Chrome DevTools protocol. That support is given if you run tests locally in a Chromium-based browser, via a Selenium Grid v4 or higher, or through a cloud vendor with support for the Chrome DevTools protocol (e.g. SauceLabs, BrowserStack, LambdaTest). Full cross-browser support will be available once the required primitives land in [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) and get implemented in the respective browser.
+请注意，使用`mock`命令需要支持Chrome DevTools协议。如果您在基于Chromium的浏览器中本地运行测试，通过Selenium Grid v4或更高版本，或通过支持Chrome DevTools协议的云厂商（如SauceLabs、BrowserStack、LambdaTest）运行测试，则可以获得该支持。一旦所需的原语在[Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned)中落地并在相应的浏览器中实现，将提供完整的跨浏览器支持。
 
 :::
 
-## Creating a mock
+## 创建模拟
 
-Before you can modify any responses you have define a mock first. This mock is described by the resource url and can be filtered by the [request method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) or [headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). The resource supports glob expressions by [minimatch](https://www.npmjs.com/package/minimatch):
+在修改任何响应之前，您首先需要定义一个模拟。这个模拟通过资源URL来描述，可以通过[请求方法](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)或[头信息](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)进行过滤。资源支持通过[minimatch](https://www.npmjs.com/package/minimatch)的全局表达式：
 
 ```js
 // mock all resources ending with "/users/list"
@@ -29,13 +29,13 @@ const strictMock = await browser.mock('**', {
 })
 ```
 
-## Specifying custom responses
+## 指定自定义响应
 
-Once you have defined a mock you can define custom responses for it. Those custom responses can be either an object to respond a JSON, a local file to respond with a custom fixture or a web resource to replace the response with a resource from the internet.
+一旦定义了模拟，您就可以为其定义自定义响应。这些自定义响应可以是一个对象（用于响应JSON），一个本地文件（用于响应自定义固定数据）或一个Web资源（用互联网上的资源替换响应）。
 
-### Mocking API Requests
+### 模拟API请求
 
-In order to mock API requests where you expect a JSON response all you need to do is to call `respond` on the mock object with an arbitrary object you want to return, e.g.:
+为了模拟您期望JSON响应的API请求，您只需要在模拟对象上调用`respond`，并传入您想要返回的任意对象，例如：
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -62,7 +62,7 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // outputs: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-You can also modify the response headers as well as the status code by passing in some mock response params as follows:
+您还可以通过传入一些模拟响应参数来修改响应头和状态码，如下所示：
 
 ```js
 mock.respond({ ... }, {
@@ -73,7 +73,7 @@ mock.respond({ ... }, {
 })
 ```
 
-If you want the mock not to call the backend at all, you can pass `false` for the `fetchResponse` flag.
+如果您希望模拟完全不调用后端，可以将`fetchResponse`标志设置为`false`。
 
 ```js
 mock.respond({ ... }, {
@@ -82,7 +82,7 @@ mock.respond({ ... }, {
 })
 ```
 
-It is recommend to store custom responses in fixture files so you can just require them in your test as follows:
+建议将自定义响应存储在固定文件中，这样您可以在测试中直接引入它们，如下所示：
 
 ```js
 // requires Node.js v16.14.0 or higher to support JSON import assertions
@@ -90,9 +90,9 @@ import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'js
 mock.respond(responseFixture)
 ```
 
-### Mocking text resources
+### 模拟文本资源
 
-If you like to modify text resources like JavaScript, CSS files or other text based resources you can just pass in a file path and WebdriverIO will replaces the original resource with it, e.g.:
+如果您想修改JavaScript、CSS文件或其他基于文本的资源，您可以直接传入文件路径，WebdriverIO将用它替换原始资源，例如：
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
@@ -102,9 +102,9 @@ scriptMock.respond('./tests/fixtures/script.js')
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
-### Redirect web resources
+### 重定向Web资源
 
-You can also just replace a web resource with another web resource if your desired response is already hosted on the web. This works with individual page resources as well as with a webpage itself, e.g.:
+如果您想要的响应已经托管在网络上，您也可以用另一个Web资源替换Web资源。这适用于单个页面资源以及整个网页，例如：
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -113,9 +113,9 @@ await browser.url('https://google.com')
 console.log(await browser.getTitle()) // returns "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js"
 ```
 
-### Dynamic responses
+### 动态响应
 
-If your mock response depends on the original resource response you can also dynamically modify the resource by passing in a function receives the original response as parameter and sets the mock based on the return value, e.g.:
+如果您的模拟响应依赖于原始资源响应，您还可以通过传入一个函数来动态修改资源，该函数接收原始响应作为参数，并基于返回值设置模拟，例如：
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -141,9 +141,9 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 // ]
 ```
 
-## Aborting mocks
+## 中止模拟
 
-Instead of returning a custom response you can also just abort the request with one of the following HTTP errors:
+除了返回自定义响应外，您还可以使用以下HTTP错误之一中止请求：
 
 - Failed
 - Aborted
@@ -160,16 +160,16 @@ Instead of returning a custom response you can also just abort the request with 
 - BlockedByClient
 - BlockedByResponse
 
-This is very useful if you want to block 3rd party script from your page that have a negative influence on your functional test. You can abort a mock by just calling `abort` or `abortOnce`, e.g.:
+如果您想阻止对功能测试有负面影响的第三方脚本，这非常有用。您可以通过调用`abort`或`abortOnce`来中止模拟，例如：
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/**')
 mock.abort('Failed')
 ```
 
-## Spies
+## 监听
 
-Every mock is automatically a spy that counts the amount of requests the browser made to that resource. If you don't apply a custom response or abort reason to the mock it continues with the default response you would normally receive. This allows you to check how many times the browser made the request, e.g. to a certain API endpoint.
+每个模拟自动成为一个监听器，计算浏览器对该资源的请求次数。如果您不对模拟应用自定义响应或中止原因，它将继续使用您通常收到的默认响应。这允许您检查浏览器向特定API端点发出请求的次数。
 
 ```js
 const mock = await browser.mock('**/user', { method: 'post' })

@@ -350,7 +350,7 @@ async function checkBatchStatus () {
         if (batchStatus && !batchStatus.resolved && batch.processing_status === 'ended') {
             batchStatus.resolved = true
             batchStatus.resolve()
-            return console.log(`Batch ${batch.id} finished`)
+            console.log(`Batch ${batch.id} finished`)
         }
     }
 

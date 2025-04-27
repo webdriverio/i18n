@@ -3,11 +3,11 @@ id: preact
 title: Preact
 ---
 
-[Preact](https://preactjs.com/) 是 React 的轻量级替代框架，具有相同的现代 API。 您可以使用 WebdriverIO 及其[浏览器测试节点](/docs/runner#browser-runner)来测试 Preact 组件。
+[Preact](https://preactjs.com/) 是一个快速的3kB大小的React替代品，具有相同的现代API。你可以使用WebdriverIO及其[浏览器运行器](/docs/runner#browser-runner)在真实浏览器中直接测试Preact组件。
 
 ## 设置
 
-要在您的 Preact 项目中设置 WebdriverIO，请按照我们的组件测试文档中的 [说明](/docs/component-testing#set-up) 进行操作。 确保在您的跑步者选项中选择 `preact` 作为预设，例如：
+要在Preact项目中设置WebdriverIO，请按照我们组件测试文档中的[说明](/docs/component-testing#set-up)进行操作。确保在运行器选项中选择`preact`作为预设，例如：
 
 ```js
 // wdio.conf.js
@@ -22,17 +22,17 @@ export const config = {
 
 :::info
 
-如果您已经在使用 [Vite](https://vitejs.dev/) 作为开发服务器，您也可以在 WebdriverIO 配置中的 `vite.config.ts` 中重新使用您的配置。 有关详细信息，请参阅 [runner options](/docs/runner#runner-options)中的 `viteConfig`.
+如果你已经在使用[Vite](https://vitejs.dev/)作为开发服务器，你也可以在WebdriverIO配置中重用`vite.config.ts`中的配置。有关更多信息，请参阅[运行器选项](/docs/runner#runner-options)中的`viteConfig`。
 
 :::
 
-The Preact preset requires `@preact/preset-vite` to be installed. 我们还建议使用 [Testing Library](https://testing-library.com/) 将组件呈现到测试页面中。 因此，您需要安装以下附加依赖项：
+Preact预设需要安装`@preact/preset-vite`。此外，我们建议使用[Testing Library](https://testing-library.com/)将组件渲染到测试页面中。因此，你需要安装以下附加依赖项：
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
 ```
 
-然后，您可以通过运行以下命令开始测试：
+然后，你可以通过运行以下命令来启动测试：
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -40,7 +40,7 @@ npx wdio run ./wdio.conf.js
 
 ## 编写测试
 
-假设您有以下 Preact 组件：
+假设你有以下Preact组件：
 
 ```tsx title="./components/Component.jsx"
 import { h } from 'preact'
@@ -64,7 +64,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-在您的测试中，使用 `@testing-library/preact` 中的 `render` 方法将组件依附到测试页面。 要与组件交互，我们建议使用更接近真实用户体验的 WebdriverIO 命令，示例如下：
+在测试中，使用`@testing-library/preact`中的`render`方法将组件附加到测试页面。为了与组件交互，我们建议使用WebdriverIO命令，因为它们的行为更接近实际用户交互，例如：
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'
@@ -84,4 +84,4 @@ describe('Preact Component Testing', () => {
 })
 ```
 
-You can find a full example of a WebdriverIO component test suite for Preact in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite).
+你可以在我们的[示例仓库](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite)中找到一个完整的WebdriverIO Preact组件测试套件示例。

@@ -3,12 +3,12 @@ id: seleniumgrid
 title: Selenium Grid
 ---
 
-You can use WebdriverIO with your existing Selenium Grid instance. To connect your tests to Selenium Grid, you just need to update the options in your test runner configurations.
+您可以将WebdriverIO与现有的Selenium Grid实例一起使用。要将测试连接到Selenium Grid，您只需更新测试运行器配置中的选项。
 
-Here is a code snippet from sample wdio.conf.ts.
+以下是来自示例wdio.conf.ts的代码片段。
 
 ```ts title=wdio.conf.ts
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     // ...
     protocol: 'https',
     hostname: 'yourseleniumgridhost.yourdomain.com',
@@ -18,12 +18,11 @@ export const config: Options.Testrunner = {
 
 }
 ```
-
-You need to provide the appropriate values for the protocol, hostname, port, and path based on your Selenium Grid setup.
-If you are running Selenium Grid on the same machine as your test scripts, here are some typical options:
+您需要根据Selenium Grid设置提供适当的协议、主机名、端口和路径值。
+如果您在与测试脚本相同的机器上运行Selenium Grid，以下是一些典型选项：
 
 ```ts title=wdio.conf.ts
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     // ...
     protocol: 'http',
     hostname: 'localhost',
@@ -34,30 +33,30 @@ export const config: Options.Testrunner = {
 }
 ```
 
-### Basic authentication with protected Selenium Grid
+### 使用受保护的Selenium Grid进行基本身份验证
 
-It is highly recommended to secure your Selenium Grid. If you have a protected Selenium Grid that requires authentication, you can pass authentication headers via options.
-Please refer to the [headers](https://webdriver.io/docs/configuration/#headers) section in the documentation for more information.
+强烈建议保护您的Selenium Grid。如果您有需要身份验证的受保护Selenium Grid，可以通过选项传递身份验证头。
+更多信息请参考文档中的[headers](https://webdriver.io/docs/configuration/#headers)部分。
 
-### Timeout configurations with dynamic Selenium Grid
+### 动态Selenium Grid的超时配置
 
-When using a dynamic Selenium Grid where browser pods are spun up on demand, session creation may face a cold start. In such cases, it is advised to increase the session creation timeouts. The default value in the options is 120 seconds, but you can increase it if your grid takes more time to create a new session.
+当使用按需启动浏览器pod的动态Selenium Grid时，会话创建可能面临冷启动问题。在这种情况下，建议增加会话创建超时时间。选项中的默认值是120秒，但如果您的网格需要更多时间来创建新会话，可以增加它。
 
 ```ts
 connectionRetryTimeout: 180000,
 ```
 
-### Advanced configurations
+### 高级配置
 
-For advanced configurations, please refer to the Testrunner [configuration file](https://webdriver.io/docs/configurationfile).
+有关高级配置，请参考Testrunner[配置文件](https://webdriver.io/docs/configurationfile)。
 
-### File operations with Selenium Grid
+### 使用Selenium Grid进行文件操作
 
-When running test cases with a remote Selenium Grid, the browser runs on a remote machine, and you need to take special care with test cases involving file uploads and downloads.
+当使用远程Selenium Grid运行测试用例时，浏览器在远程机器上运行，您需要特别注意涉及文件上传和下载的测试用例。
 
-### File downloads
+### 文件下载
 
-For Chromium-based browsers, you can refer to the [Download file](https://webdriver.io/docs/api/browser/downloadFile) documentation. If your test scripts need to read the content of a downloaded file, you need to download it from the remote Selenium node to the test runner machine. Here is an example code snippet from the sample `wdio.conf.ts` configuration for the Chrome browser:
+对于基于Chromium的浏览器，您可以参考[下载文件](https://webdriver.io/docs/api/browser/downloadFile)文档。如果您的测试脚本需要读取下载文件的内容，您需要将其从远程Selenium节点下载到测试运行器机器。以下是Chrome浏览器示例`wdio.conf.ts`配置的代码片段：
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
@@ -75,16 +74,17 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-### File upload with remote Selenium Grid
+### 使用远程Selenium Grid上传文件
 
-To upload a file to a web app in the remote browser, you first need to upload the file to the remote grid. You can refer to the [uploadFile](https://webdriver.io/docs/api/browser/uploadFile) documentation for details.
+要向远程浏览器中的Web应用程序上传文件，您首先需要将文件上传到远程网格。详细信息请参考[uploadFile](https://webdriver.io/docs/api/browser/uploadFile)文档。
 
-### Other file/grid operations
+### 其他文件/网格操作
 
-There are a few more operations that you can perform with Selenium Grid. The instructions for Selenium Standalone should work fine with Selenium Grid as well. Please refer to the [Selenium Standalone](https://webdriver.io/docs/api/selenium/) documentation for available options.
+您可以使用Selenium Grid执行更多操作。Selenium Standalone的说明也应该适用于Selenium Grid。有关可用选项，请参考[Selenium Standalone](https://webdriver.io/docs/api/selenium/)文档。
 
-### Selenium Grid Official documentation
 
-For more information on Selenium Grid, you can refer to the official Selenium Grid [documentation](https://www.selenium.dev/documentation/grid/).
+### Selenium Grid官方文档
 
-If you wish to run Selenium Grid in Docker, Docker compose or Kubernetes, please refer to the Selenium-Docker [GitHub repository](https://github.com/SeleniumHQ/docker-selenium).
+有关Selenium Grid的更多信息，您可以参考官方Selenium Grid[文档](https://www.selenium.dev/documentation/grid/)。
+
+如果您希望在Docker、Docker compose或Kubernetes中运行Selenium Grid，请参考Selenium-Docker [GitHub存储库](https://github.com/SeleniumHQ/docker-selenium)。

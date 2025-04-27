@@ -1,11 +1,11 @@
 ---
 id: v6-migration
-title: From v5 to v6
+title: 从v5到v6
 ---
 
-This tutorial is for people who are still using `v5` of WebdriverIO and want to migrate to `v6` or to the latest version of WebdriverIO. As mentioned in our [release blog post](https://webdriver.io/blog/2020/03/26/webdriverio-v6-released) the changes for this version upgrade can be summarised as following:
+本教程适用于仍在使用WebdriverIO `v5`并想迁移到`v6`或WebdriverIO最新版本的用户。正如我们在[发布博客文章](https://webdriver.io/blog/2020/03/26/webdriverio-v6-released)中提到的，此版本升级的变更可以总结如下：
 
-- we consolidated the parameters for some commands (e.g. `newWindow`, `react$`, `react$$`, `waitUntil`, `dragAndDrop`, `moveTo`, `waitForDisplayed`, `waitForEnabled`, `waitForExist`) and moved all optional parameters into a single object, e.g.
+- 我们整合了一些命令的参数（例如`newWindow`、`react$`、`react$$`、`waitUntil`、`dragAndDrop`、`moveTo`、`waitForDisplayed`、`waitForEnabled`、`waitForExist`），并将所有可选参数移到一个单一对象中，例如：
 
     ```js
     // v5
@@ -21,7 +21,7 @@ This tutorial is for people who are still using `v5` of WebdriverIO and want to 
     })
     ```
 
-- configurations for services moved into the service list, e.g.
+- 服务的配置移到了服务列表中，例如：
 
     ```js
     // v5
@@ -39,44 +39,44 @@ This tutorial is for people who are still using `v5` of WebdriverIO and want to 
     }
     ```
 
-- some service options were renamed for simplification purposes
-- we renamed command `launchApp` to `launchChromeApp` for Chrome WebDriver sessions
+- 为了简化，一些服务选项被重命名
+- 我们将命令`launchApp`重命名为`launchChromeApp`，用于Chrome WebDriver会话
 
 :::info
 
-If you are using WebdriverIO `v4` or below, please upgrade to `v5` first.
+如果您正在使用WebdriverIO `v4`或更低版本，请先升级到`v5`。
 
 :::
 
-While we would love to have a fully automated process for this the reality looks different. Everyone has a different setup. Every step should be seen as guidance and less like a step by step instruction. If you have issues with the migration, don't hesitate to [contact us](https://github.com/webdriverio/codemod/discussions/new).
+虽然我们希望有一个完全自动化的迁移过程，但现实情况有所不同。每个人都有不同的设置。每个步骤应该被视为指导，而不是一步一步的指示。如果您在迁移过程中遇到问题，请不要犹豫，[联系我们](https://github.com/webdriverio/codemod/discussions/new)。
 
-## Setup
+## 设置
 
-Similar to other migrations we can use the WebdriverIO [codemod](https://github.com/webdriverio/codemod). To install the codemod, run:
+与其他迁移类似，我们可以使用WebdriverIO [codemod](https://github.com/webdriverio/codemod)。要安装codemod，请运行：
 
 ```sh
 npm install jscodeshift @wdio/codemod
 ```
 
-## Upgrade WebdriverIO Dependencies
+## 升级WebdriverIO依赖
 
-Given that all WebdriverIO versions are tight to each other it is the best to always upgrade to a specific tag, e.g. `6.12.0`. If you decide to upgrade from `v5` directly to `v7` you can leave out the tag and install latest versions of all packages. To do so we copy all WebdriverIO related dependencies out of our `package.json` and re-install them via:
+鉴于所有WebdriverIO版本都相互紧密关联，最好总是升级到特定的标签，例如`6.12.0`。如果您决定直接从`v5`升级到`v7`，您可以省略标签并安装所有包的最新版本。为此，我们从`package.json`中复制所有WebdriverIO相关依赖，并通过以下方式重新安装：
 
 ```sh
 npm i --save-dev @wdio/allure-reporter@6 @wdio/cli@6 @wdio/cucumber-framework@6 @wdio/local-runner@6 @wdio/spec-reporter@6 @wdio/sync@6 wdio-chromedriver-service@6 webdriverio@6
 ```
 
-Usually WebdriverIO dependencies are part of the dev dependencies, depending on your project this can vary though. After this your `package.json` and `package-lock.json` should be updated. __Note:__ these are example dependencies, yours may differ. Make sure you find the latest v6 version by calling, e.g.:
+通常WebdriverIO依赖是开发依赖的一部分，但这取决于您的项目。完成后，您的`package.json`和`package-lock.json`应该已更新。__注意：__这些是示例依赖，您的可能不同。确保通过调用以下命令找到最新的v6版本：
 
 ```sh
 npm show webdriverio versions
 ```
 
-Try to install the latest version 6 available for all core WebdriverIO packages. For community packages this can differ from package to package. Here we recommend to check the changelog for information on which version is still compatible with v6.
+尝试为所有核心WebdriverIO包安装可用的最新版本6。对于社区包，这可能因包而异。在这里，我们建议查看更新日志，了解哪个版本仍与v6兼容。
 
-## Transform Config File
+## 转换配置文件
 
-A good first step is to start with the config file. All breaking changes can be resolve using the codemod full automatically:
+一个好的第一步是从配置文件开始。所有破坏性变更都可以使用codemod全自动解决：
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./wdio.conf.js
@@ -84,22 +84,22 @@ npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./wdio.conf.js
 
 :::caution
 
-The codemod doesn't yet support TypeScript projects. See [`@webdriverio/codemod#10`](https://github.com/webdriverio/codemod/issues/10). We are working to implement support for it soon. If you are using TypeScript please get involved!
+codemod尚不支持TypeScript项目。请参阅[`@webdriverio/codemod#10`](https://github.com/webdriverio/codemod/issues/10)。我们正在努力尽快实现对它的支持。如果您使用TypeScript，请参与！
 
 :::
 
-## Update Spec Files and Page Objects
+## 更新规范文件和页面对象
 
-In order to update all command changes run the codemod on all your e2e files that contain WebdriverIO commands, e.g.:
+为了更新所有命令更改，请在所有包含WebdriverIO命令的e2e文件上运行codemod，例如：
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./e2e/*
 ```
 
-That's it! No more changes necessary 🎉
+就是这样！不需要更多更改了🎉
 
-## Conclusion
+## 结论
 
-We hope this tutorial guides you a little bit through the migration process to WebdriverIO `v6`. We strongly recommend to continue upgrading to the latest version given that updating to `v7` is trivial due to almost no breaking changes. Please check out the migration guide [to upgrade to v7](v7-migration).
+我们希望本教程能够指导您完成迁移到WebdriverIO `v6`的过程。我们强烈建议继续升级到最新版本，因为由于几乎没有破坏性更改，升级到`v7`非常简单。请查看[升级到v7](v7-migration)的迁移指南。
 
-The community continues to improve the codemod while testing it with various teams in various organisations. Don't hesitate to [raise an issue](https://github.com/webdriverio/codemod/issues/new) if you have feedback or [start a discussion](https://github.com/webdriverio/codemod/discussions/new) if you struggle during the migration process.
+社区继续改进codemod，同时在各种组织中与各种团队一起测试它。如果您有反馈，请不要犹豫[提出问题](https://github.com/webdriverio/codemod/issues/new)，或者如果您在迁移过程中遇到困难，请[开始讨论](https://github.com/webdriverio/codemod/discussions/new)。

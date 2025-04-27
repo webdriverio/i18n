@@ -14,5 +14,5 @@ export const LANGUAGES_TO_TRANSLATE = {
     // ru: 'Russian',
     // ta: 'Tamil',
     // uk: 'Ukrainian',
-    // zh: 'Chinese',
+    zh: 'Chinese',
 } as const;

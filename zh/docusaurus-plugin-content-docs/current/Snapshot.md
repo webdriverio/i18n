@@ -1,21 +1,20 @@
 ---
 id: snapshot
-title: Snapshot
+title: 快照
 ---
 
-Snapshot tests can be very useful for asserting a wide range of aspects of your component or logic at the same time. In WebdriverIO you can take snapshots of any arbitrary object as well as a WebElement DOM structure or WebdriverIO command results.
+快照测试对于一次性断言组件或逻辑的多个方面非常有用。在WebdriverIO中，您可以对任意对象、WebElement的DOM结构或WebdriverIO命令结果进行快照。
 
-Similar to other test frameworks WebdriverIO will take a snapshot of the given value, then compare it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match: either the change is unexpected, or the reference snapshot needs to be updated to the new version of the result.
+与其他测试框架类似，WebdriverIO会对给定值进行快照，然后将其与存储在测试旁边的参考快照文件进行比较。如果两个快照不匹配，测试将失败：要么变更是意外的，要么参考快照需要更新到结果的新版本。
 
-:::info Cross Platform Support
+:::info 跨平台支持
 
-These snapshot capabilities are available for running end-to-end tests within the Node.js environment as well as for running [unit and component](/docs/component-testing) tests in the browser or on mobile devices.
+这些快照功能适用于在Node.js环境中运行的端到端测试，以及在浏览器或移动设备上运行的[单元和组件测试](/docs/component-testing)。
 
 :::
 
-## Use Snapshots
-
-To snapshot a value, you can use the `toMatchSnapshot()` from [`expect()`](/docs/api/expect-webdriverio) API:
+## 使用快照
+要对一个值进行快照，您可以使用[`expect()`](/docs/api/expect-webdriverio) API中的`toMatchSnapshot()`：
 
 ```ts
 import { browser, expect } from '@wdio/globals'
@@ -26,7 +25,7 @@ it('can take a DOM snapshot', () => {
 })
 ```
 
-The first time this test is run, WebdriverIO creates a snapshot file that looks like this:
+首次运行此测试时，WebdriverIO会创建一个如下所示的快照文件：
 
 ```js
 // Snapshot v1
@@ -34,19 +33,19 @@ The first time this test is run, WebdriverIO creates a snapshot file that looks 
 exports[`main suite 1 > can take a DOM snapshot 1`] = `"<h1 class="findme">Test CSS Attributes</h1>"`;
 ```
 
-The snapshot artifact should be committed alongside code changes, and reviewed as part of your code review process. On subsequent test runs, WebdriverIO will compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code that should be fixed, or the implementation has changed and the snapshot needs to be updated.
+快照文件应与代码更改一起提交，并作为代码审查过程的一部分进行审查。在后续的测试运行中，WebdriverIO将渲染的输出与先前的快照进行比较。如果它们匹配，测试将通过。如果它们不匹配，要么测试运行器在您的代码中发现了应该修复的错误，要么实现已经改变，需要更新快照。
 
-To update the snapshot, pass in the `-s` flag (or `--updateSnapshot`) to the `wdio` command, e.g.:
+要更新快照，向`wdio`命令传递`-s`标志（或`--updateSnapshot`），例如：
 
 ```sh
 npx wdio run wdio.conf.js -s
 ```
 
-**Note:** if you run tests with multiple browsers in parallel only one snapshot is being created and compared against. If you like to have a separate snapshot per capability, please [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=\&labels=Idea+%F0%9F%92%A1%2CNeeds+Triaging+%E2%8F%B3\&projects=\&template=feature-request.yml\&title=%5B%F0%9F%92%A1+Feature%5D%3A+%3Ctitle%3E) and let us know about your use case.
+__注意：__如果您使用多个浏览器并行运行测试，只会创建并比较一个快照。如果您希望每个功能有单独的快照，请[提出问题](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Idea+%F0%9F%92%A1%2CNeeds+Triaging+%E2%8F%B3&projects=&template=feature-request.yml&title=%5B%F0%9F%92%A1+Feature%5D%3A+%3Ctitle%3E)并让我们了解您的用例。
 
-## Inline Snapshots
+## 内联快照
 
-Similarly, you can use the `toMatchInlineSnapshot()` to store the snapshot inline within the test file.
+类似地，您可以使用`toMatchInlineSnapshot()`在测试文件中内联存储快照。
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -57,7 +56,7 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-Instead of creating a snapshot file, Vitest will modify the test file directly to update the snapshot as a string:
+Vitest不会创建快照文件，而是直接修改测试文件以将快照更新为字符串：
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -79,15 +78,15 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-This allows you to see the expected output directly without jumping across different files.
+这允许您直接查看预期输出，而无需在不同文件之间跳转。
 
-## Visual Snapshots
+## 视觉快照
 
-Taking a DOM snapshot of an element might not be the best idea, especially if the DOM structure is too big and contains dynamic element properties. In these cases, it is recommended to rely on visual snapshots for elements.
+对元素进行DOM快照可能不是最好的方法，特别是当DOM结构太大并且包含动态元素属性时。在这些情况下，建议依靠元素的视觉快照。
 
-To enable visual snapshots, add the `@wdio/visual-service` to your setup. You can follow the set-up instructions in the [documentation](/docs/visual-testing#installation) for Visual Testing.
+要启用视觉快照，请将`@wdio/visual-service`添加到您的设置中。您可以按照[文档](/docs/visual-testing#installation)中的设置说明进行视觉测试。
 
-You can then take a visual snapshot via `toMatchElementSnapshot()`, e.g.:
+然后，您可以通过`toMatchElementSnapshot()`进行视觉快照，例如：
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -98,4 +97,4 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-An image is then stored in the baseline directory. Check out the [Visual Testing](/docs/visual-testing) for more information.
+然后，图像将存储在基线目录中。查看[视觉测试](/docs/visual-testing)获取更多信息。

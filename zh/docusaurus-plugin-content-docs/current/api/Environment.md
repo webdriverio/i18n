@@ -1,18 +1,18 @@
 ---
 id: environment
-title: Environment Variables
+title: 环境变量
 ---
 
-WebdriverIO sets the following environment variables within every worker:
+WebdriverIO在每个工作进程中设置以下环境变量：
 
 ## `NODE_ENV`
 
-Set to `'test'` if it's not already set to something else.
+如果尚未设置为其他值，则设置为`'test'`。
 
 ## `WDIO_LOG_LEVEL`
 
-Can be set to values `trace`, `debug`, `info`, `warn`, `error`, `silent` to write logs with corresponding details. Has priority over the passed `logLevel` value.
+可以设置为`trace`、`debug`、`info`、`warn`、`error`、`silent`值以写入具有相应详细信息的日志。优先级高于传递的`logLevel`值。
 
 ## `WDIO_WORKER_ID`
 
-An unique id that helps identify the worker process. It has format of `{number}-{number}` where the first number identifies the capability and the second the spec file that capability is running, e.g. `0-5` indicates a worker the first running the 6th spec file for the first capability.
+一个唯一ID，有助于识别工作进程。它的格式为`{number}-{number}`，其中第一个数字标识能力，第二个数字标识该能力正在运行的规范文件，例如，`0-5`表示第一个能力的第6个规范文件的工作进程。

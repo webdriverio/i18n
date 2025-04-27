@@ -1,32 +1,35 @@
 ---
 id: mock
-title: The Mock Object
+title: 模拟对象
 ---
 
-The mock object is an object that represents a network mock and contains information about requests that were matching given `url` and `filterOptions`. It can be received using the [`mock`](/docs/api/browser/mock) command.
+模拟对象是表示网络模拟的对象，包含有关匹配给定`url`和`filterOptions`的请求的信息。可以使用[`mock`](/docs/api/browser/mock)命令获取它。
 
 :::info
 
-Note that using the `mock` command requires support for Chrome DevTools protocol. That support is given if you run tests locally in Chromium based browser or if you use a Selenium Grid v4 or higher. This command can __not__ be used when running automated tests in the cloud. Find out more in the [Automation Protocols](/docs/automationProtocols) section.
+请注意，使用`mock`命令需要支持Chrome DevTools协议。
+如果您在基于Chromium的浏览器中本地运行测试，或者
+使用Selenium Grid v4或更高版本，则可以获得该支持。此命令**不能**在云中运行
+自动化测试时使用。在[自动化协议](/docs/automationProtocols)部分了解更多信息。
 
 :::
 
-You can read more about mocking requests and responses in WebdriverIO in our [Mocks and Spies](/docs/mocksandspies) guide.
+您可以在我们的[模拟和监视](/docs/mocksandspies)指南中阅读更多关于在WebdriverIO中模拟请求和响应的信息。
 
-## Properties
+## 属性
 
-A mock object contains the following properties:
+模拟对象包含以下属性：
 
-| Name            | Type       | Details                                                                                                                                                                               |
-| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `url`           | `String`   | The url passed into the mock command                                                                                                                                                  |
-| `filterOptions` | `Object`   | The resource filter options passed into the mock command                                                                                                                              |
-| `browser`       | `Object`   | The [Browser Object](/docs/api/browser) used to get the mock object.                                                                                                                  |
-| `calls`         | `Object[]` | Information about matching browser requests, containing properties such as `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` and `body` |
+| 名称 | 类型 | 详情 |
+| ---- | ---- | ------- |
+| `url` | `String` | 传递给mock命令的url |
+| `filterOptions` | `Object` | 传递给mock命令的资源过滤选项 |
+| `browser` | `Object` | 用于获取模拟对象的[浏览器对象](/docs/api/browser)。 |
+| `calls` | `Object[]` | 关于匹配的浏览器请求的信息，包含诸如`url`、`method`、`headers`、`initialPriority`、`referrerPolic`、`statusCode`、`responseHeaders`和`body`等属性 |
 
-## Methods
+## 方法
 
-Mock objects provide various commands, listed in the `mock` section, that allow users to modify the behavior of the request or response.
+模拟对象提供了各种命令，列在`mock`部分，允许用户修改请求或响应的行为。
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -37,17 +40,17 @@ Mock objects provide various commands, listed in the `mock` section, that allow 
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
 
-## Events
+## 事件
 
-The mock object is an EventEmitter and a couple of events are emitted for your use cases.
+模拟对象是一个EventEmitter，并且会发出几个事件供您使用。
 
-Here is a list of events.
+以下是事件列表。
 
 ### `request`
 
-This event is being emitted when launching a network request that matches mock patterns. Request is passed in event callback.
+当发起匹配模拟模式的网络请求时，会发出此事件。请求会在事件回调中传入。
 
-Request interface:
+请求接口：
 ```ts
 interface RequestEvent {
     requestId: number
@@ -59,9 +62,9 @@ interface RequestEvent {
 
 ### `overwrite`
 
-This event is being emitted when network response is overwrited with [`respond`](/docs/api/mock/respond) or [`respondOnce`](/docs/api/mock/respondOnce). Response is passed in event callback.
+当网络响应被[`respond`](/docs/api/mock/respond)或[`respondOnce`](/docs/api/mock/respondOnce)覆盖时，会发出此事件。响应会在事件回调中传入。
 
-Response interface:
+响应接口：
 ```ts
 interface OverwriteEvent {
     requestId: number
@@ -73,9 +76,9 @@ interface OverwriteEvent {
 
 ### `fail`
 
-This event is being emitted when network request is aborted with [`abort`](/docs/api/mock/abort) or [`abortOnce`](/docs/api/mock/abortOnce). Fail is passed in event callback.
+当网络请求被[`abort`](/docs/api/mock/abort)或[`abortOnce`](/docs/api/mock/abortOnce)中止时，会发出此事件。失败信息会在事件回调中传入。
 
-Fail interface:
+失败接口：
 ```ts
 interface FailEvent {
     requestId: number
@@ -85,39 +88,39 @@ interface FailEvent {
 
 ### `match`
 
-This event is being emitted when new match is added, before `continue` or `overwrite`. Match is passed in event callback.
+当添加新匹配时，在`continue`或`overwrite`之前会发出此事件。匹配信息会在事件回调中传入。
 
-Match interface:
+匹配接口：
 ```ts
 interface MatchEvent {
-    url: string // Request URL (without fragment).
-    urlFragment?: string // Fragment of the requested URL starting with hash, if present.
-    method: string // HTTP request method.
-    headers: Record<string, string> // HTTP request headers.
-    postData?: string // HTTP POST request data.
-    hasPostData?: boolean // True when the request has POST data.
-    mixedContentType?: MixedContentType // The mixed content export type of the request.
-    initialPriority: ResourcePriority // Priority of the resource request at the time request is sent.
-    referrerPolicy: ReferrerPolicy // The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Whether is loaded via link preload.
-    body: string | Buffer | JsonCompatible // Body response of actual resource.
-    responseHeaders: Record<string, string> // HTTP response headers.
-    statusCode: number // HTTP response status code.
-    mockedResponse?: string | Buffer // If mock, emitting the event, also modified it's response.
+    url: string // 请求URL（不含片段）。
+    urlFragment?: string // 请求URL的片段，从哈希开始（如果存在）。
+    method: string // HTTP请求方法。
+    headers: Record<string, string> // HTTP请求头。
+    postData?: string // HTTP POST请求数据。
+    hasPostData?: boolean // 当请求有POST数据时为true。
+    mixedContentType?: MixedContentType // 请求的混合内容导出类型。
+    initialPriority: ResourcePriority // 发送请求时资源请求的优先级。
+    referrerPolicy: ReferrerPolicy // 请求的引用策略，如https://www.w3.org/TR/referrer-policy/中定义的。
+    isLinkPreload?: boolean // 是否通过链接预加载。
+    body: string | Buffer | JsonCompatible // 实际资源的响应体。
+    responseHeaders: Record<string, string> // HTTP响应头。
+    statusCode: number // HTTP响应状态码。
+    mockedResponse?: string | Buffer // 如果mock发出事件，也修改了它的响应。
 }
 ```
 
 ### `continue`
 
-This event is being emitted when the network response has neither been overwritten nor interrupted, or if response was already sent by another mock. `requestId` is passed in event callback.
+当网络响应既未被覆盖也未被中断，或者响应已被另一个模拟发送时，会发出此事件。`requestId`会在事件回调中传入。
 
-## Examples
+## 示例
 
-Getting a number of pending requests:
+获取待处理请求的数量：
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // it is important to match all requests otherwise, the resulting value can be very confusing.
+const mock = await browser.mock('**') // 匹配所有请求很重要，否则，结果值可能会很混乱。
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -128,7 +131,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Throwing an error on 404 network fail:
+在404网络失败时抛出错误：
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -142,7 +145,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // waiting here, because some requests can still be pending
+    // 在这里等待，因为一些请求可能仍在等待中
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -157,7 +160,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Determining if mock respond value was used:
+确定是否使用了模拟响应值：
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -167,16 +170,16 @@ firstMock.respondOnce({id: 3, title: 'three'})
 secondMock.respond({id: 4, title: 'four'})
 
 firstMock.on('overwrite', () => {
-    // triggers for first request to '**/foo/**'
+    // 对第一个 '**/foo/**' 请求触发
 }).on('continue', () => {
-    // triggers for rest requests to '**/foo/**'
+    // 对其余 '**/foo/**' 请求触发
 })
 
 secondMock.on('continue', () => {
-    // triggers for first request to '**/foo/bar/**'
+    // 对第一个 '**/foo/bar/**' 请求触发
 }).on('overwrite', () => {
-    // triggers for rest requests to '**/foo/bar/**'
+    // 对其余 '**/foo/bar/**' 请求触发
 })
 ```
 
-In this example, `firstMock` was defined first and has one `respondOnce` call, so the `secondMock` response value will not be used for the first request, but will be used for the rest of them.
+在这个例子中，`firstMock`先定义并有一个`respondOnce`调用，所以对于第一个请求不会使用`secondMock`的响应值，但会用于其余请求。

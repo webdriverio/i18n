@@ -3,27 +3,27 @@ id: macos
 title: MacOS
 ---
 
-WebdriverIO can automate arbitrary MacOS application using [Appium](https://appium.io/docs/en/2.0/). All you need is [XCode](https://developer.apple.com/xcode/) installed on your system, Appium and the [Mac2 Driver](https://github.com/appium/appium-mac2-driver) installed as dependency and the correct capabilities set.
+WebdriverIO 可以使用 [Appium](https://appium.io/docs/en/2.0/) 自动化任意 MacOS 应用程序。您只需要在系统上安装 [XCode](https://developer.apple.com/xcode/)，将 Appium 和 [Mac2 Driver](https://github.com/appium/appium-mac2-driver) 作为依赖项安装，并设置正确的功能参数。
 
-## Getting Started
+## 入门指南
 
-To initiate a new WebdriverIO project, run:
+要启动一个新的 WebdriverIO 项目，请运行：
 
 ```sh
 npm create wdio@latest ./
 ```
 
-An installation wizard will guide you through the process. Ensure you select _"Desktop Testing - of MacOS Applications"_ when it asks you what type of testing you'ld like to do. Afterwards just keep the defaults or modify based on your preference.
+安装向导将引导您完成整个过程。确保在询问您想要进行哪种类型的测试时选择 _"Desktop Testing - of MacOS Applications"_。之后，只需保持默认设置或根据您的偏好进行修改。
 
-The configuration wizard will install all required Appium packages and creates a `wdio.conf.js` or `wdio.conf.ts` with the necessary configuration to test on MacOS. If you agreed to autogenerate some tests files you can run your first test via `npm run wdio`.
+配置向导将安装所有必需的 Appium 包，并创建一个带有在 MacOS 上测试所需配置的 `wdio.conf.js` 或 `wdio.conf.ts`。如果您同意自动生成一些测试文件，您可以通过 `npm run wdio` 运行您的第一个测试。
 
 <CreateMacOSProjectAnimation />
 
-That's it 🎉
+就是这样 🎉
 
-## Example
+## 示例
 
-This is how a simple test can look like that opens the Calculator application, makes a calculation and verifies its result:
+以下是一个简单测试的示例，该测试打开计算器应用程序，进行计算并验证其结果：
 
 ```js
 describe('My Login application', () => {
@@ -37,8 +37,8 @@ describe('My Login application', () => {
 })
 ```
 
-__Note:__ the calculator app was opened automatically at the beginning of the session because `'appium:bundleId': 'com.apple.calculator'` was defined as capability option. You can switch apps during the session at all times.
+__注意：__ 因为在功能参数中定义了 `'appium:bundleId': 'com.apple.calculator'`，所以会话开始时计算器应用会自动打开。您可以随时在会话期间切换应用程序。
 
-## More Information
+## 更多信息
 
-For information about specifics around testing on MacOS we recommend to go checkout the [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver) project.
+有关在 MacOS 上测试的具体信息，我们建议查看 [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver) 项目。

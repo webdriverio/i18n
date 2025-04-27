@@ -1,13 +1,13 @@
 ---
 id: coverage
-title: 代码覆盖
+title: 代码覆盖率
 ---
 
-WebdriverIO 的浏览器节点支持使用 [`istanbul`](https://istanbul.js.org/) 进行代码覆盖测试。 The testrunner will automatically instrument your code and capture code coverage for you.
+WebdriverIO的浏览器运行器支持使用[`istanbul`](https://istanbul.js.org/)进行代码覆盖率报告。测试运行器将自动检测您的代码并为您捕获代码覆盖率。
 
-## Setup
+## 设置
 
-要启用代码覆盖率报告，请在 WebdriverIO 的浏览器节点配置中添加类似如下配置：
+要启用代码覆盖率报告，请通过WebdriverIO浏览器运行器配置启用它，例如：
 
 ```js title=wdio.conf.js
 export const config = {
@@ -22,20 +22,20 @@ export const config = {
 }
 ```
 
-您可以了解[其他覆盖选项](/docs/runner#coverage-options)来学习如何按您的需要进行配置。
+查看所有[覆盖率选项](/docs/runner#coverage-options)，了解如何正确配置它。
 
 ## 忽略代码
 
-您或许想将部分代码排除在覆盖率报告之外。为此，您可以添加如下解析提示：
+您可能希望有意地从覆盖率跟踪中排除代码库的某些部分，为此，您可以使用以下解析提示：
 
-- `/* istanbul ignore if */`：忽略下一个 if 语句。
-- `/* istanbul ignore else */`：忽略 if 语句的 else 部分。
-- `/* istanbul ignore next */`：忽略源代码中的下一部分 (函数、if 语句、类，等等)。
-- `/* istanbul ignore file */`：忽略整个源文件 (此提示应放在文件顶部)。
+- `/* istanbul ignore if */`：忽略下一个if语句。
+- `/* istanbul ignore else */`：忽略if语句的else部分。
+- `/* istanbul ignore next */`：忽略源代码中的下一个内容（函数、if语句、类等等）。
+- `/* istanbul ignore file */`：忽略整个源文件（应放在文件顶部）。
 
 :::info
 
-为避免错误，我们建议您排除测试文件 (如调用  `execute` 或 `executeAsync` 命令的文件)。 若您仍想将其保留在报告中，您需要像如下方式将测试语句排除在代码检测中：
+建议从覆盖率报告中排除测试文件，因为它可能会导致错误，例如在调用`execute`或`executeAsync`命令时。如果您想将它们保留在报告中，请确保通过以下方式排除对它们的检测：
 
 ```ts
 await browser.execute(/* istanbul ignore next */() => {

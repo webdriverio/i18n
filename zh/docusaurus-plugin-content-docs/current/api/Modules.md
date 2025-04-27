@@ -1,30 +1,30 @@
 ---
 id: modules
-title: Modules
+title: 模块
 ---
 
-WebdriverIO publishes various of modules to NPM and other registries that you can use to build your own automation framework. See more documentation on WebdriverIO setup types [here](/docs/setuptypes).
+WebdriverIO 发布了多个模块到 NPM 和其他注册表，您可以使用这些模块构建自己的自动化框架。关于 WebdriverIO 设置类型的更多文档请参见[此处](/docs/setuptypes)。
 
-## `webdriver` and `devtools`
+## `webdriver` 和 `devtools`
 
-The protocol packages ([`webdriver`](https://www.npmjs.com/package/webdriver) and [`devtools`](https://www.npmjs.com/package/devtools)) expose a class with the following static functions attached that allow you to initiate sessions:
+协议包（[`webdriver`](https://www.npmjs.com/package/webdriver) 和 [`devtools`](https://www.npmjs.com/package/devtools)）暴露了一个类，并附加了以下静态函数，允许您启动会话：
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Starts a new session with specific capabilities. Based on the session response commands from different protocols will be provided.
+使用特定功能启动新会话。基于会话响应，将提供来自不同协议的命令。
 
-##### Paramaters
+##### 参数
 
-- `options`: [WebDriver Options](/docs/configuration#webdriver-options)
-- `modifier`: function that allows to modify the client instance before it is being returned
-- `userPrototype`: properties object that allows to extend the instance prototype
-- `customCommandWrapper`: function that allows to wrap functionality around function calls
+- `options`: [WebDriver 选项](/docs/configuration#webdriver-options)
+- `modifier`: 允许在返回客户端实例之前修改它的函数
+- `userPrototype`: 允许扩展实例原型的属性对象
+- `customCommandWrapper`: 允许在函数调用周围包装功能的函数
 
-##### Returns
+##### 返回
 
-- [Browser](/docs/api/browser) object
+- [Browser](/docs/api/browser) 对象
 
-##### Example
+##### 示例
 
 ```js
 const client = await WebDriver.newSession({
@@ -34,20 +34,20 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-Attaches to a running WebDriver or DevTools session.
+附加到正在运行的 WebDriver 或 DevTools 会话。
 
-##### Paramaters
+##### 参数
 
-- `attachInstance`: instance to attach a session to or at least an object with a property `sessionId` (e.g. `{ sessionId: 'xxx' }`)
-- `modifier`: function that allows to modify the client instance before it is being returned
-- `userPrototype`: properties object that allows to extend the instance prototype
-- `customCommandWrapper`: function that allows to wrap functionality around function calls
+- `attachInstance`: 要附加会话的实例，或至少是一个具有 `sessionId` 属性的对象（例如 `{ sessionId: 'xxx' }`）
+- `modifier`: 允许在返回客户端实例之前修改它的函数
+- `userPrototype`: 允许扩展实例原型的属性对象
+- `customCommandWrapper`: 允许在函数调用周围包装功能的函数
 
-##### Returns
+##### 返回
 
-- [Browser](/docs/api/browser) object
+- [Browser](/docs/api/browser) 对象
 
-##### Example
+##### 示例
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -56,13 +56,13 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-Reloads a session given provided instance.
+重新加载给定实例的会话。
 
-##### Paramaters
+##### 参数
 
-- `instance`: package instance to reload
+- `instance`: 要重新加载的包实例
 
-##### Example
+##### 示例
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -71,22 +71,22 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-Similar as to the protocol packages (`webdriver` and `devtools`) you can also use the WebdriverIO package APIs to manage sessions. The APIs can be imported using `import { remote, attach, multiremote } from 'webdriverio` and contain the following functionality:
+与协议包（`webdriver` 和 `devtools`）类似，您也可以使用 WebdriverIO 包 API 来管理会话。这些 API 可以通过 `import { remote, attach, multiremote } from 'webdriverio` 导入，并包含以下功能：
 
 #### `remote(options, modifier)`
 
-Starts a WebdriverIO session. The instance contains all commands as the protocol package but with additional higher order functions, see [API docs](/docs/api).
+启动 WebdriverIO 会话。该实例包含所有协议包命令，但具有额外的高阶函数，请参见 [API 文档](/docs/api)。
 
-##### Paramaters
+##### 参数
 
-- `options`: [WebdriverIO Options](/docs/configuration#webdriverio)
-- `modifier`: function that allows to modify the client instance before it is being returned
+- `options`: [WebdriverIO 选项](/docs/configuration#webdriverio)
+- `modifier`: 允许在返回客户端实例之前修改它的函数
 
-##### Returns
+##### 返回
 
-- [Browser](/docs/api/browser) object
+- [Browser](/docs/api/browser) 对象
 
-##### Example
+##### 示例
 
 ```js
 import { remote } from 'webdriverio'
@@ -98,17 +98,17 @@ const browser = await remote({
 
 #### `attach(attachOptions)`
 
-Attaches to a running WebdriverIO session.
+附加到正在运行的 WebdriverIO 会话。
 
-##### Paramaters
+##### 参数
 
-- `attachOptions`: instance to attach a session to or at least an object with a property `sessionId` (e.g. `{ sessionId: 'xxx' }`)
+- `attachOptions`: 要附加会话的实例，或至少是一个具有 `sessionId` 属性的对象（例如 `{ sessionId: 'xxx' }`）
 
-##### Returns
+##### 返回
 
-- [Browser](/docs/api/browser) object
+- [Browser](/docs/api/browser) 对象
 
-##### Example
+##### 示例
 
 ```js
 import { remote, attach } from 'webdriverio'
@@ -119,17 +119,17 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-Initiates a multiremote instance which allows you to control multiple session within a single instance. Checkout our [multiremote examples](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) for concrete use cases.
+初始化一个 multiremote 实例，允许您在单个实例中控制多个会话。查看我们的 [multiremote 示例](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote)了解具体用例。
 
-##### Paramaters
+##### 参数
 
-- `multiremoteOptions`: an object with keys representing the browser name and their [WebdriverIO Options](/docs/configuration#webdriverio).
+- `multiremoteOptions`: 一个对象，其键代表浏览器名称，值为其 [WebdriverIO 选项](/docs/configuration#webdriverio)。
 
-##### Returns
+##### 返回
 
-- [Browser](/docs/api/browser) object
+- [Browser](/docs/api/browser) 对象
 
-##### Example
+##### 示例
 
 ```js
 import { multiremote } from 'webdriverio'
@@ -151,14 +151,14 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-Instead of calling the `wdio` command, you can also include the test runner as module and run it in an arbitrary environment. For that, you'll need to require the `@wdio/cli` package as module, like this:
+除了调用 `wdio` 命令外，您还可以将测试运行器作为模块包含，并在任意环境中运行它。为此，您需要将 `@wdio/cli` 包作为模块引入，如下所示：
 
 <Tabs
   defaultValue="esm"
   values={[
     {label: 'EcmaScript Modules', value: 'esm'},
- {label: 'CommonJS', value: 'cjs'}
- ]
+    {label: 'CommonJS', value: 'cjs'}
+  ]
 }>
 <TabItem value="esm">
 
@@ -176,18 +176,18 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-After that, create an instance of the launcher, and run the test.
+之后，创建启动器实例，并运行测试。
 
 #### `Launcher(configPath, opts)`
 
-The `Launcher` class constructor expects the URL to the config file, and an `opts` object with settings that will overwrite those in the config.
+`Launcher` 类构造函数需要配置文件的 URL，以及一个 `opts` 对象，其中包含将覆盖配置中设置的设置。
 
-##### Paramaters
+##### 参数
 
-- `configPath`: path to the `wdio.conf.js` to run
-- `opts`: arguments ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) to overwrite values from the config file
+- `configPath`: `wdio.conf.js` 的路径
+- `opts`: 参数（[`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)）用于覆盖配置文件中的值
 
-##### Example
+##### 示例
 
 ```js
 const wdio = new Launcher(
@@ -203,36 +203,36 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-The `run` command returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). It is resolved if tests ran successfully or failed, and it is rejected if the launcher was unable to start run the tests.
+`run` 命令返回一个 [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)。如果测试成功运行或失败，它将被解析；如果启动器无法启动运行测试，它将被拒绝。
 
 ## `@wdio/browser-runner`
 
-When running unit or component tests using WebdriverIO's [browser runner](/docs/runner#browser-runner) you can import mocking utilities for your tests, e.g.:
+当使用 WebdriverIO 的[浏览器运行器](/docs/runner#browser-runner)运行单元或组件测试时，您可以为测试导入模拟工具，例如：
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-The following named exports are available:
+以下命名导出可用：
 
 #### `fn`
 
-Mock function, see more in the official [Vitest docs](https://vitest.dev/api/mock.html#mock-functions).
+模拟函数，在官方 [Vitest 文档](https://vitest.dev/api/mock.html#mock-functions)中查看更多信息。
 
 #### `spyOn`
 
-Spy function, see more in the official [Vitest docs](https://vitest.dev/api/mock.html#mock-functions).
+间谍函数，在官方 [Vitest 文档](https://vitest.dev/api/mock.html#mock-functions)中查看更多信息。
 
 #### `mock`
 
-Method to mock file or dependency module.
+模拟文件或依赖模块的方法。
 
-##### Paramaters
+##### 参数
 
-- `moduleName`: either a relative path to the file to be mocked or a module name.
-- `factory`: function to return the mocked value (optional)
+- `moduleName`: 要模拟的文件的相对路径或模块名称。
+- `factory`: 返回模拟值的函数（可选）
 
-##### Example
+##### 示例
 
 ```js
 mock('../src/constants.ts', () => ({
@@ -250,13 +250,13 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-Unmock dependency that is defined within the manual mock (`__mocks__`) directory.
+取消模拟在手动模拟（`__mocks__`）目录中定义的依赖项。
 
-##### Paramaters
+##### 参数
 
-- `moduleName`: name of the module to be unmocked.
+- `moduleName`: 要取消模拟的模块名称。
 
-##### Example
+##### 示例
 
 ```js
 unmock('lodash')

@@ -1,21 +1,21 @@
 ---
 id: browser-logs
-title: Browser Logs
+title: 浏览器日志
 ---
 
-When running tests the browser may log important information that you are interested or want to assert against.
+在运行测试时，浏览器可能会记录您感兴趣或想要断言的重要信息。
 
 <Tabs
 defaultValue="bidi"
 values={[
-{label: 'Bidi', value: 'bidi'},
-{label: 'Classic (Deprecated)', value: 'classic'
+    {label: 'Bidi', value: 'bidi'},
+    {label: 'Classic (Deprecated)', value: 'classic'
 }]
 }>
 
 <TabItem value='bidi'>
 
-When using WebDriver Bidi, which is the default way how WebdriverIO automates the browser, you can subscribe to events coming from the browser. For log events you want to listen on `log.entryAdded'`, e.g.:
+当使用WebDriver Bidi（WebdriverIO默认的浏览器自动化方式）时，您可以订阅来自浏览器的事件。对于日志事件，您需要监听`log.entryAdded'`，例如：
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +26,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-In a test you can just push log events to an array an assert that array once your action is done, e.g.:
+在测试中，您可以将日志事件推送到数组中，并在操作完成后断言该数组，例如：
 
 ```ts
 import type { local } from 'webdriver'
@@ -62,9 +62,9 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-If you still use WebDriver Classic or disabled Bidi usage via the `'wdio:enforceWebDriverClassic': true` capability, you can use the `getLogs` JSONWire command to fetch the latest logs. Since WebdriverIO has removed these deprecated commands you will have to use the [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) to add the command back to your browser instance.
+如果您仍在使用WebDriver Classic或通过`'wdio:enforceWebDriverClassic': true`功能禁用了Bidi，您可以使用`getLogs` JSONWire命令获取最新的日志。由于WebdriverIO已经移除了这些已弃用的命令，您需要使用[JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service)将该命令添加回您的浏览器实例。
 
-After you added or initiate the service you can fetch logs via:
+在添加或初始化服务后，您可以通过以下方式获取日志：
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,9 +72,9 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Note: the `getLogs` command can only fetch the most recent logs from the browser. It may clean up log messages eventually if they become to old.
+注意：`getLogs`命令只能获取浏览器中最近的日志。如果日志消息太旧，它们最终可能会被清理。
 </TabItem>
 
 </Tabs>
 
-Please note that you can use this method to retrieve error messages and verify whether your application has encountered any errors.
+请注意，您可以使用此方法检索错误消息并验证您的应用程序是否遇到任何错误。

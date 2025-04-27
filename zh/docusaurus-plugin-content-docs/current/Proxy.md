@@ -1,26 +1,26 @@
 ---
 id: proxy
-title: Proxy Setup
+title: 代理设置
 ---
 
-You can tunnel two different types of request through a proxy:
+您可以通过代理隧道传输两种不同类型的请求：
 
-- connection between your test script and the browser driver (or WebDriver endpoint)
-- connection between the browser and the internet
+- 测试脚本与浏览器驱动程序（或WebDriver端点）之间的连接
+- 浏览器与互联网之间的连接
 
-## Proxy Between Driver And Test
+## 驱动程序与测试之间的代理
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+如果您的公司对所有出站请求都有公司代理（例如在 `http://my.corp.proxy.com:9090`），请按照以下步骤安装和配置 [undici](https://github.com/nodejs/undici)。
 
-### Install undici
+### 安装 undici
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### 在配置文件中添加 undici setGlobalDispatcher
 
-Add the following require statement to the top of your config file.
+在配置文件顶部添加以下 require 语句。
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+有关配置代理的其他信息可以在[这里](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md)找到。
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+如果您使用 [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5)，通过以下方式启动它：
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Between Browser And Internet
+## 浏览器与互联网之间的代理
 
-In order to tunnel the connection between the browser and the internet, you can set up a proxy which can be useful to (for example) capture network information and other data with tools like [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+为了隧道传输浏览器与互联网之间的连接，您可以设置一个代理，这对于（例如）使用类似 [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) 的工具捕获网络信息和其他数据很有用。
 
-The `proxy` parameters can be applied via the standard capabilities the following way:
+`proxy` 参数可以通过标准capabilities以以下方式应用：
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-For more information, see the [WebDriver specification](https://w3c.github.io/webdriver/#proxy).
+更多信息，请参阅 [WebDriver 规范](https://w3c.github.io/webdriver/#proxy)。

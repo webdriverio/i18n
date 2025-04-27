@@ -3,11 +3,11 @@ id: stencil
 title: Stencil
 ---
 
-[Stencil](https://stenciljs.com/) is a library for building reusable, scalable component libraries. You can test Stencil components directly in a real browser using WebdriverIO and its [browser runner](/docs/runner#browser-runner).
+[Stencil](https://stenciljs.com/) 是一个用于构建可重用、可扩展组件库的工具。你可以使用 WebdriverIO 和它的[浏览器运行器](/docs/runner#browser-runner)在真实浏览器中直接测试 Stencil 组件。
 
-## Setup
+## 设置
 
-To set up WebdriverIO within your Stencil project, follow the [instructions](/docs/component-testing#set-up) in our component testing docs. Make sure to select `stencil` as preset within your runner options, e.g.:
+要在 Stencil 项目中设置 WebdriverIO，请按照我们组件测试文档中的[说明](/docs/component-testing#set-up)进行操作。确保在运行器选项中选择 `stencil` 作为预设，例如：
 
 ```js
 // wdio.conf.js
@@ -22,19 +22,19 @@ export const config = {
 
 :::info
 
-In case you use Stencil with a framework like React or Vue, you should keep the preset for these frameworks.
+如果你将 Stencil 与 React 或 Vue 等框架一起使用，你应该保留这些框架的预设。
 
 :::
 
-You can then start the tests by running:
+然后，你可以通过运行以下命令启动测试：
 
 ```sh
 npx wdio run ./wdio.conf.ts
 ```
 
-## Writing Tests
+## 编写测试
 
-Given you have the following Stencil components:
+假设你有以下 Stencil 组件：
 
 ```tsx title="./components/Component.tsx"
 import { Component, Prop, h } from '@stencil/core'
@@ -65,7 +65,7 @@ export class MyName {
 
 ### `render`
 
-In your test use the `render` method from `@wdio/browser-runner/stencil` to attach the component to the test page. To interact with the component we recommend using WebdriverIO commands as they behave closer to actual user interactions, e.g.:
+在测试中使用 `@wdio/browser-runner/stencil` 中的 `render` 方法将组件附加到测试页面。要与组件交互，我们建议使用 WebdriverIO 命令，因为它们的行为更接近实际用户交互，例如：
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -86,101 +86,105 @@ describe('Stencil Component Testing', () => {
 })
 ```
 
-#### Render Options
+#### 渲染选项
 
-The `render` method provides the following options:
+`render` 方法提供以下选项：
 
 ##### `components`
 
-An array of components to test. Component classes can be imported into the spec file, then their reference should be added to the `component` array to be used throughout the test.
+要测试的组件数组。组件类可以导入到规范文件中，然后将它们的引用添加到 `component` 数组中，以便在整个测试中使用。
 
-__Type:__ `CustomElementConstructor[]`<br /> __Default:__ `[]`
+__类型：__ `CustomElementConstructor[]`<br />
+__默认值：__ `[]`
 
 ##### `flushQueue`
 
-If `false`, do not flush the render queue on the initial test setup.
+如果为 `false`，则在初始测试设置时不刷新渲染队列。
 
-__Type:__ `boolean`<br /> __Default:__ `true`
+__类型：__ `boolean`<br />
+__默认值：__ `true`
 
 ##### `template`
 
-The initial JSX that is used to generate the test. Use `template` when you want to initialize a component using their properties, instead of their HTML attributes. It will render the specified template (JSX) into `document.body`.
+用于生成测试的初始 JSX。当你想使用组件的属性而不是 HTML 属性初始化组件时，请使用 `template`。它会将指定的模板（JSX）渲染到 `document.body` 中。
 
-__Type:__ `JSX.Template`
+__类型：__ `JSX.Template`
 
 ##### `html`
 
-The initial HTML used to generate the test. This can be useful to construct a collection of components working together, and assign HTML attributes.
+用于生成测试的初始 HTML。这对于构建一起工作的组件集合并分配 HTML 属性很有用。
 
-__Type:__ `string`
+__类型：__ `string`
 
 ##### `language`
 
-Sets the mocked `lang` attribute on `<html>`.
+在 `<html>` 上设置模拟的 `lang` 属性。
 
-__Type:__ `string`
+__类型：__ `string`
 
 ##### `autoApplyChanges`
 
-By default, any changes to component properties and attributes must `env.waitForChanges()` to test the updates. As an option, `autoApplyChanges` continuously flushes the queue in the background.
+默认情况下，对组件属性和特性的任何更改都必须使用 `env.waitForChanges()` 来测试更新。作为一个选项，`autoApplyChanges` 会在后台持续刷新队列。
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__类型：__ `boolean`<br />
+__默认值：__ `false`
 
 ##### `attachStyles`
 
-By default, styles are not attached to the DOM and they are not reflected in the serialized HTML. Setting this option to `true` will include the component's styles in the serializable output.
+默认情况下，样式不会附加到 DOM，它们也不会反映在序列化的 HTML 中。将此选项设置为 `true` 将在可序列化的输出中包含组件的样式。
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__类型：__ `boolean`<br />
+__默认值：__ `false`
 
-#### Render Environment
+#### 渲染环境
 
-The `render` method returns an environment object that provides certain utility helpers to manage the component's environment.
+`render` 方法返回一个环境对象，提供某些实用工具来管理组件的环境。
 
 ##### `flushAll`
 
-After changes have been made to a component, such as an update to a property or attribute, the test page does not automatically apply the changes. To wait for, and apply the update, call `await flushAll()`
+对组件进行更改后，例如更新属性或特性，测试页面不会自动应用更改。要等待并应用更新，请调用 `await flushAll()`
 
-__Type:__ `() => void`
+__类型：__ `() => void`
 
 ##### `unmount`
 
-Removes the container element from the DOM.
+从 DOM 中移除容器元素。
 
-__Type:__ `() => void`
+__类型：__ `() => void`
 
 ##### `styles`
 
-All styles defined by components.
+组件定义的所有样式。
 
-__Type:__ `Record<string, string>`
+__类型：__ `Record<string, string>`
 
 ##### `container`
 
-Container element in which the template is being rendered.
+渲染模板的容器元素。
 
-__Type:__ `HTMLElement`
+__类型：__ `HTMLElement`
 
 ##### `$container`
 
-The container element as a WebdriverIO element.
+作为 WebdriverIO 元素的容器元素。
 
-__Type:__ `WebdriverIO.Element`
+__类型：__ `WebdriverIO.Element`
 
 ##### `root`
 
-The root component of the template.
+模板的根组件。
 
-__Type:__ `HTMLElement`
+__类型：__ `HTMLElement`
 
 ##### `$root`
 
-The root component as a WebdriverIO element.
+作为 WebdriverIO 元素的根组件。
 
-__Type:__ `WebdriverIO.Element`
+__类型：__ `WebdriverIO.Element`
 
 ### `waitForChanges`
 
-Helper method to wait for the component to be ready.
+等待组件准备就绪的辅助方法。
 
 ```ts
 import { render, waitForChanges } from '@wdio/browser-runner/stencil'
@@ -196,12 +200,10 @@ await waitForChanges()
 expect(page.root.querySelector('div')).toBeDefined()
 ```
 
-## Element Updates
+## 元素更新
 
-If you define properties or states in your Stencil component you have to manage when these changes should be applied to the component to be re-rendered.
+如果你在 Stencil 组件中定义了属性或状态，你必须管理何时将这些更改应用到组件以进行重新渲染。
 
+## 示例
 
-## Examples
-
-You can find a full example of a WebdriverIO component test suite for Stencil in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).
-
+你可以在我们的[示例仓库](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter)中找到 Stencil 的 WebdriverIO 组件测试套件的完整示例。

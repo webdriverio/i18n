@@ -1,38 +1,38 @@
 ---
 id: enterprise
-title: WebdriverIO for Enterprise
+title: WebdriverIO 企业版
 ---
 
-## Available as part of the Tidelift Subscription
+## 作为 Tidelift 订阅的一部分提供
 
-Tidelift is working with the maintainers of WebdriverIO and thousands of other open source projects to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use.
+Tidelift 正在与 WebdriverIO 的维护者以及数千个其他开源项目合作，为您用于构建应用程序的开源依赖项提供商业支持和维护。节省时间，降低风险，改善代码健康状况，同时向您使用的确切依赖项的维护者支付费用。
 
-#### Enterprise-ready open source software—managed for you
-The Tidelift Subscription is a managed open source subscription for application dependencies covering millions of open source projects across JavaScript, Python, Java, PHP, Ruby, .NET, and more.
+#### 企业级开源软件—为您管理
+Tidelift 订阅是一种管理式开源订阅，覆盖数百万个开源项目的应用程序依赖项，包括 JavaScript、Python、Java、PHP、Ruby、.NET 等。
 
-#### Your subscription includes:
+#### 您的订阅包括：
 
-##### Security updates
-Tidelift’s security response team coordinates patches for new breaking security vulnerabilities and alerts immediately through a private channel, so your software supply chain is always secure.
+##### 安全更新
+Tidelift 的安全响应团队协调针对新的严重安全漏洞的补丁，并通过私人渠道立即发出警报，因此您的软件供应链始终安全。
 
-##### Licensing verification and indemnification
-Tidelift verifies license information to enable easy policy enforcement and adds intellectual property indemnification to cover creators and users in case something goes wrong. You always have a 100% up-to-date bill of materials for your dependencies to share with your legal team, customers, or partners.
+##### 许可验证和赔偿
+Tidelift 验证许可信息以实现轻松的政策执行，并添加知识产权赔偿，以便在出现问题时保护创建者和用户。您始终拥有 100% 最新的依赖项材料清单，可以与您的法律团队、客户或合作伙伴共享。
 
-##### Maintenance and code improvement
-Tidelift ensures the software you rely on keeps working as long as you need it to work. Your managed dependencies are actively maintained and we recruit additional maintainers where required.
+##### 维护和代码改进
+Tidelift 确保您依赖的软件在您需要的时间内持续正常工作。您的托管依赖项得到积极维护，我们在需要时会招募额外的维护者。
 
-##### Package selection and version guidance
-We help you choose the best open source packages from the start—and then guide you through updates to stay on the best releases as new issues arise.
+##### 包选择和版本指导
+我们帮助您从一开始就选择最佳的开源软件包，然后指导您进行更新，以便在出现新问题时保持使用最佳版本。
 
-##### Roadmap input
-Take a seat at the table with the creators behind the software you use. Tidelift’s participating maintainers earn more income as their software is used by more subscribers, so they’re interested in knowing what you need.
+##### 路线图输入
+与您使用的软件背后的创建者一起参与讨论。Tidelift 的参与维护者随着他们的软件被更多订阅者使用而获得更多收入，所以他们对您的需求很感兴趣。
 
-##### Tooling and cloud integration
-Tidelift works with GitHub, GitLab, BitBucket, and more. We support every cloud platform (and other deployment targets, too).
+##### 工具和云集成
+Tidelift 可与 GitHub、GitLab、BitBucket 等配合使用。我们支持每一个云平台（以及其他部署目标）。
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open source you use. That means less time grappling with esoteric open source trivia, and more time building your own applications—and your business.
+最终结果是什么？您期望从商业级软件获得的所有功能，适用于您使用的全部开源软件。这意味着花更少的时间处理晦涩的开源细节，花更多的时间构建您自己的应用程序和业务。
 
 <div class="learnmore">
-    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Learn More</a>
-    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Request a demo</a>
+    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">了解更多</a>
+    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">请求演示</a>
 </div>

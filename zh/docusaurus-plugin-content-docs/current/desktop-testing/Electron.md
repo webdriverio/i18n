@@ -3,42 +3,45 @@ id: electron
 title: Electron
 ---
 
-Electron is a framework for building desktop applications using JavaScript, HTML, and CSS. By embedding Chromium and Node.js into its binary, Electron allows you to maintain one JavaScript codebase and create cross-platform apps that work on Windows, macOS, and Linux — no native development experience is required.
+Electron是一个使用JavaScript、HTML和CSS构建桌面应用程序的框架。通过将Chromium和Node.js嵌入到其二进制文件中，Electron允许你维护一个JavaScript代码库并创建可在Windows、macOS和Linux上运行的跨平台应用程序——无需原生开发经验。
 
-WebdriverIO provides an integrated service that simplifies the interaction with your Electron app and makes testing it very simple. The advantages of using WebdriverIO for testing Electron applications are:
+WebdriverIO提供了一个集成服务，简化了与Electron应用程序的交互，使测试变得非常简单。使用WebdriverIO测试Electron应用程序的优势包括：
 
-- 🚗 auto-setup of required Chromedriver
-- 📦 automatic path detection of your Electron application - supports [Electron Forge](https://www.electronforge.io/) and [Electron Builder](https://www.electron.build/)
-- 🧩 access Electron APIs within your tests
-- 🕵️ mocking of Electron APIs via a Vitest-like API
+- 🚗 自动设置所需的Chromedriver
+- 📦 自动检测Electron应用程序的路径 - 支持[Electron Forge](https://www.electronforge.io/)和[Electron Builder](https://www.electron.build/)
+- 🧩 在测试中访问Electron API
+- 🕵️ 通过类似Vitest的API模拟Electron API
 
-You just need a few simple steps to get started. Watch this simple step-by-step getting started video tutorial from the [WebdriverIO YouTube](https://www.youtube.com/@webdriverio) channel:
+你只需要几个简单的步骤就可以开始。观看来自[WebdriverIO YouTube](https://www.youtube.com/@webdriverio)频道的这个简单的逐步入门视频教程：
 
-<LiteYouTubeEmbed id="iQNxTdWedk0" title="Getting Started with ElectronJS Testing in WebdriverIO" />
+<LiteYouTubeEmbed
+    id="iQNxTdWedk0"
+    title="Getting Started with ElectronJS Testing in WebdriverIO"
+/>
 
-Or follow the guide in the following section.
+或者按照以下部分的指南进行操作。
 
-## Getting Started
+## 入门指南
 
-To initiate a new WebdriverIO project, run:
+要启动一个新的WebdriverIO项目，请运行：
 
 ```sh
 npm create wdio@latest ./
 ```
 
-An installation wizard will guide you through the process. Ensure you select _"Desktop Testing - of Electron Applications"_ when it asks you what type of testing you'd like to do. Afterwards provide the path to your compiled Electron application, e.g. `./dist`, then just keep the defaults or modify based on your preference.
+安装向导将指导你完成此过程。确保在询问你想要进行什么类型的测试时选择_"Desktop Testing - of Electron Applications"_。之后提供你编译好的Electron应用程序的路径，例如`./dist`，然后保持默认设置或根据你的偏好进行修改。
 
-The configuration wizard will install all required packages and create a `wdio.conf.js` or `wdio.conf.ts` with the necessary configuration to test your application. If you agree to autogenerate some test files you can run your first test via `npm run wdio`.
+配置向导将安装所有必需的包，并创建一个带有测试应用程序所需配置的`wdio.conf.js`或`wdio.conf.ts`。如果你同意自动生成一些测试文件，你可以通过`npm run wdio`运行你的第一个测试。
 
-## Manual Setup
+## 手动设置
 
-If you are already using WebdriverIO in your project you can skip the installation wizard and just add the following dependencies:
+如果你已经在项目中使用WebdriverIO，可以跳过安装向导，只需添加以下依赖项：
 
 ```sh
 npm install --save-dev wdio-electron-service
 ```
 
-Then you can use the following configuration:
+然后你可以使用以下配置：
 
 ```ts
 // wdio.conf.ts
@@ -51,6 +54,6 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-That's it 🎉
+就是这样 🎉
 
-Learn more about how [to configure the Electron Service](/docs/desktop-testing/electron/configuration), [how to mock Electron APIs](/docs/desktop-testing/electron/mocking) and [how to access Electron APIs](/docs/desktop-testing/electron/api).
+了解更多关于[如何配置Electron Service](/docs/desktop-testing/electron/configuration)、[如何模拟Electron API](/docs/desktop-testing/electron/mocking)以及[如何访问Electron API](/docs/desktop-testing/electron/api)的信息。

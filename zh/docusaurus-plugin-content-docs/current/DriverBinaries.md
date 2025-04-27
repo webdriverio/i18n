@@ -1,36 +1,36 @@
 ---
 id: driverbinaries
-title: Driver Binaries
+title: 驱动程序二进制文件
 ---
 
-To run automation based on the WebDriver protocol you need to have browser drivers set up that translate the automation commands and are able to execute them in the browser.
+要基于WebDriver协议运行自动化测试，您需要设置浏览器驱动程序来转译自动化命令并能够在浏览器中执行它们。
 
-## Automated setup
+## 自动化设置
 
-With WebdriverIO `v8.14` and above there is no need to manually download and setup any browser drivers anymore as this is handled by WebdriverIO. All you have to do is specify the browser you want to test and WebdriverIO will do the rest.
+使用WebdriverIO `v8.14`及以上版本，您不再需要手动下载和设置任何浏览器驱动程序，因为这些都由WebdriverIO处理。您只需指定要测试的浏览器，WebdriverIO将完成其余工作。
 
-### Customizing the level of automation
+### 自定义自动化级别
 
-WebdriverIO's have three levels of automation:
+WebdriverIO有三个自动化级别：
 
-**1. Download and install the browser using [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+**1. 使用[@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers)下载并安装浏览器。**
 
-If you specify a `browserName`/`browserVersion` combination in the [capabilities](configuration#capabilities-1) configuration, WebdriverIO will download and install the requested combination, regardless of whether there's an existing installation on the machine. If you omit `browserVersion`, WebdriverIO will first try to locate and use an existing installation with [locate-app](https://www.npmjs.com/package/locate-app), otherwise it will download and install the current stable browser release. For more details on `browserVersion`, see [here](capabilities#automate-different-browser-channels).
+如果您在[capabilities](configuration#capabilities-1)配置中指定了`browserName`/`browserVersion`组合，WebdriverIO将下载并安装所请求的组合，无论机器上是否已存在安装。如果您省略`browserVersion`，WebdriverIO将首先尝试使用[locate-app](https://www.npmjs.com/package/locate-app)定位并使用现有安装，否则它将下载并安装当前稳定的浏览器版本。有关`browserVersion`的更多详情，请参见[此处](capabilities#automate-different-browser-channels)。
 
 :::caution
 
-Automated browser setup does not support Microsoft Edge. Currently, only Chrome, Chromium and Firefox are supported.
+自动浏览器设置不支持Microsoft Edge。目前，仅支持Chrome、Chromium和Firefox。
 
 :::
 
-If you have a browser installation on a location that cannot be auto-detected by WebdriverIO, you can specify the browser binary which will disable the automated download and installation.
+如果您的浏览器安装在WebdriverIO无法自动检测的位置，您可以指定浏览器二进制文件，这将禁用自动下载和安装。
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox' or 'chromium'
-            'goog:chromeOptions': { // or 'moz:firefoxOptions' or 'wdio:chromedriverOptions'
+            browserName: 'chrome', // 或 'firefox' 或 'chromium'
+            'goog:chromeOptions': { // 或 'moz:firefoxOptions' 或 'wdio:chromedriverOptions'
                 binary: '/path/to/chrome'
             },
         }
@@ -38,17 +38,17 @@ If you have a browser installation on a location that cannot be auto-detected by
 }
 ```
 
-**2. Download and install the driver using [Chromedriver](https://www.npmjs.com/package/chromedriver), [Edgedriver](https://www.npmjs.com/package/edgedriver) or [Geckodriver](https://www.npmjs.com/package/geckodriver).**
+**2. 使用[Chromedriver](https://www.npmjs.com/package/chromedriver)、[Edgedriver](https://www.npmjs.com/package/edgedriver)或[Geckodriver](https://www.npmjs.com/package/geckodriver)下载并安装驱动程序。**
 
-WebdriverIO will always do this, unless driver [binary](capabilities#binary) is specified in the configuration:
+WebdriverIO将始终执行此操作，除非在配置中指定了驱动程序[binary](capabilities#binary)：
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox', 'msedge', 'safari', 'chromium'
-            'wdio:chromedriverOptions': { // or 'wdio:geckodriverOptions', 'wdio:edgedriverOptions'
-                binary: '/path/to/chromedriver' // or 'geckodriver', 'msedgedriver'
+            browserName: 'chrome', // 或 'firefox', 'msedge', 'safari', 'chromium'
+            'wdio:chromedriverOptions': { // 或 'wdio:geckodriverOptions', 'wdio:edgedriverOptions'
+                binary: '/path/to/chromedriver' // 或 'geckodriver', 'msedgedriver'
             }
         }
     ]
@@ -57,43 +57,43 @@ WebdriverIO will always do this, unless driver [binary](capabilities#binary) is 
 
 :::info
 
-WebdriverIO won't automatically download Safari driver as it is already installed on macOS.
+WebdriverIO不会自动下载Safari驱动程序，因为它已预装在macOS上。
 
 :::
 
 :::caution
 
-Avoid specifying a `binary` for the browser and omitting the corresponding driver `binary` or vice-versa. If only one of the `binary` values is specified, WebdriverIO will try to use or download a browser/driver compatible with it. However, in some scenarios it may result in an incompatible combination. Therefore, it's recommended that you always specify both to avoid any problems caused by version incompatibilities.
+避免仅为浏览器指定`binary`而省略相应的驱动程序`binary`，反之亦然。如果仅指定其中一个`binary`值，WebdriverIO将尝试使用或下载与之兼容的浏览器/驱动程序。然而，在某些情况下，这可能会导致不兼容的组合。因此，建议您始终同时指定两者，以避免版本不兼容引起的问题。
 
 :::
 
-**3. Start/stop the driver.**
+**3. 启动/停止驱动程序。**
 
-By default, WebdriverIO will automatically start and stop the driver using an arbitrary unused port. Specifying any of the following configuration will disable this feature which means you'll need to manually start and stop the driver:
+默认情况下，WebdriverIO将使用任意未使用的端口自动启动和停止驱动程序。指定以下任何配置将禁用此功能，这意味着您需要手动启动和停止驱动程序：
 
-- Any value for [port](configuration#port).
-- Any value different from the default for [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
-- Any value for both [user](configuration#user) and [key](configuration#key).
+- [port](configuration#port)的任何值。
+- 与[protocol](configuration#protocol)、[hostname](configuration#hostname)、[path](configuration#path)默认值不同的任何值。
+- [user](configuration#user)和[key](configuration#key)两者的任何值。
 
-## Manual setup
+## 手动设置
 
-The following describes how you can still set up each driver individually. You can find a list with all drivers in the [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver) README.
+以下描述了如何单独设置每个驱动程序。您可以在[`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver) README中找到所有驱动程序的列表。
 
 :::tip
 
-If you are looking to set up mobile and other UI platforms, have a look into our [Appium Setup](appium) guide.
+如果您想设置移动和其他UI平台，请查看我们的[Appium设置](appium)指南。
 
 :::
 
 ### Chromedriver
 
-To automate Chrome you can download Chromedriver directly on the [project website](http://chromedriver.chromium.org/downloads) or through the NPM package:
+要自动化Chrome，您可以直接在[项目网站](http://chromedriver.chromium.org/downloads)上下载Chromedriver，或通过NPM包：
 
 ```bash npm2yarn
 npm install -g chromedriver
 ```
 
-You can then start it via:
+然后您可以通过以下方式启动它：
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,17 +101,17 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-To automate Firefox download the latest version of `geckodriver` for your environment and unpack it in your project directory:
+要自动化Firefox，请为您的环境下载最新版本的`geckodriver`并在项目目录中解压：
 
 <Tabs
   defaultValue="npm"
   values={[
     {label: 'NPM', value: 'npm'},
- {label: 'Curl', value: 'curl'},
- {label: 'Brew', value: 'brew'},
- {label: 'Windows (64 bit / Chocolatey)', value: 'chocolatey'},
- {label: 'Windows (64 bit / Powershell) DevTools', value: 'powershell'},
- ]
+    {label: 'Curl', value: 'curl'},
+    {label: 'Brew', value: 'brew'},
+    {label: 'Windows (64 bit / Chocolatey)', value: 'chocolatey'},
+    {label: 'Windows (64 bit / Powershell) DevTools', value: 'powershell'},
+  ]
 }>
 <TabItem value="npm">
 
@@ -175,7 +175,7 @@ cd $unzipped_file
 </TabItem>
 </Tabs>
 
-**Note:** Other `geckodriver` releases are available [here](https://github.com/mozilla/geckodriver/releases). After download you can start the driver via:
+**注意：**其他`geckodriver`版本可在[此处](https://github.com/mozilla/geckodriver/releases)获取。下载后，您可以通过以下方式启动驱动程序：
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -183,7 +183,7 @@ cd $unzipped_file
 
 ### Edgedriver
 
-You can download the driver for Microsoft Edge on the [project website](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) or as NPM package via:
+您可以在[项目网站](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)上下载Microsoft Edge的驱动程序，或通过NPM包：
 
 ```sh
 npm install -g edgedriver
@@ -192,7 +192,7 @@ edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b177
 
 ### Safaridriver
 
-Safaridriver comes pre-installed on your MacOS and can be started directly via:
+Safaridriver预装在您的MacOS上，可以直接通过以下方式启动：
 
 ```sh
 safaridriver -p 4444

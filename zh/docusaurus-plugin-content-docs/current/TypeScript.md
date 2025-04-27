@@ -1,32 +1,31 @@
 ---
 id: typescript
-title: TypeScript Setup
+title: TypeScript 设置
 ---
 
-You can write tests using [TypeScript](http://www.typescriptlang.org) to get auto-completion and type safety.
+您可以使用 [TypeScript](http://www.typescriptlang.org) 编写测试以获得自动完成和类型安全。
 
-You will need [`tsx`](https://github.com/privatenumber/tsx) installed in `devDependencies`, via:
+您需要在 `devDependencies` 中安装 [`tsx`](https://github.com/privatenumber/tsx)，通过：
 
 ```bash npm2yarn
 $ npm install tsx --save-dev
 ```
 
-WebdriverIO will automatically detect if these dependencies are installed and will compile your config and tests for you. Ensure to have a `tsconfig.json` in the same directory as your WDIO config.
+WebdriverIO 会自动检测是否安装了这些依赖项，并为您编译配置和测试。确保在与 WDIO 配置相同的目录中有一个 `tsconfig.json`。
 
-#### Custom TSConfig
+#### 自定义 TSConfig
 
-If you need to set a different path for `tsconfig.json` please set the TSCONFIG_PATH environment variable with your desired path, or use wdio config's [tsConfigPath setting](/docs/configurationfile).
+如果您需要为 `tsconfig.json` 设置不同的路径，请使用 TSCONFIG_PATH 环境变量设置您想要的路径，或使用 wdio 配置的 [tsConfigPath 设置](/docs/configurationfile)。
 
-Alternatively, you can use the [environment variable](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) for `tsx`.
+或者，您可以使用 `tsx` 的[环境变量](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path)。
 
+#### 类型检查
 
-#### Type Checking
+请注意，`tsx` 不支持类型检查 - 如果您希望检查类型，则需要在单独的步骤中使用 `tsc` 进行检查。
 
-Note that `tsx` does not support type-checking - if you wish to check your types then you will need to do this in a separate step with `tsc`.
+## 框架设置
 
-## Framework Setup
-
-Your `tsconfig.json` needs the following:
+您的 `tsconfig.json` 需要包含以下内容：
 
 ```json title="tsconfig.json"
 {
@@ -36,21 +35,22 @@ Your `tsconfig.json` needs the following:
 }
 ```
 
-Please avoid importing `webdriverio` or `@wdio/sync` explicitly. `WebdriverIO` and `WebDriver` types are accessible from anywhere once added to `types` in `tsconfig.json`. If you use additional WebdriverIO services, plugins or the `devtools` automation package, please also add them to the `types` list as many provide additional typings.
+请避免显式导入 `webdriverio` 或 `@wdio/sync`。
+一旦在 `tsconfig.json` 的 `types` 中添加，`WebdriverIO` 和 `WebDriver` 类型将可从任何地方访问。如果您使用其他 WebdriverIO 服务、插件或 `devtools` 自动化包，请也将它们添加到 `types` 列表中，因为许多提供额外的类型定义。
 
-## Framework Types
+## 框架类型
 
-Depending on the framework you use, you will need to add the types for that framework to your `tsconfig.json` types property, as well as install its type definitions. This is especially important if you want to have type support for the built-in assertion library [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
+根据您使用的框架，您需要将该框架的类型添加到 `tsconfig.json` 的 types 属性中，并安装其类型定义。如果您想要内置断言库 [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio) 的类型支持，这一点尤为重要。
 
-For instance, if you decide to use the Mocha framework, you need to install `@types/mocha` and add it like this to have all types globally available:
+例如，如果您决定使用 Mocha 框架，您需要安装 `@types/mocha` 并像这样添加它，以使所有类型全局可用：
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- {label: 'Cucumber', value: 'cucumber'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+    {label: 'Cucumber', value: 'cucumber'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -87,9 +87,9 @@ For instance, if you decide to use the Mocha framework, you need to install `@ty
 </TabItem>
 </Tabs>
 
-## Services
+## 服务
 
-If you use services that add commands to the browser scope you also need to include these into your `tsconfig.json`. For example if you use the `@wdio/lighthouse-service` ensure that you add it to the `types` as well, e.g.:
+如果您使用的服务向浏览器范围添加命令，您也需要将这些服务包含在 `tsconfig.json` 中。例如，如果您使用 `@wdio/lighthouse-service`，请确保也将其添加到 `types` 中，例如：
 
 ```json title="tsconfig.json"
 {
@@ -104,33 +104,33 @@ If you use services that add commands to the browser scope you also need to incl
 }
 ```
 
-Adding services and reporters to your TypeScript config also strengthen the type safety of your WebdriverIO config file.
+将服务和报告器添加到 TypeScript 配置中也会增强 WebdriverIO 配置文件的类型安全性。
 
-## Type Definitions
+## 类型定义
 
-When running WebdriverIO commands all properties are usually typed so that you don't have to deal with importing additional types. However there are cases where you want to define variables upfront. To ensure that these are type safe you can use all types defined in the [`@wdio/types`](https://www.npmjs.com/package/@wdio/types) package. For example if you like to define the remote option for `webdriverio` you can do:
+运行 WebdriverIO 命令时，所有属性通常都是有类型的，因此您不必处理导入其他类型。但在某些情况下，您可能想要预先定义变量。为确保这些变量类型安全，您可以使用 [`@wdio/types`](https://www.npmjs.com/package/@wdio/types) 包中定义的所有类型。例如，如果您想为 `webdriverio` 定义远程选项，可以这样做：
 
 ```ts
 import type { Options } from '@wdio/types'
 
-// Here is an example where you might want to import the types directly
+// 这是一个您可能想要直接导入类型的示例
 const remoteConfig: Options.WebdriverIO = {
     hostname: 'http://localhost',
-    port: '4444' // Error: Type 'string' is not assignable to type 'number'.ts(2322)
+    port: '4444' // 错误：类型'string'不能赋值给类型'number'.ts(2322)
     capabilities: {
         browserName: 'chrome'
     }
 }
 
-// For other cases, you can use the `WebdriverIO` namespace
+// 对于其他情况，您可以使用 `WebdriverIO` 命名空间
 export const config: WebdriverIO.Config = {
   ...remoteConfig
-  // Other configs options
+  // 其他配置选项
 }
 ```
 
-## Tips and Hints
+## 提示和建议
 
-### Compile & Lint
+### 编译和代码检查
 
-To be entirely safe, you may consider following the best practices: compile your code with TypeScript compiler (run `tsc` or `npx tsc`) and have [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) running on [pre-commit hook](https://github.com/typicode/husky).
+为了完全安全，您可以考虑遵循最佳实践：使用 TypeScript 编译器编译代码（运行 `tsc` 或 `npx tsc`），并在 [pre-commit hook](https://github.com/typicode/husky) 上运行 [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)。

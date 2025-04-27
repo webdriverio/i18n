@@ -1,244 +1,245 @@
 ---
 id: capabilities
-title: Capabilities
+title: 能力（Capabilities）
 ---
 
-A capability is a definition for a remote interface. It helps WebdriverIO to understand in which browser or mobile environment you like to run your tests on. Capabilities are less crucial when developing tests locally as you run it on one remote interface most of the time but becomes more important when running a large set of integration tests in CI/CD.
+能力（capability）是远程接口的定义。它帮助 WebdriverIO 理解您希望在哪种浏览器或移动环境中运行测试。在本地开发测试时，能力的重要性较低，因为您大多数时间只在一个远程接口上运行测试；但在 CI/CD 中运行大量集成测试时，能力变得更加重要。
 
 :::info
 
-The format of a capability object is well defined by the [WebDriver specification](https://w3c.github.io/webdriver/#capabilities). The WebdriverIO testrunner will fail early if user defined capabilities do not adhere to that specification.
+能力对象的格式由 [WebDriver 规范](https://w3c.github.io/webdriver/#capabilities) 明确定义。如果用户定义的能力不符合该规范，WebdriverIO 测试运行器将提前失败。
 
 :::
 
-## Custom Capabilities
+## 自定义能力
 
-While the amount of fixed defined capabilities is very low, everyone can provide and accept custom capabilities that are specific to the automation driver or remote interface:
+虽然固定定义的能力数量很少，但每个人都可以提供和接受特定于自动化驱动程序或远程接口的自定义能力：
 
-### Browser Specific Capability Extensions
+### 浏览器特定的能力扩展
 
-- `goog:chromeOptions`: [Chromedriver](https://chromedriver.chromium.org/capabilities) extensions, only applicable for testing in Chrome
-- `moz:firefoxOptions`: [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) extensions, only applicable for testing in Firefox
-- `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) for specifying the environment when using EdgeDriver for testing Chromium Edge
+- `goog:chromeOptions`：[Chromedriver](https://chromedriver.chromium.org/capabilities) 扩展，仅适用于 Chrome 测试
+- `moz:firefoxOptions`：[Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) 扩展，仅适用于 Firefox 测试
+- `ms:edgeOptions`：[EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) 用于使用 EdgeDriver 测试 Chromium Edge 时指定环境
 
-### Cloud Vendor Capability Extensions
+### 云供应商能力扩展
 
-- `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
-- `bstack:options`: [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
-- `tb:options`: [TestingBot](https://testingbot.com/support/other/test-options)
-- and many more...
+- `sauce:options`：[Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
+- `bstack:options`：[BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
+- `tb:options`：[TestingBot](https://testingbot.com/support/other/test-options)
+- 以及更多...
 
-### Automation Engine Capability Extensions
+### 自动化引擎能力扩展
 
-- `appium:xxx`: [Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)
-- `selenoid:xxx`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
-- and many more...
+- `appium:xxx`：[Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)
+- `selenoid:xxx`：[Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
+- 以及更多...
 
-### WebdriverIO Capabilities to manage browser driver options
+### WebdriverIO 管理浏览器驱动程序选项的能力
 
-WebdriverIO manages installing and running browser driver for you. WebdriverIO uses a custom capability that allows you to pass in parameters to the driver.
+WebdriverIO 为您管理浏览器驱动程序的安装和运行。WebdriverIO 使用自定义能力，允许您向驱动程序传递参数。
 
 #### `wdio:chromedriverOptions`
 
-Specific options passed into Chromedriver when starting it.
+启动 Chromedriver 时传入的特定选项。
 
 #### `wdio:geckodriverOptions`
 
-Specific options passed into Geckodriver when starting it.
+启动 Geckodriver 时传入的特定选项。
 
 #### `wdio:edgedriverOptions`
 
-Specific options passed into Edgedriver when starting it.
+启动 Edgedriver 时传入的特定选项。
 
 #### `wdio:safaridriverOptions`
 
-Specific options passed into Safari when starting it.
+启动 Safari 时传入的特定选项。
 
 #### `wdio:maxInstances`
 
-Maximum number of total parallel running workers for the specific browser/capability. Takes precedence over [maxInstances](#configuration#maxInstances) and [maxInstancesPerCapability](configuration/#maxinstancespercapability).
+特定浏览器/能力的最大并行运行工作进程总数。优先于 [maxInstances](#configuration#maxInstances) 和 [maxInstancesPerCapability](configuration/#maxinstancespercapability)。
 
-Type: `number`
+类型：`number`
 
 #### `wdio:specs`
 
-Define specs for test execution for that browser/capability. Same as the [regular `specs` configuration option](configuration#specs), but specific to the browser/capability. Takes precedence over `specs`.
+为该浏览器/能力定义测试执行的规格。与[常规 `specs` 配置选项](configuration#specs)相同，但特定于浏览器/能力。优先于 `specs`。
 
-Type: `(String | String[])[]`
+类型：`(String | String[])[]`
 
 #### `wdio:exclude`
 
-Exclude specs from test execution for that browser/capability. Same as the [regular `exclude` configuration option](configuration#exclude), but specific to the browser/capability. Takes precedence over `exclude`.
+从该浏览器/能力的测试执行中排除规格。与[常规 `exclude` 配置选项](configuration#exclude)相同，但特定于浏览器/能力。优先于 `exclude`。
 
-Type: `String[]`
+类型：`String[]`
 
 #### `wdio:enforceWebDriverClassic`
 
-By default, WebdriverIO attempts to establish a WebDriver Bidi session. If you don't prefer that, you can set this flag to disable this behavior.
+默认情况下，WebdriverIO 尝试建立 WebDriver Bidi 会话。如果您不喜欢这种行为，可以设置此标志来禁用它。
 
-Type: `boolean`
+类型：`boolean`
 
-#### Common Driver Options
+#### 常见驱动程序选项
 
-While all driver offer different parameters for configuration, there are some common ones that WebdriverIO understand and uses for setting up your driver or browser:
+虽然所有驱动程序都提供不同的配置参数，但有一些 WebdriverIO 理解并用于设置驱动程序或浏览器的通用参数：
 
 ##### `cacheDir`
 
-The path to the root of the cache directory. This directory is used to store all drivers that are downloaded when attempting to start a session.
+缓存目录的根路径。此目录用于存储尝试启动会话时下载的所有驱动程序。
 
-Type: `string`<br /> Default: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+类型：`string`<br />
+默认值：`process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ##### `binary`
 
-Path to a custom driver binary. If set WebdriverIO won't attempt to download a driver but will use the one provided by this path. Make sure the driver is compatible with the browser you are using.
+自定义驱动程序二进制文件的路径。如果设置了此项，WebdriverIO 将不会尝试下载驱动程序，而是使用此路径提供的驱动程序。请确保驱动程序与您使用的浏览器兼容。
 
-You can provide this path via `CHROMEDRIVER_PATH`, `GECKODRIVER_PATH` or `EDGEDRIVER_PATH` environment variables.
+您可以通过 `CHROMEDRIVER_PATH`、`GECKODRIVER_PATH` 或 `EDGEDRIVER_PATH` 环境变量提供此路径。
 
-Type: `string`
+类型：`string`
 
 :::caution
 
-If the driver `binary` is set, WebdriverIO won't attempt to download a driver but will use the one provided by this path. Make sure the driver is compatible with the browser you are using.
+如果设置了驱动程序 `binary`，WebdriverIO 将不会尝试下载驱动程序，而是使用此路径提供的驱动程序。请确保驱动程序与您使用的浏览器兼容。
 
 :::
 
-#### Browser Specific Driver Options
+#### 浏览器特定的驱动程序选项
 
-In order to propagate options to the driver you can use the following custom capabilities:
+为了向驱动程序传递选项，您可以使用以下自定义能力：
 
-- Chrome or Chromium: `wdio:chromedriverOptions`
-- Firefox: `wdio:geckodriverOptions`
-- Microsoft Egde: `wdio:edgedriverOptions`
-- Safari: `wdio:safaridriverOptions`
+- Chrome 或 Chromium：`wdio:chromedriverOptions`
+- Firefox：`wdio:geckodriverOptions`
+- Microsoft Edge：`wdio:edgedriverOptions`
+- Safari：`wdio:safaridriverOptions`
 
 <Tabs
   defaultValue="chrome"
   values={[
     {label: 'wdio:chromedriverOptions', value: 'chrome'},
- {label: 'wdio:geckodriverOptions', value: 'firefox'},
- {label: 'wdio:edgedriverOptions', value: 'msedge'},
- {label: 'wdio:safaridriverOptions', value: 'safari'},
- ]
+    {label: 'wdio:geckodriverOptions', value: 'firefox'},
+    {label: 'wdio:edgedriverOptions', value: 'msedge'},
+    {label: 'wdio:safaridriverOptions', value: 'safari'},
+  ]
 }>
 <TabItem value="chrome">
 
 ##### adbPort
-The port on which the ADB driver should run.
+ADB 驱动程序应运行的端口。
 
-Example: `9515`
+示例：`9515`
 
-Type: `number`
+类型：`number`
 
 ##### urlBase
-Base URL path prefix for commands, e.g. `wd/url`.
+命令的基本 URL 路径前缀，例如 `wd/url`。
 
-Example: `/`
+示例：`/`
 
-Type: `string`
+类型：`string`
 
 ##### logPath
-Write server log to file instead of stderr, increases log level to `INFO`
+将服务器日志写入文件而不是标准错误，将日志级别增加到 `INFO`。
 
-Type: `string`
+类型：`string`
 
 ##### logLevel
-Set log level. Possible options `ALL`, `DEBUG`, `INFO`, `WARNING`, `SEVERE`, `OFF`.
+设置日志级别。可能的选项有 `ALL`、`DEBUG`、`INFO`、`WARNING`、`SEVERE`、`OFF`。
 
-Type: `string`
+类型：`string`
 
 ##### verbose
-Log verbosely (equivalent to `--log-level=ALL`)
+详细记录日志（相当于 `--log-level=ALL`）。
 
-Type: `boolean`
+类型：`boolean`
 
 ##### silent
-Log nothing (equivalent to `--log-level=OFF`)
+不记录任何内容（相当于 `--log-level=OFF`）。
 
-Type: `boolean`
+类型：`boolean`
 
 ##### appendLog
-Append log file instead of rewriting.
+追加日志文件而不是重写。
 
-Type: `boolean`
+类型：`boolean`
 
 ##### replayable
-Log verbosely and don't truncate long strings so that the log can be replayed (experimental).
+详细记录日志，并且不截断长字符串，以便可以重播日志（实验性）。
 
-Type: `boolean`
+类型：`boolean`
 
 ##### readableTimestamp
-Add readable timestamps to log.
+向日志添加可读时间戳。
 
-Type: `boolean`
+类型：`boolean`
 
 ##### enableChromeLogs
-Show logs from the browser (overrides other logging options).
+显示来自浏览器的日志（覆盖其他日志选项）。
 
-Type: `boolean`
+类型：`boolean`
 
 ##### bidiMapperPath
-Custom bidi mapper path.
+自定义 bidi 映射器路径。
 
-Type: `string`
+类型：`string`
 
 ##### allowedIps
-Comma-separated allowlist of remote IP addresses which are allowed to connect to EdgeDriver.
+允许连接到 EdgeDriver 的远程 IP 地址的逗号分隔白名单。
 
-Type: `string[]`<br />
-Default: `['']`
+类型：`string[]`<br />
+默认值：`['']`
 
 ##### allowedOrigins
-Comma-separated allowlist of request origins which are allowed to connect to EdgeDriver. Using `*` to allow any host origin is dangerous!
+允许连接到 EdgeDriver 的请求源的逗号分隔白名单。使用 `*` 允许任何主机源是危险的！
 
-Type: `string[]`<br />
-Default: `['*']`
+类型：`string[]`<br />
+默认值：`['*']`
 
 ##### spawnOpts
-Options to be passed into the driver process.
+要传递给驱动程序进程的选项。
 
-Type: `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
-Default: `undefined`
+类型：`SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
+默认值：`undefined`
 
 </TabItem>
 <TabItem value="firefox">
 
-See all Geckodriver options in the official [driver package](https://github.com/webdriverio-community/node-geckodriver#options).
+请参阅官方[驱动程序包](https://github.com/webdriverio-community/node-geckodriver#options)中的所有 Geckodriver 选项。
 
 </TabItem>
 <TabItem value="msedge">
 
-See all Edgedriver options in the official [driver package](https://github.com/webdriverio-community/node-edgedriver#options).
+请参阅官方[驱动程序包](https://github.com/webdriverio-community/node-edgedriver#options)中的所有 Edgedriver 选项。
 
 </TabItem>
 <TabItem value="safari">
 
-See all Safaridriver options in the official [driver package](https://github.com/webdriverio-community/node-safaridriver#options).
+请参阅官方[驱动程序包](https://github.com/webdriverio-community/node-safaridriver#options)中的所有 Safaridriver 选项。
 
 </TabItem>
 </Tabs>
 
-## Special Capabilities for Specific Use Cases
+## 特定用例的特殊能力
 
-This is a list of examples showing which capabilities need to be applied to achieve a certain use case.
+以下是一系列示例，展示了为实现某种用例需要应用哪些能力。
 
-### Run Browser Headless
+### 无头运行浏览器
 
-Running a headless browser means to run a browser instance without window or UI. This is mostly used within CI/CD environments where no display is used. To run a browser in headless mode, apply the following capabilities:
+无头运行浏览器意味着运行没有窗口或 UI 的浏览器实例。这主要用于没有显示器的 CI/CD 环境中。要以无头模式运行浏览器，请应用以下能力：
 
 <Tabs
   defaultValue="chrome"
   values={[
     {label: 'Chrome', value: 'chrome'},
- {label: 'Firefox', value: 'firefox'},
- {label: 'Microsoft Edge', value: 'msedge'},
- {label: 'Safari', value: 'safari'},
- ]
+    {label: 'Firefox', value: 'firefox'},
+    {label: 'Microsoft Edge', value: 'msedge'},
+    {label: 'Safari', value: 'safari'},
+  ]
 }>
 <TabItem value="chrome">
 
 ```ts
 {
-    browserName: 'chrome',    // or 'chromium'
+    browserName: 'chrome',   // 或 'chromium'
     'goog:chromeOptions': {
         args: ['headless', 'disable-gpu']
     }
@@ -268,51 +269,51 @@ Running a headless browser means to run a browser instance without window or UI.
 </TabItem>
 <TabItem value="safari">
 
-It seems that Safari [doesn't support](https://discussions.apple.com/thread/251837694) running in headless mode.
+似乎 Safari [不支持](https://discussions.apple.com/thread/251837694)以无头模式运行。
 
 </TabItem>
 </Tabs>
 
-### Automate Different Browser Channels
+### 自动化不同的浏览器通道
 
-If you like to test a browser version that is not yet released as stable, e.g. Chrome Canary, you can do so by setting capabilities and pointing to the browser you like to start, e.g.:
+如果您想测试尚未作为稳定版发布的浏览器版本，例如 Chrome Canary，您可以通过设置能力并指向您想要启动的浏览器来实现，例如：
 
 <Tabs
   defaultValue="chrome"
   values={[
     {label: 'Chrome', value: 'chrome'},
- {label: 'Firefox', value: 'firefox'},
- {label: 'Microsoft Edge', value: 'msedge'},
- {label: 'Safari', value: 'safari'},
- ]
+    {label: 'Firefox', value: 'firefox'},
+    {label: 'Microsoft Edge', value: 'msedge'},
+    {label: 'Safari', value: 'safari'},
+  ]
 }>
 <TabItem value="chrome">
 
-When testing on Chrome, WebdriverIO will automatically download the desired browser version and driver for you based on the defined `browserVersion`, e.g.:
+在测试 Chrome 时，WebdriverIO 将根据定义的 `browserVersion` 自动为您下载所需的浏览器版本和驱动程序，例如：
 
 ```ts
 {
-    browserName: 'chrome',// or 'chromium'
-    browserVersion: '116' // or '116.0.5845.96', 'stable', 'dev', 'canary', 'beta' or 'latest' (same as 'canary')
+    browserName: 'chrome', // 或 'chromium'
+    browserVersion: '116' // 或 '116.0.5845.96'、'stable'、'dev'、'canary'、'beta' 或 'latest'（与 'canary' 相同）
 }
 ```
 
-If you like to test a manually downloaded browser, you can provide a binary path to the browser via:
+如果您想测试手动下载的浏览器，可以通过以下方式提供浏览器的二进制路径：
 
 ```ts
 {
-    browserName: 'chrome',  // or 'chromium'
+    browserName: 'chrome',  // 或 'chromium'
     'goog:chromeOptions': {
         binary: '/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
     }
 }
 ```
 
-Additionally, if you like to use a manually downloaded driver, you can provide a binary path to the driver via:
+此外，如果您想使用手动下载的驱动程序，可以通过以下方式提供驱动程序的二进制路径：
 
 ```ts
 {
-    browserName: 'chrome', // or 'chromium'
+    browserName: 'chrome', // 或 'chromium'
     'wdio:chromedriverOptions': {
         binary: '/path/to/chromdriver'
     }
@@ -322,16 +323,16 @@ Additionally, if you like to use a manually downloaded driver, you can provide a
 </TabItem>
 <TabItem value="firefox">
 
-When testing on Firefox, WebdriverIO will automatically download the desired browser version and driver for you based on the defined `browserVersion`, e.g.:
+在测试 Firefox 时，WebdriverIO 将根据定义的 `browserVersion` 自动为您下载所需的浏览器版本和驱动程序，例如：
 
 ```ts
 {
     browserName: 'firefox',
-    browserVersion: '119.0a1' // or 'latest'
+    browserVersion: '119.0a1' // 或 'latest'
 }
 ```
 
-If you like to test a manually downloaded version you can provide a binary path to the browser via:
+如果您想测试手动下载的版本，可以通过以下方式提供浏览器的二进制路径：
 
 ```ts
 {
@@ -342,7 +343,7 @@ If you like to test a manually downloaded version you can provide a binary path 
 }
 ```
 
-Additionally, if you like to use a manually downloaded driver, you can provide a binary path to the driver via:
+此外，如果您想使用手动下载的驱动程序，可以通过以下方式提供驱动程序的二进制路径：
 
 ```ts
 {
@@ -356,7 +357,7 @@ Additionally, if you like to use a manually downloaded driver, you can provide a
 </TabItem>
 <TabItem value="msedge">
 
-When testing on Microsoft Edge, make sure you have the desired browser version installed on your machine. You can point WebdriverIO to the browser to execute via:
+在测试 Microsoft Edge 时，请确保您的机器上已安装所需的浏览器版本。您可以通过以下方式指向 WebdriverIO 要执行的浏览器：
 
 ```ts
 {
@@ -367,16 +368,16 @@ When testing on Microsoft Edge, make sure you have the desired browser version i
 }
 ```
 
-WebdriverIO will automatically download the desired driver version for you based on the defined `browserVersion`, e.g.:
+WebdriverIO 将根据定义的 `browserVersion` 自动为您下载所需的驱动程序版本，例如：
 
 ```ts
 {
     browserName: 'msedge',
-    browserVersion: '109' // or '109.0.1467.0', 'stable', 'dev', 'canary', 'beta'
+    browserVersion: '109' // 或 '109.0.1467.0'、'stable'、'dev'、'canary'、'beta'
 }
 ```
 
-Additionally, if you like to use a manually downloaded driver, you can provide a binary path to the driver via:
+此外，如果您想使用手动下载的驱动程序，可以通过以下方式提供驱动程序的二进制路径：
 
 ```ts
 {
@@ -390,7 +391,7 @@ Additionally, if you like to use a manually downloaded driver, you can provide a
 </TabItem>
 <TabItem value="safari">
 
-When testing on Safari, make sure you have the [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) installed on your machine. You can point WebdriverIO to that version via:
+在测试 Safari 时，请确保您的机器上已安装 [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/)。您可以通过以下方式指向 WebdriverIO 该版本：
 
 ```ts
 {
@@ -401,9 +402,9 @@ When testing on Safari, make sure you have the [Safari Technology Preview](https
 </TabItem>
 </Tabs>
 
-## Extend Custom Capabilities
+## 扩展自定义能力
 
-If you like to define your own set of capabilities in order to e.g. store arbitrary data to be used within the tests for that specific capability, you can do so by e.g. setting:
+如果您想定义自己的一组能力，例如存储任意数据以在特定能力的测试中使用，您可以通过以下方式实现：
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -411,19 +412,19 @@ export const config = {
     capabilities: [{
         browserName: 'chrome',
         'custom:caps': {
-            // custom configurations
+            // 自定义配置
         }
     }]
 }
 ```
 
-It is advised to follow the [W3C protocol](https://w3c.github.io/webdriver/#dfn-extension-capability) when it comes to capability naming which requires a `:` (colon) character, denoting an implementation specific namespace. Within your tests you can access your custom capability through, e.g.:
+在能力命名方面，建议遵循 [W3C 协议](https://w3c.github.io/webdriver/#dfn-extension-capability)，该协议要求使用 `:` (冒号) 字符，表示实现特定的命名空间。在测试中，您可以通过以下方式访问自定义能力：
 
 ```ts
 browser.capabilities['custom:caps']
 ```
 
-In order to ensure type safety you can extend WebdriverIOs capability interface via:
+为了确保类型安全，您可以通过以下方式扩展 WebdriverIO 的能力接口：
 
 ```ts
 declare global {

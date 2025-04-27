@@ -1,34 +1,33 @@
 ---
 id: getting-started
-title: Getting Started
+title: 入门指南
 ---
 
-## Installation
+## 安装
 
-The easiest way is to keep `@wdio/ocr-service` as a dependency in your `package.json` via.
+最简单的方法是通过在您的 `package.json` 中保持 `@wdio/ocr-service` 作为依赖项。
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
 ```
 
-Instructions on how to install `WebdriverIO` can be found [here.](../gettingstarted)
+关于如何安装 `WebdriverIO` 的说明可以在[这里](../gettingstarted)找到。
 
 :::note
-This module uses Tesseract as an OCR engine. By default, it will verify if you have a local installation of Tesseract installed on your system, if so, it will use that. If not, it will use the [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) module which is automatically installed for you.
+这个模块使用 Tesseract 作为 OCR 引擎。默认情况下，它会检查您的系统上是否安装了 Tesseract 的本地版本，如果有，它将使用该版本。如果没有，它将使用自动为您安装的 [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) 模块。
 
-If you want to speed up the image processing then the advice is to use a locally installed version of Tesseract. See also [Test execution time](./more-test-optimization#using-a-local-installation-of-tesseract).
+如果您想加快图像处理速度，建议使用本地安装的 Tesseract 版本。另请参阅[测试执行时间](./more-test-optimization#using-a-local-installation-of-tesseract)。
 :::
 
-Instruction on how to install Tesseract as a system dependency on your local system can be found [here](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+关于如何在本地系统上安装 Tesseract 作为系统依赖项的说明可以在[这里](https://tesseract-ocr.github.io/tessdoc/Installation.html)找到。
 
 :::caution
-For installation questions/errors with Tesseract please refer to the
-[Tesseract](https://github.com/tesseract-ocr/tesseract) project.
+关于 Tesseract 的安装问题/错误，请参考 [Tesseract](https://github.com/tesseract-ocr/tesseract) 项目。
 :::
 
-## Typescript support
+## Typescript 支持
 
-Ensure that you add `@wdio/ocr-service` to your `tsconfig.json` configuration file.
+确保您将 `@wdio/ocr-service` 添加到您的 `tsconfig.json` 配置文件中。
 
 ```json title="tsconfig.json"
 {
@@ -38,9 +37,9 @@ Ensure that you add `@wdio/ocr-service` to your `tsconfig.json` configuration fi
 }
 ```
 
-## Configuration
+## 配置
 
-To use the service you need to add `ocr` to your services array in `wdio.conf.ts`
+要使用该服务，您需要在 `wdio.conf.ts` 中将 `ocr` 添加到您的 services 数组中
 
 ```js
 // wdio.conf.js
@@ -60,40 +59,40 @@ exports.config = {
 };
 ```
 
-### Configuration Options
+### 配置选项
 
 #### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `0.25`
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+对比度越高，图像越暗，反之亦然。这可以帮助在图像中找到文本。它接受 `-1` 和 `1` 之间的值。
 
 #### `imagesFolder`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{project-root}/.tmp/ocr`
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** `{project-root}/.tmp/ocr`
 
-The folder where the OCR results are stored.
+存储 OCR 结果的文件夹。
 
 :::note
-If you provide a custom `imagesFolder`, then the service will automatically add the subfolder `ocr` to it.
+如果您提供自定义 `imagesFolder`，则服务将自动在其中添加子文件夹 `ocr`。
 :::
 
 #### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **类型:** `string`
+-   **必填:** 否
+-   **默认值:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseract 将识别的语言。更多信息可以在[这里](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)找到，支持的语言可以在[这里](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)找到。
 
-## Logs
+## 日志
 
-This module will automatically add extra logs to the WebdriverIO logs. It writes to the `INFO` and `WARN` logs with the name `@wdio/ocr-service`.
-Examples can be found below.
+此模块将自动向 WebdriverIO 日志添加额外的日志。它使用名称 `@wdio/ocr-service` 写入 `INFO` 和 `WARN` 日志。
+示例可以在下面找到。
 
 ```log
 ...............

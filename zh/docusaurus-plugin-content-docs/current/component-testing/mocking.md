@@ -1,30 +1,30 @@
 ---
 id: mocking
-title: Mocking
+title: 模拟
 ---
 
-When writing tests it's only a matter of time before you need to create a "fake" version of an internal — or external — service. This is commonly referred to as mocking. WebdriverIO provides utility functions to help you out. You can `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` to access it. See more information about the available mocking utilities in the [API docs](/docs/api/modules#wdiobrowser-runner).
+当编写测试时，迟早你会需要创建内部或外部服务的"假"版本。这通常被称为模拟(mocking)。WebdriverIO提供实用函数来帮助你。你可以通过`import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'`来访问它。有关可用模拟工具的更多信息，请参阅[API文档](/docs/api/modules#wdiobrowser-runner)。
 
-## Functions
+## 函数
 
-In order to validate whether certain function handler are called as part of your component tests, the `@wdio/browser-runner` module exports mocking primitives you can use to test, if these functions have been called. You can import these methods via:
+为了验证某些函数处理程序是否作为组件测试的一部分被调用，`@wdio/browser-runner`模块导出了你可以用来测试这些函数是否被调用的模拟原语。你可以通过以下方式导入这些方法：
 
 ```js
 import { fn, spyOn } from '@wdio/browser-runner'
 ```
 
-By importing `fn` you can create a spy function (mock) to track its execution and with `spyOn` track a method on an already created object.
+通过导入`fn`，你可以创建一个间谍函数(模拟)来跟踪其执行情况，而使用`spyOn`则可以跟踪已创建对象上的方法。
 
 <Tabs
   defaultValue="mocks"
   values={[
     {label: 'Mocks', value: 'mocks'},
- {label: 'Spies', value: 'spies'}
- ]
+    {label: 'Spies', value: 'spies'}
+  ]
 }>
 <TabItem value="mocks">
 
-The full example can be found in the [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx) repository.
+完整示例可在[组件测试示例](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx)仓库中找到。
 
 ```ts
 import React from 'react'
@@ -58,7 +58,7 @@ describe('LoginForm', () => {
 </TabItem>
 <TabItem value="spies">
 
-The full example can be found in the [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js) directory.
+完整示例可在[examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js)目录中找到。
 
 ```js
 import { expect, $ } from '@wdio/globals'
@@ -95,19 +95,19 @@ describe('Lit Component testing', () => {
 </TabItem>
 </Tabs>
 
-WebdriverIO just re-exports [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) here which is a lightweight Jest compatible spy implementation that can be used with WebdriverIOs [`expect`](/docs/api/expect-webdriverio) matchers. You can find more documentation on these mock functions on the [Vitest project page](https://vitest.dev/api/mock.html).
+WebdriverIO在这里只是重新导出了[`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy)，这是一个轻量级的Jest兼容间谍实现，可以与WebdriverIO的[`expect`](/docs/api/expect-webdriverio)匹配器一起使用。你可以在[Vitest项目页面](https://vitest.dev/api/mock.html)上找到关于这些模拟函数的更多文档。
 
-Of course, you can also install and import any other spy framework, e.g. [SinonJS](https://sinonjs.org/), as long as it supports the browser environment.
+当然，你也可以安装和导入任何其他间谍框架，例如[SinonJS](https://sinonjs.org/)，只要它支持浏览器环境。
 
-## Modules
+## 模块
 
-Mock local modules or observe third-party-libraries, that are invoked in some other code, allowing you to test arguments, output or even redeclare its implementation.
+模拟本地模块或观察在其他代码中调用的第三方库，允许你测试参数、输出，甚至重新声明其实现。
 
-There are two ways to mock functions: Either by creating a mock function to use in test code, or writing a manual mock to override a module dependency.
+有两种方法可以模拟函数：一种是创建一个在测试代码中使用的模拟函数，另一种是编写手动模拟来覆盖模块依赖项。
 
-### Mocking File Imports
+### 模拟文件导入
 
-Let's imagine our component is importing a utility method from a file to handle a click.
+让我们想象我们的组件正在从一个文件导入一个实用方法来处理点击。
 
 ```js title=utils.js
 export function handleClick () {
@@ -115,7 +115,7 @@ export function handleClick () {
 }
 ```
 
-In our component the click handler is used as following:
+在我们的组件中，点击处理程序的使用如下：
 
 ```ts title=LitComponent.js
 import { handleClick } from './utils.js'
@@ -128,7 +128,7 @@ export class SimpleButton extends LitElement {
 }
 ```
 
-To mock the `handleClick` from `utils.js` we can use the `mock` method in our test as following:
+要模拟来自`utils.js`的`handleClick`，我们可以在测试中使用`mock`方法，如下所示：
 
 ```js title=LitComponent.test.js
 import { expect, $ } from '@wdio/globals'
@@ -154,9 +154,9 @@ describe('Simple Button Component Test', () => {
 })
 ```
 
-### Mocking Dependencies
+### 模拟依赖项
 
-Suppose we have a class that fetches users from our API. The class uses [`axios`](https://github.com/axios/axios) to call the API then returns the data attribute which contains all the users:
+假设我们有一个从API获取用户的类。该类使用[`axios`](https://github.com/axios/axios)调用API，然后返回包含所有用户的data属性：
 
 ```js title=users.js
 import axios from 'axios';
@@ -170,9 +170,9 @@ class Users {
 export default Users
 ```
 
-Now, in order to test this method without actually hitting the API (and thus creating slow and fragile tests), we can use the `mock(...)` function to automatically mock the axios module.
+现在，为了测试这个方法而不实际调用API(从而创建缓慢和脆弱的测试)，我们可以使用`mock(...)`函数自动模拟axios模块。
 
-Once we mock the module we can provide a [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) for `.get` that returns the data we want our test to assert against. In effect, we are saying that we want `axios.get('/users.json')` to return a fake response.
+一旦我们模拟了该模块，我们可以为`.get`提供一个[`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue)，返回我们希望测试断言的数据。实际上，我们是在说我们希望`axios.get('/users.json')`返回一个假的响应。
 
 ```js title=users.test.js
 import axios from 'axios'; // imports defined mock
@@ -204,9 +204,9 @@ describe('User API', () => {
 })
 ```
 
-## Partials
+## 部分模拟
 
-Subsets of a module can be mocked and the rest of the module can keep their actual implementation:
+模块的子集可以被模拟，而模块的其余部分可以保持其实际实现：
 
 ```js title=foo-bar-baz.js
 export const foo = 'foo';
@@ -214,7 +214,7 @@ export const bar = () => 'bar';
 export default () => 'baz';
 ```
 
-The original module will be passed into the mock factory which you can use to e.g. partially mock a dependency:
+原始模块将被传递到模拟工厂中，你可以用它来部分模拟依赖项：
 
 ```js
 import { mock, fn } from '@wdio/browser-runner'
@@ -243,11 +243,11 @@ describe('partial mock', () => {
 })
 ```
 
-## Manual Mocks
+## 手动模拟
 
-Manual mocks are defined by writing a module in a `__mocks__/` (see also `automockDir` option) subdirectory. If the module you are mocking is a Node module (e.g.: `lodash`), the mock should be placed in the `__mocks__` directory and will be automatically mocked. There's no need to explicitly call `mock('module_name')`.
+手动模拟是通过在`__mocks__/`(另见`automockDir`选项)子目录中编写模块来定义的。如果你要模拟的模块是Node模块(例如：`lodash`)，模拟应该放在`__mocks__`目录中，并将自动被模拟。无需显式调用`mock('module_name')`。
 
-Scoped modules (also known as scoped packages) can be mocked by creating a file in a directory structure that matches the name of the scoped module. For example, to mock a scoped module called `@scope/project-name`, create a file at `__mocks__/@scope/project-name.js`, creating the `@scope/` directory accordingly.
+作用域模块(也称为作用域包)可以通过在与作用域模块名称匹配的目录结构中创建文件来模拟。例如，要模拟名为`@scope/project-name`的作用域模块，请在`__mocks__/@scope/project-name.js`创建一个文件，相应地创建`@scope/`目录。
 
 ```
 .
@@ -261,7 +261,7 @@ Scoped modules (also known as scoped packages) can be mocked by creating a file 
 └── views
 ```
 
-When a manual mock exists for a given module, WebdriverIO will use that module when explicitly calling `mock('moduleName')`. However, when automock is set to true, the manual mock implementation will be used instead of the automatically created mock, even if `mock('moduleName')` is not called. To opt out of this behavior you will need to explicitly call `unmock('moduleName')` in tests that should use the actual module implementation, e.g.:
+当给定模块存在手动模拟时，WebdriverIO将在显式调用`mock('moduleName')`时使用该模块。然而，当automock设置为true时，即使没有调用`mock('moduleName')`，也会使用手动模拟实现而不是自动创建的模拟。要选择不使用这种行为，你需要在应该使用实际模块实现的测试中显式调用`unmock('moduleName')`，例如：
 
 ```js
 import { unmock } from '@wdio/browser-runner'
@@ -269,9 +269,9 @@ import { unmock } from '@wdio/browser-runner'
 unmock('lodash')
 ```
 
-## Hoisting
+## 提升
 
-In order to get mocking to work in the browser, WebdriverIO rewrites the test files and hoists the mock calls above everything else (see also [this blog post](https://www.coolcomputerclub.com/posts/jest-hoist-await/) on the hoisting problem in Jest). This limits the way you can pass in variables into the mock resolver, e.g.:
+为了让模拟在浏览器中工作，WebdriverIO重写了测试文件并将模拟调用提升到其他所有内容之上(另见[这篇博客文章](https://www.coolcomputerclub.com/posts/jest-hoist-await/)关于Jest中的提升问题)。这限制了你将变量传递到模拟解析器的方式，例如：
 
 ```js title=component.test.js
 import dep from 'dependency'
@@ -286,7 +286,7 @@ mock('./some/module.ts', () => ({
 }))
 ```
 
-To fix this you have to define all used variables inside the resolver, e.g.:
+要解决这个问题，你必须在解析器内部定义所有使用的变量，例如：
 
 ```js title=component.test.js
 /**
@@ -303,6 +303,6 @@ mock('./some/module.ts', async () => {
 })
 ```
 
-## Requests
+## 请求
 
-If you are looking for mocking browser requests, e.g. API calls, head over to the [Request Mock and Spies](/docs/mocksandspies) section.
+如果你正在寻找模拟浏览器请求，例如API调用，请转到[请求模拟和间谍](/docs/mocksandspies)部分。

@@ -1,33 +1,34 @@
 ---
 id: customcommands
-title: Custom Commands
+title: 自定义命令
 ---
 
-If you want to extend the `browser` instance with your own set of commands, the browser method  `addCommand` is here for you. You can write your command in a asynchronous way, just as in your specs.
+如果你想用自己的一组命令扩展`browser`实例，浏览器方法`addCommand`就是为你准备的。你可以以异步方式编写命令，就像在你的测试规范中一样。
 
-## Parameters
+## 参数
 
-### Command Name
+### 命令名称
 
-A name that defines the command and will be attached to the browser or element scope.
+定义命令并将其附加到浏览器或元素作用域的名称。
 
-Type: `String`
+类型：`String`
 
-### Custom Function
+### 自定义函数
 
-A function that is being executed when the command is called. The `this` scope is either [`WebdriverIO.Browser`](/docs/api/browser) or [`WebdriverIO.Element`](/docs/api/element) depending whether the command gets attached to the browser or element scope.
+当调用命令时执行的函数。`this`作用域是[`WebdriverIO.Browser`](/docs/api/browser)或[`WebdriverIO.Element`](/docs/api/element)，取决于命令是附加到浏览器还是元素作用域。
 
-Type: `Function`
+类型：`Function`
 
-### Target Scope
+### 目标作用域
 
-Flag to decide whether to attach the command to the browser or element scope. If set to `true` the command will be an element command.
+决定是将命令附加到浏览器还是元素作用域的标志。如果设置为`true`，该命令将是一个元素命令。
 
-Type: `Boolean`<br /> Default: `false`
+类型：`Boolean`<br />
+默认值：`false`
 
-## Examples
+## 示例
 
-This example shows how to add a new command that returns the current URL and title as one result. The scope (`this`) is a [`WebdriverIO.Browser`](/docs/api/browser) object.
+这个例子展示了如何添加一个新命令，该命令将当前URL和标题作为一个结果返回。作用域(`this`)是一个[`WebdriverIO.Browser`](/docs/api/browser)对象。
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
@@ -40,7 +41,7 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-Additionally, you can extend the element instance with your own set of commands, by passing `true` as the final argument. The scope (`this`) in this case is a [`WebdriverIO.Element`](/docs/api/element) object.
+此外，你可以通过将`true`作为最后一个参数传递，来用你自己的一组命令扩展元素实例。在这种情况下，作用域(`this`)是一个[`WebdriverIO.Element`](/docs/api/element)对象。
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -50,9 +51,9 @@ browser.addCommand("waitAndClick", async function () {
 }, true)
 ```
 
-Custom commands give you the opportunity to bundle a specific sequence of commands you use frequently as a single call. You can define custom commands at any point in your test suite; just make sure that the command is defined *before* its first use. (The `before` hook in your `wdio.conf.js` is one good place to create them.)
+自定义命令给你机会将你经常使用的特定命令序列捆绑为单个调用。你可以在测试套件中的任何点定义自定义命令；只需确保在首次使用之前定义命令。（`wdio.conf.js`中的`before`钩子是创建它们的一个好地方。）
 
-Once defined, you can use them as follows:
+定义后，你可以按如下方式使用它们：
 
 ```js
 it('should use my custom command', async () => {
@@ -65,7 +66,7 @@ it('should use my custom command', async () => {
 })
 ```
 
-__Note:__ If you register a custom command to the `browser` scope, the command won't be accessible for elements. Likewise, if you register a command to the element scope, it won't be accessible in the `browser` scope:
+__注意：__ 如果你将自定义命令注册到`browser`作用域，该命令将无法被元素访问。同样，如果你将命令注册到元素作用域，它将无法在`browser`作用域中访问：
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
@@ -84,7 +85,7 @@ console.log(typeof browser.myCustomElementCommand2) // outputs "undefined"
 console.log(await elem3.myCustomElementCommand2('foobar')) // outputs "2"
 ```
 
-__Note:__ If you need to chain a custom command, the command should end with `$`,
+__注意：__ 如果你需要链接自定义命令，该命令应该以`$`结尾，
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -92,15 +93,15 @@ browser.addCommand("user$", (locator) => { return ele }, true)
 await browser.user$('foo').user$('bar').click()
 ```
 
-Be careful to not overload the `browser` scope with too many custom commands.
+小心不要用太多自定义命令使`browser`作用域过载。
 
-We recommend defining custom logic in [page objects](pageobjects), so they are bound to a specific page.
+我们建议在[页面对象](pageobjects)中定义自定义逻辑，这样它们就会绑定到特定页面。
 
-### Multiremote
+### 多重远程
 
-`addCommand` works in a similar way for multiremote, except the new command will propagate down to the children instances. You have to be mindful when using `this` object since the multiremote `browser` and its children instances have different `this`.
+`addCommand`对多重远程的工作方式类似，不同的是新命令将向下传播到子实例。使用`this`对象时必须注意，因为多重远程`browser`及其子实例有不同的`this`。
 
-This example shows how to add a new command for multiremote.
+这个例子展示了如何为多重远程添加新命令。
 
 ```js
 import { multiremotebrowser } from '@wdio/globals'
@@ -138,21 +139,21 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 */
 ```
 
-## Extend Type Definitions
+## 扩展类型定义
 
-With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your custom commands like this:
+使用TypeScript，很容易扩展WebdriverIO接口。像这样为你的自定义命令添加类型：
 
-1. Create a type definition file (e.g., `./src/types/wdio.d.ts`)
-2. a. If using a module-style type definition file (using import/export and `declare global WebdriverIO` in the type definition file), make sure to include the file path in the `tsconfig.json` `include` property.
+1. 创建一个类型定义文件（例如，`./src/types/wdio.d.ts`）
+2. a. 如果使用模块风格类型定义文件（在类型定义文件中使用import/export和`declare global WebdriverIO`），确保在`tsconfig.json`的`include`属性中包含文件路径。
 
-   b.  If using ambient-style type definition files (no import/export in type definition files and `declare namespace WebdriverIO` for custom commands), make sure the `tsconfig.json` does *not* contain any `include` section, since this will cause all type definition files not listed in the `include` section to not be recognized by typescript.
+   b. 如果使用环境风格类型定义文件（类型定义文件中没有import/export，并且为自定义命令使用`declare namespace WebdriverIO`），确保`tsconfig.json`*不*包含任何`include`部分，因为这将导致所有未在`include`部分列出的类型定义文件不被typescript识别。
 
 <Tabs
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -178,14 +179,14 @@ With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your c
 </TabItem>
 </Tabs>
 
-3. Add definitions for your commands according to your execution mode.
+3. 根据执行模式添加命令的定义。
 
 <Tabs
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -229,11 +230,11 @@ declare namespace WebdriverIO {
 </TabItem>
 </Tabs>
 
-## Integrate 3rd Party Libraries
+## 集成第三方库
 
-If you use external libraries (e.g., to do database calls) that support promises, a nice approach to integrate them is to wrap certain API methods with a custom command.
+如果你使用支持promise的外部库（例如，进行数据库调用），一种很好的集成方法是用自定义命令包装某些API方法。
 
-When returning the promise, WebdriverIO ensures that it doesn't continue with the next command until the promise is resolved. If the promise gets rejected, the command will throw an error.
+当返回promise时，WebdriverIO确保它不会继续执行下一个命令，直到promise被解决。如果promise被拒绝，命令将抛出错误。
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -242,7 +243,7 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-Then, just use it in your WDIO test specs:
+然后，在你的WDIO测试规范中使用它：
 
 ```js
 it('execute external library in a sync way', async () => {
@@ -252,17 +253,17 @@ it('execute external library in a sync way', async () => {
 })
 ```
 
-**Note:** The result of your custom command is the result of the promise you return.
+**注意：** 你的自定义命令的结果是你返回的promise的结果。
 
-## Overwriting Commands
+## 重写命令
 
-You can also overwrite native commands with `overwriteCommand`.
+你也可以用`overwriteCommand`重写原生命令。
 
-It is not recommended to do this, because it may lead to unpredictable behavior of the framework!
+不建议这样做，因为它可能导致框架的不可预测行为！
 
-The overall approach is similar to `addCommand`, the only difference is that the first argument in the command function is the original function that you are about to overwrite. Please see some examples below.
+整体方法与`addCommand`类似，唯一的区别是命令函数中的第一个参数是你将要重写的原始函数。请看下面的一些例子。
 
-### Overwriting Browser Commands
+### 重写浏览器命令
 
 ```js
 /**
@@ -280,9 +281,9 @@ browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### Overwriting Element Commands
+### 重写元素命令
 
-Overwriting commands on element level is almost the same. Simply pass `true` as the third argument to `overwriteCommand`:
+重写元素级别的命令几乎相同。只需将`true`作为第三个参数传递给`overwriteCommand`：
 
 ```js
 /**
@@ -325,9 +326,9 @@ await elem.click()
 await elem.click({ force: true })
 ```
 
-## Add More WebDriver Commands
+## 添加更多WebDriver命令
 
-If you are using the WebDriver protocol and run tests on a platform that supports additional commands not defined by any of the protocol definitions in [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) you can manually add them through the `addCommand` interface. The `webdriver` package offers a command wrapper that allows to register these new endpoints in the same way as other commands, providing the same parameter checks and error handling. To register this new endpoint import the command wrapper and register a new command with it as follows:
+如果你使用WebDriver协议并在支持附加命令的平台上运行测试，而这些命令未在[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)中的任何协议定义中定义，你可以通过`addCommand`接口手动添加它们。`webdriver`包提供了一个命令包装器，允许以与其他命令相同的方式注册这些新端点，提供相同的参数检查和错误处理。要注册这个新端点，导入命令包装器并用它注册一个新命令，如下所示：
 
 ```js
 import { command } from 'webdriver'
@@ -349,7 +350,7 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-Calling this command with invalid parameters results in the same error handling as predefined protocol commands, e.g.:
+使用无效参数调用此命令会导致与预定义协议命令相同的错误处理，例如：
 
 ```js
 // call command without required url parameter and payload
@@ -370,10 +371,10 @@ await browser.myNewCommand()
  */
 ```
 
-Calling the command correctly, e.g. `browser.myNewCommand('foo', 'bar')`, correctly makes a WebDriver request to e.g. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` with a payload like `{ foo: 'bar' }`.
+正确调用命令，例如`browser.myNewCommand('foo', 'bar')`，会正确地向例如`http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo`发出WebDriver请求，并带有如`{ foo: 'bar' }`的有效载荷。
 
 :::note
-The `:sessionId` url parameter will be automatically substituted with the session id of the WebDriver session. Other url parameter can be applied but need to be defined within `variables`.
+`:sessionId`url参数将自动替换为WebDriver会话的会话ID。可以应用其他url参数，但需要在`variables`中定义。
 :::
 
-See examples of how protocol commands can be defined in the [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) package.
+在[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)包中查看协议命令如何定义的例子。

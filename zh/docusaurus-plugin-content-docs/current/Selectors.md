@@ -1,11 +1,11 @@
 ---
 id: selectors
-title: Selectors
+title: 选择器
 ---
 
-The [WebDriver Protocol](https://w3c.github.io/webdriver/) provides several selector strategies to query an element. WebdriverIO simplifies them to keep selecting elements simple. Please note that even though the command to query elements is called `$` and `$$`, they have nothing to do with jQuery or the [Sizzle Selector Engine](https://github.com/jquery/sizzle).
+[WebDriver 协议](https://w3c.github.io/webdriver/)提供了几种选择器策略来查询元素。WebdriverIO将它们简化以保持选择元素的简单性。请注意，尽管查询元素的命令被称为`$`和`$$`，但它们与jQuery或[Sizzle选择器引擎](https://github.com/jquery/sizzle)没有任何关系。
 
-While there are so many different selectors available, only a few of them provide a resilient way to find the right element. For example, given the following button:
+虽然有很多不同的选择器可用，但只有少数几个提供了一种有弹性的方式来找到正确的元素。例如，给定以下按钮：
 
 ```html
 <button
@@ -19,119 +19,119 @@ While there are so many different selectors available, only a few of them provid
 </button>
 ```
 
-We __do__ and __do not__ recommend the following selectors:
+我们__推荐__和__不推荐__以下选择器：
 
-| Selector                                      | Recommended  | Notes                                                                                                                                                                       |
-| --------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$('button')`                                 | 🚨 Never      | Worst - too generic, no context.                                                                                                                                            |
-| `$('.btn.btn-large')`                         | 🚨 Never      | Bad. Coupled to styling. Highly subject to change.                                                                                                                          |
-| `$('#main')`                                  | ⚠️ Sparingly | Better. But still coupled to styling or JS event listeners.                                                                                                                 |
-| `$(() => document.queryElement('button'))` | ⚠️ Sparingly | Effective querying, complex to write.                                                                                                                                       |
-| `$('button[name="submission"]')`              | ⚠️ Sparingly | Coupled to the `name` attribute which has HTML semantics.                                                                                                                   |
-| `$('button[data-testid="submit"]')`           | ✅ Good       | Requires additional attribute, not connected to a11y.                                                                                                                       |
-| `$('aria/Submit')` or `$('button=Submit')`    | ✅ Always     | Best. Resembles how the user interacts with the page. It is recommended to use your frontend's translation files so your tests never fail when the translations are updated |
+| 选择器 | 推荐 | 备注 |
+| -------- | ----------- | ----- |
+| `$('button')` | 🚨 永不 | 最差 - 太通用，没有上下文。 |
+| `$('.btn.btn-large')` | 🚨 永不 | 差。与样式耦合。极易变化。 |
+| `$('#main')` | ⚠️ 谨慎使用 | 较好。但仍与样式或JS事件监听器耦合。 |
+| `$(() => document.queryElement('button'))` | ⚠️ 谨慎使用 | 有效查询，但编写复杂。 |
+| `$('button[name="submission"]')` | ⚠️ 谨慎使用 | 与具有HTML语义的`name`属性耦合。 |
+| `$('button[data-testid="submit"]')` | ✅ 良好 | 需要额外属性，与a11y无关。 |
+| `$('aria/Submit')` 或 `$('button=Submit')` | ✅ 始终 | 最佳。类似于用户与页面交互的方式。建议使用前端的翻译文件，这样当翻译更新时测试永远不会失败 |
 
-## CSS Query Selector
+## CSS查询选择器
 
-If not indicated otherwise, WebdriverIO will query elements using the [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) pattern, e.g.:
+如果没有特别说明，WebdriverIO将使用[CSS选择器](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)模式查询元素，例如：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L7-L8
 ```
 
-## Link Text
+## 链接文本
 
-To get an anchor element with a specific text in it, query the text starting with an equals (`=`) sign.
+要获取包含特定文本的锚元素，请使用以等号（`=`）开头的文本进行查询。
 
-For example:
+例如：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L3
 ```
 
-You can query this element by calling:
+你可以通过以下方式查询这个元素：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L16-L18
 ```
 
-## Partial Link Text
+## 部分链接文本
 
-To find a anchor element whose visible text partially matches your search value, query it by using `*=` in front of the query string (e.g. `*=driver`).
+要查找可见文本部分匹配你的搜索值的锚元素，可以在查询字符串前使用`*=`（例如`*=driver`）进行查询。
 
-You can query the element from the example above by also calling:
+你也可以通过以下方式查询上例中的元素：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L24-L26
 ```
 
-__Note:__ You can't mix multiple selector strategies in one selector. Use multiple chained element queries to reach the same goal, e.g.:
+__注意：__ 你不能在一个选择器中混合使用多种选择器策略。使用多个链式元素查询来达到相同的目标，例如：
 
 ```js
-const elem = await $('header h1*=Welcome') // doesn't work!!!
-// use instead
+const elem = await $('header h1*=Welcome') // 这样不行!!!
+// 改用
 const elem = await $('header').$('*=driver')
 ```
 
-## Element with certain text
+## 包含特定文本的元素
 
-The same technique can be applied to elements as well. Additionally, it is also possible to do a case-insensitive matching using `.=` or `.*=` within the query.
+同样的技术也可以应用于元素。另外，还可以使用`.=`或`.*=`在查询中进行不区分大小写的匹配。
 
-For example, here's a query for a level 1 heading with the text "Welcome to my Page":
+例如，这里是查询文本为"Welcome to my Page"的一级标题：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L2
 ```
 
-You can query this element by calling:
+你可以通过以下方式查询该元素：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L35C1-L38
 ```
 
-Or using query partial text:
+或使用查询部分文本：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L44C9-L47
 ```
 
-The same works for `id` and `class` names:
+对于`id`和`class`名称也是一样的：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L4
 ```
 
-You can query this element by calling:
+你可以通过以下方式查询该元素：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L49-L67
 ```
 
-__Note:__ You can't mix multiple selector strategies in one selector. Use multiple chained element queries to reach the same goal, e.g.:
+__注意：__ 你不能在一个选择器中混合使用多种选择器策略。使用多个链式元素查询来达到相同的目标，例如：
 
 ```js
-const elem = await $('header h1*=Welcome') // doesn't work!!!
-// use instead
+const elem = await $('header h1*=Welcome') // 这样不行!!!
+// 改用
 const elem = await $('header').$('h1*=Welcome')
 ```
 
-## Tag Name
+## 标签名称
 
-To query an element with a specific tag name, use `<tag>` or `<tag />`.
+要查询具有特定标签名称的元素，使用`<tag>`或`<tag />`。
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L5
 ```
 
-You can query this element by calling:
+你可以通过以下方式查询该元素：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L61-L62
 ```
 
-## Name Attribute
+## 名称属性
 
-For querying elements with a specific name attribute you can either use a normal CSS3 selector or the provided name strategy from the [JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol) by passing something like [name="some-name"] as selector parameter:
+要查询具有特定名称属性的元素，你可以使用普通的CSS3选择器或从[JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol)提供的名称策略，方法是将类似[name="some-name"]作为选择器参数传递：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L6
@@ -141,41 +141,41 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L68-L69
 ```
 
-__Note:__ This selector strategy it deprecated and only works in old browser that are run by the JSONWireProtocol protocol or by using Appium.
+__注意：__ 这种选择器策略已被弃用，只在由JSONWireProtocol协议运行的旧浏览器或使用Appium时才有效。
 
 ## xPath
 
-It is also possible to query elements via a specific [xPath](https://developer.mozilla.org/en-US/docs/Web/XPath).
+也可以通过特定的[xPath](https://developer.mozilla.org/en-US/docs/Web/XPath)查询元素。
 
-An xPath selector has a format like `//body/div[6]/div[1]/span[1]`.
+xPath选择器的格式如`//body/div[6]/div[1]/span[1]`。
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/xpath.html
 ```
 
-You can query the second paragraph by calling:
+你可以通过以下方式查询第二个段落：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L75-L76
 ```
 
-You can use xPath to also traverse up and down the DOM tree:
+你可以使用xPath在DOM树中上下遍历：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L78-L79
 ```
 
-## Accessibility Name Selector
+## 无障碍名称选择器
 
-Query elements by their accessible name. The accessible name is what is announced by a screen reader when that element receives focus. The value of the accessible name can be both visual content or hidden text alternatives.
+通过无障碍名称查询元素。无障碍名称是当元素获得焦点时屏幕阅读器宣布的内容。无障碍名称的值可以是视觉内容或隐藏的文本替代内容。
 
 :::info
 
-You can read more about this selector in our [release blog post](/blog/2022/09/05/accessibility-selector)
+你可以在我们的[发布博客文章](/blog/2022/09/05/accessibility-selector)中了解更多关于这个选择器的信息
 
 :::
 
-### Fetch by `aria-label`
+### 通过`aria-label`获取
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L1
@@ -185,7 +185,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L86-L87
 ```
 
-### Fetch by `aria-labelledby`
+### 通过`aria-labelledby`获取
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L2-L3
@@ -195,7 +195,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L93-L94
 ```
 
-### Fetch by content
+### 通过内容获取
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L4
@@ -205,7 +205,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L100-L101
 ```
 
-### Fetch by title
+### 通过标题获取
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L5
@@ -215,7 +215,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L107-L108
 ```
 
-### Fetch by `alt` property
+### 通过`alt`属性获取
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L6
@@ -225,9 +225,9 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L114-L115
 ```
 
-## ARIA - Role Attribute
+## ARIA - 角色属性
 
-For querying elements based on [ARIA roles](https://www.w3.org/TR/html-aria/#docconformance), you can directly specify role of the element like `[role=button]` as selector parameter:
+要基于[ARIA角色](https://www.w3.org/TR/html-aria/#docconformance)查询元素，你可以直接指定元素的角色，如`[role=button]`作为选择器参数：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L13
@@ -237,69 +237,69 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L131-L132
 ```
 
-## ID Attribute
+## ID属性
 
-Locator strategy "id" is not supported in WebDriver protocol, one should use either CSS or xPath selector strategies instead to find elements using ID.
+WebDriver协议不支持"id"定位策略，应该使用CSS或xPath选择器策略来查找使用ID的元素。
 
-However some drivers (e.g. [Appium You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)) might still [support](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies) this selector.
+然而，一些驱动程序（例如[Appium You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)）可能仍然[支持](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)此选择器。
 
-Current supported selector syntaxes for ID are:
+当前支持的ID选择器语法为：
 
 ```js
-//css locator
+//css定位器
 const button = await $('#someid')
-//xpath locator
+//xpath定位器
 const button = await $('//*[@id="someid"]')
-//id strategy
-// Note: works only in Appium or similar frameworks which supports locator strategy "ID"
+//id策略
+// 注意：仅在Appium或类似支持"ID"定位策略的框架中有效
 const button = await $('id=resource-id/iosname')
 ```
 
-## JS Function
+## JS函数
 
-You can also use JavaScript functions to fetch elements using web native APIs. Of course, you can only do this inside a web context (e.g., `browser`, or web context in mobile).
+你还可以使用JavaScript函数通过Web原生API获取元素。当然，你只能在Web上下文中执行此操作（例如，`browser`或移动设备中的Web上下文）。
 
-Given the following HTML structure:
+给定以下HTML结构：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/js.html
 ```
 
-You can query the sibling element of `#elem` as follows:
+你可以按如下方式查询`#elem`的兄弟元素：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L139-L143
 ```
 
-## Deep Selectors
+## 深层选择器
 
 :::warning
 
-Starting with `v9` of WebdriverIO there is no need for this special selector as WebdriverIO automatically pierces through the Shadow DOM for you. It is recommended to migrate off this selector by removing the `>>>` in front it.
+从WebdriverIO的`v9`版本开始，不再需要这种特殊的选择器，因为WebdriverIO会自动穿透Shadow DOM。建议通过移除前面的`>>>`来迁移此选择器。
 
 :::
 
-Many frontend applications heavily rely on elements with [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). It is technically impossible to query elements within the shadow DOM without workarounds. The [`shadow$`](https://webdriver.io/docs/api/element/shadow$) and [`shadow$$`](https://webdriver.io/docs/api/element/shadow$$) have been such workarounds that had their [limitations](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow). With the deep selector you can now query all elements within any shadow DOM using the common query command.
+许多前端应用程序严重依赖于[shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)元素。在没有变通方法的情况下，技术上不可能查询shadow DOM内的元素。[`shadow$`](https://webdriver.io/docs/api/element/shadow$)和[`shadow$$`](https://webdriver.io/docs/api/element/shadow$$)曾是这样的变通方法，但有其[局限性](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow)。使用深层选择器，你现在可以使用通用查询命令查询任何shadow DOM内的所有元素。
 
-Given we have an application with the following structure:
+假设我们有一个具有以下结构的应用程序：
 
-![Chrome Example](https://github.com/Georgegriff/query-selector-shadow-dom/raw/main/Chrome-example.png "Chrome Example")
+![Chrome示例](https://github.com/Georgegriff/query-selector-shadow-dom/raw/main/Chrome-example.png "Chrome示例")
 
-With this selector you can query the `<button />` element that is nested within another shadow DOM, e.g.:
+使用此选择器，你可以查询嵌套在另一个shadow DOM中的`<button />`元素，例如：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L147-L149
 ```
 
-## Mobile Selectors
+## 移动选择器
 
-For hybrid mobile testing, it's important that the automation server is in the correct *context* before executing commands. For automating gestures, the driver ideally should be set to native context. But to select elements from the DOM, the driver will need to be set to the platform's webview context. Only *then* can the methods mentioned above can be used.
+对于混合移动测试，重要的是自动化服务器在执行命令之前处于正确的*上下文*中。对于自动化手势，驱动程序理想情况下应设置为本机上下文。但要从DOM中选择元素，驱动程序需要设置为平台的webview上下文。只有*这样*，才能使用上面提到的方法。
 
-For native mobile testing, there is no switching between contexts, as you have to use mobile strategies and use the underlying device automation technology directly. This is especially useful when a test needs some fine-grained control over finding elements.
+对于原生移动测试，无需在上下文之间切换，因为你必须使用移动策略并直接使用底层设备自动化技术。当测试需要对查找元素进行精细控制时，这特别有用。
 
 ### Android UiAutomator
 
-Android’s UI Automator framework provides a number of ways to find elements. You can use the [UI Automator API](https://developer.android.com/tools/testing-support-library/index.html#uia-apis), in particular the [UiSelector class](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) to locate elements. In Appium you send the Java code, as a string, to the server, which executes it in the application’s environment, returning the element or elements.
+Android的UI Automator框架提供了多种查找元素的方法。你可以使用[UI Automator API](https://developer.android.com/tools/testing-support-library/index.html#uia-apis)，特别是[UiSelector类](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector)来定位元素。在Appium中，你将Java代码作为字符串发送到服务器，服务器在应用程序环境中执行它，并返回元素。
 
 ```js
 const selector = 'new UiSelector().text("Cancel").className("android.widget.Button")'
@@ -307,9 +307,9 @@ const button = await $(`android=${selector}`)
 await button.click()
 ```
 
-### Android DataMatcher and ViewMatcher (Espresso only)
+### Android DataMatcher和ViewMatcher（仅限Espresso）
 
-Android's DataMatcher strategy provides a way to find elements by [Data Matcher](https://developer.android.com/reference/android/support/test/espresso/DataInteraction)
+Android的DataMatcher策略提供了一种通过[Data Matcher](https://developer.android.com/reference/android/support/test/espresso/DataInteraction)查找元素的方法
 
 ```js
 const menuItem = await $({
@@ -319,7 +319,7 @@ const menuItem = await $({
 await menuItem.click()
 ```
 
-And similarly [View Matcher](https://developer.android.com/reference/android/support/test/espresso/ViewInteraction)
+类似地，[View Matcher](https://developer.android.com/reference/android/support/test/espresso/ViewInteraction)
 
 ```js
 const menuItem = await $({
@@ -330,9 +330,9 @@ const menuItem = await $({
 await menuItem.click()
 ```
 
-### Android View Tag (Espresso only)
+### Android View Tag（仅限Espresso）
 
-The view tag strategy provides a convenient way to find elements by their [tag](https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html#withTagValue%28org.hamcrest.Matcher%3Cjava.lang.Object%3E%29).
+视图标签策略提供了一种通过元素的[标签](https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html#withTagValue%28org.hamcrest.Matcher%3Cjava.lang.Object%3E%29)查找元素的便捷方法。
 
 ```js
 const elem = await $('-android viewtag:tag_identifier')
@@ -341,9 +341,9 @@ await elem.click()
 
 ### iOS UIAutomation
 
-When automating an iOS application, Apple’s [UI Automation framework](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html) can be used to find elements.
+在自动化iOS应用程序时，可以使用Apple的[UI Automation框架](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html)查找元素。
 
-This JavaScript [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) has methods to access to the view and everything on it.
+这个JavaScript [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771)有方法可以访问视图及其上的所有内容。
 
 ```js
 const selector = 'UIATarget.localTarget().frontMostApp().mainWindow().buttons()[0]'
@@ -351,11 +351,11 @@ const button = await $(`ios=${selector}`)
 await button.click()
 ```
 
-You can also use predicate searching within iOS UI Automation in Appium to refine element selection even further. See [here](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md) for details.
+你还可以在Appium中的iOS UI Automation中使用谓词搜索进一步优化元素选择。详情参见[此处](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md)。
 
-### iOS XCUITest predicate strings and class chains
+### iOS XCUITest谓词字符串和类链
 
-With iOS 10 and above (using the `XCUITest` driver), you can use [predicate strings](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules):
+使用iOS 10及以上版本（使用`XCUITest`驱动程序），你可以使用[谓词字符串](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules)：
 
 ```js
 const selector = `type == 'XCUIElementTypeSwitch' && name CONTAINS 'Allow'`
@@ -363,7 +363,7 @@ const switch = await $(`-ios predicate string:${selector}`)
 await switch.click()
 ```
 
-And [class chains](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules):
+以及[类链](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules)：
 
 ```js
 const selector = '**/XCUIElementTypeCell[`name BEGINSWITH "D"`]/**/XCUIElementTypeButton'
@@ -371,42 +371,42 @@ const button = await $(`-ios class chain:${selector}`)
 await button.click()
 ```
 
-### Accessibility ID
+### 无障碍ID
 
-The `accessibility id` locator strategy is designed to read a unique identifier for a UI element. This has the benefit of not changing during localization or any other process that might change text. In addition, it can be an aid in creating cross-platform tests, if elements that are functionally the same have the same accessibility id.
+`accessibility id`定位策略旨在读取UI元素的唯一标识符。这样做的好处是在本地化或任何可能改变文本的其他过程中不会改变。此外，如果功能相同的元素具有相同的accessibility id，它还可以帮助创建跨平台测试。
 
-- For iOS this is the `accessibility identifier` laid out by Apple [here](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html).
-- For Android the `accessibility id` maps to the `content-description` for the element, as described [here](https://developer.android.com/training/accessibility/accessible-app.html).
+- 对于iOS，这是Apple在[此处](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html)布局的`accessibility identifier`。
+- 对于Android，`accessibility id`映射到元素的`content-description`，如[此处](https://developer.android.com/training/accessibility/accessible-app.html)所述。
 
-For both platforms, getting an element (or multiple elements) by their `accessibility id` is usually the best method. It is also the preferred way over the deprecated `name` strategy.
+对于两个平台，通过`accessibility id`获取元素（或多个元素）通常是最好的方法。这也是优于已弃用的`name`策略的首选方式。
 
 ```js
 const elem = await $('~my_accessibility_identifier')
 await elem.click()
 ```
 
-### Class Name
+### 类名
 
-The `class name` strategy is a `string` representing a UI element on the current view.
+`class name`策略是表示当前视图上UI元素的`string`。
 
-- For iOS it is the full name of a [UIAutomation class](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html), and will begin with `UIA-`, such as `UIATextField` for a text field. A full reference can be found [here](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation).
-- For Android it is the fully qualified name of a [UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator) [class](https://developer.android.com/reference/android/widget/package-summary.html), such `android.widget.EditText` for a text field. A full reference can be found [here](https://developer.android.com/reference/android/widget/package-summary.html).
-- For Youi.tv it is the full name of a Youi.tv class, and will being with `CYI-`, such as `CYIPushButtonView` for a push button element. A full reference can be found at [You.i Engine Driver's GitHub page](https://github.com/YOU-i-Labs/appium-youiengine-driver)
+- 对于iOS，它是[UIAutomation类](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html)的完整名称，将以`UIA-`开头，例如文本字段的`UIATextField`。完整参考可在[此处](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation)找到。
+- 对于Android，它是[UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator) [类](https://developer.android.com/reference/android/widget/package-summary.html)的完全限定名称，例如文本字段的`android.widget.EditText`。完整参考可在[此处](https://developer.android.com/reference/android/widget/package-summary.html)找到。
+- 对于Youi.tv，它是Youi.tv类的完整名称，将以`CYI-`开头，例如推按钮元素的`CYIPushButtonView`。完整参考可在[You.i Engine Driver的GitHub页面](https://github.com/YOU-i-Labs/appium-youiengine-driver)找到
 
 ```js
-// iOS example
+// iOS示例
 await $('UIATextField').click()
-// Android example
+// Android示例
 await $('android.widget.DatePicker').click()
-// Youi.tv example
+// Youi.tv示例
 await $('CYIPushButtonView').click()
 ```
 
-## Chain Selectors
+## 链式选择器
 
-If you want to be more specific in your query, you can chain selectors until you've found the right element. If you call `element` before your actual command, WebdriverIO starts the query from that element.
+如果你想在查询中更具体，可以链接选择器，直到找到正确的元素。如果在实际命令之前调用`element`，WebdriverIO将从该元素开始查询。
 
-For example, if you have a DOM structure like:
+例如，如果你有一个DOM结构如下：
 
 ```html
 <div class="row">
@@ -428,40 +428,41 @@ For example, if you have a DOM structure like:
 </div>
 ```
 
-And you want to add product B to the cart, it would be difficult to do that just by using the CSS selector.
+如果你想将产品B添加到购物车，仅使用CSS选择器会很困难。
 
-With selector chaining, it's way easier. Simply narrow down the desired element step by step:
+使用选择器链接，就容易多了。只需逐步缩小所需元素的范围：
 
 ```js
 await $('.row .entry:nth-child(2)').$('button*=Add').click()
 ```
 
-### Appium Image Selector
+### Appium图像选择器
 
-Using the  `-image` locator strategy, it is possible to send an Appium an image file representing an element you want to access.
+使用`-image`定位策略，可以向Appium发送表示你想访问的元素的图像文件。
 
-Supported file formats `jpg,png,gif,bmp,svg`
+支持的文件格式：`jpg,png,gif,bmp,svg`
 
-Full reference can be found [here](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md)
+完整参考可在[此处](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md)找到
 
 ```js
 const elem = await $('./file/path/of/image/test.jpg')
 await elem.click()
 ```
 
-**Note**: The way how Appium works with this selector is that it will internally make a (app)screenshot and use the provided image selector to verify if the element can be found in that (app)screenshot.
+**注意**：Appium使用此选择器的方式是内部制作（应用程序）截图，并使用提供的图像选择器验证元素是否可以在该（应用程序）截图中找到。
 
-Be aware of the fact that Appium might resize the taken (app)screenshot to make it match the CSS-size of your (app)screen (this will happen on iPhones but also on Mac machines with a Retina display because the DPR is bigger than 1). This will result in not finding a match because the provided image selector might have been taken from the original screenshot. You can fix this by updating the Appium Server settings, see the [Appium docs](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings) for the settings and [this comment](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) on a detailed explanation.
+请注意，Appium可能会调整所拍摄的（应用程序）截图的大小，使其符合你的（应用程序）屏幕的CSS大小（这会在iPhone上发生，也会在具有视网膜显示器的Mac机器上发生，因为DPR大于1）。这将导致无法找到匹配项，因为提供的图像选择器可能是从原始截图中获取的。
+你可以通过更新Appium服务器设置来解决这个问题，请参阅[Appium文档](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings)了解设置，以及[此评论](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579)获取详细解释。
 
-## React Selectors
+## React选择器
 
-WebdriverIO provides a way to select React components based on the component name. To do this, you have a choice of two commands: `react$` and `react$$`.
+WebdriverIO提供了一种基于组件名称选择React组件的方法。为此，你可以选择使用两个命令：`react$`和`react$$`。
 
-These commands allow you to select components off the [React VirtualDOM](https://reactjs.org/docs/faq-internals.html) and return either a single WebdriverIO Element or an array of elements (depending on which function is used).
+这些命令允许你从[React虚拟DOM](https://reactjs.org/docs/faq-internals.html)中选择组件，并返回单个WebdriverIO元素或元素数组（取决于使用的函数）。
 
-**Note**: The commands `react$` and `react$$` are similar in functionality, except that `react$$` will return *all* matching instances as an array of WebdriverIO elements, and `react$` will return the first found instance.
+**注意**：命令`react$`和`react$$`在功能上相似，只是`react$$`会将*所有*匹配的实例作为WebdriverIO元素数组返回，而`react$`将返回找到的第一个实例。
 
-#### Basic example
+#### 基本示例
 
 ```jsx
 // index.jsx
@@ -483,19 +484,19 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-In the above code there is a simple `MyComponent` instance inside the application, which React is rendering inside a HTML element with `id="root"`.
+在上面的代码中，应用程序内部有一个简单的`MyComponent`实例，React将其渲染在id为`root`的HTML元素中。
 
-With the `browser.react$` command, you can select an instance of `MyComponent`:
+使用`browser.react$`命令，你可以选择`MyComponent`的实例：
 
 ```js
 const myCmp = await browser.react$('MyComponent')
 ```
 
-Now that you have the WebdriverIO element stored in `myCmp` variable, you can execute element commands against it.
+现在你已经将WebdriverIO元素存储在`myCmp`变量中，你可以针对它执行元素命令。
 
-#### Filtering components
+#### 过滤组件
 
-The library that WebdriverIO uses internally allows to filter your selection by props and/or state of the component. To do so, you need to pass a second argument for props and/or a third argument for state to the browser command.
+WebdriverIO内部使用的库允许你通过组件的props和/或state来过滤选择。为此，你需要为props传递第二个参数和/或为state传递第三个参数给浏览器命令。
 
 ```jsx
 // index.jsx
@@ -522,7 +523,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-If you want to select the instance of `MyComponent` that has a prop `name` as `WebdriverIO`, you can execute the command like so:
+如果你想选择具有prop `name`为`WebdriverIO`的`MyComponent`实例，可以执行如下命令：
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -530,7 +531,7 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-If you wanted to filter our selection by state, the `browser` command would looks something like so:
+如果你想通过state过滤选择，`browser`命令看起来类似于：
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -538,9 +539,9 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-#### Dealing with `React.Fragment`
+#### 处理`React.Fragment`
 
-When using the `react$` command to select React [fragments](https://reactjs.org/docs/fragments.html), WebdriverIO will return the first child of that component as the component's node. If you use `react$$`, you will receive an array containing all the HTML nodes inside the fragments that match the selector.
+使用`react$`命令选择React [fragments](https://reactjs.org/docs/fragments.html)时，WebdriverIO将返回该组件的第一个子元素作为组件节点。如果使用`react$$`，你将收到一个包含与选择器匹配的fragments内所有HTML节点的数组。
 
 ```jsx
 // index.jsx
@@ -567,34 +568,34 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-Given the above example, this is how the commands would work:
+给定上面的示例，命令的工作方式如下：
 
 ```js
-await browser.react$('MyComponent') // returns the WebdriverIO Element for the first <div />
-await browser.react$$('MyComponent') // returns the WebdriverIO Elements for the array [<div />, <div />]
+await browser.react$('MyComponent') // 返回第一个<div />的WebdriverIO元素
+await browser.react$$('MyComponent') // 返回数组[<div />, <div />]的WebdriverIO元素
 ```
 
-**Note:** If you have multiple instances of `MyComponent` and you use `react$$` to select these fragment components, you will be returned an one-dimensional array of all the nodes. In other words, if you have 3 `<MyComponent />` instances, you will be returned an array with six WebdriverIO elements.
+**注意：** 如果你有多个`MyComponent`实例，并且使用`react$$`选择这些fragment组件，你将得到一个一维数组，包含所有节点。换句话说，如果你有3个`<MyComponent />`实例，你将得到一个包含六个WebdriverIO元素的数组。
 
-## Custom Selector Strategies
+## 自定义选择器策略
 
 
-If your app requires a specific way to fetch elements you can define yourself a custom selector strategy that you can use with `custom$` and `custom$$`. For that register your strategy once in the beginning of the test, e.g. in a `before` hook:
+如果你的应用程序需要特定的方式来获取元素，你可以自定义一个选择器策略，然后使用`custom$`和`custom$$`。为此，在测试开始时注册你的策略，例如在`before`钩子中：
 
 ```js reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/customStrategy.js#L2-L11
 ```
 
-Given the following HTML snippet:
+给定以下HTML片段：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/example.html#L8-L12
 ```
 
-Then use it by calling:
+然后通过调用以下方式使用它：
 
 ```js reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/customStrategy.js#L16-L19
 ```
 
-**Note:** this only works in an web environment in which the [`execute`](/docs/api/browser/execute) command can be run.
+**注意：** 这只在可以运行[`execute`](/docs/api/browser/execute)命令的Web环境中有效。

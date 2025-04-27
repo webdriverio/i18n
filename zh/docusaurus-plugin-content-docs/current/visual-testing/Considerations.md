@@ -1,32 +1,32 @@
 ---
 index: 1
 id: considerations
-title: Considerations
+title: 注意事项
 ---
 
-# Key Considerations for Optimal Use
+# 最佳使用的关键注意事项
 
-Before diving into the powerful features of the `@wdio/visual-service`, it's crucial to understand some key considerations that ensure you get the most out of this tool. The following points are designed to guide you through best practices and common pitfalls, helping you achieve accurate and efficient visual testing results. These considerations are not just recommendations, but essential aspects to keep in mind for effectively utilizing the service in real-world scenarios.
+在深入了解`@wdio/visual-service`的强大功能之前，了解一些确保您充分利用此工具的关键注意事项至关重要。以下几点旨在指导您了解最佳实践和常见陷阱，帮助您获得准确和高效的视觉测试结果。这些考虑因素不仅仅是建议，而是在实际场景中有效使用该服务时需要牢记的重要方面。
 
-## Nature of Comparison
+## 比较的本质
 
-- **Pixel-by-Pixel Basis:** The module performs a pixel-by-pixel comparison of images. While certain aspects can be adjusted (see Comparison Options), the core approach remains a basic pixel comparison.
-- **Impact of Browser Updates:** Be aware that updates to browsers, like Chrome, may affect font rendering, potentially necessitating an update to your baseline images.
+-   **像素对像素基础：** 该模块执行图像的像素对像素比较。虽然某些方面可以调整（参见比较选项），但核心方法仍然是基本的像素比较。
+-   **浏览器更新的影响：** 请注意，Chrome等浏览器的更新可能会影响字体渲染，可能需要更新您的基准图像。
 
-## Consistency in Platforms
+## 平台一致性
 
-- **Comparing Identical Platforms:** Ensure screenshots are compared within the same platform. For instance, a screenshot from Chrome on a Mac should not be used to compare against one from Chrome on Ubuntu or Windows.
-- **Analogy:** To put it simply, compare _'Apples with Apples, not Apples with Androids'_.
+-   **比较相同平台：** 确保在同一平台内比较截图。例如，Mac上Chrome的截图不应该用来与Ubuntu或Windows上的Chrome截图进行比较。
+-   **类比：** 简单来说，要比较"苹果与苹果，而不是苹果与安卓"。
 
-## Caution with Mismatch Percentage
+## 谨慎对待不匹配百分比
 
-- **Risk of Accepting Mismatches:** Exercise caution when accepting a mismatch percentage. This is especially true for large screenshots, where accepting a mismatch might inadvertently overlook significant discrepancies, such as missing buttons or elements.
+-   **接受不匹配的风险：** 在接受不匹配百分比时要谨慎。这对于大型截图尤其如此，在这种情况下，接受不匹配可能会无意中忽略重大差异，如缺失的按钮或元素。
 
-## Mobile Screen Simulation
+## 移动屏幕模拟
 
-- **Avoid Browser Resizing for Mobile Simulation:** Do not attempt to simulate mobile screen sizes by resizing desktop browsers and treating them as mobile browsers. Desktop browsers, even when resized, do not accurately replicate the rendering of actual mobile browsers.
-- **Authenticity in Comparison:** This tool aims to compare visuals as they would appear to an end-user. A resized desktop browser does not reflect the true experience on a mobile device.
+-   **避免通过调整浏览器大小来模拟移动屏幕：** 不要尝试通过调整桌面浏览器大小并将其作为移动浏览器来模拟移动屏幕大小。即使调整了大小，桌面浏览器也无法准确复制实际移动浏览器的渲染。
+-   **比较的真实性：** 此工具旨在比较最终用户所见的视觉效果。调整大小的桌面浏览器并不能反映移动设备上的真实体验。
 
-## Stance on Headless Browsers
+## 对无头浏览器的立场
 
-- **Not Recommended for Headless Browsers:** The use of this module with headless browsers is not advised. The rationale is that end-users do not interact with headless browsers, and therefore issues arising from such use will not be supported.
+-   **不建议用于无头浏览器：** 不建议将此模块与无头浏览器一起使用。原因是最终用户不会与无头浏览器交互，因此不会支持由此类使用引起的问题。

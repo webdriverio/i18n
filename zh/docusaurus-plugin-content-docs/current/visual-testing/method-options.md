@@ -1,246 +1,246 @@
 ---
 id: method-options
-title: Method Options
+title: 方法选项
 ---
 
-Methods options are the options that can be set per [method](./methods). If the option has the same key as an option that has been set during the instantiation of the plugin, this method option will override the plugin option value.
+方法选项是可以为每个[方法](./methods)设置的选项。如果选项与插件实例化期间设置的选项具有相同的键，则此方法选项将覆盖插件选项值。
 
-## Save Options
+## 保存选项
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **支持:** Web, 混合应用(Webview)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+启用/禁用应用程序中所有`input`、`textarea`、`[contenteditable]`的光标"闪烁"。如果设置为`true`，在截图前光标将被设置为`transparent`，
+完成后重置
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **支持:** Web, 混合应用(Webview)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+启用/禁用应用程序中的所有CSS动画。如果设置为`true`，在截图前所有动画将被禁用，
+完成后重置
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `false`
+-   **与以下一起使用:** 所有[方法](./methods)
+-   **支持:** Web
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+这将隐藏页面上的所有文本，因此只使用布局进行比较。隐藏通过向__每个__元素添加样式`'color': 'transparent !important'`来实现。
 
-For the output see [Test Output](./test-output#enablelayouttesting)
+输出结果请参见[测试输出](./test-output#enablelayouttesting)
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+使用此标志，每个包含文本的元素（不仅仅是`p, h1, h2, h3, h4, h5, h6, span, a, li`，还包括`div|button|..`）都会获得此属性。__没有__选项可以定制这一点。
 :::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `true`
+-   **与以下一起使用:** 所有[方法](./methods)
+-   **支持:** Web, 混合应用(Webview)
 
-Hide scrollbar(s) in the application. If set to true all scrollbar(s) will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
+隐藏应用程序中的滚动条。如果设置为true，截图前所有滚动条将被禁用。这默认设置为`true`以防止额外问题。
 
 ### `hideElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `array`
+-   **必填:** 否
+-   **与以下一起使用:** 所有[方法](./methods)
+-   **支持:** Web, 混合应用(Webview), 原生应用
 
-This method can hide 1 or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
+此方法可以通过向元素添加属性`visibility: hidden`来隐藏一个或多个元素，提供一个元素数组。
 
 ### `removeElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `array`
+-   **必填:** 否
+-   **与以下一起使用:** 所有[方法](./methods)
+-   **支持:** Web, 混合应用(Webview), 原生应用
 
-This method can _remove_ 1 or multiple elements by adding the property `display: none` to them by providing an array of elements.
+此方法可以通过向元素添加属性`display: none`来_移除_一个或多个元素，提供一个元素数组。
 
 ### `resizeDimensions`
 
-- **Type:** `object`
-- **Mandatory:** no
-- **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Used with:** Only for [`saveElement`](./methods#saveelement) or [`checkElement`](./methods#checkelement)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **类型:** `object`
+-   **必填:** 否
+-   **默认值:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **与以下一起使用:** 仅用于[`saveElement`](./methods#saveelement)或[`checkElement`](./methods#checkelement)
+-   **支持:** Web, 混合应用(Webview), 原生应用
 
-An object that needs to hold a `top`, `right`, `bottom` and `left` amount of pixels that need to make the element cutout bigger.
+一个对象，需要包含`top`、`right`、`bottom`和`left`的像素数，用于使元素裁剪变大。
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **类型:** `number`
+-   **必填:** 否
+-   **默认值:** `1500`
+-   **与以下一起使用:** 仅用于[`saveFullPageScreen`](./methods#savefullpagescreen)或[`saveTabbablePage`](./methods#savetabbablepage)
+-   **支持:** Web
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+滚动后等待的超时时间（毫秒）。这有助于识别具有延迟加载的页面。
 
 ### `hideAfterFirstScroll`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **类型:** `array`
+-   **必填:** 否
+-   **与以下一起使用:** 仅用于[`saveFullPageScreen`](./methods#savefullpagescreen)或[`saveTabbablePage`](./methods#savetabbablepage)
+-   **支持:** Web
 
-This method will hide one or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
-This will be handy when a page for example holds sticky elements that will scroll with the page if the page is scrolled but will give an annoying effect when a full-page screenshot is made
+此方法将通过向元素添加属性`visibility: hidden`来隐藏一个或多个元素，提供一个元素数组。
+当页面包含粘性元素（在页面滚动时会随页面滚动但在全页面截图时会产生烦人效果）时，这将非常方便
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **类型:** `boolean`
+-   **必填:** 否
+-   **默认值:** `true`
+-   **与以下一起使用:** 所有[方法](./methods)
+-   **支持:** Web, 混合应用(Webview)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+字体，包括第三方字体，可以同步或异步加载。异步加载意味着字体可能在WebdriverIO确定页面完全加载后才加载。为防止字体渲染问题，默认情况下，此模块会等待所有字体加载完成后再截图。
 
-## Compare (Check) Options
+## 比较(检查)选项
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+比较选项是影响比较方式的选项，由[ResembleJS](https://github.com/Huddle/Resemble.js)执行。
 
-:::info NOTE
+:::info 注意
 
-- All options from the [Save Options](#save-options) can be used for the Compare methods
-- All compare options can be used during service instantiation **or** for every single check method. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
-- All options can be used for:
-  - Web
-  - Hybrid App
-  - Native App
+-   [保存选项](#save-options)中的所有选项都可用于比较方法
+-   所有比较选项可以在服务实例化期间__或__对每个单独的检查方法使用。如果方法选项与服务实例化期间设置的选项具有相同的键，则方法比较选项将覆盖服务比较选项值。
+- 所有选项可用于：
+    - Web
+    - 混合应用
+    - 原生应用
 
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
 
-Compare images and discard alpha.
+比较图像并忽略alpha通道。
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. This is **iPad only**_
+-   **类型:** `boolean`
+-   **默认值:** `true`
+-   **必填:** 否
+-   **备注:** _只能用于`checkScreen()`。这**仅适用于iPad**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+在比较期间自动屏蔽横向模式下iPad的侧边栏。这可防止在标签/私人/书签等原生组件上出现失败。
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **类型:** `boolean`
+-   **默认值:** `true`
+-   **必填:** 否
+-   **备注:** _这**仅适用于移动设备**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+在比较期间自动屏蔽状态栏和地址栏。这可防止在时间、Wi-Fi或电池状态上出现失败。
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **类型:** `boolean`
+-   **默认值:** `true`
+-   **必填:** 否
+-   **备注:** _这**仅适用于移动设备**_
 
-Automatically block out the toolbar.
+自动屏蔽工具栏。
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
 
-Compare images and discard anti-aliasing.
+比较图像并忽略抗锯齿。
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
 
-Even though the images are in color, the comparison will compare 2 black/white images
+即使图像是彩色的，比较也将比较2个黑白图像
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+比较图像，使用`red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`进行比较
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+比较图像，使用`red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`进行比较
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+如果为true，返回的百分比将如`0.12345678`，默认为`0.12`
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
 
-This will return all compare data, not only the mismatch percentage
+这将返回所有比较数据，而不仅仅是不匹配百分比
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **类型:** `number`
+-   **默认值:** `0`
+-   **必填:** 否
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+`misMatchPercentage`的允许值，防止保存有差异的图像
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **类型:** `number`
+-   **默认值:** `0`
+-   **必填:** 否
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+比较大图像可能导致性能问题。
+当为像素数提供一个数字（高于0）时，如果图像宽度或高度大于`largeImageThreshold`像素，比较算法将跳过像素。
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **类型:** `boolean`
+-   **默认值:** `false`
+-   **必填:** 否
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+在执行比较前将2张图像缩放到相同大小。强烈建议启用`ignoreAntialiasing`和`ignoreAlpha`
 
-## Folder options
+## 文件夹选项
 
-The baseline folder and screenshot folders(actual, diff) are options that can be set during the instantiation of the plugin or method. To set the folder options on a particular method, pass in folder options to the methods option object. This can be used for:
+基准文件夹和截图文件夹（实际、差异）是可以在插件实例化或方法期间设置的选项。要在特定方法上设置文件夹选项，请将文件夹选项传递给方法选项对象。这适用于：
 
 - Web
-- Hybrid App
-- Native App
+- 混合应用
+- 原生应用
 
 ```ts
 import path from 'node:path'
@@ -251,7 +251,7 @@ const methodOptions = {
     diffFolder: path.join(process.cwd(), 'customDiff'),
 }
 
-// You can use this for all methods
+// 你可以将其用于所有方法
 await expect(
     await browser.checkFullPageScreen("checkFullPage", methodOptions)
 ).toEqual(0)
@@ -259,21 +259,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **类型:** `string`
+-   **必填:** 否
 
-Folder for the snapshot that has been captured in the test.
+测试中捕获的快照的文件夹。
 
 ### `baselineFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **类型:** `string`
+-   **必填:** 否
 
-Folder for the baseline image that is being used to compare against.
+用于比较的基准图像的文件夹。
 
 ### `diffFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **类型:** `string`
+-   **必填:** 否
 
-Folder for the image difference rendered by ResembleJS.
+ResembleJS渲染的图像差异的文件夹。

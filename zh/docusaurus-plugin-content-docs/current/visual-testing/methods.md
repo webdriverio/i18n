@@ -1,21 +1,21 @@
 ---
 id: methods
-title: Methods
+title: 方法
 ---
 
-The following methods are added to the global WebdriverIO [`browser`](/docs/api/browser)-object.
+以下方法添加到全局WebdriverIO [`browser`](/docs/api/browser)-对象中。
 
-## Save Methods
+## 保存方法
 
-:::info TIP
-Only use the Save Methods when you **don't** want to compare screens, but only want to have an element-/screenshot.
+:::info 提示
+只有当你**不**想比较屏幕，而只想获取元素/屏幕截图时，才使用保存方法。
 :::
 
 ### `saveElement`
 
-Saves an image of an element.
+保存元素的图像。
 
-#### Usage
+#### 用法
 
 ```ts
 await browser.saveElement(
@@ -30,34 +30,34 @@ await browser.saveElement(
 );
 ```
 
-#### Support
+#### 支持
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- 桌面浏览器
+- 移动浏览器
+- 移动混合应用
+- 移动原生应用
 
-#### Parameters
+#### 参数
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+-   **`element`:**
+    -   **必填:** 是
+    -   **类型:** WebdriverIO Element
+-   **`tag`:**
+    -   **必填:** 是
+    -   **类型:** string
+-   **`saveElementOptions`:**
+    -   **必填:** 否
+    -   **类型:** 选项对象，详见 [保存选项](./method-options#save-options)
 
-#### Output:
+#### 输出:
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+查看 [测试输出](./test-output#savescreenelementfullpagescreen) 页面。
 
 ### `saveScreen`
 
-Saves an image of a viewport.
+保存视口的图像。
 
-#### Usage
+#### 用法
 
 ```ts
 await browser.saveScreen(
@@ -70,31 +70,30 @@ await browser.saveScreen(
 );
 ```
 
-#### Support
+#### 支持
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- 桌面浏览器
+- 移动浏览器
+- 移动混合应用
+- 移动原生应用
 
-#### Parameters
+#### 参数
+-   **`tag`:**
+    -   **必填:** 是
+    -   **类型:** string
+-   **`saveScreenOptions`:**
+    -   **必填:** 否
+    -   **类型:** 选项对象，详见 [保存选项](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### 输出:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+查看 [测试输出](./test-output#savescreenelementfullpagescreen) 页面。
 
 ### `saveFullPageScreen`
 
-#### Usage
+#### 用法
 
-Saves an image of the complete screen.
+保存完整屏幕的图像。
 
 ```ts
 await browser.saveFullPageScreen(
@@ -107,29 +106,28 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Support
+#### 支持
 
-- Desktop Browsers
-- Mobile Browsers
+- 桌面浏览器
+- 移动浏览器
 
-#### Parameters
+#### 参数
+-   **`tag`:**
+    -   **必填:** 是
+    -   **类型:** string
+-   **`saveFullPageScreenOptions`:**
+    -   **必填:** 否
+    -   **类型:** 选项对象，详见 [保存选项](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveFullPageScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### 输出:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+查看 [测试输出](./test-output#savescreenelementfullpagescreen) 页面。
 
 ### `saveTabbablePage`
 
-Saves an image of the complete screen with the tabbable lines and dots.
+保存带有可选中线条和点的完整屏幕图像。
 
-#### Usage
+#### 用法
 
 ```ts
 await browser.saveTabbablePage(
@@ -142,26 +140,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Support
+#### 支持
 
-- Desktop Browsers
+- 桌面浏览器
 
-#### Parameters
+#### 参数
+-   **`tag`:**
+    -   **必填:** 是
+    -   **类型:** string
+-   **`saveTabbableOptions`:**
+    -   **必填:** 否
+    -   **类型:** 选项对象，详见 [保存选项](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### 输出:
 
-#### Output:
+查看 [测试输出](./test-output#savescreenelementfullpagescreen) 页面。
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+## 检查方法
 
-## Check Methods
-
-:::info TIP
+:::info 提示
+当第一次使用`check`方法时，你会在日志中看到以下警告。这意味着如果你想创建基准图像，不需要同时使用`save`和`check`方法。
 
 ```shell
 #####################################################################################
@@ -177,9 +175,9 @@ See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
 
 ### `checkElement`
 
-Compare an image of an element against a baseline image.
+将元素的图像与基准图像进行比较。
 
-#### Usage
+#### 用法
 
 ```ts
 await browser.checkElement(
@@ -194,34 +192,33 @@ await browser.checkElement(
 );
 ```
 
-#### Support
+#### 支持
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- 桌面浏览器
+- 移动浏览器
+- 移动混合应用
+- 移动原生应用
 
-#### Parameters
+#### 参数
+-   **`element`:**
+    -   **必填:** 是
+    -   **类型:** WebdriverIO Element
+-   **`tag`:**
+    -   **必填:** 是
+    -   **类型:** string
+-   **`checkElementOptions`:**
+    -   **必填:** 否
+    -   **类型:** 选项对象，详见 [比较/检查选项](./method-options#compare-check-options)
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### 输出:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+查看 [测试输出](./test-output#checkscreenelementfullpagescreen) 页面。
 
 ### `checkScreen`
 
-Compares an image of a viewport against a baseline image.
+将视口的图像与基准图像进行比较。
 
-#### Usage
+#### 用法
 
 ```ts
 await browser.checkScreen(
@@ -234,31 +231,30 @@ await browser.checkScreen(
 );
 ```
 
-#### Support
+#### 支持
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- 桌面浏览器
+- 移动浏览器
+- 移动混合应用
+- 移动原生应用
 
-#### Parameters
+#### 参数
+-   **`tag`:**
+    -   **必填:** 是
+    -   **类型:** string
+-   **`checkScreenOptions`:**
+    -   **必填:** 否
+    -   **类型:** 选项对象，详见 [比较/检查选项](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### 输出:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+查看 [测试输出](./test-output#checkscreenelementfullpagescreen) 页面。
 
 ### `checkFullPageScreen`
 
-Compares an image of the complete screen against a baseline image.
+将完整屏幕的图像与基准图像进行比较。
 
-#### Usage
+#### 用法
 
 ```ts
 await browser.checkFullPageScreen(
@@ -271,29 +267,28 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Support
+#### 支持
 
-- Desktop Browsers
-- Mobile Browsers
+- 桌面浏览器
+- 移动浏览器
 
-#### Parameters
+#### 参数
+-   **`tag`:**
+    -   **必填:** 是
+    -   **类型:** string
+-   **`checkFullPageOptions`:**
+    -   **必填:** 否
+    -   **类型:** 选项对象，详见 [比较/检查选项](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkFullPageOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### 输出:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+查看 [测试输出](./test-output#checkscreenelementfullpagescreen) 页面。
 
 ### `checkTabbablePage`
 
-Compares an image of the complete screen with the tabbable lines and dots against a baseline image.
+将带有可选中线条和点的完整屏幕图像与基准图像进行比较。
 
-#### Usage
+#### 用法
 
 ```ts
 await browser.checkTabbablePage(
@@ -306,19 +301,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Support
+#### 支持
 
-- Desktop Browsers
+- 桌面浏览器
 
-#### Parameters
+#### 参数
+-   **`tag`:**
+    -   **必填:** 是
+    -   **类型:** string
+-   **`checkTabbableOptions`:**
+    -   **必填:** 否
+    -   **类型:** 选项对象，详见 [比较/检查选项](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### 输出:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+查看 [测试输出](./test-output#checkscreenelementfullpagescreen) 页面。

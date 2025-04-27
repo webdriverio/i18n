@@ -1,12 +1,12 @@
 ---
 id: bamboo
-title: Bamboo
+title: Bamboo（竹子）
 ---
 
-WebdriverIO offers a tight integration to CI systems like [Bamboo](https://www.atlassian.com/software/bamboo). With the [JUnit](https://webdriver.io/docs/junit-reporter.html) or [Allure](https://webdriver.io/docs/allure-reporter.html) reporter, you can easily debug your tests as well as keep track of your test results. The integration is pretty easy.
+WebdriverIO 提供了与 [Bamboo](https://www.atlassian.com/software/bamboo) 等 CI 系统的紧密集成。通过 [JUnit](https://webdriver.io/docs/junit-reporter.html) 或 [Allure](https://webdriver.io/docs/allure-reporter.html) 报告器，您可以轻松调试测试并跟踪测试结果。集成非常简单。
 
-1. Install the JUnit test reporter: `$ npm install @wdio/junit-reporter --save-dev`)
-1. Update your config to save your JUnit results where Bamboo can find them, (and specify the `junit` reporter):
+1. 安装 JUnit 测试报告器：`$ npm install @wdio/junit-reporter --save-dev`)
+1. 更新您的配置，将 JUnit 结果保存在 Bamboo 可以找到的位置（并指定 `junit` 报告器）：
 
 ```js
 // wdio.conf.js
@@ -21,10 +21,10 @@ module.exports = {
     // ...
 }
 ```
-Note: *It's always a good standard to keep the test results in separate folder than in the root folder.*
+注意：*将测试结果保存在单独的文件夹中而不是根文件夹中始终是一个好的标准。*
 
 ```js
-// wdio.conf.js - For tests running in parallel
+// wdio.conf.js - 用于并行运行的测试
 module.exports = {
     // ...
     reporters: [
@@ -40,45 +40,47 @@ module.exports = {
 }
 ```
 
-The reports will be similar for all the frameworks and you can use anyone: Mocha, Jasmine or Cucumber.
+所有框架的报告都将类似，您可以使用任何一种：Mocha、Jasmine 或 Cucumber。
 
-By this time, we believe you have the tests written up and results are generated in `./testresults/` folder, and your Bamboo is up and running.
+现在，我们相信您已经编写了测试，并在 ```./testresults/``` 文件夹中生成了结果，而且您的 Bamboo 已经启动并运行。
 
-## Integrate your tests in Bamboo
+## 在 Bamboo 中集成您的测试
 
-1. Open your Bamboo project
+1. 打开您的 Bamboo 项目
+    > 创建新计划，链接您的存储库（确保它始终指向您存储库的最新版本）并创建您的阶段
 
-    > Create a new plan, link your repository (make sure it always points to newest version of your repository) and create your stages
+    ![计划详情](/img/bamboo/plancreation.png "计划详情")
 
-    ![Plan Details](/img/bamboo/plancreation.png "Plan Details")
+    我将使用默认阶段和作业。在您的情况下，您可以创建自己的阶段和作业
 
-    I will go with the default stage and job. In your case, you can create your own stages and jobs
+    ![默认阶段](/img/bamboo/defaultstage.png "默认阶段")
+2. 打开您的测试作业并创建任务以在 Bamboo 中运行您的测试
+    >**任务 1:** 源代码检出
 
-    ![Default Stage](/img/bamboo/defaultstage.png "Default Stage")
-2. Open your testing job and create tasks to run your tests in Bamboo
-> **Task 1:** Source Code Checkout
-> **Task 2:** Run your tests `npm i && npm run test`. You can use *Script* task and *Shell Interpreter* to run the above commands (This will generate the test results and save them in `./testresults/` folder)
+    >**任务 2:** 运行您的测试 ```npm i && npm run test```。您可以使用 *脚本* 任务和 *Shell 解释器* 来运行上述命令（这将生成测试结果并将它们保存在 ```./testresults/``` 文件夹中）
 
-    ![Test Run](/img/bamboo/testrun.png "Test Run")
-> **Task: 3** Add *jUnit Parser* task to parse your saved test results. Please specify the test results directory here (you can use Ant style patterns as well)
+    ![测试运行](/img/bamboo/testrun.png "测试运行")
 
-    ![jUnit Parser](/img/bamboo/junitparser.png "jUnit Parser")
+    >**任务: 3** 添加 *jUnit 解析器* 任务来解析您保存的测试结果。请在此处指定测试结果目录（您也可以使用 Ant 样式模式）
 
-    Note: *Make sure you are keeping the results parser task in *Final* section, so that it always get executed even if your test task is failed*
-> **Task: 4** (optional) In order to make sure that your test results are not messed up with old files, you can create a task to remove the `./testresults/` folder after a successful parse to Bamboo. You can add a shell script like `rm -f ./testresults/*.xml` to remove the results or `rm -r testresults` to remove the complete folder
+    ![jUnit 解析器](/img/bamboo/junitparser.png "jUnit 解析器")
 
-Once the above *rocket science* is done, please enable the plan and run it. Your final output will be like:
+    注意：*确保您将结果解析器任务放在 *最终* 部分，以便即使您的测试任务失败，它也始终会被执行*
 
-## Successful Test
+    >**任务: 4** （可选）为确保您的测试结果不会与旧文件混淆，您可以创建一个任务，在成功解析到 Bamboo 后删除 ```./testresults/``` 文件夹。您可以添加一个 shell 脚本，如 ```rm -f ./testresults/*.xml``` 来删除结果，或 ```rm -r testresults``` 来删除整个文件夹
 
-![Successful Test](/img/bamboo/successfulltest.png "Successful Test")
+完成上述 *火箭科学* 后，请启用计划并运行它。您的最终输出将如下所示：
 
-## Failed Test
+## 成功的测试
 
-![Failed Test](/img/bamboo/failedtest.png "Failed Test")
+![成功的测试](/img/bamboo/successfulltest.png "成功的测试")
 
-## Failed and Fixed
+## 失败的测试
 
-![Failed and Fixed](/img/bamboo/failedandfixed.png "Failed and Fixed")
+![失败的测试](/img/bamboo/failedtest.png "失败的测试")
 
-Yay!! That's all. You have successfully integrated your WebdriverIO tests in Bamboo.
+## 失败和修复
+
+![失败和修复](/img/bamboo/failedandfixed.png "失败和修复")
+
+耶！！就是这样。您已成功地在 Bamboo 中集成了 WebdriverIO 测试。

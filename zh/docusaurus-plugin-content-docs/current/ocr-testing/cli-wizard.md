@@ -1,55 +1,55 @@
 ---
 id: cli-wizard
-title: CLI Wizard
+title: CLI 向导
 ---
 
-You can validate which text can be found in an image without running a test by using the OCR CLI Wizard. The only thing that are needed are:
+你可以使用 OCR CLI 向导验证图像中的文本，而无需运行测试。你只需要以下内容：
 
-- you have installed the `@wdio/ocr-service` as a dependency, see [Getting Started](./getting-started)
-- an image that you want to process
+-   安装了 `@wdio/ocr-service` 作为依赖项，参见[入门指南](./getting-started)
+-   一张你想要处理的图像
 
-Then run the following command to start the wizard
+然后运行以下命令启动向导
 
 ```sh
 npx ocr-service
 ```
 
-This will start a wizard that will guide you through the steps to select an image and use a haystack plus advanced mode. The following questions are asked
+这将启动一个向导，引导你完成选择图像并使用搜索区域和高级模式的步骤。向导会提出以下问题
 
-## How would you like to specify the file?
+## 你想如何指定文件？
 
-The following options can be selected
+可以选择以下选项
 
-- Use a "file explorer"
-- Type the file path manually
+-   使用"文件浏览器"
+-   手动输入文件路径
 
-### Use a "file explorer"
+### 使用"文件浏览器"
 
-The CLI wizard provides an option to use a "file explorer" to search for files on your system. It starts from the folder you call the command. After selecting an image (use your arrow keys and the ENTER key) you will proceed to the next question
+CLI 向导提供了使用"文件浏览器"在您的系统上搜索文件的选项。它从您调用命令的文件夹开始。选择图像后（使用箭头键和 ENTER 键），您将进入下一个问题
 
-### Type the file path manually
+### 手动输入文件路径
 
-This is a direct path to a file somewhere on your local machine
+这是指向本地机器上某处文件的直接路径
 
-### Would you like to use a haystack?
+### 你想使用搜索区域吗？
 
-Here you have the option to select an area that needs to be processed. This can speed up the process or reduce/narrow down the amount of text the OCR engine might find. You need to provide `x`, `y`, `width`, `height` data based on the following questions:
+在这里，你可以选择一个需要处理的区域。这可以加快处理速度或减少/缩小 OCR 引擎可能找到的文本数量。你需要根据以下问题提供 `x`、`y`、`width`、`height` 数据：
 
-- Enter the x coordinate:
-- Enter the y coordinate:
-- Enter the width:
-- Enter the height:
+-   输入 x 坐标：
+-   输入 y 坐标：
+-   输入宽度：
+-   输入高度：
 
-## Do you want to use the advanced mode?
+## 你想使用高级模式吗？
 
-Advanced mode will hold extra features like:
+高级模式将包含额外功能，如：
 
-- setting the contrast
-- more to follow in the future
+-   设置对比度
+-   未来将添加更多功能
 
-## Demo
+## 演示
 
-Here's a demo
+这里有一个演示
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

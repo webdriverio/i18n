@@ -1,25 +1,25 @@
 ---
 id: openofficehours
-title: 实战交流
+title: 开放办公时间
 ---
 
-Contributing to a big Open Source project can be hard. Especially if the codebase is large and requires a lot of context to understand what certain changes do. Then there is the possibility that tools or infrastructure is being used that are unknown. Nevertheless the project depends on your contributions and help to identify bugs and fix them. How can we overcome this hurdle?
+为大型开源项目做贡献可能很困难。特别是当代码库很大且需要很多上下文才能理解某些更改的作用时。此外，还可能使用一些未知的工具或基础设施。尽管如此，该项目依赖于您的贡献和帮助来识别和修复错误。我们如何克服这个障碍？
 
-The WebdriverIO projects has introduced Open Office Hours that allow everyone to schedule individual 1:1 pairing sessions with the WebdriverIO contributors. This allows you to get started contributing to WebdriverIO easily with the help of people that know the code base well. We only ask you to pick [a task](https://github.com/webdriverio/webdriverio/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Afirst-timers-only) you would like to work on up-front so that the pairing partner can be prepared for the session to provide better guidance. This is a free opportunity for you to not only give back to the WebdriverIO community but also get to know the team behind the project.
+WebdriverIO项目引入了开放办公时间，允许每个人安排与WebdriverIO贡献者进行个人一对一配对会话。这使您能够在熟悉代码库的人员的帮助下轻松开始为WebdriverIO做贡献。我们只要求您提前选择[一个任务](https://github.com/webdriverio/webdriverio/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Afirst-timers-only)，这样配对伙伴可以为会话做好准备，提供更好的指导。这是一个免费的机会，不仅可以回馈WebdriverIO社区，还可以了解项目背后的团队。
 
-Currently we offer 4 slots a week from: every Wednesday 10am - 12am (CEST / GMT+2) for our European friends as well as: 11am - 13am (PDT / GMT -7) for people living on the west side of this hemisphere.
+目前，我们每周提供4个时段：每周三上午10点至12点（CEST / GMT+2）为我们的欧洲朋友提供服务，以及上午11点至下午1点（PDT / GMT -7）为生活在这个半球西侧的人们提供服务。
 
-Before you book an appointment, make sure you can meet the following basic requirements needed to contribute to WebdriverIO:
+在预约之前，请确保您能满足以下为WebdriverIO做贡献所需的基本要求：
 
-- you've found an issue you like to contribute to in the [issue tracker](https://github.com/webdriverio/webdriverio/issues) (without an issue, your appointment will be cancelled immediatelly)
-- you have been working on a Node.js project before (these sessions can't be used to learn Node.js fundamentals)
-- you've read the [Contribution Guidelines](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md#set-up-project) and have the project set-up locally or in an ephemeral workspace
-- you can run the projects unit tests, and they are passing
+- 您已在[问题追踪器](https://github.com/webdriverio/webdriverio/issues)中找到了一个您想要贡献的问题（没有问题，您的预约将立即被取消）
+- 您之前曾从事过Node.js项目（这些会话不能用于学习Node.js基础知识）
+- 您已阅读[贡献指南](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md#set-up-project)并在本地或临时工作区中设置了项目
+- 您可以运行项目的单元测试，并且测试通过
 
-After that, you can book an appointment at any time on:
+之后，您可以随时在以下网址预约：
 
 [calendly.com/webdriverio/open-office-hours](https://calendly.com/webdriverio/open-office-hours)
 
-All sessions will be held over [Zoom](https://zoom.us/) or [Google Hangouts](https://hangouts.google.com/) but alternative platforms are possible, please let us know in the comment section. Also please note that this is not a way to get individual consulting for your own projects. The time is to be used to work on WebdriverIO related bugs or features. For support questions we still ask you to use our [Discord Support Server](https://discord.webdriver.io).
+所有会话将通过[Zoom](https://zoom.us/)或[Google Hangouts](https://hangouts.google.com/)进行，但也可以使用其他平台，请在评论部分告知我们。另外请注意，这不是为您自己的项目获取个人咨询的方式。这段时间用于处理WebdriverIO相关的错误或功能。对于支持问题，我们仍然请您使用我们的[Discord支持服务器](https://discord.webdriver.io)。
 
-We are looking forward to meet you all online and hope to find more collaborators helping us to push the project forward!
+我们期待在线上与您见面，并希望找到更多的合作者帮助我们推进项目！

@@ -1,13 +1,13 @@
 ---
 id: sharding
-title: Sharding
+title: 分片
 ---
 
-By default, WebdriverIO runs tests in parallel and strives for optimal utilization of CPU cores on your machine. In order to achieve even greater parallelisation, you can further scale WebdriverIO test execution by running tests on multiple machines simultaneously. We call this mode of operation "sharding".
+默认情况下，WebdriverIO 并行运行测试，并努力在您的机器上实现 CPU 核心的最佳利用率。为了实现更大的并行化，您可以通过同时在多台机器上运行测试来进一步扩展 WebdriverIO 测试执行。我们称这种操作模式为"分片"。
 
-## Sharding tests between multiple machines
+## 在多台机器之间分片测试
 
-To shard the test suite, pass `--shard=x/y` to the command line. For example, to split the suite into four shards, each running one fourth of the tests:
+要对测试套件进行分片，请在命令行中传递 `--shard=x/y`。例如，要将套件分成四个分片，每个分片运行四分之一的测试：
 
 ```sh
 npx wdio run wdio.conf.js --shard=1/4
@@ -16,19 +16,19 @@ npx wdio run wdio.conf.js --shard=3/4
 npx wdio run wdio.conf.js --shard=4/4
 ```
 
-Now, if you run these shards in parallel on different computers, your test suite completes four times faster.
+现在，如果您在不同的计算机上并行运行这些分片，您的测试套件完成速度将提高四倍。
 
-## GitHub Actions example
+## GitHub Actions 示例
 
-GitHub Actions supports [sharding tests between multiple jobs](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) using the [`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) option. The matrix option will run a separate job for every possible combination of the provided options.
+GitHub Actions 支持[在多个作业之间分片测试](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs)，使用 [`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) 选项。矩阵选项将为提供的选项的每种可能组合运行单独的作业。
 
-The following example shows you how to configure a job to run your tests on four machines in parallel. You can find the whole pipeline setup in the [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml) project.
+以下示例向您展示如何配置一个作业，以在四台机器上并行运行测试。您可以在 [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml) 项目中找到完整的流水线设置。
 
--   First we add a matrix option to our job configuration with the shard option containing the number of shards we want to create. `shard: [1, 2, 3, 4]` will create four shards, each with a different shard number.
--   Then we run our WebdriverIO tests with the `--shard ${{ matrix.shard }}/${{ strategy.job-total }}` option. This will be our test command for each shard.
--   Finally we upload our wdio log report to the GitHub Actions Artifacts. This will make logs available in case the shard fails.
+- 首先，我们在作业配置中添加一个矩阵选项，其中包含我们要创建的分片数量的分片选项。`shard: [1, 2, 3, 4]` 将创建四个分片，每个分片具有不同的分片编号。
+- 然后我们使用 `--shard ${{ matrix.shard }}/${{ strategy.job-total }}` 选项运行我们的 WebdriverIO 测试。这将是每个分片的测试命令。
+- 最后，我们将 wdio 日志报告上传到 GitHub Actions Artifacts。这将使日志在分片失败的情况下可用。
 
-The test pipeline is defined as follows:
+测试流水线定义如下：
 
 ```yaml title=.github/workflows/test.yaml
 name: Test
@@ -59,8 +59,8 @@ jobs:
                   path: logs
 ```
 
-This will run all shards in parallel, reducing executing time for the tests by 4:
+这将并行运行所有分片，将测试的执行时间减少 4 倍：
 
-![GitHub Actions example](/img/sharding.png "GitHub Actions example")
+![GitHub Actions 示例](/img/sharding.png "GitHub Actions 示例")
 
-See commit [`96d444e`](https://github.com/webdriverio/cucumber-boilerplate/commit/96d444ea23919389682b9b1c9408ed91c452c7f8) from the [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) project that introduced sharding to its test pipeline which helped reduce the overall execution time from `2:23 min` down to `1:30 min`, a reduction of __37%__ 🎉.
+请参阅 [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) 项目中引入分片到其测试流水线的提交 [`96d444e`](https://github.com/webdriverio/cucumber-boilerplate/commit/96d444ea23919389682b9b1c9408ed91c452c7f8)，这帮助将总体执行时间从 `2:23 分钟` 减少到 `1:30 分钟`，减少了 __37%__ 🎉。

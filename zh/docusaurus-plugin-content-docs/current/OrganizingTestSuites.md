@@ -1,19 +1,19 @@
 ---
 id: organizingsuites
-title: Organizing Test Suite
+title: 组织测试套件
 ---
 
-As projects grow, inevitably more and more integration tests are added. This increases build time and slows productivity.
+随着项目的增长，集成测试不可避免地会越来越多。这会增加构建时间并降低生产效率。
 
-To prevent this, you should run your tests in parallel. WebdriverIO already tests each spec (or _feature file_ in Cucumber) in parallel within a single session. In general, try to test only a single feature per spec file. Try to not have too many or too few tests in one file. (However, there is no golden rule here.)
+为了防止这种情况，你应该并行运行测试。WebdriverIO已经在单个会话中并行测试每个规格文件（或Cucumber中的_特性文件_）。通常，尽量在每个规格文件中只测试一个功能。尽量不要在一个文件中包含太多或太少的测试。（然而，这里没有黄金法则。）
 
-Once your tests have several spec files, you should start running your tests concurrently. To do so, adjust the `maxInstances` property in your config file. WebdriverIO allows you to run your tests with maximum concurrency—meaning that no matter how many files and tests you have, they can all run in parallel.  (This is still subject to certain limits, like your computer’s CPU, concurrency restrictions, etc.)
+一旦你的测试有了多个规格文件，你应该开始并发运行测试。要做到这一点，请调整配置文件中的`maxInstances`属性。WebdriverIO允许你以最大并发度运行测试——这意味着无论你有多少文件和测试，它们都可以并行运行。（这仍然受到一定限制，比如你的计算机CPU、并发限制等。）
 
-> Let's say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have set `maxInstances` to `1`. The WDIO test runner will spawn 3 processes. Therefore, if you have 10 spec files and you set `maxInstances` to `10`, _all_ spec files will be tested simultaneously, and 30 processes will be spawned.
+> 假设你有3种不同的能力（Chrome、Firefox和Safari），并且你将`maxInstances`设置为`1`。WDIO测试运行器将生成3个进程。因此，如果你有10个规格文件，并且将`maxInstances`设置为`10`，_所有_规格文件将同时测试，并且将生成30个进程。
 
-You can define the `maxInstances` property globally to set the attribute for all browsers.
+你可以全局定义`maxInstances`属性，为所有浏览器设置该属性。
 
-If you run your own WebDriver grid, you may (for example) have more capacity for one browser than another. In that case, you can _limit_ the `maxInstances` in your capability object:
+如果你运行自己的WebDriver网格，你可能（例如）对一个浏览器的容量比另一个更多。在这种情况下，你可以在你的能力对象中_限制_`maxInstances`：
 
 ```js
 // wdio.conf.js
@@ -34,13 +34,13 @@ export const config = {
 }
 ```
 
-## Inherit From Main Config File
+## 继承主配置文件
 
-If you run your test suite in multiple environments (e.g., dev and integration) it may help to use multiple configuration files to keep things manageable.
+如果你在多个环境（例如开发和集成）中运行测试套件，使用多个配置文件可能有助于保持管理。
 
-Similar to the [page object concept](pageobjects), the first thing you’ll need is a main config file. It contains all configurations you share across environments.
+类似于[页面对象概念](pageobjects)，首先你需要一个主配置文件。它包含你在环境之间共享的所有配置。
 
-Then create another config file for each environment, and supplement the the main config with the environment-specific ones:
+然后为每个环境创建另一个配置文件，并用特定环境的配置补充主配置：
 
 ```js
 // wdio.dev.config.js
@@ -64,11 +64,11 @@ export const config = deepmerge(wdioConf.config, {
 config.reporters.push('allure')
 ```
 
-## Grouping Test Specs In Suites
+## 在套件中分组测试规格
 
-You can group test specs in suites and run single specific suites instead of all of them.
+你可以将测试规格分组到套件中，并运行单个特定套件而不是全部运行。
 
-First, define your suites in your WDIO config:
+首先，在你的WDIO配置中定义你的套件：
 
 ```js
 // wdio.conf.js
@@ -88,49 +88,25 @@ export const config = {
     },
     // ...
 }
-    // define specific suites
-    suites: {
-        login: [
-            './test/specs/login.success.spec.js',
-            './test/specs/login.failure.spec.js'
-        ],
-        otherFeature: [
-            // ...
-        ]
-    },
-    // ...
-}
-    // define specific suites
-    suites: {
-        login: [
-            './test/specs/login.success.spec.js',
-            './test/specs/login.failure.spec.js'
-        ],
-        otherFeature: [
-            // ...
-        ]
-    },
-    // ...
-}
 ```
 
-Now, if you want to only run a single suite, you can pass the suite name as a CLI argument:
+现在，如果你只想运行单个套件，你可以将套件名称作为CLI参数传递：
 
 ```sh
 wdio wdio.conf.js --suite login
 ```
 
-Or, run multiple suites at once:
+或者，一次运行多个套件：
 
 ```sh
 wdio wdio.conf.js --suite login --suite otherFeature
 ```
 
-## Grouping Test Specs To Run Sequentially
+## 分组测试规格以顺序运行
 
-As described above, there are benefits in running the tests concurrently. However, there are cases where it would be beneficial to group tests together to run sequentially in a single instance. Examples of this are mainly where there is a large setup cost e.g. transpiling code or provisioning cloud instances, but there are also advanced usage models that benefit from this capability.
+如上所述，并发运行测试有很多好处。然而，在某些情况下，将测试分组在一个实例中顺序运行会有益处。这方面的例子主要是在有大量设置成本的情况下，例如转译代码或配置云实例，但也有一些高级使用模型从这种功能中受益。
 
-To group tests to run in a single instance, define them as an array within the specs definition.
+要将测试分组在单个实例中运行，请在specs定义中将它们定义为数组。
 
 ```json
     "specs": [
@@ -142,9 +118,9 @@ To group tests to run in a single instance, define them as an array within the s
         "./test/specs/test_b*.js",
     ],
 ```
-In the example above, the tests 'test_login.js', 'test_product_order.js' and 'test_checkout.js' will be run sequentially in a single instance and each of the "test_b*" tests will run concurrently in individual instances.
+在上面的例子中，测试'test_login.js'，'test_product_order.js'和'test_checkout.js'将在单个实例中顺序运行，而每个"test_b*"测试将在独立的实例中并发运行。
 
-It is also possible to group specs defined in suites, so you can now also define suites like this:
+也可以对套件中定义的规格进行分组，所以你现在也可以这样定义套件：
 ```json
     "suites": {
         end2end: [
@@ -157,9 +133,9 @@ It is also possible to group specs defined in suites, so you can now also define
         allb: ["./test/specs/test_b*.js"]
 },
 ```
-and in this case all of the tests of the "end2end" suite would be run in a single instance.
+在这种情况下，"end2end"套件的所有测试都将在单个实例中运行。
 
-When running tests sequentially using a pattern, it will run the spec files in an alphabetical order
+使用模式顺序运行测试时，它将按字母顺序运行规格文件
 
 ```json
   "suites": {
@@ -167,7 +143,7 @@ When running tests sequentially using a pattern, it will run the spec files in a
   },
 ```
 
-This will run the files matching the pattern above in the following order:
+这将按以下顺序运行与上述模式匹配的文件：
 
 ```
   [
@@ -177,136 +153,137 @@ This will run the files matching the pattern above in the following order:
   ]
 ```
 
-## Run Selected Tests
+## 运行选定的测试
 
-In some cases, you may wish to only execute a single test (or subset of tests) of your suites.
+在某些情况下，你可能只希望执行套件中的单个测试（或测试子集）。
 
-With the `--spec` parameter, you can specify which _suite_ (Mocha, Jasmine) or _feature_ (Cucumber) should be run. The path is resolved relative from your current working directory.
+使用`--spec`参数，你可以指定应该运行哪个_套件_（Mocha, Jasmine）或_特性_（Cucumber）。路径相对于你当前的工作目录解析。
 
-For example, to run only your login test:
+例如，只运行你的登录测试：
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js
 ```
 
-Or run multiple specs at once:
+或者一次运行多个规格：
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/signup.js --spec ./test/specs/forgot-password.js
 ```
 
-If the `--spec` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+如果`--spec`值不指向特定的规格文件，则会用它来过滤配置中定义的规格文件名。
 
-To run all specs with the word “dialog” in the spec file names, you could use:
+要运行规格文件名中包含"dialog"一词的所有规格，可以使用：
 
 ```sh
 wdio wdio.conf.js --spec dialog
 ```
 
-Note that each test file is running in a single test runner process. Since we don't scan files in advance (see the next section for information on piping filenames to `wdio`), you _can't_ use (for example) `describe.only` at the top of your spec file to instruct Mocha to run only that suite.
+请注意，每个测试文件都在单个测试运行器进程中运行。由于我们不会提前扫描文件（有关将文件名通过管道传输到`wdio`的信息，请参见下一部分），你_不能_（例如）在规格文件顶部使用`describe.only`来指示Mocha只运行那个套件。
 
-This feature will help you to accomplish the same goal.
+此功能将帮助你实现相同的目标。
 
-When the `--spec` option is provided, it will override any patterns defined by the config or capability level's `specs` parameter.
+提供`--spec`选项时，它将覆盖配置或能力级别的`specs`参数定义的任何模式。
 
-## Exclude Selected Tests
+## 排除选定的测试
 
-When needed, if you need to exclude particular spec file(s) from a run, you can use the `--exclude` parameter (Mocha, Jasmine) or feature (Cucumber).
+在需要时，如果你需要从运行中排除特定的规格文件，你可以使用`--exclude`参数（Mocha, Jasmine）或特性（Cucumber）。
 
-For example, to exclude your login test from the test run:
+例如，从测试运行中排除你的登录测试：
 
 ```sh
 wdio wdio.conf.js --exclude ./test/specs/e2e/login.js
 ```
 
-Or, exclude multiple spec files:
+或者，排除多个规格文件：
 
  ```sh
 wdio wdio.conf.js --exclude ./test/specs/signup.js --exclude ./test/specs/forgot-password.js
 ```
 
-Or, exclude a spec file when filtering using a suite:
+或者，在使用套件过滤时排除规格文件：
 
 ```sh
 wdio wdio.conf.js --suite login --exclude ./test/specs/e2e/login.js
 ```
 
-If the `--exclude` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+如果`--exclude`值不指向特定的规格文件，则会用它来过滤配置中定义的规格文件名。
 
-To exclude all specs with the word “dialog” in the spec file names, you could use:
+要排除规格文件名中包含"dialog"一词的所有规格，可以使用：
 
 ```sh
 wdio wdio.conf.js --exclude dialog
 ```
 
-When the `--exclude` option is provided, it will override any patterns defined by the config or capability level's `exclude` parameter.
+提供`--exclude`选项时，它将覆盖配置或能力级别的`exclude`参数定义的任何模式。
 
-## Run Suites and Test Specs
+## 运行套件和测试规格
 
-Run an entire suite along with individual specs.
+运行整个套件以及各个规格。
 
 ```sh
 wdio wdio.conf.js --suite login --spec ./test/specs/signup.js
 ```
 
-## Run Multiple, Specific Test Specs
+## 运行多个特定的测试规格
 
-It is sometimes necessary&mdash;in the context of continuous integration and otherwise&mdash;to specify multiple sets of specs to run. WebdriverIO's `wdio` command line utility accepts piped-in filenames (from `find`, `grep`, or others).
+在持续集成和其他情况下，有时需要指定多组规格来运行。WebdriverIO的`wdio`命令行工具接受通过管道传入的文件名（来自`find`，`grep`或其他）。
 
-Piped-in filenames override the list of globs or filenames specified in the configuration's `spec` list.
+通过管道传入的文件名会覆盖配置的`spec`列表中指定的全局模式或文件名列表。
 
 ```sh
 grep -r -l --include "*.js" "myText" | wdio wdio.conf.js
 ```
 
-_**Note:** This will_ not _override the `--spec` flag for running a single spec._
+_**注意：** 这_不会_覆盖用于运行单个规格的`--spec`标志。_
 
-## Running Specific Tests with MochaOpts
+## 使用MochaOpts运行特定测试
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to run by passing a mocha specific argument: `--mochaOpts.grep` to the wdio CLI.
+你还可以通过向wdio CLI传递特定于mocha的参数：`--mochaOpts.grep`来过滤你想要运行的特定`suite|describe`和/或`it|test`。
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep myText
 wdio wdio.conf.js --mochaOpts.grep "Text with spaces"
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**注意：** Mocha将在WDIO测试运行器创建实例后过滤测试，因此你可能会看到几个实例被生成但实际上并未执行。_
 
-## Exclude Specific Tests with MochaOpts
+## 使用MochaOpts排除特定测试
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to exclude by passing a mocha specific argument: `--mochaOpts.invert` to the wdio CLI. `--mochaOpts.invert` performs opposite of `--mochaOpts.grep`
+你还可以通过向wdio CLI传递特定于mocha的参数：`--mochaOpts.invert`来过滤你想要排除的特定`suite|describe`和/或`it|test`。`--mochaOpts.invert`执行与`--mochaOpts.grep`相反的操作
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**注意：** Mocha将在WDIO测试运行器创建实例后过滤测试，因此你可能会看到几个实例被生成但实际上并未执行。_
 
-## Stop testing after failure
+## 失败后停止测试
 
-With the `bail` option, you can tell WebdriverIO to stop testing after any test fails.
+通过`bail`选项，你可以告诉WebdriverIO在任何测试失败后停止测试。
 
-This is helpful with large test suites when you already know that your build will break, but you want to avoid the lengthy wait of a full testing run.
+对于大型测试套件，当你已经知道你的构建会中断，但想避免完整测试运行的漫长等待时，这很有帮助。
 
-The `bail` option expects a number, which specifies how many test failures can occur before WebDriver stop the entire testing run. The default is `0`, meaning that it always runs all tests specs it can find.
+`bail`选项需要一个数字，它指定在WebDriver停止整个测试运行之前可能发生多少测试失败。默认值为`0`，意味着它总是运行所有能找到的测试规格。
 
-Please see [Options Page](configuration) for additional information on the bail configuration.
-## Run options hierarchy
+请参阅[选项页面](configuration)获取有关bail配置的更多信息。
+## 运行选项层次结构
 
-When declaring what specs to run, there is a certain hierarchy defining what pattern will take precedence. Currently, this is how it works, from highest priority to lowest:
+在声明要运行的规格时，有一定的层次结构定义哪种模式将优先。目前，这是它的工作方式，从最高优先级到最低：
 
-> CLI `--spec` argument > capability `specs` pattern > config `specs` pattern CLI `--exclude` argument > config `exclude` pattern > capability `exclude` pattern
+> CLI `--spec`参数 > capability `specs`模式 > config `specs`模式
+> CLI `--exclude`参数 > config `exclude`模式 > capability `exclude`模式
 
-If only the config parameter is given, it will be used for all capabilities. However, if defining the pattern at the capability level, it will be used instead of the config pattern. Finally, any spec pattern defined on the command line will override all other patterns given.
+如果只给出配置参数，它将用于所有能力。然而，如果在能力级别定义模式，它将代替配置模式使用。最后，在命令行上定义的任何规格模式都将覆盖所有其他给定的模式。
 
-### Using capability-defined spec patterns
+### 使用能力定义的规格模式
 
-When you define a spec pattern at the capability level, it will override any patterns defined at the config level. This is useful when needing to separate tests based on differentiating device capabilities. In cases like this, it is more useful to use a generic spec pattern at the config level, and more specific patterns at the capability level.
+当你在能力级别定义规格模式时，它将覆盖在配置级别定义的任何模式。当需要基于不同的设备能力分离测试时，这很有用。在这种情况下，在配置级别使用通用规格模式，在能力级别使用更具体的模式会更有用。
 
-For example, let's say you had two directories, with one for Android tests, and one for iOS tests.
+例如，假设你有两个目录，一个用于Android测试，另一个用于iOS测试。
 
-Your config file may define the pattern as such, for non-specific device tests:
+你的配置文件可能会这样定义模式，用于非特定设备测试：
 
 ```js
 {
@@ -314,7 +291,7 @@ Your config file may define the pattern as such, for non-specific device tests:
 }
 ```
 
-but then, you will have different capabilities for your Android and iOS devices, where the patterns could look like such:
+但随后，你将有不同的Android和iOS设备能力，其中模式可能如下所示：
 
 ```json
 {
@@ -334,7 +311,7 @@ but then, you will have different capabilities for your Android and iOS devices,
 }
 ```
 
-If you require both of these capabilities in your config file, then the Android device will only run the tests under the "android" namespace, and the iOS tests will run only tests under the "ios" namespace!
+如果你在配置文件中需要这两种能力，那么Android设备将只运行"android"命名空间下的测试，而iOS测试将只运行"ios"命名空间下的测试！
 
 ```js
 //wdio.conf.js
@@ -360,4 +337,3 @@ export const config = {
     ]
 }
 ```
-

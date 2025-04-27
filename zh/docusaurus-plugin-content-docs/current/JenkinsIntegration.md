@@ -1,12 +1,12 @@
 ---
 id: jenkins
-title: Jenkins
+title: Jenkins 持续集成
 ---
 
-WebdriverIO offers a tight integration to CI systems like [Jenkins](https://jenkins-ci.org). With the `junit` reporter, you can easily debug your tests as well as keep track of your test results. The integration is pretty easy.
+WebdriverIO提供了与[Jenkins](https://jenkins-ci.org)等CI系统的紧密集成。通过`junit`报告器，您可以轻松调试测试并跟踪测试结果。集成过程非常简单。
 
-1. Install the `junit` test reporter: `$ npm install @wdio/junit-reporter --save-dev`)
-1. Update your config to save your XUnit results where Jenkins can find them, (and specify the `junit` reporter):
+1. 安装`junit`测试报告器：`$ npm install @wdio/junit-reporter --save-dev`)
+1. 更新您的配置，将XUnit结果保存在Jenkins能够找到的位置（并指定`junit`报告器）：
 
 ```js
 // wdio.conf.js
@@ -22,30 +22,31 @@ module.exports = {
 }
 ```
 
-It is up to you which framework to choose. The reports will be similar. For this tutorial, we’ll use Jasmine.
+您可以自由选择使用哪个框架，报告结果会类似。
+在本教程中，我们将使用Jasmine。
 
-After you have written couple of tests, you can setup a new Jenkins job. Give it a name and a description:
+编写完几个测试后，您可以设置一个新的Jenkins任务。为其命名并添加描述：
 
 ![Name And Description](/img/jenkins/jobname.png "Name And Description")
 
-Then make sure it grabs always the newest version of your repository:
+然后确保它始终获取您的仓库的最新版本：
 
 ![Jenkins Git Setup](/img/jenkins/gitsetup.png "Jenkins Git Setup")
 
-**Now the important part:** Create a `build` step to execute shell commands. The `build` step needs to build your project. Since this demo project only tests an external app, you don't need to build anything. Just install the node dependencies and run the command `npm test` (which is an alias for `node_modules/.bin/wdio test/wdio.conf.js`).
+**现在是重要部分：**创建一个`build`步骤来执行shell命令。`build`步骤需要构建您的项目。由于这个演示项目只是测试外部应用程序，您不需要构建任何东西。只需安装node依赖项并运行命令`npm test`（这是`node_modules/.bin/wdio test/wdio.conf.js`的别名）。
 
-If you have installed a plugin like AnsiColor, but logs are still not colored, run tests with environment variable `FORCE_COLOR=1` (e.g., `FORCE_COLOR=1 npm test`).
+如果您已安装了AnsiColor等插件，但日志仍未着色，请使用环境变量`FORCE_COLOR=1`运行测试（例如，`FORCE_COLOR=1 npm test`）。
 
 ![Build Step](/img/jenkins/runjob.png "Build Step")
 
-After your test, you’ll want Jenkins to track your XUnit report. To do so, you have to add a post-build action called _"Publish JUnit test result report"_.
+测试结束后，您需要Jenkins跟踪您的XUnit报告。为此，您必须添加一个名为_"Publish JUnit test result report"_的构建后操作。
 
-You could also install an external XUnit plugin to track your reports. The JUnit one comes with the basic Jenkins installation and is sufficient enough for now.
+您也可以安装外部XUnit插件来跟踪报告。JUnit插件随基本Jenkins安装一起提供，目前已足够使用。
 
-According to the config file, the XUnit reports will be saved in the project’s root directory. These reports are XML files. So, all you need to do in order to track the reports is to point Jenkins to all XML files in your root directory:
+根据配置文件，XUnit报告将保存在项目的根目录中。这些报告是XML文件。因此，您需要做的就是指示Jenkins查找根目录中的所有XML文件：
 
 ![Post-build Action](/img/jenkins/postjob.png "Post-build Action")
 
-That's it! You’ve now set up Jenkins to run your WebdriverIO jobs. Your job will now provide detailed test results with history charts, stacktrace information on failed jobs, and a list of commands with payload that got used in each test.
+就是这样！您现在已经设置了Jenkins来运行您的WebdriverIO作业。您的作业将提供详细的测试结果，包括历史图表、失败作业的堆栈跟踪信息以及每个测试中使用的命令及其负载列表。
 
 ![Jenkins Final Integration](/img/jenkins/final.png "Jenkins Final Integration")

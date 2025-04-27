@@ -1,21 +1,21 @@
 ---
 id: pageobjects
-title: Page Object Pattern
+title: 页面对象模式
 ---
 
-Version 5 of WebdriverIO was designed with Page Object Pattern support in mind. By introducing the "elements as first class citizens" principle, it is now possible to build up large test suites using this pattern.
+WebdriverIO 的第5版在设计时就考虑了页面对象模式支持。通过引入"元素作为一等公民"的原则，现在可以使用此模式构建大型测试套件。
 
-There are no additional packages required to create page objects. It turns out that clean, modern classes provide all necessary features we need:
+创建页面对象不需要额外的包。事实证明，简洁、现代的类提供了我们所需的所有必要功能：
 
-- inheritance between page objects
-- lazy loading of elements
-- encapsulation of methods and actions
+- 页面对象之间的继承
+- 元素的延迟加载
+- 方法和动作的封装
 
-The goal of using page objects is to abstract any page information away from the actual tests. Ideally, you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you've completely redesigned your page.
+使用页面对象的目标是将任何页面信息从实际测试中抽象出来。理想情况下，你应该将所有特定于某个页面的选择器或特定指令存储在页面对象中，这样即使在完全重新设计页面后，你仍然可以运行测试。
 
-## Making A Page Object
+## 创建页面对象
 
-First off, we need a main page object that we call `Page.js`. It will contain general selectors or methods which all page objects will inherit from.
+首先，我们需要一个主页面对象，我们称之为`Page.js`。它将包含所有页面对象将继承的通用选择器或方法。
 
 ```js
 // Page.js
@@ -30,15 +30,15 @@ export default class Page {
 }
 ```
 
-We will always `export` an instance of a page object, and never create that instance in the test. Since we are writing end-to-end tests, we always consider the page as a stateless construct&mdash;just as each HTTP request is a stateless construct.
+我们始终会`export`一个页面对象的实例，而不是在测试中创建该实例。由于我们正在编写端到端测试，我们始终将页面视为无状态结构——就像每个HTTP请求是无状态结构一样。
 
-Sure, the browser can carry session information and therefore can display different pages based on different sessions, but this shouldn't be reflected within a page object. These sorts of state changes should live in your actual tests.
+当然，浏览器可以携带会话信息，因此可以基于不同的会话显示不同的页面，但这不应该反映在页面对象中。这类状态变化应该存在于你的实际测试中。
 
-Let's start testing the first page. For demo purposes, we use [The Internet](http://the-internet.herokuapp.com) website by [Elemental Selenium](http://elementalselenium.com) as guinea pig. Let's try to build a page object example for the [login page](http://the-internet.herokuapp.com/login).
+让我们开始测试第一个页面。出于演示目的，我们使用[Elemental Selenium](http://elementalselenium.com)的[The Internet](http://the-internet.herokuapp.com)网站作为测试对象。让我们尝试为[登录页面](http://the-internet.herokuapp.com/login)构建一个页面对象示例。
 
-## `Get` -ing Your Selectors
+## 获取选择器
 
-The first step is to write all important selectors that are required in our `login.page` object as getter functions:
+第一步是将`login.page`对象中所需的所有重要选择器编写为getter函数：
 
 ```js
 // login.page.js
@@ -65,36 +65,36 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Defining selectors in getter functions might look a little weird, but it’s really useful. These functions are evaluated _when you access the property_, not when you generate the object. With that you always request the element before you do an action on it.
+在getter函数中定义选择器可能看起来有点奇怪，但它非常有用。这些函数在你访问属性时被评估，而不是在生成对象时。这样，你总是在对元素执行操作之前请求该元素。
 
-## Chaining Commands
+## 链式命令
 
-WebdriverIO internally remembers the last result of a command. If you chain an element command with an action command, it finds the element from the previous command and uses the result to execute the action. With that you can remove the selector (first parameter) and the command looks as simple as:
+WebdriverIO内部会记住命令的最后结果。如果你将元素命令与动作命令链接起来，它会从前一个命令中找到元素并使用结果执行动作。这样你可以删除选择器（第一个参数），命令看起来就像：
 
 ```js
 await LoginPage.username.setValue('Max Mustermann')
 ```
 
-Which is basically the same thing as:
+这基本上与以下代码相同：
 
 ```js
 let elem = await $('#username')
 await elem.setValue('Max Mustermann')
 ```
 
-or
+或者
 
 ```js
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Using Page Objects In Your Tests
+## 在测试中使用页面对象
 
-After you've defined the necessary elements and methods for the page, you can start to write the test for it. All you need to do to use the page object is to `import` (or `require`) it. That's it!
+定义了页面所需的元素和方法后，你可以开始为其编写测试。要使用页面对象，你只需要`import`（或`require`）它。就这么简单！
 
-Since you exported an already-created instance of the page object, importing it lets you start using it right away.
+由于你导出的是已创建的页面对象实例，导入后你可以立即开始使用它。
 
-If you use an assertion framework, your tests can be even more expressive:
+如果你使用断言框架，你的测试可以更具表现力：
 
 ```js
 // login.spec.js
@@ -121,10 +121,10 @@ describe('login form', () => {
 })
 ```
 
-From the structural side, it makes sense to separate spec files and page objects into different directories. Additionally you can give each page object the ending: `.page.js`. This makes it more clear that you import a page object.
+从结构上讲，将规范文件和页面对象分离到不同的目录中是有意义的。此外，你可以给每个页面对象添加后缀：`.page.js`。这使得导入页面对象时更加清晰。
 
-## Going Further
+## 更进一步
 
-This is the basic principle of how to write page objects with WebdriverIO. But you can build up way more complex page object structures than this! For example, you might have specific page objects for modals, or split up a huge page object into different classes (each representing a different part of the overall web page) that inherit from the main page object. The pattern really provides a lot of opportunities to separate page information from your tests, which is important to keep your test suite structured and clear in times where the project and number of tests grows.
+这是使用WebdriverIO编写页面对象的基本原则。但你可以构建比这更复杂的页面对象结构！例如，你可能为模态框有特定的页面对象，或者将一个庞大的页面对象拆分成继承自主页面对象的不同类（每个类代表整个网页的不同部分）。这种模式确实提供了很多机会将页面信息与测试分离，这对于在项目和测试数量增长时保持测试套件结构清晰非常重要。
 
-You can find this example (and even more page object examples) in the [`example` folder](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) on GitHub.
+你可以在GitHub上的[`example`文件夹](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject)中找到这个示例（以及更多页面对象示例）。

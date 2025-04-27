@@ -1,78 +1,78 @@
 ---
 id: ocr-faq
-title: Frequently Asked Questions
+title: 常见问题
 ---
 
-## My tests are very slow
+## 我的测试非常慢
 
-When you are using this `@wdio/ocr-service` you are not using it to speed up your tests, you use it because you have a hard time locating elements in your web/mobile app, and you want an easier way to locate them. And we all hopefully know that when you want something, you lose something else. **But....**, there is a way to make the `@wdio/ocr-service` execute faster than normal. More information about that can be found [here](./more-test-optimization).
+当你使用`@wdio/ocr-service`时，你并不是为了加速测试而使用它，你使用它是因为你在Web/移动应用中定位元素时遇到困难，想要一种更简单的方法来定位它们。我们都希望知道当你想要得到某些东西时，你会失去其他东西。**但是....**，有一种方法可以使`@wdio/ocr-service`比正常情况下执行得更快。更多相关信息可以在[这里](./more-test-optimization)找到。
 
-## Can I use the commands from this service with the default WebdriverIO commands/selectors?
+## 我可以将此服务中的命令与默认的WebdriverIO命令/选择器结合使用吗？
 
-Yes, you can combine the commands to make your script even more powerful! The advice is to use the default WebdriverIO commands/selectors as much as possible and only use this service when you can't find a unique selector, or your selector will become too brittle.
+是的，你可以组合这些命令使你的脚本更加强大！建议是尽可能多地使用默认的WebdriverIO命令/选择器，只有在找不到唯一的选择器或者你的选择器变得过于脆弱时才使用此服务。
 
-## My text isn't found, how is that possible?
+## 我的文本没有被找到，这是怎么回事？
 
-First, it's important to understand how the OCR process in this module works, so please read [this](./ocr-testing) page. If you still can't find your text, you might try the following things.
+首先，了解这个模块中OCR过程的工作原理很重要，所以请阅读[这个](./ocr-testing)页面。如果你仍然找不到你的文本，你可以尝试以下几点。
 
-### The image area is too big
+### 图像区域太大
 
-When the module needs to process a large area of the screenshot it might not find the text. You can provide a smaller area by providing a haystack when you use a command. Please check the [commands](./ocr-click-on-text) which commands support providing a haystack.
+当模块需要处理屏幕截图的大面积区域时，它可能找不到文本。你可以通过在使用命令时提供一个范围区域(haystack)来指定一个较小的区域。请查看[命令](./ocr-click-on-text)哪些命令支持提供范围区域。
 
-### The contrast between the text and background is not correct
+### 文本与背景之间的对比度不正确
 
-This means that you might have light text on a white background or dark text on a dark background. This can result in not being able to find text. In the examples below you can see that the text `Why WebdriverIO?` is white and surrounded by a grey button. In this case, it will result in not finding the `Why WebdriverIO?` text. By increasing the contrast for the specific command it finds the text and can click on it, see the second image.
+这意味着你可能在白色背景上有浅色文本或在深色背景上有深色文本。这可能导致无法找到文本。在下面的例子中，你可以看到文本`Why WebdriverIO?`是白色的，并被灰色按钮包围。在这种情况下，将导致找不到`Why WebdriverIO?`文本。通过增加特定命令的对比度，它找到了文本并可以点击它，见第二张图片。
 
 ```js
 await driver.ocrClickOnText({
     haystack: { height: 44, width: 1108, x: 129, y: 590 },
     text: "WebdriverIO?",
-    // // With the default contrast of 0.25, the text is not found
+    // // 使用默认对比度0.25时，文本无法找到
     contrast: 1,
 });
 ```
 
-![Contrast issues](/img/ocr/increased-contrast.jpg)
+![对比度问题](/img/ocr/increased-contrast.jpg)
 
-## Why is my element getting clicked but the keyboard on my mobile devices never pops up?
+## 为什么我的元素被点击了，但移动设备上的键盘从不弹出？
 
-This can happen on some text fields where the click is determined too long and considered a long tap. You can use the `clickDuration` option on [`ocrClickOnText`](./ocr-click-on-text) and [`ocrSetValue`](./ocr-set-value) to alleviate this. See [here](./ocr-click-on-text#options).
+这种情况可能发生在某些文本字段上，其中点击被认为太长并被视为长按。你可以在[`ocrClickOnText`](./ocr-click-on-text)和[`ocrSetValue`](./ocr-set-value)上使用`clickDuration`选项来缓解这个问题。参见[这里](./ocr-click-on-text#options)。
 
-## Can this module provide multiple elements back like WebdriverIO normally can do?
+## 这个模块能否像WebdriverIO通常那样返回多个元素？
 
-No, this is currently not possible. If the module finds multiple elements that match the provided selector it will automatically find the element that has the highest matching score.
+不，这目前是不可能的。如果模块找到多个与提供的选择器匹配的元素，它将自动找到具有最高匹配分数的元素。
 
-## Can I fully automate my app with the OCR commands provided by this service?
+## 我可以完全使用此服务提供的OCR命令自动化我的应用程序吗？
 
-I've never done it, but in theory, it should be possible. Please let us know if you succeed with that ☺️.
+我从未做过，但理论上应该是可能的。如果你成功了，请告诉我们☺️。
 
-## I see an extra file called `{languageCode}.traineddata` being added, what is this?
+## 我看到添加了一个名为`{languageCode}.traineddata`的额外文件，这是什么？
 
-`{languageCode}.traineddata` is a language data file used by Tesseract. It contains the training data for the selected language, which includes the necessary information for Tesseract to recognize English characters and words effectively.
+`{languageCode}.traineddata`是Tesseract使用的语言数据文件。它包含所选语言的训练数据，其中包括Tesseract有效识别英文字符和单词所需的必要信息。
 
-### Contents of `{languageCode}.traineddata`
+### `{languageCode}.traineddata`的内容
 
-The file generally contains:
+该文件通常包含：
 
-1. **Character Set Data:** Information about the characters in the English language.
-2. **Language Model:** A statistical model of how characters form words and words form sentences.
-3. **Feature Extractors:** Data on how to extract features from images for the recognition of characters.
-4. **Training Data:** Data derived from training Tesseract on a large set of English text images.
+1. **字符集数据：** 有关英语语言中字符的信息。
+1. **语言模型：** 关于字符如何形成单词以及单词如何形成句子的统计模型。
+1. **特征提取器：** 关于如何从图像中提取用于识别字符的特征的数据。
+1. **训练数据：** 从大量英文文本图像训练Tesseract得到的数据。
 
-### Why is the `{languageCode}.traineddata` Important?
+### 为什么`{languageCode}.traineddata`很重要？
 
-1. **Language Recognition:** Tesseract relies on these trained data files to accurately recognize and process text in a specific language. Without `{languageCode}.traineddata`, Tesseract would not be able to recognize English text.
-2. **Performance:** The quality and accuracy of OCR are directly related to the quality of the training data. Using the correct trained data file ensures that the OCR process is as accurate as possible.
-3. **Compatibility:** Ensuring that the `{languageCode}.traineddata` file is included in your project making it easier to replicate the OCR environment across different systems or team members' machines.
+1. **语言识别：** Tesseract依靠这些训练数据文件准确识别和处理特定语言的文本。没有`{languageCode}.traineddata`，Tesseract将无法识别英文文本。
+1. **性能：** OCR的质量和准确性与训练数据的质量直接相关。使用正确的训练数据文件确保OCR过程尽可能准确。
+1. **兼容性：** 确保将`{languageCode}.traineddata`文件包含在你的项目中，使得更容易在不同系统或团队成员的机器上复制OCR环境。
 
-### Versioning `{languageCode}.traineddata`
+### 版本控制`{languageCode}.traineddata`
 
-Including `{languageCode}.traineddata` in your version control system is recommended for the following reasons:
+建议将`{languageCode}.traineddata`包含在你的版本控制系统中，原因如下：
 
-1. **Consistency:** It ensures that all team members or deployment environments use the exact same version of the training data, leading to consistent OCR results across different environments.
-2. **Reproducibility:** Storing this file in version control makes it easier to reproduce results when running the OCR process at a later date or on a different machine.
-3. **Dependency Management:** Including it in the version control system helps in managing dependencies and ensures that any setup or environment configuration includes the necessary files for the project to run correctly.
+1. **一致性：** 它确保所有团队成员或部署环境使用完全相同版本的训练数据，从而在不同环境中产生一致的OCR结果。
+1. **可重现性：** 将此文件存储在版本控制中，使得在以后或在不同机器上运行OCR过程时更容易重现结果。
+1. **依赖管理：** 将其包含在版本控制系统中有助于管理依赖关系，并确保任何设置或环境配置都包含项目正确运行所需的必要文件。
 
-## Is there an easy way to see which text is found on my screen without running a test?
+## 有没有一种简单的方法可以查看我的屏幕上找到了哪些文本而不运行测试？
 
-Yes, you can use our CLI wizard for that. Documentation can be found [here](./cli-wizard)
+是的，你可以使用我们的CLI向导。文档可以在[这里](./cli-wizard)找到

@@ -1,8 +1,7 @@
 ---
 id: createlocalworkerprocess
-title: Create worker process
+title: 创建工作进程
 ---
-
-This flowchart explains how a worker process is created.
+此流程图解释了工作进程是如何被创建的。
 
 <CreateFlowcharts id='createlocalworkerprocess' />
