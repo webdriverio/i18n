@@ -1,15 +1,15 @@
 ---
 id: retry
-title: Retry Flaky Tests
+title: Réessayer les Tests Instables
 ---
 
-You can rerun certain tests with the WebdriverIO testrunner that turn out to be unstable due to things like a flaky network or race conditions. (However, it is not recommended to simply increase the rerun rate if tests become unstable!)
+Vous pouvez relancer certains tests avec le testrunner WebdriverIO qui s'avèrent instables en raison de problèmes comme un réseau instable ou des conditions de concurrence. (Cependant, il n'est pas recommandé d'augmenter simplement le taux de relance si les tests deviennent instables !)
 
-## Rerun suites in Mocha
+## Relancer des suites dans Mocha
 
-Since version 3 of Mocha, you can rerun whole test suites (everything inside an `describe` block). If you use Mocha you should favor this retry mechanism instead of the WebdriverIO implementation that only allows you to rerun certain test blocks (everything within an `it` block). In order to use the `this.retries()` method, the suite block `describe` must use an unbound function `function(){}` instead of a fat arrow function `() => {}`, as described in [Mocha docs](https://mochajs.org/#arrow-functions). Using Mocha you can also set a retry count for all specs using `mochaOpts.retries` in your `wdio.conf.js`.
+Depuis la version 3 de Mocha, vous pouvez relancer des suites de tests entières (tout ce qui se trouve à l'intérieur d'un bloc `describe`). Si vous utilisez Mocha, vous devriez privilégier ce mécanisme de relance plutôt que l'implémentation WebdriverIO qui ne vous permet de relancer que certains blocs de test (tout ce qui se trouve dans un bloc `it`). Pour utiliser la méthode `this.retries()`, le bloc de suite `describe` doit utiliser une fonction non liée `function(){}` au lieu d'une fonction fléchée `() => {}`, comme décrit dans la [documentation Mocha](https://mochajs.org/#arrow-functions). Avec Mocha, vous pouvez également définir un nombre de tentatives pour toutes les spécifications en utilisant `mochaOpts.retries` dans votre `wdio.conf.js`.
 
-Here is an example:
+Voici un exemple :
 
 ```js
 describe('retries', function () {
@@ -29,16 +29,16 @@ describe('retries', function () {
 })
 ```
 
-## Rerun single tests in Jasmine or Mocha
+## Relancer des tests individuels dans Jasmine ou Mocha
 
-To rerun a certain test block you can just apply the number of reruns as last parameter after the test block function:
+Pour relancer un certain bloc de test, vous pouvez simplement appliquer le nombre de relances comme dernier paramètre après la fonction du bloc de test :
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -54,7 +54,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+Cela fonctionne également pour les hooks :
 
 ```js
 describe('my flaky app', () => {
@@ -84,7 +84,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+Cela fonctionne également pour les hooks :
 
 ```js
 describe('my flaky app', () => {
@@ -99,22 +99,22 @@ describe('my flaky app', () => {
 })
 ```
 
-If you are using Jasmine, the second parameter is reserved for timeout. To apply a retry parameter you need to set the timeout to its default value `jasmine.DEFAULT_TIMEOUT_INTERVAL` and then apply your retry count.
+Si vous utilisez Jasmine, le deuxième paramètre est réservé au délai d'attente. Pour appliquer un paramètre de relance, vous devez définir le délai d'attente à sa valeur par défaut `jasmine.DEFAULT_TIMEOUT_INTERVAL` puis appliquer votre nombre de relances.
 
 </TabItem>
 </Tabs>
 
-This retry mechanism only allows to retry single hooks or test blocks. If your test is accompanied with a hook to set up your application, this hook is not being run. [Mocha offers](https://mochajs.org/#retry-tests) native test retries that provide this behavior while Jasmine doesn't. You can access the number of executed retries in the `afterTest` hook.
+Ce mécanisme de relance permet uniquement de relancer des hooks ou des blocs de test individuels. Si votre test est accompagné d'un hook pour configurer votre application, ce hook n'est pas exécuté. [Mocha offre](https://mochajs.org/#retry-tests) des relances de test natives qui fournissent ce comportement, tandis que Jasmine ne le fait pas. Vous pouvez accéder au nombre de relances exécutées dans le hook `afterTest`.
 
-## Rerunning in Cucumber
+## Relancer dans Cucumber
 
-### Rerun full suites in Cucumber
+### Relancer des suites complètes dans Cucumber
 
-For cucumber >=6 you can provide the [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) configuration option along with a `retryTagFilter` optional parameter to have all or some of your failing scenarios get additional retries until succeeded. For this feature to work you need to set the `scenarioLevelReporter` to `true`.
+Pour cucumber >=6, vous pouvez fournir l'option de configuration [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) avec un paramètre `retryTagFilter` optionnel pour que tous ou certains de vos scénarios défaillants obtiennent des relances supplémentaires jusqu'à ce qu'ils réussissent. Pour que cette fonctionnalité fonctionne, vous devez définir `scenarioLevelReporter` sur `true`.
 
-### Rerun Step Definitions in Cucumber
+### Relancer des définitions d'étapes dans Cucumber
 
-To define a rerun rate for a certain step definitions just apply a retry option to it, like:
+Pour définir un taux de relance pour certaines définitions d'étapes, appliquez simplement une option de relance, comme :
 
 ```js
 export default function () {
@@ -128,15 +128,15 @@ export default function () {
 })
 ```
 
-Reruns can only be defined in your step definitions file, never in your feature file.
+Les relances ne peuvent être définies que dans votre fichier de définitions d'étapes, jamais dans votre fichier de fonctionnalités.
 
-## Add retries on a per-specfile basis
+## Ajouter des relances sur la base d'un fichier de spécification
 
-Previously, only test- and suite-level retries were available, which are fine in most cases.
+Auparavant, seules les relances au niveau du test et de la suite étaient disponibles, ce qui convient dans la plupart des cas.
 
-But in any tests which involve state (such as on a server or in a database) the state may be left invalid after the first test failure. Any subsequent retries may have no chance of passing, due to the invalid state they would start with.
+Mais dans tous les tests impliquant un état (comme sur un serveur ou dans une base de données), l'état peut rester invalide après le premier échec du test. Toute relance ultérieure peut n'avoir aucune chance de réussir, en raison de l'état invalide avec lequel elle commencerait.
 
-A new `browser` instance is created for each specfile, which makes this an ideal place to hook and setup any other states (server, databases). Retries on this level mean that the whole setup process will simply be repeated, just as if it were for a new specfile.
+Une nouvelle instance de `browser` est créée pour chaque fichier de spécification, ce qui en fait un endroit idéal pour s'accrocher et configurer d'autres états (serveur, bases de données). Les relances à ce niveau signifient que l'ensemble du processus de configuration sera simplement répété, comme s'il s'agissait d'un nouveau fichier de spécification.
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -156,13 +156,13 @@ export const config = {
 }
 ```
 
-## Run a specific test multiple times
+## Exécuter un test spécifique plusieurs fois
 
-This is to help prevent flaky tests from being introduced in a codebase. By adding the `--repeat` cli option it will run the specified specs or suites N times. When using this cli flag the `--spec` or `--suite` flag must also be specified.
+Ceci permet d'éviter que des tests instables ne soient introduits dans une base de code. En ajoutant l'option cli `--repeat`, les spécifications ou suites spécifiées seront exécutées N fois. Lors de l'utilisation de ce drapeau cli, le drapeau `--spec` ou `--suite` doit également être spécifié.
 
-When adding new tests to a codebase, especially through a CI/CD process the tests could pass and get merged but become flaky later on. This flakiness could come from a number of things like network issues, server load, database size, etc. Using the `--repeat` flag in your CD/CD process can help catch these flaky tests before they get merged to a main codebase.
+Lors de l'ajout de nouveaux tests à une base de code, en particulier via un processus CI/CD, les tests pourraient passer et être fusionnés mais devenir instables plus tard. Cette instabilité peut provenir de nombreux facteurs comme des problèmes de réseau, la charge du serveur, la taille de la base de données, etc. L'utilisation du drapeau `--repeat` dans votre processus CD/CD peut aider à détecter ces tests instables avant qu'ils ne soient fusionnés dans une base de code principale.
 
-One strategy to use is run your tests like regular in your CI/CD process but if you're introducing a new test you can then run another set of tests with the new spec specified in `--spec` along with `--repeat` so it runs the new test x number of times. If the test fails any of those times then the test will not get merged and will need to be looked at why it failed.
+Une stratégie à utiliser consiste à exécuter vos tests normalement dans votre processus CI/CD, mais si vous introduisez un nouveau test, vous pouvez alors exécuter un autre ensemble de tests avec la nouvelle spécification spécifiée dans `--spec` ainsi que `--repeat` pour qu'il exécute le nouveau test x fois. Si le test échoue à un moment donné, il ne sera pas fusionné et il faudra examiner pourquoi il a échoué.
 
 ```sh
 # This will run the example.e2e.js spec 5 times

@@ -1,18 +1,18 @@
 {
   "version.label": {
-    "message": "Suivant",
+    "message": "Next",
     "description": "The label for version current"
   },
   "sidebar.docs.category.Getting Started": {
-    "message": "Bien démarrer",
+    "message": "Getting Started",
     "description": "The label for category Getting Started in sidebar docs"
   },
   "sidebar.docs.category.Core Concepts": {
-    "message": "Concepts de base",
+    "message": "Core Concepts",
     "description": "The label for category Core Concepts in sidebar docs"
   },
   "sidebar.docs.category.Configuration": {
-    "message": "Paramètres",
+    "message": "Configuration",
     "description": "The label for category Configuration in sidebar docs"
   },
   "sidebar.docs.category.Guides": {
@@ -24,23 +24,23 @@
     "description": "The label for category Testrunner in sidebar docs"
   },
   "sidebar.docs.category.Component Testing": {
-    "message": "Test des composants",
+    "message": "Component Testing",
     "description": "The label for category Component Testing in sidebar docs"
   },
   "sidebar.docs.category.Framework Setup": {
-    "message": "Détails du Framework",
+    "message": "Framework Setup",
     "description": "The label for category Framework Setup in sidebar docs"
   },
   "sidebar.docs.category.Migrate": {
-    "message": "Migrer",
+    "message": "Migrate",
     "description": "The label for category Migrate in sidebar docs"
   },
   "sidebar.docs.category.Integration": {
-    "message": "Intégration",
+    "message": "Integration",
     "description": "The label for category Integration in sidebar docs"
   },
   "sidebar.docs.category.Reporter": {
-    "message": "Rapporteur",
+    "message": "Reporter",
     "description": "The label for category Reporter in sidebar docs"
   },
   "sidebar.docs.category.Services": {
@@ -48,15 +48,15 @@
     "description": "The label for category Services in sidebar docs"
   },
   "sidebar.api.category.Protocols": {
-    "message": "Protocoles",
+    "message": "Protocols",
     "description": "The label for category Protocols in sidebar api"
   },
   "sidebar.api.category.browser": {
-    "message": "navigateur",
+    "message": "browser",
     "description": "The label for category browser in sidebar api"
   },
   "sidebar.api.category.element": {
-    "message": "élément",
+    "message": "element",
     "description": "The label for category element in sidebar api"
   },
   "sidebar.api.category.mock": {
@@ -64,11 +64,11 @@
     "description": "The label for category mock in sidebar api"
   },
   "sidebar.flowcharts.category.Flowcharts": {
-    "message": "Organigramme",
+    "message": "Flowcharts",
     "description": "The label for category Flowcharts in sidebar flowcharts"
   },
   "sidebar.docs.category.Web Extension Testing": {
-    "message": "Tests d'extension Web",
+    "message": "Web Extension Testing",
     "description": "The label for category Web Extension Testing in sidebar docs"
   }
 }

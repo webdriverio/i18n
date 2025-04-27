@@ -1,31 +1,31 @@
 ---
 id: autocompletion
-title: Auto-complétion
+title: Autocomplétion
 ---
 
 ## IntelliJ
 
-L'autocomplétion fonctionne sans problème dans IDEA et WebStorm.
+L'autocomplétion fonctionne nativement dans IDEA et WebStorm.
 
-Si vous écrivez du code du programme depuis un certain temps, vous aimez probablement l'auto-complétion. L'auto-complétion est disponible gratuitement dans de nombreux éditeurs de code.
+Si vous écrivez du code depuis un certain temps, vous appréciez probablement l'autocomplétion. L'autocomplétion est disponible nativement dans de nombreux éditeurs de code.
 
-![Auto-complétion](/img/autocompletion/0.png)
+![Autocompletion](/img/autocompletion/0.png)
 
-Les définitions de types basées sur [JSDoc](http://usejsdoc.org/) sont utilisées pour documenter du code. Il aide à voir plus de détails sur les paramètres et leurs types.
+Les définitions de types basées sur [JSDoc](http://usejsdoc.org/) sont utilisées pour documenter le code. Cela permet de voir plus de détails supplémentaires sur les paramètres et leurs types.
 
-![Auto-complétion](/img/autocompletion/1.png)
+![Autocompletion](/img/autocompletion/1.png)
 
-Utilisez les raccourcis standards <kbd>⇧ + ⌥ + SPACE</kbd> sur la plate-forme IntelliJ pour voir la documentation disponible :
+Utilisez les raccourcis standard <kbd>⇧ + ⌥ + SPACE</kbd> sur la plateforme IntelliJ pour voir la documentation disponible :
 
-![Auto-complétion](/img/autocompletion/2.png)
+![Autocompletion](/img/autocompletion/2.png)
 
-## Code Visual Studio (VSCode)
+## Visual Studio Code (VSCode)
 
-Visual Studio Code a généralement la prise en charge automatique des types et il n'y a aucune action nécessaire.
+Visual Studio Code dispose généralement d'une prise en charge des types automatiquement intégrée et aucune action n'est nécessaire.
 
-![Auto-complétion](/img/autocompletion/14.png)
+![Autocompletion](/img/autocompletion/14.png)
 
-Si vous utilisez JavaScript vanilla et que vous voulez avoir un support de type approprié, vous devez créer un jsconfig `. son` à la racine de votre projet et reportez-vous aux paquets wdio utilisés, par exemple:
+Si vous utilisez du JavaScript vanilla et souhaitez avoir une prise en charge appropriée des types, vous devez créer un fichier `jsconfig.json` à la racine de votre projet et faire référence aux packages wdio utilisés, par exemple :
 
 ```json title="jsconfig.json"
 {

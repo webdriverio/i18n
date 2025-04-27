@@ -1,78 +1,78 @@
 ---
 id: ocr-faq
-title: Frequently Asked Questions
+title: Questions Fréquemment Posées
 ---
 
-## My tests are very slow
+## Mes tests sont très lents
 
-When you are using this `@wdio/ocr-service` you are not using it to speed up your tests, you use it because you have a hard time locating elements in your web/mobile app, and you want an easier way to locate them. And we all hopefully know that when you want something, you lose something else. **But....**, there is a way to make the `@wdio/ocr-service` execute faster than normal. More information about that can be found [here](./more-test-optimization).
+Lorsque vous utilisez ce `@wdio/ocr-service`, vous ne l'utilisez pas pour accélérer vos tests, vous l'utilisez parce que vous avez du mal à localiser des éléments dans votre application web/mobile, et vous voulez un moyen plus facile de les localiser. Et nous savons tous, espérons-le, que lorsque vous voulez quelque chose, vous perdez autre chose. **Mais...**, il existe un moyen de faire exécuter le `@wdio/ocr-service` plus rapidement que la normale. Plus d'informations à ce sujet peuvent être trouvées [ici](./more-test-optimization).
 
-## Can I use the commands from this service with the default WebdriverIO commands/selectors?
+## Puis-je utiliser les commandes de ce service avec les commandes/sélecteurs par défaut de WebdriverIO ?
 
-Yes, you can combine the commands to make your script even more powerful! The advice is to use the default WebdriverIO commands/selectors as much as possible and only use this service when you can't find a unique selector, or your selector will become too brittle.
+Oui, vous pouvez combiner les commandes pour rendre votre script encore plus puissant ! Le conseil est d'utiliser les commandes/sélecteurs par défaut de WebdriverIO autant que possible et de n'utiliser ce service que lorsque vous ne pouvez pas trouver un sélecteur unique, ou que votre sélecteur deviendrait trop fragile.
 
-## My text isn't found, how is that possible?
+## Mon texte n'est pas trouvé, comment est-ce possible ?
 
-First, it's important to understand how the OCR process in this module works, so please read [this](./ocr-testing) page. If you still can't find your text, you might try the following things.
+Tout d'abord, il est important de comprendre comment fonctionne le processus OCR dans ce module, alors veuillez lire [cette](./ocr-testing) page. Si vous ne trouvez toujours pas votre texte, vous pouvez essayer les choses suivantes.
 
-### The image area is too big
+### La zone d'image est trop grande
 
-When the module needs to process a large area of the screenshot it might not find the text. You can provide a smaller area by providing a haystack when you use a command. Please check the [commands](./ocr-click-on-text) which commands support providing a haystack.
+Lorsque le module doit traiter une grande zone de la capture d'écran, il peut ne pas trouver le texte. Vous pouvez fournir une zone plus petite en fournissant un haystack lorsque vous utilisez une commande. Veuillez vérifier les [commandes](./ocr-click-on-text) qui prennent en charge la fourniture d'un haystack.
 
-### The contrast between the text and background is not correct
+### Le contraste entre le texte et l'arrière-plan n'est pas correct
 
-This means that you might have light text on a white background or dark text on a dark background. This can result in not being able to find text. In the examples below you can see that the text `Why WebdriverIO?` is white and surrounded by a grey button. In this case, it will result in not finding the `Why WebdriverIO?` text. By increasing the contrast for the specific command it finds the text and can click on it, see the second image.
+Cela signifie que vous pourriez avoir un texte clair sur un fond blanc ou un texte foncé sur un fond foncé. Cela peut entraîner l'impossibilité de trouver du texte. Dans les exemples ci-dessous, vous pouvez voir que le texte `Why WebdriverIO?` est blanc et entouré d'un bouton gris. Dans ce cas, cela entraînera l'impossibilité de trouver le texte `Why WebdriverIO?`. En augmentant le contraste pour la commande spécifique, il trouve le texte et peut cliquer dessus, voir la deuxième image.
 
 ```js
 await driver.ocrClickOnText({
     haystack: { height: 44, width: 1108, x: 129, y: 590 },
     text: "WebdriverIO?",
-    // // With the default contrast of 0.25, the text is not found
+    // // Avec le contraste par défaut de 0,25, le texte n'est pas trouvé
     contrast: 1,
 });
 ```
 
-![Contrast issues](/img/ocr/increased-contrast.jpg)
+![Problèmes de contraste](/img/ocr/increased-contrast.jpg)
 
-## Why is my element getting clicked but the keyboard on my mobile devices never pops up?
+## Pourquoi mon élément est-il cliqué mais le clavier de mes appareils mobiles n'apparaît jamais ?
 
-This can happen on some text fields where the click is determined too long and considered a long tap. You can use the `clickDuration` option on [`ocrClickOnText`](./ocr-click-on-text) and [`ocrSetValue`](./ocr-set-value) to alleviate this. See [here](./ocr-click-on-text#options).
+Cela peut se produire sur certains champs de texte où le clic est déterminé trop long et considéré comme un appui prolongé. Vous pouvez utiliser l'option `clickDuration` sur [`ocrClickOnText`](./ocr-click-on-text) et [`ocrSetValue`](./ocr-set-value) pour atténuer cela. Voir [ici](./ocr-click-on-text#options).
 
-## Can this module provide multiple elements back like WebdriverIO normally can do?
+## Ce module peut-il renvoyer plusieurs éléments comme WebdriverIO le fait normalement ?
 
-No, this is currently not possible. If the module finds multiple elements that match the provided selector it will automatically find the element that has the highest matching score.
+Non, ce n'est actuellement pas possible. Si le module trouve plusieurs éléments qui correspondent au sélecteur fourni, il trouvera automatiquement l'élément qui a le score de correspondance le plus élevé.
 
-## Can I fully automate my app with the OCR commands provided by this service?
+## Puis-je automatiser complètement mon application avec les commandes OCR fournies par ce service ?
 
-I've never done it, but in theory, it should be possible. Please let us know if you succeed with that ☺️.
+Je ne l'ai jamais fait, mais en théorie, cela devrait être possible. Veuillez nous faire savoir si vous y parvenez ☺️.
 
-## I see an extra file called `{languageCode}.traineddata` being added, what is this?
+## Je vois un fichier supplémentaire appelé `{languageCode}.traineddata` être ajouté, qu'est-ce que c'est ?
 
-`{languageCode}.traineddata` is a language data file used by Tesseract. It contains the training data for the selected language, which includes the necessary information for Tesseract to recognize English characters and words effectively.
+`{languageCode}.traineddata` est un fichier de données linguistiques utilisé par Tesseract. Il contient les données d'entraînement pour la langue sélectionnée, qui comprend les informations nécessaires à Tesseract pour reconnaître efficacement les caractères et les mots en anglais.
 
-### Contents of `{languageCode}.traineddata`
+### Contenu de `{languageCode}.traineddata`
 
-The file generally contains:
+Le fichier contient généralement :
 
-1. **Character Set Data:** Information about the characters in the English language.
-2. **Language Model:** A statistical model of how characters form words and words form sentences.
-3. **Feature Extractors:** Data on how to extract features from images for the recognition of characters.
-4. **Training Data:** Data derived from training Tesseract on a large set of English text images.
+1. **Données de jeu de caractères :** Informations sur les caractères de la langue anglaise.
+1. **Modèle de langue :** Un modèle statistique de la façon dont les caractères forment des mots et les mots forment des phrases.
+1. **Extracteurs de caractéristiques :** Données sur la façon d'extraire des caractéristiques des images pour la reconnaissance des caractères.
+1. **Données d'entraînement :** Données dérivées de l'entraînement de Tesseract sur un grand ensemble d'images de texte en anglais.
 
-### Why is the `{languageCode}.traineddata` Important?
+### Pourquoi `{languageCode}.traineddata` est-il important ?
 
-1. **Language Recognition:** Tesseract relies on these trained data files to accurately recognize and process text in a specific language. Without `{languageCode}.traineddata`, Tesseract would not be able to recognize English text.
-2. **Performance:** The quality and accuracy of OCR are directly related to the quality of the training data. Using the correct trained data file ensures that the OCR process is as accurate as possible.
-3. **Compatibility:** Ensuring that the `{languageCode}.traineddata` file is included in your project making it easier to replicate the OCR environment across different systems or team members' machines.
+1. **Reconnaissance de la langue :** Tesseract s'appuie sur ces fichiers de données entraînées pour reconnaître et traiter avec précision le texte dans une langue spécifique. Sans `{languageCode}.traineddata`, Tesseract ne serait pas capable de reconnaître le texte en anglais.
+1. **Performance :** La qualité et la précision de l'OCR sont directement liées à la qualité des données d'entraînement. L'utilisation du bon fichier de données entraînées garantit que le processus OCR est aussi précis que possible.
+1. **Compatibilité :** S'assurer que le fichier `{languageCode}.traineddata` est inclus dans votre projet facilite la réplication de l'environnement OCR sur différents systèmes ou machines des membres de l'équipe.
 
-### Versioning `{languageCode}.traineddata`
+### Versionnement de `{languageCode}.traineddata`
 
-Including `{languageCode}.traineddata` in your version control system is recommended for the following reasons:
+L'inclusion de `{languageCode}.traineddata` dans votre système de contrôle de version est recommandée pour les raisons suivantes :
 
-1. **Consistency:** It ensures that all team members or deployment environments use the exact same version of the training data, leading to consistent OCR results across different environments.
-2. **Reproducibility:** Storing this file in version control makes it easier to reproduce results when running the OCR process at a later date or on a different machine.
-3. **Dependency Management:** Including it in the version control system helps in managing dependencies and ensures that any setup or environment configuration includes the necessary files for the project to run correctly.
+1. **Cohérence :** Cela garantit que tous les membres de l'équipe ou les environnements de déploiement utilisent exactement la même version des données d'entraînement, ce qui conduit à des résultats OCR cohérents dans différents environnements.
+1. **Reproductibilité :** Stocker ce fichier dans le contrôle de version facilite la reproduction des résultats lors de l'exécution du processus OCR à une date ultérieure ou sur une machine différente.
+1. **Gestion des dépendances :** L'inclure dans le système de contrôle de version aide à gérer les dépendances et garantit que toute configuration ou configuration d'environnement inclut les fichiers nécessaires pour que le projet s'exécute correctement.
 
-## Is there an easy way to see which text is found on my screen without running a test?
+## Existe-t-il un moyen simple de voir quel texte est trouvé sur mon écran sans exécuter un test ?
 
-Yes, you can use our CLI wizard for that. Documentation can be found [here](./cli-wizard)
+Oui, vous pouvez utiliser notre assistant CLI pour cela. La documentation peut être trouvée [ici](./cli-wizard)

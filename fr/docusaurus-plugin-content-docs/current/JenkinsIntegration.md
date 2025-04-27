@@ -3,10 +3,11 @@ id: jenkins
 title: Jenkins
 ---
 
-WebdriverIO offre une intégration étroite aux systèmes CI comme [Jenkins](https://jenkins-ci.org). Avec le reporteur `junit` , vous pouvez facilement déboguer vos tests et garder une trace de vos résultats de test. L'intégration est assez facile.
+WebdriverIO offre une intégration étroite avec les systèmes CI comme [Jenkins](https://jenkins-ci.org). Avec le rapporteur `junit`, vous pouvez facilement déboguer vos tests et suivre vos résultats de test. L'intégration est assez simple.
 
-1. Installez le rapport de test `junit` : `$ npm install @wdio/junit-reporter --save-dev`)
-1. Mettez à jour votre configuration pour enregistrer vos résultats XUnit où Jenkins peut les trouver, (et spécifiez le reporteur `junit` ) :
+1. Installez le rapporteur de test `junit` : `$ npm install @wdio/junit-reporter --save-dev`)
+1. Mettez à jour votre configuration pour enregistrer vos résultats XUnit à un endroit où Jenkins peut les trouver,
+    (et spécifiez le rapporteur `junit`) :
 
 ```js
 // wdio.conf.js
@@ -22,30 +23,31 @@ module.exports = {
 }
 ```
 
-C'est à vous de choisir la méthode qui vous convient. Les rapports seront similaires. Pour ce tutoriel, nous utiliserons Jasmine.
+C'est à vous de choisir le framework. Les rapports seront similaires.
+Pour ce tutoriel, nous utiliserons Jasmine.
 
-Une fois que vous avez écrit quelques tests, vous pouvez configurer une nouvelle tâche Jenkins. Donnez-lui un nom et une description :
+Après avoir écrit quelques tests, vous pouvez configurer un nouveau job Jenkins. Donnez-lui un nom et une description :
 
 ![Nom et description](/img/jenkins/jobname.png "Nom et description")
 
-Ensuite, assurez-vous qu'il récupère toujours la version la plus récente de votre dépôt :
+Ensuite, assurez-vous qu'il récupère toujours la dernière version de votre dépôt :
 
-![Jenkins Git Setup](/img/jenkins/gitsetup.png "Jenkins Git Setup")
+![Configuration Git de Jenkins](/img/jenkins/gitsetup.png "Configuration Git de Jenkins")
 
-**Maintenant la partie importante :** Créer une étape `build` pour exécuter des commandes shell. L'étape `de build` a besoin de construire votre projet. Puisque ce projet de démo ne teste qu'une application externe, vous n'avez pas besoin de construire quoi que ce soit. Installez simplement les dépendances du noeud et exécutez la commande `npm test` (qui est un alias pour `node_modules/.bin/wdio test/wdio.conf.js`).
+**Maintenant la partie importante :** Créez une étape de `build` pour exécuter des commandes shell. L'étape de `build` doit construire votre projet. Comme ce projet de démonstration ne fait que tester une application externe, vous n'avez rien à construire. Installez simplement les dépendances node et exécutez la commande `npm test` (qui est un alias pour `node_modules/.bin/wdio test/wdio.conf.js`).
 
-Si vous avez installé un plugin comme AnsiColor, mais que les logs ne sont toujours pas colorés, exécutez des tests avec la variable d'environnement `FORCE_COLOR=1` (e. ., `FORCE_COLOR=1 test npm`).
+Si vous avez installé un plugin comme AnsiColor, mais que les logs ne sont toujours pas colorés, exécutez les tests avec la variable d'environnement `FORCE_COLOR=1` (par exemple, `FORCE_COLOR=1 npm test`).
 
-![À l'étape Build](/img/jenkins/runjob.png "À l'étape Build")
+![Étape de build](/img/jenkins/runjob.png "Étape de build")
 
-Après votre test, vous voudrez que Jenkins suive votre rapport XUnit. Pour ce faire, vous devez ajouter une action post-build appelée _"Publier le rapport de résultats de test JUnit"_.
+Après votre test, vous voudrez que Jenkins suive votre rapport XUnit. Pour ce faire, vous devez ajouter une action post-build appelée _"Publish JUnit test result report"_.
 
-Vous pouvez également installer un plugin XUnit externe pour suivre vos rapports. Le JUnit est livré avec l'installation de base de Jenkins et est suffisant pour l'instant.
+Vous pourriez également installer un plugin XUnit externe pour suivre vos rapports. Celui de JUnit est fourni avec l'installation de base de Jenkins et est suffisant pour l'instant.
 
-Selon le fichier de configuration, les rapports XUnit seront enregistrés dans le répertoire racine du projet. Ces rapports sont des fichiers XML. Donc, tout ce que vous avez à faire pour suivre les rapports est de pointer Jenkins vers tous les fichiers XML de votre répertoire racine :
+Selon le fichier de configuration, les rapports XUnit seront enregistrés dans le répertoire racine du projet. Ces rapports sont des fichiers XML. Donc, tout ce que vous avez à faire pour suivre les rapports est de pointer Jenkins vers tous les fichiers XML dans votre répertoire racine :
 
-![Action de post-construction](/img/jenkins/postjob.png "Action de post-construction")
+![Action post-build](/img/jenkins/postjob.png "Action post-build")
 
-Voilà! Vous avez maintenant mis en place Jenkins pour exécuter vos jobs WebdriverIO. Votre travail va maintenant fournir des résultats de test détaillés avec des graphiques d'historique, stacktrace les informations sur les tâches échouées et une liste de commandes avec un bloc qui a été utilisé dans chaque test.
+C'est tout ! Vous avez maintenant configuré Jenkins pour exécuter vos tâches WebdriverIO. Votre tâche fournira désormais des résultats de test détaillés avec des graphiques d'historique, des informations de trace d'appel sur les tâches échouées, et une liste de commandes avec la charge utile utilisée dans chaque test.
 
 ![Intégration finale de Jenkins](/img/jenkins/final.png "Intégration finale de Jenkins")

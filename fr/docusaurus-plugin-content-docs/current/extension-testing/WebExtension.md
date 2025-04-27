@@ -1,23 +1,23 @@
 ---
 id: web-extensions
-title: Web Extension Testing
+title: Test d'Extensions Web
 ---
 
-WebdriverIO is the ideal tool to automate a browser. Web Extensions are a part of the browser and can be automated in the same way. Whenever your web extension uses content scripts to run JavaScript on websites or offer a popup modal, you can run an e2e test for that using WebdriverIO.
+WebdriverIO est l'outil idéal pour automatiser un navigateur. Les extensions web font partie du navigateur et peuvent être automatisées de la même manière. Chaque fois que votre extension web utilise des scripts de contenu pour exécuter JavaScript sur des sites web ou offre une fenêtre popup, vous pouvez exécuter un test e2e pour cela en utilisant WebdriverIO.
 
-## Loading a Web Extension into the Browser
+## Charger une Extension Web dans le Navigateur
 
-As a first step we have to load the extension under test into the browser as part of our session. This works differently for Chrome and Firefox.
+La première étape consiste à charger l'extension à tester dans le navigateur dans le cadre de notre session. Cela fonctionne différemment pour Chrome et Firefox.
 
 :::info
 
-These docs leave out Safari web extensions as their support for it is way behind and user demand not high. If you are building a web extension for Safari, please [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) and collaborate on including it here as well.
+Cette documentation ne traite pas des extensions web Safari car leur support est bien en retard et la demande des utilisateurs n'est pas élevée. Si vous développez une extension web pour Safari, veuillez [ouvrir un ticket](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) et collaborer pour l'inclure ici également.
 
 :::
 
 ### Chrome
 
-Loading a web extension in Chrome can be done through providing a `base64` encoded string of the `crx` file or by providing a path to the web extension folder. The easiest is just to do the latter by defining your Chrome capabilities as following:
+Le chargement d'une extension web dans Chrome peut se faire en fournissant une chaîne encodée en `base64` du fichier `crx` ou en fournissant un chemin vers le dossier de l'extension web. Le plus simple est de faire cette dernière en définissant vos capacités Chrome comme suit :
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -30,8 +30,8 @@ export const config = {
     capabilities: [{
         browserName,
         'goog:chromeOptions': {
-            // given your wdio.conf.js is in the root directory and your compiled
-            // web extension files are located in the `./dist` folder
+            // étant donné que votre wdio.conf.js est dans le répertoire racine et que vos fichiers
+            // d'extension web compilés sont situés dans le dossier `./dist`
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -40,11 +40,11 @@ export const config = {
 
 :::info
 
-If you automate a different browser than Chrome, e.g. Brave, Edge or Opera, chances are that the browser option match with the example above, just using a different capability name, e.g. `ms:edgeOptions`.
+Si vous automatisez un navigateur autre que Chrome, par exemple Brave, Edge ou Opera, il est probable que l'option du navigateur corresponde à l'exemple ci-dessus, en utilisant simplement un nom de capacité différent, par exemple `ms:edgeOptions`.
 
 :::
 
-If you compile your extension as `.crx` file using e.g. the [crx](https://www.npmjs.com/package/crx) NPM package, you can also inject the bundled extension via:
+Si vous compilez votre extension en fichier `.crx` en utilisant par exemple le package NPM [crx](https://www.npmjs.com/package/crx), vous pouvez également injecter l'extension groupée via :
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +67,7 @@ export const config = {
 
 ### Firefox
 
-To create a Firefox profile that includes extensions you can use the [Firefox Profile Service](/docs/firefox-profile-service) to set up your session accordingly. However you might run into issues where your local developed extension can't be loaded due to signing issues. In this case you can also load an extension in the `before` hook via the [`installAddOn`](/docs/api/gecko#installaddon) command, e.g.:
+Pour créer un profil Firefox qui inclut des extensions, vous pouvez utiliser le [Service de Profil Firefox](/docs/firefox-profile-service) pour configurer votre session en conséquence. Cependant, vous pourriez rencontrer des problèmes où votre extension développée localement ne peut pas être chargée en raison de problèmes de signature. Dans ce cas, vous pouvez également charger une extension dans le hook `before` via la commande [`installAddOn`](/docs/api/gecko#installaddon), par exemple :
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,21 +88,21 @@ export const config = {
 }
 ```
 
-In order to generate an `.xpi` file, it is recommended to use the [`web-ext`](https://www.npmjs.com/package/web-ext) NPM package. You can bundle your extension using the following example command:
+Pour générer un fichier `.xpi`, il est recommandé d'utiliser le package NPM [`web-ext`](https://www.npmjs.com/package/web-ext). Vous pouvez regrouper votre extension en utilisant l'exemple de commande suivant :
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
-## Tips & Tricks
+## Astuces et Conseils
 
-The following section contains a set useful tips and tricks that can be helpful when testing a web extension.
+La section suivante contient un ensemble d'astuces et de conseils utiles qui peuvent être utiles lors du test d'une extension web.
 
-### Test Popup Modal in Chrome
+### Tester la Fenêtre Popup dans Chrome
 
-If you define a `default_popup` browser action entry in your [extension manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) you can test that HTML page directly, since clicking on the extension icon in the browser top bar won't work. Instead, you have to open the popup html file directly.
+Si vous définissez une entrée d'action de navigateur `default_popup` dans votre [manifeste d'extension](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action), vous pouvez tester cette page HTML directement, car cliquer sur l'icône d'extension dans la barre supérieure du navigateur ne fonctionnera pas. Au lieu de cela, vous devez ouvrir directement le fichier HTML popup.
 
-In Chrome this works by retrieving the extension ID and opening the popup page through `browser.url('...')`. The behavior on that page will be the same as within the popup. To do so we recommend to write the following custom command:
+Dans Chrome, cela fonctionne en récupérant l'ID de l'extension et en ouvrant la page popup via `browser.url('...')`. Le comportement sur cette page sera le même que dans le popup. Pour ce faire, nous recommandons d'écrire la commande personnalisée suivante :
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -134,7 +134,7 @@ declare global {
 }
 ```
 
-In your `wdio.conf.js` you can import this file and register the custom command in your `before` hook, e.g.:
+Dans votre `wdio.conf.js`, vous pouvez importer ce fichier et enregistrer la commande personnalisée dans votre hook `before`, par exemple :
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'
@@ -149,8 +149,8 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Now, in your test, you can access the popup page via:
+Maintenant, dans votre test, vous pouvez accéder à la page popup via :
 
 ```ts
-await browser.openExtensionPopup('My Web Extension')
+await browser.openExtensionPopup('Mon Extension Web')
 ```

@@ -1,32 +1,32 @@
 ---
 index: 1
 id: considerations
-title: Considerations
+title: Considérations
 ---
 
-# Key Considerations for Optimal Use
+# Considérations clés pour une utilisation optimale
 
-Before diving into the powerful features of the `@wdio/visual-service`, it's crucial to understand some key considerations that ensure you get the most out of this tool. The following points are designed to guide you through best practices and common pitfalls, helping you achieve accurate and efficient visual testing results. These considerations are not just recommendations, but essential aspects to keep in mind for effectively utilizing the service in real-world scenarios.
+Avant de plonger dans les fonctionnalités puissantes du `@wdio/visual-service`, il est crucial de comprendre certaines considérations clés qui vous permettront de tirer le meilleur parti de cet outil. Les points suivants sont conçus pour vous guider à travers les meilleures pratiques et les pièges courants, vous aidant à obtenir des résultats de tests visuels précis et efficaces. Ces considérations ne sont pas seulement des recommandations, mais des aspects essentiels à garder à l'esprit pour utiliser efficacement le service dans des scénarios réels.
 
-## Nature of Comparison
+## Nature de la comparaison
 
-- **Pixel-by-Pixel Basis:** The module performs a pixel-by-pixel comparison of images. While certain aspects can be adjusted (see Comparison Options), the core approach remains a basic pixel comparison.
-- **Impact of Browser Updates:** Be aware that updates to browsers, like Chrome, may affect font rendering, potentially necessitating an update to your baseline images.
+-   **Base pixel par pixel :** Le module effectue une comparaison pixel par pixel des images. Bien que certains aspects puissent être ajustés (voir Options de comparaison), l'approche de base reste une comparaison de pixels simple.
+-   **Impact des mises à jour de navigateur :** Soyez conscient que les mises à jour des navigateurs, comme Chrome, peuvent affecter le rendu des polices, nécessitant potentiellement une mise à jour de vos images de référence.
 
-## Consistency in Platforms
+## Cohérence des plateformes
 
-- **Comparing Identical Platforms:** Ensure screenshots are compared within the same platform. For instance, a screenshot from Chrome on a Mac should not be used to compare against one from Chrome on Ubuntu or Windows.
-- **Analogy:** To put it simply, compare _'Apples with Apples, not Apples with Androids'_.
+-   **Comparer des plateformes identiques :** Assurez-vous que les captures d'écran sont comparées au sein de la même plateforme. Par exemple, une capture d'écran de Chrome sur Mac ne devrait pas être utilisée pour comparer avec une capture de Chrome sur Ubuntu ou Windows.
+-   **Analogie :** Pour simplifier, comparez _'des Pommes avec des Pommes, pas des Pommes avec des Androids'_.
 
-## Caution with Mismatch Percentage
+## Prudence avec le pourcentage de différence
 
-- **Risk of Accepting Mismatches:** Exercise caution when accepting a mismatch percentage. This is especially true for large screenshots, where accepting a mismatch might inadvertently overlook significant discrepancies, such as missing buttons or elements.
+-   **Risque d'accepter des différences :** Soyez prudent lorsque vous acceptez un pourcentage de différence. C'est particulièrement vrai pour les grandes captures d'écran, où l'acceptation d'une différence pourrait involontairement négliger des écarts importants, comme des boutons ou des éléments manquants.
 
-## Mobile Screen Simulation
+## Simulation d'écran mobile
 
-- **Avoid Browser Resizing for Mobile Simulation:** Do not attempt to simulate mobile screen sizes by resizing desktop browsers and treating them as mobile browsers. Desktop browsers, even when resized, do not accurately replicate the rendering of actual mobile browsers.
-- **Authenticity in Comparison:** This tool aims to compare visuals as they would appear to an end-user. A resized desktop browser does not reflect the true experience on a mobile device.
+-   **Évitez de redimensionner le navigateur pour simuler un mobile :** N'essayez pas de simuler des tailles d'écran mobile en redimensionnant les navigateurs de bureau et en les traitant comme des navigateurs mobiles. Les navigateurs de bureau, même redimensionnés, ne reproduisent pas fidèlement le rendu des navigateurs mobiles réels.
+-   **Authenticité dans la comparaison :** Cet outil vise à comparer les visuels tels qu'ils apparaîtraient à un utilisateur final. Un navigateur de bureau redimensionné ne reflète pas l'expérience réelle sur un appareil mobile.
 
-## Stance on Headless Browsers
+## Position sur les navigateurs headless
 
-- **Not Recommended for Headless Browsers:** The use of this module with headless browsers is not advised. The rationale is that end-users do not interact with headless browsers, and therefore issues arising from such use will not be supported.
+-   **Non recommandé pour les navigateurs headless :** L'utilisation de ce module avec des navigateurs headless n'est pas conseillée. La raison est que les utilisateurs finaux n'interagissent pas avec des navigateurs headless, et par conséquent, les problèmes découlant d'une telle utilisation ne seront pas pris en charge.

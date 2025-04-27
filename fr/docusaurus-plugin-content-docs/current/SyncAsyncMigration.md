@@ -1,25 +1,25 @@
 ---
 id: async-migration
-title: From Sync to Async
+title: De Sync à Async
 ---
 
-Due to changes in V8 the WebdriverIO team [announced](https://webdriver.io/blog/2021/07/28/sync-api-deprecation) to deprecate synchronous command execution by April 2023. The team has been working hard to make the transition as easy as possible. In this guide we explain how you can slowly migrate your test suite from sync to async. As an example project we use the [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) but the approach is the same with all other projects as well.
+En raison des changements dans V8, l'équipe WebdriverIO a [annoncé](https://webdriver.io/blog/2021/07/28/sync-api-deprecation) la dépréciation de l'exécution synchrone des commandes d'ici avril 2023. L'équipe a travaillé dur pour rendre la transition aussi facile que possible. Dans ce guide, nous expliquons comment vous pouvez progressivement migrer votre suite de tests du mode synchrone vers asynchrone. Comme projet d'exemple, nous utilisons le [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate), mais l'approche est la même pour tous les autres projets.
 
-## Promises in JavaScript
+## Les Promesses en JavaScript
 
-The reason why synchronous execution was popular in WebdriverIO is because it removes the complexity of dealing with promises. Particularly if you come from other languages where this concept doesn't exist this way, it can be confusing in the beginning. However Promises are a very powerful tool to deal with asynchronous code and today's JavaScript makes it actually easy to deal with it. If you never worked with Promises, we recommend to check out the [MDN reference guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to it as it would be out of scope to explain it here.
+La raison pour laquelle l'exécution synchrone était populaire dans WebdriverIO est qu'elle élimine la complexité de la gestion des promesses. Particulièrement si vous venez d'autres langages où ce concept n'existe pas de cette façon, cela peut être déroutant au début. Cependant, les Promesses sont un outil très puissant pour gérer le code asynchrone, et le JavaScript d'aujourd'hui rend leur utilisation assez simple. Si vous n'avez jamais travaillé avec des Promesses, nous vous recommandons de consulter le [guide de référence MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise), car il serait hors de portée de l'expliquer ici.
 
-## Async Transition
+## Transition vers l'asynchrone
 
-The WebdriverIO testrunner can handle async and sync execution within the same test suite. This means that you can slowly migrate your tests and PageObjects step by step at your pace. For example, the Cucumber Boilerplate has defined [a large set of step definition](https://github.com/webdriverio/cucumber-boilerplate/tree/main/src/support/action) for you to copy into your project. We can go ahead and migrate one step definition or one file at a time.
+Le testrunner WebdriverIO peut gérer l'exécution asynchrone et synchrone au sein de la même suite de tests. Cela signifie que vous pouvez migrer progressivement vos tests et PageObjects étape par étape à votre rythme. Par exemple, le Cucumber Boilerplate a défini [un large ensemble de définitions d'étapes](https://github.com/webdriverio/cucumber-boilerplate/tree/main/src/support/action) que vous pouvez copier dans votre projet. Nous pouvons procéder et migrer une définition d'étape ou un fichier à la fois.
 
 :::tip
 
-WebdriverIO offers a [codemod](https://github.com/webdriverio/codemod) that allows to transform your sync code into async code almost full automatically. Run the codemod as described in the docs first and use this guide for manual migration if needed.
+WebdriverIO propose un [codemod](https://github.com/webdriverio/codemod) qui permet de transformer votre code synchrone en code asynchrone presque automatiquement. Exécutez le codemod comme décrit dans la documentation d'abord et utilisez ce guide pour la migration manuelle si nécessaire.
 
 :::
 
-In many cases, everything that is necessary to do is to make the function in which you call WebdriverIO commands `async` and add an `await` in front of every command. Looking at the first file `clearInputField.ts` to transform in the boilerplate project, we transform from:
+Dans de nombreux cas, tout ce qu'il est nécessaire de faire est de rendre la fonction dans laquelle vous appelez les commandes WebdriverIO `async` et d'ajouter un `await` devant chaque commande. En regardant le premier fichier `clearInputField.ts` à transformer dans le projet boilerplate, nous passons de :
 
 ```ts
 export default (selector: Selector) => {
@@ -27,7 +27,7 @@ export default (selector: Selector) => {
 };
 ```
 
-to:
+à :
 
 ```ts
 export default async (selector: Selector) => {
@@ -35,23 +35,23 @@ export default async (selector: Selector) => {
 };
 ```
 
-That's it. You can see the complete commit with all rewrite examples here:
+C'est tout. Vous pouvez voir le commit complet avec tous les exemples de réécriture ici :
 
-#### Commits:
+#### Commits :
 
-- _transform all step definitions_ [[af6625f]](https://github.com/webdriverio/cucumber-boilerplate/pull/481/commits/af6625fcd01dc087479e84562f237ecf38b3537d)
+- _transformer toutes les définitions d'étapes_ [[af6625f]](https://github.com/webdriverio/cucumber-boilerplate/pull/481/commits/af6625fcd01dc087479e84562f237ecf38b3537d)
 
 :::info
-This transition is independent of whether you use TypeScript or not. If you use TypeScript just make sure that you eventually change the `types` property in your `tsconfig.json` from `webdriverio/sync` to `@wdio/globals/types`. Also make sure that your compile target is set to at least `ES2018`.
+Cette transition est indépendante de l'utilisation ou non de TypeScript. Si vous utilisez TypeScript, assurez-vous de changer éventuellement la propriété `types` dans votre `tsconfig.json` de `webdriverio/sync` à `@wdio/globals/types`. Assurez-vous également que votre cible de compilation est définie au moins sur `ES2018`.
 :::
 
-## Special Cases
+## Cas particuliers
 
-There are of course always special cases where you need to pay a bit more attention.
+Il y a bien sûr toujours des cas particuliers où vous devez faire un peu plus attention.
 
-### ForEach Loops
+### Boucles ForEach
 
-If you have a `forEach` loop, e.g. to iterate over elements, you need to make sure that the iterator callback is handled properly in an async manner, e.g.:
+Si vous avez une boucle `forEach`, par exemple pour itérer sur des éléments, vous devez vous assurer que le callback d'itération est géré correctement de manière asynchrone, par exemple :
 
 ```js
 const elems = $$('div')
@@ -60,7 +60,7 @@ elems.forEach((elem) => {
 })
 ```
 
-The function we pass into `forEach` is an iterator function. In a synchronous world it would click on all elements before it moves on. If we transform this into asynchronous code, we have to ensure that we wait for every iterator function to finish execution. By adding `async`/`await` these iterator functions will return a promise that we need to resolve. Now, `forEach` is then not ideal to iterate over the elements anymore because it doesn't return the result of the iterator function, the promise we need to wait for. Therefore we need to replace `forEach` with `map` which returns that promise. The `map` as well as all other iterator methods of Arrays like `find`, `every`, `reduce` and more are implemented so that they respect promises within the iterator functions and are therefor simplified for using them in an async context. The above example looks transformed like this:
+La fonction que nous passons dans `forEach` est une fonction d'itération. Dans un monde synchrone, elle cliquerait sur tous les éléments avant de passer à la suite. Si nous transformons cela en code asynchrone, nous devons nous assurer d'attendre que chaque fonction d'itération termine son exécution. En ajoutant `async`/`await`, ces fonctions d'itération renverront une promesse que nous devons résoudre. Maintenant, `forEach` n'est plus idéal pour itérer sur les éléments car il ne renvoie pas le résultat de la fonction d'itération, la promesse que nous devons attendre. Par conséquent, nous devons remplacer `forEach` par `map` qui renvoie cette promesse. Le `map` ainsi que toutes les autres méthodes d'itération des tableaux comme `find`, `every`, `reduce` et plus sont implémentés de manière à respecter les promesses dans les fonctions d'itération et sont donc simplifiés pour les utiliser dans un contexte asynchrone. L'exemple ci-dessus transformé ressemble à ceci :
 
 ```js
 const elems = await $$('div')
@@ -69,7 +69,7 @@ await elems.forEach((elem) => {
 })
 ```
 
-For example in order to fetch all `<h3 />` elements and get their text content, you can run:
+Par exemple, pour récupérer tous les éléments `<h3 />` et obtenir leur contenu textuel, vous pouvez exécuter :
 
 ```js
 await browser.url('https://webdriver.io')
@@ -77,7 +77,7 @@ await browser.url('https://webdriver.io')
 const h3Texts = await browser.$$('h3').map((img) => img.getText())
 console.log(h3Texts);
 /**
- * returns:
+ * renvoie :
  * [
  *   'Extendable',
  *   'Compatible',
@@ -91,7 +91,7 @@ console.log(h3Texts);
  */
 ```
 
-If this looks too complicated you might want to consider using simple for loops, e.g.:
+Si cela semble trop compliqué, vous pouvez envisager d'utiliser de simples boucles for, par exemple :
 
 ```js
 const elems = await $$('div')
@@ -100,55 +100,55 @@ for (const elem of elems) {
 }
 ```
 
-### WebdriverIO Assertions
+### Assertions WebdriverIO
 
-If you use the WebdriverIO assertion helper [`expect-webdriverio`](https://webdriver.io/docs/api/expect-webdriverio) make sure to set an `await` in front of every `expect` call, e.g.:
+Si vous utilisez l'assistant d'assertion WebdriverIO [`expect-webdriverio`](https://webdriver.io/docs/api/expect-webdriverio), assurez-vous de mettre un `await` devant chaque appel `expect`, par exemple :
 
 ```ts
 expect($('input')).toHaveAttributeContaining('class', 'form')
 ```
 
-needs to be transformed to:
+doit être transformé en :
 
 ```ts
 await expect($('input')).toHaveAttributeContaining('class', 'form')
 ```
 
-### Sync PageObject Methods and Async Tests
+### Méthodes PageObject synchrones et tests asynchrones
 
-If you have been writing PageObjects in your test suite in a synchronous way, you won't be able to use them in asynchronous tests anymore. If you need to use a PageObject method in both sync and async tests we recommend duplicating the method and offer them for both environments, e.g.:
+Si vous avez écrit des PageObjects dans votre suite de tests de manière synchrone, vous ne pourrez plus les utiliser dans des tests asynchrones. Si vous devez utiliser une méthode PageObject à la fois dans des tests synchrones et asynchrones, nous vous recommandons de dupliquer la méthode et de les proposer pour les deux environnements, par exemple :
 
 ```js
 class MyPageObject extends Page {
     /**
-     * define elements
+     * définir les éléments
      */
     get btnStart () { return $('button=Start') }
     get loadedPage () { return $('#finish') }
 
     someMethod () {
-        // sync code
+        // code sync
     }
 
     someMethodAsync () {
-        // async version of MyPageObject.someMethod()
+        // version async de MyPageObject.someMethod()
     }
 }
 ```
 
-Once you've finished the migration you can remove the synchronous PageObject methods and clean up the naming.
+Une fois que vous avez terminé la migration, vous pouvez supprimer les méthodes PageObject synchrones et nettoyer les noms.
 
-If you don't like to maintain two different version of a PageObject method you can also migrate the whole PageObject to async and use [`browser.call`](https://webdriver.io/docs/api/browser/call) to execute the method in a synchronous environment, e.g.:
+Si vous n'aimez pas maintenir deux versions différentes d'une méthode PageObject, vous pouvez également migrer l'ensemble du PageObject vers async et utiliser [`browser.call`](https://webdriver.io/docs/api/browser/call) pour exécuter la méthode dans un environnement synchrone, par exemple :
 
 ```js
-// before:
+// avant :
 // MyPageObject.someMethod()
-// after:
+// après :
 browser.call(() => MyPageObject.someMethod())
 ```
 
-The `call` command will make sure that the asynchronous `someMethod` is resolved before moving on to the next command.
+La commande `call` s'assurera que la méthode asynchrone `someMethod` est résolue avant de passer à la commande suivante.
 
 ## Conclusion
 
-As you can see in the [resulting rewrite PR](https://github.com/webdriverio/cucumber-boilerplate/pull/481/files) the complexity of this rewrite is fairly easy. Remember you can rewrite one step-definition at the time. WebdriverIO is perfectly able to handle sync and async execution in a single framework.
+Comme vous pouvez le voir dans la [PR de réécriture résultante](https://github.com/webdriverio/cucumber-boilerplate/pull/481/files), la complexité de cette réécriture est assez simple. N'oubliez pas que vous pouvez réécrire une définition d'étape à la fois. WebdriverIO est parfaitement capable de gérer l'exécution synchrone et asynchrone dans un seul framework.

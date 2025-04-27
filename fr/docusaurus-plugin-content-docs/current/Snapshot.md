@@ -3,19 +3,18 @@ id: snapshot
 title: Snapshot
 ---
 
-Snapshot tests can be very useful for asserting a wide range of aspects of your component or logic at the same time. In WebdriverIO you can take snapshots of any arbitrary object as well as a WebElement DOM structure or WebdriverIO command results.
+Les tests de snapshot peuvent être très utiles pour vérifier simultanément un large éventail d'aspects de votre composant ou de votre logique. Dans WebdriverIO, vous pouvez prendre des snapshots de n'importe quel objet arbitraire ainsi que de la structure DOM d'un WebElement ou des résultats de commandes WebdriverIO.
 
-Similar to other test frameworks WebdriverIO will take a snapshot of the given value, then compare it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match: either the change is unexpected, or the reference snapshot needs to be updated to the new version of the result.
+Comme pour d'autres frameworks de test, WebdriverIO prendra un snapshot de la valeur donnée, puis le comparera à un fichier de snapshot de référence stocké à côté du test. Le test échouera si les deux snapshots ne correspondent pas : soit le changement est inattendu, soit le snapshot de référence doit être mis à jour vers la nouvelle version du résultat.
 
-:::info Cross Platform Support
+:::info Prise en charge multiplateforme
 
-These snapshot capabilities are available for running end-to-end tests within the Node.js environment as well as for running [unit and component](/docs/component-testing) tests in the browser or on mobile devices.
+Ces fonctionnalités de snapshot sont disponibles pour l'exécution de tests end-to-end dans l'environnement Node.js ainsi que pour l'exécution de tests [unitaires et de composants](/docs/component-testing) dans le navigateur ou sur des appareils mobiles.
 
 :::
 
-## Use Snapshots
-
-To snapshot a value, you can use the `toMatchSnapshot()` from [`expect()`](/docs/api/expect-webdriverio) API:
+## Utiliser les Snapshots
+Pour prendre un snapshot d'une valeur, vous pouvez utiliser `toMatchSnapshot()` de l'API [`expect()`](/docs/api/expect-webdriverio) :
 
 ```ts
 import { browser, expect } from '@wdio/globals'
@@ -26,7 +25,7 @@ it('can take a DOM snapshot', () => {
 })
 ```
 
-The first time this test is run, WebdriverIO creates a snapshot file that looks like this:
+La première fois que ce test est exécuté, WebdriverIO crée un fichier de snapshot qui ressemble à ceci :
 
 ```js
 // Snapshot v1
@@ -34,19 +33,19 @@ The first time this test is run, WebdriverIO creates a snapshot file that looks 
 exports[`main suite 1 > can take a DOM snapshot 1`] = `"<h1 class="findme">Test CSS Attributes</h1>"`;
 ```
 
-The snapshot artifact should be committed alongside code changes, and reviewed as part of your code review process. On subsequent test runs, WebdriverIO will compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code that should be fixed, or the implementation has changed and the snapshot needs to be updated.
+L'artefact de snapshot doit être validé avec les modifications de code et examiné dans le cadre de votre processus de revue de code. Lors des exécutions de test suivantes, WebdriverIO comparera le résultat rendu avec le snapshot précédent. S'ils correspondent, le test réussira. S'ils ne correspondent pas, soit le test a trouvé un bug dans votre code qui doit être corrigé, soit l'implémentation a changé et le snapshot doit être mis à jour.
 
-To update the snapshot, pass in the `-s` flag (or `--updateSnapshot`) to the `wdio` command, e.g.:
+Pour mettre à jour le snapshot, passez le flag `-s` (ou `--updateSnapshot`) à la commande `wdio`, par exemple :
 
 ```sh
 npx wdio run wdio.conf.js -s
 ```
 
-**Note:** if you run tests with multiple browsers in parallel only one snapshot is being created and compared against. If you like to have a separate snapshot per capability, please [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=\&labels=Idea+%F0%9F%92%A1%2CNeeds+Triaging+%E2%8F%B3\&projects=\&template=feature-request.yml\&title=%5B%F0%9F%92%A1+Feature%5D%3A+%3Ctitle%3E) and let us know about your use case.
+__Remarque :__ si vous exécutez des tests avec plusieurs navigateurs en parallèle, un seul snapshot est créé et comparé. Si vous souhaitez avoir un snapshot distinct par capacité, veuillez [créer un ticket](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Idea+%F0%9F%92%A1%2CNeeds+Triaging+%E2%8F%B3&projects=&template=feature-request.yml&title=%5B%F0%9F%92%A1+Feature%5D%3A+%3Ctitle%3E) et nous informer de votre cas d'utilisation.
 
-## Inline Snapshots
+## Snapshots Inline
 
-Similarly, you can use the `toMatchInlineSnapshot()` to store the snapshot inline within the test file.
+De même, vous pouvez utiliser `toMatchInlineSnapshot()` pour stocker le snapshot en ligne dans le fichier de test.
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -57,7 +56,7 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-Instead of creating a snapshot file, Vitest will modify the test file directly to update the snapshot as a string:
+Au lieu de créer un fichier de snapshot, Vitest modifiera directement le fichier de test pour mettre à jour le snapshot sous forme de chaîne :
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -79,15 +78,15 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-This allows you to see the expected output directly without jumping across different files.
+Cela vous permet de voir directement le résultat attendu sans avoir à naviguer entre différents fichiers.
 
-## Visual Snapshots
+## Snapshots Visuels
 
-Taking a DOM snapshot of an element might not be the best idea, especially if the DOM structure is too big and contains dynamic element properties. In these cases, it is recommended to rely on visual snapshots for elements.
+Prendre un snapshot DOM d'un élément peut ne pas être la meilleure idée, surtout si la structure DOM est trop grande et contient des propriétés d'élément dynamiques. Dans ces cas, il est recommandé de s'appuyer sur des snapshots visuels pour les éléments.
 
-To enable visual snapshots, add the `@wdio/visual-service` to your setup. You can follow the set-up instructions in the [documentation](/docs/visual-testing#installation) for Visual Testing.
+Pour activer les snapshots visuels, ajoutez le `@wdio/visual-service` à votre configuration. Vous pouvez suivre les instructions de configuration dans la [documentation](/docs/visual-testing#installation) pour les tests visuels.
 
-You can then take a visual snapshot via `toMatchElementSnapshot()`, e.g.:
+Vous pouvez ensuite prendre un snapshot visuel via `toMatchElementSnapshot()`, par exemple :
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -98,4 +97,4 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-An image is then stored in the baseline directory. Check out the [Visual Testing](/docs/visual-testing) for more information.
+Une image est alors stockée dans le répertoire de référence. Consultez la section [Tests Visuels](/docs/visual-testing) pour plus d'informations.

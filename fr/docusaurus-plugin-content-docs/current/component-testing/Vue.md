@@ -3,11 +3,11 @@ id: vue
 title: Vue.js
 ---
 
-[Vue.js](https://vuejs.org/) est un framework abordable, performant et polyvalent pour la construction d'interfaces utilisateur web. Vous pouvez tester les composants React directement dans un vrai navigateur en utilisant WebdriverIO et son [fureteur](/docs/runner#browser-runner).
+[Vue.js](https://vuejs.org/) est un framework accessible, performant et polyvalent pour créer des interfaces utilisateur web. Vous pouvez tester les composants Vue.js directement dans un navigateur réel en utilisant WebdriverIO et son [exécuteur de navigateur](/docs/runner#browser-runner).
 
 ## Configuration
 
-Pour configurer WebdriverIO dans votre projet React, suivez les [instructions](/docs/component-testing#set-up) de notre documentation de test de composants. Assurez-vous de sélectionner `solide` comme préréglage dans les options de votre exécuteur, par exemple.:
+Pour configurer WebdriverIO dans votre projet Vue.js, suivez les [instructions](/docs/component-testing#set-up) dans notre documentation de test de composants. Assurez-vous de sélectionner `vue` comme préréglage dans vos options d'exécution, par exemple :
 
 ```js
 // wdio.conf.js
@@ -22,11 +22,11 @@ export const config = {
 
 :::info
 
-Si vous utilisez déjà [Vite](https://vitejs.dev/) comme serveur de développement, vous pouvez également réutiliser votre configuration dans `vite. onfig.ts` dans votre configuration WebdriverIO. Pour plus d'informations, voir `viteConfig` dans [options d'exécuteur](/docs/runner#runner-options).
+Si vous utilisez déjà [Vite](https://vitejs.dev/) comme serveur de développement, vous pouvez également réutiliser votre configuration dans `vite.config.ts` au sein de votre configuration WebdriverIO. Pour plus d'informations, consultez `viteConfig` dans les [options d'exécution](/docs/runner#runner-options).
 
 :::
 
-Le préréglage React nécessite que `@vitejs/plugin-react` soit installé. Nous recommandons également d'utiliser [Bibliothèque de test](https://testing-library.com/) pour afficher le composant dans la page de test. Vous devrez donc installer les dépendances supplémentaires suivantes :
+Le préréglage Vue nécessite l'installation de `@vitejs/plugin-vue`. Nous recommandons également d'utiliser [Testing Library](https://testing-library.com/) pour rendre le composant dans la page de test. Pour cela, vous devrez installer les dépendances supplémentaires suivantes :
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
@@ -38,9 +38,9 @@ Vous pouvez ensuite démarrer les tests en exécutant :
 npx wdio run ./wdio.conf.js
 ```
 
-## Tests d'écriture
+## Écriture de tests
 
-Étant donné que vous avez le composant React suivant :
+Supposons que vous ayez le composant Vue.js suivant :
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -65,13 +65,14 @@ export default {
 </script>
 ```
 
-In your test render the component into the DOM and run assertions on it. We recommend to either use [`@vue/test-utils`](https://test-utils.vuejs.org/) or [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) to attach the component to the test page. To interact with the component use WebdriverIO commands as they behave more close to actual user interactions, e.g.:
+Dans votre test, rendez le composant dans le DOM et exécutez des assertions dessus. Nous recommandons d'utiliser soit [`@vue/test-utils`](https://test-utils.vuejs.org/) soit [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) pour attacher le composant à la page de test. Pour interagir avec le composant, utilisez les commandes WebdriverIO car elles se comportent de manière plus proche des interactions utilisateur réelles, par exemple :
+
 
 <Tabs
   defaultValue="utils"
   values={[
     {label: '@vue/test-utils', value: 'utils'},
- {label: '@testing-library/vue', value: 'testinglib'}
+    {label: '@testing-library/vue', value: 'testinglib'}
  ]
 }>
 <TabItem value="utils">
@@ -131,11 +132,11 @@ describe('Vue Component Testing', () => {
 </TabItem>
 </Tabs>
 
-Vous pouvez trouver un exemple complet d'une suite de tests de composants WebdriverIO pour Lit dans notre référentiel [exemples](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite).
+Vous pouvez trouver un exemple complet d'une suite de tests de composants WebdriverIO pour Vue.js dans notre [dépôt d'exemples](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite).
 
-## Testing Async Components in Vue3
+## Test des composants asynchrones dans Vue3
 
-If you are using Vue v3 and are testing [async components](https://vuejs.org/guide/built-ins/suspense.html#async-setup) like the following:
+Si vous utilisez Vue v3 et testez des [composants asynchrones](https://vuejs.org/guide/built-ins/suspense.html#async-setup) comme celui-ci :
 
 ```vue
 <script setup>
@@ -148,7 +149,7 @@ const posts = await res.json()
 </template>
 ```
 
-We recommend to use [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) and a little suspense wrapper to get the component rendered. Unfortunately [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) has no support for this yet. Create a `helper.ts` file with the following content:
+Nous recommandons d'utiliser [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) et un petit wrapper suspense pour obtenir le rendu du composant. Malheureusement, [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) ne prend pas encore en charge cela. Créez un fichier `helper.ts` avec le contenu suivant :
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -189,7 +190,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-Then import and test the component as following:
+Ensuite, importez et testez le composant comme suit :
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -213,23 +214,23 @@ describe('Testing Async Components', () => {
 })
 ```
 
-## Testing Vue Components in Nuxt
+## Test des composants Vue dans Nuxt
 
-If you are using the web framework [Nuxt](https://nuxt.com/), WebdriverIO will automatically enable the [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) feature and makes testing your Vue components and Nuxt pages easy. However any [Nuxt modules](https://nuxt.com/modules) that you might define in your config and requires context to the Nuxt application can not be supported.
+Si vous utilisez le framework web [Nuxt](https://nuxt.com/), WebdriverIO activera automatiquement la fonctionnalité [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) et facilitera le test de vos composants Vue et pages Nuxt. Cependant, tous les [modules Nuxt](https://nuxt.com/modules) que vous pourriez définir dans votre configuration et qui nécessitent un contexte à l'application Nuxt ne peuvent pas être pris en charge.
 
-__Reasons for that are:__
-- WebdriverIO can't initiate a Nuxt application soley in a browser environment
-- Having component tests depend too much on the Nuxt environment creates complexity and we recommend to run these tests as e2e tests
+__Les raisons en sont :__
+- WebdriverIO ne peut pas initier une application Nuxt uniquement dans un environnement de navigateur
+- Faire dépendre trop les tests de composants de l'environnement Nuxt crée de la complexité et nous recommandons d'exécuter ces tests en tant que tests e2e
 
 :::info
 
-WebdriverIO also provides a service for running e2e tests on Nuxt applications, see [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) for information.
+WebdriverIO fournit également un service pour exécuter des tests e2e sur des applications Nuxt, voir [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) pour plus d'informations.
 
 :::
 
-### Mocking built-in composables
+### Simulation des composables intégrés
 
-In case your component uses a native Nuxt composable, e.g. [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO will automatically mock these functions and allows you to modify their behavior or assert against them, e.g.:
+Si votre composant utilise un composable natif de Nuxt, par exemple [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO simulera automatiquement ces fonctions et vous permettra de modifier leur comportement ou de faire des assertions contre elles, par exemple :
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
@@ -244,9 +245,9 @@ mocked(useNuxtData).mockReturnValue({
 })
 ```
 
-### Handling 3rd party composables
+### Gestion des composables tiers
 
-All [3rd party modules](https://nuxt.com/modules) that can supercharge your Nuxt project can't automatically get mocked. In those cases you need to manually mock them, e.g. given your application uses the [Supabase](https://nuxt.com/modules/supabase) module plugin:
+Tous les [modules tiers](https://nuxt.com/modules) qui peuvent améliorer votre projet Nuxt ne peuvent pas être automatiquement simulés. Dans ces cas, vous devez les simuler manuellement, par exemple si votre application utilise le plugin du module [Supabase](https://nuxt.com/modules/supabase) :
 
 ```js title=""
 export default defineNuxtConfig({
@@ -258,19 +259,19 @@ export default defineNuxtConfig({
 });
 ```
 
-and you create an instance of Supabase somewhere in your composables, e.g.:
+et que vous créez une instance de Supabase quelque part dans vos composables, par exemple :
 
 ```ts
 const superbase = useSupabaseClient()
 ```
 
-the test will fail due to:
+le test échouera en raison de :
 
 ```
 ReferenceError: useSupabaseClient is not defined
 ```
 
-Here, we recommend to either mock out the whole module that uses the `useSupabaseClient` function or create a global variable that mocks this function, e.g.:
+Ici, nous recommandons soit de simuler tout le module qui utilise la fonction `useSupabaseClient`, soit de créer une variable globale qui simule cette fonction, par exemple :
 
 ```ts
 import { fn } from '@wdio/browser-runner'
