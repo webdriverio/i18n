@@ -3,7 +3,7 @@ export const LANGUAGES_TO_TRANSLATE = {
     // be: 'Belarusian',
     // bg: 'Bulgarian',
     de: 'German',
-    // es: 'Spanish',
+    es: 'Spanish',
     // fa: 'Persian',
     // fr: 'French',
     // hi: 'Hindi',

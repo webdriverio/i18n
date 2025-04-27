@@ -16,7 +16,6 @@ dotenv.config();
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
-const processor = new Processor(25)
 
 // Cache file path
 const model = 'claude-3-7-sonnet-latest'
@@ -70,6 +69,7 @@ function calculateShasum(content: string): string {
 
 export async function translate(language: string) {
     console.log(`Translating docs for ${language}`);
+    const processor = new Processor(25)
 
     // Define source directories
     const sourceDirectories = [
@@ -230,7 +230,12 @@ async function translateContent(content: string, language: string): Promise<stri
                 console.log('CHECK', chunk.result.message.content)
             }
         }
-        return text
+
+        /**
+         * Remove anything that the LLM prepends to the frontmatter,
+         * e.g. "I'll translate the Markdown content from English to German as requested:"
+         */
+        return text.slice(text.indexOf(CONTENT_SEPARATOR))
     } catch (error) {
         console.error('Error calling Anthropic API:', error);
         throw error;

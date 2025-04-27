@@ -933,14 +933,16 @@
     "hash": "54183436f79b8d8c8bd548af9f7dd5f3d1fceb157965b1e32810c0351c20d699",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_tick.md": {
     "hash": "8acdef244970c7ebe1023d7c0c02776a29829013ab355675d6afb425eb40d487",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_selenium.md": {
@@ -949,7 +951,8 @@
       "de",
       "de",
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_saucelabs.md": {
@@ -957,35 +960,40 @@
     "languages": [
       "de",
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_message.md": {
     "hash": "8259a647a1be2f1f15702e7c25fd20053c12dda8e32e3b5cee4f2b65093f53b3",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_dismiss.md": {
     "hash": "0d4cc3cbc151aa1c12105b761f8092a71820ca15857b623fbc12c549a00cdf04",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_setSystemTime.md": {
     "hash": "274c08225a903643749fd4443741fe0f0959479ca12ab4b06c9515307f60da4e",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_defaultValue.md": {
     "hash": "2654c6afb6dc03314de6b858710533b9806758319a0837c5f3296f9fc49a196c",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_mjsonwp.md": {
@@ -999,147 +1007,168 @@
     "hash": "3e4064c4c09d8d2c63c197f46d1daa8f3e0e688ba74cd2e6b8d168742dab9ec7",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_action.md": {
     "hash": "77ab8449250a2c832b363b5f813dd563afa68a0b7a3ed8eff1a35f6c43a92b96",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_webdriverBidi.md": {
     "hash": "d3235d0bf99af0c7a7d7f556e99064ec803134037da56bbb086e7c24ec6c3bb6",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_chromium.md": {
     "hash": "0222ff70b93d2931f4a9494f2d17f8f98786896a733ada42189fca990d440afe",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_addCommand.md": {
     "hash": "7d2875915408d346e1e36cee6c5ab4e4cf3444b0caee87cca7992e9b10c625a6",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_$$.md": {
     "hash": "b61010b6b761f80336b54e90d32def62846b757c91055758cfe4f284b7cf02c8",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_actions.md": {
     "hash": "7d2362c807462090269158cc5c70212d894904ebed8855d7d75e71303f307590",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_$.md": {
     "hash": "4a7d0fba76b8a1cb54bfa64547725ec6481e93fa22d139617f41ef51f5f0382f",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_type.md": {
     "hash": "460853ec3b7c6c2ea136e251bf2f4f9e6e0329acbd03684ff7a1c3d3a12486b8",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_downloadFile.md": {
     "hash": "ba527058d5977149ca50656ca916c89372cc3f6d77805f3bb28a136960b8b218",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_deleteCookies.md": {
     "hash": "e863bbf1f1006e1b9c45b242ef0eb977197258d75c47de6528ca5738d2dac6ee",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_custom$.md": {
     "hash": "9dc1bd975690cb18fd27b75cf53aa6b0e8c3221c1ec79b6398869e65ac76d959",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_restore.md": {
     "hash": "b76d6462ec3fd37cc8497a12d69d1867161c7be8f908aaaa294c09022dfc8f87",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_webdriver.md": {
     "hash": "e619bfe8fa695c8226ef69dddcaa2a5fa2d97e083204b4c041a8d5ad0d8cc66d",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_call.md": {
     "hash": "302b78f8b400146947a3b8348d2e15d6d466b299be5fc0bec2ed2fd3a4e9cd15",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getPuppeteer.md": {
     "hash": "c69b61cda4fda27d76e6ebceb094c92f7cab408249b162a40a80b344bafd1f0b",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mockClearAll.md": {
     "hash": "073df32feea7794764226e1b002432d89853b91753a88244f72b17247d4f0515",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_keys.md": {
     "hash": "5ce294a8bc6392f6929703876100d1a82682d909dae6e24099e9c45d094281f3",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getCookies.md": {
     "hash": "b47f84db6eee09a3b2379b8b2158f6a27d5cb2696e00214f1015bb0758fee01a",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mock.md": {
     "hash": "4c7edc31742a50e860978d61cd22765899230a17bf44fa207f0e0541c96eb514",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mockRestoreAll.md": {
     "hash": "0aadbf9c49fe7d29562eea8a6d8dc2fcd87be98a445881168de9413e969a22a1",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_pause.md": {
@@ -1153,341 +1182,398 @@
     "hash": "e77942138cc97fa05774e643fa95c4fed412fa44350e1f23d3a5b300e6ae4382",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_accept.md": {
     "hash": "b9dd5b0e7da7960b7d5b035ca26bd8701e12576e3e446a9f51e39911ac776752",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_custom$$.md": {
     "hash": "067f5c6c51816554af1b3a83291cf53818e6aef01bff0570a3b316fec6c0236a",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_saveRecordingScreen.md": {
     "hash": "a652f4e5a598e47c72ca4c4a4158c5696e540f54758f107cbcd34d4fe01caa07",
     "languages": [
-      "de"
+      "de",
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_restore.md": {
     "hash": "681e73376c88ad78fdae1324bc1fcab2cdbe3977a5aa79f2343c71308ba37655",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_getContexts.md": {
     "hash": "c135b09aa8ad4542140f2d9d34267adb91c6e41eb590188f3e057b80bda4d8fa",
     "languages": [
       "de",
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_swipe.md": {
     "hash": "68efc3b370e3d1297dc9e38107c5c610dde3a27648966b5323afc6f9586cf95e",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_deepLink.md": {
     "hash": "c0dc5610536cb409fd0d3596acace6d691466a93d87e82bf2e50903f100d6aea",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_tap.md": {
     "hash": "6de626bfc6c9bf4010d9a3c5e0c6eb86c7ec72325305bef3345ad7a19b0a9fe2",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_switchContext.md": {
     "hash": "18eba346ee4ce69433ca81c04aa81f71a881f6024e8860644ed7d6af1b03e1c0",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_zoom.md": {
     "hash": "980265fc8cc52bf2b9a157b6941958a0af5e1fb43c7586af8bf13d031c01abba",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_restore.md": {
     "hash": "a3ba8cea599808303a01ec425bc0f171940cb510759b71f960d6f09db7f3dbe5",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_custom$.md": {
     "hash": "07bc012614f0beaf6ddd3d48fa4690f81642d556ca953fbd69c3b29e7c39d9b8",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_click.md": {
     "hash": "a18b769b4fc1c323912bd113b7ec126791b673df9ca432a69a7dc78295c23fb0",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_dragAndDrop.md": {
     "hash": "87728b6cbb4e2a0f818ed5104f9d513e3c0ea24e15cd9d44280e9c25fac0fc23",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_abortOnce.md": {
     "hash": "90d30b0e3ea23daa3e3ef1b89ca1ef1ca99abcfd9f55344025dc1de61e99b911",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_request.md": {
     "hash": "2e0f397f9e291c802322e20129c00d9a69e910a7661265931bb627f80b50b488",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_execute.md": {
     "hash": "31f946ab2f47f2ba02eb017355f79e9634c990bc42177a3a16b07d1dc4307142",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_addValue.md": {
     "hash": "08e0a63cb42dd6160fe4d01de4c9ce184a9d90418a706429770ba3fc4be52735",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getElement.md": {
     "hash": "1bb9ec17d6e6beffeeb9bcb4d2dbebab316313deeb166fe0a740dffa94b489b9",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_relaunchActiveApp.md": {
     "hash": "3cb32dd7b99d0cb1560dc5496ec4482f99b0bcf611c74c19a9d233047716e41f",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_requestOnce.md": {
     "hash": "f0d5bfb193b0fa95c462eaa2cb85ef43e86076bfaaf68741fd3f6ef4a2f22868",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getLocation.md": {
     "hash": "b99e56177f0888403017981d1d1298c4153b766f135c43fef981ede40812efcf",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getProperty.md": {
     "hash": "9e2e5f629ea4fe18bb0a294e71e915fdb3660d98766df0a7a8f776eab71fd4ec",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getHTML.md": {
     "hash": "34e43fc8d401278a0ece6fec0ebe3c46d04f9fe0caca98c2da854a279d4eb140",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getElements.md": {
     "hash": "e8ad5868c4ef2fe61ae41306c41c92dbd949c9b19f41adbaa45eef0b9abdd651",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getComputedRole.md": {
     "hash": "0354684ccc34b2beb39e03d578511bd84c3dccc75d3bdee761a9543d96791e80",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_pinch.md": {
     "hash": "4e142b6c47b11fe2822023478698b42b841bbce3d89f4e1f87908753e4cf1126",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_$.md": {
     "hash": "a4f6510b9119e5e8426a7e2f91cc631f1d9a816eecd374b99bf396e373679ec1",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_$$.md": {
     "hash": "af9221b78bee148382225575dbe278c2e60dcfdf20fca1c684e92937106bf328",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_clear.md": {
     "hash": "36f1f947755255ecb8f4a64dda8f7a834f6feba41f2839b028303f47eac222eb",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isEnabled.md": {
     "hash": "aff8d841046a1eb6df309bd9ba3d6f18e00f5facc59e27c2ce54121d6c6fd56b",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isDisplayed.md": {
     "hash": "ff7f5e3da1b4599d73132bc258d9909a0daa24f60fcdfd733da705d5e48f2464",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getText.md": {
     "hash": "b3078341b3da09917ddd7a6b5959d5487c83d68f2ed9b827bd2be3820352dcf0",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getTagName.md": {
     "hash": "275b66c2e172980ba003dcfbcff706d3ee8216ef2108a1e06a3aa47a45301f0d",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getAttribute.md": {
     "hash": "731a93b9de1bb81b2e3961ca8257b3981d6d73707765aeeb9a2d761188ca209e",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_dragAndDrop.md": {
     "hash": "c5281a81ee715aa95ffa8caee18dcaaab135eb8dd533196a3035147f9b5d4345",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isSelected.md": {
     "hash": "278410dc479a76bd44149a769db6bd3fd7b105676b3bc07efcd72e723a4c6c96",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isFocused.md": {
     "hash": "bc7613fd836ee9e4d872d9af2608e2082a92dbc718b654f0d0f88f8cb758935d",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_longPress.md": {
     "hash": "ef459b179728f224bd2cbb78cf223a0ec62f385dc262d001de93bcfba76043e8",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isStable.md": {
     "hash": "b23c1b9d1b0b6285d3edde60189876144b9f9dcd5affe2e06384186460a0b7c1",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_getContext.md": {
     "hash": "2ea13cd501441f65c15d75eae40fce837c27a3af3d4980b3d620cd44838ae826",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_react$$.md": {
     "hash": "a886e42b95a8c05a2b0ee44501d5e7494930c28acc0115176596eef3c039b9e4",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_saveScreenshot.md": {
     "hash": "b603666a5388fb75bbb4430cb505496e472051f27162b1576057ce0eeefe140a",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_previousElement.md": {
     "hash": "f2ae8d68e2a3307865a5a98aa272f909084482e4c3b2437c1cf1fa1908c9bfc8",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_react$.md": {
     "hash": "b6b7c1f3cbde1af6987e1c0de4fc122ed043a292512fa3599332cc7a05527b0e",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByAttribute.md": {
     "hash": "fdc65ff212f4c0798fef26ff413325cb1f9573514d7730af3c6ba9a2af71b3d3",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isExisting.md": {
     "hash": "e4ef563ef39115f47a56308126874249aedfa319e3bc453b6f1bbaf9aa54446b",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_scrollIntoView.md": {
     "hash": "a40e5a5e579c73cc07a0989c818cd0a51280ced851687cf6382b7afa627defce",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByVisibleText.md": {
     "hash": "9e370a30aab943bab9b74d6bd41605d9a94195ec7e558458c01f4c05a35208fa",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_shadow$$.md": {
     "hash": "c2703f7b871588d17fc152c7adf34e1002633ce2ca9c79078172e1137dd73629",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByIndex.md": {
     "hash": "abb813b5eeb961915b78bf6ba4b75dcae34365d07caa853879a54dd1ac94d295",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_shadow$.md": {
     "hash": "4d121b44279ab0931dae7e651d94e1d828e4acd2c7c596dd802b852fc7ca58b7",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_setValue.md": {
     "hash": "7ebac0dd3ccfa2a2c6e94d2ff75d964893301529417ad13aaced06ac620f302f",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getCSSProperty.md": {
     "hash": "fed9097bf398e237ec0685403c6f0bc0d0a4c7b30e4e9f5939b1dc8a438a236d",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForStable.md": {
     "hash": "c1637f17fe549428c2c73215a69fef3eedff3d16a9c74fc42d6bf2902ae7a341",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForClickable.md": {
@@ -1499,13 +1585,15 @@
   "en/docusaurus-plugin-content-docs/current/api/element/_waitUntil.md": {
     "hash": "f85f388ea94ce56c6cd6feb1d23b91c205ac4e9988fea14a49b07e012106fac6",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_touchAction.md": {
     "hash": "303042a85e658b35e303bade6f2dca1875305ef5780ffeaffc0010d2d8d49ec5",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForDisplayed.md": {
@@ -1523,7 +1611,8 @@
   "en/docusaurus-plugin-content-docs/current/api/element/_getSize.md": {
     "hash": "385f779c2a347ad14519ca85ea2bc769fe1ca0ab5bf3560f61e9c51cba70ea54",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForEnabled.md": {
@@ -1535,7 +1624,8 @@
   "en/docusaurus-plugin-content-docs/current/api/browser/_addInitScript.md": {
     "hash": "ad33d907df779b10f822aec3fbd90fca0a3c409f6f53bf6c3cb18415251044a1",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_debug.md": {
@@ -1547,43 +1637,50 @@
   "en/docusaurus-plugin-content-docs/current/api/element/_executeAsync.md": {
     "hash": "ff8eae81cd372cdc346e05fd1b5a41dff98559bdf8b67518306fcfd5623aa80f",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getWindowSize.md": {
     "hash": "194f36785c833967568fd029772a4f28882ac6e573a9fcb53c8feb01c944a8c7",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_executeAsync.md": {
     "hash": "9d462c720173f640055f8f4edd9b1aa3ed5b6aec65e79fb252271a1caa5d3ee9",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_execute.md": {
     "hash": "1f6834b31aeace20245a4686d641760b1e6eb4f09ea195337d05212d041bb369",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_emulate.md": {
     "hash": "62d3b40242ecc70d3a8498ee6d1dc85f8637919b22667518aa0856715681698b",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_nextElement.md": {
     "hash": "bea9c9d582ec4a64105a72605a13cf319604b49178c5a54c4686405d444df8c2",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getComputedLabel.md": {
     "hash": "4fb52c526db597c34282b1b7e8cd85cc8c52e76e7cabd698c19ac82c5b02d071",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_react$$.md": {
@@ -1595,7 +1692,8 @@
   "en/docusaurus-plugin-content-docs/current/api/element/_moveTo.md": {
     "hash": "5cf4089da70110e9c96658798553bff9f6bc2340404dd0b79866fcc27f6cdd27",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_react$.md": {
@@ -1619,7 +1717,8 @@
   "en/docusaurus-plugin-content-docs/current/api/browser/_scroll.md": {
     "hash": "59056205ea82ac4d786b61251a2bef3fb2196926648392f3c6c33d5025b04874",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_saveScreenshot.md": {
@@ -1637,7 +1736,8 @@
   "en/docusaurus-plugin-content-docs/current/api/element/_parentElement.md": {
     "hash": "5b8e3754ee2901a9aff467db075e1abc0ffb0b00759a211e9723b5d934d1b555",
     "languages": [
-      "de"
+      "de",
+      "es"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_throttleCPU.md": {
@@ -1650,6 +1750,126 @@
     "hash": "2f936b22b3b442cefc129a6e285a8f070af0414f87afb24b7ffb21845f840475",
     "languages": [
       "de"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/element/_doubleClick.md": {
+    "hash": "07a3e79373802306fd6ec8c7b8f863ef1b4cf24d5d2208727a7f5b4453a3a945",
+    "languages": [
+      "de",
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/element/_isClickable.md": {
+    "hash": "e31dfe576722ff85160f5395e407235744b8d249096e0adad3ffe8fb97359978",
+    "languages": [
+      "de",
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/browser/_touchAction.md": {
+    "hash": "297e78e96af5cbd27386e070396ed2bf5d9d88a025d2bc64f28088e8a570a11a",
+    "languages": [
+      "de"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/_gecko.md": {
+    "hash": "c45842ba6d79ec414ad58b6432cc9c5513a28dd3c354ccf7f0a2fcacb523a6b8",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/element/_isEqual.md": {
+    "hash": "98360f3fcc370805b1a2092e012c5ff1b77df8823b00ddc25cdbf7531d3d20dd",
+    "languages": [
+      "de",
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/browser/_url.md": {
+    "hash": "cd4f5f83150cb4393bf5a544bde4ae9381c3f6f046ea8b97d14fc93b91275b8a",
+    "languages": [
+      "de"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/element/_custom$$.md": {
+    "hash": "4efea37e19fd2b886fe00b9312876812312feb4f0e9b3008beea281f6167166c",
+    "languages": [
+      "de",
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/browser/_throttle.md": {
+    "hash": "011b3b1d0494f00feb2d8092f08072c6da2356c6861bf6f4cab11fb1b50e5713",
+    "languages": [
+      "de"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/mobile/_scrollIntoView.md": {
+    "hash": "ffdf834f7a42199bb7e646e31da43888844ea64d79e2ea9efe910e27720e267d",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/mock/_respondOnce.md": {
+    "hash": "5b0e1efbb9d49b8f0bc4ffc5402e6befb7162c977d60061a666aff4473c5924c",
+    "languages": [
+      "es",
+      "de"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/element/_clearValue.md": {
+    "hash": "720809f2567edc24eac40d88771fced96caafbfedccb88735a6f79ec7f15885f",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/mock/_redirect.md": {
+    "hash": "d7d706f1b282e3c2cf6c4a2a0525bb0472ac9232ba3cee31b746553500c10105",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/element/_getValue.md": {
+    "hash": "2aa9428bb0a47a797bdcc9b3730f21465d4c9ce407ac40af6403496d4afbfa54",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/mock/_abort.md": {
+    "hash": "86261ff115a77351543308b90aa802dfc07ae5ad5216727d51e57d188bfcd5c5",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/browser/_setWindowSize.md": {
+    "hash": "ae85f925e4791c505b8cd311c28404d57f4ca2c81206e980ceb618cf2da46d63",
+    "languages": [
+      "de",
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/mock/_respond.md": {
+    "hash": "0cfd0261fa2a672e66cc3eeebe1d21b39ec7675117d1ac335092ce782929a333",
+    "languages": [
+      "es"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/browser/_waitUntil.md": {
+    "hash": "efcacefe2ea7b8e958ebe904c289813d8d18df9a187454919d60da8b8b8c01db",
+    "languages": [
+      "de"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/browser/_savePDF.md": {
+    "hash": "ce4d4f3f5d088ac81a1019f752d5023da2977d38ba0c67bbff49611e158f9e6c",
+    "languages": [
+      "de"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/api/browser/_switchFrame.md": {
+    "hash": "67140d5d7c887ccc7546c0b93d468947d86d01e242685b9e068240a68b2020a7",
+    "languages": [
+      "es"
     ]
   }
 }
