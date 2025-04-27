@@ -1,12 +1,11 @@
 ---
 id: more-test-optimization
-title: Tempo de execução do teste
+title: Tempo de execução de teste
 ---
 
-Por padrão, este módulo verificará se você tem uma instalação local do Tesseract na sua máquina/no seu pipeline. Se você não tiver uma instalação local, ele usará automaticamente uma versão [NodeJS](https://github.com/naptha/tesseract.js). Isso pode causar alguma lentidão porque o processamento da imagem será feito pelo Node.js. O NodeJS não é o melhor sistema para fazer
-processamento pesado.
+Por padrão, este módulo verificará se você tem uma instalação local do Tesseract em sua máquina/em seu pipeline. Se você não tiver uma instalação local, ele automaticamente usará uma versão [NodeJS](https://github.com/naptha/tesseract.js). Isso pode causar alguma lentidão porque o processamento de imagem será feito pelo Node.js. NodeJS não é o melhor sistema para fazer processamento pesado.
 
-**MAS....**, existem maneiras de otimizar o tempo de execução. Vamos pegar o seguinte script de teste
+**MAS...**, existem maneiras de otimizar o tempo de execução. Vamos considerar o seguinte script de teste
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -28,7 +27,7 @@ describe("Search", () => {
 });
 ```
 
-Ao executar isso pela primeira vez, você poderá ver os seguintes resultados: levou 5,9 segundos para concluir o teste.
+Quando você executa isso pela primeira vez, você pode ver os seguintes resultados onde levou 5,9 segundos para finalizar o teste.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -60,11 +59,11 @@ Execution of 1 workers started at 2024-05-26T04:52:53.405Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-## Cortando a área de pesquisa de uma tela
+## Cortando a área de busca de uma tela
 
 Você pode otimizar o tempo de execução fornecendo uma área recortada para executar o OCR.
 
-Se você pudesse então alterar o script para isto:
+Se você alterar o script para isso:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -121,8 +120,8 @@ Execution of 1 workers started at 2024-05-26T04:56:55.326Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-:::tip Cortar imagens
-Isso reduziu o tempo de execução local de **5,9** para **4,8 segundos**. Isso representa uma redução de quase **19%**. Imagine o que ele pode fazer com um script maior, com mais dados.
+:::tip Cortando imagens
+Isso reduziu o tempo de execução local de **5,9** para **4,8 segundos**. Esta é uma redução de quase **19%**. Imagine o que isso pode fazer por um script maior com mais dados.
 :::
 
 ## Usando uma instalação local do Tesseract
@@ -157,5 +156,5 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
 :::tip Instalação local
-Isso reduziu o tempo de execução local de **5,9** para **3,9 segundos**. Isso representa uma redução de quase **34%**. Imagine o que ele pode fazer com um script maior, com mais dados.
+Isso reduziu o tempo de execução local de **5,9** para **3,9 segundos**. Esta é uma redução de quase **34%**. Imagine o que isso pode fazer por um script maior com mais dados.
 :::

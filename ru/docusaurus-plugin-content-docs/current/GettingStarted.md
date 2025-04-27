@@ -1,36 +1,39 @@
 ---
 id: gettingstarted
-title: Getting Started
+title: Начало работы
 ---
 
-Welcome to the WebdriverIO documentation. It will help you to get started fast. If you run into problems, you can find help and answers on our [Discord Support Server](https://discord.webdriver.io) or you can hit me on [Twitter](https://twitter.com/webdriverio).
+Добро пожаловать в документацию WebdriverIO. Она поможет вам быстро начать работу. Если у вас возникнут проблемы, вы можете найти помощь и ответы на нашем [сервере поддержки Discord](https://discord.webdriver.io) или связаться со мной в [Twitter](https://twitter.com/webdriverio).
 
 :::info
-These are the docs for the latest version (__>=9.x__) of WebdriverIO. If you are still using an older version, please visit the [old documentation websites](/versions)!
+Это документация для последней версии (__>=9.x__) WebdriverIO. Если вы все еще используете более старую версию, пожалуйста, посетите [старые версии документации](/versions)!
 :::
 
-<LiteYouTubeEmbed id="rA4IFNyW54c" title="Getting Started with WebdriverIO" />
+<LiteYouTubeEmbed
+    id="rA4IFNyW54c"
+    title="Getting Started with WebdriverIO"
+/>
 
-:::tip Official YouTube Channel 🎥
+:::tip Официальный YouTube канал 🎥
 
-You can find more videos around WebdriverIO on the [official YouTube channel](https://youtube.com/@webdriverio). Make sure you subscribe!
+Вы можете найти больше видео о WebdriverIO на [официальном YouTube канале](https://youtube.com/@webdriverio). Не забудьте подписаться!
 
 :::
 
-## Initiate a WebdriverIO Setup
+## Инициализация настройки WebdriverIO
 
-To add a full WebdriverIO setup to an existing or new project using the [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio), run:
+Чтобы добавить полную настройку WebdriverIO в существующий или новый проект с помощью [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio), выполните:
 
-If you're in the root directory of an existing project, run:
+Если вы находитесь в корневом каталоге существующего проекта, выполните:
 
 <Tabs
   defaultValue="npm"
   values={[
     {label: 'NPM', value: 'npm'},
- {label: 'Yarn', value: 'yarn'},
- {label: 'pnpm', value: 'pnpm'},
- {label: 'bun', value: 'bun'},
- ]
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'},
+    {label: 'bun', value: 'bun'},
+  ]
 }>
 <TabItem value="npm">
 
@@ -38,7 +41,7 @@ If you're in the root directory of an existing project, run:
 npm init wdio@latest .
 ```
 
-or if you want to create a new project:
+или если вы хотите создать новый проект:
 
 ```sh
 npm init wdio@latest ./path/to/new/project
@@ -51,7 +54,7 @@ npm init wdio@latest ./path/to/new/project
 yarn create wdio .
 ```
 
-or if you want to create a new project:
+или если вы хотите создать новый проект:
 
 ```sh
 yarn create wdio ./path/to/new/project
@@ -64,7 +67,7 @@ yarn create wdio ./path/to/new/project
 pnpm create wdio@latest .
 ```
 
-or if you want to create a new project:
+или если вы хотите создать новый проект:
 
 ```sh
 pnpm create wdio@latest ./path/to/new/project
@@ -77,7 +80,7 @@ pnpm create wdio@latest ./path/to/new/project
 bun create wdio@latest .
 ```
 
-or if you want to create a new project:
+или если вы хотите создать новый проект:
 
 ```sh
 bun create wdio@latest ./path/to/new/project
@@ -86,20 +89,20 @@ bun create wdio@latest ./path/to/new/project
 </TabItem>
 </Tabs>
 
-This single command downloads the WebdriverIO CLI tool and runs a configuration wizard that helps you to configure your test suite.
+Эта единственная команда загружает инструмент WebdriverIO CLI и запускает мастер конфигурации, который поможет вам настроить ваш набор тестов.
 
 <CreateProjectAnimation />
 
-The wizard will prompt a set questions that guides you through the setup. You can pass a `--yes` parameter to pick a default set up which will use Mocha with Chrome using the [Page Object](https://martinfowler.com/bliki/PageObject.html) pattern.
+Мастер задаст ряд вопросов, которые проведут вас через настройку. Вы можете передать параметр `--yes`, чтобы выбрать настройку по умолчанию, которая будет использовать Mocha с Chrome, используя паттерн [Page Object](https://martinfowler.com/bliki/PageObject.html).
 
 <Tabs
   defaultValue="npm"
   values={[
     {label: 'NPM', value: 'npm'},
- {label: 'Yarn', value: 'yarn'},
- {label: 'pnpm', value: 'pnpm'},
- {label: 'bun', value: 'bun'},
- ]
+    {label: 'Yarn', value: 'yarn'},
+    {label: 'pnpm', value: 'pnpm'},
+    {label: 'bun', value: 'bun'},
+  ]
 }>
 <TabItem value="npm">
 
@@ -131,57 +134,57 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-## Install CLI Manually
+## Установка CLI вручную
 
-You can also add the CLI package to your project manually via:
+Вы также можете добавить пакет CLI в ваш проект вручную с помощью:
 
 ```sh
 npm i --save-dev @wdio/cli
-npx wdio --version # prints e.g. `8.13.10`
+npx wdio --version # выводит, например, `8.13.10`
 
-# run configuration wizard
+# запустить мастер конфигурации
 npx wdio config
 ```
 
-## Run Test
+## Запуск теста
 
-You can start your test suite by using the `run` command and pointing to the WebdriverIO config that you just created:
+Вы можете запустить свой набор тестов, используя команду `run` и указывая на конфигурацию WebdriverIO, которую вы только что создали:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-If you like to run specific test files you can add a `--spec` parameter:
+Если вы хотите запустить определенные тестовые файлы, вы можете добавить параметр `--spec`:
 
 ```sh
 npx wdio run ./wdio.conf.js --spec example.e2e.js
 ```
 
-or define suites in your config file and run just the test files defined by in a suite:
+или определить наборы в вашем конфигурационном файле и запустить только тестовые файлы, определенные в наборе:
 
 ```sh
 npx wdio run ./wdio.conf.js --suite exampleSuiteName
 ```
 
-## Run in a script
+## Запуск в скрипте
 
-If you would like to use WebdriverIO as an automation engine in [Standalone Mode](/docs/setuptypes#standalone-mode) within a Node.JS script you can also directly install WebdriverIO and use it as a package, e.g. to generate a screenshot of a website:
+Если вы хотите использовать WebdriverIO как движок автоматизации в [Автономном режиме](/docs/setuptypes#standalone-mode) внутри скрипта Node.JS, вы также можете напрямую установить WebdriverIO и использовать его как пакет, например, для создания скриншота веб-сайта:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
 ```
 
-__Note:__ all WebdriverIO commands are asynchronous and need to be properly handled using [`async/await`](https://javascript.info/async-await).
+__Примечание:__ все команды WebdriverIO асинхронные и должны быть правильно обработаны с использованием [`async/await`](https://javascript.info/async-await).
 
-## Record tests
+## Запись тестов
 
-WebdriverIO provides tools to help you get started by recording your test actions on screen and generate WebdriverIO test scripts automatically. See [Recorder tests with Chrome DevTools Recorder](/docs/record) for more information.
+WebdriverIO предоставляет инструменты, помогающие начать работу путем записи ваших тестовых действий на экране и автоматического создания тестовых скриптов WebdriverIO. Смотрите [Запись тестов с помощью Chrome DevTools Recorder](/docs/record) для получения дополнительной информации.
 
-## System Requirements
+## Системные требования
 
-You’ll need [Node.js](http://nodejs.org) installed.
+Вам понадобится установленный [Node.js](http://nodejs.org).
 
-- Install at least v18.20.0 or higher as this is the oldest active LTS version
-- Only releases that are or will become an LTS release are officially supported
+- Установите версию не ниже v18.20.0, так как это самая старая активная версия LTS
+- Официально поддерживаются только выпуски, которые являются или станут выпусками LTS
 
-If Node is not currently installed on your system, we suggest utilizing a tool such as [NVM](https://github.com/creationix/nvm) or [Volta](https://volta.sh/) to assist in managing multiple active Node.js versions. NVM is a popular choice, while Volta is also a good alternative.
+Если Node в настоящее время не установлен в вашей системе, мы предлагаем использовать такой инструмент, как [NVM](https://github.com/creationix/nvm) или [Volta](https://volta.sh/), чтобы помочь в управлении несколькими активными версиями Node.js. NVM - популярный выбор, в то время как Volta также является хорошей альтернативой.

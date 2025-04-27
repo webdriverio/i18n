@@ -1,55 +1,55 @@
 ---
 id: cli-wizard
-title: CLI Wizard
+title: CLI Мастер
 ---
 
-You can validate which text can be found in an image without running a test by using the OCR CLI Wizard. The only thing that are needed are:
+Вы можете проверить, какой текст можно найти на изображении, без запуска теста, используя OCR CLI Мастер. Всё, что вам необходимо:
 
-- you have installed the `@wdio/ocr-service` as a dependency, see [Getting Started](./getting-started)
-- an image that you want to process
+-   установленный пакет `@wdio/ocr-service` в качестве зависимости, см. [Начало работы](./getting-started)
+-   изображение, которое вы хотите обработать
 
-Then run the following command to start the wizard
+Затем запустите следующую команду для запуска мастера
 
 ```sh
 npx ocr-service
 ```
 
-This will start a wizard that will guide you through the steps to select an image and use a haystack plus advanced mode. The following questions are asked
+Это запустит мастер, который проведет вас через шаги выбора изображения и использования области поиска, а также расширенного режима. Задаются следующие вопросы
 
-## How would you like to specify the file?
+## Как бы вы хотели указать файл?
 
-The following options can be selected
+Можно выбрать следующие варианты
 
-- Use a "file explorer"
-- Type the file path manually
+-   Использовать "проводник файлов"
+-   Ввести путь к файлу вручную
 
-### Use a "file explorer"
+### Использовать "проводник файлов"
 
-The CLI wizard provides an option to use a "file explorer" to search for files on your system. It starts from the folder you call the command. After selecting an image (use your arrow keys and the ENTER key) you will proceed to the next question
+CLI мастер предоставляет возможность использовать "проводник файлов" для поиска файлов в вашей системе. Поиск начинается с папки, из которой вы вызываете команду. После выбора изображения (используйте клавиши со стрелками и клавишу ENTER) вы перейдете к следующему вопросу
 
-### Type the file path manually
+### Ввести путь к файлу вручную
 
-This is a direct path to a file somewhere on your local machine
+Это прямой путь к файлу, находящемуся где-то на вашем локальном компьютере
 
-### Would you like to use a haystack?
+### Хотите ли вы использовать область поиска?
 
-Here you have the option to select an area that needs to be processed. This can speed up the process or reduce/narrow down the amount of text the OCR engine might find. You need to provide `x`, `y`, `width`, `height` data based on the following questions:
+Здесь у вас есть возможность выбрать область, которую нужно обработать. Это может ускорить процесс или уменьшить/сузить объем текста, который может найти OCR-движок. Вам нужно предоставить данные `x`, `y`, `width`, `height` на основе следующих вопросов:
 
-- Enter the x coordinate:
-- Enter the y coordinate:
-- Enter the width:
-- Enter the height:
+-   Введите координату x:
+-   Введите координату y:
+-   Введите ширину:
+-   Введите высоту:
 
-## Do you want to use the advanced mode?
+## Хотите ли вы использовать расширенный режим?
 
-Advanced mode will hold extra features like:
+Расширенный режим включает дополнительные функции, такие как:
 
-- setting the contrast
-- more to follow in the future
+-   настройка контрастности
+-   дополнительные функции появятся в будущем
 
-## Demo
+## Демонстрация
 
-Here's a demo
+Вот демонстрация
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

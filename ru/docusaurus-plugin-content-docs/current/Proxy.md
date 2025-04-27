@@ -3,24 +3,24 @@ id: proxy
 title: Настройка прокси
 ---
 
-Через прокси-сервер можно соединить два различных типа запросов:
+Вы можете пропускать два разных типа запросов через прокси:
 
-- Соединение между вашим тестами и драйвером браузера (или конечной точкой WebDriver)
-- Соединение между браузером и интернетом
+- соединение между вашим тестовым скриптом и драйвером браузера (или конечной точкой WebDriver)
+- соединение между браузером и интернетом
 
-## Прокси между драйвером и тестами
+## Прокси между драйвером и тестом
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+Если в вашей компании есть корпоративный прокси (например, на `http://my.corp.proxy.com:9090`) для всех исходящих запросов, выполните следующие шаги для установки и настройки [undici](https://github.com/nodejs/undici).
 
-### Install undici
+### Установка undici
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### Добавьте undici setGlobalDispatcher в ваш конфигурационный файл
 
-Добавьте следующую инструкцию в начало вашего конфигурационного файла.
+Добавьте следующий оператор require в начало вашего конфигурационного файла.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,9 +33,9 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+Дополнительную информацию о настройке прокси можно найти [здесь](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+Если вы используете [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), запустите его с помощью:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
@@ -43,9 +43,9 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 
 ## Прокси между браузером и интернетом
 
-Для того чтобы создать туннель между браузером и интернетом вы можете настроить прокси, который может быть полезен (например, для захвата сетевой информации и других данных с помощью таких инструментов, как [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+Чтобы туннелировать соединение между браузером и интернетом, вы можете настроить прокси, который может быть полезен (например) для захвата сетевой информации и других данных с помощью инструментов, таких как [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-Параметр `proxy` можно применить через стандартные возможности следующим образом:
+Параметры `proxy` можно применить через стандартные capabilities следующим образом:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-Для получения дополнительной информации см. спецификацию [WebDriver](https://w3c.github.io/webdriver/#proxy).
+Для получения дополнительной информации см. [спецификацию WebDriver](https://w3c.github.io/webdriver/#proxy).

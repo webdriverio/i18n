@@ -1,33 +1,33 @@
 ---
 id: why-webdriverio
-title: Why Webdriver.IO?
+title: Почему Webdriver.IO?
 ---
 
-WebdriverIO is a progressive automation framework built to automate modern web and mobile applications. It simplifies the interaction with your app and provides a set of plugins that help you create a scalable, robust and stable test suite.
+WebdriverIO - это прогрессивный фреймворк для автоматизации, созданный для тестирования современных веб и мобильных приложений. Он упрощает взаимодействие с вашим приложением и предоставляет набор плагинов, которые помогают создать масштабируемый, надежный и стабильный набор тестов.
 
-It is designed to be:
+Он спроектирован быть:
 
-- __Extendable__ - Adding helper functions, or more complicated sets and combinations of existing commands is __simple__ and __really useful__
-- __Compatible__ - WebdriverIO can be run on the [WebDriver Protocol](https://w3c.github.io/webdriver/) for __true cross-browser testing__ as well as [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) for Chromium based automation using [Puppeteer](https://pptr.dev/).
-- __Feature Rich__ - The huge variety of built-in and community plugins allows you to __easily integrate__ and __extend__ your setup to fulfill your requirements.
+- __Расширяемым__ - Добавление вспомогательных функций или более сложных наборов и комбинаций существующих команд __просто__ и __действительно полезно__
+- __Совместимым__ - WebdriverIO может работать на [WebDriver Protocol](https://w3c.github.io/webdriver/) для __настоящего кросс-браузерного тестирования__, а также на [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) для автоматизации на основе Chromium с использованием [Puppeteer](https://pptr.dev/).
+- __Богатым функциями__ - Огромное разнообразие встроенных и сторонних плагинов позволяет __легко интегрировать__ и __расширять__ вашу настройку для удовлетворения ваших требований.
 
-You can use WebdriverIO to automate:
+Вы можете использовать WebdriverIO для автоматизации:
 
-- 🌐 <span>&nbsp;</span> __modern web applications__ written in React, Vue, Angular, Svelte or other frontend frameworks
-- 📱 <span>&nbsp;</span> __hybrid__ or __native mobile applications__ running in an emulator/simulator or on a real device
-- 💻 <span>&nbsp;</span> __native desktop applications__ (e.g. written with Electron.js)
-- 📦 <span>&nbsp;</span> __unit or component testing__ of web components in the browser
+- 🌐 <span>&nbsp;</span> __современных веб-приложений__, написанных на React, Vue, Angular, Svelte или других фронтенд-фреймворках
+- 📱 <span>&nbsp;</span> __гибридных__ или __нативных мобильных приложений__, работающих в эмуляторе/симуляторе или на реальном устройстве
+- 💻 <span>&nbsp;</span> __нативных десктопных приложений__ (например, написанных с помощью Electron.js)
+- 📦 <span>&nbsp;</span> __модульного или компонентного тестирования__ веб-компонентов в браузере
 
-## Based on Web Standards
+## На основе веб-стандартов
 
-WebdriverIO leverages the power of the [WebDriver](https://w3c.github.io/webdriver/) and [WebDriver-BiDi](https://github.com/w3c/webdriver-bidi) protocol that is developed and supported by all browser vendors and guarantees a true cross-browser testing experience. While other automation tools require you to download modified browser engines that aren't used by actual users or emulate user behavior by injecting JavaScript, WebdriverIO relies on a common agreed standard for automation that is [properly tested](https://wpt.fyi/results/webdriver/tests?label=experimental&label=master&aligned) and ensures compatibility for decades to come.
+WebdriverIO использует возможности протоколов [WebDriver](https://w3c.github.io/webdriver/) и [WebDriver-BiDi](https://github.com/w3c/webdriver-bidi), которые разработаны и поддерживаются всеми производителями браузеров, гарантируя истинный кросс-браузерный опыт тестирования. В то время как другие инструменты автоматизации требуют загрузки модифицированных движков браузера, которые не используются реальными пользователями, или эмулируют поведение пользователя путем внедрения JavaScript, WebdriverIO опирается на общепринятый стандарт автоматизации, который [должным образом протестирован](https://wpt.fyi/results/webdriver/tests?label=experimental&label=master&aligned) и обеспечивает совместимость на десятилетия вперед.
 
-Furthermore WebdriverIO has also support for alternative, proprietary automation protocols like [Chrome DevTools](https://chromedevtools.github.io/devtools-protocol/) for debugging and introspection purposes. This allows the user to seamlessly switch between conventional commands based on WebDriver and powerful browser interactions through [Puppeteer](https://pptr.dev/).
+Кроме того, WebdriverIO также поддерживает альтернативные, проприетарные протоколы автоматизации, такие как [Chrome DevTools](https://chromedevtools.github.io/devtools-protocol/) для целей отладки и исследования. Это позволяет пользователю легко переключаться между обычными командами на основе WebDriver и мощными взаимодействиями с браузером через [Puppeteer](https://pptr.dev/).
 
-Read more about the differences of these automation standards in the section on [Automation Protocols](automationProtocols).
+Подробнее о различиях этих стандартов автоматизации читайте в разделе [Протоколы автоматизации](automationProtocols).
 
-## True Open Source
+## Действительно открытый исходный код
 
-Compared to many automation tools in the ecosystem, WebdriverIO is a truly open source project that is run with open governance and owned by a non-profit entity called [OpenJS Foundation](https://openjsf.org/). This legally binds the project to grow and be directed in the interest of all participants. The project team values openness and collaboration and is not driven by monetary interests.
+В отличие от многих инструментов автоматизации в экосистеме, WebdriverIO - это действительно проект с открытым исходным кодом, который управляется открыто и принадлежит некоммерческой организации под названием [OpenJS Foundation](https://openjsf.org/). Это юридически обязывает проект развиваться и направляться в интересах всех участников. Команда проекта ценит открытость и сотрудничество и не руководствуется финансовыми интересами.
 
-This makes the project independent in how it is being developed and where it is supposed to go. It allows us to provide free 24/7 support in our [community channel](https://discord.webdriver.io) as we build a sustainable community that supports and learns from each other. It allows us to provide a free 24/7 support in our [community channel](https://discord.webdriver.io) as we build a sustainable community that supports and learns from each other.
+Это делает проект независимым в том, как он разрабатывается и куда он должен двигаться. Это позволяет нам предоставлять бесплатную круглосуточную поддержку в нашем [сообществе](https://discord.webdriver.io), создавая устойчивое сообщество, которое поддерживает друг друга и учится друг у друга. Наконец, это даёт много возможностей людям, которые вносят вклад и участвуют в проекте благодаря его [открытому управлению](https://github.com/webdriverio/webdriverio/blob/main/GOVERNANCE.md).

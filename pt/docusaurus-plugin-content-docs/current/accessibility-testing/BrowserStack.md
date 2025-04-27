@@ -1,26 +1,26 @@
 ---
 id: browserstack
-title: Teste de acessibilidade do BrowserStack
+title: Testes de Acessibilidade BrowserStack
 ---
 
-# Teste de acessibilidade do BrowserStack
+# BrowserStack Accessibility Testing
 
-Você pode integrar facilmente testes de acessibilidade em seus conjuntos de testes do WebdriverIO usando o recurso de testes automatizados do BrowserStack Accessibility Testing.
+Você pode facilmente integrar testes de acessibilidade em suas suítes de teste WebdriverIO usando o [recurso de testes automatizados do BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-## Vantagens dos testes automatizados no teste de acessibilidade do BrowserStack.
+## Vantagens dos Testes Automatizados no BrowserStack Accessibility Testing
 
-Para usar testes automatizados no BrowserStack Accessibility Testing, seus testes devem estar em execução no BrowserStack Automate.
+Para usar testes automatizados no BrowserStack Accessibility Testing, seus testes devem estar rodando no BrowserStack Automate.
 
-As seguintes são as vantagens dos testes automatizados:
+As seguintes vantagens dos testes automatizados são:
 
-- Integra-se perfeitamente ao seu conjunto de testes de automação pré-existente.
-- Nenhuma alteração de código é necessária em casos de teste.
-- Não requer manutenção adicional para testes de acessibilidade.
-- Entenda tendências históricas e obtenha insights de casos de teste.
+* Integra-se perfeitamente à sua suíte de testes de automação pré-existente.
+* Não são necessárias alterações de código nos casos de teste.
+* Requer zero manutenção adicional para testes de acessibilidade.
+* Entenda tendências históricas e obtenha insights dos casos de teste.
 
-## Comece com o teste de acessibilidade do BrowserStack
+## Comece com o BrowserStack Accessibility Testing
 
-Siga estas etapas para integrar seus conjuntos de testes do WebdriverIO com o teste de acessibilidade do BrowserStack:
+Siga estes passos para integrar suas suítes de teste WebdriverIO com o Accessibility Testing do BrowserStack:
 
 1. Instale o pacote npm `@wdio/browserstack-service`.
 
@@ -32,33 +32,32 @@ npm install --save-dev @wdio/browserstack-service
 
 ```javascript
 exports.config = {
-  //...
-  user: '<browserstack_username>' || process.env.BROWSERSTACK_USERNAME,
-  key: '<browserstack_access_key>' || process.env.BROWSERSTACK_ACCESS_KEY,
-  commonCapabilities: {
-    'bstack:options': {
-      projectName: "Insira aqui o nome fixo do seu projeto",
-      buildName: "Insira aqui o nome fixo da sua build/job"
-    }
-  },
-  services: [
-    ['browserstack', {
-      accessibility: true,
-      // Opções de configuração opcionais
-      accessibilityOptions: {
-        'wcagVersion': 'wcag21a',
-        'includeIssueType': {
-          'bestPractice': false,
-          'needsReview': true
+    //...
+    user: '<browserstack_username>' || process.env.BROWSERSTACK_USERNAME,
+    key: '<browserstack_access_key>' || process.env.BROWSERSTACK_ACCESS_KEY,
+    commonCapabilities: {
+      'bstack:options': {
+        projectName: "Your static project name goes here",
+        buildName: "Your static build/job name goes here"
+      }
+    },
+    services: [
+      ['browserstack', {
+        accessibility: true,
+        // Optional configuration options
+        accessibilityOptions: {
+          'wcagVersion': 'wcag21a',
+          'includeIssueType': {
+            'bestPractice': false,
+            'needsReview': true
+          },
+          'includeTagsInTestingScope': ['Specify tags of test cases to be included'],
+          'excludeTagsInTestingScope': ['Specify tags of test cases to be excluded']
         },
-        'includeTagsInTestingScope': ['Especifique as tags dos casos de teste a serem incluídas'],
-        'excludeTagsInTestingScope': ['Especifique as tags dos casos de teste a serem excluídas']
-      },
-    }]
-  ],
-  //...
-};
+      }]
+    ],
+    //...
+  };
 ```
 
-Você pode ver instruções detalhadas aqui.
-
+Você pode ver instruções detalhadas [aqui](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).

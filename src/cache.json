@@ -8,7 +8,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Appium.md": {
@@ -20,7 +22,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Assertion.md": {
@@ -32,7 +36,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/AutoWait.md": {
@@ -44,7 +50,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Autocompletion.md": {
@@ -56,7 +64,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/AutomationProtocols.md": {
@@ -68,7 +78,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BambooIntegration.md": {
@@ -80,7 +92,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BestPractices.md": {
@@ -92,7 +106,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BoilerplateProjects.md": {
@@ -104,7 +120,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Capabilities.md": {
@@ -116,7 +134,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CloudServices.md": {
@@ -128,7 +148,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ComponentTesting.md": {
@@ -140,7 +162,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Configuration.md": {
@@ -152,7 +176,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ConfigurationFile.md": {
@@ -164,7 +190,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomCommands.md": {
@@ -176,7 +204,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomMatchers.md": {
@@ -188,7 +218,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomReporter.md": {
@@ -200,7 +232,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomServices.md": {
@@ -212,7 +246,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Debugging.md": {
@@ -224,7 +260,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Docker.md": {
@@ -236,7 +274,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/DriverBinaries.md": {
@@ -248,7 +288,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Emulation.md": {
@@ -260,7 +302,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Enterprise.md": {
@@ -272,7 +316,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Frameworks.md": {
@@ -284,7 +330,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/GettingStarted.md": {
@@ -296,7 +344,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/GithubActions.md": {
@@ -308,7 +358,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/JenkinsIntegration.md": {
@@ -320,7 +372,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/MocksAndSpies.md": {
@@ -332,7 +386,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Multiremote.md": {
@@ -344,7 +400,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/OrganizingTestSuites.md": {
@@ -356,7 +414,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/PageObjects.md": {
@@ -368,7 +428,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ParameterizeTests.md": {
@@ -380,7 +442,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ProtractorMigration.md": {
@@ -392,7 +456,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Proxy.md": {
@@ -404,7 +470,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Record.md": {
@@ -416,7 +484,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Retry.md": {
@@ -428,7 +498,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Runner.md": {
@@ -440,7 +512,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Selectors.md": {
@@ -452,7 +526,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/SeleniumGrid.md": {
@@ -464,7 +540,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/SetupTypes.md": {
@@ -476,7 +554,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Sharding.md": {
@@ -488,7 +568,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Snapshot.md": {
@@ -500,7 +582,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Sponsor.md": {
@@ -512,7 +596,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/SyncAsyncMigration.md": {
@@ -524,7 +610,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Testrunner.md": {
@@ -536,7 +624,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Timeouts.md": {
@@ -548,7 +638,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/TypeScript.md": {
@@ -560,7 +652,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/VisualTesting.md": {
@@ -572,7 +666,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/WatchFiles.md": {
@@ -584,7 +680,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/WhyWebdriverIO.md": {
@@ -596,7 +694,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/accessibility-testing/AxeCore.md": {
@@ -608,7 +708,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/accessibility-testing/BrowserStack.md": {
@@ -620,7 +722,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Environment.md": {
@@ -632,7 +736,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Dialog.md": {
@@ -644,7 +750,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Browser.md": {
@@ -656,7 +764,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Clock.md": {
@@ -668,7 +778,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Element.md": {
@@ -680,7 +792,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Globals.md": {
@@ -692,7 +806,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Mobile.md": {
@@ -704,7 +820,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Mock.md": {
@@ -716,7 +834,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Modules.md": {
@@ -728,7 +848,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Protocols.md": {
@@ -740,7 +862,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/best-practices/BrowserLogs.md": {
@@ -752,7 +876,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/best-practices/FileDownloads.md": {
@@ -764,7 +890,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Lit.md": {
@@ -776,7 +904,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Preact.md": {
@@ -788,7 +918,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/React.md": {
@@ -800,7 +932,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Solid.md": {
@@ -812,7 +946,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Stencil.md": {
@@ -824,7 +960,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Svelte.md": {
@@ -836,7 +974,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Vue.md": {
@@ -848,7 +988,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/coverage.md": {
@@ -860,7 +1002,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/mocking.md": {
@@ -872,7 +1016,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/Electron.md": {
@@ -884,7 +1030,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/MacOS.md": {
@@ -896,7 +1044,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/Windows.md": {
@@ -908,7 +1058,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/extension-testing/VSCodeExtension.md": {
@@ -920,7 +1072,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/extension-testing/WebExtension.md": {
@@ -932,7 +1086,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/CreateLocalWorkerProcess.md": {
@@ -944,7 +1100,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/HighLevelOverview.md": {
@@ -956,7 +1114,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/TestExecution.md": {
@@ -968,7 +1128,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/WDIOCommands.md": {
@@ -980,7 +1142,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/cli-wizard.md": {
@@ -992,7 +1156,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/getting-started.md": {
@@ -1004,7 +1170,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/more-test-optimization.md": {
@@ -1016,7 +1184,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-click-on-text.md": {
@@ -1028,7 +1198,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-faq.md": {
@@ -1040,7 +1212,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-get-element-position-by-text.md": {
@@ -1052,7 +1226,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-get-text.md": {
@@ -1064,7 +1240,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-set-value.md": {
@@ -1076,7 +1254,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-wait-for-text-displayed.md": {
@@ -1088,7 +1268,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/what-is-wdio-ocr-service.md": {
@@ -1100,7 +1282,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/percy-overview.md": {
@@ -1112,7 +1296,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/repl.md": {
@@ -1124,7 +1310,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/v6Migration.md": {
@@ -1136,7 +1324,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/v7Migration.md": {
@@ -1148,7 +1338,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/Considerations.md": {
@@ -1160,7 +1352,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/argos.md": {
@@ -1172,7 +1366,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/compare-options.md": {
@@ -1184,7 +1380,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/faq.md": {
@@ -1196,7 +1394,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/integrate-with-app-percy.md": {
@@ -1208,7 +1408,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/integrate-with-percy.md": {
@@ -1220,7 +1422,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/method-options.md": {
@@ -1232,7 +1436,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/methods.md": {
@@ -1244,7 +1450,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/reporter.md": {
@@ -1256,7 +1464,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/service-options.md": {
@@ -1268,7 +1478,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/test-output.md": {
@@ -1280,7 +1492,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/writing-tests.md": {
@@ -1292,7 +1506,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current.json": {
@@ -1304,7 +1520,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Donate.md": {
@@ -1316,7 +1534,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Events.md": {
@@ -1328,7 +1548,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Materials.md": {
@@ -1340,7 +1562,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/OpenOfficeHours.md": {
@@ -1352,7 +1576,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Support.md": {
@@ -1364,7 +1590,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current.json": {
@@ -1376,7 +1604,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Team.md": {
@@ -1388,7 +1618,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_appium.md": {
@@ -1400,7 +1632,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_tick.md": {
@@ -1412,7 +1646,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_selenium.md": {
@@ -1424,7 +1660,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_saucelabs.md": {
@@ -1436,7 +1674,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_message.md": {
@@ -1448,7 +1688,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_dismiss.md": {
@@ -1460,7 +1702,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_setSystemTime.md": {
@@ -1472,7 +1716,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_defaultValue.md": {
@@ -1484,7 +1730,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_mjsonwp.md": {
@@ -1496,7 +1744,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_expect-webdriverio.md": {
@@ -1508,7 +1758,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_action.md": {
@@ -1520,7 +1772,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_webdriverBidi.md": {
@@ -1532,7 +1786,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_chromium.md": {
@@ -1544,7 +1800,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_addCommand.md": {
@@ -1556,7 +1814,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_$$.md": {
@@ -1568,7 +1828,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_actions.md": {
@@ -1580,7 +1842,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_$.md": {
@@ -1592,7 +1856,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_type.md": {
@@ -1604,7 +1870,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_downloadFile.md": {
@@ -1616,7 +1884,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_deleteCookies.md": {
@@ -1628,7 +1898,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_custom$.md": {
@@ -1640,7 +1912,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/clock/_restore.md": {
@@ -1652,7 +1926,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_webdriver.md": {
@@ -1664,7 +1940,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_call.md": {
@@ -1676,7 +1954,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getPuppeteer.md": {
@@ -1688,7 +1968,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mockClearAll.md": {
@@ -1700,7 +1982,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_keys.md": {
@@ -1712,7 +1996,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getCookies.md": {
@@ -1724,7 +2010,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mock.md": {
@@ -1736,7 +2024,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_mockRestoreAll.md": {
@@ -1748,7 +2038,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_pause.md": {
@@ -1760,7 +2052,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_reloadSession.md": {
@@ -1772,7 +2066,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/dialog/_accept.md": {
@@ -1784,7 +2080,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_custom$$.md": {
@@ -1796,7 +2094,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_saveRecordingScreen.md": {
@@ -1808,7 +2108,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_restore.md": {
@@ -1820,7 +2122,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_getContexts.md": {
@@ -1832,7 +2136,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_swipe.md": {
@@ -1844,7 +2150,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_deepLink.md": {
@@ -1856,7 +2164,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_tap.md": {
@@ -1868,7 +2178,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_switchContext.md": {
@@ -1880,7 +2192,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_zoom.md": {
@@ -1892,7 +2206,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_restore.md": {
@@ -1904,7 +2220,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_custom$.md": {
@@ -1916,7 +2234,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_click.md": {
@@ -1928,7 +2248,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_dragAndDrop.md": {
@@ -1940,7 +2262,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_abortOnce.md": {
@@ -1952,7 +2276,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_request.md": {
@@ -1964,7 +2290,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_execute.md": {
@@ -1976,7 +2304,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_addValue.md": {
@@ -1988,7 +2318,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getElement.md": {
@@ -2000,7 +2332,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_relaunchActiveApp.md": {
@@ -2012,7 +2346,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_requestOnce.md": {
@@ -2024,7 +2360,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getLocation.md": {
@@ -2036,7 +2374,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getProperty.md": {
@@ -2048,7 +2388,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getHTML.md": {
@@ -2060,7 +2402,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getElements.md": {
@@ -2072,7 +2416,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getComputedRole.md": {
@@ -2084,7 +2430,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_pinch.md": {
@@ -2096,7 +2444,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_$.md": {
@@ -2108,7 +2458,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_$$.md": {
@@ -2120,7 +2472,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_clear.md": {
@@ -2132,7 +2486,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isEnabled.md": {
@@ -2144,7 +2500,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isDisplayed.md": {
@@ -2156,7 +2514,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getText.md": {
@@ -2168,7 +2528,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getTagName.md": {
@@ -2180,7 +2542,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getAttribute.md": {
@@ -2192,7 +2556,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_dragAndDrop.md": {
@@ -2204,7 +2570,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isSelected.md": {
@@ -2216,7 +2584,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isFocused.md": {
@@ -2228,7 +2598,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_longPress.md": {
@@ -2240,7 +2612,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isStable.md": {
@@ -2252,7 +2626,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_getContext.md": {
@@ -2264,7 +2640,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_react$$.md": {
@@ -2276,7 +2654,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_saveScreenshot.md": {
@@ -2288,7 +2668,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_previousElement.md": {
@@ -2300,7 +2682,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_react$.md": {
@@ -2312,7 +2696,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByAttribute.md": {
@@ -2324,7 +2710,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isExisting.md": {
@@ -2336,7 +2724,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_scrollIntoView.md": {
@@ -2348,7 +2738,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByVisibleText.md": {
@@ -2360,7 +2752,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_shadow$$.md": {
@@ -2372,7 +2766,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_selectByIndex.md": {
@@ -2384,7 +2780,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_shadow$.md": {
@@ -2396,7 +2794,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_setValue.md": {
@@ -2408,7 +2808,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getCSSProperty.md": {
@@ -2420,7 +2822,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForStable.md": {
@@ -2432,7 +2836,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForClickable.md": {
@@ -2444,7 +2850,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitUntil.md": {
@@ -2456,7 +2864,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_touchAction.md": {
@@ -2468,7 +2878,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForDisplayed.md": {
@@ -2480,7 +2892,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForExist.md": {
@@ -2492,7 +2906,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getSize.md": {
@@ -2504,7 +2920,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_waitForEnabled.md": {
@@ -2516,7 +2934,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_addInitScript.md": {
@@ -2528,7 +2948,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_debug.md": {
@@ -2540,7 +2962,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_executeAsync.md": {
@@ -2552,7 +2976,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_getWindowSize.md": {
@@ -2564,7 +2990,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_executeAsync.md": {
@@ -2576,7 +3004,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_execute.md": {
@@ -2588,7 +3018,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_emulate.md": {
@@ -2600,7 +3032,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_nextElement.md": {
@@ -2612,7 +3046,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getComputedLabel.md": {
@@ -2624,7 +3060,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_react$$.md": {
@@ -2636,7 +3074,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_moveTo.md": {
@@ -2648,7 +3088,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_react$.md": {
@@ -2660,7 +3102,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_overwriteCommand.md": {
@@ -2672,7 +3116,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_newWindow.md": {
@@ -2684,7 +3130,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_scroll.md": {
@@ -2696,7 +3144,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_saveScreenshot.md": {
@@ -2708,7 +3158,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_setCookies.md": {
@@ -2720,7 +3172,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_parentElement.md": {
@@ -2732,7 +3186,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_throttleCPU.md": {
@@ -2744,7 +3200,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_switchWindow.md": {
@@ -2756,7 +3214,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_doubleClick.md": {
@@ -2768,7 +3228,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isClickable.md": {
@@ -2780,7 +3242,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_touchAction.md": {
@@ -2792,7 +3256,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_gecko.md": {
@@ -2804,7 +3270,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_isEqual.md": {
@@ -2816,7 +3284,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_url.md": {
@@ -2828,7 +3298,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_custom$$.md": {
@@ -2840,7 +3312,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_throttle.md": {
@@ -2852,7 +3326,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mobile/_scrollIntoView.md": {
@@ -2864,7 +3340,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_respondOnce.md": {
@@ -2876,7 +3354,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_clearValue.md": {
@@ -2888,7 +3368,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_redirect.md": {
@@ -2900,7 +3382,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/element/_getValue.md": {
@@ -2912,7 +3396,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_abort.md": {
@@ -2924,7 +3410,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_setWindowSize.md": {
@@ -2936,7 +3424,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/mock/_respond.md": {
@@ -2948,7 +3438,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_waitUntil.md": {
@@ -2960,7 +3452,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_savePDF.md": {
@@ -2972,7 +3466,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_switchFrame.md": {
@@ -2984,7 +3480,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_setViewport.md": {
@@ -2996,7 +3494,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_throttleNetwork.md": {
@@ -3008,7 +3508,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_setTimeout.md": {
@@ -3020,7 +3522,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/browser/_uploadFile.md": {
@@ -3032,7 +3536,9 @@
       "hi",
       "zh",
       "uk",
-      "ta"
+      "ta",
+      "pt",
+      "ru"
     ]
   }
 }

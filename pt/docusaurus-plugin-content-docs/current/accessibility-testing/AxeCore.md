@@ -3,13 +3,13 @@ id: axe-core
 title: Axe Core
 ---
 
-Você pode incluir testes de acessibilidade em seu conjunto de testes WebdriverIO usando as ferramentas de acessibilidade de código aberto [da Deque chamadas Axe](https://www.deque.com/axe/). A configuração é muito fácil, tudo o que você precisa fazer é instalar o adaptador WebdriverIO Axe via:
+Você pode incluir testes de acessibilidade em sua suíte de testes WebdriverIO usando as ferramentas de acessibilidade de código aberto [da Deque chamadas Axe](https://www.deque.com/axe/). A configuração é muito fácil, tudo o que você precisa fazer é instalar o adaptador WebdriverIO Axe via:
 
 ```bash npm2yarn
 npm install -g @axe-core/webdriverio
 ```
 
-O adaptador Axe pode ser usado no modo [autônomo ou testrunner](/docs/setuptypes), simplesmente importando-o e inicializando-o com o [objeto do navegador](/docs/api/browser), por exemplo:
+O adaptador Axe pode ser usado tanto no modo [standalone quanto no testrunner](/docs/setuptypes) simplesmente importando e inicializando-o com o [objeto browser](/docs/api/browser), por exemplo:
 
 ```ts
 import { browser } from '@wdio/globals'

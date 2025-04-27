@@ -3,13 +3,13 @@ id: ocr-set-value
 title: ocrSetValue
 ---
 
-Envie uma sequência de pressionamentos de tecla para um elemento. Ele vai:
+Enviar uma sequência de pressionamentos de teclas para um elemento. Isso irá:
 
-- detectar automaticamente o elemento
-- coloque o foco no campo clicando nele
-- defina o valor no campo
+-   detectar automaticamente o elemento
+-   focar no campo clicando nele
+-   definir o valor no campo
 
-O comando pesquisará o texto fornecido e tentará encontrar uma correspondência com base na Lógica Fuzzy do [Fuse.js](https://fusejs.io/). Isso significa que se você fornecer um erro de digitação a um seletor, ou se o texto encontrado não for 100% correspondente, ele ainda tentará retornar um elemento. Veja os [logs](#logs) abaixo.
+O comando irá buscar pelo texto fornecido e tentar encontrar uma correspondência baseada na Lógica Fuzzy do [Fuse.js](https://fusejs.io/). Isso significa que se você fornecer um seletor com erro de digitação, ou o texto encontrado pode não ser uma correspondência 100%, ele ainda tentará retornar um elemento. Veja os [logs](#logs) abaixo.
 
 ## Uso
 
@@ -34,10 +34,10 @@ await brower.ocrSetValue({
 
 ### `text`
 
-- **Tipo:** `string`
-- **Obrigatório:** sim
+-   **Tipo:** `string`
+-   **Obrigatório:** sim
 
-O texto que você deseja pesquisar para clicar.
+O texto que você deseja procurar para clicar.
 
 #### Exemplo
 
@@ -50,10 +50,10 @@ await browser.ocrSetValue({
 
 ### `value`
 
-- **Tipo:** `string`
-- **Obrigatório:** sim
+-   **Tipo:** `string`
+-   **Obrigatório:** sim
 
-Valor a ser agregado.
+Valor a ser adicionado.
 
 #### Exemplo
 
@@ -66,11 +66,11 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
-- **Tipo:** `boolean`
-- **Obrigatório:** não
-- **Padrão:** `false`
+-   **Tipo:** `boolean`
+-   **Obrigatório:** não
+-   **Padrão:** `false`
 
-Se o valor também precisar ser enviado no campo de entrada. Isso significa que um "ENTER" será enviado no final da string.
+Se o valor também precisa ser enviado no campo de entrada. Isso significa que um "ENTER" será enviado no final da string.
 
 #### Exemplo
 
@@ -84,9 +84,9 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** `500` milissegundos
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** `500` milissegundos
 
 Esta é a duração do clique. Se quiser, você também pode criar um "clique longo" aumentando o tempo.
 
@@ -96,17 +96,17 @@ Esta é a duração do clique. Se quiser, você também pode criar um "clique lo
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // Isso é 3 segundos
 });
 ```
 
 ### `contrast`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** `0.25`
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** `0.25`
 
-Quanto maior o contraste, mais escura a imagem e vice-versa. Isso pode ajudar a encontrar texto em uma imagem. Ele aceita valores entre `-1` e `1`.
+Quanto maior o contraste, mais escura a imagem e vice-versa. Isso pode ajudar a encontrar texto em uma imagem. Aceita valores entre `-1` e `1`.
 
 #### Exemplo
 
@@ -120,10 +120,10 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
-- **Tipo:** `número`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Tipo:** `number`
+-   **Obrigatório:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-Esta é a área de pesquisa na tela onde o OCR precisa procurar texto. Pode ser um elemento ou um retângulo contendo `x`, `y`, `largura` e `altura`
+Esta é a área de busca na tela onde o OCR precisa procurar por texto. Isso pode ser um elemento ou um retângulo contendo `x`, `y`, `width` e `height`
 
 #### Exemplo
 
@@ -156,11 +156,11 @@ await browser.ocrSetValue({
 
 ### `language`
 
-- **Tipo:** `string`
-- **Obrigatório:** Não
-- **Padrão:** `eng`
+-   **Tipo:** `string`
+-   **Obrigatório:** Não
+-   **Padrão:** `eng`
 
-A linguagem que o Tesseract reconhecerá. Mais informações podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e os idiomas suportados podem ser encontrados [aqui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+O idioma que o Tesseract reconhecerá. Mais informações podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e os idiomas suportados podem ser encontrados [aqui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 #### Exemplo
 
@@ -169,37 +169,37 @@ import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // Use holandês como idioma
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
-- **Tipo:** `objeto`
-- **Obrigatório:** não
+-   **Tipo:** `object`
+-   **Obrigatório:** não
 
-Você pode clicar na tela relativa ao elemento correspondente. Isso pode ser feito com base em pixels relativos  `above`, `right`, `below` ou`left` do elemento correspondente
+Você pode clicar na tela em relação ao elemento correspondente. Isso pode ser feito com base em pixels relativos `above`, `right`, `below` ou `left` do elemento correspondente.
 
 :::note
 
 As seguintes combinações são permitidas
 
-- propriedades individuais
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   propriedades individuais
+-   `above` + `left` ou `above` + `right`
+-   `below` + `left` ou `below` + `right`
 
 As seguintes combinações **NÃO** são permitidas
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` mais `below`
+-   `left` mais `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
+-   **Tipo:** `number`
+-   **Obrigatório:** não
 
 Clique x pixels `acima` do elemento correspondente.
 
@@ -217,10 +217,10 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
+-   **Tipo:** `number`
+-   **Obrigatório:** não
 
-Clique x pixels `right` do elemento correspondente.
+Clique x pixels à `direita` do elemento correspondente.
 
 ##### Exemplo
 
@@ -236,10 +236,10 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
+-   **Tipo:** `number`
+-   **Obrigatório:** não
 
-Clique x pixels `below` do elemento correspondente.
+Clique x pixels `abaixo` do elemento correspondente.
 
 ##### Exemplo
 
@@ -255,10 +255,10 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
+-   **Tipo:** `number`
+-   **Obrigatório:** não
 
-Clique em x pixels `left` do elemento correspondente.
+Clique x pixels à `esquerda` do elemento correspondente.
 
 ##### Exemplo
 
@@ -274,15 +274,15 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-Você pode alterar a lógica difusa para encontrar texto com as seguintes opções. Isso pode ajudar a encontrar uma correspondência melhor
+Você pode alterar a lógica fuzzy para encontrar texto com as seguintes opções. Isso pode ajudar a encontrar uma correspondência melhor
 
 #### `fuzzyFindOptions.distance`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** 100
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** 100
 
-Determina o quão próxima a correspondência deve ser do local difuso (especificado pelo local). Uma correspondência exata de letras, que é a distância de caracteres do local difuso, seria considerada uma incompatibilidade completa. Uma distância de 0 exige que a correspondência esteja no local exato especificado. Uma distância de 1000 exigiria que uma correspondência perfeita estivesse dentro de 800 caracteres do local a ser encontrado usando um limite de 0,8.
+Determina quão próxima a correspondência deve estar da localização fuzzy (especificada por location). Uma correspondência de letra exata que esteja à distância de caracteres da localização fuzzy seria classificada como uma incompatibilidade completa. Uma distância de 0 requer que a correspondência esteja na localização exata especificada. Uma distância de 1000 exigiria uma correspondência perfeita para estar dentro de 800 caracteres da localização a ser encontrada usando um limiar de 0,8.
 
 ##### Exemplo
 
@@ -298,11 +298,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** 0
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** 0
 
-Determina aproximadamente onde no texto o padrão deve ser encontrado.
+Determina aproximadamente onde no texto espera-se encontrar o padrão.
 
 ##### Exemplo
 
@@ -318,11 +318,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** 0,6
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** 0.6
 
-Em que ponto o algoritmo de correspondência desiste? Um limite de 0 requer uma correspondência perfeita (de letras e localização), um limite de 1,0 corresponderia a qualquer coisa.
+Em que ponto o algoritmo de correspondência desiste. Um limiar de 0 requer uma correspondência perfeita (tanto de letras quanto de localização), um limiar de 1.0 corresponderia a qualquer coisa.
 
 ##### Exemplo
 
@@ -338,9 +338,9 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Tipo:** `boolean`
-- **Obrigatório:** não
-- **Padrão:** falso
+-   **Tipo:** `boolean`
+-   **Obrigatório:** não
+-   **Padrão:** false
 
 Se a pesquisa deve diferenciar maiúsculas de minúsculas.
 
@@ -358,11 +358,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** 2
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** 2
 
-Somente as correspondências cujo comprimento exceda esse valor serão retornadas. (Por exemplo, se você quiser ignorar correspondências de caracteres individuais no resultado, defina-o como 2)
+Apenas as correspondências cujo comprimento excede esse valor serão retornadas. (Por exemplo, se você quiser ignorar correspondências de caractere único no resultado, defina-o como 2)
 
 ##### Exemplo
 
@@ -378,9 +378,9 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** falso
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** false
 
 Quando `true`, a função de correspondência continuará até o final de um padrão de pesquisa, mesmo que uma correspondência perfeita já tenha sido localizada na string.
 

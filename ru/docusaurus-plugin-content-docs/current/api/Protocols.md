@@ -1,68 +1,68 @@
 ---
 id: protocols
-title: Protocol Commands
+title: Команды протоколов
 ---
 
-WebdriverIO is an automation framework that relies on various of automation protocols to control a remote agent, e.g. for a browser, mobile device or television. Based on the remote device different protocols come into play. These commands are assigned to the [Browser](/docs/api/browser) or [Element](/docs/api/element) Object depending on the session information by the remote server (e.g. browser driver).
+WebdriverIO — это фреймворк для автоматизации, который использует различные протоколы автоматизации для управления удаленным агентом, например, для браузера, мобильного устройства или телевизора. В зависимости от удаленного устройства применяются разные протоколы. Эти команды назначаются объектам [Browser](/docs/api/browser) или [Element](/docs/api/element) в зависимости от информации о сеансе от удаленного сервера (например, драйвера браузера).
 
-Internally WebdriverIO uses protocol commands for almost all interactions with the remote agent. However additional commands assigned to the [Browser](/docs/api/browser) or [Element](/docs/api/element) Object simplify the usage of WebdriverIO, e.g. getting the text of an element using protocol commands would look like this:
+Внутренне WebdriverIO использует команды протокола практически для всех взаимодействий с удаленным агентом. Однако дополнительные команды, назначенные объектам [Browser](/docs/api/browser) или [Element](/docs/api/element), упрощают использование WebdriverIO. Например, получение текста элемента с использованием команд протокола выглядело бы так:
 
 ```js
 const searchInput = await browser.findElement('css selector', '#lst-ib')
 await client.getElementText(searchInput['element-6066-11e4-a52e-4f735466cecf'])
 ```
 
-Using the convenient commands of the [Browser](/docs/api/browser) or [Element](/docs/api/element) Object this can be reduced to:
+Используя удобные команды объектов [Browser](/docs/api/browser) или [Element](/docs/api/element), это можно сократить до:
 
 ```js
 $('#lst-ib').getText()
 ```
 
-The following section explain each individual protocol.
+В следующем разделе описывается каждый отдельный протокол.
 
-## WebDriver Protocol
+## Протокол WebDriver
 
-The [WebDriver](https://w3c.github.io/webdriver/#elements) protocol is a web standard for automating browser. As oppose to some other E2E tools it guarantees that automation can be done on actual browser that are used by your users, e.g. Firefox, Safari and Chrome and Chromium based browser like Edge, and not only on browser engines, e.g. WebKit, which are very different.
+[WebDriver](https://w3c.github.io/webdriver/#elements) — это веб-стандарт для автоматизации браузера. В отличие от некоторых других инструментов E2E, он гарантирует, что автоматизация может выполняться на реальных браузерах, которыми пользуются ваши пользователи, например, Firefox, Safari и Chrome, а также браузеры на основе Chromium, такие как Edge, а не только на движках браузеров, например, WebKit, которые сильно отличаются.
 
-The advantage of using the WebDriver protocol as oppose to debugging protocols like [Chrome DevTools](https://w3c.github.io/webdriver/#elements) is that you have a specific set of commands that allow to interact with the browser the same way across all browser which reduces the likelihood for flakiness. Furthermore offers this protocol abilities for massive scalability by using cloud vendors such as [Sauce Labs](https://saucelabs.com/), [BrowserStack](https://www.browserstack.com/) and [others](https://github.com/christian-bromann/awesome-selenium#cloud-services).
+Преимущество использования протокола WebDriver в отличие от отладочных протоколов, таких как [Chrome DevTools](https://w3c.github.io/webdriver/#elements), заключается в том, что у вас есть определенный набор команд, которые позволяют взаимодействовать с браузером одинаково во всех браузерах, что снижает вероятность нестабильности. Кроме того, этот протокол предлагает возможности для масштабного масштабирования с использованием облачных вендоров, таких как [Sauce Labs](https://saucelabs.com/), [BrowserStack](https://www.browserstack.com/) и [другие](https://github.com/christian-bromann/awesome-selenium#cloud-services).
 
-## WebDriver Bidi Protocol
+## Протокол WebDriver Bidi
 
-The [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) protocol is the second generation of the protocol and is currently being worked on by most browser vendors. Compared to its pre-predecessor the protocol supports a bi-directional communication (hence "Bidi") between the framework and the remote device. It furthermore introduces additional primitives for better browser introspection to better automate modern web applications in browser.
+Протокол [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) — это второе поколение протокола, над которым в настоящее время работает большинство производителей браузеров. По сравнению с его предшественником, протокол поддерживает двунаправленную связь (отсюда "Bidi") между фреймворком и удаленным устройством. Кроме того, он вводит дополнительные примитивы для лучшей интроспекции браузера, чтобы лучше автоматизировать современные веб-приложения в браузере.
 
-Given this protocol is currently work in progress more features will be added over time and supported by browser. If you use WebdriverIOs convenient commands nothing will change for you. WebdriverIO will make use of these new protocol capabilities as soon as they are available and supported in the browser.
+Поскольку этот протокол в настоящее время находится в разработке, со временем будет добавляться больше функций, которые будут поддерживаться браузерами. Если вы используете удобные команды WebdriverIO, для вас ничего не изменится. WebdriverIO будет использовать эти новые возможности протокола, как только они станут доступны и поддерживаться в браузере.
 
 ## Appium
 
-The [Appium](https://appium.io/) project provides capabilities to automate mobile, desktop and all other kinds of IoT devices. While WebDriver focuses on browser and the web, the vision of Appium is to use the same approach but for any arbitrary device. In addition to the commands that WebDriver defines, it has special commands that often are specific to the remote device that is being automated. For mobile testing scenarios this is ideal when you want to write and run the same tests for both Android and iOS applications.
+Проект [Appium](https://appium.io/) предоставляет возможности для автоматизации мобильных устройств, настольных компьютеров и всех других видов устройств IoT. В то время как WebDriver фокусируется на браузере и веб, видение Appium заключается в использовании того же подхода, но для любого произвольного устройства. В дополнение к командам, которые определяет WebDriver, он имеет специальные команды, которые часто специфичны для удаленного устройства, которое автоматизируется. Для сценариев мобильного тестирования это идеально, когда вы хотите писать и запускать одни и те же тесты как для Android, так и для iOS-приложений.
 
-According to Appium [documentation](https://appium.github.io/appium.io/docs/en/about-appium/intro/?lang=en) it was designed to meet mobile automation needs according to a philosophy outlined by the following four tenets:
+Согласно [документации](https://appium.github.io/appium.io/docs/en/about-appium/intro/?lang=en) Appium был разработан для удовлетворения потребностей мобильной автоматизации в соответствии с философией, описанной следующими четырьмя принципами:
 
-- You shouldn't have to recompile your app or modify it in any way in order to automate it.
-- You shouldn't be locked into a specific language or framework to write and run your tests.
-- A mobile automation framework shouldn't reinvent the wheel when it comes to automation APIs.
-- A mobile automation framework should be open source, in spirit and practice as well as in name!
+- Вам не следует перекомпилировать ваше приложение или изменять его каким-либо образом для его автоматизации.
+- Вы не должны быть привязаны к конкретному языку или фреймворку для написания и запуска тестов.
+- Фреймворк мобильной автоматизации не должен изобретать велосипед, когда дело касается API автоматизации.
+- Фреймворк мобильной автоматизации должен быть с открытым исходным кодом, как по духу и практике, так и по названию!
 
 ## Chromium
 
-The Chromium protocol offers a super set of commands on top of the WebDriver protocol that is only supported when running automated session through [Chromedriver](https://chromedriver.chromium.org/chromedriver-canary) or [Edgedriver](https://developer.microsoft.com/fr-fr/microsoft-edge/tools/webdriver).
+Протокол Chromium предлагает расширенный набор команд поверх протокола WebDriver, которые поддерживаются только при запуске автоматизированных сессий через [Chromedriver](https://chromedriver.chromium.org/chromedriver-canary) или [Edgedriver](https://developer.microsoft.com/fr-fr/microsoft-edge/tools/webdriver).
 
 ## Firefox
 
-The Firefox protocol offers a super set of commands on top of the WebDriver protocol that is only supported when running automated session through [Geckodriver](https://github.com/mozilla/geckodriver).
+Протокол Firefox предлагает расширенный набор команд поверх протокола WebDriver, которые поддерживаются только при запуске автоматизированных сессий через [Geckodriver](https://github.com/mozilla/geckodriver).
 
 ## Sauce Labs
 
-The [Sauce Labs](https://saucelabs.com/) protocol offers a super set of commands on top of the WebDriver protocol that is only supported when running automated session using the Sauce Labs cloud.
+Протокол [Sauce Labs](https://saucelabs.com/) предлагает расширенный набор команд поверх протокола WebDriver, которые поддерживаются только при запуске автоматизированных сессий с использованием облака Sauce Labs.
 
 ## Selenium Standalone
 
-The [Selenium Standalone](https://www.selenium.dev/documentation/grid/advanced_features/endpoints/) protocol offers a super set of commands on top of the WebDriver protocol that is only supported when running automated session using the Selenium Grid.
+Протокол [Selenium Standalone](https://www.selenium.dev/documentation/grid/advanced_features/endpoints/) предлагает расширенный набор команд поверх протокола WebDriver, которые поддерживаются только при запуске автоматизированных сессий с использованием Selenium Grid.
 
 ## JSON Wire Protocol
 
-The [JSON Wire Protocol](https://www.selenium.dev/documentation/legacy/json_wire_protocol/) is the pre-predecessor of the WebDriver protocol and __deprecated__ today. While some commands might still be supported in certain environments, it is not recommended to use any of its commands.
+[JSON Wire Protocol](https://www.selenium.dev/documentation/legacy/json_wire_protocol/) — это предшественник протокола WebDriver и сегодня __устарел__. Хотя некоторые команды могут по-прежнему поддерживаться в определенных средах, не рекомендуется использовать какие-либо из его команд.
 
 ## Mobile JSON Wire Protocol
 
-The [Mobile JSON Wire Protocol](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md) is a super set of mobile commands on top of the JSON Wire Protocol. Given this one is deprecated the Mobile JSON Wire Protocol also got __deprecated__. Appium might still support some of its commands but it is not recommended to use them.
+[Mobile JSON Wire Protocol](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md) — это расширенный набор мобильных команд поверх JSON Wire Protocol. Поскольку последний устарел, Mobile JSON Wire Protocol также __устарел__. Appium может все еще поддерживать некоторые из его команд, но их использование не рекомендуется.

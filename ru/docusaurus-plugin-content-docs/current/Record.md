@@ -1,38 +1,37 @@
 ---
 id: record
-title: Record Tests
+title: Тестирование записей
 ---
 
-Chrome DevTools has a _Recorder_ panel that allows users to record and playback automated steps within Chrome. These steps can be [exported into WebdriverIO tests with an extension](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn?hl=en) making writing test very easy.
+В Chrome DevTools есть панель _Recorder_, которая позволяет пользователям записывать и воспроизводить автоматизированные шаги в Chrome. Эти шаги можно [экспортировать в тесты WebdriverIO с помощью расширения](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn?hl=en), что делает написание тестов очень простым.
 
-## What is Chrome DevTools Recorder
+## Что такое Chrome DevTools Recorder
 
-The [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/) is a tool which allows you to record and replay test actions directly in the browser and also export them as JSON (or export them in e2e test), as well as measure test performance.
+[Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/) - это инструмент, который позволяет записывать и воспроизводить тестовые действия непосредственно в браузере, а также экспортировать их в формате JSON (или экспортировать в e2e тесты), а также измерять производительность тестов.
 
-The tool is straightforward, and since it’s plugged into the browser, we have the convenience of not switching the context or dealing with any third-party tool.
+Инструмент прост в использовании, и поскольку он встроен в браузер, нам удобно не переключать контекст или работать с какими-либо сторонними инструментами.
 
-## How to Record a Test with Chrome DevTools Recorder
+## Как записать тест с помощью Chrome DevTools Recorder
 
-If you have the latest Chrome you will have the Recorder already installed and available for you. Just open any website, do a Right-Click and select _"Inspect"_. Within DevTools you can open the Recorder by pressing `CMD/Control` + `Shift` + `p` and enter _"Show Recorder"_.
+Если у вас установлен последний Chrome, Recorder уже будет установлен и доступен для вас. Просто откройте любой веб-сайт, щелкните правой кнопкой мыши и выберите _"Inspect"_. В DevTools вы можете открыть Recorder, нажав `CMD/Control` + `Shift` + `p` и введя _"Show Recorder"_.
 
 ![Chrome DevTools Recorder](/img/recorder/recorder.png)
 
-To start recording a user journey, click on _"Start new recording"_, give your test a name and then use the browser to record your test:
+Чтобы начать запись пользовательского сценария, нажмите на _"Start new recording"_, дайте вашему тесту имя, а затем используйте браузер для записи теста:
 
 ![Chrome DevTools Recorder](/img/recorder/demo.gif)
 
-Next step, click on _"Replay"_ to check if the recording was successful and does what you wanted to do. If everything is ok, click on the [export](https://developer.chrome.com/docs/devtools/recorder/reference/#recorder-extension) icon and select _"Export as a WebdriverIO Test Script"_:
+Следующий шаг, нажмите на _"Replay"_, чтобы проверить, была ли запись успешной и делает ли она то, что вы хотели. Если все в порядке, нажмите на значок [export](https://developer.chrome.com/docs/devtools/recorder/reference/#recorder-extension) и выберите _"Export as a WebdriverIO Test Script"_:
 
-The _"Export as a WebdriverIO Test Script"_ option only available if you install the [WebdriverIO Chrome Recorder](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn) extension.
-
+Опция _"Export as a WebdriverIO Test Script"_ доступна только если вы установили расширение [WebdriverIO Chrome Recorder](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn).
 
 ![Chrome DevTools Recorder](/img/recorder/export.gif)
 
-That's it!
+Вот и все!
 
-## Export Recording
+## Экспорт записи
 
-If you exported the flow as WebdriverIO test script, it should download script that you can copy&paste in your test suite. For example the above recording looks as follows:
+Если вы экспортировали поток как тестовый скрипт WebdriverIO, он должен загрузить скрипт, который вы можете скопировать и вставить в свой тестовый набор. Например, приведенная выше запись выглядит следующим образом:
 
 ```ts
 describe("My WebdriverIO Test", function () {
@@ -50,13 +49,13 @@ describe("My WebdriverIO Test", function () {
 });
 ```
 
-Make sure you revisit some of the locators and replace them with more resilient [selector types](/docs/selectors) one if necessary. You can also export the flow as JSON file and use the [`@wdio/chrome-recorder`](https://github.com/webdriverio/chrome-recorder) package to transform it into an actual test script.
+Убедитесь, что вы пересмотрели некоторые локаторы и при необходимости заменили их на более устойчивые [типы селекторов](/docs/selectors). Вы также можете экспортировать поток как JSON-файл и использовать пакет [`@wdio/chrome-recorder`](https://github.com/webdriverio/chrome-recorder) для преобразования его в реальный тестовый скрипт.
 
-## Next Steps
+## Следующие шаги
 
-You can use this flow to easily create tests for your applications. The Chrome DevTools Recorder has various additional features, e.g.:
+Вы можете использовать этот поток для легкого создания тестов для ваших приложений. Chrome DevTools Recorder имеет различные дополнительные функции, например:
 
-- [Simulate slow network](https://developer.chrome.com/docs/devtools/recorder/#simulate-slow-network) or
-- [Measure performance of your tests](https://developer.chrome.com/docs/devtools/recorder/#measure)
+- [Имитация медленной сети](https://developer.chrome.com/docs/devtools/recorder/#simulate-slow-network) или
+- [Измерение производительности ваших тестов](https://developer.chrome.com/docs/devtools/recorder/#measure)
 
-Make sure to check out their [docs](https://developer.chrome.com/docs/devtools/recorder).
+Обязательно ознакомьтесь с их [документацией](https://developer.chrome.com/docs/devtools/recorder).

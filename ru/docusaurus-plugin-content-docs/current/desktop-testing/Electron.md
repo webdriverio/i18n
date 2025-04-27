@@ -3,42 +3,45 @@ id: electron
 title: Electron
 ---
 
-Electron is a framework for building desktop applications using JavaScript, HTML, and CSS. By embedding Chromium and Node.js into its binary, Electron allows you to maintain one JavaScript codebase and create cross-platform apps that work on Windows, macOS, and Linux — no native development experience is required.
+Electron — это фреймворк для создания настольных приложений с использованием JavaScript, HTML и CSS. Встраивая Chromium и Node.js в свой исполняемый файл, Electron позволяет поддерживать одну кодовую базу JavaScript и создавать кроссплатформенные приложения, работающие на Windows, macOS и Linux — опыт нативной разработки не требуется.
 
-WebdriverIO provides an integrated service that simplifies the interaction with your Electron app and makes testing it very simple. The advantages of using WebdriverIO for testing Electron applications are:
+WebdriverIO предоставляет интегрированный сервис, который упрощает взаимодействие с вашим приложением Electron и делает его тестирование очень простым. Преимущества использования WebdriverIO для тестирования приложений Electron:
 
-- 🚗 auto-setup of required Chromedriver
-- 📦 automatic path detection of your Electron application - supports [Electron Forge](https://www.electronforge.io/) and [Electron Builder](https://www.electron.build/)
-- 🧩 access Electron APIs within your tests
-- 🕵️ mocking of Electron APIs via a Vitest-like API
+- 🚗 автоматическая настройка необходимого Chromedriver
+- 📦 автоматическое определение пути к вашему приложению Electron - поддерживает [Electron Forge](https://www.electronforge.io/) и [Electron Builder](https://www.electron.build/)
+- 🧩 доступ к API Electron из ваших тестов
+- 🕵️ моккинг API Electron через API, похожий на Vitest
 
-You just need a few simple steps to get started. Watch this simple step-by-step getting started video tutorial from the [WebdriverIO YouTube](https://www.youtube.com/@webdriverio) channel:
+Вам нужно всего несколько простых шагов, чтобы начать. Посмотрите это простое пошаговое видео-руководство по началу работы с канала [WebdriverIO YouTube](https://www.youtube.com/@webdriverio):
 
-<LiteYouTubeEmbed id="iQNxTdWedk0" title="Getting Started with ElectronJS Testing in WebdriverIO" />
+<LiteYouTubeEmbed
+    id="iQNxTdWedk0"
+    title="Getting Started with ElectronJS Testing in WebdriverIO"
+/>
 
-Or follow the guide in the following section.
+Или следуйте руководству в следующем разделе.
 
-## Getting Started
+## Начало работы
 
-To initiate a new WebdriverIO project, run:
+Чтобы инициировать новый проект WebdriverIO, выполните:
 
 ```sh
 npm create wdio@latest ./
 ```
 
-An installation wizard will guide you through the process. Ensure you select _"Desktop Testing - of Electron Applications"_ when it asks you what type of testing you'd like to do. Afterwards provide the path to your compiled Electron application, e.g. `./dist`, then just keep the defaults or modify based on your preference.
+Мастер установки проведет вас через процесс. Убедитесь, что вы выбрали _"Desktop Testing - of Electron Applications"_, когда вас спросят, какой тип тестирования вы хотели бы выполнить. После этого укажите путь к вашему скомпилированному приложению Electron, например, `./dist`, затем просто оставьте значения по умолчанию или измените их в соответствии с вашими предпочтениями.
 
-The configuration wizard will install all required packages and create a `wdio.conf.js` or `wdio.conf.ts` with the necessary configuration to test your application. If you agree to autogenerate some test files you can run your first test via `npm run wdio`.
+Мастер конфигурации установит все необходимые пакеты и создаст `wdio.conf.js` или `wdio.conf.ts` с необходимой конфигурацией для тестирования вашего приложения. Если вы согласитесь на автоматическую генерацию некоторых тестовых файлов, вы сможете запустить свой первый тест с помощью `npm run wdio`.
 
-## Manual Setup
+## Ручная настройка
 
-If you are already using WebdriverIO in your project you can skip the installation wizard and just add the following dependencies:
+Если вы уже используете WebdriverIO в вашем проекте, вы можете пропустить мастер установки и просто добавить следующие зависимости:
 
 ```sh
 npm install --save-dev wdio-electron-service
 ```
 
-Then you can use the following configuration:
+Затем вы можете использовать следующую конфигурацию:
 
 ```ts
 // wdio.conf.ts
@@ -51,6 +54,6 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-That's it 🎉
+Вот и всё 🎉
 
-Learn more about how [to configure the Electron Service](/docs/desktop-testing/electron/configuration), [how to mock Electron APIs](/docs/desktop-testing/electron/mocking) and [how to access Electron APIs](/docs/desktop-testing/electron/api).
+Узнайте больше о том, [как настроить сервис Electron](/docs/desktop-testing/electron/configuration), [как имитировать API Electron](/docs/desktop-testing/electron/mocking) и [как получить доступ к API Electron](/docs/desktop-testing/electron/api).

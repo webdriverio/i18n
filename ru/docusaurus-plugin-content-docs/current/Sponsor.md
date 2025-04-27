@@ -1,54 +1,54 @@
 ---
 id: sponsor
-title: Become a WebdriverIO Sponsor
+title: Стать спонсором WebdriverIO
 ---
 
-WebdriverIO, an open-source project under the MIT license, is freely accessible for use. The sustainability of this expansive ecosystem, along with the development of innovative features, is made possible through the generous financial support of our sponsors, who contribute significantly to the maintenance and continuous growth of the project.
+WebdriverIO — проект с открытым исходным кодом под лицензией MIT, который доступен для свободного использования. Устойчивость этой обширной экосистемы, а также разработка инновационных функций, стала возможной благодаря щедрой финансовой поддержке наших спонсоров, которые вносят значительный вклад в поддержание и непрерывный рост проекта.
 
-## How to Sponsor​
-Sponsorships can be done via [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) or [OpenCollective](https://opencollective.com/webdriverio). Invoices can be obtained via GitHub's payment system. Both monthly recurring sponsorships and one-time donations are accepted. Recurring sponsorships are entitled to logo placements as specified in Sponsorship Tiers.
+## Как стать спонсором​
+Спонсорство можно оформить через [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) или [OpenCollective](https://opencollective.com/webdriverio). Счета можно получить через платежную систему GitHub. Принимаются как ежемесячные регулярные спонсорские взносы, так и разовые пожертвования. Регулярные спонсоры имеют право на размещение логотипа в соответствии с указанными уровнями спонсорства.
 
-If you have questions regarding tiers, payment logistics, or sponsor exposure data, please reach out to [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
+Если у вас есть вопросы относительно уровней, логистики платежей или данных о видимости спонсора, пожалуйста, обращайтесь по адресу [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
 
-You can also head over to the WebdriverIO [Swag Store](https://shop.webdriver.io/) where all earnings on purchases will be going back to the project development.
+Вы также можете посетить [магазин сувениров WebdriverIO](https://shop.webdriver.io/), где все доходы от покупок будут направлены на разработку проекта.
 
-## Sponsoring WebdriverIO as a Business​
-Sponsoring WebdriverIO gives you great exposure through our website (60k+ page views per month) and GitHub project READMEs. In addition, supporting OSS improves the reputation of your brand, which is an important asset for any company that interacts with developers.
+## Спонсорство WebdriverIO как бизнес​
+Спонсорство WebdriverIO предоставляет вам отличную видимость через наш веб-сайт (более 60 тыс. просмотров страниц в месяц) и файлы README проекта на GitHub. Кроме того, поддержка проектов с открытым исходным кодом улучшает репутацию вашего бренда, что является важным активом для любой компании, взаимодействующей с разработчиками.
 
-If you are using WebdriverIO to test a revenue-generating product, it makes business sense to sponsor WebdriverIO's development: it ensures the project that your product relies on stays healthy and actively maintained. The exposure and positive brand image in the WebdriverIO community also make it easier to attract and recruit developers and QA engineers with WebdriverIO experience.
+Если вы используете WebdriverIO для тестирования продукта, приносящего доход, с деловой точки зрения имеет смысл спонсировать разработку WebdriverIO: это гарантирует, что проект, на который полагается ваш продукт, остается здоровым и активно поддерживаемым. Видимость и положительный имидж бренда в сообществе WebdriverIO также облегчают привлечение и набор разработчиков и инженеров по контролю качества с опытом работы с WebdriverIO.
 
-__Note:__ We do not accept donations from gambling sites, paper writing services, political groups, hate groups, adult entertainment sites, or any other organization that we don't believe is contributing to the good of the project. We don't offer advertising, we are an open-source project looking for financial support from our users.
+__Примечание:__ Мы не принимаем пожертвования от сайтов азартных игр, сервисов написания работ, политических групп, групп ненависти, сайтов для взрослых или любых других организаций, которые, по нашему мнению, не вносят вклад в благо проекта. Мы не предлагаем рекламу, мы — проект с открытым исходным кодом, ищущий финансовую поддержку от наших пользователей.
 
-## Sponsoring WebdriverIO as an Individual​
-If you are an individual user and have enjoyed the productivity of using WebdriverIO, consider donating as a sign of appreciation - like buying us coffee once in a while. Many of our team members accept sponsorships and donations via GitHub Sponsors.
+## Спонсорство WebdriverIO как частное лицо​
+Если вы являетесь индивидуальным пользователем и получили удовольствие от продуктивности использования WebdriverIO, рассмотрите возможность пожертвования в знак признательности — например, угостить нас кофе время от времени. Многие члены нашей команды принимают спонсорство и пожертвования через GitHub Sponsors.
 
-You can also try to convince your employer to sponsor WebdriverIO as a business. This may not be easy, but business sponsorships typically make a much larger impact on the sustainability of OSS projects than individual donations, so you will help us much more if you succeed.
+Вы также можете попытаться убедить вашего работодателя спонсировать WebdriverIO как бизнес. Это может быть нелегко, но корпоративное спонсорство обычно оказывает гораздо большее влияние на устойчивость проектов с открытым исходным кодом, чем индивидуальные пожертвования, поэтому вы поможете нам гораздо больше, если добьетесь успеха.
 
-## Tier Benefits​
+## Преимущества по уровням​
 
-- __💎 Premium (USD $1000/mo or higher):__
-  - Limited to two sponsors globally
-  - Exclusive above-the-fold logo placement on the front page of webdriver.io (~2.8k daily unique visitors).
-  - Most prominent logo placement in all locations from tiers below.
-  - Guaranteed exclusivity for a minimum of one year, during which no other entity can "outbid" or replace them, ensuring a fixed period of partnership and visibility.
-- __🥇 Gold (USD $500 / mo):__
-  - Large logo placement on the front page of [webdriver.io](https://webdriver.io/)
-  - Large logo placement in the [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) and [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) of the [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) repository.
-- __🥈 Silver (USD $250 / mo):__
-  - Medium logo placement on this sponsors page
-  - Medium logo placement in the [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) and [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) of the [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) repository.
-- __🥉 Bronze (USD $100 / mo):__
-  - Your name or company logo (small) will be put in [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) and [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) files.
-- __🍺 Generous Backer (USD $50 / mo):__
-  - Your name will be listed under the "Generous Backers" section in [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) and [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) files.
-- __☕️ Individual Backer (USD $5 / mo):__
-  - Name listed in the [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) file of the [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) repository.
+- __💎 Премиум (от 1000 долл. США/месяц):__
+  - Ограничено двумя спонсорами во всем мире
+  - Эксклюзивное размещение логотипа над основным содержанием на главной странице webdriver.io (~2,8 тыс. уникальных посетителей ежедневно).
+  - Наиболее заметное размещение логотипа во всех местах из уровней ниже.
+  - Гарантированная эксклюзивность на минимальный срок в один год, в течение которого никакая другая организация не может "перебить" или заменить их, обеспечивая фиксированный период партнерства и видимости.
+- __🥇 Золото (500 долл. США / месяц):__
+  - Крупное размещение логотипа на главной странице [webdriver.io](https://webdriver.io/)
+  - Крупное размещение логотипа в [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) и [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) репозитория [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
+- __🥈 Серебро (250 долл. США / месяц):__
+  - Среднее размещение логотипа на этой странице спонсоров
+  - Среднее размещение логотипа в [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) и [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) репозитория [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
+- __🥉 Бронза (100 долл. США / месяц):__
+  - Ваше имя или логотип компании (маленький) будет размещен в [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) и [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) файлах.
+- __🍺 Щедрый спонсор (50 долл. США / месяц):__
+  - Ваше имя будет перечислено в разделе "Щедрые спонсоры" в [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) и [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) файлах.
+- __☕️ Индивидуальный спонсор (5 долл. США / месяц):__
+  - Имя указано в файле [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) репозитория [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
 
 ---
 
-## Current Sponsors
+## Текущие спонсоры
 
-### 💎 Premium
+### 💎 Премиум
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/browserstack_black.svg"
@@ -61,10 +61,7 @@ You can also try to convince your employer to sponsor WebdriverIO as a business.
 <br />
 <br />
 
-<br />
-<br />
-
-### 🥇 Gold
+### 🥇 Золото
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/route4me.svg"
@@ -85,13 +82,11 @@ You can also try to convince your employer to sponsor WebdriverIO as a business.
     width="250"
 />
 
-<ImageSwitcher lightImageSrc="/img/sponsors/lambdatest_black.svg" darkImageSrc="/img/sponsors/lambdatest_white.svg" alt="Lambdatest" target="_blank" link="https://www.lambdatest.com/" width="250" />
-
-Become a [Gold Sponsor](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me).
+Стать [Золотым спонсором](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me).
 
 <br />
 
-### 🥈 Silver
+### 🥈 Серебро
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testingbot.svg"
@@ -102,13 +97,11 @@ Become a [Gold Sponsor](https://opencollective.com/webdriverio/contribute/gold-s
     target="_blank"
 />
 
-<ImageSwitcher lightImageSrc="/img/sponsors/testingbot.svg" darkImageSrc="/img/sponsors/testingbot.svg" alt="TestingBot" link="https://testingbot.com/" width="250" target="_blank" style={{ marginLeft: '30px', position: 'relative', top: '-8px' }} />
-
-Become a [Silver Sponsor](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me).
+Стать [Серебряным спонсором](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me).
 
 <br />
 
-### 🥉 Bronze
+### 🥉 Бронза
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/eslint_black.svg"
@@ -128,16 +121,14 @@ Become a [Silver Sponsor](https://opencollective.com/webdriverio/contribute/silv
     width="150"
 />
 
-<ImageSwitcher lightImageSrc="/img/sponsors/gridlastic.png" darkImageSrc="/img/sponsors/gridlastic.png" alt="Gridlastic" target="_blank" link="https://www.gridlastic.com/webdriverio.html" width="150" />
-
-Become a [Bronze Sponsor](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me).
+Стать [Бронзовым спонсором](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me).
 
 <br />
 <br />
 
-### 🙇 Notable Past Sponsors
+### 🙇 Значимые прошлые спонсоры
 
-We are grateful for the support of all our sponsors! Here are some of the companies that have supported WebdriverIO in the past.
+Мы благодарны за поддержку всех наших спонсоров! Вот некоторые компании, которые поддерживали WebdriverIO в прошлом.
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/saucelabs_black.svg"

@@ -1,26 +1,26 @@
 ---
 id: emulation
-title: Emulation
+title: Эмуляция
 ---
 
-With WebdriverIO you can emulate Web APIs using the [`emulate`](/docs/api/browser/emulate) command to return custom values that help you emulate certain browser behaviors. Note that this requires your application to explicitly use these APIs.
+С помощью WebdriverIO вы можете эмулировать Web API, используя команду [`emulate`](/docs/api/browser/emulate) для возврата пользовательских значений, которые помогают эмулировать определенное поведение браузера. Обратите внимание, что это требует, чтобы ваше приложение явно использовало эти API.
 
 <LiteYouTubeEmbed
- id="2bQXzIB_97M"
- title="WebdriverIO Tutorials: The Emulate Command - Emulate Web APIs at Runtime with WebdriverIO"
+    id="2bQXzIB_97M"
+    title="WebdriverIO Tutorials: The Emulate Command - Emulate Web APIs at Runtime with WebdriverIO"
 />
 
 :::info
 
-This feature requires WebDriver Bidi support for the browser. While recent versions of Chrome, Edge and Firefox have such support, Safari **does not**. For updates follow [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental\&label=master\&aligned). Furthermore if you use a cloud vendor for spawning browsers, make sure your vendor also supports WebDriver Bidi.
+Эта функция требует поддержки WebDriver Bidi для браузера. Хотя последние версии Chrome, Edge и Firefox имеют такую поддержку, Safari __не имеет__. Для обновлений следите за [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). Кроме того, если вы используете облачного провайдера для запуска браузеров, убедитесь, что ваш провайдер также поддерживает WebDriver Bidi.
 
-To enable WebDriver Bidi for your test, make sure to have `webSocketUrl: true` set in your capabilities.
+Чтобы включить WebDriver Bidi для вашего теста, убедитесь, что в ваших capabilities установлено `webSocketUrl: true`.
 
 :::
 
-## Geolocation
+## Геолокация
 
-Change the browser geolocation to a specific area, e.g.:
+Измените геолокацию браузера на определенную область, например:
 
 ```ts
 await browser.emulate('geolocation', {
@@ -34,11 +34,11 @@ await browser.pause(5000)
 console.log(await browser.getUrl()) // outputs: "https://www.google.com/maps/@52.52,13.39,16z?entry=ttu"
 ```
 
-This will monkey patch how [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) works and returns the location provided by you.
+Это модифицирует работу [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) и возвращает местоположение, указанное вами.
 
-## Color Scheme
+## Цветовая схема
 
-Change the default color scheme setup of the browser via:
+Измените настройку цветовой схемы браузера по умолчанию с помощью:
 
 ```ts
 await browser.emulate('colorScheme', 'light')
@@ -52,31 +52,31 @@ const backgroundColor = await browser.$('nav').getCSSProperty('background-color'
 console.log(backgroundColor.parsed.hex) // outputs: "#000000"
 ```
 
-This will monkey patch how [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) behaves when you query the color scheme via `(prefers-color-scheme: dark)`.
+Это модифицирует поведение [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) при запросе цветовой схемы через `(prefers-color-scheme: dark)`.
 
 ## User Agent
 
-Change the user agent of the browser to a different string via:
+Измените user agent браузера на другую строку с помощью:
 
 ```ts
 await browser.emulate('userAgent', 'Chrome/1.2.3.4 Safari/537.36')
 ```
 
-This will change the value of [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Note that browser vendors progressively deprecating the User Agent.
+Это изменит значение [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Обратите внимание, что производители браузеров постепенно отказываются от User Agent.
 
-## onLine Property
+## Свойство onLine
 
-Change the online status of the browser via:
+Измените онлайн-статус браузера с помощью:
 
 ```ts
 await browser.emulate('onLine', false)
 ```
 
-This will **not** turn off network traffic between the browser and the internet and only changes the return value of [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). If you are interested modifying network capabilities of the browser, look into the [`throttleNetwork`](/docs/api/browser/throttleNetwork) command.
+Это __не__ отключает сетевой трафик между браузером и интернетом, а только изменяет возвращаемое значение [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). Если вы заинтересованы в изменении сетевых возможностей браузера, обратите внимание на команду [`throttleNetwork`](/docs/api/browser/throttleNetwork).
 
-## Clock
+## Часы
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+Вы можете изменить системные часы браузера с помощью команды [`emulate`](/docs/emulation). Она переопределяет нативные глобальные функции, связанные со временем, позволяя управлять ими синхронно через `clock.tick()` или полученный объект clock. Это включает управление:
 
 - `setTimeout`
 - `clearTimeout`
@@ -84,11 +84,11 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+Часы начинаются с начала эпохи Unix (временная метка 0). Это означает, что когда вы создаете новый объект Date в своем приложении, он будет иметь время 1 января 1970 года, если вы не передадите другие параметры в команду `emulate`.
 
-##### Example
+##### Пример
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+При вызове `browser.emulate('clock', { ... })` немедленно перезаписываются глобальные функции для текущей страницы, а также для всех последующих страниц, например:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -110,49 +110,49 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+Вы можете изменить системное время, вызвав [`setSystemTime`](/docs/api/clock/setSystemTime) или [`tick`](/docs/api/clock/tick).
 
-The `FakeTimerInstallOpts` object can have the following properties:
+Объект `FakeTimerInstallOpts` может иметь следующие свойства:
 
 ```ts
 interface FakeTimerInstallOpts {
-   // Installs fake timers with the specified unix epoch
-   // @default: 0
-   now?: number | Date | undefined;
+    // Installs fake timers with the specified unix epoch
+    // @default: 0
+    now?: number | Date | undefined;
 
-   // An array with names of global methods and APIs to fake. By default, WebdriverIO
-   // does not replace `nextTick()` and `queueMicrotask()`. For instance,
-   // `browser.emulate('clock', { toFake: ['setTimeout', 'nextTick'] })` will fake only
-   // `setTimeout()` and `nextTick()`
-   toFake?: FakeMethod[] | undefined;
+    // An array with names of global methods and APIs to fake. By default, WebdriverIO
+    // does not replace `nextTick()` and `queueMicrotask()`. For instance,
+    // `browser.emulate('clock', { toFake: ['setTimeout', 'nextTick'] })` will fake only
+    // `setTimeout()` and `nextTick()`
+    toFake?: FakeMethod[] | undefined;
 
-   // The maximum number of timers that will be run when calling runAll() (default: 1000)
-   loopLimit?: number | undefined;
+    // The maximum number of timers that will be run when calling runAll() (default: 1000)
+    loopLimit?: number | undefined;
 
-   // Tells WebdriverIO to increment mocked time automatically based on the real system
-   // time shift (e.g. the mocked time will be incremented by 20ms for every 20ms change
-   // in the real system time)
-   // @default false
-   shouldAdvanceTime?: boolean | undefined;
+    // Tells WebdriverIO to increment mocked time automatically based on the real system
+    // time shift (e.g. the mocked time will be incremented by 20ms for every 20ms change
+    // in the real system time)
+    // @default false
+    shouldAdvanceTime?: boolean | undefined;
 
-   // Relevant only when using with shouldAdvanceTime: true. increment mocked time by
-   // advanceTimeDelta ms every advanceTimeDelta ms change in the real system time
-   // @default: 20
-   advanceTimeDelta?: number | undefined;
+    // Relevant only when using with shouldAdvanceTime: true. increment mocked time by
+    // advanceTimeDelta ms every advanceTimeDelta ms change in the real system time
+    // @default: 20
+    advanceTimeDelta?: number | undefined;
 
-   // Tells FakeTimers to clear 'native' (i.e. not fake) timers by delegating to their
-   // respective handlers. These are not cleared by default, leading to potentially
-   // unexpected behavior if timers existed prior to installing FakeTimers.
-   // @default: false
-   shouldClearNativeTimers?: boolean | undefined;
+    // Tells FakeTimers to clear 'native' (i.e. not fake) timers by delegating to their
+    // respective handlers. These are not cleared by default, leading to potentially
+    // unexpected behavior if timers existed prior to installing FakeTimers.
+    // @default: false
+    shouldClearNativeTimers?: boolean | undefined;
 }
 ```
 
-## Device
+## Устройство
 
-The `emulate` command also supports emulating a certain mobile or desktop device by changing the viewport, device scale factor and the user agent. This should, by no means, be used for mobile testing as desktop browser engines differ from mobile ones. This should only be used if your application offers a specific behavior for smaller viewport sizes.
+Команда `emulate` также поддерживает эмуляцию определенного мобильного или настольного устройства путем изменения области просмотра, коэффициента масштабирования устройства и user agent. Это ни в коем случае не должно использоваться для мобильного тестирования, поскольку движки настольных браузеров отличаются от мобильных. Это следует использовать только в том случае, если ваше приложение предлагает специфическое поведение для областей просмотра меньшего размера.
 
-For example, to switch the user agent and viewport to an iPhone 15, just run:
+Например, чтобы переключить user agent и область просмотра на iPhone 15, просто выполните:
 
 ```ts
 const restore = await browser.emulate('device', 'iPhone 15')
@@ -162,4 +162,4 @@ const restore = await browser.emulate('device', 'iPhone 15')
 await restore()
 ```
 
-WebdriverIO maintains a fixed list of [all defined devices](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).
+WebdriverIO поддерживает фиксированный список [всех определенных устройств](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).

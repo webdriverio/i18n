@@ -1,38 +1,39 @@
 ---
 id: enterprise
-title: WebdriverIO for Enterprise
+title: WebdriverIO para Empresas
 ---
 
-## Available as part of the Tidelift Subscription
+## Disponível como parte da Assinatura Tidelift
 
-Tidelift is working with the maintainers of WebdriverIO and thousands of other open source projects to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use.
+A Tidelift está trabalhando com os mantenedores do WebdriverIO e milhares de outros
+projetos de código aberto para fornecer suporte comercial e manutenção para as dependências de código aberto que você usa para construir suas aplicações. Economize tempo, reduza riscos e melhore a saúde do código, enquanto paga aos mantenedores das dependências exatas que você usa.
 
-#### Enterprise-ready open source software—managed for you
-The Tidelift Subscription is a managed open source subscription for application dependencies covering millions of open source projects across JavaScript, Python, Java, PHP, Ruby, .NET, and more.
+#### Software de código aberto pronto para empresas — gerenciado para você
+A Assinatura Tidelift é uma assinatura gerenciada de código aberto para dependências de aplicações cobrindo milhões de projetos de código aberto em JavaScript, Python, Java, PHP, Ruby, .NET e mais.
 
-#### Your subscription includes:
+#### Sua assinatura inclui:
 
-##### Security updates
-Tidelift’s security response team coordinates patches for new breaking security vulnerabilities and alerts immediately through a private channel, so your software supply chain is always secure.
+##### Atualizações de segurança
+A equipe de resposta de segurança da Tidelift coordena correções para novas vulnerabilidades de segurança críticas e alerta imediatamente através de um canal privado, para que sua cadeia de suprimentos de software esteja sempre segura.
 
-##### Licensing verification and indemnification
-Tidelift verifies license information to enable easy policy enforcement and adds intellectual property indemnification to cover creators and users in case something goes wrong. You always have a 100% up-to-date bill of materials for your dependencies to share with your legal team, customers, or partners.
+##### Verificação de licenciamento e indenização
+A Tidelift verifica as informações de licença para permitir a fácil aplicação de políticas e adiciona indenização de propriedade intelectual para proteger criadores e usuários em caso de problemas. Você sempre tem uma lista de materiais 100% atualizada de suas dependências para compartilhar com sua equipe jurídica, clientes ou parceiros.
 
-##### Maintenance and code improvement
-Tidelift ensures the software you rely on keeps working as long as you need it to work. Your managed dependencies are actively maintained and we recruit additional maintainers where required.
+##### Manutenção e melhoria de código
+A Tidelift garante que o software em que você confia continue funcionando pelo tempo que você precisar. Suas dependências gerenciadas são mantidas ativamente e recrutamos mantenedores adicionais quando necessário.
 
-##### Package selection and version guidance
-We help you choose the best open source packages from the start—and then guide you through updates to stay on the best releases as new issues arise.
+##### Seleção de pacotes e orientação de versão
+Nós ajudamos você a escolher os melhores pacotes de código aberto desde o início — e depois o orientamos através de atualizações para permanecer nas melhores versões à medida que novos problemas surgem.
 
-##### Roadmap input
-Take a seat at the table with the creators behind the software you use. Tidelift’s participating maintainers earn more income as their software is used by more subscribers, so they’re interested in knowing what you need.
+##### Contribuição para o roteiro
+Tenha um lugar à mesa com os criadores por trás do software que você usa. Os mantenedores participantes da Tidelift ganham mais renda à medida que seu software é usado por mais assinantes, então eles estão interessados em saber do que você precisa.
 
-##### Tooling and cloud integration
-Tidelift works with GitHub, GitLab, BitBucket, and more. We support every cloud platform (and other deployment targets, too).
+##### Integração com ferramentas e nuvem
+A Tidelift funciona com GitHub, GitLab, BitBucket e mais. Suportamos todas as plataformas de nuvem (e outros alvos de implantação também).
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open source you use. That means less time grappling with esoteric open source trivia, and more time building your own applications—and your business.
+O resultado final? Todas as capacidades que você espera de um software de nível comercial, para toda a amplitude de código aberto que você usa. Isso significa menos tempo lidando com questões esotéricas de código aberto e mais tempo construindo suas próprias aplicações — e seu negócio.
 
 <div class="learnmore">
-    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Learn More</a>
-    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Request a demo</a>
+    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Saiba Mais</a>
+    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Solicite uma demonstração</a>
 </div>

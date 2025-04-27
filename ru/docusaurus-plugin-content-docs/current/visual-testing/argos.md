@@ -1,39 +1,39 @@
 ---
 id: argos
-title: Elevate Your Visual Testing with Argos
+title: Улучшите свое визуальное тестирование с Argos
 ---
 
 ## Introduction
 
-[Argos](https://argos-ci.com/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) is a powerful open-source visual testing platform that seamlessly integrates with WebdriverIO, enhancing your ability to maintain a flawless user interface across updates. By integrating Argos into your WebdriverIO projects, you can easily identify visual changes introduced by pull requests, confirm intentional modifications, and prevent unexpected regressions in your application.
+[Argos](https://argos-ci.com/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) - это мощная платформа визуального тестирования с открытым исходным кодом, которая легко интегрируется с WebdriverIO, улучшая вашу способность поддерживать безупречный пользовательский интерфейс при обновлениях. Интегрируя Argos в ваши проекты WebdriverIO, вы можете легко выявлять визуальные изменения, внесенные в pull request'ы, подтверждать преднамеренные модификации и предотвращать неожиданные регрессии в вашем приложении.
 
-### Why Choose Argos over Standard Visual Testing?
+### Почему стоит выбрать Argos вместо стандартного визуального тестирования?
 
-WebdriverIO's built-in visual testing is a great starting point, but Argos takes it to the next level by offering:
+Встроенное визуальное тестирование WebdriverIO - это отличная отправная точка, но Argos поднимает его на новый уровень, предлагая:
 
-- **Enhanced Collaboration**: With features like integrated review workflows and notifications on platforms like GitHub and Slack, Argos makes collaboration among developers, designers, and QA teams seamless and efficient.
-- **Scalability**: Whether you’re working on a small project or a large-scale application, Argos scales effortlessly, handling a wide range of visual tests across different environments.
-- **Simplified Review Process**: Argos’s intuitive interface groups visual changes, making it easy to review and approve differences, reducing noise and focusing your attention on critical changes.
-- **Comprehensive Reporting**: Gain deep insights with detailed reports that are easy to understand and share with your team, ensuring everyone is on the same page.
+-   **Улучшенное сотрудничество**: Благодаря таким функциям, как интегрированные рабочие процессы проверки и уведомления на платформах вроде GitHub и Slack, Argos делает сотрудничество между разработчиками, дизайнерами и командами QA бесшовным и эффективным.
+-   **Масштабируемость**: Независимо от того, работаете ли вы над небольшим проектом или крупномасштабным приложением, Argos легко масштабируется, обрабатывая широкий спектр визуальных тестов в различных средах.
+-   **Упрощенный процесс проверки**: Интуитивно понятный интерфейс Argos группирует визуальные изменения, облегчая проверку и утверждение различий, уменьшая шум и фокусируя ваше внимание на критических изменениях.
+-   **Комплексная отчетность**: Получайте глубокие сведения с помощью подробных отчетов, которые легко понять и поделиться с вашей командой, обеспечивая всем одинаковое понимание.
 
-## How Does Argos Enhance Your Workflow?
+## Как Argos улучшает ваш рабочий процесс?
 
-Argos integrates directly into your WebdriverIO testing process, enhancing your visual testing capabilities without adding complexity. Every time you run your WebdriverIO tests, Argos automatically captures and compares screenshots against your baseline, highlighting only the relevant visual changes.
+Argos интегрируется непосредственно в процесс тестирования WebdriverIO, улучшая возможности визуального тестирования без добавления сложности. Каждый раз, когда вы запускаете тесты WebdriverIO, Argos автоматически захватывает и сравнивает скриншоты с вашей базовой линией, выделяя только соответствующие визуальные изменения.
 
-With Argos, you get more than just a visual diff tool:
+С Argos вы получаете больше, чем просто инструмент визуального сравнения:
 
-- **Intelligent Grouping**: Automatically groups related visual changes to help you quickly identify and address issues.
-- **Continuous Monitoring**: Argos keeps an eye on your UI with every commit, so you can catch and fix visual bugs before they become a problem.
-- **Customizable Thresholds**: Fine-tune the sensitivity of your visual tests to match the needs of your project, ensuring you only get alerted to the changes that matter.
+-   **Интеллектуальная группировка**: Автоматически группирует связанные визуальные изменения, помогая быстро выявлять и решать проблемы.
+-   **Непрерывный мониторинг**: Argos следит за вашим пользовательским интерфейсом с каждым коммитом, так что вы можете обнаружить и исправить визуальные ошибки до того, как они станут проблемой.
+-   **Настраиваемые пороги**: Настройте чувствительность ваших визуальных тестов в соответствии с потребностями вашего проекта, гарантируя, что вы получаете уведомления только о важных изменениях.
 
-## Quick Start Guide
+## Краткое руководство по началу работы
 
-Integrating Argos with your WebdriverIO project is straightforward and quick. Start taking advantage of advanced visual testing today by following [the official Argos guide for WebdriverIO](https://argos-ci.com/docs/quickstart/webdriverio?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+Интеграция Argos с вашим проектом WebdriverIO проста и быстра. Начните использовать преимущества продвинутого визуального тестирования уже сегодня, следуя [официальному руководству Argos для WebdriverIO](https://argos-ci.com/docs/quickstart/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-### In Just a Few Minutes, You Can:
+### Всего за несколько минут вы сможете:
 
-- **Automate Visual Screenshots**: Capture detailed screenshots during your test runs without manual intervention.
-- **Identify and Review Changes**: Compare new screenshots against your baselines, quickly identifying any visual discrepancies.
-- **Streamline Approvals**: Use Argos’s intuitive review system to approve or reject changes, simplifying team collaboration and ensuring your UI stays consistent.
+-   **Автоматизировать визуальные скриншоты**: Делать подробные скриншоты во время тестовых запусков без ручного вмешательства.
+-   **Выявлять и просматривать изменения**: Сравнивать новые скриншоты с базовыми, быстро определяя любые визуальные несоответствия.
+-   **Оптимизировать процесс утверждения**: Использовать интуитивную систему проверки Argos для утверждения или отклонения изменений, упрощая совместную работу команды и обеспечивая единообразие вашего пользовательского интерфейса.
 
-Don’t just detect visual regressions—prevent them. [Start using Argos with WebdriverIO](https://argos-ci.com/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) and safeguard your UI today!
+Не просто обнаруживайте визуальные регрессии — предотвращайте их. [Начните использовать Argos с WebdriverIO](https://argos-ci.com/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) и защитите свой пользовательский интерфейс уже сегодня!

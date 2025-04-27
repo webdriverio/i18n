@@ -3,7 +3,7 @@ id: docker
 title: Docker
 ---
 
-Docker is a powerful containerization technology that allows to encapsulate your test suite into a container that behaves the same on every system. This can avoid flakiness due to different browser or platform versions. In order to run your tests within a container, create a `Dockerfile` in your project directory, e.g.:
+Docker - это мощная технология контейнеризации, которая позволяет инкапсулировать ваш набор тестов в контейнер, который ведет себя одинаково на любой системе. Это может помочь избежать нестабильности из-за различных версий браузера или платформы. Чтобы запустить ваши тесты внутри контейнера, создайте файл `Dockerfile` в каталоге вашего проекта, например:
 
 ```Dockerfile
 FROM selenium/standalone-chrome:134.0-20250323 # Change the browser and version according to your needs
@@ -15,17 +15,17 @@ RUN npm install
 CMD npx wdio
 ```
 
-Make sure you don't include your `node_modules` in your Docker image and have these installed when building the image. For that add a `.dockerignore` file with the following content:
+Убедитесь, что вы не включаете папку `node_modules` в ваш Docker-образ, и установите их при сборке образа. Для этого добавьте файл `.dockerignore` со следующим содержимым:
 
 ```
 node_modules
 ```
 
 :::info
-We are using a Docker image here that comes with Selenium and Google Chrome pre-installed. There are various of images available with different browser setups and browser versions. Check out the images maintained by the Selenium project [on Docker Hub](https://hub.docker.com/u/selenium).
+Здесь мы используем Docker-образ, который поставляется с предустановленными Selenium и Google Chrome. Существует множество доступных образов с различными настройками браузеров и их версиями. Ознакомьтесь с образами, поддерживаемыми проектом Selenium [на Docker Hub](https://hub.docker.com/u/selenium).
 :::
 
-As we can only run Google Chrome in headless mode in our Docker container we have to modify our `wdio.conf.js` to ensure we do that:
+Поскольку мы можем запускать Google Chrome только в безголовом режиме в нашем Docker-контейнере, нам необходимо изменить наш `wdio.conf.js`, чтобы обеспечить это:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -47,18 +47,18 @@ export const config = {
 }
 ```
 
-As mentioned in [Automation Protocols](/docs/automationProtocols) you can run WebdriverIO using the WebDriver protocol or WebDriver BiDi protocol. Make sure that the Chrome version installed on your image matches the [Chromedriver](https://www.npmjs.com/package/chromedriver) version you have defined in your `package.json`.
+Как упоминалось в [Automation Protocols](/docs/automationProtocols), вы можете запускать WebdriverIO, используя протокол WebDriver или протокол WebDriver BiDi. Убедитесь, что версия Chrome, установленная в вашем образе, соответствует версии [Chromedriver](https://www.npmjs.com/package/chromedriver), которую вы определили в своем `package.json`.
 
-To build the Docker container you can run:
+Для сборки Docker-контейнера вы можете выполнить:
 
 ```sh
 docker build -t mytest -f Dockerfile .
 ```
 
-Then to run the tests, execute:
+Затем для запуска тестов выполните:
 
 ```sh
 docker run -it mytest
 ```
 
-For more information on how to configure the Docker image, check out the [Docker docs](https://docs.docker.com/).
+Для получения дополнительной информации о настройке Docker-образа ознакомьтесь с [документацией Docker](https://docs.docker.com/).

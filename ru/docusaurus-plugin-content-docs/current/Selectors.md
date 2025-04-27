@@ -1,11 +1,11 @@
 ---
 id: selectors
-title: Selectors
+title: Селекторы
 ---
 
-The [WebDriver Protocol](https://w3c.github.io/webdriver/) provides several selector strategies to query an element. WebdriverIO simplifies them to keep selecting elements simple. Please note that even though the command to query elements is called `$` and `$$`, they have nothing to do with jQuery or the [Sizzle Selector Engine](https://github.com/jquery/sizzle).
+[Протокол WebDriver](https://w3c.github.io/webdriver/) предоставляет несколько стратегий селекторов для запроса элементов. WebdriverIO упрощает их, чтобы выбор элементов оставался простым. Обратите внимание, что хотя команды для запроса элементов называются `$` и `$$`, они не имеют ничего общего с jQuery или [движком селекторов Sizzle](https://github.com/jquery/sizzle).
 
-While there are so many different selectors available, only a few of them provide a resilient way to find the right element. For example, given the following button:
+Хотя доступно так много различных селекторов, только некоторые из них обеспечивают надежный способ найти правильный элемент. Например, для следующей кнопки:
 
 ```html
 <button
@@ -19,119 +19,120 @@ While there are so many different selectors available, only a few of them provid
 </button>
 ```
 
-We __do__ and __do not__ recommend the following selectors:
+Мы __рекомендуем__ и __не рекомендуем__ следующие селекторы:
 
-| Selector                                      | Recommended  | Notes                                                                                                                                                                       |
-| --------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$('button')`                                 | 🚨 Never      | Worst - too generic, no context.                                                                                                                                            |
-| `$('.btn.btn-large')`                         | 🚨 Never      | Bad. Coupled to styling. Highly subject to change.                                                                                                                          |
-| `$('#main')`                                  | ⚠️ Sparingly | Better. But still coupled to styling or JS event listeners.                                                                                                                 |
-| `$(() => document.queryElement('button'))` | ⚠️ Sparingly | Effective querying, complex to write.                                                                                                                                       |
-| `$('button[name="submission"]')`              | ⚠️ Sparingly | Coupled to the `name` attribute which has HTML semantics.                                                                                                                   |
-| `$('button[data-testid="submit"]')`           | ✅ Good       | Requires additional attribute, not connected to a11y.                                                                                                                       |
-| `$('aria/Submit')` or `$('button=Submit')`    | ✅ Always     | Best. Resembles how the user interacts with the page. It is recommended to use your frontend's translation files so your tests never fail when the translations are updated |
+| Селектор | Рекомендуется | Примечания |
+| -------- | ----------- | ----- |
+| `$('button')` | 🚨 Никогда | Худший - слишком общий, нет контекста. |
+| `$('.btn.btn-large')` | 🚨 Никогда | Плохо. Связан со стилями. Очень подвержен изменениям. |
+| `$('#main')` | ⚠️ Редко | Лучше. Но все еще связан со стилями или обработчиками событий JS. |
+| `$(() => document.queryElement('button'))` | ⚠️ Редко | Эффективный запрос, сложно писать. |
+| `$('button[name="submission"]')` | ⚠️ Редко | Связан с атрибутом `name`, который имеет HTML-семантику. |
+| `$('button[data-testid="submit"]')` | ✅ Хорошо | Требует дополнительного атрибута, не связанного с доступностью. |
+| `$('aria/Submit')` или `$('button=Submit')` | ✅ Всегда | Лучший вариант. Отражает то, как пользователь взаимодействует со страницей. Рекомендуется использовать файлы переводов вашего фронтенда, чтобы ваши тесты никогда не падали при обновлении переводов |
 
-## CSS Query Selector
+## CSS-селектор запроса
 
-If not indicated otherwise, WebdriverIO will query elements using the [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) pattern, e.g.:
+Если не указано иное, WebdriverIO будет запрашивать элементы, используя шаблон [CSS-селектора](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors), например:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L7-L8
 ```
 
-## Link Text
+## Текст ссылки
 
-To get an anchor element with a specific text in it, query the text starting with an equals (`=`) sign.
+Чтобы получить элемент якоря с определенным текстом в нем, запросите текст, начинающийся со знака равенства (`=`).
 
-For example:
+Например:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L3
 ```
 
-You can query this element by calling:
+Вы можете запросить этот элемент, вызвав:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L16-L18
 ```
 
-## Partial Link Text
+## Частичный текст ссылки
 
-To find a anchor element whose visible text partially matches your search value, query it by using `*=` in front of the query string (e.g. `*=driver`).
+Чтобы найти элемент якоря, видимый текст которого частично соответствует вашему поисковому значению,
+запросите его, используя `*=` перед строкой запроса (например, `*=driver`).
 
-You can query the element from the example above by also calling:
+Вы можете запросить элемент из примера выше, также вызвав:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L24-L26
 ```
 
-__Note:__ You can't mix multiple selector strategies in one selector. Use multiple chained element queries to reach the same goal, e.g.:
+__Примечание:__ Вы не можете смешивать несколько стратегий селекторов в одном селекторе. Используйте несколько цепочек запросов элементов для достижения той же цели, например:
 
 ```js
-const elem = await $('header h1*=Welcome') // doesn't work!!!
-// use instead
+const elem = await $('header h1*=Welcome') // не работает!!!
+// используйте вместо этого
 const elem = await $('header').$('*=driver')
 ```
 
-## Element with certain text
+## Элемент с определенным текстом
 
-The same technique can be applied to elements as well. Additionally, it is also possible to do a case-insensitive matching using `.=` or `.*=` within the query.
+Та же техника может быть применена и к элементам. Кроме того, также возможно выполнять сопоставление без учета регистра, используя `.=` или `.*=` в запросе.
 
-For example, here's a query for a level 1 heading with the text "Welcome to my Page":
+Например, вот запрос для заголовка уровня 1 с текстом "Welcome to my Page":
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L2
 ```
 
-You can query this element by calling:
+Вы можете запросить этот элемент, вызвав:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L35C1-L38
 ```
 
-Or using query partial text:
+Или используя запрос частичного текста:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L44C9-L47
 ```
 
-The same works for `id` and `class` names:
+То же самое работает для имен `id` и `class`:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L4
 ```
 
-You can query this element by calling:
+Вы можете запросить этот элемент, вызвав:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L49-L67
 ```
 
-__Note:__ You can't mix multiple selector strategies in one selector. Use multiple chained element queries to reach the same goal, e.g.:
+__Примечание:__ Вы не можете смешивать несколько стратегий селекторов в одном селекторе. Используйте несколько цепочек запросов элементов для достижения той же цели, например:
 
 ```js
-const elem = await $('header h1*=Welcome') // doesn't work!!!
-// use instead
+const elem = await $('header h1*=Welcome') // не работает!!!
+// используйте вместо этого
 const elem = await $('header').$('h1*=Welcome')
 ```
 
-## Tag Name
+## Имя тега
 
-To query an element with a specific tag name, use `<tag>` or `<tag />`.
+Чтобы запросить элемент с определенным именем тега, используйте `<tag>` или `<tag />`.
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L5
 ```
 
-You can query this element by calling:
+Вы можете запросить этот элемент, вызвав:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L61-L62
 ```
 
-## Name Attribute
+## Атрибут Name
 
-For querying elements with a specific name attribute you can either use a normal CSS3 selector or the provided name strategy from the [JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol) by passing something like [name="some-name"] as selector parameter:
+Для запроса элементов с определенным атрибутом name можно использовать либо обычный селектор CSS3, либо предоставленную стратегию имени из [JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol), передав что-то вроде [name="some-name"] в качестве параметра селектора:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L6
@@ -141,41 +142,41 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L68-L69
 ```
 
-__Note:__ This selector strategy it deprecated and only works in old browser that are run by the JSONWireProtocol protocol or by using Appium.
+__Примечание:__ Эта стратегия селектора устарела и работает только в старых браузерах, которые работают по протоколу JSONWireProtocol, или при использовании Appium.
 
 ## xPath
 
-It is also possible to query elements via a specific [xPath](https://developer.mozilla.org/en-US/docs/Web/XPath).
+Также возможно запрашивать элементы через определенный [xPath](https://developer.mozilla.org/en-US/docs/Web/XPath).
 
-An xPath selector has a format like `//body/div[6]/div[1]/span[1]`.
+Селектор xPath имеет формат типа `//body/div[6]/div[1]/span[1]`.
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/xpath.html
 ```
 
-You can query the second paragraph by calling:
+Вы можете запросить второй параграф, вызвав:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L75-L76
 ```
 
-You can use xPath to also traverse up and down the DOM tree:
+Вы можете использовать xPath также для перемещения вверх и вниз по дереву DOM:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L78-L79
 ```
 
-## Accessibility Name Selector
+## Селектор доступного имени
 
-Query elements by their accessible name. The accessible name is what is announced by a screen reader when that element receives focus. The value of the accessible name can be both visual content or hidden text alternatives.
+Запрашивайте элементы по их доступному имени. Доступное имя — это то, что объявляет программа чтения с экрана, когда этот элемент получает фокус. Значение доступного имени может быть как визуальным содержимым, так и скрытыми текстовыми альтернативами.
 
 :::info
 
-You can read more about this selector in our [release blog post](/blog/2022/09/05/accessibility-selector)
+Вы можете узнать больше об этом селекторе в нашем [блоге о выпуске](/blog/2022/09/05/accessibility-selector)
 
 :::
 
-### Fetch by `aria-label`
+### Извлечение по `aria-label`
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L1
@@ -185,7 +186,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L86-L87
 ```
 
-### Fetch by `aria-labelledby`
+### Извлечение по `aria-labelledby`
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L2-L3
@@ -195,7 +196,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L93-L94
 ```
 
-### Fetch by content
+### Извлечение по содержимому
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L4
@@ -205,7 +206,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L100-L101
 ```
 
-### Fetch by title
+### Извлечение по заголовку
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L5
@@ -215,7 +216,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L107-L108
 ```
 
-### Fetch by `alt` property
+### Извлечение по свойству `alt`
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L6
@@ -225,9 +226,9 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L114-L115
 ```
 
-## ARIA - Role Attribute
+## ARIA - Атрибут Role
 
-For querying elements based on [ARIA roles](https://www.w3.org/TR/html-aria/#docconformance), you can directly specify role of the element like `[role=button]` as selector parameter:
+Для запроса элементов на основе [ролей ARIA](https://www.w3.org/TR/html-aria/#docconformance) вы можете напрямую указать роль элемента, например `[role=button]` в качестве параметра селектора:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L13
@@ -237,69 +238,69 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L131-L132
 ```
 
-## ID Attribute
+## Атрибут ID
 
-Locator strategy "id" is not supported in WebDriver protocol, one should use either CSS or xPath selector strategies instead to find elements using ID.
+Стратегия локатора "id" не поддерживается в протоколе WebDriver, вместо этого следует использовать стратегии селекторов CSS или xPath для поиска элементов по ID.
 
-However some drivers (e.g. [Appium You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)) might still [support](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies) this selector.
+Однако некоторые драйверы (например, [Appium You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)) могут все еще [поддерживать](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies) этот селектор.
 
-Current supported selector syntaxes for ID are:
+Текущие поддерживаемые синтаксисы селекторов для ID:
 
 ```js
-//css locator
+//css локатор
 const button = await $('#someid')
-//xpath locator
+//xpath локатор
 const button = await $('//*[@id="someid"]')
-//id strategy
-// Note: works only in Appium or similar frameworks which supports locator strategy "ID"
+//стратегия id
+// Примечание: работает только в Appium или подобных фреймворках, которые поддерживают стратегию локатора "ID"
 const button = await $('id=resource-id/iosname')
 ```
 
-## JS Function
+## JS-функция
 
-You can also use JavaScript functions to fetch elements using web native APIs. Of course, you can only do this inside a web context (e.g., `browser`, or web context in mobile).
+Вы также можете использовать JavaScript-функции для получения элементов, используя нативные веб-API. Конечно, вы можете делать это только внутри веб-контекста (например, `browser` или веб-контекст в мобильных устройствах).
 
-Given the following HTML structure:
+Учитывая следующую HTML-структуру:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/js.html
 ```
 
-You can query the sibling element of `#elem` as follows:
+Вы можете запросить соседний элемент `#elem` следующим образом:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L139-L143
 ```
 
-## Deep Selectors
+## Глубокие селекторы
 
 :::warning
 
-Starting with `v9` of WebdriverIO there is no need for this special selector as WebdriverIO automatically pierces through the Shadow DOM for you. It is recommended to migrate off this selector by removing the `>>>` in front it.
+Начиная с `v9` WebdriverIO, нет необходимости в этом специальном селекторе, так как WebdriverIO автоматически проникает через Shadow DOM за вас. Рекомендуется перейти с этого селектора, удалив `>>>` перед ним.
 
 :::
 
-Many frontend applications heavily rely on elements with [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). It is technically impossible to query elements within the shadow DOM without workarounds. The [`shadow$`](https://webdriver.io/docs/api/element/shadow$) and [`shadow$$`](https://webdriver.io/docs/api/element/shadow$$) have been such workarounds that had their [limitations](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow). With the deep selector you can now query all elements within any shadow DOM using the common query command.
+Многие фронтенд-приложения сильно полагаются на элементы с [теневым DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). Технически невозможно запрашивать элементы внутри теневого DOM без обходных путей. [`shadow$`](https://webdriver.io/docs/api/element/shadow$) и [`shadow$$`](https://webdriver.io/docs/api/element/shadow$$) были такими обходными путями, которые имели свои [ограничения](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow). С глубоким селектором вы теперь можете запрашивать все элементы внутри любого теневого DOM, используя общую команду запроса.
 
-Given we have an application with the following structure:
+Предположим, у нас есть приложение со следующей структурой:
 
 ![Chrome Example](https://github.com/Georgegriff/query-selector-shadow-dom/raw/main/Chrome-example.png "Chrome Example")
 
-With this selector you can query the `<button />` element that is nested within another shadow DOM, e.g.:
+С этим селектором вы можете запросить элемент `<button />`, который вложен в другой теневой DOM, например:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L147-L149
 ```
 
-## Mobile Selectors
+## Мобильные селекторы
 
-For hybrid mobile testing, it's important that the automation server is in the correct *context* before executing commands. For automating gestures, the driver ideally should be set to native context. But to select elements from the DOM, the driver will need to be set to the platform's webview context. Only *then* can the methods mentioned above can be used.
+Для гибридного мобильного тестирования важно, чтобы сервер автоматизации находился в правильном *контексте* перед выполнением команд. Для автоматизации жестов драйвер в идеале должен быть установлен в нативный контекст. Но для выбора элементов из DOM драйвер должен быть установлен в контекст webview платформы. Только *после этого* можно использовать упомянутые выше методы.
 
-For native mobile testing, there is no switching between contexts, as you have to use mobile strategies and use the underlying device automation technology directly. This is especially useful when a test needs some fine-grained control over finding elements.
+Для нативного мобильного тестирования нет переключения между контекстами, так как вы должны использовать мобильные стратегии и напрямую использовать базовую технологию автоматизации устройства. Это особенно полезно, когда тест требует тонкого контроля над поиском элементов.
 
 ### Android UiAutomator
 
-Android’s UI Automator framework provides a number of ways to find elements. You can use the [UI Automator API](https://developer.android.com/tools/testing-support-library/index.html#uia-apis), in particular the [UiSelector class](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) to locate elements. In Appium you send the Java code, as a string, to the server, which executes it in the application’s environment, returning the element or elements.
+Фреймворк UI Automator для Android предоставляет несколько способов поиска элементов. Вы можете использовать [API UI Automator](https://developer.android.com/tools/testing-support-library/index.html#uia-apis), в частности, [класс UiSelector](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) для локализации элементов. В Appium вы отправляете Java-код в виде строки на сервер, который выполняет его в среде приложения, возвращая элемент или элементы.
 
 ```js
 const selector = 'new UiSelector().text("Cancel").className("android.widget.Button")'
@@ -307,9 +308,9 @@ const button = await $(`android=${selector}`)
 await button.click()
 ```
 
-### Android DataMatcher and ViewMatcher (Espresso only)
+### Android DataMatcher и ViewMatcher (только Espresso)
 
-Android's DataMatcher strategy provides a way to find elements by [Data Matcher](https://developer.android.com/reference/android/support/test/espresso/DataInteraction)
+Стратегия DataMatcher Android предоставляет способ поиска элементов по [Data Matcher](https://developer.android.com/reference/android/support/test/espresso/DataInteraction)
 
 ```js
 const menuItem = await $({
@@ -319,7 +320,7 @@ const menuItem = await $({
 await menuItem.click()
 ```
 
-And similarly [View Matcher](https://developer.android.com/reference/android/support/test/espresso/ViewInteraction)
+И аналогично [View Matcher](https://developer.android.com/reference/android/support/test/espresso/ViewInteraction)
 
 ```js
 const menuItem = await $({
@@ -330,9 +331,9 @@ const menuItem = await $({
 await menuItem.click()
 ```
 
-### Android View Tag (Espresso only)
+### Android View Tag (только Espresso)
 
-The view tag strategy provides a convenient way to find elements by their [tag](https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html#withTagValue%28org.hamcrest.Matcher%3Cjava.lang.Object%3E%29).
+Стратегия тегов представления предоставляет удобный способ поиска элементов по их [тегам](https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html#withTagValue%28org.hamcrest.Matcher%3Cjava.lang.Object%3E%29).
 
 ```js
 const elem = await $('-android viewtag:tag_identifier')
@@ -341,9 +342,9 @@ await elem.click()
 
 ### iOS UIAutomation
 
-When automating an iOS application, Apple’s [UI Automation framework](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html) can be used to find elements.
+При автоматизации приложения iOS можно использовать [фреймворк UI Automation](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html) от Apple для поиска элементов.
 
-This JavaScript [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) has methods to access to the view and everything on it.
+Этот JavaScript [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) имеет методы для доступа к представлению и всему, что на нем находится.
 
 ```js
 const selector = 'UIATarget.localTarget().frontMostApp().mainWindow().buttons()[0]'
@@ -351,11 +352,11 @@ const button = await $(`ios=${selector}`)
 await button.click()
 ```
 
-You can also use predicate searching within iOS UI Automation in Appium to refine element selection even further. See [here](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md) for details.
+Вы также можете использовать поиск предикатов в iOS UI Automation в Appium для дальнейшего уточнения выбора элементов. Подробности см. [здесь](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md).
 
-### iOS XCUITest predicate strings and class chains
+### iOS XCUITest строки предикатов и цепочки классов
 
-With iOS 10 and above (using the `XCUITest` driver), you can use [predicate strings](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules):
+С iOS 10 и выше (при использовании драйвера `XCUITest`) вы можете использовать [строки предикатов](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules):
 
 ```js
 const selector = `type == 'XCUIElementTypeSwitch' && name CONTAINS 'Allow'`
@@ -363,7 +364,7 @@ const switch = await $(`-ios predicate string:${selector}`)
 await switch.click()
 ```
 
-And [class chains](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules):
+И [цепочки классов](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules):
 
 ```js
 const selector = '**/XCUIElementTypeCell[`name BEGINSWITH "D"`]/**/XCUIElementTypeButton'
@@ -373,12 +374,12 @@ await button.click()
 
 ### Accessibility ID
 
-The `accessibility id` locator strategy is designed to read a unique identifier for a UI element. This has the benefit of not changing during localization or any other process that might change text. In addition, it can be an aid in creating cross-platform tests, if elements that are functionally the same have the same accessibility id.
+Стратегия локатора `accessibility id` предназначена для чтения уникального идентификатора элемента пользовательского интерфейса. Это имеет преимущество в том, что не меняется при локализации или любом другом процессе, который может изменить текст. Кроме того, это может помочь в создании кросс-платформенных тестов, если элементы, которые функционально одинаковы, имеют одинаковый accessibility id.
 
-- For iOS this is the `accessibility identifier` laid out by Apple [here](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html).
-- For Android the `accessibility id` maps to the `content-description` for the element, as described [here](https://developer.android.com/training/accessibility/accessible-app.html).
+- Для iOS это `accessibility identifier`, установленный Apple [здесь](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html).
+- Для Android `accessibility id` соответствует `content-description` для элемента, как описано [здесь](https://developer.android.com/training/accessibility/accessible-app.html).
 
-For both platforms, getting an element (or multiple elements) by their `accessibility id` is usually the best method. It is also the preferred way over the deprecated `name` strategy.
+Для обеих платформ получение элемента (или нескольких элементов) по их `accessibility id` обычно является лучшим методом. Это также предпочтительный способ по сравнению с устаревшей стратегией `name`.
 
 ```js
 const elem = await $('~my_accessibility_identifier')
@@ -387,26 +388,26 @@ await elem.click()
 
 ### Class Name
 
-The `class name` strategy is a `string` representing a UI element on the current view.
+Стратегия `class name` - это `строка`, представляющая элемент пользовательского интерфейса в текущем представлении.
 
-- For iOS it is the full name of a [UIAutomation class](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html), and will begin with `UIA-`, such as `UIATextField` for a text field. A full reference can be found [here](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation).
-- For Android it is the fully qualified name of a [UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator) [class](https://developer.android.com/reference/android/widget/package-summary.html), such `android.widget.EditText` for a text field. A full reference can be found [here](https://developer.android.com/reference/android/widget/package-summary.html).
-- For Youi.tv it is the full name of a Youi.tv class, and will being with `CYI-`, such as `CYIPushButtonView` for a push button element. A full reference can be found at [You.i Engine Driver's GitHub page](https://github.com/YOU-i-Labs/appium-youiengine-driver)
+- Для iOS это полное имя [класса UIAutomation](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html), и будет начинаться с `UIA-`, например, `UIATextField` для текстового поля. Полную справку можно найти [здесь](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation).
+- Для Android это полностью квалифицированное имя [класса UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator) [class](https://developer.android.com/reference/android/widget/package-summary.html), например, `android.widget.EditText` для текстового поля. Полную справку можно найти [здесь](https://developer.android.com/reference/android/widget/package-summary.html).
+- Для Youi.tv это полное имя класса Youi.tv, и будет начинаться с `CYI-`, например, `CYIPushButtonView` для элемента кнопки. Полную справку можно найти на [странице GitHub драйвера You.i Engine](https://github.com/YOU-i-Labs/appium-youiengine-driver)
 
 ```js
-// iOS example
+// пример iOS
 await $('UIATextField').click()
-// Android example
+// пример Android
 await $('android.widget.DatePicker').click()
-// Youi.tv example
+// пример Youi.tv
 await $('CYIPushButtonView').click()
 ```
 
-## Chain Selectors
+## Цепочки селекторов
 
-If you want to be more specific in your query, you can chain selectors until you've found the right element. If you call `element` before your actual command, WebdriverIO starts the query from that element.
+Если вы хотите быть более конкретным в своем запросе, вы можете связать селекторы в цепочку, пока не найдете нужный элемент. Если вы вызываете `element` перед вашей фактической командой, WebdriverIO начнет запрос с этого элемента.
 
-For example, if you have a DOM structure like:
+Например, если у вас есть структура DOM:
 
 ```html
 <div class="row">
@@ -428,40 +429,43 @@ For example, if you have a DOM structure like:
 </div>
 ```
 
-And you want to add product B to the cart, it would be difficult to do that just by using the CSS selector.
+И вы хотите добавить продукт B в корзину, было бы сложно сделать это только с помощью CSS-селектора.
 
-With selector chaining, it's way easier. Simply narrow down the desired element step by step:
+С цепочкой селекторов это гораздо проще. Просто сужайте нужный элемент шаг за шагом:
 
 ```js
 await $('.row .entry:nth-child(2)').$('button*=Add').click()
 ```
 
-### Appium Image Selector
+### Селектор изображения Appium
 
-Using the  `-image` locator strategy, it is possible to send an Appium an image file representing an element you want to access.
+Используя стратегию локатора `-image`, можно отправить в Appium файл изображения, представляющий элемент, к которому вы хотите получить доступ.
 
-Supported file formats `jpg,png,gif,bmp,svg`
+Поддерживаемые форматы файлов `jpg,png,gif,bmp,svg`
 
-Full reference can be found [here](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md)
+Полную справку можно найти [здесь](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md)
 
 ```js
 const elem = await $('./file/path/of/image/test.jpg')
 await elem.click()
 ```
 
-**Note**: The way how Appium works with this selector is that it will internally make a (app)screenshot and use the provided image selector to verify if the element can be found in that (app)screenshot.
+**Примечание**: Способ работы Appium с этим селектором заключается в том, что он внутренне сделает (app)скриншот и использует предоставленный селектор изображения
+для проверки, может ли элемент быть найден на этом (app)скриншоте.
 
-Be aware of the fact that Appium might resize the taken (app)screenshot to make it match the CSS-size of your (app)screen (this will happen on iPhones but also on Mac machines with a Retina display because the DPR is bigger than 1). This will result in not finding a match because the provided image selector might have been taken from the original screenshot. You can fix this by updating the Appium Server settings, see the [Appium docs](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings) for the settings and [this comment](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) on a detailed explanation.
+Учтите, что Appium может изменить размер сделанного (app)скриншота, чтобы он соответствовал CSS-размеру вашего (app)экрана (это произойдет
+на iPhone, а также на Mac-компьютерах с дисплеем Retina, потому что DPR больше 1). Это приведет к тому, что совпадение не будет найдено, потому что предоставленный селектор изображения мог быть взят из оригинального скриншота.
+Вы можете исправить это, обновив настройки сервера Appium, см. [документацию Appium](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings) для настроек и [этот комментарий](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) с подробным объяснением.
 
-## React Selectors
+## Селекторы React
 
-WebdriverIO provides a way to select React components based on the component name. To do this, you have a choice of two commands: `react$` and `react$$`.
+WebdriverIO предоставляет способ выбора компонентов React на основе имени компонента. Для этого у вас есть выбор из двух команд: `react$` и `react$$`.
 
-These commands allow you to select components off the [React VirtualDOM](https://reactjs.org/docs/faq-internals.html) and return either a single WebdriverIO Element or an array of elements (depending on which function is used).
+Эти команды позволяют выбирать компоненты из [React VirtualDOM](https://reactjs.org/docs/faq-internals.html) и возвращать либо один элемент WebdriverIO, либо массив элементов (в зависимости от того, какая функция используется).
 
-**Note**: The commands `react$` and `react$$` are similar in functionality, except that `react$$` will return *all* matching instances as an array of WebdriverIO elements, and `react$` will return the first found instance.
+**Примечание**: Команды `react$` и `react$$` аналогичны по функциональности, за исключением того, что `react$$` возвращает *все* соответствующие экземпляры в виде массива элементов WebdriverIO, а `react$` возвращает первый найденный экземпляр.
 
-#### Basic example
+#### Базовый пример
 
 ```jsx
 // index.jsx
@@ -483,19 +487,19 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-In the above code there is a simple `MyComponent` instance inside the application, which React is rendering inside a HTML element with `id="root"`.
+В приведенном выше коде есть простой экземпляр `MyComponent` внутри приложения, который React рендерит внутри HTML-элемента с `id="root"`.
 
-With the `browser.react$` command, you can select an instance of `MyComponent`:
+С помощью команды `browser.react$` вы можете выбрать экземпляр `MyComponent`:
 
 ```js
 const myCmp = await browser.react$('MyComponent')
 ```
 
-Now that you have the WebdriverIO element stored in `myCmp` variable, you can execute element commands against it.
+Теперь, когда у вас есть элемент WebdriverIO, хранящийся в переменной `myCmp`, вы можете выполнять команды элемента с ним.
 
-#### Filtering components
+#### Фильтрация компонентов
 
-The library that WebdriverIO uses internally allows to filter your selection by props and/or state of the component. To do so, you need to pass a second argument for props and/or a third argument for state to the browser command.
+Библиотека, которую WebdriverIO использует внутренне, позволяет фильтровать ваш выбор по свойствам и/или состоянию компонента. Для этого вам нужно передать второй аргумент для свойств и/или третий аргумент для состояния в команду браузера.
 
 ```jsx
 // index.jsx
@@ -522,7 +526,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-If you want to select the instance of `MyComponent` that has a prop `name` as `WebdriverIO`, you can execute the command like so:
+Если вы хотите выбрать экземпляр `MyComponent`, у которого есть свойство `name` со значением `WebdriverIO`, вы можете выполнить команду следующим образом:
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -530,7 +534,7 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-If you wanted to filter our selection by state, the `browser` command would looks something like so:
+Если вы хотели бы фильтровать наш выбор по состоянию, команда `browser` будет выглядеть примерно так:
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -538,9 +542,9 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-#### Dealing with `React.Fragment`
+#### Работа с `React.Fragment`
 
-When using the `react$` command to select React [fragments](https://reactjs.org/docs/fragments.html), WebdriverIO will return the first child of that component as the component's node. If you use `react$$`, you will receive an array containing all the HTML nodes inside the fragments that match the selector.
+При использовании команды `react$` для выбора [фрагментов](https://reactjs.org/docs/fragments.html) React, WebdriverIO вернет первый дочерний элемент этого компонента в качестве узла компонента. Если вы используете `react$$`, вы получите массив, содержащий все HTML-узлы внутри фрагментов, которые соответствуют селектору.
 
 ```jsx
 // index.jsx
@@ -567,34 +571,34 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-Given the above example, this is how the commands would work:
+Учитывая приведенный выше пример, вот как будут работать команды:
 
 ```js
-await browser.react$('MyComponent') // returns the WebdriverIO Element for the first <div />
-await browser.react$$('MyComponent') // returns the WebdriverIO Elements for the array [<div />, <div />]
+await browser.react$('MyComponent') // возвращает элемент WebdriverIO для первого <div />
+await browser.react$$('MyComponent') // возвращает элементы WebdriverIO для массива [<div />, <div />]
 ```
 
-**Note:** If you have multiple instances of `MyComponent` and you use `react$$` to select these fragment components, you will be returned an one-dimensional array of all the nodes. In other words, if you have 3 `<MyComponent />` instances, you will be returned an array with six WebdriverIO elements.
+**Примечание:** Если у вас несколько экземпляров `MyComponent` и вы используете `react$$` для выбора этих компонентов-фрагментов, вам будет возвращен одномерный массив всех узлов. Другими словами, если у вас есть 3 экземпляра `<MyComponent />`, вам будет возвращен массив с шестью элементами WebdriverIO.
 
-## Custom Selector Strategies
+## Пользовательские стратегии селекторов
 
 
-If your app requires a specific way to fetch elements you can define yourself a custom selector strategy that you can use with `custom$` and `custom$$`. For that register your strategy once in the beginning of the test, e.g. in a `before` hook:
+Если ваше приложение требует особого способа получения элементов, вы можете самостоятельно определить пользовательскую стратегию селекторов, которую можно использовать с `custom$` и `custom$$`. Для этого зарегистрируйте свою стратегию один раз в начале теста, например, в хуке `before`:
 
 ```js reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/customStrategy.js#L2-L11
 ```
 
-Given the following HTML snippet:
+Учитывая следующий HTML-фрагмент:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/example.html#L8-L12
 ```
 
-Then use it by calling:
+Затем используйте его, вызвав:
 
 ```js reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/customStrategy.js#L16-L19
 ```
 
-**Note:** this only works in an web environment in which the [`execute`](/docs/api/browser/execute) command can be run.
+**Примечание:** это работает только в веб-окружении, в котором может быть запущена команда [`execute`](/docs/api/browser/execute).

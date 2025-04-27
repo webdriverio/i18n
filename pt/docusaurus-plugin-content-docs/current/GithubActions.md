@@ -3,19 +3,19 @@ id: githubactions
 title: Github Actions
 ---
 
-If your repository is hosted on Github, you can use [Github Actions](https://docs.github.com/en/actions) to run your tests on Github's infrastructure.
+Se o seu repositório estiver hospedado no Github, você pode usar o [Github Actions](https://docs.github.com/en/actions) para executar seus testes na infraestrutura do Github.
 
-1. every time you push changes
-2. on every pull request creation
-3. on scheduled time
-4. by manual trigger
+1. toda vez que você enviar alterações
+2. em cada criação de pull request
+3. em horários programados
+4. por acionamento manual
 
-In the root of your repository, create a `.github/workflows` directory. Add a Yaml file, for example `.github/workflows/ci.yaml`. In there you will configure how to run your tests.
+Na raiz do seu repositório, crie um diretório `.github/workflows`. Adicione um arquivo Yaml, por exemplo `.github/workflows/ci.yaml`. Nele você configurará como executar seus testes.
 
-See [jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml) for reference implementation, and [sample test runs](https://github.com/webdriverio/jasmine-boilerplate/actions?query=workflow%3ACI).
+Veja [jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml) para implementação de referência e [exemplos de execuções de teste](https://github.com/webdriverio/jasmine-boilerplate/actions?query=workflow%3ACI).
 
 ```yaml reference
 https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml
 ```
 
-Find out in the [Github Docs](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow?tool=cli) on more information about creating workflow files.
+Descubra mais informações sobre como criar arquivos de workflow nos [Documentos do Github](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow?tool=cli).

@@ -1,9 +1,9 @@
 ---
 id: dialog
-title: dialog
+title: O Objeto Dialog
 ---
 
-Objetos de diálogo são despachados por [`browser`](/docs/api/browser) por meio do evento `browser.on('dialog')`.
+Os objetos Dialog são despachados pelo [`browser`](/docs/api/browser) através do evento `browser.on('dialog')`.
 
 Um exemplo de uso do objeto Dialog:
 
@@ -12,7 +12,7 @@ import { browser } from '@wdio/globals'
 
 await browser.url('https://webdriver.io')
 browser.on('dialog', async (dialog) => {
-    console.log(dialog.message()) // saida: "Hello Dialog"
+    console.log(dialog.message()) // outputs: "Hello Dialog"
     await dialog.dismiss()
 })
 
@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-Os diálogos são descartados automaticamente, a menos que haja um ouvinte `browser.on('dialog')`. Quando o ouvinte estiver presente, ele deve [`dialog.accept()`](/docs/api/dialog/accept) ou [`dialog.dismiss()`](/docs/api/dialog/dismiss) o diálogo - caso contrário, a página congelará esperando o diálogo, e ações como clicar nunca serão concluídas.
+Os diálogos são automaticamente dispensados, a menos que exista um listener `browser.on('dialog')`. Quando o listener está presente, ele deve aceitar o diálogo com [`dialog.accept()`](/docs/api/dialog/accept) ou dispensar com [`dialog.dismiss()`](/docs/api/dialog/dismiss) - caso contrário, a página ficará congelada esperando pelo diálogo, e ações como click nunca serão concluídas.
 
 :::

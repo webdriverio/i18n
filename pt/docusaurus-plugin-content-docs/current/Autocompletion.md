@@ -1,31 +1,31 @@
 ---
 id: autocompletion
-title: Autocompletion
+title: Autocompleção
 ---
 
 ## IntelliJ
 
-Autocompletion works out of the box in IDEA and WebStorm.
+A autocompleção funciona imediatamente no IDEA e WebStorm.
 
-If you have been writing program code for a while, you probably like autocompletion. Autocomplete is available out of the box in many code editors.
+Se você tem escrito código de programa por algum tempo, provavelmente gosta de autocompleção. A autocompleção está disponível de imediato em muitos editores de código.
 
 ![Autocompletion](/img/autocompletion/0.png)
 
-Type definitions based on [JSDoc](http://usejsdoc.org/) is used for documenting code. It helps to see more additional details about parameters and their types.
+Definições de tipo baseadas em [JSDoc](http://usejsdoc.org/) são usadas para documentar código. Isso ajuda a ver mais detalhes adicionais sobre parâmetros e seus tipos.
 
 ![Autocompletion](/img/autocompletion/1.png)
 
-Use standard shortcuts <kbd>⇧ + ⌥ + SPACE</kbd> on IntelliJ Platform to see available documentation:
+Use atalhos padrão <kbd>⇧ + ⌥ + SPACE</kbd> na plataforma IntelliJ para ver a documentação disponível:
 
 ![Autocompletion](/img/autocompletion/2.png)
 
 ## Visual Studio Code (VSCode)
 
-Visual Studio Code usually has type support automatically integrated and there is no action needed.
+O Visual Studio Code geralmente tem suporte a tipos automaticamente integrado e não é necessária nenhuma ação.
 
 ![Autocompletion](/img/autocompletion/14.png)
 
-If you use vanilla JavaScript and want to have proper type support you have to create a `jsconfig.json` in your project root and refer to used wdio packages, e.g.:
+Se você usa JavaScript puro e quer ter suporte adequado de tipos, deve criar um `jsconfig.json` na raiz do seu projeto e fazer referência aos pacotes wdio usados, por exemplo:
 
 ```json title="jsconfig.json"
 {

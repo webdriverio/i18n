@@ -3,7 +3,7 @@ id: ocr-get-text
 title: ocrGetText
 ---
 
-Obtenha o texto em uma imagem.
+Obter o texto em uma imagem.
 
 ### Uso
 
@@ -18,7 +18,7 @@ console.log("result = ", JSON.stringify(result, null, 2));
 ### Resultado
 
 ```logs
-resultado = "VS docs API Blog Contribuir Comunidade Patrocinador v8 *Engishy CV} Q OQ G asearch Navegador de última geração e automação móvel Bem-vindo! Como posso | ajudar? i framework de teste para Node.js Comece Por que WebdriverI0? Ver no GitHub Assistir no YouTube"
+result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube"
 ```
 
 ### Logs
@@ -33,11 +33,11 @@ resultado = "VS docs API Blog Contribuir Comunidade Patrocinador v8 *Engishy CV}
 
 ### `contrast`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** `0.25`
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** `0.25`
 
-Quanto maior o contraste, mais escura a imagem e vice-versa. Isso pode ajudar a encontrar texto em uma imagem. Ele aceita valores entre `-1` e `1`.
+Quanto maior o contraste, mais escura fica a imagem e vice-versa. Isso pode ajudar a encontrar texto em uma imagem. Aceita valores entre `-1` e `1`.
 
 #### Exemplo
 
@@ -47,10 +47,10 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
-- **Tipo:** `número`
-- **Obrigatório:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Tipo:** `number`
+-   **Obrigatório:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-Esta é a área de pesquisa na tela onde o OCR precisa procurar texto. Pode ser um elemento ou um retângulo contendo `x`, `y`, `largura` e `altura`
+Esta é a área de busca na tela onde o OCR precisa procurar o texto. Pode ser um elemento ou um retângulo contendo `x`, `y`, `width` e `height`
 
 #### Exemplo
 
@@ -73,18 +73,18 @@ await browser.ocrGetText({
 
 ### `language`
 
-- **Tipo:** `string`
-- **Obrigatório:** Não
-- **Padrão:** `eng`
+-   **Tipo:** `string`
+-   **Obrigatório:** Não
+-   **Padrão:** `eng`
 
-A linguagem que o Tesseract reconhecerá. Mais informações podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e os idiomas suportados podem ser encontrados [aqui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+O idioma que o Tesseract irá reconhecer. Mais informações podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e os idiomas suportados podem ser encontrados [aqui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 #### Exemplo
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // Use Dutch as a language
+    // Use holandês como idioma
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

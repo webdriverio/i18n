@@ -3,9 +3,9 @@ id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
 ---
 
-Wait for a specific text to be displayed on the screen.
+Ожидание отображения определенного текста на экране.
 
-## Usage
+## Использование
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -13,27 +13,27 @@ await browser.ocrWaitForTextDisplayed({
 });
 ```
 
-## Output
+## Вывод
 
-### Logs
+### Логи
 
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayed uses ocrGetElementPositionByText under the hood, that is why you see the command ocrGetElementPositionByText in the logs
+# ocrWaitForTextDisplayed использует ocrGetElementPositionByText под капотом, поэтому вы видите команду ocrGetElementPositionByText в логах
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
-## Options
+## Опции
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **Тип:** `string`
+-   **Обязательно:** да
 
-The text you want to search for to click on.
+Текст, который вы хотите найти для клика.
 
-#### Example
+#### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
@@ -41,30 +41,30 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 18000 (18 seconds)
+-   **Тип:** `number`
+-   **Обязательно:** нет
+-   **По умолчанию:** 18000 (18 секунд)
 
-Time in milliseconds. Be aware that the OCR process can take some time, so don't set it too low.
+Время в миллисекундах. Имейте в виду, что процесс OCR может занять некоторое время, поэтому не устанавливайте слишком низкое значение.
 
-#### Example
+#### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // wait for 25 seconds
+    timeout: 25000 // ожидание 25 секунд
 });
 ```
 
 ### `timeoutMsg`
 
-- **Type:** `string`
-- **Mandatory:** no
-- **Default:** `Could not find the text "{selector}" within the requested time.`
+-   **Тип:** `string`
+-   **Обязательно:** нет
+-   **По умолчанию:** `Could not find the text "{selector}" within the requested time.`
 
-It overrides the default error message.
+Переопределяет стандартное сообщение об ошибке.
 
-#### Example
+#### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -75,13 +75,13 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **Тип:** `number`
+-   **Обязательно:** нет
+-   **По умолчанию:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+Чем выше контраст, тем темнее изображение и наоборот. Это может помочь найти текст на изображении. Принимает значения от `-1` до `1`.
 
-#### Example
+#### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -92,12 +92,12 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Тип:** `number`
+-   **Обязательно:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+Это область поиска на экране, где OCR должен искать текст. Это может быть элемент или прямоугольник, содержащий `x`, `y`, `width` и `height`.
 
-#### Example
+#### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -105,13 +105,13 @@ await browser.ocrWaitForTextDisplayed({
     haystack: $("elementSelector"),
 });
 
-// OR
+// ИЛИ
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// ИЛИ
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: {
@@ -125,36 +125,36 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **Тип:** `string`
+-   **Обязательно:** Нет
+-   **По умолчанию:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Язык, который будет распознавать Tesseract. Более подробную информацию можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а поддерживаемые языки можно найти [здесь](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+#### Пример
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Use Dutch as a language
+    // Используйте голландский язык
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+Вы можете изменить нечеткую логику для поиска текста с помощью следующих опций. Это может помочь найти лучшее соответствие.
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **Тип:** `number`
+-   **Обязательно:** нет
+-   **По умолчанию:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+Определяет, насколько близко соответствие должно быть к нечеткому местоположению (указанному в location). Точное соответствие буквы, которое находится на расстоянии символов от нечеткого местоположения, будет оцениваться как полное несоответствие. Расстояние 0 требует, чтобы соответствие находилось в точно указанном месте. Расстояние 1000 требует идеального соответствия в пределах 800 символов от местоположения, чтобы быть найденным, используя порог 0.8.
 
-##### Example
+##### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -167,13 +167,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **Тип:** `number`
+-   **Обязательно:** нет
+-   **По умолчанию:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+Определяет примерно, где в тексте ожидается найти шаблон.
 
-##### Example
+##### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -186,13 +186,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **Тип:** `number`
+-   **Обязательно:** нет
+-   **По умолчанию:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+В какой момент алгоритм сопоставления сдается. Порог 0 требует идеального соответствия (как букв, так и местоположения), порог 1.0 будет соответствовать чему угодно.
 
-##### Example
+##### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -205,13 +205,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **Тип:** `boolean`
+-   **Обязательно:** нет
+-   **По умолчанию:** false
 
-Whether the search should be case sensitive.
+Должен ли поиск учитывать регистр.
 
-##### Example
+##### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -224,13 +224,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **Тип:** `number`
+-   **Обязательно:** нет
+-   **По умолчанию:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+Будут возвращены только соответствия, длина которых превышает это значение. (Например, если вы хотите игнорировать совпадения одиночных символов в результате, установите значение 2)
 
-##### Example
+##### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -243,13 +243,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **Тип:** `number`
+-   **Обязательно:** нет
+-   **По умолчанию:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+Когда `true`, функция сопоставления будет продолжаться до конца шаблона поиска, даже если идеальное соответствие уже было найдено в строке.
 
-##### Example
+##### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({

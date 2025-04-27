@@ -1,9 +1,9 @@
 ---
 id: parameterize-tests
-title: Parameterize Tests
+title: Parametrizar Testes
 ---
 
-You can simply parameterize tests on a test level, via simple `for` loops e.g.:
+Você pode simplesmente parametrizar testes em nível de teste, através de simples loops `for`, por exemplo:
 
 ```ts title=example.spec.js
 const people = ['Alice', 'Bob']
@@ -16,7 +16,7 @@ describe('my tests', () => {
 })
 ```
 
-or by extracting tests into dynamic functions, e.g.:
+ou extraindo testes para funções dinâmicas, por exemplo:
 
 ```js title=dynamic.spec.js
 import { browser } from '@wdio/globals'
@@ -34,11 +34,11 @@ describe('page components', () => {
 })
 ```
 
-## Passing Environment Variables
+## Passando Variáveis de Ambiente
 
-You can use environment variables to configure tests from the command line.
+Você pode usar variáveis de ambiente para configurar testes a partir da linha de comando.
 
-For example, consider the following test file that needs a username and a password. It is usually a good idea not to store your secrets in the source code, so we'll need a way to pass secrets from outside.
+Por exemplo, considere o seguinte arquivo de teste que precisa de um nome de usuário e uma senha. Geralmente é uma boa ideia não armazenar seus segredos no código-fonte, então precisaremos de uma maneira de passar segredos de fora.
 
 ```ts title=example.spec.ts
 it(`example test`, async () => {
@@ -48,15 +48,15 @@ it(`example test`, async () => {
 })
 ```
 
-You can run this test with your secret username and password set in the command line.
+Você pode executar este teste com seu nome de usuário e senha secretos definidos na linha de comando.
 
 <Tabs
   defaultValue="bash"
   values={[
     {label: 'Bash', value: 'bash'},
- {label: 'Powershell', value: 'powershell'},
- {label: 'Batch', value: 'batch'},
- ]
+    {label: 'Powershell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'},
+  ]
 }>
 <TabItem value="bash">
 
@@ -85,7 +85,7 @@ npx wdio run wdio.conf.js
 </TabItem>
 </Tabs>
 
-Similarly, configuration file can also read environment variables passed through the command line.
+Da mesma forma, o arquivo de configuração também pode ler variáveis de ambiente passadas através da linha de comando.
 
 ```ts title=wdio.config.js
 export const config = {
@@ -97,15 +97,15 @@ export const config = {
 }
 ```
 
-Now, you can run tests against a staging or a production environment:
+Agora, você pode executar testes em um ambiente de staging ou de produção:
 
 <Tabs
   defaultValue="bash"
   values={[
     {label: 'Bash', value: 'bash'},
- {label: 'Powershell', value: 'powershell'},
- {label: 'Batch', value: 'batch'},
- ]
+    {label: 'Powershell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'},
+  ]
 }>
 <TabItem value="bash">
 
@@ -132,9 +132,9 @@ npx wdio run wdio.conf.js
 </TabItem>
 </Tabs>
 
-## `.env` files
+## Arquivos `.env`
 
-To make environment variables easier to manage, consider something like `.env` files. WebdriverIO loads `.env` files automatically into your environment. Instead of defining the environment variable as part of the command call, you can define the following `.env`:
+Para facilitar o gerenciamento das variáveis de ambiente, considere algo como arquivos `.env`. O WebdriverIO carrega arquivos `.env` automaticamente em seu ambiente. Em vez de definir a variável de ambiente como parte da chamada de comando, você pode definir o seguinte `.env`:
 
 ```bash title=".env"
 # .env file
@@ -143,17 +143,17 @@ USERNAME=me
 PASSWORD=secret
 ```
 
-Run tests as usual, your environment variables should be picked up.
+Execute os testes como de costume, suas variáveis de ambiente devem ser detectadas.
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-## Create tests via a CSV file
+## Criar testes através de um arquivo CSV
 
-The WebdriverIO test-runner runs in Node.js, this means you can directly read files from the file system and parse them with your preferred CSV library.
+O test-runner do WebdriverIO é executado no Node.js, isso significa que você pode ler arquivos diretamente do sistema de arquivos e analisá-los com sua biblioteca CSV preferida.
 
-See for example this CSV file, in our example input.csv:
+Veja, por exemplo, este arquivo CSV, em nosso exemplo input.csv:
 
 ```csv
 "test_case","some_value","some_other_value"
@@ -163,7 +163,7 @@ See for example this CSV file, in our example input.csv:
 "value 4","value 44","foobar4321"
 ```
 
-Based on this we'll generate some tests by using the csv-parse library from NPM:
+Com base nisso, vamos gerar alguns testes usando a biblioteca csv-parse do NPM:
 
 ```js title=test.spec.ts
 import fs from 'node:fs'

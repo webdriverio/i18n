@@ -3,7 +3,7 @@ id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
 ---
 
-Obtenha a posição de um texto na tela. O comando pesquisará o texto fornecido e tentará encontrar uma correspondência com base na Lógica Fuzzy do [Fuse.js](https://fusejs.io/). Isso significa que se você fornecer um erro de digitação a um seletor, ou se o texto encontrado não for 100% correspondente, ele ainda tentará retornar um elemento. Veja os [logs](#logs) abaixo.
+Obtenha a posição de um texto na tela. O comando procurará o texto fornecido e tentará encontrar uma correspondência baseada na Lógica Fuzzy do [Fuse.js](https://fusejs.io/). Isso significa que se você fornecer um seletor com um erro de digitação, ou o texto encontrado não for 100% igual, ele ainda tentará retornar um elemento. Veja os [logs](#logs) abaixo.
 
 ## Uso
 
@@ -13,7 +13,7 @@ const result = await browser.ocrGetElementPositionByText("Username");
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## Saida
+## Saída
 
 ### Resultado
 
@@ -41,8 +41,8 @@ result = {
 ### Logs
 
 ```log
-# Ainda encontrando uma correspondência, embora tenhamos pesquisado por "Start3d" e o texto encontrado tenha sido "Started"
-[0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<0>)
+# Still finding a match even though we searched for "Start3d" and the found text was "Started"
+[0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
@@ -51,10 +51,10 @@ result = {
 
 ### `text`
 
-- **Tipo:** `string`
-- **Obrigatório:** sim
+-   **Tipo:** `string`
+-   **Obrigatório:** sim
 
-O texto que você deseja pesquisar para clicar.
+O texto que você deseja procurar para clicar.
 
 #### Exemplo
 
@@ -64,11 +64,11 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** `0.25`
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** `0.25`
 
-Quanto maior o contraste, mais escura a imagem e vice-versa. Isso pode ajudar a encontrar texto em uma imagem. Ele aceita valores entre `-1` e `1`.
+Quanto maior o contraste, mais escura a imagem e vice-versa. Isso pode ajudar a encontrar texto em uma imagem. Aceita valores entre `-1` e `1`.
 
 #### Exemplo
 
@@ -81,10 +81,10 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
-- **Tipo:** `número`
-- **Obrigatório:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Tipo:** `number`
+-   **Obrigatório:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-Esta é a área de pesquisa na tela onde o OCR precisa procurar texto. Pode ser um elemento ou um retângulo contendo `x`, `y`, `largura` e `altura`
+Esta é a área de busca na tela onde o OCR precisa procurar por texto. Pode ser um elemento ou um retângulo contendo `x`, `y`, `width` e `height`
 
 #### Exemplo
 
@@ -114,11 +114,11 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
-- **Tipo:** `string`
-- **Obrigatório:** Não
-- **Padrão:** `eng`
+-   **Tipo:** `string`
+-   **Obrigatório:** Não
+-   **Padrão:** `eng`
 
-A linguagem que o Tesseract reconhecerá. Mais informações podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e os idiomas suportados podem ser encontrados [aqui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+O idioma que o Tesseract reconhecerá. Mais informações podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e os idiomas suportados podem ser encontrados [aqui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 #### Exemplo
 
@@ -133,15 +133,15 @@ await browser.ocrGetElementPositionByText({
 
 ### `fuzzyFindOptions`
 
-Você pode alterar a lógica difusa para encontrar texto com as seguintes opções. Isso pode ajudar a encontrar uma correspondência melhor
+Você pode alterar a lógica fuzzy para encontrar texto com as seguintes opções. Isso pode ajudar a encontrar uma correspondência melhor
 
 #### `fuzzyFindOptions.distance`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** 100
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** 100
 
-Determina o quão próxima a correspondência deve ser do local difuso (especificado pelo local). Uma correspondência exata de letras, que é a distância de caracteres do local difuso, seria considerada uma incompatibilidade completa. Uma distância de 0 exige que a correspondência esteja no local exato especificado. Uma distância de 1000 exigiria que uma correspondência perfeita estivesse dentro de 800 caracteres do local a ser encontrado usando um limite de 0,8.
+Determina quão próxima a correspondência deve estar da localização fuzzy (especificada por location). Uma correspondência exata de letra que está a caracteres de distância da localização fuzzy pontuaria como uma incompatibilidade completa. Uma distância de 0 requer que a correspondência esteja na localização exata especificada. Uma distância de 1000 exigiria uma correspondência perfeita para estar dentro de 800 caracteres da localização a ser encontrada usando um limite de 0.8.
 
 ##### Exemplo
 
@@ -156,11 +156,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** 0
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** 0
 
-Determina aproximadamente onde no texto o padrão deve ser encontrado.
+Determina aproximadamente onde no texto espera-se encontrar o padrão.
 
 ##### Exemplo
 
@@ -175,11 +175,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** 0.6
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** 0.6
 
-Em que ponto o algoritmo de correspondência desiste? Um limite de 0 requer uma correspondência perfeita (de letras e localização), um limite de 1,0 corresponderia a qualquer coisa.
+Em que ponto o algoritmo de correspondência desiste. Um limite de 0 requer uma correspondência perfeita (tanto de letras quanto de localização), um limite de 1.0 corresponderia a qualquer coisa.
 
 ##### Exemplo
 
@@ -194,11 +194,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Tipo:** `boolean`
-- **Obrigatório:** não
-- **Padrão:** falso
+-   **Tipo:** `boolean`
+-   **Obrigatório:** não
+-   **Padrão:** false
 
-Se a pesquisa deve diferenciar maiúsculas de minúsculas.
+Se a busca deve ser sensível a maiúsculas e minúsculas.
 
 ##### Exemplo
 
@@ -213,11 +213,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** 2
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** 2
 
-Somente as correspondências cujo comprimento exceda esse valor serão retornadas. (Por exemplo, se você quiser ignorar correspondências de caracteres individuais no resultado, defina-o como 2)
+Apenas as correspondências cujo comprimento exceder este valor serão retornadas. (Por exemplo, se você quiser ignorar correspondências de caracteres únicos no resultado, defina como 2)
 
 ##### Exemplo
 
@@ -232,11 +232,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Tipo:** `número`
-- **Obrigatório:** não
-- **Padrão:** false
+-   **Tipo:** `number`
+-   **Obrigatório:** não
+-   **Padrão:** false
 
-Quando `true`, a função de correspondência continuará até o final de um padrão de pesquisa, mesmo que uma correspondência perfeita já tenha sido localizada na string.
+Quando `true`, a função de correspondência continuará até o final de um padrão de busca, mesmo se uma correspondência perfeita já tiver sido localizada na string.
 
 ##### Exemplo
 

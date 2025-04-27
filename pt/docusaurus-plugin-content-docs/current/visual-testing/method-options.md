@@ -1,246 +1,246 @@
 ---
 id: method-options
-title: Opções do Método
+title: Opções de Métodos
 ---
 
-As opções de métodos são as opções que podem ser definidas por [method](./methods). Se a opção tiver a mesma chave como uma opção que foi definida durante a instanciação do plugin, essa opção de método irá substituir o valor da opção do plugin.
+Methods options são as opções que podem ser definidas por [método](./methods). Se a opção tiver a mesma chave que uma opção que foi definida durante a instanciação do plugin, esta opção de método irá sobrescrever o valor da opção do plugin.
 
-## Salvar opções
+## Opções de Salvamento
 
 ### `disableBlinkingCursor`
 
-- **Tipo:** `boolean`
-- **Obrigatório:** Não
-- **Padrão:** `false`
-- **Suportado:** Web, aplicativo híbrido (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Supported:** Web, Hybrid App (Webview)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. Se definido como `true`, o cursor será definido como `transparente` antes de fazer uma captura de tela
-e será redefinido quando terminar
+Ativa/Desativa o cursor "piscante" de todos os elementos `input`, `textarea`, `[contenteditable]` na aplicação. Se definido como `true`, o cursor será configurado como `transparent` antes de tirar uma captura de tela
+e será restaurado quando concluído
 
 ### `disableCSSAnimation`
 
-- **Tipo:** `boolean`
-- **Obrigatório:** Não
-- **Obrigatório:** Não
-- **Suportado:** Web, aplicativo híbrido (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Supported:** Web, Hybrid App (Webview)
 
-En/Disable todas as animações CSS no aplicativo. Se definido como `true` todas as animações serão desabilitadas antes de fazer uma captura de tela
-e serão redefinidas quando terminar
+Ativa/Desativa todas as animações CSS na aplicação. Se definido como `true`, todas as animações serão desativadas antes de tirar uma captura de tela
+e restauradas quando concluído
 
 ### `enableLayoutTesting`
 
-- **Tipo:** `boolean`
-- **Obrigatório:** Não
-- **Padrão:** `false`
-- **Usado com:** Todos os [métodos](./methods)
-- **Suportado:** Web
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Used with:** Todos os [métodos](./methods)
+-   **Supported:** Web
 
-Isso ocultará todo o texto em uma página, de modo que somente o layout será usado para comparação. A ocultação será feita adicionando o estilo `'color': 'transparent !important'` a **each** elemento.
+Isso ocultará todo o texto em uma página para que apenas o layout seja usado para comparação. A ocultação será feita adicionando o estilo `'color': 'transparent !important'` a __cada__ elemento.
 
-Para a saída, consulte [Saída de teste](./test-output#enablelayouttesting)
+Para ver a saída, consulte [Test Output](./test-output#enablelayouttesting)
 
 :::info
-Ao usar este sinalizador, cada elemento que contém texto (não apenas `p, h1, h2, h3, h4, h5, h6, span, a, li`, mas também `div|button|..`) receberá esta propriedade. Não há **nenhuma** opção para personalizar isso.
+Ao usar esta flag, cada elemento que contém texto (não apenas `p, h1, h2, h3, h4, h5, h6, span, a, li`, mas também `div|button|..`) receberá esta propriedade. __Não__ há opção para personalizar isso.
 :::
 
 ### `hideScrollBars`
 
-- **Tipo:** `boolean`
-- **Obrigatório:** Não
-- **Padrão:** `true`
-- **Usado com:** Todos os [métodos](./methods)
-- **Suportado:** Web, aplicativo híbrido (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `true`
+-   **Used with:** Todos os [métodos](./methods)
+-   **Supported:** Web, Hybrid App (Webview)
 
-Ocultar barra(s) de rolagem no aplicativo. Se definido como verdadeiro, todas as barras de rolagem serão desabilitadas antes de fazer uma captura de tela. O padrão é `true` para evitar problemas extras.
+Oculta as barras de rolagem na aplicação. Se definido como true, todas as barras de rolagem serão desativadas antes de tirar uma captura de tela. Isso é definido como `true` por padrão para evitar problemas adicionais.
 
 ### `hideElements`
 
-- **Tipo:** `array`
-- **Obrigatório:** não
-- **Usado com:** Todos os [métodos](./methods)
-- **Suportado:** Web, aplicativo híbrido (Webview), aplicativo nativo
+-   **Type:** `array`
+-   **Mandatory:** no
+-   **Used with:** Todos os [métodos](./methods)
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-Este método pode ocultar 1 ou vários elementos adicionando a propriedade `visibility: hidden` a eles, fornecendo uma matriz de elementos.
+Este método pode ocultar 1 ou vários elementos adicionando a propriedade `visibility: hidden` a eles, fornecendo um array de elementos.
 
 ### `removeElements`
 
-- **Tipo:** `array`
-- **Obrigatório:** não
-- **Usado com:** Todos os [métodos](./methods)
-- **Suportado:** Web, aplicativo híbrido (Webview), aplicativo nativo
+-   **Type:** `array`
+-   **Mandatory:** no
+-   **Used with:** Todos os [métodos](./methods)
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-Este método pode _remover_ 1 ou vários elementos adicionando a propriedade `display: none` a eles, fornecendo uma matriz de elementos.
+Este método pode _remover_ 1 ou vários elementos adicionando a propriedade `display: none` a eles, fornecendo um array de elementos.
 
 ### `resizeDimensions`
 
-- **Tipo:** `objeto`
-- **Obrigatório:** não
-- **Padrão:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Usado com:** Somente para [`saveElement`](./methods#saveelement) ou [`checkElement`](./methods#checkelement)
-- **Suportado:** Web, aplicativo híbrido (Webview), Native App
+-   **Type:** `object`
+-   **Mandatory:** no
+-   **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **Used with:** Apenas para [`saveElement`](./methods#saveelement) ou [`checkElement`](./methods#checkelement)
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-Um objeto que precisa segurar uma `top`, `right`, `bottom` e`left`  quantidade de pixels necessários para tornar o recorte do elemento maior.
+Um objeto que precisa conter uma quantidade de pixels `top`, `right`, `bottom` e `left` que precisam tornar o recorte do elemento maior.
 
 ### `fullPageScrollTimeout`
 
-- **Tipo:** `número`
-- **Obrigatório:** Não
-- **Padrão:** `1500`
-- **Usado com:** Somente para [`saveFullPageScreen`](./methods#savefullpagescreen) ou [`saveTabbablePage`](./methods#savetabbablepage)
-- **Suportado:** Web
+-   **Type:** `number`
+-   **Mandatory:** No
+-   **Default:** `1500`
+-   **Used with:** Apenas para [`saveFullPageScreen`](./methods#savefullpagescreen) ou [`saveTabbablePage`](./methods#savetabbablepage)
+-   **Supported:** Web
 
-O tempo limite em milissegundos para esperar após uma rolagem. Isso pode ajudar a identificar páginas com carregamento lento.
+O tempo limite em milissegundos para aguardar após uma rolagem. Isso pode ajudar a identificar páginas com carregamento preguiçoso.
 
 ### `hideAfterFirstScroll`
 
-- **Tipo:** `array`
-- **Obrigatório:** não
-- **Usado com:** Somente para [`saveFullPageScreen`](./methods#savefullpagescreen) ou [`saveTabbablePage`](./methods#savetabbablepage)
-- **Suportado:** Web
+-   **Type:** `array`
+-   **Mandatory:** no
+-   **Used with:** Apenas para [`saveFullPageScreen`](./methods#savefullpagescreen) ou [`saveTabbablePage`](./methods#savetabbablepage)
+-   **Supported:** Web
 
-Este método ocultará um ou vários elementos adicionando a propriedade `visibility: hidden` a eles, fornecendo uma matriz de elementos.
-Isso será útil quando uma página, por exemplo, contiver elementos fixos que rolarão com a página se ela for rolada, mas causarão um efeito irritante quando uma captura de tela de página inteira for feita.
+Este método ocultará um ou vários elementos adicionando a propriedade `visibility: hidden` a eles, fornecendo um array de elementos.
+Isso será útil quando uma página, por exemplo, mantém elementos fixos que rolam com a página quando a página é rolada, mas darão um efeito irritante quando uma captura de tela de página inteira é feita
 
 ### `waitForFontsLoaded`
 
-- **Tipo:** `boolean`
-- **Obrigatório:** Não
-- **Padrão:** `true`
-- **Usado com:** Todos os [métodos](./methods)
-- **Suportado:** Web, aplicativo híbrido (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `true`
+-   **Used with:** Todos os [métodos](./methods)
+-   **Supported:** Web, Hybrid App (Webview)
 
-Fontes, incluindo fontes de terceiros, podem ser carregadas de forma síncrona ou assíncrona. Carregamento assíncrono significa que as fontes podem ser carregadas depois que o WebdriverIO determina que uma página foi totalmente carregada. Para evitar problemas de renderização de fontes, este módulo, por padrão, aguardará que todas as fontes sejam carregadas antes de fazer uma captura de tela.
+Fontes, incluindo fontes de terceiros, podem ser carregadas de forma síncrona ou assíncrona. O carregamento assíncrono significa que as fontes podem ser carregadas depois que o WebdriverIO determina que uma página foi totalmente carregada. Para evitar problemas de renderização de fontes, este módulo, por padrão, aguardará o carregamento de todas as fontes antes de tirar uma captura de tela.
 
-## Comparar (Check) Opções
+## Opções de Comparação (Verificação)
 
-As opções de comparação são opções que influenciam a maneira como a comparação, por [ResembleJS](https://github.com/Huddle/Resemble.js), está sendo executada.
+As opções de comparação são opções que influenciam a maneira como a comparação, pelo [ResembleJS](https://github.com/Huddle/Resemble.js), é executada.
 
-:::info OBSERVAÇÃO
+:::info NOTA
 
-- Todas as opções de [Salvar opções](#save-options) podem ser usadas para os métodos Comparar
-- Todas as opções de comparação podem ser usadas durante a instanciação do serviço **ou** para cada método de verificação. Se uma opção de método tiver a mesma chave que uma opção que foi definida durante a instanciação do serviço, a opção de comparação de método substituirá o valor da opção de comparação de serviço.
+-   Todas as opções das [Opções de Salvamento](#save-options) podem ser usadas para os métodos de Comparação
+-   Todas as opções de comparação podem ser usadas durante a instanciação do serviço __ou__ para cada método de verificação individual. Se uma opção de método tiver a mesma chave que uma opção definida durante a instanciação do serviço, então a opção de comparação do método sobrescreverá o valor da opção de comparação do serviço.
 - Todas as opções podem ser usadas para:
-    - Navegador
-    - Aplicativo Híbrido
-    - Aplicativo nativo
+    - Web
+    - Hybrid App
+    - Native App
 
 :::
 
 ### `ignoreAlpha`
 
-- **Tipo:** `boolean`
-- **Padrão:** `false`
-- **Obrigatório:** não
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
 
-Compare imagens e descarte alfa.
+Compara imagens e descarta o alfa.
 
 ### `blockOutSideBar`
 
-- **Tipo:** `boolean`
-- **Padrão:** `true`
-- **Obrigatório:** não
-- **Observação:** _Só pode ser usado para `checkScreen()`. Isto é **somente para iPad**_
+-   **Type:** `boolean`
+-   **Default:** `true`
+-   **Mandatory:** no
+-   **Remark:** _Pode ser usado apenas para `checkScreen()`. Isso é **somente para iPad**_
 
-Bloqueie automaticamente a barra lateral para iPads no modo paisagem durante comparações. Isso evita falhas no componente nativo de guia/privado/favorito.
+Bloqueia automaticamente a barra lateral para iPads no modo paisagem durante as comparações. Isso evita falhas no componente nativo de guia/privado/favorito.
 
 ### `blockOutStatusBar`
 
-- **Tipo:** `boolean`
-- **Padrão:** `true`
-- **Obrigatório:** não
-- **Observação:** _Isto é **somente para dispositivos móveis**_
+-   **Type:** `boolean`
+-   **Default:** `true`
+-   **Mandatory:** no
+-   **Remark:** _Isso é **somente para Mobile**_
 
-Bloqueie automaticamente a barra de status e endereço durante as comparações. Isso evita falhas de tempo, wifi ou status da bateria.
+Bloqueia automaticamente a barra de status e a barra de endereço durante as comparações. Isso evita falhas no horário, status de wifi ou bateria.
 
 ### `blockOutToolBar`
 
-- **Tipo:** `boolean`
-- **Padrão:** `true`
-- **Obrigatório:** não
-- **Observação:** _Isto é **somente para dispositivos móveis**_
+-   **Type:** `boolean`
+-   **Default:** `true`
+-   **Mandatory:** no
+-   **Remark:** _Isso é **somente para Mobile**_
 
-Bloquear automaticamente a barra de ferramentas.
+Bloqueia automaticamente a barra de ferramentas.
 
 ### `ignoreAntialiasing`
 
-- **Tipo:** `boolean`
-- **Padrão:** `false`
-- **Obrigatório:** não
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
 
-Compare imagens e descarte o anti-aliasing.
+Compara imagens e descarta o anti-aliasing.
 
 ### `ignoreColors`
 
-- **Tipo:** `boolean`
-- **Padrão:** `false`
-- **Obrigatório:** não
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
 
-Mesmo que as imagens sejam coloridas, a comparação comparará 2 imagens em preto e branco
+Mesmo que as imagens estejam em cores, a comparação comparará 2 imagens em preto e branco
 
 ### `ignoreLess`
 
-- **Tipo:** `boolean`
-- **Padrão:** `false`
-- **Obrigatório:** não
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
 
-Compare imagens e compare com  `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+Compara imagens com configuração `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
 
 ### `ignoreNothing`
 
-- **Tipo:** `boolean`
-- **Padrão:** `false`
-- **Obrigatório:** não
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
 
-Compare imagens e compare com  `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+Compara imagens com configuração `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
 
 ### `rawMisMatchPercentage`
 
-- **Tipo:** `boolean`
-- **Tipo:** `booleano`
-- **Obrigatório:** não
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
 
-Se verdadeiro, a porcentagem de retorno será como `0,12345678`, o padrão é `0,12`
+Se verdadeiro, a porcentagem de retorno será como `0.12345678`, por padrão é `0.12`
 
 ### `returnAllCompareData`
 
-- **Tipo:** `boolean`
-- **Padrão:** `false`
-- **Obrigatório:** não
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
 
 Isso retornará todos os dados de comparação, não apenas a porcentagem de incompatibilidade
 
 ### `saveAboveTolerance`
 
-- **Tipo:** `número`
-- **Padrão:** `0`
-- **Padrão:** `0`
+-   **Type:** `number`
+-   **Default:** `0`
+-   **Mandatory:** no
 
-Valor permitido de `misMatchPercentage` que impede salvar imagens com diferenças
+Valor permitido de `misMatchPercentage` que impede o salvamento de imagens com diferenças
 
 ### `largeImageThreshold`
 
-- **Tipo:** `número`
-- **Padrão:** `0`
-- **Obrigatório:** não
+-   **Type:** `number`
+-   **Default:** `0`
+-   **Mandatory:** no
 
 Comparar imagens grandes pode levar a problemas de desempenho.
-Ao fornecer um número para a quantidade de pixels aqui (maior que 0), o algoritmo de comparação ignora pixels quando a largura ou altura da imagem é maior que os pixels `largeImageThreshold`.
+Ao fornecer um número para a quantidade de pixels aqui (maior que 0), o algoritmo de comparação pula pixels quando a largura ou altura da imagem é maior que `largeImageThreshold` pixels.
 
 ### `scaleImagesToSameSize`
 
-- **Tipo:** `boolean`
-- **Padrão:** `false`
-- **Obrigatório:** não
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
 
-Dimensiona 2 imagens para o mesmo tamanho antes da execução da comparação. É altamente recomendável habilitar `ignoreAntialiasing` e `ignoreAlpha`
+Dimensiona 2 imagens para o mesmo tamanho antes da execução da comparação. Altamente recomendado habilitar `ignoreAntialiasing` e `ignoreAlpha`
 
 ## Opções de pasta
 
-A pasta de base e as pastas de captura de tela (real, diff) são opções que podem ser definidas durante a instanciação do plugin ou método. Para definir as opções de pasta em um método específico, passe as opções de pasta para o objeto de opção do método. Isso pode ser usado para:
+A pasta de referência e as pastas de capturas de tela (atual, diferença) são opções que podem ser definidas durante a instanciação do plugin ou método. Para definir as opções de pasta em um método específico, passe as opções de pasta para o objeto de opções dos métodos. Isso pode ser usado para:
 
-- Navegador
-- Aplicativo Híbrido
-- Aplicativo nativo
+- Web
+- Hybrid App
+- Native App
 
 ```ts
 import path from 'node:path'
@@ -251,7 +251,7 @@ const methodOptions = {
     diffFolder: path.join(process.cwd(), 'customDiff'),
 }
 
-// You can use this for all methods
+// Você pode usar isso para todos os métodos
 await expect(
     await browser.checkFullPageScreen("checkFullPage", methodOptions)
 ).toEqual(0)
@@ -259,21 +259,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Tipo:** `string`
-- **Obrigatório:** não
+-   **Type:** `string`
+-   **Mandatory:** no
 
-Pasta para o instantâneo que foi capturado no teste.
+Pasta para a captura que foi capturada no teste.
 
 ### `baselineFolder`
 
-- **Tipo:** `string`
-- **Obrigatório:** não
+-   **Type:** `string`
+-   **Mandatory:** no
 
-Pasta para a imagem de base que está sendo usada para comparação.
+Pasta para a imagem de referência que está sendo usada para comparação.
 
 ### `diffFolder`
 
-- **Tipo:** `string`
-- **Obrigatório:** não
+-   **Type:** `string`
+-   **Mandatory:** no
 
 Pasta para a diferença de imagem renderizada pelo ResembleJS.

@@ -1,18 +1,18 @@
 ---
 id: vscode-extensions
-title: Teste de extensão do VS Code
+title: Testando Extensões VS Code
 ---
 
-O WebdriverIO permite que você teste perfeitamente suas extensões do [VS Code](https://code.visualstudio.com/) de ponta a ponta no VS Code Desktop IDE ou como extensão da web. Você só precisa fornecer um caminho para sua extensão e o framework faz o resto. Com o [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) tudo é cuidado e muito mais:
+O WebdriverIO permite que você teste perfeitamente suas extensões [VS Code](https://code.visualstudio.com/) de ponta a ponta no IDE VS Code Desktop ou como extensão web. Você só precisa fornecer um caminho para sua extensão e o framework faz o resto. Com o [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service), tudo é tratado e muito mais:
 
-- 🏗️ Instalando o VSCode (estável, insiders ou uma versão especificada)
+- 🏗️ Instalando o VSCode (estável, insiders ou uma versão específica)
 - ⬇️ Baixando o Chromedriver específico para a versão do VSCode fornecida
-- 🚀 Permite que você acesse a API do VSCode a partir dos seus testes
+- 🚀 Permite acessar a API do VSCode a partir de seus testes
 - 🖥️ Iniciando o VSCode com configurações de usuário personalizadas (incluindo suporte para VSCode no Ubuntu, MacOS e Windows)
-- 🌐 Ou serve VSCode de um servidor para ser acessado por qualquer navegador para testar extensões da web
-- 📔 Bootstrapping de objetos de página com localizadores correspondentes à sua versão do VSCode
+- 🌐 Ou fornece o VSCode a partir de um servidor para ser acessado por qualquer navegador para testar extensões web
+- 📔 Inicializando page objects com localizadores correspondentes à sua versão do VSCode
 
-## Começando
+## Primeiros Passos
 
 Para iniciar um novo projeto WebdriverIO, execute:
 
@@ -20,9 +20,9 @@ Para iniciar um novo projeto WebdriverIO, execute:
 npm create wdio@latest ./
 ```
 
-Um assistente de instalação guiará você pelo processo. Certifique-se de selecionar _"Teste de extensão do VS Code"_ quando for perguntado que tipo de teste você gostaria de fazer. Depois, mantenha os padrões ou modifique de acordo com sua preferência.
+Um assistente de instalação irá guiá-lo pelo processo. Certifique-se de selecionar _"VS Code Extension Testing"_ quando perguntado sobre qual tipo de teste você gostaria de fazer, depois mantenha os padrões ou modifique de acordo com sua preferência.
 
-## Exemplo de configuração
+## Exemplo de Configuração
 
 Para usar o serviço, você precisa adicionar `vscode` à sua lista de serviços, opcionalmente seguido por um objeto de configuração. Isso fará com que o WebdriverIO baixe os binários do VSCode e a versão apropriada do Chromedriver:
 
@@ -33,7 +33,7 @@ export const config = {
     // ...
     capabilities: [{
         browserName: 'vscode',
-        browserVersion: '1.71.0', // "insiders" or "stable" for latest VSCode version
+        browserVersion: '1.71.0', // "insiders" ou "stable" para a versão mais recente do VSCode
         'wdio:vscodeOptions': {
             extensionPath: __dirname,
             userSettings: {
@@ -43,15 +43,15 @@ export const config = {
     }],
     services: ['vscode'],
     /**
-     * optionally you can define the path WebdriverIO stores all
-     * VSCode and Chromedriver binaries, e.g.:
+     * opcionalmente você pode definir o caminho onde o WebdriverIO armazena todos
+     * os binários do VSCode e Chromedriver, por exemplo:
      * services: [['vscode', { cachePath: __dirname }]]
      */
     // ...
 };
 ```
 
-Se você definir `wdio:vscodeOptions` com qualquer outro `browserName`, exceto `vscode`, por exemplo, `chrome`, o serviço servirá a extensão como extensão da web. Se você testar no Chrome, nenhum serviço de driver adicional será necessário, por exemplo:
+Se você definir `wdio:vscodeOptions` com qualquer outro `browserName` além de `vscode`, por exemplo, `chrome`, o serviço disponibilizará a extensão como extensão web. Se você testar no Chrome, nenhum serviço de driver adicional é necessário, por exemplo:
 
 ```js
 // wdio.conf.ts
@@ -69,11 +69,11 @@ export const config = {
 };
 ```
 
-_Observação:_ ao testar extensões da web, você só pode escolher entre `stable` ou `insiders` como `browserVersion`.
+_Nota:_ ao testar extensões web, você só pode escolher entre `stable` ou `insiders` como `browserVersion`.
 
-### Configuração do TypeScript
+### Configuração TypeScript
 
-No seu `tsconfig.json` certifique-se de adicionar `wdio-vscode-service` à sua lista de tipos:
+No seu `tsconfig.json`, certifique-se de adicionar `wdio-vscode-service` à sua lista de tipos:
 
 ```json
 {
@@ -93,7 +93,7 @@ No seu `tsconfig.json` certifique-se de adicionar `wdio-vscode-service` à sua l
 
 ## Uso
 
-Você pode então usar o método `getWorkbench` para acessar os objetos de página para os localizadores que correspondem à versão desejada do VSCode:
+Você pode então usar o método `getWorkbench` para acessar os page objects para os localizadores correspondentes à versão desejada do VSCode:
 
 ```ts
 describe('WDIO VSCode Service', () => {
@@ -105,26 +105,29 @@ describe('WDIO VSCode Service', () => {
 })
 ```
 
-A partir daí, você pode acessar todos os objetos de página usando os métodos de objeto de página corretos. Descubra mais sobre todos os objetos de página disponíveis e seus métodos na [documentação de objetos de página](https://webdriverio-community.github.io/wdio-vscode-service/).
+A partir daí, você pode acessar todos os page objects usando os métodos corretos de page object. Saiba mais sobre todos os page objects disponíveis e seus métodos na [documentação de page objects](https://webdriverio-community.github.io/wdio-vscode-service/).
 
 ### Acessando APIs do VSCode
 
-Se você quiser executar determinada automação por meio da [API do VSCode](https://code.visualstudio.com/api/references/vscode-api), poderá fazer isso executando comandos remotos por meio do comando personalizado `executeWorkbench`. Este comando permite executar remotamente o código do seu teste dentro do ambiente VSCode e permite acessar a API do VSCode. Você pode passar parâmetros arbitrários para a função, que serão então propagados para a função. O objeto `vscode` será sempre passado como primeiro argumento após os parâmetros da função externa. Observe que você não pode acessar variáveis ​​fora do escopo da função, pois o retorno de chamada é executado remotamente. Aqui está um exemplo:
+Se você quiser executar certas automações através da [API do VSCode](https://code.visualstudio.com/api/references/vscode-api), você pode fazer isso executando comandos remotos via comando personalizado `executeWorkbench`. Este comando permite executar código remotamente de seu teste dentro do ambiente VSCode e permite acessar a API do VSCode. Você pode passar parâmetros arbitrários para a função, que serão então propagados para a função. O objeto `vscode` será sempre passado como primeiro argumento, seguido pelos parâmetros da função externa. Observe que você não pode acessar variáveis fora do escopo da função, pois o callback é executado remotamente. Aqui está um exemplo:
 
 ```ts
 const workbench = await browser.getWorkbench()
 await browser.executeWorkbench((vscode, param1, param2) => {
-    vscode.window.showInformationMessage(`Eu sou um ${param1} ${param2}!`)
+    vscode.window.showInformationMessage(`I am an ${param1} ${param2}!`)
 }, 'API', 'call')
 
 const notifs = await workbench.getNotifications()
-console.log(await notifs[0].getMessage()) // exibe: "Eu sou um API call!"
+console.log(await notifs[0].getMessage()) // saída: "I am an API call!"
 ```
 
-Para obter a documentação completa do objeto, confira [docs](https://webdriverio-community.github.io/wdio-vscode-service/modules.html). Você pode encontrar vários exemplos de uso no [conjunto de testes deste projeto](https://github.com/webdriverio-community/wdio-vscode-service/blob/main/test/specs).
+Para a documentação completa de page objects, consulte a [documentação](https://webdriverio-community.github.io/wdio-vscode-service/modules.html). Você pode encontrar vários exemplos de uso na [suíte de testes deste projeto](https://github.com/webdriverio-community/wdio-vscode-service/blob/main/test/specs).
 
-## Mais informações
+## Mais Informações
 
-Você pode aprender mais sobre como configurar o [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) e como criar objetos de página personalizados nos [documentos de serviço](/docs/wdio-vscode-service). Você também pode assistir à seguinte palestra de [Christian Bromann](https://twitter.com/bromann) em [_Testando extensões complexas do VSCode com o poder dos padrões da Web_](https://www.youtube.com/watch?v=PhGNTioBUiU):
+Você pode aprender mais sobre como configurar o [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) e como criar page objects personalizados na [documentação do serviço](/docs/wdio-vscode-service). Você também pode assistir à seguinte palestra de [Christian Bromann](https://twitter.com/bromann) sobre [_Testando Extensões Complexas do VSCode com o Poder dos Padrões Web_](https://www.youtube.com/watch?v=PhGNTioBUiU):
 
-<LiteYouTubeEmbed id="PhGNTioBUiU" title="Testando extensões complexas do VSCode com o poder dos padrões da Web" />
+<LiteYouTubeEmbed
+    id="PhGNTioBUiU"
+    title="Testing Complex VSCode Extensions With the Power of Web Standards"
+/>

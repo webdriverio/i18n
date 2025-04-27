@@ -1,60 +1,60 @@
 ---
 id: browser
-title: The Browser Object
+title: Объект Browser
 ---
 
-__Extends:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
+__Наследует:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-The browser object is the session instance you use to control the browser or mobile device with. If you use the WDIO test runner, you can access the WebDriver instance through the global `browser` or `driver` object or import it using [`@wdio/globals`](/docs/api/globals). If you use WebdriverIO in standalone mode the browser object is returned by the [`remote`](/docs/api/modules#remoteoptions-modifier) method.
+Объект browser — это экземпляр сессии, который вы используете для управления браузером или мобильным устройством. Если вы используете тест-раннер WDIO, вы можете получить доступ к экземпляру WebDriver через глобальные объекты `browser` или `driver`, либо импортировать его с помощью [`@wdio/globals`](/docs/api/globals). Если вы используете WebdriverIO в автономном режиме, объект browser возвращается методом [`remote`](/docs/api/modules#remoteoptions-modifier).
 
-The session is initialized by the test runner. The same goes for ending the session. This is also done by the test runner process.
+Сессия инициализируется тест-раннером. То же самое касается завершения сессии. Это также выполняется процессом тест-раннера.
 
-## Properties
+## Свойства
 
-A browser object has the following properties:
+Объект browser имеет следующие свойства:
 
-| Name                    | Type       | Details                                                                                                                                                                                                                                                                  |
-| ----------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `capabilities`          | `Object`   | Assigned capabilities from the remote server.<br /><b>Example:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre>                                                                                                                                                              |
-| `requestedCapabilities` | `Object`   | Capabilities requested from the remote server.<br /><b>Example:</b><pre>\{ browserName: 'chrome' \}</pre>                                                                                                                                                             |
-| `sessionId`             | `String`   | Session id assigned from the remote server.                                                                                                                                                                                                                              |
-| `options`               | `Object`   | WebdriverIO [options](/docs/configuration) depending on how the browser object was created. See more [setup types](/docs/setuptypes).                                                                                                                                    |
-| `commandList`           | `String[]` | A list of commands registered to the browser instance                                                                                                                                                                                                                    |
-| `isW3C`                 | `Boolean`  | Indicates if this is a W3C session                                                                                                                                                                                                                                       |
-| `isChrome`              | `Boolean`  | Indicates if this Chrome instance                                                                                                                                                                                                                                        |
-| `isFirefox`             | `Boolean`  | Indicates if this Firefox instance                                                                                                                                                                                                                                       |
-| `isBidi`                | `Boolean`  | Indicates if this session uses Bidi                                                                                                                                                                                                                                      |
-| `isSauce`               | `Boolean`  | Indicates if this session is Running on Sauce Labs                                                                                                                                                                                                                       |
-| `isMacApp`              | `Boolean`  | Indicates if this session is Running for a native Mac App                                                                                                                                                                                                                |
-| `isWindowsApp`          | `Boolean`  | Indicates if this session is Running for a native Windows App                                                                                                                                                                                                            |
-| `isMobile`              | `Boolean`  | Indicates a mobile session. See more under [Mobile Flags](#mobile-flags).                                                                                                                                                                                                |
-| `isIOS`                 | `Boolean`  | Indicates an iOS session. See more under [Mobile Flags](#mobile-flags).                                                                                                                                                                                                  |
-| `isAndroid`             | `Boolean`  | Indicates an Android session. See more under [Mobile Flags](#mobile-flags).                                                                                                                                                                                              |
-| `isNativeContext`       | `Boolean`  | Indicates if the mobile is in the `NATIVE_APP` context. See more under [Mobile Flags](#mobile-flags).                                                                                                                                                                    |
-| `mobileContext`         | `string`   | The will provide the **current** context the driver is in, for example `NATIVE_APP`, `WEBVIEW_<packageName>` for Android or `WEBVIEW_<pid>` for iOS. It will save an extra WebDriver to `driver.getContext()`. See more under [Mobile Flags](#mobile-flags). |
+| Имя | Тип | Подробности |
+| ---- | ---- | ------- |
+| `capabilities` | `Object` | Назначенные возможности с удаленного сервера.<br /><b>Пример:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
+| `requestedCapabilities` | `Object` | Запрошенные возможности с удаленного сервера.<br /><b>Пример:</b><pre>\{ browserName: 'chrome' \}</pre>
+| `sessionId` | `String` | Идентификатор сессии, назначенный с удаленного сервера. |
+| `options` | `Object` | [Опции](/docs/configuration) WebdriverIO в зависимости от способа создания объекта browser. Подробнее в [типах настройки](/docs/setuptypes). |
+| `commandList` | `String[]` | Список команд, зарегистрированных для экземпляра браузера |
+| `isW3C` | `Boolean` | Указывает, является ли это сессией W3C |
+| `isChrome` | `Boolean` | Указывает, является ли это экземпляром Chrome |
+| `isFirefox` | `Boolean` | Указывает, является ли это экземпляром Firefox |
+| `isBidi` | `Boolean` | Указывает, использует ли эта сессия Bidi |
+| `isSauce` | `Boolean` | Указывает, запущена ли эта сессия на Sauce Labs |
+| `isMacApp` | `Boolean` | Указывает, запущена ли эта сессия для нативного приложения Mac |
+| `isWindowsApp` | `Boolean` | Указывает, запущена ли эта сессия для нативного приложения Windows |
+| `isMobile` | `Boolean` | Указывает на мобильную сессию. Подробнее в разделе [Мобильные флаги](#mobile-flags). |
+| `isIOS` | `Boolean` | Указывает на сессию iOS. Подробнее в разделе [Мобильные флаги](#mobile-flags). |
+| `isAndroid` | `Boolean` | Указывает на сессию Android. Подробнее в разделе [Мобильные флаги](#mobile-flags). |
+| `isNativeContext` | `Boolean`  | Указывает, находится ли мобильное устройство в контексте `NATIVE_APP`. Подробнее в разделе [Мобильные флаги](#mobile-flags). |
+| `mobileContext` | `string`  | Предоставляет **текущий** контекст, в котором находится драйвер, например `NATIVE_APP`, `WEBVIEW_<packageName>` для Android или `WEBVIEW_<pid>` для iOS. Это сэкономит дополнительный вызов WebDriver к `driver.getContext()`. Подробнее в разделе [Мобильные флаги](#mobile-flags). |
 
 
-## Methods
+## Методы
 
-Based on the automation backend used for your session, WebdriverIO identifies which [Protocol Commands](/docs/api/protocols) will be attached to the [browser object](/docs/api/browser). For example if you run an automated session in Chrome, you will have access to Chromium specific commands like [`elementHover`](/docs/api/chromium#elementhover) but not any of the [Appium commands](/docs/api/appium).
+В зависимости от используемого для вашей сессии автоматизационного бэкенда, WebdriverIO определяет, какие [Команды протокола](/docs/api/protocols) будут прикреплены к [объекту браузера](/docs/api/browser). Например, если вы запускаете автоматизированную сессию в Chrome, у вас будет доступ к специфичным для Chromium командам, таким как [`elementHover`](/docs/api/chromium#elementhover), но не к какой-либо из [команд Appium](/docs/api/appium).
 
-Furthermore WebdriverIO provides a set of convenient methods that are recommended to use, to interact with the [browser](/docs/api/browser) or [elements](/docs/api/element) on the page.
+Кроме того, WebdriverIO предоставляет набор удобных методов, которые рекомендуется использовать для взаимодействия с [браузером](/docs/api/browser) или [элементами](/docs/api/element) на странице.
 
-In addition to that the following commands are available:
+Помимо этого доступны следующие команды:
 
-| Name                 | Parameters                                                                                                             | Details                                                                                                                                                                                                        |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addCommand`         | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`)<br />- `attachToElement` (Type: `boolean`) | Allows to define custom commands that can be called from the browser object for composition purposes. Read more in the [Custom Command](/docs/customcommands) guide.                                           |
-| `overwriteCommand`   | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`)<br />- `attachToElement` (Type: `boolean`) | Allows to overwrite any browser command with custom functionality. Use carefully as it can confuse framework users. Read more in the [Custom Command](/docs/customcommands#overwriting-native-commands) guide. |
-| `addLocatorStrategy` | - `strategyName` (Type: `String`)<br />- `fn` (Type: `Function`)                                                 | Allows to define a custom selector strategy, read more in the [Selectors](/docs/selectors#custom-selector-strategies) guide.                                                                                   |
+| Имя | Параметры | Подробности |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (Тип: `String`)<br />- `fn` (Тип: `Function`)<br />- `attachToElement` (Тип: `boolean`) | Позволяет определять пользовательские команды, которые можно вызывать из объекта браузера в целях композиции. Подробнее в руководстве [Пользовательские команды](/docs/customcommands). |
+| `overwriteCommand` | - `commandName` (Тип: `String`)<br />- `fn` (Тип: `Function`)<br />- `attachToElement` (Тип: `boolean`) | Позволяет перезаписать любую команду браузера пользовательской функциональностью. Используйте осторожно, так как это может запутать пользователей фреймворка. Подробнее в руководстве [Пользовательские команды](/docs/customcommands#overwriting-native-commands). |
+| `addLocatorStrategy` | - `strategyName` (Тип: `String`)<br />- `fn` (Тип: `Function`) | Позволяет определить пользовательскую стратегию селектора. Подробнее в руководстве [Селекторы](/docs/selectors#custom-selector-strategies). |
 
-## Remarks
+## Примечания
 
-### Mobile Flags
+### Мобильные флаги
 
-If you need to modify your test based on whether or not your session runs on a mobile device, you can access the mobile flags to check.
+Если вам нужно изменить ваш тест в зависимости от того, выполняется ли ваша сессия на мобильном устройстве, вы можете использовать мобильные флаги для проверки.
 
-For example, given this config:
+Например, учитывая эту конфигурацию:
 
 ```js
 // wdio.conf.js
@@ -71,17 +71,17 @@ export const config = {
 }
 ```
 
-You can access these flags in your test like so:
+Вы можете получить доступ к этим флагам в своем тесте следующим образом:
 
 ```js
-// Note: `driver` is the equivalent to the `browser` object but semantically more correct
-// you can choose which global variable you want to use
-console.log(driver.isMobile) // outputs: true
-console.log(driver.isIOS) // outputs: true
-console.log(driver.isAndroid) // outputs: false
+// Примечание: `driver` эквивалентен объекту `browser`, но семантически более корректен
+// вы можете выбрать, какую глобальную переменную хотите использовать
+console.log(driver.isMobile) // выводит: true
+console.log(driver.isIOS) // выводит: true
+console.log(driver.isAndroid) // выводит: false
 ```
 
-This can be useful if, for example, you want to define selectors in your [page objects](../pageobjects) based on the device type, like this:
+Это может быть полезно, например, если вы хотите определить селекторы в ваших [объектах страниц](../pageobjects) в зависимости от типа устройства, например:
 
 ```js
 // mypageobject.page.js
@@ -100,13 +100,13 @@ class LoginPage extends Page {
 }
 ```
 
-You can also use these flags to run only certain tests for certain device types:
+Вы также можете использовать эти флаги для запуска только определенных тестов для определенных типов устройств:
 
 ```js
 // mytest.e2e.js
 describe('my test', () => {
     // ...
-    // only run test with Android devices
+    // запускать тест только на устройствах Android
     if (driver.isAndroid) {
         it('tests something only for Android', () => {
             // ...
@@ -116,78 +116,52 @@ describe('my test', () => {
 })
 ```
 
-### Events
-The browser object is an EventEmitter and a couple of events are emitted for your use cases.
+### События
+Объект browser является EventEmitter, и для ваших случаев использования генерируется несколько событий.
 
-Here is a list of events. Keep in mind that this is not the full list of available events yet. Feel free to contribute to update the document by adding descriptions of more events here.
-
-#### `request.start`
-This event is fired before a WebDriver request is sent to the driver. It contains information about the request and its payload.
-
-```ts
-browser.on('request.start', (ev: RequestInit) => {
-    // ...
-})
-```
-
-#### `request.end`
-This event is fired once the request to the driver received a response. The event object either contains the response body as result or an error if the WebDriver command failed.
-
-```ts
-browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
-    // ...
-})
-```
-
-#### `request.retry`
-The retry event can notify you when WebdriverIO attempts to retry running the command, e.g. due to a network issue. It contains information about the error that caused the retry and the amount of retries already done.
-
-```ts
-browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
-    // ...
-})
-```
+Вот список событий. Имейте в виду, что это еще не полный список доступных событий.
+Не стесняйтесь вносить свой вклад, добавляя описания других событий здесь.
 
 #### `command`
 
-This event is emitted whenever WebdriverIO sends a WebDriver Classic command. It contains the following information:
+Это событие генерируется всякий раз, когда WebdriverIO отправляет классическую команду WebDriver. Оно содержит следующую информацию:
 
-- `command`: the command name, e.g. `navigateTo`
-- `method`: the HTTP method used to send the command request, e.g. `POST`
-- `endpoint`: the command endpoint, e.g. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
-- `body`: the command payload, e.g. `{ url: 'https://webdriver.io' }`
+- `command`: имя команды, например, `navigateTo`
+- `method`: HTTP-метод, использованный для отправки запроса команды, например, `POST`
+- `endpoint`: конечная точка команды, например, `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
+- `body`: полезная нагрузка команды, например, `{ url: 'https://webdriver.io' }`
 
 #### `result`
 
-This event is emitted whenever WebdriverIO receives a result of a WebDriver Classic command. It contains the same information as the `command` event with the addition of the following information:
+Это событие генерируется всякий раз, когда WebdriverIO получает результат классической команды WebDriver. Оно содержит ту же информацию, что и событие `command`, с добавлением следующей информации:
 
-- `result`: the command result
+- `result`: результат команды
 
 #### `bidiCommand`
 
-This event is emitted whenever WebdriverIO sends a WebDriver Bidi command to the browser driver. It contains information about:
+Это событие генерируется всякий раз, когда WebdriverIO отправляет команду WebDriver Bidi драйверу браузера. Оно содержит информацию о:
 
-- `method`: WebDriver Bidi command method
-- `params`: associated command parameter (see [API](/docs/api/webdriverBidi))
+- `method`: метод команды WebDriver Bidi
+- `params`: связанные параметры команды (см. [API](/docs/api/webdriverBidi))
 
 #### `bidiResult`
 
-In case of a successful command execution, the event payload will be:
+В случае успешного выполнения команды, полезная нагрузка события будет:
 
 - `type`: `success`
-- `id`: the command id
-- `result`: the command result (see [API](/docs/api/webdriverBidi))
+- `id`: идентификатор команды
+- `result`: результат команды (см. [API](/docs/api/webdriverBidi))
 
-In case of a command error, the event payload will be:
+В случае ошибки команды, полезная нагрузка события будет:
 
 - `type`: `error`
-- `id`: the command id
-- `error`: the error code, e.g. `invalid argument`
-- `message`: details about the error
-- `stacktrace`: a stack trace
+- `id`: идентификатор команды
+- `error`: код ошибки, например, `invalid argument`
+- `message`: детали об ошибке
+- `stacktrace`: трассировка стека
 
 #### `request.start`
-This event is fired before a WebDriver request is sent to the driver. It contains information about the request and its payload.
+Это событие срабатывает до того, как запрос WebDriver отправляется драйверу. Оно содержит информацию о запросе и его полезной нагрузке.
 
 ```ts
 browser.on('request.start', (ev: RequestInit) => {
@@ -196,7 +170,7 @@ browser.on('request.start', (ev: RequestInit) => {
 ```
 
 #### `request.end`
-This event is fired once the request to the driver received a response. The event object either contains the response body as result or an error if the WebDriver command failed.
+Это событие срабатывает, когда запрос к драйверу получает ответ. Объект события содержит либо тело ответа в качестве результата, либо ошибку, если команда WebDriver не удалась.
 
 ```ts
 browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
@@ -205,7 +179,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-The retry event can notify you when WebdriverIO attempts to retry running the command, e.g. due to a network issue. It contains information about the error that caused the retry and the amount of retries already done.
+Событие повторной попытки может уведомить вас, когда WebdriverIO пытается повторно выполнить команду, например, из-за проблемы с сетью. Оно содержит информацию об ошибке, которая вызвала повторную попытку, и количество уже выполненных повторных попыток.
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
@@ -214,15 +188,15 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 ```
 
 #### `request.performance`
-This is an event to measure WebDriver level operations. Whenever WebdriverIO sends a request to the WebDriver backend, this event will be emitted with some useful information:
+Это событие для измерения операций на уровне WebDriver. Всякий раз, когда WebdriverIO отправляет запрос в бэкенд WebDriver, это событие будет генерироваться с некоторой полезной информацией:
 
-- `durationMillisecond`: Time duration of the request in millisecond.
-- `error`: Error object if the request failed.
-- `request`: Request object. You can find url, method, headers, etc.
-- `retryCount`: If it's `0`, the request was the first attempt. It will increase when WebDriverIO retries under the hood.
-- `success`: Boolean to represent the request was succeeded or not. If it's `false`, `error` property will be provided as well.
+- `durationMillisecond`: Продолжительность запроса в миллисекундах.
+- `error`: Объект ошибки, если запрос не удался.
+- `request`: Объект запроса. Вы можете найти url, метод, заголовки и т.д.
+- `retryCount`: Если это `0`, запрос был первой попыткой. Увеличивается, когда WebDriverIO повторяет попытку внутри себя.
+- `success`: Логическое значение, представляющее успешность запроса. Если `false`, свойство `error` также будет предоставлено.
 
-An example event:
+Пример события:
 ```js
 Object {
   "durationMillisecond": 0.01770925521850586,
@@ -233,6 +207,6 @@ Object {
 },
 ```
 
-### Custom Commands
+### Пользовательские команды
 
-You can set custom commands on the browser scope to abstract away workflows that are commonly used. Check out our guide on [Custom Commands](/docs/customcommands#adding-custom-commands) for more information.
+Вы можете установить пользовательские команды в области действия браузера для абстрагирования часто используемых рабочих процессов. Ознакомьтесь с нашим руководством по [Пользовательским командам](/docs/customcommands#adding-custom-commands) для получения дополнительной информации.

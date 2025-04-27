@@ -1,22 +1,22 @@
 {
   "version.label": {
-    "message": "Далее",
+    "message": "Next",
     "description": "The label for version current"
   },
   "sidebar.docs.category.Getting Started": {
-    "message": "Начало Работы",
+    "message": "Getting Started",
     "description": "The label for category Getting Started in sidebar docs"
   },
   "sidebar.docs.category.Core Concepts": {
-    "message": "Основные Понятия",
+    "message": "Core Concepts",
     "description": "The label for category Core Concepts in sidebar docs"
   },
   "sidebar.docs.category.Configuration": {
-    "message": "Конфигурация",
+    "message": "Configuration",
     "description": "The label for category Configuration in sidebar docs"
   },
   "sidebar.docs.category.Guides": {
-    "message": "Инструкции",
+    "message": "Guides",
     "description": "The label for category Guides in sidebar docs"
   },
   "sidebar.docs.category.Testrunner": {
@@ -28,15 +28,15 @@
     "description": "The label for category Component Testing in sidebar docs"
   },
   "sidebar.docs.category.Framework Setup": {
-    "message": "Настройка Фреймворка",
+    "message": "Framework Setup",
     "description": "The label for category Framework Setup in sidebar docs"
   },
   "sidebar.docs.category.Migrate": {
-    "message": "Миграция",
+    "message": "Migrate",
     "description": "The label for category Migrate in sidebar docs"
   },
   "sidebar.docs.category.Integration": {
-    "message": "Интеграция",
+    "message": "Integration",
     "description": "The label for category Integration in sidebar docs"
   },
   "sidebar.docs.category.Reporter": {
@@ -44,11 +44,11 @@
     "description": "The label for category Reporter in sidebar docs"
   },
   "sidebar.docs.category.Services": {
-    "message": "Сервисы",
+    "message": "Services",
     "description": "The label for category Services in sidebar docs"
   },
   "sidebar.api.category.Protocols": {
-    "message": "Протоколы",
+    "message": "Protocols",
     "description": "The label for category Protocols in sidebar api"
   },
   "sidebar.api.category.browser": {

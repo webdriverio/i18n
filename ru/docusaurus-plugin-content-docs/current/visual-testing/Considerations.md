@@ -1,32 +1,32 @@
 ---
 index: 1
 id: considerations
-title: Considerations
+title: Особенности использования
 ---
 
-# Key Considerations for Optimal Use
+# Ключевые особенности для оптимального использования
 
-Before diving into the powerful features of the `@wdio/visual-service`, it's crucial to understand some key considerations that ensure you get the most out of this tool. The following points are designed to guide you through best practices and common pitfalls, helping you achieve accurate and efficient visual testing results. These considerations are not just recommendations, but essential aspects to keep in mind for effectively utilizing the service in real-world scenarios.
+Прежде чем погрузиться в мощные функции `@wdio/visual-service`, крайне важно понять некоторые ключевые аспекты, которые обеспечат максимальную эффективность этого инструмента. Следующие пункты помогут вам следовать лучшим практикам и избежать распространенных ошибок, что позволит достичь точных и эффективных результатов визуального тестирования. Эти рекомендации являются не просто советами, а важными аспектами, которые следует учитывать для эффективного использования сервиса в реальных сценариях.
 
-## Nature of Comparison
+## Природа сравнения
 
-- **Pixel-by-Pixel Basis:** The module performs a pixel-by-pixel comparison of images. While certain aspects can be adjusted (see Comparison Options), the core approach remains a basic pixel comparison.
-- **Impact of Browser Updates:** Be aware that updates to browsers, like Chrome, may affect font rendering, potentially necessitating an update to your baseline images.
+-   **Сравнение попиксельно:** Модуль выполняет сравнение изображений попиксельно. Хотя некоторые аспекты можно настроить (см. Параметры сравнения), основной подход остается базовым попиксельным сравнением.
+-   **Влияние обновлений браузера:** Имейте в виду, что обновления браузеров, например Chrome, могут влиять на рендеринг шрифтов, что потенциально требует обновления ваших эталонных изображений.
 
-## Consistency in Platforms
+## Согласованность платформ
 
-- **Comparing Identical Platforms:** Ensure screenshots are compared within the same platform. For instance, a screenshot from Chrome on a Mac should not be used to compare against one from Chrome on Ubuntu or Windows.
-- **Analogy:** To put it simply, compare _'Apples with Apples, not Apples with Androids'_.
+-   **Сравнение идентичных платформ:** Убедитесь, что скриншоты сравниваются в пределах одной и той же платформы. Например, скриншот из Chrome на Mac не следует использовать для сравнения со скриншотом из Chrome на Ubuntu или Windows.
+-   **Аналогия:** Проще говоря, сравнивайте _'Яблоки с Яблоками, а не Яблоки с Андроидами'_.
 
-## Caution with Mismatch Percentage
+## Осторожность с процентом несоответствия
 
-- **Risk of Accepting Mismatches:** Exercise caution when accepting a mismatch percentage. This is especially true for large screenshots, where accepting a mismatch might inadvertently overlook significant discrepancies, such as missing buttons or elements.
+-   **Риск принятия несоответствий:** Проявляйте осторожность при принятии процента несоответствия. Это особенно важно для больших скриншотов, где принятие несоответствия может непреднамеренно привести к упущению значительных расхождений, таких как отсутствие кнопок или элементов.
 
-## Mobile Screen Simulation
+## Симуляция мобильных экранов
 
-- **Avoid Browser Resizing for Mobile Simulation:** Do not attempt to simulate mobile screen sizes by resizing desktop browsers and treating them as mobile browsers. Desktop browsers, even when resized, do not accurately replicate the rendering of actual mobile browsers.
-- **Authenticity in Comparison:** This tool aims to compare visuals as they would appear to an end-user. A resized desktop browser does not reflect the true experience on a mobile device.
+-   **Избегайте изменения размера браузера для симуляции мобильных устройств:** Не пытайтесь имитировать размеры мобильных экранов, изменяя размер настольных браузеров и рассматривая их как мобильные браузеры. Настольные браузеры, даже с измененным размером, не воспроизводят точно рендеринг настоящих мобильных браузеров.
+-   **Подлинность при сравнении:** Этот инструмент направлен на сравнение визуальных элементов так, как они выглядели бы для конечного пользователя. Настольный браузер с измененным размером не отражает реальный опыт на мобильном устройстве.
 
-## Stance on Headless Browsers
+## Позиция по безголовым браузерам
 
-- **Not Recommended for Headless Browsers:** The use of this module with headless browsers is not advised. The rationale is that end-users do not interact with headless browsers, and therefore issues arising from such use will not be supported.
+-   **Не рекомендуется для безголовых браузеров:** Использование этого модуля с безголовыми браузерами не рекомендуется. Обоснование заключается в том, что конечные пользователи не взаимодействуют с безголовыми браузерами, и поэтому проблемы, возникающие при таком использовании, не будут поддерживаться.

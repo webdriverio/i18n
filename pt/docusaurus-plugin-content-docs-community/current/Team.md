@@ -5,14 +5,14 @@ title: Equipe
 
 O desenvolvimento do WebdriverIO é liderado por uma equipe dedicada de desenvolvedores e SDETs de várias empresas, além de contribuições de pessoas ao redor do mundo.
 
-## Comitê de Direção Técnica
+## Comitê Diretor Técnico
 
 <Card
     name="Adam Bjerstedt"
     avatar="https://avatars2.githubusercontent.com/u/4043890?s=460"
     github="abjerstedt"
 >
-    Engenheiro de software sênior - Android na <a href="https://www.target.com/">Target</a>.
+    Engenheiro de Software Sênior - Android na <a href="https://www.target.com/">Target</a>.
 </Card>
 
 <Card
@@ -21,7 +21,7 @@ O desenvolvimento do WebdriverIO é liderado por uma equipe dedicada de desenvol
     github="christian-bromann"
     twitter="bromann"
 >
-    Engenheiro de software da equipe no Open Source Program Office <a href="https://saucelabs.com/">@saucelabs</a>.
+    Engenheiro de Software Staff no Open Source Program Office <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 <Card
@@ -38,7 +38,7 @@ O desenvolvimento do WebdriverIO é liderado por uma equipe dedicada de desenvol
     github="klamping"
     twitter="klamping"
 >
-    Engenheiro Sênior de Front End.
+    Engenheiro Front End Sênior.
 </Card>
 
 <Card
@@ -63,7 +63,7 @@ O desenvolvimento do WebdriverIO é liderado por uma equipe dedicada de desenvol
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    Arquiteto de soluções sênior <a href="https://saucelabs.com/">@saucelabs</a>.
+    Arquiteto Sênior de Soluções <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 ## Colaboradores do Projeto
@@ -84,4 +84,4 @@ O desenvolvimento do WebdriverIO é liderado por uma equipe dedicada de desenvol
 >
 </Card>
 
-e [muitos muitos mais](https://github.com/orgs/webdriverio/people).
+e [muitos, muitos mais](https://github.com/orgs/webdriverio/people).

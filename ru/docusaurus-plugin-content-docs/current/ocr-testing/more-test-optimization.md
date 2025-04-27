@@ -1,12 +1,11 @@
 ---
 id: more-test-optimization
-title: Test execution time
+title: Время выполнения тестов
 ---
 
-By default, this module will check if you have a local installation of Tesseract on your machine/in your pipeline. If you don't have a local installation it will automatically use a [NodeJS](https://github.com/naptha/tesseract.js) version. This might cause some slowness because the image processing will be done by Node.js. NodeJS is not the best system to do
-heavy processing.
+По умолчанию этот модуль проверит, есть ли у вас локальная установка Tesseract на вашей машине/в вашем конвейере. Если у вас нет локальной установки, он автоматически будет использовать версию [NodeJS](https://github.com/naptha/tesseract.js). Это может вызвать некоторую медлительность, потому что обработка изображений будет осуществляться Node.js. NodeJS не является лучшей системой для выполнения тяжелой обработки.
 
-**BUT....**, there are ways to optimize the execution time. Let's take the following test script
+**НО...**, есть способы оптимизировать время выполнения. Рассмотрим следующий тестовый скрипт
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -28,7 +27,7 @@ describe("Search", () => {
 });
 ```
 
-When you execute this for the first time you might see the following results where it took 5.9 seconds to finish the test.
+Когда вы запустите это в первый раз, вы можете увидеть следующие результаты, где потребовалось 5,9 секунд для завершения теста.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -60,11 +59,11 @@ Execution of 1 workers started at 2024-05-26T04:52:53.405Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-## Cropping the search area of a screen
+## Обрезка области поиска на экране
 
-You can optimize the execution time by providing a cropped area to execute the OCR on.
+Вы можете оптимизировать время выполнения, указав обрезанную область для выполнения OCR.
 
-If you would then change the script to this:
+Если вы затем измените скрипт на следующий:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -89,7 +88,7 @@ describe("Search", () => {
 });
 ```
 
-Then you will see a different execution time.
+Тогда вы увидите другое время выполнения.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -121,13 +120,13 @@ Execution of 1 workers started at 2024-05-26T04:56:55.326Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-:::tip Cropping images
-This reduced the local execution time from **5.9** to **4.8 seconds**. This is a reduction of almost **19%**. Imagine what it can do for a larger script with more data on it.
+:::tip Обрезка изображений
+Это сократило локальное время выполнения с **5,9** до **4,8 секунд**. Это сокращение почти на **19%**. Представьте, что это может сделать для более крупного скрипта с большим количеством данных.
 :::
 
-## Using a local installation of Tesseract
+## Использование локальной установки Tesseract
 
-You can speed up your execution time to even less than a minute if you have a local installation of Tessarect on your local machine and or in your pipeline (more information about installing Tesseract on your local system can be found [here](https://tesseract-ocr.github.io/tessdoc/Installation.html)). You can find the execution time of the same script using a local installation of Tesseract below.
+Вы можете ускорить время выполнения до менее чем минуты, если у вас есть локальная установка Tesseract на вашей локальной машине и/или в вашем конвейере (более подробную информацию об установке Tesseract на вашу локальную систему можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Ниже вы можете найти время выполнения того же скрипта с использованием локальной установки Tesseract.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -156,6 +155,6 @@ Execution of 1 workers started at 2024-05-26T04:59:11.620Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
-:::tip Local installation
-This reduced the local execution time from **5.9** to **3.9 seconds**. This is a reduction of almost **34%**. Imagine what it can do for a larger script with more data on it.
+:::tip Локальная установка
+Это сократило локальное время выполнения с **5,9** до **3,9 секунд**. Это сокращение почти на **34%**. Представьте, что это может сделать для более крупного скрипта с большим количеством данных.
 :::

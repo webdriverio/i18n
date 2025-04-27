@@ -3,6 +3,6 @@ id: windows
 title: Windows
 ---
 
-Unfortunately there is at the moment no stable driver for automating Windows applications. Even though Appium maintains a [Windows Driver](https://github.com/appium/appium-windows-driver) that is based on Microsoft's [WinAppDriver server](https://github.com/microsoft/WinAppDriver), we would not recommend using it given that Microsoft has stopped maintaining the server and there are a lot of [known bugs](https://github.com/search?q=repo%3Amicrosoft%2FWinAppDriver+webdriverio&type=issues).
+К сожалению, на данный момент не существует стабильного драйвера для автоматизации приложений Windows. Несмотря на то, что Appium поддерживает [Windows Driver](https://github.com/appium/appium-windows-driver), который основан на [WinAppDriver server](https://github.com/microsoft/WinAppDriver) от Microsoft, мы не рекомендуем его использовать, поскольку Microsoft прекратила поддержку сервера, и существует множество [известных ошибок](https://github.com/search?q=repo%3Amicrosoft%2FWinAppDriver+webdriverio&type=issues).
 
-If anyone is aware of a way to automate Windows applications, please let us know on [Discord](https://discord.webdriver.io).
+Если кто-то знает способ автоматизации приложений Windows, пожалуйста, сообщите нам в [Discord](https://discord.webdriver.io).

@@ -3,10 +3,11 @@ id: jenkins
 title: Jenkins
 ---
 
-WebdriverIO offers a tight integration to CI systems like [Jenkins](https://jenkins-ci.org). With the `junit` reporter, you can easily debug your tests as well as keep track of your test results. The integration is pretty easy.
+WebdriverIO oferece uma integração perfeita com sistemas de CI como [Jenkins](https://jenkins-ci.org). Com o reporter `junit`, você pode facilmente depurar seus testes e também acompanhar seus resultados. A integração é bastante simples.
 
-1. Install the `junit` test reporter: `$ npm install @wdio/junit-reporter --save-dev`)
-1. Update your config to save your XUnit results where Jenkins can find them, (and specify the `junit` reporter):
+1. Instale o reporter de teste `junit`: `$ npm install @wdio/junit-reporter --save-dev`)
+1. Atualize sua configuração para salvar seus resultados XUnit onde o Jenkins possa encontrá-los,
+    (e especifique o reporter `junit`):
 
 ```js
 // wdio.conf.js
@@ -22,30 +23,31 @@ module.exports = {
 }
 ```
 
-It is up to you which framework to choose. The reports will be similar. For this tutorial, we’ll use Jasmine.
+Cabe a você escolher qual framework utilizar. Os relatórios serão semelhantes.
+Para este tutorial, usaremos o Jasmine.
 
-After you have written couple of tests, you can setup a new Jenkins job. Give it a name and a description:
+Depois de ter escrito alguns testes, você pode configurar um novo job no Jenkins. Dê a ele um nome e uma descrição:
 
-![Name And Description](/img/jenkins/jobname.png "Name And Description")
+![Nome e Descrição](/img/jenkins/jobname.png "Nome e Descrição")
 
-Then make sure it grabs always the newest version of your repository:
+Em seguida, certifique-se de que ele sempre pegue a versão mais recente do seu repositório:
 
-![Jenkins Git Setup](/img/jenkins/gitsetup.png "Jenkins Git Setup")
+![Configuração do Git no Jenkins](/img/jenkins/gitsetup.png "Configuração do Git no Jenkins")
 
-**Now the important part:** Create a `build` step to execute shell commands. The `build` step needs to build your project. Since this demo project only tests an external app, you don't need to build anything. Just install the node dependencies and run the command `npm test` (which is an alias for `node_modules/.bin/wdio test/wdio.conf.js`).
+**Agora a parte importante:** Crie uma etapa de `build` para executar comandos shell. A etapa de `build` precisa construir seu projeto. Como este projeto de demonstração apenas testa um aplicativo externo, você não precisa construir nada. Basta instalar as dependências do node e executar o comando `npm test` (que é um alias para `node_modules/.bin/wdio test/wdio.conf.js`).
 
-If you have installed a plugin like AnsiColor, but logs are still not colored, run tests with environment variable `FORCE_COLOR=1` (e.g., `FORCE_COLOR=1 npm test`).
+Se você instalou um plugin como AnsiColor, mas os logs ainda não estão coloridos, execute os testes com a variável de ambiente `FORCE_COLOR=1` (por exemplo, `FORCE_COLOR=1 npm test`).
 
-![Build Step](/img/jenkins/runjob.png "Build Step")
+![Etapa de Build](/img/jenkins/runjob.png "Etapa de Build")
 
-After your test, you’ll want Jenkins to track your XUnit report. To do so, you have to add a post-build action called _"Publish JUnit test result report"_.
+Após o seu teste, você vai querer que o Jenkins acompanhe seu relatório XUnit. Para isso, você precisa adicionar uma ação pós-build chamada _"Publish JUnit test result report"_.
 
-You could also install an external XUnit plugin to track your reports. The JUnit one comes with the basic Jenkins installation and is sufficient enough for now.
+Você também poderia instalar um plugin XUnit externo para acompanhar seus relatórios. O JUnit vem com a instalação básica do Jenkins e é suficiente por enquanto.
 
-According to the config file, the XUnit reports will be saved in the project’s root directory. These reports are XML files. So, all you need to do in order to track the reports is to point Jenkins to all XML files in your root directory:
+De acordo com o arquivo de configuração, os relatórios XUnit serão salvos no diretório raiz do projeto. Esses relatórios são arquivos XML. Então, tudo o que você precisa fazer para acompanhar os relatórios é apontar o Jenkins para todos os arquivos XML em seu diretório raiz:
 
-![Post-build Action](/img/jenkins/postjob.png "Post-build Action")
+![Ação Pós-build](/img/jenkins/postjob.png "Ação Pós-build")
 
-That's it! You’ve now set up Jenkins to run your WebdriverIO jobs. Your job will now provide detailed test results with history charts, stacktrace information on failed jobs, and a list of commands with payload that got used in each test.
+É isso! Você configurou o Jenkins para executar seus trabalhos WebdriverIO. Seu job agora fornecerá resultados detalhados dos testes com gráficos de histórico, informações de rastreamento de pilha em jobs com falha e uma lista de comandos com payload que foram usados em cada teste.
 
-![Jenkins Final Integration](/img/jenkins/final.png "Jenkins Final Integration")
+![Integração Final do Jenkins](/img/jenkins/final.png "Integração Final do Jenkins")

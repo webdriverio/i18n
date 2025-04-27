@@ -3,16 +3,16 @@ id: team
 title: Команда
 ---
 
-The WebdriverIO development is led by a dedicated team of developers and SDETs from various companies as well contributions from people around the world.
+Разработка WebdriverIO ведется преданной командой разработчиков и SDET из различных компаний, а также благодаря вкладу людей со всего мира.
 
-## Technical Steering Committee
+## Технический руководящий комитет
 
 <Card
     name="Adam Bjerstedt"
     avatar="https://avatars2.githubusercontent.com/u/4043890?s=460"
     github="abjerstedt"
 >
-    Senior Software Engineer - Android в <a href="https://www.target.com/">Target</a>.
+    Старший инженер-программист - Android в <a href="https://www.target.com/">Target</a>.
 </Card>
 
 <Card
@@ -21,7 +21,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     github="christian-bromann"
     twitter="bromann"
 >
-    Staff Software Engineer в Open Source Program Office <a href="https://saucelabs.com/">@saucelabs</a>.
+    Штатный инженер-программист в отделе программ с открытым исходным кодом <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 <Card
@@ -29,7 +29,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     avatar="https://avatars.githubusercontent.com/u/15839059?s=460"
     github="erwinheitzman"
 >
-    Senior Test Automation Engineer в <a href="https://detesters.nl/">deTesters</a>.
+    Старший инженер по автоматизации тестирования в <a href="https://detesters.nl/">deTesters</a>.
 </Card>
 
 <Card
@@ -38,7 +38,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     github="klamping"
     twitter="klamping"
 >
-    Senior Front End Engineer.
+    Старший фронтенд-инженер.
 </Card>
 
 <Card
@@ -46,7 +46,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     avatar="https://avatars0.githubusercontent.com/u/25589559?s=460"
     github="mgrybyk"
 >
-    Senior Software Development Engineer in Test.
+    Старший инженер по разработке программного обеспечения в тестировании.
 </Card>
 
 <Card
@@ -54,7 +54,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     avatar="https://avatars3.githubusercontent.com/u/1300981?s=460"
     github="WillBrock"
 >
-    Automation Engineering Manager в <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
+    Менеджер по автоматизации инженерии в <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
 </Card>
 
 <Card
@@ -63,10 +63,10 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    Senior Solutions Architect <a href="https://saucelabs.com/">@saucelabs</a>.
+    Старший архитектор решений <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
-## Соавторы Проекта
+## Сотрудники проекта
 
 <Card
     name="Baruch Velez"
@@ -84,4 +84,4 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
 >
 </Card>
 
-и [много много кто ещё](https://github.com/orgs/webdriverio/people).
+и [многие другие](https://github.com/orgs/webdriverio/people).

@@ -1,24 +1,24 @@
 ---
 id: percy-overview
-title: Unlocking Percy - An Overview
+title: Понимание Percy - Обзор 
 ---
 
 ## Introduction
 
-[Percy](https://percy.io/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) is an all-in-one visual testing and review platform. It captures screenshots, compares them against the baseline, and highlights visual changes. With increased visual coverage, teams can deploy code changes with confidence with every commit.
+[Percy](https://percy.io/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) - это комплексная платформа для визуального тестирования и анализа. Она делает снимки экрана, сравнивает их с базовыми изображениями и выделяет визуальные изменения. Благодаря расширенному визуальному покрытию, команды могут уверенно внедрять изменения кода с каждым коммитом.
 
-WebdriverIO supports cross-browser visual testing natively using Percy and App Percy. You can use Percy for visual testing of website and native mobile applications.
-The benefits of utilizing Percy for visual testing include the following:
+WebdriverIO поддерживает кросс-браузерное визуальное тестирование с помощью Percy и App Percy. Вы можете использовать Percy для визуального тестирования веб-сайтов и нативных мобильных приложений.
+Преимущества использования Percy для визуального тестирования включают следующее:
 
-- Consistency: Promotes consistent user experience by identifying visual discrepancies early in the development process.
-- Efficiency: Improves efficiency by reducing the time and effort required to manually spot visual regressions.
-- Integrations: Percy integrates with popular tools and services like GitHub, GitLab, Bitbucket, and more.
-- Collaboration: Improves collaboration between developers, designers, and QA teams by providing a visual representation of changes.
-- Prevent regression: Prevents you from experiencing unintended visual regressions.
+- Согласованность: Способствует согласованному пользовательскому опыту, выявляя визуальные расхождения на ранних этапах процесса разработки.
+- Эффективность: Повышает эффективность, сокращая время и усилия, необходимые для ручного обнаружения визуальных регрессий.
+- Интеграции: Percy интегрируется с популярными инструментами и сервисами, такими как GitHub, GitLab, Bitbucket и другими.
+- Сотрудничество: Улучшает сотрудничество между разработчиками, дизайнерами и командами QA, предоставляя визуальное представление изменений.
+- Предотвращение регрессий: Предотвращает возникновение непреднамеренных визуальных регрессий.
 
 ## How does Percy work?
 
-Percy compares new snapshots against relevant baselines to detect visual changes. Percy manages baseline selection across branches so your tests are always relevant. If visual changes are detected, Percy highlights and groups the resulting differences for you to review.
+Percy сравнивает новые снимки с соответствующими базовыми изображениями для обнаружения визуальных изменений. Percy управляет выбором базовых изображений по веткам, поэтому ваши тесты всегда актуальны. Если обнаружены визуальные изменения, Percy выделяет и группирует полученные различия для вашего рассмотрения.
 
 ## Next steps
 

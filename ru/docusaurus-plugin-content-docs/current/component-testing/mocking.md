@@ -1,30 +1,30 @@
 ---
 id: mocking
-title: Mocking
+title: Моделирование
 ---
 
-When writing tests it's only a matter of time before you need to create a "fake" version of an internal — or external — service. This is commonly referred to as mocking. WebdriverIO provides utility functions to help you out. You can `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` to access it. See more information about the available mocking utilities in the [API docs](/docs/api/modules#wdiobrowser-runner).
+При написании тестов рано или поздно возникает необходимость создать "фиктивную" версию внутреннего или внешнего сервиса. Это обычно называется моделированием (mocking). WebdriverIO предоставляет утилиты, которые помогут вам в этом. Вы можете использовать `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` для доступа к ним. Дополнительную информацию о доступных утилитах моделирования смотрите в [документации API](/docs/api/modules#wdiobrowser-runner).
 
-## Functions
+## Функции
 
-In order to validate whether certain function handler are called as part of your component tests, the `@wdio/browser-runner` module exports mocking primitives you can use to test, if these functions have been called. You can import these methods via:
+Чтобы проверить, вызываются ли определенные обработчики функций в рамках ваших компонентных тестов, модуль `@wdio/browser-runner` экспортирует примитивы моделирования, которые можно использовать для проверки вызова этих функций. Вы можете импортировать эти методы следующим образом:
 
 ```js
 import { fn, spyOn } from '@wdio/browser-runner'
 ```
 
-By importing `fn` you can create a spy function (mock) to track its execution and with `spyOn` track a method on an already created object.
+Импортируя `fn`, вы можете создать функцию-шпион (мок) для отслеживания её выполнения, а с помощью `spyOn` - отслеживать метод уже созданного объекта.
 
 <Tabs
   defaultValue="mocks"
   values={[
     {label: 'Mocks', value: 'mocks'},
- {label: 'Spies', value: 'spies'}
- ]
+    {label: 'Spies', value: 'spies'}
+  ]
 }>
 <TabItem value="mocks">
 
-The full example can be found in the [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx) repository.
+Полный пример можно найти в репозитории [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx).
 
 ```ts
 import React from 'react'
@@ -58,7 +58,7 @@ describe('LoginForm', () => {
 </TabItem>
 <TabItem value="spies">
 
-The full example can be found in the [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js) directory.
+Полный пример можно найти в директории [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js).
 
 ```js
 import { expect, $ } from '@wdio/globals'
@@ -95,19 +95,19 @@ describe('Lit Component testing', () => {
 </TabItem>
 </Tabs>
 
-WebdriverIO just re-exports [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) here which is a lightweight Jest compatible spy implementation that can be used with WebdriverIOs [`expect`](/docs/api/expect-webdriverio) matchers. You can find more documentation on these mock functions on the [Vitest project page](https://vitest.dev/api/mock.html).
+WebdriverIO просто реэкспортирует [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy), который является легковесной реализацией шпионов, совместимой с Jest, и может использоваться с матчерами [`expect`](/docs/api/expect-webdriverio) WebdriverIO. Дополнительную документацию по этим функциям-макетам можно найти на [странице проекта Vitest](https://vitest.dev/api/mock.html).
 
-Of course, you can also install and import any other spy framework, e.g. [SinonJS](https://sinonjs.org/), as long as it supports the browser environment.
+Конечно, вы также можете установить и импортировать любой другой фреймворк для шпионажа, например, [SinonJS](https://sinonjs.org/), если он поддерживает среду браузера.
 
-## Modules
+## Модули
 
-Mock local modules or observe third-party-libraries, that are invoked in some other code, allowing you to test arguments, output or even redeclare its implementation.
+Моделируйте локальные модули или наблюдайте за сторонними библиотеками, которые вызываются в другом коде, что позволяет тестировать аргументы, выходные данные или даже переопределять их реализацию.
 
-There are two ways to mock functions: Either by creating a mock function to use in test code, or writing a manual mock to override a module dependency.
+Существует два способа моделирования функций: создание функции-макета для использования в тестовом коде или написание ручного макета для переопределения зависимости модуля.
 
-### Mocking File Imports
+### Моделирование импорта файлов
 
-Let's imagine our component is importing a utility method from a file to handle a click.
+Представим, что наш компонент импортирует служебный метод из файла для обработки клика.
 
 ```js title=utils.js
 export function handleClick () {
@@ -115,7 +115,7 @@ export function handleClick () {
 }
 ```
 
-In our component the click handler is used as following:
+В нашем компоненте обработчик клика используется следующим образом:
 
 ```ts title=LitComponent.js
 import { handleClick } from './utils.js'
@@ -128,7 +128,7 @@ export class SimpleButton extends LitElement {
 }
 ```
 
-To mock the `handleClick` from `utils.js` we can use the `mock` method in our test as following:
+Чтобы замоделировать `handleClick` из `utils.js`, мы можем использовать метод `mock` в нашем тесте следующим образом:
 
 ```js title=LitComponent.test.js
 import { expect, $ } from '@wdio/globals'
@@ -154,9 +154,9 @@ describe('Simple Button Component Test', () => {
 })
 ```
 
-### Mocking Dependencies
+### Моделирование зависимостей
 
-Suppose we have a class that fetches users from our API. The class uses [`axios`](https://github.com/axios/axios) to call the API then returns the data attribute which contains all the users:
+Предположим, у нас есть класс, который получает пользователей из нашего API. Класс использует [`axios`](https://github.com/axios/axios) для вызова API, а затем возвращает атрибут data, содержащий всех пользователей:
 
 ```js title=users.js
 import axios from 'axios';
@@ -170,9 +170,9 @@ class Users {
 export default Users
 ```
 
-Now, in order to test this method without actually hitting the API (and thus creating slow and fragile tests), we can use the `mock(...)` function to automatically mock the axios module.
+Теперь, чтобы тестировать этот метод без фактического обращения к API (и, следовательно, создания медленных и хрупких тестов), мы можем использовать функцию `mock(...)` для автоматического моделирования модуля axios.
 
-Once we mock the module we can provide a [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) for `.get` that returns the data we want our test to assert against. In effect, we are saying that we want `axios.get('/users.json')` to return a fake response.
+После моделирования модуля мы можем предоставить [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) для `.get`, который возвращает данные, против которых мы хотим проверять наш тест. По сути, мы говорим, что хотим, чтобы `axios.get('/users.json')` возвращал фиктивный ответ.
 
 ```js title=users.test.js
 import axios from 'axios'; // imports defined mock
@@ -204,9 +204,9 @@ describe('User API', () => {
 })
 ```
 
-## Partials
+## Частичное моделирование
 
-Subsets of a module can be mocked and the rest of the module can keep their actual implementation:
+Подмножества модуля могут быть смоделированы, а остальная часть модуля может сохранить свою фактическую реализацию:
 
 ```js title=foo-bar-baz.js
 export const foo = 'foo';
@@ -214,7 +214,7 @@ export const bar = () => 'bar';
 export default () => 'baz';
 ```
 
-The original module will be passed into the mock factory which you can use to e.g. partially mock a dependency:
+Исходный модуль будет передан в фабрику моков, которую вы можете использовать, например, для частичного моделирования зависимости:
 
 ```js
 import { mock, fn } from '@wdio/browser-runner'
@@ -243,11 +243,11 @@ describe('partial mock', () => {
 })
 ```
 
-## Manual Mocks
+## Ручные моки
 
-Manual mocks are defined by writing a module in a `__mocks__/` (see also `automockDir` option) subdirectory. If the module you are mocking is a Node module (e.g.: `lodash`), the mock should be placed in the `__mocks__` directory and will be automatically mocked. There's no need to explicitly call `mock('module_name')`.
+Ручные моки определяются путем написания модуля в подкаталоге `__mocks__/` (см. также опцию `automockDir`). Если моделируемый модуль является модулем Node (например: `lodash`), мок должен быть помещен в каталог `__mocks__` и будет автоматически смоделирован. Нет необходимости явно вызывать `mock('module_name')`.
 
-Scoped modules (also known as scoped packages) can be mocked by creating a file in a directory structure that matches the name of the scoped module. For example, to mock a scoped module called `@scope/project-name`, create a file at `__mocks__/@scope/project-name.js`, creating the `@scope/` directory accordingly.
+Модули с областью видимости (также известные как scoped packages) могут быть смоделированы путем создания файла в структуре каталогов, соответствующей имени модуля с областью видимости. Например, чтобы смоделировать модуль с областью видимости под названием `@scope/project-name`, создайте файл в `__mocks__/@scope/project-name.js`, создав соответствующий каталог `@scope/`.
 
 ```
 .
@@ -261,7 +261,7 @@ Scoped modules (also known as scoped packages) can be mocked by creating a file 
 └── views
 ```
 
-When a manual mock exists for a given module, WebdriverIO will use that module when explicitly calling `mock('moduleName')`. However, when automock is set to true, the manual mock implementation will be used instead of the automatically created mock, even if `mock('moduleName')` is not called. To opt out of this behavior you will need to explicitly call `unmock('moduleName')` in tests that should use the actual module implementation, e.g.:
+Когда для данного модуля существует ручной мок, WebdriverIO будет использовать этот модуль при явном вызове `mock('moduleName')`. Однако, когда automock установлен в true, реализация ручного мока будет использоваться вместо автоматически созданного мока, даже если `mock('moduleName')` не вызывается. Чтобы отказаться от этого поведения, вам нужно явно вызвать `unmock('moduleName')` в тестах, которые должны использовать фактическую реализацию модуля, например:
 
 ```js
 import { unmock } from '@wdio/browser-runner'
@@ -269,16 +269,16 @@ import { unmock } from '@wdio/browser-runner'
 unmock('lodash')
 ```
 
-## Hoisting
+## Подъем (Hoisting)
 
-In order to get mocking to work in the browser, WebdriverIO rewrites the test files and hoists the mock calls above everything else (see also [this blog post](https://www.coolcomputerclub.com/posts/jest-hoist-await/) on the hoisting problem in Jest). This limits the way you can pass in variables into the mock resolver, e.g.:
+Чтобы моделирование работало в браузере, WebdriverIO переписывает тестовые файлы и поднимает вызовы mock выше всего остального (см. также [этот блог-пост](https://www.coolcomputerclub.com/posts/jest-hoist-await/) о проблеме подъема в Jest). Это ограничивает способ передачи переменных в решатель моков, например:
 
 ```js title=component.test.js
 import dep from 'dependency'
 const variable = 'foobar'
 
 /**
- * ❌ this fails as `dep` and `variable` are not defined inside the mock resolver
+ * ❌ это не работает, так как `dep` и `variable` не определены внутри решателя моков
  */
 mock('./some/module.ts', () => ({
     exportA: dep,
@@ -286,11 +286,11 @@ mock('./some/module.ts', () => ({
 }))
 ```
 
-To fix this you have to define all used variables inside the resolver, e.g.:
+Чтобы исправить это, вы должны определить все используемые переменные внутри решателя, например:
 
 ```js title=component.test.js
 /**
- * ✔️ this works as all variables are defined within the resolver
+ * ✔️ это работает, так как все переменные определены внутри решателя
  */
 mock('./some/module.ts', async () => {
     const dep = await import('dependency')
@@ -303,6 +303,6 @@ mock('./some/module.ts', async () => {
 })
 ```
 
-## Requests
+## Запросы
 
-If you are looking for mocking browser requests, e.g. API calls, head over to the [Request Mock and Spies](/docs/mocksandspies) section.
+Если вы ищете моделирование запросов браузера, например, вызовов API, перейдите в раздел [Моки и шпионы запросов](/docs/mocksandspies).

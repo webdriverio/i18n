@@ -1,76 +1,76 @@
 ---
 id: customservices
-title: Custom Services
+title: Пользовательские сервисы
 ---
 
-You can write your own custom service for the WDIO test runner to custom-fit your needs.
+Вы можете написать свой собственный пользовательский сервис для тест-раннера WDIO, чтобы настроить его под свои потребности.
 
-Services are add-ons that are created for reusable logic to simplify tests, manage your test suite and integrate results. Services have access to all the same [hooks](/docs/configurationfile) available in the `wdio.conf.js`.
+Сервисы — это дополнения, созданные для многократно используемой логики, упрощающей тесты, управления вашим набором тестов и интеграции результатов. Сервисы имеют доступ ко всем тем же [хукам](/docs/configurationfile), доступным в `wdio.conf.js`.
 
-There are two types of services that can be defined: a launcher service that only has access to the `onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete` hook which are only executed once per test run, and a worker service that has access to all other hooks and is being executed for each worker. Note that you can not share (global) variables between both types of services as worker services run in a different (worker) process.
+Существует два типа сервисов, которые можно определить: сервис запуска, который имеет доступ только к хукам `onPrepare`, `onWorkerStart`, `onWorkerEnd` и `onComplete`, выполняемым только один раз за тестовый запуск, и рабочий сервис, который имеет доступ ко всем остальным хукам и выполняется для каждого рабочего процесса. Обратите внимание, что вы не можете совместно использовать (глобальные) переменные между обоими типами сервисов, так как рабочие сервисы выполняются в другом (рабочем) процессе.
 
-A launcher service can be defined as follows:
+Сервис запуска можно определить следующим образом:
 
 ```js
 export default class CustomLauncherService {
-    // If a hook returns a promise, WebdriverIO will wait until that promise is resolved to continue.
+    // Если хук возвращает обещание, WebdriverIO будет ждать, пока это обещание не будет разрешено, чтобы продолжить.
     async onPrepare(config, capabilities) {
-        // TODO: something before all workers launch
+        // TODO: что-то перед запуском всех рабочих процессов
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: something after the workers shutdown
+        // TODO: что-то после завершения работы рабочих процессов
     }
 
-    // custom service methods ...
+    // пользовательские методы сервиса ...
 }
 ```
 
-Whereas a worker service should look like this:
+В то время как рабочий сервис должен выглядеть так:
 
 ```js
 export default class CustomWorkerService {
     /**
-     * `serviceOptions` contains all options specific to the service
-     * e.g. if defined as follows:
+     * `serviceOptions` содержит все опции, специфичные для сервиса
+     * например, если определено следующим образом:
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * the `serviceOptions` parameter will be: `{ foo: 'bar' }`
+     * параметр `serviceOptions` будет: `{ foo: 'bar' }`
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * this browser object is passed in here for the first time
+     * этот объект браузера передается сюда в первый раз
      */
     async before(config, capabilities, browser) {
         this.browser = browser
 
-        // TODO: something before all tests are run, e.g.:
+        // TODO: что-то перед запуском всех тестов, например:
         await this.browser.setWindowSize(1024, 768)
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: something after all tests are run
+        // TODO: что-то после выполнения всех тестов
     }
 
     beforeTest(test, context) {
-        // TODO: something before each Mocha/Jasmine test run
+        // TODO: что-то перед каждым запуском теста Mocha/Jasmine
     }
 
     beforeScenario(test, context) {
-        // TODO: something before each Cucumber scenario run
+        // TODO: что-то перед каждым запуском сценария Cucumber
     }
 
-    // other hooks or custom service methods ...
+    // другие хуки или пользовательские методы сервиса ...
 }
 ```
 
-It is recommended to store the browser object through the passed in parameter in the constructor. Lastly expose both types of workers as following:
+Рекомендуется сохранять объект браузера через переданный параметр в конструкторе. Наконец, экспортируйте оба типа сервисов следующим образом:
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-If you are using TypeScript and want to make sure that hook methods parameter are type safe, you can define your service class as follows:
+Если вы используете TypeScript и хотите убедиться, что параметры методов хуков типобезопасны, вы можете определить свой класс сервиса следующим образом:
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -89,7 +89,7 @@ export default class CustomWorkerService implements Services.ServiceInstance {
     constructor (
         private _options: MyServiceOptions,
         private _capabilities: Capabilities.RemoteCapability,
-        private _config: Options.Testrunner
+        private _config: WebdriverIO.Config,
     ) {
         // ...
     }
@@ -98,29 +98,29 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## Service Error Handling
+## Обработка ошибок сервиса
 
-An Error thrown during a service hook will be logged while the runner continues. If a hook in your service is critical to the setup or teardown of the test runner, the `SevereServiceError` exposed from the `webdriverio` package can be used to stop the runner.
+Ошибка, возникшая во время хука сервиса, будет записана в журнал, в то время как раннер продолжит работу. Если хук в вашем сервисе критически важен для настройки или завершения работы тест-раннера, можно использовать `SevereServiceError`, экспортируемый из пакета `webdriverio`, чтобы остановить раннер.
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: something critical for setup before all workers launch
+        // TODO: что-то критически важное для настройки перед запуском всех рабочих процессов
 
-        throw new SevereServiceError('Something went wrong.')
+        throw new SevereServiceError('Что-то пошло не так.')
     }
 
-    // custom service methods ...
+    // пользовательские методы сервиса ...
 }
 ```
 
-## Import Service from Module
+## Импорт сервиса из модуля
 
-The only thing to do now in order to use this service is to assign it to the `services` property.
+Единственное, что нужно сделать теперь, чтобы использовать этот сервис, — назначить его свойству `services`.
 
-Modify your `wdio.conf.js` file to look like this:
+Измените файл `wdio.conf.js` так:
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -129,13 +129,13 @@ export const config = {
     // ...
     services: [
         /**
-         * use imported service class
+         * использовать импортированный класс сервиса
          */
         [CustomService, {
             someOption: true
         }],
         /**
-         * use absolute path to service
+         * использовать абсолютный путь к сервису
          */
         ['/path/to/service.js', {
             someOption: true
@@ -145,19 +145,19 @@ export const config = {
 }
 ```
 
-## Publish Service on NPM
+## Публикация сервиса в NPM
 
-To make services easier to consume and discover by the WebdriverIO community, please follow these recommendations:
+Чтобы сделать сервисы более удобными для использования и обнаружения сообществом WebdriverIO, следуйте этим рекомендациям:
 
-* Services should use this naming convention: `wdio-*-service`
-* Use NPM keywords: `wdio-plugin`, `wdio-service`
-* The `main` entry should `export` an instance of the service
-* Example services: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* Сервисы должны использовать следующее соглашение об именовании: `wdio-*-service`
+* Используйте ключевые слова NPM: `wdio-plugin`, `wdio-service`
+* Основная запись должна `export` экземпляр сервиса
+* Примеры сервисов: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-Following the recommended naming pattern allows services to be added by name:
+Следование рекомендуемому шаблону именования позволяет добавлять сервисы по имени:
 
 ```js
-// Add wdio-custom-service
+// Добавить wdio-custom-service
 export const config = {
     // ...
     services: ['custom'],
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### Add Published Service to WDIO CLI and Docs
+### Добавление опубликованного сервиса в WDIO CLI и документацию
 
-We really appreciate every new plugin that could help other people run better tests! If you have created such a plugin, please consider adding it to our CLI and docs to make it easier to be found.
+Мы очень ценим каждый новый плагин, который может помочь другим людям запускать лучшие тесты! Если вы создали такой плагин, пожалуйста, рассмотрите возможность добавления его в наш CLI и документацию, чтобы его было легче найти.
 
-Please raise a pull request with the following changes:
+Пожалуйста, создайте pull request со следующими изменениями:
 
-- add your service to the list of [supported services](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) in the CLI module
-- enhance the [service list](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) for adding your docs to the official Webdriver.io page
+- добавьте ваш сервис в список [поддерживаемых сервисов](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) в модуле CLI
+- дополните [список сервисов](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) для добавления вашей документации на официальную страницу Webdriver.io

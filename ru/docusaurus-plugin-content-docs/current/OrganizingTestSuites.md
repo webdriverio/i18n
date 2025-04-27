@@ -1,19 +1,19 @@
 ---
 id: organizingsuites
-title: Organizing Test Suite
+title: Организация тестовых наборов
 ---
 
-As projects grow, inevitably more and more integration tests are added. This increases build time and slows productivity.
+С ростом проектов количество интеграционных тестов неизбежно увеличивается. Это увеличивает время сборки и замедляет продуктивность.
 
-To prevent this, you should run your tests in parallel. WebdriverIO already tests each spec (or _feature file_ in Cucumber) in parallel within a single session. In general, try to test only a single feature per spec file. Try to not have too many or too few tests in one file. (However, there is no golden rule here.)
+Чтобы предотвратить это, вы должны запускать тесты параллельно. WebdriverIO уже тестирует каждую спецификацию (или _feature file_ в Cucumber) параллельно в рамках одной сессии. В общем, старайтесь тестировать только одну функцию в каждом файле спецификации. Не делайте слишком много или слишком мало тестов в одном файле. (Однако здесь нет золотого правила.)
 
-Once your tests have several spec files, you should start running your tests concurrently. To do so, adjust the `maxInstances` property in your config file. WebdriverIO allows you to run your tests with maximum concurrency—meaning that no matter how many files and tests you have, they can all run in parallel.  (This is still subject to certain limits, like your computer’s CPU, concurrency restrictions, etc.)
+Как только у вас появится несколько файлов спецификаций, вы должны начать запускать тесты параллельно. Для этого настройте свойство `maxInstances` в вашем конфигурационном файле. WebdriverIO позволяет запускать тесты с максимальным параллелизмом — это означает, что независимо от количества файлов и тестов, все они могут выполняться параллельно. (Это все еще подчиняется определенным ограничениям, таким как CPU вашего компьютера, ограничения параллелизма и т.д.)
 
-> Let's say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have set `maxInstances` to `1`. The WDIO test runner will spawn 3 processes. Therefore, if you have 10 spec files and you set `maxInstances` to `10`, _all_ spec files will be tested simultaneously, and 30 processes will be spawned.
+> Допустим, у вас есть 3 разных capabilities (Chrome, Firefox и Safari), и вы установили `maxInstances` в `1`. Тестовый запускатель WDIO создаст 3 процесса. Поэтому, если у вас 10 файлов спецификаций и вы установите `maxInstances` в `10`, _все_ файлы спецификаций будут тестироваться одновременно, и будет создано 30 процессов.
 
-You can define the `maxInstances` property globally to set the attribute for all browsers.
+Вы можете определить свойство `maxInstances` глобально, чтобы установить атрибут для всех браузеров.
 
-If you run your own WebDriver grid, you may (for example) have more capacity for one browser than another. In that case, you can _limit_ the `maxInstances` in your capability object:
+Если вы используете собственную сетку WebDriver, у вас может быть (например) больше мощностей для одного браузера, чем для другого. В этом случае вы можете _ограничить_ `maxInstances` в вашем объекте capability:
 
 ```js
 // wdio.conf.js
@@ -34,13 +34,13 @@ export const config = {
 }
 ```
 
-## Inherit From Main Config File
+## Наследование от основного конфигурационного файла
 
-If you run your test suite in multiple environments (e.g., dev and integration) it may help to use multiple configuration files to keep things manageable.
+Если вы запускаете свой набор тестов в нескольких средах (например, dev и integration), может быть полезно использовать несколько конфигурационных файлов для удобства управления.
 
-Similar to the [page object concept](pageobjects), the first thing you’ll need is a main config file. It contains all configurations you share across environments.
+Аналогично [концепции объектов страниц](pageobjects), сначала вам понадобится основной конфигурационный файл. Он содержит все конфигурации, которые вы используете во всех средах.
 
-Then create another config file for each environment, and supplement the the main config with the environment-specific ones:
+Затем создайте другой конфигурационный файл для каждой среды и дополните основную конфигурацию специфичными для среды:
 
 ```js
 // wdio.dev.config.js
@@ -64,11 +64,11 @@ export const config = deepmerge(wdioConf.config, {
 config.reporters.push('allure')
 ```
 
-## Grouping Test Specs In Suites
+## Группировка спецификаций тестов в наборы
 
-You can group test specs in suites and run single specific suites instead of all of them.
+Вы можете группировать спецификации тестов в наборы и запускать отдельные конкретные наборы вместо всех сразу.
 
-First, define your suites in your WDIO config:
+Сначала определите ваши наборы в вашей конфигурации WDIO:
 
 ```js
 // wdio.conf.js
@@ -90,23 +90,23 @@ export const config = {
 }
 ```
 
-Now, if you want to only run a single suite, you can pass the suite name as a CLI argument:
+Теперь, если вы хотите запустить только один набор, вы можете передать имя набора в качестве аргумента CLI:
 
 ```sh
 wdio wdio.conf.js --suite login
 ```
 
-Or, run multiple suites at once:
+Или запустить несколько наборов одновременно:
 
 ```sh
 wdio wdio.conf.js --suite login --suite otherFeature
 ```
 
-## Grouping Test Specs To Run Sequentially
+## Группировка спецификаций тестов для последовательного выполнения
 
-As described above, there are benefits in running the tests concurrently. However, there are cases where it would be beneficial to group tests together to run sequentially in a single instance. Examples of this are mainly where there is a large setup cost e.g. transpiling code or provisioning cloud instances, but there are also advanced usage models that benefit from this capability.
+Как описано выше, существуют преимущества в параллельном запуске тестов. Однако существуют случаи, когда было бы полезно сгруппировать тесты для последовательного выполнения в одном экземпляре. Примеры этого — в основном случаи, когда существуют высокие затраты на настройку, например, транспиляция кода или подготовка облачных экземпляров, но есть также продвинутые модели использования, которые выигрывают от этой возможности.
 
-To group tests to run in a single instance, define them as an array within the specs definition.
+Чтобы сгруппировать тесты для запуска в одном экземпляре, определите их как массив в определении specs.
 
 ```json
     "specs": [
@@ -118,9 +118,9 @@ To group tests to run in a single instance, define them as an array within the s
         "./test/specs/test_b*.js",
     ],
 ```
-In the example above, the tests 'test_login.js', 'test_product_order.js' and 'test_checkout.js' will be run sequentially in a single instance and each of the "test_b*" tests will run concurrently in individual instances.
+В примере выше тесты 'test_login.js', 'test_product_order.js' и 'test_checkout.js' будут запущены последовательно в одном экземпляре, а каждый из тестов "test_b*" будет выполняться параллельно в отдельных экземплярах.
 
-It is also possible to group specs defined in suites, so you can now also define suites like this:
+Также возможно группировать спецификации, определенные в наборах, поэтому теперь вы также можете определять наборы следующим образом:
 ```json
     "suites": {
         end2end: [
@@ -133,9 +133,9 @@ It is also possible to group specs defined in suites, so you can now also define
         allb: ["./test/specs/test_b*.js"]
 },
 ```
-and in this case all of the tests of the "end2end" suite would be run in a single instance.
+и в этом случае все тесты набора "end2end" будут выполнены в одном экземпляре.
 
-When running tests sequentially using a pattern, it will run the spec files in an alphabetical order
+При последовательном запуске тестов с использованием шаблона они будут выполняться в алфавитном порядке
 
 ```json
   "suites": {
@@ -143,7 +143,7 @@ When running tests sequentially using a pattern, it will run the spec files in a
   },
 ```
 
-This will run the files matching the pattern above in the following order:
+Это запустит файлы, соответствующие вышеуказанному шаблону, в следующем порядке:
 
 ```
   [
@@ -153,136 +153,137 @@ This will run the files matching the pattern above in the following order:
   ]
 ```
 
-## Run Selected Tests
+## Запуск выбранных тестов
 
-In some cases, you may wish to only execute a single test (or subset of tests) of your suites.
+В некоторых случаях вы можете захотеть выполнить только один тест (или подмножество тестов) из ваших наборов.
 
-With the `--spec` parameter, you can specify which _suite_ (Mocha, Jasmine) or _feature_ (Cucumber) should be run. The path is resolved relative from your current working directory.
+С помощью параметра `--spec` вы можете указать, какой _набор_ (Mocha, Jasmine) или _функционал_ (Cucumber) следует запустить. Путь разрешается относительно вашего текущего рабочего каталога.
 
-For example, to run only your login test:
+Например, чтобы запустить только ваш тест входа:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js
 ```
 
-Or run multiple specs at once:
+Или запустить несколько спецификаций одновременно:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/signup.js --spec ./test/specs/forgot-password.js
 ```
 
-If the `--spec` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+Если значение `--spec` не указывает на конкретный файл спецификации, оно используется для фильтрации имен файлов спецификаций, определенных в вашей конфигурации.
 
-To run all specs with the word “dialog” in the spec file names, you could use:
+Чтобы запустить все спецификации со словом "dialog" в именах файлов спецификаций, вы можете использовать:
 
 ```sh
 wdio wdio.conf.js --spec dialog
 ```
 
-Note that each test file is running in a single test runner process. Since we don't scan files in advance (see the next section for information on piping filenames to `wdio`), you _can't_ use (for example) `describe.only` at the top of your spec file to instruct Mocha to run only that suite.
+Обратите внимание, что каждый тестовый файл работает в отдельном процессе тестового запускателя. Поскольку мы не сканируем файлы заранее (см. следующий раздел для получения информации о передаче имен файлов в `wdio`), вы _не можете_ использовать (например) `describe.only` в верхней части вашего файла спецификации, чтобы проинструктировать Mocha запустить только этот набор.
 
-This feature will help you to accomplish the same goal.
+Эта функция поможет вам достичь той же цели.
 
-When the `--spec` option is provided, it will override any patterns defined by the config or capability level's `specs` parameter.
+Когда предоставляется опция `--spec`, она переопределит любые шаблоны, определенные параметром `specs` на уровне конфигурации или capability.
 
-## Exclude Selected Tests
+## Исключение выбранных тестов
 
-When needed, if you need to exclude particular spec file(s) from a run, you can use the `--exclude` parameter (Mocha, Jasmine) or feature (Cucumber).
+При необходимости, если вам нужно исключить определенные файлы спецификаций из запуска, вы можете использовать параметр `--exclude` (Mocha, Jasmine) или функционал (Cucumber).
 
-For example, to exclude your login test from the test run:
+Например, чтобы исключить ваш тест входа из тестового запуска:
 
 ```sh
 wdio wdio.conf.js --exclude ./test/specs/e2e/login.js
 ```
 
-Or, exclude multiple spec files:
+Или исключить несколько файлов спецификаций:
 
  ```sh
 wdio wdio.conf.js --exclude ./test/specs/signup.js --exclude ./test/specs/forgot-password.js
 ```
 
-Or, exclude a spec file when filtering using a suite:
+Или исключить файл спецификации при фильтрации с использованием набора:
 
 ```sh
 wdio wdio.conf.js --suite login --exclude ./test/specs/e2e/login.js
 ```
 
-If the `--exclude` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+Если значение `--exclude` не указывает на конкретный файл спецификации, оно используется для фильтрации имен файлов спецификаций, определенных в вашей конфигурации.
 
-To exclude all specs with the word “dialog” in the spec file names, you could use:
+Чтобы исключить все спецификации со словом "dialog" в именах файлов спецификаций, вы можете использовать:
 
 ```sh
 wdio wdio.conf.js --exclude dialog
 ```
 
-When the `--exclude` option is provided, it will override any patterns defined by the config or capability level's `exclude` parameter.
+Когда предоставляется опция `--exclude`, она переопределит любые шаблоны, определенные параметром `exclude` на уровне конфигурации или capability.
 
-## Run Suites and Test Specs
+## Запуск наборов и спецификаций тестов
 
-Run an entire suite along with individual specs.
+Запустите весь набор вместе с отдельными спецификациями.
 
 ```sh
 wdio wdio.conf.js --suite login --spec ./test/specs/signup.js
 ```
 
-## Run Multiple, Specific Test Specs
+## Запуск нескольких конкретных спецификаций тестов
 
-It is sometimes necessary&mdash;in the context of continuous integration and otherwise&mdash;to specify multiple sets of specs to run. WebdriverIO's `wdio` command line utility accepts piped-in filenames (from `find`, `grep`, or others).
+Иногда необходимо&mdash;в контексте непрерывной интеграции и в других случаях&mdash;указать несколько наборов спецификаций для запуска. Утилита командной строки `wdio` от WebdriverIO принимает переданные через пайп имена файлов (от `find`, `grep` или других).
 
-Piped-in filenames override the list of globs or filenames specified in the configuration's `spec` list.
+Имена файлов, переданные через пайп, переопределяют список глобов или имен файлов, указанных в списке `spec` конфигурации.
 
 ```sh
 grep -r -l --include "*.js" "myText" | wdio wdio.conf.js
 ```
 
-_**Note:** This will_ not _override the `--spec` flag for running a single spec._
+_**Примечание:** Это_ не _переопределит флаг `--spec` для запуска одной спецификации._
 
-## Running Specific Tests with MochaOpts
+## Запуск конкретных тестов с MochaOpts
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to run by passing a mocha specific argument: `--mochaOpts.grep` to the wdio CLI.
+Вы также можете фильтровать конкретные `suite|describe` и/или `it|test`, которые вы хотите запустить, передав специфический для mocha аргумент: `--mochaOpts.grep` в CLI wdio.
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep myText
 wdio wdio.conf.js --mochaOpts.grep "Text with spaces"
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**Примечание:** Mocha будет фильтровать тесты после того, как тестовый запускатель WDIO создаст экземпляры, поэтому вы можете увидеть несколько создаваемых экземпляров, которые фактически не выполняются._
 
-## Exclude Specific Tests with MochaOpts
+## Исключение конкретных тестов с MochaOpts
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to exclude by passing a mocha specific argument: `--mochaOpts.invert` to the wdio CLI. `--mochaOpts.invert` performs opposite of `--mochaOpts.grep`
+Вы также можете фильтровать конкретные `suite|describe` и/или `it|test`, которые вы хотите исключить, передав специфический для mocha аргумент: `--mochaOpts.invert` в CLI wdio. `--mochaOpts.invert` выполняет противоположное тому, что делает `--mochaOpts.grep`
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**Примечание:** Mocha будет фильтровать тесты после того, как тестовый запускатель WDIO создаст экземпляры, поэтому вы можете увидеть несколько создаваемых экземпляров, которые фактически не выполняются._
 
-## Stop testing after failure
+## Остановка тестирования после сбоя
 
-With the `bail` option, you can tell WebdriverIO to stop testing after any test fails.
+С помощью опции `bail` вы можете сказать WebdriverIO остановить тестирование после любого неудавшегося теста.
 
-This is helpful with large test suites when you already know that your build will break, but you want to avoid the lengthy wait of a full testing run.
+Это полезно при больших наборах тестов, когда вы уже знаете, что ваша сборка не пройдет, но хотите избежать длительного ожидания полного тестового запуска.
 
-The `bail` option expects a number, which specifies how many test failures can occur before WebDriver stop the entire testing run. The default is `0`, meaning that it always runs all tests specs it can find.
+Опция `bail` ожидает число, которое указывает, сколько сбоев тестов может произойти, прежде чем WebDriver остановит весь тестовый запуск. По умолчанию значение `0`, что означает, что он всегда запускает все спецификации тестов, которые может найти.
 
-Please see [Options Page](configuration) for additional information on the bail configuration.
-## Run options hierarchy
+Пожалуйста, смотрите [Страницу опций](configuration) для получения дополнительной информации о конфигурации bail.
+## Иерархия опций запуска
 
-When declaring what specs to run, there is a certain hierarchy defining what pattern will take precedence. Currently, this is how it works, from highest priority to lowest:
+При объявлении, какие спецификации запускать, существует определенная иерархия, определяющая, какой шаблон будет иметь приоритет. В настоящее время это работает так, от наивысшего приоритета к низшему:
 
-> CLI `--spec` argument > capability `specs` pattern > config `specs` pattern CLI `--exclude` argument > config `exclude` pattern > capability `exclude` pattern
+> Аргумент CLI `--spec` > шаблон `specs` capability > шаблон `specs` конфигурации
+> Аргумент CLI `--exclude` > шаблон `exclude` конфигурации > шаблон `exclude` capability
 
-If only the config parameter is given, it will be used for all capabilities. However, if defining the pattern at the capability level, it will be used instead of the config pattern. Finally, any spec pattern defined on the command line will override all other patterns given.
+Если задан только параметр конфигурации, он будет использоваться для всех capabilities. Однако, если определить шаблон на уровне capability, он будет использоваться вместо шаблона конфигурации. Наконец, любой шаблон спецификации, определенный в командной строке, переопределит все другие заданные шаблоны.
 
-### Using capability-defined spec patterns
+### Использование шаблонов спецификаций, определенных в capability
 
-When you define a spec pattern at the capability level, it will override any patterns defined at the config level. This is useful when needing to separate tests based on differentiating device capabilities. In cases like this, it is more useful to use a generic spec pattern at the config level, and more specific patterns at the capability level.
+Когда вы определяете шаблон спецификации на уровне capability, он переопределяет любые шаблоны, определенные на уровне конфигурации. Это полезно, когда нужно разделить тесты на основе различающихся возможностей устройств. В таких случаях более полезно использовать общий шаблон спецификации на уровне конфигурации и более специфичные шаблоны на уровне capability.
 
-For example, let's say you had two directories, with one for Android tests, and one for iOS tests.
+Например, допустим, у вас есть два каталога, один для тестов Android, а другой для тестов iOS.
 
-Your config file may define the pattern as such, for non-specific device tests:
+Ваш конфигурационный файл может определять шаблон следующим образом для неспецифичных тестов устройств:
 
 ```js
 {
@@ -290,7 +291,7 @@ Your config file may define the pattern as such, for non-specific device tests:
 }
 ```
 
-but then, you will have different capabilities for your Android and iOS devices, where the patterns could look like such:
+но затем у вас будут разные capabilities для ваших устройств Android и iOS, где шаблоны могут выглядеть так:
 
 ```json
 {
@@ -310,7 +311,7 @@ but then, you will have different capabilities for your Android and iOS devices,
 }
 ```
 
-If you require both of these capabilities in your config file, then the Android device will only run the tests under the "android" namespace, and the iOS tests will run only tests under the "ios" namespace!
+Если вы включите оба эти capabilities в ваш конфигурационный файл, то устройство Android будет запускать только тесты в пространстве имен "android", а тесты iOS будут запускать только тесты в пространстве имен "ios"!
 
 ```js
 //wdio.conf.js
@@ -336,4 +337,3 @@ export const config = {
     ]
 }
 ```
-
