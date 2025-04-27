@@ -3,10 +3,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
-import { generateText } from 'ai';
-import { anthropic } from '@ai-sdk/anthropic'
+import Anthropic from '@anthropic-ai/sdk'
 import dotenv from 'dotenv';
 
+import { Processor } from './processor.js';
 import cache from './cache.json' with { type: 'json' };
 import { LANGUAGES_TO_TRANSLATE } from './constants.js';
 // Load environment variables
@@ -16,11 +16,41 @@ dotenv.config();
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
+const processor = new Processor(30)
 
 // Cache file path
+const model = 'claude-3-7-sonnet-latest'
 const CACHE_FILE_PATH = path.join(rootDir, 'src', 'cache.json');
+const CONTENT_SEPARATOR = '---'
+const MAX_TOKENS = 128 * 1000
+const BATCH_CHECK_INTERVAL = 5000 // 5 seconds
 
 const translationCache = cache as unknown as Map<string, { hash: string, languages: string[] }>;
+const batchStatuses = new Map<string, {
+    resolve: (value: void) => void,
+    reject: (reason?: any) => void,
+    promise: Promise<void>,
+    resolved: boolean
+}>()
+
+if (!process.env.ANTHROPIC_API_KEY) {
+    throw new Error('ANTHROPIC_API_KEY is not set');
+}
+
+const client = new Anthropic({
+    apiKey: process.env.ANTHROPIC_API_KEY,
+    defaultHeaders: {
+        'anthropic-beta': 'output-128k-2025-02-19',
+    }
+})
+
+/**
+ * fetch the latest batch id so we know where to start checking
+ * for finished batches
+ */
+const latestBatchId = await client.beta.messages.batches.list({
+    limit: 1
+}).then(({ data }) => data[0].id)
 
 // Save the cache file
 async function updateCache(cacheKey: string, contentShasum: string, language: string) {
@@ -64,39 +94,26 @@ export async function translate(language: string) {
         const targetDir = targetDirectories[i];
 
         // Process the directory recursively
-        await processDirectory(sourceDir, targetDir, language);
-    }
-
-    console.log(`Translation to ${language} completed!`);
-}
-
-async function processDirectory(sourceDir: string, targetDir: string, language: string) {
-    try {
-        // Read all files and directories in the source directory
-        const entries = await fs.readdir(sourceDir, { withFileTypes: true });
-
-        // Process each entry
+        const entries = await fs.readdir(sourceDir, { withFileTypes: true, recursive: true });
         for (const entry of entries) {
-            const sourcePath = path.join(sourceDir, entry.name);
-            const targetPath = path.join(targetDir, entry.name);
+            if (!entry.isFile()) {
+                throw new Error(`${entry.name} is not a file`)
+            }
 
-            if (entry.isDirectory()) {
-                // Create target directory if it doesn't exist
-                await fs.mkdir(targetPath, { recursive: true });
+            const sourcePath = path.join(sourceDir, entry.name)
+            const targetPath = path.join(targetDir, entry.name)
 
-                // Process the subdirectory recursively
-                await processDirectory(sourcePath, targetPath, language);
-            } else if (entry.name.endsWith('.md')) {
-                // Process markdown files
-                await translateFile(sourcePath, targetPath, language);
-            } else if (entry.name.endsWith('.json')) {
+            /**
+             * handle JSON files with caching
+             */
+            if (path.extname(entry.name) === '.json') {
                 // Handle JSON files with caching
                 const cacheKey = path.relative(rootDir, sourcePath);
                 const content = await fs.readFile(sourcePath, 'utf-8');
                 const needToTranslate = await checkNeedToTranslate(cacheKey, targetPath, content, language);
                 if (!needToTranslate) {
                     console.log(`Skipping translation for ${sourcePath} - content unchanged`);
-                    continue;
+                    return
                 }
 
                 // Copy JSON file and update cache
@@ -106,11 +123,23 @@ async function processDirectory(sourceDir: string, targetDir: string, language: 
                 // Save the updated cache
                 const contentShasum = calculateShasum(content);
                 await updateCache(cacheKey, contentShasum, language);
+                continue
             }
+
+            /**
+             * handle markdown files in batches
+             */
+            if (path.extname(entry.name) === '.md') {
+                processor.process(() => translateFile(sourcePath, targetPath, language))
+                continue
+            }
+
+            console.log(`Skipping ${entry.name} - unknown file type`)
         }
-    } catch (error) {
-        console.error(`Error processing directory ${sourceDir}:`, error);
     }
+
+    await processor.waitForResolved()
+    console.log(`Translation to ${language} completed!`);
 }
 
 async function translateFile(sourcePath: string, targetPath: string, language: string) {
@@ -142,32 +171,52 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
 
         console.log(`Successfully translated ${path.basename(sourcePath)} to ${language}`);
     } catch (error) {
-        console.error(`Error translating file ${sourcePath}:`, error);
+        console.error(`Error translating file ${sourcePath}:`, error.message);
     }
 }
 
 async function translateContent(content: string, language: string): Promise<string> {
     try {
-        const { text } = await generateText({
-            model: anthropic('claude-3-7-sonnet-20250219'),
-            prompt: [
-                `Translate the following Markdown content from English to ${LANGUAGES_TO_TRANSLATE[language]}.`,
-                'The document is a Docusaurus documentation page and separated in frontmatter and body.',
-                'The frontmatter is the first block of the document, and the body is the rest of the document.',
-                'Only translate the "title" and "description" fields in the frontmatter.',
-                'In the body: keep all Markdown formatting intact, don\'t add any headings if they don\'t exist in the original content',
-                'Also ignore any links, code blocks (except comments), and other syntax within tick characters (`).',
-                'Do not translate code inside code blocks, variable names, or technical terms that should remain in English.',
-                'Do not translate HTML tags or attributes.',
-                'Do not change URLs.',
-                'Here is the content to translate:',
-                '',
-                `${content}`
-            ].join('\n'),
-            temperature: 0.1,
-        });
+        const { input_tokens } = await client.messages.countTokens({
+            messages: getMessages(language, content),
+            model,
+        })
 
-        return text.slice(text.indexOf('---'));
+        const contentShasum = calculateShasum(content);
+        let sections = [content]
+        if (input_tokens > MAX_TOKENS) {
+            const [nl, frontmatter, firstHeading, ...otherSections] = content.split(CONTENT_SEPARATOR)
+            sections = [
+                [nl, frontmatter, firstHeading].join(CONTENT_SEPARATOR),
+                ...otherSections
+            ]
+            console.log(`Translating ${sections.length} sections`)
+        }
+
+        const batch = await client.beta.messages.batches.create({
+            requests: sections.map((section, i) => ({
+                /**
+                 * batch ids are limited to 64 characters
+                 */
+                custom_id: getBatchId(language, contentShasum, i),
+                params: {
+                    model,
+                    max_tokens: MAX_TOKENS,
+                    messages: getMessages(language, section),
+                },
+            }))
+        })
+        console.log(`Batch created: ${batch.id}, waiting for it to finish...`)
+        await waitForBatchToFinish(batch.id)
+        const chunks = await client.beta.messages.batches.results(batch.id)
+        let text = ''
+        for await (const chunk of chunks) {
+            if (chunk.result.type !== 'succeeded') {
+                throw new Error(`Batch ${batch.id} failed: ${JSON.stringify(chunk.result, null, 2)}`)
+            }
+            text += chunk.result.message.content
+        }
+        return text
     } catch (error) {
         console.error('Error calling Anthropic API:', error);
         throw error;
@@ -197,4 +246,61 @@ async function checkNeedToTranslate(cacheKey: string, targetPath: string, conten
      * - the file exists
      */
     return hash !== contentShasum || !languages.includes(language) || !translatedFileExists
+}
+
+function getMessages(language: string, content: string) {
+    return [{
+        role: 'user',
+        content: [
+            `Translate the following Markdown content from English to ${LANGUAGES_TO_TRANSLATE[language]}.`,
+            'The document is a Docusaurus documentation page and separated in frontmatter and body.',
+            'The frontmatter is the first block of the document, and the body is the rest of the document.',
+            'Only translate the "title" and "description" fields in the frontmatter.',
+            'In the body: keep all Markdown formatting intact, don\'t add any headings if they don\'t exist in the original content',
+            'Also ignore any links, code blocks (except comments), and other syntax within tick characters (`).',
+            'Do not translate code inside code blocks, variable names, or technical terms that should remain in English.',
+            'Do not translate HTML tags or attributes.',
+            'Do not change URLs.',
+            'Here is the content to translate:',
+            '',
+            `${content}`
+        ].join('\n')
+    }] as Anthropic.MessageParam[]
+}
+
+/**
+ * Fetch the status of a batch and wait until it's done
+ * @param batchId - The ID of the batch
+ * @returns void
+ */
+let batchCheckIntervalId: NodeJS.Timeout | undefined
+async function waitForBatchToFinish(batchId: string): Promise<void> {
+    const { resolve, reject, promise } = Promise.withResolvers<void>()
+    batchStatuses.set(batchId, { resolve, reject, promise, resolved: false })
+
+    if (!batchCheckIntervalId) {
+        batchCheckIntervalId = setInterval(async () => {
+            const batchList = await client.beta.messages.batches.list({
+                limit: 1000,
+                after_id: latestBatchId
+            })
+            for (const batch of batchList.data) {
+                /**
+                 * fullfill batch promise if it's done
+                 */
+                const batchStatus = batchStatuses.get(batch.id)
+                if (batchStatus && !batchStatus.resolved) {
+                    return batchStatus.resolve()
+                }
+            }
+
+            const resolvedBatches = Object.values(batchStatuses).filter(({ resolved }) => resolved).length
+            console.log(`Batches processing ${resolvedBatches}/${batchStatuses.size}`)
+        }, BATCH_CHECK_INTERVAL)
+    }
+    return promise
+}
+
+function getBatchId(language: string, contentShasum: string, i: number) {
+    return `msgbatch_${language}-${contentShasum.slice(0, 40)}-${i}`
 }
