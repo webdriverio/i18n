@@ -1,32 +1,32 @@
 ---
 index: 1
 id: considerations
-title: Considerations
+title: Міркування
 ---
 
-# Key Considerations for Optimal Use
+# Ключові міркування для оптимального використання
 
-Before diving into the powerful features of the `@wdio/visual-service`, it's crucial to understand some key considerations that ensure you get the most out of this tool. The following points are designed to guide you through best practices and common pitfalls, helping you achieve accurate and efficient visual testing results. These considerations are not just recommendations, but essential aspects to keep in mind for effectively utilizing the service in real-world scenarios.
+Перед зануренням у потужні функції `@wdio/visual-service`, критично важливо зрозуміти деякі ключові моменти, які забезпечують максимальну ефективність використання цього інструменту. Наступні пункти призначені для того, щоб провести вас через найкращі практики та поширені підводні камені, допомагаючи досягти точних і ефективних результатів візуального тестування. Ці міркування не просто рекомендації, а важливі аспекти, які слід враховувати для ефективного використання сервісу в реальних сценаріях.
 
-## Nature of Comparison
+## Природа порівняння
 
-- **Pixel-by-Pixel Basis:** The module performs a pixel-by-pixel comparison of images. While certain aspects can be adjusted (see Comparison Options), the core approach remains a basic pixel comparison.
-- **Impact of Browser Updates:** Be aware that updates to browsers, like Chrome, may affect font rendering, potentially necessitating an update to your baseline images.
+-   **Порівняння по пікселях:** Модуль виконує порівняння зображень піксель за пікселем. Хоча певні аспекти можуть бути налаштовані (див. Параметри порівняння), основний підхід залишається базовим порівнянням пікселів.
+-   **Вплив оновлень браузера:** Майте на увазі, що оновлення браузерів, наприклад Chrome, можуть вплинути на рендеринг шрифтів, потенційно вимагаючи оновлення ваших базових зображень.
 
-## Consistency in Platforms
+## Послідовність платформ
 
-- **Comparing Identical Platforms:** Ensure screenshots are compared within the same platform. For instance, a screenshot from Chrome on a Mac should not be used to compare against one from Chrome on Ubuntu or Windows.
-- **Analogy:** To put it simply, compare _'Apples with Apples, not Apples with Androids'_.
+-   **Порівняння ідентичних платформ:** Переконайтеся, що скріншоти порівнюються в межах однієї платформи. Наприклад, скріншот з Chrome на Mac не слід використовувати для порівняння зі скріншотом з Chrome на Ubuntu або Windows.
+-   **Аналогія:** Простіше кажучи, порівнюйте _'Яблука з Яблуками, а не Яблука з Андроїдами'_.
 
-## Caution with Mismatch Percentage
+## Обережність з відсотком розбіжностей
 
-- **Risk of Accepting Mismatches:** Exercise caution when accepting a mismatch percentage. This is especially true for large screenshots, where accepting a mismatch might inadvertently overlook significant discrepancies, such as missing buttons or elements.
+-   **Ризик прийняття розбіжностей:** Будьте обережні, приймаючи відсоток розбіжностей. Це особливо стосується великих скріншотів, де прийняття невідповідності може ненавмисно пропустити значні розбіжності, такі як відсутні кнопки або елементи.
 
-## Mobile Screen Simulation
+## Симуляція мобільних екранів
 
-- **Avoid Browser Resizing for Mobile Simulation:** Do not attempt to simulate mobile screen sizes by resizing desktop browsers and treating them as mobile browsers. Desktop browsers, even when resized, do not accurately replicate the rendering of actual mobile browsers.
-- **Authenticity in Comparison:** This tool aims to compare visuals as they would appear to an end-user. A resized desktop browser does not reflect the true experience on a mobile device.
+-   **Уникайте зміни розміру браузера для симуляції мобільних пристроїв:** Не намагайтеся симулювати розміри мобільних екранів шляхом зміни розміру настільних браузерів і трактування їх як мобільні браузери. Навіть при зміні розміру, настільні браузери не відтворюють точно рендеринг справжніх мобільних браузерів.
+-   **Автентичність у порівнянні:** Цей інструмент призначений для порівняння візуальних елементів так, як вони б виглядали для кінцевого користувача. Браузер настільного комп'ютера зі зміненим розміром не відображає справжнього досвіду на мобільному пристрої.
 
-## Stance on Headless Browsers
+## Позиція щодо браузерів у безголовому режимі
 
-- **Not Recommended for Headless Browsers:** The use of this module with headless browsers is not advised. The rationale is that end-users do not interact with headless browsers, and therefore issues arising from such use will not be supported.
+-   **Не рекомендується для браузерів у безголовому режимі:** Використання цього модуля з браузерами в безголовому режимі не рекомендується. Обґрунтування полягає в тому, що кінцеві користувачі не взаємодіють з браузерами в безголовому режимі, тому проблеми, що виникають при такому використанні, не будуть підтримуватися.

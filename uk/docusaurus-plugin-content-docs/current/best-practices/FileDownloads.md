@@ -1,43 +1,43 @@
 ---
 id: file-download
-title: File Download
+title: Завантаження файлів
 ---
 
-When automating file downloads in web testing, it's essential to handle them consistently across different browsers to ensure reliable test execution.
+При автоматизації завантаження файлів у веб-тестуванні важливо обробляти їх послідовно у різних браузерах для забезпечення надійного виконання тестів.
 
-Here, we provide best practices for file downloads and demonstrate how to configure download directories for **Google Chrome**, **Mozilla Firefox**, and **Microsoft Edge**.
+Тут ми надаємо найкращі практики для завантаження файлів і демонструємо, як налаштувати каталоги завантаження для **Google Chrome**, **Mozilla Firefox** та **Microsoft Edge**.
 
-## Download Paths
+## Шляхи завантаження
 
-**Hardcoding** download paths in test scripts can lead to maintenance issues and portability problems. Utilize **relative paths** for download directories to ensure portability and compatibility across different environments.
+**Хардкодинг** шляхів завантаження у тестових скриптах може призвести до проблем з обслуговуванням та портативністю. Використовуйте **відносні шляхи** для каталогів завантаження, щоб забезпечити портативність та сумісність у різних середовищах.
 
 ```javascript
 // 👎
-// Hardcoded download path
+// Жорстко закодований шлях завантаження
 const downloadPath = '/path/to/downloads';
 
 // 👍
-// Relative download path
+// Відносний шлях завантаження
 const downloadPath = path.join(__dirname, 'downloads');
 ```
 
-## Wait Strategies
+## Стратегії очікування
 
-Failing to implement proper wait strategies can lead to race conditions or unreliable tests, especially for download completion. Implement **explicit** wait strategies to wait for file downloads to complete, ensuring synchronization between test steps.
+Відсутність належних стратегій очікування може призвести до умов гонки або ненадійних тестів, особливо для завершення завантаження. Реалізуйте **явні** стратегії очікування, щоб дочекатися завершення завантаження файлів, забезпечуючи синхронізацію між кроками тесту.
 
 ```javascript
 // 👎
-// No explicit wait for download completion
+// Немає явного очікування завершення завантаження
 await browser.pause(5000);
 
 // 👍
-// Wait for file download completion
+// Очікування завершення завантаження файлу
 await waitUntil(async ()=> await fs.existsSync(downloadPath), 5000);
 ```
 
-## Configuring Download Directories
+## Налаштування каталогів завантаження
 
-To override file download behavior for **Google Chrome**, **Mozilla Firefox**, and **Microsoft Edge**, provide the download directory in the WebDriverIO capabilities:
+Щоб змінити поведінку завантаження файлів для **Google Chrome**, **Mozilla Firefox** та **Microsoft Edge**, вкажіть каталог завантаження у можливостях WebDriverIO:
 
 <Tabs
 defaultValue="chrome"
@@ -80,32 +80,32 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 </Tabs>
 
-For an example implementation, refer to the [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
+Для прикладу реалізації зверніться до [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
 
-## Configuring Chromium Browser Downloads
+## Налаштування завантажень браузера Chromium
 
-To change the download path for __Chromium-based__ browsers (such as Chrome, Edge, Brave, etc.) using WebDriverIOs `getPuppeteer` method for accessing Chrome DevTools.
+Щоб змінити шлях завантаження для браузерів на основі __Chromium__ (таких як Chrome, Edge, Brave тощо) за допомогою методу WebDriverIO `getPuppeteer` для доступу до Chrome DevTools.
 
 ```javascript
 const page = await browser.getPuppeteer();
-// Initiate a CDP Session:
+// Ініціювати CDP сесію:
 const cdpSession = await page.target().createCDPSession();
-// Set the Download Path:
+// Встановити шлях завантаження:
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Handling Multiple File Downloads
+## Обробка кількох завантажень файлів
 
-When dealing with scenarios involving multiple file downloads, it's essential to implement strategies to manage and validate each download effectively. Consider the following approaches:
+При роботі зі сценаріями, що включають кілька завантажень файлів, важливо реалізувати стратегії для ефективного управління та перевірки кожного завантаження. Розгляньте такі підходи:
 
-__Sequential Download Handling:__ Download files one by one and verify each download before initiating the next one to ensure orderly execution and accurate validation.
+__Послідовна обробка завантажень:__ Завантажуйте файли один за одним і перевіряйте кожне завантаження перед початком наступного, щоб забезпечити впорядковане виконання та точну перевірку.
 
-__Parallel Download Handling:__ Utilize asynchronous programming techniques to initiate multiple file downloads simultaneously, optimizing test execution time. Implement robust validation mechanisms to verify all downloads upon completion.
+__Паралельна обробка завантажень:__ Використовуйте асинхронні методи програмування для одночасного ініціювання кількох завантажень файлів, оптимізуючи час виконання тестів. Реалізуйте надійні механізми перевірки для перевірки всіх завантажень після завершення.
 
-## Cross-Browser Compatibility Considerations
+## Міркування щодо кросбраузерної сумісності
 
-While WebDriverIO provides a unified interface for browser automation, it's essential to account for variations in browser behavior and capabilities. Consider testing your file download functionality across different browsers to ensure compatibility and consistency.
+Хоча WebDriverIO надає уніфікований інтерфейс для автоматизації браузера, важливо враховувати відмінності в поведінці та можливостях браузерів. Розгляньте можливість тестування функціональності завантаження файлів у різних браузерах для забезпечення сумісності та послідовності.
 
-__Browser-Specific Configurations:__ Adjust download path settings and wait strategies to accommodate differences in browser behavior and preferences across Chrome, Firefox, Edge, and other supported browsers.
+__Специфічні для браузера конфігурації:__ Налаштуйте параметри шляху завантаження та стратегії очікування для врахування відмінностей у поведінці та параметрах браузера для Chrome, Firefox, Edge та інших підтримуваних браузерів.
 
-__Browser Version Compatibility:__ Regularly update your WebDriverIO and browser versions to leverage the latest features and enhancements while ensuring compatibility with your existing test suite.
+__Сумісність версій браузера:__ Регулярно оновлюйте WebDriverIO та версії браузерів, щоб використовувати найновіші функції та вдосконалення, забезпечуючи сумісність з існуючим набором тестів.

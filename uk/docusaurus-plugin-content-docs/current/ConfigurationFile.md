@@ -3,7 +3,7 @@ id: configurationfile
 title: Файл конфігурації
 ---
 
-Файл конфігурації містить усю необхідну інформацію для запуску набору тестів. Це NodeJS модуль, який експортує JSON.
+Файл конфігурації містить всю необхідну інформацію для запуску вашого набору тестів. Це модуль NodeJS, який експортує JSON.
 
 Ось приклад конфігурації з усіма підтримуваними властивостями та додатковою інформацією:
 
@@ -11,20 +11,20 @@ title: Файл конфігурації
 export const config = {
 
     // ==================================
-    // Where should your test be launched
+    // Де мають запускатися ваші тести
     // ==================================
     //
     runner: 'local',
     //
     // =====================
-    // Server Configurations
+    // Конфігурації сервера
     // =====================
-    // Host address of the running Selenium server. This information is usually obsolete, as
-    // WebdriverIO automatically connects to localhost. Also if you are using one of the
-    // supported cloud services like Sauce Labs, Browserstack, Testing Bot or LambdaTest, you also don't
-    // need to define host and port information (because WebdriverIO can figure that out
-    // from your user and key information). However, if you are using a private Selenium
-    // backend, you should define the `hostname`, `port`, and `path` here.
+    // Адреса хоста запущеного Selenium сервера. Ця інформація зазвичай застаріла, оскільки
+    // WebdriverIO автоматично підключається до localhost. Також якщо ви використовуєте один із
+    // підтримуваних хмарних сервісів, як Sauce Labs, Browserstack, Testing Bot або LambdaTest, вам також не
+    // потрібно визначати інформацію про хост і порт (бо WebdriverIO може визначити це
+    // з інформації про користувача та ключ). Однак, якщо ви використовуєте приватний Selenium
+    // бекенд, вам слід визначити `hostname`, `port` та `path` тут.
     //
     hostname: 'localhost',
     port: 4444,
@@ -33,458 +33,458 @@ export const config = {
     // protocol: 'http',
     //
     // =================
-    // Service Providers
+    // Постачальники послуг
     // =================
-    // WebdriverIO supports Sauce Labs, Browserstack, Testing Bot and LambdaTest. (Other cloud providers
-    // should work, too.) These services define specific `user` and `key` (or access key)
-    // values you must put here, in order to connect to these services.
+    // WebdriverIO підтримує Sauce Labs, Browserstack, Testing Bot та LambdaTest. (Інші хмарні провайдери
+    // також повинні працювати.) Ці сервіси визначають певні значення `user` та `key` (або ключ доступу),
+    // які ви повинні вказати тут, щоб підключитися до цих сервісів.
     //
     user: 'webdriverio',
     key:  'xxxxxxxxxxxxxxxx-xxxxxx-xxxxx-xxxxxxxxx',
 
-    // If you run your tests on Sauce Labs you can specify the region you want to run your tests
-    // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
-    // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
-    // If you don't provide the region, it defaults to `us`.
+    // Якщо ви запускаєте тести на Sauce Labs, ви можете вказати регіон, де ви хочете запускати тести
+    // через властивість `region`. Доступні скорочення для регіонів: `us` (за замовчуванням) та `eu`.
+    // Ці регіони використовуються для VM cloud Sauce Labs та Real Device Cloud Sauce Labs.
+    // Якщо ви не вказуєте регіон, за замовчуванням використовується `us`.
     region: 'us',
     //
-    // Sauce Labs provides a [headless offering](https://saucelabs.com/products/web-testing/sauce-headless-testing)
-    // that allows you to run Chrome and Firefox tests headless.
+    // Sauce Labs надає [headless пропозицію](https://saucelabs.com/products/web-testing/sauce-headless-testing),
+    // яка дозволяє запускати тести Chrome та Firefox в headless режимі.
     //
     headless: false,
     //
     // ==================
-    // Specify Test Files
+    // Вказати тестові файли
     // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // of the configuration file being run.
+    // Визначте, які тестові спеки повинні запускатися. Шаблон вказується відносно каталогу
+    // файлу конфігурації, що виконується.
     //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
-    // process enclose them in an array within the specs array.
+    // Спеки визначаються як масив файлів спеків (можливо, з використанням шаблонів,
+    // які будуть розширені). Тест для кожного файлу спеків буде запущений в окремому
+    // робочому процесі. Щоб мати групу файлів спеків, що виконуються в одному робочому
+    // процесі, об'єднайте їх у масив у межах масиву specs.
     //
-    // The path of the spec files will be resolved relative from the directory of
-    // of the config file unless it's absolute.
+    // Шлях до файлів спеків буде вирішуватися відносно каталогу
+    // файлу конфігурації, якщо він не є абсолютним.
     //
     specs: [
         'test/spec/**',
         ['group/spec/**']
     ],
-    // Patterns to exclude.
+    // Шаблони для виключення.
     exclude: [
         'test/spec/multibrowser/**',
         'test/spec/mobile/**'
     ],
     //
     // ============
-    // Capabilities
+    // Можливості
     // ============
-    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, WebdriverIO launches several test
-    // sessions. Within your `capabilities`, you can overwrite the `spec` and `exclude`
-    // options in order to group specific specs to a specific capability.
+    // Визначте свої можливості тут. WebdriverIO може запускати кілька можливостей одночасно.
+    // Залежно від кількості можливостей, WebdriverIO запускає кілька тестових
+    // сесій. У межах ваших `capabilities` ви можете перезаписати опції `spec` та `exclude`,
+    // щоб згрупувати певні спеки для певної можливості.
     //
-    // First, you can define how many instances should be started at the same time. Let's
-    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-    // set `maxInstances` to 1. wdio will spawn 3 processes.
+    // Спочатку ви можете визначити, скільки екземплярів повинно бути запущено одночасно. Скажімо,
+    // у вас є 3 різні можливості (Chrome, Firefox і Safari), і ви
+    // встановили `maxInstances` на 1. wdio запустить 3 процеси.
     //
-    // Therefore, if you have 10 spec files and you set `maxInstances` to 10, all spec files
-    // will be tested at the same time and 30 processes will be spawned.
+    // Тому, якщо у вас є 10 файлів спеків і ви встановили `maxInstances` на 10, всі файли спеків
+    // будуть тестовані одночасно, і буде запущено 30 процесів.
     //
-    // The property handles how many capabilities from the same test should run tests.
+    // Властивість визначає, скільки можливостей з одного тесту повинні запускати тести.
     //
     maxInstances: 10,
     //
-    // Or set a limit to run tests with a specific capability.
+    // Або встановіть обмеження на запуск тестів з певною можливістю.
     maxInstancesPerCapability: 10,
     //
-    // Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment.
-    // If you set to `false`, you should import from `@wdio/globals`. Note: WebdriverIO doesn't
-    // handle injection of test framework specific globals.
+    // Вставляє глобальні об'єкти WebdriverIO (напр. `browser`, `$` та `$$`) в глобальне середовище.
+    // Якщо встановлено `false`, вам потрібно імпортувати з `@wdio/globals`. Зауважте: WebdriverIO не
+    // обробляє вставку глобальних змінних, специфічних для тестового фреймворку.
     //
     injectGlobals: true,
     //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
+    // Якщо у вас виникають проблеми з отриманням всіх важливих можливостей, перевірте
+    // конфігуратор платформи Sauce Labs - чудовий інструмент для налаштування ваших можливостей:
     // https://docs.saucelabs.com/basics/platform-configurator
     //
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-        // to run chrome headless the following flags are required
-        // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+        // щоб запустити chrome в headless режимі потрібні наступні прапори
+        // (див. https://developers.google.com/web/updates/2017/04/headless-chrome)
         // args: ['--headless', '--disable-gpu'],
         }
         //
-        // Parameter to ignore some or all default flags
-        // - if value is true: ignore all DevTools 'default flags' and Puppeteer 'default arguments'
-        // - if value is an array: DevTools filters given default arguments
+        // Параметр для ігнорування деяких або всіх прапорів за замовчуванням
+        // - якщо значення true: ігнорує всі 'прапори за замовчуванням' DevTools та 'аргументи за замовчуванням' Puppeteer
+        // - якщо значення є масивом: DevTools фільтрує вказані аргументи за замовчуванням
         // 'wdio:devtoolsOptions': {
         //    ignoreDefaultArgs: true,
         //    ignoreDefaultArgs: ['--disable-sync', '--disable-extensions'],
         // }
     }, {
-        // maxInstances can get overwritten per capability. So if you have an in house Selenium
-        // grid with only 5 firefox instance available you can make sure that not more than
-        // 5 instance gets started at a time.
+        // maxInstances може бути перезаписано для кожної можливості. Тому, якщо у вас є внутрішня Selenium
+        // grid з лише 5 доступними екземплярами firefox, ви можете переконатися, що не більше ніж
+        // 5 екземплярів запускаються одночасно.
         'wdio:maxInstances': 5,
         browserName: 'firefox',
         'wdio:specs': [
             'test/ffOnly/*'
         ],
         'moz:firefoxOptions': {
-          // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
+          // прапор для активації headless режиму Firefox (див. https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities для більш детальної інформації про moz:firefoxOptions)
           // args: ['-headless']
         },
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+        // Якщо надано outputDir, WebdriverIO може захоплювати логи сесії драйвера
+        // можна налаштувати, які типи логів виключати.
+        excludeDriverLogs: ['*'], // передайте '*', щоб виключити всі логи сесії драйвера
         excludeDriverLogs: ['bugreport', 'server'],
         //
-        // Parameter to ignore some or all Puppeteer default arguments
-        // ignoreDefaultArgs: ['-foreground'], // set value to true to ignore all default arguments
+        // Параметр для ігнорування деяких або всіх аргументів Puppeteer за замовчуванням
+        // ignoreDefaultArgs: ['-foreground'], // встановіть значення true, щоб ігнорувати всі аргументи за замовчуванням
     }],
     //
-    // Additional list of node arguments to use when starting child processes
+    // Додатковий список аргументів node, які використовуються при запуску дочірніх процесів
     execArgv: [],
     //
     // ===================
-    // Test Configurations
+    // Тестові конфігурації
     // ===================
-    // Define all options that are relevant for the WebdriverIO instance here
+    // Визначте всі опції, які мають відношення до екземпляра WebdriverIO тут
     //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    // Рівень деталізації логування: trace | debug | info | warn | error | silent
     logLevel: 'info',
     //
-    // Set specific log levels per logger
-    // use 'silent' level to disable logger
+    // Встановити конкретні рівні логування для кожного логгера
+    // використовуйте рівень 'silent' для відключення логгера
     logLevels: {
         webdriver: 'info',
         '@wdio/appium-service': 'info'
     },
     //
-    // Set directory to store all logs into
+    // Встановіть каталог для зберігання всіх логів
     outputDir: __dirname,
     //
-    // If you only want to run your tests until a specific amount of tests have failed use
-    // bail (default is 0 - don't bail, run all tests).
+    // Якщо ви хочете запускати тести тільки до певної кількості невдалих тестів, використовуйте
+    // bail (за замовчуванням 0 - не зупиняти, запускати всі тести).
     bail: 0,
     //
-    // Set a base URL in order to shorten `url()` command calls. If your `url` parameter starts
-    // with `/`, the `baseUrl` is prepended, not including the path portion of `baseUrl`.
+    // Встановіть базовий URL для скорочення викликів команди `url()`. Якщо ваш параметр `url` починається
+    // з `/`, `baseUrl` додається перед ним, не включаючи частину шляху `baseUrl`.
     //
-    // If your `url` parameter starts without a scheme or `/` (like `some/path`), the `baseUrl`
-    // gets prepended directly.
+    // Якщо ваш параметр `url` починається без схеми або `/` (як `some/path`), `baseUrl`
+    // додається безпосередньо.
     baseUrl: 'http://localhost:8080',
     //
-    // Default timeout for all waitForXXX commands.
+    // Тайм-аут за замовчуванням для всіх команд waitForXXX.
     waitforTimeout: 1000,
     //
-    // Add files to watch (e.g. application code or page objects) when running `wdio` command
-    // with `--watch` flag. Globbing is supported.
+    // Додайте файли для відстеження (наприклад, код програми або об'єкти сторінок) при запуску команди `wdio`
+    // з прапором `--watch`. Підтримуються шаблони.
     filesToWatch: [
-        // e.g. rerun tests if I change my application code
+        // наприклад, перезапустити тести, якщо я змінюю код програми
         // './app/**/*.js'
     ],
     //
-    // Framework you want to run your specs with.
-    // The following are supported: 'mocha', 'jasmine', and 'cucumber'
-    // See also: https://webdriver.io/docs/frameworks.html
+    // Фреймворк, з яким ви хочете запускати свої спеки.
+    // Підтримуються наступні: 'mocha', 'jasmine' та 'cucumber'
+    // Також див.: https://webdriver.io/docs/frameworks.html
     //
-    // Make sure you have the wdio adapter package for the specific framework installed before running any tests.
+    // Переконайтеся, що ви встановили пакет wdio-адаптера для конкретного фреймворку перед запуском будь-яких тестів.
     framework: 'mocha',
     //
-    // The number of times to retry the entire specfile when it fails as a whole
+    // Кількість спроб повторного запуску всього specfile, коли він повністю не проходить
     specFileRetries: 1,
-    // Delay in seconds between the spec file retry attempts
+    // Затримка в секундах між спробами повторного запуску файлу спеків
     specFileRetriesDelay: 0,
-    // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
+    // Чи повинні повторно запущені файли спеків повторюватися негайно або бути відкладеними в кінець черги
     specFileRetriesDeferred: false,
     //
-    // Test reporter for stdout.
-    // The only one supported by default is 'dot'
-    // See also: https://webdriver.io/docs/dot-reporter.html , and click on "Reporters" in left column
+    // Тестовий репортер для stdout.
+    // Єдиний, який підтримується за замовчуванням, — 'dot'
+    // Також див.: https://webdriver.io/docs/dot-reporter.html , і натисніть на "Reporters" у лівій колонці
     reporters: [
         'dot',
         ['allure', {
             //
-            // If you are using the "allure" reporter you should define the directory where
-            // WebdriverIO should save all allure reports.
+            // Якщо ви використовуєте репортер "allure", ви повинні визначити каталог, де
+            // WebdriverIO повинен зберігати всі звіти allure.
             outputDir: './'
         }]
     ],
     //
-    // Options to be passed to Mocha.
-    // See the full list at: http://mochajs.org
+    // Опції, які будуть передані в Mocha.
+    // Повний список див.: http://mochajs.org
     mochaOpts: {
         ui: 'bdd'
     },
     //
-    // Options to be passed to Jasmine.
-    // See also: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
+    // Опції, які будуть передані в Jasmine.
+    // Також див.: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
     jasmineOpts: {
         //
-        // Jasmine default timeout
+        // Тайм-аут Jasmine за замовчуванням
         defaultTimeoutInterval: 5000,
         //
-        // The Jasmine framework allows it to intercept each assertion in order to log the state of the application
-        // or website depending on the result. For example, it is pretty handy to take a screenshot every time
-        // an assertion fails.
+        // Фреймворк Jasmine дозволяє перехоплювати кожне твердження для логування стану програми
+        // або веб-сайту залежно від результату. Наприклад, зручно робити знімок екрану кожного разу,
+        // коли твердження не виконується.
         expectationResultHandler: function(passed, assertion) {
-            // do something
+            // зробіть щось
         },
         //
-        // Make use of Jasmine-specific grep functionality
+        // Використовувати специфічну для Jasmine функціональність grep
         grep: null,
         invertGrep: null
     },
     //
-    // If you are using Cucumber you need to specify where your step definitions are located.
-    // See also: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
+    // Якщо ви використовуєте Cucumber, вам потрібно вказати, де знаходяться ваші визначення кроків.
+    // Також див.: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
     cucumberOpts: {
-        require: [],        // <string[]> (file/dir) require files before executing features
-        backtrace: false,   // <boolean> show full backtrace for errors
-        compiler: [],       // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-        dryRun: false,      // <boolean> invoke formatters without executing steps
-        failFast: false,    // <boolean> abort the run on first failure
-        snippets: true,     // <boolean> hide step definition snippets for pending steps
-        source: true,       // <boolean> hide source URIs
-        strict: false,      // <boolean> fail if there are any undefined or pending steps
-        tagExpression: '',  // <string> (expression) only execute the features or scenarios with tags matching the expression
-        timeout: 20000,     // <number> timeout for step definitions
-        ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
-        scenarioLevelReporter: false // Enable this to make webdriver.io behave as if scenarios and not steps were the tests.
+        require: [],        // <string[]> (file/dir) потрібні файли перед виконанням функцій
+        backtrace: false,   // <boolean> показати повний трасування для помилок
+        compiler: [],       // <string[]> ("extension:module") потрібні файли з даним EXTENSION після потрібного MODULE (повторюваний)
+        dryRun: false,      // <boolean> викликати форматери без виконання кроків
+        failFast: false,    // <boolean> перервати запуск при першій невдачі
+        snippets: true,     // <boolean> приховати фрагменти визначення кроків для очікуваних кроків
+        source: true,       // <boolean> приховати URI джерела
+        strict: false,      // <boolean> невдача, якщо є невизначені або очікувані кроки
+        tagExpression: '',  // <string> (expression) виконувати лише функції або сценарії з тегами, що відповідають виразу
+        timeout: 20000,     // <number> тайм-аут для визначень кроків
+        ignoreUndefinedDefinitions: false, // <boolean> Увімкніть цю конфігурацію, щоб розглядати невизначені визначення як попередження.
+        scenarioLevelReporter: false // Увімкніть це, щоб webdriver.io поводився так, ніби сценарії, а не кроки були тестами.
     },
-    // Specify a custom tsconfig path - WDIO uses `tsx` to compile TypeScript files
-    // Your TSConfig is automatically detected from the current working directory
-    // but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH env var
-    // See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+    // Вкажіть користувацький шлях до tsconfig - WDIO використовує `tsx` для компіляції файлів TypeScript
+    // Ваш TSConfig автоматично визначається з поточного робочого каталогу
+    // але ви можете вказати користувацький шлях тут або встановивши env змінну TSX_TSCONFIG_PATH
+    // Дивіться документацію `tsx`: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
     tsConfigPath: 'path/to/tsconfig.json',
     //
     // =====
-    // Hooks
+    // Хуки
     // =====
-    // WebdriverIO provides a several hooks you can use to interfere the test process in order to enhance
-    // it and build services around it. You can either apply a single function to it or an array of
-    // methods. If one of them returns with a promise, WebdriverIO will wait until that promise is
-    // resolved to continue.
+    // WebdriverIO надає кілька хуків, які ви можете використовувати для втручання в процес тестування, щоб покращити
+    // його та створювати сервіси навколо нього. Ви можете застосувати до нього одну функцію або масив
+    // методів. Якщо один з них повертається з обіцянкою, WebdriverIO чекатиме, поки ця обіцянка буде
+    // вирішена, щоб продовжити.
     //
     /**
-     * Gets executed once before all workers get launched.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
+     * Виконується один раз перед запуском всіх робочих процесів.
+     * @param {object} config об'єкт конфігурації wdio
+     * @param {Array.<Object>} capabilities список деталей можливостей
      */
     onPrepare: function (config, capabilities) {
     },
     /**
-     * Gets executed before a worker process is spawned and can be used to initialize specific service
-     * for that worker as well as modify runtime environments in an async fashion.
-     * @param  {string} cid      capability id (e.g 0-0)
-     * @param  {object} caps     object containing capabilities for session that will be spawn in the worker
-     * @param  {object} specs    specs to be run in the worker process
-     * @param  {object} args     object that will be merged with the main configuration once worker is initialized
-     * @param  {object} execArgv list of string arguments passed to the worker process
+     * Виконується перед створенням робочого процесу і може використовуватися для ініціалізації певного сервісу
+     * для цього робочого процесу, а також для модифікації середовищ виконання в асинхронному режимі.
+     * @param  {string} cid      ідентифікатор можливості (наприклад, 0-0)
+     * @param  {object} caps     об'єкт, що містить можливості для сеансу, який буде створено в робочому процесі
+     * @param  {object} specs    спеки, які будуть запущені в робочому процесі
+     * @param  {object} args     об'єкт, який буде об'єднаний з основною конфігурацією після ініціалізації робочого процесу
+     * @param  {object} execArgv список аргументів рядка, переданих в робочий процес
      */
     onWorkerStart: function (cid, caps, specs, args, execArgv) {
     },
     /**
-     * Gets executed after a worker process has exited.
-     * @param  {string} cid      capability id (e.g 0-0)
-     * @param  {number} exitCode 0 - success, 1 - fail
-     * @param  {object} specs    specs to be run in the worker process
-     * @param  {number} retries  number of retries used
+     * Виконується після завершення робочого процесу.
+     * @param  {string} cid      ідентифікатор можливості (наприклад, 0-0)
+     * @param  {number} exitCode 0 - успіх, 1 - невдача
+     * @param  {object} specs    спеки, які будуть запущені в робочому процесі
+     * @param  {number} retries  кількість використаних повторних спроб
      */
     onWorkerEnd: function (cid, exitCode, specs, retries) {
     },
     /**
-     * Gets executed before initializing the webdriver session and test framework. It allows you
-     * to manipulate configurations depending on the capability or spec.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that are to be run
+     * Виконується перед ініціалізацією сеансу webdriver і тестового фреймворку. Це дозволяє вам
+     * маніпулювати конфігураціями залежно від можливості або спека.
+     * @param {object} config об'єкт конфігурації wdio
+     * @param {Array.<Object>} capabilities список деталей можливостей
+     * @param {Array.<String>} specs Список шляхів до файлів спеків, які будуть запущені
      */
     beforeSession: function (config, capabilities, specs) {
     },
     /**
-     * Gets executed before test execution begins. At this point you can access to all global
-     * variables like `browser`. It is the perfect place to define custom commands.
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs        List of spec file paths that are to be run
-     * @param {object}         browser      instance of created browser/device session
+     * Виконується перед початком виконання тесту. У цей момент ви можете отримати доступ до всіх глобальних
+     * змінних, таких як `browser`. Це ідеальне місце для визначення користувацьких команд.
+     * @param {Array.<Object>} capabilities список деталей можливостей
+     * @param {Array.<String>} specs        Список шляхів до файлів спеків, які будуть запущені
+     * @param {object}         browser      екземпляр створеного сеансу браузера/пристрою
      */
     before: function (capabilities, specs, browser) {
     },
     /**
-     * Gets executed before the suite starts (in Mocha/Jasmine only).
-     * @param {object} suite suite details
+     * Виконується перед початком набору тестів (тільки в Mocha/Jasmine).
+     * @param {object} suite деталі набору тестів
      */
     beforeSuite: function (suite) {
     },
     /**
-     * This hook gets executed _before_ every hook within the suite starts.
-     * (For example, this runs before calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
+     * Цей хук виконується _перед_ кожним хуком у наборі тестів.
+     * (Наприклад, це виконується перед викликом `before`, `beforeEach`, `after`, `afterEach` в Mocha). У Cucumber `context` - це об'єкт World.
      *
      */
     beforeHook: function (test, context, hookName) {
     },
     /**
-     * Hook that gets executed _after_ every hook within the suite ends.
-     * (For example, this runs after calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
+     * Хук, який виконується _після_ кожного хука в наборі тестів.
+     * (Наприклад, це виконується після виклику `before`, `beforeEach`, `after`, `afterEach` в Mocha). У Cucumber `context` - це об'єкт World.
      */
     afterHook: function (test, context, { error, result, duration, passed, retries }, hookName) {
     },
     /**
-     * Function to be executed before a test (in Mocha/Jasmine only)
-     * @param {object} test    test object
-     * @param {object} context scope object the test was executed with
+     * Функція, яка виконується перед тестом (тільки в Mocha/Jasmine)
+     * @param {object} test    об'єкт тесту
+     * @param {object} context об'єкт області, в якій виконувався тест
      */
     beforeTest: function (test, context) {
     },
     /**
-     * Runs before a WebdriverIO command is executed.
-     * @param {string} commandName hook command name
-     * @param {Array} args arguments that the command would receive
+     * Виконується перед виконанням команди WebdriverIO.
+     * @param {string} commandName назва команди хука
+     * @param {Array} args аргументи, які отримає команда
      */
     beforeCommand: function (commandName, args) {
     },
     /**
-     * Runs after a WebdriverIO command gets executed
-     * @param {string} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     * @param {number} result 0 - command success, 1 - command error
-     * @param {object} error error object, if any
+     * Виконується після виконання команди WebdriverIO
+     * @param {string} commandName назва команди хука
+     * @param {Array} args аргументи, які отримала б команда
+     * @param {number} result 0 - успіх команди, 1 - помилка команди
+     * @param {object} error об'єкт помилки, якщо є
      */
     afterCommand: function (commandName, args, result, error) {
     },
     /**
-     * Function to be executed after a test (in Mocha/Jasmine only)
-     * @param {object}  test             test object
-     * @param {object}  context          scope object the test was executed with
-     * @param {Error}   result.error     error object in case the test fails, otherwise `undefined`
-     * @param {*}       result.result    return object of test function
-     * @param {number}  result.duration  duration of test
-     * @param {boolean} result.passed    true if test has passed, otherwise false
-     * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
+     * Функція, яка виконується після тесту (тільки в Mocha/Jasmine)
+     * @param {object}  test             об'єкт тесту
+     * @param {object}  context          об'єкт області, в якій виконувався тест
+     * @param {Error}   result.error     об'єкт помилки у випадку невдачі тесту, інакше `undefined`
+     * @param {*}       result.result    об'єкт повернення функції тесту
+     * @param {number}  result.duration  тривалість тесту
+     * @param {boolean} result.passed    true, якщо тест пройшов, інакше false
+     * @param {object}  result.retries   інформація про повторні спроби, пов'язані зі спеком, наприклад `{ attempts: 0, limit: 0 }`
      */
     afterTest: function (test, context, { error, result, duration, passed, retries }) {
     },
     /**
-     * Hook that gets executed after the suite has ended (in Mocha/Jasmine only).
-     * @param {object} suite suite details
+     * Хук, який виконується після завершення набору тестів (тільки в Mocha/Jasmine).
+     * @param {object} suite деталі набору тестів
      */
     afterSuite: function (suite) {
     },
     /**
-     * Gets executed after all tests are done. You still have access to all global variables from
-     * the test.
-     * @param {number} result 0 - test pass, 1 - test fail
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
+     * Виконується після завершення всіх тестів. У вас все ще є доступ до всіх глобальних змінних з
+     * тесту.
+     * @param {number} result 0 - тест пройшов, 1 - тест не пройшов
+     * @param {Array.<Object>} capabilities список деталей можливостей
+     * @param {Array.<String>} specs Список шляхів до файлів спеків, які були запущені
      */
     after: function (result, capabilities, specs) {
     },
     /**
-     * Gets executed right after terminating the webdriver session.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
+     * Виконується відразу після завершення сеансу webdriver.
+     * @param {object} config об'єкт конфігурації wdio
+     * @param {Array.<Object>} capabilities список деталей можливостей
+     * @param {Array.<String>} specs Список шляхів до файлів спеків, які були запущені
      */
     afterSession: function (config, capabilities, specs) {
     },
     /**
-     * Gets executed after all workers have shut down and the process is about to exit.
-     * An error thrown in the `onComplete` hook will result in the test run failing.
-     * @param {object} exitCode 0 - success, 1 - fail
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {<Object>} results object containing test results
+     * Виконується після того, як всі робочі процеси завершили роботу і процес майже завершується.
+     * Помилка, викликана в хуку `onComplete`, призведе до невдачі тестового запуску.
+     * @param {object} exitCode 0 - успіх, 1 - невдача
+     * @param {object} config об'єкт конфігурації wdio
+     * @param {Array.<Object>} capabilities список деталей можливостей
+     * @param {<Object>} results об'єкт, що містить результати тестів
      */
     onComplete: function (exitCode, config, capabilities, results) {
     },
     /**
-    * Gets executed when a refresh happens.
-    * @param {string} oldSessionId session ID of the old session
-    * @param {string} newSessionId session ID of the new session
+    * Виконується при оновленні.
+    * @param {string} oldSessionId ідентифікатор старого сеансу
+    * @param {string} newSessionId ідентифікатор нового сеансу
     */
     onReload: function(oldSessionId, newSessionId) {
     },
     /**
-     * Cucumber Hooks
+     * Хуки Cucumber
      *
-     * Runs before a Cucumber Feature.
-     * @param {string}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     * Виконується перед функцією Cucumber.
+     * @param {string}                   uri      шлях до файлу функції
+     * @param {GherkinDocument.IFeature} feature  об'єкт функції Cucumber
      */
     beforeFeature: function (uri, feature) {
     },
     /**
      *
-     * Runs before a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
-     * @param {object}                 context  Cucumber World object
+     * Виконується перед сценарієм Cucumber.
+     * @param {ITestCaseHookParameter} world    світовий об'єкт, що містить інформацію про pickle та тестовий крок
+     * @param {object}                 context  Об'єкт Cucumber World
      */
     beforeScenario: function (world, context) {
     },
     /**
      *
-     * Runs before a Cucumber Step.
-     * @param {Pickle.IPickleStep} step     step data
-     * @param {IPickle}            scenario scenario pickle
-     * @param {object}             context  Cucumber World object
+     * Виконується перед кроком Cucumber.
+     * @param {Pickle.IPickleStep} step     дані кроку
+     * @param {IPickle}            scenario pickle сценарію
+     * @param {object}             context  Об'єкт Cucumber World
      */
     beforeStep: function (step, scenario, context) {
     },
     /**
      *
-     * Runs after a Cucumber Step.
-     * @param {Pickle.IPickleStep} step             step data
-     * @param {IPickle}            scenario         scenario pickle
-     * @param {object}             result           results object containing scenario results
-     * @param {boolean}            result.passed    true if scenario has passed
-     * @param {string}             result.error     error stack if scenario failed
-     * @param {number}             result.duration  duration of scenario in milliseconds
-     * @param {object}             context          Cucumber World object
+     * Виконується після кроку Cucumber.
+     * @param {Pickle.IPickleStep} step             дані кроку
+     * @param {IPickle}            scenario         pickle сценарію
+     * @param {object}             result           об'єкт результатів, що містить результати сценарію
+     * @param {boolean}            result.passed    true, якщо сценарій пройшов
+     * @param {string}             result.error     стек помилок, якщо сценарій не пройшов
+     * @param {number}             result.duration  тривалість сценарію в мілісекундах
+     * @param {object}             context          Об'єкт Cucumber World
      */
     afterStep: function (step, scenario, result, context) {
     },
     /**
      *
-     * Runs after a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
-     * @param {object}                 result           results object containing scenario results `{passed: boolean, error: string, duration: number}`
-     * @param {boolean}                result.passed    true if scenario has passed
-     * @param {string}                 result.error     error stack if scenario failed
-     * @param {number}                 result.duration  duration of scenario in milliseconds
-     * @param {object}                 context          Cucumber World object
+     * Виконується після сценарію Cucumber.
+     * @param {ITestCaseHookParameter} world            світовий об'єкт, що містить інформацію про pickle та тестовий крок
+     * @param {object}                 result           об'єкт результатів, що містить результати сценарію `{passed: boolean, error: string, duration: number}`
+     * @param {boolean}                result.passed    true, якщо сценарій пройшов
+     * @param {string}                 result.error     стек помилок, якщо сценарій не пройшов
+     * @param {number}                 result.duration  тривалість сценарію в мілісекундах
+     * @param {object}                 context          Об'єкт Cucumber World
      */
     afterScenario: function (world, result, context) {
     },
     /**
      *
-     * Runs after a Cucumber Feature.
-     * @param {string}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     * Виконується після функції Cucumber.
+     * @param {string}                   uri      шлях до файлу функції
+     * @param {GherkinDocument.IFeature} feature  об'єкт функції Cucumber
      */
     afterFeature: function (uri, feature) {
     },
     /**
-     * Runs before a WebdriverIO assertion library makes an assertion.
-     * @param commandName command name
-     * @param args        arguments that command would receive
+     * Виконується перед тим, як бібліотека тверджень WebdriverIO робить твердження.
+     * @param commandName назва команди
+     * @param args        аргументи, які б отримала команда
      */
     beforeAssertion: function (params) {
     },
     /**
-     * Runs after a WebdriverIO command gets executed
-     * @param commandName  command name
-     * @param args         arguments that command would receive
-     * @param result       result of the command
-     * @param error        error in case something went wrong
+     * Виконується після виконання команди WebdriverIO
+     * @param commandName  назва команди
+     * @param args         аргументи, які б отримала команда
+     * @param result       результат команди
+     * @param error        помилка, якщо щось пішло не так
      */
     afterAssertion: function (params) {
     }
 }
 ```
 
-Ви також можете знайти файл з усіма можливими параметрами та варіаціями в [теці examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).
+Ви також можете знайти файл з усіма можливими опціями та варіаціями в [папці з прикладами](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).

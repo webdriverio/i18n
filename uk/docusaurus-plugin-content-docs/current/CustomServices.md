@@ -1,15 +1,15 @@
 ---
 id: customservices
-title: Custom Services
+title: Користувацькі Сервіси
 ---
 
-You can write your own custom service for the WDIO test runner to custom-fit your needs.
+Ви можете написати свій власний користувацький сервіс для тест-раннера WDIO, щоб адаптувати його під ваші потреби.
 
-Services are add-ons that are created for reusable logic to simplify tests, manage your test suite and integrate results. Services have access to all the same [hooks](/docs/configurationfile) available in the `wdio.conf.js`.
+Сервіси - це доповнення, які створені для багаторазової логіки, щоб спростити тести, керувати вашим набором тестів та інтегрувати результати. Сервіси мають доступ до всіх тих самих [хуків](/docs/configurationfile), які доступні в `wdio.conf.js`.
 
-There are two types of services that can be defined: a launcher service that only has access to the `onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete` hook which are only executed once per test run, and a worker service that has access to all other hooks and is being executed for each worker. Note that you can not share (global) variables between both types of services as worker services run in a different (worker) process.
+Існує два типи сервісів, які можна визначити: сервіс-запускач, який має доступ лише до хуків `onPrepare`, `onWorkerStart`, `onWorkerEnd` та `onComplete`, які виконуються лише один раз за тестовий запуск, та сервіс-робітник, який має доступ до всіх інших хуків і виконується для кожного робітника. Зауважте, що ви не можете ділитися (глобальними) змінними між обома типами сервісів, оскільки сервіси-робітники виконуються в іншому (робочому) процесі.
 
-A launcher service can be defined as follows:
+Сервіс-запускач можна визначити наступним чином:
 
 ```js
 export default class CustomLauncherService {
@@ -26,7 +26,7 @@ export default class CustomLauncherService {
 }
 ```
 
-Whereas a worker service should look like this:
+У той час як сервіс-робітник повинен виглядати так:
 
 ```js
 export default class CustomWorkerService {
@@ -70,7 +70,7 @@ export default class CustomWorkerService {
 }
 ```
 
-It is recommended to store the browser object through the passed in parameter in the constructor. Lastly expose both types of workers as following:
+Рекомендується зберігати об'єкт браузера через параметр, який передається в конструктор. Нарешті, представте обидва типи робітників наступним чином:
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-If you are using TypeScript and want to make sure that hook methods parameter are type safe, you can define your service class as follows:
+Якщо ви використовуєте TypeScript і хочете переконатися, що параметри методів хука типобезпечні, ви можете визначити свій клас сервісу наступним чином:
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -89,7 +89,7 @@ export default class CustomWorkerService implements Services.ServiceInstance {
     constructor (
         private _options: MyServiceOptions,
         private _capabilities: Capabilities.RemoteCapability,
-        private _config: Options.Testrunner
+        private _config: WebdriverIO.Config,
     ) {
         // ...
     }
@@ -98,9 +98,9 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## Service Error Handling
+## Обробка помилок сервісу
 
-An Error thrown during a service hook will be logged while the runner continues. If a hook in your service is critical to the setup or teardown of the test runner, the `SevereServiceError` exposed from the `webdriverio` package can be used to stop the runner.
+Помилка, що виникає під час хука сервісу, буде зареєстрована, а раннер продовжить роботу. Якщо хук у вашому сервісі є критичним для налаштування або завершення раннера тесту, можна використовувати `SevereServiceError`, який надається пакетом `webdriverio`, щоб зупинити раннер.
 
 ```js
 import { SevereServiceError } from 'webdriverio'
@@ -116,11 +116,11 @@ export default class CustomServiceLauncher {
 }
 ```
 
-## Import Service from Module
+## Імпорт сервісу з модуля
 
-The only thing to do now in order to use this service is to assign it to the `services` property.
+Єдине, що потрібно зробити зараз для використання цього сервісу, це призначити його властивості `services`.
 
-Modify your `wdio.conf.js` file to look like this:
+Змініть свій файл `wdio.conf.js`, щоб він виглядав так:
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -145,16 +145,16 @@ export const config = {
 }
 ```
 
-## Publish Service on NPM
+## Публікація сервісу на NPM
 
-To make services easier to consume and discover by the WebdriverIO community, please follow these recommendations:
+Щоб зробити сервіси легшими для використання та відкриття спільнотою WebdriverIO, дотримуйтеся цих рекомендацій:
 
-* Services should use this naming convention: `wdio-*-service`
-* Use NPM keywords: `wdio-plugin`, `wdio-service`
-* The `main` entry should `export` an instance of the service
-* Example services: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* Сервіси повинні використовувати таку конвенцію найменування: `wdio-*-service`
+* Використовуйте ключові слова NPM: `wdio-plugin`, `wdio-service`
+* Основний запис `main` повинен `export` екземпляр сервісу
+* Приклади сервісів: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-Following the recommended naming pattern allows services to be added by name:
+Дотримання рекомендованого шаблону найменування дозволяє додавати сервіси за назвою:
 
 ```js
 // Add wdio-custom-service
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### Add Published Service to WDIO CLI and Docs
+### Додавання опублікованого сервісу до CLI WDIO та документації
 
-We really appreciate every new plugin that could help other people run better tests! If you have created such a plugin, please consider adding it to our CLI and docs to make it easier to be found.
+Ми дуже цінуємо кожен новий плагін, який може допомогти іншим людям запускати кращі тести! Якщо ви створили такий плагін, будь ласка, розгляньте можливість додати його до нашого CLI та документації, щоб його було легше знайти.
 
-Please raise a pull request with the following changes:
+Будь ласка, створіть пул-реквест з наступними змінами:
 
-- add your service to the list of [supported services](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) in the CLI module
-- enhance the [service list](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) for adding your docs to the official Webdriver.io page
+- додайте ваш сервіс до списку [підтримуваних сервісів](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) у модулі CLI
+- розширте [список сервісів](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) для додавання вашої документації на офіційну сторінку Webdriver.io

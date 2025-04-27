@@ -1,24 +1,24 @@
 ---
 id: bestpractices
-title: Best Practices
+title: Найкращі практики
 ---
 
-# Best Practices
+# Найкращі практики
 
-This guide aims to share our best practices that help you write performant and resilient tests.
+Цей посібник має на меті поділитися нашими найкращими практиками, які допоможуть вам писати ефективні та стійкі тести.
 
-## Use resilient selectors
+## Використовуйте стійкі селектори
 
-Using selectors that are resilient to changes in the DOM, you'll have a less or even no tests failing when the for example a class is removed from an element.
+Використовуючи селектори, які стійкі до змін у DOM, ви отримаєте менше або навіть взагалі не матимете тестів, що не працюють, коли, наприклад, клас видаляється з елемента.
 
-Classes can be applied to multiple elements and should be avoided if possible unless you deliberately want to fetch all elements with that class.
+Класи можуть застосовуватися до кількох елементів, і їх слід уникати, якщо це можливо, якщо ви навмисно не хочете отримати всі елементи з цим класом.
 
 ```js
 // 👎
 await $('.button')
 ```
 
-All these selectors should return a single element.
+Усі ці селектори повинні повертати один елемент.
 
 ```js
 // 👍
@@ -27,79 +27,82 @@ await $('[test-id="submit-button"]')
 await $('#submit-button')
 ```
 
-__Note:__ To find out all the possible selectors WebdriverIO supports, checkout our [Selectors](./Selectors.md) page.
+__Примітка:__ Щоб дізнатися про всі можливі селектори, які підтримує WebdriverIO, перегляньте нашу сторінку [Selectors](./Selectors.md).
 
-## Limit the amount of element queries
+## Обмежте кількість запитів до елементів
 
-Every time you use the [`$`](https://webdriver.io/docs/api/browser/$) or [`$$`](https://webdriver.io/docs/api/browser/$$) command (this includes chaining them), WebdriverIO tries to locate the element in the DOM. These queries are expensive so you should try to limit them as much as possible.
+Кожного разу, коли ви використовуєте команду [`$`](https://webdriver.io/docs/api/browser/$) або [`$$`](https://webdriver.io/docs/api/browser/$$) (це включає їх ланцюжок), WebdriverIO намагається знайти елемент у DOM. Ці запити є дорогими, тому вам слід намагатися обмежити їх кількість.
 
-Queries three elements.
+Запитує три елементи.
 
 ```js
 // 👎
 await $('table').$('tr').$('td')
 ```
 
-Queries only one element.
+Запитує лише один елемент.
 
 ``` js
 // 👍
 await $('table tr td')
 ```
 
-The only time you should use chaining is when you want to combine different [selector strategies](https://webdriver.io/docs/selectors/#custom-selector-strategies). In the example we use the [Deep Selectors](https://webdriver.io/docs/selectors#deep-selectors), which is a strategy to go inside the shadow DOM of an element.
+Єдиний випадок, коли слід використовувати ланцюжок, — це коли ви хочете поєднати різні [стратегії селекторів](https://webdriver.io/docs/selectors/#custom-selector-strategies).
+У прикладі ми використовуємо [Deep Selectors](https://webdriver.io/docs/selectors#deep-selectors), це стратегія для входу в shadow DOM елемента.
 
 ``` js
 // 👍
 await $('custom-datepicker').$('#calendar').$('aria/Select')
 ```
 
-### Prefer locating a single element instead of taking one from a list
+### Віддавайте перевагу знаходженню одного елемента замість вибору одного зі списку
 
-It isn't always possible to do this but using CSS pseudo-classes like [:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child) you can match elements based on the indexes of the elements in the child list of their parents.
+Не завжди можливо це зробити, але за допомогою CSS-псевдокласів, таких як [:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child), ви можете зіставляти елементи на основі індексів елементів у дочірньому списку їхніх батьків.
 
-Queries all table rows.
+Запитує всі рядки таблиці.
 
 ```js
 // 👎
 await $$('table tr')[15]
 ```
 
-Queries a single table row.
+Запитує один рядок таблиці.
 
 ```js
 // 👍
 await $('table tr:nth-child(15)')
 ```
 
-## Use the built-in assertions
+## Використовуйте вбудовані твердження
 
-Don't use manual assertions that do not automatically wait for the results to match as this will cause for flaky tests.
+Не використовуйте ручні твердження, які не чекають автоматично, поки результати відповідатимуть, оскільки це призведе до нестабільних тестів.
 
 ```js
 // 👎
 expect(await button.isDisplayed()).toBe(true)
 ```
 
-By using the built-in assertions WebdriverIO will automatically wait for the actual result to match the expected result, resulting in resilient tests. It achieves this by automatically retrying the assertion until it passes or times out.
+Використовуючи вбудовані твердження, WebdriverIO автоматично чекатиме, поки фактичний результат відповідатиме очікуваному, що призведе до стійких тестів.
+Він досягає цього, автоматично повторюючи твердження, доки воно не пройде або не вичерпається час.
 
 ```js
 // 👍
 await expect(button).toBeDisplayed()
 ```
 
-## Lazy loading and promise chaining
+## Ліниве завантаження та ланцюжок обіцянок
 
-WebdriverIO has some tricks up it's sleeve when it comes to writing clean code as it can lazy load the element which allows you to chain your promises and reduces the amount of `await`. This also allows you to pass the element as a ChainablePromiseElement instead of an Element and for easier use with page objects.
+WebdriverIO має деякі трюки для написання чистого коду, оскільки він може ліниво завантажувати елемент, що дозволяє створювати ланцюжки обіцянок і зменшує кількість `await`. Це також дозволяє передавати елемент як ChainablePromiseElement замість Element для легшого використання з об'єктами сторінок.
 
-So when do you have to use `await`? You should always use `await` with the exception of the `$` and `$$` command.
+Отже, коли потрібно використовувати `await`?
+Ви завжди повинні використовувати `await`, за винятком команд `$` та `$$`.
 
 ```js
 // 👎
 const div = await $('div')
 const button = await div.$('button')
 await button.click()
-// or
+// або
 await (await (await $('div')).$('button')).click()
 ```
 
@@ -107,13 +110,13 @@ await (await (await $('div')).$('button')).click()
 // 👍
 const button = $('div').$('button')
 await button.click()
-// or
+// або
 await $('div').$('button').click()
 ```
 
-## Don't overuse commands and assertions
+## Не зловживайте командами та твердженнями
 
-When using expect.toBeDisplayed you implicitly also wait for the element to exist. There isn't a need to use the waitForXXX commands when you already have an assertion doing the same thing.
+Коли ви використовуєте expect.toBeDisplayed, ви неявно чекаєте, поки елемент існуватиме. Немає потреби використовувати команди waitForXXX, коли у вас вже є твердження, що робить те саме.
 
 ```js
 // 👎
@@ -128,7 +131,7 @@ await expect(button).toBeDisplayed()
 await expect(button).toBeDisplayed()
 ```
 
-No need to wait for an element to exist or be displayed when interacting or when asserting something like it's text unless the element can explicitly be invisible (opacity: 0 for example) or can explicitly be disabled (disabled attribute for example) in which case waiting for the element to be displayed makes sense.
+Немає потреби чекати, поки елемент існує або відображається при взаємодії або при твердженні чогось, наприклад, його тексту, якщо елемент не може бути явно невидимим (opacity: 0, наприклад) або бути явно вимкненим (атрибут disabled, наприклад), у такому випадку чекання, поки елемент відображатиметься, має сенс.
 
 ```js
 // 👎
@@ -152,17 +155,17 @@ await button.click()
 await expect(button).toHaveText('Submit')
 ```
 
-## Dynamic Tests
+## Динамічні тести
 
-Use environment variables to store dynamic test data e.g. secret credentials, within your environment rather than hard code them into the test. Head over to the [Parameterize Tests](parameterize-tests) page for more information on this topic.
+Використовуйте змінні середовища для зберігання динамічних тестових даних, наприклад, секретних облікових даних, у вашому середовищі замість жорсткого кодування їх у тесті. Перейдіть на сторінку [Parameterize Tests](parameterize-tests) для отримання додаткової інформації з цієї теми.
 
-## Lint your code
+## Проводьте статичний аналіз коду
 
-Using eslint to lint your code you can potentionally catch errors early, use our [linting rules](https://www.npmjs.com/package/eslint-plugin-wdio) to make sure that some of the best practices are always applied.
+Використовуючи eslint для аналізу вашого коду, ви потенційно можете виявити помилки на ранніх етапах. Використовуйте наші [правила лінтингу](https://www.npmjs.com/package/eslint-plugin-wdio), щоб переконатися, що деякі з найкращих практик завжди застосовуються.
 
-## Don't pause
+## Не використовуйте паузи
 
-It can be tempting to use the pause command but using this is a bad idea as it isn't resilient and will only cause for flaky tests in the long run.
+Може виникнути спокуса використати команду pause, але її використання — погана ідея, оскільки вона не є стійкою і в довгостроковій перспективі призведе лише до нестабільних тестів.
 
 ```js
 // 👎
@@ -176,15 +179,16 @@ await submitFormButton.waitForEnabled()
 await submitFormButton.click()
 ```
 
-## Async loops
+## Асинхронні цикли
 
-When you have some asynchronous code that you want to repeat, it is important to know that not all loops can do this. For example, the Array's forEach function does not allow for asynchronous callbacks as can be read over on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
+Коли у вас є асинхронний код, який ви хочете повторити, важливо знати, що не всі цикли можуть це зробити.
+Наприклад, функція forEach масивів не дозволяє асинхронні зворотні виклики, як можна прочитати на [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
 
-__Note:__ You can still use these when you do not need the operation to be synchronous like in shown in this example `console.log(await $$('h1').map((h1) => h1.getText()))`.
+__Примітка:__ Ви все ще можете використовувати їх, коли вам не потрібно, щоб операція була синхронною, як показано в цьому прикладі `console.log(await $$('h1').map((h1) => h1.getText()))`.
 
-Below are some examples of what this means.
+Нижче наведено кілька прикладів того, що це означає.
 
-The following will not work as asynchronous callback are not supported.
+Наступне не працюватиме, оскільки асинхронні зворотні виклики не підтримуються.
 
 ```js
 // 👎
@@ -194,7 +198,7 @@ characters.forEach(async (character) => {
 })
 ```
 
-The following will work.
+Наступне працюватиме.
 
 ```js
 // 👍
@@ -204,17 +208,17 @@ for (const character of characters) {
 }
 ```
 
-## Keep it simple
+## Зберігайте простоту
 
-Sometimes we see our users map data like text or values. This often isn't needed and is often a code smell, check the examples below why this is the case.
+Іноді ми бачимо, як наші користувачі відображають дані, такі як текст або значення. Це часто не потрібно і часто є ознакою поганого коду. Перевірте приклади нижче, чому це так.
 
 ```js
-// 👎 too complex, synchronous assertion, use the built-in assertions to prevent flaky tests
+// 👎 занадто складно, синхронне твердження, використовуйте вбудовані твердження, щоб запобігти нестабільним тестам
 const headerText = ['Products', 'Prices']
 const texts = await $$('th').map(e => e.getText());
 expect(texts).toBe(headerText)
 
-// 👎 too complex
+// 👎 занадто складно
 const headerText = ['Products', 'Prices']
 const columns = await $$('th');
 await expect(columns).toBeElementsArrayOfSize(2);
@@ -222,19 +226,19 @@ for (let i = 0; i < columns.length; i++) {
     await expect(columns[i]).toHaveText(headerText[i]);
 }
 
-// 👎 finds elements by their text but does not take into account the position of the elements
+// 👎 знаходить елементи за їхнім текстом, але не враховує положення елементів
 await expect($('th=Products')).toExist();
 await expect($('th=Prices')).toExist();
 ```
 
 ```js
-// 👍 use unique identifiers (often used for custom elements)
+// 👍 використовуйте унікальні ідентифікатори (часто використовуються для користувацьких елементів)
 await expect($('[data-testid="Products"]')).toHaveText('Products');
-// 👍 accessibility names (often used for native html elements)
+// 👍 імена доступності (часто використовуються для власних HTML-елементів)
 await expect($('aria/Product Prices')).toHaveText('Prices');
 ```
 
-Another thing we sometimes see is that simple things have an overcomplicated solution.
+Інша річ, яку ми іноді бачимо, — це коли прості речі мають занадто складне рішення.
 
 ```js
 // 👎
@@ -280,11 +284,11 @@ class BetterExample {
 }
 ```
 
-## Executing code in parallel
+## Виконання коду паралельно
 
-If you do not care about the order in which some code is ran you can utilise [`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) to speed up the execution.
+Якщо вам не важливий порядок виконання деякого коду, ви можете використовувати [`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all), щоб прискорити виконання.
 
-__Note:__ Since this makes the code harder to read you could abstract this away using a page object or a function, although you should also question if the benefit in performance is worth the cost of readability.
+__Примітка:__ Оскільки це ускладнює читання коду, ви можете абстрагуватися, використовуючи об'єкт сторінки або функцію, хоча вам також слід запитати, чи варта вигода в продуктивності витрат на читабельність.
 
 ```js
 // 👎
@@ -304,7 +308,7 @@ await submitFormButton.waitForEnabled()
 await submitFormButton.click()
 ```
 
-If abstracted away it could look something like below where the logic is put in a method called submitWithDataOf and the data is retrieved by the Person class.
+Якщо це абстраговано, це може виглядати приблизно так, де логіка розміщена в методі під назвою submitWithDataOf, а дані отримуються класом Person.
 
 ```js
 // 👍

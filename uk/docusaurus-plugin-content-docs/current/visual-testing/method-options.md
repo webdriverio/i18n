@@ -1,246 +1,246 @@
 ---
 id: method-options
-title: Method Options
+title: Опції методів
 ---
 
-Methods options are the options that can be set per [method](./methods). If the option has the same key as an option that has been set during the instantiation of the plugin, this method option will override the plugin option value.
+Опції методів - це опції, які можна встановити для кожного [методу](./methods). Якщо опція має той самий ключ, що й опція, яка була встановлена під час створення екземпляра плагіна, ця опція методу перевизначить значення опції плагіна.
 
-## Save Options
+## Опції збереження
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язково:** Ні
+-   **За замовчуванням:** `false`
+-   **Підтримується:** Веб, Гібридні додатки (Webview)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+Увімкнути/вимкнути "миготіння" курсора для всіх `input`, `textarea`, `[contenteditable]` в додатку. Якщо встановлено значення `true`, курсор буде встановлено як `transparent` перед знімком екрана
+і повернуто до початкового стану після завершення
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язково:** Ні
+-   **За замовчуванням:** `false`
+-   **Підтримується:** Веб, Гібридні додатки (Webview)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+Увімкнути/вимкнути всі CSS-анімації у додатку. Якщо встановлено значення `true`, всі анімації будуть вимкнені перед знімком екрана
+і повернуті до початкового стану після завершення
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web
+-   **Тип:** `boolean`
+-   **Обов'язково:** Ні
+-   **За замовчуванням:** `false`
+-   **Використовується з:** Усіма [методами](./methods)
+-   **Підтримується:** Веб
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+Це приховає весь текст на сторінці, щоб для порівняння використовувався лише макет. Приховування відбувається шляхом додавання стилю `'color': 'transparent !important'` до __кожного__ елемента.
 
-For the output see [Test Output](./test-output#enablelayouttesting)
+Приклад виводу див. [Test Output](./test-output#enablelayouttesting)
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+Використовуючи цей прапорець, кожен елемент, який містить текст (не лише `p, h1, h2, h3, h4, h5, h6, span, a, li`, але також `div|button|..`), отримає цю властивість. __Немає__ опцій для налаштування цього.
 :::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язково:** Ні
+-   **За замовчуванням:** `true`
+-   **Використовується з:** Усіма [методами](./methods)
+-   **Підтримується:** Веб, Гібридні додатки (Webview)
 
-Hide scrollbar(s) in the application. If set to true all scrollbar(s) will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
+Приховати смуги прокрутки в додатку. Якщо встановлено значення true, всі смуги прокрутки будуть вимкнені перед знімком екрана. За замовчуванням встановлено `true`, щоб запобігти додатковим проблемам.
 
 ### `hideElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `array`
+-   **Обов'язково:** ні
+-   **Використовується з:** Усіма [методами](./methods)
+-   **Підтримується:** Веб, Гібридні додатки (Webview), Нативні додатки
 
-This method can hide 1 or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
+Цей метод може приховати один або кілька елементів, додавши властивість `visibility: hidden` до них, надавши масив елементів.
 
 ### `removeElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `array`
+-   **Обов'язково:** ні
+-   **Використовується з:** Усіма [методами](./methods)
+-   **Підтримується:** Веб, Гібридні додатки (Webview), Нативні додатки
 
-This method can _remove_ 1 or multiple elements by adding the property `display: none` to them by providing an array of elements.
+Цей метод може _видалити_ один або кілька елементів, додавши властивість `display: none` до них, надавши масив елементів.
 
 ### `resizeDimensions`
 
-- **Type:** `object`
-- **Mandatory:** no
-- **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Used with:** Only for [`saveElement`](./methods#saveelement) or [`checkElement`](./methods#checkelement)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `object`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **Використовується з:** Тільки для [`saveElement`](./methods#saveelement) або [`checkElement`](./methods#checkelement)
+-   **Підтримується:** Веб, Гібридні додатки (Webview), Нативні додатки
 
-An object that needs to hold a `top`, `right`, `bottom` and `left` amount of pixels that need to make the element cutout bigger.
+Об'єкт, який повинен містити кількість пікселів `top`, `right`, `bottom` і `left`, які потрібні для збільшення вирізаного елемента.
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **Тип:** `number`
+-   **Обов'язково:** Ні
+-   **За замовчуванням:** `1500`
+-   **Використовується з:** Тільки для [`saveFullPageScreen`](./methods#savefullpagescreen) або [`saveTabbablePage`](./methods#savetabbablepage)
+-   **Підтримується:** Веб
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+Тайм-аут у мілісекундах для очікування після прокрутки. Це може допомогти ідентифікувати сторінки з лінивим завантаженням.
 
 ### `hideAfterFirstScroll`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **Тип:** `array`
+-   **Обов'язково:** ні
+-   **Використовується з:** Тільки для [`saveFullPageScreen`](./methods#savefullpagescreen) або [`saveTabbablePage`](./methods#savetabbablepage)
+-   **Підтримується:** Веб
 
-This method will hide one or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
-This will be handy when a page for example holds sticky elements that will scroll with the page if the page is scrolled but will give an annoying effect when a full-page screenshot is made
+Цей метод приховає один або кілька елементів, додавши властивість `visibility: hidden` до них, надавши масив елементів.
+Це буде зручно, коли сторінка, наприклад, містить фіксовані елементи, які прокручуються разом зі сторінкою при прокрутці, але створюють неприємний ефект при знімку всієї сторінки
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язково:** Ні
+-   **За замовчуванням:** `true`
+-   **Використовується з:** Усіма [методами](./methods)
+-   **Підтримується:** Веб, Гібридні додатки (Webview)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+Шрифти, включаючи сторонні шрифти, можуть завантажуватися синхронно або асинхронно. Асинхронне завантаження означає, що шрифти можуть завантажитися після того, як WebdriverIO визначить, що сторінка повністю завантажена. Щоб запобігти проблемам рендерингу шрифтів, цей модуль за замовчуванням чекатиме завантаження всіх шрифтів перед знімком екрана.
 
-## Compare (Check) Options
+## Опції порівняння (перевірки)
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+Опції порівняння - це опції, які впливають на спосіб виконання порівняння за допомогою [ResembleJS](https://github.com/Huddle/Resemble.js).
 
-:::info NOTE
+:::info ПРИМІТКА
 
-- All options from the [Save Options](#save-options) can be used for the Compare methods
-- All compare options can be used during service instantiation **or** for every single check method. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
-- All options can be used for:
-  - Web
-  - Hybrid App
-  - Native App
+-   Всі опції з [Опцій збереження](#опції-збереження) можуть бути використані для методів порівняння
+-   Всі опції порівняння можуть бути використані під час створення екземпляра сервісу __або__ для кожного окремого методу перевірки. Якщо опція методу має той самий ключ, що й опція, яка була встановлена під час створення екземпляра сервісу, то опція порівняння методу перевизначить значення опції порівняння сервісу.
+- Всі опції можуть бути використані для:
+    - Веб
+    - Гібридних додатків
+    - Нативних додатків
 
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
 
-Compare images and discard alpha.
+Порівнювати зображення та ігнорувати альфа-канал.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. This is **iPad only**_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `true`
+-   **Обов'язково:** ні
+-   **Примітка:** _Може використовуватися тільки для `checkScreen()`. Це **тільки для iPad**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+Автоматично блокувати бічну панель для iPad в альбомному режимі під час порівнянь. Це запобігає помилкам на нативному компоненті вкладки/приватності/закладок.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `true`
+-   **Обов'язково:** ні
+-   **Примітка:** _Це **тільки для мобільних пристроїв**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+Автоматично блокувати рядок стану та адресну панель під час порівнянь. Це запобігає помилкам щодо часу, Wi-Fi або стану батареї.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `true`
+-   **Обов'язково:** ні
+-   **Примітка:** _Це **тільки для мобільних пристроїв**_
 
-Automatically block out the toolbar.
+Автоматично блокувати панель інструментів.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
 
-Compare images and discard anti-aliasing.
+Порівнювати зображення та ігнорувати згладжування.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
 
-Even though the images are in color, the comparison will compare 2 black/white images
+Навіть якщо зображення кольорові, порівняння буде порівнювати 2 чорно-білі зображення
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+Порівнювати зображення з параметрами `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+Порівнювати зображення з параметрами `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+Якщо true, відсоток повернення буде як `0.12345678`, за замовчуванням - `0.12`
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
 
-This will return all compare data, not only the mismatch percentage
+Це поверне всі дані порівняння, а не лише відсоток невідповідності
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **Тип:** `number`
+-   **За замовчуванням:** `0`
+-   **Обов'язково:** ні
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+Допустиме значення `misMatchPercentage`, яке запобігає збереженню зображень з відмінностями
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **Тип:** `number`
+-   **За замовчуванням:** `0`
+-   **Обов'язково:** ні
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+Порівняння великих зображень може призвести до проблем з продуктивністю.
+При вказанні кількості пікселів (більше 0), алгоритм порівняння пропускає пікселі, коли ширина або висота зображення більша за `largeImageThreshold` пікселів.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+Масштабує 2 зображення до однакового розміру перед виконанням порівняння. Наполегливо рекомендується увімкнути `ignoreAntialiasing` та `ignoreAlpha`
 
-## Folder options
+## Опції папок
 
-The baseline folder and screenshot folders(actual, diff) are options that can be set during the instantiation of the plugin or method. To set the folder options on a particular method, pass in folder options to the methods option object. This can be used for:
+Основна папка та папки знімків екрана (actual, diff) - це опції, які можна встановити під час створення екземпляру плагіна або методу. Щоб встановити опції папок для конкретного методу, передайте опції папок до об'єкта опцій методу. Це можна використовувати для:
 
-- Web
-- Hybrid App
-- Native App
+- Веб
+- Гібридних додатків
+- Нативних додатків
 
 ```ts
 import path from 'node:path'
@@ -251,7 +251,7 @@ const methodOptions = {
     diffFolder: path.join(process.cwd(), 'customDiff'),
 }
 
-// You can use this for all methods
+// Ви можете використовувати це для всіх методів
 await expect(
     await browser.checkFullPageScreen("checkFullPage", methodOptions)
 ).toEqual(0)
@@ -259,21 +259,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **Тип:** `string`
+-   **Обов'язково:** ні
 
-Folder for the snapshot that has been captured in the test.
+Папка для знімка, який був зроблений під час тесту.
 
 ### `baselineFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **Тип:** `string`
+-   **Обов'язково:** ні
 
-Folder for the baseline image that is being used to compare against.
+Папка для базового зображення, яке використовується для порівняння.
 
 ### `diffFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **Тип:** `string`
+-   **Обов'язково:** ні
 
-Folder for the image difference rendered by ResembleJS.
+Папка для різниці зображень, яку створює ResembleJS.

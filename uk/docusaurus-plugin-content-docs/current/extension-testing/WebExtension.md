@@ -1,23 +1,23 @@
 ---
 id: web-extensions
-title: Тестування веброзширень
+title: Тестування веб-розширень
 ---
 
-WebdriverIO — ідеальний інструмент для автоматизації браузера. Веброзширення є частиною браузера і можуть бути автоматизовані таким же чином. Незалежно від того, чи ваше веброзширення запускає JavaScript на відкритих вебсайтах, чи відкриває власне виринаюче вікно, ви можете створити для цього e2e тест за допомогою WebdriverIO.
+WebdriverIO є ідеальним інструментом для автоматизації роботи з браузером. Веб-розширення є частиною браузера і можуть бути автоматизовані таким же чином. Коли ваше веб-розширення використовує content scripts для запуску JavaScript на веб-сайтах або пропонує спливаюче вікно, ви можете запустити e2e тест для цього за допомогою WebdriverIO.
 
-## Завантаження веброзширення в браузер
+## Завантаження веб-розширення в браузер
 
-Для початку нам потрібно завантажити розширення, яке будемо тестувати, у браузер під час початку сесії. Це відбуватиметься по-різному для Chrome і Firefox.
+Першим кроком ми повинні завантажити розширення, яке тестується, в браузер як частину нашої сесії. Це працює по-різному для Chrome і Firefox.
 
 :::info
 
-У цьому документі не згадуються веброзширення для Safari, оскільки їхня реалізація значно відстає від стандартів, а попит користувачів невисокий. Якщо ви створюєте веброзширення для Safari, будь ласка [створіть issue у GitHub](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) і допоможіть нам додати підтримку у WebdriverIO.
+У цій документації не розглядаються веб-розширення для Safari, оскільки їх підтримка значно відстає, а попит користувачів невисокий. Якщо ви розробляєте веб-розширення для Safari, будь ласка, [створіть issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) і співпрацюйте над включенням його сюди.
 
 :::
 
 ### Chrome
 
-Завантажити веброзширення в Chrome можна, вказавши вміст скомпільованого `.crx` файлу, як рядок у `base64` форматі, або вказавши шлях до теки із веброзширенням. Найпростіше буде зробити останнє, визначивши ваші параметри Chrome таким чином:
+Завантаження веб-розширення в Chrome можна здійснити шляхом надання рядка `base64` закодованого файлу `crx` або шляхом надання шляху до папки веб-розширення. Найпростіше це зробити, визначивши можливості Chrome наступним чином:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -30,8 +30,8 @@ export const config = {
     capabilities: [{
         browserName,
         'goog:chromeOptions': {
-            // given your wdio.conf.js is in the root directory and your compiled
-            // web extension files are located in the `./dist` folder
+            // враховуючи, що ваш wdio.conf.js знаходиться в кореневому каталозі, а скомпільовані
+            // файли веб-розширення розташовані в папці `./dist`
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -40,11 +40,11 @@ export const config = {
 
 :::info
 
-Якщо ви автоматизуєте інший вебпереглядач, ніж Chrome, наприклад, Brave, Edge або Opera, є ймовірність, що опція буде збігатися із наведеним вище прикладом, просто використайте назву для параметра відповідно для браузера параметрів, наприклад `ms:edgeOptions` для Edge.
+Якщо ви автоматизуєте інший браузер, ніж Chrome, наприклад, Brave, Edge або Opera, ймовірно, що опції браузера співпадають з прикладом вище, лише використовуючи іншу назву можливості, наприклад, `ms:edgeOptions`.
 
 :::
 
-Якщо ви скомпілюєте своє розширення як файл `.crx`, використовуючи, наприклад, NPM пакунок [crx](https://www.npmjs.com/package/crx), ви також можете додати розширення за допомогою наступних параметрів:
+Якщо ви компілюєте своє розширення як файл `.crx`, використовуючи, наприклад, NPM-пакет [crx](https://www.npmjs.com/package/crx), ви також можете підключити зібране розширення через:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +67,7 @@ export const config = {
 
 ### Firefox
 
-Щоб створити профіль Firefox із розширеннями, ви можете скористатися [Службою профілів Firefox](/docs/firefox-profile-service), щоб налаштувати відповідно налаштувати сесію. Однак у вас можуть виникнути проблема, що ваше локально розроблене розширення не може бути встановлено через проблеми із підписом. У цьому випадку ви можете встановити розширення за допомогою хуку `before` використовуючи команду [`installAddOn`](/docs/api/gecko#installaddon), наприклад:
+Щоб створити профіль Firefox, який включає розширення, ви можете використовувати [Firefox Profile Service](/docs/firefox-profile-service) для відповідного налаштування вашої сесії. Однак ви можете зіткнутися з проблемами, коли ваше локально розроблене розширення не може бути завантажене через проблеми з підписом. У цьому випадку ви також можете завантажити розширення в хуку `before` за допомогою команди [`installAddOn`](/docs/api/gecko#installaddon), наприклад:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,21 +88,21 @@ export const config = {
 }
 ```
 
-Щоб створити файл `.xpi`, рекомендується використовувати NPM пакунок [`web-ext`](https://www.npmjs.com/package/web-ext). Ви можете зібрати своє розширення за допомогою такої команди:
+Для створення файлу `.xpi` рекомендується використовувати NPM-пакет [`web-ext`](https://www.npmjs.com/package/web-ext). Ви можете зібрати своє розширення за допомогою наступної команди:
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
-## Tips & Tricks
+## Поради та хитрощі
 
-The following section contains a set useful tips and tricks that can be helpful when testing a web extension.
+Наступний розділ містить набір корисних порад, які можуть допомогти при тестуванні веб-розширення.
 
-### Test Popup Modal in Chrome
+### Тестування спливаючого вікна в Chrome
 
-If you define a `default_popup` browser action entry in your [extension manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) you can test that HTML page directly, since clicking on the extension icon in the browser top bar won't work. Instead, you have to open the popup html file directly.
+Якщо ви визначаєте запис `default_popup` в розділі browser action у [маніфесті розширення](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action), ви можете тестувати цю HTML-сторінку безпосередньо, оскільки клацання на іконці розширення в верхній панелі браузера не спрацює. Замість цього вам потрібно відкрити файл popup html напряму.
 
-In Chrome this works by retrieving the extension ID and opening the popup page through `browser.url('...')`. The behavior on that page will be the same as within the popup. To do so we recommend to write the following custom command:
+У Chrome це працює шляхом отримання ID розширення та відкриття спливаючої сторінки через `browser.url('...')`. Поведінка на цій сторінці буде такою ж, як і в спливаючому вікні. Для цього ми рекомендуємо написати наступну користувацьку команду:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -134,7 +134,7 @@ declare global {
 }
 ```
 
-In your `wdio.conf.js` you can import this file and register the custom command in your `before` hook, e.g.:
+У вашому `wdio.conf.js` ви можете імпортувати цей файл і зареєструвати користувацьку команду у вашому хуку `before`, наприклад:
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'
@@ -149,7 +149,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Now, in your test, you can access the popup page via:
+Тепер у вашому тесті ви можете отримати доступ до спливаючої сторінки через:
 
 ```ts
 await browser.openExtensionPopup('My Web Extension')

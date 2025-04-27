@@ -1,15 +1,15 @@
 ---
 id: debugging
-title: Debugging
+title: Відлагодження
 ---
 
-Debugging is significantly more difficult when several processes spawn dozens of tests in multiple browsers.
+Відлагодження значно ускладнюється, коли кілька процесів запускають десятки тестів у багатьох браузерах.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_bw_VWn5IzU" frameborder="0" allowFullScreen></iframe>
 
-For starters, it is extremely helpful to limit parallelism by setting `maxInstances` to `1`, and targeting only those specs and browsers that need to be debugged.
+Для початку, надзвичайно корисно обмежити паралелізм, встановивши `maxInstances` на `1`, і націлюватися лише на ті специфікації та браузери, які потрібно відлагоджувати.
 
-In `wdio.conf`:
+У `wdio.conf`:
 
 ```js
 export const config = {
@@ -25,15 +25,15 @@ export const config = {
 }
 ```
 
-## The Debug Command
+## Команда Debug
 
-In many cases, you can use [`browser.debug()`](/docs/api/browser/debug) to pause your test and inspect the browser.
+У багатьох випадках ви можете використовувати [`browser.debug()`](/docs/api/browser/debug), щоб призупинити тест і перевірити браузер.
 
-Your command line interface will also switch into REPL mode. This mode allows you to fiddle around with commands and elements on the page. In REPL mode, you can access the `browser` object&mdash;or `$` and `$$` functions&mdash;like you can in your tests.
+Інтерфейс командного рядка також перейде в режим REPL. Цей режим дозволяє експериментувати з командами та елементами на сторінці. У режимі REPL ви можете отримати доступ до об'єкта `browser`&mdash;або функцій `$` та `$$`&mdash;так само, як у тестах.
 
-When using `browser.debug()`, you will likely need to increase the timeout of the test runner to prevent the test runner from failing the test for taking to long.  For example:
+При використанні `browser.debug()` вам, ймовірно, знадобиться збільшити час очікування тест-ранера, щоб запобігти провалу тесту через занадто довге виконання. Наприклад:
 
-In `wdio.conf`:
+У `wdio.conf`:
 
 ```js
 jasmineOpts: {
@@ -41,14 +41,14 @@ jasmineOpts: {
 }
 ```
 
-See [timeouts](timeouts) for more information on how to do that using other frameworks.
+Перегляньте [timeouts](timeouts) для отримання додаткової інформації про те, як це зробити з використанням інших фреймворків.
 
-To proceed with the tests after debugging, in the shell use `^C` shortcut or the `.exit` command.
-## Dynamic configuration
+Щоб продовжити тести після відлагодження, у командній оболонці використовуйте комбінацію клавіш `^C` або команду `.exit`.
+## Динамічна конфігурація
 
-Note that `wdio.conf.js` can contain Javascript. Since you probably do not want to permanently change your timeout value to 1 day, it can be often helpful to change these settings from the command line using an environment variable.
+Зауважте, що `wdio.conf.js` може містити JavaScript. Оскільки ви, ймовірно, не хочете постійно змінювати значення таймауту на 1 день, часто буває корисно змінювати ці налаштування з командного рядка, використовуючи змінну середовища.
 
-Using this technique, you can dynamically change the configuration:
+Використовуючи цю техніку, ви можете динамічно змінювати конфігурацію:
 
 ```js
 const debug = process.env.DEBUG
@@ -68,33 +68,33 @@ export const config = {
 }
 ```
 
-You can then prefix the `wdio` command with the `debug` flag:
+Потім ви можете додати префікс `debug` до команди `wdio`:
 
 ```
 $ DEBUG=true npx wdio wdio.conf.js --spec ./tests/e2e/myspec.test.js
 ```
 
-...and debug your spec file with the DevTools!
+...і відлагоджувати файл специфікації за допомогою DevTools!
 
-## Debugging with Visual Studio Code (VSCode)
+## Відлагодження з Visual Studio Code (VSCode)
 
-If you want to debug your tests with breakpoints in latest VSCode, you have two options for starting the debugger of which option 1 is the easiest method:
- 1. automatically attaching the debugger
- 2. attaching the debugger using a configuration file
+Якщо ви хочете відлагоджувати свої тести з точками зупинки в останній версії VSCode, у вас є два варіанти запуску відладчика, з яких варіант 1 є найпростішим методом:
+ 1. автоматичне приєднання відладчика
+ 2. приєднання відладчика за допомогою файлу конфігурації
 
 ### VSCode Toggle Auto Attach
 
-You can automatically attach the debugger by following these steps in VSCode:
- - Press CMD + Shift + P (Linux and Macos) or CTRL + Shift + P (Windows)
- - Type "attach" into the input field
- - Select "Debug: Toggle Auto Attach"
- - Select "Only With Flag"
+Ви можете автоматично приєднати відладчик, виконавши ці кроки у VSCode:
+ - Натисніть CMD + Shift + P (Linux та MacOS) або CTRL + Shift + P (Windows)
+ - Введіть "attach" у поле вводу
+ - Виберіть "Debug: Toggle Auto Attach"
+ - Виберіть "Only With Flag"
 
- That's it! Now when you run your tests (remember you will need the --inspect flag set in your config as shown earlier) it will automatically start the debugger and stop on the first breakpoint that it reaches.
+ Це все! Тепер, коли ви запускаєте свої тести (пам'ятайте, що вам потрібно встановити прапор --inspect у вашій конфігурації, як показано раніше), він автоматично запустить відладчик і зупиниться на першій точці зупинки, яку він досягне.
 
-### VSCode Configuration file
+### Файл конфігурації VSCode
 
-It's possible to run all or selected spec file(s). Debug configuration(s) have to be added to `.vscode/launch.json`, to debug selected spec add the following config:
+Можливо запускати всі або вибрані файли специфікацій. Конфігурацію(ї) відлагодження потрібно додати до `.vscode/launch.json`, щоб відлагоджувати обрану специфікацію, додайте наступну конфігурацію:
 ```
 {
     "name": "run select spec",
@@ -113,47 +113,51 @@ It's possible to run all or selected spec file(s). Debug configuration(s) have t
 },
 ```
 
-To run all spec files remove `"--spec", "${file}"` from `"args"`
+Щоб запустити всі файли специфікацій, видаліть `"--spec", "${file}"` з `"args"`
 
-Example: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
+Приклад: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
 
-Additional info: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+Додаткова інформація: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 
-## Dynamic Repl with Atom
+## Динамічний Repl з Atom
 
-If you are an [Atom](https://atom.io/) hacker you can try [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) by [@kurtharriger](https://github.com/kurtharriger) which is a dynamic repl that allows you to execute single code lines in Atom. Watch [this](https://www.youtube.com/watch?v=kdM05ChhLQE) YouTube video to see a demo.
+Якщо ви користуєтесь [Atom](https://atom.io/), ви можете спробувати [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) від [@kurtharriger](https://github.com/kurtharriger), який є динамічним repl, що дозволяє виконувати окремі рядки коду в Atom. Перегляньте [це](https://www.youtube.com/watch?v=kdM05ChhLQE) відео на YouTube, щоб побачити демонстрацію.
 
-## Debugging with WebStorm / Intellij
-You can create a node.js debug configuration like this: ![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png) Watch this [YouTube Video](https://www.youtube.com/watch?v=Qcqnmle6Wu8) for more information about how to make a configuration.
+## Відлагодження з WebStorm / Intellij
+Ви можете створити конфігурацію відлагодження node.js ось так:
+![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png)
+Перегляньте це [відео на YouTube](https://www.youtube.com/watch?v=Qcqnmle6Wu8) для отримання додаткової інформації про те, як створити конфігурацію.
 
-## Debugging flaky tests
+## Відлагодження нестабільних тестів
 
-Flaky tests can be really hard to debug so here are some tips how you can try and get that flaky result you got in your CI, reproduced locally.
+Нестабільні тести може бути справді важко відлагодити, тому ось кілька порад, як ви можете спробувати відтворити локально ті нестабільні результати, які ви отримали у вашому CI.
 
-### Network
-To debug network related flakiness use the [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) command.
+### Мережа
+Для відлагодження нестабільності, пов'язаної з мережею, використовуйте команду [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork).
 ```js
 await browser.throttleNetwork('Regular3G')
 ```
 
-### Rendering speed
-To debug device speed related flakiness use the [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) command. This will cause your pages to render slower which can be caused by many things like running multiple processes in your CI which could be slowing down your tests.
+### Швидкість рендерингу
+Для відлагодження нестабільності, пов'язаної зі швидкістю пристрою, використовуйте команду [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU).
+Це призведе до повільнішого рендерингу ваших сторінок, що може бути спричинено багатьма факторами, наприклад, запуском кількох процесів у вашому CI, що може уповільнювати ваші тести.
 ```js
 await browser.throttleCPU(4)
 ```
 
-### Test execution speed
+### Швидкість виконання тестів
 
-If your tests do not seem to be affected it is possible that WebdriverIO is faster than the update from the frontend framework / browser. This happens when using synchronous assertions since WebdriverIO has no chance to retry these assertions anymore. Some examples of code that can break because of this:
+Якщо ваші тести не здаються ураженими, можливо, WebdriverIO швидший за оновлення з фронтенд-фреймворка / браузера. Це відбувається при використанні синхронних тверджень, оскільки WebdriverIO не має можливості повторно перевірити ці твердження. Деякі приклади коду, який може зламатися через це:
 ```js
-expect(elementList.length).toEqual(7) // list might not be populated at the time of the assertion
-expect(await elem.getText()).toEqual('this button was clicked 3 times') // text might not be updated yet at the time of assertion resulting in an error ("this button was clicked 2 times" does not match the expected "this button was clicked 3 times")
-expect(await elem.isDisplayed()).toBe(true) // might not be displayed yet
+expect(elementList.length).toEqual(7) // список може не бути заповнений на момент твердження
+expect(await elem.getText()).toEqual('this button was clicked 3 times') // текст може ще не оновитися на момент твердження, що призведе до помилки ("this button was clicked 2 times" не відповідає очікуваному "this button was clicked 3 times")
+expect(await elem.isDisplayed()).toBe(true) // може ще не відображатися
 ```
-To resolve this problem, asynchronous assertions should be used instead. The above examples would looks like this:
+Для вирішення цієї проблеми слід використовувати асинхронні твердження. Наведені вище приклади будуть виглядати так:
 ```js
 await expect(elementList).toBeElementsArrayOfSize(7)
 await expect(elem).toHaveText('this button was clicked 3 times')
 await expect(elem).toBeDisplayed()
 ```
-Using these assertions, WebdriverIO will automatically wait until the condition matches. When asserting text this means that the element needs to exist and the text needs to be equal to the expected value. We talk more about this in our [Best Practices Guide](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).
+Використовуючи ці твердження, WebdriverIO автоматично чекатиме, поки умова не співпаде. При перевірці тексту це означає, що елемент повинен існувати і текст повинен бути рівним очікуваному значенню.
+Ми більше говоримо про це в нашому [Посібнику з найкращих практик](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).

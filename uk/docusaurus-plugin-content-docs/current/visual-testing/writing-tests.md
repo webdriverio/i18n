@@ -1,31 +1,29 @@
 ---
 id: writing-tests
-title: Writing Tests
+title: Написання тестів
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Testrunner Framework Support
+## Підтримка Testrunner-фреймворків
 
-`@wdio/visual-service` is test-runner framework agnostic, which means that you can use it with all the frameworks WebdriverIO supports like:
+`@wdio/visual-service` не залежить від конкретного тест-фреймворку, що означає, що ви можете використовувати його з усіма фреймворками, які підтримує WebdriverIO, такими як:
 
-- [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
-- [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
-- [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
+-   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
+-   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
+-   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-Within your tests, you can _save_ screenshots or match the current visual state of your application under test with a baseline. For that, the service provides [custom matcher](/docs/api/expect-webdriverio#visual-matcher), as well as _check_ methods:
+В межах ваших тестів ви можете _зберігати_ скріншоти або порівнювати поточний візуальний стан вашого додатка з базовим зображенням. Для цього сервіс надає [власний матчер](/docs/api/expect-webdriverio#visual-matcher), а також методи _перевірки_:
 
 <Tabs
-defaultValue="mocha"
-values={[
-{label: 'Mocha', value: 'mocha'},
-{label: 'Jasmine', value: 'jasmine'},
-{label: 'CucumberJS', value: 'cucumberjs'},
-]}
-
+    defaultValue="mocha"
+    values={[
+        {label: 'Mocha', value: 'mocha'},
+        {label: 'Jasmine', value: 'jasmine'},
+        {label: 'CucumberJS', value: 'cucumberjs'},
+    ]}
 >
-
 <TabItem value="mocha">
 
 ```ts
@@ -347,9 +345,9 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 </TabItem>
 </Tabs>
 
-:::note IMPORTANT
+:::note ВАЖЛИВО
 
-This service provides `save` and `check` methods. If you run your tests for the first time you **SHOULD NOT** combine `save` and `compare` methods, the `check`-methods will automatically create a baseline image for you
+Цей сервіс надає методи `save` і `check`. Якщо ви запускаєте тести вперше, **НЕ СЛІД** комбінувати методи `save` і `compare`, методи `check` автоматично створять для вас базове зображення
 
 ```sh
 #####################################################################################
@@ -359,7 +357,8 @@ This service provides `save` and `check` methods. If you run your tests for the 
 #####################################################################################
 ```
 
-When you've [disabled to automatically save baseline images](service-options#autosavebaseline), the Promise will be rejected with the following warning.
+
+Коли ви [вимкнули автоматичне збереження базових зображень](service-options#autosavebaseline), Promise буде відхилено з наступним попередженням.
 
 ```sh
 #####################################################################################
@@ -369,6 +368,6 @@ When you've [disabled to automatically save baseline images](service-options#aut
 #####################################################################################
 ```
 
-This means that the current screenshot is saved in the actual folder and you **manually need to copy it to your baseline**. If you instantiate `@wdio/visual-service` with [`autoSaveBaseline: true`](./service-options#autosavebaseline) the image will automatically be saved into the baseline folder.
+Це означає, що поточний скріншот збережено в папці actual, і ви **повинні вручну скопіювати його в базову папку**. Якщо ви ініціалізуєте `@wdio/visual-service` з [`autoSaveBaseline: true`](./service-options#autosavebaseline), зображення буде автоматично збережено в базовій папці.
 
 :::

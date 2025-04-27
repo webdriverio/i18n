@@ -1,116 +1,130 @@
 ---
 id: configuration
-title: Configuration
+title: Конфігурація
 ---
 
-Based on the [setup type](/docs/setuptypes) (e.g. using the raw protocol bindings, WebdriverIO as standalone package or the WDIO testrunner) there is a different set of options available to control the environment.
+Залежно від [типу налаштування](/docs/setuptypes) (наприклад, використання необроблених прив'язок протоколу, WebdriverIO як окремого пакету чи тестраннера WDIO) доступний різний набір опцій для керування середовищем.
 
-## WebDriver Options
+## Опції WebDriver
 
-The following options are defined when using the [`webdriver`](https://www.npmjs.com/package/webdriver) protocol package:
+Наступні опції визначаються при використанні пакету протоколу [`webdriver`](https://www.npmjs.com/package/webdriver):
 
 ### protocol
 
-Protocol to use when communicating with the driver server.
+Протокол для комунікації з сервером драйвера.
 
-Type: `String`<br /> Default: `http`
+Тип: `String`<br />
+За замовчуванням: `http`
 
 ### hostname
 
-Host of your driver server.
+Хост вашого сервера драйвера.
 
-Type: `String`<br /> Default: `0.0.0.0`
+Тип: `String`<br />
+За замовчуванням: `0.0.0.0`
 
 ### port
 
-Port your driver server is on.
+Порт, на якому працює ваш сервер драйвера.
 
-Type: `Number`<br /> Default: `undefined`
+Тип: `Number`<br />
+За замовчуванням: `undefined`
 
 ### path
 
-Path to driver server endpoint.
+Шлях до кінцевої точки сервера драйвера.
 
-Type: `String`<br /> Default: `/`
+Тип: `String`<br />
+За замовчуванням: `/`
 
 ### queryParams
 
-Query parameters that are propagated to the driver server.
+Параметри запиту, які передаються на сервер драйвера.
 
-Type: `Object`<br /> Default: `undefined`
+Тип: `Object`<br />
+За замовчуванням: `undefined`
 
 ### user
 
-Your cloud service username (only works for [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) or [LambdaTest](https://www.lambdatest.com) accounts). If set, WebdriverIO will automatically set connection options for you. If you don't use a cloud provider this can be used to authenticate any other WebDriver backend.
+Ваше ім'я користувача хмарного сервісу (працює лише для облікових записів [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) або [LambdaTest](https://www.lambdatest.com)). Якщо встановлено, WebdriverIO автоматично налаштує опції підключення. Якщо ви не використовуєте хмарного провайдера, це можна використовувати для аутентифікації будь-якого іншого бекенду WebDriver.
 
-Type: `String`<br /> Default: `undefined`
+Тип: `String`<br />
+За замовчуванням: `undefined`
 
 ### key
 
-Your cloud service access key or secret key (only works for [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) or [LambdaTest](https://www.lambdatest.com) accounts). If set, WebdriverIO will automatically set connection options for you. If you don't use a cloud provider this can be used to authenticate any other WebDriver backend.
+Ваш ключ доступу або секретний ключ хмарного сервісу (працює лише для облікових записів [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) або [LambdaTest](https://www.lambdatest.com)). Якщо встановлено, WebdriverIO автоматично налаштує опції підключення. Якщо ви не використовуєте хмарного провайдера, це можна використовувати для аутентифікації будь-якого іншого бекенду WebDriver.
 
-Type: `String`<br /> Default: `undefined`
+Тип: `String`<br />
+За замовчуванням: `undefined`
 
 ### capabilities
 
-Defines the capabilities you want to run in your WebDriver session. Check out the [WebDriver Protocol](https://w3c.github.io/webdriver/#capabilities) for more details. If you run an older driver that doesn't support the WebDriver protocol, you’ll need to use the [JSONWireProtocol capabilities](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) to successfully run a session.
+Визначає можливості, які ви хочете використовувати в сеансі WebDriver. Перегляньте [протокол WebDriver](https://w3c.github.io/webdriver/#capabilities) для отримання додаткової інформації. Якщо ви використовуєте старіший драйвер, який не підтримує протокол WebDriver, вам потрібно буде використовувати [можливості JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) для успішного запуску сеансу.
 
-Next to the WebDriver based capabilities you can apply browser and vendor specific options that allow deeper configuration to the remote browser or device. These are documented in the corresponding vendor docs, e.g.:
+Окрім можливостей, заснованих на WebDriver, ви можете застосовувати специфічні опції для браузера та постачальника, які дозволяють глибше налаштувати віддалений браузер або пристрій. Вони документовані у відповідних документах постачальників, наприклад:
 
-- `goog:chromeOptions`: for [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
-- `moz:firefoxOptions`: for [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
-- `ms:edgeOptions`: for [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)
-- `sauce:options`: for [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)
-- `bstack:options`: for [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
-- `selenoid:options`: for [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
+- `goog:chromeOptions`: для [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
+- `moz:firefoxOptions`: для [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
+- `ms:edgeOptions`: для [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)
+- `sauce:options`: для [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)
+- `bstack:options`: для [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
+- `selenoid:options`: для [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
 
-Additionally, a useful utility is the Sauce Labs [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/), which helps you create this object by clicking together your desired capabilities.
+Крім того, корисною утилітою є [Автоматичний конфігуратор тестів](https://docs.saucelabs.com/basics/platform-configurator/) Sauce Labs, який допомагає створити цей об'єкт шляхом вибору бажаних можливостей.
 
-Type: `Object`<br /> Default: `null`
+Тип: `Object`<br />
+За замовчуванням: `null`
 
-**Example:**
+**Приклад:**
 
 ```js
 {
-    browserName: 'chrome', // options: `chrome`, `edge`, `firefox`, `safari`
-    browserVersion: '27.0', // browser version
-    platformName: 'Windows 10' // OS platform
+    browserName: 'chrome', // опції: `chrome`, `edge`, `firefox`, `safari`
+    browserVersion: '27.0', // версія браузера
+    platformName: 'Windows 10' // платформа ОС
 }
 ```
 
-If you’re running web or native tests on mobile devices, `capabilities` differs from the WebDriver protocol. See the [Appium Docs](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/) for more details.
+Якщо ви запускаєте веб- або нативні тести на мобільних пристроях, `capabilities` відрізняється від протоколу WebDriver. Дивіться [документацію Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/) для отримання додаткової інформації.
 
 ### logLevel
 
-Level of logging verbosity.
+Рівень детальності логування.
 
-Type: `String`<br /> Default: `info`<br /> Options: `trace` | `debug` | `info` | `warn` | `error` | `silent`
+Тип: `String`<br />
+За замовчуванням: `info`<br />
+Опції: `trace` | `debug` | `info` | `warn` | `error` | `silent`
 
 ### outputDir
 
-Directory to store all testrunner log files (including reporter logs and `wdio` logs). If not set, all logs are streamed to `stdout`. Since most reporters are made to log to `stdout`, it is recommended to only use this option for specific reporters where it makes more sense to push report into a file (like the `junit` reporter, for example).
+Каталог для зберігання всіх файлів журналів тестраннера (включаючи журнали репортера та журнали `wdio`). Якщо не встановлено, всі журнали передаються в `stdout`. Оскільки більшість репортерів призначені для виводу в `stdout`, рекомендується використовувати цю опцію лише для певних репортерів, для яких більш доцільно передавати звіт у файл (наприклад, для репортера `junit`).
 
-When running in standalone mode, the only log generated by WebdriverIO will be the `wdio` log.
+При запуску в автономному режимі єдиним журналом, створеним WebdriverIO, буде журнал `wdio`.
 
-Type: `String`<br /> Default: `null`
+Тип: `String`<br />
+За замовчуванням: `null`
 
 ### connectionRetryTimeout
 
-Timeout for any WebDriver request to a driver or grid.
+Час очікування для будь-якого запиту WebDriver до драйвера або сітки.
 
-Type: `Number`<br /> Default: `120000`
+Тип: `Number`<br />
+За замовчуванням: `120000`
 
 ### connectionRetryCount
 
-Maximum count of request retries to the Selenium server.
+Максимальна кількість повторних запитів до сервера Selenium.
 
-Type: `Number`<br /> Default: `3`
+Тип: `Number`<br />
+За замовчуванням: `3`
 
 ### agent
 
-Allows you to use a custom`http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) to make requests.
+Дозволяє використовувати власний агент `http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) для виконання запитів.
 
-Type: `Object`<br /> Default:
+Тип: `Object`<br />
+За замовчуванням:
 
 ```js
 {
@@ -121,7 +135,7 @@ Type: `Object`<br /> Default:
 
 ### headers
 
-Specify custom `headers` to pass into every WebDriver request. If your Selenium Grid requires Basic Authentification we recommend to pass in an `Authorization` header through this option to authenticate your WebDriver requests, e.g.:
+Вказує користувацькі `headers` для передачі в кожен запит WebDriver. Якщо ваша сітка Selenium вимагає основної аутентифікації, ми рекомендуємо передати заголовок `Authorization` через цю опцію для аутентифікації ваших запитів WebDriver, наприклад:
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
@@ -143,49 +157,57 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Type: `Object`<br /> Default: `{}`
+Тип: `Object`<br />
+За замовчуванням: `{}`
 
 ### transformRequest
 
-Function intercepting [HTTP request options](https://github.com/sindresorhus/got#options) before a WebDriver request is made
+Функція перехоплення [параметрів HTTP-запиту](https://github.com/sindresorhus/got#options) перед виконанням запиту WebDriver
 
-Type: `(RequestOptions) => RequestOptions`<br /> Default: *none*
+Тип: `(RequestOptions) => RequestOptions`<br />
+За замовчуванням: *немає*
 
 ### transformResponse
 
-Function intercepting HTTP response objects after a WebDriver response has arrived. The function is passed the original response object as the first and the corresponding `RequestOptions` as the second argument.
+Функція перехоплення об'єктів відповіді HTTP після отримання відповіді WebDriver. Функції передається вихідний об'єкт відповіді як перший аргумент та відповідні `RequestOptions` як другий аргумент.
 
-Type: `(Response, RequestOptions) => Response`<br /> Default: *none*
+Тип: `(Response, RequestOptions) => Response`<br />
+За замовчуванням: *немає*
 
 ### strictSSL
 
-Whether it does not require SSL certificate to be valid. It can be set via an environment variables as `STRICT_SSL` or `strict_ssl`.
+Чи не потрібно, щоб сертифікат SSL був дійсним.
+Його можна встановити через змінні середовища як `STRICT_SSL` або `strict_ssl`.
 
-Type: `Boolean`<br /> Default: `true`
+Тип: `Boolean`<br />
+За замовчуванням: `true`
 
 ### enableDirectConnect
 
-Whether enable [Appium direct connection feature](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments). It does nothing if the response did not have proper keys while the flag is enabled.
+Чи увімкнути [функцію прямого підключення Appium](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments).
+Не робить нічого, якщо відповідь не має відповідних ключів, коли прапор увімкнено.
 
-Type: `Boolean`<br /> Default: `true`
+Тип: `Boolean`<br />
+За замовчуванням: `true`
 
 ### cacheDir
 
-The path to the root of the cache directory. This directory is used to store all drivers that are downloaded when attempting to start a session.
+Шлях до кореня каталогу кешу. Цей каталог використовується для зберігання всіх драйверів, які завантажуються при спробі розпочати сеанс.
 
-Type: `String`<br /> Default: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+Тип: `String`<br />
+За замовчуванням: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ---
 
 ## WebdriverIO
 
-The following options (including the ones listed above) can be used with WebdriverIO in standalone:
+Наступні опції (включаючи перелічені вище) можна використовувати з WebdriverIO в автономному режимі:
 
 ### automationProtocol
 
-Define the protocol you want to use for your browser automation. Currently only [`webdriver`](https://www.npmjs.com/package/webdriver) is supported, as it is the main browser automation technology WebdriverIO uses.
+Визначає протокол, який ви хочете використовувати для автоматизації браузера. На даний момент підтримується тільки [`webdriver`](https://www.npmjs.com/package/webdriver), оскільки це основна технологія автоматизації браузера, яку використовує WebdriverIO.
 
-If you want to automate the browser using a different automation technology, make you set this property to a path that resolves to a module that adheres to the following interface:
+Якщо ви хочете автоматизувати браузер за допомогою іншої технології автоматизації, переконайтеся, що ви встановили цю властивість на шлях, який вказує на модуль, що відповідає наступному інтерфейсу:
 
 ```ts
 import type { Capabilities } from '@wdio/types';
@@ -235,182 +257,194 @@ export default class YourAutomationLibrary {
 }
 ```
 
-Type: `String`<br />
-Default: `webdriver`
+Тип: `String`<br />
+За замовчуванням: `webdriver`
 
 ### baseUrl
 
-Shorten `url` command calls by setting a base URL.
-- If your `url` parameter starts with `/`, then `baseUrl` is prepended (except the `baseUrl` path, if it has one).
-- If your `url` parameter starts without a scheme or `/` (like `some/path`), then the full `baseUrl` is prepended directly.
+Скорочує виклики команди `url` шляхом встановлення базової URL-адреси.
+- Якщо ваш параметр `url` починається з `/`, то `baseUrl` додається на початок (за винятком шляху `baseUrl`, якщо він є).
+- Якщо ваш параметр `url` починається без схеми або `/` (наприклад, `some/path`), то повний `baseUrl` додається на початок безпосередньо.
 
-Type: `String`<br /> Default: `null`
+Тип: `String`<br />
+За замовчуванням: `null`
 
 ### waitforTimeout
 
-Default timeout for all `waitFor*` commands. (Note the lowercase `f` in the option name.) This timeout __only__ affects commands starting with `waitFor*` and their default wait time.
+Час очікування за замовчуванням для всіх команд `waitFor*`. (Зверніть увагу на малу літеру `f` у назві опції.) Цей тайм-аут __лише__ впливає на команди, що починаються з `waitFor*` та їхній стандартний час очікування.
 
-To increase the timeout for a _test_, please see the framework docs.
+Щоб збільшити тайм-аут для _тесту_, дивіться документацію до фреймворку.
 
-Type: `Number`<br /> Default: `5000`
+Тип: `Number`<br />
+За замовчуванням: `5000`
 
 ### waitforInterval
 
-Default interval for all `waitFor*` commands to check if an expected state (e.g., visibility) has been changed.
+Інтервал за замовчуванням для всіх команд `waitFor*` для перевірки, чи змінився очікуваний стан (наприклад, видимість).
 
-Type: `Number`<br /> Default: `100`
+Тип: `Number`<br />
+За замовчуванням: `100`
 
 ### region
 
-If running on Sauce Labs, you can choose to run tests between different data centers: US or EU. To change your region to EU, add `region: 'eu'` to your config.
+При запуску на Sauce Labs ви можете вибрати запуск тестів між різними центрами обробки даних: US або EU.
+Щоб змінити регіон на EU, додайте `region: 'eu'` до вашої конфігурації.
 
-__Note:__ This only has an effect if you provide `user` and `key` options that are connected to your Sauce Labs account.
+__Примітка:__ Це матиме ефект лише якщо ви надасте опції `user` та `key`, які пов'язані з вашим обліковим записом Sauce Labs.
 
-Type: `String`<br /> Default: `us`
+Тип: `String`<br />
+За замовчуванням: `us`
 
-*(only for vm and or em/simulators)*
+*(тільки для vm та/або em/симуляторів)*
 
 ---
 
-## Testrunner Options
+## Опції тестраннера
 
-The following options (including the ones listed above) are defined only for running WebdriverIO with the WDIO testrunner:
+Наступні опції (включаючи перелічені вище) визначені лише для запуску WebdriverIO з тестраннером WDIO:
 
 ### specs
 
-Define specs for test execution. You can either specify a glob pattern to match multiple files at once or wrap a glob or set of paths into an array to run them within a single worker process. All paths are seen as relative from the config file path.
+Визначає специфікації для виконання тестів. Ви можете вказати шаблон glob для відповідності кільком файлам одночасно або обгорнути glob або набір шляхів у масив, щоб запустити їх в одному робочому процесі. Усі шляхи вважаються відносними від шляху до файлу конфігурації.
 
-Type: `(String | String[])[]`<br /> Default: `[]`
+Тип: `(String | String[])[]`<br />
+За замовчуванням: `[]`
 
 ### exclude
 
-Exclude specs from test execution. All paths are seen as relative from the config file path.
+Виключає специфікації з виконання тестів. Усі шляхи вважаються відносними від шляху до файлу конфігурації.
 
-Type: `String[]`<br /> Default: `[]`
+Тип: `String[]`<br />
+За замовчуванням: `[]`
 
 ### suites
 
-An object describing various of suites, which you can then specify with the `--suite` option on the `wdio` CLI.
+Об'єкт, що описує різні набори тестів, які ви можете вказати за допомогою опції `--suite` в CLI `wdio`.
 
-Type: `Object`<br /> Default: `{}`
+Тип: `Object`<br />
+За замовчуванням: `{}`
 
 ### capabilities
 
-The same as the `capabilities` section described above, except with the option to specify either a [`multiremote`](/docs/multiremote) object, or multiple WebDriver sessions in an array for parallel execution.
+Те саме, що й розділ `capabilities`, описаний вище, за винятком можливості вказати об'єкт [`multiremote`](/docs/multiremote) або кілька сеансів WebDriver у масиві для паралельного виконання.
 
-You can apply the same vendor and browser specific capabilities as defined [above](/docs/configuration#capabilities).
+Ви можете застосувати ті самі можливості, специфічні для постачальника та браузера, як визначено [вище](/docs/configuration#capabilities).
 
-Type: `Object`|`Object[]`<br /> Default: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
+Тип: `Object`|`Object[]`<br />
+За замовчуванням: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
 
 ### maxInstances
 
-Maximum number of total parallel running workers.
+Максимальна кількість паралельно працюючих робочих процесів.
 
-__Note:__ that it may be a number as high as `100`, when the tests are being performed on some external vendors such as Sauce Labs's machines. There, the tests are not tested on a single machine, but rather, on multiple VMs. If the tests are to be run on a local development machine, use a number that is more reasonable, such as `3`, `4`, or `5`. Essentially, this is the number of browsers that will be concurrently started and running your tests at the same time, so it depends on how much RAM there is on your machine, and how many other apps are running on your machine.
+__Примітка:__ це може бути число до `100`, коли тести виконуються на зовнішніх постачальниках, таких як машини Sauce Labs. Там тести виконуються не на одній машині, а на кількох віртуальних машинах. Якщо тести мають запускатися на локальній машині розробки, використовуйте більш розумне число, наприклад, `3`, `4` або `5`. По суті, це кількість браузерів, які будуть одночасно запущені та виконуватимуть ваші тести одночасно, тому це залежить від того, скільки ОЗП є на вашій машині, і скільки інших програм працює на вашій машині.
 
-You can also apply `maxInstances` within your capability objects using the `wdio:maxInstances` capability. This will limit the amount of parallel sessions for that particular capability.
+Ви також можете застосувати `maxInstances` в об'єктах можливостей, використовуючи можливість `wdio:maxInstances`. Це обмежить кількість паралельних сеансів для цієї конкретної можливості.
 
-Type: `Number`<br /> Default: `100`
+Тип: `Number`<br />
+За замовчуванням: `100`
 
 ### maxInstancesPerCapability
 
-Maximum number of total parallel running workers per capability.
+Максимальна кількість паралельно працюючих робочих процесів на можливість.
 
-Type: `Number`<br /> Default: `100`
+Тип: `Number`<br />
+За замовчуванням: `100`
 
 ### injectGlobals
 
-Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment. If you set to `false`, you should import from `@wdio/globals`, e.g.:
+Вставляє глобальні змінні WebdriverIO (наприклад, `browser`, `$` та `$$`) у глобальне середовище.
+Якщо ви встановите значення `false`, вам слід імпортувати з `@wdio/globals`, наприклад:
 
 ```ts
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-Note: WebdriverIO doesn't handle injection of test framework specific globals.
+Примітка: WebdriverIO не керує вставкою глобальних змінних, специфічних для тестових фреймворків.
 
-Type: `Boolean`<br /> Default: `true`
+Тип: `Boolean`<br />
+За замовчуванням: `true`
 
 ### bail
 
-If you want your test run to stop after a specific number of test failures, use `bail`. (It defaults to `0`, which runs all tests no matter what.) **Note:** A test in this context are all tests within a single spec file (when using Mocha or Jasmine) or all steps within a feature file (when using Cucumber). If you want to control the bail behavior within tests of a single test file, take a look at the available [framework](frameworks) options.
+Якщо ви хочете, щоб ваш тестовий запуск зупинився після певної кількості невдалих тестів, використовуйте `bail`.
+(За замовчуванням `0`, що запускає всі тести незалежно від результату.) **Примітка:** У цьому контексті тестами є всі тести в одному файлі специфікації (при використанні Mocha або Jasmine) або всі кроки в файлі функцій (при використанні Cucumber). Якщо ви хочете контролювати поведінку bail всередині тестів одного тестового файлу, зверніть увагу на доступні опції [фреймворку](frameworks).
 
-Type: `Number`<br /> Default: `0` (don't bail; run all tests)
+Тип: `Number`<br />
+За замовчуванням: `0` (не зупиняти; запускати всі тести)
 
 ### specFileRetries
 
-The number of times to retry an entire specfile when it fails as a whole.
+Кількість повторних спроб для всього файлу специфікації, коли він повністю не проходить.
 
-Type: `Number`<br /> Default: `0`
+Тип: `Number`<br />
+За замовчуванням: `0`
 
 ### specFileRetriesDelay
 
-Delay in seconds between the spec file retry attempts
+Затримка в секундах між спробами повторного запуску файлу специфікації
 
-Type: `Number`<br /> Default: `0`
+Тип: `Number`<br />
+За замовчуванням: `0`
 
 ### specFileRetriesDeferred
 
-Whether or not retried spec files should be retried immediately or deferred to the end of the queue.
+Чи повинні файли специфікацій, які повторно запускаються, повторюватися негайно або відкладатися в кінець черги.
 
-Type: `Boolean`<br />
-Default: `true`
-
-### groupLogsByTestSpec
-
-Choose the log output view.
-
-If set to `false` logs from different test files will be printed in real-time. Please note that this may result in the mixing of log outputs from different files when running in parallel.
-
-If set to `true` log outputs will be grouped by Test Spec and printed only when the Test Spec is completed.
-
-By default, it is set to `false` so logs are printed in real-time.
-
-Type: `Boolean`<br />
-Default: `false`
+Тип: `Boolean`<br />
+За замовчуванням: `true`
 
 ### groupLogsByTestSpec
 
-Choose the log output view.
+Виберіть вигляд виводу журналу.
 
-If set to `false` logs from different test files will be printed in real-time. Please note that this may result in the mixing of log outputs from different files when running in parallel.
+Якщо встановлено на `false`, журнали з різних тестових файлів будуть виводитися в реальному часі. Зверніть увагу, що це може призвести до змішування журналів з різних файлів при паралельному запуску.
 
-If set to `true` log outputs will be grouped by Test Spec and printed only when the Test Spec is completed.
+Якщо встановлено на `true`, виводи журналів будуть згруповані за тестовою специфікацією та виводитися лише після завершення тестової специфікації.
 
-By default, it is set to `false` so logs are printed in real-time.
+За замовчуванням встановлено `false`, тому журнали виводяться в реальному часі.
 
-Type: `Boolean`<br /> Default: `false`
+Тип: `Boolean`<br />
+За замовчуванням: `false`
 
 ### services
 
-Services take over a specific job you don't want to take care of. They enhance your test setup with almost no effort.
+Сервіси виконують конкретну роботу, якою ви не хочете займатися. Вони покращують вашу тестову конфігурацію з мінімальними зусиллями.
 
-Type: `String[]|Object[]`<br /> Default: `[]`
+Тип: `String[]|Object[]`<br />
+За замовчуванням: `[]`
 
 ### framework
 
-Defines the test framework to be used by the WDIO testrunner.
+Визначає тестовий фреймворк, який буде використовуватися тестраннером WDIO.
 
-Type: `String`<br /> Default: `mocha`<br /> Options: `mocha` | `jasmine`
+Тип: `String`<br />
+За замовчуванням: `mocha`<br />
+Опції: `mocha` | `jasmine`
 
-### mochaOpts, jasmineOpts and cucumberOpts
+### mochaOpts, jasmineOpts та cucumberOpts
 
-Specific framework-related options. See the framework adapter documentation on which options are available. Read more on this in [Frameworks](frameworks).
+Специфічні для фреймворку опції. Дивіться документацію адаптера фреймворку, щоб дізнатися, які опції доступні. Детальніше про це можна прочитати в [Frameworks](frameworks).
 
-Type: `Object`<br /> Default: `{ timeout: 10000 }`
+Тип: `Object`<br />
+За замовчуванням: `{ timeout: 10000 }`
 
 ### cucumberFeaturesWithLineNumbers
 
-List of cucumber features with line numbers (when [using cucumber framework](./Frameworks.md#using-cucumber)).
+Список функцій cucumber з номерами рядків (при [використанні фреймворку cucumber](./Frameworks.md#using-cucumber)).
 
-Type: `String[]` Default: `[]`
+Тип: `String[]`
+За замовчуванням: `[]`
 
 ### reporters
 
-List of reporters to use. A reporter can be either a string, or an array of `['reporterName', { /* reporter options */}]` where the first element is a string with the reporter name and the second element an object with reporter options.
+Список репортерів для використання. Репортер може бути рядком або масивом
+`['reporterName', { /* reporter options */}]`, де перший елемент - це рядок з назвою репортера, а другий елемент - об'єкт з опціями репортера.
 
-Type: `String[]|Object[]`<br /> Default: `[]`
+Тип: `String[]|Object[]`<br />
+За замовчуванням: `[]`
 
-Example:
+Приклад:
 
 ```js
 reporters: [
@@ -425,37 +459,42 @@ reporters: [
 
 ### reporterSyncInterval
 
-Determines in which interval the reporter should check if they are synchronized if they report their logs asynchronously (e.g. if logs are streamed to a 3rd party vendor).
+Визначає, в якому інтервалі репортер повинен перевіряти, чи вони синхронізовані, якщо вони звітують свої журнали асинхронно (наприклад, якщо журнали передаються до стороннього постачальника).
 
-Type: `Number`<br /> Default: `100` (ms)
+Тип: `Number`<br />
+За замовчуванням: `100` (мс)
 
 ### reporterSyncTimeout
 
-Determines the maximum time reporters have to finish uploading all their logs until an error is being thrown by the testrunner.
+Визначає максимальний час, протягом якого репортери мають завершити завантаження всіх своїх журналів, до того як тестраннер видасть помилку.
 
-Type: `Number`<br /> Default: `5000` (ms)
+Тип: `Number`<br />
+За замовчуванням: `5000` (мс)
 
 ### execArgv
 
-Node arguments to specify when launching child processes.
+Аргументи Node для вказівки при запуску дочірніх процесів.
 
-Type: `String[]`<br /> Default: `null`
+Тип: `String[]`<br />
+За замовчуванням: `null`
 
 ### filesToWatch
 
-A list of glob supporting string patterns that tell the testrunner to have it additionally watch other files, e.g. application files, when running it with the `--watch` flag. By default the testrunner already watches all spec files.
+Список шаблонів рядків, що підтримують glob, які вказують тестраннеру додатково стежити за іншими файлами, наприклад, файлами додатків, при запуску з прапорцем `--watch`. За замовчуванням тестраннер вже стежить за всіма файлами специфікацій.
 
-Type: `String[]`<br /> Default: `[]`
+Тип: `String[]`<br />
+За замовчуванням: `[]`
 
 ### updateSnapshots
 
-Set to true if you want to update your snapshots. Ideally used as part of a CLI parameter, e.g. `wdio run wdio.conf.js --s`.
+Встановіть на true, якщо ви хочете оновити ваші знімки. Ідеально використовувати як частину параметра CLI, наприклад, `wdio run wdio.conf.js --s`.
 
-Type: `'new' | 'all' | 'none'`<br /> Default: `none` if not provided and tests run in CI, `new` if not provided, otherwise what's been provided
+Тип: `'new' | 'all' | 'none'`<br />
+За замовчуванням: `none`, якщо не вказано і тести запускаються в CI, `new`, якщо не вказано, інакше те, що було надано
 
 ### resolveSnapshotPath
 
-Overrides default snapshot path. For example, to store snapshots next to test files.
+Перевизначає шлях знімка за замовчуванням. Наприклад, для зберігання знімків поряд з тестовими файлами.
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -463,278 +502,280 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Type: `(testPath: string, snapExtension: string) => string`<br /> Default: stores snapshot files in `__snapshots__` directory next to test file
+Тип: `(testPath: string, snapExtension: string) => string`<br />
+За замовчуванням: зберігає файли знімків у каталозі `__snapshots__` поряд з тестовим файлом
 
 ### tsConfigPath
 
-WDIO uses `tsx` to compile TypeScript files.  Your TSConfig is automatically detected from the current working directory but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH environment variable.
+WDIO використовує `tsx` для компіляції файлів TypeScript. Ваш TSConfig автоматично визначається з поточного робочого каталогу, але ви можете вказати власний шлях тут або шляхом встановлення змінної середовища TSX_TSCONFIG_PATH.
 
-See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+Дивіться документацію `tsx`: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
 
-Type: `String`<br /> Default: `null`<br />
+Тип: `String`<br />
+За замовчуванням: `null`<br />
 
-## Hooks
+## Хуки
 
-The WDIO testrunner allows you to set hooks to be triggered at specific times of the test lifecycle. This allows custom actions (e.g. take screenshot if a test fails).
+Тестраннер WDIO дозволяє встановлювати хуки, які запускаються в певні моменти життєвого циклу тесту. Це дозволяє виконувати користувацькі дії (наприклад, робити знімок екрану, якщо тест не пройшов).
 
-Every hook has as parameter specific information about the lifecycle (e.g. information about the test suite or test). Read more about all hook properties in [our example config](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
+Кожен хук має як параметр специфічну інформацію про життєвий цикл (наприклад, інформацію про набір тестів або тест). Детальніше про всі властивості хуків можна прочитати в [нашому прикладі конфігурації](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
 
-**Note:** Some hooks (`onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete`) are executed in a different process and therefore can not share any global data with the other hooks that live in the worker process.
+**Примітка:** Деякі хуки (`onPrepare`, `onWorkerStart`, `onWorkerEnd` та `onComplete`) виконуються в іншому процесі і тому не можуть обмінюватися глобальними даними з іншими хуками, які живуть у робочому процесі.
 
 ### onPrepare
 
-Gets executed once before all workers get launched.
+Виконується один раз перед запуском всіх робочих процесів.
 
-Parameters:
+Параметри:
 
-- `config` (`object`): WebdriverIO configuration object
-- `param` (`object[]`): list of capabilities details
+- `config` (`object`): об'єкт конфігурації WebdriverIO
+- `param` (`object[]`): список деталей можливостей
 
 ### onWorkerStart
 
-Gets executed before a worker process is spawned and can be used to initialize specific service for that worker as well as modify runtime environments in an async fashion.
+Виконується перед породженням робочого процесу і може використовуватися для ініціалізації певного сервісу для цього робочого процесу, а також для модифікації середовищ виконання асинхронним чином.
 
-Parameters:
+Параметри:
 
-- `cid` (`string`): capability id (e.g 0-0)
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
-- `args` (`object`): object that will be merged with the main configuration once worker is initialized
-- `execArgv` (`string[]`): list of string arguments passed to the worker process
+- `cid` (`string`): ідентифікатор можливості (наприклад, 0-0)
+- `caps` (`object`): містить можливості для сеансу, який буде породжений у робочому процесі
+- `specs` (`string[]`): специфікації для запуску в робочому процесі
+- `args` (`object`): об'єкт, який буде об'єднаний з основною конфігурацією після ініціалізації робочого процесу
+- `execArgv` (`string[]`): список аргументів рядка, переданих робочому процесу
 
 ### onWorkerEnd
 
-Gets executed just after a worker process has exited.
+Виконується одразу після завершення робочого процесу.
 
-Parameters:
+Параметри:
 
-- `cid` (`string`): capability id (e.g 0-0)
-- `exitCode` (`number`): 0 - success, 1 - fail
-- `specs` (`string[]`): specs to be run in the worker process
-- `retries` (`number`): number of spec level retries used as defined in [_"Add retries on a per-specfile basis"_](./Retry.md#add-retries-on-a-per-specfile-basis)
+- `cid` (`string`): ідентифікатор можливості (наприклад, 0-0)
+- `exitCode` (`number`): 0 - успіх, 1 - невдача
+- `specs` (`string[]`): специфікації для запуску в робочому процесі
+- `retries` (`number`): кількість повторних спроб на рівні специфікацій, визначених у [_"Додавання повторних спроб на основі файлу специфікації"_](./Retry.md#add-retries-on-a-per-specfile-basis)
 
 ### beforeSession
 
-Gets executed just before initializing the webdriver session and test framework. It allows you to manipulate configurations depending on the capability or spec.
+Виконується безпосередньо перед ініціалізацією сеансу webdriver та тестового фреймворку. Це дозволяє вам маніпулювати конфігураціями залежно від можливості або специфікації.
 
-Parameters:
+Параметри:
 
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `config` (`object`): об'єкт конфігурації WebdriverIO
+- `caps` (`object`): містить можливості для сеансу, який буде породжений у робочому процесі
+- `specs` (`string[]`): специфікації для запуску в робочому процесі
 
 ### before
 
-Gets executed before test execution begins. At this point you can access to all global variables like `browser`. It is the perfect place to define custom commands.
+Виконується до початку виконання тесту. У цей момент ви можете отримати доступ до всіх глобальних змінних, таких як `browser`. Це ідеальне місце для визначення власних команд.
 
-Parameters:
+Параметри:
 
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
-- `browser` (`object`): instance of created browser/device session
+- `caps` (`object`): містить можливості для сеансу, який буде породжений у робочому процесі
+- `specs` (`string[]`): специфікації для запуску в робочому процесі
+- `browser` (`object`): екземпляр створеного сеансу браузера/пристрою
 
 ### beforeSuite
 
-Hook that gets executed before the suite starts (in Mocha/Jasmine only)
+Хук, який виконується до початку набору (тільки в Mocha/Jasmine)
 
-Parameters:
+Параметри:
 
-- `suite` (`object`): suite details
+- `suite` (`object`): деталі набору
 
 ### beforeHook
 
-Hook that gets executed *before* a hook within the suite starts (e.g. runs before calling beforeEach in Mocha)
+Хук, який виконується *до* хука в наборі (наприклад, виконується перед викликом beforeEach у Mocha)
 
-Parameters:
+Параметри:
 
-- `test` (`object`): test details
-- `context` (`object`): test context (represents World object in Cucumber)
+- `test` (`object`): деталі тесту
+- `context` (`object`): контекст тесту (представляє об'єкт World у Cucumber)
 
 ### afterHook
 
-Hook that gets executed *after* a hook within the suite ends (e.g. runs after calling afterEach in Mocha)
+Хук, який виконується *після* хука в наборі (наприклад, виконується після виклику afterEach у Mocha)
 
-Parameters:
+Параметри:
 
-- `test` (`object`): test details
-- `context` (`object`): test context (represents World object in Cucumber)
-- `result` (`object`): hook result (contains `error`, `result`, `duration`, `passed`, `retries` properties)
+- `test` (`object`): деталі тесту
+- `context` (`object`): контекст тесту (представляє об'єкт World у Cucumber)
+- `result` (`object`): результат хука (містить властивості `error`, `result`, `duration`, `passed`, `retries`)
 
 ### beforeTest
 
-Function to be executed before a test (in Mocha/Jasmine only).
+Функція, яка виконується перед тестом (тільки в Mocha/Jasmine).
 
-Parameters:
+Параметри:
 
-- `test` (`object`): test details
-- `context` (`object`): scope object the test was executed with
+- `test` (`object`): деталі тесту
+- `context` (`object`): об'єкт області дії, з яким виконувався тест
 
 ### beforeCommand
 
-Runs before a WebdriverIO command gets executed.
+Виконується перед виконанням команди WebdriverIO.
 
-Parameters:
+Параметри:
 
-- `commandName` (`string`): command name
-- `args` (`*`): arguments that command would receive
+- `commandName` (`string`): назва команди
+- `args` (`*`): аргументи, які отримає команда
 
 ### afterCommand
 
-Runs after a WebdriverIO command gets executed.
+Виконується після виконання команди WebdriverIO.
 
-Parameters:
+Параметри:
 
-- `commandName` (`string`): command name
-- `args` (`*`): arguments that command would receive
-- `result` (`number`): 0 - command success, 1 - command error
-- `error` (`Error`): error object if any
+- `commandName` (`string`): назва команди
+- `args` (`*`): аргументи, які отримає команда
+- `result` (`number`): 0 - команда успішна, 1 - помилка команди
+- `error` (`Error`): об'єкт помилки, якщо є
 
 ### afterTest
 
-Function to be executed after a test (in Mocha/Jasmine) ends.
+Функція, яка виконується після завершення тесту (в Mocha/Jasmine).
 
-Parameters:
+Параметри:
 
-- `test` (`object`): test details
-- `context` (`object`): scope object the test was executed with
-- `result.error` (`Error`): error object in case the test fails, otherwise `undefined`
-- `result.result` (`Any`): return object of test function
-- `result.duration` (`Number`): duration of test
-- `result.passed` (`Boolean`): true if test has passed, otherwise false
-- `result.retries` (`Object`): information about single test related retries as defined for [Mocha and Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) as well as [Cucumber](./Retry.md#rerunning-in-cucumber), e.g. `{ attempts: 0, limit: 0 }`, see
-- `result` (`object`): hook result (contains `error`, `result`, `duration`, `passed`, `retries` properties)
+- `test` (`object`): деталі тесту
+- `context` (`object`): об'єкт області дії, з яким виконувався тест
+- `result.error` (`Error`): об'єкт помилки у випадку невдачі тесту, інакше `undefined`
+- `result.result` (`Any`): об'єкт повернення тестової функції
+- `result.duration` (`Number`): тривалість тесту
+- `result.passed` (`Boolean`): true, якщо тест пройшов, інакше false
+- `result.retries` (`Object`): інформація про повторні спроби окремих тестів, як визначено для [Mocha і Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha), а також для [Cucumber](./Retry.md#rerunning-in-cucumber), наприклад, `{ attempts: 0, limit: 0 }`, див.
+- `result` (`object`): результат хука (містить властивості `error`, `result`, `duration`, `passed`, `retries`)
 
 ### afterSuite
 
-Hook that gets executed after the suite has ended (in Mocha/Jasmine only)
+Хук, який виконується після завершення набору (тільки в Mocha/Jasmine)
 
-Parameters:
+Параметри:
 
-- `suite` (`object`): suite details
+- `suite` (`object`): деталі набору
 
 ### after
 
-Gets executed after all tests are done. You still have access to all global variables from the test.
+Виконується після завершення всіх тестів. У вас все ще є доступ до всіх глобальних змінних з тесту.
 
-Parameters:
+Параметри:
 
-- `result` (`number`): 0 - test pass, 1 - test fail
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `result` (`number`): 0 - тест пройшов, 1 - тест не пройшов
+- `caps` (`object`): містить можливості для сеансу, який буде породжений у робочому процесі
+- `specs` (`string[]`): специфікації для запуску в робочому процесі
 
 ### afterSession
 
-Gets executed right after terminating the webdriver session.
+Виконується одразу після завершення сеансу webdriver.
 
-Parameters:
+Параметри:
 
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `config` (`object`): об'єкт конфігурації WebdriverIO
+- `caps` (`object`): містить можливості для сеансу, який буде породжений у робочому процесі
+- `specs` (`string[]`): специфікації для запуску в робочому процесі
 
 ### onComplete
 
-Gets executed after all workers got shut down and the process is about to exit. An error thrown in the onComplete hook will result in the test run failing.
+Виконується після зупинки всіх робочих процесів і перед завершенням процесу. Помилка, викинута в хуку onComplete, призведе до невдачі тестового запуску.
 
-Parameters:
+Параметри:
 
-- `exitCode` (`number`): 0 - success, 1 - fail
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `result` (`object`): results object containing test results
+- `exitCode` (`number`): 0 - успіх, 1 - невдача
+- `config` (`object`): об'єкт конфігурації WebdriverIO
+- `caps` (`object`): містить можливості для сеансу, який буде породжений у робочому процесі
+- `result` (`object`): об'єкт результатів, що містить результати тестів
 
 ### onReload
 
-Gets executed when a refresh happens.
+Виконується при оновленні сторінки.
 
-Parameters:
+Параметри:
 
-- `oldSessionId` (`string`): session ID of the old session
-- `newSessionId` (`string`): session ID of the new session
+- `oldSessionId` (`string`): ідентифікатор сеансу старого сеансу
+- `newSessionId` (`string`): ідентифікатор сеансу нового сеансу
 
 ### beforeFeature
 
-Runs before a Cucumber Feature.
+Виконується перед функцією Cucumber.
 
-Parameters:
+Параметри:
 
-- `uri` (`string`): path to feature file
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
+- `uri` (`string`): шлях до файлу функції
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): об'єкт функції Cucumber
 
 ### afterFeature
 
-Runs after a Cucumber Feature.
+Виконується після функції Cucumber.
 
-Parameters:
+Параметри:
 
-- `uri` (`string`): path to feature file
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
+- `uri` (`string`): шлях до файлу функції
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): об'єкт функції Cucumber
 
 ### beforeScenario
 
-Runs before a Cucumber Scenario.
+Виконується перед сценарієм Cucumber.
 
-Parameters:
+Параметри:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): world object containing information on pickle and test step
-- `context` (`object`): Cucumber World object
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): об'єкт світу, що містить інформацію про pickle та крок тесту
+- `context` (`object`): об'єкт світу Cucumber
 
 ### afterScenario
 
-Runs after a Cucumber Scenario.
+Виконується після сценарію Cucumber.
 
-Parameters:
+Параметри:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): world object containing information on pickle and test step
-- `result` (`object`): results object containing scenario results
-- `result.passed` (`boolean`): true if scenario has passed
-- `result.error` (`string`): error stack if scenario failed
-- `result.duration` (`number`): duration of scenario in milliseconds
-- `context` (`object`): Cucumber World object
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): об'єкт світу, що містить інформацію про pickle та крок тесту
+- `result` (`object`): об'єкт результатів, що містить результати сценарію
+- `result.passed` (`boolean`): true, якщо сценарій пройшов
+- `result.error` (`string`): стек помилок, якщо сценарій не пройшов
+- `result.duration` (`number`): тривалість сценарію в мілісекундах
+- `context` (`object`): об'єкт світу Cucumber
 
 ### beforeStep
 
-Runs before a Cucumber Step.
+Виконується перед кроком Cucumber.
 
-Parameters:
+Параметри:
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
-- `context` (`object`): Cucumber World object
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): об'єкт кроку Cucumber
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): об'єкт сценарію Cucumber
+- `context` (`object`): об'єкт світу Cucumber
 
 ### afterStep
 
-Runs after a Cucumber Step.
+Виконується після кроку Cucumber.
 
-Parameters:
+Параметри:
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
-- `result`: (`object`): results object containing step results
-- `result.passed` (`boolean`): true if scenario has passed
-- `result.error` (`string`): error stack if scenario failed
-- `result.duration` (`number`): duration of scenario in milliseconds
-- `context` (`object`): Cucumber World object
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): об'єкт кроку Cucumber
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): об'єкт сценарію Cucumber
+- `result`: (`object`): об'єкт результатів, що містить результати кроку
+- `result.passed` (`boolean`): true, якщо сценарій пройшов
+- `result.error` (`string`): стек помилок, якщо сценарій не пройшов
+- `result.duration` (`number`): тривалість сценарію в мілісекундах
+- `context` (`object`): об'єкт світу Cucumber
 
 ### beforeAssertion
 
-Hook that gets executed before a WebdriverIO assertion happens.
+Хук, який виконується перед твердженням WebdriverIO.
 
-Parameters:
+Параметри:
 
-- `params`: assertion information
-- `params.matcherName` (`string`): name of the matcher (e.g. `toHaveTitle`)
-- `params.expectedValue`: value that is passed into the matcher
-- `params.options`: assertion options
+- `params`: інформація про твердження
+- `params.matcherName` (`string`): назва матчера (наприклад, `toHaveTitle`)
+- `params.expectedValue`: значення, яке передається в матчер
+- `params.options`: опції твердження
 
 ### afterAssertion
 
-Hook that gets executed after a WebdriverIO assertion happened.
+Хук, який виконується після твердження WebdriverIO.
 
-Parameters:
+Параметри:
 
-- `params`: assertion information
-- `params.matcherName` (`string`): name of the matcher (e.g. `toHaveTitle`)
-- `params.expectedValue`: value that is passed into the matcher
-- `params.options`: assertion options
-- `params.result`: assertion results
+- `params`: інформація про твердження
+- `params.matcherName` (`string`): назва матчера (наприклад, `toHaveTitle`)
+- `params.expectedValue`: значення, яке передається в матчер
+- `params.options`: опції твердження
+- `params.result`: результати твердження

@@ -1,26 +1,26 @@
 ---
 id: proxy
-title: Proxy Setup
+title: Налаштування проксі
 ---
 
-You can tunnel two different types of request through a proxy:
+Ви можете проксувати два різні типи запитів:
 
-- connection between your test script and the browser driver (or WebDriver endpoint)
-- connection between the browser and the internet
+- з'єднання між вашим тестовим скриптом і браузерним драйвером (або кінцевою точкою WebDriver)
+- з'єднання між браузером та інтернетом
 
-## Proxy Between Driver And Test
+## Проксі між драйвером і тестом
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+Якщо у вашій компанії є корпоративний проксі (наприклад, на `http://my.corp.proxy.com:9090`) для всіх вихідних запитів, виконайте наступні кроки для встановлення та налаштування [undici](https://github.com/nodejs/undici).
 
-### Install undici
+### Встановлення undici
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### Додайте undici setGlobalDispatcher до вашого конфігураційного файлу
 
-Add the following require statement to the top of your config file.
+Додайте наступну інструкцію require на початку вашого конфігураційного файлу.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+Додаткову інформацію про налаштування проксі можна знайти [тут](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+Якщо ви використовуєте [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), запустіть його через:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Between Browser And Internet
+## Проксі між браузером та інтернетом
 
-In order to tunnel the connection between the browser and the internet, you can set up a proxy which can be useful to (for example) capture network information and other data with tools like [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+Щоб проксувати з'єднання між браузером та інтернетом, ви можете налаштувати проксі, що може бути корисним (наприклад) для захоплення мережевої інформації та інших даних за допомогою таких інструментів, як [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-The `proxy` parameters can be applied via the standard capabilities the following way:
+Параметри `proxy` можна застосувати через стандартні можливості наступним чином:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-For more information, see the [WebDriver specification](https://w3c.github.io/webdriver/#proxy).
+Для отримання додаткової інформації, дивіться [специфікацію WebDriver](https://w3c.github.io/webdriver/#proxy).

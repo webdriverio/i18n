@@ -1,32 +1,35 @@
 ---
 id: mock
-title: The Mock Object
+title: Об'єкт Mock
 ---
 
-The mock object is an object that represents a network mock and contains information about requests that were matching given `url` and `filterOptions`. It can be received using the [`mock`](/docs/api/browser/mock) command.
+Об'єкт mock є об'єктом, який представляє мережевий мок і містить інформацію про запити, які відповідали заданому `url` та `filterOptions`. Його можна отримати за допомогою команди [`mock`](/docs/api/browser/mock).
 
 :::info
 
-Note that using the `mock` command requires support for Chrome DevTools protocol. That support is given if you run tests locally in Chromium based browser or if you use a Selenium Grid v4 or higher. This command can __not__ be used when running automated tests in the cloud. Find out more in the [Automation Protocols](/docs/automationProtocols) section.
+Зверніть увагу, що використання команди `mock` вимагає підтримки протоколу Chrome DevTools.
+Ця підтримка надається, якщо ви запускаєте тести локально в браузері на основі Chromium або якщо
+ви використовуєте Selenium Grid v4 або вище. Ця команда __не__ може бути використана при запуску
+автоматизованих тестів у хмарі. Дізнайтеся більше в розділі [Протоколи автоматизації](/docs/automationProtocols).
 
 :::
 
-You can read more about mocking requests and responses in WebdriverIO in our [Mocks and Spies](/docs/mocksandspies) guide.
+Ви можете дізнатися більше про мокування запитів і відповідей у WebdriverIO в нашому посібнику [Моки та шпигуни](/docs/mocksandspies).
 
-## Properties
+## Властивості
 
-A mock object contains the following properties:
+Об'єкт mock містить наступні властивості:
 
-| Name            | Type       | Details                                                                                                                                                                               |
-| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `url`           | `String`   | The url passed into the mock command                                                                                                                                                  |
-| `filterOptions` | `Object`   | The resource filter options passed into the mock command                                                                                                                              |
-| `browser`       | `Object`   | The [Browser Object](/docs/api/browser) used to get the mock object.                                                                                                                  |
-| `calls`         | `Object[]` | Information about matching browser requests, containing properties such as `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` and `body` |
+| Назва | Тип | Деталі |
+| ---- | ---- | ------- |
+| `url` | `String` | URL, переданий у команду mock |
+| `filterOptions` | `Object` | Опції фільтра ресурсів, передані в команду mock |
+| `browser` | `Object` | [Об'єкт браузера](/docs/api/browser), використаний для отримання об'єкта mock. |
+| `calls` | `Object[]` | Інформація про відповідні запити браузера, що містить такі властивості, як `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` і `body` |
 
-## Methods
+## Методи
 
-Mock objects provide various commands, listed in the `mock` section, that allow users to modify the behavior of the request or response.
+Об'єкти mock надають різні команди, перелічені в розділі `mock`, які дозволяють користувачам змінювати поведінку запиту або відповіді.
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -37,17 +40,17 @@ Mock objects provide various commands, listed in the `mock` section, that allow 
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
 
-## Events
+## Події
 
-The mock object is an EventEmitter and a couple of events are emitted for your use cases.
+Об'єкт mock є EventEmitter, і для ваших випадків використання емітуються кілька подій.
 
-Here is a list of events.
+Ось список подій.
 
 ### `request`
 
-This event is being emitted when launching a network request that matches mock patterns. Request is passed in event callback.
+Ця подія емітується при запуску мережевого запиту, який відповідає шаблонам mock. Запит передається в функцію зворотного виклику події.
 
-Request interface:
+Інтерфейс запиту:
 ```ts
 interface RequestEvent {
     requestId: number
@@ -59,9 +62,9 @@ interface RequestEvent {
 
 ### `overwrite`
 
-This event is being emitted when network response is overwrited with [`respond`](/docs/api/mock/respond) or [`respondOnce`](/docs/api/mock/respondOnce). Response is passed in event callback.
+Ця подія емітується, коли мережева відповідь перезаписується за допомогою [`respond`](/docs/api/mock/respond) або [`respondOnce`](/docs/api/mock/respondOnce). Відповідь передається в функцію зворотного виклику події.
 
-Response interface:
+Інтерфейс відповіді:
 ```ts
 interface OverwriteEvent {
     requestId: number
@@ -73,9 +76,9 @@ interface OverwriteEvent {
 
 ### `fail`
 
-This event is being emitted when network request is aborted with [`abort`](/docs/api/mock/abort) or [`abortOnce`](/docs/api/mock/abortOnce). Fail is passed in event callback.
+Ця подія емітується, коли мережевий запит переривається за допомогою [`abort`](/docs/api/mock/abort) або [`abortOnce`](/docs/api/mock/abortOnce). Помилка передається в функцію зворотного виклику події.
 
-Fail interface:
+Інтерфейс помилки:
 ```ts
 interface FailEvent {
     requestId: number
@@ -85,39 +88,39 @@ interface FailEvent {
 
 ### `match`
 
-This event is being emitted when new match is added, before `continue` or `overwrite`. Match is passed in event callback.
+Ця подія емітується, коли додається новий збіг, перед `continue` або `overwrite`. Збіг передається в функцію зворотного виклику події.
 
-Match interface:
+Інтерфейс збігу:
 ```ts
 interface MatchEvent {
-    url: string // Request URL (without fragment).
-    urlFragment?: string // Fragment of the requested URL starting with hash, if present.
-    method: string // HTTP request method.
-    headers: Record<string, string> // HTTP request headers.
-    postData?: string // HTTP POST request data.
-    hasPostData?: boolean // True when the request has POST data.
-    mixedContentType?: MixedContentType // The mixed content export type of the request.
-    initialPriority: ResourcePriority // Priority of the resource request at the time request is sent.
-    referrerPolicy: ReferrerPolicy // The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Whether is loaded via link preload.
-    body: string | Buffer | JsonCompatible // Body response of actual resource.
-    responseHeaders: Record<string, string> // HTTP response headers.
-    statusCode: number // HTTP response status code.
-    mockedResponse?: string | Buffer // If mock, emitting the event, also modified it's response.
+    url: string // URL запиту (без фрагмента).
+    urlFragment?: string // Фрагмент запитуваного URL, починаючи з хеша, якщо він присутній.
+    method: string // Метод HTTP-запиту.
+    headers: Record<string, string> // Заголовки HTTP-запиту.
+    postData?: string // Дані HTTP POST запиту.
+    hasPostData?: boolean // True, коли запит має дані POST.
+    mixedContentType?: MixedContentType // Тип змішаного контенту запиту.
+    initialPriority: ResourcePriority // Пріоритет запиту ресурсу на момент відправлення запиту.
+    referrerPolicy: ReferrerPolicy // Політика реферера запиту, як визначено в https://www.w3.org/TR/referrer-policy/
+    isLinkPreload?: boolean // Чи завантажено через попереднє завантаження посилання.
+    body: string | Buffer | JsonCompatible // Тіло відповіді фактичного ресурсу.
+    responseHeaders: Record<string, string> // Заголовки HTTP-відповіді.
+    statusCode: number // Код статусу HTTP-відповіді.
+    mockedResponse?: string | Buffer // Якщо мок, що емітує подію, також модифікував свою відповідь.
 }
 ```
 
 ### `continue`
 
-This event is being emitted when the network response has neither been overwritten nor interrupted, or if response was already sent by another mock. `requestId` is passed in event callback.
+Ця подія емітується, коли мережева відповідь не була ні перезаписана, ні перервана, або якщо відповідь вже була відправлена іншим моком. `requestId` передається в функцію зворотного виклику події.
 
-## Examples
+## Приклади
 
-Getting a number of pending requests:
+Отримання кількості очікуваних запитів:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // it is important to match all requests otherwise, the resulting value can be very confusing.
+const mock = await browser.mock('**') // важливо знайти всі запити, інакше результуюче значення може бути дуже заплутаним.
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -128,7 +131,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Throwing an error on 404 network fail:
+Викидання помилки при мережевій помилці 404:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -142,7 +145,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // waiting here, because some requests can still be pending
+    // очікування тут, тому що деякі запити можуть ще очікувати на відповідь
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -157,7 +160,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Determining if mock respond value was used:
+Визначення, чи було використано значення відповіді mock:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -167,16 +170,16 @@ firstMock.respondOnce({id: 3, title: 'three'})
 secondMock.respond({id: 4, title: 'four'})
 
 firstMock.on('overwrite', () => {
-    // triggers for first request to '**/foo/**'
+    // спрацьовує для першого запиту до '**/foo/**'
 }).on('continue', () => {
-    // triggers for rest requests to '**/foo/**'
+    // спрацьовує для решти запитів до '**/foo/**'
 })
 
 secondMock.on('continue', () => {
-    // triggers for first request to '**/foo/bar/**'
+    // спрацьовує для першого запиту до '**/foo/bar/**'
 }).on('overwrite', () => {
-    // triggers for rest requests to '**/foo/bar/**'
+    // спрацьовує для решти запитів до '**/foo/bar/**'
 })
 ```
 
-In this example, `firstMock` was defined first and has one `respondOnce` call, so the `secondMock` response value will not be used for the first request, but will be used for the rest of them.
+У цьому прикладі `firstMock` був визначений першим і має один виклик `respondOnce`, тому значення відповіді `secondMock` не буде використано для першого запиту, але буде використано для решти запитів.

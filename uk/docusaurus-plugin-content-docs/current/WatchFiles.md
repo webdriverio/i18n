@@ -1,15 +1,15 @@
 ---
 id: watcher
-title: Спостереження за тестами
+title: Перегляд тестових файлів
 ---
 
-With the WDIO testrunner you can watch files while you are working on them. They automatically rerun if you change either something in your app or in your test files. By adding a `--watch` flag when calling the `wdio` command the testrunner will wait for file changes after it ran all tests, e.g.
+З тестраннером WDIO ви можете спостерігати за файлами під час роботи з ними. Вони автоматично перезапускаються, якщо ви змінюєте щось у вашому додатку або у ваших тестових файлах. Додавши прапорець `--watch` при виклику команди `wdio`, тестраннер буде очікувати змін файлів після того, як запустить усі тести, наприклад:
 
 ```sh
 wdio wdio.conf.js --watch
 ```
 
-By default it only watches for changes in your `specs` files. However by setting a `filesToWatch` property in your `wdio.conf.js` that contains a list of file paths (globbing supported) it will also watch for these files to be changed in order to rerun the whole suite. This is useful if you want to automatically rerun all your tests if you have changed your application code, e.g.
+За замовчуванням він спостерігає лише за змінами у ваших файлах `specs`. Однак, встановивши властивість `filesToWatch` у вашому `wdio.conf.js`, яка містить список шляхів до файлів (підтримується використання масок), він також буде спостерігати за змінами цих файлів, щоб перезапустити весь набір тестів. Це корисно, якщо ви хочете автоматично перезапускати всі ваші тести, якщо ви змінили код вашого додатку, наприклад:
 
 ```js
 // wdio.conf.js
@@ -24,5 +24,5 @@ export const config = {
 ```
 
 :::info
-Try to run tests in parallel as much as possible. E2E tests are, by nature, slow. Rerunning tests is only useful if you can keep the individual test run time short. In order to save time, the testrunner keeps WebDriver sessions alive while waiting for file changes. Make sure your WebDriver backend can be modified so that it doesn't automatically close the session if no command was executed after some duration of time.
+Намагайтеся запускати тести паралельно якомога більше. E2E тести за своєю природою повільні. Перезапуск тестів корисний лише в тому випадку, якщо ви можете зберегти індивідуальний час виконання тесту коротким. Щоб заощадити час, тестраннер підтримує WebDriver сесії активними під час очікування змін у файлах. Переконайтеся, що ваш WebDriver бекенд можна налаштувати так, щоб він не закривав автоматично сесію, якщо жодна команда не була виконана протягом певного часу.
 :::

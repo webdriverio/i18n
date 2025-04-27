@@ -3,10 +3,10 @@ id: bamboo
 title: Bamboo
 ---
 
-WebdriverIO offers a tight integration to CI systems like [Bamboo](https://www.atlassian.com/software/bamboo). With the [JUnit](https://webdriver.io/docs/junit-reporter.html) or [Allure](https://webdriver.io/docs/allure-reporter.html) reporter, you can easily debug your tests as well as keep track of your test results. The integration is pretty easy.
+WebdriverIO пропонує тісну інтеграцію з системами CI, такими як [Bamboo](https://www.atlassian.com/software/bamboo). За допомогою репортерів [JUnit](https://webdriver.io/docs/junit-reporter.html) або [Allure](https://webdriver.io/docs/allure-reporter.html) ви можете легко налагоджувати свої тести, а також відстежувати результати тестів. Інтеграція досить проста.
 
-1. Install the JUnit test reporter: `$ npm install @wdio/junit-reporter --save-dev`)
-1. Update your config to save your JUnit results where Bamboo can find them, (and specify the `junit` reporter):
+1. Встановіть репортер тестів JUnit: `$ npm install @wdio/junit-reporter --save-dev`)
+1. Оновіть свою конфігурацію, щоб зберігати результати JUnit там, де Bamboo зможе їх знайти (і вкажіть репортер `junit`):
 
 ```js
 // wdio.conf.js
@@ -21,10 +21,10 @@ module.exports = {
     // ...
 }
 ```
-Note: *It's always a good standard to keep the test results in separate folder than in the root folder.*
+Примітка: *Це завжди хороший стандарт зберігати результати тестів в окремій папці, а не в кореневій папці.*
 
 ```js
-// wdio.conf.js - For tests running in parallel
+// wdio.conf.js - Для тестів, що виконуються паралельно
 module.exports = {
     // ...
     reporters: [
@@ -40,45 +40,47 @@ module.exports = {
 }
 ```
 
-The reports will be similar for all the frameworks and you can use anyone: Mocha, Jasmine or Cucumber.
+Звіти будуть подібними для всіх фреймворків, і ви можете використовувати будь-який: Mocha, Jasmine або Cucumber.
 
-By this time, we believe you have the tests written up and results are generated in `./testresults/` folder, and your Bamboo is up and running.
+На цей момент ми вважаємо, що у вас вже написані тести, результати генеруються в папці ```./testresults/```, і ваш Bamboo запущений і працює.
 
-## Integrate your tests in Bamboo
+## Інтеграція ваших тестів у Bamboo
 
-1. Open your Bamboo project
+1. Відкрийте ваш проект Bamboo
+    > Створіть новий план, прив'яжіть ваш репозиторій (переконайтеся, що він завжди вказує на найновішу версію вашого репозиторію) і створіть ваші етапи
 
-    > Create a new plan, link your repository (make sure it always points to newest version of your repository) and create your stages
+    ![План детально](/img/bamboo/plancreation.png "План детально")
 
-    ![Plan Details](/img/bamboo/plancreation.png "Plan Details")
+    Я буду використовувати етап і завдання за замовчуванням. У вашому випадку ви можете створити власні етапи та завдання
 
-    I will go with the default stage and job. In your case, you can create your own stages and jobs
+    ![Етап за замовчуванням](/img/bamboo/defaultstage.png "Етап за замовчуванням")
+2. Відкрийте ваше тестове завдання і створіть задачі для запуску ваших тестів в Bamboo
+    >**Задача 1:** Отримання вихідного коду
 
-    ![Default Stage](/img/bamboo/defaultstage.png "Default Stage")
-2. Open your testing job and create tasks to run your tests in Bamboo
-> **Task 1:** Source Code Checkout
-> **Task 2:** Run your tests `npm i && npm run test`. You can use *Script* task and *Shell Interpreter* to run the above commands (This will generate the test results and save them in `./testresults/` folder)
+    >**Задача 2:** Запустіть ваші тести ```npm i && npm run test```. Ви можете використовувати задачу *Script* і *Shell Interpreter* для виконання вищезазначених команд (це згенерує результати тестів і збереже їх у папці ```./testresults/```)
 
-    ![Test Run](/img/bamboo/testrun.png "Test Run")
-> **Task: 3** Add *jUnit Parser* task to parse your saved test results. Please specify the test results directory here (you can use Ant style patterns as well)
+    ![Запуск тесту](/img/bamboo/testrun.png "Запуск тесту")
+
+    >**Задача: 3** Додайте задачу *jUnit Parser* для аналізу збережених результатів тестів. Будь ласка, вкажіть тут каталог результатів тестів (ви також можете використовувати шаблони у стилі Ant)
 
     ![jUnit Parser](/img/bamboo/junitparser.png "jUnit Parser")
 
-    Note: *Make sure you are keeping the results parser task in *Final* section, so that it always get executed even if your test task is failed*
-> **Task: 4** (optional) In order to make sure that your test results are not messed up with old files, you can create a task to remove the `./testresults/` folder after a successful parse to Bamboo. You can add a shell script like `rm -f ./testresults/*.xml` to remove the results or `rm -r testresults` to remove the complete folder
+    Примітка: *Переконайтеся, що ви тримаєте задачу аналізу результатів у розділі *Final*, щоб вона завжди виконувалася, навіть якщо ваша тестова задача не виконана*
 
-Once the above *rocket science* is done, please enable the plan and run it. Your final output will be like:
+    >**Задача: 4** (необов'язково) Щоб переконатися, що ваші результати тестів не змішуються зі старими файлами, ви можете створити задачу для видалення папки ```./testresults/``` після успішного аналізу в Bamboo. Ви можете додати скрипт оболонки, наприклад ```rm -f ./testresults/*.xml``` для видалення результатів або ```rm -r testresults``` для видалення всієї папки
 
-## Successful Test
+Після завершення вищевказаної *ракетної науки*, увімкніть план і запустіть його. Ваш кінцевий результат буде таким:
 
-![Successful Test](/img/bamboo/successfulltest.png "Successful Test")
+## Успішний тест
 
-## Failed Test
+![Успішний тест](/img/bamboo/successfulltest.png "Успішний тест")
 
-![Failed Test](/img/bamboo/failedtest.png "Failed Test")
+## Невдалий тест
 
-## Failed and Fixed
+![Невдалий тест](/img/bamboo/failedtest.png "Невдалий тест")
 
-![Failed and Fixed](/img/bamboo/failedandfixed.png "Failed and Fixed")
+## Невдалий та виправлений
 
-Yay!! That's all. You have successfully integrated your WebdriverIO tests in Bamboo.
+![Невдалий та виправлений](/img/bamboo/failedandfixed.png "Невдалий та виправлений")
+
+Ура!! Це все. Ви успішно інтегрували свої тести WebdriverIO в Bamboo.

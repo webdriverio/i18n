@@ -3,56 +3,56 @@ id: element
 title: Об'єкт Element
 ---
 
-An Element Object is an object representing an element on the remote user agent, e.g. a [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Element) when running a session within a browser or [a mobile element](https://developer.apple.com/documentation/swift/sequence/element) for mobile. Він може бути отриманий за допомогою однієї з багатьох команд для пошуку елементів, наприклад, [`$`](/docs/api/element/$), [`custom$`](/docs/api/element/custom$), [`react$`](/docs/api/element/react$) або [`shadow$`](/docs/api/element/shadow$).
+Об'єкт Element - це об'єкт, що представляє елемент на віддаленому агенті користувача, наприклад, [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Element) при запуску сесії в браузері або [мобільний елемент](https://developer.apple.com/documentation/swift/sequence/element) для мобільних пристроїв. Його можна отримати за допомогою одної з багатьох команд запиту елементів, наприклад, [`$`](/docs/api/element/$), [`custom$`](/docs/api/element/custom$), [`react$`](/docs/api/element/react$) або [`shadow$`](/docs/api/element/shadow$).
 
 ## Властивості
 
-Об'єкт елементу має наступні властивості:
+Об'єкт елемента має наступні властивості:
 
-| Ім'я        | Тип      | Опис                                                                                                                                                                                                                                                     |
-| ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sessionId` | `String` | Id сесії, в якій було знайдено цей елемент. Призначається сервером.                                                                                                                                                                                      |
-| `elementId` | `String` | Посилання на [елемент](https://w3c.github.io/webdriver/#elements), яке можна використовувати для взаємодії з елементом на рівні протоколу                                                                                                                |
-| `selector`  | `String` | [Селектор](/docs/selectors) який був використаний для запиту елемента.                                                                                                                                                                                   |
-| `parent`    | `Object` | Об'єкт [браузера](/docs/api/browser), коли елемент був отриманий з нього (наприклад, `const elem = browser.('selector')`) або [Об'єкт елементу](/docs/api/element) якщо його було отримано пошуком від іншого елементу (наприклад, `elem.$('selector')`) |
-| `options`   | `Object` | WebdriverIO [параметри](/docs/configuration) залежно від того, як було створено об’єкт браузера. Дізнатися більше можна переглянувши [параметри](/docs/setuptypes).                                                                                      |
+| Назва | Тип | Деталі |
+| ---- | ---- | ------- |
+| `sessionId` | `String` | Ідентифікатор сесії, призначений віддаленим сервером. |
+| `elementId` | `String` | Пов'язане [посилання на веб-елемент](https://w3c.github.io/webdriver/#elements), яке можна використовувати для взаємодії з елементом на рівні протоколу |
+| `selector` | `String` | [Селектор](/docs/selectors), який використовується для запиту елемента. |
+| `parent` | `Object` | Або [об'єкт Browser](/docs/api/browser), коли елемент було отримано з нього (наприклад, `const elem = browser.$('selector')`), або [об'єкт Element](/docs/api/element), якщо його було отримано з області елемента (наприклад, `elem.$('selector')`) |
+| `options` | `Object` | WebdriverIO [опції](/docs/configuration) залежно від того, як було створено об'єкт браузера. Дивіться більше [типів налаштування](/docs/setuptypes). |
 
 ## Методи
-An element object provides all methods from the protocol section, e.g. [WebDriver](/docs/api/webdriver) protocol as well as commands listed within the element section. Доступні команди протоколу залежать від типу сесії. Наприклад, якщо ви запускаєте браузерну сесію, жодна з команд Appium [](/docs/api/appium) не буде доступною, і навпаки.
+Об'єкт елемента надає всі методи з розділу протоколу, наприклад, протокол [WebDriver](/docs/api/webdriver), а також команди, перелічені в розділі елементів. Доступні команди протоколу залежать від типу сесії. Якщо ви запускаєте автоматизовану сесію браузера, жодна з команд Appium [commands](/docs/api/appium) не буде доступна, і навпаки.
 
-Також доступні такі команди:
+Крім того, доступні наступні команди:
 
-| Ім'я               | Параметри                                                             | Опис                                                                                                                                                                                                                                              |
-| ------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addCommand`       | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | Дозволяє додати власні команди, які можна викликати в об’єкта браузера для кращої композиції. Докладніше читайте в розділі [Власні команди](/docs/customcommands).                                                                                |
-| `overwriteCommand` | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | Дозволяє перезаписувати будь-яку команду браузера власною логікою. Будьте обережні! Це може збити з пантелику того хто буде використовувати код. Докладніше читайте в розділі [Власні команди](/docs/customcommands#overwriting-native-commands). |
+| Назва | Параметри | Деталі |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (Тип: `String`)<br />- `fn` (Тип: `Function`) | Дозволяє визначати користувацькі команди, які можна викликати з об'єкта браузера для композиції. Дізнайтеся більше в посібнику [Custom Command](/docs/customcommands). |
+| `overwriteCommand` | - `commandName` (Тип: `String`)<br />- `fn` (Тип: `Function`) | Дозволяє перевизначити будь-яку команду браузера власною функціональністю. Використовуйте обережно, оскільки це може заплутати користувачів фреймворку. Дізнайтеся більше в посібнику [Custom Command](/docs/customcommands#overwriting-native-commands). |
 
 ## Примітки
 
-### Ланцюги елементів
+### Ланцюг елементів
 
-When working with elements WebdriverIO provides special syntax to simplify querying them and composite complex nested element lookups. Об’єкти елементів дозволяють шукати вкладені елементи за допомогою звичайних методів пошуку, наприклад:
+При роботі з елементами WebdriverIO надає спеціальний синтаксис для спрощення їх запиту та створення складних вкладених пошуків елементів. Оскільки об'єкти елементів дозволяють знаходити елементи в межах їхньої гілки дерева за допомогою загальних методів запиту, користувачі можуть отримувати вкладені елементи таким чином:
 
 ```js
 const header = await $('#header')
 const headline = await header.$('#headline')
-console.log(await headline.getText()) // outputs "I am a headline"
+console.log(await headline.getText()) // виводить "I am a headline"
 ```
 
-З великими деревами елементів, зберігання кожного проміжного елементу до змінної для його подальшого використання може бути занадто розлого. Therefore WebdriverIO has the concept of chained element queries that allow fetching nested elements like this:
+При глибоких вкладених структурах призначення будь-якого вкладеного елемента масиву для подальшого використання може бути досить багатослівним. Тому WebdriverIO має концепцію ланцюгових запитів елементів, які дозволяють отримувати вкладені елементи таким чином:
 
 ```js
 console.log(await $('#header').$('#headline').getText())
 ```
 
-Це також можна використовувати для отримання масиву елементів, наприклад:
+Це також працює при отриманні набору елементів, наприклад:
 
 ```js
-// get the text of the 3rd headline within the 2nd header
+// отримати текст 3-го заголовка в межах 2-го хедера
 console.log(await $$('#header')[1].$$('#headline')[2].getText())
 ```
 
-When working with a set of elements this can be especially useful when trying to interact with them, so instead of doing:
+При роботі з набором елементів це може бути особливо корисним при спробі взаємодіяти з ними, тому замість:
 
 ```js
 const elems = await $$('div')
@@ -61,29 +61,29 @@ const locations = await Promise.all(
 )
 ```
 
-Можна викликати методи масиву напряму на ланцюгу елементів:
+Ви можете безпосередньо викликати методи масиву в ланцюгу елементів, наприклад:
 
 ```js
 const location = await $$('div').map((el) => el.getLocation())
 ```
 
-same as:
+так само, як:
 
 ```js
 const divs = await $$('div')
 const location = await divs.map((el) => el.getLocation())
 ```
 
-WebdriverIO uses a custom implementation that supports asynchronous iterators under the hood so all commands from their API are also supported for these use cases.
+WebdriverIO використовує власну реалізацію, яка підтримує асинхронні ітератори, тому всі команди з їхнього API також підтримуються для цих випадків використання.
 
-__Note:__ all async iterators return a promise even if your callback doesn't return one, e.g.:
+__Примітка:__ всі асинхронні ітератори повертають обіцянку, навіть якщо ваш зворотний виклик не повертає її, наприклад:
 
 ```ts
 const divs = await $$('div')
-console.log(divs.map((div) => div.selector)) // ❌ returns "Promise<string>[]"
-console.log(await divs.map((div) => div.selector)) // ✅ returns "string[]"
+console.log(divs.map((div) => div.selector)) // ❌ повертає "Promise<string>[]"
+console.log(await divs.map((div) => div.selector)) // ✅ повертає "string[]"
 ```
 
-### Власні команди
+### Користувацькі команди
 
-Ви можете додати власні команди до об'єкта браузера, щоб абстрагувати дії які часто використовуються. Ознайомтеся з нашим розділом про [Власні Команди](/docs/customcommands#adding-custom-commands), щоб дізнатися більше.
+Ви можете встановити користувацькі команди в області браузера, щоб абстрагувати робочі процеси, які часто використовуються. Дізнайтеся більше в нашому посібнику [Custom Commands](/docs/customcommands#adding-custom-commands).

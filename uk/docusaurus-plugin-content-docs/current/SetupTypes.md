@@ -1,20 +1,20 @@
 ---
 id: setuptypes
-title: Способи використання
+title: Типи налаштування
 ---
 
-WebdriverIO можна використовувати для різних цілей. Він реалізує API для виконання команд WebDriver протоколу та може запускати браузер готовий для автоматизації. Фреймворк розроблений для роботи в будь-якому середовищі та для будь-яких завдань. Він не залежить від сторонніх фреймворків і потребує лише Node.js для роботи.
+WebdriverIO можна використовувати для різних цілей. Він реалізує API протоколу WebDriver і може автоматично керувати браузером. Фреймворк розроблений для роботи в будь-якому середовищі і для будь-яких завдань. Він не залежить від сторонніх фреймворків і потребує лише Node.js для роботи.
 
-## Імплементації протоколів
+## Прив'язки протоколу
 
-Для базової взаємодії з WebDriver та іншими протоколами автоматизації WebdriverIO використовує власні імплементації протоколів, що базуються на NPM пакунку [`webdriver`](https://www.npmjs.com/package/webdriver):
+Для базової взаємодії з WebDriver та іншими протоколами автоматизації WebdriverIO використовує власні прив'язки протоколу на основі NPM-пакету [`webdriver`](https://www.npmjs.com/package/webdriver):
 
 <Tabs
   defaultValue="webdriver"
   values={[
     {label: 'WebDriver', value: 'webdriver'},
- {label: 'Chrome DevTools', value: 'devtools'},
- ]
+    {label: 'Chrome DevTools', value: 'devtools'},
+  ]
 }>
 <TabItem value="webdriver">
 
@@ -32,40 +32,40 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 </TabItem>
 </Tabs>
 
-Усі [команд протоколу](api/webdriver) повертають необроблену відповідь від драйвера автоматизації. Пакет дуже мінімалістичний і __не має__ розумної логіки, як-от автоматичне очікування, щоб спростити мінімізувати використання протоколу.
+Усі [команди протоколу](api/webdriver) повертають необроблену відповідь від драйвера автоматизації. Пакет дуже легкий, і в ньому __немає__ розумної логіки, такої як автоматичне очікування, для спрощення взаємодії з протоколом.
 
-Команди протоколу, що зможуть бути використані з екземпляром, залежать від відповіді драйвера на запит початку сеансу. Наприклад, якщо відповідь вказує, на те що було розпочато мобільний сеанс, пакунок дозволяє всі команди протоколу Appium і Mobile JSON Wire цьому екземпляру.
+Команди протоколу, що застосовуються до екземпляра, залежать від початкової відповіді сесії драйвера. Наприклад, якщо відповідь вказує на те, що була запущена мобільна сесія, пакет застосовує всі команди протоколу Appium та Mobile JSON Wire до прототипу екземпляра.
 
-Ви можете використовувати той самий набір команд (крім мобільних) за допомогою Chrome DevTools протоколу із [`devtools`](https://www.npmjs.com/package/devtools) NPM пакунком. Він має той самий інтерфейс, що й пакунок `webdriver`, але виконує автоматизацію на основі [Puppeteer](https://pptr.dev/).
+Ви можете запустити той самий набір команд (за винятком мобільних) за допомогою протоколу Chrome DevTools, імпортуючи NPM-пакет [`devtools`](https://www.npmjs.com/package/devtools). Він має той самий інтерфейс, що й пакет `webdriver`, але працює на основі [Puppeteer](https://pptr.dev/).
 
-Щоб отримати додаткові відомості про інтерфейси цих пакунків, перегляньте розділ [Модулі](/docs/api/modules).
+Для отримання додаткової інформації про інтерфейси цих пакетів дивіться [API модулів](/docs/api/modules).
 
 ## Автономний режим
 
-To simplify the interaction with the WebDriver protocol the `webdriverio` package implements a variety of commands on top of the protocol (e.g. the [`dragAndDrop`](api/element/dragAndDrop) command) and core concepts such as [smart selectors](selectors) or [auto-waits](autowait). The example from above can be simplified like this:
+Щоб спростити взаємодію з протоколом WebDriver, пакет `webdriverio` реалізує різні команди поверх протоколу (наприклад, команду [`dragAndDrop`](api/element/dragAndDrop)) та основні концепції, такі як [розумні селектори](selectors) або [автоматичне очікування](autowait). Приклад вище можна спростити таким чином:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/standalone.js#L2-L19
 ```
 
-Using WebdriverIO in standalone mode still gives you access to all protocol commands but provides a super set of additional commands that provide a higher level interaction with the browser. It allows you to integrate this automation tool in your own (test) project to create a new automation library. Popular examples include [Oxygen](https://github.com/oxygenhq/oxygen) or [CodeceptJS](http://codecept.io). You can also write plain Node scripts to scrape the web for content (or anything else that requires a running browser).
+Використання WebdriverIO в автономному режимі все ще дає вам доступ до всіх команд протоколу, але надає додатковий набір команд, що забезпечують взаємодію з браузером на вищому рівні. Це дозволяє інтегрувати цей інструмент автоматизації у ваш власний (тестовий) проект для створення нової бібліотеки автоматизації. Популярні приклади включають [Oxygen](https://github.com/oxygenhq/oxygen) або [CodeceptJS](http://codecept.io). Ви також можете писати прості сценарії Node для збору контенту з веб-сторінок (або будь-чого іншого, що вимагає запуску браузера).
 
-If no specific options are set WebdriverIO will always attempt to download and setup the browser driver that matches `browserName` property in your capabilities. In case of Chrome and Firefox it might also install them depending on whether it can find the corresponding browser on the machine.
+Якщо не встановлено конкретних параметрів, WebdriverIO завжди намагатиметься завантажити та налаштувати драйвер браузера, що відповідає властивості `browserName` у ваших можливостях. У випадку Chrome та Firefox він також може встановити їх, залежно від того, чи може знайти відповідний браузер на комп'ютері.
 
-For more information on the `webdriverio` package interfaces, see [Modules API](/docs/api/modules).
+Для отримання додаткової інформації про інтерфейси пакету `webdriverio` дивіться [API модулів](/docs/api/modules).
 
-## The WDIO Testrunner
+## Тестовий раннер WDIO
 
-The main purpose of WebdriverIO, though, is end-to-end testing on a big scale. We therefore implemented a test runner that helps you to build a reliable test suite that is easy to read and maintain.
+Основною метою WebdriverIO, однак, є наскрізне тестування у великому масштабі. Тому ми реалізували тестовий раннер, який допомагає створити надійний набір тестів, який легко читати та підтримувати.
 
-The test runner takes care of many problems that are common when working with plain automation libraries. For one, it organizes your test runs and splits up test specs so your tests can be executed with maximum concurrency. It also handles session management and provides lots of features to help you to debug problems and find errors in your tests.
+Тестовий раннер вирішує багато проблем, які є поширеними при роботі зі звичайними бібліотеками автоматизації. По-перше, він організовує ваші тестові запуски та розділяє тестові специфікації, щоб ваші тести могли виконуватися з максимальною паралельністю. Він також керує сеансами та надає багато функцій, які допомагають налагодити проблеми та знайти помилки у ваших тестах.
 
-Here is the same example from above, written as a test spec and executed by WDIO:
+Ось той самий приклад з вище, написаний як тестова специфікація та виконаний WDIO:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/testrunner.js
 ```
 
-The test runner is an abstraction of popular test frameworks like Mocha, Jasmine, or Cucumber. To run your tests using the WDIO test runner, check out the [Getting Started](gettingstarted) section for more information.
+Тестовий раннер є абстракцією популярних тестових фреймворків, таких як Mocha, Jasmine або Cucumber. Щоб запустити ваші тести за допомогою тестового раннера WDIO, перегляньте розділ [Початок роботи](gettingstarted) для отримання додаткової інформації.
 
-For more information on the `@wdio/cli` testrunner package interface, see [Modules API](/docs/api/modules).
+Для отримання додаткової інформації про інтерфейс пакету тестового раннера `@wdio/cli` дивіться [API модулів](/docs/api/modules).

@@ -1,15 +1,15 @@
 ---
 id: retry
-title: Retry Flaky Tests
+title: Повторне запускання нестабільних тестів
 ---
 
-You can rerun certain tests with the WebdriverIO testrunner that turn out to be unstable due to things like a flaky network or race conditions. (However, it is not recommended to simply increase the rerun rate if tests become unstable!)
+Ви можете повторно запускати певні тести з WebdriverIO testrunner, які виявляються нестабільними через такі фактори як нестабільна мережа або умови гонки (race conditions). (Однак, не рекомендується просто збільшувати кількість повторних запусків, якщо тести стають нестабільними!)
 
-## Rerun suites in Mocha
+## Повторний запуск сюїтів у Mocha
 
-Since version 3 of Mocha, you can rerun whole test suites (everything inside an `describe` block). If you use Mocha you should favor this retry mechanism instead of the WebdriverIO implementation that only allows you to rerun certain test blocks (everything within an `it` block). In order to use the `this.retries()` method, the suite block `describe` must use an unbound function `function(){}` instead of a fat arrow function `() => {}`, as described in [Mocha docs](https://mochajs.org/#arrow-functions). Using Mocha you can also set a retry count for all specs using `mochaOpts.retries` in your `wdio.conf.js`.
+Починаючи з версії 3 Mocha, ви можете повторно запускати цілі тестові сюїти (все в межах блоку `describe`). Якщо ви використовуєте Mocha, вам слід віддати перевагу цьому механізму повторних запусків, а не реалізації WebdriverIO, яка дозволяє повторно запускати лише певні тестові блоки (все в межах блоку `it`). Щоб використовувати метод `this.retries()`, блок сюїту `describe` має використовувати незв'язану функцію `function(){}` замість стрілкової функції `() => {}`, як описано в [документації Mocha](https://mochajs.org/#arrow-functions). Використовуючи Mocha, ви також можете встановити кількість повторних запусків для всіх специфікацій за допомогою `mochaOpts.retries` у вашому `wdio.conf.js`.
 
-Here is an example:
+Ось приклад:
 
 ```js
 describe('retries', function () {
@@ -29,16 +29,16 @@ describe('retries', function () {
 })
 ```
 
-## Rerun single tests in Jasmine or Mocha
+## Повторний запуск окремих тестів у Jasmine або Mocha
 
-To rerun a certain test block you can just apply the number of reruns as last parameter after the test block function:
+Щоб повторно запустити певний тестовий блок, ви можете просто вказати кількість повторних запусків як останній параметр після функції тестового блоку:
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -54,7 +54,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+Те саме працює і для хуків:
 
 ```js
 describe('my flaky app', () => {
@@ -84,7 +84,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+Те саме працює і для хуків:
 
 ```js
 describe('my flaky app', () => {
@@ -99,22 +99,22 @@ describe('my flaky app', () => {
 })
 ```
 
-If you are using Jasmine, the second parameter is reserved for timeout. To apply a retry parameter you need to set the timeout to its default value `jasmine.DEFAULT_TIMEOUT_INTERVAL` and then apply your retry count.
+Якщо ви використовуєте Jasmine, другий параметр зарезервований для таймауту. Щоб застосувати параметр повторного запуску, потрібно встановити таймаут на його типове значення `jasmine.DEFAULT_TIMEOUT_INTERVAL`, а потім вказати кількість повторних запусків.
 
 </TabItem>
 </Tabs>
 
-This retry mechanism only allows to retry single hooks or test blocks. If your test is accompanied with a hook to set up your application, this hook is not being run. [Mocha offers](https://mochajs.org/#retry-tests) native test retries that provide this behavior while Jasmine doesn't. You can access the number of executed retries in the `afterTest` hook.
+Цей механізм повторних запусків дозволяє повторно запускати лише окремі хуки або тестові блоки. Якщо ваш тест супроводжується хуком для налаштування вашого додатка, цей хук не запускається повторно. [Mocha пропонує](https://mochajs.org/#retry-tests) нативні повторні запуски тестів, які забезпечують таку поведінку, тоді як Jasmine — ні. Ви можете отримати доступ до кількості виконаних повторних запусків у хуку `afterTest`.
 
-## Rerunning in Cucumber
+## Повторні запуски у Cucumber
 
-### Rerun full suites in Cucumber
+### Повторний запуск повних сюїтів у Cucumber
 
-For cucumber >=6 you can provide the [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) configuration option along with a `retryTagFilter` optional parameter to have all or some of your failing scenarios get additional retries until succeeded. For this feature to work you need to set the `scenarioLevelReporter` to `true`.
+Для cucumber >=6 ви можете надати параметр конфігурації [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) разом з опціональним параметром `retryTagFilter`, щоб усі або деякі ваші сценарії, що зазнали невдачі, отримали додаткові спроби до успіху. Для роботи цієї функції вам потрібно встановити `scenarioLevelReporter` на `true`.
 
-### Rerun Step Definitions in Cucumber
+### Повторний запуск Step Definitions у Cucumber
 
-To define a rerun rate for a certain step definitions just apply a retry option to it, like:
+Щоб визначити рівень повторного запуску для певних визначень кроків, просто застосуйте до них опцію retry, наприклад:
 
 ```js
 export default function () {
@@ -128,15 +128,15 @@ export default function () {
 })
 ```
 
-Reruns can only be defined in your step definitions file, never in your feature file.
+Повторні запуски можна визначити лише у файлі визначень кроків, але ніколи у файлі з функціями.
 
-## Add retries on a per-specfile basis
+## Додавання повторних запусків для окремих файлів специфікацій
 
-Previously, only test- and suite-level retries were available, which are fine in most cases.
+Раніше були доступні лише повторні запуски на рівні тестів і сюїтів, що в більшості випадків є достатнім.
 
-But in any tests which involve state (such as on a server or in a database) the state may be left invalid after the first test failure. Any subsequent retries may have no chance of passing, due to the invalid state they would start with.
+Але в будь-яких тестах, які включають стан (наприклад, на сервері або в базі даних), стан може залишитися недійсним після першого невдалого тесту. Будь-які подальші спроби можуть не мати шансів на успіх через недійсний стан, з якого вони почнуться.
 
-A new `browser` instance is created for each specfile, which makes this an ideal place to hook and setup any other states (server, databases). Retries on this level mean that the whole setup process will simply be repeated, just as if it were for a new specfile.
+Новий екземпляр `browser` створюється для кожного файлу специфікацій, що робить це ідеальним місцем для підключення та налаштування будь-яких інших станів (сервер, бази даних). Повторні запуски на цьому рівні означають, що весь процес налаштування буде просто повторено, так само, як і для нового файлу специфікацій.
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -156,13 +156,13 @@ export const config = {
 }
 ```
 
-## Run a specific test multiple times
+## Запуск конкретного тесту кілька разів
 
-This is to help prevent flaky tests from being introduced in a codebase. By adding the `--repeat` cli option it will run the specified specs or suites N times. When using this cli flag the `--spec` or `--suite` flag must also be specified.
+Це допомагає запобігти появі нестабільних тестів у кодовій базі. Додавши параметр командного рядка `--repeat`, ви запустите вказані специфікації або сюїти N разів. При використанні цього прапорця також необхідно вказати прапорець `--spec` або `--suite`.
 
-When adding new tests to a codebase, especially through a CI/CD process the tests could pass and get merged but become flaky later on. This flakiness could come from a number of things like network issues, server load, database size, etc. Using the `--repeat` flag in your CD/CD process can help catch these flaky tests before they get merged to a main codebase.
+При додаванні нових тестів до кодової бази, особливо через процес CI/CD, тести можуть пройти і бути об'єднаними, але пізніше стати нестабільними. Ця нестабільність може бути спричинена багатьма факторами, такими як проблеми з мережею, навантаження на сервер, розмір бази даних тощо. Використання прапорця `--repeat` у вашому процесі CD/CD може допомогти виявити ці нестабільні тести до того, як вони потраплять до основної кодової бази.
 
-One strategy to use is run your tests like regular in your CI/CD process but if you're introducing a new test you can then run another set of tests with the new spec specified in `--spec` along with `--repeat` so it runs the new test x number of times. If the test fails any of those times then the test will not get merged and will need to be looked at why it failed.
+Одна зі стратегій — виконувати тести як зазвичай у вашому процесі CI/CD, але якщо ви впроваджуєте новий тест, ви можете запустити ще один набір тестів з новою специфікацією, вказаною в `--spec`, разом з `--repeat`, щоб він запустив новий тест x кількість разів. Якщо тест не проходить будь-яку з цих спроб, тест не буде об'єднано, і потрібно буде розібратися, чому він не працює.
 
 ```sh
 # This will run the example.e2e.js spec 5 times

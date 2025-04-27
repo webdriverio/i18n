@@ -3,7 +3,7 @@ id: ocr-get-text
 title: ocrGetText
 ---
 
-Get the text on an image.
+Отримання тексту з зображення.
 
 ### Usage
 
@@ -33,11 +33,11 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **Type:** `number`
+-   **Mandatory:** no
+-   **Default:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+Чим вищий контраст, тим темніше зображення і навпаки. Це може допомогти знайти текст на зображенні. Приймає значення від `-1` до `1`.
 
 #### Example
 
@@ -47,10 +47,10 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Type:** `number`
+-   **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+Це область пошуку на екрані, де OCR має шукати текст. Це може бути елемент або прямокутник, що містить `x`, `y`, `width` та `height`
 
 #### Example
 
@@ -73,11 +73,11 @@ await browser.ocrGetText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Мова, яку розпізнаватиме Tesseract. Більше інформації можна знайти [тут](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а підтримувані мови можна знайти [тут](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 #### Example
 

@@ -1,137 +1,137 @@
 ---
 id: compare-options
-title: Compare Options
+title: Порівняння опцій
 ---
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+Опції порівняння - це параметри, які впливають на спосіб виконання порівняння за допомогою [ResembleJS](https://github.com/Huddle/Resemble.js).
 
-:::info NOTE
-All compare options can be used during service instantiation or for each single `checkElement`,`checkScreen` and `checkFullPageScreen`. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
+:::info ПРИМІТКА
+Всі опції порівняння можуть бути використані під час створення екземпляра сервісу або для кожного окремого `checkElement`, `checkScreen` та `checkFullPageScreen`. Якщо опція методу має той самий ключ, що й опція, встановлена під час створення екземпляра сервісу, то опція порівняння методу перевизначить значення опції порівняння сервісу.
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Compare images and discard alpha.
+Порівнює зображення та ігнорує альфа-канал.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. It will override the plugin setting. This is **iPad only**_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Може бути використано тільки для `checkScreen()`. Це перевизначить налаштування плагіна. Це **тільки для iPad**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+Автоматично блокує бічну панель для iPad у ландшафтному режимі під час порівнянь. Це запобігає помилкам у нативному компоненті вкладки/приватного режиму/закладок.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна. Це **тільки для мобільних пристроїв**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+Автоматично блокує рядок стану та адресний рядок під час порівнянь. Це запобігає помилкам, пов'язаним з часом, Wi-Fi або статусом батареї.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна. Це **тільки для мобільних пристроїв**_
 
-Automatically block out the toolbar.
+Автоматично блокує панель інструментів.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Compare images and discard anti-aliasing.
+Порівнює зображення та ігнорує згладжування.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Even though the images are in color, the comparison will compare 2 black/white images
+Навіть якщо зображення кольорові, порівняння буде проводитися між 2 чорно-білими зображеннями.
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+Порівнює зображення з параметрами `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`.
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+Порівнює зображення з параметрами `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`.
 
 ### `ignoreTransparentPixel`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Compare images and it will ignore all pixels that have some transparency in one of the images
+Порівнює зображення та ігнорує всі пікселі, які мають прозорість в одному з зображень.
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+Якщо true, повернений відсоток буде у форматі `0.12345678`, за замовчуванням це `0.12`.
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-This will return all compare data, not only the mismatch percentage
+Це поверне всі дані порівняння, не тільки відсоток розбіжності.
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `number`
+-   **За замовчуванням:** `0`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+Допустиме значення `misMatchPercentage`, яке запобігає збереженню зображень з відмінностями.
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `number`
+-   **За замовчуванням:** `0`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+Порівняння великих зображень може призвести до проблем з продуктивністю.
+При вказанні числа пікселів (більше 0), алгоритм порівняння пропускає пікселі, коли ширина або висота зображення більша за `largeImageThreshold` пікселів.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язково:** ні
+-   **Примітка:** _Також може бути використано для `checkElement`, `checkScreen()` та `checkFullPageScreen()`. Це перевизначить налаштування плагіна_
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+Масштабує 2 зображення до однакового розміру перед виконанням порівняння. Настійно рекомендується увімкнути `ignoreAntialiasing` та `ignoreAlpha`.

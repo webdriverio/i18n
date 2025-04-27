@@ -1,30 +1,30 @@
 ---
 id: modules
-title: Modules
+title: Модулі
 ---
 
-WebdriverIO publishes various of modules to NPM and other registries that you can use to build your own automation framework. See more documentation on WebdriverIO setup types [here](/docs/setuptypes).
+WebdriverIO публікує різні модулі в NPM та інших реєстрах, які ви можете використовувати для побудови власного фреймворку автоматизації. Дивіться більше документації про типи налаштувань WebdriverIO [тут](/docs/setuptypes).
 
-## `webdriver` and `devtools`
+## `webdriver` та `devtools`
 
-The protocol packages ([`webdriver`](https://www.npmjs.com/package/webdriver) and [`devtools`](https://www.npmjs.com/package/devtools)) expose a class with the following static functions attached that allow you to initiate sessions:
+Пакети протоколів ([`webdriver`](https://www.npmjs.com/package/webdriver) та [`devtools`](https://www.npmjs.com/package/devtools)) представляють клас з наступними статичними функціями, які дозволяють ініціювати сесії:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Starts a new session with specific capabilities. Based on the session response commands from different protocols will be provided.
+Починає нову сесію з певними можливостями. На основі відповіді сесії будуть надані команди з різних протоколів.
 
-##### Paramaters
+##### Параметри
 
-- `options`: [WebDriver Options](/docs/configuration#webdriver-options)
-- `modifier`: function that allows to modify the client instance before it is being returned
-- `userPrototype`: properties object that allows to extend the instance prototype
-- `customCommandWrapper`: function that allows to wrap functionality around function calls
+- `options`: [Опції WebDriver](/docs/configuration#webdriver-options)
+- `modifier`: функція, що дозволяє модифікувати екземпляр клієнта перед його поверненням
+- `userPrototype`: об'єкт властивостей, який дозволяє розширити прототип екземпляра
+- `customCommandWrapper`: функція, що дозволяє обгорнути функціональність навколо викликів функцій
 
-##### Returns
+##### Повертає
 
-- [Browser](/docs/api/browser) object
+- Об'єкт [Browser](/docs/api/browser)
 
-##### Example
+##### Приклад
 
 ```js
 const client = await WebDriver.newSession({
@@ -34,20 +34,20 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-Attaches to a running WebDriver or DevTools session.
+Приєднується до запущеної сесії WebDriver або DevTools.
 
-##### Paramaters
+##### Параметри
 
-- `attachInstance`: instance to attach a session to or at least an object with a property `sessionId` (e.g. `{ sessionId: 'xxx' }`)
-- `modifier`: function that allows to modify the client instance before it is being returned
-- `userPrototype`: properties object that allows to extend the instance prototype
-- `customCommandWrapper`: function that allows to wrap functionality around function calls
+- `attachInstance`: екземпляр, до якого потрібно приєднатися, або принаймні об'єкт з властивістю `sessionId` (наприклад, `{ sessionId: 'xxx' }`)
+- `modifier`: функція, що дозволяє модифікувати екземпляр клієнта перед його поверненням
+- `userPrototype`: об'єкт властивостей, який дозволяє розширити прототип екземпляра
+- `customCommandWrapper`: функція, що дозволяє обгорнути функціональність навколо викликів функцій
 
-##### Returns
+##### Повертає
 
-- [Browser](/docs/api/browser) object
+- Об'єкт [Browser](/docs/api/browser)
 
-##### Example
+##### Приклад
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -56,13 +56,13 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-Reloads a session given provided instance.
+Перезавантажує сесію для вказаного екземпляра.
 
-##### Paramaters
+##### Параметри
 
-- `instance`: package instance to reload
+- `instance`: екземпляр пакета для перезавантаження
 
-##### Example
+##### Приклад
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -71,22 +71,22 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-Similar as to the protocol packages (`webdriver` and `devtools`) you can also use the WebdriverIO package APIs to manage sessions. The APIs can be imported using `import { remote, attach, multiremote } from 'webdriverio` and contain the following functionality:
+Подібно до пакетів протоколів (`webdriver` та `devtools`), ви також можете використовувати API пакета WebdriverIO для керування сесіями. API можна імпортувати за допомогою `import { remote, attach, multiremote } from 'webdriverio'` і вони містять наступну функціональність:
 
 #### `remote(options, modifier)`
 
-Starts a WebdriverIO session. The instance contains all commands as the protocol package but with additional higher order functions, see [API docs](/docs/api).
+Запускає сесію WebdriverIO. Екземпляр містить усі команди, як у пакеті протоколу, але з додатковими функціями вищого порядку, див. [API документацію](/docs/api).
 
-##### Paramaters
+##### Параметри
 
-- `options`: [WebdriverIO Options](/docs/configuration#webdriverio)
-- `modifier`: function that allows to modify the client instance before it is being returned
+- `options`: [Опції WebdriverIO](/docs/configuration#webdriverio)
+- `modifier`: функція, що дозволяє модифікувати екземпляр клієнта перед його поверненням
 
-##### Returns
+##### Повертає
 
-- [Browser](/docs/api/browser) object
+- Об'єкт [Browser](/docs/api/browser)
 
-##### Example
+##### Приклад
 
 ```js
 import { remote } from 'webdriverio'
@@ -98,17 +98,17 @@ const browser = await remote({
 
 #### `attach(attachOptions)`
 
-Attaches to a running WebdriverIO session.
+Приєднується до запущеної сесії WebdriverIO.
 
-##### Paramaters
+##### Параметри
 
-- `attachOptions`: instance to attach a session to or at least an object with a property `sessionId` (e.g. `{ sessionId: 'xxx' }`)
+- `attachOptions`: екземпляр, до якого потрібно приєднатися, або принаймні об'єкт з властивістю `sessionId` (наприклад, `{ sessionId: 'xxx' }`)
 
-##### Returns
+##### Повертає
 
-- [Browser](/docs/api/browser) object
+- Об'єкт [Browser](/docs/api/browser)
 
-##### Example
+##### Приклад
 
 ```js
 import { remote, attach } from 'webdriverio'
@@ -119,17 +119,17 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-Initiates a multiremote instance which allows you to control multiple session within a single instance. Checkout our [multiremote examples](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) for concrete use cases.
+Ініціює екземпляр multiremote, який дозволяє керувати кількома сесіями в одному екземплярі. Перегляньте наші [приклади multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) для конкретних випадків використання.
 
-##### Paramaters
+##### Параметри
 
-- `multiremoteOptions`: an object with keys representing the browser name and their [WebdriverIO Options](/docs/configuration#webdriverio).
+- `multiremoteOptions`: об'єкт з ключами, що представляють назву браузера та їх [опції WebdriverIO](/docs/configuration#webdriverio).
 
-##### Returns
+##### Повертає
 
-- [Browser](/docs/api/browser) object
+- Об'єкт [Browser](/docs/api/browser)
 
-##### Example
+##### Приклад
 
 ```js
 import { multiremote } from 'webdriverio'
@@ -151,14 +151,14 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-Instead of calling the `wdio` command, you can also include the test runner as module and run it in an arbitrary environment. For that, you'll need to require the `@wdio/cli` package as module, like this:
+Замість виклику команди `wdio`, ви також можете включити тест-ранер як модуль і запустити його в довільному середовищі. Для цього вам потрібно підключити пакет `@wdio/cli` як модуль, ось так:
 
 <Tabs
   defaultValue="esm"
   values={[
     {label: 'EcmaScript Modules', value: 'esm'},
- {label: 'CommonJS', value: 'cjs'}
- ]
+    {label: 'CommonJS', value: 'cjs'}
+  ]
 }>
 <TabItem value="esm">
 
@@ -176,18 +176,18 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-After that, create an instance of the launcher, and run the test.
+Після цього створіть екземпляр лаунчера та запустіть тест.
 
 #### `Launcher(configPath, opts)`
 
-The `Launcher` class constructor expects the URL to the config file, and an `opts` object with settings that will overwrite those in the config.
+Конструктор класу `Launcher` очікує URL до конфігураційного файлу та об'єкт `opts` з налаштуваннями, які замінять налаштування в конфігураційному файлі.
 
-##### Paramaters
+##### Параметри
 
-- `configPath`: path to the `wdio.conf.js` to run
-- `opts`: arguments ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) to overwrite values from the config file
+- `configPath`: шлях до `wdio.conf.js` для запуску
+- `opts`: аргументи ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) для заміни значень з конфігураційного файлу
 
-##### Example
+##### Приклад
 
 ```js
 const wdio = new Launcher(
@@ -203,36 +203,36 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-The `run` command returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). It is resolved if tests ran successfully or failed, and it is rejected if the launcher was unable to start run the tests.
+Команда `run` повертає [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Він вирішується, якщо тести успішно виконані або провалені, і відхиляється, якщо лаунчер не зміг запустити тести.
 
 ## `@wdio/browser-runner`
 
-When running unit or component tests using WebdriverIO's [browser runner](/docs/runner#browser-runner) you can import mocking utilities for your tests, e.g.:
+При запуску модульних або компонентних тестів за допомогою [браузерного ранера](/docs/runner#browser-runner) WebdriverIO, ви можете імпортувати утиліти моків для ваших тестів, наприклад:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-The following named exports are available:
+Доступні наступні іменовані експорти:
 
 #### `fn`
 
-Mock function, see more in the official [Vitest docs](https://vitest.dev/api/mock.html#mock-functions).
+Функція моку, див. більше в офіційній [документації Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
-Spy function, see more in the official [Vitest docs](https://vitest.dev/api/mock.html#mock-functions).
+Функція шпигунa, див. більше в офіційній [документації Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
-Method to mock file or dependency module.
+Метод для моку файлу або модуля залежності.
 
-##### Paramaters
+##### Параметри
 
-- `moduleName`: either a relative path to the file to be mocked or a module name.
-- `factory`: function to return the mocked value (optional)
+- `moduleName`: відносний шлях до файлу, який потрібно замокати, або ім'я модуля.
+- `factory`: функція для повернення замоканого значення (необов'язково)
 
-##### Example
+##### Приклад
 
 ```js
 mock('../src/constants.ts', () => ({
@@ -250,13 +250,13 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-Unmock dependency that is defined within the manual mock (`__mocks__`) directory.
+Відміняє мок залежності, яка визначена в каталозі ручних моків (`__mocks__`).
 
-##### Paramaters
+##### Параметри
 
-- `moduleName`: name of the module to be unmocked.
+- `moduleName`: ім'я модуля, для якого потрібно відмінити мок.
 
-##### Example
+##### Приклад
 
 ```js
 unmock('lodash')

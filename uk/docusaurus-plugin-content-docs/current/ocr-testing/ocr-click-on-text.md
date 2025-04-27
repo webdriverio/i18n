@@ -3,17 +3,17 @@ id: ocr-click-on-text
 title: ocrClickOnText
 ---
 
-Click on an element based on the provided texts. The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+Клік на елемент на основі наданих текстів. Команда шукатиме наданий текст і спробує знайти відповідність на основі нечіткої логіки від [Fuse.js](https://fusejs.io/). Це означає, що якщо ви вказали селектор з опискою, або знайдений текст може не відповідати на 100%, він все одно спробує повернути вам елемент. Дивіться [логи](#logs) нижче.
 
-## Usage
+## Використання
 
 ```js
 await browser.ocrClickOnText({ text: "Start3d" });
 ```
 
-## Output
+## Вивід
 
-### Logs
+### Логи
 
 ```log
 # Still finding a match even though we searched for "Start3d" and the found text was "Started"
@@ -22,22 +22,22 @@ await browser.ocrClickOnText({ text: "Start3d" });
 [0-0] 2024-05-25T05:05:21.022Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-### Image
+### Зображення
 
-You will find an image in your (default)[`imagesFolder`](./getting-started#imagesfolder) with a target to show you where the module has clicked.
+Ви знайдете зображення у вашій (стандартній) [`imagesFolder`](./getting-started#imagesfolder) з мішенню, яка показує вам, де модуль клікнув.
 
 ![Process steps](/img/ocr/ocr-click-on-text-target.jpg)
 
-## Options
+## Опції
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **Тип:** `string`
+-   **Обов'язково:** так
 
-The text you want to search for to click on.
+Текст, який ви хочете знайти для кліку.
 
-#### Example
+#### Приклад
 
 ```js
 await browser.ocrClickOnText({ text: "WebdriverIO" });
@@ -45,30 +45,30 @@ await browser.ocrClickOnText({ text: "WebdriverIO" });
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **Тип:** `number`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** `500` мілісекунд
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+Це тривалість кліку. Якщо хочете, ви також можете створити "довгий клік", збільшивши час.
 
-#### Example
+#### Приклад
 
 ```js
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // Це 3 секунди
 });
 ```
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **Тип:** `number`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+Чим вищий контраст, тим темніше зображення і навпаки. Це може допомогти знайти текст на зображенні. Приймає значення від `-1` до `1`.
 
-#### Example
+#### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -79,12 +79,12 @@ await browser.ocrClickOnText({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Тип:** `number`
+-   **Обов'язково:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+Це область пошуку на екрані, де OCR повинен шукати текст. Це може бути елемент або прямокутник, що містить `x`, `y`, `width` і `height`
 
-#### Example
+#### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -92,13 +92,13 @@ await browser.ocrClickOnText({
     haystack: $("elementSelector"),
 });
 
-// OR
+// АБО
 await browser.ocrClickOnText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// АБО
 await browser.ocrClickOnText({
     text: "WebdriverIO",
     haystack: {
@@ -112,53 +112,53 @@ await browser.ocrClickOnText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **Тип:** `string`
+-   **Обов'язково:** Ні
+-   **За замовчуванням:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Мова, яку Tesseract розпізнаватиме. Більше інформації можна знайти [тут](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а підтримувані мови можна знайти [тут](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+#### Приклад
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    // Use Dutch as a language
+    // Використовуйте голландську як мову
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **Тип:** `object`
+-   **Обов'язково:** ні
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+Ви можете клікнути на екран відносно відповідного елемента. Це можна зробити на основі відносних пікселів `above`, `right`, `below` або `left` від відповідного елемента
 
 :::note
 
-The following combinations are allowed
+Дозволені наступні комбінації
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   одиночні властивості
+-   `above` + `left` або `above` + `right`
+-   `below` + `left` або `below` + `right`
 
-The following combinations are **NOT** allowed
+Наступні комбінації **НЕ** дозволені
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` плюс `below`
+-   `left` плюс `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Тип:** `number`
+-   **Обов'язково:** ні
 
-Click x pixels `above` the matching element.
+Клікнути x пікселів `вище` відповідного елемента.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -171,12 +171,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Тип:** `number`
+-   **Обов'язково:** ні
 
-Click x pixels `right` from the matching element.
+Клікнути x пікселів `праворуч` від відповідного елемента.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -189,12 +189,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Тип:** `number`
+-   **Обов'язково:** ні
 
-Click x pixels `below` the matching element.
+Клікнути x пікселів `нижче` відповідного елемента.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -207,12 +207,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Тип:** `number`
+-   **Обов'язково:** ні
 
-Click x pixels `left` from the matching element.
+Клікнути x пікселів `ліворуч` від відповідного елемента.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -225,17 +225,17 @@ await browser.ocrClickOnText({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+Ви можете змінити нечітку логіку для пошуку тексту з наступними параметрами. Це може допомогти знайти кращу відповідність
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **Тип:** `number`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+Визначає, наскільки близько відповідність повинна бути до нечіткого місця розташування (вказаного в location). Точна відповідність літер, яка знаходиться на відстані символів від нечіткого місця розташування, оцінюватиметься як повна невідповідність. Відстань 0 вимагає, щоб відповідність була на точному вказаному місці. Відстань 1000 вимагатиме, щоб ідеальна відповідність була в межах 800 символів від місця розташування, щоб її можна було знайти з порогом 0.8.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -248,13 +248,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **Тип:** `number`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+Визначає приблизно, де в тексті очікується знайти шаблон.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -267,13 +267,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **Тип:** `number`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+На якому етапі алгоритм відповідності здається. Поріг 0 вимагає ідеальної відповідності (як літер, так і місця розташування), поріг 1.0 відповідатиме будь-чому.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -286,13 +286,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **Тип:** `boolean`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** false
 
-Whether the search should be case sensitive.
+Чи повинен пошук бути чутливим до регістру.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -305,13 +305,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **Тип:** `number`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+Будуть повернуті лише відповідності, довжина яких перевищує це значення. (Наприклад, якщо ви хочете ігнорувати відповідності одного символу в результаті, встановіть значення 2)
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({
@@ -324,13 +324,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **Тип:** `number`
+-   **Обов'язково:** ні
+-   **За замовчуванням:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+Коли `true`, функція пошуку продовжуватиме роботу до кінця шаблону пошуку, навіть якщо ідеальна відповідність вже знайдена в рядку.
 
-##### Example
+##### Приклад
 
 ```js
 await browser.ocrClickOnText({

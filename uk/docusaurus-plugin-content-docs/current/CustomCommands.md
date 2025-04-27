@@ -1,37 +1,38 @@
 ---
 id: customcommands
-title: Custom Commands
+title: Користувацькі команди
 ---
 
-If you want to extend the `browser` instance with your own set of commands, the browser method  `addCommand` is here for you. You can write your command in a asynchronous way, just as in your specs.
+Якщо ви хочете розширити екземпляр `browser` власним набором команд, метод браузера `addCommand` створений для вас. Ви можете написати свою команду в асинхронному стилі, так само як і в ваших тестах.
 
-## Parameters
+## Параметри
 
-### Command Name
+### Назва команди
 
-A name that defines the command and will be attached to the browser or element scope.
+Ім'я, яке визначає команду та буде прикріплене до об'єкту браузера або елемента.
 
-Type: `String`
+Тип: `String`
 
-### Custom Function
+### Користувацька функція
 
-A function that is being executed when the command is called. The `this` scope is either [`WebdriverIO.Browser`](/docs/api/browser) or [`WebdriverIO.Element`](/docs/api/element) depending whether the command gets attached to the browser or element scope.
+Функція, яка виконується при виклику команди. Контекст `this` - це або [`WebdriverIO.Browser`](/docs/api/browser), або [`WebdriverIO.Element`](/docs/api/element), залежно від того, чи команда прикріплюється до області браузера чи елемента.
 
-Type: `Function`
+Тип: `Function`
 
-### Target Scope
+### Цільова область
 
-Flag to decide whether to attach the command to the browser or element scope. If set to `true` the command will be an element command.
+Прапорець для визначення, чи приєднувати команду до області браузера чи елемента. Якщо встановлено значення `true`, команда буде командою елемента.
 
-Type: `Boolean`<br /> Default: `false`
+Тип: `Boolean`<br />
+За замовчуванням: `false`
 
-## Examples
+## Приклади
 
-This example shows how to add a new command that returns the current URL and title as one result. The scope (`this`) is a [`WebdriverIO.Browser`](/docs/api/browser) object.
+Цей приклад показує, як додати нову команду, яка повертає поточний URL та заголовок як один результат. Область видимості (`this`) - це об'єкт [`WebdriverIO.Browser`](/docs/api/browser).
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
-    // `this` refers to the `browser` scope
+    // `this` посилається на об'єкт `browser`
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -40,19 +41,19 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-Additionally, you can extend the element instance with your own set of commands, by passing `true` as the final argument. The scope (`this`) in this case is a [`WebdriverIO.Element`](/docs/api/element) object.
+Крім того, ви можете розширити екземпляр елемента своїм набором команд, передаючи `true` як останній аргумент. Контекст (`this`) у цьому випадку - це об'єкт [`WebdriverIO.Element`](/docs/api/element).
 
 ```js
 browser.addCommand("waitAndClick", async function () {
-    // `this` is return value of $(selector)
+    // `this` є повернутим значенням $(selector)
     await this.waitForDisplayed()
     await this.click()
 }, true)
 ```
 
-Custom commands give you the opportunity to bundle a specific sequence of commands you use frequently as a single call. You can define custom commands at any point in your test suite; just make sure that the command is defined *before* its first use. (The `before` hook in your `wdio.conf.js` is one good place to create them.)
+Користувацькі команди дають вам можливість об'єднати певну послідовність команд, які ви часто використовуєте, в один виклик. Ви можете визначати користувацькі команди в будь-якій точці вашого тестового набору; просто переконайтеся, що команда визначена *до* її першого використання. (Хук `before` у вашому `wdio.conf.js` - це одне хороше місце для їх створення.)
 
-Once defined, you can use them as follows:
+Після визначення ви можете використовувати їх наступним чином:
 
 ```js
 it('should use my custom command', async () => {
@@ -65,26 +66,26 @@ it('should use my custom command', async () => {
 })
 ```
 
-__Note:__ If you register a custom command to the `browser` scope, the command won't be accessible for elements. Likewise, if you register a command to the element scope, it won't be accessible in the `browser` scope:
+__Примітка:__ Якщо ви реєструєте користувацьку команду в області видимості `browser`, команда не буде доступна для елементів. Так само, якщо ви реєструєте команду в області видимості елемента, вона не буде доступна в області видимості `browser`:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
 const elem = await $('body')
-console.log(typeof browser.myCustomBrowserCommand) // outputs "function"
-console.log(typeof elem.myCustomBrowserCommand()) // outputs "undefined"
+console.log(typeof browser.myCustomBrowserCommand) // виводить "function"
+console.log(typeof elem.myCustomBrowserCommand()) // виводить "undefined"
 
 browser.addCommand("myCustomElementCommand", () => { return 1 }, true)
 const elem2 = await $('body')
-console.log(typeof browser.myCustomElementCommand) // outputs "undefined"
-console.log(await elem2.myCustomElementCommand('foobar')) // outputs "1"
+console.log(typeof browser.myCustomElementCommand) // виводить "undefined"
+console.log(await elem2.myCustomElementCommand('foobar')) // виводить "1"
 
 const elem3 = await $('body')
 elem3.addCommand("myCustomElementCommand2", () => { return 2 })
-console.log(typeof browser.myCustomElementCommand2) // outputs "undefined"
-console.log(await elem3.myCustomElementCommand2('foobar')) // outputs "2"
+console.log(typeof browser.myCustomElementCommand2) // виводить "undefined"
+console.log(await elem3.myCustomElementCommand2('foobar')) // виводить "2"
 ```
 
-__Note:__ If you need to chain a custom command, the command should end with `$`,
+__Примітка:__ Якщо вам потрібно зв'язати користувацьку команду, команда повинна закінчуватися `$`,
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -92,23 +93,23 @@ browser.addCommand("user$", (locator) => { return ele }, true)
 await browser.user$('foo').user$('bar').click()
 ```
 
-Be careful to not overload the `browser` scope with too many custom commands.
+Будьте обережні, щоб не перевантажувати область видимості `browser` занадто великою кількістю користувацьких команд.
 
-We recommend defining custom logic in [page objects](pageobjects), so they are bound to a specific page.
+Ми рекомендуємо визначати користувацьку логіку в [об'єктах сторінок](pageobjects), щоб вони були прив'язані до конкретної сторінки.
 
 ### Multiremote
 
-`addCommand` works in a similar way for multiremote, except the new command will propagate down to the children instances. You have to be mindful when using `this` object since the multiremote `browser` and its children instances have different `this`.
+`addCommand` працює подібним чином для multiremote, за винятком того, що нова команда буде поширюватися на дочірні екземпляри. Ви повинні бути уважними при використанні об'єкта `this`, оскільки multiremote `browser` та його дочірні екземпляри мають різні `this`.
 
-This example shows how to add a new command for multiremote.
+Цей приклад показує, як додати нову команду для multiremote.
 
 ```js
 import { multiremotebrowser } from '@wdio/globals'
 
 multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
-    // `this` refers to:
-    //      - MultiRemoteBrowser scope for browser
-    //      - Browser scope for instances
+    // `this` посилається на:
+    //      - область MultiRemoteBrowser для браузера
+    //      - область Browser для екземплярів
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -138,21 +139,21 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 */
 ```
 
-## Extend Type Definitions
+## Розширення визначень типів
 
-With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your custom commands like this:
+З TypeScript легко розширювати інтерфейси WebdriverIO. Додайте типи до ваших користувацьких команд таким чином:
 
-1. Create a type definition file (e.g., `./src/types/wdio.d.ts`)
-2. a. If using a module-style type definition file (using import/export and `declare global WebdriverIO` in the type definition file), make sure to include the file path in the `tsconfig.json` `include` property.
+1. Створіть файл визначення типів (наприклад, `./src/types/wdio.d.ts`)
+2. a. Якщо використовуєте файл визначення типів у стилі модуля (використовуючи import/export та `declare global WebdriverIO` у файлі визначення типів), переконайтеся, що шлях до файлу включено до властивості `include` у `tsconfig.json`.
 
-   b.  If using ambient-style type definition files (no import/export in type definition files and `declare namespace WebdriverIO` for custom commands), make sure the `tsconfig.json` does *not* contain any `include` section, since this will cause all type definition files not listed in the `include` section to not be recognized by typescript.
+   b. Якщо використовуєте файли визначення типів у середовищі (без import/export у файлах визначення типів та `declare namespace WebdriverIO` для користувацьких команд), переконайтеся, що `tsconfig.json` *не* містить жодного розділу `include`, оскільки це призведе до того, що всі файли визначення типів, не перелічені в розділі `include`, не будуть розпізнані typescript.
 
 <Tabs
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -178,14 +179,14 @@ With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your c
 </TabItem>
 </Tabs>
 
-3. Add definitions for your commands according to your execution mode.
+3. Додайте визначення для ваших команд відповідно до вашого режиму виконання.
 
 <Tabs
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -229,11 +230,11 @@ declare namespace WebdriverIO {
 </TabItem>
 </Tabs>
 
-## Integrate 3rd Party Libraries
+## Інтеграція сторонніх бібліотек
 
-If you use external libraries (e.g., to do database calls) that support promises, a nice approach to integrate them is to wrap certain API methods with a custom command.
+Якщо ви використовуєте зовнішні бібліотеки (наприклад, для виконання запитів до бази даних), які підтримують проміси, хорошим підходом до їх інтеграції є обгортання певних методів API за допомогою користувацької команди.
 
-When returning the promise, WebdriverIO ensures that it doesn't continue with the next command until the promise is resolved. If the promise gets rejected, the command will throw an error.
+При поверненні проміса WebdriverIO гарантує, що він не продовжить виконання наступної команди, доки проміс не буде вирішено. Якщо проміс відхиляється, команда видасть помилку.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -242,59 +243,59 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-Then, just use it in your WDIO test specs:
+Потім просто використовуйте його у ваших тестових специфікаціях WDIO:
 
 ```js
 it('execute external library in a sync way', async () => {
     await browser.url('...')
     const body = await browser.makeRequest('http://...')
-    console.log(body) // returns response body
+    console.log(body) // повертає тіло відповіді
 })
 ```
 
-**Note:** The result of your custom command is the result of the promise you return.
+**Примітка:** Результатом вашої користувацької команди є результат проміса, який ви повертаєте.
 
-## Overwriting Commands
+## Перевизначення команд
 
-You can also overwrite native commands with `overwriteCommand`.
+Ви також можете перевизначати нативні команди за допомогою `overwriteCommand`.
 
-It is not recommended to do this, because it may lead to unpredictable behavior of the framework!
+Не рекомендується це робити, оскільки це може призвести до непередбачуваної поведінки фреймворку!
 
-The overall approach is similar to `addCommand`, the only difference is that the first argument in the command function is the original function that you are about to overwrite. Please see some examples below.
+Загальний підхід схожий на `addCommand`, єдина відмінність полягає в тому, що перший аргумент у функції команди - це оригінальна функція, яку ви збираєтеся перевизначити. Будь ласка, ознайомтеся з деякими прикладами нижче.
 
-### Overwriting Browser Commands
+### Перевизначення команд браузера
 
 ```js
 /**
- * print milliseconds before pause and return its value.
+ * виводить мілісекунди перед паузою та повертає її значення.
  */
-// 'pause'            - name of command to be overwritten
-// origPauseFunction  - original pause function
+// 'pause'            - назва команди, яка буде перевизначена
+// origPauseFunction  - оригінальна функція паузи
 browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
     console.log(`sleeping for ${ms}`)
     await origPauseFunction(ms)
     return ms
 })
 
-// then use it as before
+// потім використовуйте як раніше
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### Overwriting Element Commands
+### Перевизначення команд елементів
 
-Overwriting commands on element level is almost the same. Simply pass `true` as the third argument to `overwriteCommand`:
+Перевизначення команд на рівні елемента майже таке саме. Просто передайте `true` як третій аргумент до `overwriteCommand`:
 
 ```js
 /**
- * Attempt to scroll to element if it is not clickable.
- * Pass { force: true } to click with JS even if element is not visible or clickable.
+ * Спроба прокрутити до елемента, якщо він не клікабельний.
+ * Передайте { force: true }, щоб клікнути за допомогою JS, навіть якщо елемент не видимий або не клікабельний.
  */
-// 'click'            - name of command to be overwritten
-// origClickFunction  - original click function
+// 'click'            - назва команди, яка буде перевизначена
+// origClickFunction  - оригінальна функція кліку
 browser.overwriteCommand('click', async function (origClickFunction, { force = false } = {}) {
     if (!force) {
         try {
-            // attempt to click
+            // спроба клікнути
             await origClickFunction()
             return null
         } catch (err) {
@@ -302,7 +303,7 @@ browser.overwriteCommand('click', async function (origClickFunction, { force = f
                 console.warn('WARN: Element', this.selector, 'is not clickable.',
                     'Scrolling to it before clicking again.')
 
-                // scroll to element and click again
+                // прокрутка до елемента і повторний клік
                 await this.scrollIntoView()
                 return origClickFunction()
             }
@@ -310,24 +311,24 @@ browser.overwriteCommand('click', async function (origClickFunction, { force = f
         }
     }
 
-    // clicking with js
+    // клік за допомогою js
     console.warn('WARN: Using force click for', this.selector)
     await browser.execute((el) => {
         el.click()
     }, this)
-}, true) // don't forget to pass `true` as 3rd argument
+}, true) // не забудьте передати `true` як 3-й аргумент
 
-// then use it as before
+// потім використовуйте як раніше
 const elem = await $('body')
 await elem.click()
 
-// or pass params
+// або передайте параметри
 await elem.click({ force: true })
 ```
 
-## Add More WebDriver Commands
+## Додати більше команд WebDriver
 
-If you are using the WebDriver protocol and run tests on a platform that supports additional commands not defined by any of the protocol definitions in [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) you can manually add them through the `addCommand` interface. The `webdriver` package offers a command wrapper that allows to register these new endpoints in the same way as other commands, providing the same parameter checks and error handling. To register this new endpoint import the command wrapper and register a new command with it as follows:
+Якщо ви використовуєте протокол WebDriver і запускаєте тести на платформі, яка підтримує додаткові команди, не визначені жодним із визначень протоколу в [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols), ви можете вручну додати їх через інтерфейс `addCommand`. Пакет `webdriver` пропонує обгортку команди, яка дозволяє реєструвати ці нові кінцеві точки так само, як і інші команди, забезпечуючи ті самі перевірки параметрів та обробку помилок. Щоб зареєструвати цю нову кінцеву точку, імпортуйте обгортку команди та зареєструйте нову команду з нею наступним чином:
 
 ```js
 import { command } from 'webdriver'
@@ -349,14 +350,14 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-Calling this command with invalid parameters results in the same error handling as predefined protocol commands, e.g.:
+Виклик цієї команди з неправильними параметрами призводить до такої ж обробки помилок, як і для попередньо визначених команд протоколу, наприклад:
 
 ```js
-// call command without required url parameter and payload
+// виклик команди без обов'язкового параметра url та корисного навантаження
 await browser.myNewCommand()
 
 /**
- * results in the following error:
+ * результат наступної помилки:
  * Error: Wrong parameters applied for myNewCommand
  * Usage: myNewCommand(someId, foo)
  *
@@ -370,10 +371,10 @@ await browser.myNewCommand()
  */
 ```
 
-Calling the command correctly, e.g. `browser.myNewCommand('foo', 'bar')`, correctly makes a WebDriver request to e.g. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` with a payload like `{ foo: 'bar' }`.
+Правильний виклик команди, наприклад `browser.myNewCommand('foo', 'bar')`, правильно робить запит WebDriver до, наприклад, `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` з корисним навантаженням, як-от `{ foo: 'bar' }`.
 
 :::note
-The `:sessionId` url parameter will be automatically substituted with the session id of the WebDriver session. Other url parameter can be applied but need to be defined within `variables`.
+Параметр URL-адреси `:sessionId` буде автоматично замінений ідентифікатором сеансу сеансу WebDriver. Інші параметри URL можна застосувати, але їх потрібно визначити в `variables`.
 :::
 
-See examples of how protocol commands can be defined in the [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) package.
+Дивіться приклади того, як можна визначити команди протоколу в пакеті [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).

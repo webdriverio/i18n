@@ -1,11 +1,11 @@
 ---
 id: v6-migration
-title: From v5 to v6
+title: З v5 до v6
 ---
 
-This tutorial is for people who are still using `v5` of WebdriverIO and want to migrate to `v6` or to the latest version of WebdriverIO. As mentioned in our [release blog post](https://webdriver.io/blog/2020/03/26/webdriverio-v6-released) the changes for this version upgrade can be summarised as following:
+Цей урок призначений для людей, які все ще використовують `v5` WebdriverIO і хочуть перейти на `v6` або на останню версію WebdriverIO. Як зазначено в нашому [блозі про випуск](https://webdriver.io/blog/2020/03/26/webdriverio-v6-released), зміни для цього оновлення версії можна підсумувати наступним чином:
 
-- we consolidated the parameters for some commands (e.g. `newWindow`, `react$`, `react$$`, `waitUntil`, `dragAndDrop`, `moveTo`, `waitForDisplayed`, `waitForEnabled`, `waitForExist`) and moved all optional parameters into a single object, e.g.
+- ми консолідували параметри для деяких команд (наприклад, `newWindow`, `react$`, `react$$`, `waitUntil`, `dragAndDrop`, `moveTo`, `waitForDisplayed`, `waitForEnabled`, `waitForExist`) і перемістили всі необов'язкові параметри в єдиний об'єкт, наприклад:
 
     ```js
     // v5
@@ -21,7 +21,7 @@ This tutorial is for people who are still using `v5` of WebdriverIO and want to 
     })
     ```
 
-- configurations for services moved into the service list, e.g.
+- конфігурації для сервісів перемістилися в список сервісів, наприклад:
 
     ```js
     // v5
@@ -39,44 +39,44 @@ This tutorial is for people who are still using `v5` of WebdriverIO and want to 
     }
     ```
 
-- some service options were renamed for simplification purposes
-- we renamed command `launchApp` to `launchChromeApp` for Chrome WebDriver sessions
+- деякі опції сервісів були перейменовані з метою спрощення
+- ми перейменували команду `launchApp` на `launchChromeApp` для сесій Chrome WebDriver
 
 :::info
 
-If you are using WebdriverIO `v4` or below, please upgrade to `v5` first.
+Якщо ви використовуєте WebdriverIO `v4` або нижче, спочатку оновіться до `v5`.
 
 :::
 
-While we would love to have a fully automated process for this the reality looks different. Everyone has a different setup. Every step should be seen as guidance and less like a step by step instruction. If you have issues with the migration, don't hesitate to [contact us](https://github.com/webdriverio/codemod/discussions/new).
+Хоча ми хотіли б мати повністю автоматизований процес для цього, реальність виглядає інакше. У кожного свій стиль налаштування. Кожен крок слід розглядати як рекомендацію, а не як покрокову інструкцію. Якщо у вас виникли проблеми з міграцією, не соромтеся [звертатися до нас](https://github.com/webdriverio/codemod/discussions/new).
 
-## Setup
+## Налаштування
 
-Similar to other migrations we can use the WebdriverIO [codemod](https://github.com/webdriverio/codemod). To install the codemod, run:
+Подібно до інших міграцій, ми можемо використовувати WebdriverIO [codemod](https://github.com/webdriverio/codemod). Щоб встановити codemod, виконайте:
 
 ```sh
 npm install jscodeshift @wdio/codemod
 ```
 
-## Upgrade WebdriverIO Dependencies
+## Оновіть залежності WebdriverIO
 
-Given that all WebdriverIO versions are tight to each other it is the best to always upgrade to a specific tag, e.g. `6.12.0`. If you decide to upgrade from `v5` directly to `v7` you can leave out the tag and install latest versions of all packages. To do so we copy all WebdriverIO related dependencies out of our `package.json` and re-install them via:
+Оскільки всі версії WebdriverIO пов'язані між собою, найкраще завжди оновлюватися до певного тегу, наприклад, `6.12.0`. Якщо ви вирішите оновитися з `v5` безпосередньо до `v7`, ви можете опустити тег і встановити останні версії всіх пакетів. Для цього ми копіюємо всі залежності, пов'язані з WebdriverIO, з нашого `package.json` і перевстановлюємо їх за допомогою:
 
 ```sh
 npm i --save-dev @wdio/allure-reporter@6 @wdio/cli@6 @wdio/cucumber-framework@6 @wdio/local-runner@6 @wdio/spec-reporter@6 @wdio/sync@6 wdio-chromedriver-service@6 webdriverio@6
 ```
 
-Usually WebdriverIO dependencies are part of the dev dependencies, depending on your project this can vary though. After this your `package.json` and `package-lock.json` should be updated. __Note:__ these are example dependencies, yours may differ. Make sure you find the latest v6 version by calling, e.g.:
+Зазвичай залежності WebdriverIO є частиною dev залежностей, хоча залежно від вашого проекту це може відрізнятися. Після цього ваші `package.json` і `package-lock.json` повинні бути оновлені. __Примітка:__ це приклади залежностей, ваші можуть відрізнятися. Переконайтеся, що ви знайшли останню версію v6, виконавши, наприклад:
 
 ```sh
 npm show webdriverio versions
 ```
 
-Try to install the latest version 6 available for all core WebdriverIO packages. For community packages this can differ from package to package. Here we recommend to check the changelog for information on which version is still compatible with v6.
+Спробуйте встановити останню доступну версію 6 для всіх основних пакетів WebdriverIO. Для пакетів спільноти це може відрізнятися від пакета до пакета. Тут ми рекомендуємо перевірити журнал змін для отримання інформації про те, яка версія ще сумісна з v6.
 
-## Transform Config File
+## Трансформація конфігураційного файлу
 
-A good first step is to start with the config file. All breaking changes can be resolve using the codemod full automatically:
+Гарним першим кроком є починати з конфігураційного файлу. Всі критичні зміни можна вирішити за допомогою codemod повністю автоматично:
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./wdio.conf.js
@@ -84,22 +84,22 @@ npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./wdio.conf.js
 
 :::caution
 
-The codemod doesn't yet support TypeScript projects. See [`@webdriverio/codemod#10`](https://github.com/webdriverio/codemod/issues/10). We are working to implement support for it soon. If you are using TypeScript please get involved!
+Codemod ще не підтримує проекти TypeScript. Дивіться [`@webdriverio/codemod#10`](https://github.com/webdriverio/codemod/issues/10). Ми працюємо над впровадженням підтримки для нього найближчим часом. Якщо ви використовуєте TypeScript, будь ласка, долучайтеся!
 
 :::
 
-## Update Spec Files and Page Objects
+## Оновіть spec-файли та Page Objects
 
-In order to update all command changes run the codemod on all your e2e files that contain WebdriverIO commands, e.g.:
+Щоб оновити всі зміни команд, запустіть codemod на всіх ваших e2e файлах, які містять команди WebdriverIO, наприклад:
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./e2e/*
 ```
 
-That's it! No more changes necessary 🎉
+Ось і все! Більше ніяких змін не потрібно 🎉
 
-## Conclusion
+## Висновок
 
-We hope this tutorial guides you a little bit through the migration process to WebdriverIO `v6`. We strongly recommend to continue upgrading to the latest version given that updating to `v7` is trivial due to almost no breaking changes. Please check out the migration guide [to upgrade to v7](v7-migration).
+Ми сподіваємося, що цей урок трохи допоможе вам у процесі міграції до WebdriverIO `v6`. Ми наполегливо рекомендуємо продовжувати оновлення до останньої версії, враховуючи, що оновлення до `v7` є тривіальним через майже відсутність критичних змін. Будь ласка, ознайомтеся з посібником з міграції [для оновлення до v7](v7-migration).
 
-The community continues to improve the codemod while testing it with various teams in various organisations. Don't hesitate to [raise an issue](https://github.com/webdriverio/codemod/issues/new) if you have feedback or [start a discussion](https://github.com/webdriverio/codemod/discussions/new) if you struggle during the migration process.
+Спільнота продовжує вдосконалювати codemod, тестуючи його з різними командами в різних організаціях. Не соромтеся [повідомляти про проблему](https://github.com/webdriverio/codemod/issues/new), якщо у вас є відгуки, або [почати обговорення](https://github.com/webdriverio/codemod/discussions/new), якщо у вас виникли труднощі під час процесу міграції.

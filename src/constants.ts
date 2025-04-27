@@ -13,6 +13,6 @@ export const LANGUAGES_TO_TRANSLATE = {
     // pt: 'Portuguese',
     // ru: 'Russian',
     // ta: 'Tamil',
-    // uk: 'Ukrainian',
+    uk: 'Ukrainian',
     zh: 'Chinese',
 } as const;

@@ -3,23 +3,23 @@ id: automationProtocols
 title: Протоколи автоматизації
 ---
 
-З WebdriverIO ви можете обирати між кількома технологіями автоматизації для виконання E2E тестів локально або у хмарі. By default, WebdriverIO will attempt to start a local automation session using the [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) protocol.
+З WebdriverIO ви можете вибирати між декількома технологіями автоматизації під час запуску ваших E2E тестів локально або в хмарі. За замовчуванням WebdriverIO спробує розпочати локальну сесію автоматизації, використовуючи протокол [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/).
 
-## WebDriver Bidi Protocol
+## Протокол WebDriver Bidi
 
-The [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) is an automation protocol to automate browsers using bi-directional communication. It's the successor of the [WebDriver](https://w3c.github.io/webdriver/) protocol and enables a lot more introspection capabilities for various testing use cases.
+[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) - це протокол автоматизації для браузерів, який використовує двонаправлену комунікацію. Це наступник протоколу [WebDriver](https://w3c.github.io/webdriver/) і забезпечує набагато більше можливостей інтроспекції для різних тестових сценаріїв.
 
-This protocol is currently under development and new primitives might be added in the future. All browser vendors have committed to implementing this web standard and a lot of [primitives](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) have already been landed in browsers.
+Цей протокол наразі знаходиться в розробці, і в майбутньому можуть бути додані нові примітиви. Усі постачальники браузерів зобов'язались впровадити цей веб-стандарт, і багато [примітивів](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) вже впроваджено в браузерах.
 
-## WebDriver протокол
+## Протокол WebDriver
 
-> [WebDriver](https://w3c.github.io/webdriver/) — це інтерфейс дистанційного керування, який дозволяє переглядати та контролювати віддалений браузер. Протокол декларує не пов'язаний із мовою та платформою інтерфейс як спосіб для позапроцесних програм дистанційно керувати поведінкою браузерів.
+> [WebDriver](https://w3c.github.io/webdriver/) - це інтерфейс віддаленого керування, який забезпечує інтроспекцію та контроль над користувацькими агентами. Він надає платформо- та мовно-нейтральний протокол, що дозволяє програмам поза процесом віддалено керувати поведінкою веб-браузерів.
 
-Протокол WebDriver розроблено для автоматизації браузера, щоб симулювати поведінку користувача, тобто все, що може робити користувач, ви можете автоматизувати у браузері. Надається набір стандартних команд, які абстрагують типові взаємодії з програмою (наприклад, навігація, клацання, або зчитування стану елемента). Since it is a web standard, it is well supported across all major browser vendors and also is being used as an underlying protocol for mobile automation using [Appium](http://appium.io).
+Протокол WebDriver був розроблений для автоматизації браузера з точки зору користувача, що означає, що все, що користувач може робити, ви можете робити з браузером. Він надає набір команд, які абстрагують загальні взаємодії з додатком (наприклад, навігацію, клацання або читання стану елемента). Оскільки це веб-стандарт, він добре підтримується усіма основними постачальниками браузерів, а також використовується як основний протокол для мобільної автоматизації за допомогою [Appium](http://appium.io).
 
-Щоб використовувати цей протокол автоматизації, вам потрібен проксі-сервер, який перекладає всі команди та виконує їх у цільовому середовищі (тобто у браузері чи мобільному додатку).
+Для використання цього протоколу автоматизації вам потрібен проксі-сервер, який перекладає всі команди та виконує їх у цільовому середовищі (тобто в браузері або мобільному додатку).
 
-Для автоматизації браузера проксі-сервер зазвичай є драйвером браузера. Доступні драйвери для всіх браузерів:
+Для автоматизації браузера проксі-сервером зазвичай є драйвер браузера. Доступні драйвери для всіх браузерів:
 
 - Chrome – [ChromeDriver](http://chromedriver.chromium.org/downloads)
 - Firefox – [Geckodriver](https://github.com/mozilla/geckodriver/releases)
@@ -27,21 +27,8 @@ This protocol is currently under development and new primitives might be added i
 - Internet Explorer – [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
 - Safari – [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
-Для будь-якого типу мобільної автоматизації вам потрібно буде встановити та налаштувати [Appium](http://appium.io). Це дозволить вам автоматизувати мобільні (iOS/Android) або навіть настільні (macOS/Windows) програми, використовуючи ту саму конфігурацію із WebdriverIO.
+Для будь-якої мобільної автоматизації вам потрібно встановити та налаштувати [Appium](http://appium.io). Це дозволить вам автоматизувати мобільні (iOS/Android) або навіть настільні (macOS/Windows) додатки, використовуючи те саме налаштування WebdriverIO.
 
-Існує також багато сервісів, які надають послуги із запуску автоматизований тест у хмарі. Замість того, щоб налаштовувати всі ці драйвери локально, ви можете просто комунікувати із цим сервісами (наприклад [Sauce Labs](https://saucelabs.com)) у хмарі та перевіряти бачити результати на їхній платформі. Комунікація між тестом і середовищем автоматизації виглядатиме так:
+Існує також багато сервісів, які дозволяють запускати ваші тести автоматизації в хмарі у великому масштабі. Замість того, щоб налаштовувати всі ці драйвери локально, ви можете просто спілкуватися з цими сервісами (наприклад, [Sauce Labs](https://saucelabs.com)) у хмарі та переглядати результати на їхній платформі. Комунікація між тестовим скриптом та середовищем автоматизації виглядатиме таким чином:
 
-![Налаштування WebDriver](/img/webdriver.png)
-
-### Переваги
-
-- Офіційний веб-стандарт W3C, який підтримується всіма основними браузерами
-- Спрощений протокол, який охоплює розповсюджені користувацькі дії
-- Підтримка мобільної автоматизації (і навіть настільних програм)
-- Можна використовувати як локально, так і в хмарі за допомогою таких служб, як [Sauce Labs](https://saucelabs.com)
-
-### Недоліки
-
-- Не призначений для поглибленого аналізу браузера (наприклад, відстеження або перехоплення мережевих подій)
-- Обмежений набір можливостей автоматизації (наприклад, відсутність підтримки сповільнення ЦП або мережі)
-- Потребує додаткових зусиль для налаштування драйвера браузера із selenium-standalone/chromedriver/і т.п.
+![WebDriver Setup](/img/webdriver.png)

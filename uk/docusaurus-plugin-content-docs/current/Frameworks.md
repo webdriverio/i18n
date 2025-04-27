@@ -1,25 +1,30 @@
 ---
 id: frameworks
-title: Тестові фреймворки
+title: Фреймворки
 ---
 
-WebdriverIO Runner has built-in support for [Mocha](http://mochajs.org/), [Jasmine](http://jasmine.github.io/), and [Cucumber.js](https://cucumber.io/). You can also integrate it with 3rd-party open-source frameworks, such as [Serenity/JS](#using-serenityjs).
+WebdriverIO Runner має вбудовану підтримку [Mocha](http://mochajs.org/), [Jasmine](http://jasmine.github.io/) і [Cucumber.js](https://cucumber.io/). Ви також можете інтегрувати його зі сторонніми фреймворками з відкритим кодом, такими як [Serenity/JS](#using-serenityjs).
 
-:::tip Integrating WebdriverIO with test frameworks
-To integrate WebdriverIO with a test framework, you need an adapter package available on NPM. Note that the adapter package must be installed in the same location where WebdriverIO is installed. Отже, якщо ви встановили WebdriverIO глобально, обов’язково встановіть глобально і пакунок-адаптер.
+:::tip Інтеграція WebdriverIO з тестовими фреймворками
+Для інтеграції WebdriverIO з тестовим фреймворком вам потрібен пакет адаптера, доступний в NPM.
+Зауважте, що пакет адаптера повинен бути встановлений в тому ж місці, де встановлений WebdriverIO.
+Тому, якщо ви встановили WebdriverIO глобально, переконайтеся, що пакет адаптера також встановлено глобально.
 :::
 
-Integrating WebdriverIO with a test framework lets you access the WebDriver instance using the global `browser` variable in your spec files or step definitions. Note that WebdriverIO will also take care of instantiating and ending the Selenium session, so you don't have to do it yourself.
+Інтеграція WebdriverIO з тестовим фреймворком дозволяє вам отримати доступ до екземпляра WebDriver, використовуючи глобальну змінну `browser`
+у ваших файлах специфікацій або визначеннях кроків.
+Зверніть увагу, що WebdriverIO також потурбується про створення та завершення сеансу Selenium, тому вам не потрібно робити це
+самостійно.
 
-## Використання із Mocha
+## Використання Mocha
 
-Спочатку встановіть пакунок-адаптер із NPM:
+Спочатку встановіть пакет адаптера з NPM:
 
 ```bash npm2yarn
 npm install @wdio/mocha-framework --save-dev
 ```
 
-За замовчуванням WebdriverIO постачається із вбудованою [бібліотекою перевірок](assertion), яку ви можете використовувати у ваших тестах:
+За замовчуванням WebdriverIO надає [бібліотеку тверджень](assertion), яка вбудована і з якою ви можете почати працювати відразу:
 
 ```js
 describe('my awesome website', () => {
@@ -30,9 +35,9 @@ describe('my awesome website', () => {
 })
 ```
 
-WebdriverIO підтримує такі [інтерфейси Mocha](https://mochajs.org/#interfaces): `BDD` (за замовчуванням), `TDD` і `QUnit`.
+WebdriverIO підтримує `BDD` (за замовчуванням), `TDD` та `QUnit` [інтерфейси](https://mochajs.org/#interfaces) Mocha.
 
-Якщо ви хочете описувати свої тести стилі TDD стилі, встановіть значення `tdd` для властивості `ui`, що в об'єкті `mochaOpts` у вашому файлі конфігурацій. Тепер ваші файли із тестами можуть містити наступне:
+Якщо ви хочете писати свої тести в стилі TDD, встановіть властивість `ui` у вашій конфігурації `mochaOpts` на `tdd`. Тепер ваші тестові файли повинні бути написані так:
 
 ```js
 suite('my awesome website', () => {
@@ -43,25 +48,25 @@ suite('my awesome website', () => {
 })
 ```
 
-Якщо ви хочете визначити й інші налаштування Mocha, ви можете додати їх до об'єкта `mochaOpts` у файлі конфігурації. Список усіх варіантів можна знайти на вебсайті фреймворку [Mocha](https://mochajs.org/api/mocha).
+Якщо ви хочете визначити інші специфічні для Mocha налаштування, ви можете зробити це за допомогою ключа `mochaOpts` у вашому конфігураційному файлі. Список усіх опцій можна знайти на [веб-сайті проекту Mocha](https://mochajs.org/api/mocha).
 
-__Примітка:__ WebdriverIO не підтримує застарілий метод зворотного виклику `done` у Mocha:
+__Примітка:__ WebdriverIO не підтримує застаріле використання зворотних викликів `done` в Mocha:
 
 ```js
 it('should test something', (done) => {
-    done() // throws "done is not a function"
+    done() // виникає помилка "done is not a function"
 })
 ```
 
-### Параметри Mocha
+### Опції Mocha
 
-Наступні параметри можна застосувати у вашому `wdio.conf.js` для налаштування середовища Mocha. __Примітка:__ не всі параметри підтримуються, наприклад, застосування параметра `parallel` призведе до помилки, оскільки виконувач тестів WDIO має власний механізм паралельного запуску тестів. You can pass these framework options as arguments, e.g.:
+Наступні опції можна застосувати у вашому `wdio.conf.js` для налаштування вашого середовища Mocha. __Примітка:__ не всі опції підтримуються, наприклад, застосування опції `parallel` призведе до помилки, оскільки WDIO тестовий запускач має власний спосіб запуску тестів паралельно. Ви можете передавати ці опції фреймворку як аргументи, наприклад:
 
 ```sh
 wdio run wdio.conf.ts --mochaOpts.grep "my test" --mochaOpts.bail --no-mochaOpts.checkLeaks
 ```
 
-This will pass along the following Mocha options:
+Це передасть наступні опції Mocha:
 
 ```ts
 {
@@ -71,102 +76,117 @@ This will pass along the following Mocha options:
 }
 ```
 
-The following Mocha options are supported:
+Підтримуються наступні опції Mocha:
 
 #### require
-Параметр `require` корисний, коли ви хочете додати або розширити деякі вбудовані функції (WebdriverIO параметр).
+Опція `require` корисна, коли ви хочете додати або розширити деяку базову функціональність (опція фреймворку WebdriverIO).
 
-Type: `string|string[]`<br /> Default: `[]`
+Тип: `string|string[]`<br />
+За замовчуванням: `[]`
 
 #### compilers
-Використовуйте вказаний(і) модуль(і) для компіляції файлів. Компілятори будуть підключені раніше, ніж `require` (WebdriverIO параметр).
+Використовуйте дані модулі для компіляції файлів. Компілятори будуть включені перед вимогами (опція фреймворку WebdriverIO).
 
-Type: `string[]`<br /> Default: `[]`
+Тип: `string[]`<br />
+За замовчуванням: `[]`
 
 #### allowUncaught
 Поширювати неперехоплені помилки.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### bail
-Зупинитися після першого невдалого тесту.
+Припинити виконання після першого невдалого тесту.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### checkLeaks
-Перевіряти на наявність витоку глобальних змінних.
+Перевіряти наявність витоків глобальних змінних.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### delay
-Відкласти виконання головного набору.
+Затримка виконання кореневого набору.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### fgrep
-Відфільтрувати тести на відповідність вказаному рядку.
+Фільтр тестів за заданим рядком.
 
-Type: `string`<br /> Default: `null`
+Тип: `string`<br />
+За замовчуванням: `null`
 
 #### forbidOnly
-Використання `only` у тестових файлах викличе визнання всього набору тестів невдалим.
+Тести з позначкою `only` призводять до невдачі набору.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### forbidPending
-Використання `skip` у тестових файлах викличе визнання всього набору тестів невдалим.
+Відкладені тести призводять до невдачі набору.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### fullTrace
-Показати повний стек викликів у разі помилки.
+Повний стек викликів при невдачі.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### global
-Очікувані глобальні змінні.
+Змінні, які очікуються в глобальній області.
 
-Type: `string[]`<br /> Default: `[]`
+Тип: `string[]`<br />
+За замовчуванням: `[]`
 
 #### grep
-Відфільтрувати тести на відповідність вказаному регулярному виразу.
+Фільтр тестів за заданим регулярним виразом.
 
-Type: `RegExp|string`<br /> Default: `null`
+Тип: `RegExp|string`<br />
+За замовчуванням: `null`
 
 #### invert
-Інвертувати збіги фільтра тестів.
+Інвертувати відповідності фільтра тестів.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### retries
-Кількість повторень для невдалих тестів.
+Кількість спроб повторного запуску невдалих тестів.
 
-Type: `number`<br /> Default: `0`
+Тип: `number`<br />
+За замовчуванням: `0`
 
 #### timeout
-Порогове значення тайм-ауту (у мс).
+Значення порогу таймауту (в мс).
 
-Type: `number`<br /> Default: `30000`
+Тип: `number`<br />
+За замовчуванням: `30000`
 
-## Використання із Jasmine
+## Використання Jasmine
 
-Спочатку встановіть пакунок-адаптер із NPM:
+Спочатку встановіть пакет адаптера з NPM:
 
 ```bash npm2yarn
 npm install @wdio/jasmine-framework --save-dev
 ```
 
-Потім ви можете налаштувати середовище Jasmine, додавши властивість `jasmineOpts` до файлу конфігурації. Список усіх можливих параметрів можна знайти на вебсайті фреймворку [Jasmine](https://jasmine.github.io/api/3.5/Configuration.html).
+Потім ви можете налаштувати своє середовище Jasmine, встановивши властивість `jasmineOpts` у вашій конфігурації. Список усіх опцій можна знайти на [веб-сайті проекту Jasmine](https://jasmine.github.io/api/3.5/Configuration.html).
 
-### Параметри Jasmine
+### Опції Jasmine
 
-Наступні параметри можна застосувати у вашому `wdio.conf.js` для налаштування середовища Jasmine за допомогою властивості `jasmineOpts`. Для отримання додаткової інформації про ці параметри конфігурації перегляньте [документацію Jasmine](https://jasmine.github.io/api/edge/Configuration). You can pass these framework options as arguments, e.g.:
+Наступні опції можна застосувати у вашому `wdio.conf.js` для налаштування вашого середовища Jasmine за допомогою властивості `jasmineOpts`. Для отримання додаткової інформації про ці опції конфігурації, перегляньте [документацію Jasmine](https://jasmine.github.io/api/edge/Configuration). Ви можете передавати ці опції фреймворку як аргументи, наприклад:
 
 ```sh
 wdio run wdio.conf.ts --jasmineOpts.grep "my test" --jasmineOpts.failSpecWithNoExpectations --no-jasmineOpts.random
 ```
 
-This will pass along the following Mocha options:
+Це передасть наступні опції Mocha:
 
 ```ts
 {
@@ -176,105 +196,118 @@ This will pass along the following Mocha options:
 }
 ```
 
-The following Jasmine options are supported:
+Підтримуються наступні опції Jasmine:
 
 #### defaultTimeoutInterval
-Інтервал очікування за замовчуванням для операцій Jasmine.
+Інтервал таймауту за замовчуванням для операцій Jasmine.
 
-Type: `number`<br /> Default: `60000`
+Тип: `number`<br />
+За замовчуванням: `60000`
 
 #### helpers
-Масив зі шляхами (або ґлобами) до файлів відносно spec_dir для підключення перед тестами jasmine.
+Масив шляхів до файлів (і шаблонів glob) відносно spec_dir для включення перед специфікаціями Jasmine.
 
-Type: `string[]`<br /> Default: `[]`
+Тип: `string[]`<br />
+За замовчуванням: `[]`
 
 #### requires
-Параметр `requires` корисний, коли ви хочете додати або розширити деякі вбудовані функції.
+Опція `requires` корисна, коли ви хочете додати або розширити деяку базову функціональність.
 
-Type: `string[]`<br /> Default: `[]`
+Тип: `string[]`<br />
+За замовчуванням: `[]`
 
 #### random
 Чи рандомізувати порядок виконання тестів.
 
-Type: `boolean`<br /> Default: `true`
+Тип: `boolean`<br />
+За замовчуванням: `true`
 
 #### seed
-Початкове число для використання як основи рандомізації. Null призводить до випадкового визначення початкового числа на початку виконання.
+Початкове значення для рандомізації. Null призводить до того, що початкове значення визначається випадковим чином на початку виконання.
 
-Type: `Function`<br /> Default: `null`
+Тип: `Function`<br />
+За замовчуванням: `null`
 
 #### failSpecWithNoExpectations
-Чи вважати тест невдалим, якщо у ньому не має жодної перевірки. За замовчуванням тест, який не виконує жодної перевірки, буде вважатися успішним. Якщо встановити цей параметр у true, такий тест буде вважатися невдалим.
+Чи позначати тест як невдалий, якщо в ньому не було очікувань. За замовчуванням тест, в якому не було очікувань, позначається як успішний. Встановлення цього значення в true призведе до того, що такий тест буде позначено як невдалий.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### oneFailurePerSpec
-Чи обмежувати тестові файли тільки однією невдалою перевіркою.
+Чи має тест лише одне очікування невдачі.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### specFilter
 Функція для фільтрації тестів.
 
-Type: `Function`<br /> Default: `(spec) => true`
+Тип: `Function`<br />
+За замовчуванням: `(spec) => true`
 
 #### grep
-Виконуйте лише тести, які відповідають цьому рядку або регулярному виразу. (Застосовується, лише якщо не встановлено функцію `specFilter`)
+Запускати лише тести, що відповідають цьому рядку або регулярному виразу. (Застосовується лише якщо не встановлена користувацька функція `specFilter`)
 
-Type: `string|Regexp`<br /> Default: `null`
+Тип: `string|Regexp`<br />
+За замовчуванням: `null`
 
 #### invertGrep
-Якщо true, буде виконано лише ті тести, що не збігаються з виразом, використаним у `grep`. (Застосовується, лише якщо не встановлено функцію `specFilter`)
+Якщо true, інвертує відповідність тестів і запускає лише тести, які не відповідають виразу в `grep`. (Застосовується лише якщо не встановлена користувацька функція `specFilter`)
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
-## Використання із Cucumber
+## Використання Cucumber
 
-Спочатку встановіть пакунок-адаптер із NPM:
+Спочатку встановіть пакет адаптера з NPM:
 
 ```bash npm2yarn
 npm install @wdio/cucumber-framework --save-dev
 ```
 
-Якщо ви хочете використовувати Cucumber, установіть для властивості `framework` значення `cucumber`, додавши `framework: 'cucumber'` до [файлу конфігурації](configurationfile).
+Якщо ви хочете використовувати Cucumber, встановіть властивість `framework` на `cucumber`, додавши `framework: 'cucumber'` до [конфігураційного файлу](configurationfile).
 
-Параметри для Cucumber можна вказати у файлі конфігурації в об'єкті `cucumberOpts`. Перегляньте повний список параметрів [тут](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options).
+Опції для Cucumber можна вказати в конфігураційному файлі за допомогою `cucumberOpts`. Ознайомтеся з повним списком опцій [тут](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options).
 
-Щоб швидко налаштувати роботу із Cucumber, перегляньте наш проєкт [`cucumber-boilerplate`](https://github.com/webdriverio/cucumber-boilerplate), який містить усі необхідні визначення, і ви відразу зможете почати описувати файли функцій.
+Щоб швидко почати роботу з Cucumber, подивіться наш проект [`cucumber-boilerplate`](https://github.com/webdriverio/cucumber-boilerplate), який містить усі визначення кроків, необхідні для початку, і ви зможете відразу писати файли features.
 
-### Параметри Cucumber
+### Опції Cucumber
 
-Наступні параметри можна застосувати у вашому `wdio.conf.js` для налаштування середовища Cucumber за допомогою властивості `cucumberOpts`:
+Наступні опції можна застосувати у вашому `wdio.conf.js` для налаштування вашого середовища Cucumber за допомогою властивості `cucumberOpts`:
 
-:::tip Adjusting options through the command line
-The `cucumberOpts`, such as custom `tags` for filtering tests, can be specified through the command line. This is accomplished by using the `cucumberOpts.{optionName}="value"` format.
+:::tip Налаштування опцій через командний рядок
+Опції `cucumberOpts`, такі як користувацькі `tags` для фільтрації тестів, можна вказати через командний рядок. Це здійснюється за допомогою формату `cucumberOpts.{optionName}="value"`.
 
-For example, if you want to run only the tests that are tagged with `@smoke`, you can use the following command:
+Наприклад, якщо ви хочете запустити лише тести, позначені тегом `@smoke`, ви можете використати наступну команду:
 
 ```sh
-# When you only want to run tests that hold the tag "@smoke"
+# Якщо ви хочете запустити лише тести з тегом "@smoke"
 npx wdio run ./wdio.conf.js --cucumberOpts.tags="@smoke"
 npx wdio run ./wdio.conf.js --cucumberOpts.name="some scenario name" --cucumberOpts.failFast
 ```
 
-This command sets the `tags` option in `cucumberOpts` to `@smoke`, ensuring that only tests with this tag are executed.
+Ця команда встановлює опцію `tags` в `cucumberOpts` на `@smoke`, забезпечуючи виконання лише тестів з цим тегом.
 
 :::
 
 #### backtrace
-Показати повний стек викликів для помилок.
+Показати повний трасування для помилок.
 
-Type: `Boolean`<br /> Default: `true`
+Тип: `Boolean`<br />
+За замовчуванням: `true`
 
 #### requireModule
-Модулі які буде підключено перед, файлами підтримки.
+Вимагати модулі перед завантаженням будь-яких файлів підтримки.
 
-Type: `string[]`<br /> Default: `[]`<br /> Example:
+Тип: `string[]`<br />
+За замовчуванням: `[]`<br />
+Приклад:
 
 ```js
 cucumberOpts: {
     requireModule: ['@babel/register']
-    // or
+    // або
     requireModule: [
         [
             '@babel/register',
@@ -288,19 +321,23 @@ cucumberOpts: {
  ```
 
 #### failFast
-Припинити виконання при першому невдалому тесті.
+Перервати виконання при першій невдачі.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### name
-Виконувати лише сценарії з іменами, які відповідають виразу (повторюване).
+Виконувати лише сценарії з іменами, що відповідають виразу (повторюване).
 
-Type: `RegExp[]`<br /> Default: `[]`
+Тип: `RegExp[]`<br />
+За замовчуванням: `[]`
 
 #### require
-Файли, що містять визначення ваших кроків, які буде підключено перед виконанням функцій. Ви також можете вказати ґлоб патерн до файлів із визначенням кроків.
+Вимагати файли, що містять ваші визначення кроків, перед виконанням функцій. Ви також можете вказати шаблон glob для ваших визначень кроків.
 
-Type: `string[]`<br /> Default: `[]` Example:
+Тип: `string[]`<br />
+За замовчуванням: `[]`
+Приклад:
 
 ```js
 cucumberOpts: {
@@ -309,9 +346,11 @@ cucumberOpts: {
 ```
 
 #### import
-Paths to where your support code is, for ESM.
+Шляхи до вашого коду підтримки, для ESM.
 
-Type: `String[]`<br /> Default: `[]` Example:
+Тип: `String[]`<br />
+За замовчуванням: `[]`
+Приклад:
 
 ```js
 cucumberOpts: {
@@ -320,140 +359,154 @@ cucumberOpts: {
 ```
 
 #### strict
-Викидати помилка, якщо є невизначені або незавершені кроки.
+Невдача, якщо є невизначені або відкладені кроки.
 
-Type: `boolean`<br /> Default: `false`
+Тип: `boolean`<br />
+За замовчуванням: `false`
 
 #### tags
-Виконувати функції або сценарії лише з тегами, що відповідають виразу. Будь ласка, перегляньте документацію [Cucumber](https://docs.cucumber.io/cucumber/api/#tag-expressions) для додаткової інформації.
+Виконувати лише функції або сценарії з тегами, що відповідають виразу.
+Будь ласка, дивіться [документацію Cucumber](https://docs.cucumber.io/cucumber/api/#tag-expressions) для більш детальної інформації.
 
-Type: `String`<br /> Default: ``
+Тип: `String`<br />
+За замовчуванням: ``
 
 #### timeout
-Час очікування в мілісекундах для визначення кроків.
+Таймаут у мілісекундах для визначень кроків.
 
-Type: `Number`<br /> Default: `30000`
+Тип: `Number`<br />
+За замовчуванням: `30000`
 
 #### retry
-Specify the number of times to retry failing test cases.
+Вказати кількість спроб повторення невдалих тестових випадків.
 
-Type: `Number`<br /> Default: `0`
+Тип: `Number`<br />
+За замовчуванням: `0`
 
 #### retryTagFilter
-Only retries the features or scenarios with tags matching the expression (repeatable). This option requires '--retry' to be specified.
+Повторювати лише функції або сценарії з тегами, що відповідають виразу (повторюване). Ця опція вимагає вказати '--retry'.
 
-Type: `RegExp`
+Тип: `RegExp`
 
 #### language
-Default language for your feature files
+Мова за замовчуванням для ваших файлів функцій
 
-Type: `String`<br /> Default: `en`
+Тип: `String`<br />
+За замовчуванням: `en`
 
 #### order
-Run tests in defined / random order
+Запускати тести у визначеному / випадковому порядку
 
-Type: `String`<br /> Default: `defined`
+Тип: `String`<br />
+За замовчуванням: `defined`
 
 #### format
-Name and output file path of formatter to use. WebdriverIO primarily supports only the [Formatters](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md) that writes output to a file.
+Ім'я та шлях виходу форматувача для використання.
+WebdriverIO в основному підтримує лише [Форматувачі](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md), які записують вихід у файл.
 
-Type: `string[]`<br />
+Тип: `string[]`<br />
 
 #### formatOptions
-Options to be provided to formatters
+Опції, які надаються форматувачам
 
-Type: `object`<br />
+Тип: `object`<br />
 
 #### tagsInTitle
-Add cucumber tags to feature or scenario name
+Додавати теги cucumber до назви функції або сценарію
 
-Type: `Boolean`<br /> Default: `false`
+Тип: `Boolean`<br />
+За замовчуванням: `false`
 
-***Please note that this is a @wdio/cucumber-framework specific option and not recognized by cucumber-js itself***<br/>
+***Зверніть увагу, що це специфічна опція @wdio/cucumber-framework і не розпізнається самим cucumber-js***<br/>
 
 #### ignoreUndefinedDefinitions
 Розглядати невизначені визначення як попередження.
 
-Type: `Boolean`<br /> Default: `false`
+Тип: `Boolean`<br />
+За замовчуванням: `false`
 
-***Please note that this is a @wdio/cucumber-framework specific option and not recognized by cucumber-js itself***<br/>
+***Зверніть увагу, що це специфічна опція @wdio/cucumber-framework і не розпізнається самим cucumber-js***<br/>
 
 #### failAmbiguousDefinitions
 Розглядати неоднозначні визначення як помилки.
 
-Type: `Boolean`<br /> Default: `false`
+Тип: `Boolean`<br />
+За замовчуванням: `false`
 
-***Please note that this is a @wdio/cucumber-framework specific option and not recognized by cucumber-js itself***<br/>
+***Зверніть увагу, що це специфічна опція @wdio/cucumber-framework і не розпізнається самим cucumber-js***<br/>
 
 #### tagExpression
-Only execute the features or scenarios with tags matching the expression. Please see the [Cucumber documentation](https://docs.cucumber.io/cucumber/api/#tag-expressions) for more details.
+Виконувати лише функції або сценарії з тегами, що відповідають виразу.
+Будь ласка, дивіться [документацію Cucumber](https://docs.cucumber.io/cucumber/api/#tag-expressions) для більш детальної інформації.
 
-Type: `String`<br /> Default: ``
+Тип: `String`<br />
+За замовчуванням: ``
 
-***Please note that this option would be deprecated in future. Use [`tags`](#tags) config property instead***
+***Зверніть увагу, що ця опція буде застаріла в майбутньому. Замість цього використовуйте властивість конфігурації [`tags`](#tags)***
 
 #### profile
-Профіль для використання.
+Вказати профіль для використання.
 
-Type: `string[]`<br /> Default: `[]`
+Тип: `string[]`<br />
+За замовчуванням: `[]`
 
-***Kindly take note that only specific values (worldParameters, name, retryTagFilter) are supported within profiles, as `cucumberOpts` takes precedence. Additionally, when using a profile, make sure that the mentioned values are not declared within `cucumberOpts`.***
+***Будь ласка, зверніть увагу, що в профілях підтримуються лише певні значення (worldParameters, name, retryTagFilter), оскільки `cucumberOpts` має пріоритет. Крім того, при використанні профілю переконайтеся, що згадані значення не оголошені в `cucumberOpts`.***
 
-### Skipping tests in cucumber
+### Пропуск тестів в cucumber
 
-Note that if you want to skip a test using regular cucumber test filtering capabilities available in `cucumberOpts`, you will do it for all the browsers and devices configured in the capabilities. In order to be able to skip scenarios only for specific capabilities combinations without having a session started if not necessary, webdriverio provides the following specific tag syntax for cucumber:
+Зверніть увагу, що якщо ви хочете пропустити тест, використовуючи звичайні можливості фільтрації тестів cucumber, доступні в `cucumberOpts`, ви зробите це для всіх браузерів і пристроїв, налаштованих в можливостях. Щоб мати можливість пропускати сценарії лише для певних комбінацій можливостей без необхідності запуску сесії, якщо це не потрібно, webdriverio надає наступний спеціальний синтаксис тегів для cucumber:
 
 `@skip([condition])`
 
-were condition is an optional combination of capabilities properties with their values that when **all** matched with cause the tagged scenario or feature to be skipped. Of course you can add several tags to scenarios and features to skip a tests under several different conditions.
+де condition - це необов'язкова комбінація властивостей можливостей з їх значеннями, які, коли **всі** вони збігаються, призведуть до пропуску позначеного сценарію або функції. Звичайно, ви можете додати кілька тегів до сценаріїв і функцій, щоб пропускати тести за різних умов.
 
-You can also use the '@skip' annotation to skip tests without changing `tagExpression'. In this case the skipped tests will be displayed in the test report.
+Ви також можете використовувати анотацію '@skip' для пропуску тестів без зміни `tagExpression'. У цьому випадку пропущені тести будуть відображені в тестовому звіті.
 
-Here you have some examples of this syntax:
-- `@skip` or `@skip()`: will always skip the tagged item
-- `@skip(browserName="chrome")`: the test will not be executed against chrome browsers.
-- `@skip(browserName="firefox";platformName="linux")`: will skip the test in firefox over linux executions.
-- `@skip(browserName=["chrome","firefox"])`: tagged items will be skipped for both chrome and firefox browsers.
-- `@skip(browserName=/i.*explorer/)`: capabilities with browsers matching the regexp will be skipped (like `iexplorer`, `internet explorer`, `internet-explorer`, ...).
+Ось кілька прикладів цього синтаксису:
+- `@skip` або `@skip()`: завжди пропускати позначений елемент
+- `@skip(browserName="chrome")`: тест не буде виконуватися в браузерах chrome.
+- `@skip(browserName="firefox";platformName="linux")`: пропустити тест при виконанні в firefox на linux.
+- `@skip(browserName=["chrome","firefox"])`: позначені елементи будуть пропущені для браузерів chrome і firefox.
+- `@skip(browserName=/i.*explorer/)`: можливості з браузерами, що відповідають регулярному виразу, будуть пропущені (як-от `iexplorer`, `internet explorer`, `internet-explorer`, ...).
 
-### Import Step Definition Helper
+### Імпорт хелпера визначення кроків
 
-In order to use step definition helper like `Given`, `When` or `Then` or hooks, you are suppose to import then from `@cucumber/cucumber`, e.g. like this:
+Щоб використовувати хелпер визначення кроків, такі як `Given`, `When` або `Then` або хуки, вам потрібно імпортувати їх з `@cucumber/cucumber`, наприклад, так:
 
 ```js
 import { Given, When, Then } from '@cucumber/cucumber'
 ```
 
-Now, if you use Cucumber already for other types of tests unrelated to WebdriverIO for which you use a specific version you need to import these helpers in your e2e tests from the WebdriverIO Cucumber package, e.g.:
+Тепер, якщо ви вже використовуєте Cucumber для інших типів тестів, не пов'язаних з WebdriverIO, для яких ви використовуєте певну версію, вам потрібно імпортувати ці хелпери у ваших e2e тестах з пакету WebdriverIO Cucumber, наприклад:
 
 ```js
 import { Given, When, Then, world, context } from '@wdio/cucumber-framework'
 ```
 
-This ensures that you use the right helpers within the WebdriverIO framework and allows you to use an independent Cucumber version for other types of testing.
+Це забезпечує використання правильних хелперів у фреймворку WebdriverIO і дозволяє використовувати незалежну версію Cucumber для інших типів тестування.
 
-### Publishing Report
+### Публікація звіту
 
-Cucumber provides a feature to publish your test run reports to `https://reports.cucumber.io/`, which can be controlled either by setting the `publish` flag in `cucumberOpts` or by configuring the `CUCUMBER_PUBLISH_TOKEN` environment variable. However, when you use `WebdriverIO` for test execution, there's a limitation with this approach. It updates the reports separately for each feature file, making it difficult to view a consolidated report.
+Cucumber надає функцію для публікації звітів про виконання тестів на `https://reports.cucumber.io/`, якою можна керувати, встановивши прапорець `publish` в `cucumberOpts` або налаштувавши змінну середовища `CUCUMBER_PUBLISH_TOKEN`. Однак, коли ви використовуєте `WebdriverIO` для виконання тестів, існує обмеження з цим підходом. Він оновлює звіти окремо для кожного файлу функцій, ускладнюючи перегляд консолідованого звіту.
 
-To overcome this limitation, we've introduced a promise-based method called `publishCucumberReport` within `@wdio/cucumber-framework`. This method should be called in the `onComplete` hook, which is the optimal place to invoke it. `publishCucumberReport` requires the input of the report directory where cucumber message reports are stored.
+Щоб подолати це обмеження, ми представили метод на основі промісів під назвою `publishCucumberReport` в `@wdio/cucumber-framework`. Цей метод слід викликати в хуку `onComplete`, який є оптимальним місцем для його виклику. `publishCucumberReport` вимагає вхідних даних про каталог звітів, де зберігаються повідомлення cucumber.
 
-You can generate `cucumber message` reports by configuring the `format` option in your `cucumberOpts`. It's highly recommended to provide a dynamic file name within the `cucumber message` format option to prevent overwriting reports and ensure that each test run is accurately recorded.
+Ви можете генерувати звіти `cucumber message`, налаштувавши опцію `format` у ваших `cucumberOpts`. Настійно рекомендується надавати динамічне ім'я файлу в опції формату `cucumber message`, щоб запобігти перезапису звітів і забезпечити точне запис кожного тестового запуску.
 
-Before using this function, make sure to set the following environment variables:
-- CUCUMBER_PUBLISH_REPORT_URL: The URL where you want to publish the Cucumber report. If not provided, the default URL 'https://messages.cucumber.io/api/reports' will be used.
-- CUCUMBER_PUBLISH_REPORT_TOKEN: The authorization token required to publish the report. If this token is not set, the function will exit without publishing the report.
+Перед використанням цієї функції переконайтеся, що встановлено наступні змінні середовища:
+- CUCUMBER_PUBLISH_REPORT_URL: URL, куди ви хочете опублікувати звіт Cucumber. Якщо він не вказаний, буде використовуватися URL за замовчуванням 'https://messages.cucumber.io/api/reports'.
+- CUCUMBER_PUBLISH_REPORT_TOKEN: Токен авторизації, необхідний для публікації звіту. Якщо цей токен не встановлено, функція вийде без публікації звіту.
 
-Here's an example of the necessary configurations and code samples for implementation:
+Ось приклад необхідних конфігурацій та зразків коду для реалізації:
 
 ```javascript
 import { v4 as uuidv4 } from 'uuid'
 import { publishCucumberReport } from '@wdio/cucumber-framework';
 
 export const config = {
-    // ... Other Configuration Options
+    // ... Інші опції конфігурації
     cucumberOpts: {
-        // ... Cucumber Options Configuration
+        // ... Конфігурація опцій Cucumber
         format: [
             ['message', `./reports/${uuidv4()}.ndjson`],
             ['json', './reports/test-report.json']
@@ -465,28 +518,32 @@ export const config = {
 }
 ```
 
-Please note that `./reports/` is the directory where `cucumber message` reports will be stored.
+Зверніть увагу, що `./reports/` - це каталог, де будуть зберігатися звіти `cucumber message`.
 
-## Using Serenity/JS
+## Використання Serenity/JS
 
-[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io) is an open-source framework designed to make acceptance and regression testing of complex software systems faster, more collaborative, and easier to scale.
+[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io) - це фреймворк з відкритим кодом, розроблений для того, щоб зробити приймальне та регресійне тестування складних програмних систем швидшим, більш спільним та простішим для масштабування.
 
-For WebdriverIO test suites, Serenity/JS offers:
-- [Enhanced Reporting](https://serenity-js.org/handbook/reporting/?pk_campaign=wdio8&pk_source=webdriver.io) - You can use Serenity/JS as a drop-in replacement of any built-in WebdriverIO framework to produce in-depth test execution reports and living documentation of your project.
-- [Screenplay Pattern APIs](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) - To make your test code portable and reusable across projects and teams, Serenity/JS gives you an optional [abstraction layer](https://serenity-js.org/api/webdriverio?pk_campaign=wdio8&pk_source=webdriver.io) on top of native WebdriverIO APIs.
-- [Integration Libraries](https://serenity-js.org/api/core/?pk_campaign=wdio8&pk_source=webdriver.io) - For test suites that follow the Screenplay Pattern, Serenity/JS also provides optional integration libraries to help you write [API tests](https://serenity-js.org/api/rest/?pk_campaign=wdio8&pk_source=webdriver.io), [manage local servers](https://serenity-js.org/api/local-server/?pk_campaign=wdio8&pk_source=webdriver.io), [perform assertions](https://serenity-js.org/api/assertions/?pk_campaign=wdio8&pk_source=webdriver.io), and more!
+Для тестових наборів WebdriverIO, Serenity/JS пропонує:
+- [Розширена звітність](https://serenity-js.org/handbook/reporting/?pk_campaign=wdio8&pk_source=webdriver.io) - Ви можете використовувати Serenity/JS
+  як заміну будь-якого вбудованого фреймворку WebdriverIO для створення глибоких звітів про виконання тестів та живої документації вашого проекту.
+- [API шаблону Screenplay](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) - Щоб зробити ваш тестовий код портативним та повторно використовуваним у проектах та командах,
+  Serenity/JS надає вам опціональний [абстрактний шар](https://serenity-js.org/api/webdriverio?pk_campaign=wdio8&pk_source=webdriver.io) на основі нативних API WebdriverIO.
+- [Інтеграційні бібліотеки](https://serenity-js.org/api/core/?pk_campaign=wdio8&pk_source=webdriver.io) - Для тестових наборів, що використовують шаблон Screenplay,
+  Serenity/JS також надає опціональні інтеграційні бібліотеки, щоб допомогти вам писати [API-тести](https://serenity-js.org/api/rest/?pk_campaign=wdio8&pk_source=webdriver.io),
+  [керувати локальними серверами](https://serenity-js.org/api/local-server/?pk_campaign=wdio8&pk_source=webdriver.io), [виконувати твердження](https://serenity-js.org/api/assertions/?pk_campaign=wdio8&pk_source=webdriver.io) та багато іншого!
 
-![Serenity BDD Report Example](/img/serenity-bdd-reporter.png)
+![Приклад звіту Serenity BDD](/img/serenity-bdd-reporter.png)
 
-### Installing Serenity/JS
+### Встановлення Serenity/JS
 
-To add Serenity/JS to an [existing WebdriverIO project](https://webdriver.io/docs/gettingstarted), install the following Serenity/JS modules from NPM:
+Щоб додати Serenity/JS до [існуючого проекту WebdriverIO](https://webdriver.io/docs/gettingstarted), встановіть наступні модулі Serenity/JS з NPM:
 
 ```sh npm2yarn
 npm install @serenity-js/{core,web,webdriverio,assertions,console-reporter,serenity-bdd} --save-dev
 ```
 
-Learn more about Serenity/JS modules:
+Дізнайтеся більше про модулі Serenity/JS:
 - [`@serenity-js/core`](https://serenity-js.org/api/core/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [`@serenity-js/web`](https://serenity-js.org/api/web/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [`@serenity-js/webdriverio`](https://serenity-js.org/api/webdriverio/?pk_campaign=wdio8&pk_source=webdriver.io)
@@ -494,9 +551,9 @@ Learn more about Serenity/JS modules:
 - [`@serenity-js/console-reporter`](https://serenity-js.org/api/console-reporter/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [`@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io)
 
-### Configuring Serenity/JS
+### Налаштування Serenity/JS
 
-To enable integration with Serenity/JS, configure WebdriverIO as follows:
+Щоб увімкнути інтеграцію з Serenity/JS, налаштуйте WebdriverIO наступним чином:
 
 <Tabs>
 <TabItem value="wdio-conf-typescript" label="TypeScript" default>
@@ -506,49 +563,49 @@ import { WebdriverIOConfig } from '@serenity-js/webdriverio';
 
 export const config: WebdriverIOConfig = {
 
-    // Tell WebdriverIO to use Serenity/JS framework
+    // Вказати WebdriverIO використовувати фреймворк Serenity/JS
     framework: '@serenity-js/webdriverio',
 
-    // Serenity/JS configuration
+    // Налаштування Serenity/JS
     serenity: {
-        // Configure Serenity/JS to use the appropriate adapter for your test runner
+        // Налаштувати Serenity/JS для використання відповідного адаптера для вашого тестового запускача
         runner: 'cucumber',
         // runner: 'mocha',
         // runner: 'jasmine',
 
-        // Register Serenity/JS reporting services, a.k.a. the "stage crew"
+        // Зареєструвати сервіси звітності Serenity/JS, так звану "stage crew"
         crew: [
-            // Optional, print test execution results to standard output
+            // Опціонально, виводити результати виконання тестів у стандартний вивід
             '@serenity-js/console-reporter',
 
-            // Optional, produce Serenity BDD reports and living documentation (HTML)
+            // Опціонально, створювати звіти Serenity BDD та живу документацію (HTML)
             '@serenity-js/serenity-bdd',
             [ '@serenity-js/core:ArtifactArchiver', { outputDirectory: 'target/site/serenity' } ],
 
-            // Optional, automatically capture screenshots upon interaction failure
+            // Опціонально, автоматично робити знімки екрану при невдачі взаємодії
             [ '@serenity-js/web:Photographer', { strategy: 'TakePhotosOfFailures' } ],
         ]
     },
 
-    // Configure your Cucumber runner
+    // Налаштувати ваш запускач Cucumber
     cucumberOpts: {
-        // see Cucumber configuration options below
+        // див. опції налаштування Cucumber нижче
     },
 
 
-    // ... or Jasmine runner
+    // ... або запускач Jasmine
     jasmineOpts: {
-        // see Jasmine configuration options below
+        // див. опції налаштування Jasmine нижче
     },
 
-    // ... or Mocha runner
+    // ... або запускач Mocha
     mochaOpts: {
-        // see Mocha configuration options below
+        // див. опції налаштування Mocha нижче
     },
 
     runner: 'local',
 
-    // Any other WebdriverIO configuration
+    // Будь-які інші налаштування WebdriverIO
 };
 ```
 
@@ -558,17 +615,17 @@ export const config: WebdriverIOConfig = {
 ```typescript title="wdio.conf.js"
 export const config = {
 
-    // Tell WebdriverIO to use Serenity/JS framework
+    // Вказати WebdriverIO використовувати фреймворк Serenity/JS
     framework: '@serenity-js/webdriverio',
 
-    // Serenity/JS configuration
+    // Налаштування Serenity/JS
     serenity: {
-        // Configure Serenity/JS to use the appropriate adapter for your test runner
+        // Налаштувати Serenity/JS для використання відповідного адаптера для вашого тестового запускача
         runner: 'cucumber',
         // runner: 'mocha',
         // runner: 'jasmine',
 
-        // Register Serenity/JS reporting services, a.k.a. the "stage crew"
+        // Зареєструвати сервіси звітності Serenity/JS, так звану "stage crew"
         crew: [
             '@serenity-js/console-reporter',
             '@serenity-js/serenity-bdd',
@@ -577,50 +634,51 @@ export const config = {
         ]
     },
 
-    // Configure your Cucumber runner
+    // Налаштувати ваш запускач Cucumber
     cucumberOpts: {
-        // see Cucumber configuration options below
+        // див. опції налаштування Cucumber нижче
     },
 
 
-    // ... or Jasmine runner
+    // ... або запускач Jasmine
     jasmineOpts: {
-        // see Jasmine configuration options below
+        // див. опції налаштування Jasmine нижче
     },
 
-    // ... or Mocha runner
+    // ... або запускач Mocha
     mochaOpts: {
-        // see Mocha configuration options below
+        // див. опції налаштування Mocha нижче
     },
 
     runner: 'local',
 
-    // Any other WebdriverIO configuration
+    // Будь-які інші налаштування WebdriverIO
 };
 ```
 
 </TabItem>
 </Tabs>
 
-Learn more about:
-- [Serenity/JS Cucumber configuration options](https://serenity-js.org/api/cucumber-adapter/interface/CucumberConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [Serenity/JS Jasmine configuration options](https://serenity-js.org/api/jasmine-adapter/interface/JasmineConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [Serenity/JS Mocha configuration options](https://serenity-js.org/api/mocha-adapter/interface/MochaConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [WebdriverIO configuration file](configurationfile)
+Дізнайтеся більше про:
+- [Опції налаштування Cucumber для Serenity/JS](https://serenity-js.org/api/cucumber-adapter/interface/CucumberConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [Опції налаштування Jasmine для Serenity/JS](https://serenity-js.org/api/jasmine-adapter/interface/JasmineConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [Опції налаштування Mocha для Serenity/JS](https://serenity-js.org/api/mocha-adapter/interface/MochaConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [Конфігураційний файл WebdriverIO](configurationfile)
 
-### Producing Serenity BDD reports and living documentation
+### Створення звітів Serenity BDD та живої документації
 
-[Serenity BDD reports and living documentation](https://serenity-bdd.github.io/docs/reporting/the_serenity_reports) are generated by [Serenity BDD CLI](https://github.com/serenity-bdd/serenity-core/tree/main/serenity-cli), a Java program downloaded and managed by the [`@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io) module.
+[Звіти Serenity BDD та жива документація](https://serenity-bdd.github.io/docs/reporting/the_serenity_reports) генеруються за допомогою [Serenity BDD CLI](https://github.com/serenity-bdd/serenity-core/tree/main/serenity-cli),
+Java-програми, яка завантажується та керується модулем [`@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io).
 
-To produce Serenity BDD reports, your test suite must:
-- download the Serenity BDD CLI, by calling `serenity-bdd update` which caches the CLI `jar` locally
-- produce intermediate Serenity BDD `.json` reports, by registering [`SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io) as per the [configuration instructions](#configuring-serenityjs)
-- invoke the Serenity BDD CLI when you want to produce the report, by calling `serenity-bdd run`
+Щоб створити звіти Serenity BDD, ваш тестовий набір повинен:
+- завантажити Serenity BDD CLI, викликавши `serenity-bdd update`, що кешує CLI `jar` локально
+- створити проміжні звіти Serenity BDD `.json`, зареєструвавши [`SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io) відповідно до [інструкцій з налаштування](#configuring-serenityjs)
+- викликати Serenity BDD CLI, коли ви хочете створити звіт, викликавши `serenity-bdd run`
 
-The pattern used by all the [Serenity/JS Project Templates](https://serenity-js.org/handbook/project-templates/?pk_campaign=wdio8&pk_source=webdriver.io#webdriverio) relies on using:
-- a [`postinstall`](https://docs.npmjs.com/cli/v9/using-npm/scripts#life-cycle-operation-order) NPM script to download the Serenity BDD CLI
-- [`npm-failsafe`](https://www.npmjs.com/package/npm-failsafe) to run the reporting process even if the test suite itself has failed (which is precisely when you need test reports the most...).
-- [`rimraf`](https://www.npmjs.com/package/rimraf) as a convenience method to remove any test reports left over from the previous run
+Шаблон, який використовується всіма [шаблонами проектів Serenity/JS](https://serenity-js.org/handbook/project-templates/?pk_campaign=wdio8&pk_source=webdriver.io#webdriverio), базується на використанні:
+- скрипту NPM [`postinstall`](https://docs.npmjs.com/cli/v9/using-npm/scripts#life-cycle-operation-order) для завантаження Serenity BDD CLI
+- [`npm-failsafe`](https://www.npmjs.com/package/npm-failsafe) для запуску процесу звітування, навіть якщо сам тестовий набір завершився невдачею (саме тоді, коли вам найбільше потрібні тестові звіти...)
+- [`rimraf`](https://www.npmjs.com/package/rimraf) як зручний метод для видалення будь-яких тестових звітів, що залишилися від попереднього запуску
 
 ```json title="package.json"
 {
@@ -634,20 +692,22 @@ The pattern used by all the [Serenity/JS Project Templates](https://serenity-js.
 }
 ```
 
-To learn more about the `SerenityBDDReporter`, please consult:
-- installation instructions in [`@serenity-js/serenity-bdd` documentation](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io),
-- configuration examples in [`SerenityBDDReporter` API docs](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io),
-- [Serenity/JS examples on GitHub](https://github.com/serenity-js/serenity-js/tree/main/examples).
+Щоб дізнатися більше про `SerenityBDDReporter`, будь ласка, зверніться до:
+- інструкцій з встановлення у [документації `@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io),
+- прикладів налаштування у [документації API `SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io),
+- [прикладів Serenity/JS на GitHub](https://github.com/serenity-js/serenity-js/tree/main/examples).
 
-### Using Serenity/JS Screenplay Pattern APIs
+### Використання API шаблону Screenplay у Serenity/JS
 
-The [Screenplay Pattern](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) is an innovative, user-centred approach to writing high-quality automated acceptance tests. It steers you towards an effective use of layers of abstraction, helps your test scenarios capture the business vernacular of your domain, and encourages good testing and software engineering habits on your team.
+[Шаблон Screenplay](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) - це інноваційний, орієнтований на користувача підхід до написання високоякісних автоматизованих приймальних тестів. Він спрямовує вас на ефективне використання шарів абстракції, допомагає вашим тестовим сценаріям відображати бізнес-словник вашого домену та заохочує хороші практики тестування та розробки програмного забезпечення у вашій команді.
 
-By default, when you register `@serenity-js/webdriverio` as your WebdriverIO `framework`, Serenity/JS configures a default [cast](https://serenity-js.org/api/core/class/Cast/?pk_campaign=wdio8&pk_source=webdriver.io) of [actors](https://serenity-js.org/api/core/class/Actor/?pk_campaign=wdio8&pk_source=webdriver.io), where every actor can:
+За замовчуванням, коли ви реєструєте `@serenity-js/webdriverio` як ваш `framework` у WebdriverIO,
+Serenity/JS налаштовує акторський [каст](https://serenity-js.org/api/core/class/Cast/?pk_campaign=wdio8&pk_source=webdriver.io) за замовчуванням [акторів](https://serenity-js.org/api/core/class/Actor/?pk_campaign=wdio8&pk_source=webdriver.io),
+де кожен актор може:
 - [`BrowseTheWebWithWebdriverIO`](https://serenity-js.org/api/webdriverio/class/BrowseTheWebWithWebdriverIO/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [`TakeNotes.usingAnEmptyNotepad()`](https://serenity-js.org/api/core/class/TakeNotes/?pk_campaign=wdio8&pk_source=webdriver.io)
 
-This should be enough to help you get started with introducing test scenarios that follow the Screenplay Pattern even to an existing test suite, for example:
+Цього має бути достатньо, щоб допомогти вам почати вводити тестові сценарії, які відповідають шаблону Screenplay, навіть у наявний тестовий набір, наприклад:
 
 ```typescript title="specs/example.spec.ts"
 import { actorCalled } from '@serenity-js/core'
@@ -673,7 +733,7 @@ describe('My awesome website', () => {
 })
 ```
 
-To learn more about the Screenplay Pattern, check out:
-- [The Screenplay Pattern](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [Web testing with Serenity/JS](https://serenity-js.org/handbook/web-testing/?pk_campaign=wdio8&pk_source=webdriver.io)
+Щоб дізнатися більше про шаблон Screenplay, перегляньте:
+- [Шаблон Screenplay](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [Веб-тестування з Serenity/JS](https://serenity-js.org/handbook/web-testing/?pk_campaign=wdio8&pk_source=webdriver.io)
 - ["BDD in Action, Second Edition"](https://www.manning.com/books/bdd-in-action-second-edition)

@@ -3,11 +3,11 @@ id: stencil
 title: Stencil
 ---
 
-[Stencil](https://stenciljs.com/) is a library for building reusable, scalable component libraries. You can test Stencil components directly in a real browser using WebdriverIO and its [browser runner](/docs/runner#browser-runner).
+[Stencil](https://stenciljs.com/) — це бібліотека для створення повторно використовуваних, масштабованих бібліотек компонентів. Ви можете тестувати компоненти Stencil безпосередньо у реальному браузері, використовуючи WebdriverIO та його [браузерний запускач](/docs/runner#browser-runner).
 
-## Setup
+## Налаштування
 
-To set up WebdriverIO within your Stencil project, follow the [instructions](/docs/component-testing#set-up) in our component testing docs. Make sure to select `stencil` as preset within your runner options, e.g.:
+Щоб налаштувати WebdriverIO у вашому проекті Stencil, дотримуйтесь [інструкцій](/docs/component-testing#set-up) в нашій документації з тестування компонентів. Переконайтеся, що вибрали `stencil` як пресет у опціях запускача, наприклад:
 
 ```js
 // wdio.conf.js
@@ -22,19 +22,19 @@ export const config = {
 
 :::info
 
-In case you use Stencil with a framework like React or Vue, you should keep the preset for these frameworks.
+У випадку, якщо ви використовуєте Stencil з фреймворком, таким як React або Vue, вам слід зберегти пресет для цих фреймворків.
 
 :::
 
-You can then start the tests by running:
+Після цього ви можете запустити тести, виконавши:
 
 ```sh
 npx wdio run ./wdio.conf.ts
 ```
 
-## Writing Tests
+## Написання тестів
 
-Given you have the following Stencil components:
+Припустимо, у вас є наступні компоненти Stencil:
 
 ```tsx title="./components/Component.tsx"
 import { Component, Prop, h } from '@stencil/core'
@@ -65,7 +65,7 @@ export class MyName {
 
 ### `render`
 
-In your test use the `render` method from `@wdio/browser-runner/stencil` to attach the component to the test page. To interact with the component we recommend using WebdriverIO commands as they behave closer to actual user interactions, e.g.:
+У своєму тесті використовуйте метод `render` з `@wdio/browser-runner/stencil`, щоб прикріпити компонент до тестової сторінки. Для взаємодії з компонентом ми рекомендуємо використовувати команди WebdriverIO, оскільки вони поводяться ближче до реальних взаємодій користувача, наприклад:
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -86,101 +86,105 @@ describe('Stencil Component Testing', () => {
 })
 ```
 
-#### Render Options
+#### Опції Render
 
-The `render` method provides the following options:
+Метод `render` надає наступні опції:
 
 ##### `components`
 
-An array of components to test. Component classes can be imported into the spec file, then their reference should be added to the `component` array to be used throughout the test.
+Масив компонентів для тестування. Класи компонентів можна імпортувати у файл специфікації, потім їх посилання слід додати до масиву `component` для використання протягом тесту.
 
-__Type:__ `CustomElementConstructor[]`<br /> __Default:__ `[]`
+__Тип:__ `CustomElementConstructor[]`<br />
+__За замовчуванням:__ `[]`
 
 ##### `flushQueue`
 
-If `false`, do not flush the render queue on the initial test setup.
+Якщо `false`, не очищати чергу рендерингу при початковому налаштуванні тесту.
 
-__Type:__ `boolean`<br /> __Default:__ `true`
+__Тип:__ `boolean`<br />
+__За замовчуванням:__ `true`
 
 ##### `template`
 
-The initial JSX that is used to generate the test. Use `template` when you want to initialize a component using their properties, instead of their HTML attributes. It will render the specified template (JSX) into `document.body`.
+Початковий JSX, який використовується для генерації тесту. Використовуйте `template`, коли ви хочете ініціалізувати компонент, використовуючи їхні властивості, а не HTML-атрибути. Це рендерить вказаний шаблон (JSX) у `document.body`.
 
-__Type:__ `JSX.Template`
+__Тип:__ `JSX.Template`
 
 ##### `html`
 
-The initial HTML used to generate the test. This can be useful to construct a collection of components working together, and assign HTML attributes.
+Початковий HTML, який використовується для генерації тесту. Це може бути корисно для створення колекції компонентів, що працюють разом, і призначення HTML-атрибутів.
 
-__Type:__ `string`
+__Тип:__ `string`
 
 ##### `language`
 
-Sets the mocked `lang` attribute on `<html>`.
+Встановлює мокований атрибут `lang` на `<html>`.
 
-__Type:__ `string`
+__Тип:__ `string`
 
 ##### `autoApplyChanges`
 
-By default, any changes to component properties and attributes must `env.waitForChanges()` to test the updates. As an option, `autoApplyChanges` continuously flushes the queue in the background.
+За замовчуванням, будь-які зміни властивостей та атрибутів компонента повинні використовувати `env.waitForChanges()` для тестування оновлень. Як опція, `autoApplyChanges` безперервно очищає чергу у фоновому режимі.
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__Тип:__ `boolean`<br />
+__За замовчуванням:__ `false`
 
 ##### `attachStyles`
 
-By default, styles are not attached to the DOM and they are not reflected in the serialized HTML. Setting this option to `true` will include the component's styles in the serializable output.
+За замовчуванням, стилі не приєднуються до DOM і не відображаються у серіалізованому HTML. Встановлення цієї опції в `true` включить стилі компонента у серіалізований вихід.
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__Тип:__ `boolean`<br />
+__За замовчуванням:__ `false`
 
-#### Render Environment
+#### Середовище Render
 
-The `render` method returns an environment object that provides certain utility helpers to manage the component's environment.
+Метод `render` повертає об'єкт середовища, який надає певні допоміжні утиліти для управління середовищем компонента.
 
 ##### `flushAll`
 
-After changes have been made to a component, such as an update to a property or attribute, the test page does not automatically apply the changes. To wait for, and apply the update, call `await flushAll()`
+Після внесення змін до компонента, таких як оновлення властивості або атрибута, тестова сторінка не застосовує зміни автоматично. Щоб дочекатися та застосувати оновлення, викличте `await flushAll()`
 
-__Type:__ `() => void`
+__Тип:__ `() => void`
 
 ##### `unmount`
 
-Removes the container element from the DOM.
+Видаляє елемент контейнера з DOM.
 
-__Type:__ `() => void`
+__Тип:__ `() => void`
 
 ##### `styles`
 
-All styles defined by components.
+Усі стилі, визначені компонентами.
 
-__Type:__ `Record<string, string>`
+__Тип:__ `Record<string, string>`
 
 ##### `container`
 
-Container element in which the template is being rendered.
+Елемент контейнера, в якому рендериться шаблон.
 
-__Type:__ `HTMLElement`
+__Тип:__ `HTMLElement`
 
 ##### `$container`
 
-The container element as a WebdriverIO element.
+Елемент контейнера як елемент WebdriverIO.
 
-__Type:__ `WebdriverIO.Element`
+__Тип:__ `WebdriverIO.Element`
 
 ##### `root`
 
-The root component of the template.
+Кореневий компонент шаблону.
 
-__Type:__ `HTMLElement`
+__Тип:__ `HTMLElement`
 
 ##### `$root`
 
-The root component as a WebdriverIO element.
+Кореневий компонент як елемент WebdriverIO.
 
-__Type:__ `WebdriverIO.Element`
+__Тип:__ `WebdriverIO.Element`
 
 ### `waitForChanges`
 
-Helper method to wait for the component to be ready.
+Допоміжний метод для очікування готовності компонента.
 
 ```ts
 import { render, waitForChanges } from '@wdio/browser-runner/stencil'
@@ -196,12 +200,11 @@ await waitForChanges()
 expect(page.root.querySelector('div')).toBeDefined()
 ```
 
-## Element Updates
+## Оновлення елементів
 
-If you define properties or states in your Stencil component you have to manage when these changes should be applied to the component to be re-rendered.
+Якщо ви визначаєте властивості чи стани у вашому компоненті Stencil, вам потрібно керувати тим, коли ці зміни повинні бути застосовані до компонента для його перерендерингу.
 
 
-## Examples
+## Приклади
 
-You can find a full example of a WebdriverIO component test suite for Stencil in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).
-
+Ви можете знайти повний приклад набору тестів компонентів WebdriverIO для Stencil у нашому [репозиторії прикладів](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).

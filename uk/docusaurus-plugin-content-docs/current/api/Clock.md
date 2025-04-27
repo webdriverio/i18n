@@ -1,9 +1,9 @@
 ---
 id: clock
-title: The Clock Object
+title: Об'єкт Clock
 ---
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+Ви можете змінювати системний годинник браузера, використовуючи команду [`emulate`](/docs/emulation). Вона перевизначає нативні глобальні функції, пов'язані з часом, дозволяючи керувати ними синхронно через `clock.tick()` або через поверненний об'єкт clock. Це включає керування:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+Годинник починається з початку епохи Unix (часова мітка 0). Це означає, що коли ви створюєте новий об'єкт Date у вашому додатку, він матиме час 1 січня 1970 року, якщо ви не передасте інші параметри до команди `emulate`.
 
-## Example
+## Приклад
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+Коли ви викликаєте `browser.emulate('clock', { ... })`, це негайно перевизначає глобальні функції для поточної сторінки, а також для всіх наступних сторінок, наприклад:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -37,4 +37,4 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+Ви можете змінювати системний час, викликаючи [`setSystemTime`](/docs/api/clock/setSystemTime) або [`tick`](/docs/api/clock/tick).

@@ -1,9 +1,9 @@
 ---
 id: service-options
-title: Service Options
+title: Опції сервісу
 ---
 
-Service options are the options that can be set when the service is instantiated and will be used for each method call.
+Опції сервісу - це опції, що можуть бути встановлені при створенні екземпляра сервісу і будуть використовуватися для кожного виклику методу.
 
 ```js
 // wdio.conf.(js|ts)
@@ -24,86 +24,88 @@ export const config = {
 };
 ```
 
-## Default Options
+## Опції за замовчуванням
 
 ### `addressBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6`
-- **Supported:** Web
+-   **Тип:** `number`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `6`
+-   **Підтримується:** Web
 
-The padding needs to be added to the address bar on iOS and Android to do a proper cutout of the viewport.
+Відступ, який потрібно додати до адресного рядка на iOS та Android для правильного вирізання області перегляду.
 
 ### `autoElementScroll`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `true`
+-   **Підтримується:** Web, Hybrid App (Webview)
 
-This option allows you to disable the automatic scrolling of the element into the view when an element screenshot is created.
+Ця опція дозволяє вимкнути автоматичне прокручування елемента у видиму область під час створення знімка екрана елемента.
 
 ### `addIOSBezelCorners`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `false`
+-   **Підтримується:** Web, Hybrid App (Webview), Native App
 
-Add bezel corners and notch/dynamic island to the screenshot for iOS devices.
+Додає кути рамки та виріз/динамічний острів до знімка екрана для iOS пристроїв.
 
-:::info NOTE
+:::info ПРИМІТКА
+Це можна зробити лише у випадку, коли назву пристрою **МОЖНА** автоматично визначити, і вона відповідає наведеному нижче списку нормалізованих назв пристроїв. Нормалізація буде виконана цим модулем.
+**iPhone:**
 
-- iPhone X: `iphonex`
-- iPhone XS: `iphonexs`
-- iPhone XS Max: `iphonexsmax`
-- iPhone XR: `iphonexr`
-- iPhone 11: `iphone11`
-- iPhone 11 Pro: `iphone11pro`
-- iPhone 11 Pro Max: `iphone11promax`
-- iPhone 12: `iphone12`
-- iPhone 12 Mini: `iphone12mini`
-- iPhone 12 Pro: `iphone12pro`
-- iPhone 12 Pro Max: `iphone12promax`
-- iPhone 13: `iphone13`
-- iPhone 13 Mini: `iphone13mini`
-- iPhone 13 Pro: `iphone13pro`
-- iPhone 13 Pro Max: `iphone13promax`
-- iPhone 14: `iphone14`
-- iPhone 14 Plus: `iphone14plus`
-- iPhone 14 Pro: `iphone14pro`
-- iPhone 14 Pro Max: `iphone14promax`
+-   iPhone X: `iphonex`
+-   iPhone XS: `iphonexs`
+-   iPhone XS Max: `iphonexsmax`
+-   iPhone XR: `iphonexr`
+-   iPhone 11: `iphone11`
+-   iPhone 11 Pro: `iphone11pro`
+-   iPhone 11 Pro Max: `iphone11promax`
+-   iPhone 12: `iphone12`
+-   iPhone 12 Mini: `iphone12mini`
+-   iPhone 12 Pro: `iphone12pro`
+-   iPhone 12 Pro Max: `iphone12promax`
+-   iPhone 13: `iphone13`
+-   iPhone 13 Mini: `iphone13mini`
+-   iPhone 13 Pro: `iphone13pro`
+-   iPhone 13 Pro Max: `iphone13promax`
+-   iPhone 14: `iphone14`
+-   iPhone 14 Plus: `iphone14plus`
+-   iPhone 14 Pro: `iphone14pro`
+-   iPhone 14 Pro Max: `iphone14promax`
     **iPads:**
-- iPad Mini 6th Generation: `ipadmini`
-- iPad Air 4th Generation: `ipadair`
-- iPad Air 5th Generation: `ipadair`
-- iPad Pro (11-inch) 1st Generation: `ipadpro11`
-- iPad Pro (11-inch) 2nd Generation: `ipadpro11`
-- iPad Pro (11-inch) 3rd Generation: `ipadpro11`
-- iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+-   iPad Mini 6th Generation: `ipadmini`
+-   iPad Air 4th Generation: `ipadair`
+-   iPad Air 5th Generation: `ipadair`
+-   iPad Pro (11-inch) 1st Generation: `ipadpro11`
+-   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
+-   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
+-   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
 
 :::
 
 ### `autoSaveBaseline`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `true`
+-   **Підтримується:** Web, Hybrid App (Webview), Native App
 
-If no baseline image is found during the comparison the image is automatically copied to the baseline folder.
+Якщо базового зображення не знайдено під час порівняння, зображення автоматично копіюється в папку з базовими зображеннями.
 
 ### `baselineFolder`
 
-- **Type:** `string|()=> string`
-- **Mandatory:** No
-- **Default:** `.path/to/testfile/__snapshots__/`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `string|()=> string`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `.path/to/testfile/__snapshots__/`
+-   **Підтримується:** Web, Hybrid App (Webview), Native App
 
-The directory that will hold all the baseline images that are used during the comparison. If not set, the default value will be used which will store the files in a `__snapshots__/`-folder next to the spec that executes the visual tests. A function that returns a `string` can also be used to set the `baselineFolder` value:
+Директорія, що міститиме всі базові зображення, які використовуються під час порівняння. Якщо не встановлено, використовуватиметься значення за замовчуванням, яке зберігає файли в папці `__snapshots__/` поруч зі специфікацією, яка виконує візуальні тести. Також можна використовувати функцію, яка повертає `string`, для встановлення значення `baselineFolder`:
 
 ```js
 {
@@ -120,24 +122,24 @@ The directory that will hold all the baseline images that are used during the co
 
 ### `clearRuntimeFolder`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `false`
+-   **Підтримується:** Web, Hybrid App (Webview), Native App
 
-Delete runtime folder (`actual` & \`diff) on initialization
+Видаляти папку часу виконання (`actual` і `diff`) під час ініціалізації
 
-:::info NOTE
-This will only work when the [`screenshotPath`](#screenshotpath) is set through the plugin options, and **WILL NOT WORK** when you set the folders in the methods
+:::info ПРИМІТКА
+Це працюватиме лише коли [`screenshotPath`](#screenshotpath) встановлено через опції плагіна, і **НЕ ПРАЦЮВАТИМЕ**, якщо ви встановлюєте папки в методах
 :::
 
-### `createJsonReportFiles` **(NEW)**
+### `createJsonReportFiles` **(НОВЕ)**
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `false`
 
-You now have the option to export the compare results into a JSON report file. By providing the option `createJsonReportFiles: true`, each image that is compared will create a report stored in the `actual` folder, next to each `actual` image result. The output will look like this:
+Тепер у вас є можливість експортувати результати порівняння у файл звіту JSON. Надавши опцію `createJsonReportFiles: true`, для кожного зображення, яке порівнюється, буде створено звіт, який зберігається в папці `actual`, поруч із кожним результатом зображення `actual`. Вивід виглядатиме так:
 
 ```json
 {
@@ -200,14 +202,14 @@ You now have the option to export the compare results into a JSON report file. B
 }
 ```
 
-When all tests are executed, a new JSON file with the collection of the comparisons will be generated and can be found in the root of your `actual` folder. The data is grouped by:
+Після виконання всіх тестів буде створено новий JSON-файл з колекцією порівнянь, який можна знайти в корені папки `actual`. Дані згруповані за:
 
-- `describe` for Jasmine/Mocha or `Feature` for CucumberJS
-- `it` for Jasmine/Mocha or `Scenario` for CucumberJS
-    and then sorted by:
-- `commandName`, which are the compare method names used to compare the images
-- `instanceData`, browser first, then device, then platform
-    it will look like this
+-   `describe` для Jasmine/Mocha або `Feature` для CucumberJS
+-   `it` для Jasmine/Mocha або `Scenario` для CucumberJS
+    і потім відсортовані за:
+-   `commandName`, які є назвами методів порівняння, що використовуються для порівняння зображень
+-   `instanceData`, спочатку браузер, потім пристрій, потім платформа
+    це виглядатиме так
 
 ```json
 [
@@ -250,141 +252,137 @@ When all tests are executed, a new JSON file with the collection of the comparis
 ]
 ```
 
-The report data will give you the opportunity to build your own visual report without doing all the magic and data collection yourself.
+Дані звіту дадуть вам можливість створити власний візуальний звіт без необхідності робити всю магію та збір даних самостійно.
 
-:::info NOTE
-You need to use `@wdio/visual-testing` version `5.2.0` or higher
+:::info ПРИМІТКА
+Вам потрібно використовувати `@wdio/visual-testing` версії `5.2.0` або вище
 :::
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `false`
+-   **Підтримується:** Web, Hybrid App (Webview)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+Увімкнути/вимкнути "блимання" курсора у всіх `input`, `textarea`, `[contenteditable]` у застосунку. Якщо встановлено значення `true`, курсор буде встановлено на `transparent` перед створенням знімка
+і відновлено після завершення
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `false`
+-   **Підтримується:** Web, Hybrid App (Webview)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+Увімкнути/вимкнути всі CSS-анімації в застосунку. Якщо встановлено значення `true`, всі анімації будуть вимкнені перед створенням знімка
+і відновлені після завершення
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `false`
+-   **Підтримується:** Web
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+Це приховає весь текст на сторінці, тому для порівняння використовуватиметься тільки макет. Приховування буде здійснено шляхом додавання стилю `'color': 'transparent !important'` до **кожного** елемента.
 
-For the output see [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+Для виводу див. [Тестовий вивід](/docs/visual-testing/test-output#enablelayouttesting)
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+Використовуючи цей прапорець, кожен елемент, який містить текст (тобто не тільки `p, h1, h2, h3, h4, h5, h6, span, a, li`, але також `div|button|..`), отримає цю властивість. **Немає** можливості налаштувати це.
 :::
 
 ### `formatImageName`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `string`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
+-   **Підтримується:** Web, Hybrid App (Webview), Native App
 
-The name of the saved images can be customized by passing the parameter `formatImageName` with a format string like:
+Назву збережених зображень можна налаштувати, передавши параметр `formatImageName` із рядком формату, наприклад:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-The following variables can be passed to format the string and will automatically be read from the instance capabilities.
-If they can't be determined the defaults will be used.
+Наступні змінні можна передати для форматування рядка, і вони будуть автоматично зчитані з можливостей екземпляра.
+Якщо їх неможливо визначити, використовуватимуться значення за замовчуванням.
 
-- `browserName`: The name of the browser in the provided capabilities
-- `browserVersion`: The version of the browser provided in the capabilities
-- `deviceName`: The device name from the capabilities
-- `dpr`: The device pixel ratio
-- `height`: The height of the screen
-- `logName`: The logName from capabilities
-- `mobile`: This will add `_app`, or the browser name after the `deviceName` to distinguish app screenshots from browser screenshots
-- `platformName`: The name of the platform in the provided capabilities
-- `platformVersion`: The version of the platform provided in the capabilities
-- `tag`: The tag that is provided in the methods that is being called
-- `width`: The width of the screen
+-   `browserName`: Назва браузера в наданих можливостях
+-   `browserVersion`: Версія браузера в наданих можливостях
+-   `deviceName`: Назва пристрою з можливостей
+-   `dpr`: Співвідношення пікселів пристрою
+-   `height`: Висота екрану
+-   `logName`: LogName з можливостей
+-   `mobile`: Це додасть `_app` або назву браузера після `deviceName`, щоб відрізнити знімки екрана застосунку від знімків екрана браузера
+-   `platformName`: Назва платформи в наданих можливостях
+-   `platformVersion`: Версія платформи в наданих можливостях
+-   `tag`: Тег, який надається в методах, що викликаються
+-   `width`: Ширина екрану
 
 :::info
 
-You can not provide custom paths/folders in the `formatImageName`. If you want to change the path then please check changing the following options:
+Ви не можете вказати власні шляхи/папки в `formatImageName`. Якщо ви хочете змінити шлях, перевірте зміну наступних опцій:
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) per method
+- [`folderOptions`](/docs/visual-testing/method-options#folder-options) для кожного методу
 
 :::
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Supported:** Web
+-   **Тип:** `number`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `1500`
+-   **Підтримується:** Web
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+Час очікування в мілісекундах після прокрутки. Це може допомогти ідентифікувати сторінки з відкладеним завантаженням.
+
+:::info
+
+Це працюватиме лише якщо опція сервісу/методу `userBasedFullPageScreenshot` встановлена на `true`, див. також [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
+
+:::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `true`
+-   **Підтримується:** Web, Hybrid App (Webview)
 
-Hide scrollbars in the application. If set to true all scrollbars will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
-
-### `isHybridApp`
-
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Hybrid App
-
-Tell the module if the used app is a Hybrid app, this will not calculate the address bar height because it is not there.
+Приховати смуги прокрутки в застосунку. Якщо встановлено значення true, всі смуги прокрутки будуть вимкнені перед створенням знімка. Це встановлено за замовчуванням на `true`, щоб запобігти додатковим проблемам.
 
 ### `logLevel`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `info`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `string`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `info`
+-   **Підтримується:** Web, Hybrid App (Webview), Native App
 
-Adds extra logs, options are `debug | info | warn | silent`
+Додає додаткові журнали, опції: `debug | info | warn | silent`
 
-Errors are always logged to the console.
+Помилки завжди виводяться в консоль.
 
 ### `savePerInstance`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `boolean`
+-   **За замовчуванням:** `false`
+-   **Обов'язковий:** Ні
+-   **Підтримується:** Web, Hybrid App (Webview), Native App
 
-Save the images per instance in a separate folder so for example all Chrome screenshots will be saved in a Chrome folder like `desktop_chrome`.
+Зберігати зображення для кожного екземпляра в окремій папці, наприклад, всі знімки екрана Chrome будуть збережені в папці Chrome, наприклад, `desktop_chrome`.
 
 ### `screenshotPath`
 
-- **Type:** `string | () => string`
-- **Default:** `.tmp/`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Тип:** `string | () => string`
+-   **За замовчуванням:** `.tmp/`
+-   **Обов'язковий:** Ні
+-   **Підтримується:** Web, Hybrid App (Webview), Native App
 
-The directory that will hold all the actual/different screenshots. If not set, the default value will be used. A function that
-returns a string can also be used to set the screenshotPath value:
+Директорія, яка міститиме всі фактичні/різні знімки екрана. Якщо не встановлено, використовуватиметься значення за замовчуванням. Функцію, що повертає рядок, також можна використовувати для встановлення значення screenshotPath:
 
 ```js
 {
@@ -401,158 +399,170 @@ returns a string can also be used to set the screenshotPath value:
 
 ### `toolBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6` for Android and `15` for iOS (`6` by default and `9` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)
-- **Supported:** Web
+-   **Тип:** `number`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `6` для Android та `15` для iOS (`6` за замовчуванням і `9` буде додано автоматично для можливого домашнього бару на iPhone з вирізом або iPad, які мають домашній бар)
+-   **Підтримується:** Web
 
-The padding which needs to be added to the toolbar bar on iOS and Android to do a proper cutout of the viewport.
+Відступ, який потрібно додати до панелі інструментів на iOS та Android для правильного вирізання області перегляду.
+
+### `userBasedFullPageScreenshot`
+
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `false`
+-   **Підтримується:** Web, Hybrid App (Webview) **Запроваджено у visual-service@7.0.0**
+
+За замовчуванням знімки повної сторінки на настільному веб-інтерфейсі робляться за допомогою протоколу WebDriver BiDi, що забезпечує швидкі, стабільні та узгоджені знімки екрана без прокрутки.
+Коли userBasedFullPageScreenshot встановлено на true, процес знімка імітує реального користувача: прокручує сторінку, робить знімки екрана розміром з вікно перегляду та зшиває їх разом. Цей метод корисний для сторінок із вмістом, що завантажується ліниво, або динамічним рендерингом, який залежить від положення прокрутки.
+
+Використовуйте цю опцію, якщо ваша сторінка покладається на завантаження вмісту під час прокрутки або якщо ви хочете зберегти поведінку старіших методів знімків екрана.
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Тип:** `boolean`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** `true`
+-   **Підтримується:** Web, Hybrid App (Webview)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+Шрифти, включаючи сторонні шрифти, можуть завантажуватися синхронно або асинхронно. Асинхронне завантаження означає, що шрифти можуть завантажитися після того, як WebdriverIO визначить, що сторінка повністю завантажена. Щоб запобігти проблемам відображення шрифтів, цей модуль за замовчуванням чекатиме, доки всі шрифти завантажаться, перш ніж робити знімок екрана.
 
-## Tabbable Options
+## Опції табуляції
 
-:::info NOTE
+:::info ПРИМІТКА
 
-This module also supports drawing the way a user would use his keyboard to _tab_ through the website by drawing lines and dots from tabbable element to tabbable element.<br/>
-The work is inspired by [Viv Richards](https://github.com/vivrichards600) his blog post about ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-The way tabbable elements are selected is based on the module [tabbable](https://github.com/davidtheclark/tabbable). If there are any issues regarding the tabbing please check the [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) and especially the [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+Цей модуль також підтримує відображення способу, яким користувач використовує свою клавіатуру для навігації _Tab_ через веб-сайт, малюючи лінії та точки від елемента, що підтримує табуляцію, до елемента, що підтримує табуляцію.<br/>
+Робота натхненна постом у блозі [Viv Richards](https://github.com/vivrichards600) про ["АВТОМАТИЗАЦІЮ СТОРІНКИ ТАБУЛАЦІЇ (ЦЕ СЛОВО?) З ВІЗУАЛЬНИМ ТЕСТУВАННЯМ"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
+Спосіб вибору елементів, що підтримують табуляцію, базується на модулі [tabbable](https://github.com/davidtheclark/tabbable). Якщо є проблеми з табуляцією, перевірте [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) і особливо [розділ Більше деталей](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
 ### `tabbableOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `object`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The options that can be changed for the lines and dots if you use the `{save|check}Tabbable`-methods. The options are explained below.
+Опції, які можна змінити для ліній і точок, якщо ви використовуєте методи `{save|check}Tabbable`. Опції пояснюються нижче.
 
 #### `tabbableOptions.circle`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `object`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The options to change the circle.
+Опції для зміни кола.
 
 ##### `tabbableOptions.circle.backgroundColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `string`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The background color of the circle.
+Колір фону кола.
 
 ##### `tabbableOptions.circle.borderColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `string`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The border color of the circle.
+Колір межі кола.
 
 ##### `tabbableOptions.circle.borderWidth`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `number`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The border width of the circle.
+Ширина межі кола.
 
 ##### `tabbableOptions.circle.fontColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `string`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The color of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+Колір шрифту тексту в колі. Це буде показано лише якщо [`showNumber`](./#tabbableoptionscircleshownumber) встановлено на `true`.
 
 ##### `tabbableOptions.circle.fontFamily`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `string`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The family of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+Сімейство шрифту тексту в колі. Це буде показано лише якщо [`showNumber`](./#tabbableoptionscircleshownumber) встановлено на `true`.
 
-Make sure to set fonts that are supported by the browsers.
+Переконайтеся, що використовуєте шрифти, які підтримуються браузерами.
 
 ##### `tabbableOptions.circle.fontSize`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `number`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The size of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+Розмір шрифту тексту в колі. Це буде показано лише якщо [`showNumber`](./#tabbableoptionscircleshownumber) встановлено на `true`.
 
 ##### `tabbableOptions.circle.size`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `number`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The size of the circle.
+Розмір кола.
 
 ##### `tabbableOptions.circle.showNumber`
 
-- **Type:** `showNumber`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `showNumber`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-Show the tab sequence number in the circle.
+Показувати номер послідовності табуляції в колі.
 
 #### `tabbableOptions.line`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `object`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The options to change the line.
+Опції для зміни лінії.
 
 ##### `tabbableOptions.line.color`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `string`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The color of the line.
+Колір лінії.
 
 ##### `tabbableOptions.line.width`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Тип:** `number`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) для всіх значень за замовчуванням
+-   **Підтримується:** Web
 
-The width of the line.
+Ширина лінії.
 
-## Compare options
+## Опції порівняння
 
 ### `compareOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values
-- **Supported:** Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)
+-   **Тип:** `object`
+-   **Обов'язковий:** Ні
+-   **За замовчуванням:** Див. [тут](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) для всіх значень за замовчуванням
+-   **Підтримується:** Web, Hybrid App (Webview), Native App (Див. [Опції порівняння методів](./method-options#compare-check-options) для більш детальної інформації)
 
-The compare options can also be set as service options, they are described in the [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+Опції порівняння також можуть бути встановлені як опції сервісу, вони описані в [Опціях порівняння методів](/docs/visual-testing/method-options#compare-check-options)

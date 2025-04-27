@@ -3,58 +3,58 @@ id: browser
 title: Об'єкт Browser
 ---
 
-__Успадковується від:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
+__Розширює:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-Об’єкт браузера – це екземпляр сеансу, який ви використовуєте для керування браузером або мобільним пристроєм. Якщо ви використовуєте засіб виконання тестів WebdriverIO, ви можете отримати доступ до екземпляра Browser через глобальні змінні `browser` або `driver` або імпортувати його з пакунка [`@wdio/globals`](/docs/api/globals). Якщо ви використовуєте WebdriverIO в автономному режимі, екземпляр Browser повертається методом [`remote`](/docs/api/modules#remoteoptions-modifier).
+Об'єкт browser — це екземпляр сесії, який ви використовуєте для керування браузером або мобільним пристроєм. Якщо ви використовуєте тест-ранер WDIO, ви можете отримати доступ до екземпляра WebDriver через глобальний об'єкт `browser` або `driver` або імпортувати його з пакета [`@wdio/globals`](/docs/api/globals). Якщо ви використовуєте WebdriverIO в автономному режимі, об'єкт browser повертається методом [`remote`](/docs/api/modules#remoteoptions-modifier).
 
-Сеанс ініціалізується виконавцем тесту. Те саме стосується завершення сеансу. Це також виконується процесом виконання тестів.
+Сесія ініціалізується тест-ранером. Те саме стосується і завершення сесії. Це також виконується процесом тест-ранера.
 
 ## Властивості
 
-Об’єкт браузера має такі властивості:
+Об'єкт browser має такі властивості:
 
-| Назва                   | Тип        | Опис                                                                                                                                                                                                                                                                     |
-| ----------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `capabilities`          | `Object`   | Assigned capabilities from the remote server.<br /><b>Example:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre>                                                                                                                                                              |
-| `requestedCapabilities` | `Object`   | Параметри, що були надіслані на віддалений сервер.<br /><b>Приклад:</b><pre>\{ browserName: 'chrome' \}</pre>                                                                                                                                                         |
-| `sessionId`             | `String`   | Ідентифікатор сеансу, призначений з віддаленого сервера.                                                                                                                                                                                                                 |
-| `options`               | `Object`   | WDIO [параметри](/docs/configuration) які використовувались для створення об’єкту браузера. Подивитися більше про [способи запуску](/docs/setuptypes).                                                                                                                   |
-| `commandList`           | `String[]` | Список команд, зареєстрованих в екземплярі браузера                                                                                                                                                                                                                      |
-| `isW3C`                 | `Boolean`  | Indicates if this is a W3C session                                                                                                                                                                                                                                       |
-| `isChrome`              | `Boolean`  | Indicates if this Chrome instance                                                                                                                                                                                                                                        |
-| `isFirefox`             | `Boolean`  | Indicates if this Firefox instance                                                                                                                                                                                                                                       |
-| `isBidi`                | `Boolean`  | Indicates if this session uses Bidi                                                                                                                                                                                                                                      |
-| `isSauce`               | `Boolean`  | Indicates if this session is Running on Sauce Labs                                                                                                                                                                                                                       |
-| `isMacApp`              | `Boolean`  | Indicates if this session is Running for a native Mac App                                                                                                                                                                                                                |
-| `isWindowsApp`          | `Boolean`  | Indicates if this session is Running for a native Windows App                                                                                                                                                                                                            |
-| `isMobile`              | `Boolean`  | Вказує на мобільний сеанс. Подивіться більше про [мобільні прапорці](#mobile-flags).                                                                                                                                                                                     |
-| `isIOS`                 | `Boolean`  | Вказує на сеанс iOS. Подивіться більше про [мобільні прапорці](#mobile-flags).                                                                                                                                                                                           |
-| `isAndroid`             | `Boolean`  | Вказує на сеанс Android. Подивіться більше про [мобільні прапорці](#mobile-flags).                                                                                                                                                                                       |
-| `isNativeContext`       | `Boolean`  | Indicates if the mobile is in the `NATIVE_APP` context. See more under [Mobile Flags](#mobile-flags).                                                                                                                                                                    |
-| `mobileContext`         | `string`   | The will provide the **current** context the driver is in, for example `NATIVE_APP`, `WEBVIEW_<packageName>` for Android or `WEBVIEW_<pid>` for iOS. It will save an extra WebDriver to `driver.getContext()`. See more under [Mobile Flags](#mobile-flags). |
+| Назва | Тип | Деталі |
+| ---- | ---- | ------- |
+| `capabilities` | `Object` | Призначені можливості від віддаленого сервера.<br /><b>Приклад:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
+| `requestedCapabilities` | `Object` | Можливості, запитані від віддаленого сервера.<br /><b>Приклад:</b><pre>\{ browserName: 'chrome' \}</pre>
+| `sessionId` | `String` | Ідентифікатор сесії, призначений віддаленим сервером. |
+| `options` | `Object` | [Опції](/docs/configuration) WebdriverIO залежно від того, як був створений об'єкт browser. Дивіться більше в [типах налаштування](/docs/setuptypes). |
+| `commandList` | `String[]` | Список команд, зареєстрованих для екземпляра браузера |
+| `isW3C` | `Boolean` | Вказує, чи це сесія W3C |
+| `isChrome` | `Boolean` | Вказує, чи це екземпляр Chrome |
+| `isFirefox` | `Boolean` | Вказує, чи це екземпляр Firefox |
+| `isBidi` | `Boolean` | Вказує, чи ця сесія використовує Bidi |
+| `isSauce` | `Boolean` | Вказує, чи ця сесія працює в Sauce Labs |
+| `isMacApp` | `Boolean` | Вказує, чи ця сесія працює для нативної програми Mac |
+| `isWindowsApp` | `Boolean` | Вказує, чи ця сесія працює для нативної програми Windows |
+| `isMobile` | `Boolean` | Вказує на мобільну сесію. Дивіться більше в розділі [Мобільні прапори](#mobile-flags). |
+| `isIOS` | `Boolean` | Вказує на сесію iOS. Дивіться більше в розділі [Мобільні прапори](#mobile-flags). |
+| `isAndroid` | `Boolean` | Вказує на сесію Android. Дивіться більше в розділі [Мобільні прапори](#mobile-flags). |
+| `isNativeContext` | `Boolean`  | Вказує, чи мобільний пристрій знаходиться в контексті `NATIVE_APP`. Дивіться більше в розділі [Мобільні прапори](#mobile-flags). |
+| `mobileContext` | `string`  | Надасть **поточний** контекст, в якому знаходиться драйвер, наприклад `NATIVE_APP`, `WEBVIEW_<packageName>` для Android або `WEBVIEW_<pid>` для iOS. Це заощадить додатковий WebDriver запит до `driver.getContext()`. Дивіться більше в розділі [Мобільні прапори](#mobile-flags). |
 
 
 ## Методи
 
-На основі серверної частини автоматизації, яка використовується для вашого сеансу, WebdriverIO визначає, які [команди протоколів](/docs/api/protocols) будуть приєднані до [об’єкта браузера](/docs/api/browser). Наприклад, якщо ви запускаєте автоматизований сеанс у Chrome, ви матимете доступ до спеціальних команд Chromium, таких як [`elementHover`](/docs/api/chromium#elementhover), але не до жодної з [команд Appium](/docs/api/appium).
+На основі автоматизаційного бекенду, який використовується для вашої сесії, WebdriverIO визначає, які [Протокольні команди](/docs/api/protocols) будуть приєднані до [об'єкта browser](/docs/api/browser). Наприклад, якщо ви запускаєте автоматизовану сесію в Chrome, ви матимете доступ до специфічних команд Chromium, таких як [`elementHover`](/docs/api/chromium#elementhover), але не до жодної з [команд Appium](/docs/api/appium).
 
 Крім того, WebdriverIO надає набір зручних методів, які рекомендується використовувати для взаємодії з [браузером](/docs/api/browser) або [елементами](/docs/api/element) на сторінці.
 
-На додаток до цього доступні такі команди:
+Додатково доступні такі команди:
 
-| Назва                | Параметри                                                                                                              | Опис                                                                                                                                                                                                                                                              |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addCommand`         | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`)<br />- `attachToElement` (Type: `boolean`) | Дозволяє додати спеціальні команди, які можна викликати з об’єкта браузера для цілей композиції. Докладніше читайте в розділі [Клієнтські Команди](/docs/customcommands).                                                                                         |
-| `overwriteCommand`   | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`)<br />- `attachToElement` (Type: `boolean`) | Дозволяє перезаписувати будь-яку команду браузера клієнтською функціональністю. Використовуйте обережно, оскільки це може заплутати користувачів фреймворку. Докладніше читайте в розділі [Клієнтські Команди](/docs/customcommands#overwriting-native-commands). |
-| `addLocatorStrategy` | - `strategyName` (Type: `String`)<br />- `fn` (Type: `Function`)                                                 | Allows to define a custom selector strategy, read more in the [Selectors](/docs/selectors#custom-selector-strategies) guide.                                                                                                                                      |
+| Назва | Параметри | Деталі |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (Тип: `String`)<br />- `fn` (Тип: `Function`)<br />- `attachToElement` (Тип: `boolean`) | Дозволяє визначати власні команди, які можна викликати з об'єкта browser для цілей композиції. Дізнайтеся більше в посібнику [Користувацька команда](/docs/customcommands). |
+| `overwriteCommand` | - `commandName` (Тип: `String`)<br />- `fn` (Тип: `Function`)<br />- `attachToElement` (Тип: `boolean`) | Дозволяє перезаписати будь-яку команду браузера власною функціональністю. Використовуйте обережно, оскільки це може заплутати користувачів фреймворку. Дізнайтеся більше в посібнику [Користувацька команда](/docs/customcommands#overwriting-native-commands). |
+| `addLocatorStrategy` | - `strategyName` (Тип: `String`)<br />- `fn` (Тип: `Function`) | Дозволяє визначити власну стратегію селектора, дізнайтеся більше в посібнику [Селектори](/docs/selectors#custom-selector-strategies). |
 
 ## Примітки
 
-### Мобільні Прапорці
+### Мобільні прапори
 
-Якщо вам потрібно налаштувати свій тест залежно від того, чи працює ваш сеанс на мобільному пристрої, ви можете використати мобільні прапорці, щоб перевірити це.
+Якщо вам потрібно змінити свій тест залежно від того, чи виконується ваша сесія на мобільному пристрої, ви можете перевірити мобільні прапори.
 
-Наприклад, із цією конфігурацією:
+Наприклад, за такої конфігурації:
 
 ```js
 // wdio.conf.js
@@ -71,17 +71,17 @@ export const config = {
 }
 ```
 
-Ви зможете отримати доступ до таких прапорців у своєму тесті:
+Ви можете отримати доступ до цих прапорів у своєму тесті наступним чином:
 
 ```js
-// Note: `driver` is the equivalent to the `browser` object but semantically more correct
-// you can choose which global variable you want to use
-console.log(driver.isMobile) // outputs: true
-console.log(driver.isIOS) // outputs: true
-console.log(driver.isAndroid) // outputs: false
+// Примітка: `driver` еквівалентний об'єкту `browser`, але семантично більш правильний
+// ви можете вибрати, яку глобальну змінну використовувати
+console.log(driver.isMobile) // виведе: true
+console.log(driver.isIOS) // виведе: true
+console.log(driver.isAndroid) // виведе: false
 ```
 
-Це може бути корисним, якщо, наприклад, ви хочете визначити селектори у своїх [об’єктах сторінки](../pageobjects) на основі типу пристрою, як це:
+Це може бути корисно, наприклад, якщо ви хочете визначити селектори у своїх [об'єктах сторінок](../pageobjects) на основі типу пристрою, ось так:
 
 ```js
 // mypageobject.page.js
@@ -100,13 +100,13 @@ class LoginPage extends Page {
 }
 ```
 
-Ви також можете використовувати ці прапорці для запуску лише певних тестів для певних типів пристроїв:
+Ви також можете використовувати ці прапори для запуску певних тестів лише для певних типів пристроїв:
 
 ```js
 // mytest.e2e.js
 describe('my test', () => {
     // ...
-    // only run test with Android devices
+    // запускати тест лише для пристроїв Android
     if (driver.isAndroid) {
         it('tests something only for Android', () => {
             // ...
@@ -117,77 +117,51 @@ describe('my test', () => {
 ```
 
 ### Події
-Об’єкт браузера є також і об'єктом EventEmitter, і деякі подій викликатимуться залежно від використання.
+Об'єкт browser є EventEmitter, і для ваших випадків використання генерується кілька подій.
 
-Ось список подій. Майте на увазі, що це ще не повний список доступних подій. Не соромтеся робити свій внесок в оновлення документа, додаючи тут описи інших подій.
-
-#### `request.start`
-This event is fired before a WebDriver request is sent to the driver. It contains information about the request and its payload.
-
-```ts
-browser.on('request.start', (ev: RequestInit) => {
-    // ...
-})
-```
-
-#### `request.end`
-This event is fired once the request to the driver received a response. The event object either contains the response body as result or an error if the WebDriver command failed.
-
-```ts
-browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
-    // ...
-})
-```
-
-#### `request.retry`
-The retry event can notify you when WebdriverIO attempts to retry running the command, e.g. due to a network issue. It contains information about the error that caused the retry and the amount of retries already done.
-
-```ts
-browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
-    // ...
-})
-```
+Ось список подій. Майте на увазі, що це ще не повний список доступних подій.
+Не соромтеся робити внесок для оновлення документа, додаючи описи інших подій тут.
 
 #### `command`
 
-This event is emitted whenever WebdriverIO sends a WebDriver Classic command. It contains the following information:
+Ця подія генерується кожного разу, коли WebdriverIO надсилає команду класичного WebDriver. Вона містить наступну інформацію:
 
-- `command`: the command name, e.g. `navigateTo`
-- `method`: the HTTP method used to send the command request, e.g. `POST`
-- `endpoint`: the command endpoint, e.g. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
-- `body`: the command payload, e.g. `{ url: 'https://webdriver.io' }`
+- `command`: назва команди, наприклад, `navigateTo`
+- `method`: HTTP-метод, який використовується для надсилання запиту команди, наприклад, `POST`
+- `endpoint`: кінцева точка команди, наприклад, `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
+- `body`: корисне навантаження команди, наприклад, `{ url: 'https://webdriver.io' }`
 
 #### `result`
 
-This event is emitted whenever WebdriverIO receives a result of a WebDriver Classic command. It contains the same information as the `command` event with the addition of the following information:
+Ця подія генерується кожного разу, коли WebdriverIO отримує результат команди класичного WebDriver. Вона містить ту саму інформацію, що й подія `command`, з додаванням такої інформації:
 
-- `result`: the command result
+- `result`: результат команди
 
 #### `bidiCommand`
 
-This event is emitted whenever WebdriverIO sends a WebDriver Bidi command to the browser driver. It contains information about:
+Ця подія генерується кожного разу, коли WebdriverIO надсилає команду WebDriver Bidi до драйвера браузера. Вона містить інформацію про:
 
-- `method`: WebDriver Bidi command method
-- `params`: associated command parameter (see [API](/docs/api/webdriverBidi))
+- `method`: метод команди WebDriver Bidi
+- `params`: пов'язаний параметр команди (див. [API](/docs/api/webdriverBidi))
 
 #### `bidiResult`
 
-In case of a successful command execution, the event payload will be:
+У випадку успішного виконання команди, корисне навантаження події буде:
 
 - `type`: `success`
-- `id`: the command id
-- `result`: the command result (see [API](/docs/api/webdriverBidi))
+- `id`: ідентифікатор команди
+- `result`: результат команди (див. [API](/docs/api/webdriverBidi))
 
-In case of a command error, the event payload will be:
+У випадку помилки команди, корисне навантаження події буде:
 
 - `type`: `error`
-- `id`: the command id
-- `error`: the error code, e.g. `invalid argument`
-- `message`: details about the error
-- `stacktrace`: a stack trace
+- `id`: ідентифікатор команди
+- `error`: код помилки, наприклад, `invalid argument`
+- `message`: деталі про помилку
+- `stacktrace`: трасування стеку
 
 #### `request.start`
-This event is fired before a WebDriver request is sent to the driver. It contains information about the request and its payload.
+Ця подія запускається перед надсиланням запиту WebDriver до драйвера. Вона містить інформацію про запит та його корисне навантаження.
 
 ```ts
 browser.on('request.start', (ev: RequestInit) => {
@@ -196,7 +170,7 @@ browser.on('request.start', (ev: RequestInit) => {
 ```
 
 #### `request.end`
-This event is fired once the request to the driver received a response. The event object either contains the response body as result or an error if the WebDriver command failed.
+Ця подія запускається після отримання відповіді на запит до драйвера. Об'єкт події містить або тіло відповіді як результат, або помилку, якщо команда WebDriver не виконалася.
 
 ```ts
 browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
@@ -205,7 +179,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-The retry event can notify you when WebdriverIO attempts to retry running the command, e.g. due to a network issue. It contains information about the error that caused the retry and the amount of retries already done.
+Подія повторної спроби може повідомити вас, коли WebdriverIO намагається повторно запустити команду, наприклад, через проблеми з мережею. Вона містить інформацію про помилку, яка спричинила повторну спробу, та кількість уже виконаних повторних спроб.
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
@@ -214,13 +188,13 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 ```
 
 #### `request.performance`
-Це подія для відстежування операцій на рівні WebDriver протоколу. Кожного разу, коли WebdriverIO надсилає запит на WebDriver сервер, цю подію буде викликано з параметрами:
+Це подія для вимірювання операцій на рівні WebDriver. Щоразу, коли WebdriverIO надсилає запит до бекенду WebDriver, ця подія буде генеруватися з корисною інформацією:
 
-- `durationMillisecond`: тривалість запиту в мілісекундах.
-- `error`: об’єкт помилки, якщо запит провалився.
-- `request`: об'єкт запиту, де можна знайти адресу, метод, заголовки тощо.
-- `retryCount`: кількість спроб, якщо дорівнює `0`, запит був першою спробою. Він збільшиться, коли WebDriverIO повторить спробу під капотом.
-- `success`: логічне значення, що вказує на те чи було виконано запит. Якщо дорівнює `false`, властивість `error` також буде присутня.
+- `durationMillisecond`: Тривалість запиту в мілісекундах.
+- `error`: Об'єкт помилки, якщо запит не вдався.
+- `request`: Об'єкт запиту. Ви можете знайти url, метод, заголовки тощо.
+- `retryCount`: Якщо це `0`, запит був першою спробою. Він збільшуватиметься, коли WebDriverIO повторюватиме спробу.
+- `success`: Булеве значення, що представляє, чи запит був успішним чи ні. Якщо це `false`, також буде надано властивість `error`.
 
 Приклад події:
 ```js
@@ -233,6 +207,6 @@ Object {
 },
 ```
 
-### Клієнтські Команди
+### Користувацькі команди
 
-Ви можете додати власні команди до об'єкта браузера, щоб абстрагувати набори команд які часто використовуються. Ознайомтеся з нашим розділом про [Користувацькі Команди](/docs/customcommands#adding-custom-commands), щоб дізнатися більше.
+Ви можете встановити користувацькі команди в області браузера для абстрагування робочих процесів, які часто використовуються. Перегляньте наш посібник з [Користувацьких команд](/docs/customcommands#adding-custom-commands) для отримання додаткової інформації.

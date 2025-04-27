@@ -3,11 +3,11 @@ id: preact
 title: Preact
 ---
 
-[Preact](https://preactjs.com/) is a fast 3kB alternative to React with the same modern API. You can test Preact components directly in a real browser using WebdriverIO and its [browser runner](/docs/runner#browser-runner).
+[Preact](https://preactjs.com/) - це швидка 3кБ альтернатива React з тим же сучасним API. Ви можете тестувати Preact компоненти безпосередньо в реальному браузері за допомогою WebdriverIO та його [браузерного запускача](/docs/runner#browser-runner).
 
-## Setup
+## Налаштування
 
-To setup WebdriverIO within your Preact project, follow the [instructions](/docs/component-testing#set-up) in our component testing docs. Make sure to select `preact` as preset within your runner options, e.g.:
+Щоб налаштувати WebdriverIO у вашому Preact проекті, дотримуйтесь [інструкцій](/docs/component-testing#set-up) у нашій документації з тестування компонентів. Переконайтеся, що ви вибрали `preact` як пресет в опціях запускача, наприклад:
 
 ```js
 // wdio.conf.js
@@ -22,25 +22,25 @@ export const config = {
 
 :::info
 
-If you are already using [Vite](https://vitejs.dev/) as development server you can also just re-use your configuration in `vite.config.ts` within your WebdriverIO config. For more information, see `viteConfig` in [runner options](/docs/runner#runner-options).
+Якщо ви вже використовуєте [Vite](https://vitejs.dev/) як сервер розробки, ви також можете повторно використовувати вашу конфігурацію з `vite.config.ts` у конфігурації WebdriverIO. Для отримання додаткової інформації, див. `viteConfig` в [опціях запускача](/docs/runner#runner-options).
 
 :::
 
-The Preact preset requires `@preact/preset-vite` to be installed. Also we recommend using [Testing Library](https://testing-library.com/) for rendering the component into the test page. Therefor you'll need to install the following additional dependencies:
+Пресет Preact вимагає встановлення `@preact/preset-vite`. Також ми рекомендуємо використовувати [Testing Library](https://testing-library.com/) для рендерингу компонента на тестовій сторінці. Для цього вам потрібно встановити такі додаткові залежності:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
 ```
 
-You can then start the tests by running:
+Потім ви можете запустити тести, виконавши:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## Writing Tests
+## Написання тестів
 
-Given you have the following Preact component:
+Припустимо, у вас є наступний Preact компонент:
 
 ```tsx title="./components/Component.jsx"
 import { h } from 'preact'
@@ -64,7 +64,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-In your test use the `render` method from `@testing-library/preact` to attach the component to the test page. To interact with the component we recommend to use WebdriverIO commands as they behave more close to actual user interactions, e.g.:
+У вашому тесті використовуйте метод `render` з `@testing-library/preact` для приєднання компонента до тестової сторінки. Для взаємодії з компонентом ми рекомендуємо використовувати команди WebdriverIO, оскільки вони поводяться більш подібно до фактичних взаємодій користувача, наприклад:
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'
@@ -84,4 +84,4 @@ describe('Preact Component Testing', () => {
 })
 ```
 
-You can find a full example of a WebdriverIO component test suite for Preact in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite).
+Ви можете знайти повний приклад набору тестів компонентів WebdriverIO для Preact у нашому [репозиторії прикладів](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite).

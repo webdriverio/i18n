@@ -3,16 +3,16 @@ id: team
 title: Команда
 ---
 
-Розробкою WebdriverIO керує окрема команда розробників та SDET від різних компаній, а також внески людей з усього світу.
+Розробкою WebdriverIO керує команда відданих розробників та фахівців з автоматизації тестування (SDET) з різних компаній, а також люди з усього світу, які роблять свій внесок у проєкт.
 
-## Технічний наглядовий комітет
+## Технічний керівний комітет
 
 <Card
     name="Adam Bjerstedt"
     avatar="https://avatars2.githubusercontent.com/u/4043890?s=460"
     github="abjerstedt"
 >
-    Старший інженер із розробки програмного забезпечення на Android у <a href="https://www.target.com/">Target</a>.
+    Старший інженер-програміст - Android у <a href="https://www.target.com/">Target</a>.
 </Card>
 
 <Card
@@ -21,7 +21,7 @@ title: Команда
     github="christian-bromann"
     twitter="bromann"
 >
-    Штатний інженер із розробки програмного забезпечення відділу програм із відкритим кодом <a href="https://saucelabs.com/">@saucelabs</a>.
+    Штатний інженер-програміст в Офісі відкритого програмного забезпечення <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 <Card
@@ -29,7 +29,7 @@ title: Команда
     avatar="https://avatars.githubusercontent.com/u/15839059?s=460"
     github="erwinheitzman"
 >
-    Старший інженер із автоматизованого тестування у <a href="https://detesters.nl/">deTesters</a>.
+    Старший інженер з автоматизації тестування в <a href="https://detesters.nl/">deTesters</a>.
 </Card>
 
 <Card
@@ -38,7 +38,7 @@ title: Команда
     github="klamping"
     twitter="klamping"
 >
-    Старший інженер із розробки фронтенду.
+    Старший інженер фронтенду.
 </Card>
 
 <Card
@@ -46,7 +46,7 @@ title: Команда
     avatar="https://avatars0.githubusercontent.com/u/25589559?s=460"
     github="mgrybyk"
 >
-    Старший інженер із розробки програмного забезпечення для тестування.
+    Старший інженер з розробки програмного забезпечення в тестуванні.
 </Card>
 
 <Card
@@ -54,7 +54,7 @@ title: Команда
     avatar="https://avatars3.githubusercontent.com/u/1300981?s=460"
     github="WillBrock"
 >
-    Менеджер з автоматизації у <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
+    Менеджер з автоматизації інженерії в <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
 </Card>
 
 <Card
@@ -66,7 +66,7 @@ title: Команда
     Старший архітектор рішень <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
-## Співавтори проєкту
+## Співробітники проєкту
 
 <Card
     name="Baruch Velez"
@@ -84,4 +84,4 @@ title: Команда
 >
 </Card>
 
-і [багато багато інших](https://github.com/orgs/webdriverio/people).
+та [багато багато інших](https://github.com/orgs/webdriverio/people).
