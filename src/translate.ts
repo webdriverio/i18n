@@ -9,6 +9,7 @@ import dotenv from 'dotenv';
 import { Processor } from './processor.js';
 import cache from './cache.json' with { type: 'json' };
 import { LANGUAGES_TO_TRANSLATE } from './constants.js';
+
 // Load environment variables
 dotenv.config();
 
@@ -24,7 +25,12 @@ const CONTENT_SEPARATOR = '---'
 const MAX_TOKENS = 128 * 1000
 const BATCH_CHECK_INTERVAL = 5000 // 5 seconds
 
-const translationCache = cache as unknown as Map<string, { hash: string, languages: string[] }>;
+interface CacheEntry {
+    hash: string
+    languages: string[]
+}
+
+const translationCache = cache as unknown as Map<string, CacheEntry>;
 const batchStatuses = new Map<string, {
     resolve: (value: void) => void,
     reject: (reason?: any) => void,
@@ -51,15 +57,18 @@ const latestBatchId = await client.beta.messages.batches.list({
     limit: 1
 }).then(({ data }) => data[0].id)
 
-// Save the cache file
+/**
+ * update the cache
+ * @param cacheKey - the key of the cache
+ * @param contentShasum - the shasum of the content
+ * @param language - the language to translate to
+ */
 async function updateCache(cacheKey: string, contentShasum: string, language: string) {
-    try {
-        const { languages } = translationCache[cacheKey] || { languages: [] };
-        translationCache[cacheKey] = { hash: contentShasum, languages: [...languages, language] };
-        await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(translationCache, null, 2), 'utf-8');
-    } catch (error) {
-        console.error('Error saving cache file:', error);
-    }
+    const { languages } = translationCache[cacheKey] || { languages: [] };
+    translationCache[cacheKey] = {
+        hash: contentShasum,
+        languages: Array.from(new Set([...languages, language]))
+    } as CacheEntry;
 }
 
 // Calculate SHA-256 hash of content
@@ -144,6 +153,11 @@ export async function translate(language: string) {
     clearInterval(batchCheckIntervalId)
     batchCheckIntervalId = undefined
     batchStatuses.clear()
+
+    /**
+     * write cache to file
+     */
+    await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(translationCache, null, 2), 'utf-8');
 
     console.log(`Translation to ${language} completed!`);
 }

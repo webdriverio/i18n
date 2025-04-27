@@ -21,7 +21,7 @@ export class Processor {
             throw new Error('Processor is already resolved')
         }
 
-        if (this.#processing >= this.#maxBatchSize) {
+        if (!this.#canSchedule()) {
             this.#queue.push(func)
             return
         }
@@ -35,17 +35,35 @@ export class Processor {
 
     #processItem(item: BatchItem): void {
         this.#processing++
-        item().finally(() => this.#processQueue())
+        item().finally(() => this.#processNext())
     }
 
-    #processQueue(): void {
+    #canSchedule(): boolean {
+        return this.#processing < this.#maxBatchSize
+    }
+
+    #processNext(): void {
         this.#processing--
-        if (this.#queue.length > 0) {
-            this.#processItem(this.#queue.shift())
-            console.log(`Processing queue: ${this.#queue.length} items left, ${this.#processing} processing`)
+
+        /**
+         * if there is nothing to process, resolve the promise
+         */
+        if (this.#queue.length === 0) {
+            if (this.#processing === 0) {
+                this.#isResolved = true
+                this.#resolvers.resolve()
+            }
             return
         }
-        this.#isResolved = true
-        this.#resolvers.resolve()
+
+        // Process as many items as possible up to the maxBatchSize
+        while (this.#canSchedule() && this.#queue.length > 0) {
+            this.#processItem(this.#queue.shift()!)
+            console.log(`Processing queue: ${this.#queue.length} items left, ${this.#processing} processing`)
+        }
+
+        if (!this.#canSchedule() && this.#queue.length > 0) {
+            console.log(`Waiting for queue to empty: ${this.#queue.length} items left, ${this.#processing} processing`)
+        }
     }
 }
