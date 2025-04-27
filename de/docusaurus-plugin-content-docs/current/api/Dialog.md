@@ -3,7 +3,7 @@ id: dialog
 title: Das Dialog-Objekt
 ---
 
-Dialog-Objekte werden vom [`browser`](/docs/api/browser) über das `browser.on('dialog')`-Ereignis ausgelöst.
+Dialog-Objekte werden von [`browser`](/docs/api/browser) über das `browser.on('dialog')` Ereignis ausgelöst.
 
 Ein Beispiel für die Verwendung des Dialog-Objekts:
 
@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-Dialoge werden automatisch abgelehnt, es sei denn, es gibt einen `browser.on('dialog')`-Listener. Wenn ein Listener vorhanden ist, muss er entweder [`dialog.accept()`](/docs/api/dialog/accept) oder [`dialog.dismiss()`](/docs/api/dialog/dismiss) für den Dialog aufrufen - andernfalls wird die Seite beim Warten auf den Dialog einfrieren, und Aktionen wie Klicks werden niemals abgeschlossen.
+Dialoge werden automatisch geschlossen, es sei denn, es gibt einen `browser.on('dialog')` Listener. Wenn ein Listener vorhanden ist, muss er entweder mit [`dialog.accept()`](/docs/api/dialog/accept) oder [`dialog.dismiss()`](/docs/api/dialog/dismiss) den Dialog bestätigen oder abbrechen - andernfalls wird die Seite einfrieren und auf den Dialog warten, und Aktionen wie Klicks werden nie abgeschlossen.
 
 :::

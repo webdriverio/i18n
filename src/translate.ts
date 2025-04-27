@@ -16,7 +16,7 @@ dotenv.config();
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
-const processor = new Processor(30)
+const processor = new Processor(25)
 
 // Cache file path
 const model = 'claude-3-7-sonnet-latest'
@@ -94,26 +94,28 @@ export async function translate(language: string) {
         const targetDir = targetDirectories[i];
 
         // Process the directory recursively
-        const entries = await fs.readdir(sourceDir, { withFileTypes: true, recursive: true });
-        for (const entry of entries) {
-            if (!entry.isFile()) {
-                throw new Error(`${entry.name} is not a file`)
-            }
+        const entries = (await fs.readdir(sourceDir, {
+            withFileTypes: true,
+            recursive: true
+        })).filter((entry) => entry.isFile());
 
-            const sourcePath = path.join(sourceDir, entry.name)
-            const targetPath = path.join(targetDir, entry.name)
+        for (const entry of entries) {
+            const sourcePath = path.join(entry.parentPath, entry.name)
+            const relativePath = path.relative(sourceDir, entry.parentPath)
+            const targetPath = path.join(targetDir, relativePath, entry.name)
+            const fileType = path.extname(entry.name)
 
             /**
              * handle JSON files with caching
              */
-            if (path.extname(entry.name) === '.json') {
+            if (fileType === '.json') {
                 // Handle JSON files with caching
                 const cacheKey = path.relative(rootDir, sourcePath);
                 const content = await fs.readFile(sourcePath, 'utf-8');
                 const needToTranslate = await checkNeedToTranslate(cacheKey, targetPath, content, language);
                 if (!needToTranslate) {
                     console.log(`Skipping translation for ${sourcePath} - content unchanged`);
-                    return
+                    continue
                 }
 
                 // Copy JSON file and update cache
@@ -129,7 +131,7 @@ export async function translate(language: string) {
             /**
              * handle markdown files in batches
              */
-            if (path.extname(entry.name) === '.md') {
+            if (fileType === '.md') {
                 processor.process(() => translateFile(sourcePath, targetPath, language))
                 continue
             }
@@ -139,6 +141,10 @@ export async function translate(language: string) {
     }
 
     await processor.waitForResolved()
+    clearInterval(batchCheckIntervalId)
+    batchCheckIntervalId = undefined
+    batchStatuses.clear()
+
     console.log(`Translation to ${language} completed!`);
 }
 
@@ -164,6 +170,7 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
         const translatedContent = await translateContent(content, language);
 
         // Write the translated content to the target file
+        await fs.mkdir(path.dirname(targetPath), { recursive: true });
         await fs.writeFile(targetPath, translatedContent, 'utf-8');
 
         // Save the updated cache
@@ -215,6 +222,13 @@ async function translateContent(content: string, language: string): Promise<stri
                 throw new Error(`Batch ${batch.id} failed: ${JSON.stringify(chunk.result, null, 2)}`)
             }
             text += chunk.result.message.content
+                .filter((c) => c.type === 'text')
+                .map((c) => c.text)
+                .join('')
+
+            if (text === '[Object]') {
+                console.log('CHECK', chunk.result.message.content)
+            }
         }
         return text
     } catch (error) {
@@ -278,29 +292,48 @@ async function waitForBatchToFinish(batchId: string): Promise<void> {
     const { resolve, reject, promise } = Promise.withResolvers<void>()
     batchStatuses.set(batchId, { resolve, reject, promise, resolved: false })
 
+    /**
+     * kick off the batch check interval if it's not already running
+     */
     if (!batchCheckIntervalId) {
-        batchCheckIntervalId = setInterval(async () => {
-            const batchList = await client.beta.messages.batches.list({
-                limit: 1000,
-                after_id: latestBatchId
-            })
-            for (const batch of batchList.data) {
-                /**
-                 * fullfill batch promise if it's done
-                 */
-                const batchStatus = batchStatuses.get(batch.id)
-                if (batchStatus && !batchStatus.resolved) {
-                    return batchStatus.resolve()
-                }
-            }
-
-            const resolvedBatches = Object.values(batchStatuses).filter(({ resolved }) => resolved).length
-            console.log(`Batches processing ${resolvedBatches}/${batchStatuses.size}`)
-        }, BATCH_CHECK_INTERVAL)
+        batchCheckIntervalId = setInterval(checkBatchStatus, BATCH_CHECK_INTERVAL)
     }
+
     return promise
 }
 
 function getBatchId(language: string, contentShasum: string, i: number) {
     return `msgbatch_${language}-${contentShasum.slice(0, 40)}-${i}`
+}
+
+async function checkBatchStatus () {
+    const batchList = await client.beta.messages.batches.list({
+        limit: 1000,
+        before_id: latestBatchId
+    })
+
+    const allBatchIds = Array.from(batchStatuses.keys())
+    const batchesOfThisProcess = batchList.data.filter(
+        (batch) => allBatchIds.includes(batch.id)
+    )
+    const processingBatches = batchesOfThisProcess.filter(
+        (batch) => batch.processing_status === 'in_progress'
+    )
+    const resolvedBatches = batchesOfThisProcess.filter(
+        (batch) => batch.processing_status === 'ended'
+    )
+
+    for (const batch of batchesOfThisProcess) {
+        /**
+         * fullfill batch promise if it's done
+         */
+        const batchStatus = batchStatuses.get(batch.id)
+        if (batchStatus && !batchStatus.resolved && batch.processing_status === 'ended') {
+            batchStatus.resolved = true
+            batchStatus.resolve()
+            return console.log(`Batch ${batch.id} finished`)
+        }
+    }
+
+    console.log(`Batches processing ${resolvedBatches.length}/${batchesOfThisProcess.length} (${processingBatches.length} processing)`)
 }
