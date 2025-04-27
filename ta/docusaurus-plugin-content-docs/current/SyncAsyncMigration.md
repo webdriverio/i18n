@@ -1,25 +1,25 @@
 ---
 id: async-migration
-title: From Sync to Async
+title: ஒத்திசைவிலிருந்து ஒத்திசைவற்றதற்கு
 ---
 
-Due to changes in V8 the WebdriverIO team [announced](https://webdriver.io/blog/2021/07/28/sync-api-deprecation) to deprecate synchronous command execution by April 2023. The team has been working hard to make the transition as easy as possible. In this guide we explain how you can slowly migrate your test suite from sync to async. As an example project we use the [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) but the approach is the same with all other projects as well.
+V8 இல் ஏற்பட்ட மாற்றங்களால் WebdriverIO குழு ஏப்ரல் 2023 க்குள் ஒத்திசைவான கட்டளை செயல்பாட்டை [அறிவித்தது](https://webdriver.io/blog/2021/07/28/sync-api-deprecation). குழு இந்த மாற்றத்தை எளிதாக்க கடினமாக உழைத்துள்ளது. இந்த வழிகாட்டியில், நீங்கள் உங்கள் சோதனை தொகுப்பை ஒத்திசைவிலிருந்து ஒத்திசைவற்றதற்கு எவ்வாறு மெதுவாக மாற்றலாம் என்பதை விளக்குகிறோம். எடுத்துக்காட்டு திட்டமாக நாங்கள் [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) ஐப் பயன்படுத்துகிறோம், ஆனால் அணுகுமுறை மற்ற அனைத்து திட்டங்களிலும் ஒரே மாதிரியாக இருக்கும்.
 
-## Promises in JavaScript
+## JavaScript இல் உறுதிமொழிகள் (Promises)
 
-The reason why synchronous execution was popular in WebdriverIO is because it removes the complexity of dealing with promises. Particularly if you come from other languages where this concept doesn't exist this way, it can be confusing in the beginning. However Promises are a very powerful tool to deal with asynchronous code and today's JavaScript makes it actually easy to deal with it. If you never worked with Promises, we recommend to check out the [MDN reference guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to it as it would be out of scope to explain it here.
+WebdriverIO இல் ஒத்திசைவு செயல்பாடு பிரபலமாக இருப்பதற்கு காரணம், அது உறுதிமொழிகளைக் கையாள்வதன் சிக்கலைக் குறைக்கிறது. குறிப்பாக, இந்த கருத்து இல்லாத மற்ற மொழிகளிலிருந்து நீங்கள் வந்திருந்தால், ஆரம்பத்தில் இது குழப்பமாக இருக்கலாம். இருப்பினும், உறுதிமொழிகள் ஒத்திசைவற்ற குறியீட்டைக் கையாள ஒரு மிகவும் சக்திவாய்ந்த கருவியாகும், மேலும் இன்றைய JavaScript அதனுடன் எளிதாக தொடர்புகொள்ள உதவுகிறது. நீங்கள் ஒருபோதும் உறுதிமொழிகளுடன் வேலை செய்திருக்கவில்லை என்றால், [MDN குறிப்பு வழிகாட்டி](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) ஐப் பரிந்துரைக்கிறோம், ஏனெனில் இங்கே விளக்குவது நமது நோக்கத்திற்கு அப்பாற்பட்டதாகும்.
 
-## Async Transition
+## ஒத்திசைவற்ற மாற்றம்
 
-The WebdriverIO testrunner can handle async and sync execution within the same test suite. This means that you can slowly migrate your tests and PageObjects step by step at your pace. For example, the Cucumber Boilerplate has defined [a large set of step definition](https://github.com/webdriverio/cucumber-boilerplate/tree/main/src/support/action) for you to copy into your project. We can go ahead and migrate one step definition or one file at a time.
+WebdriverIO சோதனை இயக்கி ஒரே சோதனை தொகுப்பில் ஒத்திசைவற்ற மற்றும் ஒத்திசைவு செயல்பாட்டைக் கையாள முடியும். இதன் பொருள் உங்கள் வேகத்தில் படிப்படியாக உங்கள் சோதனைகள் மற்றும் PageObjects ஐ மெதுவாக மாற்றலாம். எடுத்துக்காட்டாக, Cucumber Boilerplate உங்கள் திட்டத்தில் நகலெடுக்க [பெரிய அளவிலான படி வரையறைகளை](https://github.com/webdriverio/cucumber-boilerplate/tree/main/src/support/action) வரையறுத்துள்ளது. நாம் ஒரு படி வரையறையை அல்லது ஒரு கோப்பை ஒரு நேரத்தில் மாற்றலாம்.
 
 :::tip
 
-WebdriverIO offers a [codemod](https://github.com/webdriverio/codemod) that allows to transform your sync code into async code almost full automatically. Run the codemod as described in the docs first and use this guide for manual migration if needed.
+WebdriverIO ஒரு [codemod](https://github.com/webdriverio/codemod) ஐ வழங்குகிறது, இது உங்கள் ஒத்திசைவு குறியீட்டை கிட்டத்தட்ட முழுமையாக தானாகவே ஒத்திசைவற்ற குறியீடாக மாற்ற அனுமதிக்கிறது. ஆவணங்களில் விளக்கப்பட்டுள்ளபடி codemod ஐ முதலில் இயக்கி, தேவைப்பட்டால் கைமுறையாக மாற்றுவதற்கு இந்த வழிகாட்டியைப் பயன்படுத்தவும்.
 
 :::
 
-In many cases, everything that is necessary to do is to make the function in which you call WebdriverIO commands `async` and add an `await` in front of every command. Looking at the first file `clearInputField.ts` to transform in the boilerplate project, we transform from:
+பல சந்தர்ப்பங்களில், WebdriverIO கட்டளைகளை அழைக்கும் செயல்பாட்டை `async` ஆக மாற்றி, ஒவ்வொரு கட்டளைக்கும் முன் `await` சேர்ப்பது மட்டுமே தேவை. boilerplate திட்டத்தில் முதல் கோப்பு `clearInputField.ts` ஐ மாற்றுவதற்கு, இதிலிருந்து மாற்றுகிறோம்:
 
 ```ts
 export default (selector: Selector) => {
@@ -27,7 +27,7 @@ export default (selector: Selector) => {
 };
 ```
 
-to:
+இதற்கு:
 
 ```ts
 export default async (selector: Selector) => {
@@ -35,23 +35,23 @@ export default async (selector: Selector) => {
 };
 ```
 
-That's it. You can see the complete commit with all rewrite examples here:
+அவ்வளவுதான். அனைத்து மறுஎழுதல் எடுத்துக்காட்டுகளுடன் முழுமையான கமிட்டை இங்கே காணலாம்:
 
-#### Commits:
+#### கமிட்கள்:
 
-- _transform all step definitions_ [[af6625f]](https://github.com/webdriverio/cucumber-boilerplate/pull/481/commits/af6625fcd01dc087479e84562f237ecf38b3537d)
+- _அனைத்து படி வரையறைகளையும் மாற்றுதல்_ [[af6625f]](https://github.com/webdriverio/cucumber-boilerplate/pull/481/commits/af6625fcd01dc087479e84562f237ecf38b3537d)
 
 :::info
-This transition is independent of whether you use TypeScript or not. If you use TypeScript just make sure that you eventually change the `types` property in your `tsconfig.json` from `webdriverio/sync` to `@wdio/globals/types`. Also make sure that your compile target is set to at least `ES2018`.
+இந்த மாற்றம் நீங்கள் TypeScript ஐப் பயன்படுத்துகிறீர்களா இல்லையா என்பதைப் பொருட்படுத்தாது. நீங்கள் TypeScript ஐப் பயன்படுத்தினால், உங்கள் `tsconfig.json` இல் `types` பண்பை `webdriverio/sync` இலிருந்து `@wdio/globals/types` க்கு மாற்றுவதை உறுதிசெய்யவும். உங்கள் தொகுப்பு இலக்கு குறைந்தபட்சம் `ES2018` ஆக அமைக்கப்பட்டுள்ளதை உறுதிசெய்யவும்.
 :::
 
-## Special Cases
+## சிறப்பு வழக்குகள்
 
-There are of course always special cases where you need to pay a bit more attention.
+நீங்கள் சற்று கூடுதல் கவனம் செலுத்த வேண்டிய சிறப்பு வழக்குகள் எப்போதும் உள்ளன.
 
-### ForEach Loops
+### ForEach சுழற்சிகள்
 
-If you have a `forEach` loop, e.g. to iterate over elements, you need to make sure that the iterator callback is handled properly in an async manner, e.g.:
+உங்களிடம் `forEach` சுழற்சி இருந்தால், எ.கா. உறுப்புகளில் சுழற்றுவதற்கு, சுழற்சி செயல்பாடு ஒத்திசைவற்ற முறையில் சரியாக கையாளப்படுவதை உறுதிசெய்ய வேண்டும், எ.கா.:
 
 ```js
 const elems = $$('div')
@@ -60,7 +60,7 @@ elems.forEach((elem) => {
 })
 ```
 
-The function we pass into `forEach` is an iterator function. In a synchronous world it would click on all elements before it moves on. If we transform this into asynchronous code, we have to ensure that we wait for every iterator function to finish execution. By adding `async`/`await` these iterator functions will return a promise that we need to resolve. Now, `forEach` is then not ideal to iterate over the elements anymore because it doesn't return the result of the iterator function, the promise we need to wait for. Therefore we need to replace `forEach` with `map` which returns that promise. The `map` as well as all other iterator methods of Arrays like `find`, `every`, `reduce` and more are implemented so that they respect promises within the iterator functions and are therefor simplified for using them in an async context. The above example looks transformed like this:
+`forEach` இல் நாம் செலுத்தும் செயல்பாடு ஒரு சுழற்சி செயல்பாடாகும். ஒத்திசைவான உலகில், அடுத்த கட்டளைக்கு செல்வதற்கு முன் அனைத்து உறுப்புகளையும் கிளிக் செய்யும். இதை ஒத்திசைவற்ற குறியீடாக மாற்றும்போது, ஒவ்வொரு சுழற்சி செயல்பாடும் செயல்பாட்டை முடிக்க நாம் காத்திருப்பதை உறுதிசெய்ய வேண்டும். `async`/`await` சேர்ப்பதன் மூலம், இந்த சுழற்சி செயல்பாடுகள் நாம் தீர்க்க வேண்டிய உறுதிமொழியை திருப்பித் தரும். இப்போது, `forEach` உறுப்புகளை சுழற்றுவதற்கு சிறந்ததல்ல, ஏனெனில் அது சுழற்சி செயல்பாட்டின் முடிவை, அதாவது நாம் காத்திருக்க வேண்டிய உறுதிமொழியை திருப்பித் தராது. எனவே நாம் `forEach` ஐ `map` உடன் மாற்ற வேண்டும், இது அந்த உறுதிமொழியை திருப்பி அளிக்கும். `map` மற்றும் `find`, `every`, `reduce` போன்ற அணிகளின் அனைத்து சுழற்சி முறைகளும் உறுதிமொழிகளை மதிக்கும் வகையில் அமைக்கப்பட்டுள்ளன, எனவே ஒத்திசைவற்ற சூழலில் பயன்படுத்த எளிதாக்கப்பட்டுள்ளன. மேலே உள்ள எடுத்துக்காட்டு மாற்றப்பட்ட பின் இவ்வாறு தோன்றும்:
 
 ```js
 const elems = await $$('div')
@@ -69,7 +69,7 @@ await elems.forEach((elem) => {
 })
 ```
 
-For example in order to fetch all `<h3 />` elements and get their text content, you can run:
+எடுத்துக்காட்டாக, அனைத்து `<h3 />` உறுப்புகளையும் பெற்று அவற்றின் உரை உள்ளடக்கத்தைப் பெற, நீங்கள் இயக்கலாம்:
 
 ```js
 await browser.url('https://webdriver.io')
@@ -91,7 +91,7 @@ console.log(h3Texts);
  */
 ```
 
-If this looks too complicated you might want to consider using simple for loops, e.g.:
+இது மிகவும் சிக்கலானதாகத் தோன்றினால், எளிய for சுழற்சிகளைப் பயன்படுத்த நீங்கள் பரிசீலிக்கலாம், எ.கா.:
 
 ```js
 const elems = await $$('div')
@@ -100,23 +100,23 @@ for (const elem of elems) {
 }
 ```
 
-### WebdriverIO Assertions
+### WebdriverIO உறுதிப்படுத்தல்கள்
 
-If you use the WebdriverIO assertion helper [`expect-webdriverio`](https://webdriver.io/docs/api/expect-webdriverio) make sure to set an `await` in front of every `expect` call, e.g.:
+நீங்கள் WebdriverIO உறுதிப்படுத்தல் உதவியாளர் [`expect-webdriverio`](https://webdriver.io/docs/api/expect-webdriverio) ஐப் பயன்படுத்தினால், ஒவ்வொரு `expect` அழைப்புக்கும் முன் `await` வைக்க உறுதிசெய்யவும், எ.கா.:
 
 ```ts
 expect($('input')).toHaveAttributeContaining('class', 'form')
 ```
 
-needs to be transformed to:
+இவ்வாறு மாற்றப்பட வேண்டும்:
 
 ```ts
 await expect($('input')).toHaveAttributeContaining('class', 'form')
 ```
 
-### Sync PageObject Methods and Async Tests
+### ஒத்திசைவு PageObject முறைகள் மற்றும் ஒத்திசைவற்ற சோதனைகள்
 
-If you have been writing PageObjects in your test suite in a synchronous way, you won't be able to use them in asynchronous tests anymore. If you need to use a PageObject method in both sync and async tests we recommend duplicating the method and offer them for both environments, e.g.:
+நீங்கள் உங்கள் சோதனை தொகுப்பில் PageObjects ஐ ஒத்திசைவு முறையில் எழுதியிருந்தால், அவற்றை ஒத்திசைவற்ற சோதனைகளில் பயன்படுத்த முடியாது. இரு சூழல்களிலும் PageObject முறையைப் பயன்படுத்த வேண்டுமென்றால், முறையைப் பிரதியெடுத்து இரண்டு சூழல்களுக்கும் வழங்க பரிந்துரைக்கிறோம், எ.கா.:
 
 ```js
 class MyPageObject extends Page {
@@ -136,9 +136,9 @@ class MyPageObject extends Page {
 }
 ```
 
-Once you've finished the migration you can remove the synchronous PageObject methods and clean up the naming.
+மாற்றத்தை முடித்தவுடன், ஒத்திசைவு PageObject முறைகளை நீக்கி, பெயரிடுதலைச் சுத்தப்படுத்தலாம்.
 
-If you don't like to maintain two different version of a PageObject method you can also migrate the whole PageObject to async and use [`browser.call`](https://webdriver.io/docs/api/browser/call) to execute the method in a synchronous environment, e.g.:
+PageObject முறையின் இரண்டு வெவ்வேறு பதிப்புகளைப் பராமரிக்க விரும்பவில்லை என்றால், முழு PageObject ஐ ஒத்திசைவற்றதாக மாற்றி, ஒத்திசைவு சூழலில் முறையை இயக்க [`browser.call`](https://webdriver.io/docs/api/browser/call) ஐப் பயன்படுத்தலாம், எ.கா.:
 
 ```js
 // before:
@@ -147,8 +147,8 @@ If you don't like to maintain two different version of a PageObject method you c
 browser.call(() => MyPageObject.someMethod())
 ```
 
-The `call` command will make sure that the asynchronous `someMethod` is resolved before moving on to the next command.
+`call` கட்டளை, அடுத்த கட்டளைக்கு செல்வதற்கு முன் ஒத்திசைவற்ற `someMethod` தீர்க்கப்படுவதை உறுதிசெய்யும்.
 
-## Conclusion
+## முடிவுரை
 
-As you can see in the [resulting rewrite PR](https://github.com/webdriverio/cucumber-boilerplate/pull/481/files) the complexity of this rewrite is fairly easy. Remember you can rewrite one step-definition at the time. WebdriverIO is perfectly able to handle sync and async execution in a single framework.
+[விளைந்த மறுஎழுத்து PR](https://github.com/webdriverio/cucumber-boilerplate/pull/481/files) இல் காணலாம், இந்த மறுஎழுத்தின் சிக்கல் மிகவும் எளிதானது. ஒரு நேரத்தில் ஒரு படி-வரையறையை மறுஎழுதலாம் என்பதை நினைவில் கொள்ளுங்கள். WebdriverIO ஒரே கட்டமைப்பில் ஒத்திசைவு மற்றும் ஒத்திசைவற்ற செயல்பாட்டை சிறப்பாக கையாள முடியும்.

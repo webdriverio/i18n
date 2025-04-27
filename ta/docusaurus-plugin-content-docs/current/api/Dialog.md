@@ -1,11 +1,11 @@
 ---
 id: dialog
-title: The Dialog Object
+title: உரையாடல் பொருள்
 ---
 
-Dialog objects are dispatched by [`browser`](/docs/api/browser) via the `browser.on('dialog')` event.
+உரையாடல் பொருள்கள் [`browser`](/docs/api/browser) மூலமாக `browser.on('dialog')` நிகழ்வின் வழியாக அனுப்பப்படுகின்றன.
 
-An example of using the Dialog object:
+உரையாடல் பொருளைப் பயன்படுத்துவதற்கான எடுத்துக்காட்டு:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-Dialogs are dismissed automatically, unless there is a `browser.on('dialog')` listener. When listener is present, it must either [`dialog.accept()`](/docs/api/dialog/accept) or [`dialog.dismiss()`](/docs/api/dialog/dismiss) the dialog - otherwise the page will freeze waiting for the dialog, and actions like click will never finish.
+உரையாடல்கள் தானாகவே நிராகரிக்கப்படுகின்றன, `browser.on('dialog')` கேட்பவர் இல்லாத வரை. கேட்பவர் இருக்கும்போது, அது ஒன்று [`dialog.accept()`](/docs/api/dialog/accept) அல்லது [`dialog.dismiss()`](/docs/api/dialog/dismiss) செய்ய வேண்டும் - இல்லையெனில் பக்கம் உரையாடலுக்காக காத்திருந்து உறைந்துவிடும், மேலும் கிளிக் போன்ற செயல்கள் ஒருபோதும் முடிவடையாது.
 
 :::

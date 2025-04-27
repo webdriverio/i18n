@@ -1,9 +1,9 @@
 ---
 id: service-options
-title: Service Options
+title: சேவை விருப்பங்கள்
 ---
 
-Service options are the options that can be set when the service is instantiated and will be used for each method call.
+சேவை விருப்பங்கள் என்பது சேவை உருவாக்கப்படும்போது அமைக்கக்கூடிய விருப்பங்கள் ஆகும், அவை ஒவ்வொரு முறை அழைப்புக்கும் பயன்படுத்தப்படும்.
 
 ```js
 // wdio.conf.(js|ts)
@@ -24,95 +24,97 @@ export const config = {
 };
 ```
 
-## Default Options
+## இயல்புநிலை விருப்பங்கள்
 
 ### `addressBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6`
-- **Supported:** Web
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `6`
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The padding needs to be added to the address bar on iOS and Android to do a proper cutout of the viewport.
+iOS மற்றும் Android இல் முகவரி பட்டிக்கு சேர்க்க வேண்டிய படிங்கள் வியூபோர்ட்டை சரியாக வெட்ட தேவைப்படுகிறது.
 
 ### `autoElementScroll`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `true`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-This option allows you to disable the automatic scrolling of the element into the view when an element screenshot is created.
+இந்த விருப்பம் எலிமென்ட் ஸ்கிரீன்ஷாட் உருவாக்கப்படும்போது, எலிமென்ட்டை பார்வையில் தானாகவே ஸ்க்ரோல் செய்வதை முடக்க அனுமதிக்கிறது.
 
 ### `addIOSBezelCorners`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-Add bezel corners and notch/dynamic island to the screenshot for iOS devices.
+iOS சாதனங்களுக்கு ஸ்கிரீன்ஷாட்டில் பெஸெல் கார்னர்கள் மற்றும் நாட்ச்/டைனமிக் தீவை சேர்க்கவும்.
 
-:::info NOTE
+:::info குறிப்பு
+சாதன பெயரை **தானாகவே** நிர்ணயிக்க முடியும் போது மட்டுமே இதை செய்ய முடியும் மற்றும் பின்வரும் இயல்பாக்கப்பட்ட சாதன பெயர்களின் பட்டியலுடன் பொருந்தும். இயல்பாக்குதல் இந்த தொகுதியால் செய்யப்படும்.
+**iPhone:**
 
-- iPhone X: `iphonex`
-- iPhone XS: `iphonexs`
-- iPhone XS Max: `iphonexsmax`
-- iPhone XR: `iphonexr`
-- iPhone 11: `iphone11`
-- iPhone 11 Pro: `iphone11pro`
-- iPhone 11 Pro Max: `iphone11promax`
-- iPhone 12: `iphone12`
-- iPhone 12 Mini: `iphone12mini`
-- iPhone 12 Pro: `iphone12pro`
-- iPhone 12 Pro Max: `iphone12promax`
-- iPhone 13: `iphone13`
-- iPhone 13 Mini: `iphone13mini`
-- iPhone 13 Pro: `iphone13pro`
-- iPhone 13 Pro Max: `iphone13promax`
-- iPhone 14: `iphone14`
-- iPhone 14 Plus: `iphone14plus`
-- iPhone 14 Pro: `iphone14pro`
-- iPhone 14 Pro Max: `iphone14promax`
+-   iPhone X: `iphonex`
+-   iPhone XS: `iphonexs`
+-   iPhone XS Max: `iphonexsmax`
+-   iPhone XR: `iphonexr`
+-   iPhone 11: `iphone11`
+-   iPhone 11 Pro: `iphone11pro`
+-   iPhone 11 Pro Max: `iphone11promax`
+-   iPhone 12: `iphone12`
+-   iPhone 12 Mini: `iphone12mini`
+-   iPhone 12 Pro: `iphone12pro`
+-   iPhone 12 Pro Max: `iphone12promax`
+-   iPhone 13: `iphone13`
+-   iPhone 13 Mini: `iphone13mini`
+-   iPhone 13 Pro: `iphone13pro`
+-   iPhone 13 Pro Max: `iphone13promax`
+-   iPhone 14: `iphone14`
+-   iPhone 14 Plus: `iphone14plus`
+-   iPhone 14 Pro: `iphone14pro`
+-   iPhone 14 Pro Max: `iphone14promax`
     **iPads:**
-- iPad Mini 6th Generation: `ipadmini`
-- iPad Air 4th Generation: `ipadair`
-- iPad Air 5th Generation: `ipadair`
-- iPad Pro (11-inch) 1st Generation: `ipadpro11`
-- iPad Pro (11-inch) 2nd Generation: `ipadpro11`
-- iPad Pro (11-inch) 3rd Generation: `ipadpro11`
-- iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+-   iPad Mini 6th Generation: `ipadmini`
+-   iPad Air 4th Generation: `ipadair`
+-   iPad Air 5th Generation: `ipadair`
+-   iPad Pro (11-inch) 1st Generation: `ipadpro11`
+-   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
+-   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
+-   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
 
 :::
 
 ### `autoSaveBaseline`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `true`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-If no baseline image is found during the comparison the image is automatically copied to the baseline folder.
+ஒப்பீடு செய்யும்போது அடிப்படை படம் இல்லை என்றால், படம் தானாகவே அடிப்படை கோப்புறைக்கு நகலெடுக்கப்படும்.
 
 ### `baselineFolder`
 
-- **Type:** `string|()=> string`
-- **Mandatory:** No
-- **Default:** `.path/to/testfile/__snapshots__/`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `string|()=> string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `.path/to/testfile/__snapshots__/`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-The directory that will hold all the baseline images that are used during the comparison. If not set, the default value will be used which will store the files in a `__snapshots__/`-folder next to the spec that executes the visual tests. A function that returns a `string` can also be used to set the `baselineFolder` value:
+ஒப்பீடு செய்யும்போது பயன்படுத்தப்படும் அனைத்து அடிப்படை படங்களையும் கொண்டிருக்கும் அடைவு. அமைக்கப்படவில்லை என்றால், இயல்புநிலை மதிப்பு பயன்படுத்தப்படும், இது காட்சி சோதனைகளை இயக்கும் ஸ்பெக் அருகில் `__snapshots__/`-கோப்புறையில் கோப்புகளை சேமிக்கும். `string` மதிப்பை வழங்கும் செயல்பாடும் `baselineFolder` மதிப்பை அமைக்க பயன்படுத்தலாம்:
 
 ```js
 {
     baselineFolder: path.join(process.cwd(), 'foo', 'bar', 'baseline')
 },
-// OR
+// அல்லது
 {
     baselineFolder: () => {
-        // Do some magic here
+        // இங்கே சில மாய வேலை செய்யவும்
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -120,24 +122,24 @@ The directory that will hold all the baseline images that are used during the co
 
 ### `clearRuntimeFolder`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-Delete runtime folder (`actual` & \`diff) on initialization
+துவக்கத்தின் போது ரன்டைம் ஃபோல்டரை (`actual` & `diff`) நீக்கு
 
-:::info NOTE
-This will only work when the [`screenshotPath`](#screenshotpath) is set through the plugin options, and **WILL NOT WORK** when you set the folders in the methods
+:::info குறிப்பு
+இது [`screenshotPath`](#screenshotpath) ப்ளக்இன் விருப்பங்கள் மூலம் அமைக்கப்பட்டிருந்தால் மட்டுமே செயல்படும், மற்றும் நீங்கள் முறைகளில் கோப்புறைகளை அமைக்கும்போது **செயல்படாது**
 :::
 
-### `createJsonReportFiles` **(NEW)**
+### `createJsonReportFiles` **(புதியது)**
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
 
-You now have the option to export the compare results into a JSON report file. By providing the option `createJsonReportFiles: true`, each image that is compared will create a report stored in the `actual` folder, next to each `actual` image result. The output will look like this:
+ஒப்பீட்டு முடிவுகளை JSON அறிக்கை கோப்பில் ஏற்றுமதி செய்ய இப்போது விருப்பம் உள்ளது. `createJsonReportFiles: true` விருப்பத்தை வழங்குவதன் மூலம், ஒப்பிடப்படும் ஒவ்வொரு படமும் `actual` கோப்புறையில், ஒவ்வொரு `actual` படத்தின் அருகில் சேமிக்கப்படும் அறிக்கையை உருவாக்கும். வெளியீடு இப்படி இருக்கும்:
 
 ```json
 {
@@ -200,14 +202,14 @@ You now have the option to export the compare results into a JSON report file. B
 }
 ```
 
-When all tests are executed, a new JSON file with the collection of the comparisons will be generated and can be found in the root of your `actual` folder. The data is grouped by:
+அனைத்து சோதனைகளும் இயக்கப்பட்ட பிறகு, ஒப்பீடுகளின் தொகுப்புடன் ஒரு புதிய JSON கோப்பு உருவாக்கப்படும், அதை உங்கள் `actual` கோப்புறையின் மூலத்தில் காணலாம். தரவு பின்வருமாறு குழுப்படுத்தப்பட்டுள்ளது:
 
-- `describe` for Jasmine/Mocha or `Feature` for CucumberJS
-- `it` for Jasmine/Mocha or `Scenario` for CucumberJS
-    and then sorted by:
-- `commandName`, which are the compare method names used to compare the images
-- `instanceData`, browser first, then device, then platform
-    it will look like this
+-   Jasmine/Mocha க்கு `describe` அல்லது CucumberJS க்கு `Feature`
+-   Jasmine/Mocha க்கு `it` அல்லது CucumberJS க்கு `Scenario`
+    மற்றும் பின்னர் வரிசைப்படுத்தப்பட்டது:
+-   `commandName`, படங்களை ஒப்பிட பயன்படுத்தப்படும் ஒப்பீட்டு முறை பெயர்கள்
+-   `instanceData`, முதலில் உலாவி, பின்னர் சாதனம், பின்னர் தளம்
+    இது இப்படி இருக்கும்
 
 ```json
 [
@@ -250,150 +252,146 @@ When all tests are executed, a new JSON file with the collection of the comparis
 ]
 ```
 
-The report data will give you the opportunity to build your own visual report without doing all the magic and data collection yourself.
+அறிக்கை தரவு நீங்களே அனைத்து மந்திரங்களையும் தரவு சேகரிப்பையும் செய்யாமல் உங்கள் சொந்த காட்சி அறிக்கையை உருவாக்க வாய்ப்பை அளிக்கும்.
 
-:::info NOTE
-You need to use `@wdio/visual-testing` version `5.2.0` or higher
+:::info குறிப்பு
+நீங்கள் `@wdio/visual-testing` பதிப்பு `5.2.0` அல்லது அதற்கு மேற்பட்டதைப் பயன்படுத்த வேண்டும்
 :::
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+பயன்பாட்டில் அனைத்து `input`, `textarea`, `[contenteditable]` கேரட் "மின்னுவதை" இயக்கு/முடக்கு. `true` என அமைக்கப்பட்டால், ஸ்கிரீன்ஷாட் எடுக்கும் முன் கேரட் `transparent` என அமைக்கப்படும்
+மற்றும் முடிந்ததும் மீட்டமைக்கப்படும்
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+பயன்பாட்டில் அனைத்து CSS அனிமேஷன்களையும் இயக்கு/முடக்கு. `true` என அமைக்கப்பட்டால், ஸ்கிரீன்ஷாட் எடுக்கும் முன் அனைத்து அனிமேஷன்களும் முடக்கப்படும்
+மற்றும் முடிந்ததும் மீட்டமைக்கப்படும்
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+இது பக்கத்தில் உள்ள அனைத்து உரையையும் மறைக்கும், எனவே ஒப்பீட்டிற்கு லேஅவுட் மட்டுமே பயன்படுத்தப்படும். **ஒவ்வொரு** எலிமென்ட்டிற்கும் `'color': 'transparent !important'` ஸ்டைலைச் சேர்ப்பதன் மூலம் மறைத்தல் செய்யப்படும்.
 
-For the output see [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+வெளியீட்டுக்கு [Test Output](/docs/visual-testing/test-output#enablelayouttesting) ஐப் பார்க்கவும்
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+இந்த கொடியைப் பயன்படுத்துவதன் மூலம், உரை கொண்ட ஒவ்வொரு உறுப்பும் (அதாவது `p, h1, h2, h3, h4, h5, h6, span, a, li` மட்டுமல்ல, `div|button|..` கூட) இந்த பண்பைப் பெறும். இதைத் தனிப்பயனாக்க **எந்த** விருப்பமும் இல்லை.
 :::
 
 ### `formatImageName`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-The name of the saved images can be customized by passing the parameter `formatImageName` with a format string like:
+பின்வரும் போன்ற வடிவ சரத்துடன் `formatImageName` அளவுருவை அனுப்புவதன் மூலம் சேமிக்கப்பட்ட படங்களின் பெயரை தனிப்பயனாக்கலாம்:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-The following variables can be passed to format the string and will automatically be read from the instance capabilities.
-If they can't be determined the defaults will be used.
+பின்வரும் மாறிகளை சரத்தை வடிவமைக்க அனுப்பலாம், அவை தானாகவே நிகழ்நிலை திறன்களிலிருந்து படிக்கப்படும்.
+அவற்றை தீர்மானிக்க முடியாவிட்டால், இயல்புநிலைகள் பயன்படுத்தப்படும்.
 
-- `browserName`: The name of the browser in the provided capabilities
-- `browserVersion`: The version of the browser provided in the capabilities
-- `deviceName`: The device name from the capabilities
-- `dpr`: The device pixel ratio
-- `height`: The height of the screen
-- `logName`: The logName from capabilities
-- `mobile`: This will add `_app`, or the browser name after the `deviceName` to distinguish app screenshots from browser screenshots
-- `platformName`: The name of the platform in the provided capabilities
-- `platformVersion`: The version of the platform provided in the capabilities
-- `tag`: The tag that is provided in the methods that is being called
-- `width`: The width of the screen
+-   `browserName`: வழங்கப்பட்ட திறன்களில் உலாவியின் பெயர்
+-   `browserVersion`: திறன்களில் வழங்கப்பட்ட உலாவியின் பதிப்பு
+-   `deviceName`: திறன்களில் இருந்து சாதனத்தின் பெயர்
+-   `dpr`: சாதன பிக்சல் விகிதம்
+-   `height`: திரையின் உயரம்
+-   `logName`: திறன்களில் இருந்து logName
+-   `mobile`: இது ஆப் ஸ்கிரீன்ஷாட்களை உலாவி ஸ்கிரீன்ஷாட்களிலிருந்து வேறுபடுத்த `_app` அல்லது `deviceName` க்குப் பிறகு உலாவி பெயரைச் சேர்க்கும்
+-   `platformName`: வழங்கப்பட்ட திறன்களில் தளத்தின் பெயர்
+-   `platformVersion`: திறன்களில் வழங்கப்பட்ட தளத்தின் பதிப்பு
+-   `tag`: அழைக்கப்படும் முறைகளில் வழங்கப்படும் டேக்
+-   `width`: திரையின் அகலம்
 
 :::info
 
-You can not provide custom paths/folders in the `formatImageName`. If you want to change the path then please check changing the following options:
+நீங்கள் `formatImageName` இல் தனிப்பயன் பாதைகள்/கோப்புறைகளை வழங்க முடியாது. நீங்கள் பாதையை மாற்ற விரும்பினால் பின்வரும் விருப்பங்களை மாற்றுவதைப் பார்க்கவும்:
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) per method
+- ஒவ்வொரு முறைக்கும் [`folderOptions`](/docs/visual-testing/method-options#folder-options)
 
 :::
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Supported:** Web
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `1500`
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+ஸ்க்ரோல் செய்த பிறகு காத்திருக்க வேண்டிய நேரம் மில்லி வினாடிகளில். இது சோம்பேறி ஏற்றுதலுடன் பக்கங்களை அடையாளம் காண உதவலாம்.
+
+:::info
+
+சேவை/முறை விருப்பம் `userBasedFullPageScreenshot` `true` என அமைக்கப்பட்டிருந்தால் மட்டுமே இது செயல்படும், [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot) ஐயும் பார்க்கவும்
+
+:::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `true`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-Hide scrollbars in the application. If set to true all scrollbars will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
-
-### `isHybridApp`
-
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Hybrid App
-
-Tell the module if the used app is a Hybrid app, this will not calculate the address bar height because it is not there.
+பயன்பாட்டில் ஸ்க்ரோல்பார்களை மறைக்கவும். true என அமைக்கப்பட்டால், ஸ்கிரீன்ஷாட் எடுக்கும் முன் அனைத்து ஸ்க்ரோல்பார்களும் முடக்கப்படும். கூடுதல் சிக்கல்களைத் தடுக்க இது இயல்புநிலையாக `true` என அமைக்கப்பட்டுள்ளது.
 
 ### `logLevel`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `info`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `info`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-Adds extra logs, options are `debug | info | warn | silent`
+கூடுதல் பதிவுகளைச் சேர்க்கிறது, விருப்பங்கள் `debug | info | warn | silent`
 
-Errors are always logged to the console.
+பிழைகள் எப்போதும் கன்சோலில் பதிவு செய்யப்படும்.
 
 ### `savePerInstance`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-Save the images per instance in a separate folder so for example all Chrome screenshots will be saved in a Chrome folder like `desktop_chrome`.
+ஒவ்வொரு நிகழ்வுக்கும் படங்களை தனி கோப்புறையில் சேமிக்கவும், எடுத்துக்காட்டாக அனைத்து Chrome ஸ்கிரீன்ஷாட்களும் `desktop_chrome` போன்ற Chrome கோப்புறையில் சேமிக்கப்படும்.
 
 ### `screenshotPath`
 
-- **Type:** `string | () => string`
-- **Default:** `.tmp/`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `string | () => string`
+-   **இயல்புநிலை:** `.tmp/`
+-   **கட்டாயம்:** இல்லை
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-The directory that will hold all the actual/different screenshots. If not set, the default value will be used. A function that
-returns a string can also be used to set the screenshotPath value:
+அனைத்து உண்மையான/வித்தியாசமான ஸ்கிரீன்ஷாட்களையும் கொண்டிருக்கும் அடைவு. அமைக்கப்படவில்லை என்றால், இயல்புநிலை மதிப்பு பயன்படுத்தப்படும். screenshotPath மதிப்பை அமைக்க ஒரு சரம் திருப்பும் செயல்பாட்டையும் பயன்படுத்தலாம்:
 
 ```js
 {
     screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
 },
-// OR
+// அல்லது
 {
     screenshotPath: () => {
-        // Do some magic here
+        // இங்கே சில மந்திரம் செய்யவும்
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -401,158 +399,170 @@ returns a string can also be used to set the screenshotPath value:
 
 ### `toolBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6` for Android and `15` for iOS (`6` by default and `9` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)
-- **Supported:** Web
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** Android க்கு `6` மற்றும் iOS க்கு `15` (இயல்பாக `6` மற்றும் நாட்ச் கொண்ட iPhones அல்லது ஹோம் பார் கொண்ட iPads க்கு சாத்தியமான ஹோம் பாருக்கு `9` தானாகவே சேர்க்கப்படும்)
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The padding which needs to be added to the toolbar bar on iOS and Android to do a proper cutout of the viewport.
+iOS மற்றும் Android இல் டூல்பார் பாருக்கு சேர்க்க வேண்டிய படிங்கள் வியூபோர்ட்டை சரியாக வெட்ட தேவைப்படுகிறது.
+
+### `userBasedFullPageScreenshot`
+
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ) **visual-service@7.0.0 இல் அறிமுகப்படுத்தப்பட்டது**
+
+இயல்பாக, டெஸ்க்டாப் வெபில் முழு பக்க ஸ்கிரீன்ஷாட்கள் WebDriver BiDi புரோட்டோகால் பயன்படுத்தி எடுக்கப்படுகின்றன, இது ஸ்க்ரோல் செய்யாமல் வேகமான, நிலையான மற்றும் நிலையான ஸ்கிரீன்ஷாட்களை செயல்படுத்துகிறது.
+userBasedFullPageScreenshot true என அமைக்கப்படும்போது, ஸ்கிரீன்ஷாட் செயல்முறை உண்மையான பயனரை போல உருவகப்படுத்துகிறது: பக்கத்தை ஸ்க்ரோல் செய்வது, வியூபோர்ட் அளவிலான ஸ்கிரீன்ஷாட்களை எடுப்பது மற்றும் அவற்றை ஒன்றாக இணைப்பது. இந்த முறை சோம்பேறியாக ஏற்றப்பட்ட உள்ளடக்கம் கொண்ட பக்கங்களுக்கு அல்லது ஸ்க்ரோல் நிலையைப் பொறுத்து மாறும் டைனமிக் ரெண்டரிங்கிற்கு பயனுள்ளதாக இருக்கும்.
+
+உங்கள் பக்கம் ஸ்க்ரோல் செய்யும்போது ஏற்றப்படும் உள்ளடக்கத்தை நம்பியிருந்தால் அல்லது நீங்கள் பழைய ஸ்கிரீன்ஷாட் முறைகளின் நடத்தையைப் பாதுகாக்க விரும்பினால் இந்த விருப்பத்தைப் பயன்படுத்தவும்.
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `true`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+எழுத்துருக்கள், மூன்றாம் தரப்பு எழுத்துருக்கள் உட்பட, ஒத்திசைவாகவோ அல்லது ஒத்திசைவற்ற முறையிலோ ஏற்றப்படலாம். ஒத்திசைவற்ற ஏற்றுதல் என்பது WebdriverIO ஒரு பக்கம் முழுமையாக ஏற்றப்பட்டுள்ளது என்று தீர்மானித்த பிறகு எழுத்துருக்கள் ஏற்றப்படலாம் என்று பொருள். எழுத்துரு ரெண்டரிங் சிக்கல்களைத் தடுக்க, இந்த மாட்யூல், இயல்பாக, ஸ்கிரீன்ஷாட் எடுப்பதற்கு முன் அனைத்து எழுத்துருக்களும் ஏற்றப்படும் வரை காத்திருக்கும்.
 
-## Tabbable Options
+## தாபிள் விருப்பங்கள்
 
-:::info NOTE
+:::info குறிப்பு
 
-This module also supports drawing the way a user would use his keyboard to _tab_ through the website by drawing lines and dots from tabbable element to tabbable element.<br/>
-The work is inspired by [Viv Richards](https://github.com/vivrichards600) his blog post about ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-The way tabbable elements are selected is based on the module [tabbable](https://github.com/davidtheclark/tabbable). If there are any issues regarding the tabbing please check the [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) and especially the [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+இந்த மாட்யூல் ஒரு பயனர் தனது கீபோர்டைப் பயன்படுத்தி வலைத்தளத்தில் _tab_ செய்யும் முறையை டிராயிங் செய்வதையும் ஆதரிக்கிறது.<br/>
+இந்த வேலை [Viv Richards](https://github.com/vivrichards600) அவரது ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript) ব்ளக் பதிவால் ஈர்க்கப்பட்டது.<br/>
+டாப் செய்யக்கூடிய எலிமென்ட்கள் தேர்ந்தெடுக்கப்படும் முறை [tabbable](https://github.com/davidtheclark/tabbable) மாட்யூலை அடிப்படையாகக் கொண்டது. டாப்பிங் தொடர்பான ஏதேனும் சிக்கல்கள் இருந்தால், [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) மற்றும் குறிப்பாக [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details) ஐ சரிபார்க்கவும்.
 
 :::
 
 ### `tabbableOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `object`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The options that can be changed for the lines and dots if you use the `{save|check}Tabbable`-methods. The options are explained below.
+`{save|check}Tabbable`-முறைகளைப் பயன்படுத்தினால் கோடுகள் மற்றும் புள்ளிகளுக்கு மாற்றக்கூடிய விருப்பங்கள். விருப்பங்கள் கீழே விளக்கப்பட்டுள்ளன.
 
 #### `tabbableOptions.circle`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `object`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The options to change the circle.
+வட்டத்தை மாற்றுவதற்கான விருப்பங்கள்.
 
 ##### `tabbableOptions.circle.backgroundColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The background color of the circle.
+வட்டத்தின் பின்னணி நிறம்.
 
 ##### `tabbableOptions.circle.borderColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The border color of the circle.
+வட்டத்தின் எல்லை நிறம்.
 
 ##### `tabbableOptions.circle.borderWidth`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The border width of the circle.
+வட்டத்தின் எல்லை அகலம்.
 
 ##### `tabbableOptions.circle.fontColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The color of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+வட்டத்தில் உள்ள உரையின் எழுத்துரு நிறம். [`showNumber`](./#tabbableoptionscircleshownumber) `true` என அமைக்கப்பட்டிருந்தால் மட்டுமே இது காட்டப்படும்.
 
 ##### `tabbableOptions.circle.fontFamily`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The family of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+வட்டத்தில் உள்ள உரையின் எழுத்துரு குடும்பம். [`showNumber`](./#tabbableoptionscircleshownumber) `true` என அமைக்கப்பட்டிருந்தால் மட்டுமே இது காட்டப்படும்.
 
-Make sure to set fonts that are supported by the browsers.
+உலாவிகளால் ஆதரிக்கப்படும் எழுத்துருக்களை அமைக்கவும்.
 
 ##### `tabbableOptions.circle.fontSize`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The size of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+வட்டத்தில் உள்ள உரையின் எழுத்துரு அளவு. [`showNumber`](./#tabbableoptionscircleshownumber) `true` என அமைக்கப்பட்டிருந்தால் மட்டுமே இது காட்டப்படும்.
 
 ##### `tabbableOptions.circle.size`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The size of the circle.
+வட்டத்தின் அளவு.
 
 ##### `tabbableOptions.circle.showNumber`
 
-- **Type:** `showNumber`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `showNumber`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-Show the tab sequence number in the circle.
+வட்டத்தில் டாப் வரிசை எண்ணைக் காட்டு.
 
 #### `tabbableOptions.line`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `object`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The options to change the line.
+கோட்டை மாற்றுவதற்கான விருப்பங்கள்.
 
 ##### `tabbableOptions.line.color`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The color of the line.
+கோட்டின் நிறம்.
 
 ##### `tabbableOptions.line.width`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The width of the line.
+கோட்டின் அகலம்.
 
-## Compare options
+## ஒப்பீட்டு விருப்பங்கள்
 
 ### `compareOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values
-- **Supported:** Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)
+-   **வகை:** `object`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** அனைத்து இயல்புநிலை மதிப்புகளுக்கும் [இங்கே](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) பார்க்கவும்
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப் (மேலும் தகவலுக்கு [Method Compare options](./method-options#compare-check-options) ஐப் பார்க்கவும்)
 
-The compare options can also be set as service options, they are described in the [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+ஒப்பீட்டு விருப்பங்களை சேவை விருப்பங்களாகவும் அமைக்கலாம், அவை [Method Compare options](/docs/visual-testing/method-options#compare-check-options) இல் விளக்கப்பட்டுள்ளன

@@ -1,246 +1,246 @@
 ---
 id: method-options
-title: Method Options
+title: முறை விருப்பங்கள்
 ---
 
-Methods options are the options that can be set per [method](./methods). If the option has the same key as an option that has been set during the instantiation of the plugin, this method option will override the plugin option value.
+முறை விருப்பங்கள் என்பவை [முறை](./methods) ஒவ்வொன்றுக்கும் அமைக்கக்கூடிய விருப்பங்கள் ஆகும். ஒரு விருப்பத்தின் திறவுச்சொல் செருகுநிரலை உருவாக்கும்போது அமைக்கப்பட்ட விருப்பத்தின் திறவுச்சொல்லுடன் ஒரே மாதிரியாக இருந்தால், இந்த முறை விருப்பமானது செருகுநிரல் விருப்ப மதிப்பை மேலெழுதும்.
 
-## Save Options
+## சேமிப்பு விருப்பங்கள்
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+பயன்பாட்டில் அனைத்து `input`, `textarea`, `[contenteditable]` கர்சர் "மின்னுவதை" இயக்கு/முடக்கு. `true` என அமைக்கப்பட்டால், திரைப்பிடிப்பு எடுக்கும் முன் கர்சர் `transparent` என அமைக்கப்படும்
+மற்றும் முடிந்ததும் மீட்டமைக்கப்படும்
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+பயன்பாட்டில் அனைத்து CSS அனிமேஷன்களையும் இயக்கு/முடக்கு. `true` என அமைக்கப்பட்டால், திரைப்பிடிப்பு எடுக்கும் முன் அனைத்து அனிமேஷன்களும் முடக்கப்படும்
+மற்றும் முடிந்ததும் மீட்டமைக்கப்படும்
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
+-   **பயன்படுத்தப்படுகிறது:** அனைத்து [முறைகளுடனும்](./methods)
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+இது ஒரு பக்கத்தில் உள்ள அனைத்து உரைகளையும் மறைத்து, ஒப்பீட்டிற்கு லேஅவுட் மட்டுமே பயன்படுத்தப்படும். மறைப்பது `'color': 'transparent !important'` என்ற பாணியை __ஒவ்வொரு__ உறுப்புக்கும் சேர்ப்பதன் மூலம் செய்யப்படும்.
 
-For the output see [Test Output](./test-output#enablelayouttesting)
+வெளியீட்டைப் பார்க்க [சோதனை வெளியீடு](./test-output#enablelayouttesting) ஐப் பார்க்கவும்
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+இந்த கொடியைப் பயன்படுத்துவதன் மூலம், உரை கொண்ட ஒவ்வொரு உறுப்பும் (அதாவது `p, h1, h2, h3, h4, h5, h6, span, a, li` மட்டுமல்ல, `div|button|..` போன்றவையும்) இந்தப் பண்பைப் பெறும். இதை மாற்றியமைக்க __எந்த__ விருப்பமும் இல்லை.
 :::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `true`
+-   **பயன்படுத்தப்படுகிறது:** அனைத்து [முறைகளுடனும்](./methods)
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-Hide scrollbar(s) in the application. If set to true all scrollbar(s) will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
+பயன்பாட்டில் உள்ள ஸ்க்ரோல்பார்(கள்) மறைக்கவும். `true` என அமைக்கப்பட்டால், திரைப்பிடிப்பு எடுக்கும் முன் அனைத்து ஸ்க்ரோல்பார்(கள்) முடக்கப்படும். கூடுதல் சிக்கல்களைத் தடுக்க இது இயல்பாக `true` என அமைக்கப்பட்டுள்ளது.
 
 ### `hideElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `array`
+-   **கட்டாயம்:** இல்லை
+-   **பயன்படுத்தப்படுகிறது:** அனைத்து [முறைகளுடனும்](./methods)
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-This method can hide 1 or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
+இந்த முறையானது உறுப்புகளின் வரிசையை வழங்குவதன் மூலம் அவற்றுக்கு `visibility: hidden` பண்பைச் சேர்ப்பதன் மூலம் 1 அல்லது பல உறுப்புகளை மறைக்க முடியும்.
 
 ### `removeElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `array`
+-   **கட்டாயம்:** இல்லை
+-   **பயன்படுத்தப்படுகிறது:** அனைத்து [முறைகளுடனும்](./methods)
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-This method can _remove_ 1 or multiple elements by adding the property `display: none` to them by providing an array of elements.
+இந்த முறையானது உறுப்புகளின் வரிசையை வழங்குவதன் மூலம் அவற்றுக்கு `display: none` பண்பைச் சேர்ப்பதன் மூலம் 1 அல்லது பல உறுப்புகளை _அகற்ற_ முடியும்.
 
 ### `resizeDimensions`
 
-- **Type:** `object`
-- **Mandatory:** no
-- **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Used with:** Only for [`saveElement`](./methods#saveelement) or [`checkElement`](./methods#checkelement)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **வகை:** `object`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **பயன்படுத்தப்படுகிறது:** [`saveElement`](./methods#saveelement) அல்லது [`checkElement`](./methods#checkelement) க்கு மட்டுமே
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ), நேட்டிவ் ஆப்
 
-An object that needs to hold a `top`, `right`, `bottom` and `left` amount of pixels that need to make the element cutout bigger.
+உறுப்பு வெட்டி எடுப்பதை பெரிதாக்குவதற்கு தேவையான பிக்சல்களின் `top`, `right`, `bottom` மற்றும் `left` அளவுகளை கொண்டிருக்க வேண்டிய ஒரு பொருள்.
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `1500`
+-   **பயன்படுத்தப்படுகிறது:** [`saveFullPageScreen`](./methods#savefullpagescreen) அல்லது [`saveTabbablePage`](./methods#savetabbablepage) க்கு மட்டுமே
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+ஸ்க்ரோல் செய்த பின் காத்திருக்க வேண்டிய மில்லிவினாடிகளில் நேரம். இது சோம்பேறி ஏற்றுதலுடன் பக்கங்களை அடையாளம் காண உதவலாம்.
 
 ### `hideAfterFirstScroll`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **வகை:** `array`
+-   **கட்டாயம்:** இல்லை
+-   **பயன்படுத்தப்படுகிறது:** [`saveFullPageScreen`](./methods#savefullpagescreen) அல்லது [`saveTabbablePage`](./methods#savetabbablepage) க்கு மட்டுமே
+-   **ஆதரிக்கப்படுகிறது:** வலை
 
-This method will hide one or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
-This will be handy when a page for example holds sticky elements that will scroll with the page if the page is scrolled but will give an annoying effect when a full-page screenshot is made
+இந்த முறையானது உறுப்புகளின் வரிசையை வழங்குவதன் மூலம் அவற்றுக்கு `visibility: hidden` பண்பைச் சேர்ப்பதன் மூலம் ஒன்று அல்லது பல உறுப்புகளை மறைக்கும்.
+இது எடுத்துக்காட்டாக, ஒரு பக்கம் ஸ்க்ரோல் செய்யப்படும்போது பக்கத்துடன் சேர்ந்து ஸ்க்ரோல் செய்யும் ஒட்டும் உறுப்புகளைக் கொண்டிருக்கும்போது பயனுள்ளதாக இருக்கும், ஆனால் முழு பக்க ஸ்கிரீன்ஷாட் எடுக்கும்போது எரிச்சலூட்டும் விளைவைத் தரும்
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `true`
+-   **பயன்படுத்தப்படுகிறது:** அனைத்து [முறைகளுடனும்](./methods)
+-   **ஆதரிக்கப்படுகிறது:** வலை, ஹைப்ரிட் ஆப் (வெப்வியூ)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+எழுத்துருக்கள், மூன்றாம் தரப்பு எழுத்துருக்கள் உட்பட, ஒத்திசைவாகவோ அல்லது ஒத்திசைவற்றதாகவோ ஏற்றப்படலாம். ஒத்திசைவற்ற ஏற்றுதல் என்பது WebdriverIO ஒரு பக்கம் முழுமையாக ஏற்றப்பட்டுள்ளதாக தீர்மானித்த பிறகு எழுத்துருக்கள் ஏற்றப்படலாம் என்பதைக் குறிக்கிறது. எழுத்துரு வழங்கல் சிக்கல்களைத் தடுக்க, இந்த மாட்யூல், இயல்பாக, திரைப்பிடிப்பு எடுப்பதற்கு முன் அனைத்து எழுத்துருக்களும் ஏற்றப்படும் வரை காத்திருக்கும்.
 
-## Compare (Check) Options
+## ஒப்பிடு (சரிபார்ப்பு) விருப்பங்கள்
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+ஒப்பிடு விருப்பங்கள் என்பவை [ResembleJS](https://github.com/Huddle/Resemble.js) மூலம் ஒப்பீடு செயல்படுத்தப்படும் வழியை பாதிக்கும் விருப்பங்கள் ஆகும்.
 
-:::info NOTE
+:::info குறிப்பு
 
-- All options from the [Save Options](#save-options) can be used for the Compare methods
-- All compare options can be used during service instantiation **or** for every single check method. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
-- All options can be used for:
-  - Web
-  - Hybrid App
-  - Native App
+-   [சேமிப்பு விருப்பங்களில்](#save-options) இருந்து அனைத்து விருப்பங்களும் ஒப்பிடு முறைகளுக்குப் பயன்படுத்தப்படலாம்
+-   அனைத்து ஒப்பிடு விருப்பங்களும் சேவைப் பயன்படுத்தும் போது __அல்லது__ ஒவ்வொரு தனிப்பட்ட சரிபார்ப்பு முறைக்கும் பயன்படுத்தப்படலாம். ஒரு முறை விருப்பத்தின் திறவுச்சொல் சேவையைத் தொடங்கும்போது அமைக்கப்பட்ட விருப்பத்தின் திறவுச்சொல்லுடன் ஒரே மாதிரியாக இருந்தால், முறை ஒப்பிடு விருப்பமானது சேவை ஒப்பிடு விருப்ப மதிப்பை மேலெழுதும்.
+- அனைத்து விருப்பங்களும் பயன்படுத்தப்படலாம்:
+    - வலை
+    - ஹைப்ரிட் ஆப்
+    - நேட்டிவ் ஆப்
 
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
 
-Compare images and discard alpha.
+படங்களை ஒப்பிட்டு ஆல்ஃபாவை நிராகரிக்கவும்.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. This is **iPad only**_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `true`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkScreen()` க்கு மட்டுமே பயன்படுத்தப்படலாம். இது **iPad மட்டுமே**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+லேண்ட்ஸ்கேப் முறையில் iPad க்கான ஒப்பீடுகளின் போது பக்கப்பட்டியை தானாகவே தடுக்கவும். இது தாவல்/தனிப்பட்ட/புக்மார்க் நேட்டிவ் கூறுகளில் தோல்விகளைத் தடுக்கிறது.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `true`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _இது **மொபைல் மட்டுமே**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+ஒப்பீடுகளின் போது நிலை மற்றும் முகவரி பட்டையை தானாகவே தடுக்கவும். இது நேரம், வைஃபை அல்லது பேட்டரி நிலையில் தோல்விகளைத் தடுக்கிறது.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `true`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _இது **மொபைல் மட்டுமே**_
 
-Automatically block out the toolbar.
+கருவிப்பட்டையை தானாகவே தடுக்கவும்.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
 
-Compare images and discard anti-aliasing.
+படங்களை ஒப்பிட்டு ஆன்டி-அலையாசிங்கை நிராகரிக்கவும்.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
 
-Even though the images are in color, the comparison will compare 2 black/white images
+படங்கள் வண்ணத்தில் இருந்தாலும், ஒப்பீடு 2 கருப்பு/வெள்ளை படங்களை ஒப்பிடும்
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+படங்களை ஒப்பிட்டு `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240` என ஒப்பிடவும்
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+படங்களை ஒப்பிட்டு `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255` என ஒப்பிடவும்
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+`true` எனில் திரும்பும் சதவீதம் `0.12345678` போல் இருக்கும், இயல்புநிலை `0.12` ஆகும்
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
 
-This will return all compare data, not only the mismatch percentage
+இது பொருத்தமின்மை சதவீதத்தை மட்டும் அல்லாமல் அனைத்து ஒப்பீட்டுத் தரவையும் திருப்பி அனுப்பும்
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **வகை:** `number`
+-   **இயல்புநிலை:** `0`
+-   **கட்டாயம்:** இல்லை
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+வேறுபாடுகளுடன் படங்களை சேமிப்பதைத் தடுக்கும் `misMatchPercentage` இன் அனுமதிக்கக்கூடிய மதிப்பு
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **வகை:** `number`
+-   **இயல்புநிலை:** `0`
+-   **கட்டாயம்:** இல்லை
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+பெரிய படங்களை ஒப்பிடுவது செயல்திறன் சிக்கல்களுக்கு வழிவகுக்கலாம்.
+இங்கே பிக்ஸல்களின் எண்ணிக்கையை (0-ஐ விட அதிகமாக) வழங்கும்போது, பட அகலம் அல்லது உயரம் `largeImageThreshold` பிக்ஸல்களை விட பெரியதாக இருக்கும்போது ஒப்பிடும் அல்காரிதம் பிக்ஸல்களைத் தவிர்க்கிறது.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+ஒப்பீட்டை செயல்படுத்துவதற்கு முன் 2 படங்களை ஒரே அளவுக்கு அளவிடுகிறது. `ignoreAntialiasing` மற்றும் `ignoreAlpha` ஐ இயக்க பெரிதும் பரிந்துரைக்கப்படுகிறது
 
-## Folder options
+## கோப்புறை விருப்பங்கள்
 
-The baseline folder and screenshot folders(actual, diff) are options that can be set during the instantiation of the plugin or method. To set the folder options on a particular method, pass in folder options to the methods option object. This can be used for:
+அடிப்படைக் கோப்புறை மற்றும் திரைப்பிடிப்பு கோப்புறைகள் (உண்மையான, வேறுபாடு) ஆகியவை செருகுநிரலை அல்லது முறையைத் தொடங்கும்போது அமைக்கக்கூடிய விருப்பங்கள் ஆகும். ஒரு குறிப்பிட்ட முறையில் கோப்புறை விருப்பங்களை அமைக்க, முறைகள் விருப்ப பொருளுக்கு கோப்புறை விருப்பங்களை அனுப்பவும். இது பயன்படுத்தப்படலாம்:
 
-- Web
-- Hybrid App
-- Native App
+- வலை
+- ஹைப்ரிட் ஆப்
+- நேட்டிவ் ஆப்
 
 ```ts
 import path from 'node:path'
@@ -259,21 +259,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
 
-Folder for the snapshot that has been captured in the test.
+சோதனையில் பிடிக்கப்பட்ட ஸ்னாப்ஷாட்டிற்கான கோப்புறை.
 
 ### `baselineFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
 
-Folder for the baseline image that is being used to compare against.
+ஒப்பிட பயன்படுத்தப்படும் அடிப்படைப் படத்திற்கான கோப்புறை.
 
 ### `diffFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
 
-Folder for the image difference rendered by ResembleJS.
+ResembleJS மூலம் வழங்கப்பட்ட பட வேறுபாட்டிற்கான கோப்புறை.

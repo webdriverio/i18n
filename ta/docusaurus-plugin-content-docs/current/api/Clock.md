@@ -1,9 +1,9 @@
 ---
 id: clock
-title: The Clock Object
+title: கடிகார பொருள்
 ---
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+நீங்கள் [`emulate`](/docs/emulation) கட்டளையைப் பயன்படுத்தி உலாவி அமைப்பு கடிகாரத்தை மாற்றலாம். இது நேரம் தொடர்பான இயற்கையான உலகளாவிய செயல்பாடுகளை மாற்றி அமைக்கிறது, இதனால் அவற்றை `clock.tick()` அல்லது பெறப்பட்ட கடிகார பொருள் மூலம் ஒருங்கிணைந்து கட்டுப்படுத்த முடியும். இதில் கட்டுப்படுத்துவது உள்ளடங்கும்:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+கடிகாரம் யுனிக்ஸ் எபாக்கில் (டைம்ஸ்டாம்ப் 0) தொடங்குகிறது. அதாவது, உங்கள் பயன்பாட்டில் புதிய Date ஐ நீங்கள் உருவாக்கும்போது, நீங்கள் `emulate` கட்டளைக்கு வேறு எந்த விருப்பங்களையும் அனுப்பவில்லை என்றால், அது ஜனவரி 1, 1970 நேரத்தைக் கொண்டிருக்கும்.
 
-## Example
+## உதாரணம்
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+`browser.emulate('clock', { ... })` என அழைக்கும்போது, அது தற்போதைய பக்கம் மற்றும் அனைத்து அடுத்த பக்கங்களுக்கும் உலகளாவிய செயல்பாடுகளை உடனடியாக மேலெழுதும், எ.கா.:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -37,4 +37,4 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+நீங்கள் [`setSystemTime`](/docs/api/clock/setSystemTime) அல்லது [`tick`](/docs/api/clock/tick) ஐ அழைப்பதன் மூலம் அமைப்பு நேரத்தை மாற்றலாம்.

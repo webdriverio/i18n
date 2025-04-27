@@ -1,11 +1,11 @@
 ---
 id: configurationfile
-title: Configuration File
+title: கட்டமைப்பு கோப்பு
 ---
 
-The configuration file contains all necessary information to run your test suite. It’s a NodeJS module that exports a JSON.
+கட்டமைப்பு கோப்பில் உங்கள் சோதனை தொகுப்பை இயக்குவதற்கு தேவையான அனைத்து தகவல்களும் உள்ளன. இது ஒரு JSON ஐ ஏற்றுமதி செய்யும் NodeJS தொகுதி ஆகும்.
 
-Here is an example configuration with all supported properties and additional information:
+இங்கே ஆதரிக்கப்படும் அனைத்து பண்புகளுடனும் கூடுதல் தகவல்களுடனும் ஒரு உதாரண கட்டமைப்பு உள்ளது:
 
 ```js
 export const config = {
@@ -487,4 +487,4 @@ export const config = {
 }
 ```
 
-You can also find a file with all possible options and variations in the [example folder](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).
+நீங்கள் அனைத்து சாத்தியமான விருப்பங்கள் மற்றும் மாறுபாடுகளுடன் உள்ள கோப்பை [எடுத்துக்காட்டு கோப்புறையில்](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js) காணலாம்.

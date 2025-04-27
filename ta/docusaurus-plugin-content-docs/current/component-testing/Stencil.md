@@ -1,13 +1,13 @@
 ---
 id: stencil
-title: Stencil
+title: ஸ்டென்சில்
 ---
 
-[Stencil](https://stenciljs.com/) is a library for building reusable, scalable component libraries. You can test Stencil components directly in a real browser using WebdriverIO and its [browser runner](/docs/runner#browser-runner).
+[Stencil](https://stenciljs.com/) என்பது மீண்டும் பயன்படுத்தக்கூடிய, அளவிடக்கூடிய கூறு நூலகங்களை உருவாக்குவதற்கான நூலகமாகும். WebdriverIO மற்றும் அதன் [பிரவுசர் ரன்னர்](/docs/runner#browser-runner) பயன்படுத்தி நீங்கள் Stencil கூறுகளை நேரடியாக உண்மையான உலாவியில் சோதிக்கலாம்.
 
-## Setup
+## அமைப்பு
 
-To set up WebdriverIO within your Stencil project, follow the [instructions](/docs/component-testing#set-up) in our component testing docs. Make sure to select `stencil` as preset within your runner options, e.g.:
+உங்கள் Stencil திட்டத்தில் WebdriverIO அமைக்க, எங்கள் கூறு சோதனை ஆவணங்களில் உள்ள [வழிமுறைகளைப்](/docs/component-testing#set-up) பின்பற்றவும். உங்கள் ரன்னர் விருப்பங்களில் `stencil` என்பதை முன்னமைவாகத் தேர்ந்தெடுக்க உறுதிப்படுத்தவும், எ.கா.:
 
 ```js
 // wdio.conf.js
@@ -22,19 +22,19 @@ export const config = {
 
 :::info
 
-In case you use Stencil with a framework like React or Vue, you should keep the preset for these frameworks.
+நீங்கள் React அல்லது Vue போன்ற ஒரு கட்டமைப்புடன் Stencil ஐப் பயன்படுத்தும் சூழலில், இந்த கட்டமைப்புகளுக்கான முன்னமைவை வைத்திருக்க வேண்டும்.
 
 :::
 
-You can then start the tests by running:
+பின்னர் பின்வரும் கட்டளையை இயக்குவதன் மூலம் சோதனைகளைத் தொடங்கலாம்:
 
 ```sh
 npx wdio run ./wdio.conf.ts
 ```
 
-## Writing Tests
+## சோதனைகளை எழுதுதல்
 
-Given you have the following Stencil components:
+பின்வரும் Stencil கூறுகள் உள்ளன என்று வைத்துக்கொள்வோம்:
 
 ```tsx title="./components/Component.tsx"
 import { Component, Prop, h } from '@stencil/core'
@@ -65,7 +65,7 @@ export class MyName {
 
 ### `render`
 
-In your test use the `render` method from `@wdio/browser-runner/stencil` to attach the component to the test page. To interact with the component we recommend using WebdriverIO commands as they behave closer to actual user interactions, e.g.:
+உங்கள் சோதனையில் `@wdio/browser-runner/stencil` இல் இருந்து `render` முறையைப் பயன்படுத்தி சோதனைப் பக்கத்தில் கூறுகளை இணைக்கவும். கூறுகளுடன் தொடர்புகொள்ள, உண்மையான பயனர் தொடர்புகளுக்கு நெருக்கமாக செயல்படும் WebdriverIO கட்டளைகளைப் பயன்படுத்த பரிந்துரைக்கிறோம், எ.கா.:
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -86,101 +86,105 @@ describe('Stencil Component Testing', () => {
 })
 ```
 
-#### Render Options
+#### ரெண்டர் விருப்பங்கள்
 
-The `render` method provides the following options:
+`render` முறை பின்வரும் விருப்பங்களை வழங்குகிறது:
 
 ##### `components`
 
-An array of components to test. Component classes can be imported into the spec file, then their reference should be added to the `component` array to be used throughout the test.
+சோதிக்க வேண்டிய கூறுகளின் வரிசை. கூறு வகுப்புகளை spec கோப்பிற்குள் இறக்குமதி செய்யலாம், பின்னர் அவற்றின் குறிப்பு சோதனை முழுவதும் பயன்படுத்த `component` வரிசைக்கு சேர்க்கப்பட வேண்டும்.
 
-__Type:__ `CustomElementConstructor[]`<br /> __Default:__ `[]`
+__வகை:__ `CustomElementConstructor[]`<br />
+__இயல்புநிலை:__ `[]`
 
 ##### `flushQueue`
 
-If `false`, do not flush the render queue on the initial test setup.
+`false` என்றால், ஆரம்ப சோதனை அமைப்பில் ரெண்டர் வரிசையை அகற்ற வேண்டாம்.
 
-__Type:__ `boolean`<br /> __Default:__ `true`
+__வகை:__ `boolean`<br />
+__இயல்புநிலை:__ `true`
 
 ##### `template`
 
-The initial JSX that is used to generate the test. Use `template` when you want to initialize a component using their properties, instead of their HTML attributes. It will render the specified template (JSX) into `document.body`.
+சோதனையை உருவாக்கப் பயன்படுத்தப்படும் ஆரம்ப JSX. HTML பண்புகளுக்குப் பதிலாக அவற்றின் பண்புகளைப் பயன்படுத்தி ஒரு கூறை துவக்க விரும்பும்போது `template` ஐப் பயன்படுத்தவும். இது குறிப்பிட்ட டெம்ப்ளேட்டை (JSX) `document.body` இல் ரெண்டர் செய்யும்.
 
-__Type:__ `JSX.Template`
+__வகை:__ `JSX.Template`
 
 ##### `html`
 
-The initial HTML used to generate the test. This can be useful to construct a collection of components working together, and assign HTML attributes.
+சோதனையை உருவாக்கப் பயன்படுத்தப்படும் ஆரம்ப HTML. இது ஒன்றாக செயல்படும் கூறுகளின் தொகுப்பை உருவாக்கவும், HTML பண்புகளை ஒதுக்கவும் பயனுள்ளதாக இருக்கும்.
 
-__Type:__ `string`
+__வகை:__ `string`
 
 ##### `language`
 
-Sets the mocked `lang` attribute on `<html>`.
+`<html>` இல் போலியான `lang` பண்புக்கூறை அமைக்கிறது.
 
-__Type:__ `string`
+__வகை:__ `string`
 
 ##### `autoApplyChanges`
 
-By default, any changes to component properties and attributes must `env.waitForChanges()` to test the updates. As an option, `autoApplyChanges` continuously flushes the queue in the background.
+இயல்பாக, கூறு பண்புகள் மற்றும் பண்புக்கூறுகளில் ஏற்படும் எந்த மாற்றங்களும் புதுப்பிப்புகளை சோதிக்க `env.waitForChanges()` செய்ய வேண்டும். ஒரு விருப்பமாக, `autoApplyChanges` தொடர்ந்து பின்னணியில் வரிசையை சுத்தம் செய்கிறது.
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__வகை:__ `boolean`<br />
+__இயல்புநிலை:__ `false`
 
 ##### `attachStyles`
 
-By default, styles are not attached to the DOM and they are not reflected in the serialized HTML. Setting this option to `true` will include the component's styles in the serializable output.
+இயல்பாக, பாணிகள் DOM-க்கு இணைக்கப்படவில்லை மற்றும் அவை தொடர்வரிசைப்படுத்தப்பட்ட HTML-இல் பிரதிபலிக்கப்படவில்லை. இந்த விருப்பத்தை `true` என அமைப்பது தொடர்வரிசைப்படுத்தக்கூடிய வெளியீட்டில் கூறுகளின் பாணிகளைச் சேர்க்கும்.
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__வகை:__ `boolean`<br />
+__இயல்புநிலை:__ `false`
 
-#### Render Environment
+#### ரெண்டர் சூழல்
 
-The `render` method returns an environment object that provides certain utility helpers to manage the component's environment.
+`render` முறை கூறுகளின் சூழலை நிர்வகிப்பதற்கான சில பயன்பாட்டு உதவிகளை வழங்கும் ஒரு சூழல் பொருளைத் திருப்பித் தருகிறது.
 
 ##### `flushAll`
 
-After changes have been made to a component, such as an update to a property or attribute, the test page does not automatically apply the changes. To wait for, and apply the update, call `await flushAll()`
+ஒரு பண்பு அல்லது பண்புக்கூறிற்கான புதுப்பிப்பு போன்ற மாற்றங்கள் கூறுக்கு செய்யப்பட்ட பிறகு, சோதனைப் பக்கம் தானாகவே மாற்றங்களைப் பயன்படுத்தாது. புதுப்பிப்புக்காகக் காத்திருந்து, பயன்படுத்த, `await flushAll()`-ஐ அழைக்கவும்
 
-__Type:__ `() => void`
+__வகை:__ `() => void`
 
 ##### `unmount`
 
-Removes the container element from the DOM.
+DOM இலிருந்து கொள்கலன் உறுப்பை அகற்றுகிறது.
 
-__Type:__ `() => void`
+__வகை:__ `() => void`
 
 ##### `styles`
 
-All styles defined by components.
+கூறுகளால் வரையறுக்கப்பட்ட அனைத்து பாணிகளும்.
 
-__Type:__ `Record<string, string>`
+__வகை:__ `Record<string, string>`
 
 ##### `container`
 
-Container element in which the template is being rendered.
+டெம்ப்ளேட் ரெண்டர் செய்யப்படும் கொள்கலன் உறுப்பு.
 
-__Type:__ `HTMLElement`
+__வகை:__ `HTMLElement`
 
 ##### `$container`
 
-The container element as a WebdriverIO element.
+WebdriverIO உறுப்பாக உள்ள கொள்கலன் உறுப்பு.
 
-__Type:__ `WebdriverIO.Element`
+__வகை:__ `WebdriverIO.Element`
 
 ##### `root`
 
-The root component of the template.
+டெம்ப்ளேட்டின் மூல கூறு.
 
-__Type:__ `HTMLElement`
+__வகை:__ `HTMLElement`
 
 ##### `$root`
 
-The root component as a WebdriverIO element.
+WebdriverIO உறுப்பாக உள்ள மூல கூறு.
 
-__Type:__ `WebdriverIO.Element`
+__வகை:__ `WebdriverIO.Element`
 
 ### `waitForChanges`
 
-Helper method to wait for the component to be ready.
+கூறு தயாராக இருக்க காத்திருக்க உதவும் முறை.
 
 ```ts
 import { render, waitForChanges } from '@wdio/browser-runner/stencil'
@@ -196,12 +200,11 @@ await waitForChanges()
 expect(page.root.querySelector('div')).toBeDefined()
 ```
 
-## Element Updates
+## உறுப்பு புதுப்பிப்புகள்
 
-If you define properties or states in your Stencil component you have to manage when these changes should be applied to the component to be re-rendered.
+உங்கள் Stencil கூறில் பண்புகள் அல்லது நிலைகளை வரையறுத்தால், கூறுகள் மீண்டும் ரெண்டர் செய்யப்பட இந்த மாற்றங்கள் எப்போது பயன்படுத்தப்பட வேண்டும் என்பதை நீங்கள் நிர்வகிக்க வேண்டும்.
 
 
-## Examples
+## எடுத்துக்காட்டுகள்
 
-You can find a full example of a WebdriverIO component test suite for Stencil in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).
-
+எங்கள் [எடுத்துக்காட்டு களஞ்சியத்தில்](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter) Stencil க்கான WebdriverIO கூறு சோதனை தொகுப்பின் முழுமையான எடுத்துக்காட்டைக் காணலாம்.

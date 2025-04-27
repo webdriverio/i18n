@@ -3,11 +3,11 @@ id: vue
 title: Vue.js
 ---
 
-[Vue.js](https://vuejs.org/) என்பது இணைய பயனர் இடைமுகங்களை உருவாக்குவதற்கான அணுகக்கூடிய, செயல்திறன் மற்றும் பல்துறை பிரமேஒர்க் ஆகும். WebdriverIO மற்றும் அதன் [browser runner](/docs/runner#browser-runner) பயன்படுத்தி Vue.js காம்போனென்டுகளை உண்மையான பிரௌசரில் நேரடியாகச் சோதிக்கலாம்.
+[Vue.js](https://vuejs.org/) என்பது வலை பயனர் இடைமுகங்களை உருவாக்குவதற்கான அணுகக்கூடிய, செயல்திறன் மிக்க மற்றும் பல்துறை கட்டமைப்பாகும். WebdriverIO மற்றும் அதன் [உலாவி இயக்கி](/docs/runner#browser-runner) பயன்படுத்தி Vue.js கூறுகளை நேரடியாக உண்மையான உலாவியில் சோதிக்கலாம்.
 
-## செட்அப்
+## அமைவு
 
-உங்கள் Vue.js திட்டத்தில் WebdriverIO ஐ அமைக்க, எங்கள் காம்போனென்ட் டெஸ்ட் ஆவணத்தின் [instructions](/docs/component-testing#set-up) வழிமுறைகளைப் பின்பற்றவும். உங்கள் ரன்னர் விருப்பங்களுக்குள் முன்னமைவாக `vue` ஐத் தேர்ந்தெடுக்கவும், எ.கா.:
+உங்கள் Vue.js திட்டத்தில் WebdriverIO ஐ அமைக்க, எங்கள் கூறு சோதனை ஆவணங்களில் [வழிமுறைகளை](/docs/component-testing#set-up) பின்பற்றவும். உங்கள் இயக்கி விருப்பங்களில் `vue` ஐ முன்னமைப்பாக தேர்ந்தெடுக்க உறுதிசெய்யவும், எ.கா:
 
 ```js
 // wdio.conf.js
@@ -20,30 +20,27 @@ export const config = {
 }
 ```
 
-
 :::info
 
-நீங்கள் ஏற்கனவே [Vite](https://vitejs.dev/) டெவலப்மென்ட் சர்வராகப் பயன்படுத்துகிறீர்கள் என்றால், உங்கள் WebdriverIO கட்டமைப்பிற்குள் `vite.config.ts` இல் உங்கள் கட்டமைப்பை மீண்டும் பயன்படுத்தலாம். மேலும் தகவலுக்கு, `viteConfig` இன் [runner options](/docs/runner#runner-options)ஐப் பார்க்கவும்.
+நீங்கள் ஏற்கனவே [Vite](https://vitejs.dev/) ஐ உருவாக்க சேவையகமாக பயன்படுத்துகிறீர்கள் என்றால், உங்கள் WebdriverIO கட்டமைப்பில் `vite.config.ts` இல் உள்ள உங்கள் கட்டமைப்பை மீண்டும் பயன்படுத்தலாம். மேலும் தகவலுக்கு, [இயக்கி விருப்பங்களில்](/docs/runner#runner-options) `viteConfig` ஐப் பார்க்கவும்.
 
 :::
 
-Vue முன்னமைவுக்கு `@vitejs/plugin-vue` நிறுவ வேண்டும். டெஸ்ட் பக்கத்தில் காம்போனென்டுகளை வழங்குவதற்கு [Testing Library](https://testing-library.com/) ஐப் பயன்படுத்தவும் பரிந்துரைக்கிறோம். எனவே நீங்கள் பின்வரும் கூடுதல் சார்புகளை நிறுவ வேண்டும்:
+Vue முன்னமைப்புக்கு `@vitejs/plugin-vue` நிறுவப்பட வேண்டும். மேலும், கூறுகளை சோதனை பக்கத்தில் காட்சிப்படுத்த [Testing Library](https://testing-library.com/) பயன்படுத்த பரிந்துரைக்கிறோம். அதற்காக பின்வரும் கூடுதல் சார்புகளை நிறுவ வேண்டியிருக்கும்:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
 ```
 
-
-பின்னர் நீங்கள் டெஸ்டுகளை ரன் செய்வதன் மூலம் தொடங்கலாம்:
+பின்னர் பின்வருமாறு இயக்குவதன் மூலம் சோதனைகளைத் தொடங்கலாம்:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
+## சோதனைகளை எழுதுதல்
 
-## டெஸ்டுகளை எழுதுதல்
-
-பின்வரும் Vue.js காம்போனென்ட் உங்களிடம் உள்ளது:
+பின்வரும் Vue.js கூறு இருப்பதாக வைத்துக் கொள்ளுங்கள்:
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -68,14 +65,14 @@ export default {
 </script>
 ```
 
+உங்கள் சோதனையில் கூறுகளை DOM-இல் காட்சிப்படுத்தி அதன் மீது உறுதிப்படுத்தல்களை இயக்கவும். கூறுகளை சோதனை பக்கத்துடன் இணைக்க [`@vue/test-utils`](https://test-utils.vuejs.org/) அல்லது [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) பயன்படுத்த பரிந்துரைக்கிறோம். கூறுகளுடன் தொடர்புகொள்ள WebdriverIO கட்டளைகளைப் பயன்படுத்தவும், ஏனெனில் அவை உண்மையான பயனர் தொடர்புகளுக்கு நெருக்கமாக செயல்படுகின்றன, எ.கா:
 
-In your test render the component into the DOM and run assertions on it. We recommend to either use [`@vue/test-utils`](https://test-utils.vuejs.org/) or [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) to attach the component to the test page. To interact with the component use WebdriverIO commands as they behave more close to actual user interactions, e.g.:
 
 <Tabs
   defaultValue="utils"
   values={[
     {label: '@vue/test-utils', value: 'utils'},
- {label: '@testing-library/vue', value: 'testinglib'}
+    {label: '@testing-library/vue', value: 'testinglib'}
  ]
 }>
 <TabItem value="utils">
@@ -135,11 +132,11 @@ describe('Vue Component Testing', () => {
 </TabItem>
 </Tabs>
 
-Vue.js க்கான WebdriverIO காம்போனென்ட் டெஸ்ட் தொகுப்பின் முழு உதாரணத்தையும் எங்களின் [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) இல் காணலாம்.
+Vue.js க்கான WebdriverIO கூறு சோதனை தொகுப்பின் முழு எடுத்துக்காட்டை எங்கள் [எடுத்துக்காட்டு களஞ்சியத்தில்](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) காணலாம்.
 
-## Testing Async Components in Vue3
+## Vue3-இல் ஒத்திசைவற்ற கூறுகளை சோதித்தல்
 
-If you are using Vue v3 and are testing [async components](https://vuejs.org/guide/built-ins/suspense.html#async-setup) like the following:
+நீங்கள் Vue v3 பயன்படுத்துகிறீர்கள் மற்றும் பின்வரும் [ஒத்திசைவற்ற கூறுகளை](https://vuejs.org/guide/built-ins/suspense.html#async-setup) சோதிக்கிறீர்கள் என்றால்:
 
 ```vue
 <script setup>
@@ -152,8 +149,7 @@ const posts = await res.json()
 </template>
 ```
 
-
-We recommend to use [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) and a little suspense wrapper to get the component rendered. Unfortunately [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) has no support for this yet. Create a `helper.ts` file with the following content:
+[`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) மற்றும் கூறுகளை காட்சிப்படுத்த ஒரு சிறிய suspense வழுவலை பயன்படுத்த பரிந்துரைக்கிறோம். துரதிர்ஷ்டவசமாக [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) இதற்கு ஆதரவு இல்லை. பின்வரும் உள்ளடக்கத்துடன் `helper.ts` கோப்பை உருவாக்கவும்:
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -194,8 +190,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-
-Then import and test the component as following:
+பின்னர் கூறுகளை பின்வருமாறு இறக்குமதி செய்து சோதிக்கவும்:
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -219,25 +214,23 @@ describe('Testing Async Components', () => {
 })
 ```
 
+## Nuxt இல் Vue கூறுகளை சோதித்தல்
 
-## Testing Vue Components in Nuxt
+நீங்கள் [Nuxt](https://nuxt.com/) வலை கட்டமைப்பைப் பயன்படுத்தினால், WebdriverIO தானாகவே [தானியங்கு-இறக்குமதி](https://nuxt.com/docs/guide/concepts/auto-imports) அம்சத்தை இயக்கி, உங்கள் Vue கூறுகள் மற்றும் Nuxt பக்கங்களை சோதிப்பதை எளிதாக்கும். எனினும், உங்கள் கட்டமைப்பில் வரையறுக்கப்பட்ட மற்றும் Nuxt பயன்பாட்டிற்கு சூழலை தேவைப்படும் எந்த [Nuxt தொகுதிகளுக்கும்](https://nuxt.com/modules) ஆதரவு இல்லை.
 
-If you are using the web framework [Nuxt](https://nuxt.com/), WebdriverIO will automatically enable the [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) feature and makes testing your Vue components and Nuxt pages easy. However any [Nuxt modules](https://nuxt.com/modules) that you might define in your config and requires context to the Nuxt application can not be supported.
-
-__Reasons for that are:__
-
-- WebdriverIO can't initiate a Nuxt application soley in a browser environment
-- Having component tests depend too much on the Nuxt environment creates complexity and we recommend to run these tests as e2e tests
+__இதற்கான காரணங்கள்:__
+- உலாவி சூழலில் மட்டுமே Nuxt பயன்பாட்டை WebdriverIO தொடங்க முடியாது
+- கூறு சோதனைகள் Nuxt சூழலில் அதிகம் சார்ந்திருப்பது சிக்கலை உருவாக்குகிறது, இந்த சோதனைகளை e2e சோதனைகளாக இயக்க பரிந்துரைக்கிறோம்
 
 :::info
 
-WebdriverIO also provides a service for running e2e tests on Nuxt applications, see [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) for information.
+WebdriverIO, Nuxt பயன்பாடுகளில் e2e சோதனைகள் இயக்க ஒரு சேவையையும் வழங்குகிறது, தகவலுக்கு [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) ஐப் பார்க்கவும்.
 
 :::
 
-### Mocking built-in composables
+### உள்ளமைந்த composables பொம்மைகள் உருவாக்குதல்
 
-In case your component uses a native Nuxt composable, e.g. [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO will automatically mock these functions and allows you to modify their behavior or assert against them, e.g.:
+உங்கள் கூறு உள்ளமைந்த Nuxt composable ஐப் பயன்படுத்தினால், எ.கா. [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO தானாகவே இந்த செயல்பாடுகளை பொம்மைகளாக்கி அவற்றின் நடத்தையை மாற்ற அல்லது அவற்றுக்கு எதிராக உறுதிப்படுத்த அனுமதிக்கும், எ.கா.:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
@@ -252,10 +245,9 @@ mocked(useNuxtData).mockReturnValue({
 })
 ```
 
+### மூன்றாம் தரப்பு composables கையாளுதல்
 
-### Handling 3rd party composables
-
-All [3rd party modules](https://nuxt.com/modules) that can supercharge your Nuxt project can't automatically get mocked. In those cases you need to manually mock them, e.g. given your application uses the [Supabase](https://nuxt.com/modules/supabase) module plugin:
+உங்கள் Nuxt திட்டத்தை மேம்படுத்தக்கூடிய அனைத்து [மூன்றாம் தரப்பு தொகுதிகளையும்](https://nuxt.com/modules) தானாகவே பொம்மைகளாக்க முடியாது. அந்த நிலைகளில் நீங்கள் கைமுறையாக அவற்றை பொம்மைகளாக்க வேண்டும், எ.கா. உங்கள் பயன்பாடு [Supabase](https://nuxt.com/modules/supabase) தொகுதி செருகுநிரலைப் பயன்படுத்துகிறது:
 
 ```js title=""
 export default defineNuxtConfig({
@@ -267,22 +259,19 @@ export default defineNuxtConfig({
 });
 ```
 
-
-and you create an instance of Supabase somewhere in your composables, e.g.:
+மற்றும் உங்கள் composables இல் எங்காவது Supabase இன் ஒரு நிகழ்வை உருவாக்குகிறீர்கள், எ.கா.:
 
 ```ts
 const superbase = useSupabaseClient()
 ```
 
-
-the test will fail due to:
+பின்வரும் காரணத்தால் சோதனை தோல்வியடையும்:
 
 ```
 ReferenceError: useSupabaseClient is not defined
 ```
 
-
-Here, we recommend to either mock out the whole module that uses the `useSupabaseClient` function or create a global variable that mocks this function, e.g.:
+இங்கே, `useSupabaseClient` செயல்பாட்டைப் பயன்படுத்தும் முழு தொகுதியையும் பொம்மைகளாக்க அல்லது இந்த செயல்பாட்டை பொம்மைகளாக்கும் ஒரு உலகளாவிய மாறியை உருவாக்க பரிந்துரைக்கிறோம், எ.கா.:
 
 ```ts
 import { fn } from '@wdio/browser-runner'

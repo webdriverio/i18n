@@ -3,9 +3,9 @@ id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
 ---
 
-Wait for a specific text to be displayed on the screen.
+திரையில் ஒரு குறிப்பிட்ட உரை காட்டப்படும் வரை காத்திருக்கவும்.
 
-## Usage
+## பயன்பாடு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -13,9 +13,9 @@ await browser.ocrWaitForTextDisplayed({
 });
 ```
 
-## Output
+## வெளியீடு
 
-### Logs
+### பதிவுகள்
 
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
@@ -24,16 +24,16 @@ await browser.ocrWaitForTextDisplayed({
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
-## Options
+## விருப்பங்கள்
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **வகை:** `string`
+-   **கட்டாயம்:** ஆம்
 
-The text you want to search for to click on.
+நீங்கள் கிளிக் செய்ய தேட விரும்பும் உரை.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
@@ -41,30 +41,30 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 18000 (18 seconds)
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 18000 (18 வினாடிகள்)
 
-Time in milliseconds. Be aware that the OCR process can take some time, so don't set it too low.
+மில்லி வினாடிகளில் நேரம். OCR செயல்முறை சிறிது நேரம் எடுக்கலாம் என்பதை நினைவில் கொள்ளுங்கள், எனவே அதை மிகக் குறைவாக அமைக்க வேண்டாம்.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // wait for 25 seconds
+    timeout: 25000 // 25 வினாடிகள் காத்திருக்கவும்
 });
 ```
 
 ### `timeoutMsg`
 
-- **Type:** `string`
-- **Mandatory:** no
-- **Default:** `Could not find the text "{selector}" within the requested time.`
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `Could not find the text "{selector}" within the requested time.`
 
-It overrides the default error message.
+இது இயல்புநிலை பிழை செய்தியை மாற்றுகிறது.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -75,13 +75,13 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+மாறுபாடு அதிகமாக இருந்தால், படம் இருண்டதாகவும், குறைவாக இருந்தால் வெளிச்சமாகவும் இருக்கும். இது படத்தில் உரையைக் கண்டுபிடிக்க உதவலாம். இது `-1` மற்றும் `1` இடையே உள்ள மதிப்புகளை ஏற்றுக்கொள்கிறது.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -92,12 +92,12 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **வகை:** `number`
+-   **கட்டாயம்:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+இது திரையில் OCR உரையைத் தேட வேண்டிய தேடல் பகுதியாகும். இது ஒரு உறுப்பாகவோ அல்லது `x`, `y`, `width` மற்றும் `height` கொண்ட செவ்வகமாகவோ இருக்கலாம்.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -105,13 +105,13 @@ await browser.ocrWaitForTextDisplayed({
     haystack: $("elementSelector"),
 });
 
-// OR
+// அல்லது
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// அல்லது
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: {
@@ -125,36 +125,36 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseract அங்கீகரிக்கும் மொழி. மேலும் தகவல் [இங்கே](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) காணலாம் மற்றும் ஆதரிக்கப்படும் மொழிகளை [இங்கே](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) காணலாம்.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Use Dutch as a language
+    // டச்சு மொழியைப் பயன்படுத்தவும்
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+பின்வரும் விருப்பங்களைக் கொண்டு உரையைக் கண்டுபிடிக்க fuzzy தர்க்கத்தை மாற்றலாம். இது சிறந்த பொருத்தத்தைக் கண்டுபிடிக்க உதவலாம்.
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+மாறுபட்ட இருப்பிடத்திற்கு (location மூலம் குறிப்பிடப்பட்டுள்ளது) எவ்வளவு நெருக்கமாக பொருத்தம் இருக்க வேண்டும் என்பதைத் தீர்மானிக்கிறது. மாறுபட்ட இருப்பிடத்திலிருந்து தூரமான எழுத்துக்கள் முற்றிலும் பொருந்தாததாக மதிப்பெண் பெறும். 0 தூரம் குறிப்பிட்ட சரியான இடத்தில் பொருந்துவதை வேண்டும். 0.8 threshold பயன்படுத்தி, 1000 தூரம் சரியான பொருத்தத்தை இருப்பிடத்திலிருந்து 800 எழுத்துக்களுக்குள் இருக்க வேண்டும்.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -167,13 +167,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+உரையில் எங்கே வடிவம் காணப்படும் என்பதை தோராயமாக தீர்மானிக்கிறது.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -186,13 +186,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+எந்த நிலையில் பொருத்தும் அல்காரிதம் விட்டுவிடும். 0 threshold ஒரு சரியான பொருத்தத்தை (எழுத்துக்கள் மற்றும் இடம் இரண்டிலும்) தேவைப்படுத்துகிறது, 1.0 threshold எதையும் பொருத்தும்.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -205,13 +205,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** false
 
-Whether the search should be case sensitive.
+தேடலானது case sensitive ஆக இருக்க வேண்டுமா.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -224,13 +224,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+இந்த மதிப்பை மீறும் நீளமுடைய பொருத்தங்கள் மட்டுமே திருப்பப்படும். (உதாரணமாக, முடிவில் ஒற்றை எழுத்து பொருத்தங்களைப் புறக்கணிக்க விரும்பினால், அதை 2 ஆக அமைக்கவும்)
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -243,13 +243,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+`true` என்றால், சரத்தில் ஒரு சரியான பொருத்தம் ஏற்கனவே கண்டறியப்பட்டிருந்தாலும், பொருத்தும் செயல்பாடு தேடல் வடிவத்தின் முடிவு வரை தொடரும்.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrWaitForTextDisplayed({

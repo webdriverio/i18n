@@ -1,74 +1,82 @@
 ---
 id: configuration
-title: Configuration
+title: கட்டமைப்பு
 ---
 
-Based on the [setup type](/docs/setuptypes) (e.g. using the raw protocol bindings, WebdriverIO as standalone package or the WDIO testrunner) there is a different set of options available to control the environment.
+[அமைப்பு வகை](/docs/setuptypes) அடிப்படையில் (எ.கா. raw protocol bindings, தனிப்பட்ட தொகுப்பாக WebdriverIO அல்லது WDIO testrunner பயன்படுத்துதல்) சூழலைக் கட்டுப்படுத்த வெவ்வேறு விருப்பங்கள் உள்ளன.
 
-## WebDriver Options
+## WebDriver விருப்பங்கள்
 
-The following options are defined when using the [`webdriver`](https://www.npmjs.com/package/webdriver) protocol package:
+[`webdriver`](https://www.npmjs.com/package/webdriver) protocol package பயன்படுத்தும்போது பின்வரும் விருப்பங்கள் வரையறுக்கப்பட்டுள்ளன:
 
 ### protocol
 
-Protocol to use when communicating with the driver server.
+இயக்கி சேவையகத்துடன் தொடர்பு கொள்ளும் போது பயன்படுத்த வேண்டிய நெறிமுறை.
 
-Type: `String`<br /> Default: `http`
+வகை: `String`<br />
+இயல்புநிலை: `http`
 
 ### hostname
 
-Host of your driver server.
+உங்கள் இயக்கி சேவையகத்தின் ஹோஸ்ட்.
 
-Type: `String`<br /> Default: `0.0.0.0`
+வகை: `String`<br />
+இயல்புநிலை: `0.0.0.0`
 
 ### port
 
-Port your driver server is on.
+உங்கள் இயக்கி சேவையகம் உள்ள துறைமுகம்.
 
-Type: `Number`<br /> Default: `undefined`
+வகை: `Number`<br />
+இயல்புநிலை: `undefined`
 
 ### path
 
-Path to driver server endpoint.
+இயக்கி சேவையக முடிவு புள்ளி பாதை.
 
-Type: `String`<br /> Default: `/`
+வகை: `String`<br />
+இயல்புநிலை: `/`
 
 ### queryParams
 
-Query parameters that are propagated to the driver server.
+இயக்கி சேவையகத்திற்கு பரப்பப்படும் வினவல் அளவுருக்கள்.
 
-Type: `Object`<br /> Default: `undefined`
+வகை: `Object`<br />
+இயல்புநிலை: `undefined`
 
 ### user
 
-Your cloud service username (only works for [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) or [LambdaTest](https://www.lambdatest.com) accounts). If set, WebdriverIO will automatically set connection options for you. If you don't use a cloud provider this can be used to authenticate any other WebDriver backend.
+உங்கள் கிளவுட் சேவை பயனர்பெயர் ([Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) அல்லது [LambdaTest](https://www.lambdatest.com) கணக்குகளுக்கு மட்டுமே செயல்படும்). அமைக்கப்பட்டிருந்தால், WebdriverIO தானாகவே இணைப்பு விருப்பங்களை அமைக்கும். நீங்கள் கிளவுட் வழங்குநரைப் பயன்படுத்தவில்லை எனில், இது வேறு எந்த WebDriver பின்னணியையும் அங்கீகரிக்கப் பயன்படுத்தலாம்.
 
-Type: `String`<br /> Default: `undefined`
+வகை: `String`<br />
+இயல்புநிலை: `undefined`
 
 ### key
 
-Your cloud service access key or secret key (only works for [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) or [LambdaTest](https://www.lambdatest.com) accounts). If set, WebdriverIO will automatically set connection options for you. If you don't use a cloud provider this can be used to authenticate any other WebDriver backend.
+உங்கள் கிளவுட் சேவை அணுகல் விசை அல்லது ரகசிய விசை ([Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) அல்லது [LambdaTest](https://www.lambdatest.com) கணக்குகளுக்கு மட்டுமே செயல்படும்). அமைக்கப்பட்டிருந்தால், WebdriverIO தானாகவே இணைப்பு விருப்பங்களை அமைக்கும். நீங்கள் கிளவுட் வழங்குநரைப் பயன்படுத்தவில்லை எனில், இது வேறு எந்த WebDriver பின்னணியையும் அங்கீகரிக்கப் பயன்படுத்தலாம்.
 
-Type: `String`<br /> Default: `undefined`
+வகை: `String`<br />
+இயல்புநிலை: `undefined`
 
 ### capabilities
 
-Defines the capabilities you want to run in your WebDriver session. Check out the [WebDriver Protocol](https://w3c.github.io/webdriver/#capabilities) for more details. If you run an older driver that doesn't support the WebDriver protocol, you’ll need to use the [JSONWireProtocol capabilities](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) to successfully run a session.
+உங்கள் WebDriver அமர்வில் இயக்க விரும்பும் திறன்களை வரையறுக்கிறது. மேலும் விவரங்களுக்கு [WebDriver Protocol](https://w3c.github.io/webdriver/#capabilities) ஐப் பார்க்கவும். WebDriver நெறிமுறையை ஆதரிக்காத பழைய இயக்கியை இயக்கினால், அமர்வை வெற்றிகரமாக இயக்க [JSONWireProtocol capabilities](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) ஐப் பயன்படுத்த வேண்டும்.
 
-Next to the WebDriver based capabilities you can apply browser and vendor specific options that allow deeper configuration to the remote browser or device. These are documented in the corresponding vendor docs, e.g.:
+WebDriver அடிப்படையிலான திறன்களுக்கு அடுத்து, தொலைநிலை உலாவி அல்லது சாதனத்தின் ஆழமான கட்டமைப்பை அனுமதிக்கும் உலாவி மற்றும் விற்பனையாளர் குறிப்பிட்ட விருப்பங்களை நீங்கள் பயன்படுத்தலாம். இவை தொடர்புடைய விற்பனையாளர் ஆவணங்களில் ஆவணப்படுத்தப்பட்டுள்ளன, எ.கா.:
 
-- `goog:chromeOptions`: for [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
-- `moz:firefoxOptions`: for [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
-- `ms:edgeOptions`: for [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)
-- `sauce:options`: for [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)
-- `bstack:options`: for [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
-- `selenoid:options`: for [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
+- `goog:chromeOptions`: [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106) க்கு
+- `moz:firefoxOptions`: [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) க்கு
+- `ms:edgeOptions`: [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class) க்கு
+- `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional) க்கு
+- `bstack:options`: [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#) க்கு
+- `selenoid:options`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc) க்கு
 
-Additionally, a useful utility is the Sauce Labs [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/), which helps you create this object by clicking together your desired capabilities.
+கூடுதலாக, Sauce Labs [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/) என்பது உங்கள் விரும்பிய திறன்களை கிளிக் செய்வதன் மூலம் இந்த பொருளை உருவாக்க உதவும் பயனுள்ள கருவியாகும்.
 
-Type: `Object`<br /> Default: `null`
+வகை: `Object`<br />
+இயல்புநிலை: `null`
 
-**Example:**
+**எடுத்துக்காட்டு:**
 
 ```js
 {
@@ -78,39 +86,45 @@ Type: `Object`<br /> Default: `null`
 }
 ```
 
-If you’re running web or native tests on mobile devices, `capabilities` differs from the WebDriver protocol. See the [Appium Docs](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/) for more details.
+நீங்கள் மொபைல் சாதனங்களில் வலை அல்லது நேடிவ் சோதனைகளை இயக்கினால், `capabilities` WebDriver நெறிமுறையிலிருந்து வேறுபடுகிறது. மேலும் விவரங்களுக்கு [Appium Docs](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/) ஐப் பார்க்கவும்.
 
 ### logLevel
 
-Level of logging verbosity.
+பதிவுசெய்தல் வெளிப்படைத்தன்மை நிலை.
 
-Type: `String`<br /> Default: `info`<br /> Options: `trace` | `debug` | `info` | `warn` | `error` | `silent`
+வகை: `String`<br />
+இயல்புநிலை: `info`<br />
+விருப்பங்கள்: `trace` | `debug` | `info` | `warn` | `error` | `silent`
 
 ### outputDir
 
-Directory to store all testrunner log files (including reporter logs and `wdio` logs). If not set, all logs are streamed to `stdout`. Since most reporters are made to log to `stdout`, it is recommended to only use this option for specific reporters where it makes more sense to push report into a file (like the `junit` reporter, for example).
+அனைத்து testrunner பதிவு கோப்புகளையும் (அறிக்கையாளர் பதிவுகள் மற்றும் `wdio` பதிவுகள் உள்ளிட்டவை) சேமிக்க கோப்பகம். அமைக்கப்படவில்லை என்றால், அனைத்து பதிவுகளும் `stdout`க்கு ஸ்ட்ரீம் செய்யப்படுகின்றன. பெரும்பாலான அறிக்கையாளர்கள் `stdout`க்கு பதிவு செய்யும் வகையில் உருவாக்கப்பட்டுள்ளதால், அறிக்கையை ஒரு கோப்பிற்கு தள்ள அதிக அர்த்தமுள்ள குறிப்பிட்ட அறிக்கையாளர்களுக்கு மட்டுமே இந்த விருப்பத்தைப் பயன்படுத்த பரிந்துரைக்கப்படுகிறது (எடுத்துக்காட்டாக, `junit` அறிக்கையாளர்).
 
-When running in standalone mode, the only log generated by WebdriverIO will be the `wdio` log.
+தனித்து நிற்கும் முறையில் இயங்கும்போது, WebdriverIO உருவாக்கிய ஒரே பதிவு `wdio` பதிவாக இருக்கும்.
 
-Type: `String`<br /> Default: `null`
+வகை: `String`<br />
+இயல்புநிலை: `null`
 
 ### connectionRetryTimeout
 
-Timeout for any WebDriver request to a driver or grid.
+இயக்கி அல்லது கட்டத்திற்கான எந்த WebDriver கோரிக்கைக்கும் நேரம் முடிவு.
 
-Type: `Number`<br /> Default: `120000`
+வகை: `Number`<br />
+இயல்புநிலை: `120000`
 
 ### connectionRetryCount
 
-Maximum count of request retries to the Selenium server.
+Selenium சேவையகத்திற்கான கோரிக்கை மறுமுயற்சிகளின் அதிகபட்ச எண்ணிக்கை.
 
-Type: `Number`<br /> Default: `3`
+வகை: `Number`<br />
+இயல்புநிலை: `3`
 
 ### agent
 
-Allows you to use a custom`http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) to make requests.
+கோரிக்கைகளைச் செய்ய தனிப்பயன் `http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) ஐப் பயன்படுத்த உங்களை அனுமதிக்கிறது.
 
-Type: `Object`<br /> Default:
+வகை: `Object`<br />
+இயல்புநிலை:
 
 ```js
 {
@@ -121,7 +135,7 @@ Type: `Object`<br /> Default:
 
 ### headers
 
-Specify custom `headers` to pass into every WebDriver request. If your Selenium Grid requires Basic Authentification we recommend to pass in an `Authorization` header through this option to authenticate your WebDriver requests, e.g.:
+ஒவ்வொரு WebDriver கோரிக்கையிலும் அனுப்ப தனிப்பயன் `headers` ஐக் குறிப்பிடவும். உங்கள் Selenium Grid அடிப்படை அங்கீகாரத்தை தேவைப்படுத்தினால், உங்கள் WebDriver கோரிக்கைகளை அங்கீகரிக்க இந்த விருப்பத்தின் மூலம் ஒரு `Authorization` header ஐ அனுப்ப பரிந்துரைக்கிறோம், எ.கா.:
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
@@ -143,49 +157,57 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Type: `Object`<br /> Default: `{}`
+வகை: `Object`<br />
+இயல்புநிலை: `{}`
 
 ### transformRequest
 
-Function intercepting [HTTP request options](https://github.com/sindresorhus/got#options) before a WebDriver request is made
+WebDriver கோரிக்கை செய்யப்படுவதற்கு முன் [HTTP request options](https://github.com/sindresorhus/got#options) ஐ கட்டுப்படுத்தும் செயல்பாடு
 
-Type: `(RequestOptions) => RequestOptions`<br /> Default: *none*
+வகை: `(RequestOptions) => RequestOptions`<br />
+இயல்புநிலை: *எதுவுமில்லை*
 
 ### transformResponse
 
-Function intercepting HTTP response objects after a WebDriver response has arrived. The function is passed the original response object as the first and the corresponding `RequestOptions` as the second argument.
+WebDriver பதில் வந்த பிறகு HTTP பதில் பொருள்களை கட்டுப்படுத்தும் செயல்பாடு. இந்த செயல்பாட்டிற்கு முதல் அளவுருவாக அசல் பதில் பொருளும், இரண்டாவது அளவுருவாக அதற்கு இணையான `RequestOptions` ஐயும் அனுப்பப்படுகிறது.
 
-Type: `(Response, RequestOptions) => Response`<br /> Default: *none*
+வகை: `(Response, RequestOptions) => Response`<br />
+இயல்புநிலை: *எதுவுமில்லை*
 
 ### strictSSL
 
-Whether it does not require SSL certificate to be valid. It can be set via an environment variables as `STRICT_SSL` or `strict_ssl`.
+SSL சான்றிதழ் செல்லுபடியாகத் தேவையில்லை என்பதா.
+இதை `STRICT_SSL` அல்லது `strict_ssl` என்ற சுற்றுச்சூழல் மாறிகள் மூலம் அமைக்கலாம்.
 
-Type: `Boolean`<br /> Default: `true`
+வகை: `Boolean`<br />
+இயல்புநிலை: `true`
 
 ### enableDirectConnect
 
-Whether enable [Appium direct connection feature](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments). It does nothing if the response did not have proper keys while the flag is enabled.
+[Appium நேரடி இணைப்பு அம்சத்தை](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments) இயக்குவதா.
+கொடி இயக்கப்பட்டிருந்தாலும் பதிலில் சரியான விசைகள் இல்லாவிட்டால் இது எதுவும் செய்யாது.
 
-Type: `Boolean`<br /> Default: `true`
+வகை: `Boolean`<br />
+இயல்புநிலை: `true`
 
 ### cacheDir
 
-The path to the root of the cache directory. This directory is used to store all drivers that are downloaded when attempting to start a session.
+கேச் டைரக்டரியின் ரூட்டுக்கான பாதை. இந்த டைரக்டரி ஒரு அமர்வைத் தொடங்க முயற்சிக்கும்போது பதிவிறக்கம் செய்யப்படும் அனைத்து டிரைவர்களையும் சேமிக்கப் பயன்படுகிறது.
 
-Type: `String`<br /> Default: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+வகை: `String`<br />
+இயல்புநிலை: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ---
 
 ## WebdriverIO
 
-The following options (including the ones listed above) can be used with WebdriverIO in standalone:
+பின்வரும் விருப்பங்களை (மேலே பட்டியலிடப்பட்டவையும் சேர்த்து) WebdriverIO-ஐ தனித்து பயன்படுத்தலாம்:
 
 ### automationProtocol
 
-Define the protocol you want to use for your browser automation. Currently only [`webdriver`](https://www.npmjs.com/package/webdriver) is supported, as it is the main browser automation technology WebdriverIO uses.
+உங்கள் உலாவி தானியக்கத்திற்கு நீங்கள் பயன்படுத்த விரும்பும் நெறிமுறையை வரையறுக்கவும். தற்போது [`webdriver`](https://www.npmjs.com/package/webdriver) மட்டுமே ஆதரிக்கப்படுகிறது, ஏனெனில் இது WebdriverIO பயன்படுத்தும் முக்கிய உலாவி தானியக்க தொழில்நுட்பமாகும்.
 
-If you want to automate the browser using a different automation technology, make you set this property to a path that resolves to a module that adheres to the following interface:
+நீங்கள் வேறு தானியக்க தொழில்நுட்பத்தைப் பயன்படுத்தி உலாவியை தானியக்கப்படுத்த விரும்பினால், இந்த பண்பை பின்வரும் இடைமுகத்தைக் கடைப்பிடிக்கும் ஒரு மதிப்புக்கு அமைக்கவும்:
 
 ```ts
 import type { Capabilities } from '@wdio/types';
@@ -235,182 +257,193 @@ export default class YourAutomationLibrary {
 }
 ```
 
-Type: `String`<br />
-Default: `webdriver`
+வகை: `String`<br />
+இயல்புநிலை: `webdriver`
 
 ### baseUrl
 
-Shorten `url` command calls by setting a base URL.
-- If your `url` parameter starts with `/`, then `baseUrl` is prepended (except the `baseUrl` path, if it has one).
-- If your `url` parameter starts without a scheme or `/` (like `some/path`), then the full `baseUrl` is prepended directly.
+அடிப்படை URL ஐ அமைப்பதன் மூலம் `url` கட்டளை அழைப்புகளை குறுக்கவும்.
+- உங்கள் `url` அளவுரு `/` உடன் தொடங்கினால், `baseUrl` முன்னொட்டப்படும் (baseUrl பாதை இருந்தால் அதைத் தவிர).
+- உங்கள் `url` அளவுரு ஒரு திட்டம் அல்லது `/` இல்லாமல் தொடங்கினால் (எ.கா. `some/path`), முழு `baseUrl` நேரடியாக முன்னொட்டப்படும்.
 
-Type: `String`<br /> Default: `null`
+வகை: `String`<br />
+இயல்புநிலை: `null`
 
 ### waitforTimeout
 
-Default timeout for all `waitFor*` commands. (Note the lowercase `f` in the option name.) This timeout __only__ affects commands starting with `waitFor*` and their default wait time.
+அனைத்து `waitFor*` கட்டளைகளுக்கும் இயல்புநிலை நேரம் முடிவு. (விருப்ப பெயரில் சிறிய `f` உள்ளதைக் கவனிக்கவும்.) இந்த நேரம் முடிவு `waitFor*` உடன் தொடங்கும் கட்டளைகளை __மட்டுமே__ பாதிக்கும் மற்றும் அவற்றின் இயல்புநிலை காத்திருப்பு நேரத்தை பாதிக்கும்.
 
-To increase the timeout for a _test_, please see the framework docs.
+ஒரு _சோதனைக்கான_ நேரம் முடிவை அதிகரிக்க, கட்டமைப்பு ஆவணங்களைப் பார்க்கவும்.
 
-Type: `Number`<br /> Default: `5000`
+வகை: `Number`<br />
+இயல்புநிலை: `5000`
 
 ### waitforInterval
 
-Default interval for all `waitFor*` commands to check if an expected state (e.g., visibility) has been changed.
+எதிர்பார்க்கப்படும் நிலை (எ.கா., தெரிவுநிலை) மாற்றப்பட்டுள்ளதா என்பதைச் சரிபார்க்க அனைத்து `waitFor*` கட்டளைகளுக்கும் இயல்புநிலை இடைவெளி.
 
-Type: `Number`<br /> Default: `100`
+வகை: `Number`<br />
+இயல்புநிலை: `100`
 
 ### region
 
-If running on Sauce Labs, you can choose to run tests between different data centers: US or EU. To change your region to EU, add `region: 'eu'` to your config.
+Sauce Labs இல் இயங்கினால், வெவ்வேறு தரவு மையங்களுக்கு இடையே சோதனைகளை இயக்க நீங்கள் தேர்வு செய்யலாம்: US அல்லது EU.
+உங்கள் பிராந்தியத்தை EU க்கு மாற்ற, உங்கள் கட்டமைப்பில் `region: 'eu'` சேர்க்கவும்.
 
-__Note:__ This only has an effect if you provide `user` and `key` options that are connected to your Sauce Labs account.
+__குறிப்பு:__ உங்கள் Sauce Labs கணக்குடன் இணைக்கப்பட்டுள்ள `user` மற்றும் `key` விருப்பங்களை நீங்கள் வழங்கினால் மட்டுமே இது பயனைப் பெறும்.
 
-Type: `String`<br /> Default: `us`
+வகை: `String`<br />
+இயல்புநிலை: `us`
 
-*(only for vm and or em/simulators)*
+*(vm மற்றும் அல்லது em/simulators க்கு மட்டுமே)*
 
 ---
 
-## Testrunner Options
+## Testrunner விருப்பங்கள்
 
-The following options (including the ones listed above) are defined only for running WebdriverIO with the WDIO testrunner:
+WDIO testrunner உடன் WebdriverIO ஐ இயக்குவதற்கு மட்டுமே பின்வரும் விருப்பங்கள் (மேலே பட்டியலிடப்பட்டவையும் சேர்த்து) வரையறுக்கப்பட்டுள்ளன:
 
 ### specs
 
-Define specs for test execution. You can either specify a glob pattern to match multiple files at once or wrap a glob or set of paths into an array to run them within a single worker process. All paths are seen as relative from the config file path.
+சோதனை இயக்கத்திற்கான specs ஐ வரையறுக்கவும். நீங்கள் ஒரே நேரத்தில் பல கோப்புகளை பொருத்த ஒரு glob pattern ஐக் குறிப்பிடலாம் அல்லது ஒரு glob அல்லது பாதைகளை ஒரு தனி worker செயல்முறையில் இயக்க ஒரு அரைத்தடைக்குள் வைக்கலாம். அனைத்து பாதைகளும் கட்டமைப்பு கோப்பு பாதையிலிருந்து ஒப்பீட்டளவில் பார்க்கப்படுகின்றன.
 
-Type: `(String | String[])[]`<br /> Default: `[]`
+வகை: `(String | String[])[]`<br />
+இயல்புநிலை: `[]`
 
 ### exclude
 
-Exclude specs from test execution. All paths are seen as relative from the config file path.
+சோதனை இயக்கத்திலிருந்து specs ஐ விலக்கவும். அனைத்து பாதைகளும் கட்டமைப்பு கோப்பு பாதையிலிருந்து ஒப்பீட்டளவில் பார்க்கப்படுகின்றன.
 
-Type: `String[]`<br /> Default: `[]`
+வகை: `String[]`<br />
+இயல்புநிலை: `[]`
 
 ### suites
 
-An object describing various of suites, which you can then specify with the `--suite` option on the `wdio` CLI.
+பல்வேறு suites ஐ விவரிக்கும் ஒரு பொருள், இதை நீங்கள் `wdio` CLI இல் `--suite` விருப்பத்துடன் குறிப்பிடலாம்.
 
-Type: `Object`<br /> Default: `{}`
+வகை: `Object`<br />
+இயல்புநிலை: `{}`
 
 ### capabilities
 
-The same as the `capabilities` section described above, except with the option to specify either a [`multiremote`](/docs/multiremote) object, or multiple WebDriver sessions in an array for parallel execution.
+மேலே விவரிக்கப்பட்ட `capabilities` பிரிவுக்கு ஒத்ததுதான், ஆனால் [`multiremote`](/docs/multiremote) பொருளைக் குறிப்பிடும் விருப்பம் அல்லது இணை செயலாக்கத்திற்கான பல WebDriver அமர்வுகளை ஒரு வரிசையில் குறிப்பிடும் விருப்பம் உள்ளது.
 
-You can apply the same vendor and browser specific capabilities as defined [above](/docs/configuration#capabilities).
+[மேலே](/docs/configuration#capabilities) வரையறுக்கப்பட்டதைப் போலவே அதே விற்பனையாளர் மற்றும் உலாவி குறிப்பிட்ட திறன்களை நீங்கள் பயன்படுத்தலாம்.
 
-Type: `Object`|`Object[]`<br /> Default: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
+வகை: `Object`|`Object[]`<br />
+இயல்புநிலை: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
 
 ### maxInstances
 
-Maximum number of total parallel running workers.
+மொத்த இணை இயங்கும் workers இன் அதிகபட்ச எண்ணிக்கை.
 
-__Note:__ that it may be a number as high as `100`, when the tests are being performed on some external vendors such as Sauce Labs's machines. There, the tests are not tested on a single machine, but rather, on multiple VMs. If the tests are to be run on a local development machine, use a number that is more reasonable, such as `3`, `4`, or `5`. Essentially, this is the number of browsers that will be concurrently started and running your tests at the same time, so it depends on how much RAM there is on your machine, and how many other apps are running on your machine.
+__குறிப்பு:__ சோதனைகள் Sauce Labs போன்ற வெளிப்புற விற்பனையாளர்களின் இயந்திரங்களில் செய்யப்படும்போது, இது `100` போன்ற அதிக எண்ணிக்கையாக இருக்கலாம். அங்கே, சோதனைகள் ஒரு இயந்திரத்தில் மட்டுமல்ல, பல VMs களில் சோதிக்கப்படுகின்றன. சோதனைகள் உள்ளூர் மேம்பாட்டு இயந்திரத்தில் இயக்கப்பட வேண்டுமானால், `3`, `4`, அல்லது `5` போன்ற நியாயமான எண்ணை பயன்படுத்தவும். அடிப்படையில், இது ஒரே நேரத்தில் தொடங்கி உங்கள் சோதனைகளை இயக்கும் உலாவிகளின் எண்ணிக்கையாகும், எனவே இது உங்கள் இயந்திரத்தில் எவ்வளவு RAM உள்ளது மற்றும் உங்கள் இயந்திரத்தில் இயங்கும் மற்ற பயன்பாடுகளைப் பொறுத்தது.
 
-You can also apply `maxInstances` within your capability objects using the `wdio:maxInstances` capability. This will limit the amount of parallel sessions for that particular capability.
+`wdio:maxInstances` திறனைப் பயன்படுத்தி உங்கள் திறன் பொருள்களுக்குள் `maxInstances` ஐப் பயன்படுத்தலாம். இது அந்த குறிப்பிட்ட திறனுக்கான இணை அமர்வுகளின் எண்ணிக்கையை வரம்பிடும்.
 
-Type: `Number`<br /> Default: `100`
+வகை: `Number`<br />
+இயல்புநிலை: `100`
 
 ### maxInstancesPerCapability
 
-Maximum number of total parallel running workers per capability.
+ஒரு திறனுக்கான மொத்த இணை இயங்கும் workers இன் அதிகபட்ச எண்ணிக்கை.
 
-Type: `Number`<br /> Default: `100`
+வகை: `Number`<br />
+இயல்புநிலை: `100`
 
 ### injectGlobals
 
-Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment. If you set to `false`, you should import from `@wdio/globals`, e.g.:
+WebdriverIO இன் globals (எ.கா. `browser`, `$` மற்றும் `$$`) ஐ global சூழலில் செருகுகிறது.
+நீங்கள் `false` என அமைத்தால், `@wdio/globals` இலிருந்து import செய்ய வேண்டும், எ.கா.:
 
 ```ts
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-Note: WebdriverIO doesn't handle injection of test framework specific globals.
+குறிப்பு: WebdriverIO சோதனை கட்டமைப்பு குறிப்பிட்ட globals இன் உட்செலுத்தலை கையாளவில்லை.
 
-Type: `Boolean`<br /> Default: `true`
+வகை: `Boolean`<br />
+இயல்புநிலை: `true`
 
 ### bail
 
-If you want your test run to stop after a specific number of test failures, use `bail`. (It defaults to `0`, which runs all tests no matter what.) **Note:** A test in this context are all tests within a single spec file (when using Mocha or Jasmine) or all steps within a feature file (when using Cucumber). If you want to control the bail behavior within tests of a single test file, take a look at the available [framework](frameworks) options.
+குறிப்பிட்ட எண்ணிக்கையிலான சோதனை தோல்விகளுக்குப் பிறகு உங்கள் சோதனை ஓட்டத்தை நிறுத்த விரும்பினால், `bail` ஐப் பயன்படுத்தவும்.
+(இது இயல்பாக `0` ஆக உள்ளது, இது எல்லா சோதனைகளையும் இயக்கும்.) **குறிப்பு:** இந்த சூழலில் ஒரு சோதனை என்பது ஒற்றை spec கோப்பில் உள்ள அனைத்து சோதனைகளும் (Mocha அல்லது Jasmine பயன்படுத்தும்போது) அல்லது ஒரு feature கோப்பில் உள்ள அனைத்து படிகளும் (Cucumber பயன்படுத்தும்போது). ஒரு தனி சோதனை கோப்பின் சோதனைகளுக்குள் bail நடத்தையைக் கட்டுப்படுத்த விரும்பினால், கிடைக்கக்கூடிய [கட்டமைப்பு](frameworks) விருப்பங்களைப் பார்க்கவும்.
 
-Type: `Number`<br /> Default: `0` (don't bail; run all tests)
+வகை: `Number`<br />
+இயல்புநிலை: `0` (bail செய்யாதே; அனைத்து சோதனைகளையும் இயக்கவும்)
 
 ### specFileRetries
 
-The number of times to retry an entire specfile when it fails as a whole.
+முழுமையாக தோல்வியுறும் முழு specfile ஐ மறுமுயற்சி செய்யும் முறைகளின் எண்ணிக்கை.
 
-Type: `Number`<br /> Default: `0`
+வகை: `Number`<br />
+இயல்புநிலை: `0`
 
 ### specFileRetriesDelay
 
-Delay in seconds between the spec file retry attempts
+Spec கோப்பு மறுமுயற்சி முயற்சிகளுக்கு இடையிலான தாமதம் (வினாடிகளில்)
 
-Type: `Number`<br /> Default: `0`
+வகை: `Number`<br />
+இயல்புநிலை: `0`
 
 ### specFileRetriesDeferred
 
-Whether or not retried spec files should be retried immediately or deferred to the end of the queue.
+மறுமுயற்சி செய்யப்பட்ட spec கோப்புகள் உடனடியாக மறுமுயற்சி செய்யப்பட வேண்டுமா அல்லது வரிசையின் முடிவில் ஒத்திவைக்கப்பட வேண்டுமா.
 
-Type: `Boolean`<br />
-Default: `true`
-
-### groupLogsByTestSpec
-
-Choose the log output view.
-
-If set to `false` logs from different test files will be printed in real-time. Please note that this may result in the mixing of log outputs from different files when running in parallel.
-
-If set to `true` log outputs will be grouped by Test Spec and printed only when the Test Spec is completed.
-
-By default, it is set to `false` so logs are printed in real-time.
-
-Type: `Boolean`<br />
-Default: `false`
+வகை: `Boolean`<br />
+இயல்புநிலை: `true`
 
 ### groupLogsByTestSpec
 
-Choose the log output view.
+Log வெளியீடு பார்வையைத் தேர்வுசெய்க.
 
-If set to `false` logs from different test files will be printed in real-time. Please note that this may result in the mixing of log outputs from different files when running in parallel.
+`false` என அமைக்கப்பட்டிருந்தால், வெவ்வேறு சோதனை கோப்புகளிலிருந்து வரும் பதிவுகள் நிகழ்நேரத்தில் அச்சிடப்படும். இணையாக இயங்கும்போது வெவ்வேறு கோப்புகளிலிருந்து log வெளியீடுகள் கலப்பதற்கு இது வழிவகுக்கும் என்பதை நினைவில் கொள்ளவும்.
 
-If set to `true` log outputs will be grouped by Test Spec and printed only when the Test Spec is completed.
+`true` என அமைக்கப்பட்டிருந்தால், log வெளியீடுகள் Test Spec படி குழுவாக்கப்பட்டு, Test Spec முடிந்த பிறகே அச்சிடப்படும்.
 
-By default, it is set to `false` so logs are printed in real-time.
+இயல்பாக, இது `false` என அமைக்கப்பட்டுள்ளது, எனவே பதிவுகள் நிகழ்நேரத்தில் அச்சிடப்படுகின்றன.
 
-Type: `Boolean`<br /> Default: `false`
+வகை: `Boolean`<br />
+இயல்புநிலை: `false`
 
 ### services
 
-Services take over a specific job you don't want to take care of. They enhance your test setup with almost no effort.
+நீங்கள் கவனிக்க விரும்பாத ஒரு குறிப்பிட்ட வேலையை சேவைகள் ஏற்றுக்கொள்கின்றன. அவை கிட்டத்தட்ட எந்த முயற்சியும் இல்லாமல் உங்கள் சோதனை அமைப்பை மேம்படுத்துகின்றன.
 
-Type: `String[]|Object[]`<br /> Default: `[]`
+வகை: `String[]|Object[]`<br />
+இயல்புநிலை: `[]`
 
 ### framework
 
-Defines the test framework to be used by the WDIO testrunner.
+WDIO testrunner ஆல் பயன்படுத்தப்பட வேண்டிய சோதனை கட்டமைப்பை வரையறுக்கிறது.
 
-Type: `String`<br /> Default: `mocha`<br /> Options: `mocha` | `jasmine`
+வகை: `String`<br />
+இயல்புநிலை: `mocha`<br />
+விருப்பங்கள்: `mocha` | `jasmine`
 
-### mochaOpts, jasmineOpts and cucumberOpts
+### mochaOpts, jasmineOpts மற்றும் cucumberOpts
 
-Specific framework-related options. See the framework adapter documentation on which options are available. Read more on this in [Frameworks](frameworks).
+குறிப்பிட்ட கட்டமைப்பு தொடர்பான விருப்பங்கள். எந்த விருப்பங்கள் கிடைக்கும் என்பதைப் பற்றி கட்டமைப்பு அடாப்டர் ஆவணங்களைப் பார்க்கவும். [Frameworks](frameworks) இல் இதைப் பற்றி மேலும் படிக்கவும்.
 
-Type: `Object`<br /> Default: `{ timeout: 10000 }`
+வகை: `Object`<br />
+இயல்புநிலை: `{ timeout: 10000 }`
 
 ### cucumberFeaturesWithLineNumbers
 
-List of cucumber features with line numbers (when [using cucumber framework](./Frameworks.md#using-cucumber)).
+வரி எண்களுடன் கூடிய cucumber அம்சங்களின் பட்டியல் ([cucumber கட்டமைப்பைப் பயன்படுத்தும்போது](./Frameworks.md#using-cucumber)).
 
-Type: `String[]` Default: `[]`
+வகை: `String[]`
+இயல்புநிலை: `[]`
 
 ### reporters
 
-List of reporters to use. A reporter can be either a string, or an array of `['reporterName', { /* reporter options */}]` where the first element is a string with the reporter name and the second element an object with reporter options.
+பயன்படுத்த வேண்டிய அறிக்கையாளர்களின் பட்டியல். ஒரு அறிக்கையாளர் ஒரு string ஆகவோ, அல்லது `['reporterName', { /* reporter options */}]` என்ற array ஆகவோ இருக்கலாம், இதில் முதல் element அறிக்கையாளரின் பெயரைக் கொண்ட string மற்றும் இரண்டாவது element அறிக்கையாளரின் விருப்பங்களைக் கொண்ட object.
 
-Type: `String[]|Object[]`<br /> Default: `[]`
+வகை: `String[]|Object[]`<br />
+இயல்புநிலை: `[]`
 
-Example:
+எடுத்துக்காட்டு:
 
 ```js
 reporters: [
@@ -425,37 +458,42 @@ reporters: [
 
 ### reporterSyncInterval
 
-Determines in which interval the reporter should check if they are synchronized if they report their logs asynchronously (e.g. if logs are streamed to a 3rd party vendor).
+அறிக்கையாளர்கள் தங்கள் பதிவுகளை ஒத்திசைக்கப்பட்டுள்ளதா என்பதை சரிபார்க்க வேண்டிய இடைவெளியை நிர்ணயிக்கிறது, அவர்கள் தங்கள் பதிவுகளை ஒத்திசைவற்ற முறையில் தெரிவிக்கும் போது (எ.கா. பதிவுகள் ஒரு 3வது தரப்பு விற்பனையாளருக்கு ஸ்ட்ரீம் செய்யப்பட்டால்).
 
-Type: `Number`<br /> Default: `100` (ms)
+வகை: `Number`<br />
+இயல்புநிலை: `100` (ms)
 
 ### reporterSyncTimeout
 
-Determines the maximum time reporters have to finish uploading all their logs until an error is being thrown by the testrunner.
+அறிக்கையாளர்கள் தங்கள் அனைத்து பதிவுகளையும் பதிவேற்றுவதை முடிக்க வேண்டிய அதிகபட்ச நேரத்தை நிர்ணயிக்கிறது, அதன்பிறகு testrunner ஆல் ஒரு பிழை ஏற்படுகிறது.
 
-Type: `Number`<br /> Default: `5000` (ms)
+வகை: `Number`<br />
+இயல்புநிலை: `5000` (ms)
 
 ### execArgv
 
-Node arguments to specify when launching child processes.
+உள் செயல்முறைகளைத் தொடங்கும்போது குறிப்பிட வேண்டிய Node arguments.
 
-Type: `String[]`<br /> Default: `null`
+வகை: `String[]`<br />
+இயல்புநிலை: `null`
 
 ### filesToWatch
 
-A list of glob supporting string patterns that tell the testrunner to have it additionally watch other files, e.g. application files, when running it with the `--watch` flag. By default the testrunner already watches all spec files.
+testrunner ஐ `--watch` flag உடன் இயக்கும்போது, கூடுதலாக பிற கோப்புகளை, எ.கா. பயன்பாட்டு கோப்புகளை கவனிக்க testrunner க்கு சொல்லும் glob ஆதரிக்கும் string patterns பட்டியல். இயல்பாக testrunner ஏற்கனவே அனைத்து spec கோப்புகளையும் கவனிக்கிறது.
 
-Type: `String[]`<br /> Default: `[]`
+வகை: `String[]`<br />
+இயல்புநிலை: `[]`
 
 ### updateSnapshots
 
-Set to true if you want to update your snapshots. Ideally used as part of a CLI parameter, e.g. `wdio run wdio.conf.js --s`.
+உங்கள் ஸ்னாப்ஷாட்களை புதுப்பிக்க விரும்பினால் true என அமைக்கவும். இதை CLI அளவுருவாகப் பயன்படுத்துவதே சிறந்தது, எ.கா. `wdio run wdio.conf.js --s`.
 
-Type: `'new' | 'all' | 'none'`<br /> Default: `none` if not provided and tests run in CI, `new` if not provided, otherwise what's been provided
+வகை: `'new' | 'all' | 'none'`<br />
+இயல்புநிலை: வழங்கப்படவில்லை மற்றும் சோதனைகள் CI இல் இயங்கினால் `none`, வழங்கப்படவில்லை என்றால் `new`, இல்லையெனில் வழங்கப்பட்டது
 
 ### resolveSnapshotPath
 
-Overrides default snapshot path. For example, to store snapshots next to test files.
+இயல்புநிலை ஸ்னாப்ஷாட் பாதையை மாற்றியமைக்கிறது. எடுத்துக்காட்டாக, ஸ்னாப்ஷாட்களை சோதனை கோப்புகளுக்கு அடுத்து சேமிக்க.
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -463,278 +501,280 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Type: `(testPath: string, snapExtension: string) => string`<br /> Default: stores snapshot files in `__snapshots__` directory next to test file
+வகை: `(testPath: string, snapExtension: string) => string`<br />
+இயல்புநிலை: ஸ்னாப்ஷாட் கோப்புகளை சோதனை கோப்புக்கு அடுத்துள்ள `__snapshots__` கோப்பகத்தில் சேமிக்கிறது
 
 ### tsConfigPath
 
-WDIO uses `tsx` to compile TypeScript files.  Your TSConfig is automatically detected from the current working directory but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH environment variable.
+WDIO TypeScript கோப்புகளை தொகுக்க `tsx` ஐப் பயன்படுத்துகிறது. உங்கள் TSConfig தற்போதைய பணி செய்யும் கோப்பகத்திலிருந்து தானாகவே கண்டறியப்படுகிறது, ஆனால் நீங்கள் இங்கே ஒரு தனிப்பயன் பாதையைக் குறிப்பிடலாம் அல்லது TSX_TSCONFIG_PATH சுற்றுச்சூழல் மாறியை அமைக்கலாம்.
 
-See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+`tsx` ஆவணங்களைப் பார்க்கவும்: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
 
-Type: `String`<br /> Default: `null`<br />
+வகை: `String`<br />
+இயல்புநிலை: `null`<br />
 
 ## Hooks
 
-The WDIO testrunner allows you to set hooks to be triggered at specific times of the test lifecycle. This allows custom actions (e.g. take screenshot if a test fails).
+WDIO testrunner சோதனை வாழ்க்கைச் சக்கரத்தின் குறிப்பிட்ட நேரங்களில் தூண்டப்படும் hooks ஐ அமைக்க அனுமதிக்கிறது. இது தனிப்பயன் செயல்களை அனுமதிக்கிறது (எ.கா. ஒரு சோதனை தோல்வியுற்றால் திரைப்பிடிப்பை எடுக்கவும்).
 
-Every hook has as parameter specific information about the lifecycle (e.g. information about the test suite or test). Read more about all hook properties in [our example config](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
+ஒவ்வொரு hook க்கும் அளவுருவாக வாழ்க்கைச் சக்கரத்தைப் பற்றிய குறிப்பிட்ட தகவல்கள் உள்ளன (எ.கா. சோதனை suite அல்லது சோதனைப் பற்றிய தகவல்). [எங்கள் உதாரண கட்டமைப்பில்](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326) அனைத்து hook பண்புகளைப் பற்றி மேலும் படிக்கவும்.
 
-**Note:** Some hooks (`onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete`) are executed in a different process and therefore can not share any global data with the other hooks that live in the worker process.
+**குறிப்பு:** சில hooks (`onPrepare`, `onWorkerStart`, `onWorkerEnd` மற்றும் `onComplete`) வேறு செயல்முறையில் செயல்படுத்தப்படுகின்றன, எனவே worker செயல்முறையில் உள்ள மற்ற hooks உடன் எந்த global தரவையும் பகிர முடியாது.
 
 ### onPrepare
 
-Gets executed once before all workers get launched.
+அனைத்து workers தொடங்குவதற்கு முன் ஒரு முறை செயல்படுத்தப்படுகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `config` (`object`): WebdriverIO configuration object
-- `param` (`object[]`): list of capabilities details
+- `config` (`object`): WebdriverIO கட்டமைப்பு பொருள்
+- `param` (`object[]`): திறன்கள் விவரங்களின் பட்டியல்
 
 ### onWorkerStart
 
-Gets executed before a worker process is spawned and can be used to initialize specific service for that worker as well as modify runtime environments in an async fashion.
+ஒரு worker செயல்முறை உருவாக்கப்படுவதற்கு முன்பு செயல்படுத்தப்படுகிறது மற்றும் அந்த worker க்கான குறிப்பிட்ட சேவையை துவக்குவதற்கும், runtime சூழல்களை ஒத்திசைவற்ற முறையில் மாற்றுவதற்கும் பயன்படுத்தலாம்.
 
-Parameters:
+அளவுருக்கள்:
 
-- `cid` (`string`): capability id (e.g 0-0)
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
-- `args` (`object`): object that will be merged with the main configuration once worker is initialized
-- `execArgv` (`string[]`): list of string arguments passed to the worker process
+- `cid` (`string`): திறன் id (எ.கா 0-0)
+- `caps` (`object`): worker இல் spawn செய்யப்படும் அமர்வுக்கான திறன்களைக் கொண்டுள்ளது
+- `specs` (`string[]`): worker செயல்முறையில் இயக்கப்படும் specs
+- `args` (`object`): worker துவக்கப்பட்டவுடன் முக்கிய கட்டமைப்புடன் இணைக்கப்படும் பொருள்
+- `execArgv` (`string[]`): worker செயல்முறைக்கு அனுப்பப்பட்ட string arguments பட்டியல்
 
 ### onWorkerEnd
 
-Gets executed just after a worker process has exited.
+ஒரு worker செயல்முறை முடிந்த பிறகு செயல்படுத்தப்படுகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `cid` (`string`): capability id (e.g 0-0)
-- `exitCode` (`number`): 0 - success, 1 - fail
-- `specs` (`string[]`): specs to be run in the worker process
-- `retries` (`number`): number of spec level retries used as defined in [_"Add retries on a per-specfile basis"_](./Retry.md#add-retries-on-a-per-specfile-basis)
+- `cid` (`string`): திறன் id (எ.கா 0-0)
+- `exitCode` (`number`): 0 - வெற்றி, 1 - தோல்வி
+- `specs` (`string[]`): worker செயல்முறையில் இயக்கப்படும் specs
+- `retries` (`number`): [_"Add retries on a per-specfile basis"_](./Retry.md#add-retries-on-a-per-specfile-basis) இல் வரையறுக்கப்பட்டபடி பயன்படுத்தப்படும் spec நிலை மறுமுயற்சிகளின் எண்ணிக்கை
 
 ### beforeSession
 
-Gets executed just before initializing the webdriver session and test framework. It allows you to manipulate configurations depending on the capability or spec.
+webdriver அமர்வு மற்றும் சோதனை கட்டமைப்பை துவக்குவதற்கு சற்று முன்பு செயல்படுத்தப்படுகிறது. திறன் அல்லது spec ஐ பொறுத்து கட்டமைப்புகளை கையாள இது உங்களை அனுமதிக்கிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `config` (`object`): WebdriverIO கட்டமைப்பு பொருள்
+- `caps` (`object`): worker இல் spawn செய்யப்படும் அமர்வுக்கான திறன்களைக் கொண்டுள்ளது
+- `specs` (`string[]`): worker செயல்முறையில் இயக்கப்படும் specs
 
 ### before
 
-Gets executed before test execution begins. At this point you can access to all global variables like `browser`. It is the perfect place to define custom commands.
+சோதனை செயல்பாடு தொடங்குவதற்கு முன் செயல்படுத்தப்படுகிறது. இந்த புள்ளியில் நீங்கள் `browser` போன்ற அனைத்து உலகளாவிய மாறிகளையும் அணுகலாம். இது தனிப்பயன் கட்டளைகளை வரையறுக்க சரியான இடம்.
 
-Parameters:
+அளவுருக்கள்:
 
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
-- `browser` (`object`): instance of created browser/device session
+- `caps` (`object`): worker இல் spawn செய்யப்படும் அமர்வுக்கான திறன்களைக் கொண்டுள்ளது
+- `specs` (`string[]`): worker செயல்முறையில் இயக்கப்படும் specs
+- `browser` (`object`): உருவாக்கப்பட்ட உலாவி/சாதன அமர்வின் உதாரணம்
 
 ### beforeSuite
 
-Hook that gets executed before the suite starts (in Mocha/Jasmine only)
+suite தொடங்குவதற்கு முன் செயல்படுத்தப்படும் hook (Mocha/Jasmine இல் மட்டுமே)
 
-Parameters:
+அளவுருக்கள்:
 
-- `suite` (`object`): suite details
+- `suite` (`object`): suite விவரங்கள்
 
 ### beforeHook
 
-Hook that gets executed *before* a hook within the suite starts (e.g. runs before calling beforeEach in Mocha)
+suite க்குள் ஒரு hook தொடங்குவதற்கு *முன்* செயல்படுத்தப்படும் hook (எ.கா. Mocha இல் beforeEach ஐ அழைப்பதற்கு முன் இயங்குகிறது)
 
-Parameters:
+அளவுருக்கள்:
 
-- `test` (`object`): test details
-- `context` (`object`): test context (represents World object in Cucumber)
+- `test` (`object`): சோதனை விவரங்கள்
+- `context` (`object`): சோதனை சூழல் (Cucumber இல் World பொருளைக் குறிக்கிறது)
 
 ### afterHook
 
-Hook that gets executed *after* a hook within the suite ends (e.g. runs after calling afterEach in Mocha)
+suite க்குள் ஒரு hook முடிந்த *பிறகு* செயல்படுத்தப்படும் hook (எ.கா. Mocha இல் afterEach ஐ அழைத்த பிறகு இயங்குகிறது)
 
-Parameters:
+அளவுருக்கள்:
 
-- `test` (`object`): test details
-- `context` (`object`): test context (represents World object in Cucumber)
-- `result` (`object`): hook result (contains `error`, `result`, `duration`, `passed`, `retries` properties)
+- `test` (`object`): சோதனை விவரங்கள்
+- `context` (`object`): சோதனை சூழல் (Cucumber இல் World பொருளைக் குறிக்கிறது)
+- `result` (`object`): hook முடிவு (`error`, `result`, `duration`, `passed`, `retries` பண்புகளைக் கொண்டுள்ளது)
 
 ### beforeTest
 
-Function to be executed before a test (in Mocha/Jasmine only).
+ஒரு சோதனைக்கு முன் செயல்படுத்தப்பட வேண்டிய செயல்பாடு (Mocha/Jasmine இல் மட்டுமே).
 
-Parameters:
+அளவுருக்கள்:
 
-- `test` (`object`): test details
-- `context` (`object`): scope object the test was executed with
+- `test` (`object`): சோதனை விவரங்கள்
+- `context` (`object`): சோதனை செயல்படுத்தப்பட்ட நோக்க பொருள்
 
 ### beforeCommand
 
-Runs before a WebdriverIO command gets executed.
+ஒரு WebdriverIO கட்டளை செயல்படுத்தப்படுவதற்கு முன் இயங்குகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `commandName` (`string`): command name
-- `args` (`*`): arguments that command would receive
+- `commandName` (`string`): கட்டளை பெயர்
+- `args` (`*`): கட்டளை பெறும் arguments
 
 ### afterCommand
 
-Runs after a WebdriverIO command gets executed.
+ஒரு WebdriverIO கட்டளை செயல்படுத்தப்பட்ட பிறகு இயங்குகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `commandName` (`string`): command name
-- `args` (`*`): arguments that command would receive
-- `result` (`number`): 0 - command success, 1 - command error
-- `error` (`Error`): error object if any
+- `commandName` (`string`): கட்டளை பெயர்
+- `args` (`*`): கட்டளை பெறும் arguments
+- `result` (`number`): 0 - கட்டளை வெற்றி, 1 - கட்டளை பிழை
+- `error` (`Error`): பிழை பொருள் (ஏதேனும் இருந்தால்)
 
 ### afterTest
 
-Function to be executed after a test (in Mocha/Jasmine) ends.
+ஒரு சோதனை (Mocha/Jasmine இல்) முடிந்த பிறகு செயல்படுத்தப்பட வேண்டிய செயல்பாடு.
 
-Parameters:
+அளவுருக்கள்:
 
-- `test` (`object`): test details
-- `context` (`object`): scope object the test was executed with
-- `result.error` (`Error`): error object in case the test fails, otherwise `undefined`
-- `result.result` (`Any`): return object of test function
-- `result.duration` (`Number`): duration of test
-- `result.passed` (`Boolean`): true if test has passed, otherwise false
-- `result.retries` (`Object`): information about single test related retries as defined for [Mocha and Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) as well as [Cucumber](./Retry.md#rerunning-in-cucumber), e.g. `{ attempts: 0, limit: 0 }`, see
-- `result` (`object`): hook result (contains `error`, `result`, `duration`, `passed`, `retries` properties)
+- `test` (`object`): சோதனை விவரங்கள்
+- `context` (`object`): சோதனை செயல்படுத்தப்பட்ட நோக்க பொருள்
+- `result.error` (`Error`): சோதனை தோல்வியுற்றால் பிழை பொருள், இல்லையெனில் `undefined`
+- `result.result` (`Any`): சோதனை செயல்பாட்டின் திரும்ப பொருள்
+- `result.duration` (`Number`): சோதனையின் கால அளவு
+- `result.passed` (`Boolean`): சோதனை தேர்ச்சி பெற்றிருந்தால் true, இல்லையெனில் false
+- `result.retries` (`Object`): [Mocha மற்றும் Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) மற்றும் [Cucumber](./Retry.md#rerunning-in-cucumber) க்கு வரையறுக்கப்பட்டபடி தனி சோதனை தொடர்பான மறுமுயற்சிகளைப் பற்றிய தகவல்கள், எ.கா. `{ attempts: 0, limit: 0 }`, பார்க்கவும்
+- `result` (`object`): hook முடிவு (`error`, `result`, `duration`, `passed`, `retries` பண்புகளைக் கொண்டுள்ளது)
 
 ### afterSuite
 
-Hook that gets executed after the suite has ended (in Mocha/Jasmine only)
+சோதனை suite முடிந்த பிறகு செயல்படுத்தப்படும் hook (Mocha/Jasmine இல் மட்டுமே)
 
-Parameters:
+அளவுருக்கள்:
 
-- `suite` (`object`): suite details
+- `suite` (`object`): suite விவரங்கள்
 
 ### after
 
-Gets executed after all tests are done. You still have access to all global variables from the test.
+அனைத்து சோதனைகளும் முடிந்த பிறகு செயல்படுத்தப்படுகிறது. சோதனையிலிருந்து அனைத்து உலகளாவிய மாறிகளையும் நீங்கள் இன்னும் அணுகலாம்.
 
-Parameters:
+அளவுருக்கள்:
 
-- `result` (`number`): 0 - test pass, 1 - test fail
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `result` (`number`): 0 - சோதனை தேர்ச்சி, 1 - சோதனை தோல்வி
+- `caps` (`object`): worker இல் spawn செய்யப்படும் அமர்வுக்கான திறன்களைக் கொண்டுள்ளது
+- `specs` (`string[]`): worker செயல்முறையில் இயக்கப்படும் specs
 
 ### afterSession
 
-Gets executed right after terminating the webdriver session.
+webdriver அமர்வை நிறுத்திய பிறகு செயல்படுத்தப்படுகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `specs` (`string[]`): specs to be run in the worker process
+- `config` (`object`): WebdriverIO கட்டமைப்பு பொருள்
+- `caps` (`object`): worker இல் spawn செய்யப்படும் அமர்வுக்கான திறன்களைக் கொண்டுள்ளது
+- `specs` (`string[]`): worker செயல்முறையில் இயக்கப்படும் specs
 
 ### onComplete
 
-Gets executed after all workers got shut down and the process is about to exit. An error thrown in the onComplete hook will result in the test run failing.
+அனைத்து workers மூடப்பட்ட பிறகு செயல்முறை வெளியேறும் நிலையில் செயல்படுத்தப்படுகிறது. onComplete hook இல் ஏற்படும் பிழை சோதனை ஓட்டம் தோல்வியடைய காரணமாகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `exitCode` (`number`): 0 - success, 1 - fail
-- `config` (`object`): WebdriverIO configuration object
-- `caps` (`object`): containing capabilities for session that will be spawn in the worker
-- `result` (`object`): results object containing test results
+- `exitCode` (`number`): 0 - வெற்றி, 1 - தோல்வி
+- `config` (`object`): WebdriverIO கட்டமைப்பு பொருள்
+- `caps` (`object`): worker இல் spawn செய்யப்படும் அமர்வுக்கான திறன்களைக் கொண்டுள்ளது
+- `result` (`object`): சோதனை முடிவுகளைக் கொண்ட முடிவுகள் பொருள்
 
 ### onReload
 
-Gets executed when a refresh happens.
+பக்கம் ரீலோட் ஆகும்போது செயல்படுத்தப்படுகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `oldSessionId` (`string`): session ID of the old session
-- `newSessionId` (`string`): session ID of the new session
+- `oldSessionId` (`string`): பழைய அமர்வின் அமர்வு ID
+- `newSessionId` (`string`): புதிய அமர்வின் அமர்வு ID
 
 ### beforeFeature
 
-Runs before a Cucumber Feature.
+Cucumber அம்சத்திற்கு முன் இயங்குகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `uri` (`string`): path to feature file
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
+- `uri` (`string`): feature கோப்பிற்கான பாதை
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature பொருள்
 
 ### afterFeature
 
-Runs after a Cucumber Feature.
+Cucumber அம்சத்திற்குப் பிறகு இயங்குகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `uri` (`string`): path to feature file
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
+- `uri` (`string`): feature கோப்பிற்கான பாதை
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature பொருள்
 
 ### beforeScenario
 
-Runs before a Cucumber Scenario.
+Cucumber சூழலுக்கு முன் இயங்குகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): world object containing information on pickle and test step
-- `context` (`object`): Cucumber World object
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickle மற்றும் சோதனை படி பற்றிய தகவல்களைக் கொண்ட உலக பொருள்
+- `context` (`object`): Cucumber World பொருள்
 
 ### afterScenario
 
-Runs after a Cucumber Scenario.
+Cucumber சூழலுக்குப் பிறகு இயங்குகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): world object containing information on pickle and test step
-- `result` (`object`): results object containing scenario results
-- `result.passed` (`boolean`): true if scenario has passed
-- `result.error` (`string`): error stack if scenario failed
-- `result.duration` (`number`): duration of scenario in milliseconds
-- `context` (`object`): Cucumber World object
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickle மற்றும் சோதனை படி பற்றிய தகவல்களைக் கொண்ட உலக பொருள்
+- `result` (`object`): சூழல் முடிவுகளைக் கொண்ட முடிவுகள் பொருள்
+- `result.passed` (`boolean`): சூழல் தேர்ச்சி பெற்றிருந்தால் true
+- `result.error` (`string`): சூழல் தோல்வியுற்றால் பிழை stack
+- `result.duration` (`number`): மில்லி வினாடிகளில் சூழலின் கால அளவு
+- `context` (`object`): Cucumber World பொருள்
 
 ### beforeStep
 
-Runs before a Cucumber Step.
+Cucumber படிக்கு முன் இயங்குகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
-- `context` (`object`): Cucumber World object
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step பொருள்
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario பொருள்
+- `context` (`object`): Cucumber World பொருள்
 
 ### afterStep
 
-Runs after a Cucumber Step.
+Cucumber படிக்குப் பிறகு இயங்குகிறது.
 
-Parameters:
+அளவுருக்கள்:
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
-- `result`: (`object`): results object containing step results
-- `result.passed` (`boolean`): true if scenario has passed
-- `result.error` (`string`): error stack if scenario failed
-- `result.duration` (`number`): duration of scenario in milliseconds
-- `context` (`object`): Cucumber World object
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step பொருள்
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario பொருள்
+- `result`: (`object`): படி முடிவுகளைக் கொண்ட முடிவுகள் பொருள்
+- `result.passed` (`boolean`): சூழல் தேர்ச்சி பெற்றிருந்தால் true
+- `result.error` (`string`): சூழல் தோல்வியுற்றால் பிழை stack
+- `result.duration` (`number`): மில்லி வினாடிகளில் சூழலின் கால அளவு
+- `context` (`object`): Cucumber World பொருள்
 
 ### beforeAssertion
 
-Hook that gets executed before a WebdriverIO assertion happens.
+WebdriverIO உறுதிப்படுத்தல் நடக்கும் முன் இயக்கப்படும் hook.
 
-Parameters:
+அளவுருக்கள்:
 
-- `params`: assertion information
-- `params.matcherName` (`string`): name of the matcher (e.g. `toHaveTitle`)
-- `params.expectedValue`: value that is passed into the matcher
-- `params.options`: assertion options
+- `params`: உறுதிப்படுத்தல் தகவல்
+- `params.matcherName` (`string`): matcher இன் பெயர் (எ.கா. `toHaveTitle`)
+- `params.expectedValue`: matcher க்கு அனுப்பப்படும் மதிப்பு
+- `params.options`: உறுதிப்படுத்தல் விருப்பங்கள்
 
 ### afterAssertion
 
-Hook that gets executed after a WebdriverIO assertion happened.
+WebdriverIO உறுதிப்படுத்தல் நடந்த பிறகு இயக்கப்படும் hook.
 
-Parameters:
+அளவுருக்கள்:
 
-- `params`: assertion information
-- `params.matcherName` (`string`): name of the matcher (e.g. `toHaveTitle`)
-- `params.expectedValue`: value that is passed into the matcher
-- `params.options`: assertion options
-- `params.result`: assertion results
+- `params`: உறுதிப்படுத்தல் தகவல்
+- `params.matcherName` (`string`): matcher இன் பெயர் (எ.கா. `toHaveTitle`)
+- `params.expectedValue`: matcher க்கு அனுப்பப்படும் மதிப்பு
+- `params.options`: உறுதிப்படுத்தல் விருப்பங்கள்
+- `params.result`: உறுதிப்படுத்தல் முடிவுகள்

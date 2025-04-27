@@ -1,117 +1,120 @@
 ---
 id: component-testing
-title: Component Testing
+title: கூறு சோதனை
 ---
 
-With WebdriverIOs [Browser Runner](/docs/runner#browser-runner) you can run tests within an actual desktop or mobile browser while using WebdriverIO and the WebDriver protocol to automate and interact what gets rendered on the page. This approach has [many advantages](/docs/runner#browser-runner) compared to other test frameworks that only allow testing against [JSDOM](https://www.npmjs.com/package/jsdom).
+WebdriverIO-வின் [பிரவுசர் இயக்கி](/docs/runner#browser-runner) மூலம் நீங்கள் உண்மையான டெஸ்க்டாப் அல்லது மொபைல் பிரவுசரில் சோதனைகளை இயக்கலாம், அதே நேரத்தில் WebdriverIO மற்றும் WebDriver நெறிமுறையைப் பயன்படுத்தி பக்கத்தில் காட்சிப்படுத்தப்படுவதை தானியக்கமாக்கி தொடர்புகொள்ளலாம். இந்த அணுகுமுறை, [JSDOM](https://www.npmjs.com/package/jsdom) மட்டுமே சோதிக்க அனுமதிக்கும் மற்ற சோதனை கட்டமைப்புகளை விட [பல நன்மைகளை](/docs/runner#browser-runner) கொண்டுள்ளது.
 
-## How does it Work?
+## இது எப்படி செயல்படுகிறது?
 
-The Browser Runner uses [Vite](https://vitejs.dev/) to render a test page and initialize a test framework to run your tests in the browser. Currently it only supports Mocha but Jasmine and Cucumber are [on the roadmap](https://github.com/orgs/webdriverio/projects/1). This allows to test any kind of components even for projects that don't use Vite.
+பிரவுசர் இயக்கி, சோதனை பக்கத்தை காட்சிப்படுத்த மற்றும் பிரவுசரில் உங்கள் சோதனைகளை இயக்க ஒரு சோதனை கட்டமைப்பை துவக்க [Vite](https://vitejs.dev/)-ஐ பயன்படுத்துகிறது. தற்போது இது Mocha-வை மட்டுமே ஆதரிக்கிறது ஆனால் Jasmine மற்றும் Cucumber [திட்ட வரைபடத்தில்](https://github.com/orgs/webdriverio/projects/1) உள்ளன. இது Vite-ஐ பயன்படுத்தாத திட்டங்களுக்கும் எந்த வகையான கூறுகளையும் சோதிக்க அனுமதிக்கிறது.
 
-The Vite server is started by the WebdriverIO testrunner and configured so that you can use all reporter and services as you used to for normal e2e tests. Furthermore it initializes a [`browser`](/docs/api/browser) instance that allows you to access a subset of the [WebdriverIO API](/docs/api) to interact with the any elements on the page. Similar as e2e tests you can access that instance through the `browser` variable attached to the global scope or by importing it from `@wdio/globals` depending on how [`injectGlobals`](/docs/api/globals) is set.
+Vite சர்வர் WebdriverIO சோதனை இயக்கியால் தொடங்கப்பட்டு, சாதாரண e2e சோதனைகளுக்காக நீங்கள் பயன்படுத்திய அனைத்து அறிக்கையாளர் மற்றும் சேவைகளையும் பயன்படுத்த முடியும் என்று உள்ளமைக்கப்பட்டுள்ளது. மேலும், இது பக்கத்தில் உள்ள எந்த உறுப்புகளுடனும் தொடர்புகொள்ள [WebdriverIO API](/docs/api)-இன் துணைத்தொகுப்பை அணுக அனுமதிக்கும் ஒரு [`browser`](/docs/api/browser) நிகழ்வை துவக்குகிறது. e2e சோதனைகளைப் போலவே, நீங்கள் அந்த நிகழ்வை உலகளாவிய நோக்கத்திற்கு இணைக்கப்பட்ட `browser` மாறி மூலமாகவோ அல்லது [`injectGlobals`](/docs/api/globals) எவ்வாறு அமைக்கப்பட்டுள்ளது என்பதைப் பொறுத்து `@wdio/globals`-இலிருந்து இறக்குமதி செய்வதன் மூலமாகவோ அணுகலாம்.
 
-WebdriverIO has built-in support for the following frameworks:
+WebdriverIO பின்வரும் கட்டமைப்புகளுக்கு உள்ளமைந்த ஆதரவைக் கொண்டுள்ளது:
 
-- [__Nuxt__](https://nuxt.com/): WebdriverIO's testrunner detects a Nuxt application and automatically sets up your project composables and helps mock out the Nuxt backend, read more in the [Nuxt docs](/docs/component-testing/vue#testing-vue-components-in-nuxt)
-- [__TailwindCSS__](https://tailwindcss.com/): WebdriverIO's testrunner detects if you are using TailwindCSS and loads the environment properly into the test page
+- [__Nuxt__](https://nuxt.com/): WebdriverIO-இன் சோதனை இயக்கி ஒரு Nuxt பயன்பாட்டைக் கண்டறிந்து, உங்கள் திட்ட composables-ஐ தானாகவே அமைத்து, Nuxt பின்னணியை மாதிரியாக்க உதவுகிறது, [Nuxt ஆவணங்களில்](/docs/component-testing/vue#testing-vue-components-in-nuxt) மேலும் படிக்கவும்
+- [__TailwindCSS__](https://tailwindcss.com/): WebdriverIO-இன் சோதனை இயக்கி நீங்கள் TailwindCSS-ஐப் பயன்படுத்துகிறீர்களா என்பதைக் கண்டறிந்து, சூழலை சோதனை பக்கத்தில் சரியாக ஏற்றுகிறது
 
-## Setup
+## அமைப்பு
 
-To set-up WebdriverIO for unit or component testing in the browser, initiate a new WebdriverIO project via:
+உலாவியில் அலகு அல்லது கூறு சோதனைக்காக WebdriverIO-ஐ அமைக்க, பின்வருமாறு ஒரு புதிய WebdriverIO திட்டத்தை தொடங்கவும்:
 
 ```bash
 npm init wdio@latest ./
-# or
+# அல்லது
 yarn create wdio ./
 ```
 
-Once the configuration wizard starts, pick `browser` for running unit and component testing and choose one of the presets if desired otherwise go with _"Other"_ if you only want to run basic unit tests. You can also configure a custom Vite configuration if you use Vite already in your project. For more information check out all [runner options](/docs/runner#runner-options).
+உள்ளமைவு வழிகாட்டி தொடங்கியதும், அலகு மற்றும் கூறு சோதனை இயக்குவதற்கு `browser`-ஐத் தேர்ந்தெடுத்து, விரும்பினால் முன்னமைவுகளில் ஒன்றைத் தேர்வுசெய்யவும் அல்லது அடிப்படை அலகு சோதனைகளை மட்டும் இயக்க விரும்பினால் _"Other"_-ஐத் தேர்ந்தெடுக்கவும். நீங்கள் ஏற்கனவே உங்கள் திட்டத்தில் Vite-ஐப் பயன்படுத்தினால் தனிப்பயன் Vite உள்ளமைவையும் உள்ளமைக்கலாம். மேலும் தகவலுக்கு அனைத்து [இயக்கி விருப்பங்களையும்](/docs/runner#runner-options) பார்க்கவும்.
 
 :::info
 
-__Note:__ WebdriverIO by default will run browser tests in CI headlessly, e.g. a `CI` environment variable is set to `'1'` or `'true'`. You can manually configure this behavior using the [`headless`](/docs/runner#headless) option for the runner.
+__குறிப்பு:__ WebdriverIO முன்னிருப்பாக CI-இல் உலாவி சோதனைகளை தலைப்பற்ற முறையில் இயக்கும், உ.தா. `CI` சூழல் மாறி `'1'` அல்லது `'true'` என அமைக்கப்பட்டிருந்தால். இயக்கிக்கான [`headless`](/docs/runner#headless) விருப்பத்தைப் பயன்படுத்தி இந்த நடத்தையை கைமுறையாக உள்ளமைக்கலாம்.
 
 :::
 
-At the end of this process you should find a `wdio.conf.js` that contains various WebdriverIO configurations, including a `runner` property, e.g.:
+இந்த செயல்முறையின் முடிவில், பல்வேறு WebdriverIO உள்ளமைவுகளைக் கொண்ட `wdio.conf.js` கண்டறியப்பட வேண்டும், `runner` பண்பு உட்பட, எ.கா:
 
 ```ts reference useHTTPS runmeRepository="git@github.com:webdriverio/example-recipes.git" runmeFileToOpen="component-testing%2FREADME.md"
 https://github.com/webdriverio/example-recipes/blob/fd54f94306ed8e7b40f967739164dfe4d6d76b41/wdio.comp.conf.js
 ```
 
-By defining different [capabilities](/docs/configuration#capabilities) you can run your tests in different browser, in parallel if desired.
+வெவ்வேறு [திறன்களை](/docs/configuration#capabilities) வரையறுப்பதன் மூலம், வெவ்வேறு உலாவிகளில் உங்கள் சோதனைகளை இயக்கலாம், விரும்பினால் இணையாக இயக்கலாம்.
 
-If you are still unsure how everything works, watch the following tutorial on how to get started with Component Testing in WebdriverIO:
+எல்லாம் எப்படி செயல்படுகிறது என்பதில் இன்னும் உறுதியாக இல்லையென்றால், WebdriverIO-இல் கூறு சோதனையை எப்படி தொடங்குவது என்பதைப் பற்றிய பின்வரும் பயிற்சியைப் பார்க்கவும்:
 
-<LiteYouTubeEmbed id="5vp_3tGtnMc" title="Getting Started with Component Testing in WebdriverIO" />
+<LiteYouTubeEmbed
+    id="5vp_3tGtnMc"
+    title="Getting Started with Component Testing in WebdriverIO"
+/>
 
-## Test Harness
+## சோதனை ஹார்னெஸ்
 
-It is totally up to you what you want to run in your tests and how you like to render the components. However we recommend to use the [Testing Library](https://testing-library.com/) as utility framework as it provides plugins for various of component frameworks, such as React, Preact, Svelte and Vue. It is very useful for rendering components into the test page and it automatically cleans up these components after every test.
+உங்கள் சோதனைகளில் என்ன இயக்க விரும்புகிறீர்கள் மற்றும் கூறுகளை எவ்வாறு காட்சிப்படுத்த விரும்புகிறீர்கள் என்பது முற்றிலும் உங்களைப் பொறுத்தது. இருப்பினும், பயன்பாட்டுக் கட்டமைப்பாக [Testing Library](https://testing-library.com/)-ஐப் பயன்படுத்த பரிந்துரைக்கிறோம், ஏனெனில் இது React, Preact, Svelte மற்றும் Vue போன்ற பல்வேறு கூறு கட்டமைப்புகளுக்கான செருகுநிரல்களை வழங்குகிறது. இது சோதனை பக்கத்தில் கூறுகளை காட்சிப்படுத்த மிகவும் பயனுள்ளதாக இருக்கும், மேலும் இது ஒவ்வொரு சோதனைக்குப் பிறகும் இந்த கூறுகளை தானாகவே சுத்தம் செய்கிறது.
 
-You can mix Testing Library primitives with WebdriverIO commands as you wish, e.g.:
+நீங்கள் Testing Library அடிப்படைகளை WebdriverIO கட்டளைகளுடன் விரும்பியபடி கலக்கலாம், எ.கா:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fd54f94306ed8e7b40f967739164dfe4d6d76b41/component-testing/svelte-example.js
 ```
 
-__Note:__ using render methods from Testing Library helps remove created components between the tests. If you don't use Testing Library ensure to attach your test components to a container that gets cleaned up between tests.
+__குறிப்பு:__ Testing Library-இலிருந்து render முறைகளைப் பயன்படுத்துவது சோதனைகளுக்கு இடையில் உருவாக்கப்பட்ட கூறுகளை அகற்ற உதவுகிறது. நீங்கள் Testing Library-ஐப் பயன்படுத்தவில்லை என்றால், சோதனைகளுக்கு இடையில் சுத்தப்படுத்தப்படும் ஒரு கொள்கலனில் உங்கள் சோதனை கூறுகளை இணைக்கவும்.
 
-## Setup Scripts
+## அமைவு ஸ்கிரிப்ட்கள்
 
-You can set up your tests by running arbitrary scripts in Node.js or in the browser, e.g. injecting styles, mocking browser APIs or connecting to a 3rd party service. The WebdriverIO [hooks](/docs/configuration#hooks) can be used to run code in Node.js while the [`mochaOpts.require`](/docs/frameworks#require) allows you to import scripts into the browser before tests are loaded, e.g.:
+Node.js அல்லது உலாவியில் தன்னிச்சையான ஸ்கிரிப்ட்களை இயக்குவதன் மூலம் உங்கள் சோதனைகளை அமைக்கலாம், எ.கா. பாணிகளை செருகுதல், உலாவி API-களை மாதிரியாக்குதல் அல்லது மூன்றாம் தரப்பு சேவையுடன் இணைத்தல். WebdriverIO [hooks](/docs/configuration#hooks) Node.js-இல் குறியீட்டை இயக்கப் பயன்படுத்தலாம், அதே சமயம் [`mochaOpts.require`](/docs/frameworks#require) சோதனைகள் ஏற்றப்படும் முன் உலாவியில் ஸ்கிரிப்ட்களை இறக்குமதி செய்ய அனுமதிக்கிறது, எ.கா:
 
 ```js wdio.conf.js
 export const config = {
     // ...
     mochaOpts: {
         ui: 'tdd',
-        // provide a setup script to run in the browser
+        // உலாவியில் இயக்க அமைப்பு ஸ்கிரிப்ட்டை வழங்கவும்
         require: './__fixtures__/setup.js'
     },
     before: () => {
-        // set up test environment in Node.js
+        // Node.js-இல் சோதனை சூழலை அமைக்கவும்
     }
     // ...
 }
 ```
 
-For example, if you like to mock all [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) calls in your test with the following set-up script:
+உதாரணமாக, பின்வரும் அமைப்பு ஸ்கிரிப்ட்டுடன் உங்கள் சோதனையில் உள்ள அனைத்து [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) அழைப்புகளையும் மாதிரியாக்க விரும்பினால்:
 
 ```js ./fixtures/setup.js
 import { fn } from '@wdio/browser-runner'
 
-// run code before all tests are loaded
+// அனைத்து சோதனைகளும் ஏற்றப்படும் முன் குறியீட்டை இயக்கவும்
 window.fetch = fn()
 
 export const mochaGlobalSetup = () => {
-    // run code after test file is loaded
+    // சோதனை கோப்பு ஏற்றப்பட்ட பிறகு குறியீட்டை இயக்கவும்
 }
 
 export const mochaGlobalTeardown = () => {
-    // run code after spec file was executed
+    // ஸ்பெக் கோப்பு செயல்படுத்தப்பட்ட பிறகு குறியீட்டை இயக்கவும்
 }
 
 ```
 
-Now in your tests you can provide custom response values for all browser requests. Read more on global fixtures in the [Mocha docs](https://mochajs.org/#global-fixtures).
+இப்போது உங்கள் சோதனைகளில் நீங்கள் அனைத்து உலாவி கோரிக்கைகளுக்கும் தனிப்பயன் பதில் மதிப்புகளை வழங்கலாம். உலகளாவிய ஃபிக்ஸ்சர்கள் பற்றி [Mocha ஆவணங்களில்](https://mochajs.org/#global-fixtures) மேலும் படிக்கவும்.
 
-## Watch Test and Application Files
+## சோதனை மற்றும் பயன்பாட்டு கோப்புகளை கண்காணித்தல்
 
-There are multiple ways how you can debug your browser tests. The easiest is to start the WebdriverIO testrunner with the `--watch` flag, e.g.:
+உங்கள் உலாவி சோதனைகளை பிழைத்திருத்த பல வழிகள் உள்ளன. எளிதானது WebdriverIO சோதனை இயக்கியை `--watch` கொடியுடன் தொடங்குவது, எ.கா:
 
 ```sh
 $ npx wdio run ./wdio.conf.js --watch
 ```
 
-This will run through all tests initially and halt once all are run. You can then make changes to individual files which then will be rerun individually. If you set a [`filesToWatch`](/docs/configuration#filestowatch) pointing to your application files, it will re-run all tests when changes to your app are being made.
+இது ஆரம்பத்தில் அனைத்து சோதனைகளையும் இயக்கி, அனைத்தும் இயக்கப்பட்ட பின் நிறுத்தும். பின்னர் நீங்கள் தனிப்பட்ட கோப்புகளில் மாற்றங்களைச் செய்யலாம், அவை தனித்தனியாக மீண்டும் இயக்கப்படும். நீங்கள் உங்கள் பயன்பாட்டு கோப்புகளைச் சுட்டிக்காட்டும் [`filesToWatch`](/docs/configuration#filestowatch) அமைத்தால், உங்கள் பயன்பாட்டில் மாற்றங்கள் செய்யப்படும்போது அனைத்து சோதனைகளையும் மீண்டும் இயக்கும்.
 
-## Debugging
+## பிழைத்திருத்தம்
 
-While it is not (yet) possible to set breakpoints in your IDE and have them being recognized by the remote browser, you can use the [`debug`](/docs/api/browser/debug) command to stop the test at any point. This allows you to open DevTools to then debug the test by setting breakpoints in the [sources tab](https://buddy.works/tutorials/debugging-javascript-efficiently-with-chrome-devtools).
+உங்கள் IDE-இல் நிறுத்தப் புள்ளிகளை அமைத்து அவற்றை தொலைநிலை உலாவியால் அங்கீகரிக்க (இன்னும்) முடியாவிட்டாலும், எந்த புள்ளியிலும் சோதனையை நிறுத்த [`debug`](/docs/api/browser/debug) கட்டளையைப் பயன்படுத்தலாம். இது DevTools-ஐத் திறந்து, [sources தாவலில்](https://buddy.works/tutorials/debugging-javascript-efficiently-with-chrome-devtools) நிறுத்தப் புள்ளிகளை அமைப்பதன் மூலம் சோதனையை பிழைத்திருத்த அனுமதிக்கிறது.
 
-When the `debug` command is called, you will also get a Node.js repl interface in your terminal, saying:
+`debug` கட்டளை அழைக்கப்படும்போது, உங்கள் முனையத்தில் ஒரு Node.js repl இடைமுகத்தையும் பெறுவீர்கள், அது சொல்கிறது:
 
 ```
 The execution has stopped!
@@ -119,23 +122,23 @@ You can now go into the browser or use the command line as REPL
 (To exit, press ^C again or type .exit)
 ```
 
-Press `Ctrl` or `Command` + `c` or enter `.exit` to continue with the test.
+சோதனையைத் தொடர `Ctrl` அல்லது `Command` + `c` அழுத்தவும் அல்லது `.exit` என உள்ளிடவும்.
 
-## Run using a Selenium Grid
+## செலீனியம் கிரிட் பயன்படுத்தி இயக்குதல்
 
-If you have a [Selenium Grid](https://www.selenium.dev/documentation/grid/) set up and run your browser through that grid, you have to set the `host` browser runner option to allow the browser, to access the right host where the test files are being served, e.g.:
+நீங்கள் ஒரு [Selenium Grid](https://www.selenium.dev/documentation/grid/) அமைத்து உங்கள் உலாவியை அந்த கிரிட் மூலம் இயக்கினால், சோதனைக் கோப்புகள் வழங்கப்படும் சரியான ஹோஸ்டை அணுக உலாவிக்கு அனுமதிக்க `host` பிரவுசர் இயக்கி விருப்பத்தை அமைக்க வேண்டும், எ.கா:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
     runner: ['browser', {
-        // network IP of the machine that runs the WebdriverIO process
+        // WebdriverIO செயல்முறையை இயக்கும் இயந்திரத்தின் நெட்வொர்க் IP
         host: 'http://172.168.0.2'
     }]
 }
 ```
 
-This will ensure the browser correctly opens the right server instance hosted on the instance that runs the WebdriverIO tests.
+இது உலாவி சரியாக WebdriverIO சோதனைகளை இயக்கும் நிறுவனத்தில் ஹோஸ்ட் செய்யப்பட்ட சரியான சர்வர் நிகழ்வைத் திறக்க உறுதி செய்யும்.
 
-## Examples
+## உதாரணங்கள்
 
-You can find various examples for testing components using popular component frameworks in our [example repository](https://github.com/webdriverio/component-testing-examples).
+எங்கள் [உதாரண களஞ்சியத்தில்](https://github.com/webdriverio/component-testing-examples) பிரபலமான கூறு கட்டமைப்புகளைப் பயன்படுத்தி கூறுகளை சோதிப்பதற்கான பல்வேறு உதாரணங்களைக் காணலாம்.

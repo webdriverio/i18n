@@ -1,55 +1,55 @@
 ---
 id: cli-wizard
-title: CLI Wizard
+title: CLI விசார்ட்
 ---
 
-You can validate which text can be found in an image without running a test by using the OCR CLI Wizard. The only thing that are needed are:
+நீங்கள் ஒரு சோதனையை இயக்காமல் ஒரு படத்தில் எந்த உரையைக் கண்டறிய முடியும் என்பதை OCR CLI விசார்ட் பயன்படுத்தி சரிபார்க்கலாம். தேவையானவை:
 
-- you have installed the `@wdio/ocr-service` as a dependency, see [Getting Started](./getting-started)
-- an image that you want to process
+-   நீங்கள் `@wdio/ocr-service` ஐ ஒரு சார்புநிலையாக நிறுவியுள்ளீர்கள், [தொடங்குதல்](./getting-started) ஐப் பார்க்கவும்
+-   நீங்கள் செயலாக்க விரும்பும் ஒரு படம்
 
-Then run the following command to start the wizard
+பின்னர் விசார்டை தொடங்க பின்வரும் கட்டளையை இயக்கவும்
 
 ```sh
 npx ocr-service
 ```
 
-This will start a wizard that will guide you through the steps to select an image and use a haystack plus advanced mode. The following questions are asked
+இது உங்களை படத்தைத் தேர்ந்தெடுக்க மற்றும் ஒரு ஹேஸ்டேக் பிளஸ் மேம்பட்ட பயன்முறையைப் பயன்படுத்த வழிகாட்டும் ஒரு விசார்டை தொடங்கும். பின்வரும் கேள்விகள் கேட்கப்படுகின்றன
 
-## How would you like to specify the file?
+## கோப்பை எவ்வாறு குறிப்பிட விரும்புகிறீர்கள்?
 
-The following options can be selected
+பின்வரும் விருப்பங்களைத் தேர்ந்தெடுக்கலாம்
 
-- Use a "file explorer"
-- Type the file path manually
+-   "கோப்பு எக்ஸ்ப்ளோரர்" பயன்படுத்தவும்
+-   கோப்பு பாதையை கைமுறையாக தட்டச்சு செய்யவும்
 
-### Use a "file explorer"
+### "கோப்பு எக்ஸ்ப்ளோரர்" பயன்படுத்தவும்
 
-The CLI wizard provides an option to use a "file explorer" to search for files on your system. It starts from the folder you call the command. After selecting an image (use your arrow keys and the ENTER key) you will proceed to the next question
+CLI விசார்ட் உங்கள் சிஸ்டத்தில் கோப்புகளைத் தேட "கோப்பு எக்ஸ்ப்ளோரர்" பயன்படுத்த ஒரு விருப்பத்தை வழங்குகிறது. நீங்கள் கட்டளையை அழைக்கும் கோப்புறையிலிருந்து இது தொடங்கும். படத்தைத் தேர்ந்தெடுத்த பிறகு (உங்கள் அம்புக்குறிகள் மற்றும் ENTER விசையைப் பயன்படுத்தவும்) நீங்கள் அடுத்த கேள்விக்குச் செல்வீர்கள்
 
-### Type the file path manually
+### கோப்பு பாதையை கைமுறையாக தட்டச்சு செய்யவும்
 
-This is a direct path to a file somewhere on your local machine
+இது உங்கள் உள்ளூர் கணினியில் எங்காவது ஒரு கோப்புக்கான நேரடி பாதையாகும்
 
-### Would you like to use a haystack?
+### நீங்கள் ஒரு ஹேஸ்டேக்கைப் பயன்படுத்த விரும்புகிறீர்களா?
 
-Here you have the option to select an area that needs to be processed. This can speed up the process or reduce/narrow down the amount of text the OCR engine might find. You need to provide `x`, `y`, `width`, `height` data based on the following questions:
+இங்கே செயலாக்கப்பட வேண்டிய பகுதியைத் தேர்ந்தெடுக்க உங்களுக்கு விருப்பம் உள்ளது. இது செயல்முறையை விரைவுபடுத்தலாம் அல்லது OCR எஞ்சின் கண்டறியக்கூடிய உரையின் அளவைக் குறைக்கலாம்/குறுக்கலாம். பின்வரும் கேள்விகளின் அடிப்படையில் நீங்கள் `x`, `y`, `width`, `height` தரவை வழங்க வேண்டும்:
 
-- Enter the x coordinate:
-- Enter the y coordinate:
-- Enter the width:
-- Enter the height:
+-   x ஆயத்தை உள்ளிடவும்:
+-   y ஆயத்தை உள்ளிடவும்:
+-   அகலத்தை உள்ளிடவும்:
+-   உயரத்தை உள்ளிடவும்:
 
-## Do you want to use the advanced mode?
+## நீங்கள் மேம்பட்ட பயன்முறையைப் பயன்படுத்த விரும்புகிறீர்களா?
 
-Advanced mode will hold extra features like:
+மேம்பட்ட பயன்முறையில் பின்வரும் கூடுதல் அம்சங்கள் இருக்கும்:
 
-- setting the contrast
-- more to follow in the future
+-   கான்ட்ராஸ்ட் அமைத்தல்
+-   எதிர்காலத்தில் மேலும் பல வரவிருக்கின்றன
 
-## Demo
+## செயல்விளக்கம்
 
-Here's a demo
+இதோ ஒரு செயல்விளக்கம்
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

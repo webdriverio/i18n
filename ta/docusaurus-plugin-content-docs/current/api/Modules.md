@@ -1,28 +1,28 @@
 ---
 id: modules
-title: மாடூல்ஸ்
+title: தொகுதிகள்
 ---
 
-உங்கள் சொந்த ஆட்டோமேஷன் பிரேம்வர்க்கை உருவாக்க நீங்கள் பயன்படுத்தக்கூடிய NPM மற்றும் பிற பதிவுகளுக்குப் மாடூல்சுகளை WebdriverIO வெளியிடுகிறது. WebdriverIO அமைவு வகைகள்பற்றிய கூடுதல் ஆவணங்களை [here](/docs/setuptypes) பார்க்கவும்.
+WebdriverIO பல தொகுதிகளை NPM மற்றும் பிற பதிவகங்களில் வெளியிடுகிறது, அவற்றைப் பயன்படுத்தி உங்கள் சொந்த தானியங்கி கட்டமைப்பை உருவாக்கலாம். WebdriverIO அமைப்பு வகைகள் பற்றிய மேலும் ஆவணங்களை [இங்கே](/docs/setuptypes) காணலாம்.
 
 ## `webdriver` மற்றும் `devtools`
 
-நெறிமுறை தொகுப்புகள் ([`webdriver`](https://www.npmjs.com/package/webdriver) மற்றும் [`devtools`](https://www.npmjs.com/package/devtools)) அமர்வுகளைத் தொடங்க பின்வரும் ஸ்டாடிக் செயல்பாடுகளுடன் ஒரு கிளாசை வெளிப்படுத்துகிறது:
+நெறிமுறை தொகுப்புகள் ([`webdriver`](https://www.npmjs.com/package/webdriver) மற்றும் [`devtools`](https://www.npmjs.com/package/devtools)) அமர்வுகளைத் தொடங்க அனுமதிக்கும் பின்வரும் நிலையான செயல்பாடுகளுடன் இணைக்கப்பட்ட ஒரு வகுப்பை வெளிப்படுத்துகின்றன:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-குறிப்பிட்ட கேப்பபிலிட்டிசுகளுடன் புதிய அமர்வைத் தொடங்கும். அமர்வின் அடிப்படையில் வெவ்வேறு நெறிமுறைகளிலிருந்து ரெஸ்பான்ஸ் கட்டளைகள் வழங்கப்படும்.
+குறிப்பிட்ட திறன்களுடன் ஒரு புதிய அமர்வைத் தொடங்குகிறது. அமர்வு பதிலின் அடிப்படையில் வெவ்வேறு நெறிமுறைகளிலிருந்து கட்டளைகள் வழங்கப்படும்.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `options`: [WebDriver options](/docs/configuration#webdriver-options)
-- `modifier`: கிளையன்ட் நிகழ்வைத் திரும்பப் பெறுவதற்கு முன் அதை மாற்ற அனுமதிக்கும் செயல்பாடு
-- `userPrototype`: நிகழ்வு முன்மாதிரியை நீட்டிக்க அனுமதிக்கும் ப்ராபர்ட்டி ஆப்ஜெக்ட்
-- `customCommandWrapper`: செயல்பாடு அழைப்புகளைச் சுற்றி செயல்பாட்டை ராப் செய்ய உதவும் செயல்பாடு
+- `options`: [WebDriver விருப்பங்கள்](/docs/configuration#webdriver-options)
+- `modifier`: client பிரதிநிதித்துவத்தை திருப்பித் தரப்படுவதற்கு முன் மாற்ற அனுமதிக்கும் செயல்பாடு
+- `userPrototype`: நிகழ்வு மாதிரியை நீட்டிக்க அனுமதிக்கும் பண்புகள் பொருள்
+- `customCommandWrapper`: செயல்பாடு அழைப்புகளைச் சுற்றி செயல்பாட்டை சுற்ற அனுமதிக்கும் செயல்பாடு
 
-##### Returns
+##### திருப்பி அனுப்புவது
 
-- [பிரௌசர்](/docs/api/browser) ஆப்ஜெக்ட்
+- [Browser](/docs/api/browser) பொருள்
 
 ##### எடுத்துக்காட்டு
 
@@ -34,18 +34,18 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-இயங்கும் WebDriver அல்லது DevTools அமர்வுடன் இணைக்கப்பட்டுள்ளது.
+இயங்கும் WebDriver அல்லது DevTools அமர்வுடன் இணைக்கிறது.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `attachInstance`: `sessionId` (எ.கா. `{ sessionId: 'xxx' }`) உடன் ஒரு அமர்வை இணைப்பதற்கான நிகழ்வு அல்லது குறைந்தபட்சம் ஒரு ப்ராபர்ட்டியுடன் அமைந்த ஒரு ஆப்ஜெக்ட்
-- `modifier`: கிளையன்ட் நிகழ்வைத் திரும்பப் பெறுவதற்கு முன் அதை மாற்ற அனுமதிக்கும் செயல்பாடு
-- `userPrototype`: நிகழ்வு முன்மாதிரியை நீட்டிக்க அனுமதிக்கும் ப்ராபர்ட்டி ஆப்ஜெக்ட்
-- `customCommandWrapper`: செயல்பாடு அழைப்புகளைச் சுற்றி செயல்பாட்டை ராப் செய்ய உதவும் செயல்பாடு
+- `attachInstance`: ஒரு அமர்வுடன் இணைக்க பிரதிநிதித்துவம் அல்லது குறைந்தபட்சம் `sessionId` பண்புடன் ஒரு பொருள் (எ.கா. `{ sessionId: 'xxx' }`)
+- `modifier`: client பிரதிநிதித்துவத்தை திருப்பித் தரப்படுவதற்கு முன் மாற்ற அனுமதிக்கும் செயல்பாடு
+- `userPrototype`: நிகழ்வு மாதிரியை நீட்டிக்க அனுமதிக்கும் பண்புகள் பொருள்
+- `customCommandWrapper`: செயல்பாடு அழைப்புகளைச் சுற்றி செயல்பாட்டை சுற்ற அனுமதிக்கும் செயல்பாடு
 
-##### Returns
+##### திருப்பி அனுப்புவது
 
-- [Browser](/docs/api/browser) object
+- [Browser](/docs/api/browser) பொருள்
 
 ##### எடுத்துக்காட்டு
 
@@ -56,11 +56,11 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-அமர்வை வழங்கினால் நிகழ்வை மீண்டும் ரீலோடு செய்கிறது.
+வழங்கப்பட்ட பிரதிநிதித்துவம் கொடுக்கப்பட்ட அமர்வை மீண்டும் ஏற்றுகிறது.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `நிகழ்வு`: மீண்டும் ரீலோடு செய்வதற்கான தொகுப்பு நிகழ்வு
+- `instance`: மீண்டும் ஏற்ற தொகுப்பு பிரதிநிதித்துவம்
 
 ##### எடுத்துக்காட்டு
 
@@ -71,20 +71,20 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-நெறிமுறை தொகுப்புகளைப் போலவே (`webdriver` மற்றும் `devtools`) நீங்கள் அமர்வுகளை நிர்வகிக்க WebdriverIO தொகுப்பு API களையும் பயன்படுத்தலாம். `import { remote, attach, multiremote } from 'webdriverio` யைப் பயன்படுத்தி APIகளை இறக்குமதி செய்யலாம் மற்றும் பின்வரும் செயல்பாடுகள் உள்ளன:
+நெறிமுறை தொகுப்புகளைப் போலவே (`webdriver` மற்றும் `devtools`) நீங்கள் WebdriverIO தொகுப்பு APIகளைப் பயன்படுத்தி அமர்வுகளை நிர்வகிக்கலாம். APIகளை `import { remote, attach, multiremote } from 'webdriverio` பயன்படுத்தி இறக்குமதி செய்யலாம் மற்றும் பின்வரும் செயல்பாடுகளைக் கொண்டுள்ளன:
 
 #### `remote(options, modifier)`
 
-WebdriverIO அமர்வைத் தொடங்குகிறது. இந்த நிகழ்வு அனைத்து கட்டளைகளையும் நெறிமுறை தொகுப்பாகக் கொண்டுள்ளது ஆனால் கூடுதல் உயர் வரிசை செயல்பாடுகளுடன், [API docs](/docs/api)பார்க்கவும்.
+WebdriverIO அமர்வைத் தொடங்குகிறது. பிரதிநிதித்துவம் நெறிமுறை தொகுப்பைப் போலவே அனைத்து கட்டளைகளையும் கொண்டுள்ளது ஆனால் கூடுதல் உயர் வரிசை செயல்பாடுகளுடன், [API ஆவணங்களைப்](/docs/api) பார்க்கவும்.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `options`: [WebdriverIO Options](/docs/configuration#webdriverio)
-- `modifier`: கிளையன்ட் நிகழ்வைத் திரும்பப் பெறுவதற்கு முன் அதை மாற்ற அனுமதிக்கும் செயல்பாடு
+- `options`: [WebdriverIO விருப்பங்கள்](/docs/configuration#webdriverio)
+- `modifier`: client பிரதிநிதித்துவத்தை திருப்பித் தரப்படுவதற்கு முன் மாற்ற அனுமதிக்கும் செயல்பாடு
 
-##### Returns
+##### திருப்பி அனுப்புவது
 
-- [பிரௌசர்](/docs/api/browser) ஆப்ஜெக்ட்
+- [Browser](/docs/api/browser) பொருள்
 
 ##### எடுத்துக்காட்டு
 
@@ -98,15 +98,15 @@ const browser = await remote({
 
 #### `attach(attachOptions)`
 
-இயங்கும் WebdriverIO அமர்வுடன் இணைக்கப்பட்டுள்ளது.
+இயங்கும் WebdriverIO அமர்வுடன் இணைக்கிறது.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `attachOptions`: `sessionId` (எ.கா. `{ sessionId: 'xxx' }`) உடன் ஒரு அமர்வை இணைப்பதற்கான நிகழ்வு அல்லது குறைந்தபட்சம் ஒரு ப்ராபர்ட்டியுடன் அமைந்த ஒரு ஆப்ஜெக்ட்
+- `attachOptions`: ஒரு அமர்வுடன் இணைக்க பிரதிநிதித்துவம் அல்லது குறைந்தபட்சம் `sessionId` பண்புடன் ஒரு பொருள் (எ.கா. `{ sessionId: 'xxx' }`)
 
-##### Returns
+##### திருப்பி அனுப்புவது
 
-- [பிரௌசர்](/docs/api/browser) ஆப்ஜெக்ட்
+- [Browser](/docs/api/browser) பொருள்
 
 ##### எடுத்துக்காட்டு
 
@@ -119,15 +119,15 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-ஒரே நிகழ்வில் பல அமர்வைக் கட்டுப்படுத்த உங்களை அனுமதிக்கும் மல்டிரிமோட் நிகழ்வைத் தொடங்குகிறது. உறுதியான பயன்பாட்டு நிகழ்வுகளுக்கு எங்கள் [multiremote examples](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) ஐப் பார்க்கவும்.
+ஒரு multiremote பிரதிநிதித்துவத்தைத் தொடங்குகிறது, இது ஒரு பிரதிநிதித்துவத்திற்குள் பல அமர்வுகளைக் கட்டுப்படுத்த உங்களை அனுமதிக்கிறது. குறிப்பிட்ட பயன்பாட்டு வழக்குகளுக்கு எங்கள் [multiremote எடுத்துக்காட்டுகளை](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) சரிபார்க்கவும்.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `multiremoteOptions`: பிரௌசரின் பெயர் மற்றும் அவற்றின் [WebdriverIO Options](/docs/configuration#webdriverio)ஆகியவற்றைக் குறிக்கும் கீஸ்களைக் கொண்ட ஒரு ஆப்ஜெக்ட்.
+- `multiremoteOptions`: உலாவியின் பெயரைக் குறிக்கும் விசைகள் மற்றும் அவற்றின் [WebdriverIO விருப்பங்கள்](/docs/configuration#webdriverio) கொண்ட ஒரு பொருள்.
 
-##### Returns
+##### திருப்பி அனுப்புவது
 
-- [பிரௌசர்](/docs/api/browser) ஆப்ஜெக்ட்
+- [Browser](/docs/api/browser) பொருள்
 
 ##### எடுத்துக்காட்டு
 
@@ -151,14 +151,14 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-`wdio` கட்டளையை அழைப்பதற்குப் பதிலாக, நீங்கள் டெஸ்ட் ரன்னரரை மாடூலாகச் சேர்த்து, தன்னிச்சையான என்விரான்மென்டில் அதை இயக்கலாம். அதற்கு, நீங்கள் `@wdio/cli` தொகுப்பைத் மாடூலாகத் தேவைபடும், இது போன்று:
+`wdio` கட்டளையை அழைப்பதற்குப் பதிலாக, நீங்கள் சோதனை ரன்னரை தொகுதியாகச் சேர்த்து அதை ஒரு தன்னிச்சையான சூழலில் இயக்கலாம். அதற்கு, நீங்கள் `@wdio/cli` தொகுப்பை தொகுதியாக தேவைப்படுத்த வேண்டும், இப்படி:
 
 <Tabs
   defaultValue="esm"
   values={[
     {label: 'EcmaScript Modules', value: 'esm'},
- {label: 'CommonJS', value: 'cjs'}
- ]
+    {label: 'CommonJS', value: 'cjs'}
+  ]
 }>
 <TabItem value="esm">
 
@@ -176,16 +176,16 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-அதன் பிறகு, துவக்கியின் நிகழ்வை உருவாக்கி, டெஸ்டை இயக்கவும்.
+அதன் பிறகு, launcher பிரதிநிதித்துவத்தை உருவாக்கி, சோதனையை இயக்கவும்.
 
 #### `Launcher(configPath, opts)`
 
-`Launcher` கிளாஸ் கன்ஸ்ட்ரக்டர் URL ஐ config கோப்பில் எதிர்பார்க்கிறது, மேலும் `opts` ஆப்ஜெக்ட் அமைப்புகளுடன் configல் உள்ளவற்றை மேலெழுதும்.
+`Launcher` வகுப்பு கட்டமைப்பாளர் கட்டமைப்பு கோப்புக்கான URL மற்றும் கட்டமைப்பில் உள்ளவற்றை மேலெழுதும் அமைப்புகளுடன் ஒரு `opts` பொருளை எதிர்பார்க்கிறது.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `configPath`: `wdio.conf.js` இயக்குவதற்கான பாதை
-- `opts`: config பைலிலிருந்து வேல்யூக்களை மேலெழுத ஆர்குமென்டுகள் ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77))
+- `configPath`: இயக்க `wdio.conf.js` இன் பாதை
+- `opts`: கட்டமைப்பு கோப்பிலிருந்து மதிப்புகளை மேலெழுத வாதங்கள் ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77))
 
 ##### எடுத்துக்காட்டு
 
@@ -203,11 +203,11 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-`run` கட்டளை [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) யை வழங்குகிறது. டெஸ்டுகள் வெற்றிகரமாக நடந்தாலோ அல்லது தோல்வியடைந்தாலோ அது தீர்க்கப்படும், மேலும் லாஞ்சரால் டெஸ்டுகளை இயக்க முடியவில்லை என்றால் அது நிராகரிக்கப்படும்.
+`run` கட்டளை ஒரு [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) ஐ திருப்பி அனுப்புகிறது. சோதனைகள் வெற்றிகரமாக இயங்கினால் அல்லது தோல்வியுற்றால் அது தீர்க்கப்படுகிறது, மற்றும் launcher சோதனைகளை இயக்க முடியாவிட்டால் அது நிராகரிக்கப்படுகிறது.
 
 ## `@wdio/browser-runner`
 
-WebdriverIO இன் [browser runner](/docs/runner#browser-runner) யைப் பயன்படுத்தி யூனிட் அல்லது காம்போனென்ட் டெஸ்டுகளை இயக்கும்போது, உங்கள் டெஸ்டுகளுக்கான மாக் செய்யும் பயன்பாடுகளை நீங்கள் இறக்குமதி செய்யலாம், எ.கா.:
+WebdriverIO இன் [உலாவி ரன்னர்](/docs/runner#browser-runner) பயன்படுத்தி அலகு அல்லது கூறு சோதனைகளை இயக்கும்போது, நீங்கள் உங்கள் சோதனைகளுக்கான மாற்று பயன்பாடுகளை இறக்குமதி செய்யலாம், எ.கா.:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
@@ -217,20 +217,20 @@ import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 
 #### `fn`
 
-மாக் செயல்பாடு, அதிகாரப்பூர்வ [Vitest docs](https://vitest.dev/api/mock.html#mock-functions)இல் மேலும் பார்க்கவும்.
+மாற்று செயல்பாடு, அதிகாரப்பூர்வ [Vitest ஆவணங்களில்](https://vitest.dev/api/mock.html#mock-functions) மேலும் காணலாம்.
 
 #### `spyOn`
 
-ஸ்பை செயல்பாடு, அதிகாரப்பூர்வ [Vitest docs](https://vitest.dev/api/mock.html#mock-functions)இல் மேலும் பார்க்கவும்.
+உளவு செயல்பாடு, அதிகாரப்பூர்வ [Vitest ஆவணங்களில்](https://vitest.dev/api/mock.html#mock-functions) மேலும் காணலாம்.
 
 #### `mock`
 
-பைல் அல்லது சார்பு மாடூளை மாக்காக்கும் முறை.
+கோப்பு அல்லது சார்பு தொகுதியை மாற்றுவதற்கான முறை.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `moduleName`: மாக் செய்யப்பட வேண்டிய பைலிற்கான தொடர்புடைய பாதை அல்லது மாடூலின் பெயர்.
-- `factory`: மாக் செய்யப்பட்ட வேல்யூவை வழங்கும் செயல்பாடு (optional)
+- `moduleName`: மாற்றப்பட வேண்டிய கோப்புக்கு தொடர்புடைய பாதை அல்லது தொகுதி பெயர்.
+- `factory`: மாற்றப்பட்ட மதிப்பைத் திருப்பித் தரும் செயல்பாடு (விருப்பமானது)
 
 ##### எடுத்துக்காட்டு
 
@@ -250,11 +250,11 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-மேனுவல் மாக் (`__mocks__`) டைரக்டரியில் வரையறுக்கப்பட்ட அன்மாக் சார்பு.
+கையேடு மாற்று (`__mocks__`) கோப்பகத்தில் வரையறுக்கப்பட்டுள்ள சார்புநிலையை மாற்று நீக்கவும்.
 
-##### பாராமீட்டர்கள்
+##### அளவுருக்கள்
 
-- `moduleName`: அன்மாக் செய்ய வேண்டிய மாடூலின் பெயர்.
+- `moduleName`: மாற்று நீக்க வேண்டிய தொகுதியின் பெயர்.
 
 ##### எடுத்துக்காட்டு
 

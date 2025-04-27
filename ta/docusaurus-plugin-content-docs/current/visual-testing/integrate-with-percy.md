@@ -1,22 +1,21 @@
 ---
 id: integrate-with-percy
-title: For Web Application
+title: வெப் பயன்பாட்டிற்கு
 ---
 
-## Integrate your WebdriverIO tests with Percy
+## உங்கள் WebdriverIO சோதனைகளை Percy உடன் ஒருங்கிணைக்கவும்
 
-Before integration, you can explore [Percy’s sample build tutorial for WebdriverIO](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
-Integrate your WebdriverIO automated tests with BrowserStack Percy and here's an overview of the integration steps:
+ஒருங்கிணைப்பு முன், நீங்கள் [WebdriverIO-க்கான Percy-ன் மாதிரி உருவாக்க பயிற்சியை](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) ஆராயலாம்.
+உங்கள் WebdriverIO தானியங்கி சோதனைகளை BrowserStack Percy உடன் ஒருங்கிணைக்கவும் இதோ ஒருங்கிணைப்பு படிகளின் கண்ணோட்டம்:
 
-### Step 1: Create a Percy project
+### படி 1: ஒரு Percy திட்டத்தை உருவாக்கவும்
+Percy-க்கு [உள்நுழையவும்](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation). Percy-ல், 'வெப்' வகையான ஒரு திட்டத்தை உருவாக்கி, பின்னர் திட்டத்திற்கு பெயரிடவும். திட்டம் உருவாக்கப்பட்ட பிறகு, Percy ஒரு டோக்கனை உருவாக்குகிறது. அதைக் குறித்து வைக்கவும். அடுத்த படியில் உங்கள் சூழல் மாறியை அமைக்க நீங்கள் அதைப் பயன்படுத்த வேண்டும்.
 
-[Sign in](https://percy.io/signup/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) to Percy. In Percy, create a project of the type, Web, and then name the project. After the project is created, Percy generates a token. Make a note of it. You have to use it to set your environment variable in the next step.
+ஒரு திட்டத்தை உருவாக்குவது பற்றிய விவரங்களுக்கு, [Percy திட்டத்தை உருவாக்கு](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) பார்க்கவும்.
 
-For details on creating a project, see [Create a Percy project](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+### படி 2: திட்ட டோக்கனை சூழல் மாறியாக அமைக்கவும்
 
-### Step 2: Set the project token as an environment variable
-
-Run the given command to set PERCY_TOKEN as an environment variable:
+PERCY_TOKEN-ஐ சூழல் மாறியாக அமைக்க கொடுக்கப்பட்ட கட்டளையை இயக்கவும்:
 
 ```sh
 export PERCY_TOKEN="<your token here>"   // macOS or Linux
@@ -24,20 +23,20 @@ $Env:PERCY_TOKEN="<your token here>"   // Windows PowerShell
 set PERCY_TOKEN="<your token here>"    // Windows CMD
 ```
 
-### Step 3: Install Percy dependencies
+### படி 3: Percy சார்புகளை நிறுவவும்
 
-Install the components required to establish the integration environment for your test suite.
+உங்கள் சோதனைத் தொகுப்பிற்கான ஒருங்கிணைப்பு சூழலை நிறுவ தேவையான கூறுகளை நிறுவவும்.
 
-To install the dependencies, run the following command:
+சார்புகளை நிறுவ, பின்வரும் கட்டளையை இயக்கவும்:
 
 ```sh
 npm install --save-dev @percy/cli @percy/webdriverio
 ```
 
-### Step 4: Update your test script
+### படி 4: உங்கள் சோதனை ஸ்கிரிப்டை புதுப்பிக்கவும்
 
-Import the Percy library to use the method and attributes required to take screenshots.
-The following example uses the percySnapshot() function in the async mode:
+திரைப்பிடிப்புகள் எடுக்க தேவையான முறை மற்றும் பண்புகளைப் பயன்படுத்த Percy நூலகத்தை இறக்குமதி செய்யவும்.
+பின்வரும் எடுத்துக்காட்டு ஒத்திசைவற்ற முறையில் percySnapshot() செயல்பாட்டைப் பயன்படுத்துகிறது:
 
 ```sh
 import percySnapshot from '@percy/webdriverio';
@@ -50,7 +49,7 @@ describe('webdriver.io page', () => {
 });
 ```
 
-When using WebdriverIO in the [standalone mode](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation), provide the browser object as the first argument to the `percySnapshot` function:
+WebdriverIO-ஐ [தனித்து இயங்கும் முறையில்](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) பயன்படுத்தும்போது, `percySnapshot` செயல்பாட்டிற்கு முதல் அளவுருவாக உலாவி பொருளை வழங்கவும்:
 
 ```sh
 import { remote } from 'webdriverio'
@@ -73,30 +72,27 @@ await submitBtn.click();
 percySnapshot(browser, 'WebdriverIO at DuckDuckGo');
 await browser.deleteSession();
 ```
-
-The snapshot method arguments are:
+ஸ்னாப்ஷாட் முறை அளவுருக்கள்:
 
 ```sh
 percySnapshot(name[, options])
 ```
-
-### Standalone mode
+### தனித்து இயங்கும் முறை
 
 ```sh
 percySnapshot(browser, name[, options])
 ```
 
-- browser (required) - The WebdriverIO browser object
-- name (required) - The snapshot name; must be unique to each snapshot
-- options - See per-snapshot configuration options
+- browser (தேவை) - WebdriverIO உலாவி பொருள்
+- name (தேவை) - ஸ்னாப்ஷாட் பெயர்; ஒவ்வொரு ஸ்னாப்ஷாட்டிற்கும் தனித்துவமாக இருக்க வேண்டும்
+- options - ஒவ்வொரு ஸ்னாப்ஷாட்டிற்கான கட்டமைப்பு விருப்பங்களைப் பார்க்கவும்
 
-To learn more, see [Percy snapshot](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+மேலும் அறிய, [Percy ஸ்னாப்ஷாட்](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) பார்க்கவும்.
 
-### Step 5: Run Percy
+### படி 5: Percy இயக்கவும்
+கீழே காட்டியுள்ளபடி `percy exec` கட்டளையைப் பயன்படுத்தி உங்கள் சோதனைகளை இயக்கவும்:
 
-Run your tests using the `percy exec` command as shown below:
-
-If you are unable to use the `percy:exec` command or prefer to run your tests using IDE run options, you can use the `percy:exec:start` and `percy:exec:stop` commands. To learn more, visit [Run Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+நீங்கள் `percy:exec` கட்டளையைப் பயன்படுத்த முடியவில்லை அல்லது IDE இயக்க விருப்பங்களைப் பயன்படுத்தி உங்கள் சோதனைகளை இயக்க விரும்பினால், `percy:exec:start` மற்றும் `percy:exec:stop` கட்டளைகளைப் பயன்படுத்தலாம். மேலும் அறிய, [Percy இயக்கு](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) பார்வையிடவும்.
 
 ```sh
 percy exec -- wdio wdio.conf.js
@@ -117,15 +113,15 @@ percy exec -- wdio wdio.conf.js
 
 ```
 
-## Visit the following pages for more details:
+## மேலும் விவரங்களுக்கு பின்வரும் பக்கங்களைப் பார்வையிடவும்:
+- [உங்கள் WebdriverIO சோதனைகளை Percy உடன் ஒருங்கிணைக்கவும்](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [சூழல் மாறி பக்கம்](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- நீங்கள் BrowserStack Automate பயன்படுத்தினால் [BrowserStack SDK ஐப் பயன்படுத்தி ஒருங்கிணைக்கவும்](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-- [Integrate your WebdriverIO tests with Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)
-- [Environment variable page](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)
-- [Integrate using BrowserStack SDK](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) if you are using BrowserStack Automate.
 
-| Resource                                                                                                                                                              | Description                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [Official docs](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)              | Percy's WebdriverIO documentation              |
-| [Sample build - Tutorial](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) | Percy's WebdriverIO tutorial                   |
-| [Official video](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)                                              | Visual Testing with Percy                      |
-| [Blog](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)                    | Introducing Visual Reviews 2.0 |
+| வளம்                                                                                                                                                              | விளக்கம்                            |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| [அதிகாரப்பூர்வ ஆவணங்கள்](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)    | Percy இன் WebdriverIO ஆவணங்கள்    |
+| [மாதிரி உருவாக்கம் - பயிற்சி](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | Percy இன் WebdriverIO பயிற்சி      |
+| [அதிகாரப்பூர்வ வீடியோ](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                         | Percy உடன் காட்சி சோதனை           |
+| [வலைப்பதிவு](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)              | காட்சி மதிப்பாய்வுகள் 2.0 அறிமுகம்    |

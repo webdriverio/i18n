@@ -1,31 +1,29 @@
 ---
 id: writing-tests
-title: Writing Tests
+title: சோதனைகளை எழுதுதல்
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Testrunner Framework Support
+## டெஸ்ட்ரன்னர் கட்டமைப்பு ஆதரவு
 
-`@wdio/visual-service` is test-runner framework agnostic, which means that you can use it with all the frameworks WebdriverIO supports like:
+`@wdio/visual-service` டெஸ்ட்-ரன்னர் கட்டமைப்பு சாராதது, அதாவது நீங்கள் இதை WebdriverIO ஆதரிக்கும் அனைத்து கட்டமைப்புகளுடனும் பயன்படுத்தலாம், அவை:
 
-- [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
-- [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
-- [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
+-   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
+-   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
+-   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-Within your tests, you can _save_ screenshots or match the current visual state of your application under test with a baseline. For that, the service provides [custom matcher](/docs/api/expect-webdriverio#visual-matcher), as well as _check_ methods:
+உங்கள் சோதனைகளுக்குள், நீங்கள் திரைப்பிடிப்புகளை _சேமிக்கலாம்_ அல்லது உங்கள் பயன்பாட்டின் தற்போதைய காட்சி நிலையை ஒரு அடிப்படை நிலையுடன் பொருத்தலாம். இதற்காக, இந்த சேவை [தனிப்பயன் பொருத்தி](/docs/api/expect-webdriverio#visual-matcher) மற்றும் _சரிபார்ப்பு_ முறைகளை வழங்குகிறது:
 
 <Tabs
-defaultValue="mocha"
-values={[
-{label: 'Mocha', value: 'mocha'},
-{label: 'Jasmine', value: 'jasmine'},
-{label: 'CucumberJS', value: 'cucumberjs'},
-]}
-
+    defaultValue="mocha"
+    values={[
+        {label: 'Mocha', value: 'mocha'},
+        {label: 'Jasmine', value: 'jasmine'},
+        {label: 'CucumberJS', value: 'cucumberjs'},
+    ]}
 >
-
 <TabItem value="mocha">
 
 ```ts
@@ -347,9 +345,9 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 </TabItem>
 </Tabs>
 
-:::note IMPORTANT
+:::note முக்கியமானது
 
-This service provides `save` and `check` methods. If you run your tests for the first time you **SHOULD NOT** combine `save` and `compare` methods, the `check`-methods will automatically create a baseline image for you
+இந்த சேவை `save` மற்றும் `check` முறைகளை வழங்குகிறது. நீங்கள் முதல் முறையாக உங்கள் சோதனைகளை இயக்கினால், நீங்கள் `save` மற்றும் `compare` முறைகளை **இணைக்கக்கூடாது**, `check`-முறைகள் தானாகவே உங்களுக்கு ஒரு அடிப்படை படத்தை உருவாக்கும்
 
 ```sh
 #####################################################################################
@@ -359,7 +357,8 @@ This service provides `save` and `check` methods. If you run your tests for the 
 #####################################################################################
 ```
 
-When you've [disabled to automatically save baseline images](service-options#autosavebaseline), the Promise will be rejected with the following warning.
+
+நீங்கள் [அடிப்படை படங்களை தானாக சேமிப்பதை முடக்கியிருந்தால்](service-options#autosavebaseline), Promise பின்வரும் எச்சரிக்கையுடன் நிராகரிக்கப்படும்.
 
 ```sh
 #####################################################################################
@@ -369,6 +368,6 @@ When you've [disabled to automatically save baseline images](service-options#aut
 #####################################################################################
 ```
 
-This means that the current screenshot is saved in the actual folder and you **manually need to copy it to your baseline**. If you instantiate `@wdio/visual-service` with [`autoSaveBaseline: true`](./service-options#autosavebaseline) the image will automatically be saved into the baseline folder.
+இதன் பொருள் தற்போதைய திரைப்பிடிப்பு actual கோப்புறையில் சேமிக்கப்பட்டுள்ளது மற்றும் நீங்கள் **கைமுறையாக அதை உங்கள் அடிப்படைக்கு நகலெடுக்க வேண்டும்**. நீங்கள் `@wdio/visual-service`-ஐ [`autoSaveBaseline: true`](./service-options#autosavebaseline) உடன் துவக்கினால், படம் தானாகவே அடிப்படை கோப்புறையில் சேமிக்கப்படும்.
 
 :::

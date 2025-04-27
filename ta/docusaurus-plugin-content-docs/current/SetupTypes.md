@@ -1,20 +1,20 @@
 ---
 id: setuptypes
-title: Setup Types
+title: அமைவு வகைகள்
 ---
 
-WebdriverIO can be used for various purposes. It implements the WebDriver protocol API and can run a browser in an automated way. The framework is designed to work in any arbitrary environment and for any kind of task. It is independent from any 3rd party frameworks and only requires Node.js to run.
+WebdriverIO பல்வேறு நோக்கங்களுக்காக பயன்படுத்தப்படலாம். இது WebDriver நெறிமுறை API ஐ செயல்படுத்துகிறது மற்றும் தானியங்கி முறையில் உலாவியை இயக்க முடியும். இந்த கட்டமைப்பு எந்தவொரு தன்னிச்சையான சூழலிலும் மற்றும் எந்தவொரு வகையான பணிக்கும் செயல்படும் வகையில் வடிவமைக்கப்பட்டுள்ளது. இது எந்தவொரு மூன்றாம் தரப்பு கட்டமைப்புகளில் இருந்தும் சுதந்திரமானது மற்றும் இயங்க Node.js மட்டுமே தேவைப்படுகிறது.
 
-## Protocol Bindings
+## நெறிமுறை பிணைப்புகள்
 
-For basic interactions with the WebDriver and other automation protocols WebdriverIO uses its own protocol bindings based on the [`webdriver`](https://www.npmjs.com/package/webdriver) NPM package:
+WebDriver மற்றும் பிற தானியக்க நெறிமுறைகளுடன் அடிப்படை தொடர்புகளுக்கு WebdriverIO [`webdriver`](https://www.npmjs.com/package/webdriver) NPM பேக்கேஜை அடிப்படையாகக் கொண்ட அதன் சொந்த நெறிமுறை பிணைப்புகளைப் பயன்படுத்துகிறது:
 
 <Tabs
   defaultValue="webdriver"
   values={[
     {label: 'WebDriver', value: 'webdriver'},
- {label: 'Chrome DevTools', value: 'devtools'},
- ]
+    {label: 'Chrome DevTools', value: 'devtools'},
+  ]
 }>
 <TabItem value="webdriver">
 
@@ -32,40 +32,40 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 </TabItem>
 </Tabs>
 
-All [protocol commands](api/webdriver) return the raw response from the automation driver. The package is very lightweight and there is __no__ smart logic like auto-waits to simplify the interaction with the protocol usage.
+அனைத்து [நெறிமுறை கட்டளைகளும்](api/webdriver) தானியக்க இயக்கியிலிருந்து உண்மையான பதிலைத் திருப்பித் தருகின்றன. இந்த பேக்கேஜ் மிகவும் இலகுவானது மற்றும் நெறிமுறை பயன்பாட்டுடனான தொடர்பை எளிதாக்க தானியங்கி-காத்திருத்தல் போன்ற புத்திசாலித்தனமான தர்க்கம் __இல்லை__.
 
-The protocol commands applied to the instance depend on the initial session response of the driver. For example if the response indicates that a mobile session was started, the package applies all Appium and Mobile JSON Wire protocol commands to the instance prototype.
+நிகழ்வு பதிப்புக்கு பயன்படுத்தப்படும் நெறிமுறை கட்டளைகள் இயக்கியின் ஆரம்ப அமர்வு பதிலைப் பொறுத்தது. எடுத்துக்காட்டாக, பதில் ஒரு மொபைல் அமர்வு தொடங்கப்பட்டதைக் குறிக்கிறது என்றால், பேக்கேஜ் அனைத்து Appium மற்றும் மொபைல் JSON Wire நெறிமுறை கட்டளைகளை நிகழ்வு முன்மாதிரிக்குப் பயன்படுத்துகிறது.
 
-You can run the same set of commands (except mobile ones) using the Chrome DevTools protocol when importing the [`devtools`](https://www.npmjs.com/package/devtools) NPM package. It has the same interface as the `webdriver` package but runs its automation based on [Puppeteer](https://pptr.dev/).
+[`devtools`](https://www.npmjs.com/package/devtools) NPM பேக்கேஜை இறக்குமதி செய்வதன் மூலம் Chrome DevTools நெறிமுறையைப் பயன்படுத்தி அதே கட்டளைகளை (மொபைல் கட்டளைகளைத் தவிர) இயக்கலாம். இது `webdriver` பேக்கேஜைப் போலவே இடைமுகத்தைக் கொண்டுள்ளது, ஆனால் அதன் தானியக்கத்தை [Puppeteer](https://pptr.dev/) அடிப்படையில் இயக்குகிறது.
 
-For more information on these package interfaces, see [Modules API](/docs/api/modules).
+இந்த பேக்கேஜ் இடைமுகங்கள் பற்றிய கூடுதல் தகவலுக்கு, [தொகுதிகள் API](/docs/api/modules) ஐப் பார்க்கவும்.
 
-## Standalone Mode
+## தனித்து இயங்கும் முறை
 
-To simplify the interaction with the WebDriver protocol the `webdriverio` package implements a variety of commands on top of the protocol (e.g. the [`dragAndDrop`](api/element/dragAndDrop) command) and core concepts such as [smart selectors](selectors) or [auto-waits](autowait). The example from above can be simplified like this:
+WebDriver நெறிமுறையுடனான தொடர்பை எளிதாக்க, `webdriverio` பேக்கேஜ் நெறிமுறையின் மேல் பல்வேறு கட்டளைகளை செயல்படுத்துகிறது (எ.கா. [`dragAndDrop`](api/element/dragAndDrop) கட்டளை) மற்றும் [ஸ்மார்ட் தேர்வுக்கூறுகள்](selectors) அல்லது [தானியங்கி-காத்திருத்தல்](autowait) போன்ற முக்கிய கருத்துக்கள். மேலே உள்ள உதாரணத்தை இவ்வாறு எளிமைப்படுத்தலாம்:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/standalone.js#L2-L19
 ```
 
-Using WebdriverIO in standalone mode still gives you access to all protocol commands but provides a super set of additional commands that provide a higher level interaction with the browser. It allows you to integrate this automation tool in your own (test) project to create a new automation library. Popular examples include [Oxygen](https://github.com/oxygenhq/oxygen) or [CodeceptJS](http://codecept.io). You can also write plain Node scripts to scrape the web for content (or anything else that requires a running browser).
+தனித்து இயங்கும் முறையில் WebdriverIO ஐப் பயன்படுத்துவது அனைத்து நெறிமுறை கட்டளைகளுக்கும் அணுகலை வழங்குகிறது, ஆனால் உலாவியுடன் உயர்நிலை தொடர்புகொள்ளும் கூடுதல் கட்டளைகளின் சூப்பர் செட்டை வழங்குகிறது. இது உங்கள் சொந்த (சோதனை) திட்டத்தில் இந்த தானியக்க கருவியை ஒருங்கிணைக்க அனுமதிக்கிறது, இதன் மூலம் ஒரு புதிய தானியக்க நூலகத்தை உருவாக்கலாம். பிரபலமான எடுத்துக்காட்டுகளில் [Oxygen](https://github.com/oxygenhq/oxygen) அல்லது [CodeceptJS](http://codecept.io) ஆகியவை அடங்கும். உள்ளடக்கத்திற்காக வலையை சுரண்ட (அல்லது இயங்கும் உலாவி தேவைப்படும் வேறு எதையும்) சாதாரண Node ஸ்கிரிப்ட்களையும் எழுதலாம்.
 
-If no specific options are set WebdriverIO will always attempt to download and setup the browser driver that matches `browserName` property in your capabilities. In case of Chrome and Firefox it might also install them depending on whether it can find the corresponding browser on the machine.
+குறிப்பிட்ட விருப்பங்கள் அமைக்கப்படவில்லை என்றால், WebdriverIO எப்போதும் உங்கள் திறன்களில் `browserName` பண்புடன் பொருந்தும் உலாவி இயக்கியை பதிவிறக்கம் செய்து அமைக்க முயற்சிக்கும். Chrome மற்றும் Firefox இன் விஷயத்தில், கணினியில் தொடர்புடைய உலாவியைக் கண்டுபிடிக்க முடியுமா என்பதைப் பொறுத்து அவற்றையும் நிறுவலாம்.
 
-For more information on the `webdriverio` package interfaces, see [Modules API](/docs/api/modules).
+`webdriverio` பேக்கேஜ் இடைமுகங்கள் பற்றிய கூடுதல் தகவலுக்கு, [தொகுதிகள் API](/docs/api/modules) ஐப் பார்க்கவும்.
 
-## The WDIO Testrunner
+## WDIO சோதனை இயக்கி
 
-The main purpose of WebdriverIO, though, is end-to-end testing on a big scale. We therefore implemented a test runner that helps you to build a reliable test suite that is easy to read and maintain.
+WebdriverIO இன் முக்கிய நோக்கம் பெரிய அளவில் ஒருங்கிணைந்த சோதனை ஆகும். எனவே, படிக்க எளிதாகவும் பராமரிக்க எளிதாகவும் இருக்கும் ஒரு நம்பகமான சோதனை தொகுப்பை உருவாக்க உதவும் ஒரு சோதனை இயக்கியை நாங்கள் செயல்படுத்தியுள்ளோம்.
 
-The test runner takes care of many problems that are common when working with plain automation libraries. For one, it organizes your test runs and splits up test specs so your tests can be executed with maximum concurrency. It also handles session management and provides lots of features to help you to debug problems and find errors in your tests.
+சோதனை இயக்கி வெறும் தானியக்க நூலகங்களுடன் வேலை செய்யும் போது பொதுவான பல சிக்கல்களை கவனித்துக்கொள்கிறது. ஒன்று, இது உங்கள் சோதனை ஓட்டங்களை ஒழுங்கமைத்து, சோதனை ஸ்பெக்களை பிரித்து, உங்கள் சோதனைகள் அதிகபட்ச ஒத்தியைவுடன் செயல்படுத்தப்படலாம். இது அமர்வு மேலாண்மையையும் கையாளுகிறது மற்றும் சிக்கல்களைத் திருத்தவும் உங்கள் சோதனைகளில் உள்ள பிழைகளைக் கண்டறியவும் உதவும் பல அம்சங்களை வழங்குகிறது.
 
-Here is the same example from above, written as a test spec and executed by WDIO:
+இதோ மேலே உள்ள அதே உதாரணம், ஒரு சோதனை ஸ்பெக்காக எழுதப்பட்டு WDIO ஆல் செயல்படுத்தப்பட்டது:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/testrunner.js
 ```
 
-The test runner is an abstraction of popular test frameworks like Mocha, Jasmine, or Cucumber. To run your tests using the WDIO test runner, check out the [Getting Started](gettingstarted) section for more information.
+சோதனை இயக்கி என்பது Mocha, Jasmine அல்லது Cucumber போன்ற பிரபலமான சோதனை கட்டமைப்புகளின் தள்ளி. WDIO சோதனை இயக்கியைப் பயன்படுத்தி உங்கள் சோதனைகளை இயக்க, கூடுதல் தகவலுக்கு [தொடங்குதல்](gettingstarted) பிரிவைப் பார்க்கவும்.
 
-For more information on the `@wdio/cli` testrunner package interface, see [Modules API](/docs/api/modules).
+`@wdio/cli` சோதனை இயக்கி பேக்கேஜ் இடைமுகம் பற்றிய கூடுதல் தகவலுக்கு, [தொகுதிகள் API](/docs/api/modules) ஐப் பார்க்கவும்.

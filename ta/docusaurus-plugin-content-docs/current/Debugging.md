@@ -1,15 +1,15 @@
 ---
 id: debugging
-title: Debugging
+title: பிழைத்திருத்தம்
 ---
 
-Debugging is significantly more difficult when several processes spawn dozens of tests in multiple browsers.
+பல செயல்முறைகள் பல உலாவிகளில் பல சோதனைகளைத் தூண்டும்போது பிழைத்திருத்தம் கணிசமாக சிரமமாக இருக்கும்.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_bw_VWn5IzU" frameborder="0" allowFullScreen></iframe>
 
-For starters, it is extremely helpful to limit parallelism by setting `maxInstances` to `1`, and targeting only those specs and browsers that need to be debugged.
+முதலில், `maxInstances` ஐ `1` என அமைப்பதன் மூலமும், பிழைத்திருத்தப்பட வேண்டிய அந்த குறிப்பிட்ட விவரக்குறிப்புகள் மற்றும் உலாவிகளை மட்டும் இலக்காகக் கொள்வதன் மூலமும் இணைப்பையக் கட்டுப்படுத்துவது மிகவும் பயனுள்ளதாக இருக்கும்.
 
-In `wdio.conf`:
+`wdio.conf` இல்:
 
 ```js
 export const config = {
@@ -25,15 +25,15 @@ export const config = {
 }
 ```
 
-## The Debug Command
+## பிழைத்திருத்த கட்டளை
 
-In many cases, you can use [`browser.debug()`](/docs/api/browser/debug) to pause your test and inspect the browser.
+பல சந்தர்ப்பங்களில், உங்கள் சோதனையை இடைநிறுத்தி உலாவியைப் பரிசோதிக்க நீங்கள் [`browser.debug()`](/docs/api/browser/debug) ஐப் பயன்படுத்தலாம்.
 
-Your command line interface will also switch into REPL mode. This mode allows you to fiddle around with commands and elements on the page. In REPL mode, you can access the `browser` object&mdash;or `$` and `$$` functions&mdash;like you can in your tests.
+உங்கள் கட்டளை வரி இடைமுகமும் REPL முறைக்கு மாறும். இந்த முறையானது கட்டளைகள் மற்றும் பக்கத்தில் உள்ள உறுப்புகளுடன் விளையாட அனுமதிக்கிறது. REPL முறையில், உங்கள் சோதனைகளில் செய்யக்கூடிய `browser` பொருளை அல்லது `$` மற்றும் `$$` செயல்பாடுகளை அணுகலாம்.
 
-When using `browser.debug()`, you will likely need to increase the timeout of the test runner to prevent the test runner from failing the test for taking to long.  For example:
+`browser.debug()` ஐப் பயன்படுத்தும் போது, அதிக நேரம் எடுப்பதற்காக சோதனை இயக்கி சோதனையை தோல்வியடையச் செய்வதைத் தடுக்க சோதனை இயக்கியின் காலமுடிவை நீங்கள் அதிகரிக்க வேண்டியிருக்கும். எடுத்துக்காட்டாக:
 
-In `wdio.conf`:
+`wdio.conf` இல்:
 
 ```js
 jasmineOpts: {
@@ -41,14 +41,15 @@ jasmineOpts: {
 }
 ```
 
-See [timeouts](timeouts) for more information on how to do that using other frameworks.
+மற்ற கட்டமைப்புகளைப் பயன்படுத்தி அதைச் செய்வது எப்படி என்பது பற்றிய கூடுதல் தகவலுக்கு [காலநேர முடிவுகள்](timeouts) ஐப் பார்க்கவும்.
 
-To proceed with the tests after debugging, in the shell use `^C` shortcut or the `.exit` command.
-## Dynamic configuration
+பிழைத்திருத்தலுக்குப் பிறகு சோதனைகளைத் தொடர, ஷெல்லில் `^C` குறுக்குவழியைப் பயன்படுத்தவும் அல்லது `.exit` கட்டளையைப் பயன்படுத்தவும்.
 
-Note that `wdio.conf.js` can contain Javascript. Since you probably do not want to permanently change your timeout value to 1 day, it can be often helpful to change these settings from the command line using an environment variable.
+## டைனமிக் கான்ஃபிகரேஷன்
 
-Using this technique, you can dynamically change the configuration:
+`wdio.conf.js` ஜாவாஸ்கிரிப்ட் கொண்டிருக்கலாம் என்பதை கவனிக்கவும். நீங்கள் நிரந்தரமாக உங்கள் காலமுடிவு மதிப்பை 1 நாள் என மாற்ற விரும்பாததால், கட்டளை வரியிலிருந்து சூழல் மாறியைப் பயன்படுத்தி இந்த அமைப்புகளை மாற்றுவது அடிக்கடி பயனுள்ளதாக இருக்கும்.
+
+இந்த நுட்பத்தைப் பயன்படுத்தி, கட்டமைப்பை டைனமிக்காக மாற்றலாம்:
 
 ```js
 const debug = process.env.DEBUG
@@ -68,33 +69,33 @@ export const config = {
 }
 ```
 
-You can then prefix the `wdio` command with the `debug` flag:
+பின்னர் `wdio` கட்டளையை `debug` கொடியுடன் முன்னொட்டாகப் பயன்படுத்தலாம்:
 
 ```
 $ DEBUG=true npx wdio wdio.conf.js --spec ./tests/e2e/myspec.test.js
 ```
 
-...and debug your spec file with the DevTools!
+...மற்றும் DevTools உடன் உங்கள் விவரக்குறிப்பு கோப்பை பிழைத்திருத்தலாம்!
 
-## Debugging with Visual Studio Code (VSCode)
+## Visual Studio Code (VSCode) உடன் பிழைத்திருத்தல்
 
-If you want to debug your tests with breakpoints in latest VSCode, you have two options for starting the debugger of which option 1 is the easiest method:
- 1. automatically attaching the debugger
- 2. attaching the debugger using a configuration file
+சமீபத்திய VSCode இல் முறிவுப் புள்ளிகளுடன் உங்கள் சோதனைகளை பிழைத்திருத்த விரும்பினால், பிழைத்திருத்தியைத் தொடங்க உங்களுக்கு இரண்டு விருப்பங்கள் உள்ளன, அவற்றில் விருப்பம் 1 எளிதான முறையாகும்:
+ 1. தானாகவே பிழைத்திருத்தியை இணைத்தல்
+ 2. உள்ளமைவு கோப்பைப் பயன்படுத்தி பிழைத்திருத்தியை இணைத்தல்
 
-### VSCode Toggle Auto Attach
+### VSCode டாகிள் ஆட்டோ அட்டாச்
 
-You can automatically attach the debugger by following these steps in VSCode:
- - Press CMD + Shift + P (Linux and Macos) or CTRL + Shift + P (Windows)
- - Type "attach" into the input field
- - Select "Debug: Toggle Auto Attach"
- - Select "Only With Flag"
+VSCode இல் பின்வரும் படிகளைப் பின்பற்றுவதன் மூலம் பிழைத்திருத்தியைத் தானாகவே இணைக்கலாம்:
+ - CMD + Shift + P (லினக்ஸ் மற்றும் macOS) அல்லது CTRL + Shift + P (விண்டோஸ்) ஐ அழுத்தவும்
+ - உள்ளீட்டுப் புலத்தில் "attach" என்று தட்டச்சு செய்யவும்
+ - "Debug: Toggle Auto Attach" ஐத் தேர்ந்தெடுக்கவும்
+ - "Only With Flag" ஐத் தேர்ந்தெடுக்கவும்
 
- That's it! Now when you run your tests (remember you will need the --inspect flag set in your config as shown earlier) it will automatically start the debugger and stop on the first breakpoint that it reaches.
+அவ்வளவுதான்! இப்போது நீங்கள் உங்கள் சோதனைகளை இயக்கும்போது (முன்னர் காட்டியபடி உங்கள் கட்டமைப்பில் --inspect கொடியை அமைக்க வேண்டும் என்பதை நினைவில் கொள்ளுங்கள்) தானாகவே பிழைத்திருத்தியைத் தொடங்கி, அது அடையும் முதல் முறிவுப் புள்ளியில் நிறுத்தும்.
 
-### VSCode Configuration file
+### VSCode கான்ஃபிகரேஷன் கோப்பு
 
-It's possible to run all or selected spec file(s). Debug configuration(s) have to be added to `.vscode/launch.json`, to debug selected spec add the following config:
+அனைத்து அல்லது தேர்ந்தெடுக்கப்பட்ட விவரக்குறிப்பு கோப்பு(களை) இயக்க முடியும். தேர்ந்தெடுக்கப்பட்ட விவரக்குறிப்பை பிழைத்திருத்த, `.vscode/launch.json` இல் பிழைத்திருத்த கட்டமைப்பு(கள்) சேர்க்கப்பட வேண்டும், பின்வரும் கட்டமைப்பைச் சேர்க்கவும்:
 ```
 {
     "name": "run select spec",
@@ -113,47 +114,51 @@ It's possible to run all or selected spec file(s). Debug configuration(s) have t
 },
 ```
 
-To run all spec files remove `"--spec", "${file}"` from `"args"`
+அனைத்து விவரக்குறிப்பு கோப்புகளையும் இயக்க `"args"` இலிருந்து `"--spec", "${file}"` ஐ அகற்றவும்
 
-Example: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
+உதாரணம்: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
 
-Additional info: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+கூடுதல் தகவல்: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 
-## Dynamic Repl with Atom
+## Atom உடன் டைனமிக் Repl
 
-If you are an [Atom](https://atom.io/) hacker you can try [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) by [@kurtharriger](https://github.com/kurtharriger) which is a dynamic repl that allows you to execute single code lines in Atom. Watch [this](https://www.youtube.com/watch?v=kdM05ChhLQE) YouTube video to see a demo.
+நீங்கள் ஒரு [Atom](https://atom.io/) ஹேக்கராக இருந்தால், [@kurtharriger](https://github.com/kurtharriger) உருவாக்கிய [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) ஐ முயற்சிக்கலாம், இது தனிப்பட்ட குறியீட்டு வரிகளை Atom இல் இயக்க அனுமதிக்கும் ஒரு டைனமிக் repl ஆகும். டெமோவைப் பார்க்க [இந்த](https://www.youtube.com/watch?v=kdM05ChhLQE) YouTube வீடியோவைப் பார்க்கவும்.
 
-## Debugging with WebStorm / Intellij
-You can create a node.js debug configuration like this: ![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png) Watch this [YouTube Video](https://www.youtube.com/watch?v=Qcqnmle6Wu8) for more information about how to make a configuration.
+## WebStorm / Intellij உடன் பிழைத்திருத்தல்
+நீங்கள் இது போன்ற node.js பிழைத்திருத்த கட்டமைப்பை உருவாக்கலாம்:
+![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png)
+கட்டமைப்பை எவ்வாறு உருவாக்குவது என்பது பற்றிய கூடுதல் தகவலுக்கு இந்த [YouTube வீடியோவைப்](https://www.youtube.com/watch?v=Qcqnmle6Wu8) பார்க்கவும்.
 
-## Debugging flaky tests
+## அசாதாரணமான சோதனைகளின் பிழைத்திருத்தல்
 
-Flaky tests can be really hard to debug so here are some tips how you can try and get that flaky result you got in your CI, reproduced locally.
+அசாதாரணமான சோதனைகளை பிழைத்திருத்துவது உண்மையிலேயே கடினமாக இருக்கும், எனவே உங்கள் CI இல் கிடைத்த அசாதாரணமான முடிவை உள்ளூரில் எப்படி மீண்டும் உருவாக்க முயற்சிக்கலாம் என்பதற்கான சில குறிப்புகள் இங்கே உள்ளன.
 
-### Network
-To debug network related flakiness use the [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) command.
+### நெட்வொர்க்
+நெட்வொர்க் தொடர்பான அசாதாரண நிலையை பிழைத்திருத்த [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) கட்டளையைப் பயன்படுத்தவும்.
 ```js
 await browser.throttleNetwork('Regular3G')
 ```
 
-### Rendering speed
-To debug device speed related flakiness use the [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) command. This will cause your pages to render slower which can be caused by many things like running multiple processes in your CI which could be slowing down your tests.
+### ரெண்டரிங் வேகம்
+சாதன வேகம் தொடர்பான அசாதாரண நிலையை பிழைத்திருத்த [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) கட்டளையைப் பயன்படுத்தவும்.
+இது உங்கள் பக்கங்கள் மெதுவாக காட்சிப்படுத்த காரணமாகும், இது உங்கள் சோதனைகளை மெதுவாக்கக்கூடிய உங்கள் CI இல் பல செயல்முறைகளை இயக்குவது போன்ற பல காரணங்களால் ஏற்படலாம்.
 ```js
 await browser.throttleCPU(4)
 ```
 
-### Test execution speed
+### சோதனை செயலாக்க வேகம்
 
-If your tests do not seem to be affected it is possible that WebdriverIO is faster than the update from the frontend framework / browser. This happens when using synchronous assertions since WebdriverIO has no chance to retry these assertions anymore. Some examples of code that can break because of this:
+உங்கள் சோதனைகள் பாதிக்கப்படவில்லை என்று தோன்றினால், WebdriverIO முன்னணி கட்டமைப்பு / உலாவியிலிருந்து புதுப்பிப்பை விட வேகமாக இருக்கக்கூடும். WebdriverIO இந்த உறுதிப்படுத்தல்களை இனி மீண்டும் முயற்சிக்க வாய்ப்பில்லாததால், ஒத்திசைவான உறுதிப்படுத்தல்களைப் பயன்படுத்தும்போது இது நிகழ்கிறது. இதனால் சிதைக்கக்கூடிய குறியீட்டின் சில எடுத்துக்காட்டுகள்:
 ```js
-expect(elementList.length).toEqual(7) // list might not be populated at the time of the assertion
-expect(await elem.getText()).toEqual('this button was clicked 3 times') // text might not be updated yet at the time of assertion resulting in an error ("this button was clicked 2 times" does not match the expected "this button was clicked 3 times")
-expect(await elem.isDisplayed()).toBe(true) // might not be displayed yet
+expect(elementList.length).toEqual(7) // உறுதிப்படுத்தல் நேரத்தில் பட்டியல் நிரப்பப்படாமல் இருக்கலாம்
+expect(await elem.getText()).toEqual('this button was clicked 3 times') // உறுதிப்படுத்தலின் போது உரை இன்னும் புதுப்பிக்கப்படாததால் பிழை ஏற்படலாம் ("this button was clicked 2 times" என்பது எதிர்பார்க்கப்பட்ட "this button was clicked 3 times" உடன் பொருந்தவில்லை)
+expect(await elem.isDisplayed()).toBe(true) // இன்னும் காட்டப்படாமல் இருக்கலாம்
 ```
-To resolve this problem, asynchronous assertions should be used instead. The above examples would looks like this:
+இந்தப் பிரச்சினையைத் தீர்க்க, ஒத்திசைவற்ற உறுதிப்படுத்தல்களைப் பயன்படுத்த வேண்டும். மேலே உள்ள எடுத்துக்காட்டுகள் இவ்வாறு இருக்கும்:
 ```js
 await expect(elementList).toBeElementsArrayOfSize(7)
 await expect(elem).toHaveText('this button was clicked 3 times')
 await expect(elem).toBeDisplayed()
 ```
-Using these assertions, WebdriverIO will automatically wait until the condition matches. When asserting text this means that the element needs to exist and the text needs to be equal to the expected value. We talk more about this in our [Best Practices Guide](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).
+இந்த உறுதிப்படுத்தல்களைப் பயன்படுத்தி, நிபந்தனை பொருந்தும் வரை WebdriverIO தானாகவே காத்திருக்கும். உரையை உறுதிப்படுத்தும்போது, உறுப்பு இருக்க வேண்டும் மற்றும் உரை எதிர்பார்க்கப்படும் மதிப்புக்கு சமமாக இருக்க வேண்டும் என்று இதன் பொருள்.
+எங்கள் [சிறந்த பயிற்சிகள் வழிகாட்டியில்](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions) இதைப் பற்றி அதிகம் பேசுகிறோம்.

@@ -1,32 +1,31 @@
 ---
 id: typescript
-title: TypeScript Setup
+title: டைப்ஸ்கிரிப்ட் அமைப்பு
 ---
 
-You can write tests using [TypeScript](http://www.typescriptlang.org) to get auto-completion and type safety.
+நீங்கள் [TypeScript](http://www.typescriptlang.org) பயன்படுத்தி சோதனைகளை எழுதி தானியங்கி முடிவுகள் மற்றும் வகை பாதுகாப்பைப் பெறலாம்.
 
-You will need [`tsx`](https://github.com/privatenumber/tsx) installed in `devDependencies`, via:
+நீங்கள் [`tsx`](https://github.com/privatenumber/tsx) ஐ `devDependencies` இல் நிறுவ வேண்டும், இதன் மூலம்:
 
 ```bash npm2yarn
 $ npm install tsx --save-dev
 ```
 
-WebdriverIO will automatically detect if these dependencies are installed and will compile your config and tests for you. Ensure to have a `tsconfig.json` in the same directory as your WDIO config.
+WebdriverIO தானாகவே இந்த சார்புகள் நிறுவப்பட்டுள்ளதைக் கண்டறிந்து, உங்கள் கட்டமைப்பு மற்றும் சோதனைகளை உங்களுக்காக தொகுக்கும். WDIO கட்டமைப்புடன் அதே கோப்பகத்தில் `tsconfig.json` இருப்பதை உறுதிசெய்யவும்.
 
-#### Custom TSConfig
+#### தனிப்பயன் TSConfig
 
-If you need to set a different path for `tsconfig.json` please set the TSCONFIG_PATH environment variable with your desired path, or use wdio config's [tsConfigPath setting](/docs/configurationfile).
+நீங்கள் `tsconfig.json` க்கு வேறுபட்ட பாதையை அமைக்க வேண்டுமானால், தயவுசெய்து TSCONFIG_PATH சூழல் மாறியை உங்கள் விரும்பிய பாதையுடன் அமைக்கவும், அல்லது wdio config இன் [tsConfigPath setting](/docs/configurationfile) ஐப் பயன்படுத்தவும்.
 
-Alternatively, you can use the [environment variable](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) for `tsx`.
+மாற்றாக, நீங்கள் `tsx` க்கான [environment variable](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) ஐப் பயன்படுத்தலாம்.
 
+#### வகை சரிபார்ப்பு
 
-#### Type Checking
+`tsx` வகை-சரிபார்ப்பை ஆதரிக்காது என்பதை கவனிக்கவும் - உங்கள் வகைகளை சரிபார்க்க விரும்பினால், நீங்கள் இதை `tsc` உடன் தனி படியாக செய்ய வேண்டும்.
 
-Note that `tsx` does not support type-checking - if you wish to check your types then you will need to do this in a separate step with `tsc`.
+## கட்டமைப்பு அமைப்பு
 
-## Framework Setup
-
-Your `tsconfig.json` needs the following:
+உங்கள் `tsconfig.json` க்கு பின்வரும் தேவை:
 
 ```json title="tsconfig.json"
 {
@@ -36,21 +35,22 @@ Your `tsconfig.json` needs the following:
 }
 ```
 
-Please avoid importing `webdriverio` or `@wdio/sync` explicitly. `WebdriverIO` and `WebDriver` types are accessible from anywhere once added to `types` in `tsconfig.json`. If you use additional WebdriverIO services, plugins or the `devtools` automation package, please also add them to the `types` list as many provide additional typings.
+`webdriverio` அல்லது `@wdio/sync` ஐ வெளிப்படையாக இறக்குமதி செய்வதைத் தவிர்க்கவும்.
+`WebdriverIO` மற்றும் `WebDriver` வகைகள் `tsconfig.json` இல் `types` க்கு சேர்க்கப்பட்ட பிறகு எங்கிருந்தும் அணுகக்கூடியதாக உள்ளன. நீங்கள் கூடுதல் WebdriverIO சேவைகள், செருகுநிரல்கள் அல்லது `devtools` ஆட்டோமேஷன் தொகுப்பைப் பயன்படுத்தினால், தயவுசெய்து அவற்றையும் `types` பட்டியலில் சேர்க்கவும், ஏனெனில் பல கூடுதல் வகைகளை வழங்குகின்றன.
 
-## Framework Types
+## கட்டமைப்பு வகைகள்
 
-Depending on the framework you use, you will need to add the types for that framework to your `tsconfig.json` types property, as well as install its type definitions. This is especially important if you want to have type support for the built-in assertion library [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
+நீங்கள் பயன்படுத்தும் கட்டமைப்பைப் பொறுத்து, நீங்கள் அந்த கட்டமைப்பின் வகைகளை உங்கள் `tsconfig.json` வகைகள் பண்புக்கு சேர்க்க வேண்டும், மேலும் அதன் வகை விளக்கங்களை நிறுவ வேண்டும். உள்ளமைக்கப்பட்ட உறுதிப்படுத்தல் நூலகமான [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio) க்கு வகை ஆதரவு வேண்டும் என்றால் இது முக்கியமானது.
 
-For instance, if you decide to use the Mocha framework, you need to install `@types/mocha` and add it like this to have all types globally available:
+எடுத்துக்காட்டாக, நீங்கள் Mocha கட்டமைப்பைப் பயன்படுத்த முடிவு செய்தால், நீங்கள் `@types/mocha` ஐ நிறுவி, அனைத்து வகைகளையும் உலகளாவிய அளவில் கிடைக்கச் செய்ய இதைப் போல சேர்க்க வேண்டும்:
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- {label: 'Cucumber', value: 'cucumber'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+    {label: 'Cucumber', value: 'cucumber'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -87,9 +87,9 @@ For instance, if you decide to use the Mocha framework, you need to install `@ty
 </TabItem>
 </Tabs>
 
-## Services
+## சேவைகள்
 
-If you use services that add commands to the browser scope you also need to include these into your `tsconfig.json`. For example if you use the `@wdio/lighthouse-service` ensure that you add it to the `types` as well, e.g.:
+உலாவி நோக்கில் கட்டளைகளைச் சேர்க்கும் சேவைகளைப் பயன்படுத்தினால், அவற்றை உங்கள் `tsconfig.json` இல் சேர்க்க வேண்டும். எடுத்துக்காட்டாக நீங்கள் `@wdio/lighthouse-service` ஐப் பயன்படுத்தினால், அதை `types` இலும் சேர்ப்பதை உறுதிசெய்யவும், எ.கா:
 
 ```json title="tsconfig.json"
 {
@@ -104,11 +104,11 @@ If you use services that add commands to the browser scope you also need to incl
 }
 ```
 
-Adding services and reporters to your TypeScript config also strengthen the type safety of your WebdriverIO config file.
+உங்கள் TypeScript கட்டமைப்பில் சேவைகள் மற்றும் அறிக்கையாளர்களைச் சேர்ப்பது உங்கள் WebdriverIO கட்டமைப்பு கோப்பின் வகை பாதுகாப்பையும் வலுப்படுத்துகிறது.
 
-## Type Definitions
+## வகை விளக்கங்கள்
 
-When running WebdriverIO commands all properties are usually typed so that you don't have to deal with importing additional types. However there are cases where you want to define variables upfront. To ensure that these are type safe you can use all types defined in the [`@wdio/types`](https://www.npmjs.com/package/@wdio/types) package. For example if you like to define the remote option for `webdriverio` you can do:
+WebdriverIO கட்டளைகளை இயக்கும்போது, எல்லா பண்புகளும் பொதுவாக தட்டச்சு செய்யப்படுகின்றன, எனவே நீங்கள் கூடுதல் வகைகளை இறக்குமதி செய்வதில் சிரமப்பட வேண்டியதில்லை. இருப்பினும், நீங்கள் முன்கூட்டியே மாறிகளை வரையறுக்க விரும்பும் சந்தர்ப்பங்கள் உள்ளன. இவை வகை பாதுகாப்பானவை என்பதை உறுதிசெய்ய, [`@wdio/types`](https://www.npmjs.com/package/@wdio/types) தொகுப்பில் வரையறுக்கப்பட்ட அனைத்து வகைகளையும் நீங்கள் பயன்படுத்தலாம். எடுத்துக்காட்டாக `webdriverio`க்கான தொலைநிலை விருப்பத்தை வரையறுக்க விரும்பினால், நீங்கள் செய்யலாம்:
 
 ```ts
 import type { Options } from '@wdio/types'
@@ -129,8 +129,8 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-## Tips and Hints
+## உதவிக்குறிப்புகள்
 
-### Compile & Lint
+### தொகுத்தல் & லின்ட்
 
-To be entirely safe, you may consider following the best practices: compile your code with TypeScript compiler (run `tsc` or `npx tsc`) and have [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) running on [pre-commit hook](https://github.com/typicode/husky).
+முழுமையாக பாதுகாப்பாக இருக்க, நீங்கள் சிறந்த நடைமுறைகளைப் பின்பற்றலாம்: TypeScript கம்பைலர் (run `tsc` அல்லது `npx tsc`) மூலம் உங்கள் குறியீட்டைத் தொகுக்கவும், [pre-commit hook](https://github.com/typicode/husky) இல் [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) இயக்கவும்.

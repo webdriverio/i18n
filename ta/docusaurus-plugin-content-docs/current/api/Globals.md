@@ -1,17 +1,17 @@
 ---
 id: globals
-title: குளோபல்ஸ்
+title: பிளாக்கேல்ஸ் (Globals)
 ---
 
-உங்கள் டெஸ்ட் பைல்களில், WebdriverIO இந்த மெத்தெட்ஸ் மற்றும் ஆப்ஜெக்ட்டுகள் ஒவ்வொன்றையும் குளோபல் என்விரான்மென்டில் வைக்கிறது. அவற்றைப் பயன்படுத்த நீங்கள் எதையும் இறக்குமதி செய்ய வேண்டியதில்லை. இருப்பினும், நீங்கள் வெளிப்படையான இறக்குமதிகளை விரும்பினால், `import { browser, $, $$, expect } from '@wdio/globals'` and set `injectGlobals: false`ஐ WDIOஇல் காணபிகுர் செய்யலாம்.
+உங்கள் சோதனை கோப்புகளில், WebdriverIO இந்த முறைகள் மற்றும் பொருட்களை உலகளாவிய சூழலில் வைக்கிறது. அவற்றைப் பயன்படுத்த நீங்கள் எதையும் இறக்குமதி செய்ய வேண்டியதில்லை. இருப்பினும், நீங்கள் தெளிவான இறக்குமதிகளை விரும்பினால், `import { browser, $, $$, expect } from '@wdio/globals'` என்று செய்து உங்கள் WDIO கட்டமைப்பில் `injectGlobals: false` என அமைக்கலாம்.
 
-வேறுவிதமாகக் காணபிகுர் செய்யப்படாவிட்டால் பின்வரும் குளோபல் ஆப்ஜெக்ட்டுகள் அமைக்கப்படும்:
+மற்றபடி கட்டமைக்கப்படாவிட்டால் பின்வரும் உலகளாவிய பொருட்கள் அமைக்கப்படுகின்றன:
 
 - `browser`: WebdriverIO [Browser object](https://webdriver.io/docs/api/browser)
-- `driver`: alias to `browser` (used when running mobile tests)
-- `multiremotebrowser`: alias to `browser` or `driver` but only set for [Multiremote](/docs/multiremote) sessions
-- `$`: command to fetch an element ([API docs](/docs/api/browser/$)இல் மேலும் பார்க்கவும்)
-- `$$`: command to fetch elements ([API docs](/docs/api/browser/$$)இல் மேலும் பார்க்கவும்)
-- `expect`: assertion framework for WebdriverIO ([ஸAPI docs](/docs/api/expect-webdriverio)ஐப் பார்க்கவும்)
+- `driver`: `browser`க்கான மாற்றுப்பெயர் (மொபைல் சோதனைகளை இயக்கும்போது பயன்படுத்தப்படுகிறது)
+- `multiremotebrowser`: `browser` அல்லது `driver`க்கான மாற்றுப்பெயர் ஆனால் [Multiremote](/docs/multiremote) அமர்வுகளுக்கு மட்டுமே அமைக்கப்படுகிறது
+- `$`: ஒரு எலிமென்ட்டை பெறுவதற்கான கட்டளை (மேலும் காண [API docs](/docs/api/browser/$))
+- `$$`: எலிமென்ட்களை பெறுவதற்கான கட்டளை (மேலும் காண [API docs](/docs/api/browser/$$))
+- `expect`: WebdriverIO க்கான உறுதிப்படுத்தல் கட்டமைப்பு (காண் [API docs](/docs/api/expect-webdriverio))
 
-__ Note:__ WebdriverIO ஆனது பயன்படுத்தப்பட்ட பிரமேஒர்க்கின் (எ.கா. Mocha அல்லது Jasmine) குளோபல் மாறிகளை அவற்றின் என்விரான்மென்டை பூட்ஸ்ட்ராப் செய்யும்போது அமைக்கும் கட்டுப்பாடு இல்லை.
+__குறிப்பு:__ WebdriverIO பயன்படுத்தப்படும் கட்டமைப்புகள் (எ.கா. Mocha அல்லது Jasmine) தங்கள் சூழலை துவக்கும்போது உலகளாவிய மாறிகளை அமைப்பதில் எந்த கட்டுப்பாடும் இல்லை.

@@ -1,21 +1,21 @@
 ---
 id: pageobjects
-title: Page Object Pattern
+title: பக்கப் பொருள் முறை
 ---
 
-Version 5 of WebdriverIO was designed with Page Object Pattern support in mind. By introducing the "elements as first class citizens" principle, it is now possible to build up large test suites using this pattern.
+WebdriverIO இன் 5ஆம் பதிப்பு பக்கப் பொருள் முறை ஆதரவுடன் வடிவமைக்கப்பட்டுள்ளது. "முதல் வகுப்பு குடிமக்களாக உறுப்புகள்" என்ற கொள்கையை அறிமுகப்படுத்துவதன் மூலம், இந்த முறையைப் பயன்படுத்தி பெரிய சோதனை தொகுப்புகளை உருவாக்குவது இப்போது சாத்தியமாகிறது.
 
-There are no additional packages required to create page objects. It turns out that clean, modern classes provide all necessary features we need:
+பக்கப் பொருட்களை உருவாக்க கூடுதல் தொகுப்புகள் எதுவும் தேவையில்லை. சுத்தமான, நவீன வகுப்புகள் நமக்குத் தேவையான அனைத்து அம்சங்களையும் வழங்குகின்றன:
 
-- inheritance between page objects
-- lazy loading of elements
-- encapsulation of methods and actions
+- பக்கப் பொருட்களுக்கு இடையே மரபுரிமை
+- உறுப்புகளின் சோம்பல் ஏற்றுதல்
+- முறைகள் மற்றும் செயல்களின் உறைகள்
 
-The goal of using page objects is to abstract any page information away from the actual tests. Ideally, you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you've completely redesigned your page.
+பக்கப் பொருட்களைப் பயன்படுத்துவதன் நோக்கம் எந்தவொரு பக்கத் தகவலையும் உண்மையான சோதனைகளிலிருந்து பிரித்தெடுப்பதாகும். இலட்சிய நிலையில், உங்கள் பக்கத்தை முற்றிலும் மறுவடிவமைத்த பிறகும் உங்கள் சோதனையை இயக்கக்கூடிய வகையில், ஒரு குறிப்பிட்ட பக்கத்திற்கு தனித்துவமான அனைத்து தேர்வாளர்கள் அல்லது குறிப்பிட்ட வழிமுறைகளை ஒரு பக்கப் பொருளில் சேமிக்க வேண்டும்.
 
-## Making A Page Object
+## ஒரு பக்கப் பொருளை உருவாக்குதல்
 
-First off, we need a main page object that we call `Page.js`. It will contain general selectors or methods which all page objects will inherit from.
+முதலில், `Page.js` என்று அழைக்கப்படும் ஒரு முக்கிய பக்கப் பொருள் நமக்குத் தேவை. இது அனைத்து பக்கப் பொருட்களும் மரபுரிமையாகப் பெறும் பொதுவான தேர்வாளர்கள் அல்லது முறைகளைக் கொண்டிருக்கும்.
 
 ```js
 // Page.js
@@ -30,15 +30,15 @@ export default class Page {
 }
 ```
 
-We will always `export` an instance of a page object, and never create that instance in the test. Since we are writing end-to-end tests, we always consider the page as a stateless construct&mdash;just as each HTTP request is a stateless construct.
+நாம் எப்போதும் ஒரு பக்கப் பொருளின் நிகழ்வை `export` செய்வோம், அந்த நிகழ்வை சோதனையில் உருவாக்க மாட்டோம். நாம் முடிவிலிருந்து-முடிவு வரை சோதனைகளை எழுதுவதால், நாம் எப்போதும் பக்கத்தை ஒரு நிலையற்ற கட்டமைப்பாகக் கருதுகிறோம்—ஒவ்வொரு HTTP கோரிக்கையும் ஒரு நிலையற்ற கட்டமைப்பாக இருப்பது போல.
 
-Sure, the browser can carry session information and therefore can display different pages based on different sessions, but this shouldn't be reflected within a page object. These sorts of state changes should live in your actual tests.
+நிச்சயமாக, உலாவி அமர்வுத் தகவலைக் கொண்டு செல்லக்கூடும், எனவே வெவ்வேறு அமர்வுகளின் அடிப்படையில் வெவ்வேறு பக்கங்களைக் காட்டலாம், ஆனால் இது ஒரு பக்கப் பொருளுக்குள் பிரதிபலிக்கக்கூடாது. இந்த வகையான நிலை மாற்றங்கள் உங்கள் உண்மையான சோதனைகளில் இருக்க வேண்டும்.
 
-Let's start testing the first page. For demo purposes, we use [The Internet](http://the-internet.herokuapp.com) website by [Elemental Selenium](http://elementalselenium.com) as guinea pig. Let's try to build a page object example for the [login page](http://the-internet.herokuapp.com/login).
+முதல் பக்கத்தை சோதிக்கத் தொடங்குவோம். விளக்க நோக்கங்களுக்காக, [Elemental Selenium](http://elementalselenium.com) இன் [The Internet](http://the-internet.herokuapp.com) வலைத்தளத்தை கினியா பன்றியாகப் பயன்படுத்துகிறோம். [உள்நுழைவு பக்கத்திற்கான](http://the-internet.herokuapp.com/login) பக்கப் பொருள் எடுத்துக்காட்டை உருவாக்க முயற்சிப்போம்.
 
-## `Get` -ing Your Selectors
+## `Get` -ing உங்கள் தேர்வாளர்கள்
 
-The first step is to write all important selectors that are required in our `login.page` object as getter functions:
+முதல் படி என்னவென்றால், நமது `login.page` பொருளில் தேவையான அனைத்து முக்கிய தேர்வாளர்களையும் கெட்டர் செயல்பாடுகளாக எழுதுவது:
 
 ```js
 // login.page.js
@@ -65,36 +65,36 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Defining selectors in getter functions might look a little weird, but it’s really useful. These functions are evaluated _when you access the property_, not when you generate the object. With that you always request the element before you do an action on it.
+கெட்டர் செயல்பாடுகளில் தேர்வாளர்களை வரையறுப்பது சற்று வித்தியாசமாகத் தோன்றலாம், ஆனால் அது மிகவும் பயனுள்ளதாக இருக்கும். இந்த செயல்பாடுகள் நீங்கள் பொருளை உருவாக்கும்போது அல்ல, நீங்கள் பண்பை அணுகும்போது மதிப்பிடப்படுகின்றன. அதனுடன் நீங்கள் எப்போதும் அதில் ஒரு செயலைச் செய்வதற்கு முன் உறுப்பைக் கோருகிறீர்கள்.
 
-## Chaining Commands
+## கட்டளைகளை சங்கிலித்தொடராக்குதல்
 
-WebdriverIO internally remembers the last result of a command. If you chain an element command with an action command, it finds the element from the previous command and uses the result to execute the action. With that you can remove the selector (first parameter) and the command looks as simple as:
+WebdriverIO உள்ளளவில் ஒரு கட்டளையின் கடைசி முடிவை நினைவில் கொள்கிறது. நீங்கள் ஒரு உறுப்பு கட்டளையை ஒரு செயல் கட்டளையுடன் சங்கிலித்தொடராக்கினால், அது முந்தைய கட்டளையிலிருந்து உறுப்பைக் கண்டறிந்து, அந்த முடிவைப் பயன்படுத்தி செயலை நிறைவேற்றுகிறது. அதனுடன் நீங்கள் தேர்வாளரை (முதல் அளவுரு) அகற்றலாம் மற்றும் கட்டளை இவ்வளவு எளிதாகத் தோன்றும்:
 
 ```js
 await LoginPage.username.setValue('Max Mustermann')
 ```
 
-Which is basically the same thing as:
+இது அடிப்படையில் கீழ்கண்டதை போன்றதே:
 
 ```js
 let elem = await $('#username')
 await elem.setValue('Max Mustermann')
 ```
 
-or
+அல்லது
 
 ```js
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Using Page Objects In Your Tests
+## உங்கள் சோதனைகளில் பக்கப் பொருட்களைப் பயன்படுத்துதல்
 
-After you've defined the necessary elements and methods for the page, you can start to write the test for it. All you need to do to use the page object is to `import` (or `require`) it. That's it!
+நீங்கள் பக்கத்திற்குத் தேவையான உறுப்புகள் மற்றும் முறைகளை வரையறுத்த பிறகு, அதற்கான சோதனையை எழுதத் தொடங்கலாம். பக்கப் பொருளைப் பயன்படுத்த நீங்கள் செய்ய வேண்டியதெல்லாம் அதை `import` (அல்லது `require`) செய்வது. அவ்வளவுதான்!
 
-Since you exported an already-created instance of the page object, importing it lets you start using it right away.
+நீங்கள் ஏற்கனவே உருவாக்கப்பட்ட பக்கப் பொருளின் நிகழ்வை ஏற்றுமதி செய்ததால், அதை இறக்குமதி செய்வது உடனடியாகப் பயன்படுத்தத் தொடங்க உதவுகிறது.
 
-If you use an assertion framework, your tests can be even more expressive:
+நீங்கள் உறுதிப்படுத்தல் கட்டமைப்பைப் பயன்படுத்தினால், உங்கள் சோதனைகள் இன்னும் அதிக வெளிப்படையாக இருக்கும்:
 
 ```js
 // login.spec.js
@@ -121,10 +121,10 @@ describe('login form', () => {
 })
 ```
 
-From the structural side, it makes sense to separate spec files and page objects into different directories. Additionally you can give each page object the ending: `.page.js`. This makes it more clear that you import a page object.
+கட்டமைப்பு பக்கத்திலிருந்து, spec கோப்புகள் மற்றும் பக்கப் பொருட்களை வெவ்வேறு கோப்பகங்களாகப் பிரிப்பது அர்த்தமுள்ளதாக இருக்கும். கூடுதலாக, ஒவ்வொரு பக்கப் பொருளுக்கும் முடிவை கொடுக்கலாம்: `.page.js`. இது நீங்கள் ஒரு பக்கப் பொருளை இறக்குமதி செய்கிறீர்கள் என்பதை தெளிவாக்குகிறது.
 
-## Going Further
+## மேலும் செல்வது
 
-This is the basic principle of how to write page objects with WebdriverIO. But you can build up way more complex page object structures than this! For example, you might have specific page objects for modals, or split up a huge page object into different classes (each representing a different part of the overall web page) that inherit from the main page object. The pattern really provides a lot of opportunities to separate page information from your tests, which is important to keep your test suite structured and clear in times where the project and number of tests grows.
+இது WebdriverIO உடன் பக்கப் பொருட்களை எவ்வாறு எழுதுவது என்பதற்கான அடிப்படை கொள்கையாகும். ஆனால் நீங்கள் இதை விட மிகவும் சிக்கலான பக்கப் பொருள் கட்டமைப்புகளை உருவாக்கலாம்! எடுத்துக்காட்டாக, உங்களிடம் மோடல்களுக்கான குறிப்பிட்ட பக்கப் பொருட்கள் இருக்கலாம், அல்லது ஒரு பெரிய பக்கப் பொருளை வெவ்வேறு வகுப்புகளாகப் பிரிக்கலாம் (ஒவ்வொன்றும் ஒட்டுமொத்த இணையப் பக்கத்தின் வெவ்வேறு பகுதியைக் குறிக்கிறது) அவை முக்கிய பக்கப் பொருளிலிருந்து மரபுரிமையாகப் பெறுகின்றன. திட்டம் மற்றும் சோதனைகளின் எண்ணிக்கை வளரும் சமயங்களில் உங்கள் சோதனை தொகுப்பை கட்டமைக்கப்பட்டதாகவும் தெளிவாகவும் வைத்திருக்க பக்கத் தகவலை உங்கள் சோதனைகளிலிருந்து பிரிப்பது முக்கியம் என்பதால், இந்த முறை உண்மையில் பல வாய்ப்புகளை வழங்குகிறது.
 
-You can find this example (and even more page object examples) in the [`example` folder](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) on GitHub.
+இந்த எடுத்துக்காட்டை (மற்றும் மேலும் பல பக்கப் பொருள் எடுத்துக்காட்டுகளை) GitHub இல் [`example` கோப்புறையில்](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) காணலாம்.

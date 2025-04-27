@@ -3,15 +3,15 @@ id: ocr-set-value
 title: ocrSetValue
 ---
 
-Send a sequence of key strokes to an element. It will:
+ஒரு உறுப்புக்கு key strokes வரிசையை அனுப்புகிறது. இது:
 
-- automatically detect the element
-- put focus on the field by clicking on it
-- set the value in the field
+-   தானாகவே உறுப்பைக் கண்டறியும்
+-   அதன் மீது கிளிக் செய்வதன் மூலம் புலத்தில் கவனம் செலுத்தும்
+-   புலத்தில் மதிப்பை அமைக்கும்
 
-The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+கட்டளை வழங்கப்பட்ட உரையைத் தேடி, [Fuse.js](https://fusejs.io/) இலிருந்து Fuzzy Logic அடிப்படையில் பொருத்தத்தைக் கண்டறிய முயற்சிக்கும். இதன் பொருள் நீங்கள் ஒரு தவறான தேர்வியை வழங்கினாலும், அல்லது கண்டறியப்பட்ட உரை 100% பொருந்தாவிட்டாலும், அது இன்னும் உங்களுக்கு ஒரு உறுப்பைத் திருப்பித் தர முயற்சிக்கும். கீழே உள்ள [பதிவுகளைப்](#logs) பார்க்கவும்.
 
-## Usage
+## பயன்பாடு
 
 ```js
 await brower.ocrSetValue({
@@ -20,9 +20,9 @@ await brower.ocrSetValue({
 });
 ```
 
-## Output
+## வெளியீடு
 
-### Logs
+### பதிவுகள்
 
 ```log
 [0-0] 2024-05-26T04:17:51.355Z INFO webdriver: COMMAND ocrSetValue(<object>)
@@ -30,16 +30,16 @@ await brower.ocrSetValue({
 [0-0] 2024-05-26T04:17:52.356Z INFO @wdio/ocr-service:ocrGetElementPositionByText: We searched for the word "docs" and found one match "docs" with score "100%"
 ```
 
-## Options
+## விருப்பங்கள்
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **வகை:** `string`
+-   **கட்டாயம்:** ஆம்
 
-The text you want to search for to click on.
+நீங்கள் கிளிக் செய்ய விரும்பும் தேடுவதற்கான உரை.
 
-#### Example
+#### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -50,12 +50,12 @@ await browser.ocrSetValue({
 
 ### `value`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **வகை:** `string`
+-   **கட்டாயம்:** ஆம்
 
-Value to be added.
+சேர்க்க வேண்டிய மதிப்பு.
 
-#### Example
+#### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -66,13 +66,13 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** `false`
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `false`
 
-If the value also needs to be submitted into the input field. This means an "ENTER" will be send at the end of the string.
+மதிப்பு உள்ளீட்டுப் புலத்தில் சமர்ப்பிக்கப்பட வேண்டுமா. இதன் பொருள் சரத்தின் இறுதியில் "ENTER" அனுப்பப்படும்.
 
-#### Example
+#### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -84,31 +84,31 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `500` மில்லிவினாடிகள்
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+இது கிளிக்கின் கால அளவு. நீங்கள் விரும்பினால் நேரத்தை அதிகரிப்பதன் மூலம் "நீண்ட கிளிக்" ஐயும் உருவாக்கலாம்.
 
-#### Example
+#### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // இது 3 வினாடிகள்
 });
 ```
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+கான்ட்ராஸ்ட் அதிகமாக இருந்தால், படம் இருண்டதாக மாறும், அதற்கு நேர்மாறாகவும். இது படத்தில் உரையைக் கண்டறிய உதவும். இது `-1` மற்றும் `1` இடையே உள்ள மதிப்புகளை ஏற்றுக்கொள்கிறது.
 
-#### Example
+#### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -120,12 +120,12 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **வகை:** `number`
+-   **கட்டாயம்:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+இது OCR உரையைத் தேட வேண்டிய திரையில் உள்ள தேடல் பகுதி. இது ஒரு உறுப்பு அல்லது `x`, `y`, `width` மற்றும் `height` கொண்ட செவ்வகமாக இருக்கலாம்.
 
-#### Example
+#### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -134,14 +134,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// OR
+// அல்லது
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// அல்லது
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,54 +156,54 @@ await browser.ocrSetValue({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseract அங்கீகரிக்கும் மொழி. மேலும் தகவலை [இங்கே](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) காணலாம் மற்றும் ஆதரிக்கப்படும் மொழிகளை [இங்கே](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) காணலாம்.
 
-#### Example
+#### உதாரணம்
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // டச்சு மொழியைப் பயன்படுத்தவும்
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **வகை:** `object`
+-   **கட்டாயம்:** இல்லை
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+பொருந்தும் உறுப்புக்கு தொடர்புடைய திரையில் கிளிக் செய்யலாம். இது தொடர்புடைய பிக்செல்கள் `above`, `right`, `below` அல்லது `left` இல் இருந்து பொருந்தும் உறுப்பு அடிப்படையில் செய்யப்படலாம்.
 
 :::note
 
-The following combinations are allowed
+பின்வரும் சேர்க்கைகள் அனுமதிக்கப்படுகின்றன
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   ஒற்றை பண்புகள்
+-   `above` + `left` அல்லது `above` + `right`
+-   `below` + `left` அல்லது `below` + `right`
 
-The following combinations are **NOT** allowed
+பின்வரும் சேர்க்கைகள் **அனுமதிக்கப்படவில்லை**
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` மற்றும் `below`
+-   `left` மற்றும் `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
 
-Click x pixels `above` the matching element.
+பொருந்தும் உறுப்புக்கு x பிக்செல்கள் `above` கிளிக் செய்யவும்.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -217,12 +217,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
 
-Click x pixels `right` from the matching element.
+பொருந்தும் உறுப்பில் இருந்து x பிக்செல்கள் `right` கிளிக் செய்யவும்.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -236,12 +236,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
 
-Click x pixels `below` the matching element.
+பொருந்தும் உறுப்புக்கு x பிக்செல்கள் `below` கிளிக் செய்யவும்.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -255,12 +255,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
 
-Click x pixels `left` from the matching element.
+பொருந்தும் உறுப்பில் இருந்து x பிக்செல்கள் `left` கிளிக் செய்யவும்.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -274,17 +274,17 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+பின்வரும் விருப்பங்களுடன் உரையைக் கண்டறிய புஸி லாஜிக்கை மாற்றலாம். இது சிறந்த பொருத்தத்தைக் கண்டறிய உதவலாம்.
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+பொருத்தம் fuzzy இருப்பிடத்திற்கு (இருப்பிடத்தால் குறிப்பிடப்பட்டுள்ளது) எவ்வளவு நெருக்கமாக இருக்க வேண்டும் என்பதைத் தீர்மானிக்கிறது. fuzzy இருப்பிடத்திலிருந்து தூரத்தில் உள்ள எழுத்துகள் முழுமையான பொருத்தமின்மையாக மதிப்பெண் பெறும். 0 தூரம் குறிப்பிடப்பட்ட சரியான இருப்பிடத்தில் பொருத்தத்தை தேவைப்படுத்துகிறது. 1000 தூரம் ஒரு முழுமையான பொருத்தத்தை 0.8 என்ற வரம்பைப் பயன்படுத்தி கண்டறியப்பட 800 எழுத்துகளுக்குள் இருக்க வேண்டும்.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -298,13 +298,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+உரையில் வடிவம் கண்டறியப்பட வேண்டும் என்று எதிர்பார்க்கப்படுகிறது என்பதை தோராயமாக தீர்மானிக்கிறது.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -318,13 +318,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+எந்த புள்ளியில் பொருத்தும் அல்காரிதம் விட்டுவிடுகிறது. 0 என்ற வரம்பு ஒரு முழுமையான பொருத்தத்தை (எழுத்துகள் மற்றும் இருப்பிடம் இரண்டிலும்) தேவைப்படுத்துகிறது, 1.0 என்ற வரம்பு எதையும் பொருத்தும்.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -338,13 +338,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** false
 
-Whether the search should be case sensitive.
+தேடல் case sensitive ஆக இருக்க வேண்டுமா.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -358,13 +358,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+நீளம் இந்த மதிப்பை மீறும் பொருத்தங்கள் மட்டுமே திருப்பித் தரப்படும். (உதாரணமாக, முடிவில் ஒற்றை எழுத்து பொருத்தங்களை புறக்கணிக்க விரும்பினால், அதை 2 ஆக அமைக்கவும்)
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({
@@ -378,13 +378,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+`true` எனில், ஸ்ட்ரிங்கில் ஒரு முழுமையான பொருத்தம் ஏற்கனவே கண்டறியப்பட்டிருந்தாலும், பொருத்தும் செயல்பாடு தேடல் வடிவத்தின் முடிவு வரை தொடரும்.
 
-##### Example
+##### உதாரணம்
 
 ```js
 await browser.ocrSetValue({

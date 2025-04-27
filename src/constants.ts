@@ -12,7 +12,7 @@ export const LANGUAGES_TO_TRANSLATE = {
     // pl: 'Polish',
     // pt: 'Portuguese',
     // ru: 'Russian',
-    // ta: 'Tamil',
+    ta: 'Tamil',
     uk: 'Ukrainian',
     zh: 'Chinese',
 } as const;

@@ -1,32 +1,32 @@
 ---
 index: 1
 id: considerations
-title: Considerations
+title: கருத்தில் கொள்ள வேண்டியவை
 ---
 
-# Key Considerations for Optimal Use
+# உகந்த பயன்பாட்டிற்கான முக்கிய கருத்துகள்
 
-Before diving into the powerful features of the `@wdio/visual-service`, it's crucial to understand some key considerations that ensure you get the most out of this tool. The following points are designed to guide you through best practices and common pitfalls, helping you achieve accurate and efficient visual testing results. These considerations are not just recommendations, but essential aspects to keep in mind for effectively utilizing the service in real-world scenarios.
+`@wdio/visual-service` இன் சக்திவாய்ந்த அம்சங்களில் ஆழ்ந்து செல்வதற்கு முன், இந்த கருவியிலிருந்து அதிகபட்சம் பெற உறுதிசெய்யும் சில முக்கிய கருத்துகளைப் புரிந்துகொள்வது முக்கியம். பின்வரும் புள்ளிகள் சிறந்த நடைமுறைகள் மற்றும் பொதுவான தவறுகள் குறித்து உங்களுக்கு வழிகாட்ட வடிவமைக்கப்பட்டுள்ளன, துல்லியமான மற்றும் திறமையான காட்சி சோதனை முடிவுகளை அடைய உதவுகின்றன. இந்த கருத்துகள் வெறும் பரிந்துரைகள் மட்டுமல்ல, உண்மையான சூழ்நிலைகளில் சேவையை திறம்பட பயன்படுத்துவதற்கு மனதில் கொள்ள வேண்டிய அத்தியாவசிய அம்சங்கள் ஆகும்.
 
-## Nature of Comparison
+## ஒப்பீட்டின் தன்மை
 
-- **Pixel-by-Pixel Basis:** The module performs a pixel-by-pixel comparison of images. While certain aspects can be adjusted (see Comparison Options), the core approach remains a basic pixel comparison.
-- **Impact of Browser Updates:** Be aware that updates to browsers, like Chrome, may affect font rendering, potentially necessitating an update to your baseline images.
+-   **பிக்செல்-பை-பிக்செல் அடிப்படையில்:** இந்த மாடியூல் படங்களின் பிக்செல்-பை-பிக்செல் ஒப்பீட்டை செய்கிறது. சில அம்சங்களை சரிசெய்ய முடியும் (ஒப்பீட்டு விருப்பங்களைப் பார்க்கவும்), ஆனால் அடிப்படை அணுகுமுறை ஒரு அடிப்படை பிக்செல் ஒப்பீடாகவே இருக்கும்.
+-   **உலாவி புதுப்பிப்புகளின் தாக்கம்:** Chrome போன்ற உலாவிகளின் புதுப்பிப்புகள் எழுத்துரு காட்சியை பாதிக்கலாம், இது உங்கள் அடிப்படை படங்களை புதுப்பிக்க வேண்டிய அவசியத்தை ஏற்படுத்தலாம் என்பதை நினைவில் கொள்ளுங்கள்.
 
-## Consistency in Platforms
+## தளங்களில் நிலைத்தன்மை
 
-- **Comparing Identical Platforms:** Ensure screenshots are compared within the same platform. For instance, a screenshot from Chrome on a Mac should not be used to compare against one from Chrome on Ubuntu or Windows.
-- **Analogy:** To put it simply, compare _'Apples with Apples, not Apples with Androids'_.
+-   **ஒரே மாதிரியான தளங்களை ஒப்பிடுதல்:** திரைப்பிடிப்புகள் ஒரே தளத்திற்குள் ஒப்பிடப்படுவதை உறுதிசெய்யவும். எடுத்துக்காட்டாக, Mac இல் Chrome இலிருந்து எடுக்கப்பட்ட திரைப்பிடிப்பு Ubuntu அல்லது Windows இல் Chrome இலிருந்து எடுக்கப்பட்டதுடன் ஒப்பிட பயன்படுத்தக்கூடாது.
+-   **உவமை:** எளிதாக சொல்வதானால், _'ஆப்பிள்களை ஆப்பிள்களுடன் ஒப்பிடவும், ஆப்பிள்களை ஆண்ட்ராய்டுகளுடன் அல்ல'_.
 
-## Caution with Mismatch Percentage
+## பொருத்தமின்மை சதவீதத்தில் எச்சரிக்கை
 
-- **Risk of Accepting Mismatches:** Exercise caution when accepting a mismatch percentage. This is especially true for large screenshots, where accepting a mismatch might inadvertently overlook significant discrepancies, such as missing buttons or elements.
+-   **பொருத்தமின்மைகளை ஏற்றுக்கொள்வதில் ஆபத்து:** பொருத்தமின்மை சதவீதத்தை ஏற்றுக்கொள்வதில் எச்சரிக்கையாக இருக்கவும். இது பெரிய திரைப்பிடிப்புகளுக்கு குறிப்பாக உண்மை, அங்கு ஒரு பொருத்தமின்மையை ஏற்றுக்கொள்வது, காணாமல் போன பட்டன்கள் அல்லது கூறுகள் போன்ற குறிப்பிடத்தக்க வேறுபாடுகளை கவனிக்காமல் விடலாம்.
 
-## Mobile Screen Simulation
+## மொபைல் திரை உருவகப்படுத்தல்
 
-- **Avoid Browser Resizing for Mobile Simulation:** Do not attempt to simulate mobile screen sizes by resizing desktop browsers and treating them as mobile browsers. Desktop browsers, even when resized, do not accurately replicate the rendering of actual mobile browsers.
-- **Authenticity in Comparison:** This tool aims to compare visuals as they would appear to an end-user. A resized desktop browser does not reflect the true experience on a mobile device.
+-   **மொபைல் உருவகப்படுத்தலுக்கு உலாவி அளவை மாற்றுவதைத் தவிர்க்கவும்:** டெஸ்க்டாப் உலாவிகளின் அளவை மாற்றி அவற்றை மொபைல் உலாவிகளாக கருதி மொபைல் திரை அளவுகளை உருவகப்படுத்த முயற்சிக்க வேண்டாம். டெஸ்க்டாப் உலாவிகள், அளவு மாற்றப்பட்டாலும், உண்மையான மொபைல் உலாவிகளின் காட்சியை துல்லியமாக மறுபடியாக்கம் செய்வதில்லை.
+-   **ஒப்பீட்டில் நம்பகத்தன்மை:** இந்த கருவி காட்சிகளை இறுதி பயனருக்கு தோன்றும் விதமாக ஒப்பிட முயல்கிறது. அளவு மாற்றப்பட்ட டெஸ்க்டாப் உலாவி மொபைல் சாதனத்தில் உண்மையான அனுபவத்தை பிரதிபலிக்காது.
 
-## Stance on Headless Browsers
+## தலைப்பில்லா உலாவிகள் மீதான நிலைப்பாடு
 
-- **Not Recommended for Headless Browsers:** The use of this module with headless browsers is not advised. The rationale is that end-users do not interact with headless browsers, and therefore issues arising from such use will not be supported.
+-   **தலைப்பில்லா உலாவிகளுக்கு பரிந்துரைக்கப்படவில்லை:** இந்த மாடியூலை தலைப்பில்லா உலாவிகளுடன் பயன்படுத்துவது அறிவுறுத்தப்படவில்லை. இறுதி பயனர்கள் தலைப்பில்லா உலாவிகளுடன் தொடர்பு கொள்வதில்லை, எனவே அத்தகைய பயன்பாட்டிலிருந்து எழும் சிக்கல்களுக்கு ஆதரவு வழங்கப்படாது என்பது காரணம்.

@@ -1,34 +1,34 @@
 ---
 id: browserstack
-title: BrowserStack Accessibility Testing
+title: பிரவுசர்ஸ்டேக் அணுகல்தன்மை சோதனை
 ---
 
-# BrowserStack Accessibility Testing
+# பிரவுசர்ஸ்டேக் அணுகல்தன்மை சோதனை
 
-You can easily integrate accessibility tests in your WebdriverIO test suites using the [Automated tests feature of BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+உங்கள் WebdriverIO சோதனை தொகுப்புகளில் [பிரவுசர்ஸ்டேக் அணுகல்தன்மை சோதனையின் தானியங்கி சோதனைகள் அம்சத்தைப்](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) பயன்படுத்தி எளிதாக அணுகல்தன்மை சோதனைகளை ஒருங்கிணைக்கலாம்.
 
-## Advantages of Automated Tests in BrowserStack Accessibility Testing
+## பிரவுசர்ஸ்டேக் அணுகல்தன்மை சோதனையில் தானியங்கி சோதனைகளின் நன்மைகள்
 
-To use Automated tests in BrowserStack Accessibility Testing, your tests should be running on BrowserStack Automate.
+பிரவுசர்ஸ்டேக் அணுகல்தன்மை சோதனையில் தானியங்கி சோதனைகளைப் பயன்படுத்த, உங்கள் சோதனைகள் BrowserStack Automate இல் இயங்க வேண்டும்.
 
-The following are the advantages of Automated tests:
+தானியங்கி சோதனைகளின் நன்மைகள் பின்வருமாறு:
 
-- Seamlessly integrates into your pre-existing automation test suite.
-- No code changes are required in test cases.
-- Requires zero additional maintenance for accessibility testing.
-- Understand historical trends and gain test-case insights.
+* உங்கள் ஏற்கனவே உள்ள தானியங்கி சோதனை தொகுப்பில் தடையின்றி ஒருங்கிணைக்கிறது.
+* சோதனை வழக்குகளில் குறியீடு மாற்றங்கள் எதுவும் தேவையில்லை.
+* அணுகல்தன்மை சோதனைக்கு கூடுதல் பராமரிப்பு எதுவும் தேவையில்லை.
+* வரலாற்று போக்குகளைப் புரிந்துகொண்டு சோதனை-வழக்கு உள்ளறிவுகளைப் பெறுங்கள்.
 
-## Get Started with BrowserStack Accessibility Testing
+## பிரவுசர்ஸ்டேக் அணுகல்தன்மை சோதனையுடன் தொடங்குங்கள்
 
-Follow these steps to integrate your WebdriverIO test suites with BrowserStack's Accessibility Testing:
+உங்கள் WebdriverIO சோதனை தொகுப்புகளை பிரவுசர்ஸ்டேக்கின் அணுகல்தன்மை சோதனையுடன் ஒருங்கிணைக்க இந்த படிகளைப் பின்பற்றவும்:
 
-1. Install `@wdio/browserstack-service` npm package.
+1. `@wdio/browserstack-service` npm தொகுப்பை நிறுவவும்.
 
 ```bash npm2yarn
 npm install --save-dev @wdio/browserstack-service
 ```
 
-2. Update `wdio.conf.js` config file.
+2. `wdio.conf.js` கட்டமைப்பு கோப்பைப் புதுப்பிக்கவும்.
 
 ```javascript
 exports.config = {
@@ -60,4 +60,4 @@ exports.config = {
   };
 ```
 
-You can view detailed instructions [here](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+விரிவான வழிமுறைகளை [இங்கே](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) காணலாம்.

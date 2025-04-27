@@ -1,34 +1,34 @@
 ---
 id: getting-started
-title: Getting Started
+title: தொடங்குதல்
 ---
 
-## Installation
+## நிறுவல்
 
-The easiest way is to keep `@wdio/ocr-service` as a dependency in your `package.json` via.
+எளிதான வழி `@wdio/ocr-service` ஐ உங்கள் `package.json` இல் ஒரு சார்புடையதாக வைத்திருப்பது.
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
 ```
 
-Instructions on how to install `WebdriverIO` can be found [here.](../gettingstarted)
+`WebdriverIO`வை எவ்வாறு நிறுவுவது என்பதற்கான வழிமுறைகள் [இங்கே](../gettingstarted) காணலாம்.
 
 :::note
-This module uses Tesseract as an OCR engine. By default, it will verify if you have a local installation of Tesseract installed on your system, if so, it will use that. If not, it will use the [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) module which is automatically installed for you.
+இந்த மாடியூல் OCR இயந்திரமாக Tesseract ஐப் பயன்படுத்துகிறது. இயல்பாக, இது உங்கள் கணினியில் Tesseract இன் உள்ளூர் நிறுவல் உள்ளதா என்பதை சரிபார்க்கும், அவ்வாறு இருந்தால், அதைப் பயன்படுத்தும். இல்லையெனில், உங்களுக்காக தானாகவே நிறுவப்படும் [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) மாடியூலைப் பயன்படுத்தும்.
 
-If you want to speed up the image processing then the advice is to use a locally installed version of Tesseract. See also [Test execution time](./more-test-optimization#using-a-local-installation-of-tesseract).
+படத்தை செயலாக்குவதை வேகப்படுத்த விரும்பினால், உள்ளூரில் நிறுவப்பட்ட Tesseract பதிப்பைப் பயன்படுத்துவதே ஆலோசனை. [சோதனை செயல்படுத்தும் நேரம்](./more-test-optimization#using-a-local-installation-of-tesseract) ஐயும் பார்க்கவும்.
 :::
 
-Instruction on how to install Tesseract as a system dependency on your local system can be found [here](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+உங்கள் உள்ளூர் கணினியில் Tesseract ஐ கணினி சார்புடையதாக எவ்வாறு நிறுவுவது என்பதற்கான அறிவுறுத்தல்கள் [இங்கே](https://tesseract-ocr.github.io/tessdoc/Installation.html) காணலாம்.
 
 :::caution
-For installation questions/errors with Tesseract please refer to the
-[Tesseract](https://github.com/tesseract-ocr/tesseract) project.
+Tesseract உடன் நிறுவல் கேள்விகள்/பிழைகளுக்கு
+[Tesseract](https://github.com/tesseract-ocr/tesseract) திட்டத்தைப் பார்க்கவும்.
 :::
 
-## Typescript support
+## டைப்ஸ்கிரிப்ட் ஆதரவு
 
-Ensure that you add `@wdio/ocr-service` to your `tsconfig.json` configuration file.
+`@wdio/ocr-service` ஐ உங்கள் `tsconfig.json` உள்ளமைவு கோப்பில் சேர்த்துள்ளதை உறுதிப்படுத்தவும்.
 
 ```json title="tsconfig.json"
 {
@@ -38,9 +38,9 @@ Ensure that you add `@wdio/ocr-service` to your `tsconfig.json` configuration fi
 }
 ```
 
-## Configuration
+## கட்டமைப்பு
 
-To use the service you need to add `ocr` to your services array in `wdio.conf.ts`
+சேவையைப் பயன்படுத்த, `wdio.conf.ts` இல் உங்கள் சேவைகள் வரிசையில் `ocr` ஐச் சேர்க்க வேண்டும்
 
 ```js
 // wdio.conf.js
@@ -60,40 +60,40 @@ exports.config = {
 };
 ```
 
-### Configuration Options
+### கட்டமைப்பு விருப்பங்கள்
 
 #### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `0.25`
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+கான்ட்ராஸ்ட் எவ்வளவு அதிகமாக இருக்கிறதோ, அந்த அளவுக்கு இருண்ட படம் மற்றும் அதற்கு நேர்மாறாகவும். இது படத்தில் உரையைக் கண்டறிய உதவும். இது `-1` மற்றும் `1` இடையே உள்ள மதிப்புகளை ஏற்றுக்கொள்கிறது.
 
 #### `imagesFolder`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{project-root}/.tmp/ocr`
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `{project-root}/.tmp/ocr`
 
-The folder where the OCR results are stored.
+OCR முடிவுகள் சேமிக்கப்படும் கோப்புறை.
 
 :::note
-If you provide a custom `imagesFolder`, then the service will automatically add the subfolder `ocr` to it.
+நீங்கள் ஒரு தனிப்பயன் `imagesFolder` ஐ வழங்கினால், சேவை தானாகவே `ocr` துணைக்கோப்புறையை அதற்குச் சேர்க்கும்.
 :::
 
 #### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseract அங்கீகரிக்கும் மொழி. மேலும் தகவல்கள் [இங்கே](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) காணலாம் மற்றும் ஆதரிக்கப்படும் மொழிகள் [இங்கே](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) காணலாம்.
 
-## Logs
+## பதிவுகள்
 
-This module will automatically add extra logs to the WebdriverIO logs. It writes to the `INFO` and `WARN` logs with the name `@wdio/ocr-service`.
-Examples can be found below.
+இந்த மாடியூல் தானாகவே WebdriverIO பதிவுகளுக்கு கூடுதல் பதிவுகளைச் சேர்க்கும். இது `INFO` மற்றும் `WARN` பதிவுகளை `@wdio/ocr-service` பெயருடன் எழுதுகிறது.
+எடுத்துக்காட்டுகள் கீழே காணப்படுகின்றன.
 
 ```log
 ...............

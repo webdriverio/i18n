@@ -1,39 +1,40 @@
 ---
 id: ocr-testing
-title: OCR Testing
+title: OCR சோதனை
 ---
 
-Automated testing on mobile native apps and desktop sites can be particularly challenging when dealing with elements that lack unique identifiers. Standard [WebdriverIO selectors](https://webdriver.io/docs/selectors) may not always help you. Enter the world of the `@wdio/ocr-service`, a powerful service that leverages OCR ([Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition)) to search, wait for, and interact with on-screen elements based on their **visible text**.
+மொபைல் நேட்டிவ் ஆப்ஸ் மற்றும் டெஸ்க்டாப் தளங்களில் தனித்துவமான அடையாளங்கள் இல்லாத கூறுகளைக் கையாளும்போது தானியங்கி சோதனை குறிப்பாக சவாலாக இருக்கலாம். நிலையான [WebdriverIO தேர்வுக்குறிகள்](https://webdriver.io/docs/selectors) எப்போதும் உங்களுக்கு உதவாமல் போகலாம். `@wdio/ocr-service` உலகத்திற்குள் நுழையுங்கள், OCR ([ஒளியியல் எழுத்து அங்கீகாரம்](https://en.wikipedia.org/wiki/Optical_character_recognition)) பயன்படுத்தி திரையில் உள்ள கூறுகளை அவற்றின் **தெரியக்கூடிய உரை** அடிப்படையில் தேட, காத்திருக்க மற்றும் தொடர்புகொள்ள அனுமதிக்கும் ஒரு சக்திவாய்ந்த சேவை.
 
-The following custom commands will be provided and added to the `browser/driver` object so you will get the right toolset to do your job.
+பின்வரும் தனிப்பயன் கட்டளைகள் வழங்கப்பட்டு `browser/driver` பொருளுக்குச் சேர்க்கப்படும், இதனால் உங்கள் வேலையைச் செய்ய சரியான கருவித்தொகுப்பு கிடைக்கும்.
 
-- [`await browser.ocrGetText`](./ocr-get-text.md)
-- [`await browser.ocrGetElementPositionByText`](./ocr-get-element-position-by-text.md)
-- [`await browser.ocrWaitForTextDisplayed`](./ocr-wait-for-text-displayed.md)
-- [`await browser.ocrClickOnText`](./ocr-click-on-text.md)
-- [`await browser.ocrSetValue`](./ocr-set-value.md)
+-   [`await browser.ocrGetText`](./ocr-get-text.md)
+-   [`await browser.ocrGetElementPositionByText`](./ocr-get-element-position-by-text.md)
+-   [`await browser.ocrWaitForTextDisplayed`](./ocr-wait-for-text-displayed.md)
+-   [`await browser.ocrClickOnText`](./ocr-click-on-text.md)
+-   [`await browser.ocrSetValue`](./ocr-set-value.md)
 
-### How does it work
+### இது எவ்வாறு செயல்படுகிறது
 
-This service will
+இந்த சேவை செய்வது
 
-1. create a screenshot of your screen/device. (If needed you can provide a haystack, which can be an element or a rectangle object, to pinpoint a specific area. See the documentation for each command.)
-2. optimize the result for OCR by turning the screenshot into black/white with a high contrast screenshot (the high contrast is needed to prevent a lot of image background noise. This can be customized per command.)
-3. uses [Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition) from [Tesseract.js](https://github.com/naptha/tesseract.js)/[Tesseract](https://github.com/tesseract-ocr/tesseract) to get all text from the screen and highlight all found text on an image. It can support several languages which can be found [here.](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html)
-4. uses Fuzzy Logic from [Fuse.js](https://fusejs.io/) to find strings that are _approximately equal_ to a given pattern (rather than exactly). This means for example that the search value `Username` can also find the text `Usename` or vice versa.
-5. Provide a cli wizzard (`npx ocr-service`) to validate your images and retrieve text through your terminal
+1. உங்கள் திரை/சாதனத்தின் ஸ்கிரீன்ஷாட்டை உருவாக்கும். (தேவைப்பட்டால் நீங்கள் ஒரு Haystack வழங்கலாம், அது ஒரு கூறு அல்லது ஒரு செவ்வக பொருளாக இருக்கலாம், குறிப்பிட்ட பகுதியைக் குறிக்க. ஒவ்வொரு கட்டளைக்கும் ஆவணத்தைப் பார்க்கவும்.)
+1. ஸ்கிரீன்ஷாட்டை கருப்பு/வெள்ளை உயர் மாறுபாடு கொண்ட ஸ்கிரீன்ஷாட்டாக மாற்றி OCR-க்கான முடிவை மேம்படுத்துகிறது (அதிக படப் பின்னணி சத்தத்தைத் தடுக்க அதிக மாறுபாடு தேவை. இதை ஒவ்வொரு கட்டளைக்கும் தனிப்பயனாக்கலாம்.)
+1. திரையிலிருந்து அனைத்து உரையையும் பெற [Tesseract.js](https://github.com/naptha/tesseract.js)/[Tesseract](https://github.com/tesseract-ocr/tesseract) இலிருந்து [ஒளியியல் எழுத்து அங்கீகாரம்](https://en.wikipedia.org/wiki/Optical_character_recognition) பயன்படுத்துகிறது மற்றும் படத்தில் கண்டறியப்பட்ட அனைத்து உரைகளையும் சிறப்பிக்கிறது. இது பல மொழிகளை ஆதரிக்கும், அவை [இங்கே](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html) காணலாம்.
+1. கொடுக்கப்பட்ட வடிவத்திற்கு _துல்லியமாக சமம்_ (துல்லியமாக அல்ல) சரங்களைக் கண்டறிய [Fuse.js](https://fusejs.io/) இலிருந்து ஃபஸி லாஜிக் பயன்படுத்துகிறது. எடுத்துக்காட்டாக, தேடல் மதிப்பு `Username` `Usename` என்ற உரையையும் கண்டுபிடிக்கும் அல்லது அதற்கு மாறாகவும்.
+1. உங்கள் படங்களை சரிபார்க்கவும் உங்கள் முனையம் மூலம் உரையைப் பெறவும் cli வழிகாட்டி (`npx ocr-service`) வழங்குகிறது
 
-An example of steps 1, 2 and 3 can be found in this image
+படிகள் 1, 2 மற்றும் 3 க்கான எடுத்துக்காட்டு இந்த படத்தில் காணலாம்
 
-![Process steps](/img/ocr/processing-steps.jpg)
+![செயல்முறை படிகள்](/img/ocr/processing-steps.jpg)
 
-It works with **ZERO** system dependencies (besides what WebdriverIO uses), but if needed it can also work with a local installation from [Tesseract](https://tesseract-ocr.github.io/tessdoc/) which will reduce the execution time drastically! (See also the [Test Execution Optimization](#test-execution-optimization) on how to speed up your tests.)
+இது **பூஜ்ஜியம்** கணினி சார்புகளுடன் (WebdriverIO பயன்படுத்துவதைத் தவிர) வேலை செய்கிறது, ஆனால் தேவைப்பட்டால் [Tesseract](https://tesseract-ocr.github.io/tessdoc/) இன் உள்ளூர் நிறுவலுடனும் வேலை செய்யலாம், இது இயக்க நேரத்தை கணிசமாகக் குறைக்கும்! (உங்கள் சோதனைகளை எவ்வாறு வேகப்படுத்துவது என்பதைப் பற்றி [சோதனை செயல்பாடு மேம்படுத்தல்](#test-execution-optimization) ஐயும் பார்க்கவும்.)
 
-Enthusiastic? Start using it today by following the [Getting Started](./getting-started) guide.
+ஆர்வமாக இருக்கிறீர்களா? [தொடங்குதல்](./getting-started) வழிகாட்டியைப் பின்பற்றி இன்றே பயன்படுத்தத் தொடங்குங்கள்.
 
-:::caution Important
+:::caution முக்கியமானது
+Tesseract-இலிருந்து நல்ல தரமான வெளியீட்டைப் பெறாமல் இருப்பதற்கு பல காரணங்கள் உள்ளன. உங்கள் ஆப் மற்றும் இந்த மாடியூலுடன் தொடர்புடைய மிகப்பெரிய காரணங்களில் ஒன்று, கண்டுபிடிக்க வேண்டிய உரைக்கும் பின்னணிக்கும் இடையே சரியான வண்ண வேறுபாடு இல்லாதது. எடுத்துக்காட்டாக, இருண்ட பின்னணியில் வெள்ளை உரை _எளிதாக_ கண்டுபிடிக்கப்படலாம், ஆனால் வெள்ளை பின்னணியில் வெளிர்ந்த உரை அல்லது இருண்ட பின்னணியில் இருண்ட உரையை கண்டுபிடிப்பது கடினம்.
 
-See also [this page](https://tesseract-ocr.github.io/tessdoc/ImproveQuality) for more information from Tesseract.
+Tesseract இலிருந்து மேலும் தகவலுக்கு [இந்த பக்கத்தையும்](https://tesseract-ocr.github.io/tessdoc/ImproveQuality) பார்க்கவும்.
 
-Also don't forget to read the [FAQ](./ocr-faq).
+[FAQ](./ocr-faq) ஐப் படிக்க மறக்காதீர்கள்.
 :::

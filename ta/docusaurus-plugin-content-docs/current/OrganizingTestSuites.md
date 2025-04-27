@@ -1,19 +1,19 @@
 ---
 id: organizingsuites
-title: Organizing Test Suite
+title: சோதனை தொகுப்பை ஒழுங்கமைத்தல்
 ---
 
-As projects grow, inevitably more and more integration tests are added. This increases build time and slows productivity.
+திட்டங்கள் வளர்ச்சியடையும்போது, தவிர்க்க முடியாத வகையில் அதிகமான ஒருங்கிணைப்பு சோதனைகள் சேர்க்கப்படுகின்றன. இது கட்டிய நேரத்தை அதிகரித்து, உற்பத்தித்திறனை குறைக்கிறது.
 
-To prevent this, you should run your tests in parallel. WebdriverIO already tests each spec (or _feature file_ in Cucumber) in parallel within a single session. In general, try to test only a single feature per spec file. Try to not have too many or too few tests in one file. (However, there is no golden rule here.)
+இதைத் தடுக்க, நீங்கள் உங்கள் சோதனைகளை இணையாக இயக்க வேண்டும். WebdriverIO ஏற்கனவே ஒவ்வொரு spec (அல்லது Cucumber இல் _feature file_) ஐ ஒரு தனி அமர்வில் இணையாக சோதிக்கிறது. பொதுவாக, ஒரு spec கோப்பில் ஒரு அம்சத்தை மட்டுமே சோதிக்க முயற்சிக்கவும். ஒரு கோப்பில் மிக அதிகமான அல்லது மிகக் குறைவான சோதனைகளைக் கொண்டிருக்க முயற்சிக்காதீர்கள். (இருப்பினும், இங்கு பொன்னான விதி எதுவும் இல்லை.)
 
-Once your tests have several spec files, you should start running your tests concurrently. To do so, adjust the `maxInstances` property in your config file. WebdriverIO allows you to run your tests with maximum concurrency—meaning that no matter how many files and tests you have, they can all run in parallel.  (This is still subject to certain limits, like your computer’s CPU, concurrency restrictions, etc.)
+உங்கள் சோதனைகளுக்கு பல spec கோப்புகள் இருக்கும்போது, உங்கள் சோதனைகளை ஒரே நேரத்தில் இயக்கத் தொடங்க வேண்டும். அவ்வாறு செய்ய, உங்கள் கட்டமைப்பு கோப்பில் `maxInstances` பண்புக்கூறை சரிசெய்யவும். WebdriverIO உங்கள் சோதனைகளை அதிகபட்ச ஒத்திசைவுடன் இயக்க அனுமதிக்கிறது - அதாவது எத்தனை கோப்புகள் மற்றும் சோதனைகள் இருந்தாலும், அவை அனைத்தும் இணையாக இயங்கலாம். (இது இன்னும் உங்கள் கணினியின் CPU, ஒத்திசைவு கட்டுப்பாடுகள் போன்ற சில வரம்புகளுக்கு உட்பட்டது.)
 
-> Let's say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have set `maxInstances` to `1`. The WDIO test runner will spawn 3 processes. Therefore, if you have 10 spec files and you set `maxInstances` to `10`, _all_ spec files will be tested simultaneously, and 30 processes will be spawned.
+> உங்களிடம் 3 வெவ்வேறு capabilities (Chrome, Firefox, மற்றும் Safari) இருந்து, `maxInstances` ஐ `1` என அமைத்திருந்தால், WDIO சோதனை இயக்கி 3 செயல்முறைகளைத் தொடங்கும். எனவே, உங்களிடம் 10 spec கோப்புகள் இருந்து `maxInstances` ஐ `10` என அமைத்தால், _அனைத்து_ spec கோப்புகளும் ஒரே நேரத்தில் சோதிக்கப்படும், மற்றும் 30 செயல்முறைகள் தொடங்கப்படும்.
 
-You can define the `maxInstances` property globally to set the attribute for all browsers.
+அனைத்து உலாவிகளுக்கும் பண்புக்கூறை அமைக்க `maxInstances` பண்புக்கூறை உலகளாவிய அளவில் வரையறுக்கலாம்.
 
-If you run your own WebDriver grid, you may (for example) have more capacity for one browser than another. In that case, you can _limit_ the `maxInstances` in your capability object:
+உங்கள் சொந்த WebDriver கட்டமைப்பை இயக்கினால், (எடுத்துக்காட்டாக) ஒரு உலாவிக்கு மற்றொன்றை விட அதிக திறன் இருக்கலாம். அந்த சந்தர்ப்பத்தில், உங்கள் capability பொருளில் `maxInstances` _வரம்பைக்_ குறிப்பிடலாம்:
 
 ```js
 // wdio.conf.js
@@ -34,13 +34,13 @@ export const config = {
 }
 ```
 
-## Inherit From Main Config File
+## முக்கிய கட்டமைப்பு கோப்பில் இருந்து மரபுரிமை
 
-If you run your test suite in multiple environments (e.g., dev and integration) it may help to use multiple configuration files to keep things manageable.
+நீங்கள் உங்கள் சோதனைத் தொகுப்பை பல சூழல்களில் (எ.கா., dev மற்றும் integration) இயக்கினால், விஷயங்களை நிர்வகிக்க பல கட்டமைப்பு கோப்புகளைப் பயன்படுத்துவது உதவியாக இருக்கும்.
 
-Similar to the [page object concept](pageobjects), the first thing you’ll need is a main config file. It contains all configurations you share across environments.
+[பக்க பொருள் கருத்து](pageobjects) போலவே, முதலில் ஒரு முக்கிய கட்டமைப்பு கோப்பு தேவைப்படும். இது நீங்கள் சூழல்களில் பகிரும் அனைத்து கட்டமைப்புகளையும் கொண்டுள்ளது.
 
-Then create another config file for each environment, and supplement the the main config with the environment-specific ones:
+பின்னர் ஒவ்வொரு சூழலுக்கும் மற்றொரு கட்டமைப்பு கோப்பை உருவாக்கி, முக்கிய கட்டமைப்பை சூழல்-குறிப்பிட்ட கட்டமைப்புகளுடன் நிரப்பவும்:
 
 ```js
 // wdio.dev.config.js
@@ -64,11 +64,11 @@ export const config = deepmerge(wdioConf.config, {
 config.reporters.push('allure')
 ```
 
-## Grouping Test Specs In Suites
+## சோதனை Specs களை தொகுப்புகளில் குழுமித்தல்
 
-You can group test specs in suites and run single specific suites instead of all of them.
+நீங்கள் சோதனை specs களை தொகுப்புகளில் குழுமித்து, அனைத்தையும் இயக்குவதற்குப் பதிலாக குறிப்பிட்ட தொகுப்புகளை இயக்கலாம்.
 
-First, define your suites in your WDIO config:
+முதலில், உங்கள் WDIO கட்டமைப்பில் உங்கள் தொகுப்புகளை வரையறுக்கவும்:
 
 ```js
 // wdio.conf.js
@@ -90,23 +90,23 @@ export const config = {
 }
 ```
 
-Now, if you want to only run a single suite, you can pass the suite name as a CLI argument:
+இப்போது, நீங்கள் ஒரு தொகுப்பை மட்டும் இயக்க விரும்பினால், தொகுப்பு பெயரை CLI வாதமாக அனுப்பலாம்:
 
 ```sh
 wdio wdio.conf.js --suite login
 ```
 
-Or, run multiple suites at once:
+அல்லது, ஒரே நேரத்தில் பல தொகுப்புகளை இயக்கலாம்:
 
 ```sh
 wdio wdio.conf.js --suite login --suite otherFeature
 ```
 
-## Grouping Test Specs To Run Sequentially
+## சோதனை Specs களை தொடர்ச்சியாக இயக்க குழுமித்தல்
 
-As described above, there are benefits in running the tests concurrently. However, there are cases where it would be beneficial to group tests together to run sequentially in a single instance. Examples of this are mainly where there is a large setup cost e.g. transpiling code or provisioning cloud instances, but there are also advanced usage models that benefit from this capability.
+மேலே விவரிக்கப்பட்டுள்ளபடி, சோதனைகளை ஒரே நேரத்தில் இயக்குவதில் நன்மைகள் உள்ளன. இருப்பினும், சோதனைகளை ஒன்றாக குழுமித்து ஒரு தனிப்பட்ட நிகழ்வில் தொடர்ச்சியாக இயக்குவது பயனுள்ளதாக இருக்கும் சந்தர்ப்பங்கள் உள்ளன. இதற்கான எடுத்துக்காட்டுகள் பெரும்பாலும் பெரிய அமைப்பு செலவுகள் உள்ள இடங்களில் உள்ளன, எ.கா. குறியீட்டை மாற்றுதல் அல்லது cloud instances ஐ வழங்குதல், ஆனால் இந்த திறனில் பயனடையும் மேம்பட்ட பயன்பாட்டு மாதிரிகளும் உள்ளன.
 
-To group tests to run in a single instance, define them as an array within the specs definition.
+சோதனைகளை ஒரு தனி நிகழ்வில் இயக்க குழுமிக்க, specs வரையறையில் அவற்றை ஒரு array ஆக வரையறுக்கவும்.
 
 ```json
     "specs": [
@@ -118,9 +118,9 @@ To group tests to run in a single instance, define them as an array within the s
         "./test/specs/test_b*.js",
     ],
 ```
-In the example above, the tests 'test_login.js', 'test_product_order.js' and 'test_checkout.js' will be run sequentially in a single instance and each of the "test_b*" tests will run concurrently in individual instances.
+மேலே உள்ள எடுத்துக்காட்டில், 'test_login.js', 'test_product_order.js' மற்றும் 'test_checkout.js' சோதனைகள் ஒரு தனி நிகழ்வில் தொடர்ச்சியாக இயக்கப்படும், மற்றும் "test_b*" சோதனைகள் ஒவ்வொன்றும் தனிப்பட்ட நிகழ்வுகளில் ஒரே நேரத்தில் இயக்கப்படும்.
 
-It is also possible to group specs defined in suites, so you can now also define suites like this:
+தொகுப்புகளில் வரையறுக்கப்பட்ட specs களை குழுமிப்பதும் சாத்தியமாகும், எனவே இப்போது நீங்கள் தொகுப்புகளை இவ்வாறு வரையறுக்கலாம்:
 ```json
     "suites": {
         end2end: [
@@ -133,9 +133,9 @@ It is also possible to group specs defined in suites, so you can now also define
         allb: ["./test/specs/test_b*.js"]
 },
 ```
-and in this case all of the tests of the "end2end" suite would be run in a single instance.
+இந்த வழக்கில் "end2end" தொகுப்பின் அனைத்து சோதனைகளும் ஒரு தனி நிகழ்வில் இயக்கப்படும்.
 
-When running tests sequentially using a pattern, it will run the spec files in an alphabetical order
+ஒரு pattern பயன்படுத்தி தொடர்ச்சியாக சோதனைகளை இயக்கும்போது, அது spec கோப்புகளை அகரவரிசை வரிசையில் இயக்கும்
 
 ```json
   "suites": {
@@ -143,7 +143,7 @@ When running tests sequentially using a pattern, it will run the spec files in a
   },
 ```
 
-This will run the files matching the pattern above in the following order:
+இது மேலே உள்ள pattern உடன் பொருந்தும் கோப்புகளை பின்வரும் வரிசையில் இயக்கும்:
 
 ```
   [
@@ -153,145 +153,137 @@ This will run the files matching the pattern above in the following order:
   ]
 ```
 
-## Run Selected Tests
+## தேர்ந்தெடுக்கப்பட்ட சோதனைகளை இயக்குதல்
 
-In some cases, you may wish to only execute a single test (or subset of tests) of your suites.
+சில சந்தர்ப்பங்களில், உங்கள் தொகுப்புகளில் ஒரு தனி சோதனையை (அல்லது சோதனைகளின் துணைத்தொகுப்பை) மட்டும் செயல்படுத்த விரும்பலாம்.
 
-With the `--spec` parameter, you can specify which _suite_ (Mocha, Jasmine) or _feature_ (Cucumber) should be run. The path is resolved relative from your current working directory.
+`--spec` அளவுருவுடன், எந்த _suite_ (Mocha, Jasmine) அல்லது _feature_ (Cucumber) இயக்கப்பட வேண்டும் என்பதைக் குறிப்பிடலாம். பாதை உங்கள் தற்போதைய பணி அடைவிலிருந்து தீர்மானிக்கப்படுகிறது.
 
-For example, to run only your login test:
+எடுத்துக்காட்டாக, உங்கள் உள்நுழைவு சோதனையை மட்டும் இயக்க:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js
 ```
 
-Or run multiple specs at once:
+அல்லது ஒரே நேரத்தில் பல specs களை இயக்க:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/signup.js --spec ./test/specs/forgot-password.js
 ```
 
-If the `--spec` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+`--spec` மதிப்பு ஒரு குறிப்பிட்ட spec கோப்பைக் குறிக்கவில்லை என்றால், அது உங்கள் கட்டமைப்பில் வரையறுக்கப்பட்ட spec கோப்பு பெயர்களை வடிகட்ட பயன்படுத்தப்படுகிறது.
 
-To run all specs with the word “dialog” in the spec file names, you could use:
+spec கோப்பு பெயர்களில் "dialog" என்ற வார்த்தை உள்ள அனைத்து specs களையும் இயக்க, நீங்கள் பயன்படுத்தலாம்:
 
 ```sh
 wdio wdio.conf.js --spec dialog
 ```
 
-Note that each test file is running in a single test runner process. Since we don't scan files in advance (see the next section for information on piping filenames to `wdio`), you _can't_ use (for example) `describe.only` at the top of your spec file to instruct Mocha to run only that suite.
+ஒவ்வொரு சோதனை கோப்பும் ஒரு தனி சோதனை இயக்கி செயல்முறையில் இயங்குகிறது என்பதை கவனிக்கவும். நாங்கள் கோப்புகளை முன்கூட்டியே ஸ்கேன் செய்யாததால் (`wdio` க்கு கோப்பு பெயர்களை pipe செய்வது பற்றிய தகவலுக்கு அடுத்த பிரிவைப் பார்க்கவும்), நீங்கள் (எடுத்துக்காட்டாக) உங்கள் spec கோப்பின் மேல் `describe.only` ஐப் பயன்படுத்தி முடியாது, அந்த suite மட்டும் இயக்க Mocha க்கு அறிவுறுத்த.
 
-This feature will help you to accomplish the same goal.
+இந்த அம்சம் அதே இலக்கை அடைய உங்களுக்கு உதவும்.
 
-When the `--spec` option is provided, it will override any patterns defined by the config or capability level's `specs` parameter.
+`--spec` விருப்பம் வழங்கப்படும்போது, இது கட்டமைப்பு அல்லது capability நிலையின் `specs` அளவுருவால் வரையறுக்கப்பட்ட எந்த pattern களையும் மேலெழுதும்.
 
-## Exclude Selected Tests
+## தேர்ந்தெடுக்கப்பட்ட சோதனைகளை விலக்குதல்
 
-When needed, if you need to exclude particular spec file(s) from a run, you can use the `--exclude` parameter (Mocha, Jasmine) or feature (Cucumber).
+தேவைப்படும்போது, ஒரு ஓட்டத்திலிருந்து குறிப்பிட்ட spec கோப்பு(களை) விலக்க வேண்டுமென்றால், நீங்கள் `--exclude` அளவுருவைப் (Mocha, Jasmine) அல்லது feature (Cucumber) ஐப் பயன்படுத்தலாம்.
 
-For example, to exclude your login test from the test run:
+எடுத்துக்காட்டாக, உங்கள் சோதனை ஓட்டத்திலிருந்து உங்கள் உள்நுழைவு சோதனையை விலக்க:
 
 ```sh
 wdio wdio.conf.js --exclude ./test/specs/e2e/login.js
 ```
 
-Or, exclude multiple spec files:
+அல்லது, பல spec கோப்புகளை விலக்கவும்:
 
  ```sh
 wdio wdio.conf.js --exclude ./test/specs/signup.js --exclude ./test/specs/forgot-password.js
 ```
 
-Or, exclude a spec file when filtering using a suite:
+அல்லது, ஒரு தொகுப்பைப் பயன்படுத்தி வடிகட்டும்போது ஒரு spec கோப்பை விலக்கவும்:
 
 ```sh
-wdio wdio.conf.js --suite login --exclude ./test/specs/
-e2e/login.js
+wdio wdio.conf.js --suite login --exclude ./test/specs/e2e/login.js
 ```
 
-If the `--exclude` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+`--exclude` மதிப்பு ஒரு குறிப்பிட்ட spec கோப்பைக் குறிக்கவில்லை என்றால், அது உங்கள் கட்டமைப்பில் வரையறுக்கப்பட்ட spec கோப்பு பெயர்களை வடிகட்ட பயன்படுத்தப்படுகிறது.
 
-To exclude all specs with the word “dialog” in the spec file names, you could use:
-
-```sh
-wdio wdio.conf.js --exclude dialog
-```
-
-If the `--exclude` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
-
-To exclude all specs with the word “dialog” in the spec file names, you could use:
+spec கோப்பு பெயர்களில் "dialog" என்ற வார்த்தை உள்ள அனைத்து specs களையும் விலக்க, நீங்கள் பயன்படுத்தலாம்:
 
 ```sh
 wdio wdio.conf.js --exclude dialog
 ```
 
-When the `--exclude` option is provided, it will override any patterns defined by the config or capability level's `exclude` parameter.
+`--exclude` விருப்பம் வழங்கப்படும்போது, இது கட்டமைப்பு அல்லது capability நிலையின் `exclude` அளவுருவால் வரையறுக்கப்பட்ட எந்த pattern களையும் மேலெழுதும்.
 
-## Run Suites and Test Specs
+## தொகுப்புகளையும் சோதனை Specs களையும் இயக்குதல்
 
-Run an entire suite along with individual specs.
+தனிப்பட்ட specs களுடன் முழு தொகுப்பையும் இயக்கவும்.
 
 ```sh
 wdio wdio.conf.js --suite login --spec ./test/specs/signup.js
 ```
 
-## Run Multiple, Specific Test Specs
+## பல, குறிப்பிட்ட சோதனை Specs களை இயக்குதல்
 
-It is sometimes necessary&mdash;in the context of continuous integration and otherwise&mdash;to specify multiple sets of specs to run. WebdriverIO's `wdio` command line utility accepts piped-in filenames (from `find`, `grep`, or others).
+தொடர்ச்சியான ஒருங்கிணைப்பு மற்றும் வேறு சந்தர்ப்பங்களில், பல தொகுப்புகளின் specs களை குறிப்பிட வேண்டியது அவசியமாகிறது. WebdriverIO வின் `wdio` கட்டளை வரி பயன்பாடு pipe செய்யப்பட்ட கோப்பு பெயர்களை (`find`, `grep`, அல்லது மற்றவற்றிலிருந்து) ஏற்றுக்கொள்கிறது.
 
-Piped-in filenames override the list of globs or filenames specified in the configuration's `spec` list.
+Pipe செய்யப்பட்ட கோப்பு பெயர்கள் கட்டமைப்பின் `spec` பட்டியலில் குறிப்பிடப்பட்ட globs அல்லது கோப்பு பெயர்களின் பட்டியலை மேலெழுதுகின்றன.
 
 ```sh
 grep -r -l --include "*.js" "myText" | wdio wdio.conf.js
 ```
 
-_**Note:** This will_ not _override the `--spec` flag for running a single spec._
+_**குறிப்பு:** இது ஒரு தனி spec ஐ இயக்குவதற்கான `--spec` கொடியை மேலெழுதாது._
 
-## Running Specific Tests with MochaOpts
+## MochaOpts உடன் குறிப்பிட்ட சோதனைகளை இயக்குதல்
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to run by passing a mocha specific argument: `--mochaOpts.grep` to the wdio CLI.
+mocha குறிப்பிட்ட வாதத்தை அனுப்புவதன் மூலம் எந்த குறிப்பிட்ட `suite|describe` மற்றும்/அல்லது `it|test` இயக்க வேண்டும் என்பதையும் வடிகட்டலாம்: wdio CLI க்கு `--mochaOpts.grep`.
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep myText
 wdio wdio.conf.js --mochaOpts.grep "Text with spaces"
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**குறிப்பு:** WDIO சோதனை இயக்கி நிகழ்வுகளை உருவாக்கிய பிறகு Mocha சோதனைகளை வடிகட்டும், எனவே பல நிகழ்வுகள் தொடங்கப்படுவதைக் காணலாம், ஆனால் உண்மையில் செயல்படுத்தப்படவில்லை._
 
-## Exclude Specific Tests with MochaOpts
+## MochaOpts உடன் குறிப்பிட்ட சோதனைகளை விலக்குதல்
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to exclude by passing a mocha specific argument: `--mochaOpts.invert` to the wdio CLI. `--mochaOpts.invert` performs opposite of `--mochaOpts.grep`
+mocha குறிப்பிட்ட வாதத்தை அனுப்புவதன் மூலம் எந்த குறிப்பிட்ட `suite|describe` மற்றும்/அல்லது `it|test` விலக்க வேண்டும் என்பதையும் வடிகட்டலாம்: wdio CLI க்கு `--mochaOpts.invert`. `--mochaOpts.invert` என்பது `--mochaOpts.grep` இன் எதிர்மறையாக செயல்படுகிறது
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**குறிப்பு:** WDIO சோதனை இயக்கி நிகழ்வுகளை உருவாக்கிய பிறகு Mocha சோதனைகளை வடிகட்டும், எனவே பல நிகழ்வுகள் தொடங்கப்படுவதைக் காணலாம், ஆனால் உண்மையில் செயல்படுத்தப்படவில்லை._
 
-## Stop testing after failure
+## தோல்வி பிறகு சோதனையை நிறுத்து
 
-With the `bail` option, you can tell WebdriverIO to stop testing after any test fails.
+`bail` விருப்பத்துடன், எந்த சோதனை தோல்வியுற்ற பிறகு சோதனையை நிறுத்த WebdriverIO க்கு சொல்லலாம்.
 
-This is helpful with large test suites when you already know that your build will break, but you want to avoid the lengthy wait of a full testing run.
+இது பெரிய சோதனை தொகுப்புகளுடன் பயனுள்ளதாக இருக்கும், ஏற்கனவே உங்கள் கட்டமைப்பு முறியும் என்பது தெரியும், ஆனால் முழு சோதனை ஓட்டத்தின் நீண்ட காத்திருப்பை தவிர்க்க விரும்புகிறீர்கள்.
 
-The `bail` option expects a number, which specifies how many test failures can occur before WebDriver stop the entire testing run. The default is `0`, meaning that it always runs all tests specs it can find.
+`bail` விருப்பம் ஒரு எண்ணை எதிர்பார்க்கிறது, இது WebDriver முழு சோதனை ஓட்டத்தை நிறுத்துவதற்கு முன் எத்தனை சோதனை தோல்விகள் ஏற்படலாம் என்பதைக் குறிப்பிடுகிறது. இயல்புநிலை `0`, அதாவது அது எப்போதும் அனைத்து சோதனை specs களையும் இயக்கும்.
 
-Please see [Options Page](configuration) for additional information on the bail configuration.
-## Run options hierarchy
+bail கட்டமைப்பு பற்றிய கூடுதல் தகவலுக்கு [Options Page](configuration) ஐப் பார்க்கவும்.
+## இயக்க விருப்பங்கள் படிநிலை
 
-When declaring what specs to run, there is a certain hierarchy defining what pattern will take precedence. Currently, this is how it works, from highest priority to lowest:
+எந்த specs இயக்க வேண்டும் என்பதை அறிவிக்கும்போது, எந்த pattern முன்னுரிமை பெறும் என்பதை வரையறுக்கும் ஒரு குறிப்பிட்ட படிநிலை உள்ளது. தற்போது, இது எப்படி செயல்படுகிறது, அதிக முன்னுரிமையிலிருந்து குறைந்த:
 
-> CLI `--spec` argument > capability `specs` pattern > config `specs` pattern CLI `--exclude` argument > config `exclude` pattern > capability `exclude` pattern
+> CLI `--spec` வாதம் > capability `specs` pattern > config `specs` pattern
+> CLI `--exclude` வாதம் > config `exclude` pattern > capability `exclude` pattern
 
-If only the config parameter is given, it will be used for all capabilities. However, if defining the pattern at the capability level, it will be used instead of the config pattern. Finally, any spec pattern defined on the command line will override all other patterns given.
+config அளவுரு மட்டுமே கொடுக்கப்பட்டால், அது அனைத்து capabilities களுக்கும் பயன்படுத்தப்படும். இருப்பினும், capability நிலையில் pattern ஐ வரையறுக்கும்போது, அது config pattern க்கு பதிலாக பயன்படுத்தப்படும். இறுதியாக, கட்டளை வரியில் வரையறுக்கப்பட்ட எந்த spec pattern ஆனாலும் மற்ற அனைத்து patterns களையும் மேலெழுதும்.
 
-### Using capability-defined spec patterns
+### capability-வரையறுக்கப்பட்ட spec patterns பயன்படுத்துதல்
 
-When you define a spec pattern at the capability level, it will override any patterns defined at the config level. This is useful when needing to separate tests based on differentiating device capabilities. In cases like this, it is more useful to use a generic spec pattern at the config level, and more specific patterns at the capability level.
+capability நிலையில் ஒரு spec pattern ஐ வரையறுக்கும்போது, அது config நிலையில் வரையறுக்கப்பட்ட எந்த patterns களையும் மேலெழுதும். சாதன திறன்களை வேறுபடுத்தும் அடிப்படையில் சோதனைகளைப் பிரிக்க வேண்டியிருக்கும்போது இது பயனுள்ளதாக இருக்கும். இது போன்ற சந்தர்ப்பங்களில், config நிலையில் ஒரு பொதுவான spec pattern ஐப் பயன்படுத்துவது, மற்றும் capability நிலையில் அதிக குறிப்பிட்ட patterns ஐப் பயன்படுத்துவது மிகவும் பயனுள்ளதாக இருக்கும்.
 
-For example, let's say you had two directories, with one for Android tests, and one for iOS tests.
+எடுத்துக்காட்டாக, உங்களிடம் இரண்டு கோப்பகங்கள் இருந்தால், ஒன்று Android சோதனைகளுக்கும், மற்றொன்று iOS சோதனைகளுக்கும்.
 
-Your config file may define the pattern as such, for non-specific device tests:
+உங்கள் config கோப்பு குறிப்பிட்ட சாதனம் இல்லாத சோதனைகளுக்கு pattern ஐ இவ்வாறு வரையறுக்கலாம்:
 
 ```js
 {
@@ -299,7 +291,7 @@ Your config file may define the pattern as such, for non-specific device tests:
 }
 ```
 
-but then, you will have different capabilities for your Android and iOS devices, where the patterns could look like such:
+ஆனால் பின்னர், உங்கள் Android மற்றும் iOS சாதனங்களுக்கு வெவ்வேறு capabilities இருக்கும், அங்கு patterns இவ்வாறு இருக்கலாம்:
 
 ```json
 {
@@ -319,7 +311,7 @@ but then, you will have different capabilities for your Android and iOS devices,
 }
 ```
 
-If you require both of these capabilities in your config file, then the Android device will only run the tests under the "android" namespace, and the iOS tests will run only tests under the "ios" namespace!
+உங்கள் config கோப்பில் இந்த இரண்டு capabilities களும் தேவைப்பட்டால், Android சாதனம் "android" namespace இன் கீழ் உள்ள சோதனைகளை மட்டுமே இயக்கும், மற்றும் iOS சோதனைகள் "ios" namespace இன் கீழ் உள்ள சோதனைகளை மட்டுமே இயக்கும்!
 
 ```js
 //wdio.conf.js
@@ -345,4 +337,3 @@ export const config = {
     ]
 }
 ```
-

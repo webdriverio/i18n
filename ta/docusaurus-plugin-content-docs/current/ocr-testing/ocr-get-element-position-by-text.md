@@ -3,9 +3,9 @@ id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
 ---
 
-Get the position of a text on the screen. The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+திரையில் உரையின் நிலையைப் பெறுங்கள். இந்த கட்டளை வழங்கப்பட்ட உரையைத் தேடி, [Fuse.js](https://fusejs.io/)-இல் இருந்து ஃபஸி லாஜிக் அடிப்படையில் பொருத்தத்தைக் கண்டறிய முயற்சிக்கும். இதன் பொருள் நீங்கள் தவறான எழுத்துக்களுடன் தேர்வியை வழங்கினாலும், அல்லது கண்டுபிடிக்கப்பட்ட உரை 100% பொருந்தாவிட்டாலும், அது இன்னும் உங்களுக்கு ஒரு கூறை திருப்பித் தர முயற்சிக்கும். கீழே உள்ள [பதிவுகளை](#logs) பார்க்கவும்.
 
-## Usage
+## பயன்பாடு
 
 ```js
 const result = await browser.ocrGetElementPositionByText("Username");
@@ -13,9 +13,9 @@ const result = await browser.ocrGetElementPositionByText("Username");
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## Output
+## வெளியீடு
 
-### Result
+### முடிவு
 
 ```logs
 result = {
@@ -38,7 +38,7 @@ result = {
 }
 ```
 
-### Logs
+### பதிவுகள்
 
 ```log
 # Still finding a match even though we searched for "Start3d" and the found text was "Started"
@@ -47,16 +47,16 @@ result = {
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-## Options
+## விருப்பங்கள்
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **வகை:** `string`
+-   **கட்டாயம்:** ஆம்
 
-The text you want to search for to click on.
+நீங்கள் கிளிக் செய்ய தேட விரும்பும் உரை.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
@@ -64,13 +64,13 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+கான்ட்ராஸ்ட் அதிகமாக இருக்கும்போது, படம் இருண்டதாகவும், மாறாக இருக்கும்போது வெளிச்சமாகவும் இருக்கும். இது படத்தில் உரையைக் கண்டுபிடிக்க உதவும். இது `-1` மற்றும் `1` க்கு இடையில் மதிப்புகளை ஏற்றுக்கொள்கிறது.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -81,12 +81,12 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **வகை:** `number`
+-   **கட்டாயம்:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+இது OCR உரையைத் தேட வேண்டிய திரையில் உள்ள தேடல் பகுதியாகும். இது ஒரு கூறாகவோ அல்லது `x`, `y`, `width` மற்றும் `height` கொண்ட செவ்வகமாகவோ இருக்கலாம்
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -114,13 +114,13 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+டெசரேக்ட் அங்கீகரிக்கும் மொழி. மேலும் தகவல் [இங்கு](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) காணலாம் மற்றும் ஆதரிக்கப்படும் மொழிகளை [இங்கு](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) காணலாம்.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
@@ -133,17 +133,17 @@ await browser.ocrGetElementPositionByText({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+உரையைக் கண்டுபிடிக்க ஃபஸி லாஜிக்கை பின்வரும் விருப்பங்களுடன் மாற்றலாம். இது சிறந்த பொருத்தத்தைக் கண்டுபிடிக்க உதவும்
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+பொருத்தம் ஃபஸி இருப்பிடத்திற்கு (இருப்பிடத்தால் குறிப்பிடப்பட்டுள்ளது) எவ்வளவு அருகிலிருக்க வேண்டும் என்பதைத் தீர்மானிக்கிறது. ஃபஸி இருப்பிடத்திலிருந்து தூர எழுத்துக்களாக இருக்கும் துல்லியமான எழுத்துப் பொருத்தம் முழுமையான பொருத்தமின்மையாகக் கணிக்கப்படும். 0 தூரம் குறிப்பிட்ட துல்லியமான இருப்பிடத்தில் பொருத்தம் இருக்க வேண்டும் என்று கோருகிறது. 0.8 என்ற வரம்பைப் பயன்படுத்தி 1000 தூரம் சரியான பொருத்தம் இருப்பிடத்திலிருந்து 800 எழுத்துகளுக்குள் இருக்க வேண்டும்.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -156,13 +156,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+உரையில் எங்கு முறை காணப்படும் என்பதை தோராயமாக தீர்மானிக்கிறது.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -175,13 +175,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+பொருத்துதல் அல்காரிதம் எந்த புள்ளியில் கைவிடுகிறது. 0 என்ற வரம்பு ஒரு முழுமையான பொருத்தத்தை (எழுத்துகள் மற்றும் இருப்பிடம் இரண்டிலும்) கோருகிறது, 1.0 என்ற வரம்பு எதையும் பொருத்தும்.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -194,13 +194,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **வகை:** `boolean`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** false
 
-Whether the search should be case sensitive.
+தேடல் கேஸ் உணர்திறன் கொண்டதாக இருக்க வேண்டுமா.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -213,13 +213,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+நீளம் இந்த மதிப்பை மீறும் பொருத்தங்கள் மட்டுமே திருப்பப்படும். (உதாரணமாக, முடிவில் ஒற்றை எழுத்து பொருத்தங்களை புறக்கணிக்க விரும்பினால், அதை 2 ஆக அமைக்கவும்)
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -232,13 +232,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+`true` என்றால், சிறந்த பொருத்தம் ஏற்கனவே சரத்தில் கண்டறியப்பட்டிருந்தாலும், பொருத்தும் செயல்பாடு தேடல் முறையின் முடிவு வரை தொடரும்.
 
-##### Example
+##### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetElementPositionByText({

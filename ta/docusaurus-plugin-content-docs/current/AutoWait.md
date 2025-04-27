@@ -1,19 +1,20 @@
 ---
 id: autowait
-title: Auto-waiting
+title: தானியங்கி-காத்திருத்தல்
 ---
 
-When using a command that directly interacts with an element WebdriverIO will automatically wait for the element to be visible and interactable, no manual waits are needed when using the commands (think of click, setValue etc). An element is considered interactable when the conditions for [isClickable](https://webdriver.io/docs/api/element/isClickable) are met.
+ஒரு உறுப்புடன் நேரடியாக தொடர்பு கொள்ளும் கட்டளையைப் பயன்படுத்தும்போது, WebdriverIO தானாகவே அந்த உறுப்பு தெரியக்கூடியதாகவும் தொடர்புகொள்ளக்கூடியதாகவும் இருக்கும் வரை காத்திருக்கும், கட்டளைகளைப் பயன்படுத்தும்போது (click, setValue போன்றவை) கைமுறையாக காத்திருக்க வேண்டிய அவசியம் இல்லை.
+[isClickable](https://webdriver.io/docs/api/element/isClickable) க்கான நிபந்தனைகள் பூர்த்தி செய்யப்படும்போது ஒரு உறுப்பு தொடர்புகொள்ளக்கூடியதாகக் கருதப்படுகிறது.
 
-While WebdriverIO automatically waits for elements to become interactable, there are rare cases for which you might need to manually wait. For these rare cases we offer commands such as [`waitForDisplayed`](/docs/api/element/waitForDisplayed).
+WebdriverIO தானாகவே உறுப்புகள் தொடர்புகொள்ளக்கூடியதாக மாறும் வரை காத்திருக்கும் போதிலும், நீங்கள் கைமுறையாக காத்திருக்க வேண்டிய அரிய சந்தர்ப்பங்கள் உள்ளன. இந்த அரிய சந்தர்ப்பங்களுக்காக, நாங்கள் [`waitForDisplayed`](/docs/api/element/waitForDisplayed) போன்ற கட்டளைகளை வழங்குகிறோம்.
 
 
-## Implicit timeouts (not recommended)
+## உள்ளார்ந்த நேர முடிவுகள் (பரிந்துரைக்கப்படவில்லை)
 
-While we do not recommend using this but the WebDriver protocol offers [implicit timeouts](https://w3c.github.io/webdriver/#timeouts) that allow specify how long the driver is suppose to wait for an element to show up. By default this timeout is set to `0` and therefore makes the driver return with an `no such element` error immediately if an element could not be found on the page. Increasing this timeout using the [`setTimeout`](/docs/api/browser/setTimeout) would make the driver wait and increases the chances that the element shows up eventually.
+நாங்கள் இதைப் பயன்படுத்த பரிந்துரைக்காவிட்டாலும், WebDriver நெறிமுறை [உள்ளார்ந்த நேர முடிவுகளை](https://w3c.github.io/webdriver/#timeouts) வழங்குகிறது, இது ஓட்டுநர் ஒரு உறுப்பு தோன்றுவதற்கு எவ்வளவு நேரம் காத்திருக்க வேண்டும் என்பதைக் குறிப்பிட அனுமதிக்கிறது. இயல்பாக இந்த நேர முடிவு `0` என அமைக்கப்பட்டுள்ளது, எனவே ஒரு உறுப்பை பக்கத்தில் கண்டுபிடிக்க முடியாவிட்டால், ஓட்டுநர் உடனடியாக `no such element` பிழையுடன் திரும்புகிறது. [`setTimeout`](/docs/api/browser/setTimeout) பயன்படுத்தி இந்த நேர முடிவை அதிகரிப்பது ஓட்டுநரை காத்திருக்க வைக்கும் மற்றும் உறுப்பு இறுதியில் தோன்றும் வாய்ப்புகளை அதிகரிக்கும்.
 
 :::note
 
-Read more about WebDriver and framework related timeouts in the [timeouts guide](/docs/timeouts)
+WebDriver மற்றும் கட்டமைப்பு தொடர்பான நேர முடிவுகள் பற்றி [நேர முடிவுகள் வழிகாட்டியில்](/docs/timeouts) மேலும் படிக்கவும்
 
 :::

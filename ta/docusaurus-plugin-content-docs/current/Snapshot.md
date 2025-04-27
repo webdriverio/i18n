@@ -1,21 +1,20 @@
 ---
 id: snapshot
-title: Snapshot
+title: ஸ்னாப்ஷாட்
 ---
 
-Snapshot tests can be very useful for asserting a wide range of aspects of your component or logic at the same time. In WebdriverIO you can take snapshots of any arbitrary object as well as a WebElement DOM structure or WebdriverIO command results.
+ஸ்னாப்ஷாட் சோதனைகள் உங்கள் கூறு அல்லது தர்க்கத்தின் பல்வேறு அம்சங்களை ஒரே நேரத்தில் உறுதிப்படுத்த மிகவும் பயனுள்ளதாக இருக்கும். WebdriverIO-இல் நீங்கள் எந்த தன்னிச்சையான பொருளின் ஸ்னாப்ஷாட்களை எடுக்கலாம், அதேபோல் WebElement DOM அமைப்பு அல்லது WebdriverIO கட்டளை முடிவுகளையும் எடுக்கலாம்.
 
-Similar to other test frameworks WebdriverIO will take a snapshot of the given value, then compare it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match: either the change is unexpected, or the reference snapshot needs to be updated to the new version of the result.
+மற்ற சோதனை கட்டமைப்புகளைப் போலவே, WebdriverIO கொடுக்கப்பட்ட மதிப்பின் ஸ்னாப்ஷாட்டை எடுத்து, அதை சோதனையுடன் சேர்ந்து சேமித்த குறிப்பு ஸ்னாப்ஷாட் கோப்புடன் ஒப்பிடும். இரண்டு ஸ்னாப்ஷாட்கள் பொருந்தவில்லை என்றால் சோதனை தோல்வியடையும்: ஒன்று மாற்றம் எதிர்பாராதது, அல்லது குறிப்பு ஸ்னாப்ஷாட் முடிவின் புதிய பதிப்பிற்கு புதுப்பிக்கப்பட வேண்டும்.
 
-:::info Cross Platform Support
+:::info குறுக்கு தளம் ஆதரவு
 
-These snapshot capabilities are available for running end-to-end tests within the Node.js environment as well as for running [unit and component](/docs/component-testing) tests in the browser or on mobile devices.
+இந்த ஸ்னாப்ஷாட் திறன்கள் Node.js சூழலில் முடிவிலிருந்து-முடிவு வரை சோதனைகளை இயக்குவதற்கும், உலாவியில் அல்லது மொபைல் சாதனங்களில் [யூனிட் மற்றும் கூறு](/docs/component-testing) சோதனைகளை இயக்குவதற்கும் கிடைக்கின்றன.
 
 :::
 
-## Use Snapshots
-
-To snapshot a value, you can use the `toMatchSnapshot()` from [`expect()`](/docs/api/expect-webdriverio) API:
+## ஸ்னாப்ஷாட்களைப் பயன்படுத்துதல்
+ஒரு மதிப்பின் ஸ்னாப்ஷாட்டை எடுக்க, நீங்கள் [`expect()`](/docs/api/expect-webdriverio) API இலிருந்து `toMatchSnapshot()` ஐப் பயன்படுத்தலாம்:
 
 ```ts
 import { browser, expect } from '@wdio/globals'
@@ -26,7 +25,7 @@ it('can take a DOM snapshot', () => {
 })
 ```
 
-The first time this test is run, WebdriverIO creates a snapshot file that looks like this:
+இந்த சோதனை முதல் முறையாக இயக்கப்படும்போது, WebdriverIO இவ்வாறு தோற்றமளிக்கும் ஒரு ஸ்னாப்ஷாட் கோப்பை உருவாக்குகிறது:
 
 ```js
 // Snapshot v1
@@ -34,19 +33,19 @@ The first time this test is run, WebdriverIO creates a snapshot file that looks 
 exports[`main suite 1 > can take a DOM snapshot 1`] = `"<h1 class="findme">Test CSS Attributes</h1>"`;
 ```
 
-The snapshot artifact should be committed alongside code changes, and reviewed as part of your code review process. On subsequent test runs, WebdriverIO will compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code that should be fixed, or the implementation has changed and the snapshot needs to be updated.
+ஸ்னாப்ஷாட் பொருளைக் குறியீட்டு மாற்றங்களுடன் சேர்த்து கமிட் செய்து, உங்கள் குறியீட்டு மதிப்பாய்வு செயல்முறையின் ஒரு பகுதியாக மதிப்பாய்வு செய்ய வேண்டும். அடுத்தடுத்த சோதனை இயக்கங்களில், WebdriverIO வழங்கப்பட்ட வெளியீட்டை முந்தைய ஸ்னாப்ஷாட்டுடன் ஒப்பிடும். அவை பொருந்தினால், சோதனை தேர்ச்சியடையும். அவை பொருந்தவில்லை என்றால், ஒன்று சோதனை இயக்கி உங்கள் குறியீட்டில் ஒரு பிழையைக் கண்டுபிடித்துள்ளது, அல்லது அமலாக்கம் மாறிவிட்டது மற்றும் ஸ்னாப்ஷாட் புதுப்பிக்கப்பட வேண்டும்.
 
-To update the snapshot, pass in the `-s` flag (or `--updateSnapshot`) to the `wdio` command, e.g.:
+ஸ்னாப்ஷாட்டைப் புதுப்பிக்க, `-s` கொடியை (அல்லது `--updateSnapshot`) `wdio` கட்டளைக்கு அனுப்பவும், எ.கா.:
 
 ```sh
 npx wdio run wdio.conf.js -s
 ```
 
-**Note:** if you run tests with multiple browsers in parallel only one snapshot is being created and compared against. If you like to have a separate snapshot per capability, please [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=\&labels=Idea+%F0%9F%92%A1%2CNeeds+Triaging+%E2%8F%B3\&projects=\&template=feature-request.yml\&title=%5B%F0%9F%92%A1+Feature%5D%3A+%3Ctitle%3E) and let us know about your use case.
+__குறிப்பு:__ நீங்கள் பல உலாவிகளில் இணையாக சோதனைகளை இயக்கினால், ஒரே ஸ்னாப்ஷாட் உருவாக்கப்பட்டு ஒப்பிடப்படுகிறது. ஒவ்வொரு திறனுக்கும் தனித்தனி ஸ்னாப்ஷாட் வைத்திருக்க விரும்பினால், தயவுசெய்து [சிக்கலை உயர்த்தவும்](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Idea+%F0%9F%92%A1%2CNeeds+Triaging+%E2%8F%B3&projects=&template=feature-request.yml&title=%5B%F0%9F%92%A1+Feature%5D%3A+%3Ctitle%3E) மற்றும் உங்கள் பயன்பாட்டு வழக்கைப் பற்றி எங்களுக்குத் தெரியப்படுத்துங்கள்.
 
-## Inline Snapshots
+## இன்லைன் ஸ்னாப்ஷாட்கள்
 
-Similarly, you can use the `toMatchInlineSnapshot()` to store the snapshot inline within the test file.
+இதேபோல், ஸ்னாப்ஷாட்டை சோதனை கோப்பிற்குள் இன்லைனாக சேமிக்க `toMatchInlineSnapshot()` ஐப் பயன்படுத்தலாம்.
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -57,7 +56,7 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-Instead of creating a snapshot file, Vitest will modify the test file directly to update the snapshot as a string:
+ஒரு ஸ்னாப்ஷாட் கோப்பை உருவாக்குவதற்குப் பதிலாக, Vitest ஸ்னாப்ஷாட்டை ஒரு சரமாக புதுப்பிக்க சோதனைக் கோப்பை நேரடியாக மாற்றியமைக்கும்:
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -79,15 +78,15 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-This allows you to see the expected output directly without jumping across different files.
+இது வெவ்வேறு கோப்புகளில் தாவாமல் நேரடியாக எதிர்பார்க்கப்படும் வெளியீட்டைக் காண உங்களை அனுமதிக்கிறது.
 
-## Visual Snapshots
+## விஷுவல் ஸ்னாப்ஷாட்கள்
 
-Taking a DOM snapshot of an element might not be the best idea, especially if the DOM structure is too big and contains dynamic element properties. In these cases, it is recommended to rely on visual snapshots for elements.
+ஒரு உறுப்பின் DOM ஸ்னாப்ஷாட்டை எடுப்பது சிறந்த யோசனையாக இருக்காது, குறிப்பாக DOM அமைப்பு மிகப் பெரியதாக இருந்தால் மற்றும் டைனமிக் உறுப்பு பண்புகளைக் கொண்டிருந்தால். இந்த சந்தர்ப்பங்களில், உறுப்புகளுக்கான விஷுவல் ஸ்னாப்ஷாட்களை நம்புவது பரிந்துரைக்கப்படுகிறது.
 
-To enable visual snapshots, add the `@wdio/visual-service` to your setup. You can follow the set-up instructions in the [documentation](/docs/visual-testing#installation) for Visual Testing.
+விஷுவல் ஸ்னாப்ஷாட்களை இயக்க, உங்கள் அமைப்பில் `@wdio/visual-service` ஐச் சேர்க்கவும். விஷுவல் சோதனைக்கான [ஆவணம்](/docs/visual-testing#installation) இல் அமைவு வழிமுறைகளைப் பின்பற்றலாம்.
 
-You can then take a visual snapshot via `toMatchElementSnapshot()`, e.g.:
+பின்னர் நீங்கள் `toMatchElementSnapshot()` மூலம் விஷுவல் ஸ்னாப்ஷாட்டை எடுக்கலாம், எ.கா.:
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -98,4 +97,4 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-An image is then stored in the baseline directory. Check out the [Visual Testing](/docs/visual-testing) for more information.
+பின்னர் அடிப்படை கோப்பகத்தில் ஒரு படம் சேமிக்கப்படுகிறது. மேலும் தகவலுக்கு [விஷுவல் சோதனை](/docs/visual-testing) ஐப் பார்க்கவும்.

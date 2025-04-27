@@ -1,21 +1,21 @@
 ---
 id: methods
-title: Methods
+title: முறைகள்
 ---
 
-The following methods are added to the global WebdriverIO [`browser`](/docs/api/browser)-object.
+பின்வரும் முறைகள் உலகளாவிய WebdriverIO [`browser`](/docs/api/browser)-பொருளுக்கு சேர்க்கப்படுகின்றன.
 
-## Save Methods
+## சேமிப்பு முறைகள்
 
-:::info TIP
-Only use the Save Methods when you **don't** want to compare screens, but only want to have an element-/screenshot.
+:::info குறிப்பு
+திரைகளை ஒப்பிட **விரும்பாத** போது மட்டுமே சேமிப்பு முறைகளைப் பயன்படுத்தவும், ஆனால் ஒரு உறுப்பு/திரைப்பிடிப்பு மட்டுமே வைத்திருக்க விரும்பும்போது.
 :::
 
 ### `saveElement`
 
-Saves an image of an element.
+ஒரு உறுப்பின் படத்தை சேமிக்கிறது.
 
-#### Usage
+#### பயன்பாடு
 
 ```ts
 await browser.saveElement(
@@ -30,34 +30,34 @@ await browser.saveElement(
 );
 ```
 
-#### Support
+#### ஆதரவு
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- டெஸ்க்டாப் உலாவிகள்
+- மொபைல் உலாவிகள்
+- மொபைல் ஹைப்ரிட் ஆப்ஸ்
+- மொபைல் நேட்டிவ் ஆப்ஸ்
 
-#### Parameters
+#### அளவுருக்கள்
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+-   **`element`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** WebdriverIO உறுப்பு
+-   **`tag`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** சரம்
+-   **`saveElementOptions`:**
+    -   **கட்டாயம்:** இல்லை
+    -   **வகை:** விருப்பங்களின் ஒரு பொருள், [சேமிப்பு விருப்பங்கள்](./method-options#save-options) பார்க்கவும்
 
-#### Output:
+#### வெளியீடு:
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[சோதனை வெளியீடு](./test-output#savescreenelementfullpagescreen) பக்கத்தைப் பார்க்கவும்.
 
 ### `saveScreen`
 
-Saves an image of a viewport.
+பார்வைக்கான இடத்தின் படத்தை சேமிக்கிறது.
 
-#### Usage
+#### பயன்பாடு
 
 ```ts
 await browser.saveScreen(
@@ -70,31 +70,30 @@ await browser.saveScreen(
 );
 ```
 
-#### Support
+#### ஆதரவு
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- டெஸ்க்டாப் உலாவிகள்
+- மொபைல் உலாவிகள்
+- மொபைல் ஹைப்ரிட் ஆப்ஸ்
+- மொபைல் நேட்டிவ் ஆப்ஸ்
 
-#### Parameters
+#### அளவுருக்கள்
+-   **`tag`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** சரம்
+-   **`saveScreenOptions`:**
+    -   **கட்டாயம்:** இல்லை
+    -   **வகை:** விருப்பங்களின் ஒரு பொருள், [சேமிப்பு விருப்பங்கள்](./method-options#save-options) பார்க்கவும்
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### வெளியீடு:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[சோதனை வெளியீடு](./test-output#savescreenelementfullpagescreen) பக்கத்தைப் பார்க்கவும்.
 
 ### `saveFullPageScreen`
 
-#### Usage
+#### பயன்பாடு
 
-Saves an image of the complete screen.
+முழு திரையின் படத்தை சேமிக்கிறது.
 
 ```ts
 await browser.saveFullPageScreen(
@@ -107,29 +106,28 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Support
+#### ஆதரவு
 
-- Desktop Browsers
-- Mobile Browsers
+- டெஸ்க்டாப் உலாவிகள்
+- மொபைல் உலாவிகள்
 
-#### Parameters
+#### அளவுருக்கள்
+-   **`tag`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** சரம்
+-   **`saveFullPageScreenOptions`:**
+    -   **கட்டாயம்:** இல்லை
+    -   **வகை:** விருப்பங்களின் ஒரு பொருள், [சேமிப்பு விருப்பங்கள்](./method-options#save-options) பார்க்கவும்
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveFullPageScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### வெளியீடு:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[சோதனை வெளியீடு](./test-output#savescreenelementfullpagescreen) பக்கத்தைப் பார்க்கவும்.
 
 ### `saveTabbablePage`
 
-Saves an image of the complete screen with the tabbable lines and dots.
+டேப் செய்யக்கூடிய கோடுகள் மற்றும் புள்ளிகளுடன் முழுமையான திரையின் படத்தை சேமிக்கிறது.
 
-#### Usage
+#### பயன்பாடு
 
 ```ts
 await browser.saveTabbablePage(
@@ -142,26 +140,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Support
+#### ஆதரவு
 
-- Desktop Browsers
+- டெஸ்க்டாப் உலாவிகள்
 
-#### Parameters
+#### அளவுருக்கள்
+-   **`tag`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** சரம்
+-   **`saveTabbableOptions`:**
+    -   **கட்டாயம்:** இல்லை
+    -   **வகை:** விருப்பங்களின் ஒரு பொருள், [சேமிப்பு விருப்பங்கள்](./method-options#save-options) பார்க்கவும்
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### வெளியீடு:
 
-#### Output:
+[சோதனை வெளியீடு](./test-output#savescreenelementfullpagescreen) பக்கத்தைப் பார்க்கவும்.
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+## சரிபார்க்கும் முறைகள்
 
-## Check Methods
-
-:::info TIP
+:::info குறிப்பு
+`check`-முறைகள் முதல் முறையாகப் பயன்படுத்தப்படும்போது, கீழே உள்ள எச்சரிக்கையை பதிவுகளில் காண்பீர்கள். இதன் பொருள் உங்கள் அடிப்படை வரியை உருவாக்க விரும்பினால் `save`- மற்றும் `check`-முறைகளை இணைக்க வேண்டியதில்லை.
 
 ```shell
 #####################################################################################
@@ -177,9 +175,9 @@ See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
 
 ### `checkElement`
 
-Compare an image of an element against a baseline image.
+ஒரு உறுப்பின் படத்தை அடிப்படை படத்துடன் ஒப்பிடுகிறது.
 
-#### Usage
+#### பயன்பாடு
 
 ```ts
 await browser.checkElement(
@@ -194,34 +192,33 @@ await browser.checkElement(
 );
 ```
 
-#### Support
+#### ஆதரவு
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- டெஸ்க்டாப் உலாவிகள்
+- மொபைல் உலாவிகள்
+- மொபைல் ஹைப்ரிட் ஆப்ஸ்
+- மொபைல் நேட்டிவ் ஆப்ஸ்
 
-#### Parameters
+#### அளவுருக்கள்
+-   **`element`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** WebdriverIO உறுப்பு
+-   **`tag`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** சரம்
+-   **`checkElementOptions`:**
+    -   **கட்டாயம்:** இல்லை
+    -   **வகை:** விருப்பங்களின் ஒரு பொருள், [ஒப்பிடு/சரிபார்க்கும் விருப்பங்கள்](./method-options#compare-check-options) பார்க்கவும்
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### வெளியீடு:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[சோதனை வெளியீடு](./test-output#checkscreenelementfullpagescreen) பக்கத்தைப் பார்க்கவும்.
 
 ### `checkScreen`
 
-Compares an image of a viewport against a baseline image.
+பார்வைக்கான இடத்தின் படத்தை அடிப்படை படத்துடன் ஒப்பிடுகிறது.
 
-#### Usage
+#### பயன்பாடு
 
 ```ts
 await browser.checkScreen(
@@ -234,31 +231,30 @@ await browser.checkScreen(
 );
 ```
 
-#### Support
+#### ஆதரவு
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- டெஸ்க்டாப் உலாவிகள்
+- மொபைல் உலாவிகள்
+- மொபைல் ஹைப்ரிட் ஆப்ஸ்
+- மொபைல் நேட்டிவ் ஆப்ஸ்
 
-#### Parameters
+#### அளவுருக்கள்
+-   **`tag`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** சரம்
+-   **`checkScreenOptions`:**
+    -   **கட்டாயம்:** இல்லை
+    -   **வகை:** விருப்பங்களின் ஒரு பொருள், [ஒப்பிடு/சரிபார்க்கும் விருப்பங்கள்](./method-options#compare-check-options) பார்க்கவும்
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### வெளியீடு:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[சோதனை வெளியீடு](./test-output#checkscreenelementfullpagescreen) பக்கத்தைப் பார்க்கவும்.
 
 ### `checkFullPageScreen`
 
-Compares an image of the complete screen against a baseline image.
+முழு திரையின் படத்தை அடிப்படை படத்துடன் ஒப்பிடுகிறது.
 
-#### Usage
+#### பயன்பாடு
 
 ```ts
 await browser.checkFullPageScreen(
@@ -271,29 +267,28 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Support
+#### ஆதரவு
 
-- Desktop Browsers
-- Mobile Browsers
+- டெஸ்க்டாப் உலாவிகள்
+- மொபைல் உலாவிகள்
 
-#### Parameters
+#### அளவுருக்கள்
+-   **`tag`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** சரம்
+-   **`checkFullPageOptions`:**
+    -   **கட்டாயம்:** இல்லை
+    -   **வகை:** விருப்பங்களின் ஒரு பொருள், [ஒப்பிடு/சரிபார்க்கும் விருப்பங்கள்](./method-options#compare-check-options) பார்க்கவும்
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkFullPageOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### வெளியீடு:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[சோதனை வெளியீடு](./test-output#checkscreenelementfullpagescreen) பக்கத்தைப் பார்க்கவும்.
 
 ### `checkTabbablePage`
 
-Compares an image of the complete screen with the tabbable lines and dots against a baseline image.
+டேப் செய்யக்கூடிய கோடுகள் மற்றும் புள்ளிகளுடன் முழுமையான திரையின் படத்தை அடிப்படை படத்துடன் ஒப்பிடுகிறது.
 
-#### Usage
+#### பயன்பாடு
 
 ```ts
 await browser.checkTabbablePage(
@@ -306,19 +301,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Support
+#### ஆதரவு
 
-- Desktop Browsers
+- டெஸ்க்டாப் உலாவிகள்
 
-#### Parameters
+#### அளவுருக்கள்
+-   **`tag`:**
+    -   **கட்டாயம்:** ஆம்
+    -   **வகை:** சரம்
+-   **`checkTabbableOptions`:**
+    -   **கட்டாயம்:** இல்லை
+    -   **வகை:** விருப்பங்களின் ஒரு பொருள், [ஒப்பிடு/சரிபார்க்கும் விருப்பங்கள்](./method-options#compare-check-options) பார்க்கவும்
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### வெளியீடு:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[சோதனை வெளியீடு](./test-output#checkscreenelementfullpagescreen) பக்கத்தைப் பார்க்கவும்.

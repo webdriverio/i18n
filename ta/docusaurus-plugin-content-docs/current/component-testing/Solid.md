@@ -3,11 +3,11 @@ id: solid
 title: SolidJS
 ---
 
-[SolidJS](https://www.solidjs.com/) என்பது எளிமையான மற்றும் செயல்திறன் மிக்க வினைத்திறனுடன் பயனர் இடைமுகங்களை உருவாக்குவதற்கான ஒரு கட்டமைப்பாகும். WebdriverIO மற்றும் அதன் [browser runner](/docs/runner#browser-runner) பயன்படுத்தி SolidJS காம்போனென்டுகளை உண்மையான பிரௌசரில் நேரடியாகச் சோதிக்கலாம்.
+[SolidJS](https://www.solidjs.com/) என்பது எளிமையான மற்றும் செயல்திறன் மிக்க வினைத்திறனுடன் பயனர் இடைமுகங்களை உருவாக்குவதற்கான ஒரு கட்டமைப்பாகும். WebdriverIO மற்றும் அதன் [பிரவுசர் ரன்னர்](/docs/runner#browser-runner) பயன்படுத்தி உண்மையான உலாவியில் நேரடியாக SolidJS கூறுகளை சோதிக்கலாம்.
 
-## செட்அப்
+## அமைப்பு
 
-உங்கள் ரியாக்ட் ப்ரொஜெக்ட்டில் WebdriverIO ஐ அமைக்க, எங்கள் காம்போனென்ட் டெஸ்ட் ஆவணத்தின் [instructions](/docs/component-testing#set-up) வழிமுறைகளைப் பின்பற்றவும். உங்கள் ரன்னர் விருப்பங்களில் `solid` முன்னமைவாகத் தேர்ந்தெடுக்கவும், எ.கா.:
+உங்கள் SolidJS திட்டத்தில் WebdriverIO-ஐ அமைக்க, எங்கள் கூறு சோதனை ஆவணங்களில் உள்ள [வழிமுறைகளைப்](/docs/component-testing#set-up) பின்பற்றவும். உங்கள் ரன்னர் விருப்பங்களில் `solid` என்பதை முன்னமைப்பாகத் தேர்ந்தெடுக்க உறுதிசெய்யவும், எ.கா.:
 
 ```js
 // wdio.conf.js
@@ -20,30 +20,27 @@ export const config = {
 }
 ```
 
-
 :::info
 
-நீங்கள் ஏற்கனவே [Vite](https://vitejs.dev/) டெவலப்மென்ட் சர்வராகப் பயன்படுத்துகிறீர்கள் என்றால், உங்கள் WebdriverIO கட்டமைப்பிற்குள் `vite.config.ts` இல் உங்கள் கட்டமைப்பை மீண்டும் பயன்படுத்தலாம். மேலும் தகவலுக்கு, `viteConfig` இன் [ரன்னர் விருப்பங்கள்](/docs/runner#runner-options)ஐப் பார்க்கவும்.
+நீங்கள் ஏற்கனவே [Vite](https://vitejs.dev/)-ஐ உருவாக்க சேவையகமாகப் பயன்படுத்திக் கொண்டிருந்தால், உங்கள் WebdriverIO கட்டமைப்பில் `vite.config.ts` இல் உள்ள உங்கள் கட்டமைப்பை மீண்டும் பயன்படுத்தலாம். மேலும் தகவலுக்கு, [ரன்னர் விருப்பங்களில்](/docs/runner#runner-options) உள்ள `viteConfig`-ஐப் பார்க்கவும்.
 
 :::
 
-SolidJS முன்னமைவுக்கு `vite-plugin-solid` நிறுவப்பட வேண்டும்:
+SolidJS முன்னமைப்புக்கு `vite-plugin-solid` நிறுவப்பட்டிருக்க வேண்டும்:
 
 ```sh npm2yarn
 npm install --save-dev vite-plugin-solid
 ```
 
-
-பின்னர் நீங்கள் டெஸ்டுகளை ரன் செய்வதன் மூலம் தொடங்கலாம்:
+பின்னர் பின்வருமாறு சோதனைகளைத் தொடங்கலாம்:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
+## சோதனைகளை எழுதுதல்
 
-## டெஸ்டுகளை எழுதுதல்
-
-பின்வரும் SolidJS கூறு உங்களிடம் இருப்பதால்:
+நீங்கள் பின்வரும் SolidJS கூறைக் கொண்டிருந்தால்:
 
 ```html title="./components/Component.tsx"
 import { createSignal } from 'solid-js'
@@ -64,8 +61,7 @@ function App() {
 export default App
 ```
 
-
-உங்கள் டெஸ்டில் `solid-js/web` இலிருந்து ` render ` முறையைப் பயன்படுத்தி டெஸ்ட் பக்கத்துடன் காம்போனென்டுகளை இணைக்கவும். காம்போனென்டுகளுடன் தொடர்பு கொள்ள WebdriverIO கட்டளைகளைப் பயன்படுத்தப் பரிந்துரைக்கிறோம், ஏனெனில் அவை உண்மையான பயனர் தொடர்புகளுக்கு மிகவும் நெருக்கமாகச் செயல்படுகின்றன, எ.கா.:
+உங்கள் சோதனையில் `solid-js/web`-இலிருந்து `render` முறையைப் பயன்படுத்தி கூறை சோதனைப் பக்கத்துடன் இணைக்கவும். கூறுடன் தொடர்புகொள்ள, WebdriverIO கட்டளைகளைப் பயன்படுத்த பரிந்துரைக்கிறோம், ஏனெனில் அவை உண்மையான பயனர் தொடர்புகளுக்கு மிக நெருக்கமாக செயல்படுகின்றன, எ.கா.:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -98,6 +94,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-
-SolidJS க்கான WebdriverIO காம்போனென்ட் டெஸ்ட் தொகுப்பின் முழு உதாரணத்தையும் எங்களின் [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite)இல் காணலாம்.
-
+எங்கள் [உதாரண களஞ்சியத்தில்](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite) SolidJS-க்கான WebdriverIO கூறு சோதனை தொகுப்பின் முழு உதாரணத்தையும் நீங்கள் காணலாம்.

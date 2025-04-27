@@ -1,14 +1,14 @@
 ---
 id: seleniumgrid
-title: Selenium Grid
+title: செலினியம் கிரிட்
 ---
 
-You can use WebdriverIO with your existing Selenium Grid instance. To connect your tests to Selenium Grid, you just need to update the options in your test runner configurations.
+உங்கள் ஏற்கனவே உள்ள செலினியம் கிரிட் நிறுவலுடன் WebdriverIO-ஐப் பயன்படுத்தலாம். உங்கள் சோதனைகளை செலினியம் கிரிட்டுடன் இணைக்க, உங்கள் சோதனை இயக்கி கட்டமைப்புகளில் உள்ள விருப்பங்களை மட்டும் புதுப்பிக்க வேண்டும்.
 
-Here is a code snippet from sample wdio.conf.ts.
+இங்கே மாதிரி wdio.conf.ts இலிருந்து ஒரு குறியீடு துண்டு உள்ளது.
 
 ```ts title=wdio.conf.ts
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     // ...
     protocol: 'https',
     hostname: 'yourseleniumgridhost.yourdomain.com',
@@ -18,12 +18,11 @@ export const config: Options.Testrunner = {
 
 }
 ```
-
-You need to provide the appropriate values for the protocol, hostname, port, and path based on your Selenium Grid setup.
-If you are running Selenium Grid on the same machine as your test scripts, here are some typical options:
+உங்கள் செலினியம் கிரிட் அமைப்பின் அடிப்படையில் நெறிமுறை, ஹோஸ்ட்பெயர், போர்ட் மற்றும் பாதை ஆகியவற்றிற்கான பொருத்தமான மதிப்புகளை வழங்க வேண்டும்.
+உங்கள் சோதனை ஸ்கிரிப்டுகளாக அதே இயந்திரத்தில் செலினியம் கிரிட்டை இயக்கினால், இங்கே சில பொதுவான விருப்பங்கள் உள்ளன:
 
 ```ts title=wdio.conf.ts
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     // ...
     protocol: 'http',
     hostname: 'localhost',
@@ -34,30 +33,30 @@ export const config: Options.Testrunner = {
 }
 ```
 
-### Basic authentication with protected Selenium Grid
+### பாதுகாக்கப்பட்ட செலினியம் கிரிட்டுடன் அடிப்படை அங்கீகாரம்
 
-It is highly recommended to secure your Selenium Grid. If you have a protected Selenium Grid that requires authentication, you can pass authentication headers via options.
-Please refer to the [headers](https://webdriver.io/docs/configuration/#headers) section in the documentation for more information.
+உங்கள் செலினியம் கிரிட்டை பாதுகாப்பது மிகவும் பரிந்துரைக்கப்படுகிறது. அங்கீகாரம் தேவைப்படும் பாதுகாக்கப்பட்ட செலினியம் கிரிட் இருந்தால், விருப்பங்கள் மூலம் அங்கீகார தலைப்புகளை அனுப்பலாம். 
+மேலும் தகவலுக்கு ஆவணத்தில் [headers](https://webdriver.io/docs/configuration/#headers) பிரிவைப் பார்க்கவும்.
 
-### Timeout configurations with dynamic Selenium Grid
+### டைனமிக் செலினியம் கிரிட்டுடன் நேர முடிவு கட்டமைப்புகள்
 
-When using a dynamic Selenium Grid where browser pods are spun up on demand, session creation may face a cold start. In such cases, it is advised to increase the session creation timeouts. The default value in the options is 120 seconds, but you can increase it if your grid takes more time to create a new session.
+உலாவி போட்கள் தேவைக்கேற்ப இயக்கப்படும் டைனமிக் செலினியம் கிரிட்டைப் பயன்படுத்தும்போது, அமர்வு உருவாக்கம் ஒரு குளிர் தொடக்கத்தை எதிர்கொள்ளலாம். அத்தகைய சந்தர்ப்பங்களில், அமர்வு உருவாக்க நேர முடிவுகளை அதிகரிக்க அறிவுறுத்தப்படுகிறது. விருப்பங்களில் இயல்புநிலை மதிப்பு 120 வினாடிகள், ஆனால் உங்கள் கிரிட் புதிய அமர்வை உருவாக்க அதிக நேரம் எடுத்தால் நீங்கள் அதை அதிகரிக்கலாம்.
 
 ```ts
 connectionRetryTimeout: 180000,
 ```
 
-### Advanced configurations
+### மேம்பட்ட கட்டமைப்புகள்
 
-For advanced configurations, please refer to the Testrunner [configuration file](https://webdriver.io/docs/configurationfile).
+மேம்பட்ட கட்டமைப்புகளுக்கு, Testrunner [configuration file](https://webdriver.io/docs/configurationfile) ஐப் பார்க்கவும்.
 
-### File operations with Selenium Grid
+### செலினியம் கிரிட்டுடன் கோப்பு செயல்பாடுகள்
 
-When running test cases with a remote Selenium Grid, the browser runs on a remote machine, and you need to take special care with test cases involving file uploads and downloads.
+தொலைநிலை செலினியம் கிரிட் மூலம் சோதனை வழக்குகளை இயக்கும்போது, உலாவி தொலைநிலை இயந்திரத்தில் இயங்குகிறது, மேலும் கோப்பு பதிவேற்றங்கள் மற்றும் பதிவிறக்கங்களை உள்ளடக்கிய சோதனை வழக்குகளுடன் சிறப்பு கவனம் செலுத்த வேண்டும்.
 
-### File downloads
+### கோப்பு பதிவிறக்கங்கள்
 
-For Chromium-based browsers, you can refer to the [Download file](https://webdriver.io/docs/api/browser/downloadFile) documentation. If your test scripts need to read the content of a downloaded file, you need to download it from the remote Selenium node to the test runner machine. Here is an example code snippet from the sample `wdio.conf.ts` configuration for the Chrome browser:
+குரோமியம் அடிப்படையிலான உலாவிகளுக்கு, [Download file](https://webdriver.io/docs/api/browser/downloadFile) ஆவணத்தைப் பார்க்கவும். உங்கள் சோதனை ஸ்கிரிப்டுகள் பதிவிறக்கம் செய்யப்பட்ட கோப்பின் உள்ளடக்கத்தைப் படிக்க வேண்டுமென்றால், அதை தொலைநிலை செலினியம் நோடிலிருந்து சோதனை இயக்கி இயந்திரத்திற்கு பதிவிறக்க வேண்டும். இங்கே Chrome உலாவிக்கான மாதிரி `wdio.conf.ts` கட்டமைப்பிலிருந்து ஒரு எடுத்துக்காட்டு குறியீடு துண்டு உள்ளது:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
@@ -75,16 +74,17 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-### File upload with remote Selenium Grid
+### தொலைநிலை செலினியம் கிரிட்டுடன் கோப்பு பதிவேற்றம்
 
-To upload a file to a web app in the remote browser, you first need to upload the file to the remote grid. You can refer to the [uploadFile](https://webdriver.io/docs/api/browser/uploadFile) documentation for details.
+தொலைநிலை உலாவியில் உள்ள வலை பயன்பாட்டிற்கு கோப்பை பதிவேற்ற, முதலில் கோப்பை தொலைநிலை கிரிட்டிற்கு பதிவேற்ற வேண்டும். விவரங்களுக்கு [uploadFile](https://webdriver.io/docs/api/browser/uploadFile) ஆவணத்தைப் பார்க்கலாம்.
 
-### Other file/grid operations
+### மற்ற கோப்பு/கிரிட் செயல்பாடுகள்
 
-There are a few more operations that you can perform with Selenium Grid. The instructions for Selenium Standalone should work fine with Selenium Grid as well. Please refer to the [Selenium Standalone](https://webdriver.io/docs/api/selenium/) documentation for available options.
+செலினியம் கிரிட்டுடன் நீங்கள் செய்யக்கூடிய மேலும் சில செயல்பாடுகள் உள்ளன. செலினியம் ஸ்டாண்டலோன்க்கான வழிமுறைகள் செலினியம் கிரிட்டுடனும் நன்றாக வேலை செய்ய வேண்டும். கிடைக்கும் விருப்பங்களுக்கு [Selenium Standalone](https://webdriver.io/docs/api/selenium/) ஆவணத்தைப் பார்க்கவும்.
 
-### Selenium Grid Official documentation
 
-For more information on Selenium Grid, you can refer to the official Selenium Grid [documentation](https://www.selenium.dev/documentation/grid/).
+### செலினியம் கிரிட் அதிகாரப்பூர்வ ஆவணம்
 
-If you wish to run Selenium Grid in Docker, Docker compose or Kubernetes, please refer to the Selenium-Docker [GitHub repository](https://github.com/SeleniumHQ/docker-selenium).
+செலினியம் கிரிட் பற்றிய மேலும் தகவலுக்கு, அதிகாரப்பூர்வ செலினியம் கிரிட் [documentation](https://www.selenium.dev/documentation/grid/) ஐப் பார்க்கலாம்.
+
+நீங்கள் Docker, Docker compose அல்லது Kubernetes இல் செலினியம் கிரிட்டை இயக்க விரும்பினால், Selenium-Docker [GitHub repository](https://github.com/SeleniumHQ/docker-selenium) ஐப் பார்க்கவும்.

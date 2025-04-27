@@ -1,38 +1,37 @@
 ---
 id: record
-title: Record Tests
+title: சோதனைகளைப் பதிவு செய்தல்
 ---
 
-Chrome DevTools has a _Recorder_ panel that allows users to record and playback automated steps within Chrome. These steps can be [exported into WebdriverIO tests with an extension](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn?hl=en) making writing test very easy.
+Chrome DevTools-ல் ஒரு _Recorder_ பேனல் உள்ளது, இது பயனர்கள் Chrome-ல் தானியங்கி படிகளைப் பதிவு செய்து மீண்டும் இயக்க அனுமதிக்கிறது. இந்த படிகளை [ஒரு நீட்டிப்பு மூலம் WebdriverIO சோதனைகளாக ஏற்றுமதி செய்யலாம்](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn?hl=en), இது சோதனை எழுதுவதை மிகவும் எளிதாக்குகிறது.
 
-## What is Chrome DevTools Recorder
+## Chrome DevTools Recorder என்றால் என்ன
 
-The [Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/) is a tool which allows you to record and replay test actions directly in the browser and also export them as JSON (or export them in e2e test), as well as measure test performance.
+[Chrome DevTools Recorder](https://developer.chrome.com/docs/devtools/recorder/) என்பது நேரடியாக உலாவியில் சோதனை செயல்களைப் பதிவு செய்து மீண்டும் இயக்க அனுமதிக்கும் ஒரு கருவியாகும், மேலும் அவற்றை JSON-ஆக ஏற்றுமதி செய்யலாம் (அல்லது e2e சோதனைகளில் ஏற்றுமதி செய்யலாம்), மேலும் சோதனை செயல்திறனை அளவிடலாம்.
 
-The tool is straightforward, and since it’s plugged into the browser, we have the convenience of not switching the context or dealing with any third-party tool.
+இந்த கருவி எளிமையானது, மேலும் இது உலாவியில் இணைக்கப்பட்டிருப்பதால், சூழலை மாற்றாமல் அல்லது எந்த மூன்றாம் தரப்பு கருவியுடனும் செயல்படாமல் இருப்பதன் வசதி நமக்கு உள்ளது.
 
-## How to Record a Test with Chrome DevTools Recorder
+## Chrome DevTools Recorder மூலம் ஒரு சோதனையை எப்படி பதிவு செய்வது
 
-If you have the latest Chrome you will have the Recorder already installed and available for you. Just open any website, do a Right-Click and select _"Inspect"_. Within DevTools you can open the Recorder by pressing `CMD/Control` + `Shift` + `p` and enter _"Show Recorder"_.
+உங்களிடம் சமீபத்திய Chrome இருந்தால், Recorder ஏற்கனவே நிறுவப்பட்டு உங்களுக்காக கிடைக்கும். எந்த இணையதளத்தையும் திறந்து, வலது-கிளிக் செய்து _"Inspect"_ தேர்வு செய்யவும். DevTools-ல் `CMD/Control` + `Shift` + `p` அழுத்தி _"Show Recorder"_ என உள்ளிடுவதன் மூலம் Recorder-ஐ திறக்கலாம்.
 
 ![Chrome DevTools Recorder](/img/recorder/recorder.png)
 
-To start recording a user journey, click on _"Start new recording"_, give your test a name and then use the browser to record your test:
+பயனர் பயணத்தைப் பதிவு செய்யத் தொடங்க, _"Start new recording"_ மீது கிளிக் செய்யவும், உங்கள் சோதனைக்கு ஒரு பெயரைக் கொடுத்து, பின்னர் உங்கள் சோதனையைப் பதிவு செய்ய உலாவியைப் பயன்படுத்தவும்:
 
 ![Chrome DevTools Recorder](/img/recorder/demo.gif)
 
-Next step, click on _"Replay"_ to check if the recording was successful and does what you wanted to do. If everything is ok, click on the [export](https://developer.chrome.com/docs/devtools/recorder/reference/#recorder-extension) icon and select _"Export as a WebdriverIO Test Script"_:
+அடுத்த படி, பதிவு வெற்றிகரமாக இருந்ததா மற்றும் நீங்கள் செய்ய விரும்பியதைச் செய்கிறதா என்பதைச் சரிபார்க்க _"Replay"_ மீது கிளிக் செய்யவும். எல்லாம் சரியாக இருந்தால், [export](https://developer.chrome.com/docs/devtools/recorder/reference/#recorder-extension) ஐகான் மீது கிளிக் செய்து _"Export as a WebdriverIO Test Script"_ தேர்வு செய்யவும்:
 
-The _"Export as a WebdriverIO Test Script"_ option only available if you install the [WebdriverIO Chrome Recorder](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn) extension.
-
+_"Export as a WebdriverIO Test Script"_ விருப்பம் [WebdriverIO Chrome Recorder](https://chrome.google.com/webstore/detail/webdriverio-chrome-record/pllimkccefnbmghgcikpjkmmcadeddfn) நீட்டிப்பை நிறுவினால் மட்டுமே கிடைக்கும்.
 
 ![Chrome DevTools Recorder](/img/recorder/export.gif)
 
-That's it!
+அவ்வளவுதான்!
 
-## Export Recording
+## பதிவை ஏற்றுமதி செய்தல்
 
-If you exported the flow as WebdriverIO test script, it should download script that you can copy&paste in your test suite. For example the above recording looks as follows:
+நீங்கள் பாய்வை WebdriverIO சோதனை ஸ்கிரிப்ட்டாக ஏற்றுமதி செய்திருந்தால், அது உங்கள் சோதனை தொகுப்பில் நகலெடுத்து ஒட்டக்கூடிய ஸ்கிரிப்ட்டை பதிவிறக்க வேண்டும். உதாரணமாக, மேலே உள்ள பதிவு பின்வருமாறு தோன்றும்:
 
 ```ts
 describe("My WebdriverIO Test", function () {
@@ -50,13 +49,13 @@ describe("My WebdriverIO Test", function () {
 });
 ```
 
-Make sure you revisit some of the locators and replace them with more resilient [selector types](/docs/selectors) one if necessary. You can also export the flow as JSON file and use the [`@wdio/chrome-recorder`](https://github.com/webdriverio/chrome-recorder) package to transform it into an actual test script.
+தேவைப்பட்டால் சில இட அமைப்புகளை மீண்டும் பார்வையிட்டு, அவற்றை மேலும் நெகிழ்வான [தேர்வான் வகைகள்](/docs/selectors) கொண்டு மாற்றவும். மேலும் நீங்கள் பாய்வை JSON கோப்பாக ஏற்றுமதி செய்து, [`@wdio/chrome-recorder`](https://github.com/webdriverio/chrome-recorder) தொகுப்பைப் பயன்படுத்தி அதை உண்மையான சோதனை ஸ்கிரிப்ட்டாக மாற்றலாம்.
 
-## Next Steps
+## அடுத்த படிகள்
 
-You can use this flow to easily create tests for your applications. The Chrome DevTools Recorder has various additional features, e.g.:
+உங்கள் பயன்பாடுகளுக்கான சோதனைகளை எளிதாக உருவாக்க இந்த பாய்வைப் பயன்படுத்தலாம். Chrome DevTools Recorder-ல் பல கூடுதல் அம்சங்கள் உள்ளன, எ.கா:
 
-- [Simulate slow network](https://developer.chrome.com/docs/devtools/recorder/#simulate-slow-network) or
-- [Measure performance of your tests](https://developer.chrome.com/docs/devtools/recorder/#measure)
+- [மெதுவான நெட்வொர்க்கை உருவகப்படுத்துதல்](https://developer.chrome.com/docs/devtools/recorder/#simulate-slow-network) அல்லது
+- [உங்கள் சோதனைகளின் செயல்திறனை அளவிடுதல்](https://developer.chrome.com/docs/devtools/recorder/#measure)
 
-Make sure to check out their [docs](https://developer.chrome.com/docs/devtools/recorder).
+அவர்களின் [ஆவணங்களை](https://developer.chrome.com/docs/devtools/recorder) கண்டிப்பாக பார்க்கவும்.

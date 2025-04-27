@@ -1,11 +1,11 @@
 ---
 id: ocr-get-text
-title: ocrGetText
+title: ocrGetText உரையைப் பெறுதல்
 ---
 
-Get the text on an image.
+ஒரு படத்தில் உள்ள உரையைப் பெறுதல்.
 
-### Usage
+### பயன்பாடு
 
 ```js
 const result = await browser.ocrGetText();
@@ -13,15 +13,15 @@ const result = await browser.ocrGetText();
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## Output
+## வெளியீடு
 
-### Result
+### முடிவு
 
 ```logs
 result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube"
 ```
 
-### Logs
+### பதிவுகள்
 
 ```log
 [0-0] 2024-05-25T17:38:25.970Z INFO webdriver: COMMAND ocrGetText()
@@ -29,17 +29,17 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 [0-0] 2024-05-25T17:38:26.738Z INFO webdriver: RESULT VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube
 ```
 
-## Options
+## விருப்பங்கள்
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **வகை:** `number`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+கான்ட்ராஸ்ட் அதிகமானால், படம் இருண்டு தோன்றும், அதற்கு நேர்மாறாகவும். இது ஒரு படத்தில் உரையைக் கண்டுபிடிக்க உதவும். இது `-1` மற்றும் `1` இடையே மதிப்புகளை ஏற்றுக்கொள்கிறது.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetText({ contrast: 0.5 });
@@ -47,20 +47,20 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **வகை:** `number`
+-   **கட்டாயம்:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+இது திரையில் OCR உரையைத் தேட வேண்டிய தேடல் பகுதியாகும். இது ஒரு எலெமென்ட் அல்லது `x`, `y`, `width` மற்றும் `height` கொண்ட செவ்வகமாக இருக்கலாம்.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 await browser.ocrGetText({ haystack: $("elementSelector") });
 
-// OR
+// அல்லது
 await browser.ocrGetText({ haystack: await $("elementSelector") });
 
-// OR
+// அல்லது
 await browser.ocrGetText({
     haystack: {
         x: 10,
@@ -73,18 +73,18 @@ await browser.ocrGetText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **வகை:** `string`
+-   **கட்டாயம்:** இல்லை
+-   **இயல்புநிலை:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseract அங்கீகரிக்கும் மொழி. மேலும் தகவல் [இங்கே](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) காணலாம் மற்றும் ஆதரிக்கப்படும் மொழிகளை [இங்கே](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) காணலாம்.
 
-#### Example
+#### எடுத்துக்காட்டு
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // Use Dutch as a language
+    // டச்சு மொழியைப் பயன்படுத்தவும்
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

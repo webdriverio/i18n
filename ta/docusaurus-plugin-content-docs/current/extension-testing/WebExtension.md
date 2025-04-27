@@ -1,23 +1,23 @@
 ---
 id: web-extensions
-title: வெப் எக்ஸ்டென்ஷன் டெஸ்டிங்
+title: வலை நீட்டிப்பு சோதனை
 ---
 
-WebdriverIO என்பது பிரௌசரைத் தானியக்கமாக்குவதற்கான சிறந்த கருவியாகும். வெப் எக்ஸ்ட்டென்ஷன் பிரௌசரின் ஒரு பகுதியாகும், அதே வழியில் தானியங்குபடுத்தப்படலாம். வலைத்தளங்களில் ஜாவாஸ்கிரிப்டை இயக்க உங்கள் வெப் எக்ஸ்ட்டென்ஷன் உள்ளடக்க ஸ்கிரிப்ட்களைப் பயன்படுத்தும்போதோ அல்லது பாப்அப் மாதிரியை வழங்கும்போதோ, WebdriverIO ஐப் பயன்படுத்தி நீங்கள் e2e சோதனையை இயக்கலாம்.
+WebdriverIO என்பது உலாவியை தானியக்கமாக்க சிறந்த கருவியாகும். வலை நீட்டிப்புகள் உலாவியின் ஒரு பகுதியாகும் மற்றும் அதே முறையில் தானியக்கமாக்கப்படலாம். உங்கள் வலை நீட்டிப்பு வலைத்தளங்களில் JavaScript ஐ இயக்க உள்ளடக்க ஸ்கிரிப்ட்களைப் பயன்படுத்தினாலோ அல்லது பாப்அப் மோடல் வழங்கினாலோ, நீங்கள் WebdriverIO ஐப் பயன்படுத்தி அதற்கான e2e சோதனை இயக்கலாம்.
 
-## Loading a Web Extension into the Browser
+## உலாவியில் வலை நீட்டிப்பை ஏற்றுதல்
 
-முதல் படியாக, எக்ஸ்ட்டென்ஷனை அமர்வின் ஒரு பகுதியாகப் பிரௌசரில் ஏற்ற வேண்டும். இது Chrome மற்றும் Firefox க்கு வித்தியாசமாக வேலை செய்கிறது.
+முதல் படியாக, நம் அமர்வின் ஒரு பகுதியாக சோதனையின் கீழ் உள்ள நீட்டிப்பை உலாவியில் ஏற்ற வேண்டும். இது Chrome மற்றும் Firefox இல் வெவ்வேறு முறையில் செயல்படுகிறது.
 
 :::info
 
-இந்த ஆவணங்கள் சஃபாரி வெப் எக்ஸ்ட்டென்ஷனை விட்டுவிடுகின்றன, ஏனெனில் அவற்றின் ஆதரவு மிகவும் பின்தங்கியிருக்கிறது மற்றும் பயனர் தேவை அதிகமாக இல்லை. நீங்கள் Safari க்காக ஒரு வெப் எக்ஸ்ட்டென்ஷனை உருவாக்குகிறீர்கள் என்றால், தயவுசெய்து [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E), அதையும் இங்கே சேர்ப்பதில் ஒத்துழைக்கவும்.
+இந்த ஆவணங்கள் Safari வலை நீட்டிப்புகளை விட்டுவிடுகின்றன, ஏனெனில் அவற்றின் ஆதரவு மிகவும் பின்தங்கியுள்ளது மற்றும் பயனர் தேவை அதிகமாக இல்லை. நீங்கள் Safari க்கான வலை நீட்டிப்பை உருவாக்கினால், தயவுசெய்து [பிரச்சினையை எழுப்பவும்](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) மற்றும் இங்கேயும் சேர்க்க ஒத்துழைக்கவும்.
 
 :::
 
 ### Chrome
 
-Chrome இல் வெப் எக்ஸ்ட்டென்ஷனை ஏற்றுவது `crx` பைலின் `base64` குறியிடப்பட்ட ஸ்ட்ரிங்கை வழங்குவதன் மூலம் அல்லது வெப் எக்ஸ்ட்டென்ஷன் போல்டருக்கு ஒரு பாத்தை வழங்குவதன் மூலம் செய்யப்படலாம். The easiest is just to do the latter by defining your Chrome capabilities as following:
+Chrome இல் வலை நீட்டிப்பை ஏற்றுவது `crx` கோப்பின் `base64` குறியாக்கப்பட்ட சரம் அல்லது வலை நீட்டிப்பு கோப்புறையின் பாதை வழங்குவதன் மூலம் செய்யப்படலாம். பின்வருமாறு உங்கள் Chrome திறன்களை வரையறுப்பதன் மூலம் பின்னரை செய்வது மிகவும் எளிதானது:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -40,11 +40,11 @@ export const config = {
 
 :::info
 
-நீங்கள் Chrome ஐ விட வேறு பிரௌசரை தானியக்கமாக்கினால், எ.கா. பிரேவ், எட்ஜ் அல்லது ஓபரா, பிரௌசர் விருப்பம் மேலே உள்ள உதாரணத்துடன் பொருந்தக்கூடிய வாய்ப்புகள் உள்ளன, வேறு கேப்பபிலிட்டி பெயரைப் பயன்படுத்தினால், எ.கா. `ms:edgeOptions`.
+நீங்கள் Chrome அல்லாத வேறு உலாவியை தானியக்கமாக்கினால், எ.கா. Brave, Edge அல்லது Opera, உலாவி விருப்பம் மேலே உள்ள உதாரணத்துடன் பொருந்தக்கூடும், ஆனால் வெவ்வேறு திறன் பெயரைப் பயன்படுத்தவும், எ.கா. `ms:edgeOptions`.
 
 :::
 
-எ.கா. [crx](https://www.npmjs.com/package/crx) NPM தொகுப்பைப் பயன்படுத்தி உங்கள் எக்ஸ்டென்ஷனை `.crx` பைலாகத் தொகுத்தால், தொகுக்கப்பட்ட எக்ஸ்டென்ஷனை பின்வரும் வழிகளிலும் செலுத்தலாம்:
+நீங்கள் உங்கள் நீட்டிப்பை `.crx` கோப்பாக தொகுத்தால், எ.கா. [crx](https://www.npmjs.com/package/crx) NPM பேக்கேஜ் பயன்படுத்தி, நீங்கள் கட்டப்பட்ட நீட்டிப்பை பின்வருமாறு செலுத்தலாம்:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,9 +67,9 @@ export const config = {
 
 ### Firefox
 
-எக்ஸ்டென்ஷன்களை உள்ளடக்கிய பயர்பாக்ஸ் ப்ரொபைலை உருவாக்க, அதற்கேற்ப உங்கள் அமர்வை அமைக்க [Firefox Profile Service](/docs/firefox-profile-service) யைப்பயன்படுத்தலாம். இருப்பினும், நுழைவு சிக்கல்கள் காரணமாக உங்கள் லோக்கல் டெவெலப்ட் எக்ஸ்ட்டென்ஷனை ஏற்ற முடியாத சிக்கல்களை நீங்கள் சந்திக்க நேரிடலாம். இதில், [`installAddOn`](/docs/api/gecko#installaddon) கட்டளை வழியாக `before` இல் எக்ஸ்டென்ஷனை ஏற்றலாம், எ.கா.:
+நீட்டிப்புகள் உள்ளடக்கிய Firefox சுயவிவரத்தை உருவாக்க, உங்கள் அமர்வை முறையாக அமைக்க [Firefox Profile Service](/docs/firefox-profile-service) ஐப் பயன்படுத்தலாம். இருப்பினும், கையொப்பமிடுதல் சிக்கல்கள் காரணமாக உங்கள் உள்ளூரில் உருவாக்கப்பட்ட நீட்டிப்பு ஏற்றப்பட முடியாத சிக்கல்களை நீங்கள் சந்திக்கலாம். இந்த நிலையில் நீங்கள் [`installAddOn`](/docs/api/gecko#installaddon) கட்டளை மூலம் `before` ஹூக்கில் ஒரு நீட்டிப்பை ஏற்றலாம்:
 
-```js title=wdio.conf.js
+```js wdio.conf.js
 import path from 'node:path'
 import url from 'node:url'
 
@@ -88,21 +88,21 @@ export const config = {
 }
 ```
 
-`.xpi` பைலை உருவாக்க, [`web-ext`](https://www.npmjs.com/package/web-ext) NPM தொகுப்பைப் பயன்படுத்தப் பரிந்துரைக்கப்படுகிறது. பின்வரும் எடுத்துக்காட்டு கட்டளையைப் பயன்படுத்தி உங்கள் எக்ஸ்டென்ஷனை நீங்கள் தொகுக்கலாம்:
+ஒரு `.xpi` கோப்பை உருவாக்க, [`web-ext`](https://www.npmjs.com/package/web-ext) NPM பேக்கேஜைப் பயன்படுத்த பரிந்துரைக்கப்படுகிறது. பின்வரும் உதாரண கட்டளையைப் பயன்படுத்தி உங்கள் நீட்டிப்பை கட்டலாம்:
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
-## Tips & Tricks
+## குறிப்புகள் & தந்திரங்கள்
 
-The following section contains a set useful tips and tricks that can be helpful when testing a web extension.
+பின்வரும் பிரிவு வலை நீட்டிப்பை சோதிக்கும்போது பயனுள்ளதாக இருக்கும் பயனுள்ள குறிப்புகள் மற்றும் தந்திரங்களை கொண்டுள்ளது.
 
-### Test Popup Modal in Chrome
+### Chrome இல் பாப்அப் மோடலை சோதித்தல்
 
-If you define a `default_popup` browser action entry in your [extension manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) you can test that HTML page directly, since clicking on the extension icon in the browser top bar won't work. Instead, you have to open the popup html file directly.
+உங்கள் [நீட்டிப்பு மேனிஃபெஸ்ட்டில்](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) `default_popup` உலாவி செயல் உள்ளீட்டை வரையறுத்தால், நீங்கள் அந்த HTML பக்கத்தை நேரடியாக சோதிக்கலாம், ஏனெனில் உலாவியின் மேல் பட்டியில் உள்ள நீட்டிப்பு ஐகானைக் கிளிக் செய்வது வேலை செய்யாது. அதற்கு பதிலாக, பாப்அப் html கோப்பை நேரடியாகத் திறக்க வேண்டும்.
 
-In Chrome this works by retrieving the extension ID and opening the popup page through `browser.url('...')`. The behavior on that page will be the same as within the popup. To do so we recommend to write the following custom command:
+Chrome இல் இது நீட்டிப்பு ID ஐப் பெற்று `browser.url('...')` மூலம் பாப்அப் பக்கத்தைத் திறப்பதன் மூலம் செயல்படுகிறது. அந்த பக்கத்தில் உள்ள நடத்தை பாப்அப் உள்ளே உள்ளதைப் போலவே இருக்கும். இதைச் செய்ய பின்வரும் தனிப்பயன் கட்டளையை எழுத பரிந்துரைக்கிறோம்:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -134,7 +134,7 @@ declare global {
 }
 ```
 
-In your `wdio.conf.js` you can import this file and register the custom command in your `before` hook, e.g.:
+உங்கள் `wdio.conf.js` இல் நீங்கள் இந்த கோப்பை இறக்குமதி செய்து, உங்கள் `before` ஹூக்கில் தனிப்பயன் கட்டளையை பதிவு செய்யலாம், எ.கா:
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'
@@ -149,7 +149,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Now, in your test, you can access the popup page via:
+இப்போது, உங்கள் சோதனையில், நீங்கள் பாப்அப் பக்கத்தை பின்வருமாறு அணுகலாம்:
 
 ```ts
 await browser.openExtensionPopup('My Web Extension')

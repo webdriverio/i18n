@@ -1,25 +1,26 @@
 ---
 id: multiremote
-title: Multiremote
+title: பல்திறன் தொலை அணுகல்
 ---
 
-WebdriverIO allows you to run multiple automated sessions in a single test. This becomes handy when you’re testing features that require multiple users (for example, chat or WebRTC applications).
+WebdriverIO ஒரு தனி சோதனையில் பல தானியங்கு அமர்வுகளை இயக்க அனுமதிக்கிறது. இது சில அம்சங்களை சோதிக்க வசதியாக இருக்கும், எடுத்துக்காட்டாக அரட்டை அல்லது WebRTC பயன்பாடுகள் போன்ற பல பயனர்கள் தேவைப்படும் அம்சங்களை சோதிக்கும் போது.
 
-Instead of creating a couple of remote instances where you need to execute common commands like [`newSession`](/docs/api/webdriver#newsession) or [`url`](/docs/api/browser/url) on each instance, you can simply create a **multiremote** instance and control all browsers at the same time.
+பல தொலை இயக்க நிறுவல்களை உருவாக்குவதற்குப் பதிலாக, ஒவ்வொரு நிறுவலிலும் [`newSession`](/docs/api/webdriver#newsession) அல்லது [`url`](/docs/api/browser/url) போன்ற பொதுவான கட்டளைகளை இயக்க வேண்டிய அவசியம் இல்லாமல், நீங்கள் எளிதாக ஒரு **multiremote** நிறுவலை உருவாக்கி அனைத்து உலாவிகளையும் ஒரே நேரத்தில் கட்டுப்படுத்தலாம்.
 
-To do so, just use the `multiremote()` function, and pass in an object with names keyed to `capabilities` for values. By giving each capability a name, you can easily select and access that single instance when executing commands on a single instance.
+இதைச் செய்ய, வெறுமனே `multiremote()` செயல்பாட்டைப் பயன்படுத்தி, பெயர்களுடன் `capabilities` மதிப்புகளை திறவுகளாகக் கொண்ட ஒரு பொருளை உள்ளிடவும். ஒவ்வொரு திறனுக்கும் ஒரு பெயரைக் கொடுப்பதன் மூலம், நீங்கள் ஒரு தனி நிறுவலில் கட்டளைகளை இயக்கும் போது அந்த ஒற்றை நிறுவலை எளிதாகத் தேர்ந்தெடுத்து அணுகலாம்.
 
 :::info
 
-Multiremote is _not_ meant to execute all your tests in parallel. It is intended to help coordinate multiple browsers and/or mobile devices for special integration tests (e.g. chat applications).
+Multiremote உங்கள் அனைத்து சோதனைகளையும் இணையாக இயக்குவதற்கான வழியல்ல.
+இது சிறப்பு ஒருங்கிணைப்பு சோதனைகளுக்கு (எ.கா. அரட்டை பயன்பாடுகள்) பல உலாவிகள் மற்றும்/அல்லது மொபைல் சாதனங்களை ஒருங்கிணைக்க உதவும் நோக்கத்துடன் உள்ளது.
 
 :::
 
-All multiremote instances return an array of results. The first result represents the capability defined first in the capability object the second result the second capability and so on.
+அனைத்து பல்திறன் தொலை நிறுவல்களும் முடிவுகளின் அரையை திருப்பி அனுப்புகின்றன. முதல் முடிவு திறன் பொருளில் முதலில் வரையறுக்கப்பட்ட திறனைக் குறிக்கிறது, இரண்டாவது முடிவு இரண்டாவது திறனைக் குறிக்கிறது, இவ்வாறே தொடர்கிறது.
 
-## Using Standalone Mode
+## தனித்து இயங்கும் முறையில் பயன்படுத்துதல்
 
-Here is an example of how to create a multiremote instance in __standalone mode__:
+இங்கே __தனித்து இயங்கும் முறையில__ ஒரு பல்திறன் தொலை நிறுவலை எவ்வாறு உருவாக்குவது என்பதற்கான எடுத்துக்காட்டு உள்ளது:
 
 ```js
 import { multiremote } from 'webdriverio'
@@ -54,9 +55,9 @@ import { multiremote } from 'webdriverio'
 })()
 ```
 
-## Using WDIO Testrunner
+## WDIO Testrunner பயன்படுத்துதல்
 
-In order to use multiremote in the WDIO testrunner, just define the `capabilities` object in your `wdio.conf.js` as an object with the browser names as keys (instead of a list of capabilities):
+WDIO testrunner இல் multiremote ஐப் பயன்படுத்த, உங்கள் `wdio.conf.js` இல் `capabilities` பொருளை உலாவி பெயர்களை சாவிகளாகக் கொண்ட பொருளாக வரையறுக்கவும் (திறன்களின் பட்டியலுக்குப் பதிலாக):
 
 ```js
 export const config = {
@@ -77,9 +78,9 @@ export const config = {
 }
 ```
 
-This will create two WebDriver sessions with Chrome and Firefox. Instead of just Chrome and Firefox you can also boot up two mobile devices using [Appium](http://appium.io) or one mobile device and one browser.
+இது Chrome மற்றும் Firefox உடன் இரண்டு WebDriver அமர்வுகளை உருவாக்கும். Chrome மற்றும் Firefox க்குப் பதிலாக, நீங்கள் [Appium](http://appium.io) ஐப் பயன்படுத்தி இரண்டு மொபைல் சாதனங்களை அல்லது ஒரு மொபைல் சாதனம் மற்றும் ஒரு உலாவியை துவக்கலாம்.
 
-You can also run multiremote in parallel by putting the browser capabilities object in an array. Please make sure to have `capabilities` field included in each browser, as this is how we tell each mode apart.
+உலாவி திறன்கள் பொருளை ஒரு அரையில் வைப்பதன் மூலம் நீங்கள் multiremote ஐ இணையாக இயக்கலாம். ஒவ்வொரு பயன்முறையையும் நாங்கள் எவ்வாறு வேறுபடுத்துகிறோம் என்பதால், ஒவ்வொரு உலாவியிலும் `capabilities` புலம் சேர்க்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்தவும்.
 
 ```js
 export const config = {
@@ -111,7 +112,7 @@ export const config = {
 }
 ```
 
-You can even boot up one of the [cloud services backend](https://webdriver.io/docs/cloudservices.html) together with local Webdriver/Appium, or Selenium Standalone instances. WebdriverIO automatically detect cloud backend capabilities if you specified either of `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html)), `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html)), or `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) in browser capabilities.
+உள்ளூர் Webdriver/Appium அல்லது Selenium Standalone நிறுவல்களுடன் [cloud services backend](https://webdriver.io/docs/cloudservices.html) ஐக்கூட நீங்கள் துவக்கலாம். உலாவி திறன்களில் `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html)), `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html)), அல்லது `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) ஆகியவற்றில் ஏதேனும் ஒன்றைக் குறிப்பிட்டிருந்தால், WebdriverIO தானாகவே கிளவுட் பின்புற திறன்களைக் கண்டறியும்.
 
 ```js
 export const config = {
@@ -140,15 +141,15 @@ export const config = {
 }
 ```
 
-Any kind of OS/browser combination is possible here (including mobile and desktop browsers). All commands your tests call via the `browser` variable are executed in parallel with each instance. This helps streamline your integration tests and speed up their execution.
+எந்தவகையான OS/உலாவி கலவையும் இங்கே சாத்தியமாகும் (மொபைல் மற்றும் டெஸ்க்டாப் உலாவிகள் உட்பட). உங்கள் சோதனைகள் `browser` மாறியின் மூலம் அழைக்கும் அனைத்து கட்டளைகளும் ஒவ்வொரு நிறுவலுடனும் இணையாக செயல்படுத்தப்படுகின்றன. இது உங்கள் ஒருங்கிணைப்பு சோதனைகளை மேம்படுத்த உதவுகிறது மற்றும் அவற்றின் செயல்பாட்டை விரைவுபடுத்துகிறது.
 
-For example, if you open up a URL:
+எடுத்துக்காட்டாக, நீங்கள் ஒரு URL ஐத் திறந்தால்:
 
 ```js
 browser.url('https://socketio-chat-h9jt.herokuapp.com/')
 ```
 
-Each command’s result will be an object with the browser names as the key, and the command result as value, like so:
+ஒவ்வொரு கட்டளையின் முடிவும் உலாவி பெயர்களை திறவுகளாகக் கொண்ட ஒரு பொருளாக இருக்கும், மற்றும் கட்டளையின் முடிவு மதிப்பாக இருக்கும், இவ்வாறு:
 
 ```js
 // wdio testrunner example
@@ -161,11 +162,11 @@ console.log(result[0]) // returns: 'Chrome 40 on Mac OS X (Yosemite)'
 console.log(result[1]) // returns: 'Firefox 35 on Mac OS X (Yosemite)'
 ```
 
-Notice that each command is executed one by one. This means that the command finishes once all browsers have executed it. This is helpful because it keeps the browser actions synced, which makes it easier to understand what’s currently happening.
+ஒவ்வொரு கட்டளையும் ஒன்றன் பின் ஒன்றாக இயக்கப்படுகிறது என்பதை கவனிக்கவும். அதாவது, அனைத்து உலாவிகளும் அதை செயல்படுத்திய பிறகு கட்டளை முடிகிறது. இது உலாவி செயல்களை ஒத்திசைத்துள்ளதால் இது பயனுள்ளதாக உள்ளது, இது தற்போது என்ன நடக்கிறது என்பதைப் புரிந்துகொள்ள எளிதாக்குகிறது.
 
-Sometimes it is necessary to do different things in each browser in order to test something. For instance, if we want to test a chat application, there has to be one browser who sends a text message while another browser waits to receive it, and then run an assertion on it.
+சில நேரங்களில் ஏதாவதொன்றை சோதிப்பதற்காக ஒவ்வொரு உலாவியிலும் வெவ்வேறு செயல்களைச் செய்ய வேண்டியது அவசியம். எடுத்துக்காட்டாக, நாங்கள் ஒரு அரட்டை பயன்பாட்டைச் சோதிக்க விரும்பினால், ஒரு உலாவி ஒரு உரைச் செய்தியை அனுப்பும் போது மற்றொரு உலாவி அதைப் பெற காத்திருக்க வேண்டும், பின்னர் அதன் மீது ஒரு உறுதிப்படுத்தலை இயக்க வேண்டும்.
 
-When using the WDIO testrunner, it registers the browser names with their instances to the global scope:
+WDIO testrunner ஐப் பயன்படுத்தும்போது, அது உலகளாவிய நோக்கில் அவற்றின் நிறுவல்களுடன் உலாவி பெயர்களைப் பதிவு செய்கிறது:
 
 ```js
 const myChromeBrowser = browser.getInstance('myChromeBrowser')
@@ -182,12 +183,12 @@ assert.true(
 )
 ```
 
-In this example, the `myFirefoxBrowser` instance will start waiting on a message once the `myChromeBrowser` instance has clicked on `#send` button.
+இந்த எடுத்துக்காட்டில், `myChromeBrowser` நிறுவல் `#send` பொத்தானைக் கிளிக் செய்த பிறகு `myFirefoxBrowser` நிறுவல் ஒரு செய்திக்காகக் காத்திருக்கத் தொடங்கும்.
 
-Multiremote makes it easy and convenient to control multiple browsers, whether you want them doing the same thing in parallel, or different things in concert.
+பல்திறன் தொலை அணுகல் பல உலாவிகளைக் கட்டுப்படுத்த எளிதாகவும் வசதியாகவும் உள்ளது, நீங்கள் அவற்றை இணையாக ஒரே செயலைச் செய்ய விரும்பினாலும் அல்லது ஒருங்கிணைந்து வெவ்வேறு செயல்களைச் செய்ய விரும்பினாலும்.
 
-## Accessing browser instances using strings via the browser object
-In addition to accessing the browser instance via their global variables (e.g. `myChromeBrowser`, `myFirefoxBrowser`), you can also access them via the `browser` object, e.g. `browser["myChromeBrowser"]` or `browser["myFirefoxBrowser"]`. You can get a list of all your instances via `browser.instances`. This is especially useful when writing re-usable test steps that can be performed in either browser, e.g.:
+## உலாவி பொருள் வழியாக சரங்களைப் பயன்படுத்தி உலாவி நிறுவல்களை அணுகுதல்
+உலாவி நிறுவலை அவற்றின் உலகளாவிய மாறிகள் மூலம் அணுகுவதோடு (எ.கா. `myChromeBrowser`, `myFirefoxBrowser`), நீங்கள் அவற்றை `browser` பொருள் மூலமும் அணுகலாம், எ.கா. `browser["myChromeBrowser"]` அல்லது `browser["myFirefoxBrowser"]`. `browser.instances` மூலம் உங்கள் அனைத்து நிறுவல்களின் பட்டியலைப் பெறலாம். இது குறிப்பாக எந்த உலாவியிலும் செயல்படுத்தக்கூடிய மீண்டும் பயன்படுத்தக்கூடிய சோதனை படிகளை எழுதும்போது பயனுள்ளதாக இருக்கும், எ.கா.:
 
 wdio.conf.js:
 ```js
@@ -218,9 +219,9 @@ When(/^User (.) types a message into the chat/, async (userId) => {
 })
 ```
 
-## Extending TypeScript Types
+## TypeScript வகைகளை விரிவுபடுத்துதல்
 
-If you are using TypeScript and like to access the driver instance from the multiremote object directly, you can also extend the multiremote types to do so. For example, given the following capabilities:
+நீங்கள் TypeScript ஐப் பயன்படுத்துகிறீர்கள் மற்றும் multiremote பொருளிலிருந்து நேரடியாக இயக்கி நிறுவலை அணுக விரும்பினால், நீங்கள் அவ்வாறு செய்வதற்கான multiremote வகைகளையும் விரிவுபடுத்தலாம். எடுத்துக்காட்டாக, பின்வரும் திறன்கள் இருந்தால்:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.MultiremoteConfig = {
@@ -237,7 +238,7 @@ export const config: WebdriverIO.MultiremoteConfig = {
 }
 ```
 
-You can extend the multiremote instance by adding your custom driver names, e.g.:
+உங்கள் தனிப்பயன் இயக்கி பெயர்களைச் சேர்ப்பதன் மூலம் நீங்கள் multiremote நிறுவலை விரிவுபடுத்தலாம், எ.கா.:
 
 ```ts title=wdio.d.ts
 declare namespace WebdriverIO {
@@ -248,7 +249,7 @@ declare namespace WebdriverIO {
 }
 ```
 
-Now you can access the drivers directly via, e.g.:
+இப்போது நீங்கள் இயக்கிகளை நேரடியாக அணுகலாம், எ.கா.:
 
 ```ts
 multiremotebrowser.myAppiumDriver.$$(...)

@@ -1,38 +1,38 @@
 ---
 id: enterprise
-title: WebdriverIO for Enterprise
+title: நிறுவனங்களுக்கான WebdriverIO
 ---
 
-## Available as part of the Tidelift Subscription
+## டைடிலிஃப்ட் சந்தாவின் ஒரு பகுதியாக கிடைக்கிறது
 
-Tidelift is working with the maintainers of WebdriverIO and thousands of other open source projects to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use.
+டைடிலிஃப்ட் WebdriverIO இன் பராமரிப்பாளர்களுடனும், உங்கள் பயன்பாடுகளை உருவாக்க நீங்கள் பயன்படுத்தும் திறந்த மூல சார்புகளுக்கு வணிக ஆதரவு மற்றும் பராமரிப்பை வழங்குவதற்கு ஆயிரக்கணக்கான பிற திறந்த மூல திட்டங்களுடனும் இணைந்து செயல்படுகிறது. நேரத்தை சேமிக்கவும், ஆபத்தை குறைக்கவும், குறியீட்டு ஆரோக்கியத்தை மேம்படுத்தவும், நீங்கள் பயன்படுத்தும் சரியான சார்புகளின் பராமரிப்பாளர்களுக்கு பணம் செலுத்துவதன் மூலம் செய்யலாம்.
 
-#### Enterprise-ready open source software—managed for you
-The Tidelift Subscription is a managed open source subscription for application dependencies covering millions of open source projects across JavaScript, Python, Java, PHP, Ruby, .NET, and more.
+#### நிறுவனத்திற்கு தயாரான திறந்த மூல மென்பொருள்—உங்களுக்காக நிர்வகிக்கப்படுகிறது
+டைடிலிஃப்ட் சந்தா என்பது ஜாவாஸ்கிரிப்ட், பைதான், ஜாவா, பிஎச்பி, ரூபி, .நெட் மற்றும் பல மொழிகளில் மில்லியன் கணக்கான திறந்த மூல திட்டங்களை உள்ளடக்கிய பயன்பாட்டு சார்புகளுக்கான நிர்வகிக்கப்படும் திறந்த மூல சந்தாவாகும்.
 
-#### Your subscription includes:
+#### உங்கள் சந்தாவில் அடங்கியவை:
 
-##### Security updates
-Tidelift’s security response team coordinates patches for new breaking security vulnerabilities and alerts immediately through a private channel, so your software supply chain is always secure.
+##### பாதுகாப்பு புதுப்பிப்புகள்
+டைடிலிஃப்ட்டின் பாதுகாப்பு பதில் குழு புதிய பாதுகாப்பு பாதிப்புகளுக்கான திருத்தங்களை ஒருங்கிணைத்து, தனிப்பட்ட சேனல் மூலம் உடனடியாக எச்சரிக்கிறது, எனவே உங்கள் மென்பொருள் வழங்கல் சங்கிலி எப்போதும் பாதுகாப்பாக இருக்கும்.
 
-##### Licensing verification and indemnification
-Tidelift verifies license information to enable easy policy enforcement and adds intellectual property indemnification to cover creators and users in case something goes wrong. You always have a 100% up-to-date bill of materials for your dependencies to share with your legal team, customers, or partners.
+##### உரிம சரிபார்ப்பு மற்றும் இழப்பீடு
+டைடிலிஃப்ட் உரிம தகவலை சரிபார்த்து எளிதான கொள்கை அமலாக்கத்தை இயக்குகிறது மற்றும் ஏதாவது தவறாக நடந்தால் உருவாக்குபவர்கள் மற்றும் பயனர்களை பாதுகாக்க அறிவுசார் சொத்து இழப்பீட்டை சேர்க்கிறது. உங்கள் சட்ட குழு, வாடிக்கையாளர்கள் அல்லது கூட்டாளிகளுடன் பகிர்ந்து கொள்ள உங்கள் சார்புகளுக்கான 100% புதுப்பிக்கப்பட்ட பொருட்களின் பட்டியல் உங்களிடம் எப்போதும் உள்ளது.
 
-##### Maintenance and code improvement
-Tidelift ensures the software you rely on keeps working as long as you need it to work. Your managed dependencies are actively maintained and we recruit additional maintainers where required.
+##### பராமரிப்பு மற்றும் குறியீடு மேம்பாடு
+நீங்கள் நம்பும் மென்பொருள் உங்களுக்கு தேவைப்படும் வரை தொடர்ந்து செயல்படுவதை டைடிலிஃப்ட் உறுதி செய்கிறது. உங்கள் நிர்வகிக்கப்படும் சார்புகள் செயலில் பராமரிக்கப்படுகின்றன, மேலும் தேவைப்படும் இடங்களில் கூடுதல் பராமரிப்பாளர்களை நாங்கள் நியமிக்கிறோம்.
 
-##### Package selection and version guidance
-We help you choose the best open source packages from the start—and then guide you through updates to stay on the best releases as new issues arise.
+##### தொகுப்பு தேர்வு மற்றும் பதிப்பு வழிகாட்டுதல்
+தொடக்கத்திலிருந்தே சிறந்த திறந்த மூல தொகுப்புகளைத் தேர்ந்தெடுக்க உங்களுக்கு உதவுகிறோம் - பின்னர் புதிய சிக்கல்கள் எழும்போது சிறந்த வெளியீடுகளில் இருக்க புதுப்பிப்புகளின் மூலம் உங்களுக்கு வழிகாட்டுகிறோம்.
 
-##### Roadmap input
-Take a seat at the table with the creators behind the software you use. Tidelift’s participating maintainers earn more income as their software is used by more subscribers, so they’re interested in knowing what you need.
+##### வரைபட உள்ளீடு
+நீங்கள் பயன்படுத்தும் மென்பொருளுக்குப் பின்னால் உள்ள படைப்பாளிகளுடன் மேசையில் ஒரு இடத்தைப் பெறுங்கள். டைடிலிஃப்டின் பங்கேற்கும் பராமரிப்பாளர்கள் அவர்களின் மென்பொருளை அதிக சந்தாதாரர்கள் பயன்படுத்தும்போது அதிக வருமானம் ஈட்டுகிறார்கள், எனவே உங்களுக்கு என்ன தேவை என்பதை அறிந்து கொள்வதில் அவர்கள் ஆர்வமாக உள்ளனர்.
 
-##### Tooling and cloud integration
-Tidelift works with GitHub, GitLab, BitBucket, and more. We support every cloud platform (and other deployment targets, too).
+##### கருவியாக்கம் மற்றும் கிளவுட் ஒருங்கிணைப்பு
+டைடிலிஃப்ட் GitHub, GitLab, BitBucket மற்றும் பலவற்றுடன் செயல்படுகிறது. நாங்கள் அனைத்து கிளவுட் தளங்களுக்கும் (மற்றும் பிற பயன்பாட்டு இலக்குகளுக்கும்) ஆதரவளிக்கிறோம்.
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open source you use. That means less time grappling with esoteric open source trivia, and more time building your own applications—and your business.
+இறுதி முடிவு? நீங்கள் பயன்படுத்தும் முழு திறந்த மூலத்திற்கும் வணிகத்தர மென்பொருளில் இருந்து நீங்கள் எதிர்பார்க்கும் அனைத்து திறன்களும். அதாவது, விநோதமான திறந்த மூல விவரங்களைக் கையாள்வதில் குறைவான நேரமும், உங்கள் சொந்த பயன்பாடுகளை உருவாக்குவதில் - மற்றும் உங்கள் வணிகத்தில் அதிக நேரமும் செலவிடலாம்.
 
 <div class="learnmore">
-    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Learn More</a>
-    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Request a demo</a>
+    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">மேலும் அறிக</a>
+    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">டெமோ கோருங்கள்</a>
 </div>

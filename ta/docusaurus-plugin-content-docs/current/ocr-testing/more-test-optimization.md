@@ -1,12 +1,11 @@
 ---
 id: more-test-optimization
-title: Test execution time
+title: சோதனை செயல்படுத்தும் நேரம்
 ---
 
-By default, this module will check if you have a local installation of Tesseract on your machine/in your pipeline. If you don't have a local installation it will automatically use a [NodeJS](https://github.com/naptha/tesseract.js) version. This might cause some slowness because the image processing will be done by Node.js. NodeJS is not the best system to do
-heavy processing.
+இயல்பாக, இந்த தொகுதி உங்கள் கணினியில்/உங்கள் பைப்லைனில் Tesseract இன் உள்ளூர் நிறுவல் உள்ளதா என்பதைச் சரிபார்க்கும். உங்களிடம் உள்ளூர் நிறுவல் இல்லையெனில், அது தானாகவே [NodeJS](https://github.com/naptha/tesseract.js) பதிப்பைப் பயன்படுத்தும். படச் செயலாக்கம் Node.js மூலம் செய்யப்படுவதால் இது சிறிது மெதுவாக இருக்கலாம். கனமான செயலாக்கத்தைச் செய்ய NodeJS சிறந்த அமைப்பு அல்ல.
 
-**BUT....**, there are ways to optimize the execution time. Let's take the following test script
+**ஆனால்....**, செயல்படுத்தும் நேரத்தை உகந்ததாக்க வழிகள் உள்ளன. பின்வரும் சோதனை ஸ்கிரிப்டைப் பார்ப்போம்
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -28,7 +27,7 @@ describe("Search", () => {
 });
 ```
 
-When you execute this for the first time you might see the following results where it took 5.9 seconds to finish the test.
+இதை முதல் முறையாக இயக்கும் போது, சோதனையை முடிக்க 5.9 விநாடிகள் எடுத்துக்கொண்டதைக் காணலாம்.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -60,11 +59,11 @@ Execution of 1 workers started at 2024-05-26T04:52:53.405Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-## Cropping the search area of a screen
+## திரையின் தேடல் பகுதியை வெட்டுதல்
 
-You can optimize the execution time by providing a cropped area to execute the OCR on.
+OCR செயல்படுத்த வெட்டப்பட்ட பகுதியை வழங்குவதன் மூலம் செயல்படுத்தும் நேரத்தை உகந்ததாக்கலாம்.
 
-If you would then change the script to this:
+நீங்கள் ஸ்கிரிப்டை இப்படி மாற்றினால்:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -89,7 +88,7 @@ describe("Search", () => {
 });
 ```
 
-Then you will see a different execution time.
+பின்னர் நீங்கள் வித்தியாசமான செயல்படுத்தும் நேரத்தைக் காண்பீர்கள்.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -121,13 +120,13 @@ Execution of 1 workers started at 2024-05-26T04:56:55.326Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-:::tip Cropping images
-This reduced the local execution time from **5.9** to **4.8 seconds**. This is a reduction of almost **19%**. Imagine what it can do for a larger script with more data on it.
+:::tip படங்களை வெட்டுதல்
+இது உள்ளூர் செயல்படுத்தும் நேரத்தை **5.9** இலிருந்து **4.8 விநாடிகளுக்கு** குறைத்தது. இது கிட்டத்தட்ட **19%** குறைப்பாகும். அதிக தரவுகளுடன் கூடிய பெரிய ஸ்கிரிப்டுக்கு இது என்ன செய்யக்கூடும் என்பதை கற்பனை செய்து பாருங்கள்.
 :::
 
-## Using a local installation of Tesseract
+## Tesseract இன் உள்ளூர் நிறுவலைப் பயன்படுத்துதல்
 
-You can speed up your execution time to even less than a minute if you have a local installation of Tessarect on your local machine and or in your pipeline (more information about installing Tesseract on your local system can be found [here](https://tesseract-ocr.github.io/tessdoc/Installation.html)). You can find the execution time of the same script using a local installation of Tesseract below.
+உங்கள் உள்ளூர் கணினியில் மற்றும்/அல்லது உங்கள் பைப்லைனில் Tessarect இன் உள்ளூர் நிறுவல் இருந்தால், செயல்படுத்தும் நேரத்தை ஒரு நிமிடத்திற்கும் குறைவாக வேகப்படுத்தலாம் (உங்கள் உள்ளூர் கணினியில் Tesseract ஐ நிறுவுவது பற்றிய கூடுதல் தகவலை [இங்கே](https://tesseract-ocr.github.io/tessdoc/Installation.html) காணலாம்). Tesseract இன் உள்ளூர் நிறுவலைப் பயன்படுத்தி அதே ஸ்கிரிப்டின் செயல்படுத்தும் நேரத்தை கீழே காணலாம்.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -156,6 +155,6 @@ Execution of 1 workers started at 2024-05-26T04:59:11.620Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
-:::tip Local installation
-This reduced the local execution time from **5.9** to **3.9 seconds**. This is a reduction of almost **34%**. Imagine what it can do for a larger script with more data on it.
+:::tip உள்ளூர் நிறுவல்
+இது உள்ளூர் செயல்படுத்தும் நேரத்தை **5.9** இலிருந்து **3.9 விநாடிகளுக்கு** குறைத்தது. இது கிட்டத்தட்ட **34%** குறைப்பாகும். அதிக தரவுகளுடன் கூடிய பெரிய ஸ்கிரிப்டுக்கு இது என்ன செய்யக்கூடும் என்பதை கற்பனை செய்து பாருங்கள்.
 :::

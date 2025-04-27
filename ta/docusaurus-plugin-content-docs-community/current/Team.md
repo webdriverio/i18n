@@ -3,16 +3,16 @@ id: team
 title: குழு
 ---
 
-WebdriverIO மேம்பாடு பல்வேறு நிறுவனங்களின் டெவலப்பர்கள் மற்றும் SDET கள் மற்றும் உலகெங்கிலும் உள்ளவர்களின் பங்களிப்புகளின் அர்ப்பணிப்புக் குழுவால் வழிநடத்தப்படுகிறது.
+WebdriverIO மேம்பாடு பல்வேறு நிறுவனங்களில் இருந்து அர்ப்பணிப்புள்ள டெவலப்பர்கள் மற்றும் SDETs குழுவால் வழிநடத்தப்படுகிறது, மேலும் உலகம் முழுவதும் உள்ள மக்களின் பங்களிப்புகளும் அடங்கும்.
 
-## தொழில்நுட்ப வழிநடத்தல் குழு
+## தொழில்நுட்ப வழிநடத்தும் குழு
 
 <Card
     name="Adam Bjerstedt"
     avatar="https://avatars2.githubusercontent.com/u/4043890?s=460"
     github="abjerstedt"
 >
-    Senior Software Engineer - Android at <a href="https://www.target.com/">Target</a>.
+    சிரேஷ்ட மென்பொருள் பொறியாளர் - Android, <a href="https://www.target.com/">Target</a> நிறுவனத்தில்.
 </Card>
 
 <Card
@@ -21,7 +21,7 @@ WebdriverIO மேம்பாடு பல்வேறு நிறுவனங
     github="christian-bromann"
     twitter="bromann"
 >
-    Staff Software Engineer at the Open Source Program Office <a href="https://saucelabs.com/">@saucelabs</a>.
+    திறந்த மூல திட்ட அலுவலகத்தில் ஸ்டாஃப் மென்பொருள் பொறியாளர் <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 <Card
@@ -29,7 +29,7 @@ WebdriverIO மேம்பாடு பல்வேறு நிறுவனங
     avatar="https://avatars.githubusercontent.com/u/15839059?s=460"
     github="erwinheitzman"
 >
-    Senior Test Automation Engineer at <a href="https://detesters.nl/">deTesters</a>.
+    <a href="https://detesters.nl/">deTesters</a> நிறுவனத்தில் சிரேஷ்ட தானியங்கி சோதனை பொறியாளர்.
 </Card>
 
 <Card
@@ -38,7 +38,7 @@ WebdriverIO மேம்பாடு பல்வேறு நிறுவனங
     github="klamping"
     twitter="klamping"
 >
-    Senior Front End Engineer.
+    சிரேஷ்ட முன்-இறுதி பொறியாளர்.
 </Card>
 
 <Card
@@ -46,7 +46,7 @@ WebdriverIO மேம்பாடு பல்வேறு நிறுவனங
     avatar="https://avatars0.githubusercontent.com/u/25589559?s=460"
     github="mgrybyk"
 >
-    Senior Software Development Engineer in Test.
+    சிரேஷ்ட மென்பொருள் மேம்பாட்டு பொறியாளர் சோதனையில்.
 </Card>
 
 <Card
@@ -54,7 +54,7 @@ WebdriverIO மேம்பாடு பல்வேறு நிறுவனங
     avatar="https://avatars3.githubusercontent.com/u/1300981?s=460"
     github="WillBrock"
 >
-    Automation Engineering Manager at <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
+    <a href="https://focusschoolsoftware.com/">Focus School Software</a> நிறுவனத்தில் தானியங்கி பொறியியல் மேலாளர்.
 </Card>
 
 <Card
@@ -63,10 +63,10 @@ WebdriverIO மேம்பாடு பல்வேறு நிறுவனங
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    Senior Solutions Architect <a href="https://saucelabs.com/">@saucelabs</a>.
+    சிரேஷ்ட தீர்வுகள் கட்டமைப்பாளர் <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
-## Project Collaborators
+## திட்ட கூட்டுறவாளர்கள்
 
 <Card
     name="Baruch Velez"
@@ -84,4 +84,4 @@ WebdriverIO மேம்பாடு பல்வேறு நிறுவனங
 >
 </Card>
 
-and [many many more](https://github.com/orgs/webdriverio/people).
+மற்றும் [இன்னும் பலர்](https://github.com/orgs/webdriverio/people).

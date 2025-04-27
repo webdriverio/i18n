@@ -1,26 +1,26 @@
 ---
 id: percy-overview
-title: Unlocking Percy - An Overview
+title: Percy ஐ அறிதல் - ஒரு கண்ணோட்டம்
 ---
 
-## Introduction
+## அறிமுகம்
 
-[Percy](https://percy.io/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) is an all-in-one visual testing and review platform. It captures screenshots, compares them against the baseline, and highlights visual changes. With increased visual coverage, teams can deploy code changes with confidence with every commit.
+[Percy](https://percy.io/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) என்பது ஒரு முழுமையான காட்சி சோதனை மற்றும் மதிப்பாய்வு தளமாகும். இது திரைப்பிடிப்புகளை எடுத்து, அவற்றை அடிப்படை நிலையுடன் ஒப்பிட்டு, காட்சி மாற்றங்களை முன்னிலைப்படுத்துகிறது. அதிகரித்த காட்சி கவரேஜ் மூலம், குழுக்கள் ஒவ்வொரு கமிட்டிலும் குறியீடு மாற்றங்களை நம்பிக்கையுடன் பயன்படுத்த முடியும்.
 
-WebdriverIO supports cross-browser visual testing natively using Percy and App Percy. You can use Percy for visual testing of website and native mobile applications.
-The benefits of utilizing Percy for visual testing include the following:
+WebdriverIO ஆனது Percy மற்றும் App Percy ஐப் பயன்படுத்தி குறுக்கு-உலாவி காட்சி சோதனையை இயல்பாகவே ஆதரிக்கிறது. இணையதளம் மற்றும் நேட்டிவ் மொபைல் பயன்பாடுகளின் காட்சி சோதனைக்கு நீங்கள் Percy ஐப் பயன்படுத்தலாம்.
+காட்சி சோதனைக்கு Percy ஐப் பயன்படுத்துவதன் நன்மைகள் பின்வருமாறு:
 
-- Consistency: Promotes consistent user experience by identifying visual discrepancies early in the development process.
-- Efficiency: Improves efficiency by reducing the time and effort required to manually spot visual regressions.
-- Integrations: Percy integrates with popular tools and services like GitHub, GitLab, Bitbucket, and more.
-- Collaboration: Improves collaboration between developers, designers, and QA teams by providing a visual representation of changes.
-- Prevent regression: Prevents you from experiencing unintended visual regressions.
+- நிலைத்தன்மை: மேம்பாட்டு செயல்முறையின் ஆரம்ப நிலையில் காட்சி வேறுபாடுகளை அடையாளம் காண்பதன் மூலம் நிலையான பயனர் அனுபவத்தை ஊக்குவிக்கிறது.
+- திறன்: காட்சி பின்னடைவுகளை கைமுறையாக கண்டறிய தேவைப்படும் நேரம் மற்றும் முயற்சியைக் குறைப்பதன் மூலம் செயல்திறனை மேம்படுத்துகிறது.
+- ஒருங்கிணைப்புகள்: Percy ஆனது GitHub, GitLab, Bitbucket போன்ற பிரபலமான கருவிகள் மற்றும் சேவைகளுடன் ஒருங்கிணைகிறது.
+- கூட்டுறவு: மாற்றங்களின் காட்சி பிரதிநிதித்துவத்தை வழங்குவதன் மூலம் டெவலப்பர்கள், டிசைனர்கள் மற்றும் QA குழுக்களுக்கு இடையேயான ஒத்துழைப்பை மேம்படுத்துகிறது.
+- பின்னடைவைத் தடுக்க: எதிர்பாராத காட்சி பின்னடைவுகளை அனுபவிப்பதைத் தடுக்கிறது.
 
-## How does Percy work?
+## Percy எவ்வாறு செயல்படுகிறது?
 
-Percy compares new snapshots against relevant baselines to detect visual changes. Percy manages baseline selection across branches so your tests are always relevant. If visual changes are detected, Percy highlights and groups the resulting differences for you to review.
+Percy புதிய ஸ்னாப்ஷாட்களை தொடர்புடைய அடிப்படை நிலைகளுடன் ஒப்பிட்டு காட்சி மாற்றங்களைக் கண்டறிகிறது. உங்கள் சோதனைகள் எப்போதும் தொடர்புடையதாக இருக்கும் வகையில் Percy கிளைகள் முழுவதும் அடிப்படை நிலை தேர்வை நிர்வகிக்கிறது. காட்சி மாற்றங்கள் கண்டறியப்பட்டால், Percy வேறுபாடுகளை முன்னிலைப்படுத்தி, நீங்கள் மதிப்பாய்வு செய்வதற்காக குழுப்படுத்துகிறது.
 
-## Next steps
+## அடுத்த படிகள்
 
-- [Use Percy for web applications](https://webdriver.io/docs/visual-testing/integrate-with-percy)
-- [Use App Percy for mobile applications](https://webdriver.io/docs/visual-testing/integrate-with-app-percy)
+- [வெப் பயன்பாடுகளுக்கு Percy ஐப் பயன்படுத்தவும்](https://webdriver.io/docs/visual-testing/integrate-with-percy)
+- [மொபைல் பயன்பாடுகளுக்கு App Percy ஐப் பயன்படுத்தவும்](https://webdriver.io/docs/visual-testing/integrate-with-app-percy)

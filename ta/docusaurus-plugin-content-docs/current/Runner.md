@@ -1,34 +1,34 @@
 ---
 id: runner
-title: Runner
+title: ரன்னர்
 ---
 
 import CodeBlock from '@theme/CodeBlock';
 
-A runner in WebdriverIO orchestrates how and where tests are being run when using the testrunner. WebdriverIO currently supports two different types of runner: local and browser runner.
+ஒரு ரன்னர் அதாவது இயக்கி WebdriverIO-இல் டெஸ்ட்கள் எப்படி மற்றும் எங்கே இயக்கப்படுகின்றன என்பதை ஒருங்கிணைக்கின்றது. WebdriverIO தற்போது இரண்டு வகையான ரன்னர்களை ஆதரிக்கிறது: உள்ளூர் ரன்னர் மற்றும் உலாவி ரன்னர்.
 
-## Local Runner
+## உள்ளூர் ரன்னர்
 
-The [Local Runner](https://www.npmjs.com/package/@wdio/local-runner) initiates your framework (e.g. Mocha, Jasmine or Cucumber) within worker a process and runs all your test files within your Node.js environment. Every test file is being run in a separate worker process per capability allowing for maximum concurrency. Every worker process uses a single browser instance and therefore runs its own browser session allowing for maximum isolation.
+[உள்ளூர் ரன்னர்](https://www.npmjs.com/package/@wdio/local-runner) உங்கள் ஃபிரேம்வொர்க்கை (எ.கா. Mocha, Jasmine அல்லது Cucumber) ஒரு வேலை செயல்முறைக்குள் துவக்கி, உங்கள் Node.js சூழலில் உள்ள அனைத்து சோதனை கோப்புகளையும் இயக்குகிறது. ஒவ்வொரு சோதனை கோப்பும் ஒரு தனி வேலையாளர் செயல்முறையில் ஒவ்வொரு திறன் அடிப்படையில் இயக்கப்படுகிறது, இது அதிகபட்ச ஒத்திசைவை அனுமதிக்கிறது. ஒவ்வொரு வேலையாளர் செயல்முறையும் ஒற்றை உலாவி நிகழ்வைப் பயன்படுத்துகிறது, இதனால் அது தனது சொந்த உலாவி அமர்வை இயக்குகிறது, இது அதிகபட்ச தனிமைப்படுத்தலை அனுமதிக்கிறது.
 
-Given every test is run in its own isolated process, it is not possible to share data across test files. There are two ways to work around this:
+ஒவ்வொரு சோதனையும் அதன் சொந்த தனிமைப்படுத்தப்பட்ட செயல்முறையில் இயக்கப்படுவதால், சோதனை கோப்புகளுக்கு இடையே தரவைப் பகிர்வது சாத்தியமில்லை. இதைச் சுற்றி வேலை செய்ய இரண்டு வழிகள் உள்ளன:
 
-- use the [`@wdio/shared-store-service`](https://www.npmjs.com/package/@wdio/shared-store-service) to share data across all workers
-- group spec files (read more in [Organizing Test Suite](https://webdriver.io/docs/organizingsuites#grouping-test-specs-to-run-sequentially))
+- அனைத்து வேலையாளர்களிடையே தரவைப் பகிர்ந்து கொள்ள [`@wdio/shared-store-service`](https://www.npmjs.com/package/@wdio/shared-store-service) பயன்படுத்தவும்
+- ஸ்பெக் கோப்புகளை குழுவாக்கவும் (மேலும் படிக்க [சோதனை தொகுப்பை ஒழுங்கமைத்தல்](https://webdriver.io/docs/organizingsuites#grouping-test-specs-to-run-sequentially))
 
-If nothing else is defined in the `wdio.conf.js` the Local Runner is the default runner in WebdriverIO.
+`wdio.conf.js` இல் வேறு எதுவும் வரையறுக்கப்படாவிட்டால், உள்ளூர் ரன்னர் WebdriverIO இல் இயல்புநிலை ரன்னராக இருக்கும்.
 
-### Install
+### நிறுவல்
 
-To use the Local Runner you can install it via:
+உள்ளூர் ரன்னரைப் பயன்படுத்த நீங்கள் இதை நிறுவலாம்:
 
 ```sh
 npm install --save-dev @wdio/local-runner
 ```
 
-### Setup
+### அமைப்பு
 
-The Local Runner is the default runner in WebdriverIO so there is no need to define it within your `wdio.conf.js`. If you want to explicitly set it, you can define it as follows:
+உள்ளூர் ரன்னர் WebdriverIO இல் இயல்புநிலை ரன்னர் ஆகும், எனவே இதை உங்கள் `wdio.conf.js` இல் வரையறுக்க வேண்டிய அவசியமில்லை. நீங்கள் அதை தெளிவாக அமைக்க விரும்பினால், அதை பின்வருமாறு வரையறுக்கலாம்:
 
 ```js
 // wdio.conf.js
@@ -39,24 +39,24 @@ export const {
 }
 ```
 
-## Browser Runner
+## உலாவி ரன்னர்
 
-As opposed to the [Local Runner](https://www.npmjs.com/package/@wdio/local-runner) the [Browser Runner](https://www.npmjs.com/package/@wdio/browser-runner) initiates and executes the framework within the browser. This allows you to run unit tests or component tests in an actual browser rather than in a JSDOM like many other test frameworks.
+[உள்ளூர் ரன்னர்](https://www.npmjs.com/package/@wdio/local-runner) இலிருந்து மாறுபட்டு, [உலாவி ரன்னர்](https://www.npmjs.com/package/@wdio/browser-runner) ஃபிரேம்வொர்க்கை உலாவிக்குள் துவக்கி செயல்படுத்துகிறது. இது நீங்கள் பல சோதனை ஃபிரேம்வொர்க்குகளைப் போல JSDOM இல் அல்லாமல் உண்மையான உலாவியில் யூனிட் சோதனைகள் அல்லது காம்போனன்ட் சோதனைகளை இயக்க அனுமதிக்கிறது.
 
-While [JSDOM](https://www.npmjs.com/package/jsdom) is widely used for testing purposes, it is in the end not an actual browser nor can you emulate mobile environments with it. With this runner WebdriverIO enables you to easily run your tests in the browser and use WebDriver commands to interact with elements rendered on the page.
+[JSDOM](https://www.npmjs.com/package/jsdom) சோதனை நோக்கங்களுக்காக பரவலாகப் பயன்படுத்தப்பட்டாலும், அது இறுதியில் ஒரு உண்மையான உலாவி அல்ல, அத்துடன் மொபைல் சூழல்களை அதனுடன் உருவகிக்க முடியாது. இந்த ரன்னருடன் WebdriverIO நீங்கள் உங்கள் சோதனைகளை உலாவியில் எளிதாக இயக்கவும், பக்கத்தில் காட்டப்படும் கூறுகளுடன் தொடர்புகொள்ள WebDriver கட்டளைகளைப் பயன்படுத்தவும் உங்களை அனுமதிக்கிறது.
 
-Here is an overview of running tests within JSDOM vs. WebdriverIOs Browser Runner
+JSDOM vs. WebdriverIO-இன் உலாவி ரன்னரில் சோதனைகளை இயக்குவதற்கான ஒரு கண்ணோட்டம்
 
-|    | JSDOM                                                                                                                                                           | WebdriverIO Browser Runner                                                                            |
-| -- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| 1. | Runs your tests within Node.js using a re-implementation of web standards, notably the WHATWG DOM and HTML Standards                                            | Executes your test in an actual browser and runs the code in an environment that your users use       |
-| 2. | Interactions with components can only be imitated via JavaScript                                                                                                | You can use the [WebdriverIO API](api) to interact with elements through the WebDriver protocol       |
-| 3. | Canvas support requires [additional dependencies](https://www.npmjs.com/package/canvas) and [has limitations](https://github.com/Automattic/node-canvas/issues) | You have access to the real [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) |
-| 4. | JSDOM has some [caveats](https://github.com/jsdom/jsdom#caveats) and unsupported Web APIs                                                                       | All Web APIs are supported as test run in an actual browser                                           |
-| 5. | Impossible to detect errors cross browser                                                                                                                       | Support for all browsers including mobile browser                                                     |
-| 6. | Can __not__ test for element pseudo states                                                                                                                      | Support for pseudo states such as `:hover` or `:active`                                               |
+| | JSDOM | WebdriverIO உலாவி ரன்னர் |
+|-|-------|----------------------------|
+|1.| உங்கள் சோதனைகளை வெப் தரநிலைகளின் மறு-செயல்படுத்தலைப் பயன்படுத்தி Node.js-க்குள் இயக்குகிறது, குறிப்பாக WHATWG DOM மற்றும் HTML தரநிலைகள் | உங்கள் சோதனையை ஒரு உண்மையான உலாவியில் செயல்படுத்துகிறது மற்றும் உங்கள் பயனர்கள் பயன்படுத்தும் சூழலில் குறியீட்டை இயக்குகிறது |
+|2.| காம்போனன்ட்களுடனான தொடர்புகளை JavaScript மூலம் மட்டுமே உருவகிக்க முடியும் | [WebdriverIO API](api) பயன்படுத்தி WebDriver நெறிமுறை மூலம் கூறுகளுடன் தொடர்புகொள்ளலாம் |
+|3.| Canvas ஆதரவிற்கு [கூடுதல் சார்புகள்](https://www.npmjs.com/package/canvas) தேவைப்படுகிறது மற்றும் [வரம்புகள் உள்ளன](https://github.com/Automattic/node-canvas/issues) | உண்மையான [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)-ஐ அணுகலாம் |
+|4.| JSDOM சில [எச்சரிக்கைகள்](https://github.com/jsdom/jsdom#caveats) மற்றும் ஆதரிக்கப்படாத Web API-கள் கொண்டுள்ளது | அனைத்து Web API-களும் ஆதரிக்கப்படுகின்றன, ஏனெனில் சோதனைகள் உண்மையான உலாவியில் இயங்குகின்றன |
+|5.| குறுக்கு உலாவி பிழைகளைக் கண்டறிவது சாத்தியமற்றது | மொபைல் உலாவிகள் உள்ளிட்ட அனைத்து உலாவிகளுக்கும் ஆதரவு |
+|6.| கூறு போலி நிலைகளை சோதிக்க __முடியாது__ | `:hover` அல்லது `:active` போன்ற போலி நிலைகளுக்கு ஆதரவு |
 
-This runner uses [Vite](https://vitejs.dev/) to compile your test code and load it in the browser. It comes with presets for the following component frameworks:
+இந்த ரன்னர் உங்கள் சோதனை குறியீட்டைத் தொகுக்கவும், உலாவியில் ஏற்றவும் [Vite](https://vitejs.dev/) பயன்படுத்துகிறது. இது பின்வரும் காம்போனன்ட் ஃபிரேம்வொர்க்குகளுக்கான முன்னமைவுகளுடன் வருகிறது:
 
 - React
 - Preact
@@ -65,19 +65,19 @@ This runner uses [Vite](https://vitejs.dev/) to compile your test code and load 
 - SolidJS
 - Stencil
 
-Every test file / test file group runs within a single page which means that between each test the page is being reloaded to guarantee isolation between tests.
+ஒவ்வொரு சோதனை கோப்பு / சோதனை கோப்பு குழுவும் ஒரு பக்கத்திற்குள் இயங்குகிறது, இதன் பொருள் ஒவ்வொரு சோதனைக்கும் இடையே பக்கம் மீண்டும் ஏற்றப்படுகிறது, இது சோதனைகளுக்கு இடையேயான தனிமையை உறுதி செய்கிறது.
 
-### Install
+### நிறுவல்
 
-To use the Browser Runner you can install it via:
+உலாவி ரன்னரைப் பயன்படுத்த நீங்கள் இதை நிறுவலாம்:
 
 ```sh
 npm install --save-dev @wdio/browser-runner
 ```
 
-### Setup
+### அமைப்பு
 
-To use the Browser runner, you have to define a `runner` property within your `wdio.conf.js` file, e.g.:
+உலாவி ரன்னரைப் பயன்படுத்த, உங்கள் `wdio.conf.js` கோப்பில் `runner` பண்பை வரையறுக்க வேண்டும், எ.கா.:
 
 ```js
 // wdio.conf.js
@@ -88,15 +88,16 @@ export const {
 }
 ```
 
-### Runner Options
+### ரன்னர் விருப்பங்கள்
 
-The Browser runner allows following configurations:
+உலாவி ரன்னர் பின்வரும் கட்டமைப்புகளை அனுமதிக்கிறது:
 
 #### `preset`
 
-If you test components using one of the mentioned frameworks above, you can define a preset that ensures everything is configured out of the box. This option can't be used together with `viteConfig`.
+நீங்கள் மேலே குறிப்பிடப்பட்டுள்ள ஃபிரேம்வொர்க்குகளில் ஒன்றைப் பயன்படுத்தி காம்போனன்ட்களை சோதித்தால், அனைத்தும் பெட்டிக்கு வெளியே கட்டமைக்கப்பட்டுள்ளதை உறுதிப்படுத்தும் ஒரு முன்னமைவை வரையறுக்கலாம். இந்த விருப்பத்தை `viteConfig` உடன் பயன்படுத்த முடியாது.
 
-__Type:__ `vue` | `svelte` | `solid` | `react` | `preact` | `stencil`<br /> __Example:__
+__வகை:__ `vue` | `svelte` | `solid` | `react` | `preact` | `stencil`<br />
+__உதாரணம்:__
 
 ```js title="wdio.conf.js"
 export const {
@@ -110,9 +111,10 @@ export const {
 
 #### `viteConfig`
 
-Define your own [Vite configuration](https://vitejs.dev/config/). You can either pass in a custom object or import an existing `vite.conf.ts` file if you use Vite.js for development. Note that WebdriverIO keeps custom Vite configurations to set up the test harness.
+உங்கள் சொந்த [Vite கட்டமைப்பை](https://vitejs.dev/config/) வரையறுக்கவும். நீங்கள் தனிப்பயன் பொருளை உள்ளிடலாம் அல்லது நீங்கள் மேம்பாட்டிற்கு Vite.js பயன்படுத்தினால் ஏற்கனவே இருக்கும் `vite.conf.ts` கோப்பை இறக்குமதி செய்யலாம். WebdriverIO சோதனை சாதனத்தை அமைக்க தனிப்பயன் Vite கட்டமைப்புகளை வைத்திருக்கிறது என்பதை நினைவில் கொள்ளவும்.
 
-__Type:__ `string` or [`UserConfig`](https://github.com/vitejs/vite/blob/52e64eb43287d241f3fd547c332e16bd9e301e95/packages/vite/src/node/config.ts#L119-L272) or `(env: ConfigEnv) => UserConfig | Promise<UserConfig>`<br /> __Example:__
+__வகை:__ `string` அல்லது [`UserConfig`](https://github.com/vitejs/vite/blob/52e64eb43287d241f3fd547c332e16bd9e301e95/packages/vite/src/node/config.ts#L119-L272) அல்லது `(env: ConfigEnv) => UserConfig | Promise<UserConfig>`<br />
+__உதாரணம்:__
 
 ```js title="wdio.conf.ts"
 import viteConfig from '../vite.config.ts'
@@ -120,10 +122,10 @@ import viteConfig from '../vite.config.ts'
 export const {
     // ...
     runner: ['browser', { viteConfig }],
-    // or just:
+    // அல்லது இவ்வாறு:
     runner: ['browser', { viteConfig: '../vites.config.ts' }],
-    // or use a function if your vite config contains a lot of plugins
-    // which you only want to resolve when value is read
+    // அல்லது உங்கள் vite கட்டமைப்பில் நிறைய செருகுநிரல்கள் இருந்தால்
+    // ஒரு செயல்பாட்டைப் பயன்படுத்தவும், மதிப்பு படிக்கும்போது மட்டுமே தீர்க்க விரும்புகிறீர்கள்
     runner: ['browser', {
         viteConfig: () => ({
             // ...
@@ -135,43 +137,49 @@ export const {
 
 #### `headless`
 
-If set to `true` the runner will update capabilities to run tests headless. By default this is enabled within CI environments where a `CI` environment variable is set to `'1'` or `'true'`.
+`true` என அமைக்கப்பட்டால், சோதனைகளை ஹெட்லெஸ் முறையில் இயக்க ரன்னர் திறன்களை புதுப்பிக்கும். இயல்பாக இது CI சூழல்களில் இயக்கப்படுகிறது, அங்கு `CI` சூழல் மாறி `'1'` அல்லது `'true'` என அமைக்கப்பட்டிருக்கும்.
 
-__Type:__ `boolean`<br /> __Default:__ `false`, set to `true` if `CI` environment variable is set
+__வகை:__ `boolean`<br />
+__இயல்புநிலை:__ `false`, `CI` சூழல் மாறி அமைக்கப்பட்டிருந்தால் `true` என அமைக்கப்படும்
 
 #### `rootDir`
 
-Project root directory.
+திட்ட ரூட் அடைவு.
 
-__Type:__ `string`<br /> __Default:__ `process.cwd()`
+__வகை:__ `string`<br />
+__இயல்புநிலை:__ `process.cwd()`
 
 #### `coverage`
 
-WebdriverIO supports test coverage reporting through [`istanbul`](https://istanbul.js.org/). See [Coverage Options](#coverage-options) for more details.
+WebdriverIO [`istanbul`](https://istanbul.js.org/) மூலம் சோதனை காப்பீடு அறிக்கையை ஆதரிக்கிறது. மேலும் விவரங்களுக்கு [காப்பீடு விருப்பங்கள்](#காப்பீடு-விருப்பங்கள்) பார்க்கவும்.
 
-__Type:__ `object`<br /> __Default:__ `undefined`
+__வகை:__ `object`<br />
+__இயல்புநிலை:__ `undefined`
 
-### Coverage Options
+### காப்பீடு விருப்பங்கள்
 
-The following options allow to configure coverage reporting.
+பின்வரும் விருப்பங்கள் காப்பீடு அறிக்கையை உள்ளமைக்க அனுமதிக்கின்றன.
 
 #### `enabled`
 
-Enables coverage collection.
+காப்பீடு சேகரிப்பை இயக்குகிறது.
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__வகை:__ `boolean`<br />
+__இயல்புநிலை:__ `false`
 
 #### `include`
 
-List of files included in coverage as glob patterns.
+வடிவக் கோலங்களாக காப்பீட்டில் சேர்க்கப்பட்ட கோப்புகளின் பட்டியல்.
 
-__Type:__ `string[]`<br /> __Default:__ `[**]`
+__வகை:__ `string[]`<br />
+__இயல்புநிலை:__ `[**]`
 
 #### `exclude`
 
-List of files excluded in coverage as glob patterns.
+வடிவக் கோலங்களாக காப்பீட்டில் விலக்கப்பட்ட கோப்புகளின் பட்டியல்.
 
-__Type:__ `string[]`<br /> __Default:__
+__வகை:__ `string[]`<br />
+__இயல்புநிலை:__
 
 ```
 [
@@ -192,65 +200,73 @@ __Type:__ `string[]`<br /> __Default:__
 
 #### `extension`
 
-List of file extensions the report should include.
+அறிக்கையில் சேர்க்க வேண்டிய கோப்பு நீட்டிப்புகளின் பட்டியல்.
 
-__Type:__ `string | string[]`<br /> __Default:__ `['.js', '.cjs', '.mjs', '.ts', '.mts', '.cts', '.tsx', '.jsx', '.vue', '.svelte']`
+__வகை:__ `string | string[]`<br />
+__இயல்புநிலை:__ `['.js', '.cjs', '.mjs', '.ts', '.mts', '.cts', '.tsx', '.jsx', '.vue', '.svelte']`
 
 #### `reportsDirectory`
 
-Directory to write coverage report to.
+காப்பீட்டு அறிக்கையை எழுதுவதற்கான அடைவு.
 
-__Type:__ `string`<br /> __Default:__ `./coverage`
+__வகை:__ `string`<br />
+__இயல்புநிலை:__ `./coverage`
 
 #### `reporter`
 
-Coverage reporters to use. See [istanbul documentation](https://istanbul.js.org/docs/advanced/alternative-reporters/) for detailed list of all reporters.
+பயன்படுத்த வேண்டிய காப்பீட்டு அறிக்கையாளர்கள். அனைத்து அறிக்கையாளர்களின் விரிவான பட்டியலுக்கு [istanbul ஆவணங்களைப்](https://istanbul.js.org/docs/advanced/alternative-reporters/) பார்க்கவும்.
 
-__Type:__ `string[]`<br /> __Default:__ `['text', 'html', 'clover', 'json-summary']`
+__வகை:__ `string[]`<br />
+__இயல்புநிலை:__ `['text', 'html', 'clover', 'json-summary']`
 
 #### `perFile`
 
-Check thresholds per file. See `lines`, `functions`, `branches` and `statements` for the actual thresholds.
+ஒவ்வொரு கோப்புக்கும் வரம்புகளை சரிபார்க்கவும். உண்மையான வரம்புகளுக்கு `lines`, `functions`, `branches` மற்றும் `statements` பார்க்கவும்.
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__வகை:__ `boolean`<br />
+__இயல்புநிலை:__ `false`
 
 #### `clean`
 
-Clean coverage results before running tests.
+சோதனைகளை இயக்குவதற்கு முன் காப்பீட்டு முடிவுகளை சுத்தப்படுத்தவும்.
 
-__Type:__ `boolean`<br /> __Default:__ `true`
+__வகை:__ `boolean`<br />
+__இயல்புநிலை:__ `true`
 
 #### `lines`
 
-Threshold for lines.
+வரிகளுக்கான வரம்பு.
 
-__Type:__ `number`<br /> __Default:__ `undefined`
+__வகை:__ `number`<br />
+__இயல்புநிலை:__ `undefined`
 
 #### `functions`
 
-Threshold for functions.
+செயல்பாடுகளுக்கான வரம்பு.
 
-__Type:__ `number`<br /> __Default:__ `undefined`
+__வகை:__ `number`<br />
+__இயல்புநிலை:__ `undefined`
 
 #### `branches`
 
-Threshold for branches.
+கிளைகளுக்கான வரம்பு.
 
-__Type:__ `number`<br /> __Default:__ `undefined`
+__வகை:__ `number`<br />
+__இயல்புநிலை:__ `undefined`
 
 #### `statements`
 
-Threshold for statements.
+கூற்றுகளுக்கான வரம்பு.
 
-__Type:__ `number`<br /> __Default:__ `undefined`
+__வகை:__ `number`<br />
+__இயல்புநிலை:__ `undefined`
 
-### Limitations
+### வரம்புகள்
 
-When using the WebdriverIO browser runner, it's important to note that thread blocking dialogs like `alert` or `confirm` cannot be used natively. This is because they block the web page, which means WebdriverIO cannot continue communicating with the page, causing the execution to hang.
+WebdriverIO உலாவி ரன்னரைப் பயன்படுத்தும்போது, `alert` அல்லது `confirm` போன்ற நூல் தடுக்கும் உரையாடல்களை இயல்பாகப் பயன்படுத்த முடியாது என்பதைக் கவனத்தில் கொள்வது முக்கியம். ஏனெனில் அவை வலைப்பக்கத்தைத் தடுக்கின்றன, இதன் பொருள் WebdriverIO பக்கத்துடன் தொடர்பு கொள்ள முடியாது, இது செயல்பாட்டை தொங்கவிடும்.
 
-In such situations, WebdriverIO provides default mocks with default returned values for these APIs. This ensures that if the user accidentally uses synchronous popup web APIs, the execution would not hang. However, it's still recommended for the user to mock these web APIs for better experience. Read more in [Mocking](/docs/component-testing/mocking).
+இத்தகைய சூழ்நிலைகளில், WebdriverIO இந்த API-களுக்கான இயல்புநிலை மாக்குகளை இயல்புநிலை திரும்பும் மதிப்புகளுடன் வழங்குகிறது. இது பயனர் தவறுதலாக ஒத்திசைவான பாப்-அப் வலை API-களைப் பயன்படுத்தினால், செயல்பாடு தொங்க மாட்டாது என்பதை உறுதிப்படுத்துகிறது. இருப்பினும், சிறந்த அனுபவத்திற்காக பயனர் இந்த வலை API-களை மாக் செய்ய பரிந்துரைக்கப்படுகிறது. [மாக்கிங்](/docs/component-testing/mocking) இல் மேலும் படிக்கவும்.
 
-### Examples
+### உதாரணங்கள்
 
-Make sure to check out the docs around [component testing](https://webdriver.io/docs/component-testing) and have a look into the [example repository](https://github.com/webdriverio/component-testing-examples) for examples using these and various other frameworks.
-
+[காம்போனன்ட் சோதனை](https://webdriver.io/docs/component-testing) பற்றிய ஆவணங்களை கண்டிப்பாக பார்க்கவும் மற்றும் இந்த மற்றும் பல்வேறு ஃபிரேம்வொர்க்குகளைப் பயன்படுத்தும் உதாரணங்களுக்கு [உதாரண களஞ்சியத்தைப்](https://github.com/webdriverio/component-testing-examples) பார்க்கவும்.

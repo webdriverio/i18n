@@ -1,26 +1,26 @@
 ---
 id: proxy
-title: Proxy Setup
+title: ப்ராக்ஸி அமைப்பு
 ---
 
-You can tunnel two different types of request through a proxy:
+இரண்டு வகையான கோரிக்கைகளை ப்ராக்ஸி வழியாக அனுப்பலாம்:
 
-- connection between your test script and the browser driver (or WebDriver endpoint)
-- connection between the browser and the internet
+- உங்கள் சோதனை ஸ்கிரிப்ட் மற்றும் பிரௌசர் டிரைவர் (அல்லது WebDriver எண்ட்பாயிண்ட்) இடையேயான இணைப்பு
+- பிரௌசர் மற்றும் இணையம் இடையேயான இணைப்பு
 
-## Proxy Between Driver And Test
+## டிரைவர் மற்றும் சோதனைக்கு இடையே ப்ராக்ஸி
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+உங்கள் நிறுவனத்தில் அனைத்து வெளிச்செல்லும் கோரிக்கைகளுக்கும் கார்ப்பரேட் ப்ராக்ஸி (எ.கா. `http://my.corp.proxy.com:9090`) இருந்தால், [undici](https://github.com/nodejs/undici)-ஐ நிறுவி கட்டமைக்க கீழே உள்ள படிகளைப் பின்பற்றவும்.
 
-### Install undici
+### undici-ஐ நிறுவவும்
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### உங்கள் கான்ஃபிக் கோப்பில் undici setGlobalDispatcher சேர்க்கவும்
 
-Add the following require statement to the top of your config file.
+உங்கள் கான்ஃபிக் கோப்பின் மேல் பகுதியில் பின்வரும் require ஸ்டேட்மென்ட்டை சேர்க்கவும்.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+ப்ராக்ஸியை கட்டமைப்பது பற்றிய கூடுதல் தகவல்களை [இங்கே](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md) காணலாம்.
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+நீங்கள் [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5)-ஐ பயன்படுத்தினால், அதை பின்வருமாறு தொடங்கவும்:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Between Browser And Internet
+## பிரௌசர் மற்றும் இணையத்திற்கு இடையே ப்ராக்ஸி
 
-In order to tunnel the connection between the browser and the internet, you can set up a proxy which can be useful to (for example) capture network information and other data with tools like [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+பிரௌசர் மற்றும் இணையத்திற்கு இடையேயான இணைப்பை ப்ராக்ஸி வழியாக அனுப்ப, நீங்கள் ஒரு ப்ராக்ஸியை அமைக்கலாம். இது நெட்வொர்க் தகவல்களை மற்றும் பிற தரவுகளை [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) போன்ற கருவிகளைப் பயன்படுத்தி பிடிக்க பயனுள்ளதாக இருக்கும்.
 
-The `proxy` parameters can be applied via the standard capabilities the following way:
+`proxy` அளவுருக்களை ஸ்டாண்டர்ட் கேபாபிலிட்டிகள் மூலம் பின்வருமாறு பயன்படுத்தலாம்:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-For more information, see the [WebDriver specification](https://w3c.github.io/webdriver/#proxy).
+மேலும் தகவலுக்கு, [WebDriver ஸ்பெசிஃபிகேஷன்](https://w3c.github.io/webdriver/#proxy)-ஐப் பார்க்கவும்.

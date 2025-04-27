@@ -1,15 +1,15 @@
 ---
 id: retry
-title: Retry Flaky Tests
+title: பிடிவாதமான சோதனைகளை மறுசோதனை செய்தல்
 ---
 
-You can rerun certain tests with the WebdriverIO testrunner that turn out to be unstable due to things like a flaky network or race conditions. (However, it is not recommended to simply increase the rerun rate if tests become unstable!)
+WebdriverIO டெஸ்ட்ரன்னர் மூலம் சில குறிப்பிட்ட சோதனைகளை மீண்டும் இயக்கலாம், குறிப்பாக பிடிவாதமான நெட்வொர்க் அல்லது ரேஸ் நிலைகள் போன்ற காரணங்களால் அவை நிலையற்றதாக மாறினால். (இருப்பினும், சோதனைகள் நிலையற்றதாக மாறும்போது வெறுமனே மறுசோதனை விகிதத்தை அதிகரிப்பது பரிந்துரைக்கப்படவில்லை!)
 
-## Rerun suites in Mocha
+## Mocha இல் சோதனை தொகுப்புகளை மறுசோதனை செய்தல்
 
-Since version 3 of Mocha, you can rerun whole test suites (everything inside an `describe` block). If you use Mocha you should favor this retry mechanism instead of the WebdriverIO implementation that only allows you to rerun certain test blocks (everything within an `it` block). In order to use the `this.retries()` method, the suite block `describe` must use an unbound function `function(){}` instead of a fat arrow function `() => {}`, as described in [Mocha docs](https://mochajs.org/#arrow-functions). Using Mocha you can also set a retry count for all specs using `mochaOpts.retries` in your `wdio.conf.js`.
+Mocha இன் பதிப்பு 3 முதல், முழு சோதனை தொகுப்புகளை மீண்டும் இயக்கலாம் (ஒரு `describe` பிளாக்கிற்குள் உள்ள எல்லாம்). Mocha பயன்படுத்துகிறீர்கள் எனில், குறிப்பிட்ட சோதனை பிளாக்குகளை மட்டுமே மீண்டும் இயக்க அனுமதிக்கும் WebdriverIO செயல்முறைக்கு பதிலாக இந்த மறுசோதனை நுட்பத்தை முன்னுரிமைப்படுத்த வேண்டும் (ஒரு `it` பிளாக்கிற்குள் உள்ள எல்லாம்). `this.retries()` முறையைப் பயன்படுத்த, சோதனை தொகுப்பு பிளாக் `describe` ஆனது [Mocha ஆவணங்களில்](https://mochajs.org/#arrow-functions) விவரிக்கப்பட்டுள்ளபடி, arrow function `() => {}` க்கு பதிலாக unbound function `function(){}` ஐப் பயன்படுத்த வேண்டும். Mocha பயன்படுத்தி, உங்கள் `wdio.conf.js` இல் `mochaOpts.retries` பயன்படுத்தி அனைத்து specs க்கும் மறுசோதனை எண்ணிக்கையை அமைக்கலாம்.
 
-Here is an example:
+இதோ ஒரு உதாரணம்:
 
 ```js
 describe('retries', function () {
@@ -29,16 +29,16 @@ describe('retries', function () {
 })
 ```
 
-## Rerun single tests in Jasmine or Mocha
+## Jasmine அல்லது Mocha இல் தனிப்பட்ட சோதனைகளை மறுசோதனை செய்தல்
 
-To rerun a certain test block you can just apply the number of reruns as last parameter after the test block function:
+ஒரு குறிப்பிட்ட சோதனை பிளாக்கை மீண்டும் இயக்க, சோதனை பிளாக் செயல்பாட்டிற்குப் பிறகு கடைசி அளவுருவாக மறுசோதனைகளின் எண்ணிக்கையைப் பயன்படுத்தலாம்:
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -54,7 +54,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+இது hooks க்கும் செயல்படுகிறது:
 
 ```js
 describe('my flaky app', () => {
@@ -84,7 +84,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+இது hooks க்கும் செயல்படுகிறது:
 
 ```js
 describe('my flaky app', () => {
@@ -99,22 +99,22 @@ describe('my flaky app', () => {
 })
 ```
 
-If you are using Jasmine, the second parameter is reserved for timeout. To apply a retry parameter you need to set the timeout to its default value `jasmine.DEFAULT_TIMEOUT_INTERVAL` and then apply your retry count.
+நீங்கள் Jasmine ஐப் பயன்படுத்தினால், இரண்டாவது அளவுரு timeout க்காக ஒதுக்கப்பட்டுள்ளது. மறுசோதனை அளவுருவைப் பயன்படுத்த, timeout ஐ அதன் இயல்புநிலை மதிப்பு `jasmine.DEFAULT_TIMEOUT_INTERVAL` க்கு அமைத்து, பின்னர் உங்கள் மறுசோதனை எண்ணிக்கையைப் பயன்படுத்த வேண்டும்.
 
 </TabItem>
 </Tabs>
 
-This retry mechanism only allows to retry single hooks or test blocks. If your test is accompanied with a hook to set up your application, this hook is not being run. [Mocha offers](https://mochajs.org/#retry-tests) native test retries that provide this behavior while Jasmine doesn't. You can access the number of executed retries in the `afterTest` hook.
+இந்த மறுசோதனை நுட்பம் தனிப்பட்ட hooks அல்லது சோதனை பிளாக்குகளை மட்டுமே மீண்டும் இயக்க அனுமதிக்கிறது. உங்கள் சோதனையுடன் உங்கள் பயன்பாட்டை அமைக்க ஒரு hook இருந்தால், இந்த hook இயக்கப்படவில்லை. [Mocha வழங்குகிறது](https://mochajs.org/#retry-tests) இந்த நடத்தையை வழங்கும் native சோதனை மறுசோதனைகள், ஆனால் Jasmine வழங்கவில்லை. `afterTest` hook இல் செயல்படுத்தப்பட்ட மறுசோதனைகளின் எண்ணிக்கையை அணுகலாம்.
 
-## Rerunning in Cucumber
+## Cucumber இல் மறுசோதனை செய்தல்
 
-### Rerun full suites in Cucumber
+### Cucumber இல் முழு சோதனை தொகுப்புகளை மறுசோதனை செய்தல்
 
-For cucumber >=6 you can provide the [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) configuration option along with a `retryTagFilter` optional parameter to have all or some of your failing scenarios get additional retries until succeeded. For this feature to work you need to set the `scenarioLevelReporter` to `true`.
+Cucumber >=6 க்கு, நீங்கள் தோல்வியடையும் அனைத்து அல்லது சில scenarios களை வெற்றி பெறும் வரை கூடுதல் மறுசோதனைகள் பெற [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) கட்டமைப்பு விருப்பத்தை `retryTagFilter` விருப்ப அளவுருவுடன் வழங்கலாம். இந்த அம்சம் செயல்பட, நீங்கள் `scenarioLevelReporter` ஐ `true` க்கு அமைக்க வேண்டும்.
 
-### Rerun Step Definitions in Cucumber
+### Cucumber இல் Step Definitions மறுசோதனை செய்தல்
 
-To define a rerun rate for a certain step definitions just apply a retry option to it, like:
+ஒரு குறிப்பிட்ட step definition க்கான மறுசோதனை விகிதத்தை வரையறுக்க, அதற்கு retry விருப்பத்தைப் பயன்படுத்தவும், போன்ற:
 
 ```js
 export default function () {
@@ -128,15 +128,15 @@ export default function () {
 })
 ```
 
-Reruns can only be defined in your step definitions file, never in your feature file.
+மறுசோதனைகளை உங்கள் step definitions கோப்பில் மட்டுமே வரையறுக்க முடியும், உங்கள் feature கோப்பில் இல்லை.
 
-## Add retries on a per-specfile basis
+## specfile அடிப்படையில் மறுசோதனைகளைச் சேர்த்தல்
 
-Previously, only test- and suite-level retries were available, which are fine in most cases.
+முன்பு, சோதனை மற்றும் சூட்-நிலை மறுசோதனைகள் மட்டுமே கிடைத்தன, அவை பெரும்பாலான சந்தர்ப்பங்களில் சரியாக உள்ளன.
 
-But in any tests which involve state (such as on a server or in a database) the state may be left invalid after the first test failure. Any subsequent retries may have no chance of passing, due to the invalid state they would start with.
+ஆனால் நிலை சம்பந்தப்பட்ட எந்த சோதனைகளிலும் (சர்வரில் அல்லது தரவுத்தளத்தில் போன்றவை) முதல் சோதனை தோல்வியடைந்த பிறகு நிலை செல்லாததாக விடப்படலாம். அவை தொடங்கும் செல்லாத நிலை காரணமாக, அடுத்தடுத்த மறுசோதனைகள் வெற்றி பெறுவதற்கான வாய்ப்பு இல்லாமல் போகலாம்.
 
-A new `browser` instance is created for each specfile, which makes this an ideal place to hook and setup any other states (server, databases). Retries on this level mean that the whole setup process will simply be repeated, just as if it were for a new specfile.
+ஒவ்வொரு specfile க்கும் ஒரு புதிய `browser` instance உருவாக்கப்படுகிறது, இது வேறு எந்த நிலைகளையும் (சர்வர், தரவுத்தளங்கள்) hook செய்து அமைக்க இது ஒரு சிறந்த இடமாக உள்ளது. இந்த நிலையில் மறுசோதனைகள் என்பது முழு அமைப்பு செயல்முறையும் வெறுமனே புதிய specfile க்கு இருப்பதைப் போலவே மீண்டும் செய்யப்படும்.
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -156,13 +156,13 @@ export const config = {
 }
 ```
 
-## Run a specific test multiple times
+## ஒரு குறிப்பிட்ட சோதனையை பல முறை இயக்கவும்
 
-This is to help prevent flaky tests from being introduced in a codebase. By adding the `--repeat` cli option it will run the specified specs or suites N times. When using this cli flag the `--spec` or `--suite` flag must also be specified.
+கோட்பேஸில் பிடிவாதமான சோதனைகள் அறிமுகப்படுத்தப்படுவதைத் தடுக்க இது உதவுகிறது. `--repeat` cli விருப்பத்தைச் சேர்ப்பதன் மூலம், குறிப்பிட்ட specs அல்லது suites களை N முறை இயக்கும். இந்த cli flag ஐப் பயன்படுத்தும்போது, `--spec` அல்லது `--suite` flag ஐயும் குறிப்பிட வேண்டும்.
 
-When adding new tests to a codebase, especially through a CI/CD process the tests could pass and get merged but become flaky later on. This flakiness could come from a number of things like network issues, server load, database size, etc. Using the `--repeat` flag in your CD/CD process can help catch these flaky tests before they get merged to a main codebase.
+CI/CD செயல்முறை மூலம் கோட்பேஸுக்கு புதிய சோதனைகளைச் சேர்க்கும்போது, சோதனைகள் தேர்ச்சி பெற்று இணைக்கப்படலாம், ஆனால் பின்னர் பிடிவாதமாக மாறலாம். இந்த பிடிவாதத்தன்மை நெட்வொர்க் சிக்கல்கள், சர்வர் சுமை, தரவுத்தள அளவு போன்ற பல விஷயங்களிலிருந்து வரலாம். உங்கள் CD/CD செயல்முறையில் `--repeat` flag ஐப் பயன்படுத்துவது, இந்த பிடிவாதமான சோதனைகள் முக்கிய கோட்பேஸுடன் இணைக்கப்படுவதற்கு முன் அவற்றைக் கண்டுபிடிக்க உதவும்.
 
-One strategy to use is run your tests like regular in your CI/CD process but if you're introducing a new test you can then run another set of tests with the new spec specified in `--spec` along with `--repeat` so it runs the new test x number of times. If the test fails any of those times then the test will not get merged and will need to be looked at why it failed.
+பயன்படுத்த ஒரு உத்தி என்னவென்றால், உங்கள் CI/CD செயல்முறையில் உங்கள் சோதனைகளை வழக்கமான போல் இயக்கலாம், ஆனால் நீங்கள் ஒரு புதிய சோதனையை அறிமுகப்படுத்தினால், `--spec` இல் குறிப்பிடப்பட்ட புதிய specக்குடன் `--repeat` உடன் இன்னொரு தொகுப்பு சோதனைகளை இயக்கலாம், இதனால் அது புதிய சோதனையை x முறை இயக்கும். சோதனை எந்த நேரத்திலும் தோல்வியடைந்தால், அது ஏன் தோல்வியடைந்தது என்பதை ஆராய வேண்டியிருக்கும் மற்றும் சோதனை இணைக்கப்படாது.
 
 ```sh
 # This will run the example.e2e.js spec 5 times

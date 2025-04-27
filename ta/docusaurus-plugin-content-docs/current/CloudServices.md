@@ -1,11 +1,11 @@
 ---
 id: cloudservices
-title: Using Cloud Services
+title: கிளவுட் சேவைகளைப் பயன்படுத்துதல்
 ---
 
-Using on-demand services like Sauce Labs, Browserstack, TestingBot, LambdaTest or Perfecto with WebdriverIO is pretty simple. All you need to do is to set your service's `user` and `key` in your options.
+WebdriverIO உடன் Sauce Labs, Browserstack, TestingBot, LambdaTest அல்லது Perfecto போன்ற தேவை அடிப்படையிலான சேவைகளைப் பயன்படுத்துவது மிகவும் எளிதானது. நீங்கள் செய்ய வேண்டியதெல்லாம் உங்கள் விருப்பங்களில் உங்கள் சேவையின் `user` மற்றும் `key` ஐ அமைப்பது தான்.
 
-Optionally, you can also parametrize your test by setting cloud-specific capabilities like `build`. If you only want to run cloud services in Travis, you can use the `CI` environment variable to check if you are in Travis and modify the config accordingly.
+விருப்பமாக, `build` போன்ற கிளவுட் குறிப்பிட்ட திறன்களை அமைப்பதன் மூலம் உங்கள் சோதனையை பரிமாணப்படுத்தலாம். நீங்கள் Travis இல் மட்டுமே கிளவுட் சேவைகளை இயக்க விரும்பினால், Travis இல் இருக்கிறீர்களா என்பதை சரிபார்க்க `CI` சுற்றுச்சூழல் மாறியைப் பயன்படுத்தலாம் மற்றும் கட்டமைப்பை அதற்கேற்ப மாற்றலாம்.
 
 ```js
 // wdio.conf.js
@@ -18,31 +18,31 @@ if (process.env.CI) {
 
 ## Sauce Labs
 
-You can set up your tests to run remotely in [Sauce Labs](https://saucelabs.com).
+உங்கள் சோதனைகளை [Sauce Labs](https://saucelabs.com) இல் தொலைநிலையில் இயக்குவதற்கு அமைக்கலாம்.
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your Sauce Labs username and access key.
+ஒரே தேவையென்னவென்றால் உங்கள் கட்டமைப்பில் `user` மற்றும் `key` ஐ (`wdio.conf.js` மூலம் ஏற்றுமதி செய்யப்பட்டது அல்லது `webdriverio.remote(...)` க்கு அனுப்பப்பட்டது) உங்கள் Sauce Labs பயனர்பெயர் மற்றும் அணுகல் விசைக்கு அமைக்க வேண்டும்.
 
-You can also pass in any optional [test configuration option](https://docs.saucelabs.com/dev/test-configuration-options/) as a key/value in the capabilities for any browser.
+நீங்கள் எந்த உலாவியின் திறன்களிலும் விசை/மதிப்பாக விருப்ப [சோதனை கட்டமைப்பு விருப்பத்தையும்](https://docs.saucelabs.com/dev/test-configuration-options/) அனுப்பலாம்.
 
 ### Sauce Connect
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
+இணையத்தால் அணுக முடியாத சர்வரை எதிராக சோதனைகளை இயக்க விரும்பினால் (எ.கா `localhost` போன்றவற்றில்), நீங்கள் [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy) ஐப் பயன்படுத்த வேண்டும்.
 
-It is out of the scope of WebdriverIO to support this, so you'll have to start it by yourself.
+இதை ஆதரிப்பது WebdriverIO இன் நோக்கத்திற்கு அப்பாற்பட்டது, எனவே நீங்கள் அதை உங்களாகவே தொடங்க வேண்டும்.
 
-If you are using the WDIO testrunner download and configure the [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) in your `wdio.conf.js`. It helps getting Sauce Connect running and comes with additional features that better integrate your tests into the Sauce service.
+WDIO சோதனை இயக்கியைப் பயன்படுத்துகிறீர்கள் என்றால், உங்கள் `wdio.conf.js` இல் [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) ஐப் பதிவிறக்கி கட்டமைக்கவும். இது Sauce Connect ஐ இயக்க உதவுகிறது மற்றும் உங்கள் சோதனைகளை Sauce சேவையுடன் சிறப்பாக ஒருங்கிணைக்கும் கூடுதல் அம்சங்களுடன் வருகிறது.
 
-### With Travis CI
+### Travis CI உடன்
 
-Travis CI, however, does [have support](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect) for starting Sauce Connect before each test, so following their directions for that is an option.
+எனினும், Travis CI ஒவ்வொரு சோதனைக்கும் முன் Sauce Connect ஐத் தொடங்குவதற்கு [ஆதரவைக் கொண்டுள்ளது](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect), எனவே அதற்கான வழிமுறைகளைப் பின்பற்றுவது ஒரு விருப்பமாகும்.
 
-If you do so, you must set the `tunnel-identifier` test configuration option in each browser's `capabilities`. Travis sets this to the `TRAVIS_JOB_NUMBER` environmental variable by default.
+அவ்வாறு செய்தால், ஒவ்வொரு உலாவியின் `capabilities` இலும் `tunnel-identifier` சோதனை கட்டமைப்பு விருப்பத்தை அமைக்க வேண்டும். Travis இயல்பாக இதை `TRAVIS_JOB_NUMBER` சுற்றுச்சூழல் மாறிக்கு அமைக்கிறது.
 
-Also, if you want to have Sauce Labs group your tests by build number, you can set the `build` to `TRAVIS_BUILD_NUMBER`.
+மேலும், Sauce Labs உங்கள் சோதனைகளை உருவாக்க எண்ணால் குழுவாக்க விரும்பினால், `build` ஐ `TRAVIS_BUILD_NUMBER` க்கு அமைக்கலாம்.
 
-Lastly, if you set `name`, this changes the name of this test in Sauce Labs for this build. If you are using the WDIO testrunner combined with the [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service), WebdriverIO automatically sets a proper name for the test.
+இறுதியாக, நீங்கள் `name` ஐ அமைத்தால், இது Sauce Labs இல் இந்த உருவாக்கத்திற்கான சோதனையின் பெயரை மாற்றுகிறது. நீங்கள் WDIO சோதனை இயக்கியை [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) உடன் இணைந்து பயன்படுத்தினால், WebdriverIO தானாகவே சோதனைக்கு சரியான பெயரை அமைக்கும்.
 
-Example `capabilities`:
+`capabilities` உதாரணம்:
 
 ```javascript
 browserName: 'chrome',
@@ -53,35 +53,35 @@ name: 'integration',
 build: process.env.TRAVIS_BUILD_NUMBER
 ```
 
-### Timeouts
+### காலநேரங்கள்
 
-Since you are running your tests remotely, it might be necessary to increase some timeouts.
+உங்கள் சோதனைகளை தொலைதூரத்தில் இயக்குவதால், சில காலநேரங்களை அதிகரிக்க வேண்டியிருக்கலாம்.
 
-You can change the [idle timeout](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) by passing `idle-timeout` as a test configuration option. This controls how long Sauce will wait between commands before closing the connection.
+[செயலற்ற காலநேரத்தை](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) சோதனை கட்டமைப்பு விருப்பமாக `idle-timeout` ஐப் அனுப்புவதன் மூலம் மாற்றலாம். இது இணைப்பை மூடுவதற்கு முன் கட்டளைகளுக்கு இடையில் Sauce எவ்வளவு நேரம் காத்திருக்கும் என்பதைக் கட்டுப்படுத்துகிறது.
 
 ## BrowserStack
 
-WebdriverIO also has a [Browserstack](https://www.browserstack.com) integration built-in.
+WebdriverIO க்கு [Browserstack](https://www.browserstack.com) ஒருங்கிணைப்பும் உள்ளிணைக்கப்பட்டுள்ளது.
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your Browserstack automate username and access key.
+ஒரே தேவையென்னவென்றால் உங்கள் கட்டமைப்பில் `user` மற்றும் `key` ஐ (`wdio.conf.js` மூலம் ஏற்றுமதி செய்யப்பட்டது அல்லது `webdriverio.remote(...)` க்கு அனுப்பப்பட்டது) உங்கள் Browserstack தானியங்கி பயனர்பெயர் மற்றும் அணுகல் விசைக்கு அமைக்க வேண்டும்.
 
-You can also pass in any optional [supported capabilities](https://www.browserstack.com/automate/capabilities) as a key/value in the capabilities for any browser. If you set `browserstack.debug` to `true` it will record a screencast of the session, which might be helpful.
+நீங்கள் எந்த உலாவியின் திறன்களிலும் விசை/மதிப்பாக விருப்ப [ஆதரிக்கப்படும் திறன்களையும்](https://www.browserstack.com/automate/capabilities) அனுப்பலாம். நீங்கள் `browserstack.debug` ஐ `true` என அமைத்தால், அது அமர்வின் திரைக்காட்சியைப் பதிவுசெய்யும், இது உதவியாக இருக்கலாம்.
 
-### Local Testing
+### உள்ளூர் சோதனை
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://www.browserstack.com/local-testing#command-line).
+இணையத்தால் அணுக முடியாத சர்வரை எதிராக சோதனைகளை இயக்க விரும்பினால் (எ.கா `localhost` போன்றவற்றில்), நீங்கள் [உள்ளூர் சோதனையைப்](https://www.browserstack.com/local-testing#command-line) பயன்படுத்த வேண்டும்.
 
-It is out of the scope of WebdriverIO to support this, so you must start it by yourself.
+இதை ஆதரிப்பது WebdriverIO இன் நோக்கத்திற்கு அப்பாற்பட்டது, எனவே நீங்கள் அதை உங்களாகவே தொடங்க வேண்டும்.
 
-If you do use local, you should set `browserstack.local` to `true` in your capabilities.
+நீங்கள் உள்ளூரைப் பயன்படுத்தினால், உங்கள் திறன்களில் `browserstack.local` ஐ `true` என அமைக்க வேண்டும்.
 
-If you are using the WDIO testrunner, download and configure the [`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service) in your `wdio.conf.js`. It helps get BrowserStack running, and comes with additional features that better integrate your tests into the BrowserStack service.
+WDIO சோதனை இயக்கியைப் பயன்படுத்துகிறீர்கள் என்றால், உங்கள் `wdio.conf.js` இல் [`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service) ஐப் பதிவிறக்கி கட்டமைக்கவும். இது BrowserStack ஐ இயக்க உதவுகிறது, மற்றும் உங்கள் சோதனைகளை BrowserStack சேவையுடன் சிறப்பாக ஒருங்கிணைக்கும் கூடுதல் அம்சங்களுடன் வருகிறது.
 
-### With Travis CI
+### Travis CI உடன்
 
-If you want to add Local Testing in Travis, you have to start it by yourself.
+Travis இல் உள்ளூர் சோதனையைச் சேர்க்க விரும்பினால், நீங்கள் அதை உங்களாகவே தொடங்க வேண்டும்.
 
-The following script will download and start it in the background. You should run this in Travis before starting the tests.
+பின்வரும் ஸ்கிரிப்ட் அதைப் பதிவிறக்கி பின்னணியில் தொடங்கும். சோதனைகளைத் தொடங்குவதற்கு முன் Travis இல் இதை இயக்க வேண்டும்.
 
 ```sh
 wget https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
@@ -90,9 +90,9 @@ unzip BrowserStackLocal-linux-x64.zip
 sleep 3
 ```
 
-Also, you might wish set the `build` to the Travis build number.
+மேலும், `build` ஐ Travis உருவாக்க எண்ணிற்கு அமைக்க விரும்பலாம்.
 
-Example `capabilities`:
+`capabilities` உதாரணம்:
 
 ```javascript
 browserName: 'chrome',
@@ -105,41 +105,41 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## TestingBot
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your [TestingBot](https://testingbot.com) username and secret key.
+ஒரே தேவையென்னவென்றால் உங்கள் கட்டமைப்பில் `user` மற்றும் `key` ஐ (`wdio.conf.js` மூலம் ஏற்றுமதி செய்யப்பட்டது அல்லது `webdriverio.remote(...)` க்கு அனுப்பப்பட்டது) உங்கள் [TestingBot](https://testingbot.com) பயனர்பெயர் மற்றும் ரகசிய விசைக்கு அமைக்க வேண்டும்.
 
-You can also pass in any optional [supported capabilities](https://testingbot.com/support/other/test-options) as a key/value in the capabilities for any browser.
+நீங்கள் எந்த உலாவியின் திறன்களிலும் விசை/மதிப்பாக விருப்ப [ஆதரிக்கப்படும் திறன்களையும்](https://testingbot.com/support/other/test-options) அனுப்பலாம்.
 
-### Local Testing
+### உள்ளூர் சோதனை
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://testingbot.com/support/other/tunnel). TestingBot provides a Java-based tunnel to allow you to test websites not accessible from the internet.
+இணையத்தால் அணுக முடியாத சர்வரை எதிராக சோதனைகளை இயக்க விரும்பினால் (எ.கா `localhost` போன்றவற்றில்), நீங்கள் [உள்ளூர் சோதனையைப்](https://testingbot.com/support/other/tunnel) பயன்படுத்த வேண்டும். TestingBot இணையத்தில் இருந்து அணுக முடியாத இணையதளங்களை சோதிக்க உங்களை அனுமதிக்க ஜாவா அடிப்படையிலான டன்னலை வழங்குகிறது.
 
-Their tunnel support page contains the information necessary to get this up and running.
+அவர்களின் டன்னல் ஆதரவு பக்கம் இதை இயக்குவதற்குத் தேவையான தகவல்களைக் கொண்டுள்ளது.
 
-If you are using the WDIO testrunner, download and configure the [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) in your `wdio.conf.js`. It helps get TestingBot running, and comes with additional features that better integrate your tests into the TestingBot service.
+WDIO சோதனை இயக்கியைப் பயன்படுத்துகிறீர்கள் என்றால், உங்கள் `wdio.conf.js` இல் [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) ஐப் பதிவிறக்கி கட்டமைக்கவும். இது TestingBot ஐ இயக்க உதவுகிறது, மற்றும் உங்கள் சோதனைகளை TestingBot சேவையுடன் சிறப்பாக ஒருங்கிணைக்கும் கூடுதல் அம்சங்களுடன் வருகிறது.
 
 ## LambdaTest
 
-[LambdaTest](https://www.lambdatest.com) integration is also built-in.
+[LambdaTest](https://www.lambdatest.com) ஒருங்கிணைப்பும் உள்ளிணைக்கப்பட்டுள்ளது.
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your LambdaTest account username and access key.
+ஒரே தேவையென்னவென்றால் உங்கள் கட்டமைப்பில் `user` மற்றும் `key` ஐ (`wdio.conf.js` மூலம் ஏற்றுமதி செய்யப்பட்டது அல்லது `webdriverio.remote(...)` க்கு அனுப்பப்பட்டது) உங்கள் LambdaTest கணக்கு பயனர்பெயர் மற்றும் அணுகல் விசைக்கு அமைக்க வேண்டும்.
 
-You can also pass in any optional [supported capabilities](https://www.lambdatest.com/capabilities-generator/) as a key/value in the capabilities for any browser. If you set `visual` to `true` it will record a screencast of the session, which might be helpful.
+நீங்கள் எந்த உலாவியின் திறன்களிலும் விசை/மதிப்பாக விருப்ப [ஆதரிக்கப்படும் திறன்களையும்](https://www.lambdatest.com/capabilities-generator/) அனுப்பலாம். நீங்கள் `visual` ஐ `true` என அமைத்தால், அது அமர்வின் திரைக்காட்சியைப் பதிவுசெய்யும், இது உதவியாக இருக்கலாம்.
 
-### Tunnel for local testing
+### உள்ளூர் சோதனைக்கான டன்னல்
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/).
+இணையத்தால் அணுக முடியாத சர்வரை எதிராக சோதனைகளை இயக்க விரும்பினால் (எ.கா `localhost` போன்றவற்றில்), நீங்கள் [உள்ளூர் சோதனையைப்](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/) பயன்படுத்த வேண்டும்.
 
-It is out of the scope of WebdriverIO to support this, so you must start it by yourself.
+இதை ஆதரிப்பது WebdriverIO இன் நோக்கத்திற்கு அப்பாற்பட்டது, எனவே நீங்கள் அதை உங்களாகவே தொடங்க வேண்டும்.
 
-If you do use local, you should set `tunnel` to `true` in your capabilities.
+நீங்கள் உள்ளூரைப் பயன்படுத்தினால், உங்கள் திறன்களில் `tunnel` ஐ `true` என அமைக்க வேண்டும்.
 
-If you are using the WDIO testrunner, download and configure the [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) in your `wdio.conf.js`. It helps get LambdaTest running, and comes with additional features that better integrate your tests into the LambdaTest service.
+WDIO சோதனை இயக்கியைப் பயன்படுத்துகிறீர்கள் என்றால், உங்கள் `wdio.conf.js` இல் [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) ஐப் பதிவிறக்கி கட்டமைக்கவும். இது LambdaTest ஐ இயக்க உதவுகிறது, மற்றும் உங்கள் சோதனைகளை LambdaTest சேவையுடன் சிறப்பாக ஒருங்கிணைக்கும் கூடுதல் அம்சங்களுடன் வருகிறது.
 
-### With Travis CI
+### Travis CI உடன்
 
-If you want to add Local Testing in Travis, you have to start it by yourself.
+Travis இல் உள்ளூர் சோதனையைச் சேர்க்க விரும்பினால், நீங்கள் அதை உங்களாகவே தொடங்க வேண்டும்.
 
-The following script will download and start it in the background. You should run this in Travis before starting the tests.
+பின்வரும் ஸ்கிரிப்ட் அதைப் பதிவிறக்கி பின்னணியில் தொடங்கும். சோதனைகளைத் தொடங்குவதற்கு முன் Travis இல் இதை இயக்க வேண்டும்.
 
 ```sh
 wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
@@ -148,9 +148,9 @@ unzip LT_Linux.zip
 sleep 3
 ```
 
-Also, you might wish set the `build` to the Travis build number.
+மேலும், `build` ஐ Travis உருவாக்க எண்ணிற்கு அமைக்க விரும்பலாம்.
 
-Example `capabilities`:
+`capabilities` உதாரணம்:
 
 ```javascript
 platform: 'Windows 10',
@@ -163,7 +163,7 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## Perfecto
 
-When using wdio with [`Perfecto`](https://www.perfecto.io), you need to create a security token for each user and add this in the capabilities structure (in addition to other capabilities), as follows:
+wdio ஐ [`Perfecto`](https://www.perfecto.io) உடன் பயன்படுத்தும் போது, ஒவ்வொரு பயனருக்கும் பாதுகாப்பு டோக்கனை உருவாக்கி, இதை திறன்கள் கட்டமைப்பில் (பிற திறன்களுடன் சேர்த்து) சேர்க்க வேண்டும், பின்வருமாறு:
 
 ```js
 export const config = {
@@ -173,7 +173,7 @@ export const config = {
   }],
 ```
 
-In addition, you need to add cloud configuration, as follows:
+இதற்கு கூடுதலாக, நீங்கள் கிளவுட் கட்டமைப்பைச் சேர்க்க வேண்டும், பின்வருமாறு:
 
 ```js
   hostname: "your_cloud_name.perfectomobile.com",

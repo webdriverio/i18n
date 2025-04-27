@@ -1,137 +1,137 @@
 ---
 id: compare-options
-title: Compare Options
+title: ஒப்பீட்டு விருப்பங்கள்
 ---
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+Compare options என்பவை [ResembleJS](https://github.com/Huddle/Resemble.js) மூலம் மேற்கொள்ளப்படும் ஒப்பீட்டின் முறையை பாதிக்கும் விருப்பங்கள் ஆகும்.
 
-:::info NOTE
-All compare options can be used during service instantiation or for each single `checkElement`,`checkScreen` and `checkFullPageScreen`. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
+:::info குறிப்பு
+அனைத்து ஒப்பீட்டு விருப்பங்களும் சேவை உருவாக்கத்தின் போதோ அல்லது ஒவ்வொரு தனி `checkElement`, `checkScreen` மற்றும் `checkFullPageScreen` ஆகியவற்றிற்கோ பயன்படுத்தலாம். ஒரு முறை விருப்பத்திற்கு சேவை உருவாக்கத்தின் போது அமைக்கப்பட்ட விருப்பத்தின் அதே key இருந்தால், முறை ஒப்பீட்டு விருப்பம் சேவை ஒப்பீட்டு விருப்ப மதிப்பை மேலெழுதும்.
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Compare images and discard alpha.
+படங்களை ஒப்பிட்டு ஆல்ஃபாவை புறக்கணிக்கும்.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. It will override the plugin setting. This is **iPad only**_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkScreen()` க்கு மட்டுமே பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும். இது **iPad மட்டுமே**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+ஒப்பீடுகளின் போது நிலப்புற பயன்முறையில் iPad களுக்கான பக்கப்பட்டியை தானாகவே தடுக்கிறது. இது தாவல்/தனிப்பட்ட/புக்மார்க் இயல்பான கூறுகளில் தோல்விகளைத் தடுக்கிறது.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும். இது **மொபைல் மட்டுமே**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+ஒப்பீடுகளின் போது நிலை மற்றும் முகவரிப் பட்டியை தானாகவே தடுக்கிறது. இது நேரம், வைஃபை அல்லது பேட்டரி நிலையில் தோல்விகளைத் தடுக்கிறது.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும். இது **மொபைல் மட்டுமே**_
 
-Automatically block out the toolbar.
+கருவிப்பட்டியை தானாகவே தடுக்கிறது.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Compare images and discard anti-aliasing.
+படங்களை ஒப்பிட்டு ஆன்டி-அலிசிங்கை புறக்கணிக்கும்.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Even though the images are in color, the comparison will compare 2 black/white images
+படங்கள் வண்ணத்தில் இருந்தாலும், ஒப்பீடு 2 கருப்பு/வெள்ளை படங்களை ஒப்பிடும்
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+படங்களை `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240` உடன் ஒப்பிடும்
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+படங்களை `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255` உடன் ஒப்பிடும்
 
 ### `ignoreTransparentPixel`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Compare images and it will ignore all pixels that have some transparency in one of the images
+படங்களை ஒப்பிட்டு, ஒரு படத்தில் சில ஒளிபுகு தன்மை உள்ள அனைத்து பிக்சல்களையும் புறக்கணிக்கும்
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+True எனில் திரும்பும் சதவீதம் `0.12345678` போல இருக்கும், இயல்புநிலை `0.12`
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-This will return all compare data, not only the mismatch percentage
+இது ஒப்பீட்டு தரவு அனைத்தையும் திரும்ப அனுப்பும், பொருந்தாத சதவீதத்தை மட்டும் அல்ல
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `number`
+-   **இயல்புநிலை:** `0`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+வேறுபாடுகள் கொண்ட படங்களை சேமிப்பதைத் தடுக்கும் `misMatchPercentage` இன் அனுமதிக்கக்கூடிய மதிப்பு
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `number`
+-   **இயல்புநிலை:** `0`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+பெரிய படங்களை ஒப்பிடுவது செயல்திறன் சிக்கல்களை ஏற்படுத்தலாம்.
+பிக்சல்களின் எண்ணிக்கையை (0-ஐ விட அதிகமாக) வழங்கும்போது, படத்தின் அகலம் அல்லது உயரம் `largeImageThreshold` பிக்சல்களை விட பெரியதாக இருக்கும்போது ஒப்பீட்டு அல்காரிதம் பிக்சல்களைத் தவிர்க்கிறது.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **வகை:** `boolean`
+-   **இயல்புநிலை:** `false`
+-   **கட்டாயம்:** இல்லை
+-   **குறிப்பு:** _`checkElement`, `checkScreen()` மற்றும் `checkFullPageScreen()` ஆகியவற்றிற்கும் பயன்படுத்தலாம். இது செருகுநிரல் அமைப்பை மேலெழுதும்_
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+ஒப்பீட்டை செயல்படுத்துவதற்கு முன் 2 படங்களை ஒரே அளவுக்கு அளவிடுகிறது. `ignoreAntialiasing` மற்றும் `ignoreAlpha` ஐ இயக்க பரிந்துரைக்கப்படுகிறது

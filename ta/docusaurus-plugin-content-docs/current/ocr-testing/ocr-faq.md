@@ -1,27 +1,27 @@
 ---
 id: ocr-faq
-title: Frequently Asked Questions
+title: அடிக்கடி கேட்கப்படும் கேள்விகள்
 ---
 
-## My tests are very slow
+## எனது சோதனைகள் மிகவும் மெதுவாக உள்ளன
 
-When you are using this `@wdio/ocr-service` you are not using it to speed up your tests, you use it because you have a hard time locating elements in your web/mobile app, and you want an easier way to locate them. And we all hopefully know that when you want something, you lose something else. **But....**, there is a way to make the `@wdio/ocr-service` execute faster than normal. More information about that can be found [here](./more-test-optimization).
+நீங்கள் இந்த `@wdio/ocr-service` ஐப் பயன்படுத்தும்போது, உங்கள் சோதனைகளை வேகப்படுத்த அதைப் பயன்படுத்தவில்லை, உங்கள் வலை/மொபைல் பயன்பாட்டில் கூறுகளைக் கண்டறிவதில் சிரமம் உள்ளது, மேலும் அவற்றைக் கண்டறிய எளிதான வழியை நீங்கள் விரும்புகிறீர்கள். மேலும் நீங்கள் ஏதாவது விரும்பும்போது, வேறொன்றை இழக்கிறீர்கள் என்பதை நாம் அனைவரும் நம்புகிறோம். **ஆனால்....**, `@wdio/ocr-service` ஐ வழக்கமான விகிதத்தை விட வேகமாக செயல்படுத்த ஒரு வழி உள்ளது. அதைப் பற்றிய கூடுதல் தகவல்களை [இங்கே](./more-test-optimization) காணலாம்.
 
-## Can I use the commands from this service with the default WebdriverIO commands/selectors?
+## இந்த சேவையின் கட்டளைகளை இயல்புநிலை WebdriverIO கட்டளைகள்/தேர்வுக்கருவிகளுடன் பயன்படுத்த முடியுமா?
 
-Yes, you can combine the commands to make your script even more powerful! The advice is to use the default WebdriverIO commands/selectors as much as possible and only use this service when you can't find a unique selector, or your selector will become too brittle.
+ஆம், நீங்கள் உங்கள் ஸ்கிரிப்டை இன்னும் சக்திவாய்ந்ததாக்க கட்டளைகளை இணைக்கலாம்! முடிந்தவரை இயல்புநிலை WebdriverIO கட்டளைகள்/தேர்வுக்கருவிகளைப் பயன்படுத்துவது மற்றும் தனிப்பட்ட தேர்வுக்கருவியைக் கண்டுபிடிக்க முடியாதபோது அல்லது உங்கள் தேர்வுக்கருவி மிகவும் எளிதில் உடையக்கூடியதாக மாறும்போது மட்டுமே இந்த சேவையைப் பயன்படுத்துவது ஆலோசனை ஆகும்.
 
-## My text isn't found, how is that possible?
+## எனது உரை கண்டுபிடிக்கப்படவில்லை, எப்படி அது சாத்தியம்?
 
-First, it's important to understand how the OCR process in this module works, so please read [this](./ocr-testing) page. If you still can't find your text, you might try the following things.
+முதலில், இந்த மாட்யூலில் OCR செயல்முறை எவ்வாறு செயல்படுகிறது என்பதைப் புரிந்துகொள்வது முக்கியம், எனவே [இந்த](./ocr-testing) பக்கத்தைப் படிக்கவும். உங்கள் உரையை இன்னும் கண்டுபிடிக்க முடியவில்லை என்றால், நீங்கள் பின்வரும் விஷயங்களை முயற்சிக்கலாம்.
 
-### The image area is too big
+### படப் பகுதி மிகப் பெரியதாக உள்ளது
 
-When the module needs to process a large area of the screenshot it might not find the text. You can provide a smaller area by providing a haystack when you use a command. Please check the [commands](./ocr-click-on-text) which commands support providing a haystack.
+மாட்யூல் திரைப்பிடிப்பின் பெரிய பகுதியைச் செயலாக்க வேண்டியிருக்கும்போது, அது உரையைக் கண்டுபிடிக்காமல் போகலாம். நீங்கள் கட்டளையை பயன்படுத்தும்போது ஒரு haystack வழங்குவதன் மூலம் ஒரு சிறிய பகுதியை வழங்கலாம். haystack வழங்குவதை ஆதரிக்கும் [கட்டளைகள்](./ocr-click-on-text) எவை என்பதைச் சரிபார்க்கவும்.
 
-### The contrast between the text and background is not correct
+### உரை மற்றும் பின்னணிக்கு இடையேயான வேறுபாடு சரியாக இல்லை
 
-This means that you might have light text on a white background or dark text on a dark background. This can result in not being able to find text. In the examples below you can see that the text `Why WebdriverIO?` is white and surrounded by a grey button. In this case, it will result in not finding the `Why WebdriverIO?` text. By increasing the contrast for the specific command it finds the text and can click on it, see the second image.
+இதன் பொருள் வெள்ளை பின்னணியில் வெளிர் உரை அல்லது இருண்ட பின்னணியில் இருண்ட உரை இருக்கலாம். இது உரையைக் கண்டுபிடிக்க முடியாமல் போகலாம். கீழே உள்ள எடுத்துக்காட்டுகளில், `Why WebdriverIO?` உரை வெள்ளையாக இருப்பதையும், சாம்பல் நிற பொத்தானால் சூழப்பட்டிருப்பதையும் நீங்கள் காணலாம். இந்த வழக்கில், `Why WebdriverIO?` உரையைக் கண்டுபிடிக்க முடியாது. குறிப்பிட்ட கட்டளைக்கான வேறுபாட்டை அதிகரிப்பதன் மூலம் அது உரையைக் கண்டுபிடித்து அதைக் கிளிக் செய்ய முடியும், இரண்டாவது படத்தைப் பார்க்கவும்.
 
 ```js
 await driver.ocrClickOnText({
@@ -34,45 +34,46 @@ await driver.ocrClickOnText({
 
 ![Contrast issues](/img/ocr/increased-contrast.jpg)
 
-## Why is my element getting clicked but the keyboard on my mobile devices never pops up?
+## ஏன் எனது உறுப்பு கிளிக் செய்யப்படுகிறது ஆனால் என் மொபைல் சாதனங்களில் கீபோர்ட் தோன்றவில்லை?
 
-This can happen on some text fields where the click is determined too long and considered a long tap. You can use the `clickDuration` option on [`ocrClickOnText`](./ocr-click-on-text) and [`ocrSetValue`](./ocr-set-value) to alleviate this. See [here](./ocr-click-on-text#options).
+கிளிக் நீண்ட நேரம் நீடிக்கும் மற்றும் நீண்ட நேர தட்டலாகக் கருதப்படும் சில உரை புலங்களில் இது நிகழலாம். இதைத் தவிர்க்க [`ocrClickOnText`](./ocr-click-on-text) மற்றும் [`ocrSetValue`](./ocr-set-value) இல் `clickDuration` விருப்பத்தைப் பயன்படுத்தலாம். [இங்கே](./ocr-click-on-text#options) பார்க்கவும்.
 
-## Can this module provide multiple elements back like WebdriverIO normally can do?
+## WebdriverIO வழக்கமாகச் செய்யக்கூடிய பல உறுப்புகளை இந்த மாட்யூல் திருப்பித் தர முடியுமா?
 
-No, this is currently not possible. If the module finds multiple elements that match the provided selector it will automatically find the element that has the highest matching score.
+இல்லை, இது தற்போது சாத்தியமில்லை. மாட்யூல் வழங்கப்பட்ட தேர்வுக்கருவியுடன் பொருந்தும் பல உறுப்புகளைக் கண்டால், அது தானாகவே அதிகபட்ச பொருத்த மதிப்பெண்ணைக் கொண்ட உறுப்பைக் கண்டறியும்.
 
-## Can I fully automate my app with the OCR commands provided by this service?
+## இந்த சேவையால் வழங்கப்படும் OCR கட்டளைகள் மூலம் எனது பயன்பாட்டை முழுமையாக தானியங்குபடுத்த முடியுமா?
 
-I've never done it, but in theory, it should be possible. Please let us know if you succeed with that ☺️.
+நான் இதுவரை செய்ததில்லை, ஆனால் கோட்பாட்டளவில், அது சாத்தியமாக இருக்க வேண்டும். நீங்கள் அதில் வெற்றிபெற்றால் எங்களுக்குத் தெரியப்படுத்தவும் ☺️.
 
-## I see an extra file called `{languageCode}.traineddata` being added, what is this?
+## `{languageCode}.traineddata` என்ற கூடுதல் கோப்பு சேர்க்கப்பட்டுள்ளதை நான் காண்கிறேன், இது என்ன?
 
-`{languageCode}.traineddata` is a language data file used by Tesseract. It contains the training data for the selected language, which includes the necessary information for Tesseract to recognize English characters and words effectively.
+`{languageCode}.traineddata` என்பது Tesseract ஆல் பயன்படுத்தப்படும் மொழி தரவு கோப்பாகும். இது தேர்ந்தெடுக்கப்பட்ட மொழிக்கான பயிற்சி தரவைக் கொண்டுள்ளது, இது ஆங்கில எழுத்துகள் மற்றும் சொற்களை திறம்பட அங்கீகரிக்க Tesseract க்கு தேவையான தகவல்களை உள்ளடக்கியது.
 
-### Contents of `{languageCode}.traineddata`
+### `{languageCode}.traineddata` இன் உள்ளடக்கம்
 
-The file generally contains:
+கோப்பு பொதுவாக பின்வருவனவற்றைக் கொண்டுள்ளது:
 
-1. **Character Set Data:** Information about the characters in the English language.
-2. **Language Model:** A statistical model of how characters form words and words form sentences.
-3. **Feature Extractors:** Data on how to extract features from images for the recognition of characters.
-4. **Training Data:** Data derived from training Tesseract on a large set of English text images.
+1. **எழுத்து தொகுப்பு தரவு:** ஆங்கில மொழியில் உள்ள எழுத்துக்களைப் பற்றிய தகவல்.
+1. **மொழி மாடல்:** எழுத்துகள் சொற்களை உருவாக்கும் விதம் மற்றும் சொற்கள் வாக்கியங்களை உருவாக்கும் விதம் பற்றிய புள்ளியியல் மாடல்.
+1. **அம்ச பிரித்தெடுப்பான்கள்:** எழுத்துகளை அங்கீகரிப்பதற்காக படங்களிலிருந்து அம்சங்களை எவ்வாறு பிரித்தெடுப்பது என்பது பற்றிய தரவு.
+1. **பயிற்சி தரவு:** பெரிய அளவிலான ஆங்கில உரை படங்களில் Tesseract ஐப் பயிற்றுவிப்பதிலிருந்து பெறப்பட்ட தரவு.
 
-### Why is the `{languageCode}.traineddata` Important?
+### `{languageCode}.traineddata` ஏன் முக்கியமானது?
 
-1. **Language Recognition:** Tesseract relies on these trained data files to accurately recognize and process text in a specific language. Without `{languageCode}.traineddata`, Tesseract would not be able to recognize English text.
-2. **Performance:** The quality and accuracy of OCR are directly related to the quality of the training data. Using the correct trained data file ensures that the OCR process is as accurate as possible.
-3. **Compatibility:** Ensuring that the `{languageCode}.traineddata` file is included in your project making it easier to replicate the OCR environment across different systems or team members' machines.
+1. **மொழி அங்கீகாரம்:** ஒரு குறிப்பிட்ட மொழியில் உரையை துல்லியமாக அங்கீகரித்து செயலாக்க Tesseract இந்த பயிற்சி தரவு கோப்புகளை நம்பியுள்ளது. `{languageCode}.traineddata` இல்லாமல், Tesseract ஆங்கில உரையை அங்கீகரிக்க முடியாது.
+1. **செயல்திறன்:** OCR இன் தரம் மற்றும் துல்லியம் பயிற்சி தரவின் தரத்துடன் நேரடியாக தொடர்புடையது. சரியான பயிற்சி தரவு கோப்பைப் பயன்படுத்துவது OCR செயல்முறை முடிந்தவரை துல்லியமாக இருப்பதை உறுதி செய்கிறது.
+1. **இணக்கத்தன்மை:** உங்கள் திட்டத்தில் `{languageCode}.traineddata` கோப்பை சேர்ப்பது வெவ்வேறு அமைப்புகள் அல்லது குழு உறுப்பினர்களின் கணினிகளில் OCR சூழலை மறுபடியும் உருவாக்குவதை எளிதாக்குகிறது.
 
-### Versioning `{languageCode}.traineddata`
+### `{languageCode}.traineddata` இன் பதிப்புகள்
 
-Including `{languageCode}.traineddata` in your version control system is recommended for the following reasons:
+பின்வரும் காரணங்களுக்காக `{languageCode}.traineddata` ஐ உங்கள் பதிப்பு கட்டுப்பாட்டு அமைப்பில் சேர்ப்பது பரிந்துரைக்கப்படுகிறது:
 
-1. **Consistency:** It ensures that all team members or deployment environments use the exact same version of the training data, leading to consistent OCR results across different environments.
-2. **Reproducibility:** Storing this file in version control makes it easier to reproduce results when running the OCR process at a later date or on a different machine.
-3. **Dependency Management:** Including it in the version control system helps in managing dependencies and ensures that any setup or environment configuration includes the necessary files for the project to run correctly.
+1. **நிலைத்தன்மை:** இது அனைத்து குழு உறுப்பினர்கள் அல்லது டெப்லாய்மென்ட் சூழல்கள் அதே பதிப்பிலான பயிற்சி தரவைப் பயன்படுத்துவதை உறுதி செய்கிறது, இது வெவ்வேறு சூழல்களில் நிலையான OCR முடிவுகளை வழங்குகிறது.
+1. **மறுஉருவாக்கம்:** இந்த கோப்பை பதிப்பு கட்டுப்பாட்டில் சேமிப்பது பின்னர் அல்லது வேறு கணினியில் OCR செயல்முறையை இயக்கும்போது முடிவுகளை மீண்டும் உருவாக்குவதை எளிதாக்குகிறது.
+1. **சார்புகள் நிர்வாகம்:** அதை பதிப்பு கட்டுப்பாட்டு அமைப்பில் சேர்ப்பது சார்புகளை நிர்வகிப்பதில் உதவுகிறது மற்றும் எந்த அமைப்பு அல்லது சூழல் கட்டமைப்பும் திட்டத்தை சரியாக இயக்குவதற்கு தேவையான கோப்புகளை உள்ளடக்கியுள்ளது என்பதை உறுதி செய்கிறது.
 
-## Is there an easy way to see which text is found on my screen without running a test?
+## சோதனை ஓட்டாமல் என் திரையில் எந்த உரை கண்டுபிடிக்கப்படுகிறது என்பதைப் பார்க்க எளிதான வழி உள்ளதா?
 
-Yes, you can use our CLI wizard for that. Documentation can be found [here](./cli-wizard)
+ஆம், அதற்காக நீங்கள் எங்கள் CLI wizard ஐப் பயன்படுத்தலாம். ஆவணங்களை [இங்கே](./cli-wizard) காணலாம்
+```

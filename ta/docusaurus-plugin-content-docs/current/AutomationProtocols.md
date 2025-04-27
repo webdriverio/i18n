@@ -1,25 +1,25 @@
 ---
 id: automationProtocols
-title: Automation Protocols
+title: தானியக்க நெறிமுறைகள்
 ---
 
-With WebdriverIO, you can choose between multiple automation technologies when running your E2E tests locally or in the cloud. By default, WebdriverIO will attempt to start a local automation session using the [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) protocol.
+WebdriverIO உடன், உங்கள் E2E சோதனைகளை உள்ளூரில் அல்லது மேகத்தில் இயக்கும்போது பல தானியக்க தொழில்நுட்பங்களில் நீங்கள் தேர்வு செய்யலாம். இயல்பாக, WebdriverIO [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) நெறிமுறையைப் பயன்படுத்தி உள்ளூர் தானியக்க அமர்வைத் தொடங்க முயற்சிக்கும்.
 
-## WebDriver Bidi Protocol
+## WebDriver Bidi நெறிமுறை
 
-The [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) is an automation protocol to automate browsers using bi-directional communication. It's the successor of the [WebDriver](https://w3c.github.io/webdriver/) protocol and enables a lot more introspection capabilities for various testing use cases.
+[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) என்பது இருவழி தொடர்பைப் பயன்படுத்தி உலாவிகளை தானியக்கமாக்கும் ஒரு நெறிமுறையாகும். இது [WebDriver](https://w3c.github.io/webdriver/) நெறிமுறையின் வாரிசு மற்றும் பல்வேறு சோதனை பயன்பாட்டு வழக்குகளுக்கு அதிக ஆய்வு திறன்களை வழங்குகிறது.
 
-This protocol is currently under development and new primitives might be added in the future. All browser vendors have committed to implementing this web standard and a lot of [primitives](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) have already been landed in browsers.
+இந்த நெறிமுறை தற்போது உருவாக்கப்பட்டு வருகிறது மற்றும் எதிர்காலத்தில் புதிய அடிப்படைகள் சேர்க்கப்படலாம். அனைத்து உலாவி விற்பனையாளர்களும் இந்த வலை தரநிலையை செயல்படுத்த உறுதியளித்துள்ளனர் மற்றும் பல [அடிப்படைகள்](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) ஏற்கனவே உலாவிகளில் அறிமுகப்படுத்தப்பட்டுள்ளன.
 
-## WebDriver Protocol
+## WebDriver நெறிமுறை
 
-> [WebDriver](https://w3c.github.io/webdriver/) is a remote control interface that enables introspection and control of user agents. It provides a platform- and language-neutral wire protocol as a way for out-of-process programs to remotely instruct the behavior of web browsers.
+> [WebDriver](https://w3c.github.io/webdriver/) என்பது பயனர் முகவர்களின் ஆய்வு மற்றும் கட்டுப்பாட்டை செயல்படுத்தும் ஒரு தொலைநிலைக் கட்டுப்பாட்டு இடைமுகம் ஆகும். இது வலை உலாவிகளின் நடத்தையை தொலைநிலையில் வழிமுறைப்படுத்த செயல்முறைக்கு வெளியே உள்ள நிரல்களுக்கான ஒரு தளம் மற்றும் மொழி-நடுநிலையான வயர் நெறிமுறையை வழங்குகிறது.
 
-The WebDriver protocol was designed to automate a browser from the user perspective, meaning that everything a user is able to do, you can do with the browser. It provides a set of commands that abstract away common interactions with an application (e.g., navigating, clicking, or reading the state of an element). Since it is a web standard, it is well supported across all major browser vendors and also is being used as an underlying protocol for mobile automation using [Appium](http://appium.io).
+WebDriver நெறிமுறை பயனர் கண்ணோட்டத்தில் இருந்து ஒரு உலாவியை தானியக்கமாக்க வடிவமைக்கப்பட்டது, அதாவது ஒரு பயனர் செய்யக்கூடிய எல்லாவற்றையும், நீங்கள் உலாவியுடன் செய்யலாம். இது ஒரு பயன்பாட்டுடன் பொதுவான தொடர்புகளை சுருக்கமாக குறிக்கும் கட்டளைகளின் தொகுப்பை வழங்குகிறது (எ.கா., வழிசெலுத்துதல், கிளிக் செய்தல், அல்லது ஒரு உறுப்புகளின் நிலையைப் படித்தல்). இது ஒரு வலை தரநிலையாக இருப்பதால், இது அனைத்து முக்கிய உலாவி விற்பனையாளர்களிடையே நன்கு ஆதரிக்கப்படுகிறது மற்றும் [Appium](http://appium.io) ஐப் பயன்படுத்தி மொபைல் தானியக்கத்திற்கான அடிப்படை நெறிமுறையாகவும் பயன்படுத்தப்படுகிறது.
 
-To use this automation protocol, you need a proxy server that translates all commands and executes them in the target environment (i.e. the browser or the mobile app).
+இந்த தானியக்க நெறிமுறையைப் பயன்படுத்த, அனைத்து கட்டளைகளையும் மொழிபெயர்த்து அவற்றை இலக்கு சூழலில் (அதாவது உலாவி அல்லது மொபைல் பயன்பாடு) இயக்கும் ஒரு பிராக்ஸி சேவையகம் உங்களுக்கு தேவை.
 
-For browser automation, the proxy server is usually the browser driver. There are drivers  available for all browsers:
+உலாவி தானியக்கத்திற்கு, பிராக்ஸி சேவையகம் பொதுவாக உலாவி இயக்கி ஆகும். அனைத்து உலாவிகளுக்கும் இயக்கிகள் கிடைக்கின்றன:
 
 - Chrome – [ChromeDriver](http://chromedriver.chromium.org/downloads)
 - Firefox – [Geckodriver](https://github.com/mozilla/geckodriver/releases)
@@ -27,21 +27,8 @@ For browser automation, the proxy server is usually the browser driver. There ar
 - Internet Explorer – [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
 - Safari – [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
-For any kind of mobile automation, you’ll need to install and setup [Appium](http://appium.io). It will allow you to automate mobile (iOS/Android) or even desktop (macOS/Windows) applications using the same WebdriverIO setup.
+எந்தவொரு மொபைல் தானியக்கத்திற்கும், நீங்கள் [Appium](http://appium.io) ஐ நிறுவி அமைக்க வேண்டும். அதே WebdriverIO அமைப்பைப் பயன்படுத்தி மொபைல் (iOS/Android) அல்லது டெஸ்க்டாப் (macOS/Windows) பயன்பாடுகளை தானியக்கமாக்க இது உங்களை அனுமதிக்கும்.
 
-There are also plenty of services that allow you to run your automation test in the cloud at high scale. Instead of having to setup all these drivers locally, you can just talk to these services (e.g. [Sauce Labs](https://saucelabs.com)) in the cloud and inspect the results on their platform. The communication between test script and automation environment will look as follows:
+உங்கள் தானியக்க சோதனையை மேகத்தில் உயர் அளவில் இயக்க அனுமதிக்கும் பல சேவைகளும் உள்ளன. இந்த இயக்கிகள் அனைத்தையும் உள்ளூரில் அமைக்க வேண்டிய அவசியமில்லை, நீங்கள் மேகத்தில் இந்த சேவைகளுடன் (எ.கா. [Sauce Labs](https://saucelabs.com)) பேசலாம் மற்றும் அவர்களின் தளத்தில் முடிவுகளை ஆய்வு செய்யலாம். சோதனை ஸ்கிரிப்ட் மற்றும் தானியக்க சூழலுக்கு இடையிலான தொடர்பு பின்வருமாறு இருக்கும்:
 
 ![WebDriver Setup](/img/webdriver.png)
-
-### Advantages
-
-- Official W3C web standard, supported by all major browsers
-- Simplified protocol that covers common user interactions
-- Support for mobile automation (and even native desktop apps)
-- Can be used locally as well as in the cloud through services like [Sauce Labs](https://saucelabs.com)
-
-### Disadvantages
-
-- Not designed for in-depth browser analysis (e.g., tracing or intercepting network events)
-- Limited set of automation capabilities (e.g., no support to throttle CPU or network)
-- Additional effort to set up browser driver with selenium-standalone/chromedriver/etc
