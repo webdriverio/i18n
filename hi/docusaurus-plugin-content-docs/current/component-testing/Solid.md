@@ -3,11 +3,11 @@ id: solid
 title: SolidJS
 ---
 
-[सॉलिडजेएस](https://www.solidjs.com/) सरल और प्रदर्शनकारी प्रतिक्रियाशीलता के साथ यूजर इंटरफेस बनाने के लिए एक ढांचा है। आप WebdriverIO और इसके [ब्राउज़र रनर](/docs/runner#browser-runner)का उपयोग करके सीधे एक वास्तविक ब्राउज़र में सॉलिडजेएस घटकों का परीक्षण कर सकते हैं।
+[SolidJS](https://www.solidjs.com/) एक फ्रेमवर्क है जो सरल और प्रभावशाली प्रतिक्रियाशीलता के साथ यूजर इंटरफेस बनाने के लिए है। आप WebdriverIO और इसके [ब्राउज़र रनर](/docs/runner#browser-runner) का उपयोग करके सीधे वास्तविक ब्राउज़र में SolidJS कंपोनेंट्स का परीक्षण कर सकते हैं।
 
 ## सेटअप
 
-अपने सॉलिडजेएस प्रोजेक्ट के भीतर वेबड्राइवरियो को सेटअप करने के लिए, हमारे घटक परीक्षण डॉक्स में [निर्देशों](/docs/component-testing#set-up) का पालन करें। अपने रनर विकल्पों में `solid` प्रीसेट के रूप में चुनना सुनिश्चित करें, उदाहरण के लिए:solid
+अपने SolidJS प्रोजेक्ट में WebdriverIO को सेटअप करने के लिए, हमारे कंपोनेंट टेस्टिंग दस्तावेज़ में [निर्देशों](/docs/component-testing#set-up) का पालन करें। अपने रनर विकल्पों में प्रीसेट के रूप में `solid` का चयन करना सुनिश्चित करें, उदाहरण के लिए:
 
 ```js
 // wdio.conf.js
@@ -22,25 +22,25 @@ export const config = {
 
 :::info
 
-यदि आप पहले से ही विकास सर्वर के रूप में [Vite](https://vitejs.dev/) का उपयोग कर रहे हैं तो आप अपने WebdriverIO कॉन्फ़िगरेशन के भीतर `vite.config.ts` में अपने कॉन्फ़िगरेशन का पुन: उपयोग भी कर सकते हैं। अधिक जानकारी के लिए, `viteConfig` in [रनर विकल्प](/docs/runner#runner-options)देखें।
+यदि आप पहले से ही [Vite](https://vitejs.dev/) को डेवलपमेंट सर्वर के रूप में उपयोग कर रहे हैं, तो आप अपने WebdriverIO कॉन्फिगरेशन में `vite.config.ts` की अपनी कॉन्फिगरेशन को पुन: उपयोग कर सकते हैं। अधिक जानकारी के लिए, [रनर विकल्प](/docs/runner#runner-options) में `viteConfig` देखें।
 
 :::
 
-सॉलिडजेएस प्रीसेट को स्थापित करने के लिए `vite-plugin-solid`की आवश्यकता होती है:
+SolidJS प्रीसेट के लिए `vite-plugin-solid` का इंस्टॉल होना आवश्यक है:
 
 ```sh npm2yarn
 npm install --save-dev vite-plugin-solid
 ```
 
-फिर आप चलाकर परीक्षण शुरू कर सकते हैं:
+फिर आप टेस्ट को निम्न कमांड से शुरू कर सकते हैं:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## लेखन परीक्षण
+## टेस्ट लिखना
 
-यह देखते हुए कि आपके पास निम्नलिखित सॉलिडजेएस घटक हैं:
+मान लीजिए आपके पास निम्न SolidJS कंपोनेंट है:
 
 ```html title="./components/Component.tsx"
 import { createSignal } from 'solid-js'
@@ -61,7 +61,7 @@ function App() {
 export default App
 ```
 
-परीक्षण पृष्ठ पर घटक संलग्न करने के लिए अपने परीक्षण में `solid-js/web` से `render` विधि का उपयोग करें। घटक के साथ बातचीत करने के लिए हम WebdriverIO कमांड का उपयोग करने की अनुशंसा करते हैं क्योंकि वे वास्तविक उपयोगकर्ता इंटरैक्शन के अधिक निकट व्यवहार करते हैं, उदाहरण के लिए:
+अपने टेस्ट में कंपोनेंट को टेस्ट पेज से जोड़ने के लिए `solid-js/web` से `render` मेथड का उपयोग करें। कंपोनेंट के साथ इंटरैक्ट करने के लिए हम WebdriverIO कमांड्स का उपयोग करने की सलाह देते हैं क्योंकि वे वास्तविक उपयोगकर्ता इंटरैक्शन के अधिक करीब व्यवहार करते हैं, उदाहरण के लिए:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -94,5 +94,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-आप हमारे [उदाहरण भंडार](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite)में सॉलिडजेएस के लिए वेबड्राइवर आईओ घटक परीक्षण सूट का एक पूर्ण उदाहरण पा सकते हैं।
-
+आप हमारे [उदाहरण रिपॉजिटरी](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite) में SolidJS के लिए WebdriverIO कंपोनेंट टेस्ट सूट का पूर्ण उदाहरण पा सकते हैं।

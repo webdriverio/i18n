@@ -1,8 +1,7 @@
 ---
 id: wdiocommands
-title: डब्ल्यूडीआईओ कमांड
+title: WDIO कमांड्स
 ---
-
-This flowchart provides a high level overview of the @wdio/cli run, repl, config and install commands.
+यह फ्लोचार्ट @wdio/cli रन, repl, कॉन्फिग और इंस्टॉल कमांड्स का एक उच्च स्तरीय अवलोकन प्रदान करता है।
 
 <CreateFlowcharts id='wdiocommands' />

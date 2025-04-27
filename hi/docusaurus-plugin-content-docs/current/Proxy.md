@@ -3,24 +3,24 @@ id: proxy
 title: प्रॉक्सी सेटअप
 ---
 
-आप प्रॉक्सी के माध्यम से दो अलग-अलग प्रकार के अनुरोधों को टनल कर सकते हैं:
+आप दो अलग-अलग प्रकार के अनुरोधों को प्रॉक्सी के माध्यम से भेज सकते हैं:
 
-- आपकी टेस्ट स्क्रिप्ट और ब्राउज़र ड्राइवर (या वेबड्राइवर एंडपॉइंट) के बीच कनेक्शन
-- ब्राउज़र और इंटरनेट के बीच संबंध
+- आपकी टेस्ट स्क्रिप्ट और ब्राउज़र ड्राइवर (या WebDriver एंडपॉइंट) के बीच कनेक्शन
+- ब्राउज़र और इंटरनेट के बीच कनेक्शन
 
-## ब्राउज़र और इंटरनेट के बीच प्रॉक्सी
+## ड्राइवर और टेस्ट के बीच प्रॉक्सी
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+यदि आपकी कंपनी में सभी आउटगोइंग अनुरोधों के लिए एक कॉर्पोरेट प्रॉक्सी है (जैसे `http://my.corp.proxy.com:9090` पर), तो [undici](https://github.com/nodejs/undici) को इंस्टॉल और कॉन्फ़िगर करने के लिए निम्न चरणों का पालन करें।
 
-### Install undici
+### undici इंस्टॉल करें
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### अपनी कॉन्फ़िग फ़ाइल में undici setGlobalDispatcher जोड़ें
 
-अपनी कॉन्फ़िगरेशन फ़ाइल के शीर्ष पर निम्न आवश्यक कथन जोड़ें।
+अपनी कॉन्फ़िग फ़ाइल के शीर्ष पर निम्न require स्टेटमेंट जोड़ें।
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,9 +33,9 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+प्रॉक्सी को कॉन्फ़िगर करने के बारे में अतिरिक्त जानकारी [यहां](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md) पाई जा सकती है।
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+यदि आप [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5) का उपयोग करते हैं, तो इसे इस प्रकार शुरू करें:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
@@ -43,12 +43,12 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 
 ## ब्राउज़र और इंटरनेट के बीच प्रॉक्सी
 
-ब्राउज़र और इंटरनेट के बीच कनेक्शन को टनल करने के लिए, आप एक प्रॉक्सी सेट कर सकते हैं जो (उदाहरण के लिए) [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy)जैसे टूल के साथ नेटवर्क जानकारी और अन्य डेटा कैप्चर करने के लिए उपयोगी हो सकता है।
+ब्राउज़र और इंटरनेट के बीच कनेक्शन को टनल करने के लिए, आप एक प्रॉक्सी सेट अप कर सकते हैं जो उपयोगी हो सकता है (उदाहरण के लिए) [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) जैसे टूल्स के साथ नेटवर्क जानकारी और अन्य डेटा कैप्चर करने के लिए।
 
-`proxy` पैरामीटर को मानक क्षमताओं के माध्यम से निम्न तरीके से लागू किया जा सकता है:
+`proxy` पैरामीटर्स को स्टैंडर्ड कैपेबिलिटीज के माध्यम से निम्नलिखित तरीके से लागू किया जा सकता है:
 
 ```js title="wdio.conf.js"
-निर्यात स्थिरांक विन्यास = {
+export const config = {
     // ...
     capabilities: [{
         browserName: 'chrome',
@@ -66,4 +66,4 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 }
 ```
 
-अधिक जानकारी के लिए, [वेबड्राइवर विनिर्देश](https://w3c.github.io/webdriver/#proxy)देखें।
+अधिक जानकारी के लिए, [WebDriver स्पेसिफिकेशन](https://w3c.github.io/webdriver/#proxy) देखें।

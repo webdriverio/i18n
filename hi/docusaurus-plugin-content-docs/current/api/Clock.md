@@ -1,9 +1,9 @@
 ---
 id: clock
-title: The Clock Object
+title: घड़ी वस्तु
 ---
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+आप [`emulate`](/docs/emulation) कमांड का उपयोग करके ब्राउज़र सिस्टम घड़ी को संशोधित कर सकते हैं। यह समय से संबंधित native global functions को override करता है जिससे उन्हें `clock.tick()` या yielded clock object के माध्यम से synchronously नियंत्रित किया जा सकता है। इसमें निम्नलिखित को नियंत्रित करना शामिल है:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+घड़ी unix epoch (timestamp 0) से शुरू होती है। इसका मतलब है कि जब आप अपने अनुप्रयोग में new Date को instantiate करते हैं, तो इसका समय 1 जनवरी, 1970 होगा यदि आप `emulate` कमांड में कोई अन्य विकल्प नहीं देते हैं।
 
-## Example
+## उदाहरण
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+जब आप `browser.emulate('clock', { ... })` कॉल करते हैं, तो यह तुरंत वर्तमान पेज के साथ-साथ सभी आगामी पेजों के लिए global functions को ओवरराइट कर देगा, उदाहरण के लिए:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -37,4 +37,4 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+आप [`setSystemTime`](/docs/api/clock/setSystemTime) या [`tick`](/docs/api/clock/tick) को कॉल करके सिस्टम समय को संशोधित कर सकते हैं।

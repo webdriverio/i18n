@@ -1,24 +1,24 @@
 ---
 id: percy-overview
-title: Unlocking Percy - An Overview
+title: पर्सी को अनलॉक करना - एक ओवरव्यू
 ---
 
 ## Introduction
 
-[Percy](https://percy.io/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) is an all-in-one visual testing and review platform. It captures screenshots, compares them against the baseline, and highlights visual changes. With increased visual coverage, teams can deploy code changes with confidence with every commit.
+[Percy](https://percy.io/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) एक ऑल-इन-वन विज़ुअल टेस्टिंग और रिव्यू प्लेटफॉर्म है। यह स्क्रीनशॉट्स कैप्चर करता है, उन्हें बेसलाइन के साथ तुलना करता है, और विज़ुअल परिवर्तनों को हाइलाइट करता है। बढ़े हुए विज़ुअल कवरेज के साथ, टीमें हर कमिट के साथ आत्मविश्वास के साथ कोड परिवर्तनों को डिप्लॉय कर सकती हैं।
 
-WebdriverIO supports cross-browser visual testing natively using Percy and App Percy. You can use Percy for visual testing of website and native mobile applications.
-The benefits of utilizing Percy for visual testing include the following:
+WebdriverIO पर्सी और ऐप पर्सी का उपयोग करके क्रॉस-ब्राउज़र विज़ुअल टेस्टिंग को नेटिव रूप से सपोर्ट करता है। आप वेबसाइट और नेटिव मोबाइल एप्लिकेशन के विज़ुअल टेस्टिंग के लिए पर्सी का उपयोग कर सकते हैं।
+विज़ुअल टेस्टिंग के लिए पर्सी का उपयोग करने के लाभों में निम्नलिखित शामिल हैं:
 
-- Consistency: Promotes consistent user experience by identifying visual discrepancies early in the development process.
-- Efficiency: Improves efficiency by reducing the time and effort required to manually spot visual regressions.
-- Integrations: Percy integrates with popular tools and services like GitHub, GitLab, Bitbucket, and more.
-- Collaboration: Improves collaboration between developers, designers, and QA teams by providing a visual representation of changes.
-- Prevent regression: Prevents you from experiencing unintended visual regressions.
+- स्थिरता: विकास प्रक्रिया में जल्दी से विज़ुअल विसंगतियों की पहचान करके स्थिर उपयोगकर्ता अनुभव को बढ़ावा देता है।
+- दक्षता: मैन्युअल रूप से विज़ुअल रिग्रेशन को स्पॉट करने के लिए आवश्यक समय और प्रयास को कम करके दक्षता में सुधार करता है।
+- एकीकरण: पर्सी गिटहब, गिटलैब, बिटबकेट और अधिक जैसे लोकप्रिय टूल्स और सेवाओं के साथ एकीकृत होता है।
+- सहयोग: परिवर्तनों का विज़ुअल प्रतिनिधित्व प्रदान करके डेवलपर्स, डिज़ाइनर्स और क्यूए टीमों के बीच सहयोग में सुधार करता है।
+- रिग्रेशन को रोकना: आपको अनजाने में विज़ुअल रिग्रेशन का अनुभव करने से रोकता है।
 
 ## How does Percy work?
 
-Percy compares new snapshots against relevant baselines to detect visual changes. Percy manages baseline selection across branches so your tests are always relevant. If visual changes are detected, Percy highlights and groups the resulting differences for you to review.
+पर्सी विज़ुअल परिवर्तनों का पता लगाने के लिए नए स्नैपशॉट्स की तुलना प्रासंगिक बेसलाइन से करता है। पर्सी ब्रांचेज के बीच बेसलाइन चयन का प्रबंधन करता है ताकि आपके टेस्ट हमेशा प्रासंगिक हों। अगर विज़ुअल परिवर्तन का पता चलता है, तो पर्सी आपके रिव्यू के लिए परिणामी अंतरों को हाइलाइट और ग्रुप करता है।
 
 ## Next steps
 

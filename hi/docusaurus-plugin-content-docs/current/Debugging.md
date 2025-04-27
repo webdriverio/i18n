@@ -1,15 +1,15 @@
 ---
 id: debugging
-title: डीबग करना
+title: डीबगिंग
 ---
 
-डिबगिंग काफी अधिक कठिन है जब कई प्रक्रियाएँ कई ब्राउज़रों में दर्जनों परीक्षण उत्पन्न करती हैं।
+कई प्रक्रियाएँ जब अनेक ब्राउज़रों में दर्जनों परीक्षण चलाती हैं, तब डीबगिंग काफी मुश्किल हो जाती है।
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_bw_VWn5IzU" frameborder="0" allowFullScreen></iframe>
 
-शुरुआत करने वालों के लिए, `maxInstances` से `1`सेट करके और केवल उन विनिर्देशों और ब्राउज़रों को लक्षित करके समांतरता को सीमित करना बेहद सहायक होता है जिन्हें डीबग करने की आवश्यकता होती है।
+शुरू करने के लिए, `maxInstances` को `1` पर सेट करके समानांतरता को सीमित करना और केवल उन स्पेक्स और ब्राउज़रों को लक्षित करना बहुत मददगार होता है, जिन्हें डीबग करने की आवश्यकता है।
 
-`wdio.conf`में:
+`wdio.conf` में:
 
 ```js
 export const config = {
@@ -25,15 +25,15 @@ export const config = {
 }
 ```
 
-## डिबग कमांड
+## डीबग कमांड
 
 कई मामलों में, आप अपने परीक्षण को रोकने और ब्राउज़र का निरीक्षण करने के लिए [`browser.debug()`](/docs/api/browser/debug) का उपयोग कर सकते हैं।
 
-आपका कमांड लाइन इंटरफ़ेस भी आरईपीएल मोड में बदल जाएगा। यह मोड आपको पेज पर कमांड और एलिमेंट के साथ फिडल करने की अनुमति देता है। REPL मोड में, आप `browser` ऑब्जेक्ट&mdash;या `$` और `$$` फ़ंक्शंस&mdash;तक पहुँच सकते हैं जैसे आप अपने परीक्षणों में कर सकते हैं।
+आपका कमांड लाइन इंटरफेस भी REPL मोड में स्विच हो जाएगा। यह मोड आपको पेज पर कमांड और एलिमेंट्स के साथ खेलने की अनुमति देता है। REPL मोड में, आप `browser` ऑब्जेक्ट—या `$` और `$$` फंक्शन—तक उसी तरह पहुंच सकते हैं जैसे आप अपने परीक्षणों में करते हैं।
 
-`browser.debug()`का उपयोग करते समय, आपको टेस्ट रनर को लंबे समय तक परीक्षण में विफल होने से रोकने के लिए टेस्ट रनर के टाइमआउट को बढ़ाने की आवश्यकता होगी।  उदाहरण के लिए:
+जब `browser.debug()` का उपयोग करते हैं, तो आपको परीक्षण रनर के टाइमआउट को बढ़ाने की आवश्यकता होगी ताकि परीक्षण रनर अधिक समय लेने के कारण परीक्षण को विफल न करे। उदाहरण के लिए:
 
-In `wdio.conf`:
+`wdio.conf` में:
 
 ```js
 jasmineOpts: {
@@ -41,14 +41,14 @@ jasmineOpts: {
 }
 ```
 
-अन्य ढांचे का उपयोग करके इसे कैसे करें इस बारे में अधिक जानकारी के लिए [टाइमआउट](timeouts) देखें।
+अन्य फ्रेमवर्क का उपयोग करके ऐसा करने के तरीके के बारे में अधिक जानकारी के लिए [timeouts](timeouts) देखें।
 
-डिबगिंग के बाद परीक्षण जारी रखने के लिए, शेल में `^C` शॉर्टकट या `.exit` कमांड का उपयोग करें।
-## गतिशील विन्यास
+डीबगिंग के बाद परीक्षण जारी रखने के लिए, शेल में `^C` शॉर्टकट या `.exit` कमांड का उपयोग करें।
+## डायनामिक कॉन्फिगरेशन
 
-ध्यान दें कि `wdio.conf.js` में जावास्क्रिप्ट हो सकता है। चूंकि आप संभवत: अपने टाइमआउट मान को 1 दिन में स्थायी रूप से बदलना नहीं चाहते हैं, इसलिए पर्यावरण चर का उपयोग करके कमांड लाइन से इन सेटिंग्स को बदलना अक्सर मददगार हो सकता है।
+ध्यान दें कि `wdio.conf.js` जावास्क्रिप्ट युक्त हो सकता है। चूंकि आप शायद अपने टाइमआउट मान को स्थायी रूप से 1 दिन में बदलना नहीं चाहते हैं, इसलिए अक्सर इन सेटिंग्स को कमांड लाइन से पर्यावरण चर (environment variable) का उपयोग करके बदलना सहायक हो सकता है।
 
-इस तकनीक का उपयोग करके, आप गतिशील रूप से कॉन्फ़िगरेशन को बदल सकते हैं:
+इस तकनीक का उपयोग करके, आप कॉन्फिगरेशन को गतिशील रूप से बदल सकते हैं:
 
 ```js
 const debug = process.env.DEBUG
@@ -68,33 +68,33 @@ export const config = {
 }
 ```
 
-फिर आप `wdio` कमांड को `debug` फ्लैग के साथ प्रीफिक्स कर सकते हैं:
+आप फिर `wdio` कमांड को `debug` फ्लैग के साथ प्रिफिक्स कर सकते हैं:
 
 ```
 $ DEBUG=true npx wdio wdio.conf.js --spec ./tests/e2e/myspec.test.js
 ```
 
-...और DevTools के साथ अपनी कल्पना फ़ाइल को डीबग करें!
+...और DevTools के साथ अपनी स्पेक फ़ाइल डीबग करें!
 
-## विजुअल स्टूडियो कोड (VSCode) के साथ डिबगिंग
+## विजुअल स्टूडियो कोड (VSCode) के साथ डीबगिंग
 
-If you want to debug your tests with breakpoints in latest VSCode, you have two options for starting the debugger of which option 1 is the easiest method:
- 1. automatically attaching the debugger
- 2. attaching the debugger using a configuration file
+यदि आप अपने परीक्षणों को नवीनतम VSCode में ब्रेकपॉइंट्स के साथ डीबग करना चाहते हैं, तो डिबगर शुरू करने के लिए आपके पास दो विकल्प हैं, जिनमें से विकल्प 1 सबसे आसान तरीका है:
+ 1. स्वचालित रूप से डिबगर को अटैच करना
+ 2. कॉन्फिगरेशन फ़ाइल का उपयोग करके डिबगर को अटैच करना
 
-### VSCode Toggle Auto Attach
+### VSCode टॉगल ऑटो अटैच
 
-You can automatically attach the debugger by following these steps in VSCode:
- - Press CMD + Shift + P (Linux and Macos) or CTRL + Shift + P (Windows)
- - Type "attach" into the input field
- - Select "Debug: Toggle Auto Attach"
- - Select "Only With Flag"
+आप VSCode में इन चरणों का पालन करके स्वचालित रूप से डिबगर को अटैच कर सकते हैं:
+ - CMD + Shift + P (Linux और Macos) या CTRL + Shift + P (Windows) दबाएं
+ - इनपुट फील्ड में "attach" टाइप करें
+ - "Debug: Toggle Auto Attach" चुनें
+ - "Only With Flag" चुनें
 
- That's it! Now when you run your tests (remember you will need the --inspect flag set in your config as shown earlier) it will automatically start the debugger and stop on the first breakpoint that it reaches.
+ बस इतना ही! अब जब आप अपने परीक्षण चलाते हैं (याद रखें कि आपको --inspect फ्लैग को अपने कॉन्फिग में सेट करने की आवश्यकता होगी जैसा कि पहले दिखाया गया है) तो यह स्वचालित रूप से डिबगर शुरू कर देगा और पहले ब्रेकपॉइंट पर रुक जाएगा जिस पर यह पहुंचता है।
 
-### VSCode Configuration file
+### VSCode कॉन्फिगरेशन फ़ाइल
 
-सभी या चयनित विशिष्ट फ़ाइल (फ़ाइलों) को चलाना संभव है। डीबग कॉन्फ़िगरेशन(ओं) को `.vscode/launch.json`में जोड़ा जाना चाहिए, चयनित युक्ति को डीबग करने के लिए निम्न कॉन्फ़िगरेशन जोड़ें:
+सभी या चयनित स्पेक फ़ाइल(ें) चलाना संभव है। डीबग कॉन्फिगरेशन(ें) को `.vscode/launch.json` में जोड़ा जाना चाहिए, चयनित स्पेक को डीबग करने के लिए निम्नलिखित कॉन्फिग जोड़ें:
 ```
 {
     "name": "run select spec",
@@ -113,47 +113,51 @@ You can automatically attach the debugger by following these steps in VSCode:
 },
 ```
 
-सभी विशिष्ट फ़ाइलों को चलाने के लिए `"--spec", "${file}"` `"args"`से हटा दें
+सभी स्पेक फ़ाइलें चलाने के लिए `"args"` से `"--spec", "${file}"` हटाएं
 
 उदाहरण: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
 
 अतिरिक्त जानकारी: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 
-## एटम के साथ गतिशील उत्तर
+## एटम के साथ डायनामिक REPL
 
-यदि आप [एटम](https://atom.io/) हैकर हैं तो आप [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) by [@kurtharriger](https://github.com/kurtharriger) आज़मा सकते हैं जो एक गतिशील उत्तर है जो आपको एटम में एकल कोड लाइनों को निष्पादित करने की अनुमति देता है। डेमो देखने के लिए [यह](https://www.youtube.com/watch?v=kdM05ChhLQE) यू ट्यूब वीडियो देखें।
+यदि आप [Atom](https://atom.io/) के हैकर हैं तो आप [@kurtharriger](https://github.com/kurtharriger) द्वारा [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) आज़मा सकते हैं, जो एक डायनामिक REPL है जो आपको Atom में एकल कोड लाइन निष्पादित करने की अनुमति देता है। डेमो देखने के लिए [this](https://www.youtube.com/watch?v=kdM05ChhLQE) YouTube वीडियो देखें।
 
-## WebStorm / Intellij के साथ डिबगिंग
-You can create a node.js debug configuration like this: ![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png) Watch this [YouTube Video](https://www.youtube.com/watch?v=Qcqnmle6Wu8) for more information about how to make a configuration.
+## WebStorm / Intellij के साथ डीबगिंग
+आप इस तरह से एक node.js डीबग कॉन्फिगरेशन बना सकते हैं:
+![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png)
+एक कॉन्फिगरेशन बनाने के बारे में अधिक जानकारी के लिए यह [YouTube वीडियो](https://www.youtube.com/watch?v=Qcqnmle6Wu8) देखें।
 
-## Debugging flaky tests
+## अस्थिर परीक्षणों की डीबगिंग
 
-Flaky tests can be really hard to debug so here are some tips how you can try and get that flaky result you got in your CI, reproduced locally.
+अस्थिर परीक्षणों को डीबग करना वास्तव में मुश्किल हो सकता है, इसलिए यहां कुछ सुझाव दिए गए हैं कि आप कैसे अपने CI में प्राप्त अस्थिर परिणाम को स्थानीय रूप से पुन: उत्पन्न करने का प्रयास कर सकते हैं।
 
-### Network
-To debug network related flakiness use the [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) command.
+### नेटवर्क
+नेटवर्क संबंधित अस्थिरता का डीबग करने के लिए [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) कमांड का उपयोग करें।
 ```js
 await browser.throttleNetwork('Regular3G')
 ```
 
-### Rendering speed
-To debug device speed related flakiness use the [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) command. This will cause your pages to render slower which can be caused by many things like running multiple processes in your CI which could be slowing down your tests.
+### रेंडरिंग स्पीड
+डिवाइस स्पीड संबंधित अस्थिरता का डीबग करने के लिए [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) कमांड का उपयोग करें।
+इससे आपके पेज धीमी गति से रेंडर होंगे, जो कई चीजों से हो सकता है जैसे आपके CI में कई प्रक्रियाओं को चलाना जो आपके परीक्षणों को धीमा कर सकता है।
 ```js
 await browser.throttleCPU(4)
 ```
 
-### Test execution speed
+### परीक्षण निष्पादन गति
 
-If your tests do not seem to be affected it is possible that WebdriverIO is faster than the update from the frontend framework / browser. This happens when using synchronous assertions since WebdriverIO has no chance to retry these assertions anymore. Some examples of code that can break because of this:
+यदि आपके परीक्षण प्रभावित नहीं होते हैं, तो यह संभव है कि WebdriverIO फ्रंटएंड फ्रेमवर्क / ब्राउज़र से अपडेट की तुलना में तेज़ है। यह सिंक्रोनस अभिकथनों (assertions) का उपयोग करते समय होता है क्योंकि WebdriverIO के पास इन अभिकथनों को फिर से प्रयास करने का कोई मौका नहीं होता है। ऐसे कोड के कुछ उदाहरण जो इसके कारण टूट सकते हैं:
 ```js
-expect(elementList.length).toEqual(7) // list might not be populated at the time of the assertion
-expect(await elem.getText()).toEqual('this button was clicked 3 times') // text might not be updated yet at the time of assertion resulting in an error ("this button was clicked 2 times" does not match the expected "this button was clicked 3 times")
-expect(await elem.isDisplayed()).toBe(true) // might not be displayed yet
+expect(elementList.length).toEqual(7) // अभिकथन के समय सूची अभी तक भरी नहीं गई हो सकती है
+expect(await elem.getText()).toEqual('this button was clicked 3 times') // अभिकथन के समय टेक्स्ट अभी तक अपडेट नहीं किया गया हो सकता है, जिससे त्रुटि होती है ("this button was clicked 2 times" अपेक्षित "this button was clicked 3 times" से मेल नहीं खाता)
+expect(await elem.isDisplayed()).toBe(true) // अभी तक प्रदर्शित नहीं किया गया हो सकता है
 ```
-To resolve this problem, asynchronous assertions should be used instead. The above examples would looks like this:
+इस समस्या को हल करने के लिए, असिंक्रोनस अभिकथनों का उपयोग किया जाना चाहिए। उपरोक्त उदाहरण इस प्रकार दिखेंगे:
 ```js
 await expect(elementList).toBeElementsArrayOfSize(7)
 await expect(elem).toHaveText('this button was clicked 3 times')
 await expect(elem).toBeDisplayed()
 ```
-Using these assertions, WebdriverIO will automatically wait until the condition matches. When asserting text this means that the element needs to exist and the text needs to be equal to the expected value. We talk more about this in our [Best Practices Guide](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).
+इन अभिकथनों का उपयोग करके, WebdriverIO स्वचालित रूप से तब तक इंतजार करेगा जब तक शर्त मेल नहीं खाती। टेक्स्ट की अभिकथन करते समय इसका मतलब है कि एलिमेंट को मौजूद होना चाहिए और टेक्स्ट को अपेक्षित मूल्य के बराबर होना चाहिए।
+हम इस बारे में अपने [बेस्ट प्रैक्टिसेज गाइड](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions) में अधिक बात करते हैं।

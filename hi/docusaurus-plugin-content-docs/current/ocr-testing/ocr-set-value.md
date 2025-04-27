@@ -3,15 +3,15 @@ id: ocr-set-value
 title: ocrSetValue
 ---
 
-Send a sequence of key strokes to an element. It will:
+किसी तत्व पर कीस्ट्रोक्स की एक श्रृंखला भेजें। यह:
 
-- automatically detect the element
-- put focus on the field by clicking on it
-- set the value in the field
+-   स्वचालित रूप से तत्व का पता लगाएगा
+-   उस पर क्लिक करके फील्ड पर फोकस लगाएगा
+-   फील्ड में मान सेट करेगा
 
-The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+यह कमांड प्रदान किए गए टेक्स्ट को खोजेगा और [Fuse.js](https://fusejs.io/) से फजी लॉजिक के आधार पर मिलान की कोशिश करेगा। इसका मतलब है कि अगर आप किसी टाइपो के साथ सेलेक्टर प्रदान करते हैं, या पाया गया टेक्स्ट 100% मिलान नहीं है, तो भी यह आपको एक तत्व वापस देने की कोशिश करेगा। नीचे [लॉग्स](#logs) देखें।
 
-## Usage
+## उपयोग
 
 ```js
 await brower.ocrSetValue({
@@ -20,9 +20,9 @@ await brower.ocrSetValue({
 });
 ```
 
-## Output
+## आउटपुट
 
-### Logs
+### लॉग्स
 
 ```log
 [0-0] 2024-05-26T04:17:51.355Z INFO webdriver: COMMAND ocrSetValue(<object>)
@@ -30,16 +30,16 @@ await brower.ocrSetValue({
 [0-0] 2024-05-26T04:17:52.356Z INFO @wdio/ocr-service:ocrGetElementPositionByText: We searched for the word "docs" and found one match "docs" with score "100%"
 ```
 
-## Options
+## विकल्प
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **प्रकार:** `string`
+-   **अनिवार्य:** हां
 
-The text you want to search for to click on.
+वह टेक्स्ट जिसे आप क्लिक करने के लिए खोजना चाहते हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -50,12 +50,12 @@ await browser.ocrSetValue({
 
 ### `value`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **प्रकार:** `string`
+-   **अनिवार्य:** हां
 
-Value to be added.
+जोड़ा जाने वाला मान।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -66,13 +66,13 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** `false`
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `false`
 
-If the value also needs to be submitted into the input field. This means an "ENTER" will be send at the end of the string.
+यदि मान को इनपुट फ़ील्ड में भी सबमिट करने की आवश्यकता है। इसका मतलब है कि स्ट्रिंग के अंत में "ENTER" भेजा जाएगा।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -84,13 +84,13 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `500` मिलीसेकंड
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+यह क्लिक की अवधि है। यदि आप चाहें तो समय बढ़ाकर "लॉन्ग क्लिक" भी बना सकते हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -102,13 +102,13 @@ await browser.ocrSetValue({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+कंट्रास्ट जितना अधिक होगा, छवि उतनी ही अधिक गहरी होगी और इसके विपरीत। यह छवि में टेक्स्ट खोजने में मदद कर सकता है। यह `-1` और `1` के बीच के मान स्वीकार करता है।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -120,12 +120,12 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **प्रकार:** `number`
+-   **अनिवार्य:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+यह स्क्रीन में खोज क्षेत्र है जहां OCR को टेक्स्ट की तलाश करने की आवश्यकता है। यह एक तत्व या एक आयत हो सकता है जिसमें `x`, `y`, `width` और `height` शामिल हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -156,13 +156,13 @@ await browser.ocrSetValue({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहां](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) पाई जा सकती है और समर्थित भाषाएं [यहां](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) पाई जा सकती हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
@@ -176,34 +176,34 @@ await browser.ocrSetValue({
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **प्रकार:** `object`
+-   **अनिवार्य:** नहीं
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+आप मिलान करने वाले तत्व के सापेक्ष स्क्रीन पर क्लिक कर सकते हैं। यह सापेक्ष पिक्सेल `above`, `right`, `below` या `left` के आधार पर मिलान तत्व से किया जा सकता है।
 
 :::note
 
-The following combinations are allowed
+निम्नलिखित संयोजन अनुमत हैं
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   एकल गुण
+-   `above` + `left` या `above` + `right`
+-   `below` + `left` या `below` + `right`
 
-The following combinations are **NOT** allowed
+निम्नलिखित संयोजन **अनुमत नहीं** हैं
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` प्लस `below`
+-   `left` प्लस `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
 
-Click x pixels `above` the matching element.
+मिलान तत्व से x पिक्सेल `above` क्लिक करें।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -217,12 +217,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
 
-Click x pixels `right` from the matching element.
+मिलान तत्व से x पिक्सेल `right` क्लिक करें।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -236,12 +236,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
 
-Click x pixels `below` the matching element.
+मिलान तत्व से x पिक्सेल `below` क्लिक करें।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -255,12 +255,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
 
-Click x pixels `left` from the matching element.
+मिलान तत्व से x पिक्सेल `left` क्लिक करें।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -274,17 +274,17 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+आप निम्नलिखित विकल्पों के साथ टेक्स्ट खोजने के लिए फजी लॉजिक को बदल सकते हैं। यह बेहतर मिलान खोजने में मदद कर सकता है।
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+यह निर्धारित करता है कि मिलान को फजी स्थान (location द्वारा निर्दिष्ट) के कितना करीब होना चाहिए। एक सटीक अक्षर मिलान जो फजी स्थान से distance वर्णों दूर है, वह पूरी तरह से बेमेल के रूप में स्कोर करेगा। 0 की दूरी के लिए मिलान को निर्दिष्ट सटीक स्थान पर होने की आवश्यकता होती है। 1000 की दूरी के लिए 0.8 की थ्रेशोल्ड का उपयोग करते हुए स्थान से 800 वर्णों के भीतर पूर्ण मिलान की आवश्यकता होगी।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -298,13 +298,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+यह निर्धारित करता है कि टेक्स्ट में लगभग कहां पैटर्न मिलने की उम्मीद है।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -318,13 +318,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+किस बिंदु पर मिलान एल्गोरिथ्म हार मान लेता है। 0 की थ्रेशोल्ड के लिए पूर्ण मिलान (अक्षरों और स्थान दोनों का) की आवश्यकता होती है, 1.0 की थ्रेशोल्ड पर कुछ भी मिल जाएगा।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -338,13 +338,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** false
 
-Whether the search should be case sensitive.
+क्या खोज केस संवेदी होनी चाहिए।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -358,13 +358,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+केवल वे मिलान जिनकी लंबाई इस मान से अधिक है, वापस किए जाएंगे। (उदाहरण के लिए, यदि आप परिणाम में एकल अक्षर मिलान को अनदेखा करना चाहते हैं, तो इसे 2 पर सेट करें)
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({
@@ -378,13 +378,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+जब `true` होता है, तो मिलान फ़ंक्शन खोज पैटर्न के अंत तक जारी रहेगा, भले ही स्ट्रिंग में पहले से ही एक पूर्ण मिलान मिल गया हो।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrSetValue({

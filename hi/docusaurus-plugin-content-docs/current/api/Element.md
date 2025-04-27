@@ -1,37 +1,37 @@
 ---
 id: element
-title: एलीमेंट ऑब्जेक्ट
+title: एलिमेंट ऑब्जेक्ट
 ---
 
-An Element Object is an object representing an element on the remote user agent, e.g. a [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Element) when running a session within a browser or [a mobile element](https://developer.apple.com/documentation/swift/sequence/element) for mobile. इसे कई एलिमेंट क्वेरी कमांड में से एक का उपयोग करके प्राप्त किया जा सकता है, उदाहरण के लिए [`$`](/docs/api/element/$), [`Custom$`](/docs/api/element/custom$), [`react$`](/docs/api/element/react$) या [`shadow$`](/docs/api/element/shadow$)।
+एलिमेंट ऑब्जेक्ट एक ऐसा ऑब्जेक्ट है जो रिमोट यूजर एजेंट पर एक एलिमेंट का प्रतिनिधित्व करता है, जैसे कि ब्राउज़र के अंदर एक सेशन चलाते समय [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Element) या मोबाइल के लिए [a mobile element](https://developer.apple.com/documentation/swift/sequence/element)। इसे विभिन्न एलिमेंट क्वेरी कमांड्स का उपयोग करके प्राप्त किया जा सकता है, जैसे [`$`](/docs/api/element/$), [`custom$`](/docs/api/element/custom$), [`react$`](/docs/api/element/react$) या [`shadow$`](/docs/api/element/shadow$)।
 
-## विशेषताएं
+## प्रॉपर्टीज
 
-एक तत्व वस्तु में निम्नलिखित गुण होते हैं:
+एक एलिमेंट ऑब्जेक्ट में निम्नलिखित प्रॉपर्टीज होती हैं:
 
-| नाम         | प्रकार   | विवरण                                                                                                                                                                                                                                                            |
-| ----------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sessionId` | `String` | दूरस्थ सर्वर से निर्दिष्ट सत्र आईडी।                                                                                                                                                                                                                             |
-| `elementId` | `String` | संबद्ध [वेब तत्व संदर्भ](https://w3c.github.io/webdriver/#elements) जिसका उपयोग प्रोटोकॉल स्तर पर तत्व के साथ इंटरैक्ट करने के लिए किया जा सकता है                                                                                                               |
-| `selector`  | `String` | [चयनकर्ता](/docs/selectors) तत्व को क्वेरी करने के लिए प्रयोग किया जाता है।                                                                                                                                                                                      |
-| `parent`    | `Object` | या तो [ब्राउज़र ऑब्जेक्ट](/docs/api/browser) जब तत्व इससे प्राप्त किया गया था (उदाहरण के लिए `cconst elem = browser.$('selector')`) या एक [तत्व ऑब्जेक्ट](/docs/api/element) यदि यह किसी तत्व दायरे से प्राप्त किया गया था (उदाहरण के लिए `elem.$( 'selector')`) |
-| `options`   | `Object` | WebdriverIO [विकल्प](/docs/configuration) ब्राउज़र ऑब्जेक्ट कैसे बनाया गया था इसके आधार पर। अधिक [सेटअप प्रकार देखें](/docs/setuptypes)।                                                                                                                         |
+| नाम | प्रकार | विवरण |
+| ---- | ---- | ------- |
+| `sessionId` | `String` | रिमोट सर्वर से असाइन किया गया सेशन आईडी। |
+| `elementId` | `String` | संबंधित [web element reference](https://w3c.github.io/webdriver/#elements) जिसका उपयोग प्रोटोकॉल स्तर पर एलिमेंट के साथ इंटरैक्ट करने के लिए किया जा सकता है |
+| `selector` | `String` | एलिमेंट को क्वेरी करने के लिए उपयोग किया गया [Selector](/docs/selectors)। |
+| `parent` | `Object` | या तो [Browser Object](/docs/api/browser) जब एलिमेंट को उससे फेच किया गया हो (जैसे `const elem = browser.$('selector')`) या [Element Object](/docs/api/element) अगर इसे एलिमेंट स्कोप से फेच किया गया हो (जैसे `elem.$('selector')`) |
+| `options` | `Object` | WebdriverIO [options](/docs/configuration) जो इस पर निर्भर करता है कि ब्राउज़र ऑब्जेक्ट कैसे बनाया गया था। अधिक जानकारी के लिए [setup types](/docs/setuptypes) देखें। |
 
-## विधियां
-An element object provides all methods from the protocol section, e.g. [WebDriver](/docs/api/webdriver) protocol as well as commands listed within the element section. उपलब्ध प्रोटोकॉल कमांड सत्र के प्रकार पर निर्भर करते हैं। यदि आप एक स्वचालित ब्राउज़र सत्र चलाते हैं, तो Appium [कमांड](/docs/api/appium) में से कोई भी उपलब्ध नहीं होगा और इसके विपरीत।
+## मेथड्स
+एक एलिमेंट ऑब्जेक्ट प्रोटोकॉल सेक्शन के सभी मेथड्स प्रदान करता है, जैसे [WebDriver](/docs/api/webdriver) प्रोटोकॉल और एलिमेंट सेक्शन में सूचीबद्ध कमांड्स। उपलब्ध प्रोटोकॉल कमांड्स सेशन के प्रकार पर निर्भर करते हैं। यदि आप एक ऑटोमेटेड ब्राउज़र सेशन चलाते हैं, तो Appium के किसी भी [commands](/docs/api/appium) उपलब्ध नहीं होंगे और इसके विपरीत।
 
-इसके अतिरिक्त निम्नलिखित आदेश उपलब्ध हैं:
+इसके अलावा निम्नलिखित कमांड्स उपलब्ध हैं:
 
-| नाम                | पैरामीटर                                                              | विवरण                                                                                                                                                                                                                               |
-| ------------------ | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addCommand`       | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | Allows to define custom commands that can be called from the browser object for composition purposes. [कस्टम कमांड](/docs/customcommands) गाइड में और पढ़ें।                                                                        |
-| `overwriteCommand` | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | Allows to overwrite any browser command with custom functionality. सावधानी से उपयोग करें क्योंकि यह फ्रेमवर्क उपयोगकर्ताओं को भ्रमित कर सकता है। [कस्टम कमांड](/docs/customcommands#overwriting-native-commands) गाइड में और पढ़ें। |
+| नाम | पैरामीटर्स | विवरण |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (प्रकार: `String`)<br />- `fn` (प्रकार: `Function`) | कस्टम कमांड्स को परिभाषित करने की अनुमति देता है जिन्हें कंपोजिशन उद्देश्यों के लिए ब्राउज़र ऑब्जेक्ट से कॉल किया जा सकता है। [Custom Command](/docs/customcommands) गाइड में अधिक पढ़ें। |
+| `overwriteCommand` | - `commandName` (प्रकार: `String`)<br />- `fn` (प्रकार: `Function`) | किसी भी ब्राउज़र कमांड को कस्टम फंक्शनलिटी के साथ ओवरराइट करने की अनुमति देता है। सावधानी से उपयोग करें क्योंकि यह फ्रेमवर्क उपयोगकर्ताओं को भ्रमित कर सकता है। [Custom Command](/docs/customcommands#overwriting-native-commands) गाइड में अधिक पढ़ें। |
 
-## टिप्पणियां
+## टिप्पणियाँ
 
-### तत्व श्रृंखला
+### एलिमेंट चेन
 
-When working with elements WebdriverIO provides special syntax to simplify querying them and composite complex nested element lookups. जैसा कि तत्व ऑब्जेक्ट आपको सामान्य क्वेरी विधियों का उपयोग करके उनकी पेड़ की शाखा के भीतर तत्वों को खोजने की अनुमति देता है, उपयोगकर्ता नेस्टेड तत्वों को निम्नानुसार प्राप्त कर सकते हैं:
+एलिमेंट्स के साथ काम करते समय WebdriverIO उन्हें क्वेरी करने और जटिल नेस्टेड एलिमेंट लुकअप्स को कंपोज़ करने के लिए विशेष सिंटैक्स प्रदान करता है। चूंकि एलिमेंट ऑब्जेक्ट आपको सामान्य क्वेरी मेथड्स का उपयोग करके उनके ट्री ब्रांच के भीतर एलिमेंट्स को खोजने की अनुमति देता है, उपयोगकर्ता नेस्टेड एलिमेंट्स को इस प्रकार फेच कर सकते हैं:
 
 ```js
 const header = await $('#header')
@@ -39,20 +39,20 @@ const headline = await header.$('#headline')
 console.log(await headline.getText()) // outputs "I am a headline"
 ```
 
-गहरी नेस्टेड संरचनाओं के साथ किसी भी नेस्टेड तत्व को सरणी में असाइन करने के लिए इसका उपयोग करना काफी वर्बोज़ हो सकता है। Therefore WebdriverIO has the concept of chained element queries that allow fetching nested elements like this:
+गहरे नेस्टेड स्ट्रक्चर्स में किसी भी नेस्टेड एलिमेंट को एरे को असाइन करके फिर उसका उपयोग करना काफी वर्बोस हो सकता है। इसलिए WebdriverIO में चेन्ड एलिमेंट क्वेरीज़ की अवधारणा है जो नेस्टेड एलिमेंट्स को इस तरह से फेच करने की अनुमति देती है:
 
 ```js
 console.log(await $('#header').$('#headline').getText())
 ```
 
-यह तत्वों का एक सेट लाते समय भी काम करता है, उदाहरण के लिए:
+यह तब भी काम करता है जब एलिमेंट्स का एक सेट फेच किया जाता है, उदाहरण के लिए:
 
 ```js
 // get the text of the 3rd headline within the 2nd header
 console.log(await $$('#header')[1].$$('#headline')[2].getText())
 ```
 
-When working with a set of elements this can be especially useful when trying to interact with them, so instead of doing:
+एलिमेंट्स के सेट के साथ काम करते समय यह विशेष रूप से उपयोगी हो सकता है जब उनके साथ इंटरैक्ट करने का प्रयास किया जाता है, इसलिए इसके बजाय:
 
 ```js
 const elems = await $$('div')
@@ -61,22 +61,22 @@ const locations = await Promise.all(
 )
 ```
 
-आप तत्व श्रृंखला पर सीधे ऐरे विधियों को कॉल कर सकते हैं, उदाहरण के लिए:
+आप सीधे एलिमेंट चेन पर Array मेथड्स कॉल कर सकते हैं, उदाहरण के लिए:
 
 ```js
 const location = await $$('div').map((el) => el.getLocation())
 ```
 
-same as:
+यह इसके समान है:
 
 ```js
 const divs = await $$('div')
 const location = await divs.map((el) => el.getLocation())
 ```
 
-WebdriverIO uses a custom implementation that supports asynchronous iterators under the hood so all commands from their API are also supported for these use cases.
+WebdriverIO एक कस्टम इम्प्लीमेंटेशन का उपयोग करता है जो अंडर द हुड एसिंक्रोनस इटरेटर्स का समर्थन करता है, इसलिए उनके API से सभी कमांड्स इन यूज़ केसेज़ के लिए भी समर्थित हैं।
 
-__Note:__ all async iterators return a promise even if your callback doesn't return one, e.g.:
+__नोट:__ सभी एसिंक इटरेटर्स एक प्रॉमिस लौटाते हैं, भले ही आपका कॉलबैक कोई प्रॉमिस न लौटाए, उदाहरण के लिए:
 
 ```ts
 const divs = await $$('div')
@@ -84,6 +84,6 @@ console.log(divs.map((div) => div.selector)) // ❌ returns "Promise<string>[]"
 console.log(await divs.map((div) => div.selector)) // ✅ returns "string[]"
 ```
 
-### कस्टम कमांड
+### कस्टम कमांड्स
 
-आप आमतौर पर उपयोग किए जाने वाले वर्कफ़्लोज़ को अलग करने के लिए ब्राउज़र स्कोप पर कस्टम कमांड सेट कर सकते हैं। अधिक जानकारी के लिए [कस्टम कमांड](/docs/customcommands#adding-custom-commands) पर हमारी मार्गदर्शिका देखें।
+आप ब्राउज़र स्कोप पर कस्टम कमांड्स सेट कर सकते हैं ताकि उन वर्कफ़्लोज़ को एब्स्ट्रैक्ट किया जा सके जो आमतौर पर उपयोग किए जाते हैं। अधिक जानकारी के लिए हमारे [Custom Commands](/docs/customcommands#adding-custom-commands) गाइड को देखें।

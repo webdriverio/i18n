@@ -1,137 +1,137 @@
 ---
 id: compare-options
-title: Compare Options
+title: तुलना विकल्प
 ---
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+तुलना विकल्प वे विकल्प हैं जो [ResembleJS](https://github.com/Huddle/Resemble.js) द्वारा की जाने वाली तुलना के तरीके को प्रभावित करते हैं।
 
-:::info NOTE
-All compare options can be used during service instantiation or for each single `checkElement`,`checkScreen` and `checkFullPageScreen`. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
+:::info नोट
+सभी तुलना विकल्पों का उपयोग सेवा प्रारंभ करने के दौरान या प्रत्येक `checkElement`, `checkScreen` और `checkFullPageScreen` के लिए किया जा सकता है। यदि किसी मेथड विकल्प की कुंजी सेवा प्रारंभ करने के दौरान सेट किए गए विकल्प की कुंजी के समान है, तो मेथड तुलना विकल्प सेवा तुलना विकल्प मान को ओवरराइड करेगा।
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Compare images and discard alpha.
+छवियों की तुलना करें और अल्फा को छोड़ दें।
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. It will override the plugin setting. This is **iPad only**_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _केवल `checkScreen()` के लिए उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा। यह **केवल iPad के लिए है**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+तुलना के दौरान लैंडस्केप मोड में iPad के लिए साइडबार को स्वचालित रूप से ब्लॉक करें। यह टैब/प्राइवेट/बुकमार्क नेटिव कंपोनेंट पर विफलताओं को रोकता है।
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा। यह **केवल मोबाइल के लिए है**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+तुलना के दौरान स्टेटस और एड्रेस बार को स्वचालित रूप से ब्लॉक करें। यह समय, वाई-फाई या बैटरी स्थिति पर विफलताओं को रोकता है।
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा। यह **केवल मोबाइल के लिए है**_
 
-Automatically block out the toolbar.
+टूलबार को स्वचालित रूप से ब्लॉक करें।
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Compare images and discard anti-aliasing.
+छवियों की तुलना करें और एंटी-एलियासिंग को छोड़ दें।
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Even though the images are in color, the comparison will compare 2 black/white images
+हालांकि छवियां रंगीन हैं, तुलना 2 काले/सफेद छवियों की तुलना करेगी
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+छवियों की तुलना करें और `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240` के साथ तुलना करें
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+छवियों की तुलना करें और `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255` के साथ तुलना करें
 
 ### `ignoreTransparentPixel`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Compare images and it will ignore all pixels that have some transparency in one of the images
+छवियों की तुलना करें और यह उन सभी पिक्सेल को अनदेखा करेगा जिनमें किसी एक छवि में कुछ पारदर्शिता है
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+यदि सही है तो रिटर्न प्रतिशत `0.12345678` जैसा होगा, डिफॉल्ट `0.12` है
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-This will return all compare data, not only the mismatch percentage
+यह सभी तुलना डेटा वापस करेगा, केवल बेमेल प्रतिशत नहीं
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `number`
+-   **डिफ़ॉल्ट:** `0`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+`misMatchPercentage` का स्वीकार्य मान जो अंतरों वाली छवियों को सहेजने से रोकता है
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `number`
+-   **डिफ़ॉल्ट:** `0`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+बड़ी छवियों की तुलना करने से प्रदर्शन संबंधी समस्याएँ हो सकती हैं।
+यहां पिक्सेल की संख्या के लिए एक संख्या प्रदान करने पर (0 से अधिक), तुलना एल्गोरिदम पिक्सेल को छोड़ देता है जब छवि की चौड़ाई या ऊंचाई `largeImageThreshold` पिक्सेल से अधिक होती है।
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _`checkElement`, `checkScreen()` और `checkFullPageScreen()` के लिए भी उपयोग किया जा सकता है। यह प्लगइन सेटिंग को ओवरराइड करेगा_
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+तुलना के निष्पादन से पहले 2 छवियों को एक ही आकार में स्केल करता है। `ignoreAntialiasing` और `ignoreAlpha` को सक्षम करने की अत्यधिक अनुशंसा की जाती है

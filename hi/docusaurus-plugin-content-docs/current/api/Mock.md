@@ -1,32 +1,35 @@
 ---
 id: mock
-title: मोक ऑब्जेक्ट
+title: मॉक ऑब्जेक्ट
 ---
 
-मॉक ऑब्जेक्ट एक ऐसी वस्तु है जो एक नेटवर्क मॉक का प्रतिनिधित्व करती है और इसमें उन अनुरोधों के बारे में जानकारी होती है जो दिए गए `url` और `filterOptions`से मेल खाते थे। इसे [`mock`](/docs/api/browser/mock) कमांड का उपयोग करके प्राप्त किया जा सकता है।
+मॉक ऑब्जेक्ट एक ऐसा ऑब्जेक्ट है जो नेटवर्क मॉक का प्रतिनिधित्व करता है और दिए गए `url` और `filterOptions` से मेल खाने वाले अनुरोधों के बारे में जानकारी रखता है। इसे [`mock`](/docs/api/browser/mock) कमांड का उपयोग करके प्राप्त किया जा सकता है।
 
 :::info
 
-ध्यान दें कि `mock` कमांड का उपयोग करने के लिए क्रोम देवटूल प्रोटोकॉल के लिए समर्थन की आवश्यकता होती है। यह समर्थन तब दिया जाता है जब आप क्रोमियम आधारित ब्राउज़र में स्थानीय रूप से परीक्षण चलाते हैं या यदि आप सेलेनियम ग्रिड v4 या उच्चतर का उपयोग करते हैं। क्लाउड में स्वचालित परीक्षण चलाते समय इस आदेश का उपयोग __नहीं__ किया जा सकता है। [स्वचालन प्रोटोकॉल](/docs/automationProtocols) अनुभाग में और जानें।
+ध्यान दें कि `mock` कमांड का उपयोग करने के लिए Chrome DevTools प्रोटोकॉल के समर्थन की आवश्यकता होती है।
+यह समर्थन तब मिलता है जब आप स्थानीय रूप से Chromium आधारित ब्राउज़र में परीक्षण चलाते हैं या
+Selenium Grid v4 या उससे उच्च संस्करण का उपयोग करते हैं। यह कमांड क्लाउड में स्वचालित परीक्षण
+चलाते समय उपयोग __नहीं__ की जा सकती है। अधिक जानकारी के लिए [ऑटोमेशन प्रोटोकॉल्स](/docs/automationProtocols) अनुभाग देखें।
 
 :::
 
-आप हमारे [मॉक और स्पाई](/docs/mocksandspies) गाइड में WebdriverIO में नकली अनुरोध और प्रतिक्रिया के बारे में अधिक पढ़ सकते हैं।
+आप WebdriverIO में अनुरोधों और प्रतिक्रियाओं को मॉक करने के बारे में हमारे [मॉक्स और स्पाईज़](/docs/mocksandspies) गाइड में अधिक पढ़ सकते हैं।
 
-## विशेषताएं
+## प्रॉपर्टीज
 
-एक तत्व वस्तु में निम्नलिखित गुण होते हैं:
+एक मॉक ऑब्जेक्ट में निम्नलिखित प्रॉपर्टीज होती हैं:
 
-| नाम             | प्रकार     | विवरण                                                                                                                                                                    |
-| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `url`           | `String`   | Url मॉक कमांड में पास हो गया                                                                                                                                             |
-| `filterOptions` | `Object`   | संसाधन फ़िल्टर विकल्प मॉक कमांड में पारित किया गया                                                                                                                       |
-| `browser`       | `Object`   | मॉक ऑब्जेक्ट प्राप्त करने के लिए [ब्राउज़र ऑब्जेक्ट](/docs/api/browser) का उपयोग किया जाता है।                                                                           |
-| `calls`         | `Object[]` | मिलान करने वाले ब्राउज़र अनुरोधों के बारे में जानकारी, जिसमें `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` and `body` |
+| नाम | प्रकार | विवरण |
+| ---- | ---- | ------- |
+| `url` | `String` | मॉक कमांड में पास किया गया url |
+| `filterOptions` | `Object` | मॉक कमांड में पास किए गए रिसोर्स फिल्टर विकल्प |
+| `browser` | `Object` | मॉक ऑब्जेक्ट प्राप्त करने के लिए उपयोग किया गया [ब्राउज़र ऑब्जेक्ट](/docs/api/browser)। |
+| `calls` | `Object[]` | मैचिंग ब्राउज़र अनुरोधों के बारे में जानकारी, जिसमें `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` और `body` जैसी प्रॉपर्टीज शामिल हैं |
 
-## विधियां
+## मेथड्स
 
-कृत्रिम वस्तुएँ विभिन्न आदेश प्रदान करती हैं, जो `mock` खंड में सूचीबद्ध हैं, जो उपयोगकर्ताओं को अनुरोध या प्रतिक्रिया के व्यवहार को संशोधित करने की अनुमति देती हैं।
+मॉक ऑब्जेक्ट विभिन्न कमांड्स प्रदान करते हैं, जो `mock` सेक्शन में सूचीबद्ध हैं, जो उपयोगकर्ताओं को अनुरोध या प्रतिक्रिया के व्यवहार को संशोधित करने की अनुमति देते हैं।
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -37,17 +40,17 @@ title: मोक ऑब्जेक्ट
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
 
-## इवेंट
+## इवेंट्स
 
-ब्राउज़र ऑब्जेक्ट एक EventEmitter है और आपके उपयोग के मामलों के लिए कुछ ईवेंट उत्सर्जित होते हैं।
+मॉक ऑब्जेक्ट एक EventEmitter है और आपके उपयोग के लिए कुछ इवेंट्स भेजे जाते हैं।
 
-यहाँ घटनाओं की एक सूची है।
+यहां इवेंट्स की सूची है।
 
 ### `request`
 
-मॉक पैटर्न से मेल खाने वाले नेटवर्क अनुरोध को लॉन्च करते समय यह ईवेंट उत्सर्जित किया जा रहा है। ईवेंट कॉलबैक में अनुरोध पारित किया गया है।
+यह इवेंट तब भेजा जाता है जब मॉक पैटर्न से मेल खाने वाला नेटवर्क अनुरोध शुरू किया जाता है। अनुरोध इवेंट कॉलबैक में पास किया जाता है।
 
-अनुरोध इंटरफ़ेस:
+Request इंटरफेस:
 ```ts
 interface RequestEvent {
     requestId: number
@@ -59,9 +62,9 @@ interface RequestEvent {
 
 ### `overwrite`
 
-जब नेटवर्क प्रतिक्रिया [`respond`](/docs/api/mock/respond) या [`respondOnce`](/docs/api/mock/respondOnce)के साथ ओवरराइट की जाती है तो यह घटना उत्सर्जित हो रही है। ईवेंट कॉलबैक में अनुरोध पारित किया गया है।
+यह इवेंट तब भेजा जाता है जब नेटवर्क प्रतिक्रिया को [`respond`](/docs/api/mock/respond) या [`respondOnce`](/docs/api/mock/respondOnce) के साथ ओवरराइट किया जाता है। प्रतिक्रिया इवेंट कॉलबैक में पास की जाती है।
 
-अनुरोध इंटरफ़ेस:
+Response इंटरफेस:
 ```ts
 interface OverwriteEvent {
     requestId: number
@@ -73,9 +76,9 @@ interface OverwriteEvent {
 
 ### `fail`
 
-जब नेटवर्क प्रतिक्रिया [`respond`](/docs/api/mock/abort) या [`respondOnce`](/docs/api/mock/abortOnce)के साथ ओवरराइट की जाती है तो यह घटना उत्सर्जित हो रही है। ईवेंट कॉलबैक में अनुरोध पारित किया गया है।
+यह इवेंट तब भेजा जाता है जब नेटवर्क अनुरोध को [`abort`](/docs/api/mock/abort) या [`abortOnce`](/docs/api/mock/abortOnce) के साथ रद्द किया जाता है। फेल इवेंट कॉलबैक में पास किया जाता है।
 
-विफल इंटरफ़ेस:
+Fail इंटरफेस:
 ```ts
 interface FailEvent {
     requestId: number
@@ -85,39 +88,39 @@ interface FailEvent {
 
 ### `match`
 
-नया मैच जोड़े जाने पर यह घटना उत्सर्जित हो रही है, `continue` या `overwrite`जारी रखें। ईवेंट कॉलबैक में अनुरोध पारित किया गया है।
+यह इवेंट तब भेजा जाता है जब `continue` या `overwrite` से पहले नया मैच जोड़ा जाता है। मैच इवेंट कॉलबैक में पास किया जाता है।
 
-विफल इंटरफ़ेस:
+Match इंटरफेस:
 ```ts
 interface MatchEvent {
-    url: string // Request URL (without fragment).
-    urlFragment?: string // Fragment of the requested URL starting with hash, if present.
-    method: string // HTTP request method.
-    headers: Record<string, string> // HTTP request headers.
-    postData?: string // HTTP POST request data.
-    hasPostData?: boolean // True when the request has POST data.
-    mixedContentType?: MixedContentType // The mixed content export type of the request.
-    initialPriority: ResourcePriority // Priority of the resource request at the time request is sent.
-    referrerPolicy: ReferrerPolicy // The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Whether is loaded via link preload.
-    body: string | Buffer | JsonCompatible // Body response of actual resource.
-    responseHeaders: Record<string, string> // HTTP response headers.
-    statusCode: number // HTTP response status code.
-    mockedResponse?: string | Buffer // If mock, emitting the event, also modified it's response.
+    url: string // अनुरोध URL (फ्रैगमेंट के बिना)।
+    urlFragment?: string // हैश से शुरू होने वाला अनुरोधित URL का फ्रैगमेंट, यदि मौजूद हो।
+    method: string // HTTP अनुरोध विधि।
+    headers: Record<string, string> // HTTP अनुरोध हेडर्स।
+    postData?: string // HTTP POST अनुरोध डेटा।
+    hasPostData?: boolean // सत्य जब अनुरोध में POST डेटा हो।
+    mixedContentType?: MixedContentType // अनुरोध का मिश्रित सामग्री निर्यात प्रकार।
+    initialPriority: ResourcePriority // अनुरोध भेजे जाने के समय संसाधन अनुरोध की प्राथमिकता।
+    referrerPolicy: ReferrerPolicy // अनुरोध की रेफरर नीति, जैसा कि https://www.w3.org/TR/referrer-policy/ में परिभाषित किया गया है
+    isLinkPreload?: boolean // क्या लिंक प्रीलोड के माध्यम से लोड किया गया है।
+    body: string | Buffer | JsonCompatible // वास्तविक संसाधन की बॉडी प्रतिक्रिया।
+    responseHeaders: Record<string, string> // HTTP प्रतिक्रिया हेडर्स।
+    statusCode: number // HTTP प्रतिक्रिया स्टेटस कोड।
+    mockedResponse?: string | Buffer // यदि मॉक, इवेंट को भेजता है, और इसके साथ ही अपनी प्रतिक्रिया को संशोधित भी करता है।
 }
 ```
 
 ### `continue`
 
-इस घटना को उत्सर्जित किया जा रहा है जब नेटवर्क प्रतिक्रिया को न तो ओवरराइट किया गया है और न ही बाधित किया गया है, या यदि प्रतिक्रिया पहले से ही किसी अन्य मॉक द्वारा भेजी गई है। ईवेंट कॉलबैक में `requestId` पारित किया गया है।
+यह इवेंट तब भेजा जाता है जब नेटवर्क प्रतिक्रिया को न तो ओवरराइट किया गया है और न ही बाधित किया गया है, या यदि प्रतिक्रिया पहले से ही किसी अन्य मॉक द्वारा भेजी गई है। इवेंट कॉलबैक में `requestId` पास किया जाता है।
 
 ## उदाहरण
 
-कई लंबित अनुरोध प्राप्त करना:
+लंबित अनुरोधों की संख्या प्राप्त करना:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // it is important to match all requests otherwise, the resulting value can be very confusing.
+const mock = await browser.mock('**') // सभी अनुरोधों को मैच करना महत्वपूर्ण है अन्यथा, परिणामी मूल्य बहुत भ्रामक हो सकता है।
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -128,7 +131,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-404 नेटवर्क पर त्रुटि फेंकना विफल:
+404 नेटवर्क विफलता पर त्रुटि फेंकना:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -142,7 +145,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // waiting here, because some requests can still be pending
+    // यहां प्रतीक्षा कर रहे हैं, क्योंकि कुछ अनुरोध अभी भी लंबित हो सकते हैं
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -157,7 +160,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-यह निर्धारित करना कि नकली प्रतिक्रिया मान का उपयोग किया गया था या नहीं:
+यह निर्धारित करना कि क्या मॉक रिस्पॉन्ड वैल्यू का उपयोग किया गया था:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -167,16 +170,16 @@ firstMock.respondOnce({id: 3, title: 'three'})
 secondMock.respond({id: 4, title: 'four'})
 
 firstMock.on('overwrite', () => {
-    // triggers for first request to '**/foo/**'
+    // '**/foo/**' के लिए पहले अनुरोध के लिए ट्रिगर होता है
 }).on('continue', () => {
-    // triggers for rest requests to '**/foo/**'
+    // '**/foo/**' के लिए बाकी अनुरोधों के लिए ट्रिगर होता है
 })
 
 secondMock.on('continue', () => {
-    // triggers for first request to '**/foo/bar/**'
+    // '**/foo/bar/**' के लिए पहले अनुरोध के लिए ट्रिगर होता है
 }).on('overwrite', () => {
-    // triggers for rest requests to '**/foo/bar/**'
+    // '**/foo/bar/**' के लिए बाकी अनुरोधों के लिए ट्रिगर होता है
 })
 ```
 
-इस उदाहरण में, `firstMock` पहले परिभाषित किया गया था और इसमें एक `responseOnce` कॉल है, इसलिए `secondMock` प्रतिक्रिया मान का उपयोग पहले अनुरोध के लिए नहीं किया जाएगा, लेकिन बाकी के लिए उपयोग किया जाएगा।
+इस उदाहरण में, `firstMock` पहले परिभाषित किया गया था और इसमें एक `respondOnce` कॉल है, इसलिए पहले अनुरोध के लिए `secondMock` प्रतिक्रिया मान का उपयोग नहीं किया जाएगा, लेकिन बाकी अनुरोधों के लिए इसका उपयोग किया जाएगा।

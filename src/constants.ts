@@ -6,7 +6,7 @@ export const LANGUAGES_TO_TRANSLATE = {
     es: 'Spanish',
     // fa: 'Persian',
     fr: 'French',
-    // hi: 'Hindi',
+    hi: 'Hindi',
     // it: 'Italian',
     // ja: 'Japanese',
     // pl: 'Polish',

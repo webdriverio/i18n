@@ -1,12 +1,11 @@
 ---
 id: more-test-optimization
-title: Test execution time
+title: परीक्षण निष्पादन समय
 ---
 
-By default, this module will check if you have a local installation of Tesseract on your machine/in your pipeline. If you don't have a local installation it will automatically use a [NodeJS](https://github.com/naptha/tesseract.js) version. This might cause some slowness because the image processing will be done by Node.js. NodeJS is not the best system to do
-heavy processing.
+डिफ़ॉल्ट रूप से, यह मॉड्यूल जांच करेगा कि आपके मशीन/आपके पाइपलाइन में Tesseract का स्थानीय इंस्टॉलेशन है या नहीं। यदि आपके पास स्थानीय इंस्टॉलेशन नहीं है, तो यह स्वचालित रूप से [NodeJS](https://github.com/naptha/tesseract.js) संस्करण का उपयोग करेगा। इससे कुछ धीमापन हो सकता है क्योंकि छवि प्रोसेसिंग Node.js द्वारा की जाएगी। NodeJS भारी प्रोसेसिंग करने के लिए सबसे अच्छा सिस्टम नहीं है।
 
-**BUT....**, there are ways to optimize the execution time. Let's take the following test script
+**लेकिन....**, निष्पादन समय को अनुकूलित करने के तरीके हैं। निम्नलिखित टेस्ट स्क्रिप्ट को देखें
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -28,7 +27,7 @@ describe("Search", () => {
 });
 ```
 
-When you execute this for the first time you might see the following results where it took 5.9 seconds to finish the test.
+जब आप इसे पहली बार निष्पादित करते हैं, तो आप निम्नलिखित परिणाम देख सकते हैं जहां परीक्षण को पूरा करने में 5.9 सेकंड लगे।
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -60,11 +59,11 @@ Execution of 1 workers started at 2024-05-26T04:52:53.405Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-## Cropping the search area of a screen
+## स्क्रीन के खोज क्षेत्र को क्रॉप करना
 
-You can optimize the execution time by providing a cropped area to execute the OCR on.
+आप OCR को निष्पादित करने के लिए क्रॉप किए गए क्षेत्र प्रदान करके निष्पादन समय को अनुकूलित कर सकते हैं।
 
-If you would then change the script to this:
+यदि आप स्क्रिप्ट को इस प्रकार बदलते हैं:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -89,7 +88,7 @@ describe("Search", () => {
 });
 ```
 
-Then you will see a different execution time.
+तब आप एक अलग निष्पादन समय देखेंगे।
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -121,13 +120,13 @@ Execution of 1 workers started at 2024-05-26T04:56:55.326Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-:::tip Cropping images
-This reduced the local execution time from **5.9** to **4.8 seconds**. This is a reduction of almost **19%**. Imagine what it can do for a larger script with more data on it.
+:::tip छवियों को क्रॉप करना
+इसने स्थानीय निष्पादन समय को **5.9** से **4.8 सेकंड** तक कम कर दिया। यह लगभग **19%** की कमी है। कल्पना करें कि यह अधिक डेटा वाली बड़ी स्क्रिप्ट के लिए क्या कर सकता है।
 :::
 
-## Using a local installation of Tesseract
+## Tesseract के स्थानीय इंस्टॉलेशन का उपयोग करना
 
-You can speed up your execution time to even less than a minute if you have a local installation of Tessarect on your local machine and or in your pipeline (more information about installing Tesseract on your local system can be found [here](https://tesseract-ocr.github.io/tessdoc/Installation.html)). You can find the execution time of the same script using a local installation of Tesseract below.
+यदि आपके स्थानीय मशीन पर और आपके पाइपलाइन में Tessarect का स्थानीय इंस्टॉलेशन है (अपने स्थानीय सिस्टम पर Tesseract को इंस्टॉल करने के बारे में अधिक जानकारी [यहां](https://tesseract-ocr.github.io/tessdoc/Installation.html) पाई जा सकती है) तो आप अपने निष्पादन समय को और भी कम कर सकते हैं। आप Tesseract के स्थानीय इंस्टॉलेशन का उपयोग करके समान स्क्रिप्ट के निष्पादन समय को नीचे देख सकते हैं।
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -156,6 +155,6 @@ Execution of 1 workers started at 2024-05-26T04:59:11.620Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
-:::tip Local installation
-This reduced the local execution time from **5.9** to **3.9 seconds**. This is a reduction of almost **34%**. Imagine what it can do for a larger script with more data on it.
+:::tip स्थानीय इंस्टॉलेशन
+इसने स्थानीय निष्पादन समय को **5.9** से **3.9 सेकंड** तक कम कर दिया। यह लगभग **34%** की कमी है। कल्पना करें कि यह अधिक डेटा वाली बड़ी स्क्रिप्ट के लिए क्या कर सकता है।
 :::

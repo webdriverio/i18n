@@ -1,9 +1,9 @@
 ---
 id: service-options
-title: Service Options
+title: सेवा विकल्प
 ---
 
-Service options are the options that can be set when the service is instantiated and will be used for each method call.
+सेवा विकल्प वे विकल्प हैं जिन्हें सेवा को आरंभ करते समय सेट किया जा सकता है और प्रत्येक विधि कॉल के लिए उपयोग किया जाएगा।
 
 ```js
 // wdio.conf.(js|ts)
@@ -24,86 +24,88 @@ export const config = {
 };
 ```
 
-## Default Options
+## डिफ़ॉल्ट विकल्प
 
 ### `addressBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6`
-- **Supported:** Web
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `6`
+-   **समर्थित:** वेब
 
-The padding needs to be added to the address bar on iOS and Android to do a proper cutout of the viewport.
+iOS और Android पर व्यूपोर्ट के उचित कटआउट के लिए एड्रेस बार में पैडिंग जोड़ने की आवश्यकता होती है।
 
 ### `autoElementScroll`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `true`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-This option allows you to disable the automatic scrolling of the element into the view when an element screenshot is created.
+यह विकल्प आपको एलिमेंट स्क्रीनशॉट बनाते समय एलिमेंट को दृश्य में स्वचालित रूप से स्क्रॉल करने को अक्षम करने की अनुमति देता है।
 
 ### `addIOSBezelCorners`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `false`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-Add bezel corners and notch/dynamic island to the screenshot for iOS devices.
+iOS डिवाइस के लिए स्क्रीनशॉट में बेज़ेल कोने और नॉच/डायनामिक आइलैंड जोड़ें।
 
-:::info NOTE
+:::info नोट
+यह केवल तभी किया जा सकता है जब डिवाइस नाम **स्वचालित रूप से** निर्धारित किया जा सकता है और सामान्यीकृत डिवाइस नामों की निम्नलिखित सूची से मेल खाता है। सामान्यीकरण इस मॉड्यूल द्वारा किया जाएगा।
+**iPhone:**
 
-- iPhone X: `iphonex`
-- iPhone XS: `iphonexs`
-- iPhone XS Max: `iphonexsmax`
-- iPhone XR: `iphonexr`
-- iPhone 11: `iphone11`
-- iPhone 11 Pro: `iphone11pro`
-- iPhone 11 Pro Max: `iphone11promax`
-- iPhone 12: `iphone12`
-- iPhone 12 Mini: `iphone12mini`
-- iPhone 12 Pro: `iphone12pro`
-- iPhone 12 Pro Max: `iphone12promax`
-- iPhone 13: `iphone13`
-- iPhone 13 Mini: `iphone13mini`
-- iPhone 13 Pro: `iphone13pro`
-- iPhone 13 Pro Max: `iphone13promax`
-- iPhone 14: `iphone14`
-- iPhone 14 Plus: `iphone14plus`
-- iPhone 14 Pro: `iphone14pro`
-- iPhone 14 Pro Max: `iphone14promax`
+-   iPhone X: `iphonex`
+-   iPhone XS: `iphonexs`
+-   iPhone XS Max: `iphonexsmax`
+-   iPhone XR: `iphonexr`
+-   iPhone 11: `iphone11`
+-   iPhone 11 Pro: `iphone11pro`
+-   iPhone 11 Pro Max: `iphone11promax`
+-   iPhone 12: `iphone12`
+-   iPhone 12 Mini: `iphone12mini`
+-   iPhone 12 Pro: `iphone12pro`
+-   iPhone 12 Pro Max: `iphone12promax`
+-   iPhone 13: `iphone13`
+-   iPhone 13 Mini: `iphone13mini`
+-   iPhone 13 Pro: `iphone13pro`
+-   iPhone 13 Pro Max: `iphone13promax`
+-   iPhone 14: `iphone14`
+-   iPhone 14 Plus: `iphone14plus`
+-   iPhone 14 Pro: `iphone14pro`
+-   iPhone 14 Pro Max: `iphone14promax`
     **iPads:**
-- iPad Mini 6th Generation: `ipadmini`
-- iPad Air 4th Generation: `ipadair`
-- iPad Air 5th Generation: `ipadair`
-- iPad Pro (11-inch) 1st Generation: `ipadpro11`
-- iPad Pro (11-inch) 2nd Generation: `ipadpro11`
-- iPad Pro (11-inch) 3rd Generation: `ipadpro11`
-- iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+-   iPad Mini 6th Generation: `ipadmini`
+-   iPad Air 4th Generation: `ipadair`
+-   iPad Air 5th Generation: `ipadair`
+-   iPad Pro (11-inch) 1st Generation: `ipadpro11`
+-   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
+-   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
+-   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
 
 :::
 
 ### `autoSaveBaseline`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `true`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-If no baseline image is found during the comparison the image is automatically copied to the baseline folder.
+यदि तुलना के दौरान कोई बेसलाइन छवि नहीं मिली है तो छवि स्वचालित रूप से बेसलाइन फ़ोल्डर में कॉपी की जाती है।
 
 ### `baselineFolder`
 
-- **Type:** `string|()=> string`
-- **Mandatory:** No
-- **Default:** `.path/to/testfile/__snapshots__/`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `string|()=> string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `.path/to/testfile/__snapshots__/`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-The directory that will hold all the baseline images that are used during the comparison. If not set, the default value will be used which will store the files in a `__snapshots__/`-folder next to the spec that executes the visual tests. A function that returns a `string` can also be used to set the `baselineFolder` value:
+निर्देशिका जो तुलना के दौरान उपयोग की जाने वाली सभी बेसलाइन छवियों को रखेगी। यदि सेट नहीं किया गया है, तो डिफ़ॉल्ट मान का उपयोग किया जाएगा जो उन स्पेक के बगल में `__snapshots__/`-फ़ोल्डर में फ़ाइलों को स्टोर करेगा जो विज़ुअल टेस्ट निष्पादित करता है। `baselineFolder` मान सेट करने के लिए एक फ़ंक्शन जो `string` लौटाता है का भी उपयोग किया जा सकता है:
 
 ```js
 {
@@ -120,24 +122,24 @@ The directory that will hold all the baseline images that are used during the co
 
 ### `clearRuntimeFolder`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `false`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-Delete runtime folder (`actual` & \`diff) on initialization
+प्रारंभीकरण पर रनटाइम फ़ोल्डर (`actual` & `diff`) हटाएं
 
-:::info NOTE
-This will only work when the [`screenshotPath`](#screenshotpath) is set through the plugin options, and **WILL NOT WORK** when you set the folders in the methods
+:::info नोट
+यह केवल तभी काम करेगा जब [`screenshotPath`](#screenshotpath) प्लगइन विकल्पों के माध्यम से सेट किया गया हो, और **काम नहीं करेगा** जब आप विधियों में फ़ोल्डर सेट करते हैं
 :::
 
 ### `createJsonReportFiles` **(NEW)**
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `false`
 
-You now have the option to export the compare results into a JSON report file. By providing the option `createJsonReportFiles: true`, each image that is compared will create a report stored in the `actual` folder, next to each `actual` image result. The output will look like this:
+अब आपके पास तुलना परिणामों को JSON रिपोर्ट फ़ाइल में निर्यात करने का विकल्प है। विकल्प `createJsonReportFiles: true` प्रदान करके, प्रत्येक `actual` छवि परिणाम के बगल में, `actual` फोल्डर में संग्रहीत एक रिपोर्ट बनाई जाएगी। आउटपुट इस प्रकार दिखेगा:
 
 ```json
 {
@@ -200,14 +202,14 @@ You now have the option to export the compare results into a JSON report file. B
 }
 ```
 
-When all tests are executed, a new JSON file with the collection of the comparisons will be generated and can be found in the root of your `actual` folder. The data is grouped by:
+जब सभी परीक्षण निष्पादित हो जाते हैं, तो तुलनाओं के संग्रह के साथ एक नई JSON फ़ाइल उत्पन्न की जाएगी और आपके `actual` फ़ोल्डर के रूट में पाई जा सकती है। डेटा को इसके अनुसार समूहित किया गया है:
 
-- `describe` for Jasmine/Mocha or `Feature` for CucumberJS
-- `it` for Jasmine/Mocha or `Scenario` for CucumberJS
-    and then sorted by:
-- `commandName`, which are the compare method names used to compare the images
-- `instanceData`, browser first, then device, then platform
-    it will look like this
+-   Jasmine/Mocha के लिए `describe` या CucumberJS के लिए `Feature`
+-   Jasmine/Mocha के लिए `it` या CucumberJS के लिए `Scenario`
+    और फिर इसके अनुसार सॉर्ट किया गया:
+-   `commandName`, जो छवियों की तुलना करने के लिए उपयोग किए जाने वाले तुलना विधि नाम हैं
+-   `instanceData`, पहले ब्राउज़र, फिर डिवाइस, फिर प्लेटफॉर्म
+    यह इस प्रकार दिखेगा
 
 ```json
 [
@@ -250,141 +252,135 @@ When all tests are executed, a new JSON file with the collection of the comparis
 ]
 ```
 
-The report data will give you the opportunity to build your own visual report without doing all the magic and data collection yourself.
+रिपोर्ट डेटा आपको बिना सारी जादुई और डेटा संग्रह के स्वयं करने के अवसर देगा अपनी खुद की विज़ुअल रिपोर्ट बनाने का।
 
-:::info NOTE
-You need to use `@wdio/visual-testing` version `5.2.0` or higher
+:::info नोट
+आपको `@wdio/visual-testing` संस्करण `5.2.0` या उससे अधिक का उपयोग करने की आवश्यकता है
 :::
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `false`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+एप्लिकेशन में सभी `input`, `textarea`, `[contenteditable]` कैरेट "ब्लिंकिंग" को सक्षम/अक्षम करें। यदि `true` पर सेट किया गया है, तो स्क्रीनशॉट लेने से पहले कैरेट को `transparent` पर सेट किया जाएगा और पूरा होने पर रीसेट किया जाएगा
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `false`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+एप्लिकेशन में सभी CSS एनिमेशन को सक्षम/अक्षम करें। यदि `true` पर सेट किया गया है, तो स्क्रीनशॉट लेने से पहले सभी एनिमेशन अक्षम कर दिए जाएंगे और पूरा होने पर रीसेट कर दिए जाएंगे
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `false`
+-   **समर्थित:** वेब
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+यह पेज पर सभी टेक्स्ट को छिपा देगा ताकि केवल लेआउट का उपयोग तुलना के लिए किया जाए। छिपाने का काम **प्रत्येक** एलिमेंट में `'color': 'transparent !important'` स्टाइल जोड़कर किया जाएगा।
 
-For the output see [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+आउटपुट के लिए [टेस्ट आउटपुट](/docs/visual-testing/test-output#enablelayouttesting) देखें
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+इस फ्लैग का उपयोग करके प्रत्येक एलिमेंट जिसमें टेक्स्ट होता है (इसलिए न केवल `p, h1, h2, h3, h4, h5, h6, span, a, li`, बल्कि `div|button|..` भी) को यह प्रॉपर्टी मिलेगी। इसे अनुकूलित करने का कोई विकल्प **नहीं** है।
 :::
 
 ### `formatImageName`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-The name of the saved images can be customized by passing the parameter `formatImageName` with a format string like:
+सहेजी गई छवियों के नाम को निम्न जैसे एक फॉर्मेट स्ट्रिंग के साथ `formatImageName` पैरामीटर पास करके अनुकूलित किया जा सकता है:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-The following variables can be passed to format the string and will automatically be read from the instance capabilities.
-If they can't be determined the defaults will be used.
+स्ट्रिंग को फॉर्मेट करने के लिए निम्नलिखित वेरिएबल्स पास किए जा सकते हैं और स्वचालित रूप से इंस्टेंस क्षमताओं से पढ़े जाएंगे।
+यदि वे निर्धारित नहीं किए जा सकते हैं तो डिफ़ॉल्ट का उपयोग किया जाएगा।
 
-- `browserName`: The name of the browser in the provided capabilities
-- `browserVersion`: The version of the browser provided in the capabilities
-- `deviceName`: The device name from the capabilities
-- `dpr`: The device pixel ratio
-- `height`: The height of the screen
-- `logName`: The logName from capabilities
-- `mobile`: This will add `_app`, or the browser name after the `deviceName` to distinguish app screenshots from browser screenshots
-- `platformName`: The name of the platform in the provided capabilities
-- `platformVersion`: The version of the platform provided in the capabilities
-- `tag`: The tag that is provided in the methods that is being called
-- `width`: The width of the screen
+-   `browserName`: क्षमताओं में प्रदान किए गए ब्राउज़र का नाम
+-   `browserVersion`: क्षमताओं में प्रदान किए गए ब्राउज़र का वर्जन
+-   `deviceName`: क्षमताओं से डिवाइस का नाम
+-   `dpr`: डिवाइस पिक्सेल अनुपात
+-   `height`: स्क्रीन की ऊंचाई
+-   `logName`: क्षमताओं से logName
+-   `mobile`: यह ऐप स्क्रीनशॉट को ब्राउज़र स्क्रीनशॉट से अलग करने के लिए `deviceName` के बाद `_app`, या ब्राउज़र नाम जोड़ेगा
+-   `platformName`: क्षमताओं में प्रदान किए गए प्लेटफ़ॉर्म का नाम
+-   `platformVersion`: क्षमताओं में प्रदान किए गए प्लेटफ़ॉर्म का वर्जन
+-   `tag`: वह टैग जो कॉल की जा रही विधियों में प्रदान किया गया है
+-   `width`: स्क्रीन की चौड़ाई
 
 :::info
 
-You can not provide custom paths/folders in the `formatImageName`. If you want to change the path then please check changing the following options:
+आप `formatImageName` में कस्टम पाथ/फोल्डर प्रदान नहीं कर सकते। यदि आप पाथ बदलना चाहते हैं तो कृपया निम्नलिखित विकल्प बदलने की जांच करें:
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) per method
+- प्रति विधि [`folderOptions`](/docs/visual-testing/method-options#folder-options)
 
 :::
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Supported:** Web
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `1500`
+-   **समर्थित:** वेब
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+स्क्रॉल के बाद प्रतीक्षा करने के लिए मिलीसेकंड में टाइमआउट। यह आलसी लोडिंग वाले पृष्ठों की पहचान करने में मदद कर सकता है।
+
+:::info
+
+यह केवल तभी काम करेगा जब सेवा/विधि विकल्प `userBasedFullPageScreenshot` को `true` पर सेट किया गया हो, [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot) भी देखें
+
+:::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `true`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-Hide scrollbars in the application. If set to true all scrollbars will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
-
-### `isHybridApp`
-
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Hybrid App
-
-Tell the module if the used app is a Hybrid app, this will not calculate the address bar height because it is not there.
+एप्लिकेशन में स्क्रॉलबार छिपाएं। यदि true पर सेट किया गया है, तो स्क्रीनशॉट लेने से पहले सभी स्क्रॉलबार अक्षम कर दिए जाएंगे। यह अतिरिक्त मुद्दों को रोकने के लिए डिफ़ॉल्ट रूप से `true` पर सेट है।
 
 ### `logLevel`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `info`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `info`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-Adds extra logs, options are `debug | info | warn | silent`
+अतिरिक्त लॉग जोड़ता है, विकल्प हैं `debug | info | warn | silent`
 
-Errors are always logged to the console.
+त्रुटियां हमेशा कंसोल पर लॉग की जाती हैं।
 
 ### `savePerInstance`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `boolean`
+-   **डिफ़ॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-Save the images per instance in a separate folder so for example all Chrome screenshots will be saved in a Chrome folder like `desktop_chrome`.
+प्रति इंस्टेंस छवियों को एक अलग फ़ोल्डर में सहेजें, उदाहरण के लिए सभी Chrome स्क्रीनशॉट `desktop_chrome` जैसे Chrome फ़ोल्डर में सहेजे जाएंगे।
 
 ### `screenshotPath`
 
-- **Type:** `string | () => string`
-- **Default:** `.tmp/`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `string | () => string`
+-   **डिफ़ॉल्ट:** `.tmp/`
+-   **अनिवार्य:** नहीं
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-The directory that will hold all the actual/different screenshots. If not set, the default value will be used. A function that
-returns a string can also be used to set the screenshotPath value:
+निर्देशिका जो सभी वास्तविक/अलग स्क्रीनशॉट रखेगी। यदि सेट नहीं किया गया है, तो डिफ़ॉल्ट मान का उपयोग किया जाएगा। screenshotPath मान सेट करने के लिए एक स्ट्रिंग लौटाने वाले फ़ंक्शन का भी उपयोग किया जा सकता है:
 
 ```js
 {
@@ -401,158 +397,170 @@ returns a string can also be used to set the screenshotPath value:
 
 ### `toolBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6` for Android and `15` for iOS (`6` by default and `9` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)
-- **Supported:** Web
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** Android के लिए `6` और iOS के लिए `15` (डिफ़ॉल्ट रूप से `6` और नॉच या होम बार वाले आईफोन के लिए संभावित होम बार के लिए `9` स्वचालित रूप से जोड़ा जाएगा)
+-   **समर्थित:** वेब
 
-The padding which needs to be added to the toolbar bar on iOS and Android to do a proper cutout of the viewport.
+व्यूपोर्ट के उचित कटआउट के लिए iOS और Android पर टूलबार बार में जोड़े जाने वाले पैडिंग।
+
+### `userBasedFullPageScreenshot`
+
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `false`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू) **visual-service@7.0.0 में पेश किया गया**
+
+डिफ़ॉल्ट रूप से, डेस्कटॉप वेब पर पूर्ण-पृष्ठ स्क्रीनशॉट WebDriver BiDi प्रोटोकॉल का उपयोग करके कैप्चर किए जाते हैं, जो स्क्रॉलिंग के बिना तेज़, स्थिर और सुसंगत स्क्रीनशॉट सक्षम करता है।
+जब userBasedFullPageScreenshot को true पर सेट किया जाता है, तो स्क्रीनशॉट प्रक्रिया एक वास्तविक उपयोगकर्ता का अनुकरण करती है: पृष्ठ के माध्यम से स्क्रॉल करना, व्यूपोर्ट-आकार के स्क्रीनशॉट कैप्चर करना, और उन्हें एक साथ जोड़ना। यह विधि उन पृष्ठों के लिए उपयोगी है जिनमें आलसी लोड किया गया सामग्री या गतिशील रेंडरिंग होती है जो स्क्रॉल स्थिति पर निर्भर करती है।
+
+इस विकल्प का उपयोग करें यदि आपका पृष्ठ स्क्रॉलिंग के दौरान सामग्री लोड करने पर निर्भर करता है या यदि आप पुराने स्क्रीनशॉट विधियों के व्यवहार को बनाए रखना चाहते हैं।
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `true`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+फ़ॉन्ट्स, जिनमें तृतीय-पक्ष फ़ॉन्ट्स भी शामिल हैं, सिंक्रोनस या एसिंक्रोनस रूप से लोड किए जा सकते हैं। एसिंक्रोनस लोडिंग का मतलब है कि फ़ॉन्ट्स WebdriverIO के निर्धारित करने के बाद लोड हो सकते हैं कि कोई पृष्ठ पूरी तरह से लोड हो गया है। फ़ॉन्ट रेंडरिंग समस्याओं को रोकने के लिए, यह मॉड्यूल, डिफ़ॉल्ट रूप से, स्क्रीनशॉट लेने से पहले सभी फ़ॉन्ट्स के लोड होने का इंतज़ार करेगा।
 
-## Tabbable Options
+## Tabbable विकल्प
 
-:::info NOTE
+:::info नोट
 
-This module also supports drawing the way a user would use his keyboard to _tab_ through the website by drawing lines and dots from tabbable element to tabbable element.<br/>
-The work is inspired by [Viv Richards](https://github.com/vivrichards600) his blog post about ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-The way tabbable elements are selected is based on the module [tabbable](https://github.com/davidtheclark/tabbable). If there are any issues regarding the tabbing please check the [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) and especially the [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+यह मॉड्यूल एक उपयोगकर्ता अपने कीबोर्ड का उपयोग वेबसाइट पर _टैब_ करने के लिए करेगा, उस तरीके से रेखाएँ और बिंदु आरेखित करके tabbable एलिमेंट से tabbable एलिमेंट तक का समर्थन भी करता है।<br/>
+यह कार्य [Viv Richards](https://github.com/vivrichards600) के ब्लॉग पोस्ट ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript) से प्रेरित है।<br/>
+tabbable एलिमेंट्स का चयन करने का तरीका [tabbable](https://github.com/davidtheclark/tabbable) मॉड्यूल पर आधारित है। यदि टैबिंग के संबंध में कोई समस्या है, तो कृपया [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) और विशेष रूप से [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details) देखें।
 
 :::
 
 ### `tabbableOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `object`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The options that can be changed for the lines and dots if you use the `{save|check}Tabbable`-methods. The options are explained below.
+विकल्प जो रेखाओं और बिंदुओं के लिए बदले जा सकते हैं यदि आप `{save|check}Tabbable`-विधियों का उपयोग करते हैं। विकल्प नीचे समझाए गए हैं।
 
 #### `tabbableOptions.circle`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `object`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The options to change the circle.
+सर्कल को बदलने के विकल्प।
 
 ##### `tabbableOptions.circle.backgroundColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The background color of the circle.
+सर्कल का बैकग्राउंड कलर।
 
 ##### `tabbableOptions.circle.borderColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The border color of the circle.
+सर्कल का बॉर्डर कलर।
 
 ##### `tabbableOptions.circle.borderWidth`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The border width of the circle.
+सर्कल की बॉर्डर चौड़ाई।
 
 ##### `tabbableOptions.circle.fontColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The color of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+सर्कल में टेक्स्ट के फॉन्ट का कलर। यह केवल तभी दिखाया जाएगा जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
 
 ##### `tabbableOptions.circle.fontFamily`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The family of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+सर्कल में टेक्स्ट के फॉन्ट का परिवार। यह केवल तभी दिखाया जाएगा जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
 
-Make sure to set fonts that are supported by the browsers.
+सुनिश्चित करें कि ऐसे फोंट सेट करें जो ब्राउज़र द्वारा समर्थित हों।
 
 ##### `tabbableOptions.circle.fontSize`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The size of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+सर्कल में टेक्स्ट के फॉन्ट का आकार। यह केवल तभी दिखाया जाएगा जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
 
 ##### `tabbableOptions.circle.size`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The size of the circle.
+सर्कल का आकार।
 
 ##### `tabbableOptions.circle.showNumber`
 
-- **Type:** `showNumber`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `showNumber`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-Show the tab sequence number in the circle.
+सर्कल में टैब अनुक्रम संख्या दिखाएं।
 
 #### `tabbableOptions.line`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `object`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The options to change the line.
+लाइन को बदलने के विकल्प।
 
 ##### `tabbableOptions.line.color`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The color of the line.
+लाइन का कलर।
 
 ##### `tabbableOptions.line.width`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) देखें
+-   **समर्थित:** वेब
 
-The width of the line.
+लाइन की चौड़ाई।
 
-## Compare options
+## तुलना विकल्प
 
 ### `compareOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values
-- **Supported:** Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)
+-   **प्रकार:** `object`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) देखें
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप (अधिक जानकारी के लिए [विधि तुलना विकल्प](./method-options#compare-check-options) देखें)
 
-The compare options can also be set as service options, they are described in the [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+तुलना विकल्प सेवा विकल्प के रूप में भी सेट किए जा सकते हैं, वे [विधि तुलना विकल्प](/docs/visual-testing/method-options#compare-check-options) में वर्णित हैं

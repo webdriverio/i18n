@@ -3,9 +3,9 @@ id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
 ---
 
-Wait for a specific text to be displayed on the screen.
+स्क्रीन पर एक विशिष्ट टेक्स्ट के प्रदर्शित होने का इंतजार करें।
 
-## Usage
+## उपयोग
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -13,9 +13,9 @@ await browser.ocrWaitForTextDisplayed({
 });
 ```
 
-## Output
+## आउटपुट
 
-### Logs
+### लॉग्स
 
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
@@ -24,16 +24,16 @@ await browser.ocrWaitForTextDisplayed({
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
-## Options
+## विकल्प
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **प्रकार:** `string`
+-   **अनिवार्य:** हां
 
-The text you want to search for to click on.
+वह टेक्स्ट जिसे आप क्लिक करने के लिए खोजना चाहते हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
@@ -41,30 +41,30 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 18000 (18 seconds)
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 18000 (18 सेकंड)
 
-Time in milliseconds. Be aware that the OCR process can take some time, so don't set it too low.
+मिलीसेकंड में समय। ध्यान रखें कि OCR प्रक्रिया में कुछ समय लग सकता है, इसलिए इसे बहुत कम न सेट करें।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // wait for 25 seconds
+    timeout: 25000 // 25 सेकंड तक इंतजार करें
 });
 ```
 
 ### `timeoutMsg`
 
-- **Type:** `string`
-- **Mandatory:** no
-- **Default:** `Could not find the text "{selector}" within the requested time.`
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `Could not find the text "{selector}" within the requested time.`
 
-It overrides the default error message.
+यह डिफ़ॉल्ट त्रुटि संदेश को ओवरराइड करता है।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -75,13 +75,13 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+जितना अधिक कंट्रास्ट, उतनी ही गहरी छवि और इसके विपरीत। यह छवि में टेक्स्ट खोजने में मदद कर सकता है। यह `-1` और `1` के बीच मान स्वीकार करता है।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -92,12 +92,12 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **प्रकार:** `number`
+-   **अनिवार्य:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+यह स्क्रीन का वह खोज क्षेत्र है जहां OCR को टेक्स्ट की तलाश करनी होती है। यह एक एलिमेंट या एक आयत हो सकता है जिसमें `x`, `y`, `width` और `height` शामिल हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -105,13 +105,13 @@ await browser.ocrWaitForTextDisplayed({
     haystack: $("elementSelector"),
 });
 
-// OR
+// या
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// या
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: {
@@ -125,36 +125,36 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहां](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएँ [यहां](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) मिल सकती हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Use Dutch as a language
+    // डच को भाषा के रूप में उपयोग करें
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+आप निम्नलिखित विकल्पों के साथ टेक्स्ट खोजने के लिए फज़ी लॉजिक को बदल सकते हैं। यह बेहतर मिलान खोजने में मदद कर सकता है।
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+यह निर्धारित करता है कि मिलान को फज़ी स्थान (location द्वारा निर्दिष्ट) के कितना नज़दीक होना चाहिए। एक सटीक अक्षर मिलान जो फज़ी स्थान से distance अक्षर दूर है, पूरी तरह से बेमेल के रूप में स्कोर करेगा। 0 की दूरी के लिए मिलान को निर्दिष्ट सटीक स्थान पर होना आवश्यक है। 0.8 के थ्रेशहोल्ड का उपयोग करते हुए 1000 की दूरी के लिए एक परफेक्ट मिलान को स्थान से 800 अक्षरों के भीतर होना आवश्यक होगा।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -167,13 +167,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+यह लगभग निर्धारित करता है कि टेक्स्ट में कहां पैटर्न मिलने की उम्मीद है।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -186,13 +186,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+किस बिंदु पर मिलान एल्गोरिदम हार मान लेता है। 0 का थ्रेशहोल्ड एक परफेक्ट मिलान (अक्षरों और स्थान दोनों का) की आवश्यकता होती है, 1.0 का थ्रेशहोल्ड कुछ भी मिला देगा।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -205,13 +205,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** false
 
-Whether the search should be case sensitive.
+क्या खोज केस संवेदनशील होनी चाहिए।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -224,13 +224,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+केवल वे मिलान जिनकी लंबाई इस मान से अधिक है, वापस किए जाएंगे। (उदाहरण के लिए, यदि आप परिणाम में एकल अक्षर मिलान को अनदेखा करना चाहते हैं, तो इसे 2 पर सेट करें)
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -243,13 +243,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+जब `true` होता है, तो मिलान फ़ंक्शन खोज पैटर्न के अंत तक जारी रहेगा, भले ही स्ट्रिंग में परफेक्ट मिलान पहले से ही पता चल गया हो।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({

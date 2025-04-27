@@ -1,32 +1,32 @@
 ---
 index: 1
 id: considerations
-title: Considerations
+title: विचारणीय बातें
 ---
 
-# Key Considerations for Optimal Use
+# इष्टतम उपयोग के लिए महत्वपूर्ण बातें
 
-Before diving into the powerful features of the `@wdio/visual-service`, it's crucial to understand some key considerations that ensure you get the most out of this tool. The following points are designed to guide you through best practices and common pitfalls, helping you achieve accurate and efficient visual testing results. These considerations are not just recommendations, but essential aspects to keep in mind for effectively utilizing the service in real-world scenarios.
+`@wdio/visual-service` की शक्तिशाली विशेषताओं में उतरने से पहले, कुछ महत्वपूर्ण बातों को समझना आवश्यक है जो सुनिश्चित करती हैं कि आप इस उपकरण का अधिकतम लाभ उठा सकें। निम्नलिखित बिंदु आपको सर्वोत्तम प्रथाओं और सामान्य गलतियों के माध्यम से मार्गदर्शन करने के लिए डिज़ाइन किए गए हैं, जो आपको सटीक और कुशल दृश्य परीक्षण परिणाम प्राप्त करने में मदद करेंगे। ये विचार केवल सिफारिशें नहीं हैं, बल्कि वास्तविक दुनिया के परिदृश्यों में सेवा का प्रभावी ढंग से उपयोग करने के लिए ध्यान में रखने वाले आवश्यक पहलू हैं।
 
-## Nature of Comparison
+## तुलना की प्रकृति
 
-- **Pixel-by-Pixel Basis:** The module performs a pixel-by-pixel comparison of images. While certain aspects can be adjusted (see Comparison Options), the core approach remains a basic pixel comparison.
-- **Impact of Browser Updates:** Be aware that updates to browsers, like Chrome, may affect font rendering, potentially necessitating an update to your baseline images.
+-   **पिक्सेल-बाई-पिक्सेल आधार:** मॉड्यूल छवियों की पिक्सेल-बाई-पिक्सेल तुलना करता है। हालांकि कुछ पहलुओं को समायोजित किया जा सकता है (तुलना विकल्प देखें), मूल दृष्टिकोण एक बुनियादी पिक्सेल तुलना बना रहता है।
+-   **ब्राउज़र अपडेट का प्रभाव:** ध्यान रखें कि Chrome जैसे ब्राउज़रों के अपडेट फ़ॉन्ट रेंडरिंग को प्रभावित कर सकते हैं, जिससे आपके बेसलाइन छवियों को अपडेट करने की आवश्यकता हो सकती है।
 
-## Consistency in Platforms
+## प्लेटफॉर्म में एकरूपता
 
-- **Comparing Identical Platforms:** Ensure screenshots are compared within the same platform. For instance, a screenshot from Chrome on a Mac should not be used to compare against one from Chrome on Ubuntu or Windows.
-- **Analogy:** To put it simply, compare _'Apples with Apples, not Apples with Androids'_.
+-   **समान प्लेटफॉर्म की तुलना:** सुनिश्चित करें कि स्क्रीनशॉट्स की तुलना एक ही प्लेटफॉर्म के भीतर की जाती है। उदाहरण के लिए, Mac पर Chrome से लिए गए स्क्रीनशॉट का उपयोग Ubuntu या Windows पर Chrome से लिए गए स्क्रीनशॉट के साथ तुलना के लिए नहीं किया जाना चाहिए।
+-   **उपमा:** सरल शब्दों में कहें तो, _'सेब की तुलना सेब से करें, न कि सेब की तुलना एंड्रॉयड से'_।
 
-## Caution with Mismatch Percentage
+## बेमेल प्रतिशत के साथ सावधानी
 
-- **Risk of Accepting Mismatches:** Exercise caution when accepting a mismatch percentage. This is especially true for large screenshots, where accepting a mismatch might inadvertently overlook significant discrepancies, such as missing buttons or elements.
+-   **बेमेल स्वीकार करने का जोखिम:** बेमेल प्रतिशत स्वीकार करते समय सावधानी बरतें। यह विशेष रूप से बड़े स्क्रीनशॉट के लिए सच है, जहां बेमेल को स्वीकार करने से अनजाने में महत्वपूर्ण विसंगतियों, जैसे गायब बटन या तत्वों को अनदेखा किया जा सकता है।
 
-## Mobile Screen Simulation
+## मोबाइल स्क्रीन सिमुलेशन
 
-- **Avoid Browser Resizing for Mobile Simulation:** Do not attempt to simulate mobile screen sizes by resizing desktop browsers and treating them as mobile browsers. Desktop browsers, even when resized, do not accurately replicate the rendering of actual mobile browsers.
-- **Authenticity in Comparison:** This tool aims to compare visuals as they would appear to an end-user. A resized desktop browser does not reflect the true experience on a mobile device.
+-   **मोबाइल सिमुलेशन के लिए ब्राउज़र रीसाइज़िंग से बचें:** डेस्कटॉप ब्राउज़रों को रीसाइज़ करके और उन्हें मोबाइल ब्राउज़र के रूप में मानकर मोबाइल स्क्रीन साइज़ का अनुकरण करने का प्रयास न करें। डेस्कटॉप ब्राउज़र, यहां तक कि रीसाइज़ किए जाने पर भी, वास्तविक मोबाइल ब्राउज़रों की रेंडरिंग का सटीक रूप से अनुकरण नहीं करते हैं।
+-   **तुलना में प्रामाणिकता:** यह उपकरण दृश्यों की तुलना करने का लक्ष्य रखता है जैसा कि वे अंतिम-उपयोगकर्ता को दिखाई देंगे। एक रीसाइज़ किया गया डेस्कटॉप ब्राउज़र मोबाइल डिवाइस पर वास्तविक अनुभव को प्रतिबिंबित नहीं करता है।
 
-## Stance on Headless Browsers
+## हेडलेस ब्राउज़र पर स्थिति
 
-- **Not Recommended for Headless Browsers:** The use of this module with headless browsers is not advised. The rationale is that end-users do not interact with headless browsers, and therefore issues arising from such use will not be supported.
+-   **हेडलेस ब्राउज़र के लिए अनुशंसित नहीं:** हेडलेस ब्राउज़रों के साथ इस मॉड्यूल का उपयोग सलाह नहीं दी जाती है। तर्क यह है कि अंतिम-उपयोगकर्ता हेडलेस ब्राउज़रों के साथ बातचीत नहीं करते हैं, और इसलिए ऐसे उपयोग से उत्पन्न होने वाली समस्याओं का समर्थन नहीं किया जाएगा।

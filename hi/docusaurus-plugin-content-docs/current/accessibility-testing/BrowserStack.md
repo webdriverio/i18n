@@ -1,34 +1,34 @@
 ---
 id: browserstack
-title: BrowserStack Accessibility Testing
+title: ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग
 ---
 
-# BrowserStack Accessibility Testing
+# ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग
 
-You can easily integrate accessibility tests in your WebdriverIO test suites using the [Automated tests feature of BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+आप अपने WebdriverIO टेस्ट सूट में [ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग की ऑटोमेटेड टेस्ट फीचर](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) का उपयोग करके आसानी से एक्सेसिबिलिटी टेस्ट को एकीकृत कर सकते हैं।
 
-## Advantages of Automated Tests in BrowserStack Accessibility Testing
+## ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग में ऑटोमेटेड टेस्ट के फायदे
 
-To use Automated tests in BrowserStack Accessibility Testing, your tests should be running on BrowserStack Automate.
+ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग में ऑटोमेटेड टेस्ट का उपयोग करने के लिए, आपके टेस्ट BrowserStack Automate पर चल रहे होने चाहिए।
 
-The following are the advantages of Automated tests:
+ऑटोमेटेड टेस्ट के निम्नलिखित फायदे हैं:
 
-- Seamlessly integrates into your pre-existing automation test suite.
-- No code changes are required in test cases.
-- Requires zero additional maintenance for accessibility testing.
-- Understand historical trends and gain test-case insights.
+* आपके पहले से मौजूद ऑटोमेशन टेस्ट सूट में सहजता से एकीकृत होता है।
+* टेस्ट केसेस में कोई कोड परिवर्तन की आवश्यकता नहीं है।
+* एक्सेसिबिलिटी टेस्टिंग के लिए शून्य अतिरिक्त रखरखाव की आवश्यकता है।
+* ऐतिहासिक रुझानों को समझें और टेस्ट-केस अंतर्दृष्टि प्राप्त करें।
 
-## Get Started with BrowserStack Accessibility Testing
+## ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग के साथ शुरुआत करें
 
-Follow these steps to integrate your WebdriverIO test suites with BrowserStack's Accessibility Testing:
+अपने WebdriverIO टेस्ट सूट को ब्राउज़रस्टैक की एक्सेसिबिलिटी टेस्टिंग के साथ एकीकृत करने के लिए इन चरणों का पालन करें:
 
-1. Install `@wdio/browserstack-service` npm package.
+1. `@wdio/browserstack-service` npm पैकेज इंस्टॉल करें।
 
 ```bash npm2yarn
 npm install --save-dev @wdio/browserstack-service
 ```
 
-2. Update `wdio.conf.js` config file.
+2. `wdio.conf.js` कॉन्फिग फाइल अपडेट करें।
 
 ```javascript
 exports.config = {
@@ -60,4 +60,4 @@ exports.config = {
   };
 ```
 
-You can view detailed instructions [here](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+आप विस्तृत निर्देश [यहां](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) देख सकते हैं।

@@ -1,21 +1,21 @@
 ---
 id: methods
-title: Methods
+title: मेथड्स
 ---
 
-The following methods are added to the global WebdriverIO [`browser`](/docs/api/browser)-object.
+निम्नलिखित मेथड्स वैश्विक WebdriverIO [`browser`](/docs/api/browser)-ऑब्जेक्ट में जोड़े जाते हैं।
 
-## Save Methods
+## सेव मेथड्स
 
-:::info TIP
-Only use the Save Methods when you **don't** want to compare screens, but only want to have an element-/screenshot.
+:::info टिप
+सेव मेथड्स का उपयोग केवल तभी करें जब आप स्क्रीन की तुलना **नहीं** करना चाहते हैं, बल्कि केवल एलिमेंट-/स्क्रीनशॉट चाहते हैं।
 :::
 
 ### `saveElement`
 
-Saves an image of an element.
+किसी एलिमेंट की छवि सहेजता है।
 
-#### Usage
+#### उपयोग
 
 ```ts
 await browser.saveElement(
@@ -30,34 +30,34 @@ await browser.saveElement(
 );
 ```
 
-#### Support
+#### समर्थन
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- डेस्कटॉप ब्राउज़र
+- मोबाइल ब्राउज़र
+- मोबाइल हाइब्रिड ऐप्स
+- मोबाइल नेटिव ऐप्स
 
-#### Parameters
+#### पैरामीटर्स
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+-   **`element`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** WebdriverIO Element
+-   **`tag`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** string
+-   **`saveElementOptions`:**
+    -   **अनिवार्य:** नहीं
+    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
 
-#### Output:
+#### आउटपुट:
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[Test Output](./test-output#savescreenelementfullpagescreen) पेज देखें।
 
 ### `saveScreen`
 
-Saves an image of a viewport.
+व्यूपोर्ट की छवि सहेजता है।
 
-#### Usage
+#### उपयोग
 
 ```ts
 await browser.saveScreen(
@@ -70,31 +70,30 @@ await browser.saveScreen(
 );
 ```
 
-#### Support
+#### समर्थन
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- डेस्कटॉप ब्राउज़र
+- मोबाइल ब्राउज़र
+- मोबाइल हाइब्रिड ऐप्स
+- मोबाइल नेटिव ऐप्स
 
-#### Parameters
+#### पैरामीटर्स
+-   **`tag`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** string
+-   **`saveScreenOptions`:**
+    -   **अनिवार्य:** नहीं
+    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### आउटपुट:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[Test Output](./test-output#savescreenelementfullpagescreen) पेज देखें।
 
 ### `saveFullPageScreen`
 
-#### Usage
+#### उपयोग
 
-Saves an image of the complete screen.
+पूरी स्क्रीन की छवि सहेजता है।
 
 ```ts
 await browser.saveFullPageScreen(
@@ -107,29 +106,28 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Support
+#### समर्थन
 
-- Desktop Browsers
-- Mobile Browsers
+- डेस्कटॉप ब्राउज़र
+- मोबाइल ब्राउज़र
 
-#### Parameters
+#### पैरामीटर्स
+-   **`tag`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** string
+-   **`saveFullPageScreenOptions`:**
+    -   **अनिवार्य:** नहीं
+    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveFullPageScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### आउटपुट:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[Test Output](./test-output#savescreenelementfullpagescreen) पेज देखें।
 
 ### `saveTabbablePage`
 
-Saves an image of the complete screen with the tabbable lines and dots.
+टैबेबल लाइनों और डॉट्स के साथ पूरी स्क्रीन की छवि सहेजता है।
 
-#### Usage
+#### उपयोग
 
 ```ts
 await browser.saveTabbablePage(
@@ -142,26 +140,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Support
+#### समर्थन
 
-- Desktop Browsers
+- डेस्कटॉप ब्राउज़र
 
-#### Parameters
+#### पैरामीटर्स
+-   **`tag`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** string
+-   **`saveTabbableOptions`:**
+    -   **अनिवार्य:** नहीं
+    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### आउटपुट:
 
-#### Output:
+[Test Output](./test-output#savescreenelementfullpagescreen) पेज देखें।
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+## चेक मेथड्स
 
-## Check Methods
-
-:::info TIP
+:::info टिप
+जब `check`-मेथड्स पहली बार उपयोग किए जाते हैं तो आपको लॉग में नीचे दिया गया चेतावनी दिखाई देगी। इसका मतलब है कि अगर आप अपना बेसलाइन बनाना चाहते हैं तो आपको `save`- और `check`-मेथड्स को जोड़ने की आवश्यकता नहीं है।
 
 ```shell
 #####################################################################################
@@ -177,9 +175,9 @@ See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
 
 ### `checkElement`
 
-Compare an image of an element against a baseline image.
+किसी एलिमेंट की छवि की तुलना बेसलाइन छवि से करता है।
 
-#### Usage
+#### उपयोग
 
 ```ts
 await browser.checkElement(
@@ -194,34 +192,33 @@ await browser.checkElement(
 );
 ```
 
-#### Support
+#### समर्थन
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- डेस्कटॉप ब्राउज़र
+- मोबाइल ब्राउज़र
+- मोबाइल हाइब्रिड ऐप्स
+- मोबाइल नेटिव ऐप्स
 
-#### Parameters
+#### पैरामीटर्स
+-   **`element`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** WebdriverIO Element
+-   **`tag`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** string
+-   **`checkElementOptions`:**
+    -   **अनिवार्य:** नहीं
+    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### आउटपुट:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[Test Output](./test-output#checkscreenelementfullpagescreen) पेज देखें।
 
 ### `checkScreen`
 
-Compares an image of a viewport against a baseline image.
+व्यूपोर्ट की छवि की तुलना बेसलाइन छवि से करता है।
 
-#### Usage
+#### उपयोग
 
 ```ts
 await browser.checkScreen(
@@ -234,31 +231,30 @@ await browser.checkScreen(
 );
 ```
 
-#### Support
+#### समर्थन
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- डेस्कटॉप ब्राउज़र
+- मोबाइल ब्राउज़र
+- मोबाइल हाइब्रिड ऐप्स
+- मोबाइल नेटिव ऐप्स
 
-#### Parameters
+#### पैरामीटर्स
+-   **`tag`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** string
+-   **`checkScreenOptions`:**
+    -   **अनिवार्य:** नहीं
+    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### आउटपुट:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[Test Output](./test-output#checkscreenelementfullpagescreen) पेज देखें।
 
 ### `checkFullPageScreen`
 
-Compares an image of the complete screen against a baseline image.
+पूरी स्क्रीन की छवि की तुलना बेसलाइन छवि से करता है।
 
-#### Usage
+#### उपयोग
 
 ```ts
 await browser.checkFullPageScreen(
@@ -271,29 +267,28 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Support
+#### समर्थन
 
-- Desktop Browsers
-- Mobile Browsers
+- डेस्कटॉप ब्राउज़र
+- मोबाइल ब्राउज़र
 
-#### Parameters
+#### पैरामीटर्स
+-   **`tag`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** string
+-   **`checkFullPageOptions`:**
+    -   **अनिवार्य:** नहीं
+    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkFullPageOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### आउटपुट:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[Test Output](./test-output#checkscreenelementfullpagescreen) पेज देखें।
 
 ### `checkTabbablePage`
 
-Compares an image of the complete screen with the tabbable lines and dots against a baseline image.
+टैबेबल लाइनों और डॉट्स के साथ पूरी स्क्रीन की छवि की तुलना बेसलाइन छवि से करता है।
 
-#### Usage
+#### उपयोग
 
 ```ts
 await browser.checkTabbablePage(
@@ -306,19 +301,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Support
+#### समर्थन
 
-- Desktop Browsers
+- डेस्कटॉप ब्राउज़र
 
-#### Parameters
+#### पैरामीटर्स
+-   **`tag`:**
+    -   **अनिवार्य:** हाँ
+    -   **प्रकार:** string
+-   **`checkTabbableOptions`:**
+    -   **अनिवार्य:** नहीं
+    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### आउटपुट:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[Test Output](./test-output#checkscreenelementfullpagescreen) पेज देखें।

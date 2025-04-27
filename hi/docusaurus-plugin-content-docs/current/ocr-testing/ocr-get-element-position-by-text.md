@@ -3,9 +3,9 @@ id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
 ---
 
-Get the position of a text on the screen. The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+स्क्रीन पर टेक्स्ट की स्थिति प्राप्त करें। यह कमांड दिए गए टेक्स्ट को खोजेगी और [Fuse.js](https://fusejs.io/) से फज़ी लॉजिक के आधार पर मिलान करने की कोशिश करेगी। इसका मतलब है कि अगर आप एक सेलेक्टर में टाइपो के साथ प्रदान करते हैं, या मिला हुआ टेक्स्ट 100% मैच नहीं है, तो भी यह आपको एक एलिमेंट वापस देने की कोशिश करेगी। नीचे दिए गए [लॉग्स](#logs) देखें।
 
-## Usage
+## उपयोग
 
 ```js
 const result = await browser.ocrGetElementPositionByText("Username");
@@ -13,9 +13,9 @@ const result = await browser.ocrGetElementPositionByText("Username");
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## Output
+## आउटपुट
 
-### Result
+### रिजल्ट
 
 ```logs
 result = {
@@ -38,7 +38,7 @@ result = {
 }
 ```
 
-### Logs
+### लॉग्स
 
 ```log
 # Still finding a match even though we searched for "Start3d" and the found text was "Started"
@@ -47,16 +47,16 @@ result = {
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-## Options
+## विकल्प
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **प्रकार:** `string`
+-   **अनिवार्य:** हां
 
-The text you want to search for to click on.
+वह टेक्स्ट जिसे आप क्लिक करने के लिए खोजना चाहते हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
@@ -64,13 +64,13 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+कॉन्ट्रास्ट जितना अधिक होगा, इमेज उतनी ही काली होगी और इसके विपरीत। यह इमेज में टेक्स्ट ढूंढने में मदद कर सकता है। यह `-1` और `1` के बीच मान स्वीकार करता है।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -81,12 +81,12 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **प्रकार:** `number`
+-   **अनिवार्य:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+यह स्क्रीन में खोज क्षेत्र है जहां OCR को टेक्स्ट देखना है। यह एक एलिमेंट या `x`, `y`, `width` और `height` वाला आयत हो सकता है।
 
-#### Example
+#### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -94,13 +94,13 @@ await browser.ocrGetElementPositionByText({
     haystack: $("elementSelector"),
 });
 
-// OR
+// या
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// या
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: {
@@ -114,36 +114,36 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहां](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएं [यहां](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) मिल सकती हैं।
 
-#### Example
+#### उदाहरण
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
-    // Use Dutch as a language
+    // डच को भाषा के रूप में उपयोग करें
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+आप निम्नलिखित विकल्पों के साथ टेक्स्ट खोजने के लिए फज़ी लॉजिक को बदल सकते हैं। यह बेहतर मैच खोजने में मदद कर सकता है
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+निर्धारित करता है कि मैच फज़ी स्थान (स्थान द्वारा निर्दिष्ट) के कितना करीब होना चाहिए। एक सटीक अक्षर मैच जो फज़ी स्थान से दूरी वाले अक्षरों की दूरी पर है, पूरी तरह से बेमेल के रूप में स्कोर करेगा। 0 की दूरी के लिए मैच को निर्दिष्ट सटीक स्थान पर होने की आवश्यकता होती है। 1000 की दूरी के लिए 0.8 की थ्रेशहोल्ड का उपयोग करके स्थान के 800 अक्षरों के भीतर एक परफेक्ट मैच की आवश्यकता होगी।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -156,13 +156,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+यह निर्धारित करता है कि टेक्स्ट में लगभग कहां पैटर्न के मिलने की उम्मीद है।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -175,13 +175,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+किस बिंदु पर मैचिंग एल्गोरिदम हार मानता है। 0 की थ्रेशहोल्ड के लिए एक परफेक्ट मैच (अक्षरों और स्थान दोनों का) की आवश्यकता होती है, 1.0 की थ्रेशहोल्ड कुछ भी मैच करेगी।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -194,13 +194,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** false
 
-Whether the search should be case sensitive.
+क्या खोज केस-सेंसिटिव होनी चाहिए।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -213,13 +213,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+केवल वे मैच जिनकी लंबाई इस मान से अधिक है, वापस किए जाएंगे। (उदाहरण के लिए, यदि आप परिणाम में एकल अक्षर मैच को अनदेखा करना चाहते हैं, तो इसे 2 पर सेट करें)
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -232,13 +232,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफ़ॉल्ट:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+जब `true` होता है, तो मैचिंग फ़ंक्शन सर्च पैटर्न के अंत तक जारी रहेगा, भले ही स्ट्रिंग में पहले से ही एक परफेक्ट मैच मिल गया हो।
 
-##### Example
+##### उदाहरण
 
 ```js
 await browser.ocrGetElementPositionByText({

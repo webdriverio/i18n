@@ -1,112 +1,113 @@
 ---
 id: capabilities
-title: क्षमताएं
+title: क्षमताएँ
 ---
 
-एक क्षमता एक रिमोट इंटरफ़ेस की परिभाषा है। यह WebdriverIO को यह समझने में मदद करता है कि आप किस ब्राउज़र या मोबाइल वातावरण में अपने परीक्षण चलाना पसंद करते हैं। स्थानीय रूप से परीक्षण विकसित करते समय क्षमताएँ कम महत्वपूर्ण होती हैं क्योंकि आप इसे अधिकांश समय एक रिमोट इंटरफ़ेस पर चलाते हैं लेकिन CI/CD में एकीकरण परीक्षणों का एक बड़ा सेट चलाते समय यह अधिक महत्वपूर्ण हो जाता है।
+क्षमता एक रिमोट इंटरफ़ेस के लिए एक परिभाषा है। यह WebdriverIO को समझने में मदद करता है कि आप किस ब्राउज़र या मोबाइल वातावरण में अपने टेस्ट चलाना चाहते हैं। स्थानीय स्तर पर टेस्ट विकसित करते समय क्षमताएँ कम महत्वपूर्ण होती हैं क्योंकि आप अधिकतर समय एक ही रिमोट इंटरफ़ेस पर इसे चलाते हैं, लेकिन CI/CD में एक बड़े सेट के एकीकरण परीक्षण चलाते समय यह अधिक महत्वपूर्ण हो जाता है।
 
 :::info
 
-एक क्षमता ऑब्जेक्ट का फोर्मेट [वेबड्राइवर विनिर्देश](https://w3c.github.io/webdriver/#capabilities)द्वारा अच्छी तरह से परिभाषित किया गया है। यदि उपयोगकर्ता परिभाषित क्षमताएं उस विनिर्देश का पालन नहीं करती हैं तो WebdriverIO टेस्टरनर जल्दी विफल हो जाएगा।
+क्षमता ऑब्जेक्ट का फॉर्मेट [WebDriver स्पेसिफिकेशन](https://w3c.github.io/webdriver/#capabilities) द्वारा अच्छी तरह से परिभाषित किया गया है। WebdriverIO टेस्टरनर जल्दी ही विफल हो जाएगा यदि उपयोगकर्ता द्वारा परिभाषित क्षमताएँ उस स्पेसिफिकेशन का पालन नहीं करती हैं।
 
 :::
 
-## कस्टम क्षमताएं
+## कस्टम क्षमताएँ
 
-While the amount of fixed defined capabilities is very low, everyone can provide and accept custom capabilities that are specific to the automation driver or remote interface:
+जबकि निश्चित परिभाषित क्षमताओं की संख्या बहुत कम है, हर कोई कस्टम क्षमताएँ प्रदान और स्वीकार कर सकता है जो ऑटोमेशन ड्राइवर या रिमोट इंटरफ़ेस के लिए विशिष्ट हैं:
 
 ### ब्राउज़र विशिष्ट क्षमता एक्सटेंशन
 
-- `goog: chromeOptions`: [Chromedriver](https://chromedriver.chromium.org/capabilities) एक्सटेंशन, केवल क्रोम में परीक्षण के लिए लागू
-- `moz:firefoxOptions`: [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) एक्सटेंशन, केवल फायरफॉक्स में परीक्षण के लिए लागू
-- `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) क्रोमियम एज के परीक्षण के लिए EdgeDriver का उपयोग करते समय परिवेश निर्दिष्ट करने के लिए
+- `goog:chromeOptions`: [Chromedriver](https://chromedriver.chromium.org/capabilities) एक्सटेंशन, केवल Chrome में परीक्षण के लिए लागू
+- `moz:firefoxOptions`: [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) एक्सटेंशन, केवल Firefox में परीक्षण के लिए लागू
+- `ms:edgeOptions`: Chromium Edge के परीक्षण के लिए EdgeDriver का उपयोग करते समय वातावरण निर्दिष्ट करने के लिए [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options)
 
 ### क्लाउड वेंडर क्षमता एक्सटेंशन
 
 - `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
 - `bstack:options`: [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
 - `tb:options`: [TestingBot](https://testingbot.com/support/other/test-options)
-- और भी कई...
+- और बहुत कुछ...
 
-### स्वचालन इंजन क्षमता एक्सटेंशन
+### ऑटोमेशन इंजन क्षमता एक्सटेंशन
 
 - `appium:xxx`: [Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)
 - `selenoid:xxx`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
-- और भी कई...
+- और बहुत कुछ...
 
-### WebdriverIO Capabilities to manage browser driver options
+### ब्राउज़र ड्राइवर विकल्पों का प्रबंधन करने के लिए WebdriverIO क्षमताएँ
 
-WebdriverIO manages installing and running browser driver for you. WebdriverIO uses a custom capability that allows you to pass in parameters to the driver.
+WebdriverIO आपके लिए ब्राउज़र ड्राइवर इंस्टॉल करने और चलाने का प्रबंधन करता है। WebdriverIO एक कस्टम क्षमता का उपयोग करता है जो आपको ड्राइवर में पैरामीटर पास करने की अनुमति देता है।
 
 #### `wdio:chromedriverOptions`
 
-Specific options passed into Chromedriver when starting it.
+Chromedriver शुरू करते समय इसमें पास किए गए विशिष्ट विकल्प।
 
 #### `wdio:geckodriverOptions`
 
-Specific options passed into Geckodriver when starting it.
+Geckodriver शुरू करते समय इसमें पास किए गए विशिष्ट विकल्प।
 
 #### `wdio:edgedriverOptions`
 
-Specific options passed into Edgedriver when starting it.
+Edgedriver शुरू करते समय इसमें पास किए गए विशिष्ट विकल्प।
 
 #### `wdio:safaridriverOptions`
 
-Specific options passed into Safari when starting it.
+Safari शुरू करते समय इसमें पास किए गए विशिष्ट विकल्प।
 
 #### `wdio:maxInstances`
 
-Maximum number of total parallel running workers for the specific browser/capability. Takes precedence over [maxInstances](#configuration#maxInstances) and [maxInstancesPerCapability](configuration/#maxinstancespercapability).
+विशिष्ट ब्राउज़र/क्षमता के लिए समानांतर चलने वाले कुल कार्यकर्ताओं की अधिकतम संख्या। [maxInstances](#configuration#maxInstances) और [maxInstancesPerCapability](configuration/#maxinstancespercapability) पर प्राथमिकता लेता है।
 
-Type: `number`
+प्रकार: `number`
 
 #### `wdio:specs`
 
-Define specs for test execution for that browser/capability. Same as the [regular `specs` configuration option](configuration#specs), but specific to the browser/capability. Takes precedence over `specs`.
+उस ब्राउज़र/क्षमता के लिए टेस्ट एक्ज़ीक्यूशन के लिए specs को परिभाषित करें। [नियमित `specs` कॉन्फिगरेशन विकल्प](configuration#specs) के समान, लेकिन ब्राउज़र/क्षमता के लिए विशिष्ट। `specs` पर प्राथमिकता लेता है।
 
-Type: `(String | String[])[]`
+प्रकार: `(String | String[])[]`
 
 #### `wdio:exclude`
 
-Exclude specs from test execution for that browser/capability. Same as the [regular `exclude` configuration option](configuration#exclude), but specific to the browser/capability. Takes precedence over `exclude`.
+उस ब्राउज़र/क्षमता के लिए टेस्ट एक्ज़ीक्यूशन से specs को बाहर रखें। [नियमित `exclude` कॉन्फिगरेशन विकल्प](configuration#exclude) के समान, लेकिन ब्राउज़र/क्षमता के लिए विशिष्ट। `exclude` पर प्राथमिकता लेता है।
 
-Type: `String[]`
+प्रकार: `String[]`
 
 #### `wdio:enforceWebDriverClassic`
 
-By default, WebdriverIO attempts to establish a WebDriver Bidi session. If you don't prefer that, you can set this flag to disable this behavior.
+डिफ़ॉल्ट रूप से, WebdriverIO एक WebDriver Bidi सत्र स्थापित करने का प्रयास करता है। यदि आप उसे पसंद नहीं करते हैं, तो आप इस व्यवहार को अक्षम करने के लिए इस फ्लैग को सेट कर सकते हैं।
 
-Type: `boolean`
+प्रकार: `boolean`
 
-#### Common Driver Options
+#### सामान्य ड्राइवर विकल्प
 
-While all driver offer different parameters for configuration, there are some common ones that WebdriverIO understand and uses for setting up your driver or browser:
+जबकि सभी ड्राइवर कॉन्फिगरेशन के लिए अलग-अलग पैरामीटर प्रदान करते हैं, कुछ सामान्य पैरामीटर हैं जिन्हें WebdriverIO समझता है और आपके ड्राइवर या ब्राउज़र को सेट करने के लिए उपयोग करता है:
 
 ##### `cacheDir`
 
-The path to the root of the cache directory. This directory is used to store all drivers that are downloaded when attempting to start a session.
+कैश डायरेक्टरी के रूट का पथ। इस डायरेक्टरी का उपयोग सभी ड्राइवरों को स्टोर करने के लिए किया जाता है जो सत्र शुरू करने का प्रयास करते समय डाउनलोड किए जाते हैं।
 
-Type: `string`<br /> Default: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+प्रकार: `string`<br />
+डिफ़ॉल्ट: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ##### `binary`
 
-Path to a custom driver binary. If set WebdriverIO won't attempt to download a driver but will use the one provided by this path. Make sure the driver is compatible with the browser you are using.
+कस्टम ड्राइवर बाइनरी का पथ। अगर सेट है तो WebdriverIO ड्राइवर डाउनलोड करने का प्रयास नहीं करेगा बल्कि इस पथ द्वारा प्रदान किए गए का उपयोग करेगा। सुनिश्चित करें कि ड्राइवर आपके द्वारा उपयोग किए जा रहे ब्राउज़र के साथ संगत है।
 
-You can provide this path via `CHROMEDRIVER_PATH`, `GECKODRIVER_PATH` or `EDGEDRIVER_PATH` environment variables.
+आप इस पथ को `CHROMEDRIVER_PATH`, `GECKODRIVER_PATH` या `EDGEDRIVER_PATH` एनवायरनमेंट वेरिएबल के माध्यम से प्रदान कर सकते हैं।
 
-Type: `string`
+प्रकार: `string`
 
 :::caution
 
-If the driver `binary` is set, WebdriverIO won't attempt to download a driver but will use the one provided by this path. Make sure the driver is compatible with the browser you are using.
+यदि ड्राइवर `binary` सेट है, तो WebdriverIO ड्राइवर डाउनलोड करने का प्रयास नहीं करेगा बल्कि इस पथ द्वारा प्रदान किए गए का उपयोग करेगा। सुनिश्चित करें कि ड्राइवर आपके द्वारा उपयोग किए जा रहे ब्राउज़र के साथ संगत है।
 
 :::
 
-#### Browser Specific Driver Options
+#### ब्राउज़र विशिष्ट ड्राइवर विकल्प
 
-In order to propagate options to the driver you can use the following custom capabilities:
+ड्राइवर को विकल्प देने के लिए आप निम्न कस्टम क्षमताओं का उपयोग कर सकते हैं:
 
-- Chrome or Chromium: `wdio:chromedriverOptions`
+- Chrome या Chromium: `wdio:chromedriverOptions`
 - Firefox: `wdio:geckodriverOptions`
 - Microsoft Egde: `wdio:edgedriverOptions`
 - Safari: `wdio:safaridriverOptions`
@@ -115,130 +116,130 @@ In order to propagate options to the driver you can use the following custom cap
   defaultValue="chrome"
   values={[
     {label: 'wdio:chromedriverOptions', value: 'chrome'},
- {label: 'wdio:geckodriverOptions', value: 'firefox'},
- {label: 'wdio:edgedriverOptions', value: 'msedge'},
- {label: 'wdio:safaridriverOptions', value: 'safari'},
- ]
+    {label: 'wdio:geckodriverOptions', value: 'firefox'},
+    {label: 'wdio:edgedriverOptions', value: 'msedge'},
+    {label: 'wdio:safaridriverOptions', value: 'safari'},
+  ]
 }>
 <TabItem value="chrome">
 
 ##### adbPort
-The port on which the ADB driver should run.
+जिस पोर्ट पर ADB ड्राइवर को चलना चाहिए।
 
-Example: `9515`
+उदाहरण: `9515`
 
-Type: `number`
+प्रकार: `number`
 
 ##### urlBase
-Base URL path prefix for commands, e.g. `wd/url`.
+कमांड्स के लिए बेस URL पथ प्रीफिक्स, जैसे `wd/url`।
 
-Example: `/`
+उदाहरण: `/`
 
-Type: `string`
+प्रकार: `string`
 
 ##### logPath
-Write server log to file instead of stderr, increases log level to `INFO`
+सर्वर लॉग को stderr के बजाय फाइल में लिखें, लॉग लेवल को `INFO` तक बढ़ाता है
 
-Type: `string`
+प्रकार: `string`
 
 ##### logLevel
-Set log level. Possible options `ALL`, `DEBUG`, `INFO`, `WARNING`, `SEVERE`, `OFF`.
+लॉग लेवल सेट करें। संभावित विकल्प `ALL`, `DEBUG`, `INFO`, `WARNING`, `SEVERE`, `OFF`।
 
-Type: `string`
+प्रकार: `string`
 
 ##### verbose
-Log verbosely (equivalent to `--log-level=ALL`)
+वर्बोज़ लॉग करें (समकक्ष `--log-level=ALL`)
 
-Type: `boolean`
+प्रकार: `boolean`
 
 ##### silent
-Log nothing (equivalent to `--log-level=OFF`)
+कुछ भी लॉग न करें (समकक्ष `--log-level=OFF`)
 
-Type: `boolean`
+प्रकार: `boolean`
 
 ##### appendLog
-Append log file instead of rewriting.
+लॉग फाइल को पुनः लिखने के बजाय अपेंड करें।
 
-Type: `boolean`
+प्रकार: `boolean`
 
 ##### replayable
-Log verbosely and don't truncate long strings so that the log can be replayed (experimental).
+वर्बोज़ लॉग करें और लंबे स्ट्रिंग्स को ट्रंकेट न करें ताकि लॉग को रीप्ले किया जा सके (प्रयोगात्मक)।
 
-Type: `boolean`
+प्रकार: `boolean`
 
 ##### readableTimestamp
-Add readable timestamps to log.
+लॉग में पठनीय टाइमस्टैम्प जोड़ें।
 
-Type: `boolean`
+प्रकार: `boolean`
 
 ##### enableChromeLogs
-Show logs from the browser (overrides other logging options).
+ब्राउज़र से लॉग दिखाएं (अन्य लॉगिंग विकल्पों को ओवरराइड करता है)।
 
-Type: `boolean`
+प्रकार: `boolean`
 
 ##### bidiMapperPath
-Custom bidi mapper path.
+कस्टम बिडी मैपर पथ।
 
-Type: `string`
+प्रकार: `string`
 
 ##### allowedIps
-Comma-separated allowlist of remote IP addresses which are allowed to connect to EdgeDriver.
+कॉमा-सेपरेटेड रिमोट IP एड्रेस की अलाउलिस्ट जिन्हें EdgeDriver से कनेक्ट करने की अनुमति है।
 
-Type: `string[]`<br />
-Default: `['']`
+प्रकार: `string[]`<br />
+डिफ़ॉल्ट: `['']`
 
 ##### allowedOrigins
-Comma-separated allowlist of request origins which are allowed to connect to EdgeDriver. Using `*` to allow any host origin is dangerous!
+कॉमा-सेपरेटेड रिक्वेस्ट ओरिजिन की अलाउलिस्ट जिन्हें EdgeDriver से कनेक्ट करने की अनुमति है। किसी भी होस्ट ओरिजिन को अनुमति देने के लिए `*` का उपयोग करना खतरनाक है!
 
-Type: `string[]`<br />
-Default: `['*']`
+प्रकार: `string[]`<br />
+डिफ़ॉल्ट: `['*']`
 
 ##### spawnOpts
-Options to be passed into the driver process.
+ड्राइवर प्रक्रिया में पास किए जाने वाले विकल्प।
 
-Type: `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
-Default: `undefined`
+प्रकार: `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
+डिफ़ॉल्ट: `undefined`
 
 </TabItem>
 <TabItem value="firefox">
 
-See all Geckodriver options in the official [driver package](https://github.com/webdriverio-community/node-geckodriver#options).
+आधिकारिक [ड्राइवर पैकेज](https://github.com/webdriverio-community/node-geckodriver#options) में सभी Geckodriver विकल्प देखें।
 
 </TabItem>
 <TabItem value="msedge">
 
-See all Edgedriver options in the official [driver package](https://github.com/webdriverio-community/node-edgedriver#options).
+आधिकारिक [ड्राइवर पैकेज](https://github.com/webdriverio-community/node-edgedriver#options) में सभी Edgedriver विकल्प देखें।
 
 </TabItem>
 <TabItem value="safari">
 
-See all Safaridriver options in the official [driver package](https://github.com/webdriverio-community/node-safaridriver#options).
+आधिकारिक [ड्राइवर पैकेज](https://github.com/webdriverio-community/node-safaridriver#options) में सभी Safaridriver विकल्प देखें।
 
 </TabItem>
 </Tabs>
 
-## विशिष्ट उपयोग मामलों के लिए विशेष क्षमताएं
+## विशिष्ट उपयोग केसों के लिए विशेष क्षमताएँ
 
-यह उदाहरणों की एक सूची है जो दिखाती है कि एक निश्चित उपयोग के मामले को प्राप्त करने के लिए किन क्षमताओं को लागू करने की आवश्यकता है।
+यह उन उदाहरणों की एक सूची है जो दिखाती है कि एक निश्चित उपयोग केस प्राप्त करने के लिए कौन सी क्षमताएँ लागू की जानी चाहिए।
 
-### ब्राउजर हेडलेस चलाएं
+### ब्राउज़र को हेडलेस चलाएँ
 
-हेडलेस ब्राउजर चलाने का मतलब विंडो या यूआई के बिना ब्राउजर इंस्टेंस चलाना है। यह ज्यादातर सीआई/सीडी परिवेशों में उपयोग किया जाता है जहां कोई डिस्प्ले उपयोग नहीं किया जाता है। ब्राउज़र को हेडलेस मोड में चलाने के लिए, निम्नलिखित क्षमताओं को लागू करें:
+हेडलेस ब्राउज़र चलाने का मतलब है बिना विंडो या UI के ब्राउज़र इंस्टेंस चलाना। इसका उपयोग अधिकतर CI/CD वातावरणों में किया जाता है जहां कोई डिस्प्ले का उपयोग नहीं किया जाता है। हेडलेस मोड में ब्राउज़र चलाने के लिए, निम्न क्षमताएँ लागू करें:
 
 <Tabs
   defaultValue="chrome"
   values={[
     {label: 'Chrome', value: 'chrome'},
- {label: 'Firefox', value: 'firefox'},
- {label: 'Microsoft Edge', value: 'msedge'},
- {label: 'Safari', value: 'safari'},
- ]
+    {label: 'Firefox', value: 'firefox'},
+    {label: 'Microsoft Edge', value: 'msedge'},
+    {label: 'Safari', value: 'safari'},
+  ]
 }>
 <TabItem value="chrome">
 
 ```ts
 {
-    browserName: 'chrome',    // or 'chromium'
+    browserName: 'chrome',   // या 'chromium'
     'goog:chromeOptions': {
         args: ['headless', 'disable-gpu']
     }
@@ -268,51 +269,51 @@ See all Safaridriver options in the official [driver package](https://github.com
 </TabItem>
 <TabItem value="safari">
 
-It seems that Safari [doesn't support](https://discussions.apple.com/thread/251837694) running in headless mode.
+ऐसा लगता है कि Safari [हेडलेस मोड में चलाने का समर्थन नहीं करता](https://discussions.apple.com/thread/251837694)।
 
 </TabItem>
 </Tabs>
 
-### Automate Different Browser Channels
+### विभिन्न ब्राउज़र चैनलों को ऑटोमेट करना
 
-If you like to test a browser version that is not yet released as stable, e.g. Chrome Canary, you can do so by setting capabilities and pointing to the browser you like to start, e.g.:
+यदि आप ऐसे ब्राउज़र वर्जन का परीक्षण करना चाहते हैं जो अभी तक स्टेबल के रूप में रिलीज़ नहीं हुआ है, जैसे Chrome Canary, तो आप क्षमताओं को सेट करके और उस ब्राउज़र की ओर इंगित करके ऐसा कर सकते हैं जिसे आप शुरू करना चाहते हैं, उदाहरण के लिए:
 
 <Tabs
   defaultValue="chrome"
   values={[
     {label: 'Chrome', value: 'chrome'},
- {label: 'Firefox', value: 'firefox'},
- {label: 'Microsoft Edge', value: 'msedge'},
- {label: 'Safari', value: 'safari'},
- ]
+    {label: 'Firefox', value: 'firefox'},
+    {label: 'Microsoft Edge', value: 'msedge'},
+    {label: 'Safari', value: 'safari'},
+  ]
 }>
 <TabItem value="chrome">
 
-When testing on Chrome, WebdriverIO will automatically download the desired browser version and driver for you based on the defined `browserVersion`, e.g.:
+Chrome पर परीक्षण करते समय, WebdriverIO परिभाषित `browserVersion` के आधार पर आपके लिए वांछित ब्राउज़र वर्जन और ड्राइवर को स्वचालित रूप से डाउनलोड कर लेगा, उदाहरण के लिए:
 
 ```ts
 {
-    browserName: 'chrome', // or 'chromium'
-    browserVersion: '116' // or '116.0.5845.96', 'stable', 'dev', 'canary', 'beta' or 'latest' (same as 'canary')
+    browserName: 'chrome', // या 'chromium'
+    browserVersion: '116' // या '116.0.5845.96', 'stable', 'dev', 'canary', 'beta' या 'latest' ('canary' के समान)
 }
 ```
 
-If you like to test a manually downloaded browser, you can provide a binary path to the browser via:
+यदि आप मैन्युअल रूप से डाउनलोड किए गए ब्राउज़र का परीक्षण करना चाहते हैं, तो आप ब्राउज़र के लिए बाइनरी पथ प्रदान कर सकते हैं:
 
 ```ts
 {
-    browserName: 'chrome',  // or 'chromium'
+    browserName: 'chrome',  // या 'chromium'
     'goog:chromeOptions': {
         binary: '/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
     }
 }
 ```
 
-Additionally, if you like to use a manually downloaded driver, you can provide a binary path to the driver via:
+इसके अतिरिक्त, यदि आप मैन्युअल रूप से डाउनलोड किए गए ड्राइवर का उपयोग करना चाहते हैं, तो आप ड्राइवर के लिए बाइनरी पथ प्रदान कर सकते हैं:
 
 ```ts
 {
-    browserName: 'chrome', // or 'chromium'
+    browserName: 'chrome', // या 'chromium'
     'wdio:chromedriverOptions': {
         binary: '/path/to/chromdriver'
     }
@@ -322,16 +323,16 @@ Additionally, if you like to use a manually downloaded driver, you can provide a
 </TabItem>
 <TabItem value="firefox">
 
-When testing on Firefox, WebdriverIO will automatically download the desired browser version and driver for you based on the defined `browserVersion`, e.g.:
+Firefox पर परीक्षण करते समय, WebdriverIO परिभाषित `browserVersion` के आधार पर आपके लिए वांछित ब्राउज़र वर्जन और ड्राइवर को स्वचालित रूप से डाउनलोड कर लेगा, उदाहरण के लिए:
 
 ```ts
 {
     browserName: 'firefox',
-    browserVersion: '119.0a1' // or 'latest'
+    browserVersion: '119.0a1' // या 'latest'
 }
 ```
 
-If you like to test a manually downloaded version you can provide a binary path to the browser via:
+यदि आप मैन्युअल रूप से डाउनलोड किए गए वर्जन का परीक्षण करना चाहते हैं, तो आप ब्राउज़र के लिए बाइनरी पथ प्रदान कर सकते हैं:
 
 ```ts
 {
@@ -342,7 +343,7 @@ If you like to test a manually downloaded version you can provide a binary path 
 }
 ```
 
-Additionally, if you like to use a manually downloaded driver, you can provide a binary path to the driver via:
+इसके अतिरिक्त, यदि आप मैन्युअल रूप से डाउनलोड किए गए ड्राइवर का उपयोग करना चाहते हैं, तो आप ड्राइवर के लिए बाइनरी पथ प्रदान कर सकते हैं:
 
 ```ts
 {
@@ -356,7 +357,7 @@ Additionally, if you like to use a manually downloaded driver, you can provide a
 </TabItem>
 <TabItem value="msedge">
 
-When testing on Microsoft Edge, make sure you have the desired browser version installed on your machine. You can point WebdriverIO to the browser to execute via:
+Microsoft Edge पर परीक्षण करते समय, सुनिश्चित करें कि आपके मशीन पर वांछित ब्राउज़र वर्जन इंस्टॉल है। आप WebdriverIO को निष्पादित करने वाले ब्राउज़र की ओर इंगित कर सकते हैं:
 
 ```ts
 {
@@ -367,16 +368,16 @@ When testing on Microsoft Edge, make sure you have the desired browser version i
 }
 ```
 
-WebdriverIO will automatically download the desired driver version for you based on the defined `browserVersion`, e.g.:
+WebdriverIO परिभाषित `browserVersion` के आधार पर आपके लिए वांछित ड्राइवर वर्जन को स्वचालित रूप से डाउनलोड कर लेगा, उदाहरण के लिए:
 
 ```ts
 {
     browserName: 'msedge',
-    browserVersion: '109' // or '109.0.1467.0', 'stable', 'dev', 'canary', 'beta'
+    browserVersion: '109' // या '109.0.1467.0', 'stable', 'dev', 'canary', 'beta'
 }
 ```
 
-Additionally, if you like to use a manually downloaded driver, you can provide a binary path to the driver via:
+इसके अतिरिक्त, यदि आप मैन्युअल रूप से डाउनलोड किए गए ड्राइवर का उपयोग करना चाहते हैं, तो आप ड्राइवर के लिए बाइनरी पथ प्रदान कर सकते हैं:
 
 ```ts
 {
@@ -390,7 +391,7 @@ Additionally, if you like to use a manually downloaded driver, you can provide a
 </TabItem>
 <TabItem value="safari">
 
-When testing on Safari, make sure you have the [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) installed on your machine. You can point WebdriverIO to that version via:
+Safari पर परीक्षण करते समय, सुनिश्चित करें कि आपके मशीन पर [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) इंस्टॉल है। आप WebdriverIO को उस वर्जन की ओर इंगित कर सकते हैं:
 
 ```ts
 {
@@ -401,9 +402,9 @@ When testing on Safari, make sure you have the [Safari Technology Preview](https
 </TabItem>
 </Tabs>
 
-## Extend Custom Capabilities
+## कस्टम क्षमताओं का विस्तार
 
-If you like to define your own set of capabilities in order to e.g. store arbitrary data to be used within the tests for that specific capability, you can do so by e.g. setting:
+यदि आप अपने स्वयं के क्षमताओं का सेट परिभाषित करना चाहते हैं, जैसे उदाहरण के लिए उस विशिष्ट क्षमता के लिए परीक्षणों के भीतर उपयोग करने के लिए मनमाने डेटा स्टोर करना, तो आप ऐसा कर सकते हैं:
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -411,19 +412,19 @@ export const config = {
     capabilities: [{
         browserName: 'chrome',
         'custom:caps': {
-            // custom configurations
+            // कस्टम कॉन्फिगरेशन
         }
     }]
 }
 ```
 
-It is advised to follow the [W3C protocol](https://w3c.github.io/webdriver/#dfn-extension-capability) when it comes to capability naming which requires a `:` (colon) character, denoting an implementation specific namespace. Within your tests you can access your custom capability through, e.g.:
+क्षमता नामकरण के मामले में [W3C प्रोटोकॉल](https://w3c.github.io/webdriver/#dfn-extension-capability) का पालन करने की सलाह दी जाती है, जिसके लिए एक `:` (कोलन) अक्षर की आवश्यकता होती है, जो एक कार्यान्वयन विशिष्ट नेमस्पेस को इंगित करता है। अपने परीक्षणों के भीतर आप अपनी कस्टम क्षमता तक पहुंच सकते हैं, उदाहरण के लिए:
 
 ```ts
 browser.capabilities['custom:caps']
 ```
 
-In order to ensure type safety you can extend WebdriverIOs capability interface via:
+टाइप सुरक्षा सुनिश्चित करने के लिए आप WebdriverIO क्षमता इंटरफेस का विस्तार कर सकते हैं:
 
 ```ts
 declare global {

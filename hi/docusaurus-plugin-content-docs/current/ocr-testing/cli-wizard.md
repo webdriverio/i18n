@@ -1,55 +1,55 @@
 ---
 id: cli-wizard
-title: CLI Wizard
+title: CLI विज़ार्ड
 ---
 
-You can validate which text can be found in an image without running a test by using the OCR CLI Wizard. The only thing that are needed are:
+आप OCR CLI विज़ार्ड का उपयोग करके एक छवि में कौन सा टेक्स्ट पाया जा सकता है, इसे परीक्षण चलाए बिना वैलिडेट कर सकते हैं। केवल निम्न चीजों की आवश्यकता है:
 
-- you have installed the `@wdio/ocr-service` as a dependency, see [Getting Started](./getting-started)
-- an image that you want to process
+-   आपने `@wdio/ocr-service` को एक डिपेंडेंसी के रूप में इंस्टॉल किया है, देखें [Getting Started](./getting-started)
+-   एक छवि जिसे आप प्रोसेस करना चाहते हैं
 
-Then run the following command to start the wizard
+फिर विज़ार्ड शुरू करने के लिए निम्न कमांड चलाएं
 
 ```sh
 npx ocr-service
 ```
 
-This will start a wizard that will guide you through the steps to select an image and use a haystack plus advanced mode. The following questions are asked
+यह एक विज़ार्ड शुरू करेगा जो आपको छवि चुनने और एक हेस्टैक के साथ एडवांस्ड मोड का उपयोग करने के चरणों के माध्यम से मार्गदर्शन करेगा। निम्नलिखित प्रश्न पूछे जाते हैं
 
-## How would you like to specify the file?
+## आप फ़ाइल कैसे निर्दिष्ट करना चाहेंगे?
 
-The following options can be selected
+निम्नलिखित विकल्प चुने जा सकते हैं
 
-- Use a "file explorer"
-- Type the file path manually
+-   "फ़ाइल एक्सप्लोरर" का उपयोग करें
+-   फ़ाइल पथ को मैन्युअल रूप से टाइप करें
 
-### Use a "file explorer"
+### "फ़ाइल एक्सप्लोरर" का उपयोग करें
 
-The CLI wizard provides an option to use a "file explorer" to search for files on your system. It starts from the folder you call the command. After selecting an image (use your arrow keys and the ENTER key) you will proceed to the next question
+CLI विज़ार्ड आपके सिस्टम पर फ़ाइलों की खोज के लिए "फ़ाइल एक्सप्लोरर" का उपयोग करने का विकल्प प्रदान करता है। यह उस फ़ोल्डर से शुरू होता है जहां से आप कमांड कॉल करते हैं। छवि का चयन करने के बाद (अपने एरो कीज़ और ENTER कुंजी का उपयोग करें) आप अगले प्रश्न पर आगे बढ़ेंगे
 
-### Type the file path manually
+### फ़ाइल पथ को मैन्युअल रूप से टाइप करें
 
-This is a direct path to a file somewhere on your local machine
+यह आपके स्थानीय मशीन पर कहीं फ़ाइल का सीधा पथ है
 
-### Would you like to use a haystack?
+### क्या आप हेस्टैक का उपयोग करना चाहेंगे?
 
-Here you have the option to select an area that needs to be processed. This can speed up the process or reduce/narrow down the amount of text the OCR engine might find. You need to provide `x`, `y`, `width`, `height` data based on the following questions:
+यहां आपके पास एक ऐसे क्षेत्र का चयन करने का विकल्प है जिसे प्रोसेस करने की आवश्यकता है। यह प्रक्रिया को तेज़ कर सकता है या OCR इंजन द्वारा पाए जाने वाले टेक्स्ट की मात्रा को कम/सीमित कर सकता है। आपको निम्नलिखित प्रश्नों के आधार पर `x`, `y`, `width`, `height` डेटा प्रदान करने की आवश्यकता है:
 
-- Enter the x coordinate:
-- Enter the y coordinate:
-- Enter the width:
-- Enter the height:
+-   x कोऑर्डिनेट दर्ज करें:
+-   y कोऑर्डिनेट दर्ज करें:
+-   चौड़ाई दर्ज करें:
+-   ऊंचाई दर्ज करें:
 
-## Do you want to use the advanced mode?
+## क्या आप एडवांस्ड मोड का उपयोग करना चाहते हैं?
 
-Advanced mode will hold extra features like:
+एडवांस्ड मोड में अतिरिक्त सुविधाएं होंगी जैसे:
 
-- setting the contrast
-- more to follow in the future
+-   कंट्रास्ट सेटिंग
+-   भविष्य में और भी अधिक
 
-## Demo
+## डेमो
 
-Here's a demo
+यहां एक डेमो है
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

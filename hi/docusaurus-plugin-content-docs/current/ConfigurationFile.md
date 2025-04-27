@@ -1,11 +1,11 @@
 ---
 id: configurationfile
-title: कॉन्फ़िगरेशन फाइल
+title: कॉन्फ़िगरेशन फ़ाइल
 ---
 
-कॉन्फ़िगरेशन फ़ाइल में आपके परीक्षण सूट को चलाने के लिए सभी आवश्यक जानकारी होती है। यह एक NodeJS मॉड्यूल है जो JSON एक्सपोर्ट करता है।
+कॉन्फ़िगरेशन फ़ाइल में आपके टेस्ट सूट को चलाने के लिए सभी आवश्यक जानकारी होती है। यह एक NodeJS मॉड्यूल है जो एक JSON एक्सपोर्ट करता है।
 
-यहां सभी समर्थित गुणों और अतिरिक्त जानकारी के साथ एक उदाहरण कॉन्फ़िगरेशन दिया गया है:
+यहां सभी समर्थित प्रॉपर्टीज और अतिरिक्त जानकारी के साथ एक उदाहरण कॉन्फ़िगरेशन है:
 
 ```js
 export const config = {
@@ -272,42 +272,42 @@ export const config = {
     //
     /**
      * Gets executed once before all workers get launched.
-     * @param {object} config wdio कॉन्फ़िगरेशन ऑब्जेक्ट
-     * @param {Array.<Object>}क्षमताओं की क्षमताओं की सूची विवरण
+     * @param {object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
      */
-    onPrepare: फ़ंक्शन (कॉन्फ़िगरेशन, क्षमताएं) {
+    onPrepare: function (config, capabilities) {
     },
     /**
-     * वर्कर प्रक्रिया शुरू होने से पहले निष्पादित हो जाती है और विशिष्ट सेवा को प्रारंभ करने के लिए उपयोग की जा सकती है
-      * उस वर्कर के लिए और साथ ही एक async फैशन में रनटाइम वातावरण को संशोधित करें।
-     * @param  {string} सीआईडी   क्षमता आईडी (जैसे 0-0)
-      * @param {object}} कैप्स   ऑब्जेक्ट जिसमें सत्र के लिए क्षमताएं होती हैं जो कार्यकर्ता में उत्पन्न होंगी
-      * @param {{object} स्पेक्स   कार्यकर्ता प्रक्रिया में चलाने के लिए
-      * @param {object} आर्ग्स   ऑब्जेक्ट जो एक बार वर्कर इनिशियलाइज़ होने के बाद मुख्य कॉन्फ़िगरेशन के साथ मर्ज हो जाएगा
-      * @param {object} execArgv   कार्यकर्ता प्रक्रिया को पारित स्ट्रिंग तर्कों की सूची
-      */
-     ऑनवर्करस्टार्ट: फ़ंक्शन (सीआईडी, कैप्स, चश्मा, तर्क, निष्पादनअर्गव) {
-     },
-     /**
-      * कार्यकर्ता प्रक्रिया से बाहर निकलने के बाद निष्पादित किया जाता है।
-     * @param  {string} cid क्षमता आईडी (उदाहरण के लिए 0-0)
-     * @param  {number} एक्ज़िटकोड 0 - सफलता, 1 - विफल
-     * @param  {object} स्पेसिफिकेशंस वर्कर प्रोसेस में चलाए जाने के लिए
-     * @param  {number} रिट्रीट की गई रिट्रीट की संख्या
+     * Gets executed before a worker process is spawned and can be used to initialize specific service
+     * for that worker as well as modify runtime environments in an async fashion.
+     * @param  {string} cid      capability id (e.g 0-0)
+     * @param  {object} caps     object containing capabilities for session that will be spawn in the worker
+     * @param  {object} specs    specs to be run in the worker process
+     * @param  {object} args     object that will be merged with the main configuration once worker is initialized
+     * @param  {object} execArgv list of string arguments passed to the worker process
      */
-    onWorkerEnd: फ़ंक्शन (सीआईडी, एग्जिटकोड, चश्मा, पुनर्प्रयास) {
+    onWorkerStart: function (cid, caps, specs, args, execArgv) {
     },
     /**
-     * वेबड्राइवर सत्र और परीक्षण ढांचे को प्रारंभ करने से पहले निष्पादित हो जाता है। It allows you
+     * Gets executed after a worker process has exited.
+     * @param  {string} cid      capability id (e.g 0-0)
+     * @param  {number} exitCode 0 - success, 1 - fail
+     * @param  {object} specs    specs to be run in the worker process
+     * @param  {number} retries  number of retries used
+     */
+    onWorkerEnd: function (cid, exitCode, specs, retries) {
+    },
+    /**
+     * Gets executed before initializing the webdriver session and test framework. It allows you
      * to manipulate configurations depending on the capability or spec.
-     * @param {{object}} config wdio कॉन्फ़िगरेशन ऑब्जेक्ट
-      * @param Array.<Object>}  क्षमताओं के विवरण की क्षमताएं सूची
-      * @param {Array.<String>} विनिर्देश चलाने के लिए विशिष्ट फ़ाइल पथों की सूची
-      */
-     सत्र से पहले: फ़ंक्शन (कॉन्फ़िगरेशन, क्षमताएं, स्पेक्स) {
-     },
-     /**
-      * परीक्षण निष्पादन शुरू होने से पहले निष्पादित हो जाता है। At this point you can access to all global
+     * @param {object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that are to be run
+     */
+    beforeSession: function (config, capabilities, specs) {
+    },
+    /**
+     * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs        List of spec file paths that are to be run
@@ -317,12 +317,12 @@ export const config = {
     },
     /**
      * Gets executed before the suite starts (in Mocha/Jasmine only).
-     * @param {object} सुइट सुइट विवरण
-      */
-     पहले सुइट: फ़ंक्शन (सूट) {
-     },
-     /**
-      * सूट के भीतर हर हुक शुरू होने से पहले इस हुक_को_निष्पादित किया जाता है।
+     * @param {object} suite suite details
+     */
+    beforeSuite: function (suite) {
+    },
+    /**
+     * This hook gets executed _before_ every hook within the suite starts.
      * (For example, this runs before calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
      *
      */
@@ -371,98 +371,98 @@ export const config = {
     },
     /**
      * Hook that gets executed after the suite has ended (in Mocha/Jasmine only).
-     * @param {object} सुइट सुइट विवरण
-      */
-     afterSuite: फ़ंक्शन (सूट) {
-     },
-     /**
-      * सभी परीक्षण किए जाने के बाद निष्पादित हो जाता है। You still have access to all global variables from
-     * the test.
-     * @param {number} परिणाम 0 - परीक्षा पास, 1 - परीक्षा असफल
-      * @param  {Array.<Object>}  क्षमताओं के विवरण की क्षमताएं सूची
-      * @param {Array.<String>} स्पेक्स चलाए गए स्पेक्स फ़ाइल पथों की सूची
-      */
-     इसके बाद: फ़ंक्शन (परिणाम, क्षमताएं, स्पेक्स) {
-     },
-     /**
-      * वेबड्राइवर सत्र समाप्त करने के ठीक बाद निष्पादित हो जाता है।
-     * @param {object} कॉन्फ़िगरेशन wdio कॉन्फ़िगरेशन ऑब्जेक्ट
-      * @param {Array.<Object>} क्षमताओं के विवरण की क्षमताएं सूची
-      * @param {Array.<String>} स्पेक्स चलाए गए स्पेक्स फ़ाइल पथों की सूची
-      */
-     afterSession: फ़ंक्शन (कॉन्फ़िगरेशन, क्षमताएं, स्पेक्स) {
-     },
-     /**
-      * सभी कर्मचारियों के बंद होने के बाद निष्पादित किया जाता है और प्रक्रिया समाप्त होने वाली है।
-     * An error thrown in the `onComplete` hook will result in the test run failing.
-     * @param {object} एग्जिटकोड 0 - सफलता, 1 - असफल
-      * @param {object} कॉन्फ़िगरेशन wdio कॉन्फ़िगरेशन ऑब्जेक्ट
-      * @param {Array.<Object>}क्षमताओं के विवरण की क्षमताएं सूची
-      * @param {<Object>}परिणाम ऑब्जेक्ट जिसमें परीक्षा परिणाम होते हैं
-      */
-     onComplete: फ़ंक्शन (निकास कोड, कॉन्फ़िगरेशन, क्षमताएं, परिणाम) {
-     },
-     /**
-     * रिफ्रेश होने पर निष्पादित हो जाता है।
-    * @param {string} oldSessionId पुराने सत्र की सत्र आईडी
-     * @param {string} नए सत्र की newSessionId सत्र आईडी
+     * @param {object} suite suite details
      */
-     onReload: फ़ंक्शन (पुराना सत्र आईडी, नया सत्र आईडी) {
-     },
-     /**
-      * कुकुम्बर हुक
-      *
-      * कुकुम्बर फीचर से पहले चलता है।
-     * @param {string}     यूरी    पाथ टू फीचर फाइल
-      * @param {GherkinDocument.IFeature} फीचर कुकुम्बर फीचर ऑब्जेक्ट
-      */
-     पहले फ़ीचर: फ़ंक्शन (यूरी, फ़ीचर) {
-     },
-     /**
-      *
-      * एक कुकुम्बर परिदृश्य से पहले चलता है।
-     * @param {ITestCaseHookParameter}    विश्व    विश्व ऑब्जेक्ट जिसमें अचार और टेस्ट स्टेप की जानकारी है
-      * @param {{object}}     संदर्भ कुकुम्बर विश्व वस्तु
-      */
-     परिदृश्य से पहले: फ़ंक्शन (दुनिया, संदर्भ) {
-     },
-     /**
-      *
-      * कुकुम्बर स्टेप से पहले रन करता है।
-     * @param {Pickle.IPickleStep}    स्टेप    स्टेप डेटा
-      * @param {IPickle}    परिदृश्य    परिदृश्य पिकल
-      * @param {{object}}   संदर्भ   कुकुम्बर विश्व वस्तु
-      */
-     स्टेप से पहले: फ़ंक्शन (चरण, परिदृश्य, संदर्भ) {
-     },
-     /**
-      *
-      * कुकुम्बर स्टेप के बाद रन करता है।
-     * @param {Pickle.IPickleStep} स्टेप     स्टेप डेटा
-      * @param {IPickle} परिदृश्य           परिदृश्य पिकल
-      * @param {object}    परिणाम          परिणाम ऑब्जेक्ट जिसमें परिदृश्य परिणाम होते हैं
-      * @param {boolean}   परिणाम।       यदि परिदृश्य पारित हो गया है तो परिणाम सही है
-      * @param {string} result.error        एरर स्टैक यदि परिदृश्य विफल हुआ
-      * @param  {number}   परिणाम।       मिलीसेकंड में परिदृश्य की अवधि अवधि
-      * @param {object}    संदर्भ               कुकुम्बर विश्व वस्तु
-      */
-     afterStep: फ़ंक्शन (चरण, परिदृश्य, परिणाम, संदर्भ) {
-     },
-     /**
-      *
-      * एक कुकुम्बर परिदृश्य के बाद चलता है।
-     * @param {ITestCaseHookParameter} विश्व   विश्व वस्तु जिसमें पिकल और टेस्ट स्टेप की जानकारी है
-      * @param {{object}}   परिणाम   परिणाम वस्तु जिसमें परिदृश्य परिणाम होते हैं ``{passed: boolean, error: string, duration: number}`
-      * @param {{boolean}} परिणाम। यदि परिदृश्य पारित हो गया है तो परिणाम सही है
-      * @param {string} result.error एरर स्टैक यदि परिदृश्य विफल हुआ
-      * @param {{number}} परिणाम।मिलीसेकंड में परिदृश्य की अवधि अवधि
-      * @param {{object}} संदर्भ कुकुम्बर विश्व वस्तु
-      */
-     आफ्टरसेनारियो: फ़ंक्शन (दुनिया, परिणाम, संदर्भ) {
-     },
-     /**
-      *
-      * कुकुम्बर की विशेषता के बाद चलता है।
+    afterSuite: function (suite) {
+    },
+    /**
+     * Gets executed after all tests are done. You still have access to all global variables from
+     * the test.
+     * @param {number} result 0 - test pass, 1 - test fail
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that ran
+     */
+    after: function (result, capabilities, specs) {
+    },
+    /**
+     * Gets executed right after terminating the webdriver session.
+     * @param {object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that ran
+     */
+    afterSession: function (config, capabilities, specs) {
+    },
+    /**
+     * Gets executed after all workers have shut down and the process is about to exit.
+     * An error thrown in the `onComplete` hook will result in the test run failing.
+     * @param {object} exitCode 0 - success, 1 - fail
+     * @param {object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {<Object>} results object containing test results
+     */
+    onComplete: function (exitCode, config, capabilities, results) {
+    },
+    /**
+    * Gets executed when a refresh happens.
+    * @param {string} oldSessionId session ID of the old session
+    * @param {string} newSessionId session ID of the new session
+    */
+    onReload: function(oldSessionId, newSessionId) {
+    },
+    /**
+     * Cucumber Hooks
+     *
+     * Runs before a Cucumber Feature.
+     * @param {string}                   uri      path to feature file
+     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     */
+    beforeFeature: function (uri, feature) {
+    },
+    /**
+     *
+     * Runs before a Cucumber Scenario.
+     * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
+     * @param {object}                 context  Cucumber World object
+     */
+    beforeScenario: function (world, context) {
+    },
+    /**
+     *
+     * Runs before a Cucumber Step.
+     * @param {Pickle.IPickleStep} step     step data
+     * @param {IPickle}            scenario scenario pickle
+     * @param {object}             context  Cucumber World object
+     */
+    beforeStep: function (step, scenario, context) {
+    },
+    /**
+     *
+     * Runs after a Cucumber Step.
+     * @param {Pickle.IPickleStep} step             step data
+     * @param {IPickle}            scenario         scenario pickle
+     * @param {object}             result           results object containing scenario results
+     * @param {boolean}            result.passed    true if scenario has passed
+     * @param {string}             result.error     error stack if scenario failed
+     * @param {number}             result.duration  duration of scenario in milliseconds
+     * @param {object}             context          Cucumber World object
+     */
+    afterStep: function (step, scenario, result, context) {
+    },
+    /**
+     *
+     * Runs after a Cucumber Scenario.
+     * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
+     * @param {object}                 result           results object containing scenario results `{passed: boolean, error: string, duration: number}`
+     * @param {boolean}                result.passed    true if scenario has passed
+     * @param {string}                 result.error     error stack if scenario failed
+     * @param {number}                 result.duration  duration of scenario in milliseconds
+     * @param {object}                 context          Cucumber World object
+     */
+    afterScenario: function (world, result, context) {
+    },
+    /**
+     *
+     * Runs after a Cucumber Feature.
      * @param {string}                   uri      path to feature file
      * @param {GherkinDocument.IFeature} feature  Cucumber feature object
      */
@@ -487,4 +487,4 @@ export const config = {
 }
 ```
 
-आप [उदाहरण फ़ोल्डर](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js)में सभी संभावित विकल्पों और विविधताओं वाली फ़ाइल भी ढूंढ सकते हैं।
+आप [example फोल्डर](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js) में सभी संभावित विकल्पों और भिन्नताओं के साथ एक फाइल भी पा सकते हैं।

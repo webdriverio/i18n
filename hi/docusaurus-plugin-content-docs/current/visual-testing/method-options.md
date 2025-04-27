@@ -1,246 +1,244 @@
 ---
 id: method-options
-title: Method Options
+title: विधि विकल्प
 ---
 
-Methods options are the options that can be set per [method](./methods). If the option has the same key as an option that has been set during the instantiation of the plugin, this method option will override the plugin option value.
+विधि विकल्प वे विकल्प हैं जो [विधि](./methods) प्रति सेट किए जा सकते हैं। यदि विकल्प की कुंजी, प्लगइन के उदाहरण के दौरान सेट किए गए विकल्प के समान है, तो यह विधि विकल्प प्लगइन विकल्प मान को ओवरराइड करेगा।
 
-## Save Options
+## सेव विकल्प
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफॉल्ट:** `false`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+एप्लिकेशन में सभी `input`, `textarea`, `[contenteditable]` कैरेट "ब्लिंकिंग" को सक्षम/अक्षम करें। यदि `true` पर सेट है, तो स्क्रीनशॉट लेने से पहले कैरेट को `transparent` पर सेट किया जाएगा और जब पूरा हो जाएगा तो रीसेट कर दिया जाएगा।
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफॉल्ट:** `false`
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+एप्लिकेशन में सभी CSS एनिमेशन को सक्षम/अक्षम करें। यदि `true` पर सेट है, तो स्क्रीनशॉट लेने से पहले सभी एनिमेशन को अक्षम कर दिया जाएगा और जब पूरा हो जाएगा तो रीसेट कर दिया जाएगा।
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफॉल्ट:** `false`
+-   **इसके साथ उपयोग किया जाता है:** सभी [विधियाँ](./methods)
+-   **समर्थित:** वेब
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+यह पृष्ठ पर सभी टेक्स्ट को छिपा देगा ताकि तुलना के लिए केवल लेआउट का उपयोग किया जाए। छिपाना __प्रत्येक__ तत्व में `'color': 'transparent !important'` शैली जोड़कर किया जाएगा।
 
-For the output see [Test Output](./test-output#enablelayouttesting)
+आउटपुट के लिए [टेस्ट आउटपुट](./test-output#enablelayouttesting) देखें
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+इस ध्वज का उपयोग करके प्रत्येक तत्व जिसमें टेक्स्ट होता है (यानी न केवल `p, h1, h2, h3, h4, h5, h6, span, a, li`, बल्कि `div|button|..` भी) इस गुण को प्राप्त करेंगे। इसे अनुकूलित करने का कोई विकल्प __नहीं__ है।
 :::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफॉल्ट:** `true`
+-   **इसके साथ उपयोग किया जाता है:** सभी [विधियाँ](./methods)
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-Hide scrollbar(s) in the application. If set to true all scrollbar(s) will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
+एप्लिकेशन में स्क्रॉलबार छिपाएँ। यदि सत्य पर सेट है, तो स्क्रीनशॉट लेने से पहले सभी स्क्रॉलबार अक्षम कर दिए जाएंगे। यह अतिरिक्त समस्याओं को रोकने के लिए डिफ़ॉल्ट रूप से `true` पर सेट है।
 
 ### `hideElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `array`
+-   **अनिवार्य:** नहीं
+-   **इसके साथ उपयोग किया जाता है:** सभी [विधियाँ](./methods)
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-This method can hide 1 or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
+यह विधि तत्वों की एक सरणी प्रदान करके उन्हें `visibility: hidden` गुण जोड़कर 1 या अधिक तत्वों को छिपा सकती है।
 
 ### `removeElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `array`
+-   **अनिवार्य:** नहीं
+-   **इसके साथ उपयोग किया जाता है:** सभी [विधियाँ](./methods)
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-This method can _remove_ 1 or multiple elements by adding the property `display: none` to them by providing an array of elements.
+यह विधि तत्वों की एक सरणी प्रदान करके उन्हें `display: none` गुण जोड़कर 1 या अधिक तत्वों को _हटा_ सकती है।
 
 ### `resizeDimensions`
 
-- **Type:** `object`
-- **Mandatory:** no
-- **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Used with:** Only for [`saveElement`](./methods#saveelement) or [`checkElement`](./methods#checkelement)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **प्रकार:** `object`
+-   **अनिवार्य:** नहीं
+-   **डिफॉल्ट:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **इसके साथ उपयोग किया जाता है:** केवल [`saveElement`](./methods#saveelement) या [`checkElement`](./methods#checkelement) के लिए
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू), नेटिव ऐप
 
-An object that needs to hold a `top`, `right`, `bottom` and `left` amount of pixels that need to make the element cutout bigger.
+एक ऑब्जेक्ट जिसमें `top`, `right`, `bottom` और `left` पिक्सेल की मात्रा होनी चाहिए जो तत्व कटआउट को बड़ा बनाने के लिए आवश्यक हैं।
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **प्रकार:** `number`
+-   **अनिवार्य:** नहीं
+-   **डिफॉल्ट:** `1500`
+-   **इसके साथ उपयोग किया जाता है:** केवल [`saveFullPageScreen`](./methods#savefullpagescreen) या [`saveTabbablePage`](./methods#savetabbablepage) के लिए
+-   **समर्थित:** वेब
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+स्क्रॉल के बाद प्रतीक्षा करने के लिए मिलीसेकंड में टाइमआउट। यह आलसी लोडिंग वाले पृष्ठों की पहचान करने में मदद कर सकता है।
 
 ### `hideAfterFirstScroll`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **प्रकार:** `array`
+-   **अनिवार्य:** नहीं
+-   **इसके साथ उपयोग किया जाता है:** केवल [`saveFullPageScreen`](./methods#savefullpagescreen) या [`saveTabbablePage`](./methods#savetabbablepage) के लिए
+-   **समर्थित:** वेब
 
-This method will hide one or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
-This will be handy when a page for example holds sticky elements that will scroll with the page if the page is scrolled but will give an annoying effect when a full-page screenshot is made
+यह विधि तत्वों की एक सरणी प्रदान करके उन्हें `visibility: hidden` गुण जोड़कर एक या अधिक तत्वों को छिपाएगी।
+यह तब उपयोगी होगा जब किसी पृष्ठ पर उदाहरण के लिए चिपके हुए तत्व हों जो पृष्ठ के स्क्रॉल होने पर पृष्ठ के साथ स्क्रॉल करेंगे लेकिन जब एक पूर्ण-पृष्ठ स्क्रीनशॉट बनाया जाता है तो एक परेशान करने वाला प्रभाव देंगे।
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **प्रकार:** `boolean`
+-   **अनिवार्य:** नहीं
+-   **डिफॉल्ट:** `true`
+-   **इसके साथ उपयोग किया जाता है:** सभी [विधियाँ](./methods)
+-   **समर्थित:** वेब, हाइब्रिड ऐप (वेबव्यू)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+फ़ॉन्ट्स, जिनमें तृतीय-पक्ष फ़ॉन्ट्स भी शामिल हैं, सिंक्रोनस या एसिंक्रोनस रूप से लोड किए जा सकते हैं। एसिंक्रोनस लोडिंग का मतलब है कि WebdriverIO के पृष्ठ को पूरी तरह से लोड होने का निर्धारण करने के बाद फ़ॉन्ट्स लोड हो सकते हैं। फ़ॉन्ट रेंडरिंग समस्याओं को रोकने के लिए, यह मॉड्यूल, डिफ़ॉल्ट रूप से, स्क्रीनशॉट लेने से पहले सभी फ़ॉन्ट्स के लोड होने का इंतजार करेगा।
 
-## Compare (Check) Options
+## तुलना (जाँच) विकल्प
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+तुलना विकल्प वे विकल्प हैं जो [ResembleJS](https://github.com/Huddle/Resemble.js) द्वारा तुलना के तरीके को प्रभावित करते हैं।
 
-:::info NOTE
+:::info ध्यान दें
 
-- All options from the [Save Options](#save-options) can be used for the Compare methods
-- All compare options can be used during service instantiation **or** for every single check method. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
-- All options can be used for:
-  - Web
-  - Hybrid App
-  - Native App
+-   [सेव विकल्प](#save-options) के सभी विकल्प तुलना विधियों के लिए उपयोग किए जा सकते हैं
+-   सभी तुलना विकल्प सेवा उदाहरण के दौरान __या__ प्रत्येक जाँच विधि के लिए उपयोग किए जा सकते हैं। यदि विधि विकल्प की कुंजी सेवा के उदाहरण के दौरान सेट किए गए विकल्प के समान है, तो विधि तुलना विकल्प सेवा तुलना विकल्प मान को ओवरराइड करेगा।
+- सभी विकल्प इनके लिए उपयोग किए जा सकते हैं:
+    - वेब
+    - हाइब्रिड ऐप
+    - नेटिव ऐप
 
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
 
-Compare images and discard alpha.
+छवियों की तुलना करें और अल्फा को त्यागें।
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. This is **iPad only**_
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `true`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _केवल `checkScreen()` के लिए उपयोग किया जा सकता है। यह **केवल iPad** के लिए है_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+तुलना के दौरान लैंडस्केप मोड में iPad के लिए स्वचालित रूप से साइडबार को ब्लॉक करें। यह टैब/प्राइवेट/बुकमार्क नेटिव कंपोनेंट पर विफलताओं को रोकता है।
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `true`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _यह **केवल मोबाइल** के लिए है_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+तुलना के दौरान स्वचालित रूप से स्टेटस और एड्रेस बार को ब्लॉक करें। यह समय, वाई-फाई या बैटरी स्थिति पर विफलताओं को रोकता है।
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `true`
+-   **अनिवार्य:** नहीं
+-   **टिप्पणी:** _यह **केवल मोबाइल** के लिए है_
 
-Automatically block out the toolbar.
+स्वचालित रूप से टूलबार को ब्लॉक करें।
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
 
-Compare images and discard anti-aliasing.
+छवियों की तुलना करें और एंटी-एलियासिंग को त्यागें।
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
 
-Even though the images are in color, the comparison will compare 2 black/white images
+भले ही छवियाँ रंगीन हों, तुलना 2 काले/सफेद छवियों की तुलना करेगी।
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+छवियों की तुलना करें और `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240` के साथ तुलना करें।
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+छवियों की तुलना करें और `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255` के साथ तुलना करें।
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+यदि सत्य है तो रिटर्न प्रतिशत `0.12345678` जैसा होगा, डिफ़ॉल्ट `0.12` है।
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
 
-This will return all compare data, not only the mismatch percentage
+यह सभी तुलना डेटा वापस करेगा, न कि केवल बेमेल प्रतिशत।
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **प्रकार:** `number`
+-   **डिफॉल्ट:** `0`
+-   **अनिवार्य:** नहीं
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+`misMatchPercentage` का अनुमेय मान जो अंतर वाली छवियों को सहेजने से रोकता है।
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **प्रकार:** `number`
+-   **डिफॉल्ट:** `0`
+-   **अनिवार्य:** नहीं
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+बड़ी छवियों की तुलना करने से प्रदर्शन समस्याएँ हो सकती हैं।
+यहां पिक्सेल की संख्या के लिए एक संख्या प्रदान करने पर (0 से अधिक), तुलना एल्गोरिथ्म पिक्सेल को छोड़ देता है जब छवि की चौड़ाई या ऊँचाई `largeImageThreshold` पिक्सेल से बड़ी होती है।
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **प्रकार:** `boolean`
+-   **डिफॉल्ट:** `false`
+-   **अनिवार्य:** नहीं
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+तुलना के निष्पादन से पहले 2 छवियों को एक ही आकार में स्केल करता है। `ignoreAntialiasing` और `ignoreAlpha` को सक्षम करने की अत्यधिक अनुशंसा की जाती है।
 
-## Folder options
+## फोल्डर विकल्प
 
-The baseline folder and screenshot folders(actual, diff) are options that can be set during the instantiation of the plugin or method. To set the folder options on a particular method, pass in folder options to the methods option object. This can be used for:
+बेसलाइन फोल्डर और स्क्रीनशॉट फोल्डर (वास्तविक, अंतर) वे विकल्प हैं जो प्लगइन के उदाहरण या विधि के दौरान सेट किए जा सकते हैं। किसी विशेष विधि पर फोल्डर विकल्प सेट करने के लिए, विधि विकल्प ऑब्जेक्ट में फोल्डर विकल्प पास करें। इसका उपयोग इनके लिए किया जा सकता है:
 
-- Web
-- Hybrid App
-- Native App
+- वेब
+- हाइब्रिड ऐप
+- नेटिव ऐप
 
 ```ts
 import path from 'node:path'
@@ -251,7 +249,7 @@ const methodOptions = {
     diffFolder: path.join(process.cwd(), 'customDiff'),
 }
 
-// You can use this for all methods
+// आप इसे सभी विधियों के लिए उपयोग कर सकते हैं
 await expect(
     await browser.checkFullPageScreen("checkFullPage", methodOptions)
 ).toEqual(0)
@@ -259,21 +257,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
 
-Folder for the snapshot that has been captured in the test.
+परीक्षण में कैप्चर किए गए स्नैपशॉट के लिए फोल्डर।
 
 ### `baselineFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
 
-Folder for the baseline image that is being used to compare against.
+बेसलाइन छवि के लिए फोल्डर जिसका उपयोग तुलना के लिए किया जा रहा है।
 
 ### `diffFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **प्रकार:** `string`
+-   **अनिवार्य:** नहीं
 
-Folder for the image difference rendered by ResembleJS.
+ResembleJS द्वारा रेंडर की गई छवि अंतर के लिए फोल्डर।

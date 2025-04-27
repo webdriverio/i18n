@@ -1,76 +1,76 @@
 ---
 id: customservices
-title: ग्राहक सेवा
+title: कस्टम सर्विसेज
 ---
 
-आप अपनी आवश्यकताओं को कस्टम-फिट करने के लिए WDIO टेस्ट रनर के लिए अपनी स्वयं की कस्टम सेवा लिख सकते हैं।
+आप अपनी आवश्यकताओं के अनुसार WDIO टेस्ट रनर के लिए अपनी कस्टम सर्विस लिख सकते हैं।
 
-सेवाएँ ऐड-ऑन हैं जो परीक्षणों को सरल बनाने, आपके परीक्षण सूट को प्रबंधित करने और परिणामों को एकीकृत करने के लिए पुन: प्रयोज्य तर्क के लिए बनाई गई हैं। सेवाओं के पास `wdio.conf.js`में उपलब्ध समान [हुक](/docs/configurationfile) तक पहुंच है।
+सर्विसेज ऐसे ऐड-ऑन हैं जो पुन: प्रयोज्य लॉजिक के लिए बनाए जाते हैं ताकि परीक्षण सरल हो सकें, आपके परीक्षण सूट का प्रबंधन कर सकें और परिणामों को एकीकृत कर सकें। सर्विसेज के पास `wdio.conf.js` में उपलब्ध सभी समान [हुक्स](/docs/configurationfile) तक पहुंच है।
 
-दो प्रकार की सेवाएं हैं जिन्हें परिभाषित किया जा सकता है: एक लॉन्चर सेवा जिसकी केवल `onPrepare`, `onWorkerStart`, `onWorkerEnd` और `onComplete` हुक तक पहुंच है, जो केवल एक बार प्रति टेस्ट रन पर निष्पादित होती है, और एक कार्यकर्ता सेवा जो अन्य सभी हुक तक पहुंच है और प्रत्येक कार्यकर्ता के लिए निष्पादित किया जा रहा है। ध्यान दें कि आप दोनों प्रकार की सेवाओं के बीच (वैश्विक) चर साझा नहीं कर सकते क्योंकि कार्यकर्ता सेवाएं एक अलग (कार्यकर्ता) प्रक्रिया में चलती हैं।
+दो प्रकार की सर्विसेज को परिभाषित किया जा सकता है: एक लॉन्चर सर्विस जिसमें केवल `onPrepare`, `onWorkerStart`, `onWorkerEnd` और `onComplete` हुक तक पहुंच होती है जो प्रति टेस्ट रन केवल एक बार निष्पादित होते हैं, और एक वर्कर सर्विस जिसमें अन्य सभी हुक्स तक पहुंच होती है और जो प्रत्येक वर्कर के लिए निष्पादित होती है। ध्यान दें कि आप दोनों प्रकार की सर्विसेज के बीच (ग्लोबल) वेरिएबल्स को साझा नहीं कर सकते हैं क्योंकि वर्कर सर्विसेज एक अलग (वर्कर) प्रोसेस में चलती हैं।
 
-एक लॉन्चर सेवा को निम्नानुसार परिभाषित किया जा सकता है:
+एक लॉन्चर सर्विस को इस प्रकार परिभाषित किया जा सकता है:
 
 ```js
 export default class CustomLauncherService {
-    // If a hook returns a promise, WebdriverIO will wait until that promise is resolved to continue.
+    // अगर कोई हुक promise रिटर्न करता है, तो WebdriverIO उस promise के resolve होने तक प्रतीक्षा करेगा।
     async onPrepare(config, capabilities) {
-        // TODO: something before all workers launch
+        // TODO: सभी वर्कर्स के लॉन्च होने से पहले कुछ करें
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: something after the workers shutdown
+        // TODO: वर्कर्स के बंद होने के बाद कुछ करें
     }
 
-    // custom service methods ...
+    // कस्टम सर्विस मेथड्स ...
 }
 ```
 
-जबकि एक कार्यकर्ता सेवा इस तरह दिखनी चाहिए:
+जबकि एक वर्कर सर्विस इस प्रकार दिखनी चाहिए:
 
 ```js
 export default class CustomWorkerService {
     /**
-     * `serviceOptions` contains all options specific to the service
-     * e.g. if defined as follows:
+     * `serviceOptions` में सर्विस के लिए विशिष्ट सभी विकल्प होते हैं
+     * जैसे कि यदि निम्नानुसार परिभाषित किया गया है:
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * the `serviceOptions` parameter will be: `{ foo: 'bar' }`
+     * `serviceOptions` पैरामीटर होगा: `{ foo: 'bar' }`
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * this browser object is passed in here for the first time
+     * यह ब्राउज़र ऑब्जेक्ट यहां पहली बार पास किया जाता है
      */
     async before(config, capabilities, browser) {
         this.browser = browser
 
-        // TODO: something before all tests are run, e.g.:
+        // TODO: सभी परीक्षणों के चलने से पहले कुछ करें, जैसे:
         await this.browser.setWindowSize(1024, 768)
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: something after all tests are run
+        // TODO: सभी परीक्षणों के चलने के बाद कुछ करें
     }
 
     beforeTest(test, context) {
-        // TODO: something before each Mocha/Jasmine test run
+        // TODO: प्रत्येक Mocha/Jasmine परीक्षण चलाने से पहले कुछ करें
     }
 
     beforeScenario(test, context) {
-        // TODO: something before each Cucumber scenario run
+        // TODO: प्रत्येक Cucumber सिनारियो चलाने से पहले कुछ करें
     }
 
-    // other hooks or custom service methods ...
+    // अन्य हुक्स या कस्टम सर्विस मेथड्स ...
 }
 ```
 
-कन्स्ट्रक्टर में पास किए गए पैरामीटर के माध्यम से ब्राउज़र ऑब्जेक्ट को स्टोर करने की अनुशंसा की जाती है। अंत में निम्नलिखित के रूप में दोनों प्रकार के श्रमिकों को बेनकाब करें:
+कंस्ट्रक्टर में पास किए गए पैरामीटर के माध्यम से ब्राउज़र ऑब्जेक्ट को स्टोर करने की सिफारिश की जाती है। अंत में, दोनों प्रकार के वर्कर्स को निम्नानुसार एक्सपोज़ करें:
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-यदि आप टाइपस्क्रिप्ट का उपयोग कर रहे हैं और यह सुनिश्चित करना चाहते हैं कि हुक विधियाँ पैरामीटर सुरक्षित हैं, तो आप अपनी सेवा वर्ग को निम्नानुसार परिभाषित कर सकते हैं:
+यदि आप TypeScript का उपयोग कर रहे हैं और यह सुनिश्चित करना चाहते हैं कि हुक मेथड्स के पैरामीटर टाइप सेफ हैं, तो आप अपनी सर्विस क्लास को इस प्रकार परिभाषित कर सकते हैं:
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -89,7 +89,7 @@ export default class CustomWorkerService implements Services.ServiceInstance {
     constructor (
         private _options: MyServiceOptions,
         private _capabilities: Capabilities.RemoteCapability,
-        private _config: Options.Testrunner
+        private _config: WebdriverIO.Config,
     ) {
         // ...
     }
@@ -98,29 +98,29 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## सेवा त्रुटि प्रबंधन
+## सर्विस एरर हैंडलिंग
 
-रनर जारी रहने के दौरान सर्विस हुक के दौरान फेंकी गई त्रुटि को लॉग किया जाएगा। यदि आपकी सेवा में एक हुक परीक्षण धावक के सेटअप या फाड़ने के लिए महत्वपूर्ण है, तो `webdriverio` पैकेज से प्रदर्शित `SevereServiceError` उपयोग धावक को रोकने के लिए किया जा सकता है।
+सर्विस हुक के दौरान उत्पन्न एक एरर को लॉग किया जाएगा जबकि रनर जारी रहेगा। यदि आपकी सर्विस में कोई हुक टेस्ट रनर के सेटअप या टियरडाउन के लिए महत्वपूर्ण है, तो रनर को रोकने के लिए `webdriverio` पैकेज से एक्सपोज्ड `SevereServiceError` का उपयोग किया जा सकता है।
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: something critical for setup before all workers launch
+        // TODO: सभी वर्कर्स के लॉन्च होने से पहले सेटअप के लिए कुछ महत्वपूर्ण
 
-        throw new SevereServiceError('Something went wrong.')
+        throw new SevereServiceError('कुछ गलत हो गया।')
     }
 
-    // custom service methods ...
+    // कस्टम सर्विस मेथड्स ...
 }
 ```
 
-## मॉड्यूल से आयात सेवा
+## मॉड्यूल से सर्विस इम्पोर्ट करें
 
-इस सेवा का उपयोग करने के लिए अब केवल यही करना है कि इसे `services` संपत्ति को असाइन करें।
+इस सर्विस का उपयोग करने के लिए अब केवल एक चीज करनी है, उसे `services` प्रॉपर्टी को असाइन करना।
 
-आपकी `wdio.conf.js` फ़ाइल इस तरह दिखनी चाहिए:
+अपनी `wdio.conf.js` फ़ाइल को इस प्रकार संशोधित करें:
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -129,13 +129,13 @@ export const config = {
     // ...
     services: [
         /**
-         * use imported service class
+         * इम्पोर्टेड सर्विस क्लास का उपयोग करें
          */
         [CustomService, {
             someOption: true
         }],
         /**
-         * use absolute path to service
+         * सर्विस के लिए एब्सोल्यूट पाथ का उपयोग करें
          */
         ['/path/to/service.js', {
             someOption: true
@@ -145,19 +145,19 @@ export const config = {
 }
 ```
 
-## एनपीएम पर रिपोर्टर प्रकाशित करें
+## NPM पर सर्विस प्रकाशित करें
 
-WebdriverIO समुदाय द्वारा रिपोर्टर को उपभोग करने और खोजने में आसान बनाने के लिए, कृपया इन अनुशंसाओं का पालन करें:
+WebdriverIO समुदाय द्वारा सर्विसेज को आसानी से उपभोग और खोजने के लिए, कृपया इन सिफारिशों का पालन करें:
 
-* सेवाओं को इस नेमिंग कांवेन्सन का उपयोग करना चाहिए: `wdio-*-reporter`
-* एनपीएम कीवर्ड का प्रयोग करें: `wdio-plugin`, `wdio-reporter`
-* `main` प्रविष्टि `export` रिपोर्टर का एक उदाहरण होना चाहिए
-* उदाहरण रिपोर्टर: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* सर्विसेज को इस नामकरण परिपाटी का उपयोग करना चाहिए: `wdio-*-service`
+* NPM कीवर्ड्स का उपयोग करें: `wdio-plugin`, `wdio-service`
+* `main` एंट्री को सर्विस का एक इंस्टेंस `export` करना चाहिए
+* उदाहरण सर्विसेज: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-अनुशंसित नामकरण पैटर्न के बाद सेवाओं को नाम से जोड़ा जा सकता है:
+अनुशंसित नामकरण पैटर्न का पालन करने से सर्विसेज को नाम से जोड़ा जा सकता है:
 
 ```js
-// Add wdio-custom-service
+// wdio-custom-service जोड़ें
 export const config = {
     // ...
     services: ['custom'],
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### WDIO CLI और डॉक्स में प्रकाशित सेवा जोड़ें
+### WDIO CLI और डॉक्स में प्रकाशित सर्विस जोड़ें
 
-हम वास्तव में हर नए प्लगइन की सराहना करते हैं जो अन्य लोगों को बेहतर परीक्षण करने में मदद कर सकता है! यदि आपने ऐसा कोई प्लगइन बनाया है, तो कृपया इसे हमारे सीएलआई और डॉक्स में जोड़ने पर विचार करें ताकि इसे ढूंढना आसान हो सके।
+हम वास्तव में हर नए प्लगइन की सराहना करते हैं जो अन्य लोगों को बेहतर परीक्षण चलाने में मदद कर सकते हैं! यदि आपने ऐसा प्लगइन बनाया है, तो कृपया इसे हमारे CLI और डॉक्स में जोड़ने पर विचार करें ताकि इसे आसानी से खोजा जा सके।
 
-कृपया निम्नलिखित परिवर्तनों के साथ एक पुल अनुरोध करें:
+कृपया निम्नलिखित परिवर्तनों के साथ एक पुल रिक्वेस्ट उठाएं:
 
-- cLI मॉड्यूल में अपनी सेवा को [समर्थित सेवाओं](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) की सूची में जोड़ें
-- अपने डॉक्स को आधिकारिक Webdriver.io पेज पर जोड़ने के लिए [सर्विस लिस्ट](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) को एन्हांस करें
+- अपनी सर्विस को CLI मॉड्यूल में [समर्थित सर्विसेज](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) की सूची में जोड़ें
+- आधिकारिक Webdriver.io पृष्ठ पर अपने दस्तावेज़ जोड़ने के लिए [सर्विस सूची](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) को बढ़ाएं

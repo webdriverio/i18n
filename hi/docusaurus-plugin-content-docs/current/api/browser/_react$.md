@@ -1,0 +1,79 @@
+---
+id: react$
+title: react$
+custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/react$.ts
+---
+
+`react$` कमांड एक उपयोगी कमांड है जो रिएक्ट कंपोनेंट्स को उनके वास्तविक नाम से खोजती है और उन्हें प्रॉप्स और स्टेट के आधार पर फ़िल्टर करती है।
+
+:::info
+
+यह कमांड केवल React v16.x का उपयोग करने वाले एप्लिकेशन के साथ काम करती है। React सेलेक्टर्स के बारे में अधिक जानकारी [Selectors](/docs/selectors#react-selectors) गाइड में पढ़ें।
+
+:::
+
+##### उपयोग
+
+```js
+browser.react$(selector, { props, state })
+```
+
+##### पैरामीटर्स
+
+<table>
+  <thead>
+    <tr>
+      <th>नाम</th><th>प्रकार</th><th>विवरण</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code><var>selector</var></code></td>
+      <td>`string`</td>
+      <td>रिएक्ट कंपोनेंट का</td>
+    </tr>
+    <tr>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">वैकल्पिक</span></td>
+      <td>`ReactSelectorOptions`</td>
+      <td>रिएक्ट सेलेक्टर विकल्प</td>
+    </tr>
+    <tr>
+      <td><code><var>options.props</var></code><br /><span className="label labelWarning">वैकल्पिक</span></td>
+      <td>`Object`</td>
+      <td>रिएक्ट प्रॉप्स जो एलिमेंट में होने चाहिए</td>
+    </tr>
+    <tr>
+      <td><code><var>options.state</var></code><br /><span className="label labelWarning">वैकल्पिक</span></td>
+      <td>`Array<any>, number, string, object, boolean`</td>
+      <td>रिएक्ट स्टेट जिसमें एलिमेंट होना चाहिए</td>
+    </tr>
+  </tbody>
+</table>
+
+##### उदाहरण
+
+```js title="pause.js"
+it('should calculate 7 * 6', async () => {
+    await browser.url('https://ahfarmer.github.io/calculator/');
+    const appWrapper = await $('div#root')
+
+    await browser.react$('t', {
+        props: { name: '7' }
+    }).click()
+    await browser.react$('t', {
+        props: { name: 'x' }
+    }).click()
+    await browser.react$('t', {
+        props: { name: '6' }
+    }).click()
+    await browser.react$('t', {
+        props: { name: '=' }
+    }).click()
+
+    console.log(await $('.component-display').getText()); // prints "42"
+});
+```
+
+##### रिटर्न
+
+- **&lt;WebdriverIO.Element&gt;**
