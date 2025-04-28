@@ -3,9 +3,10 @@ id: webdriver
 title: بروتوكول WebDriver
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/webdriver.ts
 ---
-
 ## newSession
-أمر New Session يقوم بإنشاء جلسة WebDriver جديدة مع نقطة النهاية. إذا فشل الإنشاء، يتم إرجاع خطأ عدم إنشاء الجلسة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-new-sessions).
+يقوم أمر New Session بإنشاء جلسة WebDriver جديدة مع نقطة النهاية. إذا فشل الإنشاء، يتم إرجاع خطأ بأنه لم يتم إنشاء الجلسة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-new-sessions).
+
+
 
 ##### الاستخدام
 
@@ -26,22 +27,23 @@ browser.newSession(capabilities)
     <tr>
       <td><code><var>capabilities</var></code></td>
       <td>object</td>
-      <td>كائن JSON، مجموعة القدرات التي تم دمجها ومطابقتها في نهاية المطاف في خوارزمية معالجة القدرات</td>
+      <td>كائن JSON، مجموعة القدرات التي تم دمجها ومطابقتها في النهاية في خوارزمية معالجة القدرات</td>
     </tr>
   </tbody>
 </table>
 
 
-##### النتائج
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>session</var></code>:** كائن يحتوي على sessionId والقدرات الخاصة بجلسة WebDriver المنشأة.
+            **<code><var>session</var></code>:** كائن يحتوي على معرف الجلسة وقدرات جلسة WebDriver التي تم إنشاؤها.    
 
 
 ---
-
 ## deleteSession
-أمر Delete Session يغلق أي سياقات تصفح من المستوى الأعلى مرتبطة بالجلسة الحالية، وينهي الاتصال، وأخيراً يغلق الجلسة الحالية.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-delete-session).
+يقوم أمر حذف الجلسة بإغلاق أي سياق تصفح عالي المستوى مرتبط بالجلسة الحالية، وينهي الاتصال، وأخيرًا يغلق الجلسة الحالية.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-delete-session).
+
+
 
 ##### الاستخدام
 
@@ -69,10 +71,13 @@ browser.deleteSession(deleteSessionOpts)
 
 
 
----
 
+
+---
 ## status
-أمر Status يعيد معلومات حول ما إذا كان الطرف البعيد في حالة يمكنه إنشاء جلسات جديدة ويمكن أن يتضمن أيضًا معلومات تعريف اعتباطية خاصة بالتنفيذ.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-status).
+يقوم أمر الحالة بإرجاع معلومات حول ما إذا كانت نقطة النهاية البعيدة في حالة يمكنها من إنشاء جلسات جديدة ويمكن أيضًا أن تتضمن معلومات تعريفية اعتباطية خاصة بالتنفيذ.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-status).
+
+
 
 ##### الاستخدام
 
@@ -80,22 +85,27 @@ browser.deleteSession(deleteSessionOpts)
 browser.status()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L5-L16
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>status</var></code>:** كائن يحتوي على حالة برنامج التشغيل.
+            **<code><var>status</var></code>:** كائن يحتوي على حالة برنامج التشغيل.    
 
 
 ---
-
 ## getTimeouts
-أمر Get Timeouts يحصل على مدد التوقف المرتبطة بالجلسة الحالية.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-timeouts).
+يحصل أمر Get Timeouts على مدد المهلة المرتبطة بالجلسة الحالية.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-timeouts).
+
+
 
 ##### الاستخدام
 
@@ -103,22 +113,27 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getTimeouts()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L20-L24
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>timeouts</var></code>:** كائن يحتوي على مدد التوقف لـ `script` و `pageLoad` و `implicit`.
+            **<code><var>timeouts</var></code>:** كائن يحتوي على مدد مهلة لمؤقتات `script`، و`pageLoad`، و`implicit`.    
 
 
 ---
-
 ## setTimeouts
-أمر Set Timeouts يضبط مدد التوقف المرتبطة بالجلسة الحالية. المهل التي يمكن التحكم فيها مدرجة في جدول مهل الجلسة أدناه.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-set-timeouts).
+يقوم أمر Set Timeouts بتعيين مدد المهلة المرتبطة بالجلسة الحالية. المؤقتات التي يمكن التحكم بها مدرجة في جدول مهل الجلسة أدناه.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-set-timeouts).
+
+
 
 ##### الاستخدام
 
@@ -139,17 +154,17 @@ browser.setTimeouts(implicit, pageLoad, script)
     <tr>
       <td><code><var>implicit</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>عدد صحيح بالمللي ثانية للانتظار الضمني للجلسة</td>
+      <td>عدد صحيح بالميلي ثانية لمهلة الانتظار الضمني للجلسة</td>
     </tr>
     <tr>
       <td><code><var>pageLoad</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>عدد صحيح بالمللي ثانية لمهلة تحميل الصفحة للجلسة</td>
+      <td>عدد صحيح بالميلي ثانية لمهلة تحميل الصفحة للجلسة</td>
     </tr>
     <tr>
       <td><code><var>script</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>عدد صحيح بالمللي ثانية لمهلة النص البرمجي للجلسة</td>
+      <td>عدد صحيح بالميلي ثانية لمهلة النص البرمجي للجلسة</td>
     </tr>
   </tbody>
 </table>
@@ -163,10 +178,13 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## getUrl
-أمر Get Current URL يعيد عنوان URL للسياق الحالي للتصفح من المستوى الأعلى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-current-url).
+يقوم أمر Get Current URL بإرجاع عنوان URL لسياق التصفح الحالي عالي المستوى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-current-url).
+
+
 
 ##### الاستخدام
 
@@ -174,22 +192,25 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getUrl()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L39-L43
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>url</var></code>:** عنوان URL للمستند النشط في سياق التصفح الحالي من المستوى الأعلى
+            **<code><var>url</var></code>:** عنوان URL لمستند المستند النشط لسياق التصفح الحالي عالي المستوى    
 
 
 ---
-
 ## navigateTo
-أمر navigateTo (go) يستخدم لتوجيه وكيل المستخدم لسياق التصفح الحالي من المستوى الأعلى إلى موقع جديد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-navigate-to).
+يُستخدم أمر navigateTo (go) لجعل وكيل المستخدم ينتقل بسياق التصفح الحالي عالي المستوى إلى موقع جديد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-navigate-to).
 
 :::info
 
@@ -217,7 +238,7 @@ browser.navigateTo(url)
     <tr>
       <td><code><var>url</var></code></td>
       <td>string</td>
-      <td>سلسلة تمثل عنوان URL مطلق (يبدأ بـ http(s))، وقد يتضمن شظية (#...)، ويمكن أن يكون أيضًا مخططًا محليًا (about: إلخ)</td>
+      <td>سلسلة تمثل عنوان URL مطلق (يبدأ بـ http(s))، قد يتضمن جزءًا (#...)، ويمكن أن يكون أيضًا مخططًا محليًا (about: إلخ)</td>
     </tr>
   </tbody>
 </table>
@@ -231,16 +252,21 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## back
-أمر Back يتسبب في رجوع المتصفح خطوة واحدة للخلف في تاريخ الجلسة المشترك لسياق التصفح الحالي من المستوى الأعلى. هذا يعادل الضغط على زر الرجوع في شريط أدوات المتصفح أو استدعاء `window.history.back`.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-back).
+يتسبب أمر Back في أن يمر المتصفح خطوة واحدة إلى الوراء في سجل الجلسة المشترك لسياق التصفح الحالي عالي المستوى. وهذا يعادل الضغط على زر الرجوع في واجهة المتصفح أو استدعاء `window.history.back`.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-back).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.back()
 ```
+
+
 
 ##### مثال
 
@@ -251,16 +277,21 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## forward
-أمر Forward يتسبب في تقدم المتصفح خطوة واحدة للأمام في تاريخ الجلسة المشترك لسياق التصفح الحالي من المستوى الأعلى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-forward).
+يتسبب أمر Forward في أن يمر المتصفح خطوة واحدة إلى الأمام في سجل الجلسة المشترك لسياق التصفح الحالي عالي المستوى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-forward).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.forward()
 ```
+
+
 
 ##### مثال
 
@@ -271,16 +302,21 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## refresh
-أمر Refresh يتسبب في إعادة تحميل المتصفح للصفحة في سياق التصفح الحالي من المستوى الأعلى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-refresh).
+يتسبب أمر Refresh في أن يقوم المتصفح بإعادة تحميل الصفحة في سياق التصفح الحالي عالي المستوى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-refresh).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.refresh()
 ```
+
+
 
 ##### مثال
 
@@ -291,10 +327,13 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## getTitle
-أمر Get Title يعيد عنوان المستند لسياق التصفح الحالي من المستوى الأعلى، ما يعادل استدعاء `document.title`.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-title).
+يقوم أمر Get Title بإرجاع عنوان المستند لسياق التصفح الحالي عالي المستوى، وهو ما يعادل استدعاء `document.title`.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-title).
+
+
 
 ##### الاستخدام
 
@@ -302,22 +341,27 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getTitle()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L82-L86
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>title</var></code>:** يعيد سلسلة نصية تساوي `document.title` لسياق التصفح الحالي من المستوى الأعلى.
+            **<code><var>title</var></code>:** يرجع سلسلة نصية مماثلة لـ `document.title` لسياق التصفح الحالي عالي المستوى.    
 
 
 ---
-
 ## getWindowHandle
-أمر Get Window Handle يعيد مقبض النافذة لسياق التصفح الحالي من المستوى الأعلى. يمكن استخدامه كوسيط لـ Switch To Window.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-window-handle).
+يقوم أمر Get Window Handle بإرجاع معرف النافذة لسياق التصفح الحالي عالي المستوى. يمكن استخدامه كوسيطة لـ Switch To Window.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-window-handle).
+
+
 
 ##### الاستخدام
 
@@ -325,28 +369,35 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getWindowHandle()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L90-L93
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>handle</var></code>:** يعيد سلسلة نصية هي مقبض النافذة لسياق التصفح الحالي من المستوى الأعلى.
+            **<code><var>handle</var></code>:** يرجع سلسلة نصية وهي معرف النافذة لسياق التصفح الحالي عالي المستوى.    
 
 
 ---
-
 ## closeWindow
-أمر Close Window يغلق سياق التصفح الحالي من المستوى الأعلى. بمجرد الانتهاء، إذا لم تكن هناك سياقات تصفح أخرى من المستوى الأعلى مفتوحة، يتم إغلاق جلسة WebDriver نفسها.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-close-window).
+يقوم أمر Close Window بإغلاق سياق التصفح الحالي عالي المستوى. بمجرد الانتهاء، إذا لم تعد هناك سياقات تصفح أخرى عالية المستوى مفتوحة، فإن جلسة WebDriver نفسها تغلق.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-close-window).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.closeWindow()
 ```
+
+
 
 ##### مثال
 
@@ -357,10 +408,11 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## switchToWindow
-أمر Switch To Window يستخدم لتحديد سياق التصفح الحالي من المستوى الأعلى للجلسة الحالية، أي الذي سيتم استخدامه لمعالجة الأوامر.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-switch-to-window).
+يُستخدم أمر Switch To Window لتحديد سياق التصفح الحالي عالي المستوى للجلسة الحالية، أي الذي سيتم استخدامه لمعالجة الأوامر.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-switch-to-window).
 
 :::info
 
@@ -388,7 +440,7 @@ browser.switchToWindow(handle)
     <tr>
       <td><code><var>handle</var></code></td>
       <td>string</td>
-      <td>سلسلة تمثل مقبض نافذة، يجب أن تكون واحدة من السلاسل التي تم إرجاعها في مكالمة إلى getWindowHandles</td>
+      <td>سلسلة تمثل معرف نافذة، يجب أن تكون واحدة من السلاسل التي تم إرجاعها في استدعاء getWindowHandles</td>
     </tr>
   </tbody>
 </table>
@@ -402,10 +454,13 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## createWindow
-إنشاء سياق تصفح جديد من المستوى الأعلى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#new-window).
+إنشاء سياق تصفح جديد عالي المستوى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#new-window).
+
+
 
 ##### الاستخدام
 
@@ -426,7 +481,7 @@ browser.createWindow(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>string</td>
-      <td>يتم ضبطه على 'tab' إذا كانت النافذة المنشأة حديثًا تشارك نافذة على مستوى نظام التشغيل مع سياق التصفح الحالي، أو 'window' خلاف ذلك.</td>
+      <td>تعيين إلى 'tab' إذا كانت النافذة المنشأة حديثًا تشارك نافذة على مستوى نظام التشغيل مع سياق التصفح الحالي، أو 'window' خلاف ذلك.</td>
     </tr>
   </tbody>
 </table>
@@ -437,16 +492,19 @@ browser.createWindow(type)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L134-L136
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>window</var></code>:** كائن النافذة الجديدة الذي يحتوي على 'handle' بقيمة المقبض و 'type' بقيمة نوع النافذة المنشأة
+            **<code><var>window</var></code>:** كائن النافذة الجديد الذي يحتوي على 'handle' بقيمة المعرف و'type' بقيمة نوع النافذة المنشأة    
 
 
 ---
-
 ## getWindowHandles
-أمر Get Window Handles يعيد قائمة مقابض النوافذ لكل سياق تصفح مفتوح من المستوى الأعلى. ترتيب إرجاع مقابض النوافذ عشوائي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-window-handles).
+يرجع أمر Get Window Handles قائمة بمعرفات النوافذ لكل سياق تصفح عالي المستوى مفتوح. الترتيب الذي يتم فيه إرجاع معرفات النوافذ عشوائي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-window-handles).
+
+
 
 ##### الاستخدام
 
@@ -454,22 +512,27 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getWindowHandles()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L140-L143
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;String[]&gt;**
-            **<code><var>handles</var></code>:** مصفوفة تحتوي على قائمة مقابض النوافذ.
+            **<code><var>handles</var></code>:** مصفوفة تحتوي على قائمة معرفات النوافذ.    
 
 
 ---
-
 ## printPage
-أمر Print Page يقوم بتحويل المستند إلى مستند PDF مقسم إلى صفحات. __ملاحظة:__ حاليًا، يدعم Chrome هذا فقط في [وضع headless](https://webdriver.io/docs/capabilities/#run-browser-headless)، انظر [`crbug753118`](https://bugs.chromium.org/p/chromium/issues/detail?id=753118)).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#print-page).
+يقوم أمر Print Page بتحويل المستند إلى مستند PDF مرقم. __ملاحظة:__ يدعم Chrome حاليًا هذه الميزة فقط في [وضع headless](https://webdriver.io/docs/capabilities/#run-browser-headless)، انظر [`crbug753118`](https://bugs.chromium.org/p/chromium/issues/detail?id=753118)).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#print-page).
+
+
 
 ##### الاستخدام
 
@@ -495,7 +558,7 @@ browser.printPage(orientation, scale, background, width, height, top, bottom, le
     <tr>
       <td><code><var>scale</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>حجم الصفحة. الافتراضي: `1`</td>
+      <td>مقياس الصفحة. الافتراضي: `1`</td>
     </tr>
     <tr>
       <td><code><var>background</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -540,7 +603,7 @@ browser.printPage(orientation, scale, background, width, height, top, bottom, le
     <tr>
       <td><code><var>pageRanges</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>object[]</td>
-      <td>نطاقات الصفحات. الافتراضي `[]`</td>
+      <td>نطاقات الصفحة. الافتراضي `[]`</td>
     </tr>
   </tbody>
 </table>
@@ -551,20 +614,23 @@ browser.printPage(orientation, scale, background, width, height, top, bottom, le
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L150-L151
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>pdf</var></code>:** تمثيل PDF المشفر بـ base64 للمستند المقسم إلى صفحات.
+            **<code><var>pdf</var></code>:** تمثيل PDF المرمز بـ base64 للمستند المرقم.    
 
 
 ---
-
 ## switchToFrame
-أمر Switch To Frame يستخدم لتحديد سياق التصفح الحالي من المستوى الأعلى أو سياق تصفح فرعي لسياق التصفح الحالي لاستخدامه كسياق التصفح الحالي للأوامر اللاحقة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-switch-to-frame).
+يُستخدم أمر Switch To Frame لتحديد سياق التصفح الحالي عالي المستوى أو سياق تصفح فرعي لسياق التصفح الحالي لاستخدامه كسياق تصفح حالي للأوامر اللاحقة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-switch-to-frame).
 :::caution
 
-هذا الأمر البروتوكولي مهمل<br />هذا الأمر مهمل ونحن نشجع الجميع على استخدام `switchFrame` بدلاً من ذلك للتبديل إلى الإطارات. اقرأ المزيد عن هذا الأمر على https://webdriver.io/docs/api/browser/switchFrame.
+هذا الأمر البروتوكولي مهمل<br />هذا الأمر مهمل ونشجع الجميع على استخدام `switchFrame` بدلاً من ذلك للتبديل بين الإطارات. اقرأ المزيد عن هذا الأمر على https://webdriver.io/docs/api/browser/switchFrame.
 :::
+
+
 
 ##### الاستخدام
 
@@ -585,7 +651,7 @@ browser.switchToFrame(id)
     <tr>
       <td><code><var>id</var></code></td>
       <td>number, object, null</td>
-      <td>واحد من ثلاثة أنواع ممكنة: null: يمثل سياق التصفح من المستوى الأعلى (أي ليس iframe)، رقم يمثل فهرس كائن النافذة المقابل للإطار، كائن عنصر تم استلامه باستخدام `findElement`.</td>
+      <td>واحد من ثلاثة أنواع محتملة: null: هذا يمثل سياق التصفح عالي المستوى (أي، ليس iframe)، رقم، يمثل فهرس كائن النافذة المقابل للإطار، كائن عنصر تم استلامه باستخدام `findElement`.</td>
     </tr>
   </tbody>
 </table>
@@ -599,16 +665,21 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## switchToParentFrame
-أمر Switch to Parent Frame يضبط سياق التصفح الحالي للأوامر المستقبلية على الأصل لسياق التصفح الحالي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-switch-to-parent-frame).
+يقوم أمر Switch to Parent Frame بتعيين سياق التصفح الحالي للأوامر المستقبلية إلى الأصل لسياق التصفح الحالي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-switch-to-parent-frame).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.switchToParentFrame()
 ```
+
+
 
 ##### مثال
 
@@ -619,10 +690,11 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## getWindowRect
-أمر Get Window Rect يعيد حجم وموضع نافذة نظام التشغيل المقابلة لسياق التصفح الحالي من المستوى الأعلى على الشاشة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-window-rect).
+يرجع أمر Get Window Rect حجم وموضع نافذة نظام التشغيل المقابلة لسياق التصفح الحالي عالي المستوى على الشاشة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-window-rect).
 
 :::info
 
@@ -637,22 +709,25 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getWindowRect()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L193-L196
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "window rect". يحتوي على 4 خصائص: `x`، `y`، `width` و `height`.
+            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "مستطيل النافذة". يحتوي هذا على 4 خصائص: `x`، `y`، `width`، و`height`.    
 
 
 ---
-
 ## setWindowRect
-أمر Set Window Rect يغير حجم وموضع نافذة نظام التشغيل المقابلة لسياق التصفح الحالي من المستوى الأعلى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-set-window-rect).
+يقوم أمر Set Window Rect بتغيير حجم وموضع نافذة نظام التشغيل المقابلة لسياق التصفح الحالي عالي المستوى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-set-window-rect).
 
 :::info
 
@@ -680,22 +755,22 @@ browser.setWindowRect(x, y, width, height)
     <tr>
       <td><code><var>x</var></code></td>
       <td>number, null</td>
-      <td>سمة screenX لكائن النافذة</td>
+      <td>خاصية screenX لكائن النافذة</td>
     </tr>
     <tr>
       <td><code><var>y</var></code></td>
       <td>number, null</td>
-      <td>سمة screenY لكائن النافذة</td>
+      <td>خاصية screenY لكائن النافذة</td>
     </tr>
     <tr>
       <td><code><var>width</var></code></td>
       <td>number, null</td>
-      <td>عرض الأبعاد الخارجية لسياق التصفح من المستوى الأعلى، بما في ذلك واجهة المتصفح الفولاذية وما إلى ذلك...</td>
+      <td>عرض الأبعاد الخارجية لسياق التصفح عالي المستوى، بما في ذلك شريط المتصفح وما إلى ذلك...</td>
     </tr>
     <tr>
       <td><code><var>height</var></code></td>
       <td>number, null</td>
-      <td>ارتفاع الأبعاد الخارجية لسياق التصفح من المستوى الأعلى، بما في ذلك واجهة المتصفح الفولاذية وما إلى ذلك...</td>
+      <td>ارتفاع الأبعاد الخارجية لسياق التصفح عالي المستوى، بما في ذلك شريط المتصفح وما إلى ذلك...</td>
     </tr>
   </tbody>
 </table>
@@ -706,16 +781,19 @@ browser.setWindowRect(x, y, width, height)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L200-L204
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "window rect" استنادًا إلى حالة النافذة الجديدة.
+            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "مستطيل النافذة" استنادًا إلى حالة النافذة الجديدة.    
 
 
 ---
-
 ## maximizeWindow
-أمر Maximize Window يستدعي عملية "تكبير" المحددة لمدير النوافذ، إن وجدت، على النافذة التي تحتوي على سياق التصفح الحالي من المستوى الأعلى. هذا عادة ما يزيد النافذة إلى الحجم الأقصى المتاح دون الذهاب إلى وضع ملء الشاشة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-maximize-window).
+يستدعي أمر Maximize Window عملية "تكبير" محددة لمدير النوافذ، إن وجدت، على النافذة التي تحتوي على سياق التصفح الحالي عالي المستوى. هذا عادة ما يزيد النافذة إلى الحجم الأقصى المتاح دون الدخول في وضع ملء الشاشة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-maximize-window).
+
+
 
 ##### الاستخدام
 
@@ -723,22 +801,27 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.maximizeWindow()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L208-L212
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "window rect" استنادًا إلى حالة النافذة الجديدة.
+            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "مستطيل النافذة" استنادًا إلى حالة النافذة الجديدة.    
 
 
 ---
-
 ## minimizeWindow
-أمر Minimize Window يستدعي عملية "تصغير" المحددة لمدير النوافذ، إن وجدت، على النافذة التي تحتوي على سياق التصفح الحالي من المستوى الأعلى. هذا عادة ما يخفي النافذة في علبة النظام.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-minimize-window).
+يستدعي أمر Minimize Window عملية "تصغير" محددة لمدير النوافذ، إن وجدت، على النافذة التي تحتوي على سياق التصفح الحالي عالي المستوى. هذا عادة ما يخفي النافذة في شريط النظام.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-minimize-window).
+
+
 
 ##### الاستخدام
 
@@ -747,16 +830,19 @@ browser.minimizeWindow()
 ```
 
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "window rect" لسياق التصفح الحالي (الجديد) من المستوى الأعلى.
+            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "مستطيل النافذة" لسياق التصفح (الجديد) الحالي عالي المستوى.    
 
 
 ---
-
 ## fullscreenWindow
-أمر Fullscreen Window يستدعي عملية "ملء الشاشة" المحددة لمدير النوافذ، إن وجدت، على النافذة التي تحتوي على سياق التصفح الحالي من المستوى الأعلى. هذا عادة ما يزيد النافذة إلى حجم العرض المادي ويمكن أن يخفي عناصر واجهة المتصفح مثل أشرطة الأدوات.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-fullscreen-window).
+يستدعي أمر Fullscreen Window عملية "ملء الشاشة" المحددة لمدير النوافذ، إن وجدت، على النافذة التي تحتوي على سياق التصفح الحالي عالي المستوى. هذا عادة ما يزيد النافذة إلى حجم العرض الفعلي ويمكن أن يخفي عناصر واجهة المتصفح مثل شريط الأدوات.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-fullscreen-window).
+
+
 
 ##### الاستخدام
 
@@ -765,16 +851,17 @@ browser.fullscreenWindow()
 ```
 
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "window rect" لسياق التصفح الحالي (الجديد) من المستوى الأعلى.
+            **<code><var>windowRect</var></code>:** تمثيل JSON لكائن "مستطيل النافذة" لسياق التصفح (الجديد) الحالي عالي المستوى.    
 
 
 ---
-
 ## findElement
-يستخدم أمر Find Element للعثور على عنصر في سياق التصفح الحالي يمكن استخدامه للأوامر المستقبلية. يعيد هذا الأمر تمثيل JSON للعنصر الذي يمكن تمريره إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO الموسع.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-find-element).
+يستخدم أمر Find Element للعثور على عنصر في سياق التصفح الحالي يمكن استخدامه للأوامر المستقبلية. يعيد هذا الأمر تمثيل JSON للعنصر الذي يمكن تمريره إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO موسع.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-find-element).
 
 :::info
 
@@ -802,7 +889,7 @@ browser.findElement(using, value)
     <tr>
       <td><code><var>using</var></code></td>
       <td>string</td>
-      <td>استراتيجية موقع عنصر صالحة</td>
+      <td>إستراتيجية تحديد موقع عنصر صالحة</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -818,16 +905,17 @@ browser.findElement(using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L226-L232
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;object&gt;**
-            **<code><var>element</var></code>:** تمثيل JSON لكائن عنصر، على سبيل المثال `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
+            **<code><var>element</var></code>:** تمثيل JSON لكائن عنصر، مثل `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
 
 
 ---
-
 ## findElementFromShadowRoot
-يستخدم أمر Find Element From Shadow Root للعثور على عنصر داخل جذر ظل عنصر يمكن استخدامه للأوامر المستقبلية. يعيد هذا الأمر تمثيل JSON للعنصر الذي يمكن تمريره إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO الموسع.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#find-element-from-shadow-root).
+يُستخدم أمر Find Element From Shadow Root للعثور على عنصر داخل جذر الظل لعنصر يمكن استخدامه للأوامر المستقبلية. يعيد هذا الأمر تمثيل JSON للعنصر الذي يمكن تمريره إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO موسع.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#find-element-from-shadow-root).
 
 :::info
 
@@ -860,7 +948,7 @@ browser.findElementFromShadowRoot(shadowId, using, value)
     <tr>
       <td><code><var>using</var></code></td>
       <td>string</td>
-      <td>استراتيجية موقع عنصر صالحة</td>
+      <td>إستراتيجية تحديد موقع عنصر صالحة</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -876,16 +964,17 @@ browser.findElementFromShadowRoot(shadowId, using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L236-L248
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;object&gt;**
-            **<code><var>element</var></code>:** تمثيل JSON لكائن ظل عنصر، على سبيل المثال `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
+            **<code><var>element</var></code>:** تمثيل JSON لكائن ظل عنصر، مثل `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
 
 
 ---
-
 ## findElements
-يستخدم أمر Find Elements للعثور على عناصر في سياق التصفح الحالي يمكن استخدامها للأوامر المستقبلية. يعيد هذا الأمر مصفوفة تمثيل JSON للعناصر التي يمكن تمريرها إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO الموسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-find-elements).
+يستخدم أمر Find Elements للعثور على عناصر في سياق التصفح الحالي يمكن استخدامها للأوامر المستقبلية. يعيد هذا الأمر مصفوفة من تمثيل JSON للعناصر التي يمكن تمريرها إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO موسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-find-elements).
 
 :::info
 
@@ -913,7 +1002,7 @@ browser.findElements(using, value)
     <tr>
       <td><code><var>using</var></code></td>
       <td>string</td>
-      <td>استراتيجية موقع عنصر صالحة</td>
+      <td>إستراتيجية تحديد موقع عنصر صالحة</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -929,16 +1018,17 @@ browser.findElements(using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L252-L254
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;object[]&gt;**
-            **<code><var>elements</var></code>:** قائمة JSON (ربما فارغة) لتمثيلات كائن عنصر، على سبيل المثال `[{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }]`.
+            **<code><var>elements</var></code>:** قائمة JSON (قد تكون فارغة) من تمثيلات كائن العنصر، مثل `[{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }]`.    
 
 
 ---
-
 ## findElementsFromShadowRoot
-يستخدم أمر Find Elements للعثور على عناصر داخل جذر ظل عنصر يمكن استخدامها للأوامر المستقبلية. يعيد هذا الأمر مصفوفة تمثيل JSON للعناصر التي يمكن تمريرها إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO الموسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#find-elements-from-shadow-root).
+يُستخدم أمر Find Elements للعثور على عناصر داخل جذر الظل لعنصر يمكن استخدامه للأوامر المستقبلية. يعيد هذا الأمر مصفوفة من تمثيل JSON للعناصر التي يمكن تمريرها إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO موسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#find-elements-from-shadow-root).
 
 :::info
 
@@ -971,7 +1061,7 @@ browser.findElementsFromShadowRoot(shadowId, using, value)
     <tr>
       <td><code><var>using</var></code></td>
       <td>string</td>
-      <td>استراتيجية موقع عنصر صالحة</td>
+      <td>إستراتيجية تحديد موقع عنصر صالحة</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -987,16 +1077,17 @@ browser.findElementsFromShadowRoot(shadowId, using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L258-L268
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;object[]&gt;**
-            **<code><var>elements</var></code>:** قائمة JSON (ربما فارغة) لتمثيلات كائن عنصر، على سبيل المثال `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
+            **<code><var>elements</var></code>:** قائمة JSON (قد تكون فارغة) من تمثيلات كائن العنصر، مثل `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
 
 
 ---
-
 ## findElementFromElement
-يستخدم أمر Find Element From Element للعثور على عنصر من عنصر ويب في سياق التصفح الحالي يمكن استخدامه للأوامر المستقبلية. يعيد هذا الأمر تمثيل JSON للعنصر الذي يمكن تمريره إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO الموسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-find-element-from-element).
+يُستخدم أمر Find Element From Element للعثور على عنصر من عنصر ويب في سياق التصفح الحالي يمكن استخدامه للأوامر المستقبلية. يعيد هذا الأمر تمثيل JSON للعنصر الذي يمكن تمريره إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO موسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-find-element-from-element).
 
 :::info
 
@@ -1024,12 +1115,12 @@ browser.findElementFromElement(elementId, using, value)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>using</var></code></td>
       <td>string</td>
-      <td>استراتيجية موقع عنصر صالحة</td>
+      <td>إستراتيجية تحديد موقع عنصر صالحة</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -1045,16 +1136,17 @@ browser.findElementFromElement(elementId, using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L272-L279
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;object&gt;**
-            **<code><var>element</var></code>:** تمثيل JSON لكائن عنصر، على سبيل المثال `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
+            **<code><var>element</var></code>:** تمثيل JSON لكائن عنصر، مثل `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
 
 
 ---
-
 ## findElementsFromElement
-يستخدم أمر Find Elements From Element للعثور على عناصر من عنصر ويب في سياق التصفح الحالي يمكن استخدامها للأوامر المستقبلية. يعيد هذا الأمر مصفوفة تمثيل JSON للعناصر التي يمكن تمريرها إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO الموسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-find-elements-from-element).
+يُستخدم أمر Find Elements From Element للعثور على عناصر من عنصر ويب في سياق التصفح الحالي يمكن استخدامها للأوامر المستقبلية. يعيد هذا الأمر مصفوفة من تمثيل JSON للعناصر التي يمكن تمريرها إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO موسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-find-elements-from-element).
 
 :::info
 
@@ -1082,12 +1174,12 @@ browser.findElementsFromElement(elementId, using, value)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>using</var></code></td>
       <td>string</td>
-      <td>استراتيجية موقع عنصر صالحة</td>
+      <td>إستراتيجية تحديد موقع عنصر صالحة</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -1103,16 +1195,17 @@ browser.findElementsFromElement(elementId, using, value)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L283-L290
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;object[]&gt;**
-            **<code><var>elements</var></code>:** قائمة JSON (ربما فارغة) لتمثيلات كائن عنصر، على سبيل المثال `[{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }]`.
+            **<code><var>elements</var></code>:** قائمة JSON (قد تكون فارغة) من تمثيلات كائن العنصر، مثل `[{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }]`.    
 
 
 ---
-
 ## getElementShadowRoot
-الحصول على كائن جذر الظل لعنصر. يمكن استخدام كائن النتيجة لجلب عناصر داخل جذر الظل هذا باستخدام على سبيل المثال findElementFromShadowRoots أو findElementsFromShadowRoots.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-active-element).
+احصل على كائن جذر الظل لعنصر. يمكن استخدام كائن النتيجة لجلب العناصر داخل جذر الظل هذا باستخدام findElementFromShadowRoots أو findElementsFromShadowRoots على سبيل المثال.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-active-element).
 
 :::info
 
@@ -1140,7 +1233,7 @@ browser.getElementShadowRoot(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1151,16 +1244,19 @@ browser.getElementShadowRoot(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L294-L305
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>shadowRoot</var></code>:** تمثيل JSON لجذر ظل عنصر، على سبيل المثال `{ 'shadow-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
+            **<code><var>shadowRoot</var></code>:** تمثيل JSON لجذر ظل عنصر، مثل `{ 'shadow-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
 
 
 ---
-
 ## getActiveElement
-يعيد أمر Get Active Element العنصر النشط لعنصر المستند لسياق التصفح الحالي. يعيد هذا الأمر تمثيل JSON للعنصر الذي يمكن تمريره إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO الموسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-active-element).
+يعيد Get Active Element العنصر النشط لعنصر المستند الخاص بسياق التصفح الحالي. يعيد هذا الأمر تمثيل JSON للعنصر الذي يمكن تمريره إلى أمر $ لتحويل المرجع إلى عنصر WebdriverIO موسع (انظر findElement).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-active-element).
+
+
 
 ##### الاستخدام
 
@@ -1168,22 +1264,25 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getActiveElement()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L309-L316
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>element</var></code>:** تمثيل JSON لكائن عنصر، على سبيل المثال `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.
+            **<code><var>element</var></code>:** تمثيل JSON لكائن عنصر، مثل `{ 'element-6066-11e4-a52e-4f735466cecf': 'ELEMENT_1' }`.    
 
 
 ---
-
 ## isElementSelected
-يحدد أمر Is Element Selected ما إذا كان العنصر المشار إليه محددًا أم لا. هذه العملية لها معنى فقط على عناصر الإدخال من حالات Checkbox و Radio Button، أو عناصر الخيار.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-is-element-selected).
+يحدد Is Element Selected ما إذا كان العنصر المشار إليه محددًا أم لا. هذه العملية لها معنى فقط على عناصر الإدخال من حالة مربع الاختيار وزر الراديو، أو عناصر الخيار.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-is-element-selected).
 
 :::info
 
@@ -1211,7 +1310,7 @@ browser.isElementSelected(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1222,16 +1321,17 @@ browser.isElementSelected(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L322-L325
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Boolean&gt;**
-            **<code><var>isSelected</var></code>:** `true` أو `false` بناءً على حالة التحديد.
+            **<code><var>isSelected</var></code>:** `true` أو `false` بناءً على حالة التحديد.    
 
 
 ---
-
 ## isElementDisplayed
-يحدد أمر Is Element Displayed مرئية عنصر استنادًا إلى ما هو مرئي إدراكيًا للعين البشرية. في هذا السياق، لا ترتبط رؤية العنصر بخصائص النمط `visibility` أو `display`.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#element-displayedness).
+يحدد Is Element Displayed رؤية عنصر ما والتي يتم توجيهها بما هو مرئي إدراكيًا للعين البشرية. في هذا السياق، لا ترتبط رؤية العنصر بخصائص النمط `visibility` أو `display`.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#element-displayedness).
 
 :::info
 
@@ -1259,7 +1359,7 @@ browser.isElementDisplayed(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1270,14 +1370,15 @@ browser.isElementDisplayed(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L331-L333
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Boolean&gt;**
-            **<code><var>isDisplayed</var></code>:** `true` أو `false` بناءً على حالة الرؤية.
+            **<code><var>isDisplayed</var></code>:** `true` أو `false` بناءً على حالة الرؤية.    
 
 
 ---
-
 ## getElementAttribute
 سيعيد أمر Get Element Attribute سمة عنصر ويب.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-attribute).
 
@@ -1307,7 +1408,7 @@ browser.getElementAttribute(elementId, name)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>name</var></code></td>
@@ -1323,16 +1424,17 @@ browser.getElementAttribute(elementId, name)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L339-L341
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>attribute</var></code>:** السمة المسماة للعنصر.
+            **<code><var>attribute</var></code>:** السمة المسماة للعنصر.    
 
 
 ---
-
 ## getElementProperty
-سيعيد أمر Get Element Property نتيجة الحصول على خاصية عنصر.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-property).
+سيقوم أمر Get Element Property بإرجاع نتيجة الحصول على خاصية عنصر.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-property).
 
 :::info
 
@@ -1360,7 +1462,7 @@ browser.getElementProperty(elementId, name)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>name</var></code></td>
@@ -1376,16 +1478,17 @@ browser.getElementProperty(elementId, name)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L347-L349
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>property</var></code>:** الخاصية المسماة للعنصر، تم الوصول إليها عن طريق استدعاء GetOwnProperty على كائن العنصر.
+            **<code><var>property</var></code>:** الخاصية المسماة للعنصر، التي تم الوصول إليها عن طريق استدعاء GetOwnProperty على كائن العنصر.    
 
 
 ---
-
 ## getElementCSSValue
-يسترد أمر Get Element CSS Value القيمة المحسوبة لخاصية CSS المعطاة لعنصر الويب المعطى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-css-value).
+يسترجع أمر Get Element CSS Value القيمة المحسوبة لخاصية CSS المعطاة للعنصر الويب المعطى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-css-value).
 
 :::info
 
@@ -1413,7 +1516,7 @@ browser.getElementCSSValue(elementId, propertyName)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>propertyName</var></code></td>
@@ -1429,16 +1532,19 @@ browser.getElementCSSValue(elementId, propertyName)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L355-L357
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>cssValue</var></code>:** القيمة المحسوبة للمعلمة المقابلة لاسم الخاصية من إعلانات نمط العنصر (ما لم يكن نوع المستند هو xml، وفي هذه الحالة تكون قيمة الإرجاع ببساطة سلسلة فارغة).
+            **<code><var>cssValue</var></code>:** القيمة المحسوبة للمعلمة المقابلة لاسم الخاصية من إعلانات نمط العنصر (ما لم يكن نوع المستند هو xml، وفي هذه الحالة تكون قيمة الإرجاع ببساطة سلسلة فارغة).    
 
 
 ---
-
 ## getElementText
-يهدف أمر Get Element Text إلى إرجاع نص العنصر "كما تم عرضه". يتم استخدام النص المعروض للعنصر أيضًا لتحديد موقع العناصر من خلال نص الرابط ونص الرابط الجزئي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-text).
+يهدف أمر Get Element Text إلى إرجاع نص العنصر "كما يتم عرضه". يستخدم أيضًا نص العنصر المعروض لتحديد موقع العناصر بواسطة نص الرابط الخاص بهم ونص الرابط الجزئي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-text).
+
+
 
 ##### الاستخدام
 
@@ -1459,7 +1565,7 @@ browser.getElementText(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1470,14 +1576,15 @@ browser.getElementText(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L363-L365
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>text</var></code>:** النص المرئي للعنصر (بما في ذلك العناصر الفرعية)، باتباع الخوارزمية المحددة في Selenium Atoms لـ [`bot.dom.getVisibleText`](https://github.com/SeleniumHQ/selenium/blob/e09e28f016c9f53196cf68d6f71991c5af4a35d4/javascript/atoms/dom.js#L981).
+            **<code><var>text</var></code>:** النص المرئي للعنصر (بما في ذلك العناصر الفرعية)، باتباع الخوارزمية المحددة في Selenium Atoms لـ [`bot.dom.getVisibleText`](https://github.com/SeleniumHQ/selenium/blob/e09e28f016c9f53196cf68d6f71991c5af4a35d4/javascript/atoms/dom.js#L981).    
 
 
 ---
-
 ## getElementTagName
 يعيد أمر Get Element Tag Name اسم العنصر المؤهل لعنصر الويب المعطى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-tag-name).
 
@@ -1507,7 +1614,7 @@ browser.getElementTagName(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1518,14 +1625,15 @@ browser.getElementTagName(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L371-L373
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>text</var></code>:** سمة tagName للعنصر.
+            **<code><var>text</var></code>:** سمة tagName للعنصر.    
 
 
 ---
-
 ## getElementRect
 يعيد أمر Get Element Rect أبعاد وإحداثيات عنصر الويب المعطى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-element-rect).
 
@@ -1555,7 +1663,7 @@ browser.getElementRect(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1566,16 +1674,17 @@ browser.getElementRect(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L379-L381
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>elementRect</var></code>:** كائن JSON يمثل موضع ومستطيل حدود العنصر.
+            **<code><var>elementRect</var></code>:** كائن JSON يمثل موضع ومستطيل الحدود للعنصر.    
 
 
 ---
-
 ## isElementEnabled
-يحدد أمر Is Element Enabled ما إذا كان العنصر المشار إليه ممكّنًا أم لا. هذه العملية لها معنى فقط على عناصر التحكم في النموذج.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-is-element-enabled).
+يحدد Is Element Enabled ما إذا كان العنصر المشار إليه ممكّنًا أم لا. هذه العملية لها معنى فقط في عناصر التحكم في النموذج.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-is-element-enabled).
 
 :::info
 
@@ -1603,7 +1712,7 @@ browser.isElementEnabled(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1614,16 +1723,17 @@ browser.isElementEnabled(elementId)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L387-L390
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Boolean&gt;**
-            **<code><var>isEnabled</var></code>:** إذا كان العنصر في مستند xml، أو كان عنصر تحكم في نموذج معطّل: `false`، وإلا `true`.
+            **<code><var>isEnabled</var></code>:** إذا كان العنصر في مستند xml، أو كان عنصر تحكم نموذج معطلًا: `false`، وإلا `true`.    
 
 
 ---
-
 ## elementClick
-يقوم أمر Element Click بالتمرير إلى العرض للعنصر إذا لم يكن قابلاً للتفاعل مع المؤشر بالفعل، ويقوم بالنقر على نقطة مركزه المرئية. إذا كانت نقطة مركز العنصر محجوبة بواسطة عنصر آخر، يتم إرجاع خطأ اعتراض عنصر النقر. إذا كان العنصر خارج إطار العرض، يتم إرجاع خطأ عنصر غير قابل للتفاعل.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-element-click).
+يقوم أمر Element Click بالتمرير إلى العرض للعنصر إذا لم يكن قابلاً للتفاعل بالمؤشر بالفعل، وينقر على نقطة المركز المرئية الخاصة به. إذا كانت نقطة مركز العنصر محجوبة بواسطة عنصر آخر، يتم إرجاع خطأ اعتراض نقرة العنصر. إذا كان العنصر خارج إطار العرض، يتم إرجاع خطأ عنصر غير قابل للتفاعل.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-element-click).
 
 :::info
 
@@ -1651,7 +1761,7 @@ browser.elementClick(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1665,10 +1775,11 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## elementClear
-يقوم أمر Element Clear بالتمرير إلى عرض عنصر قابل للتحرير أو قابل لإعادة الضبط ثم يحاول مسح الملفات المحددة أو محتوى النص الخاص به.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-element-clear).
+يقوم أمر Element Clear بالتمرير إلى العرض لعنصر قابل للتحرير أو إعادة الضبط ثم يحاول مسح الملفات المحددة أو محتوى النص الخاص به.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-element-clear).
 
 :::info
 
@@ -1696,7 +1807,7 @@ browser.elementClear(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -1710,10 +1821,11 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## elementSendKeys
-يقوم أمر Element Send Keys بالتمرير إلى عرض عنصر التحكم في النموذج ثم يرسل المفاتيح المقدمة إلى العنصر. في حالة عدم قابلية العنصر للتفاعل مع لوحة المفاتيح، يتم إرجاع خطأ عنصر غير قابل للتفاعل.<br /><br />يمكن مسح حالة إدخال المفتاح المستخدمة للإدخال في منتصف الطريق أثناء "الكتابة" عن طريق إرسال المفتاح الفارغ، وهو U+E000 (NULL).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-element-send-keys).
+يقوم أمر Element Send Keys بالتمرير إلى العرض لعنصر التحكم في النموذج ثم يرسل المفاتيح المقدمة إلى العنصر. في حالة عدم قابلية العنصر للتفاعل مع لوحة المفاتيح، يتم إرجاع خطأ عنصر غير قابل للتفاعل.<br /><br />يمكن مسح حالة إدخال المفتاح المستخدمة للإدخال في منتصف "الكتابة" عن طريق إرسال المفتاح الفارغ، وهو U+E000 (NULL).<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-element-send-keys).
 
 :::info
 
@@ -1741,12 +1853,12 @@ browser.elementSendKeys(elementId, text)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>text</var></code></td>
       <td>string</td>
-      <td>سلسلة لإرسالها كضغطات مفاتيح إلى العنصر</td>
+      <td>سلسلة لإرسالها كضربات مفاتيح إلى العنصر</td>
     </tr>
   </tbody>
 </table>
@@ -1760,10 +1872,13 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## getPageSource
-يعيد أمر Get Page Source سلسلة تسلسل DOM لمستند سياق التصفح الحالي النشط.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-page-source).
+يعيد أمر Get Page Source تسلسل سلسلة لـ DOM لمستند سياق التصفح الحالي النشط.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-page-source).
+
+
 
 ##### الاستخدام
 
@@ -1771,22 +1886,25 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getPageSource()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L420-L421
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>pageSource</var></code>:** DOM للمستند النشط لسياق التصفح الحالي
+            **<code><var>pageSource</var></code>:** DOM لمستند سياق التصفح الحالي النشط    
 
 
 ---
-
 ## executeScript
-ينفذ أمر Execute Script وظيفة JavaScript في سياق سياق التصفح الحالي ويعيد قيمة الإرجاع للوظيفة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-execute-script).
+ينفذ أمر Execute Script دالة JavaScript في سياق سياق التصفح الحالي ويعيد قيمة الإرجاع للدالة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-execute-script).
 
 :::info
 
@@ -1814,12 +1932,12 @@ browser.executeScript(script, args)
     <tr>
       <td><code><var>script</var></code></td>
       <td>string</td>
-      <td>سلسلة، جسم وظيفة Javascript الذي تريد تنفيذه</td>
+      <td>سلسلة، جسم دالة JavaScript التي تريد تنفيذها</td>
     </tr>
     <tr>
       <td><code><var>args</var></code></td>
       <td>string, object, number, boolean, null, undefined[]</td>
-      <td>مصفوفة من قيم JSON التي سيتم فك ترميزها وتمريرها كوسائط لوظيفتك</td>
+      <td>مصفوفة من قيم JSON التي سيتم فك تسلسلها وتمريرها كوسائط لدالتك</td>
     </tr>
   </tbody>
 </table>
@@ -1830,16 +1948,17 @@ browser.executeScript(script, args)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L425-L426
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;*&gt;**
-            **<code><var>result</var></code>:** إما قيمة الإرجاع لنصك البرمجي، أو تحقيق الوعد الذي تم إرجاعه بواسطة نصك البرمجي، أو الخطأ الذي كان سبب رفض الوعد الذي أرجعه نصك البرمجي.
+            **<code><var>result</var></code>:** إما قيمة الإرجاع لنصك البرمجي، أو وفاء الوعد الذي أعاده نصك البرمجي، أو الخطأ الذي كان سبب رفض الوعد المرتجع من نصك البرمجي.    
 
 
 ---
-
 ## executeAsyncScript
-يتسبب أمر Execute Async Script في تنفيذ JavaScript كوظيفة مجهولة. على عكس أمر Execute Script، يتم تجاهل نتيجة الوظيفة. بدلاً من ذلك، يتم توفير وسيطة إضافية كالوسيطة النهائية للدالة. وهذه هي وظيفة، عندما تستدعى، تعيد وسيطتها الأولى كاستجابة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-execute-async-script).
+يتسبب أمر Execute Async Script في تنفيذ JavaScript كدالة مجهولة. على عكس أمر Execute Script، يتم تجاهل نتيجة الدالة. بدلاً من ذلك، يتم توفير وسيطة إضافية كوسيطة نهائية للدالة. هذه دالة، عند استدعائها، تعيد الوسيطة الأولى كاستجابة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-execute-async-script).
 
 :::info
 
@@ -1867,12 +1986,12 @@ browser.executeAsyncScript(script, args)
     <tr>
       <td><code><var>script</var></code></td>
       <td>string</td>
-      <td>سلسلة، جسم وظيفة Javascript الذي تريد تنفيذه</td>
+      <td>سلسلة، جسم دالة JavaScript التي تريد تنفيذها</td>
     </tr>
     <tr>
       <td><code><var>args</var></code></td>
       <td>string, object, number, boolean, null, undefined[]</td>
-      <td>مصفوفة من قيم JSON التي سيتم فك ترميزها وتمريرها كوسائط لوظيفتك</td>
+      <td>مصفوفة من قيم JSON التي سيتم فك تسلسلها وتمريرها كوسائط لدالتك</td>
     </tr>
   </tbody>
 </table>
@@ -1883,16 +2002,19 @@ browser.executeAsyncScript(script, args)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L430-L434
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;*&gt;**
-            **<code><var>result</var></code>:** إما قيمة الإرجاع لنصك البرمجي، أو تحقيق الوعد الذي تم إرجاعه بواسطة نصك البرمجي، أو الخطأ الذي كان سبب رفض الوعد الذي أرجعه نصك البرمجي.
+            **<code><var>result</var></code>:** إما قيمة الإرجاع لنصك البرمجي، أو وفاء الوعد الذي أعاده نصك البرمجي، أو الخطأ الذي كان سبب رفض الوعد المرتجع من نصك البرمجي.    
 
 
 ---
-
 ## getAllCookies
-يعيد أمر Get All Cookies جميع ملفات تعريف الارتباط المرتبطة بعنوان المستند النشط لسياق التصفح الحالي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-all-cookies).
+يُرجع أمر Get All Cookies جميع ملفات تعريف الارتباط المرتبطة بعنوان المستند النشط لسياق التصفح الحالي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-all-cookies).
+
+
 
 ##### الاستخدام
 
@@ -1900,22 +2022,27 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 browser.getAllCookies()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L438-L455
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object[]&gt;**
-            **<code><var>cookies</var></code>:** قائمة ملفات تعريف الارتباط المسلسلة. كل ملف تعريف ارتباط مسلسل له عدد من الحقول الاختيارية التي قد تُعاد أو لا تُعاد بالإضافة إلى `name` و `value`.
+            **<code><var>cookies</var></code>:** قائمة من ملفات تعريف الارتباط المسلسلة. كل ملف تعريف ارتباط مسلسل له عدد من الحقول الاختيارية التي قد يتم إرجاعها أو لا يتم إرجاعها بالإضافة إلى `name` و`value`.    
 
 
 ---
-
 ## addCookie
-يضيف أمر Add Cookie ملف تعريف ارتباط واحد إلى مخزن ملفات تعريف الارتباط المرتبط بعنوان المستند النشط.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-adding-a-cookie).
+يضيف أمر Add Cookie ملف تعريف ارتباط واحد إلى مخزن ملفات تعريف الارتباط المرتبطة بعنوان المستند النشط.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-adding-a-cookie).
+
+
 
 ##### الاستخدام
 
@@ -1936,7 +2063,7 @@ browser.addCookie(cookie)
     <tr>
       <td><code><var>cookie</var></code></td>
       <td>object</td>
-      <td>كائن JSON يمثل ملف تعريف ارتباط. يجب أن يحتوي على الأقل على حقول الاسم والقيمة ويمكن أن يحتوي على المزيد، بما في ذلك وقت انتهاء الصلاحية وما إلى ذلك</td>
+      <td>كائن JSON يمثل ملف تعريف ارتباط. يجب أن يكون لديه على الأقل حقول الاسم والقيمة ويمكن أن يكون لديه المزيد، بما في ذلك وقت انتهاء الصلاحية وما إلى ذلك</td>
     </tr>
   </tbody>
 </table>
@@ -1950,16 +2077,21 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## deleteAllCookies
 يسمح أمر Delete All Cookies بحذف جميع ملفات تعريف الارتباط المرتبطة بعنوان المستند النشط.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-delete-all-cookies).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.deleteAllCookies()
 ```
+
+
 
 ##### مثال
 
@@ -1970,10 +2102,13 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## getNamedCookie
-يعيد أمر Get Named Cookie ملف تعريف الارتباط بالاسم المطلوب من ملفات تعريف الارتباط المرتبطة في مخزن ملفات تعريف الارتباط للمستند النشط لسياق التصفح الحالي. إذا لم يتم العثور على ملف تعريف ارتباط، يتم إرجاع خطأ عدم وجود ملف تعريف ارتباط.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-named-cookie).
+يعيد أمر Get Named Cookie ملف تعريف الارتباط بالاسم المطلوب من ملفات تعريف الارتباط المرتبطة في مخزن ملفات تعريف الارتباط للمستند النشط لسياق التصفح الحالي. إذا لم يتم العثور على ملف تعريف ارتباط، يتم إرجاع خطأ بأنه لا يوجد ملف تعريف ارتباط.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-named-cookie).
+
+
 
 ##### الاستخدام
 
@@ -2005,16 +2140,19 @@ browser.getNamedCookie(name)
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L489-L503
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>cookie</var></code>:** ملف تعريف ارتباط مسلسل، به حقول الاسم والقيمة. هناك عدد من الحقول الاختيارية مثل `path` و `domain` و `expiry-time` والتي قد تكون موجودة أيضًا.
+            **<code><var>cookie</var></code>:** ملف تعريف ارتباط مسلسل، مع حقول الاسم والقيمة. هناك عدد من الحقول الاختيارية مثل `path` و`domain` و`expiry-time` التي قد تكون موجودة أيضًا.    
 
 
 ---
-
 ## deleteCookie
-يسمح لك أمر Delete Cookie بحذف إما ملف تعريف ارتباط واحد بواسطة معلمة الاسم، أو جميع ملفات تعريف الارتباط المرتبطة بعنوان المستند النشط إذا كان الاسم غير محدد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-delete-cookie).
+يسمح لك أمر Delete Cookie بحذف إما ملف تعريف ارتباط واحد بواسطة اسم المعلمة، أو جميع ملفات تعريف الارتباط المرتبطة بعنوان المستند النشط إذا كان الاسم غير محدد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-delete-cookie).
+
+
 
 ##### الاستخدام
 
@@ -2049,10 +2187,13 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## performActions
-يستخدم أمر Perform Actions لتنفيذ إجراءات المستخدم المعقدة. انظر [المواصفات](https://github.com/jlipps/simple-wd-spec#perform-actions) لمزيد من التفاصيل.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-perform-actions).
+يستخدم أمر Perform Actions لتنفيذ إجراءات المستخدم المعقدة. راجع [المواصفات](https://github.com/jlipps/simple-wd-spec#perform-actions) لمزيد من التفاصيل.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-perform-actions).
+
+
 
 ##### الاستخدام
 
@@ -2080,10 +2221,13 @@ browser.performActions(actions)
 
 
 
----
 
+
+---
 ## releaseActions
-يستخدم أمر Release Actions لتحرير جميع المفاتيح وأزرار المؤشر المضغوطة حاليًا. يتسبب هذا في إطلاق أحداث كما لو تم تحرير الحالة بواسطة سلسلة واضحة من الإجراءات. كما أنه يمسح كل الحالة الداخلية للأجهزة الافتراضية.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-release-actions).
+يستخدم أمر Release Actions لتحرير جميع المفاتيح وأزرار المؤشر المضغوطة حاليًا. يتسبب هذا في إطلاق أحداث كما لو تم تحرير الحالة بواسطة سلسلة صريحة من الإجراءات. كما أنه يمسح كل الحالة الداخلية للأجهزة الافتراضية.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-release-actions).
+
+
 
 ##### الاستخدام
 
@@ -2093,16 +2237,23 @@ browser.releaseActions()
 
 
 
----
 
+
+
+
+---
 ## dismissAlert
-أمر Dismiss Alert يقوم برفض مربع حوار بسيط إذا كان موجودًا، وإلا خطأ. طلب رفض مطالبة مستخدم التنبيه، والتي قد لا يكون لها بالضرورة زر رفض، له نفس تأثير قبولها.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-dismiss-alert).
+يقوم أمر Dismiss Alert برفض مربع حوار بسيط إذا كان موجودًا، وإلا فهو خطأ. يكون لطلب رفض مطالبة تنبيه المستخدم، والتي قد لا يكون لها بالضرورة زر رفض، نفس تأثير قبولها.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-dismiss-alert).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.dismissAlert()
 ```
+
+
 
 ##### مثال
 
@@ -2113,10 +2264,13 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 
 
----
 
+
+---
 ## acceptAlert
-أمر Accept Alert يقبل مربع حوار بسيط إذا كان موجودًا، وإلا خطأ.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-accept-alert).
+يقبل أمر Accept Alert مربع حوار بسيط إذا كان موجودًا، وإلا فهو خطأ.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-accept-alert).
+
+
 
 ##### الاستخدام
 
@@ -2126,10 +2280,15 @@ browser.acceptAlert()
 
 
 
----
 
+
+
+
+---
 ## getAlertText
 يعيد أمر Get Alert Text رسالة مطالبة المستخدم الحالية. إذا لم تكن هناك مطالبة مستخدم حالية، فإنه يعيد خطأ.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-get-alert-text).
+
+
 
 ##### الاستخدام
 
@@ -2137,22 +2296,27 @@ browser.acceptAlert()
 browser.getAlertText()
 ```
 
+
+
 ##### مثال
 
 ```js reference title="examples.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/api/webdriver/examples.js#L521-L522
 ```
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>alertText</var></code>:** رسالة مطالبة المستخدم.
+            **<code><var>alertText</var></code>:** رسالة مطالبة المستخدم.    
 
 
 ---
-
 ## sendAlertText
-يضبط أمر Send Alert Text حقل النص لمطالبة المستخدم window.prompt إلى القيمة المعطاة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-send-alert-text).
+يقوم أمر Send Alert Text بتعيين حقل النص لمطالبة مستخدم window.prompt إلى القيمة المعطاة.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-send-alert-text).
+
+
 
 ##### الاستخدام
 
@@ -2173,17 +2337,20 @@ browser.sendAlertText(text)
     <tr>
       <td><code><var>text</var></code></td>
       <td>string</td>
-      <td>سلسلة لضبط المطالبة عليها</td>
+      <td>سلسلة لتعيين المطالبة عليها</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## takeScreenshot
-يلتقط أمر Take Screenshot لقطة شاشة لعرض سياق التصفح من المستوى الأعلى.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-take-screenshot).
+يأخذ أمر Take Screenshot لقطة شاشة لإطار عرض سياق التصفح العلوي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-take-screenshot).
+
+
 
 ##### الاستخدام
 
@@ -2192,16 +2359,19 @@ browser.takeScreenshot()
 ```
 
 
-##### النتائج
+
+
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>screenshot</var></code>:** بيانات صورة PNG المشفرة بـ base64 التي تشكل لقطة شاشة لعرض البداية.
+            **<code><var>screenshot</var></code>:** بيانات صورة PNG المرمزة بـ base64 التي تشكل لقطة شاشة لإطار العرض الأولي.    
 
 
 ---
-
 ## takeElementScreenshot
-يلتقط أمر Take Element Screenshot لقطة شاشة للمنطقة المرئية التي يشملها المستطيل المحيط بعنصر.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-take-element-screenshot).
+يأخذ أمر Take Element Screenshot لقطة شاشة للمنطقة المرئية التي يشملها المستطيل المحيط بعنصر.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#dfn-take-element-screenshot).
+
+
 
 ##### الاستخدام
 
@@ -2222,7 +2392,7 @@ browser.takeElementScreenshot(elementId, scroll)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>scroll</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -2233,16 +2403,17 @@ browser.takeElementScreenshot(elementId, scroll)
 </table>
 
 
-##### النتائج
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>screenshot</var></code>:** بيانات صورة PNG المشفرة بـ base64 التي تشكل لقطة شاشة للمنطقة المرئية من المستطيل المحيط بعنصر بعد التمرير لعرضه.
+            **<code><var>screenshot</var></code>:** بيانات صورة PNG المرمزة بـ base64 التي تشكل لقطة شاشة للمنطقة المرئية من مستطيل العنصر المحيط بعد أن تم التمرير لعرضه.    
 
 
 ---
-
 ## getElementComputedRole
 الحصول على دور WAI-ARIA المحسوب لعنصر.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#get-computed-role).
+
+
 
 ##### الاستخدام
 
@@ -2263,22 +2434,23 @@ browser.getElementComputedRole(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
 
 
-##### النتائج
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>role</var></code>:** نتيجة حساب دور WAI-ARIA للعنصر.
+            **<code><var>role</var></code>:** نتيجة حساب دور WAI-ARIA للعنصر.    
 
 
 ---
-
 ## getElementComputedLabel
 الحصول على الاسم الذي يمكن الوصول إليه للعنصر.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver/#get-computed-label).
+
+
 
 ##### الاستخدام
 
@@ -2299,22 +2471,23 @@ browser.getElementComputedLabel(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة إلى Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
 
 
-##### النتائج
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>label</var></code>:** نتيجة حساب الاسم الذي يمكن الوصول إليه والوصف للاسم الذي يمكن الوصول إليه للعنصر.
+            **<code><var>label</var></code>:** نتيجة حساب الاسم والوصف الذي يمكن الوصول إليه للاسم الذي يمكن الوصول إليه للعنصر.    
 
 
 ---
-
 ## setPermissions
 يحاكي تعديل المستخدم لحالة إذن PermissionDescriptor. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/permissions/#set-permission-command).
+
+
 
 ##### الاستخدام
 
@@ -2335,7 +2508,7 @@ browser.setPermissions(descriptor, state, oneRealm)
     <tr>
       <td><code><var>descriptor</var></code></td>
       <td>object</td>
-      <td>لكل ميزة قوية جانب واحد أو أكثر يمكن لمواقع الويب طلب إذن للوصول إليها. لوصف هذه الجوانب، تعرّف كل ميزة نوعًا فرعيًا من PermissionDescriptor ليكون نوع واصف الإذن الخاص بها. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.</td>
+      <td>لكل ميزة قوية جانب واحد أو أكثر يمكن للمواقع طلب الإذن للوصول إليها. لوصف هذه الجوانب، تحدد كل ميزة نوعًا فرعيًا من PermissionDescriptor ليكون نوع واصف الإذن الخاص بها. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.</td>
     </tr>
     <tr>
       <td><code><var>state</var></code></td>
@@ -2354,7 +2527,7 @@ browser.setPermissions(descriptor, state, oneRealm)
 
 
 ```js
-// ضبط أذونات midi
+// تعيين أذونات midi
 browser.setPermissions(
   { name: 'midi', sysex: true },
   'granted' // يمكن أن تكون أيضًا "denied" أو "prompt"
@@ -2363,7 +2536,7 @@ browser.setPermissions(
 
 
 ```js
-// ضبط أذونات الحافظة
+// تعيين أذونات الحافظة
 browser.setPermissions({ name: 'clipboard-read' }, 'granted');
 // الآن يمكنك قراءة الحافظة عبر، على سبيل المثال
 const clipboardText = await browser.execute(() => navigator.clipboard.readText());
@@ -2371,10 +2544,13 @@ const clipboardText = await browser.execute(() => navigator.clipboard.readText()
 
 
 
----
 
+
+---
 ## generateTestReport
 ينشئ تقريرًا للاختبار. امتداد لـ [Reporting API](https://developers.google.com/web/updates/2018/09/reportingapi). __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/reporting/#automation).
+
+
 
 ##### الاستخدام
 
@@ -2407,10 +2583,13 @@ browser.generateTestReport(message, group)
 
 
 
----
 
+
+---
 ## createMockSensor
-ينشئ مستشعرًا وهميًا لمحاكاة المستشعرات مثل مستشعر الضوء المحيط. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/sensors/#create-mock-sensor-command).
+ينشئ مستشعرًا وهميًا لمحاكاة أجهزة استشعار مثل مستشعر الضوء المحيط. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/sensors/#create-mock-sensor-command).
+
+
 
 ##### الاستخدام
 
@@ -2436,22 +2615,25 @@ browser.createMockSensor(mockSensorType, maxSamplingFrequency, minSamplingFreque
     <tr>
       <td><code><var>maxSamplingFrequency</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>رقم مزدوج يمثل التردد بالهرتز والذي يستخدم لتعيين الحد الأقصى لتردد أخذ العينات المدعوم للمستشعر الوهمي المرتبط.</td>
+      <td>رقم مزدوج يمثل التردد بالهرتز ويستخدم لتعيين الحد الأقصى لتردد أخذ العينات المدعوم للمستشعر الوهمي المرتبط.</td>
     </tr>
     <tr>
       <td><code><var>minSamplingFrequency</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>رقم مزدوج يمثل التردد بالهرتز والذي يستخدم لتعيين الحد الأدنى لتردد أخذ العينات المدعوم للمستشعر الوهمي المرتبط.</td>
+      <td>رقم مزدوج يمثل التردد بالهرتز ويستخدم لتعيين الحد الأدنى لتردد أخذ العينات المدعوم للمستشعر الوهمي المرتبط.</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## getMockSensor
 يسترجع معلومات حول نوع معين من المستشعر الوهمي. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/sensors/#get-mock-sensor-command).
+
+
 
 ##### الاستخدام
 
@@ -2478,16 +2660,17 @@ browser.getMockSensor(type)
 </table>
 
 
-##### النتائج
+##### الإرجاع
 
 - **&lt;object&gt;**
-            **<code><var>sensorReading</var></code>:** قيم قراءة المستشعر الوهمي.
+            **<code><var>sensorReading</var></code>:** قيم قراءة المستشعر الوهمي.    
 
 
 ---
-
 ## updateMockSensor
-يحدّث نوع المستشعر الوهمي. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/sensors/#update-mock-sensor-reading-command).
+يحدث نوع المستشعر الوهمي. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/sensors/#update-mock-sensor-reading-command).
+
+
 
 ##### الاستخدام
 
@@ -2518,22 +2701,25 @@ browser.updateMockSensor(type, mockSensorType, maxSamplingFrequency, minSampling
     <tr>
       <td><code><var>maxSamplingFrequency</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>رقم مزدوج يمثل التردد بالهرتز والذي يستخدم لتعيين الحد الأقصى لتردد أخذ العينات المدعوم للمستشعر الوهمي المرتبط.</td>
+      <td>رقم مزدوج يمثل التردد بالهرتز ويستخدم لتعيين الحد الأقصى لتردد أخذ العينات المدعوم للمستشعر الوهمي المرتبط.</td>
     </tr>
     <tr>
       <td><code><var>minSamplingFrequency</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>رقم مزدوج يمثل التردد بالهرتز والذي يستخدم لتعيين الحد الأدنى لتردد أخذ العينات المدعوم للمستشعر الوهمي المرتبط.</td>
+      <td>رقم مزدوج يمثل التردد بالهرتز ويستخدم لتعيين الحد الأدنى لتردد أخذ العينات المدعوم للمستشعر الوهمي المرتبط.</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## deleteMockSensor
-يغلق أمر Delete Session أي سياقات تصفح من المستوى الأعلى مرتبطة بالجلسة الحالية، وينهي الاتصال، وأخيراً يغلق الجلسة الحالية. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/sensors/#delete-mock-sensor-command).
+يغلق أمر Delete Session أي سياق تصفح عالي المستوى مرتبط بالجلسة الحالية، وينهي الاتصال، وأخيرًا يغلق الجلسة الحالية. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/sensors/#delete-mock-sensor-command).
+
+
 
 ##### الاستخدام
 
@@ -2554,17 +2740,20 @@ browser.deleteMockSensor(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>String</td>
-      <td>نوع المستشعر الوهمي لحذفه.</td>
+      <td>نوع المستشعر الوهمي المراد حذفه.</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## setTimeZone
 يحاكي تغيير المنطقة الزمنية لأغراض الاختبار. __ملاحظة:__ لم تصل هذه الميزة إلى جميع المتصفحات بعد.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/sensors/#create-mock-sensor-command).
+
+
 
 ##### الاستخدام
 
@@ -2592,10 +2781,13 @@ browser.setTimeZone(time_zone)
 
 
 
----
 
+
+---
 ## addVirtualAuthenticator
 ينشئ [مصادق افتراضي](https://www.w3.org/TR/webauthn-2/#virtual-authenticators) برمجي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-add-virtual-authenticator).
+
+
 
 ##### الاستخدام
 
@@ -2646,7 +2838,7 @@ browser.addVirtualAuthenticator(protocol, transport, hasResidentKey, hasUserVeri
     <tr>
       <td><code><var>extensions</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string[]</td>
-      <td>القيم الصالحة: ما يصل إلى 3 إدخالات طريقة التحقق من المستخدم.</td>
+      <td>القيم الصالحة: ما يصل إلى 3 إدخالات لطريقة التحقق من المستخدم.</td>
     </tr>
     <tr>
       <td><code><var>uvm</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -2657,16 +2849,17 @@ browser.addVirtualAuthenticator(protocol, transport, hasResidentKey, hasUserVeri
 </table>
 
 
-##### النتائج
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>authenticatorId</var></code>:** يعيد معرف المصادق كسلسلة.
+            **<code><var>authenticatorId</var></code>:** يعيد معرف سلسلة المصادق.    
 
 
 ---
-
 ## removeVirtualAuthenticator
-يزيل مصادق افتراضي تم إنشاؤه مسبقًا.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-virtual-authenticator).
+يزيل مصادقًا افتراضيًا تم إنشاؤه مسبقًا.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-virtual-authenticator).
+
+
 
 ##### الاستخدام
 
@@ -2694,10 +2887,13 @@ browser.removeVirtualAuthenticator(authenticatorId)
 
 
 
----
 
+
+---
 ## addCredential
-يحقن مصدرًا للمفتاح العام في مصادق افتراضي موجود.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-add-credential).
+يحقن مصدر بيانات اعتماد المفتاح العام في مصادق افتراضي موجود.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-add-credential).
+
+
 
 ##### الاستخدام
 
@@ -2723,47 +2919,50 @@ browser.addCredential(authenticatorId, credentialId, isResidentCredential, rpId,
     <tr>
       <td><code><var>credentialId</var></code></td>
       <td>string</td>
-      <td>معرف بيانات الاعتماد المشفر باستخدام ترميز Base64url.</td>
+      <td>معرف بيانات الاعتماد المرمز باستخدام ترميز Base64url.</td>
     </tr>
     <tr>
       <td><code><var>isResidentCredential</var></code></td>
       <td>boolean</td>
-      <td>إذا تم تعيينه على true، يتم إنشاء بيانات اعتماد قابلة للاكتشاف من جانب العميل. إذا تم تعيينه على false، يتم إنشاء بيانات اعتماد من جانب الخادم بدلاً من ذلك.</td>
+      <td>إذا تم تعيينه إلى true، يتم إنشاء بيانات اعتماد قابلة للاكتشاف من جانب العميل. إذا تم تعيينه إلى false، يتم إنشاء بيانات اعتماد من جانب الخادم بدلاً من ذلك.</td>
     </tr>
     <tr>
       <td><code><var>rpId</var></code></td>
       <td>string</td>
-      <td>معرف الطرف المعتمد الذي تم تحديد نطاق بيانات الاعتماد له.</td>
+      <td>معرف الطرف المعتمد الذي تقتصر عليه بيانات الاعتماد.</td>
     </tr>
     <tr>
       <td><code><var>privateKey</var></code></td>
       <td>string</td>
-      <td>حزمة مفتاح غير متماثل تحتوي على مفتاح خاص واحد لكل [RFC5958]، مشفرة باستخدام ترميز Base64url.</td>
+      <td>حزمة مفتاح غير متماثل تحتوي على مفتاح خاص واحد لكل [RFC5958]، مرمزة باستخدام ترميز Base64url.</td>
     </tr>
     <tr>
       <td><code><var>userHandle</var></code></td>
       <td>string</td>
-      <td>المقبض المستخدم المرتبط ببيانات الاعتماد المشفرة باستخدام ترميز Base64url. قد لا تكون هذه الخاصية محددة.</td>
+      <td>معالج المستخدم المرتبط ببيانات الاعتماد المرمزة باستخدام ترميز Base64url. قد لا يتم تعريف هذه الخاصية.</td>
     </tr>
     <tr>
       <td><code><var>signCount</var></code></td>
       <td>number</td>
-      <td>القيمة الأولية لعداد التوقيع المرتبط بمصدر المفتاح العام.</td>
+      <td>القيمة الأولية لعداد التوقيع المرتبط بمصدر بيانات اعتماد المفتاح العام.</td>
     </tr>
     <tr>
       <td><code><var>largeBlob</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>الكتلة الكبيرة المرتبطة ببيانات اعتماد المفتاح العام، مشفرة باستخدام ترميز Base64url. قد لا تكون هذه الخاصية محددة.</td>
+      <td>الكتلة الكبيرة، لكل بيانات اعتماد المرتبطة بمصدر بيانات اعتماد المفتاح العام، مرمزة باستخدام ترميز Base64url. قد لا يتم تعريف هذه الخاصية.</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## getCredentials
-يعيد كائن معلمات بيانات الاعتماد واحدًا لكل مصدر مفتاح عام مخزن في مصادق افتراضي، بغض النظر عما إذا كانت مخزنة باستخدام Add Credential أو `navigator.credentials.create()`.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-get-credentials).
+يعيد كائن معلمات بيانات الاعتماد واحد لكل مصدر بيانات اعتماد المفتاح العام المخزن في مصادق افتراضي، بغض النظر عما إذا كانت مخزنة باستخدام Add Credential أو `navigator.credentials.create()`.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-get-credentials).
+
+
 
 ##### الاستخدام
 
@@ -2790,16 +2989,17 @@ browser.getCredentials(authenticatorId)
 </table>
 
 
-##### النتائج
+##### الإرجاع
 
 - **&lt;object[]&gt;**
-            **<code><var>credentials</var></code>:** يعيد مصفوفة من بيانات الاعتماد.
+            **<code><var>credentials</var></code>:** يعيد مصفوفة من بيانات الاعتماد.    
 
 
 ---
-
 ## removeAllCredentials
-يزيل جميع مصادر مفتاح عام مخزنة على مصادق افتراضي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-all-credentials).
+يزيل جميع مصادر بيانات اعتماد المفتاح العام المخزنة على مصادق افتراضي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-all-credentials).
+
+
 
 ##### الاستخدام
 
@@ -2827,10 +3027,13 @@ browser.removeAllCredentials(authenticatorId)
 
 
 
----
 
+
+---
 ## removeCredential
-يزيل مصدر مفتاح عام مخزن على مصادق افتراضي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-credential).
+يزيل مصدر بيانات اعتماد المفتاح العام المخزن على مصادق افتراضي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-remove-credential).
+
+
 
 ##### الاستخدام
 
@@ -2863,10 +3066,13 @@ browser.removeCredential(authenticatorId, credentialId)
 
 
 
----
 
+
+---
 ## setUserVerified
-يضبط أمر امتداد Set User Verified خاصية isUserVerified على المصادق الافتراضي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-set-user-verified).
+يقوم أمر امتداد Set User Verified بتعيين خاصية isUserVerified على المصادق الافتراضي.<br /><br />أمر بروتوكول WebDriver. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.w3.org/TR/webauthn-2/#sctn-automation-set-user-verified).
+
+
 
 ##### الاستخدام
 
@@ -2891,5 +3097,7 @@ browser.setUserVerified(authenticatorId)
     </tr>
   </tbody>
 </table>
+
+
 
 

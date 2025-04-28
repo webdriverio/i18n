@@ -34,8 +34,8 @@ export const TRANSLATION_INSTRUCTIONS = {
 
 export const LANGUAGES_TO_TRANSLATE = {
     ar: 'Arabic',
-    // de: 'German',
-    // es: 'Spanish',
+    de: 'German',
+    es: 'Spanish',
     // fa: 'Persian',
     // fr: 'French',
     // hi: 'Hindi',

@@ -107,10 +107,6 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
     try {
         console.log(`Processing ${sourcePath} for ${language}...`);
 
-        if (path.extname(sourcePath) === DocumentType.MARKDOWN) {
-            return new Promise((r) => setTimeout(r, 10)) as any
-        }
-
         // Read the markdown content
         const content = await fs.readFile(sourcePath, 'utf-8');
 
