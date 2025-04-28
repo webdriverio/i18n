@@ -4,7 +4,7 @@ title: التمرير إلى العرض
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/scrollIntoView.ts
 ---
 
-قم بتمرير العنصر إلى منطقة العرض لسطح المكتب/الويب للجوال <strong>و</strong> تطبيقات الجوال الأصلية.
+تمرير العنصر إلى منطقة العرض للويب سطح المكتب/الجوال <strong>و</strong> تطبيقات الجوال الأصلية.
 
 :::info
 
@@ -18,7 +18,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 $(selector).scrollIntoView({ behavior, block, inline, direction, maxScrolls, duration, scrollableElement, percent })
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -30,10 +30,10 @@ $(selector).scrollIntoView({ behavior, block, inline, direction, maxScrolls, dur
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`object, boolean`</td>
-      <td>خيارات لـ `Element.scrollIntoView()`. الإعداد الافتراضي لسطح المكتب/الويب للجوال: <br/> `{ block: 'start', inline: 'nearest' }` <br /> الإعداد الافتراضي لتطبيق الجوال الأصلي <br /> `{ maxScrolls: 10, scrollDirection: 'down' }`</td>
+      <td>خيارات لـ `Element.scrollIntoView()`. الافتراضي لسطح المكتب/ويب الجوال: <br/> `{ block: 'start', inline: 'nearest' }` <br /> الافتراضي لتطبيق الجوال الأصلي <br /> `{ maxScrolls: 10, scrollDirection: 'down' }`</td>
     </tr>
     <tr>
-              <td colspan="3"><strong>سطح المكتب/الويب للجوال فقط</strong></td>
+              <td colspan="3"><strong>سطح المكتب/ويب الجوال فقط</strong></td>
             </tr>
     <tr>
       <td><code><var>options.behavior</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -51,32 +51,32 @@ $(selector).scrollIntoView({ behavior, block, inline, direction, maxScrolls, dur
       <td>انظر [مرجع MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView). <br /><strong>للويب فقط</strong> (سطح المكتب/الجوال)</td>
     </tr>
     <tr>
-              <td colspan="3"><strong>تطبيقات الجوال الأصلية فقط</strong></td>
+              <td colspan="3"><strong>تطبيق الجوال الأصلي فقط</strong></td>
             </tr>
     <tr>
       <td><code><var>options.direction</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`string`</td>
-      <td>يمكن أن تكون واحدة من `down` أو `up` أو `left` أو `right`، الإعداد الافتراضي هو `up`. <br /><strong>لتطبيقات الجوال الأصلية فقط</strong></td>
+      <td>يمكن أن يكون أحد `down` أو `up` أو `left` أو `right`، الافتراضي هو `up`. <br /><strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
     </tr>
     <tr>
       <td><code><var>options.maxScrolls</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>الحد الأقصى لعدد مرات التمرير حتى يتوقف عن البحث عن العنصر، الإعداد الافتراضي هو `10`. <br /><strong>لتطبيقات الجوال الأصلية فقط</strong></td>
+      <td>الحد الأقصى لعدد التمريرات حتى يتوقف عن البحث عن العنصر، الافتراضي هو `10`. <br /><strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
     </tr>
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>مدة السحب بالمللي ثانية. الإعداد الافتراضي هو `1500` مللي ثانية. كلما انخفضت القيمة، كان السحب أسرع.<br /><strong>لتطبيقات الجوال الأصلية فقط</strong></td>
+      <td>المدة بالمللي ثانية للسحب. الافتراضي هو `1500` مللي ثانية. كلما قلت القيمة، زادت سرعة السحب.<br /><strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
     </tr>
     <tr>
       <td><code><var>options.scrollableElement</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Element`</td>
-      <td>العنصر المستخدم للتمرير داخله. إذا لم يتم توفير عنصر، فسيتم استخدام المحدد التالي لنظام iOS `-ios predicate string:type == "XCUIElementTypeApplication"` والتالي لنظام Android `//android.widget.ScrollView'`. إذا تطابقت عناصر متعددة مع المحدد الافتراضي، فسيتم اختيار أول عنصر متطابق افتراضيًا. <br /> <strong>لتطبيقات الجوال الأصلية فقط</strong></td>
+      <td>العنصر المستخدم للتمرير داخله. إذا لم يتم توفير عنصر، فسيتم استخدام المحدد التالي لنظام iOS `-ios predicate string:type == "XCUIElementTypeApplication"` والتالي لنظام Android `//android.widget.ScrollView'`. إذا تطابقت عناصر أكثر مع المحدد الافتراضي، فسيتم اختيار أول عنصر مطابق افتراضيًا. <br /> <strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
     </tr>
     <tr>
       <td><code><var>options.percent</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>نسبة العنصر القابل للتمرير (الافتراضي) للسحب. هذه قيمة بين 0 و 1. الإعداد الافتراضي هو `0.95`.<br /><strong>لا تقم أبدًا</strong> بالسحب من أعلى|أسفل|يسار|يمين الشاشة بالضبط، فقد تؤدي إلى تشغيل شريط الإشعارات أو ميزات أخرى للنظام/التطبيق مما يؤدي إلى نتائج غير متوقعة.<br /> <strong>لتطبيقات الجوال الأصلية فقط</strong></td>
+      <td>نسبة العنصر القابل للتمرير (الافتراضي) للسحب. هذه قيمة بين 0 و 1. الافتراضي هو `0.95`.<br /><strong>لا تقم أبدًا</strong> بالسحب من أعلى|أسفل|يسار|يمين الشاشة بالضبط، فقد تؤدي إلى تشغيل شريط الإشعارات أو ميزات نظام التشغيل/التطبيق الأخرى التي يمكن أن تؤدي إلى نتائج غير متوقعة.<br /> <strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
     </tr>
   </tbody>
 </table>

@@ -1,40 +1,40 @@
 ---
 id: deepLink
-title: الرابط العميق
+title: رابط عميق
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/deepLink.ts
 ---
 
-فتح عنوان URL للرابط العميق في تطبيق الجوال استنادًا إلى عنوان URL واسم حزمة التطبيق (Android) أو معرّف الحزمة (iOS).
+Open a deep link URL in the mobile app based on the url and the app's package name (Android) or bundle ID (iOS).
 
-##### الاستخدام
+##### Usage
 
 ```js
 browser.deepLink(link, appIdentifier)
 ```
 
-##### المعاملات
+##### Parameters
 
 <table>
   <thead>
     <tr>
-      <th>الاسم</th><th>النوع</th><th>التفاصيل</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>link</var></code></td>
       <td>`string`</td>
-      <td>عنوان URL للرابط العميق الذي يجب فتحه في تطبيق الجوال. يجب أن يكون عنوان URL رابط عميق صالح (مثل `myapp://path`). إذا كان رابطًا عميقًا عالميًا، والذي يمكن استخدامه لـ iOS، استخدم طريقة `browser.url("your-url")`.</td>
+      <td>The deep link URL that should be opened in the mobile app. It should be a valid deep link URL (e.g. `myapp://path`). If it's a universal deep link, which can be used for iOS, use the `browser.url("your-url")`-method.</td>
     </tr>
     <tr>
       <td><code><var>appIdentifier</var></code></td>
       <td>`string`</td>
-      <td>قيمة `package` (Android) أو `bundleId` (iOS) للتطبيق الذي يجب أن يفتح الرابط العميق.</td>
+      <td>The value of the `package` (Android) or `bundleId` (iOS) of the app that the deep link should open.</td>
     </tr>
   </tbody>
 </table>
 
-##### مثال
+##### Example
 
 ```js title="deeplink.js"
 it('should open a deep link for the WDIO native demo app', async () => {

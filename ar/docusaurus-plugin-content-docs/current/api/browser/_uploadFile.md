@@ -4,10 +4,10 @@ title: تحميل الملف
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/uploadFile.ts
 ---
 
-يقوم بتحميل ملف إلى خادم Selenium Standalone أو برنامج تشغيل متصفح آخر
+يقوم بتحميل ملف إلى خادم Selenium Standalone أو أي سائق متصفح آخر
 (مثل Chromedriver أو EdgeDriver) باستخدام أمر [`file`](https://webdriver.io/docs/api/selenium#file).
 _ملاحظة:_ هذا الأمر مدعوم فقط إذا كنت تستخدم Selenium Hub،
-أو Chromedriver أو EdgeDriver مباشرة.
+أو Chromedriver أو EdgeDriver بشكل مباشر.
 
 __ملاحظة:__ يستخدم هذا الأمر ميزة بروتوكول غير رسمية مدعومة حاليًا
 فقط في Chrome وعند تشغيل [Selenium Grid](https://www.selenium.dev/documentation/en/grid/).
@@ -51,7 +51,7 @@ it('should upload a file', async () => {
 });
 ```
 
-##### القيمة المرجعة
+##### العائد
 
 - **&lt;String&gt;**
             **<code><var>return</var></code>:**  عنوان URL عن بعد

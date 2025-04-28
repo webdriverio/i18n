@@ -1,6 +1,6 @@
 ---
 id: clear
-title: پاک‌سازی
+title: پاک کردن
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/clear.ts
 ---
 

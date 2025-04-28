@@ -4,8 +4,7 @@ title: الحصول على الموقع
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getLocation.ts
 ---
 
-تحديد موقع العنصر على الصفحة. النقطة (0, 0) تشير إلى
-الزاوية العلوية اليسرى من الصفحة.
+تحديد موقع العنصر على الصفحة. النقطة (0، 0) تشير إلى الزاوية العلوية اليسرى من الصفحة.
 
 ##### الاستخدام
 
@@ -25,7 +24,7 @@ $(selector).getLocation(prop)
     <tr>
       <td><code><var>prop</var></code></td>
       <td>`string`</td>
-      <td>يمكن أن تكون "x" أو "y" للحصول على قيمة النتيجة مباشرة لتسهيل التأكيدات</td>
+      <td>يمكن أن تكون "x" أو "y" للحصول على قيمة نتيجة مباشرة لتسهيل عمليات التحقق</td>
     </tr>
   </tbody>
 </table>
@@ -47,7 +46,7 @@ it('should demonstrate the getLocation function', async () => {
 });
 ```
 
-##### العائد
+##### العوائد
 
 - **&lt;Object|Number&gt;**
-            **<code><var>return</var></code>:**   إحداثيات X و Y للعنصر على الصفحة `{x:number, y:number}`
+            **<code><var>return</var></code>:** إحداثيات X و Y للعنصر على الصفحة `{x:number, y:number}`

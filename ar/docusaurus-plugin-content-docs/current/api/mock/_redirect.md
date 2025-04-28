@@ -1,11 +1,11 @@
 ---
 id: redirect
-title: إعادة التوجيه
+title: إعادة توجيه
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/redirect.ts
 ---
 
 يقوم بإعداد إعادة توجيه لمحاكاة معينة. هذا يسمح لك بإعادة توجيه طلب إلى عنوان URL آخر.
-ملاحظة: تنطبق عمليات إعادة التوجيه هذه فقط على الطلبات التي يتم إجراؤها بواسطة برنامج نصي في المتصفح، وليس عند استدعاء أمر `url`.
+ملاحظة: تنطبق عمليات إعادة التوجيه هذه فقط على الطلبات التي يتم إجراؤها بواسطة نص برمجي في المتصفح، وليس عند استدعاء أمر `url`.
 
 ##### الاستخدام
 
@@ -13,7 +13,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 mock.redirect(url)
 ```
 
-##### المعاملات
+##### المعلمات
 
 <table>
   <thead>

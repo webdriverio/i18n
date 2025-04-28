@@ -4,9 +4,14 @@ title: رابط
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/url.ts
 ---
 
-يقوم أمر `url` بتحميل عنوان URL في المتصفح. إذا تم تحديد baseUrl في التكوين، سيتم إضافته قبل معلمة url باستخدام طريقة url.resolve() الخاصة بـ node. استدعاء `browser.url('...')` بنفس عنوان URL كما في المرة الأخيرة سيؤدي إلى إعادة تحميل الصفحة. ومع ذلك، إذا كان عنوان URL يحتوي على علامة # (هاش)، فلن يؤدي المتصفح إلى تنقل جديد ويجب على المستخدم [تحديث](/docs/api/webdriver#refresh) الصفحة لإطلاق تنقل جديد.
+أمر `url` يقوم بتحميل رابط URL في المتصفح. إذا تم تحديد رابط أساسي (baseUrl) في الإعدادات،
+سيتم إضافته قبل معلمة الرابط باستخدام طريقة node's url.resolve(). استدعاء
+`browser.url('...')` بنفس الرابط كالمرة السابقة سيؤدي إلى إعادة تحميل الصفحة. ومع ذلك،
+إذا كان الرابط يحتوي على علامة التجزئة (#)، لن يؤدي المتصفح إلى تنقل جديد ويجب على المستخدم
+أن [يقوم بالتحديث](/docs/api/webdriver#refresh) للصفحة لتنفيذ ذلك.
 
-يعيد الأمر كائن `WebdriverIO.Request` يحتوي على معلومات حول بيانات الطلب والاستجابة لتحميل الصفحة:
+يعيد الأمر كائن `WebdriverIO.Request` الذي يحتوي على معلومات حول
+بيانات الطلب والاستجابة لتحميل الصفحة:
 
 ```ts
 interface WebdriverIO.Request {
@@ -46,28 +51,29 @@ interface WebdriverIO.Request {
 يدعم الحالات التالية:
 
  - `none`: لا انتظار بعد إجراء طلب الصفحة واستلام الاستجابة
- - `interactive`: انتظر حتى تصبح الصفحة تفاعلية
- - `complete`: انتظر حتى يتم تحميل شجرة DOM للصفحة بالكامل
- - `networkIdle`: انتظر حتى لا تكون هناك طلبات شبكة معلقة
+ - `interactive`: انتظار حتى تصبح الصفحة تفاعلية
+ - `complete`: انتظار حتى يتم تحميل شجرة DOM للصفحة بالكامل
+ - `networkIdle`: انتظار حتى لا تكون هناك طلبات شبكة معلقة
 
 ### headers
 
-الرؤوس التي سيتم إرسالها مع الطلب.
+الترويسات التي سيتم إرسالها مع الطلب.
 
-__الافتراضي:__ `{}`
+__القيمة الافتراضية:__ `{}`
 
 ### auth
 
 بيانات اعتماد المصادقة الأساسية.
-ملاحظة: سيؤدي هذا إلى استبدال رأس `Authorization` الموجود إذا تم توفيره في خيار `headers`.
+ملاحظة: هذا سيؤدي إلى استبدال ترويسة `Authorization` الموجودة إذا تم توفيرها في خيار `headers`.
 
 ### timeout
 
-إذا تم تعيينه على رقم، فسينتظر الأمر لعدد محدد من المللي ثانية لتحميل الصفحة لجميع الاستجابات قبل العودة.
+إذا تم تعيينه إلى رقم، سينتظر الأمر لعدد الميلي ثانية المحدد لتحميل الصفحة
+لجميع الاستجابات قبل العودة.
 
-ملاحظة: لكي يكون لهذا تأثير، يتطلب تعيين خيار `wait` على `networkIdle`.
+ملاحظة: لكي يكون لهذا تأثير، يتطلب تعيين خيار `wait` إلى `networkIdle`.
 
-__الافتراضي:__ `5000`
+__القيمة الافتراضية:__ `5000`
 
 ##### الاستخدام
 
@@ -87,7 +93,7 @@ browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
     <tr>
       <td><code><var>url</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`string`</td>
-      <td>عنوان URL للانتقال إليه</td>
+      <td>الرابط URL للانتقال إليه</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -97,17 +103,17 @@ browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
     <tr>
       <td><code><var>options.wait</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`'none', 'interactive', 'networkIdle', 'complete'`</td>
-      <td>الحالة المطلوبة التي يجب أن يكون فيها المورد المطلوب قبل إنهاء الأمر. الافتراضي: 'complete'</td>
+      <td>الحالة المطلوبة التي يجب أن يكون فيها المورد المطلوب قبل إنهاء الأمر. القيمة الافتراضية: 'complete'</td>
     </tr>
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>إذا تم تعيينه على رقم، فسينتظر الأمر لعدد محدد من المللي ثانية لتحميل الصفحة لجميع الاستجابات قبل العودة. الافتراضي: 5000</td>
+      <td>إذا تم تعيينه إلى رقم، سينتظر الأمر لعدد الميلي ثانية المحدد لتحميل الصفحة لجميع الاستجابات قبل العودة. القيمة الافتراضية: 5000</td>
     </tr>
     <tr>
       <td><code><var>options.onBeforeLoad</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Function`</td>
-      <td>دالة يتم استدعاؤها قبل أن تقوم صفحتك بتحميل جميع مواردها. يسمح لك بمحاكاة البيئة بسهولة، على سبيل المثال، إعادة كتابة واجهات برمجة تطبيقات الويب التي يستخدمها تطبيقك.</td>
+      <td>دالة يتم استدعاؤها قبل أن تقوم صفحتك بتحميل جميع مواردها. يسمح لك بمحاكاة البيئة بسهولة، مثل تغيير واجهات برمجة الويب التي يستخدمها تطبيقك.</td>
     </tr>
     <tr>
       <td><code><var>options.auth</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -117,7 +123,7 @@ browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
     <tr>
       <td><code><var>options.headers</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Record<string, string>`</td>
-      <td>الرؤوس التي سيتم إرسالها مع الطلب</td>
+      <td>الترويسات التي سيتم إرسالها مع الطلب</td>
     </tr>
   </tbody>
 </table>
@@ -182,7 +188,7 @@ await expect($('.battery-percentage')).toHaveText('50%')
 await expect($('.battery-remaining')).toHaveText('01:00)
 ```
 
-##### العائدات
+##### العائد
 
 - **&lt;WebdriverIO.Request&gt;**
             **<code><var>returns</var></code>:**  كائن طلب لتحميل الصفحة مع معلومات حول بيانات الطلب والاستجابة

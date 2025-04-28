@@ -4,36 +4,36 @@ title: إجهاض
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/abort.ts
 ---
 
-إجهاض الطلب بأحد رموز الخطأ التالية:
+Abort the request with one of the following error codes:
 `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`,
 `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`,
 `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`,
 `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`.
 
-##### الاستخدام
+##### Usage
 
 ```js
 mock.abort(errorCode)
 ```
 
-##### المعلمات
+##### Parameters
 
 <table>
   <thead>
     <tr>
-      <th>الاسم</th><th>النوع</th><th>التفاصيل</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>errorCode</var></code></td>
       <td>`ErrorCode`</td>
-      <td>رمز خطأ الاستجابة، يمكن أن يكون أحد هذه القيم: `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
+      <td>error code of the response, can be one of: `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
     </tr>
   </tbody>
 </table>
 
-##### مثال
+##### Example
 
 ```js title="abort.js"
 it('should block Google Analytics from page', async () => {

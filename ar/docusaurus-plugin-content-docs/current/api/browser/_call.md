@@ -4,13 +4,13 @@ title: استدعاء
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/call.ts
 ---
 
-يمكنك استخدام `call` لتنفيذ أي إجراء غير متزامن داخل اختبارك.
+يمكنك استخدام `call` لتنفيذ أي إجراء غير متزامن داخل مواصفات الاختبار الخاصة بك.
 يقبل الوعود (promises) ويوقف التنفيذ حتى يتم حل الوعد.
 
 :::info
 
-مع توقف WebdriverIO عن دعم الاستخدام المتزامن (انظر [RFC](https://github.com/webdriverio/webdriverio/discussions/6702))
-هذا الأمر لم يعد مفيدًا كثيرًا.
+مع إلغاء WebdriverIO للاستخدام المتزامن (انظر [RFC](https://github.com/webdriverio/webdriverio/discussions/6702))
+لم يعد هذا الأمر مفيدًا كثيرًا.
 
 :::
 

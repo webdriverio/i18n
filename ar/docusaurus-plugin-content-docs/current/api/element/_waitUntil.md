@@ -1,10 +1,10 @@
 ---
 id: waitUntil
-title: انتظر حتى
+title: waitUntil
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitUntil.ts
 ---
 
-أمر الانتظار هذا هو سلاحك الشامل إذا كنت ترغب في الانتظار لشيء ما. يتوقع شرطًا وينتظر حتى يتم تحقيق هذا الشرط بقيمة صحيحة.
+يعد أمر الانتظار هذا سلاحك العالمي إذا كنت ترغب في الانتظار لحدوث شيء ما. يتوقع شرطًا وينتظر حتى يتم تحقيق هذا الشرط بقيمة صحيحة.
 
 :::info
 
@@ -32,7 +32,7 @@ $(selector).waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>condition</var></code></td>
       <td>`Function`</td>
-      <td>الشرط للانتظار عليه</td>
+      <td>الشرط المراد الانتظار عليه</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -42,17 +42,17 @@ $(selector).waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الوقت بالميلي ثانية (القيمة الافتراضية تعتمد على إعداد [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>الوقت بالميلي ثانية (القيمة الافتراضية تستند إلى قيمة التكوين [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>رسالة الخطأ التي يتم رميها عند انتهاء مهلة waitUntil</td>
+      <td>رسالة الخطأ التي يتم إظهارها عند انتهاء مهلة waitUntil</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الفاصل الزمني بين فحوص الشرط (القيمة الافتراضية تعتمد على إعداد [`waitforInterval`](/docs/configuration#waitforinterval))</td>
+      <td>الفاصل الزمني بين فحوصات الشرط (القيمة الافتراضية تستند إلى قيمة التكوين [`waitforInterval`](/docs/configuration#waitforinterval))</td>
     </tr>
   </tbody>
 </table>
@@ -70,4 +70,4 @@ https://github.com/webdriverio/example-recipes/blob/0bfb2b8d212b627a2659b10f4449
 ##### القيم المرجعة
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:** صحيح إذا تم استيفاء الشرط
+            **<code><var>return</var></code>:** صحيح إذا تم تحقيق الشرط

@@ -1,10 +1,10 @@
 ---
 id: selectByIndex
-title: اختيار حسب الفهرس
+title: اختيار بالفهرس
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/selectByIndex.ts
 ---
 
-اختيار خيار برقم فهرس محدد.
+اختيار خيار بفهرس محدد.
 
 ##### الاستخدام
 
@@ -12,7 +12,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 $(selector).selectByIndex(index)
 ```
 
-##### المعاملات
+##### المعلمات
 
 <table>
   <thead>

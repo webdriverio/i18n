@@ -1,28 +1,28 @@
 ---
 id: modules
-title: الوحدات
+title: وحدات
 ---
 
-ينشر WebdriverIO العديد من الوحدات على NPM وسجلات أخرى يمكنك استخدامها لبناء إطار عمل الأتمتة الخاص بك. شاهد المزيد من الوثائق حول أنواع إعداد WebdriverIO [هنا](/docs/setuptypes).
+يقوم WebdriverIO بنشر العديد من الوحدات على NPM وسجلات أخرى يمكنك استخدامها لبناء إطار عمل الأتمتة الخاص بك. شاهد المزيد من الوثائق حول أنواع إعداد WebdriverIO [هنا](/docs/setuptypes).
 
 ## `webdriver` و `devtools`
 
-حزم البروتوكول ([`webdriver`](https://www.npmjs.com/package/webdriver) و [`devtools`](https://www.npmjs.com/package/devtools)) تعرض فئة مع الدوال الثابتة التالية المرفقة التي تسمح لك ببدء الجلسات:
+حزم البروتوكول ([`webdriver`](https://www.npmjs.com/package/webdriver) و [`devtools`](https://www.npmjs.com/package/devtools)) تعرض فئة مع الوظائف الثابتة التالية المرفقة التي تسمح لك ببدء الجلسات:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
 يبدأ جلسة جديدة بقدرات محددة. بناءً على استجابة الجلسة، سيتم توفير أوامر من بروتوكولات مختلفة.
 
-##### البارامترات
+##### المعاملات
 
 - `options`: [خيارات WebDriver](/docs/configuration#webdriver-options)
-- `modifier`: دالة تسمح بتعديل نسخة العميل قبل إرجاعها
+- `modifier`: وظيفة تسمح بتعديل نسخة العميل قبل إرجاعها
 - `userPrototype`: كائن خصائص يسمح بتوسيع نموذج النسخة
-- `customCommandWrapper`: دالة تسمح بتغليف الوظائف حول مكالمات الدوال
+- `customCommandWrapper`: وظيفة تتيح تغليف الوظائف حول استدعاءات الوظائف
 
-##### القيمة المرجعة
+##### العائد
 
-- كائن [المتصفح](/docs/api/browser)
+- كائن [Browser](/docs/api/browser)
 
 ##### مثال
 
@@ -36,16 +36,16 @@ const client = await WebDriver.newSession({
 
 يرتبط بجلسة WebDriver أو DevTools قيد التشغيل.
 
-##### البارامترات
+##### المعاملات
 
-- `attachInstance`: نسخة للارتباط بجلسة أو على الأقل كائن به خاصية `sessionId` (مثل `{ sessionId: 'xxx' }`)
-- `modifier`: دالة تسمح بتعديل نسخة العميل قبل إرجاعها
+- `attachInstance`: نسخة للربط بجلسة أو على الأقل كائن يحتوي على خاصية `sessionId` (مثال: `{ sessionId: 'xxx' }`)
+- `modifier`: وظيفة تسمح بتعديل نسخة العميل قبل إرجاعها
 - `userPrototype`: كائن خصائص يسمح بتوسيع نموذج النسخة
-- `customCommandWrapper`: دالة تسمح بتغليف الوظائف حول مكالمات الدوال
+- `customCommandWrapper`: وظيفة تتيح تغليف الوظائف حول استدعاءات الوظائف
 
-##### القيمة المرجعة
+##### العائد
 
-- كائن [المتصفح](/docs/api/browser)
+- كائن [Browser](/docs/api/browser)
 
 ##### مثال
 
@@ -58,7 +58,7 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 يعيد تحميل جلسة بناءً على النسخة المقدمة.
 
-##### البارامترات
+##### المعاملات
 
 - `instance`: نسخة الحزمة لإعادة التحميل
 
@@ -71,20 +71,20 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-مثل حزم البروتوكول (`webdriver` و `devtools`)، يمكنك أيضًا استخدام واجهة برمجة تطبيقات حزمة WebdriverIO لإدارة الجلسات. يمكن استيراد واجهات برمجة التطبيقات باستخدام `import { remote, attach, multiremote } from 'webdriverio` وتحتوي على الوظائف التالية:
+مشابه لحزم البروتوكول (`webdriver` و `devtools`)، يمكنك أيضًا استخدام واجهات برمجة تطبيقات حزمة WebdriverIO لإدارة الجلسات. يمكن استيراد واجهات برمجة التطبيقات باستخدام `import { remote, attach, multiremote } from 'webdriverio'` وتحتوي على الوظائف التالية:
 
 #### `remote(options, modifier)`
 
-يبدأ جلسة WebdriverIO. تحتوي النسخة على جميع الأوامر كحزمة البروتوكول ولكن مع وظائف إضافية من رتبة أعلى، انظر [وثائق API](/docs/api).
+يبدأ جلسة WebdriverIO. تحتوي النسخة على جميع الأوامر كحزمة البروتوكول ولكن مع وظائف ترتيب أعلى إضافية، انظر [وثائق API](/docs/api).
 
-##### البارامترات
+##### المعاملات
 
 - `options`: [خيارات WebdriverIO](/docs/configuration#webdriverio)
-- `modifier`: دالة تسمح بتعديل نسخة العميل قبل إرجاعها
+- `modifier`: وظيفة تسمح بتعديل نسخة العميل قبل إرجاعها
 
-##### القيمة المرجعة
+##### العائد
 
-- كائن [المتصفح](/docs/api/browser)
+- كائن [Browser](/docs/api/browser)
 
 ##### مثال
 
@@ -100,13 +100,13 @@ const browser = await remote({
 
 يرتبط بجلسة WebdriverIO قيد التشغيل.
 
-##### البارامترات
+##### المعاملات
 
-- `attachOptions`: نسخة للارتباط بجلسة أو على الأقل كائن به خاصية `sessionId` (مثل `{ sessionId: 'xxx' }`)
+- `attachOptions`: نسخة للربط بجلسة أو على الأقل كائن يحتوي على خاصية `sessionId` (مثال: `{ sessionId: 'xxx' }`)
 
-##### القيمة المرجعة
+##### العائد
 
-- كائن [المتصفح](/docs/api/browser)
+- كائن [Browser](/docs/api/browser)
 
 ##### مثال
 
@@ -119,15 +119,15 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-يبدأ نسخة multiremote والتي تسمح لك بالتحكم في جلسات متعددة داخل نسخة واحدة. راجع [أمثلة multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) للحالات العملية.
+يبدأ نسخة متعددة عن بعد والتي تسمح لك بالتحكم في جلسات متعددة ضمن نسخة واحدة. تحقق من [أمثلة multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) للحالات العملية.
 
-##### البارامترات
+##### المعاملات
 
 - `multiremoteOptions`: كائن بمفاتيح تمثل اسم المتصفح و [خيارات WebdriverIO](/docs/configuration#webdriverio) الخاصة بهم.
 
-##### القيمة المرجعة
+##### العائد
 
-- كائن [المتصفح](/docs/api/browser)
+- كائن [Browser](/docs/api/browser)
 
 ##### مثال
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-بدلاً من استدعاء أمر `wdio`، يمكنك أيضًا تضمين مشغل الاختبار كوحدة وتشغيله في بيئة اعتباطية. لذلك، ستحتاج إلى استيراد حزمة `@wdio/cli` كوحدة، مثل هذا:
+بدلاً من استدعاء الأمر `wdio`، يمكنك أيضًا تضمين منفذ الاختبار كوحدة وتشغيله في بيئة اعتباطية. لذلك، ستحتاج إلى استيراد حزمة `@wdio/cli` كوحدة، مثل هذا:
 
 <Tabs
   defaultValue="esm"
@@ -176,16 +176,16 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-بعد ذلك، قم بإنشاء نسخة من المشغل، وتشغيل الاختبار.
+بعد ذلك، قم بإنشاء نسخة من المشغل، وقم بتشغيل الاختبار.
 
 #### `Launcher(configPath, opts)`
 
-يتوقع منشئ فئة `Launcher` عنوان URL لملف التكوين، وكائن `opts` مع إعدادات ستستبدل تلك الموجودة في التكوين.
+يتوقع منشئ فئة `Launcher` عنوان URL لملف التكوين، وكائن `opts` مع إعدادات ستحل محل تلك الموجودة في التكوين.
 
-##### البارامترات
+##### المعاملات
 
-- `configPath`: المسار إلى ملف `wdio.conf.js` للتشغيل
-- `opts`: المعاملات ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) لاستبدال القيم من ملف التكوين
+- `configPath`: المسار إلى `wdio.conf.js` للتشغيل
+- `opts`: وسائط ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) لتجاوز القيم من ملف التكوين
 
 ##### مثال
 
@@ -203,11 +203,11 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-يعيد الأمر `run` [وعداً (Promise)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). يتم حله إذا تم تشغيل الاختبارات بنجاح أو فشلت، ويتم رفضه إذا لم يتمكن المشغل من بدء تشغيل الاختبارات.
+يعيد الأمر `run` [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). يتم حلها إذا تم تشغيل الاختبارات بنجاح أو فشلت، ويتم رفضها إذا لم يتمكن المشغل من بدء تشغيل الاختبارات.
 
 ## `@wdio/browser-runner`
 
-عند تشغيل اختبارات الوحدة أو المكون باستخدام [مشغل المتصفح](/docs/runner#browser-runner) الخاص بـ WebdriverIO، يمكنك استيراد أدوات المحاكاة لاختباراتك، على سبيل المثال:
+عند تشغيل اختبارات الوحدة أو المكونات باستخدام [مشغل المتصفح](/docs/runner#browser-runner) الخاص بـ WebdriverIO، يمكنك استيراد أدوات المحاكاة للاختبارات الخاصة بك، على سبيل المثال:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
@@ -217,7 +217,7 @@ import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 
 #### `fn`
 
-دالة وهمية، انظر المزيد في [وثائق Vitest الرسمية](https://vitest.dev/api/mock.html#mock-functions).
+دالة محاكاة، انظر المزيد في [وثائق Vitest الرسمية](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
@@ -225,9 +225,9 @@ import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 
 #### `mock`
 
-طريقة لمحاكاة ملف أو وحدة التبعية.
+طريقة لمحاكاة ملف أو وحدة تبعية.
 
-##### البارامترات
+##### المعاملات
 
 - `moduleName`: إما مسار نسبي للملف المراد محاكاته أو اسم وحدة.
 - `factory`: دالة لإرجاع القيمة المحاكاة (اختياري)
@@ -252,7 +252,7 @@ mock('lodash', (origModuleFactory) => {
 
 إلغاء محاكاة التبعية المحددة في دليل المحاكاة اليدوية (`__mocks__`).
 
-##### البارامترات
+##### المعاملات
 
 - `moduleName`: اسم الوحدة المراد إلغاء محاكاتها.
 

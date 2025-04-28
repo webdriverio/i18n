@@ -3,74 +3,74 @@ id: customservices
 title: سرویس‌های سفارشی
 ---
 
-شما می‌توانید سرویس سفارشی خود را برای WDIO test runner بنویسید تا با نیازهای خود متناسب باشد.
+شما می‌توانید سرویس سفارشی خود را برای اجرا کننده آزمون WDIO ایجاد کنید تا نیازهای شما را به طور دقیق برآورده سازد.
 
-سرویس‌ها افزونه‌هایی هستند که برای منطق قابل استفاده مجدد ایجاد شده‌اند تا تست‌ها را ساده‌تر کنند، مجموعه تست خود را مدیریت کنند و نتایج را یکپارچه سازند. سرویس‌ها به تمام [hooks](/docs/configurationfile) یکسانی که در `wdio.conf.js` در دسترس است، دسترسی دارند.
+سرویس‌ها افزونه‌هایی هستند که برای منطق قابل استفاده مجدد جهت ساده‌سازی آزمون‌ها، مدیریت مجموعه آزمون و ادغام نتایج ایجاد شده‌اند. سرویس‌ها به تمام [هوک‌های](/docs/configurationfile) یکسانی که در `wdio.conf.js` در دسترس هستند، دسترسی دارند.
 
-دو نوع سرویس وجود دارد که می‌توان تعریف کرد: یک سرویس راه‌انداز که فقط به هوک‌های `onPrepare`، `onWorkerStart`، `onWorkerEnd` و `onComplete` دسترسی دارد که فقط یکبار در هر اجرای تست اجرا می‌شوند، و یک سرویس کارگر که به تمام هوک‌های دیگر دسترسی دارد و برای هر کارگر اجرا می‌شود. توجه داشته باشید که شما نمی‌توانید متغیرهای (سراسری) را بین هر دو نوع سرویس به اشتراک بگذارید زیرا سرویس‌های کارگر در یک فرآیند (کارگر) متفاوت اجرا می‌شوند.
+دو نوع سرویس می‌توان تعریف کرد: سرویس راه‌انداز که فقط به هوک‌های `onPrepare`، `onWorkerStart`، `onWorkerEnd` و `onComplete` دسترسی دارد که فقط یک بار در هر اجرای آزمون اجرا می‌شوند، و سرویس کارگر که به تمام هوک‌های دیگر دسترسی دارد و برای هر کارگر اجرا می‌شود. توجه داشته باشید که نمی‌توانید متغیرهای (جهانی) را بین این دو نوع سرویس به اشتراک بگذارید زیرا سرویس‌های کارگر در یک فرآیند (کارگر) متفاوت اجرا می‌شوند.
 
-یک سرویس راه‌انداز را می‌توان به شکل زیر تعریف کرد:
+یک سرویس راه‌انداز را می‌توان به صورت زیر تعریف کرد:
 
 ```js
 export default class CustomLauncherService {
-    // If a hook returns a promise, WebdriverIO will wait until that promise is resolved to continue.
+    // اگر یک هوک پرامیس برگرداند، WebdriverIO منتظر می‌ماند تا آن پرامیس حل شود و سپس ادامه می‌دهد.
     async onPrepare(config, capabilities) {
-        // TODO: something before all workers launch
+        // TODO: کاری قبل از راه‌اندازی تمام کارگرها
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: something after the workers shutdown
+        // TODO: کاری پس از خاموش شدن کارگرها
     }
 
-    // custom service methods ...
+    // متدهای سفارشی سرویس ...
 }
 ```
 
-در حالی که یک سرویس کارگر باید اینگونه باشد:
+در حالی که یک سرویس کارگر باید به شکل زیر باشد:
 
 ```js
 export default class CustomWorkerService {
     /**
-     * `serviceOptions` contains all options specific to the service
-     * e.g. if defined as follows:
+     * `serviceOptions` شامل تمام گزینه‌های مخصوص به سرویس است
+     * به عنوان مثال اگر به صورت زیر تعریف شده باشد:
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * the `serviceOptions` parameter will be: `{ foo: 'bar' }`
+     * پارامتر `serviceOptions` برابر خواهد بود با: `{ foo: 'bar' }`
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * this browser object is passed in here for the first time
+     * این شیء مرورگر برای اولین بار در اینجا ارسال می‌شود
      */
     async before(config, capabilities, browser) {
         this.browser = browser
 
-        // TODO: something before all tests are run, e.g.:
+        // TODO: کاری قبل از اجرای همه آزمون‌ها، مثلاً:
         await this.browser.setWindowSize(1024, 768)
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: something after all tests are run
+        // TODO: کاری پس از اجرای همه آزمون‌ها
     }
 
     beforeTest(test, context) {
-        // TODO: something before each Mocha/Jasmine test run
+        // TODO: کاری قبل از هر اجرای آزمون Mocha/Jasmine
     }
 
     beforeScenario(test, context) {
-        // TODO: something before each Cucumber scenario run
+        // TODO: کاری قبل از هر اجرای سناریوی Cucumber
     }
 
-    // other hooks or custom service methods ...
+    // هوک‌های دیگر یا متدهای سفارشی سرویس ...
 }
 ```
 
-توصیه می‌شود که شیء مرورگر را از طریق پارامتر منتقل شده در سازنده ذخیره کنید. در نهایت هر دو نوع کارگر را به صورت زیر نمایش دهید:
+توصیه می‌شود شیء مرورگر را از طریق پارامتر ارسال شده در سازنده ذخیره کنید. در نهایت هر دو نوع کارگر را به صورت زیر ارائه دهید:
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-اگر از TypeScript استفاده می‌کنید و می‌خواهید مطمئن شوید که پارامترهای متد هوک از نظر نوع ایمن هستند، می‌توانید کلاس سرویس خود را به صورت زیر تعریف کنید:
+اگر از TypeScript استفاده می‌کنید و می‌خواهید مطمئن شوید که پارامترهای متد هوک از نظر نوع امن هستند، می‌توانید کلاس سرویس خود را به صورت زیر تعریف کنید:
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -100,27 +100,27 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 
 ## مدیریت خطای سرویس
 
-خطایی که در طول یک هوک سرویس رخ می‌دهد، ثبت می‌شود در حالی که اجرا کننده ادامه می‌دهد. اگر هوکی در سرویس شما برای راه‌اندازی یا جمع‌آوری تست راه‌انداز حیاتی است، از `SevereServiceError` که از بسته `webdriverio` نمایان شده است، می‌توان برای متوقف کردن اجرا کننده استفاده کرد.
+خطایی که در یک هوک سرویس رخ می‌دهد ثبت می‌شود در حالی که اجرا کننده ادامه می‌یابد. اگر هوکی در سرویس شما برای راه‌اندازی یا جمع‌آوری اجرا کننده آزمون حیاتی است، می‌توان از `SevereServiceError` که از بسته `webdriverio` ارائه شده است برای متوقف کردن اجرا کننده استفاده کرد.
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: something critical for setup before all workers launch
+        // TODO: کاری مهم برای راه‌اندازی قبل از شروع همه کارگرها
 
-        throw new SevereServiceError('Something went wrong.')
+        throw new SevereServiceError('مشکلی رخ داده است.')
     }
 
-    // custom service methods ...
+    // متدهای سفارشی سرویس ...
 }
 ```
 
 ## وارد کردن سرویس از ماژول
 
-تنها کاری که باید انجام دهید تا از این سرویس استفاده کنید، اختصاص آن به ویژگی `services` است.
+تنها کاری که اکنون برای استفاده از این سرویس باید انجام دهید، اختصاص آن به ویژگی `services` است.
 
-فایل `wdio.conf.js` خود را به شکل زیر تغییر دهید:
+فایل `wdio.conf.js` خود را به صورت زیر تغییر دهید:
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -129,13 +129,13 @@ export const config = {
     // ...
     services: [
         /**
-         * use imported service class
+         * استفاده از کلاس سرویس وارد شده
          */
         [CustomService, {
             someOption: true
         }],
         /**
-         * use absolute path to service
+         * استفاده از مسیر مطلق به سرویس
          */
         ['/path/to/service.js', {
             someOption: true
@@ -147,17 +147,17 @@ export const config = {
 
 ## انتشار سرویس در NPM
 
-برای سهولت مصرف و کشف سرویس‌ها توسط جامعه WebdriverIO، لطفاً این توصیه‌ها را دنبال کنید:
+برای آسان‌تر کردن استفاده و کشف سرویس‌ها توسط جامعه WebdriverIO، لطفاً این توصیه‌ها را دنبال کنید:
 
-* سرویس‌ها باید از این قرارداد نامگذاری استفاده کنند: `wdio-*-service`
+* سرویس‌ها باید از این قرارداد نام‌گذاری استفاده کنند: `wdio-*-service`
 * از کلمات کلیدی NPM استفاده کنید: `wdio-plugin`، `wdio-service`
 * ورودی `main` باید یک نمونه از سرویس را `export` کند
-* سرویس‌های نمونه: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* نمونه سرویس‌ها: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-پیروی از الگوی نامگذاری توصیه شده، امکان افزودن سرویس‌ها با نام را فراهم می‌کند:
+پیروی از الگوی نام‌گذاری توصیه شده امکان افزودن سرویس‌ها با نام را فراهم می‌کند:
 
 ```js
-// Add wdio-custom-service
+// افزودن wdio-custom-service
 export const config = {
     // ...
     services: ['custom'],
@@ -167,9 +167,9 @@ export const config = {
 
 ### افزودن سرویس منتشر شده به CLI و مستندات WDIO
 
-ما واقعاً از هر افزونه جدیدی که می‌تواند به دیگران کمک کند تا تست‌های بهتری اجرا کنند، قدردانی می‌کنیم! اگر چنین افزونه‌ای ایجاد کرده‌اید، لطفاً افزودن آن را به CLI و مستندات ما در نظر بگیرید تا یافتن آن آسان‌تر شود.
+ما واقعاً از هر افزونه جدیدی که می‌تواند به دیگران در اجرای آزمون‌های بهتر کمک کند، قدردانی می‌کنیم! اگر چنین افزونه‌ای ایجاد کرده‌اید، لطفاً افزودن آن به CLI و مستندات ما را در نظر بگیرید تا پیدا کردن آن آسان‌تر شود.
 
-لطفاً با تغییرات زیر یک درخواست pull ارسال کنید:
+لطفاً یک درخواست پول با تغییرات زیر ارسال کنید:
 
 - سرویس خود را به لیست [سرویس‌های پشتیبانی شده](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) در ماژول CLI اضافه کنید
-- [لیست سرویس](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) را برای افزودن مستندات خود به صفحه رسمی Webdriver.io بهبود بخشید
+- [لیست سرویس](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) را برای اضافه کردن مستندات خود به صفحه رسمی Webdriver.io گسترش دهید

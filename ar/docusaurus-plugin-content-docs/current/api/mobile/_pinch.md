@@ -4,16 +4,16 @@ title: القرص
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/pinch.ts
 ---
 
-يقوم بإجراء حركة قرص على العنصر المحدد على الشاشة.
+يؤدي إيماءة قرص على العنصر المحدد على الشاشة.
 
 :::info
 
-تتم حركة القرص باستخدام الإيماءات الأصلية للجوال. وهي مدعومة فقط للسائقين التاليين:
+يتم القرص بناءً على إيماءات الجوال الأصلية. وهو مدعوم فقط لبرامج التشغيل التالية:
 - [appium-uiautomator2-driver](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-pinchclosegesture) لنظام Android
 - [appium-xcuitest-driver](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-pinch) لنظام iOS
 
 يعمل هذا الأمر فقط مع المكونات المحدثة التالية:
- - خادم Appium (الإصدار 2.0.0 أو أحدث)
+ - خادم Appium (الإصدار 2.0.0 أو أعلى)
  - `appium-uiautomator2-driver` (لنظام Android)
  - `appium-xcuitest-driver` (لنظام iOS)
 
@@ -44,12 +44,12 @@ $(selector).pinch({ duration, scale })
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>المدة بالميلي ثانية لمدى سرعة تنفيذ حركة القرص، الحد الأدنى هو 500 ميلي ثانية والحد الأقصى هو 10000 ميلي ثانية. القيمة الافتراضية هي 1500 ميلي ثانية (1.5 ثانية) (اختياري)</td>
+      <td>المدة بالميلي ثانية لمدى سرعة تنفيذ القرص، الحد الأدنى هو 500 مللي ثانية والحد الأقصى هو 10000 مللي ثانية. الإعداد الافتراضي هو 1500 مللي ثانية (1.5 ثانية) (اختياري)</td>
     </tr>
     <tr>
       <td><code><var>options.scale</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>مقياس حجم القرص بالنسبة للشاشة. يجب أن تكون القيم الصالحة أرقامًا عشرية في النطاق 0..1، حيث 1.0 تمثل 100% (اختياري)</td>
+      <td>مقياس مدى كبر القرص وفقًا للشاشة. يجب أن تكون القيم الصالحة أرقامًا عشرية في النطاق 0..1، حيث 1.0 هي 100% (اختياري)</td>
     </tr>
   </tbody>
 </table>

@@ -21,6 +21,6 @@ it('should allow me to inspect WebdriverIO.Element properties', async () => {
 });
 ```
 
-##### عوائد
+##### يعيد
 
 - **&lt;WebdriverIO.ElementArray&gt;**

@@ -1,15 +1,15 @@
 ---
 id: throttleCPU
-title: خنق وحدة المعالجة المركزية
+title: إبطاء وحدة المعالجة المركزية
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/throttleCPU.ts
 ---
 
-يقوم بخنق وحدة المعالجة المركزية لمحاكاة معالج أبطأ.
+يقوم بإبطاء وحدة المعالجة المركزية لمحاكاة معالج أبطأ.
 
 :::info
 
-لاحظ أن استخدام أمر `throttleCPU` يتطلب دعمًا لبروتوكول Chrome DevTools ولا يمكن استخدامه على سبيل المثال
-عند تشغيل الاختبارات الآلية في السحابة. لا يتم تثبيت بروتوكول Chrome DevTools بشكل افتراضي،
+لاحظ أن استخدام أمر `throttleCPU` يتطلب دعم بروتوكول Chrome DevTools ولا يمكن استخدامه مثلاً
+عند تشغيل الاختبارات الآلية في السحابة. لا يتم تثبيت بروتوكول Chrome DevTools افتراضيًا،
 استخدم `npm install puppeteer-core` لتثبيته.
 اكتشف المزيد في قسم [بروتوكولات الأتمتة](/docs/automationProtocols).
 
@@ -21,7 +21,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.throttleCPU(factor)
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -33,7 +33,7 @@ browser.throttleCPU(factor)
     <tr>
       <td><code><var>factor</var></code></td>
       <td>`number`</td>
-      <td>عامل الإبطاء (1 يعني عدم وجود خنق، 2 يعني إبطاء بمقدار 2x، وهكذا)</td>
+      <td>عامل الإبطاء (1 يعني عدم وجود إبطاء، 2 يعني إبطاء بمقدار 2x، وهكذا)</td>
     </tr>
   </tbody>
 </table>

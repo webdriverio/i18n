@@ -4,7 +4,7 @@ title: isStable
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isStable.ts
 ---
 
-سوف يعيد القيمة true عندما يكون العنصر مستقرًا (ليس في حالة حركة) أو false عندما يكون غير مستقر (في حالة حركة).
+سيعيد قيمة صحيح عندما يكون العنصر مستقرًا (ليس في حالة حركة) أو خطأ عندما يكون غير مستقر (في حالة حركة).
 
 __ملاحظة:__ من الأفضل تعطيل الرسوم المتحركة بدلاً من استخدام هذا الأمر.
 
@@ -58,7 +58,7 @@ it('should detect if an element is stable', async () => {
 });
 ```
 
-##### العائد
+##### العوائد
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true إذا كان العنصر مستقرًا، false إذا كان غير مستقر
+            **<code><var>return</var></code>:** صحيح إذا كان العنصر مستقرًا، خطأ إذا كان غير مستقر

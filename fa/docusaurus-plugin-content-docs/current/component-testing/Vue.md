@@ -1,13 +1,13 @@
 ---
 id: vue
-title: ویو.جی‌اس
+title: Vue.js
 ---
 
-[Vue.js](https://vuejs.org/) یک فریم‌ورک قابل دسترس، کارآمد و انعطاف‌پذیر برای ساخت رابط‌های کاربری وب است. شما می‌توانید کامپوننت‌های Vue.js را مستقیماً در یک مرورگر واقعی با استفاده از WebdriverIO و [browser runner](/docs/runner#browser-runner) آن آزمایش کنید.
+[Vue.js](https://vuejs.org/) یک فریم‌ورک قابل دسترس، کارآمد و چندمنظوره برای ساخت رابط‌های کاربری وب است. شما می‌توانید کامپوننت‌های Vue.js را مستقیماً در یک مرورگر واقعی با استفاده از WebdriverIO و [browser runner](/docs/runner#browser-runner) آن تست کنید.
 
 ## راه‌اندازی
 
-برای راه‌اندازی WebdriverIO در پروژه Vue.js خود، [دستورالعمل‌ها](/docs/component-testing#set-up) را در مستندات تست کامپوننت ما دنبال کنید. مطمئن شوید که `vue` را به عنوان پیش‌تنظیم در گزینه‌های اجراکننده خود انتخاب کنید، مثلاً:
+برای راه‌اندازی WebdriverIO در پروژه Vue.js خود، [دستورالعمل‌ها](/docs/component-testing#set-up) را در مستندات تست کامپوننت ما دنبال کنید. اطمینان حاصل کنید که `vue` را به عنوان پیش‌تنظیم در گزینه‌های runner خود انتخاب کرده‌اید، مثلاً:
 
 ```js
 // wdio.conf.js
@@ -22,11 +22,11 @@ export const config = {
 
 :::info
 
-اگر شما قبلاً از [Vite](https://vitejs.dev/) به عنوان سرور توسعه استفاده می‌کنید، می‌توانید پیکربندی خود را در `vite.config.ts` نیز در پیکربندی WebdriverIO خود مجدداً استفاده کنید. برای اطلاعات بیشتر، به `viteConfig` در [گزینه‌های اجراکننده](/docs/runner#runner-options) مراجعه کنید.
+اگر شما از قبل از [Vite](https://vitejs.dev/) به عنوان سرور توسعه استفاده می‌کنید، می‌توانید به سادگی پیکربندی خود را در `vite.config.ts` در پیکربندی WebdriverIO خود مجدداً استفاده کنید. برای اطلاعات بیشتر، به `viteConfig` در [گزینه‌های runner](/docs/runner#runner-options) مراجعه کنید.
 
 :::
 
-پیش‌تنظیم Vue نیاز به نصب `@vitejs/plugin-vue` دارد. همچنین ما استفاده از [Testing Library](https://testing-library.com/) را برای رندر کردن کامپوننت در صفحه تست توصیه می‌کنیم. بنابراین شما نیاز به نصب وابستگی‌های اضافی زیر دارید:
+پیش‌تنظیم Vue نیاز به نصب `@vitejs/plugin-vue` دارد. همچنین ما استفاده از [Testing Library](https://testing-library.com/) را برای رندر کردن کامپوننت در صفحه تست توصیه می‌کنیم. بنابراین شما باید وابستگی‌های اضافی زیر را نصب کنید:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
@@ -65,7 +65,7 @@ export default {
 </script>
 ```
 
-در تست خود، کامپوننت را در DOM رندر کنید و اعتبارسنجی‌ها را روی آن اجرا کنید. ما توصیه می‌کنیم یا از [`@vue/test-utils`](https://test-utils.vuejs.org/) یا [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) برای اتصال کامپوننت به صفحه تست استفاده کنید. برای تعامل با کامپوننت از دستورات WebdriverIO استفاده کنید زیرا آنها شبیه به تعاملات واقعی کاربر رفتار می‌کنند، مثلاً:
+در تست خود، کامپوننت را در DOM رندر کنید و بررسی‌های خود را روی آن انجام دهید. ما توصیه می‌کنیم از [`@vue/test-utils`](https://test-utils.vuejs.org/) یا [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) برای اتصال کامپوننت به صفحه تست استفاده کنید. برای تعامل با کامپوننت، از دستورات WebdriverIO استفاده کنید زیرا رفتار آنها به تعاملات واقعی کاربر نزدیک‌تر است، مثلاً:
 
 
 <Tabs
@@ -134,9 +134,9 @@ describe('Vue Component Testing', () => {
 
 شما می‌توانید یک نمونه کامل از مجموعه تست کامپوننت WebdriverIO برای Vue.js را در [مخزن نمونه](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) ما پیدا کنید.
 
-## تست کامپوننت‌های غیرهمزمان در Vue3
+## تست کامپوننت‌های ناهمگام در Vue3
 
-اگر از Vue v3 استفاده می‌کنید و در حال تست [کامپوننت‌های غیرهمزمان](https://vuejs.org/guide/built-ins/suspense.html#async-setup) مانند زیر هستید:
+اگر از Vue نسخه 3 استفاده می‌کنید و در حال تست [کامپوننت‌های ناهمگام](https://vuejs.org/guide/built-ins/suspense.html#async-setup) مانند زیر هستید:
 
 ```vue
 <script setup>
@@ -149,7 +149,7 @@ const posts = await res.json()
 </template>
 ```
 
-ما توصیه می‌کنیم از [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) و یک wrapper کوچک suspense برای رندر کردن کامپوننت استفاده کنید. متأسفانه [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) هنوز از این ویژگی پشتیبانی نمی‌کند. یک فایل `helper.ts` با محتوای زیر ایجاد کنید:
+ما توصیه می‌کنیم از [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) و یک wrapper suspense کوچک برای رندر کردن کامپوننت استفاده کنید. متأسفانه [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) هنوز از این پشتیبانی نمی‌کند. یک فایل `helper.ts` با محتوای زیر ایجاد کنید:
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -190,7 +190,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-سپس کامپوننت را به صورت زیر import و تست کنید:
+سپس کامپوننت را به صورت زیر وارد و تست کنید:
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -216,21 +216,21 @@ describe('Testing Async Components', () => {
 
 ## تست کامپوننت‌های Vue در Nuxt
 
-اگر از فریم‌ورک وب [Nuxt](https://nuxt.com/) استفاده می‌کنید، WebdriverIO به طور خودکار ویژگی [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) را فعال می‌کند و تست کامپوننت‌های Vue و صفحات Nuxt شما را آسان می‌سازد. با این حال، هر [ماژول Nuxt](https://nuxt.com/modules) که ممکن است در پیکربندی خود تعریف کنید و به زمینه برنامه Nuxt نیاز داشته باشد، پشتیبانی نمی‌شود.
+اگر از فریم‌ورک وب [Nuxt](https://nuxt.com/) استفاده می‌کنید، WebdriverIO به طور خودکار ویژگی [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) را فعال می‌کند و تست کامپوننت‌های Vue و صفحات Nuxt را آسان می‌سازد. با این حال، هر [ماژول Nuxt](https://nuxt.com/modules) که ممکن است در پیکربندی خود تعریف کنید و به زمینه برنامه Nuxt نیاز داشته باشد، نمی‌تواند پشتیبانی شود.
 
-__دلایل آن عبارتند از:__
+__دلایل این امر عبارتند از:__
 - WebdriverIO نمی‌تواند یک برنامه Nuxt را فقط در محیط مرورگر راه‌اندازی کند
-- وابستگی زیاد تست‌های کامپوننت به محیط Nuxt پیچیدگی ایجاد می‌کند و ما توصیه می‌کنیم این تست‌ها را به عنوان تست‌های e2e اجرا کنید
+- وابستگی بیش از حد تست‌های کامپوننت به محیط Nuxt پیچیدگی ایجاد می‌کند و ما توصیه می‌کنیم این تست‌ها را به عنوان تست‌های e2e اجرا کنید
 
 :::info
 
-WebdriverIO همچنین سرویسی برای اجرای تست‌های e2e در برنامه‌های Nuxt ارائه می‌دهد، برای اطلاعات بیشتر به [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) مراجعه کنید.
+WebdriverIO همچنین سرویسی برای اجرای تست‌های e2e روی برنامه‌های Nuxt ارائه می‌دهد، برای اطلاعات بیشتر به [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) مراجعه کنید.
 
 :::
 
-### شبیه‌سازی composable‌های داخلی
+### شبیه‌سازی composables داخلی
 
-در صورتی که کامپوننت شما از یک composable بومی Nuxt استفاده می‌کند، مثلاً [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)، WebdriverIO به طور خودکار این توابع را شبیه‌سازی می‌کند و به شما امکان می‌دهد رفتار آنها را تغییر دهید یا در مقابل آنها اعتبارسنجی کنید، مثلاً:
+در صورتی که کامپوننت شما از یک composable بومی Nuxt استفاده می‌کند، مثلاً [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)، WebdriverIO به طور خودکار این توابع را شبیه‌سازی می‌کند و به شما امکان می‌دهد رفتار آنها را تغییر دهید یا آنها را بررسی کنید، مثلاً:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
@@ -245,9 +245,9 @@ mocked(useNuxtData).mockReturnValue({
 })
 ```
 
-### مدیریت composable‌های شخص ثالث
+### مدیریت composables شخص ثالث
 
-تمام [ماژول‌های شخص ثالث](https://nuxt.com/modules) که می‌توانند پروژه Nuxt شما را تقویت کنند، به طور خودکار شبیه‌سازی نمی‌شوند. در این موارد، شما باید آنها را به صورت دستی شبیه‌سازی کنید، مثلاً فرض کنید برنامه شما از افزونه ماژول [Supabase](https://nuxt.com/modules/supabase) استفاده می‌کند:
+تمام [ماژول‌های شخص ثالث](https://nuxt.com/modules) که می‌توانند پروژه Nuxt شما را تقویت کنند، نمی‌توانند به طور خودکار شبیه‌سازی شوند. در این موارد، شما باید آنها را به صورت دستی شبیه‌سازی کنید. به عنوان مثال، با فرض اینکه برنامه شما از ماژول پلاگین [Supabase](https://nuxt.com/modules/supabase) استفاده می‌کند:
 
 ```js title=""
 export default defineNuxtConfig({
@@ -259,13 +259,13 @@ export default defineNuxtConfig({
 });
 ```
 
-و شما در جایی در composable‌های خود یک نمونه از Supabase ایجاد می‌کنید، مثلاً:
+و شما در جایی در composables خود یک نمونه از Supabase ایجاد می‌کنید، مثلاً:
 
 ```ts
 const superbase = useSupabaseClient()
 ```
 
-تست به دلیل خطای زیر شکست خواهد خورد:
+تست به دلیل زیر با شکست مواجه می‌شود:
 
 ```
 ReferenceError: useSupabaseClient is not defined

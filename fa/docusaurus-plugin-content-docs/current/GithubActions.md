@@ -1,18 +1,18 @@
 ---
 id: githubactions
-title: گیت‌هاب اکشنز
+title: اکشن‌های گیت‌هاب
 ---
 
-اگر مخزن شما در گیت‌هاب میزبانی می‌شود، می‌توانید از [Github Actions](https://docs.github.com/en/actions) برای اجرای تست‌های خود روی زیرساخت‌های گیت‌هاب استفاده کنید.
+اگر مخزن شما در گیت‌هاب میزبانی می‌شود، می‌توانید از [Github Actions](https://docs.github.com/en/actions) برای اجرای آزمایش‌های خود روی زیرساخت گیت‌هاب استفاده کنید.
 
-1. هر بار که تغییرات را پوش می‌کنید
-2. در هر ایجاد درخواست پول
-3. در زمان‌های زمانبندی شده
-4. با راه‌اندازی دستی
+۱. هر بار که تغییرات را پوش می‌کنید
+۲. با هر ایجاد درخواست پول
+۳. در زمان‌های برنامه‌ریزی شده
+۴. با راه‌اندازی دستی
 
-در ریشه مخزن خود، یک دایرکتوری `.github/workflows` ایجاد کنید. یک فایل Yaml اضافه کنید، به عنوان مثال `.github/workflows/ci.yaml`. در آنجا نحوه اجرای تست‌های خود را پیکربندی خواهید کرد.
+در ریشه مخزن خود، یک دایرکتوری `.github/workflows` ایجاد کنید. یک فایل Yaml اضافه کنید، برای مثال `.github/workflows/ci.yaml`. در آنجا نحوه اجرای آزمایش‌های خود را پیکربندی خواهید کرد.
 
-به [jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml) برای پیاده‌سازی مرجع، و [نمونه اجرای تست‌ها](https://github.com/webdriverio/jasmine-boilerplate/actions?query=workflow%3ACI) مراجعه کنید.
+برای پیاده‌سازی مرجع به [jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml) مراجعه کنید، و [نمونه اجرای آزمایش‌ها](https://github.com/webdriverio/jasmine-boilerplate/actions?query=workflow%3ACI) را ببینید.
 
 ```yaml reference
 https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml

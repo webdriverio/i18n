@@ -5,13 +5,13 @@ title: مخرجات الاختبار
 
 :::info
 
-تم استخدام [موقع WebdriverIO التوضيحي](https://guinea-pig.webdriver.io/image-compare.html) للمثال في مخرجات الصورة.
+تم استخدام [موقع WebdriverIO التجريبي](https://guinea-pig.webdriver.io/image-compare.html) للحصول على مثال لمخرجات الصور.
 
 :::
 
 ## `enableLayoutTesting`
 
-يمكن تعيين هذا الخيار في [خيارات الخدمة](./service-options#enablelayouttesting) وكذلك على [مستوى الطريقة](./method-options).
+يمكن تعيين هذا في [خيارات الخدمة](./service-options#enablelayouttesting) وكذلك على [مستوى الطريقة](./method-options).
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,9 +32,9 @@ export const config = {
 }
 ```
 
-مخرجات الصورة في [خيارات الخدمة](./service-options#enablelayouttesting) مماثلة لتلك في [الطريقة](./method-options)، انظر أدناه.
+مخرجات الصور لـ [خيارات الخدمة](./service-options#enablelayouttesting) متساوية مع [الطريقة](./method-options)، انظر أدناه.
 
-### مخرجات الصورة
+### مخرجات الصور
 
 <Tabs
     defaultValue="saveelement"
@@ -114,7 +114,7 @@ console.log(saveResults)
  */
 ```
 
-### مخرجات الصورة
+### مخرجات الصور
 
 <Tabs
     defaultValue="saveelement"
@@ -176,8 +176,8 @@ await browser.saveScreen("example-page-tag")
 </TabItem>
 <TabItem value="ios">
 
-:::info نصيحة
-تنفيذ `saveScreen` على iOS بشكل افتراضي لا يتضمن حواف الجهاز. للحصول على ذلك، يرجى إضافة خيار `addIOSBezelCorners:true` عند تهيئة الخدمة، انظر [هذا](./service-options#addiosbezelcorners)
+:::info TIP
+عمليات تنفيذ iOS `saveScreen` لا تحتوي افتراضيًا على زوايا حافة الجهاز. للحصول على ذلك، يرجى إضافة خيار `addIOSBezelCorners:true` عند تهيئة الخدمة، انظر [هذا](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,7 +216,7 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### مخرجات وحدة التحكم
 
-بشكل افتراضي، ستوفر طرق `check(Screen/Element/FullPageScreen)` نسبة عدم تطابق فقط مثل `1.23`، ولكن عندما يكون للإضافة خيار `returnAllCompareData: true`، يتم توفير المعلومات التالية بعد تنفيذ الطريقة:
+بشكل افتراضي، ستوفر طرق `check(Screen/Element/FullPageScreen)` فقط نسبة عدم التطابق مثل `1.23`، ولكن عندما يكون للبرنامج المساعد خيار `returnAllCompareData: true`، يتم توفير المعلومات التالية بعد تنفيذ الطريقة:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
@@ -241,10 +241,10 @@ console.log(checkResult)
  */
 ```
 
-### مخرجات الصورة
+### مخرجات الصور
 
 :::info
-ستظهر الصور أدناه فقط الاختلافات كنتيجة لتشغيل أوامر الفحص. يتم عرض الاختلاف فقط في المتصفح، ولكن المخرجات على Android و iOS هي نفسها.
+ستظهر الصور أدناه فقط الاختلافات كنتيجة لتشغيل أوامر الفحص. يتم عرض الاختلافات فقط في متصفح، ولكن المخرجات لنظامي Android و iOS هي نفسها.
 :::
 
 <Tabs
@@ -298,9 +298,9 @@ await browser.checkFullPageScreen("full-page-tag")
 
 </Tabs>
 
-## الحجب (Block-Outs)
+## حجب مناطق معينة (Block-Outs)
 
-هنا ستجد مثالاً على نتائج الحجب في Android NativeWebScreenshot و iOS حيث تم حجب شريط الحالة+العنوان وشريط الأدوات.
+ستجد هنا مثالاً على مخرجات حجب مناطق معينة في Android NativeWebScreenshot و iOS حيث تم حجب شريط الحالة+العنوان وشريط الأدوات.
 
 <Tabs
     defaultValue="nativeWebScreenshot"

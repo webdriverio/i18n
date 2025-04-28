@@ -1,9 +1,9 @@
 ---
 id: team
-title: الفريق
+title: فريق العمل
 ---
 
-يتم قيادة تطوير WebdriverIO من قبل فريق متخصص من المطورين ومهندسي اختبار البرمجيات من مختلف الشركات، بالإضافة إلى مساهمات من أشخاص حول العالم.
+يتم قيادة تطوير WebdriverIO بواسطة فريق متخصص من المطورين ومهندسي اختبار البرمجيات (SDETs) من مختلف الشركات بالإضافة إلى مساهمات من أشخاص حول العالم.
 
 ## لجنة التوجيه التقني
 
@@ -21,7 +21,7 @@ title: الفريق
     github="christian-bromann"
     twitter="bromann"
 >
-    مهندس برمجيات في مكتب البرامج مفتوحة المصدر <a href="https://saucelabs.com/">@saucelabs</a>.
+    مهندس برمجيات رئيسي في مكتب البرامج مفتوحة المصدر <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 <Card
@@ -29,7 +29,7 @@ title: الفريق
     avatar="https://avatars.githubusercontent.com/u/15839059?s=460"
     github="erwinheitzman"
 >
-    مهندس أول في أتمتة الاختبارات في <a href="https://detesters.nl/">deTesters</a>.
+    مهندس اختبار الأتمتة الأول في <a href="https://detesters.nl/">deTesters</a>.
 </Card>
 
 <Card
@@ -63,7 +63,7 @@ title: الفريق
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    مهندس حلول أول <a href="https://saucelabs.com/">@saucelabs</a>.
+    كبير مهندسي الحلول <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 ## المتعاونون في المشروع
@@ -84,4 +84,4 @@ title: الفريق
 >
 </Card>
 
-و [العديد من الآخرين](https://github.com/orgs/webdriverio/people).
+و [الكثير الكثير غيرهم](https://github.com/orgs/webdriverio/people).

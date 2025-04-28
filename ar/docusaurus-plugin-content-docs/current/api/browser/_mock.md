@@ -4,34 +4,34 @@ title: محاكاة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mock.ts
 ---
 
-محاكاة استجابة طلب. يمكنك تحديد محاكاة بناءً على تطابق
+قم بمحاكاة استجابة طلب. يمكنك تحديد محاكاة استنادًا إلى نمط URL متطابق
 [URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
-ورأس الصفحة وكود الحالة المقابلين. يؤدي استدعاء طريقة المحاكاة
-إلى إرجاع كائن مستعار يمكنك استخدامه لتعديل استجابة
+والرأس ورمز الحالة المقابلين. استدعاء طريقة المحاكاة
+يعيد كائن stub يمكنك استخدامه لتعديل استجابة
 مورد الويب.
 
-باستخدام الكائن المستعار، يمكنك إما إرجاع استجابة مخصصة أو
+باستخدام كائن stub، يمكنك بعد ذلك إما إرجاع استجابة مخصصة أو
 جعل الطلب يفشل.
 
 هناك 3 طرق لتعديل الاستجابة:
 - إرجاع كائن JSON مخصص (لمحاكاة طلب API)
-- استبدال مورد الويب بملف محلي (تقديم ملف JavaScript معدل) أو
+- استبدال مورد الويب بملف محلي (تقديم ملف JavaScript معدّل) أو
 - إعادة توجيه المورد إلى عنوان URL مختلف
 
 :::info
 
-لاحظ أن استخدام أمر `mock` يتطلب دعمًا لـ WebDriver Bidi. هذا
-عادةً ما يكون الحال عند تشغيل الاختبارات محليًا في متصفح قائم على Chromium أو على
-Firefox وكذلك إذا كنت تستخدم Selenium Grid v4 أو أعلى. إذا كنت تقوم بتشغيل الاختبارات
+لاحظ أن استخدام أمر `mock` يتطلب دعمًا لـ WebDriver Bidi. وهذا
+عادة ما يكون هو الحال عند تشغيل الاختبارات محليًا في متصفح يعتمد على Chromium أو على
+Firefox وكذلك إذا كنت تستخدم Selenium Grid v4 أو أعلى. إذا كنت تشغل اختبارات
 في السحابة، تأكد من أن مزود السحابة الخاص بك يدعم WebDriver Bidi.
 
 :::
 
 :::info
 
-إن `URLPattern` هي تقنية تجريبية وليست مدعومة بعد في بعض البيئات، مثل Node.js.
+`URLPattern` عبارة عن تقنية تجريبية وليست مدعومة بعد في بعض البيئات، على سبيل المثال Node.js.
 نوصي باستيراد [polyfill](https://www.npmjs.com/package/urlpattern-polyfill)
-حتى تصبح الميزة مدعومة على نطاق أوسع.
+حتى يتم دعم الميزة على نطاق أوسع.
 
 :::
 
@@ -53,37 +53,37 @@ browser.mock(url, { method, requestHeaders, responseHeaders, postData, statusCod
     <tr>
       <td><code><var>url</var></code></td>
       <td>`String`</td>
-      <td>عنوان URL للمحاكاة</td>
+      <td>عنوان URL المراد محاكاته</td>
     </tr>
     <tr>
       <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`MockFilterOptions`</td>
-      <td>فلترة مورد المحاكاة باستخدام خيارات إضافية</td>
+      <td>تصفية مورد المحاكاة حسب خيارات إضافية</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.method</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String, Function`</td>
-      <td>فلترة المورد حسب طريقة HTTP</td>
+      <td>تصفية المورد حسب طريقة HTTP</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.requestHeaders</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Object, Function`</td>
-      <td>فلترة المورد حسب رؤوس طلب محددة</td>
+      <td>تصفية المورد حسب رؤوس طلب محددة</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.responseHeaders</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Object, Function`</td>
-      <td>فلترة المورد حسب رؤوس استجابة محددة</td>
+      <td>تصفية المورد حسب رؤوس استجابة محددة</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.postData</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String, Function`</td>
-      <td>فلترة المورد حسب بيانات طلب postData</td>
+      <td>تصفية المورد حسب بيانات الإرسال في الطلب</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.statusCode</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number, Function`</td>
-      <td>فلترة المورد حسب رمز حالة الاستجابة</td>
+      <td>تصفية المورد حسب رمز حالة الاستجابة</td>
     </tr>
   </tbody>
 </table>

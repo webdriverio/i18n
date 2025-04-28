@@ -4,13 +4,13 @@ title: setTimeout
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setTimeout.ts
 ---
 
-يضبط المهل الزمنية المرتبطة بالجلسة الحالية، حيث تتحكم مدة المهل الزمنية في سلوكيات مثل
-مهل حقن البرامج النصية، وتنقل المستندات، واسترجاع العناصر.
+يضبط المهل الزمنية المرتبطة بالجلسة الحالية، حيث تتحكم مدة المهل في سلوكيات مثل
+المهل الزمنية لحقن البرامج النصية، وتنقل المستند، واسترجاع العناصر.
 لمزيد من المعلومات والأمثلة، راجع [دليل المهل الزمنية](https://webdriver.io/docs/timeouts#selenium-timeouts).
 
 :::info
 
-لا يُنصح بضبط مهل زمنية `implicit` لأنها تؤثر على سلوك WebdriverIO
+لا يُنصح بتعيين مهل زمنية `implicit` لأنها تؤثر على سلوك WebdriverIO
 ويمكن أن تسبب أخطاء في بعض الأوامر، مثل `waitForExist` مع علامة العكس.
 
 :::
@@ -38,7 +38,7 @@ browser.setTimeout({ implicit, pageLoad, script })
     <tr>
       <td><code><var>timeouts.implicit</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الوقت بالميلي ثانية لإعادة محاولة استراتيجية تحديد موقع العنصر عند البحث عن عنصر.</td>
+      <td>الوقت بالميلي ثانية لإعادة محاولة استراتيجية تحديد موقع العنصر عند العثور على عنصر.</td>
     </tr>
     <tr>
       <td><code><var>timeouts.pageLoad</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -48,7 +48,7 @@ browser.setTimeout({ implicit, pageLoad, script })
     <tr>
       <td><code><var>timeouts.script</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>ستعمل البرامج النصية المحقونة باستخدام [`execute`](https://webdriver.io/docs/api/browser/execute) أو [`executeAsync`](https://webdriver.io/docs/api/browser/executeAsync) حتى تصل إلى مدة المهلة الزمنية للبرنامج النصي، والتي تُعطى أيضًا بالميلي ثانية.</td>
+      <td>النصوص البرمجية المحقونة باستخدام [`execute`](https://webdriver.io/docs/api/browser/execute) أو [`executeAsync`](https://webdriver.io/docs/api/browser/executeAsync) ستعمل حتى تصل إلى مدة مهلة النص البرمجي، والتي تُعطى أيضًا بالميلي ثانية.</td>
     </tr>
   </tbody>
 </table>

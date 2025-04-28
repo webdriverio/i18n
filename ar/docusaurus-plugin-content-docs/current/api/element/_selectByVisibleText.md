@@ -1,10 +1,10 @@
 ---
 id: selectByVisibleText
-title: اختيار بواسطة النص المرئي
+title: الاختيار بالنص المرئي
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/selectByVisibleText.ts
 ---
 
-تحديد الخيار الذي يطابق نصه المعروض الوسيطة المقدمة.
+اختر الخيار بالنص المعروض الذي يطابق الوسيط.
 
 ##### الاستخدام
 
@@ -24,7 +24,7 @@ $(selector).selectByVisibleText(text)
     <tr>
       <td><code><var>text</var></code></td>
       <td>`String, Number`</td>
-      <td>نص عنصر الاختيار المراد تحديده</td>
+      <td>نص عنصر الخيار المراد اختياره</td>
     </tr>
   </tbody>
 </table>

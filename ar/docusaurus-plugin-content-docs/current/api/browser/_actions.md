@@ -4,8 +4,8 @@ title: الإجراءات
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/actions.ts
 ---
 
-يسمح بتشغيل عدة تفاعلات إجرائية في وقت واحد، على سبيل المثال لمحاكاة تكبير القرصة (pinch zoom).
-لمزيد من المعلومات حول أمر `action`، راجع [الوثائق](/docs/api/browser/action).
+يسمح بتشغيل عدة تفاعلات إجرائية دفعة واحدة، على سبيل المثال لمحاكاة التكبير بالقرص. 
+للمزيد من المعلومات حول أمر `action`، راجع [الوثائق](/docs/api/browser/action).
 
 ##### الاستخدام
 

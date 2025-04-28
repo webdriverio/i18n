@@ -1,10 +1,10 @@
 ---
 id: custom$
-title: خاص$
+title: custom$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/custom$.ts
 ---
 
-يسمح لك `custom$` باستخدام استراتيجية مخصصة معلنة باستخدام `browser.addLocatorStrategy`.
+يتيح لك `custom$` استخدام استراتيجية مخصصة تم إعلانها باستخدام `browser.addLocatorStrategy`.
 اقرأ المزيد عن استراتيجيات المحدد المخصصة في [وثائق المحدد](../../selectors#custom-selector-strategies).
 
 ##### الاستخدام
@@ -63,6 +63,6 @@ it('should fetch the project title', async () => {
 })
 ```
 
-##### يُرجع
+##### العائدات
 
 - **&lt;WebdriverIO.Element&gt;**

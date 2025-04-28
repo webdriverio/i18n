@@ -1,19 +1,19 @@
 ---
 id: longPress
-title: الضغط المطول
+title: ضغط طويل
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/longPress.ts
 ---
 
-يؤدي إيماءة الضغط المطول على العنصر المحدد على الشاشة.
+يقوم بأداء إيماءة الضغط الطويل على العنصر المحدد على الشاشة.
 
-يصدر هذا الأمر أمر `action` من WebDriver للعنصر المحدد. وهو مبني على أمر `click`.
+هذا يصدر أمر `action` في WebDriver للعنصر المحدد. ويعتمد على أمر `click`.
 
 :::info
 
-هذا الأمر يعمل فقط مع المكونات المحدثة التالية:
+يعمل هذا الأمر فقط مع المكونات المحدثة التالية:
  - خادم Appium (الإصدار 2.0.0 أو أعلى)
  - `appium-uiautomator2-driver` (لأندرويد)
- - `appium-xcuitest-driver` (لـ iOS)
+ - `appium-xcuitest-driver` (لنظام iOS)
 
 تأكد من تحديث بيئة Appium المحلية أو السحابية بانتظام لتجنب مشاكل التوافق.
 
@@ -25,7 +25,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 $(selector).longPress({ x, y, duration })
 ```
 
-##### المعاملات
+##### المعلمات
 
 <table>
   <thead>
@@ -37,7 +37,7 @@ $(selector).longPress({ x, y, duration })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`LongPressOptions`</td>
-      <td>خيارات الضغط المطول (اختياري)</td>
+      <td>خيارات الضغط الطويل (اختياري)</td>
     </tr>
     <tr>
       <td><code><var>options.x</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -52,7 +52,7 @@ $(selector).longPress({ x, y, duration })
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>مدة الضغط بالمللي ثانية، الافتراضي هو 1500 مللي ثانية <br /><strong>للجوال-فقط</strong></td>
+      <td>مدة الضغط بالميلي ثانية، القيمة الافتراضية هي 1500 ميلي ثانية <br /><strong>للجوال فقط</strong></td>
     </tr>
   </tbody>
 </table>

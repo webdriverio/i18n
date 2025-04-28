@@ -1,6 +1,6 @@
 ---
 id: getComputedRole
-title: الحصول على الدور المحسوب
+title: getComputedRole
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getComputedRole.ts
 ---
 
@@ -22,7 +22,7 @@ it('should demonstrate the getComputedRole command', async () => {
 })
 ```
 
-##### النتائج
+##### العائد
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:** تسمية WAI-ARIA المحسوبة
+            **<code><var>return</var></code>:**  تسمية WAI-ARIA المحسوبة للعنصر

@@ -3,11 +3,11 @@ id: react
 title: رياكت
 ---
 
-[React](https://reactjs.org/) يجعل إنشاء واجهات المستخدم التفاعلية سهلاً. قم بتصميم عروض بسيطة لكل حالة في تطبيقك، وسيقوم React بتحديث وعرض المكونات المناسبة بشكل فعال عندما تتغير بياناتك. يمكنك اختبار مكونات React مباشرة في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
+[React](https://reactjs.org/) يجعل إنشاء واجهات المستخدم التفاعلية أمرًا سهلاً. صمم عروضًا بسيطة لكل حالة في تطبيقك، وسيقوم React بتحديث وعرض المكونات المناسبة بكفاءة عندما تتغير بياناتك. يمكنك اختبار مكونات React مباشرة في متصفح حقيقي باستخدام WebdriverIO و[منفذ المتصفح](/docs/runner#browser-runner) الخاص به.
 
 ## الإعداد
 
-لإعداد WebdriverIO ضمن مشروع React الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) في وثائق اختبار المكونات الخاصة بنا. تأكد من تحديد `react` كقالب ضمن خيارات المشغل الخاص بك، على سبيل المثال:
+لإعداد WebdriverIO ضمن مشروع React الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) في وثائق اختبار المكونات لدينا. تأكد من اختيار `react` كإعداد مسبق ضمن خيارات المشغل الخاص بك، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -22,17 +22,17 @@ export const config = {
 
 :::info
 
-إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا إعادة استخدام التكوين الخاص بك في `vite.config.ts` ضمن تكوين WebdriverIO الخاص بك. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
+إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا إعادة استخدام التكوين الخاص بك في `vite.config.ts` ضمن تكوين WebdriverIO الخاص بك. لمزيد من المعلومات، انظر `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
 
 :::
 
-يتطلب قالب React تثبيت `@vitejs/plugin-react`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
+يتطلب الإعداد المسبق لـ React تثبيت `@vitejs/plugin-react`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك، ستحتاج إلى تثبيت التبعيات الإضافية التالية:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/react @vitejs/plugin-react
 ```
 
-يمكنك بعد ذلك بدء الاختبارات من خلال تشغيل:
+يمكنك بعد ذلك بدء الاختبارات عن طريق تشغيل:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -40,7 +40,7 @@ npx wdio run ./wdio.conf.js
 
 ## كتابة الاختبارات
 
-بافتراض أن لديك مكون React التالي:
+بفرض أن لديك مكون React التالي:
 
 ```tsx title="./components/Component.jsx"
 import React, { useState } from 'react'
@@ -61,7 +61,7 @@ function App() {
 export default App
 ```
 
-في اختبارك، استخدم طريقة `render` من `@testing-library/react` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
+في اختبارك، استخدم طريقة `render` من `@testing-library/react` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلي، على سبيل المثال:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'

@@ -1,11 +1,11 @@
 ---
 id: mockRestoreAll
-title: استعادة جميع المحاكيات
+title: استعادة جميع المحاكاة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mockRestoreAll.ts
 ---
 
-يستعيد جميع معلومات وسلوك المحاكاة المخزنة في جميع المحاكيات المسجلة
-للجلسة.
+يقوم باستعادة جميع معلومات وسلوكيات المحاكاة المخزنة في جميع
+المحاكاة المسجلة في الجلسة.
 
 ##### الاستخدام
 

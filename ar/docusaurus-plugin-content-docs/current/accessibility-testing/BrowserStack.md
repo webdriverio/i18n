@@ -5,18 +5,18 @@ title: اختبار إمكانية الوصول من BrowserStack
 
 # اختبار إمكانية الوصول من BrowserStack
 
-يمكنك بسهولة دمج اختبارات إمكانية الوصول في مجموعات اختبار WebdriverIO باستخدام [ميزة الاختبارات الآلية من BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+يمكنك بسهولة دمج اختبارات إمكانية الوصول في مجموعات اختبار WebdriverIO باستخدام [ميزة الاختبارات الآلية لاختبار إمكانية الوصول من BrowserStack](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
 ## مزايا الاختبارات الآلية في اختبار إمكانية الوصول من BrowserStack
 
-لاستخدام الاختبارات الآلية في اختبار إمكانية الوصول من BrowserStack، يجب أن تكون اختباراتك تعمل على BrowserStack Automate.
+لاستخدام الاختبارات الآلية في اختبار إمكانية الوصول من BrowserStack، يجب أن تكون اختباراتك قيد التشغيل على BrowserStack Automate.
 
 فيما يلي مزايا الاختبارات الآلية:
 
-* تتكامل بسلاسة في مجموعة اختبارات الأتمتة الموجودة مسبقًا.
-* لا تتطلب تغييرات في الكود في حالات الاختبار.
-* لا تتطلب أي صيانة إضافية لاختبار إمكانية الوصول.
-* فهم الاتجاهات التاريخية والحصول على رؤى حالات الاختبار.
+* تتكامل بسلاسة مع مجموعة اختبارات الأتمتة الموجودة مسبقًا.
+* لا تتطلب تغييرات في كود حالات الاختبار.
+* لا تتطلب صيانة إضافية لاختبار إمكانية الوصول.
+* فهم الاتجاهات التاريخية والحصول على رؤى حول حالات الاختبار.
 
 ## البدء مع اختبار إمكانية الوصول من BrowserStack
 
@@ -28,7 +28,7 @@ title: اختبار إمكانية الوصول من BrowserStack
 npm install --save-dev @wdio/browserstack-service
 ```
 
-2. قم بتحديث ملف التكوين `wdio.conf.js`.
+2. قم بتحديث ملف الإعدادات `wdio.conf.js`.
 
 ```javascript
 exports.config = {
@@ -60,4 +60,4 @@ exports.config = {
   };
 ```
 
-يمكنك عرض تعليمات مفصلة [هنا](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+يمكنك الاطلاع على تعليمات مفصلة [هنا](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).

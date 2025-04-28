@@ -4,8 +4,8 @@ title: custom$$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/custom$$.ts
 ---
 
-يسمح لك `customs$$` باستخدام استراتيجية مخصصة معلنة باستخدام `browser.addLocatorStrategy`.
-اقرأ المزيد عن استراتيجيات المحدد المخصصة في [مستندات المحدد](../../selectors#custom-selector-strategies).
+يسمح لك `customs$$` باستخدام إستراتيجية مخصصة تم إعلانها باستخدام `browser.addLocatorStrategy`.
+اقرأ المزيد عن استراتيجيات المحدد المخصصة في [وثائق المحدد](../../selectors#custom-selector-strategies).
 
 ##### الاستخدام
 
@@ -51,6 +51,6 @@ it('should get all the plugin wrapper buttons', async () => {
 })
 ```
 
-##### العائدات
+##### القيمة المرجعة
 
 - **&lt;WebdriverIO.ElementArray&gt;**

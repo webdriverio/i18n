@@ -7,6 +7,7 @@ import Anthropic from '@anthropic-ai/sdk'
 import dotenv from 'dotenv';
 
 import { Processor } from './processor.js';
+import { walkThroughTranslationFiles } from './utils.js';
 import cache from './cache.json' with { type: 'json' };
 import { LANGUAGES_TO_TRANSLATE } from './constants.js';
 
@@ -83,89 +84,48 @@ function calculateShasum(content: string): string {
     return crypto.createHash('sha256').update(content).digest('hex');
 }
 
+/**
+ * Translate the docs for a given language
+ * @param language - The language to translate to
+ */
 export async function translate(language: string) {
     console.log(`Translating docs for ${language}`);
     const processor = new Processor(25)
 
-    // Define source directories
-    const sourceDirectories = [
-        path.join(rootDir, 'en', 'docusaurus-plugin-content-docs'),
-        path.join(rootDir, 'en', 'docusaurus-plugin-content-docs-community')
-    ];
-
-    // Create target directories if they don't exist
-    const targetDirectories = sourceDirectories.map(srcDir => {
-        const relPath = path.relative(path.join(rootDir, 'en'), srcDir);
-        return path.join(rootDir, language, relPath);
-    });
-
-    // Ensure target directories exist
-    for (const dir of targetDirectories) {
-        await fs.mkdir(dir, { recursive: true });
-    }
-
-    // Process each source directory
-    for (let i = 0; i < sourceDirectories.length; i++) {
-        const sourceDir = sourceDirectories[i];
-        const targetDir = targetDirectories[i];
-
-        // Process the directory recursively
-        const entries = (await fs.readdir(sourceDir, {
-            withFileTypes: true,
-            recursive: true
-        })).filter((entry) => entry.isFile());
-
-        for (const entry of entries) {
-            const sourcePath = path.join(entry.parentPath, entry.name)
-            const relativePath = path.relative(sourceDir, entry.parentPath)
-            const targetPath = path.join(targetDir, relativePath, entry.name)
-            const fileType = path.extname(entry.name)
-
-            /**
-             * handle JSON files with caching
-             */
-            if (fileType === '.json') {
-                // Handle JSON files with caching
-                const cacheKey = path.relative(rootDir, sourcePath);
-                const content = await fs.readFile(sourcePath, 'utf-8');
-                const needToTranslate = await checkNeedToTranslate(cacheKey, targetPath, content, language);
-                if (!needToTranslate) {
-                    console.log(`Skipping translation for ${sourcePath} - content unchanged`);
-                    continue
-                }
-
-                // Copy JSON file and update cache
-                await fs.copyFile(sourcePath, targetPath);
-                console.log(`Copied JSON file ${entry.name}`);
-
-                // Save the updated cache
-                const contentShasum = calculateShasum(content);
-                await updateCache(cacheKey, contentShasum, language);
-                continue
+    /**
+     * walk through the translation files and process them
+     */
+    await walkThroughTranslationFiles(rootDir, language, {
+        onMarkdownFile: (sourcePath, targetPath) => {
+            processor.process(() => translateFile(sourcePath, targetPath, language))
+        },
+        onJsonFile: async (sourcePath, targetPath) => {
+            // Handle JSON files with caching
+            const cacheKey = path.relative(rootDir, sourcePath);
+            const content = await fs.readFile(sourcePath, 'utf-8');
+            const needToTranslate = await checkNeedToTranslate(cacheKey, targetPath, content, language);
+            if (!needToTranslate) {
+                console.log(`Skipping translation for ${sourcePath} - content unchanged`);
+                return
             }
 
-            /**
-             * handle markdown files in batches
-             */
-            if (fileType === '.md') {
-                processor.process(() => translateFile(sourcePath, targetPath, language))
-                continue
-            }
+            // Copy JSON file and update cache
+            await fs.copyFile(sourcePath, targetPath);
+            console.log(`Copied JSON file ${targetPath}`);
 
-            console.log(`Skipping ${entry.name} - unknown file type`)
+            // Save the updated cache
+            const contentShasum = calculateShasum(content);
+            await updateCache(cacheKey, contentShasum, language);
+        },
+        onUnknownFile: (sourcePath) => {
+            console.log(`Skipping ${sourcePath} - unknown file type`)
         }
-    }
+    })
 
     await processor.waitForResolved()
     clearInterval(batchCheckIntervalId)
     batchCheckIntervalId = undefined
     batchStatuses.clear()
-
-    /**
-     * write cache to file
-     */
-    await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(translationCache, null, 2), 'utf-8');
-
     console.log(`Translation to ${language} completed!`);
 }
 

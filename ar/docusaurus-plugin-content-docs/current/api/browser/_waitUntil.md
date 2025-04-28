@@ -1,10 +1,10 @@
 ---
 id: waitUntil
-title: انتظر حتى
+title: waitUntil
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/waitUntil.ts
 ---
 
-هذا الأمر الخاص بالانتظار هو سلاحك الشامل إذا كنت تريد الانتظار لحدوث شيء ما. يتوقع شرطًا وينتظر حتى يتم استيفاء هذا الشرط بعودة قيمة صحيحة.
+هذا الأمر للانتظار هو سلاحك الشامل إذا كنت ترغب في الانتظار لشيء ما. يتوقع شرطاً وينتظر حتى يتم استيفاء هذا الشرط بقيمة صحيحة يتم إرجاعها.
 
 مثال شائع هو الانتظار حتى يحتوي عنصر معين على نص معين (انظر المثال).
 
@@ -14,7 +14,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.waitUntil(condition, { timeout, timeoutMsg, interval })
 ```
 
-##### المعاملات
+##### المعلمات
 
 <table>
   <thead>
@@ -36,17 +36,17 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الوقت بالميلي ثانية (القيمة الافتراضية تعتمد على إعداد [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>الوقت بالمللي ثانية (الافتراضي معتمد على قيمة التكوين [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>رسالة الخطأ التي يتم رميها عند انتهاء مهلة waitUntil</td>
+      <td>رسالة الخطأ التي تظهر عند انتهاء مهلة waitUntil</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الفاصل الزمني بين فحوصات الشرط (القيمة الافتراضية تعتمد على إعداد [`waitforInterval`](/docs/configuration#waitforinterval))</td>
+      <td>الفاصل الزمني بين فحوصات الشرط (الافتراضي معتمد على قيمة التكوين [`waitforInterval`](/docs/configuration#waitforinterval))</td>
     </tr>
   </tbody>
 </table>

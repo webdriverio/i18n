@@ -3,11 +3,11 @@ id: vue
 title: Vue.js
 ---
 
-[Vue.js](https://vuejs.org/) هو إطار عمل سهل المنال وعالي الأداء ومتعدد الاستخدامات لبناء واجهات المستخدم على الويب. يمكنك اختبار مكونات Vue.js مباشرة في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
+[Vue.js](https://vuejs.org/) هو إطار عمل سهل التناول وعالي الأداء ومتعدد الاستخدامات لبناء واجهات المستخدم للويب. يمكنك اختبار مكونات Vue.js مباشرة في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
 
 ## الإعداد
 
-لإعداد WebdriverIO داخل مشروع Vue.js الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) في وثائق اختبار المكونات لدينا. تأكد من اختيار `vue` كإعداد مسبق ضمن خيارات المشغل الخاص بك، على سبيل المثال:
+لإعداد WebdriverIO داخل مشروع Vue.js الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. تأكد من اختيار `vue` كإعداد مسبق ضمن خيارات المشغل الخاص بك، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -22,11 +22,11 @@ export const config = {
 
 :::info
 
-إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا إعادة استخدام التكوين الخاص بك في `vite.config.ts` داخل تكوين WebdriverIO الخاص بك. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
+إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا إعادة استخدام التكوين الخاص بك في `vite.config.ts` ضمن تكوين WebdriverIO الخاص بك. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
 
 :::
 
-يتطلب الإعداد المسبق لـ Vue تثبيت `@vitejs/plugin-vue`. نوصي أيضًا باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
+يتطلب الإعداد المسبق لـ Vue تثبيت `@vitejs/plugin-vue`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
@@ -40,7 +40,7 @@ npx wdio run ./wdio.conf.js
 
 ## كتابة الاختبارات
 
-بافتراض أن لديك مكون Vue.js التالي:
+بفرض أن لديك مكون Vue.js التالي:
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -132,11 +132,11 @@ describe('Vue Component Testing', () => {
 </TabItem>
 </Tabs>
 
-يمكنك العثور على مثال كامل لمجموعة اختبارات مكونات WebdriverIO لـ Vue.js في [مستودع الأمثلة](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) الخاص بنا.
+يمكنك العثور على مثال كامل لمجموعة اختبار مكونات WebdriverIO لـ Vue.js في [مستودع الأمثلة](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) الخاص بنا.
 
 ## اختبار المكونات غير المتزامنة في Vue3
 
-إذا كنت تستخدم Vue الإصدار 3 وتختبر [المكونات غير المتزامنة](https://vuejs.org/guide/built-ins/suspense.html#async-setup) مثل ما يلي:
+إذا كنت تستخدم Vue الإصدار 3 وتختبر [مكونات غير متزامنة](https://vuejs.org/guide/built-ins/suspense.html#async-setup) مثل التالي:
 
 ```vue
 <script setup>
@@ -149,7 +149,7 @@ const posts = await res.json()
 </template>
 ```
 
-نوصي باستخدام [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) وغلاف suspense صغير للحصول على عرض المكون. لسوء الحظ، [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) لا يدعم هذا بعد. قم بإنشاء ملف `helper.ts` بالمحتوى التالي:
+نوصي باستخدام [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) وغلاف suspense صغير للحصول على المكون المعروض. لسوء الحظ، [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) لا يوجد لديه دعم لهذا بعد. قم بإنشاء ملف `helper.ts` بالمحتوى التالي:
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -216,11 +216,11 @@ describe('Testing Async Components', () => {
 
 ## اختبار مكونات Vue في Nuxt
 
-إذا كنت تستخدم إطار العمل [Nuxt](https://nuxt.com/)، فسيقوم WebdriverIO تلقائيًا بتمكين ميزة [الاستيراد التلقائي](https://nuxt.com/docs/guide/concepts/auto-imports) ويجعل اختبار مكونات Vue وصفحات Nuxt الخاصة بك سهلاً. ومع ذلك، لا يمكن دعم أي [وحدات Nuxt](https://nuxt.com/modules) التي قد تحددها في التكوين الخاص بك وتتطلب سياقًا لتطبيق Nuxt.
+إذا كنت تستخدم إطار الويب [Nuxt](https://nuxt.com/)، فسيقوم WebdriverIO تلقائيًا بتمكين ميزة [الاستيراد التلقائي](https://nuxt.com/docs/guide/concepts/auto-imports) ويجعل اختبار مكونات Vue وصفحات Nuxt سهلاً. ومع ذلك، لا يمكن دعم أي [وحدات Nuxt](https://nuxt.com/modules) قد تحددها في التكوين وتتطلب سياقًا لتطبيق Nuxt.
 
 __أسباب ذلك هي:__
-- لا يمكن لـ WebdriverIO بدء تطبيق Nuxt منفرداً في بيئة المتصفح
-- وجود اختبارات المكونات التي تعتمد كثيرًا على بيئة Nuxt يخلق تعقيدًا، ونوصي بتشغيل هذه الاختبارات كاختبارات e2e
+- لا يمكن لـ WebdriverIO أن يبدأ تطبيق Nuxt وحده في بيئة المتصفح
+- إن جعل اختبارات المكونات تعتمد كثيرًا على بيئة Nuxt يخلق تعقيدًا ونوصي بتشغيل هذه الاختبارات كاختبارات من طرف إلى طرف
 
 :::info
 
@@ -228,9 +228,9 @@ __أسباب ذلك هي:__
 
 :::
 
-### محاكاة الدوال التركيبية المدمجة
+### محاكاة الدوال المركبة المدمجة
 
-في حالة استخدام مكونك لدالة تركيبية أصلية في Nuxt، مثل [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)، سيقوم WebdriverIO تلقائيًا بمحاكاة هذه الدوال ويسمح لك بتعديل سلوكها أو التأكد منها، على سبيل المثال:
+في حالة استخدام المكون الخاص بك لدالة Nuxt الأصلية، على سبيل المثال [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)، سيقوم WebdriverIO تلقائيًا بمحاكاة هذه الوظائف ويسمح لك بتعديل سلوكها أو التأكد منها، على سبيل المثال:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
@@ -245,9 +245,9 @@ mocked(useNuxtData).mockReturnValue({
 })
 ```
 
-### التعامل مع الدوال التركيبية من الطرف الثالث
+### التعامل مع الدوال المركبة من أطراف ثالثة
 
-لا يمكن محاكاة جميع [وحدات الطرف الثالث](https://nuxt.com/modules) التي يمكن أن تعزز مشروع Nuxt الخاص بك تلقائيًا. في هذه الحالات، تحتاج إلى محاكاتها يدويًا، على سبيل المثال، إذا كان تطبيقك يستخدم وحدة [Supabase](https://nuxt.com/modules/supabase):
+لا يمكن محاكاة جميع [وحدات الأطراف الثالثة](https://nuxt.com/modules) التي يمكن أن تعزز مشروع Nuxt الخاص بك تلقائيًا. في تلك الحالات، تحتاج إلى محاكاتها يدويًا، على سبيل المثال، بالنظر إلى أن تطبيقك يستخدم وحدة [Supabase](https://nuxt.com/modules/supabase):
 
 ```js title=""
 export default defineNuxtConfig({
@@ -259,19 +259,19 @@ export default defineNuxtConfig({
 });
 ```
 
-وقمت بإنشاء نسخة من Supabase في مكان ما في الدوال التركيبية الخاصة بك، على سبيل المثال:
+وتقوم بإنشاء مثيل من Supabase في مكان ما في الدوال المركبة الخاصة بك، على سبيل المثال:
 
 ```ts
 const superbase = useSupabaseClient()
 ```
 
-فسيفشل الاختبار بسبب:
+سيفشل الاختبار بسبب:
 
 ```
 ReferenceError: useSupabaseClient is not defined
 ```
 
-هنا، نوصي إما بمحاكاة الوحدة بأكملها التي تستخدم وظيفة `useSupabaseClient` أو إنشاء متغير عالمي يحاكي هذه الوظيفة، على سبيل المثال:
+هنا، نوصي إما بمحاكاة الوحدة بأكملها التي تستخدم وظيفة `useSupabaseClient` أو إنشاء متغير عام يحاكي هذه الوظيفة، على سبيل المثال:
 
 ```ts
 import { fn } from '@wdio/browser-runner'

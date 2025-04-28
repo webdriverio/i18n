@@ -1,10 +1,10 @@
 ---
 id: waitForClickable
-title: انتظار ليكون قابل للنقر
+title: انتظار حتى يصبح قابل للنقر
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForClickable.ts
 ---
 
-انتظر عنصرًا للمدة المحددة بالميلي ثانية ليكون قابلاً للنقر أو غير قابل للنقر.
+انتظر عنصرًا للمدة المحددة بالمللي ثانية حتى يصبح قابلًا للنقر أو غير قابل للنقر.
 
 :::info
 
@@ -36,12 +36,12 @@ $(selector).waitForClickable({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الوقت بالميلي ثانية (القيمة الافتراضية تعتمد على إعداد [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>الوقت بالمللي ثانية (الإعداد الافتراضي يعتمد على قيمة [`waitforTimeout`](/docs/configuration#waitfortimeout) في التكوين)</td>
     </tr>
     <tr>
       <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>إذا كانت القيمة true فإنه ينتظر حدوث العكس (الافتراضي: false)</td>
+      <td>إذا كانت القيمة صحيحة فإنه ينتظر العكس (الافتراضي: false)</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -51,7 +51,7 @@ $(selector).waitForClickable({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الفاصل الزمني بين الفحوصات (الافتراضي: `waitforInterval`)</td>
+      <td>الفاصل الزمني بين عمليات التحقق (الافتراضي: `waitforInterval`)</td>
     </tr>
   </tbody>
 </table>
@@ -72,4 +72,4 @@ it('should detect when element is no longer clickable', async () => {
 ##### العائد
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  `true` إذا كان العنصر قابلاً للنقر (أو لا يكون إذا تم تعيين العلامة)
+            **<code><var>return</var></code>:**  `true` إذا كان العنصر قابلًا للنقر (أو لا إذا تم تعيين العلامة)

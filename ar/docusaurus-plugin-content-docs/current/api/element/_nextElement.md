@@ -4,7 +4,7 @@ title: العنصر التالي
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/nextElement.ts
 ---
 
-يعيد العنصر الشقيق التالي لعنصر DOM المحدد.
+يعيد عنصر الأخ التالي للعنصر DOM المحدد.
 
 ##### الاستخدام
 

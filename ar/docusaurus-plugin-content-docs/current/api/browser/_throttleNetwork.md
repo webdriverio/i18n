@@ -1,19 +1,23 @@
 ---
 id: throttleNetwork
-title: تقييد سرعة الشبكة
+title: تقييد الشبكة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/throttleNetwork.ts
 ---
 
-تقييد قدرات الشبكة للمتصفح. يمكن أن يساعد ذلك في محاكاة سيناريوهات معينة حيث يفقد المستخدم اتصاله بالإنترنت ويحتاج تطبيقك إلى معالجة ذلك.
+تقييد قدرات الشبكة للمتصفح. يمكن أن يساعد ذلك في محاكاة سيناريوهات معينة حيث يفقد المستخدم اتصاله بالإنترنت وتحتاج تطبيقك إلى معالجة ذلك.
 
-هناك العديد من الإعدادات المسبقة المتاحة مع تكوينات افتراضية لسهولة الاستخدام. هذه الإعدادات هي `offline`، `GPRS`، `Regular2G`، `Good2G`، `Regular3G`، `Good3G`، `Regular4G`، `DSL`، `WiFi`، `online`.
+هناك العديد من الإعدادات المسبقة المتوفرة بتكوينات افتراضية لسهولة الاستخدام.
+وهي `offline`، `GPRS`، `Regular2G`، `Good2G`، `Regular3G`، `Good3G`،
+`Regular4G`، `DSL`، `WiFi`، `online`.
 
 يمكنك رؤية قيم هذه الإعدادات المسبقة [في الكود المصدري](https://github.com/webdriverio/webdriverio/blob/6824e4eb118a8d20685f12f4bc42f13fd56f8a25/packages/webdriverio/src/commands/browser/throttleNetwork.js#L29).
 
 :::info
 
-لاحظ أن استخدام أمر `throttleNetwork` يتطلب دعمًا لبروتوكول Chrome DevTools ولا يمكن استخدامه على سبيل المثال عند تشغيل اختبارات آلية في السحابة. لا يتم تثبيت بروتوكول Chrome DevTools افتراضيًا، استخدم `npm install puppeteer-core` لتثبيته.
-اعرف المزيد في قسم [بروتوكولات الأتمتة](/docs/automationProtocols).
+لاحظ أن استخدام أمر `throttleNetwork` يتطلب دعمًا لبروتوكول Chrome DevTools ولا يمكن استخدامه على سبيل المثال
+عند تشغيل الاختبارات الآلية في السحابة. بروتوكول Chrome DevTools غير مثبت افتراضيًا،
+استخدم `npm install puppeteer-core` لتثبيته.
+اكتشف المزيد في قسم [بروتوكولات الأتمتة](/docs/automationProtocols).
 
 :::
 
@@ -35,7 +39,7 @@ browser.throttleNetwork({ offline, latency, downloadThroughput, uploadThroughput
     <tr>
       <td><code><var>params</var></code></td>
       <td>`ThrottleOptions`</td>
-      <td>معلمات لتقييد السرعة</td>
+      <td>معلمات للتقييد</td>
     </tr>
     <tr>
       <td><code><var>params.offline</var></code></td>
@@ -50,12 +54,12 @@ browser.throttleNetwork({ offline, latency, downloadThroughput, uploadThroughput
     <tr>
       <td><code><var>params.downloadThroughput</var></code></td>
       <td>`number`</td>
-      <td>الحد الأقصى لسرعة التنزيل المجمعة (بايت/ثانية). -1 يعطل تقييد التنزيل.</td>
+      <td>الحد الأقصى لإجمالي سرعة التنزيل (بايت/ثانية). -1 يعطل تقييد التنزيل.</td>
     </tr>
     <tr>
       <td><code><var>params.uploadThroughput</var></code></td>
       <td>`number`</td>
-      <td>الحد الأقصى لسرعة الرفع المجمعة (بايت/ثانية). -1 يعطل تقييد الرفع.</td>
+      <td>الحد الأقصى لإجمالي سرعة الرفع (بايت/ثانية). -1 يعطل تقييد الرفع.</td>
     </tr>
   </tbody>
 </table>

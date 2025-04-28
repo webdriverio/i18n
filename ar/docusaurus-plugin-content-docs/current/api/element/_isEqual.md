@@ -1,10 +1,10 @@
 ---
 id: isEqual
-title: isEqual
+title: متساوي
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isEqual.ts
 ---
 
-إرجاع القيمة صحيح إذا كان العنصر المحدد يتطابق مع العنصر المقدم.
+إرجاع القيمة "صحيح" إذا كان العنصر المحدد يتطابق مع العنصر المقدم.
 
 ##### الاستخدام
 
@@ -24,7 +24,7 @@ $(selector).isEqual(el)
     <tr>
       <td><code><var>el</var></code></td>
       <td>`Element`</td>
-      <td>العنصر المراد مقارنته</td>
+      <td>العنصر المراد المقارنة معه</td>
     </tr>
   </tbody>
 </table>

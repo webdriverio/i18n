@@ -1,10 +1,10 @@
 ---
 id: getComputedLabel
-title: getComputedLabel
+title: الحصول على التسمية المحسوبة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getComputedLabel.ts
 ---
 
-الحصول على تسمية WAI-ARIA المحسوبة للعنصر.
+الحصول على تسمية WAI-ARIA المحسوبة لعنصر ما.
 
 ##### الاستخدام
 
@@ -22,7 +22,7 @@ it('should demonstrate the getComputedLabel command', async () => {
 })
 ```
 
-##### النتائج
+##### العائدات
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**  تسمية WAI-ARIA المحسوبة للعنصر
+            **<code><var>return</var></code>:**  تسمية WAI-ARIA المحسوبة

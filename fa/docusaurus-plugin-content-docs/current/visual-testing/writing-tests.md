@@ -6,15 +6,15 @@ title: نوشتن تست‌ها
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## پشتیبانی از فریم‌ورک‌های Testrunner
+## پشتیبانی از فریم‌ورک Testrunner
 
-`@wdio/visual-service` مستقل از فریم‌ورک آزمون است، به این معنی که می‌توانید از آن با تمام فریم‌ورک‌هایی که WebdriverIO پشتیبانی می‌کند استفاده کنید، مانند:
+`@wdio/visual-service` مستقل از فریم‌ورک تست‌ران است، به این معنی که می‌توانید از آن با تمام فریم‌ورک‌هایی که WebdriverIO پشتیبانی می‌کند استفاده کنید، مانند:
 
 -   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
 -   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
 -   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-در داخل تست‌های خود، می‌توانید تصاویر را _ذخیره_ کنید یا وضعیت بصری فعلی برنامه تحت آزمون خود را با خط پایه مقایسه کنید. برای این منظور، سرویس [تطبیق‌دهنده‌های سفارشی](/docs/api/expect-webdriverio#visual-matcher) و همچنین روش‌های _بررسی_ را ارائه می‌دهد:
+در تست‌های خود، شما می‌توانید اسکرین‌شات‌ها را _ذخیره_ کنید یا وضعیت بصری فعلی برنامه مورد آزمایش خود را با یک خط پایه مقایسه کنید. برای این منظور، سرویس [تطبیق‌دهنده‌های سفارشی](/docs/api/expect-webdriverio#visual-matcher) و همچنین متدهای _بررسی_ را ارائه می‌دهد:
 
 <Tabs
     defaultValue="mocha"
@@ -347,7 +347,7 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 
 :::note مهم
 
-این سرویس روش‌های `save` و `check` را ارائه می‌دهد. اگر برای اولین بار تست‌های خود را اجرا می‌کنید، **نباید** روش‌های `save` و `compare` را با هم ترکیب کنید، روش‌های `check` به طور خودکار یک تصویر خط پایه برای شما ایجاد می‌کنند
+این سرویس متدهای `save` و `check` را ارائه می‌دهد. اگر برای اولین بار تست‌های خود را اجرا می‌کنید، **نباید** متدهای `save` و `compare` را ترکیب کنید، متدهای `check` به طور خودکار یک تصویر پایه برای شما ایجاد می‌کنند
 
 ```sh
 #####################################################################################
@@ -358,7 +358,7 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 ```
 
 
-هنگامی که [ذخیره خودکار تصاویر خط پایه را غیرفعال کرده‌اید](service-options#autosavebaseline)، Promise با هشدار زیر رد خواهد شد.
+وقتی [ذخیره خودکار تصاویر پایه را غیرفعال کرده‌اید](service-options#autosavebaseline)، پرامیس با هشدار زیر رد خواهد شد.
 
 ```sh
 #####################################################################################
@@ -368,6 +368,6 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 #####################################################################################
 ```
 
-این بدان معناست که اسکرین‌شات فعلی در پوشه actual ذخیره شده است و شما **باید آن را به صورت دستی به خط پایه خود کپی کنید**. اگر `@wdio/visual-service` را با [`autoSaveBaseline: true`](./service-options#autosavebaseline) راه‌اندازی کنید، تصویر به صورت خودکار در پوشه خط پایه ذخیره می‌شود.
+این بدان معناست که اسکرین‌شات فعلی در پوشه actual ذخیره شده است و شما **باید آن را به صورت دستی به baseline خود کپی کنید**. اگر `@wdio/visual-service` را با [`autoSaveBaseline: true`](./service-options#autosavebaseline) راه‌اندازی کنید، تصویر به طور خودکار در پوشه baseline ذخیره می‌شود.
 
 :::

@@ -1,14 +1,16 @@
 ---
 id: waitForEnabled
-title: انتظار تمكين العنصر
+title: انتظار التمكين
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForEnabled.ts
 ---
 
-انتظار عنصر (محدد بواسطة منتقي CSS) لفترة زمنية محددة بالميلي ثانية ليصبح ممكّناً أو معطلاً. إذا تم استعلام عناصر متعددة بواسطة المحدد المعطى، فإنه يعيد القيمة true إذا كان عنصر واحد على الأقل ممكّناً أو معطلاً.
+انتظر عنصرًا (محددًا بواسطة محدد CSS) لمدة معينة من 
+المللي ثانية ليصبح (معطل/ممكّن). إذا تم استعلام عناصر متعددة بواسطة المحدد المعين، يتم إرجاع قيمة true إذا كان عنصر واحد على الأقل (معطل/ممكّن).
 
 :::info
 
-على عكس أوامر العناصر الأخرى، لن ينتظر WebdriverIO وجود العنصر لتنفيذ هذا الأمر.
+على عكس أوامر العناصر الأخرى، لن ينتظر WebdriverIO وجود العنصر
+لتنفيذ هذا الأمر.
 
 :::
 
@@ -35,7 +37,7 @@ $(selector).waitForEnabled({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الوقت بالميلي ثانية (الافتراضي يعتمد على قيمة إعداد [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>الوقت بالمللي ثانية (الافتراضي يستند إلى قيمة التكوين [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
     </tr>
     <tr>
       <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -45,12 +47,12 @@ $(selector).waitForEnabled({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>إذا كانت موجودة فإنها تتجاوز رسالة الخطأ الافتراضية</td>
+      <td>إذا كانت موجودة فإنها تحل محل رسالة الخطأ الافتراضية</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الفاصل الزمني بين عمليات التحقق (الافتراضي: `waitforInterval`)</td>
+      <td>الفاصل الزمني بين الفحوصات (الافتراضي: `waitforInterval`)</td>
     </tr>
   </tbody>
 </table>
@@ -77,7 +79,7 @@ it('should detect when element is disabled', async () => {
 });
 ```
 
-##### القيم المرجعة
+##### العائدات
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true     إذا كان العنصر ممكّناً أو معطلاً
+            **<code><var>return</var></code>:**  true     إذا كان العنصر (معطل/ممكّن)

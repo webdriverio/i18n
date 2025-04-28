@@ -4,7 +4,7 @@ title: الاستجابة مرة واحدة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/respondOnce.ts
 ---
 
-الاستجابة مرة واحدة فقط بالكتابة المعدلة المعطاة. يمكنك استدعاء `respondOnce` عدة مرات متتالية وسيبدأ بالاستجابة التي حددتها أخيرًا. إذا كنت تستخدم `respondOnce` فقط وتم استدعاء المورد أكثر من عدد المرات التي تم فيها تعريف النموذج المحاكي، فإنه سيعود إلى المورد الأصلي.
+الاستجابة مرة واحدة فقط مع التعديل المحدد. يمكنك استدعاء `respondOnce` عدة مرات متتالية وسيبدأ بالاستجابة التي حددتها أخيرًا. إذا كنت تستخدم `respondOnce` فقط وتم استدعاء المورد أكثر من عدد المرات التي تم فيها تعريف مُحاكاة، فإنه يعود إلى المورد الأصلي.
 
 ##### الاستخدام
 
@@ -12,7 +12,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 mock.respondOnce(overwrites, { header, statusCode, fetchResponse })
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -24,17 +24,17 @@ mock.respondOnce(overwrites, { header, statusCode, fetchResponse })
     <tr>
       <td><code><var>overwrites</var></code></td>
       <td>`MockOverwrite`</td>
-      <td>البيانات لتعديل الاستجابة</td>
+      <td>بيانات لتعديل الاستجابة</td>
     </tr>
     <tr>
       <td><code><var>params</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`MockResponseParams`</td>
-      <td>معلمات استجابة إضافية للتعديل</td>
+      <td>معاملات استجابة إضافية للتعديل</td>
     </tr>
     <tr>
       <td><code><var>params.header</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Object`</td>
-      <td>تعديل ترويسات محددة</td>
+      <td>تعديل رؤوس محددة</td>
     </tr>
     <tr>
       <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">اختياري</span></td>

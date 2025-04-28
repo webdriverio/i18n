@@ -1,39 +1,39 @@
 ---
 id: custommatchers
-title: تطبیق‌دهنده‌های سفارشی
+title: مچرهای سفارشی
 ---
 
-WebdriverIO از یک کتابخانه تأیید [`expect`](https://webdriver.io/docs/api/expect-webdriverio) به سبک Jest استفاده می‌کند که با ویژگی‌های ویژه و تطبیق‌دهنده‌های سفارشی مخصوص اجرای آزمون‌های وب و موبایل همراه است. در حالی که کتابخانه تطبیق‌دهنده‌ها بزرگ است، مطمئناً نمی‌تواند همه موقعیت‌های ممکن را پوشش دهد. بنابراین امکان گسترش تطبیق‌دهنده‌های موجود با تطبیق‌دهنده‌های سفارشی تعریف شده توسط شما وجود دارد.
+WebdriverIO از یک کتابخانه اعتبارسنجی [`expect`](https://webdriver.io/docs/api/expect-webdriverio) با سبک Jest استفاده می‌کند که دارای ویژگی‌های خاص و مچرهای سفارشی مخصوص اجرای تست‌های وب و موبایل است. اگرچه کتابخانه مچرها بزرگ است، اما قطعاً برای تمام موقعیت‌های ممکن مناسب نیست. بنابراین، امکان گسترش مچرهای موجود با مچرهای سفارشی تعریف شده توسط شما وجود دارد.
 
 :::warning
 
-اگرچه در حال حاضر تفاوتی در نحوه تعریف تطبیق‌دهنده‌هایی که مختص شیء [`browser`](/docs/api/browser) یا یک نمونه [element](/docs/api/element) هستند وجود ندارد، اما این ممکن است در آینده تغییر کند. برای اطلاعات بیشتر در مورد این توسعه، مشکل [`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) را دنبال کنید.
+در حال حاضر تفاوتی در نحوه تعریف مچرهایی که مختص شیء [`browser`](/docs/api/browser) یا نمونه [element](/docs/api/element) هستند وجود ندارد، اما این موضوع ممکن است در آینده تغییر کند. برای اطلاعات بیشتر در مورد این توسعه، [`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) را دنبال کنید.
 
 :::
 
-## تطبیق‌دهنده‌های سفارشی مرورگر
+## مچرهای سفارشی مرورگر
 
-برای ثبت یک تطبیق‌دهنده سفارشی مرورگر، `extend` را روی شیء `expect` فراخوانی کنید، یا مستقیماً در فایل spec خود یا به عنوان بخشی از هوک، مثلاً `before` در `wdio.conf.js` خود:
+برای ثبت یک مچر سفارشی مرورگر، از تابع `extend` روی شیء `expect` استفاده کنید. این کار را می‌توانید مستقیماً در فایل spec خود یا به عنوان بخشی از هوک مانند `before` در فایل `wdio.conf.js` انجام دهید:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L3-L18
 ```
 
-همانطور که در مثال نشان داده شده است، تابع تطبیق‌دهنده، شیء مورد انتظار، مثلاً مرورگر یا شیء element را به عنوان پارامتر اول و مقدار مورد انتظار را به عنوان پارامتر دوم می‌گیرد. سپس می‌توانید از تطبیق‌دهنده به شرح زیر استفاده کنید:
+همانطور که در مثال نشان داده شده، تابع مچر، شیء مورد انتظار (مثلاً مرورگر یا شیء المنت) را به عنوان پارامتر اول و مقدار مورد انتظار را به عنوان پارامتر دوم دریافت می‌کند. سپس می‌توانید از مچر به شکل زیر استفاده کنید:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L50-L52
 ```
 
-## تطبیق‌دهنده‌های سفارشی عنصر
+## مچرهای سفارشی المنت
 
-مشابه تطبیق‌دهنده‌های سفارشی مرورگر، تطبیق‌دهنده‌های عنصر تفاوتی ندارند. در اینجا مثالی از نحوه ایجاد یک تطبیق‌دهنده سفارشی برای تأیید aria-label یک عنصر آمده است:
+مشابه مچرهای سفارشی مرورگر، مچرهای المنت تفاوتی ندارند. در اینجا نمونه‌ای از نحوه ایجاد یک مچر سفارشی برای اعتبارسنجی aria-label یک المنت آمده است:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L20-L38
 ```
 
-این به شما امکان می‌دهد تأیید را به شرح زیر فراخوانی کنید:
+این به شما امکان می‌دهد اعتبارسنجی را به شکل زیر فراخوانی کنید:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L54-L57
@@ -41,13 +41,13 @@ https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab
 
 ## پشتیبانی از TypeScript
 
-اگر از TypeScript استفاده می‌کنید، یک مرحله دیگر برای اطمینان از ایمنی نوع تطبیق‌دهنده‌های سفارشی شما لازم است. با گسترش رابط `Matcher` با تطبیق‌دهنده‌های سفارشی خود، تمام مشکلات نوع از بین می‌روند:
+اگر از TypeScript استفاده می‌کنید، یک مرحله دیگر برای اطمینان از امنیت نوع مچرهای سفارشی شما لازم است. با گسترش رابط `Matcher` با مچرهای سفارشی خود، تمام مشکلات مربوط به نوع برطرف می‌شوند:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L40-L47
 ```
 
-اگر یک [تطبیق‌دهنده نامتقارن](https://jestjs.io/docs/expect#expectextendmatchers) سفارشی ایجاد کرده‌اید، می‌توانید به طور مشابه انواع `expect` را به شرح زیر گسترش دهید:
+اگر یک [مچر نامتقارن](https://jestjs.io/docs/expect#expectextendmatchers) سفارشی ایجاد کرده‌اید، می‌توانید به طور مشابه انواع `expect` را به شکل زیر گسترش دهید:
 
 ```ts
 declare global {

@@ -4,7 +4,7 @@ title: ضبط وقت النظام
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/setSystemTime.ts
 ---
 
-تغيير وقت النظام إلى الوقت الحالي الجديد. يمكن أن يكون الوقت الحالي طابعاً زمنياً، كائن تاريخ، أو غير ممرر، وهو ما يعني افتراضياً 0. لن يتم استدعاء أي مؤقتات، ولن يتغير الوقت المتبقي قبل تشغيلها.
+تغيير وقت النظام إلى الآن الجديد. يمكن أن يكون الآن طابع زمني، كائن تاريخ، أو عدم تمريره والذي يكون افتراضياً 0. لن يتم استدعاء أي مؤقتات، ولن يتغير الوقت المتبقي قبل تشغيلها.
 
 ##### الاستخدام
 
@@ -13,7 +13,7 @@ const clock = await browser.emulate('clock', { ... })
 await clock.setSystemTime(date)
 ```
 
-##### المعاملات
+##### المعلمات
 
 <table>
   <thead>
@@ -40,6 +40,6 @@ await clock.setSystemTime(new Date(2011, 3, 15))
 console.log(await browser.execute(() => new Date().getTime())) // returns 1302850800000
 ```
 
-##### القيمة المرجعة
+##### العائد
 
 - **&lt; `Promise<void>` &gt;**

@@ -4,7 +4,7 @@ title: العنصر السابق
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/previousElement.ts
 ---
 
-يعيد العنصر الشقيق السابق لعنصر DOM المحدد.
+يقوم بإرجاع العنصر الشقيق السابق لعنصر DOM المحدد.
 
 ##### الاستخدام
 
@@ -30,6 +30,6 @@ it('should get text from previous sibling element', async () => {
 });
 ```
 
-##### العوائد
+##### القيمة المرجعة
 
 - **&lt;WebdriverIO.Element&gt;**

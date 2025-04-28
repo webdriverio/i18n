@@ -12,7 +12,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 $(selector).selectByAttribute(attribute, value)
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>

@@ -1,88 +1,88 @@
 ---
 id: scrollIntoView
-title: scrollIntoView
+title: التمرير إلى العرض
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/scrollIntoView.ts
 ---
 
-قم بتمرير العنصر إلى نطاق العرض للويب على سطح المكتب/الجوال <strong>وأيضاً</strong> تطبيقات الجوال الأصلية.
+Scroll element into viewport for Desktop/Mobile Web <strong>AND</strong> Mobile Native Apps.
 
 :::info
 
-يتم التمرير لتطبيقات الجوال الأصلية استنادًا إلى أمر `swipe` للجوال.
+Scrolling for Mobile Native Apps is done based on the mobile `swipe` command.
 
-يعمل هذا الأمر فقط مع المكونات المحدثة التالية:
- - خادم Appium (الإصدار 2.0.0 أو أعلى)
- - `appium-uiautomator2-driver` (لأندرويد)
- - `appium-xcuitest-driver` (لـ iOS)
+This command only works with the following up-to-date components:
+ - Appium server (version 2.0.0 or higher)
+ - `appium-uiautomator2-driver` (for Android)
+ - `appium-xcuitest-driver` (for iOS)
 
-تأكد من تحديث بيئة Appium المحلية أو السحابية بانتظام لتجنب مشاكل التوافق.
+Make sure your local or cloud-based Appium environment is regularly updated to avoid compatibility issues.
 
 :::
 
-##### المعلمات
+##### Parameters
 
 <table>
   <thead>
     <tr>
-      <th>الاسم</th><th>النوع</th><th>التفاصيل</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`object, boolean`</td>
-      <td>خيارات لـ `Element.scrollIntoView()`. الإعداد الافتراضي لسطح المكتب/الويب الجوال: <br/> `{ block: 'start', inline: 'nearest' }` <br /> الإعداد الافتراضي لتطبيق الجوال الأصلي <br /> `{ maxScrolls: 10, scrollDirection: 'down' }`</td>
+      <td>options for `Element.scrollIntoView()`. Default for desktop/mobile web: <br/> `{ block: 'start', inline: 'nearest' }` <br /> Default for Mobile Native App <br /> `{ maxScrolls: 10, scrollDirection: 'down' }`</td>
     </tr>
     <tr>
-              <td colspan="3"><strong>سطح المكتب/الويب الجوال فقط</strong></td>
+              <td colspan="3"><strong>Desktop/Mobile Web Only</strong></td>
             </tr>
     <tr>
-      <td><code><var>options.behavior</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options.behavior</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`string`</td>
-      <td>انظر [مرجع MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView). <br /><strong>للويب فقط</strong> (سطح المكتب/الجوال)</td>
+      <td>See [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView). <br /><strong>WEB-ONLY</strong> (Desktop/Mobile)</td>
     </tr>
     <tr>
-      <td><code><var>options.block</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options.block</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`string`</td>
-      <td>انظر [مرجع MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView). <br /><strong>للويب فقط</strong> (سطح المكتب/الجوال)</td>
+      <td>See [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView). <br /><strong>WEB-ONLY</strong> (Desktop/Mobile)</td>
     </tr>
     <tr>
-      <td><code><var>options.inline</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options.inline</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`string`</td>
-      <td>انظر [مرجع MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView). <br /><strong>للويب فقط</strong> (سطح المكتب/الجوال)</td>
+      <td>See [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView). <br /><strong>WEB-ONLY</strong> (Desktop/Mobile)</td>
     </tr>
     <tr>
-              <td colspan="3"><strong>تطبيق الجوال الأصلي فقط</strong></td>
+              <td colspan="3"><strong>Mobile Native App Only</strong></td>
             </tr>
     <tr>
-      <td><code><var>options.direction</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options.direction</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`string`</td>
-      <td>يمكن أن يكون أحد الخيارات `down`، `up`، `left` أو `right`، الافتراضي هو `up`. <br /><strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
+      <td>Can be one of `down`, `up`, `left` or `right`, default is `up`. <br /><strong>MOBILE-NATIVE-APP-ONLY</strong></td>
     </tr>
     <tr>
-      <td><code><var>options.maxScrolls</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options.maxScrolls</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>الحد الأقصى لعدد مرات التمرير حتى يتوقف عن البحث عن العنصر، الافتراضي هو `10`. <br /><strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
+      <td>The max amount of scrolls until it will stop searching for the element, default is `10`. <br /><strong>MOBILE-NATIVE-APP-ONLY</strong></td>
     </tr>
     <tr>
-      <td><code><var>options.duration</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options.duration</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>المدة بالميلي ثانية للسحب. الافتراضي هو `1500` ميلي ثانية. كلما انخفضت القيمة، كان السحب أسرع.<br /><strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
+      <td>The duration in milliseconds for the swipe. Default is `1500` ms. The lower the value, the faster the swipe.<br /><strong>MOBILE-NATIVE-APP-ONLY</strong></td>
     </tr>
     <tr>
-      <td><code><var>options.scrollableElement</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options.scrollableElement</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Element`</td>
-      <td>العنصر المستخدم للتمرير داخله. إذا لم يتم توفير عنصر، فسيتم استخدام المحدد التالي لـ iOS `-ios predicate string:type == "XCUIElementTypeApplication"` والتالي لأندرويد `//android.widget.ScrollView'`. إذا تطابقت عناصر أكثر مع المحدد الافتراضي، فسيتم اختيار أول عنصر مطابق افتراضيًا. <br /> <strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
+      <td>Element that is used to scroll within. If no element is provided it will use the following selector for iOS `-ios predicate string:type == "XCUIElementTypeApplication"` and the following for Android `//android.widget.ScrollView'`. If more elements match the default selector, then by default it will pick the first matching element. <br /> <strong>MOBILE-NATIVE-APP-ONLY</strong></td>
     </tr>
     <tr>
-      <td><code><var>options.percent</var></code><br /><span className="label labelWarning">اختياري</span></td>
+      <td><code><var>options.percent</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>النسبة المئوية للعنصر القابل للتمرير (الافتراضي) للسحب. هذه قيمة بين 0 و 1. الافتراضي هو `0.95`.<br /><strong>لا تقم أبدًا</strong> بالسحب من أعلى|أسفل|يسار|يمين الشاشة بالضبط، فقد تقوم بتنشيط على سبيل المثال شريط الإشعارات أو ميزات أخرى للنظام/التطبيق مما قد يؤدي إلى نتائج غير متوقعة.<br /> <strong>لتطبيق-الجوال-الأصلي-فقط</strong></td>
+      <td>The percentage of the (default) scrollable element to swipe. This is a value between 0 and 1. Default is `0.95`.<br /><strong>NEVER</strong> swipe from the exact top|bottom|left|right of the screen, you might trigger for example the notification bar or other OS/App features which can lead to unexpected results.<br /> <strong>MOBILE-NATIVE-APP-ONLY</strong></td>
     </tr>
   </tbody>
 </table>
 
-##### أمثلة
+##### Examples
 
 ```js title="desktop.mobile.web.scrollIntoView.js"
 it('should demonstrate the desktop/mobile web scrollIntoView command', async () => {

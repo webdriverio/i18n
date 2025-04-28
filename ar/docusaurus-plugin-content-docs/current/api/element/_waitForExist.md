@@ -4,63 +4,58 @@ title: انتظار الوجود
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForExist.ts
 ---
 
-Wait for an element for the provided amount of
-milliseconds to be present within the DOM. Returns true if the selector
-matches at least one element that exists in the DOM, otherwise throws an
-error. If the reverse flag is true, the command will instead return true
-if the selector does not match any elements.
+انتظر وجود عنصر لمدة معينة من الميلي ثانية ليكون موجودًا داخل DOM. يرجع `true` إذا كان المحدد يطابق عنصرًا واحدًا على الأقل موجودًا في DOM، وإلا فإنه يرمي خطأ. إذا كانت علامة العكس `true`، فستعيد الأمر بدلاً من ذلك `true` إذا كان المحدد لا يطابق أي عناصر.
 
 :::info
 
-As opposed to other element commands WebdriverIO will not wait for the
-element to exist to execute this command.
+على عكس أوامر العناصر الأخرى، لن ينتظر WebdriverIO وجود العنصر لتنفيذ هذا الأمر.
 
 :::
 
-##### Usage
+##### الاستخدام
 
 ```js
 $(selector).waitForExist({ timeout, reverse, timeoutMsg, interval })
 ```
 
-##### Parameters
+##### المعلمات
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>الاسم</th><th>النوع</th><th>التفاصيل</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`WaitForOptions`</td>
-      <td>waitForEnabled options (optional)</td>
+      <td>خيارات waitForEnabled (اختياري)</td>
     </tr>
     <tr>
-      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>time in ms (default set based on [`waitforTimeout`](/docs/configuration#waitfortimeout) config value)</td>
+      <td>الوقت بالميلي ثانية (الافتراضي يعتمد على قيمة [`waitforTimeout`](/docs/configuration#waitfortimeout) في الإعدادات)</td>
     </tr>
     <tr>
-      <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>if true it waits for the opposite (default: false)</td>
+      <td>إذا كانت true فإنه ينتظر العكس (الافتراضي: false)</td>
     </tr>
     <tr>
-      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>if exists it overrides the default error message</td>
+      <td>إذا وجدت فإنها تتجاوز رسالة الخطأ الافتراضية</td>
     </tr>
     <tr>
-      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>interval between checks (default: `waitforInterval`)</td>
+      <td>الفاصل الزمني بين الفحوصات (الافتراضي: `waitforInterval`)</td>
     </tr>
   </tbody>
 </table>
 
-##### Example
+##### مثال
 
 ```js title="waitForExistSyncExample.js"
 it('should display a notification message after successful form submit', async () => {
@@ -78,7 +73,7 @@ it('should remove a message after successful form submit', async () => {
 });
 ```
 
-##### Returns
+##### العائد
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true     if element exists (or doesn't if flag is set)    
+            **<code><var>return</var></code>:**  true     إذا كان العنصر موجودًا (أو غير موجود إذا تم تعيين العلامة)

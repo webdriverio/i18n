@@ -4,7 +4,7 @@ title: react$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/react$.ts
 ---
 
-أمر `react$` هو أمر مفيد للاستعلام عن مكونات React بأسمائها الفعلية وتصفيتها حسب الخصائص والحالة.
+يعتبر أمر `react$` أمرًا مفيدًا للاستعلام عن مكونات React باستخدام أسمائها الفعلية وتصفيتها بواسطة الخصائص (props) والحالة (state).
 
 :::info
 
@@ -40,12 +40,12 @@ browser.react$(selector, { props, state })
     <tr>
       <td><code><var>options.props</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Object`</td>
-      <td>خصائص React التي يجب أن يحتويها العنصر</td>
+      <td>خصائص React التي يجب أن يحتوي عليها العنصر</td>
     </tr>
     <tr>
       <td><code><var>options.state</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>حالة React التي يجب أن يكون عليها العنصر</td>
+      <td>حالة React التي يجب أن يكون فيها العنصر</td>
     </tr>
   </tbody>
 </table>

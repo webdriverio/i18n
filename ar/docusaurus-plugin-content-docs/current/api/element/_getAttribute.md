@@ -1,10 +1,10 @@
 ---
 id: getAttribute
-title: الحصول على خاصية
+title: getAttribute
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getAttribute.ts
 ---
 
-الحصول على خاصية من عنصر DOM استنادًا إلى اسم الخاصية.
+الحصول على سمة من عنصر DOM بناءً على اسم السمة.
 
 ##### الاستخدام
 
@@ -24,7 +24,7 @@ $(selector).getAttribute(attributeName)
     <tr>
       <td><code><var>attributeName</var></code></td>
       <td>`string`</td>
-      <td>الخاصية المطلوبة</td>
+      <td>السمة المطلوبة</td>
     </tr>
   </tbody>
 </table>
@@ -47,7 +47,7 @@ it('should demonstrate the getAttribute command', async () => {
 })
 ```
 
-##### النتائج
+##### العائدات
 
 - **&lt;String|null&gt;**
-            **<code><var>return</var></code>:**  قيمة الخاصية، أو null إذا لم يتم تعيينها على العنصر.
+            **<code><var>return</var></code>:** قيمة السمة، أو null إذا لم يتم تعيينها على العنصر.

@@ -3,488 +3,488 @@ id: configurationfile
 title: ملف التكوين
 ---
 
-يحتوي ملف التكوين على كافة المعلومات الضرورية لتشغيل مجموعة الاختبارات الخاصة بك. وهو عبارة عن وحدة NodeJS تقوم بتصدير ملف JSON.
+يحتوي ملف التكوين على جميع المعلومات الضرورية لتشغيل مجموعة اختباراتك. وهو عبارة عن وحدة NodeJS تقوم بتصدير JSON.
 
-فيما يلي مثال للتكوين مع جميع الخصائص المدعومة ومعلومات إضافية:
+فيما يلي مثال على التكوين مع جميع الخصائص المدعومة ومعلومات إضافية:
 
 ```js
 export const config = {
 
     // ==================================
-    // Where should your test be launched
+    // أين يجب إطلاق اختبارك
     // ==================================
     //
     runner: 'local',
     //
     // =====================
-    // Server Configurations
+    // إعدادات الخادم
     // =====================
-    // Host address of the running Selenium server. This information is usually obsolete, as
-    // WebdriverIO automatically connects to localhost. Also if you are using one of the
-    // supported cloud services like Sauce Labs, Browserstack, Testing Bot or LambdaTest, you also don't
-    // need to define host and port information (because WebdriverIO can figure that out
-    // from your user and key information). However, if you are using a private Selenium
-    // backend, you should define the `hostname`, `port`, and `path` here.
+    // عنوان المضيف لخادم Selenium قيد التشغيل. هذه المعلومات عادة ما تكون قديمة، لأن
+    // WebdriverIO يتصل تلقائيًا بـ localhost. أيضًا إذا كنت تستخدم واحدة من
+    // الخدمات السحابية المدعومة مثل Sauce Labs أو Browserstack أو Testing Bot أو LambdaTest، فأنت أيضًا لا
+    // تحتاج إلى تحديد معلومات المضيف والمنفذ (لأن WebdriverIO يمكنه معرفة ذلك
+    // من معلومات المستخدم والمفتاح الخاصة بك). ومع ذلك، إذا كنت تستخدم خلفية Selenium
+    // خاصة، فيجب عليك تحديد `hostname` و`port` و`path` هنا.
     //
     hostname: 'localhost',
     port: 4444,
     path: '/',
-    // Protocol: http | https
+    // البروتوكول: http | https
     // protocol: 'http',
     //
     // =================
-    // Service Providers
+    // مزودو الخدمة
     // =================
-    // WebdriverIO supports Sauce Labs, Browserstack, Testing Bot and LambdaTest. (Other cloud providers
-    // should work, too.) These services define specific `user` and `key` (or access key)
-    // values you must put here, in order to connect to these services.
+    // يدعم WebdriverIO Sauce Labs و Browserstack و Testing Bot و LambdaTest. (يجب أن تعمل
+    // مزودو السحابة الآخرون أيضًا.) تحدد هذه الخدمات قيمًا محددة لـ`user` و`key` (أو مفتاح الوصول)
+    // يجب عليك وضعها هنا، لكي تتصل بهذه الخدمات.
     //
     user: 'webdriverio',
     key:  'xxxxxxxxxxxxxxxx-xxxxxx-xxxxx-xxxxxxxxx',
 
-    // If you run your tests on Sauce Labs you can specify the region you want to run your tests
-    // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
-    // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
-    // If you don't provide the region, it defaults to `us`.
+    // إذا كنت تقوم بتشغيل اختباراتك على Sauce Labs فيمكنك تحديد المنطقة التي تريد تشغيل اختباراتك
+    // فيها عبر خاصية `region`. المقابض القصيرة المتاحة للمناطق هي `us` (الافتراضي) و`eu`.
+    // تُستخدم هذه المناطق لـ Sauce Labs VM cloud و Sauce Labs Real Device Cloud.
+    // إذا لم تقدم المنطقة، فإنها ستكون `us` افتراضيًا.
     region: 'us',
     //
-    // Sauce Labs provides a [headless offering](https://saucelabs.com/products/web-testing/sauce-headless-testing)
-    // that allows you to run Chrome and Firefox tests headless.
+    // توفر Sauce Labs [عرضًا بلا رأس](https://saucelabs.com/products/web-testing/sauce-headless-testing)
+    // يسمح لك بتشغيل اختبارات Chrome و Firefox بدون رأس.
     //
     headless: false,
     //
     // ==================
-    // Specify Test Files
+    // تحديد ملفات الاختبار
     // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // of the configuration file being run.
+    // حدد أي مواصفات اختبار يجب تشغيلها. النمط نسبي إلى الدليل
+    // لملف التكوين الذي يتم تشغيله.
     //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
-    // process enclose them in an array within the specs array.
+    // يتم تعريف المواصفات كمصفوفة من ملفات المواصفات (اختياريًا باستخدام أحرف البدل
+    // التي سيتم توسيعها). سيتم تشغيل الاختبار لكل ملف مواصفات في عملية
+    // عامل منفصلة. لكي يكون لديك مجموعة من ملفات المواصفات تعمل في نفس عملية
+    // العامل، قم بتضمينها في مصفوفة داخل مصفوفة المواصفات.
     //
-    // The path of the spec files will be resolved relative from the directory of
-    // of the config file unless it's absolute.
+    // سيتم حل مسار ملفات المواصفات نسبيًا من دليل
+    // ملف التكوين ما لم يكن مطلقًا.
     //
     specs: [
         'test/spec/**',
         ['group/spec/**']
     ],
-    // Patterns to exclude.
+    // أنماط للاستبعاد.
     exclude: [
         'test/spec/multibrowser/**',
         'test/spec/mobile/**'
     ],
     //
     // ============
-    // Capabilities
+    // القدرات
     // ============
-    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, WebdriverIO launches several test
-    // sessions. Within your `capabilities`, you can overwrite the `spec` and `exclude`
-    // options in order to group specific specs to a specific capability.
+    // حدد قدراتك هنا. يمكن لـ WebdriverIO تشغيل قدرات متعددة في نفس
+    // الوقت. اعتمادًا على عدد القدرات، يُطلق WebdriverIO العديد من جلسات الاختبار.
+    // ضمن `capabilities` الخاصة بك، يمكنك تجاوز خيارات `spec` و`exclude`
+    // من أجل تجميع مواصفات محددة لقدرة محددة.
     //
-    // First, you can define how many instances should be started at the same time. Let's
-    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-    // set `maxInstances` to 1. wdio will spawn 3 processes.
+    // أولاً، يمكنك تحديد عدد الحالات التي يجب بدؤها في نفس الوقت. لنقل
+    // أن لديك 3 قدرات مختلفة (Chrome وFirefox وSafari) وقمت بتعيين
+    // `maxInstances` إلى 1. سيقوم wdio بإطلاق 3 عمليات.
     //
-    // Therefore, if you have 10 spec files and you set `maxInstances` to 10, all spec files
-    // will be tested at the same time and 30 processes will be spawned.
+    // لذلك، إذا كان لديك 10 ملفات مواصفات وقمت بتعيين `maxInstances` إلى 10، فستتم اختبار جميع ملفات المواصفات
+    // في نفس الوقت وسيتم إطلاق 30 عملية.
     //
-    // The property handles how many capabilities from the same test should run tests.
+    // تتعامل الخاصية مع عدد القدرات من نفس الاختبار التي يجب أن تقوم بتشغيل الاختبارات.
     //
     maxInstances: 10,
     //
-    // Or set a limit to run tests with a specific capability.
+    // أو قم بتعيين حد لتشغيل الاختبارات بقدرة محددة.
     maxInstancesPerCapability: 10,
     //
-    // Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment.
-    // If you set to `false`, you should import from `@wdio/globals`. Note: WebdriverIO doesn't
-    // handle injection of test framework specific globals.
+    // يُدخل المتغيرات العالمية لـ WebdriverIO (مثل `browser` و`$` و`$$`) في البيئة العالمية.
+    // إذا قمت بتعيينها إلى `false`، فيجب عليك الاستيراد من `@wdio/globals`. ملاحظة: لا يقوم WebdriverIO بـ
+    // التعامل مع حقن المتغيرات العالمية الخاصة بإطار الاختبار.
     //
     injectGlobals: true,
     //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
+    // إذا كنت تواجه مشكلة في جمع كل القدرات المهمة معًا، فتحقق من
+    // أداة تكوين منصة Sauce Labs - أداة رائعة لتكوين قدراتك:
     // https://docs.saucelabs.com/basics/platform-configurator
     //
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-        // to run chrome headless the following flags are required
-        // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+        // لتشغيل chrome بدون رأس، تكون الأعلام التالية مطلوبة
+        // (انظر https://developers.google.com/web/updates/2017/04/headless-chrome)
         // args: ['--headless', '--disable-gpu'],
         }
         //
-        // Parameter to ignore some or all default flags
-        // - if value is true: ignore all DevTools 'default flags' and Puppeteer 'default arguments'
-        // - if value is an array: DevTools filters given default arguments
+        // معلمة لتجاهل بعض أو كل الأعلام الافتراضية
+        // - إذا كانت القيمة true: تجاهل كل أعلام DevTools 'الافتراضية' ووسائط Puppeteer 'الافتراضية'
+        // - إذا كانت القيمة مصفوفة: تقوم DevTools بتصفية الوسائط الافتراضية المعطاة
         // 'wdio:devtoolsOptions': {
         //    ignoreDefaultArgs: true,
         //    ignoreDefaultArgs: ['--disable-sync', '--disable-extensions'],
         // }
     }, {
-        // maxInstances can get overwritten per capability. So if you have an in house Selenium
-        // grid with only 5 firefox instance available you can make sure that not more than
-        // 5 instance gets started at a time.
+        // يمكن أن يتم تجاوز maxInstances لكل قدرة. لذلك إذا كان لديك شبكة Selenium داخلية
+        // مع 5 حالات firefox فقط متاحة، يمكنك التأكد من عدم بدء أكثر من
+        // 5 حالات في وقت واحد.
         'wdio:maxInstances': 5,
         browserName: 'firefox',
         'wdio:specs': [
             'test/ffOnly/*'
         ],
         'moz:firefoxOptions': {
-          // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
+          // علامة لتنشيط وضع Firefox بدون رأس (انظر https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities لمزيد من التفاصيل حول moz:firefoxOptions)
           // args: ['-headless']
         },
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+        // إذا تم توفير outputDir، يمكن لـ WebdriverIO التقاط سجلات جلسة السائق
+        // من الممكن تكوين أنواع السجلات التي يتم استبعادها.
+        excludeDriverLogs: ['*'], // قم بتمرير '*' لاستبعاد جميع سجلات جلسة السائق
         excludeDriverLogs: ['bugreport', 'server'],
         //
-        // Parameter to ignore some or all Puppeteer default arguments
-        // ignoreDefaultArgs: ['-foreground'], // set value to true to ignore all default arguments
+        // معلمة لتجاهل بعض أو كل وسائط Puppeteer الافتراضية
+        // ignoreDefaultArgs: ['-foreground'], // قم بتعيين القيمة إلى true لتجاهل جميع الوسائط الافتراضية
     }],
     //
-    // Additional list of node arguments to use when starting child processes
+    // قائمة إضافية من وسائط node لاستخدامها عند بدء العمليات الفرعية
     execArgv: [],
     //
     // ===================
-    // Test Configurations
+    // تكوينات الاختبار
     // ===================
-    // Define all options that are relevant for the WebdriverIO instance here
+    // تحديد جميع الخيارات ذات الصلة بحالة WebdriverIO هنا
     //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    // مستوى التسجيل: trace | debug | info | warn | error | silent
     logLevel: 'info',
     //
-    // Set specific log levels per logger
-    // use 'silent' level to disable logger
+    // تعيين مستويات تسجيل محددة لكل مسجل
+    // استخدم مستوى 'silent' لتعطيل المسجل
     logLevels: {
         webdriver: 'info',
         '@wdio/appium-service': 'info'
     },
     //
-    // Set directory to store all logs into
+    // تعيين الدليل لتخزين جميع السجلات فيه
     outputDir: __dirname,
     //
-    // If you only want to run your tests until a specific amount of tests have failed use
-    // bail (default is 0 - don't bail, run all tests).
+    // إذا كنت تريد فقط تشغيل اختباراتك حتى فشل عدد معين من الاختبارات، استخدم
+    // bail (الافتراضي هو 0 - لا تتوقف، قم بتشغيل جميع الاختبارات).
     bail: 0,
     //
-    // Set a base URL in order to shorten `url()` command calls. If your `url` parameter starts
-    // with `/`, the `baseUrl` is prepended, not including the path portion of `baseUrl`.
+    // قم بتعيين عنوان URL أساسي لتقصير استدعاءات أمر `url()`. إذا بدأت معلمة `url` الخاصة بك
+    // بـ `/`، يتم إلحاق `baseUrl`، باستثناء جزء المسار من `baseUrl`.
     //
-    // If your `url` parameter starts without a scheme or `/` (like `some/path`), the `baseUrl`
-    // gets prepended directly.
+    // إذا بدأت معلمة `url` الخاصة بك بدون مخطط أو `/` (مثل `some/path`)، يتم
+    // إلحاق `baseUrl` مباشرة.
     baseUrl: 'http://localhost:8080',
     //
-    // Default timeout for all waitForXXX commands.
+    // المهلة الافتراضية لجميع أوامر waitForXXX.
     waitforTimeout: 1000,
     //
-    // Add files to watch (e.g. application code or page objects) when running `wdio` command
-    // with `--watch` flag. Globbing is supported.
+    // إضافة ملفات للمراقبة (مثل رمز التطبيق أو كائنات الصفحة) عند تشغيل أمر `wdio`
+    // مع علامة `--watch`. يتم دعم التوسيع.
     filesToWatch: [
-        // e.g. rerun tests if I change my application code
+        // على سبيل المثال، إعادة تشغيل الاختبارات إذا قمت بتغيير رمز التطبيق الخاص بي
         // './app/**/*.js'
     ],
     //
-    // Framework you want to run your specs with.
-    // The following are supported: 'mocha', 'jasmine', and 'cucumber'
-    // See also: https://webdriver.io/docs/frameworks.html
+    // الإطار الذي تريد تشغيل المواصفات الخاصة بك معه.
+    // الإطارات المدعومة هي: 'mocha' و'jasmine' و'cucumber'
+    // انظر أيضًا: https://webdriver.io/docs/frameworks.html
     //
-    // Make sure you have the wdio adapter package for the specific framework installed before running any tests.
+    // تأكد من تثبيت حزمة محول wdio للإطار المحدد قبل تشغيل أي اختبارات.
     framework: 'mocha',
     //
-    // The number of times to retry the entire specfile when it fails as a whole
+    // عدد المرات التي يتم فيها إعادة محاولة ملف المواصفات بأكمله عندما يفشل ككل
     specFileRetries: 1,
-    // Delay in seconds between the spec file retry attempts
+    // التأخير بالثواني بين محاولات إعادة ملف المواصفات
     specFileRetriesDelay: 0,
-    // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
+    // ما إذا كان يجب إعادة محاولة ملفات المواصفات المعاد تشغيلها على الفور أو تأجيلها إلى نهاية الطابور
     specFileRetriesDeferred: false,
     //
-    // Test reporter for stdout.
-    // The only one supported by default is 'dot'
-    // See also: https://webdriver.io/docs/dot-reporter.html , and click on "Reporters" in left column
+    // مراسل الاختبار لـ stdout.
+    // الوحيد المدعوم افتراضيًا هو 'dot'
+    // انظر أيضًا: https://webdriver.io/docs/dot-reporter.html ، وانقر على "Reporters" في العمود الأيسر
     reporters: [
         'dot',
         ['allure', {
             //
-            // If you are using the "allure" reporter you should define the directory where
-            // WebdriverIO should save all allure reports.
+            // إذا كنت تستخدم مراسل "allure"، يجب عليك تحديد الدليل حيث
+            // يجب أن يحفظ WebdriverIO جميع تقارير allure.
             outputDir: './'
         }]
     ],
     //
-    // Options to be passed to Mocha.
-    // See the full list at: http://mochajs.org
+    // الخيارات التي يتم تمريرها إلى Mocha.
+    // راجع القائمة الكاملة على: http://mochajs.org
     mochaOpts: {
         ui: 'bdd'
     },
     //
-    // Options to be passed to Jasmine.
-    // See also: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
+    // الخيارات التي يتم تمريرها إلى Jasmine.
+    // انظر أيضًا: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
     jasmineOpts: {
         //
-        // Jasmine default timeout
+        // المهلة الافتراضية لـ Jasmine
         defaultTimeoutInterval: 5000,
         //
-        // The Jasmine framework allows it to intercept each assertion in order to log the state of the application
-        // or website depending on the result. For example, it is pretty handy to take a screenshot every time
-        // an assertion fails.
+        // يسمح إطار عمل Jasmine باعتراض كل تأكيد من أجل تسجيل حالة التطبيق
+        // أو موقع الويب اعتمادًا على النتيجة. على سبيل المثال، من المفيد جدًا التقاط لقطة شاشة في كل مرة
+        // يفشل فيها تأكيد.
         expectationResultHandler: function(passed, assertion) {
-            // do something
+            // افعل شيئًا
         },
         //
-        // Make use of Jasmine-specific grep functionality
+        // استخدام وظيفة grep الخاصة بـ Jasmine
         grep: null,
         invertGrep: null
     },
     //
-    // If you are using Cucumber you need to specify where your step definitions are located.
-    // See also: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
+    // إذا كنت تستخدم Cucumber، فأنت بحاجة إلى تحديد مكان تعريفات الخطوات الخاصة بك.
+    // انظر أيضًا: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
     cucumberOpts: {
-        require: [],        // <string[]> (file/dir) require files before executing features
-        backtrace: false,   // <boolean> show full backtrace for errors
-        compiler: [],       // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-        dryRun: false,      // <boolean> invoke formatters without executing steps
-        failFast: false,    // <boolean> abort the run on first failure
-        snippets: true,     // <boolean> hide step definition snippets for pending steps
-        source: true,       // <boolean> hide source URIs
-        strict: false,      // <boolean> fail if there are any undefined or pending steps
-        tagExpression: '',  // <string> (expression) only execute the features or scenarios with tags matching the expression
-        timeout: 20000,     // <number> timeout for step definitions
-        ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
-        scenarioLevelReporter: false // Enable this to make webdriver.io behave as if scenarios and not steps were the tests.
+        require: [],        // <string[]> (file/dir) طلب الملفات قبل تنفيذ الميزات
+        backtrace: false,   // <boolean> إظهار تتبع كامل للأخطاء
+        compiler: [],       // <string[]> ("extension:module") طلب الملفات ذات الامتداد المعطى بعد طلب MODULE (قابل للتكرار)
+        dryRun: false,      // <boolean> استدعاء المنسقين دون تنفيذ الخطوات
+        failFast: false,    // <boolean> إلغاء التشغيل عند حدوث الفشل الأول
+        snippets: true,     // <boolean> إخفاء مقتطفات تعريف الخطوة للخطوات المعلقة
+        source: true,       // <boolean> إخفاء عناوين URI المصدر
+        strict: false,      // <boolean> الفشل إذا كانت هناك أي خطوات غير معرفة أو معلقة
+        tagExpression: '',  // <string> (expression) تنفيذ الميزات أو السيناريوهات فقط مع العلامات التي تطابق التعبير
+        timeout: 20000,     // <number> المهلة لتعريفات الخطوة
+        ignoreUndefinedDefinitions: false, // <boolean> تمكين هذا التكوين لمعاملة التعريفات غير المحددة كتحذيرات.
+        scenarioLevelReporter: false // تمكين هذا لجعل webdriver.io يتصرف كما لو كانت السيناريوهات وليس الخطوات هي الاختبارات.
     },
-    // Specify a custom tsconfig path - WDIO uses `tsx` to compile TypeScript files
-    // Your TSConfig is automatically detected from the current working directory
-    // but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH env var
-    // See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+    // تحديد مسار tsconfig مخصص - يستخدم WDIO `tsx` لتجميع ملفات TypeScript
+    // يتم اكتشاف TSConfig الخاص بك تلقائيًا من دليل العمل الحالي
+    // ولكن يمكنك تحديد مسار مخصص هنا أو عن طريق تعيين متغير البيئة TSX_TSCONFIG_PATH
+    // راجع وثائق `tsx`: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
     tsConfigPath: 'path/to/tsconfig.json',
     //
     // =====
-    // Hooks
+    // الخطافات
     // =====
-    // WebdriverIO provides a several hooks you can use to interfere the test process in order to enhance
-    // it and build services around it. You can either apply a single function to it or an array of
-    // methods. If one of them returns with a promise, WebdriverIO will wait until that promise is
-    // resolved to continue.
+    // يوفر WebdriverIO العديد من الخطافات التي يمكنك استخدامها للتدخل في عملية الاختبار من أجل تحسينها
+    // وبناء خدمات حولها. يمكنك إما تطبيق وظيفة واحدة عليها أو مجموعة من
+    // الطرق. إذا عاد أحدهم بوعد، فسينتظر WebdriverIO حتى يتم حل هذا الوعد
+    // للمتابعة.
     //
     /**
-     * Gets executed once before all workers get launched.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
+     * يتم تنفيذه مرة واحدة قبل إطلاق جميع العمال.
+     * @param {object} config كائن تكوين wdio
+     * @param {Array.<Object>} capabilities قائمة بتفاصيل القدرات
      */
     onPrepare: function (config, capabilities) {
     },
     /**
-     * Gets executed before a worker process is spawned and can be used to initialize specific service
-     * for that worker as well as modify runtime environments in an async fashion.
-     * @param  {string} cid      capability id (e.g 0-0)
-     * @param  {object} caps     object containing capabilities for session that will be spawn in the worker
-     * @param  {object} specs    specs to be run in the worker process
-     * @param  {object} args     object that will be merged with the main configuration once worker is initialized
-     * @param  {object} execArgv list of string arguments passed to the worker process
+     * يتم تنفيذه قبل إنشاء عملية عامل ويمكن استخدامه لتهيئة خدمة محددة
+     * لذلك العامل وكذلك تعديل بيئات التشغيل بطريقة غير متزامنة.
+     * @param  {string} cid      معرف القدرة (مثل 0-0)
+     * @param  {object} caps     كائن يحتوي على قدرات للجلسة التي سيتم إنشاؤها في العامل
+     * @param  {object} specs    المواصفات التي سيتم تشغيلها في عملية العامل
+     * @param  {object} args     كائن سيتم دمجه مع التكوين الرئيسي بمجرد تهيئة العامل
+     * @param  {object} execArgv قائمة وسائط السلسلة الممررة إلى عملية العامل
      */
     onWorkerStart: function (cid, caps, specs, args, execArgv) {
     },
     /**
-     * Gets executed after a worker process has exited.
-     * @param  {string} cid      capability id (e.g 0-0)
-     * @param  {number} exitCode 0 - success, 1 - fail
-     * @param  {object} specs    specs to be run in the worker process
-     * @param  {number} retries  number of retries used
+     * يتم تنفيذه بعد خروج عملية العامل.
+     * @param  {string} cid      معرف القدرة (مثل 0-0)
+     * @param  {number} exitCode 0 - نجاح، 1 - فشل
+     * @param  {object} specs    المواصفات التي سيتم تشغيلها في عملية العامل
+     * @param  {number} retries  عدد إعادة المحاولات المستخدمة
      */
     onWorkerEnd: function (cid, exitCode, specs, retries) {
     },
     /**
-     * Gets executed before initializing the webdriver session and test framework. It allows you
-     * to manipulate configurations depending on the capability or spec.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that are to be run
+     * يتم تنفيذه قبل تهيئة جلسة webdriver وإطار الاختبار. يسمح لك
+     * بالتلاعب بالتكوينات اعتمادًا على القدرة أو المواصفات.
+     * @param {object} config كائن تكوين wdio
+     * @param {Array.<Object>} capabilities قائمة بتفاصيل القدرات
+     * @param {Array.<String>} specs قائمة بمسارات ملفات المواصفات التي سيتم تشغيلها
      */
     beforeSession: function (config, capabilities, specs) {
     },
     /**
-     * Gets executed before test execution begins. At this point you can access to all global
-     * variables like `browser`. It is the perfect place to define custom commands.
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs        List of spec file paths that are to be run
-     * @param {object}         browser      instance of created browser/device session
+     * يتم تنفيذه قبل بدء تنفيذ الاختبار. في هذه النقطة يمكنك الوصول إلى جميع المتغيرات العالمية
+     * مثل `browser`. إنه المكان المثالي لتعريف الأوامر المخصصة.
+     * @param {Array.<Object>} capabilities قائمة بتفاصيل القدرات
+     * @param {Array.<String>} specs        قائمة بمسارات ملفات المواصفات التي سيتم تشغيلها
+     * @param {object}         browser      حالة من جلسة المتصفح/الجهاز التي تم إنشاؤها
      */
     before: function (capabilities, specs, browser) {
     },
     /**
-     * Gets executed before the suite starts (in Mocha/Jasmine only).
-     * @param {object} suite suite details
+     * يتم تنفيذه قبل بدء المجموعة (في Mocha/Jasmine فقط).
+     * @param {object} suite تفاصيل المجموعة
      */
     beforeSuite: function (suite) {
     },
     /**
-     * This hook gets executed _before_ every hook within the suite starts.
-     * (For example, this runs before calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
+     * يتم تنفيذ هذا الخطاف _قبل_ كل خطاف داخل المجموعة يبدأ.
+     * (على سبيل المثال، يتم تشغيل هذا قبل استدعاء `before` و`beforeEach` و`after` و`afterEach` في Mocha.). في Cucumber، `context` هو كائن World.
      *
      */
     beforeHook: function (test, context, hookName) {
     },
     /**
-     * Hook that gets executed _after_ every hook within the suite ends.
-     * (For example, this runs after calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
+     * خطاف يتم تنفيذه _بعد_ كل خطاف داخل المجموعة ينتهي.
+     * (على سبيل المثال، يتم تشغيل هذا بعد استدعاء `before` و`beforeEach` و`after` و`afterEach` في Mocha.). في Cucumber، `context` هو كائن World.
      */
     afterHook: function (test, context, { error, result, duration, passed, retries }, hookName) {
     },
     /**
-     * Function to be executed before a test (in Mocha/Jasmine only)
-     * @param {object} test    test object
-     * @param {object} context scope object the test was executed with
+     * وظيفة يتم تنفيذها قبل الاختبار (في Mocha/Jasmine فقط)
+     * @param {object} test    كائن الاختبار
+     * @param {object} context كائن النطاق الذي تم تنفيذ الاختبار به
      */
     beforeTest: function (test, context) {
     },
     /**
-     * Runs before a WebdriverIO command is executed.
-     * @param {string} commandName hook command name
-     * @param {Array} args arguments that the command would receive
+     * يتم تشغيله قبل تنفيذ أمر WebdriverIO.
+     * @param {string} commandName اسم أمر الخطاف
+     * @param {Array} args وسائط التي سيتلقاها الأمر
      */
     beforeCommand: function (commandName, args) {
     },
     /**
-     * Runs after a WebdriverIO command gets executed
-     * @param {string} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     * @param {number} result 0 - command success, 1 - command error
-     * @param {object} error error object, if any
+     * يتم تشغيله بعد تنفيذ أمر WebdriverIO
+     * @param {string} commandName اسم أمر الخطاف
+     * @param {Array} args وسائط التي سيتلقاها الأمر
+     * @param {number} result 0 - نجاح الأمر، 1 - خطأ في الأمر
+     * @param {object} error كائن الخطأ، إن وجد
      */
     afterCommand: function (commandName, args, result, error) {
     },
     /**
-     * Function to be executed after a test (in Mocha/Jasmine only)
-     * @param {object}  test             test object
-     * @param {object}  context          scope object the test was executed with
-     * @param {Error}   result.error     error object in case the test fails, otherwise `undefined`
-     * @param {*}       result.result    return object of test function
-     * @param {number}  result.duration  duration of test
-     * @param {boolean} result.passed    true if test has passed, otherwise false
-     * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
+     * وظيفة يتم تنفيذها بعد اختبار (في Mocha/Jasmine فقط)
+     * @param {object}  test             كائن الاختبار
+     * @param {object}  context          كائن النطاق الذي تم تنفيذ الاختبار به
+     * @param {Error}   result.error     كائن الخطأ في حالة فشل الاختبار، وإلا `undefined`
+     * @param {*}       result.result    كائن إرجاع وظيفة الاختبار
+     * @param {number}  result.duration  مدة الاختبار
+     * @param {boolean} result.passed    صحيح إذا نجح الاختبار، وإلا خطأ
+     * @param {object}  result.retries   معلومات حول إعادة المحاولات المتعلقة بالمواصفات، مثل `{ attempts: 0, limit: 0 }`
      */
     afterTest: function (test, context, { error, result, duration, passed, retries }) {
     },
     /**
-     * Hook that gets executed after the suite has ended (in Mocha/Jasmine only).
-     * @param {object} suite suite details
+     * خطاف يتم تنفيذه بعد انتهاء المجموعة (في Mocha/Jasmine فقط).
+     * @param {object} suite تفاصيل المجموعة
      */
     afterSuite: function (suite) {
     },
     /**
-     * Gets executed after all tests are done. You still have access to all global variables from
-     * the test.
-     * @param {number} result 0 - test pass, 1 - test fail
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
+     * يتم تنفيذه بعد اكتمال جميع الاختبارات. لا يزال لديك إمكانية الوصول إلى جميع المتغيرات العالمية من
+     * الاختبار.
+     * @param {number} result 0 - نجاح الاختبار، 1 - فشل الاختبار
+     * @param {Array.<Object>} capabilities قائمة بتفاصيل القدرات
+     * @param {Array.<String>} specs قائمة بمسارات ملفات المواصفات التي تم تشغيلها
      */
     after: function (result, capabilities, specs) {
     },
     /**
-     * Gets executed right after terminating the webdriver session.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
+     * يتم تنفيذه مباشرة بعد إنهاء جلسة webdriver.
+     * @param {object} config كائن تكوين wdio
+     * @param {Array.<Object>} capabilities قائمة بتفاصيل القدرات
+     * @param {Array.<String>} specs قائمة بمسارات ملفات المواصفات التي تم تشغيلها
      */
     afterSession: function (config, capabilities, specs) {
     },
     /**
-     * Gets executed after all workers have shut down and the process is about to exit.
-     * An error thrown in the `onComplete` hook will result in the test run failing.
-     * @param {object} exitCode 0 - success, 1 - fail
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {<Object>} results object containing test results
+     * يتم تنفيذه بعد أن يتم إيقاف تشغيل جميع العمال وتوشك العملية على الخروج.
+     * سيؤدي الخطأ المُلقى في خطاف `onComplete` إلى فشل تشغيل الاختبار.
+     * @param {object} exitCode 0 - نجاح، 1 - فشل
+     * @param {object} config كائن تكوين wdio
+     * @param {Array.<Object>} capabilities قائمة بتفاصيل القدرات
+     * @param {<Object>} results كائن يحتوي على نتائج الاختبار
      */
     onComplete: function (exitCode, config, capabilities, results) {
     },
     /**
-    * Gets executed when a refresh happens.
-    * @param {string} oldSessionId session ID of the old session
-    * @param {string} newSessionId session ID of the new session
+    * يتم تنفيذه عند حدوث تحديث.
+    * @param {string} oldSessionId معرف الجلسة القديمة
+    * @param {string} newSessionId معرف الجلسة الجديدة
     */
     onReload: function(oldSessionId, newSessionId) {
     },
     /**
-     * Cucumber Hooks
+     * خطافات Cucumber
      *
-     * Runs before a Cucumber Feature.
-     * @param {string}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     * يتم التشغيل قبل ميزة Cucumber.
+     * @param {string}                   uri      المسار إلى ملف الميزة
+     * @param {GherkinDocument.IFeature} feature  كائن ميزة Cucumber
      */
     beforeFeature: function (uri, feature) {
     },
     /**
      *
-     * Runs before a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
-     * @param {object}                 context  Cucumber World object
+     * يتم التشغيل قبل سيناريو Cucumber.
+     * @param {ITestCaseHookParameter} world    كائن world يحتوي على معلومات حول pickle وخطوة الاختبار
+     * @param {object}                 context  كائن Cucumber World
      */
     beforeScenario: function (world, context) {
     },
     /**
      *
-     * Runs before a Cucumber Step.
-     * @param {Pickle.IPickleStep} step     step data
-     * @param {IPickle}            scenario scenario pickle
-     * @param {object}             context  Cucumber World object
+     * يتم التشغيل قبل خطوة Cucumber.
+     * @param {Pickle.IPickleStep} step     بيانات الخطوة
+     * @param {IPickle}            scenario pickle السيناريو
+     * @param {object}             context  كائن Cucumber World
      */
     beforeStep: function (step, scenario, context) {
     },
     /**
      *
-     * Runs after a Cucumber Step.
-     * @param {Pickle.IPickleStep} step             step data
-     * @param {IPickle}            scenario         scenario pickle
-     * @param {object}             result           results object containing scenario results
-     * @param {boolean}            result.passed    true if scenario has passed
-     * @param {string}             result.error     error stack if scenario failed
-     * @param {number}             result.duration  duration of scenario in milliseconds
-     * @param {object}             context          Cucumber World object
+     * يتم التشغيل بعد خطوة Cucumber.
+     * @param {Pickle.IPickleStep} step             بيانات الخطوة
+     * @param {IPickle}            scenario         pickle السيناريو
+     * @param {object}             result           كائن النتائج الذي يحتوي على نتائج السيناريو
+     * @param {boolean}            result.passed    صحيح إذا نجح السيناريو
+     * @param {string}             result.error     مكدس الخطأ إذا فشل السيناريو
+     * @param {number}             result.duration  مدة السيناريو بالميلي ثانية
+     * @param {object}             context          كائن Cucumber World
      */
     afterStep: function (step, scenario, result, context) {
     },
     /**
      *
-     * Runs after a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
-     * @param {object}                 result           results object containing scenario results `{passed: boolean, error: string, duration: number}`
-     * @param {boolean}                result.passed    true if scenario has passed
-     * @param {string}                 result.error     error stack if scenario failed
-     * @param {number}                 result.duration  duration of scenario in milliseconds
-     * @param {object}                 context          Cucumber World object
+     * يتم التشغيل بعد سيناريو Cucumber.
+     * @param {ITestCaseHookParameter} world            كائن world يحتوي على معلومات حول pickle وخطوة الاختبار
+     * @param {object}                 result           كائن النتائج الذي يحتوي على نتائج السيناريو `{passed: boolean, error: string, duration: number}`
+     * @param {boolean}                result.passed    صحيح إذا نجح السيناريو
+     * @param {string}                 result.error     مكدس الخطأ إذا فشل السيناريو
+     * @param {number}                 result.duration  مدة السيناريو بالميلي ثانية
+     * @param {object}                 context          كائن Cucumber World
      */
     afterScenario: function (world, result, context) {
     },
     /**
      *
-     * Runs after a Cucumber Feature.
-     * @param {string}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     * يتم التشغيل بعد ميزة Cucumber.
+     * @param {string}                   uri      المسار إلى ملف الميزة
+     * @param {GherkinDocument.IFeature} feature  كائن ميزة Cucumber
      */
     afterFeature: function (uri, feature) {
     },
     /**
-     * Runs before a WebdriverIO assertion library makes an assertion.
-     * @param commandName command name
-     * @param args        arguments that command would receive
+     * يتم تشغيله قبل أن تقوم مكتبة تأكيد WebdriverIO بإجراء تأكيد.
+     * @param commandName اسم الأمر
+     * @param args        وسائط التي سيتلقاها الأمر
      */
     beforeAssertion: function (params) {
     },
     /**
-     * Runs after a WebdriverIO command gets executed
-     * @param commandName  command name
-     * @param args         arguments that command would receive
-     * @param result       result of the command
-     * @param error        error in case something went wrong
+     * يتم تشغيله بعد تنفيذ أمر WebdriverIO
+     * @param commandName  اسم الأمر
+     * @param args         وسائط التي سيتلقاها الأمر
+     * @param result       نتيجة الأمر
+     * @param error        خطأ في حالة حدوث خطأ ما
      */
     afterAssertion: function (params) {
     }
 }
 ```
 
-يمكنك أيضًا العثور على ملف يحتوي على جميع الخيارات والتنويعات الممكنة في [مجلد الأمثلة](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).
+يمكنك أيضًا العثور على ملف به جميع الخيارات والتغييرات الممكنة في [مجلد الأمثلة](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).

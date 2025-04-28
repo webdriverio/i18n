@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-يتم رفض مربعات الحوار تلقائيًا، إلا إذا كان هناك مستمع `browser.on('dialog')`. عندما يكون المستمع موجودًا، يجب عليه إما قبول الحوار [`dialog.accept()`](/docs/api/dialog/accept) أو رفضه [`dialog.dismiss()`](/docs/api/dialog/dismiss) - وإلا ستتجمد الصفحة في انتظار مربع الحوار، ولن تكتمل الإجراءات مثل النقر أبدًا.
+يتم رفض مربعات الحوار تلقائيًا، ما لم يكن هناك مستمع `browser.on('dialog')`. عندما يكون المستمع موجودًا، يجب عليه إما قبول الحوار باستخدام [`dialog.accept()`](/docs/api/dialog/accept) أو رفضه باستخدام [`dialog.dismiss()`](/docs/api/dialog/dismiss) - وإلا ستتجمد الصفحة بانتظار الحوار، ولن تكتمل أبدًا إجراءات مثل النقر.
 
 :::

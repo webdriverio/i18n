@@ -21,7 +21,6 @@ it('should allow me to inspect WebdriverIO.Element properties', async () => {
 });
 ```
 
-##### النتائج
+##### الإرجاع
 
 - **&lt;WebdriverIO.Element&gt;**
-    

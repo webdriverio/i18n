@@ -4,10 +4,10 @@ title: الحصول على النص
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getText.ts
 ---
 
-الحصول على محتوى النص من عنصر DOM. تأكد من أن العنصر 
-الذي تريد طلب النص منه [قابل للتفاعل](http://www.w3.org/TR/webdriver/#interactable)
-وإلا ستحصل على سلسلة فارغة كقيمة إرجاع. إذا كان العنصر معطلًا أو غير
-مرئي وما زلت ترغب في تلقي محتوى النص استخدم [getHTML](https://webdriver.io/docs/api/element/getHTML)
+الحصول على محتوى النص من عنصر DOM. تأكد من أن العنصر
+الذي تريد الحصول على النص منه [قابل للتفاعل](http://www.w3.org/TR/webdriver/#interactable)
+وإلا ستحصل على سلسلة فارغة كقيمة عودة. إذا كان العنصر معطلاً أو غير
+مرئي وما زلت ترغب في الحصول على محتوى النص، استخدم [getHTML](https://webdriver.io/docs/api/element/getHTML)
 كحل بديل.
 
 ##### الاستخدام
@@ -45,7 +45,7 @@ it('get content from table cell', async () => {
 });
 ```
 
-##### الإرجاع
+##### العائد
 
 - **&lt;String&gt;**
             **<code><var>return</var></code>:**  محتوى العنصر المحدد (تتم إزالة جميع علامات HTML)

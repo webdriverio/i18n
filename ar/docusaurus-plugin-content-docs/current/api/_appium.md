@@ -14,10 +14,10 @@ driver.getAppiumContext()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;Context&gt;**
-            **<code><var>context</var></code>:** سلسلة نصية تمثل السياق الحالي أو قيمة خالية تمثل 'لا سياق'
+            **<code><var>context</var></code>:** سلسلة نصية تمثل السياق الحالي أو قيمة null تمثل 'لا سياق'
 
 
 ---
@@ -44,7 +44,7 @@ driver.switchAppiumContext(name)
     <tr>
       <td><code><var>name</var></code></td>
       <td>string</td>
-      <td>سلسلة نصية تمثل سياقًا متاحًا</td>
+      <td>سلسلة نصية تمثل سياقاً متاحاً</td>
     </tr>
   </tbody>
 </table>
@@ -63,16 +63,16 @@ driver.getAppiumContexts()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;Context[]&gt;**
-            **<code><var>contexts</var></code>:** مصفوفة من السلاسل النصية التي تمثل السياقات المتاحة، مثل 'WEBVIEW'، أو 'NATIVE'
+            **<code><var>contexts</var></code>:** مصفوفة من السلاسل النصية تمثل السياقات المتاحة، مثل 'WEBVIEW'، أو 'NATIVE'
 
 
 ---
 
 ## shake
-إجراء حركة اهتزاز على الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/interactions/shake/).
+تنفيذ إجراء الهز على الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/interactions/shake/).
 
 ##### الاستخدام
 
@@ -111,7 +111,7 @@ driver.lock(seconds)
     <tr>
       <td><code><var>seconds</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>المدة الزمنية لقفل الشاشة (iOS فقط)</td>
+      <td>المدة التي سيتم فيها قفل الشاشة (iOS فقط)</td>
     </tr>
   </tbody>
 </table>
@@ -126,7 +126,7 @@ driver.lock(seconds)
 ---
 
 ## unlock
-فتح قفل الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/interactions/unlock/).
+إلغاء قفل الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/interactions/unlock/).
 
 ##### الاستخدام
 
@@ -154,10 +154,10 @@ driver.isLocked()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;boolean&gt;**
-            **<code><var>isLocked</var></code>:** صحيح إذا كان الجهاز مقفلاً، خطأ إذا لم يكن كذلك
+            **<code><var>isLocked</var></code>:** صحيح إذا كان الجهاز مقفلًا، خطأ إذا لم يكن كذلك
 
 ##### الدعم
 
@@ -188,7 +188,7 @@ driver.startRecordingScreen(options)
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>object</td>
-      <td>معلمات الأمر التي يمكن أن تحتوي على مفاتيح مثل: remotePath، username، password، method، forceRestart، timeLimit، videoType، videoQuality، videoFps، bitRate، videoSize، bugReport (انظر المزيد من الوصف في وثائق Appium)</td>
+      <td>معلمات الأمر التي يمكن أن تحتوي على مفاتيح مثل: remotePath, username, password, method, forceRestart, timeLimit, videoType, videoQuality, videoFps, bitRate, videoSize, bugReport (انظر مزيداً من الوصف في وثائق أبيوم)</td>
     </tr>
   </tbody>
 </table>
@@ -224,7 +224,7 @@ driver.stopRecordingScreen(remotePath, username, password, method)
     <tr>
       <td><code><var>remotePath</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>المسار إلى الموقع البعيد، حيث يجب تحميل الفيديو الناتج. البروتوكولات المدعومة هي http/https و ftp. هذا الخيار له تأثير فقط إذا كانت هناك عملية تسجيل شاشة قيد التقدم وكانت معلمة forceRestart غير محددة بقيمة true. تعني القيمة الفارغة أو null (الإعداد الافتراضي) أنه يجب ترميز محتوى الملف الناتج كـ Base64.</td>
+      <td>المسار إلى الموقع البعيد، حيث يجب تحميل الفيديو الناتج. البروتوكولات المدعومة هي http/https، ftp. هذا الخيار له تأثير فقط إذا كان هناك عملية تسجيل للشاشة قيد التقدم ولم يتم تعيين المعلمة forceRestart على قيمة true. القيمة null أو سلسلة فارغة (الإعداد الافتراضي) تعني أنه يجب ترميز محتوى الملف الناتج بترميز Base64.</td>
     </tr>
     <tr>
       <td><code><var>username</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -239,16 +239,16 @@ driver.stopRecordingScreen(remotePath, username, password, method)
     <tr>
       <td><code><var>method</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>اسم طريقة تحميل http متعدد الأجزاء. يتم استخدام 'PUT' بشكل افتراضي.</td>
+      <td>اسم طريقة التحميل المتعدد الأجزاء http. يتم استخدام طريقة 'PUT' افتراضيًا.</td>
     </tr>
   </tbody>
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string&gt;**
-            **<code><var>response</var></code>:** سلسلة مشفرة بـ Base64. إذا تم تعيين remote_path، فستكون الاستجابة سلسلة فارغة
+            **<code><var>response</var></code>:** سلسلة نصية مشفرة بـ Base64. إذا تم تعيين remote_path، فإن الاستجابة تكون سلسلة فارغة
 
 ##### الدعم
 
@@ -259,7 +259,7 @@ driver.stopRecordingScreen(remotePath, username, password, method)
 ---
 
 ## getPerformanceDataTypes
-إرجاع أنواع المعلومات لحالة النظام التي يدعم قراءتها مثل وحدة المعالجة المركزية والذاكرة وحركة الشبكة والبطارية.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/performance-data-types/).
+إرجاع أنواع معلومات حالة النظام المدعومة للقراءة مثل وحدة المعالجة المركزية والذاكرة وحركة مرور الشبكة والبطارية.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/performance-data-types/).
 
 ##### الاستخدام
 
@@ -268,7 +268,7 @@ driver.getPerformanceDataTypes()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string[]&gt;**
             **<code><var>performanceTypes</var></code>:** أنواع بيانات الأداء المتاحة (cpuinfo|batteryinfo|networkinfo|memoryinfo)
@@ -280,7 +280,7 @@ driver.getPerformanceDataTypes()
 ---
 
 ## getPerformanceData
-إرجاع معلومات حالة النظام التي يدعم قراءتها مثل وحدة المعالجة المركزية والذاكرة وحركة الشبكة والبطارية.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/get-performance-data/).
+إرجاع معلومات حالة النظام المدعومة للقراءة مثل وحدة المعالجة المركزية والذاكرة وحركة مرور الشبكة والبطارية.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/get-performance-data/).
 
 ##### الاستخدام
 
@@ -306,7 +306,7 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
     <tr>
       <td><code><var>dataType</var></code></td>
       <td>string</td>
-      <td>نوع حالة النظام الذي ترغب في قراءته. يجب أن يكون أحد أنواع بيانات الأداء المدعومة</td>
+      <td>نوع حالة النظام الذي تريد قراءته. يجب أن يكون أحد أنواع بيانات الأداء المدعومة</td>
     </tr>
     <tr>
       <td><code><var>dataReadTimeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -317,10 +317,10 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string[]&gt;**
-            **<code><var>performanceData</var></code>:** نوع المعلومات لحالة النظام التي يدعم قراءتها مثل وحدة المعالجة المركزية والذاكرة وحركة الشبكة والبطارية
+            **<code><var>performanceData</var></code>:** نوع معلومات حالة النظام المدعومة للقراءة مثل وحدة المعالجة المركزية والذاكرة وحركة مرور الشبكة والبطارية
 
 ##### الدعم
 
@@ -329,7 +329,7 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
 ---
 
 ## pressKeyCode
-ضغط مفتاح معين على الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/keys/press-keycode/).
+الضغط على مفتاح معين على الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/keys/press-keycode/).
 
 ##### الاستخدام
 
@@ -350,17 +350,17 @@ driver.pressKeyCode(keycode, metastate, flags)
     <tr>
       <td><code><var>keycode</var></code></td>
       <td>number</td>
-      <td>رمز المفتاح للضغط</td>
+      <td>رمز المفتاح الذي سيتم الضغط عليه</td>
     </tr>
     <tr>
       <td><code><var>metastate</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>حالة meta للضغط على المفتاح</td>
+      <td>حالة الميتا للضغط على رمز المفتاح</td>
     </tr>
     <tr>
       <td><code><var>flags</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>علامات لضغط المفتاح</td>
+      <td>علامات للضغط على المفتاح</td>
     </tr>
   </tbody>
 </table>
@@ -394,17 +394,17 @@ driver.longPressKeyCode(keycode, metastate, flags)
     <tr>
       <td><code><var>keycode</var></code></td>
       <td>number</td>
-      <td>رمز المفتاح للضغط على الجهاز</td>
+      <td>رمز المفتاح للضغط عليه على الجهاز</td>
     </tr>
     <tr>
       <td><code><var>metastate</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>حالة meta لضغط المفتاح</td>
+      <td>حالة الميتا للضغط على المفتاح</td>
     </tr>
     <tr>
       <td><code><var>flags</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>علامات لضغط المفتاح</td>
+      <td>علامات للضغط على المفتاح</td>
     </tr>
   </tbody>
 </table>
@@ -438,12 +438,12 @@ driver.sendKeyEvent(keycode, metastate)
     <tr>
       <td><code><var>keycode</var></code></td>
       <td>string</td>
-      <td>رمز المفتاح للضغط</td>
+      <td>رمز المفتاح للضغط عليه</td>
     </tr>
     <tr>
       <td><code><var>metastate</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>حالة meta للضغط على المفتاح</td>
+      <td>حالة الميتا للضغط على رمز المفتاح</td>
     </tr>
   </tbody>
 </table>
@@ -477,17 +477,17 @@ driver.rotateDevice(x, y, z)
     <tr>
       <td><code><var>x</var></code></td>
       <td>number</td>
-      <td>إزاحة x لاستخدامها لمركز إيماءة التدوير</td>
+      <td>إزاحة x المستخدمة لمركز إيماءة التدوير</td>
     </tr>
     <tr>
       <td><code><var>y</var></code></td>
       <td>number</td>
-      <td>إزاحة y لاستخدامها لمركز إيماءة التدوير</td>
+      <td>إزاحة y المستخدمة لمركز إيماءة التدوير</td>
     </tr>
     <tr>
       <td><code><var>z</var></code></td>
       <td>number</td>
-      <td>إزاحة z لاستخدامها لمركز إيماءة التدوير</td>
+      <td>إزاحة z المستخدمة لمركز إيماءة التدوير</td>
     </tr>
   </tbody>
 </table>
@@ -501,7 +501,7 @@ driver.rotateDevice(x, y, z)
 ---
 
 ## getCurrentActivity
-الحصول على اسم النشاط الحالي في Android.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-activity/).
+الحصول على اسم النشاط الحالي في نظام Android.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-activity/).
 
 ##### الاستخدام
 
@@ -510,7 +510,7 @@ driver.getCurrentActivity()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string&gt;**
             **<code><var>activity</var></code>:** اسم النشاط الحالي
@@ -531,7 +531,7 @@ driver.getCurrentPackage()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string&gt;**
             **<code><var>package</var></code>:** اسم الحزمة الحالية
@@ -674,7 +674,7 @@ driver.terminateApp(appId, options)
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>object</td>
-      <td>خيارات الأمر. مثل "timeout": (Android فقط) مهلة لإعادة محاولة إنهاء التطبيق (انظر المزيد في وثائق Appium)</td>
+      <td>خيارات الأمر. مثلا "timeout": (Android فقط) المهلة لإعادة محاولة إنهاء التطبيق (راجع المزيد في وثائق أبيوم)</td>
     </tr>
   </tbody>
 </table>
@@ -715,10 +715,10 @@ driver.isAppInstalled(appId)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;boolean&gt;**
-            **<code><var>isAppInstalled</var></code>:** إرجاع صحيح إذا كان مثبتًا، خطأ إذا لم يكن
+            **<code><var>isAppInstalled</var></code>:** يعيد صحيح إذا كان مثبتًا، خطأ إذا لم يكن كذلك
 
 ##### الدعم
 
@@ -755,10 +755,10 @@ driver.queryAppState(appId)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;number&gt;**
-            **<code><var>appStatus</var></code>:** 0 يعني غير مثبت. 1 يعني غير مشغل. 2 يعني يعمل في الخلفية أو معلق. 3 يعني يعمل في الخلفية. 4 يعني يعمل في المقدمة
+            **<code><var>appStatus</var></code>:** 0 يعني غير مثبت. 1 يعني غير قيد التشغيل. 2 يعني قيد التشغيل في الخلفية أو معلق. 3 يعني قيد التشغيل في الخلفية. 4 يعني قيد التشغيل في المقدمة
 
 ##### الدعم
 
@@ -819,7 +819,7 @@ driver.hideKeyboard(strategy, key, keyCode, keyName)
 ---
 
 ## isKeyboardShown
-ما إذا كانت لوحة المفاتيح الافتراضية معروضة أم لا.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/keys/is-keyboard-shown/).
+ما إذا كانت لوحة المفاتيح الافتراضية ظاهرة أم لا.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/keys/is-keyboard-shown/).
 
 ##### الاستخدام
 
@@ -828,10 +828,10 @@ driver.isKeyboardShown()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;boolean&gt;**
-            **<code><var>isKeyboardShown</var></code>:** صحيح إذا كانت لوحة المفاتيح معروضة
+            **<code><var>isKeyboardShown</var></code>:** صحيح إذا كانت لوحة المفاتيح ظاهرة
 
 ##### الدعم
 
@@ -842,7 +842,7 @@ driver.isKeyboardShown()
 ---
 
 ## pushFile
-وضع ملف على الجهاز في مكان محدد.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/files/push-file/).
+وضع ملف على الجهاز في مكان معين.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/files/push-file/).
 
 ##### الاستخدام
 
@@ -863,7 +863,7 @@ driver.pushFile(path, data)
     <tr>
       <td><code><var>path</var></code></td>
       <td>string</td>
-      <td>المسار لتثبيت البيانات عليه</td>
+      <td>المسار لتثبيت البيانات فيه</td>
     </tr>
     <tr>
       <td><code><var>data</var></code></td>
@@ -883,7 +883,7 @@ driver.pushFile(path, data)
 ---
 
 ## pullFile
-استرجاع ملف من نظام ملفات الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-file/).
+استرداد ملف من نظام ملفات الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-file/).
 
 ##### الاستخدام
 
@@ -910,7 +910,7 @@ driver.pullFile(path)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string&gt;**
             **<code><var>response</var></code>:** محتويات الملف بتنسيق base64
@@ -924,7 +924,7 @@ driver.pullFile(path)
 ---
 
 ## pullFolder
-استرجاع مجلد من نظام ملفات الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-folder/).
+استرداد مجلد من نظام ملفات الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-folder/).
 
 ##### الاستخدام
 
@@ -1032,7 +1032,7 @@ driver.toggleLocationServices()
 ---
 
 ## toggleNetworkSpeed
-تعيين سرعة الشبكة (المحاكي فقط)<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/network-speed/).
+ضبط سرعة الشبكة (في المحاكي فقط)<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/network-speed/).
 
 ##### الاستخدام
 
@@ -1066,7 +1066,7 @@ driver.toggleNetworkSpeed(netspeed)
 ---
 
 ## openNotifications
-فتح إشعارات Android (المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/system/open-notifications/).
+فتح إشعارات Android (في المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/system/open-notifications/).
 
 ##### الاستخدام
 
@@ -1084,7 +1084,7 @@ driver.openNotifications()
 ---
 
 ## startActivity
-بدء نشاط Android عن طريق توفير اسم الحزمة واسم النشاط.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/activity/start-activity/).
+بدء نشاط Android من خلال توفير اسم الحزمة واسم النشاط.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/activity/start-activity/).
 
 ##### الاستخدام
 
@@ -1115,22 +1115,22 @@ driver.startActivity(appPackage, appActivity, appWaitPackage, appWaitActivity, i
     <tr>
       <td><code><var>appWaitPackage</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>اسم التطبيق للانتظار</td>
+      <td>اسم التطبيق للانتظار له</td>
     </tr>
     <tr>
       <td><code><var>appWaitActivity</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>اسم النشاط للانتظار</td>
+      <td>اسم النشاط للانتظار له</td>
     </tr>
     <tr>
       <td><code><var>intentAction=android.intent.action.MAIN</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>إجراء القصد الذي سيتم استخدامه لبدء النشاط</td>
+      <td>إجراء النية الذي سيتم استخدامه لبدء النشاط</td>
     </tr>
     <tr>
       <td><code><var>intentCategory=android.intent.category.LAUNCHER</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>فئة القصد التي سيتم استخدامها لبدء النشاط</td>
+      <td>فئة النية التي سيتم استخدامها لبدء النشاط</td>
     </tr>
     <tr>
       <td><code><var>intentFlags=0x10200000</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -1140,12 +1140,12 @@ driver.startActivity(appPackage, appActivity, appWaitPackage, appWaitActivity, i
     <tr>
       <td><code><var>optionalIntentArguments</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>وسائط القصد الإضافية التي سيتم استخدامها لبدء النشاط</td>
+      <td>وسيطات النية الإضافية التي سيتم استخدامها لبدء النشاط</td>
     </tr>
     <tr>
       <td><code><var>dontStopAppOnReset</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>لا يوقف عملية التطبيق قيد الاختبار، قبل بدء التطبيق باستخدام adb</td>
+      <td>لا توقف عملية التطبيق قيد الاختبار، قبل بدء التطبيق باستخدام adb</td>
     </tr>
   </tbody>
 </table>
@@ -1158,7 +1158,7 @@ driver.startActivity(appPackage, appActivity, appWaitPackage, appWaitActivity, i
 ---
 
 ## getSystemBars
-استرجاع معلومات الرؤية والحدود لشريط الحالة وأشرطة التنقل.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/system/system-bars/).
+استرداد معلومات الرؤية والحدود لشريط الحالة وشريط التنقل.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/system/system-bars/).
 
 ##### الاستخدام
 
@@ -1167,7 +1167,7 @@ driver.getSystemBars()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;object[]&gt;**
             **<code><var>systemBars</var></code>:** معلومات حول رؤية وحدود شريط الحالة وشريط التنقل
@@ -1188,7 +1188,7 @@ driver.getDeviceTime()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string&gt;**
             **<code><var>time</var></code>:** الوقت على الجهاز
@@ -1210,7 +1210,7 @@ driver.getDisplayDensity()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;*&gt;**
 
@@ -1222,7 +1222,7 @@ driver.getDisplayDensity()
 ---
 
 ## touchId
-محاكاة حدث [touch id](https://support.apple.com/en-ca/ht201371) (محاكي iOS فقط). لتمكين هذه الميزة، يجب تعيين القدرة المرغوبة allowTouchIdEnroll إلى true ويجب [تسجيل](https://support.apple.com/en-ca/ht201371) المحاكي. عندما تضبط allowTouchIdEnroll على true، سيتم ضبط المحاكي ليكون مسجلاً بشكل افتراضي. يمكن [تبديل](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/index.html) حالة التسجيل. ستعمل هذه المكالمة فقط إذا كان لعملية Appium أو تطبيقها الأصلي (مثل Terminal.app أو Appium.app) حق الوصول إلى إمكانية الوصول في نظام Mac OS في تفضيلات النظام > الأمان والخصوصية > الخصوصية > إمكانية الوصول.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/simulator/touch-id/).
+محاكاة حدث [معرف اللمس](https://support.apple.com/en-ca/ht201371) (محاكي iOS فقط). لتمكين هذه الميزة، يجب تعيين قدرة `allowTouchIdEnroll` على صحيح ويجب [تسجيل](https://support.apple.com/en-ca/ht201371) المحاكي. عندما تعين allowTouchIdEnroll على صحيح، سيتم تعيين المحاكي ليكون مسجلاً بشكل افتراضي. يمكن [تبديل](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/index.html) حالة التسجيل. هذا الاستدعاء سيعمل فقط إذا كان لعملية أبيوم أو تطبيقه الأصلي (مثل Terminal.app أو Appium.app) حق الوصول إلى إمكانية الوصول في نظام ماك في تفضيلات النظام > الأمان والخصوصية > الخصوصية > إمكانية الوصول.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/simulator/touch-id/).
 
 ##### الاستخدام
 
@@ -1256,7 +1256,7 @@ driver.touchId(match)
 ---
 
 ## toggleEnrollTouchId
-تبديل المحاكي بين كونه [مسجلاً](https://support.apple.com/en-ca/ht201371) لقبول بصمة الإصبع (محاكي iOS فقط). لتمكين هذه الميزة، يجب تعيين القدرة المرغوبة `allowTouchIdEnroll` إلى true. عندما يتم تعيين `allowTouchIdEnroll` إلى true سيتم تسجيل المحاكي بشكل افتراضي، ويغير 'Toggle Touch ID Enrollment' حالة التسجيل. ستعمل هذه المكالمة فقط إذا كان لعملية Appium أو تطبيقها الأصلي (مثل Terminal.app أو Appium.app) حق الوصول إلى إمكانية الوصول في نظام Mac OS في تفضيلات النظام > الأمان والخصوصية > الخصوصية > إمكانية الوصول.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/).
+تبديل [تسجيل](https://support.apple.com/en-ca/ht201371) المحاكي لقبول معرف اللمس (محاكي iOS فقط). لتمكين هذه الميزة، يجب تعيين قدرة `allowTouchIdEnroll` على صحيح. عندما يتم تعيين `allowTouchIdEnroll` على صحيح، سيتم تسجيل المحاكي بشكل افتراضي، و 'Toggle Touch ID Enrollment' يغير حالة التسجيل. هذا الاستدعاء سيعمل فقط إذا كان لعملية أبيوم أو تطبيقه الأصلي (مثل Terminal.app أو Appium.app) حق الوصول إلى إمكانية الوصول في تفضيلات النظام > الأمان والخصوصية > الخصوصية > إمكانية الوصول.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/).
 
 ##### الاستخدام
 
@@ -1277,7 +1277,7 @@ driver.toggleEnrollTouchId(enabled)
     <tr>
       <td><code><var>enabled=true</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>boolean</td>
-      <td>يساوي true إذا كان يجب تمكين تسجيل بصمة الإصبع</td>
+      <td>يساوي صحيح إذا كان ينبغي تمكين تسجيل معرف اللمس</td>
     </tr>
   </tbody>
 </table>
@@ -1290,7 +1290,7 @@ driver.toggleEnrollTouchId(enabled)
 ---
 
 ## launchApp
-إطلاق تطبيق على الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/app/launch-app/).
+تشغيل تطبيق على الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/app/launch-app/).
 :::caution
 
 أمر البروتوكول هذا مهمل<br />بالنسبة لنظام iOS، استخدم `driver.execute('mobile: launchApp', { ... })`، وبالنسبة لنظام Android، استخدم `driver.execute('mobile: activateApp', { ... })`.
@@ -1336,7 +1336,7 @@ driver.closeApp()
 ---
 
 ## background
-إرسال التطبيق الحالي قيد التشغيل لهذه الجلسة إلى الخلفية.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/app/background-app/).
+إرسال التطبيق الذي يعمل حاليًا لهذه الجلسة إلى الخلفية.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/app/background-app/).
 :::caution
 
 أمر البروتوكول هذا مهمل<br />استخدم `driver.execute('mobile: backgroundApp', { ... })` بدلاً من ذلك
@@ -1361,7 +1361,7 @@ driver.background(seconds)
     <tr>
       <td><code><var>seconds=null</var></code></td>
       <td>number, null</td>
-      <td>مهلة لاستعادة التطبيق، إذا كانت 'null' فلن تتم استعادة التطبيق</td>
+      <td>مهلة لاستعادة التطبيق، إذا كانت 'null' فلن يتم استعادة التطبيق</td>
     </tr>
   </tbody>
 </table>
@@ -1396,7 +1396,7 @@ driver.endCoverage(intent, path)
     <tr>
       <td><code><var>intent</var></code></td>
       <td>string</td>
-      <td>القصد للبث</td>
+      <td>النية للبث</td>
     </tr>
     <tr>
       <td><code><var>path</var></code></td>
@@ -1446,10 +1446,10 @@ driver.getStrings(language, stringFile)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;object&gt;**
-            **<code><var>appStrings</var></code>:** جميع السلاسل النصية المحددة من تطبيق للغة المحددة واسم ملف السلاسل
+            **<code><var>appStrings</var></code>:** جميع السلاسل النصية المعرفة من تطبيق للغة المحددة واسم ملف السلاسل النصية
 
 ##### الدعم
 
@@ -1480,7 +1480,7 @@ driver.setValueImmediate(elementId, text)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
+      <td>معرف العنصر الذي تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>text</var></code></td>
@@ -1520,7 +1520,7 @@ driver.replaceValue(elementId, value)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
+      <td>معرف العنصر الذي تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -1539,7 +1539,7 @@ driver.replaceValue(elementId, value)
 ---
 
 ## getSettings
-استرجاع الإعدادات الحالية على الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/session/settings/get-settings/).
+استرداد الإعدادات الحالية على الجهاز.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/session/settings/get-settings/).
 
 ##### الاستخدام
 
@@ -1548,10 +1548,10 @@ driver.getSettings()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;object&gt;**
-            **<code><var>settings</var></code>:** هاش JSON لجميع الإعدادات المحددة حالياً، انظر واجهة برمجة تطبيقات الإعدادات
+            **<code><var>settings</var></code>:** مجموعة JSON لجميع الإعدادات المحددة حاليًا، انظر واجهة برمجة تطبيقات الإعدادات
 
 ##### الدعم
 
@@ -1598,7 +1598,7 @@ driver.updateSettings(settings)
 ---
 
 ## receiveAsyncResponse
-عنوان URL رد الاتصال للتنفيذ غير المتزامن لـ JavaScript.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
+رابط الاستدعاء للتنفيذ غير المتزامن لجافا سكريبت.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
 
 ##### الاستخدام
 
@@ -1632,7 +1632,7 @@ driver.receiveAsyncResponse(response)
 ---
 
 ## gsmCall
-إجراء مكالمة GSM (المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-call/).
+إجراء مكالمة GSM (في المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-call/).
 
 ##### الاستخدام
 
@@ -1671,7 +1671,7 @@ driver.gsmCall(phoneNumber, action)
 ---
 
 ## gsmSignal
-تعيين قوة إشارة GSM (المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-signal/).
+ضبط قوة إشارة GSM (في المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-signal/).
 
 ##### الاستخدام
 
@@ -1692,12 +1692,12 @@ driver.gsmSignal(signalStrength, signalStrengh)
     <tr>
       <td><code><var>signalStrength</var></code></td>
       <td>string</td>
-      <td>قوة الإشارة في النطاق [0، 4]</td>
+      <td>قوة الإشارة في النطاق [0, 4]</td>
     </tr>
     <tr>
       <td><code><var>signalStrengh</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>قوة الإشارة في النطاق [0، 4]. يرجى أيضاً تعيين هذه المعلمة بنفس القيمة إذا كنت تستخدم Appium v1.11.0 أو أقل (انظر https://github.com/appium/appium/issues/12234).</td>
+      <td>قوة الإشارة في النطاق [0, 4]. يرجى أيضًا تعيين هذه المعلمة بنفس القيمة إذا كنت تستخدم أبيوم الإصدار v1.11.0 أو أقل (انظر https://github.com/appium/appium/issues/12234).</td>
     </tr>
   </tbody>
 </table>
@@ -1710,7 +1710,7 @@ driver.gsmSignal(signalStrength, signalStrengh)
 ---
 
 ## powerCapacity
-تعيين نسبة البطارية (المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_capacity/).
+ضبط نسبة البطارية (في المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_capacity/).
 
 ##### الاستخدام
 
@@ -1731,7 +1731,7 @@ driver.powerCapacity(percent)
     <tr>
       <td><code><var>percent</var></code></td>
       <td>number</td>
-      <td>قيمة النسبة المئوية في النطاق [0، 100]</td>
+      <td>قيمة النسبة المئوية في النطاق [0, 100]</td>
     </tr>
   </tbody>
 </table>
@@ -1744,7 +1744,7 @@ driver.powerCapacity(percent)
 ---
 
 ## powerAC
-تعيين حالة شاحن البطارية على متصل أو غير متصل (المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_ac/).
+ضبط حالة شاحن البطارية على متصل أم لا (في المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_ac/).
 
 ##### الاستخدام
 
@@ -1765,7 +1765,7 @@ driver.powerAC(state)
     <tr>
       <td><code><var>state</var></code></td>
       <td>string</td>
-      <td>تعيين الحالة. on أو off</td>
+      <td>ضبط الحالة. تشغيل أو إيقاف</td>
     </tr>
   </tbody>
 </table>
@@ -1778,7 +1778,7 @@ driver.powerAC(state)
 ---
 
 ## gsmVoice
-تعيين حالة صوت GSM (المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-voice/).
+ضبط حالة صوت GSM (في المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-voice/).
 
 ##### الاستخدام
 
@@ -1812,7 +1812,7 @@ driver.gsmVoice(state)
 ---
 
 ## sendSms
-محاكاة رسالة SMS (المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/send-sms/).
+محاكاة رسالة SMS (في المحاكي فقط).<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/network/send-sms/).
 
 ##### الاستخدام
 
@@ -1833,7 +1833,7 @@ driver.sendSms(phoneNumber, message)
     <tr>
       <td><code><var>phoneNumber</var></code></td>
       <td>string</td>
-      <td>رقم الهاتف لإرسال الرسالة القصيرة إليه</td>
+      <td>رقم الهاتف المراد إرسال الرسالة القصيرة إليه</td>
     </tr>
     <tr>
       <td><code><var>message</var></code></td>
@@ -1851,7 +1851,7 @@ driver.sendSms(phoneNumber, message)
 ---
 
 ## fingerPrint
-مصادقة المستخدمين باستخدام مسح بصمات أصابعهم على أجهزة المحاكاة المدعومة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/authentication/finger-print/).
+مصادقة المستخدمين باستخدام مسح بصمات أصابعهم على المحاكيات المدعومة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/device/authentication/finger-print/).
 
 ##### الاستخدام
 
@@ -1906,12 +1906,12 @@ driver.setClipboard(content, contentType, label)
     <tr>
       <td><code><var>content</var></code></td>
       <td>string</td>
-      <td>محتوى الحافظة الفعلي المشفر بنظام base64</td>
+      <td>محتوى الحافظة الفعلي المشفر بـ base64</td>
     </tr>
     <tr>
       <td><code><var>contentType</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>نوع المحتوى للحصول عليه. Plaintext أو Image أو URL. يدعم Android النص العادي فقط</td>
+      <td>نوع المحتوى المراد الحصول عليه. نص عادي، صورة، URL. يدعم Android النص العادي فقط</td>
     </tr>
     <tr>
       <td><code><var>label</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -1922,10 +1922,10 @@ driver.setClipboard(content, contentType, label)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string&gt;**
-            **<code><var>response</var></code>:** الاستجابة من خادم Appium
+            **<code><var>response</var></code>:** استجابة من خادم أبيوم
 
 ##### الدعم
 
@@ -1956,16 +1956,16 @@ driver.getClipboard(contentType)
     <tr>
       <td><code><var>contentType</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>نوع المحتوى للحصول عليه. Plaintext أو Image أو URL. يدعم Android النص العادي فقط</td>
+      <td>نوع المحتوى المراد الحصول عليه. نص عادي، صورة، URL. يدعم Android النص العادي فقط</td>
     </tr>
   </tbody>
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;string&gt;**
-            **<code><var>response</var></code>:** محتوى الحافظة كسلسلة مشفرة بنظام base64 أو سلسلة فارغة إذا كانت الحافظة فارغة
+            **<code><var>response</var></code>:** محتوى الحافظة كسلسلة مشفرة بـ base64 أو سلسلة فارغة إذا كانت الحافظة فارغة
 
 ##### الدعم
 
@@ -1975,7 +1975,7 @@ driver.getClipboard(contentType)
 ---
 
 ## touchPerform
-هذه الوظيفة متاحة فقط من داخل سياق أصلي. يعمل 'Touch Perform' بطريقة مماثلة لتفاعلات اللمس الفردية الأخرى، باستثناء أن هذا يسمح لك بربط أكثر من إجراء لمس واحد كأمر واحد. هذا مفيد لأنه يتم إرسال أوامر Appium عبر الشبكة وهناك تأخر بين الأوامر. يمكن أن يجعل هذا التأخير بعض تفاعلات اللمس مستحيلة لأن بعض التفاعلات تحتاج إلى أن تتم في تسلسل واحد. يتطلب الوضع العمودي، على سبيل المثال، الضغط لأسفل، والانتقال إلى إحداثي y مختلف، ثم التحرير. لكي يعمل، لا يمكن أن يكون هناك تأخير بين التفاعلات.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/touch-perform/).
+هذه الوظيفة متاحة فقط من داخل سياق أصلي. يعمل 'Touch Perform' بشكل مشابه لتفاعلات اللمس الفردية الأخرى، باستثناء أنه يسمح لك بربط أكثر من إجراء لمس واحد كأمر واحد. هذا مفيد لأن أوامر أبيوم يتم إرسالها عبر الشبكة وهناك تأخير بين الأوامر. يمكن أن يجعل هذا التأخير تفاعلات اللمس المعينة مستحيلة لأن بعض التفاعلات تحتاج إلى أن تتم في تسلسل واحد. التمرير العمودي، على سبيل المثال، يتطلب الضغط لأسفل، والانتقال إلى إحداثيات y مختلفة، ثم الإفلات. لكي يعمل، لا يمكن أن يكون هناك تأخير بين التفاعلات.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/touch-perform/).
 
 ##### الاستخدام
 
@@ -2052,7 +2052,7 @@ driver.touchPerform([
 ---
 
 ## multiTouchPerform
-هذه الوظيفة متاحة فقط من داخل سياق أصلي. تنفيذ تسلسل إجراءات اللمس المتعدد.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/multi-touch-perform/).
+هذه الوظيفة متاحة فقط من داخل سياق أصلي. تنفيذ تسلسل إجراءات متعدد اللمس.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/multi-touch-perform/).
 
 ##### الاستخدام
 
@@ -2088,7 +2088,7 @@ driver.multiTouchPerform(actions)
 ---
 
 ## executeDriverScript
-يتيح لك هذا الأمر تحديد نص WebdriverIO كسلسلة ونقله إلى خادم Appium للتنفيذ المحلي على الخادم نفسه. يساعد هذا النهج في تقليل التأخير المحتمل المرتبط بكل أمر. ***لاستخدام هذا الأمر مع Appium 2.0، يجب أن يكون لديك مكون [`execute-driver-plugin`](https://github.com/appium/appium/tree/master/packages/execute-driver-plugin) مثبت.***<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/docs/en/commands/session/execute-driver.md).
+يمكنك من خلال هذا الأمر تحديد برنامج WebdriverIO كسلسلة نصية ونقله إلى خادم أبيوم للتنفيذ المحلي على الخادم نفسه. يساعد هذا النهج في تقليل التأخير المحتمل المرتبط بكل أمر. ***لاستخدام هذا الأمر مع أبيوم 2.0، يجب أن تكون قد قمت بتثبيت البرنامج المساعد [`execute-driver-plugin`](https://github.com/appium/appium/tree/master/packages/execute-driver-plugin).***<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/docs/en/commands/session/execute-driver.md).
 
 ##### الاستخدام
 
@@ -2109,32 +2109,32 @@ driver.executeDriverScript(script, type, timeout)
     <tr>
       <td><code><var>script</var></code></td>
       <td>string</td>
-      <td>النص المراد تنفيذه. لديه إمكانية الوصول إلى كائن 'driver' الذي يمثل جلسة WebdriverIO مرتبطة بالخادم الحالي.</td>
+      <td>البرنامج النصي المراد تنفيذه. لديه حق الوصول إلى كائن 'driver' الذي يمثل جلسة WebdriverIO متصلة بالخادم الحالي.</td>
     </tr>
     <tr>
       <td><code><var>type</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>اللغة/الإطار المستخدم في النص. حاليًا، فقط 'webdriverio' مدعوم وهو الافتراضي.</td>
+      <td>اللغة/الإطار المستخدم في البرنامج النصي. حاليًا، يتم دعم 'webdriverio' فقط وهو الافتراضي.</td>
     </tr>
     <tr>
       <td><code><var>timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>عدد المللي ثانية التي يجب أن يُسمح للنص بالتشغيل قبل أن يتم إنهاؤه بواسطة خادم Appium. الافتراضي هو ما يعادل ساعة واحدة.</td>
+      <td>عدد الميلي ثانية التي يجب أن يُسمح للبرنامج النصي بالتشغيل خلالها قبل أن يتم إنهاؤه بواسطة خادم أبيوم. القيمة الافتراضية هي ما يعادل ساعة واحدة.</td>
     </tr>
   </tbody>
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** كائن يحتوي على حقلين: 'result'، وهو قيمة العودة للنص نفسه، و'logs'، الذي يحتوي على 3 حقول داخلية، 'log'، 'warn'، و'error'، التي تحتوي على مصفوفة من السلاسل المسجلة بواسطة console.log، console.warn، وconsole.error في تنفيذ النص.
+            **<code><var>result</var></code>:** كائن يحتوي على حقلين: 'result'، وهو القيمة المرتجعة من البرنامج النصي نفسه، و'logs'، والذي يحتوي على 3 حقول داخلية، 'log'، 'warn'، و'error'، والتي تحتوي على مصفوفة من السلاسل النصية التي تم تسجيلها بواسطة console.log، console.warn، وconsole.error في تنفيذ البرنامج النصي.
 
 
 ---
 
 ## getEvents
-الحصول على الأحداث المخزنة في خادم appium.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/docs/en/commands/session/events/get-events.md).
+الحصول على الأحداث المخزنة في خادم أبيوم.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/docs/en/commands/session/events/get-events.md).
 
 ##### الاستخدام
 
@@ -2155,16 +2155,16 @@ driver.getEvents(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>string[]</td>
-      <td>الحصول على الأحداث التي تمت تصفيتها بالنوع إذا تم توفير النوع.</td>
+      <td>احصل على الأحداث التي يتم تصفيتها بالنوع إذا تم توفير النوع.</td>
     </tr>
   </tbody>
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** هاش JSON للأحداث مثل `{'commands' => [{'cmd' => 123455, ....}], 'startTime' => 1572954894127, }`.
+            **<code><var>result</var></code>:** مجموعة JSON للأحداث مثل `{'commands' => [{'cmd' => 123455, ....}], 'startTime' => 1572954894127, }`.
 
 ##### الدعم
 
@@ -2214,7 +2214,7 @@ driver.logEvent(vendor, event)
 ---
 
 ## compareImages
-تقوم هذه الميزة بإجراء مقارنات للصور باستخدام قدرات إطار عمل OpenCV. يرجى ملاحظة أنه لكي تعمل هذه الوظيفة، يجب تثبيت كل من إطار عمل OpenCV ووحدة opencv4nodejs على الجهاز الذي يعمل عليه خادم Appium. ***بالإضافة إلى ذلك، ستحتاج إلى تثبيت المكون [`images-plugin`](https://github.com/appium/appium/tree/master/packages/images-plugin) لاستخدام هذه الميزة مع Appium 2.0.***<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/writing-running-appium/image-comparison/).
+تقوم هذه الميزة بإجراء مقارنات للصور باستخدام قدرات إطار عمل OpenCV. يرجى ملاحظة أنه لكي تعمل هذه الوظيفة، يجب تثبيت كل من إطار عمل OpenCV ووحدة opencv4nodejs على الجهاز الذي يعمل عليه خادم أبيوم. ***بالإضافة إلى ذلك، ستحتاج إلى تثبيت البرنامج المساعد [`images-plugin`](https://github.com/appium/appium/tree/master/packages/images-plugin) لاستخدام هذه الميزة مع أبيوم 2.0.***<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://appium.github.io/appium.io/docs/en/writing-running-appium/image-comparison/).
 
 ##### الاستخدام
 
@@ -2235,37 +2235,37 @@ driver.compareImages(mode, firstImage, secondImage, options)
     <tr>
       <td><code><var>mode=matchFeatures</var></code></td>
       <td>string</td>
-      <td>أحد أوضاع المقارنة الممكنة: 'matchFeatures'، 'getSimilarity'، 'matchTemplate'. 'matchFeatures' هو الافتراضي.</td>
+      <td>أحد أوضاع المقارنة الممكنة: 'matchFeatures'، 'getSimilarity'، 'matchTemplate'. 'matchFeatures' هو الوضع الافتراضي.</td>
     </tr>
     <tr>
       <td><code><var>firstImage</var></code></td>
       <td>string</td>
-      <td>بيانات الصورة. جميع تنسيقات الصور، التي تقبلها مكتبة OpenCV نفسها، مدعومة.</td>
+      <td>بيانات الصورة. جميع تنسيقات الصور التي تقبلها مكتبة OpenCV نفسها مدعومة.</td>
     </tr>
     <tr>
       <td><code><var>secondImage</var></code></td>
       <td>string</td>
-      <td>بيانات الصورة. جميع تنسيقات الصور، التي تقبلها مكتبة OpenCV نفسها، مدعومة.</td>
+      <td>بيانات الصورة. جميع تنسيقات الصور التي تقبلها مكتبة OpenCV نفسها مدعومة.</td>
     </tr>
     <tr>
       <td><code><var>options=[object Object]</var></code></td>
       <td>object</td>
-      <td>يعتمد محتوى هذا القاموس على قيمة `mode` الفعلية. انظر وثائق وحدة `appium-support` لمزيد من التفاصيل. </td>
+      <td>يعتمد محتوى هذا القاموس على قيمة `mode` الفعلية. انظر الوثائق الخاصة بوحدة `appium-support` لمزيد من التفاصيل. </td>
     </tr>
   </tbody>
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** يعتمد محتوى القاموس الناتج على قيم `mode` و `options` الفعلية. انظر وثائق وحدة `appium-support` لمزيد من التفاصيل.
+            **<code><var>result</var></code>:** يعتمد محتوى القاموس الناتج على قيم `mode` و `options` الفعلية. انظر الوثائق الخاصة بوحدة `appium-support` لمزيد من التفاصيل.
 
 
 ---
 
 ## implicitWait
-تعيين مقدار الوقت الذي يجب أن ينتظره السائق عند البحث عن العناصر. عند البحث عن عنصر واحد، يجب على السائق استطلاع الصفحة حتى يتم العثور على عنصر أو تنتهي المهلة، أيهما يحدث أولاً. عند البحث عن عناصر متعددة، يجب على السائق استطلاع الصفحة حتى يتم العثور على عنصر واحد على الأقل أو تنتهي المهلة، وعندها يجب أن يُرجع قائمة فارغة. إذا لم يتم إرسال هذا الأمر أبدًا، يجب أن يكون الانتظار الضمني الافتراضي للسائق 0 مللي ثانية.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+تعيين مقدار الوقت الذي يجب أن ينتظره السائق عند البحث عن العناصر. عند البحث عن عنصر واحد، يجب على السائق استطلاع الصفحة حتى يتم العثور على عنصر أو حتى تنتهي مهلة الانتظار، أيهما يحدث أولاً. عند البحث عن عناصر متعددة، يجب على السائق استطلاع الصفحة حتى يتم العثور على عنصر واحد على الأقل أو حتى تنتهي مهلة الانتظار، وعند تلك النقطة يجب أن يعيد قائمة فارغة. إذا لم يتم إرسال هذا الأمر مطلقًا، يجب على السائق الافتراضي إلى انتظار ضمني قدره 0 مللي ثانية.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2286,7 +2286,7 @@ driver.implicitWait(ms)
     <tr>
       <td><code><var>ms</var></code></td>
       <td>number</td>
-      <td>مقدار الوقت، بالمللي ثانية، للانتظار على عنصر.</td>
+      <td>مقدار الوقت، بالميلي ثانية، للانتظار على عنصر.</td>
     </tr>
   </tbody>
 </table>
@@ -2300,7 +2300,7 @@ driver.implicitWait(ms)
 ---
 
 ## getLocationInView
-تحديد موقع عنصر على الشاشة بعد تمرير الشاشة إليه.<br /><br />__ملاحظة:__ يعتبر هذا أمرًا داخليًا ويجب استخدامه فقط لتحديد موقع عنصر لتوليد أحداث أصلية بشكل صحيح.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+تحديد موقع العنصر على الشاشة بعد تمرير الشاشة لعرضه.<br /><br />__ملاحظة:__ يعتبر هذا أمرًا داخليًا ويجب استخدامه فقط لتحديد موقع العنصر لتوليد الأحداث الأصلية بشكل صحيح.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2327,7 +2327,7 @@ driver.getLocationInView(elementId)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;Object&gt;**
             **<code><var>location</var></code>:** إحداثيات X و Y للعنصر على الصفحة.
@@ -2340,7 +2340,7 @@ driver.getLocationInView(elementId)
 ---
 
 ## sendKeys
-إرسال سلسلة من ضربات المفاتيح إلى العنصر النشط<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+إرسال تسلسل من ضغطات المفاتيح إلى العنصر النشط<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2361,7 +2361,7 @@ driver.sendKeys(value)
     <tr>
       <td><code><var>value</var></code></td>
       <td>string[]</td>
-      <td>تسلسل المفاتيح للكتابة. يجب توفير مصفوفة.</td>
+      <td>تسلسل المفاتيح المراد كتابتها. يجب توفير مصفوفة.</td>
     </tr>
   </tbody>
 </table>
@@ -2375,7 +2375,7 @@ driver.sendKeys(value)
 ---
 
 ## availableIMEEngines
-سرد جميع المحركات المتاحة على الجهاز. لاستخدام محرك، يجب أن يكون موجودًا في هذه القائمة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+قائمة بجميع المحركات المتاحة على الجهاز. لاستخدام محرك، يجب أن يكون موجودًا في هذه القائمة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2384,10 +2384,10 @@ driver.availableIMEEngines()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;String[]&gt;**
-            **<code><var>engines</var></code>:** قائمة المحركات المتاحة
+            **<code><var>engines</var></code>:** قائمة بالمحركات المتاحة
 
 ##### الدعم
 
@@ -2405,7 +2405,7 @@ driver.getActiveIMEEngine()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;String&gt;**
             **<code><var>engine</var></code>:** اسم محرك IME النشط
@@ -2417,7 +2417,7 @@ driver.getActiveIMEEngine()
 ---
 
 ## isIMEActivated
-يشير إلى ما إذا كان إدخال IME نشطًا في هذه اللحظة<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+يشير إلى ما إذا كان إدخال IME نشطًا في الوقت الحالي<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2426,7 +2426,7 @@ driver.isIMEActivated()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;Boolean&gt;**
             **<code><var>isActive</var></code>:** صحيح إذا كان إدخال IME متاحًا ونشطًا حاليًا، خطأ بخلاف ذلك
@@ -2456,7 +2456,7 @@ driver.deactivateIMEEngine()
 ---
 
 ## activateIMEEngine
-جعل محرك متاح<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+تنشيط محرك متاح<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2477,7 +2477,7 @@ driver.activateIMEEngine(engine)
     <tr>
       <td><code><var>engine</var></code></td>
       <td>string</td>
-      <td>اسم المحرك للتنشيط</td>
+      <td>اسم المحرك المراد تنشيطه</td>
     </tr>
   </tbody>
 </table>
@@ -2490,7 +2490,7 @@ driver.activateIMEEngine(engine)
 ---
 
 ## asyncScriptTimeout
-تعيين مقدار الوقت، بالمللي ثانية، الذي يُسمح للنصوص غير المتزامنة التي يتم تنفيذها بواسطة `/session/:sessionId/execute_async` بالتشغيل قبل إيقافها وإرجاع خطأ `Timeout` إلى العميل.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+تعيين مقدار الوقت، بالميلي ثانية، الذي يُسمح للبرامج النصية غير المتزامنة التي يتم تنفيذها بواسطة `/session/:sessionId/execute_async` بالتشغيل قبل إيقافها وإرجاع خطأ `Timeout` إلى العميل.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2511,7 +2511,7 @@ driver.asyncScriptTimeout(ms)
     <tr>
       <td><code><var>ms</var></code></td>
       <td>number</td>
-      <td>مقدار الوقت، بالمللي ثانية، الذي يُسمح للأوامر المحدودة زمنيًا بالتشغيل</td>
+      <td>مقدار الوقت، بالميلي ثانية، الذي يُسمح للأوامر محدودة الوقت بالتشغيل</td>
     </tr>
   </tbody>
 </table>
@@ -2558,7 +2558,7 @@ driver.submit(elementId)
 ---
 
 ## getElementSize
-تحديد حجم عنصر بالبكسل. سيتم إرجاع الحجم ككائن JSON مع خصائص `width` و `height`.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+تحديد حجم العنصر بالبكسل. سيتم إرجاع الحجم ككائن JSON مع خصائص `width` و `height`.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2585,7 +2585,7 @@ driver.getElementSize(elementId)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;Object&gt;**
             **<code><var>size</var></code>:** عرض وارتفاع العنصر، بالبكسل.
@@ -2598,7 +2598,7 @@ driver.getElementSize(elementId)
 ---
 
 ## getElementLocation
-تحديد موقع عنصر على الصفحة. تشير النقطة `(0، 0)` إلى الزاوية العلوية اليسرى من الصفحة. يتم إرجاع إحداثيات العنصر ككائن JSON مع خصائص `x` و `y`.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+تحديد موقع العنصر على الصفحة. تشير النقطة `(0, 0)` إلى الزاوية العلوية اليسرى من الصفحة. يتم إرجاع إحداثيات العنصر ككائن JSON مع خصائص `x` و `y`.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2625,7 +2625,7 @@ driver.getElementLocation(elementId)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;Object&gt;**
             **<code><var>location</var></code>:** إحداثيات X و Y للعنصر على الصفحة.
@@ -2638,7 +2638,7 @@ driver.getElementLocation(elementId)
 ---
 
 ## touchClick
-نقرة فردية على الجهاز الذي يدعم اللمس.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+نقرة واحدة على الجهاز الذي يدعم اللمس.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2659,7 +2659,7 @@ driver.touchClick(element)
     <tr>
       <td><code><var>element</var></code></td>
       <td>string</td>
-      <td>معرف العنصر للنقر فردياً عليه.</td>
+      <td>معرف العنصر المراد النقر عليه مرة واحدة.</td>
     </tr>
   </tbody>
 </table>
@@ -2673,7 +2673,7 @@ driver.touchClick(element)
 ---
 
 ## touchDown
-وضع الإصبع لأسفل على الشاشة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+الإصبع لأسفل على الشاشة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2712,7 +2712,7 @@ driver.touchDown(x, y)
 ---
 
 ## touchUp
-رفع الإصبع على الشاشة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+الإصبع لأعلى على الشاشة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2790,7 +2790,7 @@ driver.touchMove(x, y)
 ---
 
 ## touchLongClick
-الضغط الطويل على شاشة اللمس باستخدام أحداث حركة الإصبع.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+الضغط المطول على شاشة اللمس باستخدام أحداث حركة الإصبع.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2811,7 +2811,7 @@ driver.touchLongClick(element)
     <tr>
       <td><code><var>element</var></code></td>
       <td>string</td>
-      <td>معرف العنصر للضغط الطويل عليه</td>
+      <td>معرف العنصر المراد الضغط المطول عليه</td>
     </tr>
   </tbody>
 </table>
@@ -2824,7 +2824,7 @@ driver.touchLongClick(element)
 ---
 
 ## touchFlick
-النقر على شاشة اللمس باستخدام أحداث حركة الإصبع. يبدأ أمر النقر هذا في موقع شاشة معين.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+النقر السريع على شاشة اللمس باستخدام أحداث حركة الإصبع. يبدأ أمر النقر السريع هذا في موقع معين على الشاشة.<br /><br />أمر أبيوم. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### الاستخدام
 
@@ -2845,17 +2845,17 @@ driver.touchFlick(xoffset, yoffset, element, speed, xspeed, yspeed)
     <tr>
       <td><code><var>xoffset</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>الإزاحة x بالبكسل للنقر</td>
+      <td>إزاحة x بالبكسل للنقر السريع</td>
     </tr>
     <tr>
       <td><code><var>yoffset</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>الإزاحة y بالبكسل للنقر</td>
+      <td>إزاحة y بالبكسل للنقر السريع</td>
     </tr>
     <tr>
       <td><code><var>element</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>معرف العنصر حيث يبدأ النقر</td>
+      <td>معرف العنصر حيث يبدأ النقر السريع</td>
     </tr>
     <tr>
       <td><code><var>speed</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -2865,12 +2865,12 @@ driver.touchFlick(xoffset, yoffset, element, speed, xspeed, yspeed)
     <tr>
       <td><code><var>xspeed</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>السرعة x بالبكسل في الثانية</td>
+      <td>سرعة x بالبكسل في الثانية</td>
     </tr>
     <tr>
       <td><code><var>yspeed</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>number</td>
-      <td>السرعة y بالبكسل في الثانية</td>
+      <td>سرعة y بالبكسل في الثانية</td>
     </tr>
   </tbody>
 </table>
@@ -2892,7 +2892,7 @@ driver.getOrientation()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;String&gt;**
             **<code><var>orientation</var></code>:** الاتجاه الحالي المقابل لقيمة محددة في ScreenOrientation: `LANDSCAPE|PORTRAIT`.
@@ -2967,10 +2967,10 @@ driver.getLogs(type)
 </table>
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;Object[]&gt;**
-            **<code><var>logs</var></code>:** قائمة إدخالات السجل.
+            **<code><var>logs</var></code>:** قائمة بإدخالات السجل.
 
 ##### الدعم
 
@@ -2989,10 +2989,10 @@ driver.getLogTypes()
 ```
 
 
-##### العوائد
+##### القيم المُرجعة
 
 - **&lt;String[]&gt;**
-            **<code><var>logTypes</var></code>:** قائمة أنواع السجلات المتاحة.
+            **<code><var>logTypes</var></code>:** قائمة بأنواع السجلات المتاحة.
 
 ##### الدعم
 

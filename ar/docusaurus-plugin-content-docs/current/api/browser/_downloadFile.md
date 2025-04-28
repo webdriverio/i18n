@@ -4,7 +4,7 @@ title: تنزيل الملف
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/downloadFile.ts
 ---
 
-تنزيل ملف من الكمبيوتر البعيد الذي يشغل عقدة Selenium إلى نظام الملفات المحلي
+قم بتنزيل ملف من الكمبيوتر البعيد الذي يشغل عقدة Selenium إلى نظام الملفات المحلي
 باستخدام أمر [`downloadFile`](https://webdriver.io/docs/api/selenium#downloadFile).
 
 :::info
@@ -36,7 +36,7 @@ browser.downloadFile(fileName, targetDirectory)
     <tr>
       <td><code><var>targetDirectory</var></code></td>
       <td>`string`</td>
-      <td>الموقع المستهدف على الكمبيوتر المحلي</td>
+      <td>موقع الهدف على الكمبيوتر المحلي</td>
     </tr>
   </tbody>
 </table>

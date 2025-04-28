@@ -4,12 +4,13 @@ title: shadow$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/shadow$.ts
 ---
 
-الوصول إلى عنصر داخل shadowRoot للعنصر المحدد. إذا كنت تعمل مع الكثير من shadow roots المتداخلة، فإن النهج البديل لـ `shadow$` هو استخدام [محدد العمق (deep selector)](https://webdriver.io/docs/selectors#deep-selectors).
+الوصول إلى عنصر داخل shadowRoot لعنصر معين. إذا كنت تعمل مع الكثير من جذور الظل المتداخلة، هناك نهج بديل لـ `shadow$` وهو استخدام [محدد العمق](https://webdriver.io/docs/selectors#deep-selectors).
 
 :::info
 
-يقوم WebdriverIO تلقائيًا باختراق shadow roots عند استخدام أوامر `$` أو `$$`.
-هذا الأمر مطلوب فقط إذا كنت تقوم بالأتمتة في بيئة لا تدعم WebDriver Bidi بعد، مثل اختبار الويب على الهاتف المحمول باستخدام Appium.
+يقوم WebdriverIO تلقائيًا باختراق جذور الظل عند استخدام أوامر `$` أو `$$`.
+هذا الأمر مطلوب فقط إذا كنت تقوم بالأتمتة في بيئة لا تدعم
+WebDriver Bidi بعد، مثل اختبار الويب للجوال باستخدام Appium.
 
 :::
 
@@ -31,7 +32,7 @@ $(selector).shadow$(selector)
     <tr>
       <td><code><var>selector</var></code></td>
       <td>`String, Function`</td>
-      <td>محدد أو دالة JS لجلب عنصر معين</td>
+      <td>محدد أو دالة جافا سكريبت لجلب عنصر معين</td>
     </tr>
   </tbody>
 </table>
@@ -45,6 +46,6 @@ it('should return an element inside a shadowRoot', async () => {
 });
 ```
 
-##### النتائج
+##### يُرجع
 
 - **&lt;WebdriverIO.Element&gt;**

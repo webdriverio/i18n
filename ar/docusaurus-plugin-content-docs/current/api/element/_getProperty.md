@@ -1,10 +1,10 @@
 ---
 id: getProperty
-title: الحصول على خاصية
+title: getProperty
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getProperty.ts
 ---
 
-ستقوم أمر الحصول على خاصية العنصر بإرجاع نتيجة الحصول على خاصية من العنصر.
+سيقوم أمر الحصول على خاصية العنصر بإرجاع نتيجة الحصول على خاصية من عنصر.
 
 ##### الاستخدام
 
@@ -39,7 +39,7 @@ it('should demonstrate the getProperty command', async () => {
 })
 ```
 
-##### العائد
+##### النتائج
 
 - **&lt;unknown&gt;**
             **<code><var>return</var></code>:** قيمة خاصية العنصر المحدد

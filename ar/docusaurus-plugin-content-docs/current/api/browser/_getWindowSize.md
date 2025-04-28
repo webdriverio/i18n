@@ -22,7 +22,7 @@ it('should return browser window size', async () => {
 });
 ```
 
-##### العائد
+##### إرجاع
 
 - **&lt;Object&gt;**
-            **<code><var>return</var></code>:**  `{ x, y, width, height }` لـ W3C أو `{ width, height }` للمتصفحات غير W3C    
+            **<code><var>return</var></code>:**  `{ x, y, width, height }` لـ W3C أو `{ width, height }` للمتصفحات غير W3C

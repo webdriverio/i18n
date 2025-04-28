@@ -1,10 +1,12 @@
 ---
 id: setCookies
-title: وضع ملفات تعريف الارتباط
+title: تعيين ملفات تعريف الارتباط
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setCookies.ts
 ---
 
-يضبط ملف تعريف ارتباط واحد أو أكثر [cookies](https://w3c.github.io/webdriver/#cookies) للصفحة الحالية. تأكد من أنك على الصفحة التي يجب أن تستقبل ملف تعريف الارتباط. لا يمكنك تعيين ملف تعريف ارتباط لصفحة عشوائية دون أن تكون على تلك الصفحة.
+يقوم بتعيين واحد أو أكثر من [ملفات تعريف الارتباط](https://w3c.github.io/webdriver/#cookies) للصفحة الحالية. تأكد من أنك
+على الصفحة التي يجب أن تتلقى ملف تعريف الارتباط. لا يمكنك تعيين ملف تعريف ارتباط لصفحة عشوائية دون
+التواجد على تلك الصفحة.
 
 ##### الاستخدام
 
@@ -12,7 +14,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.setCookies({ name, value, path, domain, secure, httpOnly, expiry, sameSite })
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -24,7 +26,7 @@ browser.setCookies({ name, value, path, domain, secure, httpOnly, expiry, sameSi
     <tr>
       <td><code><var>cookie</var></code></td>
       <td>`Array<WebDriverCookie>, WebDriverCookie`</td>
-      <td>كائن ملف تعريف الارتباط أو مصفوفة كائنات.</td>
+      <td>كائن ملف تعريف الارتباط أو مصفوفة من الكائنات.</td>
     </tr>
     <tr>
       <td><code><var>cookie.name</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -39,32 +41,32 @@ browser.setCookies({ name, value, path, domain, secure, httpOnly, expiry, sameSi
     <tr>
       <td><code><var>cookie.path</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>مسار ملف تعريف الارتباط. القيمة الافتراضية هي "/" إذا تم حذفها عند إضافة ملف تعريف ارتباط.</td>
+      <td>مسار ملف تعريف الارتباط. يكون افتراضيًا "/" إذا تم حذفه عند إضافة ملف تعريف ارتباط.</td>
     </tr>
     <tr>
       <td><code><var>cookie.domain</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>المجال الذي يكون فيه ملف تعريف الارتباط مرئيًا. يتم تعيينه افتراضيًا إلى مجال URL للمستند النشط في سياق التصفح الحالي إذا تم حذفه عند إضافة ملف تعريف ارتباط.</td>
+      <td>المجال الذي يظهر فيه ملف تعريف الارتباط. يكون افتراضيًا نطاق URL للمستند النشط في سياق التصفح الحالي إذا تم حذفه عند إضافة ملف تعريف ارتباط.</td>
     </tr>
     <tr>
       <td><code><var>cookie.secure</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>ما إذا كان ملف تعريف الارتباط آمنًا. القيمة الافتراضية هي false إذا تم حذفها عند إضافة ملف تعريف ارتباط.</td>
+      <td>ما إذا كان ملف تعريف الارتباط آمنًا. يكون افتراضيًا خطأ (false) إذا تم حذفه عند إضافة ملف تعريف ارتباط.</td>
     </tr>
     <tr>
       <td><code><var>cookie.httpOnly</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>ما إذا كان ملف تعريف الارتباط هو ملف HTTP فقط. القيمة الافتراضية هي false إذا تم حذفها عند إضافة ملف تعريف ارتباط.</td>
+      <td>ما إذا كان ملف تعريف الارتباط خاصًا بـ HTTP فقط. يكون افتراضيًا خطأ (false) إذا تم حذفه عند إضافة ملف تعريف ارتباط.</td>
     </tr>
     <tr>
       <td><code><var>cookie.expiry</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>متى ينتهي ملف تعريف الارتباط، محدد بالثواني منذ عصر يونكس. يجب عدم تعيينه إذا تم حذفه عند إضافة ملف تعريف ارتباط.</td>
+      <td>متى ينتهي صلاحية ملف تعريف الارتباط، يتم تحديده بالثواني منذ Unix Epoch. يجب عدم تعيينه إذا تم حذفه عند إضافة ملف تعريف ارتباط.</td>
     </tr>
     <tr>
       <td><code><var>cookie.sameSite</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>ما إذا كان ملف تعريف الارتباط ينطبق على سياسة SameSite. القيمة الافتراضية هي None إذا تم حذفها عند إضافة ملف تعريف ارتباط. يمكن تعيينها إما على "Lax" أو "Strict".</td>
+      <td>ما إذا كان ملف تعريف الارتباط ينطبق على سياسة SameSite. يكون افتراضيًا "None" إذا تم حذفه عند إضافة ملف تعريف ارتباط. يمكن تعيينه على "Lax" أو "Strict".</td>
     </tr>
   </tbody>
 </table>

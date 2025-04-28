@@ -1,16 +1,16 @@
 ---
 id: proxy
-title: راه‌اندازی پروکسی
+title: تنظیمات پراکسی
 ---
 
-شما می‌توانید دو نوع مختلف درخواست را از طریق یک پروکسی هدایت کنید:
+شما می‌توانید دو نوع مختلف درخواست را از طریق پراکسی هدایت کنید:
 
-- اتصال بین اسکریپت تست و درایور مرورگر (یا نقطه پایانی WebDriver)
-- اتصال بین مرورگر و اینترنت
+- ارتباط بین اسکریپت تست شما و مرورگر درایور (یا نقطه پایانی WebDriver)
+- ارتباط بین مرورگر و اینترنت
 
-## پروکسی بین درایور و تست
+## پراکسی بین درایور و تست
 
-اگر شرکت شما پروکسی سازمانی (مثلاً در `http://my.corp.proxy.com:9090`) برای تمام درخواست‌های خروجی دارد، مراحل زیر را برای نصب و پیکربندی [undici](https://github.com/nodejs/undici) دنبال کنید.
+اگر شرکت شما پراکسی شرکتی (مثلاً در `http://my.corp.proxy.com:9090`) برای تمام درخواست‌های خروجی دارد، مراحل زیر را برای نصب و پیکربندی [undici](https://github.com/nodejs/undici) دنبال کنید.
 
 ### نصب undici
 
@@ -20,7 +20,7 @@ npm install undici --save-dev
 
 ### افزودن undici setGlobalDispatcher به فایل پیکربندی خود
 
-عبارت require زیر را به بالای فایل پیکربندی خود اضافه کنید.
+عبارت require زیر را در بالای فایل پیکربندی خود اضافه کنید.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-اطلاعات بیشتر درباره پیکربندی پروکسی را می‌توانید [اینجا](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md) پیدا کنید.
+اطلاعات بیشتر درباره پیکربندی پراکسی را می‌توان [اینجا](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md) پیدا کرد.
 
-اگر از [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5) استفاده می‌کنید، آن را به صورت زیر شروع کنید:
+اگر از [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5) استفاده می‌کنید، آن را از طریق زیر شروع کنید:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## پروکسی بین مرورگر و اینترنت
+## پراکسی بین مرورگر و اینترنت
 
-برای هدایت اتصال بین مرورگر و اینترنت، می‌توانید یک پروکسی راه‌اندازی کنید که می‌تواند برای مثال برای جمع‌آوری اطلاعات شبکه و سایر داده‌ها با ابزارهایی مانند [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) مفید باشد.
+برای هدایت ارتباط بین مرورگر و اینترنت، می‌توانید یک پراکسی راه‌اندازی کنید که می‌تواند برای مواردی مانند (به عنوان مثال) ثبت اطلاعات شبکه و سایر داده‌ها با ابزارهایی مانند [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) مفید باشد.
 
-پارامترهای `proxy` را می‌توان از طریق قابلیت‌های استاندارد به شکل زیر اعمال کرد:
+پارامترهای `proxy` را می‌توان به صورت زیر از طریق قابلیت‌های استاندارد اعمال کرد:
 
 ```js title="wdio.conf.js"
 export const config = {

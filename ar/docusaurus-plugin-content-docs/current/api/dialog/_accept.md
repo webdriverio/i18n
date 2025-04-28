@@ -4,7 +4,7 @@ title: قبول
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/dialog/accept.ts
 ---
 
-يعود عندما يتم قبول مربع الحوار.
+يتم الرجوع عندما يتم قبول الحوار.
 
 ##### الاستخدام
 
@@ -12,7 +12,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 await dialog.accept(promptText)
 ```
 
-##### المعاملات
+##### المعلمات
 
 <table>
   <thead>
@@ -24,7 +24,7 @@ await dialog.accept(promptText)
     <tr>
       <td><code><var>promptText</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`string`</td>
-      <td>نص لإدخاله في المطالبة. لا يسبب أي تأثيرات إذا كان نوع مربع الحوار ليس مطالبة.</td>
+      <td>نص يتم إدخاله في المطالبة. لا يسبب أي تأثيرات إذا لم يكن نوع الحوار مطالبة.</td>
     </tr>
   </tbody>
 </table>

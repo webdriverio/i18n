@@ -1,6 +1,6 @@
 ---
 id: throttle
-title: خنق
+title: تقييد السرعة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/throttle.ts
 ---
 

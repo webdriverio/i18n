@@ -4,7 +4,7 @@ title: التمرير
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/scroll.ts
 ---
 
-التمرير داخل نافذة العرض للمتصفح. لاحظ أن إحداثيات `x` و `y` تكون نسبية إلى موضع التمرير الحالي، وبالتالي فإن `browser.scroll(0, 0)` لا تنفذ أي عملية.
+التمرير داخل منظور المتصفح. لاحظ أن إحداثيات `x` و `y` هي نسبية إلى موضع التمرير الحالي، وبالتالي فإن `browser.scroll(0, 0)` ليست عملية.
 
 ##### الاستخدام
 

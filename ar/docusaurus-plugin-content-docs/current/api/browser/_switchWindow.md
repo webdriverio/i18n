@@ -24,7 +24,7 @@ browser.switchWindow(matcher)
     <tr>
       <td><code><var>matcher</var></code></td>
       <td>`String, RegExp`</td>
-      <td>سلسلة نصية أو تعبير منتظم يطابق إما عنوان الصفحة أو عنوان URL أو اسم النافذة أو معرف النافذة</td>
+      <td>سلسلة نصية أو تعبير منتظم يطابق إما عنوان الصفحة أو عنوان URL، أو اسم النافذة، أو معرف النافذة</td>
     </tr>
   </tbody>
 </table>

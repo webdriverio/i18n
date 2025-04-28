@@ -1,10 +1,10 @@
 ---
 id: type
-title: النوع
+title: نوع
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/dialog/type.ts
 ---
 
-يرجع نوع مربع الحوار، ويمكن أن يكون أحد هذه الأنواع: `alert`، `beforeunload`، `confirm` أو `prompt`.
+يُرجع نوع مربع الحوار، ويمكن أن يكون إما `alert` أو `beforeunload` أو `confirm` أو `prompt`.
 
 ##### الاستخدام
 
@@ -18,7 +18,7 @@ await dialog.type()
 const type = await dialog.type();
 ```
 
-##### العائد
+##### يُرجع
 
 - **&lt;string&gt;**
             **<code><var>returns</var></code>:**   نوع مربع الحوار

@@ -16,7 +16,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 mock.abortOnce(errorCode)
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -28,7 +28,7 @@ mock.abortOnce(errorCode)
     <tr>
       <td><code><var>errorCode</var></code></td>
       <td>`ErrorCode`</td>
-      <td>رمز خطأ الاستجابة، يمكن أن يكون أحد الرموز التالية: `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
+      <td>رمز خطأ الاستجابة، يمكن أن يكون واحداً من: `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
     </tr>
   </tbody>
 </table>

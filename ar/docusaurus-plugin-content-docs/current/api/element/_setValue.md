@@ -1,15 +1,14 @@
 ---
 id: setValue
-title: تعيين قيمة
+title: تحديد القيمة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/setValue.ts
 ---
 
-إرسال سلسلة من ضربات المفاتيح إلى عنصر بعد مسح المدخلات أولاً. إذا كان العنصر لا يحتاج 
-إلى مسح أولاً، فاستخدم [`addValue`](/docs/api/element/addValue).
+إرسال سلسلة من ضغطات المفاتيح إلى عنصر بعد مسح المُدخل أولاً. إذا لم يكن هناك حاجة لمسح العنصر أولاً، فاستخدم [`addValue`](/docs/api/element/addValue).
 
 :::info
 
-إذا كنت ترغب في استخدام أحرف خاصة، على سبيل المثال لنسخ ولصق قيمة من مدخل إلى آخر، استخدم الأمر
+إذا كنت ترغب في استخدام أحرف خاصة، على سبيل المثال، لنسخ ولصق قيمة من حقل إدخال إلى آخر، استخدم الأمر
 [`keys`](/docs/api/browser/keys).
 
 :::
@@ -20,7 +19,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 $(selector).setValue(value)
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>

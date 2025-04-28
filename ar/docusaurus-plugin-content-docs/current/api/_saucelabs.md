@@ -1,12 +1,12 @@
 ---
 id: saucelabs
-title: مختبرات صوص
+title: صلصة لابز
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/saucelabs.ts
 ---
 
-جميع الأوامر مدعومة فقط على متصفح Chrome باستخدام 
-[التصحيح الموسع](https://docs.saucelabs.com/insights/debug/#enabling-extended-debugging)
-من Sauce Labs. يمكنك تمكين هذه الميزات عن طريق تعيين خيارات Sauce التالية:
+جميع الأوامر مدعومة فقط على Chrome باستخدام إمكانيات Sauce Labs
+[Extended Debugging](https://docs.saucelabs.com/insights/debug/#enabling-extended-debugging)
+. يمكنك تمكين هذه الإمكانيات عن طريق تعيين خيارات Sauce التالية:
 
 
 ```js
@@ -23,7 +23,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## getPageLogs
-الحصول على معلومات سجل محددة لصفحة الويب بناءً على آخر تحميل للصفحة.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#network-logs).
+الحصول على معلومات سجل محددة لصفحة الويب بناءً على آخر تحميل للصفحة.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#network-logs).
 
 ##### الاستخدام
 
@@ -92,16 +92,16 @@ console.log(browser.getPageLogs('sauce:performance'));
 ```
 
 
-##### المخرجات
+##### العائد
 
 - **&lt;object&gt;**
-            **<code><var>log</var></code>:** مخرجات السجل من النوع المطلوب (انظر المثال)
+            **<code><var>log</var></code>:** مخرج السجل من النوع المطلوب (انظر المثال)
 
 
 ---
 
 ## sauceThrottleNetwork
-مع تهيئة الشبكة، يمكنك اختبار موقعك على مجموعة متنوعة من اتصالات الشبكة، بما في ذلك Edge و3G وحتى في وضع عدم الاتصال. يمكنك التحكم في معدل نقل البيانات، بما في ذلك الحد الأقصى لسرعة التنزيل والتحميل، واستخدام التأخير للإصرار على الحد الأدنى من التأخير في وقت الاستجابة (RTT).<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
+باستخدام تكييف الشبكة، يمكنك اختبار موقعك على مجموعة متنوعة من اتصالات الشبكة، بما في ذلك Edge و3G وحتى في وضع عدم الاتصال. يمكنك التحكم في معدل نقل البيانات، بما في ذلك الحد الأقصى للتنزيل والتحميل، واستخدام التلاعب بزمن الاستجابة لفرض حد أدنى للتأخير في وقت استجابة الاتصال (RTT).<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
 
 ##### الاستخدام
 
@@ -150,7 +150,7 @@ browser.sauceThrottleNetwork({
 ---
 
 ## throttleCPU
-يمكنك تقييد وحدة المعالجة المركزية CPU في DevTools لفهم كيفية أداء صفحتك تحت هذا القيد.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
+يمكنك التحكم في استخدام وحدة المعالجة المركزية في DevTools لفهم كيفية أداء صفحتك تحت هذا القيد.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
 
 ##### الاستخدام
 
@@ -195,7 +195,7 @@ browser.throttleCPU(0)
 ---
 
 ## interceptRequest
-يسمح بتعديل أي طلب يقوم به المتصفح. يمكنك حظر أو تعديل أو إعادة توجيه هذه الطلبات حسب متطلبات اختباراتك.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
+يسمح بتعديل أي طلب تم إجراؤه بواسطة المتصفح. يمكنك منع أو تعديل أو إعادة توجيه هذه الطلبات حسب متطلبات اختباراتك.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
 
 ##### الاستخدام
 
@@ -265,7 +265,7 @@ browser.interceptRequest({
 ---
 
 ## assertPerformance
-التحقق من أداء التطبيق مقابل خط الأساس.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
+التحقق من أداء تطبيقك مقابل خط الأساس.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
 
 ##### الاستخدام
 
@@ -286,7 +286,7 @@ browser.assertPerformance(name, metrics)
     <tr>
       <td><code><var>name</var></code></td>
       <td>string</td>
-      <td>اسم المهمة التي أنشأت خط الأساس بها.</td>
+      <td>اسم المهمة التي أنشأت خط الأساس الخاص بك بها.</td>
     </tr>
     <tr>
       <td><code><var>metrics</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -309,16 +309,16 @@ const hasRegression = browser.assertPerformance({
 ```
 
 
-##### المخرجات
+##### العائد
 
 - **&lt;object&gt;**
-            **<code><var>hasRegression</var></code>:** كائن يحتوي على النتيجة بالإضافة إلى مقاييس حول النتيجة.
+            **<code><var>hasRegression</var></code>:** كائن يحتوي على النتيجة بالإضافة إلى قياسات حول النتيجة.
 
 
 ---
 
 ## jankinessCheck
-إجراء اختبار تمرير يقيم تلعثم التطبيق.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
+قم بإجراء اختبار التمرير الذي يقيم تقطيع التطبيق.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
 
 ##### الاستخدام
 
@@ -336,16 +336,16 @@ browser.jankinessCheck()
 ```
 
 
-##### المخرجات
+##### العائد
 
 - **&lt;object&gt;**
-            **<code><var>testResults</var></code>:** كائن يحتوي على النتيجة بالإضافة إلى مقاييس حول مدى سلاسة تجربة المستخدم للصفحة أثناء الاختبار.
+            **<code><var>testResults</var></code>:** كائن يحتوي على النتيجة بالإضافة إلى قياسات حول مدى سلاسة تجربة المستخدم للصفحة أثناء الاختبار.
 
 
 ---
 
 ## mockRequest
-محاكاة موارد الشبكة.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+يحاكي مورد شبكة.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
 
 ##### الاستخدام
 
@@ -366,18 +366,18 @@ browser.mockRequest(url, filterOptions)
     <tr>
       <td><code><var>url</var></code></td>
       <td>string</td>
-      <td>نمط URL عام لمطابقة عنوان URL المراد محاكاته.</td>
+      <td>نمط URL لمطابقة عنوان URL للمحاكاة.</td>
     </tr>
     <tr>
       <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>object</td>
-      <td>خيارات تصفية إضافية لعنوان URL المراد محاكاته (مثل الرؤوس، الطريقة).</td>
+      <td>خيارات تصفية إضافية لعنوان URL للمحاكاة (مثل الرؤوس، الطريقة).</td>
     </tr>
   </tbody>
 </table>
 
 
-##### المخرجات
+##### العائد
 
 - **&lt;object&gt;**
             **<code><var>mockId</var></code>:** كائن يحتوي على معرف مورد المحاكاة.
@@ -386,7 +386,7 @@ browser.mockRequest(url, filterOptions)
 ---
 
 ## getMockCalls
-استلام معلومات الطلب حول الطلبات التي تطابق مورد المحاكاة.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+استلام معلومات الطلب حول الطلبات التي تتطابق مع مورد المحاكاة.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
 
 ##### الاستخدام
 
@@ -413,7 +413,7 @@ browser.getMockCalls(mockId)
 </table>
 
 
-##### المخرجات
+##### العائد
 
 - **&lt;object&gt;**
             **<code><var>requests</var></code>:** قائمة بمعلومات الطلبات.
@@ -422,7 +422,7 @@ browser.getMockCalls(mockId)
 ---
 
 ## clearMockCalls
-مسح قائمة مكالمات المحاكاة.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+مسح قائمة مكالمات المحاكاة.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
 
 ##### الاستخدام
 
@@ -448,7 +448,7 @@ browser.clearMockCalls(mockId, restore)
     <tr>
       <td><code><var>restore</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>boolean</td>
-      <td>ضبط على true إذا كان يجب استعادة المحاكاة أيضًا.</td>
+      <td>اضبط على true إذا كان يجب استعادة المحاكاة أيضًا.</td>
     </tr>
   </tbody>
 </table>
@@ -458,7 +458,7 @@ browser.clearMockCalls(mockId, restore)
 ---
 
 ## respondMock
-الاستجابة إذا تطابقت المحاكاة مع مورد محدد.<br /><br />أمر من Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+الاستجابة إذا تطابقت المحاكاة مع مورد محدد.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
 
 ##### الاستخدام
 

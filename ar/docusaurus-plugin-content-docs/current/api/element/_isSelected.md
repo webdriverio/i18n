@@ -4,8 +4,8 @@ title: isSelected
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isSelected.ts
 ---
 
-سيعيد القيمة صحيح أو خطأ بناءً على ما إذا كان عنصر `<option>` أو `<input>` من نوع 
-checkbox أو radio محدد حاليًا أم لا.
+سيعيد صحيح أو خطأ إذا كان عنصر `<option>` أو `<input>` من نوع 
+checkbox أو radio محددًا حاليًا.
 
 ##### الاستخدام
 
@@ -34,7 +34,7 @@ it('should detect if an element is selected', async () => {
 });
 ```
 
-##### القيم المرجعة
+##### العائد
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  صحيح إذا كان العنصر محددًا
+            **<code><var>return</var></code>:** صحيح إذا كان العنصر محددًا

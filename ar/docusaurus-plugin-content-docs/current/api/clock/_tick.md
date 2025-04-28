@@ -1,10 +1,10 @@
 ---
 id: tick
-title: تقدم الساعة
+title: تيك
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/tick.ts
 ---
 
-تحريك الساعة بعدد محدد من `milliseconds`. سيتم استدعاء أي مؤقتات ضمن النطاق الزمني المتأثر.
+تحريك الساعة لعدد محدد من `milliseconds`. سيتم استدعاء أي مؤقتات ضمن النطاق الزمني المتأثر.
 
 ##### الاستخدام
 
@@ -40,6 +40,6 @@ await clock.tick(1000)
 console.log(await browser.execute(() => new Date().getTime())) // returns 1618383601000
 ```
 
-##### القيمة المرجعة
+##### ترجع
 
 - **&lt; `Promise<void>` &gt;**

@@ -1,11 +1,11 @@
 ---
 id: selenium
-title: سيلينيوم ستاندألون
+title: سيلينيوم المستقل
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/selenium.ts
 ---
 
 ## file
-رفع ملف إلى الجهاز البعيد الذي يعمل عليه المتصفح.<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.seleniumhq.org/).
+تحميل ملف إلى الجهاز البعيد الذي يشغل المتصفح.<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.seleniumhq.org/).
 
 ##### الاستخدام
 
@@ -26,7 +26,7 @@ browser.file(file)
     <tr>
       <td><code><var>file</var></code></td>
       <td>string</td>
-      <td>أرشيف مضغوط مشفر بنظام base64 يحتوي على ملف __واحد__ للرفع. في حالة أن البيانات المشفرة بنظام base64 لا تمثل أرشيفًا مضغوطًا أو أن الأرشيف يحتوي على أكثر من ملف واحد، سيتم إلقاء خطأ غير معروف.</td>
+      <td>أرشيف zip مشفر بنظام Base64 يحتوي على ملف __واحد__ للتحميل. في حالة أن البيانات المشفرة بنظام base64 لا تمثل أرشيف zip أو أن الأرشيف يحتوي على أكثر من ملف واحد، سيتم إلقاء خطأ غير معروف.</td>
     </tr>
   </tbody>
 </table>
@@ -35,13 +35,13 @@ browser.file(file)
 ##### العائد
 
 - **&lt;String&gt;**
-            **<code><var>path</var></code>:** المسار المطلق للملف المرفوع على الجهاز البعيد.
+            **<code><var>path</var></code>:** المسار المطلق للملف المحمل على الجهاز البعيد.
 
 
 ---
 
 ## getDownloadableFiles
-عرض قائمة الملفات المتاحة للتنزيل من الجهاز البعيد.<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.seleniumhq.org/).
+سرد الملفات من الجهاز البعيد المتاحة للتنزيل.<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.seleniumhq.org/).
 
 ##### الاستخدام
 
@@ -59,7 +59,7 @@ browser.getDownloadableFiles()
 ---
 
 ## download
-تنزيل ملف من الجهاز البعيد الذي يعمل عليه المتصفح.<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.seleniumhq.org/).
+تنزيل ملف من الجهاز البعيد الذي يشغل المتصفح.<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.seleniumhq.org/).
 
 ##### الاستخدام
 
@@ -89,13 +89,13 @@ browser.download(name)
 ##### العائد
 
 - **&lt;Object&gt;**
-            **<code><var>data</var></code>:** كائن يحتوي على اسم الملف المنزل ومحتواه
+            **<code><var>data</var></code>:** كائن يحتوي على اسم الملف الذي تم تنزيله ومحتواه
 
 
 ---
 
 ## deleteDownloadableFiles
-إزالة جميع الملفات القابلة للتنزيل من الجهاز البعيد الذي يعمل عليه المتصفح.<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.seleniumhq.org/).
+إزالة جميع الملفات القابلة للتنزيل من الجهاز البعيد الذي يشغل المتصفح.<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.seleniumhq.org/).
 
 ##### الاستخدام
 
@@ -108,7 +108,7 @@ browser.deleteDownloadableFiles()
 ---
 
 ## getHubConfig
-استلام إعدادات المركز عن بعد.<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
+استلام تكوين المحور عن بُعد.<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
 
 ##### الاستخدام
 
@@ -120,13 +120,13 @@ browser.getHubConfig()
 ##### العائد
 
 - **&lt;Object&gt;**
-            **<code><var>config</var></code>:** يعيد إعدادات المركز مع عدد الفتحات والمهل الزمنية ومعلومات أخرى.
+            **<code><var>config</var></code>:** يعيد تكوين المحور مع عدد الفتحات والمهلات ومعلومات أخرى.
 
 
 ---
 
 ## gridTestSession
-الحصول على تفاصيل عقدة سيلينيوم جريد التي تقوم بتشغيل جلسة.<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/nicegraham/selenium-grid2-api#gridapitestsession).
+الحصول على تفاصيل عقدة شبكة سيلينيوم التي تشغل جلسة.<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/nicegraham/selenium-grid2-api#gridapitestsession).
 
 ##### الاستخدام
 
@@ -147,7 +147,7 @@ browser.gridTestSession(session)
     <tr>
       <td><code><var>session</var></code></td>
       <td>String</td>
-      <td>معرف الجلسة المراد استلام تفاصيل المركز لها.</td>
+      <td>معرّف الجلسة للحصول على تفاصيل المحور لها.</td>
     </tr>
   </tbody>
 </table>
@@ -162,7 +162,7 @@ browser.gridTestSession(session)
 ---
 
 ## gridProxyDetails
-الحصول على تفاصيل البروكسي.<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/nicegraham/selenium-grid2-api#gridapiproxy).
+الحصول على تفاصيل الوكيل.<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/nicegraham/selenium-grid2-api#gridapiproxy).
 
 ##### الاستخدام
 
@@ -183,7 +183,7 @@ browser.gridProxyDetails(id)
     <tr>
       <td><code><var>id</var></code></td>
       <td>string</td>
-      <td>معرف البروكسي (يمكن استلامه باستخدام أمر gridTestSession).</td>
+      <td>معرّف الوكيل (يمكن استلامه باستخدام أمر gridTestSession).</td>
     </tr>
   </tbody>
 </table>
@@ -192,13 +192,13 @@ browser.gridProxyDetails(id)
 ##### العائد
 
 - **&lt;Object&gt;**
-            **<code><var>details</var></code>:** كائن يحتوي على معلومات حول البروكسي.
+            **<code><var>details</var></code>:** كائن يحتوي على معلومات حول الوكيل.
 
 
 ---
 
 ## manageSeleniumHubLifecycle
-إدارة دورة حياة عقدة المركز.<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/nicegraham/selenium-grid2-api#lifecycle-manager).
+إدارة دورة حياة عقدة المحور.<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/nicegraham/selenium-grid2-api#lifecycle-manager).
 
 ##### الاستخدام
 
@@ -219,7 +219,7 @@ browser.manageSeleniumHubLifecycle(action)
     <tr>
       <td><code><var>action</var></code></td>
       <td>String</td>
-      <td>الأمر المراد استدعاؤه على مركز سيلينيوم. الإجراء الوحيد المنفذ هو 'shutdown' لإيقاف المركز.</td>
+      <td>الأمر المراد تنفيذه على مركز سيلينيوم. الإجراء الوحيد المنفذ هو 'shutdown' (إيقاف) المحور.</td>
     </tr>
   </tbody>
 </table>
@@ -229,7 +229,7 @@ browser.manageSeleniumHubLifecycle(action)
 ---
 
 ## queryGrid
-إرسال استعلامات GraphQL إلى خادم سيلينيوم (المركز أو العقدة) لجلب البيانات. (مدعوم فقط مع خادم سيلينيوم الإصدار الرابع)<br /><br />أمر سيلينيوم ستاندألون. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.selenium.dev/documentation/grid/advanced_features/graphql_support/).
+إرسال استعلامات GraphQL إلى خادم سيلينيوم (المحور أو العقدة) لجلب البيانات. (مدعوم فقط مع خادم سيلينيوم الإصدار 4)<br /><br />أمر سيلينيوم المستقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://www.selenium.dev/documentation/grid/advanced_features/graphql_support/).
 
 ##### الاستخدام
 

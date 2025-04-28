@@ -1,10 +1,10 @@
 ---
 id: waitForDisplayed
-title: انتظار العرض
+title: انتظار ظهور العنصر
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForDisplayed.ts
 ---
 
-انتظر ظهور أو عدم ظهور عنصر لمقدار معين من الميلي ثانية.
+انتظار ظهور أو عدم ظهور عنصر لفترة زمنية محددة بالميللي ثانية.
 
 :::info
 
@@ -36,27 +36,27 @@ $(selector).waitForDisplayed({ timeout, reverse, timeoutMsg, interval, withinVie
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الوقت بالميلي ثانية (القيمة الافتراضية تستند إلى إعداد [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>الوقت بالميللي ثانية (الافتراضي يعتمد على قيمة الإعدادات [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
     </tr>
     <tr>
       <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>إذا كانت القيمة صحيحة، فإنه ينتظر العكس (الافتراضي: false)</td>
+      <td>إذا كانت القيمة true فإنه ينتظر العكس (الافتراضي: false)</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>إذا كانت موجودة فإنها تتجاوز رسالة الخطأ الافتراضية</td>
+      <td>إذا وجدت فإنها تحل محل رسالة الخطأ الافتراضية</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الفاصل الزمني بين الفحوصات (الافتراضي: `waitforInterval`)</td>
+      <td>الفاصل الزمني بين عمليات التحقق (الافتراضي: `waitforInterval`)</td>
     </tr>
     <tr>
       <td><code><var>options.withinViewport</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>اضبط على `true` للانتظار حتى يتم عرض العنصر ضمن منفذ العرض (الافتراضي: `false`)</td>
+      <td>اضبط على `true` للانتظار حتى يتم عرض العنصر ضمن نطاق العرض (الافتراضي: `false`)</td>
     </tr>
   </tbody>
 </table>
@@ -71,7 +71,7 @@ https://github.com/webdriverio/example-recipes/blob/0bfb2b8d212b627a2659b10f4449
 https://github.com/webdriverio/example-recipes/blob/9ac16b4d4cf4bc8ec87f6369439a2d0bcaae4483/waitForDisplayed/waitForDisplayedExample.js#L6-L14
 ```
 
-##### القيم المرجعة
+##### القيمة المرجعة
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  صحيح    إذا تم عرض العنصر (أو لم يتم إذا تم تعيين العلامة)
+            **<code><var>return</var></code>:**  true    إذا كان العنصر معروضًا (أو لا إذا تم تعيين العلامة)

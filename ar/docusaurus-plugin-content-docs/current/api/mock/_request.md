@@ -4,9 +4,9 @@ title: الطلب
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/request.ts
 ---
 
-يسمح لك بتعديل الطلبات التي يقوم بها المتصفح خلال الجلسة. يمكن أن يكون هذا مفيدًا للحالات التالية:
+يسمح لك بتعديل الطلبات التي يقوم المتصفح بإرسالها خلال الجلسة. يمكن أن يكون هذا مفيدًا للحالات التالية:
 
-- التحقق من صحة إرسال تطبيقك لحمولات الطلب الصحيحة
+- التحقق من صحة إرسال تطبيقك لبيانات الطلب الصحيحة
 - تمرير رؤوس التفويض لاختبار الموارد المحمية
 - تعيين ملفات تعريف الارتباط للجلسة لاختبار مصادقة المستخدم
 - تعديل الطلبات لاختبار الحالات الحرجة
@@ -29,7 +29,7 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
     <tr>
       <td><code><var>overwrites</var></code></td>
       <td>`MockOverwrite`</td>
-      <td>حمولة لاستبدال الاستجابة</td>
+      <td>البيانات لاستبدال الاستجابة</td>
     </tr>
     <tr>
       <td><code><var>overwrites.header</var></code></td>
@@ -39,7 +39,7 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
     <tr>
       <td><code><var>overwrites.cookies</var></code></td>
       <td>`Record<string,string>`</td>
-      <td>استبدال ملفات تعريف الارتباط للطلب</td>
+      <td>استبدال ملفات تعريف ارتباط الطلب</td>
     </tr>
     <tr>
       <td><code><var>overwrites.method</var></code></td>

@@ -4,24 +4,23 @@ title: بروتوكول WebDriver Bidi
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/webdriverBidi.ts
 ---
 
-يتم إنشاء أوامر البروتوكول هذه بناءً على المواصفات الحالية 
-[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/). لتمكين البروتوكول
-لاختبارك تأكد من ضبط `webSocketUrl: true` في إعداداتك.
+تم إنشاء أوامر البروتوكول هذه بناءً على مواصفات
+[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) الحالية. لتمكين البروتوكول
+لاختبارك، تأكد من ضبط `webSocketUrl: true` في إعدادات القدرات الخاصة بك.
 
 :::caution استخدم بحذر!
 
 دعم المتصفح غير مضمون ويمكن أن تتغير الواجهات في المستقبل. المعيار
-حاليًا قيد التطوير وستضيف شركات المتصفحات هذه الإمكانيات بناءً على
-جداولها الزمنية الخاصة.
+قيد التطوير حاليًا وسيضيف مصنعو المتصفحات هذه القدرات وفقًا لجداولهم الزمنية الخاصة.
 
 :::
 
-آخر تحديث: السبت 26 أبريل 2025 17:10:07 GMT-0700 (توقيت المحيط الهادئ النهاري)
+آخر تحديث: Sat Apr 26 2025 17:10:07 GMT-0700 (Pacific Daylight Time)
 
 ---
 
 ## send
-إرسال أوامر الجلسة عبر WebDriver Bidi<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/w3c/webdriver-bidi).
+إرسال أوامر Socket عبر WebDriver Bidi<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/w3c/webdriver-bidi).
 
 ##### الاستخدام
 
@@ -30,7 +29,7 @@ browser.send(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -42,13 +41,13 @@ browser.send(params)
     <tr>
       <td><code><var>params</var></code></td>
       <td>CommandData</td>
-      <td>حمولة الجلسة</td>
+      <td>حمولة السوكيت</td>
     </tr>
   </tbody>
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
             **<code><var>CommandResponse</var></code>:** استجابة WebDriver Bidi
@@ -57,7 +56,7 @@ browser.send(params)
 ---
 
 ## sendAsync
-إرسال أوامر جلسة غير متزامنة عبر WebDriver Bidi<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/w3c/webdriver-bidi).
+إرسال أوامر Socket غير متزامنة عبر WebDriver Bidi<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/w3c/webdriver-bidi).
 
 ##### الاستخدام
 
@@ -66,7 +65,7 @@ browser.sendAsync(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -78,22 +77,22 @@ browser.sendAsync(params)
     <tr>
       <td><code><var>params</var></code></td>
       <td>CommandData</td>
-      <td>حمولة الجلسة</td>
+      <td>حمولة السوكيت</td>
     </tr>
   </tbody>
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Number&gt;**
-            **<code><var>id</var></code>:** معرف طلب WebDriver Bidi
+            **<code><var>id</var></code>:** معرّف طلب WebDriver Bidi
 
 
 ---
 
 ## sessionStatus
-أمر WebDriver Bidi لإرسال طريقة الأمر "session.status" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-status).
+أمر WebDriver Bidi لإرسال طريقة الأمر "session.status" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-status).
 
 ##### الاستخدام
 
@@ -102,7 +101,7 @@ browser.sessionStatus(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -120,10 +119,10 @@ browser.sessionStatus(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.SessionStatusResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.SessionStatusResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      ready: boolean;
@@ -135,7 +134,7 @@ browser.sessionStatus(params)
 ---
 
 ## sessionNew
-أمر WebDriver Bidi لإرسال طريقة الأمر "session.new" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-new).
+أمر WebDriver Bidi لإرسال طريقة الأمر "session.new" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-new).
 
 ##### الاستخدام
 
@@ -144,7 +143,7 @@ browser.sessionNew(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -162,10 +161,10 @@ browser.sessionNew(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.SessionNewResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.SessionNewResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      sessionId: string;
@@ -186,7 +185,7 @@ browser.sessionNew(params)
 ---
 
 ## sessionEnd
-أمر WebDriver Bidi لإرسال طريقة الأمر "session.end" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-end).
+أمر WebDriver Bidi لإرسال طريقة الأمر "session.end" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-end).
 
 ##### الاستخدام
 
@@ -195,7 +194,7 @@ browser.sessionEnd(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -217,7 +216,7 @@ browser.sessionEnd(params)
 ---
 
 ## sessionSubscribe
-أمر WebDriver Bidi لإرسال طريقة الأمر "session.subscribe" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-subscribe).
+أمر WebDriver Bidi لإرسال طريقة الأمر "session.subscribe" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-subscribe).
 
 ##### الاستخدام
 
@@ -226,7 +225,7 @@ browser.sessionSubscribe(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -248,7 +247,7 @@ browser.sessionSubscribe(params)
 ---
 
 ## sessionUnsubscribe
-أمر WebDriver Bidi لإرسال طريقة الأمر "session.unsubscribe" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-unsubscribe).
+أمر WebDriver Bidi لإرسال طريقة الأمر "session.unsubscribe" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-session-unsubscribe).
 
 ##### الاستخدام
 
@@ -257,7 +256,7 @@ browser.sessionUnsubscribe(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -279,7 +278,7 @@ browser.sessionUnsubscribe(params)
 ---
 
 ## browserClose
-أمر WebDriver Bidi لإرسال طريقة الأمر "browser.close" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browser-close).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browser.close" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browser-close).
 
 ##### الاستخدام
 
@@ -288,7 +287,7 @@ browser.browserClose(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -310,7 +309,7 @@ browser.browserClose(params)
 ---
 
 ## browserCreateUserContext
-أمر WebDriver Bidi لإرسال طريقة الأمر "browser.createUserContext" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browser-createUserContext).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browser.createUserContext" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browser-createUserContext).
 
 ##### الاستخدام
 
@@ -319,7 +318,7 @@ browser.browserCreateUserContext(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -337,10 +336,10 @@ browser.browserCreateUserContext(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.BrowserCreateUserContextResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.BrowserCreateUserContextResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    ;
    ```
@@ -349,7 +348,7 @@ browser.browserCreateUserContext(params)
 ---
 
 ## browserGetUserContexts
-أمر WebDriver Bidi لإرسال طريقة الأمر "browser.getUserContexts" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browser-getUserContexts).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browser.getUserContexts" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browser-getUserContexts).
 
 ##### الاستخدام
 
@@ -358,7 +357,7 @@ browser.browserGetUserContexts(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -376,10 +375,10 @@ browser.browserGetUserContexts(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.BrowserGetUserContextsResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.BrowserGetUserContextsResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      userContexts: BrowserUserContextInfo[];
@@ -390,7 +389,7 @@ browser.browserGetUserContexts(params)
 ---
 
 ## browserRemoveUserContext
-أمر WebDriver Bidi لإرسال طريقة الأمر "browser.removeUserContext" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browser-removeUserContext).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browser.removeUserContext" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browser-removeUserContext).
 
 ##### الاستخدام
 
@@ -399,7 +398,7 @@ browser.browserRemoveUserContext(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -421,7 +420,7 @@ browser.browserRemoveUserContext(params)
 ---
 
 ## browsingContextActivate
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.activate" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-activate).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.activate" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-activate).
 
 ##### الاستخدام
 
@@ -430,7 +429,7 @@ browser.browsingContextActivate(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -452,7 +451,7 @@ browser.browsingContextActivate(params)
 ---
 
 ## browsingContextCaptureScreenshot
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.captureScreenshot" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-captureScreenshot).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.captureScreenshot" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-captureScreenshot).
 
 ##### الاستخدام
 
@@ -461,7 +460,7 @@ browser.browsingContextCaptureScreenshot(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -479,10 +478,10 @@ browser.browsingContextCaptureScreenshot(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.BrowsingContextCaptureScreenshotResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.BrowsingContextCaptureScreenshotResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      data: string;
@@ -493,7 +492,7 @@ browser.browsingContextCaptureScreenshot(params)
 ---
 
 ## browsingContextClose
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.close" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-close).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.close" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-close).
 
 ##### الاستخدام
 
@@ -502,7 +501,7 @@ browser.browsingContextClose(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -524,7 +523,7 @@ browser.browsingContextClose(params)
 ---
 
 ## browsingContextCreate
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.create" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-create).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.create" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-create).
 
 ##### الاستخدام
 
@@ -533,7 +532,7 @@ browser.browsingContextCreate(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -551,10 +550,10 @@ browser.browsingContextCreate(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.BrowsingContextCreateResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.BrowsingContextCreateResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      context: BrowsingContextBrowsingContext;
@@ -565,7 +564,7 @@ browser.browsingContextCreate(params)
 ---
 
 ## browsingContextGetTree
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.getTree" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-getTree).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.getTree" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-getTree).
 
 ##### الاستخدام
 
@@ -574,7 +573,7 @@ browser.browsingContextGetTree(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -592,10 +591,10 @@ browser.browsingContextGetTree(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.BrowsingContextGetTreeResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.BrowsingContextGetTreeResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      contexts: BrowsingContextInfoList;
@@ -606,7 +605,7 @@ browser.browsingContextGetTree(params)
 ---
 
 ## browsingContextHandleUserPrompt
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.handleUserPrompt" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-handleUserPrompt).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.handleUserPrompt" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-handleUserPrompt).
 
 ##### الاستخدام
 
@@ -615,7 +614,7 @@ browser.browsingContextHandleUserPrompt(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -637,7 +636,7 @@ browser.browsingContextHandleUserPrompt(params)
 ---
 
 ## browsingContextLocateNodes
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.locateNodes" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.locateNodes" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes).
 
 ##### الاستخدام
 
@@ -646,7 +645,7 @@ browser.browsingContextLocateNodes(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -664,10 +663,10 @@ browser.browsingContextLocateNodes(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.BrowsingContextLocateNodesResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.BrowsingContextLocateNodesResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      nodes: ScriptNodeRemoteValue[];
@@ -678,7 +677,7 @@ browser.browsingContextLocateNodes(params)
 ---
 
 ## browsingContextNavigate
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.navigate" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-navigate).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.navigate" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-navigate).
 
 ##### الاستخدام
 
@@ -687,7 +686,7 @@ browser.browsingContextNavigate(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -705,10 +704,10 @@ browser.browsingContextNavigate(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.BrowsingContextNavigateResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.BrowsingContextNavigateResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      navigation: BrowsingContextNavigation | null;
@@ -720,7 +719,7 @@ browser.browsingContextNavigate(params)
 ---
 
 ## browsingContextPrint
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.print" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-print).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.print" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-print).
 
 ##### الاستخدام
 
@@ -729,7 +728,7 @@ browser.browsingContextPrint(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -747,10 +746,10 @@ browser.browsingContextPrint(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.BrowsingContextPrintResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.BrowsingContextPrintResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      data: string;
@@ -761,7 +760,7 @@ browser.browsingContextPrint(params)
 ---
 
 ## browsingContextReload
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.reload" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-reload).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.reload" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-reload).
 
 ##### الاستخدام
 
@@ -770,7 +769,7 @@ browser.browsingContextReload(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -792,7 +791,7 @@ browser.browsingContextReload(params)
 ---
 
 ## browsingContextSetViewport
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.setViewport" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-setViewport).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.setViewport" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-setViewport).
 
 ##### الاستخدام
 
@@ -801,7 +800,7 @@ browser.browsingContextSetViewport(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -823,7 +822,7 @@ browser.browsingContextSetViewport(params)
 ---
 
 ## browsingContextTraverseHistory
-أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.traverseHistory" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-traverseHistory).
+أمر WebDriver Bidi لإرسال طريقة الأمر "browsingContext.traverseHistory" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-browsingContext-traverseHistory).
 
 ##### الاستخدام
 
@@ -832,7 +831,7 @@ browser.browsingContextTraverseHistory(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -854,7 +853,7 @@ browser.browsingContextTraverseHistory(params)
 ---
 
 ## networkAddIntercept
-أمر WebDriver Bidi لإرسال طريقة الأمر "network.addIntercept" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-addIntercept).
+أمر WebDriver Bidi لإرسال طريقة الأمر "network.addIntercept" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-addIntercept).
 
 ##### الاستخدام
 
@@ -863,7 +862,7 @@ browser.networkAddIntercept(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -881,10 +880,10 @@ browser.networkAddIntercept(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.NetworkAddInterceptResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.NetworkAddInterceptResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      intercept: NetworkIntercept;
@@ -895,7 +894,7 @@ browser.networkAddIntercept(params)
 ---
 
 ## networkContinueRequest
-أمر WebDriver Bidi لإرسال طريقة الأمر "network.continueRequest" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-continueRequest).
+أمر WebDriver Bidi لإرسال طريقة الأمر "network.continueRequest" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-continueRequest).
 
 ##### الاستخدام
 
@@ -904,7 +903,7 @@ browser.networkContinueRequest(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -926,7 +925,7 @@ browser.networkContinueRequest(params)
 ---
 
 ## networkContinueResponse
-أمر WebDriver Bidi لإرسال طريقة الأمر "network.continueResponse" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-continueResponse).
+أمر WebDriver Bidi لإرسال طريقة الأمر "network.continueResponse" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-continueResponse).
 
 ##### الاستخدام
 
@@ -935,7 +934,7 @@ browser.networkContinueResponse(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -957,7 +956,7 @@ browser.networkContinueResponse(params)
 ---
 
 ## networkContinueWithAuth
-أمر WebDriver Bidi لإرسال طريقة الأمر "network.continueWithAuth" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-continueWithAuth).
+أمر WebDriver Bidi لإرسال طريقة الأمر "network.continueWithAuth" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-continueWithAuth).
 
 ##### الاستخدام
 
@@ -966,7 +965,7 @@ browser.networkContinueWithAuth(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -988,7 +987,7 @@ browser.networkContinueWithAuth(params)
 ---
 
 ## networkFailRequest
-أمر WebDriver Bidi لإرسال طريقة الأمر "network.failRequest" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-failRequest).
+أمر WebDriver Bidi لإرسال طريقة الأمر "network.failRequest" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-failRequest).
 
 ##### الاستخدام
 
@@ -997,7 +996,7 @@ browser.networkFailRequest(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1019,7 +1018,7 @@ browser.networkFailRequest(params)
 ---
 
 ## networkProvideResponse
-أمر WebDriver Bidi لإرسال طريقة الأمر "network.provideResponse" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-provideResponse).
+أمر WebDriver Bidi لإرسال طريقة الأمر "network.provideResponse" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-provideResponse).
 
 ##### الاستخدام
 
@@ -1028,7 +1027,7 @@ browser.networkProvideResponse(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1050,7 +1049,7 @@ browser.networkProvideResponse(params)
 ---
 
 ## networkRemoveIntercept
-أمر WebDriver Bidi لإرسال طريقة الأمر "network.removeIntercept" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-removeIntercept).
+أمر WebDriver Bidi لإرسال طريقة الأمر "network.removeIntercept" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-network-removeIntercept).
 
 ##### الاستخدام
 
@@ -1059,7 +1058,7 @@ browser.networkRemoveIntercept(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1081,7 +1080,7 @@ browser.networkRemoveIntercept(params)
 ---
 
 ## scriptAddPreloadScript
-أمر WebDriver Bidi لإرسال طريقة الأمر "script.addPreloadScript" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-addPreloadScript).
+أمر WebDriver Bidi لإرسال طريقة الأمر "script.addPreloadScript" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-addPreloadScript).
 
 ##### الاستخدام
 
@@ -1090,7 +1089,7 @@ browser.scriptAddPreloadScript(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1108,10 +1107,10 @@ browser.scriptAddPreloadScript(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.ScriptAddPreloadScriptResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.ScriptAddPreloadScriptResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      script: ScriptPreloadScript;
@@ -1122,7 +1121,7 @@ browser.scriptAddPreloadScript(params)
 ---
 
 ## scriptDisown
-أمر WebDriver Bidi لإرسال طريقة الأمر "script.disown" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-disown).
+أمر WebDriver Bidi لإرسال طريقة الأمر "script.disown" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-disown).
 
 ##### الاستخدام
 
@@ -1131,7 +1130,7 @@ browser.scriptDisown(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1153,7 +1152,7 @@ browser.scriptDisown(params)
 ---
 
 ## scriptCallFunction
-أمر WebDriver Bidi لإرسال طريقة الأمر "script.callFunction" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-callFunction).
+أمر WebDriver Bidi لإرسال طريقة الأمر "script.callFunction" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-callFunction).
 
 ##### الاستخدام
 
@@ -1162,7 +1161,7 @@ browser.scriptCallFunction(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1184,7 +1183,7 @@ browser.scriptCallFunction(params)
 ---
 
 ## scriptEvaluate
-أمر WebDriver Bidi لإرسال طريقة الأمر "script.evaluate" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-evaluate).
+أمر WebDriver Bidi لإرسال طريقة الأمر "script.evaluate" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-evaluate).
 
 ##### الاستخدام
 
@@ -1193,7 +1192,7 @@ browser.scriptEvaluate(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1211,10 +1210,10 @@ browser.scriptEvaluate(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.ScriptEvaluateResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.ScriptEvaluateResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    ;
    ```
@@ -1223,7 +1222,7 @@ browser.scriptEvaluate(params)
 ---
 
 ## scriptGetRealms
-أمر WebDriver Bidi لإرسال طريقة الأمر "script.getRealms" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-getRealms).
+أمر WebDriver Bidi لإرسال طريقة الأمر "script.getRealms" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-getRealms).
 
 ##### الاستخدام
 
@@ -1232,7 +1231,7 @@ browser.scriptGetRealms(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1250,10 +1249,10 @@ browser.scriptGetRealms(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.ScriptGetRealmsResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.ScriptGetRealmsResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      realms: ScriptRealmInfo[];
@@ -1264,7 +1263,7 @@ browser.scriptGetRealms(params)
 ---
 
 ## scriptRemovePreloadScript
-أمر WebDriver Bidi لإرسال طريقة الأمر "script.removePreloadScript" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-removePreloadScript).
+أمر WebDriver Bidi لإرسال طريقة الأمر "script.removePreloadScript" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-script-removePreloadScript).
 
 ##### الاستخدام
 
@@ -1273,7 +1272,7 @@ browser.scriptRemovePreloadScript(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1295,7 +1294,7 @@ browser.scriptRemovePreloadScript(params)
 ---
 
 ## storageGetCookies
-أمر WebDriver Bidi لإرسال طريقة الأمر "storage.getCookies" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-storage-getCookies).
+أمر WebDriver Bidi لإرسال طريقة الأمر "storage.getCookies" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-storage-getCookies).
 
 ##### الاستخدام
 
@@ -1304,7 +1303,7 @@ browser.storageGetCookies(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1322,10 +1321,10 @@ browser.storageGetCookies(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.StorageGetCookiesResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.StorageGetCookiesResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      cookies: NetworkCookie[];
@@ -1337,7 +1336,7 @@ browser.storageGetCookies(params)
 ---
 
 ## storageSetCookie
-أمر WebDriver Bidi لإرسال طريقة الأمر "storage.setCookie" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-storage-setCookie).
+أمر WebDriver Bidi لإرسال طريقة الأمر "storage.setCookie" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-storage-setCookie).
 
 ##### الاستخدام
 
@@ -1346,7 +1345,7 @@ browser.storageSetCookie(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1364,10 +1363,10 @@ browser.storageSetCookie(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.StorageSetCookieResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.StorageSetCookieResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      partitionKey: StoragePartitionKey;
@@ -1378,7 +1377,7 @@ browser.storageSetCookie(params)
 ---
 
 ## storageDeleteCookies
-أمر WebDriver Bidi لإرسال طريقة الأمر "storage.deleteCookies" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-storage-deleteCookies).
+أمر WebDriver Bidi لإرسال طريقة الأمر "storage.deleteCookies" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-storage-deleteCookies).
 
 ##### الاستخدام
 
@@ -1387,7 +1386,7 @@ browser.storageDeleteCookies(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1405,10 +1404,10 @@ browser.storageDeleteCookies(params)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>local.StorageDeleteCookiesResult</var></code>:** قيمة عودة الأمر مع الواجهة التالية:
+            **<code><var>local.StorageDeleteCookiesResult</var></code>:** قيمة إعادة الأمر بالواجهة التالية:
    ```ts
    {
      partitionKey: StoragePartitionKey;
@@ -1419,7 +1418,7 @@ browser.storageDeleteCookies(params)
 ---
 
 ## inputPerformActions
-أمر WebDriver Bidi لإرسال طريقة الأمر "input.performActions" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-input-performActions).
+أمر WebDriver Bidi لإرسال طريقة الأمر "input.performActions" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-input-performActions).
 
 ##### الاستخدام
 
@@ -1428,7 +1427,7 @@ browser.inputPerformActions(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1450,7 +1449,7 @@ browser.inputPerformActions(params)
 ---
 
 ## inputReleaseActions
-أمر WebDriver Bidi لإرسال طريقة الأمر "input.releaseActions" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-input-releaseActions).
+أمر WebDriver Bidi لإرسال طريقة الأمر "input.releaseActions" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-input-releaseActions).
 
 ##### الاستخدام
 
@@ -1459,7 +1458,7 @@ browser.inputReleaseActions(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>
@@ -1481,7 +1480,7 @@ browser.inputReleaseActions(params)
 ---
 
 ## inputSetFiles
-أمر WebDriver Bidi لإرسال طريقة الأمر "input.setFiles" مع المعلمات.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-input-setFiles).
+أمر WebDriver Bidi لإرسال طريقة الأمر "input.setFiles" مع المعايير.<br /><br />أمر بروتوكول WebDriver Bidi. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://w3c.github.io/webdriver-bidi/#command-input-setFiles).
 
 ##### الاستخدام
 
@@ -1490,7 +1489,7 @@ browser.inputSetFiles(params)
 ```
 
 
-##### المعلمات
+##### المعايير
 
 <table>
   <thead>

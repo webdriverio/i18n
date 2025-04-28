@@ -1,15 +1,15 @@
 ---
 id: integrate-with-percy
-title: لتطبيق الويب
+title: لتطبيقات الويب
 ---
 
 ## دمج اختبارات WebdriverIO الخاصة بك مع Percy
 
-قبل التكامل، يمكنك استكشاف [البرنامج التعليمي لبناء عينة Percy لـ WebdriverIO](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+قبل التكامل، يمكنك استكشاف [برنامج تعليمي لبناء عينة Percy لـ WebdriverIO](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 قم بدمج اختبارات WebdriverIO الآلية مع BrowserStack Percy وإليك نظرة عامة على خطوات التكامل:
 
 ### الخطوة 1: إنشاء مشروع Percy
-[سجل الدخول](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) إلى Percy. في Percy، قم بإنشاء مشروع من النوع، ويب، ثم قم بتسمية المشروع. بعد إنشاء المشروع، يقوم Percy بإنشاء رمز. سجّل ملاحظة به. يجب عليك استخدامه لتعيين متغير البيئة الخاص بك في الخطوة التالية.
+[قم بتسجيل الدخول](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) إلى Percy. في Percy، أنشئ مشروعًا من النوع، ويب، ثم قم بتسمية المشروع. بعد إنشاء المشروع، يقوم Percy بإنشاء رمز. دوّنه. يجب عليك استخدامه لتعيين متغير البيئة الخاص بك في الخطوة التالية.
 
 للحصول على تفاصيل حول إنشاء مشروع، راجع [إنشاء مشروع Percy](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
@@ -25,7 +25,7 @@ set PERCY_TOKEN="<your token here>"    // Windows CMD
 
 ### الخطوة 3: تثبيت تبعيات Percy
 
-قم بتثبيت المكونات المطلوبة لإنشاء بيئة التكامل لمجموعة الاختبارات الخاصة بك.
+قم بتثبيت المكونات المطلوبة لإنشاء بيئة التكامل لمجموعة الاختبار الخاصة بك.
 
 لتثبيت التبعيات، قم بتشغيل الأمر التالي:
 
@@ -33,9 +33,9 @@ set PERCY_TOKEN="<your token here>"    // Windows CMD
 npm install --save-dev @percy/cli @percy/webdriverio
 ```
 
-### الخطوة 4: تحديث نص الاختبار الخاص بك
+### الخطوة 4: تحديث سكريبت الاختبار الخاص بك
 
-قم باستيراد مكتبة Percy لاستخدام الطريقة والسمات المطلوبة لالتقاط لقطات الشاشة.
+استورد مكتبة Percy لاستخدام الطريقة والسمات المطلوبة لأخذ لقطات الشاشة.
 يستخدم المثال التالي وظيفة percySnapshot() في الوضع المتزامن:
 
 ```sh
@@ -49,7 +49,7 @@ describe('webdriver.io page', () => {
 });
 ```
 
-عند استخدام WebdriverIO في [الوضع المستقل](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)، قم بتوفير كائن المتصفح كوسيطة أولى لوظيفة `percySnapshot`:
+عند استخدام WebdriverIO في [الوضع المستقل](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)، قدم كائن المتصفح كوسيطة أولى لوظيفة `percySnapshot`:
 
 ```sh
 import { remote } from 'webdriverio'
@@ -114,14 +114,14 @@ percy exec -- wdio wdio.conf.js
 ```
 
 ## قم بزيارة الصفحات التالية لمزيد من التفاصيل:
-- [دمج اختبارات WebdriverIO الخاصة بك مع Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [دمج اختبارات WebdriverIO مع Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
 - [صفحة متغير البيئة](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
 - [التكامل باستخدام BrowserStack SDK](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) إذا كنت تستخدم BrowserStack Automate.
 
 
-| المورد                                                                                                                                                                | الوصف                             |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| [الوثائق الرسمية](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)             | وثائق Percy لـ WebdriverIO       |
-| [بناء عينة - برنامج تعليمي](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | برنامج Percy التعليمي لـ WebdriverIO |
-| [فيديو رسمي](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                                    | اختبار مرئي مع Percy              |
-| [مدونة](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                      | تقديم المراجعات المرئية 2.0       |
+| المصدر                                                                                                                                                            | الوصف                       |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| [الوثائق الرسمية](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)             | وثائق Percy لـ WebdriverIO |
+| [بناء عينة - برنامج تعليمي](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | برنامج تعليمي لـ Percy و WebdriverIO      |
+| [فيديو رسمي](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                              | اختبار مرئي مع Percy         |
+| [مدونة](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | تقديم المراجعات المرئية 2.0    |

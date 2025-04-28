@@ -4,11 +4,11 @@ title: إضافة قيمة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/addValue.ts
 ---
 
-إضافة قيمة إلى عنصر إدخال أو منطقة نص تم العثور عليه بواسطة المحدد المعطى.
+إضافة قيمة إلى عنصر الإدخال أو منطقة النص التي تم العثور عليها بواسطة المحدد المعطى.
 
 :::info
 
-إذا كنت ترغب في استخدام أحرف خاصة، على سبيل المثال، لنسخ ولصق قيمة من حقل إدخال إلى آخر، استخدم
+إذا كنت ترغب في استخدام أحرف خاصة، على سبيل المثال، لنسخ ولصق قيمة من مدخل إلى آخر، استخدم
 أمر [`keys`](/docs/api/browser/keys).
 
 :::
@@ -19,7 +19,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 $(selector).addValue(value)
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>

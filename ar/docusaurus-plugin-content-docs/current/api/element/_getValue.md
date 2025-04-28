@@ -6,7 +6,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 الحصول على قيمة عنصر `<textarea>` أو `<select>` أو `<input>` نصي تم العثور عليه بواسطة المحدد المعطى.
 إذا تم العثور على عدة عناصر عبر المحدد المعطى، يتم إرجاع مصفوفة من القيم بدلاً من ذلك.
-بالنسبة للإدخال من نوع checkbox أو radio استخدم isSelected.
+بالنسبة للمدخلات ذات النوع checkbox أو radio، استخدم isSelected.
 
 ##### الاستخدام
 
@@ -31,5 +31,4 @@ it('should demonstrate the getValue command', async () => {
 ##### العائد
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**   قيمة العنصر (العناصر) المطلوبة    
-```
+            **<code><var>return</var></code>:**   قيمة العنصر (العناصر) المطلوبة

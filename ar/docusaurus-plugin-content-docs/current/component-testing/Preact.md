@@ -1,13 +1,13 @@
 ---
 id: preact
-title: بريآكت
+title: برياكت
 ---
 
-[Preact](https://preactjs.com/) هو بديل سريع بحجم 3 كيلوبايت لـ React مع نفس واجهة البرمجة الحديثة. يمكنك اختبار مكونات Preact مباشرة في متصفح حقيقي باستخدام WebdriverIO و [browser runner](/docs/runner#browser-runner) الخاص به.
+[Preact](https://preactjs.com/) هو بديل سريع 3 كيلوبايت لـ React يتمتع بنفس واجهة البرمجة الحديثة. يمكنك اختبار مكونات Preact مباشرة في متصفح حقيقي باستخدام WebdriverIO و [مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
 
 ## الإعداد
 
-لإعداد WebdriverIO ضمن مشروع Preact الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) في وثائق اختبار المكونات لدينا. تأكد من اختيار `preact` كإعداد مسبق ضمن خيارات المشغل الخاص بك، على سبيل المثال:
+لإعداد WebdriverIO داخل مشروع Preact الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) في وثائق اختبار المكونات لدينا. تأكد من اختيار `preact` كإعداد مسبق ضمن خيارات المشغل الخاص بك، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -22,11 +22,11 @@ export const config = {
 
 :::info
 
-إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا إعادة استخدام التكوين الخاص بك في `vite.config.ts` ضمن تكوين WebdriverIO الخاص بك. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
+إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا إعادة استخدام التكوين الخاص بك في `vite.config.ts` داخل تكوين WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
 
 :::
 
-يتطلب الإعداد المسبق لـ Preact تثبيت `@preact/preset-vite`. نوصي أيضًا باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
+الإعداد المسبق لـ Preact يتطلب تثبيت `@preact/preset-vite`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite

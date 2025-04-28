@@ -1,10 +1,10 @@
 ---
 id: saveScreenshot
-title: حفظ لقطة شاشة
+title: حفظ لقطة الشاشة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/saveScreenshot.ts
 ---
 
-حفظ لقطة شاشة لعنصر كملف PNG على نظام التشغيل الخاص بك.
+احفظ لقطة شاشة لعنصر ما كملف PNG على نظام التشغيل الخاص بك.
 
 ##### الاستخدام
 
@@ -12,7 +12,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 $(selector).saveScreenshot(filename)
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -24,7 +24,7 @@ $(selector).saveScreenshot(filename)
     <tr>
       <td><code><var>filename</var></code></td>
       <td>`String`</td>
-      <td>المسار إلى الصورة المنشأة (لاحقة `.png` مطلوبة) بالنسبة لدليل التنفيذ</td>
+      <td>المسار إلى الصورة المنشأة (لاحقة `.png` مطلوبة) بالنسبة إلى دليل التنفيذ</td>
     </tr>
   </tbody>
 </table>
@@ -38,7 +38,7 @@ it('should save a screenshot of the browser view', async () => {
 });
 ```
 
-##### النتائج المرجعة
+##### الإرجاع
 
 - **&lt;Buffer&gt;**
             **<code><var>return</var></code>:**             مخزن لقطة الشاشة

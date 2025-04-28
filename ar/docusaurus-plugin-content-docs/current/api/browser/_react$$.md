@@ -4,11 +4,11 @@ title: react$$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/react$$.ts
 ---
 
-الأمر `react$$` هو أمر مفيد للاستعلام عن مكونات React المتعددة بواسطة أسمائها الفعلية وتصفيتها حسب الخصائص والحالة.
+يعتبر الأمر `react$$` أمرًا مفيدًا للاستعلام عن مكونات React المتعددة باستخدام اسمها الفعلي وتصفيتها حسب الخصائص والحالة.
 
 :::info
 
-يعمل هذا الأمر فقط مع التطبيقات التي تستخدم React الإصدار 16.x. اقرأ المزيد عن محددات React في دليل [المحددات](/docs/selectors#react-selectors).
+يعمل هذا الأمر فقط مع التطبيقات التي تستخدم React v16.x. اقرأ المزيد حول محددات React في دليل [المحددات](/docs/selectors#react-selectors).
 
 :::
 
@@ -18,7 +18,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.react$$(selector, { props, state })
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -30,7 +30,7 @@ browser.react$$(selector, { props, state })
     <tr>
       <td><code><var>selector</var></code></td>
       <td>`string`</td>
-      <td>اسم مكون React</td>
+      <td>مكون React</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -64,6 +64,6 @@ it('should calculate 7 * 6', async () => {
 });
 ```
 
-##### النتائج
+##### العائد
 
 - **&lt;WebdriverIO.ElementArray&gt;**

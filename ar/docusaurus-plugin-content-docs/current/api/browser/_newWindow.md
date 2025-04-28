@@ -4,10 +4,10 @@ title: نافذة جديدة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/newWindow.ts
 ---
 
-فتح نافذة أو علامة تبويب جديدة في المتصفح (الافتراضي هو نافذة جديدة إذا لم يتم تحديد ذلك).
-هذا الأمر يعادل وظيفة `window.open()`. هذا الأمر لا يعمل في بيئات الجوال.
+فتح نافذة أو علامة تبويب جديدة في المتصفح (يفتح نافذة جديدة افتراضيًا إذا لم يتم تحديد نوع آخر).
+هذا الأمر هو المعادل لوظيفة `window.open()`. هذا الأمر لا يعمل في بيئات الجوال.
 
-__ملاحظة:__ عند استدعاء هذا الأمر، يتم الانتقال تلقائيًا إلى النافذة أو علامة التبويب الجديدة.
+__ملاحظة:__ عند استدعاء هذا الأمر، سيتم الانتقال تلقائيًا إلى النافذة أو علامة التبويب الجديدة.
 
 ##### الاستخدام
 
@@ -32,7 +32,7 @@ browser.newWindow(url, { type, windowName, windowFeatures })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`NewWindowOptions`</td>
-      <td>خيارات أمر newWindow</td>
+      <td>خيارات أمر نافذة جديدة</td>
     </tr>
     <tr>
       <td><code><var>options.type</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -47,7 +47,7 @@ browser.newWindow(url, { type, windowName, windowFeatures })
     <tr>
       <td><code><var>options.windowFeatures</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>ميزات النافذة المفتوحة (مثل الحجم، الموضع، أشرطة التمرير، إلخ.)</td>
+      <td>ميزات النافذة المفتوحة (مثل الحجم، الموضع، أشرطة التمرير، إلخ)</td>
     </tr>
   </tbody>
 </table>
@@ -94,10 +94,12 @@ it('should open a new window', async () => {
  });
 ```
 
-##### العائدات
+##### القيم المرجعة
 
 - **&lt;Object&gt;**
-            **<code><var>return</var></code>:**           كائن يحتوي على مقبض النافذة ونوع النافذة الجديدة `{handle: string, type: string}` handle - معرّف مقبض النافذة للعلامة التبويب أو النافذة الجديدة، type - نوع النافذة الجديدة، إما 'tab' أو 'window'    
-##### يرمي
+            **<code><var>return</var></code>:**           كائن يحتوي على معرّف النافذة ونوع النافذة الجديدة `{handle: string, type: string}` handle - معرّف النافذة للعلامة التبويب أو النافذة الجديدة، type - نوع النافذة الجديدة، إما 'tab' أو 'window'
+            
+##### الاستثناءات
 
-- **Error**:  إذا كان `url` غير صالح، أو إذا تم استخدام الأمر على الجوال، أو كان `type` ليس 'tab' أو 'window'.
+- **Error**: إذا كان `url` غير صالح، أو إذا تم استخدام الأمر على الجوال، أو كان `type` ليس 'tab' أو 'window'.
+```

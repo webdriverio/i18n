@@ -4,7 +4,7 @@ title: العنصر الأب
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/parentElement.ts
 ---
 
-يعيد العنصر الأب لعنصر DOM المحدد.
+يُرجع العنصر الأب لعنصر DOM المحدد.
 
 ##### الاستخدام
 
@@ -30,6 +30,6 @@ it('should get class from parent element', async () => {
 });
 ```
 
-##### العائد
+##### الناتج
 
 - **&lt;WebdriverIO.Element&gt;**

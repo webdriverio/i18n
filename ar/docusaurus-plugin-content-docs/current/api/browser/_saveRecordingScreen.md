@@ -30,7 +30,7 @@ browser.saveRecordingScreen(filepath)
     <tr>
       <td><code><var>filepath</var></code></td>
       <td>`String`</td>
-      <td>مسار كامل أو نسبي إلى دليل التنفيذ للفيديو المُنشأ</td>
+      <td>المسار الكامل أو النسبي لدليل التنفيذ للفيديو المُنشأ</td>
     </tr>
   </tbody>
 </table>
@@ -45,7 +45,7 @@ it('should save a video', async () => {
 });
 ```
 
-##### القيم المرجعة
+##### الإرجاع
 
 - **&lt;Buffer&gt;**
-            **<code><var>return</var></code>:**             مخزن مؤقت للفيديو
+            **<code><var>return</var></code>:**             buffer الفيديو

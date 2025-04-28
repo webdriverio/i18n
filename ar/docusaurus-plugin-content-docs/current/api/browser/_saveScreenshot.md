@@ -4,9 +4,9 @@ title: حفظ لقطة الشاشة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/saveScreenshot.ts
 ---
 
-حفظ لقطة شاشة لسياق التصفح الحالي إلى ملف PNG على نظام التشغيل الخاص بك. كن على علم بأن
-بعض سائقي المتصفح يأخذون لقطات شاشة للمستند بأكمله (مثل Geckodriver مع Firefox)
-والبعض الآخر يأخذ فقط لقطة للعرض الحالي (مثل Chromedriver مع Chrome).
+حفظ لقطة شاشة لسياق التصفح الحالي كملف PNG على نظام التشغيل الخاص بك. كن على دراية بأن
+بعض متصفحات السائق تأخذ لقطات شاشة للمستند بأكمله (مثل Geckodriver مع Firefox)
+والبعض الآخر يأخذ لقطة للعرض الحالي فقط (مثل Chromedriver مع Chrome).
 
 ##### الاستخدام
 
@@ -26,7 +26,7 @@ browser.saveScreenshot(filepath, { fullPage, format, quality, clip })
     <tr>
       <td><code><var>filepath</var></code></td>
       <td>`String`</td>
-      <td>المسار إلى الصورة المنشأة (لاحقة `.png` مطلوبة) بالنسبة إلى دليل التنفيذ</td>
+      <td>المسار إلى الصورة التي تم إنشاؤها (لاحقة `.png` مطلوبة) بالنسبة إلى دليل التنفيذ</td>
     </tr>
     <tr>
       <td><code><var>options</var></code></td>
@@ -36,7 +36,7 @@ browser.saveScreenshot(filepath, { fullPage, format, quality, clip })
     <tr>
       <td><code><var>options.fullPage=false</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>ما إذا كان سيتم التقاط لقطة شاشة للصفحة الكاملة أو فقط العرض الحالي</td>
+      <td>ما إذا كان سيتم التقاط لقطة شاشة للصفحة بأكملها أو العرض الحالي فقط</td>
     </tr>
     <tr>
       <td><code><var>options.format='png'</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -51,7 +51,7 @@ browser.saveScreenshot(filepath, { fullPage, format, quality, clip })
     <tr>
       <td><code><var>options.clip</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Object`</td>
-      <td>اقتصاص مستطيل من لقطة الشاشة</td>
+      <td>قص مستطيل من لقطة الشاشة</td>
     </tr>
   </tbody>
 </table>
@@ -89,7 +89,7 @@ afterTest: async function(test) {
 }
 ```
 
-##### القيم المرجعة
+##### العائدات
 
 - **&lt;Buffer&gt;**
-            **<code><var>return</var></code>:**                             مخزن مؤقت للقطة الشاشة
+            **<code><var>return</var></code>:**                             مخزن لقطة الشاشة

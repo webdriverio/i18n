@@ -1,10 +1,10 @@
 ---
 id: isExisting
-title: isExisting
+title: موجود
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isExisting.ts
 ---
 
-يعيد القيمة true إذا كان العنصر موجودًا في DOM.
+يُعيد القيمة true إذا كان العنصر موجودًا في الـ DOM.
 
 :::info
 
@@ -55,4 +55,4 @@ it('should detect if elements are existing', async () => {
 ##### العائد
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**             true إذا كان العنصر (العناصر)* موجودًا (موجودة)
+            **<code><var>return</var></code>:**             true إذا كان العنصر (العناصر)* موجود[ة]

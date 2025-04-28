@@ -47,7 +47,7 @@ it('should demonstrate the getSize command', async () => {
 })
 ```
 
-##### النتيجة
+##### القيم المرجعة
 
 - **&lt;Object|Number&gt;**
-            **<code><var>return</var></code>:**     حجم العنصر المطلوب (`{ width: <Number>, height: <Number> }`) أو العرض/الارتفاع الفعلي كرقم إذا تم تحديد المعلمة prop
+            **<code><var>return</var></code>:**     حجم العنصر المطلوب (`{ width: <Number>, height: <Number> }`) أو العرض/الارتفاع الفعلي كرقم إذا تم تقديم معلمة prop

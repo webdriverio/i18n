@@ -3,21 +3,21 @@ id: web-extensions
 title: اختبار امتدادات الويب
 ---
 
-تعتبر WebdriverIO الأداة المثالية لأتمتة المتصفح. امتدادات الويب هي جزء من المتصفح ويمكن أتمتتها بنفس الطريقة. عندما يستخدم امتداد الويب الخاص بك النصوص البرمجية للمحتوى لتشغيل JavaScript على مواقع الويب أو تقديم نافذة منبثقة، يمكنك تشغيل اختبار e2e لذلك باستخدام WebdriverIO.
+WebdriverIO هي الأداة المثالية لأتمتة المتصفح. امتدادات الويب هي جزء من المتصفح ويمكن أتمتتها بنفس الطريقة. كلما استخدم امتداد الويب الخاص بك نصوصًا برمجية للمحتوى لتشغيل JavaScript على مواقع الويب أو تقديم نافذة منبثقة، يمكنك تشغيل اختبار e2e لذلك باستخدام WebdriverIO.
 
 ## تحميل امتداد الويب إلى المتصفح
 
-كخطوة أولى، علينا تحميل الامتداد المراد اختباره في المتصفح كجزء من جلستنا. يعمل هذا بشكل مختلف في Chrome و Firefox.
+كخطوة أولى، يجب علينا تحميل الامتداد قيد الاختبار في المتصفح كجزء من جلستنا. يعمل هذا بشكل مختلف لكل من Chrome و Firefox.
 
 :::info
 
-تستثني هذه الوثائق امتدادات Safari لأن دعمها متأخر كثيرًا والطلب عليها ليس مرتفعًا. إذا كنت تبني امتدادًا للويب لـ Safari، يرجى [رفع مشكلة](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) والتعاون على تضمينها هنا أيضًا.
+تترك هذه الوثائق امتدادات Safari الويب حيث أن دعمها متأخر كثيرًا والطلب من المستخدمين ليس عاليًا. إذا كنت تقوم ببناء امتداد ويب لـ Safari، يرجى [فتح مشكلة](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) والتعاون على تضمينها هنا أيضًا.
 
 :::
 
 ### Chrome
 
-يمكن تحميل امتداد الويب في Chrome من خلال توفير سلسلة مشفرة بـ `base64` لملف `crx` أو عن طريق توفير مسار إلى مجلد امتدادات الويب. الأسهل هو القيام بالأخير من خلال تحديد إمكانيات Chrome الخاصة بك على النحو التالي:
+يمكن تحميل امتداد ويب في Chrome من خلال توفير سلسلة مشفرة بـ `base64` من ملف `crx` أو من خلال توفير مسار إلى مجلد امتداد الويب. الأسهل هو ببساطة القيام بالأخير من خلال تحديد قدرات Chrome الخاصة بك على النحو التالي:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -30,8 +30,8 @@ export const config = {
     capabilities: [{
         browserName,
         'goog:chromeOptions': {
-            // بافتراض أن ملف wdio.conf.js في الدليل الجذر وملفات امتداد الويب المجمعة
-            // موجودة في مجلد `./dist`
+            // given your wdio.conf.js is in the root directory and your compiled
+            // web extension files are located in the `./dist` folder
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -44,7 +44,7 @@ export const config = {
 
 :::
 
-إذا قمت بتجميع الامتداد الخاص بك كملف `.crx` باستخدام، على سبيل المثال، حزمة [crx](https://www.npmjs.com/package/crx) من NPM، يمكنك أيضًا إضافة الامتداد المحزم عبر:
+إذا قمت بتجميع الامتداد الخاص بك كملف `.crx` باستخدام حزمة NPM [crx](https://www.npmjs.com/package/crx) على سبيل المثال، يمكنك أيضًا حقن الامتداد المجمع عبر:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +67,7 @@ export const config = {
 
 ### Firefox
 
-لإنشاء ملف تعريف Firefox الذي يتضمن الامتدادات، يمكنك استخدام [خدمة ملف تعريف Firefox](/docs/firefox-profile-service) لإعداد الجلسة الخاصة بك وفقًا لذلك. ومع ذلك، قد تواجه مشاكل حيث لا يمكن تحميل امتدادك المطور محليًا بسبب مشاكل التوقيع. في هذه الحالة، يمكنك أيضًا تحميل امتداد في خطاف `before` عبر أمر [`installAddOn`](/docs/api/gecko#installaddon)، على سبيل المثال:
+لإنشاء ملف تعريف Firefox يتضمن الامتدادات، يمكنك استخدام [خدمة ملف تعريف Firefox](/docs/firefox-profile-service) لإعداد جلستك وفقًا لذلك. ومع ذلك، قد تواجه مشكلات حيث لا يمكن تحميل الامتداد المطور محليًا بسبب مشكلات التوقيع. في هذه الحالة، يمكنك أيضًا تحميل امتداد في الخطاف `before` عبر أمر [`installAddOn`](/docs/api/gecko#installaddon)، على سبيل المثال:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,7 +88,7 @@ export const config = {
 }
 ```
 
-من أجل إنشاء ملف `.xpi`، يوصى باستخدام حزمة NPM [`web-ext`](https://www.npmjs.com/package/web-ext). يمكنك حزم الامتداد الخاص بك باستخدام الأمر المثال التالي:
+من أجل إنشاء ملف `.xpi`، يوصى باستخدام حزمة NPM [`web-ext`](https://www.npmjs.com/package/web-ext). يمكنك تجميع الامتداد الخاص بك باستخدام أمر المثال التالي:
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
@@ -96,13 +96,13 @@ npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 
 ## نصائح وحيل
 
-يحتوي القسم التالي على مجموعة من النصائح والحيل المفيدة التي يمكن أن تساعد عند اختبار امتداد ويب.
+يحتوي القسم التالي على مجموعة من النصائح والحيل المفيدة التي يمكن أن تكون مفيدة عند اختبار امتداد ويب.
 
 ### اختبار النافذة المنبثقة في Chrome
 
-إذا قمت بتحديد إدخال إجراء متصفح `default_popup` في [ملف التعريف الخاص بالامتداد](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) يمكنك اختبار صفحة HTML تلك مباشرة، لأن النقر على أيقونة الامتداد في شريط المتصفح العلوي لن يعمل. بدلاً من ذلك، يجب عليك فتح ملف HTML المنبثق مباشرة.
+إذا قمت بتحديد إدخال إجراء متصفح `default_popup` في [ملف تعريف الامتداد](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) الخاص بك، يمكنك اختبار صفحة HTML هذه مباشرة، لأن النقر على أيقونة الامتداد في شريط المتصفح العلوي لن يعمل. بدلاً من ذلك، يجب عليك فتح ملف HTML المنبثق مباشرةً.
 
-في Chrome، يعمل هذا عن طريق استرداد معرف الامتداد وفتح الصفحة المنبثقة من خلال `browser.url('...')`. سيكون السلوك على تلك الصفحة هو نفسه داخل النافذة المنبثقة. للقيام بذلك، نوصي بكتابة الأمر المخصص التالي:
+في Chrome، يعمل هذا عن طريق استرداد معرف الامتداد وفتح الصفحة المنبثقة من خلال `browser.url('...')`. سيكون السلوك في تلك الصفحة هو نفسه داخل النافذة المنبثقة. للقيام بذلك، نوصي بكتابة الأمر المخصص التالي:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {

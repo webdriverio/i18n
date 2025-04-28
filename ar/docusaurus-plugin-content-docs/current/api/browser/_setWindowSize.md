@@ -1,10 +1,10 @@
 ---
 id: setWindowSize
-title: تغيير حجم النافذة
+title: تعيين حجم النافذة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setWindowSize.ts
 ---
 
-يعيد تحجيم الحجم الخارجي لنافذة المتصفح وفقًا للعرض والارتفاع المقدمين. بناءً على نظام التشغيل الخاص بك، قد لا تسمح بعض نوافذ المتصفح بعرض أقل من `500px`. إذا كنت ترغب في محاكاة طريقة عرض جهاز مثل iPhone، فعليك النظر في استخدام أمر `setViewport`.
+يعيد تحجيم الحجم الخارجي لنافذة المتصفح وفقًا للعرض والارتفاع المحددين. بناءً على نظام التشغيل الخاص بك، قد لا تسمح بعض نوافذ المتصفحات بأن يكون العرض أقل من `500px`. إذا كنت ترغب في محاكاة منطقة العرض لجهاز مثل آيفون، يجب عليك التفكير في استخدام أمر `setViewport`.
 
 ##### الاستخدام
 
@@ -12,7 +12,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.setWindowSize(width, height)
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -37,4 +37,4 @@ browser.setWindowSize(width, height)
 ##### القيم المرجعة
 
 - **&lt;Null|Object&gt;**
-            **<code><var>return</var></code>:**  Null لمتصفحات *NO*W3C و Object `{x, y, width, height}` لمتصفحات W3C
+            **<code><var>return</var></code>:** قيمة Null لمتصفح غير متوافق مع *NO*W3C وكائن `{x, y, width, height}` لمتصفح متوافق مع W3C

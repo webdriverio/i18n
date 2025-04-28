@@ -1,14 +1,14 @@
 ---
 id: overwriteCommand
-title: إعادة كتابة الأمر
+title: تجاوز الأمر
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/overwriteCommand.ts
 ---
 
-طريقة المتصفح `overwriteCommand` تساعدك على إعادة كتابة الأوامر الأصلية للمتصفح والعنصر مثل `pause` و `click`.
+تساعدك طريقة المتصفح `overwriteCommand` على تجاوز أوامر المتصفح والعنصر الأصلية مثل `pause` و`click`.
 
 :::info
 
-يمكنك رؤية المزيد من المعلومات حول هذا في قسم [الأوامر المخصصة](/docs/customcommands#overwriting-native-commands).
+يمكنك عرض مزيد من المعلومات حول هذا في قسم [الأوامر المخصصة](/docs/customcommands#overwriting-native-commands).
 
 :::
 
@@ -18,7 +18,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.overwriteCommand(name, callback, elementScope)
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -35,12 +35,12 @@ browser.overwriteCommand(name, callback, elementScope)
     <tr>
       <td><code><var>callback</var></code></td>
       <td>`Function`</td>
-      <td>تمرير الوظيفة الأصلية</td>
+      <td>تمرير الدالة الأصلية</td>
     </tr>
     <tr>
       <td><code><var>elementScope</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>تمديد كائن العنصر بدلاً من كائن المتصفح</td>
+      <td>توسيع كائن العنصر بدلاً من كائن المتصفح</td>
     </tr>
   </tbody>
 </table>

@@ -28,7 +28,7 @@ it('should demonstrate the getTagName command', async () => {
 })
 ```
 
-##### النتيجة
+##### الإرجاع
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**  اسم علامة العنصر، كسلسلة نصية بأحرف صغيرة
+            **<code><var>return</var></code>:** اسم علامة العنصر، كسلسلة بأحرف صغيرة

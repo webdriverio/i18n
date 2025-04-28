@@ -1,11 +1,11 @@
 ---
 id: dialog
-title: شیء گفتگو
+title: شی دیالوگ
 ---
 
-اشیاء گفتگو توسط [`browser`](/docs/api/browser) از طریق رویداد `browser.on('dialog')` ارسال می‌شوند.
+اشیاء دیالوگ توسط [`browser`](/docs/api/browser) از طریق رویداد `browser.on('dialog')` ارسال می‌شوند.
 
-مثالی از استفاده از شیء Dialog:
+مثالی از استفاده از شی دیالوگ:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-گفتگوها به صورت خودکار رد می‌شوند، مگر اینکه یک شنونده `browser.on('dialog')` وجود داشته باشد. وقتی شنونده حاضر است، باید گفتگو را یا با [`dialog.accept()`](/docs/api/dialog/accept) یا با [`dialog.dismiss()`](/docs/api/dialog/dismiss) پاسخ دهد - در غیر این صورت صفحه در انتظار گفتگو منجمد می‌شود، و اقداماتی مانند کلیک هرگز تمام نخواهند شد.
+دیالوگ‌ها به طور خودکار رد می‌شوند، مگر اینکه شنونده `browser.on('dialog')` وجود داشته باشد. هنگامی که شنونده حاضر است، باید دیالوگ را یا با [`dialog.accept()`](/docs/api/dialog/accept) یا با [`dialog.dismiss()`](/docs/api/dialog/dismiss) پاسخ دهد - در غیر این صورت صفحه منتظر دیالوگ منجمد می‌شود، و اقداماتی مانند کلیک هرگز به پایان نمی‌رسند.
 
 :::

@@ -12,7 +12,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.savePDF(filepath, { orientation, scale, background, width, height, top, bottom, left, right, shrinkToFit, pageRanges })
 ```
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -24,7 +24,7 @@ browser.savePDF(filepath, { orientation, scale, background, width, height, top, 
     <tr>
       <td><code><var>filepath</var></code></td>
       <td>`String`</td>
-      <td>المسار إلى ملف PDF المُنشأ (اللاحقة `.pdf` مطلوبة) بالنسبة لدليل التنفيذ</td>
+      <td>مسار ملف PDF المنشأ (لاحقة `.pdf` مطلوبة) نسبة إلى دليل التنفيذ</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -59,22 +59,22 @@ browser.savePDF(filepath, { orientation, scale, background, width, height, top, 
     <tr>
       <td><code><var>options.top</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>تباعد علوي لصفحة PDF</td>
+      <td>المسافة العلوية لصفحة PDF</td>
     </tr>
     <tr>
       <td><code><var>options.bottom</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>تباعد سفلي لصفحة PDF</td>
+      <td>المسافة السفلية لصفحة PDF</td>
     </tr>
     <tr>
       <td><code><var>options.left</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>تباعد أيسر لصفحة PDF</td>
+      <td>المسافة اليسرى لصفحة PDF</td>
     </tr>
     <tr>
       <td><code><var>options.right</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>تباعد أيمن لصفحة PDF</td>
+      <td>المسافة اليمنى لصفحة PDF</td>
     </tr>
     <tr>
       <td><code><var>options.shrinkToFit</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -97,7 +97,7 @@ it('should save a PDF screenshot of the browser view', function () {
 });
 ```
 
-##### الإرجاع
+##### يعيد
 
 - **&lt;Buffer&gt;**
-            **<code><var>return</var></code>:**    مخزن مؤقت للقطة الشاشة
+            **<code><var>return</var></code>:**    مخزن لقطة الشاشة    

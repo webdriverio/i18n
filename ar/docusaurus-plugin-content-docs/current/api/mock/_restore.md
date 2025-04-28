@@ -4,8 +4,8 @@ title: استعادة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/restore.ts
 ---
 
-يقوم بكل ما يفعله `mock.clear()` وأيضًا يزيل أي قيم مُعادة مزيفة أو تنفيذات.
-الـ mock المُستعاد لا يصدر أحداثاً ولا يمكنه محاكاة الردود.
+يقوم بكل ما يفعله `mock.clear()` وكذلك يزيل أي قيم مُرجعة مزيفة أو تنفيذات.
+النموذج المُستعاد لا يصدر أحداثاً ولا يمكنه محاكاة الاستجابات.
 
 ##### الاستخدام
 

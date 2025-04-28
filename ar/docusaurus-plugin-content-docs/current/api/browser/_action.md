@@ -1,22 +1,22 @@
 ---
 id: action
-title: إجراء (action)
+title: إجراء
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/action.ts
 ---
 
-يُعد أمر الإجراء (action) واجهة برمجية منخفضة المستوى لتوفير إجراءات إدخال الأجهزة الافتراضية إلى متصفح الويب.
+أمر الإجراء (action) هو واجهة منخفضة المستوى لتوفير إجراءات إدخال الأجهزة الافتراضية إلى متصفح الويب.
 
-بالإضافة إلى الأوامر عالية المستوى مثل `scrollIntoView` و `doubleClick`، توفر واجهة Actions API تحكمًا دقيقًا فيما يمكن أن تفعله أجهزة الإدخال المحددة. يوفر WebdriverIO واجهة لـ 3 أنواع من مصادر الإدخال:
+بالإضافة إلى الأوامر عالية المستوى مثل `scrollIntoView` و `doubleClick`، توفر واجهة برمجة Actions API تحكمًا تفصيليًا في ما يمكن أن تفعله أجهزة الإدخال المحددة. يوفر WebdriverIO واجهة لـ 3 أنواع من مصادر الإدخال:
 
 - إدخال المفاتيح لأجهزة لوحة المفاتيح
 - إدخال المؤشر للماوس أو القلم أو أجهزة اللمس
-- وإدخال العجلة لأجهزة عجلة التمرير
+- وإدخالات العجلة لأجهزة عجلة التمرير
 
-يجب إكمال كل سلسلة من أوامر الإجراء باستدعاء `perform` من أجل تنفيذ مجموعة الإجراءات. هذا يؤدي إلى [تحرير الإجراءات](https://w3c.github.io/webdriver/#release-actions) وإطلاق الأحداث. يمكنك تخطي ذلك بتمرير `true` (مثل `browser.actions(...).perform(true)`).
+يجب إكمال كل سلسلة من أوامر الإجراء باستدعاء `perform` لتشغيل مجموعة الإجراءات. هذا يؤدي إلى [تحرير الإجراءات](https://w3c.github.io/webdriver/#release-actions) وإطلاق الأحداث. يمكنك تخطي هذا عن طريق تمرير `true` (على سبيل المثال `browser.actions(...).perform(true)`).
 
 :::info
 
-قد يختلف دعم هذا الأمر والإجراءات المحددة بناءً على البيئة. يمكن متابعة التقدم في التطوير على [wpt.fyi](https://wpt.fyi/results/webdriver/tests/perform_actions?label=experimental&label=master&aligned).
+قد يختلف الدعم لهذا الأمر والإجراءات المحددة بناءً على البيئة. يمكن متابعة التقدم في التطوير على [wpt.fyi](https://wpt.fyi/results/webdriver/tests/perform_actions?label=experimental&label=master&aligned).
 بالنسبة للأجهزة المحمولة، قد ترغب في استخدام أوامر الإيماءات الخاصة بـ Appium على [iOS](https://github.com/appium/appium-xcuitest-driver#mobile-pinch)
 و [Android](https://github.com/appium/appium-uiautomator2-driver#mobile-gesture-commands).
 
@@ -30,23 +30,21 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.action('key')
 ```
 
-يُرجع كائن `KeyAction` الذي يدعم الإجراءات التالية:
+يقوم بإرجاع كائن `KeyAction` يدعم الإجراءات التالية:
 
-- `down(value: string)`: ينشئ إجراء ضغط المفتاح لأسفل
-- `up(value: string)`: ينشئ إجراء ترك المفتاح للأعلى
-- `pause(ms: number)`: يشير إلى أن مصدر الإدخال لا يفعل شيئًا خلال دورة معينة
+- `down(value: string)`: ينشئ إجراء ضغط المفتاح
+- `up(value: string)`: ينشئ إجراء رفع المفتاح
+- `pause(ms: number)`: يشير إلى أن مصدر الإدخال لا يفعل شيئًا خلال وقت معين
 
 #### الأحرف الخاصة
 
-إذا كنت ترغب في استخدام أحرف خاصة مثل `Control` أو `Page Up` أو `Shift`، تأكد من استيراد كائن
-[`Key`](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/constants.ts#L352-L417)
-من حزمة `webdriverio` كما يلي:
+إذا كنت ترغب في استخدام أحرف خاصة مثل `Control` أو `Page Up` أو `Shift`، تأكد من استيراد كائن [`Key`](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/constants.ts#L352-L417) من حزمة `webdriverio` كما يلي:
 
 ```ts
 import { Key } from 'webdriverio'
 ```
 
-يتيح لك الكائن الوصول إلى التمثيل اليونيكود للحرف الخاص المطلوب.
+يتيح لك الكائن الوصول إلى تمثيل يونيكود للحرف الخاص المطلوب.
 
 ### مصدر إدخال المؤشر
 
@@ -58,16 +56,16 @@ browser.action('pointer', {
 })
 ```
 
-يُرجع كائن `PointerAction` الذي يدعم الإجراءات التالية:
+يقوم بإرجاع كائن `PointerAction` يدعم الإجراءات التالية:
 
 - `down (button: 'left' | 'middle' | 'right')`: ينشئ إجراءً للضغط على مفتاح واحد
-- `down (params: PointerActionParams)`: ينشئ إجراءً للضغط على مفتاح واحد بمعلمات مفصلة
-- `move (x: number, y: number)`: ينشئ إجراءً لتحريك المؤشر بمقدار `x` و `y` بكسل من نافذة العرض
-- `move (params: PointerActionMoveParams)`: ينشئ إجراءً لتحريك المؤشر بمقدار `x` و `y` بكسل من `origin` المحدد. يمكن تعريف `origin` على أنه الموضع الحالي للمؤشر (مثل "pointer")، أو نافذة العرض (مثل "viewport") أو مركز عنصر محدد.
-- `up (button: 'left' | 'middle' | 'right')`: ينشئ إجراءً لتحرير مفتاح واحد
-- `up (params: PointerActionUpParams)`: ينشئ إجراءً لتحرير مفتاح واحد بمعلمات مفصلة
-- `cancel()`: إجراء يلغي إدخال هذا المؤشر الحالي.
-- `pause(ms: number)`: يشير إلى أن مصدر الإدخال لا يفعل شيئًا خلال دورة معينة
+- `down (params: PointerActionParams)`: ينشئ إجراءً للضغط على مفتاح واحد مع معلمات مفصلة
+- `move (x: number, y: number)`: ينشئ إجراءً لتحريك المؤشر بمقدار `x` و `y` بكسل من منفذ العرض
+- `move (params: PointerActionMoveParams)`: ينشئ إجراءً لتحريك المؤشر بمقدار `x` و `y` بكسل من `origin` المحدد. يمكن تحديد `origin` كموضع المؤشر الحالي (مثل "pointer")، أو منفذ العرض (مثل "viewport") أو مركز عنصر محدد.
+- `up (button: 'left' | 'middle' | 'right')`: ينشئ إجراءً لرفع مفتاح واحد
+- `up (params: PointerActionUpParams)`: ينشئ إجراءً لرفع مفتاح واحد مع معلمات مفصلة
+- `cancel()`: إجراء يلغي الإدخال الحالي لهذا المؤشر.
+- `pause(ms: number)`: يشير إلى أن مصدر الإدخال لا يفعل شيئًا خلال وقت معين
 
 يمكنك العثور على معلومات مفصلة حول أنواع المعلمات [`PointerActionParams`](https://github.com/webdriverio/webdriverio/blob/8ca026c75bf7c27ef9d574f0ec48d8bc13658602/packages/webdriverio/src/utils/actions/pointer.ts#L20-L35) و [`PointerActionMoveParams`](https://github.com/webdriverio/webdriverio/blob/8ca026c75bf7c27ef9d574f0ec48d8bc13658602/packages/webdriverio/src/utils/actions/pointer.ts#L20-L42) و [`PointerActionUpParams`](https://github.com/webdriverio/webdriverio/blob/8ca026c75bf7c27ef9d574f0ec48d8bc13658602/packages/webdriverio/src/utils/actions/pointer.ts#L13-L19) في تعريف نوع المشروع.
 
@@ -79,10 +77,10 @@ browser.action('pointer', {
 browser.action('wheel')
 ```
 
-يُرجع كائن `WheelAction` الذي يدعم الإجراءات التالية:
+يقوم بإرجاع كائن `WheelAction` يدعم الإجراءات التالية:
 
-- `scroll (params: ScrollParams)`: تمرير الصفحة إلى إحداثيات أو أصل معين
-- `pause(ms: number)`: يشير إلى أن مصدر الإدخال لا يفعل شيئًا خلال دورة معينة
+- `scroll (params: ScrollParams)`: يقوم بتمرير الصفحة إلى إحداثيات أو أصل معين
+- `pause(ms: number)`: يشير إلى أن مصدر الإدخال لا يفعل شيئًا خلال وقت معين
 
 يمكنك العثور على معلومات مفصلة حول نوع المعلمة [`ScrollParams`](https://github.com/webdriverio/webdriverio/blob/8ca026c75bf7c27ef9d574f0ec48d8bc13658602/packages/webdriverio/src/utils/actions/wheel.ts#L4-L29) في تعريف نوع المشروع.
 

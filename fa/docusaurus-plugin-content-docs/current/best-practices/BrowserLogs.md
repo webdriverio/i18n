@@ -1,9 +1,9 @@
 ---
 id: browser-logs
-title: گزارش‌های مرورگر
+title: لاگ‌های مرورگر
 ---
 
-هنگام اجرای تست‌ها، مرورگر ممکن است اطلاعات مهمی را ثبت کند که برای شما جالب است یا می‌خواهید در مقابل آن‌ها ادعا کنید.
+هنگام اجرای تست‌ها، مرورگر ممکن است اطلاعات مهمی را ثبت کند که شما به آن علاقه‌مند هستید یا می‌خواهید در برابر آن اثبات کنید.
 
 <Tabs
 defaultValue="bidi"
@@ -15,7 +15,7 @@ values={[
 
 <TabItem value='bidi'>
 
-هنگام استفاده از WebDriver Bidi، که روش پیش‌فرض اتوماسیون مرورگر در WebdriverIO است، می‌توانید رویدادهای مرورگر را دنبال کنید. برای رویدادهای لاگ، باید به `log.entryAdded` گوش دهید، به عنوان مثال:
+هنگام استفاده از WebDriver Bidi، که روش پیش‌فرض اتوماسیون مرورگر در WebdriverIO است، می‌توانید در رویدادهای مرورگر مشترک شوید. برای رویدادهای لاگ، باید به `log.entryAdded` گوش دهید، به عنوان مثال:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +26,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-در یک تست می‌توانید رویدادهای لاگ را به یک آرایه اضافه کنید و پس از انجام عملیات، آن آرایه را بررسی کنید، به عنوان مثال:
+در یک تست می‌توانید رویدادهای لاگ را به یک آرایه اضافه کنید و پس از انجام عملیات مورد نظر، آن آرایه را بررسی کنید، به عنوان مثال:
 
 ```ts
 import type { local } from 'webdriver'
@@ -62,9 +62,9 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-اگر هنوز از WebDriver Classic استفاده می‌کنید یا استفاده از Bidi را از طریق قابلیت `'wdio:enforceWebDriverClassic': true` غیرفعال کرده‌اید، می‌توانید از دستور JSONWire با نام `getLogs` برای دریافت آخرین لاگ‌ها استفاده کنید. از آنجایی که WebdriverIO این دستورات منسوخ شده را حذف کرده است، باید از [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) برای اضافه کردن مجدد این دستور به نمونه مرورگر خود استفاده کنید.
+اگر هنوز از WebDriver Classic استفاده می‌کنید یا استفاده از Bidi را از طریق قابلیت `'wdio:enforceWebDriverClassic': true` غیرفعال کرده‌اید، می‌توانید از دستور JSONWire به نام `getLogs` برای دریافت آخرین لاگ‌ها استفاده کنید. از آنجایی که WebdriverIO این دستورات منسوخ شده را حذف کرده است، باید از [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) برای اضافه کردن مجدد این دستور به نمونه مرورگر خود استفاده کنید.
 
-پس از افزودن یا راه‌اندازی سرویس، می‌توانید لاگ‌ها را از این طریق دریافت کنید:
+بعد از اضافه کردن یا راه‌اندازی سرویس، می‌توانید لاگ‌ها را از این طریق دریافت کنید:
 
 ```ts
 const logs = await browser.getLogs('browser')

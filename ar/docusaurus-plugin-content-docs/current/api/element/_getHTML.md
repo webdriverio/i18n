@@ -1,10 +1,10 @@
 ---
 id: getHTML
-title: getHTML
+title: الحصول على HTML
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getHTML.ts
 ---
 
-الحصول على كود المصدر لعنصر DOM محدد بواسطة المحدد. بشكل افتراضي، يخترق تلقائيًا
+الحصول على الشفرة المصدرية لعنصر DOM محدد بواسطة المحدد. بشكل افتراضي، يخترق تلقائيًا
 جميع جذور الظل للعناصر التي يحتويها العنصر.
 
 ##### الاستخدام
@@ -30,22 +30,22 @@ $(selector).getHTML({ includeSelectorTag, pierceShadowRoot, removeCommentNodes, 
     <tr>
       <td><code><var>options.includeSelectorTag</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>إذا كانت القيمة صحيحة، فإنها تشمل علامة عنصر المحدد (افتراضي: `true`)</td>
+      <td>إذا كانت القيمة صحيحة، فإنها تشمل وسم عنصر المحدد (الافتراضي: `true`)</td>
     </tr>
     <tr>
       <td><code><var>options.pierceShadowRoot</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>إذا كانت القيمة صحيحة، فإنها تشمل محتوى جذور الظل لجميع مكونات الويب في DOM (افتراضي: `true`)</td>
+      <td>إذا كانت القيمة صحيحة، فإنها تشمل محتوى جذور الظل لجميع مكونات الويب في DOM (الافتراضي: `true`)</td>
     </tr>
     <tr>
       <td><code><var>options.removeCommentNodes</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>إذا كانت القيمة صحيحة، فإنها تزيل جميع عقد التعليق من HTML، مثل `<!--?lit$206212805$--><!--?lit$206212805$-->` (افتراضي: `true`)</td>
+      <td>إذا كانت القيمة صحيحة، فإنها تزيل جميع عقد التعليقات من HTML، مثل `<!--?lit$206212805$--><!--?lit$206212805$-->` (الافتراضي: `true`)</td>
     </tr>
     <tr>
       <td><code><var>options.prettify</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>إذا كانت القيمة صحيحة، سيتم تنسيق مخرجات HTML (افتراضي: `true`)</td>
+      <td>إذا كانت القيمة صحيحة، سيتم تنسيق مخرجات HTML (الافتراضي: `true`)</td>
     </tr>
   </tbody>
 </table>
@@ -100,7 +100,7 @@ it('allows to snapshot shadow dom', async () => {
 });
 ```
 
-##### القيم المرجعة
+##### القيم المرتجعة
 
 - **&lt;String&gt;**
             **<code><var>return</var></code>:**   HTML للعنصر المحدد

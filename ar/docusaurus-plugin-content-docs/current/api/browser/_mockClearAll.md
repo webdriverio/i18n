@@ -1,6 +1,6 @@
 ---
 id: mockClearAll
-title: إعادة تعيين كافة المحاكاة
+title: مسح كافة المحاكاة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mockClearAll.ts
 ---
 

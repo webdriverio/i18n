@@ -5,8 +5,8 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 استرجاع [ملف تعريف الارتباط](https://w3c.github.io/webdriver/webdriver-spec.html#cookies)
-المرئي للصفحة الحالية. يمكنك الاستعلام عن ملف تعريف ارتباط محدد عن طريق توفير اسم ملف تعريف الارتباط أو
-استرداد الكل.
+مرئي للصفحة الحالية. يمكنك الاستعلام عن ملف تعريف ارتباط محدد من خلال توفير اسم ملف تعريف الارتباط أو
+استرجاع الكل.
 
 ##### الاستخدام
 
@@ -57,7 +57,7 @@ it('should return a cookie for me', async () => {
 })
 ```
 
-##### الإرجاع
+##### العوائد
 
 - **&lt;Cookie[]&gt;**
             **<code><var>return</var></code>:**                            ملفات تعريف الارتباط المطلوبة

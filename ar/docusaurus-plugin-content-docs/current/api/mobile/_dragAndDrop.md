@@ -8,12 +8,12 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::info
 
-تعتمد وظيفة هذا الأمر بشكل كبير على طريقة تنفيذ السحب والإفلات في تطبيقك. إذا واجهت مشكلات، يرجى نشر مثالك 
-في [#4134](https://github.com/webdriverio/webdriverio/issues/4134).
+تعتمد وظيفة هذا الأمر بشكل كبير على طريقة تنفيذ السحب والإفلات في تطبيقك. إذا واجهت مشاكل، يرجى نشر مثالك في 
+[#4134](https://github.com/webdriverio/webdriverio/issues/4134).
 
-تأكد أيضًا من أن العنصر الذي تقوم بسحبه والهدف الذي تقوم بالإفلات فيه مرئيان على الشاشة.
+تأكد أيضًا من أن العنصر الذي تقوم بسحبه والهدف الذي تقوم بالإفلات فيه ظاهران على الشاشة.
 
-يعمل هذا الأمر فقط مع المكونات التالية المحدثة:
+يعمل هذا الأمر فقط مع المكونات المحدثة التالية:
  - خادم Appium (الإصدار 2.0.0 أو أعلى)
  - `appium-uiautomator2-driver` (لنظام Android)
  - `appium-xcuitest-driver` (لنظام iOS)
@@ -40,7 +40,7 @@ $(selector).dragAndDrop(target, { duration })
     <tr>
       <td><code><var>target</var></code></td>
       <td>`Element, DragAndDropCoordinate`</td>
-      <td>عنصر الوجهة أو كائن بخصائص x و y</td>
+      <td>عنصر الوجهة أو كائن به خصائص x و y</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>

@@ -4,17 +4,17 @@ title: تكبير
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/zoom.ts
 ---
 
-يؤدي إيماءة التكبير على العنصر المحدد على الشاشة.
+يقوم بتنفيذ إيماءة تكبير على العنصر المحدد على الشاشة.
 
 :::info
 
-يتم التكبير بناءً على إيماءات الجوال الأصلية. وهو مدعوم فقط لبرامج التشغيل التالية:
-- [appium-uiautomator2-driver](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-pinchopengesture) لنظام أندرويد
+يتم التكبير بناءً على الإيماءات المحمولة الأصلية. وهو مدعوم فقط لبرامج التشغيل التالية:
+- [appium-uiautomator2-driver](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-pinchopengesture) لأندرويد
 - [appium-xcuitest-driver](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-pinch) لنظام iOS
 
-يعمل هذا الأمر فقط مع المكونات التالية المحدثة:
+يعمل هذا الأمر فقط مع المكونات المحدثة التالية:
  - خادم Appium (الإصدار 2.0.0 أو أعلى)
- - `appium-uiautomator2-driver` (لنظام أندرويد)
+ - `appium-uiautomator2-driver` (لأندرويد)
  - `appium-xcuitest-driver` (لنظام iOS)
 
 تأكد من تحديث بيئة Appium المحلية أو السحابية بانتظام لتجنب مشاكل التوافق.
@@ -44,12 +44,12 @@ $(selector).zoom({ duration, scale })
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>المدة بالميلي ثانية لمدى سرعة تنفيذ التكبير، الحد الأدنى هو 500 ميلي ثانية والحد الأقصى هو 10000 ميلي ثانية. القيمة الافتراضية هي 1500 ميلي ثانية (1.5 ثانية) (اختياري)</td>
+      <td>المدة بالميلي ثانية لمدى سرعة تنفيذ التكبير، الحد الأدنى هو 500 مللي ثانية والحد الأقصى هو 10000 مللي ثانية. الإعداد الافتراضي هو 1500 مللي ثانية (1.5 ثانية) (اختياري)</td>
     </tr>
     <tr>
       <td><code><var>options.scale</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`number`</td>
-      <td>مقياس مدى كبر التكبير وفقاً للشاشة. يجب أن تكون القيم الصالحة أرقاماً عشرية في النطاق 0..1، حيث تمثل 1.0 نسبة 100% (اختياري)</td>
+      <td>مقياس مدى كبر التكبير بالنسبة للشاشة. يجب أن تكون القيم الصالحة أرقامًا عشرية في النطاق 0..1، حيث 1.0 هي 100٪ (اختياري)</td>
     </tr>
   </tbody>
 </table>

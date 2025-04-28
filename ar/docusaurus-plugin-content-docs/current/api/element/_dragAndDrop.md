@@ -4,12 +4,11 @@ title: السحب والإفلات
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/dragAndDrop.ts
 ---
 
-سحب عنصر إلى عنصر وجهة أو موضع محدد.
+سحب عنصر إلى عنصر وجهة أو موضع.
 
 :::info
 
-تعتمد وظيفة هذا الأمر بشكل كبير على طريقة تنفيذ السحب والإفلات في تطبيقك. إذا واجهت مشاكل، يرجى نشر مثالك 
-في [#4134](https://github.com/webdriverio/webdriverio/issues/4134).
+تعتمد وظيفة هذا الأمر بشكل كبير على طريقة تنفيذ السحب والإفلات في تطبيقك. إذا واجهت مشاكل، يرجى نشر مثالك في [#4134](https://github.com/webdriverio/webdriverio/issues/4134).
 
 :::
 
@@ -19,7 +18,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 $(selector).dragAndDrop(target, { duration })
 ```
 
-##### المعاملات
+##### المعلمات
 
 <table>
   <thead>

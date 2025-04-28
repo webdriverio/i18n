@@ -1,14 +1,14 @@
 ---
 id: mjsonwp
-title: بروتوكول Mobile JSON Wire
+title: بروتوكول موبايل جيسون واير
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/mjsonwp.ts
 ---
 
 ## getPageIndex
-أمر بروتوكول Mobile JSON Wire. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
+أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
 :::caution
 
-هذا الأمر البروتوكولي مهمل<br />في Appium 2.0، تم تحديد هذه الطريقة على أنها مهملة وليس لها بدائل متاحة حاليًا.
+هذا الأمر البروتوكولي مهمل<br />في Appium 2.0، تم تمييز هذه الطريقة على أنها مهملة ولا توجد حاليًا بدائل متاحة.
 :::
 
 ##### الاستخدام
@@ -18,7 +18,7 @@ driver.getPageIndex()
 ```
 
 
-##### يُرجع
+##### العائد
 
 - **&lt;string&gt;**
 
@@ -27,7 +27,7 @@ driver.getPageIndex()
 ---
 
 ## getNetworkConnection
-أمر بروتوكول Mobile JSON Wire. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
 
 ##### الاستخدام
 
@@ -36,7 +36,7 @@ driver.getNetworkConnection()
 ```
 
 
-##### يُرجع
+##### العائد
 
 - **&lt;number&gt;**
             **<code><var>connectionType</var></code>:** انظر https://appium.github.io/appium.io/docs/en/writing-running-appium/other/network-connection/
@@ -45,7 +45,7 @@ driver.getNetworkConnection()
 ---
 
 ## setNetworkConnection
-أمر بروتوكول Mobile JSON Wire. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
 
 ##### الاستخدام
 
@@ -76,7 +76,7 @@ driver.setNetworkConnection(type)
 ---
 
 ## touchPerform
-أمر بروتوكول Mobile JSON Wire. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
+أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
 
 ##### الاستخدام
 
@@ -107,7 +107,7 @@ driver.touchPerform(actions)
 ---
 
 ## multiTouchPerform
-أمر بروتوكول Mobile JSON Wire. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
+أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
 
 ##### الاستخدام
 
@@ -133,7 +133,7 @@ driver.multiTouchPerform(actions, elementId)
     <tr>
       <td><code><var>elementId</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>object[]</td>
-      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في مكالمة سابقة لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -143,7 +143,7 @@ driver.multiTouchPerform(actions, elementId)
 ---
 
 ## receiveAsyncResponse
-أمر بروتوكول Mobile JSON Wire. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
+أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
 
 ##### الاستخدام
 

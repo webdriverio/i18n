@@ -3,11 +3,11 @@ id: preact
 title: پریکت
 ---
 
-[Preact](https://preactjs.com/) یک جایگزین سریع ۳ کیلوبایتی برای React با همان API مدرن است. شما می‌توانید کامپوننت‌های Preact را مستقیماً در یک مرورگر واقعی با استفاده از WebdriverIO و [browser runner](/docs/runner#browser-runner) آن تست کنید.
+[Preact](https://preactjs.com/) یک جایگزین سریع ۳ کیلوبایتی برای React با همان API مدرن است. شما می‌توانید کامپوننت‌های Preact را مستقیماً در یک مرورگر واقعی با استفاده از WebdriverIO و [اجراکننده مرورگر](/docs/runner#browser-runner) آن تست کنید.
 
 ## راه‌اندازی
 
-برای راه‌اندازی WebdriverIO در پروژه Preact خود، [دستورالعمل‌ها](/docs/component-testing#set-up) را در مستندات تست کامپوننت ما دنبال کنید. مطمئن شوید که `preact` را به عنوان پیش‌تنظیم در گزینه‌های runner خود انتخاب کرده‌اید، به عنوان مثال:
+برای راه‌اندازی WebdriverIO در پروژه Preact خود، [دستورالعمل‌ها](/docs/component-testing#set-up) در مستندات تست کامپوننت ما را دنبال کنید. اطمینان حاصل کنید که `preact` را به عنوان پیش‌تنظیم در گزینه‌های اجراکننده خود انتخاب کرده‌اید، به عنوان مثال:
 
 ```js
 // wdio.conf.js
@@ -22,17 +22,17 @@ export const config = {
 
 :::info
 
-اگر قبلاً از [Vite](https://vitejs.dev/) به عنوان سرور توسعه استفاده می‌کنید، همچنین می‌توانید پیکربندی خود را در `vite.config.ts` در پیکربندی WebdriverIO خود مجدداً استفاده کنید. برای اطلاعات بیشتر، به `viteConfig` در [گزینه‌های runner](/docs/runner#runner-options) مراجعه کنید.
+اگر شما قبلاً از [Vite](https://vitejs.dev/) به عنوان سرور توسعه استفاده می‌کنید، می‌توانید پیکربندی خود را در `vite.config.ts` در پیکربندی WebdriverIO خود مجدداً استفاده کنید. برای اطلاعات بیشتر، به `viteConfig` در [گزینه‌های اجراکننده](/docs/runner#runner-options) مراجعه کنید.
 
 :::
 
-پیش‌تنظیم Preact نیاز به نصب `@preact/preset-vite` دارد. همچنین ما استفاده از [Testing Library](https://testing-library.com/) را برای رندر کردن کامپوننت در صفحه تست توصیه می‌کنیم. بنابراین شما باید وابستگی‌های اضافی زیر را نصب کنید:
+پیش‌تنظیم Preact نیاز به نصب `@preact/preset-vite` دارد. همچنین ما استفاده از [Testing Library](https://testing-library.com/) را برای رندر کردن کامپوننت در صفحه تست توصیه می‌کنیم. بنابراین شما نیاز به نصب وابستگی‌های اضافی زیر دارید:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
 ```
 
-سپس می‌توانید تست‌ها را با اجرای دستور زیر شروع کنید:
+سپس می‌توانید آزمایش‌ها را با اجرای دستور زیر شروع کنید:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -64,7 +64,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-در تست خود از متد `render` از `@testing-library/preact` برای اتصال کامپوننت به صفحه تست استفاده کنید. برای تعامل با کامپوننت، ما توصیه می‌کنیم از دستورات WebdriverIO استفاده کنید، زیرا آنها رفتاری نزدیک‌تر به تعاملات واقعی کاربر دارند، به عنوان مثال:
+در تست خود از متد `render` از `@testing-library/preact` برای اتصال کامپوننت به صفحه تست استفاده کنید. برای تعامل با کامپوننت، ما توصیه می‌کنیم از دستورات WebdriverIO استفاده کنید زیرا آنها رفتار نزدیک‌تری به تعاملات واقعی کاربر دارند، به عنوان مثال:
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'
@@ -84,4 +84,4 @@ describe('Preact Component Testing', () => {
 })
 ```
 
-شما می‌توانید یک نمونه کامل از مجموعه تست کامپوننت WebdriverIO برای Preact را در [مخزن نمونه](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite) ما پیدا کنید.
+شما می‌توانید یک نمونه کامل از مجموعه تست کامپوننت WebdriverIO برای Preact را در [مخزن مثال](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite) ما پیدا کنید.

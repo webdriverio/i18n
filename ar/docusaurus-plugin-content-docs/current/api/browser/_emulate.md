@@ -4,13 +4,13 @@ title: المحاكاة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/emulate.ts
 ---
 
-يسمح لك WebdriverIO بمحاكاة واجهات برمجة الويب باستخدام أمر `emulate`. يمكن لواجهات برمجة الويب هذه أن تتصرف تمامًا كما تحددها. النطاقات التالية مدعومة:
+يسمح لك WebdriverIO بمحاكاة واجهات برمجة الويب باستخدام أمر `emulate`. يمكن لواجهات برمجة الويب هذه أن تتصرف بالضبط كما تحدده. النطاقات التالية مدعومة:
 
 - `geolocation`: محاكاة واجهة برمجة تحديد الموقع الجغرافي
 - `userAgent`: محاكاة وكيل المستخدم
 - `colorScheme`: محاكاة نظام الألوان
 - `onLine`: محاكاة حالة الاتصال بالإنترنت
-- `device`: محاكاة جهاز محمول أو سطح مكتب محدد
+- `device`: محاكاة جهاز محمول أو جهاز سطح مكتب محدد
 - `clock`: محاكاة ساعة النظام
 
 يعيد أمر `emulate` دالة يمكن استدعاؤها لإعادة تعيين المحاكاة. هذا مفيد
@@ -26,15 +26,15 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::info
 
-تتطلب هذه الميزة دعم WebDriver Bidi للمتصفح. بينما تتوفر إصدارات حديثة من Chrome و Edge
-و Firefox لديها مثل هذا الدعم، Safari __لا يدعم__. للحصول على التحديثات تابع [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned).
-علاوة على ذلك، إذا كنت تستخدم مزود سحابي لتشغيل المتصفحات، فتأكد من أن المزود الخاص بك يدعم أيضًا WebDriver Bidi.
+تتطلب هذه الميزة دعم WebDriver Bidi للمتصفح. في حين أن الإصدارات الحديثة من Chrome وEdge
+وFirefox لديها مثل هذا الدعم، فإن Safari __لا يدعم__ ذلك. للحصول على التحديثات، تابع [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned).
+علاوة على ذلك، إذا كنت تستخدم مزودًا سحابيًا لتشغيل المتصفحات، فتأكد من أن المزود الخاص بك يدعم أيضًا WebDriver Bidi.
 
 :::
 
-يمكن أن يحتوي كائن `EmulationOptions` على الخصائص التالية استنادًا إلى النطاق:
+يمكن أن يحتوي كائن `EmulationOptions` على الخصائص التالية بناءً على النطاق:
 
-| النطاق        | الخيارات                                         |
+| النطاق       | الخيارات                                        |
 |---------------|--------------------------------------------------|
 | `geolocation` | `{ latitude: number, longitude: number }`        |
 | `userAgent`   | `string`                                         |

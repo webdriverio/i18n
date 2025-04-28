@@ -4,8 +4,8 @@ title: إيقاف مؤقت
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/pause.ts
 ---
 
-يوقف التنفيذ لفترة زمنية محددة. يُنصح بعدم استخدام هذا الأمر للانتظار حتى يظهر عنصر ما. لتجنب نتائج الاختبار غير المستقرة، من الأفضل استخدام أوامر مثل
-[`waitForExist`](/docs/api/element/waitForExist) أو أوامر waitFor* الأخرى.
+يوقف التنفيذ لمدة زمنية محددة. لا يُنصح باستخدام هذا الأمر للانتظار حتى يظهر عنصر ما. لتجنب نتائج الاختبار غير المستقرة، من الأفضل استخدام أوامر مثل
+[`waitForExist`](/docs/api/element/waitForExist) أو غيرها من أوامر waitFor*.
 
 ##### الاستخدام
 
@@ -13,7 +13,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 browser.pause(milliseconds)
 ```
 
-##### المعاملات
+##### المعلمات
 
 <table>
   <thead>

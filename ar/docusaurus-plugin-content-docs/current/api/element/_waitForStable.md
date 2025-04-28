@@ -1,13 +1,12 @@
 ---
 id: waitForStable
-title: انتظار حتى يستقر
+title: انتظر حتى يستقر
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForStable.ts
 ---
 
-انتظر عنصرًا للمدة المحددة من
-الميلي ثانية حتى يصبح مستقرًا (لا يتحرك). يُرجع قيمة صحيحة إذا كان المحدد
-يطابق عنصرًا واحدًا على الأقل مستقر في الـ DOM، وإلا فإنه يرمي
-خطأ. إذا كانت علامة العكس صحيحة، فإن الأمر سيعود بقيمة صحيحة
+انتظر العنصر للمدة المحددة من الميلي ثانية حتى يستقر (لا يتحرك). يُرجع القيمة true إذا كان المحدد
+يطابق على الأقل عنصرًا واحدًا مستقرًا في DOM، وإلا فإنه يُطلق
+خطأ. إذا كانت علامة reverse صحيحة، فستعيد الأمر بدلاً من ذلك القيمة true
 إذا كان المحدد لا يطابق أي عناصر مستقرة.
 
 __ملاحظة:__ من الأفضل تعطيل الرسوم المتحركة بدلاً من استخدام هذا الأمر
@@ -30,27 +29,27 @@ $(selector).waitForStable({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`WaitForOptions`</td>
-      <td>خيارات انتظار الاستقرار (اختياري)</td>
+      <td>خيارات waitForStable (اختياري)</td>
     </tr>
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الوقت بالميلي ثانية (الافتراضي يعتمد على قيمة إعداد [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>الوقت بالميلي ثانية (الإعداد الافتراضي يعتمد على قيمة التكوين [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
     </tr>
     <tr>
       <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Boolean`</td>
-      <td>إذا كانت صحيحة فإنها تنتظر العكس (افتراضيًا: false)</td>
+      <td>إذا كانت القيمة true فإنه ينتظر العكس (الافتراضي: false)</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`String`</td>
-      <td>إذا كانت موجودة فإنها تحل محل رسالة الخطأ الافتراضية</td>
+      <td>إذا كانت موجودة فإنها تلغي رسالة الخطأ الافتراضية</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Number`</td>
-      <td>الفاصل الزمني بين عمليات التحقق (افتراضيًا: `waitforInterval`)</td>
+      <td>الفاصل الزمني بين عمليات التحقق (الافتراضي: `waitforInterval`)</td>
     </tr>
   </tbody>
 </table>
@@ -99,7 +98,7 @@ it('should detect that element is stable and will not wait', async () => {
 });
 ```
 
-##### القيم المرجعة
+##### العوائد
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:** صحيح إذا كان العنصر مستقرًا
+            **<code><var>return</var></code>:**  القيمة true إذا كان العنصر مستقرًا    

@@ -1,11 +1,10 @@
 ---
 id: setViewport
-title: ضبط عرض الشاشة
+title: تعيين منفذ العرض
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setViewport.ts
 ---
 
-يعيد تحجيم واجهة عرض المتصفح داخل المتصفح. على عكس `setWindowSize`،
-يغير هذا الأمر حجم منفذ العرض، وليس حجم النافذة.
+يغير حجم منفذ العرض في المتصفح. على عكس `setWindowSize`، هذا الأمر يغير حجم منفذ العرض، وليس حجم النافذة.
 
 ##### الاستخدام
 
@@ -25,17 +24,17 @@ browser.setViewport({ width, height, devicePixelRatio })
     <tr>
       <td><code><var>options</var></code></td>
       <td>`SetViewportOptions`</td>
-      <td>وسائط الأمر</td>
+      <td>معلمات الأمر</td>
     </tr>
     <tr>
       <td><code><var>options.width</var></code></td>
       <td>`number`</td>
-      <td>عرض العرض بالبكسل</td>
+      <td>عرض منفذ العرض بالبكسل</td>
     </tr>
     <tr>
       <td><code><var>options.height</var></code></td>
       <td>`number`</td>
-      <td>ارتفاع العرض بالبكسل</td>
+      <td>ارتفاع منفذ العرض بالبكسل</td>
     </tr>
     <tr>
       <td><code><var>options.devicePixelRatio</var></code></td>
@@ -45,6 +44,6 @@ browser.setViewport({ width, height, devicePixelRatio })
   </tbody>
 </table>
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;`Promise<void>`&gt;**

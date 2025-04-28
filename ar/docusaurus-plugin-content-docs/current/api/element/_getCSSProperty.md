@@ -1,16 +1,14 @@
 ---
 id: getCSSProperty
-title: احصل على خاصية CSS
+title: الحصول على خاصية CSS
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getCSSProperty.ts
 ---
 
-احصل على خاصية css من عنصر DOM محدد بواسطة المحدد المعطى. يتم تنسيق القيمة المرجعة لتكون قابلة للاختبار. يتم تحليل الألوان عبر [rgb2hex](https://www.npmjs.org/package/rgb2hex) ويتم تحليل جميع الخصائص الأخرى عبر [css-value](https://www.npmjs.org/package/css-value).
+الحصول على خاصية CSS من عنصر DOM محدد بواسطة المحدد المعطى. تتم صياغة القيمة المرجعة لتكون قابلة للاختبار. يتم تحليل الألوان عبر [rgb2hex](https://www.npmjs.org/package/rgb2hex) ويتم تحليل جميع الخصائص الأخرى عبر [css-value](https://www.npmjs.org/package/css-value).
 
 :::info
 
-لاحظ أن خصائص CSS المختصرة (مثل `background` و `font` و `border` و `margin` و
-`padding` و `list-style` و `outline` و `pause` و `cue`) سيتم توسيعها لجلب جميع الخصائص الطويلة
-مما يؤدي إلى عدة استدعاءات WebDriver. إذا كنت مهتمًا بخاصية طويلة محددة، فمن المستحسن الاستعلام عنها بدلاً من ذلك.
+لاحظ أن خصائص CSS المختصرة (مثل `background`، `font`، `border`، `margin`، `padding`، `list-style`، `outline`، `pause`، `cue`) سيتم توسيعها لجلب جميع الخصائص الطويلة مما يؤدي إلى استدعاءات متعددة لـ WebDriver. إذا كنت مهتمًا بخاصية طويلة محددة، يوصى بالاستعلام عنها بدلاً من ذلك.
 
 :::
 
@@ -32,12 +30,12 @@ $(selector).getCSSProperty(cssProperty, pseudoElement)
     <tr>
       <td><code><var>cssProperty</var></code></td>
       <td>`string`</td>
-      <td>اسم خاصية css</td>
+      <td>اسم خاصية CSS</td>
     </tr>
     <tr>
       <td><code><var>pseudoElement</var></code></td>
       <td>`PseudoElement`</td>
-      <td>عنصر css الزائف</td>
+      <td>عنصر CSS الزائف</td>
     </tr>
   </tbody>
 </table>
@@ -94,7 +92,7 @@ it('should demonstrate the getCSSProperty command', async () => {
 })
 ```
 
-##### العوائد
+##### الإرجاع
 
 - **&lt;CSSProperty&gt;**
-            **<code><var>return</var></code>:**                  خاصية css المحددة للعنصر
+            **<code><var>return</var></code>:**                  خاصية CSS المحددة للعنصر

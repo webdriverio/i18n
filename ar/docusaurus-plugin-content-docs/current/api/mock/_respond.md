@@ -1,10 +1,10 @@
 ---
 id: respond
-title: الاستجابة
+title: استجابة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/respond.ts
 ---
 
-الاستجابة دائمًا بنفس التعديل.
+استجب دائمًا بنفس التعديل.
 
 ##### الاستخدام
 
@@ -24,7 +24,7 @@ mock.respond(overwrites, { header, statusCode, fetchResponse })
     <tr>
       <td><code><var>overwrites</var></code></td>
       <td>`MockOverwrite`</td>
-      <td>البيانات المراد استبدالها في الاستجابة</td>
+      <td>البيانات المراد تعديل الاستجابة بها</td>
     </tr>
     <tr>
       <td><code><var>params</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -34,7 +34,7 @@ mock.respond(overwrites, { header, statusCode, fetchResponse })
     <tr>
       <td><code><var>params.header</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>`Object`</td>
-      <td>تعديل رؤوس محددة</td>
+      <td>تعديل ترويسات محددة</td>
     </tr>
     <tr>
       <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">اختياري</span></td>

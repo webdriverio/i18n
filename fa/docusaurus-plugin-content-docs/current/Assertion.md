@@ -1,9 +1,9 @@
 ---
 id: assertion
-title: تأیید (اسرشن)
+title: ادعا (Assertion)
 ---
 
-[WDIO testrunner](https://webdriver.io/docs/clioptions) دارای یک کتابخانه تأیید داخلی است که به شما امکان می‌دهد تأییدهای قدرتمندی روی جنبه‌های مختلف مرورگر یا عناصر داخل برنامه (وب) خود انجام دهید. این کتابخانه عملکرد [Jests Matchers](https://jestjs.io/docs/en/using-matchers) را با تطبیق‌دهنده‌های اضافی بهینه‌سازی شده برای تست e2e گسترش می‌دهد، مثلاً:
+[تست‌رانر WDIO](https://webdriver.io/docs/clioptions) دارای یک کتابخانه ادعا داخلی است که به شما امکان می‌دهد ادعاهای قدرتمندی روی جنبه‌های مختلف مرورگر یا عناصر درون برنامه (وب) خود انجام دهید. این کتابخانه، عملکرد [Jests Matchers](https://jestjs.io/docs/en/using-matchers) را با تطبیق‌دهنده‌های اضافی که برای آزمایش e2e بهینه‌سازی شده‌اند، گسترش می‌دهد، به عنوان مثال:
 
 ```js
 const $button = await $('button')
@@ -23,13 +23,13 @@ await expect(selectOptions).toHaveChildren({ gte: 1 })
 
 ## مهاجرت از Chai
 
-[Chai](https://www.chaijs.com/) و [expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme) می‌توانند همزیستی داشته باشند و با برخی تنظیمات جزئی، انتقال آسان به expect-webdriverio امکان‌پذیر است. اگر به WebdriverIO v6 ارتقا داده‌اید، به صورت پیش‌فرض به تمام تأییدهای `expect-webdriverio` دسترسی خواهید داشت. این بدان معناست که در هر جایی که از `expect` استفاده می‌کنید، یک تأیید `expect-webdriverio` را فراخوانی می‌کنید. این در صورتی است که [`injectGlobals`](/docs/configuration#injectglobals) را روی `false` تنظیم نکرده باشید یا به طور صریح `expect` جهانی را برای استفاده از Chai بازنویسی نکرده باشید. در این حالت، بدون وارد کردن صریح بسته expect-webdriverio در جایی که به آن نیاز دارید، به هیچ یک از تأییدهای expect-webdriverio دسترسی نخواهید داشت.
+[Chai](https://www.chaijs.com/) و [expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme) می‌توانند همزیستی داشته باشند، و با برخی تنظیمات جزئی، انتقال روان به expect-webdriverio امکان‌پذیر است. اگر به WebdriverIO v6 ارتقا داده‌اید، به صورت پیش‌فرض به تمام ادعاهای `expect-webdriverio` دسترسی خواهید داشت. این بدان معناست که به صورت سراسری هر کجا که از `expect` استفاده می‌کنید، یک ادعای `expect-webdriverio` را فراخوانی می‌کنید. البته، مگر اینکه [`injectGlobals`](/docs/configuration#injectglobals) را روی `false` تنظیم کرده باشید یا به صراحت `expect` سراسری را برای استفاده از Chai بازنویسی کرده باشید. در این حالت، بدون وارد کردن صریح بسته expect-webdriverio در جایی که به آن نیاز دارید، به هیچ یک از ادعاهای expect-webdriverio دسترسی نخواهید داشت.
 
-این راهنما نمونه‌هایی از نحوه مهاجرت از Chai را نشان می‌دهد، چه در حالتی که به صورت محلی بازنویسی شده باشد و چه در حالتی که به صورت جهانی بازنویسی شده باشد.
+این راهنما نمونه‌هایی از نحوه مهاجرت از Chai را نشان می‌دهد، چه در حالتی که به صورت محلی بازنویسی شده باشد و چه در حالتی که به صورت سراسری بازنویسی شده باشد.
 
 ### محلی
 
-فرض کنید Chai به صورت صریح در یک فایل وارد شده است، به عنوان مثال:
+فرض کنید Chai به صورت صریح در یک فایل وارد شده است، مثلاً:
 
 ```js
 // myfile.js - original code
@@ -43,7 +43,7 @@ describe('Homepage', () => {
 })
 ```
 
-برای مهاجرت این کد، واردسازی Chai را حذف کنید و به جای آن از روش تأیید جدید expect-webdriverio به نام `toHaveUrl` استفاده کنید:
+برای مهاجرت این کد، import مربوط به Chai را حذف کنید و به جای آن از متد جدید ادعای expect-webdriverio یعنی `toHaveUrl` استفاده کنید:
 
 ```js
 // myfile.js - migrated code
@@ -55,7 +55,7 @@ describe('Homepage', () => {
 });
 ```
 
-اگر می‌خواهید هم از Chai و هم از expect-webdriverio در یک فایل استفاده کنید، واردسازی Chai را حفظ کنید و `expect` به طور پیش‌فرض به تأیید expect-webdriverio اشاره خواهد کرد، مثلاً:
+اگر می‌خواهید از هر دو Chai و expect-webdriverio در یک فایل استفاده کنید، import مربوط به Chai را نگه دارید و `expect` به صورت پیش‌فرض به ادعای expect-webdriverio اشاره خواهد کرد، مثلاً:
 
 ```js
 // myfile.js
@@ -76,9 +76,9 @@ describe('Other element', () => {
 })
 ```
 
-### جهانی
+### سراسری
 
-فرض کنید `expect` به صورت جهانی برای استفاده از Chai بازنویسی شده است. برای استفاده از تأییدهای expect-webdriverio باید یک متغیر جهانی در هوک "before" تنظیم کنیم، مثلاً:
+فرض کنید `expect` به صورت سراسری برای استفاده از Chai بازنویسی شده است. برای استفاده از ادعاهای expect-webdriverio، باید یک متغیر را به صورت سراسری در هوک "before" تنظیم کنیم، مثلاً:
 
 ```js
 // wdio.conf.js
@@ -90,7 +90,7 @@ before: async () => {
 }
 ```
 
-اکنون می‌توان Chai و expect-webdriverio را در کنار یکدیگر استفاده کرد. در کد خود، از تأییدهای Chai و expect-webdriverio به شرح زیر استفاده می‌کنید، مثلاً:
+اکنون می‌توان Chai و expect-webdriverio را در کنار یکدیگر استفاده کرد. در کد خود، ادعاهای Chai و expect-webdriverio را به صورت زیر استفاده می‌کنید:
 
 ```js
 // myfile.js
@@ -108,4 +108,4 @@ describe('Other element', () => {
 });
 ```
 
-برای مهاجرت، باید به تدریج هر تأیید Chai را به expect-webdriverio منتقل کنید. پس از جایگزینی تمام تأییدهای Chai در سراسر پایگاه کد، می‌توان هوک "before" را حذف کرد. یک جستجو و جایگزینی جهانی برای جایگزینی تمام نمونه‌های `wdioExpect` با `expect` مهاجرت را به پایان می‌رساند.
+برای مهاجرت، به تدریج هر ادعای Chai را به expect-webdriverio منتقل کنید. هنگامی که تمام ادعاهای Chai در سراسر پایه کد جایگزین شدند، هوک "before" را می‌توان حذف کرد. یک جستجو و جایگزینی سراسری برای جایگزین کردن تمام نمونه‌های `wdioExpect` با `expect` مهاجرت را تکمیل خواهد کرد.

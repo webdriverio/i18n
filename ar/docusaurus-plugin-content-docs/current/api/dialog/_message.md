@@ -1,10 +1,10 @@
 ---
 id: message
-title: رسالة
+title: الرسالة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/dialog/message.ts
 ---
 
-رسالة معروضة في مربع الحوار.
+الرسالة المعروضة في مربع الحوار.
 
 ##### الاستخدام
 
@@ -18,7 +18,7 @@ await dialog.message()
 const message = await dialog.message();
 ```
 
-##### العائدات
+##### الإرجاع
 
 - **&lt;string&gt;**
-            **<code><var>returns</var></code>:**   الرسالة المعروضة في مربع الحوار.    
+            **<code><var>returns</var></code>:**   الرسالة المعروضة في مربع الحوار.
