@@ -5,25 +5,25 @@ title: Per Applicazioni Web
 
 ## Integra i tuoi test WebdriverIO con Percy
 
-Prima dell'integrazione, puoi esplorare [il tutorial di esempio di Percy per WebdriverIO](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Prima dell'integrazione, puoi esplorare [il tutorial di build di esempio di Percy per WebdriverIO](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 Integra i tuoi test automatizzati WebdriverIO con BrowserStack Percy, ecco una panoramica dei passaggi di integrazione:
 
-### Passo 1: Crea un progetto Percy
-[Accedi](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) a Percy. In Percy, crea un progetto di tipo Web, e poi dagli un nome. Dopo la creazione del progetto, Percy genera un token. Prendine nota. Dovrai utilizzarlo per impostare la tua variabile d'ambiente nel passaggio successivo.
+### Step 1: Crea un progetto Percy
+[Accedi](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) a Percy. In Percy, crea un progetto di tipo Web, quindi dagli un nome. Dopo la creazione del progetto, Percy genera un token. Prendine nota. Dovrai usarlo per impostare la tua variabile di ambiente nel passaggio successivo.
 
-Per i dettagli sulla creazione di un progetto, vedi [Crea un progetto Percy](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Per i dettagli sulla creazione di un progetto, consulta [Crea un progetto Percy](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-### Passo 2: Imposta il token del progetto come variabile d'ambiente
+### Step 2: Imposta il token del progetto come variabile di ambiente
 
-Esegui il comando fornito per impostare PERCY_TOKEN come variabile d'ambiente:
+Esegui il comando fornito per impostare PERCY_TOKEN come variabile di ambiente:
 
 ```sh
-export PERCY_TOKEN="<your token here>"   // macOS o Linux
+export PERCY_TOKEN="<your token here>"   // macOS or Linux
 $Env:PERCY_TOKEN="<your token here>"   // Windows PowerShell
 set PERCY_TOKEN="<your token here>"    // Windows CMD
 ```
 
-### Passo 3: Installa le dipendenze di Percy
+### Step 3: Installa le dipendenze Percy
 
 Installa i componenti necessari per stabilire l'ambiente di integrazione per la tua suite di test.
 
@@ -33,9 +33,9 @@ Per installare le dipendenze, esegui il seguente comando:
 npm install --save-dev @percy/cli @percy/webdriverio
 ```
 
-### Passo 4: Aggiorna il tuo script di test
+### Step 4: Aggiorna il tuo script di test
 
-Importa la libreria Percy per utilizzare il metodo e gli attributi richiesti per catturare screenshot.
+Importa la libreria Percy per utilizzare il metodo e gli attributi necessari per scattare screenshot.
 Il seguente esempio utilizza la funzione percySnapshot() in modalità asincrona:
 
 ```sh
@@ -87,12 +87,12 @@ percySnapshot(browser, name[, options])
 - name (obbligatorio) - Il nome dello snapshot; deve essere unico per ogni snapshot
 - options - Vedi le opzioni di configurazione per-snapshot
 
-Per saperne di più, vedi [Percy snapshot](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Per saperne di più, consulta [Percy snapshot](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-### Passo 5: Esegui Percy
-Esegui i tuoi test usando il comando `percy exec` come mostrato di seguito:
+### Step 5: Esegui Percy
+Esegui i tuoi test utilizzando il comando `percy exec` come mostrato di seguito:
 
-Se non puoi utilizzare il comando `percy:exec` o preferisci eseguire i tuoi test utilizzando le opzioni di esecuzione dell'IDE, puoi utilizzare i comandi `percy:exec:start` e `percy:exec:stop`. Per saperne di più, visita [Esegui Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Se non puoi utilizzare il comando `percy:exec` o preferisci eseguire i test utilizzando le opzioni di esecuzione dell'IDE, puoi utilizzare i comandi `percy:exec:start` e `percy:exec:stop`. Per saperne di più, visita [Esegui Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
 ```sh
 percy exec -- wdio wdio.conf.js
@@ -115,13 +115,13 @@ percy exec -- wdio wdio.conf.js
 
 ## Visita le seguenti pagine per maggiori dettagli:
 - [Integra i tuoi test WebdriverIO con Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
-- [Pagina sulle variabili d'ambiente](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
-- [Integrazione tramite BrowserStack SDK](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) se stai utilizzando BrowserStack Automate.
+- [Pagina delle variabili d'ambiente](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [Integra usando BrowserStack SDK](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) se stai utilizzando BrowserStack Automate.
 
 
 | Risorsa                                                                                                                                                            | Descrizione                       |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
 | [Documentazione ufficiale](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)             | Documentazione Percy per WebdriverIO |
-| [Build di esempio - Tutorial](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | Tutorial WebdriverIO di Percy      |
+| [Build di esempio - Tutorial](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | Tutorial Percy per WebdriverIO      |
 | [Video ufficiale](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                              | Test visuale con Percy         |
 | [Blog](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | Introduzione a Visual Reviews 2.0    |

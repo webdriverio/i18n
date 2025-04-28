@@ -4,9 +4,9 @@ title: isFocused
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isFocused.ts
 ---
 
-選択されたDOM要素が現在フォーカスを持っているかどうかをtrueまたはfalseで返します。セレクタが複数の要素に一致する場合、そのうちの1つの要素がフォーカスを持っていればtrueを返します。
+選択されたDOM要素が現在フォーカスされているかどうかをtrueまたはfalseで返します。セレクタが複数の要素に一致する場合、それらのうちの一つにフォーカスがあればtrueを返します。
 
-##### 使用方法
+##### 使用法
 
 ```js
 $(selector).isFocused()
@@ -32,4 +32,4 @@ it('should detect the focus of an element', async () => {
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**          一致する要素のいずれかがフォーカスを持っている場合はtrue
+            **<code><var>return</var></code>:**          一致する要素のいずれかにフォーカスがある場合はtrue

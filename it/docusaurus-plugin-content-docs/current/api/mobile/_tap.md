@@ -5,24 +5,24 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Esegue un gesto di tap su:
-- l'elemento specificato. **Scorrerà automaticamente** se non è possibile trovarlo.
+- l'elemento specificato. **Scorrerà automaticamente** se non può essere trovato.
 - o sullo schermo di un dispositivo mobile fornendo le coordinate `x` e `y`
 
 Internamente utilizza:
 - Tap su elemento:
-     - il comando `click` per ambienti Web (browser Chrome/Safari o app ibride)
+     - il comando `click` per ambienti Web (browser Chrome/Safari, o app ibride)
      - l'Android [`mobile: clickGesture`](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-clickgesture)
-o iOS [`mobile: tap`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-tap) per app Native, incluso il comando
-`scrollIntoView` per lo scorrimento automatico
+o iOS [`mobile: tap`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-tap) per app native, incluso il comando `scrollIntoView`
+per lo scorrimento automatico
 - Tap sullo schermo:
-     - il comando `action` per ambienti Web (browser Chrome/Safari o app ibride)
+     - il comando `action` per ambienti Web (browser Chrome/Safari, o app ibride)
      - l'Android [`mobile: clickGesture`](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-clickgesture)
-o iOS [`mobile: tap`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-tap) per app Native
+o iOS [`mobile: tap`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-tap) per app native
 
 Questa differenza rende il comando `tap` un'alternativa più affidabile al comando `click` per le app mobili.
 
-Per le app Native, questo comando differisce dal comando `click` in quanto <strong>scorrerà automaticamente</strong> fino all'elemento utilizzando il comando `scrollIntoView`,
-che non è supportato per le app native con il comando `click`. Nelle app ibride o negli ambienti web, lo scorrimento automatico è supportato sia per i comandi `click` che per i comandi `tap`.
+Per le app native, questo comando differisce dal comando `click` in quanto <strong>scorrerà automaticamente</strong> fino all'elemento utilizzando il comando `scrollIntoView`,
+che non è supportato per le app native con il comando `click`. Nelle app ibride o negli ambienti web, lo scorrimento automatico è supportato sia per i comandi `click` che `tap`.
 
 :::info
 
@@ -37,11 +37,11 @@ Assicurati che il tuo ambiente Appium locale o basato su cloud sia regolarmente 
 
 :::caution Per i tap sullo schermo
 
-Se desideri eseguire un tap su coordinate specifiche dello schermo e utilizzi uno screenshot per determinare le coordinate, ricorda che le
-coordinate per iOS si basano sulle dimensioni dello schermo del dispositivo e non sulle dimensioni dello screenshot. Le dimensioni dello screenshot sono maggiori a causa del rapporto di pixel del dispositivo.
-Il rapporto medio di pixel del dispositivo fino all'iPhone 8 e gli iPad attuali è 2, per gli iPhone a partire dall'iPhone X il rapporto è 3. Ciò significa che le dimensioni
-dello screenshot sono 2 o 3 volte più grandi delle dimensioni dello schermo del dispositivo, il che significa che se trovi le coordinate sullo screenshot, dividile per il rapporto
-di pixel del dispositivo per ottenere le coordinate corrette dello schermo. Per esempio:
+Se vuoi fare tap su una coordinata specifica dello schermo e usi uno screenshot per determinare le coordinate, ricorda che le
+coordinate per iOS sono basate sulla dimensione dello schermo del dispositivo, e non sulla dimensione dello screenshot. La dimensione dello screenshot è maggiore a causa del rapporto di pixel del dispositivo.
+Il rapporto medio di pixel del dispositivo fino all'iPhone 8 e gli iPad attuali è 2, per gli iPhone dall'iPhone X il rapporto è 3. Questo significa che la dimensione
+dello screenshot è 2 o 3 volte più grande della dimensione dello schermo del dispositivo, il che significa che se trovi le coordinate sullo screenshot, dividile per il rapporto di pixel del
+dispositivo per ottenere le coordinate corrette dello schermo. Per esempio:
 
 ```js
 const screenshotCoordinates = { x: 600, y: 900 };
@@ -67,7 +67,7 @@ await browser.tap(screenCoordinates);
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`TapOptions`</td>
-      <td>Opzioni tap (opzionale)</td>
+      <td>Opzioni di tap (opzionale)</td>
     </tr>
     <tr>
               <td colspan="3"><strong>Opzioni tap su elemento</strong></td>
@@ -88,17 +88,17 @@ await browser.tap(screenCoordinates);
     <tr>
       <td><code><var>options.direction</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`string`</td>
-      <td>Può essere uno tra `down`, `up`, `left` o `right`, il valore predefinito è `down`. <br /><strong>Solo per tap su ELEMENTO, non per tap su SCHERMO</strong><br /><strong>SOLO PER APP NATIVE MOBILI</strong></td>
+      <td>Può essere uno tra `down`, `up`, `left` o `right`, il default è `down`. <br /><strong>Solo per tap su ELEMENTO, non per tap su SCHERMO</strong><br /><strong>SOLO-APP-NATIVE-MOBILE</strong></td>
     </tr>
     <tr>
       <td><code><var>options.maxScrolls</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>Il numero massimo di scorrimenti fino a quando smetterà di cercare l'elemento, il valore predefinito è `10`. <br /><strong>Solo per tap su ELEMENTO, non per tap su SCHERMO</strong><br /><strong>SOLO PER APP NATIVE MOBILI</strong></td>
+      <td>Il numero massimo di scorrimenti fino a quando smetterà di cercare l'elemento, il default è `10`. <br /><strong>Solo per tap su ELEMENTO, non per tap su SCHERMO</strong><br /><strong>SOLO-APP-NATIVE-MOBILE</strong></td>
     </tr>
     <tr>
       <td><code><var>options.scrollableElement</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Element`</td>
-      <td>Elemento utilizzato per scorrere all'interno. Se non viene fornito alcun elemento, utilizzerà il seguente selettore per iOS `-ios predicate string:type == "XCUIElementTypeApplication"` e il seguente per Android `//android.widget.ScrollView'`. Se più elementi corrispondono al selettore predefinito, per impostazione predefinita sceglierà il primo elemento corrispondente. <br /><strong>Solo per tap su ELEMENTO, non per tap su SCHERMO</strong><br /><strong>SOLO PER APP NATIVE MOBILI</strong></td>
+      <td>Elemento che viene utilizzato per scorrere all'interno. Se non viene fornito alcun elemento, utilizzerà il seguente selettore per iOS `-ios predicate string:type == "XCUIElementTypeApplication"` e il seguente per Android `//android.widget.ScrollView'`. Se più elementi corrispondono al selettore predefinito, per impostazione predefinita sceglierà il primo elemento corrispondente. <br /><strong>Solo per tap su ELEMENTO, non per tap su SCHERMO</strong><br /><strong>SOLO-APP-NATIVE-MOBILE</strong></td>
     </tr>
   </tbody>
 </table>

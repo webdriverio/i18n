@@ -1,27 +1,27 @@
 ---
 id: ocr-faq
-title: Frequently Asked Questions
+title: الأسئلة المتكررة
 ---
 
-## My tests are very slow
+## اختباراتي بطيئة جدًا
 
-When you are using this `@wdio/ocr-service` you are not using it to speed up your tests, you use it because you have a hard time locating elements in your web/mobile app, and you want an easier way to locate them. And we all hopefully know that when you want something, you lose something else. **But....**, there is a way to make the `@wdio/ocr-service` execute faster than normal. More information about that can be found [here](./more-test-optimization).
+عندما تستخدم `@wdio/ocr-service` فأنت لا تستخدمه لتسريع اختباراتك، بل تستخدمه لأنك تواجه صعوبة في تحديد موقع العناصر في تطبيق الويب/الجوال الخاص بك، وتريد طريقة أسهل لتحديد موقعها. وجميعنا نعلم أنه عندما تريد شيئًا، فإنك تفقد شيئًا آخر. **ولكن...**، هناك طريقة لجعل `@wdio/ocr-service` يعمل بشكل أسرع من المعتاد. يمكن العثور على مزيد من المعلومات حول ذلك [هنا](./more-test-optimization).
 
-## Can I use the commands from this service with the default WebdriverIO commands/selectors?
+## هل يمكنني استخدام الأوامر من هذه الخدمة مع أوامر/محددات WebdriverIO الافتراضية؟
 
-Yes, you can combine the commands to make your script even more powerful! The advice is to use the default WebdriverIO commands/selectors as much as possible and only use this service when you can't find a unique selector, or your selector will become too brittle.
+نعم، يمكنك الجمع بين الأوامر لجعل النص البرمجي الخاص بك أكثر قوة! النصيحة هي استخدام أوامر/محددات WebdriverIO الافتراضية قدر الإمكان واستخدام هذه الخدمة فقط عندما لا يمكنك العثور على محدد فريد، أو عندما يصبح المحدد الخاص بك هشًا للغاية.
 
-## My text isn't found, how is that possible?
+## لم يتم العثور على النص الخاص بي، كيف يمكن أن يحدث ذلك؟
 
-First, it's important to understand how the OCR process in this module works, so please read [this](./ocr-testing) page. If you still can't find your text, you might try the following things.
+أولاً، من المهم فهم كيفية عمل عملية التعرف الضوئي على الحروف (OCR) في هذه الوحدة، لذا يرجى قراءة [هذه](./ocr-testing) الصفحة. إذا كنت لا تزال غير قادر على العثور على النص الخاص بك، فقد تحاول الأشياء التالية.
 
-### The image area is too big
+### منطقة الصورة كبيرة جدًا
 
-When the module needs to process a large area of the screenshot it might not find the text. You can provide a smaller area by providing a haystack when you use a command. Please check the [commands](./ocr-click-on-text) which commands support providing a haystack.
+عندما تحتاج الوحدة إلى معالجة منطقة كبيرة من لقطة الشاشة، قد لا تجد النص. يمكنك توفير منطقة أصغر من خلال توفير haystack عند استخدام أمر. يرجى التحقق من [الأوامر](./ocr-click-on-text) لمعرفة الأوامر التي تدعم توفير haystack.
 
-### The contrast between the text and background is not correct
+### التباين بين النص والخلفية غير صحيح
 
-This means that you might have light text on a white background or dark text on a dark background. This can result in not being able to find text. In the examples below you can see that the text `Why WebdriverIO?` is white and surrounded by a grey button. In this case, it will result in not finding the `Why WebdriverIO?` text. By increasing the contrast for the specific command it finds the text and can click on it, see the second image.
+هذا يعني أنه قد يكون لديك نص فاتح على خلفية بيضاء أو نص داكن على خلفية داكنة. يمكن أن يؤدي هذا إلى عدم القدرة على العثور على النص. في الأمثلة أدناه، يمكنك أن ترى أن النص `Why WebdriverIO?` أبيض ومحاط بزر رمادي. في هذه الحالة، سيؤدي ذلك إلى عدم العثور على نص `Why WebdriverIO?`. من خلال زيادة التباين للأمر المحدد، يجد النص ويمكن النقر عليه، انظر الصورة الثانية.
 
 ```js
 await driver.ocrClickOnText({
@@ -32,47 +32,47 @@ await driver.ocrClickOnText({
 });
 ```
 
-![Contrast issues](/img/ocr/increased-contrast.jpg)
+![مشاكل التباين](/img/ocr/increased-contrast.jpg)
 
-## Why is my element getting clicked but the keyboard on my mobile devices never pops up?
+## لماذا يتم النقر على العنصر الخاص بي ولكن لوحة المفاتيح على أجهزة الجوال الخاصة بي لا تظهر أبدًا؟
 
-This can happen on some text fields where the click is determined too long and considered a long tap. You can use the `clickDuration` option on [`ocrClickOnText`](./ocr-click-on-text) and [`ocrSetValue`](./ocr-set-value) to alleviate this. See [here](./ocr-click-on-text#options).
+يمكن أن يحدث هذا في بعض حقول النص حيث يتم اعتبار النقر طويلاً جدًا ويعتبر نقرة طويلة. يمكنك استخدام خيار `clickDuration` في [`ocrClickOnText`](./ocr-click-on-text) و[`ocrSetValue`](./ocr-set-value) للتخفيف من هذا. انظر [هنا](./ocr-click-on-text#options).
 
-## Can this module provide multiple elements back like WebdriverIO normally can do?
+## هل يمكن لهذه الوحدة إرجاع عناصر متعددة كما يمكن أن تفعل WebdriverIO عادةً؟
 
-No, this is currently not possible. If the module finds multiple elements that match the provided selector it will automatically find the element that has the highest matching score.
+لا، هذا غير ممكن حاليًا. إذا وجدت الوحدة عناصر متعددة تطابق المحدد المقدم، فستجد تلقائيًا العنصر الذي لديه أعلى درجة تطابق.
 
-## Can I fully automate my app with the OCR commands provided by this service?
+## هل يمكنني أتمتة تطبيقي بالكامل باستخدام أوامر OCR التي توفرها هذه الخدمة؟
 
-I've never done it, but in theory, it should be possible. Please let us know if you succeed with that ☺️.
+لم أقم بذلك من قبل، ولكن من الناحية النظرية، يجب أن يكون ذلك ممكنًا. يرجى إعلامنا إذا نجحت في ذلك ☺️.
 
-## I see an extra file called `{languageCode}.traineddata` being added, what is this?
+## أرى ملفًا إضافيًا يسمى `{languageCode}.traineddata` تمت إضافته، ما هذا؟
 
-`{languageCode}.traineddata` is a language data file used by Tesseract. It contains the training data for the selected language, which includes the necessary information for Tesseract to recognize English characters and words effectively.
+`{languageCode}.traineddata` هو ملف بيانات لغة يستخدمه Tesseract. يحتوي على بيانات التدريب للغة المحددة، والتي تتضمن المعلومات الضرورية لـ Tesseract للتعرف على الأحرف والكلمات الإنجليزية بشكل فعال.
 
-### Contents of `{languageCode}.traineddata`
+### محتويات `{languageCode}.traineddata`
 
-The file generally contains:
+يحتوي الملف عمومًا على:
 
-1. **Character Set Data:** Information about the characters in the English language.
-2. **Language Model:** A statistical model of how characters form words and words form sentences.
-3. **Feature Extractors:** Data on how to extract features from images for the recognition of characters.
-4. **Training Data:** Data derived from training Tesseract on a large set of English text images.
+1. **بيانات مجموعة الأحرف:** معلومات حول الأحرف في اللغة الإنجليزية.
+1. **نموذج اللغة:** نموذج إحصائي لكيفية تشكيل الأحرف للكلمات وتشكيل الكلمات للجمل.
+1. **مستخرجات الميزات:** بيانات حول كيفية استخراج الميزات من الصور للتعرف على الأحرف.
+1. **بيانات التدريب:** البيانات المستمدة من تدريب Tesseract على مجموعة كبيرة من صور النصوص الإنجليزية.
 
-### Why is the `{languageCode}.traineddata` Important?
+### لماذا `{languageCode}.traineddata` مهم؟
 
-1. **Language Recognition:** Tesseract relies on these trained data files to accurately recognize and process text in a specific language. Without `{languageCode}.traineddata`, Tesseract would not be able to recognize English text.
-2. **Performance:** The quality and accuracy of OCR are directly related to the quality of the training data. Using the correct trained data file ensures that the OCR process is as accurate as possible.
-3. **Compatibility:** Ensuring that the `{languageCode}.traineddata` file is included in your project making it easier to replicate the OCR environment across different systems or team members' machines.
+1. **التعرف على اللغة:** يعتمد Tesseract على ملفات البيانات المدربة هذه للتعرف بدقة ومعالجة النصوص بلغة معينة. بدون `{languageCode}.traineddata`، لن يتمكن Tesseract من التعرف على النص الإنجليزي.
+1. **الأداء:** ترتبط جودة ودقة التعرف الضوئي على الحروف (OCR) ارتباطًا مباشرًا بجودة بيانات التدريب. استخدام ملف البيانات المدربة الصحيح يضمن أن تكون عملية OCR دقيقة قدر الإمكان.
+1. **التوافق:** ضمان تضمين ملف `{languageCode}.traineddata` في مشروعك يجعل من السهل تكرار بيئة OCR عبر أنظمة مختلفة أو أجهزة أعضاء الفريق.
 
-### Versioning `{languageCode}.traineddata`
+### إدارة إصدار `{languageCode}.traineddata`
 
-Including `{languageCode}.traineddata` in your version control system is recommended for the following reasons:
+يوصى بتضمين `{languageCode}.traineddata` في نظام التحكم في الإصدار الخاص بك للأسباب التالية:
 
-1. **Consistency:** It ensures that all team members or deployment environments use the exact same version of the training data, leading to consistent OCR results across different environments.
-2. **Reproducibility:** Storing this file in version control makes it easier to reproduce results when running the OCR process at a later date or on a different machine.
-3. **Dependency Management:** Including it in the version control system helps in managing dependencies and ensures that any setup or environment configuration includes the necessary files for the project to run correctly.
+1. **الاتساق:** يضمن ذلك أن جميع أعضاء الفريق أو بيئات النشر تستخدم نفس إصدار بيانات التدريب بالضبط، مما يؤدي إلى نتائج OCR متسقة عبر بيئات مختلفة.
+1. **قابلية التكرار:** تخزين هذا الملف في التحكم في الإصدار يجعل من السهل إعادة إنتاج النتائج عند تشغيل عملية OCR في وقت لاحق أو على جهاز مختلف.
+1. **إدارة التبعيات:** يساعد تضمينه في نظام التحكم في الإصدار في إدارة التبعيات ويضمن أن أي إعداد أو تكوين بيئة يتضمن الملفات الضرورية لتشغيل المشروع بشكل صحيح.
 
-## Is there an easy way to see which text is found on my screen without running a test?
+## هل هناك طريقة سهلة لرؤية النص الذي تم العثور عليه على شاشتي دون تشغيل اختبار؟
 
-Yes, you can use our CLI wizard for that. Documentation can be found [here](./cli-wizard)
+نعم، يمكنك استخدام معالج CLI الخاص بنا لذلك. يمكن العثور على الوثائق [هنا](./cli-wizard)

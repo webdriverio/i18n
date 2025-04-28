@@ -1,10 +1,10 @@
 ---
 id: parentElement
-title: 親要素
+title: parentElement
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/parentElement.ts
 ---
 
-選択したDOM要素の親要素を返します。
+選択されたDOM要素の親要素を返します。
 
 ##### 使用方法
 

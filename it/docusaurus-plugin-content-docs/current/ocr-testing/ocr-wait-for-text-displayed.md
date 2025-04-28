@@ -15,7 +15,7 @@ await browser.ocrWaitForTextDisplayed({
 
 ## Output
 
-### Log
+### Logs
 
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
@@ -31,7 +31,7 @@ await browser.ocrWaitForTextDisplayed({
 -   **Tipo:** `string`
 -   **Obbligatorio:** sì
 
-Il testo che desideri cercare per cliccarci sopra.
+Il testo che vuoi cercare per cliccarci sopra.
 
 #### Esempio
 
@@ -62,7 +62,7 @@ await browser.ocrWaitForTextDisplayed({
 -   **Obbligatorio:** no
 -   **Predefinito:** `Could not find the text "{selector}" within the requested time.`
 
-Sovrascrive il messaggio di errore predefinito.
+Sostituisce il messaggio di errore predefinito.
 
 #### Esempio
 
@@ -79,7 +79,7 @@ await browser.ocrWaitForTextDisplayed({
 -   **Obbligatorio:** no
 -   **Predefinito:** `0.25`
 
-Maggiore è il contrasto, più scura sarà l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
+Maggiore è il contrasto, più scura è l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
 
 #### Esempio
 
@@ -152,7 +152,7 @@ Puoi modificare la logica fuzzy per trovare testo con le seguenti opzioni. Quest
 -   **Obbligatorio:** no
 -   **Predefinito:** 100
 
-Determina quanto vicina deve essere la corrispondenza alla posizione fuzzy (specificata dalla location). Una corrispondenza esatta di lettere che si trova a una distanza di caratteri dalla posizione fuzzy verrebbe valutata come un completo mancato riscontro. Una distanza di 0 richiede che la corrispondenza sia nella posizione esatta specificata. Una distanza di 1000 richiederebbe che una corrispondenza perfetta si trovi entro 800 caratteri dalla posizione per essere trovata utilizzando una soglia di 0,8.
+Determina quanto vicina deve essere la corrispondenza alla posizione fuzzy (specificata da location). Una corrispondenza esatta della lettera che si trova a distance caratteri dalla posizione fuzzy verrebbe considerata come un completo mancato riscontro. Una distance di 0 richiede che la corrispondenza sia nella posizione esatta specificata. Una distance di 1000 richiederebbe una corrispondenza perfetta entro 800 caratteri dalla posizione per essere trovata usando una soglia di 0.8.
 
 ##### Esempio
 
@@ -190,7 +190,7 @@ await browser.ocrWaitForTextDisplayed({
 -   **Obbligatorio:** no
 -   **Predefinito:** 0.6
 
-A che punto l'algoritmo di corrispondenza si arrende. Una soglia di 0 richiede una corrispondenza perfetta (sia di lettere che di posizione), una soglia di 1.0 corrisponderebbe a qualsiasi cosa.
+A che punto l'algoritmo di corrispondenza si arrende. Una soglia di 0 richiede una corrispondenza perfetta (sia delle lettere che della posizione), una soglia di 1.0 corrisponderebbe a qualsiasi cosa.
 
 ##### Esempio
 
@@ -209,7 +209,7 @@ await browser.ocrWaitForTextDisplayed({
 -   **Obbligatorio:** no
 -   **Predefinito:** false
 
-Se la ricerca deve essere sensibile alle maiuscole.
+Se la ricerca deve essere sensibile alle maiuscole/minuscole.
 
 ##### Esempio
 
@@ -247,7 +247,7 @@ await browser.ocrWaitForTextDisplayed({
 -   **Obbligatorio:** no
 -   **Predefinito:** false
 
-Quando è `true`, la funzione di corrispondenza continuerà fino alla fine di un modello di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
+Quando è `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
 
 ##### Esempio
 

@@ -4,7 +4,7 @@ title: getSize
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getSize.ts
 ---
 
-Ottieni la larghezza e l'altezza per un elemento DOM.
+Ottieni la larghezza e l'altezza di un elemento DOM.
 
 ##### Utilizzo
 

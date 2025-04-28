@@ -1,6 +1,6 @@
 ---
 id: typescript
-title: TypeScriptの設定
+title: TypeScriptのセットアップ
 ---
 
 [TypeScript](http://www.typescriptlang.org)を使用してテストを書くことで、自動補完と型安全性を得ることができます。
@@ -11,11 +11,11 @@ title: TypeScriptの設定
 $ npm install tsx --save-dev
 ```
 
-WebdriverIOは、これらの依存関係がインストールされているかどうかを自動的に検出し、設定とテストをコンパイルします。WDIOの設定と同じディレクトリに`tsconfig.json`があることを確認してください。
+WebdriverIOは、これらの依存関係がインストールされているかを自動的に検出し、設定とテストをコンパイルします。WDIOの設定と同じディレクトリに`tsconfig.json`を配置してください。
 
 #### カスタムTSConfig
 
-`tsconfig.json`に異なるパスを設定する必要がある場合は、TSCONFIG_PATH環境変数に希望のパスを設定するか、wdio設定の[tsConfigPath設定](/docs/configurationfile)を使用してください。
+`tsconfig.json`に別のパスを設定する必要がある場合は、TSCONFIG_PATH環境変数に希望のパスを設定するか、wdio設定の[tsConfigPath設定](/docs/configurationfile)を使用してください。
 
 あるいは、`tsx`の[環境変数](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path)を使用することもできます。
 
@@ -40,9 +40,9 @@ WebdriverIOは、これらの依存関係がインストールされているか
 
 ## フレームワークの型
 
-使用するフレームワークに応じて、そのフレームワークの型を`tsconfig.json`の`types`プロパティに追加し、その型定義をインストールする必要があります。これは、ビルトインのアサーションライブラリ[`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio)の型サポートが必要な場合に特に重要です。
+使用するフレームワークに応じて、そのフレームワークの型を`tsconfig.json`の`types`プロパティに追加し、その型定義をインストールする必要があります。これは、組み込みのアサーションライブラリ[`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio)の型サポートを持ちたい場合に特に重要です。
 
-例えば、Mochaフレームワークを使用する場合は、`@types/mocha`をインストールし、以下のように追加してすべての型をグローバルに利用できるようにする必要があります：
+例えば、Mochaフレームワークを使用する場合、`@types/mocha`をインストールし、以下のように追加して、すべての型をグローバルに利用できるようにする必要があります：
 
 <Tabs
   defaultValue="mocha"
@@ -108,7 +108,7 @@ WebdriverIOは、これらの依存関係がインストールされているか
 
 ## 型定義
 
-WebdriverIOコマンドを実行する際、通常はすべてのプロパティが型付けされているため、追加の型をインポートする必要はありません。ただし、変数を事前に定義したい場合があります。これらが型安全であることを確実にするには、[`@wdio/types`](https://www.npmjs.com/package/@wdio/types)パッケージで定義されているすべての型を使用できます。例えば、`webdriverio`のリモートオプションを定義したい場合は次のようにします：
+WebdriverIOコマンドを実行する際、通常はすべてのプロパティが型付けされているため、追加の型をインポートする必要はありません。ただし、変数を事前に定義したい場合があります。これらが型安全であることを確認するために、[`@wdio/types`](https://www.npmjs.com/package/@wdio/types)パッケージで定義されているすべての型を使用できます。例えば、`webdriverio`のリモートオプションを定義したい場合は、次のようにします：
 
 ```ts
 import type { Options } from '@wdio/types'
@@ -116,7 +116,7 @@ import type { Options } from '@wdio/types'
 // 型を直接インポートしたい例
 const remoteConfig: Options.WebdriverIO = {
     hostname: 'http://localhost',
-    port: '4444' // Error: Type 'string' is not assignable to type 'number'.ts(2322)
+    port: '4444' // エラー: Type 'string' is not assignable to type 'number'.ts(2322)
     capabilities: {
         browserName: 'chrome'
     }
@@ -133,4 +133,4 @@ export const config: WebdriverIO.Config = {
 
 ### コンパイルとリント
 
-完全に安全にするために、ベストプラクティスに従うことを検討してください：TypeScriptコンパイラでコードをコンパイルし（`tsc`または`npx tsc`を実行）、[eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)を[pre-commitフック](https://github.com/typicode/husky)で実行することをお勧めします。
+完全に安全を期すためには、ベストプラクティスに従うことを検討してください：TypeScriptコンパイラ（`tsc`または`npx tsc`を実行）でコードをコンパイルし、[eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)を[プリコミットフック](https://github.com/typicode/husky)で実行します。

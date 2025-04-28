@@ -4,7 +4,7 @@ title: tick
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/tick.ts
 ---
 
-Sposta l'orologio del numero specificato di `milliseconds`. Qualsiasi timer all'interno dell'intervallo di tempo interessato verrà chiamato.
+Sposta l'orologio del numero specificato di `milliseconds`. Qualsiasi timer nell'intervallo di tempo interessato verrà chiamato.
 
 ##### Utilizzo
 
@@ -25,7 +25,7 @@ await clock.tick(ms)
     <tr>
       <td><code><var>ms</var></code></td>
       <td>` number `</td>
-      <td>Il numero di millisecondi di cui spostare l'orologio.</td>
+      <td>Il numero di millisecondi per spostare l'orologio.</td>
     </tr>
   </tbody>
 </table>

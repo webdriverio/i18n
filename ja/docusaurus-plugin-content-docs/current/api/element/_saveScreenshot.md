@@ -17,14 +17,14 @@ $(selector).saveScreenshot(filename)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>filename</var></code></td>
       <td>`String`</td>
-      <td>生成される画像のパス（`.png`拡張子が必要）実行ディレクトリからの相対パス</td>
+      <td>生成された画像のパス（`.png`の拡張子が必要）実行ディレクトリからの相対パス</td>
     </tr>
   </tbody>
 </table>

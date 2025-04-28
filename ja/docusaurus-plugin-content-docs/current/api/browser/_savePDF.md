@@ -1,12 +1,12 @@
 ---
 id: savePDF
-title: PDFを保存する
+title: savePDF
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/savePDF.ts
 ---
 
-現在のブラウジングコンテキストのページをOS上のPDFファイルに印刷します。
+現在のブラウジングコンテキストのページをOSのPDFファイルに印刷します。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.savePDF(filepath, { orientation, scale, background, width, height, top, bottom, left, right, shrinkToFit, pageRanges })
@@ -17,14 +17,14 @@ browser.savePDF(filepath, { orientation, scale, background, width, height, top, 
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>filepath</var></code></td>
       <td>`String`</td>
-      <td>生成されるPDFのパス（`.pdf`サフィックスが必要）実行ディレクトリからの相対パス</td>
+      <td>生成されるPDFのパス（`.pdf`の接尾辞が必要）、実行ディレクトリからの相対パス</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
@@ -79,7 +79,7 @@ browser.savePDF(filepath, { orientation, scale, background, width, height, top, 
     <tr>
       <td><code><var>options.shrinkToFit</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`boolean`</td>
-      <td>ページに合わせて縮小する</td>
+      <td>ページに合わせて縮小</td>
     </tr>
     <tr>
       <td><code><var>options.pageRanges</var></code></td>

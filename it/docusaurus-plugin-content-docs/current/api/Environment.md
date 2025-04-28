@@ -15,4 +15,4 @@ Può essere impostato ai valori `trace`, `debug`, `info`, `warn`, `error`, `sile
 
 ## `WDIO_WORKER_ID`
 
-Un id univoco che aiuta a identificare il processo worker. Ha il formato `{number}-{number}` dove il primo numero identifica la capability e il secondo il file spec che la capability sta eseguendo, ad es. `0-5` indica un worker che esegue il sesto file spec per la prima capability.
+Un id unico che aiuta a identificare il processo worker. Ha il formato `{number}-{number}` dove il primo numero identifica la capacità e il secondo il file spec che quella capacità sta eseguendo, ad esempio `0-5` indica un worker che esegue il sesto file spec per la prima capacità.

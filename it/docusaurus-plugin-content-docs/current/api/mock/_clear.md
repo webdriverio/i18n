@@ -4,7 +4,7 @@ title: clear
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/clear.ts
 ---
 
-Reimposta tutte le informazioni memorizzate nell'array `mock.calls`.
+Ripristina tutte le informazioni memorizzate nell'array `mock.calls`.
 
 ##### Utilizzo
 

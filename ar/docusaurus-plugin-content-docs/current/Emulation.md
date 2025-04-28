@@ -3,7 +3,7 @@ id: emulation
 title: المحاكاة
 ---
 
-مع WebdriverIO يمكنك محاكاة واجهات برمجة تطبيقات الويب باستخدام أمر [`emulate`](/docs/api/browser/emulate) لإرجاع قيم مخصصة تساعدك على محاكاة سلوكيات معينة للمتصفح. لاحظ أن هذا يتطلب أن يستخدم تطبيقك هذه الواجهات بشكل صريح.
+مع WebdriverIO يمكنك محاكاة واجهات برمجة التطبيقات (APIs) للويب باستخدام أمر [`emulate`](/docs/api/browser/emulate) لإرجاع قيم مخصصة تساعدك في محاكاة سلوكيات معينة للمتصفح. لاحظ أن هذا يتطلب أن يستخدم تطبيقك هذه الواجهات البرمجية بشكل صريح.
 
 <LiteYouTubeEmbed
     id="2bQXzIB_97M"
@@ -12,15 +12,15 @@ title: المحاكاة
 
 :::info
 
-تتطلب هذه الميزة دعم WebDriver Bidi للمتصفح. بينما تحتوي الإصدارات الحديثة من Chrome وEdge وFirefox على مثل هذا الدعم، فإن Safari __لا يدعم__ ذلك. للحصول على التحديثات تابع [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). علاوة على ذلك، إذا كنت تستخدم مزودًا سحابيًا لتشغيل المتصفحات، تأكد من أن المزود الخاص بك يدعم أيضًا WebDriver Bidi.
+تتطلب هذه الميزة دعم WebDriver Bidi للمتصفح. بينما تحتوي الإصدارات الحديثة من Chrome وEdge وFirefox على مثل هذا الدعم، فإن Safari __لا يدعم__ هذه الميزة. للحصول على التحديثات تابع [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). علاوة على ذلك، إذا كنت تستخدم مزودًا سحابيًا لتشغيل المتصفحات، فتأكد من أن المزود الخاص بك يدعم أيضًا WebDriver Bidi.
 
-لتمكين WebDriver Bidi لاختبارك، تأكد من تعيين `webSocketUrl: true` في الإمكانيات الخاصة بك.
+لتمكين WebDriver Bidi لاختبارك، تأكد من ضبط `webSocketUrl: true` في إمكانياتك.
 
 :::
 
 ## الموقع الجغرافي
 
-قم بتغيير الموقع الجغرافي للمتصفح إلى منطقة محددة، على سبيل المثال:
+تغيير الموقع الجغرافي للمتصفح إلى منطقة محددة، على سبيل المثال:
 
 ```ts
 await browser.emulate('geolocation', {
@@ -34,11 +34,11 @@ await browser.pause(5000)
 console.log(await browser.getUrl()) // outputs: "https://www.google.com/maps/@52.52,13.39,16z?entry=ttu"
 ```
 
-هذا سيقوم بتعديل طريقة عمل [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) ويعيد الموقع الذي قمت بتوفيره.
+هذا سيقوم بتعديل كيفية عمل [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) ويعيد الموقع الذي قمت بتوفيره.
 
 ## نظام الألوان
 
-قم بتغيير إعداد نظام الألوان الافتراضي للمتصفح عبر:
+تغيير إعداد نظام الألوان الافتراضي للمتصفح عبر:
 
 ```ts
 await browser.emulate('colorScheme', 'light')
@@ -52,31 +52,31 @@ const backgroundColor = await browser.$('nav').getCSSProperty('background-color'
 console.log(backgroundColor.parsed.hex) // outputs: "#000000"
 ```
 
-هذا سيقوم بتعديل كيفية تصرف [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) عندما تستعلم عن نظام الألوان عبر `(prefers-color-scheme: dark)`.
+هذا سيقوم بتعديل كيفية عمل [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) عندما تستعلم عن نظام الألوان عبر `(prefers-color-scheme: dark)`.
 
 ## وكيل المستخدم
 
-قم بتغيير وكيل المستخدم للمتصفح إلى سلسلة مختلفة عبر:
+تغيير وكيل المستخدم للمتصفح إلى سلسلة مختلفة عبر:
 
 ```ts
 await browser.emulate('userAgent', 'Chrome/1.2.3.4 Safari/537.36')
 ```
 
-هذا سيغير قيمة [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). لاحظ أن مصنعي المتصفحات يعملون بشكل تدريجي على إلغاء وكيل المستخدم.
+هذا سيغير قيمة [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). لاحظ أن مطوري المتصفحات يقومون تدريجياً بإلغاء وكيل المستخدم.
 
 ## خاصية onLine
 
-قم بتغيير حالة الاتصال بالإنترنت للمتصفح عبر:
+تغيير حالة الاتصال بالإنترنت للمتصفح عبر:
 
 ```ts
 await browser.emulate('onLine', false)
 ```
 
-هذا __لن__ يوقف حركة الشبكة بين المتصفح والإنترنت وسيغير فقط قيمة الإرجاع من [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). إذا كنت مهتمًا بتعديل قدرات الشبكة للمتصفح، انظر إلى أمر [`throttleNetwork`](/docs/api/browser/throttleNetwork).
+هذا __لن__ يوقف حركة الشبكة بين المتصفح والإنترنت ويغير فقط قيمة الإرجاع من [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). إذا كنت مهتمًا بتعديل قدرات الشبكة للمتصفح، فانظر إلى أمر [`throttleNetwork`](/docs/api/browser/throttleNetwork).
 
 ## الساعة
 
-يمكنك تعديل ساعة نظام المتصفح باستخدام أمر [`emulate`](/docs/emulation). يقوم هذا بتجاوز الوظائف العالمية الأصلية المتعلقة بالوقت مما يسمح بالتحكم فيها بشكل متزامن عبر `clock.tick()` أو كائن الساعة المنتج. وهذا يشمل التحكم في:
+يمكنك تعديل ساعة نظام المتصفح باستخدام أمر [`emulate`](/docs/emulation). يقوم بتجاوز الدوال العالمية الأصلية المتعلقة بالوقت مما يسمح بالتحكم فيها بشكل متزامن عبر `clock.tick()` أو كائن الساعة الناتج. هذا يشمل التحكم في:
 
 - `setTimeout`
 - `clearTimeout`
@@ -84,11 +84,11 @@ await browser.emulate('onLine', false)
 - `clearInterval`
 - `Date Objects`
 
-تبدأ الساعة عند بداية العصر اليونكس (الطابع الزمني 0). هذا يعني أنه عندما تقوم بإنشاء كائن Date جديد في تطبيقك، سيكون له وقت 1 يناير 1970 إذا لم تمرر أي خيارات أخرى إلى أمر `emulate`.
+تبدأ الساعة في بداية عصر يونكس (طابع زمني 0). هذا يعني أنه عندما تقوم بإنشاء كائن Date جديد في تطبيقك، سيكون له وقت 1 يناير 1970 إذا لم تمرر أي خيارات أخرى إلى أمر `emulate`.
 
 ##### مثال
 
-عند استدعاء `browser.emulate('clock', { ... })` سيتم على الفور استبدال الوظائف العالمية للصفحة الحالية وكذلك جميع الصفحات التالية، على سبيل المثال:
+عند استدعاء `browser.emulate('clock', { ... })` سيقوم مباشرة بإعادة كتابة الدوال العالمية للصفحة الحالية وكذلك لجميع الصفحات التالية، على سبيل المثال:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -150,9 +150,9 @@ interface FakeTimerInstallOpts {
 
 ## الجهاز
 
-يدعم أمر `emulate` أيضًا محاكاة جهاز محمول أو جهاز سطح مكتب معين من خلال تغيير العرض المرئي، ومعامل مقياس الجهاز، ووكيل المستخدم. هذا لا ينبغي، بأي حال من الأحوال، أن يُستخدم لاختبار الهاتف المحمول لأن محركات متصفح سطح المكتب تختلف عن أجهزة المحمول. يجب استخدام هذا فقط إذا كان تطبيقك يقدم سلوكًا محددًا لأحجام عرض أصغر.
+أمر `emulate` يدعم أيضًا محاكاة جهاز محمول أو جهاز سطح مكتب معين من خلال تغيير منفذ العرض، وعامل مقياس الجهاز، ووكيل المستخدم. لا ينبغي، بأي حال من الأحوال، استخدام هذا للاختبار على الهاتف المحمول حيث تختلف محركات متصفح سطح المكتب عن المحمول. يجب استخدام هذا فقط إذا كان تطبيقك يقدم سلوكًا محددًا لأحجام منفذ العرض الأصغر.
 
-على سبيل المثال، للتبديل إلى وكيل المستخدم والعرض المرئي لجهاز iPhone 15، ما عليك سوى تشغيل:
+على سبيل المثال، للتبديل إلى وكيل المستخدم ومنفذ العرض الخاص بجهاز iPhone 15، ما عليك سوى تشغيل:
 
 ```ts
 const restore = await browser.emulate('device', 'iPhone 15')

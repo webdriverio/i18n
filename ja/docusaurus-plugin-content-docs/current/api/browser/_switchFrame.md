@@ -1,69 +1,71 @@
 ---
 id: switchFrame
-title: switchFrame（フレーム切り替え）
+title: フレームに切り替え
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/switchFrame.ts
 ---
 
-アクティブなコンテキストをフレーム（ページ上のiframeなど）に切り替えます。ページ上のフレームを照会するには複数の方法があります：
+Switches the active context to a frame, e.g. an iframe on the page. There are multiple ways you can query a frame
+on the page:
 
-  - 文字列を与えると、一致するコンテキストID、URL、またはその文字列を含むURLを持つフレームに切り替えます
+  - If given a string it switches to the frame with a matching context id, url or url that contains that string
     ```ts
-    // 特定のURLを持つか、URLに特定の文字列を含むフレームに切り替える
+    // switch to a frame that has a specific url or contains a string in the url
     await browser.url('https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_iframe')
-    // 注：このフレームはネストされたiframe内にありますが、
-    // 目的のフレームのURLのみを提供する必要があります
+    // Note: this frame is located in a nested iframe, however you only need to provide
+    // the frame url of your desired frame
     await browser.switchFrame('https://www.w3schools.com')
-    // ページのタイトルを確認する
+    // check the title of the page
     console.log(await browser.execute(() => [document.title, document.URL]))
-    // 出力: [ 'W3Schools Online Web Tutorials', 'https://www.w3schools.com/' ]
+    // outputs: [ 'W3Schools Online Web Tutorials', 'https://www.w3schools.com/' ]
     ```
 
-  - フレームのコンテキストIDを持っている場合は、それを直接使用できます
+  - If you have the context id of the frame you can use it directly
     ```ts
-    // 特定のコンテキストIDを持つフレームに切り替える
+    // switch to a frame that has a certain context id
     await browser.switchFrame('A5734774C41F8C91D483BDD4022B2EF3')
     ```
 
-  - `iframe`要素を参照するWebdriverIO要素を与えると、そのフレームに切り替えます
+  - If given a WebdriverIO element that references an `iframe` element it will switch to that frame
     ```ts
-    // 現在のコンテキストから照会したフレーム要素に切り替える
+    // switch to a frame element queried from current context
     await browser.switchFrame($('iframe'))
     ```
 
-  - 関数を与えると、ページ上のすべてのiframeをループし、コンテキストオブジェクト内でその関数を呼び出します。
-    関数はフレームを選択すべきかどうかを示すブール値を返す必要があります。関数はブラウザ内で実行され、
-    すべてのWeb APIにアクセスできます：
+  - If given a function it will loop through all iframes on the page and call the function within the context
+    object. The function should return a boolean indicating if the frame should be selected. The function
+    will be executed within the browser and allows access to all Web APIs, e.g.:
     ```ts
-    // id "#frameContent"を持つ要素を含む最初のフレームに切り替える
+    // switch to first frame that contains an element with id "#frameContent"
     await browser.switchFrame(() => Boolean(document.querySelector('#frameContent')))
-    // URLに "webdriver"を含む最初のフレームに切り替える
+    // switch to first frame that contains "webdriver" in the URL
     await browser.switchFrame(() => document.URL.includes('webdriver'))
     ```
 
-  - `null`を与えると、トップレベルのフレームに切り替えます
+  - If given `null` it will switch to the top level frame
     ```ts
-    // まずフレームに切り替える
+    // first switch into a frame
     await browser.switchFrame($('iframe'))
-    // そのフレーム内でさらに自動化を行い、その後...
+    // do more automation within that frame, then ...
 
-    // トップレベルのフレームに切り替える
+    // switch to the top level frame
     await browser.switchFrame(null)
     ```
 
-フレームに切り替えると、異なるページへの移動を含め、以降のすべてのコマンドはそのフレームのコンテキスト内で実行されます。
+Once you switched to a frame, all further commands will be executed in the context of that frame,
+including navigating to different pages.
 
-##### 使用法
+##### Usage
 
 ```js
 browser.switchFrame(context)
 ```
 
-##### パラメータ
+##### Parameters
 
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -75,7 +77,7 @@ browser.switchFrame(context)
   </tbody>
 </table>
 
-##### 戻り値
+##### Returns
 
 - **&lt;`Promise<string>`&gt;**
-            **<code><var>returns</var></code>:**  現在のアクティブなコンテキストID
+            **<code><var>returns</var></code>:**  the current active context id    

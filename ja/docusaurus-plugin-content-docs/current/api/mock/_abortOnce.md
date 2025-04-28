@@ -4,13 +4,13 @@ title: abortOnce
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/abortOnce.ts
 ---
 
-以下のいずれかのエラーコードでリクエストを一度中断します：
-`Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`,
-`ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`,
-`ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`,
-`AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`。
+以下のエラーコードのいずれかを使用して、リクエストを一度だけ中止します：
+`Failed`、`Aborted`、`TimedOut`、`AccessDenied`、`ConnectionClosed`、
+`ConnectionReset`、`ConnectionRefused`、`ConnectionAborted`、
+`ConnectionFailed`、`NameNotResolved`、`InternetDisconnected`、
+`AddressUnreachable`、`BlockedByClient`、`BlockedByResponse`。
 
-##### 使用方法
+##### 使用法
 
 ```js
 mock.abortOnce(errorCode)
@@ -28,7 +28,7 @@ mock.abortOnce(errorCode)
     <tr>
       <td><code><var>errorCode</var></code></td>
       <td>`ErrorCode`</td>
-      <td>レスポンスのエラーコード、以下のいずれかになります: `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
+      <td>レスポンスのエラーコード、以下のいずれかになります：`Failed`、`Aborted`、`TimedOut`、`AccessDenied`、`ConnectionClosed`、`ConnectionReset`、`ConnectionRefused`、`ConnectionAborted`、`ConnectionFailed`、`NameNotResolved`、`InternetDisconnected`、`AddressUnreachable`、`BlockedByClient`、`BlockedByResponse`</td>
     </tr>
   </tbody>
 </table>

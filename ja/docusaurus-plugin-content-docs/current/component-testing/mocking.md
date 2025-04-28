@@ -3,17 +3,17 @@ id: mocking
 title: モック
 ---
 
-テストを書いているとき、内部または外部のサービスの「偽物」バージョンを作成する必要が出てくるのは時間の問題です。これは一般的にモックと呼ばれています。WebdriverIOはこれを支援するユーティリティ関数を提供しています。`import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'`でアクセスできます。利用可能なモックユーティリティについての詳細は、[APIドキュメント](/docs/api/modules#wdiobrowser-runner)を参照してください。
+テストを書いているとき、内部または外部サービスの「偽の」バージョンを作成する必要が出てくるのは時間の問題です。これは一般的にモックと呼ばれています。WebdriverIOはこれを支援するユーティリティ関数を提供しています。`import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'`でアクセスできます。利用可能なモックユーティリティについての詳細情報は[APIドキュメント](/docs/api/modules#wdiobrowser-runner)を参照してください。
 
 ## 関数
 
-コンポーネントテストの一部として特定の関数ハンドラが呼び出されるかどうかを検証するために、`@wdio/browser-runner`モジュールはこれらの関数が呼び出されたかどうかをテストするために使用できるモッキングプリミティブをエクスポートしています。これらのメソッドは以下のようにインポートできます：
+コンポーネントテストの一部として特定の関数ハンドラが呼び出されるかどうかを検証するために、`@wdio/browser-runner`モジュールはこれらの関数が呼び出されたかどうかをテストするために使用できるモックプリミティブをエクスポートしています。これらのメソッドは以下のようにインポートできます：
 
 ```js
 import { fn, spyOn } from '@wdio/browser-runner'
 ```
 
-`fn`をインポートすることで、実行を追跡するためのスパイ関数（モック）を作成でき、`spyOn`を使用して既に作成されたオブジェクトのメソッドを追跡できます。
+`fn`をインポートすることで、スパイ関数（モック）を作成して実行を追跡し、`spyOn`で既に作成されたオブジェクトのメソッドを追跡できます。
 
 <Tabs
   defaultValue="mocks"
@@ -24,7 +24,7 @@ import { fn, spyOn } from '@wdio/browser-runner'
 }>
 <TabItem value="mocks">
 
-完全な例は[コンポーネントテスト例](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx)リポジトリにあります。
+完全な例は[Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx)リポジトリにあります。
 
 ```ts
 import React from 'react'
@@ -95,19 +95,19 @@ describe('Lit Component testing', () => {
 </TabItem>
 </Tabs>
 
-WebdriverIOはここで[`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy)を再エクスポートしているだけです。これはWebdriverIOの[`expect`](/docs/api/expect-webdriverio)マッチャーと一緒に使用できる軽量のJest互換スパイ実装です。これらのモック関数の詳細なドキュメントは[Vitestプロジェクトページ](https://vitest.dev/api/mock.html)で見つけることができます。
+WebdriverIOはここで軽量なJest互換のスパイ実装である[`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy)を再エクスポートしており、これはWebdriverIOの[`expect`](/docs/api/expect-webdriverio)マッチャーで使用できます。これらのモック関数の詳細なドキュメントは[Vitestプロジェクトページ](https://vitest.dev/api/mock.html)で見つけることができます。
 
-もちろん、ブラウザ環境をサポートしている限り、[SinonJS](https://sinonjs.org/)などの他のスパイフレームワークをインストールしてインポートすることもできます。
+もちろん、ブラウザ環境をサポートしている限り、他のスパイフレームワーク（例：[SinonJS](https://sinonjs.org/)）をインストールしてインポートすることもできます。
 
 ## モジュール
 
-ローカルモジュールをモックしたり、他のコードで呼び出される第三者ライブラリを監視したりして、引数、出力をテストしたり、その実装を再定義したりすることができます。
+ローカルモジュールをモックしたり、他のコードで呼び出される第三者ライブラリを観察したりして、引数、出力を検証したり、実装を再宣言したりすることができます。
 
-関数をモックする方法は2つあります：テストコードで使用するモック関数を作成するか、モジュールの依存関係をオーバーライドするマニュアルモックを作成するかです。
+関数をモックする方法は2つあります：テストコードで使用するモック関数を作成するか、モジュールの依存関係をオーバーライドするマニュアルモックを書くかです。
 
 ### ファイルインポートのモック
 
-コンポーネントがクリックを処理するためにファイルからユーティリティメソッドをインポートしていると想像してみましょう。
+コンポーネントが、クリックを処理するためのユーティリティメソッドをファイルからインポートしていると想像してみましょう。
 
 ```js title=utils.js
 export function handleClick () {
@@ -115,7 +115,7 @@ export function handleClick () {
 }
 ```
 
-コンポーネント内でクリックハンドラは次のように使用されています：
+私たちのコンポーネントでは、クリックハンドラは次のように使用されています：
 
 ```ts title=LitComponent.js
 import { handleClick } from './utils.js'
@@ -128,7 +128,7 @@ export class SimpleButton extends LitElement {
 }
 ```
 
-`utils.js`から`handleClick`をモックするには、テストで`mock`メソッドを次のように使用できます：
+`utils.js`から`handleClick`をモックするために、テストで`mock`メソッドを次のように使用できます：
 
 ```js title=LitComponent.test.js
 import { expect, $ } from '@wdio/globals'
@@ -156,7 +156,7 @@ describe('Simple Button Component Test', () => {
 
 ### 依存関係のモック
 
-APIからユーザーを取得するクラスがあるとします。このクラスは[`axios`](https://github.com/axios/axios)を使用してAPIを呼び出し、すべてのユーザーを含むdata属性を返します：
+APIからユーザーを取得するクラスがあるとします。このクラスは[`axios`](https://github.com/axios/axios)を使用してAPIを呼び出し、すべてのユーザーを含むdataプロパティを返します：
 
 ```js title=users.js
 import axios from 'axios';
@@ -170,9 +170,9 @@ class Users {
 export default Users
 ```
 
-実際にAPIにヒットせずにこのメソッドをテストするために（遅くて脆いテストを作成することを避けるため）、`mock(...)`関数を使用してaxiosモジュールを自動的にモックすることができます。
+このメソッドを実際にAPIを叩かずにテストするためには（遅くて脆いテストを作成しないために）、`mock(...)`関数を使用してaxiosモジュールを自動的にモックすることができます。
 
-モジュールをモックすると、テストがアサートしたいデータを返す`.get`のための[`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue)を提供できます。実質的に、`axios.get('/users.json')`が偽のレスポンスを返すことを望んでいると言っています。
+モジュールをモックしたら、テストでアサートしたいデータを返す`.get`の[`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue)を提供することができます。実質的に、`axios.get('/users.json')`が偽のレスポンスを返すようにしています。
 
 ```js title=users.test.js
 import axios from 'axios'; // imports defined mock
@@ -204,9 +204,9 @@ describe('User API', () => {
 })
 ```
 
-## 部分的モック
+## 部分的なモック
 
-モジュールのサブセットをモックし、モジュールの残りの部分は実際の実装を維持することができます：
+モジュールの一部をモックし、残りの部分は実際の実装を維持することができます：
 
 ```js title=foo-bar-baz.js
 export const foo = 'foo';
@@ -214,7 +214,7 @@ export const bar = () => 'bar';
 export default () => 'baz';
 ```
 
-元のモジュールはモックファクトリに渡され、例えば依存関係を部分的にモックするために使用できます：
+オリジナルのモジュールはモックファクトリに渡され、例えば依存関係を部分的にモックするために使用できます：
 
 ```js
 import { mock, fn } from '@wdio/browser-runner'
@@ -245,9 +245,9 @@ describe('partial mock', () => {
 
 ## マニュアルモック
 
-マニュアルモックは`__mocks__/`（`automockDir`オプションも参照）サブディレクトリにモジュールを書くことで定義されます。モックしているモジュールがNodeモジュール（例：`lodash`）である場合、モックは`__mocks__`ディレクトリに配置され、自動的にモックされます。明示的に`mock('module_name')`を呼び出す必要はありません。
+マニュアルモックは `__mocks__/`（`automockDir`オプションも参照）サブディレクトリにモジュールを記述することで定義されます。モックするモジュールがNodeモジュール（例：`lodash`）である場合、モックは`__mocks__`ディレクトリに配置され、自動的にモックされます。明示的に`mock('module_name')`を呼び出す必要はありません。
 
-スコープ付きモジュール（スコープ付きパッケージとも呼ばれる）は、スコープ付きモジュールの名前に一致するディレクトリ構造にファイルを作成することでモックできます。例えば、`@scope/project-name`というスコープ付きモジュールをモックするには、`__mocks__/@scope/project-name.js`にファイルを作成し、`@scope/`ディレクトリを適切に作成します。
+スコープ付きモジュール（スコープ付きパッケージとも呼ばれる）は、スコープ付きモジュールの名前に一致するディレクトリ構造にファイルを作成することでモックできます。例えば、`@scope/project-name`というスコープ付きモジュールをモックするには、`@scope/`ディレクトリを適切に作成して、`__mocks__/@scope/project-name.js`にファイルを作成します。
 
 ```
 .
@@ -261,7 +261,7 @@ describe('partial mock', () => {
 └── views
 ```
 
-特定のモジュールに対してマニュアルモックが存在する場合、WebdriverIOは明示的に`mock('moduleName')`を呼び出すとそのモジュールを使用します。ただし、automockがtrueに設定されている場合、`mock('moduleName')`が呼び出されなくても、自動的に作成されたモックの代わりにマニュアルモック実装が使用されます。この動作をオプトアウトするには、実際のモジュール実装を使用すべきテストで明示的に`unmock('moduleName')`を呼び出す必要があります：
+特定のモジュールに対してマニュアルモックが存在する場合、WebdriverIOは明示的に`mock('moduleName')`を呼び出したときにそのモジュールを使用します。ただし、automockがtrueに設定されている場合、`mock('moduleName')`が呼び出されていなくても、自動的に作成されたモックの代わりにマニュアルモックの実装が使用されます。この動作を無効にするには、実際のモジュール実装を使用するテストで明示的に`unmock('moduleName')`を呼び出す必要があります。例：
 
 ```js
 import { unmock } from '@wdio/browser-runner'
@@ -271,14 +271,14 @@ unmock('lodash')
 
 ## ホイスティング
 
-ブラウザでモックを機能させるために、WebdriverIOはテストファイルを書き換え、モック呼び出しを他のすべての上に持ち上げます（Jestのホイスティング問題についての[このブログ記事](https://www.coolcomputerclub.com/posts/jest-hoist-await/)も参照）。これにより、変数をモックリゾルバに渡す方法が制限されます：
+ブラウザでモックを機能させるために、WebdriverIOはテストファイルを書き換え、モック呼び出しを他のすべての上にホイストします（Jestのホイスティング問題に関する[このブログ記事](https://www.coolcomputerclub.com/posts/jest-hoist-await/)も参照）。これにより、モックリゾルバに変数を渡す方法が制限されます。例：
 
 ```js title=component.test.js
 import dep from 'dependency'
 const variable = 'foobar'
 
 /**
- * ❌ this fails as `dep` and `variable` are not defined inside the mock resolver
+ * ❌ これは失敗します。`dep`と`variable`がモックリゾルバ内で定義されていないためです
  */
 mock('./some/module.ts', () => ({
     exportA: dep,
@@ -286,11 +286,11 @@ mock('./some/module.ts', () => ({
 }))
 ```
 
-これを修正するには、使用するすべての変数をリゾルバ内で定義する必要があります：
+これを修正するには、リゾルバ内ですべての使用変数を定義する必要があります。例：
 
 ```js title=component.test.js
 /**
- * ✔️ this works as all variables are defined within the resolver
+ * ✔️ これは機能します。すべての変数がリゾルバ内で定義されているためです
  */
 mock('./some/module.ts', async () => {
     const dep = await import('dependency')
@@ -305,4 +305,4 @@ mock('./some/module.ts', async () => {
 
 ## リクエスト
 
-ブラウザリクエスト（APIコールなど）のモックを探している場合は、[リクエストモックとスパイ](/docs/mocksandspies)セクションをご覧ください。
+ブラウザリクエスト（例：API呼び出し）のモックを探している場合は、[リクエストモックとスパイ](/docs/mocksandspies)セクションを参照してください。

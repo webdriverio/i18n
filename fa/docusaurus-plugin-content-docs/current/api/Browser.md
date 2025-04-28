@@ -1,60 +1,60 @@
 ---
 id: browser
-title: آبجکت Browser
+title: شیء مرورگر
 ---
 
-__گسترشی برای:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
+__extends:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-آبجکت Browser نمونه شیئی است که برای کنترل مرورگر یا تلفن همراه از آن استفاده می‌کنید. اگر از اجرا کننده WDIO استفاده می‌کنید، می‌توانید به نمونه WebDriver از طریق شیء جهانی `browser` یا `driver` دسترسی داشته باشید یا آن را با استفاده از [`@wdio/globals`](/docs/api/globals)ایمپورت کنید. اگر از WebdriverIO در حالت مستقل استفاده می کنید، شی browser از طریق تابع [`remote`](/docs/api/modules#remoteoptions-modifier) برگردانده می شود.
+شیء مرورگر نمونه‌ای از جلسه است که برای کنترل مرورگر یا دستگاه موبایل استفاده می‌کنید. اگر از آزمون‌ران WDIO استفاده می‌کنید، می‌توانید به نمونه WebDriver از طریق اشیاء سراسری `browser` یا `driver` دسترسی پیدا کنید یا آن را با استفاده از [`@wdio/globals`](/docs/api/globals) وارد کنید. اگر از WebdriverIO در حالت مستقل استفاده می‌کنید، شیء مرورگر توسط متد [`remote`](/docs/api/modules#remoteoptions-modifier) برگردانده می‌شود.
 
-یک session توسط اجرا کننده تست مقداردهی اولیه می شود. در مورد پایان دادن به session نیز همین امر برقرار است. این امر نیز توسط اجرا کننده تست انجام می‌پذیرد.
+جلسه توسط آزمون‌ران راه‌اندازی می‌شود. برای پایان دادن به جلسه نیز همینطور است. این کار نیز توسط فرآیند آزمون‌ران انجام می‌شود.
 
-## ویژگی ها
+## خصوصیت‌ها
 
-یک شی browser دارای ویژگی های زیر است:
+یک شیء مرورگر دارای خصوصیت‌های زیر است:
 
-| نام                       | نوع        | جزئیات                                                                                                                                                                                                                                                                   |
-| ------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `قابلیت ها(capabilities)` | `شیء`      | Assigned capabilities from the remote server.<br /><b>Example:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre>                                                                                                                                                              |
-| `قابلیت های درخواست شده`  | `شیء`      | قابلیت (capabilitie) درخواست شده از طرف سرور remote.<br /><b>مثال:</b><pre>\{ browserName: 'chrome' \}</pre>                                                                                                                                                       |
-| `sessionId`               | `String`   | Session id که از سرور remote اختصاص داده شده است.                                                                                                                                                                                                                        |
-| `options`                 | `Object`   | [options](/docs/configuration) های WebdriverIO که به این بستگی دارد که شئ browser چگونه ایجاد شده است. اطلاعات بیشتر در [راه اندازی types](/docs/setuptypes).                                                                                                            |
-| `commandList`             | `String[]` | لیستی از دستورات ثبت شده در نمونه ی browser                                                                                                                                                                                                                              |
-| `isW3C`                   | `Boolean`  | Indicates if this is a W3C session                                                                                                                                                                                                                                       |
-| `isChrome`                | `Boolean`  | Indicates if this Chrome instance                                                                                                                                                                                                                                        |
-| `isFirefox`               | `Boolean`  | Indicates if this Firefox instance                                                                                                                                                                                                                                       |
-| `isBidi`                  | `Boolean`  | Indicates if this session uses Bidi                                                                                                                                                                                                                                      |
-| `isSauce`                 | `Boolean`  | Indicates if this session is Running on Sauce Labs                                                                                                                                                                                                                       |
-| `isMacApp`                | `Boolean`  | Indicates if this session is Running for a native Mac App                                                                                                                                                                                                                |
-| `isWindowsApp`            | `Boolean`  | Indicates if this session is Running for a native Windows App                                                                                                                                                                                                            |
-| `isMobile`                | `Boolean`  | یک session برای تلفن همراه را نشان می دهد. در [پرچم های موبایل](#mobile-flags) بیشتر بخوانید.                                                                                                                                                                            |
-| `isIOS`                   | `Boolean`  | یک session برای ios را نشان می دهد. در [پرچم های موبایل](#mobile-flags) بیشتر بخوانید.                                                                                                                                                                                   |
-| `isAndroid`               | `Boolean`  | یک session برای Android را نشان می دهد. در [پرچم های موبایل](#mobile-flags) بیشتر بخوانید.                                                                                                                                                                               |
-| `isNativeContext`         | `Boolean`  | Indicates if the mobile is in the `NATIVE_APP` context. See more under [Mobile Flags](#mobile-flags).                                                                                                                                                                    |
-| `mobileContext`           | `string`   | The will provide the **current** context the driver is in, for example `NATIVE_APP`, `WEBVIEW_<packageName>` for Android or `WEBVIEW_<pid>` for iOS. It will save an extra WebDriver to `driver.getContext()`. See more under [Mobile Flags](#mobile-flags). |
+| نام | نوع | جزئیات |
+| ---- | ---- | ------- |
+| `capabilities` | `Object` | قابلیت‌های اختصاص داده شده از سرور راه دور.<br /><b>مثال:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
+| `requestedCapabilities` | `Object` | قابلیت‌های درخواست شده از سرور راه دور.<br /><b>مثال:</b><pre>\{ browserName: 'chrome' \}</pre>
+| `sessionId` | `String` | شناسه جلسه اختصاص یافته از سرور راه دور. |
+| `options` | `Object` | گزینه‌های WebdriverIO [options](/docs/configuration) بسته به نحوه ایجاد شیء مرورگر. بیشتر ببینید در [انواع راه‌اندازی](/docs/setuptypes). |
+| `commandList` | `String[]` | لیستی از دستورات ثبت شده در نمونه مرورگر |
+| `isW3C` | `Boolean` | نشان می‌دهد که آیا این یک جلسه W3C است یا خیر |
+| `isChrome` | `Boolean` | نشان می‌دهد که آیا این نمونه Chrome است یا خیر |
+| `isFirefox` | `Boolean` | نشان می‌دهد که آیا این نمونه Firefox است یا خیر |
+| `isBidi` | `Boolean` | نشان می‌دهد که آیا این جلسه از Bidi استفاده می‌کند یا خیر |
+| `isSauce` | `Boolean` | نشان می‌دهد که آیا این جلسه در Sauce Labs اجرا می‌شود یا خیر |
+| `isMacApp` | `Boolean` | نشان می‌دهد که آیا این جلسه برای یک برنامه بومی Mac اجرا می‌شود یا خیر |
+| `isWindowsApp` | `Boolean` | نشان می‌دهد که آیا این جلسه برای یک برنامه بومی Windows اجرا می‌شود یا خیر |
+| `isMobile` | `Boolean` | نشان‌دهنده یک جلسه موبایل است. بیشتر در [پرچم‌های موبایل](#mobile-flags) ببینید. |
+| `isIOS` | `Boolean` | نشان‌دهنده یک جلسه iOS است. بیشتر در [پرچم‌های موبایل](#mobile-flags) ببینید. |
+| `isAndroid` | `Boolean` | نشان‌دهنده یک جلسه Android است. بیشتر در [پرچم‌های موبایل](#mobile-flags) ببینید. |
+| `isNativeContext` | `Boolean`  | نشان می‌دهد که آیا موبایل در زمینه `NATIVE_APP` است یا خیر. بیشتر در [پرچم‌های موبایل](#mobile-flags) ببینید. |
+| `mobileContext` | `string`  | زمینه **فعلی** که راننده در آن قرار دارد را ارائه می‌دهد، مثلاً `NATIVE_APP`، `WEBVIEW_<packageName>` برای Android یا `WEBVIEW_<pid>` برای iOS. این مقدار یک WebDriver اضافی را در `driver.getContext()` ذخیره می‌کند. بیشتر در [پرچم‌های موبایل](#mobile-flags) ببینید. |
 
 
-## متود ها(توابع)
+## متدها
 
-بر اساس پشتیبان اتوماسیون مورد استفاده برای session شما، WebdriverIO مشخص می کند که کدام [دستور های پروتکل](/docs/api/protocols) به شی [browser](/docs/api/browser) متصل می شود. برای مثال، اگر یک session خودکار را در Chrome اجرا کنید، به دستورات خاص Chromium مانند [`elementHover`](/docs/api/chromium#elementhover) دسترسی خواهید داشت اما به هیچ یک از [فرمان های Appium](/docs/api/appium) دسترسی ندارید.
+بر اساس پشتیبان اتوماسیون مورد استفاده برای جلسه شما، WebdriverIO شناسایی می‌کند کدام [دستورات پروتکل](/docs/api/protocols) به [شیء مرورگر](/docs/api/browser) پیوست خواهد شد. برای مثال، اگر یک جلسه اتوماسیون را در Chrome اجرا کنید، به دستورات خاص Chromium مانند [`elementHover`](/docs/api/chromium#elementhover) دسترسی خواهید داشت، اما به هیچ یک از [دستورات Appium](/docs/api/appium) دسترسی نخواهید داشت.
 
-علاوه بر این WebdriverIO مجموعه ای از روش های راحت را ارائه می دهد که برای تعامل با مرورگر [](/docs/api/browser) یا [عناصر](/docs/api/element) در صفحه توصیه می شود از آنها استفاده کنید.
+علاوه بر این، WebdriverIO مجموعه‌ای از متدهای راحت را فراهم می‌کند که توصیه می‌شود برای تعامل با [مرورگر](/docs/api/browser) یا [عناصر](/docs/api/element) در صفحه از آنها استفاده کنید.
 
-علاوه بر آن دستورات زیر نیز موجود است:
+علاوه بر این، دستورات زیر در دسترس هستند:
 
-| نام                  | پارامترها                                                                                                              | جزئیات                                                                                                                                                                                                                       |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addCommand`         | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`)<br />- `attachToElement` (Type: `boolean`) | اجازه می دهد تا دستورات سفارشی را تعریف کرد که می توان از شی browser برای ترکیب های مختلف فراخوانی شود. در راهنمای [Custom Command](/docs/customcommands) بیشتر بخوانید.                                                     |
-| `overwriteCommand`   | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`)<br />- `attachToElement` (Type: `boolean`) | Allows to overwrite any browser command with custom functionality. با دقت استفاده شود زیرا می تواند کاربران فریمورک را گیج کند. در راهنمای [Custom Command](/docs/customcommands#overwriting-native-commands) بیشتر بخوانید. |
-| `addLocatorStrategy` | - `strategyName` (Type: `String`)<br />- `fn` (Type: `Function`)                                                 | Allows to define a custom selector strategy, read more in the [Selectors](/docs/selectors#custom-selector-strategies) guide.                                                                                                 |
+| نام | پارامترها | جزئیات |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (نوع: `String`)<br />- `fn` (نوع: `Function`)<br />- `attachToElement` (نوع: `boolean`) | به شما امکان تعریف دستورات سفارشی را می‌دهد که می‌توانند از شیء مرورگر برای اهداف ترکیبی فراخوانی شوند. بیشتر در راهنمای [دستور سفارشی](/docs/customcommands) بخوانید. |
+| `overwriteCommand` | - `commandName` (نوع: `String`)<br />- `fn` (نوع: `Function`)<br />- `attachToElement` (نوع: `boolean`) | امکان بازنویسی هر دستور مرورگر با عملکرد سفارشی را فراهم می‌کند. با دقت استفاده کنید زیرا ممکن است کاربران چارچوب را گیج کند. بیشتر در راهنمای [دستور سفارشی](/docs/customcommands#overwriting-native-commands) بخوانید. |
+| `addLocatorStrategy` | - `strategyName` (نوع: `String`)<br />- `fn` (نوع: `Function`) | امکان تعریف یک استراتژی انتخاب‌گر سفارشی را فراهم می‌کند، بیشتر در راهنمای [انتخاب‌گرها](/docs/selectors#custom-selector-strategies) بخوانید. |
 
-## ملاحظات
+## نکات
 
-### پرچم های موبایل
+### پرچم‌های موبایل
 
-اگر نیاز دارید تست خود را بر اساس اینکه آیا session شما در دستگاه تلفن همراه اجرا می شود یا نه تغییر دهید، می توانید برای بررسی پرچم های تلفن همراه را چک کنید.
+اگر نیاز دارید آزمون خود را بر اساس اینکه جلسه شما روی دستگاه موبایل اجرا می‌شود یا خیر تغییر دهید، می‌توانید به پرچم‌های موبایل دسترسی پیدا کرده و آنها را بررسی کنید.
 
-به عنوان مثال، با توجه به این پیکربندی:
+برای مثال، با توجه به این پیکربندی:
 
 ```js
 // wdio.conf.js
@@ -71,17 +71,17 @@ export const config = {
 }
 ```
 
-شما می توانید در تست خود به این پرچم ها دسترسی داشته باشید:
+می‌توانید در آزمون خود به این پرچم‌ها به این صورت دسترسی پیدا کنید:
 
 ```js
-// Note: `driver` is the equivalent to the `browser` object but semantically more correct
-// you can choose which global variable you want to use
-console.log(driver.isMobile) // outputs: true
-console.log(driver.isIOS) // outputs: true
-console.log(driver.isAndroid) // outputs: false
+// توجه: `driver` معادل شیء `browser` است اما از نظر معنایی صحیح‌تر است
+// می‌توانید انتخاب کنید که از کدام متغیر سراسری می‌خواهید استفاده کنید
+console.log(driver.isMobile) // خروجی: true
+console.log(driver.isIOS) // خروجی: true
+console.log(driver.isAndroid) // خروجی: false
 ```
 
-این موضوع می تواند مفید باشد اگر برای مثال بخواهید انتخابگر خودتان را در [ اشیاء صفحه](../pageobjects) بر اساس نوع دستگاه تعریف کنید. برای مثال:
+این می‌تواند مفید باشد اگر، برای مثال، می‌خواهید انتخاب‌گرها را در [اشیاء صفحه](../pageobjects) خود بر اساس نوع دستگاه تعریف کنید، مانند این:
 
 ```js
 // mypageobject.page.js
@@ -100,13 +100,13 @@ class LoginPage extends Page {
 }
 ```
 
-همچنین می‌توانید از این پرچم‌ها برای اجرای تست‌های خاص برای انواع دستگاه‌های خاص استفاده کنید:
+همچنین می‌توانید از این پرچم‌ها برای اجرای آزمون‌های خاص فقط برای انواع خاصی از دستگاه‌ها استفاده کنید:
 
 ```js
 // mytest.e2e.js
 describe('my test', () => {
     // ...
-    // only run test with Android devices
+    // فقط آزمون را با دستگاه‌های Android اجرا کنید
     if (driver.isAndroid) {
         it('tests something only for Android', () => {
             // ...
@@ -117,77 +117,51 @@ describe('my test', () => {
 ```
 
 ### رویدادها
-شی browser یک EventEmitter است و چند رویداد برای استفاده های مختلف شما ارسال می شود.
+شیء مرورگر یک EventEmitter است و چندین رویداد برای موارد استفاده شما منتشر می‌شود.
 
-در اینجا لیستی از رویدادها وجود دارد. به خاطر داشته باشید که این هنوز لیست کامل رویدادهای موجود نیست. شما می توانید سند را با افزودن توضیحات بیشتر به روز رسانی کنید.
-
-#### `request.start`
-This event is fired before a WebDriver request is sent to the driver. It contains information about the request and its payload.
-
-```ts
-browser.on('request.start', (ev: RequestInit) => {
-    // ...
-})
-```
-
-#### `request.end`
-This event is fired once the request to the driver received a response. The event object either contains the response body as result or an error if the WebDriver command failed.
-
-```ts
-browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
-    // ...
-})
-```
-
-#### `request.retry`
-The retry event can notify you when WebdriverIO attempts to retry running the command, e.g. due to a network issue. It contains information about the error that caused the retry and the amount of retries already done.
-
-```ts
-browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
-    // ...
-})
-```
+در اینجا لیستی از رویدادها آمده است. به یاد داشته باشید که این لیست کامل رویدادهای موجود نیست.
+لطفاً برای به‌روزرسانی سند با افزودن توضیحات بیشتر رویدادها در اینجا مشارکت کنید.
 
 #### `command`
 
-This event is emitted whenever WebdriverIO sends a WebDriver Classic command. It contains the following information:
+این رویداد هر زمان که WebdriverIO یک دستور WebDriver کلاسیک ارسال می‌کند، منتشر می‌شود. شامل اطلاعات زیر است:
 
-- `command`: the command name, e.g. `navigateTo`
-- `method`: the HTTP method used to send the command request, e.g. `POST`
-- `endpoint`: the command endpoint, e.g. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
-- `body`: the command payload, e.g. `{ url: 'https://webdriver.io' }`
+- `command`: نام دستور، مثلاً `navigateTo`
+- `method`: روش HTTP مورد استفاده برای ارسال درخواست دستور، مثلاً `POST`
+- `endpoint`: نقطه پایانی دستور، مثلاً `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
+- `body`: پیام‌رسانی دستور، مثلاً `{ url: 'https://webdriver.io' }`
 
 #### `result`
 
-This event is emitted whenever WebdriverIO receives a result of a WebDriver Classic command. It contains the same information as the `command` event with the addition of the following information:
+این رویداد هر زمان که WebdriverIO نتیجه یک دستور WebDriver کلاسیک را دریافت می‌کند، منتشر می‌شود. شامل همان اطلاعات رویداد `command` به همراه اطلاعات زیر است:
 
-- `result`: the command result
+- `result`: نتیجه دستور
 
 #### `bidiCommand`
 
-This event is emitted whenever WebdriverIO sends a WebDriver Bidi command to the browser driver. It contains information about:
+این رویداد هر زمان که WebdriverIO یک دستور WebDriver Bidi به راننده مرورگر ارسال می‌کند، منتشر می‌شود. شامل اطلاعاتی درباره:
 
-- `method`: WebDriver Bidi command method
-- `params`: associated command parameter (see [API](/docs/api/webdriverBidi))
+- `method`: روش دستور WebDriver Bidi
+- `params`: پارامتر دستور مرتبط (به [API](/docs/api/webdriverBidi) مراجعه کنید)
 
 #### `bidiResult`
 
-In case of a successful command execution, the event payload will be:
+در صورت اجرای موفقیت‌آمیز دستور، محتوای رویداد به شرح زیر خواهد بود:
 
 - `type`: `success`
-- `id`: the command id
-- `result`: the command result (see [API](/docs/api/webdriverBidi))
+- `id`: شناسه دستور
+- `result`: نتیجه دستور (به [API](/docs/api/webdriverBidi) مراجعه کنید)
 
-In case of a command error, the event payload will be:
+در صورت بروز خطا در دستور، محتوای رویداد به شرح زیر خواهد بود:
 
 - `type`: `error`
-- `id`: the command id
-- `error`: the error code, e.g. `invalid argument`
-- `message`: details about the error
-- `stacktrace`: a stack trace
+- `id`: شناسه دستور
+- `error`: کد خطا، مثلاً `invalid argument`
+- `message`: جزئیات خطا
+- `stacktrace`: پشته فراخوانی
 
 #### `request.start`
-This event is fired before a WebDriver request is sent to the driver. It contains information about the request and its payload.
+این رویداد قبل از ارسال درخواست WebDriver به راننده فعال می‌شود. حاوی اطلاعاتی درباره درخواست و محتوای آن است.
 
 ```ts
 browser.on('request.start', (ev: RequestInit) => {
@@ -196,7 +170,7 @@ browser.on('request.start', (ev: RequestInit) => {
 ```
 
 #### `request.end`
-This event is fired once the request to the driver received a response. The event object either contains the response body as result or an error if the WebDriver command failed.
+این رویداد پس از دریافت پاسخ به درخواست راننده فعال می‌شود. شیء رویداد یا شامل بدنه پاسخ به عنوان نتیجه است یا در صورت شکست دستور WebDriver، شامل خطا می‌شود.
 
 ```ts
 browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
@@ -205,7 +179,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-The retry event can notify you when WebdriverIO attempts to retry running the command, e.g. due to a network issue. It contains information about the error that caused the retry and the amount of retries already done.
+رویداد تلاش مجدد می‌تواند شما را از تلاش WebdriverIO برای اجرای مجدد دستور، مثلاً به دلیل مشکل شبکه، مطلع کند. این رویداد شامل اطلاعاتی درباره خطایی است که باعث تلاش مجدد شده و تعداد تلاش‌های مجدد انجام شده است.
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
@@ -214,15 +188,15 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 ```
 
 #### `request.performance`
-این رویدادی برای اندازه گیری عملیات ها در سطح WebDriver است. هر زمان که WebdriverIO درخواستی را به Backend WebDriver ارسال می کند، این رویداد با اطلاعات مفیدی منتشر می شود:
+این رویدادی برای اندازه‌گیری عملیات سطح WebDriver است. هر زمان که WebdriverIO درخواستی به بک‌اند WebDriver ارسال می‌کند، این رویداد با اطلاعات مفیدی منتشر می‌شود:
 
-- `durationMillisecond`: مدت زمان درخواست بر حسب میلی ثانیه.
-- `error`: در صورت عدم موفقیت درخواست، شیء خطا.
-- `request`: شی درخواست. شما می توانید آدرس صفحه، روش ارسال، هدر و غیره را پیدا کنید.
-- `retryCount`: اگر `0`باشد، درخواست اولین تلاش بوده است. زمانی که WebDriverIO دوباره در لایه های زیرین تلاش می کند، افزایش می یابد.
-- `success`: مقدار بولین برای نشان دادن موفقیت درخواست. اگر `false`باشد، ویژگی `error` نیز ارائه خواهد شد.
+- `durationMillisecond`: مدت زمان درخواست به میلی‌ثانیه.
+- `error`: شیء خطا در صورت شکست درخواست.
+- `request`: شیء درخواست. می‌توانید URL، روش، هدرها و غیره را پیدا کنید.
+- `retryCount`: اگر `0` باشد، درخواست اولین تلاش بود. هنگامی که WebDriverIO به صورت داخلی تلاش مجدد می‌کند، افزایش می‌یابد.
+- `success`: مقدار بولی برای نشان دادن موفقیت یا عدم موفقیت درخواست. اگر `false` باشد، خاصیت `error` نیز ارائه خواهد شد.
 
-یک رویداد نمونه:
+یک نمونه رویداد:
 ```js
 Object {
   "durationMillisecond": 0.01770925521850586,
@@ -235,4 +209,4 @@ Object {
 
 ### دستورات سفارشی
 
-می‌توانید دستورات سفارشی را در محدوده browser تنظیم کنید تا کار هایی که به طور مرتب استفاده می‌شود را در جایی دور انتزاعی کنید. برای اطلاعات بیشتر راهنمای ما در مورد [دستورات سفارشی](/docs/customcommands#adding-custom-commands) را بررسی کنید.
+می‌توانید دستورات سفارشی را در محدوده مرورگر تنظیم کنید تا جریان‌های کاری که معمولاً استفاده می‌شوند را انتزاعی کنید. برای اطلاعات بیشتر به راهنمای ما در مورد [دستورات سفارشی](/docs/customcommands#adding-custom-commands) مراجعه کنید.

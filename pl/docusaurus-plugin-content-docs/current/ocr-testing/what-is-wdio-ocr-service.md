@@ -1,39 +1,40 @@
 ---
 id: ocr-testing
-title: OCR Testing
+title: Testowanie OCR
 ---
 
-Automated testing on mobile native apps and desktop sites can be particularly challenging when dealing with elements that lack unique identifiers. Standard [WebdriverIO selectors](https://webdriver.io/docs/selectors) may not always help you. Enter the world of the `@wdio/ocr-service`, a powerful service that leverages OCR ([Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition)) to search, wait for, and interact with on-screen elements based on their **visible text**.
+Automatyczne testy na natywnych aplikacjach mobilnych i stronach desktopowych mogą być szczególnie trudne, gdy mamy do czynienia z elementami pozbawionymi unikalnych identyfikatorów. Standardowe [selektory WebdriverIO](https://webdriver.io/docs/selectors) nie zawsze mogą Ci pomóc. Wkrocz w świat `@wdio/ocr-service`, potężnej usługi wykorzystującej OCR ([Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition)) do wyszukiwania, oczekiwania i interakcji z elementami na ekranie na podstawie ich **widocznego tekstu**.
 
-The following custom commands will be provided and added to the `browser/driver` object so you will get the right toolset to do your job.
+Następujące niestandardowe polecenia zostaną udostępnione i dodane do obiektu `browser/driver`, dzięki czemu otrzymasz odpowiedni zestaw narzędzi do wykonania swojej pracy.
 
-- [`await browser.ocrGetText`](./ocr-get-text.md)
-- [`await browser.ocrGetElementPositionByText`](./ocr-get-element-position-by-text.md)
-- [`await browser.ocrWaitForTextDisplayed`](./ocr-wait-for-text-displayed.md)
-- [`await browser.ocrClickOnText`](./ocr-click-on-text.md)
-- [`await browser.ocrSetValue`](./ocr-set-value.md)
+-   [`await browser.ocrGetText`](./ocr-get-text.md)
+-   [`await browser.ocrGetElementPositionByText`](./ocr-get-element-position-by-text.md)
+-   [`await browser.ocrWaitForTextDisplayed`](./ocr-wait-for-text-displayed.md)
+-   [`await browser.ocrClickOnText`](./ocr-click-on-text.md)
+-   [`await browser.ocrSetValue`](./ocr-set-value.md)
 
-### How does it work
+### Jak to działa
 
-This service will
+Ta usługa:
 
-1. create a screenshot of your screen/device. (If needed you can provide a haystack, which can be an element or a rectangle object, to pinpoint a specific area. See the documentation for each command.)
-2. optimize the result for OCR by turning the screenshot into black/white with a high contrast screenshot (the high contrast is needed to prevent a lot of image background noise. This can be customized per command.)
-3. uses [Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition) from [Tesseract.js](https://github.com/naptha/tesseract.js)/[Tesseract](https://github.com/tesseract-ocr/tesseract) to get all text from the screen and highlight all found text on an image. It can support several languages which can be found [here.](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html)
-4. uses Fuzzy Logic from [Fuse.js](https://fusejs.io/) to find strings that are _approximately equal_ to a given pattern (rather than exactly). This means for example that the search value `Username` can also find the text `Usename` or vice versa.
-5. Provide a cli wizzard (`npx ocr-service`) to validate your images and retrieve text through your terminal
+1. tworzy zrzut ekranu twojego ekranu/urządzenia. (W razie potrzeby możesz dostarczyć tzw. haystack, który może być elementem lub obiektem prostokątnym, aby wskazać określony obszar. Zobacz dokumentację dla każdego polecenia.)
+1. optymalizuje wynik dla OCR, przekształcając zrzut ekranu w czarno-biały obraz o wysokim kontraście (wysoki kontrast jest potrzebny, aby zapobiec dużej ilości szumów tła obrazu. Można to dostosować dla każdego polecenia.)
+1. wykorzystuje [Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition) z [Tesseract.js](https://github.com/naptha/tesseract.js)/[Tesseract](https://github.com/tesseract-ocr/tesseract) do pobrania całego tekstu z ekranu i podświetlenia całego znalezionego tekstu na obrazie. Może obsługiwać kilka języków, które można znaleźć [tutaj.](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html)
+1. wykorzystuje logikę rozmytą z [Fuse.js](https://fusejs.io/) do znajdowania ciągów, które są _w przybliżeniu równe_ danemu wzorcowi (a nie dokładnie). Oznacza to na przykład, że wartość wyszukiwania `Username` może również znaleźć tekst `Usename` lub odwrotnie.
+1. Dostarcza kreator CLI (`npx ocr-service`) do walidacji obrazów i pobierania tekstu przez terminal
 
-An example of steps 1, 2 and 3 can be found in this image
+Przykład kroków 1, 2 i 3 można znaleźć na tym obrazku
 
 ![Process steps](/img/ocr/processing-steps.jpg)
 
-It works with **ZERO** system dependencies (besides what WebdriverIO uses), but if needed it can also work with a local installation from [Tesseract](https://tesseract-ocr.github.io/tessdoc/) which will reduce the execution time drastically! (See also the [Test Execution Optimization](#test-execution-optimization) on how to speed up your tests.)
+Działa bez ŻADNYCH zależności systemowych (poza tym, co wykorzystuje WebdriverIO), ale w razie potrzeby może również działać z lokalną instalacją [Tesseract](https://tesseract-ocr.github.io/tessdoc/), co drastycznie skróci czas wykonania! (Zobacz także [Optymalizację wykonania testów](#test-execution-optimization), aby dowiedzieć się, jak przyspieszyć testy.)
 
-Enthusiastic? Start using it today by following the [Getting Started](./getting-started) guide.
+Jesteś entuzjastą? Zacznij korzystać już dziś, postępując zgodnie z przewodnikiem [Pierwsze kroki](./getting-started).
 
-:::caution Important
+:::caution Ważne
+Istnieje wiele powodów, dla których możesz nie uzyskać dobrej jakości wyników z Tesseract. Jednym z największych powodów, które mogą być związane z Twoją aplikacją i tym modułem, może być fakt, że nie ma odpowiedniego rozróżnienia kolorów między tekstem, który ma zostać znaleziony, a tłem. Na przykład biały tekst na ciemnym tle może być _łatwo_ znaleziony, ale jasny tekst na białym tle lub ciemny tekst na ciemnym tle jest trudny do znalezienia.
 
-See also [this page](https://tesseract-ocr.github.io/tessdoc/ImproveQuality) for more information from Tesseract.
+Zobacz także [tę stronę](https://tesseract-ocr.github.io/tessdoc/ImproveQuality) aby uzyskać więcej informacji od Tesseract.
 
-Also don't forget to read the [FAQ](./ocr-faq).
+Nie zapomnij również przeczytać [FAQ](./ocr-faq).
 :::

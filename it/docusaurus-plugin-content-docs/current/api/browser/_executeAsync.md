@@ -10,21 +10,21 @@ Si prega di utilizzare il comando `execute` invece, poiché fornisce un migliore
 la gestione degli errori tramite `async`/`await`.
 :::
 
-Inietta un frammento di JavaScript nella pagina per l'esecuzione nel contesto del frame attualmente selezionato.
-Lo script eseguito è considerato asincrono e deve segnalare che è terminato invocando la callback fornita, 
-che è sempre fornita come argomento finale alla funzione. Il valore passato a questa callback sarà 
-restituito al client.
+Inserisce un frammento di JavaScript nella pagina per l'esecuzione nel contesto del frame attualmente selezionato.
+Si presume che lo script eseguito sia asincrono e deve segnalare la sua conclusione invocando
+il callback fornito, che è sempre fornito come argomento finale alla funzione. Il valore
+passato a questo callback sarà restituito al client.
 
-I comandi di script asincroni non possono estendersi attraverso caricamenti di pagina. Se viene attivato un evento di scaricamento 
-mentre si attende il risultato di uno script, un errore dovrebbe essere restituito al client.
+I comandi di script asincroni non possono estendersi su più caricamenti di pagina. Se viene attivato un evento di scaricamento mentre si attende
+il risultato di uno script, un errore dovrebbe essere restituito al client.
 
-L'argomento script definisce lo script da eseguire sotto forma di corpo di una funzione. La funzione sarà 
-invocata con l'array degli argomenti forniti e i valori possono essere accessibili tramite l'oggetto arguments 
-nell'ordine specificato. L'argomento finale sarà sempre una funzione di callback che deve essere invocata 
+L'argomento script definisce lo script da eseguire sotto forma di corpo della funzione. La funzione sarà
+invocata con l'array di argomenti fornito e i valori possono essere accessibili tramite l'oggetto arguments
+nell'ordine specificato. L'argomento finale sarà sempre una funzione di callback che deve essere invocata
 per segnalare che lo script è terminato.
 
-Gli argomenti possono essere qualsiasi JSON-primitive, array o oggetto JSON. Gli oggetti JSON che definiscono un riferimento 
-WebElement saranno convertiti nell'elemento DOM corrispondente. Allo stesso modo, qualsiasi WebElement nel risultato 
+Gli argomenti possono essere qualsiasi JSON-primitivo, array o oggetto JSON. Gli oggetti JSON che definiscono un riferimento WebElement
+saranno convertiti nell'elemento DOM corrispondente. Allo stesso modo, qualsiasi WebElement nel risultato
 dello script sarà restituito al client come oggetti JSON WebElement.
 
 :::caution

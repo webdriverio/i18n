@@ -4,11 +4,7 @@ title: waitForStable
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForStable.ts
 ---
 
-Attende che un elemento sia stabile (non in animazione) per il numero di
-millisecondi forniti. Restituisce true se il selettore
-corrisponde ad almeno un elemento stabile nel DOM, altrimenti genera un
-errore. Se il flag reverse è impostato su true, il comando restituirà invece true
-se il selettore non corrisponde ad alcun elemento stabile.
+Attendi che un elemento sia stabile (non in animazione) per il numero di millisecondi fornito. Restituisce true se il selettore corrisponde ad almeno un elemento stabile nel DOM, altrimenti genera un errore. Se il flag reverse è true, il comando restituirà invece true se il selettore non corrisponde a nessun elemento stabile.
 
 __Nota:__ è meglio disabilitare le animazioni invece di utilizzare questo comando
 
@@ -45,7 +41,7 @@ $(selector).waitForStable({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>se esiste, sovrascrive il messaggio di errore predefinito</td>
+      <td>se esiste sovrascrive il messaggio di errore predefinito</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">opzionale</span></td>

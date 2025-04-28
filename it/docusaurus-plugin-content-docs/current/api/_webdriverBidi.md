@@ -1506,5 +1506,3 @@ browser.inputSetFiles(params)
     </tr>
   </tbody>
 </table>
-
-

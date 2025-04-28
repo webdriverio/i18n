@@ -11,10 +11,10 @@ Si presume che lo script eseguito sia sincrono e il risultato della valutazione 
 client.
 
 L'argomento script definisce lo script da eseguire sotto forma di corpo di una funzione. Il valore restituito da
-quella funzione sarà restituito al client. La funzione verrà invocata con l'array di args fornito
+quella funzione sarà restituito al client. La funzione verrà invocata con l'array args fornito
 e i valori possono essere accessibili tramite l'oggetto arguments nell'ordine specificato.
 
-Gli argomenti possono essere qualsiasi JSON primitivo, array o oggetto JSON. Gli oggetti JSON che definiscono un riferimento WebElement
+Gli argomenti possono essere qualsiasi JSON-primitivo, array o oggetto JSON. Gli oggetti JSON che definiscono un riferimento WebElement
 saranno convertiti nell'elemento DOM corrispondente. Allo stesso modo, qualsiasi WebElement nel risultato
 dello script sarà restituito al client come oggetti JSON WebElement.
 

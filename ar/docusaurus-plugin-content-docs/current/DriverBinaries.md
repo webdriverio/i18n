@@ -1,29 +1,29 @@
 ---
 id: driverbinaries
-title: ثنائيات برامج التشغيل
+title: ثنائيات التشغيل
 ---
 
-لتشغيل الأتمتة بناءً على بروتوكول WebDriver، تحتاج إلى إعداد برامج تشغيل المتصفح التي تترجم أوامر الأتمتة وتكون قادرة على تنفيذها في المتصفح.
+لتشغيل التشغيل الآلي المعتمد على بروتوكول WebDriver، تحتاج إلى إعداد برامج تشغيل المتصفح التي تترجم أوامر التشغيل الآلي وتكون قادرة على تنفيذها في المتصفح.
 
 ## الإعداد التلقائي
 
-مع WebdriverIO `v8.14` والإصدارات الأحدث، لم تعد هناك حاجة لتنزيل وإعداد أي برامج تشغيل للمتصفح يدويًا حيث يتم التعامل معها بواسطة WebdriverIO. كل ما عليك فعله هو تحديد المتصفح الذي تريد اختباره وسيقوم WebdriverIO بالباقي.
+مع WebdriverIO `v8.14` والإصدارات الأحدث، لم تعد هناك حاجة لتنزيل وإعداد أي برامج تشغيل متصفح يدويًا لأن WebdriverIO يتعامل مع هذا الأمر. كل ما عليك فعله هو تحديد المتصفح الذي تريد اختباره وسيقوم WebdriverIO بالباقي.
 
-### تخصيص مستوى الأتمتة
+### تخصيص مستوى التشغيل الآلي
 
-تمتلك WebdriverIO ثلاثة مستويات من الأتمتة:
+لدى WebdriverIO ثلاثة مستويات من التشغيل الآلي:
 
 **1. تنزيل وتثبيت المتصفح باستخدام [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
 
-إذا قمت بتحديد مجموعة `browserName`/`browserVersion` في تكوين [capabilities](configuration#capabilities-1)، سيقوم WebdriverIO بتنزيل وتثبيت المجموعة المطلوبة، بغض النظر عن وجود تثبيت سابق على الجهاز. إذا أغفلت `browserVersion`، سيحاول WebdriverIO أولاً تحديد واستخدام تثبيت موجود بواسطة [locate-app](https://www.npmjs.com/package/locate-app)، وإلا سيقوم بتنزيل وتثبيت إصدار المتصفح المستقر الحالي. لمزيد من التفاصيل حول `browserVersion`، انظر [هنا](capabilities#automate-different-browser-channels).
+إذا قمت بتحديد مجموعة `browserName`/`browserVersion` في تكوين [capabilities](configuration#capabilities-1)، سيقوم WebdriverIO بتنزيل وتثبيت المجموعة المطلوبة، بغض النظر عما إذا كان هناك تثبيت موجود على الجهاز. إذا حذفت `browserVersion`، سيحاول WebdriverIO أولاً تحديد موقع واستخدام تثبيت موجود باستخدام [locate-app](https://www.npmjs.com/package/locate-app)، وإلا فسيقوم بتنزيل وتثبيت إصدار المتصفح المستقر الحالي. لمزيد من التفاصيل حول `browserVersion`، انظر [هنا](capabilities#automate-different-browser-channels).
 
 :::caution
 
-الإعداد التلقائي للمتصفح لا يدعم Microsoft Edge. حاليًا، يتم دعم Chrome و Chromium و Firefox فقط.
+لا يدعم الإعداد التلقائي للمتصفح Microsoft Edge. حاليًا، يتم دعم Chrome وChromium وFirefox فقط.
 
 :::
 
-إذا كان لديك تثبيت للمتصفح في موقع لا يمكن اكتشافه تلقائيًا بواسطة WebdriverIO، يمكنك تحديد الملف الثنائي للمتصفح الذي سيعطل التنزيل والتثبيت التلقائي.
+إذا كان لديك تثبيت متصفح في موقع لا يمكن الكشف عنه تلقائيًا بواسطة WebdriverIO، يمكنك تحديد الملف الثنائي للمتصفح الذي سيعطل التنزيل والتثبيت التلقائي.
 
 ```ts
 {
@@ -40,7 +40,7 @@ title: ثنائيات برامج التشغيل
 
 **2. تنزيل وتثبيت برنامج التشغيل باستخدام [Chromedriver](https://www.npmjs.com/package/chromedriver) أو [Edgedriver](https://www.npmjs.com/package/edgedriver) أو [Geckodriver](https://www.npmjs.com/package/geckodriver).**
 
-سيقوم WebdriverIO دائمًا بذلك، ما لم يتم تحديد [binary](capabilities#binary) لبرنامج التشغيل في التكوين:
+سيقوم WebdriverIO دائمًا بذلك، ما لم يتم تحديد [binary](capabilities#binary) في التكوين:
 
 ```ts
 {
@@ -63,7 +63,7 @@ title: ثنائيات برامج التشغيل
 
 :::caution
 
-تجنب تحديد `binary` للمتصفح وإغفال `binary` لبرنامج التشغيل المقابل أو العكس. إذا تم تحديد واحد فقط من قيم `binary`، سيحاول WebdriverIO استخدام أو تنزيل متصفح/برنامج تشغيل متوافق معه. ومع ذلك، في بعض السيناريوهات قد يؤدي ذلك إلى مجموعة غير متوافقة. لذلك، يُنصح بتحديد كليهما دائمًا لتجنب أي مشكلات ناتجة عن عدم توافق الإصدارات.
+تجنب تحديد `binary` للمتصفح وحذف `binary` لبرنامج التشغيل المقابل أو العكس. إذا تم تحديد واحد فقط من قيم `binary`، فسيحاول WebdriverIO استخدام أو تنزيل متصفح/برنامج تشغيل متوافق معه. ومع ذلك، في بعض السيناريوهات، قد يؤدي ذلك إلى مجموعة غير متوافقة. لذلك، يوصى بأن تحدد دائمًا كليهما لتجنب أي مشاكل ناتجة عن عدم توافق الإصدار.
 
 :::
 
@@ -77,23 +77,23 @@ title: ثنائيات برامج التشغيل
 
 ## الإعداد اليدوي
 
-فيما يلي وصف لكيفية إعداد كل برنامج تشغيل بشكل فردي. يمكنك العثور على قائمة بجميع برامج التشغيل في ملف README الخاص بـ [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
+فيما يلي وصف لكيفية إعداد كل برنامج تشغيل بشكل منفصل. يمكنك العثور على قائمة بجميع برامج التشغيل في ملف README الخاص بـ [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
 
 :::tip
 
-إذا كنت تبحث عن إعداد الأجهزة المحمولة ومنصات واجهة المستخدم الأخرى، فألق نظرة على [دليل إعداد Appium](appium) الخاص بنا.
+إذا كنت تبحث عن إعداد منصات الأجهزة المحمولة ومنصات واجهة المستخدم الأخرى، فألق نظرة على دليل [إعداد Appium](appium) الخاص بنا.
 
 :::
 
 ### Chromedriver
 
-لأتمتة Chrome يمكنك تنزيل Chromedriver مباشرة من [موقع المشروع](http://chromedriver.chromium.org/downloads) أو من خلال حزمة NPM:
+لتشغيل Chrome آليًا، يمكنك تنزيل Chromedriver مباشرة من [موقع المشروع](http://chromedriver.chromium.org/downloads) أو من خلال حزمة NPM:
 
 ```bash npm2yarn
 npm install -g chromedriver
 ```
 
-يمكنك بعد ذلك بدء تشغيله عبر:
+يمكنك بعد ذلك بدءه عبر:
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,7 +101,7 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-لأتمتة Firefox قم بتنزيل أحدث إصدار من `geckodriver` لبيئتك وفك ضغطه في دليل المشروع الخاص بك:
+لتشغيل Firefox آليًا، قم بتنزيل أحدث إصدار من `geckodriver` لبيئتك وقم بفك ضغطه في دليل مشروعك:
 
 <Tabs
   defaultValue="npm"
@@ -175,7 +175,7 @@ cd $unzipped_file
 </TabItem>
 </Tabs>
 
-**ملاحظة:** إصدارات `geckodriver` الأخرى متاحة [هنا](https://github.com/mozilla/geckodriver/releases). بعد التنزيل يمكنك بدء تشغيل برنامج التشغيل عبر:
+**ملاحظة:** تتوفر إصدارات أخرى من `geckodriver` [هنا](https://github.com/mozilla/geckodriver/releases). بعد التنزيل، يمكنك بدء برنامج التشغيل عبر:
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -192,7 +192,7 @@ edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b177
 
 ### Safaridriver
 
-يأتي Safaridriver مثبتًا مسبقًا على نظام MacOS الخاص بك ويمكن بدء تشغيله مباشرة عبر:
+يأتي Safaridriver مثبتًا مسبقًا على نظام MacOS الخاص بك ويمكن بدءه مباشرة عبر:
 
 ```sh
 safaridriver -p 4444

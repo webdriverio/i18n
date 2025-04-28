@@ -24,7 +24,7 @@ browser.deepLink(link, appIdentifier)
     <tr>
       <td><code><var>link</var></code></td>
       <td>`string`</td>
-      <td>L'URL del deep link che dovrebbe essere aperto nell'app mobile. Dovrebbe essere un URL di deep link valido (es. `myapp://path`). Se è un deep link universale, che può essere utilizzato per iOS, usa il metodo `browser.url("your-url")`.</td>
+      <td>L'URL del deep link che dovrebbe essere aperto nell'app mobile. Dovrebbe essere un URL di deep link valido (es. `myapp://path`). Se si tratta di un deep link universale, che può essere utilizzato per iOS, usa il metodo `browser.url("your-url")`.</td>
     </tr>
     <tr>
       <td><code><var>appIdentifier</var></code></td>

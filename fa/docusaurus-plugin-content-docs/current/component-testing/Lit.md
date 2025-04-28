@@ -1,15 +1,15 @@
 ---
 id: lit
-title: Lit
+title: لیت
 ---
 
-Lit یک کتابخانه ساده برای ساخت اجزای وب سریع و سبک است. آزمایش اجزای وب Lit با WebdriverIO به لطف انتخابگرهای [shadow DOM](/docs/selectors#deep-selectors) بسیار آسان است.
+لیت (Lit) یک کتابخانه ساده برای ساخت کامپوننت‌های وب سریع و سبک است. تست کامپوننت‌های وب لیت با WebdriverIO به لطف [سلکتورهای شادو DOM](/docs/selectors#deep-selectors) بسیار آسان است. شما می‌توانید عناصر تو در تو در ریشه‌های شادو را با تنها یک دستور واحد پرس‌وجو کنید.
 
-## تنظیم
+## راه‌اندازی
 
-برای راه‌اندازی WebdriverIO در پروژه Lit خود، دستورالعمل‌های [](/docs/component-testing#set-up) در اسناد تست اجزاء ما را دنبال کنید. برای Lit نیازی به تنظیم از پیش تعیین شده ندارید، زیرا اجزای وب Lit نیازی به اجرا از طریق یک کامپایلر ندارند، آنها بهبودی برای اجزاء خالص وب هستند.
+برای راه‌اندازی WebdriverIO در پروژه لیت خود، [دستورالعمل‌ها](/docs/component-testing#set-up) در مستندات تست کامپوننت ما را دنبال کنید. برای لیت نیازی به پیش‌تنظیمات ندارید زیرا کامپوننت‌های وب لیت نیازی به اجرا از طریق کامپایلر ندارند، آن‌ها بهبودهای خالص کامپوننت وب هستند.
 
-پس از راه‌اندازی، می‌توانید تست‌ها را با اجرای زیر شروع کنید:
+پس از راه‌اندازی، می‌توانید تست‌ها را با اجرای دستور زیر شروع کنید:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -17,7 +17,7 @@ npx wdio run ./wdio.conf.js
 
 ## نوشتن تست‌ها
 
-فرض کنید کامپوننت Lit زیر را دارید:
+فرض کنید کامپوننت لیت زیر را دارید:
 
 ```ts title="./components/Component.ts"
 import { LitElement, css, html } from 'lit'
@@ -35,7 +35,7 @@ export class SimpleGreeting extends LitElement {
 }
 ```
 
-برای تست کامپوننت، باید قبل از شروع تست، آن را در صفحه تست رندر کنید و مطمئن شوید که بعداً پاک می شود:
+برای تست کامپوننت، باید آن را قبل از شروع تست در صفحه تست رندر کنید و اطمینان حاصل کنید که پس از آن پاکسازی می‌شود:
 
 ```ts title="lit.test.js"
 import expect from 'expect'
@@ -66,4 +66,4 @@ describe('Lit Component testing', () => {
 })
 ```
 
-می توانید یک نمونه کامل از مجموعه تست WebdriverIO برای Lit را در [مخزن نمونه ما](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite) بیابید.
+شما می‌توانید یک نمونه کامل از مجموعه تست کامپوننت WebdriverIO برای لیت را در [مخزن نمونه](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite) ما پیدا کنید.

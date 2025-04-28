@@ -1,15 +1,15 @@
 ---
 id: visual-reporter
-title: Reporter Visuale
+title: Reporter Visivo
 ---
 
-Il Reporter Visuale è una nuova funzionalità introdotta nel `@wdio/visual-service`, a partire dalla versione [v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0). Questo reporter consente agli utenti di visualizzare i report diff JSON generati dal servizio di Visual Testing e trasformarli in un formato leggibile dall'uomo. Aiuta i team ad analizzare e gestire meglio i risultati dei test visivi fornendo un'interfaccia grafica per esaminare l'output.
+Il Reporter Visivo è una nuova funzionalità introdotta nel `@wdio/visual-service`, a partire dalla versione [v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0). Questo reporter consente agli utenti di visualizzare i report di confronto JSON generati dal servizio di Visual Testing e trasformarli in un formato comprensibile. Aiuta i team ad analizzare e gestire meglio i risultati dei test visivi fornendo un'interfaccia grafica per esaminare l'output.
 
-Per utilizzare questa funzionalità, assicurati di avere la configurazione necessaria per generare il file `output.json` richiesto. Questo documento ti guiderà attraverso la configurazione, l'esecuzione e la comprensione del Reporter Visuale.
+Per utilizzare questa funzionalità, assicurati di avere la configurazione necessaria per generare il file `output.json`. Questo documento ti guiderà attraverso la configurazione, l'esecuzione e la comprensione del Reporter Visivo.
 
 # Prerequisiti
 
-Prima di utilizzare il Reporter Visuale, assicurati di aver configurato il servizio di Visual Testing per generare file di report JSON:
+Prima di utilizzare il Reporter Visivo, assicurati di aver configurato il servizio di Visual Testing per generare file di report JSON:
 
 ```ts
 export const config = {
@@ -25,11 +25,11 @@ export const config = {
 };
 ```
 
-Per istruzioni di configurazione più dettagliate, consulta la [Documentazione di Visual Testing](./) di WebdriverIO o il [`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)
+Per istruzioni di configurazione più dettagliate, consulta la [Documentazione di Visual Testing](./) di WebdriverIO o [`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)
 
 # Installazione
 
-Per installare il Reporter Visuale, aggiungilo come dipendenza di sviluppo al tuo progetto usando npm:
+Per installare il Reporter Visivo, aggiungilo come dipendenza di sviluppo al tuo progetto utilizzando npm:
 
 ```bash
 npm install @wdio/visual-reporter --save-dev
@@ -39,26 +39,26 @@ Questo garantirà che i file necessari siano disponibili per generare report dai
 
 # Utilizzo
 
-## Creazione del Report Visuale
+## Costruzione del Report Visivo
 
-Una volta eseguiti i test visivi e generato il file `output.json`, puoi creare il report visuale utilizzando la CLI o i prompt interattivi.
+Dopo aver eseguito i tuoi test visivi e generato il file `output.json`, puoi costruire il report visivo utilizzando la CLI o i prompt interattivi.
 
-### Utilizzo CLI
+### Utilizzo della CLI
 
 Puoi utilizzare il comando CLI per generare il report eseguendo:
 
 ```bash
-npx wdio-visual-reporter --jsonOutput=<path-to-output.json> --reportFolder=<path-to-store-report> --logLevel=debug
+npx wdio-visual-reporter --jsonOutput=<percorso-di-output.json> --reportFolder=<percorso-per-salvare-report> --logLevel=debug
 ```
 
 #### Opzioni richieste:
 
 -   `--jsonOutput`: Il percorso relativo al file `output.json` generato dal servizio di Visual Testing. Questo percorso è relativo alla directory da cui esegui il comando.
--   `--reportFolder`: La directory relativa in cui verrà memorizzato il report generato. Anche questo percorso è relativo alla directory da cui esegui il comando.
+-   `--reportFolder`: La directory relativa dove verrà memorizzato il report generato. Questo percorso è anche relativo alla directory da cui esegui il comando.
 
 #### Opzioni facoltative:
 
--   `--logLevel`: Imposta su `debug` per ottenere log dettagliati, particolarmente utili per la risoluzione dei problemi.
+-   `--logLevel`: Imposta su `debug` per ottenere un logging dettagliato, particolarmente utile per la risoluzione dei problemi.
 
 #### Esempio
 
@@ -80,13 +80,13 @@ Questo genererà il report nella cartella specificata e fornirà feedback nella 
 Aprire `path/to/report/index.html` direttamente in un browser **senza servirlo da un server locale** **NON** funzionerà.
 :::
 
-Per visualizzare il report, è necessario utilizzare un server semplice come [sirv-cli](https://www.npmjs.com/package/sirv-cli). Puoi avviare il server con il seguente comando:
+Per visualizzare il report, è necessario utilizzare un semplice server come [sirv-cli](https://www.npmjs.com/package/sirv-cli). Puoi avviare il server con il seguente comando:
 
 ```bash
 npx sirv-cli /path/to/report --single
 ```
 
-Questo produrrà log simili all'esempio seguente. Nota che il numero di porta potrebbe variare:
+Questo produrrà log simili all'esempio seguente. Nota che il numero di porta può variare:
 
 ```logs
   Your application is ready~! 🚀
@@ -107,7 +107,7 @@ In alternativa, puoi eseguire il seguente comando e rispondere ai prompt per gen
 npx @wdio/visual-reporter
 ```
 
-I prompt ti guideranno nel fornire i percorsi e le opzioni richieste. Alla fine, il prompt interattivo ti chiederà anche se vuoi avviare un server per visualizzare il report. Se scegli di avviare il server, lo strumento lancerà un server semplice e mostrerà un URL nei log. Puoi aprire questo URL nel tuo browser per visualizzare il report.
+I prompt ti guideranno nella fornitura dei percorsi e delle opzioni richieste. Alla fine, il prompt interattivo ti chiederà anche se desideri avviare un server per visualizzare il report. Se scegli di avviare il server, lo strumento lancerà un semplice server e visualizzerà un URL nei log. Puoi aprire questo URL nel tuo browser per visualizzare il report.
 
 ![Visual Reporter CLI](/img/visual/cli-screen-recording.gif)
 
@@ -125,7 +125,7 @@ Se hai scelto di **non** avviare il server tramite il prompt interattivo, puoi c
 npx sirv-cli /path/to/report --single
 ```
 
-Questo produrrà log simili all'esempio seguente. Nota che il numero di porta potrebbe variare:
+Questo produrrà log simili all'esempio seguente. Nota che il numero di porta può variare:
 
 ```logs
   Your application is ready~! 🚀
@@ -142,13 +142,13 @@ Ora puoi visualizzare il report aprendo l'URL fornito nel tuo browser.
 
 Per vedere un esempio di come appare il report, visita la nostra [demo su GitHub Pages](https://webdriverio.github.io/visual-testing/).
 
-# Comprensione del Report Visuale
+# Comprendere il Report Visivo
 
-Il Reporter Visuale fornisce una visualizzazione organizzata dei risultati dei tuoi test visivi. Per ogni esecuzione di test, sarai in grado di:
+Il Reporter Visivo fornisce una visualizzazione organizzata dei risultati dei tuoi test visivi. Per ogni esecuzione di test, sarai in grado di:
 
 -   Navigare facilmente tra i casi di test e vedere i risultati aggregati.
--   Rivedere i metadati come i nomi dei test, i browser utilizzati e i risultati del confronto.
--   Visualizzare le immagini diff che mostrano dove sono state rilevate le differenze visive.
+-   Esaminare i metadati come i nomi dei test, i browser utilizzati e i risultati del confronto.
+-   Visualizzare le immagini di differenza che mostrano dove sono state rilevate differenze visive.
 
 Questa rappresentazione visiva semplifica l'analisi dei risultati dei test, rendendo più facile identificare e affrontare le regressioni visive.
 

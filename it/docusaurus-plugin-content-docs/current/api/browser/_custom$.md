@@ -4,8 +4,8 @@ title: custom$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/custom$.ts
 ---
 
-Il `custom$` ti permette di utilizzare una strategia personalizzata dichiarata usando `browser.addLocatorStrategy`.
-Leggi di più sulle strategie di selettori personalizzati nella [documentazione dei Selettori](../../selectors#custom-selector-strategies).
+Il `custom$` ti consente di utilizzare una strategia personalizzata dichiarata utilizzando `browser.addLocatorStrategy`.
+Leggi di più sulle strategie di selezione personalizzate nella [documentazione dei Selettori](../../selectors#custom-selector-strategies).
 
 ##### Utilizzo
 

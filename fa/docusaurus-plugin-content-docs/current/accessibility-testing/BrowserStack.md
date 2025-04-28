@@ -1,34 +1,34 @@
 ---
 id: browserstack
-title: BrowserStack Accessibility Testing
+title: تست دسترسی‌پذیری BrowserStack
 ---
 
-# BrowserStack Accessibility Testing
+# تست دسترسی‌پذیری BrowserStack
 
-You can easily integrate accessibility tests in your WebdriverIO test suites using the [Automated tests feature of BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+شما می‌توانید به راحتی تست‌های دسترسی‌پذیری را در مجموعه تست‌های WebdriverIO خود با استفاده از [ویژگی تست‌های خودکار BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) ادغام کنید.
 
-## Advantages of Automated Tests in BrowserStack Accessibility Testing
+## مزایای تست‌های خودکار در تست دسترسی‌پذیری BrowserStack
 
-To use Automated tests in BrowserStack Accessibility Testing, your tests should be running on BrowserStack Automate.
+برای استفاده از تست‌های خودکار در تست دسترسی‌پذیری BrowserStack، تست‌های شما باید روی BrowserStack Automate اجرا شوند.
 
-The following are the advantages of Automated tests:
+مزایای زیر برای تست‌های خودکار وجود دارد:
 
-- Seamlessly integrates into your pre-existing automation test suite.
-- No code changes are required in test cases.
-- Requires zero additional maintenance for accessibility testing.
-- Understand historical trends and gain test-case insights.
+* به طور یکپارچه در مجموعه تست‌های خودکار موجود شما ادغام می‌شود.
+* هیچ تغییری در کد تست‌ها نیاز نیست.
+* برای تست دسترسی‌پذیری به هیچ نگهداری اضافی نیاز ندارد.
+* روند‌های تاریخی را درک کنید و بینش‌های موردی تست‌ها را به دست آورید.
 
-## Get Started with BrowserStack Accessibility Testing
+## شروع کار با تست دسترسی‌پذیری BrowserStack
 
-Follow these steps to integrate your WebdriverIO test suites with BrowserStack's Accessibility Testing:
+برای ادغام مجموعه تست‌های WebdriverIO خود با تست دسترسی‌پذیری BrowserStack، این مراحل را دنبال کنید:
 
-1. Install `@wdio/browserstack-service` npm package.
+1. بسته `@wdio/browserstack-service` را نصب کنید.
 
 ```bash npm2yarn
 npm install --save-dev @wdio/browserstack-service
 ```
 
-2. Update `wdio.conf.js` config file.
+2. فایل پیکربندی `wdio.conf.js` را به‌روزرسانی کنید.
 
 ```javascript
 exports.config = {
@@ -60,4 +60,4 @@ exports.config = {
   };
 ```
 
-You can view detailed instructions [here](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+شما می‌توانید دستورالعمل‌های مفصل را [اینجا](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) مشاهده کنید.

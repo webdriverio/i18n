@@ -1,12 +1,12 @@
 ---
 id: longPress
-title: longPress（長押し）
+title: 長押し
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/longPress.ts
 ---
 
 画面上の指定された要素に対して長押しジェスチャーを実行します。
 
-これは選択された要素に対してWebDriverの`action`コマンドを発行します。`click`コマンドに基づいています。
+これは選択された要素に対してWebDriverの`action`コマンドを発行します。これは`click`コマンドに基づいています。
 
 :::info
 
@@ -15,11 +15,11 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
  - `appium-uiautomator2-driver`（Android用）
  - `appium-xcuitest-driver`（iOS用）
 
-互換性の問題を避けるために、ローカルまたはクラウドベースのAppium環境を定期的に更新してください。
+互換性の問題を避けるため、ローカルまたはクラウドベースのAppium環境を定期的に更新してください。
 
 :::
 
-##### 使用方法
+##### 使用法
 
 ```js
 $(selector).longPress({ x, y, duration })
@@ -30,7 +30,7 @@ $(selector).longPress({ x, y, duration })
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -52,7 +52,7 @@ $(selector).longPress({ x, y, duration })
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`number`</td>
-      <td>押下時間（ミリ秒）、デフォルトは1500ミリ秒 <br /><strong>モバイルのみ</strong></td>
+      <td>押す時間（ミリ秒）、デフォルトは1500ミリ秒 <br /><strong>モバイルのみ</strong></td>
     </tr>
   </tbody>
 </table>

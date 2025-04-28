@@ -33,28 +33,28 @@ export const config = {
 -   **Predefinito:** `6`
 -   **Supportato:** Web
 
-Il padding che deve essere aggiunto alla barra degli indirizzi su iOS e Android per effettuare un ritaglio adeguato del viewport.
+Il padding che deve essere aggiunto alla barra degli indirizzi su iOS e Android per fare un ritaglio corretto della viewport.
 
 ### `autoElementScroll`
 
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `true`
--   **Supportato:** Web, App Ibrida (Webview)
+-   **Supportato:** Web, Hybrid App (Webview)
 
-Questa opzione ti permette di disabilitare lo scorrimento automatico dell'elemento nella visualizzazione quando viene creato uno screenshot di un elemento.
+Questa opzione ti permette di disabilitare lo scorrimento automatico dell'elemento nella vista quando viene creato uno screenshot dell'elemento.
 
 ### `addIOSBezelCorners`
 
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `false`
--   **Supportato:** Web, App Ibrida (Webview), App Nativa
+-   **Supportato:** Web, Hybrid App (Webview), Native App
 
-Aggiunge angoli della cornice e notch/dynamic island allo screenshot per i dispositivi iOS.
+Aggiunge angoli del bezzel e notch/dynamic island allo screenshot per i dispositivi iOS.
 
 :::info NOTA
-Questo può essere fatto solo quando il nome del dispositivo **PUÒ** essere determinato automaticamente e corrisponde al seguente elenco di nomi di dispositivi normalizzati. La normalizzazione sarà eseguita da questo modulo.
+Questo può essere fatto solo quando il nome del dispositivo **PUÒ** essere determinato automaticamente e corrisponde al seguente elenco di nomi di dispositivi normalizzati. La normalizzazione sarà effettuata da questo modulo.
 **iPhone:**
 
 -   iPhone X: `iphonex`
@@ -94,18 +94,18 @@ Questo può essere fatto solo quando il nome del dispositivo **PUÒ** essere det
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `true`
--   **Supportato:** Web, App Ibrida (Webview), App Nativa
+-   **Supportato:** Web, Hybrid App (Webview), Native App
 
-Se durante il confronto non viene trovata un'immagine di base, l'immagine viene automaticamente copiata nella cartella di base.
+Se non viene trovata un'immagine di riferimento durante il confronto, l'immagine viene automaticamente copiata nella cartella di riferimento.
 
 ### `baselineFolder`
 
 -   **Tipo:** `string|()=> string`
 -   **Obbligatorio:** No
 -   **Predefinito:** `.path/to/testfile/__snapshots__/`
--   **Supportato:** Web, App Ibrida (Webview), App Nativa
+-   **Supportato:** Web, Hybrid App (Webview), Native App
 
-La directory che conterrà tutte le immagini di base utilizzate durante il confronto. Se non impostato, verrà utilizzato il valore predefinito, che memorizzerà i file in una cartella `__snapshots__/` accanto alla spec che esegue i test visivi. Può essere utilizzata anche una funzione che restituisce una `string` per impostare il valore di `baselineFolder`:
+La directory che conterrà tutte le immagini di riferimento utilizzate durante il confronto. Se non impostato, verrà utilizzato il valore predefinito che memorizzerà i file in una cartella `__snapshots__/` accanto alla specifica che esegue i test visivi. È possibile utilizzare anche una funzione che restituisce una `string` per impostare il valore di `baselineFolder`:
 
 ```js
 {
@@ -114,7 +114,7 @@ La directory che conterrà tutte le immagini di base utilizzate durante il confr
 // OPPURE
 {
     baselineFolder: () => {
-        // Fai un po' di magia qui
+        // Fai qualche magia qui
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -125,12 +125,12 @@ La directory che conterrà tutte le immagini di base utilizzate durante il confr
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `false`
--   **Supportato:** Web, App Ibrida (Webview), App Nativa
+-   **Supportato:** Web, Hybrid App (Webview), Native App
 
 Elimina la cartella di runtime (`actual` & `diff`) all'inizializzazione
 
 :::info NOTA
-Questo funzionerà solo quando lo [`screenshotPath`](#screenshotpath) è impostato attraverso le opzioni del plugin, e **NON FUNZIONERÀ** quando imposti le cartelle nei metodi
+Questo funzionerà solo quando [`screenshotPath`](#screenshotpath) è impostato attraverso le opzioni del plugin, e **NON FUNZIONERÀ** quando imposti le cartelle nei metodi
 :::
 
 ### `createJsonReportFiles` **(NUOVO)**
@@ -139,7 +139,7 @@ Questo funzionerà solo quando lo [`screenshotPath`](#screenshotpath) è imposta
 -   **Obbligatorio:** No
 -   **Predefinito:** `false`
 
-Ora hai la possibilità di esportare i risultati del confronto in un file di report JSON. Fornendo l'opzione `createJsonReportFiles: true`, ogni immagine confrontata creerà un report memorizzato nella cartella `actual`, accanto a ciascun risultato dell'immagine `actual`. L'output sarà simile a questo:
+Ora hai l'opzione di esportare i risultati di confronto in un file di report JSON. Fornendo l'opzione `createJsonReportFiles: true`, ogni immagine confrontata creerà un report archiviato nella cartella `actual`, accanto a ciascun risultato dell'immagine `actual`. L'output sarà simile a questo:
 
 ```json
 {
@@ -202,14 +202,14 @@ Ora hai la possibilità di esportare i risultati del confronto in un file di rep
 }
 ```
 
-Quando tutti i test sono eseguiti, verrà generato un nuovo file JSON con la raccolta dei confronti che si troverà nella root della tua cartella `actual`. I dati sono raggruppati per:
+Quando tutti i test sono stati eseguiti, verrà generato un nuovo file JSON con la raccolta dei confronti che si troverà nella radice della cartella `actual`. I dati sono raggruppati per:
 
 -   `describe` per Jasmine/Mocha o `Feature` per CucumberJS
 -   `it` per Jasmine/Mocha o `Scenario` per CucumberJS
     e poi ordinati per:
 -   `commandName`, che sono i nomi dei metodi di confronto utilizzati per confrontare le immagini
--   `instanceData`, prima browser, poi dispositivo, quindi piattaforma
-    avrà questo aspetto
+-   `instanceData`, prima il browser, poi il dispositivo, poi la piattaforma
+    avrà un aspetto simile a questo
 
 ```json
 [
@@ -252,10 +252,10 @@ Quando tutti i test sono eseguiti, verrà generato un nuovo file JSON con la rac
 ]
 ```
 
-I dati del report ti daranno l'opportunità di costruire il tuo report visivo senza dover fare tutta la magia e la raccolta dati da solo.
+I dati del report ti daranno l'opportunità di costruire il tuo report visivo senza dover fare tutta la magia e la raccolta dei dati da solo.
 
 :::info NOTA
-Devi usare la versione `@wdio/visual-testing` 5.2.0 o superiore
+È necessario utilizzare `@wdio/visual-testing` versione `5.2.0` o superiore
 :::
 
 ### `disableBlinkingCursor`
@@ -263,20 +263,18 @@ Devi usare la versione `@wdio/visual-testing` 5.2.0 o superiore
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `false`
--   **Supportato:** Web, App Ibrida (Webview)
+-   **Supportato:** Web, Hybrid App (Webview)
 
-Abilita/disabilita il "lampeggiamento" del cursore in tutti gli elementi `input`, `textarea`, `[contenteditable]` nell'applicazione. Se impostato su `true`, il cursore verrà impostato su `transparent` prima di scattare uno screenshot
-e ripristinato al termine
+Abilita/Disabilita il "lampeggiamento" del cursore in tutti gli elementi `input`, `textarea`, `[contenteditable]` nell'applicazione. Se impostato su `true`, il cursore sarà impostato su `transparent` prima di scattare uno screenshot e ripristinato al termine
 
 ### `disableCSSAnimation`
 
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `false`
--   **Supportato:** Web, App Ibrida (Webview)
+-   **Supportato:** Web, Hybrid App (Webview)
 
-Abilita/disabilita tutte le animazioni CSS nell'applicazione. Se impostato su `true`, tutte le animazioni verranno disabilitate prima di scattare uno screenshot
-e ripristinate al termine
+Abilita/Disabilita tutte le animazioni CSS nell'applicazione. Se impostato su `true`, tutte le animazioni saranno disabilitate prima di scattare uno screenshot e ripristinate al termine
 
 ### `enableLayoutTesting`
 
@@ -285,12 +283,12 @@ e ripristinate al termine
 -   **Predefinito:** `false`
 -   **Supportato:** Web
 
-Questo nasconderà tutto il testo in una pagina in modo che solo il layout venga utilizzato per il confronto. La nascita avverrà aggiungendo lo stile `'color': 'transparent !important'` a **ciascun** elemento.
+Questo nasconderà tutto il testo in una pagina in modo che solo il layout venga utilizzato per il confronto. Il nascondimento sarà fatto aggiungendo lo stile `'color': 'transparent !important'` a **ciascun** elemento.
 
-Per l'output vedere [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+Per l'output vedi [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
 
 :::info
-Utilizzando questo flag, ogni elemento che contiene testo (quindi non solo `p, h1, h2, h3, h4, h5, h6, span, a, li`, ma anche `div|button|..`) riceverà questa proprietà. Non esiste **nessuna** opzione per personalizzarlo.
+Utilizzando questo flag, ogni elemento che contiene testo (quindi non solo `p, h1, h2, h3, h4, h5, h6, span, a, li`, ma anche `div|button|..`) riceverà questa proprietà. **Non** esiste un'opzione per personalizzare questo comportamento.
 :::
 
 ### `formatImageName`
@@ -298,7 +296,7 @@ Utilizzando questo flag, ogni elemento che contiene testo (quindi non solo `p, h
 -   **Tipo:** `string`
 -   **Obbligatorio:** No
 -   **Predefinito:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **Supportato:** Web, App Ibrida (Webview), App Nativa
+-   **Supportato:** Web, Hybrid App (Webview), Native App
 
 Il nome delle immagini salvate può essere personalizzato passando il parametro `formatImageName` con una stringa di formato come:
 
@@ -312,18 +310,18 @@ Se non possono essere determinate, verranno utilizzati i valori predefiniti.
 -   `browserName`: Il nome del browser nelle capacità fornite
 -   `browserVersion`: La versione del browser fornita nelle capacità
 -   `deviceName`: Il nome del dispositivo dalle capacità
--   `dpr`: La densità di pixel del dispositivo
+-   `dpr`: Il rapporto di pixel del dispositivo
 -   `height`: L'altezza dello schermo
 -   `logName`: Il logName dalle capacità
 -   `mobile`: Questo aggiungerà `_app`, o il nome del browser dopo il `deviceName` per distinguere gli screenshot dell'app dagli screenshot del browser
 -   `platformName`: Il nome della piattaforma nelle capacità fornite
 -   `platformVersion`: La versione della piattaforma fornita nelle capacità
--   `tag`: Il tag fornito nei metodi che viene chiamato
+-   `tag`: Il tag fornito nei metodi che vengono chiamati
 -   `width`: La larghezza dello schermo
 
 :::info
 
-Non puoi fornire percorsi/cartelle personalizzati nel `formatImageName`. Se desideri modificare il percorso, controlla la modifica delle seguenti opzioni:
+Non è possibile fornire percorsi/cartelle personalizzati nel `formatImageName`. Se vuoi cambiare il percorso, controlla la modifica delle seguenti opzioni:
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
@@ -351,16 +349,16 @@ Questo funzionerà solo quando l'opzione del servizio/metodo `userBasedFullPageS
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `true`
--   **Supportato:** Web, App Ibrida (Webview)
+-   **Supportato:** Web, Hybrid App (Webview)
 
-Nasconde le barre di scorrimento nell'applicazione. Se impostato su true, tutte le barre di scorrimento verranno disabilitate prima di scattare uno screenshot. Questo è impostato su `true` per prevenire problemi extra.
+Nasconde le barre di scorrimento nell'applicazione. Se impostato su true, tutte le barre di scorrimento saranno disabilitate prima di scattare uno screenshot. Questo è impostato di default su `true` per prevenire problemi extra.
 
 ### `logLevel`
 
 -   **Tipo:** `string`
 -   **Obbligatorio:** No
 -   **Predefinito:** `info`
--   **Supportato:** Web, App Ibrida (Webview), App Nativa
+-   **Supportato:** Web, Hybrid App (Webview), Native App
 
 Aggiunge log extra, le opzioni sono `debug | info | warn | silent`
 
@@ -371,18 +369,18 @@ Gli errori vengono sempre registrati nella console.
 -   **Tipo:** `boolean`
 -   **Predefinito:** `false`
 -   **Obbligatorio:** no
--   **Supportato:** Web, App Ibrida (Webview), App Nativa
+-   **Supportato:** Web, Hybrid App (Webview), Native App
 
-Salva le immagini per istanza in una cartella separata, quindi ad esempio tutti gli screenshot di Chrome verranno salvati in una cartella Chrome come `desktop_chrome`.
+Salva le immagini per istanza in una cartella separata, quindi ad esempio tutti gli screenshot di Chrome saranno salvati in una cartella Chrome come `desktop_chrome`.
 
 ### `screenshotPath`
 
 -   **Tipo:** `string | () => string`
 -   **Predefinito:** `.tmp/`
 -   **Obbligatorio:** no
--   **Supportato:** Web, App Ibrida (Webview), App Nativa
+-   **Supportato:** Web, Hybrid App (Webview), Native App
 
-La directory che conterrà tutti gli screenshot attuali/differenti. Se non impostato, verrà utilizzato il valore predefinito. Una funzione che
+La directory che conterrà tutti gli screenshot effettivi/differenti. Se non impostato, verrà utilizzato il valore predefinito. Una funzione che
 restituisce una stringa può anche essere utilizzata per impostare il valore screenshotPath:
 
 ```js
@@ -392,7 +390,7 @@ restituisce una stringa può anche essere utilizzata per impostare il valore scr
 // OPPURE
 {
     screenshotPath: () => {
-        // Fai un po' di magia qui
+        // Fai qualche magia qui
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -402,20 +400,20 @@ restituisce una stringa può anche essere utilizzata per impostare il valore scr
 
 -   **Tipo:** `number`
 -   **Obbligatorio:** No
--   **Predefinito:** `6` per Android e `15` per iOS (`6` di default e `9` verranno aggiunti automaticamente per la possibile barra home su iPhone con notch o iPad che hanno una barra home)
+-   **Predefinito:** `6` per Android e `15` per iOS (`6` di default e `9` verrà aggiunto automaticamente per la possibile barra home su iPhone con notch o iPad che hanno una barra home)
 -   **Supportato:** Web
 
-Il padding che deve essere aggiunto alla barra degli strumenti su iOS e Android per effettuare un ritaglio adeguato del viewport.
+Il padding che deve essere aggiunto alla barra degli strumenti su iOS e Android per fare un ritaglio corretto della viewport.
 
 ### `userBasedFullPageScreenshot`
 
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `false`
--   **Supportato:** Web, App Ibrida (Webview) **Introdotto in visual-service@7.0.0**
+-   **Supportato:** Web, Hybrid App (Webview) **Introdotto in visual-service@7.0.0**
 
 Per impostazione predefinita, gli screenshot a pagina intera sul web desktop vengono acquisiti utilizzando il protocollo WebDriver BiDi, che consente screenshot veloci, stabili e coerenti senza scorrimento.
-Quando userBasedFullPageScreenshot è impostato su true, il processo di screenshot simula un utente reale: scorrendo la pagina, acquisendo screenshot di dimensioni del viewport e unendoli insieme. Questo metodo è utile per pagine con contenuto a caricamento lazy o rendering dinamico che dipende dalla posizione di scorrimento.
+Quando userBasedFullPageScreenshot è impostato su true, il processo di screenshot simula un utente reale: scorrendo la pagina, acquisendo screenshot di dimensioni viewport e unendoli insieme. Questo metodo è utile per pagine con contenuto caricato lazy o rendering dinamico che dipende dalla posizione di scorrimento.
 
 Usa questa opzione se la tua pagina si basa sul caricamento del contenuto durante lo scorrimento o se vuoi preservare il comportamento dei metodi di screenshot più vecchi.
 
@@ -424,7 +422,7 @@ Usa questa opzione se la tua pagina si basa sul caricamento del contenuto durant
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** No
 -   **Predefinito:** `true`
--   **Supportato:** Web, App Ibrida (Webview)
+-   **Supportato:** Web, Hybrid App (Webview)
 
 I font, inclusi i font di terze parti, possono essere caricati in modo sincrono o asincrono. Il caricamento asincrono significa che i font potrebbero caricarsi dopo che WebdriverIO ha determinato che una pagina è stata completamente caricata. Per prevenire problemi di rendering dei font, questo modulo, per impostazione predefinita, attenderà che tutti i font siano caricati prima di scattare uno screenshot.
 
@@ -432,9 +430,9 @@ I font, inclusi i font di terze parti, possono essere caricati in modo sincrono 
 
 :::info NOTA
 
-Questo modulo supporta anche il disegno del modo in cui un utente userebbe la sua tastiera per _spostarsi con il tab_ attraverso il sito web disegnando linee e punti da un elemento tabbable all'altro.<br/>
+Questo modulo supporta anche il disegno del modo in cui un utente utilizzerebbe la tastiera per _navigare con tab_ attraverso il sito web disegnando linee e punti da elemento tabbable a elemento tabbable.<br/>
 Il lavoro è ispirato al post del blog di [Viv Richards](https://github.com/vivrichards600) su ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-Il modo in cui vengono selezionati gli elementi tabbable si basa sul modulo [tabbable](https://github.com/davidtheclark/tabbable). Se ci sono problemi riguardanti il tabbing, controlla il [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) e in particolare la sezione [Maggiori dettagli](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+Il modo in cui vengono selezionati gli elementi tabbable si basa sul modulo [tabbable](https://github.com/davidtheclark/tabbable). Se ci sono problemi riguardanti il tabbing, controlla il [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) e in particolare la sezione [More details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
@@ -454,7 +452,7 @@ Le opzioni che possono essere modificate per le linee e i punti se usi i metodi 
 -   **Predefinito:** Vedi [qui](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) per tutti i valori predefiniti
 -   **Supportato:** Web
 
-Le opzioni per cambiare il cerchio.
+Le opzioni per modificare il cerchio.
 
 ##### `tabbableOptions.circle.backgroundColor`
 
@@ -537,7 +535,7 @@ Mostra il numero della sequenza di tab nel cerchio.
 -   **Predefinito:** Vedi [qui](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) per tutti i valori predefiniti
 -   **Supportato:** Web
 
-Le opzioni per cambiare la linea.
+Le opzioni per modificare la linea.
 
 ##### `tabbableOptions.line.color`
 
@@ -564,6 +562,6 @@ La larghezza della linea.
 -   **Tipo:** `object`
 -   **Obbligatorio:** No
 -   **Predefinito:** Vedi [qui](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) per tutti i valori predefiniti
--   **Supportato:** Web, App Ibrida (Webview), App Nativa (Vedi [Opzioni di confronto del metodo](./method-options#compare-check-options) per maggiori informazioni)
+-   **Supportato:** Web, Hybrid App (Webview), Native App (Vedi [Opzioni di confronto del metodo](./method-options#compare-check-options) per maggiori informazioni)
 
-Le opzioni di confronto possono anche essere impostate come opzioni di servizio, sono descritte nelle [Opzioni di confronto del metodo](/docs/visual-testing/method-options#compare-check-options)
+Le opzioni di confronto possono anche essere impostate come opzioni del servizio, sono descritte nelle [Opzioni di confronto del metodo](/docs/visual-testing/method-options#compare-check-options)

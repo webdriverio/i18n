@@ -8,7 +8,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 Comando del Protocollo Mobile JSON Wire. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
 :::caution
 
-Questo comando di protocollo è deprecato<br />In Appium 2.0, questo metodo è contrassegnato come deprecato e attualmente non ha alternative disponibili.
+Questo comando del protocollo è deprecato<br />In Appium 2.0, questo metodo è contrassegnato come deprecato e attualmente non ha alternative disponibili.
 :::
 
 ##### Utilizzo
@@ -66,7 +66,7 @@ driver.setNetworkConnection(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>number</td>
-      <td>una maschera di bit che deve essere tradotta in un valore intero quando serializzata</td>
+      <td>una maschera di bit che dovrebbe essere tradotta in un valore intero quando serializzata</td>
     </tr>
   </tbody>
 </table>
@@ -97,7 +97,7 @@ driver.touchPerform(actions)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>un elenco di oggetti, ciascuno dei quali rappresenta una fonte di input e le relative azioni associate</td>
+      <td>un elenco di oggetti, ciascuno dei quali rappresenta una fonte di input e le azioni associate</td>
     </tr>
   </tbody>
 </table>
@@ -128,7 +128,7 @@ driver.multiTouchPerform(actions, elementId)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>un elenco di oggetti, ciascuno dei quali rappresenta una fonte di input e le relative azioni associate</td>
+      <td>un elenco di oggetti, ciascuno dei quali rappresenta una fonte di input e le azioni associate</td>
     </tr>
     <tr>
       <td><code><var>elementId</var></code><br /><span className="label labelWarning">optional</span></td>

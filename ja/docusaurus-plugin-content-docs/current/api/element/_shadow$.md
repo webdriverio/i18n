@@ -4,12 +4,12 @@ title: shadow$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/shadow$.ts
 ---
 
-与えられた要素のshadowRoot内の要素にアクセスします。多くのネストされたシャドウルートを扱っている場合は、`shadow$`の代替アプローチとして[ディープセレクタ](https://webdriver.io/docs/selectors#deep-selectors)を使用することができます。
+与えられた要素のshadowRoot内の要素にアクセスします。多くのネストされたシャドウルートを扱っている場合、`shadow$`の代替アプローチとして[ディープセレクタ](https://webdriver.io/docs/selectors#deep-selectors)を使用することができます。
 
 :::info
 
-WebdriverIOは`$`または`$$`コマンドを使用する際に自動的にシャドウルートを透過します。
-このコマンドは、WebDriver Bidiをまだサポートしていない環境、例えばAppiumを使用したモバイルWebテストなどで自動化する場合にのみ必要です。
+WebdriverIOは`$`または`$$`コマンドを使用する際に自動的にシャドウルートを貫通します。
+このコマンドは、WebDriver Bidiをまだサポートしていない環境、例えばAppiumを使用したモバイルウェブテストなどで自動化する場合にのみ必要です。
 
 :::
 

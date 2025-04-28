@@ -1,9 +1,9 @@
 ---
 id: clock
-title: The Clock Object
+title: شیء ساعت
 ---
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+شما می‌توانید ساعت سیستم مرورگر را با استفاده از دستور [`emulate`](/docs/emulation) تغییر دهید. این دستور توابع سراسری مرتبط با زمان را بازنویسی می‌کند و امکان کنترل همزمان آنها را از طریق `clock.tick()` یا شیء ساعت ارائه شده فراهم می‌کند. این شامل کنترل موارد زیر است:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+ساعت از زمان صفر یونیکس (timestamp 0) شروع می‌شود. این بدان معناست که وقتی شما یک Date جدید در برنامه خود ایجاد می‌کنید، زمان آن اول ژانویه ۱۹۷۰ خواهد بود، مگر اینکه گزینه‌های دیگری را به دستور `emulate` ارسال کنید.
 
-## Example
+## مثال
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+هنگام فراخوانی `browser.emulate('clock', { ... })` بلافاصله توابع سراسری برای صفحه فعلی و همچنین تمام صفحات بعدی بازنویسی می‌شوند، به عنوان مثال:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -37,4 +37,4 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+شما می‌توانید زمان سیستم را با فراخوانی [`setSystemTime`](/docs/api/clock/setSystemTime) یا [`tick`](/docs/api/clock/tick) تغییر دهید.

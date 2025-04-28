@@ -4,11 +4,11 @@ title: scrollIntoView
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/scrollIntoView.ts
 ---
 
-Scorri l'elemento nella viewport per Desktop/Mobile Web <strong>E</strong> App Native Mobile.
+Scorri l'elemento nel viewport per Web Desktop/Mobile <strong>E</strong> App Native per Mobile.
 
 :::info
 
-Lo scorrimento per le App Native Mobile viene eseguito sulla base del comando mobile `swipe`.
+Lo scorrimento per App Native Mobile viene eseguito sulla base del comando mobile `swipe`.
 
 Questo comando funziona solo con i seguenti componenti aggiornati:
  - Server Appium (versione 2.0.0 o superiore)
@@ -62,22 +62,22 @@ Assicurati che il tuo ambiente Appium locale o basato su cloud sia regolarmente 
     <tr>
       <td><code><var>options.maxScrolls</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Il numero massimo di scorrimenti prima di interrompere la ricerca dell'elemento, il valore predefinito è `10`. <br /><strong>SOLO-APP-NATIVE-MOBILE</strong></td>
+      <td>Il numero massimo di scorrimenti fino a quando smetterà di cercare l'elemento, il valore predefinito è `10`. <br /><strong>SOLO-APP-NATIVE-MOBILE</strong></td>
     </tr>
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>La durata in millisecondi dello swipe. Il valore predefinito è `1500` ms. Più basso è il valore, più veloce sarà lo swipe.<br /><strong>SOLO-APP-NATIVE-MOBILE</strong></td>
+      <td>La durata in millisecondi per lo swipe. Il valore predefinito è `1500` ms. Più basso è il valore, più veloce sarà lo swipe.<br /><strong>SOLO-APP-NATIVE-MOBILE</strong></td>
     </tr>
     <tr>
       <td><code><var>options.scrollableElement</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Element`</td>
-      <td>Elemento utilizzato per scorrere all'interno. Se non viene fornito alcun elemento, verrà utilizzato il seguente selettore per iOS `-ios predicate string:type == "XCUIElementTypeApplication"` e il seguente per Android `//android.widget.ScrollView'`. Se più elementi corrispondono al selettore predefinito, per impostazione predefinita verrà scelto il primo elemento corrispondente. <br /> <strong>SOLO-APP-NATIVE-MOBILE</strong></td>
+      <td>Elemento che viene utilizzato per scorrere all'interno. Se non viene fornito alcun elemento, utilizzerà il seguente selettore per iOS `-ios predicate string:type == "XCUIElementTypeApplication"` e il seguente per Android `//android.widget.ScrollView'`. Se più elementi corrispondono al selettore predefinito, per impostazione predefinita verrà selezionato il primo elemento corrispondente. <br /> <strong>SOLO-APP-NATIVE-MOBILE</strong></td>
     </tr>
     <tr>
       <td><code><var>options.percent</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>La percentuale dell'elemento scorrevole (predefinito) da scorrere. Questo è un valore compreso tra 0 e 1. Il valore predefinito è `0.95`.<br /><strong>MAI</strong> scorrere dall'esatto alto|basso|sinistra|destra dello schermo, potresti attivare ad esempio la barra delle notifiche o altre funzionalità dell'OS/App che possono portare a risultati imprevisti.<br /> <strong>SOLO-APP-NATIVE-MOBILE</strong></td>
+      <td>La percentuale dell'elemento scorrevole (predefinito) da scorrere con swipe. Questo è un valore compreso tra 0 e 1. Il valore predefinito è `0.95`.<br /><strong>MAI</strong> scorrere dall'esatto alto|basso|sinistra|destra dello schermo, potresti attivare per esempio la barra delle notifiche o altre funzionalità del sistema operativo/app che possono portare a risultati imprevisti.<br /> <strong>SOLO-APP-NATIVE-MOBILE</strong></td>
     </tr>
   </tbody>
 </table>

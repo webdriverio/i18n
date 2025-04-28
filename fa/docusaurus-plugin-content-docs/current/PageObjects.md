@@ -1,21 +1,21 @@
 ---
 id: pageobjects
-title: Page Object Pattern
+title: الگوی شیء صفحه
 ---
 
-Version 5 of WebdriverIO was designed with Page Object Pattern support in mind. By introducing the "elements as first class citizens" principle, it is now possible to build up large test suites using this pattern.
+نسخه ۵ WebdriverIO با پشتیبانی از الگوی شیء صفحه (Page Object Pattern) طراحی شده است. با معرفی اصل "عناصر به عنوان شهروندان درجه یک"، اکنون امکان ایجاد مجموعه آزمون‌های بزرگ با استفاده از این الگو فراهم شده است.
 
-There are no additional packages required to create page objects. It turns out that clean, modern classes provide all necessary features we need:
+برای ایجاد اشیاء صفحه به هیچ پکیج اضافی نیاز نیست. مشخص شده که کلاس‌های تمیز و مدرن تمام ویژگی‌های مورد نیاز ما را فراهم می‌کنند:
 
-- inheritance between page objects
-- lazy loading of elements
-- encapsulation of methods and actions
+- وراثت بین اشیاء صفحه
+- بارگذاری تنبل (lazy loading) عناصر
+- کپسوله‌سازی متدها و اقدامات
 
-The goal of using page objects is to abstract any page information away from the actual tests. Ideally, you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you've completely redesigned your page.
+هدف از استفاده از اشیاء صفحه، جدا کردن اطلاعات مربوط به هر صفحه از آزمون‌های واقعی است. در حالت ایده‌آل، شما باید تمام انتخابگرها یا دستورالعمل‌های خاصی را که منحصر به یک صفحه خاص هستند در یک شیء صفحه ذخیره کنید، به طوری که همچنان بتوانید آزمون خود را پس از طراحی مجدد کامل صفحه اجرا کنید.
 
-## Making A Page Object
+## ایجاد یک شیء صفحه
 
-First off, we need a main page object that we call `Page.js`. It will contain general selectors or methods which all page objects will inherit from.
+ابتدا، ما به یک شیء صفحه اصلی نیاز داریم که آن را `Page.js` می‌نامیم. این شامل انتخابگرها یا متدهای عمومی خواهد بود که همه اشیاء صفحه از آن ارث می‌برند.
 
 ```js
 // Page.js
@@ -30,15 +30,15 @@ export default class Page {
 }
 ```
 
-We will always `export` an instance of a page object, and never create that instance in the test. Since we are writing end-to-end tests, we always consider the page as a stateless construct&mdash;just as each HTTP request is a stateless construct.
+ما همیشه یک نمونه از شیء صفحه را `export` می‌کنیم و هرگز آن نمونه را در آزمون ایجاد نمی‌کنیم. از آنجا که ما آزمون‌های end-to-end می‌نویسیم، همیشه صفحه را به عنوان یک ساختار بدون وضعیت در نظر می‌گیریم - درست مانند هر درخواست HTTP که یک ساختار بدون وضعیت است.
 
-Sure, the browser can carry session information and therefore can display different pages based on different sessions, but this shouldn't be reflected within a page object. These sorts of state changes should live in your actual tests.
+البته، مرورگر می‌تواند اطلاعات جلسه را حمل کند و بنابراین می‌تواند صفحات مختلفی را بر اساس جلسات مختلف نمایش دهد، اما این نباید در شیء صفحه منعکس شود. این نوع تغییرات وضعیت باید در آزمون‌های واقعی شما باشد.
 
-Let's start testing the first page. For demo purposes, we use [The Internet](http://the-internet.herokuapp.com) website by [Elemental Selenium](http://elementalselenium.com) as guinea pig. Let's try to build a page object example for the [login page](http://the-internet.herokuapp.com/login).
+بیایید آزمون اولین صفحه را شروع کنیم. برای اهداف نمایشی، ما از وب‌سایت [The Internet](http://the-internet.herokuapp.com) توسط [Elemental Selenium](http://elementalselenium.com) به عنوان خوکچه هندی استفاده می‌کنیم. بیایید سعی کنیم یک نمونه شیء صفحه برای [صفحه ورود](http://the-internet.herokuapp.com/login) بسازیم.
 
-## `Get` -ing Your Selectors
+## دریافت انتخابگرهای خود با `Get`
 
-The first step is to write all important selectors that are required in our `login.page` object as getter functions:
+اولین قدم نوشتن تمام انتخابگرهای مهمی است که در شیء `login.page` ما به عنوان توابع getter مورد نیاز هستند:
 
 ```js
 // login.page.js
@@ -65,36 +65,36 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Defining selectors in getter functions might look a little weird, but it’s really useful. These functions are evaluated _when you access the property_, not when you generate the object. With that you always request the element before you do an action on it.
+تعریف انتخابگرها در توابع getter ممکن است کمی عجیب به نظر برسد، اما واقعاً مفید است. این توابع _زمانی که به خاصیت دسترسی پیدا می‌کنید_ ارزیابی می‌شوند، نه زمانی که شیء را ایجاد می‌کنید. با این کار، شما همیشه قبل از انجام یک عمل روی آن، عنصر را درخواست می‌کنید.
 
-## Chaining Commands
+## زنجیره کردن دستورات
 
-WebdriverIO internally remembers the last result of a command. If you chain an element command with an action command, it finds the element from the previous command and uses the result to execute the action. With that you can remove the selector (first parameter) and the command looks as simple as:
+WebdriverIO به صورت داخلی آخرین نتیجه یک دستور را به خاطر می‌سپارد. اگر یک دستور عنصر را با یک دستور اقدام زنجیر کنید، عنصر را از دستور قبلی پیدا می‌کند و از نتیجه برای اجرای اقدام استفاده می‌کند. با این کار می‌توانید انتخابگر (پارامتر اول) را حذف کنید و دستور به سادگی به این شکل خواهد بود:
 
 ```js
 await LoginPage.username.setValue('Max Mustermann')
 ```
 
-Which is basically the same thing as:
+که اساساً همان چیزی است که:
 
 ```js
 let elem = await $('#username')
 await elem.setValue('Max Mustermann')
 ```
 
-or
+یا
 
 ```js
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Using Page Objects In Your Tests
+## استفاده از اشیاء صفحه در آزمون‌های خود
 
-After you've defined the necessary elements and methods for the page, you can start to write the test for it. All you need to do to use the page object is to `import` (or `require`) it. That's it!
+پس از تعریف عناصر و متدهای لازم برای صفحه، می‌توانید شروع به نوشتن آزمون برای آن کنید. تمام کاری که باید برای استفاده از شیء صفحه انجام دهید `import` (یا `require`) کردن آن است. همین!
 
-Since you exported an already-created instance of the page object, importing it lets you start using it right away.
+از آنجا که شما یک نمونه از قبل ایجاد شده از شیء صفحه را صادر (export) کرده‌اید، وارد کردن (import) آن به شما امکان می‌دهد بلافاصله از آن استفاده کنید.
 
-If you use an assertion framework, your tests can be even more expressive:
+اگر از یک چارچوب ادعا (assertion framework) استفاده می‌کنید، آزمون‌های شما می‌توانند حتی بیانگرتر باشند:
 
 ```js
 // login.spec.js
@@ -121,10 +121,10 @@ describe('login form', () => {
 })
 ```
 
-From the structural side, it makes sense to separate spec files and page objects into different directories. Additionally you can give each page object the ending: `.page.js`. This makes it more clear that you import a page object.
+از نظر ساختاری، منطقی است که فایل‌های آزمون (spec) و اشیاء صفحه را در دایرکتوری‌های مختلف جدا کنید. علاوه بر این، می‌توانید به هر شیء صفحه پایان `.page.js` را بدهید. این باعث می‌شود که واضح‌تر شود که شما یک شیء صفحه را وارد می‌کنید.
 
-## Going Further
+## پیشرفت بیشتر
 
-This is the basic principle of how to write page objects with WebdriverIO. But you can build up way more complex page object structures than this! For example, you might have specific page objects for modals, or split up a huge page object into different classes (each representing a different part of the overall web page) that inherit from the main page object. The pattern really provides a lot of opportunities to separate page information from your tests, which is important to keep your test suite structured and clear in times where the project and number of tests grows.
+این اصل اساسی نحوه نوشتن اشیاء صفحه با WebdriverIO است. اما شما می‌توانید ساختارهای شیء صفحه بسیار پیچیده‌تری از این ایجاد کنید! به عنوان مثال، ممکن است اشیاء صفحه خاصی برای مودال‌ها داشته باشید، یا یک شیء صفحه بزرگ را به کلاس‌های مختلف تقسیم کنید (هر کدام نشان‌دهنده بخش متفاوتی از صفحه وب کلی هستند) که از شیء صفحه اصلی ارث می‌برند. این الگو واقعاً فرصت‌های زیادی برای جدا کردن اطلاعات صفحه از آزمون‌های شما فراهم می‌کند، که برای حفظ ساختار و وضوح مجموعه آزمون شما در زمان‌هایی که پروژه و تعداد آزمون‌ها افزایش می‌یابد، مهم است.
 
-You can find this example (and even more page object examples) in the [`example` folder](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) on GitHub.
+شما می‌توانید این مثال (و حتی مثال‌های شیء صفحه بیشتر) را در [پوشه `example`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) در GitHub پیدا کنید.

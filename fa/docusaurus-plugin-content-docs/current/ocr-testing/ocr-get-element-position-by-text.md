@@ -1,11 +1,11 @@
 ---
 id: ocr-get-element-position-by-text
-title: ocrGetElementPositionByText
+title: دریافت موقعیت عنصر با متن توسط OCR
 ---
 
-Get the position of a text on the screen. The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+دریافت موقعیت یک متن روی صفحه. این دستور متن ارائه شده را جستجو کرده و سعی می‌کند تطابقی بر اساس منطق فازی از [Fuse.js](https://fusejs.io/) پیدا کند. این بدان معناست که اگر شما گزینشگری با اشتباه تایپی ارائه دهید، یا متن یافت شده تطابق ۱۰۰٪ نداشته باشد، همچنان سعی می‌کند یک عنصر را به شما برگرداند. به [لاگ‌ها](#logs) در زیر نگاه کنید.
 
-## Usage
+## استفاده
 
 ```js
 const result = await browser.ocrGetElementPositionByText("Username");
@@ -13,9 +13,9 @@ const result = await browser.ocrGetElementPositionByText("Username");
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## Output
+## خروجی
 
-### Result
+### نتیجه
 
 ```logs
 result = {
@@ -38,7 +38,7 @@ result = {
 }
 ```
 
-### Logs
+### لاگ‌ها
 
 ```log
 # Still finding a match even though we searched for "Start3d" and the found text was "Started"
@@ -47,16 +47,16 @@ result = {
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-## Options
+## گزینه‌ها
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **نوع:** `string`
+-   **اجباری:** بله
 
-The text you want to search for to click on.
+متنی که می‌خواهید برای کلیک کردن جستجو کنید.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
@@ -64,13 +64,13 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+هرچه کنتراست بالاتر باشد، تصویر تیره‌تر و برعکس. این می‌تواند به یافتن متن در تصویر کمک کند. مقادیر بین `-1` و `1` را می‌پذیرد.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -81,12 +81,12 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **نوع:** `number`
+-   **اجباری:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+این ناحیه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک عنصر یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -94,13 +94,13 @@ await browser.ocrGetElementPositionByText({
     haystack: $("elementSelector"),
 });
 
-// OR
+// یا
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// یا
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: {
@@ -114,36 +114,36 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **نوع:** `string`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) پیدا کنید و زبان‌های پشتیبانی شده را می‌توانید [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) بیابید.
 
-#### Example
+#### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
-    // Use Dutch as a language
+    // استفاده از هلندی به عنوان زبان
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+شما می‌توانید منطق فازی برای یافتن متن را با گزینه‌های زیر تغییر دهید. این ممکن است به یافتن تطابق بهتر کمک کند.
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+تعیین می‌کند که تطابق چقدر باید به موقعیت فازی (مشخص شده توسط location) نزدیک باشد. یک تطابق دقیق حرف که در فاصله distance کاراکتر از موقعیت فازی باشد، به عنوان عدم تطابق کامل امتیازدهی می‌شود. فاصله 0 نیاز به تطابق در موقعیت دقیق مشخص شده دارد. فاصله 1000 به یک تطابق کامل نیاز دارد که در محدوده 800 کاراکتر از موقعیت باشد تا با آستانه 0.8 پیدا شود.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -156,13 +156,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+تقریباً تعیین می‌کند که الگو در کجای متن مورد انتظار است.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -175,13 +175,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+در چه نقطه‌ای الگوریتم تطبیق تسلیم می‌شود. آستانه 0 به یک تطابق کامل (هم حروف و هم موقعیت) نیاز دارد، آستانه 1.0 هر چیزی را تطبیق می‌دهد.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -194,13 +194,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **نوع:** `boolean`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** false
 
-Whether the search should be case sensitive.
+آیا جستجو باید به بزرگی و کوچکی حروف حساس باشد.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -213,13 +213,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+فقط تطابق‌هایی که طول آنها از این مقدار بیشتر است برگردانده می‌شوند. (به عنوان مثال، اگر می‌خواهید تطابق‌های تک کاراکتری را در نتیجه نادیده بگیرید، آن را روی 2 تنظیم کنید)
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -232,13 +232,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+وقتی `true` است، تابع تطبیق حتی اگر یک تطابق کامل قبلاً در رشته پیدا شده باشد، تا انتهای الگوی جستجو ادامه می‌دهد.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrGetElementPositionByText({

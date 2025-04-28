@@ -4,9 +4,9 @@ title: getHTML
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getHTML.ts
 ---
 
-セレクターで指定されたDOM要素のソースコードを取得します。デフォルトでは、要素に含まれるすべての要素のシャドウルートを自動的に貫通します。
+セレクタによって指定されたDOM要素のソースコードを取得します。デフォルトでは、要素に含まれるすべての要素のシャドウルートを自動的に貫通します。
 
-##### 使用方法
+##### 使用法
 
 ```js
 $(selector).getHTML({ includeSelectorTag, pierceShadowRoot, removeCommentNodes, prettify })
@@ -17,7 +17,7 @@ $(selector).getHTML({ includeSelectorTag, pierceShadowRoot, removeCommentNodes, 
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -29,22 +29,22 @@ $(selector).getHTML({ includeSelectorTag, pierceShadowRoot, removeCommentNodes, 
     <tr>
       <td><code><var>options.includeSelectorTag</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>trueの場合、セレクター要素タグを含めます（デフォルト: `true`）</td>
+      <td>trueの場合、セレクタ要素タグを含みます（デフォルト：`true`）</td>
     </tr>
     <tr>
       <td><code><var>options.pierceShadowRoot</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>trueの場合、DOM内のすべてのWebコンポーネントのシャドウルートのコンテンツを含めます（デフォルト: `true`）</td>
+      <td>trueの場合、DOM内のすべてのWebコンポーネントのシャドウルートのコンテンツを含みます（デフォルト：`true`）</td>
     </tr>
     <tr>
       <td><code><var>options.removeCommentNodes</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>trueの場合、HTMLからすべてのコメントノードを削除します。例：`<!--?lit$206212805$--><!--?lit$206212805$-->`（デフォルト: `true`）</td>
+      <td>trueの場合、HTMLからすべてのコメントノードを削除します。例：`<!--?lit$206212805$--><!--?lit$206212805$-->`（デフォルト：`true`）</td>
     </tr>
     <tr>
       <td><code><var>options.prettify</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>trueの場合、HTML出力を整形します（デフォルト: `true`）</td>
+      <td>trueの場合、HTML出力は整形されます（デフォルト：`true`）</td>
     </tr>
   </tbody>
 </table>
@@ -61,12 +61,12 @@ $(selector).getHTML({ includeSelectorTag, pierceShadowRoot, removeCommentNodes, 
 it('should get html for certain elements', async () => {
     var outerHTML = await $('#test').getHTML();
     console.log(outerHTML);
-    // outputs:
+    // 出力:
     // "<div id="test"><span>Lorem ipsum dolor amet</span></div>"
 
     var innerHTML = await $('#test').getHTML({ includeSelectorTag: false });
     console.log(innerHTML);
-    // outputs:
+    // 出力:
     // "<span>Lorem ipsum dolor amet</span>"
 });
 ```
@@ -75,10 +75,10 @@ it('should get html for certain elements', async () => {
 it('allows to snapshot shadow dom', async () => {
     await browser.url('https://ionicframework.com/docs/usage/v8/button/basic/demo.html?ionic:mode=md')
 
-    // get snapshot of web component without its styles
+    // スタイルを除いたWebコンポーネントのスナップショットを取得
     const snapshot = await $('ion-button').getHTML({ excludeElements: ['style'] })
 
-    // assert snapshot
+    // スナップショットをアサート
     await expect(snapshot).toMatchInlineSnapshot(`
         <ion-button class="md button button-solid ion-activatable ion-focusable hydrated">Default
             <template shadowrootmode="open">
@@ -102,4 +102,4 @@ it('allows to snapshot shadow dom', async () => {
 ##### 戻り値
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**   指定された要素のHTML
+            **<code><var>return</var></code>:** 指定された要素のHTML

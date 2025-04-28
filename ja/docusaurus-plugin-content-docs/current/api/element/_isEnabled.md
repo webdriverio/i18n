@@ -4,7 +4,7 @@ title: isEnabled
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isEnabled.ts
 ---
 
-選択したDOM要素が有効かどうかをtrue（有効）またはfalse（無効）で返します。
+選択されたDOM要素が有効かどうかをtrue、またはfalseで返します。
 
 ##### 使用方法
 

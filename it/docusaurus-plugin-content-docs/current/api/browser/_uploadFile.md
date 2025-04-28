@@ -4,13 +4,13 @@ title: uploadFile
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/uploadFile.ts
 ---
 
-Carica un file sul server Selenium Standalone o su altri driver di browser
+Carica un file sul server Selenium Standalone o altro driver del browser
 (ad esempio Chromedriver o EdgeDriver) utilizzando il comando [`file`](https://webdriver.io/docs/api/selenium#file).
-_Nota:_ questo comando è supportato solo se si utilizza un Selenium Hub,
+_Nota:_ questo comando è supportato solo se utilizzi un Selenium Hub,
 Chromedriver o EdgeDriver direttamente.
 
-__Nota:__ questo comando utilizza una funzionalità di protocollo non ufficiale che attualmente
-è supportata solo in Chrome e quando si esegue un [Selenium Grid](https://www.selenium.dev/documentation/en/grid/).
+__Nota:__ questo comando utilizza una funzionalità di protocollo non ufficiale che è attualmente
+supportata solo in Chrome e quando si esegue una [Selenium Grid](https://www.selenium.dev/documentation/en/grid/).
 
 ##### Utilizzo
 
@@ -54,4 +54,4 @@ it('should upload a file', async () => {
 ##### Restituisce
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**  URL remoto    
+            **<code><var>return</var></code>:**  URL remoto

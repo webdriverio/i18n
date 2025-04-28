@@ -1,14 +1,14 @@
 ---
 id: getValue
-title: getValue の取得
+title: getValue（値を取得）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getValue.ts
 ---
 
 指定されたセレクタで見つかった `<textarea>`、`<select>` またはテキスト `<input>` の値を取得します。
-指定されたセレクタで複数の要素が見つかった場合は、代わりに値の配列が返されます。
+複数の要素が指定されたセレクタで見つかった場合は、代わりに値の配列が返されます。
 チェックボックスやラジオタイプの入力には isSelected を使用してください。
 
-##### 使用法
+##### 使用方法
 
 ```js
 $(selector).getValue()
@@ -31,4 +31,4 @@ it('should demonstrate the getValue command', async () => {
 ##### 戻り値
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**   要求された要素の値    
+            **<code><var>return</var></code>:**   リクエストされた要素の値

@@ -6,7 +6,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 要素の計算されたWAI-ARIAラベルを取得します。
 
-##### 使用法
+##### 使用方法
 
 ```js
 $(selector).getComputedLabel()

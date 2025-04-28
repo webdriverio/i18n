@@ -3,22 +3,22 @@ id: modules
 title: モジュール
 ---
 
-WebdriverIOはNPMや他のレジストリに様々なモジュールを公開しており、それらを使用して独自の自動化フレームワークを構築できます。WebdriverIOのセットアップタイプの詳細については[こちら](/docs/setuptypes)をご覧ください。
+WebdriverIOはNPMやその他のレジストリに様々なモジュールを公開しており、これらを使用して独自の自動化フレームワークを構築することができます。WebdriverIOのセットアップタイプについての詳細なドキュメントは[こちら](/docs/setuptypes)をご覧ください。
 
-## `webdriver`と`devtools`
+## `webdriver` と `devtools`
 
-プロトコルパッケージ（[`webdriver`](https://www.npmjs.com/package/webdriver)と[`devtools`](https://www.npmjs.com/package/devtools)）は、セッションを開始できる以下の静的関数が付属したクラスを公開しています：
+プロトコルパッケージ（[`webdriver`](https://www.npmjs.com/package/webdriver)と[`devtools`](https://www.npmjs.com/package/devtools)）では、セッションを開始できる以下の静的関数が付属したクラスを公開しています：
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
 特定の機能を持つ新しいセッションを開始します。セッションレスポンスに基づいて、異なるプロトコルからのコマンドが提供されます。
 
-##### パラメータ
+##### パラメーター
 
 - `options`: [WebDriver オプション](/docs/configuration#webdriver-options)
-- `modifier`: 返される前にクライアントインスタンスを変更できる関数
+- `modifier`: クライアントインスタンスが返される前に変更できる関数
 - `userPrototype`: インスタンスのプロトタイプを拡張できるプロパティオブジェクト
-- `customCommandWrapper`: 関数呼び出しの周りに機能をラップできる関数
+- `customCommandWrapper`: 関数呼び出しの周囲に機能をラップできる関数
 
 ##### 戻り値
 
@@ -36,12 +36,12 @@ const client = await WebDriver.newSession({
 
 実行中のWebDriverまたはDevToolsセッションに接続します。
 
-##### パラメータ
+##### パラメーター
 
 - `attachInstance`: セッションに接続するインスタンス、または少なくとも`sessionId`プロパティを持つオブジェクト（例：`{ sessionId: 'xxx' }`）
-- `modifier`: 返される前にクライアントインスタンスを変更できる関数
+- `modifier`: クライアントインスタンスが返される前に変更できる関数
 - `userPrototype`: インスタンスのプロトタイプを拡張できるプロパティオブジェクト
-- `customCommandWrapper`: 関数呼び出しの周りに機能をラップできる関数
+- `customCommandWrapper`: 関数呼び出しの周囲に機能をラップできる関数
 
 ##### 戻り値
 
@@ -58,7 +58,7 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 提供されたインスタンスのセッションを再読み込みします。
 
-##### パラメータ
+##### パラメーター
 
 - `instance`: 再読み込みするパッケージインスタンス
 
@@ -71,16 +71,16 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-プロトコルパッケージ（`webdriver`と`devtools`）と同様に、WebdriverIOパッケージAPIを使用してセッションを管理することもできます。APIは`import { remote, attach, multiremote } from 'webdriverio'`を使用してインポートでき、以下の機能が含まれています：
+プロトコルパッケージ（`webdriver`と`devtools`）と同様に、WebdriverIOパッケージのAPIを使用してセッションを管理することもできます。APIは`import { remote, attach, multiremote } from 'webdriverio'`を使用してインポートでき、以下の機能を含んでいます：
 
 #### `remote(options, modifier)`
 
-WebdriverIOセッションを開始します。インスタンスにはプロトコルパッケージのすべてのコマンドが含まれていますが、追加の高次関数も含まれています。[API ドキュメント](/docs/api)を参照してください。
+WebdriverIOセッションを開始します。インスタンスにはプロトコルパッケージのすべてのコマンドと、追加の高次関数が含まれています。[APIドキュメント](/docs/api)を参照してください。
 
-##### パラメータ
+##### パラメーター
 
 - `options`: [WebdriverIO オプション](/docs/configuration#webdriverio)
-- `modifier`: 返される前にクライアントインスタンスを変更できる関数
+- `modifier`: クライアントインスタンスが返される前に変更できる関数
 
 ##### 戻り値
 
@@ -100,7 +100,7 @@ const browser = await remote({
 
 実行中のWebdriverIOセッションに接続します。
 
-##### パラメータ
+##### パラメーター
 
 - `attachOptions`: セッションに接続するインスタンス、または少なくとも`sessionId`プロパティを持つオブジェクト（例：`{ sessionId: 'xxx' }`）
 
@@ -119,11 +119,11 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-単一のインスタンス内で複数のセッションを制御できるマルチリモートインスタンスを開始します。具体的なユースケースについては[multiremoteの例](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote)をチェックしてください。
+単一のインスタンス内で複数のセッションを制御できるマルチリモートインスタンスを開始します。具体的なユースケースについては、[マルチリモートの例](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote)をご覧ください。
 
-##### パラメータ
+##### パラメーター
 
-- `multiremoteOptions`: ブラウザ名を表すキーと[WebdriverIO オプション](/docs/configuration#webdriverio)を持つオブジェクト。
+- `multiremoteOptions`: ブラウザ名を表すキーと、その[WebdriverIO オプション](/docs/configuration#webdriverio)を持つオブジェクト。
 
 ##### 戻り値
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-`wdio`コマンドを呼び出す代わりに、テストランナーをモジュールとして含めて任意の環境で実行することもできます。そのためには、`@wdio/cli`パッケージをモジュールとして要求する必要があります：
+`wdio`コマンドを呼び出す代わりに、テストランナーをモジュールとして含め、任意の環境で実行することもできます。そのためには、`@wdio/cli`パッケージをモジュールとして要求する必要があります：
 
 <Tabs
   defaultValue="esm"
@@ -180,9 +180,9 @@ const Launcher = require('@wdio/cli').default
 
 #### `Launcher(configPath, opts)`
 
-`Launcher`クラスのコンストラクタは、設定ファイルへのURLと、設定値を上書きする`opts`オブジェクトを期待します。
+`Launcher`クラスのコンストラクタは、設定ファイルへのURLと、設定内の値を上書きする`opts`オブジェクトを期待します。
 
-##### パラメータ
+##### パラメーター
 
 - `configPath`: 実行する`wdio.conf.js`へのパス
 - `opts`: 設定ファイルの値を上書きする引数（[`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)）
@@ -207,27 +207,27 @@ wdio.run().then((exitCode) => {
 
 ## `@wdio/browser-runner`
 
-WebdriverIOの[ブラウザランナー](/docs/runner#browser-runner)を使用してユニットテストやコンポーネントテストを実行する場合、テスト用のモッキングユーティリティをインポートできます：
+WebdriverIOの[ブラウザランナー](/docs/runner#browser-runner)を使用してユニットテストやコンポーネントテストを実行する場合、テスト用のモッキングユーティリティをインポートできます。例：
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-次の名前付きエクスポートが利用可能です：
+以下の名前付きエクスポートが利用可能です：
 
 #### `fn`
 
-モック関数、詳細は公式の[Vitestドキュメント](https://vitest.dev/api/mock.html#mock-functions)を参照してください。
+モック関数、詳細は公式[Vitestドキュメント](https://vitest.dev/api/mock.html#mock-functions)を参照してください。
 
 #### `spyOn`
 
-スパイ関数、詳細は公式の[Vitestドキュメント](https://vitest.dev/api/mock.html#mock-functions)を参照してください。
+スパイ関数、詳細は公式[Vitestドキュメント](https://vitest.dev/api/mock.html#mock-functions)を参照してください。
 
 #### `mock`
 
 ファイルまたは依存モジュールをモックするメソッド。
 
-##### パラメータ
+##### パラメーター
 
 - `moduleName`: モックするファイルへの相対パス、またはモジュール名。
 - `factory`: モックされた値を返す関数（オプション）
@@ -252,7 +252,7 @@ mock('lodash', (origModuleFactory) => {
 
 手動モック（`__mocks__`）ディレクトリ内で定義された依存関係のモックを解除します。
 
-##### パラメータ
+##### パラメーター
 
 - `moduleName`: モック解除するモジュールの名前。
 

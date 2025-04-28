@@ -4,7 +4,7 @@ title: selectByVisibleText
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/selectByVisibleText.ts
 ---
 
-表示されたテキストが引数と一致するオプションを選択します。
+表示されているテキストが引数と一致するオプションを選択します。
 
 ##### 使用方法
 
@@ -17,7 +17,7 @@ $(selector).selectByVisibleText(text)
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>

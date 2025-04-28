@@ -4,18 +4,16 @@ title: emulate
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/emulate.ts
 ---
 
-WebdriverIO ti permette di emulare le API Web utilizzando il comando `emulate`. Queste API Web possono quindi
-comportarsi esattamente come specifichi. Sono supportati i seguenti ambiti:
+WebdriverIO ti permette di emulare le API Web utilizzando il comando `emulate`. Queste API Web possono poi comportarsi esattamente come specifichi. Sono supportati i seguenti ambiti:
 
 - `geolocation`: Emula l'API di geolocalizzazione
-- `userAgent`: Emula lo user agent
-- `colorScheme`: Emula lo schema colori
+- `userAgent`: Emula l'user agent
+- `colorScheme`: Emula lo schema di colori
 - `onLine`: Emula lo stato online
 - `device`: Emula un dispositivo mobile o desktop specifico
 - `clock`: Emula l'orologio di sistema
 
-Il comando `emulate` restituisce una funzione che può essere chiamata per ripristinare l'emulazione. Questo è utile
-quando si desidera ripristinare l'emulazione dopo un test o una serie di test.
+Il comando `emulate` restituisce una funzione che può essere chiamata per reimpostare l'emulazione. Questo è utile quando vuoi reimpostare l'emulazione dopo un test o una serie di test.
 
 Leggi di più su questo nelle linee guida [Emulation](/docs/emulation).
 
@@ -27,9 +25,8 @@ Ad eccezione dell'ambito `clock`, non è possibile modificare il valore emulato 
 
 :::info
 
-Questa funzionalità richiede il supporto WebDriver Bidi per il browser. Mentre le versioni recenti di Chrome, Edge
-e Firefox hanno tale supporto, Safari __non lo ha__. Per gli aggiornamenti, segui [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned).
-Inoltre, se utilizzi un fornitore cloud per l'avvio dei browser, assicurati che il tuo fornitore supporti anche WebDriver Bidi.
+Questa funzionalità richiede il supporto WebDriver Bidi per il browser. Mentre le versioni recenti di Chrome, Edge e Firefox hanno tale supporto, Safari __non ce l'ha__. Per gli aggiornamenti, segui [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned).
+Inoltre, se utilizzi un fornitore cloud per avviare i browser, assicurati che il tuo fornitore supporti anche WebDriver Bidi.
 
 :::
 
@@ -66,7 +63,7 @@ browser.emulate(scope, options)
     <tr>
       <td><code><var>options</var></code></td>
       <td>`EmulationOptions`</td>
-      <td>opzione di emulazione per uno specifico ambito</td>
+      <td>opzioni di emulazione per l'ambito specifico</td>
     </tr>
   </tbody>
 </table>
@@ -84,4 +81,4 @@ https://github.com/webdriverio/example-recipes/blob/9bff2baf8a0678c6886f8591d9fc
 ##### Restituisce
 
 - **&lt;Function&gt;**
-            **<code><var>returns</var></code>:**   una funzione per ripristinare l'emulazione
+            **<code><var>returns</var></code>:**   una funzione per reimpostare l'emulazione

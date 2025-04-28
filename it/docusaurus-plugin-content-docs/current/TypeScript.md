@@ -3,7 +3,7 @@ id: typescript
 title: Configurazione TypeScript
 ---
 
-Puoi scrivere test usando [TypeScript](http://www.typescriptlang.org) per ottenere l'auto-completamento e la sicurezza dei tipi.
+Puoi scrivere test utilizzando [TypeScript](http://www.typescriptlang.org) per ottenere auto-completamento e sicurezza dei tipi.
 
 Avrai bisogno di [`tsx`](https://github.com/privatenumber/tsx) installato nelle `devDependencies`, tramite:
 
@@ -11,13 +11,13 @@ Avrai bisogno di [`tsx`](https://github.com/privatenumber/tsx) installato nelle 
 $ npm install tsx --save-dev
 ```
 
-WebdriverIO rileverà automaticamente se queste dipendenze sono installate e compilerà la tua configurazione e i test per te. Assicurati di avere un `tsconfig.json` nella stessa directory del tuo config WDIO.
+WebdriverIO rileverà automaticamente se queste dipendenze sono installate e compilerà la tua configurazione e i test per te. Assicurati di avere un `tsconfig.json` nella stessa directory del tuo file di configurazione WDIO.
 
 #### TSConfig personalizzato
 
-Se hai bisogno di impostare un percorso diverso per `tsconfig.json`, imposta la variabile d'ambiente TSCONFIG_PATH con il tuo percorso desiderato, oppure usa l'impostazione [tsConfigPath](/docs/configurationfile) nella configurazione wdio.
+Se hai bisogno di impostare un percorso diverso per `tsconfig.json`, imposta la variabile di ambiente TSCONFIG_PATH con il percorso desiderato, oppure utilizza l'[impostazione tsConfigPath](/docs/configurationfile) nella configurazione wdio.
 
-In alternativa, puoi usare la [variabile d'ambiente](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) per `tsx`.
+In alternativa, puoi utilizzare la [variabile d'ambiente](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) per `tsx`.
 
 
 #### Controllo dei tipi
@@ -26,7 +26,7 @@ Nota che `tsx` non supporta il controllo dei tipi - se desideri controllare i tu
 
 ## Configurazione del Framework
 
-Il tuo `tsconfig.json` deve contenere quanto segue:
+Il tuo `tsconfig.json` necessita di quanto segue:
 
 ```json title="tsconfig.json"
 {
@@ -39,11 +39,11 @@ Il tuo `tsconfig.json` deve contenere quanto segue:
 Evita di importare esplicitamente `webdriverio` o `@wdio/sync`.
 I tipi `WebdriverIO` e `WebDriver` sono accessibili da qualsiasi punto una volta aggiunti a `types` in `tsconfig.json`. Se utilizzi servizi WebdriverIO aggiuntivi, plugin o il pacchetto di automazione `devtools`, aggiungili anche all'elenco `types` poiché molti forniscono tipizzazioni aggiuntive.
 
-## Tipi di Framework
+## Tipi del Framework
 
-A seconda del framework che utilizzi, dovrai aggiungere i tipi per quel framework alla proprietà `types` del tuo `tsconfig.json`, nonché installare le sue definizioni di tipo. Questo è particolarmente importante se desideri avere il supporto dei tipi per la libreria di asserzioni integrata [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
+A seconda del framework che utilizzi, dovrai aggiungere i tipi per quel framework alla proprietà `types` del tuo `tsconfig.json`, oltre a installare le sue definizioni di tipo. Questo è particolarmente importante se desideri avere supporto per i tipi per la libreria di asserzioni integrata [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
 
-Ad esempio, se decidi di utilizzare il framework Mocha, devi installare `@types/mocha` e aggiungerlo in questo modo per avere tutti i tipi disponibili globalmente:
+Ad esempio, se decidi di utilizzare il framework Mocha, devi installare `@types/mocha` e aggiungerlo così per avere tutti i tipi disponibili globalmente:
 
 <Tabs
   defaultValue="mocha"
@@ -90,7 +90,7 @@ Ad esempio, se decidi di utilizzare il framework Mocha, devi installare `@types/
 
 ## Servizi
 
-Se utilizzi servizi che aggiungono comandi all'ambito del browser, devi includerli anche nel tuo `tsconfig.json`. Ad esempio, se utilizzi `@wdio/lighthouse-service`, assicurati di aggiungerlo anche ai `types`, ad esempio:
+Se utilizzi servizi che aggiungono comandi allo scope del browser, devi includerli anche nel tuo `tsconfig.json`. Ad esempio, se utilizzi il `@wdio/lighthouse-service`, assicurati di aggiungerlo anche ai `types`, ad esempio:
 
 ```json title="tsconfig.json"
 {
@@ -105,11 +105,11 @@ Se utilizzi servizi che aggiungono comandi all'ambito del browser, devi includer
 }
 ```
 
-L'aggiunta di servizi e reporter alla configurazione TypeScript rafforza anche la sicurezza dei tipi del file di configurazione WebdriverIO.
+L'aggiunta di servizi e reporter alla tua configurazione TypeScript rafforza anche la sicurezza dei tipi del tuo file di configurazione WebdriverIO.
 
-## Definizioni dei tipi
+## Definizioni di tipo
 
-Quando esegui i comandi WebdriverIO, tutte le proprietà sono solitamente tipizzate, quindi non devi preoccuparti di importare tipi aggiuntivi. Tuttavia, ci sono casi in cui desideri definire variabili in anticipo. Per garantire che queste siano sicure dal punto di vista dei tipi, puoi utilizzare tutti i tipi definiti nel pacchetto [`@wdio/types`](https://www.npmjs.com/package/@wdio/types). Ad esempio, se desideri definire l'opzione remota per `webdriverio`, puoi fare:
+Quando esegui i comandi WebdriverIO, tutte le proprietà sono solitamente tipizzate in modo da non dover importare tipi aggiuntivi. Tuttavia, ci sono casi in cui desideri definire variabili in anticipo. Per garantire che queste siano sicure dal punto di vista dei tipi, puoi utilizzare tutti i tipi definiti nel pacchetto [`@wdio/types`](https://www.npmjs.com/package/@wdio/types). Ad esempio, se desideri definire l'opzione remote per `webdriverio`, puoi fare:
 
 ```ts
 import type { Options } from '@wdio/types'
@@ -134,4 +134,4 @@ export const config: WebdriverIO.Config = {
 
 ### Compilazione e Lint
 
-Per essere completamente sicuro, potresti considerare di seguire le migliori pratiche: compila il tuo codice con il compilatore TypeScript (esegui `tsc` o `npx tsc`) e mantieni [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) in esecuzione su [hook pre-commit](https://github.com/typicode/husky).
+Per essere completamente sicuro, puoi considerare di seguire le migliori pratiche: compila il tuo codice con il compilatore TypeScript (esegui `tsc` o `npx tsc`) e usa [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) in esecuzione su [hook pre-commit](https://github.com/typicode/husky).

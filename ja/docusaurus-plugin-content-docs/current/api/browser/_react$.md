@@ -4,11 +4,11 @@ title: react$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/react$.ts
 ---
 
-`react$`コマンドは、Reactコンポーネントを実際の名前で検索し、propsと状態でフィルタリングするための便利なコマンドです。
+`react$`コマンドは、実際の名前でReactコンポーネントを照会し、propsとstateでフィルタリングするための便利なコマンドです。
 
 :::info
 
-このコマンドはReact v16.xを使用しているアプリケーションでのみ動作します。Reactセレクタの詳細については、[セレクタ](/docs/selectors#react-selectors)ガイドを参照してください。
+このコマンドはReact v16.xを使用しているアプリケーションでのみ機能します。Reactセレクターの詳細については、[セレクター](/docs/selectors#react-selectors)ガイドをお読みください。
 
 :::
 
@@ -23,7 +23,7 @@ browser.react$(selector, { props, state })
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +35,7 @@ browser.react$(selector, { props, state })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`ReactSelectorOptions`</td>
-      <td>Reactセレクタオプション</td>
+      <td>Reactセレクターオプション</td>
     </tr>
     <tr>
       <td><code><var>options.props</var></code><br /><span className="label labelWarning">オプション</span></td>

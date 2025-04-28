@@ -1,19 +1,19 @@
 ---
 id: testrunner
-title: اجرا کننده تست
+title: اجراکننده تست
 ---
 
-WebdriverIO با اجرا کننده تست خود به شما کمک می کند تا در سریع ترین زمان ممکن شروع به تست کنید. It is supposed to do all the work for you, allows integrate to 3rd party services, and helps you to run your tests as efficiently as possible.
+WebdriverIO با اجراکننده تست خود همراه است تا به شما کمک کند به سرعت تست‌ها را شروع کنید. این ابزار طراحی شده تا تمام کارها را برای شما انجام دهد، امکان ادغام با سرویس‌های شخص ثالث را فراهم کند و به شما کمک کند تست‌های خود را به صورت کارآمد اجرا کنید.
 
-اجرا کننده تست WebdriverIO به طور جداگانه در بسته `@wdio/cli` در NPM قرار داده شده است.
+اجراکننده تست WebdriverIO به صورت جداگانه در بسته NPM با نام `@wdio/cli` ارائه شده است.
 
-اینگونه می‌توانید نصبش کنید:
+آن را به این صورت نصب کنید:
 
 ```sh npm2yarn
 npm install @wdio/cli
 ```
 
-برای مشاهده راهنمای رابط خط فرمان، دستور زیر را در ترمینال خود تایپ کنید:
+برای مشاهده راهنمای رابط خط فرمان، دستور زیر را در ترمینال خود وارد کنید:
 
 ```sh
 $ npx wdio --help
@@ -34,39 +34,39 @@ Options:
   --help     Show help                                                 [boolean]
 ```
 
-عالی! اکنون باید یک فایل پیکربندی تعریف کنید که در آن تمام اطلاعات مربوط به تست ها، قابلیت ها و تنظیمات شما تنظیم شده باشد. Switch over to the [Configuration File](/docs/configuration)  section to see what that file should look like.
+عالی! حالا شما نیاز دارید یک فایل پیکربندی تعریف کنید که تمام اطلاعات مربوط به تست‌ها، قابلیت‌ها و تنظیمات شما در آن قرار داده شود. به بخش [فایل پیکربندی](/docs/configuration) مراجعه کنید تا ببینید این فایل چگونه باید باشد.
 
-با کمک پیکربندی `wdio` ، تولید فایل پیکربندی بسیار آسان است. فقط خط زیر را اجرا کنید:
+با کمک ابزار پیکربندی `wdio`، ایجاد فایل پیکربندی بسیار آسان است. فقط اجرا کنید:
 
 ```sh
 $ npx wdio config
 ```
 
-... و ابزار کمکی راه اندازی می شود.
+...و ابزار کمکی راه‌اندازی می‌شود.
 
-در کمتر از یک دقیقه از شما سوالاتی می پرسد و یک فایل پیکربندی برای شما ایجاد می کند.
+از شما سوالاتی پرسیده و یک فایل پیکربندی در کمتر از یک دقیقه برای شما تولید می‌کند.
 
 ![ابزار پیکربندی WDIO](/img/config-utility.gif)
 
-هنگامی که فایل پیکربندی خود را تنظیم کردید، می توانید تست های خود را با اجرای فرمان زیر شروع کنید:
+وقتی فایل پیکربندی خود را تنظیم کردید، می‌توانید تست‌های خود را با اجرای دستور زیر شروع کنید:
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-همچنین می توانید اجرای تست های خود را بدون دستور `run` راه اندازی کنید:
+همچنین می‌توانید بدون دستور `run` نیز تست خود را راه‌اندازی کنید:
 
 ```sh
 npx wdio wdio.conf.js
 ```
 
-تمام! اکنون، می توانید از طریق متغیر جهانی `browser` به نمونه سلنیوم دسترسی داشته باشید.
+همین! حالا می‌توانید از طریق متغیر جهانی `browser` به نمونه selenium دسترسی داشته باشید.
 
 ## دستورات
 
 ### `wdio config`
 
-دستور `config` کمک کننده تنظیمات WebdriverIO را اجرا می کند. این راهنما از شما چند سوال در مورد پروژه WebdriverIO شما می پرسد و یک فایل `wdio.conf.js` را بر اساس پاسخ های شما ایجاد می کند.
+دستور `config` ابزار کمکی پیکربندی WebdriverIO را اجرا می‌کند. این ابزار کمکی چند سوال در مورد پروژه WebdriverIO شما می‌پرسد و بر اساس پاسخ‌های شما یک فایل `wdio.conf.js` ایجاد می‌کند.
 
 مثال:
 
@@ -74,18 +74,18 @@ npx wdio wdio.conf.js
 wdio config
 ```
 
-تنظیمات:
+گزینه‌ها:
 
 ```
---help            prints WebdriverIO help menu                                [boolean]
---npm             Wether to install the packages using NPM instead of yarn    [boolean]
+--help            منوی راهنمای WebdriverIO را چاپ می‌کند                                [boolean]
+--npm             آیا بسته‌ها با استفاده از NPM به جای yarn نصب شوند                    [boolean]
 ```
 
 ### `wdio run`
 
-> این دستور پیش فرض برای اجرای پیکربندی شما است.
+> این دستور پیش‌فرض برای اجرای پیکربندی شما است.
 
-دستور `run` فایل پیکربندی WebdriverIO شما را مقداردهی اولیه می کند و تست های شما را اجرا می کند.
+دستور `run` فایل پیکربندی WebdriverIO شما را راه‌اندازی کرده و تست‌های شما را اجرا می‌کند.
 
 مثال:
 
@@ -93,64 +93,63 @@ wdio config
 wdio run ./wdio.conf.js --watch
 ```
 
-تنظیمات:
+گزینه‌ها:
 
 ```
---help                prints WebdriverIO help menu                   [boolean]
---version             prints WebdriverIO version                     [boolean]
---hostname, -h        automation driver host address                  [string]
---port, -p            automation driver port                          [number]
---user, -u            username if using a cloud service as automation backend
+--help                منوی راهنمای WebdriverIO را چاپ می‌کند                   [boolean]
+--version             نسخه WebdriverIO را چاپ می‌کند                     [boolean]
+--hostname, -h        آدرس میزبان درایور اتوماسیون                  [string]
+--port, -p            پورت درایور اتوماسیون                          [number]
+--user, -u            نام کاربری در صورت استفاده از یک سرویس ابری به عنوان پشتیبان اتوماسیون
                                                                         [string]
---key, -k             corresponding access key to the user            [string]
---watch               watch specs for changes                        [boolean]
---logLevel, -l        level of logging verbosity
+--key, -k             کلید دسترسی مربوط به کاربر            [string]
+--watch               نظارت بر تغییرات در فایل‌های تست                        [boolean]
+--logLevel, -l        سطح جزئیات گزارش‌ها
                             [choices: "trace", "debug", "info", "warn", "error", "silent"]
---bail                stop test runner after specific amount of tests have
-                        failed                                          [number]
---baseUrl             shorten url command calls by setting a base url [string]
---waitforTimeout, -w  timeout for all waitForXXX commands             [number]
---framework, -f       defines the framework (Mocha, Jasmine or Cucumber) to
-                        run the specs                                   [string]
---reporters, -r       reporters to print out the results on stdout      [array]
---suite               overwrites the specs attribute and runs the defined
-                        suite                                            [array]
---spec                run a certain spec file or wildcards - overrides specs piped
-                        from stdin                                       [array]
---exclude             exclude spec file(s) from a run - overrides specs piped
-                        from stdin                                       [array]
---repeat              Repeat specific specs and/or suites N times        [number]
---mochaOpts           Mocha options
---jasmineOpts         Jasmine options
---cucumberOpts        Cucumber options
+--bail                توقف اجراکننده تست پس از شکست تعداد مشخصی از تست‌ها          [number]
+--baseUrl             کوتاه کردن فراخوانی‌های دستور url با تنظیم یک url پایه [string]
+--waitforTimeout, -w  مهلت برای تمام دستورات waitForXXX             [number]
+--framework, -f       چارچوب (Mocha، Jasmine یا Cucumber) را برای اجرای تست‌ها تعیین می‌کند 
+                                                                            [string]
+--reporters, -r       گزارشگرهایی که نتایج را در خروجی استاندارد چاپ می‌کنند      [array]
+--suite               ویژگی specs را بازنویسی می‌کند و مجموعه تعریف شده را اجرا می‌کند
+                                                                            [array]
+--spec                اجرای یک فایل تست خاص یا الگوهای وحشی - specs ارسال شده از stdin را
+                        بازنویسی می‌کند                                       [array]
+--exclude             فایل(های) تست را از اجرا مستثنی می‌کند - specs ارسال شده از stdin را 
+                        بازنویسی می‌کند                                       [array]
+--repeat              تکرار تست‌ها و/یا مجموعه‌های خاص به تعداد N بار        [number]
+--mochaOpts           گزینه‌های Mocha
+--jasmineOpts         گزینه‌های Jasmine
+--cucumberOpts        گزینه‌های Cucumber
 ```
 
-> Note: Autocompiling can be easily controlled with `tsx` ENV Vars. See also the [TypeScript documentation](/docs/typescript).
+> نکته: کامپایل خودکار را می‌توان به راحتی با متغیرهای محیطی `tsx` کنترل کرد. همچنین به [مستندات TypeScript](/docs/typescript) مراجعه کنید.
 
 ### `wdio install`
-دستور `install` به شما این امکان را می دهد که گزارشگران و خدمات را از طریق CLI به پروژه های WebdriverIO خود اضافه کنید.
+دستور `install` به شما امکان می‌دهد گزارشگرها و سرویس‌ها را از طریق CLI به پروژه‌های WebdriverIO خود اضافه کنید.
 
 مثال:
 
 ```sh
-wdio install service sauce # installs @wdio/sauce-service
-wdio install reporter dot # installs @wdio/dot-reporter
-wdio install framework mocha # installs @wdio/mocha-framework
+wdio install service sauce # نصب @wdio/sauce-service
+wdio install reporter dot # نصب @wdio/dot-reporter
+wdio install framework mocha # نصب @wdio/mocha-framework
 ```
 
-اگر می خواهید بسته ها را با استفاده از `yarn` نصب کنید، می توانید پرچم `--yarn` را همراه با دستور ارسال کنید:
+اگر می‌خواهید بسته‌ها را با استفاده از `yarn` نصب کنید، می‌توانید پرچم `--yarn` را به دستور اضافه کنید:
 
 ```sh
 wdio install service sauce --yarn
 ```
 
-همچنین اگر فایل پیکربندی WDIO شما در همان پوشه ای نیست که روی آن کار می کنید، یک مسیر پیکربندی سفارشی را انتقال دهید:
+همچنین می‌توانید یک مسیر پیکربندی سفارشی را مشخص کنید اگر فایل پیکربندی WDIO شما در پوشه‌ای که در آن کار می‌کنید نیست:
 
 ```sh
 wdio install service sauce --config="./path/to/wdio.conf.js"
 ```
 
-#### لیست خدمات پشتیبانی شده
+#### لیست سرویس‌های پشتیبانی شده
 
 ```
 sauce
@@ -169,7 +168,7 @@ vite
 nuxt
 ```
 
-#### لیست گزارش‌دهنده های پشتیبانی شده
+#### لیست گزارشگرهای پشتیبانی شده
 
 ```
 dot
@@ -186,7 +185,7 @@ mochawesome
 timeline
 ```
 
-#### لیست فریمورک های پشتیبانی شده
+#### لیست چارچوب‌های پشتیبانی شده
 
 ```
 mocha
@@ -196,18 +195,18 @@ cucumber
 
 ### `wdio repl`
 
-دستور repl اجازه می دهد تا یک رابط خط فرمان تعاملی برای اجرای دستورات WebdriverIO راه اندازی شود. می توان از آن برای اهداف تست یا برای راه اندازی سریع Session در WebdriverIO استفاده کرد.
+دستور repl امکان راه‌اندازی یک رابط خط فرمان تعاملی برای اجرای دستورات WebdriverIO را فراهم می‌کند. می‌توان از آن برای اهداف تست یا صرفاً برای راه‌اندازی سریع یک جلسه WebdriverIO استفاده کرد.
 
-اجرای تست در کروم محلی:
+اجرای تست‌ها در کروم محلی:
 
 ```sh
 wdio repl chrome
 ```
 
-یا اجرای تست در Sauce Labs:
+یا اجرای تست‌ها در Sauce Labs:
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY
 ```
 
-می توانید همان آرگومان هایی را در دستور [run](#wdio-run) استفاده می‌کنید، اعمال کنید.
+می‌توانید همان آرگومان‌هایی را که در [دستور run](#wdio-run) استفاده می‌کنید، اعمال کنید.

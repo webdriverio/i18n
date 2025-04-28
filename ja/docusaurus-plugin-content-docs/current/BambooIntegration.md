@@ -21,7 +21,7 @@ module.exports = {
     // ...
 }
 ```
-注：*テスト結果をルートフォルダではなく別のフォルダに保存することは常に良い標準です。*
+注意: *テスト結果をルートフォルダではなく、別のフォルダに保存することは常に良い標準です。*
 
 ```js
 // wdio.conf.js - 並列でテストを実行する場合
@@ -40,14 +40,14 @@ module.exports = {
 }
 ```
 
-レポートはすべてのフレームワークで同様であり、Mocha、JasmineまたはCucumberのいずれかを使用できます。
+レポートはすべてのフレームワークで同様になり、Mocha、JasmineまたはCucumberのいずれかを使用できます。
 
 この時点で、テストが作成され、結果が```./testresults/```フォルダに生成され、Bambooが稼働していると思います。
 
-## Bambooにテストを統合する
+## BambooにテストをIntegrateする
 
 1. Bambooプロジェクトを開く
-    > 新しいプランを作成し、リポジトリをリンクし（常にリポジトリの最新バージョンを指すようにしてください）、ステージを作成します
+    > 新しいプランを作成し、リポジトリをリンクして（常にリポジトリの最新バージョンを指すようにしてください）、ステージを作成します
 
     ![Plan Details](/img/bamboo/plancreation.png "Plan Details")
 
@@ -57,7 +57,7 @@ module.exports = {
 2. テストジョブを開き、Bambooでテストを実行するタスクを作成します
     >**タスク1:** ソースコードのチェックアウト
 
-    >**タスク2:** テストを実行する ```npm i && npm run test```。*スクリプト*タスクと*シェルインタープリタ*を使用して上記のコマンドを実行できます（これによりテスト結果が生成され、```./testresults/```フォルダに保存されます）
+    >**タスク2:** テストを実行 ```npm i && npm run test```。*Script*タスクと*Shell Interpreter*を使用して上記のコマンドを実行できます（これによりテスト結果が生成され、```./testresults/```フォルダに保存されます）
 
     ![Test Run](/img/bamboo/testrun.png "Test Run")
 
@@ -65,9 +65,9 @@ module.exports = {
 
     ![jUnit Parser](/img/bamboo/junitparser.png "jUnit Parser")
 
-    注：*テストタスクが失敗した場合でも常に実行されるように、結果パーサータスクを*Final*セクションに配置していることを確認してください*
+    注意: *テストタスクが失敗した場合でも常に実行されるように、結果パーサータスクを*Final*セクションに配置してください*
 
-    >**タスク4:** （オプション）テスト結果が古いファイルで混乱しないようにするために、Bambooへの正常な解析後に```./testresults/```フォルダを削除するタスクを作成できます。結果を削除するために```rm -f ./testresults/*.xml```のようなシェルスクリプトを追加するか、```rm -r testresults```でフォルダ全体を削除できます
+    >**タスク4:** （オプション）テスト結果が古いファイルと混ざらないようにするために、Bambooへの解析が成功した後に```./testresults/```フォルダを削除するタスクを作成できます。```rm -f ./testresults/*.xml```のようなシェルスクリプトを追加して結果を削除するか、```rm -r testresults```でフォルダ全体を削除できます
 
 上記の*ロケットサイエンス*が完了したら、プランを有効にして実行してください。最終的な出力は次のようになります：
 
@@ -79,8 +79,8 @@ module.exports = {
 
 ![Failed Test](/img/bamboo/failedtest.png "Failed Test")
 
-## 失敗して修正
+## 失敗と修正
 
 ![Failed and Fixed](/img/bamboo/failedandfixed.png "Failed and Fixed")
 
-やった！！以上です。WebdriverIOテストがBambooに正常に統合されました。
+やった！以上です。WebdriverIOテストをBambooに正常に統合しました。

@@ -4,16 +4,16 @@ title: waitForExist
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForExist.ts
 ---
 
-Attende che un elemento sia presente nel DOM per il numero fornito di
-millisecondi. Restituisce true se il selettore
-corrisponde ad almeno un elemento che esiste nel DOM, altrimenti genera un
-errore. Se il flag reverse è true, il comando restituirà invece true
-se il selettore non corrisponde ad alcun elemento.
+Attende che un elemento sia presente nel DOM per il numero
+di millisecondi specificato. Restituisce true se il selettore
+corrisponde ad almeno un elemento esistente nel DOM, altrimenti genera un
+errore. Se il flag reverse è true, il comando restituirà true
+se il selettore non corrisponde a nessun elemento.
 
 :::info
 
-A differenza di altri comandi degli elementi, WebdriverIO non attenderà che
-l'elemento esista per eseguire questo comando.
+A differenza di altri comandi per elementi, WebdriverIO non attenderà
+che l'elemento esista per eseguire questo comando.
 
 :::
 
@@ -40,7 +40,7 @@ $(selector).waitForExist({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number`</td>
-      <td>tempo in ms (predefinito basato sul valore di configurazione [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>tempo in ms (valore predefinito basato sulla configurazione [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
     </tr>
     <tr>
       <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -50,7 +50,7 @@ $(selector).waitForExist({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>se esiste sovrascrive il messaggio di errore predefinito</td>
+      <td>se esiste, sovrascrive il messaggio di errore predefinito</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">opzionale</span></td>

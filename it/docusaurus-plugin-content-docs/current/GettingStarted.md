@@ -3,7 +3,7 @@ id: gettingstarted
 title: Iniziare
 ---
 
-Benvenuto alla documentazione di WebdriverIO. Ti aiuterà a iniziare rapidamente. Se riscontri problemi, puoi trovare aiuto e risposte sul nostro [Server di Supporto Discord](https://discord.webdriver.io) o puoi contattarmi su [Twitter](https://twitter.com/webdriverio).
+Benvenuto alla documentazione di WebdriverIO. Ti aiuterà a iniziare rapidamente. Se incontri problemi, puoi trovare aiuto e risposte sul nostro [Server di Supporto Discord](https://discord.webdriver.io) o puoi contattarmi su [Twitter](https://twitter.com/webdriverio).
 
 :::info
 Questa è la documentazione per la versione più recente (__>=9.x__) di WebdriverIO. Se stai ancora utilizzando una versione precedente, visita i [vecchi siti di documentazione](/versions)!
@@ -16,13 +16,13 @@ Questa è la documentazione per la versione più recente (__>=9.x__) di Webdrive
 
 :::tip Canale YouTube Ufficiale 🎥
 
-Puoi trovare altri video su WebdriverIO sul [canale YouTube ufficiale](https://youtube.com/@webdriverio). Assicurati di iscriverti!
+Puoi trovare più video su WebdriverIO sul [canale YouTube ufficiale](https://youtube.com/@webdriverio). Assicurati di iscriverti!
 
 :::
 
-## Avviare una configurazione WebdriverIO
+## Iniziare una configurazione WebdriverIO
 
-Per aggiungere una configurazione completa di WebdriverIO a un progetto esistente o nuovo utilizzando il [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio), esegui:
+Per aggiungere una configurazione completa di WebdriverIO a un progetto esistente o nuovo utilizzando [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio), esegui:
 
 Se sei nella directory principale di un progetto esistente, esegui:
 
@@ -93,7 +93,7 @@ Questo singolo comando scarica lo strumento CLI di WebdriverIO ed esegue una pro
 
 <CreateProjectAnimation />
 
-La procedura guidata ti farà una serie di domande che ti guideranno nella configurazione. Puoi passare un parametro `--yes` per scegliere una configurazione predefinita che utilizzerà Mocha con Chrome seguendo il pattern [Page Object](https://martinfowler.com/bliki/PageObject.html).
+La procedura guidata ti porrà una serie di domande che ti guideranno attraverso la configurazione. Puoi passare un parametro `--yes` per scegliere una configurazione predefinita che utilizzerà Mocha con Chrome utilizzando il pattern [Page Object](https://martinfowler.com/bliki/PageObject.html).
 
 <Tabs
   defaultValue="npm"
@@ -134,7 +134,7 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-## Installare CLI manualmente
+## Installare CLI Manualmente
 
 Puoi anche aggiungere il pacchetto CLI al tuo progetto manualmente tramite:
 
@@ -160,7 +160,7 @@ Se desideri eseguire file di test specifici, puoi aggiungere un parametro `--spe
 npx wdio run ./wdio.conf.js --spec example.e2e.js
 ```
 
-oppure definire suite nel tuo file di configurazione ed eseguire solo i file di test definiti in una suite:
+o definire suite nel tuo file di configurazione ed eseguire solo i file di test definiti in una suite:
 
 ```sh
 npx wdio run ./wdio.conf.js --suite exampleSuiteName
@@ -178,13 +178,13 @@ __Nota:__ tutti i comandi WebdriverIO sono asincroni e devono essere gestiti cor
 
 ## Registrare test
 
-WebdriverIO fornisce strumenti per aiutarti a iniziare registrando le tue azioni di test sullo schermo e generando automaticamente script di test WebdriverIO. Vedi [Registrare test con Chrome DevTools Recorder](/docs/record) per maggiori informazioni.
+WebdriverIO fornisce strumenti per aiutarti a iniziare registrando le tue azioni di test sullo schermo e generando automaticamente script di test WebdriverIO. Vedi [Registra test con Chrome DevTools Recorder](/docs/record) per maggiori informazioni.
 
 ## Requisiti di Sistema
 
 Avrai bisogno di [Node.js](http://nodejs.org) installato.
 
 - Installa almeno v18.20.0 o superiore, poiché questa è la versione LTS attiva più vecchia
-- Sono ufficialmente supportate solo le versioni che sono o diventeranno una release LTS
+- Sono ufficialmente supportate solo le versioni che sono o diventeranno una versione LTS
 
-Se Node non è attualmente installato sul tuo sistema, ti suggeriamo di utilizzare uno strumento come [NVM](https://github.com/creationix/nvm) o [Volta](https://volta.sh/) per aiutarti a gestire più versioni attive di Node.js. NVM è una scelta popolare, mentre Volta è anche una buona alternativa.
+Se Node non è attualmente installato sul tuo sistema, ti suggeriamo di utilizzare uno strumento come [NVM](https://github.com/creationix/nvm) o [Volta](https://volta.sh/) per gestire più versioni attive di Node.js. NVM è una scelta popolare, mentre Volta è anche una buona alternativa.

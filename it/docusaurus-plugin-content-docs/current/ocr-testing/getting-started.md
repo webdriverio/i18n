@@ -1,6 +1,6 @@
 ---
 id: getting-started
-title: Iniziare
+title: Per Iniziare
 ---
 
 ## Installazione
@@ -14,16 +14,15 @@ npm install @wdio/ocr-service --save-dev
 Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui.](../gettingstarted)
 
 :::note
-Questo modulo utilizza Tesseract come motore OCR. Di default, verificherà se hai un'installazione locale di Tesseract sul tuo sistema, in tal caso, lo utilizzerà. In caso contrario, utilizzerà il modulo [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) che viene installato automaticamente per te.
+Questo modulo utilizza Tesseract come motore OCR. Per impostazione predefinita, verificherà se hai un'installazione locale di Tesseract sul tuo sistema, in tal caso, la utilizzerà. In caso contrario, utilizzerà il modulo [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) che viene installato automaticamente per te.
 
-Se vuoi velocizzare l'elaborazione delle immagini, il consiglio è di utilizzare una versione installata localmente di Tesseract. Vedi anche [Tempo di esecuzione dei test](./more-test-optimization#using-a-local-installation-of-tesseract).
+Se desideri accelerare l'elaborazione delle immagini, il consiglio è di utilizzare una versione di Tesseract installata localmente. Vedi anche [Tempo di esecuzione dei test](./more-test-optimization#using-a-local-installation-of-tesseract).
 :::
 
 Le istruzioni su come installare Tesseract come dipendenza di sistema sul tuo sistema locale possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Installation.html).
 
 :::caution
-Per domande/errori di installazione con Tesseract, consulta il progetto
-[Tesseract](https://github.com/tesseract-ocr/tesseract).
+Per domande/errori di installazione con Tesseract, fai riferimento al progetto [Tesseract](https://github.com/tesseract-ocr/tesseract).
 :::
 
 ## Supporto Typescript
@@ -40,7 +39,7 @@ Assicurati di aggiungere `@wdio/ocr-service` al tuo file di configurazione `tsco
 
 ## Configurazione
 
-Per utilizzare il servizio devi aggiungere `ocr` all'array dei servizi nel tuo `wdio.conf.ts`
+Per utilizzare il servizio è necessario aggiungere `ocr` all'array dei servizi in `wdio.conf.ts`
 
 ```js
 // wdio.conf.js
@@ -66,27 +65,27 @@ exports.config = {
 
 -   **Tipo:** `number`
 -   **Obbligatorio:** No
--   **Default:** `0.25`
+-   **Predefinito:** `0.25`
 
-Maggiore è il contrasto, più scura sarà l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
+Maggiore è il contrasto, più scura è l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
 
 #### `imagesFolder`
 
 -   **Tipo:** `string`
 -   **Obbligatorio:** No
--   **Default:** `{project-root}/.tmp/ocr`
+-   **Predefinito:** `{project-root}/.tmp/ocr`
 
-La cartella dove vengono memorizzati i risultati OCR.
+La cartella in cui vengono memorizzati i risultati OCR.
 
 :::note
-Se fornisci una `imagesFolder` personalizzata, il servizio aggiungerà automaticamente la sottocartella `ocr` ad essa.
+Se fornisci una `imagesFolder` personalizzata, il servizio aggiungerà automaticamente la sottocartella `ocr`.
 :::
 
 #### `language`
 
 -   **Tipo:** `string`
 -   **Obbligatorio:** No
--   **Default:** `eng`
+-   **Predefinito:** `eng`
 
 La lingua che Tesseract riconoscerà. Maggiori informazioni possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate possono essere trovate [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 

@@ -4,9 +4,9 @@ title: tick（ティック）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/tick.ts
 ---
 
-時計を指定した`milliseconds`（ミリ秒）数だけ進めます。影響を受ける時間範囲内のタイマーは全て呼び出されます。
+時計を指定した数の `milliseconds`（ミリ秒）進めます。影響を受ける時間範囲内のタイマーはすべて呼び出されます。
 
-##### 使用法
+##### 使用方法
 
 ```js
 const clock = await browser.emulate('clock', { ... })
@@ -18,7 +18,7 @@ await clock.tick(ms)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>

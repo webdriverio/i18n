@@ -1,11 +1,11 @@
 ---
 id: ocr-get-text
-title: ocrGetText
+title: استخراج متن با OCR
 ---
 
-Get the text on an image.
+دریافت متن موجود در یک تصویر.
 
-### Usage
+### کاربرد
 
 ```js
 const result = await browser.ocrGetText();
@@ -13,15 +13,15 @@ const result = await browser.ocrGetText();
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## Output
+## خروجی
 
-### Result
+### نتیجه
 
 ```logs
 result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube"
 ```
 
-### Logs
+### لاگ‌ها
 
 ```log
 [0-0] 2024-05-25T17:38:25.970Z INFO webdriver: COMMAND ocrGetText()
@@ -29,17 +29,17 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 [0-0] 2024-05-25T17:38:26.738Z INFO webdriver: RESULT VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube
 ```
 
-## Options
+## گزینه‌ها
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+هرچه کنتراست بالاتر باشد، تصویر تیره‌تر و بالعکس. این می‌تواند به یافتن متن در تصویر کمک کند. مقادیر بین `-1` و `1` قابل قبول است.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrGetText({ contrast: 0.5 });
@@ -47,20 +47,20 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **نوع:** `number`
+-   **اجباری:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+این ناحیه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک المان یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrGetText({ haystack: $("elementSelector") });
 
-// OR
+// یا
 await browser.ocrGetText({ haystack: await $("elementSelector") });
 
-// OR
+// یا
 await browser.ocrGetText({
     haystack: {
         x: 10,
@@ -73,18 +73,18 @@ await browser.ocrGetText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **نوع:** `string`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید در [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) پیدا کنید و زبان‌های پشتیبانی شده را می‌توانید در [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) مشاهده کنید.
 
-#### Example
+#### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // Use Dutch as a language
+    // استفاده از زبان هلندی
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

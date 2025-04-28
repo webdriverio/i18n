@@ -4,8 +4,8 @@ title: react$$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/react$$.ts
 ---
 
-Il comando `react$$` è un comando utile per interrogare più Componenti React 
-tramite il loro nome effettivo e filtrarli per props e state.
+Il comando `react$$` è un comando utile per interrogare più Componenti React
+in base al loro nome effettivo e filtrarli per props e state.
 
 :::info
 
@@ -47,7 +47,7 @@ $(selector).react$$(selector, { props, state })
     <tr>
       <td><code><var>options.state</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>Stato React in cui l'elemento dovrebbe trovarsi</td>
+      <td>Stato React in cui l'elemento dovrebbe essere</td>
     </tr>
   </tbody>
 </table>

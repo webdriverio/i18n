@@ -5,17 +5,17 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Crea una nuova sessione Selenium con le tue capacità attuali. Questo è utile se
-testi applicazioni altamente stateful dove hai bisogno di pulire la sessione del browser tra
+testi applicazioni con alto livello di stato dove hai bisogno di pulire la sessione del browser tra
 i test nel tuo file spec per evitare di creare centinaia di singoli file di test con WDIO.
-Fai attenzione però, questo comando influisce notevolmente sul tempo di test poiché generare
+Fai attenzione però, questo comando influisce enormemente sul tempo di test poiché generare
 nuove sessioni Selenium richiede molto tempo, specialmente quando si utilizzano servizi cloud.
 
-Parametri di connessione come hostname, port, protocol, ecc. possono essere aggiunti insieme a
+Parametri di connessione come hostname, porta, protocollo, ecc. possono essere aggiunti insieme a
 browserName quando vuoi connetterti a un servizio remoto diverso. Questo è utile
 in una situazione, ad esempio, dove inizi un test in un'app nativa e hai bisogno di verificare
-dati in un'app web.
+dati nell'app web.
 
-Se parti da un servizio remoto, puoi passare 0.0.0.0 come hostname se vuoi
+Se inizi da un servizio remoto, puoi passare 0.0.0.0 come hostname se vuoi
 passare a driver locali.
 
 ##### Utilizzo

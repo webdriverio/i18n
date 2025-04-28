@@ -1,19 +1,19 @@
 ---
 id: retry
-title: Retry Flaky Tests
+title: Ponawianie Niestabilnych Testów
 ---
 
-You can rerun certain tests with the WebdriverIO testrunner that turn out to be unstable due to things like a flaky network or race conditions. (However, it is not recommended to simply increase the rerun rate if tests become unstable!)
+Za pomocą testera WebdriverIO możesz ponownie uruchomić niektóre testy, które okazały się niestabilne z powodu niestabilnej sieci lub warunków wyścigu. (Jednak nie zaleca się po prostu zwiększania liczby ponownych uruchomień, jeśli testy stają się niestabilne!)
 
-## Rerun suites in Mocha
+## Ponowne uruchamianie zestawów testów w Mocha
 
-Since version 3 of Mocha, you can rerun whole test suites (everything inside an `describe` block). If you use Mocha you should favor this retry mechanism instead of the WebdriverIO implementation that only allows you to rerun certain test blocks (everything within an `it` block). In order to use the `this.retries()` method, the suite block `describe` must use an unbound function `function(){}` instead of a fat arrow function `() => {}`, as described in [Mocha docs](https://mochajs.org/#arrow-functions). Using Mocha you can also set a retry count for all specs using `mochaOpts.retries` in your `wdio.conf.js`.
+Od wersji 3 Mocha, możesz ponownie uruchamiać całe zestawy testów (wszystko wewnątrz bloku `describe`). Jeśli używasz Mocha, powinieneś preferować ten mechanizm ponownych prób zamiast implementacji WebdriverIO, która pozwala tylko na ponowne uruchomienie określonych bloków testowych (wszystko w bloku `it`). Aby użyć metody `this.retries()`, blok zestawu `describe` musi używać niezwiązanej funkcji `function(){}` zamiast funkcji strzałkowej `() => {}`, jak opisano w [dokumentacji Mocha](https://mochajs.org/#arrow-functions). Używając Mocha, możesz również ustawić liczbę ponownych prób dla wszystkich testów za pomocą `mochaOpts.retries` w pliku `wdio.conf.js`.
 
-Here is an example:
+Oto przykład:
 
 ```js
 describe('retries', function () {
-    // Retry all tests in this suite up to 4 times
+    // Ponów wszystkie testy w tym zestawie do 4 razy
     this.retries(4)
 
     beforeEach(async () => {
@@ -21,7 +21,7 @@ describe('retries', function () {
     })
 
     it('should succeed on the 3rd try', async function () {
-        // Specify this test to only retry up to 2 times
+        // Określ, że ten test ma być ponawiany maksymalnie 2 razy
         this.retries(2)
         console.log('run')
         await expect($('.foo')).toBeDisplayed()
@@ -29,16 +29,16 @@ describe('retries', function () {
 })
 ```
 
-## Rerun single tests in Jasmine or Mocha
+## Ponowne uruchamianie pojedynczych testów w Jasmine lub Mocha
 
-To rerun a certain test block you can just apply the number of reruns as last parameter after the test block function:
+Aby ponownie uruchomić określony blok testowy, możesz po prostu zastosować liczbę ponownych uruchomień jako ostatni parametr po funkcji bloku testowego:
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -54,7 +54,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+To samo działa również dla hooków:
 
 ```js
 describe('my flaky app', () => {
@@ -84,7 +84,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+To samo działa również dla hooków:
 
 ```js
 describe('my flaky app', () => {
@@ -99,22 +99,22 @@ describe('my flaky app', () => {
 })
 ```
 
-If you are using Jasmine, the second parameter is reserved for timeout. To apply a retry parameter you need to set the timeout to its default value `jasmine.DEFAULT_TIMEOUT_INTERVAL` and then apply your retry count.
+Jeśli używasz Jasmine, drugi parametr jest zarezerwowany dla limitu czasu. Aby zastosować parametr ponownych prób, musisz ustawić limit czasu na jego domyślną wartość `jasmine.DEFAULT_TIMEOUT_INTERVAL`, a następnie zastosować liczbę ponownych prób.
 
 </TabItem>
 </Tabs>
 
-This retry mechanism only allows to retry single hooks or test blocks. If your test is accompanied with a hook to set up your application, this hook is not being run. [Mocha offers](https://mochajs.org/#retry-tests) native test retries that provide this behavior while Jasmine doesn't. You can access the number of executed retries in the `afterTest` hook.
+Ten mechanizm ponownych prób pozwala tylko na ponowne uruchomienie pojedynczych hooków lub bloków testowych. Jeśli twój test jest połączony z hookiem do skonfigurowania aplikacji, ten hook nie jest uruchamiany. [Mocha oferuje](https://mochajs.org/#retry-tests) natywne ponowne próby testów, które zapewniają takie zachowanie, podczas gdy Jasmine nie. Możesz uzyskać dostęp do liczby wykonanych ponownych prób w hooku `afterTest`.
 
-## Rerunning in Cucumber
+## Ponowne uruchamianie w Cucumber
 
-### Rerun full suites in Cucumber
+### Ponowne uruchamianie pełnych zestawów w Cucumber
 
-For cucumber >=6 you can provide the [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) configuration option along with a `retryTagFilter` optional parameter to have all or some of your failing scenarios get additional retries until succeeded. For this feature to work you need to set the `scenarioLevelReporter` to `true`.
+Dla cucumber >=6 możesz dostarczyć opcję konfiguracji [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) wraz z opcjonalnym parametrem `retryTagFilter`, aby wszystkie lub niektóre z twoich nieudanych scenariuszy otrzymały dodatkowe próby aż do sukcesu. Aby ta funkcja działała, musisz ustawić `scenarioLevelReporter` na `true`.
 
-### Rerun Step Definitions in Cucumber
+### Ponowne uruchamianie definicji kroków w Cucumber
 
-To define a rerun rate for a certain step definitions just apply a retry option to it, like:
+Aby zdefiniować wskaźnik ponownych uruchomień dla określonych definicji kroków, po prostu zastosuj opcję retry, na przykład:
 
 ```js
 export default function () {
@@ -128,15 +128,15 @@ export default function () {
 })
 ```
 
-Reruns can only be defined in your step definitions file, never in your feature file.
+Ponowne uruchomienia można definiować tylko w pliku definicji kroków, nigdy w pliku funkcji.
 
-## Add retries on a per-specfile basis
+## Dodawanie ponownych prób na poziomie pliku specyfikacji
 
-Previously, only test- and suite-level retries were available, which are fine in most cases.
+Wcześniej dostępne były tylko ponowne próby na poziomie testu i zestawu, co jest wystarczające w większości przypadków.
 
-But in any tests which involve state (such as on a server or in a database) the state may be left invalid after the first test failure. Any subsequent retries may have no chance of passing, due to the invalid state they would start with.
+Ale w przypadku testów, które obejmują stan (na przykład na serwerze lub w bazie danych), stan może pozostać nieprawidłowy po pierwszym niepowodzeniu testu. Wszelkie późniejsze próby mogą nie mieć szans na powodzenie z powodu nieprawidłowego stanu, od którego zaczynają.
 
-A new `browser` instance is created for each specfile, which makes this an ideal place to hook and setup any other states (server, databases). Retries on this level mean that the whole setup process will simply be repeated, just as if it were for a new specfile.
+Nowa instancja `browser` jest tworzona dla każdego pliku specyfikacji, co czyni to idealnym miejscem do podpięcia i konfiguracji innych stanów (serwer, bazy danych). Ponowne próby na tym poziomie oznaczają, że cały proces konfiguracji zostanie po prostu powtórzony, tak jakby było to dla nowego pliku specyfikacji.
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -156,15 +156,15 @@ export const config = {
 }
 ```
 
-## Run a specific test multiple times
+## Uruchom określony test wielokrotnie
 
-This is to help prevent flaky tests from being introduced in a codebase. By adding the `--repeat` cli option it will run the specified specs or suites N times. When using this cli flag the `--spec` or `--suite` flag must also be specified.
+Ma to na celu zapobieganie wprowadzaniu niestabilnych testów do bazy kodu. Dodając opcję cli `--repeat`, określone testy lub zestawy będą uruchamiane N razy. Podczas używania tej flagi cli, flaga `--spec` lub `--suite` musi być również określona.
 
-When adding new tests to a codebase, especially through a CI/CD process the tests could pass and get merged but become flaky later on. This flakiness could come from a number of things like network issues, server load, database size, etc. Using the `--repeat` flag in your CD/CD process can help catch these flaky tests before they get merged to a main codebase.
+Podczas dodawania nowych testów do bazy kodu, szczególnie poprzez proces CI/CD, testy mogą przejść i zostać scalone, ale później stać się niestabilne. Ta niestabilność może wynikać z różnych rzeczy, takich jak problemy z siecią, obciążenie serwera, rozmiar bazy danych itp. Używanie flagi `--repeat` w procesie CD/CD może pomóc wyłapać te niestabilne testy, zanim zostaną scalone z główną bazą kodu.
 
-One strategy to use is run your tests like regular in your CI/CD process but if you're introducing a new test you can then run another set of tests with the new spec specified in `--spec` along with `--repeat` so it runs the new test x number of times. If the test fails any of those times then the test will not get merged and will need to be looked at why it failed.
+Jedną ze strategii, którą można zastosować, jest uruchamianie testów jak zwykle w procesie CI/CD, ale jeśli wprowadzasz nowy test, możesz uruchomić kolejny zestaw testów z nową specyfikacją określoną w `--spec` wraz z `--repeat`, aby ten nowy test został uruchomiony x razy. Jeśli test nie powiedzie się w którymkolwiek z tych uruchomień, nie zostanie scalony i będzie trzeba sprawdzić, dlaczego się nie powiódł.
 
 ```sh
-# This will run the example.e2e.js spec 5 times
+# To uruchomi test example.e2e.js 5 razy
 npx wdio run ./wdio.conf.js --spec example.e2e.js --repeat 5
 ```

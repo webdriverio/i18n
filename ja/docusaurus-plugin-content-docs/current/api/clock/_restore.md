@@ -29,4 +29,3 @@ console.log(await browser.execute(() => new Date().getTime())) // 1722560447102 
 ##### 戻り値
 
 - **&lt; `Promise<void>` &gt;**
-    

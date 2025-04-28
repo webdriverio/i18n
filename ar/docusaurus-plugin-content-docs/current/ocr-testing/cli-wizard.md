@@ -1,55 +1,55 @@
 ---
 id: cli-wizard
-title: CLI Wizard
+title: معالج سطر الأوامر
 ---
 
-You can validate which text can be found in an image without running a test by using the OCR CLI Wizard. The only thing that are needed are:
+يمكنك التحقق من النص الموجود في صورة دون تشغيل اختبار باستخدام معالج سطر الأوامر OCR. الأشياء الوحيدة المطلوبة هي:
 
-- you have installed the `@wdio/ocr-service` as a dependency, see [Getting Started](./getting-started)
-- an image that you want to process
+-   أن تكون قد قمت بتثبيت `@wdio/ocr-service` كاعتمادية، انظر [البدء](./getting-started)
+-   صورة ترغب في معالجتها
 
-Then run the following command to start the wizard
+ثم قم بتشغيل الأمر التالي لبدء المعالج
 
 ```sh
 npx ocr-service
 ```
 
-This will start a wizard that will guide you through the steps to select an image and use a haystack plus advanced mode. The following questions are asked
+سيبدأ هذا معالجًا سيرشدك خلال خطوات اختيار صورة واستخدام haystack بالإضافة إلى الوضع المتقدم. يتم طرح الأسئلة التالية
 
-## How would you like to specify the file?
+## كيف ترغب في تحديد الملف؟
 
-The following options can be selected
+يمكن اختيار الخيارات التالية
 
-- Use a "file explorer"
-- Type the file path manually
+-   استخدام "مستكشف الملفات"
+-   كتابة مسار الملف يدويًا
 
-### Use a "file explorer"
+### استخدام "مستكشف الملفات"
 
-The CLI wizard provides an option to use a "file explorer" to search for files on your system. It starts from the folder you call the command. After selecting an image (use your arrow keys and the ENTER key) you will proceed to the next question
+يوفر معالج سطر الأوامر خيارًا لاستخدام "مستكشف الملفات" للبحث عن الملفات على نظامك. يبدأ من المجلد الذي تستدعي منه الأمر. بعد اختيار صورة (استخدم مفاتيح الأسهم ومفتاح ENTER) ستنتقل إلى السؤال التالي
 
-### Type the file path manually
+### كتابة مسار الملف يدويًا
 
-This is a direct path to a file somewhere on your local machine
+هذا هو المسار المباشر إلى ملف ما على جهازك المحلي
 
-### Would you like to use a haystack?
+### هل ترغب في استخدام haystack؟
 
-Here you have the option to select an area that needs to be processed. This can speed up the process or reduce/narrow down the amount of text the OCR engine might find. You need to provide `x`, `y`, `width`, `height` data based on the following questions:
+هنا لديك خيار تحديد منطقة تحتاج إلى معالجتها. يمكن أن يسرع هذا العملية أو يقلل/يحد من كمية النص التي قد يجدها محرك OCR. تحتاج إلى توفير بيانات `x` و `y` و `width` و `height` بناءً على الأسئلة التالية:
 
-- Enter the x coordinate:
-- Enter the y coordinate:
-- Enter the width:
-- Enter the height:
+-   أدخل إحداثي x:
+-   أدخل إحداثي y:
+-   أدخل العرض:
+-   أدخل الارتفاع:
 
-## Do you want to use the advanced mode?
+## هل تريد استخدام الوضع المتقدم؟
 
-Advanced mode will hold extra features like:
+سيحتوي الوضع المتقدم على ميزات إضافية مثل:
 
-- setting the contrast
-- more to follow in the future
+-   ضبط التباين
+-   المزيد في المستقبل
 
-## Demo
+## عرض توضيحي
 
-Here's a demo
+إليك عرضًا توضيحيًا
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

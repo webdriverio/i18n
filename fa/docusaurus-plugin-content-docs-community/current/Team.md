@@ -3,7 +3,7 @@ id: team
 title: تیم
 ---
 
-توسعه WebdriverIO توسط یک تیم اختصاصی از توسعه دهندگان و مهندسان تست از شرکت های مختلف و همچنین مشارکت مردم در سراسر جهان هدایت می شود.
+توسعه WebdriverIO توسط یک تیم متعهد از توسعه‌دهندگان و SDETها از شرکت‌های مختلف و همچنین مشارکت‌های افرادی از سراسر جهان هدایت می‌شود.
 
 ## کمیته راهبری فنی
 
@@ -12,7 +12,7 @@ title: تیم
     avatar="https://avatars2.githubusercontent.com/u/4043890?s=460"
     github="abjerstedt"
 >
-    مهندس ارشد نرم افزار - Android در <a href="https://www.target.com/">Target</a>.
+    مهندس ارشد نرم‌افزار - اندروید در <a href="https://www.target.com/">Target</a>.
 </Card>
 
 <Card
@@ -21,7 +21,7 @@ title: تیم
     github="christian-bromann"
     twitter="bromann"
 >
-    مهندس نرم‌افزار در دفتر Open Source Program در <a href="https://saucelabs.com/">@saucelabs</a>.
+    مهندس ارشد نرم‌افزار در دفتر برنامه متن باز <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
 <Card
@@ -29,7 +29,7 @@ title: تیم
     avatar="https://avatars.githubusercontent.com/u/15839059?s=460"
     github="erwinheitzman"
 >
-    مهندس ارشد اتوماسیون تست در <a href="https://detesters.nl/">deTesters</a>.
+    مهندس ارشد تست خودکار در <a href="https://detesters.nl/">deTesters</a>.
 </Card>
 
 <Card
@@ -38,7 +38,7 @@ title: تیم
     github="klamping"
     twitter="klamping"
 >
-    مهندس ارشد Front End.
+    مهندس ارشد فرانت‌اند.
 </Card>
 
 <Card
@@ -46,7 +46,7 @@ title: تیم
     avatar="https://avatars0.githubusercontent.com/u/25589559?s=460"
     github="mgrybyk"
 >
-    مهندس ارشد توسعه نرم افزار در حوزه تست.
+    مهندس ارشد توسعه نرم‌افزار در تست.
 </Card>
 
 <Card
@@ -54,7 +54,7 @@ title: تیم
     avatar="https://avatars3.githubusercontent.com/u/1300981?s=460"
     github="WillBrock"
 >
-    مهندس مدیریت اتوماسیون در <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
+    مدیر مهندسی خودکارسازی در <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
 </Card>
 
 <Card
@@ -63,10 +63,10 @@ title: تیم
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    معمار ارشد راه حل (Solution Architect) در <a href="https://saucelabs.com/">@saucelabs</a>.
+    معمار راه‌حل‌های ارشد <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
-## مشارکت کنندگان پروژه
+## همکاران پروژه
 
 <Card
     name="Baruch Velez"
@@ -84,4 +84,4 @@ title: تیم
 >
 </Card>
 
-و [خیلی خیلی بیشتر](https://github.com/orgs/webdriverio/people).
+و [بسیاری دیگر](https://github.com/orgs/webdriverio/people).

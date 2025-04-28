@@ -4,7 +4,7 @@ title: longPress
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/longPress.ts
 ---
 
-Esegue un gesto di pressione lunga sull'elemento specificato sullo schermo.
+Esegue un gesto di pressione prolungata sull'elemento dato sullo schermo.
 
 Questo emette un comando WebDriver `action` per l'elemento selezionato. È basato sul comando `click`.
 
@@ -37,7 +37,7 @@ $(selector).longPress({ x, y, duration })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`LongPressOptions`</td>
-      <td>Opzioni di pressione lunga (opzionale)</td>
+      <td>Opzioni di pressione prolungata (opzionale)</td>
     </tr>
     <tr>
       <td><code><var>options.x</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -52,7 +52,7 @@ $(selector).longPress({ x, y, duration })
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Durata della pressione in ms, il valore predefinito è 1500 ms <br /><strong>SOLO PER MOBILE</strong></td>
+      <td>Durata della pressione in ms, predefinita è 1500 ms <br /><strong>SOLO-MOBILE</strong></td>
     </tr>
   </tbody>
 </table>

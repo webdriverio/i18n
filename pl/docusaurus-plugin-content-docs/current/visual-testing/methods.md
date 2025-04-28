@@ -1,21 +1,21 @@
 ---
 id: methods
-title: Methods
+title: Metody
 ---
 
-The following methods are added to the global WebdriverIO [`browser`](/docs/api/browser)-object.
+Poniższe metody są dodawane do globalnego obiektu WebdriverIO [`browser`](/docs/api/browser).
 
-## Save Methods
+## Metody zapisu
 
-:::info TIP
-Only use the Save Methods when you **don't** want to compare screens, but only want to have an element-/screenshot.
+:::info PORADA
+Używaj metod zapisu tylko wtedy, gdy **nie** chcesz porównywać ekranów, a jedynie chcesz mieć zrzut elementu/ekranu.
 :::
 
 ### `saveElement`
 
-Saves an image of an element.
+Zapisuje obraz elementu.
 
-#### Usage
+#### Użycie
 
 ```ts
 await browser.saveElement(
@@ -30,34 +30,34 @@ await browser.saveElement(
 );
 ```
 
-#### Support
+#### Wsparcie
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- Przeglądarki stacjonarne
+- Przeglądarki mobilne
+- Mobilne aplikacje hybrydowe
+- Mobilne aplikacje natywne
 
-#### Parameters
+#### Parametry
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+-   **`element`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** Element WebdriverIO
+-   **`tag`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** string
+-   **`saveElementOptions`:**
+    -   **Obowiązkowy:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje zapisu](./method-options#save-options)
 
-#### Output:
+#### Wyjście:
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+Zobacz stronę [Test Output](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
-Saves an image of a viewport.
+Zapisuje obraz widoku ekranu.
 
-#### Usage
+#### Użycie
 
 ```ts
 await browser.saveScreen(
@@ -70,31 +70,30 @@ await browser.saveScreen(
 );
 ```
 
-#### Support
+#### Wsparcie
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- Przeglądarki stacjonarne
+- Przeglądarki mobilne
+- Mobilne aplikacje hybrydowe
+- Mobilne aplikacje natywne
 
-#### Parameters
+#### Parametry
+-   **`tag`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** string
+-   **`saveScreenOptions`:**
+    -   **Obowiązkowy:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje zapisu](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### Wyjście:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+Zobacz stronę [Test Output](./test-output#savescreenelementfullpagescreen).
 
 ### `saveFullPageScreen`
 
-#### Usage
+#### Użycie
 
-Saves an image of the complete screen.
+Zapisuje obraz całego ekranu.
 
 ```ts
 await browser.saveFullPageScreen(
@@ -107,29 +106,28 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Support
+#### Wsparcie
 
-- Desktop Browsers
-- Mobile Browsers
+- Przeglądarki stacjonarne
+- Przeglądarki mobilne
 
-#### Parameters
+#### Parametry
+-   **`tag`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** string
+-   **`saveFullPageScreenOptions`:**
+    -   **Obowiązkowy:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje zapisu](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveFullPageScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### Wyjście:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+Zobacz stronę [Test Output](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Saves an image of the complete screen with the tabbable lines and dots.
+Zapisuje obraz całego ekranu z liniami i kropkami dostępnymi za pomocą klawisza Tab.
 
-#### Usage
+#### Użycie
 
 ```ts
 await browser.saveTabbablePage(
@@ -142,26 +140,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Support
+#### Wsparcie
 
-- Desktop Browsers
+- Przeglądarki stacjonarne
 
-#### Parameters
+#### Parametry
+-   **`tag`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** string
+-   **`saveTabbableOptions`:**
+    -   **Obowiązkowy:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje zapisu](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### Wyjście:
 
-#### Output:
+Zobacz stronę [Test Output](./test-output#savescreenelementfullpagescreen).
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+## Metody sprawdzania
 
-## Check Methods
-
-:::info TIP
+:::info PORADA
+Gdy metody `check` są używane po raz pierwszy, zobaczysz poniższe ostrzeżenie w logach. Oznacza to, że nie musisz łączyć metod `save` i `check`, jeśli chcesz utworzyć bazowy obraz.
 
 ```shell
 #####################################################################################
@@ -177,9 +175,9 @@ See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
 
 ### `checkElement`
 
-Compare an image of an element against a baseline image.
+Porównuje obraz elementu z obrazem bazowym.
 
-#### Usage
+#### Użycie
 
 ```ts
 await browser.checkElement(
@@ -194,34 +192,33 @@ await browser.checkElement(
 );
 ```
 
-#### Support
+#### Wsparcie
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- Przeglądarki stacjonarne
+- Przeglądarki mobilne
+- Mobilne aplikacje hybrydowe
+- Mobilne aplikacje natywne
 
-#### Parameters
+#### Parametry
+-   **`element`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** Element WebdriverIO
+-   **`tag`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** string
+-   **`checkElementOptions`:**
+    -   **Obowiązkowy:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje porównywania/sprawdzania](./method-options#compare-check-options)
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### Wyjście:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+Zobacz stronę [Test Output](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkScreen`
 
-Compares an image of a viewport against a baseline image.
+Porównuje obraz widoku ekranu z obrazem bazowym.
 
-#### Usage
+#### Użycie
 
 ```ts
 await browser.checkScreen(
@@ -234,31 +231,30 @@ await browser.checkScreen(
 );
 ```
 
-#### Support
+#### Wsparcie
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- Przeglądarki stacjonarne
+- Przeglądarki mobilne
+- Mobilne aplikacje hybrydowe
+- Mobilne aplikacje natywne
 
-#### Parameters
+#### Parametry
+-   **`tag`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** string
+-   **`checkScreenOptions`:**
+    -   **Obowiązkowy:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje porównywania/sprawdzania](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### Wyjście:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+Zobacz stronę [Test Output](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
-Compares an image of the complete screen against a baseline image.
+Porównuje obraz całego ekranu z obrazem bazowym.
 
-#### Usage
+#### Użycie
 
 ```ts
 await browser.checkFullPageScreen(
@@ -271,29 +267,28 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Support
+#### Wsparcie
 
-- Desktop Browsers
-- Mobile Browsers
+- Przeglądarki stacjonarne
+- Przeglądarki mobilne
 
-#### Parameters
+#### Parametry
+-   **`tag`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** string
+-   **`checkFullPageOptions`:**
+    -   **Obowiązkowy:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje porównywania/sprawdzania](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkFullPageOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### Wyjście:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+Zobacz stronę [Test Output](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Compares an image of the complete screen with the tabbable lines and dots against a baseline image.
+Porównuje obraz całego ekranu z liniami i kropkami dostępnymi za pomocą klawisza Tab z obrazem bazowym.
 
-#### Usage
+#### Użycie
 
 ```ts
 await browser.checkTabbablePage(
@@ -306,19 +301,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Support
+#### Wsparcie
 
-- Desktop Browsers
+- Przeglądarki stacjonarne
 
-#### Parameters
+#### Parametry
+-   **`tag`:**
+    -   **Obowiązkowy:** Tak
+    -   **Typ:** string
+-   **`checkTabbableOptions`:**
+    -   **Obowiązkowy:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje porównywania/sprawdzania](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### Wyjście:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+Zobacz stronę [Test Output](./test-output#checkscreenelementfullpagescreen).

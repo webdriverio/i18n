@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## file
-Carica un file sulla macchina remota su cui è in esecuzione il browser.<br /><br />Comando Selenium Standalone. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://www.seleniumhq.org/).
+Carica un file su una macchina remota sulla quale è in esecuzione il browser.<br /><br />Comando Selenium Standalone. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://www.seleniumhq.org/).
 
 ##### Utilizzo
 
@@ -26,7 +26,7 @@ browser.file(file)
     <tr>
       <td><code><var>file</var></code></td>
       <td>string</td>
-      <td>Archivio zip codificato in base64 contenente __un solo__ file da caricare. Nel caso in cui i dati codificati in base64 non rappresentino un archivio zip o l'archivio contenga più di un file, verrà generato un errore sconosciuto.</td>
+      <td>Archivio zip codificato in base64 contenente __un singolo__ file da caricare. Nel caso in cui i dati codificati in base64 non rappresentino un archivio zip o l'archivio contenga più di un file, verrà generato un errore sconosciuto.</td>
     </tr>
   </tbody>
 </table>
@@ -108,7 +108,7 @@ browser.deleteDownloadableFiles()
 ---
 
 ## getHubConfig
-Ricevi la configurazione dell'hub in remoto.<br /><br />Comando Selenium Standalone. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
+Ricevi la configurazione dell'hub da remoto.<br /><br />Comando Selenium Standalone. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
 
 ##### Utilizzo
 
@@ -147,7 +147,7 @@ browser.gridTestSession(session)
     <tr>
       <td><code><var>session</var></code></td>
       <td>String</td>
-      <td>L'ID della sessione per cui ricevere i dettagli dell'hub.</td>
+      <td>L'id della sessione per cui ricevere i dettagli dell'hub.</td>
     </tr>
   </tbody>
 </table>
@@ -183,7 +183,7 @@ browser.gridProxyDetails(id)
     <tr>
       <td><code><var>id</var></code></td>
       <td>string</td>
-      <td>L'ID del proxy (può essere ricevuto utilizzando il comando gridTestSession).</td>
+      <td>l'id del proxy (può essere ricevuto utilizzando il comando gridTestSession).</td>
     </tr>
   </tbody>
 </table>

@@ -1,30 +1,30 @@
 ---
 id: mocking
-title: Mocking
+title: مسدودسازی
 ---
 
-When writing tests it's only a matter of time before you need to create a "fake" version of an internal — or external — service. This is commonly referred to as mocking. WebdriverIO provides utility functions to help you out. You can `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` to access it. See more information about the available mocking utilities in the [API docs](/docs/api/modules#wdiobrowser-runner).
+هنگام نوشتن تست‌ها، تنها مسئله زمان است قبل از اینکه نیاز داشته باشید نسخه "جعلی" از یک سرویس داخلی یا خارجی ایجاد کنید. این معمولاً به عنوان مسدودسازی شناخته می‌شود. WebdriverIO توابع کمکی را برای کمک به شما ارائه می‌دهد. شما می‌توانید `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` را برای دسترسی به آن وارد کنید. اطلاعات بیشتر در مورد ابزارهای مسدودسازی موجود در [مستندات API](/docs/api/modules#wdiobrowser-runner) ببینید.
 
-## Functions
+## توابع
 
-In order to validate whether certain function handler are called as part of your component tests, the `@wdio/browser-runner` module exports mocking primitives you can use to test, if these functions have been called. You can import these methods via:
+برای اینکه بتوانید بررسی کنید آیا توابع خاصی به عنوان بخشی از تست‌های مؤلفه شما فراخوانی شده‌اند، ماژول `@wdio/browser-runner` ابزارهای اولیه مسدودسازی را صادر می‌کند که می‌توانید از آن‌ها استفاده کنید. شما می‌توانید این روش‌ها را از طریق زیر وارد کنید:
 
 ```js
 import { fn, spyOn } from '@wdio/browser-runner'
 ```
 
-By importing `fn` you can create a spy function (mock) to track its execution and with `spyOn` track a method on an already created object.
+با وارد کردن `fn` می‌توانید یک تابع جاسوس (مسدودساز) برای پیگیری اجرای آن ایجاد کنید و با `spyOn` یک متد را روی یک شیء ایجاد شده پیگیری کنید.
 
 <Tabs
   defaultValue="mocks"
   values={[
     {label: 'Mocks', value: 'mocks'},
- {label: 'Spies', value: 'spies'}
- ]
+    {label: 'Spies', value: 'spies'}
+  ]
 }>
 <TabItem value="mocks">
 
-The full example can be found in the [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx) repository.
+نمونه کامل را می‌توانید در مخزن [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx) پیدا کنید.
 
 ```ts
 import React from 'react'
@@ -58,7 +58,7 @@ describe('LoginForm', () => {
 </TabItem>
 <TabItem value="spies">
 
-The full example can be found in the [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js) directory.
+نمونه کامل را می‌توانید در دایرکتوری [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js) پیدا کنید.
 
 ```js
 import { expect, $ } from '@wdio/globals'
@@ -95,19 +95,19 @@ describe('Lit Component testing', () => {
 </TabItem>
 </Tabs>
 
-WebdriverIO just re-exports [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) here which is a lightweight Jest compatible spy implementation that can be used with WebdriverIOs [`expect`](/docs/api/expect-webdriverio) matchers. You can find more documentation on these mock functions on the [Vitest project page](https://vitest.dev/api/mock.html).
+WebdriverIO در اینجا فقط [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) را مجدداً صادر می‌کند که یک پیاده‌سازی جاسوس سبک سازگار با Jest است که می‌تواند با تطبیق‌دهنده‌های [`expect`](/docs/api/expect-webdriverio) WebdriverIO استفاده شود. می‌توانید مستندات بیشتری در مورد این توابع مسدودسازی در [صفحه پروژه Vitest](https://vitest.dev/api/mock.html) پیدا کنید.
 
-Of course, you can also install and import any other spy framework, e.g. [SinonJS](https://sinonjs.org/), as long as it supports the browser environment.
+البته، شما همچنین می‌توانید هر چارچوب جاسوسی دیگری را نصب و وارد کنید، مانند [SinonJS](https://sinonjs.org/)، تا زمانی که از محیط مرورگر پشتیبانی کند.
 
-## Modules
+## ماژول‌ها
 
-Mock local modules or observe third-party-libraries, that are invoked in some other code, allowing you to test arguments, output or even redeclare its implementation.
+ماژول‌های محلی را مسدود کنید یا کتابخانه‌های شخص ثالث را که در برخی از کدهای دیگر فراخوانی می‌شوند، مشاهده کنید، این به شما امکان می‌دهد آرگومان‌ها، خروجی یا حتی پیاده‌سازی آن را بازتعریف کنید.
 
-There are two ways to mock functions: Either by creating a mock function to use in test code, or writing a manual mock to override a module dependency.
+دو روش برای مسدودسازی توابع وجود دارد: یا با ایجاد یک تابع مسدودساز برای استفاده در کد تست، یا نوشتن یک مسدودسازی دستی برای لغو وابستگی ماژول.
 
-### Mocking File Imports
+### مسدودسازی واردات فایل
 
-Let's imagine our component is importing a utility method from a file to handle a click.
+تصور کنید مؤلفه ما یک متد کمکی را از یک فایل برای مدیریت کلیک وارد می‌کند.
 
 ```js title=utils.js
 export function handleClick () {
@@ -115,7 +115,7 @@ export function handleClick () {
 }
 ```
 
-In our component the click handler is used as following:
+در مؤلفه ما، مدیریت کننده کلیک به صورت زیر استفاده می‌شود:
 
 ```ts title=LitComponent.js
 import { handleClick } from './utils.js'
@@ -128,7 +128,7 @@ export class SimpleButton extends LitElement {
 }
 ```
 
-To mock the `handleClick` from `utils.js` we can use the `mock` method in our test as following:
+برای مسدودسازی `handleClick` از `utils.js` می‌توانیم از متد `mock` در تست خود به صورت زیر استفاده کنیم:
 
 ```js title=LitComponent.test.js
 import { expect, $ } from '@wdio/globals'
@@ -154,9 +154,9 @@ describe('Simple Button Component Test', () => {
 })
 ```
 
-### Mocking Dependencies
+### مسدودسازی وابستگی‌ها
 
-Suppose we have a class that fetches users from our API. The class uses [`axios`](https://github.com/axios/axios) to call the API then returns the data attribute which contains all the users:
+فرض کنید کلاسی داریم که کاربران را از API ما دریافت می‌کند. این کلاس از [`axios`](https://github.com/axios/axios) برای فراخوانی API استفاده می‌کند و سپس ویژگی data را که شامل تمام کاربران است برمی‌گرداند:
 
 ```js title=users.js
 import axios from 'axios';
@@ -170,9 +170,9 @@ class Users {
 export default Users
 ```
 
-Now, in order to test this method without actually hitting the API (and thus creating slow and fragile tests), we can use the `mock(...)` function to automatically mock the axios module.
+حالا، برای تست این متد بدون اینکه واقعاً با API تماس بگیریم (و بنابراین ایجاد تست‌های کند و شکننده)، می‌توانیم از تابع `mock(...)` برای مسدودسازی خودکار ماژول axios استفاده کنیم.
 
-Once we mock the module we can provide a [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) for `.get` that returns the data we want our test to assert against. In effect, we are saying that we want `axios.get('/users.json')` to return a fake response.
+وقتی ماژول را مسدود می‌کنیم، می‌توانیم یک [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) برای `.get` ارائه دهیم که داده‌هایی را که می‌خواهیم تست ما در مقابل آن تأیید کند، برگرداند. در واقع، ما می‌گوییم که می‌خواهیم `axios.get('/users.json')` یک پاسخ جعلی برگرداند.
 
 ```js title=users.test.js
 import axios from 'axios'; // imports defined mock
@@ -204,9 +204,9 @@ describe('User API', () => {
 })
 ```
 
-## Partials
+## بخشی‌ها
 
-Subsets of a module can be mocked and the rest of the module can keep their actual implementation:
+زیرمجموعه‌هایی از یک ماژول می‌توانند مسدود شوند و بقیه ماژول می‌توانند پیاده‌سازی واقعی خود را حفظ کنند:
 
 ```js title=foo-bar-baz.js
 export const foo = 'foo';
@@ -214,7 +214,7 @@ export const bar = () => 'bar';
 export default () => 'baz';
 ```
 
-The original module will be passed into the mock factory which you can use to e.g. partially mock a dependency:
+ماژول اصلی به کارخانه مسدودسازی منتقل می‌شود که می‌توانید از آن استفاده کنید تا مثلاً به صورت جزئی یک وابستگی را مسدود کنید:
 
 ```js
 import { mock, fn } from '@wdio/browser-runner'
@@ -243,11 +243,11 @@ describe('partial mock', () => {
 })
 ```
 
-## Manual Mocks
+## مسدودسازی‌های دستی
 
-Manual mocks are defined by writing a module in a `__mocks__/` (see also `automockDir` option) subdirectory. If the module you are mocking is a Node module (e.g.: `lodash`), the mock should be placed in the `__mocks__` directory and will be automatically mocked. There's no need to explicitly call `mock('module_name')`.
+مسدودسازی‌های دستی با نوشتن یک ماژول در زیرمجموعه `__mocks__/` (همچنین گزینه `automockDir` را ببینید) تعریف می‌شوند. اگر ماژولی که در حال مسدودسازی آن هستید یک ماژول Node است (مانند: `lodash`)، مسدودسازی باید در دایرکتوری `__mocks__` قرار گیرد و به صورت خودکار مسدود خواهد شد. نیازی به فراخوانی صریح `mock('module_name')` نیست.
 
-Scoped modules (also known as scoped packages) can be mocked by creating a file in a directory structure that matches the name of the scoped module. For example, to mock a scoped module called `@scope/project-name`, create a file at `__mocks__/@scope/project-name.js`, creating the `@scope/` directory accordingly.
+ماژول‌های محدود شده (همچنین به عنوان بسته‌های محدود شده شناخته می‌شوند) می‌توانند با ایجاد فایلی در ساختار دایرکتوری که با نام ماژول محدود شده مطابقت دارد، مسدود شوند. به عنوان مثال، برای مسدودسازی یک ماژول محدود شده به نام `@scope/project-name`، فایلی در `__mocks__/@scope/project-name.js` ایجاد کنید و دایرکتوری `@scope/` را به طور مناسب ایجاد کنید.
 
 ```
 .
@@ -261,7 +261,7 @@ Scoped modules (also known as scoped packages) can be mocked by creating a file 
 └── views
 ```
 
-When a manual mock exists for a given module, WebdriverIO will use that module when explicitly calling `mock('moduleName')`. However, when automock is set to true, the manual mock implementation will be used instead of the automatically created mock, even if `mock('moduleName')` is not called. To opt out of this behavior you will need to explicitly call `unmock('moduleName')` in tests that should use the actual module implementation, e.g.:
+وقتی یک مسدودسازی دستی برای یک ماژول معین وجود داشته باشد، WebdriverIO از آن ماژول هنگام فراخوانی صریح `mock('moduleName')` استفاده می‌کند. با این حال، وقتی automock روی true تنظیم شده باشد، پیاده‌سازی مسدودسازی دستی به جای مسدودسازی ایجاد شده به صورت خودکار استفاده می‌شود، حتی اگر `mock('moduleName')` فراخوانی نشود. برای عدم استفاده از این رفتار، شما باید به صراحت `unmock('moduleName')` را در تست‌هایی که باید از پیاده‌سازی ماژول واقعی استفاده کنند، فراخوانی کنید، به عنوان مثال:
 
 ```js
 import { unmock } from '@wdio/browser-runner'
@@ -269,9 +269,9 @@ import { unmock } from '@wdio/browser-runner'
 unmock('lodash')
 ```
 
-## Hoisting
+## بالابری
 
-In order to get mocking to work in the browser, WebdriverIO rewrites the test files and hoists the mock calls above everything else (see also [this blog post](https://www.coolcomputerclub.com/posts/jest-hoist-await/) on the hoisting problem in Jest). This limits the way you can pass in variables into the mock resolver, e.g.:
+برای اینکه مسدودسازی در مرورگر کار کند، WebdriverIO فایل‌های تست را بازنویسی کرده و فراخوانی‌های مسدودسازی را بالاتر از همه چیز قرار می‌دهد (همچنین به [این پست وبلاگ](https://www.coolcomputerclub.com/posts/jest-hoist-await/) در مورد مشکل بالابری در Jest مراجعه کنید). این امر محدودیت‌هایی را برای نحوه انتقال متغیرها به تفکیک‌کننده مسدودساز ایجاد می‌کند، به عنوان مثال:
 
 ```js title=component.test.js
 import dep from 'dependency'
@@ -286,7 +286,7 @@ mock('./some/module.ts', () => ({
 }))
 ```
 
-To fix this you have to define all used variables inside the resolver, e.g.:
+برای رفع این مشکل، باید تمام متغیرهای مورد استفاده را درون تفکیک‌کننده تعریف کنید، به عنوان مثال:
 
 ```js title=component.test.js
 /**
@@ -303,6 +303,6 @@ mock('./some/module.ts', async () => {
 })
 ```
 
-## Requests
+## درخواست‌ها
 
-If you are looking for mocking browser requests, e.g. API calls, head over to the [Request Mock and Spies](/docs/mocksandspies) section.
+اگر به دنبال مسدودسازی درخواست‌های مرورگر هستید، مانند فراخوانی‌های API، به بخش [درخواست‌های مسدودسازی و جاسوسی](/docs/mocksandspies) مراجعه کنید.

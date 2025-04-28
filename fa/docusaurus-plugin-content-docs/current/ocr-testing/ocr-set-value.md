@@ -3,15 +3,15 @@ id: ocr-set-value
 title: ocrSetValue
 ---
 
-Send a sequence of key strokes to an element. It will:
+ارسال یک توالی از کلیدها به یک عنصر. این دستور:
 
-- automatically detect the element
-- put focus on the field by clicking on it
-- set the value in the field
+-   به طور خودکار عنصر را تشخیص می‌دهد
+-   با کلیک کردن روی آن، فوکوس را روی فیلد قرار می‌دهد
+-   مقدار را در فیلد تنظیم می‌کند
 
-The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+این دستور متن ارائه شده را جستجو می‌کند و سعی می‌کند براساس منطق فازی از [Fuse.js](https://fusejs.io/) تطبیقی پیدا کند. این بدان معناست که اگر انتخابگری با اشتباه تایپی ارائه دهید، یا متن پیدا شده ممکن است تطابق ۱۰۰٪ نباشد، همچنان سعی می‌کند عنصری را به شما برگرداند. به [گزارش‌ها](#logs) زیر مراجعه کنید.
 
-## Usage
+## استفاده
 
 ```js
 await brower.ocrSetValue({
@@ -20,9 +20,9 @@ await brower.ocrSetValue({
 });
 ```
 
-## Output
+## خروجی
 
-### Logs
+### گزارش‌ها
 
 ```log
 [0-0] 2024-05-26T04:17:51.355Z INFO webdriver: COMMAND ocrSetValue(<object>)
@@ -30,16 +30,16 @@ await brower.ocrSetValue({
 [0-0] 2024-05-26T04:17:52.356Z INFO @wdio/ocr-service:ocrGetElementPositionByText: We searched for the word "docs" and found one match "docs" with score "100%"
 ```
 
-## Options
+## گزینه‌ها
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **نوع:** `string`
+-   **اجباری:** بله
 
-The text you want to search for to click on.
+متنی که می‌خواهید برای کلیک کردن جستجو کنید.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -50,12 +50,12 @@ await browser.ocrSetValue({
 
 ### `value`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **نوع:** `string`
+-   **اجباری:** بله
 
-Value to be added.
+مقداری که باید اضافه شود.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -66,13 +66,13 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** `false`
+-   **نوع:** `boolean`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `false`
 
-If the value also needs to be submitted into the input field. This means an "ENTER" will be send at the end of the string.
+اگر مقدار نیز باید در فیلد ورودی ارسال شود. این یعنی در انتهای رشته یک "ENTER" ارسال خواهد شد.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -84,31 +84,31 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `500` میلی‌ثانیه
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+این مدت زمان کلیک است. اگر بخواهید می‌توانید با افزایش زمان یک "کلیک طولانی" ایجاد کنید.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // این 3 ثانیه است
 });
 ```
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+هرچه کنتراست بالاتر باشد، تصویر تیره‌تر می‌شود و برعکس. این می‌تواند به یافتن متن در تصویر کمک کند. مقادیر بین `-1` و `1` را می‌پذیرد.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -120,12 +120,12 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **نوع:** `number`
+-   **اجباری:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+این منطقه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک عنصر یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -134,14 +134,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// OR
+// یا
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// یا
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,54 +156,54 @@ await browser.ocrSetValue({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **نوع:** `string`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) پیدا کنید و زبان‌های پشتیبانی شده را می‌توانید [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) بیابید.
 
-#### Example
+#### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // استفاده از هلندی به عنوان زبان
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **نوع:** `object`
+-   **اجباری:** خیر
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+می‌توانید نسبت به عنصر منطبق روی صفحه کلیک کنید. این کار براساس پیکسل‌های نسبی `above` (بالا)، `right` (راست)، `below` (پایین) یا `left` (چپ) از عنصر منطبق انجام می‌شود.
 
 :::note
 
-The following combinations are allowed
+ترکیب‌های زیر مجاز هستند
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   خصوصیت‌های تکی
+-   `above` + `left` یا `above` + `right`
+-   `below` + `left` یا `below` + `right`
 
-The following combinations are **NOT** allowed
+ترکیب‌های زیر مجاز **نیستند**
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` به همراه `below`
+-   `left` به همراه `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **نوع:** `number`
+-   **اجباری:** خیر
 
-Click x pixels `above` the matching element.
+x پیکسل `بالای` عنصر منطبق کلیک کنید.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -217,12 +217,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **نوع:** `number`
+-   **اجباری:** خیر
 
-Click x pixels `right` from the matching element.
+x پیکسل `سمت راست` عنصر منطبق کلیک کنید.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -236,12 +236,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **نوع:** `number`
+-   **اجباری:** خیر
 
-Click x pixels `below` the matching element.
+x پیکسل `پایین` عنصر منطبق کلیک کنید.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -255,12 +255,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **نوع:** `number`
+-   **اجباری:** خیر
 
-Click x pixels `left` from the matching element.
+x پیکسل `سمت چپ` عنصر منطبق کلیک کنید.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -274,17 +274,17 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+می‌توانید منطق فازی برای یافتن متن را با گزینه‌های زیر تغییر دهید. این ممکن است به یافتن تطابق بهتر کمک کند.
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+تعیین می‌کند تطابق چقدر باید به موقعیت فازی (مشخص شده توسط location) نزدیک باشد. یک تطابق دقیق حرف که به فاصله character از موقعیت فازی باشد، به عنوان عدم تطابق کامل امتیازدهی می‌شود. فاصله 0 نیاز دارد که تطابق در مکان دقیق مشخص شده باشد. فاصله 1000 نیاز به تطابق کامل در محدوده 800 کاراکتر از موقعیت برای یافتن با آستانه 0.8 دارد.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -298,13 +298,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+تعیین می‌کند تقریباً در کجای متن انتظار می‌رود الگو پیدا شود.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -318,13 +318,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+در چه نقطه‌ای الگوریتم تطابق تسلیم می‌شود. آستانه 0 نیاز به تطابق کامل (هم حروف و هم موقعیت) دارد، آستانه 1.0 با هر چیزی مطابقت می‌کند.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -338,13 +338,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **نوع:** `boolean`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** false
 
-Whether the search should be case sensitive.
+آیا جستجو باید به بزرگی و کوچکی حروف حساس باشد.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -358,13 +358,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+فقط تطابق‌هایی که طول آنها از این مقدار بیشتر است برگردانده می‌شوند. (به عنوان مثال، اگر می‌خواهید تطابق‌های تک کاراکتری را در نتیجه نادیده بگیرید، آن را روی 2 تنظیم کنید)
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({
@@ -378,13 +378,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+وقتی `true` باشد، تابع تطبیق حتی اگر یک تطابق کامل قبلاً در رشته یافت شده باشد، تا انتهای الگوی جستجو ادامه خواهد داد.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrSetValue({

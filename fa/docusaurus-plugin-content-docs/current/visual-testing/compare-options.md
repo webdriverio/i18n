@@ -1,137 +1,137 @@
 ---
 id: compare-options
-title: Compare Options
+title: گزینه‌های مقایسه
 ---
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+گزینه‌های مقایسه، تنظیماتی هستند که نحوه اجرای مقایسه توسط [ResembleJS](https://github.com/Huddle/Resemble.js) را تحت تأثیر قرار می‌دهند.
 
-:::info NOTE
-All compare options can be used during service instantiation or for each single `checkElement`,`checkScreen` and `checkFullPageScreen`. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
+:::info نکته
+تمام گزینه‌های مقایسه می‌توانند در زمان ایجاد سرویس یا برای هر فراخوانی جداگانه `checkElement`، `checkScreen` و `checkFullPageScreen` استفاده شوند. اگر یک گزینه متد دارای همان کلید گزینه‌ای باشد که در هنگام ایجاد سرویس تنظیم شده است، آنگاه گزینه مقایسه متد، مقدار گزینه مقایسه سرویس را لغو خواهد کرد.
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Compare images and discard alpha.
+تصاویر را مقایسه می‌کند و آلفا را نادیده می‌گیرد.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. It will override the plugin setting. This is **iPad only**_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _فقط می‌تواند برای `checkScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد. این **فقط برای آیپد** است_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+به طور خودکار نوار کناری را برای آیپدها در حالت افقی در طول مقایسه‌ها مسدود می‌کند. این از خطاها بر روی کامپوننت بومی تب/خصوصی/بوک‌مارک جلوگیری می‌کند.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد. این **فقط برای موبایل** است_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+به طور خودکار نوار وضعیت و نوار آدرس را در طول مقایسه‌ها مسدود می‌کند. این از خطاها بر روی زمان، وای‌فای یا وضعیت باتری جلوگیری می‌کند.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد. این **فقط برای موبایل** است_
 
-Automatically block out the toolbar.
+به طور خودکار نوار ابزار را مسدود می‌کند.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Compare images and discard anti-aliasing.
+تصاویر را مقایسه می‌کند و ضد پلگی (anti-aliasing) را نادیده می‌گیرد.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Even though the images are in color, the comparison will compare 2 black/white images
+حتی اگر تصاویر رنگی باشند، مقایسه دو تصویر سیاه و سفید را انجام می‌دهد.
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+تصاویر را با مقادیر `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240` مقایسه می‌کند.
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+تصاویر را با مقادیر `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255` مقایسه می‌کند.
 
 ### `ignoreTransparentPixel`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Compare images and it will ignore all pixels that have some transparency in one of the images
+تصاویر را مقایسه می‌کند و تمام پیکسل‌هایی که در یکی از تصاویر دارای شفافیت هستند را نادیده می‌گیرد.
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+اگر `true` باشد، درصد بازگشتی به صورت `0.12345678` خواهد بود، پیش‌فرض `0.12` است.
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-This will return all compare data, not only the mismatch percentage
+این گزینه تمام داده‌های مقایسه را برمی‌گرداند، نه فقط درصد عدم تطابق.
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `number`
+-   **پیش‌فرض:** `0`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+مقدار مجاز `misMatchPercentage` که از ذخیره تصاویر با تفاوت‌ها جلوگیری می‌کند.
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `number`
+-   **پیش‌فرض:** `0`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+مقایسه تصاویر بزرگ می‌تواند منجر به مشکلات عملکردی شود.
+هنگام تعیین عددی برای تعداد پیکسل‌ها در اینجا (بیشتر از 0)، الگوریتم مقایسه زمانی که عرض یا ارتفاع تصویر بزرگتر از `largeImageThreshold` پیکسل باشد، پیکسل‌ها را رد می‌کند.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
+-   **نکته:** _همچنین می‌تواند برای `checkElement`، `checkScreen()` و `checkFullPageScreen()` استفاده شود. این تنظیمات پلاگین را نادیده می‌گیرد_
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+دو تصویر را قبل از اجرای مقایسه به همان اندازه تغییر مقیاس می‌دهد. به شدت توصیه می‌شود که `ignoreAntialiasing` و `ignoreAlpha` را فعال کنید.

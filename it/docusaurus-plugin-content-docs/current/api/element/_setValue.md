@@ -4,8 +4,8 @@ title: setValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/setValue.ts
 ---
 
-Invia una sequenza di tasti a un elemento dopo che l'input è stato cancellato prima. Se l'elemento non ha bisogno
-di essere cancellato prima, utilizza [`addValue`](/docs/api/element/addValue).
+Invia una sequenza di tasti a un elemento dopo che l'input è stato cancellato prima. Se l'elemento non necessita
+di essere cancellato prima, allora usa [`addValue`](/docs/api/element/addValue).
 
 :::info
 

@@ -4,14 +4,14 @@ title: execute
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/execute.ts
 ---
 
-現在選択されているフレームのコンテキストでページにJavaScriptのスニペットを注入して実行します。対象要素をスコープとして使用します。要素のスコープ上で実行されるため、WebdriverIOはスクリプトを実行する前に自動的に要素が存在するのを待ちます。
-実行されるスクリプトは同期的であると見なされ、スクリプトの評価結果はクライアントに返されます。
+現在選択されているフレームのコンテキストでJavaScriptのスニペットを注入して実行します。スコープとして指定された要素を使用します。要素のスコープ上にあるため、WebdriverIOはスクリプトを実行する前に自動的に要素が存在するのを待ちます。
+実行されるスクリプトは同期的であると見なされ、スクリプトの評価結果がクライアントに返されます。
 
-scriptパラメータは、関数本体の形式で実行するスクリプトを定義します。その関数によって返される値がクライアントに返されます。関数は指定されたargs配列で呼び出され、その値には指定された順序でargumentsオブジェクトを介してアクセスできます。
+script引数は、関数本体の形式で実行するスクリプトを定義します。その関数によって返される値がクライアントに返されます。関数は指定されたargs配列で呼び出され、その値は指定された順序でargumentsオブジェクトを介してアクセスできます。
 
-引数はJSON基本型、配列、またはJSONオブジェクトです。WebElement参照を定義するJSONオブジェクトは、対応するDOM要素に変換されます。同様に、スクリプト結果内のWebElementは、WebElement JSONオブジェクトとしてクライアントに返されます。
+引数はJSON-プリミティブ、配列、またはJSONオブジェクトを指定できます。WebElement参照を定義するJSONオブジェクトは、対応するDOM要素に変換されます。同様に、スクリプト結果内のWebElementsはWebElement JSONオブジェクトとしてクライアントに返されます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 $(selector).execute(script, arguments)
@@ -32,9 +32,9 @@ $(selector).execute(script, arguments)
       <td>実行するスクリプト。</td>
     </tr>
     <tr>
-      <td><code><var>arguments</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>arguments</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`*`</td>
-      <td>スクリプトの引数</td>
+      <td>スクリプト引数</td>
     </tr>
   </tbody>
 </table>

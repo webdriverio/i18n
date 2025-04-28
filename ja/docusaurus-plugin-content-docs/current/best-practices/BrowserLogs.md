@@ -15,7 +15,7 @@ values={[
 
 <TabItem value='bidi'>
 
-WebDriver Bidiを使用する場合（WebdriverIOがブラウザを自動化するデフォルトの方法）、ブラウザからのイベントをサブスクライブできます。ログイベントの場合は、`log.entryAdded`をリッスンする必要があります。例：
+WebDriver Bidiを使用する場合（WebdriverIOがブラウザを自動化するデフォルトの方法）、ブラウザから送信されるイベントを購読できます。ログイベントの場合は、`log.entryAdded'`をリッスンします。例：
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +26,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-テストでは、ログイベントを配列にプッシュして、アクションが完了したらその配列をアサートできます。例：
+テストでは、ログイベントを配列にプッシュして、アクションが完了したらその配列に対してアサーションを行うことができます：
 
 ```ts
 import type { local } from 'webdriver'
@@ -62,9 +62,9 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-WebDriver Classicを使用している場合や、`'wdio:enforceWebDriverClassic': true`機能を介してBidiの使用を無効にしている場合は、JSONWireの`getLogs`コマンドを使用して最新のログを取得できます。WebdriverIOはこれらの非推奨コマンドを削除したため、[JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service)を使用してコマンドをブラウザインスタンスに追加する必要があります。
+WebDriver Classicを使用している場合や、`'wdio:enforceWebDriverClassic': true`機能によってBidiの使用を無効にしている場合は、JSONWireの`getLogs`コマンドを使用して最新のログを取得できます。WebdriverIOはこれらの非推奨コマンドを削除しているため、[JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service)を使用してコマンドをブラウザインスタンスに追加する必要があります。
 
-サービスを追加または初期化した後、次のようにログを取得できます：
+サービスを追加または初期化した後、以下のようにログを取得できます：
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,9 +72,9 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-注意：`getLogs`コマンドはブラウザから最新のログのみを取得できます。ログメッセージが古くなると、最終的にクリーンアップされる場合があります。
+注意：`getLogs`コマンドはブラウザから最新のログのみを取得できます。古くなりすぎるとログメッセージは最終的にクリーンアップされる可能性があります。
 </TabItem>
 
 </Tabs>
 
-この方法を使用して、エラーメッセージを取得し、アプリケーションにエラーが発生しているかどうかを確認できることに注意してください。
+この方法を使用して、エラーメッセージを取得し、アプリケーションにエラーが発生したかどうかを確認できることに注意してください。

@@ -1,33 +1,34 @@
 ---
 id: browserstack
-title: BrowserStack Accessibility Testing
+title: اختبار إمكانية الوصول من BrowserStack
 ---
 
-# BrowserStack Accessibility Testing
+# اختبار إمكانية الوصول من BrowserStack
 
-You can easily integrate accessibility tests in your WebdriverIO test suites using the [Automated tests feature of BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+يمكنك بسهولة دمج اختبارات إمكانية الوصول في مجموعات اختبار WebdriverIO باستخدام [ميزة الاختبارات الآلية من BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-## Advantages of Automated Tests in BrowserStack Accessibility Testing
+## مزايا الاختبارات الآلية في اختبار إمكانية الوصول من BrowserStack
 
-To use Automated tests in BrowserStack Accessibility Testing, your tests should be running on BrowserStack Automate.
+لاستخدام الاختبارات الآلية في اختبار إمكانية الوصول من BrowserStack، يجب أن تكون اختباراتك تعمل على BrowserStack Automate.
 
-وفيما يلي مزايا الاختبارات المؤتمتة:
+فيما يلي مزايا الاختبارات الآلية:
 
-- Seamlessly integrates into your pre-existing automation test suite.
-- لا حاجة للتعديل على الشيفرة البرمجية في حالات الاختبار.
-- ويتطلب ذلك صفر من الصيانة الإضافية لاختبار قابلية الوصول.
-- Understand historical trends and gain test-case insights.
+* تتكامل بسلاسة في مجموعة اختبارات الأتمتة الموجودة مسبقًا.
+* لا تتطلب تغييرات في الكود في حالات الاختبار.
+* لا تتطلب أي صيانة إضافية لاختبار إمكانية الوصول.
+* فهم الاتجاهات التاريخية والحصول على رؤى حالات الاختبار.
 
-## Get Started with BrowserStack Accessibility Testing
+## البدء مع اختبار إمكانية الوصول من BrowserStack
 
-اتبع هذه الخطوات لدمج مجموعات اختبار WebdriverIO الخاصة بك مع اختبار قابلية وصول المتصفح:
+اتبع هذه الخطوات لدمج مجموعات اختبار WebdriverIO مع اختبار إمكانية الوصول من BrowserStack:
 
-1. Install `@wdio/browserstack-service` npm package.
+1. قم بتثبيت حزمة npm الخاصة بـ `@wdio/browserstack-service`.
 
 ```bash npm2yarn
+npm install --save-dev @wdio/browserstack-service
 ```
 
-2. تحديث ملف التكوين \`wdio.conf.js'.
+2. قم بتحديث ملف التكوين `wdio.conf.js`.
 
 ```javascript
 exports.config = {
@@ -59,4 +60,4 @@ exports.config = {
   };
 ```
 
-You can view detailed instructions [here](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+يمكنك عرض تعليمات مفصلة [هنا](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).

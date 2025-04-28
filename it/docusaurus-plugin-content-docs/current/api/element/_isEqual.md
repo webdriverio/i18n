@@ -24,7 +24,7 @@ $(selector).isEqual(el)
     <tr>
       <td><code><var>el</var></code></td>
       <td>`Element`</td>
-      <td>elemento da confrontare</td>
+      <td>elemento con cui confrontare</td>
     </tr>
   </tbody>
 </table>

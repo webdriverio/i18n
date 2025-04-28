@@ -1,12 +1,12 @@
 ---
 id: mockClearAll
-title: mockClearAll
+title: モックをすべてクリア
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mockClearAll.ts
 ---
 
-セッションに登録されているすべてのモックに保存されている情報をリセットします。
+セッションに登録されているすべてのモックに格納されている情報をリセットします。
 
-##### 使用法
+##### 使用方法
 
 ```js
 browser.mockClearAll()

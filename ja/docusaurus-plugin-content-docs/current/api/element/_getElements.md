@@ -4,7 +4,7 @@ title: getElements
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getElements.ts
 ---
 
-要素の参照から `WebdriverIO.ElementArray` プロパティ（`length` や `selector` など）にアクセスします。
+要素参照から `WebdriverIO.ElementArray` プロパティ（`length` や `selector` など）にアクセスします。
 
 ##### 使用法
 

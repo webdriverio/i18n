@@ -1,37 +1,38 @@
 ---
 id: customcommands
-title: Custom Commands
+title: دستورات سفارشی
 ---
 
-If you want to extend the `browser` instance with your own set of commands, the browser method  `addCommand` is here for you. You can write your command in a asynchronous way, just as in your specs.
+اگر می‌خواهید نمونه `browser` را با مجموعه‌ای از دستورات خود گسترش دهید، متد مرورگر `addCommand` برای شما اینجاست. شما می‌توانید دستور خود را به صورت ناهمگام، مانند تست‌های خود بنویسید.
 
-## Parameters
+## پارامترها
 
-### Command Name
+### نام دستور
 
-A name that defines the command and will be attached to the browser or element scope.
+نامی که دستور را تعریف می‌کند و به محدوده مرورگر یا عنصر متصل می‌شود.
 
-Type: `String`
+نوع: `String`
 
-### Custom Function
+### تابع سفارشی
 
-A function that is being executed when the command is called. The `this` scope is either [`WebdriverIO.Browser`](/docs/api/browser) or [`WebdriverIO.Element`](/docs/api/element) depending whether the command gets attached to the browser or element scope.
+تابعی که هنگام فراخوانی دستور اجرا می‌شود. محدوده `this` یا [`WebdriverIO.Browser`](/docs/api/browser) یا [`WebdriverIO.Element`](/docs/api/element) است، بسته به اینکه دستور به محدوده مرورگر یا عنصر متصل شود.
 
-Type: `Function`
+نوع: `Function`
 
-### Target Scope
+### محدوده هدف
 
-Flag to decide whether to attach the command to the browser or element scope. If set to `true` the command will be an element command.
+پرچمی برای تصمیم‌گیری در مورد اتصال دستور به محدوده مرورگر یا عنصر. اگر به `true` تنظیم شود، دستور یک دستور عنصر خواهد بود.
 
-Type: `Boolean`<br /> Default: `false`
+نوع: `Boolean`<br />
+پیش‌فرض: `false`
 
-## Examples
+## مثال‌ها
 
-This example shows how to add a new command that returns the current URL and title as one result. The scope (`this`) is a [`WebdriverIO.Browser`](/docs/api/browser) object.
+این مثال نشان می‌دهد که چگونه یک دستور جدید اضافه کنیم که URL و عنوان فعلی را به عنوان یک نتیجه برگرداند. محدوده (`this`) یک شیء [`WebdriverIO.Browser`](/docs/api/browser) است.
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
-    // `this` refers to the `browser` scope
+    // `this` به محدوده `browser` اشاره می‌کند
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -40,19 +41,19 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-Additionally, you can extend the element instance with your own set of commands, by passing `true` as the final argument. The scope (`this`) in this case is a [`WebdriverIO.Element`](/docs/api/element) object.
+علاوه بر این، می‌توانید نمونه عنصر را با مجموعه‌ای از دستورات خود گسترش دهید، با ارسال `true` به عنوان آرگومان نهایی. محدوده (`this`) در این حالت یک شیء [`WebdriverIO.Element`](/docs/api/element) است.
 
 ```js
 browser.addCommand("waitAndClick", async function () {
-    // `this` is return value of $(selector)
+    // `this` مقدار بازگشتی $(selector) است
     await this.waitForDisplayed()
     await this.click()
 }, true)
 ```
 
-Custom commands give you the opportunity to bundle a specific sequence of commands you use frequently as a single call. You can define custom commands at any point in your test suite; just make sure that the command is defined *before* its first use. (The `before` hook in your `wdio.conf.js` is one good place to create them.)
+دستورات سفارشی به شما این امکان را می‌دهند که توالی خاصی از دستوراتی را که اغلب استفاده می‌کنید در یک فراخوانی واحد جمع کنید. می‌توانید دستورات سفارشی را در هر نقطه از مجموعه تست خود تعریف کنید؛ فقط مطمئن شوید که دستور *قبل* از اولین استفاده آن تعریف شده است. (هوک `before` در `wdio.conf.js` شما یک مکان مناسب برای ایجاد آنهاست.)
 
-Once defined, you can use them as follows:
+پس از تعریف، می‌توانید از آنها به شرح زیر استفاده کنید:
 
 ```js
 it('should use my custom command', async () => {
@@ -65,26 +66,26 @@ it('should use my custom command', async () => {
 })
 ```
 
-__Note:__ If you register a custom command to the `browser` scope, the command won't be accessible for elements. Likewise, if you register a command to the element scope, it won't be accessible in the `browser` scope:
+__نکته:__ اگر دستور سفارشی را در محدوده `browser` ثبت کنید، دستور برای عناصر قابل دسترسی نخواهد بود. به همین ترتیب، اگر دستوری را در محدوده عنصر ثبت کنید، در محدوده `browser` قابل دسترسی نخواهد بود:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
 const elem = await $('body')
-console.log(typeof browser.myCustomBrowserCommand) // outputs "function"
-console.log(typeof elem.myCustomBrowserCommand()) // outputs "undefined"
+console.log(typeof browser.myCustomBrowserCommand) // خروجی "function"
+console.log(typeof elem.myCustomBrowserCommand()) // خروجی "undefined"
 
 browser.addCommand("myCustomElementCommand", () => { return 1 }, true)
 const elem2 = await $('body')
-console.log(typeof browser.myCustomElementCommand) // outputs "undefined"
-console.log(await elem2.myCustomElementCommand('foobar')) // outputs "1"
+console.log(typeof browser.myCustomElementCommand) // خروجی "undefined"
+console.log(await elem2.myCustomElementCommand('foobar')) // خروجی "1"
 
 const elem3 = await $('body')
 elem3.addCommand("myCustomElementCommand2", () => { return 2 })
-console.log(typeof browser.myCustomElementCommand2) // outputs "undefined"
-console.log(await elem3.myCustomElementCommand2('foobar')) // outputs "2"
+console.log(typeof browser.myCustomElementCommand2) // خروجی "undefined"
+console.log(await elem3.myCustomElementCommand2('foobar')) // خروجی "2"
 ```
 
-__Note:__ If you need to chain a custom command, the command should end with `$`,
+__نکته:__ اگر نیاز به زنجیره کردن یک دستور سفارشی دارید، دستور باید با `$` پایان یابد،
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -92,23 +93,23 @@ browser.addCommand("user$", (locator) => { return ele }, true)
 await browser.user$('foo').user$('bar').click()
 ```
 
-Be careful to not overload the `browser` scope with too many custom commands.
+مراقب باشید محدوده `browser` را با دستورات سفارشی زیاد پر نکنید.
 
-We recommend defining custom logic in [page objects](pageobjects), so they are bound to a specific page.
+ما توصیه می‌کنیم منطق سفارشی را در [اشیاء صفحه](pageobjects) تعریف کنید، تا به یک صفحه خاص متصل باشند.
 
 ### Multiremote
 
-`addCommand` works in a similar way for multiremote, except the new command will propagate down to the children instances. You have to be mindful when using `this` object since the multiremote `browser` and its children instances have different `this`.
+`addCommand` به روشی مشابه برای multiremote کار می‌کند، با این تفاوت که دستور جدید به نمونه‌های فرزند منتقل می‌شود. هنگام استفاده از شیء `this` باید دقت کنید زیرا multiremote `browser` و نمونه‌های فرزند آن دارای `this` متفاوتی هستند.
 
-This example shows how to add a new command for multiremote.
+این مثال نشان می‌دهد که چگونه یک دستور جدید برای multiremote اضافه کنیم.
 
 ```js
 import { multiremotebrowser } from '@wdio/globals'
 
 multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
-    // `this` refers to:
-    //      - MultiRemoteBrowser scope for browser
-    //      - Browser scope for instances
+    // `this` اشاره دارد به:
+    //      - محدوده MultiRemoteBrowser برای مرورگر
+    //      - محدوده Browser برای نمونه‌ها
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -138,21 +139,21 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 */
 ```
 
-## Extend Type Definitions
+## گسترش تعاریف نوع
 
-With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your custom commands like this:
+با TypeScript، گسترش رابط‌های WebdriverIO آسان است. انواع را به دستورات سفارشی خود به این شکل اضافه کنید:
 
-1. Create a type definition file (e.g., `./src/types/wdio.d.ts`)
-2. a. If using a module-style type definition file (using import/export and `declare global WebdriverIO` in the type definition file), make sure to include the file path in the `tsconfig.json` `include` property.
+1. یک فایل تعریف نوع ایجاد کنید (مثلاً `./src/types/wdio.d.ts`)
+2. الف. اگر از فایل تعریف نوع سبک ماژول استفاده می‌کنید (با استفاده از import/export و `declare global WebdriverIO` در فایل تعریف نوع)، مطمئن شوید که مسیر فایل را در ویژگی `include` در `tsconfig.json` قرار دهید.
 
-   b.  If using ambient-style type definition files (no import/export in type definition files and `declare namespace WebdriverIO` for custom commands), make sure the `tsconfig.json` does *not* contain any `include` section, since this will cause all type definition files not listed in the `include` section to not be recognized by typescript.
+   ب. اگر از فایل‌های تعریف نوع سبک ambient استفاده می‌کنید (بدون import/export در فایل‌های تعریف نوع و `declare namespace WebdriverIO` برای دستورات سفارشی)، مطمئن شوید که `tsconfig.json` هیچ بخش `include` ندارد، زیرا این باعث می‌شود تمام فایل‌های تعریف نوع که در بخش `include` لیست نشده‌اند توسط typescript شناسایی نشوند.
 
 <Tabs
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -178,14 +179,14 @@ With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your c
 </TabItem>
 </Tabs>
 
-3. Add definitions for your commands according to your execution mode.
+3. تعاریف را برای دستورات خود مطابق با حالت اجرای خود اضافه کنید.
 
 <Tabs
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -229,11 +230,11 @@ declare namespace WebdriverIO {
 </TabItem>
 </Tabs>
 
-## Integrate 3rd Party Libraries
+## ادغام کتابخانه‌های شخص ثالث
 
-If you use external libraries (e.g., to do database calls) that support promises, a nice approach to integrate them is to wrap certain API methods with a custom command.
+اگر از کتابخانه‌های خارجی استفاده می‌کنید (مثلاً برای فراخوانی‌های پایگاه داده) که از پرامیس پشتیبانی می‌کنند، یک روش خوب برای ادغام آنها این است که متدهای API خاصی را با یک دستور سفارشی پوشش دهید.
 
-When returning the promise, WebdriverIO ensures that it doesn't continue with the next command until the promise is resolved. If the promise gets rejected, the command will throw an error.
+هنگام بازگرداندن پرامیس، WebdriverIO اطمینان می‌دهد که تا زمانی که پرامیس حل نشده، به دستور بعدی ادامه نمی‌دهد. اگر پرامیس رد شود، دستور خطایی ایجاد می‌کند.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -242,59 +243,59 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-Then, just use it in your WDIO test specs:
+سپس، فقط از آن در تست‌های WDIO خود استفاده کنید:
 
 ```js
 it('execute external library in a sync way', async () => {
     await browser.url('...')
     const body = await browser.makeRequest('http://...')
-    console.log(body) // returns response body
+    console.log(body) // بدنه پاسخ را برمی‌گرداند
 })
 ```
 
-**Note:** The result of your custom command is the result of the promise you return.
+**نکته:** نتیجه دستور سفارشی شما، نتیجه پرامیسی است که برمی‌گردانید.
 
-## Overwriting Commands
+## بازنویسی دستورات
 
-You can also overwrite native commands with `overwriteCommand`.
+همچنین می‌توانید دستورات اصلی را با `overwriteCommand` بازنویسی کنید.
 
-It is not recommended to do this, because it may lead to unpredictable behavior of the framework!
+توصیه نمی‌شود این کار را انجام دهید، زیرا ممکن است منجر به رفتار غیرقابل پیش‌بینی فریمورک شود!
 
-The overall approach is similar to `addCommand`, the only difference is that the first argument in the command function is the original function that you are about to overwrite. Please see some examples below.
+رویکرد کلی مشابه `addCommand` است، تنها تفاوت این است که اولین آرگومان در تابع دستور، تابع اصلی است که قصد بازنویسی آن را دارید. لطفاً برخی مثال‌ها را در زیر ببینید.
 
-### Overwriting Browser Commands
+### بازنویسی دستورات مرورگر
 
 ```js
 /**
- * print milliseconds before pause and return its value.
+ * چاپ میلی‌ثانیه‌ها قبل از مکث و بازگرداندن مقدار آن.
  */
-// 'pause'            - name of command to be overwritten
-// origPauseFunction  - original pause function
+// 'pause'            - نام دستور برای بازنویسی
+// origPauseFunction  - تابع مکث اصلی
 browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
     console.log(`sleeping for ${ms}`)
     await origPauseFunction(ms)
     return ms
 })
 
-// then use it as before
+// سپس مانند قبل از آن استفاده کنید
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### Overwriting Element Commands
+### بازنویسی دستورات عنصر
 
-Overwriting commands on element level is almost the same. Simply pass `true` as the third argument to `overwriteCommand`:
+بازنویسی دستورات در سطح عنصر تقریباً یکسان است. به سادگی `true` را به عنوان آرگومان سوم به `overwriteCommand` منتقل کنید:
 
 ```js
 /**
- * Attempt to scroll to element if it is not clickable.
- * Pass { force: true } to click with JS even if element is not visible or clickable.
+ * تلاش برای اسکرول به عنصر اگر قابل کلیک نیست.
+ * { force: true } را منتقل کنید تا با JS کلیک کنید حتی اگر عنصر قابل مشاهده یا قابل کلیک نباشد.
  */
-// 'click'            - name of command to be overwritten
-// origClickFunction  - original click function
+// 'click'            - نام دستور برای بازنویسی
+// origClickFunction  - تابع کلیک اصلی
 browser.overwriteCommand('click', async function (origClickFunction, { force = false } = {}) {
     if (!force) {
         try {
-            // attempt to click
+            // تلاش برای کلیک
             await origClickFunction()
             return null
         } catch (err) {
@@ -302,7 +303,7 @@ browser.overwriteCommand('click', async function (origClickFunction, { force = f
                 console.warn('WARN: Element', this.selector, 'is not clickable.',
                     'Scrolling to it before clicking again.')
 
-                // scroll to element and click again
+                // اسکرول به عنصر و کلیک مجدد
                 await this.scrollIntoView()
                 return origClickFunction()
             }
@@ -310,24 +311,24 @@ browser.overwriteCommand('click', async function (origClickFunction, { force = f
         }
     }
 
-    // clicking with js
+    // کلیک با js
     console.warn('WARN: Using force click for', this.selector)
     await browser.execute((el) => {
         el.click()
     }, this)
-}, true) // don't forget to pass `true` as 3rd argument
+}, true) // فراموش نکنید که `true` را به عنوان آرگومان سوم منتقل کنید
 
-// then use it as before
+// سپس مانند قبل از آن استفاده کنید
 const elem = await $('body')
 await elem.click()
 
-// or pass params
+// یا پارامترها را منتقل کنید
 await elem.click({ force: true })
 ```
 
-## Add More WebDriver Commands
+## افزودن دستورات WebDriver بیشتر
 
-If you are using the WebDriver protocol and run tests on a platform that supports additional commands not defined by any of the protocol definitions in [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) you can manually add them through the `addCommand` interface. The `webdriver` package offers a command wrapper that allows to register these new endpoints in the same way as other commands, providing the same parameter checks and error handling. To register this new endpoint import the command wrapper and register a new command with it as follows:
+اگر از پروتکل WebDriver استفاده می‌کنید و تست‌ها را روی پلتفرمی اجرا می‌کنید که از دستورات اضافی پشتیبانی می‌کند که توسط هیچ یک از تعاریف پروتکل در [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) تعریف نشده‌اند، می‌توانید آنها را به صورت دستی از طریق رابط `addCommand` اضافه کنید. بسته `webdriver` یک wrapper دستور ارائه می‌دهد که به شما امکان می‌دهد این نقاط پایانی جدید را به همان روش دستورات دیگر ثبت کنید و همان بررسی‌های پارامتر و مدیریت خطا را ارائه دهید. برای ثبت این نقطه پایانی جدید، wrapper دستور را وارد کنید و یک دستور جدید با آن به شرح زیر ثبت کنید:
 
 ```js
 import { command } from 'webdriver'
@@ -349,14 +350,14 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-Calling this command with invalid parameters results in the same error handling as predefined protocol commands, e.g.:
+فراخوانی این دستور با پارامترهای نامعتبر منجر به همان مدیریت خطا مانند دستورات پروتکل از پیش تعریف شده می‌شود، به عنوان مثال:
 
 ```js
-// call command without required url parameter and payload
+// فراخوانی دستور بدون پارامتر url مورد نیاز و محتوا
 await browser.myNewCommand()
 
 /**
- * results in the following error:
+ * منجر به خطای زیر می‌شود:
  * Error: Wrong parameters applied for myNewCommand
  * Usage: myNewCommand(someId, foo)
  *
@@ -370,10 +371,10 @@ await browser.myNewCommand()
  */
 ```
 
-Calling the command correctly, e.g. `browser.myNewCommand('foo', 'bar')`, correctly makes a WebDriver request to e.g. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` with a payload like `{ foo: 'bar' }`.
+فراخوانی صحیح دستور، به عنوان مثال `browser.myNewCommand('foo', 'bar')`, به درستی یک درخواست WebDriver به عنوان مثال `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` با محتوای مانند `{ foo: 'bar' }` ارسال می‌کند.
 
 :::note
-The `:sessionId` url parameter will be automatically substituted with the session id of the WebDriver session. Other url parameter can be applied but need to be defined within `variables`.
+پارامتر url `:sessionId` به طور خودکار با شناسه جلسه جلسه WebDriver جایگزین می‌شود. سایر پارامترهای url را می‌توان اعمال کرد اما باید در `variables` تعریف شوند.
 :::
 
-See examples of how protocol commands can be defined in the [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) package.
+برای مشاهده مثال‌هایی از نحوه تعریف دستورات پروتکل، به بسته [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) مراجعه کنید.

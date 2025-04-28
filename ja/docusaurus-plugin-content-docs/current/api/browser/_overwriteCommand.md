@@ -23,7 +23,7 @@ browser.overwriteCommand(name, callback, elementScope)
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -38,7 +38,7 @@ browser.overwriteCommand(name, callback, elementScope)
       <td>元の関数を渡す</td>
     </tr>
     <tr>
-      <td><code><var>elementScope</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>elementScope</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
       <td>Browserオブジェクトの代わりにElementオブジェクトを拡張する</td>
     </tr>

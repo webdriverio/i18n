@@ -1,6 +1,6 @@
 ---
 id: dragAndDrop
-title: ドラッグアンドドロップ
+title: ドラッグ＆ドロップ
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/dragAndDrop.ts
 ---
 
@@ -8,15 +8,15 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::info
 
-このコマンドの機能は、アプリでのドラッグアンドドロップの実装方法に大きく依存します。
-問題が発生した場合は、[#4134](https://github.com/webdriverio/webdriverio/issues/4134)に例を投稿してください。
+このコマンドの機能は、アプリでのドラッグ＆ドロップの実装方法に大きく依存します。問題が発生した場合は、
+[#4134](https://github.com/webdriverio/webdriverio/issues/4134)に例を投稿してください。
 
-また、ドラッグする要素とドロップする対象の両方が画面上に表示されていることを確認してください。
+また、ドラッグする要素とドロップする対象の両方が画面に表示されていることを確認してください。
 
 このコマンドは、以下の最新コンポーネントでのみ動作します：
- - Appiumサーバー（バージョン2.0.0以上）
- - `appium-uiautomator2-driver`（Android向け）
- - `appium-xcuitest-driver`（iOS向け）
+ - Appium サーバー（バージョン2.0.0以上）
+ - `appium-uiautomator2-driver`（Android用）
+ - `appium-xcuitest-driver`（iOS用）
 
 互換性の問題を避けるため、ローカルまたはクラウドベースのAppium環境を定期的に更新してください。
 
@@ -33,7 +33,7 @@ $(selector).dragAndDrop(target, { duration })
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -43,14 +43,14 @@ $(selector).dragAndDrop(target, { duration })
       <td>目的の要素またはxとyプロパティを持つオブジェクト</td>
     </tr>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`DragAndDropOptions`</td>
-      <td>dragAndDropコマンドオプション</td>
+      <td>dragAndDropコマンドのオプション</td>
     </tr>
     <tr>
-      <td><code><var>options.duration</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.duration</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Number`</td>
-      <td>ドラッグ操作の所要時間</td>
+      <td>ドラッグにかかる時間</td>
     </tr>
   </tbody>
 </table>

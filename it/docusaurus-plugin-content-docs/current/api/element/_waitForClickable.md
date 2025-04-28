@@ -4,11 +4,11 @@ title: waitForClickable
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForClickable.ts
 ---
 
-Attendi che un elemento sia cliccabile o non cliccabile per la quantità di millisecondi fornita.
+Attendi che un elemento sia cliccabile o non cliccabile per il numero di millisecondi fornito.
 
 :::info
 
-A differenza di altri comandi degli elementi, WebdriverIO non aspetterà che l'elemento esista per eseguire
+A differenza di altri comandi dell'elemento, WebdriverIO non attenderà che l'elemento esista per eseguire
 questo comando.
 
 :::
@@ -46,7 +46,7 @@ $(selector).waitForClickable({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>se esiste, sovrascrive il messaggio di errore predefinito</td>
+      <td>se esiste sovrascrive il messaggio di errore predefinito</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -69,7 +69,7 @@ it('should detect when element is no longer clickable', async () => {
 });
 ```
 
-##### Restituisce
+##### Ritorna
 
 - **&lt;Boolean&gt;**
             **<code><var>return</var></code>:**  `true` se l'elemento è cliccabile (o non lo è se il flag è impostato)

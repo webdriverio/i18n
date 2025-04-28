@@ -3,7 +3,7 @@ id: clock
 title: L'Oggetto Clock
 ---
 
-Puoi modificare l'orologio di sistema del browser utilizzando il comando [`emulate`](/docs/emulation). Questo sostituisce le funzioni globali native relative al tempo, permettendo di controllarle in modo sincrono tramite `clock.tick()` o l'oggetto clock generato. Questo include il controllo di:
+Puoi modificare l'orologio di sistema del browser utilizzando il comando [`emulate`](/docs/emulation). Esso sovrascrive le funzioni globali native relative al tempo permettendo di controllarle in modo sincrono tramite `clock.tick()` o l'oggetto clock generato. Questo include il controllo di:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ Puoi modificare l'orologio di sistema del browser utilizzando il comando [`emula
 - `clearInterval`
 - `Date Objects`
 
-L'orologio inizia dall'epoca unix (timestamp 0). Ciò significa che quando istanzi un nuovo oggetto Date nella tua applicazione, avrà un orario corrispondente al 1° gennaio 1970 se non passi altre opzioni al comando `emulate`.
+L'orologio inizia dall'epoca unix (timestamp 0). Ciò significa che quando istanzi un nuovo oggetto Date nella tua applicazione, avrà come orario il 1° gennaio 1970 se non passi altre opzioni al comando `emulate`.
 
-## Example
+## Esempio
 
-Quando chiami `browser.emulate('clock', { ... })`, questo sovrascriverà immediatamente le funzioni globali per la pagina corrente e tutte le pagine successive, ad esempio:
+Quando chiami `browser.emulate('clock', { ... })` sovrascriverà immediatamente le funzioni globali per la pagina corrente e per tutte le pagine successive, ad esempio:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })

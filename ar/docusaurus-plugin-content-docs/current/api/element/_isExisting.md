@@ -1,0 +1,58 @@
+---
+id: isExisting
+title: isExisting
+custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isExisting.ts
+---
+
+يعيد القيمة true إذا كان العنصر موجودًا في DOM.
+
+:::info
+
+على عكس أوامر العناصر الأخرى، لن ينتظر WebdriverIO وجود العنصر
+لتنفيذ هذا الأمر.
+
+:::
+
+##### الاستخدام
+
+```js
+$(selector).isExisting()
+```
+
+##### أمثلة
+
+```html title="index.html"
+<div id="notDisplayed" style="display: none"></div>
+<div id="notVisible" style="visibility: hidden"></div>
+<div id="notInViewport" style="position:absolute; left: 9999999"></div>
+<div id="zeroOpacity" style="opacity: 0"></div>
+```
+
+```js title="isExisting.js"
+it('should detect if elements are existing', async () => {
+    let elem = await $('#someRandomNonExistingElement')
+    let isExisting = await elem.isExisting()
+    console.log(isExisting); // outputs: false
+
+    elem = await $('#notDisplayed')
+    isExisting = await elem.isExisting()
+    console.log(isExisting); // outputs: true
+
+    elem = await $('#notVisible')
+    isExisting = await elem.isExisting()
+    console.log(isExisting); // outputs: true
+
+    elem = await $('#notInViewport')
+    isExisting = await elem.isExisting()
+    console.log(isExisting); // outputs: true
+
+    elem = await $('#zeroOpacity')
+    isExisting = await elem.isExisting()
+    console.log(isExisting); // outputs: true
+});
+```
+
+##### العائد
+
+- **&lt;Boolean&gt;**
+            **<code><var>return</var></code>:**             true إذا كان العنصر (العناصر)* موجودًا (موجودة)

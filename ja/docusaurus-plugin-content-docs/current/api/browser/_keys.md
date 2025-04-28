@@ -1,21 +1,20 @@
 ---
 id: keys
-title: キー操作
+title: キー
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/keys.ts
 ---
 
-「アクティブな」要素にキーストロークのシーケンスを送信します。入力要素をクリックするだけでアクティブにすることができます。「左矢印」や「バックスペース」などの特殊キーを使用するには、WebdriverIOパッケージから`Key`オブジェクトをインポートしてください。
+「アクティブな」要素にキーストロークのシーケンスを送信します。インプット要素をクリックするだけでアクティブにすることができます。「左矢印」や「バックスペース」などの文字を使用するには、WebdriverIOパッケージから `Key` オブジェクトをインポートしてください。
 
-`Control`、`Shift`、`Alt`、`Command`などの修飾キーは押された状態を維持するため、解除するには再度トリガーする必要があります。ただし、クリックの修飾は[performActions](https://webdriver.io/docs/api/webdriver#performactions)メソッドを通じてWebDriver Actions APIを使用する必要があります。
+`Control`、`Shift`、`Alt`、`Command` などの修飾キーは押されたままになるため、解除するには再度トリガーする必要があります。ただし、クリックを修飾するには、[performActions](https://webdriver.io/docs/api/webdriver#performactions) メソッドを通じてWebDriver Actions APIを使用する必要があります。
 
 :::info
 
-制御キーはブラウザが実行されているオペレーティングシステムによって異なります（例：MacOSでは`Command`、Windowsでは`Control`）。
-WebdriverIOはクロスブラウザの修飾制御キーとして`Ctrl`を提供しています（以下の例を参照）。
+制御キーは、ブラウザが実行されているオペレーティングシステムによって異なります。例えば、MacOS: `Command`、Windows: `Control`。WebdriverIOはクロスブラウザ修飾制御キー `Ctrl` を提供しています（以下の例を参照）。
 
 :::
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.keys(value)

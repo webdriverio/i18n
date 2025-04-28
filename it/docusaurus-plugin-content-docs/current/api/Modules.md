@@ -3,11 +3,11 @@ id: modules
 title: Moduli
 ---
 
-WebdriverIO pubblica vari moduli su NPM e altri registri che puoi utilizzare per costruire il tuo framework di automazione. Vedi ulteriore documentazione sui tipi di configurazione WebdriverIO [qui](/docs/setuptypes).
+WebdriverIO pubblica vari moduli su NPM e altri registri che puoi utilizzare per costruire il tuo framework di automazione. Vedi maggiori informazioni sui tipi di configurazione WebdriverIO [qui](/docs/setuptypes).
 
 ## `webdriver` e `devtools`
 
-I pacchetti di protocollo ([`webdriver`](https://www.npmjs.com/package/webdriver) e [`devtools`](https://www.npmjs.com/package/devtools)) espongono una classe con le seguenti funzioni statiche che ti permettono di iniziare le sessioni:
+I pacchetti di protocollo ([`webdriver`](https://www.npmjs.com/package/webdriver) e [`devtools`](https://www.npmjs.com/package/devtools)) espongono una classe con le seguenti funzioni statiche allegate che ti permettono di iniziare sessioni:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
@@ -18,7 +18,7 @@ Avvia una nuova sessione con capacità specifiche. In base alla risposta della s
 - `options`: [Opzioni WebDriver](/docs/configuration#webdriver-options)
 - `modifier`: funzione che permette di modificare l'istanza del client prima che venga restituita
 - `userPrototype`: oggetto di proprietà che permette di estendere il prototipo dell'istanza
-- `customCommandWrapper`: funzione che permette di avvolgere funzionalità intorno alle chiamate di funzione
+- `customCommandWrapper`: funzione che permette di avvolgere funzionalità attorno alle chiamate di funzione
 
 ##### Restituisce
 
@@ -41,7 +41,7 @@ Si collega a una sessione WebDriver o DevTools in esecuzione.
 - `attachInstance`: istanza a cui collegare una sessione o almeno un oggetto con una proprietà `sessionId` (es. `{ sessionId: 'xxx' }`)
 - `modifier`: funzione che permette di modificare l'istanza del client prima che venga restituita
 - `userPrototype`: oggetto di proprietà che permette di estendere il prototipo dell'istanza
-- `customCommandWrapper`: funzione che permette di avvolgere funzionalità intorno alle chiamate di funzione
+- `customCommandWrapper`: funzione che permette di avvolgere funzionalità attorno alle chiamate di funzione
 
 ##### Restituisce
 
@@ -71,11 +71,11 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-Similmente ai pacchetti di protocollo (`webdriver` e `devtools`), puoi anche utilizzare le API del pacchetto WebdriverIO per gestire le sessioni. Le API possono essere importate usando `import { remote, attach, multiremote } from 'webdriverio'` e contengono le seguenti funzionalità:
+In modo simile ai pacchetti di protocollo (`webdriver` e `devtools`), puoi anche utilizzare le API del pacchetto WebdriverIO per gestire le sessioni. Le API possono essere importate usando `import { remote, attach, multiremote } from 'webdriverio'` e contengono le seguenti funzionalità:
 
 #### `remote(options, modifier)`
 
-Avvia una sessione WebdriverIO. L'istanza contiene tutti i comandi come il pacchetto di protocollo ma con funzioni di ordine superiore aggiuntive, vedi [documentazione API](/docs/api).
+Avvia una sessione WebdriverIO. L'istanza contiene tutti i comandi come il pacchetto di protocollo ma con funzioni di ordine superiore aggiuntive, vedi [API docs](/docs/api).
 
 ##### Parametri
 
@@ -119,7 +119,7 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-Inizia un'istanza multiremote che ti permette di controllare più sessioni all'interno di un'unica istanza. Dai un'occhiata ai nostri [esempi multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) per casi d'uso concreti.
+Inizia un'istanza multiremote che ti permette di controllare più sessioni all'interno di una singola istanza. Controlla i nostri [esempi multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) per casi d'uso concreti.
 
 ##### Parametri
 
@@ -184,7 +184,7 @@ Il costruttore della classe `Launcher` si aspetta l'URL del file di configurazio
 
 ##### Parametri
 
-- `configPath`: percorso al file `wdio.conf.js` da eseguire
+- `configPath`: percorso del `wdio.conf.js` da eseguire
 - `opts`: argomenti ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) per sovrascrivere i valori dal file di configurazione
 
 ##### Esempio
@@ -203,17 +203,17 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-Il comando `run` restituisce una [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Viene risolta se i test sono stati eseguiti con successo o falliti, e viene rifiutata se il launcher non è stato in grado di iniziare l'esecuzione dei test.
+Il comando `run` restituisce una [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Viene risolta se i test sono stati eseguiti con successo o falliti, e viene rifiutata se il launcher non è stato in grado di avviare i test.
 
 ## `@wdio/browser-runner`
 
-Quando esegui test unitari o di componenti utilizzando il [browser runner](/docs/runner#browser-runner) di WebdriverIO, puoi importare utilità di mock per i tuoi test, ad esempio:
+Quando esegui test unitari o di componenti utilizzando il [browser runner](/docs/runner#browser-runner) di WebdriverIO, puoi importare utilità di mocking per i tuoi test, ad esempio:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-Sono disponibili le seguenti esportazioni denominate:
+Sono disponibili le seguenti esportazioni nominali:
 
 #### `fn`
 
@@ -229,7 +229,7 @@ Metodo per simulare un file o un modulo di dipendenza.
 
 ##### Parametri
 
-- `moduleName`: un percorso relativo al file da simulare o un nome di modulo.
+- `moduleName`: sia un percorso relativo al file da simulare che un nome di modulo.
 - `factory`: funzione per restituire il valore simulato (opzionale)
 
 ##### Esempio
@@ -254,7 +254,7 @@ Rimuove il mock di una dipendenza definita all'interno della directory di mock m
 
 ##### Parametri
 
-- `moduleName`: nome del modulo da cui rimuovere il mock.
+- `moduleName`: nome del modulo da smoccare.
 
 ##### Esempio
 

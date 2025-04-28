@@ -3,7 +3,7 @@ id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
 ---
 
-Ottieni la posizione di un testo sullo schermo. Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla Logica Fuzzy di [Fuse.js](https://fusejs.io/). Questo significa che se fornisci un selettore con un errore di battitura, o il testo trovato potrebbe non essere una corrispondenza al 100%, cercherà comunque di restituirti un elemento. Vedi i [log](#logs) qui sotto.
+Ottieni la posizione di un testo sullo schermo. Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla Logica Fuzzy di [Fuse.js](https://fusejs.io/). Questo significa che se fornisci un selettore con un errore di battitura, o il testo trovato potrebbe non essere una corrispondenza al 100%, tenterà comunque di restituirti un elemento. Vedi i [log](#logs) qui sotto.
 
 ## Utilizzo
 
@@ -41,7 +41,7 @@ result = {
 ### Logs
 
 ```log
-# Trova comunque una corrispondenza anche se abbiamo cercato "Start3d" e il testo trovato era "Started"
+# Still finding a match even though we searched for "Start3d" and the found text was "Started"
 [0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
@@ -54,7 +54,7 @@ result = {
 -   **Tipo:** `string`
 -   **Obbligatorio:** sì
 
-Il testo che vuoi cercare per cliccarci sopra.
+Il testo che desideri cercare per cliccarci sopra.
 
 #### Esempio
 
@@ -66,9 +66,9 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 -   **Tipo:** `number`
 -   **Obbligatorio:** no
--   **Default:** `0.25`
+-   **Predefinito:** `0.25`
 
-Maggiore è il contrasto, più scura sarà l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori tra `-1` e `1`.
+Più alto è il contrasto, più scura sarà l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
 
 #### Esempio
 
@@ -116,7 +116,7 @@ await browser.ocrGetElementPositionByText({
 
 -   **Tipo:** `string`
 -   **Obbligatorio:** No
--   **Default:** `eng`
+-   **Predefinito:** `eng`
 
 La lingua che Tesseract riconoscerà. Maggiori informazioni possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate possono essere trovate [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
@@ -139,9 +139,9 @@ Puoi modificare la logica fuzzy per trovare testo con le seguenti opzioni. Quest
 
 -   **Tipo:** `number`
 -   **Obbligatorio:** no
--   **Default:** 100
+-   **Predefinito:** 100
 
-Determina quanto vicina deve essere la corrispondenza alla posizione fuzzy (specificata da location). Una corrispondenza esatta che si trova a "distance" caratteri di distanza dalla posizione fuzzy verrebbe considerata come un completo mancato riscontro. Una distanza di 0 richiede che la corrispondenza sia nella posizione esatta specificata. Una distanza di 1000 richiederebbe una corrispondenza perfetta entro 800 caratteri dalla posizione per essere trovata utilizzando una soglia di 0.8.
+Determina quanto vicina deve essere la corrispondenza alla posizione fuzzy (specificata da location). Una corrispondenza esatta della lettera che si trova a distanza caratteri dalla posizione fuzzy verrebbe considerata come una completa mancata corrispondenza. Una distanza di 0 richiede che la corrispondenza sia nella posizione esatta specificata. Una distanza di 1000 richiederebbe una corrispondenza perfetta entro 800 caratteri dalla posizione per essere trovata usando una soglia di 0.8.
 
 ##### Esempio
 
@@ -158,7 +158,7 @@ await browser.ocrGetElementPositionByText({
 
 -   **Tipo:** `number`
 -   **Obbligatorio:** no
--   **Default:** 0
+-   **Predefinito:** 0
 
 Determina approssimativamente dove nel testo ci si aspetta di trovare il pattern.
 
@@ -177,9 +177,9 @@ await browser.ocrGetElementPositionByText({
 
 -   **Tipo:** `number`
 -   **Obbligatorio:** no
--   **Default:** 0.6
+-   **Predefinito:** 0.6
 
-A che punto l'algoritmo di corrispondenza si arrende. Una soglia di 0 richiede una corrispondenza perfetta (sia di lettere che di posizione), una soglia di 1.0 corrisponderebbe a qualsiasi cosa.
+A quale punto l'algoritmo di corrispondenza si arrende. Una soglia di 0 richiede una corrispondenza perfetta (sia di lettere che di posizione), una soglia di 1.0 corrisponderebbe a qualsiasi cosa.
 
 ##### Esempio
 
@@ -196,9 +196,9 @@ await browser.ocrGetElementPositionByText({
 
 -   **Tipo:** `boolean`
 -   **Obbligatorio:** no
--   **Default:** false
+-   **Predefinito:** false
 
-Se la ricerca deve essere sensibile alle maiuscole/minuscole.
+Se la ricerca dovrebbe essere sensibile alle maiuscole/minuscole.
 
 ##### Esempio
 
@@ -215,7 +215,7 @@ await browser.ocrGetElementPositionByText({
 
 -   **Tipo:** `number`
 -   **Obbligatorio:** no
--   **Default:** 2
+-   **Predefinito:** 2
 
 Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di singoli caratteri nel risultato, impostalo a 2)
 
@@ -234,9 +234,9 @@ await browser.ocrGetElementPositionByText({
 
 -   **Tipo:** `number`
 -   **Obbligatorio:** no
--   **Default:** false
+-   **Predefinito:** false
 
-Quando `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
+Quando `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata trovata una corrispondenza perfetta nella stringa.
 
 ##### Esempio
 

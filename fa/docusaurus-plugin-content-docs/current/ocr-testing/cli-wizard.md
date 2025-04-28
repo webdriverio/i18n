@@ -1,55 +1,55 @@
 ---
 id: cli-wizard
-title: CLI Wizard
+title: ویزارد CLI
 ---
 
-You can validate which text can be found in an image without running a test by using the OCR CLI Wizard. The only thing that are needed are:
+شما می‌توانید بدون اجرای تست، بررسی کنید که چه متنی در یک تصویر وجود دارد با استفاده از ویزارد CLI OCR. تنها چیزهایی که نیاز دارید عبارتند از:
 
-- you have installed the `@wdio/ocr-service` as a dependency, see [Getting Started](./getting-started)
-- an image that you want to process
+-   شما `@wdio/ocr-service` را به عنوان وابستگی نصب کرده‌اید، ببینید [شروع به کار](./getting-started)
+-   تصویری که می‌خواهید پردازش کنید
 
-Then run the following command to start the wizard
+سپس دستور زیر را برای شروع ویزارد اجرا کنید
 
 ```sh
 npx ocr-service
 ```
 
-This will start a wizard that will guide you through the steps to select an image and use a haystack plus advanced mode. The following questions are asked
+این یک ویزارد را شروع می‌کند که شما را برای انتخاب یک تصویر و استفاده از haystack به همراه حالت پیشرفته راهنمایی می‌کند. سوالات زیر پرسیده می‌شوند
 
-## How would you like to specify the file?
+## چگونه می‌خواهید فایل را مشخص کنید؟
 
-The following options can be selected
+گزینه‌های زیر را می‌توان انتخاب کرد
 
-- Use a "file explorer"
-- Type the file path manually
+-   استفاده از "مرورگر فایل"
+-   تایپ کردن مسیر فایل به صورت دستی
 
-### Use a "file explorer"
+### استفاده از "مرورگر فایل"
 
-The CLI wizard provides an option to use a "file explorer" to search for files on your system. It starts from the folder you call the command. After selecting an image (use your arrow keys and the ENTER key) you will proceed to the next question
+ویزارد CLI گزینه‌ای برای استفاده از "مرورگر فایل" برای جستجوی فایل‌ها در سیستم شما ارائه می‌دهد. از پوشه‌ای که دستور را در آن اجرا می‌کنید، شروع می‌شود. پس از انتخاب یک تصویر (با استفاده از کلیدهای جهت‌دار و کلید ENTER) به سوال بعدی خواهید رفت
 
-### Type the file path manually
+### تایپ کردن مسیر فایل به صورت دستی
 
-This is a direct path to a file somewhere on your local machine
+این یک مسیر مستقیم به فایلی در جایی از ماشین محلی شما است
 
-### Would you like to use a haystack?
+### آیا می‌خواهید از haystack استفاده کنید؟
 
-Here you have the option to select an area that needs to be processed. This can speed up the process or reduce/narrow down the amount of text the OCR engine might find. You need to provide `x`, `y`, `width`, `height` data based on the following questions:
+در اینجا شما گزینه انتخاب ناحیه‌ای که باید پردازش شود را دارید. این می‌تواند فرآیند را تسریع کند یا مقدار متنی که موتور OCR ممکن است پیدا کند را کاهش/محدود کند. شما باید داده‌های `x`، `y`، `width`، `height` را بر اساس سوالات زیر ارائه دهید:
 
-- Enter the x coordinate:
-- Enter the y coordinate:
-- Enter the width:
-- Enter the height:
+-   مختصات x را وارد کنید:
+-   مختصات y را وارد کنید:
+-   عرض را وارد کنید:
+-   ارتفاع را وارد کنید:
 
-## Do you want to use the advanced mode?
+## آیا می‌خواهید از حالت پیشرفته استفاده کنید؟
 
-Advanced mode will hold extra features like:
+حالت پیشرفته شامل ویژگی‌های اضافی مانند:
 
-- setting the contrast
-- more to follow in the future
+-   تنظیم کنتراست
+-   موارد بیشتر در آینده
 
-## Demo
+## نمایش
 
-Here's a demo
+اینجا یک نمایش است
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

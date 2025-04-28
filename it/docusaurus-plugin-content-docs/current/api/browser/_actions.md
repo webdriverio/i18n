@@ -4,7 +4,7 @@ title: actions
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/actions.ts
 ---
 
-Consente di eseguire più interazioni di azione contemporaneamente, ad esempio per simulare uno zoom con pizzicamento.
+Consente di eseguire più interazioni di azione contemporaneamente, ad esempio per simulare uno zoom con il pizzico.
 Per maggiori informazioni sul comando `action`, consulta la [documentazione](/docs/api/browser/action).
 
 ##### Utilizzo

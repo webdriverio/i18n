@@ -4,12 +4,12 @@ title: call
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/call.ts
 ---
 
-Puoi utilizzare `call` per eseguire qualsiasi azione asincrona all'interno della tua test spec.
-Accetta promesse e interrompe l'esecuzione fino a quando la promessa non è stata risolta.
+Puoi utilizzare `call` per eseguire qualsiasi azione asincrona all'interno della tua specifica di test.
+Accetta promesse e ferma l'esecuzione fino a quando la promessa non è stata risolta.
 
 :::info
 
-Con WebdriverIO che sta deprecando l'uso sincrono (vedi [RFC](https://github.com/webdriverio/webdriverio/discussions/6702))
+Con WebdriverIO che depreca l'uso sincrono (vedi [RFC](https://github.com/webdriverio/webdriverio/discussions/6702))
 questo comando non è più molto utile.
 
 :::

@@ -1,14 +1,14 @@
 ---
 id: saveRecordingScreen
-title: スクリーン録画の保存
+title: saveRecordingScreen
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/saveRecordingScreen.ts
 ---
 
-[`startRecordingScreen`](/docs/api/appium#startrecordingscreen) コマンドで開始した録画をファイルに保存します。
+[`startRecordingScreen`](/docs/api/appium#startrecordingscreen)コマンドで開始したビデオをファイルに保存します。
 
 :::info
 
-このコマンドは、[Appium](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/start-recording-screen/) で実行されるモバイルセッションでのみサポートされています。
+このコマンドは、[Appium](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/start-recording-screen/)で実行されているモバイルセッションでのみサポートされています。
 
 :::
 
@@ -30,7 +30,7 @@ browser.saveRecordingScreen(filepath)
     <tr>
       <td><code><var>filepath</var></code></td>
       <td>`String`</td>
-      <td>生成された動画の完全パスまたは実行ディレクトリからの相対パス</td>
+      <td>生成されたビデオへの完全パスまたは実行ディレクトリからの相対パス</td>
     </tr>
   </tbody>
 </table>

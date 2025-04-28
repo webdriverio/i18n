@@ -1,15 +1,15 @@
 ---
 id: file-download
-title: File Download
+title: دانلود فایل
 ---
 
-When automating file downloads in web testing, it's essential to handle them consistently across different browsers to ensure reliable test execution.
+هنگام خودکارسازی دانلود فایل‌ها در تست وب، ضروری است که آن‌ها را به طور یکسان در مرورگرهای مختلف مدیریت کنید تا اجرای تست قابل اعتماد باشد.
 
-Here, we provide best practices for file downloads and demonstrate how to configure download directories for **Google Chrome**, **Mozilla Firefox**, and **Microsoft Edge**.
+در اینجا، بهترین روش‌ها برای دانلود فایل‌ها را ارائه می‌دهیم و نشان می‌دهیم چگونه دایرکتوری‌های دانلود را برای **گوگل کروم**، **موزیلا فایرفاکس** و **مایکروسافت اج** پیکربندی کنید.
 
-## Download Paths
+## مسیرهای دانلود
 
-**Hardcoding** download paths in test scripts can lead to maintenance issues and portability problems. Utilize **relative paths** for download directories to ensure portability and compatibility across different environments.
+**هاردکدینگ** مسیرهای دانلود در اسکریپت‌های تست می‌تواند باعث مشکلات نگهداری و مشکلات قابلیت حمل شود. از **مسیرهای نسبی** برای دایرکتوری‌های دانلود استفاده کنید تا قابلیت حمل و سازگاری در محیط‌های مختلف تضمین شود.
 
 ```javascript
 // 👎
@@ -21,9 +21,9 @@ const downloadPath = '/path/to/downloads';
 const downloadPath = path.join(__dirname, 'downloads');
 ```
 
-## Wait Strategies
+## استراتژی‌های انتظار
 
-Failing to implement proper wait strategies can lead to race conditions or unreliable tests, especially for download completion. Implement **explicit** wait strategies to wait for file downloads to complete, ensuring synchronization between test steps.
+عدم پیاده‌سازی استراتژی‌های انتظار مناسب می‌تواند منجر به شرایط رقابتی یا تست‌های غیرقابل اعتماد، به ویژه برای تکمیل دانلود شود. استراتژی‌های انتظار **صریح** را پیاده‌سازی کنید تا منتظر تکمیل دانلود فایل‌ها باشید و هماهنگی بین مراحل تست را تضمین کنید.
 
 ```javascript
 // 👎
@@ -35,9 +35,9 @@ await browser.pause(5000);
 await waitUntil(async ()=> await fs.existsSync(downloadPath), 5000);
 ```
 
-## Configuring Download Directories
+## پیکربندی دایرکتوری‌های دانلود
 
-To override file download behavior for **Google Chrome**, **Mozilla Firefox**, and **Microsoft Edge**, provide the download directory in the WebDriverIO capabilities:
+برای تغییر رفتار دانلود فایل برای **گوگل کروم**، **موزیلا فایرفاکس** و **مایکروسافت اج**، دایرکتوری دانلود را در قابلیت‌های WebDriverIO ارائه دهید:
 
 <Tabs
 defaultValue="chrome"
@@ -80,11 +80,11 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 </Tabs>
 
-For an example implementation, refer to the [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
+برای یک نمونه پیاده‌سازی، به [دستور العمل تست رفتار دانلود WebdriverIO](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior) مراجعه کنید.
 
-## Configuring Chromium Browser Downloads
+## پیکربندی دانلود‌های مرورگر کرومیوم
 
-To change the download path for __Chromium-based__ browsers (such as Chrome, Edge, Brave, etc.) using WebDriverIOs `getPuppeteer` method for accessing Chrome DevTools.
+برای تغییر مسیر دانلود برای مرورگرهای __مبتنی بر کرومیوم__ (مانند کروم، اج، بریو و غیره) با استفاده از متد `getPuppeteer` WebDriverIO برای دسترسی به ابزارهای توسعه کروم.
 
 ```javascript
 const page = await browser.getPuppeteer();
@@ -94,18 +94,18 @@ const cdpSession = await page.target().createCDPSession();
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Handling Multiple File Downloads
+## مدیریت دانلود چندین فایل
 
-When dealing with scenarios involving multiple file downloads, it's essential to implement strategies to manage and validate each download effectively. Consider the following approaches:
+هنگام برخورد با سناریوهای شامل دانلود چندین فایل، ضروری است استراتژی‌هایی برای مدیریت و اعتبارسنجی موثر هر دانلود پیاده‌سازی کنید. روش‌های زیر را در نظر بگیرید:
 
-__Sequential Download Handling:__ Download files one by one and verify each download before initiating the next one to ensure orderly execution and accurate validation.
+__مدیریت دانلود ترتیبی:__ فایل‌ها را یکی پس از دیگری دانلود کنید و قبل از شروع دانلود بعدی، هر دانلود را تأیید کنید تا اجرای منظم و اعتبارسنجی دقیق تضمین شود.
 
-__Parallel Download Handling:__ Utilize asynchronous programming techniques to initiate multiple file downloads simultaneously, optimizing test execution time. Implement robust validation mechanisms to verify all downloads upon completion.
+__مدیریت دانلود موازی:__ از تکنیک‌های برنامه‌نویسی ناهمگام برای شروع همزمان دانلود چندین فایل استفاده کنید تا زمان اجرای تست بهینه شود. مکانیزم‌های اعتبارسنجی قوی را برای تأیید تمام دانلودها پس از تکمیل پیاده‌سازی کنید.
 
-## Cross-Browser Compatibility Considerations
+## ملاحظات سازگاری بین مرورگرها
 
-While WebDriverIO provides a unified interface for browser automation, it's essential to account for variations in browser behavior and capabilities. Consider testing your file download functionality across different browsers to ensure compatibility and consistency.
+در حالی که WebDriverIO یک رابط یکپارچه برای خودکارسازی مرورگر ارائه می‌دهد، در نظر گرفتن تغییرات در رفتار و قابلیت‌های مرورگر ضروری است. عملکرد دانلود فایل خود را در مرورگرهای مختلف آزمایش کنید تا از سازگاری و یکنواختی اطمینان حاصل کنید.
 
-__Browser-Specific Configurations:__ Adjust download path settings and wait strategies to accommodate differences in browser behavior and preferences across Chrome, Firefox, Edge, and other supported browsers.
+__پیکربندی‌های خاص مرورگر:__ تنظیمات مسیر دانلود و استراتژی‌های انتظار را برای تطبیق با تفاوت‌های رفتار و ترجیحات مرورگر در کروم، فایرفاکس، اج و سایر مرورگرهای پشتیبانی شده تنظیم کنید.
 
-__Browser Version Compatibility:__ Regularly update your WebDriverIO and browser versions to leverage the latest features and enhancements while ensuring compatibility with your existing test suite.
+__سازگاری نسخه مرورگر:__ WebDriverIO و نسخه‌های مرورگر خود را به طور منظم به‌روزرسانی کنید تا از آخرین ویژگی‌ها و بهبودها بهره‌مند شوید در حالی که سازگاری با مجموعه تست موجود خود را تضمین می‌کنید.

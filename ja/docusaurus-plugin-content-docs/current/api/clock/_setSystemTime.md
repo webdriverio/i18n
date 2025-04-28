@@ -1,12 +1,12 @@
 ---
 id: setSystemTime
-title: システム時間の設定
+title: システム時間を設定する
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/setSystemTime.ts
 ---
 
-システム時間を新しい「現在時刻」に変更します。現在時刻はタイムスタンプ、Dateオブジェクト、または何も渡さない場合はデフォルトで0になります。タイマーは呼び出されず、タイマーが発火するまでの残り時間も変化しません。
+システム時間を新しい時間に変更します。時間はタイムスタンプ、Dateオブジェクト、または何も渡さない場合はデフォルトで0になります。タイマーは呼び出されず、それらが発火するまでの残り時間も変更されません。
 
-##### 使用法
+##### 使用方法
 
 ```js
 const clock = await browser.emulate('clock', { ... })

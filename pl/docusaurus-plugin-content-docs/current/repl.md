@@ -1,35 +1,35 @@
 ---
 id: repl
-title: REPL interface
+title: Interfejs REPL
 ---
 
-With `v4.5.0`, WebdriverIO introduced a [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) interface that helps you to not only learn the framework API, but also debug and inspect your tests. It can be used in multiple ways.
+Od wersji `v4.5.0` WebdriverIO wprowadził interfejs [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop), który pomaga nie tylko nauczyć się API frameworka, ale także debugować i analizować testy. Może być używany na wiele sposobów.
 
-First you can use it as CLI command by installing `npm install -g @wdio/cli` and spawn a WebDriver session from the command line, e.g.
+Po pierwsze, możesz używać go jako polecenia CLI, instalując `npm install -g @wdio/cli` i uruchamiając sesję WebDrivera z linii poleceń, np.
 
 ```sh
 wdio repl chrome
 ```
 
-This would open a Chrome browser that you can control with the REPL interface. Make sure you have a browser driver running on port `4444` in order to initiate the session. If you have a [Sauce Labs](https://saucelabs.com) (or other cloud vendor) account, you can also directly run the browser on your command line in the cloud via:
+Otworzy to przeglądarkę Chrome, którą możesz kontrolować za pomocą interfejsu REPL. Upewnij się, że masz uruchomiony sterownik przeglądarki na porcie `4444`, aby zainicjować sesję. Jeśli masz konto [Sauce Labs](https://saucelabs.com) (lub innego dostawcy chmury), możesz również bezpośrednio uruchomić przeglądarkę z linii poleceń w chmurze za pomocą:
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY
 ```
 
-If driver is running on different port eg : 9515, it could passed with the command line argument --port or alias -p
+Jeśli sterownik działa na innym porcie, np.: 9515, można go przekazać za pomocą argumentu wiersza poleceń --port lub aliasu -p
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY -p 9515
 ```
 
-Repl could also be ran using the capabilities from the webdriverIO config file. Wdio supports capabilities object; or ; multiremote capability list or object.
+Repl może być również uruchamiany przy użyciu konfiguracji z pliku konfiguracyjnego webdriverIO. Wdio obsługuje obiekt capabilities; lub listę capabilities multiremote lub obiekt.
 
-If the config file uses capabilities object then just pass the path to config file, else if its a multiremote capability then, specify which capability to use from list or multiremote using the positional argument . Note: for list we consider zero based index.
+Jeśli plik konfiguracyjny używa obiektu capabilities, to wystarczy przekazać ścieżkę do pliku konfiguracyjnego, a jeśli to jest konfiguracja multiremote, to określ, które capabilities użyć z listy lub multiremote za pomocą argumentu pozycyjnego. Uwaga: dla listy używamy indeksu bazującego na zeru.
 
-### Example
+### Przykład
 
-WebdriverIO with capability array:
+WebdriverIO z tablicą capability:
 
 ```ts title="wdio.conf.ts example"
 export const config = {
@@ -46,7 +46,7 @@ export const config = {
 wdio repl "./path/to/wdio.config.js" 0 -p 9515
 ```
 
-WebdriverIO with [multiremote](https://webdriver.io/docs/multiremote/) capability object:
+WebdriverIO z obiektem capability [multiremote](https://webdriver.io/docs/multiremote/):
 
 ```ts title="wdio.conf.ts example"
 export const config = {
@@ -70,14 +70,14 @@ export const config = {
 wdio repl "./path/to/wdio.config.js" "myChromeBrowser" -p 9515
 ```
 
-Or if you want to run local mobile tests using Appium:
+Lub jeśli chcesz uruchomić lokalne testy mobilne za pomocą Appium:
 
 <Tabs
   defaultValue="android"
   values={[
     {label: 'Android', value: 'android'},
- {label: 'iOS', value: 'ios'}
- ]
+    {label: 'iOS', value: 'ios'}
+  ]
 }>
 <TabItem value="android">
 
@@ -95,28 +95,28 @@ wdio repl ios
 </TabItem>
 </Tabs>
 
-This would open Chrome/Safari session on connected device/emulator/simulator. Make sure Appium running on port `4444` in order to initiate the session.
+Otworzy to sesję Chrome/Safari na podłączonym urządzeniu/emulatorze/symulatorze. Upewnij się, że Appium działa na porcie `4444`, aby zainicjować sesję.
 
 ```sh
 wdio repl './path/to/your_app.apk'
 ```
 
-This would open App session on connected device/emulator/simulator. Make sure Appium running on port `4444` in order to initiate the session.
+Otworzy to sesję aplikacji na podłączonym urządzeniu/emulatorze/symulatorze. Upewnij się, że Appium działa na porcie `4444`, aby zainicjować sesję.
 
-Capabilities for iOS device can be passed with arguments:
+Konfiguracje dla urządzenia iOS można przekazać za pomocą argumentów:
 
-* `-v`      - `platformVersion`: version of Android/iOS platform
-* `-d`      - `deviceName`: name of mobile device
-* `-u`      - `udid`: udid for real devices
+* `-v`      - `platformVersion`: wersja platformy Android/iOS
+* `-d`      - `deviceName`: nazwa urządzenia mobilnego
+* `-u`      - `udid`: udid dla rzeczywistych urządzeń
 
-Usage:
+Użycie:
 
 <Tabs
   defaultValue="long"
   values={[
-    {label: 'Long Parameter Names', value: 'long'},
- {label: 'Short Parameter Names', value: 'short'}
- ]
+    {label: 'Długie nazwy parametrów', value: 'long'},
+    {label: 'Krótkie nazwy parametrów', value: 'short'}
+  ]
 }>
 <TabItem value="long">
 
@@ -134,8 +134,8 @@ wdio repl ios -v 11.3 -d 'iPhone 7' -u 123432abc
 </TabItem>
 </Tabs>
 
-You can apply any options (see `wdio repl --help`) available for your REPL session.
+Możesz zastosować dowolne opcje (zobacz `wdio repl --help`) dostępne dla Twojej sesji REPL.
 
 ![WebdriverIO REPL](https://webdriver.io/img/repl.gif)
 
-Another way to use the REPL is in inside your tests via the [`debug`](/docs/api/browser/debug) command. This will stop the browser when called, and enables you to jump into the application (e.g. to the dev tools) or control the browser from the command line. This is helpful when some commands don't trigger a certain action as expected. With the REPL, you can then try out the commands to see which are working most reliably.
+Innym sposobem korzystania z REPL jest użycie go wewnątrz testów za pomocą polecenia [`debug`](/docs/api/browser/debug). Zatrzyma to przeglądarkę po wywołaniu i umożliwi przejście do aplikacji (np. do narzędzi programistycznych) lub sterowanie przeglądarką z wiersza poleceń. Jest to pomocne, gdy niektóre polecenia nie wywołują określonej akcji zgodnie z oczekiwaniami. Za pomocą REPL możesz wtedy wypróbować polecenia, aby zobaczyć, które działają najbardziej niezawodnie.

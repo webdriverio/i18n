@@ -1,14 +1,14 @@
 ---
 id: events
-title: Events
+title: رویدادها
 ---
 
-# WebdriverIO Events
+# رویدادهای WebdriverIO
 
-The WebdriverIO community organizes events around the world. The project is completely community driven and we encourage and support everyone who likes to host and run WebdriverIO meetups and events.
+جامعه WebdriverIO رویدادهایی را در سراسر جهان سازماندهی می‌کند. این پروژه کاملاً توسط جامعه هدایت می‌شود و ما همه کسانی را که مایل به میزبانی و برگزاری گردهمایی‌ها و رویدادهای WebdriverIO هستند، تشویق و حمایت می‌کنیم.
 
 <EventList></EventList>
 
-# Host your own WebdriverIO Event?
+# می‌خواهید رویداد خود را با WebdriverIO برگزار کنید؟
 
-You would like to host a WebdriverIO meetup? Awesome ❤️! We would love to support you and provide Pizza and drinks. Let's get in touch: please [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=\&labels=Event+%F0%9F%93%85%2CNeeds+Triaging+%E2%8F%B3\&projects=\&template=event-proposal.yml\&title=%5B%F0%9F%93%85+Event+Suggestion%5D%3A+%3Ctitle%3E) in the WebdriverIO repository and we will take it from there.
+آیا مایل به میزبانی یک گردهمایی WebdriverIO هستید؟ عالیه ❤️! ما خوشحال می‌شویم از شما حمایت کنیم و پیتزا و نوشیدنی‌ها را تأمین کنیم. بیایید با هم در تماس باشیم: لطفاً در مخزن WebdriverIO یک [issue ثبت کنید](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Event+%F0%9F%93%85%2CNeeds+Triaging+%E2%8F%B3&projects=&template=event-proposal.yml&title=%5B%F0%9F%93%85+Event+Suggestion%5D%3A+%3Ctitle%3E) و ما از آنجا پیگیری خواهیم کرد.

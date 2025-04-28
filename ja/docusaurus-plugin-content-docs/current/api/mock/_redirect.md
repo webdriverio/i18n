@@ -4,8 +4,8 @@ title: リダイレクト
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/redirect.ts
 ---
 
-与えられたモックに対してリダイレクトを設定します。これにより、リクエストを別のURLにリダイレクトすることができます。
-注意: これらのリダイレクトは、ブラウザ内のスクリプトによって行われるリクエストにのみ適用され、`url`コマンドを呼び出す場合には適用されません。
+指定されたモックのリダイレクトを設定します。これにより、リクエストを別のURLにリダイレクトすることができます。
+注意：これらのリダイレクトは、ブラウザ内のスクリプトによって行われたリクエストにのみ適用され、`url`コマンドを呼び出す場合には適用されません。
 
 ##### 使用法
 
@@ -18,14 +18,14 @@ mock.redirect(url)
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>url</var></code></td>
       <td>`string`</td>
-      <td>target resource to redirect requests to</td>
+      <td>リクエストをリダイレクトする対象リソース</td>
     </tr>
   </tbody>
 </table>

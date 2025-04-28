@@ -1,11 +1,11 @@
 ---
 id: v6-migration
-title: From v5 to v6
+title: از نسخه ۵ به نسخه ۶
 ---
 
-This tutorial is for people who are still using `v5` of WebdriverIO and want to migrate to `v6` or to the latest version of WebdriverIO. As mentioned in our [release blog post](https://webdriver.io/blog/2020/03/26/webdriverio-v6-released) the changes for this version upgrade can be summarised as following:
+این آموزش برای افرادی است که هنوز از `v5` وب‌درایور آی‌او استفاده می‌کنند و می‌خواهند به `v6` یا آخرین نسخه وب‌درایور آی‌او مهاجرت کنند. همانطور که در [پست بلاگ انتشار](https://webdriver.io/blog/2020/03/26/webdriverio-v6-released) ما ذکر شده است، تغییرات برای این ارتقاء نسخه را می‌توان به صورت زیر خلاصه کرد:
 
-- we consolidated the parameters for some commands (e.g. `newWindow`, `react$`, `react$$`, `waitUntil`, `dragAndDrop`, `moveTo`, `waitForDisplayed`, `waitForEnabled`, `waitForExist`) and moved all optional parameters into a single object, e.g.
+- ما پارامترهای برخی دستورات را یکپارچه کردیم (مانند `newWindow`، `react$`، `react$$`، `waitUntil`، `dragAndDrop`، `moveTo`، `waitForDisplayed`، `waitForEnabled`، `waitForExist`) و تمام پارامترهای اختیاری را در یک آبجکت واحد قرار دادیم، برای مثال:
 
     ```js
     // v5
@@ -21,7 +21,7 @@ This tutorial is for people who are still using `v5` of WebdriverIO and want to 
     })
     ```
 
-- configurations for services moved into the service list, e.g.
+- پیکربندی‌های سرویس‌ها به لیست سرویس منتقل شدند، برای مثال:
 
     ```js
     // v5
@@ -39,44 +39,44 @@ This tutorial is for people who are still using `v5` of WebdriverIO and want to 
     }
     ```
 
-- some service options were renamed for simplification purposes
-- we renamed command `launchApp` to `launchChromeApp` for Chrome WebDriver sessions
+- برخی از گزینه‌های سرویس برای ساده‌سازی تغییر نام یافتند
+- ما نام دستور `launchApp` را به `launchChromeApp` برای جلسات Chrome WebDriver تغییر دادیم
 
 :::info
 
-If you are using WebdriverIO `v4` or below, please upgrade to `v5` first.
+اگر از وب‌درایور آی‌او `v4` یا پایین‌تر استفاده می‌کنید، لطفاً ابتدا به `v5` ارتقا دهید.
 
 :::
 
-While we would love to have a fully automated process for this the reality looks different. Everyone has a different setup. Every step should be seen as guidance and less like a step by step instruction. If you have issues with the migration, don't hesitate to [contact us](https://github.com/webdriverio/codemod/discussions/new).
+اگرچه ما دوست داریم یک فرآیند کاملاً خودکار برای این کار داشته باشیم، اما واقعیت متفاوت است. هر کسی تنظیمات متفاوتی دارد. هر مرحله باید به عنوان راهنمایی دیده شود و نه دستورالعمل گام به گام. اگر در روند مهاجرت مشکلی دارید، از [تماس با ما](https://github.com/webdriverio/codemod/discussions/new) دریغ نکنید.
 
-## Setup
+## راه‌اندازی
 
-Similar to other migrations we can use the WebdriverIO [codemod](https://github.com/webdriverio/codemod). To install the codemod, run:
+مشابه سایر مهاجرت‌ها، می‌توانیم از [codemod](https://github.com/webdriverio/codemod) وب‌درایور آی‌او استفاده کنیم. برای نصب codemod، اجرا کنید:
 
 ```sh
 npm install jscodeshift @wdio/codemod
 ```
 
-## Upgrade WebdriverIO Dependencies
+## ارتقاء وابستگی‌های وب‌درایور آی‌او
 
-Given that all WebdriverIO versions are tight to each other it is the best to always upgrade to a specific tag, e.g. `6.12.0`. If you decide to upgrade from `v5` directly to `v7` you can leave out the tag and install latest versions of all packages. To do so we copy all WebdriverIO related dependencies out of our `package.json` and re-install them via:
+با توجه به اینکه تمام نسخه‌های وب‌درایور آی‌او به یکدیگر وابسته هستند، بهترین کار ارتقاء به یک تگ خاص است، مثلاً `6.12.0`. اگر تصمیم دارید مستقیماً از `v5` به `v7` ارتقاء دهید، می‌توانید تگ را حذف کنید و آخرین نسخه‌های تمام بسته‌ها را نصب کنید. برای انجام این کار، تمام وابستگی‌های مربوط به وب‌درایور آی‌او را از `package.json` خود کپی کرده و دوباره آن‌ها را از طریق زیر نصب می‌کنیم:
 
 ```sh
 npm i --save-dev @wdio/allure-reporter@6 @wdio/cli@6 @wdio/cucumber-framework@6 @wdio/local-runner@6 @wdio/spec-reporter@6 @wdio/sync@6 wdio-chromedriver-service@6 webdriverio@6
 ```
 
-Usually WebdriverIO dependencies are part of the dev dependencies, depending on your project this can vary though. After this your `package.json` and `package-lock.json` should be updated. __Note:__ these are example dependencies, yours may differ. Make sure you find the latest v6 version by calling, e.g.:
+معمولاً وابستگی‌های وب‌درایور آی‌او بخشی از وابستگی‌های توسعه هستند، اما بسته به پروژه شما این می‌تواند متفاوت باشد. پس از این، `package.json` و `package-lock.json` شما باید به‌روز شوند. __توجه:__ اینها نمونه‌هایی از وابستگی‌ها هستند و ممکن است وابستگی‌های شما متفاوت باشند. برای یافتن آخرین نسخه v6، می‌توانید از دستور زیر استفاده کنید:
 
 ```sh
 npm show webdriverio versions
 ```
 
-Try to install the latest version 6 available for all core WebdriverIO packages. For community packages this can differ from package to package. Here we recommend to check the changelog for information on which version is still compatible with v6.
+سعی کنید آخرین نسخه 6 موجود را برای تمام بسته‌های اصلی وب‌درایور آی‌او نصب کنید. برای بسته‌های انجمن، این می‌تواند از بسته به بسته متفاوت باشد. در اینجا توصیه می‌کنیم تغییرات را برای اطلاعات در مورد اینکه کدام نسخه هنوز با v6 سازگار است، بررسی کنید.
 
-## Transform Config File
+## تبدیل فایل پیکربندی
 
-A good first step is to start with the config file. All breaking changes can be resolve using the codemod full automatically:
+یک قدم خوب اول شروع با فایل پیکربندی است. تمام تغییرات شکننده را می‌توان با استفاده از codemod به طور کاملاً خودکار حل کرد:
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./wdio.conf.js
@@ -84,22 +84,22 @@ npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./wdio.conf.js
 
 :::caution
 
-The codemod doesn't yet support TypeScript projects. See [`@webdriverio/codemod#10`](https://github.com/webdriverio/codemod/issues/10). We are working to implement support for it soon. If you are using TypeScript please get involved!
+codemod هنوز از پروژه‌های TypeScript پشتیبانی نمی‌کند. به [`@webdriverio/codemod#10`](https://github.com/webdriverio/codemod/issues/10) مراجعه کنید. ما در حال کار برای پیاده‌سازی پشتیبانی از آن هستیم. اگر از TypeScript استفاده می‌کنید، لطفاً مشارکت کنید!
 
 :::
 
-## Update Spec Files and Page Objects
+## به‌روزرسانی فایل‌های مشخصات و اشیاء صفحه
 
-In order to update all command changes run the codemod on all your e2e files that contain WebdriverIO commands, e.g.:
+برای به‌روزرسانی تمام تغییرات دستور، codemod را روی تمام فایل‌های e2e خود که حاوی دستورات وب‌درایور آی‌او هستند، اجرا کنید، برای مثال:
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/v6 ./e2e/*
 ```
 
-That's it! No more changes necessary 🎉
+همین! تغییرات بیشتری لازم نیست 🎉
 
-## Conclusion
+## نتیجه‌گیری
 
-We hope this tutorial guides you a little bit through the migration process to WebdriverIO `v6`. We strongly recommend to continue upgrading to the latest version given that updating to `v7` is trivial due to almost no breaking changes. Please check out the migration guide [to upgrade to v7](v7-migration).
+امیدواریم این آموزش کمی شما را در فرآیند مهاجرت به وب‌درایور آی‌او `v6` راهنمایی کند. ما قویاً توصیه می‌کنیم به ارتقاء به آخرین نسخه ادامه دهید، با توجه به اینکه به‌روزرسانی به `v7` به دلیل تغییرات شکننده تقریباً ناچیز بسیار ساده است. لطفاً راهنمای مهاجرت [برای ارتقاء به v7](v7-migration) را بررسی کنید.
 
-The community continues to improve the codemod while testing it with various teams in various organisations. Don't hesitate to [raise an issue](https://github.com/webdriverio/codemod/issues/new) if you have feedback or [start a discussion](https://github.com/webdriverio/codemod/discussions/new) if you struggle during the migration process.
+انجمن همچنان در حال بهبود codemod با تست آن با تیم‌های مختلف در سازمان‌های مختلف است. اگر بازخوردی دارید از [ایجاد یک مسئله](https://github.com/webdriverio/codemod/issues/new) یا [شروع یک بحث](https://github.com/webdriverio/codemod/discussions/new) اگر در طول فرآیند مهاجرت با مشکل مواجه شدید، دریغ نکنید.

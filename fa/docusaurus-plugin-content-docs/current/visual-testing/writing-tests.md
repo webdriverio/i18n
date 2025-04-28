@@ -1,31 +1,29 @@
 ---
 id: writing-tests
-title: Writing Tests
+title: نوشتن تست‌ها
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Testrunner Framework Support
+## پشتیبانی از فریم‌ورک‌های Testrunner
 
-`@wdio/visual-service` is test-runner framework agnostic, which means that you can use it with all the frameworks WebdriverIO supports like:
+`@wdio/visual-service` مستقل از فریم‌ورک آزمون است، به این معنی که می‌توانید از آن با تمام فریم‌ورک‌هایی که WebdriverIO پشتیبانی می‌کند استفاده کنید، مانند:
 
-- [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
-- [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
-- [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
+-   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
+-   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
+-   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-Within your tests, you can _save_ screenshots or match the current visual state of your application under test with a baseline. For that, the service provides [custom matcher](/docs/api/expect-webdriverio#visual-matcher), as well as _check_ methods:
+در داخل تست‌های خود، می‌توانید تصاویر را _ذخیره_ کنید یا وضعیت بصری فعلی برنامه تحت آزمون خود را با خط پایه مقایسه کنید. برای این منظور، سرویس [تطبیق‌دهنده‌های سفارشی](/docs/api/expect-webdriverio#visual-matcher) و همچنین روش‌های _بررسی_ را ارائه می‌دهد:
 
 <Tabs
-defaultValue="mocha"
-values={[
-{label: 'Mocha', value: 'mocha'},
-{label: 'Jasmine', value: 'jasmine'},
-{label: 'CucumberJS', value: 'cucumberjs'},
-]}
-
+    defaultValue="mocha"
+    values={[
+        {label: 'Mocha', value: 'mocha'},
+        {label: 'Jasmine', value: 'jasmine'},
+        {label: 'CucumberJS', value: 'cucumberjs'},
+    ]}
 >
-
 <TabItem value="mocha">
 
 ```ts
@@ -347,9 +345,9 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 </TabItem>
 </Tabs>
 
-:::note IMPORTANT
+:::note مهم
 
-This service provides `save` and `check` methods. If you run your tests for the first time you **SHOULD NOT** combine `save` and `compare` methods, the `check`-methods will automatically create a baseline image for you
+این سرویس روش‌های `save` و `check` را ارائه می‌دهد. اگر برای اولین بار تست‌های خود را اجرا می‌کنید، **نباید** روش‌های `save` و `compare` را با هم ترکیب کنید، روش‌های `check` به طور خودکار یک تصویر خط پایه برای شما ایجاد می‌کنند
 
 ```sh
 #####################################################################################
@@ -359,7 +357,8 @@ This service provides `save` and `check` methods. If you run your tests for the 
 #####################################################################################
 ```
 
-When you've [disabled to automatically save baseline images](service-options#autosavebaseline), the Promise will be rejected with the following warning.
+
+هنگامی که [ذخیره خودکار تصاویر خط پایه را غیرفعال کرده‌اید](service-options#autosavebaseline)، Promise با هشدار زیر رد خواهد شد.
 
 ```sh
 #####################################################################################
@@ -369,6 +368,6 @@ When you've [disabled to automatically save baseline images](service-options#aut
 #####################################################################################
 ```
 
-This means that the current screenshot is saved in the actual folder and you **manually need to copy it to your baseline**. If you instantiate `@wdio/visual-service` with [`autoSaveBaseline: true`](./service-options#autosavebaseline) the image will automatically be saved into the baseline folder.
+این بدان معناست که اسکرین‌شات فعلی در پوشه actual ذخیره شده است و شما **باید آن را به صورت دستی به خط پایه خود کپی کنید**. اگر `@wdio/visual-service` را با [`autoSaveBaseline: true`](./service-options#autosavebaseline) راه‌اندازی کنید، تصویر به صورت خودکار در پوشه خط پایه ذخیره می‌شود.
 
 :::

@@ -7,7 +7,7 @@ title: SolidJS
 
 ## Setup
 
-Per configurare WebdriverIO all'interno del tuo progetto SolidJS, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione sui test dei componenti. Assicurati di selezionare `solid` come preset nelle opzioni del runner, ad esempio:
+Per configurare WebdriverIO all'interno del tuo progetto SolidJS, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione sui test dei componenti. Assicurati di selezionare `solid` come preset nelle tue opzioni di runner, ad esempio:
 
 ```js
 // wdio.conf.js
@@ -22,11 +22,11 @@ export const config = {
 
 :::info
 
-Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, puoi anche riutilizzare la tua configurazione in `vite.config.ts` all'interno della configurazione WebdriverIO. Per maggiori informazioni, consulta `viteConfig` nelle [opzioni del runner](/docs/runner#runner-options).
+Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, puoi anche riutilizzare la tua configurazione in `vite.config.ts` all'interno della configurazione WebdriverIO. Per maggiori informazioni, vedi `viteConfig` nelle [opzioni del runner](/docs/runner#runner-options).
 
 :::
 
-Il preset SolidJS richiede che `vite-plugin-solid` sia installato:
+Il preset SolidJS richiede l'installazione di `vite-plugin-solid`:
 
 ```sh npm2yarn
 npm install --save-dev vite-plugin-solid
@@ -38,9 +38,9 @@ Puoi quindi avviare i test eseguendo:
 npx wdio run ./wdio.conf.js
 ```
 
-## Scrivere Test
+## Scrivere i test
 
-Dato che hai il seguente componente SolidJS:
+Supponiamo che tu abbia il seguente componente SolidJS:
 
 ```html title="./components/Component.tsx"
 import { createSignal } from 'solid-js'
@@ -61,7 +61,7 @@ function App() {
 export default App
 ```
 
-Nel tuo test, utilizza il metodo `render` da `solid-js/web` per collegare il componente alla pagina di test. Per interagire con il componente, consigliamo di utilizzare i comandi WebdriverIO in quanto si comportano in modo più simile alle interazioni utente reali, ad esempio:
+Nel tuo test utilizza il metodo `render` da `solid-js/web` per collegare il componente alla pagina di test. Per interagire con il componente, raccomandiamo di utilizzare i comandi WebdriverIO poiché si comportano in modo più simile alle interazioni utente reali, ad esempio:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'

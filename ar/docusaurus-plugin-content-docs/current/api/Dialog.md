@@ -1,11 +1,11 @@
 ---
 id: dialog
-title: The Dialog Object
+title: كائن الحوار
 ---
 
-Dialog objects are dispatched by [`browser`](/docs/api/browser) via the `browser.on('dialog')` event.
+يتم إرسال كائنات الحوار بواسطة [`browser`](/docs/api/browser) عبر حدث `browser.on('dialog')`.
 
-An example of using the Dialog object:
+مثال على استخدام كائن الحوار:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-Dialogs are dismissed automatically, unless there is a `browser.on('dialog')` listener. When listener is present, it must either [`dialog.accept()`](/docs/api/dialog/accept) or [`dialog.dismiss()`](/docs/api/dialog/dismiss) the dialog - otherwise the page will freeze waiting for the dialog, and actions like click will never finish.
+يتم رفض مربعات الحوار تلقائيًا، إلا إذا كان هناك مستمع `browser.on('dialog')`. عندما يكون المستمع موجودًا، يجب عليه إما قبول الحوار [`dialog.accept()`](/docs/api/dialog/accept) أو رفضه [`dialog.dismiss()`](/docs/api/dialog/dismiss) - وإلا ستتجمد الصفحة في انتظار مربع الحوار، ولن تكتمل الإجراءات مثل النقر أبدًا.
 
 :::

@@ -40,4 +40,4 @@ it('should detect if an element is enabled', async () => {
 ##### Restituisce
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true se l'elemento/gli elementi* (è|sono) abilitato/i    
+            **<code><var>return</var></code>:**  true se l'elemento/gli elementi (è|sono) abilitato/i

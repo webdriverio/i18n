@@ -4,14 +4,14 @@ title: shadow$$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/shadow$$.ts
 ---
 
-Accedi agli elementi all'interno dello shadowRoot di un elemento dato. Se stai lavorando
+Accedi agli elementi all'interno dello shadowRoot di un elemento specifico. Se stai lavorando
 con molti shadow root annidati, un approccio alternativo a `shadow$$`
-è utilizzare il [selettore deep](https://webdriver.io/docs/selectors#deep-selectors).
+è usare il [deep selector](https://webdriver.io/docs/selectors#deep-selectors).
 
 :::info
 
-WebdriverIO attraversa automaticamente gli shadow root quando si utilizzano i comandi `$` o `$$`.
-Questo comando è necessario solo se automatizzi in un ambiente che non
+WebdriverIO attraversa automaticamente gli shadow roots quando si utilizzano i comandi `$` o `$$`.
+Questo comando è necessario solo se stai automatizzando in un ambiente che non
 supporta ancora WebDriver Bidi, ad esempio nei test web mobile con Appium.
 
 :::

@@ -4,7 +4,7 @@ title: switchWindow
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/switchWindow.ts
 ---
 
-Cambia il focus a una particolare scheda / finestra.
+Passa il focus a una particolare scheda / finestra.
 
 ##### Utilizzo
 
@@ -24,7 +24,7 @@ browser.switchWindow(matcher)
     <tr>
       <td><code><var>matcher</var></code></td>
       <td>`String, RegExp`</td>
-      <td>Stringa o espressione regolare che corrisponde al titolo della pagina o all'URL, al nome della finestra o all'handle della finestra</td>
+      <td>Stringa o espressione regolare che corrisponde al titolo della pagina o all'URL, al nome della finestra, o all'handle della finestra</td>
     </tr>
   </tbody>
 </table>

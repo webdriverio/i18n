@@ -1,21 +1,21 @@
 ---
 id: methods
-title: Methods
+title: روش‌ها
 ---
 
-The following methods are added to the global WebdriverIO [`browser`](/docs/api/browser)-object.
+متدهای زیر به شیء جهانی WebdriverIO [`browser`](/docs/api/browser) اضافه شده‌اند.
 
-## Save Methods
+## متدهای ذخیره‌سازی
 
-:::info TIP
-Only use the Save Methods when you **don't** want to compare screens, but only want to have an element-/screenshot.
+:::info نکته
+فقط زمانی از متدهای ذخیره‌سازی استفاده کنید که **نمی‌خواهید** صفحه‌نمایش‌ها را مقایسه کنید، بلکه فقط می‌خواهید یک تصویر از عنصر/صفحه‌نمایش داشته باشید.
 :::
 
 ### `saveElement`
 
-Saves an image of an element.
+تصویری از یک عنصر را ذخیره می‌کند.
 
-#### Usage
+#### استفاده
 
 ```ts
 await browser.saveElement(
@@ -30,34 +30,34 @@ await browser.saveElement(
 );
 ```
 
-#### Support
+#### پشتیبانی
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- مرورگرهای دسکتاپ
+- مرورگرهای موبایل
+- اپلیکیشن‌های هیبریدی موبایل
+- اپلیکیشن‌های بومی موبایل
 
-#### Parameters
+#### پارامترها
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+-   **`element`:**
+    -   **اجباری:** بله
+    -   **نوع:** عنصر WebdriverIO
+-   **`tag`:**
+    -   **اجباری:** بله
+    -   **نوع:** رشته
+-   **`saveElementOptions`:**
+    -   **اجباری:** خیر
+    -   **نوع:** یک شیء از گزینه‌ها، به [گزینه‌های ذخیره‌سازی](./method-options#save-options) مراجعه کنید
 
-#### Output:
+#### خروجی:
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+به صفحه [خروجی تست](./test-output#savescreenelementfullpagescreen) مراجعه کنید.
 
 ### `saveScreen`
 
-Saves an image of a viewport.
+تصویری از نمای قابل رویت صفحه را ذخیره می‌کند.
 
-#### Usage
+#### استفاده
 
 ```ts
 await browser.saveScreen(
@@ -70,31 +70,30 @@ await browser.saveScreen(
 );
 ```
 
-#### Support
+#### پشتیبانی
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- مرورگرهای دسکتاپ
+- مرورگرهای موبایل
+- اپلیکیشن‌های هیبریدی موبایل
+- اپلیکیشن‌های بومی موبایل
 
-#### Parameters
+#### پارامترها
+-   **`tag`:**
+    -   **اجباری:** بله
+    -   **نوع:** رشته
+-   **`saveScreenOptions`:**
+    -   **اجباری:** خیر
+    -   **نوع:** یک شیء از گزینه‌ها، به [گزینه‌های ذخیره‌سازی](./method-options#save-options) مراجعه کنید
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### خروجی:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+به صفحه [خروجی تست](./test-output#savescreenelementfullpagescreen) مراجعه کنید.
 
 ### `saveFullPageScreen`
 
-#### Usage
+#### استفاده
 
-Saves an image of the complete screen.
+تصویری از کل صفحه را ذخیره می‌کند.
 
 ```ts
 await browser.saveFullPageScreen(
@@ -107,29 +106,28 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Support
+#### پشتیبانی
 
-- Desktop Browsers
-- Mobile Browsers
+- مرورگرهای دسکتاپ
+- مرورگرهای موبایل
 
-#### Parameters
+#### پارامترها
+-   **`tag`:**
+    -   **اجباری:** بله
+    -   **نوع:** رشته
+-   **`saveFullPageScreenOptions`:**
+    -   **اجباری:** خیر
+    -   **نوع:** یک شیء از گزینه‌ها، به [گزینه‌های ذخیره‌سازی](./method-options#save-options) مراجعه کنید
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveFullPageScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### خروجی:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+به صفحه [خروجی تست](./test-output#savescreenelementfullpagescreen) مراجعه کنید.
 
 ### `saveTabbablePage`
 
-Saves an image of the complete screen with the tabbable lines and dots.
+تصویری از کل صفحه با خطوط و نقاط قابل انتخاب توسط کلید Tab را ذخیره می‌کند.
 
-#### Usage
+#### استفاده
 
 ```ts
 await browser.saveTabbablePage(
@@ -142,26 +140,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Support
+#### پشتیبانی
 
-- Desktop Browsers
+- مرورگرهای دسکتاپ
 
-#### Parameters
+#### پارامترها
+-   **`tag`:**
+    -   **اجباری:** بله
+    -   **نوع:** رشته
+-   **`saveTabbableOptions`:**
+    -   **اجباری:** خیر
+    -   **نوع:** یک شیء از گزینه‌ها، به [گزینه‌های ذخیره‌سازی](./method-options#save-options) مراجعه کنید
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### خروجی:
 
-#### Output:
+به صفحه [خروجی تست](./test-output#savescreenelementfullpagescreen) مراجعه کنید.
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+## متدهای بررسی
 
-## Check Methods
-
-:::info TIP
+:::info نکته
+وقتی از متدهای `check` برای اولین بار استفاده می‌کنید، هشدار زیر را در لاگ‌ها مشاهده خواهید کرد. این بدان معناست که اگر می‌خواهید پایه خود را ایجاد کنید، نیازی به ترکیب متدهای `save` و `check` ندارید.
 
 ```shell
 #####################################################################################
@@ -177,9 +175,9 @@ See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
 
 ### `checkElement`
 
-Compare an image of an element against a baseline image.
+تصویر یک عنصر را با یک تصویر پایه مقایسه می‌کند.
 
-#### Usage
+#### استفاده
 
 ```ts
 await browser.checkElement(
@@ -194,34 +192,33 @@ await browser.checkElement(
 );
 ```
 
-#### Support
+#### پشتیبانی
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- مرورگرهای دسکتاپ
+- مرورگرهای موبایل
+- اپلیکیشن‌های هیبریدی موبایل
+- اپلیکیشن‌های بومی موبایل
 
-#### Parameters
+#### پارامترها
+-   **`element`:**
+    -   **اجباری:** بله
+    -   **نوع:** عنصر WebdriverIO
+-   **`tag`:**
+    -   **اجباری:** بله
+    -   **نوع:** رشته
+-   **`checkElementOptions`:**
+    -   **اجباری:** خیر
+    -   **نوع:** یک شیء از گزینه‌ها، به [گزینه‌های مقایسه/بررسی](./method-options#compare-check-options) مراجعه کنید
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### خروجی:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+به صفحه [خروجی تست](./test-output#checkscreenelementfullpagescreen) مراجعه کنید.
 
 ### `checkScreen`
 
-Compares an image of a viewport against a baseline image.
+تصویر یک نمای قابل رویت را با یک تصویر پایه مقایسه می‌کند.
 
-#### Usage
+#### استفاده
 
 ```ts
 await browser.checkScreen(
@@ -234,31 +231,30 @@ await browser.checkScreen(
 );
 ```
 
-#### Support
+#### پشتیبانی
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- مرورگرهای دسکتاپ
+- مرورگرهای موبایل
+- اپلیکیشن‌های هیبریدی موبایل
+- اپلیکیشن‌های بومی موبایل
 
-#### Parameters
+#### پارامترها
+-   **`tag`:**
+    -   **اجباری:** بله
+    -   **نوع:** رشته
+-   **`checkScreenOptions`:**
+    -   **اجباری:** خیر
+    -   **نوع:** یک شیء از گزینه‌ها، به [گزینه‌های مقایسه/بررسی](./method-options#compare-check-options) مراجعه کنید
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### خروجی:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+به صفحه [خروجی تست](./test-output#checkscreenelementfullpagescreen) مراجعه کنید.
 
 ### `checkFullPageScreen`
 
-Compares an image of the complete screen against a baseline image.
+تصویر کل صفحه را با یک تصویر پایه مقایسه می‌کند.
 
-#### Usage
+#### استفاده
 
 ```ts
 await browser.checkFullPageScreen(
@@ -271,29 +267,28 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Support
+#### پشتیبانی
 
-- Desktop Browsers
-- Mobile Browsers
+- مرورگرهای دسکتاپ
+- مرورگرهای موبایل
 
-#### Parameters
+#### پارامترها
+-   **`tag`:**
+    -   **اجباری:** بله
+    -   **نوع:** رشته
+-   **`checkFullPageOptions`:**
+    -   **اجباری:** خیر
+    -   **نوع:** یک شیء از گزینه‌ها، به [گزینه‌های مقایسه/بررسی](./method-options#compare-check-options) مراجعه کنید
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkFullPageOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### خروجی:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+به صفحه [خروجی تست](./test-output#checkscreenelementfullpagescreen) مراجعه کنید.
 
 ### `checkTabbablePage`
 
-Compares an image of the complete screen with the tabbable lines and dots against a baseline image.
+تصویر کل صفحه با خطوط و نقاط قابل انتخاب توسط کلید Tab را با یک تصویر پایه مقایسه می‌کند.
 
-#### Usage
+#### استفاده
 
 ```ts
 await browser.checkTabbablePage(
@@ -306,19 +301,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Support
+#### پشتیبانی
 
-- Desktop Browsers
+- مرورگرهای دسکتاپ
 
-#### Parameters
+#### پارامترها
+-   **`tag`:**
+    -   **اجباری:** بله
+    -   **نوع:** رشته
+-   **`checkTabbableOptions`:**
+    -   **اجباری:** خیر
+    -   **نوع:** یک شیء از گزینه‌ها، به [گزینه‌های مقایسه/بررسی](./method-options#compare-check-options) مراجعه کنید
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### خروجی:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+به صفحه [خروجی تست](./test-output#checkscreenelementfullpagescreen) مراجعه کنید.

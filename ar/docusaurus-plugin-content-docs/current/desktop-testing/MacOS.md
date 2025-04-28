@@ -1,29 +1,29 @@
 ---
 id: macos
-title: MacOS
+title: نظام ماك
 ---
 
-WebdriverIO can automate arbitrary MacOS application using [Appium](https://appium.io/docs/en/2.0/). All you need is [XCode](https://developer.apple.com/xcode/) installed on your system, Appium and the [Mac2 Driver](https://github.com/appium/appium-mac2-driver) installed as dependency and the correct capabilities set.
+يمكن لـ WebdriverIO أتمتة أي تطبيق ماك باستخدام [Appium](https://appium.io/docs/en/2.0/). كل ما تحتاجه هو تثبيت [XCode](https://developer.apple.com/xcode/) على نظامك، وتثبيت Appium و[Mac2 Driver](https://github.com/appium/appium-mac2-driver) كتبعيات وتعيين القدرات الصحيحة.
 
-## Getting Started
+## البدء
 
-To initiate a new WebdriverIO project, run:
+لبدء مشروع WebdriverIO جديد، قم بتشغيل:
 
 ```sh
 npm create wdio@latest ./
 ```
 
-An installation wizard will guide you through the process. Ensure you select _"Desktop Testing - of MacOS Applications"_ when it asks you what type of testing you'ld like to do. Afterwards just keep the defaults or modify based on your preference.
+سيرشدك معالج التثبيت خلال العملية. تأكد من اختيار _"Desktop Testing - of MacOS Applications"_ عندما يسألك عن نوع الاختبار الذي ترغب في القيام به. بعد ذلك احتفظ بالإعدادات الافتراضية أو قم بتعديلها حسب تفضيلاتك.
 
-The configuration wizard will install all required Appium packages and creates a `wdio.conf.js` or `wdio.conf.ts` with the necessary configuration to test on MacOS. If you agreed to autogenerate some tests files you can run your first test via `npm run wdio`.
+سيقوم معالج التكوين بتثبيت جميع حزم Appium المطلوبة وإنشاء ملف `wdio.conf.js` أو `wdio.conf.ts` مع التكوين اللازم للاختبار على نظام ماك. إذا وافقت على إنشاء بعض ملفات الاختبار تلقائيًا، يمكنك تشغيل اختبارك الأول عبر `npm run wdio`.
 
 <CreateMacOSProjectAnimation />
 
-That's it 🎉
+هذا كل شيء 🎉
 
-## Example
+## مثال
 
-This is how a simple test can look like that opens the Calculator application, makes a calculation and verifies its result:
+هكذا يمكن أن يبدو اختبار بسيط يفتح تطبيق الحاسبة، ويجري عملية حسابية ويتحقق من نتيجتها:
 
 ```js
 describe('My Login application', () => {
@@ -37,8 +37,8 @@ describe('My Login application', () => {
 })
 ```
 
-__Note:__ the calculator app was opened automatically at the beginning of the session because `'appium:bundleId': 'com.apple.calculator'` was defined as capability option. You can switch apps during the session at all times.
+__ملاحظة:__ تم فتح تطبيق الحاسبة تلقائيًا في بداية الجلسة لأنه تم تعريف `'appium:bundleId': 'com.apple.calculator'` كخيار قدرة. يمكنك التبديل بين التطبيقات خلال الجلسة في أي وقت.
 
-## More Information
+## مزيد من المعلومات
 
-For information about specifics around testing on MacOS we recommend to go checkout the [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver) project.
+للحصول على معلومات حول خصوصيات الاختبار على نظام ماك، نوصي بالاطلاع على مشروع [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver).

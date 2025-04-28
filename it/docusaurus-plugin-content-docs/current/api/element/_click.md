@@ -4,13 +4,13 @@ title: click
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/click.ts
 ---
 
-Clicca su un elemento.
+Fai clic su un elemento.
 
-Questo emette un comando WebDriver `click` per l'elemento selezionato, che generalmente scorre fino all'elemento selezionato e poi ci clicca sopra quando non vengono passate opzioni. Quando viene passato un oggetto options, utilizza invece la classe action invece del click webdriver, che offre funzionalità aggiuntive come la possibilità di specificare il tipo di pulsante, le coordinate ecc. Per impostazione predefinita, quando si utilizzano le opzioni, viene inviato un comando di rilascio dopo aver eseguito l'azione di clic; passare `option.skipRelease=true` per saltare questa azione.
+Questo emette un comando WebDriver `click` per l'elemento selezionato, che generalmente scorre fino all'elemento selezionato e poi ci clicca sopra quando non vengono passate opzioni. Quando viene passato l'oggetto options, utilizza la classe action invece del click webdriver, che offre funzionalità aggiuntive come la possibilità di passare il tipo di pulsante, le coordinate, ecc. Per impostazione predefinita, quando si utilizzano le opzioni, viene inviato un comando di rilascio dopo aver eseguito l'azione di clic; passa `option.skipRelease=true` per saltare questa azione.
 
 :::info
 
-Se hai elementi a posizione fissa (come un'intestazione o un piè di pagina fissi) che coprono l'elemento selezionato dopo che è stato fatto scorrere all'interno della viewport, il clic verrà emesso alle coordinate specificate, ma sarà ricevuto dal tuo elemento fisso (sovrapposto). In questi casi viene generato il seguente errore:
+Se hai elementi in posizione fissa (come un'intestazione o un piè di pagina fissi) che coprono l'elemento selezionato dopo che è stato scorruto all'interno della viewport, il clic verrà emesso alle coordinate specificate, ma sarà ricevuto dal tuo elemento fisso (sovrapposto). In questi casi viene generato il seguente errore:
 
 ```
 Element is not clickable at point (x, x). Other element would receive the click: ..."
@@ -22,7 +22,7 @@ Per aggirare questo problema, prova a trovare l'elemento sovrapposto e rimuoverl
 
 :::info
 
-Il comando click può anche essere utilizzato per simulare una pressione prolungata su un dispositivo mobile. Questo viene fatto impostando il `duration`.
+Il comando click può anche essere utilizzato per simulare una pressione prolungata su un dispositivo mobile. Questo si fa impostando il parametro `duration`.
 Vedi l'esempio qui sotto per maggiori informazioni.
 
 :::
@@ -50,27 +50,27 @@ $(selector).click({ button, x, y, skipRelease, duration })
     <tr>
       <td><code><var>options.button</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`string, number`</td>
-      <td>Può essere uno tra `[0, "left", 1, "middle", 2, "right"]` <br /><strong>SOLO-WEB</strong> (Desktop/Mobile)</td>
+      <td>Può essere uno di `[0, "left", 1, "middle", 2, "right"]` <br /><strong>SOLO WEB</strong> (Desktop/Mobile)</td>
     </tr>
     <tr>
       <td><code><var>options.x</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Clicca X pixel orizzontali lontano dalla posizione dell'elemento (dal punto centrale dell'elemento)<br /><strong>WEB e Native</strong> (Desktop/Mobile)</td>
+      <td>Fa clic a X pixel orizzontali di distanza dalla posizione dell'elemento (dal punto centrale dell'elemento)<br /><strong>WEB e Native</strong> (Desktop/Mobile)</td>
     </tr>
     <tr>
       <td><code><var>options.y</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Clicca Y pixel verticali lontano dalla posizione dell'elemento (dal punto centrale dell'elemento)<br /><strong>Supporto WEB e Native</strong> (Desktop/Mobile)</td>
+      <td>Fa clic a Y pixel verticali di distanza dalla posizione dell'elemento (dal punto centrale dell'elemento)<br /><strong>Supporto WEB e Native</strong> (Desktop/Mobile)</td>
     </tr>
     <tr>
       <td><code><var>options.skipRelease</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`boolean`</td>
-      <td>Booleano (opzionale) <br /><strong>SOLO-WEB</strong> (Desktop/Mobile)</td>
+      <td>Booleano (opzionale) <br /><strong>SOLO WEB</strong> (Desktop/Mobile)</td>
     </tr>
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Durata del clic, noto anche come "LongPress" <br /><strong>SOLO-APP-NATIVE-MOBILE</strong> (Mobile)</td>
+      <td>Durata del clic, anche noto come "LongPress" <br /><strong>SOLO APP MOBILE NATIVE</strong> (Mobile)</td>
     </tr>
   </tbody>
 </table>

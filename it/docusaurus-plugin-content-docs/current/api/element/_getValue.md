@@ -4,9 +4,9 @@ title: getValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getValue.ts
 ---
 
-Ottieni il valore di un `<textarea>`, `<select>` o un `<input>` di testo trovato tramite il selettore fornito.
-Se vengono trovati più elementi tramite il selettore dato, viene restituito un array di valori.
-Per input con tipo checkbox o radio usa isSelected.
+Ottieni il valore di un `<textarea>`, `<select>` o di un `<input>` di testo trovato tramite il selettore specificato.
+Se vengono trovati più elementi tramite il selettore specificato, viene restituito un array di valori.
+Per input con tipo checkbox o radio, utilizza isSelected.
 
 ##### Utilizzo
 
@@ -31,4 +31,4 @@ it('should demonstrate the getValue command', async () => {
 ##### Restituisce
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**   valore dell'elemento/i richiesto
+            **<code><var>return</var></code>:**   valore dell'elemento/i richiesto    

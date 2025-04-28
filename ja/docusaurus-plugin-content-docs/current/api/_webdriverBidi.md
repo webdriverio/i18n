@@ -4,22 +4,22 @@ title: WebDriver Bidi プロトコル
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/webdriverBidi.ts
 ---
 
-これらのプロトコルコマンドは、現在進行中の[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/)仕様に基づいて生成されています。テストでこのプロトコルを有効にするには、capabilities設定で`webSocketUrl: true`を設定してください。
+これらのプロトコルコマンドは、現在の最新の[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/)仕様に基づいて生成されています。テストでプロトコルを有効にするには、capabilities に `webSocketUrl: true` を設定していることを確認してください。
 
 :::caution 注意して使用してください！
 
-ブラウザのサポートは保証されておらず、インターフェースは将来変更される可能性があります。この標準は現在開発中であり、ブラウザベンダーは独自のスケジュールに基づいてこれらの機能を追加します。
+ブラウザサポートは保証されておらず、インターフェースは将来変更される可能性があります。この標準は現在開発中であり、ブラウザベンダーは各自のタイムラインに基づいてこれらの機能を追加します。
 
 :::
 
-最終更新日: Sat Apr 26 2025 17:10:07 GMT-0700 (Pacific Daylight Time)
+最終更新: Sat Apr 26 2025 17:10:07 GMT-0700 (Pacific Daylight Time)
 
 ---
 
 ## send
-WebDriver Bidiを介してソケットコマンドを送信します<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://github.com/w3c/webdriver-bidi)を参照してください。
+WebDriver Bidiを介してソケットコマンドを送信<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://github.com/w3c/webdriver-bidi)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.send(params)
@@ -53,9 +53,9 @@ browser.send(params)
 ---
 
 ## sendAsync
-WebDriver Bidiを介して非同期ソケットコマンドを送信します<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://github.com/w3c/webdriver-bidi)を参照してください。
+WebDriver Bidiを介して非同期ソケットコマンドを送信<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://github.com/w3c/webdriver-bidi)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.sendAsync(params)
@@ -89,9 +89,9 @@ browser.sendAsync(params)
 ---
 
 ## sessionStatus
-パラメータを使用してコマンドメソッド "session.status" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-status)を参照してください。
+パラメータを使用してコマンドメソッド "session.status" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-status)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.sessionStatus(params)
@@ -131,9 +131,9 @@ browser.sessionStatus(params)
 ---
 
 ## sessionNew
-パラメータを使用してコマンドメソッド "session.new" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-new)を参照してください。
+パラメータを使用してコマンドメソッド "session.new" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-new)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.sessionNew(params)
@@ -182,9 +182,9 @@ browser.sessionNew(params)
 ---
 
 ## sessionEnd
-パラメータを使用してコマンドメソッド "session.end" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-end)を参照してください。
+パラメータを使用してコマンドメソッド "session.end" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-end)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.sessionEnd(params)
@@ -213,9 +213,9 @@ browser.sessionEnd(params)
 ---
 
 ## sessionSubscribe
-パラメータを使用してコマンドメソッド "session.subscribe" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-subscribe)を参照してください。
+パラメータを使用してコマンドメソッド "session.subscribe" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-subscribe)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.sessionSubscribe(params)
@@ -244,9 +244,9 @@ browser.sessionSubscribe(params)
 ---
 
 ## sessionUnsubscribe
-パラメータを使用してコマンドメソッド "session.unsubscribe" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-unsubscribe)を参照してください。
+パラメータを使用してコマンドメソッド "session.unsubscribe" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-session-unsubscribe)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.sessionUnsubscribe(params)
@@ -275,9 +275,9 @@ browser.sessionUnsubscribe(params)
 ---
 
 ## browserClose
-パラメータを使用してコマンドメソッド "browser.close" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browser-close)を参照してください。
+パラメータを使用してコマンドメソッド "browser.close" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browser-close)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browserClose(params)
@@ -306,9 +306,9 @@ browser.browserClose(params)
 ---
 
 ## browserCreateUserContext
-パラメータを使用してコマンドメソッド "browser.createUserContext" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browser-createUserContext)を参照してください。
+パラメータを使用してコマンドメソッド "browser.createUserContext" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browser-createUserContext)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browserCreateUserContext(params)
@@ -345,9 +345,9 @@ browser.browserCreateUserContext(params)
 ---
 
 ## browserGetUserContexts
-パラメータを使用してコマンドメソッド "browser.getUserContexts" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browser-getUserContexts)を参照してください。
+パラメータを使用してコマンドメソッド "browser.getUserContexts" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browser-getUserContexts)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browserGetUserContexts(params)
@@ -386,9 +386,9 @@ browser.browserGetUserContexts(params)
 ---
 
 ## browserRemoveUserContext
-パラメータを使用してコマンドメソッド "browser.removeUserContext" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browser-removeUserContext)を参照してください。
+パラメータを使用してコマンドメソッド "browser.removeUserContext" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browser-removeUserContext)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browserRemoveUserContext(params)
@@ -417,9 +417,9 @@ browser.browserRemoveUserContext(params)
 ---
 
 ## browsingContextActivate
-パラメータを使用してコマンドメソッド "browsingContext.activate" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-activate)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.activate" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-activate)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextActivate(params)
@@ -448,9 +448,9 @@ browser.browsingContextActivate(params)
 ---
 
 ## browsingContextCaptureScreenshot
-パラメータを使用してコマンドメソッド "browsingContext.captureScreenshot" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-captureScreenshot)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.captureScreenshot" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-captureScreenshot)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextCaptureScreenshot(params)
@@ -489,9 +489,9 @@ browser.browsingContextCaptureScreenshot(params)
 ---
 
 ## browsingContextClose
-パラメータを使用してコマンドメソッド "browsingContext.close" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-close)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.close" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-close)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextClose(params)
@@ -520,9 +520,9 @@ browser.browsingContextClose(params)
 ---
 
 ## browsingContextCreate
-パラメータを使用してコマンドメソッド "browsingContext.create" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-create)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.create" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-create)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextCreate(params)
@@ -561,9 +561,9 @@ browser.browsingContextCreate(params)
 ---
 
 ## browsingContextGetTree
-パラメータを使用してコマンドメソッド "browsingContext.getTree" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-getTree)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.getTree" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-getTree)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextGetTree(params)
@@ -602,9 +602,9 @@ browser.browsingContextGetTree(params)
 ---
 
 ## browsingContextHandleUserPrompt
-パラメータを使用してコマンドメソッド "browsingContext.handleUserPrompt" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-handleUserPrompt)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.handleUserPrompt" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-handleUserPrompt)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextHandleUserPrompt(params)
@@ -633,9 +633,9 @@ browser.browsingContextHandleUserPrompt(params)
 ---
 
 ## browsingContextLocateNodes
-パラメータを使用してコマンドメソッド "browsingContext.locateNodes" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.locateNodes" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextLocateNodes(params)
@@ -674,9 +674,9 @@ browser.browsingContextLocateNodes(params)
 ---
 
 ## browsingContextNavigate
-パラメータを使用してコマンドメソッド "browsingContext.navigate" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-navigate)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.navigate" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-navigate)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextNavigate(params)
@@ -716,9 +716,9 @@ browser.browsingContextNavigate(params)
 ---
 
 ## browsingContextPrint
-パラメータを使用してコマンドメソッド "browsingContext.print" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-print)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.print" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-print)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextPrint(params)
@@ -757,9 +757,9 @@ browser.browsingContextPrint(params)
 ---
 
 ## browsingContextReload
-パラメータを使用してコマンドメソッド "browsingContext.reload" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-reload)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.reload" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-reload)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextReload(params)
@@ -788,9 +788,9 @@ browser.browsingContextReload(params)
 ---
 
 ## browsingContextSetViewport
-パラメータを使用してコマンドメソッド "browsingContext.setViewport" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-setViewport)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.setViewport" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-setViewport)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextSetViewport(params)
@@ -819,9 +819,9 @@ browser.browsingContextSetViewport(params)
 ---
 
 ## browsingContextTraverseHistory
-パラメータを使用してコマンドメソッド "browsingContext.traverseHistory" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-traverseHistory)を参照してください。
+パラメータを使用してコマンドメソッド "browsingContext.traverseHistory" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-browsingContext-traverseHistory)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.browsingContextTraverseHistory(params)
@@ -850,9 +850,9 @@ browser.browsingContextTraverseHistory(params)
 ---
 
 ## networkAddIntercept
-パラメータを使用してコマンドメソッド "network.addIntercept" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-addIntercept)を参照してください。
+パラメータを使用してコマンドメソッド "network.addIntercept" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-addIntercept)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.networkAddIntercept(params)
@@ -891,9 +891,9 @@ browser.networkAddIntercept(params)
 ---
 
 ## networkContinueRequest
-パラメータを使用してコマンドメソッド "network.continueRequest" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-continueRequest)を参照してください。
+パラメータを使用してコマンドメソッド "network.continueRequest" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-continueRequest)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.networkContinueRequest(params)
@@ -922,9 +922,9 @@ browser.networkContinueRequest(params)
 ---
 
 ## networkContinueResponse
-パラメータを使用してコマンドメソッド "network.continueResponse" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-continueResponse)を参照してください。
+パラメータを使用してコマンドメソッド "network.continueResponse" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-continueResponse)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.networkContinueResponse(params)
@@ -953,9 +953,9 @@ browser.networkContinueResponse(params)
 ---
 
 ## networkContinueWithAuth
-パラメータを使用してコマンドメソッド "network.continueWithAuth" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-continueWithAuth)を参照してください。
+パラメータを使用してコマンドメソッド "network.continueWithAuth" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-continueWithAuth)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.networkContinueWithAuth(params)
@@ -984,9 +984,9 @@ browser.networkContinueWithAuth(params)
 ---
 
 ## networkFailRequest
-パラメータを使用してコマンドメソッド "network.failRequest" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-failRequest)を参照してください。
+パラメータを使用してコマンドメソッド "network.failRequest" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-failRequest)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.networkFailRequest(params)
@@ -1015,9 +1015,9 @@ browser.networkFailRequest(params)
 ---
 
 ## networkProvideResponse
-パラメータを使用してコマンドメソッド "network.provideResponse" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-provideResponse)を参照してください。
+パラメータを使用してコマンドメソッド "network.provideResponse" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-provideResponse)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.networkProvideResponse(params)
@@ -1046,9 +1046,9 @@ browser.networkProvideResponse(params)
 ---
 
 ## networkRemoveIntercept
-パラメータを使用してコマンドメソッド "network.removeIntercept" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-removeIntercept)を参照してください。
+パラメータを使用してコマンドメソッド "network.removeIntercept" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-network-removeIntercept)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.networkRemoveIntercept(params)
@@ -1077,9 +1077,9 @@ browser.networkRemoveIntercept(params)
 ---
 
 ## scriptAddPreloadScript
-パラメータを使用してコマンドメソッド "script.addPreloadScript" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-addPreloadScript)を参照してください。
+パラメータを使用してコマンドメソッド "script.addPreloadScript" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-addPreloadScript)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.scriptAddPreloadScript(params)
@@ -1118,9 +1118,9 @@ browser.scriptAddPreloadScript(params)
 ---
 
 ## scriptDisown
-パラメータを使用してコマンドメソッド "script.disown" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-disown)を参照してください。
+パラメータを使用してコマンドメソッド "script.disown" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-disown)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.scriptDisown(params)
@@ -1149,9 +1149,9 @@ browser.scriptDisown(params)
 ---
 
 ## scriptCallFunction
-パラメータを使用してコマンドメソッド "script.callFunction" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-callFunction)を参照してください。
+パラメータを使用してコマンドメソッド "script.callFunction" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-callFunction)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.scriptCallFunction(params)
@@ -1180,9 +1180,9 @@ browser.scriptCallFunction(params)
 ---
 
 ## scriptEvaluate
-パラメータを使用してコマンドメソッド "script.evaluate" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-evaluate)を参照してください。
+パラメータを使用してコマンドメソッド "script.evaluate" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-evaluate)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.scriptEvaluate(params)
@@ -1219,9 +1219,9 @@ browser.scriptEvaluate(params)
 ---
 
 ## scriptGetRealms
-パラメータを使用してコマンドメソッド "script.getRealms" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-getRealms)を参照してください。
+パラメータを使用してコマンドメソッド "script.getRealms" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-getRealms)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.scriptGetRealms(params)
@@ -1260,9 +1260,9 @@ browser.scriptGetRealms(params)
 ---
 
 ## scriptRemovePreloadScript
-パラメータを使用してコマンドメソッド "script.removePreloadScript" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-removePreloadScript)を参照してください。
+パラメータを使用してコマンドメソッド "script.removePreloadScript" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-script-removePreloadScript)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.scriptRemovePreloadScript(params)
@@ -1291,9 +1291,9 @@ browser.scriptRemovePreloadScript(params)
 ---
 
 ## storageGetCookies
-パラメータを使用してコマンドメソッド "storage.getCookies" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-storage-getCookies)を参照してください。
+パラメータを使用してコマンドメソッド "storage.getCookies" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-storage-getCookies)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.storageGetCookies(params)
@@ -1333,9 +1333,9 @@ browser.storageGetCookies(params)
 ---
 
 ## storageSetCookie
-パラメータを使用してコマンドメソッド "storage.setCookie" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-storage-setCookie)を参照してください。
+パラメータを使用してコマンドメソッド "storage.setCookie" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-storage-setCookie)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.storageSetCookie(params)
@@ -1374,9 +1374,9 @@ browser.storageSetCookie(params)
 ---
 
 ## storageDeleteCookies
-パラメータを使用してコマンドメソッド "storage.deleteCookies" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-storage-deleteCookies)を参照してください。
+パラメータを使用してコマンドメソッド "storage.deleteCookies" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-storage-deleteCookies)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.storageDeleteCookies(params)
@@ -1415,9 +1415,9 @@ browser.storageDeleteCookies(params)
 ---
 
 ## inputPerformActions
-パラメータを使用してコマンドメソッド "input.performActions" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-input-performActions)を参照してください。
+パラメータを使用してコマンドメソッド "input.performActions" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-input-performActions)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.inputPerformActions(params)
@@ -1446,9 +1446,9 @@ browser.inputPerformActions(params)
 ---
 
 ## inputReleaseActions
-パラメータを使用してコマンドメソッド "input.releaseActions" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-input-releaseActions)を参照してください。
+パラメータを使用してコマンドメソッド "input.releaseActions" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-input-releaseActions)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.inputReleaseActions(params)
@@ -1477,9 +1477,9 @@ browser.inputReleaseActions(params)
 ---
 
 ## inputSetFiles
-パラメータを使用してコマンドメソッド "input.setFiles" を送信するWebDriver Bidiコマンド<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-input-setFiles)を参照してください。
+パラメータを使用してコマンドメソッド "input.setFiles" を送信するWebDriver Bidiコマンド。<br /><br />WebDriver Bidiプロトコルコマンド。詳細は[公式プロトコルドキュメント](https://w3c.github.io/webdriver-bidi/#command-input-setFiles)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.inputSetFiles(params)

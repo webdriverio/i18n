@@ -3,9 +3,9 @@ id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
 ---
 
-Wait for a specific text to be displayed on the screen.
+Oczekiwanie na wyświetlenie określonego tekstu na ekranie.
 
-## Usage
+## Użycie
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -13,9 +13,9 @@ await browser.ocrWaitForTextDisplayed({
 });
 ```
 
-## Output
+## Wynik
 
-### Logs
+### Logi
 
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
@@ -24,16 +24,16 @@ await browser.ocrWaitForTextDisplayed({
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
-## Options
+## Opcje
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **Typ:** `string`
+-   **Obowiązkowe:** tak
 
-The text you want to search for to click on.
+Tekst, którego szukasz, aby na niego kliknąć.
 
-#### Example
+#### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
@@ -41,30 +41,30 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 18000 (18 seconds)
+-   **Typ:** `number`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** 18000 (18 sekund)
 
-Time in milliseconds. Be aware that the OCR process can take some time, so don't set it too low.
+Czas w milisekundach. Pamiętaj, że proces OCR może zająć trochę czasu, więc nie ustawiaj zbyt niskiej wartości.
 
-#### Example
+#### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // wait for 25 seconds
+    timeout: 25000 // czekaj przez 25 sekund
 });
 ```
 
 ### `timeoutMsg`
 
-- **Type:** `string`
-- **Mandatory:** no
-- **Default:** `Could not find the text "{selector}" within the requested time.`
+-   **Typ:** `string`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** `Could not find the text "{selector}" within the requested time.`
 
-It overrides the default error message.
+Zastępuje domyślny komunikat o błędzie.
 
-#### Example
+#### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -75,13 +75,13 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **Typ:** `number`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Akceptuje wartości między `-1` a `1`.
 
-#### Example
+#### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -92,12 +92,12 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Typ:** `number`
+-   **Obowiązkowe:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+To jest obszar wyszukiwania na ekranie, w którym OCR ma szukać tekstu. Może to być element lub prostokąt zawierający `x`, `y`, `width` i `height`
 
-#### Example
+#### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -105,13 +105,13 @@ await browser.ocrWaitForTextDisplayed({
     haystack: $("elementSelector"),
 });
 
-// OR
+// LUB
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// LUB
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: {
@@ -125,36 +125,36 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **Typ:** `string`
+-   **Obowiązkowe:** Nie
+-   **Domyślnie:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Język, który Tesseract będzie rozpoznawać. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki można znaleźć [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+#### Przykład
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Use Dutch as a language
+    // Użyj holenderskiego jako języka
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+Możesz zmienić logikę dopasowania rozmytego (fuzzy) do wyszukiwania tekstu za pomocą następujących opcji. Może to pomóc znaleźć lepsze dopasowanie.
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **Typ:** `number`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+Określa, jak blisko dopasowanie musi być do lokalizacji rozmytej (określonej przez location). Dokładne dopasowanie litery, które jest oddalone o distance znaków od lokalizacji rozmytej, byłoby ocenione jako całkowite niedopasowanie. Odległość 0 wymaga, aby dopasowanie było w dokładnej określonej lokalizacji. Odległość 1000 wymagałaby idealnego dopasowania w obrębie 800 znaków od lokalizacji, aby zostać znalezionym przy progu 0,8.
 
-##### Example
+##### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -167,13 +167,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **Typ:** `number`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+Określa w przybliżeniu, gdzie w tekście oczekuje się znalezienia wzorca.
 
-##### Example
+##### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -186,13 +186,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **Typ:** `number`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+W którym momencie algorytm dopasowania poddaje się. Próg 0 wymaga idealnego dopasowania (zarówno liter, jak i lokalizacji), próg 1.0 dopasowałby wszystko.
 
-##### Example
+##### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -205,13 +205,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **Typ:** `boolean`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** false
 
-Whether the search should be case sensitive.
+Czy wyszukiwanie powinno rozróżniać wielkość liter.
 
-##### Example
+##### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -224,13 +224,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **Typ:** `number`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+Tylko dopasowania, których długość przekracza tę wartość, zostaną zwrócone. (Na przykład, jeśli chcesz zignorować jednoelementowe dopasowania w wyniku, ustaw wartość na 2)
 
-##### Example
+##### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -243,13 +243,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **Typ:** `number`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+Gdy `true`, funkcja dopasowywania będzie kontynuować do końca wzorca wyszukiwania, nawet jeśli idealne dopasowanie zostało już zlokalizowane w ciągu.
 
-##### Example
+##### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({

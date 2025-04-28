@@ -1,10 +1,10 @@
 ---
 id: restore
-title: 復元
+title: restore
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/restore.ts
 ---
 
-`mock.clear()`が行うすべてのことを実行し、さらにモックされた戻り値や実装を削除します。
+`mock.clear()`のすべての機能を実行し、さらにモックされた戻り値や実装も削除します。
 復元されたモックはイベントを発行せず、レスポンスをモックすることもできません。
 
 ##### 使用法

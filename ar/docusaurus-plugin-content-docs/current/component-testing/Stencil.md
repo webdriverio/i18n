@@ -1,13 +1,13 @@
 ---
 id: stencil
-title: Stencil
+title: ستنسل
 ---
 
-[Stencil](https://stenciljs.com/) is a library for building reusable, scalable component libraries. You can test Stencil components directly in a real browser using WebdriverIO and its [browser runner](/docs/runner#browser-runner).
+[Stencil](https://stenciljs.com/) هي مكتبة لبناء مكتبات مكونات قابلة لإعادة الاستخدام وقابلة للتوسع. يمكنك اختبار مكونات Stencil مباشرة في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
 
-## Setup
+## الإعداد
 
-To set up WebdriverIO within your Stencil project, follow the [instructions](/docs/component-testing#set-up) in our component testing docs. Make sure to select `stencil` as preset within your runner options, e.g.:
+لإعداد WebdriverIO داخل مشروع Stencil الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) في وثائق اختبار المكونات لدينا. تأكد من اختيار `stencil` كإعداد مسبق ضمن خيارات المشغل الخاصة بك، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -22,19 +22,19 @@ export const config = {
 
 :::info
 
-In case you use Stencil with a framework like React or Vue, you should keep the preset for these frameworks.
+في حالة استخدام Stencil مع إطار عمل مثل React أو Vue، يجب عليك الاحتفاظ بالإعداد المسبق لهذه الأطر.
 
 :::
 
-You can then start the tests by running:
+يمكنك بعد ذلك بدء الاختبارات من خلال تشغيل:
 
 ```sh
 npx wdio run ./wdio.conf.ts
 ```
 
-## Writing Tests
+## كتابة الاختبارات
 
-Given you have the following Stencil components:
+بفرض أن لديك مكونات Stencil التالية:
 
 ```tsx title="./components/Component.tsx"
 import { Component, Prop, h } from '@stencil/core'
@@ -65,7 +65,7 @@ export class MyName {
 
 ### `render`
 
-In your test use the `render` method from `@wdio/browser-runner/stencil` to attach the component to the test page. To interact with the component we recommend using WebdriverIO commands as they behave closer to actual user interactions, e.g.:
+في اختبارك، استخدم طريقة `render` من `@wdio/browser-runner/stencil` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -86,101 +86,105 @@ describe('Stencil Component Testing', () => {
 })
 ```
 
-#### Render Options
+#### خيارات العرض
 
-The `render` method provides the following options:
+توفر طريقة `render` الخيارات التالية:
 
 ##### `components`
 
-An array of components to test. Component classes can be imported into the spec file, then their reference should be added to the `component` array to be used throughout the test.
+مصفوفة من المكونات للاختبار. يمكن استيراد فئات المكونات إلى ملف المواصفات، ثم يجب إضافة مرجعها إلى مصفوفة `component` لاستخدامها في جميع أنحاء الاختبار.
 
-__Type:__ `CustomElementConstructor[]`<br /> __Default:__ `[]`
+__النوع:__ `CustomElementConstructor[]`<br />
+__القيمة الافتراضية:__ `[]`
 
 ##### `flushQueue`
 
-If `false`, do not flush the render queue on the initial test setup.
+إذا كانت `false`، لا تقم بتنظيف قائمة انتظار العرض عند الإعداد الأولي للاختبار.
 
-__Type:__ `boolean`<br /> __Default:__ `true`
+__النوع:__ `boolean`<br />
+__القيمة الافتراضية:__ `true`
 
 ##### `template`
 
-The initial JSX that is used to generate the test. Use `template` when you want to initialize a component using their properties, instead of their HTML attributes. It will render the specified template (JSX) into `document.body`.
+JSX الأولي المستخدم لإنشاء الاختبار. استخدم `template` عندما تريد تهيئة مكون باستخدام خصائصه، بدلاً من سمات HTML الخاصة به. سيقوم بعرض القالب المحدد (JSX) في `document.body`.
 
-__Type:__ `JSX.Template`
+__النوع:__ `JSX.Template`
 
 ##### `html`
 
-The initial HTML used to generate the test. This can be useful to construct a collection of components working together, and assign HTML attributes.
+HTML الأولي المستخدم لإنشاء الاختبار. هذا يمكن أن يكون مفيداً لبناء مجموعة من المكونات التي تعمل معاً، وتعيين سمات HTML.
 
-__Type:__ `string`
+__النوع:__ `string`
 
 ##### `language`
 
-Sets the mocked `lang` attribute on `<html>`.
+يعين سمة `lang` الوهمية على `<html>`.
 
-__Type:__ `string`
+__النوع:__ `string`
 
 ##### `autoApplyChanges`
 
-By default, any changes to component properties and attributes must `env.waitForChanges()` to test the updates. As an option, `autoApplyChanges` continuously flushes the queue in the background.
+بشكل افتراضي، يجب أن تستخدم `env.waitForChanges()` لأي تغييرات في خصائص المكونات وسماتها لاختبار التحديثات. كخيار، يقوم `autoApplyChanges` بتنظيف قائمة الانتظار باستمرار في الخلفية.
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__النوع:__ `boolean`<br />
+__القيمة الافتراضية:__ `false`
 
 ##### `attachStyles`
 
-By default, styles are not attached to the DOM and they are not reflected in the serialized HTML. Setting this option to `true` will include the component's styles in the serializable output.
+بشكل افتراضي، لا يتم إرفاق الأنماط بـ DOM ولا تنعكس في HTML المسلسل. سيؤدي تعيين هذا الخيار إلى `true` إلى تضمين أنماط المكون في الإخراج القابل للتسلسل.
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__النوع:__ `boolean`<br />
+__القيمة الافتراضية:__ `false`
 
-#### Render Environment
+#### بيئة العرض
 
-The `render` method returns an environment object that provides certain utility helpers to manage the component's environment.
+تعيد طريقة `render` كائن بيئة يوفر أدوات مساعدة معينة لإدارة بيئة المكون.
 
 ##### `flushAll`
 
-After changes have been made to a component, such as an update to a property or attribute, the test page does not automatically apply the changes. To wait for, and apply the update, call `await flushAll()`
+بعد إجراء تغييرات على مكون، مثل تحديث لخاصية أو سمة، لا تقوم صفحة الاختبار تلقائياً بتطبيق التغييرات. للانتظار وتطبيق التحديث، استدعِ `await flushAll()`
 
-__Type:__ `() => void`
+__النوع:__ `() => void`
 
 ##### `unmount`
 
-Removes the container element from the DOM.
+يزيل عنصر الحاوية من DOM.
 
-__Type:__ `() => void`
+__النوع:__ `() => void`
 
 ##### `styles`
 
-All styles defined by components.
+جميع الأنماط المحددة بواسطة المكونات.
 
-__Type:__ `Record<string, string>`
+__النوع:__ `Record<string, string>`
 
 ##### `container`
 
-Container element in which the template is being rendered.
+عنصر الحاوية الذي يتم فيه عرض القالب.
 
-__Type:__ `HTMLElement`
+__النوع:__ `HTMLElement`
 
 ##### `$container`
 
-The container element as a WebdriverIO element.
+عنصر الحاوية كعنصر WebdriverIO.
 
-__Type:__ `WebdriverIO.Element`
+__النوع:__ `WebdriverIO.Element`
 
 ##### `root`
 
-The root component of the template.
+المكون الجذر للقالب.
 
-__Type:__ `HTMLElement`
+__النوع:__ `HTMLElement`
 
 ##### `$root`
 
-The root component as a WebdriverIO element.
+المكون الجذر كعنصر WebdriverIO.
 
-__Type:__ `WebdriverIO.Element`
+__النوع:__ `WebdriverIO.Element`
 
 ### `waitForChanges`
 
-Helper method to wait for the component to be ready.
+طريقة مساعدة للانتظار حتى يصبح المكون جاهزاً.
 
 ```ts
 import { render, waitForChanges } from '@wdio/browser-runner/stencil'
@@ -196,12 +200,10 @@ await waitForChanges()
 expect(page.root.querySelector('div')).toBeDefined()
 ```
 
-## Element Updates
+## تحديثات العناصر
 
-If you define properties or states in your Stencil component you have to manage when these changes should be applied to the component to be re-rendered.
+إذا قمت بتعريف خصائص أو حالات في مكون Stencil الخاص بك، فعليك إدارة متى يجب تطبيق هذه التغييرات على المكون ليتم إعادة عرضه.
 
+## أمثلة
 
-## Examples
-
-You can find a full example of a WebdriverIO component test suite for Stencil in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).
-
+يمكنك العثور على مثال كامل لمجموعة اختبار مكونات WebdriverIO لـ Stencil في [مستودع الأمثلة](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter) الخاص بنا.

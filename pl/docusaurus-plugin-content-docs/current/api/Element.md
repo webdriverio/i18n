@@ -1,37 +1,37 @@
 ---
 id: element
-title: Element
+title: Obiekt Element
 ---
 
-Element jest obiektem reprezentującym element w ramach zdalnego agenta użytkownika (remote user agent), np. [element DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element) jeżeli korzystamy z przeglądarki lub [element mobilny](https://developer.apple.com/documentation/swift/sequence/element) w przypadku urządzeń mobilnych. Elementy możemy pozyskiwać z pomocą jednego z wielu poleceń służących do wyszukiwania elementów, np. [`$`](/docs/api/element/$), [`custom$`](/docs/api/element/custom$), [`react$`](/docs/api/element/react$) albo [`shadow$`](/docs/api/element/shadow$).
+Obiekt Element to obiekt reprezentujący element na zdalnym agencie użytkownika, np. [węzeł DOM](https://developer.mozilla.org/en-US/docs/Web/API/Element) podczas uruchamiania sesji w przeglądarce lub [element mobilny](https://developer.apple.com/documentation/swift/sequence/element) dla urządzeń mobilnych. Można go otrzymać za pomocą jednego z wielu poleceń zapytania o element, np. [`$`](/docs/api/element/$), [`custom$`](/docs/api/element/custom$), [`react$`](/docs/api/element/react$) lub [`shadow$`](/docs/api/element/shadow$).
 
 ## Właściwości
 
-Obiekt element ma następujące właściwości:
+Obiekt elementu ma następujące właściwości:
 
-| Nazwa       | Typ      | Szczegóły                                                                                                                                                                                                                                                          |
-| ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sessionId` | `String` | Identyfikator sesji (session id) przypisany ze zdalnego serwera.                                                                                                                                                                                                   |
-| `elementId` | `String` | Powiązana [referencja do elementu sieciowego](https://w3c.github.io/webdriver/#elements), którego można użyć do interakcji z elementem na poziomie protokołu                                                                                                       |
-| `selector`  | `String` | [Selektor](/docs/selectors) wykorzystywany do wyszukania elementu.                                                                                                                                                                                                 |
-| `parent`    | `Object` | [Obiekt przeglądarki](/docs/api/browser), w przypadku, gdy element został pobrany z jej wykorzystaniem (np. `const elem = browser.$('selector')`) lub [obiekt typu element](/docs/api/element), jeśli został pobrany z zakresu elementu (np. `elem.$('selector')`) |
-| `options`   | `Object` | [Opcje](/docs/configuration) (options) WebdriverIO w zależności od sposobu utworzenia obiektu przeglądarki. Zobacz więcej w sekcji [typy konfiguracji](/docs/setuptypes).                                                                                          |
+| Nazwa | Typ | Szczegóły |
+| ---- | ---- | ------- |
+| `sessionId` | `String` | Identyfikator sesji przypisany przez zdalny serwer. |
+| `elementId` | `String` | Powiązane [odniesienie do elementu webowego](https://w3c.github.io/webdriver/#elements), które może być używane do interakcji z elementem na poziomie protokołu |
+| `selector` | `String` | [Selektor](/docs/selectors) używany do zapytania o element. |
+| `parent` | `Object` | Albo [Obiekt Przeglądarki](/docs/api/browser), gdy element został pobrany z niej (np. `const elem = browser.$('selector')`) lub [Obiekt Element](/docs/api/element), jeśli został pobrany z zakresu elementu (np. `elem.$('selector')`) |
+| `options` | `Object` | [Opcje](/docs/configuration) WebdriverIO zależne od sposobu utworzenia obiektu przeglądarki. Zobacz więcej [typów konfiguracji](/docs/setuptypes). |
 
 ## Metody
-Obiekt typu element udostępnia wszystkie metody z sekcji protokołu, np. protokół [WebDriver](/docs/api/webdriver) oraz polecenia wymienione w niniejszej sekcji. Dostępność poleceń protokołu zależy od rodzaju sesji. Jeśli uruchomisz zautomatyzowaną sesję przeglądarki, żadne z [poleceń Appium](/docs/api/appium) nie będzie dostępne i vice versa.
+Obiekt elementu udostępnia wszystkie metody z sekcji protokołu, np. protokół [WebDriver](/docs/api/webdriver), a także polecenia wymienione w sekcji elementu. Dostępne polecenia protokołu zależą od typu sesji. Jeśli uruchamiasz zautomatyzowaną sesję przeglądarki, żadne z poleceń Appium [commands](/docs/api/appium) nie będą dostępne i odwrotnie.
 
 Dodatkowo dostępne są następujące polecenia:
 
-| Nazwa              | Parametry                                                             | Szczegóły                                                                                                                                                                                                                                                                                                                |
-| ------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `addCommand`       | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | Umożliwia zdefiniowanie niestandardowych poleceń, które mogą być wywoływane z obiektu przeglądarki do celów kompozycji. Przeczytaj więcej w przewodniku [Niestandardowe polecenie](/docs/customcommands) (custom command).                                                                                               |
-| `overwriteCommand` | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | Pozwala zastąpić dowolne polecenie przeglądarki niestandardową funkcjonalnością. Zachowaj ostrożność przy korzystaniu z tej metody, ponieważ może zdezorientować użytkowników frameworka. Przeczytaj więcej w przewodniku [Niestandardowe polecenie](/docs/customcommands#overwriting-native-commands) (custom command). |
+| Nazwa | Parametry | Szczegóły |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (Typ: `String`)<br />- `fn` (Typ: `Function`) | Pozwala na definiowanie niestandardowych poleceń, które mogą być wywoływane z obiektu przeglądarki w celach kompozycyjnych. Przeczytaj więcej w przewodniku [Własne Polecenia](/docs/customcommands). |
+| `overwriteCommand` | - `commandName` (Typ: `String`)<br />- `fn` (Typ: `Function`) | Pozwala na nadpisanie dowolnego polecenia przeglądarki niestandardową funkcjonalnością. Używaj ostrożnie, ponieważ może to dezorientować użytkowników frameworka. Przeczytaj więcej w przewodniku [Własne Polecenia](/docs/customcommands#overwriting-native-commands). |
 
 ## Uwagi
 
-### Łańcuch elementów
+### Łańcuch Elementów
 
-Podczas pracy z elementami WebdriverIO zapewnia specjalną składnię, która upraszcza wykonywanie zapytań i złożone wyszukiwanie zagnieżdżonych elementów. Ponieważ obiekty typu element umożliwiają znajdowanie elementów w ramach ich gałęzi drzewa przy użyciu typowych metod wyszukiwania, użytkownicy mogą pobierać zagnieżdżone elementy w następujący sposób:
+Podczas pracy z elementami WebdriverIO zapewnia specjalną składnię, która upraszcza zapytania o nie i tworzy złożone, zagnieżdżone wyszukiwania elementów. Ponieważ obiekty elementów pozwalają znaleźć elementy w ich gałęzi drzewa za pomocą typowych metod zapytań, użytkownicy mogą pobierać zagnieżdżone elementy w następujący sposób:
 
 ```js
 const header = await $('#header')
@@ -39,20 +39,20 @@ const headline = await header.$('#headline')
 console.log(await headline.getText()) // outputs "I am a headline"
 ```
 
-W przypadku tworzenia głęboko zagnieżdżonych struktur elementów ucierpieć może na tym ogólna czytelność. Dlatego WebdriverIO wprowadza łańcuchy zapytań o elementy, które pozwalają pobierać zagnieżdżone elementy w następujący sposób:
+W przypadku głęboko zagnieżdżonych struktur, przypisywanie każdego zagnieżdżonego elementu do tablicy, aby następnie go używać, może być dość rozwlekłe. Dlatego WebdriverIO ma koncepcję łańcuchowych zapytań o elementy, które pozwalają na pobieranie zagnieżdżonych elementów w taki sposób:
 
 ```js
 console.log(await $('#header').$('#headline').getText())
 ```
 
-Działa to również w przypadku pobierania zestawu elementów, np.:
+Działa to również podczas pobierania zestawu elementów, np.:
 
 ```js
 // get the text of the 3rd headline within the 2nd header
 console.log(await $$('#header')[1].$$('#headline')[2].getText())
 ```
 
-Pracując ze zbiorem elementów, może się to okazać szczególnie przydatne przy próbie interakcji z nimi, a więc, zamiast:
+Podczas pracy z zestawem elementów może to być szczególnie przydatne, gdy próbujesz z nimi wchodzić w interakcję, zamiast robić:
 
 ```js
 const elems = await $$('div')
@@ -61,29 +61,29 @@ const locations = await Promise.all(
 )
 ```
 
-Możesz bezpośrednio wywoływać metody należące do tablic w łańcuchu elementów, np.:
+Możesz bezpośrednio wywołać metody Array na łańcuchu elementów, np.:
 
 ```js
 const location = await $$('div').map((el) => el.getLocation())
 ```
 
-same as:
+tak samo jak:
 
 ```js
 const divs = await $$('div')
 const location = await divs.map((el) => el.getLocation())
 ```
 
-WebdriverIO uses a custom implementation that supports asynchronous iterators under the hood so all commands from their API are also supported for these use cases.
+WebdriverIO używa niestandardowej implementacji, która obsługuje asynchroniczne iteratory pod maską, więc wszystkie polecenia z ich API są również obsługiwane w tych przypadkach.
 
-__Note:__ all async iterators return a promise even if your callback doesn't return one, e.g.:
+__Uwaga:__ wszystkie asynchroniczne iteratory zwracają obietnicę, nawet jeśli twój callback nie zwraca obietnicy, np.:
 
 ```ts
 const divs = await $$('div')
-console.log(divs.map((div) => div.selector)) // ❌ returns "Promise<string>[]"
-console.log(await divs.map((div) => div.selector)) // ✅ returns "string[]"
+console.log(divs.map((div) => div.selector)) // ❌ zwraca "Promise<string>[]"
+console.log(await divs.map((div) => div.selector)) // ✅ zwraca "string[]"
 ```
 
-### Niestandardowe polecenia
+### Własne Polecenia
 
-Możesz ustawić niestandardowe polecenia w zakresie przeglądarki, aby wyodrębnić często wykorzystywane przypadki użycia. Aby uzyskać więcej informacji, zapoznaj się z naszym przewodnikiem na temat [poleceń niestandardowych](/docs/customcommands#adding-custom-commands).
+Możesz ustawić niestandardowe polecenia w zakresie przeglądarki, aby uprościć często używane przepływy pracy. Sprawdź nasz przewodnik na temat [Własnych Poleceń](/docs/customcommands#adding-custom-commands), aby uzyskać więcej informacji.

@@ -1,26 +1,26 @@
 ---
 id: browserstack
-title: BrowserStack アクセシビリティテスト
+title: BrowserStackアクセシビリティテスト
 ---
 
-# BrowserStack アクセシビリティテスト
+# BrowserStack Accessibility Testing
 
-WebdriverIOテストスイートにアクセシビリティテストを簡単に統合するには、[BrowserStack アクセシビリティテストの自動テスト機能](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)を使用することができます。
+WebdriverIOのテストスイートに[BrowserStack Accessibility Testingの自動テスト機能](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)を簡単に統合することができます。
 
-## BrowserStack アクセシビリティテストにおける自動テストの利点
+## BrowserStack Accessibility Testingの自動テストの利点
 
-BrowserStack アクセシビリティテストで自動テストを使用するには、テストはBrowserStack Automateで実行されている必要があります。
+BrowserStack Accessibility Testingの自動テストを使用するには、テストがBrowserStack Automate上で実行されている必要があります。
 
 自動テストの利点は以下の通りです：
 
-* 既存の自動テストスイートにシームレスに統合できます。
+* 既存の自動化テストスイートにシームレスに統合できます。
 * テストケースにコード変更は必要ありません。
-* アクセシビリティテストのために追加のメンテナンスは不要です。
-* 履歴傾向を理解し、テストケースの洞察を得ることができます。
+* アクセシビリティテスト用の追加メンテナンスは不要です。
+* 履歴傾向を理解し、テストケースの洞察を得られます。
 
-## BrowserStack アクセシビリティテストを始める
+## BrowserStack Accessibility Testingを始める
 
-WebdriverIOテストスイートをBrowserStackのアクセシビリティテストと統合するには、次の手順に従ってください：
+WebdriverIOのテストスイートをBrowserStackのAccessibility Testingと統合するには、次の手順に従ってください：
 
 1. `@wdio/browserstack-service` npmパッケージをインストールします。
 
@@ -60,4 +60,4 @@ exports.config = {
   };
 ```
 
-詳細な手順は[こちら](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)でご覧いただけます。
+詳細な手順は[こちら](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)をご覧ください。

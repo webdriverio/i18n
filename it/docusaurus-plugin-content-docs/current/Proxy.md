@@ -3,22 +3,22 @@ id: proxy
 title: Configurazione del Proxy
 ---
 
-È possibile instradare due diversi tipi di richieste attraverso un proxy:
+Puoi incanalare due diversi tipi di richieste attraverso un proxy:
 
 - connessione tra il tuo script di test e il driver del browser (o endpoint WebDriver)
 - connessione tra il browser e internet
 
-## Proxy tra Driver e Test
+## Proxy Tra Driver E Test
 
 Se la tua azienda ha un proxy aziendale (ad esempio su `http://my.corp.proxy.com:9090`) per tutte le richieste in uscita, segui i passaggi seguenti per installare e configurare [undici](https://github.com/nodejs/undici).
 
-### Installare undici
+### Installa undici
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Aggiungere undici setGlobalDispatcher al tuo file di configurazione
+### Aggiungi undici setGlobalDispatcher al tuo file di configurazione
 
 Aggiungi la seguente dichiarazione require all'inizio del tuo file di configurazione.
 
@@ -41,11 +41,11 @@ Se utilizzi [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy tra Browser e Internet
+## Proxy Tra Browser E Internet
 
-Per instradare la connessione tra il browser e internet, puoi configurare un proxy che può essere utile (ad esempio) per acquisire informazioni di rete e altri dati con strumenti come [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+Per incanalare la connessione tra il browser e internet, puoi configurare un proxy che può essere utile (ad esempio) per catturare informazioni di rete e altri dati con strumenti come [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-I parametri `proxy` possono essere applicati tramite le capabilities standard nel seguente modo:
+I parametri `proxy` possono essere applicati tramite le capacità standard nel seguente modo:
 
 ```js title="wdio.conf.js"
 export const config = {

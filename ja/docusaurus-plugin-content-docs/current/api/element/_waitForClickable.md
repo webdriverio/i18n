@@ -1,10 +1,10 @@
 ---
 id: waitForClickable
-title: waitForClickable（クリック可能になるまで待機）
+title: waitForClickable
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForClickable.ts
 ---
 
-指定したミリ秒間、要素がクリック可能または非クリック可能になるまで待機します。
+要素が指定されたミリ秒の間、クリック可能またはクリック不可能になるのを待ちます。
 
 :::info
 
@@ -12,7 +12,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::
 
-##### 使い方
+##### 使用法
 
 ```js
 $(selector).waitForClickable({ timeout, reverse, timeoutMsg, interval })
@@ -23,34 +23,34 @@ $(selector).waitForClickable({ timeout, reverse, timeoutMsg, interval })
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`WaitForOptions`</td>
-      <td>waitForEnabled オプション（省略可能）</td>
+      <td>waitForEnabledオプション（オプション）</td>
     </tr>
     <tr>
-      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Number`</td>
-      <td>ミリ秒単位の時間（デフォルトは [`waitforTimeout`](/docs/configuration#waitfortimeout) 設定値に基づく）</td>
+      <td>ミリ秒単位の時間（デフォルトは[`waitforTimeout`](/docs/configuration#waitfortimeout)設定値に基づく）</td>
     </tr>
     <tr>
-      <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Boolean`</td>
-      <td>trueの場合は逆の状態を待機（デフォルト: false）</td>
+      <td>trueの場合、反対の状態を待ちます（デフォルト：false）</td>
     </tr>
     <tr>
-      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`String`</td>
-      <td>存在する場合はデフォルトのエラーメッセージを上書きします</td>
+      <td>存在する場合、デフォルトのエラーメッセージを上書きします</td>
     </tr>
     <tr>
-      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Number`</td>
-      <td>チェック間の間隔（デフォルト: `waitforInterval`）</td>
+      <td>チェック間の間隔（デフォルト：`waitforInterval`）</td>
     </tr>
   </tbody>
 </table>
@@ -71,4 +71,4 @@ it('should detect when element is no longer clickable', async () => {
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:** 要素がクリック可能な場合は `true`（または、フラグが設定されている場合はその逆）
+            **<code><var>return</var></code>:** 要素がクリック可能な場合（またはフラグが設定されている場合はそうでない場合）`true`

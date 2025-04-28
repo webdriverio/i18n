@@ -4,7 +4,7 @@ title: getElement
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getElement.ts
 ---
 
-要素参照から `WebdriverIO.Element` プロパティ（`selector` や `elementId` など）にアクセスします。
+要素参照から `WebdriverIO.Element` のプロパティ（`selector` や `elementId` など）にアクセスします。
 
 ##### 使用法
 
@@ -24,4 +24,3 @@ it('should allow me to inspect WebdriverIO.Element properties', async () => {
 ##### 戻り値
 
 - **&lt;WebdriverIO.Element&gt;**
-    

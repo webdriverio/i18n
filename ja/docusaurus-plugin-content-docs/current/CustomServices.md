@@ -3,11 +3,11 @@ id: customservices
 title: カスタムサービス
 ---
 
-WDIOテストランナーのために、あなたのニーズに合わせたカスタムサービスを作成することができます。
+WDIOテストランナー用の独自のカスタムサービスを作成して、ニーズに合わせてカスタマイズすることができます。
 
 サービスはテストを簡素化し、テストスイートを管理し、結果を統合するために作成された再利用可能なロジックのアドオンです。サービスは`wdio.conf.js`で利用可能なすべての同じ[フック](/docs/configurationfile)にアクセスできます。
 
-定義できるサービスには2種類あります：テスト実行ごとに一度だけ実行される`onPrepare`、`onWorkerStart`、`onWorkerEnd`、`onComplete`フックにのみアクセスできるランチャーサービスと、他のすべてのフックにアクセスでき、各ワーカーに対して実行されるワーカーサービスです。ワーカーサービスは異なる（ワーカー）プロセスで実行されるため、両方のタイプのサービス間で（グローバル）変数を共有することはできないことに注意してください。
+定義できるサービスには2種類あります：テスト実行ごとに一度だけ実行される`onPrepare`、`onWorkerStart`、`onWorkerEnd`、`onComplete`フックにアクセスできるランチャーサービスと、他のすべてのフックにアクセスでき、各ワーカーごとに実行されるワーカーサービスです。ワーカーサービスは異なる（ワーカー）プロセスで実行されるため、両方のタイプのサービス間で（グローバル）変数を共有することはできません。
 
 ランチャーサービスは次のように定義できます：
 
@@ -15,11 +15,11 @@ WDIOテストランナーのために、あなたのニーズに合わせたカ�
 export default class CustomLauncherService {
     // フックがプロミスを返す場合、WebdriverIOはそのプロミスが解決されるまで待機します。
     async onPrepare(config, capabilities) {
-        // TODO: すべてのワーカーが起動する前に何かを実行
+        // TODO: すべてのワーカーが起動する前に何かを行う
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: ワーカーがシャットダウンした後に何かを実行
+        // TODO: ワーカーがシャットダウンした後に何かを行う
     }
 
     // カスタムサービスメソッド ...
@@ -32,45 +32,45 @@ export default class CustomLauncherService {
 export default class CustomWorkerService {
     /**
      * `serviceOptions`にはサービス固有のすべてのオプションが含まれています
-     * 例えば、次のように定義されている場合：
+     * 例えば、次のように定義された場合：
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * `serviceOptions`パラメータは：`{ foo: 'bar' }`となります
+     * `serviceOptions`パラメータは `{ foo: 'bar' }` となります
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * このブラウザオブジェクトは初めてここに渡されます
+     * このブラウザオブジェクトはここで初めて渡されます
      */
     async before(config, capabilities, browser) {
         this.browser = browser
 
-        // TODO: すべてのテストが実行される前に何かを実行、例：
+        // TODO: すべてのテスト実行前に何かを行う、例：
         await this.browser.setWindowSize(1024, 768)
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: すべてのテストが実行された後に何かを実行
+        // TODO: すべてのテスト実行後に何かを行う
     }
 
     beforeTest(test, context) {
-        // TODO: 各Mocha/Jasmineテスト実行前に何かを実行
+        // TODO: 各Mocha/Jasmineテスト実行前に何かを行う
     }
 
     beforeScenario(test, context) {
-        // TODO: 各Cucumberシナリオ実行前に何かを実行
+        // TODO: 各Cucumberシナリオ実行前に何かを行う
     }
 
-    // その他のフックやカスタムサービスメソッド...
+    // その他のフックやカスタムサービスメソッド ...
 }
 ```
 
-コンストラクタで渡されたパラメータを通じてブラウザオブジェクトを保存することをお勧めします。最後に、両方のタイプのワーカーを次のように公開します：
+コンストラクタに渡されたパラメータを通じてブラウザオブジェクトを保存することをお勧めします。最後に、両方のタイプのワーカーを次のように公開します：
 
 ```js
 import CustomLauncherService from './launcher'
@@ -100,19 +100,19 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 
 ## サービスのエラーハンドリング
 
-サービスフック中にスローされたエラーはログに記録され、ランナーは継続されます。サービス内のフックがテストランナーのセットアップやティアダウンに不可欠である場合、`webdriverio`パッケージから公開されている`SevereServiceError`を使用してランナーを停止できます。
+サービスフック中にエラーがスローされると、ランナーは継続しながらそれがログに記録されます。サービスのフックがテストランナーのセットアップやティアダウンに重要である場合、`webdriverio`パッケージから公開されている`SevereServiceError`を使用してランナーを停止できます。
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: すべてのワーカーが起動する前のセットアップに不可欠な何か
+        // TODO: すべてのワーカー起動前のセットアップに重要な何か
 
-        throw new SevereServiceError('何かが間違っています。')
+        throw new SevereServiceError('何か問題が発生しました。')
     }
 
-    // カスタムサービスメソッド...
+    // カスタムサービスメソッド ...
 }
 ```
 
@@ -145,14 +145,14 @@ export const config = {
 }
 ```
 
-## NPMでのサービスの公開
+## NPMでサービスを公開する
 
-WebdriverIOコミュニティがサービスを簡単に利用・発見できるようにするために、以下の推奨事項に従ってください：
+WebdriverIOコミュニティがサービスを簡単に使用し、発見できるようにするには、次の推奨事項に従ってください：
 
-* サービスは次の命名規則を使用すべきです：`wdio-*-service`
-* NPMキーワードを使用する：`wdio-plugin`、`wdio-service`
-* `main`エントリーはサービスのインスタンスを`export`すべきです
-* サービスの例：[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* サービスは次の命名規則を使用する必要があります：`wdio-*-service`
+* NPMキーワードを使用：`wdio-plugin`、`wdio-service`
+* `main`エントリはサービスのインスタンスを`export`する必要があります
+* サービス例：[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
 推奨される命名パターンに従うことで、サービスを名前で追加できます：
 
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### 公開されたサービスをWDIO CLIとドキュメントに追加する
+### 公開したサービスをWDIO CLIとドキュメントに追加する
 
-より良いテストの実行に役立つ新しいプラグインを高く評価しています！そのようなプラグインを作成した場合は、それを私たちのCLIとドキュメントに追加して、見つけやすくすることを検討してください。
+他の人がより良いテストを実行するのに役立つ新しいプラグインを本当に高く評価しています！そのようなプラグインを作成した場合は、より見つけやすくするために、CLIとドキュメントに追加することを検討してください。
 
-以下の変更を含むプルリクエストを作成してください：
+以下の変更を含むプルリクエストを送信してください：
 
 - CLIモジュールの[サポートされているサービスのリスト](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)にあなたのサービスを追加する
-- 公式Webdriver.ioページにドキュメントを追加するための[サービスリスト](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json)を拡張する
+- 公式Webdriver.ioページにドキュメントを追加するために[サービスリスト](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json)を拡張する

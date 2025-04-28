@@ -1,8 +1,7 @@
 ---
 id: highleveloverview
-title: High level overview
+title: Przegląd wysokiego poziomu
 ---
-
-Flow chart provides a high level overview of how the WebdriverIO ecosystem interacts with the core packages.
+Schemat blokowy przedstawia ogólny przegląd tego, jak ekosystem WebdriverIO współdziała z pakietami podstawowymi.
 
 <CreateFlowcharts id='highleveloverview' />

@@ -6,7 +6,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::caution
 
-usa `browser.throttleNetwork` invece
+utilizza `browser.throttleNetwork` invece
 :::
 
 ##### Utilizzo

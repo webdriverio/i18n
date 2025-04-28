@@ -4,10 +4,10 @@ title: waitUntil
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/waitUntil.ts
 ---
 
-Questo comando di attesa è la tua arma universale se vuoi aspettare qualcosa. Si aspetta una condizione
-e attende fino a quando quella condizione viene soddisfatta con un valore veritiero da restituire.
+Questo comando di attesa è la tua arma universale quando desideri attendere qualcosa. Si aspetta una condizione
+e attende fino a quando tale condizione non viene soddisfatta con un valore veritiero restituito.
 
-Un esempio comune è attendere fino a quando un certo elemento contiene un certo testo (vedi esempio).
+Un esempio comune è attendere fino a quando un determinato elemento contiene un certo testo (vedi esempio).
 
 ##### Utilizzo
 
@@ -37,7 +37,7 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number`</td>
-      <td>tempo in ms (predefinito basato sul valore di configurazione [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>tempo in ms (predefinito impostato in base al valore di configurazione [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -47,7 +47,7 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number`</td>
-      <td>intervallo tra i controlli della condizione (predefinito basato sul valore di configurazione [`waitforInterval`](/docs/configuration#waitforinterval))</td>
+      <td>intervallo tra i controlli delle condizioni (predefinito impostato in base al valore di configurazione [`waitforInterval`](/docs/configuration#waitforinterval))</td>
     </tr>
   </tbody>
 </table>
@@ -65,4 +65,4 @@ https://github.com/webdriverio/example-recipes/blob/0c9252b0a4f7e18a34cece74e579
 ##### Restituisce
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true se la condizione è soddisfatta    
+            **<code><var>return</var></code>:**  true se la condizione è soddisfatta

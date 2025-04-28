@@ -3,19 +3,19 @@ id: lit
 title: Lit
 ---
 
-Litはシンプルで高速、軽量なWebコンポーネントを構築するためのライブラリです。WebdriverIOの[シャドウDOMセレクタ](/docs/selectors#deep-selectors)のおかげで、Lit Webコンポーネントのテストは非常に簡単です。単一のコマンドでシャドウルート内のネストされた要素にクエリを実行できます。
+Litは、高速で軽量なウェブコンポーネントを構築するためのシンプルなライブラリです。WebdriverIOの[シャドウDOMセレクタ](/docs/selectors#deep-selectors)のおかげで、Litウェブコンポーネントのテストは非常に簡単です。シャドウルート内のネストされた要素を1つのコマンドだけで照会できます。
 
 ## セットアップ
 
-LitプロジェクトでWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。Litの場合、Webコンポーネントはコンパイラを通す必要がなく純粋なWebコンポーネント拡張であるため、プリセットは必要ありません。
+LitプロジェクトでWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。Litの場合、ウェブコンポーネントはコンパイラを通す必要がなく、純粋なウェブコンポーネントの拡張であるため、プリセットは必要ありません。
 
-セットアップが完了したら、以下のコマンドでテストを開始できます：
+セットアップが完了したら、次のコマンドを実行してテストを開始できます：
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## テストの記述
+## テストの作成
 
 次のようなLitコンポーネントがあるとします：
 
@@ -35,7 +35,7 @@ export class SimpleGreeting extends LitElement {
 }
 ```
 
-コンポーネントをテストするには、テスト開始前にテストページにレンダリングし、その後クリーンアップする必要があります：
+コンポーネントをテストするには、テスト開始前にテストページにコンポーネントをレンダリングし、その後確実にクリーンアップする必要があります：
 
 ```ts title="lit.test.js"
 import expect from 'expect'
@@ -66,4 +66,4 @@ describe('Lit Component testing', () => {
 })
 ```
 
-WebdriverIOのLitコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite)で確認できます。
+WebdriverIOコンポーネントテストスイートのLit向け完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite)で見つけることができます。

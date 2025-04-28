@@ -6,8 +6,8 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::caution Avviso di Deprecazione
 
-Il comando `touchAction` è __deprecato__ e verrà rimosso in una versione futura.
-Raccomandiamo di utilizzare il comando [`action`](/docs/api/browser/action) invece, con
+Il comando `touchAction` è __deprecato__ e sarà rimosso in una versione futura.
+Raccomandiamo di utilizzare invece il comando [`action`](/docs/api/browser/action) con
 il tipo di puntatore `touch`, ad esempio:
 
 ```ts
@@ -18,9 +18,9 @@ await browser.action('pointer', {
 
 :::
 
-L'API Touch Action fornisce la base per tutti i gesti che possono essere automatizzati in Appium.
-Attualmente è disponibile solo per le app native e non può essere utilizzata per interagire con le webapp.
-Il suo nucleo è la capacità di concatenare azioni individuali _ad hoc_, che saranno poi
+L'API Touch Action fornisce la base di tutti i gesti che possono essere automatizzati in Appium.
+Attualmente è disponibile solo per le app native e non può essere utilizzata per interagire con le webapps.
+Il suo nucleo è la capacità di concatenare azioni individuali _ad hoc_, che verranno poi
 applicate a un elemento nell'applicazione sul dispositivo. Le azioni di base che possono essere utilizzate sono:
 
 - press (passa elemento o (`x`, `y`) o entrambi)

@@ -7,11 +7,11 @@ Con WebdriverIO puoi testare non solo applicazioni web nel browser ma anche altr
 
 - 📱 applicazioni mobili su iOS, Android o Tizen
 - 🖥️ applicazioni desktop su macOS o Windows
-- 📺 e anche app TV per Roku, tvOS, Android TV e Samsung
+- 📺 come anche app TV per Roku, tvOS, Android TV e Samsung
 
-Consigliamo di utilizzare [Appium](https://appium.io/) per facilitare questi tipi di test. Puoi ottenere una panoramica su Appium nella loro [pagina di documentazione ufficiale](https://appium.io/docs/en/2.0/intro/).
+Consigliamo di utilizzare [Appium](https://appium.io/) per facilitare questi tipi di test. Puoi ottenere una panoramica su Appium nella loro [pagina ufficiale della documentazione](https://appium.io/docs/en/2.0/intro/).
 
-Configurare l'ambiente corretto non è semplice. Fortunatamente, l'ecosistema Appium dispone di ottimi strumenti per aiutarti. Per configurare uno degli ambienti sopra citati, esegui semplicemente:
+Configurare l'ambiente giusto non è semplice. Fortunatamente, l'ecosistema di Appium dispone di ottimi strumenti per aiutarti. Per configurare uno degli ambienti sopra indicati, esegui semplicemente:
 
 ```sh
 $ npx appium-installer

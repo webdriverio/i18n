@@ -25,4 +25,4 @@ it('should return browser window size', async () => {
 ##### Restituisce
 
 - **&lt;Object&gt;**
-            **<code><var>return</var></code>:**  `{ x, y, width, height }` per W3C o `{ width, height }` per browser non W3C
+            **<code><var>return</var></code>:**  `{ x, y, width, height }` per browser W3C o `{ width, height }` per browser non W3C

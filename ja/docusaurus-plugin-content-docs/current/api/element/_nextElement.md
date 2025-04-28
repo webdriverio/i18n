@@ -4,9 +4,9 @@ title: 次の要素
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/nextElement.ts
 ---
 
-選択したDOM要素の次の兄弟要素を返します。
+選択されたDOM要素の次の兄弟要素を返します。
 
-##### 使い方
+##### 使用方法
 
 ```js
 $(selector).nextElement()

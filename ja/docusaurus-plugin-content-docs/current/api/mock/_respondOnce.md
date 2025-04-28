@@ -1,10 +1,10 @@
 ---
 id: respondOnce
-title: respondOnce（一度だけ応答）
+title: respondOnce
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/respondOnce.ts
 ---
 
-与えられた上書きで一度だけ応答します。`respondOnce`を連続して複数回呼び出すことができ、最後に定義した応答から開始されます。`respondOnce`のみを使用し、リソースがモックが定義された回数以上に呼び出された場合は、元のリソースにデフォルト戻ります。
+指定された上書きで一度だけ応答します。`respondOnce`を複数回連続して呼び出すことができ、最後に定義した応答から始まります。`respondOnce`のみを使用し、リソースがモックが定義された回数以上に呼び出された場合は、元のリソースにデフォルト戻ります。
 
 ##### 使用法
 

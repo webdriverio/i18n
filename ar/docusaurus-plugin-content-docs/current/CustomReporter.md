@@ -1,13 +1,13 @@
 ---
 id: customreporter
-title: مُبلغ مخصص
+title: مراسل مخصص
 ---
 
-يمكنك كتابة تقرير مخصص خاص بك لمشغل اختبار WDIO يتناسب مع احتياجاتك. وهذا سهل!
+يمكنك كتابة مراسل مخصص لمشغّل اختبارات WDIO مصمم خصيصًا لاحتياجاتك. وهذا أمر سهل!
 
-كل ما عليك فعله هو إنشاء وحدة نود تَرِث من حزمة `@wdio/reporter`، بحيث يمكنها استقبال رسائل من الاختبار.
+كل ما عليك فعله هو إنشاء وحدة نمطية تَرِث من حزمة `@wdio/reporter`، حتى تتمكن من استقبال الرسائل من الاختبار.
 
-الإعداد الأساسي يجب أن يبدو مثل:
+الإعداد الأساسي يجب أن يبدو كالتالي:
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -15,7 +15,7 @@ import WDIOReporter from '@wdio/reporter'
 export default class CustomReporter extends WDIOReporter {
     constructor(options) {
         /*
-         * جعل المُبلغ يكتب إلى مجرى الإخراج بشكل افتراضي
+         * جعل المراسل يكتب إلى دفق الإخراج بشكل افتراضي
          */
         options = Object.assign(options, { stdout: true })
         super(options)
@@ -27,9 +27,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-لاستخدام هذا المُبلغ، كل ما عليك فعله هو تعيينه إلى خاصية `reporter` في التكوين الخاص بك.
+لاستخدام هذا المراسل، كل ما عليك فعله هو تعيينه إلى خاصية `reporter` في ملف التكوين الخاص بك.
 
-يجب أن يبدو ملف `wdio.conf.js` الخاص بك كما يلي:
+يجب أن يبدو ملف `wdio.conf.js` الخاص بك كالتالي:
 
 ```js
 import CustomReporter from './reporter/my.custom.reporter'
@@ -38,13 +38,13 @@ export const config = {
     // ...
     reporters: [
         /**
-         * استخدام فئة المُبلغ المستوردة
+         * استخدام فئة المراسل المستوردة
          */
         [CustomReporter, {
             someOption: 'foobar'
         }],
         /**
-         * استخدام المسار المطلق للمُبلغ
+         * استخدام المسار المطلق للمراسل
          */
         ['/path/to/reporter.js', {
             someOption: 'foobar'
@@ -54,15 +54,15 @@ export const config = {
 }
 ```
 
-يمكنك أيضًا نشر المُبلغ على NPM حتى يتمكن الجميع من استخدامه. قم بتسمية الحزمة مثل المُبلغين الآخرين `wdio-<reportername>-reporter` ، وقم بوضع علامات عليها بكلمات مفتاحية مثل `wdio` أو `wdio-reporter`.
+يمكنك أيضًا نشر المراسل على NPM حتى يتمكن الجميع من استخدامه. قم بتسمية الحزمة مثل المراسلين الآخرين `wdio-<reportername>-reporter`، وضع العلامات عليها بكلمات مفتاحية مثل `wdio` أو `wdio-reporter`.
 
 ## معالج الأحداث
 
-يمكنك تسجيل معالج حدث للعديد من الأحداث التي يتم تشغيلها أثناء الاختبار. ستتلقى جميع المعالجات التالية البيانات مع معلومات مفيدة حول الحالة والتقدم الحاليين.
+يمكنك تسجيل معالج أحداث للعديد من الأحداث التي يتم إطلاقها أثناء الاختبار. ستتلقى جميع المعالجات التالية حمولات مع معلومات مفيدة عن الحالة والتقدم الحالي.
 
-تعتمد بنية كائنات البيانات هذه على الحدث، وهي موحدة عبر الأطر (Mocha وJasmine وCucumber). بمجرد تنفيذ مُبلغ مخصص، يجب أن يعمل لجميع الأطر.
+تعتمد بنية كائنات الحمولة هذه على الحدث، وهي موحدة عبر أطر العمل (Mocha و Jasmine و Cucumber). بمجرد تنفيذ مراسل مخصص، يجب أن يعمل لجميع أطر العمل.
 
-تحتوي القائمة التالية على جميع الطرق الممكنة التي يمكنك إضافتها إلى فئة المُبلغ الخاصة بك:
+تحتوي القائمة التالية على جميع الطرق الممكنة التي يمكنك إضافتها إلى فئة المراسل الخاصة بك:
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -84,9 +84,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-أسماء الطرق واضحة للغاية.
+أسماء الطرق واضحة بذاتها.
 
-لطباعة شيء ما في حدث معين، استخدم طريقة `this.write(...)`، التي توفرها فئة `WDIOReporter` الأصلية. إما أن تقوم بتدفق المحتوى إلى `stdout` أو إلى ملف سجل (اعتمادًا على خيارات المُبلغ).
+لطباعة شيء ما عند حدث معين، استخدم طريقة `this.write(...)`، التي توفرها فئة `WDIOReporter` الأصلية. فهي إما تنقل المحتوى إلى `stdout`، أو إلى ملف سجل (حسب خيارات المراسل).
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -100,13 +100,13 @@ export default class CustomReporter extends WDIOReporter {
 
 لاحظ أنه لا يمكنك تأجيل تنفيذ الاختبار بأي شكل من الأشكال.
 
-يجب أن تنفذ جميع معالجات الأحداث الإجراءات المتزامنة (أو ستواجه حالات سباق).
+يجب أن تنفذ جميع معالجات الأحداث إجراءات متزامنة (وإلا ستواجه حالات تنافس).
 
-تأكد من التحقق من [قسم الأمثلة](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) حيث يمكنك العثور على مثال لمُبلغ مخصص يطبع اسم الحدث لكل حدث.
+تأكد من الاطلاع على [قسم الأمثلة](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) حيث يمكنك العثور على مثال لمراسل مخصص يطبع اسم الحدث لكل حدث.
 
-إذا قمت بتنفيذ مُبلغ مخصص يمكن أن يكون مفيدًا للمجتمع، فلا تتردد في إجراء طلب سحب حتى نتمكن من جعل المُبلغ متاحًا للجمهور!
+إذا قمت بتنفيذ مراسل مخصص يمكن أن يكون مفيدًا للمجتمع، فلا تتردد في إجراء طلب سحب حتى نتمكن من جعل المراسل متاحًا للجمهور!
 
-أيضًا، إذا قمت بتشغيل مشغل اختبار WDIO عبر واجهة `Launcher`، فلا يمكنك تطبيق مُبلغ مخصص كدالة كما يلي:
+أيضًا، إذا قمت بتشغيل مشغل اختبار WDIO عبر واجهة `Launcher`، فلا يمكنك تطبيق مراسل مخصص كدالة على النحو التالي:
 
 ```js
 import Launcher from '@wdio/cli'
@@ -119,9 +119,9 @@ const launcher = new Launcher('/path/to/config.file.js', {
 })
 ```
 
-## انتظر حتى `isSynchronised`
+## الانتظار حتى `isSynchronised`
 
-إذا كان المُبلغ الخاص بك يحتاج إلى تنفيذ عمليات غير متزامنة للإبلاغ عن البيانات (مثل تحميل ملفات السجل أو الأصول الأخرى)، يمكنك الكتابة فوق طريقة `isSynchronised` في المُبلغ المخصص الخاص بك للسماح لمشغل WebdriverIO بالانتظار حتى تكون قد حسبت كل شيء. يمكن رؤية مثال على هذا في [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
+إذا كان المراسل الخاص بك يحتاج إلى تنفيذ عمليات غير متزامنة للإبلاغ عن البيانات (على سبيل المثال، تحميل ملفات السجل أو الأصول الأخرى)، يمكنك تجاوز طريقة `isSynchronised` في المراسل المخصص الخاص بك للسماح لمشغل WebdriverIO بالانتظار حتى تنتهي من حساب كل شيء. يمكن رؤية مثال على ذلك في [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
 
 ```js
 export default class SumoLogicReporter extends WDIOReporter {
@@ -133,7 +133,7 @@ export default class SumoLogicReporter extends WDIOReporter {
     }
 
     /**
-     * الكتابة فوق طريقة isSynchronised
+     * تجاوز طريقة isSynchronised
      */
     get isSynchronised () {
         return this.unsynced.length === 0
@@ -151,7 +151,7 @@ export default class SumoLogicReporter extends WDIOReporter {
         }, (err, resp) => {
             // ...
             /**
-             * إزالة السجلات المنقولة من دلو السجل
+             * إزالة السجلات المنقولة من سلة السجلات
              */
             this.unsynced.splice(0, MAX_LINES)
             // ...
@@ -162,16 +162,16 @@ export default class SumoLogicReporter extends WDIOReporter {
 
 بهذه الطريقة سينتظر المشغل حتى يتم تحميل جميع معلومات السجل.
 
-## نشر المُبلغ على NPM
+## نشر المراسل على NPM
 
-لجعل المُبلغ أسهل في الاستهلاك والاكتشاف من قبل مجتمع WebdriverIO، يرجى اتباع هذه التوصيات:
+لجعل المراسل أسهل للاستخدام والاكتشاف من قبل مجتمع WebdriverIO، يرجى اتباع هذه التوصيات:
 
 * يجب أن تستخدم الخدمات اتفاقية التسمية هذه: `wdio-*-reporter`
-* استخدم كلمات مفتاحية NPM: `wdio-plugin`، `wdio-reporter`
-* يجب أن يقوم إدخال `main` بـ`export` مثيل المُبلغ
-* مثال على المُبلغ: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
+* استخدم كلمات NPM المفتاحية: `wdio-plugin` و `wdio-reporter`
+* يجب أن يقوم إدخال `main` بتصدير مثيل المراسل
+* مثال على المراسل: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
-يسمح اتباع نمط التسمية الموصى به بإضافة الخدمات حسب الاسم:
+اتباع نمط التسمية الموصى به يسمح بإضافة الخدمات بالاسم:
 
 ```js
 // إضافة wdio-custom-reporter
@@ -182,11 +182,11 @@ export const config = {
 }
 ```
 
-### إضافة الخدمة المنشورة إلى WDIO CLI والتوثيق
+### إضافة الخدمة المنشورة إلى واجهة سطر أوامر WDIO والوثائق
 
-نحن نقدر حقًا كل إضافة جديدة يمكن أن تساعد الآخرين على إجراء اختبارات أفضل! إذا قمت بإنشاء مثل هذه الإضافة، فيرجى التفكير في إضافتها إلى واجهة سطر الأوامر (CLI) والمستندات الخاصة بنا لتسهيل العثور عليها.
+نحن نقدر حقًا كل مكون إضافي جديد يمكن أن يساعد الآخرين على إجراء اختبارات أفضل! إذا كنت قد أنشأت مثل هذا المكون الإضافي، فيرجى التفكير في إضافته إلى واجهة سطر الأوامر والوثائق الخاصة بنا لجعله أسهل في العثور عليه.
 
-يرجى تقديم طلب سحب مع التغييرات التالية:
+يرجى رفع طلب سحب مع التغييرات التالية:
 
-- أضف خدمتك إلى قائمة [المُبلغين المدعومين](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) في وحدة CLI
-- تحسين [قائمة المُبلغين](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/reporters.json) لإضافة المستندات الخاصة بك إلى صفحة Webdriver.io الرسمية
+- أضف خدمتك إلى قائمة [المراسلين المدعومين](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) في وحدة واجهة سطر الأوامر
+- قم بتحسين [قائمة المراسلين](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/reporters.json) لإضافة وثائقك إلى صفحة Webdriver.io الرسمية

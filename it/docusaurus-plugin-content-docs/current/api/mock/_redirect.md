@@ -1,11 +1,11 @@
 ---
 id: redirect
-title: reindirizzamento
+title: redirect
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/redirect.ts
 ---
 
-Configura un reindirizzamento per un determinato mock. Questo permette di reindirizzare una richiesta verso un altro URL.
-Nota: questi reindirizzamenti si applicano solo alle richieste effettuate da uno script nel browser, non quando si chiama il comando `url`.
+Configura un reindirizzamento per un determinato mock. Ciò consente di reindirizzare una richiesta a un altro URL.
+Nota: questi reindirizzamenti si applicano solo alle richieste effettuate da uno script nel browser, non quando si richiama il comando `url`.
 
 ##### Utilizzo
 

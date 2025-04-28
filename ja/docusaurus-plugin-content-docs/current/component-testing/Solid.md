@@ -3,11 +3,11 @@ id: solid
 title: SolidJS
 ---
 
-[SolidJS](https://www.solidjs.com/)はシンプルで高性能な反応性を備えたユーザーインターフェースを構築するためのフレームワークです。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザで直接SolidJSコンポーネントをテストできます。
+[SolidJS](https://www.solidjs.com/)は、シンプルで高性能な反応性を備えたユーザーインターフェースを構築するためのフレームワークです。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザでSolidJSコンポーネントを直接テストできます。
 
 ## セットアップ
 
-SolidJSプロジェクト内でWebdriverIOをセットアップするには、コンポーネントテストのドキュメントにある[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`solid`を選択してください：
+SolidJSプロジェクト内でWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`solid`を選択してください。例：
 
 ```js
 // wdio.conf.js
@@ -22,7 +22,7 @@ export const config = {
 
 :::info
 
-すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、`vite.config.ts`の設定をWebdriverIO設定内で再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
+すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、WebdriverIO設定内で`vite.config.ts`の設定を再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
 
 :::
 
@@ -61,7 +61,7 @@ function App() {
 export default App
 ```
 
-テストでは、`solid-js/web`から`render`メソッドを使用してコンポーネントをテストページに取り付けます。コンポーネントとのインタラクションには、実際のユーザー操作に近い動作をするWebdriverIOコマンドの使用をお勧めします：
+テストでは、`solid-js/web`の`render`メソッドを使用してコンポーネントをテストページに取り付けます。コンポーネントを操作するには、実際のユーザーの操作に近い動作をするWebdriverIOコマンドを使用することをお勧めします：
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -94,4 +94,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-SolidJSのWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite)で確認できます。
+WebdriverIOコンポーネントテストスイートのSolidJSの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite)で確認できます。

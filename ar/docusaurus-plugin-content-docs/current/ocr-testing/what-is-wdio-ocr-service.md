@@ -1,39 +1,40 @@
 ---
 id: ocr-testing
-title: OCR Testing
+title: اختبار OCR
 ---
 
-Automated testing on mobile native apps and desktop sites can be particularly challenging when dealing with elements that lack unique identifiers. Standard [WebdriverIO selectors](https://webdriver.io/docs/selectors) may not always help you. Enter the world of the `@wdio/ocr-service`, a powerful service that leverages OCR ([Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition)) to search, wait for, and interact with on-screen elements based on their **visible text**.
+يمكن أن يكون الاختبار الآلي على تطبيقات الجوال الأصلية ومواقع سطح المكتب تحديًا صعبًا بشكل خاص عند التعامل مع العناصر التي تفتقر إلى معرفات فريدة. قد لا تساعدك دائمًا [محددات WebdriverIO](https://webdriver.io/docs/selectors) القياسية. أدخل عالم خدمة `@wdio/ocr-service`، وهي خدمة قوية تستفيد من تقنية OCR ([التعرف البصري على الأحرف](https://en.wikipedia.org/wiki/Optical_character_recognition)) للبحث والانتظار والتفاعل مع العناصر الموجودة على الشاشة بناءً على **النص المرئي** الخاص بها.
 
-The following custom commands will be provided and added to the `browser/driver` object so you will get the right toolset to do your job.
+سيتم توفير الأوامر المخصصة التالية وإضافتها إلى كائن `browser/driver` حتى تحصل على مجموعة الأدوات المناسبة للقيام بعملك.
 
-- [`await browser.ocrGetText`](./ocr-get-text.md)
-- [`await browser.ocrGetElementPositionByText`](./ocr-get-element-position-by-text.md)
-- [`await browser.ocrWaitForTextDisplayed`](./ocr-wait-for-text-displayed.md)
-- [`await browser.ocrClickOnText`](./ocr-click-on-text.md)
-- [`await browser.ocrSetValue`](./ocr-set-value.md)
+-   [`await browser.ocrGetText`](./ocr-get-text.md)
+-   [`await browser.ocrGetElementPositionByText`](./ocr-get-element-position-by-text.md)
+-   [`await browser.ocrWaitForTextDisplayed`](./ocr-wait-for-text-displayed.md)
+-   [`await browser.ocrClickOnText`](./ocr-click-on-text.md)
+-   [`await browser.ocrSetValue`](./ocr-set-value.md)
 
-### How does it work
+### كيف تعمل
 
-This service will
+ستقوم هذه الخدمة بـ
 
-1. create a screenshot of your screen/device. (If needed you can provide a haystack, which can be an element or a rectangle object, to pinpoint a specific area. See the documentation for each command.)
-2. optimize the result for OCR by turning the screenshot into black/white with a high contrast screenshot (the high contrast is needed to prevent a lot of image background noise. This can be customized per command.)
-3. uses [Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition) from [Tesseract.js](https://github.com/naptha/tesseract.js)/[Tesseract](https://github.com/tesseract-ocr/tesseract) to get all text from the screen and highlight all found text on an image. It can support several languages which can be found [here.](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html)
-4. uses Fuzzy Logic from [Fuse.js](https://fusejs.io/) to find strings that are _approximately equal_ to a given pattern (rather than exactly). This means for example that the search value `Username` can also find the text `Usename` or vice versa.
-5. Provide a cli wizzard (`npx ocr-service`) to validate your images and retrieve text through your terminal
+1. إنشاء لقطة شاشة لشاشتك/جهازك. (إذا لزم الأمر، يمكنك توفير مجال البحث، والذي يمكن أن يكون عنصرًا أو كائن مستطيل، لتحديد منطقة معينة. راجع وثائق كل أمر.)
+1. تحسين النتيجة لـ OCR من خلال تحويل لقطة الشاشة إلى أبيض/أسود مع لقطة شاشة عالية التباين (التباين العالي مطلوب لمنع الكثير من ضوضاء خلفية الصورة. يمكن تخصيص هذا لكل أمر.)
+1. تستخدم [التعرف البصري على الأحرف](https://en.wikipedia.org/wiki/Optical_character_recognition) من [Tesseract.js](https://github.com/naptha/tesseract.js)/[Tesseract](https://github.com/tesseract-ocr/tesseract) للحصول على جميع النصوص من الشاشة وتسليط الضوء على جميع النصوص الموجودة في الصورة. يمكنها دعم عدة لغات يمكن العثور عليها [هنا.](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html)
+1. تستخدم المنطق الضبابي من [Fuse.js](https://fusejs.io/) للعثور على السلاسل التي تكون _متساوية تقريبًا_ مع نمط معين (بدلاً من المطابقة الدقيقة). هذا يعني على سبيل المثال أن قيمة البحث `Username` يمكن أن تجد أيضًا النص `Usename` أو العكس.
+1. توفير معالج واجهة سطر الأوامر (`npx ocr-service`) للتحقق من صورك واسترجاع النص من خلال طرفية الأوامر الخاصة بك
 
-An example of steps 1, 2 and 3 can be found in this image
+يمكن العثور على مثال للخطوات 1 و2 و3 في هذه الصورة
 
-![Process steps](/img/ocr/processing-steps.jpg)
+![خطوات المعالجة](/img/ocr/processing-steps.jpg)
 
-It works with **ZERO** system dependencies (besides what WebdriverIO uses), but if needed it can also work with a local installation from [Tesseract](https://tesseract-ocr.github.io/tessdoc/) which will reduce the execution time drastically! (See also the [Test Execution Optimization](#test-execution-optimization) on how to speed up your tests.)
+تعمل مع **صفر** من تبعيات النظام (بخلاف ما يستخدمه WebdriverIO)، ولكن إذا لزم الأمر، يمكنها أيضًا العمل مع تثبيت محلي من [Tesseract](https://tesseract-ocr.github.io/tessdoc/) مما سيقلل من وقت التنفيذ بشكل كبير! (انظر أيضًا [تحسين تنفيذ الاختبار](#test-execution-optimization) حول كيفية تسريع اختباراتك.)
 
-Enthusiastic? Start using it today by following the [Getting Started](./getting-started) guide.
+متحمس؟ ابدأ استخدامها اليوم باتباع دليل [البدء](./getting-started).
 
-:::caution Important
+:::caution هام
+هناك مجموعة متنوعة من الأسباب التي قد لا تحصل فيها على مخرجات ذات جودة جيدة من Tesseract. أحد أكبر الأسباب التي قد تكون مرتبطة بتطبيقك وهذه الوحدة قد يكون حقيقة أنه لا يوجد تمييز مناسب في اللون بين النص الذي يحتاج إلى العثور عليه والخلفية. على سبيل المثال، يمكن _بسهولة_ العثور على النص الأبيض على خلفية داكنة، ولكن النص الفاتح على خلفية بيضاء أو النص الداكن على خلفية داكنة يصعب العثور عليه.
 
-See also [this page](https://tesseract-ocr.github.io/tessdoc/ImproveQuality) for more information from Tesseract.
+راجع أيضًا [هذه الصفحة](https://tesseract-ocr.github.io/tessdoc/ImproveQuality) لمزيد من المعلومات من Tesseract.
 
-Also don't forget to read the [FAQ](./ocr-faq).
+ولا تنس قراءة [الأسئلة الشائعة](./ocr-faq).
 :::

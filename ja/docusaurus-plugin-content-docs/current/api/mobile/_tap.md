@@ -1,32 +1,28 @@
 ---
 id: tap
-title: tap
+title: tap（タップ）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/tap.ts
 ---
 
-以下の操作でタップジェスチャーを実行します：
+タップジェスチャーを実行します：
 - 指定された要素に対して。要素が見つからない場合は**自動的にスクロール**します。
-- またはモバイルデバイスの画面上で`x`と`y`座標を提供することによって
+- または、`x`と`y`座標を提供することで、モバイルデバイスの画面上でタップします。
 
-内部的には以下を使用しています：
-- 要素のタップ：
+内部的には次のものを使用します：
+- 要素タップ：
      - Webブラウザ環境（Chrome/Safariブラウザ、またはハイブリッドアプリ）では`click`コマンド
-     - ネイティブアプリでは、Android [`mobile: clickGesture`](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-clickgesture)
-またはiOS [`mobile: tap`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-tap)を使用し、自動スクロール用の`scrollIntoView`
-コマンドも含みます
+     - ネイティブアプリでは、Android用の[`mobile: clickGesture`](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-clickgesture)またはiOS用の[`mobile: tap`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-tap)を使用し、自動スクロール用の`scrollIntoView`コマンドを含みます
 - 画面タップ：
      - Webブラウザ環境（Chrome/Safariブラウザ、またはハイブリッドアプリ）では`action`コマンド
-     - ネイティブアプリでは、Android [`mobile: clickGesture`](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-clickgesture)
-またはiOS [`mobile: tap`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-tap)
+     - ネイティブアプリでは、Android用の[`mobile: clickGesture`](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-clickgesture)またはiOS用の[`mobile: tap`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-tap)
 
 この違いにより、モバイルアプリでは`tap`コマンドは`click`コマンドよりも信頼性の高い代替手段となります。
 
-ネイティブアプリの場合、このコマンドは`click`コマンドとは異なり、`scrollIntoView`コマンドを使用して要素に<strong>自動的にスワイプ</strong>します。
-これはネイティブアプリの`click`コマンドではサポートされていません。ハイブリッドアプリやWeb環境では、自動スクロールは`click`と`tap`コマンドの両方でサポートされています。
+ネイティブアプリの場合、このコマンドは`click`コマンドと異なり、`scrollIntoView`コマンドを使用して要素に<strong>自動的にスワイプ</strong>します。これはネイティブアプリの`click`コマンドではサポートされていません。ハイブリッドアプリまたはWeb環境では、自動スクロールは`click`と`tap`の両方のコマンドでサポートされています。
 
 :::info
 
-このコマンドは以下の最新コンポーネントでのみ動作します：
+このコマンドは、以下の最新コンポーネントでのみ動作します：
  - Appiumサーバー（バージョン2.0.0以上）
  - `appium-uiautomator2-driver`（Android用）
  - `appium-xcuitest-driver`（iOS用）
@@ -37,11 +33,8 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::caution 画面タップについて
 
-画面上の特定の座標をタップしたい場合で、スクリーンショットを使用して座標を決定する場合は、
-iOSの座標はスクリーンショットのサイズではなく、デバイスの画面サイズに基づいていることに注意してください。スクリーンショットのサイズはデバイスのピクセル比率により大きくなります。
-iPhone 8までの平均的なデバイスピクセル比率と現在のiPadは2、iPhone XからのiPhoneでは比率は3です。つまり、スクリーンショットのサイズは
-デバイスの画面サイズの2倍または3倍大きいということを意味します。スクリーンショット上で座標を見つけた場合は、デバイスピクセル
-比率で割って正確な画面座標を取得してください。例えば：
+画面上の特定の座標をタップしたい場合で、スクリーンショットを使用して座標を決定する場合、iOSの座標はデバイスの画面サイズに基づいており、スクリーンショットのサイズではないことに注意してください。スクリーンショットのサイズはデバイスのピクセル比率のために大きくなっています。
+iPhone 8までと現在のiPadの平均デバイスピクセル比率は2、iPhone XからのiPhoneの比率は3です。つまり、スクリーンショットのサイズはデバイスの画面サイズの2倍または3倍であり、スクリーンショット上で座標を見つけた場合は、デバイスピクセル比率で割って正確な画面座標を取得する必要があります。例えば：
 
 ```js
 const screenshotCoordinates = { x: 600, y: 900 };
@@ -60,45 +53,45 @@ await browser.tap(screenCoordinates);
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`TapOptions`</td>
-      <td>タップオプション（任意）</td>
+      <td>タップオプション（オプション）</td>
     </tr>
     <tr>
               <td colspan="3"><strong>要素タップオプション</strong></td>
             </tr>
     <tr>
-      <td><code><var>options.x</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.x</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>数値（任意、yが設定されている場合は必須）<br /><strong>要素タップではなく画面タップのみ</strong></td>
+      <td>数値（オプション、yが設定されている場合は必須）<br /><strong>画面タップの場合のみ、要素タップでは使用しない</strong></td>
     </tr>
     <tr>
-      <td><code><var>options.y</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.y</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>数値（任意、xが設定されている場合は必須）<br /><strong>要素タップではなく画面タップのみ</strong></td>
+      <td>数値（オプション、xが設定されている場合は必須）<br /><strong>画面タップの場合のみ、要素タップでは使用しない</strong></td>
     </tr>
     <tr>
               <td colspan="3"><strong>画面タップオプション</strong></td>
             </tr>
     <tr>
-      <td><code><var>options.direction</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.direction</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`string`</td>
-      <td>`down`、`up`、`left`または`right`のいずれか、デフォルトは`down`です。<br /><strong>画面タップではなく要素タップのみ</strong><br /><strong>モバイルネイティブアプリのみ</strong></td>
+      <td>`down`、`up`、`left`、`right`のいずれか、デフォルトは`down`。<br /><strong>要素タップの場合のみ、画面タップでは使用しない</strong><br /><strong>モバイルネイティブアプリのみ</strong></td>
     </tr>
     <tr>
-      <td><code><var>options.maxScrolls</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.maxScrolls</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>要素の検索を中止するまでの最大スクロール回数、デフォルトは`10`です。<br /><strong>画面タップではなく要素タップのみ</strong><br /><strong>モバイルネイティブアプリのみ</strong></td>
+      <td>要素の検索を停止するまでの最大スクロール回数、デフォルトは`10`。<br /><strong>要素タップの場合のみ、画面タップでは使用しない</strong><br /><strong>モバイルネイティブアプリのみ</strong></td>
     </tr>
     <tr>
-      <td><code><var>options.scrollableElement</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.scrollableElement</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Element`</td>
-      <td>スクロールに使用する要素。要素が提供されない場合、iOSでは`-ios predicate string:type == "XCUIElementTypeApplication"`、Androidでは`//android.widget.ScrollView'`をデフォルトセレクタとして使用します。デフォルトセレクタに複数の要素が一致する場合は、デフォルトで最初に一致する要素を選択します。<br /><strong>画面タップではなく要素タップのみ</strong><br /><strong>モバイルネイティブアプリのみ</strong></td>
+      <td>スクロールに使用される要素。要素が提供されない場合、iOSでは`-ios predicate string:type == "XCUIElementTypeApplication"`、Androidでは`//android.widget.ScrollView'`というセレクタが使用されます。デフォルトのセレクタに複数の要素が一致する場合、デフォルトでは最初に一致する要素が選択されます。<br /><strong>要素タップの場合のみ、画面タップでは使用しない</strong><br /><strong>モバイルネイティブアプリのみ</strong></td>
     </tr>
   </tbody>
 </table>
@@ -108,7 +101,7 @@ await browser.tap(screenCoordinates);
 ```js title="element.tap.example.js"
 it('should be able to tap an on element', async () => {
     const elem = $('~myElement')
-    // 要素がビューポート内にない場合、自動的にスクロールします
+    // 要素がすでにビューポート内にない場合は自動的にスクロールします
     await elem.tap()
 })
 
@@ -117,7 +110,7 @@ it('should be able to tap an on element', async () => {
 ```js title="element.tap.scroll.options.example.js"
 it('should be able to swipe right 3 times in a custom scroll areas to an element and tap on the element', async () => {
     const elem = $('~myElement')
-    // カスタムスクロール可能要素内で右に3回スワイプして要素を見つける
+    // カスタムスクロール可能な要素内で右に3回スワイプして要素を見つける
     await elem.tap({
         direction: 'right',
         maxScrolls: 3,

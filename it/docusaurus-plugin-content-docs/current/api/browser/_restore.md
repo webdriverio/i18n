@@ -1,6 +1,6 @@
 ---
 id: restore
-title: restore
+title: ripristina
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/restore.ts
 ---
 

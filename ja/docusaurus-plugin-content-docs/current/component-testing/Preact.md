@@ -3,11 +3,11 @@ id: preact
 title: Preact
 ---
 
-[Preact](https://preactjs.com/)はReactの高速な3kB代替品で、同じ最新のAPIを持っています。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザでPreactコンポーネントを直接テストできます。
+[Preact](https://preactjs.com/)は、同じ最新のAPIを持つReactの高速な3kB代替品です。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザで直接Preactコンポーネントをテストできます。
 
 ## セットアップ
 
-WebdriverIOをPreactプロジェクト内にセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`preact`を選択していることを確認してください。例：
+PreactプロジェクトでWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`preact`を選択してください。例：
 
 ```js
 // wdio.conf.js
@@ -22,17 +22,17 @@ export const config = {
 
 :::info
 
-すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、`vite.config.ts`の設定をWebdriverIO設定内で再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
+すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、WebdriverIO設定内で`vite.config.ts`の設定を再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
 
 :::
 
-Preactプリセットには`@preact/preset-vite`のインストールが必要です。また、コンポーネントをテストページにレンダリングするために[Testing Library](https://testing-library.com/)の使用をお勧めします。そのために、以下の追加依存関係をインストールする必要があります：
+Preactプリセットでは`@preact/preset-vite`のインストールが必要です。また、コンポーネントをテストページにレンダリングするために[Testing Library](https://testing-library.com/)の使用をお勧めします。そのため、以下の追加依存関係をインストールする必要があります：
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
 ```
 
-次のコマンドを実行してテストを開始できます：
+その後、以下のコマンドでテストを開始できます：
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -64,7 +64,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-テストでは、`@testing-library/preact`から`render`メソッドを使用して、コンポーネントをテストページに接続します。コンポーネントと対話するには、実際のユーザー操作に近い動作をするWebdriverIOコマンドの使用をお勧めします。例：
+テストでは、`@testing-library/preact`の`render`メソッドを使用して、コンポーネントをテストページに追加します。コンポーネントと対話するには、実際のユーザー操作により近い動作をするWebdriverIOコマンドの使用をお勧めします：
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'
@@ -84,4 +84,4 @@ describe('Preact Component Testing', () => {
 })
 ```
 
-WebdriverIOコンポーネントテストスイートのPreact用の完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite)で確認できます。
+WebdriverIOのPreact用コンポーネントテストスイートの完全な例は、当社の[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite)で確認できます。

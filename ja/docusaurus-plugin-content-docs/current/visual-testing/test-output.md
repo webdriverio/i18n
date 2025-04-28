@@ -5,7 +5,7 @@ title: テスト出力
 
 :::info
 
-[このWebdriverIO](https://guinea-pig.webdriver.io/image-compare.html)デモサイトは、画像出力の例として使用されています。
+例示の画像出力には[このWebdriverIO](https://guinea-pig.webdriver.io/image-compare.html)デモサイトが使用されています。
 
 :::
 
@@ -32,7 +32,7 @@ export const config = {
 }
 ```
 
-[サービスオプション](./service-options#enablelayouttesting)の画像出力は[メソッド](./method-options)と同じです。以下をご覧ください。
+[サービスオプション](./service-options#enablelayouttesting)の画像出力は[メソッド](./method-options)と同じです。以下を参照してください。
 
 ### 画像出力
 
@@ -97,7 +97,7 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 
 ### コンソール出力
 
-`save(Screen/Element/FullPageScreen)`メソッドは、実行後に以下の情報を提供します：
+`save(Screen/Element/FullPageScreen)`メソッドは、実行後に次の情報を提供します：
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
@@ -106,7 +106,7 @@ console.log(saveResults)
  * {
  *   // 実行されたインスタンスのデバイスピクセル比
  *   devicePixelRatio: 1,
- *   // フォーマットされたファイル名、これはオプションの`formatImageName`に依存します
+ *   // フォーマットされたファイル名、これは`formatImageName`オプションに依存します
  *   fileName: "examplePage-chrome-latest-1366x768.png",
  *   // 実際のスクリーンショットファイルが見つかるパス
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
@@ -177,7 +177,7 @@ await browser.saveScreen("example-page-tag")
 <TabItem value="ios">
 
 :::info ヒント
-iOS `saveScreen`の実行では、デフォルトでデバイスベゼルコーナーは表示されません。これを表示するには、サービスをインスタンス化するときに`addIOSBezelCorners:true`オプションを追加してください。[こちら](./service-options#addiosbezelcorners)をご覧ください。
+iOS `saveScreen`の実行では、デフォルトではデバイスのベゼルコーナーは含まれません。これを含めるには、サービスをインスタンス化するときに`addIOSBezelCorners:true`オプションを追加してください。[こちら](./service-options#addiosbezelcorners)を参照してください。
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,14 +216,14 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### コンソール出力
 
-デフォルトでは、`check(Screen/Element/FullPageScreen)`メソッドは`1.23`のような不一致パーセンテージのみを提供しますが、プラグインに`returnAllCompareData: true`オプションが設定されている場合、メソッド実行後に以下の情報が提供されます：
+デフォルトでは、`check(Screen/Element/FullPageScreen)`メソッドは`1.23`のように不一致率のみを提供しますが、プラグインに`returnAllCompareData: true`オプションがある場合、メソッド実行後に以下の情報が提供されます：
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // フォーマットされたファイル名、これはオプションの`formatImageName`に依存します
+ *     // フォーマットされたファイル名、これは`formatImageName`オプションに依存します
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
  *         // 実際のフォルダとファイル名
@@ -231,11 +231,11 @@ console.log(checkResult)
  *         // ベースラインフォルダとファイル名
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // 以下のフォルダはオプションであり、不一致がある場合のみ存在します
+ *         // 以下のフォルダはオプションで、不一致がある場合のみ存在します
  *         // 差分を保持するフォルダとファイル名
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
- *     // 不一致パーセンテージ
+ *     // 不一致率
  *     misMatchPercentage: 2.34,
  * };
  */
@@ -244,7 +244,7 @@ console.log(checkResult)
 ### 画像出力
 
 :::info
-以下の画像はチェックコマンドを実行した結果の差分のみを表示します。ブラウザでの差分のみが表示されますが、AndroidとiOSの出力も同じです。
+以下の画像はチェックコマンドを実行した結果の差分のみを表示します。ブラウザでの差分のみが表示されていますが、AndroidとiOSの出力も同じです。
 :::
 
 <Tabs
@@ -262,7 +262,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-ボタンテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
+ボタンのテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +275,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-ボタンテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
+ボタンのテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +289,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-ボタンテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
+ボタンのテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -300,7 +300,7 @@ await browser.checkFullPageScreen("full-page-tag")
 
 ## ブロックアウト
 
-以下は、Android NativeWebScreenshotとiOSでのブロックアウトの例出力で、ステータス+アドレスバーとツールバーがブロックアウトされています。
+ここでは、AndroidのNativeWebScreenshotとiOSでステータス+アドレスバーとツールバーがブロックアウトされている例の出力を見ることができます。
 
 <Tabs
     defaultValue="nativeWebScreenshot"

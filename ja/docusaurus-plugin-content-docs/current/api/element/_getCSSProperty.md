@@ -4,11 +4,16 @@ title: getCSSProperty
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getCSSProperty.ts
 ---
 
-指定されたセレクタで選択されたDOM要素からCSSプロパティを取得します。戻り値はテスト可能なようにフォーマットされています。色は[rgb2hex](https://www.npmjs.org/package/rgb2hex)を通じて解析され、その他のプロパティはすべて[css-value](https://www.npmjs.org/package/css-value)を通じて解析されます。
+指定されたセレクタで選択されたDOM要素からCSSプロパティを取得します。戻り値は
+テスト可能な形式にフォーマットされます。色は[rgb2hex](https://www.npmjs.org/package/rgb2hex)を介して解析され、
+その他のすべてのプロパティは[css-value](https://www.npmjs.org/package/css-value)を介して解析されます。
 
 :::info
 
-ショートハンドCSSプロパティ（例：`background`、`font`、`border`、`margin`、`padding`、`list-style`、`outline`、`pause`、`cue`）は展開され、すべてのロングハンドプロパティを取得するために複数のWebDriverコールが発生します。特定のロングハンドプロパティに興味がある場合は、代わりにそのプロパティを直接照会することをお勧めします。
+短縮形のCSSプロパティ（例：`background`、`font`、`border`、`margin`、
+`padding`、`list-style`、`outline`、`pause`、`cue`）は展開され、複数のWebDriverコールを
+引き起こす長形式のプロパティをすべて取得します。特定の長形式のプロパティに関心がある場合は、
+代わりにそれを直接クエリすることをお勧めします。
 
 :::
 
@@ -95,4 +100,4 @@ it('should demonstrate the getCSSProperty command', async () => {
 ##### 戻り値
 
 - **&lt;CSSProperty&gt;**
-            **<code><var>return</var></code>:**                  要素の指定されたCSS    
+            **<code><var>return</var></code>:**                  要素の指定されたCSSプロパティ

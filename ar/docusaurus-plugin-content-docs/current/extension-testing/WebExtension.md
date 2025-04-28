@@ -1,23 +1,23 @@
 ---
 id: web-extensions
-title: Web Extension Testing
+title: اختبار امتدادات الويب
 ---
 
-WebdriverIO is the ideal tool to automate a browser. Web Extensions are a part of the browser and can be automated in the same way. Whenever your web extension uses content scripts to run JavaScript on websites or offer a popup modal, you can run an e2e test for that using WebdriverIO.
+تعتبر WebdriverIO الأداة المثالية لأتمتة المتصفح. امتدادات الويب هي جزء من المتصفح ويمكن أتمتتها بنفس الطريقة. عندما يستخدم امتداد الويب الخاص بك النصوص البرمجية للمحتوى لتشغيل JavaScript على مواقع الويب أو تقديم نافذة منبثقة، يمكنك تشغيل اختبار e2e لذلك باستخدام WebdriverIO.
 
-## Loading a Web Extension into the Browser
+## تحميل امتداد الويب إلى المتصفح
 
-As a first step we have to load the extension under test into the browser as part of our session. This works differently for Chrome and Firefox.
+كخطوة أولى، علينا تحميل الامتداد المراد اختباره في المتصفح كجزء من جلستنا. يعمل هذا بشكل مختلف في Chrome و Firefox.
 
 :::info
 
-These docs leave out Safari web extensions as their support for it is way behind and user demand not high. If you are building a web extension for Safari, please [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) and collaborate on including it here as well.
+تستثني هذه الوثائق امتدادات Safari لأن دعمها متأخر كثيرًا والطلب عليها ليس مرتفعًا. إذا كنت تبني امتدادًا للويب لـ Safari، يرجى [رفع مشكلة](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) والتعاون على تضمينها هنا أيضًا.
 
 :::
 
 ### Chrome
 
-Loading a web extension in Chrome can be done through providing a `base64` encoded string of the `crx` file or by providing a path to the web extension folder. The easiest is just to do the latter by defining your Chrome capabilities as following:
+يمكن تحميل امتداد الويب في Chrome من خلال توفير سلسلة مشفرة بـ `base64` لملف `crx` أو عن طريق توفير مسار إلى مجلد امتدادات الويب. الأسهل هو القيام بالأخير من خلال تحديد إمكانيات Chrome الخاصة بك على النحو التالي:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -30,8 +30,8 @@ export const config = {
     capabilities: [{
         browserName,
         'goog:chromeOptions': {
-            // given your wdio.conf.js is in the root directory and your compiled
-            // web extension files are located in the `./dist` folder
+            // بافتراض أن ملف wdio.conf.js في الدليل الجذر وملفات امتداد الويب المجمعة
+            // موجودة في مجلد `./dist`
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -40,11 +40,11 @@ export const config = {
 
 :::info
 
-If you automate a different browser than Chrome, e.g. Brave, Edge or Opera, chances are that the browser option match with the example above, just using a different capability name, e.g. `ms:edgeOptions`.
+إذا كنت تقوم بأتمتة متصفح مختلف عن Chrome، مثل Brave أو Edge أو Opera، فمن المحتمل أن خيارات المتصفح تتطابق مع المثال أعلاه، فقط باستخدام اسم قدرة مختلف، مثل `ms:edgeOptions`.
 
 :::
 
-If you compile your extension as `.crx` file using e.g. the [crx](https://www.npmjs.com/package/crx) NPM package, you can also inject the bundled extension via:
+إذا قمت بتجميع الامتداد الخاص بك كملف `.crx` باستخدام، على سبيل المثال، حزمة [crx](https://www.npmjs.com/package/crx) من NPM، يمكنك أيضًا إضافة الامتداد المحزم عبر:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +67,7 @@ export const config = {
 
 ### Firefox
 
-To create a Firefox profile that includes extensions you can use the [Firefox Profile Service](/docs/firefox-profile-service) to set up your session accordingly. However you might run into issues where your local developed extension can't be loaded due to signing issues. In this case you can also load an extension in the `before` hook via the [`installAddOn`](/docs/api/gecko#installaddon) command, e.g.:
+لإنشاء ملف تعريف Firefox الذي يتضمن الامتدادات، يمكنك استخدام [خدمة ملف تعريف Firefox](/docs/firefox-profile-service) لإعداد الجلسة الخاصة بك وفقًا لذلك. ومع ذلك، قد تواجه مشاكل حيث لا يمكن تحميل امتدادك المطور محليًا بسبب مشاكل التوقيع. في هذه الحالة، يمكنك أيضًا تحميل امتداد في خطاف `before` عبر أمر [`installAddOn`](/docs/api/gecko#installaddon)، على سبيل المثال:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,21 +88,21 @@ export const config = {
 }
 ```
 
-In order to generate an `.xpi` file, it is recommended to use the [`web-ext`](https://www.npmjs.com/package/web-ext) NPM package. You can bundle your extension using the following example command:
+من أجل إنشاء ملف `.xpi`، يوصى باستخدام حزمة NPM [`web-ext`](https://www.npmjs.com/package/web-ext). يمكنك حزم الامتداد الخاص بك باستخدام الأمر المثال التالي:
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
-## Tips & Tricks
+## نصائح وحيل
 
-The following section contains a set useful tips and tricks that can be helpful when testing a web extension.
+يحتوي القسم التالي على مجموعة من النصائح والحيل المفيدة التي يمكن أن تساعد عند اختبار امتداد ويب.
 
-### Test Popup Modal in Chrome
+### اختبار النافذة المنبثقة في Chrome
 
-If you define a `default_popup` browser action entry in your [extension manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) you can test that HTML page directly, since clicking on the extension icon in the browser top bar won't work. Instead, you have to open the popup html file directly.
+إذا قمت بتحديد إدخال إجراء متصفح `default_popup` في [ملف التعريف الخاص بالامتداد](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) يمكنك اختبار صفحة HTML تلك مباشرة، لأن النقر على أيقونة الامتداد في شريط المتصفح العلوي لن يعمل. بدلاً من ذلك، يجب عليك فتح ملف HTML المنبثق مباشرة.
 
-In Chrome this works by retrieving the extension ID and opening the popup page through `browser.url('...')`. The behavior on that page will be the same as within the popup. To do so we recommend to write the following custom command:
+في Chrome، يعمل هذا عن طريق استرداد معرف الامتداد وفتح الصفحة المنبثقة من خلال `browser.url('...')`. سيكون السلوك على تلك الصفحة هو نفسه داخل النافذة المنبثقة. للقيام بذلك، نوصي بكتابة الأمر المخصص التالي:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -134,7 +134,7 @@ declare global {
 }
 ```
 
-In your `wdio.conf.js` you can import this file and register the custom command in your `before` hook, e.g.:
+في ملف `wdio.conf.js` الخاص بك، يمكنك استيراد هذا الملف وتسجيل الأمر المخصص في خطاف `before` الخاص بك، على سبيل المثال:
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'
@@ -149,7 +149,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Now, in your test, you can access the popup page via:
+الآن، في اختبارك، يمكنك الوصول إلى الصفحة المنبثقة عبر:
 
 ```ts
 await browser.openExtensionPopup('My Web Extension')

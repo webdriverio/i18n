@@ -9,7 +9,7 @@ Trascina un elemento verso un elemento o una posizione di destinazione.
 :::info
 
 La funzionalità di questo comando dipende fortemente dal modo in cui il drag and drop è
-implementato nella tua app. Se riscontri problemi, pubblica il tuo esempio
+implementato nella tua app. Se riscontri problemi, condividi il tuo esempio
 in [#4134](https://github.com/webdriverio/webdriverio/issues/4134).
 
 :::

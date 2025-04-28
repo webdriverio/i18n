@@ -4,7 +4,7 @@ title: url
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/url.ts
 ---
 
-Il comando `url` carica un URL nel browser. Se nella configurazione è specificato un baseUrl, questo verrà anteposto al parametro url usando il metodo url.resolve() di node. Chiamare `browser.url('...')` con lo stesso url dell'ultima volta provocherà un ricaricamento della pagina. Tuttavia, se l'url contiene un hash, il browser non avvierà una nuova navigazione e l'utente dovrà [ricaricare](/docs/api/webdriver#refresh) la pagina per avviarne una.
+Il comando `url` carica un URL nel browser. Se nella configurazione è specificato un baseUrl, questo verrà preposto al parametro url utilizzando il metodo url.resolve() di node. Chiamare `browser.url('...')` con lo stesso url dell'ultima volta provocherà un ricaricamento della pagina. Tuttavia, se l'url contiene un hash, il browser non attiverà una nuova navigazione e l'utente dovrà [aggiornare](/docs/api/webdriver#refresh) la pagina per attivarne una.
 
 Il comando restituisce un oggetto `WebdriverIO.Request` che contiene informazioni sulla richiesta e sui dati di risposta del caricamento della pagina:
 
@@ -42,13 +42,13 @@ interface WebdriverIO.Request {
 Il comando supporta le seguenti opzioni:
 
 ### wait
-Lo stato desiderato in cui la risorsa richiesta dovrebbe trovarsi prima di terminare il comando.
+Lo stato desiderato in cui dovrebbe trovarsi la risorsa richiesta prima di completare il comando.
 Supporta i seguenti stati:
 
- - `none`: nessuna attesa dopo che la richiesta della pagina è stata fatta e la risposta è stata ricevuta
- - `interactive`: attendere fino a quando la pagina è interattiva
- - `complete`: attendere fino a quando l'albero DOM della pagina è completamente caricato
- - `networkIdle`: attendere fino a quando non ci sono richieste di rete pendenti
+ - `none`: nessuna attesa dopo l'invio della richiesta di pagina e la ricezione della risposta
+ - `interactive`: attende finché la pagina non è interattiva
+ - `complete`: attende finché l'albero DOM della pagina non è completamente caricato
+ - `networkIdle`: attende finché non ci sono richieste di rete in sospeso
 
 ### headers
 
@@ -63,9 +63,9 @@ Nota: questo sovrascriverà l'intestazione `Authorization` esistente se fornita 
 
 ### timeout
 
-Se impostato su un numero, il comando attenderà la quantità specificata di millisecondi per il caricamento di tutte le risposte della pagina prima di restituire.
+Se impostato su un numero, il comando attenderà la quantità specificata di millisecondi affinché la pagina carichi tutte le risposte prima di restituire un risultato.
 
-Nota: affinché questo abbia effetto, è necessario che l'opzione `wait` sia impostata su `networkIdle`.
+Nota: perché questo abbia un impatto, è necessario che l'opzione `wait` sia impostata su `networkIdle`.
 
 __Default:__ `5000`
 
@@ -87,7 +87,7 @@ browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
     <tr>
       <td><code><var>url</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`string`</td>
-      <td>l'URL verso cui navigare</td>
+      <td>l'URL a cui navigare</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -97,17 +97,17 @@ browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
     <tr>
       <td><code><var>options.wait</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`'none', 'interactive', 'networkIdle', 'complete'`</td>
-      <td>Lo stato desiderato in cui la risorsa richiesta dovrebbe trovarsi prima di terminare il comando. Default: 'complete'</td>
+      <td>Lo stato desiderato in cui dovrebbe trovarsi la risorsa richiesta prima di completare il comando. Default: 'complete'</td>
     </tr>
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Se impostato su un numero, il comando attenderà la quantità specificata di millisecondi per il caricamento di tutte le risposte della pagina prima di restituire. Default: 5000</td>
+      <td>Se impostato su un numero, il comando attenderà la quantità specificata di millisecondi affinché la pagina carichi tutte le risposte prima di restituire un risultato. Default: 5000</td>
     </tr>
     <tr>
       <td><code><var>options.onBeforeLoad</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Function`</td>
-      <td>Una funzione che viene chiamata prima che la pagina abbia caricato tutte le sue risorse. Consente di simulare facilmente l'ambiente, ad esempio sovrascrivere le API Web che l'applicazione utilizza.</td>
+      <td>Una funzione che viene chiamata prima che la pagina abbia caricato tutte le sue risorse. Consente di simulare facilmente l'ambiente, ad esempio sovrascrivere le API Web utilizzate dall'applicazione.</td>
     </tr>
     <tr>
       <td><code><var>options.auth</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -185,4 +185,4 @@ await expect($('.battery-remaining')).toHaveText('01:00)
 ##### Restituisce
 
 - **&lt;WebdriverIO.Request&gt;**
-            **<code><var>returns</var></code>:**  un oggetto richiesta del caricamento della pagina con informazioni sui dati della richiesta e della risposta
+            **<code><var>returns</var></code>:**  un oggetto di richiesta del caricamento della pagina con informazioni sui dati della richiesta e della risposta

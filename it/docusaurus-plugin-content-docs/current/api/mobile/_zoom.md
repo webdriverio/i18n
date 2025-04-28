@@ -4,11 +4,11 @@ title: zoom
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/zoom.ts
 ---
 
-Esegue un gesto di zoom sull'elemento specificato sullo schermo.
+Esegue un gesto di zoom sull'elemento dato sullo schermo.
 
 :::info
 
-Lo zoom si basa su gesti mobili nativi. È supportato solo per i seguenti driver:
+Lo zoom si basa su gesti nativi per dispositivi mobili. È supportato solo per i seguenti driver:
 - [appium-uiautomator2-driver](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-pinchopengesture) per Android
 - [appium-xcuitest-driver](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-pinch) per iOS
 
@@ -44,12 +44,12 @@ $(selector).zoom({ duration, scale })
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>La durata in millisecondi di quanto velocemente lo zoom deve essere eseguito, minimo è 500 ms e massimo è 10000 ms. Il valore predefinito è 1500 ms (1,5 secondi) (opzionale)</td>
+      <td>La durata in millisecondi di quanto velocemente deve essere eseguito lo zoom, il minimo è 500 ms e il massimo è 10000 ms. Il valore predefinito è 1500 ms (1,5 secondi) (opzionale)</td>
     </tr>
     <tr>
       <td><code><var>options.scale</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>La scala di quanto grande deve essere lo zoom rispetto allo schermo. I valori validi devono essere numeri decimali nell'intervallo 0..1, dove 1.0 è 100% (opzionale)</td>
+      <td>La scala di quanto grande deve essere lo zoom rispetto allo schermo. I valori validi devono essere numeri in virgola mobile nell'intervallo 0..1, dove 1.0 è 100% (opzionale)</td>
     </tr>
   </tbody>
 </table>

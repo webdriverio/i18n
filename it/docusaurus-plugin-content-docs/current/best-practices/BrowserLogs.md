@@ -3,7 +3,7 @@ id: browser-logs
 title: Log del Browser
 ---
 
-Durante l'esecuzione dei test, il browser potrebbe registrare informazioni importanti a cui sei interessato o che vuoi verificare.
+Quando esegui i test, il browser potrebbe registrare informazioni importanti che potrebbero interessarti o su cui potresti voler fare delle asserzioni.
 
 <Tabs
 defaultValue="bidi"
@@ -26,7 +26,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-In un test puoi semplicemente inserire gli eventi di log in un array e verificare quell'array una volta che la tua azione è completata, ad esempio:
+In un test puoi semplicemente aggiungere gli eventi di log a un array e verificare quell'array una volta completata l'azione, ad esempio:
 
 ```ts
 import type { local } from 'webdriver'
@@ -62,7 +62,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-Se utilizzi ancora WebDriver Classic o hai disabilitato l'utilizzo di Bidi tramite la capacità `'wdio:enforceWebDriverClassic': true`, puoi utilizzare il comando JSONWire `getLogs` per recuperare gli ultimi log. Poiché WebdriverIO ha rimosso questi comandi deprecati, dovrai utilizzare il [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) per aggiungere nuovamente il comando alla tua istanza del browser.
+Se utilizzi ancora WebDriver Classic o hai disabilitato l'utilizzo di Bidi tramite la capability `'wdio:enforceWebDriverClassic': true`, puoi utilizzare il comando JSONWire `getLogs` per recuperare gli ultimi log. Poiché WebdriverIO ha rimosso questi comandi deprecati, dovrai utilizzare il [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) per aggiungere nuovamente il comando alla tua istanza del browser.
 
 Dopo aver aggiunto o inizializzato il servizio, puoi recuperare i log tramite:
 
@@ -77,4 +77,4 @@ Nota: il comando `getLogs` può recuperare solo i log più recenti dal browser. 
 
 </Tabs>
 
-Tieni presente che puoi utilizzare questo metodo per recuperare messaggi di errore e verificare se la tua applicazione ha riscontrato errori.
+Tieni presente che puoi utilizzare questo metodo per recuperare i messaggi di errore e verificare se la tua applicazione ha riscontrato errori.

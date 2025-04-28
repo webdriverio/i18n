@@ -4,22 +4,22 @@ title: isClickable
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isClickable.ts
 ---
 
-Un elemento è considerato cliccabile quando sono soddisfatte le seguenti condizioni:
+Un elemento è considerato cliccabile quando vengono soddisfatte le seguenti condizioni:
 
 - l'elemento esiste
 - l'elemento è visualizzato
 - l'elemento non è disabilitato
 - l'elemento è all'interno del viewport
-- l'elemento può essere scorribile all'interno del viewport
-- il centro dell'elemento non è sovrapposto con un altro elemento
+- l'elemento può essere fatto scorrere nel viewport
+- il centro dell'elemento non è sovrapposto da un altro elemento
 
 altrimenti restituisce false.
 
 :::info
 
-Si noti che `isClickable` funziona solo nei browser web e nelle webview mobili,
-non funziona nel contesto nativo delle app mobili. Inoltre, a differenza di altri comandi
-di elemento, WebdriverIO non attenderà che l'elemento esista per eseguire questo comando.
+Si prega di notare che `isClickable` funziona solo nei browser web e nelle webview mobile,
+non funziona nel contesto nativo delle app mobile. Inoltre, a differenza di altri comandi
+relativi agli elementi, WebdriverIO non attenderà che l'elemento esista per eseguire questo comando.
 
 :::
 

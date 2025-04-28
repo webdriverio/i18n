@@ -4,7 +4,7 @@ title: requestOnce
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/requestOnce.ts
 ---
 
-Modifica i parametri della richiesta una sola volta con la sovrascrittura specificata per la prossima richiesta. Puoi chiamare `requestOnce` più volte consecutive e verranno applicate le sovrascritture in ordine. Se utilizzi solo `requestOnce` e la risorsa viene chiamata più volte di quante ne siano state definite nel mock, si ritorna alla risorsa originale.
+Modifica i parametri della richiesta solo una volta con la sovrascrittura data per la richiesta successiva. Puoi chiamare `requestOnce` più volte consecutive e applicherà le sovrascritture in ordine. Se usi solo `requestOnce` e la risorsa viene chiamata più volte di quanto sia stato definito un mock, si ritorna alla risorsa originale.
 
 ##### Utilizzo
 
@@ -44,7 +44,7 @@ mock.requestOnce({ header, cookies, method, url, header, statusCode, fetchRespon
     <tr>
       <td><code><var>overwrites.url</var></code></td>
       <td>`string`</td>
-      <td>sovrascrive l'URL della richiesta per avviare un reindirizzamento</td>
+      <td>sovrascrive l'URL della richiesta per iniziare un reindirizzamento</td>
     </tr>
     <tr>
       <td><code><var>params</var></code><br /><span className="label labelWarning">opzionale</span></td>

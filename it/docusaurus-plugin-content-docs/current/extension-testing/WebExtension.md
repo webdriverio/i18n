@@ -1,23 +1,23 @@
 ---
 id: web-extensions
-title: Test di Estensioni Web
+title: Test delle Estensioni Web
 ---
 
-WebdriverIO è lo strumento ideale per automatizzare un browser. Le estensioni web sono parte del browser e possono essere automatizzate allo stesso modo. Ogni volta che la tua estensione web utilizza script di contenuto per eseguire JavaScript sui siti web o offre un popup modale, puoi eseguire un test e2e utilizzando WebdriverIO.
+WebdriverIO è lo strumento ideale per automatizzare un browser. Le estensioni web sono parte del browser e possono essere automatizzate allo stesso modo. Ogni volta che la tua estensione web utilizza content script per eseguire JavaScript sui siti web o offre un popup modale, puoi eseguire un test e2e utilizzando WebdriverIO.
 
-## Caricare un'estensione web nel browser
+## Caricamento di un'estensione web nel browser
 
 Come primo passo dobbiamo caricare l'estensione da testare nel browser come parte della nostra sessione. Questo funziona in modo diverso per Chrome e Firefox.
 
 :::info
 
-Questa documentazione non tratta le estensioni web Safari poiché il loro supporto è molto indietro e la domanda degli utenti non è elevata. Se stai sviluppando un'estensione web per Safari, ti preghiamo di [segnalare un problema](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) e collaborare per includerla qui.
+Questa documentazione omette le estensioni web Safari poiché il loro supporto è molto indietro e la domanda degli utenti non è alta. Se stai sviluppando un'estensione web per Safari, per favore [apri una issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) e collabora per includerla anche qui.
 
 :::
 
 ### Chrome
 
-Caricare un'estensione web in Chrome può essere fatto fornendo una stringa codificata in `base64` del file `crx` o fornendo un percorso alla cartella dell'estensione web. Il metodo più semplice è fare quest'ultimo definendo le tue capacità Chrome come segue:
+Il caricamento di un'estensione web in Chrome può essere fatto fornendo una stringa codificata in `base64` del file `crx` o fornendo un percorso alla cartella dell'estensione web. Il più semplice è fare quest'ultimo definendo le tue capacità Chrome come segue:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -30,8 +30,8 @@ export const config = {
     capabilities: [{
         browserName,
         'goog:chromeOptions': {
-            // supponendo che il tuo wdio.conf.js sia nella directory principale e i tuoi file
-            // di estensione web compilati si trovino nella cartella `./dist`
+            // dato che il tuo wdio.conf.js è nella directory root e i tuoi file 
+            // di estensione web compilati si trovano nella cartella `./dist`
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -40,11 +40,11 @@ export const config = {
 
 :::info
 
-Se stai automatizzando un browser diverso da Chrome, ad esempio Brave, Edge o Opera, è probabile che l'opzione del browser corrisponda all'esempio sopra, utilizzando solo un nome di capacità diverso, ad esempio `ms:edgeOptions`.
+Se automatizzi un browser diverso da Chrome, ad esempio Brave, Edge o Opera, è probabile che le opzioni del browser corrispondano all'esempio precedente, utilizzando solo un nome di capacità diverso, ad esempio `ms:edgeOptions`.
 
 :::
 
-Se compili la tua estensione come file `.crx` utilizzando ad esempio il pacchetto NPM [crx](https://www.npmjs.com/package/crx), puoi anche iniettare l'estensione impacchettata tramite:
+Se compili la tua estensione come file `.crx` utilizzando ad esempio il pacchetto NPM [crx](https://www.npmjs.com/package/crx), puoi anche iniettare l'estensione pacchettizzata tramite:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +67,7 @@ export const config = {
 
 ### Firefox
 
-Per creare un profilo Firefox che includa estensioni, puoi utilizzare il [Firefox Profile Service](/docs/firefox-profile-service) per configurare la tua sessione di conseguenza. Tuttavia, potresti riscontrare problemi in cui la tua estensione sviluppata localmente non può essere caricata a causa di problemi di firma. In questo caso puoi anche caricare un'estensione nell'hook `before` tramite il comando [`installAddOn`](/docs/api/gecko#installaddon), ad esempio:
+Per creare un profilo Firefox che includa estensioni, puoi utilizzare il [Firefox Profile Service](/docs/firefox-profile-service) per configurare la tua sessione di conseguenza. Tuttavia, potresti incontrare problemi in cui la tua estensione sviluppata localmente non può essere caricata a causa di problemi di firma. In questo caso puoi anche caricare un'estensione nel hook `before` tramite il comando [`installAddOn`](/docs/api/gecko#installaddon), ad esempio:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,21 +88,21 @@ export const config = {
 }
 ```
 
-Per generare un file `.xpi`, si consiglia di utilizzare il pacchetto NPM [`web-ext`](https://www.npmjs.com/package/web-ext). Puoi impacchettare la tua estensione utilizzando il seguente comando di esempio:
+Per generare un file `.xpi`, si consiglia di utilizzare il pacchetto NPM [`web-ext`](https://www.npmjs.com/package/web-ext). Puoi pacchettizzare la tua estensione utilizzando il seguente comando di esempio:
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
-## Suggerimenti e trucchi
+## Trucchi e Consigli
 
-La seguente sezione contiene una serie di suggerimenti e trucchi utili che possono essere d'aiuto quando si testa un'estensione web.
+La seguente sezione contiene una serie di consigli e trucchi utili che possono essere d'aiuto quando si testa un'estensione web.
 
-### Testare il popup modale in Chrome
+### Testare il Popup Modale in Chrome
 
-Se definisci una voce `default_popup` nell'azione del browser nel [manifest dell'estensione](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action), puoi testare direttamente quella pagina HTML, poiché fare clic sull'icona dell'estensione nella barra superiore del browser non funzionerà. Invece, devi aprire direttamente il file HTML del popup.
+Se definisci una voce di azione del browser `default_popup` nel tuo [manifest dell'estensione](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action), puoi testare direttamente quella pagina HTML, poiché cliccare sull'icona dell'estensione nella barra superiore del browser non funzionerà. Invece, devi aprire direttamente il file HTML del popup.
 
-In Chrome questo funziona recuperando l'ID dell'estensione e aprendo la pagina popup tramite `browser.url('...')`. Il comportamento su quella pagina sarà lo stesso che all'interno del popup. Per farlo consigliamo di scrivere il seguente comando personalizzato:
+In Chrome questo funziona recuperando l'ID dell'estensione e aprendo la pagina popup tramite `browser.url('...')`. Il comportamento su quella pagina sarà lo stesso di quello all'interno del popup. Per farlo, consigliamo di scrivere il seguente comando personalizzato:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -152,5 +152,5 @@ export const config: WebdriverIO.Config = {
 Ora, nel tuo test, puoi accedere alla pagina popup tramite:
 
 ```ts
-await browser.openExtensionPopup('La Mia Estensione Web')
+await browser.openExtensionPopup('My Web Extension')
 ```

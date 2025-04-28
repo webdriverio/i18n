@@ -4,15 +4,15 @@ title: react$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/react$.ts
 ---
 
-`react$` コマンドは、実際の名前でReactコンポーネントを照会し、propsとstateでフィルタリングするための便利なコマンドです。
+`react$`コマンドは、Reactコンポーネントを実際の名前で検索し、propsやstateでフィルタリングするための便利なコマンドです。
 
 :::info
 
-このコマンドはReact v16.xを使用しているアプリケーションでのみ動作します。Reactセレクターについての詳細は[セレクター](/docs/selectors#react-selectors)ガイドをご覧ください。
+このコマンドはReact v16.xを使用しているアプリケーションでのみ機能します。Reactセレクタの詳細については、[セレクタ](/docs/selectors#react-selectors)ガイドをご覧ください。
 
 :::
 
-##### 使用法
+##### 使用方法
 
 ```js
 $(selector).react$(selector, { props, state })
@@ -33,19 +33,19 @@ $(selector).react$(selector, { props, state })
       <td>Reactコンポーネントの</td>
     </tr>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`ReactSelectorOptions`</td>
-      <td>Reactセレクターオプション</td>
+      <td>Reactセレクタオプション</td>
     </tr>
     <tr>
-      <td><code><var>options.props</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.props</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`Object`</td>
       <td>要素が含むべきReact props</td>
     </tr>
     <tr>
-      <td><code><var>options.state</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.state</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>要素が持つべきReact state</td>
+      <td>要素があるべきReact state</td>
     </tr>
   </tbody>
 </table>
@@ -70,7 +70,7 @@ it('should calculate 7 * 6', async () => {
         props: { name: '=' }
     }).click()
 
-    console.log(await $('.component-display').getText()); // prints "42"
+    console.log(await $('.component-display').getText()); // 「42」を出力します
 });
 ```
 

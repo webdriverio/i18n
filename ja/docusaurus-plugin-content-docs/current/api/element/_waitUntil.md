@@ -1,18 +1,18 @@
 ---
 id: waitUntil
-title: waitUntil
+title: waitUntil（待機まで）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitUntil.ts
 ---
 
-この待機コマンドは、何かを待ちたい場合の万能武器です。条件を指定すると、その条件が真の値で満たされるまで待機します。
+この待機コマンドは、何かを待ちたい場合の万能ツールです。条件を指定して、その条件が真値で満たされるまで待機します。
 
 :::info
 
-他のエレメントコマンドとは異なり、WebdriverIOはこのコマンドを実行するためにエレメントが存在するのを待ちません。
+他の要素コマンドとは異なり、WebdriverIOはこのコマンドを実行するために要素が存在するのを待ちません。
 
 :::
 
-一般的な例として、特定の要素が特定のテキストを含むまで待機する方法があります（例を参照）。
+一般的な例としては、特定の要素が特定のテキストを含むまで待機することがあります（例を参照）。
 
 ##### 使用法
 
@@ -25,7 +25,7 @@ $(selector).waitUntil(condition, { timeout, timeoutMsg, interval })
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -35,24 +35,24 @@ $(selector).waitUntil(condition, { timeout, timeoutMsg, interval })
       <td>待機する条件</td>
     </tr>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`WaitUntilOptions`</td>
       <td>コマンドオプション</td>
     </tr>
     <tr>
-      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>ミリ秒単位の時間（デフォルトは[`waitforTimeout`](/docs/configuration#waitfortimeout)設定値に基づいて設定）</td>
+      <td>ミリ秒単位の時間（デフォルトは [`waitforTimeout`](/docs/configuration#waitfortimeout) 設定値に基づく）</td>
     </tr>
     <tr>
-      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
       <td>waitUntilがタイムアウトした時にスローするエラーメッセージ</td>
     </tr>
     <tr>
-      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>条件チェック間の間隔（デフォルトは[`waitforInterval`](/docs/configuration#waitforinterval)設定値に基づいて設定）</td>
+      <td>条件チェック間の間隔（デフォルトは [`waitforInterval`](/docs/configuration#waitforinterval) 設定値に基づく）</td>
     </tr>
   </tbody>
 </table>

@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Scorri all'interno del viewport del browser. Nota che le coordinate `x` e `y` sono relative alla posizione
-di scorrimento corrente, quindi `browser.scroll(0, 0)` non produce alcuna operazione.
+di scorrimento corrente, quindi `browser.scroll(0, 0)` è un'operazione nulla.
 
 ##### Utilizzo
 

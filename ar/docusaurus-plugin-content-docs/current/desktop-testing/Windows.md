@@ -1,8 +1,8 @@
 ---
 id: windows
-title: Windows
+title: نظام التشغيل ويندوز
 ---
 
-Unfortunately there is at the moment no stable driver for automating Windows applications. Even though Appium maintains a [Windows Driver](https://github.com/appium/appium-windows-driver) that is based on Microsoft's [WinAppDriver server](https://github.com/microsoft/WinAppDriver), we would not recommend using it given that Microsoft has stopped maintaining the server and there are a lot of [known bugs](https://github.com/search?q=repo%3Amicrosoft%2FWinAppDriver+webdriverio&type=issues).
+للأسف، لا يوجد في الوقت الحالي برنامج تشغيل مستقر لأتمتة تطبيقات ويندوز. على الرغم من أن Appium يحتفظ بـ [Windows Driver](https://github.com/appium/appium-windows-driver) الذي يعتمد على خادم [WinAppDriver server](https://github.com/microsoft/WinAppDriver) من Microsoft، إلا أننا لا ننصح باستخدامه نظرًا لأن Microsoft قد توقفت عن صيانة الخادم وهناك الكثير من [الأخطاء المعروفة](https://github.com/search?q=repo%3Amicrosoft%2FWinAppDriver+webdriverio&type=issues).
 
-If anyone is aware of a way to automate Windows applications, please let us know on [Discord](https://discord.webdriver.io).
+إذا كان أي شخص على دراية بطريقة لأتمتة تطبيقات ويندوز، يرجى إخبارنا على [Discord](https://discord.webdriver.io).

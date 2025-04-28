@@ -4,13 +4,13 @@ title: react$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/react$.ts
 ---
 
-Il comando `react$` è un comando utile per interrogare i Componenti React con il loro
-nome effettivo e filtrarli in base a props e state.
+Il comando `react$` è un comando utile per interrogare i Componenti React tramite il loro 
+nome effettivo e filtrarli per props e state.
 
 :::info
 
-Il comando funziona solo con applicazioni che utilizzano React v16.x. Leggi di più sui selettori React
-nella guida [Selettori](/docs/selectors#react-selectors).
+Il comando funziona solo con applicazioni che utilizzano React v16.x. Leggi di più sui selettori React 
+nella guida [Selectors](/docs/selectors#react-selectors).
 
 :::
 

@@ -1,10 +1,10 @@
 ---
 id: isSelected
-title: 選択されているかの確認
+title: isSelected
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isSelected.ts
 ---
 
-`<option>` または `<input>` 要素（チェックボックスまたはラジオボタンのタイプ）が現在選択されているかどうかを、true または false で返します。
+`<option>` または `<input>` 要素（checkboxまたはradioタイプ）が現在選択されているかどうかをtrue または falseで返します。
 
 ##### 使用方法
 
@@ -36,4 +36,4 @@ it('should detect if an element is selected', async () => {
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:** 要素が選択されている場合はtrue
+            **<code><var>return</var></code>:**  要素が選択されている場合はtrue

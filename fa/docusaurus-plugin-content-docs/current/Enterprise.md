@@ -1,38 +1,38 @@
 ---
 id: enterprise
-title: WebdriverIO for Enterprise
+title: وب‌درایور آی‌او برای سازمان‌ها
 ---
 
-## Available as part of the Tidelift Subscription
+## در دسترس به عنوان بخشی از اشتراک تایدلیفت
 
-Tidelift is working with the maintainers of WebdriverIO and thousands of other open source projects to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use.
+تایدلیفت با نگهدارندگان وب‌درایور آی‌او و هزاران پروژه متن‌باز دیگر همکاری می‌کند تا پشتیبانی تجاری و نگهداری برای وابستگی‌های متن‌باز که شما برای ساخت برنامه‌های خود استفاده می‌کنید، ارائه دهد. در زمان صرفه‌جویی کنید، ریسک را کاهش دهید و سلامت کد را بهبود بخشید، در حالی که به نگهدارندگان وابستگی‌های دقیقی که استفاده می‌کنید، پرداخت می‌کنید.
 
-#### Enterprise-ready open source software—managed for you
-The Tidelift Subscription is a managed open source subscription for application dependencies covering millions of open source projects across JavaScript, Python, Java, PHP, Ruby, .NET, and more.
+#### نرم‌افزار متن‌باز آماده سازمانی - مدیریت شده برای شما
+اشتراک تایدلیفت یک اشتراک متن‌باز مدیریت شده برای وابستگی‌های برنامه است که میلیون‌ها پروژه متن‌باز را در جاوااسکریپت، پایتون، جاوا، PHP، روبی، NET. و موارد دیگر پوشش می‌دهد.
 
-#### Your subscription includes:
+#### اشتراک شما شامل موارد زیر است:
 
-##### Security updates
-Tidelift’s security response team coordinates patches for new breaking security vulnerabilities and alerts immediately through a private channel, so your software supply chain is always secure.
+##### به‌روزرسانی‌های امنیتی
+تیم پاسخ امنیتی تایدلیفت، اصلاحات آسیب‌پذیری‌های امنیتی جدید را هماهنگ می‌کند و بلافاصله از طریق یک کانال خصوصی هشدار می‌دهد، بنابراین زنجیره تأمین نرم‌افزار شما همیشه ایمن است.
 
-##### Licensing verification and indemnification
-Tidelift verifies license information to enable easy policy enforcement and adds intellectual property indemnification to cover creators and users in case something goes wrong. You always have a 100% up-to-date bill of materials for your dependencies to share with your legal team, customers, or partners.
+##### تأیید مجوز و غرامت
+تایدلیفت اطلاعات مجوز را تأیید می‌کند تا اجرای آسان سیاست را فراهم کند و غرامت مالکیت معنوی را برای پوشش سازندگان و کاربران در صورت بروز مشکل اضافه می‌کند. شما همیشه یک صورت‌حساب ۱۰۰٪ به‌روز از وابستگی‌های خود دارید تا با تیم حقوقی، مشتریان یا شرکای خود به اشتراک بگذارید.
 
-##### Maintenance and code improvement
-Tidelift ensures the software you rely on keeps working as long as you need it to work. Your managed dependencies are actively maintained and we recruit additional maintainers where required.
+##### نگهداری و بهبود کد
+تایدلیفت اطمینان می‌دهد که نرم‌افزاری که به آن متکی هستید تا زمانی که به آن نیاز دارید کار می‌کند. وابستگی‌های مدیریت شده شما به طور فعال نگهداری می‌شوند و ما در صورت نیاز نگهدارندگان اضافی استخدام می‌کنیم.
 
-##### Package selection and version guidance
-We help you choose the best open source packages from the start—and then guide you through updates to stay on the best releases as new issues arise.
+##### انتخاب بسته و راهنمایی نسخه
+ما به شما کمک می‌کنیم از ابتدا بهترین بسته‌های متن‌باز را انتخاب کنید - و سپس شما را در به‌روزرسانی‌ها راهنمایی می‌کنیم تا در بهترین نسخه‌ها باقی بمانید زمانی که مشکلات جدید بروز می‌کنند.
 
-##### Roadmap input
-Take a seat at the table with the creators behind the software you use. Tidelift’s participating maintainers earn more income as their software is used by more subscribers, so they’re interested in knowing what you need.
+##### ورودی نقشه راه
+در کنار سازندگان نرم‌افزاری که استفاده می‌کنید، جایی برای خود داشته باشید. نگهدارندگان مشارکت‌کننده تایدلیفت با افزایش استفاده از نرم‌افزارشان توسط مشترکان بیشتر، درآمد بیشتری کسب می‌کنند، بنابراین آنها علاقه‌مند به دانستن نیازهای شما هستند.
 
-##### Tooling and cloud integration
-Tidelift works with GitHub, GitLab, BitBucket, and more. We support every cloud platform (and other deployment targets, too).
+##### ادغام ابزار و فضای ابری
+تایدلیفت با GitHub، GitLab، BitBucket و موارد دیگر کار می‌کند. ما از هر پلتفرم ابری (و سایر اهداف استقرار نیز) پشتیبانی می‌کنیم.
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open source you use. That means less time grappling with esoteric open source trivia, and more time building your own applications—and your business.
+نتیجه نهایی چیست؟ تمام قابلیت‌هایی که از نرم‌افزار تجاری انتظار دارید، برای تمام وسعت متن‌باز که استفاده می‌کنید. این یعنی زمان کمتری برای دست و پنجه نرم کردن با جزئیات عجیب متن‌باز، و زمان بیشتری برای ساخت برنامه‌های خودتان - و کسب و کارتان.
 
 <div class="learnmore">
-    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Learn More</a>
-    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Request a demo</a>
+    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">اطلاعات بیشتر</a>
+    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">درخواست نسخه نمایشی</a>
 </div>

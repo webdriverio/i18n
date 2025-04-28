@@ -1,12 +1,12 @@
 ---
 id: getWindowSize
-title: ウィンドウサイズの取得
+title: getWindowSize
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/getWindowSize.ts
 ---
 
 ブラウザウィンドウのサイズを返します。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.getWindowSize()
@@ -25,4 +25,4 @@ it('should return browser window size', async () => {
 ##### 戻り値
 
 - **&lt;Object&gt;**
-            **<code><var>return</var></code>:**  W3Cの場合は `{ x, y, width, height }` または非W3Cブラウザの場合は `{ width, height }`
+            **<code><var>return</var></code>:**  W3C対応ブラウザでは `{ x, y, width, height }`、非W3Cブラウザでは `{ width, height }`    

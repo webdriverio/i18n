@@ -1,16 +1,15 @@
 ---
 id: axe-core
-title: Axe Core
-description: WebdriverIOテストスイートにアクセシビリティテストを組み込む方法
+title: Axe コア
 ---
 
-WebdriverIOテストスイート内にDequeの[オープンソースアクセシビリティツールAxe](https://www.deque.com/axe/)を使ってアクセシビリティテストを組み込むことができます。セットアップは非常に簡単で、WebdriverIO Axeアダプターをインストールするだけです：
+WebdriverIOテストスイート内に、[Deque社のAxeという名前のオープンソースアクセシビリティツール](https://www.deque.com/axe/)を使用してアクセシビリティテストを含めることができます。セットアップは非常に簡単で、WebdriverIO Axeアダプターをインストールするだけです：
 
 ```bash npm2yarn
 npm install -g @axe-core/webdriverio
 ```
 
-Axeアダプターは、[ブラウザオブジェクト](/docs/api/browser)を使って単純にインポートして初期化することで、[スタンドアロンまたはテストランナー](/docs/setuptypes)モードのどちらでも使用できます。例：
+Axeアダプターは、[browserオブジェクト](/docs/api/browser)でインポートして初期化するだけで、[スタンドアローンモードまたはテストランナーモード](/docs/setuptypes)のいずれでも使用できます。例：
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -27,4 +26,4 @@ describe('Accessibility Test', () => {
 })
 ```
 
-Axe WebdriverIOアダプターについての詳細なドキュメントは[GitHubで確認できます](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage)。
+Axe WebdriverIOアダプターの詳細なドキュメントは[GitHubで確認できます](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage)。

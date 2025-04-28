@@ -1,10 +1,10 @@
 ---
 id: getLocation
-title: getLocation
+title: getLocation（位置を取得）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getLocation.ts
 ---
 
-ページ上の要素の位置を決定します。座標 (0, 0) はページの左上隅を指します。
+ページ上の要素の位置を特定します。座標 (0, 0) はページの左上の角を示します。
 
 ##### 使用方法
 
@@ -24,7 +24,7 @@ $(selector).getLocation(prop)
     <tr>
       <td><code><var>prop</var></code></td>
       <td>`string`</td>
-      <td>より簡単なアサーションのために直接結果値を取得するための "x" または "y" を指定できます</td>
+      <td>簡単にアサーションを行うために、直接結果値を取得するための "x" または "y" を指定できます</td>
     </tr>
   </tbody>
 </table>

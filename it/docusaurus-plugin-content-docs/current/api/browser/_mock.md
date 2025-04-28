@@ -4,9 +4,9 @@ title: mock
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mock.ts
 ---
 
-Simula la risposta di una richiesta. È possibile definire un mock basato su un 
+Simula la risposta di una richiesta. Puoi definire un mock basato su un modello di corrispondenza
 [URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
-corrispondente e relativo header e codice di stato. La chiamata al metodo mock
+e i corrispondenti header e codice di stato. Chiamare il metodo mock
 restituisce un oggetto stub che puoi utilizzare per modificare la risposta della
 risorsa web.
 
@@ -21,7 +21,7 @@ Ci sono 3 modi per modificare la risposta:
 :::info
 
 Nota che l'utilizzo del comando `mock` richiede il supporto per WebDriver Bidi. Questo
-è generalmente il caso quando si eseguono test localmente in un browser basato su Chromium o 
+è generalmente il caso quando si eseguono test localmente in un browser basato su Chromium o
 su Firefox, così come se si utilizza Selenium Grid v4 o superiore. Se esegui test
 nel cloud, assicurati che il tuo provider cloud supporti WebDriver Bidi.
 
@@ -31,7 +31,7 @@ nel cloud, assicurati che il tuo provider cloud supporti WebDriver Bidi.
 
 L'`URLPattern` è una tecnologia sperimentale e non ancora supportata in alcuni ambienti, ad esempio Node.js.
 Consigliamo di importare [un polyfill](https://www.npmjs.com/package/urlpattern-polyfill)
-fino a quando la funzionalità non sarà più ampiamente supportata.
+fino a quando la funzione non sarà più ampiamente supportata.
 
 :::
 
@@ -58,7 +58,7 @@ browser.mock(url, { method, requestHeaders, responseHeaders, postData, statusCod
     <tr>
       <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`MockFilterOptions`</td>
-      <td>filtra la risorsa simulata tramite opzioni aggiuntive</td>
+      <td>filtra la risorsa mock con opzioni aggiuntive</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.method</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -78,12 +78,12 @@ browser.mock(url, { method, requestHeaders, responseHeaders, postData, statusCod
     <tr>
       <td><code><var>filterOptions.postData</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String, Function`</td>
-      <td>filtra la risorsa per dati postData della richiesta</td>
+      <td>filtra la risorsa per i dati postData della richiesta</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.statusCode</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number, Function`</td>
-      <td>filtra la risorsa per codice di stato della risposta</td>
+      <td>filtra la risorsa per il codice di stato della risposta</td>
     </tr>
   </tbody>
 </table>

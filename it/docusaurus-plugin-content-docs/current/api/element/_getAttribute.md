@@ -4,7 +4,7 @@ title: getAttribute
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getAttribute.ts
 ---
 
-Ottieni un attributo da un elemento DOM in base al nome dell'attributo.
+Ottieni un attributo da un elemento DOM basato sul nome dell'attributo.
 
 ##### Utilizzo
 
@@ -50,4 +50,4 @@ it('should demonstrate the getAttribute command', async () => {
 ##### Restituisce
 
 - **&lt;String|null&gt;**
-            **<code><var>return</var></code>:** Il valore dell'attributo, o null se non è impostato sull'elemento.
+            **<code><var>return</var></code>:**  Il valore dell'attributo, o null se non è impostato sull'elemento.

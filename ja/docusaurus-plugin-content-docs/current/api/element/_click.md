@@ -6,24 +6,23 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 要素をクリックします。
 
-これは選択された要素に対してWebDriverの`click`コマンドを発行します。オプションが渡されない場合は、一般的に選択された要素までスクロールしてからクリックします。オプションオブジェクトが渡された場合は、webdriverのクリックの代わりにアクションクラスを使用し、ボタンタイプや座標などの追加機能を提供します。デフォルトでは、オプションを使用する場合、クリックアクションの実行後にリリースアクションコマンドが送信されますが、`option.skipRelease=true`を渡すとこのアクションをスキップできます。
+これは選択した要素に対してWebDriverの`click`コマンドを発行し、オプションが渡されていない場合は一般的に選択した要素までスクロールしてからクリックします。オプションオブジェクトが渡された場合は、webdriverのクリックの代わりにアクションクラスを使用し、ボタンタイプや座標などの追加機能を利用できます。デフォルトでは、オプションを使用する場合、クリックアクションの実行後にリリースアクションコマンドが送信されます。このアクションをスキップするには`option.skipRelease=true`を渡してください。
 
 :::info
 
-固定位置の要素（固定ヘッダーやフッターなど）があり、それが選択した要素がビューポート内にスクロールされた後にその要素を覆ってしまう場合、クリックは指定された座標で発行されますが、固定された（覆っている）要素によって受信されます。このような場合、次のエラーが発生します：
+固定位置の要素（固定ヘッダーやフッターなど）があり、選択した要素がビューポート内にスクロールされた後にそれを覆ってしまう場合、クリックは指定された座標で発行されますが、固定された（重なっている）要素によって受信されてしまいます。このような場合、次のエラーが発生します：
 
 ```
 Element is not clickable at point (x, x). Other element would receive the click: ..."
 ```
 
-この問題を回避するには、覆っている要素を見つけて、`execute`コマンドを使用して削除し、クリックを妨げないようにしてください。または、シナリオに適したオフセットを使用して`scroll`で要素までスクロールすることもできます。
+この問題を回避するには、重なっている要素を見つけて`execute`コマンドで削除し、クリックを妨げないようにしてみてください。また、あなたのシナリオに適したオフセットを使用して`scroll`で要素自体までスクロールすることもできます。
 
 :::
 
 :::info
 
-クリックコマンドはモバイルデバイスでの長押しをシミュレートするためにも使用できます。これは`duration`を設定することで実現します。
-詳細は以下の例を参照してください。
+クリックコマンドは、モバイルデバイスでの長押しをシミュレートするためにも使用できます。これは`duration`を設定することで行われます。詳細は以下の例を参照してください。
 
 :::
 
@@ -33,12 +32,12 @@ Element is not clickable at point (x, x). Other element would receive the click:
 $(selector).click({ button, x, y, skipRelease, duration })
 ```
 
-##### パラメータ
+##### パラメーター
 
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -55,12 +54,12 @@ $(selector).click({ button, x, y, skipRelease, duration })
     <tr>
       <td><code><var>options.x</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>要素の位置から水平方向にXピクセル離れた位置でクリック（要素の中心点から）<br /><strong>WEBおよびネイティブ</strong> (デスクトップ/モバイル)</td>
+      <td>要素の位置から水平方向にX ピクセル離れた位置をクリック（要素の中心点から）<br /><strong>WEBとネイティブ</strong> (デスクトップ/モバイル)</td>
     </tr>
     <tr>
       <td><code><var>options.y</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>要素の位置から垂直方向にYピクセル離れた位置でクリック（要素の中心点から）<br /><strong>WEBおよびネイティブサポート</strong> (デスクトップ/モバイル)</td>
+      <td>要素の位置から垂直方向にY ピクセル離れた位置をクリック（要素の中心点から）<br /><strong>WEBとネイティブのサポート</strong> (デスクトップ/モバイル)</td>
     </tr>
     <tr>
       <td><code><var>options.skipRelease</var></code><br /><span className="label labelWarning">オプション</span></td>
@@ -70,7 +69,7 @@ $(selector).click({ button, x, y, skipRelease, duration })
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>クリックの持続時間、別名「長押し」 <br /><strong>モバイルネイティブアプリのみ</strong> (モバイル)</td>
+      <td>クリックの持続時間、いわゆる「長押し」 <br /><strong>モバイルネイティブアプリのみ</strong> (モバイル)</td>
     </tr>
   </tbody>
 </table>

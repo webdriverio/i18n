@@ -6,7 +6,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 Restituirà true quando è stabile (in animazione) o quando è instabile (non in animazione).
 
-__Nota:__ è meglio disabilitare le animazioni invece di utilizzare questo comando.
+__Nota:__ è meglio disabilitare le animazioni invece di usare questo comando.
 
 ##### Utilizzo
 
@@ -61,4 +61,4 @@ it('should detect if an element is stable', async () => {
 ##### Restituisce
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:** true se l'elemento è stabile, false se instabile
+            **<code><var>return</var></code>:**  true se l'elemento è stabile, false se instabile

@@ -28,7 +28,7 @@ mock.abort(errorCode)
     <tr>
       <td><code><var>errorCode</var></code></td>
       <td>`ErrorCode`</td>
-      <td>codice di errore della risposta, può essere uno dei seguenti: `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
+      <td>codice di errore della risposta, può essere uno tra: `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
     </tr>
   </tbody>
 </table>

@@ -2,7 +2,6 @@
 id: wdiocommands
 title: دستورات WDIO
 ---
-
-This flowchart provides a high level overview of the @wdio/cli run, repl, config and install commands.
+این نمودار گردشی، یک نمای کلی از دستورات run، repl، config و install در @wdio/cli ارائه می‌دهد.
 
 <CreateFlowcharts id='wdiocommands' />

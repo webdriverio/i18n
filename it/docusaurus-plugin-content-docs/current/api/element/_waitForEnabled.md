@@ -4,8 +4,8 @@ title: waitForEnabled
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForEnabled.ts
 ---
 
-Attendi che un elemento (selezionato tramite selettore css) sia abilitato o disabilitato per il numero di
-millisecondi fornito. Se vengono interrogati più elementi dal selettore dato, restituisce true se almeno un elemento è abilitato o disabilitato.
+Attende che un elemento (selezionato tramite selettore css) sia abilitato o disabilitato per il numero di
+millisecondi fornito. Se più elementi vengono selezionati dal selettore dato, restituisce true se almeno un elemento è abilitato o disabilitato.
 
 :::info
 
@@ -32,12 +32,12 @@ $(selector).waitForEnabled({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`WaitForOptions`</td>
-      <td>opzioni di waitForEnabled (opzionale)</td>
+      <td>opzioni waitForEnabled (opzionale)</td>
     </tr>
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number`</td>
-      <td>tempo in ms (valore predefinito basato sulla configurazione [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>tempo in ms (predefinito basato sul valore di configurazione [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
     </tr>
     <tr>
       <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">opzionale</span></td>

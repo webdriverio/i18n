@@ -3,7 +3,7 @@ id: materials
 title: Materiali
 ---
 
-Se desideri utilizzare i materiali di WebdriverIO per i tuoi workshop o eventi, sentiti libero di prenderli direttamente da qui.
+Se vuoi utilizzare i materiali di WebdriverIO per i tuoi workshop o eventi, sentiti libero di prenderli direttamente da qui.
 
 ## Workshop
 

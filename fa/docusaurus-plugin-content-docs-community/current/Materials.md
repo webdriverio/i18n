@@ -1,23 +1,24 @@
 ---
 id: materials
-title: منابع آموزشی و تصاویر
+title: متریال‌ها
 ---
 
-اگر می‌خواهید از منابع WebdriverIO برای کارگاه‌ها یا رویدادهای خود استفاده کنید، می‌توانید آنها را مستقیماً از اینجا بگیرید.
+اگر می‌خواهید از متریال‌های WebdriverIO برای کارگاه‌ها یا رویدادهای خود استفاده کنید، می‌توانید آن‌ها را مستقیماً از اینجا دریافت کنید.
 
-## کارگاه های آموزشی
+## کارگاه‌ها
 
-انجمن WebdriverIO کارگاه های آموزشی در سراسر جهان برگزار می کند. با خیال راحت از این مطالب برای میزبانی خود استفاده کنید.
+جامعه WebdriverIO کارگاه‌هایی در سراسر جهان برگزار می‌کند. برای میزبانی کارگاه خود، می‌توانید آزادانه از این مطالب استفاده کنید.
 
 - [webdriverio/workshop](https://github.com/webdriverio/workshop)
 
-## تصاویر
+## دارایی‌ها
 
-اگر محتوای WebdriverIO خود را برای اهداف آموزشی ایجاد می‌کنید، با خیال راحت این تصاویر را برای گنجاندن در مطالب خود استفاده کنید.
+اگر محتوای WebdriverIO خود را برای اهداف آموزشی ایجاد می‌کنید، می‌توانید آزادانه از این دارایی‌ها برای استفاده در مطالب خود استفاده کنید.
 
 ### لوگوی ربات
 
-![Roboter Logo](/img/materials/robot.svg "Roboter Logo") ![Roboter Logo White](/img/materials/robot-white.svg "Roboter Logo White")
+![Roboter Logo](/img/materials/robot.svg "Roboter Logo")
+![Roboter Logo White](/img/materials/robot-white.svg "Roboter Logo White")
 
 ### لوگوی پروژه
 

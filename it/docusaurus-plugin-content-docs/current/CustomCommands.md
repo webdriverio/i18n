@@ -3,36 +3,36 @@ id: customcommands
 title: Comandi Personalizzati
 ---
 
-Se vuoi estendere l'istanza del `browser` con il tuo insieme di comandi, il metodo del browser `addCommand` è qui per te. Puoi scrivere il tuo comando in modo asincrono, proprio come nelle tue specifiche.
+Se desideri estendere l'istanza `browser` con il tuo set di comandi, il metodo del browser `addCommand` è qui per te. Puoi scrivere il tuo comando in modo asincrono, proprio come nelle tue specifiche.
 
 ## Parametri
 
 ### Nome del Comando
 
-Un nome che definisce il comando e che sarà collegato allo scope del browser o dell'elemento.
+Un nome che definisce il comando e che verrà collegato all'ambito del browser o dell'elemento.
 
 Tipo: `String`
 
 ### Funzione Personalizzata
 
-Una funzione che viene eseguita quando il comando viene chiamato. Lo scope `this` è sia [`WebdriverIO.Browser`](/docs/api/browser) che [`WebdriverIO.Element`](/docs/api/element) a seconda che il comando sia collegato allo scope del browser o dell'elemento.
+Una funzione che viene eseguita quando il comando viene chiamato. L'ambito `this` è o [`WebdriverIO.Browser`](/docs/api/browser) o [`WebdriverIO.Element`](/docs/api/element) a seconda che il comando sia collegato all'ambito del browser o dell'elemento.
 
 Tipo: `Function`
 
-### Scope di Destinazione
+### Ambito Target
 
-Flag per decidere se collegare il comando allo scope del browser o dell'elemento. Se impostato su `true`, il comando sarà un comando dell'elemento.
+Flag per decidere se allegare il comando all'ambito del browser o dell'elemento. Se impostato su `true` il comando sarà un comando dell'elemento.
 
 Tipo: `Boolean`<br />
-Predefinito: `false`
+Default: `false`
 
 ## Esempi
 
-Questo esempio mostra come aggiungere un nuovo comando che restituisce l'URL corrente e il titolo come un unico risultato. Lo scope (`this`) è un oggetto [`WebdriverIO.Browser`](/docs/api/browser).
+Questo esempio mostra come aggiungere un nuovo comando che restituisce l'URL corrente e il titolo come un unico risultato. L'ambito (`this`) è un oggetto [`WebdriverIO.Browser`](/docs/api/browser).
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
-    // `this` si riferisce allo scope del `browser`
+    // `this` refers to the `browser` scope
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -41,19 +41,19 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-Inoltre, puoi estendere l'istanza dell'elemento con il tuo insieme di comandi, passando `true` come argomento finale. Lo scope (`this`) in questo caso è un oggetto [`WebdriverIO.Element`](/docs/api/element).
+Inoltre, puoi estendere l'istanza dell'elemento con il tuo set di comandi, passando `true` come argomento finale. L'ambito (`this`) in questo caso è un oggetto [`WebdriverIO.Element`](/docs/api/element).
 
 ```js
 browser.addCommand("waitAndClick", async function () {
-    // `this` è il valore di ritorno di $(selector)
+    // `this` is return value of $(selector)
     await this.waitForDisplayed()
     await this.click()
 }, true)
 ```
 
-I comandi personalizzati ti danno l'opportunità di raggruppare una specifica sequenza di comandi che usi frequentemente in una singola chiamata. Puoi definire comandi personalizzati in qualsiasi punto della tua suite di test; assicurati solo che il comando sia definito *prima* del suo primo utilizzo. (L'hook `before` nel tuo `wdio.conf.js` è un buon posto per crearli.)
+I comandi personalizzati ti offrono l'opportunità di raggruppare una sequenza specifica di comandi che utilizzi frequentemente in una singola chiamata. Puoi definire comandi personalizzati in qualsiasi punto della tua suite di test; assicurati solo che il comando sia definito *prima* del suo primo utilizzo. (L'hook `before` nel tuo `wdio.conf.js` è un buon posto per crearli.)
 
-Una volta definiti, puoi usarli come segue:
+Una volta definiti, puoi utilizzarli come segue:
 
 ```js
 it('should use my custom command', async () => {
@@ -66,26 +66,26 @@ it('should use my custom command', async () => {
 })
 ```
 
-__Nota:__ Se registri un comando personalizzato nello scope del `browser`, il comando non sarà accessibile per gli elementi. Allo stesso modo, se registri un comando nello scope dell'elemento, non sarà accessibile nello scope del `browser`:
+__Nota:__ Se registri un comando personalizzato nell'ambito `browser`, il comando non sarà accessibile per gli elementi. Allo stesso modo, se registri un comando nell'ambito dell'elemento, non sarà accessibile nell'ambito `browser`:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
 const elem = await $('body')
-console.log(typeof browser.myCustomBrowserCommand) // output "function"
-console.log(typeof elem.myCustomBrowserCommand()) // output "undefined"
+console.log(typeof browser.myCustomBrowserCommand) // outputs "function"
+console.log(typeof elem.myCustomBrowserCommand()) // outputs "undefined"
 
 browser.addCommand("myCustomElementCommand", () => { return 1 }, true)
 const elem2 = await $('body')
-console.log(typeof browser.myCustomElementCommand) // output "undefined"
-console.log(await elem2.myCustomElementCommand('foobar')) // output "1"
+console.log(typeof browser.myCustomElementCommand) // outputs "undefined"
+console.log(await elem2.myCustomElementCommand('foobar')) // outputs "1"
 
 const elem3 = await $('body')
 elem3.addCommand("myCustomElementCommand2", () => { return 2 })
-console.log(typeof browser.myCustomElementCommand2) // output "undefined"
-console.log(await elem3.myCustomElementCommand2('foobar')) // output "2"
+console.log(typeof browser.myCustomElementCommand2) // outputs "undefined"
+console.log(await elem3.myCustomElementCommand2('foobar')) // outputs "2"
 ```
 
-__Nota:__ Se hai bisogno di concatenare un comando personalizzato, il comando dovrebbe terminare con `$`,
+__Nota:__ Se hai bisogno di concatenare un comando personalizzato, il comando deve terminare con `$`,
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -93,13 +93,13 @@ browser.addCommand("user$", (locator) => { return ele }, true)
 await browser.user$('foo').user$('bar').click()
 ```
 
-Fai attenzione a non sovraccaricare lo scope del `browser` con troppi comandi personalizzati.
+Fai attenzione a non sovraccaricare l'ambito `browser` con troppi comandi personalizzati.
 
-Consigliamo di definire la logica personalizzata negli [oggetti di pagina](pageobjects), in modo che siano legati a una pagina specifica.
+Consigliamo di definire la logica personalizzata negli [oggetti pagina](pageobjects), in modo che siano legati a una pagina specifica.
 
 ### Multiremote
 
-`addCommand` funziona in modo simile per multiremote, tranne che il nuovo comando si propagherà alle istanze figlie. Devi prestare attenzione quando usi l'oggetto `this` poiché il `browser` multiremote e le sue istanze figlie hanno un `this` diverso.
+`addCommand` funziona in modo simile per multiremote, tranne per il fatto che il nuovo comando si propagherà alle istanze figlie. Devi fare attenzione quando usi l'oggetto `this` poiché il `browser` multiremote e le sue istanze figlie hanno un `this` diverso.
 
 Questo esempio mostra come aggiungere un nuovo comando per multiremote.
 
@@ -107,9 +107,9 @@ Questo esempio mostra come aggiungere un nuovo comando per multiremote.
 import { multiremotebrowser } from '@wdio/globals'
 
 multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
-    // `this` si riferisce a:
-    //      - MultiRemoteBrowser scope per il browser
-    //      - Browser scope per le istanze
+    // `this` refers to:
+    //      - MultiRemoteBrowser scope for browser
+    //      - Browser scope for instances
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -139,20 +139,20 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 */
 ```
 
-## Estendere le Definizioni di Tipo
+## Estendere le Definizioni dei Tipi
 
 Con TypeScript, è facile estendere le interfacce di WebdriverIO. Aggiungi tipi ai tuoi comandi personalizzati in questo modo:
 
-1. Crea un file di definizione di tipo (ad es., `./src/types/wdio.d.ts`)
-2. a. Se utilizzi un file di definizione di tipo in stile modulo (usando import/export e `declare global WebdriverIO` nel file di definizione del tipo), assicurati di includere il percorso del file nella proprietà `include` di `tsconfig.json`.
+1. Crea un file di definizione del tipo (ad es., `./src/types/wdio.d.ts`)
+2. a. Se utilizzi un file di definizione del tipo in stile modulo (usando import/export e `declare global WebdriverIO` nel file di definizione del tipo), assicurati di includere il percorso del file nella proprietà `include` di `tsconfig.json`.
 
-   b.  Se utilizzi file di definizione di tipo in stile ambiente (nessun import/export nei file di definizione di tipo e `declare namespace WebdriverIO` per i comandi personalizzati), assicurati che il `tsconfig.json` *non* contenga alcuna sezione `include`, poiché ciò farà sì che tutti i file di definizione di tipo non elencati nella sezione `include` non vengano riconosciuti da typescript.
+   b. Se utilizzi file di definizione del tipo in stile ambiente (senza import/export nei file di definizione del tipo e `declare namespace WebdriverIO` per i comandi personalizzati), assicurati che `tsconfig.json` *non* contenga alcuna sezione `include`, poiché ciò farà sì che tutti i file di definizione del tipo non elencati nella sezione `include` non vengano riconosciuti da typescript.
 
 <Tabs
   defaultValue="modules"
   values={[
-    {label: 'Moduli (usando import/export)', value: 'modules'},
-    {label: 'Definizioni di Tipo Ambiente (nessun include in tsconfig)', value: 'ambient'},
+    {label: 'Modules (using import/export)', value: 'modules'},
+    {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
   ]
 }>
 <TabItem value="modules">
@@ -184,8 +184,8 @@ Con TypeScript, è facile estendere le interfacce di WebdriverIO. Aggiungi tipi 
 <Tabs
   defaultValue="modules"
   values={[
-    {label: 'Moduli (usando import/export)', value: 'modules'},
-    {label: 'Definizioni di Tipo Ambiente', value: 'ambient'},
+    {label: 'Modules (using import/export)', value: 'modules'},
+    {label: 'Ambient Type Definitions', value: 'ambient'},
   ]
 }>
 <TabItem value="modules">
@@ -232,9 +232,9 @@ declare namespace WebdriverIO {
 
 ## Integrare Librerie di Terze Parti
 
-Se utilizzi librerie esterne (ad es., per effettuare chiamate al database) che supportano le promesse, un buon approccio per integrarle è quello di avvolgere determinati metodi API con un comando personalizzato.
+Se utilizzi librerie esterne (ad es., per effettuare chiamate al database) che supportano le promesse, un approccio interessante per integrarle è quello di avvolgere determinati metodi API con un comando personalizzato.
 
-Quando restituisci la promessa, WebdriverIO garantisce che non continuerà con il comando successivo fino a quando la promessa non viene risolta. Se la promessa viene rifiutata, il comando genererà un errore.
+Quando restituisci la promessa, WebdriverIO garantisce che non continui con il comando successivo fino a quando la promessa non viene risolta. Se la promessa viene rifiutata, il comando genererà un errore.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -243,13 +243,13 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-Poi, usalo semplicemente nelle tue specifiche di test WDIO:
+Quindi, usalo semplicemente nelle tue specifiche di test WDIO:
 
 ```js
 it('execute external library in a sync way', async () => {
     await browser.url('...')
     const body = await browser.makeRequest('http://...')
-    console.log(body) // restituisce il corpo della risposta
+    console.log(body) // returns response body
 })
 ```
 
@@ -259,25 +259,25 @@ it('execute external library in a sync way', async () => {
 
 Puoi anche sovrascrivere i comandi nativi con `overwriteCommand`.
 
-Non è consigliato farlo, perché potrebbe portare a un comportamento imprevedibile del framework!
+Non è consigliabile farlo, perché potrebbe portare a un comportamento imprevedibile del framework!
 
-L'approccio generale è simile a `addCommand`, l'unica differenza è che il primo argomento nella funzione di comando è la funzione originale che stai per sovrascrivere. Si prega di vedere alcuni esempi di seguito.
+L'approccio generale è simile a `addCommand`, l'unica differenza è che il primo argomento nella funzione del comando è la funzione originale che stai per sovrascrivere. Guarda alcuni esempi di seguito.
 
 ### Sovrascrivere i Comandi del Browser
 
 ```js
 /**
- * stampa millisecondi prima della pausa e restituisce il suo valore.
+ * print milliseconds before pause and return its value.
  */
-// 'pause'            - nome del comando da sovrascrivere
-// origPauseFunction  - funzione di pausa originale
+// 'pause'            - name of command to be overwritten
+// origPauseFunction  - original pause function
 browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
     console.log(`sleeping for ${ms}`)
     await origPauseFunction(ms)
     return ms
 })
 
-// poi usalo come prima
+// then use it as before
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
@@ -287,15 +287,15 @@ Sovrascrivere i comandi a livello di elemento è quasi lo stesso. Passa semplice
 
 ```js
 /**
- * Tenta di scorrere fino all'elemento se non è cliccabile.
- * Passa { force: true } per cliccare con JS anche se l'elemento non è visibile o cliccabile.
+ * Attempt to scroll to element if it is not clickable.
+ * Pass { force: true } to click with JS even if element is not visible or clickable.
  */
-// 'click'            - nome del comando da sovrascrivere
-// origClickFunction  - funzione di click originale
+// 'click'            - name of command to be overwritten
+// origClickFunction  - original click function
 browser.overwriteCommand('click', async function (origClickFunction, { force = false } = {}) {
     if (!force) {
         try {
-            // tentativo di click
+            // attempt to click
             await origClickFunction()
             return null
         } catch (err) {
@@ -303,7 +303,7 @@ browser.overwriteCommand('click', async function (origClickFunction, { force = f
                 console.warn('WARN: Element', this.selector, 'is not clickable.',
                     'Scrolling to it before clicking again.')
 
-                // scorrimento fino all'elemento e click di nuovo
+                // scroll to element and click again
                 await this.scrollIntoView()
                 return origClickFunction()
             }
@@ -311,24 +311,24 @@ browser.overwriteCommand('click', async function (origClickFunction, { force = f
         }
     }
 
-    // click con js
+    // clicking with js
     console.warn('WARN: Using force click for', this.selector)
     await browser.execute((el) => {
         el.click()
     }, this)
-}, true) // non dimenticare di passare `true` come terzo argomento
+}, true) // don't forget to pass `true` as 3rd argument
 
-// poi usalo come prima
+// then use it as before
 const elem = await $('body')
 await elem.click()
 
-// o passa parametri
+// or pass params
 await elem.click({ force: true })
 ```
 
 ## Aggiungere Altri Comandi WebDriver
 
-Se stai utilizzando il protocollo WebDriver e esegui test su una piattaforma che supporta comandi aggiuntivi non definiti da nessuna delle definizioni di protocollo in [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) puoi aggiungerli manualmente tramite l'interfaccia `addCommand`. Il pacchetto `webdriver` offre un wrapper di comando che consente di registrare questi nuovi endpoint allo stesso modo degli altri comandi, fornendo gli stessi controlli sui parametri e gestione degli errori. Per registrare questo nuovo endpoint, importa il wrapper di comando e registra un nuovo comando con esso come segue:
+Se stai utilizzando il protocollo WebDriver e esegui test su una piattaforma che supporta comandi aggiuntivi non definiti da nessuna delle definizioni di protocollo in [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) puoi aggiungerli manualmente tramite l'interfaccia `addCommand`. Il pacchetto `webdriver` offre un wrapper di comando che permette di registrare questi nuovi endpoint nello stesso modo degli altri comandi, fornendo gli stessi controlli di parametri e gestione degli errori. Per registrare questo nuovo endpoint importa il wrapper di comando e registra un nuovo comando con esso come segue:
 
 ```js
 import { command } from 'webdriver'
@@ -350,14 +350,14 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-Chiamare questo comando con parametri non validi porta alla stessa gestione degli errori dei comandi di protocollo predefiniti, ad es.:
+Chiamare questo comando con parametri non validi comporta la stessa gestione degli errori dei comandi di protocollo predefiniti, ad esempio:
 
 ```js
-// chiama il comando senza il parametro url richiesto e il payload
+// call command without required url parameter and payload
 await browser.myNewCommand()
 
 /**
- * risulta nel seguente errore:
+ * results in the following error:
  * Error: Wrong parameters applied for myNewCommand
  * Usage: myNewCommand(someId, foo)
  *
@@ -371,10 +371,10 @@ await browser.myNewCommand()
  */
 ```
 
-Chiamando correttamente il comando, ad es. `browser.myNewCommand('foo', 'bar')`, fa correttamente una richiesta WebDriver a es. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` con un payload come `{ foo: 'bar' }`.
+Chiamando correttamente il comando, ad esempio `browser.myNewCommand('foo', 'bar')`, si effettua correttamente una richiesta WebDriver ad es. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` con un payload come `{ foo: 'bar' }`.
 
 :::note
-Il parametro url `:sessionId` verrà automaticamente sostituito con l'id della sessione della sessione WebDriver. Altri parametri url possono essere applicati ma devono essere definiti all'interno di `variables`.
+Il parametro url `:sessionId` verrà automaticamente sostituito con l'id di sessione della sessione WebDriver. Altri parametri url possono essere applicati ma devono essere definiti all'interno di `variables`.
 :::
 
-Vedi esempi di come possono essere definiti i comandi di protocollo nel pacchetto [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).
+Vedi esempi di come i comandi di protocollo possono essere definiti nel pacchetto [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).

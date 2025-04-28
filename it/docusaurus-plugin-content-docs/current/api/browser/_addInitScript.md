@@ -7,44 +7,44 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 Aggiunge uno script che verrà valutato in uno dei seguenti scenari:
 
 - Ogni volta che si naviga nella pagina.
-- Ogni volta che un frame figlio viene collegato o navigato. In questo caso, lo script viene valutato nel
-  contesto del frame appena collegato.
+- Ogni volta che un frame figlio viene collegato o navigato. In questo caso, lo script viene valutato
+  nel contesto del frame appena collegato.
 
-Lo script viene valutato dopo che il documento è stato creato ma prima che qualsiasi suo script sia stato eseguito.
-Per rimuovere nuovamente lo script di inizializzazione dalla pagina, chiama la funzione che è stata
+Lo script viene valutato dopo che il documento è stato creato ma prima che qualsiasi script sia stato eseguito.
+Per rimuovere nuovamente lo script di inizializzazione dalla pagina, chiamare la funzione che è stata
 restituita da questa funzione.
 
 Questo è utile per modificare l'ambiente JavaScript, ad esempio per inizializzare Math.random.
 
-##### Usage
+##### Utilizzo
 
 ```js
 browser.addInitScript(script, args)
 ```
 
-##### Parameters
+##### Parametri
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Nome</th><th>Tipo</th><th>Dettagli</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>script</var></code></td>
       <td>`Function`</td>
-      <td>function to be injected as initialization script</td>
+      <td>funzione da iniettare come script di inizializzazione</td>
     </tr>
     <tr>
       <td><code><var>args</var></code></td>
       <td>`number, string, boolean`</td>
-      <td>parameters for the script</td>
+      <td>parametri per lo script</td>
     </tr>
   </tbody>
 </table>
 
-##### Examples
+##### Esempi
 
 ```js title="addInitScript.js"
 const script = await browser.addInitScript((seed) => {

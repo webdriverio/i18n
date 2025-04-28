@@ -4,7 +4,11 @@ title: isDisplayed（表示されているか）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isDisplayed.ts
 ---
 
-選択されたDOM要素が表示されている場合にtrueを返します（要素がビューポート外にある場合でも）。これはブラウザが提供する[`checkVisibility`](https://developer.mozilla.org/en-US/docs/Web/API/Element/checkVisibility#visibilityproperty)メソッドを使用して、要素が表示されているかどうかを判断します。WebdriverIOは実際のユーザーのように動作するため、`contentVisibilityAuto`、`opacityProperty`、および`visibilityProperty`フラグのデフォルト値はより厳格な動作にするために`true`に設定されています。つまり、このコマンドは要素が`content-visibility`、`opacity`、および`visibility`プロパティの値によって表示されているかどうかをチェックします。
+選択されたDOM要素が表示されている場合（要素がビューポート外であっても）trueを返します。これはブラウザが提供する
+[`checkVisibility`](https://developer.mozilla.org/en-US/docs/Web/API/Element/checkVisibility#visibilityproperty)
+メソッドを使用して、要素が表示されているかどうかを判断します。WebdriverIOは実際のユーザーのように動作するため、
+`contentVisibilityAuto`、`opacityProperty`、および`visibilityProperty`フラグのデフォルト値はより厳格な動作になるよう`true`に設定されています。
+つまり、このコマンドは要素の`content-visibility`、`opacity`、および`visibility`プロパティの値によって要素が可視かどうかをチェックします。
 
 要素がビューポート内にあるかどうかも確認したい場合は、コマンドに`withinViewport`フラグを提供してください。
 
@@ -14,9 +18,12 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::
 
-WebdriverIOは、ブラウザテストを実行する際に、要素の可視性を評価するために特別に設計された[カスタムスクリプト](https://github.com/webdriverio/webdriverio/blob/59d349ca847950354d02b9e548f60cc50e7871f0/packages/webdriverio/src/scripts/isElementDisplayed.ts)を利用します。このスクリプトは、要素がページに表示されているかどうかを判断する上で重要です。一方、Appiumによるネイティブモバイルテストのシナリオでは、WebdriverIOはAppiumが提供する[`isElementDisplayed`](https://appium.io/docs/en/2.1/reference/interfaces/appium_types.ExternalDriver/#elementdisplayed)コマンドに委ねています。このコマンドは、基礎となるAppiumドライバーによって確立された基準を使用して要素の可視性を評価し、モバイルアプリケーションの正確かつドライバー固有の評価を保証します。
+WebdriverIOは、ブラウザテストを実行する際、要素の可視性を評価するために特別に設計された[カスタムスクリプト](https://github.com/webdriverio/webdriverio/blob/59d349ca847950354d02b9e548f60cc50e7871f0/packages/webdriverio/src/scripts/isElementDisplayed.ts)を使用します。
+このスクリプトは、要素がページ上に表示されているかどうかを判断する鍵となります。一方、Appiumによるネイティブモバイルテストシナリオでは、
+WebdriverIOはAppiumが提供する[`isElementDisplayed`](https://appium.io/docs/en/2.1/reference/interfaces/appium_types.ExternalDriver/#elementdisplayed)
+コマンドを使用します。このコマンドは、基盤となるAppiumドライバーによって確立された基準を使用して要素の可視性を評価し、モバイルアプリケーションの正確でドライバー固有の評価を保証します。
 
-##### 使用法
+##### 使用方法
 
 ```js
 $(selector).isDisplayed(withinViewport, contentVisibilityAuto, opacityProperty, visibilityProperty)
@@ -34,22 +41,22 @@ $(selector).isDisplayed(withinViewport, contentVisibilityAuto, opacityProperty, 
     <tr>
       <td><code><var>withinViewport=false</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`Boolean`</td>
-      <td>要素がビューポート内にあるかどうかを確認する場合は`true`。デフォルトは`false`です。</td>
+      <td>要素がビューポート内にあるかどうかを確認するには`true`。デフォルトは`false`。</td>
     </tr>
     <tr>
       <td><code><var>contentVisibilityAuto=true</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`Boolean`</td>
-      <td>要素のcontent-visibilityプロパティが（または継承している）値autoを持ち、現在レンダリングをスキップしているかどうかを確認する場合は`true`。デフォルトは`true`です。</td>
+      <td>要素のcontent-visibilityプロパティが（または継承している）autoの値を持ち、現在レンダリングをスキップしているかどうかを確認するには`true`。デフォルトは`true`。</td>
     </tr>
     <tr>
       <td><code><var>opacityProperty=true</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`Boolean`</td>
-      <td>要素のopacityプロパティが（または継承している）値0を持つかどうかを確認する場合は`true`。デフォルトは`true`です。</td>
+      <td>要素のopacityプロパティが（または継承している）0の値を持つかどうかを確認するには`true`。デフォルトは`true`。</td>
     </tr>
     <tr>
       <td><code><var>visibilityProperty=true</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`Boolean`</td>
-      <td>要素のvisibilityプロパティの値により非表示になっているかどうかを確認する場合は`true`。デフォルトは`true`です。</td>
+      <td>要素がvisibilityプロパティの値により非表示になっているかどうかを確認するには`true`。デフォルトは`true`。</td>
     </tr>
   </tbody>
 </table>

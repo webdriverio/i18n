@@ -6,37 +6,36 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 現在のセッションのコンテキストを取得します。
 
-このメソッドは、デフォルトのAppium `context`/WebdriverIO `getContext`コマンドを拡張し、詳細なコンテキスト情報を返すオプションを提供することで、ウェブビューを使用するハイブリッドアプリの操作を容易にします。
+このメソッドは、詳細なコンテキスト情報を返すオプションを提供することで、デフォルトのAppium `context`/WebdriverIO `getContext`コマンドを拡張し、ウェブビューを使用するハイブリッドアプリでの作業を容易にします。
 
 ### コンテキストの仕組み
 詳細については[ハイブリッドアプリのドキュメント](/docs/api/mobile#hybrid-apps)を参照してください。以下は`getContext`コマンドに関連する課題の説明です：
 
 #### Androidの場合：
-- ウェブビューは複数のページ（ブラウザのタブのような）を含むことがあり、正しいページを識別するには`title`や`url`などの追加のメタデータが必要です。
-- デフォルトのAppiumメソッドは基本的なコンテキスト名（例：`WEBVIEW_{packageName}`）のみを提供し、ウェブビュー内のページに関する詳細情報は提供しません。
+- ウェブビューには複数のページ（ブラウザのタブのような）が含まれることがあり、正しいページを特定するには`title`や`url`などの追加のメタデータが必要です。
+- デフォルトのAppiumメソッドは、ウェブビュー内のページに関する詳細情報なしに、基本的なコンテキスト名（例：`WEBVIEW_{packageName}`）のみを提供します。
 
 #### iOSの場合：
-- 各ウェブビューは一般的な`WEBVIEW_{id}`文字列で識別され、その内容や所属するアプリ画面を示しません。
+- 各ウェブビューは一般的な`WEBVIEW_{id}`文字列で識別されますが、その内容やそれが属するアプリ画面を示すものではありません。
 
 ### このメソッドを使用する理由
 - **デフォルトの動作**：
-  - 現在のコンテキストを文字列として返します（例：`NATIVE_APP`または`WEBVIEW_{id}`）。
-- **詳細コンテキスト**：
-  - `returnDetailedContext`が有効な場合、以下のようなメタデータを取得します：
+  - 現在のコンテキストを文字列（例：`NATIVE_APP`または`WEBVIEW_{id}`）として返します。
+- **詳細なコンテキスト**：
+  - `returnDetailedContext`が有効な場合、次のようなメタデータを取得します：
     - **Android**：`packageName`、`title`、`url`、および`webviewPageId`。
     - **iOS**：`bundleId`、`title`、および`url`。
 - **Android固有のオプション**：
   - ウェブビューの初期化の遅延に対応するために、リトライ間隔とタイムアウトをカスタマイズできます。
 
-:::info 注意事項と制限
+:::info 注意と制限
 
-- `returnDetailedContext`が有効でない場合、このメソッドはデフォルトのAppium `getContext`メソッドのように動作します。
-- デフォルトのAppium `context`メソッドを使用したい場合は、`driver.getAppiumContext()`メソッドを使用できます。
-[Appium Contexts](/docs/api/appium#getappiumcontext)コマンドも参照してください。
-- **Android：** Android固有のオプション（`androidWebviewConnectionRetryTime`と`androidWebviewConnectTimeout`）はiOSでは効果がありません。
-- 複数の詳細コンテキストが見つかった場合や詳細コンテキストが見つからない場合は警告をログに記録します：
-  - `現在のコンテキスト'{context}'に対して複数の詳細コンテキストが見つかりました。最初のコンテキストを返します。`
-  - `現在のコンテキスト'{context}'に対する詳細コンテキストが取得できませんでした。現在のコンテキストを文字列として返します。`
+- `returnDetailedContext`が有効でない場合、このメソッドはデフォルトのAppium `getContext`メソッドと同じように動作します。
+- デフォルトのAppium `context`メソッドを使用したい場合は、`driver.getAppiumContext()`メソッドを使用できます。[Appium Contexts](/docs/api/appium#getappiumcontext)コマンドも参照してください。
+- **Android:** Android固有のオプション（`androidWebviewConnectionRetryTime`と`androidWebviewConnectTimeout`）はiOSでは効果がありません。
+- 複数または詳細なコンテキストが見つからない場合、警告がログに記録されます：
+  - `現在のコンテキスト'{context}'に対して複数の詳細なコンテキストが見つかりました。最初のコンテキストを返します。`
+  - `現在のコンテキスト'{context}'に対する詳細なコンテキストが取得できませんでした。現在のコンテキストを文字列として返します。`
 
 :::
 
@@ -45,29 +44,29 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`GetContextsOptions`</td>
-      <td>`getContext`オプション（任意）</td>
+      <td>`getContext`オプション（省略可能）</td>
     </tr>
     <tr>
-      <td><code><var>options.returnDetailedContext</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.returnDetailedContext</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`boolean`</td>
-      <td>デフォルトでは、デフォルトのAppium `context` APIに基づいてコンテキスト名のみを返します（文字列のみ）。詳細なコンテキスト情報を取得したい場合は、これを`true`に設定します。デフォルトは`false`です（任意）。</td>
+      <td>デフォルトでは、デフォルトのAppium `context` APIに基づいて、文字列のみのコンテキスト名を返します。詳細なコンテキスト情報を取得したい場合は、これを`true`に設定します。デフォルトは`false`です（省略可能）。</td>
     </tr>
     <tr>
-      <td><code><var>options.androidWebviewConnectionRetryTime</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.androidWebviewConnectionRetryTime</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>ウェブビューへの接続を再試行する間隔（ミリ秒）。デフォルトは`500`ミリ秒です（任意）。<br /><strong>ANDROIDのみ</strong></td>
+      <td>ウェブビューに接続するための各リトライ間の待機時間（ミリ秒）。デフォルトは`500`ミリ秒です（省略可能）。<br /><strong>ANDROIDのみ</strong></td>
     </tr>
     <tr>
-      <td><code><var>options.androidWebviewConnectTimeout</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>options.androidWebviewConnectTimeout</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>ウェブビューページが検出されるのを待つ最大時間（ミリ秒）。デフォルトは`5000`ミリ秒です（任意）。<br /><strong>ANDROIDのみ</strong></td>
+      <td>ウェブビューページが検出されるまでの最大待機時間（ミリ秒）。デフォルトは`5000`ミリ秒です（省略可能）。<br /><strong>ANDROIDのみ</strong></td>
     </tr>
   </tbody>
 </table>

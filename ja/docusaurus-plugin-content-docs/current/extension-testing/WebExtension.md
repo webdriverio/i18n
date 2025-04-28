@@ -1,23 +1,23 @@
 ---
 id: web-extensions
-title: Web拡張機能のテスト
+title: Webエクステンションのテスト
 ---
 
-WebdriverIOはブラウザを自動化するための理想的なツールです。Web拡張機能はブラウザの一部であり、同じ方法で自動化することができます。Web拡張機能がウェブサイト上でJavaScriptを実行するためのコンテンツスクリプトを使用したり、ポップアップモーダルを提供したりする場合、WebdriverIOを使用してそのためのe2eテストを実行できます。
+WebdriverIOはブラウザを自動化するための理想的なツールです。Webエクステンションはブラウザの一部であり、同じ方法で自動化することができます。Webエクステンションがウェブサイト上でJavaScriptを実行するためのコンテンツスクリプトを使用したり、ポップアップモーダルを提供したりする場合はいつでも、WebdriverIOを使用してe2eテストを実行できます。
 
-## ブラウザにWeb拡張機能をロードする
+## ブラウザにWebエクステンションを読み込む
 
-最初のステップとして、セッションの一部としてテスト対象の拡張機能をブラウザにロードする必要があります。これはChromeとFirefoxで異なる方法で動作します。
+最初のステップとして、セッションの一部としてテスト対象のエクステンションをブラウザに読み込む必要があります。これはChromeとFirefoxで異なる方法で動作します。
 
 :::info
 
-これらのドキュメントではSafari web拡張機能については触れていません。Safariのサポートは遅れており、ユーザーからの需要も高くないためです。Safariのweb拡張機能を開発している場合は、[問題を報告](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E)し、ここにも含めるよう協力してください。
+これらのドキュメントではSafariウェブエクステンションについては言及していません。Safariのサポートは大幅に遅れており、ユーザーからの需要も高くないためです。Safariウェブエクステンションを開発している場合は、[イシューを作成](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E)して、ここに含めるための協力をお願いします。
 
 :::
 
 ### Chrome
 
-ChromeにWeb拡張機能をロードするには、`crx`ファイルの`base64`エンコードされた文字列を提供するか、Web拡張機能フォルダへのパスを提供します。最も簡単な方法は、Chrome機能を以下のように定義して後者を行うことです：
+Chromeにウェブエクステンションを読み込むには、`crx`ファイルの`base64`エンコードされた文字列を提供するか、ウェブエクステンションフォルダへのパスを提供します。最も簡単な方法は、Chrome機能を次のように定義して後者を行うことです：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -31,7 +31,7 @@ export const config = {
         browserName,
         'goog:chromeOptions': {
             // wdio.conf.jsがルートディレクトリにあり、コンパイルされた
-            // web拡張機能ファイルが`./dist`フォルダにある場合
+            // ウェブエクステンションファイルが`./dist`フォルダにある場合
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -40,11 +40,11 @@ export const config = {
 
 :::info
 
-Chrome以外のブラウザ（例：Brave、Edge、Opera）を自動化する場合、ブラウザオプションは上記の例と一致する可能性がありますが、機能名が異なります（例：`ms:edgeOptions`）。
+Chrome以外のブラウザ（例：Brave、Edge、Opera）を自動化する場合、ブラウザオプションは上記の例と一致する可能性が高いですが、機能名が異なります（例：`ms:edgeOptions`）。
 
 :::
 
-例えば[crx](https://www.npmjs.com/package/crx) NPMパッケージを使用して拡張機能を`.crx`ファイルとしてコンパイルする場合、バンドルされた拡張機能を次のように注入することもできます：
+[crx](https://www.npmjs.com/package/crx) NPMパッケージなどを使用してエクステンションを`.crx`ファイルとしてコンパイルする場合は、バンドルされたエクステンションを次のように注入することもできます：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +67,7 @@ export const config = {
 
 ### Firefox
 
-拡張機能を含むFirefoxプロファイルを作成するには、[Firefox Profile Service](/docs/firefox-profile-service)を使用してセッションを適切に設定できます。ただし、署名の問題により、ローカルで開発された拡張機能が読み込めない場合があります。この場合、[`installAddOn`](/docs/api/gecko#installaddon)コマンドを使用して`before`フックで拡張機能をロードすることもできます：
+エクステンションを含むFirefoxプロファイルを作成するには、[Firefox Profile Service](/docs/firefox-profile-service)を使用してセッションを適切に設定できます。ただし、署名の問題により、ローカルで開発されたエクステンションを読み込めない場合があります。この場合、[`installAddOn`](/docs/api/gecko#installaddon)コマンドを使用して`before`フックでエクステンションを読み込むこともできます：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,7 +88,7 @@ export const config = {
 }
 ```
 
-`.xpi`ファイルを生成するには、[`web-ext`](https://www.npmjs.com/package/web-ext) NPMパッケージを使用することをお勧めします。次の例のコマンドを使用して拡張機能をバンドルできます：
+`.xpi`ファイルを生成するには、[`web-ext`](https://www.npmjs.com/package/web-ext) NPMパッケージを使用することをお勧めします。次の例のコマンドを使用してエクステンションをバンドルできます：
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
@@ -96,13 +96,13 @@ npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 
 ## ヒントとコツ
 
-以下のセクションでは、Web拡張機能をテストする際に役立つヒントとコツのセットを紹介します。
+以下のセクションには、Webエクステンションをテストする際に役立つヒントとコツのセットが含まれています。
 
 ### Chromeでポップアップモーダルをテストする
 
-[拡張機能マニフェスト](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action)で`default_popup`ブラウザアクションエントリを定義している場合、そのHTMLページを直接テストできます。ブラウザ上部バーの拡張機能アイコンをクリックする方法は機能しないため、ポップアップHTMLファイルを直接開く必要があります。
+[エクステンションマニフェスト](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action)で`default_popup`ブラウザアクションエントリを定義している場合、そのHTMLページを直接テストできます。ブラウザ上部バーでエクステンションアイコンをクリックしても機能しないため、ポップアップHTMLファイルを直接開く必要があります。
 
-Chromeでは、拡張機能IDを取得し、`browser.url('...')`を通じてポップアップページを開くことで実現できます。そのページ上での動作はポップアップ内での動作と同じになります。そのために、次のようなカスタムコマンドを作成することをお勧めします：
+Chromeでは、エクステンションIDを取得し`browser.url('...')`を通じてポップアップページを開くことができます。そのページでの動作はポップアップ内と同じになります。そのために以下のカスタムコマンドを作成することをお勧めします：
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -149,7 +149,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-これで、テスト内でポップアップページに次のようにアクセスできます：
+これで、テスト内でポップアップページにアクセスできるようになります：
 
 ```ts
 await browser.openExtensionPopup('My Web Extension')

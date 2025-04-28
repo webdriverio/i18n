@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Ottieni il codice sorgente dell'elemento DOM specificato tramite selettore. Per impostazione predefinita, attraversa automaticamente
-tutte le shadow root degli elementi contenuti nell'elemento.
+tutte le shadow root degli elementi contenuti dall'elemento.
 
 ##### Utilizzo
 
@@ -45,7 +45,7 @@ $(selector).getHTML({ includeSelectorTag, pierceShadowRoot, removeCommentNodes, 
     <tr>
       <td><code><var>options.prettify</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Boolean`</td>
-      <td>se true, l'output HTML sarà formattato in modo leggibile (predefinito: `true`)</td>
+      <td>se true, l'output HTML sarà formattato (predefinito: `true`)</td>
     </tr>
   </tbody>
 </table>

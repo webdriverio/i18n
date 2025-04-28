@@ -4,10 +4,10 @@ title: newWindow
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/newWindow.ts
 ---
 
-Apri una nuova finestra o scheda nel browser (predefinito su una nuova finestra se non specificato).
+Apre una nuova finestra o scheda nel browser (predefinita a una nuova finestra se non specificato).
 Questo comando è la funzione equivalente a `window.open()`. Questo comando non funziona in ambienti mobili.
 
-__Nota:__ Quando si richiama questo comando si passa automaticamente alla nuova finestra o scheda.
+__Nota:__ Quando richiami questo comando passi automaticamente alla nuova finestra o scheda.
 
 ##### Utilizzo
 
@@ -98,6 +98,6 @@ it('should open a new window', async () => {
 
 - **&lt;Object&gt;**
             **<code><var>return</var></code>:**           Un oggetto contenente l'handle della finestra e il tipo di nuova finestra `{handle: string, type: string}` handle - L'ID dell'handle della finestra della nuova scheda o finestra, type - Il tipo della nuova finestra, 'tab' o 'window'    
-##### Genera eccezioni
+##### Genera errore
 
-- **Error**:  Se `url` non è valido, se il comando viene utilizzato su dispositivi mobili, o `type` non è 'tab' o 'window'.
+- **Error**:  Se `url` non è valido, se il comando viene utilizzato su dispositivi mobili, o se `type` non è 'tab' o 'window'.

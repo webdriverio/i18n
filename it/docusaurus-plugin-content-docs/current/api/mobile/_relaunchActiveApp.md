@@ -6,23 +6,23 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 Esegue un riavvio dell'app nativa attiva tramite:
 
-- chiusura dell'app attiva
+- terminazione dell'app attiva
 - avvio dell'app precedentemente attiva
 
 :::important
-Questo comando riavvierà (terminerà/chiuderà e lancerà/avvierà) l'app attiva corrente e NON ripristinerà lo stato dell'app. Appium non può eseguire un ripristino completo dell'app a meno che:
+Questo comando riavvierà (terminerà/chiuderà e lancerà/avvierà) l'app attiva corrente e NON resetterà lo stato dell'app. Appium non può eseguire un reset completo dell'app a meno che:
 
-- si avvii una nuova sessione e il gestore della sessione rimuova lo stato dell'app/pulisca il dispositivo
-- si disponga di una backdoor nell'app per ripristinare lo stato dell'app e Appium possa chiamare questa backdoor
+- tu non avvii una nuova sessione e il gestore della sessione rimuova lo stato dell'app/pulisca il dispositivo
+- tu non abbia una backdoor nella tua app per resettare lo stato dell'app e Appium possa chiamare questa backdoor
 
-Se desideri ripristinare lo stato dell'app per Android o iOS, devi creare il tuo meccanismo/comando di ripristino nel tuo script. Le opzioni potrebbero essere:
+Se vuoi resettare lo stato dell'app per Android o iOS devi creare il tuo meccanismo/comando di reset nel tuo script. Le opzioni potrebbero essere:
 
-- Android: Utilizzare il comando `adb` per cancellare i dati dell'app: `adb shell pm clear <appPackage>`
-- iOS: reinstallare l'app utilizzando il comando `mobile: installApp`
+- Android: Usa il comando `adb` per cancellare i dati dell'app: `adb shell pm clear <appPackage>`
+- iOS: reinstalla l'app usando il comando `mobile: installApp`
 - ....
-- non utilizzare questo comando
+- non usare questo comando
 
-Le opzioni che hai dipendono dalla piattaforma, dall'app e dalla posizione (locale con la maggior parte delle volte accesso completo al dispositivo, o nel cloud con meno accesso) in cui stai eseguendo i test.
+Le opzioni che hai dipendono dalla piattaforma, dall'app e dalla posizione (locale con la maggior parte delle volte accesso completo al dispositivo, o nel cloud con meno accesso) in cui stai testando.
 
 :::
 

@@ -5,26 +5,26 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 [Puppeteer Browserインスタンス](https://pptr.dev/#?product=Puppeteer&version=v5.1.0&show=api-class-browser)を取得して、
-Puppeteerでコマンドを実行します。すべてのPuppeteerコマンドは
-デフォルトで非同期であるため、同期と非同期の実行を切り替えるには、
-例に示すように`browser.call`コマンド内でPuppeteerの呼び出しをラップしてください。
+Puppeteerでコマンドを実行します。すべてのPuppeteerコマンドはデフォルトで
+非同期であるため、同期と非同期実行を切り替えるには、例のように
+Puppeteerの呼び出しを`browser.call`コマンド内にラップしてください。
 
 :::info
 
 Puppeteerの使用にはChrome DevToolsプロトコルのサポートが必要であり、
-クラウドで自動テストを実行する場合などには使用できません。Chrome DevToolsプロトコルはデフォルトではインストールされていないため、
+クラウドで自動化テストを実行する場合などには使用できません。Chrome DevToolsプロトコルはデフォルトではインストールされていないため、
 `npm install puppeteer-core`を使用してインストールしてください。
-詳細は[オートメーションプロトコル](/docs/automationProtocols)のセクションをご覧ください。
+詳細は[自動化プロトコル](/docs/automationProtocols)セクションを参照してください。
 
 :::
 
 :::info
 
-注意：Puppeteerは現在、[コンポーネントテスト](/docs/component-testing)の実行時には__サポートされていません__。
+注意: Puppeteerは現在、[コンポーネントテスト](/docs/component-testing)実行時には__サポートされていません__。
 
 :::
 
-##### 使用法
+##### 使用方法
 
 ```js
 browser.getPuppeteer()
@@ -52,4 +52,4 @@ it('should allow me to use Puppeteer', async () => {
 ##### 戻り値
 
 - **&lt;PuppeteerBrowser&gt;**
-            **<code><var>return</var></code>:**   ブラウザに接続された初期化されたPuppeteerインスタンス
+            **<code><var>return</var></code>:**   ブラウザに接続された初期化されたpuppeteerインスタンス

@@ -1,13 +1,13 @@
 ---
 id: coverage
-title: Coverage
+title: التغطية
 ---
 
-WebdriverIO's browser runner supports code coverage reporting using [`istanbul`](https://istanbul.js.org/). The testrunner will automatically instrument your code and capture code coverage for you.
+يدعم مشغل المتصفح في WebdriverIO إعداد تقارير تغطية الشفرة باستخدام [`istanbul`](https://istanbul.js.org/). سيقوم مشغل الاختبار تلقائيًا بتحليل الشفرة وتسجيل تغطية الشفرة لك.
 
-## Setup
+## الإعداد
 
-In order to enable code coverage reporting, enable it through the WebdriverIO browser runner configuration, e.g.:
+لتمكين تقارير تغطية الشفرة، قم بتفعيلها من خلال إعدادات مشغل متصفح WebdriverIO، على سبيل المثال:
 
 ```js title=wdio.conf.js
 export const config = {
@@ -22,20 +22,20 @@ export const config = {
 }
 ```
 
-Checkout all [coverage options](/docs/runner#coverage-options), to learn how to properly configure it.
+راجع جميع [خيارات التغطية](/docs/runner#coverage-options)، لمعرفة كيفية تكوينها بشكل صحيح.
 
-## Ignoring Code
+## تجاهل الشفرة
 
-There may be some sections of your codebase that you wish to purposefully exclude from coverage tracking, to do so you can use the following parsing hints:
+قد تكون هناك بعض أجزاء من قاعدة الشفرة الخاصة بك ترغب في استبعادها عمدًا من تتبع التغطية، للقيام بذلك يمكنك استخدام تلميحات التحليل التالية:
 
-- `/* istanbul ignore if */`: ignore the next if statement.
-- `/* istanbul ignore else */`: ignore the else portion of an if statement.
-- `/* istanbul ignore next */`: ignore the next thing in the source-code ( functions, if statements, classes, you name it).
-- `/* istanbul ignore file */`: ignore an entire source-file (this should be placed at the top of the file).
+- `/* istanbul ignore if */`: تجاهل جملة if التالية.
+- `/* istanbul ignore else */`: تجاهل جزء else من جملة if.
+- `/* istanbul ignore next */`: تجاهل الشيء التالي في الشفرة المصدرية (الدوال، جمل if، الفئات، وما إلى ذلك).
+- `/* istanbul ignore file */`: تجاهل ملف مصدر بأكمله (يجب وضع هذا في أعلى الملف).
 
 :::info
 
-It is recommended to exclude your test files from the coverage reporting as it could cause errors, e.g. when calling `execute` or `executeAsync` commands. If you like to keep them in your report, ensure your exclude instrumenting them via:
+يُنصح باستبعاد ملفات الاختبار من إعداد تقارير التغطية لأنها قد تسبب أخطاء، على سبيل المثال عند استدعاء أوامر `execute` أو `executeAsync`. إذا كنت ترغب في الاحتفاظ بها في التقرير، تأكد من استبعادها من التحليل عبر:
 
 ```ts
 await browser.execute(/* istanbul ignore next */() => {

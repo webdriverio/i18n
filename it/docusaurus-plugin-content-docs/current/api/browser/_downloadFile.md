@@ -31,7 +31,7 @@ browser.downloadFile(fileName, targetDirectory)
     <tr>
       <td><code><var>fileName</var></code></td>
       <td>`string`</td>
-      <td>percorso remoto al file</td>
+      <td>percorso remoto del file</td>
     </tr>
     <tr>
       <td><code><var>targetDirectory</var></code></td>

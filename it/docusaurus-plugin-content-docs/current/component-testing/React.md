@@ -7,7 +7,7 @@ title: React
 
 ## Setup
 
-Per configurare WebdriverIO all'interno del tuo progetto React, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione di test dei componenti. Assicurati di selezionare `react` come preset nelle tue opzioni di runner, ad esempio:
+Per configurare WebdriverIO all'interno del tuo progetto React, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione di testing dei componenti. Assicurati di selezionare `react` come preset nelle tue opzioni di runner, ad esempio:
 
 ```js
 // wdio.conf.js
@@ -22,7 +22,7 @@ export const config = {
 
 :::info
 
-Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, puoi anche riutilizzare la tua configurazione in `vite.config.ts` all'interno della tua configurazione WebdriverIO. Per maggiori informazioni, vedi `viteConfig` nelle [opzioni runner](/docs/runner#runner-options).
+Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, puoi anche riutilizzare la tua configurazione in `vite.config.ts` all'interno della tua configurazione WebdriverIO. Per maggiori informazioni, consulta `viteConfig` nelle [opzioni del runner](/docs/runner#runner-options).
 
 :::
 
@@ -40,7 +40,7 @@ npx wdio run ./wdio.conf.js
 
 ## Scrittura dei Test
 
-Dato che hai il seguente componente React:
+Supponiamo che tu abbia il seguente componente React:
 
 ```tsx title="./components/Component.jsx"
 import React, { useState } from 'react'
@@ -61,7 +61,7 @@ function App() {
 export default App
 ```
 
-Nel tuo test, utilizza il metodo `render` da `@testing-library/react` per collegare il componente alla pagina di test. Per interagire con il componente, consigliamo di utilizzare i comandi WebdriverIO poiché si comportano in modo più simile alle interazioni reali dell'utente, ad esempio:
+Nel tuo test utilizza il metodo `render` da `@testing-library/react` per collegare il componente alla pagina di test. Per interagire con il componente, consigliamo di utilizzare i comandi WebdriverIO poiché si comportano in modo più simile alle reali interazioni dell'utente, ad esempio:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'

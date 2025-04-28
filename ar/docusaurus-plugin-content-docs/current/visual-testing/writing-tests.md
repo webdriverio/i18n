@@ -6,15 +6,15 @@ title: كتابة الاختبارات
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## دعم إطار عمل Testrunner
+## دعم إطار عمل مشغل الاختبارات
 
-خدمة `@wdio/visual-service` لا تعتمد على إطار عمل أي منصة اختبار، مما يعني أنه يمكنك استخدامها مع جميع أطر العمل التي يدعمها WebdriverIO مثل:
+`@wdio/visual-service` مستقل عن إطار عمل اختبار معين، مما يعني أنه يمكنك استخدامه مع جميع أطر العمل التي يدعمها WebdriverIO مثل:
 
 -   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
 -   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
 -   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-ضمن اختباراتك، يمكنك _حفظ_ لقطات الشاشة أو مطابقة الحالة المرئية الحالية لتطبيقك قيد الاختبار مع خط الأساس. لهذا الغرض، توفر الخدمة [مطابق مخصص](/docs/api/expect-webdriverio#visual-matcher)، بالإضافة إلى طرق _التحقق_:
+داخل اختباراتك، يمكنك _حفظ_ لقطات الشاشة أو مطابقة الحالة المرئية الحالية لتطبيقك قيد الاختبار مع خط الأساس. لذلك، توفر الخدمة [مطابق مخصص](/docs/api/expect-webdriverio#visual-matcher)، بالإضافة إلى طرق _التحقق_:
 
 <Tabs
     defaultValue="mocha"
@@ -347,7 +347,7 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 
 :::note هام
 
-توفر هذه الخدمة طرق `save` و `check`. إذا كنت تقوم بتشغيل اختباراتك للمرة الأولى **لا يجب** أن تجمع بين طرق `save` و `compare`، فطرق `check` ستقوم تلقائيًا بإنشاء صورة خط الأساس لك
+توفر هذه الخدمة طرق `حفظ` و`تحقق`. إذا كنت تشغل اختباراتك للمرة الأولى **يجب عليك عدم** الجمع بين طرق `حفظ` و`مقارنة`، حيث ستقوم طرق `تحقق` تلقائيًا بإنشاء صورة أساسية لك
 
 ```sh
 #####################################################################################
@@ -357,8 +357,7 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 #####################################################################################
 ```
 
-
-عندما تقوم [بتعطيل الحفظ التلقائي لصور خط الأساس](service-options#autosavebaseline)، سيتم رفض الوعد مع التحذير التالي.
+عندما تقوم [بتعطيل الحفظ التلقائي لصور الأساس](service-options#autosavebaseline)، سيتم رفض الوعد مع التحذير التالي.
 
 ```sh
 #####################################################################################
@@ -368,6 +367,6 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 #####################################################################################
 ```
 
-هذا يعني أن لقطة الشاشة الحالية تم حفظها في مجلد actual وعليك **نسخها يدويًا إلى خط الأساس الخاص بك**. إذا قمت بتهيئة `@wdio/visual-service` مع [`autoSaveBaseline: true`](./service-options#autosavebaseline) سيتم حفظ الصورة تلقائيًا في مجلد خط الأساس.
+هذا يعني أن لقطة الشاشة الحالية تم حفظها في مجلد التطبيق الفعلي، وستحتاج **يدويًا إلى نسخها إلى خط الأساس الخاص بك**. إذا قمت بتهيئة `@wdio/visual-service` مع [`autoSaveBaseline: true`](./service-options#autosavebaseline)، سيتم حفظ الصورة تلقائيًا في مجلد خط الأساس.
 
 :::

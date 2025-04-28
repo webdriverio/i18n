@@ -7,10 +7,10 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 Recupera il contesto della sessione corrente.
 
 Questo metodo migliora il comando Appium predefinito `context`/WebdriverIO `getContext` fornendo un'opzione per
-restituire informazioni dettagliate sul contesto, rendendo più facile lavorare con app ibride che utilizzano webview.
+restituire informazioni dettagliate sul contesto, facilitando il lavoro con app ibride che utilizzano webview.
 
 ### Come funzionano i contesti
-Fai riferimento alla [documentazione delle App Ibride](/docs/api/mobile#hybrid-apps) per maggiori informazioni. Di seguito è riportata una spiegazione delle sfide associate al comando `getContext`:
+Consulta la [documentazione sulle App Ibride](/docs/api/mobile#hybrid-apps) per maggiori informazioni. Di seguito è riportata una spiegazione delle sfide associate al comando `getContext`:
 
 #### Per Android:
 - Le webview possono contenere più pagine (come le schede del browser), e l'identificazione della pagina corretta richiede metadati aggiuntivi
@@ -34,11 +34,11 @@ Fai riferimento alla [documentazione delle App Ibride](/docs/api/mobile#hybrid-a
 
 :::info Note e limitazioni
 
-- Se `returnDetailedContext` non è abilitato, il metodo si comporta come il metodo Appium `getContext` predefinito.
-- Se desideri utilizzare il metodo "predefinito" di Appium `context`, puoi utilizzare il metodo `driver.getAppiumContext()`, vedi
+- Se `returnDetailedContext` non è abilitato, il metodo si comporta come il metodo Appium predefinito `getContext`.
+- Se desideri utilizzare il metodo Appium "predefinito" `context`, puoi utilizzare il metodo `driver.getAppiumContext()`, vedi
 anche il comando [Appium Contexts](/docs/api/appium#getappiumcontext).
 - **Android:** Le opzioni specifiche per Android (`androidWebviewConnectionRetryTime` e `androidWebviewConnectTimeout`) non hanno effetto su iOS.
-- Registra avvisi se vengono trovati più contesti dettagliati o nessun contesto:
+- Mostra avvisi se vengono trovati più contesti dettagliati o nessuno:
   - `Abbiamo trovato più di 1 contesto dettagliato per il contesto corrente '{context}'. Restituiremo il primo contesto.`
   - `Non abbiamo ricevuto alcun contesto dettagliato per il contesto corrente '{context}'. Restituiremo il contesto corrente come stringa.`
 
@@ -56,22 +56,22 @@ anche il comando [Appium Contexts](/docs/api/appium#getappiumcontext).
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`GetContextsOptions`</td>
-      <td>Le opzioni `getContext` (opzionale)</td>
+      <td>Le opzioni di `getContext` (opzionale)</td>
     </tr>
     <tr>
       <td><code><var>options.returnDetailedContext</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`boolean`</td>
-      <td>Per impostazione predefinita, restituiamo solo il nome del contesto basato sull'API Appium `context` predefinita, che è solo una stringa. Se desideri ricevere informazioni dettagliate sul contesto, imposta questo su `true`. Il valore predefinito è `false` (opzionale).</td>
+      <td>Per impostazione predefinita, restituiamo solo il nome del contesto basato sull'API Appium predefinita `context`, che è solo una stringa. Se desideri ricevere informazioni dettagliate sul contesto, imposta questo valore su `true`. L'impostazione predefinita è `false` (opzionale).</td>
     </tr>
     <tr>
       <td><code><var>options.androidWebviewConnectionRetryTime</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Il tempo in millisecondi da attendere tra ciascun tentativo di connessione alla webview. Il valore predefinito è `500` ms (opzionale). <br /><strong>SOLO ANDROID</strong></td>
+      <td>Il tempo in millisecondi da attendere tra ogni nuovo tentativo di connessione alla webview. L'impostazione predefinita è `500` ms (opzionale). <br /><strong>SOLO PER ANDROID</strong></td>
     </tr>
     <tr>
       <td><code><var>options.androidWebviewConnectTimeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Il tempo massimo in millisecondi di attesa per il rilevamento di una pagina web view. Il valore predefinito è `5000` ms (opzionale). <br /><strong>SOLO ANDROID</strong></td>
+      <td>Il tempo massimo in millisecondi da attendere affinché una pagina della webview venga rilevata. L'impostazione predefinita è `5000` ms (opzionale). <br /><strong>SOLO PER ANDROID</strong></td>
     </tr>
   </tbody>
 </table>

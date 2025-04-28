@@ -1,8 +1,8 @@
 ---
 id: windows
-title: Windows
+title: ویندوز
 ---
 
-Unfortunately there is at the moment no stable driver for automating Windows applications. Even though Appium maintains a [Windows Driver](https://github.com/appium/appium-windows-driver) that is based on Microsoft's [WinAppDriver server](https://github.com/microsoft/WinAppDriver), we would not recommend using it given that Microsoft has stopped maintaining the server and there are a lot of [known bugs](https://github.com/search?q=repo%3Amicrosoft%2FWinAppDriver+webdriverio&type=issues).
+متأسفانه در حال حاضر هیچ درایور پایداری برای خودکارسازی برنامه‌های ویندوز وجود ندارد. هرچند Appium یک [Windows Driver](https://github.com/appium/appium-windows-driver) را نگهداری می‌کند که بر اساس سرور [WinAppDriver](https://github.com/microsoft/WinAppDriver) مایکروسافت است، ما استفاده از آن را توصیه نمی‌کنیم زیرا مایکروسافت نگهداری از این سرور را متوقف کرده است و [باگ‌های شناخته شده](https://github.com/search?q=repo%3Amicrosoft%2FWinAppDriver+webdriverio&type=issues) زیادی وجود دارد.
 
-If anyone is aware of a way to automate Windows applications, please let us know on [Discord](https://discord.webdriver.io).
+اگر کسی از روشی برای خودکارسازی برنامه‌های ویندوز آگاه است، لطفاً از طریق [Discord](https://discord.webdriver.io) به ما اطلاع دهد.

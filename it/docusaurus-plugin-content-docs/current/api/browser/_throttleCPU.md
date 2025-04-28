@@ -8,10 +8,10 @@ Limita la CPU per emulare un processore più lento.
 
 :::info
 
-Nota che l'utilizzo del comando `throttleCPU` richiede il supporto per il protocollo Chrome DevTools e, ad esempio,
+Nota che l'utilizzo del comando `throttleCPU` richiede il supporto per il protocollo Chrome DevTools e ad esempio
 non può essere utilizzato quando si eseguono test automatizzati nel cloud. Il protocollo Chrome DevTools non è installato per impostazione predefinita,
 usa `npm install puppeteer-core` per installarlo.
-Scopri di più nella sezione [Protocolli di automazione](/docs/automationProtocols).
+Scopri di più nella sezione [Protocolli di Automazione](/docs/automationProtocols).
 
 :::
 
@@ -33,7 +33,7 @@ browser.throttleCPU(factor)
     <tr>
       <td><code><var>factor</var></code></td>
       <td>`number`</td>
-      <td>fattore di rallentamento (1 significa nessun throttling, 2 è un rallentamento 2x, ecc.)</td>
+      <td>fattore di rallentamento (1 è nessun throttle, 2 è rallentamento 2x, ecc)</td>
     </tr>
   </tbody>
 </table>

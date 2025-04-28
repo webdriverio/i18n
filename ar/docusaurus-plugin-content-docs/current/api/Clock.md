@@ -1,9 +1,9 @@
 ---
 id: clock
-title: The Clock Object
+title: كائن الساعة
 ---
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+يمكنك تعديل ساعة نظام المتصفح باستخدام أمر [`emulate`](/docs/emulation). يقوم هذا الأمر بتجاوز الدوال العالمية الأصلية المتعلقة بالوقت مما يسمح بالتحكم بها بشكل متزامن عبر `clock.tick()` أو كائن الساعة الناتج. وهذا يشمل التحكم في:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+تبدأ الساعة عند بداية عصر يونكس (الطابع الزمني 0). هذا يعني أنه عندما تقوم بإنشاء كائن Date جديد في تطبيقك، سيكون له وقت 1 يناير 1970 إذا لم تمرر أي خيارات أخرى إلى أمر `emulate`.
 
-## Example
+## مثال
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+عند استدعاء `browser.emulate('clock', { ... })` سيتم على الفور استبدال الدوال العالمية للصفحة الحالية وكذلك جميع الصفحات التالية، على سبيل المثال:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -37,4 +37,4 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+يمكنك تعديل وقت النظام عن طريق استدعاء [`setSystemTime`](/docs/api/clock/setSystemTime) أو [`tick`](/docs/api/clock/tick).

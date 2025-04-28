@@ -1,6 +1,6 @@
 ---
 id: expect-webdriverio
-title: Expect
+title: Expect 
 custom_edit_url: https://github.com/webdriverio/expect-webdriverio/edit/main/README.md
 ---
 
@@ -8,22 +8,22 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-テストを書く際に、値が特定の条件を満たしているかを確認する必要がよくあります。`expect`を使用すると、`browser`、`element`、または`mock`オブジェクトでさまざまな検証ができるマッチャーにアクセスできます。
+テストを書く際に、値が特定の条件を満たすかどうかを確認する必要があることがよくあります。`expect`を使用すると、`browser`、`element`、`mock`オブジェクトに対して異なる検証を行うための「マッチャー」にアクセスできます。
 
 ## デフォルトオプション
 
-以下のデフォルトオプションは、設定で設定された[`waitforTimeout`](https://webdriver.io/docs/options#waitfortimeout)と[`waitforInterval`](https://webdriver.io/docs/options#waitforinterval)オプションに接続されています。
+以下のデフォルトオプションは、設定で設定されている[`waitforTimeout`](https://webdriver.io/docs/options#waitfortimeout)と[`waitforInterval`](https://webdriver.io/docs/options#waitforinterval)オプションに接続されています。
 
-アサーションに特定のタイムアウトを設定したい場合のみ、以下のオプションを設定してください。
+アサーションに特定のタイムアウトを待機したい場合にのみ、以下のオプションを設定してください。
 
 ```js
 {
-    wait: 2000, // アサーションが成功するまで待機するミリ秒
+    wait: 2000, // 期待が成功するまで待機するミリ秒
     interval: 100, // 試行間の間隔
 }
 ```
 
-異なるタイムアウトと間隔を選択したい場合は、次のようにこれらのオプションを設定します：
+異なるタイムアウトと間隔を選択したい場合は、これらのオプションを次のように設定します：
 
 ```js
 // wdio.conf.js
@@ -40,17 +40,17 @@ export const config = {
 
 ### マッチャーオプション
 
-すべてのマッチャーは、アサーションを変更できるいくつかのオプションを受け取ることができます：
+すべてのマッチャーはアサーションを修正できるいくつかのオプションを取ることができます：
 
 ##### コマンドオプション
 
 | 名前 | 型 | 詳細 |
 | ---- | ---- | ------- |
-| <code><var>wait</var></code> | number | アサーションが成功するまで待機する時間（ms）。デフォルト：`3000` |
+| <code><var>wait</var></code> | number | 期待が成功するまで待機する時間（ミリ秒）。デフォルト：`3000` |
 | <code><var>interval</var></code> | number | 試行間の間隔。デフォルト：`100` |
-| <code><var>beforeAssertion</var></code> | function | アサーションが実行される前に呼び出される関数 |
-| <code><var>afterAssertion</var></code> | function | アサーション結果を含むアサーション後に呼び出される関数 |
-| <code><var>message</var></code> | string | アサーションエラーの前に追加されるユーザーメッセージ |
+| <code><var>beforeAssertion</var></code> | function | アサーションが行われる前に呼び出される関数 |
+| <code><var>afterAssertion</var></code> | function | アサーション結果を含むアサーションが行われた後に呼び出される関数 |
+| <code><var>message</var></code> | string | アサーションエラーの前に付加するユーザーメッセージ |
 
 ##### 文字列オプション
 
@@ -58,10 +58,10 @@ export const config = {
 
 | 名前 | 型 | 詳細 |
 | ---- | ---- | ------- |
-| <code><var>ignoreCase</var></code> | boolean | 実際の値と期待される値の両方に`toLowerCase`を適用する |
+| <code><var>ignoreCase</var></code> | boolean | 実際の値と期待値の両方に`toLowerCase`を適用する |
 | <code><var>trim</var></code> | boolean | 実際の値に`trim`を適用する |
-| <code><var>replace</var></code> | Replacer \| Replacer[] | 文字列/RegExpに一致する実際の値の部分を置き換える。replacerは文字列または関数にすることができます。
-| <code><var>containing</var></code> | boolean | 実際の値が期待値を含むことを期待する、それ以外は厳密に等しい。 |
+| <code><var>replace</var></code> | Replacer \| Replacer[] | 文字列/RegExpに一致する実際の値の部分を置き換えます。置換子は文字列または関数にすることができます。
+| <code><var>containing</var></code> | boolean | 実際の値が期待値を含むことを期待し、そうでなければ厳密に等しい。 |
 | <code><var>asString</var></code> | boolean | プロパティ値を強制的に文字列に変換するのに役立つ場合があります |
 | <code><var>atStart</var></code> | boolean | 実際の値が期待値で始まることを期待する |
 | <code><var>atEnd</var></code> | boolean | 実際の値が期待値で終わることを期待する |
@@ -79,9 +79,9 @@ export const config = {
 
 ### HTMLエンティティの処理
 
-HTMLエンティティは、アンパサンド（`&`）で始まりセミコロン（`;`）で終わるテキスト（「文字列」）です。エンティティは、予約文字（HTMLコードとして解釈されるもの）や不可視文字（ノンブレークスペースなど、例：`&nbsp;`）を表示するためによく使用されます。
+HTMLエンティティはアンパサンド（`&`）で始まりセミコロン（`;`）で終わるテキスト（「文字列」）です。エンティティは、予約文字（そうでなければHTMLコードとして解釈される）や不可視文字（ノンブレークスペースなど、例えば`&nbsp;`）を表示するためによく使用されます。
 
-そのような要素を見つけたり操作したりするには、エンティティのUnicode相当を使用します。例：
+そのような要素を検索または操作するには、エンティティのユニコード相当を使用します。例：
 
 ```html
 <div data="Some&nbsp;Value">Some&nbsp;Text</div>
@@ -93,15 +93,15 @@ await expect(myElem).toHaveAttribute('data', 'div[Some\u00a0Value')
 await expect(myElem).toHaveText('Some\u00a0Text')
 ```
 
-すべてのUnicodeリファレンスは[HTML仕様](https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references)で見つけることができます。
+すべてのユニコード参照は[HTML仕様](https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references)で見つけることができます。
 
-**注意：** Unicodeは大文字小文字を区別しないため、`\u00a0`と`\u00A0`の両方が機能します。ブラウザの検査で要素を見つけるには、Unicodeから`u`を削除します。例：`div[data="Some\00a0Value"]`
+**注意：** ユニコードは大文字小文字を区別しないため、`\u00a0`と`\u00A0`の両方が機能します。ブラウザのインスペクトで要素を見つけるには、ユニコードから`u`を削除します（例：`div[data="Some\00a0Value"]`）。
 
 ## ブラウザマッチャー
 
 ### toHaveUrl
 
-ブラウザが特定のページにあるかどうかをチェックします。
+ブラウザが特定のページにあるかどうかを確認します。
 
 ##### 使用方法
 
@@ -119,7 +119,7 @@ await expect(browser).toHaveUrl(expect.stringContaining('webdriver'))
 
 ### toHaveTitle
 
-ウェブサイトが特定のタイトルを持っているかどうかをチェックします。
+ウェブサイトが特定のタイトルを持っているかどうかを確認します。
 
 ##### 使用方法
 
@@ -131,7 +131,7 @@ await expect(browser).toHaveTitle(expect.stringContaining('WebdriverIO'))
 
 ### toHaveClipboardText
 
-ブラウザのクリップボードに特定のテキストが保存されているかどうかをチェックします。
+ブラウザのクリップボードに特定のテキストが保存されているかどうかを確認します。
 
 ##### 使用方法
 
@@ -192,7 +192,7 @@ await expect(elem).toBeExisting()
 
 ### toBeFocused
 
-要素にフォーカスがあるかどうかをチェックします。このアサーションはウェブコンテキストでのみ機能します。
+要素にフォーカスがあるかどうかを確認します。このアサーションはWebコンテキストでのみ機能します。
 
 ##### 使用方法
 
@@ -203,7 +203,7 @@ await expect(elem).toBeFocused()
 
 ### toHaveAttribute
 
-要素が特定の値を持つ特定の属性を持っているかどうかをチェックします。
+要素が特定の値を持つ特定の属性を持つかどうかを確認します。
 
 ##### 使用方法
 
@@ -227,7 +227,7 @@ await expect(myInput).toHaveAttr('class', expect.stringContaining('control'))
 
 ### toHaveElementClass
 
-要素が単一のクラス名を持っているかどうかをチェックします。要素が複数のクラス名を持つ場合、配列をパラメータとして呼び出すこともできます。
+要素が単一のクラス名を持つかどうかを確認します。要素が複数のクラス名を持つことができる場合は、配列をパラメータとして呼び出すこともできます。
 
 ##### 使用方法
 
@@ -240,7 +240,7 @@ await expect(myInput).toHaveElementClass(expect.stringContaining('form'), { mess
 
 ### toHaveElementProperty
 
-要素が特定のプロパティを持っているかどうかをチェックします。
+要素が特定のプロパティを持つかどうかを確認します。
 
 ##### 使用方法
 
@@ -252,7 +252,7 @@ await expect(elem).not.toHaveElementProperty('height', 0)
 
 ### toHaveValue
 
-入力要素が特定の値を持っているかどうかをチェックします。
+入力要素が特定の値を持つかどうかを確認します。
 
 ##### 使用方法
 
@@ -264,7 +264,7 @@ await expect(myInput).toHaveValue(expect.stringContaining('user'), { ignoreCase:
 
 ### toBeClickable
 
-要素に対して[`isClickable`](https://webdriver.io/docs/api/element/isClickable)を呼び出して、要素がクリック可能かどうかをチェックします。
+要素上で[`isClickable`](https://webdriver.io/docs/api/element/isClickable)を呼び出して、要素をクリックできるかどうかを確認します。
 
 ##### 使用方法
 
@@ -275,33 +275,33 @@ await expect(elem).toBeClickable()
 
 ### toBeDisabled
 
-要素に対して[`isEnabled`](https://webdriver.io/docs/api/element/isEnabled)を呼び出して、要素が無効かどうかをチェックします。
+要素上で[`isEnabled`](https://webdriver.io/docs/api/element/isEnabled)を呼び出して、要素が無効かどうかを確認します。
 
 ##### 使用方法
 
 ```js
 const elem = await $('#elem')
 await expect(elem).toBeDisabled()
-// 同じ意味
+// same as
 await expect(elem).not.toBeEnabled()
 ```
 
 ### toBeEnabled
 
-要素に対して[`isEnabled`](https://webdriver.io/docs/api/element/isEnabled)を呼び出して、要素が有効かどうかをチェックします。
+要素上で[`isEnabled`](https://webdriver.io/docs/api/element/isEnabled)を呼び出して、要素が有効かどうかを確認します。
 
 ##### 使用方法
 
 ```js
 const elem = await $('#elem')
 await expect(elem).toBeEnabled()
-// 同じ意味
+// same as
 await expect(elem).not.toBeDisabled()
 ```
 
 ### toBeSelected
 
-要素に対して[`isSelected`](https://webdriver.io/docs/api/element/isSelected)を呼び出して、要素が選択されているかどうかをチェックします。
+要素上で[`isSelected`](https://webdriver.io/docs/api/element/isSelected)を呼び出して、要素が有効かどうかを確認します。
 
 ##### 使用方法
 
@@ -323,7 +323,7 @@ await expect(elem).toBeChecked()
 
 ### toHaveComputedLabel
 
-要素が特定の計算されたWAI-ARIAラベルを持っているかどうかをチェックします。要素が異なるラベルを持つ場合、パラメータとして配列を使って呼び出すこともできます。
+要素が特定の計算されたWAI-ARIAラベルを持っているかどうかを確認します。要素が異なるラベルを持つ場合、配列をパラメータとして呼び出すこともできます。
 
 ##### 使用方法
 
@@ -345,7 +345,7 @@ await expect(elem).toHaveComputedLabel([expect.stringContaining('GitHub'), expec
 
 ### toHaveComputedRole
 
-要素が特定の計算されたWAI-ARIAロールを持っているかどうかをチェックします。要素が異なるラベルを持つ場合、パラメータとして配列を使って呼び出すこともできます。
+要素が特定の計算されたWAI-ARIAロールを持っているかどうかを確認します。要素が異なるラベルを持つ場合、配列をパラメータとして呼び出すこともできます。
 
 ##### 使用方法
 
@@ -367,7 +367,7 @@ await expect(elem).toHaveComputedRole([expect.stringContaining('reg'), expect.st
 
 ### toHaveHref
 
-リンク要素が特定のリンクターゲットを持っているかどうかをチェックします。
+リンク要素が特定のリンクターゲットを持つかどうかを確認します。
 
 ##### 使用方法
 
@@ -391,7 +391,7 @@ await expect(link).toHaveLink(expect.stringContaining('webdriver.io'))
 
 ### toHaveId
 
-要素が特定の`id`属性を持っているかどうかをチェックします。
+要素が特定の`id`属性を持つかどうかを確認します。
 
 ##### 使用方法
 
@@ -402,7 +402,7 @@ await expect(elem).toHaveId('elem')
 
 ### toHaveText
 
-要素が特定のテキストを持っているかどうかをチェックします。要素が異なるテキストを持つ場合、パラメータとして配列を使用することもできます。
+要素が特定のテキストを持つかどうかを確認します。要素が異なるテキストを持つ場合、配列をパラメータとして呼び出すこともできます。
 
 ##### 使用方法
 
@@ -415,7 +415,7 @@ await expect(elem).toHaveText(['Next-gen browser and mobile automation test fram
 await expect(elem).toHaveText([expect.stringContaining('test framework for Node.js'), expect.stringContaining('Started')])
 ```
 
-次のようなリスト要素がある場合：
+以下のようなdiv内の要素リストがある場合：
 
 ```
 <ul>
@@ -425,7 +425,7 @@ await expect(elem).toHaveText([expect.stringContaining('test framework for Node.
 </ul>
 ```
 
-配列を使ってアサートできます：
+配列を使用してアサートできます：
 
 ```js
 const elem = await $$('ul > li')
@@ -434,7 +434,7 @@ await expect(elem).toHaveText(['Coffee', 'Tea', 'Milk'])
 
 ### toHaveHTML
 
-要素が特定のテキストを持っているかどうかをチェックします。要素が異なるテキストを持つ場合、パラメータとして配列を使用することもできます。
+要素が特定のテキストを持つかどうかを確認します。要素が異なるテキストを持つ場合、配列をパラメータとして呼び出すこともできます。
 
 ##### 使用方法
 
@@ -457,7 +457,7 @@ await expect(elem).toHaveHTML([expect.stringContaining('automation test framewor
 
 ### toBeDisplayedInViewport
 
-要素に対して[`isDisplayedInViewport`](https://webdriver.io/docs/api/element/isDisplayedInViewport)を呼び出して、要素がビューポート内にあるかどうかをチェックします。
+要素上で[`isDisplayedInViewport`](https://webdriver.io/docs/api/element/isDisplayedInViewport)を呼び出して、要素がビューポート内にあるかどうかを確認します。
 
 ##### 使用方法
 
@@ -468,24 +468,24 @@ await expect(elem).toBeDisplayedInViewport()
 
 ### toHaveChildren
 
-`element.$('./*')`コマンドを呼び出して、取得した要素の子の数をチェックします。
+`element.$('./*')`コマンドを呼び出して、取得された要素の子の数を確認します。
 
 ##### 使用方法
 
 ```js
 const list = await $('ul')
-await expect(list).toHaveChildren() // リストには少なくとも1つのアイテムがある
-// 同じ意味
+await expect(list).toHaveChildren() // the list has at least one item
+// same as
 await expect(list).toHaveChildren({ gte: 1 })
 
-await expect(list).toHaveChildren(3) // リストには3つのアイテムがある
-// 同じ意味
+await expect(list).toHaveChildren(3) // the list has 3 items
+// same as 
 await expect(list).toHaveChildren({ eq: 3 })
 ```
 
 ### toHaveWidth
 
-要素が特定の幅を持っているかどうかをチェックします。
+要素が特定の幅を持つかどうかを確認します。
 
 ##### 使用方法
 
@@ -497,7 +497,7 @@ await expect(logo).toHaveWidth(32)
 
 ### toHaveHeight
 
-要素が特定の高さを持っているかどうかをチェックします。
+要素が特定の高さを持つかどうかを確認します。
 
 ##### 使用方法
 
@@ -509,7 +509,7 @@ await expect(logo).toHaveHeight(32)
 
 ### toHaveSize
 
-要素が特定のサイズを持っているかどうかをチェックします。
+要素が特定のサイズを持つかどうかを確認します。
 
 ##### 使用方法
 
@@ -521,18 +521,18 @@ await expect(logo).toHaveSize({ width: 32, height: 32 })
 
 ### toBeElementsArrayOfSize
 
-[`$$`](https://webdriver.io/docs/api/element/$)コマンドを使用して取得した要素の数をチェックします。
+[`$$`](https://webdriver.io/docs/api/element/$)コマンドを使用して取得された要素の数を確認します。
 
-**注意：** このマッチャーは、アサーションが合格した場合、渡された配列を最新の要素で更新します。ただし、変数を再代入した場合は、要素を再度取得する必要があります。
+**注意：** このマッチャーはアサーションが成功した場合、最新の要素で渡された配列を更新します。ただし、変数を再割り当てした場合は、要素を再度取得する必要があります。
 
 ##### 使用方法
 
 ```js
 const listItems = await $$('ul>li')
-await expect(listItems).toBeElementsArrayOfSize(5) // リストに5つのアイテムがある
+await expect(listItems).toBeElementsArrayOfSize(5) // 5 items in the list
 
 await expect(listItems).toBeElementsArrayOfSize({ lte: 10 })
-// 同じ意味
+// same as
 assert.ok(listItems.length <= 10)
 ```
 
@@ -540,7 +540,7 @@ assert.ok(listItems.length <= 10)
 
 ### toBeRequested
 
-モックが呼び出されたかどうかをチェックします
+モックが呼び出されたかどうかを確認します
 
 ##### 使用方法
 
@@ -551,7 +551,7 @@ await expect(mock).toBeRequested()
 
 ### toBeRequestedTimes
 
-モックが期待される回数だけ呼び出されたかどうかをチェックします
+モックが期待される回数だけ呼び出されたかどうかを確認します
 
 ##### 使用方法
 
@@ -559,14 +559,14 @@ await expect(mock).toBeRequested()
 const mock = browser.mock('**/api/todo*')
 await expect(mock).toBeRequestedTimes(2) // await expect(mock).toBeRequestedTimes({ eq: 2 })
 
-await expect(mock).toBeRequestedTimes({ gte: 5, lte: 10 }) // リクエストが少なくとも5回、ただし11回未満呼び出された
+await expect(mock).toBeRequestedTimes({ gte: 5, lte: 10 }) // request called at least 5 times but less than 11
 ```
 
 ### toBeRequestedWith
 
-モックが期待されるオプションに従って呼び出されたかどうかをチェックします。
+モックが期待されるオプションに従って呼び出されたかどうかを確認します。
 
-ほとんどのオプションは、[expect.objectContaining](https://jestjs.io/docs/en/expect#expectobjectcontainingobject)のようなexpect/jasmineの部分的なマッチャーをサポートしています。
+ほとんどのオプションは、[expect.objectContaining](https://jestjs.io/docs/en/expect#expectobjectcontainingobject)などのexpect/jasmineの部分マッチャーをサポートしています。
 
 ##### 使用方法
 
@@ -574,19 +574,19 @@ await expect(mock).toBeRequestedTimes({ gte: 5, lte: 10 }) // リクエストが
 const mock = browser.mock('**/api/todo*', { method: 'POST' })
 
 await expect(mock).toBeRequestedWith({
-    url: 'http://localhost:8080/api/todo',          // [オプション] string | function | カスタムマッチャー
-    method: 'POST',                                 // [オプション] string | array
-    statusCode: 200,                                // [オプション] number | array
-    requestHeaders: { Authorization: 'foo' },       // [オプション] object | function | カスタムマッチャー
-    responseHeaders: { Authorization: 'bar' },      // [オプション] object | function | カスタムマッチャー
-    postData: { title: 'foo', description: 'bar' }, // [オプション] object | function | カスタムマッチャー
-    response: { success: true },                    // [オプション] object | function | カスタムマッチャー
+    url: 'http://localhost:8080/api/todo',          // [optional] string | function | custom matcher
+    method: 'POST',                                 // [optional] string | array
+    statusCode: 200,                                // [optional] number | array
+    requestHeaders: { Authorization: 'foo' },       // [optional] object | function | custom matcher
+    responseHeaders: { Authorization: 'bar' },      // [optional] object | function | custom matcher
+    postData: { title: 'foo', description: 'bar' }, // [optional] object | function | custom matcher
+    response: { success: true },                    // [optional] object | function | custom matcher
 })
 
 await expect(mock).toBeRequestedWith({
     url: expect.stringMatching(/.*\/api\/.*/i),
-    method: ['POST', 'PUT'], // POSTまたはPUT
-    statusCode: [401, 403],  // 401または403
+    method: ['POST', 'PUT'], // either POST or PUT
+    statusCode: [401, 403],  // either 401 or 403
     requestHeaders: headers => headers.Authorization.startsWith('Bearer '),
     postData: expect.objectContaining({ released: true, title: expect.stringContaining('foobar') }),
     response: r => Array.isArray(r) && r.data.items.length === 20
@@ -599,16 +599,16 @@ WebdriverIOは基本的なスナップショットテストとDOMスナップシ
 
 ### toMatchSnapshot
 
-任意のオブジェクトが特定の値と一致するかどうかをチェックします。[`WebdriverIO.Element`](https://webdriver.io/docs/api/element)を渡すと、自動的に[`outerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML)の状態をスナップショットします。
+任意のオブジェクトが特定の値と一致するかどうかを確認します。[`WebdriverIO.Element`](https://webdriver.io/docs/api/element)を渡すと、自動的に[`outerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML)の状態をスナップショットします。
 
 ##### 使用方法
 
 ```js
-// 任意のオブジェクトのスナップショット（ここでは "await" は不要）
+// snapshot arbitrary objects (no "await" needed here)
 expect({ foo: 'bar' }).toMatchSnapshot()
-// WebdriverIO.Elementの `outerHTML` のスナップショット（DOMスナップショット、"await" が必要）
+// snapshot `outerHTML` of WebdriverIO.Element (DOM snapshot, requires "await")
 await expect($('elem')).toMatchSnapshot()
-// 要素コマンドの結果のスナップショット
+// snapshot result of element command
 await expect($('elem').getCSSProperty('background-color')).toMatchSnapshot()
 ```
 
@@ -633,17 +633,17 @@ await expect($('img')).toMatchInlineSnapshot(`"<img src="/public/apple-touch-ico
     here: https://github.com/webdriverio-community/visual-testing/blob/e10f7005c1533f5b06811888a9cbb9020e6e765e/packages/service/src/matcher.ts
 -->
 
-以下のマッチャーは`@wdio/visual-service`プラグインの一部として実装されており、サービスが設定されている場合にのみ使用できます。[セットアップ手順](https://webdriver.io/docs/visual-testing)に従ってください。
+以下のマッチャーは`@wdio/visual-service`プラグインの一部として実装されており、サービスが設定されている場合にのみ利用できます。[セットアップの指示](https://webdriver.io/docs/visual-testing)に従ってください。
 
 ### toMatchElementSnapshot
 
-指定された要素がベースラインのスナップショットと一致するかどうかをチェックします。
+指定された要素がベースラインのスナップショットと一致するかどうかを確認します。
 
 ##### 使用方法
 
 ```js
 await expect($('.hero__title-logo')).toMatchElementSnapshot('wdioLogo', 0, {
-    // オプション
+    // options
 })
 ```
 
@@ -651,11 +651,11 @@ await expect($('.hero__title-logo')).toMatchElementSnapshot('wdioLogo', 0, {
 
 ```js
 await expect($('.hero__title-logo')).toMatchElementSnapshot('wdioLogo', {
-    // オプション
+    // options
 })
 ```
 
-またはオプションをまったく渡さない場合：
+または、オプションをまったく渡さないこともできます：
 
 ```js
 await expect($('.hero__title-logo')).toMatchElementSnapshot()
@@ -663,13 +663,13 @@ await expect($('.hero__title-logo')).toMatchElementSnapshot()
 
 ### toMatchScreenSnapshot
 
-現在の画面がベースラインのスナップショットと一致するかどうかをチェックします。
+現在の画面がベースラインのスナップショットと一致するかどうかを確認します。
 
 ##### 使用方法
 
 ```js
 await expect(browser).toMatchScreenSnapshot('partialPage', 0, {
-    // オプション
+    // options
 })
 ```
 
@@ -677,11 +677,11 @@ await expect(browser).toMatchScreenSnapshot('partialPage', 0, {
 
 ```js
 await expect(browser).toMatchScreenSnapshot('partialPage', {
-    // オプション
+    // options
 })
 ```
 
-またはオプションをまったく渡さない場合：
+または、オプションをまったく渡さないこともできます：
 
 ```js
 await expect(browser).toMatchScreenSnapshot('partialPage')
@@ -689,13 +689,13 @@ await expect(browser).toMatchScreenSnapshot('partialPage')
 
 ### toMatchFullPageSnapshot
 
-フルページスクリーンショットがベースラインのスナップショットと一致するかどうかをチェックします。
+フルページのスクリーンショットがベースラインのスナップショットと一致するかどうかを確認します。
 
 ##### 使用方法
 
 ```js
 await expect(browser).toMatchFullPageSnapshot('fullPage', 0, {
-    // オプション
+    // options
 })
 ```
 
@@ -703,11 +703,11 @@ await expect(browser).toMatchFullPageSnapshot('fullPage', 0, {
 
 ```js
 await expect(browser).toMatchFullPageSnapshot('fullPage', {
-    // オプション
+    // options
 })
 ```
 
-またはオプションをまったく渡さない場合：
+または、オプションをまったく渡さないこともできます：
 
 ```js
 await expect(browser).toMatchFullPageSnapshot('fullPage')
@@ -715,13 +715,13 @@ await expect(browser).toMatchFullPageSnapshot('fullPage')
 
 ### toMatchTabbablePageSnapshot
 
-タブマークを含むフルページスクリーンショットがベースラインのスナップショットと一致するかどうかをチェックします。
+タブマークを含むフルページスクリーンショットがベースラインのスナップショットと一致するかどうかを確認します。
 
 ##### 使用方法
 
 ```js
 await expect(browser).toMatchTabbablePageSnapshot('tabbable', 0, {
-    // オプション
+    // options
 })
 ```
 
@@ -729,11 +729,11 @@ await expect(browser).toMatchTabbablePageSnapshot('tabbable', 0, {
 
 ```js
 await expect(browser).toMatchTabbablePageSnapshot('tabbable', {
-    // オプション
+    // options
 })
 ```
 
-またはオプションをまったく渡さない場合：
+または、オプションをまったく渡さないこともできます：
 
 ```js
 await expect(browser).toMatchTabbablePageSnapshot('tabbable')
@@ -757,11 +757,11 @@ await expect(elem).toHaveElementClass(/Container/i)
 
 ## デフォルトマッチャー
 
-`expect-webdriverio`マッチャーに加えて、組み込みのJestの[expect](https://jestjs.io/docs/en/expect)アサーションまたはJasmineの[expect/expectAsync](https://jasmine.github.io/api/3.5/global.html#expect)を使用できます。
+`expect-webdriverio`マッチャーに加えて、Jestの組み込み[expect](https://jestjs.io/docs/en/expect)アサーションまたはJasmineの[expect/expectAsync](https://jasmine.github.io/api/3.5/global.html#expect)を使用できます。
 
 ## 非対称マッチャー
 
-WebdriverIOは、テキスト値を比較する場所ならどこでも非対称マッチャーの使用をサポートしています。例えば：
+WebdriverIOはテキスト値を比較する場所であれば、どこでも非対称マッチャーの使用をサポートしています。例：
 
 ```ts
 await expect(browser).toHaveTitle(expect.stringContaining('some title'))
@@ -775,15 +775,15 @@ await expect(browser).toHaveTitle(expect.not.stringContaining('some title'))
 
 ## TypeScript
 
-[WDIOテストランナー](https://webdriver.io/docs/clioptions)を使用している場合、すべてが自動的に設定されます。ドキュメントの[セットアップガイド](https://webdriver.io/docs/typescript#framework-setup)に従ってください。ただし、WebdriverIOを別のテストランナーで実行する場合や、単純なNode.jsスクリプトで実行する場合は、`tsconfig.json`の`types`に`expect-webdriverio`を追加する必要があります。
+[WDIOテストランナー](https://webdriver.io/docs/clioptions)を使用している場合、すべてが自動的に設定されます。ドキュメントの[セットアップガイド](https://webdriver.io/docs/typescript#framework-setup)に従ってください。ただし、WebdriverIOを異なるテストランナーまたは単純なNode.jsスクリプトで実行する場合は、`tsconfig.json`の`types`に`expect-webdriverio`を追加する必要があります。
 
-- Jasmine/Jestユーザー以外のすべての人には`"expect-webdriverio"`
+- Jasmine/Jestユーザー以外の方には`"expect-webdriverio"`
 - Jasmineには`"expect-webdriverio/jasmine"`
 - Jestには`"expect-webdriverio/jest"`
 
-## JavaScript (VSCode)
+## JavaScript（VSCode）
 
-バニラJSでオートコンプリートを機能させるには、プロジェクトのルートに`jsconfig.json`を作成し、型定義を参照する必要があります。
+バニラJSでオートコンプリートを機能させるには、プロジェクトルートに`jsconfig.json`を作成し、型定義を参照する必要があります。
 
 ```json
 {
@@ -795,12 +795,12 @@ await expect(browser).toHaveTitle(expect.not.stringContaining('some title'))
 }
 ```
 
-## 独自のマッチャーを追加する
+## 独自のマッチャーの追加
 
-`expect-webdriverio`がJasmine/Jestマッチャーを拡張するのと同様に、カスタムマッチャーを追加することも可能です。
+`expect-webdriverio`がJasmine/Jestマッチャーを拡張する方法と同様に、カスタムマッチャーを追加することも可能です。
 
 - Jasmineについては[カスタムマッチャー](https://jasmine.github.io/2.5/custom_matcher.html)のドキュメントを参照してください
-- それ以外の人はJestの[expect.extend](https://jestjs.io/docs/en/expect#expectextendmatchers)を参照してください
+- その他の方はJestの[expect.extend](https://jestjs.io/docs/en/expect#expectextendmatchers)を参照してください
 
 カスタムマッチャーはwdioの`before`フックで追加する必要があります
 
@@ -815,9 +815,9 @@ await expect(browser).toHaveTitle(expect.not.stringContaining('some title'))
 ```
 
 ```js
-// myMatchers.js - Jestの例
+// myMatchers.js - Jest example
 export function addCustomMatchers () {
-    if (global.expect.expect !== undefined) { // 一時的な回避策。https://github.com/webdriverio/expect-webdriverio/issues/835 を参照
+    if (global.expect.expect !== undefined) { // Temporary workaround. See https://github.com/webdriverio/expect-webdriverio/issues/835
         global.expect = global.expect.expect;
     }
 

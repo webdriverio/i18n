@@ -1,39 +1,40 @@
 ---
 id: ocr-testing
-title: OCR Testing
+title: تست OCR
 ---
 
-Automated testing on mobile native apps and desktop sites can be particularly challenging when dealing with elements that lack unique identifiers. Standard [WebdriverIO selectors](https://webdriver.io/docs/selectors) may not always help you. Enter the world of the `@wdio/ocr-service`, a powerful service that leverages OCR ([Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition)) to search, wait for, and interact with on-screen elements based on their **visible text**.
+تست خودکار در اپلیکیشن‌های موبایلی و سایت‌های دسکتاپ می‌تواند بسیار چالش‌برانگیز باشد، به‌ویژه زمانی که با عناصری روبرو می‌شویم که شناسه‌های منحصر به فردی ندارند. انتخابگرهای استاندارد [WebdriverIO selectors](https://webdriver.io/docs/selectors) همیشه به شما کمک نمی‌کنند. اینجاست که `@wdio/ocr-service` وارد عمل می‌شود، سرویسی قدرتمند که از OCR ([تشخیص نوری کاراکتر](https://en.wikipedia.org/wiki/Optical_character_recognition)) برای جستجو، انتظار و تعامل با عناصر روی صفحه بر اساس **متن نمایش داده شده** آنها استفاده می‌کند.
 
-The following custom commands will be provided and added to the `browser/driver` object so you will get the right toolset to do your job.
+دستورات سفارشی زیر ارائه شده و به شیء `browser/driver` اضافه می‌شوند تا مجموعه ابزار مناسبی برای انجام کار خود داشته باشید.
 
-- [`await browser.ocrGetText`](./ocr-get-text.md)
-- [`await browser.ocrGetElementPositionByText`](./ocr-get-element-position-by-text.md)
-- [`await browser.ocrWaitForTextDisplayed`](./ocr-wait-for-text-displayed.md)
-- [`await browser.ocrClickOnText`](./ocr-click-on-text.md)
-- [`await browser.ocrSetValue`](./ocr-set-value.md)
+-   [`await browser.ocrGetText`](./ocr-get-text.md)
+-   [`await browser.ocrGetElementPositionByText`](./ocr-get-element-position-by-text.md)
+-   [`await browser.ocrWaitForTextDisplayed`](./ocr-wait-for-text-displayed.md)
+-   [`await browser.ocrClickOnText`](./ocr-click-on-text.md)
+-   [`await browser.ocrSetValue`](./ocr-set-value.md)
 
-### How does it work
+### چگونه کار می‌کند
 
-This service will
+این سرویس:
 
-1. create a screenshot of your screen/device. (If needed you can provide a haystack, which can be an element or a rectangle object, to pinpoint a specific area. See the documentation for each command.)
-2. optimize the result for OCR by turning the screenshot into black/white with a high contrast screenshot (the high contrast is needed to prevent a lot of image background noise. This can be customized per command.)
-3. uses [Optical Character Recognition](https://en.wikipedia.org/wiki/Optical_character_recognition) from [Tesseract.js](https://github.com/naptha/tesseract.js)/[Tesseract](https://github.com/tesseract-ocr/tesseract) to get all text from the screen and highlight all found text on an image. It can support several languages which can be found [here.](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html)
-4. uses Fuzzy Logic from [Fuse.js](https://fusejs.io/) to find strings that are _approximately equal_ to a given pattern (rather than exactly). This means for example that the search value `Username` can also find the text `Usename` or vice versa.
-5. Provide a cli wizzard (`npx ocr-service`) to validate your images and retrieve text through your terminal
+1. از صفحه/دستگاه شما اسکرین‌شات می‌گیرد. (در صورت نیاز می‌توانید یک haystack ارائه دهید، که می‌تواند یک عنصر یا یک شیء مستطیلی باشد، تا منطقه خاصی را مشخص کنید. به مستندات هر دستور مراجعه کنید.)
+1. نتیجه را برای OCR بهینه‌سازی می‌کند با تبدیل اسکرین‌شات به سیاه/سفید با کنتراست بالا (کنتراست بالا برای جلوگیری از نویز پس‌زمینه تصویر لازم است. این می‌تواند برای هر دستور سفارشی‌سازی شود.)
+1. از [تشخیص نوری کاراکتر](https://en.wikipedia.org/wiki/Optical_character_recognition) از [Tesseract.js](https://github.com/naptha/tesseract.js)/[Tesseract](https://github.com/tesseract-ocr/tesseract) استفاده می‌کند تا تمام متن را از صفحه دریافت کرده و تمام متن‌های پیدا شده را روی تصویر برجسته کند. این سرویس از چندین زبان پشتیبانی می‌کند که می‌توانید در [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html) پیدا کنید.
+1. از منطق فازی [Fuse.js](https://fusejs.io/) برای یافتن رشته‌هایی استفاده می‌کند که _تقریباً برابر_ با الگوی داده شده هستند (نه دقیقاً). این بدان معناست که مثلاً مقدار جستجوی `Username` می‌تواند متن `Usename` را نیز پیدا کند یا برعکس.
+1. یک ویزارد خط فرمان (`npx ocr-service`) ارائه می‌دهد تا تصاویر خود را اعتبارسنجی کرده و متن را از طریق ترمینال بازیابی کنید
 
-An example of steps 1, 2 and 3 can be found in this image
+نمونه‌ای از مراحل 1، 2 و 3 را می‌توانید در این تصویر مشاهده کنید
 
 ![Process steps](/img/ocr/processing-steps.jpg)
 
-It works with **ZERO** system dependencies (besides what WebdriverIO uses), but if needed it can also work with a local installation from [Tesseract](https://tesseract-ocr.github.io/tessdoc/) which will reduce the execution time drastically! (See also the [Test Execution Optimization](#test-execution-optimization) on how to speed up your tests.)
+این سرویس با **صفر** وابستگی سیستمی (به جز آنچه WebdriverIO استفاده می‌کند) کار می‌کند، اما در صورت نیاز می‌تواند با نصب محلی [Tesseract](https://tesseract-ocr.github.io/tessdoc/) نیز کار کند که زمان اجرا را به‌طور چشمگیری کاهش می‌دهد! (همچنین به [بهینه‌سازی اجرای تست](#test-execution-optimization) برای افزایش سرعت تست‌های خود مراجعه کنید.)
 
-Enthusiastic? Start using it today by following the [Getting Started](./getting-started) guide.
+مشتاق هستید؟ با دنبال کردن راهنمای [شروع به کار](./getting-started) امروز شروع به استفاده کنید.
 
-:::caution Important
+:::caution مهم
+دلایل متعددی وجود دارد که ممکن است خروجی با کیفیت خوبی از Tesseract دریافت نکنید. یکی از بزرگترین دلایلی که می‌تواند به برنامه شما و این ماژول مرتبط باشد، این است که تمایز رنگی مناسبی بین متنی که باید پیدا شود و پس‌زمینه وجود ندارد. به عنوان مثال، متن سفید روی پس‌زمینه تیره _به راحتی_ قابل یافتن است، اما متن روشن روی پس‌زمینه سفید یا متن تیره روی پس‌زمینه تیره به سختی قابل یافتن است.
 
-See also [this page](https://tesseract-ocr.github.io/tessdoc/ImproveQuality) for more information from Tesseract.
+همچنین [این صفحه](https://tesseract-ocr.github.io/tessdoc/ImproveQuality) را برای اطلاعات بیشتر از Tesseract ببینید.
 
-Also don't forget to read the [FAQ](./ocr-faq).
+فراموش نکنید که [سوالات متداول](./ocr-faq) را نیز مطالعه کنید.
 :::

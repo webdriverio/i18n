@@ -4,7 +4,7 @@ title: abortOnce
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/abortOnce.ts
 ---
 
-Interrompe la richiesta una volta con uno dei seguenti codici di errore:
+Interrompi la richiesta una volta con uno dei seguenti codici di errore:
 `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`,
 `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`,
 `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`,

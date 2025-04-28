@@ -7,7 +7,7 @@ title: Stencil
 
 ## Setup
 
-Per configurare WebdriverIO all'interno del tuo progetto Stencil, segui le [istruzioni](/docs/component-testing#set-up) nei nostri documenti di testing dei componenti. Assicurati di selezionare `stencil` come preset all'interno delle tue opzioni runner, ad esempio:
+Per configurare WebdriverIO all'interno del tuo progetto Stencil, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione sui test dei componenti. Assicurati di selezionare `stencil` come preset nelle tue opzioni di runner, ad esempio:
 
 ```js
 // wdio.conf.js
@@ -65,7 +65,7 @@ export class MyName {
 
 ### `render`
 
-Nel tuo test utilizza il metodo `render` da `@wdio/browser-runner/stencil` per collegare il componente alla pagina di test. Per interagire con il componente consigliamo di utilizzare i comandi WebdriverIO in quanto si comportano in modo più simile alle interazioni reali degli utenti, ad esempio:
+Nel tuo test usa il metodo `render` da `@wdio/browser-runner/stencil` per collegare il componente alla pagina di test. Per interagire con il componente, consigliamo di utilizzare i comandi WebdriverIO in quanto si comportano in modo più simile alle interazioni effettive dell'utente, ad esempio:
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -94,93 +94,93 @@ Il metodo `render` fornisce le seguenti opzioni:
 
 Un array di componenti da testare. Le classi dei componenti possono essere importate nel file di specifica, quindi il loro riferimento dovrebbe essere aggiunto all'array `component` per essere utilizzato durante il test.
 
-__Tipo:__ `CustomElementConstructor[]`<br />
+__Type:__ `CustomElementConstructor[]`<br />
 __Default:__ `[]`
 
 ##### `flushQueue`
 
 Se `false`, non svuota la coda di rendering durante la configurazione iniziale del test.
 
-__Tipo:__ `boolean`<br />
+__Type:__ `boolean`<br />
 __Default:__ `true`
 
 ##### `template`
 
-Il JSX iniziale che viene utilizzato per generare il test. Usa `template` quando vuoi inizializzare un componente utilizzando le loro proprietà, anziché i loro attributi HTML. Renderizzerà il template specificato (JSX) in `document.body`.
+Il JSX iniziale utilizzato per generare il test. Usa `template` quando vuoi inizializzare un componente utilizzando le sue proprietà, invece dei suoi attributi HTML. Renderizzerà il template specificato (JSX) in `document.body`.
 
-__Tipo:__ `JSX.Template`
+__Type:__ `JSX.Template`
 
 ##### `html`
 
 L'HTML iniziale utilizzato per generare il test. Questo può essere utile per costruire una collezione di componenti che lavorano insieme e assegnare attributi HTML.
 
-__Tipo:__ `string`
+__Type:__ `string`
 
 ##### `language`
 
 Imposta l'attributo `lang` simulato su `<html>`.
 
-__Tipo:__ `string`
+__Type:__ `string`
 
 ##### `autoApplyChanges`
 
-Per impostazione predefinita, qualsiasi modifica alle proprietà e agli attributi del componente deve chiamare `env.waitForChanges()` per testare gli aggiornamenti. Come opzione, `autoApplyChanges` svuota continuamente la coda in background.
+Per impostazione predefinita, qualsiasi modifica alle proprietà dei componenti e agli attributi deve utilizzare `env.waitForChanges()` per testare gli aggiornamenti. Come opzione, `autoApplyChanges` svuota continuamente la coda in background.
 
-__Tipo:__ `boolean`<br />
+__Type:__ `boolean`<br />
 __Default:__ `false`
 
 ##### `attachStyles`
 
-Per impostazione predefinita, gli stili non sono collegati al DOM e non si riflettono nell'HTML serializzato. Impostando questa opzione su `true` includerà gli stili del componente nell'output serializzabile.
+Per impostazione predefinita, gli stili non sono collegati al DOM e non sono riflessi nell'HTML serializzato. Impostando questa opzione su `true` includerà gli stili del componente nell'output serializzabile.
 
-__Tipo:__ `boolean`<br />
+__Type:__ `boolean`<br />
 __Default:__ `false`
 
-#### Ambiente di Render
+#### Ambiente di Rendering
 
 Il metodo `render` restituisce un oggetto ambiente che fornisce determinati helper di utilità per gestire l'ambiente del componente.
 
 ##### `flushAll`
 
-Dopo che sono state apportate modifiche a un componente, come un aggiornamento a una proprietà o attributo, la pagina di test non applica automaticamente le modifiche. Per attendere e applicare l'aggiornamento, chiama `await flushAll()`
+Dopo che sono state apportate modifiche a un componente, come un aggiornamento di una proprietà o attributo, la pagina di test non applica automaticamente le modifiche. Per attendere e applicare l'aggiornamento, chiama `await flushAll()`
 
-__Tipo:__ `() => void`
+__Type:__ `() => void`
 
 ##### `unmount`
 
 Rimuove l'elemento container dal DOM.
 
-__Tipo:__ `() => void`
+__Type:__ `() => void`
 
 ##### `styles`
 
 Tutti gli stili definiti dai componenti.
 
-__Tipo:__ `Record<string, string>`
+__Type:__ `Record<string, string>`
 
 ##### `container`
 
 Elemento container in cui viene renderizzato il template.
 
-__Tipo:__ `HTMLElement`
+__Type:__ `HTMLElement`
 
 ##### `$container`
 
 L'elemento container come elemento WebdriverIO.
 
-__Tipo:__ `WebdriverIO.Element`
+__Type:__ `WebdriverIO.Element`
 
 ##### `root`
 
 Il componente root del template.
 
-__Tipo:__ `HTMLElement`
+__Type:__ `HTMLElement`
 
 ##### `$root`
 
 Il componente root come elemento WebdriverIO.
 
-__Tipo:__ `WebdriverIO.Element`
+__Type:__ `WebdriverIO.Element`
 
 ### `waitForChanges`
 
@@ -202,7 +202,7 @@ expect(page.root.querySelector('div')).toBeDefined()
 
 ## Aggiornamenti degli Elementi
 
-Se definisci proprietà o stati nel tuo componente Stencil, devi gestire quando queste modifiche devono essere applicate al componente per essere nuovamente renderizzate.
+Se definisci proprietà o stati nel tuo componente Stencil, devi gestire quando queste modifiche dovrebbero essere applicate al componente per essere nuovamente renderizzato.
 
 
 ## Esempi

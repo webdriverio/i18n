@@ -4,10 +4,10 @@ title: custom$$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/custom$$.ts
 ---
 
-`customs$$` を使用すると、`browser.addLocatorStrategy` で宣言したカスタム戦略を使用できます。
-カスタムセレクタ戦略の詳細については、[セレクタドキュメント](../../selectors#custom-selector-strategies)をお読みください。
+`customs$$`は、`browser.addLocatorStrategy`を使用して宣言されたカスタム戦略を使用することを可能にします。
+カスタムセレクタ戦略についての詳細は[セレクタドキュメント](../../selectors#custom-selector-strategies)を参照してください。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.custom$$(strategyName, strategyArguments)

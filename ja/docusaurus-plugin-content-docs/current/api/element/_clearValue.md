@@ -4,9 +4,9 @@ title: clearValue（値のクリア）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/clearValue.ts
 ---
 
-入力フィールドやテキストエリア要素の値をクリアします。このコマンドを使用する前に、要素と対話可能であることを確認してください。無効化（disabled）または読み取り専用（readonly）モードの入力要素の値はクリアできません。
+input要素またはtextarea要素の値をクリアします。このコマンドを使用する前に、要素と対話できることを確認してください。無効化されている、または読み取り専用モードのinput要素はクリアできません。
 
-##### 使用法
+##### 使用方法
 
 ```js
 $(selector).clearValue()

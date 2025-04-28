@@ -3,11 +3,11 @@ id: coverage
 title: Copertura
 ---
 
-Il runner del browser di WebdriverIO supporta il reporting della copertura del codice utilizzando [`istanbul`](https://istanbul.js.org/). Il testrunner strumenterà automaticamente il tuo codice e acquisirà la copertura del codice per te.
+Il browser runner di WebdriverIO supporta il reporting della copertura del codice utilizzando [`istanbul`](https://istanbul.js.org/). Il testrunner strumenterà automaticamente il tuo codice e catturerà la copertura del codice per te.
 
 ## Configurazione
 
-Per abilitare il reporting della copertura del codice, attivalo attraverso la configurazione del runner del browser di WebdriverIO, ad esempio:
+Per abilitare il reporting della copertura del codice, attivalo attraverso la configurazione del browser runner di WebdriverIO, ad esempio:
 
 ```js title=wdio.conf.js
 export const config = {
@@ -22,15 +22,15 @@ export const config = {
 }
 ```
 
-Controlla tutte le [opzioni di copertura](/docs/runner#coverage-options), per imparare come configurarle correttamente.
+Controlla tutte le [opzioni di copertura](/docs/runner#coverage-options) per imparare come configurarla correttamente.
 
-## Ignorare del Codice
+## Ignorare il Codice
 
-Potrebbero esserci alcune sezioni del tuo codebase che desideri escludere deliberatamente dal tracciamento della copertura, per farlo puoi utilizzare i seguenti suggerimenti di parsing:
+Potrebbero esserci alcune sezioni del tuo codebase che desideri escludere intenzionalmente dal tracciamento della copertura, per farlo puoi utilizzare i seguenti suggerimenti di parsing:
 
 - `/* istanbul ignore if */`: ignora la prossima istruzione if.
-- `/* istanbul ignore else */`: ignora la parte else di un'istruzione if.
-- `/* istanbul ignore next */`: ignora la prossima cosa nel codice sorgente (funzioni, istruzioni if, classi, qualsiasi cosa).
+- `/* istanbul ignore else */`: ignora la porzione else di un'istruzione if.
+- `/* istanbul ignore next */`: ignora la prossima cosa nel codice sorgente (funzioni, istruzioni if, classi, tutto ciò che vuoi).
 - `/* istanbul ignore file */`: ignora un intero file sorgente (questo dovrebbe essere posizionato all'inizio del file).
 
 :::info

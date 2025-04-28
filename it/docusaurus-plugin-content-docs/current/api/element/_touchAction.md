@@ -19,14 +19,14 @@ await browser.action('pointer', {
 :::
 
 L'API Touch Action fornisce la base di tutti i gesti che possono essere automatizzati in Appium.
-Attualmente è disponibile solo per le app native e non può essere utilizzata per interagire con le webapp.
+Attualmente è disponibile solo per le app native e non può essere utilizzata per interagire con webapp.
 Il suo nucleo è la capacità di concatenare azioni individuali _ad hoc_, che verranno poi
 applicate a un elemento nell'applicazione sul dispositivo. Le azioni di base che possono essere utilizzate sono:
 
 - press (passa elemento o (x,y) o entrambi)
 - longPress (passa elemento o (x,y) o entrambi)
 - tap (passa elemento o (x,y) o entrambi)
-- moveTo (passa coordinate x,y assolute)
+- moveTo (passa coordinate assolute x,y)
 - wait (passa ms (come millisecondi))
 - release (nessun argomento)
 

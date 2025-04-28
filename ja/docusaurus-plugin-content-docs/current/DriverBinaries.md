@@ -3,11 +3,11 @@ id: driverbinaries
 title: ドライバーバイナリ
 ---
 
-WebDriverプロトコルに基づく自動化を実行するには、自動化コマンドを変換してブラウザで実行できるブラウザドライバーをセットアップする必要があります。
+WebDriverプロトコルに基づく自動化を実行するには、自動化コマンドを変換してブラウザで実行できるブラウザドライバーが必要です。
 
 ## 自動セットアップ
 
-WebdriverIO `v8.14`以降では、WebdriverIOによって処理されるため、ブラウザドライバーを手動でダウンロードしてセットアップする必要はなくなりました。テストしたいブラウザを指定するだけで、WebdriverIOが残りの作業を行います。
+WebdriverIO `v8.14`以降では、WebdriverIOがブラウザドライバーを自動的に処理するため、手動でダウンロードしてセットアップする必要はありません。テストしたいブラウザを指定するだけで、残りはWebdriverIOが行います。
 
 ### 自動化レベルのカスタマイズ
 
@@ -15,7 +15,7 @@ WebdriverIOには3つの自動化レベルがあります：
 
 **1. [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers)を使用してブラウザをダウンロードしインストールする。**
 
-[capabilities](configuration#capabilities-1)設定で`browserName`/`browserVersion`の組み合わせを指定すると、マシンに既存のインストールがあるかどうかに関係なく、WebdriverIOは要求された組み合わせをダウンロードしてインストールします。`browserVersion`を省略すると、WebdriverIOはまず[locate-app](https://www.npmjs.com/package/locate-app)を使用して既存のインストールを検索して使用しようとします。それ以外の場合は、現在の安定版ブラウザリリースをダウンロードしてインストールします。`browserVersion`の詳細については、[こちら](capabilities#automate-different-browser-channels)を参照してください。
+[capabilities](configuration#capabilities-1)設定で`browserName`/`browserVersion`の組み合わせを指定すると、マシンに既存のインストールがあるかどうかに関係なく、WebdriverIOはリクエストされた組み合わせをダウンロードしてインストールします。`browserVersion`を省略すると、WebdriverIOは最初に[locate-app](https://www.npmjs.com/package/locate-app)を使用して既存のインストールを見つけて使用しようとし、見つからない場合は現在の安定版ブラウザリリースをダウンロードしてインストールします。`browserVersion`の詳細については、[こちら](capabilities#automate-different-browser-channels)を参照してください。
 
 :::caution
 
@@ -23,14 +23,14 @@ WebdriverIOには3つの自動化レベルがあります：
 
 :::
 
-WebdriverIOによって自動検出できない場所にブラウザインストールがある場合は、ブラウザバイナリを指定できます。これにより自動ダウンロードとインストールが無効になります。
+WebdriverIOによって自動検出できない場所にブラウザがインストールされている場合は、ブラウザバイナリを指定することができます。これにより自動ダウンロードとインストールが無効になります。
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // または 'firefox' または 'chromium'
-            'goog:chromeOptions': { // または 'moz:firefoxOptions' または 'wdio:chromedriverOptions'
+            browserName: 'chrome', // または 'firefox' や 'chromium'
+            'goog:chromeOptions': { // または 'moz:firefoxOptions' や 'wdio:chromedriverOptions'
                 binary: '/path/to/chrome'
             },
         }
@@ -38,9 +38,9 @@ WebdriverIOによって自動検出できない場所にブラウザインスト
 }
 ```
 
-**2. [Chromedriver](https://www.npmjs.com/package/chromedriver)、[Edgedriver](https://www.npmjs.com/package/edgedriver)または[Geckodriver](https://www.npmjs.com/package/geckodriver)を使用してドライバーをダウンロードしインストールする。**
+**2. [Chromedriver](https://www.npmjs.com/package/chromedriver)、[Edgedriver](https://www.npmjs.com/package/edgedriver)、[Geckodriver](https://www.npmjs.com/package/geckodriver)を使用してドライバーをダウンロードしインストールする。**
 
-設定にドライバーの[binary](capabilities#binary)が指定されていない限り、WebdriverIOは常にこれを行います：
+設定でドライバーの[binary](capabilities#binary)が指定されていない限り、WebdriverIOは常にこれを行います：
 
 ```ts
 {
@@ -57,31 +57,31 @@ WebdriverIOによって自動検出できない場所にブラウザインスト
 
 :::info
 
-WebdriverIOはSafariドライバーを自動的にダウンロードしません。macOSには既にインストールされています。
+WebdriverIOはSafariドライバーを自動的にダウンロードしません。それはすでにmacOSにインストールされているためです。
 
 :::
 
 :::caution
 
-ブラウザの`binary`を指定して対応するドライバーの`binary`を省略したり、その逆を避けてください。`binary`値の一方だけが指定されている場合、WebdriverIOはそれと互換性のあるブラウザ/ドライバーを使用またはダウンロードしようとします。ただし、一部のシナリオでは互換性のない組み合わせになる可能性があります。したがって、バージョンの互換性による問題を避けるために、常に両方を指定することをお勧めします。
+ブラウザの`binary`を指定して対応するドライバーの`binary`を省略したり、その逆をしたりすることは避けてください。`binary`値の片方だけが指定されている場合、WebdriverIOはそれと互換性のあるブラウザ/ドライバーを使用またはダウンロードしようとします。ただし、一部のシナリオでは互換性のない組み合わせになる可能性があります。したがって、バージョンの非互換性による問題を避けるため、常に両方を指定することをお勧めします。
 
 :::
 
 **3. ドライバーの起動/停止。**
 
-デフォルトでは、WebdriverIOは任意の未使用ポートを使用してドライバーを自動的に起動および停止します。以下の設定のいずれかを指定すると、この機能が無効になり、手動でドライバーを起動および停止する必要があります：
+デフォルトでは、WebdriverIOは未使用のポートを使用して自動的にドライバーを起動および停止します。以下の設定のいずれかを指定すると、この機能は無効になり、手動でドライバーを起動および停止する必要があります：
 
-- [port](configuration#port)の任意の値。
-- [protocol](configuration#protocol)、[hostname](configuration#hostname)、[path](configuration#path)のデフォルトと異なる任意の値。
-- [user](configuration#user)と[key](configuration#key)の両方の任意の値。
+- [port](configuration#port)に任意の値を指定。
+- [protocol](configuration#protocol)、[hostname](configuration#hostname)、[path](configuration#path)にデフォルトと異なる値を指定。
+- [user](configuration#user)と[key](configuration#key)の両方に値を指定。
 
 ## 手動セットアップ
 
-以下は、各ドライバーを個別にセットアップする方法について説明しています。すべてのドライバーのリストは[`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver) READMEで見つけることができます。
+以下では、各ドライバーを個別にセットアップする方法について説明します。すべてのドライバーのリストは[`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver) READMEで確認できます。
 
 :::tip
 
-モバイルやその他のUIプラットフォームをセットアップする場合は、[Appium Setup](appium)ガイドを参照してください。
+モバイルやその他のUIプラットフォームをセットアップする場合は、[Appium Setup](appium)ガイドをご覧ください。
 
 :::
 
@@ -93,7 +93,7 @@ Chromeを自動化するには、[プロジェクトウェブサイト](http://c
 npm install -g chromedriver
 ```
 
-その後、次のように開始できます：
+その後、次のように起動できます：
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,7 +101,7 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-Firefoxを自動化するには、環境に合わせた最新バージョンの`geckodriver`をダウンロードして、プロジェクトディレクトリに解凍します：
+Firefoxを自動化するには、お使いの環境に合わせた最新バージョンの`geckodriver`をダウンロードし、プロジェクトディレクトリに展開します：
 
 <Tabs
   defaultValue="npm"
@@ -175,7 +175,7 @@ cd $unzipped_file
 </TabItem>
 </Tabs>
 
-**注意：** 他の`geckodriver`リリースは[こちら](https://github.com/mozilla/geckodriver/releases)で入手できます。ダウンロード後、次のコマンドでドライバーを起動できます：
+**注意：** 他の`geckodriver`リリースは[こちら](https://github.com/mozilla/geckodriver/releases)で入手できます。ダウンロード後、次のようにドライバーを起動できます：
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -183,11 +183,11 @@ cd $unzipped_file
 
 ### Edgedriver
 
-Microsoft Edge用のドライバーは[プロジェクトウェブサイト](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)からダウンロードするか、NPMパッケージとして次のようにダウンロードできます：
+Microsoft Edge用のドライバーは[プロジェクトウェブサイト](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)からダウンロードするか、NPMパッケージとして次のようにインストールできます：
 
 ```sh
 npm install -g edgedriver
-edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
+edgedriver --version # 出力: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
 ```
 
 ### Safaridriver

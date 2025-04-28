@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## isAlertOpen
-シンプルなダイアログが現在開いているかどうか。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/alert_commands.cc#L42-L49)で確認できます。
+シンプルなダイアログが現在開いているかどうか。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/alert_commands.cc#L42-L49)で確認できます。
 
 ##### 使用法
 
@@ -26,13 +26,13 @@ console.log(browser.isAlertOpen()); // 出力: true
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>isAlertOpen</var></code>:** シンプルなダイアログが存在するかどうかに基づいて`true`または`false`を返します。
+            **<code><var>isAlertOpen</var></code>:** シンプルなダイアログが存在するかどうかに基づいて `true` または `false`。
 
 
 ---
 
 ## isAutoReporting
-ブラウザログのエラーを自動的に発生させるかどうか。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://codereview.chromium.org/101203012)で確認できます。
+ブラウザログのエラーを自動的に発生させるかどうか。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://codereview.chromium.org/101203012)で確認できます。
 
 ##### 使用法
 
@@ -44,13 +44,13 @@ browser.isAutoReporting()
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>isAutoReporting</var></code>:** 自動レポートが有効かどうかに基づいて`true`または`false`を返します。
+            **<code><var>isAutoReporting</var></code>:** 自動レポートが有効かどうかに基づいて `true` または `false`。
 
 
 ---
 
 ## setAutoReporting
-以降のすべてのコマンドに対して、最初のブラウザエラー（例：403/404レスポンスによるリソースのロード失敗）を含む不明なエラーを返すかどうかを切り替えます（一度有効にすると）。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://codereview.chromium.org/101203012)で確認できます。
+後続のすべてのコマンドに対して、最初のブラウザエラー（例：403/404レスポンスによるリソース読み込み失敗）を含む不明なエラーを返すレスポンスを切り替えます（有効にするとすぐに）。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://codereview.chromium.org/101203012)で確認できます。
 
 ##### 使用法
 
@@ -64,14 +64,14 @@ browser.setAutoReporting(enabled)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>enabled</var></code></td>
       <td>boolean</td>
-      <td>自動レポートを有効にする場合は`true`、以前に有効にした自動レポートを無効にする場合は`false`を使用します。</td>
+      <td>自動レポートを有効にする場合は `true`、以前に有効にした自動レポートを無効にする場合は `false`。</td>
     </tr>
   </tbody>
 </table>
@@ -80,15 +80,15 @@ browser.setAutoReporting(enabled)
 
 
 ```js
-// セッション開始後に空のブラウザログで最初に自動レポートを有効にする
+// 空のブラウザログでセッションが開始された後、最初に自動レポートを有効にする
 console.log(browser.setAutoReporting(true)); // 出力: null
-// 存在しないリソースをリクエストすると、不明なエラーのために実行が中止されます
+// 存在しないリソースをリクエストすると、不明なエラーがスローされるため実行が中止される
 browser.url('https://webdriver.io/img/404-does-not-exist.png');
 ```
 
 
 ```js
-// セッション中にブラウザログを生成する操作を行う
+// セッション中にブラウザログを生成する操作を実行
 browser.url('https://webdriver.io/img/404-does-not-exist.png');
 browser.url('https://webdriver.io/403/no-access');
 // 最初のブラウザログ（404レスポンス）に対して不明なエラーをスローする自動レポートを有効にする
@@ -99,13 +99,13 @@ browser.setAutoReporting(true);
 ##### 戻り値
 
 - **&lt;Object|Null&gt;**
-            **<code><var>firstBrowserError</var></code>:** このコマンドを実行する前に最初のブラウザエラーが既に発生していた場合、最初のブラウザエラーを説明する「message」キーを持つオブジェクトとして不明なエラーをスローします。それ以外の場合は成功すると`null`を返します。
+            **<code><var>firstBrowserError</var></code>:** このコマンドを実行する前に最初のブラウザエラーが既に発生していた場合、最初のブラウザエラーを説明する「message」キーを持つオブジェクトとして不明なエラーがレスポンスとしてスローされます。そうでなければ成功時に `null` を返します。
 
 
 ---
 
 ## isLoading
-アクティブなウィンドウハンドルの読み込み状態を判断します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L783-L802)で確認できます。
+アクティブなウィンドウハンドルの読み込み状態を判断します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L783-L802)で確認できます。
 
 ##### 使用法
 
@@ -126,13 +126,13 @@ console.log(browser.isLoading()); // 出力: true
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>isLoading</var></code>:** アクティブなウィンドウハンドルが読み込み中かどうかに基づいて`true`または`false`を返します。
+            **<code><var>isLoading</var></code>:** アクティブなウィンドウハンドルが読み込み中かどうかに基づいて `true` または `false`。
 
 
 ---
 
 ## takeHeapSnapshot
-現在の実行コンテキストのヒープスナップショットを取得します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/web_view.h#L198-L202)で確認できます。
+現在の実行コンテキストのヒープスナップショットを取得します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/web_view.h#L198-L202)で確認できます。
 
 ##### 使用法
 
@@ -150,7 +150,7 @@ browser.takeHeapSnapshot()
 ---
 
 ## getNetworkConnection
-ネットワークエミュレーションの接続タイプを取得します。このコマンドは、リモートエンドが`networkConnectionEnabled`機能を`true`に設定している場合にのみ適用されます。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes)で確認できます。
+ネットワークエミュレーションのための接続タイプを取得します。このコマンドは、リモートエンドが `networkConnectionEnabled` 機能を `true` に設定して応答する場合にのみ適用されます。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes)で確認できます。
 
 ##### 使用法
 
@@ -166,25 +166,25 @@ const browser = remote({
     capabilities: {
         browserName: 'chrome',
         'goog:chromeOptions': {
-            // ネットワークエミュレーションにはデバイスモードが必要で、モバイルエミュレーションがオンの場合にのみ有効です
+            // ネットワークエミュレーションにはデバイスモードが必要で、これはモバイルエミュレーションがオンの場合にのみ有効になります
             mobileEmulation: { deviceName: 'iPad' },
         },
     }
 });
-console.log(browser.getNetworkConnection()); // 出力: 6（Wi-FiとデータWeb共）
+console.log(browser.getNetworkConnection()); // 出力: 6（Wi-Fiとデータの両方）
 ```
 
 
 ##### 戻り値
 
 - **&lt;Number&gt;**
-            **<code><var>connectionType</var></code>:** ネットワーク接続タイプを表すビットマスク。機内モード（`1`）、Wi-Fiのみ（`2`）、Wi-Fiとデータ（`6`）、4G（`8`）、3G（`10`）、2G（`20`）。デフォルトでは[Wi-Fiとデータが有効](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/chrome_desktop_impl.cc#L36-L37)になっています。
+            **<code><var>connectionType</var></code>:** ネットワーク接続タイプを表すビットマスク。機内モード（`1`）、Wi-Fiのみ（`2`）、Wi-Fiとデータ（`6`）、4G（`8`）、3G（`10`）、2G（`20`）。デフォルトでは[Wi-Fiとデータが有効](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/chrome_desktop_impl.cc#L36-L37)です。
 
 
 ---
 
 ## setNetworkConnection
-ネットワーク接続の接続タイプを変更します。このコマンドは、リモートエンドが`networkConnectionEnabled`機能を`true`に設定している場合にのみ適用されます。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes)で確認できます。
+ネットワーク接続の接続タイプを変更します。このコマンドは、リモートエンドが `networkConnectionEnabled` 機能を `true` に設定して応答する場合にのみ適用されます。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes)で確認できます。
 
 ##### 使用法
 
@@ -198,14 +198,14 @@ browser.setNetworkConnection(parameters)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>parameters</var></code></td>
       <td>object</td>
-      <td>ConnectionTypeを含むオブジェクト、オブジェクトの`type`キーの値としてビットマスクを設定します。機内モード（`1`）、Wi-Fiのみ（`2`）、Wi-Fiとデータ（`6`）、4G（`8`）、3G（`10`）、2G（`20`）。</td>
+      <td>ConnectionTypeを含むオブジェクト、オブジェクト内の `type` キーの値としてビットマスクを設定します。機内モード（`1`）、Wi-Fiのみ（`2`）、Wi-Fiとデータ（`6`）、4G（`8`）、3G（`10`）、2G（`20`）。</td>
     </tr>
   </tbody>
 </table>
@@ -218,7 +218,7 @@ const browser = remote({
     capabilities: {
         browserName: 'chrome',
         'goog:chromeOptions': {
-            // ネットワークエミュレーションにはデバイスモードが必要で、モバイルエミュレーションがオンの場合にのみ有効です
+            // ネットワークエミュレーションにはデバイスモードが必要で、これはモバイルエミュレーションがオンの場合にのみ有効になります
             mobileEmulation: { deviceName: 'iPad' },
         },
     }
@@ -230,13 +230,13 @@ console.log(browser.setNetworkConnection({ type: 1 })); // 出力: 1（機内モ
 ##### 戻り値
 
 - **&lt;Number&gt;**
-            **<code><var>connectionType</var></code>:** ネットワーク接続タイプを表すビットマスク。値はオブジェクトで指定された`type`と一致するはずですが、デバイスがリクエストされたネットワーク接続タイプをサポートしていない場合があります。
+            **<code><var>connectionType</var></code>:** ネットワーク接続タイプを表すビットマスク。値はオブジェクトで指定された `type` と一致するはずですが、デバイスがリクエストされたネットワーク接続タイプに対応していない場合があります。
 
 
 ---
 
 ## getNetworkConditions
-エミュレーションに使用されている現在のネットワーク条件を取得します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L839-L859)で確認できます。
+エミュレーションに使用されている現在のネットワーク条件を取得します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L839-L859)で確認できます。
 
 ##### 使用法
 
@@ -248,13 +248,13 @@ browser.getNetworkConditions()
 ##### 戻り値
 
 - **&lt;Object&gt;**
-            **<code><var>networkConditions</var></code>:** `offline`、`latency`、`download_throughput`、`upload_throughput`のネットワーク条件を含むオブジェクト。ネットワーク条件は取得する前に設定する必要があります。
+            **<code><var>networkConditions</var></code>:** `offline`、`latency`、`download_throughput`、`upload_throughput`のネットワーク条件を含むオブジェクト。ネットワーク条件を取得する前に設定する必要があります。
 
 
 ---
 
 ## setNetworkConditions
-接続をスロットリングすることでエミュレーションに使用するネットワーク条件を設定します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1663-L1722)で確認できます。
+接続をスロットリングしてエミュレーションに使用するネットワーク条件を設定します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1663-L1722)で確認できます。
 
 ##### 使用法
 
@@ -268,19 +268,19 @@ browser.setNetworkConditions(network_conditions, network_name)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>network_conditions</var></code></td>
       <td>object</td>
-      <td>`latency`、`throughput`（または`download_throughput`/`upload_throughput`）および`offline`（オプション）を含むネットワーク条件を含むオブジェクト。</td>
+      <td>`latency`、`throughput`（または`download_throughput`/`upload_throughput`）、`offline`（オプション）を含むネットワーク条件のオブジェクト。</td>
     </tr>
     <tr>
-      <td><code><var>network_name</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>network_name</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>string</td>
-      <td>[ネットワークスロットリングプリセット](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/network_list.cc#L12-L25)の名前。`GPRS`、`Regular 2G`、`Good 2G`、`Regular 3G`、`Good 3G`、`Regular 4G`、`DSL`、`WiFi`、または無効にするための`No throttling`。プリセットが指定されている場合、最初の引数で渡された値は尊重されません。</td>
+      <td>[ネットワークスロットリングプリセット](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/network_list.cc#L12-L25)の名前。`GPRS`、`Regular 2G`、`Good 2G`、`Regular 3G`、`Good 3G`、`Regular 4G`、`DSL`、`WiFi`、または無効にするには`No throttling`。プリセットが指定されている場合、最初の引数で渡された値は考慮されません。</td>
     </tr>
   </tbody>
 </table>
@@ -289,25 +289,25 @@ browser.setNetworkConditions(network_conditions, network_name)
 
 
 ```js
-// スロットリングのために異なるダウンロード（25kb/s）とアップロード（50kb/s）のスループット値を1000msのレイテンシで使用
+// 異なるダウンロード（25kb/s）とアップロード（50kb/s）のスループット値を使用して、1000msのレイテンシでスロットリングを行う
 browser.setNetworkConditions({ latency: 1000, download_throughput: 25600, upload_throughput: 51200 });
 ```
 
 
 ```js
-// 'offline'をtrueに設定してネットワークから強制的に切断
+// 'offline'をtrueに設定してネットワークから強制的に切断する
 browser.setNetworkConditions({ latency: 0, throughput: 0, offline: true });
 ```
 
 
 ```js
-// プリセット名（例：'DSL'）が指定されている場合、オブジェクト内の値（例：'offline'）は尊重されません
+// プリセット名（例：'DSL'）が指定されている場合、オブジェクト内の値（例：'offline'）は考慮されません
 browser.setNetworkConditions({ latency: 0, throughput: 0, offline: true }, 'DSL');
 ```
 
 
 ```js
-// ネットワークスロットリングプリセットを指定するためのベストプラクティスは空のオブジェクトを使用すること
+// ネットワークスロットリングプリセットを指定するベストプラクティスは空のオブジェクトを使用すること
 browser.setNetworkConditions({}, 'Good 3G');
 ```
 
@@ -316,7 +316,7 @@ browser.setNetworkConditions({}, 'Good 3G');
 ---
 
 ## deleteNetworkConditions
-設定されているネットワークスロットリングを無効にします。`No throttling`プリセットを設定するのと同等です。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1724-L1745)で確認できます。
+設定されている可能性のあるネットワークスロットリングを無効にします。`No throttling`プリセットの設定と同等です。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1724-L1745)で確認できます。
 
 ##### 使用法
 
@@ -329,7 +329,7 @@ browser.deleteNetworkConditions()
 ---
 
 ## sendCommand
-DevToolsデバッガーにコマンドを送信します。<br />利用可能なコマンドとそのパラメータのリストについては、[Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/)を参照してください。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1290-L1304)で確認できます。
+DevToolsデバッガーにコマンドを送信します。<br />利用可能なコマンドとそのパラメータのリストについては、[Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/)を参照してください。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1290-L1304)で確認できます。
 
 ##### 使用法
 
@@ -343,7 +343,7 @@ browser.sendCommand(cmd, params)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -355,7 +355,7 @@ browser.sendCommand(cmd, params)
     <tr>
       <td><code><var>params</var></code></td>
       <td>object</td>
-      <td>コマンドへのパラメータ。コマンドにパラメータがない場合は、空のオブジェクトを指定します。</td>
+      <td>コマンドのパラメータ。コマンドにパラメータがない場合は、空のオブジェクトを指定します。</td>
     </tr>
   </tbody>
 </table>
@@ -365,7 +365,7 @@ browser.sendCommand(cmd, params)
 ---
 
 ## sendCommandAndGetResult
-DevToolsデバッガーにコマンドを送信し、結果を待ちます。<br />利用可能なコマンドとそのパラメータのリストについては、[Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/)を参照してください。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1306-L1320)で確認できます。
+DevToolsデバッガーにコマンドを送信し、結果を待ちます。<br />利用可能なコマンドとそのパラメータのリストについては、[Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/)を参照してください。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1306-L1320)で確認できます。
 
 ##### 使用法
 
@@ -379,7 +379,7 @@ browser.sendCommandAndGetResult(cmd, params)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -391,7 +391,7 @@ browser.sendCommandAndGetResult(cmd, params)
     <tr>
       <td><code><var>params</var></code></td>
       <td>object</td>
-      <td>コマンドへのパラメータ。コマンドにパラメータがない場合は、空のオブジェクトを指定します。</td>
+      <td>コマンドのパラメータ。コマンドにパラメータがない場合は、空のオブジェクトを指定します。</td>
     </tr>
   </tbody>
 </table>
@@ -400,13 +400,13 @@ browser.sendCommandAndGetResult(cmd, params)
 ##### 戻り値
 
 - **&lt;*&gt;**
-            **<code><var>result</var></code>:** コマンドの戻り値、またはコマンドの失敗理由であるエラーのいずれか。
+            **<code><var>result</var></code>:** コマンドの戻り値、またはコマンドの失敗理由となったエラー。
 
 
 ---
 
 ## file
-ブラウザが実行されているリモートマシンにファイルをアップロードします。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L1037-L1065)で確認できます。
+ブラウザが実行されているリモートマシンにファイルをアップロードします。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L1037-L1065)で確認できます。
 
 ##### 使用法
 
@@ -420,14 +420,14 @@ browser.file(file)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>file</var></code></td>
       <td>string</td>
-      <td>アップロードする単一のファイルを含むBase64エンコードされたZIPアーカイブ。Base64エンコードされたデータがZIPアーカイブを表していない場合や、アーカイブに複数のファイルが含まれている場合は、不明なエラーがスローされます。</td>
+      <td>アップロードする__単一の__ファイルを含むBase64エンコードされたzipアーカイブ。Base64エンコードされたデータがzipアーカイブを表していない場合、またはアーカイブに複数のファイルが含まれている場合、不明なエラーがスローされます。</td>
     </tr>
   </tbody>
 </table>
@@ -442,7 +442,7 @@ browser.file(file)
 ---
 
 ## launchChromeApp
-指定されたIDでChromeアプリを起動します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L521-L539)で確認できます。
+指定されたIDでChromeアプリを起動します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L521-L539)で確認できます。
 
 ##### 使用法
 
@@ -456,7 +456,7 @@ browser.launchChromeApp(id)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -485,7 +485,7 @@ const browser = remote({
         }
     }
 });
-browser.launchChromeApp('aohghmighlieiainnegkcijnfilokake')); // Google ドキュメント (https://chrome.google.com/webstore/detail/docs/aohghmighlieiainnegkcijnfilokake)
+browser.launchChromeApp('aohghmighlieiainnegkcijnfilokake')); // Google Docs (https://chrome.google.com/webstore/detail/docs/aohghmighlieiainnegkcijnfilokake)
 ```
 
 
@@ -493,7 +493,7 @@ browser.launchChromeApp('aohghmighlieiainnegkcijnfilokake')); // Google ドキ�
 ---
 
 ## getElementValue
-指定されたフォームコントロール要素の値を取得します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L431-L443)で確認できます。
+指定されたフォームコントロール要素の値を取得します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L431-L443)で確認できます。
 
 ##### 使用法
 
@@ -507,14 +507,14 @@ browser.getElementValue(elementId)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>値を取得する要素のID</td>
+      <td>値を取得する要素のid</td>
     </tr>
   </tbody>
 </table>
@@ -529,7 +529,7 @@ browser.getElementValue(elementId)
 ---
 
 ## elementHover
-要素のホバー状態を有効にします。これは次のインタラクションでリセットされます。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L126-L146)で確認できます。
+要素のホバー状態を有効にします。これは次のインタラクションでリセットされます。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L126-L146)で確認できます。
 
 ##### 使用法
 
@@ -543,14 +543,14 @@ browser.elementHover(elementId)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ホバーする要素のID</td>
+      <td>ホバーする要素のid</td>
     </tr>
   </tbody>
 </table>
@@ -560,7 +560,7 @@ browser.elementHover(elementId)
 ---
 
 ## touchPinch
-ピンチズーム効果をトリガーします。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L813-L827)で確認できます。
+ピンチズーム効果をトリガーします。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L813-L827)で確認できます。
 
 ##### 使用法
 
@@ -574,7 +574,7 @@ browser.touchPinch(x, y, scale)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -601,7 +601,7 @@ browser.touchPinch(x, y, scale)
 ---
 
 ## freeze
-現在のページをフリーズします。[Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api)の拡張機能です。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L625-L633)で確認できます。
+現在のページを凍結します。[Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api)の拡張機能です。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L625-L633)で確認できます。
 
 ##### 使用法
 
@@ -614,7 +614,7 @@ browser.freeze()
 ---
 
 ## resume
-現在のページを再開します。[Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api)の拡張機能です。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L635-L645)で確認できます。
+現在のページを再開します。[Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api)の拡張機能です。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L635-L645)で確認できます。
 
 ##### 使用法
 
@@ -627,7 +627,7 @@ browser.resume()
 ---
 
 ## getCastSinks
-Chromeメディアルーターで利用可能なキャストシンク（Castデバイス）のリストを返します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#748)で確認できます。
+Chromeメディアルーターで利用可能なキャストシンク（Castデバイス）のリストを返します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#748)で確認できます。
 
 ##### 使用法
 
@@ -645,7 +645,7 @@ browser.getCastSinks()
 ---
 
 ## selectCastSink
-キャストシンク（Castデバイス）をメディアルーターのインテント（接続または再生）の受信者として選択します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#737)で確認できます。
+キャストシンク（Castデバイス）をメディアルーターの意図（接続または再生）の受信者として選択します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#737)で確認できます。
 
 ##### 使用法
 
@@ -659,7 +659,7 @@ browser.selectCastSink(sinkName)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -676,7 +676,7 @@ browser.selectCastSink(sinkName)
 ---
 
 ## startCastTabMirroring
-指定されたデバイスで現在のブラウザタブのタブミラーリングを開始します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#741)で確認できます。
+指定されたデバイスで現在のブラウザタブのタブミラーリングを開始します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#741)で確認できます。
 
 ##### 使用法
 
@@ -690,7 +690,7 @@ browser.startCastTabMirroring(sinkName)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -707,7 +707,7 @@ browser.startCastTabMirroring(sinkName)
 ---
 
 ## getCastIssueMessage
-Castセッションで問題がある場合にエラーメッセージを返します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#751)で確認できます。
+Castセッションに問題がある場合のエラーメッセージを返します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#751)で確認できます。
 
 ##### 使用法
 
@@ -719,13 +719,13 @@ browser.getCastIssueMessage()
 ##### 戻り値
 
 - **&lt;String&gt;**
-            **<code><var>message</var></code>:** エラーメッセージ（存在する場合）。
+            **<code><var>message</var></code>:** エラーメッセージ（もしあれば）。
 
 
 ---
 
 ## stopCasting
-メディアルーターから指定されたデバイスへのキャストを停止します（接続されている場合）。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#744)で確認できます。
+接続されている場合、メディアルーターから指定されたデバイスへのキャストを停止します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#744)で確認できます。
 
 ##### 使用法
 
@@ -739,7 +739,7 @@ browser.stopCasting(sinkName)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -756,7 +756,7 @@ browser.stopCasting(sinkName)
 ---
 
 ## shutdown
-ChromeDriverプロセスをシャットダウンし、結果としてすべてのアクティブなセッションを終了します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L489-L498)で確認できます。
+ChromeDriverプロセスをシャットダウンし、結果としてすべてのアクティブなセッションを終了します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L489-L498)で確認できます。
 
 ##### 使用法
 
@@ -769,7 +769,7 @@ browser.shutdown()
 ---
 
 ## takeElementScreenshot
-要素のスクリーンショットコマンドは、要素の境界矩形に含まれる可視領域のスクリーンショットを撮影します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://w3c.github.io/webdriver/#dfn-take-element-screenshot)で確認できます。
+要素のスクリーンショットコマンドは、要素の境界矩形に包含される可視領域のスクリーンショットを撮ります。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://w3c.github.io/webdriver/#dfn-take-element-screenshot)で確認できます。
 
 ##### 使用法
 
@@ -783,19 +783,19 @@ browser.takeElementScreenshot(elementId, scroll)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>以前のFind Element(s)の呼び出しで返された要素のID</td>
+      <td>以前のFind Element(s)の呼び出しで返された要素のid</td>
     </tr>
     <tr>
-      <td><code><var>scroll</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>scroll</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>boolean</td>
-      <td>要素を表示するためにスクロールする。デフォルト：true</td>
+      <td>要素を表示領域にスクロールします。デフォルト: true</td>
     </tr>
   </tbody>
 </table>
@@ -804,13 +804,13 @@ browser.takeElementScreenshot(elementId, scroll)
 ##### 戻り値
 
 - **&lt;String&gt;**
-            **<code><var>screenshot</var></code>:** 表示エリアにスクロールした後の要素の境界矩形の可視領域のスクリーンショットを構成するBase64エンコードされたPNG画像データ。
+            **<code><var>screenshot</var></code>:** 要素の境界矩形の可視領域が表示領域にスクロールされた後のスクリーンショットを構成するBase64エンコードされたPNG画像データ。
 
 
 ---
 
 ## getLogTypes
-利用可能なログタイプを取得します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlogtypes)で確認できます。
+利用可能なログタイプを取得します。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlogtypes)で確認できます。
 
 ##### 使用法
 
@@ -828,7 +828,7 @@ browser.getLogTypes()
 ---
 
 ## getLogs
-指定されたログタイプのログを取得します。ログバッファはリクエストごとにリセットされます。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドについての詳細は[こちら](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlog)で確認できます。
+指定されたログタイプのログを取得します。ログバッファは各リクエスト後にリセットされます。<br /><br />非公式かつ未文書化のChromiumコマンドです。このコマンドの詳細は[こちら](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlog)で確認できます。
 
 ##### 使用法
 
@@ -842,7 +842,7 @@ browser.getLogs(type)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>

@@ -8,10 +8,8 @@ CPUをスロットルして遅いプロセッサをエミュレートします�
 
 :::info
 
-`throttleCPU`コマンドを使用するには、Chrome DevTools プロトコルのサポートが必要であり、
-クラウドで自動テストを実行する場合などには使用できないことに注意してください。Chrome DevTools プロトコルはデフォルトではインストールされていません。
-`npm install puppeteer-core`を使用してインストールしてください。
-詳細は[自動化プロトコル](/docs/automationProtocols)セクションで確認できます。
+`throttleCPU`コマンドを使用するには、Chrome DevToolsプロトコルのサポートが必要であり、クラウドで自動テストを実行する場合などには使用できません。Chrome DevToolsプロトコルはデフォルトではインストールされていないため、`npm install puppeteer-core`を使用してインストールしてください。
+詳細は[自動化プロトコル](/docs/automationProtocols)セクションで確認してください。
 
 :::
 
@@ -33,7 +31,7 @@ browser.throttleCPU(factor)
     <tr>
       <td><code><var>factor</var></code></td>
       <td>`number`</td>
-      <td>遅延係数（1はスロットルなし、2は2倍の遅さ、など）</td>
+      <td>遅延係数（1はスロットルなし、2は2倍の遅延など）</td>
     </tr>
   </tbody>
 </table>
@@ -42,6 +40,6 @@ browser.throttleCPU(factor)
 
 ```js title="throttleCPU.js"
 it('should throttle the CPU', async () => {
-    await browser.throttleCPU(2) // 2x slowdown
+    await browser.throttleCPU(2) // 2倍の遅延
 });
 ```

@@ -1,26 +1,26 @@
 ---
 id: proxy
-title: Proxy Setup
+title: راه‌اندازی پروکسی
 ---
 
-You can tunnel two different types of request through a proxy:
+شما می‌توانید دو نوع مختلف درخواست را از طریق یک پروکسی هدایت کنید:
 
-- connection between your test script and the browser driver (or WebDriver endpoint)
-- connection between the browser and the internet
+- اتصال بین اسکریپت تست و درایور مرورگر (یا نقطه پایانی WebDriver)
+- اتصال بین مرورگر و اینترنت
 
-## Proxy Between Driver And Test
+## پروکسی بین درایور و تست
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+اگر شرکت شما پروکسی سازمانی (مثلاً در `http://my.corp.proxy.com:9090`) برای تمام درخواست‌های خروجی دارد، مراحل زیر را برای نصب و پیکربندی [undici](https://github.com/nodejs/undici) دنبال کنید.
 
-### Install undici
+### نصب undici
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### افزودن undici setGlobalDispatcher به فایل پیکربندی خود
 
-Add the following require statement to the top of your config file.
+عبارت require زیر را به بالای فایل پیکربندی خود اضافه کنید.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+اطلاعات بیشتر درباره پیکربندی پروکسی را می‌توانید [اینجا](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md) پیدا کنید.
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+اگر از [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5) استفاده می‌کنید، آن را به صورت زیر شروع کنید:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Between Browser And Internet
+## پروکسی بین مرورگر و اینترنت
 
-In order to tunnel the connection between the browser and the internet, you can set up a proxy which can be useful to (for example) capture network information and other data with tools like [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+برای هدایت اتصال بین مرورگر و اینترنت، می‌توانید یک پروکسی راه‌اندازی کنید که می‌تواند برای مثال برای جمع‌آوری اطلاعات شبکه و سایر داده‌ها با ابزارهایی مانند [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) مفید باشد.
 
-The `proxy` parameters can be applied via the standard capabilities the following way:
+پارامترهای `proxy` را می‌توان از طریق قابلیت‌های استاندارد به شکل زیر اعمال کرد:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-For more information, see the [WebDriver specification](https://w3c.github.io/webdriver/#proxy).
+برای اطلاعات بیشتر، به [مشخصات WebDriver](https://w3c.github.io/webdriver/#proxy) مراجعه کنید.

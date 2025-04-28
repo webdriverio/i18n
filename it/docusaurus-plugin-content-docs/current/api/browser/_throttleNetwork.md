@@ -8,7 +8,7 @@ Limita le capacità di rete del browser. Questo può aiutare a
 emulare determinati scenari in cui un utente perde la connessione internet
 e la tua app deve affrontare questa situazione.
 
-Sono disponibili molti preset con configurazioni predefinite per un facile utilizzo.
+Ci sono molti preset disponibili con configurazioni predefinite per facilità d'uso.
 Sono `offline`, `GPRS`, `Regular2G`, `Good2G`, `Regular3G`, `Good3G`,
 `Regular4G`, `DSL`, `WiFi`, `online`.
 
@@ -16,8 +16,8 @@ Puoi vedere i valori per questi preset [nel codice sorgente](https://github.com/
 
 :::info
 
-Nota che l'utilizzo del comando `throttleNetwork` richiede il supporto per il protocollo Chrome DevTools e ad esempio
-non può essere utilizzato quando si eseguono test automatizzati nel cloud. Il protocollo Chrome DevTools non è installato per impostazione predefinita,
+Nota che l'utilizzo del comando `throttleNetwork` richiede il supporto del protocollo Chrome DevTools e, ad esempio,
+non può essere utilizzato durante l'esecuzione di test automatizzati nel cloud. Il protocollo Chrome DevTools non è installato per impostazione predefinita,
 usa `npm install puppeteer-core` per installarlo.
 Scopri di più nella sezione [Protocolli di Automazione](/docs/automationProtocols).
 
@@ -51,17 +51,17 @@ browser.throttleNetwork({ offline, latency, downloadThroughput, uploadThroughput
     <tr>
       <td><code><var>params.latency</var></code></td>
       <td>`number`</td>
-      <td>Latenza minima dalla richiesta inviata alla ricezione delle intestazioni di risposta (ms).</td>
+      <td>Latenza minima dall'invio della richiesta alla ricezione delle intestazioni di risposta (ms).</td>
     </tr>
     <tr>
       <td><code><var>params.downloadThroughput</var></code></td>
       <td>`number`</td>
-      <td>Throughput di download aggregato massimo (byte/sec). -1 disabilita la limitazione del download.</td>
+      <td>Throughput massimo aggregato di download (bytes/sec). -1 disabilita la limitazione del download.</td>
     </tr>
     <tr>
       <td><code><var>params.uploadThroughput</var></code></td>
       <td>`number`</td>
-      <td>Throughput di upload aggregato massimo (byte/sec). -1 disabilita la limitazione dell'upload.</td>
+      <td>Throughput massimo aggregato di upload (bytes/sec). -1 disabilita la limitazione dell'upload.</td>
     </tr>
   </tbody>
 </table>

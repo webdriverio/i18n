@@ -31,4 +31,4 @@ it('should demonstrate the getTagName command', async () => {
 ##### 戻り値
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**  要素のタグ名（小文字の文字列）
+            **<code><var>return</var></code>:** 要素のタグ名（小文字の文字列として）

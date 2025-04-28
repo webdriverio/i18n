@@ -25,7 +25,7 @@ browser.deleteCookies(filter)
     <tr>
       <td><code><var>filter</var></code></td>
       <td>`StorageCookieFilter[]`</td>
-      <td>Usa la proprietà filter per identificare ed eliminare cookie specifici basati su criteri di corrispondenza.</td>
+      <td>Utilizza la proprietà filter per identificare ed eliminare cookie specifici in base a criteri di corrispondenza.</td>
     </tr>
   </tbody>
 </table>

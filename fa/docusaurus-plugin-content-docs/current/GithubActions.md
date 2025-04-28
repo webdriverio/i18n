@@ -1,21 +1,21 @@
 ---
 id: githubactions
-title: Github Actions
+title: گیت‌هاب اکشنز
 ---
 
-If your repository is hosted on Github, you can use [Github Actions](https://docs.github.com/en/actions) to run your tests on Github's infrastructure.
+اگر مخزن شما در گیت‌هاب میزبانی می‌شود، می‌توانید از [Github Actions](https://docs.github.com/en/actions) برای اجرای تست‌های خود روی زیرساخت‌های گیت‌هاب استفاده کنید.
 
-1. every time you push changes
-2. در هر ایجاد درخواست pull
-3. در زمان مقرر
-4. توسط یک ماشه دستی
+1. هر بار که تغییرات را پوش می‌کنید
+2. در هر ایجاد درخواست پول
+3. در زمان‌های زمانبندی شده
+4. با راه‌اندازی دستی
 
-در ریشه مخزن خود، یک دایرکتوری `.github/workflows` ایجاد کنید. یک فایل Yaml اضافه کنید، برای مثال `/workflows/ci.yaml`. در آنجا نحوه اجرای تست های خود را پیکربندی خواهید کرد.
+در ریشه مخزن خود، یک دایرکتوری `.github/workflows` ایجاد کنید. یک فایل Yaml اضافه کنید، به عنوان مثال `.github/workflows/ci.yaml`. در آنجا نحوه اجرای تست‌های خود را پیکربندی خواهید کرد.
 
-برای اجرای مرجع به [jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml) و [اجرا های تست نمونه](https://github.com/webdriverio/jasmine-boilerplate/actions?query=workflow%3ACI) مراجعه کنید.
+به [jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml) برای پیاده‌سازی مرجع، و [نمونه اجرای تست‌ها](https://github.com/webdriverio/jasmine-boilerplate/actions?query=workflow%3ACI) مراجعه کنید.
 
 ```yaml reference
 https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml
 ```
 
-Find out in the [Github Docs](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow?tool=cli) on more information about creating workflow files.
+در [مستندات گیت‌هاب](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow?tool=cli) اطلاعات بیشتری درباره ایجاد فایل‌های گردش کار پیدا کنید.

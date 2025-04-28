@@ -4,7 +4,7 @@ title: getElement
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getElement.ts
 ---
 
-Accedi alle proprietà `WebdriverIO.Element` come `selector` o `elementId` dal riferimento dell'elemento.
+Accedi alle proprietà di `WebdriverIO.Element` come `selector` o `elementId` dal riferimento dell'elemento.
 
 ##### Utilizzo
 

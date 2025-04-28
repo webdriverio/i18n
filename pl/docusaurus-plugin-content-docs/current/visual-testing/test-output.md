@@ -1,17 +1,17 @@
 ---
 id: test-output
-title: Test Output
+title: Wynik Testów
 ---
 
 :::info
 
-[This WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) demo site has been used for the example image output.
+[Ta strona demonstracyjna WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) została użyta do przykładowego wyjścia obrazu.
 
 :::
 
 ## `enableLayoutTesting`
 
-This can be set on the [Service Options](./service-options#enablelayouttesting) as well as on the [Method](./method-options) level.
+Można to ustawić zarówno w [Opcjach Serwisu](./service-options#enablelayouttesting) jak i na poziomie [Metody](./method-options).
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,21 +32,19 @@ export const config = {
 }
 ```
 
-The image output for the [Service Options](./service-options#enablelayouttesting) is equal to the [Method](./method-options), see below.
+Wyjście obrazu dla [Opcji Serwisu](./service-options#enablelayouttesting) jest równe [Metodzie](./method-options), zobacz poniżej.
 
-### Image Output
+### Wyjście Obrazu
 
 <Tabs
-defaultValue="saveelement"
-values={[
-{label: 'saveElement | checkElement', value: 'saveelement'},
-{label: 'saveScreen | checkScreen', value: 'savescreen'},
-{label: 'saveFullPageScreen | checkFullPageScreen', value: 'savefullpagescreen'},
-{label: 'saveTabbablePage | checkTabbablePage', value: 'saveTabbablePage'},
-]}
-
+    defaultValue="saveelement"
+    values={[
+        {label: 'saveElement | checkElement', value: 'saveelement'},
+        {label: 'saveScreen | checkScreen', value: 'savescreen'},
+        {label: 'saveFullPageScreen | checkFullPageScreen', value: 'savefullpagescreen'},
+        {label: 'saveTabbablePage | checkTabbablePage', value: 'saveTabbablePage'},
+    ]}
 >
-
 <TabItem value="saveelement">
 
 ```js
@@ -94,11 +92,12 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 </TabItem>
 </Tabs>
 
+
 ## save(Screen/Element/FullPageScreen)
 
-### Console Output
+### Wyjście Konsoli
 
-The `save(Screen/Element/FullPageScreen)` methods will provide the following information after the method has been executed:
+Metody `save(Screen/Element/FullPageScreen)` dostarczą następujących informacji po wykonaniu metody:
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
@@ -115,18 +114,16 @@ console.log(saveResults)
  */
 ```
 
-### Image Output
+### Wyjście Obrazu
 
 <Tabs
-defaultValue="saveelement"
-values={[
-{label: 'saveElement', value: 'saveelement'},
-{label: 'saveScreen', value: 'savescreen'},
-{label: 'saveFullPageScreen', value: 'savefullpagescreen'},
-]}
-
+    defaultValue="saveelement"
+    values={[
+        {label: 'saveElement', value: 'saveelement'},
+        {label: 'saveScreen', value: 'savescreen'},
+        {label: 'saveFullPageScreen', value: 'savefullpagescreen'},
+    ]}
 >
-
 <TabItem value="saveelement">
 
 ```js
@@ -134,15 +131,13 @@ await browser.saveElement(".hero__title-logo", "example-element-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android', value: 'android'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android', value: 'android'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveElement Desktop](/img/visual/wdioLogo-chrome-latest-1-1366x768.png)
 </TabItem>
@@ -162,16 +157,14 @@ await browser.saveScreen("example-page-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android ChromeDriver', value: 'android-chromedriver'},
-{label: 'Android nativeWebScreenshot', value: 'android-native'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android ChromeDriver', value: 'android-chromedriver'},
+        {label: 'Android nativeWebScreenshot', value: 'android-native'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveScreen Desktop](/img/visual/examplePage-chrome-latest-1366x768.png)
 </TabItem>
@@ -184,7 +177,7 @@ values={[
 <TabItem value="ios">
 
 :::info TIP
-iOS `saveScreen` executions are by default not with the device bezel corners. To have this please add the `addIOSBezelCorners:true` option when instantiating the service, see [this](./service-options#addiosbezelcorners)
+Wykonania iOS `saveScreen` domyślnie nie zawierają zaokrąglonych rogów urządzenia. Aby je uzyskać, dodaj opcję `addIOSBezelCorners:true` podczas inicjowania usługi, zobacz [tutaj](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -199,15 +192,13 @@ await browser.saveFullPageScreen("full-page-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android', value: 'android'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android', value: 'android'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveFullPageScreens Desktop](/img/visual/fullPage-chrome-latest-1366x768.png)
 </TabItem>
@@ -223,9 +214,9 @@ values={[
 
 ## check(Screen/Element/FullPageScreen)
 
-### Console Output
+### Wyjście Konsoli
 
-By default, the `check(Screen/Element/FullPageScreen)` methods will only provide a mismatch percentage like `1.23`, but when the plugin has the option `returnAllCompareData: true` the following information is provided after the method has been executed:
+Domyślnie metody `check(Screen/Element/FullPageScreen)` dostarczą tylko procent niezgodności, np. `1.23`, ale gdy wtyczka ma opcję `returnAllCompareData: true`, dostarczane są następujące informacje po wykonaniu metody:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
@@ -250,22 +241,20 @@ console.log(checkResult)
  */
 ```
 
-### Image Output
+### Wyjście Obrazu
 
 :::info
-The images below will only show differences as a result of running the check commands. Only the diff in a browser is shown, but the output for Android and iOS is the same.
+Poniższe obrazy pokażą tylko różnice jako wynik uruchomienia poleceń sprawdzających. Pokazana jest tylko różnica w przeglądarce, ale wyjście dla Androida i iOS jest takie samo.
 :::
 
 <Tabs
-defaultValue="checkelement"
-values={[
-{label: 'checkElement', value: 'checkelement'},
-{label: 'checkScreen', value: 'checkscreen'},
-{label: 'checkFullPageScreen', value: 'checkfullpagescreen'},
-]}
-
+    defaultValue="checkelement"
+    values={[
+        {label: 'checkElement', value: 'checkelement'},
+        {label: 'checkScreen', value: 'checkscreen'},
+        {label: 'checkFullPageScreen', value: 'checkfullpagescreen'},
+    ]}
 >
-
 <TabItem value="checkelement">
 
 ```js
@@ -273,7 +262,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-The button text has been changed from `Get Started` to `Getting Started!` and detected as a change.
+Tekst przycisku został zmieniony z `Get Started` na `Getting Started!` i wykryty jako zmiana.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -286,7 +275,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-The button text has been changed from `Get Started` to `Getting Started!` and detected as a change.
+Tekst przycisku został zmieniony z `Get Started` na `Getting Started!` i wykryty jako zmiana.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -300,7 +289,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-The button text has been changed from `Get Started` to `Getting Started!` and detected as a change.
+Tekst przycisku został zmieniony z `Get Started` na `Getting Started!` i wykryty jako zmiana.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -311,17 +300,15 @@ The button text has been changed from `Get Started` to `Getting Started!` and de
 
 ## Block-Outs
 
-Here you will find an example output for block-outs in Android NativeWebScreenshot and iOS where the status+address and toolbar are blocked out.
+Tutaj znajdziesz przykładowe wyjście dla blokad w Android NativeWebScreenshot i iOS, gdzie status+adres i pasek narzędzi są zablokowane.
 
 <Tabs
-defaultValue="nativeWebScreenshot"
-values={[
-{label: 'Android nativeWebScreenshot', value: 'nativeWebScreenshot'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="nativeWebScreenshot"
+    values={[
+        {label: 'Android nativeWebScreenshot', value: 'nativeWebScreenshot'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="nativeWebScreenshot">
 
 ![Blockouts Android](/img/visual/android.blockouts.png)

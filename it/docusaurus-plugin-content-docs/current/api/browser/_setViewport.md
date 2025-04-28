@@ -4,7 +4,7 @@ title: setViewport
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setViewport.ts
 ---
 
-Ridimensiona il viewport del browser all'interno del browser stesso. A differenza di `setWindowSize`,
+Ridimensiona il viewport del browser all'interno del browser. A differenza di `setWindowSize`,
 questo comando cambia la dimensione del viewport, non la dimensione della finestra.
 
 ##### Utilizzo

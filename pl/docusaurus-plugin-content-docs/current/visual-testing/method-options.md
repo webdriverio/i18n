@@ -1,242 +1,242 @@
 ---
 id: method-options
-title: Method Options
+title: Opcje Metody
 ---
 
-Methods options are the options that can be set per [method](./methods). If the option has the same key as an option that has been set during the instantiation of the plugin, this method option will override the plugin option value.
+Opcje metod to opcje, które można ustawić dla każdej [metody](./methods). Jeśli opcja ma ten sam klucz co opcja ustawiona podczas tworzenia instancji pluginu, ta opcja metody nadpisze wartość opcji pluginu.
 
-## Save Options
+## Opcje Zapisu
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Typ:** `boolean`
+-   **Obowiązkowe:** Nie
+-   **Domyślnie:** `false`
+-   **Wspierane:** Web, Hybrid App (Webview)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+Włącz/Wyłącz "miganie" kursora we wszystkich elementach `input`, `textarea`, `[contenteditable]` w aplikacji. Jeśli ustawione na `true`, kursor zostanie ustawiony jako `transparent` przed wykonaniem zrzutu ekranu
+i zresetowany po zakończeniu
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Typ:** `boolean`
+-   **Obowiązkowe:** Nie
+-   **Domyślnie:** `false`
+-   **Wspierane:** Web, Hybrid App (Webview)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+Włącz/Wyłącz wszystkie animacje CSS w aplikacji. Jeśli ustawione na `true`, wszystkie animacje zostaną wyłączone przed wykonaniem zrzutu ekranu
+i zresetowane po zakończeniu
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web
+-   **Typ:** `boolean`
+-   **Obowiązkowe:** Nie
+-   **Domyślnie:** `false`
+-   **Używane z:** Wszystkimi [metodami](./methods)
+-   **Wspierane:** Web
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+Ta opcja ukryje cały tekst na stronie, więc tylko układ będzie używany do porównania. Ukrywanie zostanie wykonane przez dodanie stylu `'color': 'transparent !important'` do __każdego__ elementu.
 
-For the output see [Test Output](./test-output#enablelayouttesting)
+Aby zobaczyć wynik, sprawdź [Test Output](./test-output#enablelayouttesting)
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+Używając tej flagi, każdy element zawierający tekst (nie tylko `p, h1, h2, h3, h4, h5, h6, span, a, li`, ale także `div|button|..`) otrzyma tę właściwość. Nie ma __żadnej__ opcji dostosowania tego.
 :::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **Typ:** `boolean`
+-   **Obowiązkowe:** Nie
+-   **Domyślnie:** `true`
+-   **Używane z:** Wszystkimi [metodami](./methods)
+-   **Wspierane:** Web, Hybrid App (Webview)
 
-Hide scrollbar(s) in the application. If set to true all scrollbar(s) will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
+Ukryj paski przewijania w aplikacji. Jeśli ustawione na true, wszystkie paski przewijania zostaną wyłączone przed wykonaniem zrzutu ekranu. Domyślnie ustawione na `true`, aby zapobiec dodatkowym problemom.
 
 ### `hideElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Typ:** `array`
+-   **Obowiązkowe:** nie
+-   **Używane z:** Wszystkimi [metodami](./methods)
+-   **Wspierane:** Web, Hybrid App (Webview), Native App
 
-This method can hide 1 or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
+Ta metoda może ukryć 1 lub wiele elementów, dodając właściwość `visibility: hidden` do nich poprzez dostarczenie tablicy elementów.
 
 ### `removeElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Typ:** `array`
+-   **Obowiązkowe:** nie
+-   **Używane z:** Wszystkimi [metodami](./methods)
+-   **Wspierane:** Web, Hybrid App (Webview), Native App
 
-This method can _remove_ 1 or multiple elements by adding the property `display: none` to them by providing an array of elements.
+Ta metoda może _usunąć_ 1 lub wiele elementów, dodając właściwość `display: none` do nich poprzez dostarczenie tablicy elementów.
 
 ### `resizeDimensions`
 
-- **Type:** `object`
-- **Mandatory:** no
-- **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Used with:** Only for [`saveElement`](./methods#saveelement) or [`checkElement`](./methods#checkelement)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Typ:** `object`
+-   **Obowiązkowe:** nie
+-   **Domyślnie:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **Używane z:** Tylko dla [`saveElement`](./methods#saveelement) lub [`checkElement`](./methods#checkelement)
+-   **Wspierane:** Web, Hybrid App (Webview), Native App
 
-An object that needs to hold a `top`, `right`, `bottom` and `left` amount of pixels that need to make the element cutout bigger.
+Obiekt, który musi zawierać ilość pikseli `top`, `right`, `bottom` i `left`, które mają powiększyć wycięty element.
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **Typ:** `number`
+-   **Obowiązkowe:** Nie
+-   **Domyślnie:** `1500`
+-   **Używane z:** Tylko dla [`saveFullPageScreen`](./methods#savefullpagescreen) lub [`saveTabbablePage`](./methods#savetabbablepage)
+-   **Wspierane:** Web
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+Limit czasu w milisekundach, przez który należy czekać po przewinięciu. Może to pomóc w identyfikacji stron z leniwym ładowaniem.
 
 ### `hideAfterFirstScroll`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **Typ:** `array`
+-   **Obowiązkowe:** nie
+-   **Używane z:** Tylko dla [`saveFullPageScreen`](./methods#savefullpagescreen) lub [`saveTabbablePage`](./methods#savetabbablepage)
+-   **Wspierane:** Web
 
-This method will hide one or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
-This will be handy when a page for example holds sticky elements that will scroll with the page if the page is scrolled but will give an annoying effect when a full-page screenshot is made
+Ta metoda ukryje jeden lub wiele elementów poprzez dodanie właściwości `visibility: hidden` do nich poprzez dostarczenie tablicy elementów.
+Jest to przydatne, gdy strona zawiera na przykład elementy przyklejone, które będą przewijać się wraz ze stroną, ale dadzą nieprzyjemny efekt podczas wykonywania pełnego zrzutu ekranu strony.
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **Typ:** `boolean`
+-   **Obowiązkowe:** Nie
+-   **Domyślnie:** `true`
+-   **Używane z:** Wszystkimi [metodami](./methods)
+-   **Wspierane:** Web, Hybrid App (Webview)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+Czcionki, w tym czcionki firm trzecich, mogą być ładowane synchronicznie lub asynchronicznie. Ładowanie asynchroniczne oznacza, że czcionki mogą zostać załadowane po tym, jak WebdriverIO ustali, że strona została w pełni załadowana. Aby zapobiec problemom z renderowaniem czcionek, domyślnie ten moduł poczeka na załadowanie wszystkich czcionek przed wykonaniem zrzutu ekranu.
 
-## Compare (Check) Options
+## Opcje Porównania (Sprawdzania)
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+Opcje porównania to opcje, które wpływają na sposób wykonywania porównania przez [ResembleJS](https://github.com/Huddle/Resemble.js).
 
-:::info NOTE
+:::info UWAGA
 
-- All options from the [Save Options](#save-options) can be used for the Compare methods
-- All compare options can be used during service instantiation **or** for every single check method. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
-- All options can be used for:
-  - Web
-  - Hybrid App
-  - Native App
+-   Wszystkie opcje z [Opcji Zapisu](#opcje-zapisu) mogą być używane dla metod Porównania
+-   Wszystkie opcje porównania mogą być używane podczas tworzenia instancji usługi __lub__ dla każdej pojedynczej metody sprawdzania. Jeśli opcja metody ma ten sam klucz co opcja ustawiona podczas tworzenia instancji usługi, opcja porównania metody nadpisze wartość opcji porównania usługi.
+- Wszystkie opcje mogą być używane dla:
+    - Web
+    - Hybrid App
+    - Native App
 
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
 
-Compare images and discard alpha.
+Porównaj obrazy i pomiń kanał alfa.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. This is **iPad only**_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `true`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być używane tylko dla `checkScreen()`. To jest **tylko dla iPada**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+Automatycznie blokuje pasek boczny dla iPadów w trybie poziomym podczas porównań. Zapobiega to błędom w natywnym komponencie karty/prywatnym/zakładki.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `true`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _To jest **tylko dla urządzeń mobilnych**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+Automatycznie blokuje pasek statusu i pasek adresu podczas porównań. Zapobiega to błędom związanym z czasem, WiFi lub stanem baterii.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `true`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _To jest **tylko dla urządzeń mobilnych**_
 
-Automatically block out the toolbar.
+Automatycznie blokuje pasek narzędzi.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
 
-Compare images and discard anti-aliasing.
+Porównaj obrazy i pomiń antyaliasing.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
 
-Even though the images are in color, the comparison will compare 2 black/white images
+Nawet jeśli obrazy są kolorowe, porównanie będzie porównywać 2 czarno-białe obrazy.
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+Porównaj obrazy z parametrami `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+Porównaj obrazy z parametrami `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+Jeśli true, zwrócony procent będzie jak `0.12345678`, domyślnie jest `0.12`
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
 
-This will return all compare data, not only the mismatch percentage
+Zwróci wszystkie dane porównania, nie tylko procent niezgodności.
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **Typ:** `number`
+-   **Domyślnie:** `0`
+-   **Obowiązkowe:** nie
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+Dopuszczalna wartość `misMatchPercentage`, która zapobiega zapisywaniu obrazów z różnicami.
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **Typ:** `number`
+-   **Domyślnie:** `0`
+-   **Obowiązkowe:** nie
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+Porównywanie dużych obrazów może prowadzić do problemów z wydajnością.
+Gdy podana jest liczba pikseli (większa niż 0), algorytm porównania pomija piksele, gdy szerokość lub wysokość obrazu jest większa niż `largeImageThreshold` pikseli.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+Skaluje 2 obrazy do tego samego rozmiaru przed wykonaniem porównania. Zdecydowanie zaleca się włączenie `ignoreAntialiasing` i `ignoreAlpha`
 
-## Folder options
+## Opcje folderów
 
-The baseline folder and screenshot folders(actual, diff) are options that can be set during the instantiation of the plugin or method. To set the folder options on a particular method, pass in folder options to the methods option object. This can be used for:
+Folder bazowy i foldery zrzutów ekranu (aktualny, różnica) to opcje, które można ustawić podczas tworzenia instancji pluginu lub metody. Aby ustawić opcje folderów dla konkretnej metody, przekaż opcje folderów do obiektu opcji metody. Można to używać dla:
 
 - Web
 - Hybrid App
@@ -259,21 +259,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **Typ:** `string`
+-   **Obowiązkowe:** nie
 
-Folder for the snapshot that has been captured in the test.
+Folder na zrzut ekranu, który został przechwycony w teście.
 
 ### `baselineFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **Typ:** `string`
+-   **Obowiązkowe:** nie
 
-Folder for the baseline image that is being used to compare against.
+Folder dla obrazu bazowego, który jest używany do porównania.
 
 ### `diffFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **Typ:** `string`
+-   **Obowiązkowe:** nie
 
-Folder for the image difference rendered by ResembleJS.
+Folder na różnice obrazów generowane przez ResembleJS.

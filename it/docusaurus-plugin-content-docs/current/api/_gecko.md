@@ -42,13 +42,13 @@ console.log(await browser.getMozContext()); // outputs: 'CHROME'
 ##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>Context</var></code>:** Il contesto del browser, sia `CHROME` che `CONTENT`
+            **<code><var>Context</var></code>:** Il contesto del browser, o `CHROME` o `CONTENT`
 
 
 ---
 
 ## setMozContext
-Cambia il contesto di destinazione per i comandi tra chrome e content.<br /><br />Cambiare il contesto corrente ha un impatto statale su tutti i comandi successivi. Il contesto `CONTENT` ha normali permessi di documento della piattaforma web, come se si valutasse JavaScript arbitrario. Il contesto `CHROME` ottiene permessi elevati che ti permettono di manipolare l'interfaccia chrome del browser stesso, con accesso completo al toolkit XUL.<br /><br />Comando Firefox. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645).
+Cambia il contesto target per i comandi tra chrome e content.<br /><br />Modificare il contesto corrente ha un impatto stateful su tutti i comandi successivi. Il contesto `CONTENT` ha normali permessi di documento della piattaforma web, come se stessi valutando JavaScript arbitrario. Il contesto `CHROME` ottiene permessi elevati che ti permettono di manipolare la chrome del browser stesso, con pieno accesso al toolkit XUL.<br /><br />Comando Firefox. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645).
 
 ##### Usage
 
@@ -69,7 +69,7 @@ browser.setMozContext(context)
     <tr>
       <td><code><var>context</var></code></td>
       <td>string</td>
-      <td>Il contesto del browser, sia `CHROME` che `CONTENT`</td>
+      <td>Il contesto del browser, o `CHROME` o `CONTENT`</td>
     </tr>
   </tbody>
 </table>
@@ -88,7 +88,7 @@ console.log(await browser.getMozContext()); // outputs: 'CONTENT'
 ---
 
 ## installAddOn
-Installa un nuovo addon nella sessione corrente. Questa funzione restituirà un ID che potrà essere utilizzato in seguito per disinstallare l'addon utilizzando `uninstallAddon`.<br /><br />Comando Firefox. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L647-L668).
+Installa un nuovo addon nella sessione corrente. Questa funzione restituirà un ID che potrà essere utilizzato successivamente per disinstallare l'addon utilizzando `uninstallAddon`.<br /><br />Comando Firefox. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L647-L668).
 
 ##### Usage
 
@@ -114,7 +114,7 @@ browser.installAddOn(addon, temporary)
     <tr>
       <td><code><var>temporary</var></code></td>
       <td>boolean</td>
-      <td>Flag temporaneo che indica se l'estensione deve essere installata temporaneamente - viene rimossa al riavvio</td>
+      <td>Flag temporary che indica se l'estensione deve essere installata temporaneamente - viene rimossa al riavvio</td>
     </tr>
   </tbody>
 </table>
@@ -133,13 +133,13 @@ const id = await browser.installAddOn(extension.toString('base64'), false);
 ##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>id</var></code>:** Una promessa che sarà risolta con un ID per l'addon appena installato.
+            **<code><var>id</var></code>:** Una promessa che si risolverà in un ID per l'addon appena installato.
 
 
 ---
 
 ## uninstallAddOn
-Disinstalla un addon dal profilo della sessione corrente del browser.<br /><br />Comando Firefox. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L670-L687).
+Disinstalla un addon dal profilo della sessione del browser corrente.<br /><br />Comando Firefox. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L670-L687).
 
 ##### Usage
 

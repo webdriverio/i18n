@@ -1,6 +1,6 @@
 ---
 id: createlocalworkerprocess
-title: Creare un processo di lavoro
+title: Crea processo di lavoro
 ---
 Questo diagramma di flusso spiega come viene creato un processo di lavoro.
 

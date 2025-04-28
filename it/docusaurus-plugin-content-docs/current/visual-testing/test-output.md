@@ -5,13 +5,13 @@ title: Output dei Test
 
 :::info
 
-[Questo sito demo di WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) è stato utilizzato per l'esempio di output delle immagini.
+[Questo sito di dimostrazione WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) è stato utilizzato per l'esempio di output delle immagini.
 
 :::
 
 ## `enableLayoutTesting`
 
-Questo può essere impostato sia nelle [Opzioni del Servizio](./service-options#enablelayouttesting) che a [livello di Metodo](./method-options).
+Questo può essere impostato sia nelle [Opzioni del Servizio](./service-options#enablelayouttesting) sia a livello di [Metodo](./method-options).
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,9 +32,9 @@ export const config = {
 }
 ```
 
-L'output dell'immagine per le [Opzioni del Servizio](./service-options#enablelayouttesting) è equivalente a quello del [Metodo](./method-options), vedi di seguito.
+L'output dell'immagine per le [Opzioni del Servizio](./service-options#enablelayouttesting) è uguale a quello del [Metodo](./method-options), vedi sotto.
 
-### Output dell'Immagine
+### Output delle Immagini
 
 <Tabs
     defaultValue="saveelement"
@@ -104,17 +104,17 @@ const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // Il rapporto dei pixel del dispositivo dell'istanza che è stata eseguita
+ *   // Il rapporto pixel del dispositivo dell'istanza che è stata eseguita
  *   devicePixelRatio: 1,
- *   // Il nome del file formattato, dipende dall'opzione `formatImageName`
+ *   // Il nome del file formattato, dipende dalle opzioni `formatImageName`
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // Il percorso dove si trova il file dello screenshot effettivo
+ *   // Il percorso dove può essere trovato il file dello screenshot effettivo
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
 ```
 
-### Output dell'Immagine
+### Output delle Immagini
 
 <Tabs
     defaultValue="saveelement"
@@ -177,7 +177,7 @@ await browser.saveScreen("example-page-tag")
 <TabItem value="ios">
 
 :::info SUGGERIMENTO
-Le esecuzioni di `saveScreen` su iOS predefinite non includono gli angoli della cornice del dispositivo. Per averli, aggiungi l'opzione `addIOSBezelCorners:true` quando istanzi il servizio, vedi [qui](./service-options#addiosbezelcorners)
+Le esecuzioni di `saveScreen` su iOS predefinite non mostrano gli angoli della cornice del dispositivo. Per averli, aggiungi l'opzione `addIOSBezelCorners:true` quando istanzi il servizio, vedi [questo](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,22 +216,22 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### Output della Console
 
-Per impostazione predefinita, i metodi `check(Screen/Element/FullPageScreen)` forniranno solo una percentuale di mancata corrispondenza come `1.23`, ma quando il plugin ha l'opzione `returnAllCompareData: true`, vengono fornite le seguenti informazioni dopo l'esecuzione del metodo:
+Per impostazione predefinita, i metodi `check(Screen/Element/FullPageScreen)` forniranno solo una percentuale di mancata corrispondenza come `1.23`, ma quando il plugin ha l'opzione `returnAllCompareData: true` vengono fornite le seguenti informazioni dopo l'esecuzione del metodo:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // Il nome del file formattato, dipende dall'opzione `formatImageName`
+ *     // Il nome del file formattato, dipende dalle opzioni `formatImageName`
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // La cartella effettiva e il nome del file
+ *         // La cartella attuale e il nome del file
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *         // La cartella di base e il nome del file
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // Questa cartella seguente è opzionale e solo se c'è una mancata corrispondenza
+ *         // Questa cartella seguente è opzionale e presente solo se c'è una mancata corrispondenza
  *         // La cartella che contiene le differenze e il nome del file
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
@@ -241,7 +241,7 @@ console.log(checkResult)
  */
 ```
 
-### Output dell'Immagine
+### Output delle Immagini
 
 :::info
 Le immagini seguenti mostreranno solo le differenze come risultato dell'esecuzione dei comandi di controllo. Viene mostrata solo la differenza in un browser, ma l'output per Android e iOS è lo stesso.
@@ -262,7 +262,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-Il testo del pulsante è stato cambiato da `Get Started` a `Getting Started!` ed è stato rilevato come una modifica.
+Il testo del pulsante è stato modificato da `Get Started` a `Getting Started!` ed è stato rilevato come un cambiamento.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +275,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-Il testo del pulsante è stato cambiato da `Get Started` a `Getting Started!` ed è stato rilevato come una modifica.
+Il testo del pulsante è stato modificato da `Get Started` a `Getting Started!` ed è stato rilevato come un cambiamento.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +289,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-Il testo del pulsante è stato cambiato da `Get Started` a `Getting Started!` ed è stato rilevato come una modifica.
+Il testo del pulsante è stato modificato da `Get Started` a `Getting Started!` ed è stato rilevato come un cambiamento.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -298,9 +298,9 @@ Il testo del pulsante è stato cambiato da `Get Started` a `Getting Started!` ed
 
 </Tabs>
 
-## Block-Outs
+## Oscuramenti
 
-Qui troverai un esempio di output per i block-out in Android NativeWebScreenshot e iOS dove lo stato+indirizzo e la barra degli strumenti sono bloccati.
+Qui troverai un esempio di output per gli oscuramenti in Android NativeWebScreenshot e iOS dove lo stato+indirizzo e la barra degli strumenti sono oscurati.
 
 <Tabs
     defaultValue="nativeWebScreenshot"

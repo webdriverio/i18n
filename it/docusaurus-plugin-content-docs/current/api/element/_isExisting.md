@@ -8,7 +8,7 @@ Restituisce true se l'elemento esiste nel DOM.
 
 :::info
 
-A differenza di altri comandi di elemento, WebdriverIO non attenderà che l'elemento
+A differenza di altri comandi sugli elementi, WebdriverIO non aspetterà che l'elemento
 esista per eseguire questo comando.
 
 :::
@@ -55,4 +55,4 @@ it('should detect if elements are existing', async () => {
 ##### Restituisce
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**             true se l'elemento/gli elementi* [esiste|esistono]
+            **<code><var>return</var></code>:**             true se l'elemento/gli elementi* esiste/esistono

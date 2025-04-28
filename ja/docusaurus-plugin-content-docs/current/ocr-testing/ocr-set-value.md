@@ -3,13 +3,13 @@ id: ocr-set-value
 title: ocrSetValue
 ---
 
-要素にキーストロークのシーケンスを送信します。これは以下の操作を行います：
+要素にキーストロークのシーケンスを送信します。これにより：
 
--   要素を自動的に検出する
--   クリックすることでフィールドにフォーカスを当てる
--   フィールドに値を設定する
+-   要素を自動的に検出します
+-   クリックしてフィールドにフォーカスを合わせます
+-   フィールドに値を設定します
 
-このコマンドは提供されたテキストを検索し、[Fuse.js](https://fusejs.io/)のファジーロジックに基づいてマッチを見つけようとします。これは、タイプミスのあるセレクタを提供した場合や、見つかったテキストが100%一致しない場合でも、要素を返そうとすることを意味します。以下の[ログ](#logs)を参照してください。
+このコマンドは提供されたテキストを検索し、[Fuse.js](https://fusejs.io/)からのファジーロジックに基づいてマッチを見つけようとします。これは、タイプミスのあるセレクタを提供した場合や、見つかったテキストが100%一致しない場合でも、要素を返そうとすることを意味します。以下の[ログ](#logs)をご覧ください。
 
 ## 使用方法
 
@@ -34,10 +34,10 @@ await brower.ocrSetValue({
 
 ### `text`
 
--   **型:** `string`
+-   **タイプ:** `string`
 -   **必須:** はい
 
-クリックしたい検索対象のテキスト。
+クリックするために検索したいテキスト。
 
 #### 例
 
@@ -50,7 +50,7 @@ await browser.ocrSetValue({
 
 ### `value`
 
--   **型:** `string`
+-   **タイプ:** `string`
 -   **必須:** はい
 
 追加する値。
@@ -66,11 +66,11 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
--   **型:** `boolean`
+-   **タイプ:** `boolean`
 -   **必須:** いいえ
 -   **デフォルト:** `false`
 
-値を入力フィールドに送信する必要がある場合。これは、文字列の最後に「ENTER」が送信されることを意味します。
+値を入力フィールドに送信する必要があるかどうか。これは文字列の最後に「ENTER」が送信されることを意味します。
 
 #### 例
 
@@ -84,11 +84,11 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 -   **デフォルト:** `500` ミリ秒
 
-クリックの持続時間です。必要に応じて、時間を増やして「長押しクリック」を作成することもできます。
+これはクリックの持続時間です。必要であれば、時間を増やして「長押しクリック」を作成することもできます。
 
 #### 例
 
@@ -96,17 +96,17 @@ await browser.ocrSetValue({
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // これは3秒
+    clickDuration: 3000, // これは3秒です
 });
 ```
 
 ### `contrast`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 -   **デフォルト:** `0.25`
 
-コントラストが高いほど画像は暗くなり、その逆も同様です。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`の間の値を受け付けます。
+コントラストが高いほど画像は暗くなり、逆もまた然りです。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`の間の値を受け付けます。
 
 #### 例
 
@@ -120,10 +120,10 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-OCRがテキストを検索する画面上の検索領域です。これは要素または`x`、`y`、`width`、`height`を含む矩形です。
+これは画面内でOCRがテキストを探す検索領域です。これは要素または`x`、`y`、`width`、`height`を含む矩形です。
 
 #### 例
 
@@ -156,11 +156,11 @@ await browser.ocrSetValue({
 
 ### `language`
 
--   **型:** `string`
+-   **タイプ:** `string`
 -   **必須:** いいえ
 -   **デフォルト:** `eng`
 
-Tesseractが認識する言語。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で確認でき、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
+Tesseractが認識する言語。詳細情報は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で見つかり、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で見つかります。
 
 #### 例
 
@@ -176,10 +176,10 @@ await browser.ocrSetValue({
 
 ### `relativePosition`
 
--   **型:** `object`
+-   **タイプ:** `object`
 -   **必須:** いいえ
 
-マッチする要素に対して相対的に画面上をクリックできます。これはマッチする要素から相対的なピクセル`above`、`right`、`below`または`left`に基づいて行うことができます。
+一致する要素に対して相対的に画面をクリックできます。これは、一致する要素から相対的なピクセル`above`、`right`、`below`または`left`に基づいて行うことができます。
 
 :::note
 
@@ -198,10 +198,10 @@ await browser.ocrSetValue({
 
 #### `relativePosition.above`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 
-マッチする要素の`above` x ピクセルをクリックします。
+一致する要素からxピクセル`上`をクリックします。
 
 ##### 例
 
@@ -217,10 +217,10 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 
-マッチする要素から`right` x ピクセルをクリックします。
+一致する要素からxピクセル`右`をクリックします。
 
 ##### 例
 
@@ -236,10 +236,10 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 
-マッチする要素の`below` x ピクセルをクリックします。
+一致する要素からxピクセル`下`をクリックします。
 
 ##### 例
 
@@ -255,10 +255,10 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 
-マッチする要素から`left` x ピクセルをクリックします。
+一致する要素からxピクセル`左`をクリックします。
 
 ##### 例
 
@@ -274,15 +274,15 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-以下のオプションでテキストを見つけるためのファジーロジックを変更できます。これにより、より良いマッチを見つけるのに役立つかもしれません。
+次のオプションでテキストを見つけるためのファジーロジックを変更できます。これはより良いマッチを見つけるのに役立つかもしれません。
 
 #### `fuzzyFindOptions.distance`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 -   **デフォルト:** 100
 
-マッチがファジーロケーション（locationで指定）にどれだけ近くなければならないかを決定します。ファジーロケーションから離れたdistance文字数の正確な文字マッチは、完全な不一致としてスコアリングされます。distanceが0の場合、指定された正確な位置でのマッチが必要です。distanceが1000の場合、しきい値0.8を使用して、完全一致がロケーションから800文字以内にある必要があります。
+マッチがファジーロケーション（locationで指定）にどれだけ近くなければならないかを決定します。ファジーロケーションから離れたdistance文字のちょうどの文字マッチはまったく一致しないスコアになります。0の距離は、指定された正確な場所でのマッチを要求します。1000の距離は、0.8の閾値を使用した場合、パーフェクトマッチがロケーションから800文字以内にあることを要求します。
 
 ##### 例
 
@@ -298,11 +298,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 -   **デフォルト:** 0
 
-パターンがテキスト内のどこで見つかると予想されるかをおおよそ決定します。
+テキスト内のどこにパターンが見つかると予想されるかをおおよそ決定します。
 
 ##### 例
 
@@ -318,11 +318,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 -   **デフォルト:** 0.6
 
-マッチングアルゴリズムがどの時点で諦めるかを決定します。しきい値0は完全一致（文字と位置の両方）を必要とし、しきい値1.0は何でもマッチさせます。
+マッチングアルゴリズムがあきらめるポイントです。閾値0は完全一致（文字と場所の両方）を要求し、閾値1.0は何でもマッチさせます。
 
 ##### 例
 
@@ -338,11 +338,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **型:** `boolean`
+-   **タイプ:** `boolean`
 -   **必須:** いいえ
 -   **デフォルト:** false
 
-検索が大文字と小文字を区別するかどうか。
+検索が大文字小文字を区別するかどうか。
 
 ##### 例
 
@@ -358,11 +358,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 -   **デフォルト:** 2
 
-この値を超える長さのマッチのみが返されます。（例えば、結果で単一文字のマッチを無視したい場合は、2に設定します）
+長さがこの値を超えるマッチのみが返されます。（例えば、結果で1文字のマッチを無視したい場合は、2に設定します）
 
 ##### 例
 
@@ -378,11 +378,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **型:** `number`
+-   **タイプ:** `number`
 -   **必須:** いいえ
 -   **デフォルト:** false
 
-`true`の場合、マッチング関数は、文字列内で完全一致がすでに見つかっていても、検索パターンの最後まで続行します。
+`true`の場合、文字列で完全一致がすでに見つかっていても、マッチング関数は検索パターンの最後まで続行します。
 
 ##### 例
 

@@ -5,7 +5,7 @@ title: Wizard CLI
 
 Puoi validare quale testo può essere trovato in un'immagine senza eseguire un test utilizzando il Wizard CLI OCR. Le uniche cose necessarie sono:
 
--   hai installato `@wdio/ocr-service` come dipendenza, vedi [Guida Introduttiva](./getting-started)
+-   aver installato `@wdio/ocr-service` come dipendenza, vedi [Guida Introduttiva](./getting-started)
 -   un'immagine che vuoi elaborare
 
 Quindi esegui il seguente comando per avviare il wizard
@@ -20,12 +20,12 @@ Questo avvierà un wizard che ti guiderà attraverso i passaggi per selezionare 
 
 Possono essere selezionate le seguenti opzioni
 
--   Usa un "file explorer"
+-   Usa un "esploratore di file"
 -   Digita manualmente il percorso del file
 
-### Usa un "file explorer"
+### Usa un "esploratore di file"
 
-Il wizard CLI fornisce un'opzione per utilizzare un "file explorer" per cercare file sul tuo sistema. Inizia dalla cartella da cui chiami il comando. Dopo aver selezionato un'immagine (usa i tasti freccia e il tasto INVIO) passerai alla domanda successiva
+Il wizard CLI offre un'opzione per utilizzare un "esploratore di file" per cercare file sul tuo sistema. Inizia dalla cartella in cui chiami il comando. Dopo aver selezionato un'immagine (usa i tasti freccia e il tasto INVIO) procederai alla domanda successiva
 
 ### Digita manualmente il percorso del file
 
@@ -45,7 +45,7 @@ Qui hai l'opzione di selezionare un'area che deve essere elaborata. Questo può 
 La modalità avanzata includerà funzionalità extra come:
 
 -   impostazione del contrasto
--   altro da seguire in futuro
+-   altre funzionalità in arrivo in futuro
 
 ## Demo
 

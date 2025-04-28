@@ -3,10 +3,10 @@ id: gettingstarted
 title: البدء
 ---
 
-مرحبًا بك في وثائق WebdriverIO. ستساعدك على البدء بسرعة. إذا واجهت مشكلات، يمكنك العثور على المساعدة والإجابات على [خادم الدعم Discord](https://discord.webdriver.io) أو يمكنك التواصل معي على [Twitter](https://twitter.com/webdriverio).
+مرحبًا بك في توثيق WebdriverIO. سيساعدك هذا على البدء بسرعة. إذا واجهت مشاكل، يمكنك العثور على المساعدة والإجابات على [خادم الدعم Discord](https://discord.webdriver.io) أو يمكنك التواصل معي على [Twitter](https://twitter.com/webdriverio).
 
 :::info
-هذه هي وثائق أحدث إصدار (__>=9.x__) من WebdriverIO. إذا كنت لا تزال تستخدم إصدارًا قديمًا، يرجى زيارة [مواقع الوثائق القديمة](/versions)!
+هذه هي الوثائق للإصدار الأحدث (__>=9.x__) من WebdriverIO. إذا كنت لا تزال تستخدم إصدارًا أقدم، يرجى زيارة [مواقع التوثيق القديمة](/versions)!
 :::
 
 <LiteYouTubeEmbed
@@ -22,9 +22,9 @@ title: البدء
 
 ## بدء إعداد WebdriverIO
 
-لإضافة إعداد كامل لـ WebdriverIO إلى مشروع موجود أو جديد باستخدام [مجموعة أدوات WebdriverIO الأساسية](https://www.npmjs.com/package/create-wdio)، قم بتشغيل:
+لإضافة إعداد كامل لـ WebdriverIO إلى مشروع موجود أو جديد باستخدام [مجموعة أدوات بدء WebdriverIO](https://www.npmjs.com/package/create-wdio)، قم بتشغيل:
 
-إذا كنت في الدليل الرئيسي لمشروع موجود، قم بتشغيل:
+إذا كنت في الدليل الجذر لمشروع موجود، قم بتشغيل:
 
 <Tabs
   defaultValue="npm"
@@ -41,7 +41,7 @@ title: البدء
 npm init wdio@latest .
 ```
 
-أو إذا كنت تريد إنشاء مشروع جديد:
+أو إذا كنت ترغب في إنشاء مشروع جديد:
 
 ```sh
 npm init wdio@latest ./path/to/new/project
@@ -54,7 +54,7 @@ npm init wdio@latest ./path/to/new/project
 yarn create wdio .
 ```
 
-أو إذا كنت تريد إنشاء مشروع جديد:
+أو إذا كنت ترغب في إنشاء مشروع جديد:
 
 ```sh
 yarn create wdio ./path/to/new/project
@@ -67,7 +67,7 @@ yarn create wdio ./path/to/new/project
 pnpm create wdio@latest .
 ```
 
-أو إذا كنت تريد إنشاء مشروع جديد:
+أو إذا كنت ترغب في إنشاء مشروع جديد:
 
 ```sh
 pnpm create wdio@latest ./path/to/new/project
@@ -80,7 +80,7 @@ pnpm create wdio@latest ./path/to/new/project
 bun create wdio@latest .
 ```
 
-أو إذا كنت تريد إنشاء مشروع جديد:
+أو إذا كنت ترغب في إنشاء مشروع جديد:
 
 ```sh
 bun create wdio@latest ./path/to/new/project
@@ -89,11 +89,11 @@ bun create wdio@latest ./path/to/new/project
 </TabItem>
 </Tabs>
 
-يقوم هذا الأمر الواحد بتنزيل أداة سطر أوامر WebdriverIO وتشغيل معالج التكوين الذي يساعدك على تكوين مجموعة الاختبار الخاصة بك.
+هذا الأمر الواحد يقوم بتنزيل أداة سطر أوامر WebdriverIO ويشغل معالج التكوين الذي يساعدك على تكوين مجموعة الاختبار الخاصة بك.
 
 <CreateProjectAnimation />
 
-سيطلب المعالج مجموعة من الأسئلة التي ترشدك خلال الإعداد. يمكنك تمرير معلمة `--yes` لاختيار إعداد افتراضي يستخدم Mocha مع Chrome باستخدام نمط [Page Object](https://martinfowler.com/bliki/PageObject.html).
+سيطرح المعالج مجموعة من الأسئلة التي ترشدك خلال الإعداد. يمكنك تمرير المعلمة `--yes` لاختيار إعداد افتراضي والذي سيستخدم Mocha مع Chrome باستخدام نمط [Page Object](https://martinfowler.com/bliki/PageObject.html).
 
 <Tabs
   defaultValue="npm"
@@ -134,7 +134,7 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-## تثبيت واجهة سطر الأوامر يدويًا
+## تثبيت CLI يدويًا
 
 يمكنك أيضًا إضافة حزمة CLI إلى مشروعك يدويًا عبر:
 
@@ -148,7 +148,7 @@ npx wdio config
 
 ## تشغيل الاختبار
 
-يمكنك بدء مجموعة الاختبار الخاصة بك باستخدام أمر `run` والإشارة إلى تكوين WebdriverIO الذي أنشأته للتو:
+يمكنك بدء مجموعة الاختبار الخاصة بك باستخدام الأمر `run` والإشارة إلى تكوين WebdriverIO الذي أنشأته للتو:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -160,7 +160,7 @@ npx wdio run ./wdio.conf.js
 npx wdio run ./wdio.conf.js --spec example.e2e.js
 ```
 
-أو تحديد مجموعات في ملف التكوين الخاص بك وتشغيل ملفات الاختبار المحددة في مجموعة:
+أو تحديد مجموعات في ملف التكوين الخاص بك وتشغيل ملفات الاختبار المحددة فقط في مجموعة:
 
 ```sh
 npx wdio run ./wdio.conf.js --suite exampleSuiteName
@@ -174,17 +174,17 @@ npx wdio run ./wdio.conf.js --suite exampleSuiteName
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
 ```
 
-__ملاحظة:__ جميع أوامر WebdriverIO غير متزامنة وتحتاج إلى معالجتها بشكل صحيح باستخدام [`async/await`](https://javascript.info/async-await).
+__ملاحظة:__ جميع أوامر WebdriverIO غير متزامنة وتحتاج إلى معالجة بشكل صحيح باستخدام [`async/await`](https://javascript.info/async-await).
 
 ## تسجيل الاختبارات
 
-توفر WebdriverIO أدوات لمساعدتك على البدء من خلال تسجيل إجراءات الاختبار الخاصة بك على الشاشة وإنشاء نصوص اختبار WebdriverIO تلقائيًا. انظر [تسجيل الاختبارات باستخدام مسجل Chrome DevTools](/docs/record) لمزيد من المعلومات.
+يوفر WebdriverIO أدوات لمساعدتك على البدء من خلال تسجيل إجراءات الاختبار الخاصة بك على الشاشة وإنشاء نصوص اختبار WebdriverIO تلقائيًا. راجع [تسجيل الاختبارات باستخدام مسجل Chrome DevTools](/docs/record) للحصول على مزيد من المعلومات.
 
 ## متطلبات النظام
 
 ستحتاج إلى تثبيت [Node.js](http://nodejs.org).
 
 - قم بتثبيت الإصدار v18.20.0 على الأقل أو أعلى حيث أن هذا هو أقدم إصدار LTS نشط
-- يتم دعم الإصدارات التي هي أو ستصبح إصدار LTS رسميًا فقط
+- فقط الإصدارات التي هي أو ستصبح إصدار LTS مدعومة رسميًا
 
-إذا لم يتم تثبيت Node حاليًا على نظامك، نقترح استخدام أداة مثل [NVM](https://github.com/creationix/nvm) أو [Volta](https://volta.sh/) للمساعدة في إدارة إصدارات Node.js النشطة المتعددة. NVM هو خيار شائع، بينما Volta هو أيضًا بديل جيد.
+إذا لم يكن Node مثبتًا حاليًا على نظامك، نقترح استخدام أداة مثل [NVM](https://github.com/creationix/nvm) أو [Volta](https://volta.sh/) للمساعدة في إدارة إصدارات Node.js النشطة المتعددة. NVM هو اختيار شائع، بينما Volta هو أيضًا بديل جيد.

@@ -3,11 +3,11 @@ id: vue
 title: Vue.js
 ---
 
-[Vue.js](https://vuejs.org/) は使いやすく、パフォーマンスが高く、汎用性のあるWeb UIフレームワークです。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザで直接Vue.jsコンポーネントをテストできます。
+[Vue.js](https://vuejs.org/)は、Webユーザーインターフェースを構築するための扱いやすく、パフォーマンスが高く、汎用性のあるフレームワークです。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザで直接Vue.jsコンポーネントをテストできます。
 
 ## セットアップ
 
-Vue.jsプロジェクト内でWebdriverIOを設定するには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`vue`を選択してください：
+Vue.jsプロジェクト内にWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内で`vue`をプリセットとして選択してください：
 
 ```js
 // wdio.conf.js
@@ -65,7 +65,7 @@ export default {
 </script>
 ```
 
-テストでは、コンポーネントをDOMにレンダリングして、アサーションを実行します。コンポーネントをテストページにアタッチするには、[`@vue/test-utils`](https://test-utils.vuejs.org/)または[`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/)のいずれかを使用することをお勧めします。コンポーネントとのインタラクションには、実際のユーザーインタラクションに近い動作をするWebdriverIOコマンドを使用してください：
+テストでは、コンポーネントをDOMにレンダリングし、アサーションを実行します。コンポーネントをテストページにアタッチするには、[`@vue/test-utils`](https://test-utils.vuejs.org/)または[`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/)のいずれかを使用することをお勧めします。コンポーネントとのインタラクションには、実際のユーザーインタラクションに近い動作をするWebdriverIOコマンドを使用してください：
 
 
 <Tabs
@@ -132,7 +132,7 @@ describe('Vue Component Testing', () => {
 </TabItem>
 </Tabs>
 
-Vue.js向けのWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite)で確認できます。
+Vue.js用のWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite)で確認できます。
 
 ## Vue3での非同期コンポーネントのテスト
 
@@ -149,7 +149,7 @@ const posts = await res.json()
 </template>
 ```
 
-[`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils)と簡単なサスペンスラッパーを使用してコンポーネントをレンダリングすることをお勧めします。残念ながら[`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230)はまだこれをサポートしていません。以下の内容で`helper.ts`ファイルを作成してください：
+[`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils)と小さなサスペンスラッパーを使用してコンポーネントをレンダリングすることをお勧めします。残念ながら[`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230)にはまだこのサポートがありません。以下の内容で`helper.ts`ファイルを作成してください：
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -190,7 +190,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-次に、以下のようにコンポーネントをインポートしてテストします：
+そして、以下のようにコンポーネントをインポートしてテストします：
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -216,38 +216,38 @@ describe('Testing Async Components', () => {
 
 ## NuxtでのVueコンポーネントのテスト
 
-Webフレームワーク[Nuxt](https://nuxt.com/)を使用している場合、WebdriverIOは自動的に[自動インポート](https://nuxt.com/docs/guide/concepts/auto-imports)機能を有効にし、Vueコンポーネントとヌクストページのテストを容易にします。ただし、設定で定義されているNuxtアプリケーションのコンテキストを必要とする[Nuxtモジュール](https://nuxt.com/modules)はサポートされません。
+ウェブフレームワーク[Nuxt](https://nuxt.com/)を使用している場合、WebdriverIOは自動的に[auto-import](https://nuxt.com/docs/guide/concepts/auto-imports)機能を有効にし、Vueコンポーネントとヌクストページのテストを容易にします。ただし、設定で定義されているNuxtアプリケーションのコンテキストを必要とする[Nuxtモジュール](https://nuxt.com/modules)はサポートされません。
 
-__理由は以下の通りです：__
-- WebdriverIOはブラウザ環境だけでNuxtアプリケーションを開始できません
-- コンポーネントテストがNuxt環境に過度に依存すると複雑さが増すため、これらのテストはe2eテストとして実行することをお勧めします
+__その理由は以下の通りです：__
+- WebdriverIOはブラウザ環境のみでNuxtアプリケーションを起動することができません
+- コンポーネントテストがNuxt環境に過度に依存すると複雑さが増し、これらのテストはe2eテストとして実行することをお勧めします
 
 :::info
 
-WebdriverIOはNuxtアプリケーションでe2eテストを実行するためのサービスも提供しています。詳細は[`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service)を参照してください。
+WebdriverIOはNuxtアプリケーション上でe2eテストを実行するためのサービスも提供しています。詳細は[`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service)を参照してください。
 
 :::
 
 ### 組み込みコンポーザブルのモック
 
-コンポーネントがネイティブのNuxtコンポーザブル（例：[`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)）を使用している場合、WebdriverIOは自動的にこれらの関数をモック化し、その動作を変更したり、それに対してアサーションを行ったりすることができます：
+コンポーネントがネイティブNuxtコンポーザブル（例：[`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)）を使用している場合、WebdriverIOは自動的にこれらの関数をモック化し、その動作を変更したり、アサーションを行ったりすることができます：
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
 
-// 例：コンポーネントが次のように`useNuxtData`を呼び出す場合
+// 例：コンポーネントが次のように`useNuxtData`を呼び出している場合
 // `const { data: posts } = useNuxtData('posts')`
-// テストでは次のようにアサートできます
+// テスト内でそれに対してアサーションできます
 expect(useNuxtData).toBeCalledWith('posts')
-// そして動作を変更することもできます
+// また、その動作を変更することができます
 mocked(useNuxtData).mockReturnValue({
     data: [...]
 })
 ```
 
-### サードパーティのコンポーザブルの処理
+### サードパーティのコンポーザブルの扱い
 
-Nuxtプロジェクトを強化できる[サードパーティモジュール](https://nuxt.com/modules)は自動的にモック化されません。そのような場合は手動でモック化する必要があります。例えば、アプリケーションが[Supabase](https://nuxt.com/modules/supabase)モジュールプラグインを使用している場合：
+Nuxtプロジェクトを強化できる[サードパーティモジュール](https://nuxt.com/modules)は自動的にモック化できません。そのような場合は手動でモック化する必要があります。例えば、アプリケーションが[Supabase](https://nuxt.com/modules/supabase)モジュールプラグインを使用している場合：
 
 ```js title=""
 export default defineNuxtConfig({
@@ -259,13 +259,13 @@ export default defineNuxtConfig({
 });
 ```
 
-そして、コンポーザブルのどこかでSupabaseのインスタンスを作成する場合：
+そして、コンポーザブルのどこかでSupabaseのインスタンスを作成している場合：
 
 ```ts
 const superbase = useSupabaseClient()
 ```
 
-テストは次のエラーで失敗します：
+次のようなエラーでテストが失敗します：
 
 ```
 ReferenceError: useSupabaseClient is not defined

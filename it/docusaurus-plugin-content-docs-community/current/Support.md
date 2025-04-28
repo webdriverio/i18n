@@ -14,11 +14,11 @@ Se stai cercando un aiuto immediato per il tuo progetto, contatta un esperto Web
 
 ## Stack Overflow
 
-Stack Overflow è un forum popolare per porre domande a livello di codice o se sei bloccato con un errore specifico. Leggi le [domande esistenti](https://stackoverflow.com/questions/tagged/webdriver-io) etichettate con webdriver-io o [fai la tua domanda](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
+Stack Overflow è un forum popolare per porre domande a livello di codice o se sei bloccato con un errore specifico. Leggi le [domande esistenti](https://stackoverflow.com/questions/tagged/webdriver-io) taggate con webdriver-io o [fai la tua domanda](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
 
 ## Forum di discussione
 
-Ci sono molti forum online che sono un ottimo posto per la discussione sulle funzionalità, i problemi e i bug di WebdriverIO, ad esempio:
+Ci sono molti forum online che sono ottimi luoghi per discutere delle funzionalità, problemi e bug di WebdriverIO, ad esempio:
 
 - [GitHub Discussions](https://github.com/webdriverio/webdriverio/discussions)
 - [Server della community Discord](https://discord.webdriver.io)

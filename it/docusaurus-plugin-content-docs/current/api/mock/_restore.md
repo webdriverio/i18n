@@ -4,7 +4,7 @@ title: restore
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/restore.ts
 ---
 
-Fa tutto ciò che fa `mock.clear()`, e inoltre rimuove qualsiasi valore di ritorno simulato o implementazione.
+Fa tutto ciò che fa `mock.clear()`, e rimuove anche eventuali valori di ritorno simulati o implementazioni.
 Il mock ripristinato non emette eventi e non può simulare risposte.
 
 ##### Utilizzo

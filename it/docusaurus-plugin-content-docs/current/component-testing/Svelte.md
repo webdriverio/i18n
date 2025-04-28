@@ -3,11 +3,11 @@ id: svelte
 title: Svelte
 ---
 
-[Svelte](https://svelte.dev/) è un approccio radicalmente nuovo alla costruzione di interfacce utente. Mentre i framework tradizionali come React e Vue svolgono la maggior parte del loro lavoro nel browser, Svelte sposta quel lavoro in una fase di compilazione che avviene quando costruisci la tua app. Puoi testare i componenti Svelte direttamente in un browser reale utilizzando WebdriverIO e il suo [browser runner](/docs/runner#browser-runner).
+[Svelte](https://svelte.dev/) è un approccio radicalmente nuovo alla creazione di interfacce utente. Mentre i framework tradizionali come React e Vue svolgono la maggior parte del loro lavoro nel browser, Svelte sposta quel lavoro in una fase di compilazione che avviene quando costruisci la tua app. Puoi testare i componenti Svelte direttamente in un browser reale utilizzando WebdriverIO e il suo [browser runner](/docs/runner#browser-runner).
 
 ## Setup
 
-Per configurare WebdriverIO all'interno del tuo progetto Svelte, segui le [istruzioni](/docs/component-testing#set-up) nei nostri documenti di test dei componenti. Assicurati di selezionare `svelte` come preset nelle tue opzioni di runner, ad esempio:
+Per configurare WebdriverIO all'interno del tuo progetto Svelte, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione di test dei componenti. Assicurati di selezionare `svelte` come preset all'interno delle tue opzioni runner, ad esempio:
 
 ```js
 // wdio.conf.js
@@ -32,13 +32,13 @@ Il preset Svelte richiede che `@sveltejs/vite-plugin-svelte` sia installato. Ino
 npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
 ```
 
-Quindi puoi avviare i test eseguendo:
+Puoi quindi avviare i test eseguendo:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## Scrittura dei Test
+## Scrivere Test
 
 Dato che hai il seguente componente Svelte:
 
@@ -57,7 +57,7 @@ Dato che hai il seguente componente Svelte:
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-Nel tuo test utilizza il metodo `render` da `@testing-library/svelte` per collegare il componente alla pagina di test. Per interagire con il componente consigliamo di utilizzare i comandi WebdriverIO poiché si comportano in modo più simile alle interazioni utente reali, ad esempio:
+Nel tuo test, utilizza il metodo `render` da `@testing-library/svelte` per collegare il componente alla pagina di test. Per interagire con il componente, consigliamo di utilizzare i comandi WebdriverIO poiché si comportano in modo più simile alle interazioni utente reali, ad esempio:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'

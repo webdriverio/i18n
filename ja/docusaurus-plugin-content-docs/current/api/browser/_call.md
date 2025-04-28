@@ -4,7 +4,7 @@ title: call（コール）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/call.ts
 ---
 
-`call`を使用して、テスト仕様内で任意の非同期アクションを実行できます。
+テスト仕様内で任意の非同期アクションを実行するために`call`を使用できます。
 これはプロミスを受け入れ、プロミスが解決されるまで実行を停止します。
 
 :::info
@@ -25,7 +25,7 @@ browser.call(callback)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>

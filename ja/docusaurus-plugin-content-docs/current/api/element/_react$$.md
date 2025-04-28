@@ -4,11 +4,11 @@ title: react$$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/react$$.ts
 ---
 
-`react$$`コマンドは、実際の名前でReactコンポーネントを複数クエリし、propsとstateでフィルタリングするのに便利なコマンドです。
+`react$$`コマンドは、実際の名前でReactコンポーネントを複数クエリし、propsとstateでフィルタリングするための便利なコマンドです。
 
 :::info
 
-このコマンドはReact v16.xを使用しているアプリケーションでのみ動作します。Reactセレクタについての詳細は[セレクタ](/docs/selectors#react-selectors)ガイドをご覧ください。
+このコマンドはReact v16.xを使用しているアプリケーションでのみ動作します。Reactセレクターについての詳細は[セレクター](/docs/selectors#react-selectors)ガイドをご覧ください。
 
 :::
 
@@ -30,22 +30,22 @@ $(selector).react$$(selector, { props, state })
     <tr>
       <td><code><var>selector</var></code></td>
       <td>`string`</td>
-      <td>Reactコンポーネントの</td>
+      <td>of React component</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`ReactSelectorOptions`</td>
-      <td>Reactセレクタオプション</td>
+      <td>React selector options</td>
     </tr>
     <tr>
       <td><code><var>options.props</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Object`</td>
-      <td>要素が含むべきReact props</td>
+      <td>React props the element should contain</td>
     </tr>
     <tr>
       <td><code><var>options.state</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>要素があるべきReact state</td>
+      <td>React state the element should be in</td>
     </tr>
   </tbody>
 </table>

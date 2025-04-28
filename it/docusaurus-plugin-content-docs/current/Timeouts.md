@@ -3,20 +3,20 @@ id: timeouts
 title: Timeout
 ---
 
-Ogni comando in WebdriverIO è un'operazione asincrona. Viene inviata una richiesta al server Selenium (o a un servizio cloud come [Sauce Labs](https://saucelabs.com)), e la risposta contiene il risultato una volta che l'azione è stata completata o ha fallito.
+Each command in WebdriverIO is an asynchronous operation. A request is fired to the Selenium server (or a cloud service like [Sauce Labs](https://saucelabs.com)), and its response contains the result once the action has completed or failed.
 
-Pertanto, il tempo è una componente cruciale nell'intero processo di testing. Quando una certa azione dipende dallo stato di un'altra azione, è necessario assicurarsi che vengano eseguite nell'ordine corretto. I timeout svolgono un ruolo importante quando si affrontano questi problemi.
+Pertanto, il tempo è una componente cruciale nell'intero processo di test. Quando una determinata azione dipende dallo stato di un'azione diversa, è necessario assicurarsi che vengano eseguite nell'ordine corretto. I timeout giocano un ruolo importante quando si affrontano questi problemi.
 
 <LiteYouTubeEmbed
     id="5oI37h4qxEw"
     title="Timeouts"
 />
 
-## Timeout di WebDriver
+## Timeout WebDriver
 
 ### Timeout Script di Sessione
 
-Una sessione ha un timeout di script associato che specifica un tempo di attesa per l'esecuzione di script asincroni. Se non diversamente specificato, è di 30 secondi. Puoi impostare questo timeout in questo modo:
+Una sessione ha un timeout script associato che specifica un tempo di attesa per l'esecuzione di script asincroni. Se non diversamente specificato, è di 30 secondi. Puoi impostare questo timeout in questo modo:
 
 ```js
 await browser.setTimeout({ 'script': 60000 })
@@ -26,7 +26,7 @@ await browser.executeAsync((done) => {
 })
 ```
 
-### Timeout di Caricamento Pagina di Sessione
+### Timeout Caricamento Pagina di Sessione
 
 Una sessione ha un timeout di caricamento pagina associato che specifica un tempo di attesa per il completamento del caricamento della pagina. Se non diversamente specificato, è di 300.000 millisecondi.
 
@@ -36,11 +36,11 @@ Puoi impostare questo timeout in questo modo:
 await browser.setTimeout({ 'pageLoad': 10000 })
 ```
 
-> La parola chiave `pageLoad` fa parte della [specifica](https://www.w3.org/TR/webdriver/#set-timeouts) ufficiale di WebDriver, ma potrebbe non essere [supportata](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) per il tuo browser (il nome precedente è `page load`).
+> La parola chiave `pageLoad` fa parte della [specifica](https://www.w3.org/TR/webdriver/#set-timeouts) ufficiale di WebDriver, ma potrebbe non essere [supportata](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) per il tuo browser (il nome precedente era `page load`).
 
 ### Timeout di Attesa Implicita di Sessione
 
-Una sessione ha un timeout di attesa implicita associato. Questo specifica il tempo di attesa per la strategia di localizzazione implicita degli elementi durante la ricerca di elementi utilizzando i comandi [`findElement`](/docs/api/webdriver#findelement) o [`findElements`](/docs/api/webdriver#findelements) (rispettivamente [`$`](/docs/api/browser/$) o [`$$`](/docs/api/browser/$$), quando si esegue WebdriverIO con o senza il testrunner WDIO). Se non diversamente specificato, è di 0 millisecondi.
+Una sessione ha un timeout di attesa implicita associato. Questo specifica il tempo di attesa per la strategia di localizzazione implicita degli elementi quando si cercano elementi utilizzando i comandi [`findElement`](/docs/api/webdriver#findelement) o [`findElements`](/docs/api/webdriver#findelements) (rispettivamente [`$`](/docs/api/browser/$) o [`$$`](/docs/api/browser/$$), quando si esegue WebdriverIO con o senza il test runner WDIO). Se non diversamente specificato, è di 0 millisecondi.
 
 Puoi impostare questo timeout tramite:
 
@@ -52,7 +52,7 @@ await browser.setTimeout({ 'implicit': 5000 })
 
 ### Timeout `WaitFor*`
 
-WebdriverIO fornisce più comandi per attendere che gli elementi raggiungano un certo stato (ad es. abilitato, visibile, esistente). Questi comandi prendono un argomento selettore e un numero di timeout, che determina per quanto tempo l'istanza dovrebbe attendere che quell'elemento raggiunga lo stato. L'opzione `waitforTimeout` ti consente di impostare il timeout globale per tutti i comandi `waitFor*`, così non devi impostare lo stesso timeout più e più volte. _(Nota la 'f' minuscola!)_
+WebdriverIO fornisce molteplici comandi per attendere che gli elementi raggiungano un determinato stato (ad esempio abilitato, visibile, esistente). Questi comandi accettano un argomento selettore e un numero di timeout, che determina per quanto tempo l'istanza dovrebbe attendere che quell'elemento raggiunga lo stato. L'opzione `waitforTimeout` consente di impostare il timeout globale per tutti i comandi `waitFor*`, quindi non è necessario impostare lo stesso timeout più e più volte. _(Nota la "f" minuscola!)_
 
 ```js
 // wdio.conf.js
@@ -77,9 +77,9 @@ await myElem.waitForDisplayed({ timeout: 10000 })
 
 Il framework di testing che stai utilizzando con WebdriverIO deve gestire i timeout, specialmente perché tutto è asincrono. Assicura che il processo di test non si blocchi se qualcosa va storto.
 
-Per impostazione predefinita, il timeout è di 10 secondi, il che significa che un singolo test non dovrebbe richiedere più tempo di quello.
+Per impostazione predefinita, il timeout è di 10 secondi, il che significa che un singolo test non dovrebbe durare più di tanto.
 
-Un singolo test in Mocha appare così:
+Un singolo test in Mocha assomiglia a:
 
 ```js
 it('should login into the application', async () => {

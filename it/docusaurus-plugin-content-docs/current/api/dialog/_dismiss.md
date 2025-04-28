@@ -4,7 +4,7 @@ title: dismiss
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/dialog/dismiss.ts
 ---
 
-Restituisce quando la finestra di dialogo è stata chiusa.
+Ritorna quando la finestra di dialogo è stata respinta.
 
 ##### Utilizzo
 

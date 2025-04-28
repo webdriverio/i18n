@@ -1,10 +1,10 @@
 ---
 id: respond
-title: respond（応答）
+title: respond
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/respond.ts
 ---
 
-常に同じ上書きで応答します。
+常に同じオーバーライトで応答します。
 
 ##### 使用法
 
@@ -17,32 +17,32 @@ mock.respond(overwrites, { header, statusCode, fetchResponse })
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>overwrites</var></code></td>
       <td>`MockOverwrite`</td>
-      <td>レスポンスを上書きするペイロード</td>
+      <td>レスポンスをオーバーライドするペイロード</td>
     </tr>
     <tr>
-      <td><code><var>params</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>params</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`MockResponseParams`</td>
-      <td>上書きする追加の応答パラメータ</td>
+      <td>オーバーライドする追加のレスポンスパラメータ</td>
     </tr>
     <tr>
-      <td><code><var>params.header</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>params.header</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Object`</td>
-      <td>特定のヘッダーを上書き</td>
+      <td>特定のヘッダーをオーバーライド</td>
     </tr>
     <tr>
-      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>レスポンスステータスコードを上書き</td>
+      <td>レスポンスステータスコードをオーバーライド</td>
     </tr>
     <tr>
-      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
       <td>モックデータで応答する前に実際のレスポンスを取得</td>
     </tr>

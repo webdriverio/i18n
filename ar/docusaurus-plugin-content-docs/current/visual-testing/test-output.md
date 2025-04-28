@@ -5,13 +5,13 @@ title: مخرجات الاختبار
 
 :::info
 
-تم استخدام [موقع WebdriverIO التجريبي هذا](https://guinea-pig.webdriver.io/image-compare.html) لمثال مخرجات الصور.
+تم استخدام [موقع WebdriverIO التوضيحي](https://guinea-pig.webdriver.io/image-compare.html) للمثال في مخرجات الصورة.
 
 :::
 
 ## `enableLayoutTesting`
 
-يمكن تعيين هذا في [خيارات الخدمة](./service-options#enablelayouttesting) وكذلك على [مستوى الطريقة](./method-options).
+يمكن تعيين هذا الخيار في [خيارات الخدمة](./service-options#enablelayouttesting) وكذلك على [مستوى الطريقة](./method-options).
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,9 +32,9 @@ export const config = {
 }
 ```
 
-مخرجات الصور لـ [خيارات الخدمة](./service-options#enablelayouttesting) مساوية لـ [الطريقة](./method-options)، انظر أدناه.
+مخرجات الصورة في [خيارات الخدمة](./service-options#enablelayouttesting) مماثلة لتلك في [الطريقة](./method-options)، انظر أدناه.
 
-### مخرجات الصور
+### مخرجات الصورة
 
 <Tabs
     defaultValue="saveelement"
@@ -104,17 +104,17 @@ const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // نسبة بكسل الجهاز للمثيل الذي تم تشغيله
+ *   // The device pixel ratio of the instance that has run
  *   devicePixelRatio: 1,
- *   // اسم الملف المنسق، هذا يعتمد على خيارات `formatImageName`
+ *   // The formatted filename, this depends on the options `formatImageName`
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // المسار حيث يمكن العثور على ملف لقطة الشاشة الفعلي
+ *   // The path where the actual screenshot file can be found
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
 ```
 
-### مخرجات الصور
+### مخرجات الصورة
 
 <Tabs
     defaultValue="saveelement"
@@ -177,7 +177,7 @@ await browser.saveScreen("example-page-tag")
 <TabItem value="ios">
 
 :::info نصيحة
-عمليات تنفيذ `saveScreen` في iOS لا تتضمن حواف الجهاز بشكل افتراضي. لإضافة هذا، الرجاء إضافة خيار `addIOSBezelCorners:true` عند تهيئة الخدمة، انظر [هذا](./service-options#addiosbezelcorners)
+تنفيذ `saveScreen` على iOS بشكل افتراضي لا يتضمن حواف الجهاز. للحصول على ذلك، يرجى إضافة خيار `addIOSBezelCorners:true` عند تهيئة الخدمة، انظر [هذا](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,35 +216,35 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### مخرجات وحدة التحكم
 
-بشكل افتراضي، ستوفر طرق `check(Screen/Element/FullPageScreen)` نسبة الاختلاف فقط مثل `1.23`، ولكن عندما يكون للمكون الإضافي خيار `returnAllCompareData: true`، يتم توفير المعلومات التالية بعد تنفيذ الطريقة:
+بشكل افتراضي، ستوفر طرق `check(Screen/Element/FullPageScreen)` نسبة عدم تطابق فقط مثل `1.23`، ولكن عندما يكون للإضافة خيار `returnAllCompareData: true`، يتم توفير المعلومات التالية بعد تنفيذ الطريقة:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // اسم الملف المنسق، هذا يعتمد على خيارات `formatImageName`
+ *     // The formatted filename, this depends on the options `formatImageName`
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // المجلد الفعلي واسم الملف
+ *         // The actual folder and the file name
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // مجلد الأساس واسم الملف
+ *         // The baseline folder and the file name
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // هذا المجلد التالي اختياري وفقط إذا كان هناك عدم تطابق
- *         // المجلد الذي يحتوي على الاختلافات واسم الملف
+ *         // This following folder is optional and only if there is a mismatch
+ *         // The folder that holds the diffs and the file name
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
- *     // نسبة عدم التطابق
+ *     // The mismatch percentage
  *     misMatchPercentage: 2.34,
  * };
  */
 ```
 
-### مخرجات الصور
+### مخرجات الصورة
 
 :::info
-ستظهر الصور أدناه الاختلافات فقط كنتيجة لتشغيل أوامر الفحص. تم عرض الاختلاف في المتصفح فقط، ولكن المخرجات لـ Android و iOS هي نفسها.
+ستظهر الصور أدناه فقط الاختلافات كنتيجة لتشغيل أوامر الفحص. يتم عرض الاختلاف فقط في المتصفح، ولكن المخرجات على Android و iOS هي نفسها.
 :::
 
 <Tabs
@@ -262,7 +262,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-تم تغيير نص الزر من `Get Started` إلى `Getting Started!` واكتشافه كتغيير.
+تم تغيير نص الزر من `Get Started` إلى `Getting Started!` وتم اكتشافه كتغيير.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +275,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-تم تغيير نص الزر من `Get Started` إلى `Getting Started!` واكتشافه كتغيير.
+تم تغيير نص الزر من `Get Started` إلى `Getting Started!` وتم اكتشافه كتغيير.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +289,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-تم تغيير نص الزر من `Get Started` إلى `Getting Started!` واكتشافه كتغيير.
+تم تغيير نص الزر من `Get Started` إلى `Getting Started!` وتم اكتشافه كتغيير.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -298,9 +298,9 @@ await browser.checkFullPageScreen("full-page-tag")
 
 </Tabs>
 
-## مناطق الحجب
+## الحجب (Block-Outs)
 
-ستجد هنا مثالاً على مخرجات مناطق الحجب في Android NativeWebScreenshot و iOS حيث تم حجب شريط الحالة + العنوان وشريط الأدوات.
+هنا ستجد مثالاً على نتائج الحجب في Android NativeWebScreenshot و iOS حيث تم حجب شريط الحالة+العنوان وشريط الأدوات.
 
 <Tabs
     defaultValue="nativeWebScreenshot"

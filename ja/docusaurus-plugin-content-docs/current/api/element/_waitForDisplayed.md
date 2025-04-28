@@ -1,10 +1,10 @@
 ---
 id: waitForDisplayed
-title: waitForDisplayed
+title: waitForDisplayed（表示待ち）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForDisplayed.ts
 ---
 
-指定されたミリ秒間、要素が表示されるまたは表示されなくなるまで待機します。
+指定されたミリ秒間、要素が表示または非表示になるのを待ちます。
 
 :::info
 
@@ -23,39 +23,39 @@ $(selector).waitForDisplayed({ timeout, reverse, timeoutMsg, interval, withinVie
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`WaitForOptions`</td>
       <td>waitForDisplayedオプション（オプション）</td>
     </tr>
     <tr>
-      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
       <td>ミリ秒単位の時間（デフォルトは[`waitforTimeout`](/docs/configuration#waitfortimeout)設定値に基づく）</td>
     </tr>
     <tr>
-      <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>trueの場合、逆の状態を待ちます（デフォルト：false）</td>
+      <td>trueの場合、反対の状態を待ちます（デフォルト: false）</td>
     </tr>
     <tr>
-      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
       <td>存在する場合、デフォルトのエラーメッセージを上書きします</td>
     </tr>
     <tr>
-      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>チェック間の間隔（デフォルト：`waitforInterval`）</td>
+      <td>チェック間の間隔（デフォルト: `waitforInterval`）</td>
     </tr>
     <tr>
-      <td><code><var>options.withinViewport</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.withinViewport</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>ビューポート内に要素が表示されるまで待つ場合は`true`に設定（デフォルト：`false`）</td>
+      <td>`true`に設定すると、要素がビューポート内に表示されるまで待ちます（デフォルト: `false`）</td>
     </tr>
   </tbody>
 </table>
@@ -73,4 +73,4 @@ https://github.com/webdriverio/example-recipes/blob/9ac16b4d4cf4bc8ec87f6369439a
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  要素が表示されている場合（またはフラグが設定されている場合はされていない場合）true
+            **<code><var>return</var></code>:**  要素が表示されている場合（またはフラグが設定されている場合は表示されていない場合）true

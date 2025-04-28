@@ -5,21 +5,21 @@ title: はじめに
 
 ## インストール
 
-最も簡単な方法は、`package.json`に`@wdio/ocr-service`を依存関係として保持することです。
+最も簡単な方法は、`@wdio/ocr-service`を`package.json`の依存関係として維持することです。
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
 ```
 
-`WebdriverIO`のインストール方法については[こちら](../gettingstarted)をご覧ください。
+`WebdriverIO`のインストール方法は[こちら](../gettingstarted)にあります。
 
 :::note
-このモジュールはOCRエンジンとしてTesseractを使用しています。デフォルトでは、システムにTesseractのローカルインストールがあるかどうかを確認し、ある場合はそれを使用します。ない場合は、自動的にインストールされる[Node.js Tesseract.js](https://github.com/naptha/tesseract.js)モジュールを使用します。
+このモジュールはOCRエンジンとしてTesseractを使用しています。デフォルトでは、システムにTesseractのローカルインストールがあるかどうかを確認し、あればそれを使用します。なければ、自動的にインストールされる[Node.js Tesseract.js](https://github.com/naptha/tesseract.js)モジュールを使用します。
 
 画像処理を高速化したい場合は、ローカルにインストールされたTesseractを使用することをお勧めします。[テスト実行時間](./more-test-optimization#using-a-local-installation-of-tesseract)も参照してください。
 :::
 
-ローカルシステムにシステム依存関係としてTesseractをインストールする方法については[こちら](https://tesseract-ocr.github.io/tessdoc/Installation.html)をご覧ください。
+ローカルシステムにシステム依存関係としてTesseractをインストールする方法は[こちら](https://tesseract-ocr.github.io/tessdoc/Installation.html)にあります。
 
 :::caution
 Tesseractのインストールに関する質問やエラーについては、[Tesseract](https://github.com/tesseract-ocr/tesseract)プロジェクトを参照してください。
@@ -27,7 +27,7 @@ Tesseractのインストールに関する質問やエラーについては、[T
 
 ## Typescriptサポート
 
-`tsconfig.json`設定ファイルに`@wdio/ocr-service`を追加してください。
+`@wdio/ocr-service`を`tsconfig.json`設定ファイルに追加してください。
 
 ```json title="tsconfig.json"
 {
@@ -39,7 +39,7 @@ Tesseractのインストールに関する質問やエラーについては、[T
 
 ## 設定
 
-このサービスを使用するには、`wdio.conf.ts`の`services`配列に`ocr`を追加する必要があります。
+このサービスを使用するには、`wdio.conf.ts`のservices配列に`ocr`を追加する必要があります
 
 ```js
 // wdio.conf.js
@@ -67,7 +67,7 @@ exports.config = {
 -   **必須:** いいえ
 -   **デフォルト:** `0.25`
 
-コントラストが高いほど画像が暗くなり、逆もまた然りです。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`の間の値を受け入れます。
+コントラストが高いほど画像は暗くなり、その逆も同様です。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`の間の値を受け付けます。
 
 #### `imagesFolder`
 
@@ -87,12 +87,12 @@ OCR結果が保存されるフォルダです。
 -   **必須:** いいえ
 -   **デフォルト:** `eng`
 
-Tesseractが認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
+Tesseractが認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で見つけることができます。
 
 ## ログ
 
-このモジュールは自動的にWebdriverIOログに追加のログを追加します。`INFO`と`WARN`ログに`@wdio/ocr-service`という名前で書き込みます。
-以下に例を示します。
+このモジュールは自動的にWebdriverIOログに追加のログを追加します。`@wdio/ocr-service`という名前で`INFO`と`WARN`ログに書き込みます。
+例は以下のとおりです。
 
 ```log
 ...............

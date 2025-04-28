@@ -4,7 +4,7 @@ title: setWindowSize
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setWindowSize.ts
 ---
 
-Ridimensiona la dimensione esterna della finestra del browser secondo la larghezza e l'altezza fornite. In base al tuo sistema operativo, alcune finestre del browser potrebbero non consentire di avere una larghezza inferiore a `500px`. Se vuoi imitare il viewport di, ad esempio, un iPhone, dovresti considerare l'utilizzo del comando `setViewport`.
+Ridimensiona la dimensione esterna della finestra del browser secondo la larghezza e l'altezza fornite. In base al tuo sistema operativo, alcune finestre del browser potrebbero non permetterti di avere una larghezza inferiore a `500px`. Se vuoi imitare il viewport di ad esempio un iPhone, dovresti considerare l'utilizzo del comando `setViewport`.
 
 ##### Utilizzo
 

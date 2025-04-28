@@ -7,8 +7,8 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 Consente di modificare le richieste che il browser effettua durante la sessione. Questo può essere utile per i seguenti casi d'uso:
 
 - validare se la tua applicazione invia payload di richiesta corretti
-- passare gli header di autorizzazione per testare risorse protette
-- impostare i cookie di sessione per testare l'autenticazione dell'utente
+- passare intestazioni di autorizzazione per testare risorse protette
+- impostare cookie di sessione per testare l'autenticazione dell'utente
 - modificare le richieste per testare casi limite
 
 ##### Utilizzo
@@ -34,7 +34,7 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
     <tr>
       <td><code><var>overwrites.header</var></code></td>
       <td>`Record<string,string>`</td>
-      <td>sovrascrivere specifici header</td>
+      <td>sovrascrivere intestazioni specifiche</td>
     </tr>
     <tr>
       <td><code><var>overwrites.cookies</var></code></td>
@@ -54,12 +54,12 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
     <tr>
       <td><code><var>params</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`MockResponseParams`</td>
-      <td>parametri aggiuntivi di risposta da sovrascrivere</td>
+      <td>parametri di risposta aggiuntivi da sovrascrivere</td>
     </tr>
     <tr>
       <td><code><var>params.header</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Object`</td>
-      <td>sovrascrivere specifici header</td>
+      <td>sovrascrivere intestazioni specifiche</td>
     </tr>
     <tr>
       <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -69,7 +69,7 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
     <tr>
       <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Boolean`</td>
-      <td>recuperare la risposta reale prima di rispondere con dati simulati</td>
+      <td>recuperare la risposta reale prima di rispondere con i dati simulati</td>
     </tr>
   </tbody>
 </table>

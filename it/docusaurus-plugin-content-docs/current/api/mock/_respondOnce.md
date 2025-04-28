@@ -4,7 +4,10 @@ title: respondOnce
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/respondOnce.ts
 ---
 
-Rispondi solo una volta con la sovrascrittura fornita. Puoi chiamare `respondOnce` più volte consecutive e inizierà con la risposta che hai definito per ultima. Se usi solo `respondOnce` e la risorsa viene chiamata più volte di quante ne hai definite con il mock, tornerà alla risorsa originale.
+Rispondi solo una volta con la sovrascrittura specificata. Puoi chiamare `respondOnce` più 
+volte consecutive e inizierà con la risposta che hai definito per ultima. Se
+usi solo `respondOnce` e la risorsa viene chiamata più volte di quante ne sia stato
+definito un mock, si ritorna alla risorsa originale.
 
 ##### Utilizzo
 
@@ -34,12 +37,12 @@ mock.respondOnce(overwrites, { header, statusCode, fetchResponse })
     <tr>
       <td><code><var>params.header</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Object`</td>
-      <td>sovrascrivere header specifici</td>
+      <td>sovrascrive header specifici</td>
     </tr>
     <tr>
       <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number`</td>
-      <td>sovrascrivere il codice di stato della risposta</td>
+      <td>sovrascrive il codice di stato della risposta</td>
     </tr>
     <tr>
       <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">opzionale</span></td>

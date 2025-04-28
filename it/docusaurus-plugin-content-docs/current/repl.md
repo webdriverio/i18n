@@ -3,29 +3,29 @@ id: repl
 title: Interfaccia REPL
 ---
 
-Con `v4.5.0`, WebdriverIO ha introdotto un'interfaccia [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) che ti aiuta non solo a imparare l'API del framework, ma anche a eseguire il debug e ispezionare i tuoi test. Può essere utilizzata in diversi modi.
+Con `v4.5.0`, WebdriverIO ha introdotto un'interfaccia [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) che ti aiuta non solo ad imparare l'API del framework, ma anche a debuggare e ispezionare i tuoi test. Può essere utilizzata in diversi modi.
 
-Innanzitutto puoi usarla come comando CLI installando `npm install -g @wdio/cli` e avviare una sessione WebDriver dalla riga di comando, ad esempio:
+Prima di tutto, puoi usarla come comando CLI installando `npm install -g @wdio/cli` e avviare una sessione WebDriver dalla riga di comando, ad esempio:
 
 ```sh
 wdio repl chrome
 ```
 
-Questo aprirebbe un browser Chrome che puoi controllare con l'interfaccia REPL. Assicurati di avere un driver del browser in esecuzione sulla porta `4444` per poter iniziare la sessione. Se hai un account [Sauce Labs](https://saucelabs.com) (o altro fornitore cloud), puoi anche eseguire direttamente il browser dalla tua riga di comando nel cloud tramite:
+Questo aprirebbe un browser Chrome che puoi controllare con l'interfaccia REPL. Assicurati di avere un driver del browser in esecuzione sulla porta `4444` per iniziare la sessione. Se hai un account [Sauce Labs](https://saucelabs.com) (o altro fornitore cloud), puoi anche eseguire direttamente il browser sulla tua riga di comando nel cloud tramite:
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY
 ```
 
-Se il driver è in esecuzione su una porta diversa, ad esempio: 9515, può essere passato con l'argomento della riga di comando --port o alias -p
+Se il driver è in esecuzione su una porta diversa, ad esempio: 9515, può essere passato con l'argomento --port o l'alias -p
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY -p 9515
 ```
 
-Repl potrebbe anche essere eseguito utilizzando le capabilities dal file di configurazione di webdriverIO. Wdio supporta l'oggetto capabilities; o; lista di capability multiremote o oggetto.
+Il REPL può anche essere eseguito utilizzando le capacità dal file di configurazione WebdriverIO. Wdio supporta l'oggetto capabilities; o; l'elenco di capacità multiremote o l'oggetto.
 
-Se il file di configurazione utilizza l'oggetto capabilities, basta passare il percorso al file di configurazione, altrimenti se si tratta di una capability multiremote, specificare quale capability utilizzare dalla lista o multiremote utilizzando l'argomento posizionale. Nota: per l'elenco consideriamo l'indice basato su zero.
+Se il file di configurazione utilizza l'oggetto capabilities, basta passare il percorso al file di configurazione, altrimenti se è una capacità multiremote, specificare quale capacità utilizzare dall'elenco o multiremote utilizzando l'argomento posizionale. Nota: per l'elenco consideriamo l'indice basato su zero.
 
 ### Esempio
 
@@ -70,7 +70,7 @@ export const config = {
 wdio repl "./path/to/wdio.config.js" "myChromeBrowser" -p 9515
 ```
 
-Oppure se vuoi eseguire test locali su dispositivi mobili utilizzando Appium:
+Oppure se vuoi eseguire test mobili locali usando Appium:
 
 <Tabs
   defaultValue="android"
@@ -95,13 +95,13 @@ wdio repl ios
 </TabItem>
 </Tabs>
 
-Questo aprirebbe una sessione Chrome/Safari sul dispositivo/emulatore/simulatore connesso. Assicurati che Appium sia in esecuzione sulla porta `4444` per poter iniziare la sessione.
+Questo aprirebbe una sessione Chrome/Safari sul dispositivo/emulatore/simulatore connesso. Assicurati che Appium sia in esecuzione sulla porta `4444` per iniziare la sessione.
 
 ```sh
 wdio repl './path/to/your_app.apk'
 ```
 
-Questo aprirebbe una sessione App sul dispositivo/emulatore/simulatore connesso. Assicurati che Appium sia in esecuzione sulla porta `4444` per poter iniziare la sessione.
+Questo aprirebbe una sessione App sul dispositivo/emulatore/simulatore connesso. Assicurati che Appium sia in esecuzione sulla porta `4444` per iniziare la sessione.
 
 Le capabilities per il dispositivo iOS possono essere passate con argomenti:
 
@@ -138,4 +138,4 @@ Puoi applicare qualsiasi opzione (vedi `wdio repl --help`) disponibile per la tu
 
 ![WebdriverIO REPL](https://webdriver.io/img/repl.gif)
 
-Un altro modo per utilizzare il REPL è all'interno dei tuoi test tramite il comando [`debug`](/docs/api/browser/debug). Questo fermerà il browser quando chiamato e ti permetterà di entrare nell'applicazione (ad esempio negli strumenti di sviluppo) o controllare il browser dalla riga di comando. Questo è utile quando alcuni comandi non attivano una certa azione come previsto. Con il REPL, puoi quindi provare i comandi per vedere quali funzionano in modo più affidabile.
+Un altro modo per utilizzare il REPL è all'interno dei tuoi test tramite il comando [`debug`](/docs/api/browser/debug). Questo fermerà il browser quando chiamato e ti permetterà di passare all'applicazione (ad esempio agli strumenti di sviluppo) o controllare il browser dalla riga di comando. Questo è utile quando alcuni comandi non attivano una determinata azione come previsto. Con il REPL, puoi provare i comandi per vedere quali funzionano in modo più affidabile.

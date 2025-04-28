@@ -3,24 +3,24 @@ id: mocksandspies
 title: リクエストモックとスパイ
 ---
 
-WebdriverIOには、バックエンドやモックサーバーをセットアップしなくても、フロントエンドアプリケーションのテストに集中できるネットワークレスポンスを変更するための組み込みサポートがあります。REST APIリクエストなどのウェブリソースに対するカスタムレスポンスをテストで定義し、動的に変更することができます。
+WebdriverIOには、バックエンドやモックサーバーをセットアップすることなく、フロントエンドアプリケーションのテストに集中できるようにするネットワークレスポンスを変更するための組み込みサポートがあります。テスト内でREST APIリクエストなどのウェブリソースに対するカスタムレスポンスを定義し、動的に変更することができます。
 
 :::info
 
-`mock`コマンドを使用するには、Chrome DevToolsプロトコルのサポートが必要です。このサポートは、Chromiumベースのブラウザでローカルにテストを実行する場合、Selenium Grid v4以上を介して、またはChrome DevToolsプロトコルをサポートするクラウドベンダー（SauceLabs、BrowserStack、LambdaTestなど）を通じて提供されます。完全なクロスブラウザサポートは、必要なプリミティブが[Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned)に導入され、それぞれのブラウザに実装された後に利用可能になります。
+`mock`コマンドを使用するにはChrome DevToolsプロトコルのサポートが必要であることに注意してください。このサポートは、Chromiumベースのブラウザでローカルにテストを実行する場合、Selenium Grid v4以上を介して、またはChrome DevToolsプロトコルをサポートするクラウドベンダー（SauceLabs、BrowserStack、LambdaTestなど）を通じて提供されます。完全なクロスブラウザサポートは、必要なプリミティブが[Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned)で利用可能になり、それぞれのブラウザで実装された時点で提供されます。
 
 :::
 
 ## モックの作成
 
-レスポンスを変更する前に、まずモックを定義する必要があります。このモックはリソースURLによって記述され、[リクエストメソッド](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)や[ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)によってフィルタリングできます。リソースは[minimatch](https://www.npmjs.com/package/minimatch)によるグロブ表現をサポートしています：
+レスポンスを変更する前に、まずモックを定義する必要があります。このモックはリソースURLによって記述され、[リクエストメソッド](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)や[ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)によってフィルタリングできます。リソースは[minimatch](https://www.npmjs.com/package/minimatch)によるグロブ式をサポートしています：
 
 ```js
 // "/users/list"で終わるすべてのリソースをモック
 const userListMock = await browser.mock('**/users/list')
 
-// または、ヘッダーやステータスコードでリソースをフィルタリングしてモックを指定することもできます
-// JSONリソースへの成功したリクエストのみをモック
+// またはヘッダーやステータスコードでリソースをフィルタリングしてモックを指定できます
+// JSONリソースへの成功したリクエストだけをモック
 const strictMock = await browser.mock('**', {
     // すべてのJSONレスポンスをモック
     requestHeaders: { 'Content-Type': 'application/json' },
@@ -31,11 +31,11 @@ const strictMock = await browser.mock('**', {
 
 ## カスタムレスポンスの指定
 
-モックを定義したら、それに対するカスタムレスポンスを定義できます。これらのカスタムレスポンスは、JSONを返すオブジェクト、カスタムフィクスチャで応答するローカルファイル、またはインターネットからのリソースでレスポンスを置き換えるウェブリソースのいずれかになります。
+モックを定義したら、そのモックに対してカスタムレスポンスを定義できます。これらのカスタムレスポンスは、JSONを返すオブジェクト、カスタムフィクスチャで応答するローカルファイル、またはインターネットからのリソースでレスポンスを置き換えるウェブリソースのいずれかです。
 
 ### APIリクエストのモック
 
-JSONレスポンスを期待するAPIリクエストをモックするには、モックオブジェクトに対して返したい任意のオブジェクトを指定して`respond`を呼び出すだけです：
+JSONレスポンスを期待するAPIリクエストをモックするには、モックオブジェクトに対して`respond`を呼び出し、返したい任意のオブジェクトを渡すだけです：
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -62,18 +62,18 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // 出力: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-以下のようにモックレスポンスパラメータを渡すことで、レスポンスヘッダーやステータスコードも変更できます：
+また、以下のようにモックレスポンスパラメータを渡すことで、レスポンスヘッダーとステータスコードも変更できます：
 
 ```js
 mock.respond({ ... }, {
     // ステータスコード404で応答
     statusCode: 404,
-    // レスポンスヘッダーを次のヘッダーとマージ
+    // 以下のヘッダーでレスポンスヘッダーをマージ
     headers: { 'x-custom-header': 'foobar' }
 })
 ```
 
-モックがバックエンドを一切呼び出さないようにしたい場合は、`fetchResponse`フラグに`false`を渡すことができます。
+モックがバックエンドを呼び出さないようにするには、`fetchResponse`フラグに`false`を渡すことができます。
 
 ```js
 mock.respond({ ... }, {
@@ -82,29 +82,29 @@ mock.respond({ ... }, {
 })
 ```
 
-カスタムレスポンスをフィクスチャファイルに保存し、テストで以下のように読み込むことをお勧めします：
+カスタムレスポンスはフィクスチャファイルに保存し、テスト内で以下のように要求することをお勧めします：
 
 ```js
-// JSONインポートアサーションをサポートするにはNode.js v16.14.0以上が必要
+// JSON importアサーションをサポートするにはNode.js v16.14.0以上が必要
 import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'json' }
 mock.respond(responseFixture)
 ```
 
 ### テキストリソースのモック
 
-JavaScript、CSSファイルなどのテキストベースのリソースを変更したい場合は、ファイルパスを渡すだけでWebdriverIOが元のリソースと置き換えます：
+JavaScript、CSSファイルなどのテキストベースのリソースを変更したい場合は、ファイルパスを渡すだけでWebdriverIOが元のリソースを置き換えます：
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
 scriptMock.respond('./tests/fixtures/script.js')
 
-// またはカスタムJSで応答
+// または独自のJSで応答
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
 ### ウェブリソースのリダイレクト
 
-希望するレスポンスがすでにウェブ上にホストされている場合、ウェブリソースを別のウェブリソースに置き換えることもできます。これは個々のページリソースだけでなく、ウェブページ自体でも機能します：
+希望するレスポンスがすでにウェブ上にホストされている場合、ウェブリソースを別のウェブリソースで置き換えることもできます。これは個々のページリソースだけでなく、ウェブページ自体でも機能します：
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -115,7 +115,7 @@ console.log(await browser.getTitle()) // "WebdriverIO · Next-gen browser and mo
 
 ### 動的レスポンス
 
-モックレスポンスが元のリソースレスポンスに依存する場合、元のレスポンスをパラメータとして受け取る関数を渡すことで、リソースを動的に変更することもできます。戻り値に基づいてモックが設定されます：
+モックレスポンスが元のリソースレスポンスに依存する場合、元のレスポンスをパラメータとして受け取る関数を渡すことで、返り値に基づいてモックを設定することもできます：
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -131,7 +131,7 @@ await browser.url('https://todobackend.com/client/index.html?https://todo-backen
 
 await $('#todo-list li').waitForExist()
 console.log(await $$('#todo-list li label').map((el) => el.getText()))
-// 戻り値:
+// 返り値
 // [
 //   '0',  '1',  '2',  '19', '20',
 //   '21', '3',  '4',  '5',  '6',
@@ -141,9 +141,9 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 // ]
 ```
 
-## モックの中断
+## モックの中止
 
-カスタムレスポンスを返す代わりに、以下のいずれかのHTTPエラーでリクエストを中断することもできます：
+カスタムレスポンスを返す代わりに、以下のいずれかのHTTPエラーでリクエストを中止することもできます：
 
 - Failed
 - Aborted
@@ -160,7 +160,7 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 - BlockedByClient
 - BlockedByResponse
 
-これは、機能テストに悪影響を与えるようなページのサードパーティスクリプトをブロックしたい場合に非常に便利です。モックを中断するには、`abort`または`abortOnce`を呼び出すだけです：
+これは、機能テストに悪影響を与えるサードパーティのスクリプトをページからブロックしたい場合に非常に便利です。`abort`または`abortOnce`を呼び出すだけでモックを中止できます：
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/**')
@@ -169,7 +169,7 @@ mock.abort('Failed')
 
 ## スパイ
 
-すべてのモックは自動的にスパイとなり、ブラウザがそのリソースにリクエストを行った回数をカウントします。モックにカスタムレスポンスや中断理由を適用しない場合、通常受け取るデフォルトのレスポンスが継続されます。これにより、ブラウザが特定のAPIエンドポイントなどにリクエストを行った回数を確認できます。
+すべてのモックは自動的にスパイとなり、ブラウザがそのリソースに対して行ったリクエストの回数をカウントします。モックにカスタムレスポンスや中止理由を適用しない場合、通常受け取るデフォルトのレスポンスで続行します。これにより、ブラウザが特定のAPIエンドポイントなどにリクエストを何回行ったかを確認できます。
 
 ```js
 const mock = await browser.mock('**/user', { method: 'post' })

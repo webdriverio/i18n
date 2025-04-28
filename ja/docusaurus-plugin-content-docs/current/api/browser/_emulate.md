@@ -14,10 +14,10 @@ WebdriverIOでは、`emulate`コマンドを使用してWeb APIをエミュレ�
 - `device`: 特定のモバイルまたはデスクトップデバイスをエミュレート
 - `clock`: システムクロックをエミュレート
 
-`emulate`コマンドはエミュレーションをリセットするための関数を返します。これはテスト後や
-一連のテスト後にエミュレーションをリセットしたい場合に便利です。
+`emulate`コマンドは、エミュレーションをリセットするために呼び出せる関数を返します。これは
+テストやテストスイートの後にエミュレーションをリセットしたい場合に便利です。
 
-詳細については[エミュレーション](/docs/emulation)ガイドラインをご覧ください。
+詳細については、[エミュレーション](/docs/emulation)ガイドラインをご覧ください。
 
 :::info
 
@@ -27,14 +27,15 @@ WebdriverIOでは、`emulate`コマンドを使用してWeb APIをエミュレ�
 
 :::info
 
-この機能にはブラウザのWebDriver Bidiサポートが必要です。ChromeやEdge、Firefoxの最新バージョンにはこのサポートがありますが、Safari __にはありません__。更新情報は[wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned)をフォローしてください。
+この機能を使用するには、ブラウザがWebDriver Bidiをサポートしている必要があります。最新バージョンのChrome、Edge、
+Firefoxはサポートしていますが、Safari __はサポートしていません__。アップデートについては[wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned)をフォローしてください。
 さらに、クラウドベンダーを使用してブラウザを起動する場合は、ベンダーがWebDriver Bidiをサポートしていることを確認してください。
 
 :::
 
 `EmulationOptions`オブジェクトは、スコープに基づいて以下のプロパティを持つことができます：
 
-| スコープ      | オプション                                       |
+| スコープ       | オプション                                       |
 |---------------|--------------------------------------------------|
 | `geolocation` | `{ latitude: number, longitude: number }`        |
 | `userAgent`   | `string`                                         |
@@ -42,7 +43,7 @@ WebdriverIOでは、`emulate`コマンドを使用してWeb APIをエミュレ�
 | `onLine`      | `boolean`                                        |
 | `clock`       | `FakeTimerInstallOpts`                           |
 
-##### 使用法
+##### 使用方法
 
 ```js
 browser.emulate(scope, options)
@@ -60,7 +61,7 @@ browser.emulate(scope, options)
     <tr>
       <td><code><var>scope</var></code></td>
       <td>`string`</td>
-      <td>エミュレートしたいブラウザの機能。`clock`、`geolocation`、`userAgent`、`colorScheme`または`onLine`のいずれか</td>
+      <td>エミュレートしたいブラウザの機能、`clock`、`geolocation`、`userAgent`、`colorScheme`または`onLine`のいずれかを指定できます</td>
     </tr>
     <tr>
       <td><code><var>options</var></code></td>

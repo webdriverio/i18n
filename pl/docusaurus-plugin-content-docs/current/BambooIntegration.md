@@ -3,10 +3,10 @@ id: bamboo
 title: Bamboo
 ---
 
-WebdriverIO offers a tight integration to CI systems like [Bamboo](https://www.atlassian.com/software/bamboo). With the [JUnit](https://webdriver.io/docs/junit-reporter.html) or [Allure](https://webdriver.io/docs/allure-reporter.html) reporter, you can easily debug your tests as well as keep track of your test results. The integration is pretty easy.
+WebdriverIO oferuje ścisłą integrację z systemami CI, takimi jak [Bamboo](https://www.atlassian.com/software/bamboo). Dzięki raportom [JUnit](https://webdriver.io/docs/junit-reporter.html) lub [Allure](https://webdriver.io/docs/allure-reporter.html), możesz łatwo debugować swoje testy oraz śledzić ich wyniki. Integracja jest dość prosta.
 
-1. Install the JUnit test reporter: `$ npm install @wdio/junit-reporter --save-dev`)
-1. Update your config to save your JUnit results where Bamboo can find them, (and specify the `junit` reporter):
+1. Zainstaluj reporter testów JUnit: `$ npm install @wdio/junit-reporter --save-dev`)
+1. Zaktualizuj swoją konfigurację, aby zapisać wyniki JUnit w miejscu, gdzie Bamboo może je znaleźć (i określ reporter `junit`):
 
 ```js
 // wdio.conf.js
@@ -21,10 +21,10 @@ module.exports = {
     // ...
 }
 ```
-Note: *It's always a good standard to keep the test results in separate folder than in the root folder.*
+Uwaga: *Dobrą praktyką jest przechowywanie wyników testów w osobnym folderze, a nie w folderze głównym.*
 
 ```js
-// wdio.conf.js - For tests running in parallel
+// wdio.conf.js - Dla testów uruchamianych równolegle
 module.exports = {
     // ...
     reporters: [
@@ -40,45 +40,47 @@ module.exports = {
 }
 ```
 
-The reports will be similar for all the frameworks and you can use anyone: Mocha, Jasmine or Cucumber.
+Raporty będą podobne dla wszystkich frameworków i możesz używać dowolnego z nich: Mocha, Jasmine lub Cucumber.
 
-By this time, we believe you have the tests written up and results are generated in `./testresults/` folder, and your Bamboo is up and running.
+W tym momencie zakładamy, że masz już napisane testy, a wyniki są generowane w folderze ```./testresults/``` oraz twój Bamboo jest skonfigurowany i działa.
 
-## Integrate your tests in Bamboo
+## Zintegruj swoje testy w Bamboo
 
-1. Open your Bamboo project
+1. Otwórz swój projekt Bamboo
+    > Utwórz nowy plan, połącz swoje repozytorium (upewnij się, że zawsze wskazuje na najnowszą wersję twojego repozytorium) i utwórz swoje etapy
 
-    > Create a new plan, link your repository (make sure it always points to newest version of your repository) and create your stages
+    ![Szczegóły planu](/img/bamboo/plancreation.png "Szczegóły planu")
 
-    ![Plan Details](/img/bamboo/plancreation.png "Plan Details")
+    Ja użyję domyślnego etapu i zadania. W twoim przypadku możesz utworzyć własne etapy i zadania
 
-    I will go with the default stage and job. In your case, you can create your own stages and jobs
+    ![Domyślny etap](/img/bamboo/defaultstage.png "Domyślny etap")
+2. Otwórz swoje zadanie testowe i utwórz zadania do uruchomienia testów w Bamboo
+    >**Zadanie 1:** Pobranie kodu źródłowego
 
-    ![Default Stage](/img/bamboo/defaultstage.png "Default Stage")
-2. Open your testing job and create tasks to run your tests in Bamboo
-> **Task 1:** Source Code Checkout
-> **Task 2:** Run your tests `npm i && npm run test`. You can use *Script* task and *Shell Interpreter* to run the above commands (This will generate the test results and save them in `./testresults/` folder)
+    >**Zadanie 2:** Uruchom swoje testy ```npm i && npm run test```. Możesz użyć zadania *Script* i *Shell Interpreter* do uruchomienia powyższych poleceń (To wygeneruje wyniki testów i zapisze je w folderze ```./testresults/```)
 
-    ![Test Run](/img/bamboo/testrun.png "Test Run")
-> **Task: 3** Add *jUnit Parser* task to parse your saved test results. Please specify the test results directory here (you can use Ant style patterns as well)
+    ![Uruchomienie testu](/img/bamboo/testrun.png "Uruchomienie testu")
+
+    >**Zadanie: 3** Dodaj zadanie *jUnit Parser* do analizy zapisanych wyników testów. Określ tutaj katalog wyników testów (możesz również użyć wzorców w stylu Ant)
 
     ![jUnit Parser](/img/bamboo/junitparser.png "jUnit Parser")
 
-    Note: *Make sure you are keeping the results parser task in *Final* section, so that it always get executed even if your test task is failed*
-> **Task: 4** (optional) In order to make sure that your test results are not messed up with old files, you can create a task to remove the `./testresults/` folder after a successful parse to Bamboo. You can add a shell script like `rm -f ./testresults/*.xml` to remove the results or `rm -r testresults` to remove the complete folder
+    Uwaga: *Upewnij się, że zadanie analizy wyników znajduje się w sekcji *Final*, aby zawsze było wykonywane, nawet jeśli twoje zadanie testowe zakończy się niepowodzeniem*
 
-Once the above *rocket science* is done, please enable the plan and run it. Your final output will be like:
+    >**Zadanie: 4** (opcjonalne) Aby upewnić się, że twoje wyniki testów nie są pomieszane ze starymi plikami, możesz utworzyć zadanie usuwające folder ```./testresults/``` po pomyślnej analizie w Bamboo. Możesz dodać skrypt powłoki, taki jak ```rm -f ./testresults/*.xml``` aby usunąć wyniki lub ```rm -r testresults``` aby usunąć cały folder
 
-## Successful Test
+Po zakończeniu powyższej *wiedzy rakietowej*, włącz plan i uruchom go. Twój końcowy wynik będzie wyglądał jak:
 
-![Successful Test](/img/bamboo/successfulltest.png "Successful Test")
+## Udany test
 
-## Failed Test
+![Udany test](/img/bamboo/successfulltest.png "Udany test")
 
-![Failed Test](/img/bamboo/failedtest.png "Failed Test")
+## Nieudany test
 
-## Failed and Fixed
+![Nieudany test](/img/bamboo/failedtest.png "Nieudany test")
 
-![Failed and Fixed](/img/bamboo/failedandfixed.png "Failed and Fixed")
+## Nieudany i naprawiony
 
-Yay!! That's all. You have successfully integrated your WebdriverIO tests in Bamboo.
+![Nieudany i naprawiony](/img/bamboo/failedandfixed.png "Nieudany i naprawiony")
+
+Juhu!! To wszystko. Pomyślnie zintegrowałeś swoje testy WebdriverIO z Bamboo.

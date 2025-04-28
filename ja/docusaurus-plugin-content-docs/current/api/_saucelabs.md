@@ -4,7 +4,9 @@ title: Sauce Labs
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/saucelabs.ts
 ---
 
-すべてのコマンドは、Sauce Labsの[拡張デバッグ](https://docs.saucelabs.com/insights/debug/#enabling-extended-debugging)機能を使用したChromeでのみサポートされています。これらを有効にするには、以下のSauceオプションを設定します：
+すべてのコマンドはSauce Labs上のChromeでのみサポートされており、
+[拡張デバッグ](https://docs.saucelabs.com/insights/debug/#enabling-extended-debugging)
+機能を使用しています。以下のようなSauceオプションを設定することで有効化できます:
 
 
 ```js
@@ -42,7 +44,7 @@ browser.getPageLogs(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>string</td>
-      <td>ログタイプ（例：'sauce:network'、'sauce:performance'）</td>
+      <td>ログタイプ (例: 'sauce:network', 'sauce:performance')</td>
     </tr>
   </tbody>
 </table>
@@ -54,7 +56,7 @@ browser.getPageLogs(type)
 // ネットワークログを取得
 console.log(browser.getPageLogs('sauce:network'));
 /**
- * 出力例：
+ * 出力:
  * [{
  *   "url": "https://app.saucelabs.com/dashboard",
  *   "statusCode": 200,
@@ -76,10 +78,10 @@ console.log(browser.getPageLogs('sauce:network'));
 
 
 ```js
-// パフォーマンスログを取得（capturePerformanceケーパビリティが必要 参照：https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities
+// パフォーマンスログを取得（capturePerformanceケイパビリティが必要 参照: https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities
 console.log(browser.getPageLogs('sauce:performance'));
 /**
- * 出力例：
+ * 出力:
  * {
  *   "speedIndex": 1472.023,
  *   "timeToFirstInteractive": 1243.214,
@@ -93,13 +95,13 @@ console.log(browser.getPageLogs('sauce:performance'));
 ##### 戻り値
 
 - **&lt;object&gt;**
-            **<code><var>log</var></code>:** 指定されたタイプのログ出力（例を参照）
+            **<code><var>log</var></code>:** 指定したタイプのログ出力（例を参照）
 
 
 ---
 
 ## sauceThrottleNetwork
-ネットワーク調整により、Edge、3G、さらにはオフラインなど、さまざまなネットワーク接続でサイトをテストできます。データのスループットを制限（ダウンロードおよびアップロードの最大スループットを含む）し、接続ラウンドトリップタイム（RTT）に最小遅延を強制するためのレイテンシ操作を使用できます。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork)で確認できます。
+ネットワーク条件を設定することで、さまざまなネットワーク接続（Edge、3G、オフラインなど）でサイトをテストできます。データのスループット（最大ダウンロードおよびアップロードスループットを含む）を制限したり、接続の往復時間（RTT）に最小遅延を適用するための遅延操作を使用したりできます。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork)で確認できます。
 
 ##### 使用法
 
@@ -120,7 +122,7 @@ browser.sauceThrottleNetwork(condition)
     <tr>
       <td><code><var>condition</var></code></td>
       <td>string, object</td>
-      <td>設定するネットワーク状態（例：'online'、'offline'、'GPRS'、'Regular 2G'、'Good 2G'、'Regular 3G'、'Good 3G'、'Regular 4G'、'DSL'、'Wifi'）</td>
+      <td>設定するネットワーク条件 (例: 'online', 'offline', 'GPRS', 'Regular 2G', 'Good 2G', 'Regular 3G', 'Good 3G', 'Regular 4G', 'DSL', 'Wifi')</td>
     </tr>
   </tbody>
 </table>
@@ -129,7 +131,7 @@ browser.sauceThrottleNetwork(condition)
 
 
 ```js
-// 事前定義されたネットワーク条件
+// 定義済みネットワーク条件
 browser.sauceThrottleNetwork('offline')
 ```
 
@@ -169,7 +171,7 @@ browser.throttleCPU(rate)
     <tr>
       <td><code><var>rate</var></code></td>
       <td>number</td>
-      <td>CPUをどの程度スロットリングするかの比率。</td>
+      <td>CPUをスロットリングする割合</td>
     </tr>
   </tbody>
 </table>
@@ -193,7 +195,7 @@ browser.throttleCPU(0)
 ---
 
 ## interceptRequest
-ブラウザが行うリクエストを変更することができます。テストの要件に応じて、これらをブラックリスト化、変更、またはリダイレクトすることができます。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/insights/debug/#intercept-network-requests)で確認できます。
+ブラウザが行うリクエストを変更できます。テストに必要に応じて、これらをブラックリストに登録したり、変更したり、リダイレクトしたりできます。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/insights/debug/#intercept-network-requests)で確認できます。
 
 ##### 使用法
 
@@ -214,7 +216,7 @@ browser.interceptRequest(rule)
     <tr>
       <td><code><var>rule</var></code></td>
       <td>object</td>
-      <td>リクエスト傍受を記述するルール。</td>
+      <td>リクエストのインターセプトを記述するルール</td>
     </tr>
   </tbody>
 </table>
@@ -232,7 +234,7 @@ browser.interceptRequest({
 
 
 ```js
-// サードパーティベンダーへのリクエストをブラックリスト化
+// サードパーティベンダーへのリクエストをブラックリストに登録
 browser.interceptRequest({
   url: 'https://api.segment.io/v1/p',
   error: 'Failed'
@@ -263,7 +265,7 @@ browser.interceptRequest({
 ---
 
 ## assertPerformance
-アプリのパフォーマンスベースラインに対してアサーションを行います。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities)で確認できます。
+アプリのパフォーマンスベースラインに対してアサートします。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities)で確認できます。
 
 ##### 使用法
 
@@ -284,12 +286,12 @@ browser.assertPerformance(name, metrics)
     <tr>
       <td><code><var>name</var></code></td>
       <td>string</td>
-      <td>ベースラインを作成したジョブの名前。</td>
+      <td>ベースラインを作成したジョブの名前</td>
     </tr>
     <tr>
-      <td><code><var>metrics</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>metrics</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>string[]</td>
-      <td>ベースラインに対してアサーションを行いたいメトリクスの名前。</td>
+      <td>ベースラインに対してアサートしたいメトリクスの名前</td>
     </tr>
   </tbody>
 </table>
@@ -301,7 +303,7 @@ browser.assertPerformance(name, metrics)
 // ページのパフォーマンスをテスト
 browser.url('https://webdriver.io')
 const hasRegression = browser.assertPerformance({
-  name: 'my performance test', // この名前がケーパビリティのsauceオプションでも設定されていることを確認してください
+  name: 'my performance test', // 名前がケイパビリティのsauceオプションにも設定されていることを確認してください
   metrics: ['score', 'firstPaint']
 })
 ```
@@ -310,13 +312,13 @@ const hasRegression = browser.assertPerformance({
 ##### 戻り値
 
 - **&lt;object&gt;**
-            **<code><var>hasRegression</var></code>:** 結果と結果に関するメトリクスを含むオブジェクト。
+            **<code><var>hasRegression</var></code>:** 結果とその結果に関するメトリクスを含むオブジェクト
 
 
 ---
 
 ## jankinessCheck
-アプリケーションのぎこちなさ（jankiness）を評価するスクロールテストを実行します。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command)で確認できます。
+アプリケーションのジャンキネス（描画のガタつき）を評価するスクロールテストを実行します。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command)で確認できます。
 
 ##### 使用法
 
@@ -337,7 +339,7 @@ browser.jankinessCheck()
 ##### 戻り値
 
 - **&lt;object&gt;**
-            **<code><var>testResults</var></code>:** テスト中のページのUXの滑らかさに関するスコアとメトリクスを含むオブジェクト。
+            **<code><var>testResults</var></code>:** スコアとテスト中のページのUXのスムーズさに関するメトリクスを含むオブジェクト
 
 
 ---
@@ -364,12 +366,12 @@ browser.mockRequest(url, filterOptions)
     <tr>
       <td><code><var>url</var></code></td>
       <td>string</td>
-      <td>モックするURLに一致するURLグロブ。</td>
+      <td>モックするURLに一致するグロブパターン</td>
     </tr>
     <tr>
-      <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>object</td>
-      <td>モックするURLの追加フィルターオプション（例：ヘッダー、メソッド）。</td>
+      <td>モックするURLの追加フィルターオプション（ヘッダー、メソッドなど）</td>
     </tr>
   </tbody>
 </table>
@@ -378,7 +380,7 @@ browser.mockRequest(url, filterOptions)
 ##### 戻り値
 
 - **&lt;object&gt;**
-            **<code><var>mockId</var></code>:** モックリソースのIDを含むオブジェクト。
+            **<code><var>mockId</var></code>:** モックリソースのIDを含むオブジェクト
 
 
 ---
@@ -414,7 +416,7 @@ browser.getMockCalls(mockId)
 ##### 戻り値
 
 - **&lt;object&gt;**
-            **<code><var>requests</var></code>:** リクエスト情報のリスト。
+            **<code><var>requests</var></code>:** リクエスト情報のリスト
 
 
 ---
@@ -444,9 +446,9 @@ browser.clearMockCalls(mockId, restore)
       <td>モックのID</td>
     </tr>
     <tr>
-      <td><code><var>restore</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>restore</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>boolean</td>
-      <td>モックも復元する場合はtrueに設定します。</td>
+      <td>モックも復元する場合はtrueに設定します</td>
     </tr>
   </tbody>
 </table>
@@ -456,7 +458,7 @@ browser.clearMockCalls(mockId, restore)
 ---
 
 ## respondMock
-モックが特定のリソースに一致する場合に応答します。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/)で確認できます。
+モックが特定のリソースに一致した場合に応答します。<br /><br />Sauce Labsコマンドです。詳細は[公式プロトコルドキュメント](https://docs.saucelabs.com/)で確認できます。
 
 ##### 使用法
 
@@ -480,9 +482,9 @@ browser.respondMock(mockId, payload)
       <td>モックのID</td>
     </tr>
     <tr>
-      <td><code><var>payload</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>payload</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>object</td>
-      <td>モックレスポンスに関する情報。</td>
+      <td>モックレスポンスに関する情報</td>
     </tr>
   </tbody>
 </table>

@@ -1,10 +1,10 @@
 ---
 id: type
-title: タイプ
+title: type
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/dialog/type.ts
 ---
 
-ダイアログのタイプを返します。`alert`、`beforeunload`、`confirm`、または`prompt`のいずれかになります。
+ダイアログのタイプを返します。`alert`、`beforeunload`、`confirm`、または`prompt`のいずれかです。
 
 ##### 使用方法
 
@@ -21,4 +21,4 @@ const type = await dialog.type();
 ##### 戻り値
 
 - **&lt;string&gt;**
-            **<code><var>returns</var></code>:**   ダイアログのタイプ    
+            **<code><var>returns</var></code>:**   ダイアログのタイプ

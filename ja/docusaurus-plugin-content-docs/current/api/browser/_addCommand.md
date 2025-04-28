@@ -8,11 +8,11 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::info
 
-カスタムコマンドの追加に関する詳細情報は、[カスタムコマンド](/docs/customcommands#adding-custom-commands)ガイドで確認できます。
+カスタムコマンドの追加についての詳細情報は、[カスタムコマンド](/docs/customcommands#adding-custom-commands)ガイドで見つけることができます。
 
 :::
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.addCommand(name, callback, elementScope)
@@ -49,14 +49,14 @@ browser.addCommand(name, callback, elementScope)
 
 ```js title="execute.js"
 await browser.addCommand('getUrlAndTitle', async function (customParam) {
-    // `this` refers to the `browser` scope
+    // `this` は `browser` スコープを参照します
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
         customParam: customParam
     }
 })
-//usage
+//使用例
 it('should use my add command', async () => {
     await browser.url('https://webdriver.io')
     const result = await browser.getUrlAndTitle('foobar')

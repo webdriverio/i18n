@@ -8,13 +8,13 @@ Inietta un frammento di JavaScript nella pagina per l'esecuzione nel contesto de
 Si presume che lo script eseguito sia sincrono e il risultato della valutazione dello script viene restituito al
 client.
 
-L'argomento script definisce lo script da eseguire sotto forma di corpo di funzione. Il valore restituito da
-quella funzione sarà restituito al client. La funzione verrà invocata con l'array di argomenti fornito
-e i valori possono essere accessibili tramite l'oggetto arguments nell'ordine specificato.
+L'argomento script definisce lo script da eseguire sotto forma di corpo di una funzione. Il valore restituito da
+quella funzione verrà restituito al client. La funzione verrà invocata con l'array di argomenti fornito e
+i valori possono essere accessibili tramite l'oggetto arguments nell'ordine specificato.
 
 Gli argomenti possono essere qualsiasi JSON-primitivo, array o oggetto JSON. Gli oggetti JSON che definiscono un riferimento WebElement
-verranno convertiti nell'elemento DOM corrispondente. Allo stesso modo, qualsiasi WebElement nel risultato
-dello script verrà restituito al client come oggetti JSON WebElement.
+saranno convertiti nell'elemento DOM corrispondente. Allo stesso modo, qualsiasi WebElement nel risultato
+dello script sarà restituito al client come oggetti JSON WebElement.
 
 ##### Utilizzo
 

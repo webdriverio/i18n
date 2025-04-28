@@ -3,9 +3,9 @@ id: testrunner
 title: テストランナー
 ---
 
-WebdriverIOには独自のテストランナーが付属しており、できるだけ早くテストを開始するのに役立ちます。テストランナーはあなたの代わりにすべての作業を行い、サードパーティのサービスとの統合を可能にし、テストをできるだけ効率的に実行するのを支援します。
+WebdriverIOには独自のテストランナーが付属しており、迅速にテストを開始するのに役立ちます。それはあなたのためにすべての作業を行い、サードパーティのサービスとの統合を可能にし、テストをできるだけ効率的に実行するのを助けます。
 
-WebdriverIOのテストランナーはNPMパッケージ`@wdio/cli`として別途バンドルされています。
+WebdriverIOのテストランナーはNPMパッケージ`@wdio/cli`に別途バンドルされています。
 
 次のようにインストールします：
 
@@ -13,7 +13,7 @@ WebdriverIOのテストランナーはNPMパッケージ`@wdio/cli`として別�
 npm install @wdio/cli
 ```
 
-コマンドラインインターフェースのヘルプを表示するには、ターミナルで次のコマンドを入力します：
+コマンドラインインターフェイスのヘルプを表示するには、ターミナルで次のコマンドを入力します：
 
 ```sh
 $ npx wdio --help
@@ -34,9 +34,9 @@ Options:
   --help     Show help                                                 [boolean]
 ```
 
-素晴らしい！次に、テスト、機能、および設定に関するすべての情報が設定されている構成ファイルを定義する必要があります。そのファイルがどのようなものであるべきかを見るには、[設定ファイル](/docs/configuration)セクションに移動してください。
+素晴らしい！次に、テスト、機能、設定に関するすべての情報が設定される構成ファイルを定義する必要があります。そのファイルがどのようなものであるべきかを確認するには、[設定ファイル](/docs/configuration)セクションに移動してください。
 
-`wdio`構成ヘルパーを使用すると、設定ファイルを非常に簡単に生成できます。次のコマンドを実行するだけです：
+`wdio`構成ヘルパーを使えば、設定ファイルの生成が非常に簡単です。次のコマンドを実行するだけです：
 
 ```sh
 $ npx wdio config
@@ -44,17 +44,17 @@ $ npx wdio config
 
 ...そうするとヘルパーユーティリティが起動します。
 
-ヘルパーはいくつかの質問をして、1分もかからずに設定ファイルを生成します。
+質問をして、1分以内に設定ファイルを生成します。
 
-![WDIO構成ユーティリティ](/img/config-utility.gif)
+![WDIO設定ユーティリティ](/img/config-utility.gif)
 
-設定ファイルが設定されたら、次のコマンドを実行してテストを開始できます：
+構成ファイルが設定されたら、次のコマンドを実行してテストを開始できます：
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-`run`コマンドなしでテスト実行を初期化することもできます：
+`run`コマンドなしでもテスト実行を初期化できます：
 
 ```sh
 npx wdio wdio.conf.js
@@ -66,7 +66,7 @@ npx wdio wdio.conf.js
 
 ### `wdio config`
 
-`config`コマンドはWebdriverIO構成ヘルパーを実行します。このヘルパーはWebdriverIOプロジェクトについていくつかの質問をし、回答に基づいて`wdio.conf.js`ファイルを作成します。
+`config`コマンドはWebdriverIO設定ヘルパーを実行します。このヘルパーはWebdriverIOプロジェクトについていくつかの質問をし、回答に基づいて`wdio.conf.js`ファイルを作成します。
 
 例：
 
@@ -77,15 +77,15 @@ wdio config
 オプション：
 
 ```
---help            prints WebdriverIO help menu                                [boolean]
---npm             Wether to install the packages using NPM instead of yarn    [boolean]
+--help            WebdriverIOヘルプメニューを表示します                       [boolean]
+--npm             yarnの代わりにNPMを使ってパッケージをインストールするかどうか    [boolean]
 ```
 
 ### `wdio run`
 
-> これは構成を実行するためのデフォルトコマンドです。
+> これは設定を実行するためのデフォルトコマンドです。
 
-`run`コマンドはWebdriverIO構成ファイルを初期化し、テストを実行します。
+`run`コマンドはWebdriverIO設定ファイルを初期化し、テストを実行します。
 
 例：
 
@@ -96,36 +96,34 @@ wdio run ./wdio.conf.js --watch
 オプション：
 
 ```
---help                prints WebdriverIO help menu                   [boolean]
---version             prints WebdriverIO version                     [boolean]
---hostname, -h        automation driver host address                  [string]
---port, -p            automation driver port                          [number]
---user, -u            username if using a cloud service as automation backend
-                                                                        [string]
---key, -k             corresponding access key to the user            [string]
---watch               watch specs for changes                        [boolean]
---logLevel, -l        level of logging verbosity
+--help                WebdriverIOヘルプメニューを表示します            [boolean]
+--version             WebdriverIOバージョンを表示します               [boolean]
+--hostname, -h        自動化ドライバーのホストアドレス                 [string]
+--port, -p            自動化ドライバーのポート                       [number]
+--user, -u            クラウドサービスを自動化バックエンドとして使用する場合のユーザー名
+                                                                  [string]
+--key, -k             ユーザーに対応するアクセスキー                   [string]
+--watch               変更を監視するスペック                          [boolean]
+--logLevel, -l        ログの詳細レベル
                             [choices: "trace", "debug", "info", "warn", "error", "silent"]
---bail                stop test runner after specific amount of tests have
-                        failed                                          [number]
---baseUrl             shorten url command calls by setting a base url [string]
---waitforTimeout, -w  timeout for all waitForXXX commands             [number]
---framework, -f       defines the framework (Mocha, Jasmine or Cucumber) to
-                        run the specs                                   [string]
---reporters, -r       reporters to print out the results on stdout      [array]
---suite               overwrites the specs attribute and runs the defined
-                        suite                                            [array]
---spec                run a certain spec file or wildcards - overrides specs piped
-                        from stdin                                       [array]
---exclude             exclude spec file(s) from a run - overrides specs piped
-                        from stdin                                       [array]
---repeat              Repeat specific specs and/or suites N times        [number]
---mochaOpts           Mocha options
---jasmineOpts         Jasmine options
---cucumberOpts        Cucumber options
+--bail                特定の数のテストが失敗した後にテストランナーを停止する   [number]
+--baseUrl             ベースURLを設定してURLコマンド呼び出しを短縮する      [string]
+--waitforTimeout, -w  すべてのwaitForXXXコマンドのタイムアウト           [number]
+--framework, -f       スペックを実行するフレームワーク（Mocha、JasmineまたはCucumber）を定義する
+                                                                   [string]
+--reporters, -r       標準出力に結果を出力するレポーター                  [array]
+--suite               specs属性を上書きし、定義されたスイートを実行する      [array]
+--spec                特定のspecファイルまたはワイルドカードを実行する - stdinからパイプされたspecsを上書きする
+                                                                   [array]
+--exclude             実行からspecファイルを除外する - stdinからパイプされたspecsを上書きする
+                                                                   [array]
+--repeat              特定のspecやスイートをN回繰り返す                   [number]
+--mochaOpts           Mochaオプション
+--jasmineOpts         Jasmineオプション
+--cucumberOpts        Cucumberオプション
 ```
 
-> 注意：自動コンパイルは`tsx` ENV変数で簡単に制御できます。[TypeScriptドキュメント](/docs/typescript)も参照してください。
+> 注：自動コンパイルは`tsx` ENV変数で簡単に制御できます。[TypeScriptドキュメント](/docs/typescript)も参照してください。
 
 ### `wdio install`
 `install`コマンドを使用すると、CLIを介してWebdriverIOプロジェクトにレポーターやサービスを追加できます。
@@ -133,18 +131,18 @@ wdio run ./wdio.conf.js --watch
 例：
 
 ```sh
-wdio install service sauce # installs @wdio/sauce-service
-wdio install reporter dot # installs @wdio/dot-reporter
-wdio install framework mocha # installs @wdio/mocha-framework
+wdio install service sauce # @wdio/sauce-serviceをインストール
+wdio install reporter dot # @wdio/dot-reporterをインストール
+wdio install framework mocha # @wdio/mocha-frameworkをインストール
 ```
 
-代わりに`yarn`を使用してパッケージをインストールする場合は、コマンドに`--yarn`フラグを渡すことができます：
+`yarn`を使用してパッケージをインストールしたい場合は、コマンドに`--yarn`フラグを渡すことができます：
 
 ```sh
 wdio install service sauce --yarn
 ```
 
-WDIO設定ファイルが作業しているフォルダと同じでない場合は、カスタム設定パスを渡すこともできます：
+WDIO設定ファイルが作業中のフォルダと同じでない場合、カスタム構成パスを渡すこともできます：
 
 ```sh
 wdio install service sauce --config="./path/to/wdio.conf.js"
@@ -196,15 +194,15 @@ cucumber
 
 ### `wdio repl`
 
-replコマンドを使用すると、WebdriverIOコマンドを実行するための対話型コマンドラインインターフェースを起動できます。これはテスト目的で使用したり、WebdriverIOセッションを素早く起動したりするのに使用できます。
+replコマンドを使用すると、WebdriverIOコマンドを実行するためのインタラクティブなコマンドラインインターフェイスを開始できます。テスト目的や、単にWebdriverIOセッションを素早く起動するために使用できます。
 
-ローカルのChromeでテストを実行する：
+ローカルのChromeでテストを実行：
 
 ```sh
 wdio repl chrome
 ```
 
-またはSauce Labsでテストを実行する：
+またはSauce Labsでテストを実行：
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY

@@ -41,32 +41,32 @@ browser.setCookies({ name, value, path, domain, secure, httpOnly, expiry, sameSi
     <tr>
       <td><code><var>cookie.path</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>Il percorso del cookie. Il valore predefinito è "/" se omesso quando si aggiunge un cookie.</td>
+      <td>Il percorso del cookie. Predefinito a "/" se omesso quando si aggiunge un cookie.</td>
     </tr>
     <tr>
       <td><code><var>cookie.domain</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>Il dominio in cui il cookie è visibile. Il valore predefinito è il dominio URL del documento attivo del contesto di navigazione corrente se omesso quando si aggiunge un cookie.</td>
+      <td>Il dominio in cui il cookie è visibile. Predefinito al dominio URL del documento attivo del contesto di navigazione corrente se omesso quando si aggiunge un cookie.</td>
     </tr>
     <tr>
       <td><code><var>cookie.secure</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Boolean`</td>
-      <td>Indica se il cookie è un cookie sicuro. Il valore predefinito è false se omesso quando si aggiunge un cookie.</td>
+      <td>Se il cookie è un cookie sicuro. Predefinito a false se omesso quando si aggiunge un cookie.</td>
     </tr>
     <tr>
       <td><code><var>cookie.httpOnly</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Boolean`</td>
-      <td>Indica se il cookie è un cookie HTTP only. Il valore predefinito è false se omesso quando si aggiunge un cookie.</td>
+      <td>Se il cookie è un cookie HTTP only. Predefinito a false se omesso quando si aggiunge un cookie.</td>
     </tr>
     <tr>
       <td><code><var>cookie.expiry</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number`</td>
-      <td>Quando il cookie scade, specificato in secondi dall'epoca Unix. Non deve essere impostato se omesso quando si aggiunge un cookie.</td>
+      <td>Quando il cookie scade, specificato in secondi dall'Epoca Unix. Non deve essere impostato se omesso quando si aggiunge un cookie.</td>
     </tr>
     <tr>
       <td><code><var>cookie.sameSite</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>Indica se il cookie si applica a una politica SameSite. Il valore predefinito è None se omesso quando si aggiunge un cookie. Può essere impostato su "Lax" o "Strict".</td>
+      <td>Se il cookie si applica a una politica SameSite. Predefinito a None se omesso quando si aggiunge un cookie. Può essere impostato a "Lax" o "Strict".</td>
     </tr>
   </tbody>
 </table>

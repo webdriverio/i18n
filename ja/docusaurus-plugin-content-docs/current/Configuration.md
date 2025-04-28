@@ -3,78 +3,78 @@ id: configuration
 title: 設定
 ---
 
-[セットアップの種類](/docs/setuptypes)（例：生のプロトコルバインディングの使用、スタンドアロンパッケージとしてのWebdriverIO、またはWDIOテストランナー）に基づいて、環境を制御するための異なるオプションセットが利用可能です。
+[セットアップタイプ](/docs/setuptypes)（例：生のプロトコルバインディングの使用、スタンドアロンパッケージとしてのWebdriverIO、またはWDIOテストランナー）に基づいて、環境を制御するためのオプションセットが異なります。
 
 ## WebDriverオプション
 
-[`webdriver`](https://www.npmjs.com/package/webdriver)プロトコルパッケージを使用する場合、以下のオプションが定義されます：
+以下のオプションは[`webdriver`](https://www.npmjs.com/package/webdriver)プロトコルパッケージを使用する際に定義されます：
 
 ### protocol
 
 ドライバーサーバーと通信する際に使用するプロトコル。
 
-タイプ：`String`<br />
-デフォルト：`http`
+タイプ: `String`<br />
+デフォルト: `http`
 
 ### hostname
 
 ドライバーサーバーのホスト。
 
-タイプ：`String`<br />
-デフォルト：`0.0.0.0`
+タイプ: `String`<br />
+デフォルト: `0.0.0.0`
 
 ### port
 
 ドライバーサーバーのポート。
 
-タイプ：`Number`<br />
-デフォルト：`undefined`
+タイプ: `Number`<br />
+デフォルト: `undefined`
 
 ### path
 
 ドライバーサーバーエンドポイントへのパス。
 
-タイプ：`String`<br />
-デフォルト：`/`
+タイプ: `String`<br />
+デフォルト: `/`
 
 ### queryParams
 
 ドライバーサーバーに伝播されるクエリパラメータ。
 
-タイプ：`Object`<br />
-デフォルト：`undefined`
+タイプ: `Object`<br />
+デフォルト: `undefined`
 
 ### user
 
-クラウドサービスのユーザー名（[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)または[LambdaTest](https://www.lambdatest.com)アカウントのみで動作します）。設定されている場合、WebdriverIOは自動的に接続オプションを設定します。クラウドプロバイダーを使用していない場合、これは他のWebDriverバックエンドを認証するために使用できます。
+クラウドサービスのユーザー名（[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)または[LambdaTest](https://www.lambdatest.com)アカウントのみ有効）。設定すると、WebdriverIOは自動的に接続オプションを設定します。クラウドプロバイダーを使用しない場合は、他のWebDriverバックエンドを認証するために使用できます。
 
-タイプ：`String`<br />
-デフォルト：`undefined`
+タイプ: `String`<br />
+デフォルト: `undefined`
 
 ### key
 
-クラウドサービスのアクセスキーまたはシークレットキー（[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)または[LambdaTest](https://www.lambdatest.com)アカウントのみで動作します）。設定されている場合、WebdriverIOは自動的に接続オプションを設定します。クラウドプロバイダーを使用していない場合、これは他のWebDriverバックエンドを認証するために使用できます。
+クラウドサービスのアクセスキーまたはシークレットキー（[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)または[LambdaTest](https://www.lambdatest.com)アカウントのみ有効）。設定すると、WebdriverIOは自動的に接続オプションを設定します。クラウドプロバイダーを使用しない場合は、他のWebDriverバックエンドを認証するために使用できます。
 
-タイプ：`String`<br />
-デフォルト：`undefined`
+タイプ: `String`<br />
+デフォルト: `undefined`
 
 ### capabilities
 
-WebDriverセッションで実行したい機能を定義します。詳細については、[WebDriverプロトコル](https://w3c.github.io/webdriver/#capabilities)をご覧ください。WebDriverプロトコルをサポートしていない古いドライバーを実行する場合は、セッションを正常に実行するために[JSONWireProtocol capabilities](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities)を使用する必要があります。
+WebDriverセッションで実行したい機能を定義します。詳細については[WebDriverプロトコル](https://w3c.github.io/webdriver/#capabilities)をご確認ください。WebDriverプロトコルをサポートしていない古いドライバーを実行する場合は、セッションを正常に実行するために[JSONWireProtocolの機能](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities)を使用する必要があります。
 
-WebDriverベースの機能に加えて、リモートブラウザやデバイスに対してより深い設定を可能にするブラウザおよびベンダー固有のオプションを適用できます。これらは対応するベンダードキュメントに記載されています：
+WebDriverベースの機能に加えて、リモートブラウザやデバイスへの詳細な設定を可能にするブラウザやベンダー固有のオプションを適用できます。これらは対応するベンダーのドキュメントに記載されています。例：
 
-- `goog:chromeOptions`：[Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)用
-- `moz:firefoxOptions`：[Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)用
-- `ms:edgeOptions`：[Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)用
-- `sauce:options`：[Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)用
-- `bstack:options`：[BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)用
-- `selenoid:options`：[Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)用
+- `goog:chromeOptions`: [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)用
+- `moz:firefoxOptions`: [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)用
+- `ms:edgeOptions`: [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)用
+- `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)用
+- `bstack:options`: [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)用
+- `selenoid:options`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)用
 
-さらに、便利なユーティリティとして、Sauce Labsの[自動テスト設定ツール](https://docs.saucelabs.com/basics/platform-configurator/)があり、クリックで必要な機能を作成するのに役立ちます。
+さらに、Sauce Labsの[自動テスト設定ツール](https://docs.saucelabs.com/basics/platform-configurator/)は、クリックするだけで希望する機能オブジェクトを作成するのに役立つ便利なユーティリティです。
 
-タイプ：`Object`<br />
-デフォルト：`null`
+タイプ: `Object`<br />
+デフォルト: `null`
 
 **例：**
 
@@ -86,45 +86,45 @@ WebDriverベースの機能に加えて、リモートブラウザやデバイ�
 }
 ```
 
-モバイルデバイスでウェブまたはネイティブテストを実行している場合、`capabilities`はWebDriverプロトコルとは異なります。詳細については[Appiumドキュメント](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)を参照してください。
+モバイルデバイスでウェブまたはネイティブテストを実行している場合、`capabilities`はWebDriverプロトコルとは異なります。詳細については[Appiumドキュメント](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)をご参照ください。
 
 ### logLevel
 
-ロギングの詳細レベル。
+ログの詳細レベル。
 
-タイプ：`String`<br />
-デフォルト：`info`<br />
-オプション：`trace` | `debug` | `info` | `warn` | `error` | `silent`
+タイプ: `String`<br />
+デフォルト: `info`<br />
+オプション: `trace` | `debug` | `info` | `warn` | `error` | `silent`
 
 ### outputDir
 
-すべてのテストランナーログファイル（レポーターログと`wdio`ログを含む）を保存するディレクトリ。設定されていない場合、すべてのログは`stdout`にストリームされます。ほとんどのレポーターは`stdout`にログを出力するように設計されているため、特定のレポーターでファイルにレポートをプッシュする方が意味がある場合（例えば`junit`レポーターなど）にのみこのオプションを使用することをお勧めします。
+すべてのテストランナーログファイル（レポーターログと`wdio`ログを含む）を保存するディレクトリ。設定されていない場合、すべてのログは`stdout`にストリーミングされます。ほとんどのレポーターは`stdout`にログを出力するように作られているため、このオプションはレポートをファイルにプッシュする方が理にかなっている特定のレポーター（例えば`junit`レポーター）にのみ使用することをお勧めします。
 
 スタンドアロンモードで実行する場合、WebdriverIOによって生成される唯一のログは`wdio`ログです。
 
-タイプ：`String`<br />
-デフォルト：`null`
+タイプ: `String`<br />
+デフォルト: `null`
 
 ### connectionRetryTimeout
 
-ドライバーまたはグリッドへのWebDriverリクエストのタイムアウト。
+ドライバーやグリッドへのWebDriverリクエストのタイムアウト。
 
-タイプ：`Number`<br />
-デフォルト：`120000`
+タイプ: `Number`<br />
+デフォルト: `120000`
 
 ### connectionRetryCount
 
 Seleniumサーバーへのリクエスト再試行の最大回数。
 
-タイプ：`Number`<br />
-デフォルト：`3`
+タイプ: `Number`<br />
+デフォルト: `3`
 
 ### agent
 
 リクエストを行うためのカスタム`http`/`https`/`http2` [エージェント](https://www.npmjs.com/package/got#agent)を使用できます。
 
-タイプ：`Object`<br />
-デフォルト：
+タイプ: `Object`<br />
+デフォルト:
 
 ```js
 {
@@ -135,17 +135,17 @@ Seleniumサーバーへのリクエスト再試行の最大回数。
 
 ### headers
 
-すべてのWebDriverリクエストに渡すカスタム`headers`を指定します。Seleniumグリッドが基本認証を必要とする場合、WebDriverリクエストを認証するためにこのオプションを通じて`Authorization`ヘッダーを渡すことをお勧めします：
+すべてのWebDriverリクエストに渡すカスタム`ヘッダー`を指定します。SeleniumグリッドがBasic認証を必要とする場合は、このオプションを通じて`Authorization`ヘッダーを渡してWebDriverリクエストを認証することをお勧めします。例：
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
-// 環境変数からユーザー名とパスワードを読み取る
+// 環境変数からユーザー名とパスワードを読み込む
 const username = process.env.SELENIUM_GRID_USERNAME;
 const password = process.env.SELENIUM_GRID_PASSWORD;
 
 // ユーザー名とパスワードをコロン区切りで結合
 const credentials = `${username}:${password}`;
-// 資格情報をBase64でエンコード
+// 認証情報をBase64でエンコード
 const encodedCredentials = Buffer.from(credentials).toString('base64');
 
 export const config: WebdriverIO.Config = {
@@ -157,57 +157,57 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-タイプ：`Object`<br />
-デフォルト：`{}`
+タイプ: `Object`<br />
+デフォルト: `{}`
 
 ### transformRequest
 
-WebDriverリクエストが行われる前に[HTTPリクエストオプション](https://github.com/sindresorhus/got#options)をインターセプトする関数
+WebDriverリクエストが行われる前に[HTTPリクエストオプション](https://github.com/sindresorhus/got#options)を傍受する関数
 
-タイプ：`(RequestOptions) => RequestOptions`<br />
-デフォルト：*なし*
+タイプ: `(RequestOptions) => RequestOptions`<br />
+デフォルト: *なし*
 
 ### transformResponse
 
-WebDriverレスポンスが到着した後にHTTPレスポンスオブジェクトをインターセプトする関数。この関数には、元のレスポンスオブジェクトが最初の引数として、対応する`RequestOptions`が2番目の引数として渡されます。
+WebDriverレスポンスが到着した後にHTTPレスポンスオブジェクトを傍受する関数。この関数には最初の引数として元のレスポンスオブジェクト、2番目の引数として対応する`RequestOptions`が渡されます。
 
-タイプ：`(Response, RequestOptions) => Response`<br />
-デフォルト：*なし*
+タイプ: `(Response, RequestOptions) => Response`<br />
+デフォルト: *なし*
 
 ### strictSSL
 
-SSLサーティフィケートが有効である必要があるかどうか。
-環境変数`STRICT_SSL`または`strict_ssl`を介して設定できます。
+SSL証明書が有効である必要があるかどうか。
+環境変数`STRICT_SSL`または`strict_ssl`を通じて設定できます。
 
-タイプ：`Boolean`<br />
-デフォルト：`true`
+タイプ: `Boolean`<br />
+デフォルト: `true`
 
 ### enableDirectConnect
 
 [Appiumダイレクト接続機能](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments)を有効にするかどうか。
-フラグが有効になっている場合でも、レスポンスに適切なキーがない場合は何も行いません。
+フラグが有効になっていてもレスポンスに適切なキーがない場合は何もしません。
 
-タイプ：`Boolean`<br />
-デフォルト：`true`
+タイプ: `Boolean`<br />
+デフォルト: `true`
 
 ### cacheDir
 
-キャッシュディレクトリのルートへのパス。このディレクトリは、セッションを開始しようとするときにダウンロードされるすべてのドライバーを保存するために使用されます。
+キャッシュディレクトリのルートへのパス。このディレクトリはセッションを開始する際にダウンロードされたすべてのドライバーを保存するために使用されます。
 
-タイプ：`String`<br />
-デフォルト：`process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+タイプ: `String`<br />
+デフォルト: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ---
 
 ## WebdriverIO
 
-以下のオプション（上記のものを含む）は、スタンドアロンでWebdriverIOと一緒に使用できます：
+以下のオプション（上記のオプションを含む）はスタンドアロンでWebdriverIOと共に使用できます：
 
 ### automationProtocol
 
-ブラウザ自動化に使用するプロトコルを定義します。現在、WebdriverIOが使用する主要なブラウザ自動化技術である[`webdriver`](https://www.npmjs.com/package/webdriver)のみがサポートされています。
+ブラウザ自動化に使用したいプロトコルを定義します。現在サポートされているのは[`webdriver`](https://www.npmjs.com/package/webdriver)のみで、これはWebdriverIOが使用する主要なブラウザ自動化技術です。
 
-異なる自動化技術を使用してブラウザを自動化したい場合は、以下のインターフェースに準拠するモジュールに解決されるパスをこのプロパティに設定してください：
+異なる自動化技術を使用してブラウザを自動化したい場合は、このプロパティを以下のインターフェースに準拠するモジュールに解決されるパスに設定してください：
 
 ```ts
 import type { Capabilities } from '@wdio/types';
@@ -215,13 +215,13 @@ import type { Client, AttachOptions } from 'webdriver';
 
 export default class YourAutomationLibrary {
     /**
-     * 自動化セッションを開始し、それぞれの自動化コマンドを持つWebdriverIO [モナド](https://github.com/webdriverio/webdriverio/blob/940cd30939864bdbdacb2e94ee6e8ada9b1cc74c/packages/wdio-utils/src/monad.ts)
-     * を返します。参照実装として[webdriver](https://www.npmjs.com/package/webdriver)パッケージを参照してください。
+     * 自動化セッションを開始し、それぞれの自動化コマンドを持つWebdriverIO [monad](https://github.com/webdriverio/webdriverio/blob/940cd30939864bdbdacb2e94ee6e8ada9b1cc74c/packages/wdio-utils/src/monad.ts)
+     * を返します。参照実装として[webdriver](https://www.npmjs.com/package/webdriver)パッケージを参照してください
      *
      * @param {Capabilities.RemoteConfig} options WebdriverIOオプション
-     * @param {Function} 関数から解放される前にクライアントを変更できるフック
-     * @param {PropertyDescriptorMap} カスタムプロトコルコマンドを追加できるユーザープロトタイプ
-     * @param {Function} コマンド実行を変更できるカスタムコマンドラッパー
+     * @param {Function} hook 関数から解放される前にクライアントを変更できるようにするフック
+     * @param {PropertyDescriptorMap} userPrototype ユーザーがカスタムプロトコルコマンドを追加できるようにする
+     * @param {Function} customCommandWrapper コマンド実行を変更できるようにする
      * @returns WebdriverIO互換のクライアントインスタンス
      */
     static newSession(
@@ -232,7 +232,7 @@ export default class YourAutomationLibrary {
     ): Promise<Client>;
 
     /**
-     * ユーザーが既存のセッションにアタッチできるようにします
+     * ユーザーが既存のセッションに接続できるようにする
      * @optional
      */
     static attachToSession(
@@ -242,11 +242,11 @@ export default class YourAutomationLibrary {
     ): Client;
 
     /**
-     * インスタンスセッションIDと新しいセッション用のブラウザ機能を
-     * 渡されたブラウザオブジェクトに直接変更します
+     * インスタンスセッションIDと新しいセッションのブラウザ機能を
+     * 直接渡されたブラウザオブジェクトに変更します
      *
      * @optional
-     * @param   {object} instance  新しいブラウザセッションから取得したオブジェクト
+     * @param   {object} instance  新しいブラウザセッションから取得したオブジェクト。
      * @returns {string}           ブラウザの新しいセッションID
      */
     static reloadSession(
@@ -256,192 +256,192 @@ export default class YourAutomationLibrary {
 }
 ```
 
-タイプ：`String`<br />
-デフォルト：`webdriver`
+タイプ: `String`<br />
+デフォルト: `webdriver`
 
 ### baseUrl
 
 ベースURLを設定することで`url`コマンド呼び出しを短縮します。
-- `url`パラメータが`/`で始まる場合、`baseUrl`が先頭に追加されます（`baseUrl`のパスがある場合はそれを除く）。
-- `url`パラメータがスキームや`/`なしで始まる場合（`some/path`のように）、完全な`baseUrl`が直接先頭に追加されます。
+- `url`パラメータが`/`で始まる場合、`baseUrl`が前に追加されます（`baseUrl`にパスがある場合はそのパスを除く）。
+- `url`パラメータがスキームや`/`なしで始まる場合（例：`some/path`）、完全な`baseUrl`が直接前に追加されます。
 
-タイプ：`String`<br />
-デフォルト：`null`
+タイプ: `String`<br />
+デフォルト: `null`
 
 ### waitforTimeout
 
-すべての`waitFor*`コマンドのデフォルトタイムアウト。（オプション名の小文字の`f`に注意してください。）このタイムアウトは`waitFor*`で始まるコマンドとそのデフォルト待機時間__のみ__に影響します。
+すべての`waitFor*`コマンドのデフォルトタイムアウト。（オプション名の「f」が小文字であることに注意）このタイムアウトは`waitFor*`で始まるコマンドとそのデフォルト待機時間にのみ影響します。
 
-テストのタイムアウトを増やすには、フレームワークのドキュメントを参照してください。
+_テスト_のタイムアウトを増やすには、フレームワークのドキュメントを参照してください。
 
-タイプ：`Number`<br />
-デフォルト：`5000`
+タイプ: `Number`<br />
+デフォルト: `5000`
 
 ### waitforInterval
 
-すべての`waitFor*`コマンドが予期される状態（例：可視性）が変更されたかどうかをチェックするデフォルト間隔。
+すべての`waitFor*`コマンドが期待される状態（例：可視性）が変更されたかどうかをチェックするためのデフォルト間隔。
 
-タイプ：`Number`<br />
-デフォルト：`100`
+タイプ: `Number`<br />
+デフォルト: `100`
 
 ### region
 
-Sauce Labsで実行している場合、テストを異なるデータセンター（USまたはEU）で実行することを選択できます。
-リージョンをEUに変更するには、設定に`region: 'eu'`を追加します。
+Sauce Labsで実行する場合、USまたはEUの異なるデータセンター間でテストを実行することを選択できます。
+リージョンをEUに変更するには、設定に`region: 'eu'`を追加してください。
 
-__注意：__ これはSauce Labsアカウントに接続されている`user`と`key`オプションを提供した場合にのみ効果があります。
+__注意:__ これはSauce Labsアカウントに接続された`user`と`key`オプションを提供した場合にのみ効果があります。
 
-タイプ：`String`<br />
-デフォルト：`us`
+タイプ: `String`<br />
+デフォルト: `us`
 
-*（VMやエミュレータ/シミュレータのみ）*
+*（VMおよび/またはエミュレータ/シミュレータのみ）*
 
 ---
 
 ## テストランナーオプション
 
-以下のオプション（上記のものを含む）は、WDIOテストランナーでWebdriverIOを実行する場合にのみ定義されています：
+以下のオプション（上記のオプションを含む）はWDIOテストランナーでWebdriverIOを実行する場合にのみ定義されます：
 
 ### specs
 
-テスト実行用のスペックを定義します。一度に複数のファイルにマッチするグロブパターンを指定するか、単一のワーカープロセス内で実行するグロブまたはパスのセットを配列にラップすることができます。すべてのパスは設定ファイルのパスからの相対パスとして見なされます。
+テスト実行のための仕様を定義します。一度に複数のファイルに一致するグロブパターンを指定するか、グロブまたはパスのセットを配列にラップして単一のワーカープロセス内で実行することができます。すべてのパスは設定ファイルパスからの相対パスとして扱われます。
 
-タイプ：`(String | String[])[]`<br />
-デフォルト：`[]`
+タイプ: `(String | String[])[]`<br />
+デフォルト: `[]`
 
 ### exclude
 
-テスト実行からスペックを除外します。すべてのパスは設定ファイルのパスからの相対パスとして見なされます。
+テスト実行から仕様を除外します。すべてのパスは設定ファイルパスからの相対パスとして扱われます。
 
-タイプ：`String[]`<br />
-デフォルト：`[]`
+タイプ: `String[]`<br />
+デフォルト: `[]`
 
 ### suites
 
-`wdio` CLIで`--suite`オプションを指定して実行できる様々なスイートを記述するオブジェクト。
+様々なスイートを説明するオブジェクトで、`wdio` CLIの`--suite`オプションで指定できます。
 
-タイプ：`Object`<br />
-デフォルト：`{}`
+タイプ: `Object`<br />
+デフォルト: `{}`
 
 ### capabilities
 
-上記で説明した`capabilities`セクションと同じですが、[`multiremote`](/docs/multiremote)オブジェクトを指定するか、並行実行のための複数のWebDriverセッションを配列で指定するオプションがあります。
+上記で説明した`capabilities`セクションと同じですが、[`multiremote`](/docs/multiremote)オブジェクトを指定するか、並列実行のための複数のWebDriverセッションを配列で指定するオプションがあります。
 
-[上記](/docs/configuration#capabilities)で定義されているのと同じベンダーとブラウザ固有の機能を適用できます。
+[上記](/docs/configuration#capabilities)で定義されているのと同じベンダーおよびブラウザ固有の機能を適用できます。
 
-タイプ：`Object`|`Object[]`<br />
-デフォルト：`[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
+タイプ: `Object`|`Object[]`<br />
+デフォルト: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
 
 ### maxInstances
 
-並行して実行するワーカーの最大総数。
+並列実行ワーカーの最大総数。
 
-__注意：__ Sauce Labsのマシンなどの外部ベンダーでテストが実行されている場合、この数は`100`のように高い場合があります。そこでは、テストは単一のマシンではなく、複数のVMでテストされます。テストをローカル開発マシンで実行する場合は、`3`、`4`、または`5`などのより合理的な数を使用してください。基本的に、これは同時に開始され、同時にテストを実行するブラウザの数なので、マシンのRAMの量や、マシンで実行されている他のアプリの数によって異なります。
+__注意:__ Sauce Labsのようなマシンなど、外部ベンダーでテストが実行される場合、この数は`100`のように高くなることがあります。そこでは、テストは単一のマシンではなく、複数のVMでテストされます。テストをローカル開発マシンで実行する場合は、`3`、`4`、または`5`のような妥当な数を使用してください。基本的に、これは同時に起動されテストを実行するブラウザの数なので、マシンのRAM容量や実行中の他のアプリによって異なります。
 
-また、`wdio:maxInstances`機能を使用して機能オブジェクト内で`maxInstances`を適用することもできます。これにより、その特定の機能の並列セッションの数が制限されます。
+また、`wdio:maxInstances`機能を使用して、機能オブジェクト内で`maxInstances`を適用することもできます。これにより、その特定の機能の並列セッション数が制限されます。
 
-タイプ：`Number`<br />
-デフォルト：`100`
+タイプ: `Number`<br />
+デフォルト: `100`
 
 ### maxInstancesPerCapability
 
-機能ごとの並行して実行するワーカーの最大総数。
+機能ごとの並列実行ワーカーの最大総数。
 
-タイプ：`Number`<br />
-デフォルト：`100`
+タイプ: `Number`<br />
+デフォルト: `100`
 
 ### injectGlobals
 
-WebdriverIOのグローバル（例：`browser`、`$`、`$$`）をグローバル環境に挿入します。
-`false`に設定すると、`@wdio/globals`からインポートする必要があります：
+WebdriverIOのグローバル変数（例：`browser`、`$`、`$$`）をグローバル環境に挿入します。
+`false`に設定すると、`@wdio/globals`からインポートする必要があります。例：
 
 ```ts
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-注意：WebdriverIOはテストフレームワーク固有のグローバルの注入を処理しません。
+注意：WebdriverIOはテストフレームワーク固有のグローバル変数の挿入を処理しません。
 
-タイプ：`Boolean`<br />
-デフォルト：`true`
+タイプ: `Boolean`<br />
+デフォルト: `true`
 
 ### bail
 
 特定の数のテスト失敗後にテスト実行を停止したい場合は、`bail`を使用します。
-（デフォルトは`0`で、テストの数に関係なくすべてのテストを実行します。）**注意：** この文脈でのテストとは、単一のスペックファイル内のすべてのテスト（MochaまたはJasmineを使用する場合）、または機能ファイル内のすべてのステップ（Cucumberを使用する場合）です。単一のテストファイル内のテストについてbail動作を制御したい場合は、利用可能な[フレームワーク](frameworks)オプションを参照してください。
+（デフォルトは`0`で、何があってもすべてのテストを実行します）**注意：** この文脈でのテストとは、単一の仕様ファイル内のすべてのテスト（MochaまたはJasmineを使用する場合）または機能ファイル内のすべてのステップ（Cucumberを使用する場合）です。単一のテストファイル内のテストに対するbailの動作を制御したい場合は、利用可能な[フレームワーク](frameworks)オプションを確認してください。
 
-タイプ：`Number`<br />
-デフォルト：`0`（終了しない；すべてのテストを実行）
+タイプ: `Number`<br />
+デフォルト: `0`（中断しない；すべてのテストを実行）
 
 ### specFileRetries
 
-全体として失敗した場合に、スペックファイル全体を再試行する回数。
+全体として失敗した場合にspecファイル全体を再試行する回数。
 
-タイプ：`Number`<br />
-デフォルト：`0`
+タイプ: `Number`<br />
+デフォルト: `0`
 
 ### specFileRetriesDelay
 
-スペックファイルの再試行間の遅延（秒）
+specファイルの再試行間の遅延（秒単位）
 
-タイプ：`Number`<br />
-デフォルト：`0`
+タイプ: `Number`<br />
+デフォルト: `0`
 
 ### specFileRetriesDeferred
 
-再試行されたスペックファイルを即座に再試行するか、キューの最後に延期するかどうか。
+再試行されるspecファイルを即座に再試行するか、キューの最後に延期するかどうか。
 
-タイプ：`Boolean`<br />
-デフォルト：`true`
+タイプ: `Boolean`<br />
+デフォルト: `true`
 
 ### groupLogsByTestSpec
 
 ログ出力ビューを選択します。
 
-`false`に設定すると、異なるテストファイルからのログがリアルタイムで出力されます。並行実行時に異なるファイルからのログ出力が混在する可能性があることに注意してください。
+`false`に設定すると、異なるテストファイルからのログがリアルタイムで表示されます。並列実行時に異なるファイルからのログ出力が混在する可能性があることに注意してください。
 
-`true`に設定すると、ログ出力はテストスペックごとにグループ化され、テストスペックが完了したときにのみ出力されます。
+`true`に設定すると、ログ出力はテスト仕様ごとにグループ化され、テスト仕様が完了した時点でのみ表示されます。
 
-デフォルトでは、`false`に設定されているため、ログはリアルタイムで出力されます。
+デフォルトでは`false`に設定されており、ログはリアルタイムで表示されます。
 
-タイプ：`Boolean`<br />
-デフォルト：`false`
+タイプ: `Boolean`<br />
+デフォルト: `false`
 
 ### services
 
-サービスは、あなたが気にしたくない特定のジョブを引き受けます。ほとんど労力をかけずにテストセットアップを強化します。
+サービスは、あなたが気にしたくない特定のジョブを引き受けます。ほとんど労力をかけずにテスト設定を強化します。
 
-タイプ：`String[]|Object[]`<br />
-デフォルト：`[]`
+タイプ: `String[]|Object[]`<br />
+デフォルト: `[]`
 
 ### framework
 
 WDIOテストランナーで使用するテストフレームワークを定義します。
 
-タイプ：`String`<br />
-デフォルト：`mocha`<br />
-オプション：`mocha` | `jasmine`
+タイプ: `String`<br />
+デフォルト: `mocha`<br />
+オプション: `mocha` | `jasmine`
 
-### mochaOpts, jasmineOpts and cucumberOpts
+### mochaOpts, jasmineOpts, cucumberOpts
 
-特定のフレームワーク関連のオプション。どのオプションが利用可能かについては、フレームワークアダプタのドキュメントを参照してください。これについての詳細は[Frameworks](frameworks)をお読みください。
+特定のフレームワーク関連のオプション。利用可能なオプションについてはフレームワークアダプタのドキュメントを参照してください。詳細は[フレームワーク](frameworks)をご覧ください。
 
-タイプ：`Object`<br />
-デフォルト：`{ timeout: 10000 }`
+タイプ: `Object`<br />
+デフォルト: `{ timeout: 10000 }`
 
 ### cucumberFeaturesWithLineNumbers
 
-行番号付きのキュウリ機能のリスト（[cucumberフレームワークを使用する場合](./Frameworks.md#using-cucumber)）。
+行番号付きのcucumber機能のリスト（[cucumberフレームワークを使用する場合](./Frameworks.md#using-cucumber)）。
 
-タイプ：`String[]`
-デフォルト：`[]`
+タイプ: `String[]`
+デフォルト: `[]`
 
 ### reporters
 
 使用するレポーターのリスト。レポーターは文字列、または
-`['reporterName', { /* レポーターオプション */}]`の配列にすることができ、最初の要素はレポーター名の文字列、2番目の要素はレポーターオプションを持つオブジェクトです。
+`['レポーター名', { /* レポーターオプション */}]`の配列で、最初の要素はレポーター名の文字列、2番目の要素はレポーターオプションを持つオブジェクトです。
 
-タイプ：`String[]|Object[]`<br />
-デフォルト：`[]`
+タイプ: `String[]|Object[]`<br />
+デフォルト: `[]`
 
 例：
 
@@ -458,42 +458,42 @@ reporters: [
 
 ### reporterSyncInterval
 
-非同期にログを報告する場合（例：ログが第三者ベンダーにストリーミングされる場合）、レポーターが同期しているかどうかをチェックする間隔を決定します。
+レポーターが非同期にログを報告する場合（例：ログが第三者ベンダーにストリーミングされる場合）、同期されているかどうかをチェックする間隔を決定します。
 
-タイプ：`Number`<br />
-デフォルト：`100`（ミリ秒）
+タイプ: `Number`<br />
+デフォルト: `100`（ミリ秒）
 
 ### reporterSyncTimeout
 
-レポーターがすべてのログのアップロードを完了するまでの最大時間を決定し、それを過ぎるとテストランナーによってエラーがスローされます。
+レポーターがすべてのログのアップロードを完了するまでの最大時間を決定し、それを超えるとテストランナーによってエラーがスローされます。
 
-タイプ：`Number`<br />
-デフォルト：`5000`（ミリ秒）
+タイプ: `Number`<br />
+デフォルト: `5000`（ミリ秒）
 
 ### execArgv
 
-子プロセスを起動するときに指定するNode引数。
+子プロセスを起動する際に指定するNodeの引数。
 
-タイプ：`String[]`<br />
-デフォルト：`null`
+タイプ: `String[]`<br />
+デフォルト: `null`
 
 ### filesToWatch
 
-`--watch`フラグを付けて実行する際に、テストランナーに他のファイル（例：アプリケーションファイル）も監視するように指示するグロブをサポートする文字列パターンのリスト。デフォルトでは、テストランナーはすでにすべてのスペックファイルを監視しています。
+テストランナーに、`--watch`フラグで実行する際に他のファイル（例：アプリケーションファイル）も監視するよう指示するグロブをサポートする文字列パターンのリスト。デフォルトでは、テストランナーはすべての仕様ファイルを監視します。
 
-タイプ：`String[]`<br />
-デフォルト：`[]`
+タイプ: `String[]`<br />
+デフォルト: `[]`
 
 ### updateSnapshots
 
-スナップショットを更新したい場合は`true`に設定します。理想的にはCLIパラメータの一部として使用します。例：`wdio run wdio.conf.js --s`。
+スナップショットを更新したい場合は`true`に設定します。理想的にはCLIパラメータの一部として使用されます。例：`wdio run wdio.conf.js --s`。
 
-タイプ：`'new' | 'all' | 'none'`<br />
-デフォルト：提供されていない場合でCIでテストが実行される場合は`none`、提供されていない場合は`new`、それ以外は提供されたもの
+タイプ: `'new' | 'all' | 'none'`<br />
+デフォルト: 提供されておらずテストがCIで実行される場合は`none`、提供されていない場合は`new`、それ以外は提供されたもの
 
 ### resolveSnapshotPath
 
-デフォルトのスナップショットパスをオーバーライドします。例えば、スナップショットをテストファイルの隣に保存するには。
+デフォルトのスナップショットパスをオーバーライドします。例えば、スナップショットをテストファイルの隣に保存するには：
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -501,23 +501,23 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-タイプ：`(testPath: string, snapExtension: string) => string`<br />
-デフォルト：テストファイルの隣の`__snapshots__`ディレクトリにスナップショットファイルを保存します
+タイプ: `(testPath: string, snapExtension: string) => string`<br />
+デフォルト: スナップショットファイルをテストファイルの隣の`__snapshots__`ディレクトリに保存します
 
 ### tsConfigPath
 
 WDIOはTypeScriptファイルをコンパイルするために`tsx`を使用します。TSConfigは現在の作業ディレクトリから自動的に検出されますが、ここでカスタムパスを指定するか、TSX_TSCONFIG_PATH環境変数を設定することができます。
 
-`tsx`のドキュメントを参照してください：https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+`tsx`のドキュメントを参照：https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
 
-タイプ：`String`<br />
-デフォルト：`null`<br />
+タイプ: `String`<br />
+デフォルト: `null`<br />
 
 ## フック
 
 WDIOテストランナーは、テストライフサイクルの特定の時点でトリガーされるフックを設定できます。これにより、カスタムアクション（例：テストが失敗した場合にスクリーンショットを撮る）が可能になります。
 
-各フックには、ライフサイクルに関する特定の情報（例：テストスイートやテストに関する情報）がパラメータとして渡されます。すべてのフックプロパティについては、[サンプル設定](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326)で詳細をお読みください。
+各フックは、ライフサイクルに関する特定の情報（例：テストスイートやテストに関する情報）をパラメータとして持ちます。すべてのフックのプロパティについての詳細は[サンプル設定](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326)を参照してください。
 
 **注意：** 一部のフック（`onPrepare`、`onWorkerStart`、`onWorkerEnd`、`onComplete`）は異なるプロセスで実行されるため、ワーカープロセスに存在する他のフックとグローバルデータを共有できません。
 
@@ -532,13 +532,13 @@ WDIOテストランナーは、テストライフサイクルの特定の時点�
 
 ### onWorkerStart
 
-ワーカープロセスが生成される前に実行され、そのワーカーの特定のサービスを初期化したり、実行環境を非同期的に変更したりするために使用できます。
+ワーカープロセスが生成される前に実行され、そのワーカーの特定のサービスを初期化したり、非同期方式でランタイム環境を変更するために使用できます。
 
 パラメータ：
 
 - `cid` (`string`): 機能ID（例：0-0）
 - `caps` (`object`): ワーカーで生成されるセッションの機能を含む
-- `specs` (`string[]`): ワーカープロセスで実行されるスペック
+- `specs` (`string[]`): ワーカープロセスで実行される仕様
 - `args` (`object`): ワーカーが初期化された後にメイン設定とマージされるオブジェクト
 - `execArgv` (`string[]`): ワーカープロセスに渡される文字列引数のリスト
 
@@ -550,32 +550,32 @@ WDIOテストランナーは、テストライフサイクルの特定の時点�
 
 - `cid` (`string`): 機能ID（例：0-0）
 - `exitCode` (`number`): 0 - 成功、1 - 失敗
-- `specs` (`string[]`): ワーカープロセスで実行されるスペック
-- `retries` (`number`): [_"スペックファイルごとの再試行を追加"_](./Retry.md#add-retries-on-a-per-specfile-basis)で定義されているスペックレベルの再試行回数
+- `specs` (`string[]`): ワーカープロセスで実行された仕様
+- `retries` (`number`): [_"specファイルごとの再試行を追加"_](./Retry.md#add-retries-on-a-per-specfile-basis)で定義されている使用された仕様レベルの再試行回数
 
 ### beforeSession
 
-webdriverセッションとテストフレームワークを初期化する直前に実行されます。機能やスペックに応じて設定を操作できます。
+webdriverセッションとテストフレームワークを初期化する直前に実行されます。機能や仕様に応じて設定を操作することができます。
 
 パラメータ：
 
 - `config` (`object`): WebdriverIO設定オブジェクト
 - `caps` (`object`): ワーカーで生成されるセッションの機能を含む
-- `specs` (`string[]`): ワーカープロセスで実行されるスペック
+- `specs` (`string[]`): ワーカープロセスで実行される仕様
 
 ### before
 
-テスト実行が始まる前に実行されます。この時点で`browser`のようなすべてのグローバル変数にアクセスできます。カスタムコマンドを定義するのに最適な場所です。
+テスト実行が開始される前に実行されます。この時点で`browser`のようなすべてのグローバル変数にアクセスできます。カスタムコマンドを定義するのに最適な場所です。
 
 パラメータ：
 
 - `caps` (`object`): ワーカーで生成されるセッションの機能を含む
-- `specs` (`string[]`): ワーカープロセスで実行されるスペック
+- `specs` (`string[]`): ワーカープロセスで実行される仕様
 - `browser` (`object`): 作成されたブラウザ/デバイスセッションのインスタンス
 
 ### beforeSuite
 
-スイートが開始する前に実行されるフック（MochaとJasmineのみ）
+スイートが開始される前に実行されるフック（MochaおよびJasmineのみ）
 
 パラメータ：
 
@@ -583,26 +583,26 @@ webdriverセッションとテストフレームワークを初期化する直�
 
 ### beforeHook
 
-スイート内のフックが開始される*前*に実行されるフック（例：Mochaの`beforeEach`を呼び出す前に実行）
+スイート内のフックが開始される*前に*実行されるフック（例：Mochaの場合、beforeEachを呼び出す前に実行されます）
 
 パラメータ：
 
 - `test` (`object`): テストの詳細
-- `context` (`object`): テストコンテキスト（CucumberのWorldオブジェクトを表す）
+- `context` (`object`): テストコンテキスト（CucumberのWorldオブジェクトを表します）
 
 ### afterHook
 
-スイート内のフックが終了した*後*に実行されるフック（例：Mochaの`afterEach`を呼び出した後に実行）
+スイート内のフックが終了した*後に*実行されるフック（例：Mochaの場合、afterEachを呼び出した後に実行されます）
 
 パラメータ：
 
 - `test` (`object`): テストの詳細
-- `context` (`object`): テストコンテキスト（CucumberのWorldオブジェクトを表す）
+- `context` (`object`): テストコンテキスト（CucumberのWorldオブジェクトを表します）
 - `result` (`object`): フック結果（`error`、`result`、`duration`、`passed`、`retries`プロパティを含む）
 
 ### beforeTest
 
-テストの前に実行される関数（MochaとJasmineのみ）。
+テストの前に実行される関数（MochaおよびJasmineのみ）。
 
 パラメータ：
 
@@ -631,7 +631,7 @@ WebdriverIOコマンドが実行された後に実行されます。
 
 ### afterTest
 
-テスト（MochaとJasmineで）が終了した後に実行される関数。
+テスト（MochaおよびJasmine）が終了した後に実行される関数。
 
 パラメータ：
 
@@ -639,14 +639,14 @@ WebdriverIOコマンドが実行された後に実行されます。
 - `context` (`object`): テストが実行されたスコープオブジェクト
 - `result.error` (`Error`): テストが失敗した場合はエラーオブジェクト、それ以外の場合は`undefined`
 - `result.result` (`Any`): テスト関数の戻りオブジェクト
-- `result.duration` (`Number`): テストの期間
-- `result.passed` (`Boolean`): テストに合格した場合はtrue、それ以外の場合はfalse
-- `result.retries` (`Object`): [MochaとJasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha)および[Cucumber](./Retry.md#rerunning-in-cucumber)で定義されている単一テスト関連の再試行に関する情報、例：`{ attempts: 0, limit: 0 }`
+- `result.duration` (`Number`): テストの持続時間
+- `result.passed` (`Boolean`): テストが合格した場合はtrue、それ以外の場合はfalse
+- `result.retries` (`Object`): [MochaおよびJasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha)および[Cucumber](./Retry.md#rerunning-in-cucumber)で定義されている単一テスト関連の再試行に関する情報、例：`{ attempts: 0, limit: 0 }`、参照
 - `result` (`object`): フック結果（`error`、`result`、`duration`、`passed`、`retries`プロパティを含む）
 
 ### afterSuite
 
-スイートが終了した後に実行されるフック（MochaとJasmineのみ）
+スイートが終了した後に実行されるフック（MochaおよびJasmineのみ）
 
 パラメータ：
 
@@ -660,7 +660,7 @@ WebdriverIOコマンドが実行された後に実行されます。
 
 - `result` (`number`): 0 - テスト合格、1 - テスト失敗
 - `caps` (`object`): ワーカーで生成されるセッションの機能を含む
-- `specs` (`string[]`): ワーカープロセスで実行されるスペック
+- `specs` (`string[]`): ワーカープロセスで実行される仕様
 
 ### afterSession
 
@@ -670,11 +670,11 @@ webdriverセッションを終了した直後に実行されます。
 
 - `config` (`object`): WebdriverIO設定オブジェクト
 - `caps` (`object`): ワーカーで生成されるセッションの機能を含む
-- `specs` (`string[]`): ワーカープロセスで実行されるスペック
+- `specs` (`string[]`): ワーカープロセスで実行される仕様
 
 ### onComplete
 
-すべてのワーカーがシャットダウンされ、プロセスが終了しようとしている後に実行されます。onCompleteフックでエラーが発生すると、テスト実行は失敗します。
+すべてのワーカーがシャットダウンされ、プロセスが終了しようとしている後に実行されます。onCompleteフックでスローされたエラーはテスト実行の失敗を引き起こします。
 
 パラメータ：
 
@@ -685,7 +685,7 @@ webdriverセッションを終了した直後に実行されます。
 
 ### onReload
 
-リフレッシュが発生した場合に実行されます。
+リフレッシュが発生したときに実行されます。
 
 パラメータ：
 
@@ -728,8 +728,8 @@ Cucumberシナリオの後に実行されます。
 - `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickleとテストステップに関する情報を含むワールドオブジェクト
 - `result` (`object`): シナリオ結果を含む結果オブジェクト
 - `result.passed` (`boolean`): シナリオが合格した場合はtrue
-- `result.error` (`string`): シナリオが失敗した場合のエラースタック
-- `result.duration` (`number`): シナリオの期間（ミリ秒）
+- `result.error` (`string`): シナリオが失敗した場合はエラースタック
+- `result.duration` (`number`): シナリオの持続時間（ミリ秒）
 - `context` (`object`): Cucumber Worldオブジェクト
 
 ### beforeStep
@@ -752,13 +752,13 @@ Cucumberステップの後に実行されます。
 - `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumberシナリオオブジェクト
 - `result`: (`object`): ステップ結果を含む結果オブジェクト
 - `result.passed` (`boolean`): シナリオが合格した場合はtrue
-- `result.error` (`string`): シナリオが失敗した場合のエラースタック
-- `result.duration` (`number`): シナリオの期間（ミリ秒）
+- `result.error` (`string`): シナリオが失敗した場合はエラースタック
+- `result.duration` (`number`): シナリオの持続時間（ミリ秒）
 - `context` (`object`): Cucumber Worldオブジェクト
 
 ### beforeAssertion
 
-WebdriverIOアサーションが行われる前に実行されるフック。
+WebdriverIOアサーションが実行される前に実行されるフック。
 
 パラメータ：
 
@@ -769,7 +769,7 @@ WebdriverIOアサーションが行われる前に実行されるフック。
 
 ### afterAssertion
 
-WebdriverIOアサーションが行われた後に実行されるフック。
+WebdriverIOアサーションが実行された後に実行されるフック。
 
 パラメータ：
 

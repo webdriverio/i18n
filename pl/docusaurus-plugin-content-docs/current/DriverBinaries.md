@@ -1,36 +1,36 @@
 ---
 id: driverbinaries
-title: Driver Binaries
+title: Sterowniki przeglądarek
 ---
 
-To run automation based on the WebDriver protocol you need to have browser drivers set up that translate the automation commands and are able to execute them in the browser.
+Aby uruchomić automatyzację opartą na protokole WebDriver, potrzebujesz sterowników przeglądarek, które tłumaczą polecenia automatyzacji i są w stanie wykonać je w przeglądarce.
 
-## Automated setup
+## Automatyczna konfiguracja
 
-With WebdriverIO `v8.14` and above there is no need to manually download and setup any browser drivers anymore as this is handled by WebdriverIO. All you have to do is specify the browser you want to test and WebdriverIO will do the rest.
+Od wersji WebdriverIO `v8.14` nie musisz już ręcznie pobierać i konfigurować żadnych sterowników przeglądarek, ponieważ WebdriverIO zajmuje się tym automatycznie. Wystarczy określić przeglądarkę, którą chcesz testować, a WebdriverIO zrobi resztę.
 
-### Customizing the level of automation
+### Dostosowywanie poziomu automatyzacji
 
-WebdriverIO's have three levels of automation:
+WebdriverIO oferuje trzy poziomy automatyzacji:
 
-**1. Download and install the browser using [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+**1. Pobieranie i instalacja przeglądarki przy użyciu [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
 
-If you specify a `browserName`/`browserVersion` combination in the [capabilities](configuration#capabilities-1) configuration, WebdriverIO will download and install the requested combination, regardless of whether there's an existing installation on the machine. If you omit `browserVersion`, WebdriverIO will first try to locate and use an existing installation with [locate-app](https://www.npmjs.com/package/locate-app), otherwise it will download and install the current stable browser release. For more details on `browserVersion`, see [here](capabilities#automate-different-browser-channels).
+Jeśli określisz kombinację `browserName`/`browserVersion` w konfiguracji [capabilities](configuration#capabilities-1), WebdriverIO pobierze i zainstaluje żądaną kombinację, niezależnie od tego, czy na komputerze istnieje już istniejąca instalacja. Jeśli pominiesz `browserVersion`, WebdriverIO najpierw spróbuje zlokalizować i użyć istniejącej instalacji za pomocą [locate-app](https://www.npmjs.com/package/locate-app), w przeciwnym razie pobierze i zainstaluje aktualną stabilną wersję przeglądarki. Więcej szczegółów na temat `browserVersion` znajdziesz [tutaj](capabilities#automate-different-browser-channels).
 
 :::caution
 
-Automated browser setup does not support Microsoft Edge. Currently, only Chrome, Chromium and Firefox are supported.
+Automatyczna konfiguracja przeglądarki nie obsługuje Microsoft Edge. Obecnie obsługiwane są tylko Chrome, Chromium i Firefox.
 
 :::
 
-If you have a browser installation on a location that cannot be auto-detected by WebdriverIO, you can specify the browser binary which will disable the automated download and installation.
+Jeśli masz przeglądarkę zainstalowaną w lokalizacji, która nie może być automatycznie wykryta przez WebdriverIO, możesz określić plik binarny przeglądarki, co wyłączy automatyczne pobieranie i instalację.
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox' or 'chromium'
-            'goog:chromeOptions': { // or 'moz:firefoxOptions' or 'wdio:chromedriverOptions'
+            browserName: 'chrome', // lub 'firefox' lub 'chromium'
+            'goog:chromeOptions': { // lub 'moz:firefoxOptions' lub 'wdio:chromedriverOptions'
                 binary: '/path/to/chrome'
             },
         }
@@ -38,17 +38,17 @@ If you have a browser installation on a location that cannot be auto-detected by
 }
 ```
 
-**2. Download and install the driver using [Chromedriver](https://www.npmjs.com/package/chromedriver), [Edgedriver](https://www.npmjs.com/package/edgedriver) or [Geckodriver](https://www.npmjs.com/package/geckodriver).**
+**2. Pobieranie i instalacja sterownika za pomocą [Chromedriver](https://www.npmjs.com/package/chromedriver), [Edgedriver](https://www.npmjs.com/package/edgedriver) lub [Geckodriver](https://www.npmjs.com/package/geckodriver).**
 
-WebdriverIO will always do this, unless driver [binary](capabilities#binary) is specified in the configuration:
+WebdriverIO zawsze to zrobi, chyba że sterownik [binary](capabilities#binary) jest określony w konfiguracji:
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox', 'msedge', 'safari', 'chromium'
-            'wdio:chromedriverOptions': { // or 'wdio:geckodriverOptions', 'wdio:edgedriverOptions'
-                binary: '/path/to/chromedriver' // or 'geckodriver', 'msedgedriver'
+            browserName: 'chrome', // lub 'firefox', 'msedge', 'safari', 'chromium'
+            'wdio:chromedriverOptions': { // lub 'wdio:geckodriverOptions', 'wdio:edgedriverOptions'
+                binary: '/path/to/chromedriver' // lub 'geckodriver', 'msedgedriver'
             }
         }
     ]
@@ -57,43 +57,43 @@ WebdriverIO will always do this, unless driver [binary](capabilities#binary) is 
 
 :::info
 
-WebdriverIO won't automatically download Safari driver as it is already installed on macOS.
+WebdriverIO nie będzie automatycznie pobierać sterownika Safari, ponieważ jest on już zainstalowany na macOS.
 
 :::
 
 :::caution
 
-Avoid specifying a `binary` for the browser and omitting the corresponding driver `binary` or vice-versa. If only one of the `binary` values is specified, WebdriverIO will try to use or download a browser/driver compatible with it. However, in some scenarios it may result in an incompatible combination. Therefore, it's recommended that you always specify both to avoid any problems caused by version incompatibilities.
+Unikaj określania `binary` dla przeglądarki i pomijania odpowiedniego sterownika `binary` lub odwrotnie. Jeśli określisz tylko jedną z wartości `binary`, WebdriverIO spróbuje użyć lub pobrać przeglądarkę/sterownik kompatybilny z nią. Jednak w niektórych scenariuszach może to prowadzić do niekompatybilnej kombinacji. Dlatego zaleca się, aby zawsze określać obie wartości, aby uniknąć problemów spowodowanych niekompatybilnością wersji.
 
 :::
 
-**3. Start/stop the driver.**
+**3. Uruchamianie/zatrzymywanie sterownika.**
 
-By default, WebdriverIO will automatically start and stop the driver using an arbitrary unused port. Specifying any of the following configuration will disable this feature which means you'll need to manually start and stop the driver:
+Domyślnie WebdriverIO automatycznie uruchomi i zatrzyma sterownik używając dowolnego wolnego portu. Określenie którejkolwiek z poniższych konfiguracji wyłączy tę funkcję, co oznacza, że będziesz musiał ręcznie uruchamiać i zatrzymywać sterownik:
 
-- Any value for [port](configuration#port).
-- Any value different from the default for [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
-- Any value for both [user](configuration#user) and [key](configuration#key).
+- Jakakolwiek wartość dla [port](configuration#port).
+- Jakakolwiek wartość różna od domyślnej dla [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
+- Jakakolwiek wartość zarówno dla [user](configuration#user), jak i [key](configuration#key).
 
-## Manual setup
+## Ręczna konfiguracja
 
-The following describes how you can still set up each driver individually. You can find a list with all drivers in the [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver) README.
+Poniżej opisano, jak nadal możesz skonfigurować każdy sterownik indywidualnie. Listę wszystkich sterowników można znaleźć w README [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
 
 :::tip
 
-If you are looking to set up mobile and other UI platforms, have a look into our [Appium Setup](appium) guide.
+Jeśli szukasz informacji jak skonfigurować platformy mobilne i inne platformy UI, zapoznaj się z naszym przewodnikiem [Konfiguracja Appium](appium).
 
 :::
 
 ### Chromedriver
 
-To automate Chrome you can download Chromedriver directly on the [project website](http://chromedriver.chromium.org/downloads) or through the NPM package:
+Aby zautomatyzować Chrome, możesz pobrać Chromedriver bezpośrednio ze [strony projektu](http://chromedriver.chromium.org/downloads) lub przez pakiet NPM:
 
 ```bash npm2yarn
 npm install -g chromedriver
 ```
 
-You can then start it via:
+Następnie możesz go uruchomić za pomocą:
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,17 +101,17 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-To automate Firefox download the latest version of `geckodriver` for your environment and unpack it in your project directory:
+Aby zautomatyzować Firefox, pobierz najnowszą wersję `geckodriver` dla swojego środowiska i rozpakuj ją w katalogu projektu:
 
 <Tabs
   defaultValue="npm"
   values={[
     {label: 'NPM', value: 'npm'},
- {label: 'Curl', value: 'curl'},
- {label: 'Brew', value: 'brew'},
- {label: 'Windows (64 bit / Chocolatey)', value: 'chocolatey'},
- {label: 'Windows (64 bit / Powershell) DevTools', value: 'powershell'},
- ]
+    {label: 'Curl', value: 'curl'},
+    {label: 'Brew', value: 'brew'},
+    {label: 'Windows (64 bit / Chocolatey)', value: 'chocolatey'},
+    {label: 'Windows (64 bit / Powershell) DevTools', value: 'powershell'},
+  ]
 }>
 <TabItem value="npm">
 
@@ -175,7 +175,7 @@ cd $unzipped_file
 </TabItem>
 </Tabs>
 
-**Note:** Other `geckodriver` releases are available [here](https://github.com/mozilla/geckodriver/releases). After download you can start the driver via:
+**Uwaga:** Inne wersje `geckodriver` są dostępne [tutaj](https://github.com/mozilla/geckodriver/releases). Po pobraniu możesz uruchomić sterownik za pomocą:
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -183,7 +183,7 @@ cd $unzipped_file
 
 ### Edgedriver
 
-You can download the driver for Microsoft Edge on the [project website](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) or as NPM package via:
+Możesz pobrać sterownik dla Microsoft Edge na [stronie projektu](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) lub jako pakiet NPM za pomocą:
 
 ```sh
 npm install -g edgedriver
@@ -192,7 +192,7 @@ edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b177
 
 ### Safaridriver
 
-Safaridriver comes pre-installed on your MacOS and can be started directly via:
+Safaridriver jest preinstalowany na macOS i można go uruchomić bezpośrednio za pomocą:
 
 ```sh
 safaridriver -p 4444

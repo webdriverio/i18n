@@ -4,9 +4,7 @@ title: clearValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/clearValue.ts
 ---
 
-Cancella il valore di un elemento input o textarea. Assicurati di poter interagire con
-l'elemento prima di utilizzare questo comando. Non puoi cancellare un elemento input che è disabilitato o in
-modalità di sola lettura.
+Cancella il valore di un elemento input o textarea. Assicurati di poter interagire con l'elemento prima di utilizzare questo comando. Non puoi cancellare un elemento input che è disabilitato o in modalità di sola lettura.
 
 ##### Utilizzo
 

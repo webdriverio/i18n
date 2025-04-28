@@ -6,13 +6,13 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 DOM要素からテキストコンテンツを取得します。テキストを取得したい要素が[操作可能](http://www.w3.org/TR/webdriver/#interactable)であることを確認してください。そうでない場合は、戻り値として空の文字列が返されます。要素が無効化されているか表示されていない場合でも、テキストコンテンツを受け取りたい場合は、回避策として[getHTML](https://webdriver.io/docs/api/element/getHTML)を使用してください。
 
-##### 使用法
+##### Usage
 
 ```js
 $(selector).getText()
 ```
 
-##### 例
+##### Examples
 
 ```html title="index.html"
 <div id="elem">
@@ -41,7 +41,7 @@ it('get content from table cell', async () => {
 });
 ```
 
-##### 戻り値
+##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:** 選択した要素のコンテンツ（すべてのHTMLタグは削除されます）
+            **<code><var>return</var></code>:**  選択した要素のコンテンツ（すべてのHTMLタグは削除されます）

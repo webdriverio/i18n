@@ -5,33 +5,33 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 :::warning
-Il comando `executeAsync` è obsoleto e sarà rimosso in una versione futura.
-Si prega di utilizzare il comando `execute` che offre un migliore supporto per
+Il comando `executeAsync` è deprecato e sarà rimosso in una versione futura.
+Si prega di utilizzare il comando `execute` al suo posto, poiché fornisce un migliore supporto per
 la gestione degli errori tramite `async`/`await`.
 :::
 
-Inserisce un frammento di JavaScript nella pagina per l'esecuzione nel contesto del frame
-attualmente selezionato utilizzando l'elemento dato come ambito, poiché è nell'ambito dell'elemento
-significa che WebdriverIO attenderà automaticamente che l'elemento esista prima di eseguire lo script.
+Inietta un frammento di JavaScript nella pagina per l'esecuzione nel contesto del frame
+attualmente selezionato usando l'elemento dato come ambito, poiché è nell'ambito dell'elemento significa che WebdriverIO
+attenderà automaticamente che l'elemento esista prima di eseguire lo script.
 Si presume che lo script eseguito sia asincrono e deve segnalare che è terminato invocando
 la callback fornita, che è sempre fornita come argomento finale alla funzione. Il valore
-passato a questa callback sarà restituito al client.
+di questa callback sarà restituito al client.
 
-I comandi di script asincroni non possono estendersi su più caricamenti di pagina. Se viene generato un evento di scaricamento mentre
-si attende il risultato di uno script, un errore dovrebbe essere restituito al client.
+I comandi di script asincroni non possono estendersi oltre i caricamenti di pagina. Se viene attivato un evento di scaricamento durante l'attesa
+del risultato di uno script, un errore dovrebbe essere restituito al client.
 
 L'argomento script definisce lo script da eseguire sotto forma di corpo di una funzione. La funzione sarà
-invocata con l'array args fornito e i valori possono essere accessibili tramite l'oggetto arguments
+invocata con l'array di argomenti fornito e i valori possono essere accessibili tramite l'oggetto arguments
 nell'ordine specificato. L'argomento finale sarà sempre una funzione di callback che deve essere invocata
 per segnalare che lo script è terminato.
 
-Gli argomenti possono essere qualsiasi JSON-primitivo, array o oggetto JSON. Gli oggetti JSON che definiscono un riferimento
-WebElement saranno convertiti nell'elemento DOM corrispondente. Allo stesso modo, qualsiasi WebElements nel risultato
+Gli argomenti possono essere qualsiasi primitiva JSON, array o oggetto JSON. Gli oggetti JSON che definiscono un riferimento WebElement
+saranno convertiti nell'elemento DOM corrispondente. Allo stesso modo, qualsiasi WebElements nel risultato
 dello script sarà restituito al client come oggetti JSON WebElement.
 
 :::caution
 
-Si prega di utilizzare `execute` invece
+Per favore, usa `execute` invece
 :::
 
 ##### Utilizzo

@@ -4,7 +4,7 @@ title: 復元
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/restore.ts
 ---
 
-このコマンドは、`emulate`コマンドを使用して設定された特定または全てのエミュレートされた動作を復元します。
+このコマンドは、`emulate`コマンドを使用して設定された特定のまたはすべてのエミュレートされた動作を復元します。
 
 ##### 使用法
 

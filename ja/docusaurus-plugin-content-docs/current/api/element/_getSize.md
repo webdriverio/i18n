@@ -1,6 +1,6 @@
 ---
 id: getSize
-title: getSize（サイズ取得）
+title: getSize
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getSize.ts
 ---
 
@@ -22,9 +22,9 @@ $(selector).getSize(prop)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>prop</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>prop</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
-      <td>取得するサイズ [任意] （"width"または"height"）</td>
+      <td>取得するサイズ [オプション] ("width"または"height")</td>
     </tr>
   </tbody>
 </table>
@@ -50,4 +50,4 @@ it('should demonstrate the getSize command', async () => {
 ##### 戻り値
 
 - **&lt;Object|Number&gt;**
-            **<code><var>return</var></code>:**     要求された要素のサイズ (`{ width: <Number>, height: <Number> }`) または、propパラメータが指定された場合は実際の幅/高さの数値
+            **<code><var>return</var></code>:**     要求された要素のサイズ (`{ width: <Number>, height: <Number> }`) または、propパラメータが指定された場合は実際の幅/高さを数値で返します

@@ -26,7 +26,7 @@ browser.getCookies(filter)
     <tr>
       <td><code><var>filter</var></code></td>
       <td>`remote.StorageCookieFilter`</td>
-      <td>un oggetto che permette di filtrare i cookie con attributi specifici</td>
+      <td>un oggetto che consente di filtrare i cookie con attributi specifici</td>
     </tr>
   </tbody>
 </table>

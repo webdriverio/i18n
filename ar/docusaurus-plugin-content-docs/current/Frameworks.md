@@ -1,19 +1,19 @@
 ---
 id: frameworks
-title: الأطر
+title: الأُطر
 ---
 
-يتمتع مشغل WebdriverIO بدعم مدمج لـ [Mocha](http://mochajs.org/) و [Jasmine](http://jasmine.github.io/) و [Cucumber.js](https://cucumber.io/). يمكنك أيضًا دمجه مع أطر عمل مفتوحة المصدر من جهات خارجية، مثل [Serenity/JS](#using-serenityjs).
+يمتلك مشغل WebdriverIO دعمًا مدمجًا لـ [Mocha](http://mochajs.org/)، و [Jasmine](http://jasmine.github.io/)، و [Cucumber.js](https://cucumber.io/). يمكنك أيضًا دمجه مع أطر عمل مفتوحة المصدر من طرف ثالث، مثل [Serenity/JS](#using-serenityjs).
 
 :::tip دمج WebdriverIO مع أطر الاختبار
 لدمج WebdriverIO مع إطار اختبار، تحتاج إلى حزمة محول متوفرة على NPM.
-لاحظ أنه يجب تثبيت حزمة المحول في نفس موقع تثبيت WebdriverIO.
-لذلك، إذا قمت بتثبيت WebdriverIO عالميًا، فتأكد من تثبيت حزمة المحول عالميًا أيضًا.
+لاحظ أنه يجب تثبيت حزمة المحول في نفس الموقع الذي تم فيه تثبيت WebdriverIO.
+لذلك، إذا قمت بتثبيت WebdriverIO بشكل عام، تأكد من تثبيت حزمة المحول بشكل عام أيضًا.
 :::
 
-يتيح لك دمج WebdriverIO مع إطار اختبار الوصول إلى مثيل WebDriver باستخدام المتغير العالمي `browser`
+يتيح لك دمج WebdriverIO مع إطار اختبار الوصول إلى مثيل WebDriver باستخدام متغير `browser` العام
 في ملفات المواصفات أو تعريفات الخطوات الخاصة بك.
-لاحظ أن WebdriverIO سيتعامل أيضًا مع بدء وإنهاء جلسة Selenium، لذلك لا تحتاج إلى القيام بذلك
+لاحظ أن WebdriverIO سيتولى أيضًا مسؤولية تهيئة وإنهاء جلسة Selenium، لذلك لا تحتاج إلى القيام بذلك
 بنفسك.
 
 ## استخدام Mocha
@@ -24,7 +24,7 @@ title: الأطر
 npm install @wdio/mocha-framework --save-dev
 ```
 
-افتراضيًا، يوفر WebdriverIO [مكتبة تأكيد](assertion) مدمجة يمكنك البدء بها على الفور:
+بشكل افتراضي، يوفر WebdriverIO [مكتبة تأكيد](assertion) مدمجة يمكنك استخدامها فورًا:
 
 ```js
 describe('my awesome website', () => {
@@ -35,9 +35,9 @@ describe('my awesome website', () => {
 })
 ```
 
-يدعم WebdriverIO واجهات Mocha `BDD` (افتراضيًا) و `TDD` و `QUnit` [interfaces](https://mochajs.org/#interfaces).
+يدعم WebdriverIO واجهات Mocha `BDD` (الافتراضية)، و `TDD`، و `QUnit` [interfaces](https://mochajs.org/#interfaces).
 
-إذا كنت ترغب في كتابة المواصفات الخاصة بك بنمط TDD، قم بتعيين خاصية `ui` في تكوين `mochaOpts` الخاص بك إلى `tdd`. الآن يجب كتابة ملفات الاختبار الخاصة بك كما يلي:
+إذا كنت ترغب في كتابة مواصفاتك بنمط TDD، قم بتعيين خاصية `ui` في تكوين `mochaOpts` الخاص بك إلى `tdd`. الآن يجب كتابة ملفات الاختبار الخاصة بك على النحو التالي:
 
 ```js
 suite('my awesome website', () => {
@@ -48,25 +48,25 @@ suite('my awesome website', () => {
 })
 ```
 
-إذا كنت تريد تحديد إعدادات أخرى خاصة بـ Mocha، يمكنك القيام بذلك باستخدام المفتاح `mochaOpts` في ملف التكوين الخاص بك. يمكن العثور على قائمة بجميع الخيارات على [موقع مشروع Mocha](https://mochajs.org/api/mocha).
+إذا كنت ترغب في تحديد إعدادات أخرى خاصة بـ Mocha، يمكنك القيام بذلك باستخدام مفتاح `mochaOpts` في ملف التكوين الخاص بك. يمكن العثور على قائمة بجميع الخيارات على [موقع مشروع Mocha](https://mochajs.org/api/mocha).
 
-__ملاحظة:__ لا يدعم WebdriverIO الاستخدام المهمل لمكالمات استدعاء `done` في Mocha:
+__ملاحظة:__ لا يدعم WebdriverIO الاستخدام المهمل لمعاودات استدعاء `done` في Mocha:
 
 ```js
 it('should test something', (done) => {
-    done() // يلقي خطأ "done is not a function"
+    done() // يرمي خطأ "done is not a function"
 })
 ```
 
 ### خيارات Mocha
 
-يمكن تطبيق الخيارات التالية في ملف `wdio.conf.js` الخاص بك لتكوين بيئة Mocha الخاصة بك. __ملاحظة:__ ليست كل الخيارات مدعومة، على سبيل المثال، سيؤدي تطبيق خيار `parallel` إلى حدوث خطأ لأن مشغل اختبار WDIO له طريقته الخاصة لتشغيل الاختبارات بالتوازي. يمكنك تمرير خيارات الإطار هذه كمعاملات، على سبيل المثال:
+يمكن تطبيق الخيارات التالية في ملف `wdio.conf.js` الخاص بك لتكوين بيئة Mocha الخاصة بك. __ملاحظة:__ لا يتم دعم جميع الخيارات، على سبيل المثال، سيؤدي تطبيق خيار `parallel` إلى حدوث خطأ لأن مشغل اختبار WDIO لديه طريقته الخاصة لتشغيل الاختبارات بالتوازي. يمكنك تمرير خيارات الإطار هذه كوسيطات، على سبيل المثال:
 
 ```sh
 wdio run wdio.conf.ts --mochaOpts.grep "my test" --mochaOpts.bail --no-mochaOpts.checkLeaks
 ```
 
-سيمرر هذا خيارات Mocha التالية:
+هذا سيمرر خيارات Mocha التالية:
 
 ```ts
 {
@@ -76,16 +76,16 @@ wdio run wdio.conf.ts --mochaOpts.grep "my test" --mochaOpts.bail --no-mochaOpts
 }
 ```
 
-يتم دعم خيارات Mocha التالية:
+خيارات Mocha التالية مدعومة:
 
 #### require
-خيار `require` مفيد عندما تريد إضافة أو توسيع بعض الوظائف الأساسية (خيار إطار عمل WebdriverIO).
+يُعد خيار `require` مفيدًا عندما تريد إضافة أو توسيع بعض الوظائف الأساسية (خيار إطار WebdriverIO).
 
 النوع: `string|string[]`<br />
 الافتراضي: `[]`
 
 #### compilers
-استخدم الوحدة (الوحدات) المعطاة لتجميع الملفات. سيتم تضمين المجمعات قبل المتطلبات (خيار إطار عمل WebdriverIO).
+استخدم الوحدة (الوحدات) المحددة لتجميع الملفات. سيتم تضمين المترجمات قبل المتطلبات (خيار إطار WebdriverIO).
 
 النوع: `string[]`<br />
 الافتراضي: `[]`
@@ -103,19 +103,19 @@ wdio run wdio.conf.ts --mochaOpts.grep "my test" --mochaOpts.bail --no-mochaOpts
 الافتراضي: `false`
 
 #### checkLeaks
-التحقق من تسربات المتغيرات العالمية.
+التحقق من تسريبات المتغيرات العالمية.
 
 النوع: `boolean`<br />
 الافتراضي: `false`
 
 #### delay
-تأخير تنفيذ المجموعة الرئيسية.
+تأخير تنفيذ المجموعة الجذرية.
 
 النوع: `boolean`<br />
 الافتراضي: `false`
 
 #### fgrep
-تصفية الاختبار بالسلسلة المعطاة.
+فلتر الاختبار بالسلسلة المحددة.
 
 النوع: `string`<br />
 الافتراضي: `null`
@@ -133,7 +133,7 @@ wdio run wdio.conf.ts --mochaOpts.grep "my test" --mochaOpts.bail --no-mochaOpts
 الافتراضي: `false`
 
 #### fullTrace
-تتبع كامل للمكدس عند الفشل.
+تتبع الكامل عند الفشل.
 
 النوع: `boolean`<br />
 الافتراضي: `false`
@@ -145,13 +145,13 @@ wdio run wdio.conf.ts --mochaOpts.grep "my test" --mochaOpts.bail --no-mochaOpts
 الافتراضي: `[]`
 
 #### grep
-تصفية الاختبار باستخدام التعبير العادي المعطى.
+فلتر الاختبار بالتعبير النمطي المحدد.
 
 النوع: `RegExp|string`<br />
 الافتراضي: `null`
 
 #### invert
-عكس مطابقات مرشح الاختبار.
+عكس تطابقات فلتر الاختبار.
 
 النوع: `boolean`<br />
 الافتراضي: `false`
@@ -163,7 +163,7 @@ wdio run wdio.conf.ts --mochaOpts.grep "my test" --mochaOpts.bail --no-mochaOpts
 الافتراضي: `0`
 
 #### timeout
-قيمة عتبة المهلة (بالمللي ثانية).
+قيمة الحد الزمني للمهلة (بالميللي ثانية).
 
 النوع: `number`<br />
 الافتراضي: `30000`
@@ -180,13 +180,13 @@ npm install @wdio/jasmine-framework --save-dev
 
 ### خيارات Jasmine
 
-يمكن تطبيق الخيارات التالية في ملف `wdio.conf.js` الخاص بك لتكوين بيئة Jasmine الخاصة بك باستخدام خاصية `jasmineOpts`. لمزيد من المعلومات حول خيارات التكوين هذه، تحقق من [وثائق Jasmine](https://jasmine.github.io/api/edge/Configuration). يمكنك تمرير خيارات الإطار هذه كمعاملات، على سبيل المثال:
+يمكن تطبيق الخيارات التالية في ملف `wdio.conf.js` الخاص بك لتكوين بيئة Jasmine الخاصة بك باستخدام خاصية `jasmineOpts`. لمزيد من المعلومات حول خيارات التكوين هذه، راجع [وثائق Jasmine](https://jasmine.github.io/api/edge/Configuration). يمكنك تمرير خيارات الإطار هذه كوسيطات، على سبيل المثال:
 
 ```sh
 wdio run wdio.conf.ts --jasmineOpts.grep "my test" --jasmineOpts.failSpecWithNoExpectations --no-jasmineOpts.random
 ```
 
-سيمرر هذا خيارات Mocha التالية:
+هذا سيمرر خيارات Mocha التالية:
 
 ```ts
 {
@@ -196,7 +196,7 @@ wdio run wdio.conf.ts --jasmineOpts.grep "my test" --jasmineOpts.failSpecWithNoE
 }
 ```
 
-يتم دعم خيارات Jasmine التالية:
+خيارات Jasmine التالية مدعومة:
 
 #### defaultTimeoutInterval
 فترة المهلة الافتراضية لعمليات Jasmine.
@@ -205,7 +205,7 @@ wdio run wdio.conf.ts --jasmineOpts.grep "my test" --jasmineOpts.failSpecWithNoE
 الافتراضي: `60000`
 
 #### helpers
-مصفوفة من مسارات الملفات (وأنماط glob) بالنسبة إلى spec_dir لتضمينها قبل مواصفات jasmine.
+مصفوفة من مسارات الملفات (والتعبيرات النمطية) نسبة إلى spec_dir ليتم تضمينها قبل مواصفات jasmine.
 
 النوع: `string[]`<br />
 الافتراضي: `[]`
@@ -217,25 +217,25 @@ wdio run wdio.conf.ts --jasmineOpts.grep "my test" --jasmineOpts.failSpecWithNoE
 الافتراضي: `[]`
 
 #### random
-ما إذا كان سيتم تنفيذ المواصفات بترتيب عشوائي.
+ما إذا كان سيتم عشوائية ترتيب تنفيذ المواصفات.
 
 النوع: `boolean`<br />
 الافتراضي: `true`
 
 #### seed
-البذرة التي ستستخدم كأساس للعشوائية. تتسبب البذرة الفارغة في تحديد البذرة بشكل عشوائي في بداية التنفيذ.
+البذرة المستخدمة كأساس للعشوائية. قيمة null تتسبب في تحديد البذرة بشكل عشوائي في بداية التنفيذ.
 
 النوع: `Function`<br />
 الافتراضي: `null`
 
 #### failSpecWithNoExpectations
-ما إذا كان سيتم إفشال المواصفات إذا لم تقم بتشغيل أي توقعات. افتراضيًا، يتم الإبلاغ عن المواصفات التي لم تقم بتشغيل أي توقعات على أنها نجحت. سيؤدي تعيين هذا الخيار إلى `true` إلى الإبلاغ عن هذه المواصفات كفشل.
+ما إذا كان سيتم فشل المواصفات إذا لم تقم بتشغيل أي توقعات. افتراضيًا، يتم الإبلاغ عن المواصفات التي لم تشغل أي توقعات كاجتياز. تعيين هذه القيمة إلى true سيبلغ عن هذه المواصفات كفشل.
 
 النوع: `boolean`<br />
 الافتراضي: `false`
 
 #### oneFailurePerSpec
-ما إذا كان سيتم التسبب في أن يكون للمواصفات فشل توقع واحد فقط.
+ما إذا كان سيتم تسبب المواصفات في أن يكون لها فشل واحد فقط للتوقع.
 
 النوع: `boolean`<br />
 الافتراضي: `false`
@@ -247,13 +247,13 @@ wdio run wdio.conf.ts --jasmineOpts.grep "my test" --jasmineOpts.failSpecWithNoE
 الافتراضي: `(spec) => true`
 
 #### grep
-تشغيل الاختبارات التي تطابق هذه السلسلة أو التعبير العادي فقط. (ينطبق فقط إذا لم يتم تعيين دالة `specFilter` مخصصة)
+تشغيل الاختبارات التي تطابق هذه السلسلة أو التعبير النمطي فقط. (ينطبق فقط إذا لم يتم تعيين دالة `specFilter` مخصصة)
 
 النوع: `string|Regexp`<br />
 الافتراضي: `null`
 
 #### invertGrep
-إذا كانت قيمتها `true`، فإنها تعكس الاختبارات المطابقة وتقوم فقط بتشغيل الاختبارات التي لا تتطابق مع التعبير المستخدم في `grep`. (ينطبق فقط إذا لم يتم تعيين دالة `specFilter` مخصصة)
+إذا كانت القيمة true، فإنها تعكس الاختبارات المتطابقة وتقوم فقط بتشغيل الاختبارات التي لا تتطابق مع التعبير المستخدم في `grep`. (ينطبق فقط إذا لم يتم تعيين دالة `specFilter` مخصصة)
 
 النوع: `boolean`<br />
 الافتراضي: `false`
@@ -268,18 +268,18 @@ npm install @wdio/cucumber-framework --save-dev
 
 إذا كنت ترغب في استخدام Cucumber، قم بتعيين خاصية `framework` إلى `cucumber` عن طريق إضافة `framework: 'cucumber'` إلى [ملف التكوين](configurationfile).
 
-يمكن تقديم خيارات لـ Cucumber في ملف التكوين بـ `cucumberOpts`. تحقق من القائمة الكاملة للخيارات [هنا](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options).
+يمكن تقديم خيارات Cucumber في ملف التكوين باستخدام `cucumberOpts`. تحقق من القائمة الكاملة للخيارات [هنا](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options).
 
-للبدء بسرعة مع Cucumber، ألق نظرة على مشروع [`cucumber-boilerplate`](https://github.com/webdriverio/cucumber-boilerplate) الذي يأتي مع جميع تعريفات الخطوات التي تحتاجها للبدء، وستكتب ملفات الميزات على الفور.
+للبدء بسرعة مع Cucumber، ألق نظرة على مشروع [`cucumber-boilerplate`](https://github.com/webdriverio/cucumber-boilerplate) الذي يأتي مع جميع تعريفات الخطوات التي تحتاجها للبدء، وستتمكن من كتابة ملفات الميزات فورًا.
 
 ### خيارات Cucumber
 
-يمكن تطبيق الخيارات التالية في ملف `wdio.conf.js` الخاص بك لتكوين بيئة Cucumber باستخدام خاصية `cucumberOpts`:
+يمكن تطبيق الخيارات التالية في ملف `wdio.conf.js` الخاص بك لتكوين بيئة Cucumber الخاصة بك باستخدام خاصية `cucumberOpts`:
 
 :::tip ضبط الخيارات من خلال سطر الأوامر
-يمكن تحديد `cucumberOpts`، مثل `tags` المخصصة لتصفية الاختبارات، من خلال سطر الأوامر. يتم تحقيق ذلك باستخدام تنسيق `cucumberOpts.{optionName}="value"`.
+يمكن تحديد خيارات `cucumberOpts`، مثل `tags` المخصصة لتصفية الاختبارات، من خلال سطر الأوامر. يتم ذلك باستخدام صيغة `cucumberOpts.{optionName}="value"`.
 
-على سبيل المثال، إذا كنت تريد تشغيل الاختبارات التي تحمل العلامة `@smoke` فقط، يمكنك استخدام الأمر التالي:
+على سبيل المثال، إذا كنت ترغب في تشغيل الاختبارات المميزة بالعلامة `@smoke` فقط، يمكنك استخدام الأمر التالي:
 
 ```sh
 # عندما تريد فقط تشغيل الاختبارات التي تحمل العلامة "@smoke"
@@ -292,7 +292,7 @@ npx wdio run ./wdio.conf.js --cucumberOpts.name="some scenario name" --cucumberO
 :::
 
 #### backtrace
-إظهار التتبع الكامل للأخطاء.
+عرض التتبع الكامل للأخطاء.
 
 النوع: `Boolean`<br />
 الافتراضي: `true`
@@ -321,19 +321,19 @@ cucumberOpts: {
  ```
 
 #### failFast
-إيقاف التشغيل عند أول فشل.
+إلغاء التشغيل عند حدوث أول فشل.
 
 النوع: `boolean`<br />
 الافتراضي: `false`
 
 #### name
-تنفيذ السيناريوهات التي يتطابق اسمها مع التعبير فقط (قابل للتكرار).
+تنفيذ السيناريوهات التي تتطابق أسماؤها مع التعبير فقط (قابل للتكرار).
 
 النوع: `RegExp[]`<br />
 الافتراضي: `[]`
 
 #### require
-طلب الملفات التي تحتوي على تعريفات الخطوات الخاصة بك قبل تنفيذ الميزات. يمكنك أيضًا تحديد نمط عام لتعريفات الخطوات الخاصة بك.
+طلب الملفات التي تحتوي على تعريفات الخطوات الخاصة بك قبل تنفيذ الميزات. يمكنك أيضًا تحديد تعبير نمطي لتعريفات الخطوات الخاصة بك.
 
 النوع: `string[]`<br />
 الافتراضي: `[]`
@@ -346,7 +346,7 @@ cucumberOpts: {
 ```
 
 #### import
-المسارات إلى حيث يوجد رمز الدعم الخاص بك، لـ ESM.
+المسارات إلى مكان تواجد كود الدعم الخاص بك، لـ ESM.
 
 النوع: `String[]`<br />
 الافتراضي: `[]`
@@ -365,26 +365,26 @@ cucumberOpts: {
 الافتراضي: `false`
 
 #### tags
-تنفيذ الميزات أو السيناريوهات التي تحتوي على علامات تطابق التعبير فقط.
+تنفيذ الميزات أو السيناريوهات ذات العلامات التي تتطابق مع التعبير فقط.
 يرجى الاطلاع على [وثائق Cucumber](https://docs.cucumber.io/cucumber/api/#tag-expressions) لمزيد من التفاصيل.
 
 النوع: `String`<br />
 الافتراضي: ``
 
 #### timeout
-المهلة بالمللي ثانية لتعريفات الخطوات.
+المهلة بالميللي ثانية لتعريفات الخطوات.
 
 النوع: `Number`<br />
 الافتراضي: `30000`
 
 #### retry
-تحديد عدد مرات إعادة محاولة حالات الاختبار الفاشلة.
+حدد عدد مرات إعادة محاولة حالات الاختبار الفاشلة.
 
 النوع: `Number`<br />
 الافتراضي: `0`
 
 #### retryTagFilter
-إعادة محاولة الميزات أو السيناريوهات التي تحتوي على علامات تطابق التعبير فقط (قابل للتكرار). يتطلب هذا الخيار تحديد '--retry'.
+إعادة محاولة الميزات أو السيناريوهات ذات العلامات التي تتطابق مع التعبير فقط (قابل للتكرار). يتطلب هذا الخيار تحديد '--retry'.
 
 النوع: `RegExp`
 
@@ -407,7 +407,7 @@ cucumberOpts: {
 النوع: `string[]`<br />
 
 #### formatOptions
-الخيارات التي سيتم توفيرها للمنسقين
+الخيارات التي سيتم توفيرها للمنسقات
 
 النوع: `object`<br />
 
@@ -417,7 +417,7 @@ cucumberOpts: {
 النوع: `Boolean`<br />
 الافتراضي: `false`
 
-***يرجى ملاحظة أن هذا خيار خاص بـ @wdio/cucumber-framework وغير معترف به من قبل cucumber-js نفسه***<br/>
+***يرجى ملاحظة أن هذا هو خيار محدد لـ @wdio/cucumber-framework وغير معترف به بواسطة cucumber-js نفسه***<br/>
 
 #### ignoreUndefinedDefinitions
 التعامل مع التعريفات غير المحددة كتحذيرات.
@@ -425,7 +425,7 @@ cucumberOpts: {
 النوع: `Boolean`<br />
 الافتراضي: `false`
 
-***يرجى ملاحظة أن هذا خيار خاص بـ @wdio/cucumber-framework وغير معترف به من قبل cucumber-js نفسه***<br/>
+***يرجى ملاحظة أن هذا هو خيار محدد لـ @wdio/cucumber-framework وغير معترف به بواسطة cucumber-js نفسه***<br/>
 
 #### failAmbiguousDefinitions
 التعامل مع التعريفات الغامضة كأخطاء.
@@ -433,10 +433,10 @@ cucumberOpts: {
 النوع: `Boolean`<br />
 الافتراضي: `false`
 
-***يرجى ملاحظة أن هذا خيار خاص بـ @wdio/cucumber-framework وغير معترف به من قبل cucumber-js نفسه***<br/>
+***يرجى ملاحظة أن هذا هو خيار محدد لـ @wdio/cucumber-framework وغير معترف به بواسطة cucumber-js نفسه***<br/>
 
 #### tagExpression
-تنفيذ الميزات أو السيناريوهات التي تحتوي على علامات تطابق التعبير فقط.
+تنفيذ الميزات أو السيناريوهات ذات العلامات التي تتطابق مع التعبير فقط.
 يرجى الاطلاع على [وثائق Cucumber](https://docs.cucumber.io/cucumber/api/#tag-expressions) لمزيد من التفاصيل.
 
 النوع: `String`<br />
@@ -450,28 +450,28 @@ cucumberOpts: {
 النوع: `string[]`<br />
 الافتراضي: `[]`
 
-***يرجى ملاحظة أنه يتم دعم قيم محددة فقط (worldParameters و name و retryTagFilter) داخل الملفات الشخصية، حيث أن `cucumberOpts` لها الأولوية. بالإضافة إلى ذلك، عند استخدام ملف شخصي، تأكد من عدم الإعلان عن القيم المذكورة داخل `cucumberOpts`.***
+***يرجى ملاحظة أنه يتم دعم قيم محددة فقط (worldParameters، name، retryTagFilter) داخل الملفات الشخصية، حيث يأخذ `cucumberOpts` الأسبقية. بالإضافة إلى ذلك، عند استخدام ملف شخصي، تأكد من عدم الإعلان عن القيم المذكورة ضمن `cucumberOpts`.***
 
 ### تخطي الاختبارات في cucumber
 
-لاحظ أنه إذا كنت تريد تخطي اختبار باستخدام قدرات تصفية اختبار cucumber العادية المتوفرة في `cucumberOpts`، فستفعل ذلك لجميع المتصفحات والأجهزة المكونة في القدرات. من أجل أن تكون قادرًا على تخطي السيناريوهات فقط لمجموعات قدرات محددة دون بدء جلسة إذا لم تكن ضرورية، يوفر webdriverio بناء العلامة المحدد التالي لـ cucumber:
+لاحظ أنه إذا كنت ترغب في تخطي اختبار باستخدام قدرات تصفية اختبار cucumber العادية المتوفرة في `cucumberOpts`، فستقوم بذلك لجميع المتصفحات والأجهزة المكونة في القدرات. لكي تتمكن من تخطي السيناريوهات فقط لتركيبات قدرات محددة دون بدء جلسة إذا لم تكن ضرورية، يوفر webdriverio بنية العلامة المحددة التالية لـ cucumber:
 
 `@skip([condition])`
 
-حيث تكون الشرط عبارة عن مجموعة اختيارية من خصائص القدرات مع قيمها التي عندما تتطابق **جميعها** مع السيناريو المميز بالعلامة أو الميزة سيتم تخطيها. بالطبع يمكنك إضافة العديد من العلامات إلى السيناريوهات والميزات لتخطي الاختبارات في ظل ظروف مختلفة.
+حيث الشرط هو اختياري تجميع لخصائص القدرات مع قيمها التي عندما تتطابق **جميعها** ستتسبب في تخطي السيناريو أو الميزة المميزة. بالطبع يمكنك إضافة عدة علامات إلى السيناريوهات والميزات لتخطي الاختبارات في ظل عدة شروط مختلفة.
 
-يمكنك أيضًا استخدام التعليق التوضيحي '@skip' لتخطي الاختبارات دون تغيير `tagExpression'. في هذه الحالة سيتم عرض الاختبارات المتخطاة في تقرير الاختبار.
+يمكنك أيضًا استخدام تعليق '@skip' لتخطي الاختبارات دون تغيير `tagExpression'. في هذه الحالة سيتم عرض الاختبارات المتخطاة في تقرير الاختبار.
 
-إليك بعض الأمثلة على هذا البناء:
-- `@skip` أو `@skip()`: سيتم دائمًا تخطي العنصر المميز بالعلامة
-- `@skip(browserName="chrome")`: لن يتم تنفيذ الاختبار على متصفحات chrome.
-- `@skip(browserName="firefox";platformName="linux")`: سيتم تخطي الاختبار في تنفيذات firefox على linux.
-- `@skip(browserName=["chrome","firefox"])`: سيتم تخطي العناصر المميزة بالعلامة لكل من متصفحات chrome و firefox.
-- `@skip(browserName=/i.*explorer/)`: سيتم تخطي القدرات ذات المتصفحات التي تطابق التعبير العادي (مثل `iexplorer` و `internet explorer` و `internet-explorer` وما إلى ذلك).
+فيما يلي بعض الأمثلة على هذه البنية:
+- `@skip` أو `@skip()`: سيتم دائمًا تخطي العنصر المميز
+- `@skip(browserName="chrome")`: لن يتم تنفيذ الاختبار ضد متصفحات chrome.
+- `@skip(browserName="firefox";platformName="linux")`: سيتم تخطي الاختبار في عمليات تنفيذ firefox على نظام linux.
+- `@skip(browserName=["chrome","firefox"])`: سيتم تخطي العناصر المميزة لكل من متصفحات chrome و firefox.
+- `@skip(browserName=/i.*explorer/)`: سيتم تخطي القدرات ذات المتصفحات التي تتطابق مع التعبير النمطي (مثل `iexplorer`، `internet explorer`، `internet-explorer`، ...).
 
 ### استيراد مساعد تعريف الخطوة
 
-لاستخدام مساعد تعريف الخطوة مثل `Given` و `When` أو `Then` أو الخطافات، من المفترض أن تقوم باستيرادها من `@cucumber/cucumber`، على سبيل المثال:
+لاستخدام مساعد تعريف الخطوة مثل `Given` أو `When` أو `Then` أو الخطافات، عليك استيرادها من `@cucumber/cucumber`، على سبيل المثال:
 
 ```js
 import { Given, When, Then } from '@cucumber/cucumber'
@@ -483,21 +483,21 @@ import { Given, When, Then } from '@cucumber/cucumber'
 import { Given, When, Then, world, context } from '@wdio/cucumber-framework'
 ```
 
-هذا يضمن أنك تستخدم المساعدين المناسبين ضمن إطار عمل WebdriverIO ويسمح لك باستخدام إصدار Cucumber مستقل لأنواع أخرى من الاختبارات.
+هذا يضمن أنك تستخدم المساعدات الصحيحة داخل إطار WebdriverIO ويسمح لك باستخدام إصدار Cucumber مستقل لأنواع أخرى من الاختبارات.
 
 ### نشر التقرير
 
-يوفر Cucumber ميزة لنشر تقارير تشغيل الاختبار الخاصة بك على `https://reports.cucumber.io/`، والتي يمكن التحكم فيها إما عن طريق تعيين علامة `publish` في `cucumberOpts` أو عن طريق تكوين متغير البيئة `CUCUMBER_PUBLISH_TOKEN`. ومع ذلك، عندما تستخدم `WebdriverIO` لتنفيذ الاختبار، هناك قيد في هذا النهج. فهو يقوم بتحديث التقارير بشكل منفصل لكل ملف ميزة، مما يجعل من الصعب عرض تقرير موحد.
+توفر Cucumber ميزة لنشر تقارير تشغيل الاختبار الخاصة بك على `https://reports.cucumber.io/`، والتي يمكن التحكم فيها إما عن طريق تعيين علامة `publish` في `cucumberOpts` أو عن طريق تكوين متغير البيئة `CUCUMBER_PUBLISH_TOKEN`. ومع ذلك، عندما تستخدم `WebdriverIO` لتنفيذ الاختبار، هناك قيود مع هذا النهج. فهو يحدث التقارير بشكل منفصل لكل ملف ميزة، مما يجعل من الصعب عرض تقرير موحد.
 
-للتغلب على هذا القيد، قدمنا طريقة تعتمد على الوعود تسمى `publishCucumberReport` ضمن `@wdio/cucumber-framework`. يجب استدعاء هذه الطريقة في مُعالج `onComplete`، وهو المكان الأمثل لاستدعائها. تتطلب `publishCucumberReport` إدخال دليل التقرير حيث يتم تخزين تقارير رسائل cucumber.
+للتغلب على هذا القيد، قمنا بإدخال طريقة قائمة على الوعد تسمى `publishCucumberReport` داخل `@wdio/cucumber-framework`. يجب استدعاء هذه الطريقة في خطاف `onComplete`، وهو المكان الأمثل لاستدعائها. يتطلب `publishCucumberReport` إدخال دليل التقرير حيث يتم تخزين تقارير رسائل cucumber.
 
-يمكنك إنشاء تقارير `cucumber message` عن طريق تكوين خيار `format` في `cucumberOpts` الخاص بك. يُنصح بشدة بتوفير اسم ملف ديناميكي ضمن خيار تنسيق `cucumber message` لمنع الكتابة فوق التقارير وضمان تسجيل كل تشغيل اختبار بدقة.
+يمكنك إنشاء تقارير `cucumber message` عن طريق تكوين خيار `format` في `cucumberOpts` الخاص بك. يوصى بشدة بتوفير اسم ملف ديناميكي ضمن خيار صيغة `cucumber message` لمنع الكتابة فوق التقارير وضمان تسجيل كل تشغيل اختبار بدقة.
 
 قبل استخدام هذه الوظيفة، تأكد من تعيين متغيرات البيئة التالية:
-- CUCUMBER_PUBLISH_REPORT_URL: عنوان URL حيث تريد نشر تقرير Cucumber. إذا لم يتم توفيره، سيتم استخدام عنوان URL الافتراضي 'https://messages.cucumber.io/api/reports'.
-- CUCUMBER_PUBLISH_REPORT_TOKEN: رمز التفويض المطلوب لنشر التقرير. إذا لم يتم تعيين هذا الرمز، فستخرج الوظيفة دون نشر التقرير.
+- CUCUMBER_PUBLISH_REPORT_URL: عنوان URL حيث ترغب في نشر تقرير Cucumber. إذا لم يتم توفيره، سيتم استخدام العنوان الافتراضي 'https://messages.cucumber.io/api/reports'.
+- CUCUMBER_PUBLISH_REPORT_TOKEN: رمز الترخيص المطلوب لنشر التقرير. إذا لم يتم تعيين هذا الرمز، ستخرج الوظيفة دون نشر التقرير.
 
-إليك مثال على التكوينات والعينات الرمزية اللازمة للتنفيذ:
+فيما يلي مثال على التكوينات اللازمة وعينات الكود للتنفيذ:
 
 ```javascript
 import { v4 as uuidv4 } from 'uuid'
@@ -522,16 +522,16 @@ export const config = {
 
 ## استخدام Serenity/JS
 
-[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io) هو إطار عمل مفتوح المصدر مصمم لجعل اختبار القبول والانحدار للأنظمة البرمجية المعقدة أسرع وأكثر تعاونًا وأسهل في التوسع.
+[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io) هو إطار عمل مفتوح المصدر مصمم لجعل اختبارات القبول والانحدار لأنظمة البرمجيات المعقدة أسرع وأكثر تعاونية وأسهل في التوسع.
 
 بالنسبة لمجموعات اختبار WebdriverIO، يقدم Serenity/JS:
 - [تقارير محسنة](https://serenity-js.org/handbook/reporting/?pk_campaign=wdio8&pk_source=webdriver.io) - يمكنك استخدام Serenity/JS
   كبديل مباشر لأي إطار عمل WebdriverIO مدمج لإنتاج تقارير تنفيذ اختبار متعمقة ووثائق حية لمشروعك.
-- [واجهات برمجة تطبيقات نمط السيناريو](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) - لجعل رمز الاختبار الخاص بك قابلاً للنقل وإعادة الاستخدام عبر المشاريع والفرق،
-  يمنحك Serenity/JS [طبقة تجريد](https://serenity-js.org/api/webdriverio?pk_campaign=wdio8&pk_source=webdriver.io) اختيارية فوق واجهات برمجة تطبيقات WebdriverIO الأصلية.
+- [واجهات برمجة تطبيقات نمط السيناريو](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) - لجعل كود الاختبار الخاص بك قابلاً للنقل وإعادة الاستخدام عبر المشاريع والفرق،
+  يمنحك Serenity/JS [طبقة تجريد اختيارية](https://serenity-js.org/api/webdriverio?pk_campaign=wdio8&pk_source=webdriver.io) فوق واجهات برمجة تطبيقات WebdriverIO الأصلية.
 - [مكتبات التكامل](https://serenity-js.org/api/core/?pk_campaign=wdio8&pk_source=webdriver.io) - بالنسبة لمجموعات الاختبار التي تتبع نمط السيناريو،
   يوفر Serenity/JS أيضًا مكتبات تكامل اختيارية لمساعدتك في كتابة [اختبارات API](https://serenity-js.org/api/rest/?pk_campaign=wdio8&pk_source=webdriver.io)،
-  [إدارة الخوادم المحلية](https://serenity-js.org/api/local-server/?pk_campaign=wdio8&pk_source=webdriver.io)، [إجراء تأكيدات](https://serenity-js.org/api/assertions/?pk_campaign=wdio8&pk_source=webdriver.io)، والمزيد!
+  [إدارة الخوادم المحلية](https://serenity-js.org/api/local-server/?pk_campaign=wdio8&pk_source=webdriver.io)، [إجراء التأكيدات](https://serenity-js.org/api/assertions/?pk_campaign=wdio8&pk_source=webdriver.io)، والمزيد!
 
 ![مثال تقرير Serenity BDD](/img/serenity-bdd-reporter.png)
 
@@ -553,7 +553,7 @@ npm install @serenity-js/{core,web,webdriverio,assertions,console-reporter,seren
 
 ### تكوين Serenity/JS
 
-لتمكين التكامل مع Serenity/JS، قم بتكوين WebdriverIO كما يلي:
+لتمكين التكامل مع Serenity/JS، قم بتكوين WebdriverIO على النحو التالي:
 
 <Tabs>
 <TabItem value="wdio-conf-typescript" label="TypeScript" default>
@@ -563,26 +563,26 @@ import { WebdriverIOConfig } from '@serenity-js/webdriverio';
 
 export const config: WebdriverIOConfig = {
 
-    // أخبر WebdriverIO باستخدام إطار عمل Serenity/JS
+    // إخبار WebdriverIO باستخدام إطار عمل Serenity/JS
     framework: '@serenity-js/webdriverio',
 
     // تكوين Serenity/JS
     serenity: {
-        // قم بتكوين Serenity/JS لاستخدام المحول المناسب لمشغل الاختبار الخاص بك
+        // تكوين Serenity/JS لاستخدام المحول المناسب لمشغل الاختبار الخاص بك
         runner: 'cucumber',
         // runner: 'mocha',
         // runner: 'jasmine',
 
-        // تسجيل خدمات تقارير Serenity/JS، المعروفة أيضًا باسم "stage crew"
+        // تسجيل خدمات إعداد تقارير Serenity/JS، المعروفة أيضًا باسم "طاقم المسرح"
         crew: [
-            // اختياري، طباعة نتائج تنفيذ الاختبار إلى المخرجات القياسية
+            // اختياري، طباعة نتائج تنفيذ الاختبار إلى الإخراج القياسي
             '@serenity-js/console-reporter',
 
             // اختياري، إنتاج تقارير Serenity BDD ووثائق حية (HTML)
             '@serenity-js/serenity-bdd',
             [ '@serenity-js/core:ArtifactArchiver', { outputDirectory: 'target/site/serenity' } ],
 
-            // اختياري، التقاط لقطات شاشة تلقائيًا عند فشل التفاعل
+            // اختياري، التقاط لقطات الشاشة تلقائيًا عند فشل التفاعل
             [ '@serenity-js/web:Photographer', { strategy: 'TakePhotosOfFailures' } ],
         ]
     },
@@ -605,7 +605,7 @@ export const config: WebdriverIOConfig = {
 
     runner: 'local',
 
-    // أي تكوين WebdriverIO آخر
+    // أي تكوين آخر لـ WebdriverIO
 };
 ```
 
@@ -615,17 +615,17 @@ export const config: WebdriverIOConfig = {
 ```typescript title="wdio.conf.js"
 export const config = {
 
-    // أخبر WebdriverIO باستخدام إطار عمل Serenity/JS
+    // إخبار WebdriverIO باستخدام إطار عمل Serenity/JS
     framework: '@serenity-js/webdriverio',
 
     // تكوين Serenity/JS
     serenity: {
-        // قم بتكوين Serenity/JS لاستخدام المحول المناسب لمشغل الاختبار الخاص بك
+        // تكوين Serenity/JS لاستخدام المحول المناسب لمشغل الاختبار الخاص بك
         runner: 'cucumber',
         // runner: 'mocha',
         // runner: 'jasmine',
 
-        // تسجيل خدمات تقارير Serenity/JS، المعروفة أيضًا باسم "stage crew"
+        // تسجيل خدمات إعداد تقارير Serenity/JS، المعروفة أيضًا باسم "طاقم المسرح"
         crew: [
             '@serenity-js/console-reporter',
             '@serenity-js/serenity-bdd',
@@ -652,7 +652,7 @@ export const config = {
 
     runner: 'local',
 
-    // أي تكوين WebdriverIO آخر
+    // أي تكوين آخر لـ WebdriverIO
 };
 ```
 
@@ -660,26 +660,26 @@ export const config = {
 </Tabs>
 
 تعرف على المزيد حول:
-- [خيارات تكوين Serenity/JS Cucumber](https://serenity-js.org/api/cucumber-adapter/interface/CucumberConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [خيارات تكوين Serenity/JS Jasmine](https://serenity-js.org/api/jasmine-adapter/interface/JasmineConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [خيارات تكوين Serenity/JS Mocha](https://serenity-js.org/api/mocha-adapter/interface/MochaConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [خيارات تكوين Cucumber لـ Serenity/JS](https://serenity-js.org/api/cucumber-adapter/interface/CucumberConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [خيارات تكوين Jasmine لـ Serenity/JS](https://serenity-js.org/api/jasmine-adapter/interface/JasmineConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [خيارات تكوين Mocha لـ Serenity/JS](https://serenity-js.org/api/mocha-adapter/interface/MochaConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [ملف تكوين WebdriverIO](configurationfile)
 
 ### إنتاج تقارير Serenity BDD ووثائق حية
 
-يتم إنشاء [تقارير Serenity BDD والوثائق الحية](https://serenity-bdd.github.io/docs/reporting/the_serenity_reports) بواسطة [Serenity BDD CLI](https://github.com/serenity-bdd/serenity-core/tree/main/serenity-cli)،
+يتم إنشاء [تقارير Serenity BDD ووثائق حية](https://serenity-bdd.github.io/docs/reporting/the_serenity_reports) بواسطة [Serenity BDD CLI](https://github.com/serenity-bdd/serenity-core/tree/main/serenity-cli)،
 وهو برنامج Java يتم تنزيله وإدارته بواسطة وحدة [`@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io).
 
-لإنتاج تقارير Serenity BDD، يجب على مجموعة الاختبار الخاصة بك:
+لإنتاج تقارير Serenity BDD، يجب أن تقوم مجموعة الاختبار الخاصة بك بما يلي:
 - تنزيل Serenity BDD CLI، عن طريق استدعاء `serenity-bdd update` الذي يخزن CLI `jar` محليًا
-- إنتاج تقارير Serenity BDD `.json` وسيطة، عن طريق تسجيل [`SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io) وفقًا لـ [تعليمات التكوين](#configuring-serenityjs)
+- إنتاج تقارير Serenity BDD `.json` وسيطة، عن طريق تسجيل [`SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io) وفقًا لـ [تعليمات التكوين](#تكوين-serenityjs)
 - استدعاء Serenity BDD CLI عندما تريد إنتاج التقرير، عن طريق استدعاء `serenity-bdd run`
 
 النمط المستخدم من قبل جميع [قوالب مشروع Serenity/JS](https://serenity-js.org/handbook/project-templates/?pk_campaign=wdio8&pk_source=webdriver.io#webdriverio) يعتمد
 على استخدام:
-- سكريبت NPM [`postinstall`](https://docs.npmjs.com/cli/v9/using-npm/scripts#life-cycle-operation-order) لتنزيل Serenity BDD CLI
-- [`npm-failsafe`](https://www.npmjs.com/package/npm-failsafe) لتشغيل عملية إعداد التقارير حتى لو فشلت مجموعة الاختبار نفسها (وهذا هو بالضبط عندما تحتاج إلى تقارير الاختبار أكثر...).
-- [`rimraf`](https://www.npmjs.com/package/rimraf) كطريقة مريحة لإزالة أي تقارير اختبار متبقية من التشغيل السابق
+- نص برمجي NPM [`postinstall`](https://docs.npmjs.com/cli/v9/using-npm/scripts#life-cycle-operation-order) لتنزيل Serenity BDD CLI
+- [`npm-failsafe`](https://www.npmjs.com/package/npm-failsafe) لتشغيل عملية إعداد التقارير حتى إذا فشلت مجموعة الاختبارات نفسها (وهو بالضبط عندما تحتاج إلى تقارير الاختبار أكثر...).
+- [`rimraf`](https://www.npmjs.com/package/rimraf) كطريقة ملائمة لإزالة أي تقارير اختبار متبقية من التشغيل السابق
 
 ```json title="package.json"
 {
@@ -694,22 +694,22 @@ export const config = {
 ```
 
 لمعرفة المزيد عن `SerenityBDDReporter`، يرجى الرجوع إلى:
-- تعليمات التثبيت في [وثائق `@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io)،
-- أمثلة التكوين في [وثائق API `SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io)،
+- تعليمات التثبيت في وثائق [`@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io)،
+- أمثلة التكوين في وثائق واجهة برمجة تطبيقات [`SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io)،
 - [أمثلة Serenity/JS على GitHub](https://github.com/serenity-js/serenity-js/tree/main/examples).
 
-### استخدام واجهات برمجة تطبيقات نمط السيناريو Serenity/JS
+### استخدام واجهات برمجة تطبيقات نمط السيناريو لـ Serenity/JS
 
 [نمط السيناريو](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) هو نهج مبتكر يركز على المستخدم لكتابة اختبارات قبول آلية عالية الجودة. إنه يوجهك نحو استخدام فعال لطبقات التجريد،
-يساعد سيناريوهات الاختبار الخاصة بك على التقاط المصطلحات التجارية لمجالك، ويشجع على عادات اختبار وهندسة برمجيات جيدة في فريقك.
+ويساعد سيناريوهات الاختبار الخاصة بك على التقاط المصطلحات التجارية لمجالك، ويشجع على عادات اختبار وهندسة برمجيات جيدة في فريقك.
 
-بشكل افتراضي، عندما تسجل `@serenity-js/webdriverio` كـ `framework` الخاص بـ WebdriverIO،
-يقوم Serenity/JS بتكوين [cast](https://serenity-js.org/api/core/class/Cast/?pk_campaign=wdio8&pk_source=webdriver.io) افتراضي من [actors](https://serenity-js.org/api/core/class/Actor/?pk_campaign=wdio8&pk_source=webdriver.io)،
+بشكل افتراضي، عندما تقوم بتسجيل `@serenity-js/webdriverio` كـ `framework` لـ WebdriverIO الخاص بك،
+يقوم Serenity/JS بتكوين [فريق](https://serenity-js.org/api/core/class/Cast/?pk_campaign=wdio8&pk_source=webdriver.io) افتراضي من [الممثلين](https://serenity-js.org/api/core/class/Actor/?pk_campaign=wdio8&pk_source=webdriver.io)،
 حيث يمكن لكل ممثل:
 - [`BrowseTheWebWithWebdriverIO`](https://serenity-js.org/api/webdriverio/class/BrowseTheWebWithWebdriverIO/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [`TakeNotes.usingAnEmptyNotepad()`](https://serenity-js.org/api/core/class/TakeNotes/?pk_campaign=wdio8&pk_source=webdriver.io)
 
-يجب أن يكون هذا كافيًا لمساعدتك على البدء في تقديم سيناريوهات اختبار تتبع نمط السيناريو حتى لمجموعة اختبار موجودة، على سبيل المثال:
+هذا يكفي لمساعدتك على البدء في تقديم سيناريوهات اختبار تتبع نمط السيناريو حتى في مجموعة اختبار موجودة، على سبيل المثال:
 
 ```typescript title="specs/example.spec.ts"
 import { actorCalled } from '@serenity-js/core'
@@ -738,4 +738,4 @@ describe('My awesome website', () => {
 لمعرفة المزيد عن نمط السيناريو، تحقق من:
 - [نمط السيناريو](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [اختبار الويب مع Serenity/JS](https://serenity-js.org/handbook/web-testing/?pk_campaign=wdio8&pk_source=webdriver.io)
-- ["BDD in Action, Second Edition"](https://www.manning.com/books/bdd-in-action-second-edition)
+- ["BDD في العمل، الطبعة الثانية"](https://www.manning.com/books/bdd-in-action-second-edition)

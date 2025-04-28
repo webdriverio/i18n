@@ -1,137 +1,137 @@
 ---
 id: compare-options
-title: Compare Options
+title: Opcje Porównywania
 ---
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+Opcje porównywania to ustawienia, które wpływają na sposób wykonywania porównania przez [ResembleJS](https://github.com/Huddle/Resemble.js).
 
-:::info NOTE
-All compare options can be used during service instantiation or for each single `checkElement`,`checkScreen` and `checkFullPageScreen`. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
+:::info UWAGA
+Wszystkie opcje porównywania mogą być używane podczas tworzenia instancji usługi lub dla każdego pojedynczego `checkElement`, `checkScreen` i `checkFullPageScreen`. Jeśli opcja metody ma ten sam klucz co opcja ustawiona podczas tworzenia instancji usługi, wówczas opcja porównawcza metody nadpisze wartość opcji porównawczej usługi.
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Compare images and discard alpha.
+Porównuje obrazy i ignoruje kanał alfa.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. It will override the plugin setting. This is **iPad only**_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być używane tylko dla `checkScreen()`. Nadpisze ustawienie wtyczki. To jest **tylko dla iPada**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+Automatycznie blokuje pasek boczny dla iPadów w trybie poziomym podczas porównań. Zapobiega to niepowodzeniom w natywnym komponencie kart/prywatnym/zakładek.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki. To jest **tylko dla urządzeń mobilnych**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+Automatycznie blokuje pasek stanu i pasek adresu podczas porównań. Zapobiega to niepowodzeniom z powodu godziny, stanu WiFi lub baterii.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki. To jest **tylko dla urządzeń mobilnych**_
 
-Automatically block out the toolbar.
+Automatycznie blokuje pasek narzędzi.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Compare images and discard anti-aliasing.
+Porównuje obrazy i ignoruje antyaliasing.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Even though the images are in color, the comparison will compare 2 black/white images
+Nawet jeśli obrazy są kolorowe, porównanie będzie zestawiać 2 czarno-białe obrazy.
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+Porównuje obrazy z parametrami `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+Porównuje obrazy z parametrami `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
 
 ### `ignoreTransparentPixel`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Compare images and it will ignore all pixels that have some transparency in one of the images
+Porównuje obrazy i ignoruje wszystkie piksele, które mają jakąś przezroczystość w jednym z obrazów.
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+Jeśli true, zwrócony procent będzie miał format `0.12345678`, domyślnie jest `0.12`
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-This will return all compare data, not only the mismatch percentage
+Zwróci wszystkie dane porównawcze, nie tylko procent niezgodności.
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `number`
+-   **Domyślnie:** `0`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+Dopuszczalna wartość `misMatchPercentage`, która zapobiega zapisywaniu obrazów z różnicami.
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `number`
+-   **Domyślnie:** `0`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+Porównywanie dużych obrazów może prowadzić do problemów z wydajnością.
+Gdy podana jest liczba pikseli (większa niż 0), algorytm porównawczy pomija piksele, gdy szerokość lub wysokość obrazu jest większa niż `largeImageThreshold` pikseli.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **Typ:** `boolean`
+-   **Domyślnie:** `false`
+-   **Obowiązkowe:** nie
+-   **Uwaga:** _Może być również używane dla `checkElement`, `checkScreen()` i `checkFullPageScreen()`. Nadpisze ustawienie wtyczki_
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+Skaluje 2 obrazy do tego samego rozmiaru przed wykonaniem porównania. Zdecydowanie zalecane jest włączenie `ignoreAntialiasing` i `ignoreAlpha`

@@ -1,29 +1,29 @@
 ---
 id: support
-title: Need Help?
+title: هل تحتاج مساعدة؟
 ---
 
-This project is maintained by a dedicated group of people.
+يتم الحفاظ على هذا المشروع من قبل مجموعة متخصصة من الأشخاص.
 
-If you're interested in making a contribution to the WebdriverIO project, check out [the free "Office Hours" program](/blog/2020/07/01/office-hours) to help you with your efforts.
+إذا كنت مهتمًا بتقديم مساهمة لمشروع WebdriverIO، تحقق من [برنامج "ساعات العمل" المجاني](/blog/2020/07/01/office-hours) لمساعدتك في جهودك.
 
-If you're seeking immediate help with your own project, reach out to a trusted WebdriverIO expert:
+إذا كنت تبحث عن مساعدة فورية مع مشروعك الخاص، تواصل مع خبير WebdriverIO موثوق به:
 
 - [Kevin Lamping](https://www.codementor.io/@kevinlamping)
-- [Add your name to this list](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
+- [أضف اسمك إلى هذه القائمة](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
 
-## Stack Overflow
+## ستاك أوفرفلو
 
-Stack Overflow is a popular forum to ask code-level questions or if you’re stuck with a specific error. Read through the [existing questions](https://stackoverflow.com/questions/tagged/webdriver-io) tagged with webdriver-io or [ask your own](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
+ستاك أوفرفلو هو منتدى شهير لطرح أسئلة متعلقة بالشفرة البرمجية أو إذا كنت عالقًا مع خطأ محدد. اقرأ [الأسئلة الموجودة](https://stackoverflow.com/questions/tagged/webdriver-io) المصنفة تحت webdriver-io أو [اسأل سؤالك الخاص](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
 
-## Discussion Forums
+## منتديات النقاش
 
-There are many online forums which are a great place for discussion about WebdriverIO features, problems and bugs, e.g.:
+هناك العديد من المنتديات عبر الإنترنت التي تعتبر مكانًا رائعًا للنقاش حول ميزات WebdriverIO والمشكلات والأخطاء، على سبيل المثال:
 
-- [GitHub Discussions](https://github.com/webdriverio/webdriverio/discussions)
-- [Discord Community Server](https://discord.webdriver.io)
-- [#webdriverio Channel on SeleniumHQ Slack](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
+- [منتديات GitHub](https://github.com/webdriverio/webdriverio/discussions)
+- [خادم مجتمع Discord](https://discord.webdriver.io)
+- [قناة #webdriverio على سلاك SeleniumHQ](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
 
-## News
+## الأخبار
 
-For the latest news about WebdriverIO, [follow @webdriverio on Twitter](https://twitter.com/webdriverio) and the official [WebdriverIO blog](/blog) on this website.
+للحصول على آخر الأخبار حول WebdriverIO، [تابع @webdriverio على تويتر](https://twitter.com/webdriverio) والمدونة الرسمية [WebdriverIO](/blog) على هذا الموقع.

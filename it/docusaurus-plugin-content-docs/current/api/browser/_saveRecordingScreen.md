@@ -48,4 +48,4 @@ it('should save a video', async () => {
 ##### Restituisce
 
 - **&lt;Buffer&gt;**
-            **<code><var>return</var></code>:**             buffer del video
+            **<code><var>return</var></code>:**             buffer video

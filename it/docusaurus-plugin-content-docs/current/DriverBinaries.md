@@ -3,11 +3,11 @@ id: driverbinaries
 title: Driver Binari
 ---
 
-Per eseguire l'automazione basata sul protocollo WebDriver è necessario configurare i driver del browser che traducono i comandi di automazione e sono in grado di eseguirli nel browser.
+Per eseguire l'automazione basata sul protocollo WebDriver è necessario avere driver del browser configurati che traducano i comandi di automazione e siano in grado di eseguirli nel browser.
 
 ## Configurazione automatizzata
 
-Con WebdriverIO `v8.14` e versioni successive non è più necessario scaricare e configurare manualmente i driver del browser, poiché questo viene gestito da WebdriverIO. Tutto ciò che devi fare è specificare il browser che desideri testare e WebdriverIO farà il resto.
+Con WebdriverIO `v8.14` e versioni successive non è più necessario scaricare e configurare manualmente i driver del browser poiché questo viene gestito da WebdriverIO. Tutto ciò che devi fare è specificare il browser su cui desideri effettuare i test e WebdriverIO farà il resto.
 
 ### Personalizzazione del livello di automazione
 
@@ -15,7 +15,7 @@ WebdriverIO ha tre livelli di automazione:
 
 **1. Scarica e installa il browser utilizzando [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
 
-Se specifichi una combinazione `browserName`/`browserVersion` nella configurazione delle [capabilities](configuration#capabilities-1), WebdriverIO scaricherà e installerà la combinazione richiesta, indipendentemente dal fatto che ci sia un'installazione esistente sulla macchina. Se ometti `browserVersion`, WebdriverIO proverà prima a localizzare e utilizzare un'installazione esistente con [locate-app](https://www.npmjs.com/package/locate-app), altrimenti scaricherà e installerà l'ultima versione stabile del browser. Per maggiori dettagli su `browserVersion`, vedi [qui](capabilities#automate-different-browser-channels).
+Se specifichi una combinazione `browserName`/`browserVersion` nella configurazione delle [capabilities](configuration#capabilities-1), WebdriverIO scaricherà e installerà la combinazione richiesta, indipendentemente dal fatto che esista già un'installazione sulla macchina. Se ometti `browserVersion`, WebdriverIO proverà prima a localizzare e utilizzare un'installazione esistente con [locate-app](https://www.npmjs.com/package/locate-app), altrimenti scaricherà e installerà la versione stabile corrente del browser. Per maggiori dettagli su `browserVersion`, vedi [qui](capabilities#automate-different-browser-channels).
 
 :::caution
 
@@ -23,7 +23,7 @@ La configurazione automatica del browser non supporta Microsoft Edge. Attualment
 
 :::
 
-Se hai un'installazione del browser in una posizione che non può essere rilevata automaticamente da WebdriverIO, puoi specificare il binario del browser che disabiliterà il download e l'installazione automatici.
+Se hai un'installazione del browser in una posizione che non può essere rilevata automaticamente da WebdriverIO, puoi specificare il binario del browser che disabiliterà il download e l'installazione automatizzati.
 
 ```ts
 {
@@ -63,13 +63,13 @@ WebdriverIO non scaricherà automaticamente il driver Safari poiché è già ins
 
 :::caution
 
-Evita di specificare un `binary` per il browser e omettere il corrispondente `binary` del driver o viceversa. Se viene specificato solo uno dei valori `binary`, WebdriverIO cercherà di utilizzare o scaricare un browser/driver compatibile con esso. Tuttavia, in alcuni scenari ciò potrebbe comportare una combinazione incompatibile. Pertanto, si consiglia di specificare sempre entrambi per evitare problemi causati da incompatibilità di versione.
+Evita di specificare un `binary` per il browser e omettere il corrispondente `binary` del driver o viceversa. Se viene specificato solo uno dei valori `binary`, WebdriverIO cercherà di utilizzare o scaricare un browser/driver compatibile con esso. Tuttavia, in alcuni scenari potrebbe risultare in una combinazione incompatibile. Pertanto, si consiglia di specificare sempre entrambi per evitare problemi causati da incompatibilità di versione.
 
 :::
 
-**3. Avvia/arresta il driver.**
+**3. Avvio/arresto del driver.**
 
-Per impostazione predefinita, WebdriverIO avvierà e arresterà automaticamente il driver utilizzando una porta inutilizzata arbitraria. Specificando una qualsiasi delle seguenti configurazioni si disabiliterà questa funzionalità, il che significa che dovrai avviare e arrestare manualmente il driver:
+Per impostazione predefinita, WebdriverIO avvierà e arresterà automaticamente il driver utilizzando una porta libera arbitraria. Specificare uno qualsiasi dei seguenti parametri di configurazione disabiliterà questa funzionalità, il che significa che dovrai avviare e arrestare manualmente il driver:
 
 - Qualsiasi valore per [port](configuration#port).
 - Qualsiasi valore diverso da quello predefinito per [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
@@ -77,7 +77,7 @@ Per impostazione predefinita, WebdriverIO avvierà e arresterà automaticamente 
 
 ## Configurazione manuale
 
-Di seguito viene descritto come puoi ancora configurare ogni driver individualmente. Puoi trovare un elenco con tutti i driver nel README di [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
+Di seguito viene descritto come è possibile impostare ancora individualmente ciascun driver. Puoi trovare un elenco con tutti i driver nel README di [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
 
 :::tip
 
@@ -93,7 +93,7 @@ Per automatizzare Chrome puoi scaricare Chromedriver direttamente sul [sito web 
 npm install -g chromedriver
 ```
 
-Puoi poi avviarlo tramite:
+Puoi quindi avviarlo tramite:
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,7 +101,7 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-Per automatizzare Firefox scarica l'ultima versione di `geckodriver` per il tuo ambiente e decomprimila nella directory del tuo progetto:
+Per automatizzare Firefox scarica l'ultima versione di `geckodriver` per il tuo ambiente e decomprimi nel tuo directory di progetto:
 
 <Tabs
   defaultValue="npm"

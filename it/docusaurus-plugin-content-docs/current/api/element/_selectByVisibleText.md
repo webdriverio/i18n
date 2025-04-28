@@ -4,7 +4,7 @@ title: selectByVisibleText
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/selectByVisibleText.ts
 ---
 
-Seleziona l'opzione con il testo visualizzato che corrisponde all'argomento.
+Seleziona l'opzione con il testo visualizzato corrispondente all'argomento.
 
 ##### Utilizzo
 

@@ -6,7 +6,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 要素の計算されたWAI-ARIAロールを取得します。
 
-##### 使用法
+##### 使用方法
 
 ```js
 $(selector).getComputedRole()
@@ -25,4 +25,5 @@ it('should demonstrate the getComputedRole command', async () => {
 ##### 戻り値
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**  計算されたWAI-ARIAラベル
+            **<code><var>return</var></code>:**  計算されたWAI-ARIAロール    
+```

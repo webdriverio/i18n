@@ -1,32 +1,32 @@
 ---
 index: 1
 id: considerations
-title: Considerations
+title: اعتبارات
 ---
 
-# Key Considerations for Optimal Use
+# اعتبارات رئيسية للاستخدام الأمثل
 
-Before diving into the powerful features of the `@wdio/visual-service`, it's crucial to understand some key considerations that ensure you get the most out of this tool. The following points are designed to guide you through best practices and common pitfalls, helping you achieve accurate and efficient visual testing results. These considerations are not just recommendations, but essential aspects to keep in mind for effectively utilizing the service in real-world scenarios.
+قبل الغوص في الميزات القوية لخدمة `@wdio/visual-service`، من الضروري فهم بعض الاعتبارات الرئيسية التي تضمن حصولك على أقصى استفادة من هذه الأداة. النقاط التالية مصممة لإرشادك خلال أفضل الممارسات والمشكلات الشائعة، مما يساعدك على تحقيق نتائج اختبار بصرية دقيقة وفعالة. هذه الاعتبارات ليست مجرد توصيات، بل جوانب أساسية يجب مراعاتها للاستخدام الفعال للخدمة في سيناريوهات العالم الحقيقي.
 
-## Nature of Comparison
+## طبيعة المقارنة
 
-- **Pixel-by-Pixel Basis:** The module performs a pixel-by-pixel comparison of images. While certain aspects can be adjusted (see Comparison Options), the core approach remains a basic pixel comparison.
-- **Impact of Browser Updates:** Be aware that updates to browsers, like Chrome, may affect font rendering, potentially necessitating an update to your baseline images.
+-   **مقارنة على أساس بكسل ببكسل:** تقوم الوحدة بإجراء مقارنة بكسل ببكسل للصور. بينما يمكن ضبط جوانب معينة (انظر خيارات المقارنة)، يظل النهج الأساسي هو مقارنة البكسل الأساسية.
+-   **تأثير تحديثات المتصفح:** كن على دراية بأن التحديثات على المتصفحات، مثل Chrome، قد تؤثر على عرض الخطوط، مما قد يستلزم تحديث صور الأساس الخاصة بك.
 
-## Consistency in Platforms
+## الاتساق في المنصات
 
-- **Comparing Identical Platforms:** Ensure screenshots are compared within the same platform. For instance, a screenshot from Chrome on a Mac should not be used to compare against one from Chrome on Ubuntu or Windows.
-- **Analogy:** To put it simply, compare _'Apples with Apples, not Apples with Androids'_.
+-   **مقارنة المنصات المتطابقة:** تأكد من مقارنة لقطات الشاشة ضمن نفس المنصة. على سبيل المثال، لا ينبغي استخدام لقطة شاشة من Chrome على جهاز Mac للمقارنة مع لقطة من Chrome على Ubuntu أو Windows.
+-   **تشبيه:** ببساطة، قارن _'التفاح مع التفاح، وليس التفاح مع أندرويد'_.
 
-## Caution with Mismatch Percentage
+## الحذر مع نسبة عدم التطابق
 
-- **Risk of Accepting Mismatches:** Exercise caution when accepting a mismatch percentage. This is especially true for large screenshots, where accepting a mismatch might inadvertently overlook significant discrepancies, such as missing buttons or elements.
+-   **خطر قبول عدم التطابق:** توخ الحذر عند قبول نسبة عدم تطابق. هذا صحيح بشكل خاص للقطات الشاشة الكبيرة، حيث قد يؤدي قبول عدم التطابق إلى التغاضي غير المقصود عن اختلافات كبيرة، مثل الأزرار أو العناصر المفقودة.
 
-## Mobile Screen Simulation
+## محاكاة شاشة الهاتف المحمول
 
-- **Avoid Browser Resizing for Mobile Simulation:** Do not attempt to simulate mobile screen sizes by resizing desktop browsers and treating them as mobile browsers. Desktop browsers, even when resized, do not accurately replicate the rendering of actual mobile browsers.
-- **Authenticity in Comparison:** This tool aims to compare visuals as they would appear to an end-user. A resized desktop browser does not reflect the true experience on a mobile device.
+-   **تجنب تغيير حجم المتصفح لمحاكاة الهاتف المحمول:** لا تحاول محاكاة أحجام شاشة الهاتف المحمول عن طريق تغيير حجم متصفحات سطح المكتب ومعاملتها كمتصفحات محمولة. متصفحات سطح المكتب، حتى عند تغيير حجمها، لا تكرر بدقة عرض متصفحات الهاتف المحمول الفعلية.
+-   **الأصالة في المقارنة:** تهدف هذه الأداة إلى مقارنة المرئيات كما ستظهر للمستخدم النهائي. لا يعكس متصفح سطح المكتب الذي تم تغيير حجمه التجربة الحقيقية على جهاز محمول.
 
-## Stance on Headless Browsers
+## موقف من المتصفحات التي بدون واجهة
 
-- **Not Recommended for Headless Browsers:** The use of this module with headless browsers is not advised. The rationale is that end-users do not interact with headless browsers, and therefore issues arising from such use will not be supported.
+-   **غير موصى بها للمتصفحات بدون واجهة:** لا يُنصح باستخدام هذه الوحدة مع المتصفحات بدون واجهة. المنطق وراء ذلك هو أن المستخدمين النهائيين لا يتفاعلون مع المتصفحات بدون واجهة، وبالتالي لن يتم دعم المشكلات الناتجة عن مثل هذا الاستخدام.

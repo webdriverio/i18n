@@ -1,17 +1,17 @@
 ---
 id: globals
-title: متغیر های جهانی
+title: متغیرهای جهانی
 ---
 
-در فایل های تست شما، WebdriverIO هر یک از این روش ها و اشیاء را در محیط جهانی قرار می دهد. برای استفاده از آنها لازم نیست چیزی را import کنید. با این حال، اگر import صریح را ترجیح می‌دهید، می‌توانید `import { browser, $, $$, expect } را از '@wdio/globals'` انجام دهید و `injectGlobals: false` را در پیکربندی WDIO خود تنظیم کنید.
+در فایل‌های آزمون شما، WebdriverIO هر یک از این متدها و اشیاء را در محیط جهانی قرار می‌دهد. برای استفاده از آن‌ها نیازی به وارد کردن چیزی ندارید. با این حال، اگر واردات صریح را ترجیح می‌دهید، می‌توانید از `import { browser, $, $$, expect } from '@wdio/globals'` استفاده کنید و `injectGlobals: false` را در پیکربندی WDIO خود تنظیم کنید.
 
-اگر به شکل دیگری پیکربندی نشده باشد، اشیاء جهانی به صورت زیر تنظیم می شوند:
+اشیاء جهانی زیر در صورت عدم پیکربندی دیگری تنظیم می‌شوند:
 
-- `browser`: WebdriverIO [شی browser](https://webdriver.io/docs/api/browser)
-- `driver`: لقبی برای `browser` (در هنگام اجرای تست های تلفن همراه استفاده می شود)
-- `multiremotebrowser`: نام مستعار برای `browser` یا `driver` اما فقط برای [جلسه چند browser](/docs/multiremote) تنظیم شده است
-- `$`: دستور برای دریافت یک element (در [سند API](/docs/api/browser/$) بیشتر ببینید)
-- `$$`: دستور برای دریافت چند element (در [سند API](/docs/api/browser/$$) بیشتر ببینید)
-- `expect`: فریمورک assertion برای WebdriverIO (به [سند API](/docs/api/expect-webdriverio) مراجعه کنید)
+- `browser`: شیء [Browser object](https://webdriver.io/docs/api/browser) در WebdriverIO
+- `driver`: نام مستعار برای `browser` (هنگام اجرای آزمون‌های موبایل استفاده می‌شود)
+- `multiremotebrowser`: نام مستعار برای `browser` یا `driver` اما فقط برای جلسات [Multiremote](/docs/multiremote) تنظیم می‌شود
+- `$`: دستور برای دریافت یک عنصر (اطلاعات بیشتر در [API docs](/docs/api/browser/$))
+- `$$`: دستور برای دریافت عناصر (اطلاعات بیشتر در [API docs](/docs/api/browser/$$))
+- `expect`: چارچوب تأیید برای WebdriverIO (به [API docs](/docs/api/expect-webdriverio) مراجعه کنید)
 
-__نکته:__ WebdriverIO هیچ کنترلی بر فریمورک های استفاده شده (مثلاً Mocha یا Jasmine) ندارد که متغیرهای سراسری را هنگام راه‌اندازی کردن محیط آنها تنظیم می کند.
+__نکته:__ WebdriverIO هیچ کنترلی بر روی چارچوب‌های مورد استفاده (مانند Mocha یا Jasmine) که هنگام راه‌اندازی محیط خود متغیرهای جهانی را تنظیم می‌کنند، ندارد.

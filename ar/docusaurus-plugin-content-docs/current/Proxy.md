@@ -5,12 +5,12 @@ title: إعداد البروكسي
 
 يمكنك توجيه نوعين مختلفين من الطلبات عبر بروكسي:
 
-- الاتصال بين سكريبت الاختبار الخاص بك ومتصفح السائق (أو نقطة نهاية WebDriver)
+- الاتصال بين نص الاختبار ومشغل المتصفح (أو نقطة نهاية WebDriver)
 - الاتصال بين المتصفح والإنترنت
 
-## البروكسي بين السائق والاختبار
+## البروكسي بين المشغل والاختبار
 
-إذا كانت شركتك تستخدم بروكسي مؤسسي (على سبيل المثال على `http://my.corp.proxy.com:9090`) لجميع الطلبات الصادرة، اتبع الخطوات التالية لتثبيت وتكوين [undici](https://github.com/nodejs/undici).
+إذا كانت شركتك تستخدم بروكسي مؤسسي (مثلاً على `http://my.corp.proxy.com:9090`) لجميع الطلبات الصادرة، اتبع الخطوات أدناه لتثبيت وتكوين [undici](https://github.com/nodejs/undici).
 
 ### تثبيت undici
 
@@ -35,7 +35,7 @@ export const config = {
 
 يمكن العثور على معلومات إضافية حول تكوين البروكسي [هنا](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-إذا كنت تستخدم [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5)، ابدأه عبر:
+إذا كنت تستخدم [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5)، قم بتشغيله عبر:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
@@ -45,7 +45,7 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 
 لتوجيه الاتصال بين المتصفح والإنترنت، يمكنك إعداد بروكسي والذي يمكن أن يكون مفيدًا (على سبيل المثال) لالتقاط معلومات الشبكة وبيانات أخرى باستخدام أدوات مثل [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-يمكن تطبيق معلمات `proxy` عبر الإمكانيات القياسية بالطريقة التالية:
+يمكن تطبيق معلمات `proxy` عبر القدرات القياسية بالطريقة التالية:
 
 ```js title="wdio.conf.js"
 export const config = {

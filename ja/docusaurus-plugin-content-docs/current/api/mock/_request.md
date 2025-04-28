@@ -7,11 +7,11 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 セッション中にブラウザが行うリクエストを変更することができます。これは以下のようなユースケースに役立ちます：
 
 - アプリケーションが正しいリクエストペイロードを送信しているかを検証する
-- 保護されたリソースをテストするための認証ヘッダーを渡す
+- 保護されたリソースをテストするために認証ヘッダーを渡す
 - ユーザー認証をテストするためのセッションクッキーを設定する
-- エッジケースをテストするためのリクエスト変更
+- エッジケースをテストするためにリクエストを変更する
 
-##### 使用法
+##### 使用方法
 
 ```js
 mock.request({ header, cookies, method, url, header, statusCode, fetchResponse })
@@ -22,7 +22,7 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -49,25 +49,25 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
     <tr>
       <td><code><var>overwrites.url</var></code></td>
       <td>`string`</td>
-      <td>リダイレクトを開始するためにリクエストURLを上書き</td>
+      <td>リダイレクトを開始するためのリクエストURLを上書き</td>
     </tr>
     <tr>
-      <td><code><var>params</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>params</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`MockResponseParams`</td>
       <td>上書きする追加のレスポンスパラメータ</td>
     </tr>
     <tr>
-      <td><code><var>params.header</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>params.header</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Object`</td>
       <td>特定のヘッダーを上書き</td>
     </tr>
     <tr>
-      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
       <td>レスポンスステータスコードを上書き</td>
     </tr>
     <tr>
-      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">省略可能</span></td>
+      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
       <td>モックデータで応答する前に実際のレスポンスを取得</td>
     </tr>

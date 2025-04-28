@@ -9,7 +9,8 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::info
 
-WebdriverIOの動作に影響を与え、`waitForExist`の逆フラグなど、特定のコマンドでエラーを引き起こす可能性があるため、`implicit`タイムアウトを設定することはお勧めしません。
+`implicit`タイムアウトを設定することはお勧めしません。WebdriverIOの動作に影響を与え、
+特定のコマンド（例えば、リバースフラグを持つ`waitForExist`）でエラーを引き起こす可能性があります。
 
 :::
 
@@ -36,17 +37,17 @@ browser.setTimeout({ implicit, pageLoad, script })
     <tr>
       <td><code><var>timeouts.implicit</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>要素を見つける際に要素ロケーション戦略を再試行するミリ秒単位の時間。</td>
+      <td>要素を見つける際に要素の場所特定戦略を再試行するミリ秒単位の時間。</td>
     </tr>
     <tr>
       <td><code><var>timeouts.pageLoad</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>ドキュメントの読み込みが完了するのを待つミリ秒単位の時間。</td>
+      <td>ドキュメントの読み込みが完了するまで待機するミリ秒単位の時間。</td>
     </tr>
     <tr>
       <td><code><var>timeouts.script</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>[`execute`](https://webdriver.io/docs/api/browser/execute)または[`executeAsync`](https://webdriver.io/docs/api/browser/executeAsync)で挿入されたスクリプトは、スクリプトタイムアウト時間（同じくミリ秒単位）に達するまで実行されます。</td>
+      <td>[`execute`](https://webdriver.io/docs/api/browser/execute)または[`executeAsync`](https://webdriver.io/docs/api/browser/executeAsync)で挿入されたスクリプトは、スクリプトタイムアウト時間に達するまで実行されます。これもミリ秒単位で指定します。</td>
     </tr>
   </tbody>
 </table>

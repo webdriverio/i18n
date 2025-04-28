@@ -4,7 +4,7 @@ title: isExisting
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isExisting.ts
 ---
 
-要素がDOMに存在する場合にtrueを返します。
+要素がDOMに存在する場合はtrueを返します。
 
 :::info
 

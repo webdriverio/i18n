@@ -1,19 +1,23 @@
 ---
 id: mobile
-title: Mobile Commands
+title: Komendy Mobilne
 ---
 
-# Introduction to custom and enhanced Mobile Commands in WebdriverIO
+# Wprowadzenie do niestandardowych i rozszerzonych Komend Mobilnych w WebdriverIO
 
-Testing mobile apps and mobile web applications comes with its own challenges, especially when dealing with platform-specific differences between Android and iOS. While Appium provides the flexibility to handle these differences, it often requires you to dive deep into complex, platform-dependent docs ([Android](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md), [iOS](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/)) and commands. This can make writing test scripts more time-consuming, error-prone, and difficult to maintain.
+Testowanie aplikacji mobilnych i mobilnych aplikacji webowych wiąże się z własnymi wyzwaniami, szczególnie gdy mamy do czynienia z różnicami między platformami Android i iOS. Chociaż Appium zapewnia elastyczność w obsłudze tych różnic, często wymaga zagłębienia się w złożoną, zależną od platformy dokumentację ([Android](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md), [iOS](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/)) i komendy. Może to sprawić, że pisanie skryptów testowych jest bardziej czasochłonne, podatne na błędy i trudne w utrzymaniu.
 
-To simplify the process, WebdriverIO introduces **custom and enhanced mobile commands** tailored specifically for mobile web and native app testing. These commands abstract away the intricacies of underlying Appium APIs, enabling you to write concise, intuitive, and platform-agnostic test scripts. By focusing on ease of use, we aim to reduce the extra load while developing Appium scripts and empower you to automate mobile apps effortlessly.
+Aby uprościć ten proces, WebdriverIO wprowadza **niestandardowe i rozszerzone komendy mobilne** dostosowane specjalnie do testowania mobilnych aplikacji webowych i natywnych. Te komendy abstrahują zawiłości podstawowych API Appium, umożliwiając pisanie zwięzłych, intuicyjnych i niezależnych od platformy skryptów testowych. Skupiając się na łatwości użytkowania, dążymy do zmniejszenia dodatkowego obciążenia podczas tworzenia skryptów Appium i umożliwienia łatwej automatyzacji aplikacji mobilnych.
 
-## Why Custom Mobile Commands?
+<LiteYouTubeEmbed
+    id="tN0LmKgWjPw"
+    title="WebdriverIO Tutorials - Enhanced Mobile Commands"
+/>
 
-### 1. **Simplifying Complex APIs**
+## Dlaczego niestandardowe komendy mobilne?
 
-Some Appium commands, like gestures or element interactions, involve verbose and intricate syntax. For example, executing a long press action with the native Appium API requires constructing an `action` chain manually:
+### 1. **Uproszczenie złożonych API**
+Niektóre komendy Appium, takie jak gesty czy interakcje z elementami, wymagają rozbudowanej i złożonej składni. Na przykład, wykonanie akcji długiego naciśnięcia za pomocą natywnego API Appium wymaga ręcznego skonstruowania łańcucha `action`:
 
 ```ts
 const element = $('~Contacts')
@@ -27,79 +31,72 @@ await browser
     .perform()
 ```
 
-With WebdriverIO's custom commands, the same action can be performed with a single, expressive line of code:
+Dzięki niestandardowym komendom WebdriverIO, tę samą akcję można wykonać za pomocą jednej, wyrazistej linii kodu:
 
 ```ts
 await $('~Contacts').longPress();
 ```
 
-This drastically reduces boilerplate code, making your scripts cleaner and easier to understand.
+To drastycznie redukuje kod szablonowy, czyniąc skrypty czystszymi i łatwiejszymi do zrozumienia.
 
-### 2. **Cross-Platform Abstraction**
-
-Mobile apps often require platform-specific handling. For instance, scrolling in native apps differs significantly between [Android](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-scrollgesture) and [iOS](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-scroll). WebdriverIO bridges this gap by providing unified commands like `scrollIntoView()` that work seamlessly across platforms, regardless of the underlying implementation.
+### 2. **Abstrakcja między platformami**
+Aplikacje mobilne często wymagają obsługi specyficznej dla platformy. Na przykład, przewijanie w natywnych aplikacjach znacznie różni się między [Androidem](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-scrollgesture) a [iOS](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-scroll). WebdriverIO niweluje tę różnicę, dostarczając ujednolicone komendy, takie jak `scrollIntoView()`, które działają płynnie na wszystkich platformach, niezależnie od podstawowej implementacji.
 
 ```ts
 await $('~element').scrollIntoView();
 ```
 
-This abstraction ensures your tests are portable and do not require constant branching or conditional logic to account for OS differences.
+Ta abstrakcja zapewnia, że Twoje testy są przenośne i nie wymagają ciągłego rozgałęziania lub logiki warunkowej, aby uwzględnić różnice między systemami operacyjnymi.
 
-### 3. **Increased Productivity**
+### 3. **Zwiększona produktywność**
+Dzięki zmniejszeniu potrzeby zrozumienia i implementacji niskopoziomowych komend Appium, komendy mobilne WebdriverIO pozwalają skupić się na testowaniu funkcjonalności aplikacji, zamiast zmagania się z niuansami specyficznymi dla platformy. Jest to szczególnie korzystne dla zespołów z ograniczonym doświadczeniem w automatyzacji mobilnej lub tych, którzy chcą przyspieszyć cykl rozwoju.
 
-By reducing the need to understand and implement low-level Appium commands, WebdriverIO's mobile commands enable you to focus on testing your app's functionality rather than wrestling with platform-specific nuances. This is especially beneficial for teams with limited experience in mobile automation or those seeking to accelerate their development cycle.
+### 4. **Spójność i łatwość utrzymania**
+Niestandardowe komendy wprowadzają jednolitość do skryptów testowych. Zamiast mieć różne implementacje dla podobnych akcji, Twój zespół może polegać na standardowych, wielokrotnie używanych komendach. To nie tylko sprawia, że kod jest łatwiejszy w utrzymaniu, ale także obniża barierę wejścia dla nowych członków zespołu.
 
-### 4. **Consistency and Maintainability**
+## Dlaczego rozszerzać niektóre komendy mobilne?
 
-Custom commands bring uniformity to your test scripts. Instead of having varying implementations for similar actions, your team can rely on standardized, reusable commands. This not only makes the codebase more maintainable but also lowers the barrier for onboarding new team members.
-
-## Why enhance certain mobile commands?
-
-### 1. Adding Flexibility
-
-Certain mobile commands are enhanced to provide additional options and parameters that aren't available in the default Appium APIs. For example, WebdriverIO adds retry logic, timeouts, and the ability to filter webviews by specific criteria, enabling more control over complex scenarios.
+### 1. Dodawanie elastyczności
+Niektóre komendy mobilne są rozszerzone, aby zapewnić dodatkowe opcje i parametry, które nie są dostępne w domyślnych API Appium. Na przykład, WebdriverIO dodaje logikę ponawiania, limity czasu i możliwość filtrowania webview według określonych kryteriów, zapewniając większą kontrolę nad złożonymi scenariuszami.
 
 ```ts
-// Example: Customizing retry intervals and timeouts for webview detection
+// Przykład: Dostosowywanie interwałów ponowień i limitów czasu dla wykrywania webview
 await driver.getContexts({
   returnDetailedContexts: true,
-  androidWebviewConnectionRetryTime: 1000, // Retry every 1 second
-  androidWebviewConnectTimeout: 10000,    // Timeout after 10 seconds
+  androidWebviewConnectionRetryTime: 1000, // Ponowienie co 1 sekundę
+  androidWebviewConnectTimeout: 10000,    // Limit czasu po 10 sekundach
 });
 ```
 
-These options help adapt automation scripts to dynamic app behavior without additional boilerplate code.
+Te opcje pomagają dostosować skrypty automatyzacji do dynamicznego zachowania aplikacji bez dodatkowego kodu szablonowego.
 
-### 2. Improving Usability
-
-Enhanced commands abstract away complexities and repetitive patterns found in the native APIs. They allow you to perform more actions with fewer lines of code, reducing the learning curve for new users and making scripts easier to read and maintain.
+### 2. Poprawa użyteczności
+Rozszerzone komendy abstrahują złożoności i powtarzalne wzorce obecne w natywnych API. Pozwalają na wykonywanie większej liczby działań za pomocą mniejszej liczby linii kodu, zmniejszając krzywą uczenia się dla nowych użytkowników i ułatwiając czytanie i utrzymanie skryptów.
 
 ```ts
-// Example: Enhanced command for switching context by title
+// Przykład: Rozszerzona komenda do przełączania kontekstu według tytułu
 await driver.switchContext({
   title: 'My Webview Title',
 });
 ```
 
-Compared to the default Appium methods, enhanced commands eliminate the need for additional steps like manually retrieving available contexts and filtering through them.
+W porównaniu do domyślnych metod Appium, rozszerzone komendy eliminują potrzebę dodatkowych kroków, takich jak ręczne pobieranie dostępnych kontekstów i ich filtrowanie.
 
-### 3. Standardizing Behavior
-
-WebdriverIO ensures that enhanced commands behave consistently across platforms like Android and iOS. This cross-platform abstraction minimizes the need for conditionally branching logic based on the operating system, leading to more maintainable test scripts.
+### 3. Standaryzacja zachowania
+WebdriverIO zapewnia, że rozszerzone komendy zachowują się spójnie na platformach takich jak Android i iOS. Ta abstrakcja między platformami minimalizuje potrzebę warunkowego rozgałęziania logiki w zależności od systemu operacyjnego, prowadząc do łatwiejszych w utrzymaniu skryptów testowych.
 
 ```ts
-// Example: Unified scroll command for both platforms
+// Przykład: Ujednolicona komenda przewijania dla obu platform
 await $('~element').scrollIntoView();
 ```
 
-This standardization simplifies codebases, especially for teams automating tests on multiple platforms.
+Ta standaryzacja upraszcza kod, szczególnie dla zespołów automatyzujących testy na wielu platformach.
 
-### 4. Increasing Reliability
-
-By incorporating retry mechanisms, smart defaults, and detailed error messages, enhanced commands reduce the likelihood of flaky tests. These improvements ensure your tests are resilient to issues like delays in webview initialization or transient app states.
+### 4. Zwiększenie niezawodności
+Poprzez włączenie mechanizmów ponawiania, inteligentnych wartości domyślnych i szczegółowych komunikatów o błędach, rozszerzone komendy zmniejszają prawdopodobieństwo niestabilnych testów. Te ulepszenia zapewniają, że Twoje testy są odporne na problemy, takie jak opóźnienia w inicjalizacji webview lub przejściowe stany aplikacji.
 
 ```ts
-// Example: Enhanced webview switching with robust matching logic
+// Przykład: Rozszerzone przełączanie webview z solidną logiką dopasowania
 await driver.switchContext({
   url: /.*my-app\/dashboard/,
   androidWebviewConnectionRetryTime: 500,
@@ -107,74 +104,69 @@ await driver.switchContext({
 });
 ```
 
-This makes test execution more predictable and less prone to failures caused by environmental factors.
+To sprawia, że wykonanie testów jest bardziej przewidywalne i mniej podatne na błędy spowodowane czynnikami środowiskowymi.
 
-### 5. Enhancing Debugging Capabilities
-
-Enhanced commands often return richer metadata, enabling easier debugging of complex scenarios, particularly in hybrid apps. For instance, commands like getContext and getContexts can return detailed information about webviews, including title, url, and visibility status.
+### 5. Rozszerzenie możliwości debugowania
+Rozszerzone komendy często zwracają bogatsze metadane, umożliwiając łatwiejsze debugowanie złożonych scenariuszy, szczególnie w aplikacjach hybrydowych. Na przykład, komendy takie jak getContext i getContexts mogą zwracać szczegółowe informacje o webview, w tym tytuł, adres URL i status widoczności.
 
 ```ts
-// Example: Retrieving detailed metadata for debugging
+// Przykład: Pobieranie szczegółowych metadanych do debugowania
 const contexts = await driver.getContexts({ returnDetailedContexts: true });
 console.log(contexts);
 ```
 
-This metadata helps identify and resolve issues faster, improving the overall debugging experience.
+Te metadane pomagają szybciej identyfikować i rozwiązywać problemy, poprawiając ogólne doświadczenie debugowania.
 
-By enhancing mobile commands, WebdriverIO not only makes automation easier but also aligns with its mission to provide developers with tools that are powerful, reliable, and intuitive to use.
+
+Poprzez rozszerzanie komend mobilnych, WebdriverIO nie tylko ułatwia automatyzację, ale także realizuje swoją misję dostarczania deweloperom narzędzi, które są potężne, niezawodne i intuicyjne w użyciu.
 
 ---
 
-## Hybrid Apps
+## Aplikacje hybrydowe
 
-Hybrid apps combine web content with native functionality and require specialized handling during automation. These apps use webviews to render web content within a native application. WebdriverIO provides enhanced methods for working with hybrid apps effectively.
+Aplikacje hybrydowe łączą treści webowe z funkcjonalnością natywną i wymagają specjalistycznej obsługi podczas automatyzacji. Te aplikacje używają webview do renderowania treści webowych w natywnej aplikacji. WebdriverIO zapewnia rozszerzone metody efektywnej pracy z aplikacjami hybrydowymi.
 
-### Understanding Webviews
+### Zrozumienie Webview
+Webview to komponent podobny do przeglądarki, osadzony w natywnej aplikacji:
 
-A webview is a browser-like component embedded in a native app:
+- **Android:** Webview są oparte na Chrome/System Webview i mogą zawierać wiele stron (podobnie do kart przeglądarki). Te webview wymagają ChromeDrivera do automatyzacji interakcji. Appium może automatycznie określić wymaganą wersję ChromeDrivera na podstawie wersji System WebView lub Chrome zainstalowanej na urządzeniu i pobrać ją automatycznie, jeśli nie jest jeszcze dostępna. To podejście zapewnia płynną kompatybilność i minimalizuje ręczną konfigurację. Zapoznaj się z [dokumentacją Appium UIAutomator2](https://github.com/appium/appium-uiautomator2-driver?tab=readme-ov-file#automatic-discovery-of-compatible-chromedriver), aby dowiedzieć się, jak Appium automatycznie pobiera odpowiednią wersję ChromeDrivera.
+- **iOS:** Webview są napędzane przez Safari (WebKit) i identyfikowane przez ogólne identyfikatory, takie jak `WEBVIEW_{id}`.
 
-- **Android:** Webviews are based on Chrome/System Webview and may contain multiple pages (similar to browser tabs). These webviews require ChromeDriver to automate interactions. Appium can automatically determine the required ChromeDriver version based on the version of the System WebView or Chrome installed on the device and download it automatically if not already available. This approach ensures seamless compatibility and minimizes manual setup. Refer to the [Appium UIAutomator2-documentation](https://github.com/appium/appium-uiautomator2-driver?tab=readme-ov-file#automatic-discovery-of-compatible-chromedriver) to learn how Appium automatically downloads the correct ChromeDriver version.
-- **iOS:** Webviews are powered by Safari (WebKit) and identified by generic IDs like `WEBVIEW_{id}`.
+### Wyzwania z aplikacjami hybrydowymi
+1. Identyfikacja odpowiedniego webview spośród wielu opcji.
+2. Pobieranie dodatkowych metadanych, takich jak tytuł, URL lub nazwa pakietu, dla lepszego kontekstu.
+3. Obsługa różnic specyficznych dla platformy między Androidem a iOS.
+4. Niezawodne przełączanie do właściwego kontekstu w aplikacji hybrydowej.
 
-### Challenges with Hybrid Apps
-
-1. Identifying the correct webview among multiple options.
-2. Retrieving additional metadata such as the title, URL, or package name for better context.
-3. Handling platform-specific differences between Android and iOS.
-4. Switching to the correct context in a hybrid app reliably.
-
-### Key Commands for Hybrid Apps
+### Kluczowe komendy dla aplikacji hybrydowych
 
 #### 1. `getContext`
-
-Retrieves the current context of the session. By default, it behaves like Appium's getContext method but can provide detailed context information when `returnDetailedContext` is enabled. For more information see [`getContext`](/docs/api/mobile/getContext)
+Pobiera aktualny kontekst sesji. Domyślnie zachowuje się jak metoda getContext Appium, ale może dostarczać szczegółowych informacji o kontekście, gdy włączona jest opcja `returnDetailedContext`. Więcej informacji znajdziesz w [`getContext`](/docs/api/mobile/getContext)
 
 #### 2. `getContexts`
-
-Returns a detailed list of available contexts, improving upon Appium's contexts method. This makes it easier to identify the correct webview for interaction without calling extra commands to determine title, url or active `bundleId|packageName`. For more information see [`getContexts`](/docs/api/mobile/getContexts)
+Zwraca szczegółową listę dostępnych kontekstów, ulepszając metodę contexts Appium. Ułatwia to identyfikację odpowiedniego webview do interakcji bez konieczności wywoływania dodatkowych poleceń w celu określenia tytułu, adresu URL lub aktywnego `bundleId|packageName`. Więcej informacji znajdziesz w [`getContexts`](/docs/api/mobile/getContexts)
 
 #### 3. `switchContext`
+Przełącza na określony webview na podstawie nazwy, tytułu lub adresu URL. Zapewnia dodatkową elastyczność, taką jak używanie wyrażeń regularnych do dopasowywania. Więcej informacji znajdziesz w [`switchContext`](/docs/api/mobile/switchContext)
 
-Switches to a specific webview based on name, title, or url. Provides additional flexibility, such as using regular expressions for matching. For more information see [`switchContext`](/docs/api/mobile/switchContext)
+### Kluczowe funkcje dla aplikacji hybrydowych
+1. Szczegółowe metadane: Pobieranie kompleksowych informacji do debugowania i niezawodnego przełączania kontekstu.
+2. Spójność między platformami: Ujednolicone zachowanie dla Android i iOS, płynnie obsługujące szczególne cechy platform.
+3. Niestandardowa logika ponawiania (Android): Dostosowanie interwałów ponawiania i limitów czasu dla wykrywania webview.
 
-### Key Features for Hybrid Apps
 
-1. Detailed Metadata: Retrieve comprehensive details for debugging and reliable context switching.
-2. Cross-Platform Consistency: Unified behavior for Android and iOS, handling platform-specific quirks seamlessly.
-3. Custom Retry Logic (Android): Adjust retry intervals and timeouts for webview detection.
+:::info Uwagi i ograniczenia
+- Android dostarcza dodatkowe metadane, takie jak `packageName` i `webviewPageId`, podczas gdy iOS koncentruje się na `bundleId`.
+- Logika ponawiania jest konfigurowalna dla Androida, ale nie ma zastosowania do iOS.
+- Istnieje kilka przypadków, w których iOS nie może znaleźć Webview. Appium zapewnia różne dodatkowe możliwości dla `appium-xcuitest-driver` do znalezienia Webview. Jeśli uważasz, że Webview nie został znaleziony, możesz spróbować ustawić jedną z następujących możliwości:
+    - `appium:includeSafariInWebviews`: Dodaje konteksty webowe Safari do listy kontekstów dostępnych podczas testu aplikacji natywnej/webview. Jest to przydatne, jeśli test otwiera Safari i wymaga możliwości interakcji z nim. Domyślnie `false`.
+    - `appium:webviewConnectRetries`: Maksymalna liczba prób przed rezygnacją z wykrywania stron webview. Opóźnienie między kolejnymi próbami wynosi 500 ms, domyślnie `10` prób.
+    - `appium:webviewConnectTimeout`: Maksymalny czas w milisekundach oczekiwania na wykrycie strony webview. Domyślnie `5000` ms.
 
-:::info Notes and Limitations
-
-- Android provides additional metadata, such as `packageName` and `webviewPageId`, while iOS focuses on `bundleId`.
-- Retry logic is customizable for Android but not applicable to iOS.
-- There are several cases that iOS can't find the Webview. Appium provides different extra capabilities for the `appium-xcuitest-driver` to find the Webview. If you believe that the Webview is not found, you can try to set one of the following capabilities:
-  - `appium:includeSafariInWebviews`: Add Safari web contexts to the list of contexts available during a native/webview app test. This is useful if the test opens Safari and needs to be able to interact with it. Defaults to `false`.
-  - `appium:webviewConnectRetries`: The maximum number of retries before giving up on web view pages detection. The delay between each retry is 500ms, default is `10` retries.
-  - `appium:webviewConnectTimeout`: The maximum amount of time in milliseconds to wait for a web view page to be detected. Default is `5000` ms.
-
-For advanced examples and details, see the WebdriverIO Mobile API documentation.
+Aby uzyskać zaawansowane przykłady i szczegóły, zobacz dokumentację WebdriverIO Mobile API.
 :::
+
 
 ---
 
-Our growing set of commands reflects our commitment to making mobile automation accessible and elegant. Whether you’re performing intricate gestures or working with native app elements, these commands align with WebdriverIO’s philosophy of creating a seamless automation experience. And we’re not stopping here—if there’s a feature you’d like to see, we welcome your feedback. Feel free to submit your requests via [this link](https://github.com/webdriverio/webdriverio/issues/new/choose).
+Nasz rosnący zestaw komend odzwierciedla nasze zaangażowanie w uczynienie automatyzacji mobilnej dostępną i elegancką. Niezależnie od tego, czy wykonujesz skomplikowane gesty, czy pracujesz z natywnymi elementami aplikacji, te komendy są zgodne z filozofią WebdriverIO tworzenia płynnego doświadczenia automatyzacji. I nie zatrzymujemy się tutaj - jeśli jest funkcja, którą chciałbyś zobaczyć, chętnie przyjmiemy Twoje sugestie. Śmiało przesyłaj swoje prośby za pomocą [tego linku](https://github.com/webdriverio/webdriverio/issues/new/choose).

@@ -12,7 +12,7 @@ Con WebdriverIO puoi emulare le API Web utilizzando il comando [`emulate`](/docs
 
 :::info
 
-Questa funzionalità richiede il supporto di WebDriver Bidi per il browser. Mentre versioni recenti di Chrome, Edge e Firefox hanno tale supporto, Safari __non lo ha__. Per aggiornamenti segui [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). Inoltre, se utilizzi un fornitore cloud per avviare i browser, assicurati che il tuo fornitore supporti anche WebDriver Bidi.
+Questa funzionalità richiede il supporto di WebDriver Bidi per il browser. Mentre le versioni recenti di Chrome, Edge e Firefox hanno tale supporto, Safari __non lo ha__. Per gli aggiornamenti, segui [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). Inoltre, se usi un fornitore cloud per la generazione di browser, assicurati che il tuo fornitore supporti anche WebDriver Bidi.
 
 Per abilitare WebDriver Bidi per il tuo test, assicurati di avere `webSocketUrl: true` impostato nelle tue capabilities.
 
@@ -34,11 +34,11 @@ await browser.pause(5000)
 console.log(await browser.getUrl()) // outputs: "https://www.google.com/maps/@52.52,13.39,16z?entry=ttu"
 ```
 
-Questo modificherà il funzionamento di [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) e restituirà la posizione fornita da te.
+Questo modificherà il funzionamento di [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) restituendo la posizione fornita da te.
 
-## Schema di Colori
+## Schema Colori
 
-Cambia l'impostazione dello schema di colori predefinito del browser tramite:
+Cambia la configurazione dello schema colori predefinito del browser tramite:
 
 ```ts
 await browser.emulate('colorScheme', 'light')
@@ -52,7 +52,7 @@ const backgroundColor = await browser.$('nav').getCSSProperty('background-color'
 console.log(backgroundColor.parsed.hex) // outputs: "#000000"
 ```
 
-Questo modificherà il comportamento di [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) quando si interroga lo schema di colori tramite `(prefers-color-scheme: dark)`.
+Questo modificherà il comportamento di [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) quando si interroga lo schema colori tramite `(prefers-color-scheme: dark)`.
 
 ## User Agent
 
@@ -62,7 +62,7 @@ Cambia lo user agent del browser in una stringa diversa tramite:
 await browser.emulate('userAgent', 'Chrome/1.2.3.4 Safari/537.36')
 ```
 
-Questo cambierà il valore di [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Nota che i fornitori di browser stanno progressivamente deprecando lo User Agent.
+Questo cambierà il valore di [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Nota che i produttori di browser stanno progressivamente deprecando lo User Agent.
 
 ## Proprietà onLine
 
@@ -72,11 +72,11 @@ Cambia lo stato online del browser tramite:
 await browser.emulate('onLine', false)
 ```
 
-Questo __non__ disattiverà il traffico di rete tra il browser e internet, ma cambierà solo il valore di ritorno di [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). Se sei interessato a modificare le capacità di rete del browser, guarda il comando [`throttleNetwork`](/docs/api/browser/throttleNetwork).
+Questo __non__ disattiva il traffico di rete tra il browser e internet, ma cambia solo il valore di ritorno di [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). Se sei interessato a modificare le capacità di rete del browser, consulta il comando [`throttleNetwork`](/docs/api/browser/throttleNetwork).
 
 ## Orologio
 
-Puoi modificare l'orologio di sistema del browser utilizzando il comando [`emulate`](/docs/emulation). Sovrascrive le funzioni globali native relative al tempo consentendo di controllarle in modo sincrono tramite `clock.tick()` o l'oggetto orologio restituito. Questo include il controllo di:
+Puoi modificare l'orologio di sistema del browser utilizzando il comando [`emulate`](/docs/emulation). Sovrascrive le funzioni globali native relative al tempo permettendo di controllarle in modo sincrono tramite `clock.tick()` o l'oggetto clock ottenuto. Questo include il controllo di:
 
 - `setTimeout`
 - `clearTimeout`
@@ -84,7 +84,7 @@ Puoi modificare l'orologio di sistema del browser utilizzando il comando [`emula
 - `clearInterval`
 - `Date Objects`
 
-L'orologio parte dall'epoca unix (timestamp di 0). Ciò significa che quando istanzi un nuovo oggetto Date nella tua applicazione, avrà un'ora del 1 gennaio 1970 se non passi altre opzioni al comando `emulate`.
+L'orologio inizia dall'epoca unix (timestamp 0). Questo significa che quando istanzi un nuovo oggetto Date nella tua applicazione, avrà come orario il 1° gennaio 1970 se non passi altre opzioni al comando `emulate`.
 
 ##### Esempio
 
@@ -150,9 +150,9 @@ interface FakeTimerInstallOpts {
 
 ## Dispositivo
 
-Il comando `emulate` supporta anche l'emulazione di un determinato dispositivo mobile o desktop modificando il viewport, il fattore di scala del dispositivo e lo user agent. Questo non dovrebbe, in nessun caso, essere utilizzato per i test mobili poiché i motori dei browser desktop differiscono da quelli mobili. Questo dovrebbe essere utilizzato solo se la tua applicazione offre un comportamento specifico per viewport di dimensioni più piccole.
+Il comando `emulate` supporta anche l'emulazione di un determinato dispositivo mobile o desktop modificando il viewport, il fattore di scala del dispositivo e lo user agent. Questo non dovrebbe, in nessun modo, essere utilizzato per i test mobili poiché i motori dei browser desktop differiscono da quelli mobili. Questo dovrebbe essere utilizzato solo se la tua applicazione offre un comportamento specifico per viewport di dimensioni più piccole.
 
-Ad esempio, per cambiare lo user agent e il viewport a quello di un iPhone 15, esegui semplicemente:
+Ad esempio, per passare allo user agent e al viewport di un iPhone 15, esegui semplicemente:
 
 ```ts
 const restore = await browser.emulate('device', 'iPhone 15')

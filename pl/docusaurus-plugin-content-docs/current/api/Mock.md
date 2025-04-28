@@ -3,30 +3,33 @@ id: mock
 title: Obiekt Mock
 ---
 
-Obiekt mock to obiekt, który reprezentuje makietę sieciową (network mock) i zawiera informacje o żądaniach pasujących do podanych `url` i `filterOptions`. Można go uzyskać przy pomocy polecenia [`mock`](/docs/api/browser/mock).
+Obiekt mock to obiekt reprezentujący makietę sieciową, zawierający informacje o żądaniach, które pasowały do podanego `url` i `filterOptions`. Można go otrzymać za pomocą polecenia [`mock`](/docs/api/browser/mock).
 
 :::info
 
-Pamiętaj, że użycie polecenia `mock` wymaga wsparcia protokołu Chrome DevTools. Wsparcie jest zapewnione, jeśli wykonujesz testy lokalnie w przeglądarce opartej o Chromium lub jeśli używasz Selenium Grid w wersji 4, lub wyższej. Tego polecenia __nie__ można wykorzystać podczas uruchamiania testów automatycznych w chmurze. Dowiedz się więcej w sekcji [Protokoły automatyzacji](/docs/automationProtocols).
+Pamiętaj, że używanie polecenia `mock` wymaga wsparcia dla protokołu Chrome DevTools.
+To wsparcie jest dostępne, jeśli uruchamiasz testy lokalnie w przeglądarce opartej na Chromium lub jeśli
+używasz Selenium Grid w wersji 4 lub wyższej. To polecenie __nie może__ być używane podczas uruchamiania
+zautomatyzowanych testów w chmurze. Dowiedz się więcej w sekcji [Protokoły Automatyzacji](/docs/automationProtocols).
 
 :::
 
-Możesz przeczytać więcej o mockowaniu żądań i odpowiedziach w WebdriverIO w naszym przewodniku dotyczącym [Mock i Spy](/docs/mocksandspies).
+Więcej informacji o tworzeniu makiet dla żądań i odpowiedzi w WebdriverIO znajdziesz w naszym przewodniku [Makiety i Szpiedzy](/docs/mocksandspies).
 
 ## Właściwości
 
-Obiekt mock ma następujące właściwości:
+Obiekt mock zawiera następujące właściwości:
 
-| Nazwa           | Typ        | Szczegóły                                                                                                                                                                                       |
-| --------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `url`           | `String`   | Adres URL przekazany do polecenia mock                                                                                                                                                          |
-| `filterOptions` | `Object`   | Opcje filtrowania zasobów przekazane do polecenia mock                                                                                                                                          |
-| `browser`       | `Object`   | [Obiekt przeglądarki](/docs/api/browser) użyty do pobrania obiektu mock.                                                                                                                        |
-| `calls`         | `Object[]` | Informacje o pasujących żądaniach przeglądarki, zawierające właściwości takie jak `url`, `method`, `headers`, `initialPriority`, `referrrerPolicy`, `statusCode`, `responseHeaders` oraz `body` |
+| Nazwa | Typ | Szczegóły |
+| ---- | ---- | ------- |
+| `url` | `String` | Adres URL przekazany do polecenia mock |
+| `filterOptions` | `Object` | Opcje filtrowania zasobów przekazane do polecenia mock |
+| `browser` | `Object` | [Obiekt przeglądarki](/docs/api/browser) używany do uzyskania obiektu mock. |
+| `calls` | `Object[]` | Informacje o pasujących żądaniach przeglądarki, zawierające właściwości takie jak `url`, `method`, `headers`, `initialPriority`, `referrerPolicy`, `statusCode`, `responseHeaders` i `body` |
 
 ## Metody
 
-Obiekty Mock dostarczają różne polecenia, wymienione w sekcji `mock`, które pozwalają użytkownikom modyfikować zachowanie żądania lub odpowiedzi.
+Obiekty mock udostępniają różne polecenia, wymienione w sekcji `mock`, które pozwalają użytkownikom modyfikować zachowanie żądania lub odpowiedzi.
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -37,15 +40,15 @@ Obiekty Mock dostarczają różne polecenia, wymienione w sekcji `mock`, które 
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
 
-## Eventy
+## Zdarzenia
 
-Obiekt mock jest EventEmitterem i emitowanych jest kilka eventów dla różnych przypadków użycia.
+Obiekt mock jest emiterem zdarzeń (EventEmitter) i kilka zdarzeń jest emitowanych do wykorzystania w twoich przypadkach użycia.
 
-Poniżej znajduje się lista eventów.
+Oto lista zdarzeń.
 
 ### `request`
 
-Ten event jest emitowany podczas uruchamiania żądania sieciowego, które pasuje do wzorców danego mocka. Żądanie jest przekazywane w ramach callbacku dla danego eventu.
+To zdarzenie jest emitowane przy uruchamianiu żądania sieciowego, które pasuje do wzorców mocka. Żądanie jest przekazywane w callbacku zdarzenia.
 
 Interfejs żądania:
 ```ts
@@ -59,7 +62,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Ten event jest emitowany, gdy odpowiedź sieci zostanie nadpisana przez [`respond`](/docs/api/mock/respond) lub [`respondOnce`](/docs/api/mock/respondOnce). Żądanie jest przekazywane w ramach callbacku dla danego eventu.
+To zdarzenie jest emitowane, gdy odpowiedź sieciowa jest nadpisywana za pomocą [`respond`](/docs/api/mock/respond) lub [`respondOnce`](/docs/api/mock/respondOnce). Odpowiedź jest przekazywana w callbacku zdarzenia.
 
 Interfejs odpowiedzi:
 ```ts
@@ -73,9 +76,9 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Ten event jest emitowany, gdy odpowiedź sieci zostanie przerwana przez [`abort`](/docs/api/mock/abort) lub [`abortOnce`](/docs/api/mock/abortOnce). Fail jest przekazywany w ramach callbacku dla danego eventu.
+To zdarzenie jest emitowane, gdy żądanie sieciowe jest przerywane za pomocą [`abort`](/docs/api/mock/abort) lub [`abortOnce`](/docs/api/mock/abortOnce). Błąd jest przekazywany w callbacku zdarzenia.
 
-Interfejs fail:
+Interfejs błędu:
 ```ts
 interface FailEvent {
     requestId: number
@@ -85,50 +88,50 @@ interface FailEvent {
 
 ### `match`
 
-Ten event jest emitowany po dodaniu nowego dopasowania, przed eventami `continue` lub `overwrite`. Dopasowanie jest przekazywane w ramach callbacku dla danego eventu.
+To zdarzenie jest emitowane, gdy dodawane jest nowe dopasowanie, przed `continue` lub `overwrite`. Dopasowanie jest przekazywane w callbacku zdarzenia.
 
 Interfejs dopasowania:
 ```ts
 interface MatchEvent {
-    url: string // Request URL (without fragment).
-    urlFragment?: string // Fragment of the requested URL starting with hash, if present.
-    method: string // HTTP request method.
-    headers: Record<string, string> // HTTP request headers.
-    postData?: string // HTTP POST request data.
-    hasPostData?: boolean // True when the request has POST data.
-    mixedContentType?: MixedContentType // The mixed content export type of the request.
-    initialPriority: ResourcePriority // Priority of the resource request at the time request is sent.
-    referrerPolicy: ReferrerPolicy // The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Whether is loaded via link preload.
-    body: string | Buffer | JsonCompatible // Body response of actual resource.
-    responseHeaders: Record<string, string> // HTTP response headers.
-    statusCode: number // HTTP response status code.
-    mockedResponse?: string | Buffer // If mock, emitting the event, also modified it's response.
+    url: string // URL żądania (bez fragmentu).
+    urlFragment?: string // Fragment żądanego URL zaczynający się od #, jeśli jest obecny.
+    method: string // Metoda żądania HTTP.
+    headers: Record<string, string> // Nagłówki żądania HTTP.
+    postData?: string // Dane żądania HTTP POST.
+    hasPostData?: boolean // Prawda, gdy żądanie ma dane POST.
+    mixedContentType?: MixedContentType // Typ eksportu mieszanej zawartości żądania.
+    initialPriority: ResourcePriority // Priorytet żądania zasobu w momencie wysłania żądania.
+    referrerPolicy: ReferrerPolicy // Polityka odnośnika żądania, zgodnie z definicją w https://www.w3.org/TR/referrer-policy/
+    isLinkPreload?: boolean // Czy jest ładowany za pomocą preload linku.
+    body: string | Buffer | JsonCompatible // Zawartość odpowiedzi rzeczywistego zasobu.
+    responseHeaders: Record<string, string> // Nagłówki odpowiedzi HTTP.
+    statusCode: number // Kod statusu odpowiedzi HTTP.
+    mockedResponse?: string | Buffer // Jeśli mock emitujący zdarzenie również zmodyfikował swoją odpowiedź.
 }
 ```
 
 ### `continue`
 
-Ten event jest emitowany, gdy odpowiedź sieci nie została nadpisana ani przerwana, lub jeśli odpowiedź została już wysłana przez inny mock. `requestId` jest przekazywany w ramach callbacku dla danego eventu.
+To zdarzenie jest emitowane, gdy odpowiedź sieciowa nie została ani nadpisana, ani przerwana, lub jeśli odpowiedź została już wysłana przez inny mock. `requestId` jest przekazywany w callbacku zdarzenia.
 
 ## Przykłady
 
-Pobieranie liczby oczekujących żądań:
+Uzyskiwanie liczby oczekujących żądań:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // it is important to match all requests otherwise, the resulting value can be very confusing.
+const mock = await browser.mock('**') // ważne jest, aby dopasować wszystkie żądania, w przeciwnym razie wynikowa wartość może być bardzo myląca.
 mock.on('request', ({request}) => {
     pendingRequests++
-    console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
+    console.log(`dopasowano żądanie do ${request.url}, oczekuje ${pendingRequests} żądań`)
 })
 mock.on('match', ({url}) => {
     pendingRequests--
-    console.log(`resolved request to ${url}, pending ${pendingRequests} requests`)
+    console.log(`rozwiązano żądanie do ${url}, oczekuje ${pendingRequests} żądań`)
 })
 ```
 
-Rzucanie błędu w przypadku 404 zwróconego jako status odpowiedzi:
+Zgłaszanie błędu przy niepowodzeniu sieciowym 404:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -136,13 +139,13 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     mock.on('match', ({url, statusCode}) => {
         if (statusCode === 404) {
-            reject(new Error(`request to ${url} failed with "Not Found"`))
+            reject(new Error(`żądanie do ${url} nie powiodło się z błędem "Not Found"`))
         }
     })
 
     await this.url(url).catch(reject)
 
-    // waiting here, because some requests can still be pending
+    // oczekiwanie tutaj, ponieważ niektóre żądania mogą nadal być w toku
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -157,7 +160,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Ustalanie, czy użyto mocka wartości odpowiedzi:
+Określanie, czy wartość odpowiedzi mock została użyta:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -167,16 +170,16 @@ firstMock.respondOnce({id: 3, title: 'three'})
 secondMock.respond({id: 4, title: 'four'})
 
 firstMock.on('overwrite', () => {
-    // triggers for first request to '**/foo/**'
+    // wyzwalane dla pierwszego żądania do '**/foo/**'
 }).on('continue', () => {
-    // triggers for rest requests to '**/foo/**'
+    // wyzwalane dla pozostałych żądań do '**/foo/**'
 })
 
 secondMock.on('continue', () => {
-    // triggers for first request to '**/foo/bar/**'
+    // wyzwalane dla pierwszego żądania do '**/foo/bar/**'
 }).on('overwrite', () => {
-    // triggers for rest requests to '**/foo/bar/**'
+    // wyzwalane dla pozostałych żądań do '**/foo/bar/**'
 })
 ```
 
-W tym przykładzie żądanie `firstMock` zostało zdefiniowane jako pierwsze i ma jedno wywołanie `respondOnce`, więc wartość odpowiedzi `secondMock` nie będzie używana dla pierwszego żądania, ale będzie wykorzystana w przypadku pozostałych żądań.
+W tym przykładzie, `firstMock` został zdefiniowany jako pierwszy i ma jedno wywołanie `respondOnce`, więc wartość odpowiedzi `secondMock` nie zostanie użyta dla pierwszego żądania, ale zostanie użyta dla pozostałych.

@@ -3,7 +3,7 @@ id: ocr-get-text
 title: ocrGetText
 ---
 
-画像からテキストを取得します。
+画像上のテキストを取得します。
 
 ### 使用方法
 
@@ -33,11 +33,11 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 ### `contrast`
 
--   **タイプ:** `number`
+-   **型:** `number`
 -   **必須:** いいえ
 -   **デフォルト:** `0.25`
 
-コントラストが高いほど画像は暗くなり、その逆も同様です。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`までの値を受け付けます。
+コントラストが高いほど画像は暗くなり、逆もまた然りです。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`の間の値を受け付けます。
 
 #### 例
 
@@ -47,7 +47,7 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **タイプ:** `number`
+-   **型:** `number`
 -   **必須:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
 これは、OCRがテキストを探す画面内の検索領域です。これは要素または`x`、`y`、`width`、`height`を含む矩形にすることができます。
@@ -73,7 +73,7 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **タイプ:** `string`
+-   **型:** `string`
 -   **必須:** いいえ
 -   **デフォルト:** `eng`
 
@@ -84,7 +84,7 @@ Tesseractが認識する言語です。詳細は[こちら](https://tesseract-oc
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // オランダ語を言語として使用
+    // オランダ語を使用
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

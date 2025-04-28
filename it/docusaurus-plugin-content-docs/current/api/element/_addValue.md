@@ -4,12 +4,12 @@ title: addValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/addValue.ts
 ---
 
-Aggiunge un valore a un elemento input o textarea trovato dal selettore dato.
+Aggiungi un valore a un elemento input o textarea trovato tramite il selettore specificato.
 
 :::info
 
-Se desideri utilizzare caratteri speciali, ad esempio per copiare e incollare un valore da un input a un altro, usa il
-comando [`keys`](/docs/api/browser/keys).
+Se desideri utilizzare caratteri speciali, ad esempio per copiare e incollare un valore da un input a un altro, usa il comando 
+[`keys`](/docs/api/browser/keys).
 
 :::
 

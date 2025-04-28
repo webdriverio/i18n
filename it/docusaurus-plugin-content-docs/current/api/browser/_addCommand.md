@@ -4,11 +4,11 @@ title: addCommand
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/addCommand.ts
 ---
 
-Il metodo browser `addCommand` ti aiuta a scrivere il tuo personale set di comandi.
+Il metodo del browser `addCommand` ti aiuta a scrivere il tuo set di comandi personalizzati.
 
 :::info
 
-Puoi trovare maggiori informazioni sull'aggiunta di comandi personalizzati nella guida [comandi personalizzati](/docs/customcommands#adding-custom-commands).
+Puoi trovare maggiori informazioni sull'aggiunta di comandi personalizzati nella guida sui [comandi personalizzati](/docs/customcommands#adding-custom-commands).
 
 :::
 

@@ -1,9 +1,9 @@
 ---
 id: docker
-title: Docker
+title: داکر
 ---
 
-Docker is a powerful containerization technology that allows to encapsulate your test suite into a container that behaves the same on every system. This can avoid flakiness due to different browser or platform versions. In order to run your tests within a container, create a `Dockerfile` in your project directory, e.g.:
+داکر یک فناوری قدرتمند کانتینرسازی است که به شما امکان می‌دهد مجموعه آزمایش‌های خود را درون کانتینری قرار دهید که در هر سیستمی به طور یکسان رفتار می‌کند. این می‌تواند از ناپایداری ناشی از نسخه‌های مختلف مرورگر یا پلتفرم جلوگیری کند. برای اجرای آزمایش‌های خود درون یک کانتینر، یک فایل `Dockerfile` در دایرکتوری پروژه خود ایجاد کنید، به عنوان مثال:
 
 ```Dockerfile
 FROM selenium/standalone-chrome:134.0-20250323 # Change the browser and version according to your needs
@@ -15,17 +15,17 @@ RUN npm install
 CMD npx wdio
 ```
 
-Make sure you don't include your `node_modules` in your Docker image and have these installed when building the image. For that add a `.dockerignore` file with the following content:
+اطمینان حاصل کنید که `node_modules` خود را در تصویر داکر قرار نمی‌دهید و آن‌ها را هنگام ساخت تصویر نصب می‌کنید. برای این منظور یک فایل `.dockerignore` با محتوای زیر اضافه کنید:
 
 ```
 node_modules
 ```
 
 :::info
-We are using a Docker image here that comes with Selenium and Google Chrome pre-installed. There are various of images available with different browser setups and browser versions. Check out the images maintained by the Selenium project [on Docker Hub](https://hub.docker.com/u/selenium).
+ما در اینجا از یک تصویر داکر استفاده می‌کنیم که با Selenium و Google Chrome از پیش نصب شده است. تصاویر مختلفی با تنظیمات مرورگر و نسخه‌های مختلف در دسترس است. تصاویری که توسط پروژه Selenium نگهداری می‌شوند را در [Docker Hub](https://hub.docker.com/u/selenium) بررسی کنید.
 :::
 
-As we can only run Google Chrome in headless mode in our Docker container we have to modify our `wdio.conf.js` to ensure we do that:
+از آنجا که ما فقط می‌توانیم Google Chrome را در حالت headless در کانتینر داکر خود اجرا کنیم، باید `wdio.conf.js` خود را اصلاح کنیم تا اطمینان حاصل کنیم که این کار را انجام می‌دهیم:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -47,18 +47,18 @@ export const config = {
 }
 ```
 
-As mentioned in [Automation Protocols](/docs/automationProtocols) you can run WebdriverIO using the WebDriver protocol or WebDriver BiDi protocol. Make sure that the Chrome version installed on your image matches the [Chromedriver](https://www.npmjs.com/package/chromedriver) version you have defined in your `package.json`.
+همانطور که در [پروتکل‌های اتوماسیون](/docs/automationProtocols) ذکر شد، می‌توانید WebdriverIO را با استفاده از پروتکل WebDriver یا پروتکل WebDriver BiDi اجرا کنید. اطمینان حاصل کنید که نسخه Chrome نصب شده روی تصویر شما با نسخه [Chromedriver](https://www.npmjs.com/package/chromedriver) که در `package.json` خود تعریف کرده‌اید، مطابقت دارد.
 
-To build the Docker container you can run:
+برای ساخت کانتینر داکر می‌توانید اجرا کنید:
 
 ```sh
 docker build -t mytest -f Dockerfile .
 ```
 
-Then to run the tests, execute:
+سپس برای اجرای آزمایش‌ها، اجرا کنید:
 
 ```sh
 docker run -it mytest
 ```
 
-For more information on how to configure the Docker image, check out the [Docker docs](https://docs.docker.com/).
+برای اطلاعات بیشتر در مورد نحوه پیکربندی تصویر داکر، [مستندات داکر](https://docs.docker.com/) را بررسی کنید.

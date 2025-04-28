@@ -3,7 +3,7 @@ id: parameterize-tests
 title: Parametrizzare i Test
 ---
 
-Puoi semplicemente parametrizzare i test a livello di test, tramite semplici cicli `for`, ad esempio:
+Puoi parametrizzare facilmente i test a livello di test, tramite semplici cicli `for`, ad esempio:
 
 ```ts title=example.spec.js
 const people = ['Alice', 'Bob']
@@ -34,7 +34,7 @@ describe('page components', () => {
 })
 ```
 
-## Passare Variabili d'Ambiente
+## Passaggio di Variabili d'Ambiente
 
 Puoi utilizzare le variabili d'ambiente per configurare i test dalla riga di comando.
 
@@ -85,7 +85,7 @@ npx wdio run wdio.conf.js
 </TabItem>
 </Tabs>
 
-Analogamente, il file di configurazione può anche leggere le variabili d'ambiente passate attraverso la riga di comando.
+Allo stesso modo, il file di configurazione può anche leggere le variabili d'ambiente passate tramite la riga di comando.
 
 ```ts title=wdio.config.js
 export const config = {
@@ -97,7 +97,7 @@ export const config = {
 }
 ```
 
-Ora, puoi eseguire i test su un ambiente di staging o di produzione:
+Ora, puoi eseguire test su un ambiente di staging o di produzione:
 
 <Tabs
   defaultValue="bash"
@@ -134,7 +134,7 @@ npx wdio run wdio.conf.js
 
 ## File `.env`
 
-Per rendere più facile la gestione delle variabili d'ambiente, considera qualcosa come i file `.env`. WebdriverIO carica automaticamente i file `.env` nel tuo ambiente. Invece di definire la variabile d'ambiente come parte della chiamata di comando, puoi definire il seguente `.env`:
+Per rendere più facile la gestione delle variabili d'ambiente, considera l'utilizzo di file `.env`. WebdriverIO carica automaticamente i file `.env` nel tuo ambiente. Invece di definire la variabile d'ambiente come parte della chiamata del comando, puoi definire il seguente `.env`:
 
 ```bash title=".env"
 # .env file
@@ -151,7 +151,7 @@ npx wdio run wdio.conf.js
 
 ## Creare test tramite un file CSV
 
-Il test-runner di WebdriverIO viene eseguito in Node.js, ciò significa che puoi leggere direttamente file dal file system e analizzarli con la tua libreria CSV preferita.
+Il test-runner di WebdriverIO viene eseguito in Node.js, questo significa che puoi leggere direttamente i file dal file system e analizzarli con la tua libreria CSV preferita.
 
 Vedi ad esempio questo file CSV, nel nostro esempio input.csv:
 
@@ -163,7 +163,7 @@ Vedi ad esempio questo file CSV, nel nostro esempio input.csv:
 "value 4","value 44","foobar4321"
 ```
 
-Basato su questo, genereremo alcuni test utilizzando la libreria csv-parse da NPM:
+Basandoci su questo genereremo alcuni test utilizzando la libreria csv-parse da NPM:
 
 ```js title=test.spec.ts
 import fs from 'node:fs'

@@ -1,246 +1,244 @@
 ---
 id: method-options
-title: Method Options
+title: گزینه‌های متد
 ---
 
-Methods options are the options that can be set per [method](./methods). If the option has the same key as an option that has been set during the instantiation of the plugin, this method option will override the plugin option value.
+گزینه‌های متد، گزینه‌هایی هستند که می‌توانند برای هر [متد](./methods) تنظیم شوند. اگر گزینه دارای کلید یکسان با گزینه‌ای باشد که در زمان راه‌اندازی افزونه تنظیم شده است، این گزینه متد مقدار گزینه افزونه را بازنویسی خواهد کرد.
 
-## Save Options
+## گزینه‌های ذخیره
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **نوع:** `boolean`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `false`
+-   **پشتیبانی شده:** وب، اپلیکیشن هایبرید (وب‌ویو)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+فعال/غیرفعال کردن چشمک زدن مکان‌نما در تمام عناصر `input`، `textarea`، `[contenteditable]` در برنامه. اگر `true` تنظیم شود، مکان‌نما قبل از گرفتن اسکرین‌شات به `transparent` تنظیم می‌شود و پس از اتمام به حالت اولیه بازمی‌گردد.
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **نوع:** `boolean`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `false`
+-   **پشتیبانی شده:** وب، اپلیکیشن هایبرید (وب‌ویو)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+فعال/غیرفعال کردن تمام انیمیشن‌های CSS در برنامه. اگر `true` تنظیم شود، تمام انیمیشن‌ها قبل از گرفتن اسکرین‌شات غیرفعال می‌شوند و پس از اتمام به حالت اولیه بازمی‌گردند.
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web
+-   **نوع:** `boolean`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `false`
+-   **استفاده با:** تمام [متدها](./methods)
+-   **پشتیبانی شده:** وب
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+این گزینه تمام متن در صفحه را پنهان می‌کند تا فقط از طرح‌بندی برای مقایسه استفاده شود. پنهان‌سازی با اضافه کردن استایل `'color': 'transparent !important'` به __هر__ عنصر انجام می‌شود.
 
-For the output see [Test Output](./test-output#enablelayouttesting)
+برای مشاهده خروجی به [خروجی تست](./test-output#enablelayouttesting) مراجعه کنید.
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+با استفاده از این پرچم، هر عنصری که حاوی متن است (نه فقط `p, h1, h2, h3, h4, h5, h6, span, a, li`، بلکه همچنین `div|button|..`) این ویژگی را دریافت می‌کند. هیچ گزینه‌ای برای سفارشی‌سازی این رفتار وجود __ندارد__.
 :::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **نوع:** `boolean`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `true`
+-   **استفاده با:** تمام [متدها](./methods)
+-   **پشتیبانی شده:** وب، اپلیکیشن هایبرید (وب‌ویو)
 
-Hide scrollbar(s) in the application. If set to true all scrollbar(s) will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
+پنهان کردن نوار(های) اسکرول در برنامه. اگر `true` تنظیم شود، تمام نوار(های) اسکرول قبل از گرفتن اسکرین‌شات غیرفعال می‌شوند. این به طور پیش‌فرض `true` تنظیم شده است تا از مشکلات اضافی جلوگیری شود.
 
 ### `hideElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **نوع:** `array`
+-   **اجباری:** خیر
+-   **استفاده با:** تمام [متدها](./methods)
+-   **پشتیبانی شده:** وب، اپلیکیشن هایبرید (وب‌ویو)، اپلیکیشن بومی
 
-This method can hide 1 or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
+این متد می‌تواند یک یا چند عنصر را با اضافه کردن ویژگی `visibility: hidden` به آنها پنهان کند. برای این کار باید آرایه‌ای از عناصر را ارائه دهید.
 
 ### `removeElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **نوع:** `array`
+-   **اجباری:** خیر
+-   **استفاده با:** تمام [متدها](./methods)
+-   **پشتیبانی شده:** وب، اپلیکیشن هایبرید (وب‌ویو)، اپلیکیشن بومی
 
-This method can _remove_ 1 or multiple elements by adding the property `display: none` to them by providing an array of elements.
+این متد می‌تواند یک یا چند عنصر را با اضافه کردن ویژگی `display: none` به آنها _حذف_ کند. برای این کار باید آرایه‌ای از عناصر را ارائه دهید.
 
 ### `resizeDimensions`
 
-- **Type:** `object`
-- **Mandatory:** no
-- **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Used with:** Only for [`saveElement`](./methods#saveelement) or [`checkElement`](./methods#checkelement)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **نوع:** `object`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **استفاده با:** فقط برای [`saveElement`](./methods#saveelement) یا [`checkElement`](./methods#checkelement)
+-   **پشتیبانی شده:** وب، اپلیکیشن هایبرید (وب‌ویو)، اپلیکیشن بومی
 
-An object that needs to hold a `top`, `right`, `bottom` and `left` amount of pixels that need to make the element cutout bigger.
+شیئی که باید مقدار پیکسل‌های `top`، `right`، `bottom` و `left` را نگهداری کند تا برش عنصر را بزرگتر کند.
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **نوع:** `number`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `1500`
+-   **استفاده با:** فقط برای [`saveFullPageScreen`](./methods#savefullpagescreen) یا [`saveTabbablePage`](./methods#savetabbablepage)
+-   **پشتیبانی شده:** وب
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+زمان انتظار بر حسب میلی‌ثانیه بعد از اسکرول. این ممکن است به شناسایی صفحات با بارگذاری تنبل کمک کند.
 
 ### `hideAfterFirstScroll`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **نوع:** `array`
+-   **اجباری:** خیر
+-   **استفاده با:** فقط برای [`saveFullPageScreen`](./methods#savefullpagescreen) یا [`saveTabbablePage`](./methods#savetabbablepage)
+-   **پشتیبانی شده:** وب
 
-This method will hide one or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
-This will be handy when a page for example holds sticky elements that will scroll with the page if the page is scrolled but will give an annoying effect when a full-page screenshot is made
+این متد یک یا چند عنصر را با اضافه کردن ویژگی `visibility: hidden` به آنها پنهان می‌کند. برای این کار باید آرایه‌ای از عناصر را ارائه دهید.
+این زمانی مفید خواهد بود که یک صفحه به عنوان مثال دارای عناصر چسبنده باشد که با اسکرول صفحه حرکت می‌کنند اما هنگام تهیه اسکرین‌شات کامل صفحه تأثیر ناخوشایندی ایجاد می‌کنند.
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **نوع:** `boolean`
+-   **اجباری:** خیر
+-   **پیش‌فرض:** `true`
+-   **استفاده با:** تمام [متدها](./methods)
+-   **پشتیبانی شده:** وب، اپلیکیشن هایبرید (وب‌ویو)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+فونت‌ها، از جمله فونت‌های شخص ثالث، می‌توانند به صورت همزمان یا ناهمزمان بارگذاری شوند. بارگذاری ناهمزمان به این معنی است که فونت‌ها ممکن است پس از اینکه WebdriverIO تشخیص دهد صفحه کاملاً بارگذاری شده، بارگذاری شوند. برای جلوگیری از مشکلات رندر فونت، این ماژول به طور پیش‌فرض قبل از گرفتن اسکرین‌شات منتظر بارگذاری تمام فونت‌ها می‌ماند.
 
-## Compare (Check) Options
+## گزینه‌های مقایسه (بررسی)
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+گزینه‌های مقایسه، گزینه‌هایی هستند که بر نحوه اجرای مقایسه توسط [ResembleJS](https://github.com/Huddle/Resemble.js) تأثیر می‌گذارند.
 
-:::info NOTE
+:::info توجه
 
-- All options from the [Save Options](#save-options) can be used for the Compare methods
-- All compare options can be used during service instantiation **or** for every single check method. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
-- All options can be used for:
-  - Web
-  - Hybrid App
-  - Native App
+-   تمام گزینه‌های [گزینه‌های ذخیره](#گزینه‌های-ذخیره) را می‌توان برای متدهای مقایسه استفاده کرد
+-   تمام گزینه‌های مقایسه می‌توانند در زمان راه‌اندازی سرویس __یا__ برای هر متد بررسی تکی استفاده شوند. اگر گزینه متد دارای کلید یکسان با گزینه‌ای باشد که در زمان راه‌اندازی سرویس تنظیم شده است، گزینه مقایسه متد مقدار گزینه مقایسه سرویس را بازنویسی خواهد کرد.
+- تمام گزینه‌ها می‌توانند برای موارد زیر استفاده شوند:
+    - وب
+    - اپلیکیشن هایبرید
+    - اپلیکیشن بومی
 
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
 
-Compare images and discard alpha.
+تصاویر را مقایسه می‌کند و آلفا را نادیده می‌گیرد.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. This is **iPad only**_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `true`
+-   **اجباری:** خیر
+-   **نکته:** _فقط برای `checkScreen()` قابل استفاده است. این **فقط برای آیپد** است_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+به طور خودکار نوار کناری را برای آیپدها در حالت افقی در طول مقایسه‌ها مسدود می‌کند. این از بروز خطا در اجزای بومی تب/خصوصی/نشانک جلوگیری می‌کند.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `true`
+-   **اجباری:** خیر
+-   **نکته:** _این **فقط برای موبایل** است_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+به طور خودکار نوار وضعیت و نوار آدرس را در طول مقایسه‌ها مسدود می‌کند. این از بروز خطا در زمان، وای‌فای یا وضعیت باتری جلوگیری می‌کند.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `true`
+-   **اجباری:** خیر
+-   **نکته:** _این **فقط برای موبایل** است_
 
-Automatically block out the toolbar.
+به طور خودکار نوار ابزار را مسدود می‌کند.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
 
-Compare images and discard anti-aliasing.
+تصاویر را مقایسه می‌کند و ضدپله‌ای (anti-aliasing) را نادیده می‌گیرد.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
 
-Even though the images are in color, the comparison will compare 2 black/white images
+حتی اگر تصاویر رنگی باشند، مقایسه بین دو تصویر سیاه و سفید انجام می‌شود.
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+تصاویر را با مقادیر `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240` مقایسه می‌کند.
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+تصاویر را با مقادیر `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255` مقایسه می‌کند.
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+اگر `true` باشد، درصد بازگشتی به صورت `0.12345678` خواهد بود، پیش‌فرض `0.12` است.
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
 
-This will return all compare data, not only the mismatch percentage
+این گزینه تمام داده‌های مقایسه را برمی‌گرداند، نه فقط درصد عدم تطابق.
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **نوع:** `number`
+-   **پیش‌فرض:** `0`
+-   **اجباری:** خیر
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+مقدار مجاز `misMatchPercentage` که از ذخیره تصاویر با تفاوت‌ها جلوگیری می‌کند.
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **نوع:** `number`
+-   **پیش‌فرض:** `0`
+-   **اجباری:** خیر
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+مقایسه تصاویر بزرگ می‌تواند منجر به مشکلات کارایی شود.
+هنگام ارائه یک عدد برای تعداد پیکسل‌ها در اینجا (بیشتر از 0)، الگوریتم مقایسه پیکسل‌ها را رد می‌کند وقتی عرض یا ارتفاع تصویر بزرگتر از `largeImageThreshold` پیکسل باشد.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **نوع:** `boolean`
+-   **پیش‌فرض:** `false`
+-   **اجباری:** خیر
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+دو تصویر را قبل از اجرای مقایسه به اندازه یکسان مقیاس می‌کند. به شدت توصیه می‌شود `ignoreAntialiasing` و `ignoreAlpha` را فعال کنید.
 
-## Folder options
+## گزینه‌های پوشه
 
-The baseline folder and screenshot folders(actual, diff) are options that can be set during the instantiation of the plugin or method. To set the folder options on a particular method, pass in folder options to the methods option object. This can be used for:
+پوشه پایه و پوشه‌های اسکرین‌شات (واقعی، تفاوت) گزینه‌هایی هستند که می‌توانند در زمان راه‌اندازی افزونه یا متد تنظیم شوند. برای تنظیم گزینه‌های پوشه روی یک متد خاص، گزینه‌های پوشه را به شیء گزینه‌های متد ارسال کنید. این می‌تواند برای موارد زیر استفاده شود:
 
-- Web
-- Hybrid App
-- Native App
+- وب
+- اپلیکیشن هایبرید
+- اپلیکیشن بومی
 
 ```ts
 import path from 'node:path'
@@ -259,21 +257,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **نوع:** `string`
+-   **اجباری:** خیر
 
-Folder for the snapshot that has been captured in the test.
+پوشه برای اسنپ‌شاتی که در آزمون گرفته شده است.
 
 ### `baselineFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **نوع:** `string`
+-   **اجباری:** خیر
 
-Folder for the baseline image that is being used to compare against.
+پوشه برای تصویر پایه که برای مقایسه استفاده می‌شود.
 
 ### `diffFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **نوع:** `string`
+-   **اجباری:** خیر
 
-Folder for the image difference rendered by ResembleJS.
+پوشه برای تفاوت تصویر ارائه شده توسط ResembleJS.

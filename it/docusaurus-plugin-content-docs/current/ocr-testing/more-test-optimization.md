@@ -3,7 +3,7 @@ id: more-test-optimization
 title: Tempo di esecuzione dei test
 ---
 
-Per impostazione predefinita, questo modulo verificherà se hai un'installazione locale di Tesseract sulla tua macchina/nella tua pipeline. Se non hai un'installazione locale, utilizzerà automaticamente una versione [NodeJS](https://github.com/naptha/tesseract.js). Questo potrebbe causare alcuni rallentamenti perché l'elaborazione delle immagini sarà eseguita da Node.js. NodeJS non è il sistema migliore per eseguire elaborazioni pesanti.
+Per impostazione predefinita, questo modulo verificherà se hai un'installazione locale di Tesseract sulla tua macchina/nel tuo pipeline. Se non hai un'installazione locale, utilizzerà automaticamente una versione [NodeJS](https://github.com/naptha/tesseract.js). Questo potrebbe causare alcuni rallentamenti perché l'elaborazione delle immagini verrà eseguita da Node.js. NodeJS non è il sistema migliore per l'elaborazione pesante.
 
 **MA....**, ci sono modi per ottimizzare il tempo di esecuzione. Prendiamo il seguente script di test
 
@@ -27,7 +27,7 @@ describe("Search", () => {
 });
 ```
 
-Quando lo esegui per la prima volta, potresti vedere i seguenti risultati in cui sono stati necessari 5,9 secondi per completare il test.
+Quando lo esegui per la prima volta, potresti vedere i seguenti risultati dove ci sono voluti 5,9 secondi per completare il test.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -88,7 +88,7 @@ describe("Search", () => {
 });
 ```
 
-Allora vedrai un tempo di esecuzione diverso.
+Vedrai un tempo di esecuzione diverso.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -126,7 +126,7 @@ Questo ha ridotto il tempo di esecuzione locale da **5,9** a **4,8 secondi**. Qu
 
 ## Utilizzare un'installazione locale di Tesseract
 
-Puoi accelerare il tuo tempo di esecuzione a meno di un minuto se hai un'installazione locale di Tesseract sulla tua macchina locale e/o nella tua pipeline (maggiori informazioni sull'installazione di Tesseract sul tuo sistema locale possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Di seguito puoi trovare il tempo di esecuzione dello stesso script utilizzando un'installazione locale di Tesseract.
+Puoi accelerare il tuo tempo di esecuzione a meno di un minuto se hai un'installazione locale di Tessarect sulla tua macchina locale e/o nel tuo pipeline (maggiori informazioni sull'installazione di Tesseract sul tuo sistema locale possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Di seguito puoi trovare il tempo di esecuzione dello stesso script utilizzando un'installazione locale di Tesseract.
 
 ```log
 npm run wdio -- --logLevel=silent

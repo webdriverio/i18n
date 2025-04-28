@@ -4,47 +4,45 @@ title: 初期化スクリプトの追加
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/addInitScript.ts
 ---
 
-Adds a script which would be evaluated in one of the following scenarios:
+以下のシナリオのいずれかで評価されるスクリプトを追加します：
 
-- Whenever the page is navigated.
-- Whenever the child frame is attached or navigated. In this case, the script is evaluated in
-  the context of the newly attached frame.
+- ページがナビゲートされるたびに。
+- 子フレームが接続されるか、ナビゲートされるたびに。この場合、スクリプトは新しく接続されたフレームのコンテキストで評価されます。
 
-The script is evaluated after the document was created but before any of its scripts were run.
-In order to remove the initialization script from the page again, call the function that got
-returned by this function.
+スクリプトは、ドキュメントが作成された後、かつそのスクリプトが実行される前に評価されます。
+ページから初期化スクリプトを再び削除するには、この関数によって返される関数を呼び出します。
 
-This is useful to amend the JavaScript environment, e.g. to seed Math.random.
+これはJavaScript環境を修正するのに役立ちます。例えば、Math.randomを設定するなど。
 
-##### Usage
+##### 使用方法
 
 ```js
 browser.addInitScript(script, args)
 ```
 
-##### Parameters
+##### パラメータ
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>script</var></code></td>
       <td>`Function`</td>
-      <td>function to be injected as initialization script</td>
+      <td>初期化スクリプトとして注入される関数</td>
     </tr>
     <tr>
       <td><code><var>args</var></code></td>
       <td>`number, string, boolean`</td>
-      <td>parameters for the script</td>
+      <td>スクリプトのパラメータ</td>
     </tr>
   </tbody>
 </table>
 
-##### Examples
+##### 例
 
 ```js title="addInitScript.js"
 const script = await browser.addInitScript((seed) => {

@@ -4,8 +4,8 @@ title: isSelected
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isSelected.ts
 ---
 
-Restituirà vero o falso a seconda che un elemento `<option>` o `<input>` di tipo
-checkbox o radio sia attualmente selezionato.
+Restituirà true o false a seconda che un elemento `<option>` o `<input>` di tipo
+checkbox o radio sia attualmente selezionato o meno.
 
 ##### Utilizzo
 

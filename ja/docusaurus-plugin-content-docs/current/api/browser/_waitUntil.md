@@ -4,9 +4,9 @@ title: waitUntil
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/waitUntil.ts
 ---
 
-このwaitコマンドは、何かを待ちたい場合の万能ツールです。条件を指定すると、その条件が真の値を返すまで待機します。
+このwaitコマンドは、何かを待つ時の万能の武器です。条件を指定すると、その条件が満たされ、真値が返されるまで待機します。
 
-一般的な例としては、特定の要素が特定のテキストを含むまで待つことがあります（例を参照）。
+一般的な例として、特定の要素が特定のテキストを含むまで待つということがあります（例を参照）。
 
 ##### 使用法
 
@@ -26,7 +26,7 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>condition</var></code></td>
       <td>`Function`</td>
-      <td>真の値を返すまで待機する条件</td>
+      <td>真値を返すまで待機する条件</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
@@ -36,7 +36,7 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>ミリ秒単位の時間（デフォルトは[`waitforTimeout`](/docs/configuration#waitfortimeout)設定値に基づきます）</td>
+      <td>ミリ秒単位の時間（デフォルトは[`waitforTimeout`](/docs/configuration#waitfortimeout)設定値に基づく）</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">オプション</span></td>
@@ -46,7 +46,7 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>条件チェックの間隔（デフォルトは[`waitforInterval`](/docs/configuration#waitforinterval)設定値に基づきます）</td>
+      <td>条件チェック間の間隔（デフォルトは[`waitforInterval`](/docs/configuration#waitforinterval)設定値に基づく）</td>
     </tr>
   </tbody>
 </table>

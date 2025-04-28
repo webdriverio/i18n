@@ -1,37 +1,37 @@
 ---
 id: element
-title: شی Element
+title: شیء المنت
 ---
 
-An Element Object is an object representing an element on the remote user agent, e.g. a [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Element) when running a session within a browser or [a mobile element](https://developer.apple.com/documentation/swift/sequence/element) for mobile. می توان آن را با استفاده از یکی از دستورات دریافت عناصر متعدد نیز دریافت کرد، به عنوان مثال [`$`](/docs/api/element/$), [`custom$`](/docs/api/element/custom$), [`react$`](/docs/api/element/react$) یا [`shadow$`](/docs/api/element/shadow$).
+یک شیء المنت، شیء‌ای است که نمایانگر یک عنصر در عامل کاربر از راه دور است، مانند [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Element) هنگام اجرای یک جلسه در مرورگر یا [a mobile element](https://developer.apple.com/documentation/swift/sequence/element) برای موبایل. می‌توان آن را با استفاده از یکی از دستورات پرس و جوی المنت دریافت کرد، مانند [`$`](/docs/api/element/$)، [`custom$`](/docs/api/element/custom$)، [`react$`](/docs/api/element/react$) یا [`shadow$`](/docs/api/element/shadow$).
 
-## ویژگی ها
+## ویژگی‌ها
 
-یک شی element دارای ویژگی های زیر است:
+یک شیء المنت دارای ویژگی‌های زیر است:
 
-| نام         | نوع      | جزئیات                                                                                                                                                                                                                            |
-| ----------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sessionId` | `String` | Session id که از سرور remote اختصاص داده شده است.                                                                                                                                                                                 |
-| `elementId` | `String` | مرجعی از [Web element refrence](https://w3c.github.io/webdriver/#elements) که می تواند برای تعامل با element در سطح پروتکل استفاده شود                                                                                            |
-| `selector`  | `String` | [انتخابگر](/docs/selectors) برای درخواست element استفاده می شود.                                                                                                                                                                  |
-| `parent`    | `Object` | یا شیء [browser](/docs/api/browser) هنگامی که عنصر از آن واکشی شده است (مثلاً `const elem = browser.$('selector')`) یا یک شی [element](/docs/api/element) اگر از دامنه element درخواست شده باشد (مثلاً `elemenet.$( "selector")`) |
-| `options`   | `Object` | [options](/docs/configuration) های WebdriverIO که به این بستگی دارد که شئ browser چگونه ایجاد شده است. اطلاعات بیشتر در [راه اندازی types](/docs/setuptypes).                                                                     |
+| نام | نوع | جزئیات |
+| ---- | ---- | ------- |
+| `sessionId` | `String` | شناسه جلسه اختصاص داده شده از سرور راه دور. |
+| `elementId` | `String` | [مرجع عنصر وب](https://w3c.github.io/webdriver/#elements) مرتبط که می‌تواند برای تعامل با المنت در سطح پروتکل استفاده شود |
+| `selector` | `String` | [انتخابگر](/docs/selectors) مورد استفاده برای پرس و جوی المنت. |
+| `parent` | `Object` | یا [شیء مرورگر](/docs/api/browser) زمانی که المنت از آن بازیابی شده است (مثلاً `const elem = browser.$('selector')`) یا یک [شیء المنت](/docs/api/element) اگر از محدوده یک المنت بازیابی شده است (مثلاً `elem.$('selector')`) |
+| `options` | `Object` | [گزینه‌های](/docs/configuration) WebdriverIO بسته به اینکه شیء مرورگر چگونه ایجاد شده است. برای اطلاعات بیشتر [انواع راه‌اندازی](/docs/setuptypes) را ببینید. |
 
-## متود ها(توابع)
-An element object provides all methods from the protocol section, e.g. [WebDriver](/docs/api/webdriver) protocol as well as commands listed within the element section. دستورات پروتکل موجود به نوع session بستگی دارد. اگر یک session از مرورگر خودکار را اجرا کنید، هیچ یک از دستورات Appium [](/docs/api/appium) در دسترس نخواهد بود و بالعکس.
+## متدها
+یک شیء المنت تمام متدهای بخش پروتکل را ارائه می‌دهد، مانند پروتکل [WebDriver](/docs/api/webdriver) و همچنین دستوراتی که در بخش المنت فهرست شده‌اند. دستورات پروتکل موجود به نوع جلسه بستگی دارد. اگر یک جلسه مرورگر خودکار را اجرا کنید، هیچ یک از دستورات [Appium](/docs/api/appium) در دسترس نخواهند بود و برعکس.
 
-علاوه بر آن دستورات زیر نیز موجود است:
+علاوه بر این، دستورات زیر نیز در دسترس هستند:
 
-| نام                | پارامترها                                                             | جزئیات                                                                                                                                                                                                                       |
-| ------------------ | --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addCommand`       | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | Allows to define custom commands that can be called from the browser object for composition purposes. در راهنمای [Custom Command](/docs/customcommands) بیشتر بخوانید.                                                       |
-| `overwriteCommand` | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | Allows to overwrite any browser command with custom functionality. با دقت استفاده شود زیرا می تواند کاربران فریمورک را گیج کند. در راهنمای [Custom Command](/docs/customcommands#overwriting-native-commands) بیشتر بخوانید. |
+| نام | پارامترها | جزئیات |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (نوع: `String`)<br />- `fn` (نوع: `Function`) | اجازه می‌دهد دستورات سفارشی تعریف کنید که می‌توانند از شیء مرورگر برای اهداف ترکیبی فراخوانی شوند. اطلاعات بیشتر را در راهنمای [دستور سفارشی](/docs/customcommands) بخوانید. |
+| `overwriteCommand` | - `commandName` (نوع: `String`)<br />- `fn` (نوع: `Function`) | اجازه می‌دهد هر دستور مرورگر را با قابلیت سفارشی بازنویسی کنید. با دقت استفاده کنید زیرا ممکن است کاربران فریم‌ورک را سردرگم کند. اطلاعات بیشتر را در راهنمای [دستور سفارشی](/docs/customcommands#overwriting-native-commands) بخوانید. |
 
-## ملاحظات
+## توضیحات
 
-### زنجیره Element
+### زنجیره المنت
 
-When working with elements WebdriverIO provides special syntax to simplify querying them and composite complex nested element lookups. از آنجایی که اشیاء element این امکان را می دهد که عناصر را در داخل شاخه خود با استفاده از روش های رایج درخواست پیدا کنید، کاربران می توانند عناصر تودرتو را به صورت زیر درخواست کنند:
+هنگام کار با المنت‌ها، WebdriverIO نحو ویژه‌ای را برای ساده‌سازی پرس و جوی آنها و ترکیب جستجوهای پیچیده المنت‌های تودرتو ارائه می‌دهد. از آنجا که اشیاء المنت به شما اجازه می‌دهند المنت‌ها را درون شاخه درختی خود با استفاده از روش‌های پرس و جوی متداول پیدا کنید، کاربران می‌توانند المنت‌های تودرتو را به شرح زیر بازیابی کنند:
 
 ```js
 const header = await $('#header')
@@ -39,20 +39,20 @@ const headline = await header.$('#headline')
 console.log(await headline.getText()) // outputs "I am a headline"
 ```
 
-هنگامی که ساختار عمیقا تو در تو باشد، اختصاص دادن هر عنصر تو در تو به یک آرایه ممکن است بسیار مفصل باشد. Therefore WebdriverIO has the concept of chained element queries that allow fetching nested elements like this:
+با ساختارهای عمیق تودرتو، اختصاص هر المنت تودرتو به یک آرایه برای استفاده از آن می‌تواند بسیار طولانی باشد. بنابراین WebdriverIO مفهوم پرس و جوهای زنجیره‌ای المنت را دارد که اجازه می‌دهد المنت‌های تودرتو را به این صورت بازیابی کنید:
 
 ```js
 console.log(await $('#header').$('#headline').getText())
 ```
 
-این موضوع همچنین هنگام دریافت مجموعه ای از عناصر کار می کند، به عنوان مثال:
+این همچنین هنگام بازیابی مجموعه‌ای از المنت‌ها نیز کار می‌کند، به عنوان مثال:
 
 ```js
 // get the text of the 3rd headline within the 2nd header
 console.log(await $$('#header')[1].$$('#headline')[2].getText())
 ```
 
-When working with a set of elements this can be especially useful when trying to interact with them, so instead of doing:
+هنگام کار با مجموعه‌ای از المنت‌ها، این می‌تواند به ویژه هنگام تلاش برای تعامل با آنها مفید باشد، بنابراین به جای انجام:
 
 ```js
 const elems = await $$('div')
@@ -61,22 +61,22 @@ const locations = await Promise.all(
 )
 ```
 
-می توانید مستقیماً متدهای Array را در زنجیره element فراخوانی کنید، به عنوان مثال:
+شما می‌توانید مستقیماً روش‌های آرایه را روی زنجیره المنت فراخوانی کنید، به عنوان مثال:
 
 ```js
 const location = await $$('div').map((el) => el.getLocation())
 ```
 
-same as:
+یا همچنین:
 
 ```js
 const divs = await $$('div')
 const location = await divs.map((el) => el.getLocation())
 ```
 
-WebdriverIO uses a custom implementation that supports asynchronous iterators under the hood so all commands from their API are also supported for these use cases.
+WebdriverIO از پیاده‌سازی سفارشی استفاده می‌کند که از تکرارکننده‌های ناهمگام در پس زمینه پشتیبانی می‌کند، بنابراین تمام دستورات از API آنها نیز برای این موارد استفاده پشتیبانی می‌شوند.
 
-__Note:__ all async iterators return a promise even if your callback doesn't return one, e.g.:
+__نکته:__ همه تکرارکننده‌های ناهمگام یک promise را برمی‌گردانند، حتی اگر تابع callback شما یکی را برنگرداند، مثلاً:
 
 ```ts
 const divs = await $$('div')
@@ -86,4 +86,4 @@ console.log(await divs.map((div) => div.selector)) // ✅ returns "string[]"
 
 ### دستورات سفارشی
 
-می‌توانید دستورات سفارشی را در محدوده browser تنظیم کنید تا کار هایی که به طور مرتب استفاده می‌شود را در جایی دور انتزاعی کنید. برای اطلاعات بیشتر راهنمای ما در مورد [دستورات سفارشی](/docs/customcommands#adding-custom-commands) را بررسی کنید.
+شما می‌توانید دستورات سفارشی را در محدوده مرورگر تنظیم کنید تا جریان‌های کاری را که معمولاً استفاده می‌شوند، انتزاعی کنید. برای اطلاعات بیشتر، راهنمای ما در مورد [دستورات سفارشی](/docs/customcommands#adding-custom-commands) را بررسی کنید.

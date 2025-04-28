@@ -1,43 +1,43 @@
 ---
-id: تنزيل-الملف
-title: تنزيل الملف
+id: file-download
+title: تنزيل الملفات
 ---
 
-عند أتمتة تنزيل الملف في اختبار الويب من الأساسي تنفيذها بشكل مستمر عبر متصفحات مختلفة للتأكد من موثوقية تنفيذ الاختبار.
+عند أتمتة تنزيلات الملفات في اختبارات الويب، من الضروري التعامل معها بشكل متسق عبر المتصفحات المختلفة لضمان تنفيذ اختبارات موثوقة.
 
-هنا، نحن نوفر أفضل الممارسات لتنزيل الملفات ونوضح كيفية تكوين أدلة التحميل لـ **Google Chrome**، **Mozilla Firefox**، و **Microsoft Edge**.
+هنا، نقدم أفضل الممارسات لتنزيل الملفات ونوضح كيفية تكوين أدلة التنزيل لمتصفحات **Google Chrome** و**Mozilla Firefox** و**Microsoft Edge**.
 
 ## مسارات التنزيل
 
-**الترميز الثابت** مسارات التنزيل في نص الاختبار يمكن أن يؤدي إلى مشاكل في الصيانة وإمكانية النقل. استخدام **المسارات النسبية** لمسارات التنزيل لضمان قابلية النقل والتوافق عبر البيئات المختلفة.
+**تحديد** مسارات التنزيل بشكل ثابت في نصوص الاختبار يمكن أن يؤدي إلى مشاكل في الصيانة ومشاكل في قابلية النقل. استخدم **مسارات نسبية** لأدلة التنزيل لضمان قابلية النقل والتوافق عبر البيئات المختلفة.
 
 ```javascript
 // 👎
-// Hardcoded download path
+// مسار تنزيل ثابت
 const downloadPath = '/path/to/downloads';
 
 // 👍
-// Relative download path
+// مسار تنزيل نسبي
 const downloadPath = path.join(__dirname, 'downloads');
 ```
 
-## إستراتيجيات الإنتظار
+## استراتيجيات الانتظار
 
-Failing to implement proper wait strategies can lead to race conditions or unreliable tests, especially for download completion. Implement **explicit** wait strategies to wait for file downloads to complete, ensuring synchronization between test steps.
+عدم تنفيذ استراتيجيات انتظار مناسبة يمكن أن يؤدي إلى حالات السباق أو اختبارات غير موثوقة، خاصة لاكتمال التنزيل. قم بتنفيذ استراتيجيات انتظار **صريحة** للانتظار حتى تكتمل تنزيلات الملفات، مما يضمن التزامن بين خطوات الاختبار.
 
 ```javascript
 // 👎
-// No explicit wait for download completion
+// لا يوجد انتظار صريح لاكتمال التنزيل
 await browser.pause(5000);
 
 // 👍
-// Wait for file download completion
+// انتظار اكتمال تنزيل الملف
 await waitUntil(async ()=> await fs.existsSync(downloadPath), 5000);
 ```
 
-## Configuring Download Directories
+## تكوين أدلة التنزيل
 
-To override file download behavior for **Google Chrome**, **Mozilla Firefox**, and **Microsoft Edge**, provide the download directory in the WebDriverIO capabilities:
+لتجاوز سلوك تنزيل الملفات لمتصفحات **Google Chrome** و**Mozilla Firefox** و**Microsoft Edge**، قم بتوفير دليل التنزيل في إمكانيات WebDriverIO:
 
 <Tabs
 defaultValue="chrome"
@@ -80,32 +80,32 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 </Tabs>
 
-For an example implementation, refer to the [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
+للاطلاع على تنفيذ مثالي، راجع [وصفة اختبار سلوك التنزيل في WebdriverIO](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
 
-## Configuring Chromium Browser Downloads
+## تكوين تنزيلات متصفح Chromium
 
-To change the download path for __Chromium-based__ browsers (such as Chrome, Edge, Brave, etc.) using WebDriverIOs `getPuppeteer` method for accessing Chrome DevTools.
+لتغيير مسار التنزيل لمتصفحات __Chromium__ (مثل Chrome وEdge وBrave وغيرها) باستخدام طريقة `getPuppeteer` من WebDriverIO للوصول إلى Chrome DevTools.
 
 ```javascript
 const page = await browser.getPuppeteer();
-// Initiate a CDP Session:
+// بدء جلسة CDP:
 const cdpSession = await page.target().createCDPSession();
-// Set the Download Path:
+// تعيين مسار التنزيل:
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Handling Multiple File Downloads
+## التعامل مع تنزيلات ملفات متعددة
 
-When dealing with scenarios involving multiple file downloads, it's essential to implement strategies to manage and validate each download effectively. Consider the following approaches:
+عند التعامل مع سيناريوهات تتضمن تنزيلات ملفات متعددة، من الضروري تنفيذ استراتيجيات لإدارة والتحقق من كل تنزيل بشكل فعال. ضع في اعتبارك المناهج التالية:
 
-__Sequential Download Handling:__ Download files one by one and verify each download before initiating the next one to ensure orderly execution and accurate validation.
+__معالجة التنزيل التسلسلي:__ قم بتنزيل الملفات واحداً تلو الآخر وتحقق من كل تنزيل قبل بدء التنزيل التالي لضمان التنفيذ المنظم والتحقق الدقيق.
 
-__Parallel Download Handling:__ Utilize asynchronous programming techniques to initiate multiple file downloads simultaneously, optimizing test execution time. Implement robust validation mechanisms to verify all downloads upon completion.
+__معالجة التنزيل المتوازي:__ استخدم تقنيات البرمجة غير المتزامنة لبدء تنزيلات ملفات متعددة في وقت واحد، مما يحسن وقت تنفيذ الاختبار. قم بتنفيذ آليات تحقق قوية للتحقق من جميع التنزيلات عند الانتهاء.
 
-## Cross-Browser Compatibility Considerations
+## اعتبارات التوافق عبر المتصفحات
 
-While WebDriverIO provides a unified interface for browser automation, it's essential to account for variations in browser behavior and capabilities. Consider testing your file download functionality across different browsers to ensure compatibility and consistency.
+بينما يوفر WebDriverIO واجهة موحدة لأتمتة المتصفح، من الضروري مراعاة الاختلافات في سلوك المتصفح وقدراته. ضع في اعتبارك اختبار وظيفة تنزيل الملفات عبر متصفحات مختلفة لضمان التوافق والاتساق.
 
-__Browser-Specific Configurations:__ Adjust download path settings and wait strategies to accommodate differences in browser behavior and preferences across Chrome, Firefox, Edge, and other supported browsers.
+__تكوينات خاصة بالمتصفح:__ اضبط إعدادات مسار التنزيل واستراتيجيات الانتظار لاستيعاب الاختلافات في سلوك المتصفح وتفضيلاته عبر Chrome وFirefox وEdge والمتصفحات المدعومة الأخرى.
 
-__Browser Version Compatibility:__ Regularly update your WebDriverIO and browser versions to leverage the latest features and enhancements while ensuring compatibility with your existing test suite.
+__توافق إصدار المتصفح:__ قم بتحديث WebDriverIO وإصدارات المتصفح بانتظام للاستفادة من أحدث الميزات والتحسينات مع ضمان التوافق مع مجموعة الاختبارات الحالية.

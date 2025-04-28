@@ -157,7 +157,7 @@ driver.isLocked()
 ##### Restituisce
 
 - **&lt;boolean&gt;**
-            **<code><var>isLocked</var></code>:** True se il dispositivo è bloccato, false se non lo è
+            **<code><var>isLocked</var></code>:** Vero se il dispositivo è bloccato, falso se non lo è
 
 ##### Supporto
 
@@ -188,7 +188,7 @@ driver.startRecordingScreen(options)
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>object</td>
-      <td>parametri del comando che possono contenere chiavi come: remotePath, username, password, method, forceRestart, timeLimit, videoType, videoQuality, videoFps, bitRate, videoSize, bugReport (vedi maggiori descrizioni nella documentazione Appium)</td>
+      <td>parametri di comando che possono contenere chiavi come: remotePath, username, password, method, forceRestart, timeLimit, videoType, videoQuality, videoFps, bitRate, videoSize, bugReport (vedi maggiori descrizioni nella documentazione di Appium)</td>
     </tr>
   </tbody>
 </table>
@@ -224,7 +224,7 @@ driver.stopRecordingScreen(remotePath, username, password, method)
     <tr>
       <td><code><var>remotePath</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>string</td>
-      <td>Il percorso della posizione remota, dove dovrebbe essere caricato il video risultante. Sono supportati i seguenti protocolli http/https, ftp. Questa opzione ha effetto solo se è in corso un processo di registrazione dello schermo e il parametro forceRestart non è impostato su true. Un valore nullo o una stringa vuota (l'impostazione predefinita) significa che il contenuto del file risultante dovrebbe essere codificato come Base64.</td>
+      <td>Il percorso della posizione remota dove caricare il video risultante. Sono supportati i seguenti protocolli: http/https, ftp. Questa opzione ha effetto solo se è in corso un processo di registrazione dello schermo e il parametro forceRestart non è impostato su true. Un valore null o una stringa vuota (l'impostazione predefinita) significa che il contenuto del file risultante dovrebbe essere codificato come Base64.</td>
     </tr>
     <tr>
       <td><code><var>username</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -239,7 +239,7 @@ driver.stopRecordingScreen(remotePath, username, password, method)
     <tr>
       <td><code><var>method</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>string</td>
-      <td>Il nome del metodo di caricamento multipart http. Viene utilizzato 'PUT' per impostazione predefinita.</td>
+      <td>Il nome del metodo di caricamento multipart http. Il 'PUT' viene utilizzato di default.</td>
     </tr>
   </tbody>
 </table>
@@ -259,7 +259,7 @@ driver.stopRecordingScreen(remotePath, username, password, method)
 ---
 
 ## getPerformanceDataTypes
-Restituisce i tipi di informazioni sullo stato del sistema che sono supportati per la lettura come cpu, memoria, traffico di rete e batteria.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/performance-data-types/).
+Restituisce i tipi di informazioni sullo stato del sistema che è possibile leggere, come cpu, memoria, traffico di rete e batteria.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/performance-data-types/).
 
 ##### Utilizzo
 
@@ -271,7 +271,7 @@ driver.getPerformanceDataTypes()
 ##### Restituisce
 
 - **&lt;string[]&gt;**
-            **<code><var>performanceTypes</var></code>:** I tipi di dati prestazionali disponibili (cpuinfo|batteryinfo|networkinfo|memoryinfo)
+            **<code><var>performanceTypes</var></code>:** I tipi di dati sulle prestazioni disponibili (cpuinfo|batteryinfo|networkinfo|memoryinfo)
 
 ##### Supporto
 
@@ -280,7 +280,7 @@ driver.getPerformanceDataTypes()
 ---
 
 ## getPerformanceData
-Restituisce le informazioni sullo stato del sistema che sono supportate per la lettura come cpu, memoria, traffico di rete e batteria.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/get-performance-data/).
+Restituisce le informazioni sullo stato del sistema che è possibile leggere, come cpu, memoria, traffico di rete e batteria.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/get-performance-data/).
 
 ##### Utilizzo
 
@@ -306,7 +306,7 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
     <tr>
       <td><code><var>dataType</var></code></td>
       <td>string</td>
-      <td>il tipo di stato del sistema che si vuole leggere. Dovrebbe essere uno dei tipi di dati prestazionali supportati</td>
+      <td>il tipo di stato del sistema che si desidera leggere. Dovrebbe essere uno dei tipi di dati sulle prestazioni supportati</td>
     </tr>
     <tr>
       <td><code><var>dataReadTimeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -320,7 +320,7 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
 ##### Restituisce
 
 - **&lt;string[]&gt;**
-            **<code><var>performanceData</var></code>:** Il tipo di informazione sullo stato del sistema che è supportato per la lettura come cpu, memoria, traffico di rete e batteria
+            **<code><var>performanceData</var></code>:** Il tipo di informazione sullo stato del sistema che è possibile leggere come cpu, memoria, traffico di rete e batteria
 
 ##### Supporto
 
@@ -329,7 +329,7 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
 ---
 
 ## pressKeyCode
-Premere un tasto specifico sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/keys/press-keycode/).
+Premere un tasto particolare sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/keys/press-keycode/).
 
 ##### Utilizzo
 
@@ -355,12 +355,12 @@ driver.pressKeyCode(keycode, metastate, flags)
     <tr>
       <td><code><var>metastate</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>number</td>
-      <td>stato meta con cui premere il keycode</td>
+      <td>metastate con cui premere il keycode</td>
     </tr>
     <tr>
       <td><code><var>flags</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>number</td>
-      <td>flag per la pressione del tasto</td>
+      <td>flags per la pressione del tasto</td>
     </tr>
   </tbody>
 </table>
@@ -404,7 +404,7 @@ driver.longPressKeyCode(keycode, metastate, flags)
     <tr>
       <td><code><var>flags</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>number</td>
-      <td>flag per la pressione del tasto</td>
+      <td>flags per la pressione del tasto</td>
     </tr>
   </tbody>
 </table>
@@ -443,7 +443,7 @@ driver.sendKeyEvent(keycode, metastate)
     <tr>
       <td><code><var>metastate</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>string</td>
-      <td>stato meta con cui premere il keycode</td>
+      <td>metastate con cui premere il keycode</td>
     </tr>
   </tbody>
 </table>
@@ -501,7 +501,7 @@ driver.rotateDevice(x, y, z)
 ---
 
 ## getCurrentActivity
-Ottiene il nome dell'attività Android corrente.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-activity/).
+Ottieni il nome dell'attività Android corrente.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-activity/).
 
 ##### Utilizzo
 
@@ -522,7 +522,7 @@ driver.getCurrentActivity()
 ---
 
 ## getCurrentPackage
-Ottiene il nome del pacchetto Android corrente.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-package/).
+Ottieni il nome del pacchetto Android corrente.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-package/).
 
 ##### Utilizzo
 
@@ -543,7 +543,7 @@ driver.getCurrentPackage()
 ---
 
 ## installApp
-Installa l'applicazione fornita sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/install-app/).
+Installa l'app data sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/install-app/).
 
 ##### Utilizzo
 
@@ -578,7 +578,7 @@ driver.installApp(appPath)
 ---
 
 ## activateApp
-Attiva l'applicazione data sul dispositivo<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/activate-app/).
+Attiva l'app data sul dispositivo<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/activate-app/).
 
 ##### Utilizzo
 
@@ -599,7 +599,7 @@ driver.activateApp(appId)
     <tr>
       <td><code><var>appId</var></code></td>
       <td>string</td>
-      <td>ID dell'app (ID pacchetto per Android, ID bundle per iOS)</td>
+      <td>ID dell'app (ID del pacchetto per Android, ID del bundle per iOS)</td>
     </tr>
   </tbody>
 </table>
@@ -634,7 +634,7 @@ driver.removeApp(appId)
     <tr>
       <td><code><var>appId</var></code></td>
       <td>string</td>
-      <td>ID dell'app (ID pacchetto per Android, ID bundle per iOS)</td>
+      <td>ID dell'app (ID del pacchetto per Android, ID del bundle per iOS)</td>
     </tr>
   </tbody>
 </table>
@@ -648,7 +648,7 @@ driver.removeApp(appId)
 ---
 
 ## terminateApp
-Termina l'applicazione data sul dispositivo<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/terminate-app/).
+Termina l'app data sul dispositivo<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/terminate-app/).
 
 ##### Utilizzo
 
@@ -669,12 +669,12 @@ driver.terminateApp(appId, options)
     <tr>
       <td><code><var>appId</var></code></td>
       <td>string</td>
-      <td>ID dell'app (ID pacchetto per Android, ID bundle per iOS)</td>
+      <td>ID dell'app (ID del pacchetto per Android, ID del bundle per iOS)</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>object</td>
-      <td>Opzioni del comando. Ad esempio "timeout": (Solo Android) Timeout per riprovare a terminare l'app (vedi di più nella documentazione Appium)</td>
+      <td>Opzioni del comando. Ad esempio "timeout": (Solo Android) Timeout per riprovare a terminare l'app (vedi altro nella documentazione di Appium)</td>
     </tr>
   </tbody>
 </table>
@@ -688,7 +688,7 @@ driver.terminateApp(appId, options)
 ---
 
 ## isAppInstalled
-Verifica se l'applicazione specificata è installata sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/is-app-installed/).
+Controlla se l'app specificata è installata sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/is-app-installed/).
 
 ##### Utilizzo
 
@@ -709,7 +709,7 @@ driver.isAppInstalled(appId)
     <tr>
       <td><code><var>appId</var></code></td>
       <td>string</td>
-      <td>ID dell'app (ID pacchetto per Android, ID bundle per iOS)</td>
+      <td>ID dell'app (ID del pacchetto per Android, ID del bundle per iOS)</td>
     </tr>
   </tbody>
 </table>
@@ -718,7 +718,7 @@ driver.isAppInstalled(appId)
 ##### Restituisce
 
 - **&lt;boolean&gt;**
-            **<code><var>isAppInstalled</var></code>:** Restituisce true se installata, false se non lo è
+            **<code><var>isAppInstalled</var></code>:** Restituisce vero se installata, falso se non lo è
 
 ##### Supporto
 
@@ -728,7 +728,7 @@ driver.isAppInstalled(appId)
 ---
 
 ## queryAppState
-Ottiene lo stato dell'applicazione data sul dispositivo<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/app-state/).
+Ottieni lo stato dell'app data sul dispositivo<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/app-state/).
 
 ##### Utilizzo
 
@@ -749,7 +749,7 @@ driver.queryAppState(appId)
     <tr>
       <td><code><var>appId</var></code></td>
       <td>string</td>
-      <td>ID dell'app (ID pacchetto per Android, ID bundle per iOS)</td>
+      <td>ID dell'app (ID del pacchetto per Android, ID del bundle per iOS)</td>
     </tr>
   </tbody>
 </table>
@@ -758,7 +758,7 @@ driver.queryAppState(appId)
 ##### Restituisce
 
 - **&lt;number&gt;**
-            **<code><var>appStatus</var></code>:** 0 non è installata. 1 non è in esecuzione. 2 è in esecuzione in background o sospesa. 3 è in esecuzione in background. 4 è in esecuzione in primo piano
+            **<code><var>appStatus</var></code>:** 0 non è installato. 1 non è in esecuzione. 2 è in esecuzione in background o sospeso. 3 è in esecuzione in background. 4 è in esecuzione in primo piano
 
 ##### Supporto
 
@@ -768,7 +768,7 @@ driver.queryAppState(appId)
 ---
 
 ## hideKeyboard
-Nasconde la tastiera software.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/keys/hide-keyboard/).
+Nascondi la tastiera.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/keys/hide-keyboard/).
 
 ##### Utilizzo
 
@@ -799,7 +799,7 @@ driver.hideKeyboard(strategy, key, keyCode, keyName)
     <tr>
       <td><code><var>keyCode</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>string</td>
-      <td>codice tasto se la strategia è 'pressKey'</td>
+      <td>codice del tasto se la strategia è 'pressKey'</td>
     </tr>
     <tr>
       <td><code><var>keyName</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -819,7 +819,7 @@ driver.hideKeyboard(strategy, key, keyCode, keyName)
 ---
 
 ## isKeyboardShown
-Verifica se la tastiera software è visualizzata.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/keys/is-keyboard-shown/).
+Verifica se la tastiera è mostrata o meno.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/keys/is-keyboard-shown/).
 
 ##### Utilizzo
 
@@ -831,7 +831,7 @@ driver.isKeyboardShown()
 ##### Restituisce
 
 - **&lt;boolean&gt;**
-            **<code><var>isKeyboardShown</var></code>:** True se la tastiera è mostrata
+            **<code><var>isKeyboardShown</var></code>:** Vero se la tastiera è mostrata
 
 ##### Supporto
 
@@ -842,7 +842,7 @@ driver.isKeyboardShown()
 ---
 
 ## pushFile
-Posiziona un file sul dispositivo in un luogo particolare.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/files/push-file/).
+Inserisce un file sul dispositivo in un determinato luogo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/files/push-file/).
 
 ##### Utilizzo
 
@@ -863,12 +863,12 @@ driver.pushFile(path, data)
     <tr>
       <td><code><var>path</var></code></td>
       <td>string</td>
-      <td>percorso in cui installare i dati</td>
+      <td>percorso dove installare i dati</td>
     </tr>
     <tr>
       <td><code><var>data</var></code></td>
       <td>string</td>
-      <td>contenuti del file in base64</td>
+      <td>contenuto del file in base64</td>
     </tr>
   </tbody>
 </table>
@@ -904,7 +904,7 @@ driver.pullFile(path)
     <tr>
       <td><code><var>path</var></code></td>
       <td>string</td>
-      <td>percorso sul dispositivo da cui estrarre il file</td>
+      <td>percorso sul dispositivo da cui prelevare il file</td>
     </tr>
   </tbody>
 </table>
@@ -960,7 +960,7 @@ driver.pullFolder(path)
 ---
 
 ## toggleAirplaneMode
-Attiva/disattiva la modalità aereo sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-airplane-mode/).
+Attiva o disattiva la modalità aereo sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-airplane-mode/).
 
 ##### Utilizzo
 
@@ -1032,7 +1032,7 @@ driver.toggleLocationServices()
 ---
 
 ## toggleNetworkSpeed
-Imposta la velocità di rete (solo emulatore)<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/network-speed/).
+Imposta la velocità di rete (solo Emulatore)<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/network-speed/).
 
 ##### Utilizzo
 
@@ -1066,7 +1066,7 @@ driver.toggleNetworkSpeed(netspeed)
 ---
 
 ## openNotifications
-Apre le notifiche Android (solo emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/system/open-notifications/).
+Apri le notifiche Android (solo Emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/system/open-notifications/).
 
 ##### Utilizzo
 
@@ -1158,7 +1158,7 @@ driver.startActivity(appPackage, appActivity, appWaitPackage, appWaitActivity, i
 ---
 
 ## getSystemBars
-Recupera informazioni sulla visibilità e i limiti delle barre di stato e navigazione.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/system/system-bars/).
+Recupera informazioni sulla visibilità e i limiti delle barre di stato e di navigazione.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/system/system-bars/).
 
 ##### Utilizzo
 
@@ -1170,7 +1170,7 @@ driver.getSystemBars()
 ##### Restituisce
 
 - **&lt;object[]&gt;**
-            **<code><var>systemBars</var></code>:** Informazioni sulla visibilità e i limiti della barra di stato e navigazione
+            **<code><var>systemBars</var></code>:** Informazioni sulla visibilità e i limiti della barra di stato e di navigazione
 
 ##### Supporto
 
@@ -1179,7 +1179,7 @@ driver.getSystemBars()
 ---
 
 ## getDeviceTime
-Ottiene l'ora sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/system/system-time/).
+Ottieni l'orario sul dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/system/system-time/).
 
 ##### Utilizzo
 
@@ -1191,7 +1191,7 @@ driver.getDeviceTime()
 ##### Restituisce
 
 - **&lt;string&gt;**
-            **<code><var>time</var></code>:** Ora sul dispositivo
+            **<code><var>time</var></code>:** Orario sul dispositivo
 
 ##### Supporto
 
@@ -1201,7 +1201,7 @@ driver.getDeviceTime()
 ---
 
 ## getDisplayDensity
-Ottiene la densità del display dal dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
+Ottieni la densità dello schermo dal dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
 
 ##### Utilizzo
 
@@ -1222,7 +1222,7 @@ driver.getDisplayDensity()
 ---
 
 ## touchId
-Simula un evento [touch id](https://support.apple.com/en-ca/ht201371) (solo simulatore iOS). Per abilitare questa funzionalità, la capacità desiderata `allowTouchIdEnroll` deve essere impostata su true e il Simulatore deve essere [registrato](https://support.apple.com/en-ca/ht201371). Quando imposti allowTouchIdEnroll su true, imposterà il Simulatore come registrato per impostazione predefinita. Lo stato di registrazione può essere [attivato/disattivato](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/index.html). Questa chiamata funzionerà solo se il processo Appium o la sua applicazione padre (ad esempio Terminal.app o Appium.app) ha accesso all'accessibilità di Mac OS in Preferenze di Sistema > Sicurezza e privacy > Privacy > Accessibilità.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/simulator/touch-id/).
+Simula un evento [touch id](https://support.apple.com/en-ca/ht201371) (solo iOS Simulator). Per abilitare questa funzionalità, la capacità desiderata `allowTouchIdEnroll` deve essere impostata su true e il Simulator deve essere [registrato](https://support.apple.com/en-ca/ht201371). Quando imposti allowTouchIdEnroll su true, imposterà il Simulator come registrato di default. Lo stato di registrazione può essere [attivato/disattivato](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/index.html). Questa chiamata funzionerà solo se il processo Appium o la sua applicazione principale (ad esempio Terminal.app o Appium.app) ha accesso all'accessibilità di Mac OS in Preferenze di Sistema > Sicurezza e Privacy > Privacy > Accessibilità.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/simulator/touch-id/).
 
 ##### Utilizzo
 
@@ -1243,7 +1243,7 @@ driver.touchId(match)
     <tr>
       <td><code><var>match</var></code></td>
       <td>boolean</td>
-      <td>stiamo simulando un tocco riuscito (true) o un tocco fallito (false)</td>
+      <td>stiamo simulando un tocco riuscito (vero) o un tocco fallito (falso)</td>
     </tr>
   </tbody>
 </table>
@@ -1256,7 +1256,7 @@ driver.touchId(match)
 ---
 
 ## toggleEnrollTouchId
-Attiva/disattiva il simulatore [registrato](https://support.apple.com/en-ca/ht201371) per accettare touchId (solo simulatore iOS). Per abilitare questa funzionalità, la capacità desiderata `allowTouchIdEnroll` deve essere impostata su true. Quando `allowTouchIdEnroll` è impostato su true, il Simulatore sarà registrato per impostazione predefinita, e 'Toggle Touch ID Enrollment' cambia lo stato di registrazione. Questa chiamata funzionerà solo se il processo Appium o la sua applicazione padre (ad esempio Terminal.app o Appium.app) ha accesso all'accessibilità di Mac OS in Preferenze di Sistema > Sicurezza e privacy > Privacy > Accessibilità.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/).
+Attiva/disattiva il simulatore [registrato](https://support.apple.com/en-ca/ht201371) per accettare touchId (solo iOS Simulator). Per abilitare questa funzionalità, la capacità desiderata `allowTouchIdEnroll` deve essere impostata su true. Quando `allowTouchIdEnroll` è impostato su true, il Simulator sarà registrato di default, e l'opzione 'Toggle Touch ID Enrollment' modifica lo stato di registrazione. Questa chiamata funzionerà solo se il processo Appium o la sua applicazione principale (ad esempio Terminal.app o Appium.app) ha accesso all'accessibilità di Mac OS in Preferenze di Sistema > Sicurezza e Privacy > Privacy > Accessibilità.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/).
 
 ##### Utilizzo
 
@@ -1361,7 +1361,7 @@ driver.background(seconds)
     <tr>
       <td><code><var>seconds=null</var></code></td>
       <td>number, null</td>
-      <td>timeout per ripristinare l'app, se 'null' l'app non verrà ripristinata</td>
+      <td>timeout per ripristinare l'app, se 'null' l'app non sarà ripristinata</td>
     </tr>
   </tbody>
 </table>
@@ -1375,7 +1375,7 @@ driver.background(seconds)
 ---
 
 ## endCoverage
-Ottiene i dati di copertura del test.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/end-test-coverage/).
+Ottieni i dati di copertura dei test.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/end-test-coverage/).
 
 ##### Utilizzo
 
@@ -1414,7 +1414,7 @@ driver.endCoverage(intent, path)
 ---
 
 ## getStrings
-Ottiene le stringhe dell'app.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/get-app-strings/).
+Ottieni le stringhe dell'app.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/app/get-app-strings/).
 
 ##### Utilizzo
 
@@ -1449,7 +1449,7 @@ driver.getStrings(language, stringFile)
 ##### Restituisce
 
 - **&lt;object&gt;**
-            **<code><var>appStrings</var></code>:** tutte le stringhe definite da un'app per la lingua specificata e il nome del file di stringhe
+            **<code><var>appStrings</var></code>:** tutte le stringhe definite da un'app per la lingua e il nome file di stringhe specificati
 
 ##### Supporto
 
@@ -1480,7 +1480,7 @@ driver.setValueImmediate(elementId, text)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>l'id di un elemento restituito in una chiamata precedente a Find Element(s)</td>
+      <td>l'id di un elemento restituito in una precedente chiamata a Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>text</var></code></td>
@@ -1499,7 +1499,7 @@ driver.setValueImmediate(elementId, text)
 ---
 
 ## replaceValue
-Sostituisci il valore all'elemento direttamente.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
+Sostituisci direttamente il valore dell'elemento.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
 
 ##### Utilizzo
 
@@ -1520,7 +1520,7 @@ driver.replaceValue(elementId, value)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>l'id di un elemento restituito in una chiamata precedente a Find Element(s)</td>
+      <td>l'id di un elemento restituito in una precedente chiamata a Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -1551,7 +1551,7 @@ driver.getSettings()
 ##### Restituisce
 
 - **&lt;object&gt;**
-            **<code><var>settings</var></code>:** hash JSON di tutte le impostazioni attualmente specificate, vedi Settings API
+            **<code><var>settings</var></code>:** Hash JSON di tutte le impostazioni attualmente specificate, vedi API Settings
 
 ##### Supporto
 
@@ -1632,7 +1632,7 @@ driver.receiveAsyncResponse(response)
 ---
 
 ## gsmCall
-Effettua una chiamata GSM (solo emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-call/).
+Effettua una chiamata GSM (solo Emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-call/).
 
 ##### Utilizzo
 
@@ -1671,7 +1671,7 @@ driver.gsmCall(phoneNumber, action)
 ---
 
 ## gsmSignal
-Imposta la potenza del segnale GSM (solo emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-signal/).
+Imposta la potenza del segnale GSM (solo Emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-signal/).
 
 ##### Utilizzo
 
@@ -1710,7 +1710,7 @@ driver.gsmSignal(signalStrength, signalStrengh)
 ---
 
 ## powerCapacity
-Imposta la percentuale della batteria (solo emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_capacity/).
+Imposta la percentuale della batteria (solo Emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_capacity/).
 
 ##### Utilizzo
 
@@ -1744,7 +1744,7 @@ driver.powerCapacity(percent)
 ---
 
 ## powerAC
-Imposta lo stato del caricabatterie su collegato o non collegato (solo emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_ac/).
+Imposta lo stato del caricabatterie a collegato o meno (solo Emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_ac/).
 
 ##### Utilizzo
 
@@ -1778,7 +1778,7 @@ driver.powerAC(state)
 ---
 
 ## gsmVoice
-Imposta lo stato della voce GSM (solo emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-voice/).
+Imposta lo stato della voce GSM (solo Emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-voice/).
 
 ##### Utilizzo
 
@@ -1812,7 +1812,7 @@ driver.gsmVoice(state)
 ---
 
 ## sendSms
-Simula un messaggio SMS (solo emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/send-sms/).
+Simula un messaggio SMS (solo Emulatore).<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/network/send-sms/).
 
 ##### Utilizzo
 
@@ -1851,7 +1851,7 @@ driver.sendSms(phoneNumber, message)
 ---
 
 ## fingerPrint
-Autentica gli utenti utilizzando le scansioni delle impronte digitali su emulatori supportati.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/authentication/finger-print/).
+Autentica gli utenti utilizzando le scansioni delle impronte digitali sugli emulatori supportati.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/device/authentication/finger-print/).
 
 ##### Utilizzo
 
@@ -1906,7 +1906,7 @@ driver.setClipboard(content, contentType, label)
     <tr>
       <td><code><var>content</var></code></td>
       <td>string</td>
-      <td>Il contenuto degli appunti codificato in base64</td>
+      <td>Il contenuto effettivo degli appunti codificato in base64</td>
     </tr>
     <tr>
       <td><code><var>contentType</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -1975,7 +1975,7 @@ driver.getClipboard(contentType)
 ---
 
 ## touchPerform
-Questa funzionalità è disponibile solo all'interno di un contesto nativo. 'Touch Perform' funziona in modo simile alle altre interazioni touch singole, tranne che questo ti consente di concatenare insieme più di un'azione touch come un unico comando. Questo è utile perché i comandi Appium vengono inviati tramite la rete e c'è latenza tra i comandi. Questa latenza può rendere impossibili alcune interazioni touch perché alcune interazioni devono essere eseguite in una sequenza. Vertical, ad esempio, richiede di premere, spostarsi su una coordinata y diversa e poi rilasciare. Affinché funzioni, non ci può essere un ritardo tra le interazioni.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/touch-perform/).
+Questa funzionalità è disponibile solo all'interno di un contesto nativo. 'Touch Perform' funziona in modo simile alle altre interazioni touch singole, tranne che questa consente di concatenare più di un'azione touch come un unico comando. Questo è utile perché i comandi Appium vengono inviati tramite la rete e c'è latenza tra i comandi. Questa latenza può rendere impossibili certe interazioni touch perché alcune interazioni devono essere eseguite in una sequenza. Il trascinamento verticale, ad esempio, richiede di premere, spostarsi su una coordinata y diversa e poi rilasciare. Perché funzioni, non ci può essere un ritardo tra le interazioni.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/touch-perform/).
 
 ##### Utilizzo
 
@@ -1996,7 +1996,7 @@ driver.touchPerform(actions)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>Il tipo di azione da eseguire (ad es. moveTo, release, press, tap, wait)</td>
+      <td>Il tipo di azione da eseguire (ad esempio moveTo, release, press, tap, wait)</td>
     </tr>
   </tbody>
 </table>
@@ -2073,7 +2073,7 @@ driver.multiTouchPerform(actions)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>Il tipo di azione da eseguire (ad es. moveTo, release, press, tap, wait)</td>
+      <td>Il tipo di azione da eseguire (ad esempio moveTo, release, press, tap, wait)</td>
     </tr>
   </tbody>
 </table>
@@ -2088,7 +2088,7 @@ driver.multiTouchPerform(actions)
 ---
 
 ## executeDriverScript
-Questo comando ti consente di specificare uno script WebdriverIO come stringa e trasmetterlo al server Appium per l'esecuzione locale sul server stesso. Questo approccio aiuta a ridurre al minimo la potenziale latenza associata a ciascun comando. ***Per utilizzare questo comando con Appium 2.0, devi avere il plugin [`execute-driver-plugin`](https://github.com/appium/appium/tree/master/packages/execute-driver-plugin) installato.***<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/docs/en/commands/session/execute-driver.md).
+Questo comando ti permette di specificare uno script WebdriverIO come stringa e trasmetterlo al server Appium per l'esecuzione locale sul server stesso. Questo approccio aiuta a minimizzare la potenziale latenza associata a ogni comando. ***Per utilizzare questo comando con Appium 2.0, è necessario avere installato il plugin [`execute-driver-plugin`](https://github.com/appium/appium/tree/master/packages/execute-driver-plugin).***<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/docs/en/commands/session/execute-driver.md).
 
 ##### Utilizzo
 
@@ -2119,7 +2119,7 @@ driver.executeDriverScript(script, type, timeout)
     <tr>
       <td><code><var>timeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>number</td>
-      <td>Il numero di millisecondi in cui lo script dovrebbe essere autorizzato a funzionare prima di essere interrotto dal server Appium. Il valore predefinito è l'equivalente di 1 ora.</td>
+      <td>Il numero di millisecondi per cui lo script dovrebbe essere autorizzato a funzionare prima di essere terminato dal server Appium. Il valore predefinito è l'equivalente di 1 ora.</td>
     </tr>
   </tbody>
 </table>
@@ -2155,7 +2155,7 @@ driver.getEvents(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>string[]</td>
-      <td>Ottieni gli eventi filtrati con il tipo se il tipo è fornito.</td>
+      <td>Ottieni eventi filtrati con il tipo se il tipo è fornito.</td>
     </tr>
   </tbody>
 </table>
@@ -2195,7 +2195,7 @@ driver.logEvent(vendor, event)
     <tr>
       <td><code><var>vendor</var></code></td>
       <td>string</td>
-      <td>Il nome del vendor. Sarà `vendor` in `vendor:event`.</td>
+      <td>Il nome del fornitore. Sarà `vendor` in `vendor:event`.</td>
     </tr>
     <tr>
       <td><code><var>event</var></code></td>
@@ -2214,7 +2214,7 @@ driver.logEvent(vendor, event)
 ---
 
 ## compareImages
-Questa funzionalità conduce confronti di immagini utilizzando le capacità del framework OpenCV. Si noti che affinché questa funzionalità funzioni, sia il framework OpenCV che il modulo opencv4nodejs devono essere installati sulla macchina in cui è operativo il server Appium. ***Inoltre, dovrai avere il plugin [`images-plugin`](https://github.com/appium/appium/tree/master/packages/images-plugin) installato per utilizzare questa funzionalità con Appium 2.0.***<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/writing-running-appium/image-comparison/).
+Questa funzionalità conduce confronti di immagini utilizzando le capacità del framework OpenCV. Si noti che per far funzionare questa funzionalità, sia il framework OpenCV che il modulo opencv4nodejs devono essere installati sulla macchina dove è operativo il server Appium. ***Inoltre, sarà necessario avere installato il plugin [`images-plugin`](https://github.com/appium/appium/tree/master/packages/images-plugin) per utilizzare questa funzionalità con Appium 2.0.***<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://appium.github.io/appium.io/docs/en/writing-running-appium/image-comparison/).
 
 ##### Utilizzo
 
@@ -2235,22 +2235,22 @@ driver.compareImages(mode, firstImage, secondImage, options)
     <tr>
       <td><code><var>mode=matchFeatures</var></code></td>
       <td>string</td>
-      <td>Una delle modalità di confronto possibili: 'matchFeatures', 'getSimilarity', 'matchTemplate'. 'matchFeatures' è predefinito.</td>
+      <td>Una delle possibili modalità di confronto: 'matchFeatures', 'getSimilarity', 'matchTemplate'. 'matchFeatures' è il valore predefinito.</td>
     </tr>
     <tr>
       <td><code><var>firstImage</var></code></td>
       <td>string</td>
-      <td>Dati dell'immagine. Sono supportati tutti i formati di immagine che la libreria OpenCV stessa accetta.</td>
+      <td>Dati dell'immagine. Tutti i formati di immagine che la libreria OpenCV stessa accetta sono supportati.</td>
     </tr>
     <tr>
       <td><code><var>secondImage</var></code></td>
       <td>string</td>
-      <td>Dati dell'immagine. Sono supportati tutti i formati di immagine che la libreria OpenCV stessa accetta.</td>
+      <td>Dati dell'immagine. Tutti i formati di immagine che la libreria OpenCV stessa accetta sono supportati.</td>
     </tr>
     <tr>
       <td><code><var>options=[object Object]</var></code></td>
       <td>object</td>
-      <td>Il contenuto di questo dizionario dipende dal valore effettivo di `mode`. Consulta la documentazione sul modulo `appium-support` per maggiori dettagli. </td>
+      <td>Il contenuto di questo dizionario dipende dal valore effettivo di `mode`. Consultare la documentazione sul modulo `appium-support` per maggiori dettagli. </td>
     </tr>
   </tbody>
 </table>
@@ -2259,13 +2259,13 @@ driver.compareImages(mode, firstImage, secondImage, options)
 ##### Restituisce
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** Il contenuto del dizionario risultante dipende dai valori effettivi di `mode` e `options`. Consulta la documentazione sul modulo `appium-support` per maggiori dettagli.
+            **<code><var>result</var></code>:** Il contenuto del dizionario risultante dipende dai valori effettivi di `mode` e `options`. Consultare la documentazione sul modulo `appium-support` per maggiori dettagli.
 
 
 ---
 
 ## implicitWait
-Imposta la quantità di tempo che il driver dovrebbe attendere durante la ricerca degli elementi. Quando si cerca un singolo elemento, il driver dovrebbe interrogare la pagina fino a quando un elemento viene trovato o il timeout scade, a seconda di quale evento si verifica per primo. Quando si cercano più elementi, il driver dovrebbe interrogare la pagina fino a quando almeno un elemento viene trovato o il timeout scade, momento in cui dovrebbe restituire un elenco vuoto. Se questo comando non viene mai inviato, il driver dovrebbe impostare un'attesa implicita di 0ms per impostazione predefinita.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Imposta la quantità di tempo che il driver dovrebbe attendere durante la ricerca degli elementi. Durante la ricerca di un singolo elemento, il driver dovrebbe interrogare la pagina fino a quando un elemento viene trovato o il timeout scade, a seconda di quale evento si verifica per primo. Durante la ricerca di più elementi, il driver dovrebbe interrogare la pagina fino a quando almeno un elemento viene trovato o il timeout scade, momento in cui dovrebbe restituire un elenco vuoto. Se questo comando non viene mai inviato, il driver dovrebbe impostare un'attesa implicita di 0ms di default.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2300,7 +2300,7 @@ driver.implicitWait(ms)
 ---
 
 ## getLocationInView
-Determina la posizione di un elemento sullo schermo una volta che è stato fatto scorrere in vista.<br /><br />__Nota:__ Questo è considerato un comando interno e dovrebbe essere utilizzato solo per determinare la posizione di un elemento per generare correttamente eventi nativi.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Determina la posizione di un elemento sullo schermo dopo che è stato fatto scorrere in vista.<br /><br />__Nota:__ Questo è considerato un comando interno e dovrebbe essere utilizzato solo per determinare la posizione di un elemento per generare correttamente eventi nativi.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2321,7 +2321,7 @@ driver.getLocationInView(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ID dell'elemento a cui instradare il comando</td>
+      <td>ID dell'elemento a cui indirizzare il comando</td>
     </tr>
   </tbody>
 </table>
@@ -2330,7 +2330,7 @@ driver.getLocationInView(elementId)
 ##### Restituisce
 
 - **&lt;Object&gt;**
-            **<code><var>location</var></code>:** Le coordinate X e Y dell'elemento nella pagina.
+            **<code><var>location</var></code>:** Le coordinate X e Y dell'elemento sulla pagina.
 
 ##### Supporto
 
@@ -2340,7 +2340,7 @@ driver.getLocationInView(elementId)
 ---
 
 ## sendKeys
-Invia una sequenza di battute di tasti all'elemento attivo<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Invia una sequenza di tasti all'elemento attivo<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2396,7 +2396,7 @@ driver.availableIMEEngines()
 ---
 
 ## getActiveIMEEngine
-Ottiene il nome del motore IME attivo. La stringa del nome è specifica per la piattaforma.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Ottieni il nome del motore IME attivo. La stringa del nome è specifica della piattaforma.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2429,7 +2429,7 @@ driver.isIMEActivated()
 ##### Restituisce
 
 - **&lt;Boolean&gt;**
-            **<code><var>isActive</var></code>:** True se l'input IME è disponibile e attualmente attivo, altrimenti false
+            **<code><var>isActive</var></code>:** Vero se l'input IME è disponibile e attualmente attivo, falso altrimenti
 
 ##### Supporto
 
@@ -2456,7 +2456,7 @@ driver.deactivateIMEEngine()
 ---
 
 ## activateIMEEngine
-Rende attivo un motore disponibile<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Attiva un motore che è disponibile<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2490,7 +2490,7 @@ driver.activateIMEEngine(engine)
 ---
 
 ## asyncScriptTimeout
-Imposta la quantità di tempo, in millisecondi, che gli script asincroni eseguiti da `/session/:sessionId/execute_async` sono autorizzati a funzionare prima di essere interrotti e un errore `Timeout` viene restituito al client.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Imposta la quantità di tempo, in millisecondi, che gli script asincroni eseguiti da `/session/:sessionId/execute_async` possono essere eseguiti prima di essere interrotti e un errore `Timeout` viene restituito al client.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2511,7 +2511,7 @@ driver.asyncScriptTimeout(ms)
     <tr>
       <td><code><var>ms</var></code></td>
       <td>number</td>
-      <td>La quantità di tempo, in millisecondi, che i comandi con limite di tempo sono autorizzati a funzionare</td>
+      <td>La quantità di tempo, in millisecondi, che i comandi limitati nel tempo possono essere eseguiti</td>
     </tr>
   </tbody>
 </table>
@@ -2524,7 +2524,7 @@ driver.asyncScriptTimeout(ms)
 ---
 
 ## submit
-Invia un elemento del modulo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Invia un elemento form.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2545,7 +2545,7 @@ driver.submit(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ID dell'elemento del modulo da inviare</td>
+      <td>ID dell'elemento form da inviare</td>
     </tr>
   </tbody>
 </table>
@@ -2558,7 +2558,7 @@ driver.submit(elementId)
 ---
 
 ## getElementSize
-Determina la dimensione di un elemento in pixel. La dimensione verrà restituita come un oggetto JSON con proprietà `width` e `height`.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Determina la dimensione di un elemento in pixel. La dimensione sarà restituita come un oggetto JSON con le proprietà `width` e `height`.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2579,7 +2579,7 @@ driver.getElementSize(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ID dell'elemento a cui instradare il comando</td>
+      <td>ID dell'elemento a cui indirizzare il comando</td>
     </tr>
   </tbody>
 </table>
@@ -2598,7 +2598,7 @@ driver.getElementSize(elementId)
 ---
 
 ## getElementLocation
-Determina la posizione di un elemento nella pagina. Il punto `(0, 0)` si riferisce all'angolo in alto a sinistra della pagina. Le coordinate dell'elemento vengono restituite come un oggetto JSON con proprietà `x` e `y`.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Determina la posizione di un elemento sulla pagina. Il punto `(0, 0)` si riferisce all'angolo in alto a sinistra della pagina. Le coordinate dell'elemento vengono restituite come un oggetto JSON con le proprietà `x` e `y`.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2619,7 +2619,7 @@ driver.getElementLocation(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ID dell'elemento a cui instradare il comando</td>
+      <td>ID dell'elemento a cui indirizzare il comando</td>
     </tr>
   </tbody>
 </table>
@@ -2628,7 +2628,7 @@ driver.getElementLocation(elementId)
 ##### Restituisce
 
 - **&lt;Object&gt;**
-            **<code><var>location</var></code>:** Le coordinate X e Y dell'elemento nella pagina.
+            **<code><var>location</var></code>:** Le coordinate X e Y dell'elemento sulla pagina.
 
 ##### Supporto
 
@@ -2638,7 +2638,7 @@ driver.getElementLocation(elementId)
 ---
 
 ## touchClick
-Tocco singolo sul dispositivo abilitato al tocco.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Tap singolo sul dispositivo abilitato al tocco.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2659,7 +2659,7 @@ driver.touchClick(element)
     <tr>
       <td><code><var>element</var></code></td>
       <td>string</td>
-      <td>ID dell'elemento su cui fare un tocco singolo.</td>
+      <td>ID dell'elemento su cui fare un singolo tap.</td>
     </tr>
   </tbody>
 </table>
@@ -2790,7 +2790,7 @@ driver.touchMove(x, y)
 ---
 
 ## touchLongClick
-Pressione prolungata sullo schermo touch utilizzando eventi di movimento delle dita.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Pressione prolungata sullo schermo touch utilizzando gli eventi di movimento delle dita.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2811,7 +2811,7 @@ driver.touchLongClick(element)
     <tr>
       <td><code><var>element</var></code></td>
       <td>string</td>
-      <td>ID dell'elemento su cui effettuare una pressione prolungata</td>
+      <td>ID dell'elemento su cui fare una pressione prolungata</td>
     </tr>
   </tbody>
 </table>
@@ -2824,7 +2824,7 @@ driver.touchLongClick(element)
 ---
 
 ## touchFlick
-Scorrimento veloce sullo schermo touch utilizzando eventi di movimento delle dita. Questo comando di scorrimento inizia in una particolare posizione dello schermo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Sfoglia sullo schermo touch utilizzando gli eventi di movimento delle dita. Questo comando di scorrimento inizia in una posizione particolare dello schermo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2845,17 +2845,17 @@ driver.touchFlick(xoffset, yoffset, element, speed, xspeed, yspeed)
     <tr>
       <td><code><var>xoffset</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>number</td>
-      <td>l'offset x in pixel per il flick</td>
+      <td>l'offset x in pixel da scorrere</td>
     </tr>
     <tr>
       <td><code><var>yoffset</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>number</td>
-      <td>l'offset y in pixel per il flick</td>
+      <td>l'offset y in pixel da scorrere</td>
     </tr>
     <tr>
       <td><code><var>element</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>string</td>
-      <td>ID dell'elemento dove inizia il flick</td>
+      <td>ID dell'elemento da cui inizia lo scorrimento</td>
     </tr>
     <tr>
       <td><code><var>speed</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -2883,7 +2883,7 @@ driver.touchFlick(xoffset, yoffset, element, speed, xspeed, yspeed)
 ---
 
 ## getOrientation
-Ottiene l'orientamento corrente del dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Ottieni l'orientamento attuale del dispositivo.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 
@@ -2940,7 +2940,7 @@ driver.setOrientation(orientation)
 ---
 
 ## getLogs
-Ottiene il log per un determinato tipo di log. Il buffer di log viene azzerato dopo ogni richiesta.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Ottieni il log per un dato tipo di log. Il buffer del log viene reimpostato dopo ogni richiesta.<br /><br />Comando Appium. Maggiori dettagli possono essere trovati nella [documentazione ufficiale del protocollo](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Utilizzo
 

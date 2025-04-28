@@ -3,11 +3,11 @@ id: sharding
 title: Sharding
 ---
 
-By default, WebdriverIO runs tests in parallel and strives for optimal utilization of CPU cores on your machine. In order to achieve even greater parallelisation, you can further scale WebdriverIO test execution by running tests on multiple machines simultaneously. We call this mode of operation "sharding".
+Domyślnie, WebdriverIO uruchamia testy równolegle i dąży do optymalnego wykorzystania rdzeni procesora na Twoim komputerze. Aby osiągnąć jeszcze większe zrównoleglenie, możesz dodatkowo skalować wykonywanie testów WebdriverIO poprzez uruchamianie testów na wielu maszynach jednocześnie. Ten tryb działania nazywamy "shardingiem".
 
-## Sharding tests between multiple machines
+## Dzielenie testów między wieloma maszynami
 
-To shard the test suite, pass `--shard=x/y` to the command line. For example, to split the suite into four shards, each running one fourth of the tests:
+Aby podzielić zestaw testów, przekaż `--shard=x/y` do wiersza poleceń. Na przykład, aby podzielić zestaw na cztery części, każda uruchamiająca jedną czwartą testów:
 
 ```sh
 npx wdio run wdio.conf.js --shard=1/4
@@ -16,19 +16,19 @@ npx wdio run wdio.conf.js --shard=3/4
 npx wdio run wdio.conf.js --shard=4/4
 ```
 
-Now, if you run these shards in parallel on different computers, your test suite completes four times faster.
+Teraz, jeśli uruchomisz te części równolegle na różnych komputerach, twój zestaw testów zakończy się cztery razy szybciej.
 
-## GitHub Actions example
+## Przykład GitHub Actions
 
-GitHub Actions supports [sharding tests between multiple jobs](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) using the [`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) option. The matrix option will run a separate job for every possible combination of the provided options.
+GitHub Actions obsługuje [dzielenie testów między wieloma zadaniami](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) za pomocą opcji [`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix). Opcja matrix uruchomi osobne zadanie dla każdej możliwej kombinacji dostarczonych opcji.
 
-The following example shows you how to configure a job to run your tests on four machines in parallel. You can find the whole pipeline setup in the [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml) project.
+Poniższy przykład pokazuje, jak skonfigurować zadanie do uruchamiania testów na czterech maszynach równolegle. Pełną konfigurację pipeline'u można znaleźć w projekcie [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml).
 
--   First we add a matrix option to our job configuration with the shard option containing the number of shards we want to create. `shard: [1, 2, 3, 4]` will create four shards, each with a different shard number.
--   Then we run our WebdriverIO tests with the `--shard ${{ matrix.shard }}/${{ strategy.job-total }}` option. This will be our test command for each shard.
--   Finally we upload our wdio log report to the GitHub Actions Artifacts. This will make logs available in case the shard fails.
+-   Najpierw dodajemy opcję matrix do konfiguracji naszego zadania z opcją shard zawierającą liczbę fragmentów, które chcemy utworzyć. `shard: [1, 2, 3, 4]` utworzy cztery fragmenty, każdy z innym numerem fragmentu.
+-   Następnie uruchamiamy nasze testy WebdriverIO z opcją `--shard ${{ matrix.shard }}/${{ strategy.job-total }}`. To będzie nasze polecenie testowe dla każdego fragmentu.
+-   Na koniec przesyłamy nasz raport dziennika wdio do GitHub Actions Artifacts. Dzięki temu logi będą dostępne w przypadku niepowodzenia fragmentu.
 
-The test pipeline is defined as follows:
+Pipeline testowy jest zdefiniowany następująco:
 
 ```yaml title=.github/workflows/test.yaml
 name: Test
@@ -59,8 +59,8 @@ jobs:
                   path: logs
 ```
 
-This will run all shards in parallel, reducing executing time for the tests by 4:
+Spowoduje to równoległe uruchomienie wszystkich fragmentów, skracając czas wykonania testów 4-krotnie:
 
 ![GitHub Actions example](/img/sharding.png "GitHub Actions example")
 
-See commit [`96d444e`](https://github.com/webdriverio/cucumber-boilerplate/commit/96d444ea23919389682b9b1c9408ed91c452c7f8) from the [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) project that introduced sharding to its test pipeline which helped reduce the overall execution time from `2:23 min` down to `1:30 min`, a reduction of __37%__ 🎉.
+Zobacz commit [`96d444e`](https://github.com/webdriverio/cucumber-boilerplate/commit/96d444ea23919389682b9b1c9408ed91c452c7f8) z projektu [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate), który wprowadził sharding do swojego pipeline'u testowego, co pomogło zmniejszyć ogólny czas wykonania z `2:23 min` do `1:30 min`, redukcja o __37%__ 🎉.

@@ -4,7 +4,7 @@ title: getCSSProperty
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getCSSProperty.ts
 ---
 
-Ottieni una proprietà CSS da un elemento DOM selezionato tramite il selettore dato. Il valore restituito
+Ottieni una proprietà css da un elemento DOM selezionato tramite il selettore fornito. Il valore di ritorno
 è formattato per essere testabile. I colori vengono analizzati tramite [rgb2hex](https://www.npmjs.org/package/rgb2hex)
 e tutte le altre proprietà vengono analizzate tramite [css-value](https://www.npmjs.org/package/css-value).
 
@@ -12,8 +12,8 @@ e tutte le altre proprietà vengono analizzate tramite [css-value](https://www.n
 
 Nota che le proprietà CSS abbreviate (es. `background`, `font`, `border`, `margin`,
 `padding`, `list-style`, `outline`, `pause`, `cue`) verranno espanse per recuperare tutte le proprietà
-estese risultando in molteplici chiamate WebDriver. Se sei interessato a una specifica
-proprietà estesa è consigliabile fare una query direttamente per quella.
+complete risultando in multiple chiamate WebDriver. Se sei interessato a una specifica
+proprietà completa è consigliabile interrogare direttamente quella.
 
 :::
 

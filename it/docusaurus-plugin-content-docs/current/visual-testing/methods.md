@@ -3,12 +3,12 @@ id: methods
 title: Metodi
 ---
 
-I seguenti metodi vengono aggiunti all'oggetto globale WebdriverIO [`browser`](/docs/api/browser).
+I seguenti metodi vengono aggiunti all'oggetto globale [`browser`](/docs/api/browser) di WebdriverIO.
 
-## Metodi di Salvataggio
+## Metodi di salvataggio
 
 :::info SUGGERIMENTO
-Utilizza i Metodi di Salvataggio solo quando **non** vuoi confrontare schermate, ma vuoi solo avere uno screenshot di un elemento.
+Utilizza i metodi di salvataggio solo quando **non** vuoi confrontare schermate, ma desideri solo avere uno screenshot di un elemento/schermata.
 :::
 
 ### `saveElement`
@@ -47,11 +47,11 @@ await browser.saveElement(
     -   **Tipo:** string
 -   **`saveElementOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di Salvataggio](./method-options#save-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di salvataggio](./method-options#save-options)
 
 #### Output:
 
-Vedi la pagina [Output dei Test](./test-output#savescreenelementfullpagescreen).
+Vedi la pagina [Output di Test](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
@@ -83,11 +83,11 @@ await browser.saveScreen(
     -   **Tipo:** string
 -   **`saveScreenOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di Salvataggio](./method-options#save-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di salvataggio](./method-options#save-options)
 
 #### Output:
 
-Vedi la pagina [Output dei Test](./test-output#savescreenelementfullpagescreen).
+Vedi la pagina [Output di Test](./test-output#savescreenelementfullpagescreen).
 
 ### `saveFullPageScreen`
 
@@ -117,11 +117,11 @@ await browser.saveFullPageScreen(
     -   **Tipo:** string
 -   **`saveFullPageScreenOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di Salvataggio](./method-options#save-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di salvataggio](./method-options#save-options)
 
 #### Output:
 
-Vedi la pagina [Output dei Test](./test-output#savescreenelementfullpagescreen).
+Vedi la pagina [Output di Test](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
@@ -150,16 +150,16 @@ await browser.saveTabbablePage(
     -   **Tipo:** string
 -   **`saveTabbableOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di Salvataggio](./method-options#save-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di salvataggio](./method-options#save-options)
 
 #### Output:
 
-Vedi la pagina [Output dei Test](./test-output#savescreenelementfullpagescreen).
+Vedi la pagina [Output di Test](./test-output#savescreenelementfullpagescreen).
 
-## Metodi di Verifica
+## Metodi di controllo
 
 :::info SUGGERIMENTO
-Quando i metodi `check` vengono utilizzati per la prima volta, vedrai l'avviso seguente nei log. Questo significa che non è necessario combinare i metodi `save` e `check` se si desidera creare la propria baseline.
+Quando i metodi `check` vengono utilizzati per la prima volta, vedrai l'avviso sottostante nei log. Questo significa che non è necessario combinare i metodi `save` e `check` se vuoi creare la tua baseline.
 
 ```shell
 #####################################################################################
@@ -175,7 +175,7 @@ Quando i metodi `check` vengono utilizzati per la prima volta, vedrai l'avviso s
 
 ### `checkElement`
 
-Confronta l'immagine di un elemento con un'immagine di riferimento.
+Confronta un'immagine di un elemento con un'immagine di riferimento.
 
 #### Utilizzo
 
@@ -208,15 +208,15 @@ await browser.checkElement(
     -   **Tipo:** string
 -   **`checkElementOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di Confronto/Verifica](./method-options#compare-check-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/controllo](./method-options#compare-check-options)
 
 #### Output:
 
-Vedi la pagina [Output dei Test](./test-output#checkscreenelementfullpagescreen).
+Vedi la pagina [Output di Test](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkScreen`
 
-Confronta l'immagine di una viewport con un'immagine di riferimento.
+Confronta un'immagine di una viewport con un'immagine di riferimento.
 
 #### Utilizzo
 
@@ -244,15 +244,15 @@ await browser.checkScreen(
     -   **Tipo:** string
 -   **`checkScreenOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di Confronto/Verifica](./method-options#compare-check-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/controllo](./method-options#compare-check-options)
 
 #### Output:
 
-Vedi la pagina [Output dei Test](./test-output#checkscreenelementfullpagescreen).
+Vedi la pagina [Output di Test](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
-Confronta l'immagine della schermata completa con un'immagine di riferimento.
+Confronta un'immagine della schermata completa con un'immagine di riferimento.
 
 #### Utilizzo
 
@@ -278,15 +278,15 @@ await browser.checkFullPageScreen(
     -   **Tipo:** string
 -   **`checkFullPageOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di Confronto/Verifica](./method-options#compare-check-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/controllo](./method-options#compare-check-options)
 
 #### Output:
 
-Vedi la pagina [Output dei Test](./test-output#checkscreenelementfullpagescreen).
+Vedi la pagina [Output di Test](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Confronta l'immagine della schermata completa con le linee e i punti tabbabili con un'immagine di riferimento.
+Confronta un'immagine della schermata completa con le linee e i punti tabbabili con un'immagine di riferimento.
 
 #### Utilizzo
 
@@ -311,8 +311,8 @@ await browser.checkTabbablePage(
     -   **Tipo:** string
 -   **`checkTabbableOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di Confronto/Verifica](./method-options#compare-check-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/controllo](./method-options#compare-check-options)
 
 #### Output:
 
-Vedi la pagina [Output dei Test](./test-output#checkscreenelementfullpagescreen).
+Vedi la pagina [Output di Test](./test-output#checkscreenelementfullpagescreen).

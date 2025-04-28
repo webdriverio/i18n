@@ -1,32 +1,35 @@
 ---
 id: mock
-title: شیء ساختگی(Mock Object)
+title: شیء Mock
 ---
 
-The mock object is an object that represents a network mock and contains information about requests that were matching given `url` and `filterOptions`. It can be received using the [`mock`](/docs/api/browser/mock) command.
+شیء mock یک شیء است که نشان‌دهنده یک mock شبکه است و حاوی اطلاعاتی درباره درخواست‌هایی است که با `url` و `filterOptions` داده شده مطابقت داشته‌اند. این شیء را می‌توان با استفاده از دستور [`mock`](/docs/api/browser/mock) دریافت کرد.
 
 :::info
 
-Note that using the `mock` command requires support for Chrome DevTools protocol. That support is given if you run tests locally in Chromium based browser or if you use a Selenium Grid v4 or higher. This command can __not__ be used when running automated tests in the cloud. Find out more in the [Automation Protocols](/docs/automationProtocols) section.
+توجه داشته باشید که استفاده از دستور `mock` نیازمند پشتیبانی از پروتکل Chrome DevTools است.
+این پشتیبانی زمانی فراهم می‌شود که تست‌ها را به صورت محلی در مرورگر مبتنی بر Chromium اجرا کنید یا
+از Selenium Grid نسخه 4 یا بالاتر استفاده کنید. این دستور __نمی‌تواند__ هنگام اجرای 
+تست‌های خودکار در فضای ابری استفاده شود. اطلاعات بیشتر را در بخش [پروتکل‌های اتوماسیون](/docs/automationProtocols) بیابید.
 
 :::
 
-You can read more about mocking requests and responses in WebdriverIO in our [Mocks and Spies](/docs/mocksandspies) guide.
+می‌توانید درباره mock کردن درخواست‌ها و پاسخ‌ها در WebdriverIO در راهنمای [Mocks and Spies](/docs/mocksandspies) ما بیشتر بخوانید.
 
-## Properties
+## ویژگی‌ها
 
-A mock object contains the following properties:
+یک شیء mock شامل ویژگی‌های زیر است:
 
-| Name            | Type       | Details                                                                                                                                                                               |
-| --------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `url`           | `String`   | The url passed into the mock command                                                                                                                                                  |
-| `filterOptions` | `Object`   | The resource filter options passed into the mock command                                                                                                                              |
-| `browser`       | `Object`   | The [Browser Object](/docs/api/browser) used to get the mock object.                                                                                                                  |
-| `calls`         | `Object[]` | Information about matching browser requests, containing properties such as `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` and `body` |
+| نام | نوع | جزئیات |
+| ---- | ---- | ------- |
+| `url` | `String` | آدرس URL که به دستور mock ارسال شده است |
+| `filterOptions` | `Object` | گزینه‌های فیلتر منبع که به دستور mock ارسال شده است |
+| `browser` | `Object` | [شیء مرورگر](/docs/api/browser) استفاده شده برای دریافت شیء mock. |
+| `calls` | `Object[]` | اطلاعات درباره درخواست‌های مرورگر منطبق، شامل ویژگی‌هایی مانند `url`، `method`، `headers`، `initialPriority`، `referrerPolic`، `statusCode`، `responseHeaders` و `body` |
 
-## Methods
+## متدها
 
-Mock objects provide various commands, listed in the `mock` section, that allow users to modify the behavior of the request or response.
+اشیاء mock دستورات مختلفی را ارائه می‌دهند که در بخش `mock` فهرست شده‌اند و به کاربران امکان می‌دهند رفتار درخواست یا پاسخ را تغییر دهند.
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -37,17 +40,17 @@ Mock objects provide various commands, listed in the `mock` section, that allow 
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
 
-## Events
+## رویدادها
 
-The mock object is an EventEmitter and a couple of events are emitted for your use cases.
+شیء mock یک EventEmitter است و چندین رویداد برای موارد استفاده شما منتشر می‌شود.
 
-Here is a list of events.
+در اینجا فهرستی از رویدادها آمده است.
 
 ### `request`
 
-This event is being emitted when launching a network request that matches mock patterns. Request is passed in event callback.
+این رویداد زمانی منتشر می‌شود که یک درخواست شبکه که با الگوهای mock مطابقت دارد، راه‌اندازی می‌شود. درخواست در callback رویداد ارسال می‌شود.
 
-Request interface:
+رابط درخواست:
 ```ts
 interface RequestEvent {
     requestId: number
@@ -59,9 +62,9 @@ interface RequestEvent {
 
 ### `overwrite`
 
-This event is being emitted when network response is overwrited with [`respond`](/docs/api/mock/respond) or [`respondOnce`](/docs/api/mock/respondOnce). Response is passed in event callback.
+این رویداد زمانی منتشر می‌شود که پاسخ شبکه با [`respond`](/docs/api/mock/respond) یا [`respondOnce`](/docs/api/mock/respondOnce) بازنویسی می‌شود. پاسخ در callback رویداد ارسال می‌شود.
 
-Response interface:
+رابط پاسخ:
 ```ts
 interface OverwriteEvent {
     requestId: number
@@ -73,9 +76,9 @@ interface OverwriteEvent {
 
 ### `fail`
 
-This event is being emitted when network request is aborted with [`abort`](/docs/api/mock/abort) or [`abortOnce`](/docs/api/mock/abortOnce). Fail is passed in event callback.
+این رویداد زمانی منتشر می‌شود که درخواست شبکه با [`abort`](/docs/api/mock/abort) یا [`abortOnce`](/docs/api/mock/abortOnce) لغو می‌شود. اطلاعات خطا در callback رویداد ارسال می‌شود.
 
-Fail interface:
+رابط خطا:
 ```ts
 interface FailEvent {
     requestId: number
@@ -85,39 +88,39 @@ interface FailEvent {
 
 ### `match`
 
-This event is being emitted when new match is added, before `continue` or `overwrite`. Match is passed in event callback.
+این رویداد زمانی منتشر می‌شود که یک مطابقت جدید اضافه می‌شود، قبل از `continue` یا `overwrite`. اطلاعات مطابقت در callback رویداد ارسال می‌شود.
 
-Match interface:
+رابط مطابقت:
 ```ts
 interface MatchEvent {
-    url: string // Request URL (without fragment).
-    urlFragment?: string // Fragment of the requested URL starting with hash, if present.
-    method: string // HTTP request method.
-    headers: Record<string, string> // HTTP request headers.
-    postData?: string // HTTP POST request data.
-    hasPostData?: boolean // True when the request has POST data.
-    mixedContentType?: MixedContentType // The mixed content export type of the request.
-    initialPriority: ResourcePriority // Priority of the resource request at the time request is sent.
-    referrerPolicy: ReferrerPolicy // The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Whether is loaded via link preload.
-    body: string | Buffer | JsonCompatible // Body response of actual resource.
-    responseHeaders: Record<string, string> // HTTP response headers.
-    statusCode: number // HTTP response status code.
-    mockedResponse?: string | Buffer // If mock, emitting the event, also modified it's response.
+    url: string // آدرس URL درخواست (بدون قطعه).
+    urlFragment?: string // قطعه‌ای از URL درخواستی که با هش شروع می‌شود، اگر موجود باشد.
+    method: string // روش درخواست HTTP.
+    headers: Record<string, string> // سرایندهای درخواست HTTP.
+    postData?: string // داده‌های درخواست HTTP POST.
+    hasPostData?: boolean // هنگامی که درخواست دارای داده POST است، true خواهد بود.
+    mixedContentType?: MixedContentType // نوع خروجی محتوای مخلوط درخواست.
+    initialPriority: ResourcePriority // اولویت درخواست منبع در زمان ارسال درخواست.
+    referrerPolicy: ReferrerPolicy // سیاست ارجاع‌دهنده درخواست، همانطور که در https://www.w3.org/TR/referrer-policy/ تعریف شده است.
+    isLinkPreload?: boolean // آیا از طریق پیش‌بارگذاری پیوند بارگذاری می‌شود.
+    body: string | Buffer | JsonCompatible // بدنه پاسخ منبع واقعی.
+    responseHeaders: Record<string, string> // سرایندهای پاسخ HTTP.
+    statusCode: number // کد وضعیت پاسخ HTTP.
+    mockedResponse?: string | Buffer // اگر mock که رویداد را منتشر می‌کند، همچنین پاسخ آن را تغییر داده باشد.
 }
 ```
 
 ### `continue`
 
-This event is being emitted when the network response has neither been overwritten nor interrupted, or if response was already sent by another mock. `requestId` is passed in event callback.
+این رویداد زمانی منتشر می‌شود که پاسخ شبکه نه بازنویسی شده و نه قطع شده باشد، یا اگر پاسخ قبلاً توسط یک mock دیگر ارسال شده باشد. `requestId` در callback رویداد ارسال می‌شود.
 
-## Examples
+## مثال‌ها
 
-Getting a number of pending requests:
+دریافت تعداد درخواست‌های در انتظار:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // it is important to match all requests otherwise, the resulting value can be very confusing.
+const mock = await browser.mock('**') // مهم است که همه درخواست‌ها را مطابقت دهید، در غیر این صورت، مقدار نتیجه می‌تواند بسیار گیج‌کننده باشد.
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -128,7 +131,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Throwing an error on 404 network fail:
+پرتاب خطا در صورت شکست شبکه با کد 404:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -142,7 +145,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // waiting here, because some requests can still be pending
+    // انتظار در اینجا، زیرا برخی درخواست‌ها ممکن است هنوز در انتظار باشند
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -157,7 +160,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Determining if mock respond value was used:
+تعیین اینکه آیا مقدار پاسخ mock استفاده شده است:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -167,16 +170,16 @@ firstMock.respondOnce({id: 3, title: 'three'})
 secondMock.respond({id: 4, title: 'four'})
 
 firstMock.on('overwrite', () => {
-    // triggers for first request to '**/foo/**'
+    // برای اولین درخواست به '**/foo/**' فعال می‌شود
 }).on('continue', () => {
-    // triggers for rest requests to '**/foo/**'
+    // برای بقیه درخواست‌ها به '**/foo/**' فعال می‌شود
 })
 
 secondMock.on('continue', () => {
-    // triggers for first request to '**/foo/bar/**'
+    // برای اولین درخواست به '**/foo/bar/**' فعال می‌شود
 }).on('overwrite', () => {
-    // triggers for rest requests to '**/foo/bar/**'
+    // برای بقیه درخواست‌ها به '**/foo/bar/**' فعال می‌شود
 })
 ```
 
-In this example, `firstMock` was defined first and has one `respondOnce` call, so the `secondMock` response value will not be used for the first request, but will be used for the rest of them.
+در این مثال، `firstMock` ابتدا تعریف شده و یک فراخوانی `respondOnce` دارد، بنابراین مقدار پاسخ `secondMock` برای اولین درخواست استفاده نمی‌شود، اما برای بقیه درخواست‌ها استفاده خواهد شد.

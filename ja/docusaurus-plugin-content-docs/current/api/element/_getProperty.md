@@ -1,12 +1,12 @@
 ---
 id: getProperty
-title: getProperty （プロパティの取得）
+title: getProperty
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getProperty.ts
 ---
 
-要素プロパティの取得コマンドは、要素のプロパティを取得した結果を返します。
+要素のプロパティを取得するコマンドで、要素のプロパティの結果を返します。
 
-##### 使用方法
+##### 使い方
 
 ```js
 $(selector).getProperty(property)
@@ -24,7 +24,7 @@ $(selector).getProperty(property)
     <tr>
       <td><code><var>property</var></code></td>
       <td>`string`</td>
-      <td>要素プロパティの名前</td>
+      <td>要素のプロパティ名</td>
     </tr>
   </tbody>
 </table>
@@ -42,4 +42,4 @@ it('should demonstrate the getProperty command', async () => {
 ##### 戻り値
 
 - **&lt;unknown&gt;**
-            **<code><var>return</var></code>:** 選択された要素のプロパティの値
+            **<code><var>return</var></code>:** 選択した要素のプロパティの値

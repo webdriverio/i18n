@@ -4,15 +4,15 @@ title: execute（実行）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/execute.ts
 ---
 
-JavaScriptのスニペットをページに注入し、現在選択されているフレームのコンテキストで実行します。
+JavaScript のスニペットをページに挿入し、現在選択されているフレームのコンテキストで実行します。
 実行されるスクリプトは同期的であると見なされ、スクリプトの評価結果がクライアントに返されます。
 
-scriptパラメータは、関数本体の形式で実行するスクリプトを定義します。その関数によって返される値が
-クライアントに返されます。関数は指定されたargs配列で呼び出され、値は指定された順序でargumentsオブジェクト
-を介してアクセスできます。
+script引数は、関数本体の形式で実行するスクリプトを定義します。その関数によって返される値が
+クライアントに返されます。関数は指定されたargs配列とともに呼び出され、
+引数オブジェクトを通じて指定された順序で値にアクセスできます。
 
-引数は任意のJSONプリミティブ、配列、またはJSONオブジェクトです。WebElement参照を定義するJSONオブジェクトは、
-対応するDOM要素に変換されます。同様に、スクリプト結果内のWebElementはWebElement JSONオブジェクトとして
+引数はJSON基本型、配列、またはJSONオブジェクトです。WebElement参照を定義するJSONオブジェクトは、
+対応するDOM要素に変換されます。同様に、スクリプト結果内のWebElementsはWebElement JSONオブジェクトとして
 クライアントに返されます。
 
 ##### 使用方法
@@ -33,7 +33,7 @@ browser.execute(script, arguments)
     <tr>
       <td><code><var>script</var></code></td>
       <td>`String, Function`</td>
-      <td>実行するスクリプト</td>
+      <td>実行するスクリプト。</td>
     </tr>
     <tr>
       <td><code><var>arguments</var></code><br /><span className="label labelWarning">オプション</span></td>

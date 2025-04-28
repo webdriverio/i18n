@@ -4,7 +4,7 @@ title: pause
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/pause.ts
 ---
 
-Mette in pausa l'esecuzione per un periodo di tempo specifico. Si raccomanda di non utilizzare questo comando per attendere che un elemento venga visualizzato. Per evitare risultati di test instabili è meglio utilizzare comandi come [`waitForExist`](/docs/api/element/waitForExist) o altri comandi waitFor*.
+Mette in pausa l'esecuzione per un periodo di tempo specifico. Si consiglia di non utilizzare questo comando per attendere che un elemento venga visualizzato. Per evitare risultati di test instabili è meglio utilizzare comandi come [`waitForExist`](/docs/api/element/waitForExist) o altri comandi waitFor*.
 
 ##### Utilizzo
 

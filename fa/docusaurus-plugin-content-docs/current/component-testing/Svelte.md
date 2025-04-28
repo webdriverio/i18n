@@ -1,13 +1,13 @@
 ---
 id: svelte
-title: Svelte
+title: اسولت (Svelte)
 ---
 
-[Svelte](https://svelte.dev/) is a radical new approach to building user interfaces. Whereas traditional frameworks like React and Vue do the bulk of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app. You can test Svelte components directly in a real browser using WebdriverIO and its [browser runner](/docs/runner#browser-runner).
+[Svelte](https://svelte.dev/) رویکردی رادیکال جدید برای ساخت رابط‌های کاربری است. در حالی که فریم‌ورک‌های سنتی مانند React و Vue بخش عمده کار خود را در مرورگر انجام می‌دهند، Svelte این کار را به مرحله کامپایل که هنگام ساخت برنامه اتفاق می‌افتد، منتقل می‌کند. شما می‌توانید کامپوننت‌های Svelte را مستقیماً در یک مرورگر واقعی با استفاده از WebdriverIO و [اجراکننده مرورگر](/docs/runner#browser-runner) آن تست کنید.
 
-## Setup
+## راه‌اندازی
 
-To setup WebdriverIO within your Svelte project, follow the [instructions](/docs/component-testing#set-up) in our component testing docs. Make sure to select `svelte` as preset within your runner options, e.g.:
+برای راه‌اندازی WebdriverIO در پروژه Svelte خود، [دستورالعمل‌ها](/docs/component-testing#set-up) را در مستندات تست کامپوننت ما دنبال کنید. اطمینان حاصل کنید که `svelte` را به عنوان پیش‌تنظیم در گزینه‌های اجراکننده خود انتخاب کرده‌اید، به عنوان مثال:
 
 ```js
 // wdio.conf.js
@@ -22,25 +22,25 @@ export const config = {
 
 :::info
 
-If you are already using [Vite](https://vitejs.dev/) as development server you can also just re-use your configuration in `vite.config.ts` within your WebdriverIO config. For more information, see `viteConfig` in [runner options](/docs/runner#runner-options).
+اگر قبلاً از [Vite](https://vitejs.dev/) به عنوان سرور توسعه استفاده می‌کنید، می‌توانید پیکربندی خود را در `vite.config.ts` در پیکربندی WebdriverIO مجدداً استفاده کنید. برای اطلاعات بیشتر، به `viteConfig` در [گزینه‌های اجراکننده](/docs/runner#runner-options) مراجعه کنید.
 
 :::
 
-The Svelte preset requires `@sveltejs/vite-plugin-svelte` to be installed. Also we recommend using [Testing Library](https://testing-library.com/) for rendering the component into the test page. Therefor you'll need to install the following additional dependencies:
+پیش‌تنظیم Svelte نیاز به نصب `@sveltejs/vite-plugin-svelte` دارد. همچنین ما استفاده از [Testing Library](https://testing-library.com/) را برای رندر کردن کامپوننت در صفحه تست توصیه می‌کنیم. بنابراین، شما باید وابستگی‌های اضافی زیر را نصب کنید:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
 ```
 
-You can then start the tests by running:
+سپس می‌توانید تست‌ها را با اجرای دستور زیر شروع کنید:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## Writing Tests
+## نوشتن تست‌ها
 
-Given you have the following Svelte component:
+با فرض اینکه شما کامپوننت Svelte زیر را دارید:
 
 ```html title="./components/Component.svelte"
 <script>
@@ -57,7 +57,7 @@ Given you have the following Svelte component:
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-In your test use the `render` method from `@testing-library/svelte` to attach the component to the test page. To interact with the component we recommend to use WebdriverIO commands as they behave more close to actual user interactions, e.g.:
+در تست خود از روش `render` از `@testing-library/svelte` استفاده کنید تا کامپوننت را به صفحه تست متصل کنید. برای تعامل با کامپوننت، ما توصیه می‌کنیم از دستورات WebdriverIO استفاده کنید زیرا آنها رفتاری نزدیک‌تر به تعاملات واقعی کاربر دارند، به عنوان مثال:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'
@@ -78,5 +78,4 @@ describe('Svelte Component Testing', () => {
 })
 ```
 
-You can find a full example of a WebdriverIO component test suite for Svelte in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite).
-
+شما می‌توانید یک نمونه کامل از مجموعه تست کامپوننت WebdriverIO برای Svelte را در [مخزن مثال](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite) ما پیدا کنید.

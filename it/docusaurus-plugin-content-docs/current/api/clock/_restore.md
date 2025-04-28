@@ -4,7 +4,7 @@ title: restore
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/restore.ts
 ---
 
-Ripristina tutte le funzioni native sovrascritte. Questa operazione viene automaticamente eseguita tra i test, quindi generalmente non è necessaria.
+Ripristina tutte le funzioni native sovrascritte. Questo viene chiamato automaticamente tra i test, quindi generalmente non dovrebbe essere necessario.
 
 ##### Utilizzo
 
@@ -25,6 +25,6 @@ await clock.restore()
 console.log(await browser.execute(() => new Date().getTime())) // returns 1722560447102
 ```
 
-##### Restituisce
+##### Ritorna
 
 - **&lt; `Promise<void>` &gt;**

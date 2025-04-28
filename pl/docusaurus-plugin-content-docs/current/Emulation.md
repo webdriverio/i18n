@@ -1,26 +1,26 @@
 ---
 id: emulation
-title: Emulation
+title: Emulacja
 ---
 
-With WebdriverIO you can emulate Web APIs using the [`emulate`](/docs/api/browser/emulate) command to return custom values that help you emulate certain browser behaviors. Note that this requires your application to explicitly use these APIs.
+Z WebdriverIO możesz emulować interfejsy API za pomocą polecenia [`emulate`](/docs/api/browser/emulate), aby zwracać niestandardowe wartości, które pomogą ci emulować określone zachowania przeglądarki. Pamiętaj, że wymaga to, aby twoja aplikacja jawnie korzystała z tych interfejsów API.
 
 <LiteYouTubeEmbed
- id="2bQXzIB_97M"
- title="WebdriverIO Tutorials: The Emulate Command - Emulate Web APIs at Runtime with WebdriverIO"
+    id="2bQXzIB_97M"
+    title="WebdriverIO Tutorials: The Emulate Command - Emulate Web APIs at Runtime with WebdriverIO"
 />
 
 :::info
 
-This feature requires WebDriver Bidi support for the browser. While recent versions of Chrome, Edge and Firefox have such support, Safari **does not**. For updates follow [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental\&label=master\&aligned). Furthermore if you use a cloud vendor for spawning browsers, make sure your vendor also supports WebDriver Bidi.
+Ta funkcja wymaga wsparcia WebDriver Bidi dla przeglądarki. Podczas gdy najnowsze wersje Chrome, Edge i Firefox mają takie wsparcie, Safari __nie posiada__ tej funkcjonalności. Aby śledzić aktualizacje, odwiedź [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). Ponadto, jeśli korzystasz z dostawcy chmurowego do uruchamiania przeglądarek, upewnij się, że twój dostawca również wspiera WebDriver Bidi.
 
-To enable WebDriver Bidi for your test, make sure to have `webSocketUrl: true` set in your capabilities.
+Aby włączyć WebDriver Bidi dla swoich testów, upewnij się, że masz ustawione `webSocketUrl: true` w swoich możliwościach (capabilities).
 
 :::
 
-## Geolocation
+## Geolokalizacja
 
-Change the browser geolocation to a specific area, e.g.:
+Zmień geolokalizację przeglądarki na określony obszar, np.:
 
 ```ts
 await browser.emulate('geolocation', {
@@ -31,52 +31,52 @@ await browser.emulate('geolocation', {
 await browser.url('https://www.google.com/maps')
 await browser.$('aria/Show Your Location').click()
 await browser.pause(5000)
-console.log(await browser.getUrl()) // outputs: "https://www.google.com/maps/@52.52,13.39,16z?entry=ttu"
+console.log(await browser.getUrl()) // wyświetla: "https://www.google.com/maps/@52.52,13.39,16z?entry=ttu"
 ```
 
-This will monkey patch how [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) works and returns the location provided by you.
+To zastąpi działanie [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) i zwróci lokalizację podaną przez ciebie.
 
-## Color Scheme
+## Schemat kolorów
 
-Change the default color scheme setup of the browser via:
+Zmień domyślny schemat kolorów przeglądarki za pomocą:
 
 ```ts
 await browser.emulate('colorScheme', 'light')
 await browser.url('https://webdriver.io')
 const backgroundColor = await browser.$('nav').getCSSProperty('background-color')
-console.log(backgroundColor.parsed.hex) // outputs: "#efefef"
+console.log(backgroundColor.parsed.hex) // wyświetla: "#efefef"
 
 await browser.emulate('colorScheme', 'dark')
 await browser.url('https://webdriver.io')
 const backgroundColor = await browser.$('nav').getCSSProperty('background-color')
-console.log(backgroundColor.parsed.hex) // outputs: "#000000"
+console.log(backgroundColor.parsed.hex) // wyświetla: "#000000"
 ```
 
-This will monkey patch how [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) behaves when you query the color scheme via `(prefers-color-scheme: dark)`.
+To zastąpi działanie [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia), gdy sprawdzasz schemat kolorów za pomocą `(prefers-color-scheme: dark)`.
 
 ## User Agent
 
-Change the user agent of the browser to a different string via:
+Zmień user agent przeglądarki na inny ciąg znaków za pomocą:
 
 ```ts
 await browser.emulate('userAgent', 'Chrome/1.2.3.4 Safari/537.36')
 ```
 
-This will change the value of [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Note that browser vendors progressively deprecating the User Agent.
+To zmieni wartość [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Zauważ, że producenci przeglądarek stopniowo deprecjonują User Agent.
 
-## onLine Property
+## Właściwość onLine
 
-Change the online status of the browser via:
+Zmień status online przeglądarki za pomocą:
 
 ```ts
 await browser.emulate('onLine', false)
 ```
 
-This will **not** turn off network traffic between the browser and the internet and only changes the return value of [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). If you are interested modifying network capabilities of the browser, look into the [`throttleNetwork`](/docs/api/browser/throttleNetwork) command.
+To __nie__ wyłączy ruchu sieciowego między przeglądarką a internetem, a jedynie zmieni zwracaną wartość [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). Jeśli interesuje cię modyfikowanie możliwości sieciowych przeglądarki, zapoznaj się z poleceniem [`throttleNetwork`](/docs/api/browser/throttleNetwork).
 
-## Clock
+## Zegar
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+Możesz modyfikować zegar systemowy przeglądarki za pomocą polecenia [`emulate`](/docs/emulation). Nadpisuje ono natywne globalne funkcje związane z czasem, pozwalając na synchroniczne kontrolowanie ich za pomocą `clock.tick()` lub zwróconego obiektu zegara. Obejmuje to kontrolowanie:
 
 - `setTimeout`
 - `clearTimeout`
@@ -84,82 +84,82 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+Zegar zaczyna od początku ery uniksowej (timestamp 0). Oznacza to, że gdy utworzysz nowy obiekt Date w swojej aplikacji, będzie on miał czas 1 stycznia 1970 roku, jeśli nie przekażesz żadnych innych opcji do polecenia `emulate`.
 
-##### Example
+##### Przykład
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+Gdy wywołasz `browser.emulate('clock', { ... })`, natychmiast nadpisze ono globalne funkcje dla bieżącej strony, a także wszystkich następnych stron, np.:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
 
 console.log(await browser.execute(() => (new Date()).toString()))
-// returns "Fri Aug 04 1989 00:00:00 GMT-0700 (Pacific Daylight Time)"
+// zwraca "Fri Aug 04 1989 00:00:00 GMT-0700 (Pacific Daylight Time)"
 
 await browser.url('https://webdriverio')
 console.log(await browser.execute(() => (new Date()).toString()))
-// returns "Fri Aug 04 1989 00:00:00 GMT-0700 (Pacific Daylight Time)"
+// zwraca "Fri Aug 04 1989 00:00:00 GMT-0700 (Pacific Daylight Time)"
 
 await clock.restore()
 
 console.log(await browser.execute(() => (new Date()).toString()))
-// returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
+// zwraca "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 
 await browser.url('https://guinea-pig.webdriver.io/pointer.html')
 console.log(await browser.execute(() => (new Date()).toString()))
-// returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
+// zwraca "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+Możesz modyfikować czas systemowy, wywołując [`setSystemTime`](/docs/api/clock/setSystemTime) lub [`tick`](/docs/api/clock/tick).
 
-The `FakeTimerInstallOpts` object can have the following properties:
+Obiekt `FakeTimerInstallOpts` może mieć następujące właściwości:
 
-```ts
+ ```ts
 interface FakeTimerInstallOpts {
-   // Installs fake timers with the specified unix epoch
-   // @default: 0
-   now?: number | Date | undefined;
+    // Instaluje fałszywe timery z określoną erą uniksową
+    // @default: 0
+    now?: number | Date | undefined;
 
-   // An array with names of global methods and APIs to fake. By default, WebdriverIO
-   // does not replace `nextTick()` and `queueMicrotask()`. For instance,
-   // `browser.emulate('clock', { toFake: ['setTimeout', 'nextTick'] })` will fake only
-   // `setTimeout()` and `nextTick()`
-   toFake?: FakeMethod[] | undefined;
+    // Tablica z nazwami globalnych metod i API do podrabiania. Domyślnie WebdriverIO
+    // nie zastępuje `nextTick()` i `queueMicrotask()`. Na przykład,
+    // `browser.emulate('clock', { toFake: ['setTimeout', 'nextTick'] })` będzie podrabiać tylko
+    // `setTimeout()` i `nextTick()`
+    toFake?: FakeMethod[] | undefined;
 
-   // The maximum number of timers that will be run when calling runAll() (default: 1000)
-   loopLimit?: number | undefined;
+    // Maksymalna liczba timerów, które zostaną uruchomione przy wywołaniu runAll() (domyślnie: 1000)
+    loopLimit?: number | undefined;
 
-   // Tells WebdriverIO to increment mocked time automatically based on the real system
-   // time shift (e.g. the mocked time will be incremented by 20ms for every 20ms change
-   // in the real system time)
-   // @default false
-   shouldAdvanceTime?: boolean | undefined;
+    // Informuje WebdriverIO, aby automatycznie zwiększać symulowany czas na podstawie rzeczywistej
+    // zmiany czasu systemowego (np. symulowany czas zostanie zwiększony o 20ms dla każdej zmiany 20ms
+    // w rzeczywistym czasie systemowym)
+    // @default false
+    shouldAdvanceTime?: boolean | undefined;
 
-   // Relevant only when using with shouldAdvanceTime: true. increment mocked time by
-   // advanceTimeDelta ms every advanceTimeDelta ms change in the real system time
-   // @default: 20
-   advanceTimeDelta?: number | undefined;
+    // Istotne tylko przy użyciu z shouldAdvanceTime: true. Zwiększa symulowany czas o
+    // advanceTimeDelta ms przy każdej zmianie advanceTimeDelta ms w rzeczywistym czasie systemowym
+    // @default: 20
+    advanceTimeDelta?: number | undefined;
 
-   // Tells FakeTimers to clear 'native' (i.e. not fake) timers by delegating to their
-   // respective handlers. These are not cleared by default, leading to potentially
-   // unexpected behavior if timers existed prior to installing FakeTimers.
-   // @default: false
-   shouldClearNativeTimers?: boolean | undefined;
+    // Informuje FakeTimers, aby czyścić 'natywne' (tj. nie fałszywe) timery, delegując do ich
+    // odpowiednich obsługiwaczy. Nie są one czyszczone domyślnie, co może prowadzić do
+    // nieoczekiwanego zachowania, jeśli timery istniały przed zainstalowaniem FakeTimers.
+    // @default: false
+    shouldClearNativeTimers?: boolean | undefined;
 }
 ```
 
-## Device
+## Urządzenie
 
-The `emulate` command also supports emulating a certain mobile or desktop device by changing the viewport, device scale factor and the user agent. This should, by no means, be used for mobile testing as desktop browser engines differ from mobile ones. This should only be used if your application offers a specific behavior for smaller viewport sizes.
+Polecenie `emulate` obsługuje również emulowanie określonego urządzenia mobilnego lub desktopowego poprzez zmianę obszaru widocznego, współczynnika skalowania urządzenia i user agenta. To nie powinno być w żadnym wypadku używane do testowania mobilnego, ponieważ silniki przeglądarek desktopowych różnią się od mobilnych. Powinno być używane tylko wtedy, gdy twoja aplikacja oferuje specyficzne zachowanie dla mniejszych rozmiarów obszaru widocznego.
 
-For example, to switch the user agent and viewport to an iPhone 15, just run:
+Na przykład, aby przełączyć user agent i viewport na iPhone 15, wystarczy uruchomić:
 
 ```ts
 const restore = await browser.emulate('device', 'iPhone 15')
-// test your application ...
+// testuj swoją aplikację ...
 
-// reset to original viewport and user agent
+// przywróć oryginalny viewport i user agent
 await restore()
 ```
 
-WebdriverIO maintains a fixed list of [all defined devices](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).
+WebdriverIO utrzymuje stałą listę [wszystkich zdefiniowanych urządzeń](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).

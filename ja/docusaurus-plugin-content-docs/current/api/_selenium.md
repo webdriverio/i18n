@@ -26,7 +26,7 @@ browser.file(file)
     <tr>
       <td><code><var>file</var></code></td>
       <td>string</td>
-      <td>アップロードする単一ファイルを含むBase64エンコードされたzipアーカイブ。Base64エンコードされたデータがzipアーカイブでない場合、またはアーカイブに複数のファイルが含まれている場合は、不明なエラーが発生します。</td>
+      <td>アップロードする__単一の__ファイルを含むBase64エンコードされたzipアーカイブ。Base64エンコードされたデータがzipアーカイブでない場合、またはアーカイブに複数のファイルが含まれている場合は不明なエラーが発生します。</td>
     </tr>
   </tbody>
 </table>
@@ -53,7 +53,7 @@ browser.getDownloadableFiles()
 ##### 戻り値
 
 - **&lt;Object&gt;**
-            **<code><var>names</var></code>:** リモートマシン上のダウンロード可能なファイルの一覧を含むオブジェクト。
+            **<code><var>names</var></code>:** リモートマシン上のダウンロード可能なファイルのリストを含むオブジェクト。
 
 
 ---
@@ -108,7 +108,7 @@ browser.deleteDownloadableFiles()
 ---
 
 ## getHubConfig
-リモートでハブの構成を取得します。<br /><br />Selenium スタンドアロンコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/nicegraham/selenium-grid2-api#gridapihub)で確認できます。
+リモートでハブ設定を受信します。<br /><br />Selenium スタンドアロンコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/nicegraham/selenium-grid2-api#gridapihub)で確認できます。
 
 ##### 使用方法
 
@@ -120,7 +120,7 @@ browser.getHubConfig()
 ##### 戻り値
 
 - **&lt;Object&gt;**
-            **<code><var>config</var></code>:** スロット数、タイムアウト、その他の情報を含むハブ構成を返します。
+            **<code><var>config</var></code>:** スロット数、タイムアウト、その他の情報を含むハブ設定を返します。
 
 
 ---
@@ -147,7 +147,7 @@ browser.gridTestSession(session)
     <tr>
       <td><code><var>session</var></code></td>
       <td>String</td>
-      <td>ハブの詳細を取得するセッションのID。</td>
+      <td>ハブの詳細を受け取るセッションのID。</td>
     </tr>
   </tbody>
 </table>
@@ -156,7 +156,7 @@ browser.gridTestSession(session)
 ##### 戻り値
 
 - **&lt;Object&gt;**
-            **<code><var>details</var></code>:** セッションの詳細情報を含むオブジェクト。
+            **<code><var>details</var></code>:** セッションの詳細に関する情報を含むオブジェクト。
 
 
 ---
@@ -183,7 +183,7 @@ browser.gridProxyDetails(id)
     <tr>
       <td><code><var>id</var></code></td>
       <td>string</td>
-      <td>プロキシのID（gridTestSessionコマンドを使用して取得可能）。</td>
+      <td>プロキシのID（gridTestSessionコマンドを使用して受け取ることができます）。</td>
     </tr>
   </tbody>
 </table>
@@ -219,7 +219,7 @@ browser.manageSeleniumHubLifecycle(action)
     <tr>
       <td><code><var>action</var></code></td>
       <td>String</td>
-      <td>Selenium Hubで呼び出すコマンド。実装されているアクションはハブを「shutdown」するもののみです。</td>
+      <td>Selenium Hubで呼び出すコマンド。実装されている唯一のアクションはハブを「shutdown」することです。</td>
     </tr>
   </tbody>
 </table>

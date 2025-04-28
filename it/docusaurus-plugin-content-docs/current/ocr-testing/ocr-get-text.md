@@ -3,7 +3,7 @@ id: ocr-get-text
 title: ocrGetText
 ---
 
-Ottieni il testo da un'immagine.
+Ottieni il testo su un'immagine.
 
 ### Utilizzo
 
@@ -37,7 +37,7 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 -   **Obbligatorio:** no
 -   **Predefinito:** `0.25`
 
-Maggiore è il contrasto, più scura diventa l'immagine e viceversa. Questo può aiutare a trovare testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
+Maggiore è il contrasto, più scura è l'immagine e viceversa. Questo può aiutare a trovare testo in un'immagine. Accetta valori tra `-1` e `1`.
 
 #### Esempio
 
@@ -57,10 +57,10 @@ Questa è l'area di ricerca nello schermo dove l'OCR deve cercare il testo. Può
 ```js
 await browser.ocrGetText({ haystack: $("elementSelector") });
 
-// OR
+// OPPURE
 await browser.ocrGetText({ haystack: await $("elementSelector") });
 
-// OR
+// OPPURE
 await browser.ocrGetText({
     haystack: {
         x: 10,
@@ -84,7 +84,7 @@ La lingua che Tesseract riconoscerà. Maggiori informazioni possono essere trova
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // Use Dutch as a language
+    // Usa l'olandese come lingua
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

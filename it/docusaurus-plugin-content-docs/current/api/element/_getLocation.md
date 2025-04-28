@@ -4,7 +4,7 @@ title: getLocation
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getLocation.ts
 ---
 
-Determina la posizione di un elemento sulla pagina. Il punto (0, 0) si riferisce 
+Determina la posizione di un elemento nella pagina. Il punto (0, 0) si riferisce 
 all'angolo superiore sinistro della pagina.
 
 ##### Utilizzo
@@ -25,7 +25,7 @@ $(selector).getLocation(prop)
     <tr>
       <td><code><var>prop</var></code></td>
       <td>`string`</td>
-      <td>può essere "x" o "y" per ottenere direttamente un valore di risultato per asserzioni più facili</td>
+      <td>può essere "x" o "y" per ottenere direttamente un valore di risultato per asserzioni più semplici</td>
     </tr>
   </tbody>
 </table>
@@ -50,4 +50,4 @@ it('should demonstrate the getLocation function', async () => {
 ##### Restituisce
 
 - **&lt;Object|Number&gt;**
-            **<code><var>return</var></code>:**   Le coordinate X e Y dell'elemento sulla pagina `{x:number, y:number}`
+            **<code><var>return</var></code>:**   Le coordinate X e Y dell'elemento nella pagina `{x:number, y:number}`

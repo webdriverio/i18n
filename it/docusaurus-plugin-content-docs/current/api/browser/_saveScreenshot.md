@@ -5,8 +5,8 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Salva uno screenshot del contesto di navigazione corrente in un file PNG sul tuo sistema operativo. Tieni presente che
-alcuni driver del browser catturano screenshot dell'intero documento (ad esempio Geckodriver con Firefox)
-e altri solo della viewport corrente (ad esempio Chromedriver con Chrome).
+alcuni driver di browser catturano screenshot dell'intero documento (ad esempio Geckodriver con Firefox)
+e altri solo della vista corrente (ad esempio Chromedriver con Chrome).
 
 ##### Utilizzo
 
@@ -31,25 +31,25 @@ browser.saveScreenshot(filepath, { fullPage, format, quality, clip })
     <tr>
       <td><code><var>options</var></code></td>
       <td>`Object`</td>
-      <td>opzioni per lo screenshot</td>
+      <td>opzioni dello screenshot</td>
     </tr>
     <tr>
-      <td><code><var>options.fullPage=false</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.fullPage=false</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Boolean`</td>
-      <td>se catturare uno screenshot dell'intera pagina o solo della viewport corrente</td>
+      <td>se catturare uno screenshot dell'intera pagina o solo della vista corrente</td>
     </tr>
     <tr>
-      <td><code><var>options.format='png'</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.format='png'</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>il formato dello screenshot (o `png` o `jpeg`)</td>
+      <td>il formato dello screenshot (sia `png` che `jpeg`)</td>
     </tr>
     <tr>
-      <td><code><var>options.quality=100</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.quality=100</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number`</td>
-      <td>la qualità dello screenshot nel caso del formato JPEG in un intervallo di 0-100 percento</td>
+      <td>la qualità dello screenshot nel caso di formato JPEG nell'intervallo 0-100 percento</td>
     </tr>
     <tr>
-      <td><code><var>options.clip</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.clip</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Object`</td>
       <td>ritaglio di un rettangolo dello screenshot</td>
     </tr>

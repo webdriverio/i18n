@@ -1,44 +1,47 @@
 ---
 id: electron
-title: Electron
+title: إلكترون
 ---
 
-Electron is a framework for building desktop applications using JavaScript, HTML, and CSS. By embedding Chromium and Node.js into its binary, Electron allows you to maintain one JavaScript codebase and create cross-platform apps that work on Windows, macOS, and Linux — no native development experience is required.
+إلكترون هو إطار عمل لبناء تطبيقات سطح المكتب باستخدام JavaScript وHTML وCSS. من خلال تضمين Chromium وNode.js في الملف الثنائي، يسمح لك إلكترون بالحفاظ على قاعدة شفرة JavaScript واحدة وإنشاء تطبيقات عبر المنصات المختلفة تعمل على Windows وmacOS وLinux - لا تتطلب خبرة في التطوير الأصلي.
 
-WebdriverIO provides an integrated service that simplifies the interaction with your Electron app and makes testing it very simple. The advantages of using WebdriverIO for testing Electron applications are:
+يوفر WebdriverIO خدمة متكاملة تبسط التفاعل مع تطبيق إلكترون الخاص بك وتجعل اختباره سهلاً للغاية. مزايا استخدام WebdriverIO لاختبار تطبيقات إلكترون هي:
 
-- 🚗 auto-setup of required Chromedriver
-- 📦 automatic path detection of your Electron application - supports [Electron Forge](https://www.electronforge.io/) and [Electron Builder](https://www.electron.build/)
-- 🧩 access Electron APIs within your tests
-- 🕵️ mocking of Electron APIs via a Vitest-like API
+- 🚗 إعداد تلقائي لـ Chromedriver المطلوب
+- 📦 اكتشاف تلقائي لمسار تطبيق إلكترون الخاص بك - يدعم [Electron Forge](https://www.electronforge.io/) و[Electron Builder](https://www.electron.build/)
+- 🧩 الوصول إلى واجهات برمجة تطبيقات إلكترون داخل اختباراتك
+- 🕵️ محاكاة واجهات برمجة تطبيقات إلكترون عبر واجهة برمجة تشبه Vitest
 
-You just need a few simple steps to get started. Watch this simple step-by-step getting started video tutorial from the [WebdriverIO YouTube](https://www.youtube.com/@webdriverio) channel:
+تحتاج فقط إلى بضع خطوات بسيطة للبدء. شاهد هذا البرنامج التعليمي البسيط للبدء خطوة بخطوة من قناة [WebdriverIO YouTube](https://www.youtube.com/@webdriverio):
 
-<LiteYouTubeEmbed id="iQNxTdWedk0" title="Getting Started with ElectronJS Testing in WebdriverIO" />
+<LiteYouTubeEmbed
+    id="iQNxTdWedk0"
+    title="Getting Started with ElectronJS Testing in WebdriverIO"
+/>
 
-Or follow the guide in the following section.
+أو اتبع الدليل في القسم التالي.
 
-## Getting Started
+## البدء
 
-To initiate a new WebdriverIO project, run:
+لبدء مشروع WebdriverIO جديد، قم بتشغيل:
 
 ```sh
 npm create wdio@latest ./
 ```
 
-An installation wizard will guide you through the process. Ensure you select _"Desktop Testing - of Electron Applications"_ when it asks you what type of testing you'd like to do. Afterwards provide the path to your compiled Electron application, e.g. `./dist`, then just keep the defaults or modify based on your preference.
+سيرشدك معالج التثبيت خلال العملية. تأكد من تحديد _"Desktop Testing - of Electron Applications"_ عندما يسألك عن نوع الاختبار الذي ترغب في القيام به. بعد ذلك، قم بتوفير المسار إلى تطبيق إلكترون المجمع الخاص بك، مثل `./dist`، ثم احتفظ بالإعدادات الافتراضية أو قم بتعديلها حسب تفضيلك.
 
-The configuration wizard will install all required packages and create a `wdio.conf.js` or `wdio.conf.ts` with the necessary configuration to test your application. If you agree to autogenerate some test files you can run your first test via `npm run wdio`.
+سيقوم معالج التكوين بتثبيت جميع الحزم المطلوبة وإنشاء ملف `wdio.conf.js` أو `wdio.conf.ts` مع التكوين اللازم لاختبار تطبيقك. إذا وافقت على إنشاء بعض ملفات الاختبار تلقائيًا، يمكنك تشغيل أول اختبار لك عبر `npm run wdio`.
 
-## Manual Setup
+## الإعداد اليدوي
 
-If you are already using WebdriverIO in your project you can skip the installation wizard and just add the following dependencies:
+إذا كنت تستخدم بالفعل WebdriverIO في مشروعك، يمكنك تخطي معالج التثبيت وإضافة التبعيات التالية فقط:
 
 ```sh
 npm install --save-dev wdio-electron-service
 ```
 
-Then you can use the following configuration:
+ثم يمكنك استخدام التكوين التالي:
 
 ```ts
 // wdio.conf.ts
@@ -51,6 +54,6 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-That's it 🎉
+هذا كل شيء 🎉
 
-Learn more about how [to configure the Electron Service](/docs/desktop-testing/electron/configuration), [how to mock Electron APIs](/docs/desktop-testing/electron/mocking) and [how to access Electron APIs](/docs/desktop-testing/electron/api).
+تعرف على المزيد حول كيفية [تكوين خدمة إلكترون](/docs/desktop-testing/electron/configuration)، [كيفية محاكاة واجهات برمجة تطبيقات إلكترون](/docs/desktop-testing/electron/mocking) و[كيفية الوصول إلى واجهات برمجة تطبيقات إلكترون](/docs/desktop-testing/electron/api).

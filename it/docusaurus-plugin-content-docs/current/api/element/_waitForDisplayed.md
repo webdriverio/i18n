@@ -4,11 +4,11 @@ title: waitForDisplayed
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForDisplayed.ts
 ---
 
-Attendi che un elemento sia visualizzato o non visualizzato per il numero di millisecondi specificato.
+Attendi che un elemento sia visualizzato o non visualizzato per il numero di millisecondi fornito.
 
 :::info
 
-A differenza di altri comandi elemento, WebdriverIO non attenderà che l'elemento esista per eseguire
+A differenza di altri comandi di elemento, WebdriverIO non attenderà che l'elemento esista per eseguire
 questo comando.
 
 :::
@@ -31,7 +31,7 @@ $(selector).waitForDisplayed({ timeout, reverse, timeoutMsg, interval, withinVie
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`WaitForOptions`</td>
-      <td>opzioni waitForDisplayed (opzionali)</td>
+      <td>opzioni waitForDisplayed (opzionale)</td>
     </tr>
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -46,7 +46,7 @@ $(selector).waitForDisplayed({ timeout, reverse, timeoutMsg, interval, withinVie
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>se esiste, sostituisce il messaggio di errore predefinito</td>
+      <td>se esiste sovrascrive il messaggio di errore predefinito</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -56,7 +56,7 @@ $(selector).waitForDisplayed({ timeout, reverse, timeoutMsg, interval, withinVie
     <tr>
       <td><code><var>options.withinViewport</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Boolean`</td>
-      <td>impostare a `true` per attendere fino a quando l'elemento è visualizzato all'interno del viewport (predefinito: `false`)</td>
+      <td>imposta a `true` per attendere fino a quando l'elemento è visualizzato all'interno del viewport (predefinito: `false`)</td>
     </tr>
   </tbody>
 </table>
@@ -74,4 +74,4 @@ https://github.com/webdriverio/example-recipes/blob/9ac16b4d4cf4bc8ec87f6369439a
 ##### Restituisce
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true    se l'elemento è visualizzato (o non lo è se il flag è impostato)
+            **<code><var>return</var></code>:**  true    se l'elemento è visualizzato (o non lo è se il flag è impostato)    

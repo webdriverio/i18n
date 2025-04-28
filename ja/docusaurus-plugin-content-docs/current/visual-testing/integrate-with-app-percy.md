@@ -3,18 +3,18 @@ id: integrate-with-app-percy
 title: モバイルアプリケーション向け
 ---
 
-## WebdriverIOテストとApp Percyの統合
+## WebdriverIOテストとApp Percyを統合する
 
-統合する前に、[WebdriverIO向けのApp Percyのサンプルビルドチュートリアル](https://www.browserstack.com/docs/app-percy/sample-build/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)を確認できます。
+統合の前に、[WebdriverIO向けApp Percyのサンプルビルドチュートリアル](https://www.browserstack.com/docs/app-percy/sample-build/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)を参照できます。
 テストスイートをBrowserStack App Percyと統合する手順の概要は次のとおりです：
 
 ### ステップ1：Percyダッシュボードで新しいアプリプロジェクトを作成する
 
-Percyに[サインイン](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)して、[新しいアプリタイプのプロジェクトを作成](https://www.browserstack.com/docs/app-percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)します。プロジェクトを作成すると、`PERCY_TOKEN`環境変数が表示されます。Percyはこの`PERCY_TOKEN`を使用して、スクリーンショットをアップロードする組織とプロジェクトを識別します。次のステップでこの`PERCY_TOKEN`が必要になります。
+Percyに[サインイン](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)し、[新しいアプリタイプのプロジェクトを作成](https://www.browserstack.com/docs/app-percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)します。プロジェクトを作成すると、`PERCY_TOKEN`環境変数が表示されます。Percyはこの`PERCY_TOKEN`を使用して、スクリーンショットをアップロードする組織とプロジェクトを識別します。次のステップでこの`PERCY_TOKEN`が必要になります。
 
 ### ステップ2：プロジェクトトークンを環境変数として設定する
 
-次のコマンドを実行して、PERCY_TOKENを環境変数として設定します：
+PERCY_TOKENを環境変数として設定するために、次のコマンドを実行します：
 
 ```sh
 export PERCY_TOKEN="<your token here>"   // macOS or Linux
@@ -40,9 +40,9 @@ npm install --save-dev @percy/appium-app
 ```
 
 ### ステップ5：テストスクリプトを更新する
-コードに@percy/appium-appをインポートしてください。
+コードに@percy/appium-appをインポートしていることを確認してください。
 
-以下はpercyScreenshot関数を使用したサンプルテストです。スクリーンショットを撮る必要がある場所でこの関数を使用してください。
+以下はpercyScreenshot関数を使用するテスト例です。スクリーンショットを撮る必要がある場所ではこの関数を使用してください。
 
 ```sh
 import percyScreenshot from '@percy/appium-app';
@@ -81,14 +81,14 @@ $ percy app:exec -- appium test command
 ```
 
 ## 詳細については以下のページをご覧ください：
-- [WebdriverIOテストとPercyの統合](https://www.browserstack.com/docs/app-percy/integrate/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [WebdriverIOテストとPercyを統合する](https://www.browserstack.com/docs/app-percy/integrate/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
 - [環境変数ページ](https://www.browserstack.com/docs/app-percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
-- BrowserStack Automateを使用している場合の[BrowserStack SDKを使用した統合](https://www.browserstack.com/docs/app-percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- BrowserStack Automateを使用している場合は、[BrowserStack SDKを使用した統合](https://www.browserstack.com/docs/app-percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)をご覧ください。
 
 
 | リソース                                                                                                                                                            | 説明                       |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
 | [公式ドキュメント](https://www.browserstack.com/docs/app-percy/integrate/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)             | App PercyのWebdriverIOドキュメント |
 | [サンプルビルド - チュートリアル](https://www.browserstack.com/docs/app-percy/sample-build/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | App PercyのWebdriverIOチュートリアル      |
-| [公式ビデオ](https://youtu.be/a4I_RGFdwvc/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                              | App Percyを使用したビジュアルテスト         |
-| [ブログ](https://www.browserstack.com/blog/product-launch-app-percy/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | App Percyのご紹介：ネイティブアプリ向けAI搭載の自動ビジュアルテストプラットフォーム    |
+| [公式ビデオ](https://youtu.be/a4I_RGFdwvc/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                              | App Percyを使用した視覚的テスト         |
+| [ブログ](https://www.browserstack.com/blog/product-launch-app-percy/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | App Percyの紹介：ネイティブアプリ向けのAI搭載自動視覚テストプラットフォーム    |

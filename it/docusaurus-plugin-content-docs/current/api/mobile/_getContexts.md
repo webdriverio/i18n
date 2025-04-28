@@ -4,50 +4,50 @@ title: getContexts
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/getContexts.ts
 ---
 
-Il metodo WebdriverIO `getContexts` è una versione migliorata del comando predefinito di Appium `contexts`
+Il metodo WebdriverIO `getContexts` è una versione migliorata del comando Appium predefinito `contexts` 
 (e del precedente WebdriverIO `getContexts`). Fornisce informazioni dettagliate e utilizzabili
-sui contesti disponibili in una sessione di app mobile, affrontando le limitazioni dei metodi predefiniti di Appium.
+sui contesti disponibili in una sessione di app mobile, affrontando le limitazioni dei metodi Appium predefiniti.
 
-### Come Funzionano le Webview e Perché Questo Metodo Aiuta
-Per maggiori dettagli, fare riferimento alla [documentazione delle App Ibride](/docs/api/mobile#hybrid-apps). Di seguito è riportato un riepilogo delle sfide affrontate dal comando `getContexts`:
+### Come funzionano le Webview e perché questo metodo è utile
+Per maggiori dettagli, consulta la [documentazione sulle App Ibride](/docs/api/mobile#hybrid-apps). Di seguito è riportato un riepilogo delle sfide affrontate dal comando `getContexts`:
 
 #### Sfide su Android
-- Una singola webview (ad esempio, `WEBVIEW_{packageName}`) può contenere più pagine (simili alle schede del browser).
-- I metodi predefiniti di Appium non includono dettagli su queste pagine, come il loro `title`, `url` o visibilità,
+- Una singola webview (es. `WEBVIEW_{packageName}`) può contenere più pagine (simili alle schede del browser).
+- I metodi Appium predefiniti non includono dettagli su queste pagine, come `title`, `url`, o visibilità,
   rendendo difficile identificare la pagina corretta e portando a potenziali instabilità.
 
 #### Sfide su iOS
-- Il metodo predefinito di Appium restituisce solo ID webview generici (ad esempio, `WEBVIEW_{id}`) senza alcun metadato aggiuntivo.
-- Questo rende difficile determinare quale webview corrisponde alla schermata dell'app di destinazione.
+- Il metodo Appium predefinito restituisce solo ID webview generici (es. `WEBVIEW_{id}`) senza alcun metadato aggiuntivo.
+- Questo rende difficile determinare quale webview corrisponde alla schermata di destinazione dell'app.
 
-Il metodo `getContexts` migliorato risolve questi problemi restituendo oggetti di contesto dettagliati, che includono:
-- **Per Android:** `title`, `url`, `packageName`, `webviewPageId` e dettagli di layout (`screenX`, `screenY`, `width` e `height`).
+Il metodo `getContexts` potenziato risolve questi problemi restituendo oggetti contesto dettagliati, che includono:
+- **Per Android:** `title`, `url`, `packageName`, `webviewPageId`, e dettagli di layout (`screenX`, `screenY`, `width` e `height`).
 - **Per iOS:** `bundleId`, `title` e `url`.
 
 Questi miglioramenti rendono il debug e l'interazione con le app ibride più affidabili.
 
-### Perché Utilizzare Questo Metodo?
+### Perché utilizzare questo metodo?
 Per impostazione predefinita, il metodo Appium `contexts` restituisce solo un array di stringhe che rappresentano i contesti disponibili:
 - **Per Android:** `['NATIVE_APP', 'WEBVIEW_com.wdiodemoapp', ...]`
 - **Per iOS:** `['NATIVE_APP', 'WEBVIEW_84392.1', ...]`
 
-Sebbene sufficiente per scenari semplici, queste risposte predefinite mancano di metadati critici per il test di app ibride:
+Sebbene sufficiente per scenari semplici, queste risposte predefinite mancano di metadati critici per i test di app ibride:
 - **Per Android:** La mancanza di metadati specifici della pagina rende difficile interagire con la webview corretta.
 - **Per iOS:** Gli ID webview generici non forniscono alcuna informazione sul contenuto o sulla schermata dell'app che rappresentano.
 
-Il metodo `getContexts` migliorato fornisce:
+Il metodo `getContexts` potenziato fornisce:
 - Metadati dettagliati sia per Android che per iOS.
-- Opzioni per filtrare e personalizzare i contesti restituiti per un migliore targeting e interazione.
+- Opzioni per filtrare e personalizzare i contesti restituiti per una migliore individuazione e interazione.
 
-:::info Note e Limitazioni
+:::info Note e limitazioni
 
-- Il metodo `getContexts` migliorato funziona su entrambe le piattaforme Android e iOS. Tuttavia, i dati restituiti possono variare a seconda della piattaforma e dell'app in fase di test.
-- Se non specifichi l'opzione `returnDetailedContexts`, il metodo si comporta come il metodo predefinito di Appium `contexts`, restituendo un semplice array di contesti.
-- Per utilizzare il metodo "predefinito" di Appium `contexts`, usa `driver.getAppiumContexts()`. Per ulteriori informazioni, consulta la [documentazione dei Contesti Appium](/docs/api/appium#getappiumcontexts).
+- Il metodo `getContexts` potenziato funziona sia su piattaforme Android che iOS. Tuttavia, i dati restituiti possono variare in base alla piattaforma e all'app in fase di test.
+- Se non specifichi l'opzione `returnDetailedContexts`, il metodo si comporta come il metodo Appium `contexts` predefinito, restituendo un semplice array di contesti.
+- Per utilizzare il metodo Appium "predefinito" `contexts`, usa `driver.getAppiumContexts()`. Per ulteriori informazioni, consulta la [documentazione di Appium Contexts](/docs/api/appium#getappiumcontexts).
 
 #### Webview Android:
 - I metadati come `androidWebviewData` sono disponibili solo quando `returnAndroidDescriptionData` è `true`.
-- L'utilizzo del metodo `getContexts` su un browser Chrome può occasionalmente restituire dati incompleti a causa di versioni non corrispondenti di browser/Webview/ChromeDriver. In tali casi, potrebbero essere restituiti valori predefiniti o un `webviewPageId` errato (ad esempio, `0`).
+- L'utilizzo del metodo `getContexts` su un browser Chrome può occasionalmente restituire dati incompleti a causa di versioni non corrispondenti di browser/Webview/ChromeDriver. In tali casi, potrebbero essere restituiti valori predefiniti o un `webviewPageId` errato (es. `0`).
 
 :::
 
@@ -63,12 +63,12 @@ Il metodo `getContexts` migliorato fornisce:
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`GetContextsOptions`</td>
-      <td>Le opzioni di `getContexts` (opzionale)</td>
+      <td>Le opzioni `getContexts` (opzionale)</td>
     </tr>
     <tr>
       <td><code><var>options.returnDetailedContexts</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`boolean`</td>
-      <td>Per impostazione predefinita, restituiamo solo i nomi dei contesti basati sull'API predefinita di Appium `contexts`. Se vuoi ottenere tutti i dati, puoi impostare questo su `true`. Il valore predefinito è `false` (opzionale).</td>
+      <td>Per impostazione predefinita, restituiamo solo i nomi dei contesti basati sull'API Appium `contexts` predefinita. Se vuoi ottenere tutti i dati, puoi impostare questo a `true`. Il valore predefinito è `false` (opzionale).</td>
     </tr>
     <tr>
       <td><code><var>options.androidWebviewConnectionRetryTime</var></code><br /><span className="label labelWarning">opzionale</span></td>
@@ -78,22 +78,22 @@ Il metodo `getContexts` migliorato fornisce:
     <tr>
       <td><code><var>options.androidWebviewConnectTimeout</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`number`</td>
-      <td>Il tempo massimo in millisecondi da attendere per il rilevamento di una pagina web view. Il valore predefinito è `5000` ms (opzionale). <br /><strong>SOLO-ANDROID</strong></td>
+      <td>Il tempo massimo in millisecondi per attendere che una pagina web view venga rilevata. Il valore predefinito è `5000` ms (opzionale). <br /><strong>SOLO-ANDROID</strong></td>
     </tr>
     <tr>
       <td><code><var>options.filterByCurrentAndroidApp</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`boolean`</td>
-      <td>Per impostazione predefinita, restituiamo tutte le webview. Se vuoi filtrare le webview per l'app Android corrente che è aperta, puoi impostare questo su `true`. Il valore predefinito è `false` (opzionale). <br /><strong>NOTA:</strong> Tieni presente che potresti anche NON trovare alcuna Webview basata su questa "restrizione". <br /><strong>SOLO-ANDROID</strong></td>
+      <td>Per impostazione predefinita, restituiamo tutte le webview. Se vuoi filtrare le webview per l'attuale app Android aperta, puoi impostare questo a `true`. Il valore predefinito è `false` (opzionale). <br /><strong>NOTA:</strong> Tieni presente che potresti anche NON trovare alcuna Webview in base a questa "restrizione". <br /><strong>SOLO-ANDROID</strong></td>
     </tr>
     <tr>
       <td><code><var>options.isAndroidWebviewVisible</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`boolean`</td>
-      <td>Per impostazione predefinita, restituiamo solo le webview che sono allegate e visibili. Se vuoi ottenere tutte le webview, puoi impostare questo su `false` (opzionale). Il valore predefinito è `true`. <br /><strong>SOLO-ANDROID</strong></td>
+      <td>Per impostazione predefinita, restituiamo solo le webview che sono allegate e visibili. Se vuoi ottenere tutte le webview, puoi impostare questo a `false` (opzionale). Il valore predefinito è `true`. <br /><strong>SOLO-ANDROID</strong></td>
     </tr>
     <tr>
       <td><code><var>options.returnAndroidDescriptionData</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`boolean`</td>
-      <td>Per impostazione predefinita, non ci sono dati di descrizione della Webview Android (Chrome). Se vuoi ottenere tutti i dati, puoi impostare questo su `true`. Il valore predefinito è `false` (opzionale). <br />Abilitando questa opzione otterrai dati extra nella risposta, consulta `description.data.test.js` per maggiori informazioni. <br /><strong>SOLO-ANDROID</strong></td>
+      <td>Per impostazione predefinita, nessun dato di descrizione della Webview Android (Chrome). Se vuoi ottenere tutti i dati, puoi impostare questo a `true`. Il valore predefinito è `false` (opzionale). <br />Abilitando questa opzione otterrai dati extra nella risposta, vedi il file `description.data.test.js` per maggiori informazioni. <br /><strong>SOLO-ANDROID</strong></td>
     </tr>
   </tbody>
 </table>

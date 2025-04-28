@@ -1,6 +1,6 @@
 ---
 id: customcommands
-title: Custom Commands
+title: Własne Komendy
 ---
 
 If you want to extend the `browser` instance with your own set of commands, the browser method  `addCommand` is here for you. You can write your command in a asynchronous way, just as in your specs.
@@ -23,7 +23,8 @@ Type: `Function`
 
 Flag to decide whether to attach the command to the browser or element scope. If set to `true` the command will be an element command.
 
-Type: `Boolean`<br /> Default: `false`
+Type: `Boolean`<br />
+Default: `false`
 
 ## Examples
 
@@ -151,8 +152,8 @@ With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your c
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -184,8 +185,8 @@ With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your c
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 

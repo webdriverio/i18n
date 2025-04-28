@@ -4,7 +4,7 @@ title: getElements
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getElements.ts
 ---
 
-Accedi alle proprietà di `WebdriverIO.ElementArray` come `length` o `selector` dal riferimento agli elementi.
+Accedi alle proprietà di `WebdriverIO.ElementArray` come `length` o `selector` dal riferimento degli elementi.
 
 ##### Utilizzo
 
@@ -24,3 +24,4 @@ it('should allow me to inspect WebdriverIO.Element properties', async () => {
 ##### Restituisce
 
 - **&lt;WebdriverIO.ElementArray&gt;**
+    

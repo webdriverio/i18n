@@ -4,15 +4,15 @@ title: react$$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/react$$.ts
 ---
 
-`react$$`コマンドは、実際の名前でReactコンポーネントを複数クエリし、propsとステートでそれらをフィルタリングするのに便利なコマンドです。
+`react$$`コマンドは、実際の名前でReactコンポーネントを複数クエリし、propsやstateでフィルタリングするための便利なコマンドです。
 
 :::info
 
-このコマンドはReact v16.xを使用しているアプリケーションでのみ動作します。Reactセレクタについての詳細は[セレクタ](/docs/selectors#react-selectors)ガイドをご覧ください。
+このコマンドはReact v16.xを使用したアプリケーションでのみ動作します。Reactセレクタの詳細については[セレクタ](/docs/selectors#react-selectors)ガイドをご覧ください。
 
 :::
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.react$$(selector, { props, state })
@@ -45,7 +45,7 @@ browser.react$$(selector, { props, state })
     <tr>
       <td><code><var>options.state</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>要素が持つべきReactの状態</td>
+      <td>要素があるべきReact state</td>
     </tr>
   </tbody>
 </table>

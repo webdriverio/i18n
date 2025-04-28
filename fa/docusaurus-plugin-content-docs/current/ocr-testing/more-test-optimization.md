@@ -1,12 +1,12 @@
 ---
 id: more-test-optimization
-title: Test execution time
+title: زمان اجرای تست
 ---
 
-By default, this module will check if you have a local installation of Tesseract on your machine/in your pipeline. If you don't have a local installation it will automatically use a [NodeJS](https://github.com/naptha/tesseract.js) version. This might cause some slowness because the image processing will be done by Node.js. NodeJS is not the best system to do
-heavy processing.
+به طور پیش‌فرض، این ماژول بررسی می‌کند که آیا نصب محلی Tesseract روی دستگاه/در خط لوله شما وجود دارد یا خیر. اگر نصب محلی نداشته باشید، به طور خودکار از نسخه [NodeJS](https://github.com/naptha/tesseract.js) استفاده خواهد کرد. این ممکن است باعث کندی شود زیرا پردازش تصویر توسط Node.js انجام می‌شود. NodeJS بهترین سیستم برای 
+پردازش سنگین نیست.
 
-**BUT....**, there are ways to optimize the execution time. Let's take the following test script
+**اما....** راه‌هایی برای بهینه‌سازی زمان اجرا وجود دارد. بیایید اسکریپت تست زیر را در نظر بگیریم
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -28,7 +28,7 @@ describe("Search", () => {
 });
 ```
 
-When you execute this for the first time you might see the following results where it took 5.9 seconds to finish the test.
+وقتی برای اولین بار این را اجرا می‌کنید، ممکن است نتایج زیر را ببینید که ۵.۹ ثانیه طول کشیده است تا تست پایان یابد.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -60,11 +60,11 @@ Execution of 1 workers started at 2024-05-26T04:52:53.405Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-## Cropping the search area of a screen
+## برش ناحیه جستجو از صفحه
 
-You can optimize the execution time by providing a cropped area to execute the OCR on.
+شما می‌توانید زمان اجرا را با ارائه یک ناحیه برش‌خورده برای اجرای OCR بهینه‌سازی کنید.
 
-If you would then change the script to this:
+اگر اسکریپت را به این شکل تغییر دهید:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -89,7 +89,7 @@ describe("Search", () => {
 });
 ```
 
-Then you will see a different execution time.
+سپس زمان اجرای متفاوتی را مشاهده خواهید کرد.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -121,13 +121,13 @@ Execution of 1 workers started at 2024-05-26T04:56:55.326Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-:::tip Cropping images
-This reduced the local execution time from **5.9** to **4.8 seconds**. This is a reduction of almost **19%**. Imagine what it can do for a larger script with more data on it.
+:::tip برش تصاویر
+این زمان اجرا را از **۵.۹** به **۴.۸ ثانیه** کاهش داد. این کاهشی تقریباً **۱۹٪** است. تصور کنید برای یک اسکریپت بزرگتر با داده‌های بیشتر چه تأثیری می‌تواند داشته باشد.
 :::
 
-## Using a local installation of Tesseract
+## استفاده از نصب محلی Tesseract
 
-You can speed up your execution time to even less than a minute if you have a local installation of Tessarect on your local machine and or in your pipeline (more information about installing Tesseract on your local system can be found [here](https://tesseract-ocr.github.io/tessdoc/Installation.html)). You can find the execution time of the same script using a local installation of Tesseract below.
+شما می‌توانید زمان اجرا را به کمتر از یک دقیقه کاهش دهید اگر نصب محلی Tesseract روی دستگاه محلی خود یا در خط لوله داشته باشید (اطلاعات بیشتر درباره نصب Tesseract روی سیستم محلی شما را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Installation.html) بیابید). زمان اجرای همان اسکریپت با استفاده از نصب محلی Tesseract را می‌توانید در زیر ببینید.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -156,6 +156,6 @@ Execution of 1 workers started at 2024-05-26T04:59:11.620Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
-:::tip Local installation
-This reduced the local execution time from **5.9** to **3.9 seconds**. This is a reduction of almost **34%**. Imagine what it can do for a larger script with more data on it.
+:::tip نصب محلی
+این زمان اجرا را از **۵.۹** به **۳.۹ ثانیه** کاهش داد. این کاهشی تقریباً **۳۴٪** است. تصور کنید برای یک اسکریپت بزرگتر با داده‌های بیشتر چه تأثیری می‌تواند داشته باشد.
 :::

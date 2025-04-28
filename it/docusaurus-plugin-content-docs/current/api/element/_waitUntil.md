@@ -9,12 +9,12 @@ e attende fino a quando quella condizione viene soddisfatta con un valore veriti
 
 :::info
 
-A differenza di altri comandi degli elementi, WebdriverIO non attenderà che l'elemento esista per eseguire
+A differenza di altri comandi per elementi, WebdriverIO non attenderà che l'elemento esista per eseguire
 questo comando.
 
 :::
 
-Un esempio comune è attendere fino a quando un certo elemento contiene un determinato testo (vedi esempio).
+Un esempio comune è attendere fino a quando un certo elemento contiene un certo testo (vedi esempio).
 
 ##### Utilizzo
 
@@ -49,12 +49,12 @@ $(selector).waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`String`</td>
-      <td>messaggio di errore da generare quando waitUntil va in timeout</td>
+      <td>messaggio di errore da lanciare quando waitUntil va in timeout</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">opzionale</span></td>
       <td>`Number`</td>
-      <td>intervallo tra i controlli della condizione (predefinito basato sul valore di configurazione [`waitforInterval`](/docs/configuration#waitforinterval))</td>
+      <td>intervallo tra i controlli delle condizioni (predefinito basato sul valore di configurazione [`waitforInterval`](/docs/configuration#waitforinterval))</td>
     </tr>
   </tbody>
 </table>
