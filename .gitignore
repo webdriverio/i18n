@@ -135,6 +135,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-en/docusaurus-plugin-content-docs/current/**/*.md
-en/docusaurus-plugin-content-docs-community/current/**/*.md
+en/**/*.md
 !_*

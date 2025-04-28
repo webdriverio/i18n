@@ -27,7 +27,7 @@ async function ensureDirectoryExists(dirPath: string): Promise<void> {
 /**
  * Fetches content from a GitHub repository path
  */
-async function fetchRepoContent(octokit: Octokit, path: string, ref: string): Promise<any[]> {
+async function fetchRepoContent(octokit: Octokit, path: string, ref: string) {
     const { data } = await octokit.repos.getContent({
         owner: REPO_OWNER,
         repo: REPO_NAME,
