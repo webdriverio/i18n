@@ -135,5 +135,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-en/**/*.md
+en/**/*
 !_*

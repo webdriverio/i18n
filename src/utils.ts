@@ -1,6 +1,8 @@
 import path from 'node:path';
 import fs from 'node:fs/promises';
 
+import { ROOT_DIR } from './constants.js';
+
 /**
  * Process items in batches with a concurrency limit
  */
@@ -27,9 +29,7 @@ export async function processBatch<T, R>(
 }
 
 interface WalkThroughTranslationFilesOpts {
-    onMarkdownFile?: (sourcePath: string, targetPath: string) => Promise<void> | void
-    onJsonFile?: (sourcePath: string, targetPath: string) => Promise<void> | void
-    onUnknownFile?: (sourcePath: string) => Promise<void> | void
+    onFile: (sourcePath: string, targetPath: string) => Promise<void> | void
 }
 
 /**
@@ -38,58 +38,22 @@ interface WalkThroughTranslationFilesOpts {
  * @param language - The language of the translation files
  * @param opts - The options for the translation files
  */
-export async function walkThroughTranslationFiles(rootDir: string, language: string, opts: WalkThroughTranslationFilesOpts) {
+export async function walkThroughTranslationFiles(language: string, opts: WalkThroughTranslationFilesOpts) {
     // Define source directories
-    const sourceDirectories = [
-        path.join(rootDir, 'en', 'docusaurus-plugin-content-docs'),
-        path.join(rootDir, 'en', 'docusaurus-plugin-content-docs-community')
-    ];
+    const sourceDirectory = path.join(ROOT_DIR, 'en')
+    const targetDirectory = path.join(ROOT_DIR, language)
+    await fs.mkdir(targetDirectory, { recursive: true });
 
-    // Create target directories if they don't exist
-    const targetDirectories = sourceDirectories.map(srcDir => {
-        const relPath = path.relative(path.join(rootDir, 'en'), srcDir);
-        return path.join(rootDir, language, relPath);
-    });
+    // Process the directory recursively
+    const entries = (await fs.readdir(sourceDirectory, {
+        withFileTypes: true,
+        recursive: true
+    })).filter((entry) => entry.isFile());
 
-    // Ensure target directories exist
-    for (const dir of targetDirectories) {
-        await fs.mkdir(dir, { recursive: true });
-    }
-
-    // Process each source directory
-    for (let i = 0; i < sourceDirectories.length; i++) {
-        const sourceDir = sourceDirectories[i];
-        const targetDir = targetDirectories[i];
-
-        // Process the directory recursively
-        const entries = (await fs.readdir(sourceDir, {
-            withFileTypes: true,
-            recursive: true
-        })).filter((entry) => entry.isFile());
-
-        for (const entry of entries) {
-            const sourcePath = path.join(entry.parentPath, entry.name)
-            const relativePath = path.relative(sourceDir, entry.parentPath)
-            const targetPath = path.join(targetDir, relativePath, entry.name)
-            const fileType = path.extname(entry.name)
-
-            /**
-             * handle JSON files with caching
-             */
-            if (fileType === '.json') {
-                await opts.onJsonFile?.(sourcePath, targetPath)
-                continue
-            }
-
-            /**
-             * handle markdown files in batches
-             */
-            if (fileType === '.md') {
-                await opts.onMarkdownFile?.(sourcePath, targetPath)
-                continue
-            }
-
-            await opts.onUnknownFile?.(sourcePath)
-        }
+    for (const entry of entries) {
+        const sourcePath = path.join(entry.parentPath, entry.name)
+        const relativePath = path.relative(sourceDirectory, entry.parentPath)
+        const targetPath = path.join(targetDirectory, relativePath, entry.name)
+        await opts.onFile(sourcePath, targetPath)
     }
 }

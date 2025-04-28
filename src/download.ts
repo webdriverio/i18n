@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import { Octokit } from '@octokit/rest';
 
 import { processBatch } from './utils.js';
+import { ROOT_DIR } from './constants.js';
 
 // GitHub repository information
 const REPO_OWNER = 'webdriverio';
@@ -131,4 +132,47 @@ async function downloadFile(octokit: Octokit, path: string, ref: string): Promis
     }
 
     throw new Error(`Could not retrieve content for file: ${path}`);
+}
+
+/**
+ * Fetch generated docs from existing WebdriverIO project. This is required because
+ * the WebdriverIO project generates a lot of documentation based on various parts
+ * of the codebase.
+ *
+ * @param projectDir path to cloned WebdriverIO project
+ */
+export async function fetchGeneratedDocs () {
+    /**
+     * fetch generated docs from existing WebdriverIO project
+     */
+    if (!process.env.WEBDRIVERIO_DOCS) {
+        throw new Error('WEBDRIVERIO_DOCS is not set')
+    }
+
+    const docsRoot = 'website/docs'
+    const webdriverioDocs = path.resolve(ROOT_DIR, process.env.WEBDRIVERIO_DOCS, docsRoot)
+    const doDocsExist = await fs.access(webdriverioDocs).then(() => true).catch(() => false);
+    if (!doDocsExist) {
+        throw new Error(`Couldn't locate WebdriverIO docs at ${webdriverioDocs}`)
+    }
+
+    const items = await fs.readdir(webdriverioDocs, { recursive: true, withFileTypes: true })
+    /**
+     * filter for all generated markdown files (they all start with an underscore)
+     */
+    const files = items.filter((item) => (
+        item.isFile() &&
+        item.name.endsWith('.md') &&
+        item.name.startsWith('_')
+    ))
+
+    console.log(`Found ${files.length} generated markdown files in ${webdriverioDocs}`)
+    await Promise.all(files.map(async (file) => {
+        const sourcePath = path.join(file.parentPath, file.name)
+        const relativePath = path.relative(webdriverioDocs, sourcePath)
+        const targetPath = path.join(ROOT_DIR, 'en', 'docusaurus-plugin-content-docs', 'current', relativePath)
+        await fs.mkdir(path.dirname(targetPath), { recursive: true })
+        await fs.copyFile(sourcePath, targetPath)
+    }))
+    console.log('Downloaded generated docs successfully!')
 }

@@ -9,19 +9,14 @@ import dotenv from 'dotenv';
 import { Processor } from './processor.js';
 import { walkThroughTranslationFiles } from './utils.js';
 import cache from './cache.json' with { type: 'json' };
-import { LANGUAGES_TO_TRANSLATE } from './constants.js';
+import { LANGUAGES_TO_TRANSLATE, ROOT_DIR, DOCUMENT_LABELS, TRANSLATION_INSTRUCTIONS, DocumentType } from './constants.js';
 
 // Load environment variables
 dotenv.config();
 
-// Get the current directory
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const rootDir = path.resolve(__dirname, '..');
-
 // Cache file path
 const model = 'claude-3-7-sonnet-latest'
-const CACHE_FILE_PATH = path.join(rootDir, 'src', 'cache.json');
+const CACHE_FILE_PATH = path.join(ROOT_DIR, 'src', 'cache.json');
 const CONTENT_SEPARATOR = '---'
 const MAX_TOKENS = 128 * 1000
 const BATCH_CHECK_INTERVAL = 5000 // 5 seconds
@@ -95,30 +90,9 @@ export async function translate(language: string) {
     /**
      * walk through the translation files and process them
      */
-    await walkThroughTranslationFiles(rootDir, language, {
-        onMarkdownFile: (sourcePath, targetPath) => {
+    await walkThroughTranslationFiles(language, {
+        onFile: async (sourcePath, targetPath) => {
             processor.process(() => translateFile(sourcePath, targetPath, language))
-        },
-        onJsonFile: async (sourcePath, targetPath) => {
-            // Handle JSON files with caching
-            const cacheKey = path.relative(rootDir, sourcePath);
-            const content = await fs.readFile(sourcePath, 'utf-8');
-            const needToTranslate = await checkNeedToTranslate(cacheKey, targetPath, content, language);
-            if (!needToTranslate) {
-                console.log(`Skipping translation for ${sourcePath} - content unchanged`);
-                return
-            }
-
-            // Copy JSON file and update cache
-            await fs.copyFile(sourcePath, targetPath);
-            console.log(`Copied JSON file ${targetPath}`);
-
-            // Save the updated cache
-            const contentShasum = calculateShasum(content);
-            await updateCache(cacheKey, contentShasum, language);
-        },
-        onUnknownFile: (sourcePath) => {
-            console.log(`Skipping ${sourcePath} - unknown file type`)
         }
     })
 
@@ -133,6 +107,10 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
     try {
         console.log(`Processing ${sourcePath} for ${language}...`);
 
+        if (path.extname(sourcePath) === DocumentType.MARKDOWN) {
+            return new Promise((r) => setTimeout(r, 10)) as any
+        }
+
         // Read the markdown content
         const content = await fs.readFile(sourcePath, 'utf-8');
 
@@ -140,7 +118,7 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
         const contentShasum = calculateShasum(content);
 
         // Create a relative path as the cache key to make it more portable
-        const cacheKey = path.relative(rootDir, sourcePath);
+        const cacheKey = path.relative(ROOT_DIR, sourcePath);
         const needToTranslate = await checkNeedToTranslate(cacheKey, targetPath, content, language);
         if (!needToTranslate) {
             console.log(`Skipping translation for ${sourcePath} - content unchanged`);
@@ -148,7 +126,7 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
         }
 
         // Translate the body content using Anthropic
-        const translatedContent = await translateContent(content, language);
+        const translatedContent = await translateContent(content, language, path.extname(sourcePath));
 
         // Write the translated content to the target file
         await fs.mkdir(path.dirname(targetPath), { recursive: true });
@@ -163,10 +141,10 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
     }
 }
 
-async function translateContent(content: string, language: string): Promise<string> {
+async function translateContent(content: string, language: string, extension: string): Promise<string> {
     try {
         const { input_tokens } = await client.messages.countTokens({
-            messages: getMessages(language, content),
+            messages: getMessages(language, content, extension),
             model,
         })
 
@@ -190,7 +168,7 @@ async function translateContent(content: string, language: string): Promise<stri
                 params: {
                     model,
                     max_tokens: MAX_TOKENS,
-                    messages: getMessages(language, section),
+                    messages: getMessages(language, section, extension),
                 },
             }))
         })
@@ -206,17 +184,26 @@ async function translateContent(content: string, language: string): Promise<stri
                 .filter((c) => c.type === 'text')
                 .map((c) => c.text)
                 .join('')
-
-            if (text === '[Object]') {
-                console.log('CHECK', chunk.result.message.content)
-            }
         }
 
         /**
          * Remove anything that the LLM prepends to the frontmatter,
          * e.g. "I'll translate the Markdown content from English to German as requested:"
          */
-        return text.slice(text.indexOf(CONTENT_SEPARATOR))
+        if (extension === DocumentType.MARKDOWN) {
+            return text.slice(text.indexOf(CONTENT_SEPARATOR))
+        }
+
+        try {
+            return JSON.stringify(JSON.parse(
+                text[0] !== '{'
+                    ? text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1)
+                    : text
+            ), null, 2)
+        } catch (error) {
+            console.error('Error parsing JSON:', error, `\n\n${text}`);
+            throw error;
+        }
     } catch (error) {
         console.error('Error calling Anthropic API:', error);
         throw error;
@@ -248,19 +235,18 @@ async function checkNeedToTranslate(cacheKey: string, targetPath: string, conten
     return hash !== contentShasum || !languages.includes(language) || !translatedFileExists
 }
 
-function getMessages(language: string, content: string) {
+function getMessages(language: string, content: string, extension: string) {
+    if (!['.md', '.json'].includes(extension)) {
+        throw new Error(`Unsupported file extension: ${extension}`)
+    }
+    const documentType = extension === '.md' ? DocumentType.MARKDOWN : DocumentType.JSON
+    const documentName = DOCUMENT_LABELS[documentType]
+    const instructions = TRANSLATION_INSTRUCTIONS[documentType]
     return [{
         role: 'user',
         content: [
-            `Translate the following Markdown content from English to ${LANGUAGES_TO_TRANSLATE[language]}.`,
-            'The document is a Docusaurus documentation page and separated in frontmatter and body.',
-            'The frontmatter is the first block of the document, and the body is the rest of the document.',
-            'Only translate the "title" and "description" fields in the frontmatter.',
-            'In the body: keep all Markdown formatting intact, don\'t add any headings if they don\'t exist in the original content',
-            'Also ignore any links, code blocks (except comments), and other syntax within tick characters (`).',
-            'Do not translate code inside code blocks, variable names, or technical terms that should remain in English.',
-            'Do not translate HTML tags or attributes.',
-            'Do not change URLs.',
+            `Translate the following ${documentName} content from English to ${LANGUAGES_TO_TRANSLATE[language]}.`,
+            instructions,
             'Here is the content to translate:',
             '',
             `${content}`
