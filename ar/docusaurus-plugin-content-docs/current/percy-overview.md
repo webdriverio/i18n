@@ -1,26 +1,26 @@
 ---
 id: percy-overview
-title: Unlocking Percy - An Overview
+title: إطلاق العنان لـ Percy - نظرة عامة
 ---
 
-## Introduction
+## مقدمة
 
-[Percy](https://percy.io/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) is an all-in-one visual testing and review platform. It captures screenshots, compares them against the baseline, and highlights visual changes. With increased visual coverage, teams can deploy code changes with confidence with every commit.
+[Percy](https://percy.io/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) هي منصة متكاملة للاختبار البصري والمراجعة. تقوم بالتقاط لقطات الشاشة، ومقارنتها مع خط الأساس، وإبراز التغييرات البصرية. مع زيادة التغطية البصرية، يمكن للفرق نشر تغييرات الكود بثقة مع كل عملية دمج.
 
-WebdriverIO supports cross-browser visual testing natively using Percy and App Percy. You can use Percy for visual testing of website and native mobile applications.
-The benefits of utilizing Percy for visual testing include the following:
+يدعم WebdriverIO اختبار الرؤية عبر المتصفحات بشكل أصلي باستخدام Percy و App Percy. يمكنك استخدام Percy للاختبار البصري للمواقع وتطبيقات الجوال الأصلية.
+تشمل فوائد استخدام Percy للاختبار البصري ما يلي:
 
-- Consistency: Promotes consistent user experience by identifying visual discrepancies early in the development process.
-- Efficiency: Improves efficiency by reducing the time and effort required to manually spot visual regressions.
-- Integrations: Percy integrates with popular tools and services like GitHub, GitLab, Bitbucket, and more.
-- Collaboration: Improves collaboration between developers, designers, and QA teams by providing a visual representation of changes.
-- Prevent regression: Prevents you from experiencing unintended visual regressions.
+- الاتساق: تعزيز تجربة مستخدم متسقة من خلال تحديد التناقضات البصرية في وقت مبكر من عملية التطوير.
+- الكفاءة: تحسين الكفاءة من خلال تقليل الوقت والجهد المطلوب لملاحظة التراجعات البصرية يدويًا.
+- التكاملات: يتكامل Percy مع الأدوات والخدمات الشائعة مثل GitHub وGitLab وBitbucket والمزيد.
+- التعاون: تحسين التعاون بين المطورين والمصممين وفرق ضمان الجودة من خلال توفير تمثيل بصري للتغييرات.
+- منع التراجع: يمنعك من مواجهة تراجعات بصرية غير مقصودة.
 
-## How does Percy work?
+## كيف يعمل Percy؟
 
-Percy compares new snapshots against relevant baselines to detect visual changes. Percy manages baseline selection across branches so your tests are always relevant. If visual changes are detected, Percy highlights and groups the resulting differences for you to review.
+يقارن Percy اللقطات الجديدة مع خطوط الأساس ذات الصلة لاكتشاف التغييرات البصرية. يدير Percy اختيار خط الأساس عبر الفروع بحيث تكون اختباراتك دائمًا ذات صلة. إذا تم اكتشاف تغييرات بصرية، يقوم Percy بتسليط الضوء على الاختلافات الناتجة وتجميعها لمراجعتها.
 
-## Next steps
+## الخطوات التالية
 
-- [Use Percy for web applications](https://webdriver.io/docs/visual-testing/integrate-with-percy)
-- [Use App Percy for mobile applications](https://webdriver.io/docs/visual-testing/integrate-with-app-percy)
+- [استخدم Percy لتطبيقات الويب](https://webdriver.io/docs/visual-testing/integrate-with-percy)
+- [استخدم App Percy لتطبيقات الجوال](https://webdriver.io/docs/visual-testing/integrate-with-app-percy)

@@ -1,29 +1,29 @@
 ---
 id: support
-title: Need Help?
+title: Hai bisogno di aiuto?
 ---
 
-This project is maintained by a dedicated group of people.
+Questo progetto è mantenuto da un gruppo dedicato di persone.
 
-If you're interested in making a contribution to the WebdriverIO project, check out [the free "Office Hours" program](/blog/2020/07/01/office-hours) to help you with your efforts.
+Se sei interessato a contribuire al progetto WebdriverIO, dai un'occhiata al [programma gratuito "Office Hours"](/blog/2020/07/01/office-hours) per aiutarti nei tuoi sforzi.
 
-If you're seeking immediate help with your own project, reach out to a trusted WebdriverIO expert:
+Se stai cercando un aiuto immediato per il tuo progetto, contatta un esperto WebdriverIO di fiducia:
 
 - [Kevin Lamping](https://www.codementor.io/@kevinlamping)
-- [Add your name to this list](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
+- [Aggiungi il tuo nome a questa lista](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
 
 ## Stack Overflow
 
-Stack Overflow is a popular forum to ask code-level questions or if you’re stuck with a specific error. Read through the [existing questions](https://stackoverflow.com/questions/tagged/webdriver-io) tagged with webdriver-io or [ask your own](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
+Stack Overflow è un forum popolare per porre domande a livello di codice o se sei bloccato con un errore specifico. Leggi le [domande esistenti](https://stackoverflow.com/questions/tagged/webdriver-io) etichettate con webdriver-io o [fai la tua domanda](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
 
-## Discussion Forums
+## Forum di discussione
 
-There are many online forums which are a great place for discussion about WebdriverIO features, problems and bugs, e.g.:
+Ci sono molti forum online che sono un ottimo posto per la discussione sulle funzionalità, i problemi e i bug di WebdriverIO, ad esempio:
 
 - [GitHub Discussions](https://github.com/webdriverio/webdriverio/discussions)
-- [Discord Community Server](https://discord.webdriver.io)
-- [#webdriverio Channel on SeleniumHQ Slack](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
+- [Server della community Discord](https://discord.webdriver.io)
+- [Canale #webdriverio su SeleniumHQ Slack](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
 
-## News
+## Notizie
 
-For the latest news about WebdriverIO, [follow @webdriverio on Twitter](https://twitter.com/webdriverio) and the official [WebdriverIO blog](/blog) on this website.
+Per le ultime notizie su WebdriverIO, [segui @webdriverio su Twitter](https://twitter.com/webdriverio) e il [blog ufficiale di WebdriverIO](/blog) su questo sito web.

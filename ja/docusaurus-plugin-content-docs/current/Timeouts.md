@@ -1,22 +1,22 @@
 ---
 id: timeouts
-title: Timeouts
+title: タイムアウト
 ---
 
-Each command in WebdriverIO is an asynchronous operation. A request is fired to the Selenium server (or a cloud service like [Sauce Labs](https://saucelabs.com)), and its response contains the result once the action has completed or failed.
+WebdriverIOの各コマンドは非同期操作です。Seleniumサーバー（または[Sauce Labs](https://saucelabs.com)のようなクラウドサービス）にリクエストが送信され、そのレスポンスには、アクションが完了または失敗したときの結果が含まれています。
 
-Therefore, time is a crucial component in the whole testing process. When a certain action depends on the state of a different action, you need to make sure that they get executed in the right order. Timeouts play an important role when dealing with these issues.
+したがって、時間はテスト処理全体における重要な要素です。特定のアクションが別のアクションの状態に依存している場合、それらが正しい順序で実行されることを確認する必要があります。タイムアウトは、これらの問題に対処する際に重要な役割を果たします。
 
 <LiteYouTubeEmbed
     id="5oI37h4qxEw"
     title="Timeouts"
 />
 
-## WebDriver Timeouts
+## WebDriverのタイムアウト
 
-### Session Script Timeout
+### セッションスクリプトタイムアウト
 
-A session has an associated session script timeout that specifies a time to wait for asynchronous scripts to run. Unless stated otherwise, it is 30 seconds. You can set this timeout like so:
+セッションには、非同期スクリプトの実行待機時間を指定するセッションスクリプトタイムアウトが関連付けられています。特に指定がない限り、デフォルトは30秒です。このタイムアウトは以下のように設定できます：
 
 ```js
 await browser.setTimeout({ 'script': 60000 })
@@ -26,33 +26,33 @@ await browser.executeAsync((done) => {
 })
 ```
 
-### Session Page Load Timeout
+### セッションページロードタイムアウト
 
-A session has an associated session page load timeout that specifies a time to wait for the page loading to complete. Unless stated otherwise, it is 300,000 milliseconds.
+セッションには、ページ読み込みの完了を待機する時間を指定するセッションページロードタイムアウトが関連付けられています。特に指定がない限り、デフォルトは300,000ミリ秒です。
 
-You can set this timeout like so:
+このタイムアウトは以下のように設定できます：
 
 ```js
 await browser.setTimeout({ 'pageLoad': 10000 })
 ```
 
-> The `pageLoad` keyword is a part of the official WebDriver [specification](https://www.w3.org/TR/webdriver/#set-timeouts), but might not be [supported](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) for your browser (the previous name is `page load`).
+> `pageLoad`キーワードは公式WebDriverの[仕様](https://www.w3.org/TR/webdriver/#set-timeouts)の一部ですが、使用しているブラウザによっては[サポートされていない](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687)場合があります（以前の名前は`page load`です）。
 
-### Session Implicit Wait Timeout
+### セッション暗黙的待機タイムアウト
 
-A session has an associated session implicit wait timeout. This specifies the time to wait for the implicit element location strategy when locating elements using the [`findElement`](/docs/api/webdriver#findelement) or [`findElements`](/docs/api/webdriver#findelements) commands ([`$`](/docs/api/browser/$) or [`$$`](/docs/api/browser/$$), respectively, when running WebdriverIO with or without the WDIO testrunner). Unless stated otherwise, it is 0 milliseconds.
+セッションには、関連するセッション暗黙的待機タイムアウトがあります。これは[`findElement`](/docs/api/webdriver#findelement)または[`findElements`](/docs/api/webdriver#findelements)コマンド（WDIOテストランナーありまたはなしでWebdriverIOを実行する場合は、それぞれ[`$`](/docs/api/browser/$)または[`$$`](/docs/api/browser/$$)）を使用して要素を検索する際の暗黙的な要素検索戦略の待機時間を指定します。特に指定がない限り、デフォルトは0ミリ秒です。
 
-You can set this timeout via:
+このタイムアウトは以下のように設定できます：
 
 ```js
 await browser.setTimeout({ 'implicit': 5000 })
 ```
 
-## WebdriverIO related timeouts
+## WebdriverIO関連のタイムアウト
 
-### `WaitFor*` timeout
+### `WaitFor*`タイムアウト
 
-WebdriverIO provides multiple commands to wait on elements to reach a certain state (e.g. enabled, visible, existing). These commands take a selector argument and a timeout number, which determines how long the instance should wait for that element to reach the state. The `waitforTimeout` option allows you to set the global timeout for all `waitFor*` commands, so you don't need to set the same timeout over and over again. _(Note the lowercase `f`!)_
+WebdriverIOは、要素が特定の状態（有効、可視、存在など）に達するのを待機するための複数のコマンドを提供しています。これらのコマンドはセレクタ引数とタイムアウト値を取り、インスタンスがその要素が状態に達するまでどれだけ待つかを決定します。`waitforTimeout`オプションを使用すると、すべての`waitFor*`コマンドに対してグローバルなタイムアウトを設定できるため、同じタイムアウトを何度も設定する必要がなくなります。_（小文字の`f`に注意してください！）_
 
 ```js
 // wdio.conf.js
@@ -63,23 +63,23 @@ export const config = {
 }
 ```
 
-In your tests, you now can do this:
+テスト内では、次のようにできます：
 
 ```js
 const myElem = await $('#myElem')
 await myElem.waitForDisplayed()
 
-// you can also overwrite the default timeout if needed
+// 必要に応じてデフォルトのタイムアウトを上書きすることもできます
 await myElem.waitForDisplayed({ timeout: 10000 })
 ```
 
-## Framework related timeouts
+## フレームワーク関連のタイムアウト
 
-The testing framework you’re using with WebdriverIO has to deal with timeouts, especially since everything is asynchronous. It ensures that the test process doesn't get stuck if something goes wrong.
+WebdriverIOと共に使用するテストフレームワークは、特にすべてが非同期であるため、タイムアウトを処理する必要があります。これにより、何か問題が発生した場合にテストプロセスが停止しないようにします。
 
-By default, the timeout is 10 seconds, which means that a single test should not take longer than that.
+デフォルトでは、タイムアウトは10秒に設定されており、これは単一のテストがそれ以上の時間がかからないようにすることを意味します。
 
-A single test in Mocha looks like:
+Mochaでの単一のテストは次のようになります：
 
 ```js
 it('should login into the application', async () => {
@@ -97,15 +97,15 @@ it('should login into the application', async () => {
 })
 ```
 
-In Cucumber, the timeout applies to a single step definition. However, if you want to increase the timeout because your test takes longer than the default value, you need to set it in the framework options.
+Cucumberでは、タイムアウトは単一のステップ定義に適用されます。ただし、テストがデフォルト値よりも長くかかるためにタイムアウトを増やしたい場合は、フレームワークオプションで設定する必要があります。
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- {label: 'Cucumber', value: 'cucumber'}
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+    {label: 'Cucumber', value: 'cucumber'}
+  ]
 }>
 <TabItem value="mocha">
 

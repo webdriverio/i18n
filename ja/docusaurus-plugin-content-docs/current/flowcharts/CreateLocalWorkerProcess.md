@@ -1,8 +1,7 @@
 ---
 id: createlocalworkerprocess
-title: Create worker process
+title: ワーカープロセスの作成
 ---
-
-This flowchart explains how a worker process is created.
+このフローチャートはワーカープロセスがどのように作成されるかを説明しています。
 
 <CreateFlowcharts id='createlocalworkerprocess' />

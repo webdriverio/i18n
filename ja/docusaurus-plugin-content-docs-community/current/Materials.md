@@ -1,24 +1,25 @@
 ---
 id: materials
-title: Materials
+title: マテリアル
 ---
 
-If you want to use WebdriverIO materials for your own workshops or events feel free to grab them directly from here.
+独自のワークショップやイベントでWebdriverIOのマテリアルを使用したい場合は、ここから直接入手してください。
 
-## Workshops
+## ワークショップ
 
-The WebdriverIO community gives workshops around the world. Feel free to use these materials to host your own.
+WebdriverIOコミュニティは世界中でワークショップを開催しています。これらの資料を使用して独自のワークショップを主催することができます。
 
 - [webdriverio/workshop](https://github.com/webdriverio/workshop)
 
-## Assets
+## アセット
 
-If you create your own WebdriverIO content for education purposes, feel free to grab these assets to include in your materials.
+教育目的で独自のWebdriverIOコンテンツを作成する場合は、これらのアセットを自由に使用してマテリアルに含めてください。
 
-### Roboter Logo
+### ロボットロゴ
 
-![Roboter Logo](/img/materials/robot.svg "Roboter Logo") ![Roboter Logo White](/img/materials/robot-white.svg "Roboter Logo White")
+![Roboter Logo](/img/materials/robot.svg "Roboter Logo")
+![Roboter Logo White](/img/materials/robot-white.svg "Roboter Logo White")
 
-### Project Logo
+### プロジェクトロゴ
 
 ![Roboter Logo](/img/materials/logo.svg "Project Logo")

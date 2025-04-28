@@ -3,15 +3,15 @@ id: ocr-set-value
 title: ocrSetValue
 ---
 
-Send a sequence of key strokes to an element. It will:
+要素にキーストロークのシーケンスを送信します。これは以下の操作を行います：
 
-- automatically detect the element
-- put focus on the field by clicking on it
-- set the value in the field
+-   要素を自動的に検出する
+-   クリックすることでフィールドにフォーカスを当てる
+-   フィールドに値を設定する
 
-The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+このコマンドは提供されたテキストを検索し、[Fuse.js](https://fusejs.io/)のファジーロジックに基づいてマッチを見つけようとします。これは、タイプミスのあるセレクタを提供した場合や、見つかったテキストが100%一致しない場合でも、要素を返そうとすることを意味します。以下の[ログ](#logs)を参照してください。
 
-## Usage
+## 使用方法
 
 ```js
 await brower.ocrSetValue({
@@ -20,9 +20,9 @@ await brower.ocrSetValue({
 });
 ```
 
-## Output
+## 出力
 
-### Logs
+### ログ
 
 ```log
 [0-0] 2024-05-26T04:17:51.355Z INFO webdriver: COMMAND ocrSetValue(<object>)
@@ -30,16 +30,16 @@ await brower.ocrSetValue({
 [0-0] 2024-05-26T04:17:52.356Z INFO @wdio/ocr-service:ocrGetElementPositionByText: We searched for the word "docs" and found one match "docs" with score "100%"
 ```
 
-## Options
+## オプション
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **型:** `string`
+-   **必須:** はい
 
-The text you want to search for to click on.
+クリックしたい検索対象のテキスト。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrSetValue({
@@ -50,12 +50,12 @@ await browser.ocrSetValue({
 
 ### `value`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **型:** `string`
+-   **必須:** はい
 
-Value to be added.
+追加する値。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrSetValue({
@@ -66,13 +66,13 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** `false`
+-   **型:** `boolean`
+-   **必須:** いいえ
+-   **デフォルト:** `false`
 
-If the value also needs to be submitted into the input field. This means an "ENTER" will be send at the end of the string.
+値を入力フィールドに送信する必要がある場合。これは、文字列の最後に「ENTER」が送信されることを意味します。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrSetValue({
@@ -84,31 +84,31 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **型:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** `500` ミリ秒
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+クリックの持続時間です。必要に応じて、時間を増やして「長押しクリック」を作成することもできます。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // これは3秒
 });
 ```
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **型:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+コントラストが高いほど画像は暗くなり、その逆も同様です。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`の間の値を受け付けます。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrSetValue({
@@ -120,12 +120,12 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **型:** `number`
+-   **必須:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+OCRがテキストを検索する画面上の検索領域です。これは要素または`x`、`y`、`width`、`height`を含む矩形です。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrSetValue({
@@ -134,14 +134,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// OR
+// または
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// または
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,54 +156,54 @@ await browser.ocrSetValue({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **型:** `string`
+-   **必須:** いいえ
+-   **デフォルト:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseractが認識する言語。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で確認でき、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
 
-#### Example
+#### 例
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // オランダ語を言語として使用
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **型:** `object`
+-   **必須:** いいえ
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+マッチする要素に対して相対的に画面上をクリックできます。これはマッチする要素から相対的なピクセル`above`、`right`、`below`または`left`に基づいて行うことができます。
 
 :::note
 
-The following combinations are allowed
+以下の組み合わせが許可されています
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   単一のプロパティ
+-   `above` + `left` または `above` + `right`
+-   `below` + `left` または `below` + `right`
 
-The following combinations are **NOT** allowed
+以下の組み合わせは**許可されていません**
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` と `below`
+-   `left` と `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **型:** `number`
+-   **必須:** いいえ
 
-Click x pixels `above` the matching element.
+マッチする要素の`above` x ピクセルをクリックします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -217,12 +217,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **型:** `number`
+-   **必須:** いいえ
 
-Click x pixels `right` from the matching element.
+マッチする要素から`right` x ピクセルをクリックします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -236,12 +236,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **型:** `number`
+-   **必須:** いいえ
 
-Click x pixels `below` the matching element.
+マッチする要素の`below` x ピクセルをクリックします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -255,12 +255,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **型:** `number`
+-   **必須:** いいえ
 
-Click x pixels `left` from the matching element.
+マッチする要素から`left` x ピクセルをクリックします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -274,17 +274,17 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+以下のオプションでテキストを見つけるためのファジーロジックを変更できます。これにより、より良いマッチを見つけるのに役立つかもしれません。
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **型:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+マッチがファジーロケーション（locationで指定）にどれだけ近くなければならないかを決定します。ファジーロケーションから離れたdistance文字数の正確な文字マッチは、完全な不一致としてスコアリングされます。distanceが0の場合、指定された正確な位置でのマッチが必要です。distanceが1000の場合、しきい値0.8を使用して、完全一致がロケーションから800文字以内にある必要があります。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -298,13 +298,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **型:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+パターンがテキスト内のどこで見つかると予想されるかをおおよそ決定します。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -318,13 +318,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **型:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+マッチングアルゴリズムがどの時点で諦めるかを決定します。しきい値0は完全一致（文字と位置の両方）を必要とし、しきい値1.0は何でもマッチさせます。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -338,13 +338,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **型:** `boolean`
+-   **必須:** いいえ
+-   **デフォルト:** false
 
-Whether the search should be case sensitive.
+検索が大文字と小文字を区別するかどうか。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -358,13 +358,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **型:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+この値を超える長さのマッチのみが返されます。（例えば、結果で単一文字のマッチを無視したい場合は、2に設定します）
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({
@@ -378,13 +378,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **型:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+`true`の場合、マッチング関数は、文字列内で完全一致がすでに見つかっていても、検索パターンの最後まで続行します。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrSetValue({

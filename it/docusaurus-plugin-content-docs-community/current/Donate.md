@@ -1,43 +1,43 @@
 ---
 id: donate
-title: Donate
+title: Dona
 ---
 
-If your company uses WebdriverIO and benefits from it, please ask your manager or your marketing team to support the project by donating to the collective. Support will allow the maintainers to dedicate more time for maintenance and new features for everyone.
+Se la tua azienda utilizza WebdriverIO e ne trae beneficio, chiedi al tuo manager o al team di marketing di supportare il progetto donando alla collettività. Il supporto consentirà ai manutentori di dedicare più tempo alla manutenzione e alle nuove funzionalità per tutti.
 
-Please checkout our [OpenCollective page](https://opencollective.com/webdriverio) for further information on how to donate to the project.
+Si prega di consultare la nostra [pagina OpenCollective](https://opencollective.com/webdriverio) per ulteriori informazioni su come donare al progetto.
 
-Thank you to everyone who will or has donated money to the collective and therefore has supported the project and everyone who contributed to it. It really means a lot ❤️
+Grazie a tutti coloro che doneranno o hanno donato denaro alla collettività e quindi hanno supportato il progetto e tutti coloro che hanno contribuito. Significa davvero molto ❤️
 
-## Expense Policies
+## Politiche di Spesa
 
-We want to be transparent in the way we accept expenses to the collective. Everyone should be eligible to participate and send in expenses for development on certain features. We also want to give back to the community by allowing us to expense event expenses. The following expense types may be eligible to be reimbursed from the collective:
+Vogliamo essere trasparenti nel modo in cui accettiamo le spese per la collettività. Tutti dovrebbero essere idonei a partecipare e inviare spese per lo sviluppo di determinate funzionalità. Vogliamo anche restituire qualcosa alla comunità permettendoci di rimborsare le spese per gli eventi. I seguenti tipi di spese possono essere idonei per il rimborso dalla collettività:
 
-### Event Expenses
+### Spese per Eventi
 
-If you host an event that has a speaker talking about using WebdriverIO and it's features you can expense up to __$100__. Reimbursement requirements for event expenses include:
+Se organizzi un evento che ha un relatore che parla dell'utilizzo di WebdriverIO e delle sue funzionalità, puoi richiedere un rimborso fino a __$100__. I requisiti di rimborso per le spese dell'evento includono:
 
-- You or the event account must share the project on social media (Twitter, Facebook or LinkedIn) at least 3x
-- The event page must have the WebdriverIO logo and a link to the project page in your meetup description
-- You must use the funds for qualified event expenses such as food, beverage, room or equipment rental.
-- You must submit receipts with your reimbursement request.
+- Tu o l'account dell'evento dovete condividere il progetto sui social media (Twitter, Facebook o LinkedIn) almeno 3 volte
+- La pagina dell'evento deve avere il logo WebdriverIO e un link alla pagina del progetto nella descrizione del tuo meetup
+- Devi utilizzare i fondi per spese qualificate dell'evento come cibo, bevande, affitto della sala o dell'attrezzatura
+- Devi presentare le ricevute con la tua richiesta di rimborso.
 
-### Development Expenses
+### Spese di Sviluppo
 
-If you have done development work on any of the repositories within the GitHub WebdriverIO organisation you may reimburse up to __$1000__ if the following requirements are met:
+Se hai svolto lavoro di sviluppo su uno qualsiasi dei repository all'interno dell'organizzazione GitHub WebdriverIO, puoi richiedere un rimborso fino a __$1000__ se vengono soddisfatti i seguenti requisiti:
 
-- You must have submitted qualifying pull requests that have closed at least 10 issues that were labeled with [`Expensable 💸`](https://github.com/webdriverio/webdriverio/labels/Expensable%20%F0%9F%92%B8)
-- Every additional issue closed with that label can be expensed with $100
-- You must submit links to all issues you’ve closed due to your pull requests
-- In order to close the ticket automatically, you must have one commit message with the Fix keyword. For example, Fix #1234 to close ticket #1234.
-- Pull Requests must be merged by someone from the [core team](https://github.com/webdriverio/webdriverio/blob/main/AUTHORS.md#tsc-technical-steering-committee). If there are several Pull Requests, the core team member either selects the most recent one or the best one - that’s up to them to decide what is best for the project.
-- You must claim an [`Expensable 💸`](https://github.com/webdriverio/webdriverio/labels/Expensable%20%F0%9F%92%B8) issue by commenting to the issue thread to ensure that no one else is working on the same issue.
-- Anyone contributing to WebdriverIO is eligible to expense their work if the implemented features or bug fixes are not objectives of a commercial job.
+- Devi aver presentato pull request qualificanti che hanno chiuso almeno 10 problemi etichettati con [`Expensable 💸`](https://github.com/webdriverio/webdriverio/labels/Expensable%20%F0%9F%92%B8)
+- Ogni problema aggiuntivo chiuso con quell'etichetta può essere rimborsato con $100
+- Devi presentare i link a tutti i problemi che hai chiuso grazie alle tue pull request
+- Per chiudere automaticamente il ticket, devi avere un messaggio di commit con la parola chiave Fix. Ad esempio, Fix #1234 per chiudere il ticket #1234.
+- Le Pull Request devono essere unite da qualcuno del [team principale](https://github.com/webdriverio/webdriverio/blob/main/AUTHORS.md#tsc-technical-steering-committee). Se ci sono diverse Pull Request, il membro del team principale seleziona la più recente o la migliore - sta a loro decidere cosa è meglio per il progetto.
+- Devi reclamare un problema [`Expensable 💸`](https://github.com/webdriverio/webdriverio/labels/Expensable%20%F0%9F%92%B8) commentando nella discussione del problema per assicurarti che nessun altro stia lavorando sullo stesso problema.
+- Chiunque contribuisca a WebdriverIO è idoneo a richiedere il rimborso del proprio lavoro se le funzionalità implementate o le correzioni di bug non sono obiettivi di un lavoro commerciale.
 
-### Travel Expenses
+### Spese di Viaggio
 
-If you are a member of the [Technical Steering Committee team](https://github.com/webdriverio/webdriverio/blob/main/AUTHORS.md#tsc-technical-steering-committee) you are eligible to expense flights and hotel accommodations for travel to conferences or meetups as part of a speaking engagement on WebdriverIO, not paid by the event itself or a company. You may expense up to $500. Reimbursement requirements for travel expenses include:
+Se sei un membro del [Comitato Direttivo Tecnico](https://github.com/webdriverio/webdriverio/blob/main/AUTHORS.md#tsc-technical-steering-committee) sei idoneo a richiedere il rimborso di voli e alloggi in hotel per viaggi a conferenze o meetup come parte di un impegno come relatore su WebdriverIO, non pagato dall'evento stesso o da un'azienda. Puoi richiedere un rimborso fino a $500. I requisiti di rimborso per le spese di viaggio includono:
 
-- You must send out a post from your main social media account (e.g. Twitter, LinkedIn or personal blog) thanking all contributors of the collective after the event took place.
-- You must use the funds for qualified travel expenses such as ground or air transportation to the event and hotel accomodations.
-- You must submit receipts with your reimbursement request.
+- Devi inviare un post dal tuo account principale sui social media (ad esempio Twitter, LinkedIn o blog personale) ringraziando tutti i contributori della collettività dopo che l'evento ha avuto luogo.
+- Devi utilizzare i fondi per spese di viaggio qualificate come trasporto terrestre o aereo per l'evento e alloggio in hotel.
+- Devi presentare le ricevute con la tua richiesta di rimborso.

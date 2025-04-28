@@ -1,31 +1,31 @@
 ---
 id: autocompletion
-title: Autocompletion
+title: الإكمال التلقائي
 ---
 
 ## IntelliJ
 
-Autocompletion works out of the box in IDEA and WebStorm.
+يعمل الإكمال التلقائي بشكل تلقائي في IDEA وWebStorm.
 
-If you have been writing program code for a while, you probably like autocompletion. Autocomplete is available out of the box in many code editors.
+إذا كنت تكتب رمز البرنامج لفترة من الوقت، فمن المحتمل أنك تحب الإكمال التلقائي. الإكمال التلقائي متاح بشكل مباشر في العديد من محررات الكود.
 
 ![Autocompletion](/img/autocompletion/0.png)
 
-Type definitions based on [JSDoc](http://usejsdoc.org/) is used for documenting code. It helps to see more additional details about parameters and their types.
+تستخدم تعريفات الأنواع المستندة إلى [JSDoc](http://usejsdoc.org/) لتوثيق الكود. هذا يساعد في رؤية المزيد من التفاصيل الإضافية حول المعلمات وأنواعها.
 
 ![Autocompletion](/img/autocompletion/1.png)
 
-Use standard shortcuts <kbd>⇧ + ⌥ + SPACE</kbd> on IntelliJ Platform to see available documentation:
+استخدم اختصارات قياسية <kbd>⇧ + ⌥ + SPACE</kbd> على منصة IntelliJ لمشاهدة الوثائق المتاحة:
 
 ![Autocompletion](/img/autocompletion/2.png)
 
 ## Visual Studio Code (VSCode)
 
-Visual Studio Code usually has type support automatically integrated and there is no action needed.
+يحتوي Visual Studio Code عادة على دعم الأنواع المدمج تلقائيًا ولا يلزم اتخاذ أي إجراء.
 
 ![Autocompletion](/img/autocompletion/14.png)
 
-If you use vanilla JavaScript and want to have proper type support you have to create a `jsconfig.json` in your project root and refer to used wdio packages, e.g.:
+إذا كنت تستخدم JavaScript الأساسي وتريد الحصول على دعم مناسب للأنواع، فيجب عليك إنشاء ملف `jsconfig.json` في جذر المشروع والإشارة إلى حزم wdio المستخدمة، على سبيل المثال:
 
 ```json title="jsconfig.json"
 {

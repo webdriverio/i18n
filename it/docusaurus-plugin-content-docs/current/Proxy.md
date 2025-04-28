@@ -1,26 +1,26 @@
 ---
 id: proxy
-title: Proxy Setup
+title: Configurazione del Proxy
 ---
 
-You can tunnel two different types of request through a proxy:
+È possibile instradare due diversi tipi di richieste attraverso un proxy:
 
-- connection between your test script and the browser driver (or WebDriver endpoint)
-- connection between the browser and the internet
+- connessione tra il tuo script di test e il driver del browser (o endpoint WebDriver)
+- connessione tra il browser e internet
 
-## Proxy Between Driver And Test
+## Proxy tra Driver e Test
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+Se la tua azienda ha un proxy aziendale (ad esempio su `http://my.corp.proxy.com:9090`) per tutte le richieste in uscita, segui i passaggi seguenti per installare e configurare [undici](https://github.com/nodejs/undici).
 
-### Install undici
+### Installare undici
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### Aggiungere undici setGlobalDispatcher al tuo file di configurazione
 
-Add the following require statement to the top of your config file.
+Aggiungi la seguente dichiarazione require all'inizio del tuo file di configurazione.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+Ulteriori informazioni sulla configurazione del proxy possono essere trovate [qui](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+Se utilizzi [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), avvialo tramite:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Between Browser And Internet
+## Proxy tra Browser e Internet
 
-In order to tunnel the connection between the browser and the internet, you can set up a proxy which can be useful to (for example) capture network information and other data with tools like [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+Per instradare la connessione tra il browser e internet, puoi configurare un proxy che può essere utile (ad esempio) per acquisire informazioni di rete e altri dati con strumenti come [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-The `proxy` parameters can be applied via the standard capabilities the following way:
+I parametri `proxy` possono essere applicati tramite le capabilities standard nel seguente modo:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-For more information, see the [WebDriver specification](https://w3c.github.io/webdriver/#proxy).
+Per ulteriori informazioni, consulta la [specifica WebDriver](https://w3c.github.io/webdriver/#proxy).

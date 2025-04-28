@@ -1,9 +1,9 @@
 ---
 id: service-options
-title: Service Options
+title: خيارات الخدمة
 ---
 
-Service options are the options that can be set when the service is instantiated and will be used for each method call.
+خيارات الخدمة هي الخيارات التي يمكن تعيينها عند إنشاء الخدمة وستستخدم لكل استدعاء للطريقة.
 
 ```js
 // wdio.conf.(js|ts)
@@ -24,95 +24,97 @@ export const config = {
 };
 ```
 
-## Default Options
+## الخيارات الافتراضية
 
 ### `addressBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6`
-- **Supported:** Web
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** `6`
+-   **مدعوم:** ويب
 
-The padding needs to be added to the address bar on iOS and Android to do a proper cutout of the viewport.
+الحشوة التي يجب إضافتها إلى شريط العنوان على iOS و Android للقيام بقطع مناسب لمنطقة العرض.
 
 ### `autoElementScroll`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `true`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)
 
-This option allows you to disable the automatic scrolling of the element into the view when an element screenshot is created.
+هذا الخيار يسمح لك بتعطيل التمرير التلقائي للعنصر في العرض عند إنشاء لقطة شاشة للعنصر.
 
 ### `addIOSBezelCorners`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي
 
-Add bezel corners and notch/dynamic island to the screenshot for iOS devices.
+إضافة زوايا الإطار وشق/جزيرة ديناميكية إلى لقطة الشاشة لأجهزة iOS.
 
-:::info NOTE
+:::info ملاحظة
+يمكن القيام بذلك فقط عندما **يمكن** تحديد اسم الجهاز تلقائيًا ويتطابق مع قائمة أسماء الأجهزة المعيارية التالية. سيتم التطبيع من قبل هذه الوحدة.
+**iPhone:**
 
-- iPhone X: `iphonex`
-- iPhone XS: `iphonexs`
-- iPhone XS Max: `iphonexsmax`
-- iPhone XR: `iphonexr`
-- iPhone 11: `iphone11`
-- iPhone 11 Pro: `iphone11pro`
-- iPhone 11 Pro Max: `iphone11promax`
-- iPhone 12: `iphone12`
-- iPhone 12 Mini: `iphone12mini`
-- iPhone 12 Pro: `iphone12pro`
-- iPhone 12 Pro Max: `iphone12promax`
-- iPhone 13: `iphone13`
-- iPhone 13 Mini: `iphone13mini`
-- iPhone 13 Pro: `iphone13pro`
-- iPhone 13 Pro Max: `iphone13promax`
-- iPhone 14: `iphone14`
-- iPhone 14 Plus: `iphone14plus`
-- iPhone 14 Pro: `iphone14pro`
-- iPhone 14 Pro Max: `iphone14promax`
+-   iPhone X: `iphonex`
+-   iPhone XS: `iphonexs`
+-   iPhone XS Max: `iphonexsmax`
+-   iPhone XR: `iphonexr`
+-   iPhone 11: `iphone11`
+-   iPhone 11 Pro: `iphone11pro`
+-   iPhone 11 Pro Max: `iphone11promax`
+-   iPhone 12: `iphone12`
+-   iPhone 12 Mini: `iphone12mini`
+-   iPhone 12 Pro: `iphone12pro`
+-   iPhone 12 Pro Max: `iphone12promax`
+-   iPhone 13: `iphone13`
+-   iPhone 13 Mini: `iphone13mini`
+-   iPhone 13 Pro: `iphone13pro`
+-   iPhone 13 Pro Max: `iphone13promax`
+-   iPhone 14: `iphone14`
+-   iPhone 14 Plus: `iphone14plus`
+-   iPhone 14 Pro: `iphone14pro`
+-   iPhone 14 Pro Max: `iphone14promax`
     **iPads:**
-- iPad Mini 6th Generation: `ipadmini`
-- iPad Air 4th Generation: `ipadair`
-- iPad Air 5th Generation: `ipadair`
-- iPad Pro (11-inch) 1st Generation: `ipadpro11`
-- iPad Pro (11-inch) 2nd Generation: `ipadpro11`
-- iPad Pro (11-inch) 3rd Generation: `ipadpro11`
-- iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+-   iPad Mini 6th Generation: `ipadmini`
+-   iPad Air 4th Generation: `ipadair`
+-   iPad Air 5th Generation: `ipadair`
+-   iPad Pro (11-inch) 1st Generation: `ipadpro11`
+-   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
+-   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
+-   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
 
 :::
 
 ### `autoSaveBaseline`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `true`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي
 
-If no baseline image is found during the comparison the image is automatically copied to the baseline folder.
+إذا لم يتم العثور على صورة أساسية أثناء المقارنة، يتم نسخ الصورة تلقائيًا إلى مجلد الخط الأساسي.
 
 ### `baselineFolder`
 
-- **Type:** `string|()=> string`
-- **Mandatory:** No
-- **Default:** `.path/to/testfile/__snapshots__/`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `string|()=> string`
+-   **إلزامي:** لا
+-   **الافتراضي:** `.path/to/testfile/__snapshots__/`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي
 
-The directory that will hold all the baseline images that are used during the comparison. If not set, the default value will be used which will store the files in a `__snapshots__/`-folder next to the spec that executes the visual tests. A function that returns a `string` can also be used to set the `baselineFolder` value:
+الدليل الذي سيحتوي على جميع صور الخط الأساسي التي تستخدم أثناء المقارنة. إذا لم يتم التعيين، سيتم استخدام القيمة الافتراضية التي ستخزن الملفات في مجلد `__snapshots__/` بجانب الاختبار الذي ينفذ اختبارات بصرية. يمكن أيضًا استخدام دالة تعيد `string` لتعيين قيمة `baselineFolder`:
 
 ```js
 {
     baselineFolder: path.join(process.cwd(), 'foo', 'bar', 'baseline')
 },
-// OR
+// أو
 {
     baselineFolder: () => {
-        // Do some magic here
+        // قم ببعض السحر هنا
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -120,24 +122,24 @@ The directory that will hold all the baseline images that are used during the co
 
 ### `clearRuntimeFolder`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي
 
-Delete runtime folder (`actual` & \`diff) on initialization
+حذف مجلد وقت التشغيل (`actual` و `diff`) عند التهيئة
 
-:::info NOTE
-This will only work when the [`screenshotPath`](#screenshotpath) is set through the plugin options, and **WILL NOT WORK** when you set the folders in the methods
+:::info ملاحظة
+هذا سيعمل فقط عندما يتم تعيين [`screenshotPath`](#screenshotpath) من خلال خيارات البرنامج المساعد، و **لن يعمل** عندما تقوم بتعيين المجلدات في الطرق
 :::
 
-### `createJsonReportFiles` **(NEW)**
+### `createJsonReportFiles` **(جديد)**
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
 
-You now have the option to export the compare results into a JSON report file. By providing the option `createJsonReportFiles: true`, each image that is compared will create a report stored in the `actual` folder, next to each `actual` image result. The output will look like this:
+لديك الآن خيار تصدير نتائج المقارنة إلى ملف تقرير JSON. من خلال توفير الخيار `createJsonReportFiles: true`، ستنشئ كل صورة يتم مقارنتها تقريرًا مخزنًا في مجلد `actual`، بجانب كل نتيجة صورة `actual`. سيبدو الناتج كما يلي:
 
 ```json
 {
@@ -200,14 +202,14 @@ You now have the option to export the compare results into a JSON report file. B
 }
 ```
 
-When all tests are executed, a new JSON file with the collection of the comparisons will be generated and can be found in the root of your `actual` folder. The data is grouped by:
+عند تنفيذ جميع الاختبارات، سيتم إنشاء ملف JSON جديد يحتوي على مجموعة المقارنات ويمكن العثور عليه في جذر مجلد `actual` الخاص بك. يتم تجميع البيانات حسب:
 
-- `describe` for Jasmine/Mocha or `Feature` for CucumberJS
-- `it` for Jasmine/Mocha or `Scenario` for CucumberJS
-    and then sorted by:
-- `commandName`, which are the compare method names used to compare the images
-- `instanceData`, browser first, then device, then platform
-    it will look like this
+-   `describe` لـ Jasmine/Mocha أو `Feature` لـ CucumberJS
+-   `it` لـ Jasmine/Mocha أو `Scenario` لـ CucumberJS
+    ثم يتم ترتيبها حسب:
+-   `commandName`، وهي أسماء طرق المقارنة المستخدمة لمقارنة الصور
+-   `instanceData`، المتصفح أولاً، ثم الجهاز، ثم المنصة
+    سيبدو كما يلي
 
 ```json
 [
@@ -250,150 +252,147 @@ When all tests are executed, a new JSON file with the collection of the comparis
 ]
 ```
 
-The report data will give you the opportunity to build your own visual report without doing all the magic and data collection yourself.
+ستوفر لك بيانات التقرير الفرصة لبناء تقريرك البصري الخاص دون القيام بكل السحر وجمع البيانات بنفسك.
 
-:::info NOTE
-You need to use `@wdio/visual-testing` version `5.2.0` or higher
+:::info ملاحظة
+تحتاج إلى استخدام `@wdio/visual-testing` الإصدار `5.2.0` أو أعلى
 :::
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+تمكين/تعطيل جميع "وميض" المؤشر في `input` و `textarea` و `[contenteditable]` في التطبيق. إذا تم تعيينه على `true`، سيتم تعيين المؤشر على `transparent` قبل التقاط لقطة شاشة
+وإعادة تعيينه عند الانتهاء
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+تمكين/تعطيل جميع رسوم CSS المتحركة في التطبيق. إذا تم تعيينه على `true`، سيتم تعطيل جميع الرسوم المتحركة قبل التقاط لقطة شاشة
+وإعادة تعيينها عند الانتهاء
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **مدعوم:** ويب
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+سيؤدي هذا إلى إخفاء كل النص في الصفحة بحيث يتم استخدام التخطيط فقط للمقارنة. سيتم الإخفاء عن طريق إضافة النمط `'color': 'transparent !important'` إلى **كل** عنصر.
 
-For the output see [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+للحصول على المخرجات، انظر [مخرجات الاختبار](/docs/visual-testing/test-output#enablelayouttesting)
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+باستخدام هذه العلامة، سيحصل كل عنصر يحتوي على نص (وليس فقط `p, h1, h2, h3, h4, h5, h6, span, a, li`، ولكن أيضًا `div|button|..`) على هذه الخاصية. لا يوجد خيار **لتخصيص** هذا.
 :::
 
 ### `formatImageName`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **الافتراضي:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي
 
-The name of the saved images can be customized by passing the parameter `formatImageName` with a format string like:
+يمكن تخصيص اسم الصور المحفوظة عن طريق تمرير المعلمة `formatImageName` مع سلسلة تنسيق مثل:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-The following variables can be passed to format the string and will automatically be read from the instance capabilities.
-If they can't be determined the defaults will be used.
+يمكن تمرير المتغيرات التالية لتنسيق السلسلة وسيتم قراءتها تلقائيًا من قدرات المثيل.
+إذا لم يكن من الممكن تحديدها، سيتم استخدام القيم الافتراضية.
 
-- `browserName`: The name of the browser in the provided capabilities
-- `browserVersion`: The version of the browser provided in the capabilities
-- `deviceName`: The device name from the capabilities
-- `dpr`: The device pixel ratio
-- `height`: The height of the screen
-- `logName`: The logName from capabilities
-- `mobile`: This will add `_app`, or the browser name after the `deviceName` to distinguish app screenshots from browser screenshots
-- `platformName`: The name of the platform in the provided capabilities
-- `platformVersion`: The version of the platform provided in the capabilities
-- `tag`: The tag that is provided in the methods that is being called
-- `width`: The width of the screen
+-   `browserName`: اسم المتصفح في القدرات المقدمة
+-   `browserVersion`: إصدار المتصفح المقدم في القدرات
+-   `deviceName`: اسم الجهاز من القدرات
+-   `dpr`: نسبة بكسل الجهاز
+-   `height`: ارتفاع الشاشة
+-   `logName`: اسم السجل من القدرات
+-   `mobile`: سيضيف هذا `_app`، أو اسم المتصفح بعد `deviceName` للتمييز بين لقطات شاشة التطبيق ولقطات شاشة المتصفح
+-   `platformName`: اسم المنصة في القدرات المقدمة
+-   `platformVersion`: إصدار المنصة المقدم في القدرات
+-   `tag`: العلامة التي يتم توفيرها في الطرق التي يتم استدعاؤها
+-   `width`: عرض الشاشة
 
 :::info
 
-You can not provide custom paths/folders in the `formatImageName`. If you want to change the path then please check changing the following options:
+لا يمكنك توفير مسارات/مجلدات مخصصة في `formatImageName`. إذا كنت ترغب في تغيير المسار، فيرجى التحقق من تغيير الخيارات التالية:
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) per method
+- [`folderOptions`](/docs/visual-testing/method-options#folder-options) لكل طريقة
 
 :::
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Supported:** Web
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** `1500`
+-   **مدعوم:** ويب
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+المهلة بالميلي ثانية للانتظار بعد التمرير. قد يساعد هذا في تحديد الصفحات ذات التحميل البطيء.
+
+:::info
+
+هذا سيعمل فقط عندما يتم تعيين خيار الخدمة/الطريقة `userBasedFullPageScreenshot` على `true`، انظر أيضًا [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
+
+:::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `true`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)
 
-Hide scrollbars in the application. If set to true all scrollbars will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
-
-### `isHybridApp`
-
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Hybrid App
-
-Tell the module if the used app is a Hybrid app, this will not calculate the address bar height because it is not there.
+إخفاء أشرطة التمرير في التطبيق. إذا تم تعيينه على true، سيتم تعطيل جميع أشرطة التمرير قبل التقاط لقطة شاشة. هذا معين افتراضيًا على `true` لمنع مشاكل إضافية.
 
 ### `logLevel`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `info`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **الافتراضي:** `info`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي
 
-Adds extra logs, options are `debug | info | warn | silent`
+يضيف سجلات إضافية، الخيارات هي `debug | info | warn | silent`
 
-Errors are always logged to the console.
+يتم دائمًا تسجيل الأخطاء في وحدة التحكم.
 
 ### `savePerInstance`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي
 
-Save the images per instance in a separate folder so for example all Chrome screenshots will be saved in a Chrome folder like `desktop_chrome`.
+حفظ الصور لكل مثيل في مجلد منفصل، على سبيل المثال، سيتم حفظ جميع لقطات شاشة Chrome في مجلد Chrome مثل `desktop_chrome`.
 
 ### `screenshotPath`
 
-- **Type:** `string | () => string`
-- **Default:** `.tmp/`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `string | () => string`
+-   **الافتراضي:** `.tmp/`
+-   **إلزامي:** لا
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي
 
-The directory that will hold all the actual/different screenshots. If not set, the default value will be used. A function that
-returns a string can also be used to set the screenshotPath value:
+الدليل الذي سيحتوي على جميع لقطات الشاشة الفعلية/المختلفة. إذا لم يتم تعيين، سيتم استخدام القيمة الافتراضية. يمكن أيضًا استخدام دالة
+تعيد سلسلة لتعيين قيمة screenshotPath:
 
 ```js
 {
     screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
 },
-// OR
+// أو
 {
     screenshotPath: () => {
-        // Do some magic here
+        // قم ببعض السحر هنا
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -401,158 +400,170 @@ returns a string can also be used to set the screenshotPath value:
 
 ### `toolBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6` for Android and `15` for iOS (`6` by default and `9` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)
-- **Supported:** Web
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** `6` لـ Android و `15` لـ iOS (`6` افتراضيًا و `9` سيتم إضافتها تلقائيًا للشريط الرئيسي المحتمل على أجهزة iPhone ذات شق أو أجهزة iPad التي تحتوي على شريط رئيسي)
+-   **مدعوم:** ويب
 
-The padding which needs to be added to the toolbar bar on iOS and Android to do a proper cutout of the viewport.
+الحشوة التي يجب إضافتها إلى شريط الأدوات على iOS و Android للقيام بقطع مناسب لمنطقة العرض.
+
+### `userBasedFullPageScreenshot`
+
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب) **تم تقديمه في visual-service@7.0.0**
+
+بشكل افتراضي، يتم التقاط لقطات الشاشة للصفحة الكاملة على سطح المكتب باستخدام بروتوكول WebDriver BiDi، مما يتيح لقطات شاشة سريعة ومستقرة ومتسقة دون تمرير.
+عندما يتم تعيين userBasedFullPageScreenshot على true، تقوم عملية لقطة الشاشة بمحاكاة مستخدم حقيقي: التمرير عبر الصفحة، والتقاط لقطات شاشة بحجم نافذة العرض، وتجميعها معًا. هذه الطريقة مفيدة للصفحات ذات المحتوى الذي يتم تحميله بشكل متأخر أو العرض الديناميكي الذي يعتمد على موضع التمرير.
+
+استخدم هذا الخيار إذا كانت صفحتك تعتمد على تحميل المحتوى أثناء التمرير أو إذا كنت ترغب في الحفاظ على سلوك طرق لقطة الشاشة القديمة.
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `true`
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+يمكن تحميل الخطوط، بما في ذلك خطوط الطرف الثالث، بشكل متزامن أو غير متزامن. يعني التحميل غير المتزامن أنه قد يتم تحميل الخطوط بعد أن يحدد WebdriverIO أن الصفحة قد تم تحميلها بالكامل. لمنع مشاكل عرض الخط، ستنتظر هذه الوحدة، بشكل افتراضي، تحميل جميع الخطوط قبل التقاط لقطة شاشة.
 
-## Tabbable Options
+## خيارات Tabbable
 
-:::info NOTE
+:::info ملاحظة
 
-This module also supports drawing the way a user would use his keyboard to _tab_ through the website by drawing lines and dots from tabbable element to tabbable element.<br/>
-The work is inspired by [Viv Richards](https://github.com/vivrichards600) his blog post about ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-The way tabbable elements are selected is based on the module [tabbable](https://github.com/davidtheclark/tabbable). If there are any issues regarding the tabbing please check the [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) and especially the [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+تدعم هذه الوحدة أيضًا رسم الطريقة التي سيستخدم بها المستخدم لوحة المفاتيح للتنقل _باستخدام مفتاح التبويب_ عبر موقع الويب من خلال رسم خطوط ونقاط من عنصر قابل للتبويب إلى آخر.<br/>
+العمل مستوحى من منشور مدونة [Viv Richards](https://github.com/vivrichards600) حول ["أتمتة قابلية تبويب الصفحة (هل هذه كلمة؟) باستخدام الاختبار البصري"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
+تستند طريقة اختيار العناصر القابلة للتبويب على وحدة [tabbable](https://github.com/davidtheclark/tabbable). إذا كانت هناك أي مشكلات تتعلق بالتبويب، يرجى التحقق من [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) وخاصة [قسم المزيد من التفاصيل](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
 ### `tabbableOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `object`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The options that can be changed for the lines and dots if you use the `{save|check}Tabbable`-methods. The options are explained below.
+الخيارات التي يمكن تغييرها للخطوط والنقاط إذا كنت تستخدم طرق `{save|check}Tabbable`. الخيارات موضحة أدناه.
 
 #### `tabbableOptions.circle`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `object`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The options to change the circle.
+الخيارات لتغيير الدائرة.
 
 ##### `tabbableOptions.circle.backgroundColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The background color of the circle.
+لون خلفية الدائرة.
 
 ##### `tabbableOptions.circle.borderColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The border color of the circle.
+لون حدود الدائرة.
 
 ##### `tabbableOptions.circle.borderWidth`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The border width of the circle.
+عرض حدود الدائرة.
 
 ##### `tabbableOptions.circle.fontColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The color of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+لون خط النص في الدائرة. سيظهر هذا فقط إذا تم تعيين [`showNumber`](./#tabbableoptionscircleshownumber) على `true`.
 
 ##### `tabbableOptions.circle.fontFamily`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The family of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+عائلة خط النص في الدائرة. سيظهر هذا فقط إذا تم تعيين [`showNumber`](./#tabbableoptionscircleshownumber) على `true`.
 
-Make sure to set fonts that are supported by the browsers.
+تأكد من تعيين الخطوط التي تدعمها المتصفحات.
 
 ##### `tabbableOptions.circle.fontSize`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The size of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+حجم خط النص في الدائرة. سيظهر هذا فقط إذا تم تعيين [`showNumber`](./#tabbableoptionscircleshownumber) على `true`.
 
 ##### `tabbableOptions.circle.size`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The size of the circle.
+حجم الدائرة.
 
 ##### `tabbableOptions.circle.showNumber`
 
-- **Type:** `showNumber`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `showNumber`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-Show the tab sequence number in the circle.
+إظهار رقم تسلسل التبويب في الدائرة.
 
 #### `tabbableOptions.line`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `object`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The options to change the line.
+الخيارات لتغيير الخط.
 
 ##### `tabbableOptions.line.color`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The color of the line.
+لون الخط.
 
 ##### `tabbableOptions.line.width`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) لجميع القيم الافتراضية
+-   **مدعوم:** ويب
 
-The width of the line.
+عرض الخط.
 
-## Compare options
+## خيارات المقارنة
 
 ### `compareOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values
-- **Supported:** Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)
+-   **النوع:** `object`
+-   **إلزامي:** لا
+-   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) لجميع القيم الافتراضية
+-   **مدعوم:** ويب، تطبيق هجين (واجهة ويب)، تطبيق أصلي (انظر [خيارات مقارنة الطريقة](./method-options#compare-check-options) لمزيد من المعلومات)
 
-The compare options can also be set as service options, they are described in the [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+يمكن أيضًا تعيين خيارات المقارنة كخيارات خدمة، وهي موصوفة في [خيارات مقارنة الطريقة](/docs/visual-testing/method-options#compare-check-options)

@@ -1,21 +1,21 @@
 ---
 id: pageobjects
-title: Page Object Pattern
+title: Pattern Page Object
 ---
 
-Version 5 of WebdriverIO was designed with Page Object Pattern support in mind. By introducing the "elements as first class citizens" principle, it is now possible to build up large test suites using this pattern.
+La versione 5 di WebdriverIO è stata progettata con il supporto del Pattern Page Object in mente. Introducendo il principio degli "elementi come cittadini di prima classe", è ora possibile costruire grandi suite di test utilizzando questo pattern.
 
-There are no additional packages required to create page objects. It turns out that clean, modern classes provide all necessary features we need:
+Non sono necessari pacchetti aggiuntivi per creare page object. Si scopre che le classi moderne e pulite forniscono tutte le funzionalità necessarie:
 
-- inheritance between page objects
-- lazy loading of elements
-- encapsulation of methods and actions
+- ereditarietà tra page object
+- caricamento lazy degli elementi
+- incapsulamento di metodi e azioni
 
-The goal of using page objects is to abstract any page information away from the actual tests. Ideally, you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you've completely redesigned your page.
+L'obiettivo dell'utilizzo dei page object è quello di astrarre qualsiasi informazione della pagina dai test effettivi. Idealmente, dovresti memorizzare tutti i selettori o le istruzioni specifiche che sono uniche per una determinata pagina in un page object, in modo da poter eseguire il tuo test anche dopo aver completamente riprogettato la tua pagina.
 
-## Making A Page Object
+## Creazione di un Page Object
 
-First off, we need a main page object that we call `Page.js`. It will contain general selectors or methods which all page objects will inherit from.
+Prima di tutto, abbiamo bisogno di un page object principale che chiamiamo `Page.js`. Conterrà selettori o metodi generali che tutti i page object erediteranno.
 
 ```js
 // Page.js
@@ -30,15 +30,15 @@ export default class Page {
 }
 ```
 
-We will always `export` an instance of a page object, and never create that instance in the test. Since we are writing end-to-end tests, we always consider the page as a stateless construct&mdash;just as each HTTP request is a stateless construct.
+Esporteremo sempre un'istanza di un page object, e non creeremo mai quell'istanza nel test. Poiché stiamo scrivendo test end-to-end, consideriamo sempre la pagina come un costrutto senza stato&mdash;proprio come ogni richiesta HTTP è un costrutto senza stato.
 
-Sure, the browser can carry session information and therefore can display different pages based on different sessions, but this shouldn't be reflected within a page object. These sorts of state changes should live in your actual tests.
+Certo, il browser può trasportare informazioni di sessione e quindi può visualizzare pagine diverse in base a sessioni diverse, ma questo non dovrebbe riflettersi all'interno di un page object. Questi tipi di cambiamenti di stato dovrebbero risiedere nei tuoi test effettivi.
 
-Let's start testing the first page. For demo purposes, we use [The Internet](http://the-internet.herokuapp.com) website by [Elemental Selenium](http://elementalselenium.com) as guinea pig. Let's try to build a page object example for the [login page](http://the-internet.herokuapp.com/login).
+Iniziamo a testare la prima pagina. A scopo dimostrativo, utilizziamo il sito web [The Internet](http://the-internet.herokuapp.com) di [Elemental Selenium](http://elementalselenium.com) come cavia. Proviamo a costruire un esempio di page object per la [pagina di login](http://the-internet.herokuapp.com/login).
 
-## `Get` -ing Your Selectors
+## Ottenere i tuoi selettori con `Get`
 
-The first step is to write all important selectors that are required in our `login.page` object as getter functions:
+Il primo passo è scrivere tutti i selettori importanti necessari nel nostro oggetto `login.page` come funzioni getter:
 
 ```js
 // login.page.js
@@ -65,36 +65,36 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Defining selectors in getter functions might look a little weird, but it’s really useful. These functions are evaluated _when you access the property_, not when you generate the object. With that you always request the element before you do an action on it.
+Definire i selettori nelle funzioni getter potrebbe sembrare un po' strano, ma è davvero utile. Queste funzioni vengono valutate _quando accedi alla proprietà_, non quando generi l'oggetto. In questo modo richiedi sempre l'elemento prima di eseguire un'azione su di esso.
 
-## Chaining Commands
+## Concatenamento dei comandi
 
-WebdriverIO internally remembers the last result of a command. If you chain an element command with an action command, it finds the element from the previous command and uses the result to execute the action. With that you can remove the selector (first parameter) and the command looks as simple as:
+WebdriverIO ricorda internamente l'ultimo risultato di un comando. Se concateni un comando elemento con un comando azione, trova l'elemento dal comando precedente e utilizza il risultato per eseguire l'azione. Con questo puoi rimuovere il selettore (primo parametro) e il comando appare semplice come:
 
 ```js
 await LoginPage.username.setValue('Max Mustermann')
 ```
 
-Which is basically the same thing as:
+Che è fondamentalmente la stessa cosa di:
 
 ```js
 let elem = await $('#username')
 await elem.setValue('Max Mustermann')
 ```
 
-or
+o
 
 ```js
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Using Page Objects In Your Tests
+## Utilizzo dei Page Object nei tuoi test
 
-After you've defined the necessary elements and methods for the page, you can start to write the test for it. All you need to do to use the page object is to `import` (or `require`) it. That's it!
+Dopo aver definito gli elementi e i metodi necessari per la pagina, puoi iniziare a scrivere il test per essa. Tutto ciò che devi fare per utilizzare il page object è `import` (o `require`). Ecco fatto!
 
-Since you exported an already-created instance of the page object, importing it lets you start using it right away.
+Poiché hai esportato un'istanza già creata del page object, importandola puoi iniziare a utilizzarla immediatamente.
 
-If you use an assertion framework, your tests can be even more expressive:
+Se utilizzi un framework di asserzione, i tuoi test possono essere ancora più espressivi:
 
 ```js
 // login.spec.js
@@ -121,10 +121,10 @@ describe('login form', () => {
 })
 ```
 
-From the structural side, it makes sense to separate spec files and page objects into different directories. Additionally you can give each page object the ending: `.page.js`. This makes it more clear that you import a page object.
+Dal lato strutturale, ha senso separare i file spec e i page object in directory diverse. Inoltre, puoi dare a ogni page object il suffisso: `.page.js`. Questo rende più chiaro che stai importando un page object.
 
-## Going Further
+## Andare oltre
 
-This is the basic principle of how to write page objects with WebdriverIO. But you can build up way more complex page object structures than this! For example, you might have specific page objects for modals, or split up a huge page object into different classes (each representing a different part of the overall web page) that inherit from the main page object. The pattern really provides a lot of opportunities to separate page information from your tests, which is important to keep your test suite structured and clear in times where the project and number of tests grows.
+Questo è il principio base di come scrivere page object con WebdriverIO. Ma puoi costruire strutture di page object molto più complesse di questa! Ad esempio, potresti avere page object specifici per finestre modali, o suddividere un page object enorme in classi diverse (ognuna rappresentante una parte diversa della pagina web complessiva) che ereditano dal page object principale. Il pattern offre davvero molte opportunità per separare le informazioni della pagina dai tuoi test, il che è importante per mantenere la tua suite di test strutturata e chiara in tempi in cui il progetto e il numero di test crescono.
 
-You can find this example (and even more page object examples) in the [`example` folder](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) on GitHub.
+Puoi trovare questo esempio (e ancora più esempi di page object) nella [`cartella example`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) su GitHub.

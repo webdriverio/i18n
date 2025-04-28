@@ -1,14 +1,14 @@
 ---
 id: api
-title: Introduction
+title: Introduzione
 ---
 
-Welcome to the WebdriverIO API docs. These pages contain reference materials for all implemented protocol bindings and convenience commands. Protocol commands, including [WebDriver](/docs/api/webdriver), [WebDriver Bidi](/docs/api/webdriverBidi) or mobile commands like [Appium](http://appium.io) are commands that are directly send to the underlying driver backend. Convenience commands provided by the [`browser`](/docs/api/browser), [`element`](/docs/api/element) or [`mock`](/docs/api/mock) object offer higher level interactivity.
+Benvenuti nella documentazione API di WebdriverIO. Queste pagine contengono materiale di riferimento per tutti i binding di protocollo implementati e i comandi di convenienza. I comandi di protocollo, inclusi [WebDriver](/docs/api/webdriver), [WebDriver Bidi](/docs/api/webdriverBidi) o comandi mobili come [Appium](http://appium.io) sono comandi che vengono inviati direttamente al backend del driver sottostante. I comandi di convenienza forniti dagli oggetti [`browser`](/docs/api/browser), [`element`](/docs/api/element) o [`mock`](/docs/api/mock) offrono un'interattività di livello superiore.
 
 :::info
-These are the docs for the latest version (__>=8.x__) of WebdriverIO. If you are still using an older version, please visit the [old documentation websites](/versions)!
+Questa è la documentazione per la versione più recente (__>=8.x__) di WebdriverIO. Se stai ancora utilizzando una versione precedente, visita i [vecchi siti web di documentazione](/versions)!
 :::
 
-## Contribute
+## Contribuisci
 
-If you feel like you have a good example for a command, don't hesitate to open a PR and submit it. Just click on the orange link on the bottom left with the label _“Edit this page”_. Make sure you understand the way we write these docs by checking the [Contributing](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md) section.
+Se ritieni di avere un buon esempio per un comando, non esitare ad aprire una PR e inviarlo. Basta cliccare sul link arancione in basso a sinistra con l'etichetta _"Edit this page"_. Assicurati di comprendere il modo in cui scriviamo questa documentazione controllando la sezione [Contributing](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md).

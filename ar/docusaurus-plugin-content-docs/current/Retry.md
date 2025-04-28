@@ -1,15 +1,15 @@
 ---
 id: retry
-title: Retry Flaky Tests
+title: إعادة تشغيل الاختبارات غير المستقرة
 ---
 
-You can rerun certain tests with the WebdriverIO testrunner that turn out to be unstable due to things like a flaky network or race conditions. (However, it is not recommended to simply increase the rerun rate if tests become unstable!)
+يمكنك إعادة تشغيل اختبارات معينة باستخدام مشغل اختبار WebdriverIO والتي قد تكون غير مستقرة بسبب أشياء مثل مشكلات في الشبكة أو حالات تسابق. (ومع ذلك، لا يُنصح بزيادة معدل إعادة التشغيل ببساطة إذا أصبحت الاختبارات غير مستقرة!)
 
-## Rerun suites in Mocha
+## إعادة تشغيل مجموعات الاختبار في Mocha
 
-Since version 3 of Mocha, you can rerun whole test suites (everything inside an `describe` block). If you use Mocha you should favor this retry mechanism instead of the WebdriverIO implementation that only allows you to rerun certain test blocks (everything within an `it` block). In order to use the `this.retries()` method, the suite block `describe` must use an unbound function `function(){}` instead of a fat arrow function `() => {}`, as described in [Mocha docs](https://mochajs.org/#arrow-functions). Using Mocha you can also set a retry count for all specs using `mochaOpts.retries` in your `wdio.conf.js`.
+منذ الإصدار 3 من Mocha، يمكنك إعادة تشغيل مجموعات الاختبار بالكامل (كل شيء داخل كتلة `describe`). إذا كنت تستخدم Mocha، يجب عليك تفضيل آلية إعادة المحاولة هذه بدلاً من تنفيذ WebdriverIO الذي يسمح لك فقط بإعادة تشغيل كتل اختبار معينة (كل شيء داخل كتلة `it`). من أجل استخدام طريقة `this.retries()`، يجب أن تستخدم كتلة المجموعة `describe` دالة غير مرتبطة `function(){}` بدلاً من دالة السهم `() => {}`، كما هو موضح في [وثائق Mocha](https://mochajs.org/#arrow-functions). باستخدام Mocha يمكنك أيضًا تعيين عدد إعادة المحاولات لجميع الاختبارات باستخدام `mochaOpts.retries` في ملف `wdio.conf.js` الخاص بك.
 
-Here is an example:
+إليك مثال:
 
 ```js
 describe('retries', function () {
@@ -29,16 +29,16 @@ describe('retries', function () {
 })
 ```
 
-## Rerun single tests in Jasmine or Mocha
+## إعادة تشغيل اختبارات فردية في Jasmine أو Mocha
 
-To rerun a certain test block you can just apply the number of reruns as last parameter after the test block function:
+لإعادة تشغيل كتلة اختبار معينة يمكنك فقط تطبيق عدد من إعادة التشغيل كآخر معلمة بعد دالة كتلة الاختبار:
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -54,7 +54,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+نفس الشيء يعمل مع الخطافات أيضًا:
 
 ```js
 describe('my flaky app', () => {
@@ -84,7 +84,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+نفس الشيء يعمل مع الخطافات أيضًا:
 
 ```js
 describe('my flaky app', () => {
@@ -99,22 +99,22 @@ describe('my flaky app', () => {
 })
 ```
 
-If you are using Jasmine, the second parameter is reserved for timeout. To apply a retry parameter you need to set the timeout to its default value `jasmine.DEFAULT_TIMEOUT_INTERVAL` and then apply your retry count.
+إذا كنت تستخدم Jasmine، فإن المعلمة الثانية محجوزة للمهلة. لتطبيق معلمة إعادة المحاولة، تحتاج إلى تعيين المهلة إلى قيمتها الافتراضية `jasmine.DEFAULT_TIMEOUT_INTERVAL` ثم تطبيق عدد إعادة المحاولات.
 
 </TabItem>
 </Tabs>
 
-This retry mechanism only allows to retry single hooks or test blocks. If your test is accompanied with a hook to set up your application, this hook is not being run. [Mocha offers](https://mochajs.org/#retry-tests) native test retries that provide this behavior while Jasmine doesn't. You can access the number of executed retries in the `afterTest` hook.
+تسمح آلية إعادة المحاولة هذه فقط بإعادة تشغيل خطافات أو كتل اختبار فردية. إذا كان اختبارك مصحوبًا بخطاف لإعداد تطبيقك، فلن يتم تشغيل هذا الخطاف. [يقدم Mocha](https://mochajs.org/#retry-tests) إعادة محاولات الاختبار الأصلية التي توفر هذا السلوك بينما لا يقدمها Jasmine. يمكنك الوصول إلى عدد إعادة المحاولات المنفذة في خطاف `afterTest`.
 
-## Rerunning in Cucumber
+## إعادة التشغيل في Cucumber
 
-### Rerun full suites in Cucumber
+### إعادة تشغيل المجموعات الكاملة في Cucumber
 
-For cucumber >=6 you can provide the [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) configuration option along with a `retryTagFilter` optional parameter to have all or some of your failing scenarios get additional retries until succeeded. For this feature to work you need to set the `scenarioLevelReporter` to `true`.
+بالنسبة لـ cucumber >= 6 يمكنك توفير خيار التكوين [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) جنبًا إلى جنب مع معلمة `retryTagFilter` الاختيارية لإعادة محاولة كل أو بعض السيناريوهات الفاشلة حتى تنجح. لكي تعمل هذه الميزة، تحتاج إلى تعيين `scenarioLevelReporter` إلى `true`.
 
-### Rerun Step Definitions in Cucumber
+### إعادة تشغيل تعريفات الخطوات في Cucumber
 
-To define a rerun rate for a certain step definitions just apply a retry option to it, like:
+لتحديد معدل إعادة التشغيل لتعريفات خطوات معينة، قم فقط بتطبيق خيار إعادة المحاولة عليها، مثل:
 
 ```js
 export default function () {
@@ -128,15 +128,15 @@ export default function () {
 })
 ```
 
-Reruns can only be defined in your step definitions file, never in your feature file.
+يمكن تحديد إعادة التشغيل فقط في ملف تعريفات الخطوات الخاص بك، وليس أبدًا في ملف الميزة الخاص بك.
 
-## Add retries on a per-specfile basis
+## إضافة إعادة المحاولات على أساس كل ملف اختبار
 
-Previously, only test- and suite-level retries were available, which are fine in most cases.
+في السابق، كانت إعادة المحاولات متاحة فقط على مستوى الاختبار والمجموعة، وهذا جيد في معظم الحالات.
 
-But in any tests which involve state (such as on a server or in a database) the state may be left invalid after the first test failure. Any subsequent retries may have no chance of passing, due to the invalid state they would start with.
+ولكن في أي اختبارات تتضمن حالة (مثل على خادم أو في قاعدة بيانات)، قد تظل الحالة غير صالحة بعد فشل الاختبار الأول. قد لا تكون أي محاولات لاحقة لها فرصة للنجاح، بسبب الحالة غير الصالحة التي ستبدأ بها.
 
-A new `browser` instance is created for each specfile, which makes this an ideal place to hook and setup any other states (server, databases). Retries on this level mean that the whole setup process will simply be repeated, just as if it were for a new specfile.
+يتم إنشاء مثيل `browser` جديد لكل ملف اختبار، مما يجعل هذا مكانًا مثاليًا للربط وإعداد أي حالات أخرى (خادم، قواعد بيانات). تعني إعادة المحاولات على هذا المستوى أنه سيتم تكرار عملية الإعداد بالكامل ببساطة، تمامًا كما لو كانت لملف اختبار جديد.
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -156,13 +156,13 @@ export const config = {
 }
 ```
 
-## Run a specific test multiple times
+## تشغيل اختبار معين عدة مرات
 
-This is to help prevent flaky tests from being introduced in a codebase. By adding the `--repeat` cli option it will run the specified specs or suites N times. When using this cli flag the `--spec` or `--suite` flag must also be specified.
+يهدف هذا إلى المساعدة في منع دخول الاختبارات غير المستقرة إلى قاعدة الشفرة. من خلال إضافة خيار سطر الأوامر `--repeat`، سيتم تشغيل المواصفات أو المجموعات المحددة N مرة. عند استخدام هذا العلم، يجب أيضًا تحديد العلم `--spec` أو `--suite`.
 
-When adding new tests to a codebase, especially through a CI/CD process the tests could pass and get merged but become flaky later on. This flakiness could come from a number of things like network issues, server load, database size, etc. Using the `--repeat` flag in your CD/CD process can help catch these flaky tests before they get merged to a main codebase.
+عند إضافة اختبارات جديدة إلى قاعدة شفرة، خاصة من خلال عملية CI/CD، يمكن أن تنجح الاختبارات ويتم دمجها ولكنها قد تصبح غير مستقرة لاحقًا. يمكن أن يأتي عدم الاستقرار هذا من عدد من الأشياء مثل مشكلات الشبكة أو حمل الخادم أو حجم قاعدة البيانات وما إلى ذلك. يمكن أن يساعد استخدام العلم `--repeat` في عملية CD/CD الخاصة بك في اكتشاف هذه الاختبارات غير المستقرة قبل دمجها في قاعدة الشفرة الرئيسية.
 
-One strategy to use is run your tests like regular in your CI/CD process but if you're introducing a new test you can then run another set of tests with the new spec specified in `--spec` along with `--repeat` so it runs the new test x number of times. If the test fails any of those times then the test will not get merged and will need to be looked at why it failed.
+إحدى الاستراتيجيات التي يمكن استخدامها هي تشغيل اختباراتك كالمعتاد في عملية CI/CD الخاصة بك، ولكن إذا كنت تقدم اختبارًا جديدًا، يمكنك بعد ذلك تشغيل مجموعة أخرى من الاختبارات مع المواصفات الجديدة المحددة في `--spec` جنبًا إلى جنب مع `--repeat` بحيث يتم تشغيل الاختبار الجديد x عدد من المرات. إذا فشل الاختبار في أي من هذه المرات، فلن يتم دمج الاختبار وسيحتاج إلى النظر في سبب فشله.
 
 ```sh
 # This will run the example.e2e.js spec 5 times

@@ -1,35 +1,35 @@
 ---
 id: repl
-title: REPL interface
+title: REPL インターフェース
 ---
 
-With `v4.5.0`, WebdriverIO introduced a [REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) interface that helps you to not only learn the framework API, but also debug and inspect your tests. It can be used in multiple ways.
+`v4.5.0`から、WebdriverIOはフレームワークAPIの学習だけでなく、テストのデバッグや検査にも役立つ[REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)インターフェースを導入しました。これは複数の方法で使用できます。
 
-First you can use it as CLI command by installing `npm install -g @wdio/cli` and spawn a WebDriver session from the command line, e.g.
+まず、`npm install -g @wdio/cli`をインストールしてCLIコマンドとして使用し、コマンドラインからWebDriverセッションを起動することができます。例えば：
 
 ```sh
 wdio repl chrome
 ```
 
-This would open a Chrome browser that you can control with the REPL interface. Make sure you have a browser driver running on port `4444` in order to initiate the session. If you have a [Sauce Labs](https://saucelabs.com) (or other cloud vendor) account, you can also directly run the browser on your command line in the cloud via:
+これによりChromeブラウザが開き、REPLインターフェースで制御できるようになります。セッションを開始するには、ポート`4444`でブラウザドライバーが実行されていることを確認してください。[Sauce Labs](https://saucelabs.com)（または他のクラウドベンダー）のアカウントをお持ちの場合は、以下のようにしてコマンドラインから直接クラウド上でブラウザを実行することもできます：
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY
 ```
 
-If driver is running on different port eg : 9515, it could passed with the command line argument --port or alias -p
+ドライバーが9515などの異なるポートで実行されている場合は、コマンドライン引数--portまたは略称-pで指定できます
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY -p 9515
 ```
 
-Repl could also be ran using the capabilities from the webdriverIO config file. Wdio supports capabilities object; or ; multiremote capability list or object.
+Replは、webdriverIO設定ファイルのケイパビリティを使用して実行することもできます。Wdioはケイパビリティオブジェクト、またはマルチリモートケイパビリティリストやオブジェクトをサポートしています。
 
-If the config file uses capabilities object then just pass the path to config file, else if its a multiremote capability then, specify which capability to use from list or multiremote using the positional argument . Note: for list we consider zero based index.
+設定ファイルがケイパビリティオブジェクトを使用している場合は、設定ファイルへのパスを渡すだけです。マルチリモートケイパビリティの場合は、位置引数を使ってリストまたはマルチリモートからどのケイパビリティを使用するかを指定します。注意：リストの場合、ゼロベースのインデックスを使用します。
 
-### Example
+### 例
 
-WebdriverIO with capability array:
+ケイパビリティ配列を持つWebdriverIO：
 
 ```ts title="wdio.conf.ts example"
 export const config = {
@@ -46,7 +46,7 @@ export const config = {
 wdio repl "./path/to/wdio.config.js" 0 -p 9515
 ```
 
-WebdriverIO with [multiremote](https://webdriver.io/docs/multiremote/) capability object:
+[マルチリモート](https://webdriver.io/docs/multiremote/)ケイパビリティオブジェクトを持つWebdriverIO：
 
 ```ts title="wdio.conf.ts example"
 export const config = {
@@ -70,14 +70,14 @@ export const config = {
 wdio repl "./path/to/wdio.config.js" "myChromeBrowser" -p 9515
 ```
 
-Or if you want to run local mobile tests using Appium:
+またはAppiumを使用してローカルモバイルテストを実行する場合：
 
 <Tabs
   defaultValue="android"
   values={[
     {label: 'Android', value: 'android'},
- {label: 'iOS', value: 'ios'}
- ]
+    {label: 'iOS', value: 'ios'}
+  ]
 }>
 <TabItem value="android">
 
@@ -95,28 +95,28 @@ wdio repl ios
 </TabItem>
 </Tabs>
 
-This would open Chrome/Safari session on connected device/emulator/simulator. Make sure Appium running on port `4444` in order to initiate the session.
+これにより、接続されたデバイス/エミュレータ/シミュレータでChrome/Safariセッションが開きます。セッションを開始するには、Appiumがポート`4444`で実行されていることを確認してください。
 
 ```sh
 wdio repl './path/to/your_app.apk'
 ```
 
-This would open App session on connected device/emulator/simulator. Make sure Appium running on port `4444` in order to initiate the session.
+これにより、接続されたデバイス/エミュレータ/シミュレータでアプリセッションが開きます。セッションを開始するには、Appiumがポート`4444`で実行されていることを確認してください。
 
-Capabilities for iOS device can be passed with arguments:
+iOSデバイスのケイパビリティは、次の引数で渡すことができます：
 
-* `-v`      - `platformVersion`: version of Android/iOS platform
-* `-d`      - `deviceName`: name of mobile device
-* `-u`      - `udid`: udid for real devices
+* `-v`      - `platformVersion`: Android/iOSプラットフォームのバージョン
+* `-d`      - `deviceName`: モバイルデバイスの名前
+* `-u`      - `udid`: 実機用のudid
 
-Usage:
+使用法：
 
 <Tabs
   defaultValue="long"
   values={[
     {label: 'Long Parameter Names', value: 'long'},
- {label: 'Short Parameter Names', value: 'short'}
- ]
+    {label: 'Short Parameter Names', value: 'short'}
+  ]
 }>
 <TabItem value="long">
 
@@ -134,8 +134,8 @@ wdio repl ios -v 11.3 -d 'iPhone 7' -u 123432abc
 </TabItem>
 </Tabs>
 
-You can apply any options (see `wdio repl --help`) available for your REPL session.
+REPLセッションで利用可能なオプション（`wdio repl --help`を参照）はどれでも適用できます。
 
 ![WebdriverIO REPL](https://webdriver.io/img/repl.gif)
 
-Another way to use the REPL is in inside your tests via the [`debug`](/docs/api/browser/debug) command. This will stop the browser when called, and enables you to jump into the application (e.g. to the dev tools) or control the browser from the command line. This is helpful when some commands don't trigger a certain action as expected. With the REPL, you can then try out the commands to see which are working most reliably.
+REPLを使用するもう一つの方法は、[`debug`](/docs/api/browser/debug)コマンドを使用してテスト内で使用することです。これにより、呼び出された時点でブラウザが停止し、アプリケーション（開発ツールなど）にジャンプしたり、コマンドラインからブラウザを制御したりできます。これは、特定のコマンドが期待通りにアクションをトリガーしない場合に役立ちます。REPLを使用すると、最も確実に動作するコマンドを試すことができます。

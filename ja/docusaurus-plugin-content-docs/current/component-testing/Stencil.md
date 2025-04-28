@@ -3,11 +3,11 @@ id: stencil
 title: Stencil
 ---
 
-[Stencil](https://stenciljs.com/) is a library for building reusable, scalable component libraries. You can test Stencil components directly in a real browser using WebdriverIO and its [browser runner](/docs/runner#browser-runner).
+[Stencil](https://stenciljs.com/)は、再利用可能でスケーラブルなコンポーネントライブラリを構築するためのライブラリです。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザでStencilコンポーネントを直接テストできます。
 
-## Setup
+## セットアップ
 
-To set up WebdriverIO within your Stencil project, follow the [instructions](/docs/component-testing#set-up) in our component testing docs. Make sure to select `stencil` as preset within your runner options, e.g.:
+StencilプロジェクトにWebdriverIOをセットアップするには、コンポーネントテストのドキュメントにある[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内で`stencil`をプリセットとして選択してください。例：
 
 ```js
 // wdio.conf.js
@@ -22,19 +22,19 @@ export const config = {
 
 :::info
 
-In case you use Stencil with a framework like React or Vue, you should keep the preset for these frameworks.
+StencilをReactやVueなどのフレームワークと一緒に使用する場合は、これらのフレームワーク用のプリセットを維持してください。
 
 :::
 
-You can then start the tests by running:
+その後、以下のコマンドでテストを開始できます：
 
 ```sh
 npx wdio run ./wdio.conf.ts
 ```
 
-## Writing Tests
+## テストの作成
 
-Given you have the following Stencil components:
+以下のようなStencilコンポーネントがある場合：
 
 ```tsx title="./components/Component.tsx"
 import { Component, Prop, h } from '@stencil/core'
@@ -65,7 +65,7 @@ export class MyName {
 
 ### `render`
 
-In your test use the `render` method from `@wdio/browser-runner/stencil` to attach the component to the test page. To interact with the component we recommend using WebdriverIO commands as they behave closer to actual user interactions, e.g.:
+テストでは、`@wdio/browser-runner/stencil`から`render`メソッドを使用して、コンポーネントをテストページに取り付けます。コンポーネントと対話するには、実際のユーザー操作に近い動作をするWebdriverIOコマンドを使用することをお勧めします：
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -86,101 +86,105 @@ describe('Stencil Component Testing', () => {
 })
 ```
 
-#### Render Options
+#### レンダーオプション
 
-The `render` method provides the following options:
+`render`メソッドは以下のオプションを提供します：
 
 ##### `components`
 
-An array of components to test. Component classes can be imported into the spec file, then their reference should be added to the `component` array to be used throughout the test.
+テスト対象のコンポーネントの配列。コンポーネントクラスはspecファイルにインポートされ、そのリファレンスはテスト全体で使用するために`component`配列に追加されるべきです。
 
-__Type:__ `CustomElementConstructor[]`<br /> __Default:__ `[]`
+__型:__ `CustomElementConstructor[]`<br />
+__デフォルト:__ `[]`
 
 ##### `flushQueue`
 
-If `false`, do not flush the render queue on the initial test setup.
+`false`の場合、初期テストセットアップでレンダーキューをフラッシュしません。
 
-__Type:__ `boolean`<br /> __Default:__ `true`
+__型:__ `boolean`<br />
+__デフォルト:__ `true`
 
 ##### `template`
 
-The initial JSX that is used to generate the test. Use `template` when you want to initialize a component using their properties, instead of their HTML attributes. It will render the specified template (JSX) into `document.body`.
+テストを生成するための初期JSX。HTMLの属性ではなく、プロパティを使用してコンポーネントを初期化したい場合は`template`を使用します。指定したテンプレート（JSX）を`document.body`にレンダリングします。
 
-__Type:__ `JSX.Template`
+__型:__ `JSX.Template`
 
 ##### `html`
 
-The initial HTML used to generate the test. This can be useful to construct a collection of components working together, and assign HTML attributes.
+テストを生成するための初期HTML。これは、一緒に動作するコンポーネントのコレクションを構築し、HTML属性を割り当てるのに役立ちます。
 
-__Type:__ `string`
+__型:__ `string`
 
 ##### `language`
 
-Sets the mocked `lang` attribute on `<html>`.
+`<html>`にモックされた`lang`属性を設定します。
 
-__Type:__ `string`
+__型:__ `string`
 
 ##### `autoApplyChanges`
 
-By default, any changes to component properties and attributes must `env.waitForChanges()` to test the updates. As an option, `autoApplyChanges` continuously flushes the queue in the background.
+デフォルトでは、コンポーネントのプロパティや属性への変更は`env.waitForChanges()`を使用して更新をテストする必要があります。オプションとして、`autoApplyChanges`はバックグラウンドで継続的にキューをフラッシュします。
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__型:__ `boolean`<br />
+__デフォルト:__ `false`
 
 ##### `attachStyles`
 
-By default, styles are not attached to the DOM and they are not reflected in the serialized HTML. Setting this option to `true` will include the component's styles in the serializable output.
+デフォルトでは、スタイルはDOMに添付されず、シリアル化されたHTMLにも反映されません。このオプションを`true`に設定すると、コンポーネントのスタイルがシリアル化可能な出力に含まれます。
 
-__Type:__ `boolean`<br /> __Default:__ `false`
+__型:__ `boolean`<br />
+__デフォルト:__ `false`
 
-#### Render Environment
+#### レンダー環境
 
-The `render` method returns an environment object that provides certain utility helpers to manage the component's environment.
+`render`メソッドは、コンポーネントの環境を管理するための特定のユーティリティヘルパーを提供する環境オブジェクトを返します。
 
 ##### `flushAll`
 
-After changes have been made to a component, such as an update to a property or attribute, the test page does not automatically apply the changes. To wait for, and apply the update, call `await flushAll()`
+プロパティや属性の更新など、コンポーネントに変更が加えられた後、テストページは自動的に変更を適用しません。更新を待ち、適用するには、`await flushAll()`を呼び出します。
 
-__Type:__ `() => void`
+__型:__ `() => void`
 
 ##### `unmount`
 
-Removes the container element from the DOM.
+DOMからコンテナ要素を削除します。
 
-__Type:__ `() => void`
+__型:__ `() => void`
 
 ##### `styles`
 
-All styles defined by components.
+コンポーネントによって定義されたすべてのスタイル。
 
-__Type:__ `Record<string, string>`
+__型:__ `Record<string, string>`
 
 ##### `container`
 
-Container element in which the template is being rendered.
+テンプレートがレンダリングされるコンテナ要素。
 
-__Type:__ `HTMLElement`
+__型:__ `HTMLElement`
 
 ##### `$container`
 
-The container element as a WebdriverIO element.
+WebdriverIO要素としてのコンテナ要素。
 
-__Type:__ `WebdriverIO.Element`
+__型:__ `WebdriverIO.Element`
 
 ##### `root`
 
-The root component of the template.
+テンプレートのルートコンポーネント。
 
-__Type:__ `HTMLElement`
+__型:__ `HTMLElement`
 
 ##### `$root`
 
-The root component as a WebdriverIO element.
+WebdriverIO要素としてのルートコンポーネント。
 
-__Type:__ `WebdriverIO.Element`
+__型:__ `WebdriverIO.Element`
 
 ### `waitForChanges`
 
-Helper method to wait for the component to be ready.
+コンポーネントの準備が整うのを待つためのヘルパーメソッド。
 
 ```ts
 import { render, waitForChanges } from '@wdio/browser-runner/stencil'
@@ -196,12 +200,10 @@ await waitForChanges()
 expect(page.root.querySelector('div')).toBeDefined()
 ```
 
-## Element Updates
+## 要素の更新
 
-If you define properties or states in your Stencil component you have to manage when these changes should be applied to the component to be re-rendered.
+Stencilコンポーネントでプロパティやステートを定義する場合、これらの変更がコンポーネントに適用され、再レンダリングされるタイミングを管理する必要があります。
 
+## 例
 
-## Examples
-
-You can find a full example of a WebdriverIO component test suite for Stencil in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).
-
+WebdriverIOコンポーネントテストスイートのStencil完全例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter)で確認できます。

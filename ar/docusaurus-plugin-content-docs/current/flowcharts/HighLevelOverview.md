@@ -1,8 +1,7 @@
 ---
 id: highleveloverview
-title: High level overview
+title: نظرة عامة رفيعة المستوى
 ---
-
-Flow chart provides a high level overview of how the WebdriverIO ecosystem interacts with the core packages.
+يوفر المخطط الانسيابي نظرة عامة رفيعة المستوى حول كيفية تفاعل نظام WebdriverIO البيئي مع الحزم الأساسية.
 
 <CreateFlowcharts id='highleveloverview' />

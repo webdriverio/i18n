@@ -1,21 +1,21 @@
 ---
 id: pageobjects
-title: Page Object Pattern
+title: ページオブジェクトパターン
 ---
 
-Version 5 of WebdriverIO was designed with Page Object Pattern support in mind. By introducing the "elements as first class citizens" principle, it is now possible to build up large test suites using this pattern.
+WebdriverIOのバージョン5は、ページオブジェクトパターンのサポートを念頭に設計されました。「要素をファーストクラスの市民として扱う」原則を導入することで、このパターンを使用して大規模なテストスイートを構築することが可能になりました。
 
-There are no additional packages required to create page objects. It turns out that clean, modern classes provide all necessary features we need:
+ページオブジェクトを作成するために追加のパッケージは必要ありません。クリーンでモダンなクラスが私たちに必要なすべての機能を提供しています：
 
-- inheritance between page objects
-- lazy loading of elements
-- encapsulation of methods and actions
+- ページオブジェクト間の継承
+- 要素の遅延ロード
+- メソッドとアクションのカプセル化
 
-The goal of using page objects is to abstract any page information away from the actual tests. Ideally, you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you've completely redesigned your page.
+ページオブジェクトを使用する目的は、実際のテストからページ情報を抽象化することです。理想的には、特定のページに固有のすべてのセレクタまたは特定の指示をページオブジェクトに格納しておくべきです。そうすれば、ページを完全に再設計した後でもテストを実行することができます。
 
-## Making A Page Object
+## ページオブジェクトの作成
 
-First off, we need a main page object that we call `Page.js`. It will contain general selectors or methods which all page objects will inherit from.
+まず最初に、`Page.js`と呼ぶメインのページオブジェクトが必要です。これにはすべてのページオブジェクトが継承する一般的なセレクタやメソッドが含まれます。
 
 ```js
 // Page.js
@@ -30,15 +30,15 @@ export default class Page {
 }
 ```
 
-We will always `export` an instance of a page object, and never create that instance in the test. Since we are writing end-to-end tests, we always consider the page as a stateless construct&mdash;just as each HTTP request is a stateless construct.
+私たちは常にページオブジェクトのインスタンスを`export`し、テスト内でそのインスタンスを作成することはありません。エンドツーエンドテストを書いているので、各HTTPリクエストがステートレスな構造であるのと同様に、ページは常にステートレスな構造と考えます。
 
-Sure, the browser can carry session information and therefore can display different pages based on different sessions, but this shouldn't be reflected within a page object. These sorts of state changes should live in your actual tests.
+確かに、ブラウザはセッション情報を保持できるため、異なるセッションに基づいて異なるページを表示できますが、これはページオブジェクト内に反映されるべきではありません。このような状態の変化は、実際のテスト内に存在すべきです。
 
-Let's start testing the first page. For demo purposes, we use [The Internet](http://the-internet.herokuapp.com) website by [Elemental Selenium](http://elementalselenium.com) as guinea pig. Let's try to build a page object example for the [login page](http://the-internet.herokuapp.com/login).
+最初のページのテストを始めましょう。デモの目的で、[Elemental Selenium](http://elementalselenium.com)による[The Internet](http://the-internet.herokuapp.com)ウェブサイトをモルモットとして使用します。[ログインページ](http://the-internet.herokuapp.com/login)のページオブジェクト例を構築してみましょう。
 
-## `Get` -ing Your Selectors
+## セレクタの取得
 
-The first step is to write all important selectors that are required in our `login.page` object as getter functions:
+最初のステップは、`login.page`オブジェクトで必要なすべての重要なセレクタをgetter関数として記述することです：
 
 ```js
 // login.page.js
@@ -65,36 +65,36 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Defining selectors in getter functions might look a little weird, but it’s really useful. These functions are evaluated _when you access the property_, not when you generate the object. With that you always request the element before you do an action on it.
+セレクタをgetter関数で定義するのは少し奇妙に見えるかもしれませんが、非常に便利です。これらの関数は、オブジェクトを生成したときではなく、プロパティにアクセスしたときに評価されます。これにより、アクションを実行する前に常に要素をリクエストします。
 
-## Chaining Commands
+## コマンドのチェーン
 
-WebdriverIO internally remembers the last result of a command. If you chain an element command with an action command, it finds the element from the previous command and uses the result to execute the action. With that you can remove the selector (first parameter) and the command looks as simple as:
+WebdriverIOは内部的にコマンドの最後の結果を記憶します。要素コマンドにアクションコマンドをチェーンすると、前のコマンドから要素を検索し、その結果を使用してアクションを実行します。これにより、セレクタ（最初のパラメータ）を削除でき、コマンドはこのように簡単になります：
 
 ```js
 await LoginPage.username.setValue('Max Mustermann')
 ```
 
-Which is basically the same thing as:
+これは基本的に次のコードと同じです：
 
 ```js
 let elem = await $('#username')
 await elem.setValue('Max Mustermann')
 ```
 
-or
+または
 
 ```js
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Using Page Objects In Your Tests
+## テストでのページオブジェクトの使用
 
-After you've defined the necessary elements and methods for the page, you can start to write the test for it. All you need to do to use the page object is to `import` (or `require`) it. That's it!
+ページに必要な要素とメソッドを定義した後、そのテストを書き始めることができます。ページオブジェクトを使用するために必要なことは、それを`import`（または`require`）することだけです。それだけです！
 
-Since you exported an already-created instance of the page object, importing it lets you start using it right away.
+すでに作成されたページオブジェクトのインスタンスをエクスポートしたので、インポートすればすぐに使い始めることができます。
 
-If you use an assertion framework, your tests can be even more expressive:
+アサーションフレームワークを使用すれば、テストはさらに表現力豊かになります：
 
 ```js
 // login.spec.js
@@ -121,10 +121,10 @@ describe('login form', () => {
 })
 ```
 
-From the structural side, it makes sense to separate spec files and page objects into different directories. Additionally you can give each page object the ending: `.page.js`. This makes it more clear that you import a page object.
+構造的な観点から、スペックファイルとページオブジェクトを異なるディレクトリに分けるのは理にかなっています。さらに、各ページオブジェクトに`.page.js`という接尾辞を付けることができます。これにより、ページオブジェクトをインポートしていることがより明確になります。
 
-## Going Further
+## さらに進める
 
-This is the basic principle of how to write page objects with WebdriverIO. But you can build up way more complex page object structures than this! For example, you might have specific page objects for modals, or split up a huge page object into different classes (each representing a different part of the overall web page) that inherit from the main page object. The pattern really provides a lot of opportunities to separate page information from your tests, which is important to keep your test suite structured and clear in times where the project and number of tests grows.
+これがWebdriverIOでページオブジェクトを書くための基本原則です。しかし、これよりもはるかに複雑なページオブジェクト構造を構築することができます！例えば、モーダル用の特定のページオブジェクトを持つことや、巨大なページオブジェクトを異なるクラス（それぞれがウェブページの異なる部分を表す）に分割し、それらがメインのページオブジェクトから継承するようにすることもできます。このパターンは、プロジェクトとテスト数が増加する時代に、テストスイートを構造化し明確に保つために重要なページ情報をテストから分離するための多くの機会を提供します。
 
-You can find this example (and even more page object examples) in the [`example` folder](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) on GitHub.
+このサンプル（およびさらに多くのページオブジェクトの例）はGitHubの[`example`フォルダ](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject)で見つけることができます。

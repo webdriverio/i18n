@@ -1,60 +1,60 @@
 ---
 id: browser
-title: The Browser Object
+title: ブラウザオブジェクト
 ---
 
-__Extends:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
+__継承元:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-Browser Objectは、ブラウザまたはモバイル デバイスを制御するために使用するsession instanceです。 WDIO テストランナーを使用する場合は、グローバル `browser` または `driver` オブジェクトを通じてWebDriver インスタンスにアクセスするか、 [`@wdio/globals`](/docs/api/globals)を使用してインポートできます。 WebdriverIO を standalone mode で使用する場合、ブラウザ オブジェクトは [`remote`](/docs/api/modules#remoteoptions-modifier) メソッドによって返されます。
+ブラウザオブジェクトは、ブラウザやモバイルデバイスを制御するために使用するセッションインスタンスです。WDIOテストランナーを使用している場合、グローバルな`browser`または`driver`オブジェクトを通じて、または[`@wdio/globals`](/docs/api/globals)を使用してWebDriverインスタンスにアクセスできます。WebdriverIOをスタンドアロンモードで使用している場合、ブラウザオブジェクトは[`remote`](/docs/api/modules#remoteoptions-modifier)メソッドによって返されます。
 
-セッションはテストランナーによって初期化されます。 同じようにセッションを終了する場合もテストランナーによって行われます これはテストランナープロセスによって行われます。
+セッションはテストランナーによって初期化されます。セッションの終了も同様にテストランナープロセスによって行われます。
 
 ## プロパティ
 
-ブラウザ オブジェクトには次のプロパティがあります。
+ブラウザオブジェクトには以下のプロパティがあります：
 
-| Name                    | Type       | Details                                                                                                                                                                                                                                                                  |
-| ----------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `capabilities`          | `Object`   | Assigned capabilities from the remote server.<br /><b>Example:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre>                                                                                                                                                              |
-| `requestedCapabilities` | `Object`   | リモートサーバーから割り当てられた機能。<br /><b>例:</b><pre>\{ browserName: 'chrome' \}</pre>                                                                                                                                                                                       |
-| `sessionId`             | `String`   | リモートサーバーから割り当てられたセッションID。                                                                                                                                                                                                                                                |
-| `options`               | `Object`   | WebdriverIO [option](/docs/configuration) は、ブラウザ オブジェクトの作成方法に応じて異なります。 もっと見る [セットアップ タイプ](/docs/setuptypes)。                                                                                                                                                             |
-| `commandList`           | `String[]` | ブラウザインスタンスに登録されているコマンドのリスト                                                                                                                                                                                                                                               |
-| `isW3C`                 | `Boolean`  | Indicates if this is a W3C session                                                                                                                                                                                                                                       |
-| `isChrome`              | `Boolean`  | Indicates if this Chrome instance                                                                                                                                                                                                                                        |
-| `isFirefox`             | `Boolean`  | Indicates if this Firefox instance                                                                                                                                                                                                                                       |
-| `isBidi`                | `Boolean`  | Indicates if this session uses Bidi                                                                                                                                                                                                                                      |
-| `isSauce`               | `Boolean`  | Indicates if this session is Running on Sauce Labs                                                                                                                                                                                                                       |
-| `isMacApp`              | `Boolean`  | Indicates if this session is Running for a native Mac App                                                                                                                                                                                                                |
-| `isWindowsApp`          | `Boolean`  | Indicates if this session is Running for a native Windows App                                                                                                                                                                                                            |
-| `isMobile`              | `Boolean`  | mobile sessionの有無 [Mobile Flags](#mobile-flags)で詳細を参照してください。                                                                                                                                                                                                             |
-| `isIOS`                 | `Boolean`  | iOS sessionの有無 [Mobile Flags](#mobile-flags)で詳細を参照してください。                                                                                                                                                                                                                |
-| `isAndroid`             | `Boolean`  | Android sessionの有無 [Mobile Flags](#mobile-flags)で詳細を参照してください。                                                                                                                                                                                                            |
-| `isNativeContext`       | `Boolean`  | Indicates if the mobile is in the `NATIVE_APP` context. See more under [Mobile Flags](#mobile-flags).                                                                                                                                                                    |
-| `mobileContext`         | `string`   | The will provide the **current** context the driver is in, for example `NATIVE_APP`, `WEBVIEW_<packageName>` for Android or `WEBVIEW_<pid>` for iOS. It will save an extra WebDriver to `driver.getContext()`. See more under [Mobile Flags](#mobile-flags). |
+| 名前 | 型 | 詳細 |
+| ---- | ---- | ------- |
+| `capabilities` | `Object` | リモートサーバーから割り当てられた機能。<br /><b>例：</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
+| `requestedCapabilities` | `Object` | リモートサーバーに要求された機能。<br /><b>例：</b><pre>\{ browserName: 'chrome' \}</pre>
+| `sessionId` | `String` | リモートサーバーから割り当てられたセッションID。 |
+| `options` | `Object` | ブラウザオブジェクトの作成方法に応じたWebdriverIO [オプション](/docs/configuration)。詳細は[セットアップタイプ](/docs/setuptypes)を参照してください。 |
+| `commandList` | `String[]` | ブラウザインスタンスに登録されているコマンドのリスト |
+| `isW3C` | `Boolean` | これがW3Cセッションであるかどうかを示します |
+| `isChrome` | `Boolean` | これがChromeインスタンスであるかどうかを示します |
+| `isFirefox` | `Boolean` | これがFirefoxインスタンスであるかどうかを示します |
+| `isBidi` | `Boolean` | このセッションがBidiを使用しているかどうかを示します |
+| `isSauce` | `Boolean` | このセッションがSauce Labs上で実行されているかどうかを示します |
+| `isMacApp` | `Boolean` | このセッションがネイティブMacアプリ用に実行されているかどうかを示します |
+| `isWindowsApp` | `Boolean` | このセッションがネイティブWindowsアプリ用に実行されているかどうかを示します |
+| `isMobile` | `Boolean` | モバイルセッションであることを示します。詳細は[モバイルフラグ](#モバイルフラグ)を参照してください。 |
+| `isIOS` | `Boolean` | iOSセッションであることを示します。詳細は[モバイルフラグ](#モバイルフラグ)を参照してください。 |
+| `isAndroid` | `Boolean` | Androidセッションであることを示します。詳細は[モバイルフラグ](#モバイルフラグ)を参照してください。 |
+| `isNativeContext` | `Boolean`  | モバイルが`NATIVE_APP`コンテキストにあるかどうかを示します。詳細は[モバイルフラグ](#モバイルフラグ)を参照してください。 |
+| `mobileContext` | `string`  | ドライバーが**現在**いるコンテキストを提供します。例えば`NATIVE_APP`、Androidの場合は`WEBVIEW_<packageName>`、iOSの場合は`WEBVIEW_<pid>`です。これにより`driver.getContext()`への余分なWebDriverの呼び出しが省略されます。詳細は[モバイルフラグ](#モバイルフラグ)を参照してください。 |
 
 
-## Methods
+## メソッド
 
-セッションに使用されるオートメーション バックエンドに基づいて、WebdriverIO の [Protocol Commands](/docs/api/protocols) はどの[browser object](/docs/api/browser)にアタッチされるかを識別します。 例えば、Chrome で自動セッションを実行する場合など [`elementHover`](/docs/api/chromium#elementhover) のような Chromium 固有のコマンドにアクセスできますが、 [Appium コマンド](/docs/api/appium) のいずれにもアクセスできません。
+セッションに使用される自動化バックエンドに基づいて、WebdriverIOは[ブラウザオブジェクト](/docs/api/browser)にアタッチされる[プロトコルコマンド](/docs/api/protocols)を識別します。例えば、Chromeで自動化セッションを実行している場合、[`elementHover`](/docs/api/chromium#elementhover)のようなChromium固有のコマンドにアクセスできますが、[Appiumコマンド](/docs/api/appium)にはアクセスできません。
 
-さらに、WebdriverIO は、ページ上の [ browser ](/docs/api/browser) または [ elements ](/docs/api/element) と対話するために使用することが推奨される一連の便利なメソッドを提供します。
+さらにWebdriverIOは、ページ上の[ブラウザ](/docs/api/browser)や[要素](/docs/api/element)と対話するために使用することが推奨される便利なメソッドのセットを提供しています。
 
-これに加えて、次のコマンドも使用できます。
+さらに以下のコマンドが利用可能です：
 
-| Name                 | Parameters                                                                                                             | Details                                                                                                                                             |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addCommand`         | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`)<br />- `attachToElement` (Type: `boolean`) | 作成目的でブラウザオブジェクトから呼び出すことができるカスタムコマンドを定義できます。 詳細については、 [Custom Command](/docs/customcommands) ガイドを参照してください。                                           |
-| `overwriteCommand`   | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`)<br />- `attachToElement` (Type: `boolean`) | ブラウザコマンドをカスタム機能で上書きできます。 他の開発者を混乱させる可能性があるため、慎重に使用してください。 詳細については、 [Custom Command](/docs/customcommands#overwriting-native-commands) ガイドを参照してください。 |
-| `addLocatorStrategy` | - `strategyName` (Type: `String`)<br />- `fn` (Type: `Function`)                                                 | カスタム セレクター戦略を定義できます。詳細については、 [ Selectors ](/docs/selectors#custom-selector-strategies) ガイドを参照してください。                                                |
+| 名前 | パラメータ | 詳細 |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (型: `String`)<br />- `fn` (型: `Function`)<br />- `attachToElement` (型: `boolean`) | 合成目的のためにブラウザオブジェクトから呼び出すことができるカスタムコマンドを定義できます。詳細は[カスタムコマンド](/docs/customcommands)ガイドを参照してください。 |
+| `overwriteCommand` | - `commandName` (型: `String`)<br />- `fn` (型: `Function`)<br />- `attachToElement` (型: `boolean`) | 任意のブラウザコマンドをカスタム機能で上書きすることができます。フレームワークユーザーを混乱させる可能性があるため、注意して使用してください。詳細は[カスタムコマンド](/docs/customcommands#overwriting-native-commands)ガイドを参照してください。 |
+| `addLocatorStrategy` | - `strategyName` (型: `String`)<br />- `fn` (型: `Function`) | カスタムセレクタ戦略を定義できます。詳細は[セレクタ](/docs/selectors#custom-selector-strategies)ガイドを参照してください。 |
 
 ## 備考
 
-### Mobile Flags
+### モバイルフラグ
 
-セッションがモバイル デバイスで実行されるかどうかに基づいてテストを変更する必要がある場合は、モバイル フラグにアクセスして確認できます。
+セッションがモバイルデバイス上で実行されているかどうかに基づいてテストを変更する必要がある場合、モバイルフラグにアクセスして確認できます。
 
-たとえば、次の構成の場合:
+例えば、以下の設定があるとします：
 
 ```js
 // wdio.conf.js
@@ -71,17 +71,17 @@ export const config = {
 }
 ```
 
-次のようにテストでこれらのフラグにアクセスできます。
+テスト内で次のようにこれらのフラグにアクセスできます：
 
 ```js
-// Note: `driver` is the equivalent to the `browser` object but semantically more correct
-// you can choose which global variable you want to use
-console.log(driver.isMobile) // outputs: true
-console.log(driver.isIOS) // outputs: true
-console.log(driver.isAndroid) // outputs: false
+// 注意：`driver`は`browser`オブジェクトと同等ですが、意味的により正確です
+// どちらのグローバル変数を使用するかを選択できます
+console.log(driver.isMobile) // 出力: true
+console.log(driver.isIOS) // 出力: true
+console.log(driver.isAndroid) // 出力: false
 ```
 
-これは、たとえば、次のようにデバイス タイプに基づいて [page objects](../pageobjects) にセレクターを定義する場合に便利です。
+これは例えば、[ページオブジェクト](../pageobjects)内でデバイスタイプに基づいてセレクタを定義する場合に便利です：
 
 ```js
 // mypageobject.page.js
@@ -100,13 +100,13 @@ class LoginPage extends Page {
 }
 ```
 
-これらのフラグを使用して、特定のデバイス タイプに対して特定のテストのみを実行することもできます。
+また、特定のデバイスタイプに対してのみ特定のテストを実行するためにこれらのフラグを使用することもできます：
 
 ```js
 // mytest.e2e.js
 describe('my test', () => {
     // ...
-    // only run test with Android devices
+    // Androidデバイスでのみテストを実行
     if (driver.isAndroid) {
         it('tests something only for Android', () => {
             // ...
@@ -116,78 +116,52 @@ describe('my test', () => {
 })
 ```
 
-### Events
-ブラウザー オブジェクトは EventEmitter であり、ユースケースに応じていくつかのイベントが発行されます。
+### イベント
+ブラウザオブジェクトはEventEmitterであり、いくつかのイベントがユースケースのために発行されます。
 
-イベントの一覧はこちらです。 これらは利用可能なイベントのすべてのリストではないことに注意してください。 ここにさらにイベントの説明を追加して、ドキュメントの更新に自由に貢献してください。
-
-#### `request.start`
-This event is fired before a WebDriver request is sent to the driver. It contains information about the request and its payload.
-
-```ts
-browser.on('request.start', (ev: RequestInit) => {
-    // ...
-})
-```
-
-#### `request.end`
-This event is fired once the request to the driver received a response. The event object either contains the response body as result or an error if the WebDriver command failed.
-
-```ts
-browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
-    // ...
-})
-```
-
-#### `request.retry`
-The retry event can notify you when WebdriverIO attempts to retry running the command, e.g. due to a network issue. It contains information about the error that caused the retry and the amount of retries already done.
-
-```ts
-browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
-    // ...
-})
-```
+以下はイベントのリストです。これはまだ利用可能なイベントの完全なリストではないことに注意してください。
+ここにより多くのイベントの説明を追加してドキュメントを更新するのに貢献することを歓迎します。
 
 #### `command`
 
-This event is emitted whenever WebdriverIO sends a WebDriver Classic command. It contains the following information:
+このイベントは、WebdriverIOがWebDriver Classicコマンドを送信するたびに発行されます。次の情報が含まれています：
 
-- `command`: the command name, e.g. `navigateTo`
-- `method`: the HTTP method used to send the command request, e.g. `POST`
-- `endpoint`: the command endpoint, e.g. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
-- `body`: the command payload, e.g. `{ url: 'https://webdriver.io' }`
+- `command`: コマンド名（例：`navigateTo`）
+- `method`: コマンドリクエストの送信に使用されるHTTPメソッド（例：`POST`）
+- `endpoint`: コマンドエンドポイント（例：`/session/fc8dbda381a8bea36a225bd5fd0c069b/url`）
+- `body`: コマンドのペイロード（例：`{ url: 'https://webdriver.io' }`）
 
 #### `result`
 
-This event is emitted whenever WebdriverIO receives a result of a WebDriver Classic command. It contains the same information as the `command` event with the addition of the following information:
+このイベントは、WebdriverIOがWebDriver Classicコマンドの結果を受信するたびに発行されます。`command`イベントと同じ情報に加えて、以下の情報が含まれています：
 
-- `result`: the command result
+- `result`: コマンドの結果
 
 #### `bidiCommand`
 
-This event is emitted whenever WebdriverIO sends a WebDriver Bidi command to the browser driver. It contains information about:
+このイベントは、WebdriverIOがWebDriver Bidiコマンドをブラウザドライバーに送信するたびに発行されます。以下の情報が含まれています：
 
-- `method`: WebDriver Bidi command method
-- `params`: associated command parameter (see [API](/docs/api/webdriverBidi))
+- `method`: WebDriver Bidiコマンドメソッド
+- `params`: 関連するコマンドパラメータ（[API](/docs/api/webdriverBidi)を参照）
 
 #### `bidiResult`
 
-In case of a successful command execution, the event payload will be:
+コマンド実行が成功した場合、イベントのペイロードは次のようになります：
 
 - `type`: `success`
-- `id`: the command id
-- `result`: the command result (see [API](/docs/api/webdriverBidi))
+- `id`: コマンドID
+- `result`: コマンドの結果（[API](/docs/api/webdriverBidi)を参照）
 
-In case of a command error, the event payload will be:
+コマンドエラーの場合、イベントのペイロードは次のようになります：
 
 - `type`: `error`
-- `id`: the command id
-- `error`: the error code, e.g. `invalid argument`
-- `message`: details about the error
-- `stacktrace`: a stack trace
+- `id`: コマンドID
+- `error`: エラーコード（例：`invalid argument`）
+- `message`: エラーに関する詳細
+- `stacktrace`: スタックトレース
 
 #### `request.start`
-This event is fired before a WebDriver request is sent to the driver. It contains information about the request and its payload.
+このイベントは、WebDriverリクエストがドライバーに送信される前に発生します。リクエストとそのペイロードに関する情報が含まれています。
 
 ```ts
 browser.on('request.start', (ev: RequestInit) => {
@@ -196,7 +170,7 @@ browser.on('request.start', (ev: RequestInit) => {
 ```
 
 #### `request.end`
-This event is fired once the request to the driver received a response. The event object either contains the response body as result or an error if the WebDriver command failed.
+このイベントは、ドライバーへのリクエストがレスポンスを受信した時に発生します。イベントオブジェクトには、結果としてレスポンスボディが含まれるか、WebDriverコマンドが失敗した場合はエラーが含まれます。
 
 ```ts
 browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
@@ -205,7 +179,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-The retry event can notify you when WebdriverIO attempts to retry running the command, e.g. due to a network issue. It contains information about the error that caused the retry and the amount of retries already done.
+リトライイベントは、WebdriverIOがネットワーク問題などにより、コマンドの実行を再試行しようとしたときに通知できます。リトライの原因となったエラーと、すでに行われたリトライの回数に関する情報が含まれています。
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
@@ -214,15 +188,15 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 ```
 
 #### `request.performance`
-WebDriverレベルの動作を計測するイベントです。 WebdriverIO が WebDriver バックエンドにリクエストを送信するたびに、イベントがいくつかの下記のような有用な情報とともに発行されます。
+これはWebDriverレベルの操作を測定するためのイベントです。WebdriverIOがWebDriverバックエンドにリクエストを送信するたびに、このイベントは以下の有用な情報と共に発行されます：
 
-- `durationMillisecond`: Time duration of the request in millisecond.
-- ` error `: リクエストが失敗した場合のエラー オブジェクト。
-- ` request `: リクエストオブジェクト。 URL、メソッド、ヘッダーなどを確認することができます。
-- `retryCount`: `0`の場合、リクエストは最初の実行 WebDriverIO が内部で再試行するたびに増加していきます
-- `success`: リクエストが成功したかどうかを表すBoolean `false`、 `error` の場合はプロパティも提供されます。
+- `durationMillisecond`: リクエストの時間（ミリ秒）
+- `error`: リクエストが失敗した場合のエラーオブジェクト
+- `request`: リクエストオブジェクト。URL、メソッド、ヘッダーなどを確認できます
+- `retryCount`: `0`の場合、リクエストは最初の試行でした。WebDriverIOが内部で再試行すると増加します
+- `success`: リクエストが成功したかどうかを表すブール値。`false`の場合、`error`プロパティも提供されます
 
-イベントの例:
+イベントの例：
 ```js
 Object {
   "durationMillisecond": 0.01770925521850586,
@@ -235,4 +209,4 @@ Object {
 
 ### カスタムコマンド
 
-ブラウザーのスコープにカスタム コマンドを設定して、一般的に使用されるワークフローを抽象化できます。 詳細については、 [ Custom Commands ](/docs/customcommands#adding-custom-commands) に関するガイドを参照してください。
+ブラウザスコープにカスタムコマンドを設定して、一般的に使用されるワークフローを抽象化することができます。詳細については、[カスタムコマンド](/docs/customcommands#adding-custom-commands)に関するガイドをご覧ください。

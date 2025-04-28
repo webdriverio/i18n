@@ -1,19 +1,19 @@
 ---
 id: mocksandspies
-title: Request Mocks and Spies
+title: محاكاة الطلبات والتجسسات
 ---
 
-WebdriverIO comes with built-in support for modifying network responses that allows you to focus testing your frontend application without having to setup your backend or a mock server. You can define custom responses for web resources like REST API requests in your test and modify them dynamically.
+يأتي WebdriverIO مع دعم مدمج لتعديل استجابات الشبكة مما يسمح لك بالتركيز على اختبار تطبيق الواجهة الأمامية دون الحاجة إلى إعداد الخادم الخلفي أو خادم وهمي. يمكنك تحديد استجابات مخصصة لموارد الويب مثل طلبات واجهة برمجة التطبيقات REST في اختبارك وتعديلها ديناميكيًا.
 
 :::info
 
-Note that using the `mock` command requires support for Chrome DevTools protocol. That support is given if you run tests locally in a Chromium-based browser, via a Selenium Grid v4 or higher, or through a cloud vendor with support for the Chrome DevTools protocol (e.g. SauceLabs, BrowserStack, LambdaTest). Full cross-browser support will be available once the required primitives land in [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) and get implemented in the respective browser.
+لاحظ أن استخدام أمر `mock` يتطلب دعمًا لبروتوكول Chrome DevTools. يتم توفير هذا الدعم إذا كنت تقوم بتشغيل الاختبارات محليًا في متصفح يعتمد على Chromium، أو عبر Selenium Grid v4 أو أعلى، أو من خلال مزود سحابي يدعم بروتوكول Chrome DevTools (مثل SauceLabs، BrowserStack، LambdaTest). سيكون الدعم الكامل عبر المتصفحات متاحًا بمجرد أن تصبح العناصر الأساسية المطلوبة متاحة في [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) ويتم تنفيذها في المتصفحات المعنية.
 
 :::
 
-## Creating a mock
+## إنشاء محاكاة
 
-Before you can modify any responses you have define a mock first. This mock is described by the resource url and can be filtered by the [request method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) or [headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). The resource supports glob expressions by [minimatch](https://www.npmjs.com/package/minimatch):
+قبل أن تتمكن من تعديل أي استجابات، يجب عليك أولاً تحديد محاكاة. يتم وصف هذه المحاكاة بواسطة عنوان URL للمورد ويمكن تصفيتها حسب [طريقة الطلب](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) أو [الرؤوس](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). يدعم المورد تعبيرات النمط الشامل بواسطة [minimatch](https://www.npmjs.com/package/minimatch):
 
 ```js
 // mock all resources ending with "/users/list"
@@ -29,13 +29,13 @@ const strictMock = await browser.mock('**', {
 })
 ```
 
-## Specifying custom responses
+## تحديد استجابات مخصصة
 
-Once you have defined a mock you can define custom responses for it. Those custom responses can be either an object to respond a JSON, a local file to respond with a custom fixture or a web resource to replace the response with a resource from the internet.
+بمجرد تعريف المحاكاة، يمكنك تحديد استجابات مخصصة لها. يمكن أن تكون هذه الاستجابات المخصصة إما كائنًا للرد بـ JSON، أو ملفًا محليًا للرد بعنصر مخصص، أو مورد ويب لاستبدال الاستجابة بمورد من الإنترنت.
 
-### Mocking API Requests
+### محاكاة طلبات API
 
-In order to mock API requests where you expect a JSON response all you need to do is to call `respond` on the mock object with an arbitrary object you want to return, e.g.:
+لمحاكاة طلبات واجهة برمجة التطبيقات حيث تتوقع استجابة JSON، كل ما عليك فعله هو استدعاء `respond` على كائن المحاكاة مع كائن اختياري تريد إرجاعه، على سبيل المثال:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -62,7 +62,7 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // outputs: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-You can also modify the response headers as well as the status code by passing in some mock response params as follows:
+يمكنك أيضًا تعديل رؤوس الاستجابة وكذلك رمز الحالة من خلال تمرير بعض معلمات استجابة المحاكاة على النحو التالي:
 
 ```js
 mock.respond({ ... }, {
@@ -73,7 +73,7 @@ mock.respond({ ... }, {
 })
 ```
 
-If you want the mock not to call the backend at all, you can pass `false` for the `fetchResponse` flag.
+إذا كنت تريد أن لا تقوم المحاكاة بالاتصال بالخادم الخلفي على الإطلاق، يمكنك تمرير `false` لعلامة `fetchResponse`.
 
 ```js
 mock.respond({ ... }, {
@@ -82,7 +82,7 @@ mock.respond({ ... }, {
 })
 ```
 
-It is recommend to store custom responses in fixture files so you can just require them in your test as follows:
+يوصى بتخزين الاستجابات المخصصة في ملفات ثابتة حتى تتمكن من استدعائها في اختبارك كما يلي:
 
 ```js
 // requires Node.js v16.14.0 or higher to support JSON import assertions
@@ -90,9 +90,9 @@ import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'js
 mock.respond(responseFixture)
 ```
 
-### Mocking text resources
+### محاكاة موارد النص
 
-If you like to modify text resources like JavaScript, CSS files or other text based resources you can just pass in a file path and WebdriverIO will replaces the original resource with it, e.g.:
+إذا كنت ترغب في تعديل موارد نصية مثل ملفات JavaScript أو CSS أو غيرها من الموارد النصية، يمكنك ببساطة تمرير مسار الملف وسيقوم WebdriverIO باستبدال المورد الأصلي به، على سبيل المثال:
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
@@ -102,9 +102,9 @@ scriptMock.respond('./tests/fixtures/script.js')
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
-### Redirect web resources
+### إعادة توجيه موارد الويب
 
-You can also just replace a web resource with another web resource if your desired response is already hosted on the web. This works with individual page resources as well as with a webpage itself, e.g.:
+يمكنك أيضًا استبدال مورد ويب بمورد ويب آخر إذا كانت الاستجابة المطلوبة موجودة بالفعل على الويب. يعمل هذا مع موارد الصفحة الفردية وكذلك مع صفحة الويب نفسها، على سبيل المثال:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -113,9 +113,9 @@ await browser.url('https://google.com')
 console.log(await browser.getTitle()) // returns "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js"
 ```
 
-### Dynamic responses
+### استجابات ديناميكية
 
-If your mock response depends on the original resource response you can also dynamically modify the resource by passing in a function receives the original response as parameter and sets the mock based on the return value, e.g.:
+إذا كانت استجابة المحاكاة تعتمد على استجابة المورد الأصلي، يمكنك أيضًا تعديل المورد ديناميكيًا عن طريق تمرير دالة تتلقى الاستجابة الأصلية كمعلمة وتعيين المحاكاة بناءً على قيمة الإرجاع، على سبيل المثال:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -141,9 +141,9 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 // ]
 ```
 
-## Aborting mocks
+## إلغاء المحاكاة
 
-Instead of returning a custom response you can also just abort the request with one of the following HTTP errors:
+بدلاً من إرجاع استجابة مخصصة، يمكنك أيضًا إلغاء الطلب مع أحد أخطاء HTTP التالية:
 
 - Failed
 - Aborted
@@ -160,16 +160,16 @@ Instead of returning a custom response you can also just abort the request with 
 - BlockedByClient
 - BlockedByResponse
 
-This is very useful if you want to block 3rd party script from your page that have a negative influence on your functional test. You can abort a mock by just calling `abort` or `abortOnce`, e.g.:
+هذا مفيد جداً إذا كنت تريد حظر نصوص الطرف الثالث من صفحتك التي لها تأثير سلبي على اختبارك الوظيفي. يمكنك إلغاء المحاكاة عن طريق استدعاء `abort` أو `abortOnce`، على سبيل المثال:
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/**')
 mock.abort('Failed')
 ```
 
-## Spies
+## التجسسات
 
-Every mock is automatically a spy that counts the amount of requests the browser made to that resource. If you don't apply a custom response or abort reason to the mock it continues with the default response you would normally receive. This allows you to check how many times the browser made the request, e.g. to a certain API endpoint.
+كل محاكاة هي تلقائياً تجسس يحسب عدد الطلبات التي قام بها المتصفح لهذا المورد. إذا لم تطبق استجابة مخصصة أو سبب إلغاء على المحاكاة، فإنها تستمر مع الاستجابة الافتراضية التي تتلقاها عادة. هذا يسمح لك بالتحقق من عدد المرات التي أجرى فيها المتصفح الطلب، على سبيل المثال، إلى نقطة نهاية API معينة.
 
 ```js
 const mock = await browser.mock('**/user', { method: 'post' })

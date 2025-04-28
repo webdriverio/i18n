@@ -1,34 +1,34 @@
 ---
 id: browserstack
-title: BrowserStack Accessibility Testing
+title: BrowserStack アクセシビリティテスト
 ---
 
-# BrowserStack Accessibility Testing
+# BrowserStack アクセシビリティテスト
 
-You can easily integrate accessibility tests in your WebdriverIO test suites using the [Automated tests feature of BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+WebdriverIOテストスイートにアクセシビリティテストを簡単に統合するには、[BrowserStack アクセシビリティテストの自動テスト機能](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)を使用することができます。
 
-## Advantages of Automated Tests in BrowserStack Accessibility Testing
+## BrowserStack アクセシビリティテストにおける自動テストの利点
 
-To use Automated tests in BrowserStack Accessibility Testing, your tests should be running on BrowserStack Automate.
+BrowserStack アクセシビリティテストで自動テストを使用するには、テストはBrowserStack Automateで実行されている必要があります。
 
-The following are the advantages of Automated tests:
+自動テストの利点は以下の通りです：
 
-- Seamlessly integrates into your pre-existing automation test suite.
-- No code changes are required in test cases.
-- Requires zero additional maintenance for accessibility testing.
-- Understand historical trends and gain test-case insights.
+* 既存の自動テストスイートにシームレスに統合できます。
+* テストケースにコード変更は必要ありません。
+* アクセシビリティテストのために追加のメンテナンスは不要です。
+* 履歴傾向を理解し、テストケースの洞察を得ることができます。
 
-## Get Started with BrowserStack Accessibility Testing
+## BrowserStack アクセシビリティテストを始める
 
-Follow these steps to integrate your WebdriverIO test suites with BrowserStack's Accessibility Testing:
+WebdriverIOテストスイートをBrowserStackのアクセシビリティテストと統合するには、次の手順に従ってください：
 
-1. Install `@wdio/browserstack-service` npm package.
+1. `@wdio/browserstack-service` npmパッケージをインストールします。
 
 ```bash npm2yarn
 npm install --save-dev @wdio/browserstack-service
 ```
 
-2. Update `wdio.conf.js` config file.
+2. `wdio.conf.js`設定ファイルを更新します。
 
 ```javascript
 exports.config = {
@@ -60,4 +60,4 @@ exports.config = {
   };
 ```
 
-You can view detailed instructions [here](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+詳細な手順は[こちら](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)でご覧いただけます。

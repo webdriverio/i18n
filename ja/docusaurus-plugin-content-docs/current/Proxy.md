@@ -1,26 +1,26 @@
 ---
 id: proxy
-title: Proxy Setup
+title: プロキシ設定
 ---
 
-You can tunnel two different types of request through a proxy:
+プロキシを通じて2種類のリクエストをトンネリングできます：
 
-- connection between your test script and the browser driver (or WebDriver endpoint)
-- connection between the browser and the internet
+- テストスクリプトとブラウザドライバー（またはWebDriverエンドポイント）間の接続
+- ブラウザとインターネット間の接続
 
-## Proxy Between Driver And Test
+## ドライバーとテスト間のプロキシ
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+企業がすべての送信リクエスト用の企業プロキシ（例：`http://my.corp.proxy.com:9090`）を使用している場合は、以下の手順に従って[undici](https://github.com/nodejs/undici)をインストールして設定してください。
 
-### Install undici
+### undiciのインストール
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### 設定ファイルにundici setGlobalDispatcherを追加する
 
-Add the following require statement to the top of your config file.
+以下のrequireステートメントを設定ファイルの先頭に追加します。
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+プロキシの設定に関する追加情報は[こちら](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md)にあります。
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+[Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5)を使用する場合は、以下のように起動します：
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Between Browser And Internet
+## ブラウザとインターネット間のプロキシ
 
-In order to tunnel the connection between the browser and the internet, you can set up a proxy which can be useful to (for example) capture network information and other data with tools like [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+ブラウザとインターネット間の接続をトンネリングするために、プロキシを設定できます。これは例えば[BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy)のようなツールでネットワーク情報やその他のデータをキャプチャするのに役立ちます。
 
-The `proxy` parameters can be applied via the standard capabilities the following way:
+`proxy`パラメータは、標準のケイパビリティを通じて次のように適用できます：
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-For more information, see the [WebDriver specification](https://w3c.github.io/webdriver/#proxy).
+詳細については、[WebDriver仕様](https://w3c.github.io/webdriver/#proxy)を参照してください。

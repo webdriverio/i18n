@@ -1,21 +1,21 @@
 ---
 id: methods
-title: Methods
+title: الدوال (Methods)
 ---
 
-The following methods are added to the global WebdriverIO [`browser`](/docs/api/browser)-object.
+تمت إضافة الدوال التالية إلى كائن [`browser`](/docs/api/browser) العالمي في WebdriverIO.
 
-## Save Methods
+## دوال الحفظ
 
-:::info TIP
-Only use the Save Methods when you **don't** want to compare screens, but only want to have an element-/screenshot.
+:::info نصيحة
+استخدم دوال الحفظ فقط عندما **لا** ترغب في مقارنة الشاشات، ولكن ترغب فقط في الحصول على لقطة للعنصر/الشاشة.
 :::
 
 ### `saveElement`
 
-Saves an image of an element.
+يحفظ صورة لعنصر.
 
-#### Usage
+#### الاستخدام
 
 ```ts
 await browser.saveElement(
@@ -30,34 +30,34 @@ await browser.saveElement(
 );
 ```
 
-#### Support
+#### الدعم
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- متصفحات سطح المكتب
+- متصفحات الجوال
+- تطبيقات الجوال الهجينة
+- تطبيقات الجوال الأصلية
 
-#### Parameters
+#### المعاملات
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+-   **`element`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** عنصر WebdriverIO
+-   **`tag`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** سلسلة نصية
+-   **`saveElementOptions`:**
+    -   **إلزامي:** لا
+    -   **النوع:** كائن من الخيارات، انظر [خيارات الحفظ](./method-options#save-options)
 
-#### Output:
+#### المخرجات:
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+راجع صفحة [مخرجات الاختبار](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
-Saves an image of a viewport.
+يحفظ صورة لمنطقة العرض.
 
-#### Usage
+#### الاستخدام
 
 ```ts
 await browser.saveScreen(
@@ -70,31 +70,30 @@ await browser.saveScreen(
 );
 ```
 
-#### Support
+#### الدعم
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- متصفحات سطح المكتب
+- متصفحات الجوال
+- تطبيقات الجوال الهجينة
+- تطبيقات الجوال الأصلية
 
-#### Parameters
+#### المعاملات
+-   **`tag`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** سلسلة نصية
+-   **`saveScreenOptions`:**
+    -   **إلزامي:** لا
+    -   **النوع:** كائن من الخيارات، انظر [خيارات الحفظ](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### المخرجات:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+راجع صفحة [مخرجات الاختبار](./test-output#savescreenelementfullpagescreen).
 
 ### `saveFullPageScreen`
 
-#### Usage
+#### الاستخدام
 
-Saves an image of the complete screen.
+يحفظ صورة للشاشة الكاملة.
 
 ```ts
 await browser.saveFullPageScreen(
@@ -107,29 +106,28 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Support
+#### الدعم
 
-- Desktop Browsers
-- Mobile Browsers
+- متصفحات سطح المكتب
+- متصفحات الجوال
 
-#### Parameters
+#### المعاملات
+-   **`tag`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** سلسلة نصية
+-   **`saveFullPageScreenOptions`:**
+    -   **إلزامي:** لا
+    -   **النوع:** كائن من الخيارات، انظر [خيارات الحفظ](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveFullPageScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### المخرجات:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+راجع صفحة [مخرجات الاختبار](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Saves an image of the complete screen with the tabbable lines and dots.
+يحفظ صورة للشاشة الكاملة مع خطوط ونقاط قابلة للتبويب.
 
-#### Usage
+#### الاستخدام
 
 ```ts
 await browser.saveTabbablePage(
@@ -142,26 +140,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Support
+#### الدعم
 
-- Desktop Browsers
+- متصفحات سطح المكتب
 
-#### Parameters
+#### المعاملات
+-   **`tag`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** سلسلة نصية
+-   **`saveTabbableOptions`:**
+    -   **إلزامي:** لا
+    -   **النوع:** كائن من الخيارات، انظر [خيارات الحفظ](./method-options#save-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### المخرجات:
 
-#### Output:
+راجع صفحة [مخرجات الاختبار](./test-output#savescreenelementfullpagescreen).
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+## دوال الفحص
 
-## Check Methods
-
-:::info TIP
+:::info نصيحة
+عند استخدام دوال `check` للمرة الأولى، سترى التحذير أدناه في السجلات. هذا يعني أنك لا تحتاج إلى الجمع بين دوال `save` و `check` إذا كنت تريد إنشاء خط الأساس الخاص بك.
 
 ```shell
 #####################################################################################
@@ -177,9 +175,9 @@ See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
 
 ### `checkElement`
 
-Compare an image of an element against a baseline image.
+يقارن صورة عنصر مع صورة خط الأساس.
 
-#### Usage
+#### الاستخدام
 
 ```ts
 await browser.checkElement(
@@ -194,34 +192,33 @@ await browser.checkElement(
 );
 ```
 
-#### Support
+#### الدعم
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- متصفحات سطح المكتب
+- متصفحات الجوال
+- تطبيقات الجوال الهجينة
+- تطبيقات الجوال الأصلية
 
-#### Parameters
+#### المعاملات
+-   **`element`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** عنصر WebdriverIO
+-   **`tag`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** سلسلة نصية
+-   **`checkElementOptions`:**
+    -   **إلزامي:** لا
+    -   **النوع:** كائن من الخيارات، انظر [خيارات المقارنة/الفحص](./method-options#compare-check-options)
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### المخرجات:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+راجع صفحة [مخرجات الاختبار](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkScreen`
 
-Compares an image of a viewport against a baseline image.
+يقارن صورة منطقة العرض مع صورة خط الأساس.
 
-#### Usage
+#### الاستخدام
 
 ```ts
 await browser.checkScreen(
@@ -234,31 +231,30 @@ await browser.checkScreen(
 );
 ```
 
-#### Support
+#### الدعم
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- متصفحات سطح المكتب
+- متصفحات الجوال
+- تطبيقات الجوال الهجينة
+- تطبيقات الجوال الأصلية
 
-#### Parameters
+#### المعاملات
+-   **`tag`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** سلسلة نصية
+-   **`checkScreenOptions`:**
+    -   **إلزامي:** لا
+    -   **النوع:** كائن من الخيارات، انظر [خيارات المقارنة/الفحص](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### المخرجات:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+راجع صفحة [مخرجات الاختبار](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
-Compares an image of the complete screen against a baseline image.
+يقارن صورة الشاشة الكاملة مع صورة خط الأساس.
 
-#### Usage
+#### الاستخدام
 
 ```ts
 await browser.checkFullPageScreen(
@@ -271,29 +267,28 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Support
+#### الدعم
 
-- Desktop Browsers
-- Mobile Browsers
+- متصفحات سطح المكتب
+- متصفحات الجوال
 
-#### Parameters
+#### المعاملات
+-   **`tag`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** سلسلة نصية
+-   **`checkFullPageOptions`:**
+    -   **إلزامي:** لا
+    -   **النوع:** كائن من الخيارات، انظر [خيارات المقارنة/الفحص](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkFullPageOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### المخرجات:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+راجع صفحة [مخرجات الاختبار](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Compares an image of the complete screen with the tabbable lines and dots against a baseline image.
+يقارن صورة الشاشة الكاملة مع خطوط ونقاط قابلة للتبويب مع صورة خط الأساس.
 
-#### Usage
+#### الاستخدام
 
 ```ts
 await browser.checkTabbablePage(
@@ -306,19 +301,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Support
+#### الدعم
 
-- Desktop Browsers
+- متصفحات سطح المكتب
 
-#### Parameters
+#### المعاملات
+-   **`tag`:**
+    -   **إلزامي:** نعم
+    -   **النوع:** سلسلة نصية
+-   **`checkTabbableOptions`:**
+    -   **إلزامي:** لا
+    -   **النوع:** كائن من الخيارات، انظر [خيارات المقارنة/الفحص](./method-options#compare-check-options)
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### المخرجات:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+راجع صفحة [مخرجات الاختبار](./test-output#checkscreenelementfullpagescreen).

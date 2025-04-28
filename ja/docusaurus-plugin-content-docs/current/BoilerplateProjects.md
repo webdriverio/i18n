@@ -1,363 +1,364 @@
 ---
 id: boilerplates
-title: Boilerplate Projects
+title: ボイラープレートプロジェクト
 ---
 
-Over time, our community has developed several projects that you can use as inspiration to set up your own test suite.
+時間の経過とともに、コミュニティによっていくつかのプロジェクトが開発され、これらを参考にして独自のテストスイートをセットアップすることができます。
 
-# v8 Boilerplate Projects
+# v8 ボイラープレートプロジェクト
 
 ## [webdriverio/cucumber-boilerplate](https://github.com/webdriverio/cucumber-boilerplate)
 
-Our very own boilerplate for Cucumber test suites. We created over 150 predefined step definitions for you, so you can start writing feature files in your project right away.
+Cucumberテストスイート用の私たち独自のボイラープレートです。150以上の事前定義されたステップ定義を作成したので、すぐにプロジェクトでフィーチャーファイルの作成を開始できます。
 
-- Framework:
+- フレームワーク:
     - Cucumber
     - WebdriverIO
-- Features:
-    - Over 150 predefined steps that cover almost everything you need
-    - Integrates WebdriverIO's Multiremote functionality
-    - Own demo app
+- 特徴:
+    - 必要なものをほぼすべてカバーする150以上の事前定義されたステップ
+    - WebdriverIOのマルチリモート機能を統合
+    - 独自のデモアプリ
 
 ## [webdriverio/jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate)
-Boilerplate project to run WebdriverIO tests with Jasmine using Babel features and the page objects pattern.
+Babel機能とページオブジェクトパターンを使用してJasmineでWebdriverIOテストを実行するためのボイラープレートプロジェクト。
 
-- Frameworks
+- フレームワーク
     - WebdriverIO
     - Jasmine
-- Features
-    - Page Object Pattern
-    - Sauce Labs integration
+- 特徴
+    - ページオブジェクトパターン
+    - Sauce Labs連携
 
 ## [webdriverio/electron-boilerplate](https://github.com/webdriverio/electron-boilerplate)
-Boilerplate project to run WebdriverIO tests on a minimal Electron application.
+最小限のElectronアプリケーションでWebdriverIOテストを実行するためのボイラープレートプロジェクト。
 
-- Frameworks
+- フレームワーク
     - WebdriverIO
     - Mocha
-- Features
-    - Electron API mocking
+- 特徴
+    - Electron APIモッキング
 
 ## [syamphaneendra/webdriverio-web-mobile-boilerplate](https://github.com/syamphaneendra/webdriverio-web-mobile-boilerplate)
 
-This boilerplate project has WebdriverIO 8 tests with cucumber and typescript, followed by the page objects pattern.
+このボイラープレートプロジェクトはWebdriverIO 8とcucumberおよびtypescriptを使用したテストを含み、ページオブジェクトパターンに従っています。
 
-- Frameworks:
+- フレームワーク:
     - WebdriverIO v8
     - Cucumber v8
 
-- Features:
+- 特徴:
     - Typescript v5
-    - Page Object Pattern
+    - ページオブジェクトパターン
     - Prettier
-    - Multi browser support
+    - マルチブラウザサポート
       - Chrome
       - Firefox
       - Edge
       - Safari
       - Standalone
-    - Crossbrowser parallel execution
+    - クロスブラウザ並列実行
     - Appium
-    - Cloud testing Integration with BrowserStack & Sauce Labs
-    - Docker service
-    - Share data service
-    - Separate config files for each service
-    - Testdata management & read by user type
-    - Reporting
+    - BrowserStackとSauce Labsを使用したクラウドテスト連携
+    - Dockerサービス
+    - データ共有サービス
+    - 各サービス用の個別設定ファイル
+    - ユーザータイプ別のテストデータ管理と読み取り
+    - レポート機能
       - Dot
       - Spec
-      - Multiple cucumber html report with failure screenshots
-    - Gitlab pipelines for Gitlab repository
-    - Github actions for Github repository
-    - Docker compose for setting up the docker hub
-    - Accessibility testing using AXE
-    - Visual testing using Applitools
-    - Log mechansim
+      - 失敗スクリーンショット付きの複数のcucumber HTMLレポート
+    - Gitlabリポジトリ用のGitlabパイプライン
+    - Githubリポジトリ用のGithubアクション
+    - Dockerハブをセットアップするためのdocker-compose
+    - AXEを使用したアクセシビリティテスト
+    - Applitoolsを使用した視覚的テスト
+    - ログメカニズム
 
 ## [amiya-pattnaik/webdriverIO-with-cucumberBDD](https://github.com/amiya-pattnaik/webdriverIO-with-cucumberBDD)
 
-- Framework: WDIO-V8 with Cucumber (V8x).
-- Features:
-    - Page Objects Model uses with ES6 /ES7 style class base approach and TypeScript support
-    - Examples of multi selector option to query element with more than one selector at a time
-    - Examples of multi browser and headless browser execution using - Chrome and Firefox
-    - Cloud testing Integration with BrowserStack, Sauce Labs, LambdaTest
-    - Examples of read/write data from MS-Excel for easy test data management from external data sources with examples
-    - Database support to any RDBMS (Oracle, MySql, TeraData, Vertica etc.), executing any queries / fetching result set etc. with examples for E2E testing
-    - Multiple reporting (Spec, Xunit/Junit, Allure, JSON) and Hosting Allure and Xunit/Junit reporting on WebServer.
-    - Examples with demo app https://search.yahoo.com/  and http://the-internet.herokuapp.com.
-    - BrowserStack, Sauce Labs, LambdaTest and Appium specific `.config` file (for playback on mobile device). For one click Appium setup on local machine for iOS and Android refer to [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX).
+- フレームワーク: WDIO-V8とCucumber (V8x)
+- 特徴:
+    - ES6/ES7スタイルのクラスベースアプローチとTypeScriptサポートを使用したページオブジェクトモデル
+    - 一度に複数のセレクタでエレメントをクエリする複数セレクタオプションの例
+    - ChromeとFirefoxを使用したマルチブラウザおよびヘッドレスブラウザ実行の例
+    - BrowserStack、Sauce Labs、LambdaTestとのクラウドテスト連携
+    - E2Eテスト用の外部データソースからの簡単なテストデータ管理のためのMS-Excelからのデータ読み取り/書き込み例
+    - 任意のRDBMS（Oracle、MySql、TeraData、Verticaなど）へのデータベースサポート、クエリの実行/結果セットの取得などの例
+    - 複数のレポート（Spec、Xunit/Junit、Allure、JSON）とWebサーバー上でのAllureおよびXunit/Junitレポートのホスティング
+    - デモアプリhttps://search.yahoo.com/とhttp://the-internet.herokuapp.comを使用した例
+    - BrowserStack、Sauce Labs、LambdaTestおよびAppium専用の`.config`ファイル（モバイルデバイスでの再生用）。iOSとAndroid用のローカルマシンでのワンクリックAppiumセットアップについては[appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX)を参照してください。
 
 ## [amiya-pattnaik/webdriverIO-with-mochaBDD](https://github.com/amiya-pattnaik/webdriverIO-with-mochaBDD)
 
-- Framework: WDIO-V8 with Mocha (V10x).
-- Features:
-    -  Page Objects Model uses with ES6 /ES7 style class base approach and TypeScript support
-    -  Examples with demo app https://search.yahoo.com  and http://the-internet.herokuapp.com
-    -  Examples of multi browser and headless browser execution using - Chrome and Firefox
-    -  Cloud testing Integration with BrowserStack, Sauce Labs, LambdaTest
-    -  Multiple reporting (Spec, Xunit/Junit, Allure, JSON) and Hosting Allure and Xunit/Junit reporting on WebServer.
-    -  Examples of read/write data from MS-Excel for easy test data management from external data sources with examples
-    -  Examples of DB connect to any RDBMS (Oracle, MySql, TeraData, Vertica etc.), any query execution / fetching result set etc. with examples for E2E testing
-    -  BrowserStack, Sauce Labs, LambdaTest and Appium specific `.config` file (for playback on mobile device). For one click Appium setup on local machine for iOS and Android refer to [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX).
+- フレームワーク: WDIO-V8とMocha (V10x)
+- 特徴:
+    - ES6/ES7スタイルのクラスベースアプローチとTypeScriptサポートを使用したページオブジェクトモデル
+    - デモアプリhttps://search.yahoo.comとhttp://the-internet.herokuapp.comを使用した例
+    - ChromeとFirefoxを使用したマルチブラウザおよびヘッドレスブラウザ実行の例
+    - BrowserStack、Sauce Labs、LambdaTestとのクラウドテスト連携
+    - 複数のレポート（Spec、Xunit/Junit、Allure、JSON）とWebサーバー上でのAllureおよびXunit/Junitレポートのホスティング
+    - E2Eテスト用の外部データソースからの簡単なテストデータ管理のためのMS-Excelからのデータ読み取り/書き込み例
+    - E2Eテスト用の任意のRDBMS（Oracle、MySql、TeraData、Verticaなど）へのDB接続、クエリの実行/結果セットの取得などの例
+    - BrowserStack、Sauce Labs、LambdaTestおよびAppium専用の`.config`ファイル（モバイルデバイスでの再生用）。iOSとAndroid用のローカルマシンでのワンクリックAppiumセットアップについては[appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX)を参照してください。
 
 ## [amiya-pattnaik/webdriverIO-with-jasmineBDD](https://github.com/amiya-pattnaik/webdriverIO-with-jasmineBDD)
 
-- Framework: WDIO-V8 with Jasmine (V4x).
-- Features:
-    -  Page Objects Model uses with ES6 /ES7 style class base approach and TypeScript support
-    -  Examples with demo app https://search.yahoo.com  and http://the-internet.herokuapp.com
-    -  Examples of multi browser and headless browser execution using - Chrome and Firefox
-    -  Cloud testing Integration with BrowserStack, Sauce Labs, LambdaTest
-    -  Multiple reporting (Spec, Xunit/Junit, Allure, JSON) and Hosting Allure and Xunit/Junit reporting on WebServer.
-    -  Examples of read/write data from MS-Excel for easy test data management from external data sources with examples
-    -  Examples of DB connect to any RDBMS (Oracle, MySql, TeraData, Vertica etc.), any query execution / fetching result set etc. with examples for E2E testing
-    -  BrowserStack, Sauce Labs, LambdaTest and Appium specific `.config` file ( for playback on mobile device). For one click Appium setup on local machine for iOS and Android refer to [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX).
+- フレームワーク: WDIO-V8とJasmine (V4x)
+- 特徴:
+    - ES6/ES7スタイルのクラスベースアプローチとTypeScriptサポートを使用したページオブジェクトモデル
+    - デモアプリhttps://search.yahoo.comとhttp://the-internet.herokuapp.comを使用した例
+    - ChromeとFirefoxを使用したマルチブラウザおよびヘッドレスブラウザ実行の例
+    - BrowserStack、Sauce Labs、LambdaTestとのクラウドテスト連携
+    - 複数のレポート（Spec、Xunit/Junit、Allure、JSON）とWebサーバー上でのAllureおよびXunit/Junitレポートのホスティング
+    - E2Eテスト用の外部データソースからの簡単なテストデータ管理のためのMS-Excelからのデータ読み取り/書き込み例
+    - E2Eテスト用の任意のRDBMS（Oracle、MySql、TeraData、Verticaなど）へのDB接続、クエリの実行/結果セットの取得などの例
+    - BrowserStack、Sauce Labs、LambdaTestおよびAppium専用の`.config`ファイル（モバイルデバイスでの再生用）。iOSとAndroid用のローカルマシンでのワンクリックAppiumセットアップについては[appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX)を参照してください。
 
 ## [klassijs/klassi-js (cucumber-template)](https://github.com/klassijs/klassi-example-test-suite.git)
 
-- Frameworks
+- フレームワーク
     - WebdriverIO (v8)
     - Cucumber (v8)
 
-- Features
-    - Contain sample test scenario in cucumber
-    - Integrated cucumber html reports with Embedded videos on failures
-    - Integrated Lambdatest and CircleCI services
-    - Integrated Visual, Accessibility and API testing
-    - Integrated Email functionality
-    - Integrated s3 bucket for test reports storage and retrieval
+- 特徴
+    - cucumberのサンプルテストシナリオを含む
+    - 失敗時の埋め込みビデオを含むcucumberのHTMLレポートを統合
+    - LambdatestとCircleCIサービスを統合
+    - 視覚的、アクセシビリティ、APIテストを統合
+    - メール機能を統合
+    - テストレポートの保存と取得用のs3バケットを統合
 
 ## [serenity-js/serenity-js-mocha-webdriverio-template/](https://github.com/serenity-js/serenity-js-mocha-webdriverio-template/)
 
-[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io) template project to help you get started with acceptance testing your web applications using the latest WebdriverIO, Mocha, and Serenity/JS.
+[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io)テンプレートプロジェクトは、最新のWebdriverIO、Mocha、およびSerenity/JSを使用してWebアプリケーションの受け入れテストを開始するのに役立ちます。
 
-- Frameworks
+- フレームワーク
     - WebdriverIO (v8)
     - Mocha (v10)
     - Serenity/JS (v3)
-    - Serenity BDD reporting
+    - Serenity BDDレポーティング
 
-- Features
-    - [Screenplay Pattern](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io)
-    - Automatic screenshots on test failure, embedded in reports
-    - Continuous Integration (CI) setup using [GitHub Actions](https://github.com/serenity-js/serenity-js-mocha-webdriverio-template/blob/main/.github/workflows/main.yml)
-    - [Demo Serenity BDD reports](https://serenity-js.github.io/serenity-js-mocha-webdriverio-template/) published to GitHub Pages
+- 特徴
+    - [スクリーンプレイパターン](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io)
+    - テスト失敗時の自動スクリーンショット（レポートに埋め込み）
+    - [GitHub Actions](https://github.com/serenity-js/serenity-js-mocha-webdriverio-template/blob/main/.github/workflows/main.yml)を使用した継続的インテグレーション（CI）のセットアップ
+    - GitHub Pagesに公開された[デモSerenity BDDレポート](https://serenity-js.github.io/serenity-js-mocha-webdriverio-template/)
     - TypeScript
     - ESLint
 
 ## [serenity-js/serenity-js-cucumber-webdriverio-template/](https://github.com/serenity-js/serenity-js-cucumber-webdriverio-template/)
 
-[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io) template project to help you get started with acceptance testing your web applications using the latest WebdriverIO, Cucumber, and Serenity/JS.
+[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io)テンプレートプロジェクトは、最新のWebdriverIO、Cucumber、およびSerenity/JSを使用してWebアプリケーションの受け入れテストを開始するのに役立ちます。
 
-- Frameworks
+- フレームワーク
     - WebdriverIO (v8)
     - Cucumber (v9)
     - Serenity/JS (v3)
-    - Serenity BDD reporting
+    - Serenity BDDレポーティング
 
-- Features
-    - [Screenplay Pattern](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io)
-    - Automatic screenshots on test failure, embedded in reports
-    - Continuous Integration (CI) setup using [GitHub Actions](https://github.com/serenity-js/serenity-js-cucumber-webdriverio-template/blob/main/.github/workflows/main.yml)
-    - [Demo Serenity BDD reports](https://serenity-js.github.io/serenity-js-mocha-webdriverio-template/) published to GitHub Pages
+- 特徴
+    - [スクリーンプレイパターン](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io)
+    - テスト失敗時の自動スクリーンショット（レポートに埋め込み）
+    - [GitHub Actions](https://github.com/serenity-js/serenity-js-cucumber-webdriverio-template/blob/main/.github/workflows/main.yml)を使用した継続的インテグレーション（CI）のセットアップ
+    - GitHub Pagesに公開された[デモSerenity BDDレポート](https://serenity-js.github.io/serenity-js-mocha-webdriverio-template/)
     - TypeScript
     - ESLint
 
 ## [Muralijc/wdio-headspin-boilerplate](https://github.com/Muralijc/Wdio-Headspin-boilerplate/)
-Boilerplate project to run WebdriverIO tests in Headspin Cloud (https://www.headspin.io/) using Cucumber features, and the page objects pattern.
-- Frameworks
+Headspinクラウド（https://www.headspin.io/）でCucumber機能とページオブジェクトパターンを使用してWebdriverIOテストを実行するためのボイラープレートプロジェクト。
+- フレームワーク
     - WebdriverIO (v8)
     - Cucumber (v8)
 
-- Features
-    - Cloud integration with [Headspin](https://www.headspin.io/)
-    - Supports Page Object Model
-    - Contains sample Scenarios written in Declarative style of BDD
-    - Integrated cucumber html reports
+- 特徴
+    - [Headspin](https://www.headspin.io/)とのクラウド連携
+    - ページオブジェクトモデルをサポート
+    - BDDの宣言的スタイルで書かれたサンプルシナリオを含む
+    - cucumberのHTMLレポートを統合
 
-# v7 Boilerplate Projects
+# v7 ボイラープレートプロジェクト
 
 ## [webdriverio/appium-boilerplate](https://github.com/webdriverio/appium-boilerplate/)
 
-Boilerplate project to run Appium tests with WebdriverIO for:
+WebdriverIOでAppiumテストを実行するためのボイラープレートプロジェクト：
 
-- iOS/Android Native Apps
-- iOS/Android Hybrid Apps
-- Android Chrome and iOS Safari browser
+- iOS/Androidネイティブアプリ
+- iOS/Androidハイブリッドアプリ
+- Android ChromeとiOS Safariブラウザ
 
-This boilerplate includes the following:
+このボイラープレートには以下が含まれています：
 
-- Framework: Mocha
-- Features:
-    - Configs for:
-        - iOS and Android app
-        - iOS and Android browsers
-    - Helpers for:
+- フレームワーク: Mocha
+- 特徴:
+    - 設定:
+        - iOSとAndroidアプリ
+        - iOSとAndroidブラウザ
+    - ヘルパー:
         - WebView
-        - Gestures
-        - Native alerts
-        - Pickers
-     - Tests examples for:
+        - ジェスチャー
+        - ネイティブアラート
+        - ピッカー
+     - テスト例:
         - WebView
-        - Login
-        - Forms
-        - Swipe
-        - Browsers
+        - ログイン
+        - フォーム
+        - スワイプ
+        - ブラウザ
 
 ## [serhatbolsu/webdriverio-mocha-uiautomation-boiler](https://github.com/serhatbolsu/webdriverio-mocha-uiautomation-boiler)
-ATDD WEB tests with Mocha, WebdriverIO v6 with PageObject
+ページオブジェクトを使用したMocha、WebdriverIO v6のATDD WEBテスト
 
-- Frameworks
+- フレームワーク
   - WebdriverIO (v7)
   - Mocha
-- Features
-  - [Page Object](pageobjects) Model
-  - Sauce Labs integration with [Sauce Service](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sauce-service/README.md)
-  - Allure Report
-  - Automatic screenshots capture for failing tests
-  - CircleCI example
+- 特徴
+  - [ページオブジェクト](pageobjects)モデル
+  - [Sauceサービス](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sauce-service/README.md)を使用したSauce Labs連携
+  - Allureレポート
+  - 失敗テストの自動スクリーンショットキャプチャ
+  - CircleCI例
   - ESLint
 
 ## [WarleyGabriel/demo-webdriverio-mocha](https://github.com/WarleyGabriel/demo-webdriverio-mocha)
 
-Boilerplate project to run E2E tests with Mocha.
+Mochaを使用してE2Eテストを実行するためのボイラープレートプロジェクト。
 
-- Frameworks:
+- フレームワーク:
     - WebdriverIO (v7)
     - Mocha
-- Features:
+- 特徴:
     -   TypeScript
     -   [Expect-webdriverio](https://github.com/webdriverio/expect-webdriverio)
-    -   [Visual regression tests](https://github.com/wswebcreation/wdio-image-comparison-service)
-    -   Page Object Pattern
-    -   [Commit lint](https://github.com/conventional-changelog/commitlint) and [Commitizen](https://github.com/commitizen/cz-cli#making-your-repo-commitizen-friendly)
+    -   [ビジュアル回帰テスト](https://github.com/wswebcreation/wdio-image-comparison-service)
+    -   ページオブジェクトパターン
+    -   [Commit lint](https://github.com/conventional-changelog/commitlint)と[Commitizen](https://github.com/commitizen/cz-cli#making-your-repo-commitizen-friendly)
     -   ESlint
     -   Prettier
     -   Husky
-    -   Github Actions example
-    -   Allure report (screenshots on failure)
+    -   Github Actions例
+    -   Allureレポート（失敗時のスクリーンショット）
 
 ## [17thSep/WebdriverIO_Master](https://github.com/17thSep/WebdriverIO_Master)
 
-Boilerplate project to run **WebdriverIO v7** tests for the following:
+以下のためのWebdriverIO v7テストを実行するためのボイラープレートプロジェクト：
 
-[WDIO 7 scripts with TypeScript in Cucumber Framework](https://github.com/17thSep/WebdriverIO_Master/tree/master/TypeScript/Cucumber) [WDIO 7 scripts with TypeScript in Mocha Framework](https://github.com/17thSep/WebdriverIO_Master/tree/master/TypeScript/Mocha) [Run WDIO 7 script in Docker](https://github.com/17thSep/WebdriverIO_Master/tree/master/TypeScript/Docker) [Network logs](https://github.com/17thSep/MonitorNetworkLogs/)
+[CucumberフレームワークでのTypeScriptを使用したWDIO 7スクリプト](https://github.com/17thSep/WebdriverIO_Master/tree/master/TypeScript/Cucumber)
+[MochaフレームワークでのTypeScriptを使用したWDIO 7スクリプト](https://github.com/17thSep/WebdriverIO_Master/tree/master/TypeScript/Mocha)
+[DockerでのWDIO 7スクリプトの実行](https://github.com/17thSep/WebdriverIO_Master/tree/master/TypeScript/Docker)
+[ネットワークログ](https://github.com/17thSep/MonitorNetworkLogs/)
 
-Boiler plate project for:
+以下のためのボイラープレートプロジェクト：
 
-- Capture Network Logs
-- Capture all GET/POST calls or a specific REST API
-- Assert Request parameters
-- Assert Response parameters
-- Store all the response in a separate file
+- ネットワークログの取得
+- すべてのGET/POSTコールまたは特定のREST APIの取得
+- リクエストパラメータのアサート
+- レスポンスパラメータのアサート
+- すべてのレスポンスを別ファイルに保存
 
 ## [Arjun-Ar91/Wdio7-appium-cucumber](https://github.com/Arjun-Ar91/Wdio7-appium-cucumber.git)
 
-Boilerplate project to run appium tests for native and mobile browser using cucumber v7 and wdio v7 with page object pattern.
+ページオブジェクトパターンを使用してcucumber v7とwdio v7でネイティブおよびモバイルブラウザのappiumテストを実行するためのボイラープレートプロジェクト。
 
-- Frameworks
+- フレームワーク
     - WebdriverIO v7
     - Cucumber v7
     - Appium
 
-- Features
-    - Native Android and iOS apps
-    - Android Chrome browser
-    - iOS Safari browser
-    - Page Object Model
-    - Contains sample test scenarios in cucumber
-    - Integrated with multiple cucumber html reports
+- 特徴
+    - ネイティブAndroidおよびiOSアプリ
+    - Android Chromeブラウザ
+    - iOS Safariブラウザ
+    - ページオブジェクトモデル
+    - cucumberのサンプルテストシナリオを含む
+    - 複数のcucumber HTMLレポートと統合
 
 ## [praveendvd/webdriverIODockerBoilerplate/](https://github.com/praveendvd/webdriverIODockerBoilerplate)
 
-This a template project to help you show how you can run webdriverio test from Web applications using the latest WebdriverIO, and Cucumber framework. This project intends to act as a baseline image that you can use to understand how to run WebdriverIO tests in docker
+このテンプレートプロジェクトは、最新のWebdriverIOとCucumberフレームワークを使用してWebアプリケーションからwebdriverioテストを実行する方法を示すのに役立ちます。このプロジェクトはDockerでWebdriverIOテストを実行する方法を理解するためのベースラインイメージとして機能することを目的としています。
 
-This project includes:
+このプロジェクトには以下が含まれています：
 
 - DockerFile
-- cucumber Project
+- cucumberプロジェクト
 
-Read more at: [Medium Blog](https://praveendavidmathew.medium.com/running-webdriverio-in-wsl2-windows-91d3a0dc7746)
+詳細は：[Mediumブログ](https://praveendavidmathew.medium.com/running-webdriverio-in-wsl2-windows-91d3a0dc7746)を参照してください。
 
 ## [praveendvd/WebdriverIO_electronAppAutomation_boilerplate/](https://github.com/praveendvd/WebdriverIO_electronAppAutomation_boilerplate)
 
-This a template project to help you show how you can run electronJS tests using WebdriverIO. This project intends to act as a baseline image that you can use to understand how to run WebdriverIO electronJS tests.
+このテンプレートプロジェクトは、WebdriverIOを使用してelectronJSテストを実行する方法を示すのに役立ちます。このプロジェクトはWebdriverIO electronJSテストの実行方法を理解するためのベースラインイメージとして機能することを目的としています。
 
-This project include:
+このプロジェクトには以下が含まれています：
 
-- Sample electronjs app
-- Sample cucumber test scripts
+- サンプルelectronjsアプリ
+- サンプルcucumberテストスクリプト
 
-Read more at: [Medium Blog](https://praveendavidmathew.medium.com/first-step-into-automation-of-electronjs-applications-ef89b7423ddd)
+詳細は：[Mediumブログ](https://praveendavidmathew.medium.com/first-step-into-automation-of-electronjs-applications-ef89b7423ddd)を参照してください。
 
 ## [praveendvd/webdriverIO_winappdriver_boilerplate/](https://github.com/praveendvd/webdriverIO_winappdriver_boilerplate)
 
-This a template project to help you show how you can automate windows application using winappdriver and  WebdriverIO . This project intends to act as a baseline image that you can use to understand how to run windappdriver and WebdriverIO tests.
+このテンプレートプロジェクトは、winappdriver とWebdriverIOを使用してWindowsアプリケーションを自動化する方法を示すのに役立ちます。このプロジェクトはwindappdriverとWebdriverIOテストの実行方法を理解するためのベースラインイメージとして機能することを目的としています。
 
-Read more at: [Medium Blog](https://praveendavidmathew.medium.com/winappdriver-first-step-into-windows-app-test-automation-using-webdriverio-and-winappdriver-46320d89570b)
+詳細は：[Mediumブログ](https://praveendavidmathew.medium.com/winappdriver-first-step-into-windows-app-test-automation-using-webdriverio-and-winappdriver-46320d89570b)を参照してください。
 
 ## [praveendvd/appium-chromedriver-multiremote-wdio-boilerplate/](https://github.com/praveendvd/appium-chromedriver-multiremote-wdio-boilerplate)
 
+このテンプレートプロジェクトは、最新のWebdriverIOとJasmineフレームワークでwebdriverioマルチリモート機能を実行する方法を示すのに役立ちます。このプロジェクトはDockerでWebdriverIOテストを実行する方法を理解するためのベースラインイメージとして機能することを目的としています。
 
-This a template project to help you show how you can run webdriverio multiremote capability with latest WebdriverIO, and Jasmine framework. This project intends to act as a baseline image that you can use to understand how to run WebdriverIO tests in docker
-
-This project uses:
-
+このプロジェクトは以下を使用しています：
      - chromedriver
      - jasmine
      - appium
 
 ## [webdriverio-roku-appium-boilerplate](https://github.com/AntonKostenko/webdriverIO-roku-appium)
 
-Template project to run appium tests on real Roku devices using mocha with page object pattern.
+ページオブジェクトパターンを使用してmochaで実際のRokuデバイス上でappiumテストを実行するためのテンプレートプロジェクト。
 
-- Frameworks
+- フレームワーク
     - WebdriverIO Async v7
     - Appium 2.0
     - Mocha v7
-    - Allure Reporting
+    - Allureレポート
 
-- Features
-    - Page Object Model
+- 特徴
+    - ページオブジェクトモデル
     - Typescript
-    - Screenshot on failure
-    - Example tests using a sample Roku channel
+    - 失敗時のスクリーンショット
+    - サンプルRokuチャンネルを使用したテスト例
 
 ## [krishnapollu/wdio-cucumber-poc](https://github.com/krishnapollu/wdio-cucumber-poc)
 
-PoC project for E2E Multiremote Cucumber tests as well as Data driven Mocha tests
+E2Eマルチリモートのcucumberテストおよびデータ駆動型のMochaテスト用のPoCプロジェクト
 
-- Framework:
+- フレームワーク:
     - Cucumber (v8)
     - WebdriverIO (v8)
     - Mocha (v8)
 
-- Features:
-    - Cucumber based E2E Tests
-    - Mocha based Data Driven Tests
-    - Web only Tests - in Local as well as cloud platforms
-    - Mobile Only tests - local as well as remote cloud emulators (or devices)
-    - Web + Mobile Tests - Multiremote - local as well as cloud platforms
-    - Multiple Reports integrated including Allure
-    - Test Data ( JSON / XLSX ) handled globally so as to write the data (created on the fly) to a file post test execution
-    - Github workflow to run the test and upload the allure report
+- 特徴:
+    - cucumberベースのE2Eテスト
+    - Mochaベースのデータ駆動型テスト
+    - Webのみのテスト - ローカルおよびクラウドプラットフォーム
+    - モバイルのみのテスト - ローカルおよびリモートクラウドエミュレータ（またはデバイス）
+    - Web + モバイルテスト - マルチリモート - ローカルおよびクラウドプラットフォーム
+    - Allureを含む複数のレポートの統合
+    - テストデータ（JSON / XLSX）がグローバルに処理され、テスト実行後にオンザフライで作成されたデータをファイルに書き込む
+    - テストを実行してallureレポートをアップロードするためのGithubワークフロー
 
 ## [Rondleysg/wdio-multiremote-appium-chromedriver-boilerplate](https://github.com/Rondleysg/wdio-multiremote-appium-chromedriver-boilerplate)
 
-This is a boilerplate project to help show how to run webdriverio multi-remote using appium and chromedriver service with the latest WebdriverIO.
+これは、最新のWebdriverIOを使用してappiumとchromedriverサービスを使用したwebdriverioマルチリモートの実行方法を示すためのボイラープレートプロジェクトです。
 
-- Frameworks
+- フレームワーク
   - WebdriverIO (v9)
   - Appium (v2)
   - Mocha
 
-- Features
-  - [Page Object](pageobjects) Model
+- 特徴
+  - [ページオブジェクト](pageobjects)モデル
   - Typescript
-  - Web + Mobile Tests - Multiremote
-  - Native Android and iOS apps
+  - Web + モバイルテスト - マルチリモート
+  - ネイティブAndroidおよびiOSアプリ
   - Appium
   - Chromedriver
   - ESLint
-  - Tests examples for Login in http://the-internet.herokuapp.com and [WebdriverIO native demo app](https://github.com/webdriverio/native-demo-app)
+  - http://the-internet.herokuapp.comでのログインと[WebdriverIOネイティブデモアプリ](https://github.com/webdriverio/native-demo-app)のテスト例

@@ -3,9 +3,9 @@ id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
 ---
 
-Wait for a specific text to be displayed on the screen.
+انتظار حتى يتم عرض نص معين على الشاشة.
 
-## Usage
+## الاستخدام
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -13,9 +13,9 @@ await browser.ocrWaitForTextDisplayed({
 });
 ```
 
-## Output
+## المخرجات
 
-### Logs
+### السجلات
 
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
@@ -24,16 +24,16 @@ await browser.ocrWaitForTextDisplayed({
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
-## Options
+## الخيارات
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **النوع:** `string`
+-   **إلزامي:** نعم
 
-The text you want to search for to click on.
+النص الذي تريد البحث عنه للنقر عليه.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
@@ -41,30 +41,30 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 18000 (18 seconds)
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** 18000 (18 ثانية)
 
-Time in milliseconds. Be aware that the OCR process can take some time, so don't set it too low.
+الوقت بالمللي ثانية. تنبه إلى أن عملية التعرف البصري على النصوص (OCR) قد تستغرق بعض الوقت، لذا لا تضبطها على قيمة منخفضة جدًا.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // wait for 25 seconds
+    timeout: 25000 // انتظر لمدة 25 ثانية
 });
 ```
 
 ### `timeoutMsg`
 
-- **Type:** `string`
-- **Mandatory:** no
-- **Default:** `Could not find the text "{selector}" within the requested time.`
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** `Could not find the text "{selector}" within the requested time.`
 
-It overrides the default error message.
+تتجاوز رسالة الخطأ الافتراضية.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -75,13 +75,13 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+كلما زاد التباين، أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيم بين `-1` و `1`.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -92,12 +92,12 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **النوع:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **إلزامي:** لا
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+هذه هي منطقة البحث في الشاشة حيث يحتاج OCR إلى البحث عن النص. يمكن أن يكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -105,13 +105,13 @@ await browser.ocrWaitForTextDisplayed({
     haystack: $("elementSelector"),
 });
 
-// OR
+// أو
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// أو
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
     haystack: {
@@ -125,36 +125,36 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+اللغة التي سيتعرف عليها Tesseract. يمكن العثور على مزيد من المعلومات [هنا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) ويمكن العثور على اللغات المدعومة [هنا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+#### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Use Dutch as a language
+    // استخدم الهولندية كلغة
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+يمكنك تعديل المنطق الضبابي للعثور على النص باستخدام الخيارات التالية. قد يساعد ذلك في العثور على تطابق أفضل
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+يحدد مدى قرب التطابق من الموقع الضبابي (المحدد بواسطة الموقع). تطابق الحرف الدقيق الذي يبعد مسافة أحرف عن الموقع الضبابي سيسجل كعدم تطابق كامل. مسافة 0 تتطلب أن يكون التطابق في الموقع المحدد بالضبط. مسافة 1000 ستتطلب تطابقًا مثاليًا ليكون في حدود 800 حرف من الموقع ليتم العثور عليه باستخدام عتبة 0.8.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -167,13 +167,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+يحدد تقريبًا أين في النص من المتوقع العثور على النمط.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -186,13 +186,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+عند أي نقطة يستسلم خوارزمية المطابقة. العتبة 0 تتطلب تطابقًا مثاليًا (للأحرف والموقع)، وستطابق العتبة 1.0 أي شيء.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -205,13 +205,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** false
 
-Whether the search should be case sensitive.
+ما إذا كان البحث يجب أن يكون حساسًا لحالة الأحرف.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -224,13 +224,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+سيتم إرجاع المطابقات التي يتجاوز طولها هذه القيمة فقط. (على سبيل المثال، إذا كنت تريد تجاهل مطابقات الحرف الواحد في النتيجة، قم بتعيينها إلى 2)
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -243,13 +243,13 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+عندما تكون `true`، ستستمر وظيفة المطابقة حتى نهاية نمط البحث حتى إذا تم العثور بالفعل على تطابق مثالي في السلسلة.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrWaitForTextDisplayed({

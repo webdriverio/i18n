@@ -3,27 +3,27 @@ id: macos
 title: MacOS
 ---
 
-WebdriverIO can automate arbitrary MacOS application using [Appium](https://appium.io/docs/en/2.0/). All you need is [XCode](https://developer.apple.com/xcode/) installed on your system, Appium and the [Mac2 Driver](https://github.com/appium/appium-mac2-driver) installed as dependency and the correct capabilities set.
+WebdriverIOは[Appium](https://appium.io/docs/en/2.0/)を使用して任意のMacOSアプリケーションを自動化できます。必要なものは、システムにインストールされた[XCode](https://developer.apple.com/xcode/)、依存関係としてインストールされたAppiumと[Mac2 Driver](https://github.com/appium/appium-mac2-driver)、そして正しく設定されたケイパビリティだけです。
 
-## Getting Started
+## はじめに
 
-To initiate a new WebdriverIO project, run:
+新しいWebdriverIOプロジェクトを開始するには、次のコマンドを実行します：
 
 ```sh
 npm create wdio@latest ./
 ```
 
-An installation wizard will guide you through the process. Ensure you select _"Desktop Testing - of MacOS Applications"_ when it asks you what type of testing you'ld like to do. Afterwards just keep the defaults or modify based on your preference.
+インストールウィザードがプロセスをガイドします。どのタイプのテストを行いたいかを尋ねられたら、必ず「_Desktop Testing - of MacOS Applications_」を選択してください。その後はデフォルトのままにするか、好みに応じて変更してください。
 
-The configuration wizard will install all required Appium packages and creates a `wdio.conf.js` or `wdio.conf.ts` with the necessary configuration to test on MacOS. If you agreed to autogenerate some tests files you can run your first test via `npm run wdio`.
+設定ウィザードは、必要なすべてのAppiumパッケージをインストールし、MacOSでテストするために必要な設定を含む`wdio.conf.js`または`wdio.conf.ts`を作成します。テストファイルの自動生成に同意した場合は、`npm run wdio`で最初のテストを実行できます。
 
 <CreateMacOSProjectAnimation />
 
-That's it 🎉
+以上です 🎉
 
-## Example
+## 例
 
-This is how a simple test can look like that opens the Calculator application, makes a calculation and verifies its result:
+以下は、電卓アプリケーションを開き、計算を行い、その結果を検証する簡単なテストの例です：
 
 ```js
 describe('My Login application', () => {
@@ -37,8 +37,8 @@ describe('My Login application', () => {
 })
 ```
 
-__Note:__ the calculator app was opened automatically at the beginning of the session because `'appium:bundleId': 'com.apple.calculator'` was defined as capability option. You can switch apps during the session at all times.
+__注意:__ 電卓アプリは、ケイパビリティオプションとして`'appium:bundleId': 'com.apple.calculator'`が定義されているため、セッション開始時に自動的に開かれます。セッション中はいつでもアプリを切り替えることができます。
 
-## More Information
+## 詳細情報
 
-For information about specifics around testing on MacOS we recommend to go checkout the [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver) project.
+MacOSでのテストに関する詳細については、[Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver)プロジェクトをチェックすることをお勧めします。

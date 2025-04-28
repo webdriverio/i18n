@@ -1,15 +1,15 @@
 ---
 id: debugging
-title: Debugging
+title: تصحيح الأخطاء
 ---
 
-Debugging is significantly more difficult when several processes spawn dozens of tests in multiple browsers.
+تصحيح الأخطاء يكون أكثر صعوبة بكثير عندما تقوم عدة عمليات بإطلاق عشرات الاختبارات في متصفحات متعددة.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_bw_VWn5IzU" frameborder="0" allowFullScreen></iframe>
 
-For starters, it is extremely helpful to limit parallelism by setting `maxInstances` to `1`, and targeting only those specs and browsers that need to be debugged.
+للبداية، من المفيد للغاية الحد من التوازي عن طريق ضبط `maxInstances` إلى `1`، واستهداف فقط تلك المواصفات والمتصفحات التي تحتاج إلى تصحيح.
 
-In `wdio.conf`:
+في `wdio.conf`:
 
 ```js
 export const config = {
@@ -25,15 +25,15 @@ export const config = {
 }
 ```
 
-## The Debug Command
+## أمر التصحيح (Debug)
 
-In many cases, you can use [`browser.debug()`](/docs/api/browser/debug) to pause your test and inspect the browser.
+في كثير من الحالات، يمكنك استخدام [`browser.debug()`](/docs/api/browser/debug) لإيقاف الاختبار مؤقتًا وفحص المتصفح.
 
-Your command line interface will also switch into REPL mode. This mode allows you to fiddle around with commands and elements on the page. In REPL mode, you can access the `browser` object&mdash;or `$` and `$$` functions&mdash;like you can in your tests.
+ستتحول واجهة سطر الأوامر الخاصة بك أيضًا إلى وضع REPL. يسمح لك هذا الوضع بالتعامل مع الأوامر والعناصر على الصفحة. في وضع REPL، يمكنك الوصول إلى الكائن `browser` — أو الدوال `$` و `$$` — كما يمكنك في اختباراتك.
 
-When using `browser.debug()`, you will likely need to increase the timeout of the test runner to prevent the test runner from failing the test for taking to long.  For example:
+عند استخدام `browser.debug()`، من المحتمل أنك ستحتاج إلى زيادة مهلة مشغل الاختبار لمنع مشغل الاختبار من فشل الاختبار لاستغراقه وقتًا طويلاً. على سبيل المثال:
 
-In `wdio.conf`:
+في `wdio.conf`:
 
 ```js
 jasmineOpts: {
@@ -41,14 +41,15 @@ jasmineOpts: {
 }
 ```
 
-See [timeouts](timeouts) for more information on how to do that using other frameworks.
+انظر [timeouts](timeouts) لمزيد من المعلومات حول كيفية القيام بذلك باستخدام أطر عمل أخرى.
 
-To proceed with the tests after debugging, in the shell use `^C` shortcut or the `.exit` command.
-## Dynamic configuration
+للمتابعة مع الاختبارات بعد التصحيح، استخدم في الشيل اختصار `^C` أو أمر `.exit`.
 
-Note that `wdio.conf.js` can contain Javascript. Since you probably do not want to permanently change your timeout value to 1 day, it can be often helpful to change these settings from the command line using an environment variable.
+## التكوين الديناميكي
 
-Using this technique, you can dynamically change the configuration:
+لاحظ أن `wdio.conf.js` يمكن أن يحتوي على جافا سكريبت. نظرًا لأنك على الأرجح لا تريد تغيير قيمة المهلة الخاصة بك بشكل دائم إلى يوم واحد، غالبًا ما يكون من المفيد تغيير هذه الإعدادات من سطر الأوامر باستخدام متغير بيئي.
+
+باستخدام هذه التقنية، يمكنك تغيير التكوين ديناميكيًا:
 
 ```js
 const debug = process.env.DEBUG
@@ -68,33 +69,33 @@ export const config = {
 }
 ```
 
-You can then prefix the `wdio` command with the `debug` flag:
+يمكنك بعد ذلك إضافة العلامة `debug` قبل أمر `wdio`:
 
 ```
 $ DEBUG=true npx wdio wdio.conf.js --spec ./tests/e2e/myspec.test.js
 ```
 
-...and debug your spec file with the DevTools!
+...وتصحيح ملف المواصفات الخاص بك باستخدام DevTools!
 
-## Debugging with Visual Studio Code (VSCode)
+## التصحيح باستخدام Visual Studio Code (VSCode)
 
-If you want to debug your tests with breakpoints in latest VSCode, you have two options for starting the debugger of which option 1 is the easiest method:
- 1. automatically attaching the debugger
- 2. attaching the debugger using a configuration file
+إذا كنت ترغب في تصحيح اختباراتك باستخدام نقاط التوقف في أحدث إصدار من VSCode، فلديك خياران لبدء المصحح حيث الخيار 1 هو الطريقة الأسهل:
+ 1. إرفاق المصحح تلقائيًا
+ 2. إرفاق المصحح باستخدام ملف تكوين
 
-### VSCode Toggle Auto Attach
+### تبديل الربط التلقائي في VSCode
 
-You can automatically attach the debugger by following these steps in VSCode:
- - Press CMD + Shift + P (Linux and Macos) or CTRL + Shift + P (Windows)
- - Type "attach" into the input field
- - Select "Debug: Toggle Auto Attach"
- - Select "Only With Flag"
+يمكنك ربط المصحح تلقائيًا باتباع هذه الخطوات في VSCode:
+ - اضغط على CMD + Shift + P (Linux و Macos) أو CTRL + Shift + P (Windows)
+ - اكتب "attach" في حقل الإدخال
+ - حدد "Debug: Toggle Auto Attach"
+ - حدد "Only With Flag"
 
- That's it! Now when you run your tests (remember you will need the --inspect flag set in your config as shown earlier) it will automatically start the debugger and stop on the first breakpoint that it reaches.
+هذا كل شيء! الآن عندما تقوم بتشغيل اختباراتك (تذكر أنك ستحتاج إلى تعيين العلامة --inspect في التكوين الخاص بك كما هو موضح سابقًا) سيبدأ تلقائيًا في تشغيل المصحح والتوقف عند أول نقطة توقف يصل إليها.
 
-### VSCode Configuration file
+### ملف تكوين VSCode
 
-It's possible to run all or selected spec file(s). Debug configuration(s) have to be added to `.vscode/launch.json`, to debug selected spec add the following config:
+من الممكن تشغيل جميع ملفات المواصفات أو ملفات محددة. يجب إضافة تكوين(ات) التصحيح إلى `.vscode/launch.json`، لتصحيح مواصفات محددة أضف التكوين التالي:
 ```
 {
     "name": "run select spec",
@@ -113,47 +114,51 @@ It's possible to run all or selected spec file(s). Debug configuration(s) have t
 },
 ```
 
-To run all spec files remove `"--spec", "${file}"` from `"args"`
+لتشغيل جميع ملفات المواصفات، قم بإزالة `"--spec", "${file}"` من `"args"`
 
-Example: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
+مثال: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
 
-Additional info: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+معلومات إضافية: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 
-## Dynamic Repl with Atom
+## REPL ديناميكي مع Atom
 
-If you are an [Atom](https://atom.io/) hacker you can try [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) by [@kurtharriger](https://github.com/kurtharriger) which is a dynamic repl that allows you to execute single code lines in Atom. Watch [this](https://www.youtube.com/watch?v=kdM05ChhLQE) YouTube video to see a demo.
+إذا كنت من مستخدمي [Atom](https://atom.io/)، يمكنك تجربة [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) بواسطة [@kurtharriger](https://github.com/kurtharriger) وهو REPL ديناميكي يسمح لك بتنفيذ أسطر الشفرة الفردية في Atom. شاهد [هذا](https://www.youtube.com/watch?v=kdM05ChhLQE) الفيديو على YouTube لمشاهدة عرض توضيحي.
 
-## Debugging with WebStorm / Intellij
-You can create a node.js debug configuration like this: ![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png) Watch this [YouTube Video](https://www.youtube.com/watch?v=Qcqnmle6Wu8) for more information about how to make a configuration.
+## التصحيح باستخدام WebStorm / Intellij
+يمكنك إنشاء تكوين تصحيح node.js مثل هذا:
+![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png)
+شاهد [فيديو YouTube](https://www.youtube.com/watch?v=Qcqnmle6Wu8) هذا لمزيد من المعلومات حول كيفية إنشاء تكوين.
 
-## Debugging flaky tests
+## تصحيح الاختبارات غير المستقرة
 
-Flaky tests can be really hard to debug so here are some tips how you can try and get that flaky result you got in your CI, reproduced locally.
+يمكن أن تكون الاختبارات غير المستقرة صعبة التصحيح حقًا، لذا إليك بعض النصائح حول كيفية محاولة الحصول على تلك النتيجة غير المستقرة التي حصلت عليها في CI الخاص بك، وإعادة إنتاجها محليًا.
 
-### Network
-To debug network related flakiness use the [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) command.
+### الشبكة
+لتصحيح مشكلات عدم الاستقرار المتعلقة بالشبكة، استخدم أمر [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork).
 ```js
 await browser.throttleNetwork('Regular3G')
 ```
 
-### Rendering speed
-To debug device speed related flakiness use the [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) command. This will cause your pages to render slower which can be caused by many things like running multiple processes in your CI which could be slowing down your tests.
+### سرعة العرض
+لتصحيح مشكلات عدم الاستقرار المتعلقة بسرعة الجهاز، استخدم أمر [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU).
+سيتسبب هذا في عرض صفحاتك بشكل أبطأ، والذي يمكن أن ينتج عن أشياء كثيرة مثل تشغيل عمليات متعددة في CI مما قد يبطئ اختباراتك.
 ```js
 await browser.throttleCPU(4)
 ```
 
-### Test execution speed
+### سرعة تنفيذ الاختبار
 
-If your tests do not seem to be affected it is possible that WebdriverIO is faster than the update from the frontend framework / browser. This happens when using synchronous assertions since WebdriverIO has no chance to retry these assertions anymore. Some examples of code that can break because of this:
+إذا لم تتأثر اختباراتك، فمن الممكن أن WebdriverIO أسرع من التحديث من إطار العمل الأمامي / المتصفح. يحدث هذا عند استخدام التأكيدات المتزامنة لأن WebdriverIO ليس لديه فرصة لإعادة محاولة هذه التأكيدات بعد الآن. بعض الأمثلة على الكود الذي يمكن أن ينكسر بسبب هذا:
 ```js
-expect(elementList.length).toEqual(7) // list might not be populated at the time of the assertion
-expect(await elem.getText()).toEqual('this button was clicked 3 times') // text might not be updated yet at the time of assertion resulting in an error ("this button was clicked 2 times" does not match the expected "this button was clicked 3 times")
-expect(await elem.isDisplayed()).toBe(true) // might not be displayed yet
+expect(elementList.length).toEqual(7) // قد لا تكون القائمة معبأة في وقت التأكيد
+expect(await elem.getText()).toEqual('this button was clicked 3 times') // قد لا يتم تحديث النص بعد في وقت التأكيد مما يؤدي إلى خطأ ("this button was clicked 2 times" لا يتطابق مع المتوقع "this button was clicked 3 times")
+expect(await elem.isDisplayed()).toBe(true) // قد لا يتم عرضه بعد
 ```
-To resolve this problem, asynchronous assertions should be used instead. The above examples would looks like this:
+لحل هذه المشكلة، يجب استخدام التأكيدات غير المتزامنة بدلاً من ذلك. ستبدو الأمثلة أعلاه كما يلي:
 ```js
 await expect(elementList).toBeElementsArrayOfSize(7)
 await expect(elem).toHaveText('this button was clicked 3 times')
 await expect(elem).toBeDisplayed()
 ```
-Using these assertions, WebdriverIO will automatically wait until the condition matches. When asserting text this means that the element needs to exist and the text needs to be equal to the expected value. We talk more about this in our [Best Practices Guide](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).
+باستخدام هذه التأكيدات، سينتظر WebdriverIO تلقائيًا حتى تتطابق الحالة. عند تأكيد النص، هذا يعني أن العنصر يجب أن يكون موجودًا ويجب أن يكون النص مساويًا للقيمة المتوقعة.
+نتحدث أكثر عن هذا في [دليل أفضل الممارسات](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions) الخاص بنا.

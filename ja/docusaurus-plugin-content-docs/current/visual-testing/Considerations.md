@@ -1,32 +1,32 @@
 ---
 index: 1
 id: considerations
-title: Considerations
+title: 考慮事項
 ---
 
-# Key Considerations for Optimal Use
+# 最適な使用のための重要な考慮事項
 
-Before diving into the powerful features of the `@wdio/visual-service`, it's crucial to understand some key considerations that ensure you get the most out of this tool. The following points are designed to guide you through best practices and common pitfalls, helping you achieve accurate and efficient visual testing results. These considerations are not just recommendations, but essential aspects to keep in mind for effectively utilizing the service in real-world scenarios.
+`@wdio/visual-service`の強力な機能を活用する前に、このツールを最大限に活用するためのいくつかの重要な考慮事項を理解することが重要です。以下のポイントは、ベストプラクティスと一般的な落とし穴を案内し、正確で効率的な視覚的テスト結果を達成するのに役立ちます。これらの考慮事項は単なる推奨事項ではなく、実際のシナリオでサービスを効果的に活用するために念頭に置くべき重要な側面です。
 
-## Nature of Comparison
+## 比較の性質
 
-- **Pixel-by-Pixel Basis:** The module performs a pixel-by-pixel comparison of images. While certain aspects can be adjusted (see Comparison Options), the core approach remains a basic pixel comparison.
-- **Impact of Browser Updates:** Be aware that updates to browsers, like Chrome, may affect font rendering, potentially necessitating an update to your baseline images.
+-   **ピクセルごとの比較：** このモジュールは画像をピクセルごとに比較します。特定の側面は調整可能ですが（比較オプションを参照）、コアのアプローチは基本的なピクセル比較のままです。
+-   **ブラウザアップデートの影響：** Chromeなどのブラウザの更新がフォントのレンダリングに影響を与え、ベースライン画像の更新が必要になる可能性があることに注意してください。
 
-## Consistency in Platforms
+## プラットフォームの一貫性
 
-- **Comparing Identical Platforms:** Ensure screenshots are compared within the same platform. For instance, a screenshot from Chrome on a Mac should not be used to compare against one from Chrome on Ubuntu or Windows.
-- **Analogy:** To put it simply, compare _'Apples with Apples, not Apples with Androids'_.
+-   **同一プラットフォームでの比較：** スクリーンショットが同じプラットフォーム内で比較されていることを確認してください。例えば、MacのChromeからのスクリーンショットを、UbuntuやWindowsのChromeからのスクリーンショットと比較するべきではありません。
+-   **アナロジー：** 簡単に言えば、「リンゴとリンゴを比較し、リンゴとAndroidを比較しない」ようにしましょう。
 
-## Caution with Mismatch Percentage
+## 不一致率の取り扱いに注意
 
-- **Risk of Accepting Mismatches:** Exercise caution when accepting a mismatch percentage. This is especially true for large screenshots, where accepting a mismatch might inadvertently overlook significant discrepancies, such as missing buttons or elements.
+-   **不一致の受け入れリスク：** 不一致率を受け入れる際には注意が必要です。特に大きなスクリーンショットでは、不一致を受け入れることで、ボタンや要素の欠落などの重大な不一致を見落とす可能性があります。
 
-## Mobile Screen Simulation
+## モバイル画面のシミュレーション
 
-- **Avoid Browser Resizing for Mobile Simulation:** Do not attempt to simulate mobile screen sizes by resizing desktop browsers and treating them as mobile browsers. Desktop browsers, even when resized, do not accurately replicate the rendering of actual mobile browsers.
-- **Authenticity in Comparison:** This tool aims to compare visuals as they would appear to an end-user. A resized desktop browser does not reflect the true experience on a mobile device.
+-   **モバイルシミュレーションのためにブラウザのサイズ変更を避ける：** デスクトップブラウザのサイズを変更してモバイルブラウザとして扱おうとしないでください。サイズ変更されたデスクトップブラウザでも、実際のモバイルブラウザのレンダリングを正確に複製することはできません。
+-   **比較の真正性：** このツールは、エンドユーザーに表示されるようにビジュアルを比較することを目的としています。デスクトップブラウザのサイズを変更しても、モバイルデバイスでの実際の体験は反映されません。
 
-## Stance on Headless Browsers
+## ヘッドレスブラウザに対するスタンス
 
-- **Not Recommended for Headless Browsers:** The use of this module with headless browsers is not advised. The rationale is that end-users do not interact with headless browsers, and therefore issues arising from such use will not be supported.
+-   **ヘッドレスブラウザには推奨されない：** このモジュールをヘッドレスブラウザで使用することはお勧めしません。その理由は、エンドユーザーはヘッドレスブラウザを使用して操作しないため、そのような使用から生じる問題はサポートされないためです。

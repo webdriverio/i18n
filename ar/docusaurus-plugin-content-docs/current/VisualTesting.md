@@ -1,53 +1,54 @@
 ---
 id: visual-testing
-title: Visual Testing
+title: الاختبار البصري
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## What can it do?
+## ما الذي يمكنه فعله؟
 
-WebdriverIO provides image comparisons on screens, elements or a full-page for
+يوفر WebdriverIO مقارنات الصور على الشاشات والعناصر أو صفحة كاملة لـ
 
-- 🖥️ Desktop browsers (Chrome / Firefox / Safari / Microsoft Edge)
-- 📱 Mobile / Tablet browsers (Chrome on Android emulators / Safari on iOS Simulators / Simulators / real devices) via Appium
-- 📱 Native Apps (Android emulators / iOS Simulators / real devices) via Appium (🌟 **NEW** 🌟)
-- 📳 Hybrid apps via Appium
+-   🖥️ متصفحات سطح المكتب (Chrome / Firefox / Safari / Microsoft Edge)
+-   📱 متصفحات الهواتف المحمولة / الأجهزة اللوحية (Chrome على محاكيات Android / Safari على محاكيات iOS / المحاكيات / الأجهزة الحقيقية) عبر Appium
+-   📱 التطبيقات الأصلية (محاكيات Android / محاكيات iOS / الأجهزة الحقيقية) عبر Appium (🌟 **جديد** 🌟)
+-   📳 التطبيقات الهجينة عبر Appium
 
-through the [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service) which is a lightweight WebdriverIO service.
+من خلال [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service) وهي خدمة خفيفة الوزن من WebdriverIO.
 
-This allows you to:
+هذا يسمح لك بـ:
 
-- save or compare **screens/elements/full-page** screens against a baseline
-- automatically **create a baseline** when no baseline is there
-- **block out custom regions** and even **automatically exclude** a status and or toolbars (mobile only) during a comparison
-- increase the element dimensions screenshots
-- **hide text** during website comparison to:
-  - **improve stability** and prevent font rendering flakiness
-  - only focus on the **layout** of a website
-- use **different comparison methods** and a set of **additional matchers** for better readable tests
-- verify how your website will **support tabbing with your keyboard)**, see also [Tabbing through a website](#tabbing-through-a-website)
-- and much more, see the [service](./visual-testing/service-options) and [method](./visual-testing/method-options) options
+-   حفظ أو مقارنة **شاشات/عناصر/شاشات صفحة كاملة** مقابل خط الأساس
+-   **إنشاء خط أساس تلقائيًا** عندما لا يكون هناك خط أساس
+-   **حجب مناطق مخصصة** وحتى **استبعاد تلقائي** لشريط الحالة وأشرطة الأدوات (للجوال فقط) أثناء المقارنة
+-   زيادة أبعاد لقطات شاشة العناصر
+-   **إخفاء النص** أثناء مقارنة الموقع من أجل:
+    -   **تحسين الاستقرار** ومنع تذبذب عرض الخطوط
+    -   التركيز فقط على **تخطيط** الموقع
+-   استخدام **طرق مقارنة مختلفة** ومجموعة من **مطابقات إضافية** للحصول على اختبارات أكثر قابلية للقراءة
+-   التحقق من كيفية **دعم موقعك للتنقل باستخدام لوحة المفاتيح**، انظر أيضًا [التنقل عبر موقع الويب](#tabbing-through-a-website)
+-   والمزيد، راجع خيارات [الخدمة](./visual-testing/service-options) و[الطريقة](./visual-testing/method-options)
 
-The service is a lightweight module to retrieve the needed data and screenshots for all browsers/devices. The comparison power comes from [ResembleJS](https://github.com/Huddle/Resemble.js). If you want to compare images online you can check the [online tool](http://rsmbl.github.io/Resemble.js/).
+الخدمة هي وحدة خفيفة الوزن لاسترداد البيانات ولقطات الشاشة اللازمة لجميع المتصفحات/الأجهزة. قوة المقارنة تأتي من [ResembleJS](https://github.com/Huddle/Resemble.js). إذا كنت ترغب في مقارنة الصور عبر الإنترنت، يمكنك التحقق من [الأداة عبر الإنترنت](http://rsmbl.github.io/Resemble.js/).
 
-:::info NOTE For Native/Hybrid Apps
+:::info ملاحظة للتطبيقات الأصلية/الهجينة
+يمكن استخدام الطرق `saveScreen`، `saveElement`، `checkScreen`، `checkElement` والمطابقات `toMatchScreenSnapshot` و`toMatchElementSnapshot` للتطبيقات/السياقات الأصلية.
 
-Please use the property `isHybridApp:true` in your service settings when you want to use it for Hybrid Apps.
+يرجى استخدام الخاصية `isHybridApp:true` في إعدادات الخدمة الخاصة بك عندما تريد استخدامها للتطبيقات الهجينة.
 :::
 
-## Installation
+## التثبيت
 
-The easiest way is to keep `@wdio/visual-service` as a dev-dependency in your `package.json`, via:
+الطريقة الأسهل هي الاحتفاظ بـ `@wdio/visual-service` كتبعية تطوير في ملف `package.json` الخاص بك، عبر:
 
 ```sh
 npm install --save-dev @wdio/visual-service
 ```
 
-## Usage
+## الاستخدام
 
-`@wdio/visual-service` can be used as a normal service. You can set it up in your configuration file with the following:
+يمكن استخدام `@wdio/visual-service` كخدمة عادية. يمكنك إعدادها في ملف التكوين الخاص بك على النحو التالي:
 
 ```js
 import path from "node:path";
@@ -62,12 +63,12 @@ export const config = {
         [
             "visual",
             {
-                // Some options, see the docs for more
+                // بعض الخيارات، راجع الوثائق للمزيد
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 formatImageName: "{tag}-{logName}-{width}x{height}",
                 screenshotPath: path.join(process.cwd(), "tmp"),
                 savePerInstance: true,
-                // ... more options
+                // ... المزيد من الخيارات
             },
         ],
     ],
@@ -75,17 +76,16 @@ export const config = {
 };
 ```
 
-More service options can be found [here](/docs/visual-testing/service-options).
+يمكن العثور على المزيد من خيارات الخدمة [هنا](/docs/visual-testing/service-options).
 
-Once set up in your WebdriverIO configuration, you can go ahead and add visual assertions to [your tests](/docs/visual-testing/writing-tests).
+بمجرد إعدادها في تكوين WebdriverIO الخاص بك، يمكنك المضي قدمًا وإضافة تأكيدات بصرية إلى [اختباراتك](/docs/visual-testing/writing-tests).
 
-### Capabilities
+### القدرات
+لاستخدام وحدة الاختبار البصري، **لا تحتاج إلى إضافة أي خيارات إضافية إلى قدراتك**. ومع ذلك، في بعض الحالات، قد ترغب في إضافة بيانات وصفية إضافية إلى اختباراتك البصرية، مثل `logName`.
 
-To use the Visual Testing module, **you don’t need to add any extra options to your capabilities**. However, in some cases, you may want to add additional metadata to your visual tests, such as a `logName`.
+يتيح لك `logName` تعيين اسم مخصص لكل قدرة، والذي يمكن تضمينه بعد ذلك في أسماء ملفات الصور. هذا مفيد بشكل خاص لتمييز لقطات الشاشة التي تم أخذها عبر متصفحات أو أجهزة أو تكوينات مختلفة.
 
-The `logName` allows you to assign a custom name to each capability, which can then be included in the image filenames. This is particularly useful for distinguishing screenshots taken across different browsers, devices, or configurations.
-
-To enable this, you can define `logName` in the `capabilities` section and ensure the `formatImageName` option in the Visual Testing service references it. Here's how you can set it up:
+لتمكين ذلك، يمكنك تحديد `logName` في قسم `capabilities` والتأكد من أن خيار `formatImageName` في خدمة الاختبار البصري يشير إليه. إليك كيفية إعداده:
 
 ```js
 import path from "node:path";
@@ -100,13 +100,13 @@ export const config = {
         {
             browserName: 'chrome',
             'wdio-ics:options': {
-                logName: 'chrome-mac-15', // Custom log name for Chrome
+                logName: 'chrome-mac-15', // اسم سجل مخصص لـ Chrome
             },
         }
         {
             browserName: 'firefox',
             'wdio-ics:options': {
-                logName: 'firefox-mac-15', // Custom log name for Firefox
+                logName: 'firefox-mac-15', // اسم سجل مخصص لـ Firefox
             },
         }
     ],
@@ -114,12 +114,12 @@ export const config = {
         [
             "visual",
             {
-                // Some options, see the docs for more
+                // بعض الخيارات، راجع الوثائق للمزيد
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 screenshotPath: path.join(process.cwd(), "tmp"),
-                // The format below will use the `logName` from capabilities
+                // التنسيق أدناه سيستخدم `logName` من القدرات
                 formatImageName: "{tag}-{logName}-{width}x{height}",
-                // ... more options
+                // ... المزيد من الخيارات
             },
         ],
     ],
@@ -127,32 +127,30 @@ export const config = {
 };
 ```
 
-#### How it works
+#### كيف يعمل
+1. إعداد `logName`:
 
-1. Setting Up the `logName`:
+    - في قسم `capabilities`، قم بتعيين `logName` فريد لكل متصفح أو جهاز. على سبيل المثال، `chrome-mac-15` يحدد الاختبارات التي تعمل على Chrome على نظام التشغيل macOS الإصدار 15.
 
-   - In the `capabilities` section, assign a unique `logName` to each browser or device. For example, `chrome-mac-15` identifies tests running on Chrome on macOS version 15.
+2. تسمية الصور المخصصة:
 
-2. Custom Image Naming:
+    - يدمج خيار `formatImageName` الـ `logName` في أسماء ملفات لقطات الشاشة. على سبيل المثال، إذا كان الـ `tag` هو homepage والدقة هي `1920x1080`، فقد يبدو اسم الملف الناتج كالتالي:
 
-   - The `formatImageName` option integrates the `logName` into the screenshot filenames. For example, if the `tag` is homepage and the resolution is `1920x1080`, the resulting filename might look like this:
+        `homepage-chrome-mac-15-1920x1080.png`
 
-     `homepage-chrome-mac-15-1920x1080.png`
+3. فوائد التسمية المخصصة:
 
-3. Benefits of Custom Naming:
+    - يصبح التمييز بين لقطات الشاشة من مختلف المتصفحات أو الأجهزة أسهل بكثير، خاصة عند إدارة خطوط الأساس وتصحيح الاختلافات.
 
-   - Distinguishing between screenshots from different browsers or devices becomes much easier, especially when managing baselines and debugging discrepancies.
+4. ملاحظة حول الإعدادات الافتراضية:
 
-4. Note on Defaults:
-
-   -If `logName` is not set in the capabilities, the `formatImageName` option will show it as an empty string in the filenames (`homepage--15-1920x1080.png`)
+    - إذا لم يتم تعيين `logName` في القدرات، فسيظهر خيار `formatImageName` كسلسلة فارغة في أسماء الملفات (`homepage--15-1920x1080.png`)
 
 ### WebdriverIO MultiRemote
 
-We also support [MultiRemote](https://webdriver.io/docs/multiremote/). To make this work properly make sure that you add `wdio-ics:options` to your
-capabilities as you can see below. This will make sure that each screenshot will have its own unique name.
+نحن ندعم أيضًا [MultiRemote](https://webdriver.io/docs/multiremote/). لجعل هذا يعمل بشكل صحيح، تأكد من إضافة `wdio-ics:options` إلى قدراتك كما يمكنك أن ترى أدناه. هذا سيضمن أن كل لقطة شاشة سيكون لها اسمها الفريد.
 
-[Writing your tests](/docs/visual-testing/writing-tests) will not be any different in comparison to using the [testrunner](https://webdriver.io/docs/testrunner)
+[كتابة اختباراتك](/docs/visual-testing/writing-tests) لن تكون مختلفة مقارنة باستخدام [testrunner](https://webdriver.io/docs/testrunner)
 
 ```js
 // wdio.conf.js
@@ -164,7 +162,7 @@ export const config = {
                 "goog:chromeOptions": {
                     args: ["disable-infobars"],
                 },
-                // THIS!!!
+                // هذا!!!
                 "wdio-ics:options": {
                     logName: "chrome-latest-one",
                 },
@@ -176,7 +174,7 @@ export const config = {
                 "goog:chromeOptions": {
                     args: ["disable-infobars"],
                 },
-                // THIS!!!
+                // هذا!!!
                 "wdio-ics:options": {
                     logName: "chrome-latest-two",
                 },
@@ -186,9 +184,9 @@ export const config = {
 };
 ```
 
-### Running Programmatically
+### التشغيل برمجياً
 
-Here is a minimal example of how to use `@wdio/visual-service` via `remote` options:
+فيما يلي مثال بسيط لكيفية استخدام `@wdio/visual-service` عبر خيارات `remote`:
 
 ```js
 import { remote } from "webdriverio";
@@ -205,73 +203,73 @@ const browser = await remote({
     },
 });
 
-// "Start" the service to add the custom commands to the `browser`
+// "ابدأ" الخدمة لإضافة الأوامر المخصصة إلى `browser`
 visualService.remoteSetup(browser);
 
 await browser.url("https://webdriver.io/");
 
-// or use this for ONLY saving a screenshot
+// أو استخدم هذا لحفظ لقطة شاشة فقط
 await browser.saveFullPageScreen("examplePaged", {});
 
-// or use this for validating. Both methods don't need to be combined, see the FAQ
+// أو استخدم هذا للتحقق. لا يلزم الجمع بين الطريقتين، راجع الأسئلة الشائعة
 await browser.checkFullPageScreen("examplePaged", {});
 
 await browser.deleteSession();
 ```
 
-### Tabbing through a website
+### التنقل عبر موقع الويب
 
-You can check if a website is accessible by using the keyboard <kbd>TAB</kbd>-key. Testing this part of accessibility has always been a time-consuming (manual) job and pretty hard to do through automation.
-With the methods `saveTabbablePage` and `checkTabbablePage`, you can now draw lines and dots on your website to verify the tabbing order.
+يمكنك التحقق مما إذا كان موقع الويب يمكن الوصول إليه باستخدام مفتاح <kbd>TAB</kbd> في لوحة المفاتيح. اختبار هذا الجزء من إمكانية الوصول كان دائمًا مهمة تستغرق وقتًا طويلاً (يدويًا) وصعبة من خلال الأتمتة.
+باستخدام الطرق `saveTabbablePage` و`checkTabbablePage`، يمكنك الآن رسم خطوط ونقاط على موقع الويب الخاص بك للتحقق من ترتيب التبويب.
 
-Be aware of the fact that this is only useful for desktop browsers and **NOT\*\*** for mobile devices. All desktop browsers support this feature.
+كن على علم بحقيقة أن هذا مفيد فقط لمتصفحات سطح المكتب و**ليس** للأجهزة المحمولة. جميع متصفحات سطح المكتب تدعم هذه الميزة.
 
 :::note
 
-The work is inspired by [Viv Richards](https://github.com/vivrichards600) his blog post about ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).
+العمل مستوحى من منشور مدونة [Viv Richards](https://github.com/vivrichards600) حول ["أتمتة إمكانية التبويب في الصفحة (هل هذه كلمة؟) باستخدام الاختبار البصري"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).
 
-The way tabbable elements are selected is based on the module [tabbable](https://github.com/davidtheclark/tabbable). If there are any issues regarding the tabbing please check the [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) and especially the [More ](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)Details section.
+تستند طريقة تحديد العناصر القابلة للتبويب إلى الوحدة [tabbable](https://github.com/davidtheclark/tabbable). إذا كانت هناك أي مشكلات تتعلق بالتبويب، يرجى التحقق من [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) وخاصة قسم [المزيد من التفاصيل](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
-#### How does it work
+#### كيف يعمل
 
-Both methods will create a `canvas` element on your website and draw lines and dots to show you where your TAB would go if an end-user would use it. After that, it will create a full-page screenshot to give you a good overview of the flow.
+ستقوم كلتا الطريقتين بإنشاء عنصر `canvas` على موقع الويب الخاص بك ورسم خطوط ونقاط لإظهار المكان الذي سيذهب إليه TAB الخاص بك إذا استخدمه المستخدم النهائي. بعد ذلك، سيتم إنشاء لقطة شاشة للصفحة بأكملها لتوفير نظرة عامة جيدة على التدفق.
 
 :::important
 
-\*\*Use the `saveTabbablePage` only when you need to create a screenshot and DON'T want to compare it \*\*with a **baseline** image.\*\*\*\*
+**استخدم `saveTabbablePage` فقط عندما تحتاج إلى إنشاء لقطة شاشة ولا تريد مقارنتها مع صورة خط الأساس.**
 
 :::
 
-When you want to compare the tabbing flow with a baseline, then you can use the `checkTabbablePage`-method. You **DON'T** need to use the two methods together. If there is already a baseline image created, which can automatically be done by providing `autoSaveBaseline: true` when you instantiate the service,
-the `checkTabbablePage` will first create the _actual_ image and then compare it against the baseline.
+عندما تريد مقارنة تدفق التبويب مع خط أساس، يمكنك استخدام طريقة `checkTabbablePage`. **لا تحتاج** إلى استخدام الطريقتين معًا. إذا كانت هناك بالفعل صورة خط أساس تم إنشاؤها، والتي يمكن إنشاؤها تلقائيًا من خلال توفير `autoSaveBaseline: true` عند تهيئة الخدمة،
+فإن `checkTabbablePage` ستقوم أولاً بإنشاء الصورة _الفعلية_ ثم تقارنها مع خط الأساس.
 
-##### Options
+##### الخيارات
 
-Both methods use the same options as the [`saveFullPageScreen`](https://github.com/wswebcreation/webdriver-image-comparison/blob/master/docs/OPTIONS.md#savefullpagescreen-or-savetabbablepage) or the
+تستخدم كلتا الطريقتين نفس الخيارات مثل [`saveFullPageScreen`](https://github.com/wswebcreation/webdriver-image-comparison/blob/master/docs/OPTIONS.md#savefullpagescreen-or-savetabbablepage) أو
 [`compareFullPageScreen`](https://github.com/wswebcreation/webdriver-image-comparison/blob/master/docs/OPTIONS.md#comparefullpagescreen-or-comparetabbablepage).
 
-#### Example
+#### مثال
 
-This is an example of how the tabbing works on our [guinea pig website](https://guinea-pig.webdriver.io/image-compare.html):
+هذا مثال على كيفية عمل التبويب على [موقع خنزير غينيا](https://guinea-pig.webdriver.io/image-compare.html) الخاص بنا:
 
 ![WDIO tabbing example](/img/visual/tabbable-chrome-latest-1366x768.png)
 
-### Automatically update failed Visual Snapshots
+### تحديث لقطات Visual الفاشلة تلقائيًا
 
-Update the baseline images through the command line by adding the argument `--update-visual-baseline`. This will
+قم بتحديث صور خط الأساس من خلال سطر الأوامر بإضافة الوسيطة `--update-visual-baseline`. سيؤدي هذا إلى
 
-- automatically copy the actual take screenshot and put it in the baseline folder
-- if there are differences it will let the test pass because the baseline has been updated
+-   نسخ لقطة الشاشة المأخوذة تلقائيًا ووضعها في مجلد خط الأساس
+-   إذا كانت هناك اختلافات، سيسمح للاختبار بالمرور لأنه تم تحديث خط الأساس
 
-**Usage:**
+**الاستخدام:**
 
 ```sh
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-When running logs info/debug mode you will see the following logs added
+عند تشغيل سجلات في وضع المعلومات/التصحيح، سترى السجلات التالية مضافة
 
 ```logs
 [0-0] ..............
@@ -283,13 +281,12 @@ When running logs info/debug mode you will see the following logs added
 [0-0] ..........
 ```
 
-## Typescript support
+## دعم TypeScript
 
-This module includes TypeScript support, allowing you to benefit from auto-completion, type safety, and improved developer experience when using the Visual Testing service.
+تتضمن هذه الوحدة دعمًا لـ TypeScript، مما يتيح لك الاستفادة من الإكمال التلقائي وسلامة النوع وتحسين تجربة المطور عند استخدام خدمة الاختبار البصري.
 
-### Step 1: Add Type Definitions
-
-To ensure TypeScript recognizes the module types, add the following entry to the types field in your tsconfig.json:
+### الخطوة 1: إضافة تعريفات النوع
+للتأكد من أن TypeScript يتعرف على أنواع الوحدة، أضف الإدخال التالي إلى حقل types في tsconfig.json الخاص بك:
 
 ```json
 {
@@ -299,14 +296,13 @@ To ensure TypeScript recognizes the module types, add the following entry to the
 }
 ```
 
-### Step 2: Enable Type Safety for Service Options
-
-To enforce type checking on the service options, update your WebdriverIO configuration:
+### الخطوة 2: تمكين سلامة النوع لخيارات الخدمة
+لفرض التحقق من النوع على خيارات الخدمة، قم بتحديث تكوين WebdriverIO الخاص بك:
 
 ```ts
 // wdio.conf.ts
 import { join } from 'node:path';
-// Import the type definition
+// استيراد تعريف النوع
 import type { VisualServiceOptions } from '@wdio/visual-service';
 
 export const config = {
@@ -318,32 +314,32 @@ export const config = {
         [
             "visual",
             {
-                // Service options
+                // خيارات الخدمة
                 baselineFolder: join(process.cwd(), './__snapshots__/'),
                 formatImageName: '{tag}-{logName}-{width}x{height}',
                 screenshotPath: join(process.cwd(), '.tmp/'),
-            } satisfies VisualServiceOptions, // Ensures type safety
+            } satisfies VisualServiceOptions, // يضمن سلامة النوع
         ],
     ],
     // ...
 };
 ```
 
-## System Requirements
+## متطلبات النظام
 
-### Version 5 and up
+### الإصدار 5 وما فوق
 
-For version 5 and up, this module is a purely JavaScript-based module with no additional system dependencies beyond the general [project requirements](/docs/gettingstarted#system-requirements). It uses [Jimp](https://github.com/jimp-dev/jimp) which is an image processing library for Node written entirely in JavaScript, with zero native dependencies.
+بالنسبة للإصدار 5 وما فوق، هذه الوحدة هي وحدة قائمة على JavaScript بشكل خالص دون تبعيات نظام إضافية بخلاف [متطلبات المشروع العامة](/docs/gettingstarted#system-requirements). يستخدم [Jimp](https://github.com/jimp-dev/jimp) وهي مكتبة معالجة صور لـ Node مكتوبة بالكامل بلغة JavaScript، بدون تبعيات أصلية.
 
-### Version 4 and Lower
+### الإصدار 4 والإصدارات الأقدم
 
-For version 4 and lower, this module relies on [Canvas](https://github.com/Automattic/node-canvas), a canvas implementation for Node.js. Canvas depends on [Cairo](https://cairographics.org/).
+بالنسبة للإصدار 4 والإصدارات الأقدم، تعتمد هذه الوحدة على [Canvas](https://github.com/Automattic/node-canvas)، وهو تنفيذ للوحة رسم لـ Node.js. يعتمد Canvas على [Cairo](https://cairographics.org/).
 
-#### Installation Details
+#### تفاصيل التثبيت
 
-By default, binaries for macOS, Linux and Windows will be downloaded during your project's `npm install`. If you don't have a supported OS or processor architecture, the module will be compiled on your system. This requires several dependencies, including Cairo and Pango.
+بشكل افتراضي، سيتم تنزيل الملفات الثنائية لنظام macOS وLinux وWindows أثناء تثبيت `npm install` لمشروعك. إذا لم يكن لديك نظام تشغيل أو بنية معالج مدعومة، فسيتم تجميع الوحدة على نظامك. هذا يتطلب العديد من التبعيات، بما في ذلك Cairo وPango.
 
-For detailed installation information, see the [node-canvas wiki](https://github.com/Automattic/node-canvas/wiki/_pages). Below are one-line installation instructions for common operating systems. Note that `libgif/giflib`, `librsvg`, and `libjpeg` are optional and only needed for GIF, SVG, and JPEG support, respectively. Cairo v1.10.0 or later is required.
+للحصول على معلومات تثبيت مفصلة، راجع [wiki node-canvas](https://github.com/Automattic/node-canvas/wiki/_pages). فيما يلي تعليمات التثبيت بسطر واحد لأنظمة التشغيل الشائعة. لاحظ أن `libgif/giflib` و`librsvg` و`libjpeg` اختيارية ومطلوبة فقط لدعم GIF وSVG وJPEG، على التوالي. مطلوب Cairo v1.10.0 أو أحدث.
 
 <Tabs
 defaultValue="osx"
@@ -359,66 +355,52 @@ values={[
 
 > <TabItem value="osx">
 
-````
- Using [Homebrew](https://brew.sh/):
+     باستخدام [Homebrew](https://brew.sh/):
 
- ```sh
- brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
- ```
+     ```sh
+     brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
+     ```
 
-**Mac OS X v10.11+:** If you have recently updated to Mac OS X v10.11+ and are experiencing trouble when compiling, run the following command: `xcode-select --install`. Read more about the problem [on Stack Overflow](http://stackoverflow.com/a/32929012/148072).
-If you have Xcode 10.0 or higher installed, to build from source you need NPM 6.4.1 or higher.
-````
+    **Mac OS X v10.11+:** إذا كنت قد قمت مؤخرًا بالتحديث إلى Mac OS X v10.11+ وتواجه مشكلة عند التجميع، قم بتشغيل الأمر التالي: `xcode-select --install`. اقرأ المزيد عن المشكلة [على Stack Overflow](http://stackoverflow.com/a/32929012/148072).
+    إذا كان لديك Xcode 10.0 أو أعلى مثبتًا، للبناء من المصدر تحتاج إلى NPM 6.4.1 أو أعلى.
 
 </TabItem>
 <TabItem value="ubuntu">
 
-````
-```sh
-sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
-```
-````
+    ```sh
+    sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+    ```
 
 </TabItem>
 <TabItem value="fedora">
 
-````
-```sh
-sudo yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel
-```
-````
+    ```sh
+    sudo yum install gcc-c++ cairo-devel pango-devel libjpeg-turbo-devel giflib-devel
+    ```
 
 </TabItem>
 <TabItem value="solaris">
 
-````
-```sh
-pkgin install cairo pango pkg-config xproto renderproto kbproto xextproto
-```
-````
+    ```sh
+    pkgin install cairo pango pkg-config xproto renderproto kbproto xextproto
+    ```
 
 </TabItem>
 <TabItem value="openbsd">
 
-````
-```sh
-doas pkg_add cairo pango png jpeg giflib
-```
-````
+    ```sh
+    doas pkg_add cairo pango png jpeg giflib
+    ```
 
 </TabItem>
 <TabItem value="windows">
 
-```
-See the [wiki](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows)
-```
+    انظر [wiki](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows)
 
 </TabItem>
 <TabItem value="others">
 
-```
-See the [wiki](https://github.com/Automattic/node-canvas/wiki)
-```
+    انظر [wiki](https://github.com/Automattic/node-canvas/wiki)
 
 </TabItem>
 </Tabs>

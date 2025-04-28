@@ -1,11 +1,11 @@
 ---
 id: selectors
-title: Selectors
+title: セレクタ
 ---
 
-The [WebDriver Protocol](https://w3c.github.io/webdriver/) provides several selector strategies to query an element. WebdriverIO simplifies them to keep selecting elements simple. Please note that even though the command to query elements is called `$` and `$$`, they have nothing to do with jQuery or the [Sizzle Selector Engine](https://github.com/jquery/sizzle).
+[WebDriver Protocol](https://w3c.github.io/webdriver/) は要素をクエリするためのいくつかのセレクタ戦略を提供しています。WebdriverIOはこれらを簡素化して要素の選択を簡単に保ちます。コマンドが`$`と`$$`と呼ばれていますが、jQueryや[Sizzle Selector Engine](https://github.com/jquery/sizzle)とは関係がないことに注意してください。
 
-While there are so many different selectors available, only a few of them provide a resilient way to find the right element. For example, given the following button:
+様々なセレクタが利用可能ですが、その中でも適切な要素を見つけるための堅牢な方法を提供するものはごく一部です。例えば、次のようなボタンがあるとします：
 
 ```html
 <button
@@ -19,119 +19,120 @@ While there are so many different selectors available, only a few of them provid
 </button>
 ```
 
-We __do__ and __do not__ recommend the following selectors:
+以下のセレクタを __推奨__ および __非推奨__ とします：
 
-| Selector                                      | Recommended  | Notes                                                                                                                                                                       |
-| --------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$('button')`                                 | 🚨 Never      | Worst - too generic, no context.                                                                                                                                            |
-| `$('.btn.btn-large')`                         | 🚨 Never      | Bad. Coupled to styling. Highly subject to change.                                                                                                                          |
-| `$('#main')`                                  | ⚠️ Sparingly | Better. But still coupled to styling or JS event listeners.                                                                                                                 |
-| `$(() => document.queryElement('button'))` | ⚠️ Sparingly | Effective querying, complex to write.                                                                                                                                       |
-| `$('button[name="submission"]')`              | ⚠️ Sparingly | Coupled to the `name` attribute which has HTML semantics.                                                                                                                   |
-| `$('button[data-testid="submit"]')`           | ✅ Good       | Requires additional attribute, not connected to a11y.                                                                                                                       |
-| `$('aria/Submit')` or `$('button=Submit')`    | ✅ Always     | Best. Resembles how the user interacts with the page. It is recommended to use your frontend's translation files so your tests never fail when the translations are updated |
+| セレクタ | 推奨 | 備考 |
+| -------- | ----------- | ----- |
+| `$('button')` | 🚨 絶対に使用しない | 最悪 - 汎用的すぎて、コンテキストがない。 |
+| `$('.btn.btn-large')` | 🚨 絶対に使用しない | 悪い。スタイリングに依存。変更の可能性が高い。 |
+| `$('#main')` | ⚠️ 控えめに | より良い。しかしスタイリングやJSイベントリスナーに依存している。 |
+| `$(() => document.queryElement('button'))` | ⚠️ 控えめに | 効果的なクエリだが、記述が複雑。 |
+| `$('button[name="submission"]')` | ⚠️ 控えめに | HTML意味論を持つ`name`属性に依存している。 |
+| `$('button[data-testid="submit"]')` | ✅ 良い | 追加の属性が必要だが、a11yと関連付けられていない。 |
+| `$('aria/Submit')` または `$('button=Submit')` | ✅ 常に使用 | 最良。ユーザーがページとどのように対話するかを反映している。フロントエンドの翻訳ファイルを使用して、翻訳が更新されてもテストが失敗しないようにすることをお勧めします |
 
-## CSS Query Selector
+## CSSクエリセレクタ
 
-If not indicated otherwise, WebdriverIO will query elements using the [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) pattern, e.g.:
+特に指定がない限り、WebdriverIOは[CSSセレクタ](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)パターンを使用して要素をクエリします：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L7-L8
 ```
 
-## Link Text
+## リンクテキスト
 
-To get an anchor element with a specific text in it, query the text starting with an equals (`=`) sign.
+特定のテキストを含むアンカー要素を取得するには、イコール（`=`）記号で始まるテキストをクエリします。
 
-For example:
+例：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L3
 ```
 
-You can query this element by calling:
+次のように呼び出してこの要素をクエリできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L16-L18
 ```
 
-## Partial Link Text
+## 部分リンクテキスト
 
-To find a anchor element whose visible text partially matches your search value, query it by using `*=` in front of the query string (e.g. `*=driver`).
+表示されるテキストが検索値に部分的に一致するアンカー要素を見つけるには、
+クエリ文字列の前に `*=` を使用してクエリします（例：`*=driver`）。
 
-You can query the element from the example above by also calling:
+上の例の要素は次のように呼び出してクエリすることもできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L24-L26
 ```
 
-__Note:__ You can't mix multiple selector strategies in one selector. Use multiple chained element queries to reach the same goal, e.g.:
+__注意：__ 一つのセレクタで複数のセレクタ戦略を混在させることはできません。同じ目標を達成するには、複数の連鎖した要素クエリを使用してください。例：
 
 ```js
-const elem = await $('header h1*=Welcome') // doesn't work!!!
-// use instead
+const elem = await $('header h1*=Welcome') // これは動作しません!!!
+// 代わりに次のようにします
 const elem = await $('header').$('*=driver')
 ```
 
-## Element with certain text
+## 特定のテキストを持つ要素
 
-The same technique can be applied to elements as well. Additionally, it is also possible to do a case-insensitive matching using `.=` or `.*=` within the query.
+同じテクニックを要素にも適用できます。さらに、クエリ内で `.=` または `.*=` を使用して大文字小文字を区別しないマッチングを行うことも可能です。
 
-For example, here's a query for a level 1 heading with the text "Welcome to my Page":
+例えば、「Welcome to my Page」というテキストを持つレベル1の見出しに対するクエリは次のようになります：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L2
 ```
 
-You can query this element by calling:
+次のように呼び出してこの要素をクエリできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L35C1-L38
 ```
 
-Or using query partial text:
+または部分テキストを使用してクエリします：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L44C9-L47
 ```
 
-The same works for `id` and `class` names:
+同様に `id` や `class` 名に対しても有効です：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L4
 ```
 
-You can query this element by calling:
+次のように呼び出してこの要素をクエリできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L49-L67
 ```
 
-__Note:__ You can't mix multiple selector strategies in one selector. Use multiple chained element queries to reach the same goal, e.g.:
+__注意：__ 一つのセレクタで複数のセレクタ戦略を混在させることはできません。同じ目標を達成するには、複数の連鎖した要素クエリを使用してください。例：
 
 ```js
-const elem = await $('header h1*=Welcome') // doesn't work!!!
-// use instead
+const elem = await $('header h1*=Welcome') // これは動作しません!!!
+// 代わりに次のようにします
 const elem = await $('header').$('h1*=Welcome')
 ```
 
-## Tag Name
+## タグ名
 
-To query an element with a specific tag name, use `<tag>` or `<tag />`.
+特定のタグ名を持つ要素をクエリするには、`<tag>` または `<tag />` を使用します。
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L5
 ```
 
-You can query this element by calling:
+次のように呼び出してこの要素をクエリできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L61-L62
 ```
 
-## Name Attribute
+## name属性
 
-For querying elements with a specific name attribute you can either use a normal CSS3 selector or the provided name strategy from the [JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol) by passing something like [name="some-name"] as selector parameter:
+特定のname属性を持つ要素をクエリするには、通常のCSS3セレクタを使用するか、[JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol)から提供される名前戦略を使用して、セレクタパラメータとして[name="some-name"]のようなものを渡すことができます：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L6
@@ -141,41 +142,41 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L68-L69
 ```
 
-__Note:__ This selector strategy it deprecated and only works in old browser that are run by the JSONWireProtocol protocol or by using Appium.
+__注意：__ このセレクタ戦略は非推奨であり、JSONWireProtocolプロトコルで実行される古いブラウザまたはAppiumを使用している場合にのみ機能します。
 
 ## xPath
 
-It is also possible to query elements via a specific [xPath](https://developer.mozilla.org/en-US/docs/Web/XPath).
+[xPath](https://developer.mozilla.org/en-US/docs/Web/XPath)を使用して要素をクエリすることも可能です。
 
-An xPath selector has a format like `//body/div[6]/div[1]/span[1]`.
+xPathセレクタは `//body/div[6]/div[1]/span[1]` のような形式を持ちます。
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/xpath.html
 ```
 
-You can query the second paragraph by calling:
+次のように呼び出して2番目の段落をクエリできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L75-L76
 ```
 
-You can use xPath to also traverse up and down the DOM tree:
+xPathを使ってDOMツリーの上下をトラバースすることもできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L78-L79
 ```
 
-## Accessibility Name Selector
+## アクセシビリティ名セレクタ
 
-Query elements by their accessible name. The accessible name is what is announced by a screen reader when that element receives focus. The value of the accessible name can be both visual content or hidden text alternatives.
+アクセシブルな名前で要素をクエリします。アクセシブルな名前とは、その要素にフォーカスが移ったときにスクリーンリーダーが読み上げるものです。アクセシブルな名前の値は、視覚的なコンテンツと非表示のテキスト代替の両方が可能です。
 
 :::info
 
-You can read more about this selector in our [release blog post](/blog/2022/09/05/accessibility-selector)
+このセレクタについての詳細は[リリースブログ記事](/blog/2022/09/05/accessibility-selector)で読むことができます
 
 :::
 
-### Fetch by `aria-label`
+### `aria-label`で取得
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L1
@@ -185,7 +186,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L86-L87
 ```
 
-### Fetch by `aria-labelledby`
+### `aria-labelledby`で取得
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L2-L3
@@ -195,7 +196,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L93-L94
 ```
 
-### Fetch by content
+### コンテンツで取得
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L4
@@ -205,7 +206,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L100-L101
 ```
 
-### Fetch by title
+### タイトルで取得
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L5
@@ -215,7 +216,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L107-L108
 ```
 
-### Fetch by `alt` property
+### `alt`属性で取得
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L6
@@ -225,9 +226,9 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L114-L115
 ```
 
-## ARIA - Role Attribute
+## ARIA - ロール属性
 
-For querying elements based on [ARIA roles](https://www.w3.org/TR/html-aria/#docconformance), you can directly specify role of the element like `[role=button]` as selector parameter:
+[ARIAロール](https://www.w3.org/TR/html-aria/#docconformance)に基づいて要素をクエリするには、セレクタパラメータとして `[role=button]` のように直接要素のロールを指定できます：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L13
@@ -237,69 +238,69 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L131-L132
 ```
 
-## ID Attribute
+## ID属性
 
-Locator strategy "id" is not supported in WebDriver protocol, one should use either CSS or xPath selector strategies instead to find elements using ID.
+ロケータ戦略「id」はWebDriverプロトコルではサポートされていません。IDを使用して要素を見つけるには、CSSまたはxPathセレクタ戦略を使用する必要があります。
 
-However some drivers (e.g. [Appium You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)) might still [support](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies) this selector.
+ただし、一部のドライバ（例：[Appium You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)）ではこのセレクタを[サポート](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)している場合があります。
 
-Current supported selector syntaxes for ID are:
+現在サポートされているIDのセレクタ構文は以下の通りです：
 
 ```js
-//css locator
+//cssロケータ
 const button = await $('#someid')
-//xpath locator
+//xpathロケータ
 const button = await $('//*[@id="someid"]')
-//id strategy
-// Note: works only in Appium or similar frameworks which supports locator strategy "ID"
+//id戦略
+// 注意：AppiumまたはロケータストラテジーIDをサポートする同様のフレームワークでのみ動作します
 const button = await $('id=resource-id/iosname')
 ```
 
-## JS Function
+## JS関数
 
-You can also use JavaScript functions to fetch elements using web native APIs. Of course, you can only do this inside a web context (e.g., `browser`, or web context in mobile).
+Webネイティブ APIを使用してJavaScript関数で要素をフェッチすることもできます。もちろん、これはWebコンテキスト内（例：`browser`、またはモバイルのWebコンテキスト）でのみ行うことができます。
 
-Given the following HTML structure:
+以下のHTML構造が与えられた場合：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/js.html
 ```
 
-You can query the sibling element of `#elem` as follows:
+`#elem`の兄弟要素を次のようにクエリできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L139-L143
 ```
 
-## Deep Selectors
+## ディープセレクタ
 
 :::warning
 
-Starting with `v9` of WebdriverIO there is no need for this special selector as WebdriverIO automatically pierces through the Shadow DOM for you. It is recommended to migrate off this selector by removing the `>>>` in front it.
+WebdriverIO の `v9` からは、WebdriverIO が自動的にシャドウDOMを貫通するため、この特別なセレクタは不要になりました。セレクタの先頭から `>>>` を削除して、このセレクタからの移行をお勧めします。
 
 :::
 
-Many frontend applications heavily rely on elements with [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). It is technically impossible to query elements within the shadow DOM without workarounds. The [`shadow$`](https://webdriver.io/docs/api/element/shadow$) and [`shadow$$`](https://webdriver.io/docs/api/element/shadow$$) have been such workarounds that had their [limitations](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow). With the deep selector you can now query all elements within any shadow DOM using the common query command.
+多くのフロントエンドアプリケーションは[シャドウDOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM)を持つ要素に大きく依存しています。回避策なしにシャドウDOM内の要素をクエリすることは技術的に不可能です。[`shadow$`](https://webdriver.io/docs/api/element/shadow$)と[`shadow$$`](https://webdriver.io/docs/api/element/shadow$$)はそのような回避策でしたが、[制限](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow)がありました。ディープセレクタを使用すると、共通のクエリコマンドを使用してシャドウDOM内のすべての要素をクエリできるようになりました。
 
-Given we have an application with the following structure:
+次のような構造のアプリケーションがあるとします：
 
 ![Chrome Example](https://github.com/Georgegriff/query-selector-shadow-dom/raw/main/Chrome-example.png "Chrome Example")
 
-With this selector you can query the `<button />` element that is nested within another shadow DOM, e.g.:
+このセレクタを使用すると、別のシャドウDOM内にネストされている `<button />` 要素をクエリできます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L147-L149
 ```
 
-## Mobile Selectors
+## モバイルセレクタ
 
-For hybrid mobile testing, it's important that the automation server is in the correct *context* before executing commands. For automating gestures, the driver ideally should be set to native context. But to select elements from the DOM, the driver will need to be set to the platform's webview context. Only *then* can the methods mentioned above can be used.
+ハイブリッドモバイルテストでは、自動化サーバーがコマンドを実行する前に正しい*コンテキスト*にあることが重要です。ジェスチャーを自動化するには、ドライバーが理想的にはネイティブコンテキストに設定されている必要があります。しかし、DOMから要素を選択するには、ドライバーをプラットフォームのWebViewコンテキストに設定する必要があります。*その後*のみ、上記の方法を使用できます。
 
-For native mobile testing, there is no switching between contexts, as you have to use mobile strategies and use the underlying device automation technology directly. This is especially useful when a test needs some fine-grained control over finding elements.
+ネイティブモバイルテストでは、コンテキスト間の切り替えはなく、モバイル戦略を使用して基盤となるデバイス自動化技術を直接使用する必要があります。これは特に、テストが要素を見つけるための細かい制御を必要とする場合に役立ちます。
 
 ### Android UiAutomator
 
-Android’s UI Automator framework provides a number of ways to find elements. You can use the [UI Automator API](https://developer.android.com/tools/testing-support-library/index.html#uia-apis), in particular the [UiSelector class](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) to locate elements. In Appium you send the Java code, as a string, to the server, which executes it in the application’s environment, returning the element or elements.
+AndroidのUI Automatorフレームワークは、要素を見つけるための多くの方法を提供します。[UI Automator API](https://developer.android.com/tools/testing-support-library/index.html#uia-apis)、特に[UiSelectorクラス](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector)を使用して要素を特定できます。Appiumでは、Javaコードを文字列としてサーバーに送信し、それをアプリケーションの環境で実行して、要素を返します。
 
 ```js
 const selector = 'new UiSelector().text("Cancel").className("android.widget.Button")'
@@ -307,9 +308,9 @@ const button = await $(`android=${selector}`)
 await button.click()
 ```
 
-### Android DataMatcher and ViewMatcher (Espresso only)
+### Android DataMatcher と ViewMatcher（Espressoのみ）
 
-Android's DataMatcher strategy provides a way to find elements by [Data Matcher](https://developer.android.com/reference/android/support/test/espresso/DataInteraction)
+AndroidのDataMatcher戦略は、[Data Matcher](https://developer.android.com/reference/android/support/test/espresso/DataInteraction)による要素の検索方法を提供します
 
 ```js
 const menuItem = await $({
@@ -319,7 +320,7 @@ const menuItem = await $({
 await menuItem.click()
 ```
 
-And similarly [View Matcher](https://developer.android.com/reference/android/support/test/espresso/ViewInteraction)
+同様に[View Matcher](https://developer.android.com/reference/android/support/test/espresso/ViewInteraction)
 
 ```js
 const menuItem = await $({
@@ -330,9 +331,9 @@ const menuItem = await $({
 await menuItem.click()
 ```
 
-### Android View Tag (Espresso only)
+### Android View Tag（Espressoのみ）
 
-The view tag strategy provides a convenient way to find elements by their [tag](https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html#withTagValue%28org.hamcrest.Matcher%3Cjava.lang.Object%3E%29).
+ビュータグ戦略は、[タグ](https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html#withTagValue%28org.hamcrest.Matcher%3Cjava.lang.Object%3E%29)によって要素を見つける便利な方法を提供します。
 
 ```js
 const elem = await $('-android viewtag:tag_identifier')
@@ -341,9 +342,9 @@ await elem.click()
 
 ### iOS UIAutomation
 
-When automating an iOS application, Apple’s [UI Automation framework](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html) can be used to find elements.
+iOSアプリケーションを自動化する場合、Appleの[UI Automationフレームワーク](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html)を使用して要素を見つけることができます。
 
-This JavaScript [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) has methods to access to the view and everything on it.
+このJavaScript [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771)には、ビューとその上のすべてにアクセスするためのメソッドがあります。
 
 ```js
 const selector = 'UIATarget.localTarget().frontMostApp().mainWindow().buttons()[0]'
@@ -351,11 +352,11 @@ const button = await $(`ios=${selector}`)
 await button.click()
 ```
 
-You can also use predicate searching within iOS UI Automation in Appium to refine element selection even further. See [here](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md) for details.
+Appium内のiOS UI Automationで述語検索を使用して、要素の選択をさらに絞り込むこともできます。詳細は[こちら](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md)をご覧ください。
 
-### iOS XCUITest predicate strings and class chains
+### iOS XCUITest述語文字列とクラスチェーン
 
-With iOS 10 and above (using the `XCUITest` driver), you can use [predicate strings](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules):
+iOS 10以上（`XCUITest`ドライバを使用）では、[述語文字列](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules)を使用できます：
 
 ```js
 const selector = `type == 'XCUIElementTypeSwitch' && name CONTAINS 'Allow'`
@@ -363,7 +364,7 @@ const switch = await $(`-ios predicate string:${selector}`)
 await switch.click()
 ```
 
-And [class chains](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules):
+および[クラスチェーン](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules)：
 
 ```js
 const selector = '**/XCUIElementTypeCell[`name BEGINSWITH "D"`]/**/XCUIElementTypeButton'
@@ -371,42 +372,42 @@ const button = await $(`-ios class chain:${selector}`)
 await button.click()
 ```
 
-### Accessibility ID
+### アクセシビリティID
 
-The `accessibility id` locator strategy is designed to read a unique identifier for a UI element. This has the benefit of not changing during localization or any other process that might change text. In addition, it can be an aid in creating cross-platform tests, if elements that are functionally the same have the same accessibility id.
+`accessibility id`ロケータ戦略は、UI要素の一意の識別子を読み取るように設計されています。これには、ローカリゼーションやテキストを変更する可能性のある他のプロセス中に変更されないという利点があります。さらに、機能的に同じ要素が同じアクセシビリティIDを持っている場合、クロスプラットフォームテストの作成に役立ちます。
 
-- For iOS this is the `accessibility identifier` laid out by Apple [here](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html).
-- For Android the `accessibility id` maps to the `content-description` for the element, as described [here](https://developer.android.com/training/accessibility/accessible-app.html).
+- iOSの場合、これはAppleによって定義された`アクセシビリティ識別子`です。[こちら](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html)を参照してください。
+- Androidの場合、`accessibility id`は要素の`content-description`にマッピングされます。[こちら](https://developer.android.com/training/accessibility/accessible-app.html)に説明されています。
 
-For both platforms, getting an element (or multiple elements) by their `accessibility id` is usually the best method. It is also the preferred way over the deprecated `name` strategy.
+両方のプラットフォームで、`accessibility id`による要素（または複数の要素）の取得は通常最良の方法です。また、非推奨の`name`戦略よりも優先される方法です。
 
 ```js
 const elem = await $('~my_accessibility_identifier')
 await elem.click()
 ```
 
-### Class Name
+### クラス名
 
-The `class name` strategy is a `string` representing a UI element on the current view.
+`class name`戦略は、現在のビュー上のUI要素を表す`文字列`です。
 
-- For iOS it is the full name of a [UIAutomation class](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html), and will begin with `UIA-`, such as `UIATextField` for a text field. A full reference can be found [here](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation).
-- For Android it is the fully qualified name of a [UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator) [class](https://developer.android.com/reference/android/widget/package-summary.html), such `android.widget.EditText` for a text field. A full reference can be found [here](https://developer.android.com/reference/android/widget/package-summary.html).
-- For Youi.tv it is the full name of a Youi.tv class, and will being with `CYI-`, such as `CYIPushButtonView` for a push button element. A full reference can be found at [You.i Engine Driver's GitHub page](https://github.com/YOU-i-Labs/appium-youiengine-driver)
+- iOSの場合、これは[UIAutomationクラス](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html)の完全な名前であり、テキストフィールドの場合は`UIATextField`のように`UIA-`で始まります。完全なリファレンスは[こちら](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation)にあります。
+- Androidの場合、これはテキストフィールドの場合は`android.widget.EditText`のような[UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator) [クラス](https://developer.android.com/reference/android/widget/package-summary.html)の完全修飾名です。完全なリファレンスは[こちら](https://developer.android.com/reference/android/widget/package-summary.html)にあります。
+- Youi.tvの場合、これはYoui.tvクラスの完全な名前であり、プッシュボタン要素の場合は`CYIPushButtonView`のように`CYI-`で始まります。完全なリファレンスは[You.i Engine DriverのGitHubページ](https://github.com/YOU-i-Labs/appium-youiengine-driver)で見つけることができます。
 
 ```js
-// iOS example
+// iOS例
 await $('UIATextField').click()
-// Android example
+// Android例
 await $('android.widget.DatePicker').click()
-// Youi.tv example
+// Youi.tv例
 await $('CYIPushButtonView').click()
 ```
 
-## Chain Selectors
+## チェーンセレクタ
 
-If you want to be more specific in your query, you can chain selectors until you've found the right element. If you call `element` before your actual command, WebdriverIO starts the query from that element.
+クエリをより具体的にしたい場合は、適切な要素が見つかるまでセレクタを連鎖させることができます。実際のコマンドの前に`element`を呼び出すと、WebdriverIOはその要素からクエリを開始します。
 
-For example, if you have a DOM structure like:
+例えば、次のようなDOM構造がある場合：
 
 ```html
 <div class="row">
@@ -428,40 +429,41 @@ For example, if you have a DOM structure like:
 </div>
 ```
 
-And you want to add product B to the cart, it would be difficult to do that just by using the CSS selector.
+そして製品Bをカートに追加したい場合、CSSセレクタだけを使用してそれを行うのは難しいでしょう。
 
-With selector chaining, it's way easier. Simply narrow down the desired element step by step:
+セレクタチェーンを使用すると、はるかに簡単です。目的の要素を段階的に絞り込むだけです：
 
 ```js
 await $('.row .entry:nth-child(2)').$('button*=Add').click()
 ```
 
-### Appium Image Selector
+### Appium画像セレクタ
 
-Using the  `-image` locator strategy, it is possible to send an Appium an image file representing an element you want to access.
+`-image`ロケータ戦略を使用すると、アクセスしたい要素を表す画像ファイルをAppiumに送信することができます。
 
-Supported file formats `jpg,png,gif,bmp,svg`
+サポートされるファイル形式：`jpg,png,gif,bmp,svg`
 
-Full reference can be found [here](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md)
+完全なリファレンスは[こちら](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md)にあります。
 
 ```js
 const elem = await $('./file/path/of/image/test.jpg')
 await elem.click()
 ```
 
-**Note**: The way how Appium works with this selector is that it will internally make a (app)screenshot and use the provided image selector to verify if the element can be found in that (app)screenshot.
+**注意**：Appiumがこのセレクタでどのように動作するかというと、内部的に（アプリ）スクリーンショットを撮り、提供された画像セレクタを使用して、その（アプリ）スクリーンショットで要素が見つかるかどうかを確認します。
 
-Be aware of the fact that Appium might resize the taken (app)screenshot to make it match the CSS-size of your (app)screen (this will happen on iPhones but also on Mac machines with a Retina display because the DPR is bigger than 1). This will result in not finding a match because the provided image selector might have been taken from the original screenshot. You can fix this by updating the Appium Server settings, see the [Appium docs](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings) for the settings and [this comment](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) on a detailed explanation.
+Appiumが撮影した（アプリ）スクリーンショットのサイズを変更して、（アプリ）画面のCSSサイズに合わせることがあることに注意してください（これはiPhoneだけでなく、DPRが1より大きいRetinaディスプレイを搭載したMacマシンでも発生します）。これにより、元のスクリーンショットから取得された画像セレクタが提供されているため、一致が見つからない可能性があります。
+Appiumサーバーの設定を更新することでこれを修正できます。設定については[Appiumドキュメント](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings)、詳細な説明については[このコメント](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579)を参照してください。
 
-## React Selectors
+## Reactセレクタ
 
-WebdriverIO provides a way to select React components based on the component name. To do this, you have a choice of two commands: `react$` and `react$$`.
+WebdriverIOはコンポーネント名に基づいてReactコンポーネントを選択する方法を提供しています。これを行うには、`react$`と`react$$`の2つのコマンドから選択できます。
 
-These commands allow you to select components off the [React VirtualDOM](https://reactjs.org/docs/faq-internals.html) and return either a single WebdriverIO Element or an array of elements (depending on which function is used).
+これらのコマンドを使用すると、[React仮想DOM](https://reactjs.org/docs/faq-internals.html)からコンポーネントを選択し、単一のWebdriverIO要素または要素の配列を返すことができます（使用する関数によって異なります）。
 
-**Note**: The commands `react$` and `react$$` are similar in functionality, except that `react$$` will return *all* matching instances as an array of WebdriverIO elements, and `react$` will return the first found instance.
+**注意**：`react$`と`react$$`のコマンドは機能的に似ていますが、`react$$`は*すべての*一致するインスタンスをWebdriverIO要素の配列として返し、`react$`は最初に見つかったインスタンスを返します。
 
-#### Basic example
+#### 基本例
 
 ```jsx
 // index.jsx
@@ -483,19 +485,19 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-In the above code there is a simple `MyComponent` instance inside the application, which React is rendering inside a HTML element with `id="root"`.
+上記のコードでは、アプリケーション内に単純な`MyComponent`インスタンスがあり、Reactが`id="root"`のHTML要素内にレンダリングしています。
 
-With the `browser.react$` command, you can select an instance of `MyComponent`:
+`browser.react$`コマンドを使用して、`MyComponent`のインスタンスを選択できます：
 
 ```js
 const myCmp = await browser.react$('MyComponent')
 ```
 
-Now that you have the WebdriverIO element stored in `myCmp` variable, you can execute element commands against it.
+これで`myCmp`変数にWebdriverIO要素が格納されたので、それに対して要素コマンドを実行できます。
 
-#### Filtering components
+#### コンポーネントのフィルタリング
 
-The library that WebdriverIO uses internally allows to filter your selection by props and/or state of the component. To do so, you need to pass a second argument for props and/or a third argument for state to the browser command.
+WebdriverIOが内部で使用するライブラリでは、プロパティや状態によって選択をフィルタリングすることができます。そのためには、ブラウザコマンドの2番目の引数にプロパティを、3番目の引数に状態を渡す必要があります。
 
 ```jsx
 // index.jsx
@@ -522,7 +524,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-If you want to select the instance of `MyComponent` that has a prop `name` as `WebdriverIO`, you can execute the command like so:
+propとして`name`が`WebdriverIO`である`MyComponent`のインスタンスを選択したい場合は、以下のようにコマンドを実行できます：
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -530,7 +532,7 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-If you wanted to filter our selection by state, the `browser` command would looks something like so:
+状態によって選択をフィルタリングしたい場合、`browser`コマンドは次のようになります：
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -538,9 +540,9 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-#### Dealing with `React.Fragment`
+#### `React.Fragment`の取り扱い
 
-When using the `react$` command to select React [fragments](https://reactjs.org/docs/fragments.html), WebdriverIO will return the first child of that component as the component's node. If you use `react$$`, you will receive an array containing all the HTML nodes inside the fragments that match the selector.
+`react$`コマンドを使用してReact [フラグメント](https://reactjs.org/docs/fragments.html)を選択する場合、WebdriverIOはそのコンポーネントのノードとしてコンポーネントの最初の子を返します。`react$$`を使用すると、セレクタに一致するフラグメント内のすべてのHTMLノードを含む配列が返されます。
 
 ```jsx
 // index.jsx
@@ -567,34 +569,34 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-Given the above example, this is how the commands would work:
+上記の例では、コマンドは次のように動作します：
 
 ```js
-await browser.react$('MyComponent') // returns the WebdriverIO Element for the first <div />
-await browser.react$$('MyComponent') // returns the WebdriverIO Elements for the array [<div />, <div />]
+await browser.react$('MyComponent') // 最初の<div />のWebdriverIO要素を返します
+await browser.react$$('MyComponent') // 配列[<div />, <div />]のWebdriverIO要素を返します
 ```
 
-**Note:** If you have multiple instances of `MyComponent` and you use `react$$` to select these fragment components, you will be returned an one-dimensional array of all the nodes. In other words, if you have 3 `<MyComponent />` instances, you will be returned an array with six WebdriverIO elements.
+**注意：** 複数の`MyComponent`インスタンスがあり、`react$$`を使用してこれらのフラグメントコンポーネントを選択する場合、すべてのノードを含む一次元の配列が返されます。つまり、3つの`<MyComponent />`インスタンスがある場合、6つのWebdriverIO要素を含む配列が返されます。
 
-## Custom Selector Strategies
+## カスタムセレクタ戦略
 
 
-If your app requires a specific way to fetch elements you can define yourself a custom selector strategy that you can use with `custom$` and `custom$$`. For that register your strategy once in the beginning of the test, e.g. in a `before` hook:
+アプリが要素をフェッチするための特定の方法を必要とする場合、`custom$`と`custom$$`で使用できるカスタムセレクタ戦略を自分で定義できます。そのためには、テストの最初、例えば`before`フックで一度戦略を登録します：
 
 ```js reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/customStrategy.js#L2-L11
 ```
 
-Given the following HTML snippet:
+次のHTMLスニペットが与えられた場合：
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/example.html#L8-L12
 ```
 
-Then use it by calling:
+次のように呼び出して使用します：
 
 ```js reference
 https://github.com/webdriverio/example-recipes/blob/f5730428ec3605e856e90bf58be17c9c9da891de/queryElements/customStrategy.js#L16-L19
 ```
 
-**Note:** this only works in an web environment in which the [`execute`](/docs/api/browser/execute) command can be run.
+**注意：** これは[`execute`](/docs/api/browser/execute)コマンドを実行できるWeb環境でのみ機能します。

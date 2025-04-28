@@ -1,26 +1,26 @@
 ---
 id: proxy
-title: Proxy Setup
+title: إعداد البروكسي
 ---
 
-You can tunnel two different types of request through a proxy:
+يمكنك توجيه نوعين مختلفين من الطلبات عبر بروكسي:
 
-- connection between your test script and the browser driver (or WebDriver endpoint)
-- connection between the browser and the internet
+- الاتصال بين سكريبت الاختبار الخاص بك ومتصفح السائق (أو نقطة نهاية WebDriver)
+- الاتصال بين المتصفح والإنترنت
 
-## Proxy Between Driver And Test
+## البروكسي بين السائق والاختبار
 
-If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests, follow the below steps to install and configure [undici](https://github.com/nodejs/undici).
+إذا كانت شركتك تستخدم بروكسي مؤسسي (على سبيل المثال على `http://my.corp.proxy.com:9090`) لجميع الطلبات الصادرة، اتبع الخطوات التالية لتثبيت وتكوين [undici](https://github.com/nodejs/undici).
 
-### Install undici
+### تثبيت undici
 
 ```bash npm2yarn
 npm install undici --save-dev
 ```
 
-### Add undici setGlobalDispatcher to your config file
+### إضافة undici setGlobalDispatcher إلى ملف التكوين الخاص بك
 
-Add the following require statement to the top of your config file.
+أضف عبارة require التالية إلى أعلى ملف التكوين الخاص بك.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -33,19 +33,19 @@ export const config = {
 }
 ```
 
-Additional information about configuring the proxy can be located [here](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+يمكن العثور على معلومات إضافية حول تكوين البروكسي [هنا](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-If you use [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), start it via:
+إذا كنت تستخدم [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5)، ابدأه عبر:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Between Browser And Internet
+## البروكسي بين المتصفح والإنترنت
 
-In order to tunnel the connection between the browser and the internet, you can set up a proxy which can be useful to (for example) capture network information and other data with tools like [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+لتوجيه الاتصال بين المتصفح والإنترنت، يمكنك إعداد بروكسي والذي يمكن أن يكون مفيدًا (على سبيل المثال) لالتقاط معلومات الشبكة وبيانات أخرى باستخدام أدوات مثل [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-The `proxy` parameters can be applied via the standard capabilities the following way:
+يمكن تطبيق معلمات `proxy` عبر الإمكانيات القياسية بالطريقة التالية:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -66,4 +66,4 @@ export const config = {
 }
 ```
 
-For more information, see the [WebDriver specification](https://w3c.github.io/webdriver/#proxy).
+لمزيد من المعلومات، راجع [مواصفات WebDriver](https://w3c.github.io/webdriver/#proxy).

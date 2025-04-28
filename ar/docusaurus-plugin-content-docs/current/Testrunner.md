@@ -1,19 +1,19 @@
 ---
 id: testrunner
-title: Testrunner
+title: مشغل الاختبار
 ---
 
-WebdriverIO comes with its own test runner to help you start testing as quickly as possible. It is supposed to do all the work for you, allows integrate to 3rd party services, and helps you to run your tests as efficiently as possible.
+يأتي WebdriverIO مع مشغل اختبار خاص به لمساعدتك على بدء الاختبار بأسرع وقت ممكن. وهو مصمم للقيام بكل العمل من أجلك، ويسمح بالتكامل مع خدمات الطرف الثالث، ويساعدك على تشغيل اختباراتك بأكبر قدر ممكن من الكفاءة.
 
-WebdriverIO's testrunner is bundled separately in the NPM package `@wdio/cli`.
+مشغل الاختبار الخاص بـ WebdriverIO مجمع بشكل منفصل في حزمة NPM `@wdio/cli`.
 
-Install it like this:
+قم بتثبيته هكذا:
 
 ```sh npm2yarn
 npm install @wdio/cli
 ```
 
-To see the command line interface help, type the following command in your terminal:
+لرؤية مساعدة واجهة سطر الأوامر، اكتب الأمر التالي في الطرفية الخاصة بك:
 
 ```sh
 $ npx wdio --help
@@ -34,47 +34,47 @@ Options:
   --help     Show help                                                 [boolean]
 ```
 
-Sweet! Now you need to define a configuration file where all information about your tests, capabilities, and settings are set. Switch over to the [Configuration File](/docs/configuration)  section to see what that file should look like.
+رائع! الآن تحتاج إلى تعريف ملف تكوين حيث يتم تعيين جميع المعلومات حول اختباراتك وقدراتك وإعداداتك. انتقل إلى قسم [ملف التكوين](/docs/configuration) لمعرفة كيف يجب أن يبدو هذا الملف.
 
-With the `wdio` configuration helper, it is super easy to generate your config file. Just run:
+باستخدام مساعد التكوين `wdio`، من السهل جدًا إنشاء ملف التكوين الخاص بك. ما عليك سوى تشغيل:
 
 ```sh
 $ npx wdio config
 ```
 
-...and it launches the helper utility.
+...وسيتم تشغيل أداة المساعدة.
 
-It will ask you questions and generate a config file for you in less than a minute.
+سيطرح عليك أسئلة وينشئ ملف تكوين لك في أقل من دقيقة.
 
-![WDIO configuration utility](/img/config-utility.gif)
+![أداة تكوين WDIO](/img/config-utility.gif)
 
-Once you have your configuration file set up, you can start your tests by running:
+بمجرد إعداد ملف التكوين، يمكنك بدء الاختبارات من خلال تشغيل:
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-You can also initialize your test run without the `run` command:
+يمكنك أيضًا بدء اختبارك بدون أمر `run`:
 
 ```sh
 npx wdio wdio.conf.js
 ```
 
-That's it! Now, you can access to the selenium instance via the global variable `browser`.
+هذا كل شيء! الآن، يمكنك الوصول إلى نسخة selenium عبر المتغير العالمي `browser`.
 
-## Commands
+## الأوامر
 
 ### `wdio config`
 
-The `config` command runs the WebdriverIO configuration helper. This helper will ask you a few questions about your WebdriverIO project and create a `wdio.conf.js` file based on your answers.
+يقوم أمر `config` بتشغيل مساعد تكوين WebdriverIO. سيطرح هذا المساعد عليك بعض الأسئلة حول مشروع WebdriverIO الخاص بك وينشئ ملف `wdio.conf.js` بناءً على إجاباتك.
 
-Example:
+مثال:
 
 ```sh
 wdio config
 ```
 
-Options:
+الخيارات:
 
 ```
 --help            prints WebdriverIO help menu                                [boolean]
@@ -83,17 +83,17 @@ Options:
 
 ### `wdio run`
 
-> This is the default command to run your configuration.
+> هذا هو الأمر الافتراضي لتشغيل التكوين الخاص بك.
 
-The `run` command initializes your WebdriverIO configuration file and runs your tests.
+يقوم أمر `run` بتهيئة ملف تكوين WebdriverIO الخاص بك وتشغيل اختباراتك.
 
-Example:
+مثال:
 
 ```sh
 wdio run ./wdio.conf.js --watch
 ```
 
-Options:
+الخيارات:
 
 ```
 --help                prints WebdriverIO help menu                   [boolean]
@@ -125,12 +125,12 @@ Options:
 --cucumberOpts        Cucumber options
 ```
 
-> Note: Autocompiling can be easily controlled with `tsx` ENV Vars. See also the [TypeScript documentation](/docs/typescript).
+> ملاحظة: يمكن التحكم في التجميع التلقائي بسهولة باستخدام متغيرات البيئة `tsx`. راجع أيضًا [وثائق TypeScript](/docs/typescript).
 
 ### `wdio install`
-The `install` command allows you to add reporters and services to your WebdriverIO projects via the CLI.
+يتيح لك أمر `install` إضافة المراسلين والخدمات إلى مشاريع WebdriverIO الخاصة بك عبر واجهة سطر الأوامر.
 
-Example:
+مثال:
 
 ```sh
 wdio install service sauce # installs @wdio/sauce-service
@@ -138,19 +138,19 @@ wdio install reporter dot # installs @wdio/dot-reporter
 wdio install framework mocha # installs @wdio/mocha-framework
 ```
 
-If you want to install the packages using `yarn` instead, you can pass the `--yarn` flag to the command:
+إذا كنت ترغب في تثبيت الحزم باستخدام `yarn` بدلاً من ذلك، يمكنك تمرير علامة `--yarn` إلى الأمر:
 
 ```sh
 wdio install service sauce --yarn
 ```
 
-You could also pass a custom configuration path if your WDIO config file is not in the same folder you're working on:
+يمكنك أيضًا تمرير مسار تكوين مخصص إذا لم يكن ملف تكوين WDIO في نفس المجلد الذي تعمل عليه:
 
 ```sh
 wdio install service sauce --config="./path/to/wdio.conf.js"
 ```
 
-#### List of supported services
+#### قائمة الخدمات المدعومة
 
 ```
 sauce
@@ -169,7 +169,7 @@ vite
 nuxt
 ```
 
-#### List of supported reporters
+#### قائمة المراسلين المدعومين
 
 ```
 dot
@@ -186,7 +186,7 @@ mochawesome
 timeline
 ```
 
-#### List of supported frameworks
+#### قائمة الأطر المدعومة
 
 ```
 mocha
@@ -196,18 +196,18 @@ cucumber
 
 ### `wdio repl`
 
-The repl command allows to start an interactive command line interface to run WebdriverIO commands. It can be used for testing purposes or to just quickly spin up WebdriverIO session.
+يتيح أمر repl بدء واجهة سطر أوامر تفاعلية لتشغيل أوامر WebdriverIO. يمكن استخدامه لأغراض الاختبار أو لمجرد بدء جلسة WebdriverIO بسرعة.
 
-Run tests in local chrome:
+تشغيل الاختبارات في Chrome المحلي:
 
 ```sh
 wdio repl chrome
 ```
 
-or run tests on Sauce Labs:
+أو تشغيل الاختبارات على Sauce Labs:
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY
 ```
 
-You can apply the same arguments as you can in the [run command](#wdio-run).
+يمكنك تطبيق نفس الوسيطات التي يمكنك استخدامها في [أمر run](#wdio-run).

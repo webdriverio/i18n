@@ -1,9 +1,9 @@
 ---
 id: service-options
-title: Service Options
+title: サービスオプション
 ---
 
-Service options are the options that can be set when the service is instantiated and will be used for each method call.
+サービスオプションは、サービスがインスタンス化されるときに設定され、各メソッド呼び出しに使用されるオプションです。
 
 ```js
 // wdio.conf.(js|ts)
@@ -24,95 +24,97 @@ export const config = {
 };
 ```
 
-## Default Options
+## デフォルトオプション
 
 ### `addressBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6`
-- **Supported:** Web
+-   **Type:** `number`
+-   **Mandatory:** No
+-   **Default:** `6`
+-   **Supported:** Web
 
-The padding needs to be added to the address bar on iOS and Android to do a proper cutout of the viewport.
+iOSとAndroidでアドレスバーに追加する必要があるパディングで、ビューポートを適切に切り取るために使用されます。
 
 ### `autoElementScroll`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `true`
+-   **Supported:** Web, Hybrid App (Webview)
 
-This option allows you to disable the automatic scrolling of the element into the view when an element screenshot is created.
+このオプションでは、要素のスクリーンショットが作成されるときに要素を自動的にビューにスクロールする機能を無効にすることができます。
 
 ### `addIOSBezelCorners`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-Add bezel corners and notch/dynamic island to the screenshot for iOS devices.
+iOSデバイスのスクリーンショットにベゼルコーナーとノッチ/ダイナミックアイランドを追加します。
 
-:::info NOTE
+:::info 注意
+これはデバイス名が**自動的に**判別でき、以下の正規化されたデバイス名のリストに一致する場合にのみ実行できます。正規化はこのモジュールによって行われます。
+**iPhone:**
 
-- iPhone X: `iphonex`
-- iPhone XS: `iphonexs`
-- iPhone XS Max: `iphonexsmax`
-- iPhone XR: `iphonexr`
-- iPhone 11: `iphone11`
-- iPhone 11 Pro: `iphone11pro`
-- iPhone 11 Pro Max: `iphone11promax`
-- iPhone 12: `iphone12`
-- iPhone 12 Mini: `iphone12mini`
-- iPhone 12 Pro: `iphone12pro`
-- iPhone 12 Pro Max: `iphone12promax`
-- iPhone 13: `iphone13`
-- iPhone 13 Mini: `iphone13mini`
-- iPhone 13 Pro: `iphone13pro`
-- iPhone 13 Pro Max: `iphone13promax`
-- iPhone 14: `iphone14`
-- iPhone 14 Plus: `iphone14plus`
-- iPhone 14 Pro: `iphone14pro`
-- iPhone 14 Pro Max: `iphone14promax`
+-   iPhone X: `iphonex`
+-   iPhone XS: `iphonexs`
+-   iPhone XS Max: `iphonexsmax`
+-   iPhone XR: `iphonexr`
+-   iPhone 11: `iphone11`
+-   iPhone 11 Pro: `iphone11pro`
+-   iPhone 11 Pro Max: `iphone11promax`
+-   iPhone 12: `iphone12`
+-   iPhone 12 Mini: `iphone12mini`
+-   iPhone 12 Pro: `iphone12pro`
+-   iPhone 12 Pro Max: `iphone12promax`
+-   iPhone 13: `iphone13`
+-   iPhone 13 Mini: `iphone13mini`
+-   iPhone 13 Pro: `iphone13pro`
+-   iPhone 13 Pro Max: `iphone13promax`
+-   iPhone 14: `iphone14`
+-   iPhone 14 Plus: `iphone14plus`
+-   iPhone 14 Pro: `iphone14pro`
+-   iPhone 14 Pro Max: `iphone14promax`
     **iPads:**
-- iPad Mini 6th Generation: `ipadmini`
-- iPad Air 4th Generation: `ipadair`
-- iPad Air 5th Generation: `ipadair`
-- iPad Pro (11-inch) 1st Generation: `ipadpro11`
-- iPad Pro (11-inch) 2nd Generation: `ipadpro11`
-- iPad Pro (11-inch) 3rd Generation: `ipadpro11`
-- iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
-- iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+-   iPad Mini 6th Generation: `ipadmini`
+-   iPad Air 4th Generation: `ipadair`
+-   iPad Air 5th Generation: `ipadair`
+-   iPad Pro (11-inch) 1st Generation: `ipadpro11`
+-   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
+-   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
+-   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
+-   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
 
 :::
 
 ### `autoSaveBaseline`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `true`
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-If no baseline image is found during the comparison the image is automatically copied to the baseline folder.
+比較中にベースライン画像が見つからない場合、画像は自動的にベースラインフォルダにコピーされます。
 
 ### `baselineFolder`
 
-- **Type:** `string|()=> string`
-- **Mandatory:** No
-- **Default:** `.path/to/testfile/__snapshots__/`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Type:** `string|()=> string`
+-   **Mandatory:** No
+-   **Default:** `.path/to/testfile/__snapshots__/`
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-The directory that will hold all the baseline images that are used during the comparison. If not set, the default value will be used which will store the files in a `__snapshots__/`-folder next to the spec that executes the visual tests. A function that returns a `string` can also be used to set the `baselineFolder` value:
+比較中に使用されるすべてのベースライン画像を保持するディレクトリです。設定されていない場合、デフォルト値が使用され、ビジュアルテストを実行するスペックの隣にある`__snapshots__/`フォルダにファイルが保存されます。`string`を返す関数を使って`baselineFolder`の値を設定することもできます：
 
 ```js
 {
     baselineFolder: path.join(process.cwd(), 'foo', 'bar', 'baseline')
 },
-// OR
+// または
 {
     baselineFolder: () => {
-        // Do some magic here
+        // ここで何か魔法を行う
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -120,24 +122,24 @@ The directory that will hold all the baseline images that are used during the co
 
 ### `clearRuntimeFolder`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-Delete runtime folder (`actual` & \`diff) on initialization
+初期化時にランタイムフォルダ（`actual`＆`diff`）を削除します
 
-:::info NOTE
-This will only work when the [`screenshotPath`](#screenshotpath) is set through the plugin options, and **WILL NOT WORK** when you set the folders in the methods
+:::info 注意
+これはプラグインオプションで[`screenshotPath`](#screenshotpath)が設定されている場合にのみ機能し、メソッドでフォルダを設定した場合は**機能しません**
 :::
 
-### `createJsonReportFiles` **(NEW)**
+### `createJsonReportFiles` **(新機能)**
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
 
-You now have the option to export the compare results into a JSON report file. By providing the option `createJsonReportFiles: true`, each image that is compared will create a report stored in the `actual` folder, next to each `actual` image result. The output will look like this:
+比較結果をJSONレポートファイルにエクスポートするオプションが追加されました。`createJsonReportFiles: true`オプションを提供することで、比較される各画像のレポートが`actual`フォルダ内に、各`actual`画像結果の隣に保存されます。出力は以下のようになります：
 
 ```json
 {
@@ -200,14 +202,14 @@ You now have the option to export the compare results into a JSON report file. B
 }
 ```
 
-When all tests are executed, a new JSON file with the collection of the comparisons will be generated and can be found in the root of your `actual` folder. The data is grouped by:
+すべてのテストが実行されると、比較のコレクションを含む新しいJSONファイルが生成され、`actual`フォルダのルートに保存されます。データは以下によってグループ化されます：
 
-- `describe` for Jasmine/Mocha or `Feature` for CucumberJS
-- `it` for Jasmine/Mocha or `Scenario` for CucumberJS
-    and then sorted by:
-- `commandName`, which are the compare method names used to compare the images
-- `instanceData`, browser first, then device, then platform
-    it will look like this
+-   Jasmine/Mochaの場合は`describe`、CucumberJSの場合は`Feature`
+-   Jasmine/Mochaの場合は`it`、CucumberJSの場合は`Scenario`
+    そして以下で並べ替えられます：
+-   `commandName`：画像の比較に使用される比較メソッド名
+-   `instanceData`：まずブラウザ、次にデバイス、そしてプラットフォーム
+    次のようになります
 
 ```json
 [
@@ -250,150 +252,147 @@ When all tests are executed, a new JSON file with the collection of the comparis
 ]
 ```
 
-The report data will give you the opportunity to build your own visual report without doing all the magic and data collection yourself.
+レポートデータにより、すべての魔法とデータ収集を自分でせずに独自のビジュアルレポートを構築する機会が得られます。
 
-:::info NOTE
-You need to use `@wdio/visual-testing` version `5.2.0` or higher
+:::info 注意
+`@wdio/visual-testing`バージョン`5.2.0`以上を使用する必要があります
 :::
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Supported:** Web, Hybrid App (Webview)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+アプリケーション内のすべての`input`、`textarea`、`[contenteditable]`キャレットの「点滅」を有効/無効にします。`true`に設定すると、スクリーンショットを撮る前にキャレットが`transparent`に設定され、
+完了時にリセットされます
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Supported:** Web, Hybrid App (Webview)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+アプリケーション内のすべてのCSSアニメーションを有効/無効にします。`true`に設定すると、スクリーンショットを撮る前にすべてのアニメーションが無効になり、
+完了時にリセットされます
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Supported:** Web
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+ページ上のすべてのテキストを非表示にするので、比較にはレイアウトのみが使用されます。非表示にするには、スタイル`'color': 'transparent !important'`を**各**要素に追加します。
 
-For the output see [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+出力については[テスト出力](/docs/visual-testing/test-output#enablelayouttesting)を参照してください
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+このフラグを使用すると、テキストを含む各要素（つまり`p, h1, h2, h3, h4, h5, h6, span, a, li`だけでなく、`div|button|..`も）にこのプロパティが設定されます。これをカスタマイズするオプションは**ありません**。
 :::
 
 ### `formatImageName`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-The name of the saved images can be customized by passing the parameter `formatImageName` with a format string like:
+保存される画像の名前は、次のような形式の文字列で`formatImageName`パラメータを渡すことでカスタマイズできます：
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-The following variables can be passed to format the string and will automatically be read from the instance capabilities.
-If they can't be determined the defaults will be used.
+以下の変数を文字列のフォーマットに渡すことができ、インスタンスの機能から自動的に読み取られます。
+それらが決定できない場合は、デフォルトが使用されます。
 
-- `browserName`: The name of the browser in the provided capabilities
-- `browserVersion`: The version of the browser provided in the capabilities
-- `deviceName`: The device name from the capabilities
-- `dpr`: The device pixel ratio
-- `height`: The height of the screen
-- `logName`: The logName from capabilities
-- `mobile`: This will add `_app`, or the browser name after the `deviceName` to distinguish app screenshots from browser screenshots
-- `platformName`: The name of the platform in the provided capabilities
-- `platformVersion`: The version of the platform provided in the capabilities
-- `tag`: The tag that is provided in the methods that is being called
-- `width`: The width of the screen
+-   `browserName`：提供された機能のブラウザの名前
+-   `browserVersion`：機能で提供されているブラウザのバージョン
+-   `deviceName`：機能からのデバイス名
+-   `dpr`：デバイスピクセル比
+-   `height`：画面の高さ
+-   `logName`：機能からのlogName
+-   `mobile`：これは`_app`または、ブラウザのスクリーンショットとアプリのスクリーンショットを区別するために`deviceName`の後にブラウザ名を追加します
+-   `platformName`：提供された機能のプラットフォームの名前
+-   `platformVersion`：提供された機能のプラットフォームのバージョン
+-   `tag`：呼び出されるメソッドで提供されるタグ
+-   `width`：画面の幅
 
 :::info
 
-You can not provide custom paths/folders in the `formatImageName`. If you want to change the path then please check changing the following options:
+`formatImageName`でカスタムパス/フォルダを提供することはできません。パスを変更したい場合は、以下のオプションの変更を確認してください：
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) per method
+- メソッドごとの[`folderOptions`](/docs/visual-testing/method-options#folder-options)
 
 :::
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Supported:** Web
+-   **Type:** `number`
+-   **Mandatory:** No
+-   **Default:** `1500`
+-   **Supported:** Web
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+スクロール後に待機するミリ秒単位のタイムアウト。これは遅延読み込みのあるページを識別するのに役立ちます。
+
+:::info
+
+これはサービス/メソッドオプション`userBasedFullPageScreenshot`が`true`に設定されている場合にのみ機能します。[`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)も参照してください
+
+:::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `true`
+-   **Supported:** Web, Hybrid App (Webview)
 
-Hide scrollbars in the application. If set to true all scrollbars will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
-
-### `isHybridApp`
-
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Hybrid App
-
-Tell the module if the used app is a Hybrid app, this will not calculate the address bar height because it is not there.
+アプリケーションのスクロールバーを非表示にします。trueに設定すると、スクリーンショットを撮る前にすべてのスクロールバーが無効になります。これは追加の問題を防ぐためにデフォルトで`true`に設定されています。
 
 ### `logLevel`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `info`
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** `info`
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-Adds extra logs, options are `debug | info | warn | silent`
+追加のログを提供します。オプションは`debug | info | warn | silent`です
 
-Errors are always logged to the console.
+エラーは常にコンソールに記録されます。
 
 ### `savePerInstance`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-Save the images per instance in a separate folder so for example all Chrome screenshots will be saved in a Chrome folder like `desktop_chrome`.
+インスタンスごとに画像を別のフォルダに保存します。例えば、すべてのChromeのスクリーンショットは`desktop_chrome`のようなChromeフォルダに保存されます。
 
 ### `screenshotPath`
 
-- **Type:** `string | () => string`
-- **Default:** `.tmp/`
-- **Mandatory:** no
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **Type:** `string | () => string`
+-   **Default:** `.tmp/`
+-   **Mandatory:** no
+-   **Supported:** Web, Hybrid App (Webview), Native App
 
-The directory that will hold all the actual/different screenshots. If not set, the default value will be used. A function that
-returns a string can also be used to set the screenshotPath value:
+実際の/異なるスクリーンショットを保持するディレクトリ。設定されていない場合、デフォルト値が使用されます。文字列を返す関数も
+screenshotPath値を設定するために使用できます：
 
 ```js
 {
     screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
 },
-// OR
+// または
 {
     screenshotPath: () => {
-        // Do some magic here
+        // ここで何か魔法を行う
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -401,158 +400,170 @@ returns a string can also be used to set the screenshotPath value:
 
 ### `toolBarShadowPadding`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `6` for Android and `15` for iOS (`6` by default and `9` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)
-- **Supported:** Web
+-   **Type:** `number`
+-   **Mandatory:** No
+-   **Default:** `6` for Android and `15` for iOS (`6` by default and `9` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)
+-   **Supported:** Web
 
-The padding which needs to be added to the toolbar bar on iOS and Android to do a proper cutout of the viewport.
+iOSとAndroidのツールバーに追加する必要があるパディングで、ビューポートを適切に切り取るために使用されます。
+
+### `userBasedFullPageScreenshot`
+
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `false`
+-   **Supported:** Web, Hybrid App (Webview) **visual-service@7.0.0で導入**
+
+デフォルトでは、デスクトップWebのフルページスクリーンショットはWebDriver BiDiプロトコルを使用してキャプチャされ、スクロールなしで高速で安定した一貫したスクリーンショットを実現します。
+userBasedFullPageScreenshotがtrueに設定されている場合、スクリーンショットプロセスは実際のユーザーをシミュレートします：ページをスクロールし、ビューポートサイズのスクリーンショットをキャプチャして、それらを組み合わせます。この方法は、遅延読み込みのコンテンツやスクロール位置に依存する動的レンダリングを持つページに役立ちます。
+
+ページがスクロール中にコンテンツの読み込みに依存している場合や、古いスクリーンショット方法の動作を維持したい場合は、このオプションを使用してください。
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Supported:** Web, Hybrid App (Webview)
+-   **Type:** `boolean`
+-   **Mandatory:** No
+-   **Default:** `true`
+-   **Supported:** Web, Hybrid App (Webview)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+フォント（サードパーティのフォントを含む）は同期的または非同期的に読み込むことができます。非同期読み込みとは、WebdriverIOがページが完全に読み込まれたと判断した後にフォントが読み込まれる可能性があることを意味します。フォントのレンダリングの問題を防ぐために、このモジュールはデフォルトでスクリーンショットを撮る前にすべてのフォントが読み込まれるのを待ちます。
 
-## Tabbable Options
+## タブ可能オプション
 
-:::info NOTE
+:::info 注意
 
-This module also supports drawing the way a user would use his keyboard to _tab_ through the website by drawing lines and dots from tabbable element to tabbable element.<br/>
-The work is inspired by [Viv Richards](https://github.com/vivrichards600) his blog post about ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-The way tabbable elements are selected is based on the module [tabbable](https://github.com/davidtheclark/tabbable). If there are any issues regarding the tabbing please check the [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) and especially the [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+このモジュールは、ユーザーがキーボードを使用してWebサイトを「タブ」で移動する方法を、タブ可能な要素からタブ可能な要素への線と点を描画することでサポートします。<br/>
+この作業は[Viv Richards](https://github.com/vivrichards600)のブログ記事["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript)からインスピレーションを得ています。<br/>
+タブ可能な要素の選択方法は、モジュール[tabbable](https://github.com/davidtheclark/tabbable)に基づいています。タブ付けに関する問題がある場合は、[README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md)、特に[詳細セクション](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)を確認してください。
 
 :::
 
 ### `tabbableOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `object`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The options that can be changed for the lines and dots if you use the `{save|check}Tabbable`-methods. The options are explained below.
+`{save|check}Tabbable`メソッドを使用する場合に変更できる線と点のオプション。オプションは以下で説明します。
 
 #### `tabbableOptions.circle`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `object`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The options to change the circle.
+円を変更するためのオプション。
 
 ##### `tabbableOptions.circle.backgroundColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The background color of the circle.
+円の背景色。
 
 ##### `tabbableOptions.circle.borderColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The border color of the circle.
+円の境界線の色。
 
 ##### `tabbableOptions.circle.borderWidth`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `number`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The border width of the circle.
+円の境界線の幅。
 
 ##### `tabbableOptions.circle.fontColor`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The color of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+円内のテキストのフォントの色。これは[`showNumber`](./#tabbableoptionscircleshownumber)が`true`に設定されている場合にのみ表示されます。
 
 ##### `tabbableOptions.circle.fontFamily`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The family of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+円内のテキストのフォントのファミリー。これは[`showNumber`](./#tabbableoptionscircleshownumber)が`true`に設定されている場合にのみ表示されます。
 
-Make sure to set fonts that are supported by the browsers.
+ブラウザでサポートされているフォントを設定してください。
 
 ##### `tabbableOptions.circle.fontSize`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `number`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The size of the font of the text in the circle. This will only be shown if [`showNumber`](./#tabbableoptionscircleshownumber) is set to `true`.
+円内のテキストのフォントのサイズ。これは[`showNumber`](./#tabbableoptionscircleshownumber)が`true`に設定されている場合にのみ表示されます。
 
 ##### `tabbableOptions.circle.size`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `number`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The size of the circle.
+円のサイズ。
 
 ##### `tabbableOptions.circle.showNumber`
 
-- **Type:** `showNumber`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `showNumber`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-Show the tab sequence number in the circle.
+円内にタブシーケンス番号を表示します。
 
 #### `tabbableOptions.line`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `object`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The options to change the line.
+線を変更するためのオプション。
 
 ##### `tabbableOptions.line.color`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `string`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The color of the line.
+線の色。
 
 ##### `tabbableOptions.line.width`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) for all default values
-- **Supported:** Web
+-   **Type:** `number`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68)を参照してください
+-   **Supported:** Web
 
-The width of the line.
+線の幅。
 
-## Compare options
+## 比較オプション
 
 ### `compareOptions`
 
-- **Type:** `object`
-- **Mandatory:** No
-- **Default:** See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values
-- **Supported:** Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)
+-   **Type:** `object`
+-   **Mandatory:** No
+-   **Default:** すべてのデフォルト値については[こちら](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60)を参照してください
+-   **Supported:** Web, Hybrid App (Webview), Native App (詳細については[メソッド比較オプション](./method-options#compare-check-options)を参照してください)
 
-The compare options can also be set as service options, they are described in the [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+比較オプションはサービスオプションとしても設定でき、[メソッド比較オプション](/docs/visual-testing/method-options#compare-check-options)で説明されています

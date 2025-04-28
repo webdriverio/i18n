@@ -1,15 +1,15 @@
 ---
 id: retry
-title: Retry Flaky Tests
+title: 不安定なテストの再試行
 ---
 
-You can rerun certain tests with the WebdriverIO testrunner that turn out to be unstable due to things like a flaky network or race conditions. (However, it is not recommended to simply increase the rerun rate if tests become unstable!)
+WebdriverIO テストランナーを使用すると、不安定なネットワークや競合状態などにより不安定になる特定のテストを再実行できます。（ただし、テストが不安定になった場合に単に再実行率を上げることはお勧めしません！）
 
-## Rerun suites in Mocha
+## Mochaでのスイートの再実行
 
-Since version 3 of Mocha, you can rerun whole test suites (everything inside an `describe` block). If you use Mocha you should favor this retry mechanism instead of the WebdriverIO implementation that only allows you to rerun certain test blocks (everything within an `it` block). In order to use the `this.retries()` method, the suite block `describe` must use an unbound function `function(){}` instead of a fat arrow function `() => {}`, as described in [Mocha docs](https://mochajs.org/#arrow-functions). Using Mocha you can also set a retry count for all specs using `mochaOpts.retries` in your `wdio.conf.js`.
+Mochaのバージョン3以降では、テストスイート全体（`describe`ブロック内のすべて）を再実行できます。Mochaを使用している場合は、特定のテストブロック（`it`ブロック内のすべて）のみを再実行できるWebdriverIOの実装よりも、このリトライメカニズムを優先すべきです。`this.retries()`メソッドを使用するには、[Mochaドキュメント](https://mochajs.org/#arrow-functions)で説明されているように、スイートブロック`describe`はファットアロー関数`() => {}`ではなく、アンバウンドの関数`function(){}`を使用する必要があります。Mochaを使用すると、`wdio.conf.js`の`mochaOpts.retries`を使用してすべてのスペックに対して再試行回数を設定することもできます。
 
-Here is an example:
+以下は例です：
 
 ```js
 describe('retries', function () {
@@ -29,16 +29,16 @@ describe('retries', function () {
 })
 ```
 
-## Rerun single tests in Jasmine or Mocha
+## JasmineまたはMochaでの単一テストの再実行
 
-To rerun a certain test block you can just apply the number of reruns as last parameter after the test block function:
+特定のテストブロックを再実行するには、テストブロック関数の後に最後のパラメーターとして再実行回数を適用するだけです：
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -54,7 +54,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+フックにも同様に機能します：
 
 ```js
 describe('my flaky app', () => {
@@ -84,7 +84,7 @@ describe('my flaky app', () => {
 })
 ```
 
-The same works for hooks too:
+フックにも同様に機能します：
 
 ```js
 describe('my flaky app', () => {
@@ -99,22 +99,22 @@ describe('my flaky app', () => {
 })
 ```
 
-If you are using Jasmine, the second parameter is reserved for timeout. To apply a retry parameter you need to set the timeout to its default value `jasmine.DEFAULT_TIMEOUT_INTERVAL` and then apply your retry count.
+Jasmineを使用している場合、2番目のパラメータはタイムアウト用に予約されています。再試行パラメータを適用するには、タイムアウトをデフォルト値の`jasmine.DEFAULT_TIMEOUT_INTERVAL`に設定し、その後に再試行回数を適用する必要があります。
 
 </TabItem>
 </Tabs>
 
-This retry mechanism only allows to retry single hooks or test blocks. If your test is accompanied with a hook to set up your application, this hook is not being run. [Mocha offers](https://mochajs.org/#retry-tests) native test retries that provide this behavior while Jasmine doesn't. You can access the number of executed retries in the `afterTest` hook.
+この再試行メカニズムでは、単一のフックまたはテストブロックのみを再試行できます。テストにアプリケーションをセットアップするためのフックが付随している場合、このフックは実行されません。[Mochaは](https://mochajs.org/#retry-tests)この動作を提供するネイティブなテスト再試行を提供していますが、Jasmineは提供していません。`afterTest`フックで実行された再試行の回数にアクセスできます。
 
-## Rerunning in Cucumber
+## Cucumberでの再実行
 
-### Rerun full suites in Cucumber
+### Cucumberでの完全なスイートの再実行
 
-For cucumber >=6 you can provide the [`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests) configuration option along with a `retryTagFilter` optional parameter to have all or some of your failing scenarios get additional retries until succeeded. For this feature to work you need to set the `scenarioLevelReporter` to `true`.
+cucumber >=6の場合、すべてまたは一部の失敗したシナリオが成功するまで追加の再試行を行うために、[`retry`](https://github.com/cucumber/cucumber-js/blob/master/docs/cli.md#retry-failing-tests)構成オプションと、オプションパラメータ`retryTagFilter`を提供できます。この機能を動作させるには、`scenarioLevelReporter`を`true`に設定する必要があります。
 
-### Rerun Step Definitions in Cucumber
+### Cucumberでのステップ定義の再実行
 
-To define a rerun rate for a certain step definitions just apply a retry option to it, like:
+特定のステップ定義の再実行率を定義するには、次のようにリトライオプションを適用するだけです：
 
 ```js
 export default function () {
@@ -128,15 +128,15 @@ export default function () {
 })
 ```
 
-Reruns can only be defined in your step definitions file, never in your feature file.
+再実行はステップ定義ファイルでのみ定義でき、機能ファイルでは定義できません。
 
-## Add retries on a per-specfile basis
+## specファイルごとに再試行を追加する
 
-Previously, only test- and suite-level retries were available, which are fine in most cases.
+以前は、テストレベルとスイートレベルの再試行のみが利用可能でしたが、ほとんどの場合はこれで十分です。
 
-But in any tests which involve state (such as on a server or in a database) the state may be left invalid after the first test failure. Any subsequent retries may have no chance of passing, due to the invalid state they would start with.
+しかし、状態を含む任意のテスト（サーバーやデータベース内など）では、最初のテスト失敗後に状態が無効のままになる可能性があります。その後の再試行は、開始時に無効な状態のために成功する可能性がないかもしれません。
 
-A new `browser` instance is created for each specfile, which makes this an ideal place to hook and setup any other states (server, databases). Retries on this level mean that the whole setup process will simply be repeated, just as if it were for a new specfile.
+各specファイルに対して新しい`browser`インスタンスが作成されるため、これは他の状態（サーバー、データベース）をフックしてセットアップするための理想的な場所です。このレベルでの再試行は、新しいspecファイルの場合と同様に、セットアッププロセス全体が単に繰り返されることを意味します。
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -156,13 +156,13 @@ export const config = {
 }
 ```
 
-## Run a specific test multiple times
+## 特定のテストを複数回実行する
 
-This is to help prevent flaky tests from being introduced in a codebase. By adding the `--repeat` cli option it will run the specified specs or suites N times. When using this cli flag the `--spec` or `--suite` flag must also be specified.
+これは、コードベースに不安定なテストが導入されるのを防ぐのに役立ちます。`--repeat`cliオプションを追加することで、指定されたスペックまたはスイートをN回実行します。このcliフラグを使用する場合、`--spec`または`--suite`フラグも指定する必要があります。
 
-When adding new tests to a codebase, especially through a CI/CD process the tests could pass and get merged but become flaky later on. This flakiness could come from a number of things like network issues, server load, database size, etc. Using the `--repeat` flag in your CD/CD process can help catch these flaky tests before they get merged to a main codebase.
+コードベースに新しいテストを追加する場合、特にCI/CDプロセスを通じて、テストが合格してマージされる可能性がありますが、後で不安定になる可能性があります。この不安定性は、ネットワークの問題、サーバーの負荷、データベースのサイズなど、さまざまな要因から生じる可能性があります。CI/CDプロセスで`--repeat`フラグを使用すると、これらの不安定なテストがメインのコードベースにマージされる前に検出するのに役立ちます。
 
-One strategy to use is run your tests like regular in your CI/CD process but if you're introducing a new test you can then run another set of tests with the new spec specified in `--spec` along with `--repeat` so it runs the new test x number of times. If the test fails any of those times then the test will not get merged and will need to be looked at why it failed.
+使用する1つの戦略は、CI/CDプロセスで通常通りテストを実行することですが、新しいテストを導入している場合は、`--spec`で新しいスペックを指定し、`--repeat`と一緒に実行して、新しいテストをx回実行するという別のテストセットを実行できます。テストがそれらの時間のいずれかで失敗した場合、テストはマージされず、なぜ失敗したのかを調査する必要があります。
 
 ```sh
 # This will run the example.e2e.js spec 5 times

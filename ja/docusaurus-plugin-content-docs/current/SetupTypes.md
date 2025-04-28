@@ -1,20 +1,20 @@
 ---
 id: setuptypes
-title: Setup Types
+title: セットアップタイプ
 ---
 
-WebdriverIO can be used for various purposes. It implements the WebDriver protocol API and can run a browser in an automated way. The framework is designed to work in any arbitrary environment and for any kind of task. It is independent from any 3rd party frameworks and only requires Node.js to run.
+WebdriverIOはさまざまな目的で使用できます。WebDriverプロトコルAPIを実装し、ブラウザを自動化された方法で実行することができます。このフレームワークは、任意の環境でどんな種類のタスクにも対応できるように設計されています。サードパーティのフレームワークに依存せず、実行にはNode.jsのみが必要です。
 
-## Protocol Bindings
+## プロトコルバインディング
 
-For basic interactions with the WebDriver and other automation protocols WebdriverIO uses its own protocol bindings based on the [`webdriver`](https://www.npmjs.com/package/webdriver) NPM package:
+WebDriverやその他の自動化プロトコルとの基本的なやり取りのために、WebdriverIOは[`webdriver`](https://www.npmjs.com/package/webdriver) NPMパッケージをベースにした独自のプロトコルバインディングを使用しています：
 
 <Tabs
   defaultValue="webdriver"
   values={[
     {label: 'WebDriver', value: 'webdriver'},
- {label: 'Chrome DevTools', value: 'devtools'},
- ]
+    {label: 'Chrome DevTools', value: 'devtools'},
+  ]
 }>
 <TabItem value="webdriver">
 
@@ -32,40 +32,40 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 </TabItem>
 </Tabs>
 
-All [protocol commands](api/webdriver) return the raw response from the automation driver. The package is very lightweight and there is __no__ smart logic like auto-waits to simplify the interaction with the protocol usage.
+すべての[プロトコルコマンド](api/webdriver)は自動化ドライバーからの生のレスポンスを返します。このパッケージは非常に軽量で、プロトコルの使用とのやり取りを簡略化するための自動待機などのスマートロジックは__ありません__。
 
-The protocol commands applied to the instance depend on the initial session response of the driver. For example if the response indicates that a mobile session was started, the package applies all Appium and Mobile JSON Wire protocol commands to the instance prototype.
+インスタンスに適用されるプロトコルコマンドは、ドライバーの初期セッションレスポンスによって決まります。例えば、レスポンスがモバイルセッションが開始されたことを示している場合、パッケージはすべてのAppiumとMobile JSON Wireプロトコルコマンドをインスタンスのプロトタイプに適用します。
 
-You can run the same set of commands (except mobile ones) using the Chrome DevTools protocol when importing the [`devtools`](https://www.npmjs.com/package/devtools) NPM package. It has the same interface as the `webdriver` package but runs its automation based on [Puppeteer](https://pptr.dev/).
+[`devtools`](https://www.npmjs.com/package/devtools) NPMパッケージをインポートすることで、Chrome DevToolsプロトコルを使用して同じコマンドセット（モバイル関連を除く）を実行できます。このパッケージは`webdriver`パッケージと同じインターフェースを持ちますが、[Puppeteer](https://pptr.dev/)をベースにした自動化を実行します。
 
-For more information on these package interfaces, see [Modules API](/docs/api/modules).
+これらのパッケージインターフェースの詳細については、[モジュールAPI](/docs/api/modules)を参照してください。
 
-## Standalone Mode
+## スタンドアロンモード
 
-To simplify the interaction with the WebDriver protocol the `webdriverio` package implements a variety of commands on top of the protocol (e.g. the [`dragAndDrop`](api/element/dragAndDrop) command) and core concepts such as [smart selectors](selectors) or [auto-waits](autowait). The example from above can be simplified like this:
+WebDriverプロトコルとのやり取りを簡略化するために、`webdriverio`パッケージはプロトコルの上に様々なコマンド（例：[`dragAndDrop`](api/element/dragAndDrop)コマンド）やコアコンセプト（[スマートセレクタ](selectors)や[自動待機](autowait)など）を実装しています。上記の例は次のように簡略化できます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/standalone.js#L2-L19
 ```
 
-Using WebdriverIO in standalone mode still gives you access to all protocol commands but provides a super set of additional commands that provide a higher level interaction with the browser. It allows you to integrate this automation tool in your own (test) project to create a new automation library. Popular examples include [Oxygen](https://github.com/oxygenhq/oxygen) or [CodeceptJS](http://codecept.io). You can also write plain Node scripts to scrape the web for content (or anything else that requires a running browser).
+スタンドアロンモードでWebdriverIOを使用すると、すべてのプロトコルコマンドにアクセスできるだけでなく、ブラウザとの高レベルなやり取りを提供する追加コマンドのスーパーセットも提供されます。これにより、新しい自動化ライブラリを作成するために、この自動化ツールを独自の（テスト）プロジェクトに統合することができます。有名な例には[Oxygen](https://github.com/oxygenhq/oxygen)や[CodeceptJS](http://codecept.io)があります。また、Webからコンテンツをスクレイピングするための（または実行中のブラウザを必要とする他の目的のための）プレーンなNodeスクリプトを書くこともできます。
 
-If no specific options are set WebdriverIO will always attempt to download and setup the browser driver that matches `browserName` property in your capabilities. In case of Chrome and Firefox it might also install them depending on whether it can find the corresponding browser on the machine.
+特定のオプションが設定されていない場合、WebdriverIOは常に機能のうちの`browserName`プロパティに一致するブラウザドライバーをダウンロードしてセットアップしようとします。ChromeとFirefoxの場合、対応するブラウザがマシン上で見つからない場合はそれらをインストールすることもあります。
 
-For more information on the `webdriverio` package interfaces, see [Modules API](/docs/api/modules).
+`webdriverio`パッケージインターフェースの詳細については、[モジュールAPI](/docs/api/modules)を参照してください。
 
-## The WDIO Testrunner
+## WDIOテストランナー
 
-The main purpose of WebdriverIO, though, is end-to-end testing on a big scale. We therefore implemented a test runner that helps you to build a reliable test suite that is easy to read and maintain.
+しかし、WebdriverIOの主な目的は大規模なエンドツーエンドテストです。そのため、読みやすく保守しやすい信頼性の高いテストスイートを構築するのに役立つテストランナーを実装しました。
 
-The test runner takes care of many problems that are common when working with plain automation libraries. For one, it organizes your test runs and splits up test specs so your tests can be executed with maximum concurrency. It also handles session management and provides lots of features to help you to debug problems and find errors in your tests.
+テストランナーは、プレーンな自動化ライブラリを使用する際によく発生する多くの問題を解決します。一つには、テスト実行を整理し、テスト仕様を分割して、テストが最大の同時実行性で実行できるようにします。また、セッション管理も処理し、問題のデバッグやテスト内のエラーを見つけるためのたくさんの機能を提供します。
 
-Here is the same example from above, written as a test spec and executed by WDIO:
+以下は、テスト仕様として書かれ、WDIOによって実行される上記と同じ例です：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/testrunner.js
 ```
 
-The test runner is an abstraction of popular test frameworks like Mocha, Jasmine, or Cucumber. To run your tests using the WDIO test runner, check out the [Getting Started](gettingstarted) section for more information.
+テストランナーは、Mocha、Jasmine、Cucumberなどの人気のあるテストフレームワークの抽象化です。WDIOテストランナーを使用してテストを実行するには、詳しい情報は[はじめに](gettingstarted)セクションをご覧ください。
 
-For more information on the `@wdio/cli` testrunner package interface, see [Modules API](/docs/api/modules).
+`@wdio/cli`テストランナーパッケージインターフェースの詳細については、[モジュールAPI](/docs/api/modules)を参照してください。

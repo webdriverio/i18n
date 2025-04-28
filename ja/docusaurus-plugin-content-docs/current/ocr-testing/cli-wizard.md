@@ -1,55 +1,55 @@
 ---
 id: cli-wizard
-title: CLI Wizard
+title: CLI ウィザード
 ---
 
-You can validate which text can be found in an image without running a test by using the OCR CLI Wizard. The only thing that are needed are:
+テストを実行せずに画像内のテキストを検証するには、OCR CLI ウィザードを使用できます。必要なものは以下のとおりです：
 
-- you have installed the `@wdio/ocr-service` as a dependency, see [Getting Started](./getting-started)
-- an image that you want to process
+- `@wdio/ocr-service`を依存関係としてインストール済みであること、[使用開始](./getting-started)を参照
+- 処理したい画像
 
-Then run the following command to start the wizard
+以下のコマンドを実行してウィザードを起動します
 
 ```sh
 npx ocr-service
 ```
 
-This will start a wizard that will guide you through the steps to select an image and use a haystack plus advanced mode. The following questions are asked
+これにより、画像を選択し、ヘイスタックと高度なモードを使用するための手順を案内するウィザードが起動します。以下の質問が表示されます
 
-## How would you like to specify the file?
+## ファイルをどのように指定しますか？
 
-The following options can be selected
+以下のオプションから選択できます
 
-- Use a "file explorer"
-- Type the file path manually
+- 「ファイルエクスプローラー」を使用する
+- ファイルパスを手動で入力する
 
-### Use a "file explorer"
+### 「ファイルエクスプローラー」を使用する
 
-The CLI wizard provides an option to use a "file explorer" to search for files on your system. It starts from the folder you call the command. After selecting an image (use your arrow keys and the ENTER key) you will proceed to the next question
+CLI ウィザードでは、システム上のファイルを検索するための「ファイルエクスプローラー」オプションが提供されています。コマンドを呼び出したフォルダから検索が始まります。画像を選択した後（矢印キーとENTERキーを使用）、次の質問に進みます
 
-### Type the file path manually
+### ファイルパスを手動で入力する
 
-This is a direct path to a file somewhere on your local machine
+これはローカルマシン上のファイルへの直接パスです
 
-### Would you like to use a haystack?
+### ヘイスタックを使用しますか？
 
-Here you have the option to select an area that needs to be processed. This can speed up the process or reduce/narrow down the amount of text the OCR engine might find. You need to provide `x`, `y`, `width`, `height` data based on the following questions:
+ここでは、処理する領域を選択するオプションがあります。これにより処理速度が向上したり、OCRエンジンが検出するテキストの量を減らしたり絞り込んだりすることができます。以下の質問に基づいて `x`、`y`、`width`、`height` データを提供する必要があります：
 
-- Enter the x coordinate:
-- Enter the y coordinate:
-- Enter the width:
-- Enter the height:
+- x座標を入力してください：
+- y座標を入力してください：
+- 幅を入力してください：
+- 高さを入力してください：
 
-## Do you want to use the advanced mode?
+## 高度なモードを使用しますか？
 
-Advanced mode will hold extra features like:
+高度なモードには以下のような追加機能があります：
 
-- setting the contrast
-- more to follow in the future
+- コントラストの設定
+- 今後さらに機能追加予定
 
-## Demo
+## デモ
 
-Here's a demo
+こちらがデモです
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

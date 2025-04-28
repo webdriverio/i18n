@@ -1,32 +1,31 @@
 ---
 id: typescript
-title: TypeScript Setup
+title: TypeScriptの設定
 ---
 
-You can write tests using [TypeScript](http://www.typescriptlang.org) to get auto-completion and type safety.
+[TypeScript](http://www.typescriptlang.org)を使用してテストを書くことで、自動補完と型安全性を得ることができます。
 
-You will need [`tsx`](https://github.com/privatenumber/tsx) installed in `devDependencies`, via:
+[`tsx`](https://github.com/privatenumber/tsx)を`devDependencies`にインストールする必要があります：
 
 ```bash npm2yarn
 $ npm install tsx --save-dev
 ```
 
-WebdriverIO will automatically detect if these dependencies are installed and will compile your config and tests for you. Ensure to have a `tsconfig.json` in the same directory as your WDIO config.
+WebdriverIOは、これらの依存関係がインストールされているかどうかを自動的に検出し、設定とテストをコンパイルします。WDIOの設定と同じディレクトリに`tsconfig.json`があることを確認してください。
 
-#### Custom TSConfig
+#### カスタムTSConfig
 
-If you need to set a different path for `tsconfig.json` please set the TSCONFIG_PATH environment variable with your desired path, or use wdio config's [tsConfigPath setting](/docs/configurationfile).
+`tsconfig.json`に異なるパスを設定する必要がある場合は、TSCONFIG_PATH環境変数に希望のパスを設定するか、wdio設定の[tsConfigPath設定](/docs/configurationfile)を使用してください。
 
-Alternatively, you can use the [environment variable](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) for `tsx`.
+あるいは、`tsx`の[環境変数](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path)を使用することもできます。
 
+#### 型チェック
 
-#### Type Checking
+`tsx`は型チェックをサポートしていないことに注意してください - 型をチェックしたい場合は、`tsc`を使用して別のステップでこれを行う必要があります。
 
-Note that `tsx` does not support type-checking - if you wish to check your types then you will need to do this in a separate step with `tsc`.
+## フレームワークのセットアップ
 
-## Framework Setup
-
-Your `tsconfig.json` needs the following:
+`tsconfig.json`には以下が必要です：
 
 ```json title="tsconfig.json"
 {
@@ -36,21 +35,22 @@ Your `tsconfig.json` needs the following:
 }
 ```
 
-Please avoid importing `webdriverio` or `@wdio/sync` explicitly. `WebdriverIO` and `WebDriver` types are accessible from anywhere once added to `types` in `tsconfig.json`. If you use additional WebdriverIO services, plugins or the `devtools` automation package, please also add them to the `types` list as many provide additional typings.
+`webdriverio`や`@wdio/sync`を明示的にインポートすることは避けてください。
+`WebdriverIO`と`WebDriver`の型は、`tsconfig.json`の`types`に追加すれば、どこからでもアクセスできます。追加のWebdriverIOサービス、プラグイン、または`devtools`自動化パッケージを使用する場合は、それらも`types`リストに追加してください。多くの場合、追加の型定義が提供されます。
 
-## Framework Types
+## フレームワークの型
 
-Depending on the framework you use, you will need to add the types for that framework to your `tsconfig.json` types property, as well as install its type definitions. This is especially important if you want to have type support for the built-in assertion library [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
+使用するフレームワークに応じて、そのフレームワークの型を`tsconfig.json`の`types`プロパティに追加し、その型定義をインストールする必要があります。これは、ビルトインのアサーションライブラリ[`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio)の型サポートが必要な場合に特に重要です。
 
-For instance, if you decide to use the Mocha framework, you need to install `@types/mocha` and add it like this to have all types globally available:
+例えば、Mochaフレームワークを使用する場合は、`@types/mocha`をインストールし、以下のように追加してすべての型をグローバルに利用できるようにする必要があります：
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- {label: 'Cucumber', value: 'cucumber'},
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+    {label: 'Cucumber', value: 'cucumber'},
+  ]
 }>
 <TabItem value="mocha">
 
@@ -87,9 +87,9 @@ For instance, if you decide to use the Mocha framework, you need to install `@ty
 </TabItem>
 </Tabs>
 
-## Services
+## サービス
 
-If you use services that add commands to the browser scope you also need to include these into your `tsconfig.json`. For example if you use the `@wdio/lighthouse-service` ensure that you add it to the `types` as well, e.g.:
+ブラウザスコープにコマンドを追加するサービスを使用する場合は、それらも`tsconfig.json`に含める必要があります。例えば、`@wdio/lighthouse-service`を使用する場合は、それも`types`に追加してください：
 
 ```json title="tsconfig.json"
 {
@@ -104,16 +104,16 @@ If you use services that add commands to the browser scope you also need to incl
 }
 ```
 
-Adding services and reporters to your TypeScript config also strengthen the type safety of your WebdriverIO config file.
+サービスとレポーターをTypeScript設定に追加することで、WebdriverIO設定ファイルの型安全性も強化されます。
 
-## Type Definitions
+## 型定義
 
-When running WebdriverIO commands all properties are usually typed so that you don't have to deal with importing additional types. However there are cases where you want to define variables upfront. To ensure that these are type safe you can use all types defined in the [`@wdio/types`](https://www.npmjs.com/package/@wdio/types) package. For example if you like to define the remote option for `webdriverio` you can do:
+WebdriverIOコマンドを実行する際、通常はすべてのプロパティが型付けされているため、追加の型をインポートする必要はありません。ただし、変数を事前に定義したい場合があります。これらが型安全であることを確実にするには、[`@wdio/types`](https://www.npmjs.com/package/@wdio/types)パッケージで定義されているすべての型を使用できます。例えば、`webdriverio`のリモートオプションを定義したい場合は次のようにします：
 
 ```ts
 import type { Options } from '@wdio/types'
 
-// Here is an example where you might want to import the types directly
+// 型を直接インポートしたい例
 const remoteConfig: Options.WebdriverIO = {
     hostname: 'http://localhost',
     port: '4444' // Error: Type 'string' is not assignable to type 'number'.ts(2322)
@@ -122,15 +122,15 @@ const remoteConfig: Options.WebdriverIO = {
     }
 }
 
-// For other cases, you can use the `WebdriverIO` namespace
+// その他の場合、`WebdriverIO`名前空間を使用できます
 export const config: WebdriverIO.Config = {
   ...remoteConfig
-  // Other configs options
+  // その他の設定オプション
 }
 ```
 
-## Tips and Hints
+## ヒントとコツ
 
-### Compile & Lint
+### コンパイルとリント
 
-To be entirely safe, you may consider following the best practices: compile your code with TypeScript compiler (run `tsc` or `npx tsc`) and have [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) running on [pre-commit hook](https://github.com/typicode/husky).
+完全に安全にするために、ベストプラクティスに従うことを検討してください：TypeScriptコンパイラでコードをコンパイルし（`tsc`または`npx tsc`を実行）、[eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)を[pre-commitフック](https://github.com/typicode/husky)で実行することをお勧めします。

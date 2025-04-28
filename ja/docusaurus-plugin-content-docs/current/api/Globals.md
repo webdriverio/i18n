@@ -1,17 +1,17 @@
 ---
 id: globals
-title: Globals
+title: グローバル変数
 ---
 
-テストファイルでは、WebdriverIOはそれぞれのメソッドとオブジェクトをグローバル環境に配置します。 それらを使用するために何もインポートする必要はありません。 ただし、WDIO 構成で明示的なインポートを希望する場合は、`import { browser, $, $$, Expect } from '@wdio/globals'` を実行し、`injectGlobals: false` を設定します。
+テストファイルでは、WebdriverIOは以下のメソッドとオブジェクトをグローバル環境に配置します。これらを使用するために何かをインポートする必要はありません。ただし、明示的なインポートを好む場合は、`import { browser, $, $$, expect } from '@wdio/globals'`を使用して、WDIOの設定で`injectGlobals: false`を設定することができます。
 
-以下のグローバルオブジェクトが設定されていない場合に設定されます。
+別途設定しない限り、以下のグローバルオブジェクトが設定されます：
 
-- ` browser `: WebdriverIO [ブラウザーオブジェクト](https://webdriver.io/docs/api/browser)
-- `driver`: alias to `browser` (used when running mobile tests)
-- `multiremotebrowser`: alias to `browser` or `driver` ただし、[Multiremote](/docs/multiremote) セッションに対してのみ設定されます
-- `$`: 要素を取得するためのコマンド ( [API ドキュメント](/docs/api/browser/$) の詳細を参照)
-- `$$`: 要素をフェッチするためのコマンド ( [API ドキュメント](/docs/api/browser/$$) の詳細を参照)
-- `expect`: WebdriverIO のアサーションフレームワーク ( [API ドキュメント](/docs/api/expect-webdriverio) を参照)
+- `browser`: WebdriverIOの[ブラウザオブジェクト](https://webdriver.io/docs/api/browser)
+- `driver`: `browser`のエイリアス（モバイルテスト実行時に使用）
+- `multiremotebrowser`: `browser`または`driver`のエイリアスですが、[Multiremote](/docs/multiremote)セッションでのみ設定されます
+- `$`: 要素を取得するコマンド（詳細は[API docs](/docs/api/browser/$)を参照）
+- `$$`: 複数の要素を取得するコマンド（詳細は[API docs](/docs/api/browser/$$)を参照）
+- `expect`: WebdriverIOのアサーションフレームワーク（[API docs](/docs/api/expect-webdriverio)を参照）
 
-__注意:__ WebdriverIO は使用済みフレームワーク (Mocha や Jasmineなど) が環境の起動時にグローバル変数を設定することはできません。
+__注意:__ WebdriverIOは、環境を起動する際に使用されるフレームワーク（例：MochaやJasmine）がグローバル変数を設定することをコントロールできません。

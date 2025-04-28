@@ -3,7 +3,7 @@ id: assertion
 title: アサーション
 ---
 
-[WDIOテストランナー](https://webdriver.io/docs/clioptions)には、ブラウザーのさまざまな側面や (Web) アプリケーション内の要素に対して強力なアサーションを作成できるアサーション ライブラリが組み込まれています。 これは、e2e テスト用に最適化された追加のマッチャーで[Jests マッチャー](https://jestjs.io/docs/en/using-matchers)の機能を拡張します。例:
+[WDIO testrunner](https://webdriver.io/docs/clioptions)には、ブラウザやウェブアプリケーション内の要素に関して強力なアサーションを行うことができる組み込みのアサーションライブラリが付属しています。これは[Jests Matchers](https://jestjs.io/docs/en/using-matchers)の機能を拡張し、e2eテスト向けに最適化された追加のマッチャーを提供します。例：
 
 ```js
 const $button = await $('button')
@@ -15,24 +15,24 @@ await expect($button).toBeDisplayed()
 ```js
 const selectOptions = await $$('form select>option')
 
-// make sure there is at least one option in select
+// セレクト内に少なくとも1つのオプションがあることを確認
 await expect(selectOptions).toHaveChildren({ gte: 1 })
 ```
 
-完全なリストについては、[APIドキュメントを参照](/docs/api/expect-webdriverio)してください。
+完全なリストは、[expect APIドキュメント](/docs/api/expect-webdriverio)を参照してください。
 
 ## Chaiからの移行
 
-[Chai](https://www.chaijs.com/)と[expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme)は共存可能であり、若干の調整でexpect-webdriverioへのスムーズな移行が実現できます。 WebdriverIO v6 にアップグレードした場合は、デフォルトで `expect-webdriverio` のすべてのアサーションにアクセスできます。 つまり、グローバルに `expect` を使用する場合は、 `expect-webdriverio` アサーションを呼び出すことになります。 That is, unless you you set [`injectGlobals`](/docs/configuration#injectglobals) to `false` or have explicitly overridden the global `expect` to use Chai. In this case you would not have access to any of the expect-webdriverio assertions without explicitly importing the expect-webdriverio package where you need it.
+[Chai](https://www.chaijs.com/)と[expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme)は共存できます。いくつかの小さな調整を行うことで、expect-webdriverioへのスムーズな移行が可能です。WebdriverIO v6にアップグレードした場合、デフォルトで`expect-webdriverio`からのすべてのアサーションに最初からアクセスできます。これは、グローバルに`expect`を使用する場所ではどこでも`expect-webdriverio`アサーションを呼び出すことを意味します。ただし、[`injectGlobals`](/docs/configuration#injectglobals)を`false`に設定しているか、グローバルの`expect`をChaiを使用するように明示的にオーバーライドしている場合を除きます。この場合、必要な場所でexpect-webdriverioパッケージを明示的にインポートしない限り、expect-webdriverioアサーションにアクセスできません。
 
-This guide will show examples of how to migrate from Chai if it has been overridden locally and how to migrate from Chai if it has been overridden globally.
+このガイドでは、Chaiがローカルでオーバーライドされている場合とグローバルでオーバーライドされている場合の両方の移行方法の例を示します。
 
 ### ローカル
 
-Chaiをファイルで明示的にインポートしたと仮定する：
+Chaiがファイルで明示的にインポートされている場合を考えます：
 
 ```js
-// myfile.js - original code
+// myfile.js - 元のコード
 import { expect as expectChai } from 'chai'
 
 describe('Homepage', () => {
@@ -43,19 +43,19 @@ describe('Homepage', () => {
 })
 ```
 
-このコードを移行するには、Chaiインポートを削除し、代わりに新しいexpect-webdriverioアサーションメソッド`toHaveUrl`を使用します：
+このコードを移行するには、Chaiのインポートを削除し、代わりに新しいexpect-webdriverioのアサーションメソッド`toHaveUrl`を使用します：
 
 ```js
-// myfile.js - migrated code
+// myfile.js - 移行後のコード
 describe('Homepage', () => {
     it('should assert', async () => {
         await browser.url('./')
-        await expect(browser).toHaveUrl('/login') // new expect-webdriverio API method https://webdriver.io/docs/api/expect-webdriverio.html#tohaveurl
+        await expect(browser).toHaveUrl('/login') // 新しいexpect-webdriverio APIメソッド https://webdriver.io/docs/api/expect-webdriverio.html#tohaveurl
     });
 });
 ```
 
-同じファイルでChaiとexpect-webdriverioの両方を使いたい場合は、Chaiインポートを維持し、`expect`はexpect-webdriverioアサーションをデフォルトにします：
+同じファイルでChaiとexpect-webdriverioの両方を使用したい場合は、Chaiのインポートを維持し、`expect`はデフォルトでexpect-webdriverioのアサーションになります：
 
 ```js
 // myfile.js
@@ -65,20 +65,20 @@ import { expect as expectWDIO } from '@wdio/globals'
 describe('Element', () => {
     it('should be displayed', async () => {
         const isDisplayed = await $("#element").isDisplayed()
-        expectChai(isDisplayed).to.equal(true); // Chai assertion
+        expectChai(isDisplayed).to.equal(true); // Chaiアサーション
     })
 });
 
 describe('Other element', () => {
     it('should not be displayed', async () => {
-        await expectWDIO($("#element")).not.toBeDisplayed(); // expect-webdriverio assertion
+        await expectWDIO($("#element")).not.toBeDisplayed(); // expect-webdriverioアサーション
     })
 })
 ```
 
 ### グローバル
 
-`expect`がチャイを使うようにグローバルにオーバーライドされたと仮定します。 In order to use expect-webdriverio assertions we need to globally set a variable in the "before" hook, e.g.:
+`expect`がグローバルにChaiを使用するようにオーバーライドされていると仮定します。expect-webdriverioアサーションを使用するには、「before」フックでグローバル変数を設定する必要があります：
 
 ```js
 // wdio.conf.js
@@ -90,22 +90,22 @@ before: async () => {
 }
 ```
 
-Now Chai and expect-webdriverio can be used alongside each other. In your code you would use Chai and expect-webdriverio assertions as follows, e.g.:
+これでChaiとexpect-webdriverioを並行して使用できます。コードでは、ChaiとExpect-webdriverioのアサーションを次のように使用します：
 
 ```js
 // myfile.js
 describe('Element', () => {
     it('should be displayed', async () => {
         const isDisplayed = await $("#element").isDisplayed()
-        expect(isDisplayed).to.equal(true); // Chai assertion
+        expect(isDisplayed).to.equal(true); // Chaiアサーション
     });
 });
 
 describe('Other element', () => {
     it('should not be displayed', async () => {
-        await expectWdio($("#element")).not.toBeDisplayed(); // expect-webdriverio assertion
+        await expectWdio($("#element")).not.toBeDisplayed(); // expect-webdriverioアサーション
     });
 });
 ```
 
-To migrate you would slowly move each Chai assertion over to expect-webdriverio. Once all Chai assertions have been replaced throughout the code base the "before" hook can be deleted. A global find and replace to replace all instances of `wdioExpect` to `expect` will then finish off the migration.
+移行するには、各Chaiアサーションをexpect-webdriverioに徐々に移行していきます。コードベース全体でChaiアサーションがすべて置き換えられたら、「before」フックを削除できます。`wdioExpect`から`expect`へのすべてのインスタンスを置き換えるグローバル検索と置換を行うことで、移行が完了します。

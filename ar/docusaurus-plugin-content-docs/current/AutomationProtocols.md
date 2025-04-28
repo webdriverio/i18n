@@ -1,25 +1,25 @@
 ---
 id: automationProtocols
-title: Automation Protocols
+title: بروتوكولات الأتمتة
 ---
 
-With WebdriverIO, you can choose between multiple automation technologies when running your E2E tests locally or in the cloud. By default, WebdriverIO will attempt to start a local automation session using the [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) protocol.
+مع WebdriverIO، يمكنك الاختيار بين تقنيات أتمتة متعددة عند تشغيل اختبارات E2E محليًا أو في السحابة. بشكل افتراضي، سيحاول WebdriverIO بدء جلسة أتمتة محلية باستخدام بروتوكول [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/).
 
-## WebDriver Bidi Protocol
+## بروتوكول WebDriver Bidi
 
-The [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) is an automation protocol to automate browsers using bi-directional communication. It's the successor of the [WebDriver](https://w3c.github.io/webdriver/) protocol and enables a lot more introspection capabilities for various testing use cases.
+[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) هو بروتوكول أتمتة لأتمتة المتصفحات باستخدام الاتصال ثنائي الاتجاه. إنه خليفة بروتوكول [WebDriver](https://w3c.github.io/webdriver/) ويتيح قدرات استكشافية أكثر لحالات الاستخدام المختلفة للاختبار.
 
-This protocol is currently under development and new primitives might be added in the future. All browser vendors have committed to implementing this web standard and a lot of [primitives](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) have already been landed in browsers.
+هذا البروتوكول قيد التطوير حاليًا وقد تتم إضافة عناصر أساسية جديدة في المستقبل. التزم جميع مزودي المتصفحات بتنفيذ هذا المعيار العالمي وقد تم بالفعل تضمين الكثير من [العناصر الأساسية](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) في المتصفحات.
 
-## WebDriver Protocol
+## بروتوكول WebDriver
 
-> [WebDriver](https://w3c.github.io/webdriver/) is a remote control interface that enables introspection and control of user agents. It provides a platform- and language-neutral wire protocol as a way for out-of-process programs to remotely instruct the behavior of web browsers.
+> [WebDriver](https://w3c.github.io/webdriver/) هو واجهة تحكم عن بعد تتيح استكشاف والتحكم في وكلاء المستخدم. يوفر بروتوكول سلكي محايد للمنصة واللغة كوسيلة للبرامج خارج العملية لتوجيه سلوك متصفحات الويب عن بعد.
 
-The WebDriver protocol was designed to automate a browser from the user perspective, meaning that everything a user is able to do, you can do with the browser. It provides a set of commands that abstract away common interactions with an application (e.g., navigating, clicking, or reading the state of an element). Since it is a web standard, it is well supported across all major browser vendors and also is being used as an underlying protocol for mobile automation using [Appium](http://appium.io).
+تم تصميم بروتوكول WebDriver لأتمتة المتصفح من منظور المستخدم، مما يعني أن كل ما يمكن للمستخدم القيام به، يمكنك القيام به مع المتصفح. يوفر مجموعة من الأوامر التي تجرد التفاعلات الشائعة مع التطبيق (مثل التنقل والنقر أو قراءة حالة عنصر). نظرًا لأنه معيار ويب، فهو مدعوم بشكل جيد عبر جميع مزودي المتصفحات الرئيسيين ويتم استخدامه أيضًا كبروتوكول أساسي لأتمتة الهاتف المحمول باستخدام [Appium](http://appium.io).
 
-To use this automation protocol, you need a proxy server that translates all commands and executes them in the target environment (i.e. the browser or the mobile app).
+لاستخدام بروتوكول الأتمتة هذا، تحتاج إلى خادم وكيل يترجم جميع الأوامر وينفذها في البيئة المستهدفة (أي المتصفح أو تطبيق الجوال).
 
-For browser automation, the proxy server is usually the browser driver. There are drivers  available for all browsers:
+بالنسبة لأتمتة المتصفح، يكون خادم الوكيل عادةً هو برنامج تشغيل المتصفح. هناك برامج تشغيل متاحة لجميع المتصفحات:
 
 - Chrome – [ChromeDriver](http://chromedriver.chromium.org/downloads)
 - Firefox – [Geckodriver](https://github.com/mozilla/geckodriver/releases)
@@ -27,21 +27,8 @@ For browser automation, the proxy server is usually the browser driver. There ar
 - Internet Explorer – [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
 - Safari – [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
-For any kind of mobile automation, you’ll need to install and setup [Appium](http://appium.io). It will allow you to automate mobile (iOS/Android) or even desktop (macOS/Windows) applications using the same WebdriverIO setup.
+لأي نوع من أتمتة الأجهزة المحمولة، ستحتاج إلى تثبيت وإعداد [Appium](http://appium.io). سيسمح لك بأتمتة تطبيقات الجوال (iOS/Android) أو حتى تطبيقات سطح المكتب (macOS/Windows) باستخدام نفس إعداد WebdriverIO.
 
-There are also plenty of services that allow you to run your automation test in the cloud at high scale. Instead of having to setup all these drivers locally, you can just talk to these services (e.g. [Sauce Labs](https://saucelabs.com)) in the cloud and inspect the results on their platform. The communication between test script and automation environment will look as follows:
+هناك أيضًا الكثير من الخدمات التي تسمح لك بتشغيل اختبار الأتمتة في السحابة بنطاق كبير. بدلاً من إعداد جميع برامج التشغيل هذه محليًا، يمكنك التحدث مع هذه الخدمات (مثل [Sauce Labs](https://saucelabs.com)) في السحابة وفحص النتائج على منصتهم. سيبدو الاتصال بين برنامج الاختبار وبيئة الأتمتة كما يلي:
 
 ![WebDriver Setup](/img/webdriver.png)
-
-### Advantages
-
-- Official W3C web standard, supported by all major browsers
-- Simplified protocol that covers common user interactions
-- Support for mobile automation (and even native desktop apps)
-- Can be used locally as well as in the cloud through services like [Sauce Labs](https://saucelabs.com)
-
-### Disadvantages
-
-- Not designed for in-depth browser analysis (e.g., tracing or intercepting network events)
-- Limited set of automation capabilities (e.g., no support to throttle CPU or network)
-- Additional effort to set up browser driver with selenium-standalone/chromedriver/etc

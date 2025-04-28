@@ -1,25 +1,25 @@
 ---
 id: automationProtocols
-title: Automation Protocols
+title: Protocolli di Automazione
 ---
 
-With WebdriverIO, you can choose between multiple automation technologies when running your E2E tests locally or in the cloud. By default, WebdriverIO will attempt to start a local automation session using the [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) protocol.
+Con WebdriverIO, puoi scegliere tra diverse tecnologie di automazione quando esegui i tuoi test E2E localmente o nel cloud. Per impostazione predefinita, WebdriverIO tenterà di avviare una sessione di automazione locale utilizzando il protocollo [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/).
 
-## WebDriver Bidi Protocol
+## Protocollo WebDriver Bidi
 
-The [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) is an automation protocol to automate browsers using bi-directional communication. It's the successor of the [WebDriver](https://w3c.github.io/webdriver/) protocol and enables a lot more introspection capabilities for various testing use cases.
+Il [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) è un protocollo di automazione per automatizzare i browser utilizzando la comunicazione bidirezionale. È il successore del protocollo [WebDriver](https://w3c.github.io/webdriver/) e consente molte più capacità di analisi introspettiva per vari casi d'uso di test.
 
-This protocol is currently under development and new primitives might be added in the future. All browser vendors have committed to implementing this web standard and a lot of [primitives](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) have already been landed in browsers.
+Questo protocollo è attualmente in fase di sviluppo e nuove primitive potrebbero essere aggiunte in futuro. Tutti i produttori di browser si sono impegnati a implementare questo standard web e molte [primitive](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) sono già state integrate nei browser.
 
-## WebDriver Protocol
+## Protocollo WebDriver
 
-> [WebDriver](https://w3c.github.io/webdriver/) is a remote control interface that enables introspection and control of user agents. It provides a platform- and language-neutral wire protocol as a way for out-of-process programs to remotely instruct the behavior of web browsers.
+> [WebDriver](https://w3c.github.io/webdriver/) è un'interfaccia di controllo remoto che consente l'introspezione e il controllo degli user agent. Fornisce un protocollo wire neutro rispetto alla piattaforma e al linguaggio come modo per programmi esterni di istruire remotamente il comportamento dei browser web.
 
-The WebDriver protocol was designed to automate a browser from the user perspective, meaning that everything a user is able to do, you can do with the browser. It provides a set of commands that abstract away common interactions with an application (e.g., navigating, clicking, or reading the state of an element). Since it is a web standard, it is well supported across all major browser vendors and also is being used as an underlying protocol for mobile automation using [Appium](http://appium.io).
+Il protocollo WebDriver è stato progettato per automatizzare un browser dal punto di vista dell'utente, il che significa che tutto ciò che un utente è in grado di fare, puoi farlo con il browser. Fornisce un insieme di comandi che astraggono le interazioni comuni con un'applicazione (ad esempio, navigare, cliccare o leggere lo stato di un elemento). Essendo uno standard web, è ben supportato da tutti i principali produttori di browser ed è anche utilizzato come protocollo sottostante per l'automazione mobile utilizzando [Appium](http://appium.io).
 
-To use this automation protocol, you need a proxy server that translates all commands and executes them in the target environment (i.e. the browser or the mobile app).
+Per utilizzare questo protocollo di automazione, è necessario un server proxy che traduca tutti i comandi e li esegua nell'ambiente di destinazione (cioè il browser o l'app mobile).
 
-For browser automation, the proxy server is usually the browser driver. There are drivers  available for all browsers:
+Per l'automazione del browser, il server proxy è solitamente il driver del browser. Ci sono driver disponibili per tutti i browser:
 
 - Chrome – [ChromeDriver](http://chromedriver.chromium.org/downloads)
 - Firefox – [Geckodriver](https://github.com/mozilla/geckodriver/releases)
@@ -27,21 +27,8 @@ For browser automation, the proxy server is usually the browser driver. There ar
 - Internet Explorer – [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
 - Safari – [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
-For any kind of mobile automation, you’ll need to install and setup [Appium](http://appium.io). It will allow you to automate mobile (iOS/Android) or even desktop (macOS/Windows) applications using the same WebdriverIO setup.
+Per qualsiasi tipo di automazione mobile, dovrai installare e configurare [Appium](http://appium.io). Ti permetterà di automatizzare applicazioni mobili (iOS/Android) o persino desktop (macOS/Windows) utilizzando la stessa configurazione di WebdriverIO.
 
-There are also plenty of services that allow you to run your automation test in the cloud at high scale. Instead of having to setup all these drivers locally, you can just talk to these services (e.g. [Sauce Labs](https://saucelabs.com)) in the cloud and inspect the results on their platform. The communication between test script and automation environment will look as follows:
+Ci sono anche molti servizi che ti permettono di eseguire i tuoi test di automazione nel cloud su larga scala. Invece di dover configurare tutti questi driver localmente, puoi semplicemente comunicare con questi servizi (ad esempio [Sauce Labs](https://saucelabs.com)) nel cloud e ispezionare i risultati sulla loro piattaforma. La comunicazione tra script di test e ambiente di automazione sarà come segue:
 
 ![WebDriver Setup](/img/webdriver.png)
-
-### Advantages
-
-- Official W3C web standard, supported by all major browsers
-- Simplified protocol that covers common user interactions
-- Support for mobile automation (and even native desktop apps)
-- Can be used locally as well as in the cloud through services like [Sauce Labs](https://saucelabs.com)
-
-### Disadvantages
-
-- Not designed for in-depth browser analysis (e.g., tracing or intercepting network events)
-- Limited set of automation capabilities (e.g., no support to throttle CPU or network)
-- Additional effort to set up browser driver with selenium-standalone/chromedriver/etc

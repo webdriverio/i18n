@@ -1,25 +1,25 @@
 ---
 id: openofficehours
-title: Office Hours
+title: オフィスアワー
 ---
 
-Contributing to a big Open Source project can be hard. Especially if the codebase is large and requires a lot of context to understand what certain changes do. Then there is the possibility that tools or infrastructure is being used that are unknown. Nevertheless the project depends on your contributions and help to identify bugs and fix them. How can we overcome this hurdle?
+大規模なオープンソースプロジェクトに貢献することは難しい場合があります。特にコードベースが大きく、特定の変更が何をするのかを理解するために多くのコンテキストが必要な場合はそうです。また、未知のツールやインフラが使用されている可能性もあります。それでも、プロジェクトはあなたの貢献とバグを特定して修正するための助けに依存しています。この障壁をどのように乗り越えることができるでしょうか？
 
-The WebdriverIO projects has introduced Open Office Hours that allow everyone to schedule individual 1:1 pairing sessions with the WebdriverIO contributors. This allows you to get started contributing to WebdriverIO easily with the help of people that know the code base well. We only ask you to pick [a task](https://github.com/webdriverio/webdriverio/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Afirst-timers-only) you would like to work on up-front so that the pairing partner can be prepared for the session to provide better guidance. This is a free opportunity for you to not only give back to the WebdriverIO community but also get to know the team behind the project.
+WebdriverIOプロジェクトでは、誰でもWebdriverIO貢献者との個別の1対1ペアリングセッションをスケジュールできるオープンオフィスアワーを導入しました。これにより、コードベースをよく知っている人々の助けを借りて、WebdriverIOへの貢献を簡単に始めることができます。私たちがお願いするのは、セッション前に取り組みたい[タスク](https://github.com/webdriverio/webdriverio/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Afirst-timers-only)を選んでいただくことだけです。そうすることで、ペアリングパートナーがセッションの準備をして、より良いガイダンスを提供できます。これはWebdriverIOコミュニティに貢献するだけでなく、プロジェクトの背後にいるチームを知る無料の機会です。
 
-Currently we offer 4 slots a week from: every Wednesday 10am - 12am (CEST / GMT+2) for our European friends as well as: 11am - 13am (PDT / GMT -7) for people living on the west side of this hemisphere.
+現在、毎週水曜日の午前10時から正午（CEST / GMT+2）にヨーロッパの方々向けに、また午前11時から午後1時（PDT / GMT -7）に西半球に住んでいる方々向けに、週に4つのスロットを提供しています。
 
-Before you book an appointment, make sure you can meet the following basic requirements needed to contribute to WebdriverIO:
+予約する前に、WebdriverIOに貢献するために必要な以下の基本的な要件を満たすことができるか確認してください：
 
-- you've found an issue you like to contribute to in the [issue tracker](https://github.com/webdriverio/webdriverio/issues) (without an issue, your appointment will be cancelled immediatelly)
-- you have been working on a Node.js project before (these sessions can't be used to learn Node.js fundamentals)
-- you've read the [Contribution Guidelines](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md#set-up-project) and have the project set-up locally or in an ephemeral workspace
-- you can run the projects unit tests, and they are passing
+- [イシュートラッカー](https://github.com/webdriverio/webdriverio/issues)で貢献したいイシューを見つけていること（イシューがない場合、予約はすぐにキャンセルされます）
+- 以前にNode.jsプロジェクトに取り組んだことがあること（このセッションはNode.jsの基礎を学ぶために使用することはできません）
+- [貢献ガイドライン](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md#set-up-project)を読み、プロジェクトをローカルまたはエフェメラルワークスペースで設定していること
+- プロジェクトの単体テストを実行でき、それらがパスしていること
 
-After that, you can book an appointment at any time on:
+その後、いつでも以下でアポイントメントを予約できます：
 
 [calendly.com/webdriverio/open-office-hours](https://calendly.com/webdriverio/open-office-hours)
 
-All sessions will be held over [Zoom](https://zoom.us/) or [Google Hangouts](https://hangouts.google.com/) but alternative platforms are possible, please let us know in the comment section. Also please note that this is not a way to get individual consulting for your own projects. The time is to be used to work on WebdriverIO related bugs or features. For support questions we still ask you to use our [Discord Support Server](https://discord.webdriver.io).
+すべてのセッションは[Zoom](https://zoom.us/)または[Google Hangouts](https://hangouts.google.com/)で行われますが、代替プラットフォームも可能です。コメントセクションでお知らせください。また、これは自分のプロジェクトに対する個別コンサルティングを受ける方法ではないことにご注意ください。この時間はWebdriverIO関連のバグや機能に取り組むために使用されます。サポートの質問については、引き続き[Discordサポートサーバー](https://discord.webdriver.io)を使用するようお願いします。
 
-We are looking forward to meet you all online and hope to find more collaborators helping us to push the project forward!
+私たちはオンラインでみなさんにお会いすることを楽しみにしており、プロジェクトを前進させるのを手伝ってくれる多くのコラボレーターを見つけることを願っています！

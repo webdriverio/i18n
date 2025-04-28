@@ -1,76 +1,76 @@
 ---
 id: customservices
-title: Custom Services
+title: カスタムサービス
 ---
 
-You can write your own custom service for the WDIO test runner to custom-fit your needs.
+WDIOテストランナーのために、あなたのニーズに合わせたカスタムサービスを作成することができます。
 
-Services are add-ons that are created for reusable logic to simplify tests, manage your test suite and integrate results. Services have access to all the same [hooks](/docs/configurationfile) available in the `wdio.conf.js`.
+サービスはテストを簡素化し、テストスイートを管理し、結果を統合するために作成された再利用可能なロジックのアドオンです。サービスは`wdio.conf.js`で利用可能なすべての同じ[フック](/docs/configurationfile)にアクセスできます。
 
-There are two types of services that can be defined: a launcher service that only has access to the `onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete` hook which are only executed once per test run, and a worker service that has access to all other hooks and is being executed for each worker. Note that you can not share (global) variables between both types of services as worker services run in a different (worker) process.
+定義できるサービスには2種類あります：テスト実行ごとに一度だけ実行される`onPrepare`、`onWorkerStart`、`onWorkerEnd`、`onComplete`フックにのみアクセスできるランチャーサービスと、他のすべてのフックにアクセスでき、各ワーカーに対して実行されるワーカーサービスです。ワーカーサービスは異なる（ワーカー）プロセスで実行されるため、両方のタイプのサービス間で（グローバル）変数を共有することはできないことに注意してください。
 
-A launcher service can be defined as follows:
+ランチャーサービスは次のように定義できます：
 
 ```js
 export default class CustomLauncherService {
-    // If a hook returns a promise, WebdriverIO will wait until that promise is resolved to continue.
+    // フックがプロミスを返す場合、WebdriverIOはそのプロミスが解決されるまで待機します。
     async onPrepare(config, capabilities) {
-        // TODO: something before all workers launch
+        // TODO: すべてのワーカーが起動する前に何かを実行
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: something after the workers shutdown
+        // TODO: ワーカーがシャットダウンした後に何かを実行
     }
 
-    // custom service methods ...
+    // カスタムサービスメソッド ...
 }
 ```
 
-Whereas a worker service should look like this:
+一方、ワーカーサービスは次のようになります：
 
 ```js
 export default class CustomWorkerService {
     /**
-     * `serviceOptions` contains all options specific to the service
-     * e.g. if defined as follows:
+     * `serviceOptions`にはサービス固有のすべてのオプションが含まれています
+     * 例えば、次のように定義されている場合：
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * the `serviceOptions` parameter will be: `{ foo: 'bar' }`
+     * `serviceOptions`パラメータは：`{ foo: 'bar' }`となります
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * this browser object is passed in here for the first time
+     * このブラウザオブジェクトは初めてここに渡されます
      */
     async before(config, capabilities, browser) {
         this.browser = browser
 
-        // TODO: something before all tests are run, e.g.:
+        // TODO: すべてのテストが実行される前に何かを実行、例：
         await this.browser.setWindowSize(1024, 768)
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: something after all tests are run
+        // TODO: すべてのテストが実行された後に何かを実行
     }
 
     beforeTest(test, context) {
-        // TODO: something before each Mocha/Jasmine test run
+        // TODO: 各Mocha/Jasmineテスト実行前に何かを実行
     }
 
     beforeScenario(test, context) {
-        // TODO: something before each Cucumber scenario run
+        // TODO: 各Cucumberシナリオ実行前に何かを実行
     }
 
-    // other hooks or custom service methods ...
+    // その他のフックやカスタムサービスメソッド...
 }
 ```
 
-It is recommended to store the browser object through the passed in parameter in the constructor. Lastly expose both types of workers as following:
+コンストラクタで渡されたパラメータを通じてブラウザオブジェクトを保存することをお勧めします。最後に、両方のタイプのワーカーを次のように公開します：
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-If you are using TypeScript and want to make sure that hook methods parameter are type safe, you can define your service class as follows:
+TypeScriptを使用していて、フックメソッドのパラメータが型安全であることを確認したい場合は、サービスクラスを次のように定義できます：
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -89,7 +89,7 @@ export default class CustomWorkerService implements Services.ServiceInstance {
     constructor (
         private _options: MyServiceOptions,
         private _capabilities: Capabilities.RemoteCapability,
-        private _config: Options.Testrunner
+        private _config: WebdriverIO.Config,
     ) {
         // ...
     }
@@ -98,29 +98,29 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## Service Error Handling
+## サービスのエラーハンドリング
 
-An Error thrown during a service hook will be logged while the runner continues. If a hook in your service is critical to the setup or teardown of the test runner, the `SevereServiceError` exposed from the `webdriverio` package can be used to stop the runner.
+サービスフック中にスローされたエラーはログに記録され、ランナーは継続されます。サービス内のフックがテストランナーのセットアップやティアダウンに不可欠である場合、`webdriverio`パッケージから公開されている`SevereServiceError`を使用してランナーを停止できます。
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: something critical for setup before all workers launch
+        // TODO: すべてのワーカーが起動する前のセットアップに不可欠な何か
 
-        throw new SevereServiceError('Something went wrong.')
+        throw new SevereServiceError('何かが間違っています。')
     }
 
-    // custom service methods ...
+    // カスタムサービスメソッド...
 }
 ```
 
-## Import Service from Module
+## モジュールからサービスをインポート
 
-The only thing to do now in order to use this service is to assign it to the `services` property.
+このサービスを使用するために必要なことは、それを`services`プロパティに割り当てることだけです。
 
-Modify your `wdio.conf.js` file to look like this:
+`wdio.conf.js`ファイルを次のように変更します：
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -129,13 +129,13 @@ export const config = {
     // ...
     services: [
         /**
-         * use imported service class
+         * インポートしたサービスクラスを使用
          */
         [CustomService, {
             someOption: true
         }],
         /**
-         * use absolute path to service
+         * サービスへの絶対パスを使用
          */
         ['/path/to/service.js', {
             someOption: true
@@ -145,19 +145,19 @@ export const config = {
 }
 ```
 
-## Publish Service on NPM
+## NPMでのサービスの公開
 
-To make services easier to consume and discover by the WebdriverIO community, please follow these recommendations:
+WebdriverIOコミュニティがサービスを簡単に利用・発見できるようにするために、以下の推奨事項に従ってください：
 
-* Services should use this naming convention: `wdio-*-service`
-* Use NPM keywords: `wdio-plugin`, `wdio-service`
-* The `main` entry should `export` an instance of the service
-* Example services: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* サービスは次の命名規則を使用すべきです：`wdio-*-service`
+* NPMキーワードを使用する：`wdio-plugin`、`wdio-service`
+* `main`エントリーはサービスのインスタンスを`export`すべきです
+* サービスの例：[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-Following the recommended naming pattern allows services to be added by name:
+推奨される命名パターンに従うことで、サービスを名前で追加できます：
 
 ```js
-// Add wdio-custom-service
+// wdio-custom-serviceを追加
 export const config = {
     // ...
     services: ['custom'],
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### Add Published Service to WDIO CLI and Docs
+### 公開されたサービスをWDIO CLIとドキュメントに追加する
 
-We really appreciate every new plugin that could help other people run better tests! If you have created such a plugin, please consider adding it to our CLI and docs to make it easier to be found.
+より良いテストの実行に役立つ新しいプラグインを高く評価しています！そのようなプラグインを作成した場合は、それを私たちのCLIとドキュメントに追加して、見つけやすくすることを検討してください。
 
-Please raise a pull request with the following changes:
+以下の変更を含むプルリクエストを作成してください：
 
-- add your service to the list of [supported services](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) in the CLI module
-- enhance the [service list](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) for adding your docs to the official Webdriver.io page
+- CLIモジュールの[サポートされているサービスのリスト](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)にあなたのサービスを追加する
+- 公式Webdriver.ioページにドキュメントを追加するための[サービスリスト](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json)を拡張する

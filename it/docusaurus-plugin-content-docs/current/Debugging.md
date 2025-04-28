@@ -3,11 +3,11 @@ id: debugging
 title: Debugging
 ---
 
-Debugging is significantly more difficult when several processes spawn dozens of tests in multiple browsers.
+Il debugging è significativamente più difficile quando diversi processi generano decine di test in più browser.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_bw_VWn5IzU" frameborder="0" allowFullScreen></iframe>
 
-For starters, it is extremely helpful to limit parallelism by setting `maxInstances` to `1`, and targeting only those specs and browsers that need to be debugged.
+Per iniziare, è estremamente utile limitare il parallelismo impostando `maxInstances` a `1`, e mirando solo a quelle specifiche e browser che devono essere debuggati.
 
 In `wdio.conf`:
 
@@ -25,13 +25,13 @@ export const config = {
 }
 ```
 
-## The Debug Command
+## Il Comando Debug
 
-In many cases, you can use [`browser.debug()`](/docs/api/browser/debug) to pause your test and inspect the browser.
+In molti casi, puoi usare [`browser.debug()`](/docs/api/browser/debug) per mettere in pausa il tuo test e ispezionare il browser.
 
-Your command line interface will also switch into REPL mode. This mode allows you to fiddle around with commands and elements on the page. In REPL mode, you can access the `browser` object&mdash;or `$` and `$$` functions&mdash;like you can in your tests.
+La tua interfaccia a riga di comando passerà anche alla modalità REPL. Questa modalità ti permette di sperimentare con comandi ed elementi sulla pagina. In modalità REPL, puoi accedere all'oggetto `browser`&mdash;o alle funzioni `$` e `$$`&mdash;come nei tuoi test.
 
-When using `browser.debug()`, you will likely need to increase the timeout of the test runner to prevent the test runner from failing the test for taking to long.  For example:
+Quando usi `browser.debug()`, probabilmente dovrai aumentare il timeout del test runner per evitare che il test fallisca perché impiega troppo tempo. Per esempio:
 
 In `wdio.conf`:
 
@@ -41,14 +41,14 @@ jasmineOpts: {
 }
 ```
 
-See [timeouts](timeouts) for more information on how to do that using other frameworks.
+Vedi [timeouts](timeouts) per maggiori informazioni su come farlo usando altri framework.
 
-To proceed with the tests after debugging, in the shell use `^C` shortcut or the `.exit` command.
-## Dynamic configuration
+Per procedere con i test dopo il debugging, nella shell usa la scorciatoia `^C` o il comando `.exit`.
+## Configurazione dinamica
 
-Note that `wdio.conf.js` can contain Javascript. Since you probably do not want to permanently change your timeout value to 1 day, it can be often helpful to change these settings from the command line using an environment variable.
+Nota che `wdio.conf.js` può contenere Javascript. Poiché probabilmente non vuoi cambiare permanentemente il tuo valore di timeout a 1 giorno, può essere spesso utile modificare queste impostazioni dalla riga di comando utilizzando una variabile di ambiente.
 
-Using this technique, you can dynamically change the configuration:
+Utilizzando questa tecnica, puoi cambiare dinamicamente la configurazione:
 
 ```js
 const debug = process.env.DEBUG
@@ -68,33 +68,33 @@ export const config = {
 }
 ```
 
-You can then prefix the `wdio` command with the `debug` flag:
+Puoi quindi prefissare il comando `wdio` con il flag `debug`:
 
 ```
 $ DEBUG=true npx wdio wdio.conf.js --spec ./tests/e2e/myspec.test.js
 ```
 
-...and debug your spec file with the DevTools!
+...e debug il tuo file spec con DevTools!
 
-## Debugging with Visual Studio Code (VSCode)
+## Debugging con Visual Studio Code (VSCode)
 
-If you want to debug your tests with breakpoints in latest VSCode, you have two options for starting the debugger of which option 1 is the easiest method:
- 1. automatically attaching the debugger
- 2. attaching the debugger using a configuration file
+Se vuoi fare il debug dei tuoi test con breakpoint nell'ultima versione di VSCode, hai due opzioni per avviare il debugger di cui l'opzione 1 è il metodo più semplice:
+ 1. collegare automaticamente il debugger
+ 2. collegare il debugger usando un file di configurazione
 
-### VSCode Toggle Auto Attach
+### VSCode Attiva Auto Attach
 
-You can automatically attach the debugger by following these steps in VSCode:
- - Press CMD + Shift + P (Linux and Macos) or CTRL + Shift + P (Windows)
- - Type "attach" into the input field
- - Select "Debug: Toggle Auto Attach"
- - Select "Only With Flag"
+Puoi collegare automaticamente il debugger seguendo questi passaggi in VSCode:
+ - Premi CMD + Shift + P (Linux e Macos) o CTRL + Shift + P (Windows)
+ - Digita "attach" nel campo di input
+ - Seleziona "Debug: Toggle Auto Attach"
+ - Seleziona "Only With Flag"
 
- That's it! Now when you run your tests (remember you will need the --inspect flag set in your config as shown earlier) it will automatically start the debugger and stop on the first breakpoint that it reaches.
+ Ecco fatto! Ora quando esegui i tuoi test (ricorda che avrai bisogno del flag --inspect impostato nella tua configurazione come mostrato prima) avvierà automaticamente il debugger e si fermerà al primo breakpoint che raggiunge.
 
-### VSCode Configuration file
+### File di configurazione VSCode
 
-It's possible to run all or selected spec file(s). Debug configuration(s) have to be added to `.vscode/launch.json`, to debug selected spec add the following config:
+È possibile eseguire tutti o selezionati file spec. Le configurazioni di debug devono essere aggiunte a `.vscode/launch.json`, per eseguire il debug della spec selezionata aggiungi la seguente configurazione:
 ```
 {
     "name": "run select spec",
@@ -113,47 +113,51 @@ It's possible to run all or selected spec file(s). Debug configuration(s) have t
 },
 ```
 
-To run all spec files remove `"--spec", "${file}"` from `"args"`
+Per eseguire tutti i file spec rimuovi `"--spec", "${file}"` da `"args"`
 
-Example: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
+Esempio: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
 
-Additional info: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+Informazioni aggiuntive: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 
-## Dynamic Repl with Atom
+## Repl dinamico con Atom
 
-If you are an [Atom](https://atom.io/) hacker you can try [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) by [@kurtharriger](https://github.com/kurtharriger) which is a dynamic repl that allows you to execute single code lines in Atom. Watch [this](https://www.youtube.com/watch?v=kdM05ChhLQE) YouTube video to see a demo.
+Se sei un hacker di [Atom](https://atom.io/) puoi provare [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) di [@kurtharriger](https://github.com/kurtharriger) che è un repl dinamico che ti permette di eseguire singole righe di codice in Atom. Guarda [questo](https://www.youtube.com/watch?v=kdM05ChhLQE) video di YouTube per vedere una demo.
 
-## Debugging with WebStorm / Intellij
-You can create a node.js debug configuration like this: ![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png) Watch this [YouTube Video](https://www.youtube.com/watch?v=Qcqnmle6Wu8) for more information about how to make a configuration.
+## Debugging con WebStorm / Intellij
+Puoi creare una configurazione di debug node.js così:
+![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png)
+Guarda questo [Video YouTube](https://www.youtube.com/watch?v=Qcqnmle6Wu8) per maggiori informazioni su come creare una configurazione.
 
-## Debugging flaky tests
+## Debugging di test instabili
 
-Flaky tests can be really hard to debug so here are some tips how you can try and get that flaky result you got in your CI, reproduced locally.
+I test instabili possono essere davvero difficili da debuggare, quindi ecco alcuni suggerimenti su come puoi provare a riprodurre localmente quel risultato instabile che hai ottenuto nella tua CI.
 
-### Network
-To debug network related flakiness use the [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) command.
+### Rete
+Per debuggare l'instabilità legata alla rete usa il comando [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork).
 ```js
 await browser.throttleNetwork('Regular3G')
 ```
 
-### Rendering speed
-To debug device speed related flakiness use the [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) command. This will cause your pages to render slower which can be caused by many things like running multiple processes in your CI which could be slowing down your tests.
+### Velocità di rendering
+Per debuggare l'instabilità legata alla velocità del dispositivo usa il comando [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU).
+Questo farà sì che le tue pagine si rendano più lentamente, cosa che può essere causata da molti fattori come l'esecuzione di più processi nella tua CI che potrebbero rallentare i tuoi test.
 ```js
 await browser.throttleCPU(4)
 ```
 
-### Test execution speed
+### Velocità di esecuzione del test
 
-If your tests do not seem to be affected it is possible that WebdriverIO is faster than the update from the frontend framework / browser. This happens when using synchronous assertions since WebdriverIO has no chance to retry these assertions anymore. Some examples of code that can break because of this:
+Se i tuoi test non sembrano essere influenzati, è possibile che WebdriverIO sia più veloce dell'aggiornamento del framework frontend / browser. Questo accade quando si utilizzano asserzioni sincrone poiché WebdriverIO non ha possibilità di riprovare queste asserzioni. Alcuni esempi di codice che possono rompersi a causa di questo:
 ```js
-expect(elementList.length).toEqual(7) // list might not be populated at the time of the assertion
-expect(await elem.getText()).toEqual('this button was clicked 3 times') // text might not be updated yet at the time of assertion resulting in an error ("this button was clicked 2 times" does not match the expected "this button was clicked 3 times")
-expect(await elem.isDisplayed()).toBe(true) // might not be displayed yet
+expect(elementList.length).toEqual(7) // la lista potrebbe non essere popolata al momento dell'asserzione
+expect(await elem.getText()).toEqual('this button was clicked 3 times') // il testo potrebbe non essere ancora aggiornato al momento dell'asserzione, risultando in un errore ("this button was clicked 2 times" non corrisponde al previsto "this button was clicked 3 times")
+expect(await elem.isDisplayed()).toBe(true) // potrebbe non essere ancora visualizzato
 ```
-To resolve this problem, asynchronous assertions should be used instead. The above examples would looks like this:
+Per risolvere questo problema, dovrebbero essere utilizzate asserzioni asincrone. Gli esempi sopra sarebbero così:
 ```js
 await expect(elementList).toBeElementsArrayOfSize(7)
 await expect(elem).toHaveText('this button was clicked 3 times')
 await expect(elem).toBeDisplayed()
 ```
-Using these assertions, WebdriverIO will automatically wait until the condition matches. When asserting text this means that the element needs to exist and the text needs to be equal to the expected value. We talk more about this in our [Best Practices Guide](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).
+Utilizzando queste asserzioni, WebdriverIO attenderà automaticamente fino a quando la condizione non corrisponde. Quando si asserisce il testo, questo significa che l'elemento deve esistere e il testo deve essere uguale al valore previsto.
+Ne parliamo di più nella nostra [Guida alle Best Practices](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).

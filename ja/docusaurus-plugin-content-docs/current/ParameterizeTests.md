@@ -1,9 +1,9 @@
 ---
 id: parameterize-tests
-title: Parameterize Tests
+title: テストのパラメータ化
 ---
 
-You can simply parameterize tests on a test level, via simple `for` loops e.g.:
+テストレベルで、単純な `for` ループを使用してテストを簡単にパラメータ化することができます：
 
 ```ts title=example.spec.js
 const people = ['Alice', 'Bob']
@@ -16,7 +16,7 @@ describe('my tests', () => {
 })
 ```
 
-or by extracting tests into dynamic functions, e.g.:
+または、テストを動的関数に抽出することで、例えば：
 
 ```js title=dynamic.spec.js
 import { browser } from '@wdio/globals'
@@ -34,11 +34,11 @@ describe('page components', () => {
 })
 ```
 
-## Passing Environment Variables
+## 環境変数の受け渡し
 
-You can use environment variables to configure tests from the command line.
+コマンドラインから環境変数を使用してテストを設定することができます。
 
-For example, consider the following test file that needs a username and a password. It is usually a good idea not to store your secrets in the source code, so we'll need a way to pass secrets from outside.
+例えば、ユーザー名とパスワードが必要なテストファイルを考えてみましょう。通常、機密情報をソースコードに保存しないことをお勧めします。そのため、外部から機密情報を渡す方法が必要になります。
 
 ```ts title=example.spec.ts
 it(`example test`, async () => {
@@ -48,15 +48,15 @@ it(`example test`, async () => {
 })
 ```
 
-You can run this test with your secret username and password set in the command line.
+コマンドラインで機密のユーザー名とパスワードを設定して、このテストを実行することができます。
 
 <Tabs
   defaultValue="bash"
   values={[
     {label: 'Bash', value: 'bash'},
- {label: 'Powershell', value: 'powershell'},
- {label: 'Batch', value: 'batch'},
- ]
+    {label: 'Powershell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'},
+  ]
 }>
 <TabItem value="bash">
 
@@ -85,7 +85,7 @@ npx wdio run wdio.conf.js
 </TabItem>
 </Tabs>
 
-Similarly, configuration file can also read environment variables passed through the command line.
+同様に、設定ファイルもコマンドラインを通じて渡された環境変数を読み取ることができます。
 
 ```ts title=wdio.config.js
 export const config = {
@@ -97,15 +97,15 @@ export const config = {
 }
 ```
 
-Now, you can run tests against a staging or a production environment:
+これで、ステージング環境または本番環境に対してテストを実行できます：
 
 <Tabs
   defaultValue="bash"
   values={[
     {label: 'Bash', value: 'bash'},
- {label: 'Powershell', value: 'powershell'},
- {label: 'Batch', value: 'batch'},
- ]
+    {label: 'Powershell', value: 'powershell'},
+    {label: 'Batch', value: 'batch'},
+  ]
 }>
 <TabItem value="bash">
 
@@ -132,9 +132,9 @@ npx wdio run wdio.conf.js
 </TabItem>
 </Tabs>
 
-## `.env` files
+## `.env`ファイル
 
-To make environment variables easier to manage, consider something like `.env` files. WebdriverIO loads `.env` files automatically into your environment. Instead of defining the environment variable as part of the command call, you can define the following `.env`:
+環境変数の管理を容易にするために、`.env`ファイルの使用を検討してください。WebdriverIOは`.env`ファイルを自動的に環境に読み込みます。コマンド呼び出しの一部として環境変数を定義する代わりに、以下のような`.env`を定義できます：
 
 ```bash title=".env"
 # .env file
@@ -143,17 +143,17 @@ USERNAME=me
 PASSWORD=secret
 ```
 
-Run tests as usual, your environment variables should be picked up.
+通常通りテストを実行すると、環境変数が取り込まれます。
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-## Create tests via a CSV file
+## CSVファイルを使用したテストの作成
 
-The WebdriverIO test-runner runs in Node.js, this means you can directly read files from the file system and parse them with your preferred CSV library.
+WebdriverIOテストランナーはNode.jsで実行されるため、ファイルシステムから直接ファイルを読み取り、お好みのCSVライブラリでパースすることができます。
 
-See for example this CSV file, in our example input.csv:
+例えば、このCSVファイル（input.csv）をご覧ください：
 
 ```csv
 "test_case","some_value","some_other_value"
@@ -163,7 +163,7 @@ See for example this CSV file, in our example input.csv:
 "value 4","value 44","foobar4321"
 ```
 
-Based on this we'll generate some tests by using the csv-parse library from NPM:
+これに基づいて、NPMのcsv-parseライブラリを使用していくつかのテストを生成します：
 
 ```js title=test.spec.ts
 import fs from 'node:fs'

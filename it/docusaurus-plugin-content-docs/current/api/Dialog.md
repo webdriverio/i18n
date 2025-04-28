@@ -1,11 +1,11 @@
 ---
 id: dialog
-title: The Dialog Object
+title: L'Oggetto Dialog
 ---
 
-Dialog objects are dispatched by [`browser`](/docs/api/browser) via the `browser.on('dialog')` event.
+Gli oggetti Dialog vengono inviati da [`browser`](/docs/api/browser) tramite l'evento `browser.on('dialog')`.
 
-An example of using the Dialog object:
+Un esempio di utilizzo dell'oggetto Dialog:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-Dialogs are dismissed automatically, unless there is a `browser.on('dialog')` listener. When listener is present, it must either [`dialog.accept()`](/docs/api/dialog/accept) or [`dialog.dismiss()`](/docs/api/dialog/dismiss) the dialog - otherwise the page will freeze waiting for the dialog, and actions like click will never finish.
+I dialog vengono chiusi automaticamente, a meno che non ci sia un listener `browser.on('dialog')`. Quando il listener è presente, deve accettare il dialog con [`dialog.accept()`](/docs/api/dialog/accept) o respingerlo con [`dialog.dismiss()`](/docs/api/dialog/dismiss) - altrimenti la pagina si bloccherà in attesa del dialog, e azioni come click non verranno mai completate.
 
 :::

@@ -1,49 +1,49 @@
 ---
 id: v7-migration
-title: From v6 to v7
+title: v6からv7へ
 ---
 
-This tutorial is for people who are still using `v6` of WebdriverIO and want to migrate to `v7`. As mentioned in our [release blog post](https://webdriver.io/blog/2021/02/09/webdriverio-v7-released) the changes are mostly under the hood and upgrading should be a straight forward process.
+このチュートリアルは、WebdriverIOの`v6`を使用していて`v7`に移行したい人向けです。[リリースブログ記事](https://webdriver.io/blog/2021/02/09/webdriverio-v7-released)で言及したように、変更はほとんど内部的なものであり、アップグレードは簡単なプロセスであるはずです。
 
 :::info
 
-If you are using WebdriverIO `v5` or below, please upgrade to `v6` first. Please checkout our [v6 migration guide](v6-migration).
+WebdriverIO `v5`以下を使用している場合は、まず`v6`にアップグレードしてください。[v6移行ガイド](v6-migration)をご確認ください。
 
 :::
 
-While we would love to have a fully automated process for this the reality looks different. Everyone has a different setup. Every step should be seen as guidance and less like a step by step instruction. If you have issues with the migration, don't hesitate to [contact us](https://github.com/webdriverio/codemod/discussions/new).
+自動化されたプロセスがあれば良いのですが、現実は異なります。誰もが異なるセットアップを持っています。各ステップは手順通りというよりもガイダンスとして見るべきです。移行に問題がある場合は、[お問い合わせ](https://github.com/webdriverio/codemod/discussions/new)ください。
 
-## Setup
+## セットアップ
 
-Similar to other migrations we can use the WebdriverIO [codemod](https://github.com/webdriverio/codemod). For this tutorial we use a [boilerplate project](https://github.com/WarleyGabriel/demo-webdriverio-cucumber) submitted by a community member and fully migrate it from `v6` to `v7`.
+他の移行と同様に、WebdriverIOの[codemod](https://github.com/webdriverio/codemod)を使用できます。このチュートリアルでは、コミュニティメンバーから提供された[ボイラープレートプロジェクト](https://github.com/WarleyGabriel/demo-webdriverio-cucumber)を使用して、`v6`から`v7`に完全に移行します。
 
-To install the codemod, run:
+codemodをインストールするには、次のコマンドを実行します：
 
 ```sh
 npm install jscodeshift @wdio/codemod
 ```
 
-#### Commits:
+#### コミット：
 
-- _install codemod deps_ [[6ec9e52]](https://github.com/WarleyGabriel/demo-webdriverio-cucumber/pull/11/commits/6ec9e52038f7e8cb1221753b67040b0f23a8f61a)
+- _codemod依存関係のインストール_ [[6ec9e52]](https://github.com/WarleyGabriel/demo-webdriverio-cucumber/pull/11/commits/6ec9e52038f7e8cb1221753b67040b0f23a8f61a)
 
-## Upgrade WebdriverIO Dependencies
+## WebdriverIO依存関係のアップグレード
 
-Given that all WebdriverIO versions are tight to each other it is the best to always upgrade to a specific tag, e.g. `latest`. To do so we copy all WebdriverIO related dependencies out of our `package.json` and re-install them via:
+すべてのWebdriverIOバージョンは互いに密接に関連しているため、常に特定のタグ（例えば`latest`）にアップグレードするのが最善です。そのためには、`package.json`からWebdriverIO関連の依存関係をすべてコピーして、次のように再インストールします：
 
 ```sh
 npm i --save-dev @wdio/allure-reporter@7 @wdio/cli@7 @wdio/cucumber-framework@7 @wdio/local-runner@7 @wdio/spec-reporter@7 @wdio/sync@7 wdio-chromedriver-service@7 wdio-timeline-reporter@7 webdriverio@7
 ```
 
-Usually WebdriverIO dependencies are part of the dev dependencies, depending on your project this can vary though. After this your `package.json` and `package-lock.json` should be updated. __Note:__ these are the dependencies used by the [example project](https://github.com/WarleyGabriel/demo-webdriverio-cucumber), yours may differ.
+通常、WebdriverIO依存関係は開発依存関係の一部ですが、プロジェクトによって異なる場合があります。この後、`package.json`と`package-lock.json`が更新されているはずです。**注意：** これらは[サンプルプロジェクト](https://github.com/WarleyGabriel/demo-webdriverio-cucumber)で使用されている依存関係であり、あなたのプロジェクトでは異なる場合があります。
 
-#### Commits:
+#### コミット：
 
-- _updated dependencies_ [[7097ab6]](https://github.com/WarleyGabriel/demo-webdriverio-cucumber/pull/11/commits/7097ab6297ef9f37ead0a9c2ce9fce8d0765458d)
+- _依存関係の更新_ [[7097ab6]](https://github.com/WarleyGabriel/demo-webdriverio-cucumber/pull/11/commits/7097ab6297ef9f37ead0a9c2ce9fce8d0765458d)
 
-## Transform Config File
+## 設定ファイルの変換
 
-A good first step is to start with the config file. In WebdriverIO `v7` we don't require to manually register any of the compilers anymore. In fact they need to be removed. This can be done with the codemod full automatically:
+最初のステップとして設定ファイルから始めるのが良いでしょう。WebdriverIO `v7`では、コンパイラを手動で登録する必要がなくなりました。実際、それらを削除する必要があります。これはcodemodを使用して完全に自動化できます：
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/v7 ./wdio.conf.js
@@ -51,28 +51,28 @@ npx jscodeshift -t ./node_modules/@wdio/codemod/v7 ./wdio.conf.js
 
 :::caution
 
-The codemod doesn't yet support TypeScript projects. See [`@webdriverio/codemod#10`](https://github.com/webdriverio/codemod/issues/10). We are working to implement support for it soon. If you are using TypeScript please get involved!
+codemodはまだTypeScriptプロジェクトをサポートしていません。[`@webdriverio/codemod#10`](https://github.com/webdriverio/codemod/issues/10)を参照してください。すぐにサポートを実装する予定です。TypeScriptを使用している場合は、ぜひ参加してください！
 
 :::
 
-#### Commits:
+#### コミット：
 
-- _transpile config file_ [[6015534]](https://github.com/WarleyGabriel/demo-webdriverio-cucumber/pull/11/commits/60155346a386380d8a77ae6d1107483043a43994)
+- _設定ファイルのトランスパイル_ [[6015534]](https://github.com/WarleyGabriel/demo-webdriverio-cucumber/pull/11/commits/60155346a386380d8a77ae6d1107483043a43994)
 
-## Update Step Definitions
+## ステップ定義の更新
 
-If you are using Jasmine or Mocha, you are done here. The last step is to update the Cucumber.js imports from `cucumber` to `@cucumber/cucumber`. This can also be done via the codemod automatically:
+JasmineまたはMochaを使用している場合は、これで完了です。最後のステップは、Cucumber.jsのインポートを`cucumber`から`@cucumber/cucumber`に更新することです。これもcodemodを使って自動的に行うことができます：
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/v7 ./src/e2e/*
 ```
 
-That's it! No more changes necessary 🎉
+これで完了です！他に変更は必要ありません 🎉
 
-#### Commits:
+#### コミット：
 
-- _transpile step definitions_ [[8c97b90]](https://github.com/WarleyGabriel/demo-webdriverio-cucumber/pull/11/commits/8c97b90a8b9197c62dffe4e2954f7dad814753cc)
+- _ステップ定義のトランスパイル_ [[8c97b90]](https://github.com/WarleyGabriel/demo-webdriverio-cucumber/pull/11/commits/8c97b90a8b9197c62dffe4e2954f7dad814753cc)
 
-## Conclusion
+## 結論
 
-We hope this tutorial guides you a little bit through the migration process to WebdriverIO `v7`. The community continues to improve the codemod while testing it with various teams in various organisations. Don't hesitate to [raise an issue](https://github.com/webdriverio/codemod/issues/new) if you have feedback or [start a discussion](https://github.com/webdriverio/codemod/discussions/new) if you struggle during the migration process.
+このチュートリアルがWebdriverIO `v7`への移行プロセスのガイドになれば幸いです。コミュニティは様々なチームや組織でテストしながら、codemodの改善を続けています。フィードバックがある場合は[問題を報告](https://github.com/webdriverio/codemod/issues/new)したり、移行プロセスで苦労している場合は[ディスカッションを開始](https://github.com/webdriverio/codemod/discussions/new)したりすることをためらわないでください。

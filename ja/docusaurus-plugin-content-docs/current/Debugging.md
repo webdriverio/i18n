@@ -1,15 +1,15 @@
 ---
 id: debugging
-title: Debugging
+title: デバッグ
 ---
 
-Debugging is significantly more difficult when several processes spawn dozens of tests in multiple browsers.
+複数のプロセスが複数のブラウザで数十のテストを実行する場合、デバッグは著しく難しくなります。
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_bw_VWn5IzU" frameborder="0" allowFullScreen></iframe>
 
-For starters, it is extremely helpful to limit parallelism by setting `maxInstances` to `1`, and targeting only those specs and browsers that need to be debugged.
+まず始めに、`maxInstances`を`1`に設定し、デバッグが必要な特定の仕様とブラウザのみをターゲットにすることで、並列処理を制限すると非常に役立ちます。
 
-In `wdio.conf`:
+`wdio.conf`内:
 
 ```js
 export const config = {
@@ -25,15 +25,15 @@ export const config = {
 }
 ```
 
-## The Debug Command
+## デバッグコマンド
 
-In many cases, you can use [`browser.debug()`](/docs/api/browser/debug) to pause your test and inspect the browser.
+多くの場合、[`browser.debug()`](/docs/api/browser/debug)を使用してテストを一時停止し、ブラウザを検査できます。
 
-Your command line interface will also switch into REPL mode. This mode allows you to fiddle around with commands and elements on the page. In REPL mode, you can access the `browser` object&mdash;or `$` and `$$` functions&mdash;like you can in your tests.
+コマンドラインインターフェイスもREPLモードに切り替わります。このモードでは、コマンドやページ上の要素を操作することができます。REPLモードでは、テスト内と同様に`browser`オブジェクト、または`$`と`$$`関数にアクセスできます。
 
-When using `browser.debug()`, you will likely need to increase the timeout of the test runner to prevent the test runner from failing the test for taking to long.  For example:
+`browser.debug()`を使用する場合、テストランナーがテストに時間がかかりすぎて失敗するのを防ぐために、テストランナーのタイムアウトを増やす必要があるでしょう。例えば：
 
-In `wdio.conf`:
+`wdio.conf`内:
 
 ```js
 jasmineOpts: {
@@ -41,14 +41,15 @@ jasmineOpts: {
 }
 ```
 
-See [timeouts](timeouts) for more information on how to do that using other frameworks.
+他のフレームワークを使用する場合の詳細については、[timeouts](timeouts)を参照してください。
 
-To proceed with the tests after debugging, in the shell use `^C` shortcut or the `.exit` command.
-## Dynamic configuration
+デバッグ後にテストを続行するには、シェルで`^C`ショートカットまたは`.exit`コマンドを使用します。
 
-Note that `wdio.conf.js` can contain Javascript. Since you probably do not want to permanently change your timeout value to 1 day, it can be often helpful to change these settings from the command line using an environment variable.
+## 動的設定
 
-Using this technique, you can dynamically change the configuration:
+`wdio.conf.js`はJavascriptを含むことができることに注意してください。おそらくタイムアウト値を永続的に1日に変更したくないため、環境変数を使用してコマンドラインからこれらの設定を変更すると便利なことがよくあります。
+
+この技術を使用すると、設定を動的に変更できます：
 
 ```js
 const debug = process.env.DEBUG
@@ -68,33 +69,33 @@ export const config = {
 }
 ```
 
-You can then prefix the `wdio` command with the `debug` flag:
+その後、`wdio`コマンドの前に`debug`フラグを付けることができます：
 
 ```
 $ DEBUG=true npx wdio wdio.conf.js --spec ./tests/e2e/myspec.test.js
 ```
 
-...and debug your spec file with the DevTools!
+...そしてDevToolsを使用してspecファイルをデバッグしましょう！
 
-## Debugging with Visual Studio Code (VSCode)
+## Visual Studio Code（VSCode）でのデバッグ
 
-If you want to debug your tests with breakpoints in latest VSCode, you have two options for starting the debugger of which option 1 is the easiest method:
- 1. automatically attaching the debugger
- 2. attaching the debugger using a configuration file
+最新のVSCodeでブレークポイントを使ってテストをデバッグしたい場合、デバッガーを起動するには2つの選択肢があります。そのうちオプション1が最も簡単な方法です：
+ 1. デバッガーを自動的にアタッチする
+ 2. 構成ファイルを使用してデバッガーをアタッチする
 
-### VSCode Toggle Auto Attach
+### VSCode自動アタッチの切り替え
 
-You can automatically attach the debugger by following these steps in VSCode:
- - Press CMD + Shift + P (Linux and Macos) or CTRL + Shift + P (Windows)
- - Type "attach" into the input field
- - Select "Debug: Toggle Auto Attach"
- - Select "Only With Flag"
+次の手順でデバッガーを自動的にアタッチすることができます：
+ - CMD + Shift + P（LinuxとMacos）またはCTRL + Shift + P（Windows）を押す
+ - 入力フィールドに「attach」と入力
+ - 「Debug: Toggle Auto Attach」を選択
+ - 「Only With Flag」を選択
 
- That's it! Now when you run your tests (remember you will need the --inspect flag set in your config as shown earlier) it will automatically start the debugger and stop on the first breakpoint that it reaches.
+これだけです！テストを実行すると（前述のように設定で--inspectフラグを設定する必要があることを覚えておいてください）、自動的にデバッガーが起動し、最初のブレークポイントで停止します。
 
-### VSCode Configuration file
+### VSCode設定ファイル
 
-It's possible to run all or selected spec file(s). Debug configuration(s) have to be added to `.vscode/launch.json`, to debug selected spec add the following config:
+すべてまたは選択したspecファイルを実行することが可能です。デバッグ設定は`.vscode/launch.json`に追加する必要があります。選択したspecをデバッグするには、次の設定を追加します：
 ```
 {
     "name": "run select spec",
@@ -113,47 +114,51 @@ It's possible to run all or selected spec file(s). Debug configuration(s) have t
 },
 ```
 
-To run all spec files remove `"--spec", "${file}"` from `"args"`
+すべてのspecファイルを実行するには、`"args"`から`"--spec", "${file}"`を削除します。
 
-Example: [.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
+例：[.vscode/launch.json](https://github.com/mgrybyk/webdriverio-devtools/blob/master/.vscode/launch.json)
 
-Additional info: https://code.visualstudio.com/docs/nodejs/nodejs-debugging
+追加情報：https://code.visualstudio.com/docs/nodejs/nodejs-debugging
 
-## Dynamic Repl with Atom
+## AtomでのダイナミックRepl
 
-If you are an [Atom](https://atom.io/) hacker you can try [`wdio-repl`](https://github.com/kurtharriger/wdio-repl) by [@kurtharriger](https://github.com/kurtharriger) which is a dynamic repl that allows you to execute single code lines in Atom. Watch [this](https://www.youtube.com/watch?v=kdM05ChhLQE) YouTube video to see a demo.
+[Atom](https://atom.io/)ハッカーの場合、[@kurtharriger](https://github.com/kurtharriger)による[`wdio-repl`](https://github.com/kurtharriger/wdio-repl)を試すことができます。これはAtomで単一のコード行を実行できるダイナミックReplです。デモを見るには[この](https://www.youtube.com/watch?v=kdM05ChhLQE) YouTubeビデオをご覧ください。
 
-## Debugging with WebStorm / Intellij
-You can create a node.js debug configuration like this: ![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png) Watch this [YouTube Video](https://www.youtube.com/watch?v=Qcqnmle6Wu8) for more information about how to make a configuration.
+## WebStorm / Intellijでのデバッグ
+このようなnode.jsデバッグ設定を作成できます：
+![Screenshot from 2021-05-29 17-33-33](https://user-images.githubusercontent.com/18728354/120088460-81844c00-c0a5-11eb-916b-50f21c8472a8.png)
+設定の作り方の詳細については、この[YouTubeビデオ](https://www.youtube.com/watch?v=Qcqnmle6Wu8)をご覧ください。
 
-## Debugging flaky tests
+## 不安定なテストのデバッグ
 
-Flaky tests can be really hard to debug so here are some tips how you can try and get that flaky result you got in your CI, reproduced locally.
+不安定なテストのデバッグは非常に難しい場合があるため、CIで発生した不安定な結果をローカルで再現する方法についていくつかのヒントを紹介します。
 
-### Network
-To debug network related flakiness use the [throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork) command.
+### ネットワーク
+ネットワーク関連の不安定性をデバッグするには、[throttleNetwork](https://webdriver.io/docs/api/browser/throttleNetwork)コマンドを使用します。
 ```js
 await browser.throttleNetwork('Regular3G')
 ```
 
-### Rendering speed
-To debug device speed related flakiness use the [throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU) command. This will cause your pages to render slower which can be caused by many things like running multiple processes in your CI which could be slowing down your tests.
+### レンダリング速度
+デバイス速度関連の不安定性をデバッグするには、[throttleCPU](https://webdriver.io/docs/api/browser/throttleCPU)コマンドを使用します。
+これにより、ページの描画が遅くなります。これはCIで複数のプロセスを実行していてテストが遅くなるなど、多くの原因で起こりえます。
 ```js
 await browser.throttleCPU(4)
 ```
 
-### Test execution speed
+### テスト実行速度
 
-If your tests do not seem to be affected it is possible that WebdriverIO is faster than the update from the frontend framework / browser. This happens when using synchronous assertions since WebdriverIO has no chance to retry these assertions anymore. Some examples of code that can break because of this:
+テストが影響を受けていないように見える場合、WebdriverIOがフロントエンドフレームワーク/ブラウザの更新よりも速い可能性があります。これは同期的なアサーションを使用すると、WebdriverIOがこれらのアサーションを再試行する機会がなくなるため発生します。これにより問題が発生する可能性のあるコードの例：
 ```js
-expect(elementList.length).toEqual(7) // list might not be populated at the time of the assertion
-expect(await elem.getText()).toEqual('this button was clicked 3 times') // text might not be updated yet at the time of assertion resulting in an error ("this button was clicked 2 times" does not match the expected "this button was clicked 3 times")
-expect(await elem.isDisplayed()).toBe(true) // might not be displayed yet
+expect(elementList.length).toEqual(7) // アサーション時にリストがまだ完全に取得されていない可能性がある
+expect(await elem.getText()).toEqual('this button was clicked 3 times') // アサーション時にテキストがまだ更新されていない可能性がある（「this button was clicked 2 times」が期待される「this button was clicked 3 times」と一致しない）
+expect(await elem.isDisplayed()).toBe(true) // まだ表示されていない可能性がある
 ```
-To resolve this problem, asynchronous assertions should be used instead. The above examples would looks like this:
+この問題を解決するには、非同期アサーションを使用すべきです。上記の例は次のようになります：
 ```js
 await expect(elementList).toBeElementsArrayOfSize(7)
 await expect(elem).toHaveText('this button was clicked 3 times')
 await expect(elem).toBeDisplayed()
 ```
-Using these assertions, WebdriverIO will automatically wait until the condition matches. When asserting text this means that the element needs to exist and the text needs to be equal to the expected value. We talk more about this in our [Best Practices Guide](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions).
+これらのアサーションを使用すると、WebdriverIOは自動的に条件が一致するまで待機します。テキストをアサートする場合、これは要素が存在し、テキストが期待値と等しくなければならないことを意味します。
+この詳細については[ベストプラクティスガイド](https://webdriver.io/docs/bestpractices#use-the-built-in-assertions)で説明しています。

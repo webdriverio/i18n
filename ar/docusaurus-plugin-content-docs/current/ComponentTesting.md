@@ -1,117 +1,120 @@
 ---
 id: component-testing
-title: Component Testing
+title: اختبار المكونات
 ---
 
-With WebdriverIOs [Browser Runner](/docs/runner#browser-runner) you can run tests within an actual desktop or mobile browser while using WebdriverIO and the WebDriver protocol to automate and interact what gets rendered on the page. This approach has [many advantages](/docs/runner#browser-runner) compared to other test frameworks that only allow testing against [JSDOM](https://www.npmjs.com/package/jsdom).
+باستخدام [مشغل المتصفح](/docs/runner#browser-runner) من WebdriverIO، يمكنك تشغيل الاختبارات داخل متصفح سطح المكتب أو الجوال الفعلي أثناء استخدام WebdriverIO وبروتوكول WebDriver للأتمتة والتفاعل مع ما يتم عرضه على الصفحة. يتميز هذا النهج [بالعديد من المزايا](/docs/runner#browser-runner) مقارنة بأطر الاختبار الأخرى التي تسمح فقط بالاختبار ضد [JSDOM](https://www.npmjs.com/package/jsdom).
 
-## How does it Work?
+## كيف يعمل؟
 
-The Browser Runner uses [Vite](https://vitejs.dev/) to render a test page and initialize a test framework to run your tests in the browser. Currently it only supports Mocha but Jasmine and Cucumber are [on the roadmap](https://github.com/orgs/webdriverio/projects/1). This allows to test any kind of components even for projects that don't use Vite.
+يستخدم مشغل المتصفح [Vite](https://vitejs.dev/) لعرض صفحة اختبار وتهيئة إطار اختبار لتشغيل اختباراتك في المتصفح. حاليًا يدعم فقط Mocha ولكن Jasmine وCucumber [على خارطة الطريق](https://github.com/orgs/webdriverio/projects/1). هذا يسمح باختبار أي نوع من المكونات حتى للمشاريع التي لا تستخدم Vite.
 
-The Vite server is started by the WebdriverIO testrunner and configured so that you can use all reporter and services as you used to for normal e2e tests. Furthermore it initializes a [`browser`](/docs/api/browser) instance that allows you to access a subset of the [WebdriverIO API](/docs/api) to interact with the any elements on the page. Similar as e2e tests you can access that instance through the `browser` variable attached to the global scope or by importing it from `@wdio/globals` depending on how [`injectGlobals`](/docs/api/globals) is set.
+يتم تشغيل خادم Vite بواسطة مشغل اختبار WebdriverIO وتكوينه بحيث يمكنك استخدام جميع أدوات التقارير والخدمات كما اعتدت بالنسبة لاختبارات e2e العادية. علاوة على ذلك، يقوم بتهيئة نسخة [`browser`](/docs/api/browser) تتيح لك الوصول إلى مجموعة فرعية من [واجهة برمجة تطبيقات WebdriverIO](/docs/api) للتفاعل مع أي عناصر على الصفحة. بشكل مشابه لاختبارات e2e، يمكنك الوصول إلى تلك النسخة من خلال متغير `browser` المرفق بالنطاق العالمي أو من خلال استيراده من `@wdio/globals` اعتمادًا على كيفية تعيين [`injectGlobals`](/docs/api/globals).
 
-WebdriverIO has built-in support for the following frameworks:
+يحتوي WebdriverIO على دعم مدمج للأطر التالية:
 
-- [__Nuxt__](https://nuxt.com/): WebdriverIO's testrunner detects a Nuxt application and automatically sets up your project composables and helps mock out the Nuxt backend, read more in the [Nuxt docs](/docs/component-testing/vue#testing-vue-components-in-nuxt)
-- [__TailwindCSS__](https://tailwindcss.com/): WebdriverIO's testrunner detects if you are using TailwindCSS and loads the environment properly into the test page
+- [__Nuxt__](https://nuxt.com/): يكتشف مشغل اختبار WebdriverIO تطبيق Nuxt ويقوم تلقائيًا بإعداد composables المشروع الخاص بك ويساعد في محاكاة خلفية Nuxt، اقرأ المزيد في [وثائق Nuxt](/docs/component-testing/vue#testing-vue-components-in-nuxt)
+- [__TailwindCSS__](https://tailwindcss.com/): يكتشف مشغل اختبار WebdriverIO ما إذا كنت تستخدم TailwindCSS ويقوم بتحميل البيئة بشكل صحيح في صفحة الاختبار
 
-## Setup
+## الإعداد
 
-To set-up WebdriverIO for unit or component testing in the browser, initiate a new WebdriverIO project via:
+لإعداد WebdriverIO لاختبار الوحدة أو المكونات في المتصفح، قم بإنشاء مشروع WebdriverIO جديد عبر:
 
 ```bash
 npm init wdio@latest ./
-# or
+# أو
 yarn create wdio ./
 ```
 
-Once the configuration wizard starts, pick `browser` for running unit and component testing and choose one of the presets if desired otherwise go with _"Other"_ if you only want to run basic unit tests. You can also configure a custom Vite configuration if you use Vite already in your project. For more information check out all [runner options](/docs/runner#runner-options).
+بمجرد بدء معالج التكوين، اختر `browser` لتشغيل اختبار الوحدة والمكونات واختر أحد الإعدادات المسبقة إذا كنت ترغب في ذلك، وإلا فاختر _"Other"_ إذا كنت تريد فقط تشغيل اختبارات الوحدة الأساسية. يمكنك أيضًا تكوين تكوين Vite مخصص إذا كنت تستخدم Vite بالفعل في مشروعك. لمزيد من المعلومات، تحقق من جميع [خيارات المشغل](/docs/runner#runner-options).
 
 :::info
 
-__Note:__ WebdriverIO by default will run browser tests in CI headlessly, e.g. a `CI` environment variable is set to `'1'` or `'true'`. You can manually configure this behavior using the [`headless`](/docs/runner#headless) option for the runner.
+__ملاحظة:__ سيقوم WebdriverIO افتراضيًا بتشغيل اختبارات المتصفح في CI بدون رأس، على سبيل المثال، يتم تعيين متغير بيئة `CI` إلى `'1'` أو `'true'`. يمكنك تكوين هذا السلوك يدويًا باستخدام خيار [`headless`](/docs/runner#headless) للمشغل.
 
 :::
 
-At the end of this process you should find a `wdio.conf.js` that contains various WebdriverIO configurations, including a `runner` property, e.g.:
+في نهاية هذه العملية، يجب أن تجد ملف `wdio.conf.js` يحتوي على تكوينات WebdriverIO المختلفة، بما في ذلك خاصية `runner`، على سبيل المثال:
 
 ```ts reference useHTTPS runmeRepository="git@github.com:webdriverio/example-recipes.git" runmeFileToOpen="component-testing%2FREADME.md"
 https://github.com/webdriverio/example-recipes/blob/fd54f94306ed8e7b40f967739164dfe4d6d76b41/wdio.comp.conf.js
 ```
 
-By defining different [capabilities](/docs/configuration#capabilities) you can run your tests in different browser, in parallel if desired.
+من خلال تحديد [قدرات](/docs/configuration#capabilities) مختلفة، يمكنك تشغيل اختباراتك في متصفحات مختلفة، بالتوازي إذا رغبت في ذلك.
 
-If you are still unsure how everything works, watch the following tutorial on how to get started with Component Testing in WebdriverIO:
+إذا كنت لا تزال غير متأكد من كيفية عمل كل شيء، شاهد البرنامج التعليمي التالي حول كيفية البدء باختبار المكونات في WebdriverIO:
 
-<LiteYouTubeEmbed id="5vp_3tGtnMc" title="Getting Started with Component Testing in WebdriverIO" />
+<LiteYouTubeEmbed
+    id="5vp_3tGtnMc"
+    title="Getting Started with Component Testing in WebdriverIO"
+/>
 
-## Test Harness
+## منصة الاختبار
 
-It is totally up to you what you want to run in your tests and how you like to render the components. However we recommend to use the [Testing Library](https://testing-library.com/) as utility framework as it provides plugins for various of component frameworks, such as React, Preact, Svelte and Vue. It is very useful for rendering components into the test page and it automatically cleans up these components after every test.
+الأمر متروك لك تمامًا فيما ترغب في تشغيله في اختباراتك وكيف ترغب في عرض المكونات. ومع ذلك، نوصي باستخدام [Testing Library](https://testing-library.com/) كإطار عمل مساعد لأنه يوفر إضافات للعديد من أطر المكونات، مثل React وPreact وSvelte وVue. إنه مفيد جدًا لعرض المكونات في صفحة الاختبار ويقوم تلقائيًا بتنظيف هذه المكونات بعد كل اختبار.
 
-You can mix Testing Library primitives with WebdriverIO commands as you wish, e.g.:
+يمكنك مزج أوليات Testing Library مع أوامر WebdriverIO كما تشاء، على سبيل المثال:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fd54f94306ed8e7b40f967739164dfe4d6d76b41/component-testing/svelte-example.js
 ```
 
-__Note:__ using render methods from Testing Library helps remove created components between the tests. If you don't use Testing Library ensure to attach your test components to a container that gets cleaned up between tests.
+__ملاحظة:__ استخدام طرق العرض من Testing Library يساعد على إزالة المكونات التي تم إنشاؤها بين الاختبارات. إذا كنت لا تستخدم Testing Library، فتأكد من إرفاق مكونات الاختبار الخاصة بك بحاوية يتم تنظيفها بين الاختبارات.
 
-## Setup Scripts
+## نصوص الإعداد
 
-You can set up your tests by running arbitrary scripts in Node.js or in the browser, e.g. injecting styles, mocking browser APIs or connecting to a 3rd party service. The WebdriverIO [hooks](/docs/configuration#hooks) can be used to run code in Node.js while the [`mochaOpts.require`](/docs/frameworks#require) allows you to import scripts into the browser before tests are loaded, e.g.:
+يمكنك إعداد اختباراتك من خلال تشغيل نصوص برمجية عشوائية في Node.js أو في المتصفح، مثل حقن الأنماط، أو محاكاة واجهات برمجة تطبيقات المتصفح، أو الاتصال بخدمة طرف ثالث. يمكن استخدام [hooks](/docs/configuration#hooks) من WebdriverIO لتشغيل التعليمات البرمجية في Node.js بينما يسمح [`mochaOpts.require`](/docs/frameworks#require) باستيراد النصوص إلى المتصفح قبل تحميل الاختبارات، على سبيل المثال:
 
 ```js wdio.conf.js
 export const config = {
     // ...
     mochaOpts: {
         ui: 'tdd',
-        // provide a setup script to run in the browser
+        // توفير نص إعداد للتشغيل في المتصفح
         require: './__fixtures__/setup.js'
     },
     before: () => {
-        // set up test environment in Node.js
+        // إعداد بيئة الاختبار في Node.js
     }
     // ...
 }
 ```
 
-For example, if you like to mock all [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) calls in your test with the following set-up script:
+على سبيل المثال، إذا كنت ترغب في محاكاة جميع استدعاءات [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) في اختبارك باستخدام نص الإعداد التالي:
 
 ```js ./fixtures/setup.js
 import { fn } from '@wdio/browser-runner'
 
-// run code before all tests are loaded
+// تشغيل التعليمات البرمجية قبل تحميل جميع الاختبارات
 window.fetch = fn()
 
 export const mochaGlobalSetup = () => {
-    // run code after test file is loaded
+    // تشغيل التعليمات البرمجية بعد تحميل ملف الاختبار
 }
 
 export const mochaGlobalTeardown = () => {
-    // run code after spec file was executed
+    // تشغيل التعليمات البرمجية بعد تنفيذ ملف المواصفات
 }
 
 ```
 
-Now in your tests you can provide custom response values for all browser requests. Read more on global fixtures in the [Mocha docs](https://mochajs.org/#global-fixtures).
+الآن في اختباراتك يمكنك توفير قيم استجابة مخصصة لجميع طلبات المتصفح. اقرأ المزيد عن الإعدادات العالمية في [وثائق Mocha](https://mochajs.org/#global-fixtures).
 
-## Watch Test and Application Files
+## مراقبة ملفات الاختبار والتطبيق
 
-There are multiple ways how you can debug your browser tests. The easiest is to start the WebdriverIO testrunner with the `--watch` flag, e.g.:
+هناك طرق متعددة لكيفية تصحيح اختبارات المتصفح الخاصة بك. الأسهل هو بدء مشغل اختبار WebdriverIO باستخدام العلامة `--watch`، على سبيل المثال:
 
 ```sh
 $ npx wdio run ./wdio.conf.js --watch
 ```
 
-This will run through all tests initially and halt once all are run. You can then make changes to individual files which then will be rerun individually. If you set a [`filesToWatch`](/docs/configuration#filestowatch) pointing to your application files, it will re-run all tests when changes to your app are being made.
+سيؤدي هذا إلى تشغيل جميع الاختبارات في البداية والتوقف بمجرد تشغيل الكل. يمكنك بعد ذلك إجراء تغييرات على الملفات الفردية التي سيتم إعادة تشغيلها بشكل فردي. إذا قمت بتعيين [`filesToWatch`](/docs/configuration#filestowatch) يشير إلى ملفات التطبيق الخاصة بك، فسيعيد تشغيل جميع الاختبارات عند إجراء تغييرات على تطبيقك.
 
-## Debugging
+## التصحيح
 
-While it is not (yet) possible to set breakpoints in your IDE and have them being recognized by the remote browser, you can use the [`debug`](/docs/api/browser/debug) command to stop the test at any point. This allows you to open DevTools to then debug the test by setting breakpoints in the [sources tab](https://buddy.works/tutorials/debugging-javascript-efficiently-with-chrome-devtools).
+على الرغم من أنه ليس من الممكن (بعد) تعيين نقاط توقف في بيئة التطوير المتكاملة الخاصة بك والتعرف عليها من قبل المتصفح البعيد، يمكنك استخدام الأمر [`debug`](/docs/api/browser/debug) لإيقاف الاختبار في أي نقطة. يتيح لك هذا فتح أدوات المطور لتصحيح الاختبار من خلال تعيين نقاط توقف في [علامة تبويب المصادر](https://buddy.works/tutorials/debugging-javascript-efficiently-with-chrome-devtools).
 
-When the `debug` command is called, you will also get a Node.js repl interface in your terminal, saying:
+عند استدعاء الأمر `debug`، ستحصل أيضًا على واجهة Node.js repl في المحطة الطرفية الخاصة بك، تقول:
 
 ```
 The execution has stopped!
@@ -119,23 +122,23 @@ You can now go into the browser or use the command line as REPL
 (To exit, press ^C again or type .exit)
 ```
 
-Press `Ctrl` or `Command` + `c` or enter `.exit` to continue with the test.
+اضغط على `Ctrl` أو `Command` + `c` أو أدخل `.exit` للمتابعة مع الاختبار.
 
-## Run using a Selenium Grid
+## التشغيل باستخدام Selenium Grid
 
-If you have a [Selenium Grid](https://www.selenium.dev/documentation/grid/) set up and run your browser through that grid, you have to set the `host` browser runner option to allow the browser, to access the right host where the test files are being served, e.g.:
+إذا كان لديك [Selenium Grid](https://www.selenium.dev/documentation/grid/) تم إعداده وقمت بتشغيل المتصفح من خلال تلك الشبكة، فيجب عليك تعيين خيار مشغل المتصفح `host` للسماح للمتصفح بالوصول إلى المضيف الصحيح حيث يتم خدمة ملفات الاختبار، على سبيل المثال:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
     runner: ['browser', {
-        // network IP of the machine that runs the WebdriverIO process
+        // عنوان IP للشبكة للجهاز الذي يشغل عملية WebdriverIO
         host: 'http://172.168.0.2'
     }]
 }
 ```
 
-This will ensure the browser correctly opens the right server instance hosted on the instance that runs the WebdriverIO tests.
+سيضمن ذلك فتح المتصفح بشكل صحيح لمثيل الخادم الصحيح المستضاف على المثيل الذي يشغل اختبارات WebdriverIO.
 
-## Examples
+## أمثلة
 
-You can find various examples for testing components using popular component frameworks in our [example repository](https://github.com/webdriverio/component-testing-examples).
+يمكنك العثور على أمثلة مختلفة لاختبار المكونات باستخدام أطر عمل المكونات الشائعة في [مستودع الأمثلة](https://github.com/webdriverio/component-testing-examples) الخاص بنا.

@@ -1,21 +1,21 @@
 ---
 id: methods
-title: Methods
+title: メソッド
 ---
 
-The following methods are added to the global WebdriverIO [`browser`](/docs/api/browser)-object.
+以下のメソッドはグローバルなWebdriverIO [`browser`](/docs/api/browser)オブジェクトに追加されます。
 
-## Save Methods
+## 保存メソッド
 
-:::info TIP
-Only use the Save Methods when you **don't** want to compare screens, but only want to have an element-/screenshot.
+:::info ヒント
+画面を比較するのではなく、要素やスクリーンショットを取得するだけの場合にのみ、保存メソッドを使用してください。
 :::
 
 ### `saveElement`
 
-Saves an image of an element.
+要素の画像を保存します。
 
-#### Usage
+#### 使用方法
 
 ```ts
 await browser.saveElement(
@@ -30,34 +30,34 @@ await browser.saveElement(
 );
 ```
 
-#### Support
+#### サポート
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- デスクトップブラウザ
+- モバイルブラウザ
+- モバイルハイブリッドアプリ
+- モバイルネイティブアプリ
 
-#### Parameters
+#### パラメータ
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+-   **`element`:**
+    -   **必須:** はい
+    -   **タイプ:** WebdriverIO Element
+-   **`tag`:**
+    -   **必須:** はい
+    -   **タイプ:** string
+-   **`saveElementOptions`:**
+    -   **必須:** いいえ
+    -   **タイプ:** オプションのオブジェクト、[保存オプション](./method-options#save-options)を参照
 
-#### Output:
+#### 出力:
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[テスト出力](./test-output#savescreenelementfullpagescreen)ページを参照してください。
 
 ### `saveScreen`
 
-Saves an image of a viewport.
+ビューポートの画像を保存します。
 
-#### Usage
+#### 使用方法
 
 ```ts
 await browser.saveScreen(
@@ -70,31 +70,30 @@ await browser.saveScreen(
 );
 ```
 
-#### Support
+#### サポート
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- デスクトップブラウザ
+- モバイルブラウザ
+- モバイルハイブリッドアプリ
+- モバイルネイティブアプリ
 
-#### Parameters
+#### パラメータ
+-   **`tag`:**
+    -   **必須:** はい
+    -   **タイプ:** string
+-   **`saveScreenOptions`:**
+    -   **必須:** いいえ
+    -   **タイプ:** オプションのオブジェクト、[保存オプション](./method-options#save-options)を参照
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### 出力:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[テスト出力](./test-output#savescreenelementfullpagescreen)ページを参照してください。
 
 ### `saveFullPageScreen`
 
-#### Usage
+#### 使用方法
 
-Saves an image of the complete screen.
+完全な画面の画像を保存します。
 
 ```ts
 await browser.saveFullPageScreen(
@@ -107,29 +106,28 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Support
+#### サポート
 
-- Desktop Browsers
-- Mobile Browsers
+- デスクトップブラウザ
+- モバイルブラウザ
 
-#### Parameters
+#### パラメータ
+-   **`tag`:**
+    -   **必須:** はい
+    -   **タイプ:** string
+-   **`saveFullPageScreenOptions`:**
+    -   **必須:** いいえ
+    -   **タイプ:** オプションのオブジェクト、[保存オプション](./method-options#save-options)を参照
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveFullPageScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### 出力:
 
-#### Output:
-
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+[テスト出力](./test-output#savescreenelementfullpagescreen)ページを参照してください。
 
 ### `saveTabbablePage`
 
-Saves an image of the complete screen with the tabbable lines and dots.
+タブ移動可能な線とドットを含む完全な画面の画像を保存します。
 
-#### Usage
+#### 使用方法
 
 ```ts
 await browser.saveTabbablePage(
@@ -142,26 +140,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Support
+#### サポート
 
-- Desktop Browsers
+- デスクトップブラウザ
 
-#### Parameters
+#### パラメータ
+-   **`tag`:**
+    -   **必須:** はい
+    -   **タイプ:** string
+-   **`saveTabbableOptions`:**
+    -   **必須:** いいえ
+    -   **タイプ:** オプションのオブジェクト、[保存オプション](./method-options#save-options)を参照
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`saveTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Save Options](./method-options#save-options)
+#### 出力:
 
-#### Output:
+[テスト出力](./test-output#savescreenelementfullpagescreen)ページを参照してください。
 
-See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
+## チェックメソッド
 
-## Check Methods
-
-:::info TIP
+:::info ヒント
+`check`メソッドを初めて使用すると、以下の警告がログに表示されます。これは、ベースラインを作成したい場合に`save`メソッドと`check`メソッドを組み合わせる必要がないことを意味します。
 
 ```shell
 #####################################################################################
@@ -177,9 +175,9 @@ See the [Test Output](./test-output#savescreenelementfullpagescreen) page.
 
 ### `checkElement`
 
-Compare an image of an element against a baseline image.
+要素の画像をベースライン画像と比較します。
 
-#### Usage
+#### 使用方法
 
 ```ts
 await browser.checkElement(
@@ -194,34 +192,33 @@ await browser.checkElement(
 );
 ```
 
-#### Support
+#### サポート
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- デスクトップブラウザ
+- モバイルブラウザ
+- モバイルハイブリッドアプリ
+- モバイルネイティブアプリ
 
-#### Parameters
+#### パラメータ
+-   **`element`:**
+    -   **必須:** はい
+    -   **タイプ:** WebdriverIO Element
+-   **`tag`:**
+    -   **必須:** はい
+    -   **タイプ:** string
+-   **`checkElementOptions`:**
+    -   **必須:** いいえ
+    -   **タイプ:** オプションのオブジェクト、[比較/チェックオプション](./method-options#compare-check-options)を参照
 
-- **`element`:**
-  - **Mandatory:** Yes
-  - **Type:** WebdriverIO Element
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkElementOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### 出力:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[テスト出力](./test-output#checkscreenelementfullpagescreen)ページを参照してください。
 
 ### `checkScreen`
 
-Compares an image of a viewport against a baseline image.
+ビューポートの画像をベースライン画像と比較します。
 
-#### Usage
+#### 使用方法
 
 ```ts
 await browser.checkScreen(
@@ -234,31 +231,30 @@ await browser.checkScreen(
 );
 ```
 
-#### Support
+#### サポート
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- デスクトップブラウザ
+- モバイルブラウザ
+- モバイルハイブリッドアプリ
+- モバイルネイティブアプリ
 
-#### Parameters
+#### パラメータ
+-   **`tag`:**
+    -   **必須:** はい
+    -   **タイプ:** string
+-   **`checkScreenOptions`:**
+    -   **必須:** いいえ
+    -   **タイプ:** オプションのオブジェクト、[比較/チェックオプション](./method-options#compare-check-options)を参照
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkScreenOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### 出力:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[テスト出力](./test-output#checkscreenelementfullpagescreen)ページを参照してください。
 
 ### `checkFullPageScreen`
 
-Compares an image of the complete screen against a baseline image.
+完全な画面の画像をベースライン画像と比較します。
 
-#### Usage
+#### 使用方法
 
 ```ts
 await browser.checkFullPageScreen(
@@ -271,29 +267,28 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Support
+#### サポート
 
-- Desktop Browsers
-- Mobile Browsers
+- デスクトップブラウザ
+- モバイルブラウザ
 
-#### Parameters
+#### パラメータ
+-   **`tag`:**
+    -   **必須:** はい
+    -   **タイプ:** string
+-   **`checkFullPageOptions`:**
+    -   **必須:** いいえ
+    -   **タイプ:** オプションのオブジェクト、[比較/チェックオプション](./method-options#compare-check-options)を参照
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkFullPageOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### 出力:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[テスト出力](./test-output#checkscreenelementfullpagescreen)ページを参照してください。
 
 ### `checkTabbablePage`
 
-Compares an image of the complete screen with the tabbable lines and dots against a baseline image.
+タブ移動可能な線とドットを含む完全な画面の画像をベースライン画像と比較します。
 
-#### Usage
+#### 使用方法
 
 ```ts
 await browser.checkTabbablePage(
@@ -306,19 +301,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Support
+#### サポート
 
-- Desktop Browsers
+- デスクトップブラウザ
 
-#### Parameters
+#### パラメータ
+-   **`tag`:**
+    -   **必須:** はい
+    -   **タイプ:** string
+-   **`checkTabbableOptions`:**
+    -   **必須:** いいえ
+    -   **タイプ:** オプションのオブジェクト、[比較/チェックオプション](./method-options#compare-check-options)を参照
 
-- **`tag`:**
-  - **Mandatory:** Yes
-  - **Type:** string
-- **`checkTabbableOptions`:**
-  - **Mandatory:** No
-  - **Type:** an object of options, see [Compare/Check Options](./method-options#compare-check-options)
+#### 出力:
 
-#### Output:
-
-See the [Test Output](./test-output#checkscreenelementfullpagescreen) page.
+[テスト出力](./test-output#checkscreenelementfullpagescreen)ページを参照してください。

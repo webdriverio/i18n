@@ -1,22 +1,22 @@
 ---
 id: watcher
-title: Watch Test Files
+title: Monitorare i File di Test
 ---
 
-With the WDIO testrunner you can watch files while you are working on them. They automatically rerun if you change either something in your app or in your test files. By adding a `--watch` flag when calling the `wdio` command the testrunner will wait for file changes after it ran all tests, e.g.
+Con il testrunner WDIO puoi monitorare i file mentre ci lavori. Questi vengono automaticamente rieseguiti se modifichi qualcosa nella tua app o nei tuoi file di test. Aggiungendo il flag `--watch` quando chiami il comando `wdio`, il testrunner attenderà le modifiche ai file dopo aver eseguito tutti i test, ad esempio:
 
 ```sh
 wdio wdio.conf.js --watch
 ```
 
-By default it only watches for changes in your `specs` files. However by setting a `filesToWatch` property in your `wdio.conf.js` that contains a list of file paths (globbing supported) it will also watch for these files to be changed in order to rerun the whole suite. This is useful if you want to automatically rerun all your tests if you have changed your application code, e.g.
+Per impostazione predefinita, monitora solo le modifiche nei tuoi file `specs`. Tuttavia, impostando una proprietà `filesToWatch` nel tuo `wdio.conf.js` che contiene un elenco di percorsi di file (supporto per il globbing), monitorerà anche questi file per rilevare modifiche al fine di rieseguire l'intera suite. Questo è utile se desideri rieseguire automaticamente tutti i tuoi test quando hai modificato il codice dell'applicazione, ad esempio:
 
 ```js
 // wdio.conf.js
 export const config = {
     // ...
     filesToWatch: [
-        // watch for all JS files in my app
+        // monitora tutti i file JS nella mia app
         './src/app/**/*.js'
     ],
     // ...
@@ -24,5 +24,5 @@ export const config = {
 ```
 
 :::info
-Try to run tests in parallel as much as possible. E2E tests are, by nature, slow. Rerunning tests is only useful if you can keep the individual test run time short. In order to save time, the testrunner keeps WebDriver sessions alive while waiting for file changes. Make sure your WebDriver backend can be modified so that it doesn't automatically close the session if no command was executed after some duration of time.
+Cerca di eseguire i test in parallelo il più possibile. I test E2E sono, per natura, lenti. Rieseguire i test è utile solo se puoi mantenere breve il tempo di esecuzione dei singoli test. Per risparmiare tempo, il testrunner mantiene attive le sessioni WebDriver mentre attende le modifiche ai file. Assicurati che il tuo backend WebDriver possa essere modificato in modo che non chiuda automaticamente la sessione se nessun comando è stato eseguito dopo un certo periodo di tempo.
 :::

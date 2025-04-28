@@ -1,29 +1,29 @@
 ---
 id: support
-title: Need Help?
+title: サポートが必要ですか？
 ---
 
-This project is maintained by a dedicated group of people.
+このプロジェクトは献身的な人々のグループによって維持されています。
 
-If you're interested in making a contribution to the WebdriverIO project, check out [the free "Office Hours" program](/blog/2020/07/01/office-hours) to help you with your efforts.
+WebdriverIOプロジェクトへの貢献に興味がある場合は、あなたの取り組みを支援するための[無料の「オフィスアワー」プログラム](/blog/2020/07/01/office-hours)をチェックしてください。
 
-If you're seeking immediate help with your own project, reach out to a trusted WebdriverIO expert:
+自分のプロジェクトについて即時のヘルプを求めている場合は、信頼できるWebdriverIOの専門家に連絡してください：
 
 - [Kevin Lamping](https://www.codementor.io/@kevinlamping)
-- [Add your name to this list](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
+- [このリストに名前を追加する](https://github.com/webdriverio/webdriverio/edit/master/website/docs/Support.md)
 
 ## Stack Overflow
 
-Stack Overflow is a popular forum to ask code-level questions or if you’re stuck with a specific error. Read through the [existing questions](https://stackoverflow.com/questions/tagged/webdriver-io) tagged with webdriver-io or [ask your own](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
+Stack Overflowは、コードレベルの質問や特定のエラーで行き詰まった場合に人気のあるフォーラムです。webdriver-ioでタグ付けされた[既存の質問](https://stackoverflow.com/questions/tagged/webdriver-io)を読むか、[自分で質問](https://stackoverflow.com/questions/ask?tags=webdriver-io)してください！
 
-## Discussion Forums
+## ディスカッションフォーラム
 
-There are many online forums which are a great place for discussion about WebdriverIO features, problems and bugs, e.g.:
+WebdriverIOの機能、問題、バグについての議論に最適な場所である多くのオンラインフォーラムがあります：
 
 - [GitHub Discussions](https://github.com/webdriverio/webdriverio/discussions)
-- [Discord Community Server](https://discord.webdriver.io)
-- [#webdriverio Channel on SeleniumHQ Slack](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
+- [Discord コミュニティサーバー](https://discord.webdriver.io)
+- [SeleniumHQ Slackの#webdriverioチャンネル](https://join.slack.com/t/seleniumhq/shared_invite/zt-vv33sc0w-VKKQop3WDV_lfrLXGGHvDw)
 
-## News
+## ニュース
 
-For the latest news about WebdriverIO, [follow @webdriverio on Twitter](https://twitter.com/webdriverio) and the official [WebdriverIO blog](/blog) on this website.
+WebdriverIOに関する最新ニュースについては、[Twitterで@webdriverioをフォロー](https://twitter.com/webdriverio)し、このウェブサイトの公式[WebdriverIOブログ](/blog)をご覧ください。

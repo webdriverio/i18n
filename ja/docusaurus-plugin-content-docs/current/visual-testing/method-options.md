@@ -1,246 +1,244 @@
 ---
 id: method-options
-title: Method Options
+title: メソッドオプション
 ---
 
-Methods options are the options that can be set per [method](./methods). If the option has the same key as an option that has been set during the instantiation of the plugin, this method option will override the plugin option value.
+メソッドオプションは、各[メソッド](./methods)ごとに設定できるオプションです。オプションのキーがプラグインのインスタンス化時に設定されたオプションと同じ場合、このメソッドオプションはプラグインオプションの値を上書きします。
 
-## Save Options
+## 保存オプション
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **型:** `boolean`
+-   **必須:** いいえ
+-   **デフォルト:** `false`
+-   **サポート:** Web、ハイブリッドアプリ（Webview）
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+アプリケーション内のすべての`input`、`textarea`、`[contenteditable]`のカーソル「点滅」を有効/無効にします。`true`に設定すると、スクリーンショット撮影前にカーソルが`transparent`に設定され、完了後に元に戻されます。
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **型:** `boolean`
+-   **必須:** いいえ
+-   **デフォルト:** `false`
+-   **サポート:** Web、ハイブリッドアプリ（Webview）
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+アプリケーション内のすべてのCSSアニメーションを有効/無効にします。`true`に設定すると、スクリーンショット撮影前にすべてのアニメーションが無効になり、完了後に元に戻されます。
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web
+-   **型:** `boolean`
+-   **必須:** いいえ
+-   **デフォルト:** `false`
+-   **使用対象:** すべての[メソッド](./methods)
+-   **サポート:** Web
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+ページ上のすべてのテキストを非表示にし、比較にはレイアウトのみを使用します。非表示化は、__各__要素に`'color': 'transparent !important'`のスタイルを追加することによって行われます。
 
-For the output see [Test Output](./test-output#enablelayouttesting)
+出力結果については[テスト出力](./test-output#enablelayouttesting)を参照してください。
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+このフラグを使用すると、テキストを含むすべての要素（`p, h1, h2, h3, h4, h5, h6, span, a, li`だけでなく、`div|button|..`なども）にこのプロパティが適用されます。これをカスタマイズするオプションは__ありません__。
 :::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **型:** `boolean`
+-   **必須:** いいえ
+-   **デフォルト:** `true`
+-   **使用対象:** すべての[メソッド](./methods)
+-   **サポート:** Web、ハイブリッドアプリ（Webview）
 
-Hide scrollbar(s) in the application. If set to true all scrollbar(s) will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
+アプリケーション内のスクロールバーを非表示にします。`true`に設定すると、スクリーンショット撮影前にすべてのスクロールバーが無効になります。追加の問題を防ぐため、デフォルトで`true`に設定されています。
 
 ### `hideElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **型:** `array`
+-   **必須:** いいえ
+-   **使用対象:** すべての[メソッド](./methods)
+-   **サポート:** Web、ハイブリッドアプリ（Webview）、ネイティブアプリ
 
-This method can hide 1 or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
+このメソッドは、要素の配列を提供することで、1つまたは複数の要素に`visibility: hidden`プロパティを追加して非表示にすることができます。
 
 ### `removeElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **型:** `array`
+-   **必須:** いいえ
+-   **使用対象:** すべての[メソッド](./methods)
+-   **サポート:** Web、ハイブリッドアプリ（Webview）、ネイティブアプリ
 
-This method can _remove_ 1 or multiple elements by adding the property `display: none` to them by providing an array of elements.
+このメソッドは、要素の配列を提供することで、1つまたは複数の要素に`display: none`プロパティを追加して_削除_することができます。
 
 ### `resizeDimensions`
 
-- **Type:** `object`
-- **Mandatory:** no
-- **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Used with:** Only for [`saveElement`](./methods#saveelement) or [`checkElement`](./methods#checkelement)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **型:** `object`
+-   **必須:** いいえ
+-   **デフォルト:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **使用対象:** [`saveElement`](./methods#saveelement)または[`checkElement`](./methods#checkelement)のみ
+-   **サポート:** Web、ハイブリッドアプリ（Webview）、ネイティブアプリ
 
-An object that needs to hold a `top`, `right`, `bottom` and `left` amount of pixels that need to make the element cutout bigger.
+要素の切り抜きを大きくするために必要な`top`、`right`、`bottom`、`left`のピクセル数を含むオブジェクト。
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **型:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** `1500`
+-   **使用対象:** [`saveFullPageScreen`](./methods#savefullpagescreen)または[`saveTabbablePage`](./methods#savetabbablepage)のみ
+-   **サポート:** Web
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+スクロール後に待機するミリ秒単位のタイムアウト。遅延ロードのあるページを識別するのに役立ちます。
 
 ### `hideAfterFirstScroll`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **型:** `array`
+-   **必須:** いいえ
+-   **使用対象:** [`saveFullPageScreen`](./methods#savefullpagescreen)または[`saveTabbablePage`](./methods#savetabbablepage)のみ
+-   **サポート:** Web
 
-This method will hide one or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
-This will be handy when a page for example holds sticky elements that will scroll with the page if the page is scrolled but will give an annoying effect when a full-page screenshot is made
+このメソッドは、要素の配列を提供することで、1つまたは複数の要素に`visibility: hidden`プロパティを追加して非表示にします。
+これは、例えばページがスクロールするとページと一緒にスクロールする固定要素を持つ場合に便利で、全画面スクリーンショットを作成する際に煩わしい効果を防ぎます。
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **型:** `boolean`
+-   **必須:** いいえ
+-   **デフォルト:** `true`
+-   **使用対象:** すべての[メソッド](./methods)
+-   **サポート:** Web、ハイブリッドアプリ（Webview）
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+フォント（サードパーティのフォントを含む）は同期的または非同期的にロードできます。非同期ロードの場合、WebdriverIOがページが完全にロードされたと判断した後でもフォントがロードされる可能性があります。フォントのレンダリングの問題を防ぐため、このモジュールはデフォルトでスクリーンショットを撮影する前にすべてのフォントがロードされるのを待ちます。
 
-## Compare (Check) Options
+## 比較（チェック）オプション
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+比較オプションは、[ResembleJS](https://github.com/Huddle/Resemble.js)による比較の実行方法に影響するオプションです。
 
-:::info NOTE
+:::info 注意
 
-- All options from the [Save Options](#save-options) can be used for the Compare methods
-- All compare options can be used during service instantiation **or** for every single check method. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
-- All options can be used for:
-  - Web
-  - Hybrid App
-  - Native App
+-   [保存オプション](#save-options)のすべてのオプションを比較メソッドに使用できます
+-   すべての比較オプションはサービスのインスタンス化時__または__個々のチェックメソッドごとに使用できます。メソッドオプションがサービスのインスタンス化時に設定されたオプションと同じキーを持つ場合、メソッドの比較オプションがサービスの比較オプションの値を上書きします。
+- すべてのオプションは以下で使用できます:
+    - Web
+    - ハイブリッドアプリ
+    - ネイティブアプリ
 
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
 
-Compare images and discard alpha.
+画像を比較し、アルファチャンネルを無視します。
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. This is **iPad only**_
+-   **型:** `boolean`
+-   **デフォルト:** `true`
+-   **必須:** いいえ
+-   **備考:** _`checkScreen()`でのみ使用できます。これは**iPadのみ**の機能です_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+横向きモードのiPadでの比較中にサイドバーを自動的にブロックします。これにより、タブ/プライベート/ブックマークなどのネイティブコンポーネントでの失敗を防ぎます。
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **型:** `boolean`
+-   **デフォルト:** `true`
+-   **必須:** いいえ
+-   **備考:** _これは**モバイルのみ**の機能です_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+比較中にステータスバーとアドレスバーを自動的にブロックします。これにより、時間、Wi-Fi、バッテリー状態での失敗を防ぎます。
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **型:** `boolean`
+-   **デフォルト:** `true`
+-   **必須:** いいえ
+-   **備考:** _これは**モバイルのみ**の機能です_
 
-Automatically block out the toolbar.
+ツールバーを自動的にブロックします。
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
 
-Compare images and discard anti-aliasing.
+画像を比較し、アンチエイリアシングを無視します。
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
 
-Even though the images are in color, the comparison will compare 2 black/white images
+画像がカラーであっても、比較は2つの白黒画像を比較します。
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+画像を比較し、`red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`で比較します。
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+画像を比較し、`red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`で比較します。
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+trueの場合、返される割合は`0.12345678`のようになります。デフォルトは`0.12`です。
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
 
-This will return all compare data, not only the mismatch percentage
+これはすべての比較データを返します。不一致の割合だけでなく。
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **型:** `number`
+-   **デフォルト:** `0`
+-   **必須:** いいえ
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+差異のある画像の保存を防ぐ`misMatchPercentage`の許容値。
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **型:** `number`
+-   **デフォルト:** `0`
+-   **必須:** いいえ
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+大きな画像の比較はパフォーマンスの問題を引き起こす可能性があります。
+ここでピクセル数（0より大きい）を指定すると、画像の幅または高さが`largeImageThreshold`ピクセルより大きい場合、比較アルゴリズムはピクセルをスキップします。
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+比較の実行前に2つの画像を同じサイズに拡大縮小します。`ignoreAntialiasing`と`ignoreAlpha`を有効にすることを強くお勧めします。
 
-## Folder options
+## フォルダオプション
 
-The baseline folder and screenshot folders(actual, diff) are options that can be set during the instantiation of the plugin or method. To set the folder options on a particular method, pass in folder options to the methods option object. This can be used for:
+ベースラインフォルダとスクリーンショットフォルダ（実際、差分）は、プラグインまたはメソッドのインスタンス化時に設定できるオプションです。特定のメソッドにフォルダオプションを設定するには、メソッドのオプションオブジェクトにフォルダオプションを渡します。これは以下で使用できます:
 
 - Web
-- Hybrid App
-- Native App
+- ハイブリッドアプリ
+- ネイティブアプリ
 
 ```ts
 import path from 'node:path'
@@ -251,7 +249,7 @@ const methodOptions = {
     diffFolder: path.join(process.cwd(), 'customDiff'),
 }
 
-// You can use this for all methods
+// すべてのメソッドでこれを使用できます
 await expect(
     await browser.checkFullPageScreen("checkFullPage", methodOptions)
 ).toEqual(0)
@@ -259,21 +257,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **型:** `string`
+-   **必須:** いいえ
 
-Folder for the snapshot that has been captured in the test.
+テストでキャプチャされたスナップショットのフォルダ。
 
 ### `baselineFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **型:** `string`
+-   **必須:** いいえ
 
-Folder for the baseline image that is being used to compare against.
+比較に使用されるベースライン画像のフォルダ。
 
 ### `diffFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **型:** `string`
+-   **必須:** いいえ
 
-Folder for the image difference rendered by ResembleJS.
+ResembleJSによってレンダリングされた画像差分のフォルダ。

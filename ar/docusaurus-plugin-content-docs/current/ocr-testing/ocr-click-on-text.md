@@ -3,17 +3,17 @@ id: ocr-click-on-text
 title: ocrClickOnText
 ---
 
-Click on an element based on the provided texts. The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+انقر على عنصر بناءً على النصوص المقدمة. سيبحث الأمر عن النص المقدم ويحاول العثور على تطابق استنادًا إلى المنطق الضبابي من [Fuse.js](https://fusejs.io/). هذا يعني أنه إذا قمت بتوفير محدد يحتوي على خطأ إملائي، أو كان النص الموجود لا يطابق 100٪، فسيظل يحاول إرجاع عنصر لك. انظر [السجلات](#logs) أدناه.
 
-## Usage
+## الاستخدام
 
 ```js
 await browser.ocrClickOnText({ text: "Start3d" });
 ```
 
-## Output
+## المخرجات
 
-### Logs
+### السجلات
 
 ```log
 # Still finding a match even though we searched for "Start3d" and the found text was "Started"
@@ -22,22 +22,22 @@ await browser.ocrClickOnText({ text: "Start3d" });
 [0-0] 2024-05-25T05:05:21.022Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-### Image
+### الصورة
 
-You will find an image in your (default)[`imagesFolder`](./getting-started#imagesfolder) with a target to show you where the module has clicked.
+ستجد صورة في (الافتراضي)[`imagesFolder`](./getting-started#imagesfolder) مع هدف لإظهار المكان الذي نقر عليه الوحدة.
 
 ![Process steps](/img/ocr/ocr-click-on-text-target.jpg)
 
-## Options
+## الخيارات
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **النوع:** `string`
+-   **إلزامي:** نعم
 
-The text you want to search for to click on.
+النص الذي تريد البحث عنه للنقر عليه.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrClickOnText({ text: "WebdriverIO" });
@@ -45,13 +45,13 @@ await browser.ocrClickOnText({ text: "WebdriverIO" });
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** `500` مللي ثانية
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+هذه هي مدة النقر. إذا أردت، يمكنك أيضًا إنشاء "نقرة طويلة" عن طريق زيادة الوقت.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -62,13 +62,13 @@ await browser.ocrClickOnText({
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+كلما زاد التباين، كلما أصبحت الصورة أكثر قتامة والعكس صحيح. هذا يمكن أن يساعد في العثور على نص في صورة. يقبل قيم بين `-1` و `1`.
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -79,12 +79,12 @@ await browser.ocrClickOnText({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **النوع:** `number`
+-   **إلزامي:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+هذه هي منطقة البحث في الشاشة حيث تحتاج OCR إلى البحث عن نص. يمكن أن يكون عنصرًا أو مستطيلًا يحتوي على `x`, `y`, `width` و `height`
 
-#### Example
+#### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -112,13 +112,13 @@ await browser.ocrClickOnText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **النوع:** `string`
+-   **إلزامي:** لا
+-   **الافتراضي:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+اللغة التي سيتعرف عليها Tesseract. يمكن العثور على مزيد من المعلومات [هنا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) ويمكن العثور على اللغات المدعومة [هنا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+#### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
@@ -131,34 +131,34 @@ await browser.ocrClickOnText({
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **النوع:** `object`
+-   **إلزامي:** لا
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+يمكنك النقر على الشاشة بالنسبة للعنصر المطابق. يمكن القيام بذلك استنادًا إلى البكسل النسبي `above`, `right`, `below` أو `left` من العنصر المطابق
 
 :::note
 
-The following combinations are allowed
+المجموعات التالية مسموح بها
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   خصائص مفردة
+-   `above` + `left` أو `above` + `right`
+-   `below` + `left` أو `below` + `right`
 
-The following combinations are **NOT** allowed
+المجموعات التالية غير مسموح بها
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` مع `below`
+-   `left` مع `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **النوع:** `number`
+-   **إلزامي:** لا
 
-Click x pixels `above` the matching element.
+انقر على x بكسل `above` العنصر المطابق.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -171,12 +171,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **النوع:** `number`
+-   **إلزامي:** لا
 
-Click x pixels `right` from the matching element.
+انقر على x بكسل `right` من العنصر المطابق.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -189,12 +189,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **النوع:** `number`
+-   **إلزامي:** لا
 
-Click x pixels `below` the matching element.
+انقر على x بكسل `below` العنصر المطابق.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -207,12 +207,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **النوع:** `number`
+-   **إلزامي:** لا
 
-Click x pixels `left` from the matching element.
+انقر على x بكسل `left` من العنصر المطابق.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -225,17 +225,17 @@ await browser.ocrClickOnText({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+يمكنك تغيير المنطق الضبابي للعثور على نص بالخيارات التالية. هذا قد يساعد في إيجاد تطابق أفضل
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+يحدد مدى قرب التطابق من الموقع الضبابي (المحدد بالموقع). سيتم احتساب مطابقة حرف دقيقة على أنها عدم تطابق كامل إذا كانت بعيدة عن الموقع الضبابي بمسافة محددة. مسافة 0 تتطلب أن تكون المطابقة في الموقع المحدد بالضبط. مسافة 1000 ستتطلب تطابقًا تامًا ليكون ضمن 800 حرف من الموقع ليتم العثور عليه باستخدام حد 0.8.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -248,13 +248,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+يحدد تقريبًا أين في النص من المتوقع العثور على النمط.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -267,13 +267,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+عند أي نقطة يستسلم خوارزمية المطابقة. حد 0 يتطلب تطابقًا مثاليًا (للحروف والموقع)، وحد 1.0 سيطابق أي شيء.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -286,13 +286,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** false
 
-Whether the search should be case sensitive.
+ما إذا كان البحث حساس لحالة الأحرف.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -305,13 +305,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+سيتم إرجاع المطابقات التي يتجاوز طولها هذه القيمة فقط. (على سبيل المثال، إذا كنت تريد تجاهل مطابقات الحرف الواحد في النتيجة، قم بتعيينها إلى 2)
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({
@@ -324,13 +324,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+عندما تكون `true`، ستستمر وظيفة المطابقة حتى نهاية نمط البحث حتى إذا تم العثور بالفعل على تطابق تام في السلسلة.
 
-##### Example
+##### مثال
 
 ```js
 await browser.ocrClickOnText({

@@ -1,18 +1,18 @@
 ---
 id: dialog
-title: The Dialog Object
+title: Dialogオブジェクト
 ---
 
-Dialog objects are dispatched by [`browser`](/docs/api/browser) via the `browser.on('dialog')` event.
+Dialogオブジェクトは[`browser`](/docs/api/browser)によって`browser.on('dialog')`イベントを通じて送信されます。
 
-An example of using the Dialog object:
+Dialogオブジェクトを使用する例：
 
 ```ts
 import { browser } from '@wdio/globals'
 
 await browser.url('https://webdriver.io')
 browser.on('dialog', async (dialog) => {
-    console.log(dialog.message()) // outputs: "Hello Dialog"
+    console.log(dialog.message()) // 出力: "Hello Dialog"
     await dialog.dismiss()
 })
 
@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-Dialogs are dismissed automatically, unless there is a `browser.on('dialog')` listener. When listener is present, it must either [`dialog.accept()`](/docs/api/dialog/accept) or [`dialog.dismiss()`](/docs/api/dialog/dismiss) the dialog - otherwise the page will freeze waiting for the dialog, and actions like click will never finish.
+Dialogは`browser.on('dialog')`リスナーがない限り、自動的に閉じられます。リスナーが存在する場合、[`dialog.accept()`](/docs/api/dialog/accept)または[`dialog.dismiss()`](/docs/api/dialog/dismiss)のいずれかでダイアログを処理する必要があります - そうしないとページはダイアログを待機して凍結し、クリックなどのアクションは完了しなくなります。
 
 :::

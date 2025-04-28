@@ -1,13 +1,13 @@
 ---
 id: coverage
-title: Coverage
+title: カバレッジ
 ---
 
-WebdriverIO's browser runner supports code coverage reporting using [`istanbul`](https://istanbul.js.org/). The testrunner will automatically instrument your code and capture code coverage for you.
+WebdriverIOのブラウザランナーは[`istanbul`](https://istanbul.js.org/)を使用したコードカバレッジレポートをサポートしています。テストランナーは自動的にコードを計測し、コードカバレッジを取得します。
 
-## Setup
+## セットアップ
 
-In order to enable code coverage reporting, enable it through the WebdriverIO browser runner configuration, e.g.:
+コードカバレッジレポートを有効にするには、WebdriverIOブラウザランナーの設定で有効にします。例：
 
 ```js title=wdio.conf.js
 export const config = {
@@ -22,20 +22,20 @@ export const config = {
 }
 ```
 
-Checkout all [coverage options](/docs/runner#coverage-options), to learn how to properly configure it.
+すべての[カバレッジオプション](/docs/runner#coverage-options)をチェックして、適切な設定方法を学んでください。
 
-## Ignoring Code
+## コードの除外
 
-There may be some sections of your codebase that you wish to purposefully exclude from coverage tracking, to do so you can use the following parsing hints:
+コードベースの一部をカバレッジ追跡から意図的に除外したい場合は、次のパース用ヒントを使用できます：
 
-- `/* istanbul ignore if */`: ignore the next if statement.
-- `/* istanbul ignore else */`: ignore the else portion of an if statement.
-- `/* istanbul ignore next */`: ignore the next thing in the source-code ( functions, if statements, classes, you name it).
-- `/* istanbul ignore file */`: ignore an entire source-file (this should be placed at the top of the file).
+- `/* istanbul ignore if */`：次のif文を無視します。
+- `/* istanbul ignore else */`：if文のelse部分を無視します。
+- `/* istanbul ignore next */`：ソースコードの次の要素（関数、if文、クラスなど）を無視します。
+- `/* istanbul ignore file */`：ソースファイル全体を無視します（これはファイルの先頭に配置する必要があります）。
 
 :::info
 
-It is recommended to exclude your test files from the coverage reporting as it could cause errors, e.g. when calling `execute` or `executeAsync` commands. If you like to keep them in your report, ensure your exclude instrumenting them via:
+テストファイルをカバレッジレポートから除外することをお勧めします。テストファイルを含めると、`execute`や`executeAsync`コマンドを呼び出す際にエラーが発生する可能性があります。レポートにテストファイルを含めたい場合は、次のように計測から除外してください：
 
 ```ts
 await browser.execute(/* istanbul ignore next */() => {

@@ -1,11 +1,11 @@
 ---
 id: cloudservices
-title: Using Cloud Services
+title: クラウドサービスの使用
 ---
 
-Using on-demand services like Sauce Labs, Browserstack, TestingBot, LambdaTest or Perfecto with WebdriverIO is pretty simple. All you need to do is to set your service's `user` and `key` in your options.
+WebdriverIOでSauce Labs、Browserstack、TestingBot、LambdaTest、Perfectoのようなオンデマンドサービスを使用することは非常に簡単です。あなたのオプションにサービスの`user`と`key`を設定するだけです。
 
-Optionally, you can also parametrize your test by setting cloud-specific capabilities like `build`. If you only want to run cloud services in Travis, you can use the `CI` environment variable to check if you are in Travis and modify the config accordingly.
+オプションで、`build`のようなクラウド固有の機能を設定してテストをパラメータ化することもできます。Travisでのみクラウドサービスを実行したい場合は、`CI`環境変数を使用してTravisにいるかどうかを確認し、それに応じて設定を変更できます。
 
 ```js
 // wdio.conf.js
@@ -18,31 +18,31 @@ if (process.env.CI) {
 
 ## Sauce Labs
 
-You can set up your tests to run remotely in [Sauce Labs](https://saucelabs.com).
+[Sauce Labs](https://saucelabs.com)でリモートでテストを実行するように設定できます。
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your Sauce Labs username and access key.
+唯一の要件は、設定（`wdio.conf.js`からエクスポートされるか、`webdriverio.remote(...)`に渡される）で`user`と`key`をSauce Labsのユーザー名とアクセスキーに設定することです。
 
-You can also pass in any optional [test configuration option](https://docs.saucelabs.com/dev/test-configuration-options/) as a key/value in the capabilities for any browser.
+また、任意のブラウザの機能として、オプションの[テスト構成オプション](https://docs.saucelabs.com/dev/test-configuration-options/)をキー/値として渡すこともできます。
 
 ### Sauce Connect
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
+インターネットからアクセスできないサーバー（`localhost`など）に対してテストを実行したい場合は、[Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy)を使用する必要があります。
 
-It is out of the scope of WebdriverIO to support this, so you'll have to start it by yourself.
+これをサポートすることはWebdriverIOの範囲外なので、自分で起動する必要があります。
 
-If you are using the WDIO testrunner download and configure the [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) in your `wdio.conf.js`. It helps getting Sauce Connect running and comes with additional features that better integrate your tests into the Sauce service.
+WDIO testrunnerを使用している場合は、`wdio.conf.js`で[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)をダウンロードして設定してください。これによりSauce Connectの実行が容易になり、テストをSauceサービスにより適切に統合する追加機能が提供されます。
 
-### With Travis CI
+### Travis CIとの連携
 
-Travis CI, however, does [have support](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect) for starting Sauce Connect before each test, so following their directions for that is an option.
+Travis CIは、各テストの前にSauce Connectを起動する[サポート](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect)を提供しています。そのため、その指示に従うことも選択肢の一つです。
 
-If you do so, you must set the `tunnel-identifier` test configuration option in each browser's `capabilities`. Travis sets this to the `TRAVIS_JOB_NUMBER` environmental variable by default.
+そうする場合は、各ブラウザの`capabilities`で`tunnel-identifier`テスト構成オプションを設定する必要があります。Travisはデフォルトでこれを`TRAVIS_JOB_NUMBER`環境変数に設定します。
 
-Also, if you want to have Sauce Labs group your tests by build number, you can set the `build` to `TRAVIS_BUILD_NUMBER`.
+また、Sauce Labsでビルド番号ごとにテストをグループ化したい場合は、`build`を`TRAVIS_BUILD_NUMBER`に設定できます。
 
-Lastly, if you set `name`, this changes the name of this test in Sauce Labs for this build. If you are using the WDIO testrunner combined with the [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service), WebdriverIO automatically sets a proper name for the test.
+最後に、`name`を設定すると、このビルドのSauce Labsでのテスト名が変更されます。WDIO testrunnerと[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)を組み合わせて使用している場合、WebdriverIOは自動的にテストに適切な名前を設定します。
 
-Example `capabilities`:
+`capabilities`の例：
 
 ```javascript
 browserName: 'chrome',
@@ -53,35 +53,35 @@ name: 'integration',
 build: process.env.TRAVIS_BUILD_NUMBER
 ```
 
-### Timeouts
+### タイムアウト
 
-Since you are running your tests remotely, it might be necessary to increase some timeouts.
+リモートでテストを実行しているため、いくつかのタイムアウトを増やす必要があるかもしれません。
 
-You can change the [idle timeout](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) by passing `idle-timeout` as a test configuration option. This controls how long Sauce will wait between commands before closing the connection.
+テスト構成オプションとして`idle-timeout`を渡すことで[アイドルタイムアウト](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout)を変更できます。これにより、Sauceが接続を閉じる前にコマンド間でどれくらい待機するかを制御します。
 
 ## BrowserStack
 
-WebdriverIO also has a [Browserstack](https://www.browserstack.com) integration built-in.
+WebdriverIOには[Browserstack](https://www.browserstack.com)との統合も組み込まれています。
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your Browserstack automate username and access key.
+唯一の要件は、設定（`wdio.conf.js`からエクスポートされるか、`webdriverio.remote(...)`に渡される）で`user`と`key`をBrowserstackの自動化ユーザー名とアクセスキーに設定することです。
 
-You can also pass in any optional [supported capabilities](https://www.browserstack.com/automate/capabilities) as a key/value in the capabilities for any browser. If you set `browserstack.debug` to `true` it will record a screencast of the session, which might be helpful.
+また、任意のブラウザの機能として、オプションの[サポートされている機能](https://www.browserstack.com/automate/capabilities)をキー/値として渡すこともできます。`browserstack.debug`を`true`に設定すると、セッションのスクリーンキャストが記録され、役立つかもしれません。
 
-### Local Testing
+### ローカルテスト
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://www.browserstack.com/local-testing#command-line).
+インターネットからアクセスできないサーバー（`localhost`など）に対してテストを実行したい場合は、[ローカルテスト](https://www.browserstack.com/local-testing#command-line)を使用する必要があります。
 
-It is out of the scope of WebdriverIO to support this, so you must start it by yourself.
+これをサポートすることはWebdriverIOの範囲外なので、自分で起動する必要があります。
 
-If you do use local, you should set `browserstack.local` to `true` in your capabilities.
+ローカルを使用する場合は、機能で`browserstack.local`を`true`に設定する必要があります。
 
-If you are using the WDIO testrunner, download and configure the [`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service) in your `wdio.conf.js`. It helps get BrowserStack running, and comes with additional features that better integrate your tests into the BrowserStack service.
+WDIO testrunnerを使用している場合は、`wdio.conf.js`で[`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service)をダウンロードして設定してください。これによりBrowserStackの実行が容易になり、テストをBrowserStackサービスにより適切に統合する追加機能が提供されます。
 
-### With Travis CI
+### Travis CIとの連携
 
-If you want to add Local Testing in Travis, you have to start it by yourself.
+Travisでローカルテストを追加したい場合は、自分で起動する必要があります。
 
-The following script will download and start it in the background. You should run this in Travis before starting the tests.
+次のスクリプトはダウンロードしてバックグラウンドで起動します。テストを開始する前にTravisでこれを実行する必要があります。
 
 ```sh
 wget https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
@@ -90,9 +90,9 @@ unzip BrowserStackLocal-linux-x64.zip
 sleep 3
 ```
 
-Also, you might wish set the `build` to the Travis build number.
+また、`build`をTravisのビルド番号に設定することもできます。
 
-Example `capabilities`:
+`capabilities`の例：
 
 ```javascript
 browserName: 'chrome',
@@ -105,41 +105,41 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## TestingBot
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your [TestingBot](https://testingbot.com) username and secret key.
+唯一の要件は、設定（`wdio.conf.js`からエクスポートされるか、`webdriverio.remote(...)`に渡される）で`user`と`key`を[TestingBot](https://testingbot.com)のユーザー名とシークレットキーに設定することです。
 
-You can also pass in any optional [supported capabilities](https://testingbot.com/support/other/test-options) as a key/value in the capabilities for any browser.
+また、任意のブラウザの機能として、オプションの[サポートされている機能](https://testingbot.com/support/other/test-options)をキー/値として渡すこともできます。
 
-### Local Testing
+### ローカルテスト
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://testingbot.com/support/other/tunnel). TestingBot provides a Java-based tunnel to allow you to test websites not accessible from the internet.
+インターネットからアクセスできないサーバー（`localhost`など）に対してテストを実行したい場合は、[ローカルテスト](https://testingbot.com/support/other/tunnel)を使用する必要があります。TestingBotは、インターネットからアクセスできないウェブサイトをテストできるようにするJavaベースのトンネルを提供しています。
 
-Their tunnel support page contains the information necessary to get this up and running.
+彼らのトンネルサポートページには、これを起動して実行するために必要な情報が含まれています。
 
-If you are using the WDIO testrunner, download and configure the [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) in your `wdio.conf.js`. It helps get TestingBot running, and comes with additional features that better integrate your tests into the TestingBot service.
+WDIO testrunnerを使用している場合は、`wdio.conf.js`で[`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service)をダウンロードして設定してください。これによりTestingBotの実行が容易になり、テストをTestingBotサービスにより適切に統合する追加機能が提供されます。
 
 ## LambdaTest
 
-[LambdaTest](https://www.lambdatest.com) integration is also built-in.
+[LambdaTest](https://www.lambdatest.com)との統合も組み込まれています。
 
-The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your LambdaTest account username and access key.
+唯一の要件は、設定（`wdio.conf.js`からエクスポートされるか、`webdriverio.remote(...)`に渡される）で`user`と`key`をLambdaTestアカウントのユーザー名とアクセスキーに設定することです。
 
-You can also pass in any optional [supported capabilities](https://www.lambdatest.com/capabilities-generator/) as a key/value in the capabilities for any browser. If you set `visual` to `true` it will record a screencast of the session, which might be helpful.
+また、任意のブラウザの機能として、オプションの[サポートされている機能](https://www.lambdatest.com/capabilities-generator/)をキー/値として渡すこともできます。`visual`を`true`に設定すると、セッションのスクリーンキャストが記録され、役立つかもしれません。
 
-### Tunnel for local testing
+### ローカルテスト用トンネル
 
-If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/).
+インターネットからアクセスできないサーバー（`localhost`など）に対してテストを実行したい場合は、[ローカルテスト](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/)を使用する必要があります。
 
-It is out of the scope of WebdriverIO to support this, so you must start it by yourself.
+これをサポートすることはWebdriverIOの範囲外なので、自分で起動する必要があります。
 
-If you do use local, you should set `tunnel` to `true` in your capabilities.
+ローカルを使用する場合は、機能で`tunnel`を`true`に設定する必要があります。
 
-If you are using the WDIO testrunner, download and configure the [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) in your `wdio.conf.js`. It helps get LambdaTest running, and comes with additional features that better integrate your tests into the LambdaTest service.
+WDIO testrunnerを使用している場合は、`wdio.conf.js`で[`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service)をダウンロードして設定してください。これによりLambdaTestの実行が容易になり、テストをLambdaTestサービスにより適切に統合する追加機能が提供されます。
 
-### With Travis CI
+### Travis CIとの連携
 
-If you want to add Local Testing in Travis, you have to start it by yourself.
+Travisでローカルテストを追加したい場合は、自分で起動する必要があります。
 
-The following script will download and start it in the background. You should run this in Travis before starting the tests.
+次のスクリプトはダウンロードしてバックグラウンドで起動します。テストを開始する前にTravisでこれを実行する必要があります。
 
 ```sh
 wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
@@ -148,9 +148,9 @@ unzip LT_Linux.zip
 sleep 3
 ```
 
-Also, you might wish set the `build` to the Travis build number.
+また、`build`をTravisのビルド番号に設定することもできます。
 
-Example `capabilities`:
+`capabilities`の例：
 
 ```javascript
 platform: 'Windows 10',
@@ -163,7 +163,7 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## Perfecto
 
-When using wdio with [`Perfecto`](https://www.perfecto.io), you need to create a security token for each user and add this in the capabilities structure (in addition to other capabilities), as follows:
+wdioと[`Perfecto`](https://www.perfecto.io)を使用する場合、各ユーザーのセキュリティトークンを作成し、それを以下のようにcapabilities構造に追加する必要があります：
 
 ```js
 export const config = {
@@ -173,7 +173,7 @@ export const config = {
   }],
 ```
 
-In addition, you need to add cloud configuration, as follows:
+さらに、以下のようにクラウド設定を追加する必要があります：
 
 ```js
   hostname: "your_cloud_name.perfectomobile.com",

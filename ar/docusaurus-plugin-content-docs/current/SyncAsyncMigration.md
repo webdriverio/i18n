@@ -1,25 +1,25 @@
 ---
 id: async-migration
-title: From Sync to Async
+title: من المتزامن إلى غير المتزامن
 ---
 
-Due to changes in V8 the WebdriverIO team [announced](https://webdriver.io/blog/2021/07/28/sync-api-deprecation) to deprecate synchronous command execution by April 2023. The team has been working hard to make the transition as easy as possible. In this guide we explain how you can slowly migrate your test suite from sync to async. As an example project we use the [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) but the approach is the same with all other projects as well.
+بسبب التغييرات في V8، أعلن فريق WebdriverIO عن [إيقاف دعم](https://webdriver.io/blog/2021/07/28/sync-api-deprecation) تنفيذ الأوامر المتزامنة بحلول أبريل 2023. عمل الفريق بجد لجعل الانتقال سهلًا قدر الإمكان. في هذا الدليل نشرح كيف يمكنك الانتقال ببطء من اختباراتك المتزامنة إلى غير المتزامنة. كمثال على المشروع، نستخدم [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) ولكن النهج هو نفسه مع جميع المشاريع الأخرى أيضًا.
 
-## Promises in JavaScript
+## الوعود (Promises) في جافا سكريبت
 
-The reason why synchronous execution was popular in WebdriverIO is because it removes the complexity of dealing with promises. Particularly if you come from other languages where this concept doesn't exist this way, it can be confusing in the beginning. However Promises are a very powerful tool to deal with asynchronous code and today's JavaScript makes it actually easy to deal with it. If you never worked with Promises, we recommend to check out the [MDN reference guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to it as it would be out of scope to explain it here.
+السبب الذي جعل التنفيذ المتزامن شائعًا في WebdriverIO هو أنه يزيل تعقيد التعامل مع الوعود. خاصة إذا كنت تأتي من لغات أخرى حيث لا يوجد هذا المفهوم بهذه الطريقة، يمكن أن يكون مربكًا في البداية. ومع ذلك، فإن الوعود هي أداة قوية جدًا للتعامل مع التعليمات البرمجية غير المتزامنة، وجافا سكريبت اليوم تجعل التعامل معها سهلًا فعليًا. إذا لم تعمل أبدًا مع الوعود، فإننا نوصي بالاطلاع على [دليل مرجع MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) حيث يكون خارج نطاق شرحه هنا.
 
-## Async Transition
+## الانتقال إلى غير المتزامن
 
-The WebdriverIO testrunner can handle async and sync execution within the same test suite. This means that you can slowly migrate your tests and PageObjects step by step at your pace. For example, the Cucumber Boilerplate has defined [a large set of step definition](https://github.com/webdriverio/cucumber-boilerplate/tree/main/src/support/action) for you to copy into your project. We can go ahead and migrate one step definition or one file at a time.
+يمكن لـ WebdriverIO testrunner التعامل مع التنفيذ المتزامن وغير المتزامن ضمن نفس مجموعة الاختبار. هذا يعني أنه يمكنك الانتقال ببطء باختباراتك وكائنات الصفحة (PageObjects) خطوة بخطوة بالوتيرة التي تناسبك. على سبيل المثال، يحتوي Cucumber Boilerplate على [مجموعة كبيرة من تعريفات الخطوات](https://github.com/webdriverio/cucumber-boilerplate/tree/main/src/support/action) لنسخها إلى مشروعك. يمكننا المضي قدمًا وترحيل تعريف خطوة واحد أو ملف واحد في كل مرة.
 
 :::tip
 
-WebdriverIO offers a [codemod](https://github.com/webdriverio/codemod) that allows to transform your sync code into async code almost full automatically. Run the codemod as described in the docs first and use this guide for manual migration if needed.
+يوفر WebdriverIO [codemod](https://github.com/webdriverio/codemod) يسمح بتحويل التعليمات البرمجية المتزامنة إلى تعليمات برمجية غير متزامنة بشكل شبه تلقائي بالكامل. قم بتشغيل codemod كما هو موضح في المستندات أولاً واستخدم هذا الدليل للترحيل اليدوي إذا لزم الأمر.
 
 :::
 
-In many cases, everything that is necessary to do is to make the function in which you call WebdriverIO commands `async` and add an `await` in front of every command. Looking at the first file `clearInputField.ts` to transform in the boilerplate project, we transform from:
+في كثير من الحالات، كل ما يلزم القيام به هو جعل الدالة التي تستدعي فيها أوامر WebdriverIO `async` وإضافة `await` أمام كل أمر. بالنظر إلى أول ملف `clearInputField.ts` للتحويل في مشروع boilerplate، نقوم بالتحويل من:
 
 ```ts
 export default (selector: Selector) => {
@@ -27,7 +27,7 @@ export default (selector: Selector) => {
 };
 ```
 
-to:
+إلى:
 
 ```ts
 export default async (selector: Selector) => {
@@ -35,23 +35,23 @@ export default async (selector: Selector) => {
 };
 ```
 
-That's it. You can see the complete commit with all rewrite examples here:
+هذا كل شيء. يمكنك رؤية الالتزام الكامل مع جميع أمثلة إعادة الكتابة هنا:
 
-#### Commits:
+#### الالتزامات:
 
-- _transform all step definitions_ [[af6625f]](https://github.com/webdriverio/cucumber-boilerplate/pull/481/commits/af6625fcd01dc087479e84562f237ecf38b3537d)
+- _تحويل جميع تعريفات الخطوات_ [[af6625f]](https://github.com/webdriverio/cucumber-boilerplate/pull/481/commits/af6625fcd01dc087479e84562f237ecf38b3537d)
 
 :::info
-This transition is independent of whether you use TypeScript or not. If you use TypeScript just make sure that you eventually change the `types` property in your `tsconfig.json` from `webdriverio/sync` to `@wdio/globals/types`. Also make sure that your compile target is set to at least `ES2018`.
+هذا الانتقال مستقل عما إذا كنت تستخدم TypeScript أم لا. إذا كنت تستخدم TypeScript، فتأكد من أنك في النهاية تغير خاصية `types` في `tsconfig.json` من `webdriverio/sync` إلى `@wdio/globals/types`. تأكد أيضًا من أن هدف التجميع محدد على الأقل على `ES2018`.
 :::
 
-## Special Cases
+## حالات خاصة
 
-There are of course always special cases where you need to pay a bit more attention.
+بالطبع هناك دائمًا حالات خاصة حيث تحتاج إلى إيلاء المزيد من الاهتمام.
 
-### ForEach Loops
+### حلقات ForEach
 
-If you have a `forEach` loop, e.g. to iterate over elements, you need to make sure that the iterator callback is handled properly in an async manner, e.g.:
+إذا كان لديك حلقة `forEach`، على سبيل المثال للتكرار على العناصر، فأنت بحاجة إلى التأكد من أن استدعاء التكرار يتم معالجته بشكل صحيح بطريقة غير متزامنة، على سبيل المثال:
 
 ```js
 const elems = $$('div')
@@ -60,7 +60,7 @@ elems.forEach((elem) => {
 })
 ```
 
-The function we pass into `forEach` is an iterator function. In a synchronous world it would click on all elements before it moves on. If we transform this into asynchronous code, we have to ensure that we wait for every iterator function to finish execution. By adding `async`/`await` these iterator functions will return a promise that we need to resolve. Now, `forEach` is then not ideal to iterate over the elements anymore because it doesn't return the result of the iterator function, the promise we need to wait for. Therefore we need to replace `forEach` with `map` which returns that promise. The `map` as well as all other iterator methods of Arrays like `find`, `every`, `reduce` and more are implemented so that they respect promises within the iterator functions and are therefor simplified for using them in an async context. The above example looks transformed like this:
+الدالة التي نمررها إلى `forEach` هي دالة التكرار. في عالم متزامن، ستنقر على جميع العناصر قبل أن تنتقل. إذا قمنا بتحويل هذا إلى تعليمات برمجية غير متزامنة، فيجب علينا التأكد من أننا ننتظر كل دالة تكرار لإنهاء التنفيذ. من خلال إضافة `async`/`await`، ستعيد دوال التكرار هذه وعدًا نحتاج إلى حله. الآن، `forEach` ليست مثالية للتكرار على العناصر بعد الآن لأنها لا تُرجع نتيجة دالة التكرار، الوعد الذي نحتاج إلى انتظاره. لذلك نحتاج إلى استبدال `forEach` بـ `map` التي تُرجع هذا الوعد. تم تنفيذ `map` وجميع طرق التكرار الأخرى للمصفوفات مثل `find` و `every` و `reduce` وغيرها بحيث تحترم الوعود ضمن دوال التكرار وبالتالي تم تبسيطها لاستخدامها في سياق غير متزامن. يبدو المثال أعلاه محولًا كما يلي:
 
 ```js
 const elems = await $$('div')
@@ -69,7 +69,7 @@ await elems.forEach((elem) => {
 })
 ```
 
-For example in order to fetch all `<h3 />` elements and get their text content, you can run:
+على سبيل المثال، للحصول على جميع عناصر `<h3 />` والحصول على محتوى النص الخاص بهم، يمكنك تشغيل:
 
 ```js
 await browser.url('https://webdriver.io')
@@ -91,7 +91,7 @@ console.log(h3Texts);
  */
 ```
 
-If this looks too complicated you might want to consider using simple for loops, e.g.:
+إذا بدا هذا معقدًا للغاية، فقد ترغب في التفكير في استخدام حلقات for البسيطة، على سبيل المثال:
 
 ```js
 const elems = await $$('div')
@@ -100,23 +100,23 @@ for (const elem of elems) {
 }
 ```
 
-### WebdriverIO Assertions
+### تأكيدات WebdriverIO
 
-If you use the WebdriverIO assertion helper [`expect-webdriverio`](https://webdriver.io/docs/api/expect-webdriverio) make sure to set an `await` in front of every `expect` call, e.g.:
+إذا كنت تستخدم مساعد تأكيدات WebdriverIO [`expect-webdriverio`](https://webdriver.io/docs/api/expect-webdriverio)، فتأكد من وضع `await` أمام كل استدعاء `expect`، على سبيل المثال:
 
 ```ts
 expect($('input')).toHaveAttributeContaining('class', 'form')
 ```
 
-needs to be transformed to:
+يجب تحويله إلى:
 
 ```ts
 await expect($('input')).toHaveAttributeContaining('class', 'form')
 ```
 
-### Sync PageObject Methods and Async Tests
+### طرق PageObject المتزامنة والاختبارات غير المتزامنة
 
-If you have been writing PageObjects in your test suite in a synchronous way, you won't be able to use them in asynchronous tests anymore. If you need to use a PageObject method in both sync and async tests we recommend duplicating the method and offer them for both environments, e.g.:
+إذا كنت تكتب كائنات الصفحة (PageObjects) في مجموعة الاختبار الخاصة بك بطريقة متزامنة، فلن تتمكن من استخدامها في اختبارات غير متزامنة بعد الآن. إذا كنت بحاجة إلى استخدام طريقة PageObject في كل من الاختبارات المتزامنة وغير المتزامنة، فإننا نوصي بتكرار الطريقة وتقديمها لكلا البيئتين، على سبيل المثال:
 
 ```js
 class MyPageObject extends Page {
@@ -136,9 +136,9 @@ class MyPageObject extends Page {
 }
 ```
 
-Once you've finished the migration you can remove the synchronous PageObject methods and clean up the naming.
+بمجرد الانتهاء من الترحيل، يمكنك إزالة طرق PageObject المتزامنة وتنظيف التسمية.
 
-If you don't like to maintain two different version of a PageObject method you can also migrate the whole PageObject to async and use [`browser.call`](https://webdriver.io/docs/api/browser/call) to execute the method in a synchronous environment, e.g.:
+إذا كنت لا ترغب في الحفاظ على إصدارين مختلفين من طريقة PageObject، يمكنك أيضًا ترحيل كائن الصفحة بالكامل إلى غير متزامن واستخدام [`browser.call`](https://webdriver.io/docs/api/browser/call) لتنفيذ الطريقة في بيئة متزامنة، على سبيل المثال:
 
 ```js
 // before:
@@ -147,8 +147,8 @@ If you don't like to maintain two different version of a PageObject method you c
 browser.call(() => MyPageObject.someMethod())
 ```
 
-The `call` command will make sure that the asynchronous `someMethod` is resolved before moving on to the next command.
+سيتأكد أمر `call` من حل الطريقة `someMethod` غير المتزامنة قبل الانتقال إلى الأمر التالي.
 
-## Conclusion
+## الخلاصة
 
-As you can see in the [resulting rewrite PR](https://github.com/webdriverio/cucumber-boilerplate/pull/481/files) the complexity of this rewrite is fairly easy. Remember you can rewrite one step-definition at the time. WebdriverIO is perfectly able to handle sync and async execution in a single framework.
+كما ترى في [PR إعادة الكتابة الناتج](https://github.com/webdriverio/cucumber-boilerplate/pull/481/files)، فإن تعقيد إعادة الكتابة هذه سهل نسبيًا. تذكر أنه يمكنك إعادة كتابة تعريف خطوة واحدة في كل مرة. WebdriverIO قادر تمامًا على التعامل مع التنفيذ المتزامن وغير المتزامن في إطار عمل واحد.

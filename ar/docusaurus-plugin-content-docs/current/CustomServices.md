@@ -1,76 +1,76 @@
 ---
 id: customservices
-title: Custom Services
+title: الخدمات المخصصة
 ---
 
-You can write your own custom service for the WDIO test runner to custom-fit your needs.
+يمكنك كتابة خدمة مخصصة خاصة بك لمشغل اختبار WDIO لتناسب احتياجاتك.
 
-Services are add-ons that are created for reusable logic to simplify tests, manage your test suite and integrate results. Services have access to all the same [hooks](/docs/configurationfile) available in the `wdio.conf.js`.
+الخدمات هي إضافات تم إنشاؤها للمنطق القابل لإعادة الاستخدام لتبسيط الاختبارات وإدارة مجموعة الاختبار الخاصة بك ودمج النتائج. تمتلك الخدمات وصولاً إلى نفس [الخطافات](/docs/configurationfile) المتوفرة في ملف `wdio.conf.js`.
 
-There are two types of services that can be defined: a launcher service that only has access to the `onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete` hook which are only executed once per test run, and a worker service that has access to all other hooks and is being executed for each worker. Note that you can not share (global) variables between both types of services as worker services run in a different (worker) process.
+هناك نوعان من الخدمات التي يمكن تعريفها: خدمة المُطلق التي لديها فقط وصول إلى خطاف `onPrepare` و`onWorkerStart` و`onWorkerEnd` و`onComplete` والتي يتم تنفيذها مرة واحدة فقط لكل اختبار، وخدمة العامل التي لديها وصول إلى جميع الخطافات الأخرى ويتم تنفيذها لكل عامل. لاحظ أنه لا يمكنك مشاركة المتغيرات (العالمية) بين نوعي الخدمات لأن خدمات العامل تعمل في عملية مختلفة (عامل).
 
-A launcher service can be defined as follows:
+يمكن تعريف خدمة المُطلق على النحو التالي:
 
 ```js
 export default class CustomLauncherService {
-    // If a hook returns a promise, WebdriverIO will wait until that promise is resolved to continue.
+    // إذا أعاد الخطاف وعداً، فإن WebdriverIO سينتظر حتى يتم حل هذا الوعد للمتابعة.
     async onPrepare(config, capabilities) {
-        // TODO: something before all workers launch
+        // TODO: شيء ما قبل إطلاق جميع العمال
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: something after the workers shutdown
+        // TODO: شيء ما بعد إيقاف تشغيل العمال
     }
 
-    // custom service methods ...
+    // طرق الخدمة المخصصة ...
 }
 ```
 
-Whereas a worker service should look like this:
+بينما يجب أن تبدو خدمة العامل كما يلي:
 
 ```js
 export default class CustomWorkerService {
     /**
-     * `serviceOptions` contains all options specific to the service
-     * e.g. if defined as follows:
+     * `serviceOptions` يحتوي على جميع الخيارات الخاصة بالخدمة
+     * على سبيل المثال، إذا تم تحديدها على النحو التالي:
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * the `serviceOptions` parameter will be: `{ foo: 'bar' }`
+     * فسيكون معامل `serviceOptions`: `{ foo: 'bar' }`
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * this browser object is passed in here for the first time
+     * يتم تمرير كائن المتصفح هنا للمرة الأولى
      */
     async before(config, capabilities, browser) {
         this.browser = browser
 
-        // TODO: something before all tests are run, e.g.:
+        // TODO: شيء ما قبل تشغيل جميع الاختبارات، على سبيل المثال:
         await this.browser.setWindowSize(1024, 768)
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: something after all tests are run
+        // TODO: شيء ما بعد تشغيل جميع الاختبارات
     }
 
     beforeTest(test, context) {
-        // TODO: something before each Mocha/Jasmine test run
+        // TODO: شيء ما قبل كل اختبار Mocha/Jasmine
     }
 
     beforeScenario(test, context) {
-        // TODO: something before each Cucumber scenario run
+        // TODO: شيء ما قبل كل سيناريو Cucumber
     }
 
-    // other hooks or custom service methods ...
+    // خطافات أخرى أو طرق خدمة مخصصة ...
 }
 ```
 
-It is recommended to store the browser object through the passed in parameter in the constructor. Lastly expose both types of workers as following:
+يوصى بتخزين كائن المتصفح من خلال المعلمة الممررة في المنشئ. وأخيراً، قم بكشف كلا النوعين من العمال على النحو التالي:
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +80,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-If you are using TypeScript and want to make sure that hook methods parameter are type safe, you can define your service class as follows:
+إذا كنت تستخدم TypeScript وتريد التأكد من أن معلمات طرق الخطاف آمنة نوعياً، فيمكنك تعريف فئة الخدمة الخاصة بك على النحو التالي:
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -89,7 +89,7 @@ export default class CustomWorkerService implements Services.ServiceInstance {
     constructor (
         private _options: MyServiceOptions,
         private _capabilities: Capabilities.RemoteCapability,
-        private _config: Options.Testrunner
+        private _config: WebdriverIO.Config,
     ) {
         // ...
     }
@@ -98,29 +98,29 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## Service Error Handling
+## معالجة أخطاء الخدمة
 
-An Error thrown during a service hook will be logged while the runner continues. If a hook in your service is critical to the setup or teardown of the test runner, the `SevereServiceError` exposed from the `webdriverio` package can be used to stop the runner.
+سيتم تسجيل خطأ مُلقى أثناء خطاف الخدمة بينما يستمر المشغل. إذا كان الخطاف في خدمتك ضرورياً لإعداد أو إزالة مشغل الاختبار، فيمكن استخدام `SevereServiceError` المُستخرج من حزمة `webdriverio` لإيقاف المشغل.
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: something critical for setup before all workers launch
+        // TODO: شيء ما حيوي للإعداد قبل إطلاق جميع العمال
 
-        throw new SevereServiceError('Something went wrong.')
+        throw new SevereServiceError('حدث خطأ ما.')
     }
 
-    // custom service methods ...
+    // طرق الخدمة المخصصة ...
 }
 ```
 
-## Import Service from Module
+## استيراد الخدمة من الوحدة
 
-The only thing to do now in order to use this service is to assign it to the `services` property.
+الشيء الوحيد الذي يجب القيام به الآن لاستخدام هذه الخدمة هو تعيينها لخاصية `services`.
 
-Modify your `wdio.conf.js` file to look like this:
+قم بتعديل ملف `wdio.conf.js` الخاص بك ليبدو كما يلي:
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -129,13 +129,13 @@ export const config = {
     // ...
     services: [
         /**
-         * use imported service class
+         * استخدام فئة الخدمة المستوردة
          */
         [CustomService, {
             someOption: true
         }],
         /**
-         * use absolute path to service
+         * استخدام المسار المطلق للخدمة
          */
         ['/path/to/service.js', {
             someOption: true
@@ -145,19 +145,19 @@ export const config = {
 }
 ```
 
-## Publish Service on NPM
+## نشر الخدمة على NPM
 
-To make services easier to consume and discover by the WebdriverIO community, please follow these recommendations:
+لجعل الخدمات أسهل استهلاكاً واكتشافاً من قبل مجتمع WebdriverIO، يرجى اتباع هذه التوصيات:
 
-* Services should use this naming convention: `wdio-*-service`
-* Use NPM keywords: `wdio-plugin`, `wdio-service`
-* The `main` entry should `export` an instance of the service
-* Example services: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
+* يجب أن تستخدم الخدمات اتفاقية التسمية هذه: `wdio-*-service`
+* استخدم كلمات مفتاحية NPM: `wdio-plugin`، `wdio-service`
+* يجب أن يقوم إدخال `main` بتصدير `export` نسخة من الخدمة
+* أمثلة على الخدمات: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-Following the recommended naming pattern allows services to be added by name:
+إن اتباع نمط التسمية الموصى به يسمح بإضافة الخدمات بالاسم:
 
 ```js
-// Add wdio-custom-service
+// إضافة wdio-custom-service
 export const config = {
     // ...
     services: ['custom'],
@@ -165,11 +165,11 @@ export const config = {
 }
 ```
 
-### Add Published Service to WDIO CLI and Docs
+### إضافة الخدمة المنشورة إلى WDIO CLI والمستندات
 
-We really appreciate every new plugin that could help other people run better tests! If you have created such a plugin, please consider adding it to our CLI and docs to make it easier to be found.
+نحن نقدر حقًا كل إضافة جديدة يمكن أن تساعد الآخرين على إجراء اختبارات أفضل! إذا قمت بإنشاء مثل هذه الإضافة، فيرجى التفكير في إضافتها إلى واجهة سطر الأوامر (CLI) والمستندات لدينا لتسهيل العثور عليها.
 
-Please raise a pull request with the following changes:
+يرجى تقديم طلب سحب مع التغييرات التالية:
 
-- add your service to the list of [supported services](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) in the CLI module
-- enhance the [service list](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) for adding your docs to the official Webdriver.io page
+- أضف خدمتك إلى قائمة [الخدمات المدعومة](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) في وحدة CLI
+- تحسين [قائمة الخدمات](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json) لإضافة وثائقك إلى صفحة Webdriver.io الرسمية

@@ -1,22 +1,22 @@
 ---
 id: timeouts
-title: Timeouts
+title: المهل الزمنية
 ---
 
-Each command in WebdriverIO is an asynchronous operation. A request is fired to the Selenium server (or a cloud service like [Sauce Labs](https://saucelabs.com)), and its response contains the result once the action has completed or failed.
+كل أمر في WebdriverIO هو عملية غير متزامنة. يتم إرسال طلب إلى خادم Selenium (أو خدمة سحابية مثل [Sauce Labs](https://saucelabs.com))، وتحتوي استجابته على النتيجة بمجرد اكتمال الإجراء أو فشله.
 
-Therefore, time is a crucial component in the whole testing process. When a certain action depends on the state of a different action, you need to make sure that they get executed in the right order. Timeouts play an important role when dealing with these issues.
+لذلك، يُعد الوقت مكونًا حاسمًا في عملية الاختبار بأكملها. عندما يعتمد إجراء معين على حالة إجراء آخر، عليك التأكد من تنفيذها بالترتيب الصحيح. تلعب المهل الزمنية دورًا مهمًا عند التعامل مع هذه المشكلات.
 
 <LiteYouTubeEmbed
     id="5oI37h4qxEw"
     title="Timeouts"
 />
 
-## WebDriver Timeouts
+## مهل WebDriver الزمنية
 
-### Session Script Timeout
+### مهلة سكريبت الجلسة
 
-A session has an associated session script timeout that specifies a time to wait for asynchronous scripts to run. Unless stated otherwise, it is 30 seconds. You can set this timeout like so:
+تحتوي الجلسة على مهلة سكريبت مرتبطة بها تحدد وقت الانتظار لتشغيل السكريبتات غير المتزامنة. ما لم يُذكر خلاف ذلك، فإنها 30 ثانية. يمكنك تعيين هذه المهلة الزمنية على النحو التالي:
 
 ```js
 await browser.setTimeout({ 'script': 60000 })
@@ -26,33 +26,33 @@ await browser.executeAsync((done) => {
 })
 ```
 
-### Session Page Load Timeout
+### مهلة تحميل صفحة الجلسة
 
-A session has an associated session page load timeout that specifies a time to wait for the page loading to complete. Unless stated otherwise, it is 300,000 milliseconds.
+تحتوي الجلسة على مهلة تحميل صفحة مرتبطة بها تحدد وقت الانتظار لاكتمال تحميل الصفحة. ما لم يُذكر خلاف ذلك، فإنها 300,000 مللي ثانية.
 
-You can set this timeout like so:
+يمكنك تعيين هذه المهلة الزمنية على النحو التالي:
 
 ```js
 await browser.setTimeout({ 'pageLoad': 10000 })
 ```
 
-> The `pageLoad` keyword is a part of the official WebDriver [specification](https://www.w3.org/TR/webdriver/#set-timeouts), but might not be [supported](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) for your browser (the previous name is `page load`).
+> مصطلح `pageLoad` هو جزء من [مواصفات](https://www.w3.org/TR/webdriver/#set-timeouts) WebDriver الرسمية، ولكنه قد لا يكون [مدعومًا](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) لمتصفحك (الاسم السابق هو `page load`).
 
-### Session Implicit Wait Timeout
+### مهلة الانتظار الضمني للجلسة
 
-A session has an associated session implicit wait timeout. This specifies the time to wait for the implicit element location strategy when locating elements using the [`findElement`](/docs/api/webdriver#findelement) or [`findElements`](/docs/api/webdriver#findelements) commands ([`$`](/docs/api/browser/$) or [`$$`](/docs/api/browser/$$), respectively, when running WebdriverIO with or without the WDIO testrunner). Unless stated otherwise, it is 0 milliseconds.
+تحتوي الجلسة على مهلة انتظار ضمنية مرتبطة بها. تحدد هذه المهلة وقت الانتظار لاستراتيجية تحديد العناصر الضمنية عند تحديد العناصر باستخدام أوامر [`findElement`](/docs/api/webdriver#findelement) أو [`findElements`](/docs/api/webdriver#findelements) ([`$`](/docs/api/browser/$) أو [`$$`](/docs/api/browser/$$) على التوالي، عند تشغيل WebdriverIO مع أو بدون WDIO testrunner). ما لم يُذكر خلاف ذلك، فإنها 0 مللي ثانية.
 
-You can set this timeout via:
+يمكنك تعيين هذه المهلة الزمنية عبر:
 
 ```js
 await browser.setTimeout({ 'implicit': 5000 })
 ```
 
-## WebdriverIO related timeouts
+## مهل WebdriverIO ذات الصلة
 
-### `WaitFor*` timeout
+### مهلة `WaitFor*`
 
-WebdriverIO provides multiple commands to wait on elements to reach a certain state (e.g. enabled, visible, existing). These commands take a selector argument and a timeout number, which determines how long the instance should wait for that element to reach the state. The `waitforTimeout` option allows you to set the global timeout for all `waitFor*` commands, so you don't need to set the same timeout over and over again. _(Note the lowercase `f`!)_
+يوفر WebdriverIO أوامر متعددة للانتظار حتى تصل العناصر إلى حالة معينة (مثل التمكين، الظهور، الوجود). تأخذ هذه الأوامر وسيطة منتقي ورقم مهلة زمنية، والتي تحدد المدة التي يجب أن تنتظرها المثيلة حتى يصل ذلك العنصر إلى الحالة. يتيح لك خيار `waitforTimeout` تعيين المهلة العالمية لجميع أوامر `waitFor*`، بحيث لا تحتاج إلى تعيين نفس المهلة مرارًا وتكرارًا. _(لاحظ الحرف `f` الصغير!)_
 
 ```js
 // wdio.conf.js
@@ -63,23 +63,23 @@ export const config = {
 }
 ```
 
-In your tests, you now can do this:
+في اختباراتك، يمكنك الآن فعل هذا:
 
 ```js
 const myElem = await $('#myElem')
 await myElem.waitForDisplayed()
 
-// you can also overwrite the default timeout if needed
+// يمكنك أيضًا تجاوز المهلة الافتراضية إذا لزم الأمر
 await myElem.waitForDisplayed({ timeout: 10000 })
 ```
 
-## Framework related timeouts
+## مهل الإطار ذات الصلة
 
-The testing framework you’re using with WebdriverIO has to deal with timeouts, especially since everything is asynchronous. It ensures that the test process doesn't get stuck if something goes wrong.
+يجب أن يتعامل إطار الاختبار الذي تستخدمه مع WebdriverIO مع المهل الزمنية، خاصة لأن كل شيء غير متزامن. وهذا يضمن أن عملية الاختبار لا تتعطل إذا حدث خطأ ما.
 
-By default, the timeout is 10 seconds, which means that a single test should not take longer than that.
+بشكل افتراضي، المهلة هي 10 ثوانٍ، مما يعني أن الاختبار الواحد يجب ألا يستغرق وقتًا أطول من ذلك.
 
-A single test in Mocha looks like:
+يبدو الاختبار الواحد في Mocha كما يلي:
 
 ```js
 it('should login into the application', async () => {
@@ -97,15 +97,15 @@ it('should login into the application', async () => {
 })
 ```
 
-In Cucumber, the timeout applies to a single step definition. However, if you want to increase the timeout because your test takes longer than the default value, you need to set it in the framework options.
+في Cucumber، تنطبق المهلة الزمنية على تعريف خطوة واحدة. ومع ذلك، إذا كنت ترغب في زيادة المهلة لأن اختبارك يستغرق وقتًا أطول من القيمة الافتراضية، فأنت بحاجة إلى تعيينها في خيارات الإطار.
 
 <Tabs
   defaultValue="mocha"
   values={[
     {label: 'Mocha', value: 'mocha'},
- {label: 'Jasmine', value: 'jasmine'},
- {label: 'Cucumber', value: 'cucumber'}
- ]
+    {label: 'Jasmine', value: 'jasmine'},
+    {label: 'Cucumber', value: 'cucumber'}
+  ]
 }>
 <TabItem value="mocha">
 

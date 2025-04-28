@@ -1,246 +1,246 @@
 ---
 id: method-options
-title: Method Options
+title: خيارات الطريقة
 ---
 
-Methods options are the options that can be set per [method](./methods). If the option has the same key as an option that has been set during the instantiation of the plugin, this method option will override the plugin option value.
+خيارات الطرق هي الخيارات التي يمكن تعيينها لكل [طريقة](./methods). إذا كان للخيار نفس المفتاح كخيار تم تعيينه أثناء تهيئة المكوّن الإضافي، فإن خيار الطريقة هذا سيتجاوز قيمة خيار المكوّن الإضافي.
 
-## Save Options
+## خيارات الحفظ
 
 ### `disableBlinkingCursor`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **مدعوم في:** الويب، تطبيق هجين (Webview)
 
-En/Disable all `input`, `textarea`, `[contenteditable]` caret "blinking" in the application. If set to `true` the caret will be set to `transparent` before taking a screenshot
-and reset when done
+تمكين/تعطيل وميض المؤشر في جميع عناصر `input`، `textarea`، `[contenteditable]` في التطبيق. إذا تم تعيينه إلى `true` فسيتم تعيين المؤشر إلى `transparent` قبل التقاط لقطة الشاشة
+وإعادة تعيينه عند الانتهاء
 
 ### `disableCSSAnimation`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **مدعوم في:** الويب، تطبيق هجين (Webview)
 
-En/Disable all CSS animations in the application. If set to `true` all animations will be disabled before taking a screenshot
-and reset when done
+تمكين/تعطيل جميع رسوم CSS المتحركة في التطبيق. إذا تم تعيينه إلى `true` فسيتم تعطيل جميع الرسوم المتحركة قبل التقاط لقطة شاشة
+وإعادة تعيينها عند الانتهاء
 
 ### `enableLayoutTesting`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `false`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `false`
+-   **يستخدم مع:** جميع [الطرق](./methods)
+-   **مدعوم في:** الويب
 
-This will hide all text on a page so only the layout will be used for comparison. Hiding will be done by adding the style `'color': 'transparent !important'` to **each** element.
+سيؤدي هذا إلى إخفاء جميع النصوص في الصفحة بحيث يتم استخدام التخطيط فقط للمقارنة. سيتم الإخفاء عن طريق إضافة النمط `'color': 'transparent !important'` إلى __كل__ عنصر.
 
-For the output see [Test Output](./test-output#enablelayouttesting)
+للاطلاع على المخرجات راجع [مخرجات الاختبار](./test-output#enablelayouttesting)
 
 :::info
-By using this flag each element that contains text (so not only `p, h1, h2, h3, h4, h5, h6, span, a, li`, but also `div|button|..`) will get this property. There is **no** option to tailor this.
+باستخدام هذه الميزة، سيحصل كل عنصر يحتوي على نص (وليس فقط `p, h1, h2, h3, h4, h5, h6, span, a, li`، ولكن أيضًا `div|button|..`) على هذه الخاصية. لا توجد خيارات لتخصيص هذا الأمر.
 :::
 
 ### `hideScrollBars`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `true`
+-   **يستخدم مع:** جميع [الطرق](./methods)
+-   **مدعوم في:** الويب، تطبيق هجين (Webview)
 
-Hide scrollbar(s) in the application. If set to true all scrollbar(s) will be disabled before taking a screenshot. This is set to default `true` to prevent extra issues.
+إخفاء أشرطة التمرير في التطبيق. إذا تم تعيينه إلى true، سيتم تعطيل جميع أشرطة التمرير قبل التقاط لقطة شاشة. يتم تعيين هذا افتراضيًا إلى `true` لمنع المشكلات الإضافية.
 
 ### `hideElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `array`
+-   **إلزامي:** لا
+-   **يستخدم مع:** جميع [الطرق](./methods)
+-   **مدعوم في:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
 
-This method can hide 1 or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
+يمكن لهذه الطريقة إخفاء عنصر واحد أو عناصر متعددة عن طريق إضافة الخاصية `visibility: hidden` إليها من خلال توفير مصفوفة من العناصر.
 
 ### `removeElements`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `array`
+-   **إلزامي:** لا
+-   **يستخدم مع:** جميع [الطرق](./methods)
+-   **مدعوم في:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
 
-This method can _remove_ 1 or multiple elements by adding the property `display: none` to them by providing an array of elements.
+يمكن لهذه الطريقة _إزالة_ عنصر واحد أو عناصر متعددة عن طريق إضافة الخاصية `display: none` إليها من خلال توفير مصفوفة من العناصر.
 
 ### `resizeDimensions`
 
-- **Type:** `object`
-- **Mandatory:** no
-- **Default:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Used with:** Only for [`saveElement`](./methods#saveelement) or [`checkElement`](./methods#checkelement)
-- **Supported:** Web, Hybrid App (Webview), Native App
+-   **النوع:** `object`
+-   **إلزامي:** لا
+-   **الافتراضي:** `{ top: 0, right: 0, bottom: 0, left: 0}`
+-   **يستخدم مع:** فقط مع [`saveElement`](./methods#saveelement) أو [`checkElement`](./methods#checkelement)
+-   **مدعوم في:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
 
-An object that needs to hold a `top`, `right`, `bottom` and `left` amount of pixels that need to make the element cutout bigger.
+كائن يجب أن يحتوي على عدد البكسلات `top`، `right`، `bottom` و `left` التي تحتاج إلى جعل قصاصة العنصر أكبر.
 
 ### `fullPageScrollTimeout`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `1500`
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **النوع:** `number`
+-   **إلزامي:** لا
+-   **الافتراضي:** `1500`
+-   **يستخدم مع:** فقط مع [`saveFullPageScreen`](./methods#savefullpagescreen) أو [`saveTabbablePage`](./methods#savetabbablepage)
+-   **مدعوم في:** الويب
 
-The timeout in milliseconds to wait after a scroll. This might help identify pages with lazy loading.
+المهلة بالميلي ثانية للانتظار بعد التمرير. قد يساعد هذا في تحديد الصفحات ذات التحميل الكسول.
 
 ### `hideAfterFirstScroll`
 
-- **Type:** `array`
-- **Mandatory:** no
-- **Used with:** Only for [`saveFullPageScreen`](./methods#savefullpagescreen) or [`saveTabbablePage`](./methods#savetabbablepage)
-- **Supported:** Web
+-   **النوع:** `array`
+-   **إلزامي:** لا
+-   **يستخدم مع:** فقط مع [`saveFullPageScreen`](./methods#savefullpagescreen) أو [`saveTabbablePage`](./methods#savetabbablepage)
+-   **مدعوم في:** الويب
 
-This method will hide one or multiple elements by adding the property `visibility: hidden` to them by providing an array of elements.
-This will be handy when a page for example holds sticky elements that will scroll with the page if the page is scrolled but will give an annoying effect when a full-page screenshot is made
+ستخفي هذه الطريقة عنصرًا واحدًا أو عناصر متعددة عن طريق إضافة الخاصية `visibility: hidden` إليها من خلال توفير مصفوفة من العناصر.
+سيكون هذا مفيدًا عندما تحتوي الصفحة على سبيل المثال على عناصر لاصقة ستتمرر مع الصفحة إذا تم تمرير الصفحة ولكنها ستعطي تأثيرًا مزعجًا عند إنشاء لقطة شاشة كاملة للصفحة
 
 ### `waitForFontsLoaded`
 
-- **Type:** `boolean`
-- **Mandatory:** No
-- **Default:** `true`
-- **Used with:** All [methods](./methods)
-- **Supported:** Web, Hybrid App (Webview)
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **الافتراضي:** `true`
+-   **يستخدم مع:** جميع [الطرق](./methods)
+-   **مدعوم في:** الويب، تطبيق هجين (Webview)
 
-Fonts, including third-party fonts, can be loaded synchronously or asynchronously. Asynchronous loading means that fonts might load after WebdriverIO determines that a page has fully loaded. To prevent font rendering issues, this module, by default, will wait for all fonts to be loaded before taking a screenshot.
+يمكن تحميل الخطوط، بما في ذلك خطوط الطرف الثالث، بشكل متزامن أو غير متزامن. يعني التحميل غير المتزامن أن الخطوط قد تُحمَّل بعد أن يحدد WebdriverIO أن الصفحة قد تم تحميلها بالكامل. لمنع مشاكل عرض الخطوط، سينتظر هذا الوحدة، بشكل افتراضي، تحميل جميع الخطوط قبل التقاط لقطة شاشة.
 
-## Compare (Check) Options
+## خيارات المقارنة (التحقق)
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+خيارات المقارنة هي خيارات تؤثر على طريقة تنفيذ المقارنة بواسطة [ResembleJS](https://github.com/Huddle/Resemble.js).
 
-:::info NOTE
+:::info ملاحظة
 
-- All options from the [Save Options](#save-options) can be used for the Compare methods
-- All compare options can be used during service instantiation **or** for every single check method. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
-- All options can be used for:
-  - Web
-  - Hybrid App
-  - Native App
+-   يمكن استخدام جميع الخيارات من [خيارات الحفظ](#خيارات-الحفظ) لطرق المقارنة
+-   يمكن استخدام جميع خيارات المقارنة أثناء تهيئة الخدمة __أو__ لكل طريقة فحص فردية. إذا كان لخيار الطريقة نفس المفتاح كخيار تم تعيينه أثناء تهيئة الخدمة، فإن خيار مقارنة الطريقة سيتجاوز قيمة خيار مقارنة الخدمة.
+- يمكن استخدام جميع الخيارات لـ:
+    - الويب
+    - تطبيق هجين
+    - تطبيق أصلي
 
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
 
-Compare images and discard alpha.
+قارن الصور وتجاهل القناة ألفا.
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. This is **iPad only**_
+-   **النوع:** `boolean`
+-   **الافتراضي:** `true`
+-   **إلزامي:** لا
+-   **ملاحظة:** _يمكن استخدامه فقط لـ `checkScreen()`. هذا **خاص بأجهزة iPad فقط**_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+حجب الشريط الجانبي تلقائيًا لأجهزة iPad في وضع أفقي أثناء المقارنات. هذا يمنع الأخطاء في مكون التبويب/الخاص/العلامات المرجعية الأصلي.
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **النوع:** `boolean`
+-   **الافتراضي:** `true`
+-   **إلزامي:** لا
+-   **ملاحظة:** _هذا **خاص بالأجهزة المحمولة فقط**_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+حجب شريط الحالة وشريط العنوان تلقائيًا أثناء المقارنات. هذا يمنع الأخطاء في الوقت أو Wi-Fi أو حالة البطارية.
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `true`
-- **Mandatory:** no
-- **Remark:** _This is **Mobile only**_
+-   **النوع:** `boolean`
+-   **الافتراضي:** `true`
+-   **إلزامي:** لا
+-   **ملاحظة:** _هذا **خاص بالأجهزة المحمولة فقط**_
 
-Automatically block out the toolbar.
+حجب شريط الأدوات تلقائيًا.
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
 
-Compare images and discard anti-aliasing.
+قارن الصور وتجاهل مضاد التعرج.
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
 
-Even though the images are in color, the comparison will compare 2 black/white images
+على الرغم من أن الصور ملونة، إلا أن المقارنة ستقارن صورتين بالأبيض والأسود
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+قارن الصور وقارن مع `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+قارن الصور وقارن مع `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+إذا كانت القيمة true، فإن النسبة المئوية المرجعة ستكون مثل `0.12345678`، الافتراضي هو `0.12`
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
 
-This will return all compare data, not only the mismatch percentage
+سيعيد هذا جميع بيانات المقارنة، وليس فقط النسبة المئوية لعدم التطابق
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **النوع:** `number`
+-   **الافتراضي:** `0`
+-   **إلزامي:** لا
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+القيمة المسموح بها لـ `misMatchPercentage` التي تمنع حفظ الصور ذات الاختلافات
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
+-   **النوع:** `number`
+-   **الافتراضي:** `0`
+-   **إلزامي:** لا
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+يمكن أن تؤدي مقارنة الصور الكبيرة إلى مشاكل في الأداء.
+عند تقديم رقم لعدد البكسلات هنا (أعلى من 0)، تتخطى خوارزمية المقارنة البكسلات عندما يكون عرض الصورة أو ارتفاعها أكبر من `largeImageThreshold` بكسل.
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
+-   **النوع:** `boolean`
+-   **الافتراضي:** `false`
+-   **إلزامي:** لا
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+تقييس صورتين إلى نفس الحجم قبل تنفيذ المقارنة. يوصى بشدة بتمكين `ignoreAntialiasing` و `ignoreAlpha`
 
-## Folder options
+## خيارات المجلدات
 
-The baseline folder and screenshot folders(actual, diff) are options that can be set during the instantiation of the plugin or method. To set the folder options on a particular method, pass in folder options to the methods option object. This can be used for:
+مجلد الخط الأساسي ومجلدات لقطات الشاشة (الفعلية، الفرق) هي خيارات يمكن تعيينها أثناء تهيئة المكوّن الإضافي أو الطريقة. لتعيين خيارات المجلد على طريقة معينة، قم بتمرير خيارات المجلد إلى كائن خيارات الطرق. يمكن استخدام هذا لـ:
 
-- Web
-- Hybrid App
-- Native App
+- الويب
+- تطبيق هجين
+- تطبيق أصلي
 
 ```ts
 import path from 'node:path'
@@ -251,7 +251,7 @@ const methodOptions = {
     diffFolder: path.join(process.cwd(), 'customDiff'),
 }
 
-// You can use this for all methods
+// يمكنك استخدام هذا لجميع الطرق
 await expect(
     await browser.checkFullPageScreen("checkFullPage", methodOptions)
 ).toEqual(0)
@@ -259,21 +259,21 @@ await expect(
 
 ### `actualFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **النوع:** `string`
+-   **إلزامي:** لا
 
-Folder for the snapshot that has been captured in the test.
+مجلد للقطة التي تم التقاطها في الاختبار.
 
 ### `baselineFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **النوع:** `string`
+-   **إلزامي:** لا
 
-Folder for the baseline image that is being used to compare against.
+مجلد للصورة الأساسية التي يتم استخدامها للمقارنة.
 
 ### `diffFolder`
 
-- **Type:** `string`
-- **Mandatory:** no
+-   **النوع:** `string`
+-   **إلزامي:** لا
 
-Folder for the image difference rendered by ResembleJS.
+مجلد لاختلاف الصورة المقدم بواسطة ResembleJS.

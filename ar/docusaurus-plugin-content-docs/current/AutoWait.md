@@ -1,19 +1,20 @@
 ---
 id: autowait
-title: Auto-waiting
+title: الانتظار التلقائي
 ---
 
-When using a command that directly interacts with an element WebdriverIO will automatically wait for the element to be visible and interactable, no manual waits are needed when using the commands (think of click, setValue etc). An element is considered interactable when the conditions for [isClickable](https://webdriver.io/docs/api/element/isClickable) are met.
+عند استخدام أمر يتفاعل مباشرة مع عنصر، سيقوم WebdriverIO تلقائيًا بالانتظار حتى يصبح العنصر مرئيًا وقابلاً للتفاعل، ولا حاجة للانتظار اليدوي عند استخدام الأوامر (مثل click وsetValue وغيرها).
+يعتبر العنصر قابلاً للتفاعل عندما تتحقق شروط [isClickable](https://webdriver.io/docs/api/element/isClickable).
 
-While WebdriverIO automatically waits for elements to become interactable, there are rare cases for which you might need to manually wait. For these rare cases we offer commands such as [`waitForDisplayed`](/docs/api/element/waitForDisplayed).
+بينما ينتظر WebdriverIO تلقائيًا حتى تصبح العناصر قابلة للتفاعل، هناك حالات نادرة قد تحتاج فيها إلى الانتظار يدويًا. لهذه الحالات النادرة، نقدم أوامر مثل [`waitForDisplayed`](/docs/api/element/waitForDisplayed).
 
 
-## Implicit timeouts (not recommended)
+## المهل الضمنية (غير موصى بها)
 
-While we do not recommend using this but the WebDriver protocol offers [implicit timeouts](https://w3c.github.io/webdriver/#timeouts) that allow specify how long the driver is suppose to wait for an element to show up. By default this timeout is set to `0` and therefore makes the driver return with an `no such element` error immediately if an element could not be found on the page. Increasing this timeout using the [`setTimeout`](/docs/api/browser/setTimeout) would make the driver wait and increases the chances that the element shows up eventually.
+على الرغم من أننا لا نوصي باستخدام هذا، إلا أن بروتوكول WebDriver يوفر [مهلات ضمنية](https://w3c.github.io/webdriver/#timeouts) تتيح تحديد المدة التي يفترض أن ينتظرها برنامج التشغيل حتى يظهر العنصر. بشكل افتراضي، يتم تعيين هذه المهلة على `0` وبالتالي يجعل برنامج التشغيل يعود على الفور بخطأ `no such element` إذا تعذر العثور على عنصر في الصفحة. زيادة هذه المهلة باستخدام [`setTimeout`](/docs/api/browser/setTimeout) ستجعل برنامج التشغيل ينتظر وتزيد من فرص ظهور العنصر في النهاية.
 
 :::note
 
-Read more about WebDriver and framework related timeouts in the [timeouts guide](/docs/timeouts)
+اقرأ المزيد عن مهلات WebDriver والإطارات ذات الصلة في [دليل المهلات](/docs/timeouts)
 
 :::

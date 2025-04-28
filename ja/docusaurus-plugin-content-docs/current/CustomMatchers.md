@@ -1,53 +1,53 @@
 ---
 id: custommatchers
-title: Custom Matchers
+title: カスタムマッチャー
 ---
 
-WebdriverIO uses a Jest style [`expect`](https://webdriver.io/docs/api/expect-webdriverio) assertion library that comes with special features and custom matchers specific for running web and mobile tests. While the library of matchers is big, it certainly doesn't fit all possible situations. Therefore it is possible to extend the existing matchers with custom ones defined by you.
+WebdriverIOはJestスタイルの[`expect`](https://webdriver.io/docs/api/expect-webdriverio)アサーションライブラリを使用しており、Webおよびモバイルテストの実行に特化した特別な機能とカスタムマッチャーが付属しています。マッチャーのライブラリは大きいですが、あらゆる状況に対応しているわけではありません。そのため、既存のマッチャーをユーザー定義のカスタムマッチャーで拡張することが可能です。
 
 :::warning
 
-While there is currently no difference in how matchers are defined that are specific to the [`browser`](/docs/api/browser) object or an [element](/docs/api/element) instance, this certainly might change in the future. Keep an eye on [`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) for further information on this development.
+現在、[`browser`](/docs/api/browser)オブジェクト固有のマッチャーと[element](/docs/api/element)インスタンス固有のマッチャーの定義方法に違いはありませんが、将来的には変更される可能性があります。この開発に関する詳細情報については、[`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408)に注目してください。
 
 :::
 
-## Custom Browser Matchers
+## カスタムブラウザマッチャー
 
-To register a custom browser matcher, call `extend` on the `expect` object either in your spec file directly or as part of the e.g. `before` hook in your `wdio.conf.js`:
+カスタムブラウザマッチャーを登録するには、specファイル内で直接、または例えば`wdio.conf.js`の`before`フック内で`expect`オブジェクトの`extend`を呼び出します。
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L3-L18
 ```
 
-As shown in the example the matcher function takes the expected object, e.g. the browser or element object, as the first parameter and the expected value as the second. You can then use the matcher as follows:
+例に示すように、マッチャー関数は最初のパラメータとして期待されるオブジェクト（例：ブラウザまたは要素オブジェクト）を取り、2番目のパラメータとして期待値を取ります。その後、次のようにマッチャーを使用できます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L50-L52
 ```
 
-## Custom Element Matchers
+## カスタム要素マッチャー
 
-Similar to custom browser matchers, element matchers don't differ. Here is an example of how to create a custom matcher to assert the aria-label of an element:
+カスタムブラウザマッチャーと同様に、要素マッチャーも異なりません。要素のaria-labelをアサートするためのカスタムマッチャーを作成する例を以下に示します：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L20-L38
 ```
 
-This allows you to call the assertion as follows:
+これにより、以下のようにアサーションを呼び出すことができます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L54-L57
 ```
 
-## TypeScript Support
+## TypeScriptサポート
 
-If you are using TypeScript, one more step is required to ensure the type safety of your custom matchers. By extending the `Matcher` interface with your custom matchers, all type issues vanish:
+TypeScriptを使用している場合は、カスタムマッチャーの型安全性を確保するためにもう一つのステップが必要です。カスタムマッチャーで`Matcher`インターフェースを拡張することで、すべての型の問題が解消されます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L40-L47
 ```
 
-If you created a custom [asymmetric matcher](https://jestjs.io/docs/expect#expectextendmatchers), you can similarly extend the `expect` types as follows:
+カスタム[非対称マッチャー](https://jestjs.io/docs/expect#expectextendmatchers)を作成した場合は、以下のように同様に`expect`型を拡張できます：
 
 ```ts
 declare global {

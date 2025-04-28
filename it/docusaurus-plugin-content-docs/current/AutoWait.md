@@ -1,19 +1,20 @@
 ---
 id: autowait
-title: Auto-waiting
+title: Auto-attesa
 ---
 
-When using a command that directly interacts with an element WebdriverIO will automatically wait for the element to be visible and interactable, no manual waits are needed when using the commands (think of click, setValue etc). An element is considered interactable when the conditions for [isClickable](https://webdriver.io/docs/api/element/isClickable) are met.
+Quando si utilizza un comando che interagisce direttamente con un elemento, WebdriverIO attenderà automaticamente che l'elemento sia visibile e interattivo, non sono necessarie attese manuali quando si utilizzano i comandi (come click, setValue ecc.).
+Un elemento è considerato interattivo quando sono soddisfatte le condizioni per [isClickable](https://webdriver.io/docs/api/element/isClickable).
 
-While WebdriverIO automatically waits for elements to become interactable, there are rare cases for which you might need to manually wait. For these rare cases we offer commands such as [`waitForDisplayed`](/docs/api/element/waitForDisplayed).
+Anche se WebdriverIO attende automaticamente che gli elementi diventino interattivi, ci sono rari casi in cui potrebbe essere necessario attendere manualmente. Per questi rari casi offriamo comandi come [`waitForDisplayed`](/docs/api/element/waitForDisplayed).
 
 
-## Implicit timeouts (not recommended)
+## Timeout impliciti (non raccomandati)
 
-While we do not recommend using this but the WebDriver protocol offers [implicit timeouts](https://w3c.github.io/webdriver/#timeouts) that allow specify how long the driver is suppose to wait for an element to show up. By default this timeout is set to `0` and therefore makes the driver return with an `no such element` error immediately if an element could not be found on the page. Increasing this timeout using the [`setTimeout`](/docs/api/browser/setTimeout) would make the driver wait and increases the chances that the element shows up eventually.
+Anche se non lo raccomandiamo, il protocollo WebDriver offre [timeout impliciti](https://w3c.github.io/webdriver/#timeouts) che permettono di specificare quanto a lungo il driver deve attendere che un elemento appaia. Per impostazione predefinita, questo timeout è impostato su `0` e quindi fa sì che il driver restituisca immediatamente un errore `no such element` se un elemento non può essere trovato nella pagina. Aumentare questo timeout utilizzando [`setTimeout`](/docs/api/browser/setTimeout) farebbe attendere il driver e aumenterebbe le possibilità che l'elemento appaia alla fine.
 
 :::note
 
-Read more about WebDriver and framework related timeouts in the [timeouts guide](/docs/timeouts)
+Leggi di più sui timeout relativi a WebDriver e framework nella [guida ai timeout](/docs/timeouts)
 
 :::

@@ -1,19 +1,20 @@
 ---
 id: autowait
-title: Auto-waiting
+title: 自動待機
 ---
 
-When using a command that directly interacts with an element WebdriverIO will automatically wait for the element to be visible and interactable, no manual waits are needed when using the commands (think of click, setValue etc). An element is considered interactable when the conditions for [isClickable](https://webdriver.io/docs/api/element/isClickable) are met.
+WebdriverIOでは、要素と直接やり取りするコマンドを使用する際、要素が表示され操作可能になるまで自動的に待機するため、コマンド（click、setValueなど）を使用する際に手動で待機する必要はありません。
+要素は[isClickable](https://webdriver.io/docs/api/element/isClickable)の条件が満たされると操作可能と見なされます。
 
-While WebdriverIO automatically waits for elements to become interactable, there are rare cases for which you might need to manually wait. For these rare cases we offer commands such as [`waitForDisplayed`](/docs/api/element/waitForDisplayed).
+WebdriverIOは要素が操作可能になるまで自動的に待機しますが、手動で待機が必要になるまれなケースがあります。そのような稀なケースのために、[`waitForDisplayed`](/docs/api/element/waitForDisplayed)などのコマンドを提供しています。
 
 
-## Implicit timeouts (not recommended)
+## 暗黙的なタイムアウト（推奨されません）
 
-While we do not recommend using this but the WebDriver protocol offers [implicit timeouts](https://w3c.github.io/webdriver/#timeouts) that allow specify how long the driver is suppose to wait for an element to show up. By default this timeout is set to `0` and therefore makes the driver return with an `no such element` error immediately if an element could not be found on the page. Increasing this timeout using the [`setTimeout`](/docs/api/browser/setTimeout) would make the driver wait and increases the chances that the element shows up eventually.
+これを使用することはお勧めしませんが、WebDriverプロトコルは[暗黙的なタイムアウト](https://w3c.github.io/webdriver/#timeouts)を提供しており、ドライバーが要素が表示されるのをどれくらい待つべきかを指定できます。デフォルトではこのタイムアウトは`0`に設定されており、要素がページ上で見つからない場合、ドライバーはすぐに`no such element`エラーを返します。[`setTimeout`](/docs/api/browser/setTimeout)を使用してこのタイムアウトを増やすと、ドライバーは待機し、最終的に要素が表示される可能性が高まります。
 
 :::note
 
-Read more about WebDriver and framework related timeouts in the [timeouts guide](/docs/timeouts)
+WebDriverとフレームワーク関連のタイムアウトについての詳細は[タイムアウトガイド](/docs/timeouts)をご覧ください
 
 :::

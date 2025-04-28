@@ -1,14 +1,14 @@
 ---
 id: api
-title: Introduction
+title: مقدمة
 ---
 
-Welcome to the WebdriverIO API docs. These pages contain reference materials for all implemented protocol bindings and convenience commands. Protocol commands, including [WebDriver](/docs/api/webdriver), [WebDriver Bidi](/docs/api/webdriverBidi) or mobile commands like [Appium](http://appium.io) are commands that are directly send to the underlying driver backend. Convenience commands provided by the [`browser`](/docs/api/browser), [`element`](/docs/api/element) or [`mock`](/docs/api/mock) object offer higher level interactivity.
+مرحبًا بك في وثائق واجهة برمجة تطبيقات WebdriverIO. تحتوي هذه الصفحات على مواد مرجعية لجميع بروتوكولات الربط المنفذة والأوامر المساعدة. أوامر البروتوكول، بما في ذلك [WebDriver](/docs/api/webdriver) و [WebDriver Bidi](/docs/api/webdriverBidi) أو أوامر الجوال مثل [Appium](http://appium.io) هي أوامر يتم إرسالها مباشرة إلى واجهة السائق الأساسية. توفر الأوامر المساعدة التي يوفرها كائن [`browser`](/docs/api/browser) و [`element`](/docs/api/element) أو [`mock`](/docs/api/mock) مستوى أعلى من التفاعلية.
 
 :::info
-These are the docs for the latest version (__>=8.x__) of WebdriverIO. If you are still using an older version, please visit the [old documentation websites](/versions)!
+هذه هي الوثائق للإصدار الأحدث (__>=8.x__) من WebdriverIO. إذا كنت لا تزال تستخدم إصدارًا أقدم، يرجى زيارة [مواقع الوثائق القديمة](/versions)!
 :::
 
-## Contribute
+## المساهمة
 
-If you feel like you have a good example for a command, don't hesitate to open a PR and submit it. Just click on the orange link on the bottom left with the label _“Edit this page”_. Make sure you understand the way we write these docs by checking the [Contributing](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md) section.
+إذا كنت تشعر أن لديك مثالًا جيدًا لأمر ما، فلا تتردد في فتح طلب سحب (PR) وتقديمه. ما عليك سوى النقر على الرابط البرتقالي في الأسفل الأيسر مع التسمية _"تحرير هذه الصفحة"_. تأكد من فهمك للطريقة التي نكتب بها هذه الوثائق من خلال التحقق من قسم [المساهمة](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md).

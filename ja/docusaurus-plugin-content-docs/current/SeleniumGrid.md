@@ -3,12 +3,12 @@ id: seleniumgrid
 title: Selenium Grid
 ---
 
-You can use WebdriverIO with your existing Selenium Grid instance. To connect your tests to Selenium Grid, you just need to update the options in your test runner configurations.
+WebdriverIOを既存のSelenium Gridインスタンスと一緒に使用することができます。テストをSelenium Gridに接続するには、テストランナーの設定でオプションを更新するだけです。
 
-Here is a code snippet from sample wdio.conf.ts.
+以下はサンプルのwdio.conf.tsからのコードスニペットです。
 
 ```ts title=wdio.conf.ts
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     // ...
     protocol: 'https',
     hostname: 'yourseleniumgridhost.yourdomain.com',
@@ -18,12 +18,11 @@ export const config: Options.Testrunner = {
 
 }
 ```
-
-You need to provide the appropriate values for the protocol, hostname, port, and path based on your Selenium Grid setup.
-If you are running Selenium Grid on the same machine as your test scripts, here are some typical options:
+Selenium Gridの設定に基づいて、プロトコル、ホスト名、ポート、パスに適切な値を提供する必要があります。
+テストスクリプトと同じマシンでSelenium Gridを実行している場合、典型的なオプションは次のとおりです：
 
 ```ts title=wdio.conf.ts
-export const config: Options.Testrunner = {
+export const config: WebdriverIO.Config = {
     // ...
     protocol: 'http',
     hostname: 'localhost',
@@ -34,30 +33,30 @@ export const config: Options.Testrunner = {
 }
 ```
 
-### Basic authentication with protected Selenium Grid
+### 保護されたSelenium Gridでの基本認証
 
-It is highly recommended to secure your Selenium Grid. If you have a protected Selenium Grid that requires authentication, you can pass authentication headers via options.
-Please refer to the [headers](https://webdriver.io/docs/configuration/#headers) section in the documentation for more information.
+Selenium Gridをセキュアにすることを強く推奨します。認証が必要な保護されたSelenium Gridがある場合、オプションを通じて認証ヘッダーを渡すことができます。
+詳細については、ドキュメントの[headers](https://webdriver.io/docs/configuration/#headers)セクションを参照してください。
 
-### Timeout configurations with dynamic Selenium Grid
+### 動的Selenium Gridとのタイムアウト設定
 
-When using a dynamic Selenium Grid where browser pods are spun up on demand, session creation may face a cold start. In such cases, it is advised to increase the session creation timeouts. The default value in the options is 120 seconds, but you can increase it if your grid takes more time to create a new session.
+ブラウザポッドがオンデマンドで起動される動的Selenium Gridを使用する場合、セッション作成は低速な初回起動に直面することがあります。そのような場合、セッション作成のタイムアウトを増やすことをお勧めします。オプションのデフォルト値は120秒ですが、グリッドが新しいセッションを作成するのにより多くの時間がかかる場合は増やすことができます。
 
 ```ts
 connectionRetryTimeout: 180000,
 ```
 
-### Advanced configurations
+### 高度な設定
 
-For advanced configurations, please refer to the Testrunner [configuration file](https://webdriver.io/docs/configurationfile).
+高度な設定については、テストランナーの[設定ファイル](https://webdriver.io/docs/configurationfile)を参照してください。
 
-### File operations with Selenium Grid
+### Selenium Gridでのファイル操作
 
-When running test cases with a remote Selenium Grid, the browser runs on a remote machine, and you need to take special care with test cases involving file uploads and downloads.
+リモートSelenium Gridでテストケースを実行する場合、ブラウザはリモートマシン上で実行されるため、ファイルのアップロードとダウンロードを含むテストケースには特別な注意が必要です。
 
-### File downloads
+### ファイルダウンロード
 
-For Chromium-based browsers, you can refer to the [Download file](https://webdriver.io/docs/api/browser/downloadFile) documentation. If your test scripts need to read the content of a downloaded file, you need to download it from the remote Selenium node to the test runner machine. Here is an example code snippet from the sample `wdio.conf.ts` configuration for the Chrome browser:
+Chromiumベースのブラウザについては、[ファイルダウンロード](https://webdriver.io/docs/api/browser/downloadFile)のドキュメントを参照してください。テストスクリプトがダウンロードされたファイルの内容を読み取る必要がある場合は、リモートSeleniumノードからテストランナーマシンにダウンロードする必要があります。以下はChromeブラウザ用のサンプル`wdio.conf.ts`設定からのコードスニペットです：
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
@@ -75,16 +74,16 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-### File upload with remote Selenium Grid
+### リモートSelenium Gridでのファイルアップロード
 
-To upload a file to a web app in the remote browser, you first need to upload the file to the remote grid. You can refer to the [uploadFile](https://webdriver.io/docs/api/browser/uploadFile) documentation for details.
+リモートブラウザでウェブアプリにファイルをアップロードするには、まずファイルをリモートグリッドにアップロードする必要があります。詳細については[uploadFile](https://webdriver.io/docs/api/browser/uploadFile)のドキュメントを参照してください。
 
-### Other file/grid operations
+### その他のファイル/グリッド操作
 
-There are a few more operations that you can perform with Selenium Grid. The instructions for Selenium Standalone should work fine with Selenium Grid as well. Please refer to the [Selenium Standalone](https://webdriver.io/docs/api/selenium/) documentation for available options.
+Selenium Gridで実行できるその他の操作がいくつかあります。Selenium Standaloneの指示はSelenium Gridでも問題なく動作するはずです。利用可能なオプションについては[Selenium Standalone](https://webdriver.io/docs/api/selenium/)のドキュメントを参照してください。
 
-### Selenium Grid Official documentation
+### Selenium Gridの公式ドキュメント
 
-For more information on Selenium Grid, you can refer to the official Selenium Grid [documentation](https://www.selenium.dev/documentation/grid/).
+Selenium Gridの詳細については、Selenium Gridの公式[ドキュメント](https://www.selenium.dev/documentation/grid/)を参照してください。
 
-If you wish to run Selenium Grid in Docker, Docker compose or Kubernetes, please refer to the Selenium-Docker [GitHub repository](https://github.com/SeleniumHQ/docker-selenium).
+Docker、Docker Compose、またはKubernetesでSelenium Gridを実行したい場合は、Selenium-Dockerの[GitHubリポジトリ](https://github.com/SeleniumHQ/docker-selenium)を参照してください。

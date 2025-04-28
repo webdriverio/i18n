@@ -1,43 +1,43 @@
 ---
 id: donate
-title: Donate
+title: 寄付
 ---
 
-If your company uses WebdriverIO and benefits from it, please ask your manager or your marketing team to support the project by donating to the collective. Support will allow the maintainers to dedicate more time for maintenance and new features for everyone.
+あなたの会社がWebdriverIOを使用しており、その恩恵を受けている場合は、マネージャーやマーケティングチームに、コレクティブに寄付をすることでプロジェクトをサポートするよう依頼してください。サポートにより、メンテナーはメンテナンスや新機能開発により多くの時間を割くことができるようになります。
 
-Please checkout our [OpenCollective page](https://opencollective.com/webdriverio) for further information on how to donate to the project.
+プロジェクトへの寄付方法の詳細については、[OpenCollective ページ](https://opencollective.com/webdriverio)をご覧ください。
 
-Thank you to everyone who will or has donated money to the collective and therefore has supported the project and everyone who contributed to it. It really means a lot ❤️
+コレクティブにお金を寄付した、あるいは寄付する予定のすべての方々、そしてプロジェクトに貢献したすべての方々に感謝します。本当にありがとうございます ❤️
 
-## Expense Policies
+## 経費ポリシー
 
-We want to be transparent in the way we accept expenses to the collective. Everyone should be eligible to participate and send in expenses for development on certain features. We also want to give back to the community by allowing us to expense event expenses. The following expense types may be eligible to be reimbursed from the collective:
+私たちはコレクティブへの経費の受け入れ方法を透明にしたいと考えています。誰もが参加し、特定の機能の開発に関する経費を送信する資格があるべきです。また、イベント経費を精算できるようにすることで、コミュニティに還元したいと考えています。以下の経費タイプは、コレクティブから払い戻しを受ける資格がある場合があります：
 
-### Event Expenses
+### イベント経費
 
-If you host an event that has a speaker talking about using WebdriverIO and it's features you can expense up to __$100__. Reimbursement requirements for event expenses include:
+WebdriverIOとその機能について話すスピーカーがいるイベントを主催する場合、最大__$100__まで経費を精算できます。イベント経費の払い戻し要件には以下が含まれます：
 
-- You or the event account must share the project on social media (Twitter, Facebook or LinkedIn) at least 3x
-- The event page must have the WebdriverIO logo and a link to the project page in your meetup description
-- You must use the funds for qualified event expenses such as food, beverage, room or equipment rental.
-- You must submit receipts with your reimbursement request.
+- あなたまたはイベントアカウントは、ソーシャルメディア（Twitter、FacebookまたはLinkedIn）で少なくとも3回プロジェクトを共有する必要があります
+- イベントページには、WebdriverIOのロゴとプロジェクトページへのリンクが含まれている必要があります
+- 資金は、食べ物、飲み物、会場やイベント機材のレンタルなどの適格なイベント経費に使用する必要があります
+- 払い戻しリクエストには領収書を添付する必要があります
 
-### Development Expenses
+### 開発経費
 
-If you have done development work on any of the repositories within the GitHub WebdriverIO organisation you may reimburse up to __$1000__ if the following requirements are met:
+GitHub WebdriverIO組織内のリポジトリで開発作業を行った場合、以下の要件を満たせば最大__$1000__まで払い戻しを受けることができます：
 
-- You must have submitted qualifying pull requests that have closed at least 10 issues that were labeled with [`Expensable 💸`](https://github.com/webdriverio/webdriverio/labels/Expensable%20%F0%9F%92%B8)
-- Every additional issue closed with that label can be expensed with $100
-- You must submit links to all issues you’ve closed due to your pull requests
-- In order to close the ticket automatically, you must have one commit message with the Fix keyword. For example, Fix #1234 to close ticket #1234.
-- Pull Requests must be merged by someone from the [core team](https://github.com/webdriverio/webdriverio/blob/main/AUTHORS.md#tsc-technical-steering-committee). If there are several Pull Requests, the core team member either selects the most recent one or the best one - that’s up to them to decide what is best for the project.
-- You must claim an [`Expensable 💸`](https://github.com/webdriverio/webdriverio/labels/Expensable%20%F0%9F%92%B8) issue by commenting to the issue thread to ensure that no one else is working on the same issue.
-- Anyone contributing to WebdriverIO is eligible to expense their work if the implemented features or bug fixes are not objectives of a commercial job.
+- [`Expensable 💸`](https://github.com/webdriverio/webdriverio/labels/Expensable%20%F0%9F%92%B8)ラベルが付けられた少なくとも10件の課題を解決するプルリクエストを提出している必要があります
+- そのラベルで解決された追加の課題ごとに$100を経費精算できます
+- プルリクエストによって解決したすべての課題へのリンクを提出する必要があります
+- チケットを自動的に閉じるには、Fixキーワードを含むコミットメッセージが必要です。例えば、Fix #1234はチケット#1234を閉じます
+- プルリクエストは[コアチーム](https://github.com/webdriverio/webdriverio/blob/main/AUTHORS.md#tsc-technical-steering-committee)のメンバーによってマージされる必要があります。複数のプルリクエストがある場合、コアチームメンバーは最新のものまたは最良のものを選択します - プロジェクトにとって何が最善かを決めるのは彼らの判断です
+- 他の誰も同じ課題に取り組んでいないことを確認するために、[`Expensable 💸`](https://github.com/webdriverio/webdriverio/labels/Expensable%20%F0%9F%92%B8)課題に対してコメントすることで課題を主張する必要があります
+- 実装した機能やバグ修正が商業的な仕事の目的でない限り、WebdriverIOに貢献する人は誰でも自分の作業を経費精算する資格があります
 
-### Travel Expenses
+### 旅費
 
-If you are a member of the [Technical Steering Committee team](https://github.com/webdriverio/webdriverio/blob/main/AUTHORS.md#tsc-technical-steering-committee) you are eligible to expense flights and hotel accommodations for travel to conferences or meetups as part of a speaking engagement on WebdriverIO, not paid by the event itself or a company. You may expense up to $500. Reimbursement requirements for travel expenses include:
+[技術運営委員会チーム](https://github.com/webdriverio/webdriverio/blob/main/AUTHORS.md#tsc-technical-steering-committee)のメンバーである場合、WebdriverIOに関するスピーキングエンゲージメントの一環として、イベント自体や会社が支払わない会議やミートアップへの旅行のための航空券やホテル宿泊費を経費精算する資格があります。最大$500まで経費請求できます。旅費の払い戻し要件には以下が含まれます：
 
-- You must send out a post from your main social media account (e.g. Twitter, LinkedIn or personal blog) thanking all contributors of the collective after the event took place.
-- You must use the funds for qualified travel expenses such as ground or air transportation to the event and hotel accomodations.
-- You must submit receipts with your reimbursement request.
+- イベント終了後、あなたのメインソーシャルメディアアカウント（TwitterやLinkedIn、個人ブログなど）からコレクティブのすべての貢献者に感謝する投稿を送信する必要があります
+- 資金は、イベントへの地上交通や航空交通、ホテル宿泊など、適格な旅費に使用する必要があります
+- 払い戻しリクエストには領収書を添付する必要があります

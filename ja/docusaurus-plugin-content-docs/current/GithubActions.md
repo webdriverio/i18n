@@ -3,19 +3,19 @@ id: githubactions
 title: Github Actions
 ---
 
-If your repository is hosted on Github, you can use [Github Actions](https://docs.github.com/en/actions) to run your tests on Github's infrastructure.
+リポジトリがGithubでホストされている場合、[Github Actions](https://docs.github.com/en/actions)を使用してGithubのインフラストラクチャ上でテストを実行することができます。
 
-1. every time you push changes
-2. on every pull request creation
-3. on scheduled time
-4. by manual trigger
+1. 変更をプッシュするたび
+2. プルリクエストが作成されるたび
+3. スケジュールされた時間に
+4. 手動でトリガーする
 
-In the root of your repository, create a `.github/workflows` directory. Add a Yaml file, for example `.github/workflows/ci.yaml`. In there you will configure how to run your tests.
+リポジトリのルートに`.github/workflows`ディレクトリを作成してください。例えば`.github/workflows/ci.yaml`のようなYamlファイルを追加します。そこでテストの実行方法を設定します。
 
-See [jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml) for reference implementation, and [sample test runs](https://github.com/webdriverio/jasmine-boilerplate/actions?query=workflow%3ACI).
+参考実装として[jasmine-boilerplate](https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml)、および[サンプルテスト実行](https://github.com/webdriverio/jasmine-boilerplate/actions?query=workflow%3ACI)を参照してください。
 
 ```yaml reference
 https://github.com/webdriverio/jasmine-boilerplate/blob/master/.github/workflows/ci.yaml
 ```
 
-Find out in the [Github Docs](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow?tool=cli) on more information about creating workflow files.
+ワークフローファイルの作成に関する詳細情報は[Github Docs](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow?tool=cli)を参照してください。

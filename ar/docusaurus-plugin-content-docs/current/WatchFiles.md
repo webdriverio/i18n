@@ -1,15 +1,15 @@
 ---
 id: watcher
-title: Watch Test Files
+title: مراقبة ملفات الاختبار
 ---
 
-With the WDIO testrunner you can watch files while you are working on them. They automatically rerun if you change either something in your app or in your test files. By adding a `--watch` flag when calling the `wdio` command the testrunner will wait for file changes after it ran all tests, e.g.
+مع مشغل اختبارات WDIO يمكنك مراقبة الملفات أثناء عملك عليها. تتم إعادة تشغيلها تلقائيًا إذا قمت بتغيير شيء ما في تطبيقك أو في ملفات الاختبار الخاصة بك. من خلال إضافة علامة `--watch` عند استدعاء أمر `wdio`، سينتظر مشغل الاختبار تغييرات الملفات بعد تشغيل جميع الاختبارات، على سبيل المثال:
 
 ```sh
 wdio wdio.conf.js --watch
 ```
 
-By default it only watches for changes in your `specs` files. However by setting a `filesToWatch` property in your `wdio.conf.js` that contains a list of file paths (globbing supported) it will also watch for these files to be changed in order to rerun the whole suite. This is useful if you want to automatically rerun all your tests if you have changed your application code, e.g.
+افتراضيًا، يراقب فقط التغييرات في ملفات `specs` الخاصة بك. ومع ذلك، من خلال تعيين خاصية `filesToWatch` في ملف `wdio.conf.js` الخاص بك والتي تحتوي على قائمة بمسارات الملفات (يدعم استخدام العلامات الشاملة globbing)، سيراقب أيضًا تغييرات هذه الملفات لإعادة تشغيل المجموعة الكاملة. هذا مفيد إذا كنت ترغب في إعادة تشغيل جميع اختباراتك تلقائيًا إذا قمت بتغيير كود التطبيق الخاص بك، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -24,5 +24,5 @@ export const config = {
 ```
 
 :::info
-Try to run tests in parallel as much as possible. E2E tests are, by nature, slow. Rerunning tests is only useful if you can keep the individual test run time short. In order to save time, the testrunner keeps WebDriver sessions alive while waiting for file changes. Make sure your WebDriver backend can be modified so that it doesn't automatically close the session if no command was executed after some duration of time.
+حاول تشغيل الاختبارات بالتوازي قدر الإمكان. اختبارات E2E بطبيعتها بطيئة. إعادة تشغيل الاختبارات مفيدة فقط إذا كان بإمكانك الحفاظ على وقت تشغيل الاختبار الفردي قصيرًا. لتوفير الوقت، يحافظ مشغل الاختبار على جلسات WebDriver نشطة أثناء انتظار تغييرات الملفات. تأكد من إمكانية تعديل خلفية WebDriver بحيث لا تغلق الجلسة تلقائيًا إذا لم يتم تنفيذ أي أمر بعد فترة زمنية معينة.
 :::

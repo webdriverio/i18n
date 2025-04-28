@@ -1,58 +1,58 @@
 ---
 id: element
-title: The Element Object
+title: エレメントオブジェクト
 ---
 
-An Element Object is an object representing an element on the remote user agent, e.g. a [DOM Node](https://developer.mozilla.org/en-US/docs/Web/API/Element) when running a session within a browser or [a mobile element](https://developer.apple.com/documentation/swift/sequence/element) for mobile. これは、多数の要素クエリ コマンドの 1 つを使用して受信できます。たとえば[`$`](/docs/api/element/$), [`custom$`](/docs/api/element/custom$), [`react$`](/docs/api/element/react$) or [`shadow$`](/docs/api/element/shadow$).
+エレメントオブジェクトは、リモートユーザーエージェント上の要素を表すオブジェクトです。例えば、ブラウザ内でセッションを実行する場合の[DOM ノード](https://developer.mozilla.org/en-US/docs/Web/API/Element)や、モバイルの場合の[モバイル要素](https://developer.apple.com/documentation/swift/sequence/element)などです。これは、[`$`](/docs/api/element/$)、[`custom$`](/docs/api/element/custom$)、[`react$`](/docs/api/element/react$)、[`shadow$`](/docs/api/element/shadow$)などの多くの要素クエリコマンドの1つを使用して取得できます。
 
-## Properties
+## プロパティ
 
-ブラウザ オブジェクトには次のプロパティがあります。
+エレメントオブジェクトには以下のプロパティがあります：
 
-| Name        | Type     | Details                                                                                                                                 |
-| ----------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `sessionId` | `String` | リモートサーバーから割り当てられたセッションID。                                                                                                               |
-| `elementId` | `String` | 関連する [プロトコルレベルの要素と相互作用するために使用できる](https://w3c.github.io/webdriver/#elements) ウェブ要素参照                                                    |
-| `selector`  | `String` | [セレクタ](/docs/selectors) を使用して要素をクエリします。                                                                                                 |
-| `parent`    | `Object` | 要素が it からフェッチされた場合の Browser オブジェクト (例: const elem = browser.$('selector'))、または要素スコープからフェッチされた場合の Element オブジェクト (例: elem.$('selector')) |
-| `options`   | `Object` | WebdriverIO [option](/docs/configuration) は、ブラウザ オブジェクトの作成方法に応じて異なります。 もっと見る [セットアップ タイプ](/docs/setuptypes)。                            |
+| 名前 | 型 | 詳細 |
+| ---- | ---- | ------- |
+| `sessionId` | `String` | リモートサーバーから割り当てられたセッションID。 |
+| `elementId` | `String` | プロトコルレベルで要素と対話するために使用できる関連する[ウェブ要素参照](https://w3c.github.io/webdriver/#elements) |
+| `selector` | `String` | 要素を問い合わせるために使用される[セレクター](/docs/selectors)。 |
+| `parent` | `Object` | 要素がブラウザから取得された場合は[ブラウザオブジェクト](/docs/api/browser)（例：`const elem = browser.$('selector')`）、または要素のスコープから取得された場合は[エレメントオブジェクト](/docs/api/element)（例：`elem.$('selector')`） |
+| `options` | `Object` | ブラウザオブジェクトの作成方法に応じたWebdriverIO[オプション](/docs/configuration)。詳細は[セットアップタイプ](/docs/setuptypes)を参照。 |
 
-## Methods
-An element object provides all methods from the protocol section, e.g. [WebDriver](/docs/api/webdriver) protocol as well as commands listed within the element section. 利用可能なプロトコルコマンドはセッションの種類によって異なります。 自動ブラウザセッションを実行すると、Appium[commands](/docs/api/appium)はいずれも使用できなくなり、その逆も同様です。
+## メソッド
+エレメントオブジェクトは、[WebDriver](/docs/api/webdriver)プロトコルなどのプロトコルセクションからのすべてのメソッド、および要素セクション内にリストされているコマンドを提供します。利用可能なプロトコルコマンドはセッションのタイプによって異なります。自動化されたブラウザセッションを実行している場合、Appiumの[コマンド](/docs/api/appium)は使用できません（その逆も同様）。
 
-これに加えて、次のコマンドも使用できます。
+さらに、以下のコマンドが利用可能です：
 
-| Name               | Parameters                                                            | Details                                                                                                                                             |
-| ------------------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `addCommand`       | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | 作成目的でブラウザオブジェクトから呼び出すことができるカスタムコマンドを定義できます。 詳細については、 [Custom Command](/docs/customcommands) ガイドを参照してください。                                           |
-| `overwriteCommand` | - `commandName` (Type: `String`)<br />- `fn` (Type: `Function`) | ブラウザコマンドをカスタム機能で上書きできます。 他の開発者を混乱させる可能性があるため、慎重に使用してください。 詳細については、 [Custom Command](/docs/customcommands#overwriting-native-commands) ガイドを参照してください。 |
+| 名前 | パラメータ | 詳細 |
+| ---- | ---------- | ------- |
+| `addCommand` | - `commandName` (型: `String`)<br />- `fn` (型: `Function`) | 構成目的のためにブラウザオブジェクトから呼び出すことができるカスタムコマンドを定義できます。詳細は[カスタムコマンド](/docs/customcommands)ガイドを参照してください。 |
+| `overwriteCommand` | - `commandName` (型: `String`)<br />- `fn` (型: `Function`) | カスタム機能を持つブラウザコマンドを上書きすることができます。フレームワークユーザーを混乱させる可能性があるため、慎重に使用してください。詳細は[カスタムコマンド](/docs/customcommands#overwriting-native-commands)ガイドを参照してください。 |
 
-## Remarks
+## 備考
 
-### Element Chain
+### 要素チェーン
 
-When working with elements WebdriverIO provides special syntax to simplify querying them and composite complex nested element lookups. 要素オブジェクトを使用すると、一般的なクエリメソッドを使用してツリーブランチ内の要素を見つけることができます。ユーザーは以下のようにネストされた要素をフェッチすることができます。
+要素を操作する際、WebdriverIOは要素のクエリを簡素化し、複雑なネストされた要素の検索を組み合わせるための特別な構文を提供します。要素オブジェクトは、共通のクエリメソッドを使用してそのツリーブランチ内の要素を見つけることができるため、ユーザーは以下のようにネストされた要素を取得できます：
 
 ```js
 const header = await $('#header')
 const headline = await header.$('#headline')
-console.log(await headline.getText()) // outputs "I am a headline"
+console.log(await headline.getText()) // "I am a headline"を出力
 ```
 
-深いネストされた構造体で、ネストされた要素を配列に割り当てると、非常に冗長なことができます。 Therefore WebdriverIO has the concept of chained element queries that allow fetching nested elements like this:
+深くネストされた構造では、ネストされた要素を配列に割り当ててから使用するのは冗長になる場合があります。そのため、WebdriverIOには連鎖された要素クエリの概念があり、次のようにネストされた要素を取得できます：
 
 ```js
 console.log(await $('#header').$('#headline').getText())
 ```
 
-これは要素の集合を取得するときにも機能します。例えば：
+これは要素のセットを取得する場合にも機能します：
 
 ```js
-// get the text of the 3rd headline within the 2nd header
+// 2番目のヘッダー内の3番目の見出しのテキストを取得
 console.log(await $$('#header')[1].$$('#headline')[2].getText())
 ```
 
-When working with a set of elements this can be especially useful when trying to interact with them, so instead of doing:
+要素のセットを扱う場合、これは特に要素と対話しようとするときに便利です。次のようにする代わりに：
 
 ```js
 const elems = await $$('div')
@@ -61,29 +61,29 @@ const locations = await Promise.all(
 )
 ```
 
-要素チェーン上で Array メソッドを直接呼び出すことができます。例えば：
+要素チェーンに直接配列メソッドを呼び出すことができます：
 
 ```js
 const location = await $$('div').map((el) => el.getLocation())
 ```
 
-same as:
+次と同じです：
 
 ```js
 const divs = await $$('div')
 const location = await divs.map((el) => el.getLocation())
 ```
 
-WebdriverIO uses a custom implementation that supports asynchronous iterators under the hood so all commands from their API are also supported for these use cases.
+WebdriverIOは、内部で非同期イテレータをサポートするカスタム実装を使用しているため、これらのユースケースでもそのAPIのすべてのコマンドがサポートされています。
 
-__Note:__ all async iterators return a promise even if your callback doesn't return one, e.g.:
+__注意：__ すべての非同期イテレータは、コールバックがプロミスを返さない場合でもプロミスを返します：
 
 ```ts
 const divs = await $$('div')
-console.log(divs.map((div) => div.selector)) // ❌ returns "Promise<string>[]"
-console.log(await divs.map((div) => div.selector)) // ✅ returns "string[]"
+console.log(divs.map((div) => div.selector)) // ❌ "Promise<string>[]"を返す
+console.log(await divs.map((div) => div.selector)) // ✅ "string[]"を返す
 ```
 
-### Custom Commands
+### カスタムコマンド
 
-ブラウザーのスコープにカスタム コマンドを設定して、一般的に使用されるワークフローを抽象化できます。 詳細については、 [ Custom Commands ](/docs/customcommands#adding-custom-commands) に関するガイドを参照してください。
+ブラウザスコープにカスタムコマンドを設定して、よく使用されるワークフローを抽象化することができます。詳細については、[カスタムコマンド](/docs/customcommands#adding-custom-commands)に関するガイドをご覧ください。

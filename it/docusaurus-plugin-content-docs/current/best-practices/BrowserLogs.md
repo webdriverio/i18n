@@ -1,21 +1,21 @@
 ---
 id: browser-logs
-title: Browser Logs
+title: Log del Browser
 ---
 
-When running tests the browser may log important information that you are interested or want to assert against.
+Durante l'esecuzione dei test, il browser potrebbe registrare informazioni importanti a cui sei interessato o che vuoi verificare.
 
 <Tabs
 defaultValue="bidi"
 values={[
-{label: 'Bidi', value: 'bidi'},
-{label: 'Classic (Deprecated)', value: 'classic'
+    {label: 'Bidi', value: 'bidi'},
+    {label: 'Classic (Deprecated)', value: 'classic'
 }]
 }>
 
 <TabItem value='bidi'>
 
-When using WebDriver Bidi, which is the default way how WebdriverIO automates the browser, you can subscribe to events coming from the browser. For log events you want to listen on `log.entryAdded'`, e.g.:
+Quando utilizzi WebDriver Bidi, che è il modo predefinito con cui WebdriverIO automatizza il browser, puoi sottoscriverti agli eventi provenienti dal browser. Per gli eventi di log, devi ascoltare `log.entryAdded'`, ad esempio:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +26,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-In a test you can just push log events to an array an assert that array once your action is done, e.g.:
+In un test puoi semplicemente inserire gli eventi di log in un array e verificare quell'array una volta che la tua azione è completata, ad esempio:
 
 ```ts
 import type { local } from 'webdriver'
@@ -62,9 +62,9 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-If you still use WebDriver Classic or disabled Bidi usage via the `'wdio:enforceWebDriverClassic': true` capability, you can use the `getLogs` JSONWire command to fetch the latest logs. Since WebdriverIO has removed these deprecated commands you will have to use the [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) to add the command back to your browser instance.
+Se utilizzi ancora WebDriver Classic o hai disabilitato l'utilizzo di Bidi tramite la capacità `'wdio:enforceWebDriverClassic': true`, puoi utilizzare il comando JSONWire `getLogs` per recuperare gli ultimi log. Poiché WebdriverIO ha rimosso questi comandi deprecati, dovrai utilizzare il [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) per aggiungere nuovamente il comando alla tua istanza del browser.
 
-After you added or initiate the service you can fetch logs via:
+Dopo aver aggiunto o inizializzato il servizio, puoi recuperare i log tramite:
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,9 +72,9 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Note: the `getLogs` command can only fetch the most recent logs from the browser. It may clean up log messages eventually if they become to old.
+Nota: il comando `getLogs` può recuperare solo i log più recenti dal browser. Potrebbe eliminare i messaggi di log se diventano troppo vecchi.
 </TabItem>
 
 </Tabs>
 
-Please note that you can use this method to retrieve error messages and verify whether your application has encountered any errors.
+Tieni presente che puoi utilizzare questo metodo per recuperare messaggi di errore e verificare se la tua applicazione ha riscontrato errori.

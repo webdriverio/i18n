@@ -1,38 +1,38 @@
 ---
 id: enterprise
-title: WebdriverIO for Enterprise
+title: エンタープライズ向けWebdriverIO
 ---
 
-## Available as part of the Tidelift Subscription
+## Tideliftサブスクリプションの一部として利用可能
 
-Tidelift is working with the maintainers of WebdriverIO and thousands of other open source projects to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use.
+Tideliftは、WebdriverIOの開発者や他の何千ものオープンソースプロジェクトと協力して、アプリケーション構築に使用するオープンソース依存関係のための商用サポートとメンテナンスを提供しています。時間を節約し、リスクを軽減し、コードの健全性を向上させながら、実際に使用している依存関係の開発者に対価を支払うことができます。
 
-#### Enterprise-ready open source software—managed for you
-The Tidelift Subscription is a managed open source subscription for application dependencies covering millions of open source projects across JavaScript, Python, Java, PHP, Ruby, .NET, and more.
+#### エンタープライズ対応のオープンソースソフトウェア—管理されたサービスとして
+Tideliftサブスクリプションは、JavaScript、Python、Java、PHP、Ruby、.NETなど、何百万ものオープンソースプロジェクトをカバーするアプリケーション依存関係のための管理されたオープンソースサブスクリプションです。
 
-#### Your subscription includes:
+#### サブスクリプションに含まれるもの：
 
-##### Security updates
-Tidelift’s security response team coordinates patches for new breaking security vulnerabilities and alerts immediately through a private channel, so your software supply chain is always secure.
+##### セキュリティアップデート
+Tideliftのセキュリティ対応チームが、新たな重大なセキュリティ脆弱性に対するパッチを調整し、プライベートチャネルを通じて即座に警告するので、ソフトウェアサプライチェーンは常に安全です。
 
-##### Licensing verification and indemnification
-Tidelift verifies license information to enable easy policy enforcement and adds intellectual property indemnification to cover creators and users in case something goes wrong. You always have a 100% up-to-date bill of materials for your dependencies to share with your legal team, customers, or partners.
+##### ライセンス検証と補償
+Tideliftはライセンス情報を検証してポリシー施行を容易にし、何か問題が発生した場合に作成者とユーザーをカバーする知的財産補償を追加します。依存関係の100%最新の部品表を常に用意して、法務チーム、顧客、またはパートナーと共有できます。
 
-##### Maintenance and code improvement
-Tidelift ensures the software you rely on keeps working as long as you need it to work. Your managed dependencies are actively maintained and we recruit additional maintainers where required.
+##### メンテナンスとコード改善
+Tideliftは、あなたが依存しているソフトウェアが必要な限り機能し続けることを保証します。管理されている依存関係は積極的にメンテナンスされ、必要に応じて追加の開発者を募集します。
 
-##### Package selection and version guidance
-We help you choose the best open source packages from the start—and then guide you through updates to stay on the best releases as new issues arise.
+##### パッケージ選択とバージョンガイダンス
+最初から最適なオープンソースパッケージを選択するお手伝いをし、新しい問題が発生したときに最適なリリースを維持するための更新をガイドします。
 
-##### Roadmap input
-Take a seat at the table with the creators behind the software you use. Tidelift’s participating maintainers earn more income as their software is used by more subscribers, so they’re interested in knowing what you need.
+##### ロードマップへの意見
+使用しているソフトウェアの背後にいる開発者と共に議論の場に参加できます。Tideliftに参加している開発者は、より多くのサブスクライバーが彼らのソフトウェアを使用するほど収入が増えるため、あなたのニーズを知ることに関心を持っています。
 
-##### Tooling and cloud integration
-Tidelift works with GitHub, GitLab, BitBucket, and more. We support every cloud platform (and other deployment targets, too).
+##### ツールとクラウド統合
+TideliftはGitHub、GitLab、BitBucketなどと連携します。すべてのクラウドプラットフォーム（およびその他のデプロイ先も）をサポートしています。
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open source you use. That means less time grappling with esoteric open source trivia, and more time building your own applications—and your business.
+最終的な結果は？商用グレードのソフトウェアに期待されるすべての機能を、使用するオープンソースの全範囲に対して提供します。つまり、難解なオープンソースの詳細に悩む時間が少なくなり、独自のアプリケーション—そしてビジネスの構築に多くの時間を費やすことができます。
 
 <div class="learnmore">
-    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Learn More</a>
-    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Request a demo</a>
+    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">詳細を見る</a>
+    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">デモをリクエスト</a>
 </div>

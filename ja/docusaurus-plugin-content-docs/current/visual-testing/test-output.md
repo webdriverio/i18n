@@ -1,17 +1,17 @@
 ---
 id: test-output
-title: Test Output
+title: テスト出力
 ---
 
 :::info
 
-[This WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) demo site has been used for the example image output.
+[このWebdriverIO](https://guinea-pig.webdriver.io/image-compare.html)デモサイトは、画像出力の例として使用されています。
 
 :::
 
 ## `enableLayoutTesting`
 
-This can be set on the [Service Options](./service-options#enablelayouttesting) as well as on the [Method](./method-options) level.
+これは[サービスオプション](./service-options#enablelayouttesting)と[メソッド](./method-options)レベルの両方で設定できます。
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,21 +32,19 @@ export const config = {
 }
 ```
 
-The image output for the [Service Options](./service-options#enablelayouttesting) is equal to the [Method](./method-options), see below.
+[サービスオプション](./service-options#enablelayouttesting)の画像出力は[メソッド](./method-options)と同じです。以下をご覧ください。
 
-### Image Output
+### 画像出力
 
 <Tabs
-defaultValue="saveelement"
-values={[
-{label: 'saveElement | checkElement', value: 'saveelement'},
-{label: 'saveScreen | checkScreen', value: 'savescreen'},
-{label: 'saveFullPageScreen | checkFullPageScreen', value: 'savefullpagescreen'},
-{label: 'saveTabbablePage | checkTabbablePage', value: 'saveTabbablePage'},
-]}
-
+    defaultValue="saveelement"
+    values={[
+        {label: 'saveElement | checkElement', value: 'saveelement'},
+        {label: 'saveScreen | checkScreen', value: 'savescreen'},
+        {label: 'saveFullPageScreen | checkFullPageScreen', value: 'savefullpagescreen'},
+        {label: 'saveTabbablePage | checkTabbablePage', value: 'saveTabbablePage'},
+    ]}
 >
-
 <TabItem value="saveelement">
 
 ```js
@@ -94,39 +92,38 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 </TabItem>
 </Tabs>
 
+
 ## save(Screen/Element/FullPageScreen)
 
-### Console Output
+### コンソール出力
 
-The `save(Screen/Element/FullPageScreen)` methods will provide the following information after the method has been executed:
+`save(Screen/Element/FullPageScreen)`メソッドは、実行後に以下の情報を提供します：
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // The device pixel ratio of the instance that has run
+ *   // 実行されたインスタンスのデバイスピクセル比
  *   devicePixelRatio: 1,
- *   // The formatted filename, this depends on the options `formatImageName`
+ *   // フォーマットされたファイル名、これはオプションの`formatImageName`に依存します
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // The path where the actual screenshot file can be found
+ *   // 実際のスクリーンショットファイルが見つかるパス
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
 ```
 
-### Image Output
+### 画像出力
 
 <Tabs
-defaultValue="saveelement"
-values={[
-{label: 'saveElement', value: 'saveelement'},
-{label: 'saveScreen', value: 'savescreen'},
-{label: 'saveFullPageScreen', value: 'savefullpagescreen'},
-]}
-
+    defaultValue="saveelement"
+    values={[
+        {label: 'saveElement', value: 'saveelement'},
+        {label: 'saveScreen', value: 'savescreen'},
+        {label: 'saveFullPageScreen', value: 'savefullpagescreen'},
+    ]}
 >
-
 <TabItem value="saveelement">
 
 ```js
@@ -134,15 +131,13 @@ await browser.saveElement(".hero__title-logo", "example-element-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android', value: 'android'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android', value: 'android'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveElement Desktop](/img/visual/wdioLogo-chrome-latest-1-1366x768.png)
 </TabItem>
@@ -162,16 +157,14 @@ await browser.saveScreen("example-page-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android ChromeDriver', value: 'android-chromedriver'},
-{label: 'Android nativeWebScreenshot', value: 'android-native'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android ChromeDriver', value: 'android-chromedriver'},
+        {label: 'Android nativeWebScreenshot', value: 'android-native'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveScreen Desktop](/img/visual/examplePage-chrome-latest-1366x768.png)
 </TabItem>
@@ -183,8 +176,8 @@ values={[
 </TabItem>
 <TabItem value="ios">
 
-:::info TIP
-iOS `saveScreen` executions are by default not with the device bezel corners. To have this please add the `addIOSBezelCorners:true` option when instantiating the service, see [this](./service-options#addiosbezelcorners)
+:::info ヒント
+iOS `saveScreen`の実行では、デフォルトでデバイスベゼルコーナーは表示されません。これを表示するには、サービスをインスタンス化するときに`addIOSBezelCorners:true`オプションを追加してください。[こちら](./service-options#addiosbezelcorners)をご覧ください。
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -199,15 +192,13 @@ await browser.saveFullPageScreen("full-page-tag")
 ```
 
 <Tabs
-defaultValue="desktop"
-values={[
-{label: 'Desktop', value: 'desktop'},
-{label: 'Android', value: 'android'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="desktop"
+    values={[
+        {label: 'Desktop', value: 'desktop'},
+        {label: 'Android', value: 'android'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="desktop">
 ![saveFullPageScreens Desktop](/img/visual/fullPage-chrome-latest-1366x768.png)
 </TabItem>
@@ -223,49 +214,47 @@ values={[
 
 ## check(Screen/Element/FullPageScreen)
 
-### Console Output
+### コンソール出力
 
-By default, the `check(Screen/Element/FullPageScreen)` methods will only provide a mismatch percentage like `1.23`, but when the plugin has the option `returnAllCompareData: true` the following information is provided after the method has been executed:
+デフォルトでは、`check(Screen/Element/FullPageScreen)`メソッドは`1.23`のような不一致パーセンテージのみを提供しますが、プラグインに`returnAllCompareData: true`オプションが設定されている場合、メソッド実行後に以下の情報が提供されます：
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // The formatted filename, this depends on the options `formatImageName`
+ *     // フォーマットされたファイル名、これはオプションの`formatImageName`に依存します
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // The actual folder and the file name
+ *         // 実際のフォルダとファイル名
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // The baseline folder and the file name
+ *         // ベースラインフォルダとファイル名
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // This following folder is optional and only if there is a mismatch
- *         // The folder that holds the diffs and the file name
+ *         // 以下のフォルダはオプションであり、不一致がある場合のみ存在します
+ *         // 差分を保持するフォルダとファイル名
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
- *     // The mismatch percentage
+ *     // 不一致パーセンテージ
  *     misMatchPercentage: 2.34,
  * };
  */
 ```
 
-### Image Output
+### 画像出力
 
 :::info
-The images below will only show differences as a result of running the check commands. Only the diff in a browser is shown, but the output for Android and iOS is the same.
+以下の画像はチェックコマンドを実行した結果の差分のみを表示します。ブラウザでの差分のみが表示されますが、AndroidとiOSの出力も同じです。
 :::
 
 <Tabs
-defaultValue="checkelement"
-values={[
-{label: 'checkElement', value: 'checkelement'},
-{label: 'checkScreen', value: 'checkscreen'},
-{label: 'checkFullPageScreen', value: 'checkfullpagescreen'},
-]}
-
+    defaultValue="checkelement"
+    values={[
+        {label: 'checkElement', value: 'checkelement'},
+        {label: 'checkScreen', value: 'checkscreen'},
+        {label: 'checkFullPageScreen', value: 'checkfullpagescreen'},
+    ]}
 >
-
 <TabItem value="checkelement">
 
 ```js
@@ -273,7 +262,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-The button text has been changed from `Get Started` to `Getting Started!` and detected as a change.
+ボタンテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -286,7 +275,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-The button text has been changed from `Get Started` to `Getting Started!` and detected as a change.
+ボタンテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -300,7 +289,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-The button text has been changed from `Get Started` to `Getting Started!` and detected as a change.
+ボタンテキストが`Get Started`から`Getting Started!`に変更され、変更として検出されました。
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -309,19 +298,17 @@ The button text has been changed from `Get Started` to `Getting Started!` and de
 
 </Tabs>
 
-## Block-Outs
+## ブロックアウト
 
-Here you will find an example output for block-outs in Android NativeWebScreenshot and iOS where the status+address and toolbar are blocked out.
+以下は、Android NativeWebScreenshotとiOSでのブロックアウトの例出力で、ステータス+アドレスバーとツールバーがブロックアウトされています。
 
 <Tabs
-defaultValue="nativeWebScreenshot"
-values={[
-{label: 'Android nativeWebScreenshot', value: 'nativeWebScreenshot'},
-{label: 'iOS', value: 'ios'},
-]}
-
+    defaultValue="nativeWebScreenshot"
+    values={[
+        {label: 'Android nativeWebScreenshot', value: 'nativeWebScreenshot'},
+        {label: 'iOS', value: 'ios'},
+    ]}
 >
-
 <TabItem value="nativeWebScreenshot">
 
 ![Blockouts Android](/img/visual/android.blockouts.png)

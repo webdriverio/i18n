@@ -1,26 +1,26 @@
 ---
 id: emulation
-title: Emulation
+title: エミュレーション
 ---
 
-With WebdriverIO you can emulate Web APIs using the [`emulate`](/docs/api/browser/emulate) command to return custom values that help you emulate certain browser behaviors. Note that this requires your application to explicitly use these APIs.
+WebdriverIOでは、[`emulate`](/docs/api/browser/emulate)コマンドを使用してWeb APIをエミュレートし、特定のブラウザの動作をエミュレートするためのカスタム値を返すことができます。これにはアプリケーションが明示的にこれらのAPIを使用する必要があることに注意してください。
 
 <LiteYouTubeEmbed
- id="2bQXzIB_97M"
- title="WebdriverIO Tutorials: The Emulate Command - Emulate Web APIs at Runtime with WebdriverIO"
+    id="2bQXzIB_97M"
+    title="WebdriverIO Tutorials: The Emulate Command - Emulate Web APIs at Runtime with WebdriverIO"
 />
 
 :::info
 
-This feature requires WebDriver Bidi support for the browser. While recent versions of Chrome, Edge and Firefox have such support, Safari **does not**. For updates follow [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental\&label=master\&aligned). Furthermore if you use a cloud vendor for spawning browsers, make sure your vendor also supports WebDriver Bidi.
+この機能にはブラウザのWebDriver Bidiサポートが必要です。ChromeやEdge、Firefoxの最新バージョンではサポートされていますが、Safariは**サポートしていません**。更新情報は[wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned)でフォローしてください。さらに、クラウドベンダーを使用してブラウザを起動する場合は、そのベンダーもWebDriver Bidiをサポートしていることを確認してください。
 
-To enable WebDriver Bidi for your test, make sure to have `webSocketUrl: true` set in your capabilities.
+テストでWebDriver Bidiを有効にするには、capabilities設定で`webSocketUrl: true`が設定されていることを確認してください。
 
 :::
 
-## Geolocation
+## ジオロケーション
 
-Change the browser geolocation to a specific area, e.g.:
+ブラウザのジオロケーションを特定の地域に変更します。例：
 
 ```ts
 await browser.emulate('geolocation', {
@@ -34,11 +34,11 @@ await browser.pause(5000)
 console.log(await browser.getUrl()) // outputs: "https://www.google.com/maps/@52.52,13.39,16z?entry=ttu"
 ```
 
-This will monkey patch how [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) works and returns the location provided by you.
+これにより[`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition)の動作がモンキーパッチされ、指定した位置情報が返されます。
 
-## Color Scheme
+## カラースキーム
 
-Change the default color scheme setup of the browser via:
+ブラウザのデフォルトのカラースキーム設定を変更します：
 
 ```ts
 await browser.emulate('colorScheme', 'light')
@@ -52,31 +52,31 @@ const backgroundColor = await browser.$('nav').getCSSProperty('background-color'
 console.log(backgroundColor.parsed.hex) // outputs: "#000000"
 ```
 
-This will monkey patch how [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) behaves when you query the color scheme via `(prefers-color-scheme: dark)`.
+これにより、`(prefers-color-scheme: dark)`でカラースキームを照会する際の[`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia)の動作がモンキーパッチされます。
 
-## User Agent
+## ユーザーエージェント
 
-Change the user agent of the browser to a different string via:
+ブラウザのユーザーエージェントを別の文字列に変更します：
 
 ```ts
 await browser.emulate('userAgent', 'Chrome/1.2.3.4 Safari/537.36')
 ```
 
-This will change the value of [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Note that browser vendors progressively deprecating the User Agent.
+これにより[`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent)の値が変更されます。ブラウザベンダーは徐々にユーザーエージェントを廃止していることに注意してください。
 
-## onLine Property
+## onLineプロパティ
 
-Change the online status of the browser via:
+ブラウザのオンラインステータスを変更します：
 
 ```ts
 await browser.emulate('onLine', false)
 ```
 
-This will **not** turn off network traffic between the browser and the internet and only changes the return value of [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). If you are interested modifying network capabilities of the browser, look into the [`throttleNetwork`](/docs/api/browser/throttleNetwork) command.
+これはブラウザとインターネット間のネットワークトラフィックを**オフにするわけではなく**、[`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine)の戻り値のみを変更します。ブラウザのネットワーク機能を変更することに興味がある場合は、[`throttleNetwork`](/docs/api/browser/throttleNetwork)コマンドを確認してください。
 
-## Clock
+## クロック
 
-You can modify the browser system clock using the [`emulate`](/docs/emulation) command. It overrides native global functions related to time allowing them to be controlled synchronously via `clock.tick()` or the yielded clock object. This includes controlling:
+[`emulate`](/docs/emulation)コマンドを使用してブラウザのシステムクロックを変更できます。これにより、時間に関連するネイティブのグローバル関数が上書きされ、`clock.tick()`または生成されたクロックオブジェクトを介して同期的に制御できるようになります。これには以下の制御が含まれます：
 
 - `setTimeout`
 - `clearTimeout`
@@ -84,11 +84,11 @@ You can modify the browser system clock using the [`emulate`](/docs/emulation) c
 - `clearInterval`
 - `Date Objects`
 
-The clock starts at the unix epoch (timestamp of 0). This means that when you instantiate new Date in your application, it will have a time of January 1st, 1970 if you don't pass any other options to the `emulate` command.
+クロックはUnixエポック（タイムスタンプ0）から始まります。つまり、`emulate`コマンドに他のオプションを渡さない場合、アプリケーションで新しいDateをインスタンス化すると、1970年1月1日の時間になります。
 
-##### Example
+##### 例
 
-When calling `browser.emulate('clock', { ... })` it will immediately overwrite the global functions for the current page as well as all following pages, e.g.:
+`browser.emulate('clock', { ... })`を呼び出すと、現在のページと以降のすべてのページのグローバル関数がすぐに上書きされます。例：
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -110,56 +110,57 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-You can modify the system time by calling [`setSystemTime`](/docs/api/clock/setSystemTime) or [`tick`](/docs/api/clock/tick).
+[`setSystemTime`](/docs/api/clock/setSystemTime)または[`tick`](/docs/api/clock/tick)を呼び出してシステム時間を変更できます。
 
-The `FakeTimerInstallOpts` object can have the following properties:
+`FakeTimerInstallOpts`オブジェクトは次のプロパティを持つことができます：
 
 ```ts
 interface FakeTimerInstallOpts {
-   // Installs fake timers with the specified unix epoch
-   // @default: 0
-   now?: number | Date | undefined;
+    // 指定されたUnixエポックで偽のタイマーをインストールします
+    // @default: 0
+    now?: number | Date | undefined;
 
-   // An array with names of global methods and APIs to fake. By default, WebdriverIO
-   // does not replace `nextTick()` and `queueMicrotask()`. For instance,
-   // `browser.emulate('clock', { toFake: ['setTimeout', 'nextTick'] })` will fake only
-   // `setTimeout()` and `nextTick()`
-   toFake?: FakeMethod[] | undefined;
+    // 偽装するグローバルメソッドとAPIの名前の配列。デフォルトでは、WebdriverIO
+    // は`nextTick()`と`queueMicrotask()`を置き換えません。例えば、
+    // `browser.emulate('clock', { toFake: ['setTimeout', 'nextTick'] })`は
+    // `setTimeout()`と`nextTick()`のみを偽装します
+    toFake?: FakeMethod[] | undefined;
 
-   // The maximum number of timers that will be run when calling runAll() (default: 1000)
-   loopLimit?: number | undefined;
+    // runAll()を呼び出すときに実行されるタイマーの最大数（デフォルト：1000）
+    loopLimit?: number | undefined;
 
-   // Tells WebdriverIO to increment mocked time automatically based on the real system
-   // time shift (e.g. the mocked time will be incremented by 20ms for every 20ms change
-   // in the real system time)
-   // @default false
-   shouldAdvanceTime?: boolean | undefined;
+    // 実際のシステム時間のシフトに基づいてモックされた時間を自動的に増加させるよう
+    // WebdriverIOに指示します（例：実際のシステム時間が20ms変化するごとに、
+    // モックされた時間も20ms増加します）
+    // @default false
+    shouldAdvanceTime?: boolean | undefined;
 
-   // Relevant only when using with shouldAdvanceTime: true. increment mocked time by
-   // advanceTimeDelta ms every advanceTimeDelta ms change in the real system time
-   // @default: 20
-   advanceTimeDelta?: number | undefined;
+    // shouldAdvanceTime: trueを使用する場合にのみ関連します。実際のシステム時間が
+    // advanceTimeDelta ms変化するごとに、モックされた時間をadvanceTimeDelta ms増加させます
+    // @default: 20
+    advanceTimeDelta?: number | undefined;
 
-   // Tells FakeTimers to clear 'native' (i.e. not fake) timers by delegating to their
-   // respective handlers. These are not cleared by default, leading to potentially
-   // unexpected behavior if timers existed prior to installing FakeTimers.
-   // @default: false
-   shouldClearNativeTimers?: boolean | undefined;
+    // それぞれのハンドラーに委任することで「ネイティブ」（つまり偽ではない）タイマーを
+    // クリアするようFakeTimersに指示します。これらはデフォルトではクリアされないため、
+    // FakeTimersをインストールする前にタイマーが存在していた場合、予期しない動作が
+    // 発生する可能性があります。
+    // @default: false
+    shouldClearNativeTimers?: boolean | undefined;
 }
 ```
 
-## Device
+## デバイス
 
-The `emulate` command also supports emulating a certain mobile or desktop device by changing the viewport, device scale factor and the user agent. This should, by no means, be used for mobile testing as desktop browser engines differ from mobile ones. This should only be used if your application offers a specific behavior for smaller viewport sizes.
+`emulate`コマンドは、ビューポート、デバイススケールファクター、ユーザーエージェントを変更することで、特定のモバイルまたはデスクトップデバイスをエミュレートすることもサポートしています。これは、決してモバイルテスト用に使用されるべきではありません。なぜなら、デスクトップブラウザエンジンはモバイルのものとは異なるからです。これは、アプリケーションが小さなビューポートサイズに特化した動作を提供している場合にのみ使用すべきです。
 
-For example, to switch the user agent and viewport to an iPhone 15, just run:
+例えば、ユーザーエージェントとビューポートをiPhone 15に切り替えるには、次のように実行します：
 
 ```ts
 const restore = await browser.emulate('device', 'iPhone 15')
-// test your application ...
+// アプリケーションをテスト...
 
-// reset to original viewport and user agent
+// 元のビューポートとユーザーエージェントにリセット
 await restore()
 ```
 
-WebdriverIO maintains a fixed list of [all defined devices](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).
+WebdriverIOは[定義されたすべてのデバイス](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts)の固定リストを維持しています。

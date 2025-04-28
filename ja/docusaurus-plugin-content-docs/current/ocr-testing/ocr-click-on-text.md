@@ -3,17 +3,17 @@ id: ocr-click-on-text
 title: ocrClickOnText
 ---
 
-Click on an element based on the provided texts. The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+提供されたテキストに基づいて要素をクリックします。このコマンドは提供されたテキストを検索し、[Fuse.js](https://fusejs.io/)のファジーロジックに基づいてマッチを見つけようとします。これは、セレクタにタイプミスがあったり、見つかったテキストが100％一致していなくても、要素を返そうとすることを意味します。以下の[ログ](#logs)を参照してください。
 
-## Usage
+## 使用方法
 
 ```js
 await browser.ocrClickOnText({ text: "Start3d" });
 ```
 
-## Output
+## 出力
 
-### Logs
+### ログ
 
 ```log
 # Still finding a match even though we searched for "Start3d" and the found text was "Started"
@@ -22,22 +22,22 @@ await browser.ocrClickOnText({ text: "Start3d" });
 [0-0] 2024-05-25T05:05:21.022Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-### Image
+### 画像
 
-You will find an image in your (default)[`imagesFolder`](./getting-started#imagesfolder) with a target to show you where the module has clicked.
+(デフォルトの)[`imagesFolder`](./getting-started#imagesfolder)内に、モジュールがクリックした場所を示すターゲット付きの画像が保存されます。
 
 ![Process steps](/img/ocr/ocr-click-on-text-target.jpg)
 
-## Options
+## オプション
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+- **型:** `string`
+- **必須:** はい
 
-The text you want to search for to click on.
+クリックするために検索したいテキスト。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrClickOnText({ text: "WebdriverIO" });
@@ -45,30 +45,30 @@ await browser.ocrClickOnText({ text: "WebdriverIO" });
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+- **型:** `number`
+- **必須:** いいえ
+- **デフォルト:** `500` ミリ秒
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+クリックの持続時間です。時間を増やして「長押し」を作成することもできます。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // これは3秒です
 });
 ```
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+- **型:** `number`
+- **必須:** いいえ
+- **デフォルト:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+コントラストが高いほど画像は暗くなり、その逆も同様です。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`までの値を受け付けます。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -79,12 +79,12 @@ await browser.ocrClickOnText({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+- **型:** `number`
+- **必須:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+画面上でOCRがテキストを探す検索領域です。これは要素または`x`、`y`、`width`、`height`を含む矩形にすることができます。
 
-#### Example
+#### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -92,13 +92,13 @@ await browser.ocrClickOnText({
     haystack: $("elementSelector"),
 });
 
-// OR
+// または
 await browser.ocrClickOnText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// または
 await browser.ocrClickOnText({
     text: "WebdriverIO",
     haystack: {
@@ -112,53 +112,53 @@ await browser.ocrClickOnText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+- **型:** `string`
+- **必須:** いいえ
+- **デフォルト:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseractが認識する言語。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
 
-#### Example
+#### 例
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    // Use Dutch as a language
+    // オランダ語を使用
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+- **型:** `object`
+- **必須:** いいえ
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+マッチした要素に対して相対的に画面をクリックできます。これはマッチした要素から相対的なピクセル単位で`above`、`right`、`below`または`left`に基づいて行うことができます。
 
 :::note
 
-The following combinations are allowed
+以下の組み合わせが許可されています
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+- 単一のプロパティ
+- `above` + `left` または `above` + `right`
+- `below` + `left` または `below` + `right`
 
-The following combinations are **NOT** allowed
+以下の組み合わせは**許可されていません**
 
-- `above` plus `below`
-- `left` plus `right`
+- `above` と `below`
+- `left` と `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+- **型:** `number`
+- **必須:** いいえ
 
-Click x pixels `above` the matching element.
+マッチした要素よりxピクセル`上`をクリックします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -171,12 +171,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+- **型:** `number`
+- **必須:** いいえ
 
-Click x pixels `right` from the matching element.
+マッチした要素からxピクセル`右`をクリックします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -189,12 +189,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+- **型:** `number`
+- **必須:** いいえ
 
-Click x pixels `below` the matching element.
+マッチした要素よりxピクセル`下`をクリックします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -207,12 +207,12 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+- **型:** `number`
+- **必須:** いいえ
 
-Click x pixels `left` from the matching element.
+マッチした要素からxピクセル`左`をクリックします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -225,17 +225,17 @@ await browser.ocrClickOnText({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+以下のオプションでテキストを見つけるためのファジーロジックを変更できます。これはより良いマッチを見つけるのに役立つかもしれません。
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+- **型:** `number`
+- **必須:** いいえ
+- **デフォルト:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+マッチがファジーロケーション（locationで指定）にどれだけ近くなければならないかを決定します。ファジーロケーションから距離文字離れた正確な文字マッチは、完全な不一致としてスコア付けされます。距離が0の場合、マッチは指定された正確な位置にある必要があります。距離が1000の場合、0.8のしきい値を使用すると、完全なマッチはロケーションから800文字以内になければなりません。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -248,13 +248,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+- **型:** `number`
+- **必須:** いいえ
+- **デフォルト:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+テキストのどこにパターンが見つかると予想されるかをおおよそ決定します。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -267,13 +267,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+- **型:** `number`
+- **必須:** いいえ
+- **デフォルト:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+マッチングアルゴリズムがどの時点で諦めるかを決定します。しきい値が0の場合は完全一致（文字と位置の両方）を必要とし、しきい値が1.0の場合は何でもマッチします。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -286,13 +286,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+- **型:** `boolean`
+- **必須:** いいえ
+- **デフォルト:** false
 
-Whether the search should be case sensitive.
+検索が大文字と小文字を区別するかどうか。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -305,13 +305,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+- **型:** `number`
+- **必須:** いいえ
+- **デフォルト:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+長さがこの値を超えるマッチのみが返されます。（例えば、結果で単一文字のマッチを無視したい場合は、これを2に設定します）
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -324,13 +324,13 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+- **型:** `number`
+- **必須:** いいえ
+- **デフォルト:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+`true`の場合、文字列ですでに完全一致が見つかっていても、マッチング関数は検索パターンの最後まで続行します。
 
-##### Example
+##### 例
 
 ```js
 await browser.ocrClickOnText({
@@ -339,4 +339,5 @@ await browser.ocrClickOnText({
         findAllMatches: 100,
     },
 });
+```
 ```

@@ -1,31 +1,31 @@
 ---
 id: autocompletion
-title: Autocompletion
+title: オートコンプリート
 ---
 
 ## IntelliJ
 
-Autocompletion works out of the box in IDEA and WebStorm.
+オートコンプリートはIDEAとWebStormですぐに使用できます。
 
-If you have been writing program code for a while, you probably like autocompletion. Autocomplete is available out of the box in many code editors.
+プログラムコードを書いたことがある場合は、オートコンプリートが好きなはずです。オートコンプリートは多くのコードエディタで標準装備されています。
 
 ![Autocompletion](/img/autocompletion/0.png)
 
-Type definitions based on [JSDoc](http://usejsdoc.org/) is used for documenting code. It helps to see more additional details about parameters and their types.
+[JSDoc](http://usejsdoc.org/)に基づいた型定義がコードの文書化に使用されています。これにより、パラメータとその型についてより詳細な情報を確認できます。
 
 ![Autocompletion](/img/autocompletion/1.png)
 
-Use standard shortcuts <kbd>⇧ + ⌥ + SPACE</kbd> on IntelliJ Platform to see available documentation:
+IntelliJ Platformでは標準のショートカット<kbd>⇧ + ⌥ + SPACE</kbd>を使用して利用可能なドキュメントを確認できます：
 
 ![Autocompletion](/img/autocompletion/2.png)
 
 ## Visual Studio Code (VSCode)
 
-Visual Studio Code usually has type support automatically integrated and there is no action needed.
+Visual Studio Codeには通常、型サポートが自動的に統合されており、追加の操作は必要ありません。
 
 ![Autocompletion](/img/autocompletion/14.png)
 
-If you use vanilla JavaScript and want to have proper type support you have to create a `jsconfig.json` in your project root and refer to used wdio packages, e.g.:
+バニラJavaScriptを使用していて、適切な型サポートが必要な場合は、プロジェクトのルートに`jsconfig.json`を作成し、使用するwdioパッケージを参照する必要があります。例：
 
 ```json title="jsconfig.json"
 {

@@ -1,31 +1,31 @@
 ---
 id: protractor-migration
-title: From Protractor
+title: من بروتراكتور
 ---
 
-This tutorial is for people who are using Protractor and want to migrate their framework to WebdriverIO. It was initiated after the Angular team [has announced](https://github.com/angular/protractor/issues/5502) that Protractor won't be longer supported. WebdriverIO has been influenced by a lot of Protractors design decisions which is why it is probably the closest framework to migrate over. The WebdriverIO team appreciates the work of every single Protractor contributor and hopes that this tutorial makes the transition to WebdriverIO easy and straightforward.
+هذا البرنامج التعليمي مخصص للأشخاص الذين يستخدمون Protractor ويرغبون في نقل إطار عملهم إلى WebdriverIO. تم إطلاقه بعد أن [أعلن فريق Angular](https://github.com/angular/protractor/issues/5502) أن Protractor لن يكون مدعومًا بعد الآن. لقد تأثر WebdriverIO بالكثير من قرارات تصميم Protractor مما يجعله على الأرجح الإطار الأقرب للانتقال إليه. يقدر فريق WebdriverIO عمل كل مساهم في Protractor ويأمل أن يجعل هذا البرنامج التعليمي الانتقال إلى WebdriverIO سهلاً ومباشرًا.
 
-While we would love to have a fully automated process for this the reality looks different. Everyone has a different setup and uses Protractor in different ways. Every step should be seen as guidance and less like a step by step instruction. If you have issues with the migration, don't hesitate to [contact us](https://github.com/webdriverio/codemod/discussions/new).
+في حين أننا نود أن يكون لدينا عملية آلية بالكامل لهذا الأمر، إلا أن الواقع مختلف. لدى الجميع إعداد مختلف ويستخدمون Protractor بطرق مختلفة. يجب النظر إلى كل خطوة كإرشاد وليس كتعليمات خطوة بخطوة. إذا واجهت مشاكل في عملية الانتقال، فلا تتردد في [الاتصال بنا](https://github.com/webdriverio/codemod/discussions/new).
 
-## Setup
+## الإعداد
 
-The Protractor and WebdriverIO API is actually very similar, to a point where the majority of commands can be rewritten in an automted way through a [codemod](https://github.com/webdriverio/codemod).
+واجهة برمجة تطبيقات Protractor و WebdriverIO متشابهة فعليًا، إلى درجة أن غالبية الأوامر يمكن إعادة كتابتها بطريقة آلية من خلال [codemod](https://github.com/webdriverio/codemod).
 
-To install the codemod, run:
+لتثبيت codemod، قم بتشغيل:
 
 ```sh
 npm install jscodeshift @wdio/codemod
 ```
 
-## Strategy
+## الاستراتيجية
 
-There are many migration strategies. Depending on the size of your team, amount of test files and the urgency to migrate you can try to transform all tests at once or file by file. Given that Protractor will continued to be maintained until Angular version 15 (end of 2022) you still have enough time. You can have Protractor and WebdriverIO tests running at the same time and start writing new tests in WebdriverIO. Given your time budget you can then start migrating the important test cases first and work your way down to tests you might even can delete.
+هناك العديد من استراتيجيات الانتقال. اعتمادًا على حجم فريقك، وكمية ملفات الاختبار، والحاجة الملحة للانتقال، يمكنك محاولة تحويل جميع الاختبارات دفعة واحدة أو ملفًا تلو الآخر. نظرًا لأن Protractor ستستمر في الصيانة حتى إصدار Angular 15 (نهاية 2022)، لا يزال لديك وقت كافٍ. يمكنك تشغيل اختبارات Protractor و WebdriverIO في نفس الوقت والبدء في كتابة اختبارات جديدة في WebdriverIO. بالنظر إلى ميزانية الوقت المتاحة لديك، يمكنك بعد ذلك البدء في ترحيل حالات الاختبار المهمة أولاً والعمل على الاختبارات التي قد تتمكن حتى من حذفها.
 
-## First the Config File
+## أولاً ملف التكوين
 
-After we have installed the codemod we can start transforming the first file. Have a look first into [WebdriverIOs configuration options](configuration). Config files can become very complex and it might make sense to only port the essential parts and see how the rest can be added once the corresponding tests that need certain options are being migrated.
+بعد تثبيت codemod، يمكننا البدء في تحويل الملف الأول. انظر أولاً إلى [خيارات تكوين WebdriverIO](configuration). يمكن أن تصبح ملفات التكوين معقدة جدًا وقد يكون من المنطقي نقل الأجزاء الأساسية فقط ومعرفة كيفية إضافة البقية بمجرد ترحيل الاختبارات المقابلة التي تحتاج إلى خيارات معينة.
 
-For the first migration we only transform the config file and run:
+للترحيل الأول، نقوم فقط بتحويل ملف التكوين وتشغيل:
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/protractor ./conf.ts
@@ -33,68 +33,68 @@ npx jscodeshift -t ./node_modules/@wdio/codemod/protractor ./conf.ts
 
 :::info
 
- Your config can be named differently, however the principle should be the same: start migration the config first.
+ قد يكون اسم ملف التكوين الخاص بك مختلفًا، ومع ذلك يجب أن يكون المبدأ هو نفسه: ابدأ بترحيل ملف التكوين أولاً.
 
 :::
 
-## Install WebdriverIO Dependencies
+## تثبيت تبعيات WebdriverIO
 
-Next step is to configure a minimal WebdriverIO setup that we start building up as we migrate from one framework to another. First we install the WebdriverIO CLI via:
+الخطوة التالية هي تكوين إعداد WebdriverIO الأساسي الذي نبدأ في بنائه أثناء الانتقال من إطار عمل إلى آخر. أولاً نقوم بتثبيت واجهة سطر أوامر WebdriverIO عبر:
 
 ```sh
 npm install --save-dev @wdio/cli
 ```
 
-Next we run the configuration wizard:
+بعد ذلك نقوم بتشغيل معالج التكوين:
 
 ```sh
 npx wdio config
 ```
 
-This will walk you through a couple of questions. For this migration scenario you:
-- pick the default choices
-- we recommend not to auto-generate example files
-- pick a different folder for WebdriverIO files
-- and to choose Mocha above Jasmine.
+سيرشدك هذا خلال مجموعة من الأسئلة. لسيناريو الترحيل هذا:
+- اختر الخيارات الافتراضية
+- نوصي بعدم إنشاء ملفات المثال تلقائيًا
+- اختر مجلدًا مختلفًا لملفات WebdriverIO
+- واختر Mocha بدلاً من Jasmine.
 
-:::info Why Mocha?
-Even though you might have been using Protractor with Jasmine before, Mocha however provides better retry mechanisms. The choice is yours!
+:::info لماذا Mocha؟
+على الرغم من أنك ربما كنت تستخدم Protractor مع Jasmine من قبل، إلا أن Mocha يوفر آليات إعادة محاولة أفضل. الاختيار لك!
 :::
 
-After the little questionaire the wizard will install all necessary packages and stores them in your `package.json`.
+بعد الاستبيان الصغير، سيقوم المعالج بتثبيت جميع الحزم الضرورية وتخزينها في ملف `package.json` الخاص بك.
 
-## Migrate Configuration File
+## ترحيل ملف التكوين
 
-After we have a transformed `conf.ts` and a new `wdio.conf.ts`, it is now time to migrate the configuration from one config to another. Make sure to only port code that is essential for all tests to be able to run. In ours we port the hook function and framework timeout.
+بعد أن قمنا بتحويل `conf.ts` وإنشاء `wdio.conf.ts` جديد، حان الوقت الآن لترحيل التكوين من ملف تكوين إلى آخر. تأكد من نقل الكود الضروري فقط لجميع الاختبارات لتكون قادرة على التشغيل. في حالتنا، نقوم بنقل وظيفة الخطاف ومهلة الإطار.
 
-We will now continue with our `wdio.conf.ts` file only and therefore won't need any changes to the original Protractor config anymore. We can revert those so that both frameworks can run next to each other and we can port on file at the time.
+سنستمر الآن مع ملف `wdio.conf.ts` فقط وبالتالي لن نحتاج إلى أي تغييرات على ملف تكوين Protractor الأصلي بعد الآن. يمكننا التراجع عن تلك التغييرات بحيث يمكن تشغيل كلا الإطارين جنبًا إلى جنب ويمكننا نقل ملف واحد في كل مرة.
 
-## Migrate Test File
+## ترحيل ملف الاختبار
 
-We are now set to port over the first test file. To start simple, let's start with one that has not many dependencies to 3rd party packages or other files like PageObjects. In our example the first file to migrate is `first-test.spec.ts`. First create the directory where the new WebdriverIO configuration expects its files and then move it over:
+نحن الآن جاهزون لنقل ملف الاختبار الأول. للبدء بشكل بسيط، دعنا نبدأ بملف ليس لديه العديد من التبعيات لحزم الطرف الثالث أو ملفات أخرى مثل PageObjects. في مثالنا، الملف الأول للترحيل هو `first-test.spec.ts`. أولاً قم بإنشاء الدليل حيث يتوقع تكوين WebdriverIO الجديد ملفاته ثم قم بنقله:
 
 ```sh
 mv mkdir -p ./test/specs/
 mv test-suites/first-test.spec.ts ./test/specs
 ```
 
-Now let's transform this file:
+الآن دعنا نحول هذا الملف:
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/protractor ./test/specs/first-test.spec.ts
 ```
 
-That's it! This file is so simple that we don't need any additional changes anymore and directly can try to run WebdriverIO via:
+هذا كل شيء! هذا الملف بسيط لدرجة أننا لا نحتاج إلى أي تغييرات إضافية بعد الآن ويمكننا مباشرة محاولة تشغيل WebdriverIO عبر:
 
 ```sh
 npx wdio run wdio.conf.ts
 ```
 
-Congratulations 🥳 you just migrated the first file!
+تهانينا 🥳 لقد قمت للتو بترحيل الملف الأول!
 
-## Next Steps
+## الخطوات التالية
 
-From this point you continue to transform test by test and page object by page object. There are chances that the codemod will fail for certain files with an error such as:
+من هذه النقطة تستمر في تحويل اختبار تلو الآخر وكائن صفحة تلو الآخر. هناك فرص أن يفشل codemod لبعض الملفات مع خطأ مثل:
 
 ```
 ERR /path/to/project/test/testdata/failing_submit.js Transformation error (Error transforming /test/testdata/failing_submit.js:2)
@@ -107,8 +107,8 @@ The command "submit" is not supported in WebdriverIO. We advise to use the click
   at /path/to/project/test/testdata/failing_submit.js:132:0
 ```
 
-For some Protractor commands there is just no replacement for it in WebdriverIO. In this case the codemod will give you some advice how to refactor it. If you stumble upon such error messages too often, feel free to [raise an issue](https://github.com/webdriverio/codemod/issues/new) and request to add a certain transformation. While the codemod already transforms the majority of the Protractor API there is still a lot of room for improvements.
+بالنسبة لبعض أوامر Protractor، لا يوجد بديل لها في WebdriverIO. في هذه الحالة، سيقدم لك codemod بعض النصائح حول كيفية إعادة هيكلة الكود. إذا واجهت مثل هذه الرسائل الخطأ في كثير من الأحيان، فلا تتردد في [طرح مشكلة](https://github.com/webdriverio/codemod/issues/new) وطلب إضافة تحويل معين. في حين أن codemod يحول بالفعل غالبية واجهة برمجة تطبيقات Protractor، إلا أنه لا يزال هناك مجال كبير للتحسينات.
 
-## Conclusion
+## الخلاصة
 
-We hope this tutorial guides you a little bit through the migration process to WebdriverIO. The community continues to improve the codemod while testing it with various teams in various organisations. Don't hesitate to [raise an issue](https://github.com/webdriverio/codemod/issues/new) if you have feedback or [start a discussion](https://github.com/webdriverio/codemod/discussions/new) if you struggle during the migration process.
+نأمل أن يرشدك هذا البرنامج التعليمي قليلاً خلال عملية الانتقال إلى WebdriverIO. يواصل المجتمع تحسين codemod أثناء اختباره مع فرق مختلفة في مؤسسات متنوعة. لا تتردد في [طرح مشكلة](https://github.com/webdriverio/codemod/issues/new) إذا كان لديك تعليقات أو [بدء مناقشة](https://github.com/webdriverio/codemod/discussions/new) إذا كنت تواجه صعوبة أثناء عملية الترحيل.

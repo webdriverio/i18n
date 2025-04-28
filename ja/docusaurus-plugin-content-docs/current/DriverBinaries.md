@@ -1,36 +1,36 @@
 ---
 id: driverbinaries
-title: Driver Binaries
+title: ドライバーバイナリ
 ---
 
-To run automation based on the WebDriver protocol you need to have browser drivers set up that translate the automation commands and are able to execute them in the browser.
+WebDriverプロトコルに基づく自動化を実行するには、自動化コマンドを変換してブラウザで実行できるブラウザドライバーをセットアップする必要があります。
 
-## Automated setup
+## 自動セットアップ
 
-With WebdriverIO `v8.14` and above there is no need to manually download and setup any browser drivers anymore as this is handled by WebdriverIO. All you have to do is specify the browser you want to test and WebdriverIO will do the rest.
+WebdriverIO `v8.14`以降では、WebdriverIOによって処理されるため、ブラウザドライバーを手動でダウンロードしてセットアップする必要はなくなりました。テストしたいブラウザを指定するだけで、WebdriverIOが残りの作業を行います。
 
-### Customizing the level of automation
+### 自動化レベルのカスタマイズ
 
-WebdriverIO's have three levels of automation:
+WebdriverIOには3つの自動化レベルがあります：
 
-**1. Download and install the browser using [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+**1. [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers)を使用してブラウザをダウンロードしインストールする。**
 
-If you specify a `browserName`/`browserVersion` combination in the [capabilities](configuration#capabilities-1) configuration, WebdriverIO will download and install the requested combination, regardless of whether there's an existing installation on the machine. If you omit `browserVersion`, WebdriverIO will first try to locate and use an existing installation with [locate-app](https://www.npmjs.com/package/locate-app), otherwise it will download and install the current stable browser release. For more details on `browserVersion`, see [here](capabilities#automate-different-browser-channels).
+[capabilities](configuration#capabilities-1)設定で`browserName`/`browserVersion`の組み合わせを指定すると、マシンに既存のインストールがあるかどうかに関係なく、WebdriverIOは要求された組み合わせをダウンロードしてインストールします。`browserVersion`を省略すると、WebdriverIOはまず[locate-app](https://www.npmjs.com/package/locate-app)を使用して既存のインストールを検索して使用しようとします。それ以外の場合は、現在の安定版ブラウザリリースをダウンロードしてインストールします。`browserVersion`の詳細については、[こちら](capabilities#automate-different-browser-channels)を参照してください。
 
 :::caution
 
-Automated browser setup does not support Microsoft Edge. Currently, only Chrome, Chromium and Firefox are supported.
+自動ブラウザセットアップはMicrosoft Edgeをサポートしていません。現在、Chrome、Chromium、Firefoxのみがサポートされています。
 
 :::
 
-If you have a browser installation on a location that cannot be auto-detected by WebdriverIO, you can specify the browser binary which will disable the automated download and installation.
+WebdriverIOによって自動検出できない場所にブラウザインストールがある場合は、ブラウザバイナリを指定できます。これにより自動ダウンロードとインストールが無効になります。
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox' or 'chromium'
-            'goog:chromeOptions': { // or 'moz:firefoxOptions' or 'wdio:chromedriverOptions'
+            browserName: 'chrome', // または 'firefox' または 'chromium'
+            'goog:chromeOptions': { // または 'moz:firefoxOptions' または 'wdio:chromedriverOptions'
                 binary: '/path/to/chrome'
             },
         }
@@ -38,17 +38,17 @@ If you have a browser installation on a location that cannot be auto-detected by
 }
 ```
 
-**2. Download and install the driver using [Chromedriver](https://www.npmjs.com/package/chromedriver), [Edgedriver](https://www.npmjs.com/package/edgedriver) or [Geckodriver](https://www.npmjs.com/package/geckodriver).**
+**2. [Chromedriver](https://www.npmjs.com/package/chromedriver)、[Edgedriver](https://www.npmjs.com/package/edgedriver)または[Geckodriver](https://www.npmjs.com/package/geckodriver)を使用してドライバーをダウンロードしインストールする。**
 
-WebdriverIO will always do this, unless driver [binary](capabilities#binary) is specified in the configuration:
+設定にドライバーの[binary](capabilities#binary)が指定されていない限り、WebdriverIOは常にこれを行います：
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox', 'msedge', 'safari', 'chromium'
-            'wdio:chromedriverOptions': { // or 'wdio:geckodriverOptions', 'wdio:edgedriverOptions'
-                binary: '/path/to/chromedriver' // or 'geckodriver', 'msedgedriver'
+            browserName: 'chrome', // または 'firefox'、'msedge'、'safari'、'chromium'
+            'wdio:chromedriverOptions': { // または 'wdio:geckodriverOptions'、'wdio:edgedriverOptions'
+                binary: '/path/to/chromedriver' // または 'geckodriver'、'msedgedriver'
             }
         }
     ]
@@ -57,43 +57,43 @@ WebdriverIO will always do this, unless driver [binary](capabilities#binary) is 
 
 :::info
 
-WebdriverIO won't automatically download Safari driver as it is already installed on macOS.
+WebdriverIOはSafariドライバーを自動的にダウンロードしません。macOSには既にインストールされています。
 
 :::
 
 :::caution
 
-Avoid specifying a `binary` for the browser and omitting the corresponding driver `binary` or vice-versa. If only one of the `binary` values is specified, WebdriverIO will try to use or download a browser/driver compatible with it. However, in some scenarios it may result in an incompatible combination. Therefore, it's recommended that you always specify both to avoid any problems caused by version incompatibilities.
+ブラウザの`binary`を指定して対応するドライバーの`binary`を省略したり、その逆を避けてください。`binary`値の一方だけが指定されている場合、WebdriverIOはそれと互換性のあるブラウザ/ドライバーを使用またはダウンロードしようとします。ただし、一部のシナリオでは互換性のない組み合わせになる可能性があります。したがって、バージョンの互換性による問題を避けるために、常に両方を指定することをお勧めします。
 
 :::
 
-**3. Start/stop the driver.**
+**3. ドライバーの起動/停止。**
 
-By default, WebdriverIO will automatically start and stop the driver using an arbitrary unused port. Specifying any of the following configuration will disable this feature which means you'll need to manually start and stop the driver:
+デフォルトでは、WebdriverIOは任意の未使用ポートを使用してドライバーを自動的に起動および停止します。以下の設定のいずれかを指定すると、この機能が無効になり、手動でドライバーを起動および停止する必要があります：
 
-- Any value for [port](configuration#port).
-- Any value different from the default for [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
-- Any value for both [user](configuration#user) and [key](configuration#key).
+- [port](configuration#port)の任意の値。
+- [protocol](configuration#protocol)、[hostname](configuration#hostname)、[path](configuration#path)のデフォルトと異なる任意の値。
+- [user](configuration#user)と[key](configuration#key)の両方の任意の値。
 
-## Manual setup
+## 手動セットアップ
 
-The following describes how you can still set up each driver individually. You can find a list with all drivers in the [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver) README.
+以下は、各ドライバーを個別にセットアップする方法について説明しています。すべてのドライバーのリストは[`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver) READMEで見つけることができます。
 
 :::tip
 
-If you are looking to set up mobile and other UI platforms, have a look into our [Appium Setup](appium) guide.
+モバイルやその他のUIプラットフォームをセットアップする場合は、[Appium Setup](appium)ガイドを参照してください。
 
 :::
 
 ### Chromedriver
 
-To automate Chrome you can download Chromedriver directly on the [project website](http://chromedriver.chromium.org/downloads) or through the NPM package:
+Chromeを自動化するには、[プロジェクトウェブサイト](http://chromedriver.chromium.org/downloads)から直接Chromedriverをダウンロードするか、NPMパッケージを通じてダウンロードできます：
 
 ```bash npm2yarn
 npm install -g chromedriver
 ```
 
-You can then start it via:
+その後、次のように開始できます：
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,17 +101,17 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-To automate Firefox download the latest version of `geckodriver` for your environment and unpack it in your project directory:
+Firefoxを自動化するには、環境に合わせた最新バージョンの`geckodriver`をダウンロードして、プロジェクトディレクトリに解凍します：
 
 <Tabs
   defaultValue="npm"
   values={[
     {label: 'NPM', value: 'npm'},
- {label: 'Curl', value: 'curl'},
- {label: 'Brew', value: 'brew'},
- {label: 'Windows (64 bit / Chocolatey)', value: 'chocolatey'},
- {label: 'Windows (64 bit / Powershell) DevTools', value: 'powershell'},
- ]
+    {label: 'Curl', value: 'curl'},
+    {label: 'Brew', value: 'brew'},
+    {label: 'Windows (64 bit / Chocolatey)', value: 'chocolatey'},
+    {label: 'Windows (64 bit / Powershell) DevTools', value: 'powershell'},
+  ]
 }>
 <TabItem value="npm">
 
@@ -175,7 +175,7 @@ cd $unzipped_file
 </TabItem>
 </Tabs>
 
-**Note:** Other `geckodriver` releases are available [here](https://github.com/mozilla/geckodriver/releases). After download you can start the driver via:
+**注意：** 他の`geckodriver`リリースは[こちら](https://github.com/mozilla/geckodriver/releases)で入手できます。ダウンロード後、次のコマンドでドライバーを起動できます：
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -183,7 +183,7 @@ cd $unzipped_file
 
 ### Edgedriver
 
-You can download the driver for Microsoft Edge on the [project website](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) or as NPM package via:
+Microsoft Edge用のドライバーは[プロジェクトウェブサイト](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)からダウンロードするか、NPMパッケージとして次のようにダウンロードできます：
 
 ```sh
 npm install -g edgedriver
@@ -192,7 +192,7 @@ edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b177
 
 ### Safaridriver
 
-Safaridriver comes pre-installed on your MacOS and can be started directly via:
+SafaridriverはMacOSにプリインストールされており、次のように直接起動できます：
 
 ```sh
 safaridriver -p 4444

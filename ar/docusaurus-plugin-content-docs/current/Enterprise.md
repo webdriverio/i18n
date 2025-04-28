@@ -1,38 +1,38 @@
 ---
 id: enterprise
-title: WebdriverIO for Enterprise
+title: WebdriverIO للمؤسسات
 ---
 
-## Available as part of the Tidelift Subscription
+## متاح كجزء من اشتراك Tidelift
 
-Tidelift is working with the maintainers of WebdriverIO and thousands of other open source projects to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use.
+تعمل Tidelift مع المشرفين على WebdriverIO وآلاف المشاريع مفتوحة المصدر الأخرى لتقديم الدعم التجاري والصيانة لتبعيات المصادر المفتوحة التي تستخدمها لبناء تطبيقاتك. وفّر الوقت، وقلل المخاطر، وحسّن صحة الكود، بينما تدفع للمشرفين على التبعيات المحددة التي تستخدمها.
 
-#### Enterprise-ready open source software—managed for you
-The Tidelift Subscription is a managed open source subscription for application dependencies covering millions of open source projects across JavaScript, Python, Java, PHP, Ruby, .NET, and more.
+#### برمجيات مفتوحة المصدر جاهزة للمؤسسات - تتم إدارتها من أجلك
+اشتراك Tidelift هو اشتراك مُدار للمصادر المفتوحة لتبعيات التطبيقات يغطي ملايين المشاريع مفتوحة المصدر عبر JavaScript و Python و Java و PHP و Ruby و NET. وغيرها.
 
-#### Your subscription includes:
+#### يتضمن اشتراكك:
 
-##### Security updates
-Tidelift’s security response team coordinates patches for new breaking security vulnerabilities and alerts immediately through a private channel, so your software supply chain is always secure.
+##### تحديثات الأمان
+يقوم فريق الاستجابة الأمنية لدى Tidelift بتنسيق التصحيحات للثغرات الأمنية الجديدة والتنبيه فوراً عبر قناة خاصة، بحيث تكون سلسلة توريد البرمجيات لديك آمنة دائماً.
 
-##### Licensing verification and indemnification
-Tidelift verifies license information to enable easy policy enforcement and adds intellectual property indemnification to cover creators and users in case something goes wrong. You always have a 100% up-to-date bill of materials for your dependencies to share with your legal team, customers, or partners.
+##### التحقق من الترخيص والتعويض
+تتحقق Tidelift من معلومات الترخيص لتمكين تطبيق السياسات بسهولة وتضيف تعويضاً للملكية الفكرية لتغطية المطورين والمستخدمين في حالة حدوث خطأ ما. لديك دائماً قائمة مواد محدّثة بنسبة 100% لتبعياتك لمشاركتها مع فريقك القانوني أو عملائك أو شركائك.
 
-##### Maintenance and code improvement
-Tidelift ensures the software you rely on keeps working as long as you need it to work. Your managed dependencies are actively maintained and we recruit additional maintainers where required.
+##### الصيانة وتحسين الكود
+تضمن Tidelift أن البرمجيات التي تعتمد عليها ستستمر في العمل طالما تحتاج إليها. تتم صيانة تبعياتك المُدارة بنشاط ونقوم بتوظيف مشرفين إضافيين عند الحاجة.
 
-##### Package selection and version guidance
-We help you choose the best open source packages from the start—and then guide you through updates to stay on the best releases as new issues arise.
+##### اختيار الحزمة وإرشادات الإصدار
+نساعدك على اختيار أفضل الحزم مفتوحة المصدر من البداية - ثم نرشدك خلال التحديثات للبقاء على أفضل الإصدارات مع ظهور مشكلات جديدة.
 
-##### Roadmap input
-Take a seat at the table with the creators behind the software you use. Tidelift’s participating maintainers earn more income as their software is used by more subscribers, so they’re interested in knowing what you need.
+##### إدخالات خارطة الطريق
+احصل على مقعد على الطاولة مع المبدعين وراء البرمجيات التي تستخدمها. يكسب المشرفون المشاركون في Tidelift المزيد من الدخل كلما تم استخدام برامجهم من قبل المزيد من المشتركين، لذلك فهم مهتمون بمعرفة ما تحتاجه.
 
-##### Tooling and cloud integration
-Tidelift works with GitHub, GitLab, BitBucket, and more. We support every cloud platform (and other deployment targets, too).
+##### تكامل الأدوات والسحابة
+تعمل Tidelift مع GitHub و GitLab و BitBucket والمزيد. نحن ندعم كل منصة سحابية (وأهداف النشر الأخرى أيضاً).
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open source you use. That means less time grappling with esoteric open source trivia, and more time building your own applications—and your business.
+النتيجة النهائية؟ كل القدرات التي تتوقعها من البرمجيات ذات الدرجة التجارية، لكامل نطاق المصادر المفتوحة التي تستخدمها. هذا يعني وقتاً أقل في التعامل مع غرائب المصادر المفتوحة، ووقتاً أكثر في بناء تطبيقاتك الخاصة - وعملك.
 
 <div class="learnmore">
-    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Learn More</a>
-    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Request a demo</a>
+    <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">تعرف على المزيد</a>
+    <a class="button" href="https://tidelift.com/subscription/request-a-demo?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">طلب عرض توضيحي</a>
 </div>

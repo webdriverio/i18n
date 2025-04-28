@@ -3,15 +3,15 @@ id: ocr-set-value
 title: ocrSetValue
 ---
 
-Send a sequence of key strokes to an element. It will:
+Invia una sequenza di tasti a un elemento. Questo comando:
 
-- automatically detect the element
-- put focus on the field by clicking on it
-- set the value in the field
+-   rileva automaticamente l'elemento
+-   mette il focus sul campo cliccandoci sopra
+-   imposta il valore nel campo
 
-The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla Logica Fuzzy da [Fuse.js](https://fusejs.io/). Ciò significa che se fornisci un selettore con un errore di battitura, o il testo trovato potrebbe non essere una corrispondenza al 100%, comunque tenterà di restituirti un elemento. Guarda i [log](#logs) qui sotto.
 
-## Usage
+## Utilizzo
 
 ```js
 await brower.ocrSetValue({
@@ -30,16 +30,16 @@ await brower.ocrSetValue({
 [0-0] 2024-05-26T04:17:52.356Z INFO @wdio/ocr-service:ocrGetElementPositionByText: We searched for the word "docs" and found one match "docs" with score "100%"
 ```
 
-## Options
+## Opzioni
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **Tipo:** `string`
+-   **Obbligatorio:** sì
 
-The text you want to search for to click on.
+Il testo che vuoi cercare per cliccarci sopra.
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -50,12 +50,12 @@ await browser.ocrSetValue({
 
 ### `value`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **Tipo:** `string`
+-   **Obbligatorio:** sì
 
-Value to be added.
+Valore da aggiungere.
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -66,13 +66,13 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** `false`
+-   **Tipo:** `boolean`
+-   **Obbligatorio:** no
+-   **Default:** `false`
 
-If the value also needs to be submitted into the input field. This means an "ENTER" will be send at the end of the string.
+Se il valore deve essere anche inviato nel campo di input. Questo significa che un "ENTER" verrà inviato alla fine della stringa.
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -84,31 +84,31 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `500` milliseconds
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** `500` millisecondi
 
-This is the duration of the click. If you want you can also create a "long click" by increasing the time.
+Questa è la durata del clic. Se vuoi puoi anche creare un "clic lungo" aumentando il tempo.
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // Questo è 3 secondi
 });
 ```
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+Maggiore è il contrasto, più scura sarà l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori tra `-1` e `1`.
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -120,12 +120,12 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Tipo:** `number`
+-   **Obbligatorio:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+Questa è l'area di ricerca nello schermo dove l'OCR deve cercare il testo. Può essere un elemento o un rettangolo contenente `x`, `y`, `width` e `height`
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -134,14 +134,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// OR
+// OPPURE
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// OPPURE
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,54 +156,54 @@ await browser.ocrSetValue({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **Tipo:** `string`
+-   **Obbligatorio:** No
+-   **Default:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+La lingua che Tesseract riconoscerà. Maggiori informazioni possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate possono essere trovate [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+#### Esempio
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // Usa l'olandese come lingua
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
-- **Type:** `object`
-- **Mandatory:** no
+-   **Tipo:** `object`
+-   **Obbligatorio:** no
 
-You can click on the screen relative to the matching element. This can be done based on relative pixels `above`, `right`, `below` or `left` from the matching element
+Puoi cliccare sullo schermo relativamente all'elemento corrispondente. Questo può essere fatto in base ai pixel relativi `above`, `right`, `below` o `left` dall'elemento corrispondente
 
 :::note
 
-The following combinations are allowed
+Le seguenti combinazioni sono consentite
 
-- single properties
-- `above` + `left` or `above` + `right`
-- `below` + `left` or `below` + `right`
+-   proprietà singole
+-   `above` + `left` o `above` + `right`
+-   `below` + `left` o `below` + `right`
 
-The following combinations are **NOT** allowed
+Le seguenti combinazioni **NON** sono consentite
 
-- `above` plus `below`
-- `left` plus `right`
+-   `above` più `below`
+-   `left` più `right`
 
 :::
 
 #### `relativePosition.above`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
 
-Click x pixels `above` the matching element.
+Clicca x pixel `sopra` l'elemento corrispondente.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -217,12 +217,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
 
-Click x pixels `right` from the matching element.
+Clicca x pixel a `destra` dell'elemento corrispondente.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -236,12 +236,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
 
-Click x pixels `below` the matching element.
+Clicca x pixel `sotto` l'elemento corrispondente.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -255,12 +255,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
-- **Type:** `number`
-- **Mandatory:** no
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
 
-Click x pixels `left` from the matching element.
+Clicca x pixel a `sinistra` dell'elemento corrispondente.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -274,17 +274,17 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+Puoi modificare la logica fuzzy per trovare il testo con le seguenti opzioni. Questo potrebbe aiutare a trovare una corrispondenza migliore
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+Determina quanto vicina deve essere la corrispondenza alla posizione fuzzy (specificata da location). Una corrispondenza esatta di una lettera che si trova a distanza caratteri dalla posizione fuzzy otterrebbe un punteggio di mancata corrispondenza completa. Una distanza di 0 richiede che la corrispondenza sia nella posizione esatta specificata. Una distanza di 1000 richiederebbe una corrispondenza perfetta entro 800 caratteri dalla posizione per essere trovata usando una soglia di 0.8.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -298,13 +298,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+Determina approssimativamente dove nel testo ci si aspetta di trovare il pattern.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -318,13 +318,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+A che punto l'algoritmo di corrispondenza si arrende. Una soglia di 0 richiede una corrispondenza perfetta (sia di lettere che di posizione), una soglia di 1.0 corrisponderebbe a qualsiasi cosa.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -338,13 +338,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **Tipo:** `boolean`
+-   **Obbligatorio:** no
+-   **Default:** false
 
-Whether the search should be case sensitive.
+Se la ricerca deve essere sensibile alle maiuscole/minuscole.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -358,13 +358,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Per esempio, se vuoi ignorare le corrispondenze a singolo carattere nel risultato, impostalo a 2)
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({
@@ -378,13 +378,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+Quando è `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata localizzata una corrispondenza perfetta nella stringa.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrSetValue({

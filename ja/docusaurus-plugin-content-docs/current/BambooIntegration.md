@@ -3,10 +3,10 @@ id: bamboo
 title: Bamboo
 ---
 
-WebdriverIO offers a tight integration to CI systems like [Bamboo](https://www.atlassian.com/software/bamboo). With the [JUnit](https://webdriver.io/docs/junit-reporter.html) or [Allure](https://webdriver.io/docs/allure-reporter.html) reporter, you can easily debug your tests as well as keep track of your test results. The integration is pretty easy.
+WebdriverIOは[Bamboo](https://www.atlassian.com/software/bamboo)のようなCIシステムとの緊密な統合を提供しています。[JUnit](https://webdriver.io/docs/junit-reporter.html)または[Allure](https://webdriver.io/docs/allure-reporter.html)レポーターを使用することで、テストのデバッグやテスト結果の追跡が簡単にできます。統合は非常に簡単です。
 
-1. Install the JUnit test reporter: `$ npm install @wdio/junit-reporter --save-dev`)
-1. Update your config to save your JUnit results where Bamboo can find them, (and specify the `junit` reporter):
+1. JUnitテストレポーターをインストールします: `$ npm install @wdio/junit-reporter --save-dev`)
+1. BambooがJUnit結果を見つけられる場所に保存するように設定を更新します（そして`junit`レポーターを指定します）：
 
 ```js
 // wdio.conf.js
@@ -21,10 +21,10 @@ module.exports = {
     // ...
 }
 ```
-Note: *It's always a good standard to keep the test results in separate folder than in the root folder.*
+注：*テスト結果をルートフォルダではなく別のフォルダに保存することは常に良い標準です。*
 
 ```js
-// wdio.conf.js - For tests running in parallel
+// wdio.conf.js - 並列でテストを実行する場合
 module.exports = {
     // ...
     reporters: [
@@ -40,45 +40,47 @@ module.exports = {
 }
 ```
 
-The reports will be similar for all the frameworks and you can use anyone: Mocha, Jasmine or Cucumber.
+レポートはすべてのフレームワークで同様であり、Mocha、JasmineまたはCucumberのいずれかを使用できます。
 
-By this time, we believe you have the tests written up and results are generated in `./testresults/` folder, and your Bamboo is up and running.
+この時点で、テストが作成され、結果が```./testresults/```フォルダに生成され、Bambooが稼働していると思います。
 
-## Integrate your tests in Bamboo
+## Bambooにテストを統合する
 
-1. Open your Bamboo project
-
-    > Create a new plan, link your repository (make sure it always points to newest version of your repository) and create your stages
+1. Bambooプロジェクトを開く
+    > 新しいプランを作成し、リポジトリをリンクし（常にリポジトリの最新バージョンを指すようにしてください）、ステージを作成します
 
     ![Plan Details](/img/bamboo/plancreation.png "Plan Details")
 
-    I will go with the default stage and job. In your case, you can create your own stages and jobs
+    私はデフォルトのステージとジョブで進めます。あなたの場合は、独自のステージとジョブを作成できます
 
     ![Default Stage](/img/bamboo/defaultstage.png "Default Stage")
-2. Open your testing job and create tasks to run your tests in Bamboo
-> **Task 1:** Source Code Checkout
-> **Task 2:** Run your tests `npm i && npm run test`. You can use *Script* task and *Shell Interpreter* to run the above commands (This will generate the test results and save them in `./testresults/` folder)
+2. テストジョブを開き、Bambooでテストを実行するタスクを作成します
+    >**タスク1:** ソースコードのチェックアウト
+
+    >**タスク2:** テストを実行する ```npm i && npm run test```。*スクリプト*タスクと*シェルインタープリタ*を使用して上記のコマンドを実行できます（これによりテスト結果が生成され、```./testresults/```フォルダに保存されます）
 
     ![Test Run](/img/bamboo/testrun.png "Test Run")
-> **Task: 3** Add *jUnit Parser* task to parse your saved test results. Please specify the test results directory here (you can use Ant style patterns as well)
+
+    >**タスク3:** 保存したテスト結果を解析するために*jUnit Parser*タスクを追加します。ここでテスト結果ディレクトリを指定してください（Antスタイルのパターンも使用できます）
 
     ![jUnit Parser](/img/bamboo/junitparser.png "jUnit Parser")
 
-    Note: *Make sure you are keeping the results parser task in *Final* section, so that it always get executed even if your test task is failed*
-> **Task: 4** (optional) In order to make sure that your test results are not messed up with old files, you can create a task to remove the `./testresults/` folder after a successful parse to Bamboo. You can add a shell script like `rm -f ./testresults/*.xml` to remove the results or `rm -r testresults` to remove the complete folder
+    注：*テストタスクが失敗した場合でも常に実行されるように、結果パーサータスクを*Final*セクションに配置していることを確認してください*
 
-Once the above *rocket science* is done, please enable the plan and run it. Your final output will be like:
+    >**タスク4:** （オプション）テスト結果が古いファイルで混乱しないようにするために、Bambooへの正常な解析後に```./testresults/```フォルダを削除するタスクを作成できます。結果を削除するために```rm -f ./testresults/*.xml```のようなシェルスクリプトを追加するか、```rm -r testresults```でフォルダ全体を削除できます
 
-## Successful Test
+上記の*ロケットサイエンス*が完了したら、プランを有効にして実行してください。最終的な出力は次のようになります：
+
+## 成功したテスト
 
 ![Successful Test](/img/bamboo/successfulltest.png "Successful Test")
 
-## Failed Test
+## 失敗したテスト
 
 ![Failed Test](/img/bamboo/failedtest.png "Failed Test")
 
-## Failed and Fixed
+## 失敗して修正
 
 ![Failed and Fixed](/img/bamboo/failedandfixed.png "Failed and Fixed")
 
-Yay!! That's all. You have successfully integrated your WebdriverIO tests in Bamboo.
+やった！！以上です。WebdriverIOテストがBambooに正常に統合されました。

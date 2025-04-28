@@ -3,10 +3,10 @@ id: docker
 title: Docker
 ---
 
-Docker is a powerful containerization technology that allows to encapsulate your test suite into a container that behaves the same on every system. This can avoid flakiness due to different browser or platform versions. In order to run your tests within a container, create a `Dockerfile` in your project directory, e.g.:
+Docker は強力なコンテナ化技術であり、テストスイートをどのシステムでも同じように動作するコンテナにカプセル化することができます。これにより、異なるブラウザやプラットフォームのバージョンによる不安定さを回避できます。コンテナ内でテストを実行するには、プロジェクトディレクトリに `Dockerfile` を作成します。例：
 
 ```Dockerfile
-FROM selenium/standalone-chrome:134.0-20250323 # Change the browser and version according to your needs
+FROM selenium/standalone-chrome:134.0-20250323 # 必要に応じてブラウザとバージョンを変更してください
 WORKDIR /app
 ADD . /app
 
@@ -15,17 +15,17 @@ RUN npm install
 CMD npx wdio
 ```
 
-Make sure you don't include your `node_modules` in your Docker image and have these installed when building the image. For that add a `.dockerignore` file with the following content:
+Docker イメージに `node_modules` を含めないようにし、イメージのビルド時にインストールするようにしてください。そのために、以下の内容で `.dockerignore` ファイルを追加します：
 
 ```
 node_modules
 ```
 
 :::info
-We are using a Docker image here that comes with Selenium and Google Chrome pre-installed. There are various of images available with different browser setups and browser versions. Check out the images maintained by the Selenium project [on Docker Hub](https://hub.docker.com/u/selenium).
+ここではSeleniumとGoogle Chromeがプリインストールされた Docker イメージを使用しています。様々なブラウザセットアップとブラウザバージョンで利用可能なイメージが多数あります。Seleniumプロジェクトが管理している[Docker Hub上のイメージ](https://hub.docker.com/u/selenium)をチェックしてください。
 :::
 
-As we can only run Google Chrome in headless mode in our Docker container we have to modify our `wdio.conf.js` to ensure we do that:
+Dockerコンテナ内ではGoogle Chromeをヘッドレスモードでのみ実行できるため、`wdio.conf.js` を以下のように変更する必要があります：
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -47,18 +47,18 @@ export const config = {
 }
 ```
 
-As mentioned in [Automation Protocols](/docs/automationProtocols) you can run WebdriverIO using the WebDriver protocol or WebDriver BiDi protocol. Make sure that the Chrome version installed on your image matches the [Chromedriver](https://www.npmjs.com/package/chromedriver) version you have defined in your `package.json`.
+[オートメーションプロトコル](/docs/automationProtocols)で述べたように、WebdriverIOはWebDriverプロトコルまたはWebDriver BiDiプロトコルを使用して実行できます。イメージにインストールされているChromeのバージョンが、`package.json`で定義している[Chromedriver](https://www.npmjs.com/package/chromedriver)のバージョンと一致していることを確認してください。
 
-To build the Docker container you can run:
+Dockerコンテナをビルドするには、次のコマンドを実行します：
 
 ```sh
 docker build -t mytest -f Dockerfile .
 ```
 
-Then to run the tests, execute:
+そして、テストを実行するには、次のコマンドを実行します：
 
 ```sh
 docker run -it mytest
 ```
 
-For more information on how to configure the Docker image, check out the [Docker docs](https://docs.docker.com/).
+Dockerイメージの設定方法の詳細については、[Docker docs](https://docs.docker.com/)を確認してください。

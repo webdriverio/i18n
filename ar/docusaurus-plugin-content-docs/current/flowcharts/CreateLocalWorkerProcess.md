@@ -1,8 +1,7 @@
 ---
 id: createlocalworkerprocess
-title: Create worker process
+title: إنشاء عملية العامل
 ---
-
-This flowchart explains how a worker process is created.
+يشرح هذا المخطط الانسيابي كيفية إنشاء عملية عامل.
 
 <CreateFlowcharts id='createlocalworkerprocess' />

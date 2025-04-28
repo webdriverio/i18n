@@ -1,26 +1,26 @@
 ---
 id: faq
-title: FAQ
+title: よくある質問
 ---
 
-### Do I need to use a `save(Screen/Element/FullPageScreen)` methods when I want to run `check(Screen/Element/FullPageScreen)`?
+### `check(Screen/Element/FullPageScreen)`を実行する際に`save(Screen/Element/FullPageScreen)`メソッドを使用する必要がありますか？
 
-No, you don't need to do this. The `check(Screen/Element/FullPageScreen)` will do this automatically for you.
+いいえ、その必要はありません。`check(Screen/Element/FullPageScreen)`が自動的にこれを行います。
 
-### My visual tests fail with a difference, how can I update my baseline?
+### 視覚的テストが差異で失敗した場合、ベースラインを更新するにはどうすればよいですか？
 
-You can update the baseline images through the command line by adding the argument `--update-visual-baseline`. This will
+コマンドラインに引数`--update-visual-baseline`を追加することで、ベースライン画像を更新できます。これにより
 
-- automatically copy the actual take screenshot and put it in the baseline folder
-- if there are differences it will let the test pass because the baseline has been updated
+-   撮影された実際のスクリーンショットが自動的にコピーされ、ベースラインフォルダに配置されます
+-   差異がある場合でも、ベースラインが更新されたためテストは合格となります
 
-**Usage:**
+**使用法:**
 
 ```sh
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-When running logs info/debug mode you will see the following logs added
+ログの情報/デバッグモードを実行すると、以下のようなログが追加されます
 
 ```logs
 [0-0] ..............
@@ -32,15 +32,15 @@ When running logs info/debug mode you will see the following logs added
 [0-0] ..........
 ```
 
-### Width and height cannot be negative
+### 幅と高さは負の値にできません
 
-It could be that the error `Width and height cannot be negative` is thrown. 9 out of 10 times this is related to creating an image of an element that is not in the view. Please be sure you always make sure the element in is in the view before you try to make an image of the element.
+「Width and height cannot be negative」（幅と高さは負の値にできません）というエラーが発生することがあります。10回中9回は、ビュー内にない要素の画像を作成しようとした場合に関連しています。要素の画像を作成する前に、必ずその要素がビュー内にあることを確認してください。
 
-### Installation of Canvas on Windows failed with Node-Gyp logs
+### WindowsでのCanvasのインストールがNode-Gypログで失敗する
 
-If you encounter issues with Canvas installation on Windows due to Node-Gyp errors, please note that this applies only to Version 4 and lower. To avoid these issues, consider updating to Version 5 or higher, which does not have these dependencies and uses [Jimp](https://github.com/jimp-dev/jimp) for image processing.
+WindowsでNode-Gypエラーによりキャンバスのインストールに問題が発生した場合、これはバージョン4以下にのみ適用されることに注意してください。これらの問題を回避するには、これらの依存関係がなく、画像処理に[Jimp](https://github.com/jimp-dev/jimp)を使用するバージョン5以上に更新することを検討してください。
 
-If you still need to resolve the issues with Version 4, please check:
+バージョン4で問題を解決する必要がある場合は、以下を確認してください：
 
-- the Node Canvas section in the [Getting Started](/docs/visual-testing#system-requirements) guide
-- [this post](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/) for Fixing Node-Gyp Issues on Windows. (Thanks to [IgorSasovets](https://github.com/IgorSasovets))
+-   [はじめに](/docs/visual-testing#system-requirements)ガイドのNode Canvasセクション
+-   WindowsでのNode-Gyp問題を修正するための[この投稿](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/)（[IgorSasovets](https://github.com/IgorSasovets)に感謝）

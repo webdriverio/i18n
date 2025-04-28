@@ -3,10 +3,11 @@ id: jenkins
 title: Jenkins
 ---
 
-WebdriverIO offers a tight integration to CI systems like [Jenkins](https://jenkins-ci.org). With the `junit` reporter, you can easily debug your tests as well as keep track of your test results. The integration is pretty easy.
+WebdriverIOは[Jenkins](https://jenkins-ci.org)のようなCIシステムとの緊密な統合を提供しています。`junit`レポーターを使用すると、テストのデバッグや結果の追跡が簡単にできます。統合は非常に簡単です。
 
-1. Install the `junit` test reporter: `$ npm install @wdio/junit-reporter --save-dev`)
-1. Update your config to save your XUnit results where Jenkins can find them, (and specify the `junit` reporter):
+1. `junit`テストレポーターをインストールします: `$ npm install @wdio/junit-reporter --save-dev`)
+1. Jenkinsが見つけられる場所にXUnit結果を保存するように設定を更新します
+    （そして`junit`レポーターを指定します）：
 
 ```js
 // wdio.conf.js
@@ -22,30 +23,31 @@ module.exports = {
 }
 ```
 
-It is up to you which framework to choose. The reports will be similar. For this tutorial, we’ll use Jasmine.
+どのフレームワークを選択するかはあなた次第です。レポートは似たようなものになります。
+このチュートリアルでは、Jasmineを使用します。
 
-After you have written couple of tests, you can setup a new Jenkins job. Give it a name and a description:
+いくつかのテストを書いた後、新しいJenkinsジョブをセットアップできます。名前と説明を付けます：
 
 ![Name And Description](/img/jenkins/jobname.png "Name And Description")
 
-Then make sure it grabs always the newest version of your repository:
+次に、常にリポジトリの最新バージョンを取得するようにします：
 
 ![Jenkins Git Setup](/img/jenkins/gitsetup.png "Jenkins Git Setup")
 
-**Now the important part:** Create a `build` step to execute shell commands. The `build` step needs to build your project. Since this demo project only tests an external app, you don't need to build anything. Just install the node dependencies and run the command `npm test` (which is an alias for `node_modules/.bin/wdio test/wdio.conf.js`).
+**ここが重要なポイントです：** シェルコマンドを実行する`build`ステップを作成します。`build`ステップはプロジェクトをビルドする必要があります。このデモプロジェクトは外部アプリをテストするだけなので、何もビルドする必要はありません。nodeの依存関係をインストールして`npm test`コマンド（これは`node_modules/.bin/wdio test/wdio.conf.js`のエイリアスです）を実行するだけです。
 
-If you have installed a plugin like AnsiColor, but logs are still not colored, run tests with environment variable `FORCE_COLOR=1` (e.g., `FORCE_COLOR=1 npm test`).
+AnsiColorのようなプラグインをインストールしているのにログが色付けされない場合は、環境変数`FORCE_COLOR=1`を付けてテストを実行してください（例：`FORCE_COLOR=1 npm test`）。
 
 ![Build Step](/img/jenkins/runjob.png "Build Step")
 
-After your test, you’ll want Jenkins to track your XUnit report. To do so, you have to add a post-build action called _"Publish JUnit test result report"_.
+テスト後、JenkinsにXUnitレポートを追跡させたいでしょう。そのためには、_「Publish JUnit test result report」_という名前のポストビルドアクションを追加する必要があります。
 
-You could also install an external XUnit plugin to track your reports. The JUnit one comes with the basic Jenkins installation and is sufficient enough for now.
+XUnitを追跡するための外部プラグインをインストールすることもできます。JUnitのものは基本的なJenkinsインストールに付属しており、現時点では十分です。
 
-According to the config file, the XUnit reports will be saved in the project’s root directory. These reports are XML files. So, all you need to do in order to track the reports is to point Jenkins to all XML files in your root directory:
+設定ファイルによると、XUnitレポートはプロジェクトのルートディレクトリに保存されます。これらのレポートはXMLファイルです。そのため、レポートを追跡するために必要なのは、ルートディレクトリ内のすべてのXMLファイルをJenkinsに指定することだけです：
 
 ![Post-build Action](/img/jenkins/postjob.png "Post-build Action")
 
-That's it! You’ve now set up Jenkins to run your WebdriverIO jobs. Your job will now provide detailed test results with history charts, stacktrace information on failed jobs, and a list of commands with payload that got used in each test.
+以上です！これでWebdriverIOジョブを実行するためのJenkinsのセットアップが完了しました。ジョブは、履歴チャート、失敗したジョブのスタックトレース情報、各テストで使用されたペイロード付きのコマンドリストなど、詳細なテスト結果を提供します。
 
 ![Jenkins Final Integration](/img/jenkins/final.png "Jenkins Final Integration")

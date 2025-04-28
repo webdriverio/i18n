@@ -1,34 +1,33 @@
 ---
 id: getting-started
-title: Getting Started
+title: はじめに
 ---
 
-## Installation
+## インストール
 
-The easiest way is to keep `@wdio/ocr-service` as a dependency in your `package.json` via.
+最も簡単な方法は、`package.json`に`@wdio/ocr-service`を依存関係として保持することです。
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
 ```
 
-Instructions on how to install `WebdriverIO` can be found [here.](../gettingstarted)
+`WebdriverIO`のインストール方法については[こちら](../gettingstarted)をご覧ください。
 
 :::note
-This module uses Tesseract as an OCR engine. By default, it will verify if you have a local installation of Tesseract installed on your system, if so, it will use that. If not, it will use the [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) module which is automatically installed for you.
+このモジュールはOCRエンジンとしてTesseractを使用しています。デフォルトでは、システムにTesseractのローカルインストールがあるかどうかを確認し、ある場合はそれを使用します。ない場合は、自動的にインストールされる[Node.js Tesseract.js](https://github.com/naptha/tesseract.js)モジュールを使用します。
 
-If you want to speed up the image processing then the advice is to use a locally installed version of Tesseract. See also [Test execution time](./more-test-optimization#using-a-local-installation-of-tesseract).
+画像処理を高速化したい場合は、ローカルにインストールされたTesseractを使用することをお勧めします。[テスト実行時間](./more-test-optimization#using-a-local-installation-of-tesseract)も参照してください。
 :::
 
-Instruction on how to install Tesseract as a system dependency on your local system can be found [here](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+ローカルシステムにシステム依存関係としてTesseractをインストールする方法については[こちら](https://tesseract-ocr.github.io/tessdoc/Installation.html)をご覧ください。
 
 :::caution
-For installation questions/errors with Tesseract please refer to the
-[Tesseract](https://github.com/tesseract-ocr/tesseract) project.
+Tesseractのインストールに関する質問やエラーについては、[Tesseract](https://github.com/tesseract-ocr/tesseract)プロジェクトを参照してください。
 :::
 
-## Typescript support
+## Typescriptサポート
 
-Ensure that you add `@wdio/ocr-service` to your `tsconfig.json` configuration file.
+`tsconfig.json`設定ファイルに`@wdio/ocr-service`を追加してください。
 
 ```json title="tsconfig.json"
 {
@@ -38,9 +37,9 @@ Ensure that you add `@wdio/ocr-service` to your `tsconfig.json` configuration fi
 }
 ```
 
-## Configuration
+## 設定
 
-To use the service you need to add `ocr` to your services array in `wdio.conf.ts`
+このサービスを使用するには、`wdio.conf.ts`の`services`配列に`ocr`を追加する必要があります。
 
 ```js
 // wdio.conf.js
@@ -60,40 +59,40 @@ exports.config = {
 };
 ```
 
-### Configuration Options
+### 設定オプション
 
 #### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** No
-- **Default:** `0.25`
+-   **タイプ:** `number`
+-   **必須:** いいえ
+-   **デフォルト:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+コントラストが高いほど画像が暗くなり、逆もまた然りです。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`の間の値を受け入れます。
 
 #### `imagesFolder`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `{project-root}/.tmp/ocr`
+-   **タイプ:** `string`
+-   **必須:** いいえ
+-   **デフォルト:** `{project-root}/.tmp/ocr`
 
-The folder where the OCR results are stored.
+OCR結果が保存されるフォルダです。
 
 :::note
-If you provide a custom `imagesFolder`, then the service will automatically add the subfolder `ocr` to it.
+カスタムの`imagesFolder`を提供する場合、サービスは自動的にサブフォルダ`ocr`を追加します。
 :::
 
 #### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **タイプ:** `string`
+-   **必須:** いいえ
+-   **デフォルト:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Tesseractが認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
 
-## Logs
+## ログ
 
-This module will automatically add extra logs to the WebdriverIO logs. It writes to the `INFO` and `WARN` logs with the name `@wdio/ocr-service`.
-Examples can be found below.
+このモジュールは自動的にWebdriverIOログに追加のログを追加します。`INFO`と`WARN`ログに`@wdio/ocr-service`という名前で書き込みます。
+以下に例を示します。
 
 ```log
 ...............

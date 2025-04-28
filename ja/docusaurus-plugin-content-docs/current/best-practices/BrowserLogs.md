@@ -1,21 +1,21 @@
 ---
 id: browser-logs
-title: Browser Logs
+title: ブラウザログ
 ---
 
-When running tests the browser may log important information that you are interested or want to assert against.
+テストを実行する際、ブラウザは関心のある重要な情報をログに記録したり、アサーションの対象としたい情報を出力したりすることがあります。
 
 <Tabs
 defaultValue="bidi"
 values={[
-{label: 'Bidi', value: 'bidi'},
-{label: 'Classic (Deprecated)', value: 'classic'
+    {label: 'Bidi', value: 'bidi'},
+    {label: 'Classic (Deprecated)', value: 'classic'
 }]
 }>
 
 <TabItem value='bidi'>
 
-When using WebDriver Bidi, which is the default way how WebdriverIO automates the browser, you can subscribe to events coming from the browser. For log events you want to listen on `log.entryAdded'`, e.g.:
+WebDriver Bidiを使用する場合（WebdriverIOがブラウザを自動化するデフォルトの方法）、ブラウザからのイベントをサブスクライブできます。ログイベントの場合は、`log.entryAdded`をリッスンする必要があります。例：
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +26,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-In a test you can just push log events to an array an assert that array once your action is done, e.g.:
+テストでは、ログイベントを配列にプッシュして、アクションが完了したらその配列をアサートできます。例：
 
 ```ts
 import type { local } from 'webdriver'
@@ -62,9 +62,9 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-If you still use WebDriver Classic or disabled Bidi usage via the `'wdio:enforceWebDriverClassic': true` capability, you can use the `getLogs` JSONWire command to fetch the latest logs. Since WebdriverIO has removed these deprecated commands you will have to use the [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) to add the command back to your browser instance.
+WebDriver Classicを使用している場合や、`'wdio:enforceWebDriverClassic': true`機能を介してBidiの使用を無効にしている場合は、JSONWireの`getLogs`コマンドを使用して最新のログを取得できます。WebdriverIOはこれらの非推奨コマンドを削除したため、[JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service)を使用してコマンドをブラウザインスタンスに追加する必要があります。
 
-After you added or initiate the service you can fetch logs via:
+サービスを追加または初期化した後、次のようにログを取得できます：
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,9 +72,9 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Note: the `getLogs` command can only fetch the most recent logs from the browser. It may clean up log messages eventually if they become to old.
+注意：`getLogs`コマンドはブラウザから最新のログのみを取得できます。ログメッセージが古くなると、最終的にクリーンアップされる場合があります。
 </TabItem>
 
 </Tabs>
 
-Please note that you can use this method to retrieve error messages and verify whether your application has encountered any errors.
+この方法を使用して、エラーメッセージを取得し、アプリケーションにエラーが発生しているかどうかを確認できることに注意してください。

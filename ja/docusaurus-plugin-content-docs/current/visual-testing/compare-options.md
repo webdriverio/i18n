@@ -1,137 +1,137 @@
 ---
 id: compare-options
-title: Compare Options
+title: 比較オプション
 ---
 
-Compare options are options that influence the way the comparison, by [ResembleJS](https://github.com/Huddle/Resemble.js) is being executed.
+比較オプションは、[ResembleJS](https://github.com/Huddle/Resemble.js)によって実行される比較方法に影響を与えるオプションです。
 
-:::info NOTE
-All compare options can be used during service instantiation or for each single `checkElement`,`checkScreen` and `checkFullPageScreen`. If a method option has the same key as an option that has been set during the instantiation of the service, then the method compare option will override the service compare option value.
+:::info 注意
+すべての比較オプションは、サービスのインスタンス化時、または個々の`checkElement`、`checkScreen`、`checkFullPageScreen`で使用できます。メソッドオプションがサービスのインスタンス化時に設定されたオプションと同じキーを持つ場合、メソッドの比較オプションがサービスの比較オプション値を上書きします。
 :::
 
 ### `ignoreAlpha`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Compare images and discard alpha.
+アルファチャンネルを無視して画像を比較します。
 
 ### `blockOutSideBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can only be used for `checkScreen()`. It will override the plugin setting. This is **iPad only**_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkScreen()`でのみ使用できます。プラグイン設定を上書きします。これは**iPadのみ**です_
 
-Automatically block out the sidebar for iPads in landscape mode during comparisons. This prevents failures on the tab/private/bookmark native component.
+比較中に横向きモードのiPadでサイドバーを自動的にブロックします。これにより、タブ/プライベート/ブックマークのネイティブコンポーネントでの失敗を防ぎます。
 
 ### `blockOutStatusBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします。これは**モバイルのみ**です_
 
-Automatically block out the status and address bar during comparisons. This prevents failures on time, wifi or battery status.
+比較中にステータスバーとアドレスバーを自動的にブロックします。これにより、時間、WiFi、バッテリー状態に関する失敗を防ぎます。
 
 ### `blockOutToolBar`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします。これは**モバイルのみ**です_
 
-Automatically block out the toolbar.
+ツールバーを自動的にブロックします。
 
 ### `ignoreAntialiasing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Compare images and discard anti-aliasing.
+アンチエイリアシングを無視して画像を比較します。
 
 ### `ignoreColors`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Even though the images are in color, the comparison will compare 2 black/white images
+画像がカラーであっても、比較は2つの白黒画像を比較します。
 
 ### `ignoreLess`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Compare images and compare with `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+`red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`で画像を比較します。
 
 ### `ignoreNothing`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Compare images and compare with `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+`red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`で画像を比較します。
 
 ### `ignoreTransparentPixel`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Compare images and it will ignore all pixels that have some transparency in one of the images
+画像を比較し、いずれかの画像で透明度がある全てのピクセルを無視します。
 
 ### `rawMisMatchPercentage`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-If true the return percentage will be like `0.12345678`, default is `0.12`
+trueの場合、戻り値のパーセンテージは`0.12345678`のようになります。デフォルトは`0.12`です。
 
 ### `returnAllCompareData`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-This will return all compare data, not only the mismatch percentage
+ミスマッチパーセンテージだけでなく、すべての比較データを返します。
 
 ### `saveAboveTolerance`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `number`
+-   **デフォルト:** `0`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Allowable value of `misMatchPercentage` that prevents saving images with differences
+差分のある画像の保存を防ぐ`misMatchPercentage`の許容値。
 
 ### `largeImageThreshold`
 
-- **Type:** `number`
-- **Default:** `0`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `number`
+-   **デフォルト:** `0`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Comparing large images can lead to performance issues.
-When providing a number for the number of pixels here (higher than 0), the comparison algorithm skips pixels when the image width or height is larger than `largeImageThreshold` pixels.
+大きな画像の比較はパフォーマンスの問題を引き起こす可能性があります。
+ここでピクセル数（0より大きい）を指定すると、画像の幅または高さが`largeImageThreshold`ピクセルより大きい場合、比較アルゴリズムはピクセルをスキップします。
 
 ### `scaleImagesToSameSize`
 
-- **Type:** `boolean`
-- **Default:** `false`
-- **Mandatory:** no
-- **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
+-   **型:** `boolean`
+-   **デフォルト:** `false`
+-   **必須:** いいえ
+-   **備考:** _`checkElement`、`checkScreen()`および`checkFullPageScreen()`でも使用できます。プラグイン設定を上書きします_
 
-Scales 2 images to the same size before execution of comparison. Highly recommended to enable `ignoreAntialiasing` and `ignoreAlpha`
+比較の実行前に2つの画像を同じサイズにスケーリングします。`ignoreAntialiasing`と`ignoreAlpha`を有効にすることを強く推奨します。

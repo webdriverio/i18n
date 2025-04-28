@@ -3,9 +3,9 @@ id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
 ---
 
-Get the position of a text on the screen. The command will search for the provided text and try to find a match based on Fuzzy Logic from [Fuse.js](https://fusejs.io/). This means that if you might provide a selector with a typo, or the found text might not be a 100% match it will still try to give you back an element. See the [logs](#logs) below.
+Ottieni la posizione di un testo sullo schermo. Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla Logica Fuzzy di [Fuse.js](https://fusejs.io/). Questo significa che se fornisci un selettore con un errore di battitura, o il testo trovato potrebbe non essere una corrispondenza al 100%, cercherà comunque di restituirti un elemento. Vedi i [log](#logs) qui sotto.
 
-## Usage
+## Utilizzo
 
 ```js
 const result = await browser.ocrGetElementPositionByText("Username");
@@ -15,7 +15,7 @@ console.log("result = ", JSON.stringify(result, null, 2));
 
 ## Output
 
-### Result
+### Risultato
 
 ```logs
 result = {
@@ -41,22 +41,22 @@ result = {
 ### Logs
 
 ```log
-# Still finding a match even though we searched for "Start3d" and the found text was "Started"
+# Trova comunque una corrispondenza anche se abbiamo cercato "Start3d" e il testo trovato era "Started"
 [0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-## Options
+## Opzioni
 
 ### `text`
 
-- **Type:** `string`
-- **Mandatory:** yes
+-   **Tipo:** `string`
+-   **Obbligatorio:** sì
 
-The text you want to search for to click on.
+Il testo che vuoi cercare per cliccarci sopra.
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
@@ -64,13 +64,13 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** `0.25`
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** `0.25`
 
-The higher the contrast, the darker the image and vice versa. This can help to find text in an image. It accepts values between `-1` and `1`.
+Maggiore è il contrasto, più scura sarà l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori tra `-1` e `1`.
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -81,12 +81,12 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
-- **Type:** `number`
-- **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Tipo:** `number`
+-   **Obbligatorio:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-This is the search area in the screen where the OCR needs to look for text. This can be an element or a rectangle containing `x`, `y`, `width` and `height`
+Questa è l'area di ricerca nello schermo in cui l'OCR deve cercare il testo. Può essere un elemento o un rettangolo contenente `x`, `y`, `width` e `height`
 
-#### Example
+#### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -94,13 +94,13 @@ await browser.ocrGetElementPositionByText({
     haystack: $("elementSelector"),
 });
 
-// OR
+// OPPURE
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// OPPURE
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: {
@@ -114,36 +114,36 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
-- **Type:** `string`
-- **Mandatory:** No
-- **Default:** `eng`
+-   **Tipo:** `string`
+-   **Obbligatorio:** No
+-   **Default:** `eng`
 
-The language that Tesseract will recognize. More info can be found [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) and the supported languages can be found [here](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+La lingua che Tesseract riconoscerà. Maggiori informazioni possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate possono essere trovate [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+#### Esempio
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
-    // Use Dutch as a language
+    // Usa l'olandese come lingua
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-You can alter the fuzzy logic to find text with the following options. This might help find a better match
+Puoi modificare la logica fuzzy per trovare testo con le seguenti opzioni. Questo potrebbe aiutare a trovare una corrispondenza migliore
 
 #### `fuzzyFindOptions.distance`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 100
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** 100
 
-Determines how close the match must be to the fuzzy location (specified by location). An exact letter match which is distance characters away from the fuzzy location would score as a complete mismatch. A distance of 0 requires the match to be at the exact location specified. A distance of 1000 would require a perfect match to be within 800 characters of the location to be found using a threshold of 0.8.
+Determina quanto vicina deve essere la corrispondenza alla posizione fuzzy (specificata da location). Una corrispondenza esatta che si trova a "distance" caratteri di distanza dalla posizione fuzzy verrebbe considerata come un completo mancato riscontro. Una distanza di 0 richiede che la corrispondenza sia nella posizione esatta specificata. Una distanza di 1000 richiederebbe una corrispondenza perfetta entro 800 caratteri dalla posizione per essere trovata utilizzando una soglia di 0.8.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -156,13 +156,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** 0
 
-Determines approximately where in the text is the pattern expected to be found.
+Determina approssimativamente dove nel testo ci si aspetta di trovare il pattern.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -175,13 +175,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 0.6
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** 0.6
 
-At what point does the matching algorithm give up. A threshold of 0 requires a perfect match (of both letters and location), a threshold of 1.0 would match anything.
+A che punto l'algoritmo di corrispondenza si arrende. Una soglia di 0 richiede una corrispondenza perfetta (sia di lettere che di posizione), una soglia di 1.0 corrisponderebbe a qualsiasi cosa.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -194,13 +194,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **Type:** `boolean`
-- **Mandatory:** no
-- **Default:** false
+-   **Tipo:** `boolean`
+-   **Obbligatorio:** no
+-   **Default:** false
 
-Whether the search should be case sensitive.
+Se la ricerca deve essere sensibile alle maiuscole/minuscole.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -213,13 +213,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** 2
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** 2
 
-Only the matches whose length exceeds this value will be returned. (For instance, if you want to ignore single character matches in the result, set it to 2)
+Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di singoli caratteri nel risultato, impostalo a 2)
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -232,13 +232,13 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **Type:** `number`
-- **Mandatory:** no
-- **Default:** false
+-   **Tipo:** `number`
+-   **Obbligatorio:** no
+-   **Default:** false
 
-When `true`, the matching function will continue to the end of a search pattern even if a perfect match has already been located in the string.
+Quando `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
 
-##### Example
+##### Esempio
 
 ```js
 await browser.ocrGetElementPositionByText({

@@ -1,6 +1,6 @@
 ---
 id: selectors
-title: Selectors
+title: Selettori
 ---
 
 The [WebDriver Protocol](https://w3c.github.io/webdriver/) provides several selector strategies to query an element. WebdriverIO simplifies them to keep selecting elements simple. Please note that even though the command to query elements is called `$` and `$$`, they have nothing to do with jQuery or the [Sizzle Selector Engine](https://github.com/jquery/sizzle).
@@ -21,15 +21,15 @@ While there are so many different selectors available, only a few of them provid
 
 We __do__ and __do not__ recommend the following selectors:
 
-| Selector                                      | Recommended  | Notes                                                                                                                                                                       |
-| --------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$('button')`                                 | 🚨 Never      | Worst - too generic, no context.                                                                                                                                            |
-| `$('.btn.btn-large')`                         | 🚨 Never      | Bad. Coupled to styling. Highly subject to change.                                                                                                                          |
-| `$('#main')`                                  | ⚠️ Sparingly | Better. But still coupled to styling or JS event listeners.                                                                                                                 |
-| `$(() => document.queryElement('button'))` | ⚠️ Sparingly | Effective querying, complex to write.                                                                                                                                       |
-| `$('button[name="submission"]')`              | ⚠️ Sparingly | Coupled to the `name` attribute which has HTML semantics.                                                                                                                   |
-| `$('button[data-testid="submit"]')`           | ✅ Good       | Requires additional attribute, not connected to a11y.                                                                                                                       |
-| `$('aria/Submit')` or `$('button=Submit')`    | ✅ Always     | Best. Resembles how the user interacts with the page. It is recommended to use your frontend's translation files so your tests never fail when the translations are updated |
+| Selector | Recommended | Notes |
+| -------- | ----------- | ----- |
+| `$('button')` | 🚨 Never | Worst - too generic, no context. |
+| `$('.btn.btn-large')` | 🚨 Never | Bad. Coupled to styling. Highly subject to change. |
+| `$('#main')` | ⚠️ Sparingly | Better. But still coupled to styling or JS event listeners. |
+| `$(() => document.queryElement('button'))` | ⚠️ Sparingly | Effective querying, complex to write. |
+| `$('button[name="submission"]')` | ⚠️ Sparingly | Coupled to the `name` attribute which has HTML semantics. |
+| `$('button[data-testid="submit"]')` | ✅ Good | Requires additional attribute, not connected to a11y. |
+| `$('aria/Submit')` or `$('button=Submit')` | ✅ Always | Best. Resembles how the user interacts with the page. It is recommended to use your frontend's translation files so your tests never fail when the translations are updated |
 
 ## CSS Query Selector
 
@@ -57,7 +57,8 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 ## Partial Link Text
 
-To find a anchor element whose visible text partially matches your search value, query it by using `*=` in front of the query string (e.g. `*=driver`).
+To find a anchor element whose visible text partially matches your search value,
+query it by using `*=` in front of the query string (e.g. `*=driver`).
 
 You can query the element from the example above by also calling:
 
@@ -299,7 +300,7 @@ For native mobile testing, there is no switching between contexts, as you have t
 
 ### Android UiAutomator
 
-Android’s UI Automator framework provides a number of ways to find elements. You can use the [UI Automator API](https://developer.android.com/tools/testing-support-library/index.html#uia-apis), in particular the [UiSelector class](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) to locate elements. In Appium you send the Java code, as a string, to the server, which executes it in the application’s environment, returning the element or elements.
+Android's UI Automator framework provides a number of ways to find elements. You can use the [UI Automator API](https://developer.android.com/tools/testing-support-library/index.html#uia-apis), in particular the [UiSelector class](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) to locate elements. In Appium you send the Java code, as a string, to the server, which executes it in the application's environment, returning the element or elements.
 
 ```js
 const selector = 'new UiSelector().text("Cancel").className("android.widget.Button")'
@@ -341,7 +342,7 @@ await elem.click()
 
 ### iOS UIAutomation
 
-When automating an iOS application, Apple’s [UI Automation framework](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html) can be used to find elements.
+When automating an iOS application, Apple's [UI Automation framework](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html) can be used to find elements.
 
 This JavaScript [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) has methods to access to the view and everything on it.
 
@@ -404,7 +405,8 @@ await $('CYIPushButtonView').click()
 
 ## Chain Selectors
 
-If you want to be more specific in your query, you can chain selectors until you've found the right element. If you call `element` before your actual command, WebdriverIO starts the query from that element.
+If you want to be more specific in your query, you can chain selectors until you've found the right
+element. If you call `element` before your actual command, WebdriverIO starts the query from that element.
 
 For example, if you have a DOM structure like:
 
@@ -449,9 +451,14 @@ const elem = await $('./file/path/of/image/test.jpg')
 await elem.click()
 ```
 
-**Note**: The way how Appium works with this selector is that it will internally make a (app)screenshot and use the provided image selector to verify if the element can be found in that (app)screenshot.
+**Note**: The way how Appium works with this selector is that it will internally make a (app)screenshot and use the provided image selector
+to verify if the element can be found in that (app)screenshot.
 
-Be aware of the fact that Appium might resize the taken (app)screenshot to make it match the CSS-size of your (app)screen (this will happen on iPhones but also on Mac machines with a Retina display because the DPR is bigger than 1). This will result in not finding a match because the provided image selector might have been taken from the original screenshot. You can fix this by updating the Appium Server settings, see the [Appium docs](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings) for the settings and [this comment](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) on a detailed explanation.
+Be aware of the fact that Appium might resize the taken (app)screenshot to make it match the CSS-size of your (app)screen (this will happen
+on iPhones but also on Mac machines with a Retina display because the DPR is bigger than 1). This will result in not finding a match because
+the provided image selector might have been taken from the original screenshot.
+You can fix this by updating the Appium Server settings, see the [Appium docs](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings)
+for the settings and [this comment](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) on a detailed explanation.
 
 ## React Selectors
 

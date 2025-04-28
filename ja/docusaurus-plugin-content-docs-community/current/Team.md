@@ -1,18 +1,18 @@
 ---
 id: team
-title: Team
+title: チーム
 ---
 
-The WebdriverIO development is led by a dedicated team of developers and SDETs from various companies as well contributions from people around the world.
+WebdriverIOの開発は、様々な企業からの開発者やSDETの専任チームによって主導されており、また世界中の人々からの貢献によって支えられています。
 
-## Technical Steering Committee
+## 技術運営委員会
 
 <Card
     name="Adam Bjerstedt"
     avatar="https://avatars2.githubusercontent.com/u/4043890?s=460"
     github="abjerstedt"
 >
-    Senior Software Engineer - Android at <a href="https://www.target.com/">Target</a>.
+    <a href="https://www.target.com/">Target</a>のシニアソフトウェアエンジニア - Android担当。
 </Card>
 
 <Card
@@ -21,7 +21,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     github="christian-bromann"
     twitter="bromann"
 >
-    Staff Software Engineer at the Open Source Program Office <a href="https://saucelabs.com/">@saucelabs</a>.
+    <a href="https://saucelabs.com/">@saucelabs</a>のオープンソースプログラムオフィスのスタッフソフトウェアエンジニア。
 </Card>
 
 <Card
@@ -29,7 +29,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     avatar="https://avatars.githubusercontent.com/u/15839059?s=460"
     github="erwinheitzman"
 >
-    Senior Test Automation Engineer at <a href="https://detesters.nl/">deTesters</a>.
+    <a href="https://detesters.nl/">deTesters</a>のシニアテスト自動化エンジニア。
 </Card>
 
 <Card
@@ -38,7 +38,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     github="klamping"
     twitter="klamping"
 >
-    Senior Front End Engineer.
+    シニアフロントエンドエンジニア。
 </Card>
 
 <Card
@@ -46,7 +46,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     avatar="https://avatars0.githubusercontent.com/u/25589559?s=460"
     github="mgrybyk"
 >
-    Senior Software Development Engineer in Test.
+    シニアソフトウェア開発エンジニア（テスト担当）。
 </Card>
 
 <Card
@@ -54,7 +54,7 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     avatar="https://avatars3.githubusercontent.com/u/1300981?s=460"
     github="WillBrock"
 >
-    Automation Engineering Manager at <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
+    <a href="https://focusschoolsoftware.com/">Focus School Software</a>の自動化エンジニアリングマネージャー。
 </Card>
 
 <Card
@@ -63,10 +63,10 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    Senior Solutions Architect <a href="https://saucelabs.com/">@saucelabs</a>.
+    <a href="https://saucelabs.com/">@saucelabs</a>のシニアソリューションアーキテクト。
 </Card>
 
-## Project Collaborators
+## プロジェクト協力者
 
 <Card
     name="Baruch Velez"
@@ -84,4 +84,4 @@ The WebdriverIO development is led by a dedicated team of developers and SDETs f
 >
 </Card>
 
-and [many many more](https://github.com/orgs/webdriverio/people).
+そして[さらに多くの方々](https://github.com/orgs/webdriverio/people)。

@@ -3,11 +3,11 @@ id: vue
 title: Vue.js
 ---
 
-[Vue.js](https://vuejs.org/) is an approachable, performant and versatile framework for building web user interfaces. You can test Vue.js components directly in a real browser using WebdriverIO and its [browser runner](/docs/runner#browser-runner).
+[Vue.js](https://vuejs.org/) は使いやすく、パフォーマンスが高く、汎用性のあるWeb UIフレームワークです。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザで直接Vue.jsコンポーネントをテストできます。
 
-## Setup
+## セットアップ
 
-To setup WebdriverIO within your Vue.js project, follow the [instructions](/docs/component-testing#set-up) in our component testing docs. Make sure to select `vue` as preset within your runner options, e.g.:
+Vue.jsプロジェクト内でWebdriverIOを設定するには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`vue`を選択してください：
 
 ```js
 // wdio.conf.js
@@ -22,25 +22,25 @@ export const config = {
 
 :::info
 
-If you are already using [Vite](https://vitejs.dev/) as development server you can also just re-use your configuration in `vite.config.ts` within your WebdriverIO config. For more information, see `viteConfig` in [runner options](/docs/runner#runner-options).
+すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、`vite.config.ts`の設定をWebdriverIO設定内で再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
 
 :::
 
-The Vue preset requires `@vitejs/plugin-vue` to be installed. Also we recommend using [Testing Library](https://testing-library.com/) for rendering the component into the test page. Therefor you'll need to install the following additional dependencies:
+Vueプリセットには`@vitejs/plugin-vue`のインストールが必要です。また、コンポーネントをテストページにレンダリングするために[Testing Library](https://testing-library.com/)の使用をお勧めします。そのため、以下の追加依存関係をインストールする必要があります：
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
 ```
 
-You can then start the tests by running:
+その後、以下のコマンドでテストを開始できます：
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## Writing Tests
+## テストの記述
 
-Given you have the following Vue.js component:
+以下のようなVue.jsコンポーネントがあるとします：
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -65,13 +65,14 @@ export default {
 </script>
 ```
 
-In your test render the component into the DOM and run assertions on it. We recommend to either use [`@vue/test-utils`](https://test-utils.vuejs.org/) or [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) to attach the component to the test page. To interact with the component use WebdriverIO commands as they behave more close to actual user interactions, e.g.:
+テストでは、コンポーネントをDOMにレンダリングして、アサーションを実行します。コンポーネントをテストページにアタッチするには、[`@vue/test-utils`](https://test-utils.vuejs.org/)または[`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/)のいずれかを使用することをお勧めします。コンポーネントとのインタラクションには、実際のユーザーインタラクションに近い動作をするWebdriverIOコマンドを使用してください：
+
 
 <Tabs
   defaultValue="utils"
   values={[
     {label: '@vue/test-utils', value: 'utils'},
- {label: '@testing-library/vue', value: 'testinglib'}
+    {label: '@testing-library/vue', value: 'testinglib'}
  ]
 }>
 <TabItem value="utils">
@@ -131,11 +132,11 @@ describe('Vue Component Testing', () => {
 </TabItem>
 </Tabs>
 
-You can find a full example of a WebdriverIO component test suite for Vue.js in our [example repository](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite).
+Vue.js向けのWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite)で確認できます。
 
-## Testing Async Components in Vue3
+## Vue3での非同期コンポーネントのテスト
 
-If you are using Vue v3 and are testing [async components](https://vuejs.org/guide/built-ins/suspense.html#async-setup) like the following:
+Vue v3を使用していて、以下のような[非同期コンポーネント](https://vuejs.org/guide/built-ins/suspense.html#async-setup)をテストしている場合：
 
 ```vue
 <script setup>
@@ -148,7 +149,7 @@ const posts = await res.json()
 </template>
 ```
 
-We recommend to use [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) and a little suspense wrapper to get the component rendered. Unfortunately [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) has no support for this yet. Create a `helper.ts` file with the following content:
+[`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils)と簡単なサスペンスラッパーを使用してコンポーネントをレンダリングすることをお勧めします。残念ながら[`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230)はまだこれをサポートしていません。以下の内容で`helper.ts`ファイルを作成してください：
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -189,7 +190,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-Then import and test the component as following:
+次に、以下のようにコンポーネントをインポートしてテストします：
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -213,40 +214,40 @@ describe('Testing Async Components', () => {
 })
 ```
 
-## Testing Vue Components in Nuxt
+## NuxtでのVueコンポーネントのテスト
 
-If you are using the web framework [Nuxt](https://nuxt.com/), WebdriverIO will automatically enable the [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) feature and makes testing your Vue components and Nuxt pages easy. However any [Nuxt modules](https://nuxt.com/modules) that you might define in your config and requires context to the Nuxt application can not be supported.
+Webフレームワーク[Nuxt](https://nuxt.com/)を使用している場合、WebdriverIOは自動的に[自動インポート](https://nuxt.com/docs/guide/concepts/auto-imports)機能を有効にし、Vueコンポーネントとヌクストページのテストを容易にします。ただし、設定で定義されているNuxtアプリケーションのコンテキストを必要とする[Nuxtモジュール](https://nuxt.com/modules)はサポートされません。
 
-__Reasons for that are:__
-- WebdriverIO can't initiate a Nuxt application soley in a browser environment
-- Having component tests depend too much on the Nuxt environment creates complexity and we recommend to run these tests as e2e tests
+__理由は以下の通りです：__
+- WebdriverIOはブラウザ環境だけでNuxtアプリケーションを開始できません
+- コンポーネントテストがNuxt環境に過度に依存すると複雑さが増すため、これらのテストはe2eテストとして実行することをお勧めします
 
 :::info
 
-WebdriverIO also provides a service for running e2e tests on Nuxt applications, see [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) for information.
+WebdriverIOはNuxtアプリケーションでe2eテストを実行するためのサービスも提供しています。詳細は[`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service)を参照してください。
 
 :::
 
-### Mocking built-in composables
+### 組み込みコンポーザブルのモック
 
-In case your component uses a native Nuxt composable, e.g. [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO will automatically mock these functions and allows you to modify their behavior or assert against them, e.g.:
+コンポーネントがネイティブのNuxtコンポーザブル（例：[`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)）を使用している場合、WebdriverIOは自動的にこれらの関数をモック化し、その動作を変更したり、それに対してアサーションを行ったりすることができます：
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
 
-// e.g. your component uses calls `useNuxtData` the following way
+// 例：コンポーネントが次のように`useNuxtData`を呼び出す場合
 // `const { data: posts } = useNuxtData('posts')`
-// in your test you can assert against it
+// テストでは次のようにアサートできます
 expect(useNuxtData).toBeCalledWith('posts')
-// and change their behavior
+// そして動作を変更することもできます
 mocked(useNuxtData).mockReturnValue({
     data: [...]
 })
 ```
 
-### Handling 3rd party composables
+### サードパーティのコンポーザブルの処理
 
-All [3rd party modules](https://nuxt.com/modules) that can supercharge your Nuxt project can't automatically get mocked. In those cases you need to manually mock them, e.g. given your application uses the [Supabase](https://nuxt.com/modules/supabase) module plugin:
+Nuxtプロジェクトを強化できる[サードパーティモジュール](https://nuxt.com/modules)は自動的にモック化されません。そのような場合は手動でモック化する必要があります。例えば、アプリケーションが[Supabase](https://nuxt.com/modules/supabase)モジュールプラグインを使用している場合：
 
 ```js title=""
 export default defineNuxtConfig({
@@ -258,19 +259,19 @@ export default defineNuxtConfig({
 });
 ```
 
-and you create an instance of Supabase somewhere in your composables, e.g.:
+そして、コンポーザブルのどこかでSupabaseのインスタンスを作成する場合：
 
 ```ts
 const superbase = useSupabaseClient()
 ```
 
-the test will fail due to:
+テストは次のエラーで失敗します：
 
 ```
 ReferenceError: useSupabaseClient is not defined
 ```
 
-Here, we recommend to either mock out the whole module that uses the `useSupabaseClient` function or create a global variable that mocks this function, e.g.:
+この場合、`useSupabaseClient`関数を使用するモジュール全体をモック化するか、この関数をモック化するグローバル変数を作成することをお勧めします：
 
 ```ts
 import { fn } from '@wdio/browser-runner'

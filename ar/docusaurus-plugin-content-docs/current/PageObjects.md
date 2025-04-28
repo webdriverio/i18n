@@ -1,21 +1,21 @@
 ---
 id: pageobjects
-title: Page Object Pattern
+title: نمط كائن الصفحة
 ---
 
-Version 5 of WebdriverIO was designed with Page Object Pattern support in mind. By introducing the "elements as first class citizens" principle, it is now possible to build up large test suites using this pattern.
+تم تصميم الإصدار الخامس من WebdriverIO مع وضع دعم نمط كائن الصفحة في الاعتبار. من خلال تقديم مبدأ "العناصر كمواطنين من الدرجة الأولى"، أصبح من الممكن الآن بناء مجموعات اختبار كبيرة باستخدام هذا النمط.
 
-There are no additional packages required to create page objects. It turns out that clean, modern classes provide all necessary features we need:
+لا توجد حزم إضافية مطلوبة لإنشاء كائنات الصفحة. اتضح أن الفئات النظيفة والحديثة توفر جميع الميزات الضرورية التي نحتاجها:
 
-- inheritance between page objects
-- lazy loading of elements
-- encapsulation of methods and actions
+- الوراثة بين كائنات الصفحة
+- التحميل البطيء للعناصر
+- تغليف الطرق والإجراءات
 
-The goal of using page objects is to abstract any page information away from the actual tests. Ideally, you should store all selectors or specific instructions that are unique for a certain page in a page object, so that you still can run your test after you've completely redesigned your page.
+الهدف من استخدام كائنات الصفحة هو تجريد أي معلومات خاصة بالصفحة عن الاختبارات الفعلية. من الناحية المثالية، يجب تخزين جميع المحددات أو التعليمات المحددة الفريدة لصفحة معينة في كائن الصفحة، بحيث لا يزال بإمكانك تشغيل اختبارك بعد إعادة تصميم صفحتك بالكامل.
 
-## Making A Page Object
+## إنشاء كائن صفحة
 
-First off, we need a main page object that we call `Page.js`. It will contain general selectors or methods which all page objects will inherit from.
+أولاً، نحتاج إلى كائن صفحة رئيسي نسميه `Page.js`. سيحتوي على محددات أو طرق عامة سترثها جميع كائنات الصفحة.
 
 ```js
 // Page.js
@@ -30,15 +30,15 @@ export default class Page {
 }
 ```
 
-We will always `export` an instance of a page object, and never create that instance in the test. Since we are writing end-to-end tests, we always consider the page as a stateless construct&mdash;just as each HTTP request is a stateless construct.
+سنقوم دائمًا بـ `export` نسخة من كائن الصفحة، ولن نقوم أبدًا بإنشاء تلك النسخة في الاختبار. نظرًا لأننا نكتب اختبارات من البداية إلى النهاية، فإننا نعتبر دائمًا الصفحة كبناء بلا حالة&mdash;تمامًا كما أن كل طلب HTTP هو بناء بلا حالة.
 
-Sure, the browser can carry session information and therefore can display different pages based on different sessions, but this shouldn't be reflected within a page object. These sorts of state changes should live in your actual tests.
+بالتأكيد، يمكن للمتصفح حمل معلومات الجلسة وبالتالي يمكنه عرض صفحات مختلفة بناءً على جلسات مختلفة، ولكن لا ينبغي أن ينعكس ذلك ضمن كائن الصفحة. يجب أن تكون هذه الأنواع من تغييرات الحالة في اختباراتك الفعلية.
 
-Let's start testing the first page. For demo purposes, we use [The Internet](http://the-internet.herokuapp.com) website by [Elemental Selenium](http://elementalselenium.com) as guinea pig. Let's try to build a page object example for the [login page](http://the-internet.herokuapp.com/login).
+لنبدأ باختبار الصفحة الأولى. لأغراض العرض، نستخدم موقع [The Internet](http://the-internet.herokuapp.com) من [Elemental Selenium](http://elementalselenium.com) كحقل تجارب. دعنا نحاول بناء مثال لكائن صفحة لـ [صفحة تسجيل الدخول](http://the-internet.herokuapp.com/login).
 
-## `Get` -ing Your Selectors
+## الحصول على المحددات الخاصة بك
 
-The first step is to write all important selectors that are required in our `login.page` object as getter functions:
+الخطوة الأولى هي كتابة جميع المحددات المهمة المطلوبة في كائن `login.page` كدوال getter:
 
 ```js
 // login.page.js
@@ -65,36 +65,36 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Defining selectors in getter functions might look a little weird, but it’s really useful. These functions are evaluated _when you access the property_, not when you generate the object. With that you always request the element before you do an action on it.
+قد يبدو تعريف المحددات في دوال getter غريبًا قليلاً، لكنه مفيد حقًا. يتم تقييم هذه الدوال _عند الوصول إلى الخاصية_، وليس عند إنشاء الكائن. بذلك أنت دائمًا تطلب العنصر قبل أن تقوم بإجراء عليه.
 
-## Chaining Commands
+## تسلسل الأوامر
 
-WebdriverIO internally remembers the last result of a command. If you chain an element command with an action command, it finds the element from the previous command and uses the result to execute the action. With that you can remove the selector (first parameter) and the command looks as simple as:
+يتذكر WebdriverIO داخليًا آخر نتيجة لأمر ما. إذا قمت بتسلسل أمر العنصر مع أمر الإجراء، فإنه يجد العنصر من الأمر السابق ويستخدم النتيجة لتنفيذ الإجراء. بذلك يمكنك إزالة المحدد (المعامل الأول) ويبدو الأمر بسيطًا مثل:
 
 ```js
 await LoginPage.username.setValue('Max Mustermann')
 ```
 
-Which is basically the same thing as:
+وهو نفس الشيء أساسًا مثل:
 
 ```js
 let elem = await $('#username')
 await elem.setValue('Max Mustermann')
 ```
 
-or
+أو
 
 ```js
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Using Page Objects In Your Tests
+## استخدام كائنات الصفحة في اختباراتك
 
-After you've defined the necessary elements and methods for the page, you can start to write the test for it. All you need to do to use the page object is to `import` (or `require`) it. That's it!
+بعد تحديد العناصر والطرق الضرورية للصفحة، يمكنك البدء في كتابة الاختبار لها. كل ما تحتاج إلى القيام به لاستخدام كائن الصفحة هو `import` (أو `require`). هذا كل شيء!
 
-Since you exported an already-created instance of the page object, importing it lets you start using it right away.
+نظرًا لأنك قمت بتصدير نسخة تم إنشاؤها بالفعل من كائن الصفحة، فإن استيرادها يتيح لك البدء في استخدامها على الفور.
 
-If you use an assertion framework, your tests can be even more expressive:
+إذا كنت تستخدم إطار تأكيد، يمكن أن تكون اختباراتك أكثر تعبيرًا:
 
 ```js
 // login.spec.js
@@ -121,10 +121,10 @@ describe('login form', () => {
 })
 ```
 
-From the structural side, it makes sense to separate spec files and page objects into different directories. Additionally you can give each page object the ending: `.page.js`. This makes it more clear that you import a page object.
+من الناحية الهيكلية، من المنطقي فصل ملفات المواصفات وكائنات الصفحة إلى دلائل مختلفة. بالإضافة إلى ذلك، يمكنك إعطاء كل كائن صفحة نهاية: `.page.js`. هذا يجعل من الواضح أكثر أنك تستورد كائن صفحة.
 
-## Going Further
+## المضي قدمًا
 
-This is the basic principle of how to write page objects with WebdriverIO. But you can build up way more complex page object structures than this! For example, you might have specific page objects for modals, or split up a huge page object into different classes (each representing a different part of the overall web page) that inherit from the main page object. The pattern really provides a lot of opportunities to separate page information from your tests, which is important to keep your test suite structured and clear in times where the project and number of tests grows.
+هذا هو المبدأ الأساسي لكيفية كتابة كائنات الصفحة مع WebdriverIO. لكن يمكنك بناء هياكل أكثر تعقيدًا لكائنات الصفحة من هذا! على سبيل المثال، قد يكون لديك كائنات صفحة محددة للنوافذ المنبثقة، أو تقسيم كائن صفحة ضخم إلى فئات مختلفة (كل منها يمثل جزءًا مختلفًا من صفحة الويب الكلية) التي ترث من كائن الصفحة الرئيسي. يوفر النمط حقًا الكثير من الفرص لفصل معلومات الصفحة عن اختباراتك، وهو أمر مهم للحفاظ على مجموعة الاختبار الخاصة بك منظمة وواضحة في الأوقات التي ينمو فيها المشروع وعدد الاختبارات.
 
-You can find this example (and even more page object examples) in the [`example` folder](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) on GitHub.
+يمكنك العثور على هذا المثال (والمزيد من أمثلة كائنات الصفحة) في [مجلد `example`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) على GitHub.

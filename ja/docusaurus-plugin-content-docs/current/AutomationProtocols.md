@@ -1,25 +1,25 @@
 ---
 id: automationProtocols
-title: Automation Protocols
+title: オートメーションプロトコル
 ---
 
-With WebdriverIO, you can choose between multiple automation technologies when running your E2E tests locally or in the cloud. By default, WebdriverIO will attempt to start a local automation session using the [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) protocol.
+WebdriverIOでは、E2Eテストをローカルまたはクラウドで実行する際に、複数の自動化技術から選択できます。デフォルトでは、WebdriverIOは[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/)プロトコルを使用してローカルの自動化セッションを開始しようとします。
 
-## WebDriver Bidi Protocol
+## WebDriver Bidiプロトコル
 
-The [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) is an automation protocol to automate browsers using bi-directional communication. It's the successor of the [WebDriver](https://w3c.github.io/webdriver/) protocol and enables a lot more introspection capabilities for various testing use cases.
+[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/)は、双方向通信を使用してブラウザを自動化するためのプロトコルです。これは[WebDriver](https://w3c.github.io/webdriver/)プロトコルの後継であり、様々なテストユースケースのためにより多くの内部検査機能を提供します。
 
-This protocol is currently under development and new primitives might be added in the future. All browser vendors have committed to implementing this web standard and a lot of [primitives](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) have already been landed in browsers.
+このプロトコルは現在開発中であり、将来的に新しいプリミティブが追加される可能性があります。すべてのブラウザベンダーはこのWeb標準の実装にコミットしており、多くの[プリミティブ](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned)がすでにブラウザに実装されています。
 
-## WebDriver Protocol
+## WebDriverプロトコル
 
-> [WebDriver](https://w3c.github.io/webdriver/) is a remote control interface that enables introspection and control of user agents. It provides a platform- and language-neutral wire protocol as a way for out-of-process programs to remotely instruct the behavior of web browsers.
+> [WebDriver](https://w3c.github.io/webdriver/)は、ユーザーエージェントの検査と制御を可能にするリモートコントロールインターフェースです。これは、プロセス外のプログラムがWebブラウザの動作をリモートで指示するための、プラットフォームと言語に依存しないワイヤープロトコルを提供します。
 
-The WebDriver protocol was designed to automate a browser from the user perspective, meaning that everything a user is able to do, you can do with the browser. It provides a set of commands that abstract away common interactions with an application (e.g., navigating, clicking, or reading the state of an element). Since it is a web standard, it is well supported across all major browser vendors and also is being used as an underlying protocol for mobile automation using [Appium](http://appium.io).
+WebDriverプロトコルは、ユーザーの観点からブラウザを自動化するために設計されており、ユーザーができることはすべてブラウザでも行うことができます。アプリケーションとの一般的な対話（ナビゲーション、クリック、要素の状態の読み取りなど）を抽象化する一連のコマンドを提供します。Web標準であるため、すべての主要なブラウザベンダーで十分にサポートされており、[Appium](http://appium.io)を使用したモバイル自動化の基盤プロトコルとしても使用されています。
 
-To use this automation protocol, you need a proxy server that translates all commands and executes them in the target environment (i.e. the browser or the mobile app).
+この自動化プロトコルを使用するには、すべてのコマンドを翻訳してターゲット環境（ブラウザやモバイルアプリなど）で実行するプロキシサーバーが必要です。
 
-For browser automation, the proxy server is usually the browser driver. There are drivers  available for all browsers:
+ブラウザ自動化の場合、プロキシサーバーは通常ブラウザドライバーです。すべてのブラウザで利用可能なドライバーがあります：
 
 - Chrome – [ChromeDriver](http://chromedriver.chromium.org/downloads)
 - Firefox – [Geckodriver](https://github.com/mozilla/geckodriver/releases)
@@ -27,21 +27,8 @@ For browser automation, the proxy server is usually the browser driver. There ar
 - Internet Explorer – [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
 - Safari – [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
-For any kind of mobile automation, you’ll need to install and setup [Appium](http://appium.io). It will allow you to automate mobile (iOS/Android) or even desktop (macOS/Windows) applications using the same WebdriverIO setup.
+あらゆる種類のモバイル自動化には、[Appium](http://appium.io)のインストールとセットアップが必要です。これにより、同じWebdriverIOのセットアップを使用して、モバイル（iOS/Android）またはデスクトップ（macOS/Windows）アプリケーションを自動化できます。
 
-There are also plenty of services that allow you to run your automation test in the cloud at high scale. Instead of having to setup all these drivers locally, you can just talk to these services (e.g. [Sauce Labs](https://saucelabs.com)) in the cloud and inspect the results on their platform. The communication between test script and automation environment will look as follows:
+また、高いスケールでクラウド上で自動化テストを実行できるサービスも多数あります。これらのドライバーをすべてローカルでセットアップする代わりに、クラウド上のこれらのサービス（例：[Sauce Labs](https://saucelabs.com)）と通信し、その結果をそのプラットフォーム上で検査することができます。テストスクリプトと自動化環境間の通信は以下のようになります：
 
 ![WebDriver Setup](/img/webdriver.png)
-
-### Advantages
-
-- Official W3C web standard, supported by all major browsers
-- Simplified protocol that covers common user interactions
-- Support for mobile automation (and even native desktop apps)
-- Can be used locally as well as in the cloud through services like [Sauce Labs](https://saucelabs.com)
-
-### Disadvantages
-
-- Not designed for in-depth browser analysis (e.g., tracing or intercepting network events)
-- Limited set of automation capabilities (e.g., no support to throttle CPU or network)
-- Additional effort to set up browser driver with selenium-standalone/chromedriver/etc

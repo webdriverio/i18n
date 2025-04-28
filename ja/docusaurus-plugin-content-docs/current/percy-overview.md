@@ -1,26 +1,26 @@
 ---
 id: percy-overview
-title: Unlocking Percy - An Overview
+title: Percyを活用する - 概要
 ---
 
-## Introduction
+## はじめに
 
-[Percy](https://percy.io/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) is an all-in-one visual testing and review platform. It captures screenshots, compares them against the baseline, and highlights visual changes. With increased visual coverage, teams can deploy code changes with confidence with every commit.
+[Percy](https://percy.io/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)は、オールインワンのビジュアルテストおよびレビュープラットフォームです。スクリーンショットをキャプチャし、ベースラインと比較して、視覚的な変更を強調表示します。視覚的なカバレッジを向上させることで、チームは自信を持って各コミットでコード変更をデプロイできます。
 
-WebdriverIO supports cross-browser visual testing natively using Percy and App Percy. You can use Percy for visual testing of website and native mobile applications.
-The benefits of utilizing Percy for visual testing include the following:
+WebdriverIOは、PercyとApp Percyを使用したクロスブラウザのビジュアルテストをネイティブにサポートしています。Percyを使用して、ウェブサイトとネイティブモバイルアプリケーションのビジュアルテストを行うことができます。
+ビジュアルテストにPercyを利用する利点には以下が含まれます：
 
-- Consistency: Promotes consistent user experience by identifying visual discrepancies early in the development process.
-- Efficiency: Improves efficiency by reducing the time and effort required to manually spot visual regressions.
-- Integrations: Percy integrates with popular tools and services like GitHub, GitLab, Bitbucket, and more.
-- Collaboration: Improves collaboration between developers, designers, and QA teams by providing a visual representation of changes.
-- Prevent regression: Prevents you from experiencing unintended visual regressions.
+- 一貫性：開発プロセスの早い段階で視覚的な不一致を特定することにより、一貫したユーザー体験を促進します。
+- 効率性：視覚的な回帰を手動で発見するために必要な時間と労力を削減することで、効率を向上させます。
+- 統合：PercyはGitHub、GitLab、Bitbucketなどの人気ツールやサービスと統合されています。
+- コラボレーション：変更の視覚的な表現を提供することで、開発者、デザイナー、QAチーム間のコラボレーションを改善します。
+- 回帰の防止：意図しない視覚的な回帰を経験することを防ぎます。
 
-## How does Percy work?
+## Percyはどのように機能しますか？
 
-Percy compares new snapshots against relevant baselines to detect visual changes. Percy manages baseline selection across branches so your tests are always relevant. If visual changes are detected, Percy highlights and groups the resulting differences for you to review.
+Percyは新しいスナップショットを関連するベースラインと比較して、視覚的な変更を検出します。Percyはブランチ間でベースライン選択を管理するため、テストは常に関連性があります。視覚的な変更が検出された場合、Percyはその差分を強調表示してグループ化し、レビューできるようにします。
 
-## Next steps
+## 次のステップ
 
-- [Use Percy for web applications](https://webdriver.io/docs/visual-testing/integrate-with-percy)
-- [Use App Percy for mobile applications](https://webdriver.io/docs/visual-testing/integrate-with-app-percy)
+- [ウェブアプリケーションにPercyを使用する](https://webdriver.io/docs/visual-testing/integrate-with-percy)
+- [モバイルアプリケーションにApp Percyを使用する](https://webdriver.io/docs/visual-testing/integrate-with-app-percy)

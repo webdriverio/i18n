@@ -1,33 +1,34 @@
 ---
 id: customcommands
-title: Custom Commands
+title: أوامر مخصصة
 ---
 
-If you want to extend the `browser` instance with your own set of commands, the browser method  `addCommand` is here for you. You can write your command in a asynchronous way, just as in your specs.
+إذا كنت ترغب في توسيع نطاق كائن `browser` بمجموعة الأوامر الخاصة بك، فإن طريقة المتصفح `addCommand` موجودة من أجلك. يمكنك كتابة الأمر الخاص بك بطريقة غير متزامنة، تمامًا كما في المواصفات الخاصة بك.
 
-## Parameters
+## المعلمات
 
-### Command Name
+### اسم الأمر
 
-A name that defines the command and will be attached to the browser or element scope.
+اسم يحدد الأمر وسيتم إرفاقه بنطاق المتصفح أو العنصر.
 
-Type: `String`
+النوع: `String`
 
-### Custom Function
+### الدالة المخصصة
 
-A function that is being executed when the command is called. The `this` scope is either [`WebdriverIO.Browser`](/docs/api/browser) or [`WebdriverIO.Element`](/docs/api/element) depending whether the command gets attached to the browser or element scope.
+دالة يتم تنفيذها عند استدعاء الأمر. نطاق `this` هو إما [`WebdriverIO.Browser`](/docs/api/browser) أو [`WebdriverIO.Element`](/docs/api/element) اعتمادًا على ما إذا كان الأمر مرتبطًا بنطاق المتصفح أو العنصر.
 
-Type: `Function`
+النوع: `Function`
 
-### Target Scope
+### نطاق الهدف
 
-Flag to decide whether to attach the command to the browser or element scope. If set to `true` the command will be an element command.
+علامة لتحديد ما إذا كان سيتم إرفاق الأمر بنطاق المتصفح أو العنصر. إذا تم تعيينه على `true`، فسيكون الأمر أمرًا للعنصر.
 
-Type: `Boolean`<br /> Default: `false`
+النوع: `Boolean`<br />
+الإفتراضي: `false`
 
-## Examples
+## أمثلة
 
-This example shows how to add a new command that returns the current URL and title as one result. The scope (`this`) is a [`WebdriverIO.Browser`](/docs/api/browser) object.
+يوضح هذا المثال كيفية إضافة أمر جديد يقوم بإرجاع عنوان URL الحالي والعنوان كنتيجة واحدة. النطاق (`this`) هو كائن [`WebdriverIO.Browser`](/docs/api/browser).
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
@@ -40,7 +41,7 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-Additionally, you can extend the element instance with your own set of commands, by passing `true` as the final argument. The scope (`this`) in this case is a [`WebdriverIO.Element`](/docs/api/element) object.
+بالإضافة إلى ذلك، يمكنك توسيع مثيل العنصر بمجموعة الأوامر الخاصة بك، من خلال تمرير `true` كوسيط نهائي. النطاق (`this`) في هذه الحالة هو كائن [`WebdriverIO.Element`](/docs/api/element).
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -50,9 +51,9 @@ browser.addCommand("waitAndClick", async function () {
 }, true)
 ```
 
-Custom commands give you the opportunity to bundle a specific sequence of commands you use frequently as a single call. You can define custom commands at any point in your test suite; just make sure that the command is defined *before* its first use. (The `before` hook in your `wdio.conf.js` is one good place to create them.)
+تتيح لك الأوامر المخصصة فرصة تجميع تسلسل محدد من الأوامر التي تستخدمها بشكل متكرر كاستدعاء واحد. يمكنك تحديد أوامر مخصصة في أي نقطة في مجموعة الاختبار الخاصة بك؛ فقط تأكد من تعريف الأمر *قبل* استخدامه لأول مرة. (خطاف `before` في ملف `wdio.conf.js` الخاص بك هو مكان جيد لإنشائها.)
 
-Once defined, you can use them as follows:
+بمجرد تعريفها، يمكنك استخدامها على النحو التالي:
 
 ```js
 it('should use my custom command', async () => {
@@ -65,7 +66,7 @@ it('should use my custom command', async () => {
 })
 ```
 
-__Note:__ If you register a custom command to the `browser` scope, the command won't be accessible for elements. Likewise, if you register a command to the element scope, it won't be accessible in the `browser` scope:
+__ملاحظة:__ إذا قمت بتسجيل أمر مخصص في نطاق `browser`، فلن يكون الأمر متاحًا للعناصر. وبالمثل، إذا قمت بتسجيل أمر في نطاق العنصر، فلن يكون متاحًا في نطاق `browser`:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
@@ -84,7 +85,7 @@ console.log(typeof browser.myCustomElementCommand2) // outputs "undefined"
 console.log(await elem3.myCustomElementCommand2('foobar')) // outputs "2"
 ```
 
-__Note:__ If you need to chain a custom command, the command should end with `$`,
+__ملاحظة:__ إذا كنت بحاجة إلى ربط أمر مخصص، يجب أن ينتهي الأمر بـ `$`,
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -92,15 +93,15 @@ browser.addCommand("user$", (locator) => { return ele }, true)
 await browser.user$('foo').user$('bar').click()
 ```
 
-Be careful to not overload the `browser` scope with too many custom commands.
+كن حذرًا من عدم إثقال نطاق `browser` بالكثير من الأوامر المخصصة.
 
-We recommend defining custom logic in [page objects](pageobjects), so they are bound to a specific page.
+نوصي بتحديد المنطق المخصص في [كائنات الصفحة](pageobjects)، بحيث تكون مرتبطة بصفحة محددة.
 
-### Multiremote
+### متعدد التحكم عن بعد
 
-`addCommand` works in a similar way for multiremote, except the new command will propagate down to the children instances. You have to be mindful when using `this` object since the multiremote `browser` and its children instances have different `this`.
+يعمل `addCommand` بطريقة مماثلة لـ multiremote، باستثناء أن الأمر الجديد سينتقل إلى مثيلات الأطفال. عليك أن تكون حذراً عند استخدام كائن `this` نظرًا لأن `browser` متعدد التحكم عن بعد ومثيلات أطفاله لهم مراجع `this` مختلفة.
 
-This example shows how to add a new command for multiremote.
+يوضح هذا المثال كيفية إضافة أمر جديد لـ multiremote.
 
 ```js
 import { multiremotebrowser } from '@wdio/globals'
@@ -138,21 +139,21 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 */
 ```
 
-## Extend Type Definitions
+## توسيع تعريفات النوع
 
-With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your custom commands like this:
+مع TypeScript، من السهل توسيع واجهات WebdriverIO. أضف أنواعًا إلى أوامرك المخصصة كما يلي:
 
-1. Create a type definition file (e.g., `./src/types/wdio.d.ts`)
-2. a. If using a module-style type definition file (using import/export and `declare global WebdriverIO` in the type definition file), make sure to include the file path in the `tsconfig.json` `include` property.
+1. أنشئ ملف تعريف نوع (مثل `./src/types/wdio.d.ts`)
+2. أ. إذا كنت تستخدم ملف تعريف نوع على نمط الوحدة (باستخدام import/export و `declare global WebdriverIO` في ملف تعريف النوع)، تأكد من تضمين مسار الملف في خاصية `include` في `tsconfig.json`.
 
-   b.  If using ambient-style type definition files (no import/export in type definition files and `declare namespace WebdriverIO` for custom commands), make sure the `tsconfig.json` does *not* contain any `include` section, since this will cause all type definition files not listed in the `include` section to not be recognized by typescript.
+   ب. إذا كنت تستخدم ملفات تعريف نوع محيطية (بدون import/export في ملفات تعريف النوع و `declare namespace WebdriverIO` للأوامر المخصصة)، تأكد من أن `tsconfig.json` *لا* يحتوي على أي قسم `include`، لأن هذا سيتسبب في عدم التعرف على جميع ملفات تعريف النوع غير المدرجة في قسم `include` بواسطة typescript.
 
 <Tabs
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -178,14 +179,14 @@ With TypeScript, it's easy to extend WebdriverIO interfaces. Add types to your c
 </TabItem>
 </Tabs>
 
-3. Add definitions for your commands according to your execution mode.
+3. أضف تعريفات لأوامرك وفقًا لوضع التنفيذ الخاص بك.
 
 <Tabs
   defaultValue="modules"
   values={[
     {label: 'Modules (using import/export)', value: 'modules'},
- {label: 'Ambient Type Definitions', value: 'ambient'},
- ]
+    {label: 'Ambient Type Definitions', value: 'ambient'},
+  ]
 }>
 <TabItem value="modules">
 
@@ -229,11 +230,11 @@ declare namespace WebdriverIO {
 </TabItem>
 </Tabs>
 
-## Integrate 3rd Party Libraries
+## دمج مكتبات الطرف الثالث
 
-If you use external libraries (e.g., to do database calls) that support promises, a nice approach to integrate them is to wrap certain API methods with a custom command.
+إذا كنت تستخدم مكتبات خارجية (على سبيل المثال، للقيام باستدعاءات قاعدة البيانات) التي تدعم الوعود، فإن نهجًا جيدًا لدمجها هو تغليف طرق API معينة بأمر مخصص.
 
-When returning the promise, WebdriverIO ensures that it doesn't continue with the next command until the promise is resolved. If the promise gets rejected, the command will throw an error.
+عند إرجاع الوعد، يضمن WebdriverIO أنه لن يستمر مع الأمر التالي حتى يتم حل الوعد. إذا تم رفض الوعد، سيلقي الأمر خطأً.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -242,7 +243,7 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-Then, just use it in your WDIO test specs:
+ثم، استخدمه في مواصفات اختبار WDIO الخاصة بك:
 
 ```js
 it('execute external library in a sync way', async () => {
@@ -252,17 +253,17 @@ it('execute external library in a sync way', async () => {
 })
 ```
 
-**Note:** The result of your custom command is the result of the promise you return.
+**ملاحظة:** نتيجة الأمر المخصص هي نتيجة الوعد الذي تقوم بإرجاعه.
 
-## Overwriting Commands
+## إعادة كتابة الأوامر
 
-You can also overwrite native commands with `overwriteCommand`.
+يمكنك أيضًا إعادة كتابة الأوامر الأصلية باستخدام `overwriteCommand`.
 
-It is not recommended to do this, because it may lead to unpredictable behavior of the framework!
+لا يُنصح بالقيام بذلك، لأنه قد يؤدي إلى سلوك غير متوقع للإطار!
 
-The overall approach is similar to `addCommand`, the only difference is that the first argument in the command function is the original function that you are about to overwrite. Please see some examples below.
+النهج العام مشابه لـ `addCommand`، الفرق الوحيد هو أن الوسيطة الأولى في دالة الأمر هي الدالة الأصلية التي أنت على وشك إعادة كتابتها. يرجى الاطلاع على بعض الأمثلة أدناه.
 
-### Overwriting Browser Commands
+### إعادة كتابة أوامر المتصفح
 
 ```js
 /**
@@ -280,9 +281,9 @@ browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### Overwriting Element Commands
+### إعادة كتابة أوامر العنصر
 
-Overwriting commands on element level is almost the same. Simply pass `true` as the third argument to `overwriteCommand`:
+إعادة كتابة الأوامر على مستوى العنصر تقريبًا نفس الشيء. ببساطة قم بتمرير `true` كوسيطة ثالثة إلى `overwriteCommand`:
 
 ```js
 /**
@@ -325,9 +326,9 @@ await elem.click()
 await elem.click({ force: true })
 ```
 
-## Add More WebDriver Commands
+## إضافة المزيد من أوامر WebDriver
 
-If you are using the WebDriver protocol and run tests on a platform that supports additional commands not defined by any of the protocol definitions in [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) you can manually add them through the `addCommand` interface. The `webdriver` package offers a command wrapper that allows to register these new endpoints in the same way as other commands, providing the same parameter checks and error handling. To register this new endpoint import the command wrapper and register a new command with it as follows:
+إذا كنت تستخدم بروتوكول WebDriver وتقوم بتشغيل اختبارات على منصة تدعم أوامر إضافية غير محددة بواسطة أي من تعريفات البروتوكول في [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) يمكنك إضافتها يدويًا من خلال واجهة `addCommand`. توفر حزمة `webdriver` مغلفًا للأوامر يسمح بتسجيل نقاط النهاية الجديدة هذه بنفس طريقة الأوامر الأخرى، مما يوفر نفس فحوصات المعلمات والتعامل مع الأخطاء. لتسجيل نقطة النهاية الجديدة هذه، قم باستيراد مغلف الأمر وتسجيل أمر جديد به كما يلي:
 
 ```js
 import { command } from 'webdriver'
@@ -349,7 +350,7 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-Calling this command with invalid parameters results in the same error handling as predefined protocol commands, e.g.:
+يؤدي استدعاء هذا الأمر بمعلمات غير صالحة إلى نفس معالجة الأخطاء مثل أوامر البروتوكول المحددة مسبقًا، على سبيل المثال:
 
 ```js
 // call command without required url parameter and payload
@@ -370,10 +371,10 @@ await browser.myNewCommand()
  */
 ```
 
-Calling the command correctly, e.g. `browser.myNewCommand('foo', 'bar')`, correctly makes a WebDriver request to e.g. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` with a payload like `{ foo: 'bar' }`.
+استدعاء الأمر بشكل صحيح، على سبيل المثال `browser.myNewCommand('foo', 'bar')`، يقوم بشكل صحيح بإجراء طلب WebDriver إلى على سبيل المثال `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` مع حمولة مثل `{ foo: 'bar' }`.
 
 :::note
-The `:sessionId` url parameter will be automatically substituted with the session id of the WebDriver session. Other url parameter can be applied but need to be defined within `variables`.
+سيتم استبدال معلمة عنوان URL `:sessionId` تلقائيًا بمعرف جلسة WebDriver. يمكن تطبيق معلمات عنوان URL الأخرى ولكن يجب تعريفها ضمن `variables`.
 :::
 
-See examples of how protocol commands can be defined in the [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) package.
+انظر أمثلة على كيفية تعريف أوامر البروتوكول في حزمة [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).

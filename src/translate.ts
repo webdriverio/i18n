@@ -64,11 +64,18 @@ const latestBatchId = await client.beta.messages.batches.list({
  * @param language - the language to translate to
  */
 async function updateCache(cacheKey: string, contentShasum: string, language: string) {
-    const { languages } = translationCache[cacheKey] || { languages: [] };
-    translationCache[cacheKey] = {
+    /**
+     * re-import the cache file to ensure we're working with the latest data
+     * as there could be other processes writing to the cache file
+     */
+    const cacheFile = await fs.readFile(CACHE_FILE_PATH, 'utf-8');
+    const cache = JSON.parse(cacheFile) as unknown as Map<string, CacheEntry>;
+    const { languages } = cache[cacheKey] || { languages: [] };
+    cache[cacheKey] = {
         hash: contentShasum,
         languages: Array.from(new Set([...languages, language]))
     } as CacheEntry;
+    await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(cache, null, 2), 'utf-8');
 }
 
 // Calculate SHA-256 hash of content

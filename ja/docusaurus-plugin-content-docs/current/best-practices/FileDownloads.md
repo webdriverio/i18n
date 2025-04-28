@@ -1,43 +1,43 @@
 ---
 id: file-download
-title: File Download
+title: ファイルのダウンロード
 ---
 
-When automating file downloads in web testing, it's essential to handle them consistently across different browsers to ensure reliable test execution.
+Webテストでファイルのダウンロードを自動化する場合、信頼性の高いテスト実行を保証するために、異なるブラウザ間で一貫した方法で処理することが不可欠です。
 
-Here, we provide best practices for file downloads and demonstrate how to configure download directories for **Google Chrome**, **Mozilla Firefox**, and **Microsoft Edge**.
+ここでは、ファイルのダウンロードに関するベストプラクティスを提供し、**Google Chrome**、**Mozilla Firefox**、**Microsoft Edge**のダウンロードディレクトリを設定する方法を示します。
 
-## Download Paths
+## ダウンロードパス
 
-**Hardcoding** download paths in test scripts can lead to maintenance issues and portability problems. Utilize **relative paths** for download directories to ensure portability and compatibility across different environments.
+テストスクリプトでダウンロードパスを**ハードコーディング**すると、メンテナンスの問題や移植性の問題が発生する可能性があります。異なる環境間での移植性と互換性を確保するために、ダウンロードディレクトリには**相対パス**を使用しましょう。
 
 ```javascript
 // 👎
-// Hardcoded download path
+// ハードコードされたダウンロードパス
 const downloadPath = '/path/to/downloads';
 
 // 👍
-// Relative download path
+// 相対ダウンロードパス
 const downloadPath = path.join(__dirname, 'downloads');
 ```
 
-## Wait Strategies
+## 待機戦略
 
-Failing to implement proper wait strategies can lead to race conditions or unreliable tests, especially for download completion. Implement **explicit** wait strategies to wait for file downloads to complete, ensuring synchronization between test steps.
+適切な待機戦略を実装しないと、特にダウンロード完了の際に競合状態や信頼性の低いテストが発生する可能性があります。ファイルのダウンロードが完了するまで待機するために、**明示的な**待機戦略を実装し、テストステップ間の同期を確保します。
 
 ```javascript
 // 👎
-// No explicit wait for download completion
+// ダウンロード完了を待機しない
 await browser.pause(5000);
 
 // 👍
-// Wait for file download completion
+// ファイルダウンロードの完了を待機
 await waitUntil(async ()=> await fs.existsSync(downloadPath), 5000);
 ```
 
-## Configuring Download Directories
+## ダウンロードディレクトリの設定
 
-To override file download behavior for **Google Chrome**, **Mozilla Firefox**, and **Microsoft Edge**, provide the download directory in the WebDriverIO capabilities:
+**Google Chrome**、**Mozilla Firefox**、**Microsoft Edge**のファイルダウンロード動作をオーバーライドするには、WebDriverIOのケーパビリティでダウンロードディレクトリを指定します：
 
 <Tabs
 defaultValue="chrome"
@@ -80,32 +80,32 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 </Tabs>
 
-For an example implementation, refer to the [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
+実装例については、[WebdriverIOテストダウンロード動作レシピ](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior)を参照してください。
 
-## Configuring Chromium Browser Downloads
+## Chromiumブラウザのダウンロード設定
 
-To change the download path for __Chromium-based__ browsers (such as Chrome, Edge, Brave, etc.) using WebDriverIOs `getPuppeteer` method for accessing Chrome DevTools.
+WebDriverIOの`getPuppeteer`メソッドを使用してChrome DevToolsにアクセスし、__Chromium系__ブラウザ（Chrome、Edge、Braveなど）のダウンロードパスを変更します。
 
 ```javascript
 const page = await browser.getPuppeteer();
-// Initiate a CDP Session:
+// CDPセッションを開始：
 const cdpSession = await page.target().createCDPSession();
-// Set the Download Path:
+// ダウンロードパスを設定：
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Handling Multiple File Downloads
+## 複数ファイルのダウンロード処理
 
-When dealing with scenarios involving multiple file downloads, it's essential to implement strategies to manage and validate each download effectively. Consider the following approaches:
+複数のファイルダウンロードを伴うシナリオでは、各ダウンロードを効果的に管理および検証するための戦略を実装することが不可欠です。以下のアプローチを検討してください：
 
-__Sequential Download Handling:__ Download files one by one and verify each download before initiating the next one to ensure orderly execution and accurate validation.
+__順次ダウンロード処理：__ ファイルを1つずつダウンロードし、次のダウンロードを開始する前に各ダウンロードを確認して、順序正しい実行と正確な検証を確保します。
 
-__Parallel Download Handling:__ Utilize asynchronous programming techniques to initiate multiple file downloads simultaneously, optimizing test execution time. Implement robust validation mechanisms to verify all downloads upon completion.
+__並列ダウンロード処理：__ 非同期プログラミング技術を活用して複数のファイルダウンロードを同時に開始し、テスト実行時間を最適化します。すべてのダウンロードが完了したら検証する堅牢な検証メカニズムを実装します。
 
-## Cross-Browser Compatibility Considerations
+## クロスブラウザ互換性の考慮事項
 
-While WebDriverIO provides a unified interface for browser automation, it's essential to account for variations in browser behavior and capabilities. Consider testing your file download functionality across different browsers to ensure compatibility and consistency.
+WebDriverIOはブラウザ自動化のための統一インターフェースを提供していますが、ブラウザの動作や機能の違いを考慮することが重要です。互換性と一貫性を確保するために、異なるブラウザでファイルダウンロード機能をテストすることを検討してください。
 
-__Browser-Specific Configurations:__ Adjust download path settings and wait strategies to accommodate differences in browser behavior and preferences across Chrome, Firefox, Edge, and other supported browsers.
+__ブラウザ固有の設定：__ Chrome、Firefox、Edgeなど、サポートされているブラウザ間での動作や設定の違いに対応するために、ダウンロードパスの設定や待機戦略を調整します。
 
-__Browser Version Compatibility:__ Regularly update your WebDriverIO and browser versions to leverage the latest features and enhancements while ensuring compatibility with your existing test suite.
+__ブラウザバージョンの互換性：__ 最新の機能や拡張機能を活用しながら、既存のテストスイートとの互換性を確保するために、WebDriverIOとブラウザのバージョンを定期的に更新します。

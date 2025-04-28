@@ -1,117 +1,120 @@
 ---
 id: component-testing
-title: Component Testing
+title: コンポーネントテスト
 ---
 
-With WebdriverIOs [Browser Runner](/docs/runner#browser-runner) you can run tests within an actual desktop or mobile browser while using WebdriverIO and the WebDriver protocol to automate and interact what gets rendered on the page. This approach has [many advantages](/docs/runner#browser-runner) compared to other test frameworks that only allow testing against [JSDOM](https://www.npmjs.com/package/jsdom).
+WebdriverIOの[ブラウザランナー](/docs/runner#browser-runner)を使用すると、WebdriverIOとWebDriverプロトコルを使用して、実際のデスクトップまたはモバイルブラウザ内でテストを実行し、ページにレンダリングされる内容を自動化および操作できます。このアプローチは、[JSDOM](https://www.npmjs.com/package/jsdom)に対してのみテストを許可する他のテストフレームワークと比較して[多くの利点](/docs/runner#browser-runner)があります。
 
-## How does it Work?
+## どのように機能するのか？
 
-The Browser Runner uses [Vite](https://vitejs.dev/) to render a test page and initialize a test framework to run your tests in the browser. Currently it only supports Mocha but Jasmine and Cucumber are [on the roadmap](https://github.com/orgs/webdriverio/projects/1). This allows to test any kind of components even for projects that don't use Vite.
+ブラウザランナーは[Vite](https://vitejs.dev/)を使用してテストページをレンダリングし、ブラウザでテストを実行するためのテストフレームワークを初期化します。現在はMochaのみをサポートしていますが、JasmineとCucumberは[ロードマップ上](https://github.com/orgs/webdriverio/projects/1)にあります。これにより、Viteを使用していないプロジェクトでも、あらゆる種類のコンポーネントをテストできます。
 
-The Vite server is started by the WebdriverIO testrunner and configured so that you can use all reporter and services as you used to for normal e2e tests. Furthermore it initializes a [`browser`](/docs/api/browser) instance that allows you to access a subset of the [WebdriverIO API](/docs/api) to interact with the any elements on the page. Similar as e2e tests you can access that instance through the `browser` variable attached to the global scope or by importing it from `@wdio/globals` depending on how [`injectGlobals`](/docs/api/globals) is set.
+ViteサーバーはWebdriverIOテストランナーによって起動され、通常のe2eテストのように、すべてのレポーターとサービスを使用できるように構成されています。さらに、ページ上の任意の要素と対話するために[WebdriverIO API](/docs/api)のサブセットにアクセスできる[`browser`](/docs/api/browser)インスタンスを初期化します。e2eテストと同様に、グローバルスコープにアタッチされた`browser`変数を通じて、または[`injectGlobals`](/docs/api/globals)の設定に応じて`@wdio/globals`からインポートすることでそのインスタンスにアクセスできます。
 
-WebdriverIO has built-in support for the following frameworks:
+WebdriverIOは以下のフレームワークに対する組み込みサポートを提供しています：
 
-- [__Nuxt__](https://nuxt.com/): WebdriverIO's testrunner detects a Nuxt application and automatically sets up your project composables and helps mock out the Nuxt backend, read more in the [Nuxt docs](/docs/component-testing/vue#testing-vue-components-in-nuxt)
-- [__TailwindCSS__](https://tailwindcss.com/): WebdriverIO's testrunner detects if you are using TailwindCSS and loads the environment properly into the test page
+- [__Nuxt__](https://nuxt.com/): WebdriverIOのテストランナーはNuxtアプリケーションを検出し、自動的にプロジェクトのコンポーザブルをセットアップし、Nuxtバックエンドのモック作成を支援します。詳細は[Nuxtドキュメント](/docs/component-testing/vue#testing-vue-components-in-nuxt)をご覧ください。
+- [__TailwindCSS__](https://tailwindcss.com/): WebdriverIOのテストランナーはTailwindCSSを使用しているかどうかを検出し、環境を適切にテストページに読み込みます。
 
-## Setup
+## セットアップ
 
-To set-up WebdriverIO for unit or component testing in the browser, initiate a new WebdriverIO project via:
+ブラウザでユニットテストやコンポーネントテストを行うためにWebdriverIOをセットアップするには、以下のコマンドで新しいWebdriverIOプロジェクトを開始します：
 
 ```bash
 npm init wdio@latest ./
-# or
+# または
 yarn create wdio ./
 ```
 
-Once the configuration wizard starts, pick `browser` for running unit and component testing and choose one of the presets if desired otherwise go with _"Other"_ if you only want to run basic unit tests. You can also configure a custom Vite configuration if you use Vite already in your project. For more information check out all [runner options](/docs/runner#runner-options).
+設定ウィザードが開始したら、ユニットテストとコンポーネントテストを実行するために`browser`を選択し、必要に応じてプリセットの1つを選ぶか、基本的なユニットテストのみを実行したい場合は「Other」を選択します。プロジェクトですでにViteを使用している場合は、カスタムVite設定を構成することもできます。詳細については、すべての[ランナーオプション](/docs/runner#runner-options)をご確認ください。
 
 :::info
 
-__Note:__ WebdriverIO by default will run browser tests in CI headlessly, e.g. a `CI` environment variable is set to `'1'` or `'true'`. You can manually configure this behavior using the [`headless`](/docs/runner#headless) option for the runner.
+__注意:__ WebdriverIOはデフォルトでCIでブラウザテストをヘッドレスモードで実行します（例えば、`CI`環境変数が`'1'`または`'true'`に設定されている場合）。ランナーの[`headless`](/docs/runner#headless)オプションを使用して、この動作を手動で設定できます。
 
 :::
 
-At the end of this process you should find a `wdio.conf.js` that contains various WebdriverIO configurations, including a `runner` property, e.g.:
+このプロセスの最後に、`wdio.conf.js`が作成され、`runner`プロパティを含むさまざまなWebdriverIOの設定が含まれています：
 
 ```ts reference useHTTPS runmeRepository="git@github.com:webdriverio/example-recipes.git" runmeFileToOpen="component-testing%2FREADME.md"
 https://github.com/webdriverio/example-recipes/blob/fd54f94306ed8e7b40f967739164dfe4d6d76b41/wdio.comp.conf.js
 ```
 
-By defining different [capabilities](/docs/configuration#capabilities) you can run your tests in different browser, in parallel if desired.
+異なる[capabilities](/docs/configuration#capabilities)を定義することで、異なるブラウザでテストを実行でき、必要に応じて並行実行も可能です。
 
-If you are still unsure how everything works, watch the following tutorial on how to get started with Component Testing in WebdriverIO:
+まだ動作の詳細が不明な場合は、WebdriverIOでのコンポーネントテストの始め方に関する以下のチュートリアルをご覧ください：
 
-<LiteYouTubeEmbed id="5vp_3tGtnMc" title="Getting Started with Component Testing in WebdriverIO" />
+<LiteYouTubeEmbed
+    id="5vp_3tGtnMc"
+    title="Getting Started with Component Testing in WebdriverIO"
+/>
 
-## Test Harness
+## テストハーネス
 
-It is totally up to you what you want to run in your tests and how you like to render the components. However we recommend to use the [Testing Library](https://testing-library.com/) as utility framework as it provides plugins for various of component frameworks, such as React, Preact, Svelte and Vue. It is very useful for rendering components into the test page and it automatically cleans up these components after every test.
+テストで何を実行し、コンポーネントをどのようにレンダリングするかは完全にあなた次第です。ただし、ユーティリティフレームワークとして[Testing Library](https://testing-library.com/)を使用することをお勧めします。これは、React、Preact、SvelteやVueなど、さまざまなコンポーネントフレームワーク用のプラグインを提供しています。コンポーネントをテストページにレンダリングするのに非常に便利で、各テスト後にこれらのコンポーネントを自動的にクリーンアップします。
 
-You can mix Testing Library primitives with WebdriverIO commands as you wish, e.g.:
+Testing LibraryのプリミティブとWebdriverIOコマンドを自由に組み合わせることができます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fd54f94306ed8e7b40f967739164dfe4d6d76b41/component-testing/svelte-example.js
 ```
 
-__Note:__ using render methods from Testing Library helps remove created components between the tests. If you don't use Testing Library ensure to attach your test components to a container that gets cleaned up between tests.
+__注意:__ Testing Libraryのレンダーメソッドを使用すると、テスト間で作成されたコンポーネントを削除するのに役立ちます。Testing Libraryを使用しない場合は、テスト間でクリーンアップされるコンテナにテストコンポーネントをアタッチするようにしてください。
 
-## Setup Scripts
+## セットアップスクリプト
 
-You can set up your tests by running arbitrary scripts in Node.js or in the browser, e.g. injecting styles, mocking browser APIs or connecting to a 3rd party service. The WebdriverIO [hooks](/docs/configuration#hooks) can be used to run code in Node.js while the [`mochaOpts.require`](/docs/frameworks#require) allows you to import scripts into the browser before tests are loaded, e.g.:
+Node.jsやブラウザで任意のスクリプトを実行してテストをセットアップできます。例えば、スタイルの注入、ブラウザAPIのモック化、サードパーティサービスへの接続などが可能です。WebdriverIOの[フック](/docs/configuration#hooks)を使用してNode.jsでコードを実行し、[`mochaOpts.require`](/docs/frameworks#require)を使用してテストがロードされる前にスクリプトをブラウザにインポートできます：
 
 ```js wdio.conf.js
 export const config = {
     // ...
     mochaOpts: {
         ui: 'tdd',
-        // provide a setup script to run in the browser
+        // ブラウザで実行するセットアップスクリプトを提供
         require: './__fixtures__/setup.js'
     },
     before: () => {
-        // set up test environment in Node.js
+        // Node.jsでテスト環境をセットアップ
     }
     // ...
 }
 ```
 
-For example, if you like to mock all [`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch) calls in your test with the following set-up script:
+例えば、テスト内のすべての[`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/fetch)呼び出しを次のようなセットアップスクリプトでモック化するには：
 
 ```js ./fixtures/setup.js
 import { fn } from '@wdio/browser-runner'
 
-// run code before all tests are loaded
+// すべてのテストがロードされる前にコードを実行
 window.fetch = fn()
 
 export const mochaGlobalSetup = () => {
-    // run code after test file is loaded
+    // テストファイルがロードされた後にコードを実行
 }
 
 export const mochaGlobalTeardown = () => {
-    // run code after spec file was executed
+    // 仕様ファイルが実行された後にコードを実行
 }
 
 ```
 
-Now in your tests you can provide custom response values for all browser requests. Read more on global fixtures in the [Mocha docs](https://mochajs.org/#global-fixtures).
+これで、テスト内ですべてのブラウザリクエストに対してカスタムレスポンス値を提供できます。グローバルフィクスチャの詳細については、[Mochaドキュメント](https://mochajs.org/#global-fixtures)をご覧ください。
 
-## Watch Test and Application Files
+## テストとアプリケーションファイルの監視
 
-There are multiple ways how you can debug your browser tests. The easiest is to start the WebdriverIO testrunner with the `--watch` flag, e.g.:
+ブラウザテストをデバッグするにはいくつかの方法があります。最も簡単なのは、`--watch`フラグを付けてWebdriverIOテストランナーを起動することです：
 
 ```sh
 $ npx wdio run ./wdio.conf.js --watch
 ```
 
-This will run through all tests initially and halt once all are run. You can then make changes to individual files which then will be rerun individually. If you set a [`filesToWatch`](/docs/configuration#filestowatch) pointing to your application files, it will re-run all tests when changes to your app are being made.
+これにより、最初にすべてのテストが実行され、すべてが実行されると停止します。その後、個々のファイルに変更を加えると、それらが個別に再実行されます。アプリケーションファイルを指す[`filesToWatch`](/docs/configuration#filestowatch)を設定すると、アプリに変更が加えられると、すべてのテストが再実行されます。
 
-## Debugging
+## デバッグ
 
-While it is not (yet) possible to set breakpoints in your IDE and have them being recognized by the remote browser, you can use the [`debug`](/docs/api/browser/debug) command to stop the test at any point. This allows you to open DevTools to then debug the test by setting breakpoints in the [sources tab](https://buddy.works/tutorials/debugging-javascript-efficiently-with-chrome-devtools).
+IDEでブレークポイントを設定してリモートブラウザで認識させることは（まだ）できませんが、[`debug`](/docs/api/browser/debug)コマンドを使用して任意の時点でテストを停止することができます。これにより、DevToolsを開いて[ソースタブ](https://buddy.works/tutorials/debugging-javascript-efficiently-with-chrome-devtools)でブレークポイントを設定し、テストをデバッグすることができます。
 
-When the `debug` command is called, you will also get a Node.js repl interface in your terminal, saying:
+`debug`コマンドが呼び出されると、ターミナルにNode.jsのrepl（対話型）インターフェースが表示されます：
 
 ```
 The execution has stopped!
@@ -119,23 +122,23 @@ You can now go into the browser or use the command line as REPL
 (To exit, press ^C again or type .exit)
 ```
 
-Press `Ctrl` or `Command` + `c` or enter `.exit` to continue with the test.
+テストを続行するには、`Ctrl`または`Command` + `c`を押すか、`.exit`を入力します。
 
-## Run using a Selenium Grid
+## Selenium Gridを使用して実行
 
-If you have a [Selenium Grid](https://www.selenium.dev/documentation/grid/) set up and run your browser through that grid, you have to set the `host` browser runner option to allow the browser, to access the right host where the test files are being served, e.g.:
+[Selenium Grid](https://www.selenium.dev/documentation/grid/)を設定してそのグリッド経由でブラウザを実行する場合は、テストファイルが提供されている正しいホストにブラウザがアクセスできるように、`host`ブラウザランナーオプションを設定する必要があります：
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
     runner: ['browser', {
-        // network IP of the machine that runs the WebdriverIO process
+        // WebdriverIOプロセスを実行するマシンのネットワークIP
         host: 'http://172.168.0.2'
     }]
 }
 ```
 
-This will ensure the browser correctly opens the right server instance hosted on the instance that runs the WebdriverIO tests.
+これにより、ブラウザがWebdriverIOテストを実行するインスタンスでホストされている正しいサーバーインスタンスを開くようになります。
 
-## Examples
+## 例
 
-You can find various examples for testing components using popular component frameworks in our [example repository](https://github.com/webdriverio/component-testing-examples).
+人気のあるコンポーネントフレームワークを使用したコンポーネントテストのさまざまな例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples)で確認できます。

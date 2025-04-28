@@ -1,78 +1,78 @@
 ---
 id: ocr-faq
-title: Frequently Asked Questions
+title: よくある質問
 ---
 
-## My tests are very slow
+## テストが非常に遅い
 
-When you are using this `@wdio/ocr-service` you are not using it to speed up your tests, you use it because you have a hard time locating elements in your web/mobile app, and you want an easier way to locate them. And we all hopefully know that when you want something, you lose something else. **But....**, there is a way to make the `@wdio/ocr-service` execute faster than normal. More information about that can be found [here](./more-test-optimization).
+この `@wdio/ocr-service` を使用するとき、テストを高速化するためではなく、Web/モバイルアプリでの要素の特定が難しく、より簡単に要素を特定する方法が欲しいために使用します。何かを得る時には別の何かを失うということは皆さんご存知でしょう。**ただし...** 通常よりも速く `@wdio/ocr-service` を実行する方法があります。詳細は[こちら](./more-test-optimization)をご覧ください。
 
-## Can I use the commands from this service with the default WebdriverIO commands/selectors?
+## このサービスのコマンドをデフォルトのWebdriverIOコマンド/セレクタと一緒に使用できますか？
 
-Yes, you can combine the commands to make your script even more powerful! The advice is to use the default WebdriverIO commands/selectors as much as possible and only use this service when you can't find a unique selector, or your selector will become too brittle.
+はい、コマンドを組み合わせてスクリプトをさらに強力にすることができます！アドバイスとしては、できるだけデフォルトのWebdriverIOコマンド/セレクタを使用し、一意のセレクタが見つからない場合や、セレクタが非常に脆弱になりそうな場合にのみこのサービスを使用することです。
 
-## My text isn't found, how is that possible?
+## テキストが見つからないのはなぜですか？
 
-First, it's important to understand how the OCR process in this module works, so please read [this](./ocr-testing) page. If you still can't find your text, you might try the following things.
+まず、このモジュールでのOCRプロセスがどのように機能するかを理解することが重要です。[こちら](./ocr-testing)のページをお読みください。それでもテキストが見つからない場合は、以下のことを試してみてください。
 
-### The image area is too big
+### 画像の領域が大きすぎる
 
-When the module needs to process a large area of the screenshot it might not find the text. You can provide a smaller area by providing a haystack when you use a command. Please check the [commands](./ocr-click-on-text) which commands support providing a haystack.
+モジュールがスクリーンショットの広い領域を処理する必要がある場合、テキストが見つからないことがあります。コマンドを使用する際に、haystackを提供することで、より小さな領域を指定できます。haystackの提供をサポートするコマンドについては[コマンド](./ocr-click-on-text)をご確認ください。
 
-### The contrast between the text and background is not correct
+### テキストと背景のコントラストが適切でない
 
-This means that you might have light text on a white background or dark text on a dark background. This can result in not being able to find text. In the examples below you can see that the text `Why WebdriverIO?` is white and surrounded by a grey button. In this case, it will result in not finding the `Why WebdriverIO?` text. By increasing the contrast for the specific command it finds the text and can click on it, see the second image.
+これは、白い背景に薄いテキストや、暗い背景に暗いテキストがある場合に発生することがあります。これによりテキストが見つからない結果になることがあります。以下の例では、`Why WebdriverIO?`というテキストが白色で、グレーのボタンに囲まれています。この場合、`Why WebdriverIO?`というテキストは見つかりません。特定のコマンドのコントラストを上げることで、テキストを見つけてクリックすることができます。2番目の画像を参照してください。
 
 ```js
 await driver.ocrClickOnText({
     haystack: { height: 44, width: 1108, x: 129, y: 590 },
     text: "WebdriverIO?",
-    // // With the default contrast of 0.25, the text is not found
+    // // デフォルトのコントラスト0.25では、テキストが見つかりません
     contrast: 1,
 });
 ```
 
-![Contrast issues](/img/ocr/increased-contrast.jpg)
+![コントラストの問題](/img/ocr/increased-contrast.jpg)
 
-## Why is my element getting clicked but the keyboard on my mobile devices never pops up?
+## 要素をクリックしてもモバイルデバイスのキーボードが表示されないのはなぜですか？
 
-This can happen on some text fields where the click is determined too long and considered a long tap. You can use the `clickDuration` option on [`ocrClickOnText`](./ocr-click-on-text) and [`ocrSetValue`](./ocr-set-value) to alleviate this. See [here](./ocr-click-on-text#options).
+これは一部のテキストフィールドで、クリックが長すぎると判断され、長押しと見なされる場合に発生することがあります。[`ocrClickOnText`](./ocr-click-on-text)と[`ocrSetValue`](./ocr-set-value)の`clickDuration`オプションを使用してこれを緩和できます。[こちら](./ocr-click-on-text#options)を参照してください。
 
-## Can this module provide multiple elements back like WebdriverIO normally can do?
+## このモジュールは通常のWebdriverIOのように複数の要素を返すことはできますか？
 
-No, this is currently not possible. If the module finds multiple elements that match the provided selector it will automatically find the element that has the highest matching score.
+いいえ、現在それは不可能です。モジュールが提供されたセレクタに一致する複数の要素を見つけた場合、自動的に最も高いマッチングスコアを持つ要素を見つけます。
 
-## Can I fully automate my app with the OCR commands provided by this service?
+## このサービスが提供するOCRコマンドでアプリを完全に自動化できますか？
 
-I've never done it, but in theory, it should be possible. Please let us know if you succeed with that ☺️.
+私はやったことがありませんが、理論的には可能なはずです。成功した場合は、ぜひお知らせください☺️。
 
-## I see an extra file called `{languageCode}.traineddata` being added, what is this?
+## `{languageCode}.traineddata`という追加ファイルが表示されますが、これは何ですか？
 
-`{languageCode}.traineddata` is a language data file used by Tesseract. It contains the training data for the selected language, which includes the necessary information for Tesseract to recognize English characters and words effectively.
+`{languageCode}.traineddata`はTesseractが使用する言語データファイルです。選択した言語のトレーニングデータが含まれており、Tesseractが英語の文字や単語を効果的に認識するために必要な情報が含まれています。
 
-### Contents of `{languageCode}.traineddata`
+### `{languageCode}.traineddata`の内容
 
-The file generally contains:
+このファイルには一般的に以下が含まれています：
 
-1. **Character Set Data:** Information about the characters in the English language.
-2. **Language Model:** A statistical model of how characters form words and words form sentences.
-3. **Feature Extractors:** Data on how to extract features from images for the recognition of characters.
-4. **Training Data:** Data derived from training Tesseract on a large set of English text images.
+1. **文字セットデータ：** 英語言語の文字に関する情報。
+1. **言語モデル：** 文字がどのように単語を形成し、単語がどのように文を形成するかの統計モデル。
+1. **特徴抽出器：** 文字認識のために画像から特徴を抽出する方法に関するデータ。
+1. **トレーニングデータ：** 大量の英語テキスト画像でTesseractをトレーニングして得られたデータ。
 
-### Why is the `{languageCode}.traineddata` Important?
+### なぜ`{languageCode}.traineddata`が重要なのですか？
 
-1. **Language Recognition:** Tesseract relies on these trained data files to accurately recognize and process text in a specific language. Without `{languageCode}.traineddata`, Tesseract would not be able to recognize English text.
-2. **Performance:** The quality and accuracy of OCR are directly related to the quality of the training data. Using the correct trained data file ensures that the OCR process is as accurate as possible.
-3. **Compatibility:** Ensuring that the `{languageCode}.traineddata` file is included in your project making it easier to replicate the OCR environment across different systems or team members' machines.
+1. **言語認識：** Tesseractは特定の言語でテキストを正確に認識し処理するために、これらのトレーニングデータファイルに依存しています。`{languageCode}.traineddata`がなければ、Tesseractは英語テキストを認識できません。
+1. **パフォーマンス：** OCRの品質と精度は、トレーニングデータの品質に直接関係しています。正しいトレーニングデータファイルを使用することで、OCRプロセスができるだけ正確であることを保証します。
+1. **互換性：** プロジェクトに`{languageCode}.traineddata`ファイルを含めることで、異なるシステムやチームメンバーのマシン間でOCR環境を複製しやすくなります。
 
-### Versioning `{languageCode}.traineddata`
+### `{languageCode}.traineddata`のバージョン管理
 
-Including `{languageCode}.traineddata` in your version control system is recommended for the following reasons:
+`{languageCode}.traineddata`をバージョン管理システムに含めることは以下の理由で推奨されます：
 
-1. **Consistency:** It ensures that all team members or deployment environments use the exact same version of the training data, leading to consistent OCR results across different environments.
-2. **Reproducibility:** Storing this file in version control makes it easier to reproduce results when running the OCR process at a later date or on a different machine.
-3. **Dependency Management:** Including it in the version control system helps in managing dependencies and ensures that any setup or environment configuration includes the necessary files for the project to run correctly.
+1. **一貫性：** すべてのチームメンバーまたはデプロイメント環境が同じバージョンのトレーニングデータを使用することを保証し、異なる環境間で一貫したOCR結果をもたらします。
+1. **再現性：** このファイルをバージョン管理に保存することで、後日または別のマシンでOCRプロセスを実行する際に結果を再現しやすくなります。
+1. **依存関係管理：** バージョン管理システムに含めることで、依存関係の管理に役立ち、セットアップや環境構成にプロジェクトを正しく実行するために必要なファイルが含まれていることを保証します。
 
-## Is there an easy way to see which text is found on my screen without running a test?
+## テストを実行せずに画面で見つかるテキストを簡単に確認する方法はありますか？
 
-Yes, you can use our CLI wizard for that. Documentation can be found [here](./cli-wizard)
+はい、CLIウィザードを使用できます。ドキュメントは[こちら](./cli-wizard)にあります。

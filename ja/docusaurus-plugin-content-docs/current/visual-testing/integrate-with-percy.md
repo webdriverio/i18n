@@ -1,22 +1,21 @@
 ---
 id: integrate-with-percy
-title: For Web Application
+title: Webアプリケーション向け
 ---
 
-## Integrate your WebdriverIO tests with Percy
+## WebdriverIOテストをPercyと統合する
 
-Before integration, you can explore [Percy’s sample build tutorial for WebdriverIO](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
-Integrate your WebdriverIO automated tests with BrowserStack Percy and here's an overview of the integration steps:
+統合の前に、[WebdriverIO向けPercyのサンプルビルドチュートリアル](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)を確認することができます。
+WebdriverIOの自動テストをBrowserStack Percyと統合する手順の概要は以下の通りです：
 
-### Step 1: Create a Percy project
+### ステップ1：Percyプロジェクトを作成する
+Percyに[サインイン](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)します。Percyで、Webタイプのプロジェクトを作成し、プロジェクトに名前を付けます。プロジェクトが作成されると、Percyはトークンを生成します。このトークンをメモしておきましょう。次のステップで環境変数を設定する際に使用します。
 
-[Sign in](https://percy.io/signup/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) to Percy. In Percy, create a project of the type, Web, and then name the project. After the project is created, Percy generates a token. Make a note of it. You have to use it to set your environment variable in the next step.
+プロジェクト作成の詳細については、[Percyプロジェクトの作成](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)を参照してください。
 
-For details on creating a project, see [Create a Percy project](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+### ステップ2：プロジェクトトークンを環境変数として設定する
 
-### Step 2: Set the project token as an environment variable
-
-Run the given command to set PERCY_TOKEN as an environment variable:
+以下のコマンドを実行してPERCY_TOKENを環境変数として設定します：
 
 ```sh
 export PERCY_TOKEN="<your token here>"   // macOS or Linux
@@ -24,20 +23,20 @@ $Env:PERCY_TOKEN="<your token here>"   // Windows PowerShell
 set PERCY_TOKEN="<your token here>"    // Windows CMD
 ```
 
-### Step 3: Install Percy dependencies
+### ステップ3：Percy依存関係をインストールする
 
-Install the components required to establish the integration environment for your test suite.
+テストスイートの統合環境を確立するために必要なコンポーネントをインストールします。
 
-To install the dependencies, run the following command:
+依存関係をインストールするには、次のコマンドを実行します：
 
 ```sh
 npm install --save-dev @percy/cli @percy/webdriverio
 ```
 
-### Step 4: Update your test script
+### ステップ4：テストスクリプトを更新する
 
-Import the Percy library to use the method and attributes required to take screenshots.
-The following example uses the percySnapshot() function in the async mode:
+スクリーンショットを撮るために必要なメソッドと属性を使用するためにPercyライブラリをインポートします。
+以下の例では、非同期モードでpercySnapshot()関数を使用しています：
 
 ```sh
 import percySnapshot from '@percy/webdriverio';
@@ -50,7 +49,7 @@ describe('webdriver.io page', () => {
 });
 ```
 
-When using WebdriverIO in the [standalone mode](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation), provide the browser object as the first argument to the `percySnapshot` function:
+WebdriverIOを[スタンドアロンモード](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)で使用する場合は、ブラウザオブジェクトを`percySnapshot`関数の最初の引数として提供します：
 
 ```sh
 import { remote } from 'webdriverio'
@@ -73,30 +72,27 @@ await submitBtn.click();
 percySnapshot(browser, 'WebdriverIO at DuckDuckGo');
 await browser.deleteSession();
 ```
-
-The snapshot method arguments are:
+スナップショットメソッドの引数は次のとおりです：
 
 ```sh
 percySnapshot(name[, options])
 ```
-
-### Standalone mode
+### スタンドアロンモード
 
 ```sh
 percySnapshot(browser, name[, options])
 ```
 
-- browser (required) - The WebdriverIO browser object
-- name (required) - The snapshot name; must be unique to each snapshot
-- options - See per-snapshot configuration options
+- browser（必須）- WebdriverIOブラウザオブジェクト
+- name（必須）- スナップショット名。各スナップショットに固有の名前である必要があります
+- options - スナップショットごとの設定オプションを参照
 
-To learn more, see [Percy snapshot](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+詳細については、[Percyスナップショット](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)を参照してください。
 
-### Step 5: Run Percy
+### ステップ5：Percyを実行する
+以下のように`percy exec`コマンドを使用してテストを実行します：
 
-Run your tests using the `percy exec` command as shown below:
-
-If you are unable to use the `percy:exec` command or prefer to run your tests using IDE run options, you can use the `percy:exec:start` and `percy:exec:stop` commands. To learn more, visit [Run Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation).
+`percy:exec`コマンドを使用できない場合や、IDEの実行オプションを使ってテストを実行したい場合は、`percy:exec:start`と`percy:exec:stop`コマンドを使用できます。詳細については、[Run Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)をご覧ください。
 
 ```sh
 percy exec -- wdio wdio.conf.js
@@ -117,15 +113,14 @@ percy exec -- wdio wdio.conf.js
 
 ```
 
-## Visit the following pages for more details:
+## 詳細については、以下のページをご覧ください：
+- [WebdriverIOテストとPercyの統合](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [環境変数ページ](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- BrowserStack Automateを使用している場合は、[BrowserStack SDKを使用した統合](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
 
-- [Integrate your WebdriverIO tests with Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)
-- [Environment variable page](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)
-- [Integrate using BrowserStack SDK](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) if you are using BrowserStack Automate.
-
-| Resource                                                                                                                                                              | Description                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [Official docs](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)              | Percy's WebdriverIO documentation              |
-| [Sample build - Tutorial](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation) | Percy's WebdriverIO tutorial                   |
-| [Official video](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)                                              | Visual Testing with Percy                      |
-| [Blog](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio\&utm_medium=partnered\&utm_campaign=documentation)                    | Introducing Visual Reviews 2.0 |
+| リソース                                                                                                                                                            | 説明                           |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
+| [公式ドキュメント](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)             | PercyのWebdriverIOドキュメント |
+| [サンプルビルド - チュートリアル](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | PercyのWebdriverIOチュートリアル |
+| [公式ビデオ](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                              | Percyを使用したビジュアルテスト |
+| [ブログ](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | Visual Reviews 2.0の紹介    |

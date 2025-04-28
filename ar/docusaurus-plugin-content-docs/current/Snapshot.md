@@ -1,21 +1,20 @@
 ---
 id: snapshot
-title: Snapshot
+title: لقطة
 ---
 
-Snapshot tests can be very useful for asserting a wide range of aspects of your component or logic at the same time. In WebdriverIO you can take snapshots of any arbitrary object as well as a WebElement DOM structure or WebdriverIO command results.
+يمكن أن تكون اختبارات اللقطات مفيدة جدًا لتأكيد مجموعة واسعة من جوانب المكون أو المنطق في نفس الوقت. في WebdriverIO يمكنك أخذ لقطات لأي كائن عشوائي وكذلك لبنية DOM لعنصر الويب أو نتائج أوامر WebdriverIO.
 
-Similar to other test frameworks WebdriverIO will take a snapshot of the given value, then compare it to a reference snapshot file stored alongside the test. The test will fail if the two snapshots do not match: either the change is unexpected, or the reference snapshot needs to be updated to the new version of the result.
+على غرار أطر الاختبار الأخرى، سيأخذ WebdriverIO لقطة للقيمة المعطاة، ثم يقارنها بملف لقطة مرجعية مخزنة إلى جانب الاختبار. سيفشل الاختبار إذا لم تتطابق اللقطتان: إما أن التغيير غير متوقع، أو يحتاج ملف اللقطة المرجعية إلى التحديث إلى الإصدار الجديد من النتيجة.
 
-:::info Cross Platform Support
+:::info دعم عبر المنصات
 
-These snapshot capabilities are available for running end-to-end tests within the Node.js environment as well as for running [unit and component](/docs/component-testing) tests in the browser or on mobile devices.
+هذه القدرات للقطات متاحة لتشغيل اختبارات end-to-end في بيئة Node.js وكذلك لتشغيل [اختبارات الوحدة والمكونات](/docs/component-testing) في المتصفح أو على الأجهزة المحمولة.
 
 :::
 
-## Use Snapshots
-
-To snapshot a value, you can use the `toMatchSnapshot()` from [`expect()`](/docs/api/expect-webdriverio) API:
+## استخدام اللقطات
+لأخذ لقطة لقيمة، يمكنك استخدام `toMatchSnapshot()` من واجهة برمجة التطبيقات [`expect()`](/docs/api/expect-webdriverio):
 
 ```ts
 import { browser, expect } from '@wdio/globals'
@@ -26,7 +25,7 @@ it('can take a DOM snapshot', () => {
 })
 ```
 
-The first time this test is run, WebdriverIO creates a snapshot file that looks like this:
+في المرة الأولى التي يتم فيها تشغيل هذا الاختبار، ينشئ WebdriverIO ملف لقطة يبدو كما يلي:
 
 ```js
 // Snapshot v1
@@ -34,19 +33,19 @@ The first time this test is run, WebdriverIO creates a snapshot file that looks 
 exports[`main suite 1 > can take a DOM snapshot 1`] = `"<h1 class="findme">Test CSS Attributes</h1>"`;
 ```
 
-The snapshot artifact should be committed alongside code changes, and reviewed as part of your code review process. On subsequent test runs, WebdriverIO will compare the rendered output with the previous snapshot. If they match, the test will pass. If they don't match, either the test runner found a bug in your code that should be fixed, or the implementation has changed and the snapshot needs to be updated.
+يجب الالتزام بالتزامات اللقطة جنبًا إلى جنب مع تغييرات الكود، ومراجعتها كجزء من عملية مراجعة الكود الخاصة بك. في عمليات تشغيل الاختبار اللاحقة، سيقارن WebdriverIO الناتج المعروض باللقطة السابقة. إذا تطابقوا، سينجح الاختبار. إذا لم يتطابقوا، إما أن مشغل الاختبار وجد خطأ في الكود الخاص بك يجب إصلاحه، أو تغير التنفيذ وتحتاج اللقطة إلى تحديث.
 
-To update the snapshot, pass in the `-s` flag (or `--updateSnapshot`) to the `wdio` command, e.g.:
+لتحديث اللقطة، قم بتمرير علامة `-s` (أو `--updateSnapshot`) إلى أمر `wdio`، على سبيل المثال:
 
 ```sh
 npx wdio run wdio.conf.js -s
 ```
 
-**Note:** if you run tests with multiple browsers in parallel only one snapshot is being created and compared against. If you like to have a separate snapshot per capability, please [raise an issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=\&labels=Idea+%F0%9F%92%A1%2CNeeds+Triaging+%E2%8F%B3\&projects=\&template=feature-request.yml\&title=%5B%F0%9F%92%A1+Feature%5D%3A+%3Ctitle%3E) and let us know about your use case.
+__ملاحظة:__ إذا قمت بتشغيل اختبارات مع متصفحات متعددة بالتوازي، فسيتم إنشاء لقطة واحدة فقط والمقارنة معها. إذا كنت ترغب في الحصول على لقطة منفصلة لكل قدرة، فيرجى [إثارة مشكلة](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Idea+%F0%9F%92%A1%2CNeeds+Triaging+%E2%8F%B3&projects=&template=feature-request.yml&title=%5B%F0%9F%92%A1+Feature%5D%3A+%3Ctitle%3E) وإخبارنا عن حالة الاستخدام الخاصة بك.
 
-## Inline Snapshots
+## اللقطات المضمنة
 
-Similarly, you can use the `toMatchInlineSnapshot()` to store the snapshot inline within the test file.
+وبالمثل، يمكنك استخدام `toMatchInlineSnapshot()` لتخزين اللقطة مضمنة داخل ملف الاختبار.
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -57,7 +56,7 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-Instead of creating a snapshot file, Vitest will modify the test file directly to update the snapshot as a string:
+بدلاً من إنشاء ملف لقطة، سيقوم Vitest بتعديل ملف الاختبار مباشرة لتحديث اللقطة كسلسلة نصية:
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -79,15 +78,15 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-This allows you to see the expected output directly without jumping across different files.
+هذا يتيح لك رؤية المخرجات المتوقعة مباشرة دون الانتقال بين ملفات مختلفة.
 
-## Visual Snapshots
+## اللقطات المرئية
 
-Taking a DOM snapshot of an element might not be the best idea, especially if the DOM structure is too big and contains dynamic element properties. In these cases, it is recommended to rely on visual snapshots for elements.
+قد لا يكون أخذ لقطة DOM لعنصر هو الفكرة الأفضل، خاصة إذا كان هيكل DOM كبيرًا جدًا ويحتوي على خصائص عنصر ديناميكية. في هذه الحالات، يوصى بالاعتماد على اللقطات المرئية للعناصر.
 
-To enable visual snapshots, add the `@wdio/visual-service` to your setup. You can follow the set-up instructions in the [documentation](/docs/visual-testing#installation) for Visual Testing.
+لتمكين اللقطات المرئية، أضف `@wdio/visual-service` إلى الإعداد الخاص بك. يمكنك اتباع تعليمات الإعداد في [الوثائق](/docs/visual-testing#installation) للاختبار المرئي.
 
-You can then take a visual snapshot via `toMatchElementSnapshot()`, e.g.:
+يمكنك بعد ذلك أخذ لقطة مرئية عبر `toMatchElementSnapshot()`، على سبيل المثال:
 
 ```ts
 import { expect, $ } from '@wdio/globals'
@@ -98,4 +97,4 @@ it('can take inline DOM snapshots', () => {
 })
 ```
 
-An image is then stored in the baseline directory. Check out the [Visual Testing](/docs/visual-testing) for more information.
+يتم بعد ذلك تخزين صورة في دليل الخط الأساسي. تحقق من [الاختبار المرئي](/docs/visual-testing) لمزيد من المعلومات.

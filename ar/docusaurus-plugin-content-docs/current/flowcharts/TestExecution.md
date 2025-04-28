@@ -1,8 +1,7 @@
 ---
 id: testexecution
-title: Test Execution
+title: تنفيذ الاختبار
 ---
-
-This flowchart explains the test execution process and the interaction between @wdio/runner and the most of the other WebdriverIO packages.
+يشرح هذا المخطط الانسيابي عملية تنفيذ الاختبار والتفاعل بين @wdio/runner ومعظم حزم WebdriverIO الأخرى.
 
 <CreateFlowcharts id='testexecution' />

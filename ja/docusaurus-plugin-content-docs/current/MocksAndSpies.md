@@ -1,41 +1,41 @@
 ---
 id: mocksandspies
-title: Request Mocks and Spies
+title: リクエストモックとスパイ
 ---
 
-WebdriverIO comes with built-in support for modifying network responses that allows you to focus testing your frontend application without having to setup your backend or a mock server. You can define custom responses for web resources like REST API requests in your test and modify them dynamically.
+WebdriverIOには、バックエンドやモックサーバーをセットアップしなくても、フロントエンドアプリケーションのテストに集中できるネットワークレスポンスを変更するための組み込みサポートがあります。REST APIリクエストなどのウェブリソースに対するカスタムレスポンスをテストで定義し、動的に変更することができます。
 
 :::info
 
-Note that using the `mock` command requires support for Chrome DevTools protocol. That support is given if you run tests locally in a Chromium-based browser, via a Selenium Grid v4 or higher, or through a cloud vendor with support for the Chrome DevTools protocol (e.g. SauceLabs, BrowserStack, LambdaTest). Full cross-browser support will be available once the required primitives land in [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) and get implemented in the respective browser.
+`mock`コマンドを使用するには、Chrome DevToolsプロトコルのサポートが必要です。このサポートは、Chromiumベースのブラウザでローカルにテストを実行する場合、Selenium Grid v4以上を介して、またはChrome DevToolsプロトコルをサポートするクラウドベンダー（SauceLabs、BrowserStack、LambdaTestなど）を通じて提供されます。完全なクロスブラウザサポートは、必要なプリミティブが[Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned)に導入され、それぞれのブラウザに実装された後に利用可能になります。
 
 :::
 
-## Creating a mock
+## モックの作成
 
-Before you can modify any responses you have define a mock first. This mock is described by the resource url and can be filtered by the [request method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) or [headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). The resource supports glob expressions by [minimatch](https://www.npmjs.com/package/minimatch):
+レスポンスを変更する前に、まずモックを定義する必要があります。このモックはリソースURLによって記述され、[リクエストメソッド](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)や[ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)によってフィルタリングできます。リソースは[minimatch](https://www.npmjs.com/package/minimatch)によるグロブ表現をサポートしています：
 
 ```js
-// mock all resources ending with "/users/list"
+// "/users/list"で終わるすべてのリソースをモック
 const userListMock = await browser.mock('**/users/list')
 
-// or you can specify the mock by filtering resources by headers or
-// status code, only mock successful requests to json resources
+// または、ヘッダーやステータスコードでリソースをフィルタリングしてモックを指定することもできます
+// JSONリソースへの成功したリクエストのみをモック
 const strictMock = await browser.mock('**', {
-    // mock all json responses
+    // すべてのJSONレスポンスをモック
     requestHeaders: { 'Content-Type': 'application/json' },
-    // that were successful
+    // 成功したものだけ
     statusCode: 200
 })
 ```
 
-## Specifying custom responses
+## カスタムレスポンスの指定
 
-Once you have defined a mock you can define custom responses for it. Those custom responses can be either an object to respond a JSON, a local file to respond with a custom fixture or a web resource to replace the response with a resource from the internet.
+モックを定義したら、それに対するカスタムレスポンスを定義できます。これらのカスタムレスポンスは、JSONを返すオブジェクト、カスタムフィクスチャで応答するローカルファイル、またはインターネットからのリソースでレスポンスを置き換えるウェブリソースのいずれかになります。
 
-### Mocking API Requests
+### APIリクエストのモック
 
-In order to mock API requests where you expect a JSON response all you need to do is to call `respond` on the mock object with an arbitrary object you want to return, e.g.:
+JSONレスポンスを期待するAPIリクエストをモックするには、モックオブジェクトに対して返したい任意のオブジェクトを指定して`respond`を呼び出すだけです：
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -59,63 +59,63 @@ await browser.url('https://todobackend.com/client/index.html?https://todo-backen
 
 await $('#todo-list li').waitForExist()
 console.log(await $$('#todo-list li').map(el => el.getText()))
-// outputs: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
+// 出力: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-You can also modify the response headers as well as the status code by passing in some mock response params as follows:
+以下のようにモックレスポンスパラメータを渡すことで、レスポンスヘッダーやステータスコードも変更できます：
 
 ```js
 mock.respond({ ... }, {
-    // respond with status code 404
+    // ステータスコード404で応答
     statusCode: 404,
-    // merge response headers with following headers
+    // レスポンスヘッダーを次のヘッダーとマージ
     headers: { 'x-custom-header': 'foobar' }
 })
 ```
 
-If you want the mock not to call the backend at all, you can pass `false` for the `fetchResponse` flag.
+モックがバックエンドを一切呼び出さないようにしたい場合は、`fetchResponse`フラグに`false`を渡すことができます。
 
 ```js
 mock.respond({ ... }, {
-    // do not call the actual backend
+    // 実際のバックエンドを呼び出さない
     fetchResponse: false
 })
 ```
 
-It is recommend to store custom responses in fixture files so you can just require them in your test as follows:
+カスタムレスポンスをフィクスチャファイルに保存し、テストで以下のように読み込むことをお勧めします：
 
 ```js
-// requires Node.js v16.14.0 or higher to support JSON import assertions
+// JSONインポートアサーションをサポートするにはNode.js v16.14.0以上が必要
 import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'json' }
 mock.respond(responseFixture)
 ```
 
-### Mocking text resources
+### テキストリソースのモック
 
-If you like to modify text resources like JavaScript, CSS files or other text based resources you can just pass in a file path and WebdriverIO will replaces the original resource with it, e.g.:
+JavaScript、CSSファイルなどのテキストベースのリソースを変更したい場合は、ファイルパスを渡すだけでWebdriverIOが元のリソースと置き換えます：
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
 scriptMock.respond('./tests/fixtures/script.js')
 
-// or respond with your custom JS
+// またはカスタムJSで応答
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
-### Redirect web resources
+### ウェブリソースのリダイレクト
 
-You can also just replace a web resource with another web resource if your desired response is already hosted on the web. This works with individual page resources as well as with a webpage itself, e.g.:
+希望するレスポンスがすでにウェブ上にホストされている場合、ウェブリソースを別のウェブリソースに置き換えることもできます。これは個々のページリソースだけでなく、ウェブページ自体でも機能します：
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
 await pageMock.respond('https://webdriver.io')
 await browser.url('https://google.com')
-console.log(await browser.getTitle()) // returns "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js"
+console.log(await browser.getTitle()) // "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js"を返す
 ```
 
-### Dynamic responses
+### 動的レスポンス
 
-If your mock response depends on the original resource response you can also dynamically modify the resource by passing in a function receives the original response as parameter and sets the mock based on the return value, e.g.:
+モックレスポンスが元のリソースレスポンスに依存する場合、元のレスポンスをパラメータとして受け取る関数を渡すことで、リソースを動的に変更することもできます。戻り値に基づいてモックが設定されます：
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -123,7 +123,7 @@ const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com
 })
 
 mock.respond((req) => {
-    // replace todo content with their list number
+    // todoコンテンツをリスト番号に置き換える
     return req.body.map((item, i) => ({ ...item, title: i }))
 })
 
@@ -131,7 +131,7 @@ await browser.url('https://todobackend.com/client/index.html?https://todo-backen
 
 await $('#todo-list li').waitForExist()
 console.log(await $$('#todo-list li label').map((el) => el.getText()))
-// returns
+// 戻り値:
 // [
 //   '0',  '1',  '2',  '19', '20',
 //   '21', '3',  '4',  '5',  '6',
@@ -141,9 +141,9 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 // ]
 ```
 
-## Aborting mocks
+## モックの中断
 
-Instead of returning a custom response you can also just abort the request with one of the following HTTP errors:
+カスタムレスポンスを返す代わりに、以下のいずれかのHTTPエラーでリクエストを中断することもできます：
 
 - Failed
 - Aborted
@@ -160,30 +160,30 @@ Instead of returning a custom response you can also just abort the request with 
 - BlockedByClient
 - BlockedByResponse
 
-This is very useful if you want to block 3rd party script from your page that have a negative influence on your functional test. You can abort a mock by just calling `abort` or `abortOnce`, e.g.:
+これは、機能テストに悪影響を与えるようなページのサードパーティスクリプトをブロックしたい場合に非常に便利です。モックを中断するには、`abort`または`abortOnce`を呼び出すだけです：
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/**')
 mock.abort('Failed')
 ```
 
-## Spies
+## スパイ
 
-Every mock is automatically a spy that counts the amount of requests the browser made to that resource. If you don't apply a custom response or abort reason to the mock it continues with the default response you would normally receive. This allows you to check how many times the browser made the request, e.g. to a certain API endpoint.
+すべてのモックは自動的にスパイとなり、ブラウザがそのリソースにリクエストを行った回数をカウントします。モックにカスタムレスポンスや中断理由を適用しない場合、通常受け取るデフォルトのレスポンスが継続されます。これにより、ブラウザが特定のAPIエンドポイントなどにリクエストを行った回数を確認できます。
 
 ```js
 const mock = await browser.mock('**/user', { method: 'post' })
-console.log(mock.calls.length) // returns 0
+console.log(mock.calls.length) // 0を返す
 
-// register user
+// ユーザー登録
 await $('#username').setValue('randomUser')
 await $('password').setValue('password123')
 await $('password_repeat').setValue('password123')
 await $('button[type="submit"]').click()
 
-// check if API request was made
+// APIリクエストが行われたか確認
 expect(mock.calls.length).toBe(1)
 
-// assert response
+// レスポンスを検証
 expect(mock.calls[0].body).toEqual({ success: true })
 ```
