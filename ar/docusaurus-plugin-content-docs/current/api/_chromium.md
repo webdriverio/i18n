@@ -3,15 +3,18 @@ id: chromium
 title: كروميوم
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/chromium.ts
 ---
-
 ## isAlertOpen
-ما إذا كان هناك حوار بسيط مفتوح حاليًا.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/alert_commands.cc#L42-L49).
+ما إذا كان هناك مربع حوار بسيط مفتوح حاليًا.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/alert_commands.cc#L42-L49).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.isAlertOpen()
 ```
+
+
 
 ##### مثال
 
@@ -23,16 +26,17 @@ console.log(browser.isAlertOpen()); // outputs: true
 ```
 
 
-##### العائد
+##### يرجع
 
 - **&lt;Boolean&gt;**
-            **<code><var>isAlertOpen</var></code>:** `true` أو `false` بناءً على ما إذا كان هناك حوار بسيط موجود أم لا.
+            **<code><var>isAlertOpen</var></code>:** `true` أو `false` بناءً على ما إذا كان مربع الحوار البسيط موجودًا أم لا.    
 
 
 ---
-
 ## isAutoReporting
-ما إذا كان يجب تلقائيًا رفع أخطاء على سجلات المتصفح.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://codereview.chromium.org/101203012).
+ما إذا كان يجب رفع الأخطاء تلقائيًا في سجلات المتصفح.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://codereview.chromium.org/101203012).
+
+
 
 ##### الاستخدام
 
@@ -41,16 +45,19 @@ browser.isAutoReporting()
 ```
 
 
-##### العائد
+
+
+##### يرجع
 
 - **&lt;Boolean&gt;**
-            **<code><var>isAutoReporting</var></code>:** `true` أو `false` بناءً على ما إذا كان الإبلاغ التلقائي ممكّنًا.
+            **<code><var>isAutoReporting</var></code>:** `true` أو `false` بناءً على ما إذا كان الإبلاغ التلقائي ممكّنًا.    
 
 
 ---
-
 ## setAutoReporting
-تبديل ما إذا كان سيتم إرجاع استجابة مع خطأ غير معروف مع أول خطأ في المتصفح (على سبيل المثال، فشل في تحميل المورد بسبب استجابة 403/404) لجميع الأوامر اللاحقة (بمجرد تمكينها).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://codereview.chromium.org/101203012).
+تبديل ما إذا كان سيتم إرجاع استجابة مع خطأ غير معروف مع أول خطأ متصفح (على سبيل المثال، فشل في تحميل المورد بسبب استجابة 403/404) لجميع الأوامر اللاحقة (بمجرد تمكينها).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://codereview.chromium.org/101203012).
+
+
 
 ##### الاستخدام
 
@@ -96,22 +103,25 @@ browser.setAutoReporting(true);
 ```
 
 
-##### العائد
+##### يرجع
 
 - **&lt;Object|Null&gt;**
-            **<code><var>firstBrowserError</var></code>:** في حالة حدوث خطأ أول في المتصفح قبل تنفيذ هذا الأمر، سيتم إلقاء خطأ غير معروف كاستجابة، وهو كائن به مفتاح 'message' يصف أول خطأ في المتصفح. وإلا فإنه يعيد `null` في حالة النجاح.
+            **<code><var>firstBrowserError</var></code>:** في حالة حدوث خطأ متصفح أول مرة قبل تنفيذ هذا الأمر، سيلقي خطأ غير معروف كاستجابة، وهو كائن مع مفتاح 'message' يصف الخطأ الأول للمتصفح. وإلا فإنه يرجع `null` عند النجاح.    
 
 
 ---
-
 ## isLoading
 يحدد حالة التحميل لمقبض النافذة النشط.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L783-L802).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.isLoading()
 ```
+
+
 
 ##### مثال
 
@@ -123,16 +133,17 @@ console.log(browser.isLoading()); // outputs: true
 ```
 
 
-##### العائد
+##### يرجع
 
 - **&lt;Boolean&gt;**
-            **<code><var>isLoading</var></code>:** `true` أو `false` بناءً على ما إذا كان مقبض النافذة النشط قيد التحميل أم لا.
+            **<code><var>isLoading</var></code>:** `true` أو `false` بناءً على ما إذا كان مقبض النافذة النشط قيد التحميل أم لا.    
 
 
 ---
-
 ## takeHeapSnapshot
 يأخذ لقطة للكومة من سياق التنفيذ الحالي.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/web_view.h#L198-L202).
+
+
 
 ##### الاستخدام
 
@@ -141,22 +152,27 @@ browser.takeHeapSnapshot()
 ```
 
 
-##### العائد
+
+
+##### يرجع
 
 - **&lt;Object&gt;**
-            **<code><var>heapSnapshot</var></code>:** تمثيل JSON للقطة الكومة. والتي يمكن فحصها عن طريق تحميلها كملف في أدوات تطوير Chrome.
+            **<code><var>heapSnapshot</var></code>:** تمثيل JSON للقطة الكومة. يمكن فحصها عن طريق تحميلها كملف في أدوات مطوري Chrome.    
 
 
 ---
-
 ## getNetworkConnection
-الحصول على نوع الاتصال لمحاكاة الشبكة. هذا الأمر ينطبق فقط عندما يرد الطرف البعيد بإمكانية `networkConnectionEnabled` المعينة على `true`.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+الحصول على نوع الاتصال لمحاكاة الشبكة. هذا الأمر قابل للتطبيق فقط عندما يرد الطرف البعيد مع إعداد قدرة `networkConnectionEnabled` على `true`.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.getNetworkConnection()
 ```
+
+
 
 ##### مثال
 
@@ -175,16 +191,17 @@ console.log(browser.getNetworkConnection()); // outputs: 6 (Both Wi-Fi and data)
 ```
 
 
-##### العائد
+##### يرجع
 
 - **&lt;Number&gt;**
-            **<code><var>connectionType</var></code>:** قناع بت لتمثيل نوع اتصال الشبكة. وضع الطائرة (`1`)، Wi-Fi فقط (`2`)، Wi-Fi والبيانات (`6`)، 4G (`8`)، 3G (`10`)، 2G (`20`). بشكل افتراضي، [Wi-Fi والبيانات ممكنان](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/chrome_desktop_impl.cc#L36-L37).
+            **<code><var>connectionType</var></code>:** قناع بتي لتمثيل نوع اتصال الشبكة. وضع الطائرة (`1`)، Wi-Fi فقط (`2`)، Wi-Fi وبيانات (`6`)، 4G (`8`)، 3G (`10`)، 2G (`20`). بشكل افتراضي [Wi-Fi والبيانات ممكّنان](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/chrome_desktop_impl.cc#L36-L37).    
 
 
 ---
-
 ## setNetworkConnection
-تغيير نوع الاتصال لاتصال الشبكة. هذا الأمر ينطبق فقط عندما يرد الطرف البعيد بإمكانية `networkConnectionEnabled` المعينة على `true`.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+تغيير نوع الاتصال لاتصال الشبكة. هذا الأمر قابل للتطبيق فقط عندما يرد الطرف البعيد مع إعداد قدرة `networkConnectionEnabled` على `true`.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+
+
 
 ##### الاستخدام
 
@@ -205,7 +222,7 @@ browser.setNetworkConnection(parameters)
     <tr>
       <td><code><var>parameters</var></code></td>
       <td>object</td>
-      <td>كائن يحتوي على ConnectionType، عيّن قناع البت كقيمة لمفتاح `type` في الكائن. وضع الطائرة (`1`)، Wi-Fi فقط (`2`)، Wi-Fi والبيانات (`6`)، 4G (`8`)، 3G (`10`)، 2G (`20`).</td>
+      <td>كائن يحتوي على ConnectionType، قم بتعيين قناع بتي كقيمة لمفتاح `type` في الكائن. وضع الطائرة (`1`)، Wi-Fi فقط (`2`)، Wi-Fi وبيانات (`6`)، 4G (`8`)، 3G (`10`)، 2G (`20`).</td>
     </tr>
   </tbody>
 </table>
@@ -227,16 +244,17 @@ console.log(browser.setNetworkConnection({ type: 1 })); // outputs: 1 (Airplane 
 ```
 
 
-##### العائد
+##### يرجع
 
 - **&lt;Number&gt;**
-            **<code><var>connectionType</var></code>:** قناع بت لتمثيل نوع اتصال الشبكة. يجب أن تتطابق القيمة مع `type` المحدد في الكائن، ومع ذلك قد لا يكون الجهاز قادرًا على نوع اتصال الشبكة المطلوب.
+            **<code><var>connectionType</var></code>:** قناع بتي لتمثيل نوع اتصال الشبكة. يجب أن تتطابق القيمة مع `type` المحدد في الكائن، ومع ذلك قد لا يكون الجهاز قادرًا على نوع اتصال الشبكة المطلوب.    
 
 
 ---
-
 ## getNetworkConditions
 الحصول على ظروف الشبكة الحالية المستخدمة للمحاكاة.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L839-L859).
+
+
 
 ##### الاستخدام
 
@@ -245,16 +263,19 @@ browser.getNetworkConditions()
 ```
 
 
-##### العائد
+
+
+##### يرجع
 
 - **&lt;Object&gt;**
-            **<code><var>networkConditions</var></code>:** كائن يحتوي على ظروف الشبكة لـ `offline`، و`latency`، و`download_throughput` و`upload_throughput`. يجب تعيين ظروف الشبكة قبل أن يمكن استردادها.
+            **<code><var>networkConditions</var></code>:** كائن يحتوي على ظروف الشبكة لـ `offline`، `latency`، `download_throughput` و `upload_throughput`. يجب تعيين ظروف الشبكة قبل أن يمكن استردادها.    
 
 
 ---
-
 ## setNetworkConditions
-تعيين ظروف الشبكة المستخدمة للمحاكاة عن طريق خنق الاتصال.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1663-L1722).
+تعيين ظروف الشبكة المستخدمة للمحاكاة عن طريق تقييد الاتصال.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1663-L1722).
+
+
 
 ##### الاستخدام
 
@@ -275,12 +296,12 @@ browser.setNetworkConditions(network_conditions, network_name)
     <tr>
       <td><code><var>network_conditions</var></code></td>
       <td>object</td>
-      <td>كائن يحتوي على ظروف الشبكة وهي `latency`، و`throughput` (أو `download_throughput`/`upload_throughput`) و`offline` (اختياري).</td>
+      <td>كائن يحتوي على ظروف الشبكة وهي `latency`، `throughput` (أو `download_throughput`/`upload_throughput`) و `offline` (اختياري).</td>
     </tr>
     <tr>
       <td><code><var>network_name</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>string</td>
-      <td>اسم [إعداد مسبق لخنق الشبكة](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/network_list.cc#L12-L25). `GPRS`، أو `Regular 2G`، أو `Good 2G`، أو `Regular 3G`، أو `Good 3G`، أو `Regular 4G`، أو `DSL`، أو `WiFi` أو `No throttling` للتعطيل. عند تحديد الإعداد المسبق، لن يتم احترام القيم التي تم تمريرها في الوسيطة الأولى.</td>
+      <td>اسم [إعداد خنق الشبكة المسبق](https://github.com/bayandin/chromedriver/blob/v2.45/chrome/network_list.cc#L12-L25). `GPRS`، `Regular 2G`، `Good 2G`، `Regular 3G`، `Good 3G`، `Regular 4G`، `DSL`، `WiFi` أو `No throttling` للتعطيل. عند تحديد الإعداد المسبق، لا يتم احترام القيم المرسلة في الوسيطة الأولى.</td>
     </tr>
   </tbody>
 </table>
@@ -313,10 +334,13 @@ browser.setNetworkConditions({}, 'Good 3G');
 
 
 
----
 
+
+---
 ## deleteNetworkConditions
-تعطيل أي خنق للشبكة قد يكون قد تم تعيينه. مكافئ لتعيين الإعداد المسبق `No throttling`.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1724-L1745).
+تعطيل أي خنق للشبكة قد يكون تم تعيينه. مكافئ لتعيين إعداد `No throttling` المسبق.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1724-L1745).
+
+
 
 ##### الاستخدام
 
@@ -326,10 +350,15 @@ browser.deleteNetworkConditions()
 
 
 
----
 
+
+
+
+---
 ## sendCommand
-إرسال أمر إلى المصحح DevTools.<br />للحصول على قائمة بالأوامر المتاحة ومعلماتها، راجع [Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1290-L1304).
+إرسال أمر إلى مصحح DevTools.<br />للاطلاع على قائمة الأوامر المتاحة ومعلماتها، راجع [Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1290-L1304).
+
+
 
 ##### الاستخدام
 
@@ -362,10 +391,13 @@ browser.sendCommand(cmd, params)
 
 
 
----
 
+
+---
 ## sendCommandAndGetResult
-إرسال أمر إلى المصحح DevTools والانتظار للحصول على النتيجة.<br />للحصول على قائمة بالأوامر المتاحة ومعلماتها، راجع [Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1306-L1320).
+إرسال أمر إلى مصحح DevTools وانتظار النتيجة.<br />للاطلاع على قائمة الأوامر المتاحة ومعلماتها، راجع [Chrome DevTools Protocol Viewer](https://chromedevtools.github.io/devtools-protocol/).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L1306-L1320).
+
+
 
 ##### الاستخدام
 
@@ -386,7 +418,7 @@ browser.sendCommandAndGetResult(cmd, params)
     <tr>
       <td><code><var>cmd</var></code></td>
       <td>string</td>
-      <td>اسم الأمر الذي يعيد نتيجة (مثل [`Network.getAllCookies`](https://chromedevtools.github.io/devtools-protocol/1-3/Network#method-getAllCookies)).</td>
+      <td>اسم الأمر الذي يُرجع نتيجة (مثل [`Network.getAllCookies`](https://chromedevtools.github.io/devtools-protocol/1-3/Network#method-getAllCookies)).</td>
     </tr>
     <tr>
       <td><code><var>params</var></code></td>
@@ -397,16 +429,17 @@ browser.sendCommandAndGetResult(cmd, params)
 </table>
 
 
-##### العائد
+##### يرجع
 
 - **&lt;*&gt;**
-            **<code><var>result</var></code>:** إما قيمة العودة لأمرك، أو الخطأ الذي كان سبب فشل أمرك.
+            **<code><var>result</var></code>:** إما قيمة إرجاع الأمر الخاص بك، أو الخطأ الذي كان سبب فشل الأمر.    
 
 
 ---
-
 ## file
 تحميل ملف إلى الجهاز البعيد الذي يعمل عليه المتصفح.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L1037-L1065).
+
+
 
 ##### الاستخدام
 
@@ -427,22 +460,23 @@ browser.file(file)
     <tr>
       <td><code><var>file</var></code></td>
       <td>string</td>
-      <td>أرشيف zip مشفر بـ Base64 يحتوي على ملف __واحد__ للتحميل. في حالة أن البيانات المشفرة بـ base64 لا تمثل أرشيف zip أو أن الأرشيف يحتوي على أكثر من ملف واحد، سيتم إلقاء خطأ غير معروف.</td>
+      <td>أرشيف zip مشفر بـ Base64 يحتوي على ملف __واحد__ للتحميل. في حالة أن البيانات المشفرة بـ base64 لا تمثل أرشيف zip أو أن الأرشيف يحتوي على أكثر من ملف واحد، سيلقي خطأ غير معروف.</td>
     </tr>
   </tbody>
 </table>
 
 
-##### العائد
+##### يرجع
 
 - **&lt;String&gt;**
-            **<code><var>path</var></code>:** المسار المطلق للملف الذي تم تحميله على الجهاز البعيد.
+            **<code><var>path</var></code>:** المسار المطلق للملف المحمّل على الجهاز البعيد.    
 
 
 ---
-
 ## launchChromeApp
-يطلق تطبيق Chrome بواسطة المعرف المحدد.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L521-L539).
+يطلق تطبيق Chrome بواسطة معرف محدد.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L521-L539).
+
+
 
 ##### الاستخدام
 
@@ -463,7 +497,7 @@ browser.launchChromeApp(id)
     <tr>
       <td><code><var>id</var></code></td>
       <td>string</td>
-      <td>معرف الامتداد للتطبيق المراد إطلاقه، كما هو محدد في chrome://extensions.</td>
+      <td>معرف الإضافة للتطبيق المراد إطلاقه، كما هو محدد في chrome://extensions.</td>
     </tr>
   </tbody>
 </table>
@@ -490,10 +524,13 @@ browser.launchChromeApp('aohghmighlieiainnegkcijnfilokake')); // Google Docs (ht
 
 
 
----
 
+
+---
 ## getElementValue
-استرداد قيمة عنصر تحكم النموذج المعطى.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L431-L443).
+يسترجع قيمة عنصر تحكم النموذج المعطى.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L431-L443).
+
+
 
 ##### الاستخدام
 
@@ -520,16 +557,17 @@ browser.getElementValue(elementId)
 </table>
 
 
-##### العائد
+##### يرجع
 
 - **&lt;String|Null&gt;**
-            **<code><var>value</var></code>:** القيمة الحالية للعنصر. في حالة أن العنصر المحدد ليس عنصر تحكم نموذج، سيعيد `null`.
+            **<code><var>value</var></code>:** القيمة الحالية للعنصر. في حالة أن العنصر المحدد ليس عنصر تحكم نموذج، سيُرجع `null`.    
 
 
 ---
-
 ## elementHover
-تمكين حالة التحويم للعنصر، والتي يتم إعادة تعيينها عند التفاعل التالي.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L126-L146).
+تمكين حالة التحويم لعنصر، والتي تتم إعادة تعيينها عند التفاعل التالي.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/element_commands.cc#L126-L146).
+
+
 
 ##### الاستخدام
 
@@ -550,17 +588,20 @@ browser.elementHover(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف العنصر للتحويم فوقه</td>
+      <td>معرف العنصر للتحويم عليه</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## touchPinch
-تشغيل تأثير القرصة للتكبير/التصغير.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L813-L827).
+تحفيز تأثير التكبير بالقرص.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L813-L827).
+
+
 
 ##### الاستخدام
 
@@ -581,27 +622,30 @@ browser.touchPinch(x, y, scale)
     <tr>
       <td><code><var>x</var></code></td>
       <td>number</td>
-      <td>موضع x للقرصة</td>
+      <td>موضع x للقرص</td>
     </tr>
     <tr>
       <td><code><var>y</var></code></td>
       <td>number</td>
-      <td>موضع y للقرصة</td>
+      <td>موضع y للقرص</td>
     </tr>
     <tr>
       <td><code><var>scale</var></code></td>
       <td>number</td>
-      <td>مقياس القرصة للتكبير/التصغير</td>
+      <td>مقياس التكبير بالقرص</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## freeze
 تجميد الصفحة الحالية. امتداد لـ [Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L625-L633).
+
+
 
 ##### الاستخدام
 
@@ -611,10 +655,15 @@ browser.freeze()
 
 
 
----
 
+
+
+
+---
 ## resume
 استئناف الصفحة الحالية. امتداد لـ [Page Lifecycle API](https://developers.google.com/web/updates/2018/07/page-lifecycle-api).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/window_commands.cc#L635-L645).
+
+
 
 ##### الاستخدام
 
@@ -624,10 +673,15 @@ browser.resume()
 
 
 
----
 
+
+
+
+---
 ## getCastSinks
-يعيد قائمة بأجهزة الاستقبال (أجهزة Cast) المتاحة لموجه وسائط Chrome.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#748).
+يُرجع قائمة بأجهزة البث (أجهزة Cast) المتاحة لموجه وسائط Chrome.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#748).
+
+
 
 ##### الاستخدام
 
@@ -636,16 +690,19 @@ browser.getCastSinks()
 ```
 
 
-##### العائد
+
+
+##### يرجع
 
 - **&lt;string[]&gt;**
-            **<code><var>sinks</var></code>:** قائمة بأجهزة الاستقبال المتاحة.
+            **<code><var>sinks</var></code>:** قائمة بالأجهزة المتاحة.    
 
 
 ---
-
 ## selectCastSink
-يحدد جهاز استقبال (جهاز Cast) كمستلم لنوايا موجه الوسائط (اتصال أو تشغيل).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#737).
+يختار جهاز بث (جهاز Cast) كمستلم لمقاصد موجه الوسائط (الاتصال أو التشغيل).<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#737).
+
+
 
 ##### الاستخدام
 
@@ -673,10 +730,13 @@ browser.selectCastSink(sinkName)
 
 
 
----
 
+
+---
 ## startCastTabMirroring
-يبدأ عكس تبويب المتصفح الحالي على الجهاز المحدد.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#741).
+يبدأ عكس علامة التبويب لعلامة تبويب المتصفح الحالية على الجهاز المحدد.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#741).
+
+
 
 ##### الاستخدام
 
@@ -704,10 +764,13 @@ browser.startCastTabMirroring(sinkName)
 
 
 
----
 
+
+---
 ## getCastIssueMessage
-يعيد رسالة خطأ إذا كانت هناك أي مشكلة في جلسة Cast.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#751).
+يُرجع رسالة الخطأ إذا كانت هناك أي مشكلة في جلسة Cast.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#751).
+
+
 
 ##### الاستخدام
 
@@ -716,16 +779,19 @@ browser.getCastIssueMessage()
 ```
 
 
-##### العائد
+
+
+##### يرجع
 
 - **&lt;String&gt;**
-            **<code><var>message</var></code>:** رسالة الخطأ، إن وجدت.
+            **<code><var>message</var></code>:** رسالة الخطأ، إن وجدت.    
 
 
 ---
-
 ## stopCasting
-إيقاف البث من موجه الوسائط إلى الجهاز المحدد، إذا كان متصلاً.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#744).
+يوقف البث من موجه الوسائط إلى الجهاز المحدد، إذا كان متصلاً.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://chromium.googlesource.com/chromium/src/+/refs/tags/73.0.3683.121/chrome/test/chromedriver/server/http_handler.cc#744).
+
+
 
 ##### الاستخدام
 
@@ -753,10 +819,13 @@ browser.stopCasting(sinkName)
 
 
 
----
 
+
+---
 ## shutdown
 إيقاف عملية ChromeDriver وبالتالي إنهاء جميع الجلسات النشطة.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/bayandin/chromedriver/blob/v2.45/session_commands.cc#L489-L498).
+
+
 
 ##### الاستخدام
 
@@ -766,10 +835,15 @@ browser.shutdown()
 
 
 
----
 
+
+
+
+---
 ## takeElementScreenshot
-يأخذ أمر Take Element Screenshot لقطة شاشة للمنطقة المرئية التي يشملها المستطيل المحيط بعنصر.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://w3c.github.io/webdriver/#dfn-take-element-screenshot).
+يأخذ أمر Take Element Screenshot لقطة شاشة للمنطقة المرئية التي يشملها المستطيل المحيط للعنصر.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://w3c.github.io/webdriver/#dfn-take-element-screenshot).
+
+
 
 ##### الاستخدام
 
@@ -790,7 +864,7 @@ browser.takeElementScreenshot(elementId, scroll)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>معرف العنصر الذي تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
+      <td>معرف العنصر المُرجع في استدعاء سابق لـ Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>scroll</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -801,16 +875,17 @@ browser.takeElementScreenshot(elementId, scroll)
 </table>
 
 
-##### العائد
+##### يرجع
 
 - **&lt;String&gt;**
-            **<code><var>screenshot</var></code>:** بيانات صورة PNG المشفرة بـ base64 التي تشكل لقطة الشاشة للمنطقة المرئية من المستطيل المحيط بالعنصر بعد أن تم التمرير لعرضه.
+            **<code><var>screenshot</var></code>:** بيانات صورة PNG المشفرة بـ base64 التي تشكل لقطة الشاشة للمنطقة المرئية من المستطيل المحيط للعنصر بعد تمريره للعرض.    
 
 
 ---
-
 ## getLogTypes
 الحصول على أنواع السجلات المتاحة.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlogtypes).
+
+
 
 ##### الاستخدام
 
@@ -819,16 +894,19 @@ browser.getLogTypes()
 ```
 
 
-##### العائد
+
+
+##### يرجع
 
 - **&lt;String[]&gt;**
-            **<code><var>logTypes</var></code>:** قائمة بأنواع السجلات المتاحة، مثال: browser، driver.
+            **<code><var>logTypes</var></code>:** قائمة بأنواع السجلات المتاحة، مثال: browser، driver.    
 
 
 ---
-
 ## getLogs
 الحصول على السجل لنوع سجل معين. يتم إعادة تعيين مخزن السجل بعد كل طلب.<br /><br />أمر كروميوم غير رسمي وغير موثق. يمكن العثور على المزيد حول هذا الأمر [هنا](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlog).
+
+
 
 ##### الاستخدام
 
@@ -855,8 +933,7 @@ browser.getLogs(type)
 </table>
 
 
-##### العائد
+##### يرجع
 
 - **&lt;Object[]&gt;**
-            **<code><var>logs</var></code>:** قائمة بإدخالات السجل.
-
+            **<code><var>logs</var></code>:** قائمة بإدخالات السجل.    

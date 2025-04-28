@@ -1,15 +1,16 @@
 ---
 id: mjsonwp
-title: بروتوكول موبايل جيسون واير
+title: بروتوكول السلك JSON المتنقل
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/mjsonwp.ts
 ---
-
 ## getPageIndex
-أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
+أمر بروتوكول السلك JSON المتنقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
 :::caution
 
-هذا الأمر البروتوكولي مهمل<br />في Appium 2.0، تم تمييز هذه الطريقة على أنها مهملة ولا توجد حاليًا بدائل متاحة.
+هذا الأمر البروتوكولي مهمل<br />في Appium 2.0، تم وضع علامة على هذه الطريقة على أنها مهملة وليس لها حاليا بدائل متاحة.
 :::
+
+
 
 ##### الاستخدام
 
@@ -18,16 +19,19 @@ driver.getPageIndex()
 ```
 
 
-##### العائد
+
+
+##### يعيد
 
 - **&lt;string&gt;**
-
+    
 
 
 ---
-
 ## getNetworkConnection
-أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+أمر بروتوكول السلك JSON المتنقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+
+
 
 ##### الاستخدام
 
@@ -36,16 +40,19 @@ driver.getNetworkConnection()
 ```
 
 
-##### العائد
+
+
+##### يعيد
 
 - **&lt;number&gt;**
-            **<code><var>connectionType</var></code>:** انظر https://appium.github.io/appium.io/docs/en/writing-running-appium/other/network-connection/
+            **<code><var>connectionType</var></code>:** انظر https://appium.github.io/appium.io/docs/en/writing-running-appium/other/network-connection/    
 
 
 ---
-
 ## setNetworkConnection
-أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+أمر بروتوكول السلك JSON المتنقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-modes).
+
+
 
 ##### الاستخدام
 
@@ -54,7 +61,7 @@ driver.setNetworkConnection(type)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -66,17 +73,20 @@ driver.setNetworkConnection(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>number</td>
-      <td>قناع بت يجب ترجمته إلى قيمة عددية صحيحة عند التسلسل</td>
+      <td>قناع بت يجب ترجمته إلى قيمة عددية صحيحة عند تسلسله</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## touchPerform
-أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
+أمر بروتوكول السلك JSON المتنقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
+
+
 
 ##### الاستخدام
 
@@ -85,7 +95,7 @@ driver.touchPerform(actions)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -97,17 +107,20 @@ driver.touchPerform(actions)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>قائمة من الكائنات، كل منها يمثل مصدر إدخال والإجراءات المرتبطة به</td>
+      <td>قائمة الكائنات، كل منها يمثل مصدر إدخال والإجراءات المرتبطة به</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## multiTouchPerform
-أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
+أمر بروتوكول السلك JSON المتنقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#touch-gestures).
+
+
 
 ##### الاستخدام
 
@@ -116,7 +129,7 @@ driver.multiTouchPerform(actions, elementId)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -128,22 +141,25 @@ driver.multiTouchPerform(actions, elementId)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>قائمة من الكائنات، كل منها يمثل مصدر إدخال والإجراءات المرتبطة به</td>
+      <td>قائمة الكائنات، كل منها يمثل مصدر إدخال والإجراءات المرتبطة به</td>
     </tr>
     <tr>
       <td><code><var>elementId</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>object[]</td>
-      <td>معرف عنصر تم إرجاعه في مكالمة سابقة لـ Find Element(s)</td>
+      <td>معرف عنصر تم إرجاعه في استدعاء سابق لـ Find Element(s)</td>
     </tr>
   </tbody>
 </table>
 
 
 
----
 
+
+---
 ## receiveAsyncResponse
-أمر بروتوكول موبايل جيسون واير. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
+أمر بروتوكول السلك JSON المتنقل. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#mobile-json-wire-protocol-endpoints).
+
+
 
 ##### الاستخدام
 
@@ -152,7 +168,7 @@ driver.receiveAsyncResponse(status, value)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -173,3 +189,7 @@ driver.receiveAsyncResponse(status, value)
     </tr>
   </tbody>
 </table>
+
+
+
+

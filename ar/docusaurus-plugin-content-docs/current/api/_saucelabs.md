@@ -1,12 +1,12 @@
 ---
 id: saucelabs
-title: صلصة لابز
+title: صوص لابز
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/saucelabs.ts
 ---
 
-جميع الأوامر مدعومة فقط على Chrome باستخدام إمكانيات Sauce Labs
+جميع الأوامر مدعومة فقط على متصفح Chrome باستخدام إمكانيات 
 [Extended Debugging](https://docs.saucelabs.com/insights/debug/#enabling-extended-debugging)
-. يمكنك تمكين هذه الإمكانيات عن طريق تعيين خيارات Sauce التالية:
+من Sauce Labs. يمكنك تمكين هذه الميزات عن طريق تعيين خيارات Sauce التالية:
 
 
 ```js
@@ -21,9 +21,10 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ```
 
 ---
-
 ## getPageLogs
 الحصول على معلومات سجل محددة لصفحة الويب بناءً على آخر تحميل للصفحة.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#network-logs).
+
+
 
 ##### الاستخدام
 
@@ -32,7 +33,7 @@ browser.getPageLogs(type)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -92,16 +93,17 @@ console.log(browser.getPageLogs('sauce:performance'));
 ```
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;object&gt;**
-            **<code><var>log</var></code>:** مخرج السجل من النوع المطلوب (انظر المثال)
+            **<code><var>log</var></code>:** مخرجات السجل من النوع المطلوب (انظر المثال)    
 
 
 ---
-
 ## sauceThrottleNetwork
-باستخدام تكييف الشبكة، يمكنك اختبار موقعك على مجموعة متنوعة من اتصالات الشبكة، بما في ذلك Edge و3G وحتى في وضع عدم الاتصال. يمكنك التحكم في معدل نقل البيانات، بما في ذلك الحد الأقصى للتنزيل والتحميل، واستخدام التلاعب بزمن الاستجابة لفرض حد أدنى للتأخير في وقت استجابة الاتصال (RTT).<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
+باستخدام تكييف الشبكة، يمكنك اختبار موقعك على مجموعة متنوعة من اتصالات الشبكة، بما في ذلك Edge و3G وحتى في وضع عدم الاتصال. يمكنك تقييد معدل نقل البيانات، بما في ذلك الحد الأقصى لمعدل التنزيل والتحميل، واستخدام معالجة زمن الاستجابة لفرض الحد الأدنى من التأخير في وقت الرحلة ذهابًا وإيابًا للاتصال (RTT).<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
+
+
 
 ##### الاستخدام
 
@@ -110,7 +112,7 @@ browser.sauceThrottleNetwork(condition)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -122,7 +124,7 @@ browser.sauceThrottleNetwork(condition)
     <tr>
       <td><code><var>condition</var></code></td>
       <td>string, object</td>
-      <td>حالة الشبكة للتعيين (مثل 'online'، 'offline'، 'GPRS'، 'Regular 2G'، 'Good 2G'، 'Regular 3G'، 'Good 3G'، 'Regular 4G'، 'DSL'، 'Wifi')</td>
+      <td>حالة الشبكة المراد تعيينها (مثل 'online'، 'offline'، 'GPRS'، 'Regular 2G'، 'Good 2G'، 'Regular 3G'، 'Good 3G'، 'Regular 4G'، 'DSL'، 'Wifi')</td>
     </tr>
   </tbody>
 </table>
@@ -147,10 +149,13 @@ browser.sauceThrottleNetwork({
 
 
 
----
 
+
+---
 ## throttleCPU
-يمكنك التحكم في استخدام وحدة المعالجة المركزية في DevTools لفهم كيفية أداء صفحتك تحت هذا القيد.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
+يمكنك تقييد وحدة المعالجة المركزية (CPU) في DevTools لفهم كيفية أداء صفحتك تحت هذا القيد.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
+
+
 
 ##### الاستخدام
 
@@ -159,7 +164,7 @@ browser.throttleCPU(rate)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -192,10 +197,13 @@ browser.throttleCPU(0)
 
 
 
----
 
+
+---
 ## interceptRequest
-يسمح بتعديل أي طلب تم إجراؤه بواسطة المتصفح. يمكنك منع أو تعديل أو إعادة توجيه هذه الطلبات حسب متطلبات اختباراتك.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
+يسمح بتعديل أي طلب يتم إجراؤه بواسطة المتصفح. يمكنك حظر أو تعديل أو إعادة توجيه هذه الطلبات حسب المطلوب لاختباراتك.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
+
+
 
 ##### الاستخدام
 
@@ -204,7 +212,7 @@ browser.interceptRequest(rule)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -262,10 +270,13 @@ browser.interceptRequest({
 
 
 
----
 
+
+---
 ## assertPerformance
-التحقق من أداء تطبيقك مقابل خط الأساس.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
+التحقق من الأداء مقابل خط الأساس لتطبيقك.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
+
+
 
 ##### الاستخدام
 
@@ -274,7 +285,7 @@ browser.assertPerformance(name, metrics)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -286,7 +297,7 @@ browser.assertPerformance(name, metrics)
     <tr>
       <td><code><var>name</var></code></td>
       <td>string</td>
-      <td>اسم المهمة التي أنشأت خط الأساس الخاص بك بها.</td>
+      <td>اسم المهمة التي أنشأت خط الأساس الخاص بك.</td>
     </tr>
     <tr>
       <td><code><var>metrics</var></code><br /><span className="label labelWarning">اختياري</span></td>
@@ -309,22 +320,25 @@ const hasRegression = browser.assertPerformance({
 ```
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;object&gt;**
-            **<code><var>hasRegression</var></code>:** كائن يحتوي على النتيجة بالإضافة إلى قياسات حول النتيجة.
+            **<code><var>hasRegression</var></code>:** كائن يحتوي على النتيجة وكذلك مقاييس حول النتيجة.    
 
 
 ---
-
 ## jankinessCheck
-قم بإجراء اختبار التمرير الذي يقيم تقطيع التطبيق.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
+إجراء اختبار التمرير الذي يقيم مدى تقطع التطبيق.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.jankinessCheck()
 ```
+
+
 
 ##### مثال
 
@@ -336,16 +350,17 @@ browser.jankinessCheck()
 ```
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;object&gt;**
-            **<code><var>testResults</var></code>:** كائن يحتوي على النتيجة بالإضافة إلى قياسات حول مدى سلاسة تجربة المستخدم للصفحة أثناء الاختبار.
+            **<code><var>testResults</var></code>:** كائن يحتوي على النتيجة وكذلك مقاييس حول مدى سلاسة تجربة المستخدم للصفحة أثناء الاختبار.    
 
 
 ---
-
 ## mockRequest
 يحاكي مورد شبكة.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+
+
 
 ##### الاستخدام
 
@@ -354,7 +369,7 @@ browser.mockRequest(url, filterOptions)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -366,27 +381,28 @@ browser.mockRequest(url, filterOptions)
     <tr>
       <td><code><var>url</var></code></td>
       <td>string</td>
-      <td>نمط URL لمطابقة عنوان URL للمحاكاة.</td>
+      <td>نمط عنوان URL لمطابقة عنوان URL المراد محاكاته.</td>
     </tr>
     <tr>
       <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">اختياري</span></td>
       <td>object</td>
-      <td>خيارات تصفية إضافية لعنوان URL للمحاكاة (مثل الرؤوس، الطريقة).</td>
+      <td>خيارات تصفية إضافية لعنوان URL المراد محاكاته (مثل الرؤوس، الطريقة).</td>
     </tr>
   </tbody>
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;object&gt;**
-            **<code><var>mockId</var></code>:** كائن يحتوي على معرف مورد المحاكاة.
+            **<code><var>mockId</var></code>:** كائن يحتوي على معرف المورد المحاكى.    
 
 
 ---
-
 ## getMockCalls
-استلام معلومات الطلب حول الطلبات التي تتطابق مع مورد المحاكاة.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+استلام معلومات الطلب حول الطلبات التي تتطابق مع المورد المحاكى.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+
+
 
 ##### الاستخدام
 
@@ -395,7 +411,7 @@ browser.getMockCalls(mockId)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -413,16 +429,17 @@ browser.getMockCalls(mockId)
 </table>
 
 
-##### العائد
+##### القيمة المرجعة
 
 - **&lt;object&gt;**
-            **<code><var>requests</var></code>:** قائمة بمعلومات الطلبات.
+            **<code><var>requests</var></code>:** قائمة بمعلومات الطلب.    
 
 
 ---
-
 ## clearMockCalls
 مسح قائمة مكالمات المحاكاة.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+
+
 
 ##### الاستخدام
 
@@ -431,7 +448,7 @@ browser.clearMockCalls(mockId, restore)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>
@@ -455,10 +472,13 @@ browser.clearMockCalls(mockId, restore)
 
 
 
----
 
+
+---
 ## respondMock
 الاستجابة إذا تطابقت المحاكاة مع مورد محدد.<br /><br />أمر Sauce Labs. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://docs.saucelabs.com/).
+
+
 
 ##### الاستخدام
 
@@ -467,7 +487,7 @@ browser.respondMock(mockId, payload)
 ```
 
 
-##### المعلمات
+##### المعاملات
 
 <table>
   <thead>

@@ -3,9 +3,10 @@ id: gecko
 title: فايرفوكس
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/gecko.ts
 ---
-
 ## fullPageScreenshot
 يلتقط لقطة شاشة للصفحة بأكملها.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://phabricator.services.mozilla.com/source/mozilla-central/browse/default/testing/geckodriver/src/command.rs$43-46).
+
+
 
 ##### الاستخدام
 
@@ -14,22 +15,27 @@ browser.fullPageScreenshot()
 ```
 
 
-##### الإرجاع
+
+
+##### القيم المرجعة
 
 - **&lt;String&gt;**
-            **<code><var>screenshot</var></code>:** بيانات صورة PNG المشفرة بالـ base64 التي تشكل لقطة الشاشة للصفحة الكاملة.
+            **<code><var>screenshot</var></code>:** بيانات صورة PNG المشفرة بـ base64 التي تشمل لقطة الشاشة للصفحة الكاملة.    
 
 
 ---
-
 ## getMozContext
-الحصول على السياق المفعّل حاليًا، مثل `CHROME` أو `CONTENT`.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L622).
+الحصول على السياق الذي هو حاليًا قيد التأثير، مثل `CHROME` أو `CONTENT`.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L622).
+
+
 
 ##### الاستخدام
 
 ```js
 browser.getMozContext()
 ```
+
+
 
 ##### مثال
 
@@ -39,16 +45,17 @@ console.log(await browser.getMozContext()); // outputs: 'CHROME'
 ```
 
 
-##### الإرجاع
+##### القيم المرجعة
 
 - **&lt;String&gt;**
-            **<code><var>Context</var></code>:** سياق المتصفح، إما `CHROME` أو `CONTENT`
+            **<code><var>Context</var></code>:** سياق المتصفح، إما `CHROME` أو `CONTENT`    
 
 
 ---
-
 ## setMozContext
-يغير سياق الهدف للأوامر بين chrome و content.<br /><br />تغيير السياق الحالي له تأثير على حالة جميع الأوامر اللاحقة. سياق `CONTENT` لديه أذونات وثيقة منصة الويب العادية، كما لو كنت تقيم JavaScript تعسفي. سياق `CHROME` يحصل على أذونات مرتفعة تسمح لك بالتلاعب بواجهة المتصفح نفسها، مع الوصول الكامل إلى مجموعة أدوات XUL.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645).
+يغير سياق الهدف للأوامر بين chrome و content.<br /><br />تغيير السياق الحالي له تأثير حالي على جميع الأوامر اللاحقة. سياق `CONTENT` لديه أذونات المستند العادية لمنصة الويب، كما لو كنت تقيّم JavaScript عشوائيًا. سياق `CHROME` يحصل على أذونات مرتفعة تتيح لك التلاعب بواجهة المتصفح نفسها، مع الوصول الكامل إلى مجموعة أدوات XUL.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645).
+
+
 
 ##### الاستخدام
 
@@ -85,10 +92,13 @@ console.log(await browser.getMozContext()); // outputs: 'CONTENT'
 
 
 
----
 
+
+---
 ## installAddOn
-تثبيت إضافة جديدة في الجلسة الحالية. ستعيد هذه الوظيفة معرّفًا يمكن استخدامه لاحقًا لإلغاء تثبيت الإضافة باستخدام `uninstallAddon`.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L647-L668).
+يقوم بتثبيت إضافة جديدة مع الجلسة الحالية. ستقوم هذه الوظيفة بإرجاع معرف قد يتم استخدامه لاحقًا لإلغاء تثبيت الإضافة باستخدام `uninstallAddon`.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L647-L668).
+
+
 
 ##### الاستخدام
 
@@ -114,7 +124,7 @@ browser.installAddOn(addon, temporary)
     <tr>
       <td><code><var>temporary</var></code></td>
       <td>boolean</td>
-      <td>علامة مؤقتة تشير إلى ما إذا كان يجب تثبيت الامتداد مؤقتًا - تتم إزالته عند إعادة التشغيل</td>
+      <td>علامة مؤقتة تشير إلى ما إذا كان ينبغي تثبيت الامتداد مؤقتًا - يتم إزالته عند إعادة التشغيل</td>
     </tr>
   </tbody>
 </table>
@@ -130,16 +140,17 @@ const id = await browser.installAddOn(extension.toString('base64'), false);
 ```
 
 
-##### الإرجاع
+##### القيم المرجعة
 
 - **&lt;String&gt;**
-            **<code><var>id</var></code>:** وعد سيتم حله إلى معرّف للإضافة المثبتة حديثًا.
+            **<code><var>id</var></code>:** وعد سيتحول إلى معرف للإضافة المثبتة حديثًا.    
 
 
 ---
-
 ## uninstallAddOn
-إلغاء تثبيت إضافة من ملف تعريف جلسة المتصفح الحالية.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L670-L687).
+يقوم بإلغاء تثبيت إضافة من ملف تعريف جلسة المتصفح الحالية.<br /><br />أمر فايرفوكس. يمكن العثور على مزيد من التفاصيل في [وثائق البروتوكول الرسمية](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L670-L687).
+
+
 
 ##### الاستخدام
 
@@ -160,7 +171,7 @@ browser.uninstallAddOn(id)
     <tr>
       <td><code><var>id</var></code></td>
       <td>string</td>
-      <td>معرّف الإضافة المراد إلغاء تثبيتها.</td>
+      <td>معرف الإضافة المراد إلغاء تثبيتها.</td>
     </tr>
   </tbody>
 </table>
