@@ -4,7 +4,7 @@ title: mockRestoreAll
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mockRestoreAll.ts
 ---
 
-セッションに登録されているすべてのモックに格納されているすべてのモック情報と動作を復元します。
+セッション内のすべての登録済みモックに保存されているすべてのモック情報と動作を復元します。
 
 ##### 使用方法
 

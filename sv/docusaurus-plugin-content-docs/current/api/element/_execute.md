@@ -4,32 +4,32 @@ title: execute
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/execute.ts
 ---
 
-Inject a snippet of JavaScript into the page for execution in the context of the currently selected
-frame using the given element as scope, because it is on the element scope it means that WebdriverIO will
-automatically wait for the element to exist before executing the script.
-The executed script is assumed to be synchronous and the result of evaluating the script is returned to
-the client.
+Injicera ett kodavsnitt av JavaScript i sidan för exekvering i kontexten av den för närvarande valda
+ramen med det givna elementet som omfattning, eftersom det är inom elementets omfattning betyder det att WebdriverIO
+automatiskt kommer att vänta på att elementet existerar innan skriptet körs.
+Det exekverade skriptet förutsätts vara synkront och resultatet av att utvärdera skriptet returneras till
+klienten.
 
-The script argument defines the script to execute in the form of a function body. The value returned by
-that function will be returned to the client. The function will be invoked with the provided args array
-and the values may be accessed via the arguments object in the order specified.
+Scriptargumentet definierar skriptet som ska köras i form av en funktionskropp. Värdet som returneras av
+den funktionen kommer att returneras till klienten. Funktionen kommer att anropas med den tillhandahållna args-arrayen
+och värdena kan nås via arguments-objektet i den angivna ordningen.
 
-Arguments may be any JSON-primitive, array, or JSON object. JSON objects that define a WebElement
-reference will be converted to the corresponding DOM element. Likewise, any WebElements in the script
-result will be returned to the client as WebElement JSON objects.
+Argument kan vara vilken JSON-primitiv, array eller JSON-objekt som helst. JSON-objekt som definierar en WebElement-
+referens kommer att konverteras till motsvarande DOM-element. På samma sätt kommer alla WebElements i skriptets
+resultat att returneras till klienten som WebElement JSON-objekt.
 
-##### Usage
+##### Användning
 
 ```js
 $(selector).execute(script, arguments)
 ```
 
-##### Parameters
+##### Parametrar
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Namn</th><th>Typ</th><th>Detaljer</th>
     </tr>
   </thead>
   <tbody>
@@ -61,4 +61,4 @@ it('should wait for the element to exist, then executes javascript on the page w
 ##### Returnerar
 
 - **&lt;*&gt;**
-            **<code><var>return</var></code>:**              Skriptresultatet.    
+            **<code><var>return</var></code>:**              Skriptresultatet.

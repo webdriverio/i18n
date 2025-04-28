@@ -1,11 +1,11 @@
 ---
 id: deleteCookies
-title: deleteCookies
+title: deleteCookies（クッキーの削除）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/deleteCookies.ts
 ---
 
-現在のページに表示されているクッキーを削除します。クッキー名を指定することで、
-単一のクッキーを削除したり、複数の名前を渡すことでより多くのクッキーを削除したりできます。
+現在のページで表示されるクッキーを削除します。クッキー名を指定することで、
+単一のクッキーのみを削除したり、複数の名前を渡すとより多くのクッキーを削除できます。
 
 ##### Usage
 
@@ -25,7 +25,7 @@ browser.deleteCookies(filter)
     <tr>
       <td><code><var>filter</var></code></td>
       <td>`StorageCookieFilter[]`</td>
-      <td>フィルタープロパティを使用して、一致する条件に基づいて特定のクッキーを識別し削除します。</td>
+      <td>フィルタープロパティを使用して、一致する条件に基づいて特定のクッキーを識別して削除します。</td>
     </tr>
   </tbody>
 </table>

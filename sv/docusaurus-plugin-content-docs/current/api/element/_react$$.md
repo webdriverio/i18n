@@ -5,12 +5,12 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Kommandot `react$$` är ett användbart kommando för att söka efter flera React-komponenter 
-baserat på deras faktiska namn och filtrera dem efter props och state.
+efter deras faktiska namn och filtrera dem efter props och state.
 
 :::info
 
 Kommandot fungerar endast med applikationer som använder React v16.x. Läs mer om React-
-selektorer i [Selectors](/docs/selectors#react-selectors) guiden.
+selektorer i [Selectors](/docs/selectors#react-selectors)-guiden.
 
 :::
 
@@ -37,17 +37,17 @@ $(selector).react$$(selector, { props, state })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`ReactSelectorOptions`</td>
-      <td>React-selektoralternativ</td>
+      <td>React-selektor alternativ</td>
     </tr>
     <tr>
       <td><code><var>options.props</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Object`</td>
-      <td>React props som elementet ska innehålla</td>
+      <td>React-props som elementet ska innehålla</td>
     </tr>
     <tr>
       <td><code><var>options.state</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>React state som elementet ska ha</td>
+      <td>React-state som elementet ska ha</td>
     </tr>
   </tbody>
 </table>

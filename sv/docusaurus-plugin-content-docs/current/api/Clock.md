@@ -1,9 +1,9 @@
 ---
 id: clock
-title: Clock-objektet
+title: Klockobjektet
 ---
 
-Du kan ändra webbläsarens systemklocka med [`emulate`](/docs/emulation)-kommandot. Det åsidosätter inbyggda globala funktioner relaterade till tid, vilket gör att de kan kontrolleras synkront via `clock.tick()` eller det returnerade clock-objektet. Detta inkluderar kontroll av:
+Du kan modifiera webbläsarens systemklocka med kommandot [`emulate`](/docs/emulation). Det åsidosätter inbyggda globala funktioner relaterade till tid, vilket gör att de kan kontrolleras synkront via `clock.tick()` eller det genererade klockobjektet. Detta inkluderar kontroll av:
 
 - `setTimeout`
 - `clearTimeout`
@@ -11,11 +11,11 @@ Du kan ändra webbläsarens systemklocka med [`emulate`](/docs/emulation)-komman
 - `clearInterval`
 - `Date Objects`
 
-Klockan startar vid unix epoch (tidsstämpel 0). Detta innebär att när du instansierar new Date i din applikation kommer den att ha en tid på 1 januari 1970 om du inte skickar några andra alternativ till `emulate`-kommandot.
+Klockan startar vid unix-epoken (tidsstämpel 0). Detta innebär att när du skapar ett nytt Date-objekt i din applikation kommer det att ha tiden 1 januari 1970 om du inte skickar några andra alternativ till kommandot `emulate`.
 
 ## Exempel
 
-När du anropar `browser.emulate('clock', { ... })` kommer det omedelbart att skriva över de globala funktionerna för den aktuella sidan såväl som alla följande sidor, t.ex.:
+När du anropar `browser.emulate('clock', { ... })` kommer det omedelbart att skriva över de globala funktionerna för den aktuella sidan samt alla följande sidor, t.ex.:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })

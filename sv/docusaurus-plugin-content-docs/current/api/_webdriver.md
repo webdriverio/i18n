@@ -1,6 +1,6 @@
 ---
 id: webdriver
-title: WebDriver-protokollet
+title: WebDriver Protokoll
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/webdriver.ts
 ---
 

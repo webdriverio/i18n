@@ -1,12 +1,11 @@
 ---
 id: more-test-optimization
-title: Testkörningtid
+title: Testkörningens exekveringstid
 ---
 
-Som standard kommer denna modul att kontrollera om du har en lokal installation av Tesseract på din maskin/i din pipeline. Om du inte har en lokal installation kommer den automatiskt att använda en [NodeJS](https://github.com/naptha/tesseract.js) version. Detta kan orsaka viss långsamhet eftersom bildbehandlingen kommer att göras av Node.js. NodeJS är inte det bästa systemet för att göra
-tung bearbetning.
+Som standard kommer denna modul att kontrollera om du har en lokal installation av Tesseract på din maskin/i din pipeline. Om du inte har en lokal installation kommer den automatiskt att använda en [NodeJS](https://github.com/naptha/tesseract.js)-version. Detta kan orsaka viss långsamhet eftersom bildbehandlingen kommer att göras av Node.js. NodeJS är inte det bästa systemet för tung bearbetning.
 
-**MEN...**, det finns sätt att optimera körningstiden. Låt oss ta följande testskript
+**MEN...**, det finns sätt att optimera exekveringstiden. Låt oss ta följande testskript
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -62,7 +61,7 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 
 ## Beskära sökområdet på en skärm
 
-Du kan optimera körningstiden genom att tillhandahålla ett beskuret område för att utföra OCR på.
+Du kan optimera exekveringstiden genom att tillhandahålla ett beskuret område för att utföra OCR på.
 
 Om du skulle ändra skriptet till detta:
 
@@ -89,7 +88,7 @@ describe("Search", () => {
 });
 ```
 
-Då kommer du att se en annan körningstid.
+Då kommer du att se en annan exekveringstid.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -122,12 +121,12 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
 :::tip Beskära bilder
-Detta minskade den lokala körningstiden från **5,9** till **4,8 sekunder**. Detta är en minskning med nästan **19%**. Föreställ dig vad det kan göra för ett större skript med mer data på det.
+Detta minskade den lokala exekveringstiden från **5,9** till **4,8 sekunder**. Detta är en minskning med nästan **19%**. Föreställ dig vad det kan göra för ett större skript med mer data.
 :::
 
 ## Använda en lokal installation av Tesseract
 
-Du kan öka din körningstid till mindre än en minut om du har en lokal installation av Tessarect på din lokala maskin och/eller i din pipeline (mer information om att installera Tesseract på ditt lokala system finns [här](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Du kan hitta körningstiden för samma skript med en lokal installation av Tesseract nedan.
+Du kan öka din exekveringshastighet till mindre än en minut om du har en lokal installation av Tesseract på din lokala maskin och/eller i din pipeline (mer information om att installera Tesseract på ditt lokala system finns [här](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Du kan se exekveringstiden för samma skript med en lokal installation av Tesseract nedan.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -157,5 +156,5 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
 :::tip Lokal installation
-Detta minskade den lokala körningstiden från **5,9** till **3,9 sekunder**. Detta är en minskning med nästan **34%**. Föreställ dig vad det kan göra för ett större skript med mer data på det.
+Detta minskade den lokala exekveringstiden från **5,9** till **3,9 sekunder**. Detta är en minskning med nästan **34%**. Föreställ dig vad det kan göra för ett större skript med mer data.
 :::

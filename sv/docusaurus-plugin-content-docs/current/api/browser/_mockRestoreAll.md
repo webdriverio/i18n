@@ -4,8 +4,8 @@ title: mockRestoreAll
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mockRestoreAll.ts
 ---
 
-Återställer all mockinformation och beteende lagrat i alla registrerade
-mock-objekt i sessionen.
+Återställer all mockinformation och beteende som lagrats i alla registrerade
+mocks för sessionen.
 
 ##### Användning
 

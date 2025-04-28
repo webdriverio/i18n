@@ -4,11 +4,11 @@ title: react$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/react$.ts
 ---
 
-`react$`コマンドは、実際の名前でReactコンポーネントを照会し、propsとstateでフィルタリングするための便利なコマンドです。
+`react$`コマンドは、実際の名前でReactコンポーネントをクエリし、propsやstateでフィルタリングするための便利なコマンドです。
 
 :::info
 
-このコマンドはReact v16.xを使用しているアプリケーションでのみ機能します。Reactセレクターの詳細については、[セレクター](/docs/selectors#react-selectors)ガイドをお読みください。
+このコマンドはReact v16.x を使用しているアプリケーションでのみ動作します。Reactセレクタの詳細については、[セレクタ](/docs/selectors#react-selectors)ガイドをご覧ください。
 
 :::
 
@@ -35,7 +35,7 @@ browser.react$(selector, { props, state })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`ReactSelectorOptions`</td>
-      <td>Reactセレクターオプション</td>
+      <td>Reactセレクタオプション</td>
     </tr>
     <tr>
       <td><code><var>options.props</var></code><br /><span className="label labelWarning">オプション</span></td>
@@ -45,7 +45,7 @@ browser.react$(selector, { props, state })
     <tr>
       <td><code><var>options.state</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>要素があるべきReact state</td>
+      <td>要素が持つべきReact state</td>
     </tr>
   </tbody>
 </table>

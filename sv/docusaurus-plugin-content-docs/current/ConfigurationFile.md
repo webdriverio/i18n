@@ -5,7 +5,7 @@ title: Konfigurationsfil
 
 Konfigurationsfilen innehåller all nödvändig information för att köra din testsvit. Det är en NodeJS-modul som exporterar en JSON.
 
-Här är ett exempel på en konfiguration med alla stödda egenskaper och ytterligare information:
+Här är ett exempel på konfiguration med alla stödda egenskaper och ytterligare information:
 
 ```js
 export const config = {
@@ -487,4 +487,4 @@ export const config = {
 }
 ```
 
-Du kan också hitta en fil med alla möjliga alternativ och variationer i [exempelmappen](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).
+Du kan också hitta en fil med alla möjliga alternativ och varianter i [exempelmappen](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).

@@ -1,11 +1,11 @@
 ---
 id: dialog
-title: Dialogobjektet
+title: Dialog-objektet
 ---
 
-Dialogobjekt skickas av [`browser`](/docs/api/browser) via händelsen `browser.on('dialog')`.
+Dialog-objekt skickas av [`browser`](/docs/api/browser) via händelsen `browser.on('dialog')`.
 
-Ett exempel på hur man använder Dialogobjektet:
+Ett exempel på hur man använder Dialog-objektet:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -21,6 +21,6 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-Dialoger avfärdas automatiskt, såvida det inte finns en `browser.on('dialog')` lyssnare. När lyssnaren är närvarande måste den antingen använda [`dialog.accept()`](/docs/api/dialog/accept) eller [`dialog.dismiss()`](/docs/api/dialog/dismiss) för dialogen - annars kommer sidan att frysa i väntan på dialogen, och åtgärder som klick kommer aldrig att slutföras.
+Dialogrutor avfärdas automatiskt, såvida det inte finns en `browser.on('dialog')` lyssnare. När lyssnaren är närvarande måste den antingen [`dialog.accept()`](/docs/api/dialog/accept) eller [`dialog.dismiss()`](/docs/api/dialog/dismiss) dialogen - annars kommer sidan att frysa i väntan på dialogen, och åtgärder som klick kommer aldrig att slutföras.
 
 :::

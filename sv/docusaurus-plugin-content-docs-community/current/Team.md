@@ -3,7 +3,7 @@ id: team
 title: Team
 ---
 
-WebdriverIO-utvecklingen leds av ett dedikerat team av utvecklare och SDETs från olika företag samt bidrag från människor runt om i världen.
+WebdriverIO-utvecklingen leds av ett dedikerat team av utvecklare och SDETs från olika företag samt bidrag från människor över hela världen.
 
 ## Technical Steering Committee
 

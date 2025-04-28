@@ -9,27 +9,27 @@ Ett element anses vara klickbart när följande villkor är uppfyllda:
 - elementet existerar
 - elementet visas
 - elementet är inte inaktiverat
-- elementet är inom vyområdet
-- elementet kan scrollas in i vyområdet
-- elementets centrum är inte överlappat av ett annat element
+- elementet är inom viewporten
+- elementet kan scrollas in i viewporten
+- elementets centrum överlappar inte med ett annat element
 
 annars returneras false.
 
 :::info
 
-Observera att `isClickable` fungerar endast i webbläsare och i mobila webbvyer,
+Observera att `isClickable` fungerar endast i webbläsare och i mobila webvyer,
 det fungerar inte i mobilappens nativa kontext. Dessutom, till skillnad från andra element-
-kommandon kommer WebdriverIO inte att vänta på att elementet ska existera för att köra detta kommando.
+kommandon kommer WebdriverIO inte att vänta på att elementet ska existera för att utföra detta kommando.
 
 :::
 
-##### Usage
+##### Användning
 
 ```js
 $(selector).isClickable()
 ```
 
-##### Example
+##### Exempel
 
 ```js title="isClickable.js"
 it('should detect if an element is clickable', async () => {
@@ -42,7 +42,7 @@ it('should detect if an element is clickable', async () => {
 });
 ```
 
-##### Returns
+##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**             true if element is clickable    
+            **<code><var>return</var></code>:**             true om elementet är klickbart

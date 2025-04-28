@@ -8,7 +8,7 @@ Följande metoder läggs till i det globala WebdriverIO [`browser`](/docs/api/br
 ## Sparmetoder
 
 :::info TIPS
-Använd endast sparmetoderna när du **inte** vill jämföra skärmar, utan bara vill ha en element-/skärmbild.
+Använd endast Sparmetoderna när du **inte** vill jämföra skärmar, utan bara vill ha en element-/skärmbild.
 :::
 
 ### `saveElement`
@@ -30,28 +30,28 @@ await browser.saveElement(
 );
 ```
 
-#### Support
+#### Stöd
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- Desktop-webbläsare
+- Mobila webbläsare
+- Mobila hybridappar
+- Mobila nativa appar
 
 #### Parametrar
 
 -   **`element`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** WebdriverIO Element
 -   **`tag`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** string
 -   **`saveElementOptions`:**
-    -   **Obligatoriskt:** Nej
-    -   **Typ:** ett objekt med alternativ, se [Spara-alternativ](./method-options#save-options)
+    -   **Obligatorisk:** Nej
+    -   **Typ:** ett objekt med alternativ, se [Spara alternativ](./method-options#save-options)
 
-#### Utdata:
+#### Output:
 
-Se sidan [Testutdata](./test-output#savescreenelementfullpagescreen).
+Se sidan [Testresultat](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
@@ -70,24 +70,24 @@ await browser.saveScreen(
 );
 ```
 
-#### Support
+#### Stöd
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- Desktop-webbläsare
+- Mobila webbläsare
+- Mobila hybridappar
+- Mobila nativa appar
 
 #### Parametrar
 -   **`tag`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** string
 -   **`saveScreenOptions`:**
-    -   **Obligatoriskt:** Nej
-    -   **Typ:** ett objekt med alternativ, se [Spara-alternativ](./method-options#save-options)
+    -   **Obligatorisk:** Nej
+    -   **Typ:** ett objekt med alternativ, se [Spara alternativ](./method-options#save-options)
 
-#### Utdata:
+#### Output:
 
-Se sidan [Testutdata](./test-output#savescreenelementfullpagescreen).
+Se sidan [Testresultat](./test-output#savescreenelementfullpagescreen).
 
 ### `saveFullPageScreen`
 
@@ -106,26 +106,26 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Support
+#### Stöd
 
-- Desktop Browsers
-- Mobile Browsers
+- Desktop-webbläsare
+- Mobila webbläsare
 
 #### Parametrar
 -   **`tag`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** string
 -   **`saveFullPageScreenOptions`:**
-    -   **Obligatoriskt:** Nej
-    -   **Typ:** ett objekt med alternativ, se [Spara-alternativ](./method-options#save-options)
+    -   **Obligatorisk:** Nej
+    -   **Typ:** ett objekt med alternativ, se [Spara alternativ](./method-options#save-options)
 
-#### Utdata:
+#### Output:
 
-Se sidan [Testutdata](./test-output#savescreenelementfullpagescreen).
+Se sidan [Testresultat](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Sparar en bild av hela skärmen med tabbara linjer och punkter.
+Sparar en bild av hela skärmen med tabbningsbara linjer och punkter.
 
 #### Användning
 
@@ -140,26 +140,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Support
+#### Stöd
 
-- Desktop Browsers
+- Desktop-webbläsare
 
 #### Parametrar
 -   **`tag`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** string
 -   **`saveTabbableOptions`:**
-    -   **Obligatoriskt:** Nej
-    -   **Typ:** ett objekt med alternativ, se [Spara-alternativ](./method-options#save-options)
+    -   **Obligatorisk:** Nej
+    -   **Typ:** ett objekt med alternativ, se [Spara alternativ](./method-options#save-options)
 
-#### Utdata:
+#### Output:
 
-Se sidan [Testutdata](./test-output#savescreenelementfullpagescreen).
+Se sidan [Testresultat](./test-output#savescreenelementfullpagescreen).
 
 ## Kontrollmetoder
 
 :::info TIPS
-När `check`-metoderna används för första gången kommer du att se varningen nedan i loggarna. Detta betyder att du inte behöver kombinera `save`- och `check`-metoderna om du vill skapa din baseline.
+När `check`-metoderna används för första gången kommer du att se varningen nedan i loggarna. Detta betyder att du inte behöver kombinera `save`- och `check`-metoderna om du vill skapa din baslinje.
 
 ```shell
 #####################################################################################
@@ -175,7 +175,7 @@ När `check`-metoderna används för första gången kommer du att se varningen 
 
 ### `checkElement`
 
-Jämför en bild av ett element mot en baseline-bild.
+Jämför en bild av ett element mot en baslinjesbild.
 
 #### Användning
 
@@ -192,31 +192,31 @@ await browser.checkElement(
 );
 ```
 
-#### Support
+#### Stöd
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- Desktop-webbläsare
+- Mobila webbläsare
+- Mobila hybridappar
+- Mobila nativa appar
 
 #### Parametrar
 -   **`element`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** WebdriverIO Element
 -   **`tag`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** string
 -   **`checkElementOptions`:**
-    -   **Obligatoriskt:** Nej
-    -   **Typ:** ett objekt med alternativ, se [Jämför/Kontrollera-alternativ](./method-options#compare-check-options)
+    -   **Obligatorisk:** Nej
+    -   **Typ:** ett objekt med alternativ, se [Jämför/Kontrollera alternativ](./method-options#compare-check-options)
 
-#### Utdata:
+#### Output:
 
-Se sidan [Testutdata](./test-output#checkscreenelementfullpagescreen).
+Se sidan [Testresultat](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkScreen`
 
-Jämför en bild av en viewport mot en baseline-bild.
+Jämför en bild av en viewport mot en baslinjesbild.
 
 #### Användning
 
@@ -231,28 +231,28 @@ await browser.checkScreen(
 );
 ```
 
-#### Support
+#### Stöd
 
-- Desktop Browsers
-- Mobile Browsers
-- Mobile Hybrid Apps
-- Mobile Native Apps
+- Desktop-webbläsare
+- Mobila webbläsare
+- Mobila hybridappar
+- Mobila nativa appar
 
 #### Parametrar
 -   **`tag`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** string
 -   **`checkScreenOptions`:**
-    -   **Obligatoriskt:** Nej
-    -   **Typ:** ett objekt med alternativ, se [Jämför/Kontrollera-alternativ](./method-options#compare-check-options)
+    -   **Obligatorisk:** Nej
+    -   **Typ:** ett objekt med alternativ, se [Jämför/Kontrollera alternativ](./method-options#compare-check-options)
 
-#### Utdata:
+#### Output:
 
-Se sidan [Testutdata](./test-output#checkscreenelementfullpagescreen).
+Se sidan [Testresultat](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
-Jämför en bild av hela skärmen mot en baseline-bild.
+Jämför en bild av hela skärmen mot en baslinjesbild.
 
 #### Användning
 
@@ -267,26 +267,26 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Support
+#### Stöd
 
-- Desktop Browsers
-- Mobile Browsers
+- Desktop-webbläsare
+- Mobila webbläsare
 
 #### Parametrar
 -   **`tag`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** string
 -   **`checkFullPageOptions`:**
-    -   **Obligatoriskt:** Nej
-    -   **Typ:** ett objekt med alternativ, se [Jämför/Kontrollera-alternativ](./method-options#compare-check-options)
+    -   **Obligatorisk:** Nej
+    -   **Typ:** ett objekt med alternativ, se [Jämför/Kontrollera alternativ](./method-options#compare-check-options)
 
-#### Utdata:
+#### Output:
 
-Se sidan [Testutdata](./test-output#checkscreenelementfullpagescreen).
+Se sidan [Testresultat](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Jämför en bild av hela skärmen med tabbara linjer och punkter mot en baseline-bild.
+Jämför en bild av hela skärmen med tabbningsbara linjer och punkter mot en baslinjesbild.
 
 #### Användning
 
@@ -301,18 +301,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Support
+#### Stöd
 
-- Desktop Browsers
+- Desktop-webbläsare
 
 #### Parametrar
 -   **`tag`:**
-    -   **Obligatoriskt:** Ja
+    -   **Obligatorisk:** Ja
     -   **Typ:** string
 -   **`checkTabbableOptions`:**
-    -   **Obligatoriskt:** Nej
-    -   **Typ:** ett objekt med alternativ, se [Jämför/Kontrollera-alternativ](./method-options#compare-check-options)
+    -   **Obligatorisk:** Nej
+    -   **Typ:** ett objekt med alternativ, se [Jämför/Kontrollera alternativ](./method-options#compare-check-options)
 
-#### Utdata:
+#### Output:
 
-Se sidan [Testutdata](./test-output#checkscreenelementfullpagescreen).
+Se sidan [Testresultat](./test-output#checkscreenelementfullpagescreen).

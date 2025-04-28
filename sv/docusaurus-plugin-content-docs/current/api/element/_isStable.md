@@ -4,7 +4,7 @@ title: isStable
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isStable.ts
 ---
 
-Kommer att returnera sant när elementet är stabilt (inte i animation) eller falskt när det är instabilt (i animation).
+Kommer att returnera true när elementet är stabilt (inte i animation) eller false när det är instabilt (i animation).
 
 __Obs:__ det är bäst att inaktivera animationer istället för att använda detta kommando.
 
@@ -61,4 +61,4 @@ it('should detect if an element is stable', async () => {
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  sant om elementet är stabilt, falskt om instabilt
+            **<code><var>return</var></code>:**  true om elementet är stabilt, false om instabilt

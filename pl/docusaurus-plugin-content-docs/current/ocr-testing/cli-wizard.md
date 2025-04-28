@@ -3,7 +3,7 @@ id: cli-wizard
 title: Kreator CLI
 ---
 
-Możesz sprawdzić, jaki tekst znajduje się na obrazie bez uruchamiania testu, korzystając z Kreatora CLI OCR. Jedyne, czego potrzebujesz to:
+Możesz sprawdzić, jaki tekst można znaleźć na obrazie bez uruchamiania testu, korzystając z Kreatora OCR CLI. Jedyne co jest potrzebne to:
 
 -   zainstalowana zależność `@wdio/ocr-service`, zobacz [Pierwsze kroki](./getting-started)
 -   obraz, który chcesz przetworzyć
@@ -14,31 +14,31 @@ Następnie uruchom poniższe polecenie, aby uruchomić kreator
 npx ocr-service
 ```
 
-Uruchomi to kreator, który przeprowadzi Cię przez etapy wyboru obrazu i korzystania z funkcji haystack oraz trybu zaawansowanego. Zadawane są następujące pytania
+Spowoduje to uruchomienie kreatora, który przeprowadzi Cię przez kroki wyboru obrazu i użycia obszaru wyszukiwania (haystack) oraz trybu zaawansowanego. Zadawane są następujące pytania
 
-## W jaki sposób chciałbyś określić plik?
+## Jak chcesz określić plik?
 
 Można wybrać następujące opcje
 
 -   Użyj "eksploratora plików"
--   Wpisz ścieżkę pliku ręcznie
+-   Wpisz ścieżkę do pliku ręcznie
 
 ### Użyj "eksploratora plików"
 
-Kreator CLI oferuje opcję korzystania z "eksploratora plików" do wyszukiwania plików w systemie. Rozpoczyna od folderu, z którego wywołujesz polecenie. Po wybraniu obrazu (użyj klawiszy strzałek i klawisza ENTER) przejdziesz do następnego pytania
+Kreator CLI oferuje opcję użycia "eksploratora plików" do wyszukiwania plików w Twoim systemie. Rozpoczyna od folderu, z którego wywołujesz polecenie. Po wybraniu obrazu (użyj klawiszy strzałek i klawisza ENTER) przejdziesz do następnego pytania
 
-### Wpisz ścieżkę pliku ręcznie
+### Wpisz ścieżkę do pliku ręcznie
 
 Jest to bezpośrednia ścieżka do pliku znajdującego się gdzieś na Twoim lokalnym komputerze
 
-### Czy chciałbyś użyć haystack?
+### Czy chcesz użyć obszaru wyszukiwania (haystack)?
 
-Tutaj masz możliwość wybrania obszaru, który ma zostać przetworzony. Może to przyspieszyć proces lub zmniejszyć/zawęzić ilość tekstu, którą silnik OCR może znaleźć. Musisz podać dane `x`, `y`, `width`, `height` na podstawie następujących pytań:
+Tutaj masz możliwość wybrania obszaru, który ma zostać przetworzony. Może to przyspieszyć proces lub zmniejszyć/zawęzić ilość tekstu, który silnik OCR może znaleźć. Musisz podać dane `x`, `y`, `width`, `height` na podstawie następujących pytań:
 
--   Podaj współrzędną x:
--   Podaj współrzędną y:
--   Podaj szerokość:
--   Podaj wysokość:
+-   Wprowadź współrzędną x:
+-   Wprowadź współrzędną y:
+-   Wprowadź szerokość:
+-   Wprowadź wysokość:
 
 ## Czy chcesz użyć trybu zaawansowanego?
 
@@ -49,7 +49,7 @@ Tryb zaawansowany będzie zawierał dodatkowe funkcje, takie jak:
 
 ## Demo
 
-Oto demo
+Oto demonstracja
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

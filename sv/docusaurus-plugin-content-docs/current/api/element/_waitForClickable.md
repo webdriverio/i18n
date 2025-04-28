@@ -36,7 +36,7 @@ $(selector).waitForClickable({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>tid i ms (standard baserad på konfigurationsvärdet [`waitforTimeout`](/docs/configuration#waitfortimeout))</td>
+      <td>tid i ms (standardvärde baserat på [`waitforTimeout`](/docs/configuration#waitfortimeout) konfigurationsvärde)</td>
     </tr>
     <tr>
       <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -46,7 +46,7 @@ $(selector).waitForClickable({ timeout, reverse, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
-      <td>om den finns ersätter den standardfelmeddelandet</td>
+      <td>om den finns åsidosätter den standardfelmeddelandet</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -72,4 +72,4 @@ it('should detect when element is no longer clickable', async () => {
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  `true` om elementet är klickbart (eller inte om flaggan är inställd)
+            **<code><var>return</var></code>:**  `true` om elementet är klickbart (eller inte om flaggan är satt)    

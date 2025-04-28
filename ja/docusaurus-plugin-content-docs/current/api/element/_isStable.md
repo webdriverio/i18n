@@ -4,9 +4,9 @@ title: isStable
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isStable.ts
 ---
 
-安定している（アニメーション中でない）場合または不安定（アニメーション中）の場合にtrueを返します。
+安定している（アニメーション中ではない）場合はtrueを、不安定（アニメーション中）の場合はfalseを返します。
 
-__注意:__ このコマンドを使用するよりもアニメーションを無効にする方が最善です。
+__注意:__ このコマンドを使用するよりも、アニメーションを無効にする方が良いでしょう。
 
 ##### 使用法
 
@@ -61,4 +61,4 @@ it('should detect if an element is stable', async () => {
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  要素が安定している場合はtrue、不安定な場合はfalse    
+            **<code><var>return</var></code>:** 要素が安定している場合はtrue、不安定な場合はfalse

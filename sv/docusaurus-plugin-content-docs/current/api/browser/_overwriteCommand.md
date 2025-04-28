@@ -35,7 +35,7 @@ browser.overwriteCommand(name, callback, elementScope)
     <tr>
       <td><code><var>callback</var></code></td>
       <td>`Function`</td>
-      <td>skicka ursprunglig funktion</td>
+      <td>skicka originelfunktion</td>
     </tr>
     <tr>
       <td><code><var>elementScope</var></code><br /><span className="label labelWarning">valfritt</span></td>

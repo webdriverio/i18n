@@ -4,15 +4,15 @@ title: clear
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/clear.ts
 ---
 
-Återställer all information lagrad i `mock.calls`-arrayen.
+Återställer all information som lagras i `mock.calls`-arrayen.
 
-##### Användning
+##### Usage
 
 ```js
 mock.clear()
 ```
 
-##### Exempel
+##### Example
 
 ```js title="clear.js"
 it('should clear mock', async () => {

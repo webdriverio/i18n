@@ -4,7 +4,7 @@ title: getComputedLabel
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getComputedLabel.ts
 ---
 
-Hämta den beräknade WAI-ARIA etiketten för ett element.
+Hämta den beräknade WAI-ARIA-etiketten för ett element.
 
 ##### Användning
 
@@ -25,4 +25,4 @@ it('should demonstrate the getComputedLabel command', async () => {
 ##### Returnerar
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**  den beräknade WAI-ARIA etiketten
+            **<code><var>return</var></code>:**  den beräknade WAI-ARIA-etiketten

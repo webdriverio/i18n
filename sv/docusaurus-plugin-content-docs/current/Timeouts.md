@@ -16,7 +16,7 @@ Therefore, time is a crucial component in the whole testing process. When a cert
 
 ### Session Script Tidsgräns
 
-En session har en tillhörande sessions-skript-tidsgräns som anger en tid att vänta på att asynkrona skript ska köras. Om inget annat anges är den 30 sekunder. Du kan ställa in denna tidsgräns så här:
+En session har en tillhörande session script tidsgräns som anger en väntetid för asynkrona skript att köras. Om inget annat anges är den 30 sekunder. Du kan ställa in denna tidsgräns så här:
 
 ```js
 await browser.setTimeout({ 'script': 60000 })
@@ -28,7 +28,7 @@ await browser.executeAsync((done) => {
 
 ### Session Page Load Tidsgräns
 
-En session har en tillhörande sessions-sidladdnings-tidsgräns som anger en tid att vänta på att sidladdningen ska slutföras. Om inget annat anges är den 300 000 millisekunder.
+En session har en tillhörande session page load tidsgräns som anger en väntetid för att sidan ska laddas klart. Om inget annat anges är den 300 000 millisekunder.
 
 Du kan ställa in denna tidsgräns så här:
 
@@ -40,7 +40,7 @@ await browser.setTimeout({ 'pageLoad': 10000 })
 
 ### Session Implicit Wait Tidsgräns
 
-En session har en tillhörande sessions-implicit-väntetidsgräns. Detta anger tiden att vänta på den implicita elementlokaliseringsstrategin vid lokalisering av element med hjälp av kommandona [`findElement`](/docs/api/webdriver#findelement) eller [`findElements`](/docs/api/webdriver#findelements) ([`$`](/docs/api/browser/$) eller [`$$`](/docs/api/browser/$$), respektive, när WebdriverIO körs med eller utan WDIO-testrunner). Om inget annat anges är den 0 millisekunder.
+En session har en tillhörande session implicit wait tidsgräns. Detta anger tiden att vänta på den implicita elementlokaliseringsstrategin när element lokaliseras med hjälp av kommandona [`findElement`](/docs/api/webdriver#findelement) eller [`findElements`](/docs/api/webdriver#findelements) ([`$`](/docs/api/browser/$) eller [`$$`](/docs/api/browser/$$), respektive, när WebdriverIO körs med eller utan WDIO testrunner). Om inget annat anges är det 0 millisekunder.
 
 Du kan ställa in denna tidsgräns via:
 
@@ -52,7 +52,7 @@ await browser.setTimeout({ 'implicit': 5000 })
 
 ### `WaitFor*` tidsgräns
 
-WebdriverIO tillhandahåller flera kommandon för att vänta på att element ska nå ett visst tillstånd (t.ex. aktiverade, synliga, existerande). Dessa kommandon tar en selektor-argument och ett tidsgräns-nummer, som bestämmer hur länge instansen ska vänta på att det elementet ska nå tillståndet. Alternativet `waitforTimeout` låter dig ställa in den globala tidsgränsen för alla `waitFor*`-kommandon, så du behöver inte ställa in samma tidsgräns om och om igen. _(Observera det gemena `f`!)_
+WebdriverIO tillhandahåller flera kommandon för att vänta på att element ska nå ett visst tillstånd (t.ex. aktiverat, synligt, existerande). Dessa kommandon tar en väljare som argument och ett tidsgränsvärde, som bestämmer hur länge instansen ska vänta på att elementet ska nå det tillståndet. Alternativet `waitforTimeout` låter dig ställa in den globala tidsgränsen för alla `waitFor*`-kommandon, så du behöver inte ställa in samma tidsgräns om och om igen. _(Observera det gemena `f`!)_
 
 ```js
 // wdio.conf.js
@@ -75,9 +75,9 @@ await myElem.waitForDisplayed({ timeout: 10000 })
 
 ## Ramverksrelaterade tidsgränser
 
-Testramverket som du använder med WebdriverIO måste hantera tidsgränser, särskilt eftersom allt är asynkront. Det säkerställer att testprocessen inte fastnar om något går fel.
+Testramverket du använder med WebdriverIO måste hantera tidsgränser, särskilt eftersom allt är asynkront. Det säkerställer att testprocessen inte fastnar om något går fel.
 
-Som standard är tidsgränsen 10 sekunder, vilket innebär att ett enskilt test inte bör ta längre tid än det.
+Som standard är tidsgränsen 10 sekunder, vilket innebär att ett enskilt test inte bör ta längre tid än så.
 
 Ett enskilt test i Mocha ser ut så här:
 
@@ -97,7 +97,7 @@ it('should login into the application', async () => {
 })
 ```
 
-I Cucumber gäller tidsgränsen för en enskild stegdefinition. Om du vill öka tidsgränsen eftersom ditt test tar längre tid än standardvärdet, måste du ställa in det i ramverkets alternativ.
+I Cucumber gäller tidsgränsen för en enda stegdefinition. Om du vill öka tidsgränsen eftersom ditt test tar längre tid än standardvärdet, måste du ställa in det i ramverksalternativen.
 
 <Tabs
   defaultValue="mocha"

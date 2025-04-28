@@ -10,24 +10,24 @@ Använd istället kommandot `execute` eftersom det ger bättre stöd för
 felhantering via `async`/`await`.
 :::
 
-Injicera ett JavaScript-kodsegment på sidan för exekvering i kontexten av den aktuellt valda
-ramen med det givna elementet som omfattning. Eftersom det är inom elementets omfattning innebär det att WebdriverIO
-automatiskt kommer att vänta på att elementet existerar innan skriptet körs.
-Det exekverade skriptet antas vara asynkront och måste signalera att det är klart genom att anropa
+Injicera ett avsnitt JavaScript i sidan för körning i kontexten av den för närvarande valda
+ramen med det givna elementet som omfattning, eftersom det är inom elementets omfattning betyder det att WebdriverIO kommer
+automatiskt vänta på att elementet ska existera innan skriptet körs.
+Det körda skriptet antas vara asynkront och måste signalera att det är klart genom att anropa
 den tillhandahållna callback-funktionen, som alltid tillhandahålls som det sista argumentet till funktionen. Värdet
 till denna callback kommer att returneras till klienten.
 
-Asynkrona skriptkommandon får inte sträcka sig över sidladdningar. Om en unload-händelse utlöses medan man väntar
+Asynkrona skriptkommandon får inte sträcka sig över sidladdningar. Om en avladdningshändelse utlöses medan man väntar
 på ett skriptresultat, bör ett fel returneras till klienten.
 
-Skriptargumentet definierar det skript som ska köras i form av en funktionskropp. Funktionen kommer
+Skriptargumentet definierar skriptet som ska köras i form av en funktionskropp. Funktionen kommer
 att anropas med den angivna args-arrayen och värdena kan nås via arguments-objektet
-i den angivna ordningen. Det sista argumentet kommer alltid att vara en callback-funktion som måste anropas
-för att signalera att skriptet har avslutats.
+i den ordning som anges. Det sista argumentet kommer alltid att vara en callback-funktion som måste anropas
+för att signalera att skriptet har slutförts.
 
 Argument kan vara vilken JSON-primitiv, array eller JSON-objekt som helst. JSON-objekt som definierar en WebElement-
-referens kommer att konverteras till motsvarande DOM-element. På samma sätt kommer alla WebElements i skript-
-resultatet att returneras till klienten som WebElement JSON-objekt.
+referens kommer att konverteras till motsvarande DOM-element. På samma sätt kommer alla WebElements i skriptets
+resultat att returneras till klienten som WebElement JSON-objekt.
 
 :::caution
 

@@ -4,11 +4,13 @@ title: setValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/setValue.ts
 ---
 
-Wysyła sekwencję klawiszy do elementu po uprzednim wyczyszczeniu pola wprowadzania. Jeśli element nie musi być najpierw wyczyszczony, użyj [`addValue`](/docs/api/element/addValue).
+Wysyła sekwencję naciśnięć klawiszy do elementu po uprzednim wyczyszczeniu pola wprowadzania. Jeśli element nie wymaga
+wcześniejszego wyczyszczenia, użyj [`addValue`](/docs/api/element/addValue).
 
 :::info
 
-Jeśli chcesz używać znaków specjalnych, np. do kopiowania i wklejania wartości z jednego pola do drugiego, użyj polecenia [`keys`](/docs/api/browser/keys).
+Jeśli chcesz używać znaków specjalnych, np. do kopiowania i wklejania wartości z jednego pola do drugiego, użyj komendy
+[`keys`](/docs/api/browser/keys).
 
 :::
 

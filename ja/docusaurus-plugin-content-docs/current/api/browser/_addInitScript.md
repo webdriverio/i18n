@@ -1,20 +1,20 @@
 ---
 id: addInitScript
-title: 初期化スクリプトの追加
+title: addInitScript
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/addInitScript.ts
 ---
 
 以下のシナリオのいずれかで評価されるスクリプトを追加します：
 
-- ページがナビゲートされるたびに。
-- 子フレームが接続されるか、ナビゲートされるたびに。この場合、スクリプトは新しく接続されたフレームのコンテキストで評価されます。
+- ページがナビゲートされるたび。
+- 子フレームが接続されるか、ナビゲートされるたび。この場合、スクリプトは新しく接続されたフレームのコンテキストで評価されます。
 
-スクリプトは、ドキュメントが作成された後、かつそのスクリプトが実行される前に評価されます。
-ページから初期化スクリプトを再び削除するには、この関数によって返される関数を呼び出します。
+スクリプトはドキュメントが作成された後、そのスクリプトが実行される前に評価されます。
+ページから初期化スクリプトを再び削除するには、この関数によって返された関数を呼び出してください。
 
-これはJavaScript環境を修正するのに役立ちます。例えば、Math.randomを設定するなど。
+これはJavaScript環境を修正するのに便利です。例えば、Math.randomに値を設定するなど。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.addInitScript(script, args)
@@ -50,11 +50,11 @@ const script = await browser.addInitScript((seed) => {
 }, 42)
 
 await browser.url('https://webdriver.io')
-console.log(await browser.execute(() => Math.random())) // returns 42
+console.log(await browser.execute(() => Math.random())) // 42を返します
 
 await reset()
 await browser.url('https://webdriver.io')
-console.log(await browser.execute(() => Math.random())) // returns a random number
+console.log(await browser.execute(() => Math.random())) // ランダムな数字を返します
 
 hermore you can also use the `emit` function to send data back to the Node.js environment.
  is useful if you want to observe certain events in the browser environment, e.g.:
@@ -72,6 +72,6 @@ const script = await browser.addInitScript((emit) => {
 })
 
 script.on('data', (data) => {
-  console.log(data) // prints: BODY, DIV, P, ...
+  console.log(data) // 出力: BODY, DIV, P, ...
 })
 ```

@@ -1,10 +1,10 @@
 ---
 id: accept
-title: zaakceptuj
+title: akceptuj
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/dialog/accept.ts
 ---
 
-Zwraca, gdy okno dialogowe zostało zaakceptowane.
+Zwraca wynik, gdy okno dialogowe zostało zaakceptowane.
 
 ##### Użycie
 
@@ -24,7 +24,7 @@ await dialog.accept(promptText)
     <tr>
       <td><code><var>promptText</var></code><br /><span className="label labelWarning">opcjonalny</span></td>
       <td>`string`</td>
-      <td>Tekst do wprowadzenia w oknie prompt. Nie wywołuje żadnych efektów, jeśli typ okna dialogowego nie jest prompt.</td>
+      <td>Tekst do wprowadzenia w oknie dialogowym prompt. Nie powoduje żadnych efektów, jeśli typ okna dialogowego nie jest prompt.</td>
     </tr>
   </tbody>
 </table>

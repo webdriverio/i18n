@@ -7,13 +7,13 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 Tillåter att köra flera interaktionsåtgärder på en gång, t.ex. för att simulera en nyp-zoom.
 För mer information om kommandot `action`, kolla in [dokumentationen](/docs/api/browser/action).
 
-##### Usage
+##### Användning
 
 ```js
 browser.actions()
 ```
 
-##### Example
+##### Exempel
 
 ```js title="action.js"
 it('run multiple actions at once for a pinch zoom', async () => {

@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 `custom$` låter dig använda en anpassad strategi som deklarerats med hjälp av `browser.addLocatorStrategy`.
-Läs mer om anpassade väljarestrategier i [Selector-dokumentationen](../../selectors#custom-selector-strategies).
+Läs mer om anpassade väljarstrategier i [Väljardokumentationen](../../selectors#custom-selector-strategies).
 
 ##### Användning
 

@@ -3,12 +3,12 @@ id: events
 title: Wydarzenia
 ---
 
-# Wydarzenia społeczności WebdriverIO
+# WebdriverIO Events
 
-Społeczność WebdriverIO organizuje warsztaty na całym świecie. Projekt jest w całości realizowany przez społeczność. Zachęcamy i wspieramy wszystkich, którzy tworzą i prowadzą spotkania oraz wydarzenia WebdriverIO.
+Społeczność WebdriverIO organizuje wydarzenia na całym świecie. Projekt jest całkowicie prowadzony przez społeczność, a my zachęcamy i wspieramy każdego, kto chciałby organizować i prowadzić spotkania oraz wydarzenia związane z WebdriverIO.
 
 <EventList></EventList>
 
-# Chcesz zorganizować własne wydarzenie związane z WebdriverIO?
+# Chcesz zorganizować własne wydarzenie WebdriverIO?
 
-Czy chciał(a)byś zorganizować meetup WebdriverIO? Super ❤️! Uwielbiamy pomagać takim inicjatywom i zapewniamy wsparcie w postaci pizzy i napojów. Sposób kontaktu: prosimy o [zgłoszenie issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Event+%F%9F%93%85%2CNeeds+Triaging+%E2%8F%B3&projects=&template=event-propos. ml&title=%5B%F0%9F%93%85+Wydarzenie+Suggestion%5D%3A+%3Ctytuł%3E) w repozytorium WebdriverIO i my poprowadzimy sprawę dalej.
+Chciałbyś zorganizować spotkanie WebdriverIO? Wspaniale ❤️! Z przyjemnością Cię wesprzemy i zapewnimy pizzę oraz napoje. Skontaktujmy się: prosimy o [zgłoszenie problemu](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Event+%F0%9F%93%85%2CNeeds+Triaging+%E2%8F%B3&projects=&template=event-proposal.yml&title=%5B%F0%9F%93%85+Event+Suggestion%5D%3A+%3Ctitle%3E) w repozytorium WebdriverIO, a my zajmiemy się resztą.

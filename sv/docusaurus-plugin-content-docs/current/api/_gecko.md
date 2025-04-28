@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## fullPageScreenshot
-Tar en skärmdump av hela sidan.<br /><br />Firefox-kommando. Mer information finns i [officiell protokolldokumentation](https://phabricator.services.mozilla.com/source/mozilla-central/browse/default/testing/geckodriver/src/command.rs$43-46).
+Captures a screenshot of the entire page.<br /><br />Firefox command. More details can be found in the [official protocol docs](https://phabricator.services.mozilla.com/source/mozilla-central/browse/default/testing/geckodriver/src/command.rs$43-46).
 
 ##### Usage
 
@@ -17,13 +17,13 @@ browser.fullPageScreenshot()
 ##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>screenshot</var></code>:** Den base64-kodade PNG-bilddatan som utgör skärmdumpen av hela sidan.
+            **<code><var>screenshot</var></code>:** The base64-encoded PNG image data comprising the screenshot of the full page.
 
 
 ---
 
 ## getMozContext
-Hämtar kontexten som för närvarande är aktiv, t.ex. `CHROME` eller `CONTENT`.<br /><br />Firefox-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L622).
+Get the context that is currently in effect, e.g. `CHROME` or `CONTENT`.<br /><br />Firefox command. More details can be found in the [official protocol docs](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L622).
 
 ##### Usage
 
@@ -42,13 +42,13 @@ console.log(await browser.getMozContext()); // outputs: 'CHROME'
 ##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>Context</var></code>:** Webbläsarkontexten, antingen `CHROME` eller `CONTENT`
+            **<code><var>Context</var></code>:** The browser context, either `CHROME` or `CONTENT`
 
 
 ---
 
 ## setMozContext
-Ändrar målkontexten för kommandon mellan chrome och content.<br /><br />Att ändra den aktuella kontexten har en varaktig påverkan på alla efterföljande kommandon. `CONTENT`-kontexten har normala webbplattformsdokumenträttigheter, som om du skulle utvärdera godtycklig JavaScript. `CHROME`-kontexten får förhöjda behörigheter som låter dig manipulera webbläsarens chrome själv, med full tillgång till XUL-verktygslådan.<br /><br />Firefox-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645).
+Changes target context for commands between chrome- and content.<br /><br />Changing the current context has a stateful impact on all subsequent commands. The `CONTENT` context has normal web platform document permissions, as if you would evaluate arbitrary JavaScript. The `CHROME` context gets elevated permissions that lets you manipulate the browser chrome itself, with full access to the XUL toolkit.<br /><br />Firefox command. More details can be found in the [official protocol docs](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645).
 
 ##### Usage
 
@@ -69,7 +69,7 @@ browser.setMozContext(context)
     <tr>
       <td><code><var>context</var></code></td>
       <td>string</td>
-      <td>Webbläsarkontexten, antingen `CHROME` eller `CONTENT`</td>
+      <td>The browser context, either `CHROME` or `CONTENT`</td>
     </tr>
   </tbody>
 </table>
@@ -88,7 +88,7 @@ console.log(await browser.getMozContext()); // outputs: 'CONTENT'
 ---
 
 ## installAddOn
-Installerar ett nytt tillägg i den aktuella sessionen. Denna funktion returnerar ett ID som senare kan användas för att avinstallera tillägget med `uninstallAddon`.<br /><br />Firefox-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L647-L668).
+Installs a new addon with the current session. This function will return an ID that may later be used to uninstall the addon using `uninstallAddon`.<br /><br />Firefox command. More details can be found in the [official protocol docs](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L647-L668).
 
 ##### Usage
 
@@ -109,12 +109,12 @@ browser.installAddOn(addon, temporary)
     <tr>
       <td><code><var>addon</var></code></td>
       <td>string</td>
-      <td>base64-sträng av tilläggsfilen</td>
+      <td>base64 string of the add on file</td>
     </tr>
     <tr>
       <td><code><var>temporary</var></code></td>
       <td>boolean</td>
-      <td>temporary Flagga som anger om tillägget ska installeras tillfälligt - tas bort vid omstart</td>
+      <td>temporary Flag indicating whether the extension should be installed temporarily - gets removed on restart</td>
     </tr>
   </tbody>
 </table>
@@ -133,13 +133,13 @@ const id = await browser.installAddOn(extension.toString('base64'), false);
 ##### Returns
 
 - **&lt;String&gt;**
-            **<code><var>id</var></code>:** Ett löfte som kommer att ge ett ID för det nyligen installerade tillägget.
+            **<code><var>id</var></code>:** A promise that will resolve to an ID for the newly installed addon.
 
 
 ---
 
 ## uninstallAddOn
-Avinstallerar ett tillägg från den aktuella webbläsarsessionens profil.<br /><br />Firefox-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L670-L687).
+Uninstalls an addon from the current browser session's profile.<br /><br />Firefox command. More details can be found in the [official protocol docs](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L670-L687).
 
 ##### Usage
 
@@ -160,7 +160,7 @@ browser.uninstallAddOn(id)
     <tr>
       <td><code><var>id</var></code></td>
       <td>string</td>
-      <td>id ID för tillägget som ska avinstalleras.</td>
+      <td>id ID of the addon to uninstall.</td>
     </tr>
   </tbody>
 </table>

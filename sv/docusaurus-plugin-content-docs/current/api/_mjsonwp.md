@@ -66,7 +66,7 @@ driver.setNetworkConnection(type)
     <tr>
       <td><code><var>type</var></code></td>
       <td>number</td>
-      <td>en bitmask som ska översättas till ett heltalsvärde när den serialiseras</td>
+      <td>en bitmask som bör översättas till ett heltalsvärde när den serialiseras</td>
     </tr>
   </tbody>
 </table>
@@ -97,7 +97,7 @@ driver.touchPerform(actions)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>en lista med objekt, där varje objekt representerar en inputkälla och dess associerade åtgärder</td>
+      <td>en lista med objekt, där varje objekt representerar en inmatningskälla och dess tillhörande åtgärder</td>
     </tr>
   </tbody>
 </table>
@@ -128,12 +128,12 @@ driver.multiTouchPerform(actions, elementId)
     <tr>
       <td><code><var>actions</var></code></td>
       <td>object[]</td>
-      <td>en lista med objekt, där varje objekt representerar en inputkälla och dess associerade åtgärder</td>
+      <td>en lista med objekt, där varje objekt representerar en inmatningskälla och dess tillhörande åtgärder</td>
     </tr>
     <tr>
       <td><code><var>elementId</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>object[]</td>
-      <td>ID för ett element som returnerats i ett tidigare anrop till Find Element(s)</td>
+      <td>id för ett element som returnerades i ett tidigare anrop till Find Element(s)</td>
     </tr>
   </tbody>
 </table>
@@ -169,7 +169,7 @@ driver.receiveAsyncResponse(status, value)
     <tr>
       <td><code><var>value</var></code></td>
       <td>string</td>
-      <td>det förväntade värdet för svaret</td>
+      <td>det förväntade värdet på svaret</td>
     </tr>
   </tbody>
 </table>

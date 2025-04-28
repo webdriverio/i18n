@@ -6,30 +6,30 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 Spara en skärmdump av ett element till en PNG-fil på ditt operativsystem.
 
-##### Användning
+##### Usage
 
 ```js
 $(selector).saveScreenshot(filename)
 ```
 
-##### Parametrar
+##### Parameters
 
 <table>
   <thead>
     <tr>
-      <th>Namn</th><th>Typ</th><th>Detaljer</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>filename</var></code></td>
       <td>`String`</td>
-      <td>sökväg till den genererade bilden (`.png`-suffix krävs) relativt till körningsmappen</td>
+      <td>sökväg till den genererade bilden (`.png`-suffix krävs) relativt till körningskatalogen</td>
     </tr>
   </tbody>
 </table>
 
-##### Exempel
+##### Example
 
 ```js title="saveScreenshot.js"
 it('should save a screenshot of the browser view', async () => {
@@ -38,7 +38,7 @@ it('should save a screenshot of the browser view', async () => {
 });
 ```
 
-##### Returnerar
+##### Returns
 
 - **&lt;Buffer&gt;**
-            **<code><var>return</var></code>:**             skärmdumpsbuffer
+            **<code><var>return</var></code>:**             screenshot buffer    

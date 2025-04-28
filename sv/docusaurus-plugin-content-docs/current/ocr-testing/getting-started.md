@@ -11,15 +11,15 @@ Det enklaste sättet är att behålla `@wdio/ocr-service` som en beroende i din 
 npm install @wdio/ocr-service --save-dev
 ```
 
-Instruktioner om hur man installerar `WebdriverIO` kan hittas [här.](../gettingstarted)
+Instruktioner om hur man installerar `WebdriverIO` finns [här.](../gettingstarted)
 
 :::note
-Denna modul använder Tesseract som en OCR-motor. Som standard kommer den att kontrollera om du har en lokal installation av Tesseract installerad på ditt system, om så är fallet, kommer den att använda den. Om inte, kommer den att använda [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) modulen som automatiskt installeras åt dig.
+Denna modul använder Tesseract som OCR-motor. Som standard kommer den att kontrollera om du har en lokal installation av Tesseract installerad på ditt system, om så är fallet, kommer den att använda den. Om inte, kommer den att använda [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) modulen som automatiskt installeras för dig.
 
-Om du vill snabba upp bildbehandlingen så rekommenderas det att använda en lokalt installerad version av Tesseract. Se även [Testkörningshastighet](./more-test-optimization#using-a-local-installation-of-tesseract).
+Om du vill påskynda bildbehandlingen så är rådet att använda en lokalt installerad version av Tesseract. Se även [Testkörningshastighet](./more-test-optimization#using-a-local-installation-of-tesseract).
 :::
 
-Instruktion om hur man installerar Tesseract som ett systemberoende på ditt lokala system kan hittas [här](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+Instruktioner om hur man installerar Tesseract som ett systemberoende på ditt lokala system finns [här](https://tesseract-ocr.github.io/tessdoc/Installation.html).
 
 :::caution
 För installationsfrågor/fel med Tesseract, vänligen hänvisa till
@@ -40,7 +40,7 @@ Se till att du lägger till `@wdio/ocr-service` i din `tsconfig.json` konfigurat
 
 ## Konfiguration
 
-För att använda tjänsten behöver du lägga till `ocr` i din services-array i `wdio.conf.ts`
+För att använda tjänsten behöver du lägga till `ocr` i din tjänstearray i `wdio.conf.ts`
 
 ```js
 // wdio.conf.js
@@ -68,7 +68,7 @@ exports.config = {
 -   **Obligatorisk:** Nej
 -   **Standard:** `0.25`
 
-Ju högre kontrast, desto mörkare bild och vice versa. Detta kan hjälpa till att hitta text i en bild. Den accepterar värden mellan `-1` och `1`.
+Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Den accepterar värden mellan `-1` och `1`.
 
 #### `imagesFolder`
 
@@ -79,7 +79,7 @@ Ju högre kontrast, desto mörkare bild och vice versa. Detta kan hjälpa till a
 Mappen där OCR-resultaten lagras.
 
 :::note
-Om du tillhandahåller en anpassad `imagesFolder`, kommer tjänsten automatiskt att lägga till undermappen `ocr` till den.
+Om du anger en anpassad `imagesFolder`, kommer tjänsten automatiskt att lägga till undermappen `ocr` till den.
 :::
 
 #### `language`
@@ -93,7 +93,7 @@ Språket som Tesseract kommer att känna igen. Mer information finns [här](http
 ## Loggar
 
 Denna modul kommer automatiskt att lägga till extra loggar i WebdriverIO-loggarna. Den skriver till `INFO` och `WARN`-loggar med namnet `@wdio/ocr-service`.
-Exempel kan hittas nedan.
+Exempel finns nedan.
 
 ```log
 ...............

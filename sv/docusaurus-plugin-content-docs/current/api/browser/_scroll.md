@@ -1,11 +1,11 @@
 ---
 id: scroll
-title: scroll
+title: bläddra
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/scroll.ts
 ---
 
-Skrolla inom webbläsarens vy. Observera att `x` och `y` koordinater är relativa till den nuvarande 
-skrollpositionen, därför är `browser.scroll(0, 0)` en handling utan effekt.
+Bläddra inom webbläsarens visningsyta. Observera att `x` och `y` koordinaterna är relativa till den aktuella
+bläddringspositionen, därför är `browser.scroll(0, 0)` en handling utan effekt.
 
 ##### Användning
 
@@ -25,12 +25,12 @@ browser.scroll(x, y)
     <tr>
       <td><code><var>x=0</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>horisontell skrollposition (standard: `0`)</td>
+      <td>horisontell bläddringposition (standard: `0`)</td>
     </tr>
     <tr>
       <td><code><var>y=0</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>vertikal skrollposition (standard: `0`)</td>
+      <td>vertikal bläddringposition (standard: `0`)</td>
     </tr>
   </tbody>
 </table>

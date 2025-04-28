@@ -1,12 +1,12 @@
 ---
 id: setCookies
-title: setCookies
+title: クッキーを設定する
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setCookies.ts
 ---
 
-現在のページに1つまたは複数の[クッキー](https://w3c.github.io/webdriver/#cookies)を設定します。クッキーを受け取るページにいることを確認してください。そのページにアクセスせずに、任意のページにクッキーを設定することはできません。
+現在のページに対して1つまたは複数の[クッキー](https://w3c.github.io/webdriver/#cookies)を設定します。クッキーを受け取るページ上にいることを確認してください。そのページにアクセスせずに任意のページのクッキーを設定することはできません。
 
-##### 使用法
+##### 使用方法
 
 ```js
 browser.setCookies({ name, value, path, domain, secure, httpOnly, expiry, sameSite })
@@ -27,44 +27,44 @@ browser.setCookies({ name, value, path, domain, secure, httpOnly, expiry, sameSi
       <td>クッキーオブジェクトまたはオブジェクト配列。</td>
     </tr>
     <tr>
-      <td><code><var>cookie.name</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>cookie.name</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
       <td>クッキーの名前。</td>
     </tr>
     <tr>
-      <td><code><var>cookie.value</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>cookie.value</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
       <td>クッキーの値。</td>
     </tr>
     <tr>
-      <td><code><var>cookie.path</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>cookie.path</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
-      <td>クッキーのパス。クッキー追加時に省略すると「/」がデフォルトになります。</td>
+      <td>クッキーのパス。クッキー追加時に省略した場合、デフォルトは「/」になります。</td>
     </tr>
     <tr>
-      <td><code><var>cookie.domain</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>cookie.domain</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
-      <td>クッキーが見えるドメイン。クッキー追加時に省略すると、現在のブラウジングコンテキストのアクティブなドキュメントのURLドメインがデフォルトになります。</td>
+      <td>クッキーが表示されるドメイン。クッキー追加時に省略した場合、現在のブラウジングコンテキストのアクティブなドキュメントのURLドメインがデフォルトになります。</td>
     </tr>
     <tr>
-      <td><code><var>cookie.secure</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>cookie.secure</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>クッキーがセキュアクッキーかどうか。クッキー追加時に省略するとfalseがデフォルトになります。</td>
+      <td>クッキーがセキュアクッキーかどうか。クッキー追加時に省略した場合、デフォルトはfalseになります。</td>
     </tr>
     <tr>
-      <td><code><var>cookie.httpOnly</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>cookie.httpOnly</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>クッキーがHTTP専用クッキーかどうか。クッキー追加時に省略するとfalseがデフォルトになります。</td>
+      <td>クッキーがHTTP専用クッキーかどうか。クッキー追加時に省略した場合、デフォルトはfalseになります。</td>
     </tr>
     <tr>
-      <td><code><var>cookie.expiry</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>cookie.expiry</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>クッキーの有効期限。Unixエポックからの秒数で指定。クッキー追加時に省略した場合は設定してはいけません。</td>
+      <td>クッキーの有効期限。Unixエポックからの秒数で指定します。クッキー追加時に省略した場合は設定しないでください。</td>
     </tr>
     <tr>
-      <td><code><var>cookie.sameSite</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>cookie.sameSite</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
-      <td>クッキーがSameSiteポリシーに適用されるかどうか。クッキー追加時に省略するとNoneがデフォルトになります。「Lax」または「Strict」に設定できます。</td>
+      <td>クッキーがSameSiteポリシーに適用されるかどうか。クッキー追加時に省略した場合、デフォルトはNoneになります。「Lax」または「Strict」に設定できます。</td>
     </tr>
   </tbody>
 </table>

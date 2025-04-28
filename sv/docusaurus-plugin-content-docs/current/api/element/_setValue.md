@@ -4,8 +4,8 @@ title: setValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/setValue.ts
 ---
 
-Skicka en sekvens av tangenttryckningar till ett element efter att inmatningen har rensats först. Om elementet inte behöver 
-rensas först, använd då [`addValue`](/docs/api/element/addValue).
+Skicka en sekvens av tangenttryckningar till ett element efter att inmatningen har rensats först. Om elementet inte behöver
+rensas först använd då [`addValue`](/docs/api/element/addValue).
 
 :::info
 

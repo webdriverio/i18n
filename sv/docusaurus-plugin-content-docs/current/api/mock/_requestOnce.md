@@ -4,7 +4,9 @@ title: requestOnce
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/requestOnce.ts
 ---
 
-Ändra förfrågansparameter endast en gång med given överskrivning för nästa förfrågan. Du kan anropa `requestOnce` flera gånger i följd och den kommer att tillämpa överskrivningarna i ordning. Om du endast använder `requestOnce` och resursen anropas fler gånger än en mock har definierats så återgår den till originalresursen.
+Ändra förfrågningsparametrar endast en gång med given överskrivning för nästa förfrågan. Du kan anropa `requestOnce` flera 
+gånger i följd och den kommer att tillämpa överskrivningarna i ordning. Om du endast använder `requestOnce` och resursen anropas
+fler gånger än en mock har definierats återgår den till den ursprungliga resursen.
 
 ##### Användning
 
@@ -24,7 +26,7 @@ mock.requestOnce({ header, cookies, method, url, header, statusCode, fetchRespon
     <tr>
       <td><code><var>overwrites</var></code></td>
       <td>`MockOverwrite`</td>
-      <td>payload för att skriva över svaret</td>
+      <td>nyttolast för att skriva över svaret</td>
     </tr>
     <tr>
       <td><code><var>overwrites.header</var></code></td>
@@ -64,7 +66,7 @@ mock.requestOnce({ header, cookies, method, url, header, statusCode, fetchRespon
     <tr>
       <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>hämta riktigt svar innan du svarar med mockad data</td>
+      <td>hämta verkligt svar innan svar med mockade data</td>
     </tr>
   </tbody>
 </table>

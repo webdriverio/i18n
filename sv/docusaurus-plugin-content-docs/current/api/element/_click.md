@@ -6,30 +6,30 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 Klicka på ett element.
 
-Detta utfärdar ett WebDriver `click`-kommando för det valda elementet, vilket generellt scrollar till och sedan klickar på
-det valda elementet när inga alternativ skickas med. När ett options-objekt skickas används istället action-klassen istället för webdriver-klick vilket
-ger ytterligare funktioner som att skicka knapptype, koordinater etc. Som standard, när options används, skickas ett release action-kommando
-efter att klickåtgärden utförts, skicka `option.skipRelease=true` för att hoppa över denna åtgärd.
+Detta utfärdar ett WebDriver `click`-kommando för det valda elementet, vilket generellt bläddrar till och sedan klickar på
+det valda elementet när inga alternativ anges. När alternativ-objektet skickas används istället action-klassen istället för webdriver click vilket
+ger ytterligare funktioner som att ange knapptype, koordinater osv. Som standard, när alternativ används, skickas ett release-action
+kommando efter att klickåtgärden utförts, ange `option.skipRelease=true` för att hoppa över denna åtgärd.
 
 :::info
 
-Om du har element med fast position (som en fast header eller footer) som täcker över
-det valda elementet efter att det har skrollats inom vyn, kommer klicket att utföras på de angivna koordinaterna, men
-kommer att tas emot av ditt fasta (överliggande) element. I dessa fall kastas följande fel:
+Om du har element med fast position (som ett fast sidhuvud eller sidfot) som täcker över
+det valda elementet efter att det rullas inom visningsområdet, kommer klicket att utfärdas vid de angivna koordinaterna, men kommer att
+tas emot av ditt fasta (överlappande) element. I dessa fall kastas följande fel:
 
 ```
 Element is not clickable at point (x, x). Other element would receive the click: ..."
 ```
 
-För att komma runt detta, försök att hitta det överliggande elementet och ta bort det via `execute`-kommandot så att det inte stör
-klicket. Du kan också försöka att scrolla till elementet själv med hjälp av `scroll` med en offset som passar för ditt
+För att kringgå detta, försök hitta det överlappande elementet och ta bort det via `execute`-kommandot så att det inte stör
+klicket. Du kan också försöka bläddra till elementet själv med hjälp av `scroll` med en offset som passar för ditt
 scenario.
 
 :::
 
 :::info
 
-Klickkommandot kan också användas för att simulera ett långt tryck på en mobil enhet. Detta görs genom att ställa in `duration`.
+Klick-kommandot kan också användas för att simulera ett långt tryck på en mobil enhet. Detta görs genom att ställa in `duration`.
 Se exemplet nedan för mer information.
 
 :::
@@ -57,27 +57,27 @@ $(selector).click({ button, x, y, skipRelease, duration })
     <tr>
       <td><code><var>options.button</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`string, number`</td>
-      <td>Kan vara en av `[0, "left", 1, "middle", 2, "right"]` <br /><strong>ENDAST-WEB</strong> (Desktop/Mobil)</td>
+      <td>Kan vara en av `[0, "left", 1, "middle", 2, "right"]` <br /><strong>ENDAST-WEBB</strong> (Desktop/Mobil)</td>
     </tr>
     <tr>
       <td><code><var>options.x</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>Klickar X horisontella pixlar bort från elementets position (från mittpunkten av elementet)<br /><strong>WEB och Native</strong> (Desktop/Mobil)</td>
+      <td>Klickar X horisontella pixlar från elementets position (från elementets mittpunkt)<br /><strong>WEBB och Native</strong> (Desktop/Mobil)</td>
     </tr>
     <tr>
       <td><code><var>options.y</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>Klickar Y vertikala pixlar bort från elementets position (från mittpunkten av elementet)<br /><strong>WEB och Native-stöd</strong> (Desktop/Mobil)</td>
+      <td>Klickar Y vertikala pixlar från elementets position (från elementets mittpunkt)<br /><strong>WEBB och Native-stöd</strong> (Desktop/Mobil)</td>
     </tr>
     <tr>
       <td><code><var>options.skipRelease</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`boolean`</td>
-      <td>Boolean (valfritt) <br /><strong>ENDAST-WEB</strong> (Desktop/Mobil)</td>
+      <td>Boolean (valfritt) <br /><strong>ENDAST-WEBB</strong> (Desktop/Mobil)</td>
     </tr>
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>Varaktighet för klicket, även kallat "LongPress" <br /><strong>ENDAST-MOBIL-NATIVE-APP</strong> (Mobil)</td>
+      <td>Klickens varaktighet, även kallad "LongPress" <br /><strong>ENDAST-MOBIL-NATIVE-APP</strong> (Mobil)</td>
     </tr>
   </tbody>
 </table>

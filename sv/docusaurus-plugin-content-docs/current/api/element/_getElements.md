@@ -4,7 +4,7 @@ title: getElements
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getElements.ts
 ---
 
-Kom åt `WebdriverIO.ElementArray` egenskaper som `length` eller `selector` från elementreferensen.
+Få åtkomst till `WebdriverIO.ElementArray` egenskaper som `length` eller `selector` från elementreferensen.
 
 ##### Användning
 

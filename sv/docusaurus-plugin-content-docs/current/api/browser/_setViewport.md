@@ -4,48 +4,47 @@ title: setViewport
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setViewport.ts
 ---
 
-Ändrar storlek på webbläsarens viewport inom webbläsaren. Till skillnad från `setWindowSize`,
-ändrar detta kommando viewportens storlek, inte fönsterstorleken.
+Ändrar webbläsarens vyportsstorlek inom webbläsaren. Till skillnad från `setWindowSize`,
+ändrar detta kommando vyportens storlek, inte fönsterstorleken.
 
-##### Usage
+##### Användning
 
 ```js
 browser.setViewport({ width, height, devicePixelRatio })
 ```
 
-##### Parameters
+##### Parametrar
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Namn</th><th>Typ</th><th>Detaljer</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>options</var></code></td>
       <td>`SetViewportOptions`</td>
-      <td>kommandonargument</td>
+      <td>kommandoargument</td>
     </tr>
     <tr>
       <td><code><var>options.width</var></code></td>
       <td>`number`</td>
-      <td>viewportens bredd i pixlar</td>
+      <td>vyportens bredd i pixlar</td>
     </tr>
     <tr>
       <td><code><var>options.height</var></code></td>
       <td>`number`</td>
-      <td>viewportens höjd i pixlar</td>
+      <td>vyportens höjd i pixlar</td>
     </tr>
     <tr>
       <td><code><var>options.devicePixelRatio</var></code></td>
       <td>`number`</td>
-      <td>pixelförhållande för viewporten</td>
+      <td>pixelförhållande för vyporten</td>
     </tr>
   </tbody>
 </table>
 
-##### Returns
+##### Returnerar
 
 - **&lt;`Promise<void>`&gt;**
-    

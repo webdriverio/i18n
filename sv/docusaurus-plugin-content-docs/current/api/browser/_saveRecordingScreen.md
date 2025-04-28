@@ -4,11 +4,11 @@ title: saveRecordingScreen
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/saveRecordingScreen.ts
 ---
 
-Spara en video som startats med [`startRecordingScreen`](/docs/api/appium#startrecordingscreen)-kommandot till fil.
+Spara en video som startats med [`startRecordingScreen`](/docs/api/appium#startrecordingscreen)-kommandot till en fil.
 
 :::info
 
-Detta kommando stöds endast för mobila sessioner som körs på [Appium](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/start-recording-screen/).
+Detta kommando stöds endast för mobilsessioner som körs på [Appium](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/start-recording-screen/).
 
 :::
 

@@ -4,13 +4,14 @@ title: tangenter
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/keys.ts
 ---
 
-Skicka en sekvens av tangenttryckningar till det "aktiva" elementet. Du kan göra ett inmatningselement aktivt genom att klicka på det. För att använda tecken som "Vänster pil" eller "Backsteg", importera `Key`-objektet från WebdriverIO-paketet.
+Skicka en sekvens av tangenttryckningar till det "aktiva" elementet. Du kan göra ett input-element aktivt genom att klicka på det. För att använda tecken som "Vänster pil" eller "Backspace", importera `Key`-objektet från WebdriverIO-paketet.
 
-Modifierare som `Control`, `Shift`, `Alt` och `Command` förblir nedtryckta så du behöver trycka på dem igen för att släppa dem. För att modifiera ett klick krävs dock att du använder WebDriver Actions API genom [performActions](https://webdriver.io/docs/api/webdriver#performactions)-metoden.
+Modifieringstangenter som `Control`, `Shift`, `Alt` och `Command` förblir nedtryckta så du behöver trycka på dem igen för att släppa dem. Att modifiera ett klick kräver dock att du använder WebDriver Actions API genom metoden [performActions](https://webdriver.io/docs/api/webdriver#performactions).
 
 :::info
 
-Kontrolltangenter skiljer sig åt beroende på vilket operativsystem webbläsaren körs på, t.ex. MacOS: `Command` och Windows: `Control`. WebdriverIO tillhandahåller en plattformsoberoende modifieringstangent kallad `Ctrl` (se exempel nedan).
+Kontrolltangenter skiljer sig beroende på vilket operativsystem webbläsaren körs på, t.ex. MacOS: `Command` och Windows: `Control`.
+WebdriverIO tillhandahåller en plattformsoberoende modifieringstangent kallad `Ctrl` (se exempel nedan).
 
 :::
 

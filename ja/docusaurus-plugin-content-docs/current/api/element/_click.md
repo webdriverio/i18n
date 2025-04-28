@@ -6,33 +6,33 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 要素をクリックします。
 
-これは選択した要素に対してWebDriverの`click`コマンドを発行し、オプションが渡されていない場合は一般的に選択した要素までスクロールしてからクリックします。オプションオブジェクトが渡された場合は、webdriverのクリックの代わりにアクションクラスを使用し、ボタンタイプや座標などの追加機能を利用できます。デフォルトでは、オプションを使用する場合、クリックアクションの実行後にリリースアクションコマンドが送信されます。このアクションをスキップするには`option.skipRelease=true`を渡してください。
+これは選択した要素に対してWebDriverの`click`コマンドを発行します。オプションが渡されていない場合は、一般的に選択した要素までスクロールしてからクリックします。オプションオブジェクトが渡された場合は、webdriverのクリックの代わりにアクションクラスを使用し、ボタンタイプや座標などの追加機能を利用できます。デフォルトでは、オプションを使用する場合、クリックアクション後にリリースアクションコマンドが送信されますが、`option.skipRelease=true`を渡すとこのアクションをスキップできます。
 
 :::info
 
-固定位置の要素（固定ヘッダーやフッターなど）があり、選択した要素がビューポート内にスクロールされた後にそれを覆ってしまう場合、クリックは指定された座標で発行されますが、固定された（重なっている）要素によって受信されてしまいます。このような場合、次のエラーが発生します：
+固定位置の要素（固定ヘッダーやフッターなど）があり、選択した要素がビューポート内にスクロールされた後にその要素を覆ってしまう場合、クリックは指定された座標で発行されますが、固定（重なっている）要素によって受け取られます。このような場合、次のエラーが発生します：
 
 ```
 Element is not clickable at point (x, x). Other element would receive the click: ..."
 ```
 
-この問題を回避するには、重なっている要素を見つけて`execute`コマンドで削除し、クリックを妨げないようにしてみてください。また、あなたのシナリオに適したオフセットを使用して`scroll`で要素自体までスクロールすることもできます。
+この問題を回避するには、重なっている要素を見つけて`execute`コマンドで削除し、クリックを妨げないようにしてください。また、あなたのシナリオに適したオフセットを使用して`scroll`で要素まで自分でスクロールすることもできます。
 
 :::
 
 :::info
 
-クリックコマンドは、モバイルデバイスでの長押しをシミュレートするためにも使用できます。これは`duration`を設定することで行われます。詳細は以下の例を参照してください。
+クリックコマンドは、モバイルデバイスでの長押しをシミュレートするためにも使用できます。これは`duration`を設定することで行います。詳細については以下の例を参照してください。
 
 :::
 
-##### 使用法
+##### 使用方法
 
 ```js
 $(selector).click({ button, x, y, skipRelease, duration })
 ```
 
-##### パラメーター
+##### パラメータ
 
 <table>
   <thead>
@@ -49,27 +49,27 @@ $(selector).click({ button, x, y, skipRelease, duration })
     <tr>
       <td><code><var>options.button</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`string, number`</td>
-      <td>`[0, "left", 1, "middle", 2, "right"]`のいずれか <br /><strong>WEBのみ</strong> (デスクトップ/モバイル)</td>
+      <td>`[0, "left", 1, "middle", 2, "right"]`のいずれか <br /><strong>WEBのみ</strong>（デスクトップ/モバイル）</td>
     </tr>
     <tr>
       <td><code><var>options.x</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>要素の位置から水平方向にX ピクセル離れた位置をクリック（要素の中心点から）<br /><strong>WEBとネイティブ</strong> (デスクトップ/モバイル)</td>
+      <td>要素の位置（要素の中心点）から水平方向にX ピクセル離れた位置をクリック<br /><strong>WEBおよびネイティブ</strong>（デスクトップ/モバイル）</td>
     </tr>
     <tr>
       <td><code><var>options.y</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>要素の位置から垂直方向にY ピクセル離れた位置をクリック（要素の中心点から）<br /><strong>WEBとネイティブのサポート</strong> (デスクトップ/モバイル)</td>
+      <td>要素の位置（要素の中心点）から垂直方向にY ピクセル離れた位置をクリック<br /><strong>WEBおよびネイティブ対応</strong>（デスクトップ/モバイル）</td>
     </tr>
     <tr>
       <td><code><var>options.skipRelease</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`boolean`</td>
-      <td>ブール値（オプション） <br /><strong>WEBのみ</strong> (デスクトップ/モバイル)</td>
+      <td>ブール値（オプション） <br /><strong>WEBのみ</strong>（デスクトップ/モバイル）</td>
     </tr>
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`number`</td>
-      <td>クリックの持続時間、いわゆる「長押し」 <br /><strong>モバイルネイティブアプリのみ</strong> (モバイル)</td>
+      <td>クリックの持続時間、「長押し」 <br /><strong>モバイルネイティブアプリのみ</strong>（モバイル）</td>
     </tr>
   </tbody>
 </table>

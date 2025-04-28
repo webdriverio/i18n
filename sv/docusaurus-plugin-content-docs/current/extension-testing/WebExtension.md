@@ -1,17 +1,17 @@
 ---
 id: web-extensions
-title: Testning av webbextensioner
+title: Web Extension-testning
 ---
 
-WebdriverIO är det ideala verktyget för att automatisera en webbläsare. Webbextensioner är en del av webbläsaren och kan automatiseras på samma sätt. När din webbextension använder innehållsskript för att köra JavaScript på webbplatser eller erbjuder en popup-modal, kan du köra ett e2e-test för detta med hjälp av WebdriverIO.
+WebdriverIO är det idealiska verktyget för att automatisera en webbläsare. Webbextensioner är en del av webbläsaren och kan automatiseras på samma sätt. När din webbextension använder innehållsskript för att köra JavaScript på webbplatser eller erbjuder en popup-modal, kan du köra ett e2e-test för det med hjälp av WebdriverIO.
 
 ## Ladda en webbextension i webbläsaren
 
-Som ett första steg måste vi ladda webbextensionen som ska testas i webbläsaren som en del av vår session. Detta fungerar olika för Chrome och Firefox.
+Som ett första steg måste vi ladda extensionen som ska testas i webbläsaren som en del av vår session. Detta fungerar olika för Chrome och Firefox.
 
 :::info
 
-Dessa dokument utelämnar Safari-webbextensioner eftersom deras stöd för det ligger långt efter och användarefterfrågan inte är hög. Om du bygger en webbextension för Safari, vänligen [skapa ett ärende](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) och samarbeta för att inkludera det här också.
+Denna dokumentation utelämnar Safari-webbextensioner eftersom deras stöd för det ligger långt efter och användarefterfrågan inte är hög. Om du bygger en webbextension för Safari, vänligen [skapa ett ärende](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) och samarbeta för att inkludera det här också.
 
 :::
 
@@ -40,11 +40,11 @@ export const config = {
 
 :::info
 
-Om du automatiserar en annan webbläsare än Chrome, t.ex. Brave, Edge eller Opera, är det troligt att webbläsaralternativen matchar exemplet ovan, men använder ett annat egenskapsnamn, t.ex. `ms:edgeOptions`.
+Om du automatiserar en annan webbläsare än Chrome, t.ex. Brave, Edge eller Opera, är sannolikheten att webbläsaralternativet matchar med exemplet ovan, bara med ett annat funktionsnamn, t.ex. `ms:edgeOptions`.
 
 :::
 
-Om du kompilerar din webbextension som en `.crx`-fil med t.ex. NPM-paketet [crx](https://www.npmjs.com/package/crx), kan du också injicera den paketerade webbextensionen via:
+Om du kompilerar din extension som en `.crx`-fil med hjälp av t.ex. NPM-paketet [crx](https://www.npmjs.com/package/crx), kan du också injicera den paketerade extensionen via:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +67,7 @@ export const config = {
 
 ### Firefox
 
-För att skapa en Firefox-profil som inkluderar tillägg kan du använda [Firefox Profile Service](/docs/firefox-profile-service) för att konfigurera din session på lämpligt sätt. Du kan dock stöta på problem där din lokalt utvecklade webbextension inte kan laddas på grund av signeringsproblem. I detta fall kan du också ladda en webbextension i `before`-kroken via kommandot [`installAddOn`](/docs/api/gecko#installaddon), t.ex.:
+För att skapa en Firefox-profil som inkluderar extensioner kan du använda [Firefox Profile Service](/docs/firefox-profile-service) för att konfigurera din session. Du kan dock stöta på problem där din lokalt utvecklade extension inte kan laddas på grund av signeringsproblem. I detta fall kan du också ladda en extension i `before`-hooken via [`installAddOn`](/docs/api/gecko#installaddon)-kommandot, t.ex.:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,21 +88,21 @@ export const config = {
 }
 ```
 
-För att generera en `.xpi`-fil rekommenderas att använda NPM-paketet [`web-ext`](https://www.npmjs.com/package/web-ext). Du kan paketera din webbextension med följande exempelkommando:
+För att generera en `.xpi`-fil rekommenderas att använda NPM-paketet [`web-ext`](https://www.npmjs.com/package/web-ext). Du kan paketera din extension med följande exempelkommando:
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
-## Tips och tricks
+## Tips & Tricks
 
-Följande avsnitt innehåller användbara tips och tricks som kan vara till hjälp när du testar en webbextension.
+Följande avsnitt innehåller en uppsättning användbara tips och tricks som kan vara till hjälp vid testning av en webbextension.
 
 ### Testa popup-modal i Chrome
 
-Om du definierar en `default_popup`-webbläsaraktionspost i ditt [tilläggsmanifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) kan du testa den HTML-sidan direkt, eftersom att klicka på tilläggsikonen i webbläsarens övre fält inte kommer att fungera. Istället måste du öppna popup-HTML-filen direkt.
+Om du definierar en `default_popup` browser action-post i din [extension-manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) kan du testa den HTML-sidan direkt, eftersom att klicka på extensionikonen i webbläsarens övre fält inte kommer att fungera. Istället måste du öppna popup-html-filen direkt.
 
-I Chrome fungerar detta genom att hämta tilläggs-ID:t och öppna popup-sidan genom `browser.url('...')`. Beteendet på den sidan kommer att vara detsamma som inom popup-fönstret. För att göra detta rekommenderar vi att skriva följande anpassade kommando:
+I Chrome fungerar detta genom att hämta extensions-ID:t och öppna popup-sidan genom `browser.url('...')`. Beteendet på den sidan kommer att vara detsamma som i popupen. För att göra detta rekommenderar vi att skriva följande anpassade kommando:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -134,7 +134,7 @@ declare global {
 }
 ```
 
-I din `wdio.conf.js` kan du importera denna fil och registrera det anpassade kommandot i din `before`-krok, t.ex.:
+I din `wdio.conf.js` kan du importera denna fil och registrera det anpassade kommandot i din `before`-hook, t.ex.:
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'

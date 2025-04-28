@@ -1,7 +1,7 @@
 ---
 id: createlocalworkerprocess
-title: Skapa arbetarprocess
+title: Skapa arbetsprocess
 ---
-Det här flödesdiagrammet förklarar hur en arbetarprocess skapas.
+Detta flödesschema förklarar hur en arbetsprocess skapas.
 
 <CreateFlowcharts id='createlocalworkerprocess' />

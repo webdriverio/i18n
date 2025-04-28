@@ -6,132 +6,132 @@ title: Jämförelsealternativ
 Jämförelsealternativ är alternativ som påverkar hur jämförelsen, av [ResembleJS](https://github.com/Huddle/Resemble.js) utförs.
 
 :::info NOTERA
-Alla jämförelsealternativ kan användas under tjänstens instansiering eller för varje enskild `checkElement`, `checkScreen` och `checkFullPageScreen`. Om ett metodalternativ har samma nyckel som ett alternativ som har ställts in under instansieringen av tjänsten, kommer metodens jämförelsealternativ att åsidosätta tjänstens jämförelsealternativvärde.
+Alla jämförelsealternativ kan användas under tjänstens initiering eller för varje enskild `checkElement`, `checkScreen` och `checkFullPageScreen`. Om ett metodalternativ har samma nyckel som ett alternativ som har ställts in under initieringen av tjänsten, kommer metodens jämförelsealternativ att åsidosätta tjänstens jämförelsealternativvärde.
 :::
 
 ### `ignoreAlpha`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Jämför bilder och ignorerar alfa.
+Jämför bilder och bortser från alfa.
 
 ### `blockOutSideBar`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan endast användas för `checkScreen()`. Det kommer att åsidosätta plugininställningen. Detta är **endast för iPad**_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can only be used for `checkScreen()`. It will override the plugin setting. This is **iPad only**_
 
-Blockerar automatiskt sidofältet för iPads i landskapsläge under jämförelser. Detta förhindrar fel på fliken/privat/bokmärkeskomponenten.
+Blockerar automatiskt sidofältet för iPads i landskapsläge under jämförelser. Detta förhindrar fel på fliken/privat/bokmärke inbyggda komponenten.
 
 ### `blockOutStatusBar`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen. Detta är **endast för mobil**_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
 
 Blockerar automatiskt status- och adressfältet under jämförelser. Detta förhindrar fel på tid, wifi eller batteristatus.
 
 ### `blockOutToolBar`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen. Detta är **endast för mobil**_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting. This is **Mobile only**_
 
-Blockerar automatiskt verktygsfältet.
+Blockerar automatiskt verktygsraden.
 
 ### `ignoreAntialiasing`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Jämför bilder och ignorerar kantutjämning.
+Jämför bilder och bortser från kantutjämning.
 
 ### `ignoreColors`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Även om bilderna är i färg, kommer jämförelsen att jämföra 2 svart/vita bilder
+Även om bilderna är i färg kommer jämförelsen att jämföra 2 svartvita bilder.
 
 ### `ignoreLess`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Jämför bilder med `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+Jämför bilder och jämför med `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
 
 ### `ignoreNothing`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Jämför bilder med `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
+Jämför bilder och jämför med `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
 
 ### `ignoreTransparentPixel`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Jämför bilder och ignorerar alla pixlar som har viss transparens i någon av bilderna
+Jämför bilder och ignorerar alla pixlar som har någon transparens i en av bilderna
 
 ### `rawMisMatchPercentage`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Om true, kommer returprocenten att vara som `0.12345678`, standard är `0.12`
+Om sant kommer returprocenten att vara som `0.12345678`, standard är `0.12`
 
 ### `returnAllCompareData`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Detta kommer att returnera all jämförelsedata, inte bara procentandelen som inte matchar
+Detta kommer att returnera all jämförelsedata, inte bara felprocenten
 
 ### `saveAboveTolerance`
 
--   **Typ:** `number`
--   **Standard:** `0`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `number`
+-   **Default:** `0`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
 Tillåtet värde av `misMatchPercentage` som förhindrar sparande av bilder med skillnader
 
 ### `largeImageThreshold`
 
--   **Typ:** `number`
--   **Standard:** `0`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `number`
+-   **Default:** `0`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Jämförelse av stora bilder kan leda till prestandaproblem.
-När man anger ett antal pixlar här (högre än 0), hoppar jämförelsealgoritmnen över pixlar när bildbredden eller höjden är större än `largeImageThreshold` pixlar.
+Att jämföra stora bilder kan leda till prestandaproblem.
+När man anger ett antal pixlar här (högre än 0), hoppar jämförelsealgoritmens pixlar när bildbredden eller höjden är större än `largeImageThreshold` pixlar.
 
 ### `scaleImagesToSameSize`
 
--   **Typ:** `boolean`
--   **Standard:** `false`
--   **Obligatorisk:** nej
--   **Anmärkning:** _Kan också användas för `checkElement`, `checkScreen()` och `checkFullPageScreen()`. Det kommer att åsidosätta plugininställningen_
+-   **Type:** `boolean`
+-   **Default:** `false`
+-   **Mandatory:** no
+-   **Remark:** _Can also be used for `checkElement`, `checkScreen()` and `checkFullPageScreen()`. It will override the plugin setting_
 
-Skalar 2 bilder till samma storlek före jämförelsen. Starkt rekommenderat att aktivera `ignoreAntialiasing` och `ignoreAlpha`
+Skalar 2 bilder till samma storlek innan jämförelsen utförs. Starkt rekommenderat att aktivera `ignoreAntialiasing` och `ignoreAlpha`

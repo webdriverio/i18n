@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## getAppiumContext
-Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
+Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
 
 ##### Användning
 
@@ -17,13 +17,13 @@ driver.getAppiumContext()
 ##### Returnerar
 
 - **&lt;Context&gt;**
-            **<code><var>context</var></code>:** en sträng som representerar nuvarande kontext eller null som representerar 'ingen kontext'
+            **<code><var>context</var></code>:** en sträng som representerar den aktuella kontexten eller null som representerar 'ingen kontext'
 
 
 ---
 
 ## switchAppiumContext
-Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
+Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
 
 ##### Användning
 
@@ -54,7 +54,7 @@ driver.switchAppiumContext(name)
 ---
 
 ## getAppiumContexts
-Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
+Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#webviews-and-other-contexts).
 
 ##### Användning
 
@@ -66,13 +66,13 @@ driver.getAppiumContexts()
 ##### Returnerar
 
 - **&lt;Context[]&gt;**
-            **<code><var>contexts</var></code>:** en array av strängar som representerar tillgängliga kontexter, t.ex. 'WEBVIEW', eller 'NATIVE'
+            **<code><var>contexts</var></code>:** en array av strängar som representerar tillgängliga kontexter, t.ex. 'WEBVIEW' eller 'NATIVE'
 
 
 ---
 
 ## shake
-Utför en skakningsåtgärd på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/shake/).
+Utför en skakningsåtgärd på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/shake/).
 
 ##### Användning
 
@@ -83,14 +83,14 @@ driver.shake()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 
 ---
 
 ## lock
-Lås enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/lock/).
+Lås enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/lock/).
 
 ##### Användning
 
@@ -109,15 +109,15 @@ driver.lock(seconds)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>seconds</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>seconds</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
-      <td>hur länge skärmen ska vara låst (endast iOS)</td>
+      <td>hur länge skärmen ska låsas (endast iOS)</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -126,7 +126,7 @@ driver.lock(seconds)
 ---
 
 ## unlock
-Lås upp enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/unlock/).
+Lås upp enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/unlock/).
 
 ##### Användning
 
@@ -137,7 +137,7 @@ driver.unlock()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for Windows (10+)](/img/icons/windows.svg)
@@ -145,7 +145,7 @@ driver.unlock()
 ---
 
 ## isLocked
-Kontrollera om enheten är låst eller inte.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/is-locked/).
+Kontrollera om enheten är låst eller inte.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/interactions/is-locked/).
 
 ##### Användning
 
@@ -157,9 +157,9 @@ driver.isLocked()
 ##### Returnerar
 
 - **&lt;boolean&gt;**
-            **<code><var>isLocked</var></code>:** Sant om enheten är låst, falskt om inte
+            **<code><var>isLocked</var></code>:** True om enheten är låst, false om inte
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for Windows (10+)](/img/icons/windows.svg)
@@ -167,7 +167,7 @@ driver.isLocked()
 ---
 
 ## startRecordingScreen
-Börja spela in skärmen.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/start-recording-screen/).
+Börja spela in skärmen.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/start-recording-screen/).
 
 ##### Användning
 
@@ -186,7 +186,7 @@ driver.startRecordingScreen(options)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>object</td>
       <td>kommandoparametrar som kan innehålla nycklar som: remotePath, username, password, method, forceRestart, timeLimit, videoType, videoQuality, videoFps, bitRate, videoSize, bugReport (se mer beskrivning i Appium-dokumentationen)</td>
     </tr>
@@ -194,7 +194,7 @@ driver.startRecordingScreen(options)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -203,7 +203,7 @@ driver.startRecordingScreen(options)
 ---
 
 ## stopRecordingScreen
-Stoppa inspelning av skärmen<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/stop-recording-screen/).
+Avsluta skärminspelning<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/recording-screen/stop-recording-screen/).
 
 ##### Användning
 
@@ -222,24 +222,24 @@ driver.stopRecordingScreen(remotePath, username, password, method)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>remotePath</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>remotePath</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>Sökvägen till den fjärrplatsen där den resulterande videon ska laddas upp. Följande protokoll stöds http/https, ftp. Detta alternativ har endast effekt om det finns en pågående skärminspelningsprocess och forceRestart-parametern inte är inställd på true. Null eller tom strängvärde (standardinställningen) innebär att innehållet i den resulterande filen ska kodas som Base64.</td>
+      <td>Sökvägen till fjärrplatsen, där den resulterande videon ska laddas upp. Följande protokoll stöds http/https, ftp. Detta alternativ har endast effekt om det finns en skärminspelningsprocess pågående och forceRestart-parametern inte är inställd på true. Null eller tom sträng värde (standardinställningen) betyder att innehållet i resultatfilen ska kodas som Base64.</td>
     </tr>
     <tr>
-      <td><code><var>username</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>username</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
       <td>Namnet på användaren för fjärrauthentisering.</td>
     </tr>
     <tr>
-      <td><code><var>password</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>password</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
       <td>Lösenordet för fjärrauthentisering.</td>
     </tr>
     <tr>
-      <td><code><var>method</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>method</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>HTTP-metodens namn för multipart-uppladdning. 'PUT' används som standard.</td>
+      <td>HTTP-multipart uppladdningsmetodnamn. 'PUT' används som standard.</td>
     </tr>
   </tbody>
 </table>
@@ -250,7 +250,7 @@ driver.stopRecordingScreen(remotePath, username, password, method)
 - **&lt;string&gt;**
             **<code><var>response</var></code>:** Base64-kodad sträng. Om remote_path är inställt är svaret en tom sträng
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -259,7 +259,7 @@ driver.stopRecordingScreen(remotePath, username, password, method)
 ---
 
 ## getPerformanceDataTypes
-Returnerar informationstyperna för systemtillståndet som stöds för läsning som till exempel CPU, minne, nätverkstrafik och batteri.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/performance-data-types/).
+Returnerar informationstyper om systemets tillstånd som stöds för att läsa som cpu, minne, nätverkstrafik och batteri.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/performance-data-types/).
 
 ##### Användning
 
@@ -273,14 +273,14 @@ driver.getPerformanceDataTypes()
 - **&lt;string[]&gt;**
             **<code><var>performanceTypes</var></code>:** De tillgängliga prestandadatatyperna (cpuinfo|batteryinfo|networkinfo|memoryinfo)
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## getPerformanceData
-Returnerar information om systemtillståndet som stöds för läsning som till exempel CPU, minne, nätverkstrafik och batteri.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/get-performance-data/).
+Returnerar information om systemets tillstånd som stöds för att läsa som cpu, minne, nätverkstrafik och batteri.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/performance-data/get-performance-data/).
 
 ##### Användning
 
@@ -301,7 +301,7 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
     <tr>
       <td><code><var>packageName</var></code></td>
       <td>string</td>
-      <td>paketnamnet på applikationen</td>
+      <td>paketnamnet för applikationen</td>
     </tr>
     <tr>
       <td><code><var>dataType</var></code></td>
@@ -309,7 +309,7 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
       <td>typen av systemtillstånd som ska läsas. Det bör vara en av de stödda prestandadatatyperna</td>
     </tr>
     <tr>
-      <td><code><var>dataReadTimeout</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>dataReadTimeout</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
       <td>antalet försök att läsa</td>
     </tr>
@@ -320,16 +320,16 @@ driver.getPerformanceData(packageName, dataType, dataReadTimeout)
 ##### Returnerar
 
 - **&lt;string[]&gt;**
-            **<code><var>performanceData</var></code>:** Informationstypen för systemtillståndet som stöds för läsning som till exempel CPU, minne, nätverkstrafik och batteri
+            **<code><var>performanceData</var></code>:** Informationstypen för systemets tillstånd som stöds för att läsa som cpu, minne, nätverkstrafik och batteri
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## pressKeyCode
-Tryck på en specifik tangent på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/press-keycode/).
+Tryck på en särskild tangent på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/press-keycode/).
 
 ##### Användning
 
@@ -350,30 +350,30 @@ driver.pressKeyCode(keycode, metastate, flags)
     <tr>
       <td><code><var>keycode</var></code></td>
       <td>number</td>
-      <td>keycode att trycka på</td>
+      <td>tangentbordskod att trycka på</td>
     </tr>
     <tr>
-      <td><code><var>metastate</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>metastate</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
-      <td>meta-tillstånd att trycka på tangenten med</td>
+      <td>meta-tillstånd att trycka på tangentbordskoden med</td>
     </tr>
     <tr>
-      <td><code><var>flags</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>flags</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
-      <td>flaggor för tangenttryckningen</td>
+      <td>flaggor för knapptryckningen</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## longPressKeyCode
-Tryck och håll ned en specifik tangentkod på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/long-press-keycode/).
+Tryck och håll en specifik tangentkod på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/long-press-keycode/).
 
 ##### Användning
 
@@ -394,30 +394,30 @@ driver.longPressKeyCode(keycode, metastate, flags)
     <tr>
       <td><code><var>keycode</var></code></td>
       <td>number</td>
-      <td>keycode att trycka på enheten</td>
+      <td>tangentkod att trycka på enheten</td>
     </tr>
     <tr>
-      <td><code><var>metastate</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>metastate</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
-      <td>metastate för tangenttryckningen</td>
+      <td>metatillstånd för knapptryckningen</td>
     </tr>
     <tr>
-      <td><code><var>flags</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>flags</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
-      <td>flaggor för tangenttryckningen</td>
+      <td>flaggor för knapptryckningen</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## sendKeyEvent
-Skicka en tangentkod till enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
+Skicka en tangentkod till enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
 
 ##### Användning
 
@@ -438,25 +438,25 @@ driver.sendKeyEvent(keycode, metastate)
     <tr>
       <td><code><var>keycode</var></code></td>
       <td>string</td>
-      <td>keycode att trycka på</td>
+      <td>tangentkod att trycka på</td>
     </tr>
     <tr>
-      <td><code><var>metastate</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>metastate</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>meta-tillstånd att trycka på tangenten med</td>
+      <td>meta-tillstånd att trycka på tangentbordskoden med</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## rotateDevice
-Rotera enheten i tre dimensioner.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-rotation).
+Rotera enheten i tre dimensioner.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md#device-rotation).
 
 ##### Användning
 
@@ -477,23 +477,23 @@ driver.rotateDevice(x, y, z)
     <tr>
       <td><code><var>x</var></code></td>
       <td>number</td>
-      <td>x-offset att använda för centrum av rotationsgesten</td>
+      <td>x-offset att använda för mitten av roteringsgestens centrum</td>
     </tr>
     <tr>
       <td><code><var>y</var></code></td>
       <td>number</td>
-      <td>y-offset att använda för centrum av rotationsgesten</td>
+      <td>y-offset att använda för mitten av roteringsgestens centrum</td>
     </tr>
     <tr>
       <td><code><var>z</var></code></td>
       <td>number</td>
-      <td>z-offset att använda för centrum av rotationsgesten</td>
+      <td>z-offset att använda för mitten av roteringsgestens centrum</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -501,7 +501,7 @@ driver.rotateDevice(x, y, z)
 ---
 
 ## getCurrentActivity
-Hämta namnet på den aktuella Android-aktiviteten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-activity/).
+Hämta namnet på den aktuella Android-aktiviteten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-activity/).
 
 ##### Användning
 
@@ -515,14 +515,14 @@ driver.getCurrentActivity()
 - **&lt;string&gt;**
             **<code><var>activity</var></code>:** Namn på den aktuella aktiviteten
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## getCurrentPackage
-Hämta namnet på det aktuella Android-paketet.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-package/).
+Hämta namnet på det aktuella Android-paketet.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/current-package/).
 
 ##### Användning
 
@@ -536,14 +536,14 @@ driver.getCurrentPackage()
 - **&lt;string&gt;**
             **<code><var>package</var></code>:** Namn på det aktuella paketet
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## installApp
-Installera den angivna appen på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/install-app/).
+Installera den angivna appen på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/install-app/).
 
 ##### Användning
 
@@ -564,13 +564,13 @@ driver.installApp(appPath)
     <tr>
       <td><code><var>appPath</var></code></td>
       <td>string</td>
-      <td>sökväg till applikationens .apk-fil</td>
+      <td>sökväg till programfilen .apk</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -578,7 +578,7 @@ driver.installApp(appPath)
 ---
 
 ## activateApp
-Aktivera en given app på enheten<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/activate-app/).
+Aktivera den givna appen på enheten<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/activate-app/).
 
 ##### Användning
 
@@ -605,7 +605,7 @@ driver.activateApp(appId)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -613,7 +613,7 @@ driver.activateApp(appId)
 ---
 
 ## removeApp
-Ta bort en app från enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/remove-app/).
+Ta bort en app från enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/remove-app/).
 
 ##### Användning
 
@@ -640,7 +640,7 @@ driver.removeApp(appId)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -648,7 +648,7 @@ driver.removeApp(appId)
 ---
 
 ## terminateApp
-Avsluta den angivna appen på enheten<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/terminate-app/).
+Avsluta den angivna appen på enheten<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/terminate-app/).
 
 ##### Användning
 
@@ -672,15 +672,15 @@ driver.terminateApp(appId, options)
       <td>App-ID (paket-ID för Android, bundle-ID för iOS)</td>
     </tr>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>object</td>
-      <td>Kommandoalternativ. T.ex. "timeout": (Endast Android) Timeout för att försöka avsluta appen igen (se mer i Appium-dokumentation)</td>
+      <td>Kommandoalternativ. T.ex. "timeout": (Endast Android) Timeout för att försöka avsluta appen igen (se mer i Appium-dokumentationen)</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -688,7 +688,7 @@ driver.terminateApp(appId, options)
 ---
 
 ## isAppInstalled
-Kontrollera om den angivna appen är installerad på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/is-app-installed/).
+Kontrollera om den angivna appen är installerad på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/is-app-installed/).
 
 ##### Användning
 
@@ -718,9 +718,9 @@ driver.isAppInstalled(appId)
 ##### Returnerar
 
 - **&lt;boolean&gt;**
-            **<code><var>isAppInstalled</var></code>:** Returnera true om installerad, false om inte
+            **<code><var>isAppInstalled</var></code>:** Returnerar true om installerad, false om inte
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -728,7 +728,7 @@ driver.isAppInstalled(appId)
 ---
 
 ## queryAppState
-Hämta den givna appens status på enheten<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/app-state/).
+Hämta den givna appens status på enheten<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/app-state/).
 
 ##### Användning
 
@@ -758,9 +758,9 @@ driver.queryAppState(appId)
 ##### Returnerar
 
 - **&lt;number&gt;**
-            **<code><var>appStatus</var></code>:** 0 är inte installerad. 1 är inte igång. 2 körs i bakgrunden eller avstängd. 3 körs i bakgrunden. 4 körs i förgrunden
+            **<code><var>appStatus</var></code>:** 0 är inte installerad. 1 är inte igång. 2 körs i bakgrunden eller suspenderad. 3 körs i bakgrunden. 4 körs i förgrunden
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -768,7 +768,7 @@ driver.queryAppState(appId)
 ---
 
 ## hideKeyboard
-Dölj mjukt tangentbord.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/hide-keyboard/).
+Dölj tangentbordet.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/hide-keyboard/).
 
 ##### Användning
 
@@ -787,30 +787,30 @@ driver.hideKeyboard(strategy, key, keyCode, keyName)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>strategy</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>strategy</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
       <td>dölj tangentbordsstrategi (endast UIAutomation), tillgängliga strategier - 'press', 'pressKey', 'swipeDown', 'tapOut', 'tapOutside', 'default'</td>
     </tr>
     <tr>
-      <td><code><var>key</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>key</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>tangentens värde om strategin är 'pressKey'</td>
+      <td>nyckelvärde om strategin är 'pressKey'</td>
     </tr>
     <tr>
-      <td><code><var>keyCode</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>keyCode</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>tangentkod om strategin är 'pressKey'</td>
+      <td>nyckelkod om strategin är 'pressKey'</td>
     </tr>
     <tr>
-      <td><code><var>keyName</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>keyName</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>tangentnamn om strategin är 'pressKey'</td>
+      <td>nyckelnamn om strategin är 'pressKey'</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -819,7 +819,7 @@ driver.hideKeyboard(strategy, key, keyCode, keyName)
 ---
 
 ## isKeyboardShown
-Om det mjuka tangentbordet visas eller inte.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/is-keyboard-shown/).
+Om det mjuka tangentbordet visas eller inte.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/keys/is-keyboard-shown/).
 
 ##### Användning
 
@@ -833,7 +833,7 @@ driver.isKeyboardShown()
 - **&lt;boolean&gt;**
             **<code><var>isKeyboardShown</var></code>:** True om tangentbordet visas
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -842,7 +842,7 @@ driver.isKeyboardShown()
 ---
 
 ## pushFile
-Placera en fil på enheten på en särskild plats.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/push-file/).
+Placera en fil på enheten på en särskild plats.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/push-file/).
 
 ##### Användning
 
@@ -863,18 +863,18 @@ driver.pushFile(path, data)
     <tr>
       <td><code><var>path</var></code></td>
       <td>string</td>
-      <td>sökväg dit datan ska installeras</td>
+      <td>sökväg för att installera datan till</td>
     </tr>
     <tr>
       <td><code><var>data</var></code></td>
       <td>string</td>
-      <td>innehåll i filen i base64</td>
+      <td>innehållet i filen i base64</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -883,7 +883,7 @@ driver.pushFile(path, data)
 ---
 
 ## pullFile
-Hämta en fil från enhetens filsystem.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-file/).
+Hämta en fil från enhetens filsystem.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-file/).
 
 ##### Användning
 
@@ -915,7 +915,7 @@ driver.pullFile(path)
 - **&lt;string&gt;**
             **<code><var>response</var></code>:** Innehåll i filen i base64
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -924,7 +924,7 @@ driver.pullFile(path)
 ---
 
 ## pullFolder
-Hämta en mapp från enhetens filsystem.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-folder/).
+Hämta en mapp från enhetens filsystem.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/files/pull-folder/).
 
 ##### Användning
 
@@ -951,7 +951,7 @@ driver.pullFolder(path)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -960,7 +960,7 @@ driver.pullFolder(path)
 ---
 
 ## toggleAirplaneMode
-Växla flygplansläge på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-airplane-mode/).
+Växla flygplansläge på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-airplane-mode/).
 
 ##### Användning
 
@@ -971,14 +971,14 @@ driver.toggleAirplaneMode()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## toggleData
-Ändra tillståndet för datatjänsten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-data/).
+Växla tillståndet för datatjänsten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-data/).
 
 ##### Användning
 
@@ -989,14 +989,14 @@ driver.toggleData()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## toggleWiFi
-Ändra tillståndet för wifi-tjänsten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-wifi/).
+Växla tillståndet för WiFi-tjänsten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-wifi/).
 
 ##### Användning
 
@@ -1007,14 +1007,14 @@ driver.toggleWiFi()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## toggleLocationServices
-Ändra tillståndet för platstjänsten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-location-services/).
+Växla tillståndet för platstjänsten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/toggle-location-services/).
 
 ##### Användning
 
@@ -1025,14 +1025,14 @@ driver.toggleLocationServices()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## toggleNetworkSpeed
-Ställ in nätverkshastighet (endast Emulator)<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/network-speed/).
+Ställ in nätverkshastighet (endast emulator)<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/network-speed/).
 
 ##### Användning
 
@@ -1059,14 +1059,14 @@ driver.toggleNetworkSpeed(netspeed)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## openNotifications
-Öppna Android-notifikationer (endast Emulator).<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/open-notifications/).
+Öppna Android-aviseringar (endast emulator).<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/open-notifications/).
 
 ##### Användning
 
@@ -1077,14 +1077,14 @@ driver.openNotifications()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## startActivity
-Starta en Android-aktivitet genom att ange paketnamn och aktivitetsnamn.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/start-activity/).
+Starta en Android-aktivitet genom att ange paketnamn och aktivitetsnamn.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/activity/start-activity/).
 
 ##### Användning
 
@@ -1105,60 +1105,60 @@ driver.startActivity(appPackage, appActivity, appWaitPackage, appWaitActivity, i
     <tr>
       <td><code><var>appPackage</var></code></td>
       <td>string</td>
-      <td>namn på app</td>
+      <td>appens namn</td>
     </tr>
     <tr>
       <td><code><var>appActivity</var></code></td>
       <td>string</td>
-      <td>namn på aktivitet</td>
+      <td>aktivitetens namn</td>
     </tr>
     <tr>
-      <td><code><var>appWaitPackage</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>appWaitPackage</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
       <td>namn på app att vänta på</td>
     </tr>
     <tr>
-      <td><code><var>appWaitActivity</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>appWaitActivity</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
       <td>namn på aktivitet att vänta på</td>
     </tr>
     <tr>
-      <td><code><var>intentAction=android.intent.action.MAIN</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>intentAction=android.intent.action.MAIN</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>intent action som kommer att användas för att starta aktiviteten</td>
+      <td>intent-åtgärd som används för att starta aktiviteten</td>
     </tr>
     <tr>
-      <td><code><var>intentCategory=android.intent.category.LAUNCHER</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>intentCategory=android.intent.category.LAUNCHER</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>intent-kategori som kommer att användas för att starta aktiviteten</td>
+      <td>intent-kategori som används för att starta aktiviteten</td>
     </tr>
     <tr>
-      <td><code><var>intentFlags=0x10200000</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>intentFlags=0x10200000</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>flaggor som kommer att användas för att starta aktiviteten</td>
+      <td>flaggor som används för att starta aktiviteten</td>
     </tr>
     <tr>
-      <td><code><var>optionalIntentArguments</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>optionalIntentArguments</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>ytterligare intent-argument som kommer att användas för att starta aktiviteten</td>
+      <td>ytterligare intent-argument som används för att starta aktiviteten</td>
     </tr>
     <tr>
-      <td><code><var>dontStopAppOnReset</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>dontStopAppOnReset</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>stoppar inte processen i testappen innan du startar appen med adb</td>
+      <td>stoppar inte processen för appen som testas, innan appen startas med adb</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## getSystemBars
-Hämta information om synlighet och gränser för status- och navigeringsfält.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/system-bars/).
+Hämta synlighets- och begränsningsinformation för status- och navigeringsfälten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/system-bars/).
 
 ##### Användning
 
@@ -1172,14 +1172,14 @@ driver.getSystemBars()
 - **&lt;object[]&gt;**
             **<code><var>systemBars</var></code>:** Information om synlighet och gränser för status- och navigeringsfält
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## getDeviceTime
-Hämta tiden på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/system-time/).
+Hämta tiden på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/system/system-time/).
 
 ##### Användning
 
@@ -1193,7 +1193,7 @@ driver.getDeviceTime()
 - **&lt;string&gt;**
             **<code><var>time</var></code>:** Tid på enheten
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1201,7 +1201,7 @@ driver.getDeviceTime()
 ---
 
 ## getDisplayDensity
-Hämta skärmtäthet från enhet.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
+Hämta skärmens densitet från enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
 
 ##### Användning
 
@@ -1215,14 +1215,14 @@ driver.getDisplayDensity()
 - **&lt;*&gt;**
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## touchId
-Simulera en [touch id](https://support.apple.com/en-ca/ht201371)-händelse (endast iOS-simulator). För att aktivera denna funktion måste desired capability 'allowTouchIdEnroll' vara inställd på true och simulatorn måste vara [registrerad](https://support.apple.com/en-ca/ht201371). När du ställer in allowTouchIdEnroll till true kommer den att ställa in simulatorn på att vara registrerad som standard. Registreringstillståndet kan [växlas](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/index.html). Detta anrop fungerar endast om Appium-processen eller dess förälderapplikation (t.ex. Terminal.app eller Appium.app) har tillgång till Mac OS-tillgänglighet i Systeminställningar > Säkerhet och integritet > Integritet > Tillgänglighet-listan.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/simulator/touch-id/).
+Simulera en [touch id](https://support.apple.com/en-ca/ht201371)-händelse (endast iOS Simulator). För att aktivera denna funktion måste desired capability `allowTouchIdEnroll` vara inställd på true och Simulatorn måste vara [registrerad](https://support.apple.com/en-ca/ht201371). När du ställer in allowTouchIdEnroll till true, kommer det att sätta Simulatorn till att vara registrerad som standard. Registreringstillståndet kan [växlas](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/index.html). Detta anrop fungerar endast om Appium-processen eller dess föräldraapplikation (t.ex. Terminal.app eller Appium.app) har tillgång till Mac OS-tillgänglighet i Systeminställningar > Säkerhet och integritet > Integritet > Tillgänglighet-listan.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/simulator/touch-id/).
 
 ##### Användning
 
@@ -1243,20 +1243,20 @@ driver.touchId(match)
     <tr>
       <td><code><var>match</var></code></td>
       <td>boolean</td>
-      <td>simulerar vi en lyckad beröring (true) eller en misslyckad beröring (false)</td>
+      <td>simulerar vi en lyckad touch (true) eller en misslyckad touch (false)</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
 
 ## toggleEnrollTouchId
-Växla simulatorn mellan att vara [registrerad](https://support.apple.com/en-ca/ht201371) att acceptera touchId (endast iOS Simulator). För att aktivera denna funktion måste desired capability 'allowTouchIdEnroll' vara inställd på true. När 'allowTouchIdEnroll' är inställd på true kommer simulatorn att vara registrerad som standard, och 'Toggle Touch ID Enrollment' ändrar registreringstillståndet. Detta anrop fungerar endast om Appium-processen eller dess förälderapplikation (t.ex. Terminal.app eller Appium.app) har tillgång till Mac OS-tillgänglighet i Systeminställningar > Säkerhet och integritet > Integritet > Tillgänglighet-listan.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/).
+Växla simulatorn mellan att vara [registrerad](https://support.apple.com/en-ca/ht201371) för att acceptera touchId (endast iOS Simulator). För att aktivera denna funktion måste desired capability `allowTouchIdEnroll` vara inställd på true. När `allowTouchIdEnroll` är inställd på true kommer Simulatorn att registreras som standard, och 'Toggle Touch ID Enrollment' ändrar registreringstillståndet. Detta anrop fungerar endast om Appium-processen eller dess föräldraapplikation (t.ex. Terminal.app eller Appium.app) har tillgång till Mac OS-tillgänglighet i Systeminställningar > Säkerhet och integritet > Integritet > Tillgänglighet-listan.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/simulator/toggle-touch-id-enrollment/).
 
 ##### Användning
 
@@ -1275,25 +1275,25 @@ driver.toggleEnrollTouchId(enabled)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>enabled=true</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>enabled=true</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>boolean</td>
-      <td>är lika med true om TouchID-registrering ska aktiveras</td>
+      <td>lika med true om TouchID-registrering ska aktiveras</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
 
 ## launchApp
-Starta en app på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/launch-app/).
+Starta en app på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/launch-app/).
 :::caution
 
-Detta protokollkommando är föråldrat<br />För iOS, använd `driver.execute('mobile: launchApp', { ... })` och för Android, använd `driver.execute('mobile: activateApp', { ... })`.
+Detta protokollkommando är föråldrat<br />För iOS, använd `driver.execute('mobile: launchApp', { ... })`, och för Android, använd `driver.execute('mobile: activateApp', { ... })`.
 :::
 
 ##### Användning
@@ -1305,7 +1305,7 @@ driver.launchApp()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1313,7 +1313,7 @@ driver.launchApp()
 ---
 
 ## closeApp
-Stäng en app på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/close-app/).
+Stäng en app på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/close-app/).
 :::caution
 
 Detta protokollkommando är föråldrat<br />Använd `driver.execute('mobile: terminateApp', { ... })` istället
@@ -1328,7 +1328,7 @@ driver.closeApp()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1336,7 +1336,7 @@ driver.closeApp()
 ---
 
 ## background
-Skicka den app som för närvarande körs för denna session till bakgrunden.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/background-app/).
+Skicka den för närvarande körande appen för denna session till bakgrunden.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/background-app/).
 :::caution
 
 Detta protokollkommando är föråldrat<br />Använd `driver.execute('mobile: backgroundApp', { ... })` istället
@@ -1367,7 +1367,7 @@ driver.background(seconds)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1375,7 +1375,7 @@ driver.background(seconds)
 ---
 
 ## endCoverage
-Hämta testets täckningsdata.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/end-test-coverage/).
+Hämta testens täckningsdata.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/end-test-coverage/).
 
 ##### Användning
 
@@ -1407,14 +1407,14 @@ driver.endCoverage(intent, path)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## getStrings
-Hämta app-strängar.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/get-app-strings/).
+Hämta app-strängar.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/app/get-app-strings/).
 
 ##### Användning
 
@@ -1433,12 +1433,12 @@ driver.getStrings(language, stringFile)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>language</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>language</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
       <td>språkkod</td>
     </tr>
     <tr>
-      <td><code><var>stringFile</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>stringFile</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
       <td>sökväg till strängfilen</td>
     </tr>
@@ -1451,7 +1451,7 @@ driver.getStrings(language, stringFile)
 - **&lt;object&gt;**
             **<code><var>appStrings</var></code>:** alla definierade strängar från en app för det angivna språket och strängfilnamnet
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1459,7 +1459,7 @@ driver.getStrings(language, stringFile)
 ---
 
 ## setValueImmediate
-Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
+Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
 
 ##### Användning
 
@@ -1480,18 +1480,18 @@ driver.setValueImmediate(elementId, text)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>id på ett element som returnerats i ett tidigare anrop till Find Element(s)</td>
+      <td>ID för ett element som returnerades i ett tidigare anrop till Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>text</var></code></td>
       <td>string</td>
-      <td>text att ställa in för ett element</td>
+      <td>text att ange för ett element</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1499,7 +1499,7 @@ driver.setValueImmediate(elementId, text)
 ---
 
 ## replaceValue
-Ersätt värdet på elementet direkt.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
+Ersätt värdet för elementet direkt.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
 
 ##### Användning
 
@@ -1520,7 +1520,7 @@ driver.replaceValue(elementId, value)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>id på ett element som returnerats i ett tidigare anrop till Find Element(s)</td>
+      <td>ID för ett element som returnerades i ett tidigare anrop till Find Element(s)</td>
     </tr>
     <tr>
       <td><code><var>value</var></code></td>
@@ -1531,7 +1531,7 @@ driver.replaceValue(elementId, value)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1539,7 +1539,7 @@ driver.replaceValue(elementId, value)
 ---
 
 ## getSettings
-Hämta de aktuella inställningarna på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/session/settings/get-settings/).
+Hämta de aktuella inställningarna på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/session/settings/get-settings/).
 
 ##### Användning
 
@@ -1551,9 +1551,9 @@ driver.getSettings()
 ##### Returnerar
 
 - **&lt;object&gt;**
-            **<code><var>settings</var></code>:** JSON-hash av alla nuvarande angivna inställningar, se Settings API
+            **<code><var>settings</var></code>:** JSON-hash av alla för närvarande specificerade inställningar, se Settings API
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1562,7 +1562,7 @@ driver.getSettings()
 ---
 
 ## updateSettings
-Uppdatera den aktuella inställningen på enheten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/session/settings/update-settings/).
+Uppdatera den aktuella inställningen på enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/session/settings/update-settings/).
 
 ##### Användning
 
@@ -1583,13 +1583,13 @@ driver.updateSettings(settings)
     <tr>
       <td><code><var>settings</var></code></td>
       <td>object</td>
-      <td>nyckel/värde objekt med inställningar att uppdatera</td>
+      <td>nyckel/värde-objekt med inställningar att uppdatera</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1598,7 +1598,7 @@ driver.updateSettings(settings)
 ---
 
 ## receiveAsyncResponse
-Callback-url för asynkron körning av JavaScript.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
+Callback-url för asynkron körning av JavaScript.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium-base-driver/blob/master/docs/mjsonwp/protocol-methods.md#appium-extension-endpoints).
 
 ##### Användning
 
@@ -1625,14 +1625,14 @@ driver.receiveAsyncResponse(response)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
 
 ---
 
 ## gsmCall
-Ring GSM-samtal (endast Emulator).<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-call/).
+Gör GSM-samtal (endast emulator).<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-call/).
 
 ##### Användning
 
@@ -1664,14 +1664,14 @@ driver.gsmCall(phoneNumber, action)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## gsmSignal
-Ställ in GSM-signalstyrka (endast Emulator).<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-signal/).
+Ställ in GSM-signalstyrka (endast emulator).<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-signal/).
 
 ##### Användning
 
@@ -1695,22 +1695,22 @@ driver.gsmSignal(signalStrength, signalStrengh)
       <td>signalstyrka i intervallet [0, 4]</td>
     </tr>
     <tr>
-      <td><code><var>signalStrengh</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>signalStrengh</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>signalstyrka i intervallet [0, 4]. Vänligen ställ även in denna parameter med samma värde om du använder Appium v1.11.0 eller lägre (se https://github.com/appium/appium/issues/12234).</td>
+      <td>signalstyrka i intervallet [0, 4]. Vänligen sätt även denna parameter med samma värde om du använder Appium v1.11.0 eller lägre (se https://github.com/appium/appium/issues/12234).</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## powerCapacity
-Ställ in batteriprocenten (endast Emulator).<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_capacity/).
+Ställ in batteriprocenten (endast emulator).<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_capacity/).
 
 ##### Användning
 
@@ -1737,14 +1737,14 @@ driver.powerCapacity(percent)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## powerAC
-Ställ in tillståndet för batteriladdaren till ansluten eller inte (endast Emulator).<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_ac/).
+Ställ in tillståndet för batteriladdaren till ansluten eller inte (endast emulator).<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/emulator/power_ac/).
 
 ##### Användning
 
@@ -1765,20 +1765,20 @@ driver.powerAC(state)
     <tr>
       <td><code><var>state</var></code></td>
       <td>string</td>
-      <td>ställ in tillståndet. on eller off</td>
+      <td>ange tillståndet. on eller off</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## gsmVoice
-Ställ in GSM-rösttillstånd (endast Emulator).<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-voice/).
+Ställ in GSM-rösttillstånd (endast emulator).<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/gsm-voice/).
 
 ##### Användning
 
@@ -1805,14 +1805,14 @@ driver.gsmVoice(state)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## sendSms
-Simulera ett SMS-meddelande (endast Emulator).<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/send-sms/).
+Simulera ett SMS-meddelande (endast emulator).<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/network/send-sms/).
 
 ##### Användning
 
@@ -1844,14 +1844,14 @@ driver.sendSms(phoneNumber, message)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## fingerPrint
-Autentisera användare genom att använda deras fingeravtrycksskanningar på stödda emulatorer.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/authentication/finger-print/).
+Autentisera användare genom att använda deras fingeravtrycksskanningar på stödda emulatorer.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/authentication/finger-print/).
 
 ##### Användning
 
@@ -1878,14 +1878,14 @@ driver.fingerPrint(fingerprintId)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## setClipboard
-Ställ in innehållet i systemets urklipp<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/clipboard/set-clipboard/).
+Ställ in innehållet i systemets urklipp<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/clipboard/set-clipboard/).
 
 ##### Användning
 
@@ -1906,17 +1906,17 @@ driver.setClipboard(content, contentType, label)
     <tr>
       <td><code><var>content</var></code></td>
       <td>string</td>
-      <td>Det faktiska base64-kodade urklippsinnehållet</td>
+      <td>Det faktiska Base64-kodade urklippsinnehållet</td>
     </tr>
     <tr>
-      <td><code><var>contentType</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>contentType</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>Typen av innehåll att få. Plaintext, Image, URL. Android stöder endast plaintext</td>
+      <td>Typen av innehåll att hämta. Plaintext, Image, URL. Android stöder endast plaintext</td>
     </tr>
     <tr>
-      <td><code><var>label</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>label</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>Urklippsdataetikett för Android</td>
+      <td>Etiketten för urklippsdata för Android</td>
     </tr>
   </tbody>
 </table>
@@ -1927,7 +1927,7 @@ driver.setClipboard(content, contentType, label)
 - **&lt;string&gt;**
             **<code><var>response</var></code>:** Svar från Appium-servern
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1935,7 +1935,7 @@ driver.setClipboard(content, contentType, label)
 ---
 
 ## getClipboard
-Hämta innehållet i systemets urklipp<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/clipboard/get-clipboard/).
+Hämta innehållet i systemets urklipp<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/device/clipboard/get-clipboard/).
 
 ##### Användning
 
@@ -1954,9 +1954,9 @@ driver.getClipboard(contentType)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>contentType</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>contentType</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>Typen av innehåll att få. Plaintext, Image, URL. Android stöder endast plaintext</td>
+      <td>Typen av innehåll att hämta. Plaintext, Image, URL. Android stöder endast plaintext</td>
     </tr>
   </tbody>
 </table>
@@ -1967,7 +1967,7 @@ driver.getClipboard(contentType)
 - **&lt;string&gt;**
             **<code><var>response</var></code>:** Urklippsinnehåll som base64-kodad sträng eller en tom sträng om urklippet är tomt
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
@@ -1975,7 +1975,7 @@ driver.getClipboard(contentType)
 ---
 
 ## touchPerform
-Denna funktionalitet är endast tillgänglig från en inhemsk kontext. 'Touch Perform' fungerar på liknande sätt som de andra enskilda beröringsinstruktionerna, förutom att detta tillåter dig att länka ihop mer än en touchaktion som ett kommando. Detta är användbart eftersom Appium-kommandon skickas över nätverket och det finns latens mellan kommandon. Denna latens kan göra vissa touchinteraktioner omöjliga eftersom vissa interaktioner måste utföras i en sekvens. Vertikalt, till exempel, kräver att trycka ner, flytta till en annan y-koordinat och sedan släppa. För att det ska fungera kan det inte vara någon fördröjning mellan interaktionerna.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/touch-perform/).
+Denna funktionalitet är endast tillgänglig från en ursprunglig kontext. 'Touch Perform' fungerar liknande som de andra enskilda beröringsfunktionerna, förutom att detta låter dig kedja ihop mer än en beröringshändelse som ett kommando. Detta är användbart eftersom Appium-kommandon skickas över nätverket och det finns latens mellan kommandon. Denna latens kan göra vissa beröringsfunktioner omöjliga eftersom vissa interaktioner behöver utföras i en sekvens. Vertikal, till exempel, kräver att du trycker ner, flyttar till en annan y-koordinat och sedan släpper. För att det ska fungera får det inte finnas någon fördröjning mellan interaktionerna.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/touch-perform/).
 
 ##### Användning
 
@@ -2043,7 +2043,7 @@ driver.touchPerform([
 ```
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
@@ -2052,7 +2052,7 @@ driver.touchPerform([
 ---
 
 ## multiTouchPerform
-Denna funktionalitet är endast tillgänglig från en inhemsk kontext. Utför en multitouchaktionssekvens.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/multi-touch-perform/).
+Denna funktionalitet är endast tillgänglig från en ursprunglig kontext. Utför en multiberöringssekvens.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/commands/interactions/touch/multi-touch-perform/).
 
 ##### Användning
 
@@ -2079,7 +2079,7 @@ driver.multiTouchPerform(actions)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+), UIAutomation (8.0 to 9.3)](/img/icons/ios.svg)
@@ -2088,7 +2088,7 @@ driver.multiTouchPerform(actions)
 ---
 
 ## executeDriverScript
-Detta kommando låter dig specificera ett WebdriverIO-skript som en sträng och överföra det till Appium-servern för lokal körning på själva servern. Detta tillvägagångssätt hjälper till att minimera potentiell latens kopplad till varje kommando. ***För att använda detta kommando med Appium 2.0 måste du ha installerat [`execute-driver-plugin`](https://github.com/appium/appium/tree/master/packages/execute-driver-plugin) pluginet.***<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/execute-driver.md).
+Detta kommando gör det möjligt för dig att ange ett WebdriverIO-skript som en sträng och överföra det till Appium-servern för lokal körning på själva servern. Detta tillvägagångssätt hjälper till att minimera potentiell latens associerad med varje kommando. ***För att använda detta kommando med Appium 2.0 måste du ha [`execute-driver-plugin`](https://github.com/appium/appium/tree/master/packages/execute-driver-plugin) pluginen installerad.***<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/execute-driver.md).
 
 ##### Användning
 
@@ -2109,17 +2109,17 @@ driver.executeDriverScript(script, type, timeout)
     <tr>
       <td><code><var>script</var></code></td>
       <td>string</td>
-      <td>Skriptet som ska köras. Det har tillgång till ett 'driver'-objekt som representerar en WebdriverIO-session kopplad till den aktuella servern.</td>
+      <td>Skriptet att köra. Det har tillgång till ett 'driver' objekt som representerar en WebdriverIO-session ansluten till den aktuella servern.</td>
     </tr>
     <tr>
-      <td><code><var>type</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>type</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>Språket/ramverket som används i skriptet. För närvarande stöds endast 'webdriverio' och det är standard.</td>
+      <td>Språket/ramverket som används i skriptet. För närvarande stöds endast 'webdriverio' och är standard.</td>
     </tr>
     <tr>
-      <td><code><var>timeout</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>timeout</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
-      <td>Antal millisekunder som skriptet ska tillåtas köra innan det dödas av Appium-servern. Standardvärdet är motsvarande 1 timme.</td>
+      <td>Antalet millisekunder som skriptet ska tillåtas köra innan det avslutas av Appium-servern. Standardvärdet är motsvarande 1 timme.</td>
     </tr>
   </tbody>
 </table>
@@ -2128,13 +2128,13 @@ driver.executeDriverScript(script, type, timeout)
 ##### Returnerar
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** Ett objekt som innehåller två fält: 'result', som är returvärdet från själva skriptet, och 'logs', som innehåller 3 inre fält, 'log', 'warn' och 'error', som innehåller en array av strängar loggade av console.log, console.warn och console.error i skriptets körning.
+            **<code><var>result</var></code>:** Ett objekt som innehåller två fält: 'result', som är returvärdet för själva skriptet, och 'logs', som innehåller 3 inre fält, 'log', 'warn' och 'error', som innehåller en array av strängar loggade av console.log, console.warn och console.error i skriptets körning.
 
 
 ---
 
 ## getEvents
-Hämta händelser lagrade i Appium-servern.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/events/get-events.md).
+Hämta händelser lagrade i Appium-servern.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/events/get-events.md).
 
 ##### Användning
 
@@ -2166,7 +2166,7 @@ driver.getEvents(type)
 - **&lt;object&gt;**
             **<code><var>result</var></code>:** En JSON-hash av händelser som `{'commands' => [{'cmd' => 123455, ....}], 'startTime' => 1572954894127, }`.
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2174,7 +2174,7 @@ driver.getEvents(type)
 ---
 
 ## logEvent
-Lagra en anpassad händelse.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/events/log-event.md).
+Lagra en anpassad händelse.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/docs/en/commands/session/events/log-event.md).
 
 ##### Användning
 
@@ -2206,7 +2206,7 @@ driver.logEvent(vendor, event)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2214,7 +2214,7 @@ driver.logEvent(vendor, event)
 ---
 
 ## compareImages
-Denna funktion utför bildjämförelser med hjälp av OpenCV-ramverkets funktioner. Observera att för att denna funktionalitet ska fungera, måste både OpenCV-ramverket och opencv4nodejs-modulen vara installerade på den maskin där Appium-servern körs. ***Dessutom behöver du ha [`images-plugin`](https://github.com/appium/appium/tree/master/packages/images-plugin)-pluginet installerat för att använda denna funktion med Appium 2.0.***<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/writing-running-appium/image-comparison/).
+Denna funktion genomför bildjämförelser med hjälp av kapaciteterna i OpenCV-ramverket. Observera att för att denna funktionalitet ska fungera måste både OpenCV-ramverket och opencv4nodejs-modulen vara installerade på den maskin där Appium-servern är i drift. ***Dessutom behöver du ha [`images-plugin`](https://github.com/appium/appium/tree/master/packages/images-plugin) pluginen installerad för att använda denna funktion med Appium 2.0.***<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://appium.github.io/appium.io/docs/en/writing-running-appium/image-comparison/).
 
 ##### Användning
 
@@ -2240,17 +2240,17 @@ driver.compareImages(mode, firstImage, secondImage, options)
     <tr>
       <td><code><var>firstImage</var></code></td>
       <td>string</td>
-      <td>Bilddata. Alla bildformat som OpenCV-biblioteket i sig accepterar stöds.</td>
+      <td>En bilddata. Alla bildformat som OpenCV-biblioteket själv accepterar stöds.</td>
     </tr>
     <tr>
       <td><code><var>secondImage</var></code></td>
       <td>string</td>
-      <td>Bilddata. Alla bildformat som OpenCV-biblioteket i sig accepterar stöds.</td>
+      <td>En bilddata. Alla bildformat som OpenCV-biblioteket själv accepterar stöds.</td>
     </tr>
     <tr>
       <td><code><var>options=[object Object]</var></code></td>
       <td>object</td>
-      <td>Innehållet i denna ordbok beror på det faktiska `mode`-värdet. Se dokumentationen om `appium-support`-modulen för mer detaljer. </td>
+      <td>Innehållet i denna ordbok beror på det faktiska `mode`-värdet. Se dokumentationen för `appium-support`-modulen för mer detaljer. </td>
     </tr>
   </tbody>
 </table>
@@ -2259,13 +2259,13 @@ driver.compareImages(mode, firstImage, secondImage, options)
 ##### Returnerar
 
 - **&lt;object&gt;**
-            **<code><var>result</var></code>:** Innehållet i den resulterande ordboken beror på de faktiska `mode`- och `options`-värdena. Se dokumentationen om `appium-support`-modulen för mer detaljer.
+            **<code><var>result</var></code>:** Innehållet i den resulterande ordboken beror på de faktiska värdena för `mode` och `options`. Se dokumentationen för `appium-support`-modulen för mer detaljer.
 
 
 ---
 
 ## implicitWait
-Ställ in hur lång tid drivrutinen ska vänta när den söker efter element. Vid sökning efter ett enskilt element bör drivrutinen söka igenom sidan tills ett element hittas eller tidsfristen löper ut, beroende på vilket som inträffar först. Vid sökning efter flera element bör drivrutinen söka igenom sidan tills minst ett element hittas eller tidsfristen löper ut, då den ska returnera en tom lista. Om detta kommando aldrig skickas, bör drivrutinen som standard ha en implicit väntan på 0 ms.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Ange den tid som drivrutinen ska vänta vid sökning efter element. Vid sökning efter ett enskilt element bör drivrutinen avsöka sidan tills ett element hittas eller tidsfristen går ut, beroende på vilket som inträffar först. Vid sökning efter flera element bör drivrutinen avsöka sidan tills minst ett element hittas eller tidsfristen går ut, då den bör returnera en tom lista. Om detta kommando aldrig skickas bör drivrutinen som standard ha en implicit väntan på 0 ms.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2286,13 +2286,13 @@ driver.implicitWait(ms)
     <tr>
       <td><code><var>ms</var></code></td>
       <td>number</td>
-      <td>Mängden tid, i millisekunder, att vänta på ett element.</td>
+      <td>Mängden tid i millisekunder att vänta på ett element.</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2300,7 +2300,7 @@ driver.implicitWait(ms)
 ---
 
 ## getLocationInView
-Bestäm ett elements position på skärmen när det har scrollats in i vyn.<br /><br />__Obs:__ Detta betraktas som ett internt kommando och bör endast användas för att bestämma ett elements position för att korrekt generera inhemska händelser.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Bestäm ett elements position på skärmen efter att det har rullats in i vyn.<br /><br />__Obs:__ Detta betraktas som ett internt kommando och bör endast användas för att bestämma ett elements position för att korrekt generera ursprungliga händelser.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2321,7 +2321,7 @@ driver.getLocationInView(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ID på elementet att dirigera kommandot till</td>
+      <td>ID för elementet att dirigera kommandot till</td>
     </tr>
   </tbody>
 </table>
@@ -2332,7 +2332,7 @@ driver.getLocationInView(elementId)
 - **&lt;Object&gt;**
             **<code><var>location</var></code>:** X- och Y-koordinaterna för elementet på sidan.
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2340,7 +2340,7 @@ driver.getLocationInView(elementId)
 ---
 
 ## sendKeys
-Skicka en sekvens av tangenttryckningar till det aktiva elementet<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Skicka en sekvens av tangenttryckningar till det aktiva elementet<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2361,13 +2361,13 @@ driver.sendKeys(value)
     <tr>
       <td><code><var>value</var></code></td>
       <td>string[]</td>
-      <td>Sekvensen av tangenter som ska skrivas. En array måste tillhandahållas.</td>
+      <td>Sekvensen av tangenter att skriva. En array måste tillhandahållas.</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2375,7 +2375,7 @@ driver.sendKeys(value)
 ---
 
 ## availableIMEEngines
-Lista alla tillgängliga motorer på maskinen. För att använda en motor måste den finnas i denna lista.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Lista alla tillgängliga motorer på maskinen. För att använda en motor måste den finnas i denna lista.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2389,14 +2389,14 @@ driver.availableIMEEngines()
 - **&lt;String[]&gt;**
             **<code><var>engines</var></code>:** En lista över tillgängliga motorer
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## getActiveIMEEngine
-Hämta namnet på den aktiva IME-motorn. Namnsträngen är plattformsspecifik.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Hämta namnet på den aktiva IME-motorn. Namnsträngen är plattformsspecifik.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2410,14 +2410,14 @@ driver.getActiveIMEEngine()
 - **&lt;String&gt;**
             **<code><var>engine</var></code>:** Namnet på den aktiva IME-motorn
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## isIMEActivated
-Indikerar om IME-inmatning är aktiv för tillfället<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Indikerar om IME-inmatning är aktiv för tillfället<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2429,16 +2429,16 @@ driver.isIMEActivated()
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>isActive</var></code>:** True om IME-inmatning är tillgänglig och för närvarande aktiv, false annars
+            **<code><var>isActive</var></code>:** Sant om IME-inmatning är tillgänglig och för närvarande aktiv, falskt annars
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## deactivateIMEEngine
-Inaktiverar den för närvarande aktiva IME-motorn.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Avaktiverar den för närvarande aktiva IME-motorn.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2449,14 +2449,14 @@ driver.deactivateIMEEngine()
 
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## activateIMEEngine
-Gör en motor som är tillgänglig<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Aktivera en tillgänglig motor<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2483,14 +2483,14 @@ driver.activateIMEEngine(engine)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## asyncScriptTimeout
-Ställ in hur lång tid, i millisekunder, som asynkrona skript som körs av `/session/:sessionId/execute_async` tillåts köra innan de avbryts och ett `Timeout`-fel skickas till klienten.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Ange mängden tid, i millisekunder, som asynkrona skript som körs av `/session/:sessionId/execute_async` tillåts köra innan de avbryts och ett `Timeout`-fel returneras till klienten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2517,14 +2517,14 @@ driver.asyncScriptTimeout(ms)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
 
 ## submit
-Skicka in ett formulärelement.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Skicka in ett formulärelement.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2545,20 +2545,20 @@ driver.submit(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ID på formulerelementet som ska skickas in</td>
+      <td>ID för formulärelementet som ska skickas in</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
 
 ---
 
 ## getElementSize
-Bestäm ett elements storlek i pixlar. Storleken returneras som ett JSON-objekt med egenskaper för `width` (bredd) och `height` (höjd).<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Bestäm ett elements storlek i pixlar. Storleken returneras som ett JSON-objekt med `width` och `height` egenskaper.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2579,7 +2579,7 @@ driver.getElementSize(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ID på elementet att dirigera kommandot till</td>
+      <td>ID för elementet att dirigera kommandot till</td>
     </tr>
   </tbody>
 </table>
@@ -2590,7 +2590,7 @@ driver.getElementSize(elementId)
 - **&lt;Object&gt;**
             **<code><var>size</var></code>:** Bredden och höjden på elementet, i pixlar.
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2598,7 +2598,7 @@ driver.getElementSize(elementId)
 ---
 
 ## getElementLocation
-Bestäm ett elements position på sidan. Punkten `(0, 0)` hänvisar till sidans övre vänstra hörn. Elementets koordinater returneras som ett JSON-objekt med egenskaper för `x` och `y`.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Bestäm ett elements position på sidan. Punkten `(0, 0)` hänvisar till sidans övre vänstra hörn. Elementets koordinater returneras som ett JSON-objekt med `x` och `y` egenskaper.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2619,7 +2619,7 @@ driver.getElementLocation(elementId)
     <tr>
       <td><code><var>elementId</var></code></td>
       <td>String</td>
-      <td>ID på elementet att dirigera kommandot till</td>
+      <td>ID för elementet att dirigera kommandot till</td>
     </tr>
   </tbody>
 </table>
@@ -2630,7 +2630,7 @@ driver.getElementLocation(elementId)
 - **&lt;Object&gt;**
             **<code><var>location</var></code>:** X- och Y-koordinaterna för elementet på sidan.
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2638,7 +2638,7 @@ driver.getElementLocation(elementId)
 ---
 
 ## touchClick
-Enkelt tryck på den pekskärmsenhet.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Enkel touch på den touch-aktiverade enheten.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2659,13 +2659,13 @@ driver.touchClick(element)
     <tr>
       <td><code><var>element</var></code></td>
       <td>string</td>
-      <td>ID på elementet att enkelttrycka på.</td>
+      <td>ID för elementet att göra en enkel touch på.</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2673,7 +2673,7 @@ driver.touchClick(element)
 ---
 
 ## touchDown
-Finger ner på skärmen.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Finger ner på skärmen.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2705,14 +2705,14 @@ driver.touchDown(x, y)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## touchUp
-Finger upp från skärmen.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Finger upp från skärmen.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2744,14 +2744,14 @@ driver.touchUp(x, y)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## touchMove
-Finger rörelse på skärmen.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Finger flytta på skärmen.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2783,14 +2783,14 @@ driver.touchMove(x, y)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## touchLongClick
-Långt tryck på pekskärmen med hjälp av fingerrörelsehändelser.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Långt tryck på pekskärmen med fingerhändelser.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2811,20 +2811,20 @@ driver.touchLongClick(element)
     <tr>
       <td><code><var>element</var></code></td>
       <td>string</td>
-      <td>ID på elementet att långtrycka på</td>
+      <td>ID för elementet att göra långt tryck på</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## touchFlick
-Snärta på pekskärmen med hjälp av fingerrörelsehändelser. Denna snärt-kommando börjar på en särskild skärmplats.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Snabbt svep på pekskärmen med fingerhändelser. Detta snabbsvepskommando börjar på en viss skärmposition.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2843,32 +2843,32 @@ driver.touchFlick(xoffset, yoffset, element, speed, xspeed, yspeed)
   </thead>
   <tbody>
     <tr>
-      <td><code><var>xoffset</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>xoffset</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
-      <td>x-offset i pixlar att snärta med</td>
+      <td>x-offset i pixlar att svepa med</td>
     </tr>
     <tr>
-      <td><code><var>yoffset</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>yoffset</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
-      <td>y-offset i pixlar att snärta med</td>
+      <td>y-offset i pixlar att svepa med</td>
     </tr>
     <tr>
-      <td><code><var>element</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>element</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>string</td>
-      <td>ID på elementet där snärten börjar</td>
+      <td>ID för elementet där svepet börjar</td>
     </tr>
     <tr>
-      <td><code><var>speed</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>speed</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
       <td>hastigheten i pixlar per sekund</td>
     </tr>
     <tr>
-      <td><code><var>xspeed</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>xspeed</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
       <td>x-hastigheten i pixlar per sekund</td>
     </tr>
     <tr>
-      <td><code><var>yspeed</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>yspeed</var></code><br /><span className="label labelWarning">frivillig</span></td>
       <td>number</td>
       <td>y-hastigheten i pixlar per sekund</td>
     </tr>
@@ -2876,14 +2876,14 @@ driver.touchFlick(xoffset, yoffset, element, speed, xspeed, yspeed)
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 
 ---
 
 ## getOrientation
-Hämta enhetens nuvarande orientering.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Hämta den aktuella enhetsorienteringen.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2897,7 +2897,7 @@ driver.getOrientation()
 - **&lt;String&gt;**
             **<code><var>orientation</var></code>:** Den aktuella orienteringen motsvarande ett värde definierat i ScreenOrientation: `LANDSCAPE|PORTRAIT`.
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2905,7 +2905,7 @@ driver.getOrientation()
 ---
 
 ## setOrientation
-Ställ in enhetens orientering<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Ställ in enhetsorienteringen<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2926,13 +2926,13 @@ driver.setOrientation(orientation)
     <tr>
       <td><code><var>orientation</var></code></td>
       <td>string</td>
-      <td>den nya webbläsarorienteringen som definierats i ScreenOrientation: `LANDSCAPE|PORTRAIT`</td>
+      <td>den nya webbläsarorienteringen som definieras i ScreenOrientation: `LANDSCAPE|PORTRAIT`</td>
     </tr>
   </tbody>
 </table>
 
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2940,7 +2940,7 @@ driver.setOrientation(orientation)
 ---
 
 ## getLogs
-Hämta loggen för en given loggtyp. Loggbufferten återställs efter varje begäran.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Hämta loggen för en given loggtyp. Loggbufferten återställs efter varje begäran.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2972,7 +2972,7 @@ driver.getLogs(type)
 - **&lt;Object[]&gt;**
             **<code><var>logs</var></code>:** Listan över loggposter.
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)
@@ -2980,7 +2980,7 @@ driver.getLogs(type)
 ---
 
 ## getLogTypes
-Hämta tillgängliga loggtyper.<br /><br />Appium-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
+Hämta tillgängliga loggtyper.<br /><br />Appium-kommando. Mer detaljer finns i [officiell protokolldokumentation](https://github.com/appium/appium/blob/master/packages/base-driver/docs/mjsonwp/protocol-methods.md#webdriver-endpoints).
 
 ##### Användning
 
@@ -2994,7 +2994,7 @@ driver.getLogTypes()
 - **&lt;String[]&gt;**
             **<code><var>logTypes</var></code>:** Listan över tillgängliga loggtyper.
 
-##### Support
+##### Stöd
 
 ![Support for UiAutomator (4.2+)](/img/icons/android.svg)
 ![Support for XCUITest (9.3+)](/img/icons/ios.svg)

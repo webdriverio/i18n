@@ -4,9 +4,9 @@ title: throttleNetwork
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/throttleNetwork.ts
 ---
 
-Begränsa nätverkskapaciteten för webbläsaren. Detta kan hjälpa till att
+Begränsa nätverkskapaciteten i webbläsaren. Detta kan hjälpa till att
 simulera vissa scenarier där en användare förlorar sin internetanslutning
-och din applikation behöver hantera det.
+och din app behöver hantera det.
 
 Det finns många förinställningar tillgängliga med standardkonfigurationer för enkel användning.
 De är `offline`, `GPRS`, `Regular2G`, `Good2G`, `Regular3G`, `Good3G`,
@@ -51,7 +51,7 @@ browser.throttleNetwork({ offline, latency, downloadThroughput, uploadThroughput
     <tr>
       <td><code><var>params.latency</var></code></td>
       <td>`number`</td>
-      <td>Minsta latens från begäran till mottagande av svarshuvud (ms).</td>
+      <td>Minsta latens från begäran skickad till svarshuvuden mottagna (ms).</td>
     </tr>
     <tr>
       <td><code><var>params.downloadThroughput</var></code></td>

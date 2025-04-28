@@ -4,14 +4,11 @@ title: waitForEnabled
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForEnabled.ts
 ---
 
-Vänta på att ett element (valt med css-väljare) under den angivna tiden i 
-millisekunder ska vara (in/ak)tiverat. Om flera element hämtas av given 
-väljare, returneras true om minst ett element är (in/ak)tiverat.
+Vänta på att ett element (valt med css-väljare) ska vara (in/ak)tiverat under den angivna tiden i millisekunder. Om flera element väljs med den angivna väljaren, returneras true om minst ett element är (in/ak)tiverat.
 
 :::info
 
-Till skillnad från andra elementkommandon kommer WebdriverIO inte att vänta på att elementet 
-ska existera för att köra detta kommando.
+Till skillnad från andra elementkommandon kommer WebdriverIO inte att vänta på att elementet ska existera för att utföra detta kommando.
 
 :::
 
@@ -26,34 +23,34 @@ $(selector).waitForEnabled({ timeout, reverse, timeoutMsg, interval })
 <table>
   <thead>
     <tr>
-      <th>Namn</th><th>Typ</th><th>Detaljer</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`WaitForOptions`</td>
-      <td>waitForEnabled-alternativ (valfritt)</td>
+      <td>waitForEnabled options (optional)</td>
     </tr>
     <tr>
-      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Number`</td>
-      <td>tid i ms (standardvärde baserat på [`waitforTimeout`](/docs/configuration#waitfortimeout) konfigurationsvärde)</td>
+      <td>time in ms (default set based on [`waitforTimeout`](/docs/configuration#waitfortimeout) config value)</td>
     </tr>
     <tr>
-      <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>options.reverse</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Boolean`</td>
-      <td>om true väntar den på motsatsen (standard: false)</td>
+      <td>if true it waits for the opposite (default: false)</td>
     </tr>
     <tr>
-      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`String`</td>
-      <td>om den finns ersätter den standardfelmeddelandet</td>
+      <td>if exists it overrides the default error message</td>
     </tr>
     <tr>
-      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>options.interval</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Number`</td>
-      <td>intervall mellan kontroller (standard: `waitforInterval`)</td>
+      <td>interval between checks (default: `waitforInterval`)</td>
     </tr>
   </tbody>
 </table>
@@ -83,4 +80,4 @@ it('should detect when element is disabled', async () => {
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true     om elementet är (in/ak)tiverat
+            **<code><var>return</var></code>:**  true     if element is (dis/en)abled

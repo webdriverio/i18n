@@ -4,11 +4,11 @@ title: waitUntil
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/waitUntil.ts
 ---
 
-このwaitコマンドは、何かを待つ時の万能の武器です。条件を指定すると、その条件が満たされ、真値が返されるまで待機します。
+このwaitコマンドは、何かを待機したい場合の万能な武器です。条件を指定し、その条件が真値を返すまで待機します。
 
-一般的な例として、特定の要素が特定のテキストを含むまで待つということがあります（例を参照）。
+一般的な例として、特定の要素が特定のテキストを含むまで待機する方法があります（例を参照）。
 
-##### 使用法
+##### 使用方法
 
 ```js
 browser.waitUntil(condition, { timeout, timeoutMsg, interval })
@@ -64,4 +64,4 @@ https://github.com/webdriverio/example-recipes/blob/0c9252b0a4f7e18a34cece74e579
 ##### 戻り値
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  条件が満たされた場合はtrue
+            **<code><var>return</var></code>:**  条件が満たされると true    

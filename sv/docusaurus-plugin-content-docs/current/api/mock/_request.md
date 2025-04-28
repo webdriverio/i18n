@@ -4,9 +4,9 @@ title: request
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/request.ts
 ---
 
-Tillåter dig att modifiera förfrågningar som webbläsaren gör under sessionen. Detta kan vara användbart för följande användningsfall:
+Låter dig modifiera förfrågningar som webbläsaren gör under sessionen. Detta kan vara användbart för följande användningsfall:
 
-- validera om din applikation skickar korrekta förfrågningsnyttolaster
+- validera om din applikation skickar korrekta förfrågningslaster
 - vidarebefordra auktoriseringshuvuden för att testa skyddade resurser
 - ställa in sessionscookies för att testa användarautentisering
 - modifiera förfrågningar för att testa gränsfall
@@ -29,7 +29,7 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
     <tr>
       <td><code><var>overwrites</var></code></td>
       <td>`MockOverwrite`</td>
-      <td>nyttolast för att skriva över svaret</td>
+      <td>payload för att skriva över svaret</td>
     </tr>
     <tr>
       <td><code><var>overwrites.header</var></code></td>
@@ -52,24 +52,24 @@ mock.request({ header, cookies, method, url, header, statusCode, fetchResponse }
       <td>skriv över förfrågnings-URL för att initiera en omdirigering</td>
     </tr>
     <tr>
-      <td><code><var>params</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>params</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`MockResponseParams`</td>
       <td>ytterligare svarsparametrar att skriva över</td>
     </tr>
     <tr>
-      <td><code><var>params.header</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>params.header</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Object`</td>
       <td>skriv över specifika headers</td>
     </tr>
     <tr>
-      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Number`</td>
-      <td>skriv över svarens statuskod</td>
+      <td>skriv över svarsstatus-kod</td>
     </tr>
     <tr>
-      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Boolean`</td>
-      <td>hämta verkligt svar innan det svaras med simulerad data</td>
+      <td>hämta verkligt svar innan respons med mockade data</td>
     </tr>
   </tbody>
 </table>

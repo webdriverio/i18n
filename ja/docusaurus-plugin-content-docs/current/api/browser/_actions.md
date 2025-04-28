@@ -4,8 +4,8 @@ title: アクション
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/actions.ts
 ---
 
-一度に複数のアクションインタラクションを実行することができます。例えば、ピンチズームをシミュレートする場合などです。
-`action` コマンドの詳細については、[ドキュメント](/docs/api/browser/action)をご覧ください。
+複数のアクションインタラクションを一度に実行することができます。例えば、ピンチズームをシミュレートするなどです。
+`action`コマンドの詳細については、[ドキュメント](/docs/api/browser/action)をご覧ください。
 
 ##### 使用方法
 

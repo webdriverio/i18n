@@ -4,17 +4,17 @@ title: addInitScript
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/addInitScript.ts
 ---
 
-Lägger till ett skript som skulle utvärderas i ett av följande scenarier:
+Lägger till ett skript som utvärderas i ett av följande scenarier:
 
 - När sidan navigeras.
-- När en underram fästs eller navigeras. I detta fall utvärderas skriptet i 
-  kontexten av den nyligen bifogade ramen.
+- När en underram kopplas eller navigeras. I detta fall utvärderas skriptet i
+  sammanhanget av den nyligen kopplade ramen.
 
 Skriptet utvärderas efter att dokumentet har skapats men innan något av dess skript har körts.
-För att ta bort initialiseringsskriptet från sidan igen, anropa funktionen som 
-returnerades av denna funktion.
+För att ta bort initialiseringsskriptet från sidan igen, anropa funktionen som returnerades
+av denna funktion.
 
-Detta är användbart för att komplettera JavaScript-miljön, t.ex. för att så Math.random.
+Detta är användbart för att förbättra JavaScript-miljön, t.ex. för att så Math.random.
 
 ##### Användning
 

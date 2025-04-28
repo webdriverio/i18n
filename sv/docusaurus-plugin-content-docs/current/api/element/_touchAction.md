@@ -6,9 +6,9 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::caution Varning för utfasning
 
-Kommandot `touchAction` är __utfasat__ och kommer att tas bort i en framtida version.
-Vi rekommenderar att du istället använder kommandot [`action`](/docs/api/browser/action) med
-pekartypen `touch`, t.ex.:
+Kommandot `touchAction` är __föråldrat__ och kommer att tas bort i en framtida version.
+Vi rekommenderar att du använder [`action`](/docs/api/browser/action)-kommandot istället med
+pekartyp `touch`, t.ex.:
 
 ```ts
 await browser.action('pointer', {
@@ -18,10 +18,10 @@ await browser.action('pointer', {
 
 :::
 
-Touch Action API tillhandahåller grunden för alla gester som kan automatiseras i Appium.
+Touch Action API:et utgör grunden för alla gester som kan automatiseras i Appium.
 Det är för närvarande endast tillgängligt för nativa appar och kan inte användas för att interagera med webbappar.
-I kärnan finns möjligheten att kedja ihop _ad hoc_ individuella åtgärder, som sedan kommer att
-tillämpas på ett element i applikationen på enheten. De grundläggande åtgärderna som kan användas är:
+I grunden har den möjligheten att kedja ihop _ad hoc_ individuella åtgärder, som sedan
+tillämpas på ett element i applikationen på enheten. De grundläggande åtgärder som kan användas är:
 
 - press (skicka element eller (x,y) eller båda)
 - longPress (skicka element eller (x,y) eller båda)

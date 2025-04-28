@@ -1,10 +1,10 @@
 ---
 id: setSystemTime
-title: システム時間を設定する
+title: システム時間の設定
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/setSystemTime.ts
 ---
 
-システム時間を新しい時間に変更します。時間はタイムスタンプ、Dateオブジェクト、または何も渡さない場合はデフォルトで0になります。タイマーは呼び出されず、それらが発火するまでの残り時間も変更されません。
+システム時間を新しい時間に変更します。現在時刻はタイムスタンプ、日付オブジェクト、または省略した場合はデフォルトで0になります。どのタイマーも呼び出されず、タイマーが起動するまでの残り時間も変わりません。
 
 ##### 使用方法
 
@@ -18,14 +18,14 @@ await clock.setSystemTime(date)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>date</var></code></td>
       <td>` Date ,  number `</td>
-      <td>システム時間を設定する新しい日付。</td>
+      <td>システム時間に設定する新しい日付</td>
     </tr>
   </tbody>
 </table>

@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## file
-Ladda upp en fil till fjärrmaskinen där webbläsaren körs.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://www.seleniumhq.org/).
+Ladda upp en fil till fjärrmaskinen där webbläsaren körs.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://www.seleniumhq.org/).
 
 ##### Användning
 
@@ -26,7 +26,7 @@ browser.file(file)
     <tr>
       <td><code><var>file</var></code></td>
       <td>string</td>
-      <td>Base64-kodad zip-arkiv som innehåller __enskild__ fil som ska laddas upp. Om base64-kodad data inte representerar ett zip-arkiv eller arkivet innehåller mer än en fil kommer det att kasta ett okänt fel.</td>
+      <td>Base64-kodad zip-arkiv som innehåller __en enda__ fil som ska laddas upp. Om base64-kodad data inte representerar ett zip-arkiv eller arkivet innehåller mer än en fil kommer det att kasta ett okänt fel.</td>
     </tr>
   </tbody>
 </table>
@@ -41,7 +41,7 @@ browser.file(file)
 ---
 
 ## getDownloadableFiles
-Lista filer från fjärrmaskinen som är tillgängliga för nedladdning.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://www.seleniumhq.org/).
+Lista filer från fjärrmaskinen som är tillgängliga för nedladdning.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://www.seleniumhq.org/).
 
 ##### Användning
 
@@ -53,13 +53,13 @@ browser.getDownloadableFiles()
 ##### Returnerar
 
 - **&lt;Object&gt;**
-            **<code><var>names</var></code>:** Objekt som innehåller en lista över nedladdningsbara filer på fjärrmaskinen.
+            **<code><var>names</var></code>:** Objekt som innehåller en lista med nedladdningsbara filer på fjärrmaskinen.
 
 
 ---
 
 ## download
-Ladda ner en fil från fjärrmaskinen där webbläsaren körs.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://www.seleniumhq.org/).
+Ladda ner en fil från fjärrmaskinen där webbläsaren körs.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://www.seleniumhq.org/).
 
 ##### Användning
 
@@ -80,7 +80,7 @@ browser.download(name)
     <tr>
       <td><code><var>name</var></code></td>
       <td>string</td>
-      <td>Namn på filen som ska laddas ner</td>
+      <td>Namnet på filen som ska laddas ner</td>
     </tr>
   </tbody>
 </table>
@@ -95,7 +95,7 @@ browser.download(name)
 ---
 
 ## deleteDownloadableFiles
-Ta bort alla nedladdningsbara filer från fjärrmaskinen där webbläsaren körs.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://www.seleniumhq.org/).
+Ta bort alla nedladdningsbara filer från fjärrmaskinen där webbläsaren körs.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://www.seleniumhq.org/).
 
 ##### Användning
 
@@ -108,7 +108,7 @@ browser.deleteDownloadableFiles()
 ---
 
 ## getHubConfig
-Ta emot hub-konfiguration på distans.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
+Ta emot hub-konfiguration på distans.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://github.com/nicegraham/selenium-grid2-api#gridapihub).
 
 ##### Användning
 
@@ -126,7 +126,7 @@ browser.getHubConfig()
 ---
 
 ## gridTestSession
-Hämta detaljerna för Selenium Grid-noden som kör en session.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapitestsession).
+Få detaljer om Selenium Grid-noden som kör en session.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://github.com/nicegraham/selenium-grid2-api#gridapitestsession).
 
 ##### Användning
 
@@ -147,7 +147,7 @@ browser.gridTestSession(session)
     <tr>
       <td><code><var>session</var></code></td>
       <td>String</td>
-      <td>ID för sessionen som ska ta emot hubdetaljer för.</td>
+      <td>ID för sessionen att ta emot hub-detaljer för.</td>
     </tr>
   </tbody>
 </table>
@@ -162,7 +162,7 @@ browser.gridTestSession(session)
 ---
 
 ## gridProxyDetails
-Hämta proxydetaljer.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#gridapiproxy).
+Få proxy-detaljer.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://github.com/nicegraham/selenium-grid2-api#gridapiproxy).
 
 ##### Användning
 
@@ -183,7 +183,7 @@ browser.gridProxyDetails(id)
     <tr>
       <td><code><var>id</var></code></td>
       <td>string</td>
-      <td>ID för proxyn (kan erhållas med hjälp av gridTestSession-kommando).</td>
+      <td>ID för proxyn (kan tas emot med kommandot gridTestSession).</td>
     </tr>
   </tbody>
 </table>
@@ -192,13 +192,13 @@ browser.gridProxyDetails(id)
 ##### Returnerar
 
 - **&lt;Object&gt;**
-            **<code><var>details</var></code>:** Objekt som innehåller information om proxy.
+            **<code><var>details</var></code>:** Objekt som innehåller information om proxyn.
 
 
 ---
 
 ## manageSeleniumHubLifecycle
-Hantera livscykel för hub-nod.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://github.com/nicegraham/selenium-grid2-api#lifecycle-manager).
+Hantera livscykeln för hub-noden.<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://github.com/nicegraham/selenium-grid2-api#lifecycle-manager).
 
 ##### Användning
 
@@ -229,7 +229,7 @@ browser.manageSeleniumHubLifecycle(action)
 ---
 
 ## queryGrid
-Skicka GraphQL-frågor till Selenium-servern (hub eller nod) för att hämta data. (Stöds endast med Selenium v4 Server)<br /><br />Selenium Standalone-kommando. Mer information finns i [officiell protokolldokumentation](https://www.selenium.dev/documentation/grid/advanced_features/graphql_support/).
+Skicka GraphQL-frågor till Selenium-servern (hub eller nod) för att hämta data. (Stöds endast med Selenium v4 Server)<br /><br />Selenium Standalone-kommando. Mer information finns i [officiella protokolldokumentationen](https://www.selenium.dev/documentation/grid/advanced_features/graphql_support/).
 
 ##### Användning
 
@@ -250,7 +250,7 @@ browser.queryGrid(query)
     <tr>
       <td><code><var>query</var></code></td>
       <td>string</td>
-      <td>En GraphQL-fråga som ska skickas till servern.</td>
+      <td>En GraphQL-fråga att skicka till servern.</td>
     </tr>
   </tbody>
 </table>
@@ -280,4 +280,4 @@ console.log(JSON.stringify(result, null, 4))
 ##### Returnerar
 
 - **&lt;Object&gt;**
-            **<code><var>data</var></code>:** Resultat av GraphQL-frågan.
+            **<code><var>data</var></code>:** Resultatet av GraphQL-frågan.

@@ -1,6 +1,6 @@
 ---
 id: percy-overview
-title: Lås upp Percy - En översikt 
+title: Låsa upp Percy - En översikt 
 ---
 
 ## Introduction

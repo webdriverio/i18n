@@ -1,16 +1,16 @@
 ---
 id: abort
-title: 中断
+title: abort（中止）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/abort.ts
 ---
 
-以下のエラーコードのいずれかでリクエストを中断します：
+以下のエラーコードのいずれかでリクエストを中止します：
 `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`,
 `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`,
 `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`,
 `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`.
 
-##### 使用法
+##### 使用方法
 
 ```js
 mock.abort(errorCode)
@@ -21,14 +21,14 @@ mock.abort(errorCode)
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>errorCode</var></code></td>
       <td>`ErrorCode`</td>
-      <td>レスポンスのエラーコード、以下のいずれかになります： `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
+      <td>レスポンスのエラーコード。次のいずれかを指定できます：`Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`, `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`, `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`, `AddressUnreachable`, `BlockedByClient`, `BlockedByResponse`</td>
     </tr>
   </tbody>
 </table>

@@ -4,7 +4,7 @@ title: requestOnce
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/requestOnce.ts
 ---
 
-次のリクエストに対して、指定された上書きで一度だけリクエストパラメータを変更します。`requestOnce`を連続して複数回呼び出すことができ、順番に上書きが適用されます。`requestOnce`のみを使用し、モックが定義されている回数よりも多くリソースが呼び出された場合、元のリソースにデフォルト戻ります。
+次のリクエストに対して一度だけ指定された上書きでリクエストパラメータを変更します。`requestOnce`を連続して複数回呼び出すことができ、順番に上書きが適用されます。`requestOnce`のみを使用し、モックが定義された回数よりもリソースが多く呼び出された場合は、元のリソースにデフォルト戻ります。
 
 ##### 使用法
 
@@ -44,25 +44,25 @@ mock.requestOnce({ header, cookies, method, url, header, statusCode, fetchRespon
     <tr>
       <td><code><var>overwrites.url</var></code></td>
       <td>`string`</td>
-      <td>リダイレクトを開始するためにリクエストURLを上書き</td>
+      <td>リダイレクトを開始するためのリクエストURLを上書き</td>
     </tr>
     <tr>
-      <td><code><var>params</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>params</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`MockResponseParams`</td>
-      <td>上書きする追加のレスポンスパラメータ</td>
+      <td>上書きする追加のレスポンドパラメータ</td>
     </tr>
     <tr>
-      <td><code><var>params.header</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>params.header</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Object`</td>
       <td>特定のヘッダーを上書き</td>
     </tr>
     <tr>
-      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Number`</td>
       <td>レスポンスステータスコードを上書き</td>
     </tr>
     <tr>
-      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">任意</span></td>
+      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Boolean`</td>
       <td>モックデータで応答する前に実際のレスポンスを取得</td>
     </tr>

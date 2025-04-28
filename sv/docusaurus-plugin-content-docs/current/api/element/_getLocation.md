@@ -4,7 +4,7 @@ title: getLocation
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getLocation.ts
 ---
 
-Bestäm ett elements position på sidan. Punkten (0, 0) refererar till 
+Bestäm ett elements position på sidan. Punkten (0, 0) avser 
 det övre vänstra hörnet av sidan.
 
 ##### Usage
@@ -25,7 +25,7 @@ $(selector).getLocation(prop)
     <tr>
       <td><code><var>prop</var></code></td>
       <td>`string`</td>
-      <td>kan vara "x" eller "y" för att få ett resultatvärde direkt för enklare påståenden</td>
+      <td>kan vara "x" eller "y" för att få ett resultatvärde direkt för enklare kontroller</td>
     </tr>
   </tbody>
 </table>

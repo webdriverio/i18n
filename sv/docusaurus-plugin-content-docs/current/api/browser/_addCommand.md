@@ -4,11 +4,11 @@ title: addCommand
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/addCommand.ts
 ---
 
-Webbläsarmetoden `addCommand` hjälper dig att skriva dina egna kommandon.
+Webbläsarmetoden `addCommand` hjälper dig att skriva dina egna uppsättningar av kommandon.
 
 :::info
 
-Du kan hitta mer information om att lägga till anpassade kommandon i guiden [custom command](/docs/customcommands#adding-custom-commands).
+Du kan hitta mer information om att lägga till anpassade kommandon i guiden för [anpassade kommandon](/docs/customcommands#adding-custom-commands).
 
 :::
 

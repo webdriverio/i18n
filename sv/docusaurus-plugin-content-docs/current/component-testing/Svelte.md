@@ -3,11 +3,11 @@ id: svelte
 title: Svelte
 ---
 
-[Svelte](https://svelte.dev/) är ett radikalt nytt sätt att bygga användargränssnitt. Medan traditionella ramverk som React och Vue gör huvuddelen av sitt arbete i webbläsaren, flyttar Svelte det arbetet till ett kompileringssteg som sker när du bygger din app. Du kan testa Svelte-komponenter direkt i en riktig webbläsare med hjälp av WebdriverIO och dess [webbläsarkörning](/docs/runner#browser-runner).
+[Svelte](https://svelte.dev/) är ett radikalt nytt tillvägagångssätt för att bygga användargränssnitt. Medan traditionella ramverk som React och Vue gör merparten av sitt arbete i webbläsaren, flyttar Svelte det arbetet till ett kompileringssteg som sker när du bygger din app. Du kan testa Svelte-komponenter direkt i en riktig webbläsare med hjälp av WebdriverIO och dess [browser runner](/docs/runner#browser-runner).
 
-## Installation
+## Konfiguration
 
-För att konfigurera WebdriverIO i ditt Svelte-projekt, följ [instruktionerna](/docs/component-testing#set-up) i vår komponenttestningsdokumentation. Se till att välja `svelte` som förinställning inom dina köralternativ, t.ex.:
+För att konfigurera WebdriverIO inom ditt Svelte-projekt, följ [instruktionerna](/docs/component-testing#set-up) i vår komponenttestningsdokumentation. Se till att välja `svelte` som förinställning inom dina runner-alternativ, t.ex.:
 
 ```js
 // wdio.conf.js
@@ -22,11 +22,11 @@ export const config = {
 
 :::info
 
-Om du redan använder [Vite](https://vitejs.dev/) som utvecklingsserver kan du även återanvända din konfiguration i `vite.config.ts` inom din WebdriverIO-konfiguration. För mer information, se `viteConfig` i [köralternativ](/docs/runner#runner-options).
+Om du redan använder [Vite](https://vitejs.dev/) som utvecklingsserver kan du också återanvända din konfiguration i `vite.config.ts` inom din WebdriverIO-konfiguration. För mer information, se `viteConfig` i [runner-alternativ](/docs/runner#runner-options).
 
 :::
 
-Svelte-förinställningen kräver att `@sveltejs/vite-plugin-svelte` är installerat. Vi rekommenderar också att använda [Testing Library](https://testing-library.com/) för att rendera komponenten till testsidan. Därför behöver du installera följande ytterligare beroenden:
+Svelte-förinställningen kräver att `@sveltejs/vite-plugin-svelte` är installerad. Vi rekommenderar också att använda [Testing Library](https://testing-library.com/) för att rendera komponenten på testsidan. Därför behöver du installera följande ytterligare beroenden:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
@@ -40,7 +40,7 @@ npx wdio run ./wdio.conf.js
 
 ## Skriva tester
 
-Förutsatt att du har följande Svelte-komponent:
+Givet att du har följande Svelte-komponent:
 
 ```html title="./components/Component.svelte"
 <script>
@@ -57,7 +57,7 @@ Förutsatt att du har följande Svelte-komponent:
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-I ditt test, använd `render`-metoden från `@testing-library/svelte` för att bifoga komponenten till testsidan. För att interagera med komponenten rekommenderar vi att använda WebdriverIO-kommandon eftersom de beter sig mer likt faktiska användarinteraktioner, t.ex.:
+I ditt test, använd `render`-metoden från `@testing-library/svelte` för att fästa komponenten på testsidan. För att interagera med komponenten rekommenderar vi att använda WebdriverIO-kommandon eftersom de beter sig mer likt faktiska användarinteraktioner, t.ex.:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'

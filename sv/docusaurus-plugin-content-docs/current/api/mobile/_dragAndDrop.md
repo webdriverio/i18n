@@ -8,8 +8,8 @@ Dra ett objekt till ett målelement eller position.
 
 :::info
 
-Funktionaliteten för detta kommando beror i hög grad på hur dra och släpp är 
-implementerat i din app. Om du upplever problem, vänligen posta ditt exempel 
+Funktionaliteten för detta kommando beror i hög grad på hur dra och släpp är
+implementerat i din app. Om du upplever problem, vänligen dela ditt exempel
 i [#4134](https://github.com/webdriverio/webdriverio/issues/4134).
 
 Se också till att elementet du drar och målet där du släpper båda är synliga på skärmen.
@@ -46,12 +46,12 @@ $(selector).dragAndDrop(target, { duration })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`DragAndDropOptions`</td>
-      <td>dragAndDrop-kommandoalternativ</td>
+      <td>dragAndDrop kommandoalternativ</td>
     </tr>
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>hur lång tid draget ska ta</td>
+      <td>hur länge dragningen ska pågå</td>
     </tr>
   </tbody>
 </table>

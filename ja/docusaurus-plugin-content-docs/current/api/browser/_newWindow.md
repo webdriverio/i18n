@@ -5,11 +5,11 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ブラウザで新しいウィンドウまたはタブを開きます（指定がない場合はデフォルトで新しいウィンドウになります）。
-このコマンドは`window.open()`関数と同等です。このコマンドはモバイル環境では機能しません。
+このコマンドは`window.open()`関数と同等です。このコマンドはモバイル環境では動作しません。
 
 __注意:__ このコマンドを呼び出すと、自動的に新しいウィンドウまたはタブに切り替わります。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.newWindow(url, { type, windowName, windowFeatures })
@@ -30,24 +30,24 @@ browser.newWindow(url, { type, windowName, windowFeatures })
       <td>開くウェブサイトのURL</td>
     </tr>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">省略可</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`NewWindowOptions`</td>
       <td>newWindowコマンドのオプション</td>
     </tr>
     <tr>
-      <td><code><var>options.type</var></code><br /><span className="label labelWarning">省略可</span></td>
+      <td><code><var>options.type</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`string`</td>
       <td>新しいウィンドウのタイプ: 'tab'または'window'</td>
     </tr>
     <tr>
-      <td><code><var>options.windowName</var></code><br /><span className="label labelWarning">省略可</span></td>
+      <td><code><var>options.windowName</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
       <td>新しいウィンドウの名前</td>
     </tr>
     <tr>
-      <td><code><var>options.windowFeatures</var></code><br /><span className="label labelWarning">省略可</span></td>
+      <td><code><var>options.windowFeatures</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String`</td>
-      <td>開いたウィンドウの特性（サイズ、位置、スクロールバーなど）</td>
+      <td>開いたウィンドウの機能（サイズ、位置、スクロールバーなど）</td>
     </tr>
   </tbody>
 </table>
@@ -98,6 +98,6 @@ it('should open a new window', async () => {
 
 - **&lt;Object&gt;**
             **<code><var>return</var></code>:**           ウィンドウハンドルと新しいウィンドウのタイプを含むオブジェクト `{handle: string, type: string}` handle - 新しいタブまたはウィンドウのウィンドウハンドルのID、type - 新しいウィンドウのタイプ、'tab'または'window'    
-##### スロー
+##### 例外
 
 - **Error**:  `url`が無効な場合、コマンドがモバイルで使用された場合、または`type`が'tab'または'window'でない場合。

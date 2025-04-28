@@ -4,8 +4,8 @@ title: waitUntil
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/waitUntil.ts
 ---
 
-Detta väntkommando är ditt universella vapen om du vill vänta på något. Det förväntar sig ett villkor 
-och väntar tills det villkoret uppfylls med ett sant värde som returneras.
+Detta väntkommando är ditt universella vapen om du vill vänta på något. Det förväntar sig ett villkor
+och väntar tills detta villkor är uppfyllt med ett sanningsvärde som returneras.
 
 Ett vanligt exempel är att vänta tills ett visst element innehåller en viss text (se exempel).
 
@@ -27,7 +27,7 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>condition</var></code></td>
       <td>`Function`</td>
-      <td>villkor att vänta på tills det returnerar ett sant värde</td>
+      <td>villkor att vänta på tills det returnerar ett sanningsvärde</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -37,7 +37,7 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>tid i ms (standard baserad på [`waitforTimeout`](/docs/configuration#waitfortimeout) konfigurationsvärde)</td>
+      <td>tid i ms (standard baserat på [`waitforTimeout`](/docs/configuration#waitfortimeout) konfigurationsvärde)</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -47,7 +47,7 @@ browser.waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>intervall mellan villkorskontroller (standard baserad på [`waitforInterval`](/docs/configuration#waitforinterval) konfigurationsvärde)</td>
+      <td>intervall mellan villkorskontroller (standard baserat på [`waitforInterval`](/docs/configuration#waitforinterval) konfigurationsvärde)</td>
     </tr>
   </tbody>
 </table>
@@ -65,4 +65,4 @@ https://github.com/webdriverio/example-recipes/blob/0c9252b0a4f7e18a34cece74e579
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  sant om villkoret är uppfyllt
+            **<code><var>return</var></code>:**  true om villkoret är uppfyllt

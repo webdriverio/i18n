@@ -6,30 +6,30 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::warning
 Kommandot `executeAsync` är föråldrat och kommer att tas bort i en framtida version.
-Använd istället kommandot `execute` då det ger bättre stöd för 
+Använd istället kommandot `execute` eftersom det ger bättre stöd för 
 felhantering via `async`/`await`.
 :::
 
-Injicera ett kodfragment av JavaScript i sidan för exekvering i kontexten av den för närvarande valda
+Injicera ett JavaScript-fragment i sidan för exekvering i kontexten av den för närvarande valda
 ramen. Det exekverade skriptet antas vara asynkront och måste signalera att det är klart genom att anropa
-den tillhandahållna callback-funktionen, som alltid tillhandahålls som det sista argumentet till funktionen. Värdet
-som skickas till denna callback kommer att returneras till klienten.
+den tillhandahållna återanropsfunktionen, som alltid tillhandahålls som det sista argumentet till funktionen. Värdet
+till denna återanropsfunktion kommer att returneras till klienten.
 
-Asynkrona skriptkommandon kan inte sträcka sig över sidladdningar. Om en unload-händelse utlöses medan man väntar
+Asynkrona skriptkommandon får inte sträcka sig över sidladdningar. Om en urladdningshändelse utlöses medan man väntar
 på ett skriptresultat, bör ett fel returneras till klienten.
 
 Skriptargumentet definierar skriptet som ska exekveras i form av en funktionskropp. Funktionen kommer
-att anropas med den angivna args-arrayen och värdena kan nås via arguments-objektet
-i den ordning som anges. Det sista argumentet kommer alltid att vara en callback-funktion som måste anropas
+att anropas med den tillhandahållna args-arrayen och värdena kan nås via arguments-objektet
+i den angivna ordningen. Det sista argumentet kommer alltid att vara en återanropsfunktion som måste anropas
 för att signalera att skriptet har avslutats.
 
 Argument kan vara vilken JSON-primitiv, array eller JSON-objekt som helst. JSON-objekt som definierar en WebElement-
-referens kommer att konverteras till det motsvarande DOM-elementet. På samma sätt kommer alla WebElements i skript-
-resultatet att returneras till klienten som WebElement JSON-objekt.
+referens kommer att konverteras till motsvarande DOM-element. På samma sätt kommer alla WebElements i skriptets
+resultat att returneras till klienten som WebElement JSON-objekt.
 
 :::caution
 
-Använd `execute` istället
+Vänligen använd `execute` istället
 :::
 
 ##### Användning

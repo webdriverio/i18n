@@ -5,12 +5,12 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Du kan använda `call` för att utföra valfri asynkron åtgärd inom din testspecifikation.
-Den accepterar promises och stoppar exekveringen tills promise har lösts.
+Den accepterar löften (promises) och stoppar exekveringen tills löftet har lösts.
 
 :::info
 
-Eftersom WebdriverIO fasas ut synkron användning (se [RFC](https://github.com/webdriverio/webdriverio/discussions/6702))
-är detta kommando inte särskilt användbart längre.
+Med WebdriverIOs utfasning av synkron användning (se [RFC](https://github.com/webdriverio/webdriverio/discussions/6702))
+är detta kommando inte längre särskilt användbart.
 
 :::
 

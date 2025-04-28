@@ -5,9 +5,9 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 ## fullPageScreenshot
-ページ全体のスクリーンショットを撮影します。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://phabricator.services.mozilla.com/source/mozilla-central/browse/default/testing/geckodriver/src/command.rs$43-46)で確認できます。
+ページ全体のスクリーンショットをキャプチャします。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://phabricator.services.mozilla.com/source/mozilla-central/browse/default/testing/geckodriver/src/command.rs$43-46)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.fullPageScreenshot()
@@ -17,15 +17,15 @@ browser.fullPageScreenshot()
 ##### 戻り値
 
 - **&lt;String&gt;**
-            **<code><var>screenshot</var></code>:** ページ全体のスクリーンショットを含むbase64エンコードされたPNG画像データ。
+            **<code><var>screenshot</var></code>:** ページ全体のスクリーンショットを構成するbase64エンコードされたPNG画像データ。
 
 
 ---
 
 ## getMozContext
-現在有効なコンテキスト（例：`CHROME`または`CONTENT`）を取得します。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L622)で確認できます。
+現在有効になっているコンテキスト（例：`CHROME`または`CONTENT`）を取得します。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L622)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.getMozContext()
@@ -48,9 +48,9 @@ console.log(await browser.getMozContext()); // 出力: 'CHROME'
 ---
 
 ## setMozContext
-コマンドのターゲットコンテキストをchromeとcontent間で切り替えます。<br /><br />現在のコンテキストを変更すると、後続のすべてのコマンドに影響を与えます。`CONTENT`コンテキストは通常のウェブプラットフォームの文書権限を持ち、任意のJavaScriptを評価するのと同様です。`CHROME`コンテキストは権限が昇格され、XULツールキットへの完全なアクセスを持つブラウザのクロム自体を操作できます。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645)で確認できます。
+コマンドのターゲットコンテキストをchromeとcontentの間で切り替えます。<br /><br />現在のコンテキストを変更すると、以降のすべてのコマンドに影響を与えます。`CONTENT`コンテキストは、任意のJavaScriptを評価するような通常のウェブプラットフォームドキュメント権限を持ちます。`CHROME`コンテキストはブラウザのクロム自体を操作できる昇格された権限を取得し、XULツールキットへの完全なアクセス権を持ちます。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L615-L645)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.setMozContext(context)
@@ -62,7 +62,7 @@ browser.setMozContext(context)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -88,9 +88,9 @@ console.log(await browser.getMozContext()); // 出力: 'CONTENT'
 ---
 
 ## installAddOn
-現在のセッションに新しいアドオンをインストールします。この関数は後で`uninstallAddon`を使用してアドオンをアンインストールするために使用できるIDを返します。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L647-L668)で確認できます。
+現在のセッションに新しいアドオンをインストールします。この関数は、後で`uninstallAddon`を使用してアドオンをアンインストールする際に使用できるIDを返します。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L647-L668)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.installAddOn(addon, temporary)
@@ -102,7 +102,7 @@ browser.installAddOn(addon, temporary)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -123,9 +123,9 @@ browser.installAddOn(addon, temporary)
 
 
 ```js
-// アドオンのzipファイルのバッファを作成
+// アドオンの.zipファイルのバッファを作成
 const extension = await fs.promises.readFile('/path/to/extension.zip')
-// Firefoxで拡張機能を読み込む
+// Firefoxに拡張機能をロード
 const id = await browser.installAddOn(extension.toString('base64'), false);
 ```
 
@@ -141,7 +141,7 @@ const id = await browser.installAddOn(extension.toString('base64'), false);
 ## uninstallAddOn
 現在のブラウザセッションのプロファイルからアドオンをアンインストールします。<br /><br />Firefoxコマンドです。詳細は[公式プロトコルドキュメント](https://github.com/SeleniumHQ/selenium/blob/586affe0cf675b1d5c8abc756defa4a46d95391b/javascript/node/selenium-webdriver/firefox.js#L670-L687)で確認できます。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.uninstallAddOn(id)
@@ -153,7 +153,7 @@ browser.uninstallAddOn(id)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -169,9 +169,9 @@ browser.uninstallAddOn(id)
 
 
 ```js
-// アドオンのzipファイルのバッファを作成
+// アドオンの.zipファイルのバッファを作成
 const extension = await fs.promises.readFile('/path/to/extension.zip')
-// Firefoxで拡張機能を読み込む
+// Firefoxに拡張機能をロード
 const id = await browser.installAddOn(extension.toString('base64'), false);
 // ...
 await browser.uninstallAddOn(id)

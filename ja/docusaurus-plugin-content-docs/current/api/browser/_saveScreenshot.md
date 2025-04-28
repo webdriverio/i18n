@@ -4,27 +4,29 @@ title: saveScreenshot
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/saveScreenshot.ts
 ---
 
-現在のブラウジングコンテキストのスクリーンショットをPNGファイルとしてOSに保存します。一部のブラウザドライバーはドキュメント全体のスクリーンショットを撮影する（例：FirefoxのGeckodriver）一方、他のドライバーは現在のビューポートのみを撮影する（例：ChromeのChromedriver）ことに注意してください。
+現在のブラウジングコンテキストのスクリーンショットをOS上のPNGファイルに保存します。一部のブラウザドライバは
+ドキュメント全体のスクリーンショットを撮影する（例：FirefoxのGeckodriver）場合があり、
+他のドライバは現在のビューポートのみを撮影する（例：ChromeのChromedriver）場合があることに注意してください。
 
-##### 使用方法
+##### Usage
 
 ```js
 browser.saveScreenshot(filepath, { fullPage, format, quality, clip })
 ```
 
-##### パラメータ
+##### Parameters
 
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>Name</th><th>Type</th><th>Details</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>filepath</var></code></td>
       <td>`String`</td>
-      <td>生成される画像のパス（`.png`の拡張子が必要）実行ディレクトリからの相対パス</td>
+      <td>実行ディレクトリからの相対パスで指定した生成される画像のパス（`.png`拡張子が必要）</td>
     </tr>
     <tr>
       <td><code><var>options</var></code></td>
@@ -34,27 +36,27 @@ browser.saveScreenshot(filepath, { fullPage, format, quality, clip })
     <tr>
       <td><code><var>options.fullPage=false</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Boolean`</td>
-      <td>ページ全体のスクリーンショットを撮るか、現在のビューポートのみかを指定</td>
+      <td>ページ全体のスクリーンショットを撮るか、現在のビューポートのみのスクリーンショットを撮るか</td>
     </tr>
     <tr>
       <td><code><var>options.format='png'</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`String`</td>
-      <td>スクリーンショットのフォーマット（`png`または`jpeg`）</td>
+      <td>スクリーンショットの形式（`png`または`jpeg`）</td>
     </tr>
     <tr>
       <td><code><var>options.quality=100</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Number`</td>
-      <td>JPEGフォーマットの場合のスクリーンショットの品質（0-100パーセントの範囲）</td>
+      <td>JPEG形式の場合のスクリーンショットの品質（0-100パーセントの範囲）</td>
     </tr>
     <tr>
       <td><code><var>options.clip</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Object`</td>
-      <td>スクリーンショットの矩形領域のクリッピング</td>
+      <td>スクリーンショットの特定の領域を切り取る</td>
     </tr>
   </tbody>
 </table>
 
-##### 例
+##### Examples
 
 ```js title="saveScreenshot.js"
 it('should save a screenshot of the browser viewport', async () => {
@@ -87,7 +89,7 @@ afterTest: async function(test) {
 }
 ```
 
-##### 戻り値
+##### Returns
 
 - **&lt;Buffer&gt;**
             **<code><var>return</var></code>:**                             スクリーンショットバッファ

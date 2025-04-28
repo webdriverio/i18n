@@ -3,7 +3,7 @@ id: testrunner
 title: Testrunner
 ---
 
-WebdriverIO levereras med sin egen testrunner för att hjälpa dig att börja testa så snabbt som möjligt. Den är avsedd att göra allt arbete åt dig, låter dig integrera med tredjepartstjänster och hjälper dig att köra dina tester så effektivt som möjligt.
+WebdriverIO levereras med sin egen testrunner för att hjälpa dig att börja testa så snabbt som möjligt. Den är tänkt att göra allt arbete åt dig, möjliggör integration med tjänster från tredje part och hjälper dig att köra dina tester så effektivt som möjligt.
 
 WebdriverIOs testrunner är separat paketerad i NPM-paketet `@wdio/cli`.
 
@@ -13,7 +13,7 @@ Installera det så här:
 npm install @wdio/cli
 ```
 
-För att se hjälp för kommandoradsgränssnittet, skriv följande kommando i din terminal:
+För att se hjälpen för kommandoradsgränssnittet, skriv följande kommando i din terminal:
 
 ```sh
 $ npx wdio --help
@@ -34,7 +34,7 @@ Options:
   --help     Show help                                                 [boolean]
 ```
 
-Härligt! Nu behöver du definiera en konfigurationsfil där all information om dina tester, funktioner och inställningar anges. Gå över till avsnittet [Configuration File](/docs/configuration) för att se hur den filen bör se ut.
+Toppen! Nu behöver du definiera en konfigurationsfil där all information om dina tester, kapaciteter och inställningar anges. Gå över till avsnittet [Configuration File](/docs/configuration) för att se hur den filen ska se ut.
 
 Med `wdio`-konfigurationshjälparen är det superenkelt att generera din konfigurationsfil. Kör bara:
 
@@ -48,7 +48,7 @@ Det kommer att ställa frågor och generera en konfigurationsfil åt dig på min
 
 ![WDIO configuration utility](/img/config-utility.gif)
 
-När du har konfigurationsfilen inställd kan du starta dina tester genom att köra:
+När du har ställt in din konfigurationsfil kan du starta dina tester genom att köra:
 
 ```sh
 npx wdio run wdio.conf.js
@@ -60,13 +60,13 @@ Du kan också initiera din testkörning utan `run`-kommandot:
 npx wdio wdio.conf.js
 ```
 
-Det är allt! Nu kan du komma åt seleniummiljön via den globala variabeln `browser`.
+Det är allt! Nu kan du komma åt seleniuminstan via den globala variabeln `browser`.
 
 ## Kommandon
 
 ### `wdio config`
 
-Kommandot `config` kör WebdriverIO-konfigurationshjälparen. Denna hjälpare ställer några frågor om ditt WebdriverIO-projekt och skapar en `wdio.conf.js`-fil baserat på dina svar.
+Kommandot `config` kör WebdriverIOs konfigurationshjälpare. Denna hjälpare kommer att ställa några frågor om ditt WebdriverIO-projekt och skapa en `wdio.conf.js`-fil baserat på dina svar.
 
 Exempel:
 
@@ -128,7 +128,7 @@ Alternativ:
 > Obs: Autokompilering kan enkelt kontrolleras med `tsx` ENV-variabler. Se även [TypeScript-dokumentationen](/docs/typescript).
 
 ### `wdio install`
-Kommandot `install` låter dig lägga till rapportörer och tjänster till dina WebdriverIO-projekt via CLI:n.
+Kommandot `install` låter dig lägga till rapportörer och tjänster till dina WebdriverIO-projekt via CLI.
 
 Exempel:
 
@@ -144,7 +144,7 @@ Om du vill installera paketen med `yarn` istället kan du skicka flaggan `--yarn
 wdio install service sauce --yarn
 ```
 
-Du kan också ange en anpassad konfigurationssökväg om din WDIO-konfigurationsfil inte finns i samma mapp som du arbetar i:
+Du kan också skicka en anpassad konfigurationssökväg om din WDIO-konfigurationsfil inte finns i samma mapp som du arbetar i:
 
 ```sh
 wdio install service sauce --config="./path/to/wdio.conf.js"
@@ -196,9 +196,9 @@ cucumber
 
 ### `wdio repl`
 
-Repl-kommandot gör det möjligt att starta ett interaktivt kommandoradsgränssnitt för att köra WebdriverIO-kommandon. Det kan användas i testsyfte eller för att snabbt starta en WebdriverIO-session.
+Kommandot repl låter dig starta ett interaktivt kommandoradsgränssnitt för att köra WebdriverIO-kommandon. Det kan användas för teständamål eller för att snabbt starta en WebdriverIO-session.
 
-Kör tester i lokal chrome:
+Kör tester i lokal Chrome:
 
 ```sh
 wdio repl chrome
@@ -210,4 +210,4 @@ eller kör tester på Sauce Labs:
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY
 ```
 
-Du kan använda samma argument som i [run-kommandot](#wdio-run).
+Du kan använda samma argument som du kan i [run-kommandot](#wdio-run).

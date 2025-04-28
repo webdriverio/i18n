@@ -3,7 +3,7 @@ id: macos
 title: MacOS
 ---
 
-WebdriverIO kan automatisera godtyckliga MacOS-applikationer med hjälp av [Appium](https://appium.io/docs/en/2.0/). Allt du behöver är [XCode](https://developer.apple.com/xcode/) installerat på ditt system, Appium och [Mac2 Driver](https://github.com/appium/appium-mac2-driver) installerade som beroenden samt rätt inställningar för capabilities.
+WebdriverIO kan automatisera godtyckliga MacOS-applikationer med hjälp av [Appium](https://appium.io/docs/en/2.0/). Allt du behöver är [XCode](https://developer.apple.com/xcode/) installerat på ditt system, Appium och [Mac2 Driver](https://github.com/appium/appium-mac2-driver) installerade som beroenden samt rätt inställda capabilities.
 
 ## Komma igång
 
@@ -13,9 +13,9 @@ För att starta ett nytt WebdriverIO-projekt, kör:
 npm create wdio@latest ./
 ```
 
-En installationsguide kommer att leda dig genom processen. Se till att välja _"Desktop Testing - of MacOS Applications"_ när den frågar vilken typ av testning du vill göra. Efteråt kan du behålla standardinställningarna eller ändra efter dina preferenser.
+En installationsguide kommer att leda dig genom processen. Se till att välja _"Desktop Testing - of MacOS Applications"_ när den frågar vilken typ av testning du vill göra. Efteråt behåller du bara standardinställningarna eller modifierar baserat på dina preferenser.
 
-Konfigurationsguiden kommer att installera alla nödvändiga Appium-paket och skapa en `wdio.conf.js` eller `wdio.conf.ts` med den nödvändiga konfigurationen för att testa på MacOS. Om du valde att autogenerera testfiler kan du köra ditt första test via `npm run wdio`.
+Konfigurationsguiden kommer att installera alla nödvändiga Appium-paket och skapar en `wdio.conf.js` eller `wdio.conf.ts` med den nödvändiga konfigurationen för att testa på MacOS. Om du godkände att autogenerera testfiler kan du köra ditt första test via `npm run wdio`.
 
 <CreateMacOSProjectAnimation />
 
@@ -41,4 +41,4 @@ __Obs:__ kalkylatorn öppnades automatiskt i början av sessionen eftersom `'app
 
 ## Mer information
 
-För information om specifika detaljer kring testning på MacOS rekommenderar vi att du kollar in projektet [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver).
+För information om specifika detaljer kring testning på MacOS rekommenderar vi att du besöker projektet [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver).

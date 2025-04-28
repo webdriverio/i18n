@@ -3,7 +3,7 @@ id: team
 title: Zespół
 ---
 
-Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i specjalistów SDET z różnych firm, a także kontrybutorów z całego świata.
+Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i inżynierów SDET z różnych firm, a także przy udziale wkładu osób z całego świata.
 
 ## Techniczny Komitet Sterujący
 
@@ -12,7 +12,7 @@ Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i sp
     avatar="https://avatars2.githubusercontent.com/u/4043890?s=460"
     github="abjerstedt"
 >
-    Senior Software Engineer - Android w <a href="https://www.target.com/">Target</a>.
+    Starszy Inżynier Oprogramowania - Android w <a href="https://www.target.com/">Target</a>.
 </Card>
 
 <Card
@@ -29,7 +29,7 @@ Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i sp
     avatar="https://avatars.githubusercontent.com/u/15839059?s=460"
     github="erwinheitzman"
 >
-    Senior Test Automatoin Engineer w <a href="https://detesters.nl/">deTesters</a>.
+    Starszy Inżynier Automatyzacji Testów w <a href="https://detesters.nl/">deTesters</a>.
 </Card>
 
 <Card
@@ -38,7 +38,7 @@ Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i sp
     github="klamping"
     twitter="klamping"
 >
-    Seniore Front End Engineer.
+    Starszy Inżynier Front End.
 </Card>
 
 <Card
@@ -46,7 +46,7 @@ Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i sp
     avatar="https://avatars0.githubusercontent.com/u/25589559?s=460"
     github="mgrybyk"
 >
-    Senior Software Development Engineer w Testach.
+    Starszy Inżynier Rozwoju Oprogramowania w Testach.
 </Card>
 
 <Card
@@ -54,7 +54,7 @@ Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i sp
     avatar="https://avatars3.githubusercontent.com/u/1300981?s=460"
     github="WillBrock"
 >
-    Automation Engineering Manager w <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
+    Kierownik Inżynierii Automatyzacji w <a href="https://focusschoolsoftware.com/">Focus School Software</a>.
 </Card>
 
 <Card
@@ -63,10 +63,10 @@ Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i sp
     github="wswebcreation"
     twitter="wswebcreation"
 >
-    Senior Solutions Architect <a href="https://saucelabs.com/">@saucelabs</a>.
+    Starszy Architekt Rozwiązań <a href="https://saucelabs.com/">@saucelabs</a>.
 </Card>
 
-## Współtwórcy projektu
+## Współpracownicy Projektu
 
 <Card
     name="Baruch Velez"
@@ -84,4 +84,4 @@ Rozwój WebdriverIO jest prowadzony przez dedykowany zespół programistów i sp
 >
 </Card>
 
-i [wiele wiele więcej](https://github.com/orgs/webdriverio/people).
+oraz [wielu, wielu innych](https://github.com/orgs/webdriverio/people).

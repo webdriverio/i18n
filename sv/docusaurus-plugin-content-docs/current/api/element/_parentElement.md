@@ -4,15 +4,15 @@ title: parentElement
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/parentElement.ts
 ---
 
-Returnerar föräldraelementet till det valda DOM-elementet.
+Returnerar förälderelement till det valda DOM-elementet.
 
-##### Användning
+##### Usage
 
 ```js
 $(selector).parentElement()
 ```
 
-##### Exempel
+##### Examples
 
 ```html title="index.html"
 <div class="parent">
@@ -30,6 +30,6 @@ it('should get class from parent element', async () => {
 });
 ```
 
-##### Returnerar
+##### Returns
 
 - **&lt;WebdriverIO.Element&gt;**

@@ -5,13 +5,13 @@ title: ocrSetValue
 
 Skicka en sekvens av tangenttryckningar till ett element. Det kommer att:
 
--   automatiskt upptäcka elementet
+-   automatiskt identifiera elementet
 -   fokusera på fältet genom att klicka på det
 -   ange värdet i fältet
 
-Kommandot kommer att söka efter den tillhandahållna texten och försöka hitta en träff baserat på Fuzzy Logic från [Fuse.js](https://fusejs.io/). Detta betyder att om du skulle ange en väljare med ett stavfel, eller om den hittade texten inte är en 100% träff, kommer den ändå att försöka ge dig tillbaka ett element. Se [loggarna](#logs) nedan.
+Kommandot söker efter angiven text och försöker hitta en matchning baserat på Fuzzy Logic från [Fuse.js](https://fusejs.io/). Detta betyder att om du anger en väljare med ett stavfel, eller om den hittade texten inte är en 100% matchning, kommer den ändå att försöka ge dig tillbaka ett element. Se [loggarna](#logs) nedan.
 
-## Usage
+## Användning
 
 ```js
 await brower.ocrSetValue({
@@ -30,16 +30,16 @@ await brower.ocrSetValue({
 [0-0] 2024-05-26T04:17:52.356Z INFO @wdio/ocr-service:ocrGetElementPositionByText: We searched for the word "docs" and found one match "docs" with score "100%"
 ```
 
-## Options
+## Alternativ
 
 ### `text`
 
--   **Type:** `string`
--   **Mandatory:** yes
+-   **Typ:** `string`
+-   **Obligatorisk:** ja
 
 Texten du vill söka efter för att klicka på.
 
-#### Example
+#### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -50,12 +50,12 @@ await browser.ocrSetValue({
 
 ### `value`
 
--   **Type:** `string`
--   **Mandatory:** yes
+-   **Typ:** `string`
+-   **Obligatorisk:** ja
 
 Värdet som ska läggas till.
 
-#### Example
+#### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -66,13 +66,13 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
--   **Type:** `boolean`
--   **Mandatory:** no
--   **Default:** `false`
+-   **Typ:** `boolean`
+-   **Obligatorisk:** nej
+-   **Standard:** `false`
 
 Om värdet också behöver skickas in i inmatningsfältet. Detta innebär att en "ENTER" kommer att skickas i slutet av strängen.
 
-#### Example
+#### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -84,31 +84,31 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** `500` milliseconds
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
+-   **Standard:** `500` millisekunder
 
-Detta är klickets varaktighet. Om du vill kan du också skapa ett "långt klick" genom att öka tiden.
+Detta är klickets varaktighet. Om du vill kan du även skapa ett "långt klick" genom att öka tiden.
 
-#### Example
+#### Exempel
 
 ```js
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // Detta är 3 sekunder
 });
 ```
 
 ### `contrast`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** `0.25`
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
+-   **Standard:** `0.25`
 
-Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Den accepterar värden mellan `-1` och `1`.
+Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Det accepterar värden mellan `-1` och `1`.
 
-#### Example
+#### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -120,12 +120,12 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
--   **Type:** `number`
--   **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Typ:** `number`
+-   **Obligatorisk:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-Detta är sökområdet på skärmen där OCR behöver leta efter text. Detta kan vara ett element eller en rektangel som innehåller `x`, `y`, `width` och `height`
+Detta är sökområdet på skärmen där OCR behöver leta efter text. Detta kan vara ett element eller en rektangel som innehåller `x`, `y`, `width` och `height`.
 
-#### Example
+#### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -134,14 +134,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// OR
+// ELLER
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// ELLER
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,30 +156,30 @@ await browser.ocrSetValue({
 
 ### `language`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `eng`
+-   **Typ:** `string`
+-   **Obligatorisk:** Nej
+-   **Standard:** `eng`
 
-Språket som Tesseract ska känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds finns [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Språket som Tesseract kommer att känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds kan hittas [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+#### Exempel
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // Använd nederländska som språk
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
--   **Type:** `object`
--   **Mandatory:** no
+-   **Typ:** `object`
+-   **Obligatorisk:** nej
 
-Du kan klicka på skärmen relativt till det matchande elementet. Detta kan göras baserat på relativa pixlar `above`, `right`, `below` eller `left` från det matchande elementet
+Du kan klicka på skärmen relativt till det matchande elementet. Detta kan göras baserat på relativa pixlar `above`, `right`, `below` eller `left` från det matchande elementet.
 
 :::note
 
@@ -198,12 +198,12 @@ Följande kombinationer är **INTE** tillåtna
 
 #### `relativePosition.above`
 
--   **Type:** `number`
--   **Mandatory:** no
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
 
-Klicka x pixlar `above` det matchande elementet.
+Klicka x pixlar `ovanför` det matchande elementet.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -217,12 +217,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
--   **Type:** `number`
--   **Mandatory:** no
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
 
-Klicka x pixlar `right` från det matchande elementet.
+Klicka x pixlar `till höger` om det matchande elementet.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -236,12 +236,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
--   **Type:** `number`
--   **Mandatory:** no
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
 
-Klicka x pixlar `below` det matchande elementet.
+Klicka x pixlar `nedanför` det matchande elementet.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -255,12 +255,12 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
--   **Type:** `number`
--   **Mandatory:** no
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
 
-Klicka x pixlar `left` från det matchande elementet.
+Klicka x pixlar `till vänster` om det matchande elementet.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -274,17 +274,17 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-Du kan ändra fuzzy-logiken för att hitta text med följande alternativ. Detta kan hjälpa till att hitta en bättre träff
+Du kan ändra den oklara logiken för att hitta text med följande alternativ. Detta kan hjälpa till att hitta en bättre matchning.
 
 #### `fuzzyFindOptions.distance`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** 100
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
+-   **Standard:** 100
 
-Bestämmer hur nära träffen måste vara den ungefärliga platsen (anges av location). En exakt bokstavsmatchning som är distance-tecken bort från den ungefärliga platsen skulle betraktas som en fullständig felmatchning. Ett avstånd på 0 kräver att träffen finns på den exakta angivna platsen. Ett avstånd på 1000 skulle kräva en perfekt träff inom 800 tecken från platsen för att hittas med ett tröskelvärde på 0,8.
+Bestämmer hur nära matchningen måste vara till den oklara platsen (specificerad av location). En exakt bokstavsmatchning som ligger på avstånd tecken från den oklara platsen skulle bedömas som en fullständig felmatchning. Ett avstånd på 0 kräver att matchningen ska vara på exakt den angivna platsen. Ett avstånd på 1000 skulle kräva en perfekt matchning inom 800 tecken från platsen för att hittas med en tröskel på 0,8.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -298,13 +298,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** 0
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
+-   **Standard:** 0
 
-Bestämmer ungefär var i texten mönstret förväntas hittas.
+Bestämmer ungefär var i texten mönstret förväntas finnas.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -318,13 +318,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** 0.6
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
+-   **Standard:** 0.6
 
-Vid vilken punkt ger matchningsalgoritmen upp. Ett tröskelvärde på 0 kräver en perfekt match (av både bokstäver och plats), ett tröskelvärde på 1.0 skulle matcha vad som helst.
+Vid vilken punkt ger matchningsalgoritmen upp. En tröskel på 0 kräver en perfekt matchning (av både bokstäver och plats), en tröskel på 1.0 skulle matcha vad som helst.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -338,13 +338,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Type:** `boolean`
--   **Mandatory:** no
--   **Default:** false
+-   **Typ:** `boolean`
+-   **Obligatorisk:** nej
+-   **Standard:** false
 
 Om sökningen ska vara skiftlägeskänslig.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -358,13 +358,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** 2
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
+-   **Standard:** 2
 
-Endast träffar vars längd överstiger detta värde kommer att returneras. (Till exempel, om du vill ignorera matchningar med enstaka tecken i resultatet, ställ in det till 2)
+Endast matchningar vars längd överstiger detta värde kommer att returneras. (Till exempel, om du vill ignorera enstaka teckenmatchningar i resultatet, ställ in det på 2)
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({
@@ -378,13 +378,13 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** false
+-   **Typ:** `number`
+-   **Obligatorisk:** nej
+-   **Standard:** false
 
-När `true`, kommer matchningsfunktionen att fortsätta till slutet av sökmönstret även om en perfekt match redan har hittats i strängen.
+När `true` kommer matchningsfunktionen att fortsätta till slutet av ett sökmönster även om en perfekt matchning redan har hittats i strängen.
 
-##### Example
+##### Exempel
 
 ```js
 await browser.ocrSetValue({

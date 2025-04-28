@@ -34,7 +34,7 @@ mock.respond(overwrites, { header, statusCode, fetchResponse })
     <tr>
       <td><code><var>params.header</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Object`</td>
-      <td>skriv över specifika headers</td>
+      <td>skriv över specifika rubriker</td>
     </tr>
     <tr>
       <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -44,7 +44,7 @@ mock.respond(overwrites, { header, statusCode, fetchResponse })
     <tr>
       <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>hämta verkligt svar innan du svarar med simulerad data</td>
+      <td>hämta verkligt svar innan svar med simulerad data</td>
     </tr>
   </tbody>
 </table>

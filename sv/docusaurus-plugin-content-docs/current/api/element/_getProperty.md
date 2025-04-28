@@ -4,7 +4,8 @@ title: getProperty
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getProperty.ts
 ---
 
-Kommandot Get Element Property kommer att returnera resultatet av att hämta en egenskap från ett element.
+Kommandot Get Element Property returnerar resultatet av att hämta en egenskap från ett
+element.
 
 ##### Användning
 
@@ -42,4 +43,4 @@ it('should demonstrate the getProperty command', async () => {
 ##### Returnerar
 
 - **&lt;unknown&gt;**
-            **<code><var>return</var></code>:** värdet på egenskapen för det valda elementet
+            **<code><var>return</var></code>:** värdet av egenskapen för det valda elementet

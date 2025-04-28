@@ -4,11 +4,11 @@ title: addValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/addValue.ts
 ---
 
-Lägg till ett värde i ett input- eller textarea-element som hittas med given selektor.
+Lägg till ett värde i ett input- eller textarea-element som hittas med den angivna selektorn.
 
 :::info
 
-Om du vill använda specialtecken, t.ex. för att kopiera och klistra in ett värde från en input till en annan, använd
+Om du vill använda specialtecken, t.ex. för att kopiera och klistra in ett värde från en input till en annan, använd 
 [`keys`](/docs/api/browser/keys)-kommandot.
 
 :::

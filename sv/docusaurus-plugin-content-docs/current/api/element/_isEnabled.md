@@ -40,4 +40,4 @@ it('should detect if an element is enabled', async () => {
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  sant om element(en) är aktiverade
+            **<code><var>return</var></code>:** sant om element(et/en) är aktiverat(de)

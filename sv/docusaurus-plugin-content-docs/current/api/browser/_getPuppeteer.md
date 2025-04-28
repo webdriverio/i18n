@@ -7,13 +7,13 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 Hämta [Puppeteer Browser-instansen](https://pptr.dev/#?product=Puppeteer&version=v5.1.0&show=api-class-browser)
 för att köra kommandon med Puppeteer. Observera att alla Puppeteer-kommandon är
 asynkrona som standard, så för att växla mellan synkron och asynkron
-exekvering, se till att paketera dina Puppeteer-anrop inom ett `browser.call`
+exekvering, se till att omsluta dina Puppeteer-anrop inom ett `browser.call`
 kommando som visas i exemplet.
 
 :::info
 
 Observera att användning av Puppeteer kräver stöd för Chrome DevTools-protokollet och kan t.ex.
-inte användas när du kör automatiserade tester i molnet. Chrome DevTools-protokollet installeras inte som standard,
+inte användas när automatiserade tester körs i molnet. Chrome DevTools-protokollet installeras inte som standard,
 använd `npm install puppeteer-core` för att installera det.
 Läs mer i avsnittet [Automation Protocols](/docs/automationProtocols).
 
@@ -21,7 +21,7 @@ Läs mer i avsnittet [Automation Protocols](/docs/automationProtocols).
 
 :::info
 
-Observera: Puppeteer stöds för närvarande __inte__ när du kör [komponenttester](/docs/component-testing).
+Observera: Puppeteer stöds för närvarande __inte__ när man kör [komponenttester](/docs/component-testing).
 
 :::
 

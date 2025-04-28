@@ -5,10 +5,10 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Hämta textinnehållet från ett DOM-element. Se till att elementet
-du vill hämta text från [är interagerbart](http://www.w3.org/TR/webdriver/#interactable)
+du vill hämta texten från [är interagerbart](http://www.w3.org/TR/webdriver/#interactable)
 annars kommer du att få en tom sträng som returvärde. Om elementet är inaktiverat eller inte
-synligt och du ändå vill ta emot textinnehållet, använd [getHTML](https://webdriver.io/docs/api/element/getHTML)
-som en lösning.
+synligt och du ändå vill få textinnehållet, använd [getHTML](https://webdriver.io/docs/api/element/getHTML)
+som en tillfällig lösning.
 
 ##### Usage
 

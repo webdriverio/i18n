@@ -4,11 +4,11 @@ title: isExisting
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isExisting.ts
 ---
 
-Returnerar sant om element existerar i DOM:en.
+Returnerar true om elementet existerar i DOM.
 
 :::info
 
-Till skillnad från andra element-kommandon kommer WebdriverIO inte att vänta på att
+Till skillnad från andra elementkommandon kommer WebdriverIO inte att vänta på att 
 elementet ska existera för att utföra detta kommando.
 
 :::
@@ -55,4 +55,4 @@ it('should detect if elements are existing', async () => {
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**             sant om element[et|en] existerar
+            **<code><var>return</var></code>:**             true om element(et/en) existerar

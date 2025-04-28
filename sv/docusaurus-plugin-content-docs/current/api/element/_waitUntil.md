@@ -4,12 +4,12 @@ title: waitUntil
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitUntil.ts
 ---
 
-Detta vänta-kommando är ditt universalvapen när du vill vänta på något. Det förväntar sig ett villkor 
-och väntar tills detta villkor uppfylls med ett sanningsvärde.
+Detta väntkommando är ditt universella vapen om du vill vänta på något. Det förväntar sig ett villkor
+och väntar tills villkoret uppfylls med ett sanningsvärde.
 
 :::info
 
-Till skillnad från andra elementkommandon kommer WebdriverIO inte att vänta på att elementet ska existera för att utföra
+Till skillnad från andra elementkommandon kommer WebdriverIO inte att vänta på att elementet ska existera för att köra
 detta kommando.
 
 :::
@@ -44,17 +44,17 @@ $(selector).waitUntil(condition, { timeout, timeoutMsg, interval })
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>tid i ms (standardvärde baserat på [`waitforTimeout`](/docs/configuration#waitfortimeout) konfigurationsvärde)</td>
+      <td>tid i ms (standard baserad på [`waitforTimeout`](/docs/configuration#waitfortimeout) konfigurationsvärde)</td>
     </tr>
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
-      <td>felmeddelande att kasta när waitUntil når timeout</td>
+      <td>felmeddelande att kasta när waitUntil får timeout</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>intervall mellan villkorskontroller (standardvärde baserat på [`waitforInterval`](/docs/configuration#waitforinterval) konfigurationsvärde)</td>
+      <td>intervall mellan villkorskontroller (standard baserad på [`waitforInterval`](/docs/configuration#waitforinterval) konfigurationsvärde)</td>
     </tr>
   </tbody>
 </table>
@@ -72,4 +72,4 @@ https://github.com/webdriverio/example-recipes/blob/0bfb2b8d212b627a2659b10f4449
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true om villkoret är uppfyllt
+            **<code><var>return</var></code>:** true om villkoret är uppfyllt

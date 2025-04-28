@@ -4,15 +4,15 @@ title: overwriteCommand
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/overwriteCommand.ts
 ---
 
-ブラウザメソッド `overwriteCommand` は、ブラウザと要素のネイティブコマンド（`pause` や `click` など）を上書きするのに役立ちます。
+ブラウザメソッド`overwriteCommand`は、`pause`や`click`などのブラウザやエレメントのネイティブコマンドを上書きするのに役立ちます。
 
 :::info
 
-これについての詳細情報は[カスタムコマンド](/docs/customcommands#overwriting-native-commands)セクションで確認できます。
+これについての詳細は[カスタムコマンド](/docs/customcommands#overwriting-native-commands)セクションで確認できます。
 
 :::
 
-##### 使用法
+##### 使用方法
 
 ```js
 browser.overwriteCommand(name, callback, elementScope)
@@ -23,7 +23,7 @@ browser.overwriteCommand(name, callback, elementScope)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
@@ -40,7 +40,7 @@ browser.overwriteCommand(name, callback, elementScope)
     <tr>
       <td><code><var>elementScope</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>Browserオブジェクトの代わりにElementオブジェクトを拡張する</td>
+      <td>ブラウザオブジェクトの代わりにエレメントオブジェクトを拡張する</td>
     </tr>
   </tbody>
 </table>

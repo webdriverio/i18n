@@ -10,7 +10,7 @@ genom att använda kommandot [`downloadFile`](https://webdriver.io/docs/api/sele
 :::info
 Observera att detta kommando endast stöds om du använder ett
 [Selenium Grid](https://www.selenium.dev/documentation/en/grid/) med Chrome, Edge eller Firefox
-och har flaggan `se:downloadsEnabled` inställd i kapaciteterna.
+och har flaggan `se:downloadsEnabled` inställd i capabilities.
 :::
 
 ##### Användning

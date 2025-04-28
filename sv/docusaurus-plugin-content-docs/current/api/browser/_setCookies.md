@@ -4,9 +4,9 @@ title: setCookies
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setCookies.ts
 ---
 
-Ställer in en eller flera [cookies](https://w3c.github.io/webdriver/#cookies) för aktuell sida. Se till att du är 
-på den sida som ska ta emot cookien. Du kan inte ställa in en cookie för en godtycklig sida utan 
-att vara på den sidan.
+Sätter en eller flera [cookies](https://w3c.github.io/webdriver/#cookies) för den aktuella sidan. Se till att du befinner dig
+på den sida som ska ta emot cookien. Du kan inte sätta en cookie för en godtycklig sida utan
+att befinna dig på den sidan.
 
 ##### Användning
 
@@ -29,44 +29,44 @@ browser.setCookies({ name, value, path, domain, secure, httpOnly, expiry, sameSi
       <td>cookie-objekt eller objektarray.</td>
     </tr>
     <tr>
-      <td><code><var>cookie.name</var></code><br /><span className="label labelWarning">valfritt</span></td>
+      <td><code><var>cookie.name</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
       <td>Namnet på cookien.</td>
     </tr>
     <tr>
-      <td><code><var>cookie.value</var></code><br /><span className="label labelWarning">valfritt</span></td>
+      <td><code><var>cookie.value</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
       <td>Cookie-värdet.</td>
     </tr>
     <tr>
-      <td><code><var>cookie.path</var></code><br /><span className="label labelWarning">valfritt</span></td>
+      <td><code><var>cookie.path</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
       <td>Cookie-sökvägen. Standardvärdet är "/" om det utelämnas när en cookie läggs till.</td>
     </tr>
     <tr>
-      <td><code><var>cookie.domain</var></code><br /><span className="label labelWarning">valfritt</span></td>
+      <td><code><var>cookie.domain</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
-      <td>Domänen som cookien är synlig för. Standardvärdet är den aktuella webbläsarkontextens aktiva dokuments URL-domän om det utelämnas när en cookie läggs till.</td>
+      <td>Domänen som cookien är synlig för. Standardvärdet är den aktuella bläddringssammanhangets aktiva dokumentets URL-domän om det utelämnas när en cookie läggs till.</td>
     </tr>
     <tr>
-      <td><code><var>cookie.secure</var></code><br /><span className="label labelWarning">valfritt</span></td>
+      <td><code><var>cookie.secure</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>Huruvida cookien är en säker cookie. Standardvärdet är false om det utelämnas när en cookie läggs till.</td>
+      <td>Om cookien är en säker cookie. Standardvärdet är false om det utelämnas när en cookie läggs till.</td>
     </tr>
     <tr>
-      <td><code><var>cookie.httpOnly</var></code><br /><span className="label labelWarning">valfritt</span></td>
+      <td><code><var>cookie.httpOnly</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>Huruvida cookien är en HTTP-only cookie. Standardvärdet är false om det utelämnas när en cookie läggs till.</td>
+      <td>Om cookien är en HTTP-only cookie. Standardvärdet är false om det utelämnas när en cookie läggs till.</td>
     </tr>
     <tr>
-      <td><code><var>cookie.expiry</var></code><br /><span className="label labelWarning">valfritt</span></td>
+      <td><code><var>cookie.expiry</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>När cookien går ut, angivet i sekunder sedan Unix Epoch. Får inte anges om det utelämnas när en cookie läggs till.</td>
+      <td>När cookien upphör att gälla, angivet i sekunder sedan Unix Epoch. Får inte anges om det utelämnas när en cookie läggs till.</td>
     </tr>
     <tr>
-      <td><code><var>cookie.sameSite</var></code><br /><span className="label labelWarning">valfritt</span></td>
+      <td><code><var>cookie.sameSite</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
-      <td>Huruvida cookien tillämpar en SameSite-policy. Standardvärdet är None om det utelämnas när en cookie läggs till. Kan ställas in på antingen "Lax" eller "Strict".</td>
+      <td>Om cookien tillämpar en SameSite-policy. Standardvärdet är None om det utelämnas när en cookie läggs till. Kan ställas in på antingen "Lax" eller "Strict".</td>
     </tr>
   </tbody>
 </table>

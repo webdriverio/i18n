@@ -4,7 +4,7 @@ title: getTagName
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getTagName.ts
 ---
 
-Hämta taggnamnet för ett DOM-element.
+Hämta taggnamnet på ett DOM-element.
 
 ##### Användning
 
@@ -31,4 +31,4 @@ it('should demonstrate the getTagName command', async () => {
 ##### Returnerar
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:** elementets taggnamn, som en sträng med gemener
+            **<code><var>return</var></code>:** elementets taggnamn, som en gemener sträng

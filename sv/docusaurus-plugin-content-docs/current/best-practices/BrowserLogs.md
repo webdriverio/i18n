@@ -15,7 +15,7 @@ values={[
 
 <TabItem value='bidi'>
 
-När du använder WebDriver Bidi, vilket är standardsättet som WebdriverIO automatiserar webbläsaren, kan du prenumerera på händelser från webbläsaren. För logghändelser vill du lyssna på `log.entryAdded'`, t.ex.:
+När du använder WebDriver Bidi, som är standardsättet hur WebdriverIO automatiserar webbläsaren, kan du prenumerera på händelser från webbläsaren. För logghändelser vill du lyssna på `log.entryAdded'`, t.ex.:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +26,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-I ett test kan du helt enkelt lägga till logghändelser i en array och kontrollera arrayen när din åtgärd är klar, t.ex.:
+I ett test kan du helt enkelt skicka logghändelser till en array och påstå att arrayen när din åtgärd är klar, t.ex.:
 
 ```ts
 import type { local } from 'webdriver'
@@ -62,7 +62,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-Om du fortfarande använder WebDriver Classic eller har inaktiverat Bidi-användning via egenskapen `'wdio:enforceWebDriverClassic': true`, kan du använda JSONWire-kommandot `getLogs` för att hämta de senaste loggarna. Eftersom WebdriverIO har tagit bort dessa föråldrade kommandon måste du använda [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) för att lägga till kommandot i din webbläsarinstans.
+Om du fortfarande använder WebDriver Classic eller inaktiverat Bidi-användning via kapaciteten `'wdio:enforceWebDriverClassic': true`, kan du använda JSONWire-kommandot `getLogs` för att hämta de senaste loggarna. Eftersom WebdriverIO har tagit bort dessa föråldrade kommandon måste du använda [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) för att lägga till kommandot tillbaka till din webbläsarinstans.
 
 Efter att du har lagt till eller initierat tjänsten kan du hämta loggar via:
 
@@ -72,7 +72,7 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Observera: kommandot `getLogs` kan endast hämta de senaste loggarna från webbläsaren. Det kan så småningom rensa loggmeddelanden om de blir för gamla.
+Obs: kommandot `getLogs` kan bara hämta de senaste loggarna från webbläsaren. Det kan rensa loggmeddelanden om de blir för gamla.
 </TabItem>
 
 </Tabs>

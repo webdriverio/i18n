@@ -4,8 +4,8 @@ title: getCookies
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/getCookies.ts
 ---
 
-現在のページで表示されている[クッキー](https://w3c.github.io/webdriver/webdriver-spec.html#cookies)を取得します。
-クッキー名を指定して特定のクッキーを照会するか、すべてを取得することができます。
+現在のページで表示される[クッキー](https://w3c.github.io/webdriver/webdriver-spec.html#cookies)を取得します。
+クッキー名を指定して特定のクッキーを照会したり、すべてを取得したりすることができます。
 
 ##### 使用方法
 
@@ -25,7 +25,7 @@ browser.getCookies(filter)
     <tr>
       <td><code><var>filter</var></code></td>
       <td>`remote.StorageCookieFilter`</td>
-      <td>特定の属性を持つクッキーをフィルタリングできるオブジェクト</td>
+      <td>特定の属性を持つクッキーをフィルタリングするためのオブジェクト</td>
     </tr>
   </tbody>
 </table>

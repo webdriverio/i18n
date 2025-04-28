@@ -1,13 +1,13 @@
 ---
 id: uploadFile
-title: ファイルのアップロード
+title: uploadFile
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/uploadFile.ts
 ---
 
-[`file`](https://webdriver.io/docs/api/selenium#file)コマンドを使用して、ファイルをSelenium Standaloneサーバーまたは他のブラウザドライバー（ChromeドライバーやEdgeDriverなど）にアップロードします。
-_注意:_ このコマンドは、Selenium Hub、ChromeドライバーまたはEdgeDriverを直接使用している場合にのみサポートされています。
+[`file`](https://webdriver.io/docs/api/selenium#file)コマンドを使用して、ファイルをSelenium Standaloneサーバーまたは他のブラウザドライバー（例：ChromedriverやEdgeDriver）にアップロードします。
+_注意:_ このコマンドは、Selenium HubやChromedriver、EdgeDriverを直接使用している場合にのみサポートされています。
 
-__注意:__ このコマンドは、現在Chromeと[Selenium Grid](https://www.selenium.dev/documentation/en/grid/)を実行している場合にのみサポートされている非公式のプロトコル機能を使用しています。
+__注意:__ このコマンドは非公式のプロトコル機能を使用しており、現在のところChrome環境および[Selenium Grid](https://www.selenium.dev/documentation/en/grid/)を実行している場合にのみサポートされています。
 
 ##### 使用方法
 

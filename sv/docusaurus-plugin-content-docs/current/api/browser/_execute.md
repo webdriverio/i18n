@@ -4,17 +4,17 @@ title: execute
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/execute.ts
 ---
 
-Injicera ett JavaScript-fragment i sidan för exekvering i kontexten av den för närvarande valda ramen.
+Injicera ett avsnitt JavaScript i sidan för att köra det i sammanhanget av den för närvarande valda ramen.
 Det exekverade skriptet antas vara synkront och resultatet av att utvärdera skriptet returneras till
 klienten.
 
-Skriptargumentet definierar skriptet som ska exekveras i form av en funktionskropp. Värdet som returneras av
-den funktionen kommer att returneras till klienten. Funktionen kommer att anropas med den angivna args-arrayen
+Skriptargumentet definierar skriptet som ska köras i form av en funktionskropp. Värdet som returneras av
+den funktionen kommer att returneras till klienten. Funktionen kommer att anropas med den tillhandahållna args-arrayen
 och värdena kan nås via arguments-objektet i den angivna ordningen.
 
 Argument kan vara vilken JSON-primitiv, array eller JSON-objekt som helst. JSON-objekt som definierar en WebElement-
-referens kommer att konverteras till motsvarande DOM-element. På samma sätt kommer alla WebElements i skriptets
-resultat att returneras till klienten som WebElement JSON-objekt.
+referens kommer att konverteras till motsvarande DOM-element. På samma sätt kommer alla WebElements i skript-
+resultatet att returneras till klienten som WebElement JSON-objekt.
 
 ##### Användning
 
@@ -34,7 +34,7 @@ browser.execute(script, arguments)
     <tr>
       <td><code><var>script</var></code></td>
       <td>`String, Function`</td>
-      <td>Skriptet som ska exekveras.</td>
+      <td>Skriptet som ska köras.</td>
     </tr>
     <tr>
       <td><code><var>arguments</var></code><br /><span className="label labelWarning">valfri</span></td>

@@ -3,18 +3,18 @@ id: openofficehours
 title: Öppet Hus
 ---
 
-Att bidra till ett stort Open Source-projekt kan vara svårt. Särskilt om kodbasen är stor och kräver mycket kontext för att förstå vad vissa ändringar gör. Sen finns möjligheten att verktyg eller infrastruktur används som är okända. Trots detta är projektet beroende av dina bidrag och hjälp för att identifiera buggar och åtgärda dem. Hur kan vi övervinna detta hinder?
+Att bidra till ett stort Open Source-projekt kan vara svårt. Särskilt om kodbasen är stor och kräver mycket kontext för att förstå vad vissa ändringar gör. Sedan finns det möjligheten att verktyg eller infrastruktur används som är okända. Ändå är projektet beroende av dina bidrag och hjälp för att identifiera buggar och åtgärda dem. Hur kan vi övervinna detta hinder?
 
-WebdriverIO-projektet har infört Öppet Hus som låter alla schemalägga individuella 1:1-parmöten med WebdriverIO-bidragsgivare. Detta gör det möjligt för dig att enkelt komma igång med att bidra till WebdriverIO med hjälp av personer som känner kodbasen väl. Vi ber dig bara att välja [en uppgift](https://github.com/webdriverio/webdriverio/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Afirst-timers-only) som du vill arbeta med i förväg så att din partner kan vara förberedd för sessionen för att ge bättre vägledning. Detta är ett kostnadsfritt tillfälle för dig att inte bara ge tillbaka till WebdriverIO-gemenskapen utan också lära känna teamet bakom projektet.
+WebdriverIO-projektet har introducerat Öppet Hus som låter alla schemalägga individuella 1:1-parmöten med WebdriverIO-bidragsgivare. Detta gör det enkelt för dig att börja bidra till WebdriverIO med hjälp av personer som känner kodbasen väl. Vi ber dig bara att välja [en uppgift](https://github.com/webdriverio/webdriverio/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc+label%3Afirst-timers-only) som du vill arbeta med i förväg så att din samarbetspartner kan vara förberedd för sessionen för att ge bättre vägledning. Detta är en gratis möjlighet för dig att inte bara ge tillbaka till WebdriverIO-gemenskapen utan också att lära känna teamet bakom projektet.
 
-För närvarande erbjuder vi 4 tider varje vecka: varje onsdag 10.00 - 12.00 (CEST / GMT+2) för våra europeiska vänner samt: 11.00 - 13.00 (PDT / GMT -7) för personer som bor på den västra sidan av detta halvklot.
+För närvarande erbjuder vi 4 tider varje vecka: varje onsdag 10.00 - 12.00 (CEST / GMT+2) för våra europeiska vänner och 11.00 - 13.00 (PDT / GMT -7) för personer som bor på västra sidan av denna hemisfär.
 
 Innan du bokar en tid, se till att du kan uppfylla följande grundläggande krav som behövs för att bidra till WebdriverIO:
 
-- du har hittat ett problem du vill bidra till i [issue tracker](https://github.com/webdriverio/webdriverio/issues) (utan ett ärende kommer din tid att avbokas omedelbart)
+- du har hittat ett problem du vill bidra till i [ärendehanteraren](https://github.com/webdriverio/webdriverio/issues) (utan ett ärende kommer din tid att avbokas omedelbart)
 - du har tidigare arbetat med ett Node.js-projekt (dessa sessioner kan inte användas för att lära sig grunderna i Node.js)
-- du har läst [Contribution Guidelines](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md#set-up-project) och har projektet uppställt lokalt eller i en tillfällig arbetsyta
-- du kan köra projektets enhetstester, och de passerar
+- du har läst [Bidragsriktlinjerna](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md#set-up-project) och har projektet uppsatt lokalt eller i en tillfällig arbetsmiljö
+- du kan köra projektets enhetstester och de går igenom
 
 Efter det kan du boka en tid när som helst på:
 

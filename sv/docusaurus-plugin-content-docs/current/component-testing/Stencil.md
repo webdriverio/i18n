@@ -1,13 +1,14 @@
 ---
 id: stencil
 title: Stencil
+description: 
 ---
 
 [Stencil](https://stenciljs.com/) är ett bibliotek för att bygga återanvändbara, skalbara komponentbibliotek. Du kan testa Stencil-komponenter direkt i en riktig webbläsare med hjälp av WebdriverIO och dess [webbläsarkörning](/docs/runner#browser-runner).
 
-## Konfiguration
+## Installation
 
-För att konfigurera WebdriverIO i ditt Stencil-projekt, följ [instruktionerna](/docs/component-testing#set-up) i vår komponenttestningsdokumentation. Se till att välja `stencil` som förinställning i dina köralternativ, t.ex.:
+För att konfigurera WebdriverIO inom ditt Stencil-projekt, följ [instruktionerna](/docs/component-testing#set-up) i våra komponenttestningsdokument. Se till att välja `stencil` som förinställning inom dina köralternativ, t.ex.:
 
 ```js
 // wdio.conf.js
@@ -34,7 +35,7 @@ npx wdio run ./wdio.conf.ts
 
 ## Skriva tester
 
-Givet att du har följande Stencil-komponenter:
+Antag att du har följande Stencil-komponenter:
 
 ```tsx title="./components/Component.tsx"
 import { Component, Prop, h } from '@stencil/core'
@@ -65,7 +66,7 @@ export class MyName {
 
 ### `render`
 
-I ditt test använd `render`-metoden från `@wdio/browser-runner/stencil` för att koppla komponenten till testsidan. För att interagera med komponenten rekommenderar vi att använda WebdriverIO-kommandon eftersom de beter sig mer likt faktiska användarinteraktioner, t.ex.:
+I ditt test, använd `render`-metoden från `@wdio/browser-runner/stencil` för att fästa komponenten på testsidan. För att interagera med komponenten rekommenderar vi att använda WebdriverIO-kommandon eftersom de beter sig närmare faktiska användarinteraktioner, t.ex.:
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -86,101 +87,101 @@ describe('Stencil Component Testing', () => {
 })
 ```
 
-#### Renderingsalternativ
+#### Render-alternativ
 
-`render`-metoden tillhandahåller följande alternativ:
+`render`-metoden erbjuder följande alternativ:
 
 ##### `components`
 
-En array av komponenter att testa. Komponentklasser kan importeras till specifikationsfilen, sedan bör deras referens läggas till i `component`-arrayen för att användas genom hela testet.
+En array av komponenter att testa. Komponentklasser kan importeras till spec-filen, sedan bör deras referens läggas till i `component`-arrayen för att användas genom hela testet.
 
-__Typ:__ `CustomElementConstructor[]`<br />
-__Standard:__ `[]`
+__Type:__ `CustomElementConstructor[]`<br />
+__Default:__ `[]`
 
 ##### `flushQueue`
 
-Om `false`, spola inte renderingskön vid initial testuppsättning.
+Om `false`, spola inte renderingskön vid den initiala testuppsättningen.
 
-__Typ:__ `boolean`<br />
-__Standard:__ `true`
+__Type:__ `boolean`<br />
+__Default:__ `true`
 
 ##### `template`
 
-Den initiala JSX som används för att generera testet. Använd `template` när du vill initialisera en komponent med hjälp av dess egenskaper, istället för dess HTML-attribut. Den kommer att rendera den angivna mallen (JSX) i `document.body`.
+Den initiala JSX som används för att generera testet. Använd `template` när du vill initiera en komponent med dess egenskaper, istället för dess HTML-attribut. Den kommer att rendera den angivna mallen (JSX) i `document.body`.
 
-__Typ:__ `JSX.Template`
+__Type:__ `JSX.Template`
 
 ##### `html`
 
 Den initiala HTML som används för att generera testet. Detta kan vara användbart för att konstruera en samling komponenter som arbetar tillsammans och tilldela HTML-attribut.
 
-__Typ:__ `string`
+__Type:__ `string`
 
 ##### `language`
 
-Sätter det simulerade `lang`-attributet på `<html>`.
+Ställer in det simulerade `lang`-attributet på `<html>`.
 
-__Typ:__ `string`
+__Type:__ `string`
 
 ##### `autoApplyChanges`
 
-Som standard måste alla ändringar i komponentegenskaper och attribut använda `env.waitForChanges()` för att testa uppdateringarna. Som ett alternativ kontinuerligt tömmer `autoApplyChanges` kön i bakgrunden.
+Som standard måste alla ändringar i komponentegenskaper och attribut använda `env.waitForChanges()` för att testa uppdateringarna. Som ett alternativ spolar `autoApplyChanges` kontinuerligt kön i bakgrunden.
 
-__Typ:__ `boolean`<br />
-__Standard:__ `false`
+__Type:__ `boolean`<br />
+__Default:__ `false`
 
 ##### `attachStyles`
 
-Som standard är stilar inte kopplade till DOM och de återspeglas inte i den serialiserade HTML:en. Genom att sätta detta alternativ till `true` kommer komponentens stilar att inkluderas i den serialiserbara utdata.
+Som standard kopplas inte stilar till DOM och de återspeglas inte i den serialiserade HTML:en. Genom att ställa in detta alternativ till `true` inkluderas komponentens stilar i den serialiserbara utdata.
 
-__Typ:__ `boolean`<br />
-__Standard:__ `false`
+__Type:__ `boolean`<br />
+__Default:__ `false`
 
-#### Renderingsmiljö
+#### Render-miljö
 
 `render`-metoden returnerar ett miljöobjekt som tillhandahåller vissa hjälpverktyg för att hantera komponentens miljö.
 
 ##### `flushAll`
 
-Efter att ändringar har gjorts i en komponent, såsom en uppdatering av en egenskap eller attribut, tillämpar testsidan inte automatiskt ändringarna. För att vänta på och tillämpa uppdateringen, anropa `await flushAll()`
+Efter att ändringar har gjorts i en komponent, som en uppdatering av en egenskap eller attribut, tillämpar testsidan inte automatiskt ändringarna. För att vänta på och tillämpa uppdateringen, anropa `await flushAll()`
 
-__Typ:__ `() => void`
+__Type:__ `() => void`
 
 ##### `unmount`
 
 Tar bort behållarelementet från DOM.
 
-__Typ:__ `() => void`
+__Type:__ `() => void`
 
 ##### `styles`
 
 Alla stilar definierade av komponenter.
 
-__Typ:__ `Record<string, string>`
+__Type:__ `Record<string, string>`
 
 ##### `container`
 
 Behållarelement där mallen renderas.
 
-__Typ:__ `HTMLElement`
+__Type:__ `HTMLElement`
 
 ##### `$container`
 
 Behållarelementet som ett WebdriverIO-element.
 
-__Typ:__ `WebdriverIO.Element`
+__Type:__ `WebdriverIO.Element`
 
 ##### `root`
 
 Rotkomponenten för mallen.
 
-__Typ:__ `HTMLElement`
+__Type:__ `HTMLElement`
 
 ##### `$root`
 
 Rotkomponenten som ett WebdriverIO-element.
 
-__Typ:__ `WebdriverIO.Element`
+__Type:__ `WebdriverIO.Element`
 
 ### `waitForChanges`
 
@@ -202,9 +203,8 @@ expect(page.root.querySelector('div')).toBeDefined()
 
 ## Elementuppdateringar
 
-Om du definierar egenskaper eller tillstånd i din Stencil-komponent måste du hantera när dessa ändringar ska tillämpas på komponenten för att återrenderas.
-
+Om du definierar egenskaper eller tillstånd i din Stencil-komponent måste du hantera när dessa ändringar ska tillämpas på komponenten för att renderas om.
 
 ## Exempel
 
-Du kan hitta ett fullständigt exempel på en WebdriverIO-komponenttestsvit för Stencil i vårt [exempelarkiv](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).
+Du kan hitta ett komplett exempel på en WebdriverIO-komponenttestsvit för Stencil i vårt [exempelförvar](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).

@@ -3,7 +3,7 @@ id: team
 title: チーム
 ---
 
-WebdriverIOの開発は、さまざまな企業から集まった開発者やSDETの専任チームによって主導されており、世界中の人々からの貢献も受けています。
+WebdriverIOの開発は、さまざまな企業の開発者やSDETからなる専任チームと、世界中の人々からの貢献によって主導されています。
 
 ## 技術運営委員会
 
@@ -84,4 +84,4 @@ WebdriverIOの開発は、さまざまな企業から集まった開発者やSDE
 >
 </Card>
 
-そして[他にも多くの方々](https://github.com/orgs/webdriverio/people)。
+そして[さらに多くの方々](https://github.com/orgs/webdriverio/people)。

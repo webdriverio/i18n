@@ -4,8 +4,8 @@ title: isSelected
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isSelected.ts
 ---
 
-Kommer att returnera sant eller falskt beroende på om ett `<option>` eller `<input>` element av typ
-checkbox eller radio är markerat för tillfället.
+Kommer att returnera sant eller falskt om ett `<option>` eller `<input>` element av typen
+checkbox eller radio är för närvarande valt.
 
 ##### Användning
 
@@ -37,4 +37,4 @@ it('should detect if an element is selected', async () => {
 ##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  sant om elementet är markerat    
+            **<code><var>return</var></code>:** sant om elementet är valt

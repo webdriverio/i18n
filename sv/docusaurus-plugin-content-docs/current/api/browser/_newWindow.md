@@ -5,7 +5,7 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Öppna nytt fönster eller flik i webbläsaren (standardvärdet är ett nytt fönster om inget annat anges).
-Detta kommando är motsvarigheten till funktionen `window.open()`. Detta kommando fungerar inte i mobila miljöer.
+Detta kommando är den motsvarande funktionen till `window.open()`. Detta kommando fungerar inte i mobila miljöer.
 
 __Obs:__ När du anropar detta kommando växlar du automatiskt till det nya fönstret eller fliken.
 
@@ -32,7 +32,7 @@ browser.newWindow(url, { type, windowName, windowFeatures })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`NewWindowOptions`</td>
-      <td>newWindow kommandoalternativ</td>
+      <td>newWindow-kommandots alternativ</td>
     </tr>
     <tr>
       <td><code><var>options.type</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -47,7 +47,7 @@ browser.newWindow(url, { type, windowName, windowFeatures })
     <tr>
       <td><code><var>options.windowFeatures</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
-      <td>egenskaper för öppnat fönster (t.ex. storlek, position, rullningslister, etc.)</td>
+      <td>egenskaper för det öppnade fönstret (t.ex. storlek, position, rullningslister, etc.)</td>
     </tr>
   </tbody>
 </table>
@@ -94,7 +94,7 @@ it('should open a new window', async () => {
  });
 ```
 
-##### Returvärden
+##### Returnerar
 
 - **&lt;Object&gt;**
             **<code><var>return</var></code>:**           Ett objekt som innehåller fönsterhanteraren och typen av nytt fönster `{handle: string, type: string}` handle - ID för fönsterhanteraren för den nya fliken eller fönstret, type - Typen av det nya fönstret, antingen 'tab' eller 'window'    

@@ -1,12 +1,12 @@
 ---
 id: respondOnce
-title: respondOnce
+title: respondOnce（一度だけ応答する）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/respondOnce.ts
 ---
 
-指定された上書きで一度だけ応答します。`respondOnce`を複数回連続して呼び出すことができ、最後に定義した応答から始まります。`respondOnce`のみを使用し、リソースがモックが定義された回数以上に呼び出された場合は、元のリソースにデフォルト戻ります。
+指定された上書きで一度だけ応答します。複数回連続して `respondOnce` を呼び出すことができ、最後に定義した応答から始まります。もし `respondOnce` のみを使用し、モックが定義されている回数よりも多くリソースが呼び出された場合は、元のリソースに戻ります。
 
-##### 使用法
+##### 使用方法
 
 ```js
 mock.respondOnce(overwrites, { header, statusCode, fetchResponse })
@@ -34,17 +34,17 @@ mock.respondOnce(overwrites, { header, statusCode, fetchResponse })
     <tr>
       <td><code><var>params.header</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Object`</td>
-      <td>特定のヘッダーを上書き</td>
+      <td>特定のヘッダーを上書きする</td>
     </tr>
     <tr>
       <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>レスポンスステータスコードを上書き</td>
+      <td>レスポンスステータスコードを上書きする</td>
     </tr>
     <tr>
       <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Boolean`</td>
-      <td>モックデータで応答する前に実際のレスポンスを取得</td>
+      <td>モックデータで応答する前に実際のレスポンスを取得する</td>
     </tr>
   </tbody>
 </table>

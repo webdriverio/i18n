@@ -1,6 +1,6 @@
 ---
 id: previousElement
-title: previousElement
+title: föregående element
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/previousElement.ts
 ---
 

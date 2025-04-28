@@ -21,4 +21,4 @@ const type = await dialog.type();
 ##### Returnerar
 
 - **&lt;string&gt;**
-            **<code><var>returns</var></code>:**   Typen av dialogen
+            **<code><var>returns</var></code>:**   Dialogens typ    

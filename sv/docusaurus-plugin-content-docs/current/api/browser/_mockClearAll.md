@@ -4,7 +4,7 @@ title: mockClearAll
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mockClearAll.ts
 ---
 
-Återställer all information lagrad i alla registrerade mockar i sessionen.
+Återställer all information som lagrats i alla registrerade simuleringar för sessionen.
 
 ##### Användning
 

@@ -6,37 +6,37 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 Hämta kontexten för den aktuella sessionen.
 
-Denna metod förbättrar Appiums standardkommando `context`/WebdriverIOs `getContext` genom att erbjuda ett alternativ för att 
+Denna metod förbättrar standardkommandot Appium `context`/WebdriverIO `getContext` genom att erbjuda ett alternativ att
 returnera detaljerad kontextinformation, vilket gör det enklare att arbeta med hybridappar som använder webbvyer.
 
-### Hur Kontexter Fungerar
-Se [Hybrid Apps dokumentation](/docs/api/mobile#hybrid-apps) för mer information. Nedan följer en förklaring av utmaningarna med kommandot `getContext`:
+### Hur kontext fungerar
+Se [Hybrid Apps-dokumentationen](/docs/api/mobile#hybrid-apps) för mer information. Nedan är en förklaring av utmaningarna med `getContext`-kommandot:
 
 #### För Android:
-- Webbvyer kan innehålla flera sidor (som webbläsarflikar), och att identifiera rätt sida kräver ytterligare metadata
+- Webbvyer kan innehålla flera sidor (som webbläsarflikar), och för att identifiera rätt sida krävs ytterligare metadata
   som `title` eller `url`.
-- Appiums standardmetoder tillhandahåller endast grundläggande kontextnamn (t.ex. `WEBVIEW_{packageName}`) utan detaljerad information
-  om sidorna inuti webbvyn.
+- Standardmetoderna i Appium tillhandahåller endast grundläggande kontextnamn (t.ex. `WEBVIEW_{packageName}`) utan detaljerad information
+  om sidorna i webbvyn.
 
 #### För iOS:
-- Varje webbvy identifieras av en generisk sträng `WEBVIEW_{id}`, som inte indikerar dess innehåll eller appskärmen
+- Varje webbvy identifieras av en generisk `WEBVIEW_{id}`-sträng, som inte indikerar dess innehåll eller appskärmen
   den tillhör.
 
-### Varför Använda Denna Metod?
+### Varför använda denna metod?
 - **Standardbeteende**:
   - Returnerar den aktuella kontexten som en sträng (t.ex. `NATIVE_APP` eller `WEBVIEW_{id}`).
-- **Detaljerad Kontext**:
+- **Detaljerad kontext**:
   - När `returnDetailedContext` är aktiverat, hämtas metadata som:
     - **Android**: `packageName`, `title`, `url` och `webviewPageId`.
     - **iOS**: `bundleId`, `title` och `url`.
 - **Android-specifika alternativ**:
-  - Försöksintervall och tidsgränser kan anpassas för att hantera fördröjningar i webbvyinitieringen.
+  - Upprepningsintervall och tidsgränser kan anpassas för att hantera fördröjningar i webbvyinitiering.
 
-:::info Anteckningar och Begränsningar
+:::info Anteckningar och begränsningar
 
-- Om `returnDetailedContext` inte är aktiverat beter sig metoden som Appiums standard `getContext`-metod.
+- Om `returnDetailedContext` inte är aktiverat, fungerar metoden som Appiums standard `getContext`-metod.
 - Om du vill använda Appiums "standard" `context`-metod kan du använda metoden `driver.getAppiumContext()`, se
-också kommandot [Appium Contexts](/docs/api/appium#getappiumcontext).
+även [Appium Contexts](/docs/api/appium#getappiumcontext)-kommandot.
 - **Android:** Android-specifika alternativ (`androidWebviewConnectionRetryTime` och `androidWebviewConnectTimeout`) har ingen effekt på iOS.
 - Loggar varningar om flera eller inga detaljerade kontexter hittas:
   - `We found more than 1 detailed context for the current context '{context}'. We will return the first context.`
@@ -61,7 +61,7 @@ också kommandot [Appium Contexts](/docs/api/appium#getappiumcontext).
     <tr>
       <td><code><var>options.returnDetailedContext</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`boolean`</td>
-      <td>Som standard returnerar vi endast kontextnamnet baserat på Appiums standard `context` API, vilket endast är en sträng. Om du vill få tillbaka detaljerad kontextinformation, ställ in detta till `true`. Standard är `false` (valfritt).</td>
+      <td>Som standard returnerar vi endast kontextnamnet baserat på standard Appium `context` API, vilket endast är en sträng. Om du vill få tillbaka detaljerad kontextinformation, ställ in detta till `true`. Standard är `false` (valfritt).</td>
     </tr>
     <tr>
       <td><code><var>options.androidWebviewConnectionRetryTime</var></code><br /><span className="label labelWarning">valfri</span></td>

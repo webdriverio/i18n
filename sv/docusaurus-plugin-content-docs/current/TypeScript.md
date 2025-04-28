@@ -1,6 +1,6 @@
 ---
 id: typescript
-title: TypeScript-inställning
+title: TypeScript-konfiguration
 ---
 
 Du kan skriva tester med [TypeScript](http://www.typescriptlang.org) för att få automatisk komplettering och typsäkerhet.
@@ -24,7 +24,7 @@ Alternativt kan du använda [miljövariabeln](https://tsx.is/dev-api/node-cli#cu
 
 Observera att `tsx` inte stöder typkontroll - om du vill kontrollera dina typer måste du göra detta i ett separat steg med `tsc`.
 
-## Ramverksinställning
+## Ramverkskonfiguration
 
 Din `tsconfig.json` behöver följande:
 
@@ -37,13 +37,13 @@ Din `tsconfig.json` behöver följande:
 ```
 
 Undvik att importera `webdriverio` eller `@wdio/sync` explicit.
-`WebdriverIO` och `WebDriver`-typer är tillgängliga överallt när de läggs till i `types` i `tsconfig.json`. Om du använder ytterligare WebdriverIO-tjänster, plugins eller `devtools`-automatiseringspaket, lägg också till dem i `types`-listan eftersom många tillhandahåller ytterligare typningar.
+`WebdriverIO` och `WebDriver`-typer är tillgängliga från var som helst när de har lagts till i `types` i `tsconfig.json`. Om du använder ytterligare WebdriverIO-tjänster, plugins eller `devtools`-automatiseringspaket, lägg även till dem i `types`-listan eftersom många tillhandahåller ytterligare typningar.
 
 ## Ramverkstyper
 
-Beroende på vilket ramverk du använder behöver du lägga till typerna för det ramverket i din `tsconfig.json` types-egenskap, samt installera dess typdefinitioner. Detta är särskilt viktigt om du vill ha typstöd för det inbyggda påståendebiblioteket [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
+Beroende på vilket ramverk du använder behöver du lägga till typerna för det ramverket i din `tsconfig.json` types-egenskap, samt installera dess typdefinitioner. Detta är särskilt viktigt om du vill ha typstöd för det inbyggda verifieringsbiblioteket [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
 
-Om du till exempel bestämmer dig för att använda Mocha-ramverket behöver du installera `@types/mocha` och lägga till det så här för att ha alla typer globalt tillgängliga:
+Om du till exempel bestämmer dig för att använda Mocha-ramverket måste du installera `@types/mocha` och lägga till det på följande sätt för att ha alla typer globalt tillgängliga:
 
 <Tabs
   defaultValue="mocha"
@@ -90,7 +90,7 @@ Om du till exempel bestämmer dig för att använda Mocha-ramverket behöver du 
 
 ## Tjänster
 
-Om du använder tjänster som lägger till kommandon i webbläsarens omfattning behöver du också inkludera dessa i din `tsconfig.json`. Om du till exempel använder `@wdio/lighthouse-service`, se till att du lägger till det i `types` också, t.ex.:
+Om du använder tjänster som lägger till kommandon i webbläsaromfånget måste du också inkludera dessa i din `tsconfig.json`. Om du till exempel använder `@wdio/lighthouse-service`, se till att lägga till det i `types` också, t.ex.:
 
 ```json title="tsconfig.json"
 {
@@ -105,11 +105,11 @@ Om du använder tjänster som lägger till kommandon i webbläsarens omfattning 
 }
 ```
 
-Att lägga till tjänster och rapporterare i din TypeScript-konfiguration förstärker också typsäkerheten i din WebdriverIO-konfigurationsfil.
+Att lägga till tjänster och rapporterare till din TypeScript-konfiguration stärker också typsäkerheten i din WebdriverIO-konfigurationsfil.
 
 ## Typdefinitioner
 
-När du kör WebdriverIO-kommandon är alla egenskaper vanligtvis typade så att du inte behöver hantera att importera ytterligare typer. Det finns dock fall där du vill definiera variabler i förväg. För att säkerställa att dessa är typsäkra kan du använda alla typer som definieras i paketet [`@wdio/types`](https://www.npmjs.com/package/@wdio/types). Om du till exempel vill definiera fjärralternativet för `webdriverio` kan du göra:
+När du kör WebdriverIO-kommandon är alla egenskaper vanligtvis typade så att du inte behöver hantera import av ytterligare typer. Det finns dock fall där du vill definiera variabler i förväg. För att säkerställa att dessa är typsäkra kan du använda alla typer som definieras i paketet [`@wdio/types`](https://www.npmjs.com/package/@wdio/types). Om du till exempel vill definiera fjärralternativet för `webdriverio` kan du göra:
 
 ```ts
 import type { Options } from '@wdio/types'
@@ -132,6 +132,6 @@ export const config: WebdriverIO.Config = {
 
 ## Tips och råd
 
-### Kompilera och lint
+### Kompilera & Lint
 
-För att vara helt säker kan du överväga att följa bästa praxis: kompilera din kod med TypeScript-kompilatorn (kör `tsc` eller `npx tsc`) och ha [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) körandes på [pre-commit hook](https://github.com/typicode/husky).
+För att vara helt säker kan du överväga att följa bästa praxis: kompilera din kod med TypeScript-kompilatorn (kör `tsc` eller `npx tsc`) och ha [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) som körs på [pre-commit hook](https://github.com/typicode/husky).

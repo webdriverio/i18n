@@ -37,17 +37,17 @@ $(selector).react$(selector, { props, state })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`ReactSelectorOptions`</td>
-      <td>React-väljare alternativ</td>
+      <td>React selector-alternativ</td>
     </tr>
     <tr>
       <td><code><var>options.props</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Object`</td>
-      <td>React props som elementet ska innehålla</td>
+      <td>React-props som elementet ska innehålla</td>
     </tr>
     <tr>
       <td><code><var>options.state</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>React state som elementet ska vara i</td>
+      <td>React-state som elementet ska ha</td>
     </tr>
   </tbody>
 </table>
@@ -72,7 +72,7 @@ it('should calculate 7 * 6', async () => {
         props: { name: '=' }
     }).click()
 
-    console.log(await $('.component-display').getText()); // prints "42"
+    console.log(await $('.component-display').getText()); // skriver ut "42"
 });
 ```
 

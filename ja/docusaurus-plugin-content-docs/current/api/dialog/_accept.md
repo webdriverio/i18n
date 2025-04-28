@@ -1,39 +1,37 @@
 ---
 id: accept
-title: 受け入れる
+title: 受け入れ
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/dialog/accept.ts
-description: ダイアログが受け入れられたときに返します。
 ---
 
-Returns when the dialog has been accepted.
+ダイアログが受け入れられたときに返されます。
 
-##### Usage
+##### 使用法
 
 ```js
 await dialog.accept(promptText)
 ```
 
-##### Parameters
+##### パラメータ
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>promptText</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>promptText</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`string`</td>
       <td>プロンプトに入力するテキスト。ダイアログのタイプがプロンプトでない場合は効果がありません。</td>
     </tr>
   </tbody>
 </table>
 
-##### Example
+##### 例
 
 ```js title="dialogAccept.js"
 await dialog.accept();
 await dialog.accept(promptText);
-```
 ```

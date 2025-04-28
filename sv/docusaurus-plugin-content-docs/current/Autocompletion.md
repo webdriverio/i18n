@@ -7,7 +7,7 @@ title: Automatisk komplettering
 
 Automatisk komplettering fungerar direkt i IDEA och WebStorm.
 
-Om du har skrivit programkod ett tag, tycker du förmodligen om automatisk komplettering. Automatisk komplettering är tillgänglig direkt i många kodredigerare.
+Om du har skrivit programkod ett tag, gillar du förmodligen automatisk komplettering. Automatisk komplettering finns tillgänglig direkt i många kodredigerare.
 
 ![Autocompletion](/img/autocompletion/0.png)
 
@@ -25,7 +25,7 @@ Visual Studio Code har vanligtvis typstöd automatiskt integrerat och det behöv
 
 ![Autocompletion](/img/autocompletion/14.png)
 
-Om du använder vanilla JavaScript och vill ha ordentligt typstöd måste du skapa en `jsconfig.json` i din projektrots och hänvisa till använda wdio-paket, t.ex.:
+Om du använder vanlig JavaScript och vill ha ordentligt typstöd måste du skapa en `jsconfig.json` i din projektrott och hänvisa till använda wdio-paket, t.ex:
 
 ```json title="jsconfig.json"
 {

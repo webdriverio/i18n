@@ -4,9 +4,9 @@ title: clearValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/clearValue.ts
 ---
 
-Rensa värdet på ett input- eller textarea-element. Se till att du kan interagera med
-elementet innan du använder detta kommando. Du kan inte rensa ett input-element som är inaktiverat eller i
-skrivskyddat läge.
+Rensa värdet av ett input- eller textarea-element. Se till att du kan interagera med
+elementet innan du använder detta kommando. Du kan inte rensa ett input-element som är inaktiverat eller
+i skrivskyddat läge.
 
 ##### Användning
 

@@ -4,13 +4,13 @@ title: setTimeout
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setTimeout.ts
 ---
 
-Ställer in tidsgränser associerade med den aktuella sessionen, tidsgränser kontrollerar sånt 
-beteende som tidsgränser för skriptinjektion, dokumentnavigering och elementhämtning.
+Ställer in timeout-inställningar för den aktuella sessionen, timeout-varaktigheter kontrollerar beteenden 
+som timeout för skriptinjektion, dokumentnavigering och elementhämtning.
 För mer information och exempel, se [timeouts guide](https://webdriver.io/docs/timeouts#selenium-timeouts).
 
 :::info
 
-Det rekommenderas inte att ställa in `implicit` tidsgränser eftersom de påverkar WebdriverIOs beteende
+Det rekommenderas inte att ställa in `implicit` timeouts eftersom de påverkar WebdriverIOs beteende
 och kan orsaka fel i vissa kommandon, t.ex. `waitForExist` med omvänd flagga.
 
 :::
@@ -33,12 +33,12 @@ browser.setTimeout({ implicit, pageLoad, script })
     <tr>
       <td><code><var>timeouts</var></code></td>
       <td>`Timeouts`</td>
-      <td>Objekt som innehåller sessionens tidsgränsvärden</td>
+      <td>Objekt som innehåller sessionens timeout-värden</td>
     </tr>
     <tr>
       <td><code><var>timeouts.implicit</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>Tid i millisekunder för att försöka igen med elementlokaliseringsstrategin när ett element hittas.</td>
+      <td>Tid i millisekunder för att försöka igen med elementets lokaliseringsstrategi när ett element söks.</td>
     </tr>
     <tr>
       <td><code><var>timeouts.pageLoad</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -48,7 +48,7 @@ browser.setTimeout({ implicit, pageLoad, script })
     <tr>
       <td><code><var>timeouts.script</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>Skript som injiceras med [`execute`](https://webdriver.io/docs/api/browser/execute) eller [`executeAsync`](https://webdriver.io/docs/api/browser/executeAsync) kommer att köras tills de når skriptets tidsgräns, som också anges i millisekunder.</td>
+      <td>Skript som injiceras med [`execute`](https://webdriver.io/docs/api/browser/execute) eller [`executeAsync`](https://webdriver.io/docs/api/browser/executeAsync) kommer att köras tills de når skriptets timeout-varaktighet, som också anges i millisekunder.</td>
     </tr>
   </tbody>
 </table>

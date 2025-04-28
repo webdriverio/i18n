@@ -4,9 +4,9 @@ title: Sauce Labs
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-protocols/src/protocols/saucelabs.ts
 ---
 
-Alla kommandon stöds endast på Chrome med hjälp av Sauce Labs
+Alla kommandon stöds endast på Chrome när man använder Sauce Labs
 [Extended Debugging](https://docs.saucelabs.com/insights/debug/#enabling-extended-debugging)
-funktioner. Du kan aktivera dessa genom att ställa in följande Sauce-alternativ:
+-funktioner. Du kan aktivera dessa genom att ställa in följande Sauce-alternativ:
 
 
 ```js
@@ -23,7 +23,7 @@ funktioner. Du kan aktivera dessa genom att ställa in följande Sauce-alternati
 ---
 
 ## getPageLogs
-Hämta webbsidespecifik logginformation baserat på den senaste sidladdningen.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/insights/debug/#network-logs).
+Hämta webbsidesspecifik logginformation baserad på den senaste sidladdningen.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/insights/debug/#network-logs).
 
 ##### Användning
 
@@ -101,7 +101,7 @@ console.log(browser.getPageLogs('sauce:performance'));
 ---
 
 ## sauceThrottleNetwork
-Med nätverkskonditionering kan du testa din webbplats på olika nätverksanslutningar, inklusive Edge, 3G och till och med offline. Du kan begränsa datagenomströmningen, inklusive maximal ned- och uppladdningskapacitet, och använda latensmanipulation för att framtvinga en minimal fördröjning i anslutningens rundtur (RTT).<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
+Med nätverkskonditionering kan du testa din webbplats på olika nätverksanslutningar, inklusive Edge, 3G och till och med offline. Du kan begränsa datagenomströmningen, inklusive maximal ned- och uppladdningshastighet, och använda latensmanipulation för att framtvinga en minsta fördröjning i anslutningens rundturstid (RTT).<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/insights/debug/#saucethrottlenetwork).
 
 ##### Användning
 
@@ -122,7 +122,7 @@ browser.sauceThrottleNetwork(condition)
     <tr>
       <td><code><var>condition</var></code></td>
       <td>string, object</td>
-      <td>nätverksvillkor att ställa in (t.ex. 'online', 'offline', 'GPRS', 'Regular 2G', 'Good 2G', 'Regular 3G', 'Good 3G', 'Regular 4G', 'DSL', 'Wifi')</td>
+      <td>nätverksförhållande att ställa in (t.ex. 'online', 'offline', 'GPRS', 'Regular 2G', 'Good 2G', 'Regular 3G', 'Good 3G', 'Regular 4G', 'DSL', 'Wifi')</td>
     </tr>
   </tbody>
 </table>
@@ -150,7 +150,7 @@ browser.sauceThrottleNetwork({
 ---
 
 ## throttleCPU
-Du kan begränsa CPU:n i DevTools för att förstå hur din sida presterar under den begränsningen.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
+Du kan begränsa CPU:n i DevTools för att förstå hur din sida presterar under den begränsningen.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/insights/debug/#saucethrottlecpu).
 
 ##### Användning
 
@@ -171,7 +171,7 @@ browser.throttleCPU(rate)
     <tr>
       <td><code><var>rate</var></code></td>
       <td>number</td>
-      <td>Hastighet för hur mycket CPU:n ska begränsas.</td>
+      <td>Värde för hur mycket CPU:n ska begränsas.</td>
     </tr>
   </tbody>
 </table>
@@ -195,7 +195,7 @@ browser.throttleCPU(0)
 ---
 
 ## interceptRequest
-Tillåter modifiering av alla förfrågningar som görs av webbläsaren. Du kan svartlista, ändra eller omdirigera dessa efter behov för dina tester.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
+Tillåter modifiering av alla förfrågningar som görs av webbläsaren. Du kan svartlista, ändra eller omdirigera dessa enligt vad som krävs för dina tester.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/insights/debug/#intercept-network-requests).
 
 ##### Användning
 
@@ -216,7 +216,7 @@ browser.interceptRequest(rule)
     <tr>
       <td><code><var>rule</var></code></td>
       <td>object</td>
-      <td>En regel som beskriver förfrågningsavskärningen.</td>
+      <td>En regel som beskriver förfrågningsavlyssningen.</td>
     </tr>
   </tbody>
 </table>
@@ -265,7 +265,7 @@ browser.interceptRequest({
 ---
 
 ## assertPerformance
-Utvärdera prestanda mot din apps baseline.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
+Utvärdera mot prestandabaslinje för din app.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/performance/transitions/#setting-performance-capabilities).
 
 ##### Användning
 
@@ -286,12 +286,12 @@ browser.assertPerformance(name, metrics)
     <tr>
       <td><code><var>name</var></code></td>
       <td>string</td>
-      <td>Namnet på jobbet du skapade din baseline med.</td>
+      <td>Namnet på jobbet du skapade din baslinje med.</td>
     </tr>
     <tr>
-      <td><code><var>metrics</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>metrics</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>string[]</td>
-      <td>Namn på mätvärden du vill jämföra mot baseline.</td>
+      <td>Namn på mätvärden du vill utvärdera mot baslinjen.</td>
     </tr>
   </tbody>
 </table>
@@ -318,7 +318,7 @@ const hasRegression = browser.assertPerformance({
 ---
 
 ## jankinessCheck
-Utför ett rulltest som utvärderar applikationens ryckighet.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
+Utför ett rullningstest som utvärderar ryckigheten i applikationen.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/performance/motion/#implementing-the-jankiness-custom-command).
 
 ##### Användning
 
@@ -339,13 +339,13 @@ browser.jankinessCheck()
 ##### Returnerar
 
 - **&lt;object&gt;**
-            **<code><var>testResults</var></code>:** Ett objekt som innehåller poängen samt mätvärden kring hur smidig UX på sidan var under testet.
+            **<code><var>testResults</var></code>:** Ett objekt som innehåller poängen samt mätvärden kring hur smidigt användargränssnittet på sidan var under testet.
 
 
 ---
 
 ## mockRequest
-Mockar en nätverksresurs.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/).
+Simulerar en nätverksresurs.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/).
 
 ##### Användning
 
@@ -366,12 +366,12 @@ browser.mockRequest(url, filterOptions)
     <tr>
       <td><code><var>url</var></code></td>
       <td>string</td>
-      <td>URL-mönster för att matcha URL att mocka.</td>
+      <td>URL-mönster som matchar URL att simulera.</td>
     </tr>
     <tr>
-      <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>object</td>
-      <td>Ytterligare filteralternativ för URL att mocka (t.ex. headers, method).</td>
+      <td>Ytterligare filteralternativ för URL att simulera (t.ex. headers, method).</td>
     </tr>
   </tbody>
 </table>
@@ -380,13 +380,13 @@ browser.mockRequest(url, filterOptions)
 ##### Returnerar
 
 - **&lt;object&gt;**
-            **<code><var>mockId</var></code>:** Ett objekt som innehåller ID för en mockresurs.
+            **<code><var>mockId</var></code>:** Ett objekt som innehåller ID för en simulerad resurs.
 
 
 ---
 
 ## getMockCalls
-Ta emot förfrågningsinformation om förfrågningar som matchar den mockade resursen.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/).
+Ta emot förfrågningsinformation om förfrågningar som matchar den simulerade resursen.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/).
 
 ##### Användning
 
@@ -407,7 +407,7 @@ browser.getMockCalls(mockId)
     <tr>
       <td><code><var>mockId</var></code></td>
       <td>String</td>
-      <td>ID för en mock</td>
+      <td>ID för en simulering</td>
     </tr>
   </tbody>
 </table>
@@ -422,7 +422,7 @@ browser.getMockCalls(mockId)
 ---
 
 ## clearMockCalls
-Rensa lista över mock-anrop.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/).
+Rensa listan över simulerade anrop.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/).
 
 ##### Användning
 
@@ -443,12 +443,12 @@ browser.clearMockCalls(mockId, restore)
     <tr>
       <td><code><var>mockId</var></code></td>
       <td>String</td>
-      <td>ID för en mock</td>
+      <td>ID för en simulering</td>
     </tr>
     <tr>
-      <td><code><var>restore</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>restore</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>boolean</td>
-      <td>Ange som true om mocken också ska återställas.</td>
+      <td>Ange till true om simuleringen också ska återställas.</td>
     </tr>
   </tbody>
 </table>
@@ -458,7 +458,7 @@ browser.clearMockCalls(mockId, restore)
 ---
 
 ## respondMock
-Svara om mock matchar en specifik resurs.<br /><br />Sauce Labs-kommando. Mer information finns i [officiell protokolldokumentation](https://docs.saucelabs.com/).
+Svara om simuleringen matchar en specifik resurs.<br /><br />Sauce Labs-kommando. Mer information finns i de [officiella protokolldokumenten](https://docs.saucelabs.com/).
 
 ##### Användning
 
@@ -479,12 +479,12 @@ browser.respondMock(mockId, payload)
     <tr>
       <td><code><var>mockId</var></code></td>
       <td>String</td>
-      <td>ID för en mock</td>
+      <td>ID för en simulering</td>
     </tr>
     <tr>
-      <td><code><var>payload</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>payload</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>object</td>
-      <td>Information om mock-svar.</td>
+      <td>Information om simulerat svar.</td>
     </tr>
   </tbody>
 </table>

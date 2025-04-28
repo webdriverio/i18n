@@ -4,25 +4,24 @@ title: モック
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mock.ts
 ---
 
-リクエストの応答をモックします。[URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)に基づいて、対応するヘッダーとステータスコードでモックを定義できます。mockメソッドを呼び出すと、Webリソースの応答を変更するために使用できるスタブオブジェクトが返されます。
+リクエストのレスポンスをモックします。一致する[URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)と対応するヘッダーおよびステータスコードに基づいてモックを定義できます。mockメソッドを呼び出すと、Webリソースのレスポンスを変更するために使用できるスタブオブジェクトが返されます。
 
-スタブオブジェクトを使用して、カスタム応答を返すか、リクエストを失敗させることができます。
+スタブオブジェクトを使用して、カスタムレスポンスを返したり、リクエストを失敗させたりすることができます。
 
-応答を変更する方法は3つあります：
+レスポンスを変更する方法は3つあります：
 - カスタムJSONオブジェクトを返す（APIリクエストのスタブ化用）
-- Webリソースをローカルファイルに置き換える（修正されたJavaScriptファイルを提供する）
+- Webリソースをローカルファイルで置き換える（変更されたJavaScriptファイルを提供する）
 - リソースを別のURLにリダイレクトする
 
 :::info
 
-`mock`コマンドを使用するにはWebDriver Bidiのサポートが必要であることに注意してください。これは通常、ChromiumベースのブラウザまたはFirefoxでローカルにテストを実行する場合、あるいはSelenium Grid v4以上を使用する場合に当てはまります。クラウドでテストを実行する場合は、クラウドプロバイダーがWebDriver Bidiをサポートしていることを確認してください。
+`mock`コマンドを使用するにはWebDriver Bidiのサポートが必要であることに注意してください。これは通常、ChromiumベースのブラウザまたはFirefoxでローカルにテストを実行する場合や、Selenium Grid v4以上を使用する場合に当てはまります。クラウドでテストを実行する場合は、クラウドプロバイダーがWebDriver Bidiをサポートしていることを確認してください。
 
 :::
 
 :::info
 
-`URLPattern`は実験的な技術であり、Node.jsなどの一部の環境ではまだサポートされていません。
-この機能がより広くサポートされるまで、[ポリフィル](https://www.npmjs.com/package/urlpattern-polyfill)をインポートすることをお勧めします。
+`URLPattern`は実験的な技術であり、Node.jsなど一部の環境ではまだサポートされていません。この機能がより広くサポートされるまで、[ポリフィル](https://www.npmjs.com/package/urlpattern-polyfill)をインポートすることをお勧めします。
 
 :::
 
@@ -49,32 +48,32 @@ browser.mock(url, { method, requestHeaders, responseHeaders, postData, statusCod
     <tr>
       <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`MockFilterOptions`</td>
-      <td>追加オプションでモックリソースをフィルタリングする</td>
+      <td>追加オプションでモックリソースをフィルタリング</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.method</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String, Function`</td>
-      <td>HTTPメソッドでリソースをフィルタリングする</td>
+      <td>HTTPメソッドでリソースをフィルタリング</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.requestHeaders</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Object, Function`</td>
-      <td>特定のリクエストヘッダーでリソースをフィルタリングする</td>
+      <td>特定のリクエストヘッダーでリソースをフィルタリング</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.responseHeaders</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Object, Function`</td>
-      <td>特定のレスポンスヘッダーでリソースをフィルタリングする</td>
+      <td>特定のレスポンスヘッダーでリソースをフィルタリング</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.postData</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`String, Function`</td>
-      <td>リクエストのpostDataでリソースをフィルタリングする</td>
+      <td>リクエストのpostDataでリソースをフィルタリング</td>
     </tr>
     <tr>
       <td><code><var>filterOptions.statusCode</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number, Function`</td>
-      <td>レスポンスのステータスコードでリソースをフィルタリングする</td>
+      <td>レスポンスのステータスコードでリソースをフィルタリング</td>
     </tr>
   </tbody>
 </table>
@@ -83,15 +82,14 @@ browser.mock(url, { method, requestHeaders, responseHeaders, postData, statusCod
 
 ```js title="mock.js"
 it('should mock network resources', async () => {
-    // 静的な文字列を介して
+    // 静的な文字列を使用
     const userListMock = await browser.mock('**' + '/users/list')
-    // または正規表現として
+    // または正規表現を使用
     const userListMock = await browser.mock(/https:\/\/(domainA|domainB)\.com\/.+/)
-    // リクエストやレスポンスのヘッダー、ステータスコード、postDataなどでリソースを
-    // フィルタリングすることでモックをさらに指定できます。例えば、特定のヘッダーが
-    // 設定されたステータスコードでのみモックする
+    // リクエストやレスポンスのヘッダー、ステータスコード、postDataでリソースをフィルタリングして
+    // モックをより具体的に指定することもできます。例えば、特定のヘッダーが設定されたステータスコードのレスポンスのみをモック
     const strictMock = await browser.mock('**', {
-        // すべてのJSONレスポンスをモックする
+        // すべてのJSONレスポンスをモック
         statusCode: 200,
         requestHeaders: { 'Content-Type': 'application/json' },
         responseHeaders: { 'Cache-Control': 'no-cache' },
@@ -113,7 +111,7 @@ it('should modify API responses', async () => {
         method: 'get'
     })
 
-    // 固定のフィクスチャでエンドポイントをモックする
+    // エンドポイントを固定のフィクスチャでモック
     todoMock.respond([{
         title: 'Injected Todo',
         order: null,
@@ -121,7 +119,7 @@ it('should modify API responses', async () => {
         url: "http://todo-backend-express-knex.herokuapp.com/916"
     }])
 
-    // 異なるステータスコードまたはヘッダーで応答する
+    // 異なるステータスコードやヘッダーで応答
     todoMock.respond([{
         title: 'Injected Todo',
         order: null,
@@ -147,7 +145,7 @@ it('should redirect web resources', async () => {
     const pageMock = await browser.mock('https://google.com/')
     pageMock.respond('https://webdriver.io')
     await browser.url('https://google.com')
-    console.log(await browser.getTitle()) // "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js"を返す
+    console.log(await browser.getTitle()) // "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js"を返します
 })
 ```
 

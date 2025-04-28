@@ -4,20 +4,20 @@ title: getContexts
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/getContexts.ts
 ---
 
-WebdriverIO `getContexts`-metoden är en förbättrad version av Appiums standardmetod `contexts`
-(och WebdriverIOs tidigare `getContexts`-kommando). Den ger detaljerad och användbar information
+WebdriverIO-metoden `getContexts` är en förbättrad version av Appiums standardmetod `contexts`
+(och den tidigare WebdriverIO `getContexts`-kommandot). Den ger detaljerad och användbar information
 om tillgängliga kontexter i en mobil app-session, och åtgärdar begränsningarna i Appiums standardmetoder.
 
 ### Hur Webviews fungerar och varför denna metod hjälper
-För mer information, se [dokumentationen för Hybrid Apps](/docs/api/mobile#hybrid-apps). Nedan finns en sammanfattning av de utmaningar som `getContexts`-kommandot adresserar:
+För mer detaljer, se [Hybrid Apps-dokumentationen](/docs/api/mobile#hybrid-apps). Nedan följer en sammanfattning av utmaningarna som `getContexts`-kommandot adresserar:
 
 #### Android-utmaningar
-- En enda webview (t.ex. `WEBVIEW_{packageName}`) kan innehålla flera sidor (liknande webbläsarflikar).
+- En enskild webview (t.ex. `WEBVIEW_{packageName}`) kan innehålla flera sidor (liknande webbläsarflikar).
 - Appiums standardmetoder inkluderar inte detaljer om dessa sidor, som deras `title`, `url` eller synlighet,
   vilket gör det svårt att identifiera rätt sida och kan leda till instabilitet.
 
 #### iOS-utmaningar
-- Appiums standardmetod returnerar bara generiska webview-ID:n (t.ex. `WEBVIEW_{id}`) utan ytterligare metadata.
+- Appiums standardmetod returnerar endast generiska webview-ID:n (t.ex. `WEBVIEW_{id}`) utan ytterligare metadata.
 - Detta gör det svårt att avgöra vilken webview som motsvarar målappens skärm.
 
 Den förbättrade `getContexts`-metoden löser dessa problem genom att returnera detaljerade kontextobjekt, som inkluderar:
@@ -37,17 +37,17 @@ Som standard returnerar Appiums `contexts`-metod endast en array av strängar so
 
 Den förbättrade `getContexts`-metoden erbjuder:
 - Detaljerad metadata för både Android och iOS.
-- Alternativ för att filtrera och anpassa de returnerade kontexterna för bättre targeting och interaktion.
+- Alternativ för att filtrera och anpassa de returnerade kontexterna för bättre målsättning och interaktion.
 
 :::info Anteckningar och begränsningar
 
-- Den förbättrade `getContexts`-metoden fungerar på både Android- och iOS-plattformar. De returnerade data kan dock variera beroende på plattformen och appen som testas.
-- Om du inte anger alternativet `returnDetailedContexts` fungerar metoden som Appiums standard `contexts`-metod och returnerar en enkel kontextarray.
+- Den förbättrade `getContexts`-metoden fungerar på både Android- och iOS-plattformar. De returnerade data kan dock variera beroende på plattform och app som testas.
+- Om du inte anger alternativet `returnDetailedContexts` fungerar metoden som Appiums standardmetod `contexts` och returnerar en enkel kontextarray.
 - För att använda Appiums "standard" `contexts`-metod, använd `driver.getAppiumContexts()`. För mer information, se [Appium Contexts-dokumentationen](/docs/api/appium#getappiumcontexts).
 
 #### Android Webviews:
 - Metadata som `androidWebviewData` är endast tillgänglig när `returnAndroidDescriptionData` är `true`.
-- Att använda `getContexts`-metoden på en Chrome-webbläsare kan ibland returnera ofullständig data på grund av ej matchande versioner av webbläsare/Webview/ChromeDriver. I sådana fall kan standardvärden eller ett felaktigt `webviewPageId` (t.ex. `0`) returneras.
+- Användning av `getContexts`-metoden på en Chrome-webbläsare kan ibland returnera ofullständig data på grund av icke-matchande versioner av webbläsare/Webview/ChromeDriver. I sådana fall kan standardvärden eller ett felaktigt `webviewPageId` (t.ex. `0`) returneras.
 
 :::
 
@@ -63,37 +63,37 @@ Den förbättrade `getContexts`-metoden erbjuder:
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`GetContextsOptions`</td>
-      <td>Alternativen för `getContexts` (valfritt)</td>
+      <td>Alternativen för `getContexts` (valfri)</td>
     </tr>
     <tr>
       <td><code><var>options.returnDetailedContexts</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`boolean`</td>
-      <td>Som standard returnerar vi endast kontextnamn baserade på Appiums standard `contexts` API. Om du vill få all data kan du ställa in detta till `true`. Standard är `false` (valfritt).</td>
+      <td>Som standard returnerar vi endast kontextnamnen baserade på Appiums standard `contexts` API. Om du vill få all data kan du sätta detta till `true`. Standard är `false` (valfri).</td>
     </tr>
     <tr>
       <td><code><var>options.androidWebviewConnectionRetryTime</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>Tiden i millisekunder att vänta mellan varje försök att ansluta till webview. Standard är `500` ms (valfritt). <br /><strong>ENDAST FÖR ANDROID</strong></td>
+      <td>Tiden i millisekunder att vänta mellan varje försök att ansluta till webviewen. Standard är `500` ms (valfri). <br /><strong>ENDAST FÖR ANDROID</strong></td>
     </tr>
     <tr>
       <td><code><var>options.androidWebviewConnectTimeout</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>Den maximala tiden i millisekunder att vänta på att en webbvysida ska upptäckas. Standard är `5000` ms (valfritt). <br /><strong>ENDAST FÖR ANDROID</strong></td>
+      <td>Den maximala tiden i millisekunder att vänta på att en webview-sida ska upptäckas. Standard är `5000` ms (valfri). <br /><strong>ENDAST FÖR ANDROID</strong></td>
     </tr>
     <tr>
       <td><code><var>options.filterByCurrentAndroidApp</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`boolean`</td>
-      <td>Som standard returnerar vi alla webviews. Om du vill filtrera webviews efter den aktuella Android-appen som är öppen kan du ställa in detta till `true`. Standard är `false` (valfritt). <br /><strong>OBS:</strong> Var medveten om att du också kanske INTE hittar någon Webview baserat på denna "begränsning". <br /><strong>ENDAST FÖR ANDROID</strong></td>
+      <td>Som standard returnerar vi alla webviews. Om du vill filtrera webviews efter den aktuella Android-appen som är öppen kan du sätta detta till `true`. Standard är `false` (valfri). <br /><strong>OBS:</strong> Var medveten om att du även kan INTE hitta någon Webview baserat på denna "begränsning". <br /><strong>ENDAST FÖR ANDROID</strong></td>
     </tr>
     <tr>
       <td><code><var>options.isAndroidWebviewVisible</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`boolean`</td>
-      <td>Som standard returnerar vi endast de webviews som är anslutna och synliga. Om du vill få alla webviews kan du ställa in detta till `false` (valfritt). Standard är `true`. <br /><strong>ENDAST FÖR ANDROID</strong></td>
+      <td>Som standard returnerar vi endast de webviews som är kopplade och synliga. Om du vill få alla webviews kan du sätta detta till `false` (valfri). Standard är `true`. <br /><strong>ENDAST FÖR ANDROID</strong></td>
     </tr>
     <tr>
       <td><code><var>options.returnAndroidDescriptionData</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`boolean`</td>
-      <td>Som standard, ingen Android Webview (Chrome) beskrivningsdata. Om du vill få all data kan du ställa in detta till `true`. Standard är `false` (valfritt). <br />Genom att aktivera detta alternativ får du extra data i svaret, se `description.data.test.js` för mer information. <br /><strong>ENDAST FÖR ANDROID</strong></td>
+      <td>Som standard ges ingen beskrivningsdata för Android Webview (Chrome). Om du vill få all data kan du sätta detta till `true`. Standard är `false` (valfri). <br />Genom att aktivera detta alternativ får du extra data i svaret, se `description.data.test.js` för mer information. <br /><strong>ENDAST FÖR ANDROID</strong></td>
     </tr>
   </tbody>
 </table>

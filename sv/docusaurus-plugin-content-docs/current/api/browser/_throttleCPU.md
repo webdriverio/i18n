@@ -4,12 +4,12 @@ title: throttleCPU
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/throttleCPU.ts
 ---
 
-Begränsar CPU för att simulera en långsammare processor.
+Begränsar CPU för att emulera en långsammare processor.
 
 :::info
 
 Observera att användning av `throttleCPU`-kommandot kräver stöd för Chrome DevTools-protokollet och kan t.ex.
-inte användas när automatiserade tester körs i molnet. Chrome DevTools-protokollet installeras inte som standard,
+inte användas vid körning av automatiserade tester i molnet. Chrome DevTools-protokollet installeras inte som standard,
 använd `npm install puppeteer-core` för att installera det.
 Läs mer i avsnittet [Automation Protocols](/docs/automationProtocols).
 
@@ -33,7 +33,7 @@ browser.throttleCPU(factor)
     <tr>
       <td><code><var>factor</var></code></td>
       <td>`number`</td>
-      <td>fördröjningsfaktor (1 är ingen begränsning, 2 är 2x långsammare, osv)</td>
+      <td>nedtrappningsfaktor (1 är ingen begränsning, 2 är 2x långsammare, osv)</td>
     </tr>
   </tbody>
 </table>

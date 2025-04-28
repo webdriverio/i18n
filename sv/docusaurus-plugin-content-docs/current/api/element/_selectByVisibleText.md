@@ -24,7 +24,7 @@ $(selector).selectByVisibleText(text)
     <tr>
       <td><code><var>text</var></code></td>
       <td>`String, Number`</td>
-      <td>text för alternativelementet som ska väljas</td>
+      <td>text av alternativelementet som ska väljas</td>
     </tr>
   </tbody>
 </table>

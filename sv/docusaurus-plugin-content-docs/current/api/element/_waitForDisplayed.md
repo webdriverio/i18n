@@ -4,12 +4,12 @@ title: waitForDisplayed
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/waitForDisplayed.ts
 ---
 
-Vänta på att ett element visas eller inte visas under den angivna tiden i millisekunder.
+Vänta på att ett element ska visas eller inte visas under den angivna tiden i millisekunder.
 
 :::info
 
-Till skillnad från andra elementkommandon kommer WebdriverIO inte att vänta på att elementet ska existera för att utföra 
-detta kommando.
+Till skillnad från andra elementkommandon kommer WebdriverIO inte att vänta på att elementet ska existera för att
+köra detta kommando.
 
 :::
 
@@ -46,7 +46,7 @@ $(selector).waitForDisplayed({ timeout, reverse, timeoutMsg, interval, withinVie
     <tr>
       <td><code><var>options.timeoutMsg</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
-      <td>om den finns åsidosätter den standardfelmeddelandet</td>
+      <td>om den finns ersätter den standardfelmeddelandet</td>
     </tr>
     <tr>
       <td><code><var>options.interval</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -56,7 +56,7 @@ $(selector).waitForDisplayed({ timeout, reverse, timeoutMsg, interval, withinVie
     <tr>
       <td><code><var>options.withinViewport</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>sätt till `true` för att vänta tills elementet visas inom viewport (standard: `false`)</td>
+      <td>sätt till `true` för att vänta tills elementet visas inom synfältet (standard: `false`)</td>
     </tr>
   </tbody>
 </table>

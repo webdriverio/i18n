@@ -1,10 +1,10 @@
 ---
 id: restore
-title: återställa
+title: återställ
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/restore.ts
 ---
 
-Detta kommando återställer specifika eller alla emulerade beteenden som har ställts in med hjälp av kommandot `emulate`.
+Det här kommandot återställer specifika eller alla emulerade beteenden som har ställts in med kommandot `emulate`.
 
 ##### Användning
 

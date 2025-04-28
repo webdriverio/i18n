@@ -4,7 +4,7 @@ title: switchWindow
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/switchWindow.ts
 ---
 
-Växla fokus till en särskild flik / fönster.
+Växla fokus till en specifik flik / fönster.
 
 ##### Användning
 
@@ -17,14 +17,14 @@ browser.switchWindow(matcher)
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Namn</th><th>Typ</th><th>Detaljer</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>matcher</var></code></td>
       <td>`String, RegExp`</td>
-      <td>Sträng eller reguljärt uttryck som matchar antingen sidtiteln eller URL:en, fönsternamnet eller fönsterhandtaget</td>
+      <td>Sträng eller reguljärt uttryck som matchar antingen sidtitel eller URL, fönsternamn eller fönsterhanterare</td>
     </tr>
   </tbody>
 </table>

@@ -24,7 +24,7 @@ $(selector).getAttribute(attributeName)
     <tr>
       <td><code><var>attributeName</var></code></td>
       <td>`string`</td>
-      <td>begärt attribut</td>
+      <td>efterfrågat attribut</td>
     </tr>
   </tbody>
 </table>
@@ -50,4 +50,4 @@ it('should demonstrate the getAttribute command', async () => {
 ##### Returnerar
 
 - **&lt;String|null&gt;**
-            **<code><var>return</var></code>:** Värdet på attributet, eller null om det inte är inställt på elementet.
+            **<code><var>return</var></code>:**  Värdet på attributet, eller null om det inte är inställt på elementet.    

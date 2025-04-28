@@ -3,17 +3,17 @@ id: materials
 title: Material
 ---
 
-Om du vill använda WebdriverIO-material för dina egna workshops eller evenemang, använd dem gärna direkt härifrån.
+Om du vill använda WebdriverIO-material för dina egna workshops eller evenemang, känner dig fri att ta dem direkt härifrån.
 
 ## Workshops
 
-WebdriverIO-gemenskapen håller workshops runt om i världen. Använd gärna dessa material för att hålla dina egna.
+WebdriverIO-gemenskapen ger workshops runt om i världen. Använd gärna dessa material för att hålla dina egna.
 
 - [webdriverio/workshop](https://github.com/webdriverio/workshop)
 
 ## Tillgångar
 
-Om du skapar ditt eget WebdriverIO-innehåll för utbildningsändamål, använd gärna dessa tillgångar för att inkludera i ditt material.
+Om du skapar ditt eget WebdriverIO-innehåll för utbildningsändamål, använd gärna dessa tillgångar i ditt material.
 
 ### Robotlogotyp
 

@@ -1,11 +1,11 @@
 ---
 id: pause
-title: pausa
+title: paus
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/pause.ts
 ---
 
-Pausar körningen under en specifik tidsperiod. Det rekommenderas att inte använda detta kommando för att vänta på att 
-ett element ska visas. För att undvika instabila testresultat är det bättre att använda kommandon som
+Pausar exekvering under en specifik tidsperiod. Det rekommenderas att inte använda detta kommando för att vänta på att 
+ett element ska visas. För att undvika opålitliga testresultat är det bättre att använda kommandon som
 [`waitForExist`](/docs/api/element/waitForExist) eller andra waitFor* kommandon.
 
 ##### Användning

@@ -5,7 +5,7 @@ title: Proxyinställning
 
 Du kan tunnla två olika typer av förfrågningar genom en proxy:
 
-- anslutning mellan ditt testskript och webbläsardrivrutinen (eller WebDriver-slutpunkten)
+- anslutning mellan ditt testskript och webbläsardrivrutinen (eller WebDriver-slutpunkt)
 - anslutning mellan webbläsaren och internet
 
 ## Proxy mellan drivrutin och test
@@ -33,7 +33,7 @@ export const config = {
 }
 ```
 
-Ytterligare information om konfigurering av proxyn finns [här](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+Ytterligare information om hur du konfigurerar proxyn finns [här](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
 Om du använder [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), starta den via:
 
@@ -45,7 +45,7 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 
 För att tunnla anslutningen mellan webbläsaren och internet kan du sätta upp en proxy som kan vara användbar för att (till exempel) fånga nätverksinformation och annan data med verktyg som [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-`proxy`-parametrarna kan tillämpas via standardkapaciteterna på följande sätt:
+`proxy`-parametrarna kan tillämpas via standardfunktionerna på följande sätt:
 
 ```js title="wdio.conf.js"
 export const config = {

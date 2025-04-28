@@ -4,28 +4,28 @@ title: svep
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/swipe.ts
 ---
 
-Swipe in a specific direction within viewport or element for Desktop/Mobile Web <strong>AND</strong> Mobile Native Apps.
+Svep i en specifik riktning inom viewport eller element för Desktop/Mobil Webb <strong>OCH</strong> Mobila Applikationer.
 
 :::info
 
-Swiping for Mobile Native Apps is based on the W3C-actions protocol, simulating a finger press and movement.
-This is different from the [`mobile: scrollGesture`](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-scrollgesture) for Android
-or [`mobile: scroll`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-scroll) for iOS command which is based on the Appium Driver protocol and is
-only available for mobile platforms in the NATIVE context.
+Svepning för Mobila Applikationer baseras på W3C-actions protokollet, som simulerar ett fingertryck och rörelse.
+Detta skiljer sig från [`mobile: scrollGesture`](https://github.com/appium/appium-uiautomator2-driver/blob/master/docs/android-mobile-gestures.md#mobile-scrollgesture) för Android
+eller [`mobile: scroll`](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/#mobile-scroll) för iOS-kommandot som baseras på Appium Driver-protokollet och är
+endast tillgängligt för mobila plattformar i NATIVE-kontext.
 
-This command only works with the following up-to-date components:
- - Appium server (version 2.0.0 or higher)
- - `appium-uiautomator2-driver` (for Android)
- - `appium-xcuitest-driver` (for iOS)
+Detta kommando fungerar endast med följande uppdaterade komponenter:
+ - Appium server (version 2.0.0 eller högre)
+ - `appium-uiautomator2-driver` (för Android)
+ - `appium-xcuitest-driver` (för iOS)
 
-Make sure your local or cloud-based Appium environment is regularly updated to avoid compatibility issues.
+Se till att din lokala eller molnbaserade Appium-miljö uppdateras regelbundet för att undvika kompatibilitetsproblem.
 
 :::
 
-:::caution Swiping based on coordinates
+:::caution Svepning baserad på koordinater
 
-Avoid using `from` and `to` options unless absolutely necessary. These are device-specific and may not work consistently across devices.
-Use the `scrollableElement` option for reliable swipes within an element.
+Undvik att använda alternativen `from` och `to` om det inte är absolut nödvändigt. Dessa är enhetsspecifika och fungerar kanske inte konsekvent på olika enheter.
+Använd alternativet `scrollableElement` för pålitliga svep inom ett element.
 
 :::
 
@@ -41,72 +41,72 @@ Use the `scrollableElement` option for reliable swipes within an element.
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`object, boolean`</td>
-      <td>options for `browser.swipe()`. Default for desktop/mobile web: <br/> `{ direction: 'up', duration: 1500, percent: 0.95, scrollableElement: WebdriverIO.Element }`</td>
+      <td>alternativ för `browser.swipe()`. Standard för desktop/mobil webb: <br/> `{ direction: 'up', duration: 1500, percent: 0.95, scrollableElement: WebdriverIO.Element }`</td>
     </tr>
     <tr>
       <td><code><var>options.direction</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`string`</td>
-      <td>Can be one of `down`, `up`, `left` or `right`, default is `up`. <br /><strong>MOBILE-NATIVE-APP-ONLY</strong></td>
+      <td>Kan vara en av `down`, `up`, `left` eller `right`, standard är `up`. <br /><strong>ENDAST-MOBIL-NATIV-APP</strong></td>
     </tr>
     <tr>
-                      <td colspan="3"><strong>Down</strong><br /><strong>Starting Point:</strong><br/>You place your finger towards the top of the screen.<br/><strong>Movement:</strong><br/>You slide your finger downwards towards the bottom of the screen.<br/><strong>Action:</strong><br/>This also varies by context:<br />- On the home screen or in applications, it typically scrolls the content upwards.<br />- From the top edge, it often opens the notifications panel or quick settings.<br />- In browsers or reading apps, it can be used to scroll through content.</td>
+                      <td colspan="3"><strong>Down</strong><br /><strong>Startpunkt:</strong><br/>Du placerar ditt finger mot toppen av skärmen.<br/><strong>Rörelse:</strong><br/>Du glider fingret nedåt mot botten av skärmen.<br/><strong>Handling:</strong><br/>Detta varierar också beroende på sammanhang:<br />- På hemskärmen eller i applikationer, scrollar det vanligtvis innehållet uppåt.<br />- Från övre kanten öppnar det ofta aviseringspanelen eller snabbinställningar.<br />- I webbläsare eller läsappar kan det användas för att bläddra genom innehåll.</td>
             </tr>
     <tr>
-                      <td colspan="3"><strong>Left</strong><br /><strong>Starting Point:</strong><br/>You place your finger on the right side of the screen.<br/><strong>Movement:</strong><br/>You slide your finger horizontally to the left.><br/><strong>Action:</strong><br/>The response to this gesture depends on the application:<br />- It can move to the next item in a carousel or a set of images.<br />- In a navigation context, it might go back to the previous page or close the current view.<br />- On the home screen, it usually switches to the next virtual desktop or screen.</td>
+                      <td colspan="3"><strong>Left</strong><br /><strong>Startpunkt:</strong><br/>Du placerar ditt finger på höger sida av skärmen.<br/><strong>Rörelse:</strong><br/>Du glider fingret horisontellt till vänster.><br/><strong>Handling:</strong><br/>Svaret på denna gest beror på applikationen:<br />- Det kan flytta till nästa objekt i en karusell eller en uppsättning bilder.<br />- I ett navigationssammanhang kan det gå tillbaka till föregående sida eller stänga den aktuella vyn.<br />- På hemskärmen växlar det vanligtvis till nästa virtuella skrivbord eller skärm.</td>
             </tr>
     <tr>
-                      <td colspan="3"><strong>Right</strong><br /><strong>Starting Point:</strong><br/>You place your finger on the left side of the screen.<br/><strong>Movement:</strong><br/>You slide your finger horizontally to the right.<br/><strong>Action:</strong><br/>Similar to swiping left, but in the opposite direction:<br />-- It often moves to the previous item in a carousel or gallery.<br />- Can be used to open side menus or navigation drawers in apps.<br />- On the home screen, it typically switches to the previous virtual desktop.</td>
+                      <td colspan="3"><strong>Right</strong><br /><strong>Startpunkt:</strong><br/>Du placerar ditt finger på vänster sida av skärmen.<br/><strong>Rörelse:</strong><br/>Du glider fingret horisontellt till höger.<br/><strong>Handling:</strong><br/>Liknande att svepa åt vänster, men i motsatt riktning:<br />-- Det flyttar ofta till föregående objekt i en karusell eller galleri.<br />- Kan användas för att öppna sidomenyer eller navigeringslådor i appar.<br />- På hemskärmen växlar det vanligtvis till föregående virtuella skrivbord.</td>
             </tr>
     <tr>
-                      <td colspan="3"><strong>Up</strong><br /><strong>Starting Point:</strong><br/>You place your finger towards the bottom of the screen.<br/><strong>Movement:</strong><br/>You slide your finger upwards towards the top of the screen.><br/><strong>Action:</strong><br/>Depending on the context, different actions can occur:<br />- On the home screen or in a list, this usually scrolls the content downwards.<br />- In a full-screen app, it might open additional options or the app drawer.<br />- On certain interfaces, it could trigger a 'refresh' action or open a search bar.</td>
+                      <td colspan="3"><strong>Up</strong><br /><strong>Startpunkt:</strong><br/>Du placerar ditt finger mot botten av skärmen.<br/><strong>Rörelse:</strong><br/>Du glider fingret uppåt mot toppen av skärmen.><br/><strong>Handling:</strong><br/>Beroende på sammanhanget kan olika åtgärder inträffa:<br />- På hemskärmen eller i en lista, scrollar detta vanligtvis innehållet nedåt.<br />- I en fullskärmsapp kan det öppna ytterligare alternativ eller applådan.<br />- På vissa gränssnitt kan det utlösa en "uppdatera"-åtgärd eller öppna ett sökfält.</td>
             </tr>
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>The duration in milliseconds for the swipe. Default is `1500` ms. The lower the value, the faster the swipe.</td>
+      <td>Varaktigheten i millisekunder för svepningen. Standard är `1500` ms. Ju lägre värde, desto snabbare svepning.</td>
     </tr>
     <tr>
       <td><code><var>options.scrollableElement</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Element`</td>
-      <td>Element that is used to swipe within. If no element is provided it will use the following selector for iOS `-ios predicate string:type == "XCUIElementTypeApplication"` and the following for Android `//android.widget.ScrollView'`. If more elements match the default selector, then by default it will pick the first matching element. <br /> <strong>MOBILE-NATIVE-APP-ONLY</strong></td>
+      <td>Element som används för att svepa inom. Om inget element anges kommer den att använda följande väljare för iOS `-ios predicate string:type == "XCUIElementTypeApplication"` och följande för Android `//android.widget.ScrollView'`. Om flera element matchar standardväljaren kommer den som standard att välja det första matchande elementet. <br /> <strong>ENDAST-MOBIL-NATIV-APP</strong></td>
     </tr>
     <tr>
       <td><code><var>options.percent</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>The percentage of the (default) scrollable element to swipe. This is a value between 0 and 1. Default is `0.95`.<br /><strong>NEVER</strong> swipe from the exact top|bottom|left|right of the screen, you might trigger for example the notification bar or other OS/App features which can lead to unexpected results.<br />This has no effect if `from` and `to` are provided.</td>
+      <td>Procentandelen av det (standard) scrollbara elementet att svepa. Detta är ett värde mellan 0 och 1. Standard är `0.95`.<br /><strong>ALDRIG</strong> svep från exakt topp|botten|vänster|höger på skärmen, du kan utlösa till exempel aviseringsfältet eller andra OS/App-funktioner som kan leda till oväntade resultat.<br />Detta har ingen effekt om `from` och `to` tillhandahålls.</td>
     </tr>
     <tr>
-              <td colspan="3"><strong>The below values <strong>ONLY</strong> have an effect if the `scrollableElement` is <strong>NOT</strong> provided, otherwise they are ignored.</strong></td>
+              <td colspan="3"><strong>Värdena nedan har <strong>ENDAST</strong> effekt om `scrollableElement` <strong>INTE</strong> tillhandahålls, annars ignoreras de.</strong></td>
             </tr>
     <tr>
       <td><code><var>options.from</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`object`</td>
-      <td>The x and y coordinates of the start of the swipe. If a `scrollableElement` is provided, then these coordinates have no effect.</td>
+      <td>X- och y-koordinaterna för början av svepningen. Om ett `scrollableElement` tillhandahålls har dessa koordinater ingen effekt.</td>
     </tr>
     <tr>
       <td><code><var>options.from.x</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>The x-coordinate of the start of the swipe.</td>
+      <td>X-koordinaten för början av svepningen.</td>
     </tr>
     <tr>
       <td><code><var>options.from.y</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>The y-coordinate of the start of the swipe.</td>
+      <td>Y-koordinaten för början av svepningen.</td>
     </tr>
     <tr>
       <td><code><var>options.to</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`object`</td>
-      <td>The x and y coordinates of the end of the swipe. If a `scrollableElement` is provided, then these coordinates have no effect.</td>
+      <td>X- och y-koordinaterna för slutet av svepningen. Om ett `scrollableElement` tillhandahålls har dessa koordinater ingen effekt.</td>
     </tr>
     <tr>
       <td><code><var>options.to.x</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>The x-coordinate of the end of the swipe.</td>
+      <td>X-koordinaten för slutet av svepningen.</td>
     </tr>
     <tr>
       <td><code><var>options.to.y</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`number`</td>
-      <td>The y-coordinate of the end of the swipe.</td>
+      <td>Y-koordinaten för slutet av svepningen.</td>
     </tr>
   </tbody>
 </table>

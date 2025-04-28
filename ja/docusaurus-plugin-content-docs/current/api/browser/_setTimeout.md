@@ -4,17 +4,18 @@ title: setTimeout
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setTimeout.ts
 ---
 
-現在のセッションに関連するタイムアウトを設定します。タイムアウト時間は、スクリプトの挿入、ドキュメントのナビゲーション、要素の取得などの動作を制御します。
+現在のセッションに関連するタイムアウトを設定します。タイムアウト時間はスクリプト注入、
+ドキュメントナビゲーション、要素の取得などの動作を制御します。
 詳細と例については、[タイムアウトガイド](https://webdriver.io/docs/timeouts#selenium-timeouts)を参照してください。
 
 :::info
 
 `implicit`タイムアウトを設定することはお勧めしません。WebdriverIOの動作に影響を与え、
-特定のコマンド（例えば、リバースフラグを持つ`waitForExist`）でエラーを引き起こす可能性があります。
+特定のコマンド（例：reverse フラグを使用した`waitForExist`）でエラーが発生する可能性があります。
 
 :::
 
-##### 使用法
+##### 使用方法
 
 ```js
 browser.setTimeout({ implicit, pageLoad, script })
@@ -37,7 +38,7 @@ browser.setTimeout({ implicit, pageLoad, script })
     <tr>
       <td><code><var>timeouts.implicit</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>要素を見つける際に要素の場所特定戦略を再試行するミリ秒単位の時間。</td>
+      <td>要素を検索する際に要素ロケーション戦略を再試行するミリ秒単位の時間。</td>
     </tr>
     <tr>
       <td><code><var>timeouts.pageLoad</var></code><br /><span className="label labelWarning">オプション</span></td>
@@ -47,7 +48,7 @@ browser.setTimeout({ implicit, pageLoad, script })
     <tr>
       <td><code><var>timeouts.script</var></code><br /><span className="label labelWarning">オプション</span></td>
       <td>`Number`</td>
-      <td>[`execute`](https://webdriver.io/docs/api/browser/execute)または[`executeAsync`](https://webdriver.io/docs/api/browser/executeAsync)で挿入されたスクリプトは、スクリプトタイムアウト時間に達するまで実行されます。これもミリ秒単位で指定します。</td>
+      <td>[`execute`](https://webdriver.io/docs/api/browser/execute)または[`executeAsync`](https://webdriver.io/docs/api/browser/executeAsync)で注入されたスクリプトは、スクリプトタイムアウト時間（ミリ秒単位）に達するまで実行されます。</td>
     </tr>
   </tbody>
 </table>

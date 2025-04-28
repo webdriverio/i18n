@@ -1,6 +1,6 @@
 ---
 id: writing-tests
-title: テストの書き方
+title: テストの作成
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 
 ## テストランナーフレームワークのサポート
 
-`@wdio/visual-service` はテストランナーフレームワークに依存しないため、WebdriverIOがサポートする以下のようなすべてのフレームワークで使用できます：
+`@wdio/visual-service`はテストランナーフレームワークに依存しないため、WebdriverIOがサポートする以下のようなすべてのフレームワークで使用できます：
 
 -   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
 -   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
 -   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-テスト内では、スクリーンショットを _保存_ したり、テスト対象のアプリケーションの現在の視覚的状態をベースラインと照合したりできます。そのために、このサービスは[カスタムマッチャー](/docs/api/expect-webdriverio#visual-matcher)と _チェック_ メソッドを提供しています：
+テスト内では、スクリーンショットを_保存_したり、テスト対象アプリケーションの現在の視覚的状態をベースラインと比較したりできます。そのために、このサービスは[カスタムマッチャー](/docs/api/expect-webdriverio#visual-matcher)と_チェック_メソッドを提供しています：
 
 <Tabs
     defaultValue="mocha"
@@ -347,7 +347,7 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 
 :::note 重要
 
-このサービスは `save` および `check` メソッドを提供しています。初めてテストを実行する場合、`save` と `compare` メソッドを組み合わせて使用**すべきではありません**。`check`メソッドは自動的にベースライン画像を作成します。
+このサービスは`save`メソッドと`check`メソッドを提供します。テストを初めて実行する場合、`save`メソッドと`compare`メソッドを**組み合わせるべきではありません**。`check`メソッドは自動的にベースライン画像を作成します。
 
 ```sh
 #####################################################################################
@@ -357,7 +357,7 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 #####################################################################################
 ```
 
-[ベースライン画像の自動保存を無効](service-options#autosavebaseline)にした場合、Promiseは以下の警告とともに拒否されます。
+[ベースライン画像の自動保存を無効](service-options#autosavebaseline)にしている場合、Promiseは次の警告とともに拒否されます。
 
 ```sh
 #####################################################################################
@@ -367,6 +367,6 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 #####################################################################################
 ```
 
-これは、現在のスクリーンショットが実際のフォルダに保存され、**手動でベースラインにコピーする必要がある**ことを意味します。`@wdio/visual-service` を [`autoSaveBaseline: true`](./service-options#autosavebaseline) でインスタンス化すると、画像は自動的にベースラインフォルダに保存されます。
+これは、現在のスクリーンショットが実際のフォルダに保存され、**手動でそれをベースラインにコピーする必要がある**ことを意味します。`@wdio/visual-service`を[`autoSaveBaseline: true`](./service-options#autosavebaseline)で初期化すると、画像は自動的にベースラインフォルダに保存されます。
 
 :::

@@ -10,23 +10,23 @@ Innan du dyker in i de kraftfulla funktionerna i `@wdio/visual-service`, är det
 
 ## Jämförelsens natur
 
--   **Pixel-för-pixel-basis:** Modulen utför en pixel-för-pixel-jämförelse av bilder. Även om vissa aspekter kan justeras (se Jämförelsealternativ), förblir kärnmetoden en grundläggande pixeljämförelse.
--   **Påverkan av webbläsaruppdateringar:** Var medveten om att uppdateringar till webbläsare, som Chrome, kan påverka teckensnittåtergivningen, vilket potentiellt kan kräva en uppdatering av dina baslinjebilder.
+-   **Pixel-för-pixel-basis:** Modulen utför en pixel-för-pixel-jämförelse av bilder. Även om vissa aspekter kan justeras (se Jämförelsealternativ), så förblir kärnmetoden en grundläggande pixeljämförelse.
+-   **Påverkan av webbläsaruppdateringar:** Var medveten om att uppdateringar av webbläsare, som Chrome, kan påverka teckensnittåtergivning, vilket potentiellt kräver en uppdatering av dina referensbilder.
 
 ## Konsekvens i plattformar
 
--   **Jämföra identiska plattformar:** Se till att skärmbilder jämförs inom samma plattform. Till exempel bör en skärmbild från Chrome på en Mac inte användas för att jämföra med en från Chrome på Ubuntu eller Windows.
--   **Analogi:** För att uttrycka det enkelt, jämför _'Äpplen med Äpplen, inte Äpplen med Androider'_.
+-   **Jämföra identiska plattformar:** Se till att skärmdumpar jämförs inom samma plattform. Till exempel bör en skärmdump från Chrome på en Mac inte användas för att jämföra med en från Chrome på Ubuntu eller Windows.
+-   **Analogi:** För att uttrycka det enkelt, jämför _'Äpplen med äpplen, inte äpplen med androider'_.
 
-## Försiktighet med felmatchningsprocent
+## Försiktighet med misspassningsprocent
 
--   **Risk att acceptera felmatchningar:** Var försiktig när du accepterar en felmatchningsprocent. Detta är särskilt viktigt för stora skärmbilder, där acceptans av en felmatchning oavsiktligt kan förbise betydande avvikelser, såsom saknade knappar eller element.
+-   **Risk för att acceptera misspassningar:** Var försiktig när du accepterar en misspassningsprocent. Detta är särskilt viktigt för stora skärmdumpar, där accepterande av en misspassning oavsiktligt kan förbise betydande avvikelser, som saknade knappar eller element.
 
 ## Simulering av mobilskärm
 
--   **Undvik webbläsarens storleksändring för mobilsimulering:** Försök inte simulera mobilskärmsstorlekar genom att ändra storlek på skrivbordswebbläsare och behandla dem som mobilwebbläsare. Skrivbordswebbläsare, även när de storleksändras, replikerar inte korrekt återgivningen av faktiska mobilwebbläsare.
--   **Autenticitet i jämförelse:** Detta verktyg syftar till att jämföra visuella element som de skulle visas för en slutanvändare. En storleksändrad skrivbordswebbläsare återspeglar inte den sanna upplevelsen på en mobil enhet.
+-   **Undvik webbläsarändring av storlek för mobilsimulering:** Försök inte simulera mobilskärmstorlekar genom att ändra storlek på skrivbordswebbläsare och behandla dem som mobilwebbläsare. Skrivbordswebbläsare, även när de ändras i storlek, replikerar inte korrekt renderingen av faktiska mobilwebbläsare.
+-   **Autenticitet i jämförelse:** Detta verktyg syftar till att jämföra visuella element som de skulle visas för en slutanvändare. En storleksändrad skrivbordswebbläsare speglar inte den verkliga upplevelsen på en mobil enhet.
 
-## Ståndpunkt om headless-webbläsare
+## Ställningstagande om headless-webbläsare
 
--   **Rekommenderas inte för headless-webbläsare:** Användning av denna modul med headless-webbläsare rekommenderas inte. Motiveringen är att slutanvändare inte interagerar med headless-webbläsare, och därför kommer problem som uppstår från sådan användning inte att stödjas.
+-   **Rekommenderas inte för headless-webbläsare:** Användning av denna modul med headless-webbläsare rekommenderas inte. Motiveringen är att slutanvändare inte interagerar med headless-webbläsare, och därför kommer problem som uppstår vid sådan användning inte att stödjas.

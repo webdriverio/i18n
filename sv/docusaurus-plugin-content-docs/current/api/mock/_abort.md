@@ -4,7 +4,7 @@ title: abort
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/abort.ts
 ---
 
-Avbryt begäran med en av följande felkoder:
+Avbryt förfrågan med en av följande felkoder:
 `Failed`, `Aborted`, `TimedOut`, `AccessDenied`, `ConnectionClosed`,
 `ConnectionReset`, `ConnectionRefused`, `ConnectionAborted`,
 `ConnectionFailed`, `NameNotResolved`, `InternetDisconnected`,

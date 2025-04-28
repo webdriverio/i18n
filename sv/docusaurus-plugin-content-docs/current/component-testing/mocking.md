@@ -3,17 +3,17 @@ id: mocking
 title: Mockning
 ---
 
-När du skriver tester är det bara en tidsfråga innan du behöver skapa en "falsk" version av en intern — eller extern — tjänst. Detta kallas vanligtvis för mockning. WebdriverIO tillhandahåller verktygsfunktioner för att hjälpa dig. Du kan `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` för att få tillgång till dem. Se mer information om tillgängliga mockningsfunktioner i [API-dokumentationen](/docs/api/modules#wdiobrowser-runner).
+När du skriver tester är det bara en tidsfråga innan du behöver skapa en "falsk" version av en intern - eller extern - tjänst. Detta kallas vanligtvis för mockning. WebdriverIO tillhandahåller hjälpfunktioner för detta. Du kan använda `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` för att få tillgång till dem. Se mer information om tillgängliga mockningsverktyg i [API-dokumentationen](/docs/api/modules#wdiobrowser-runner).
 
 ## Funktioner
 
-För att validera om vissa funktionshanterare anropas som en del av dina komponenttester exporterar modulen `@wdio/browser-runner` mockningsprimitiver som du kan använda för att testa om dessa funktioner har anropats. Du kan importera dessa metoder via:
+För att validera om vissa funktionshanterare anropas som en del av dina komponenttester, exporterar modulen `@wdio/browser-runner` mockningsprimitiver som du kan använda för att testa om dessa funktioner har anropats. Du kan importera dessa metoder via:
 
 ```js
 import { fn, spyOn } from '@wdio/browser-runner'
 ```
 
-Genom att importera `fn` kan du skapa en spion-funktion (mock) för att spåra dess exekvering och med `spyOn` spåra en metod på ett redan skapat objekt.
+Genom att importera `fn` kan du skapa en spejfunktion (mock) för att spåra dess exekvering och med `spyOn` spåra en metod på ett redan skapat objekt.
 
 <Tabs
   defaultValue="mocks"
@@ -24,7 +24,7 @@ Genom att importera `fn` kan du skapa en spion-funktion (mock) för att spåra d
 }>
 <TabItem value="mocks">
 
-Det fullständiga exemplet finns i [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx) repository.
+Det fullständiga exemplet finns i arkivet [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx).
 
 ```ts
 import React from 'react'
@@ -58,7 +58,7 @@ describe('LoginForm', () => {
 </TabItem>
 <TabItem value="spies">
 
-Det fullständiga exemplet finns i [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js) katalogen.
+Det fullständiga exemplet finns i mappen [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js).
 
 ```js
 import { expect, $ } from '@wdio/globals'
@@ -95,13 +95,13 @@ describe('Lit Component testing', () => {
 </TabItem>
 </Tabs>
 
-WebdriverIO återexporterar bara [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) här, vilket är en lättviktig Jest-kompatibel spionimplementation som kan användas med WebdriverIOs [`expect`](/docs/api/expect-webdriverio) matchers. Du kan hitta mer dokumentation om dessa mockfunktioner på [Vitest projektsidan](https://vitest.dev/api/mock.html).
+WebdriverIO återexporterar bara [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) här, vilket är en lättviktig Jest-kompatibel spionimplementering som kan användas med WebdriverIOs [`expect`](/docs/api/expect-webdriverio)-matchare. Du kan hitta mer dokumentation om dessa mockfunktioner på [Vitest-projektets sida](https://vitest.dev/api/mock.html).
 
-Naturligtvis kan du också installera och importera andra spionramverk, t.ex. [SinonJS](https://sinonjs.org/), så länge de stöder webbläsarmiljön.
+Självklart kan du också installera och importera andra spionramverk, t.ex. [SinonJS](https://sinonjs.org/), så länge de stöder webbläsarmiljön.
 
 ## Moduler
 
-Mocka lokala moduler eller observera tredjepartsbibliotek som åberopas i någon annan kod, vilket gör det möjligt att testa argument, utdata eller till och med omdeklarera dess implementering.
+Mocka lokala moduler eller observera tredjepartsbibliotek som anropas i annan kod, vilket låter dig testa argument, utdata eller till och med omdeklarera implementationen.
 
 Det finns två sätt att mocka funktioner: Antingen genom att skapa en mockfunktion för användning i testkod, eller genom att skriva en manuell mock för att åsidosätta en modulberoende.
 
@@ -115,7 +115,7 @@ export function handleClick () {
 }
 ```
 
-I vår komponent används klickhanteraren enligt följande:
+I vår komponent används klickhanteraren på följande sätt:
 
 ```ts title=LitComponent.js
 import { handleClick } from './utils.js'
@@ -128,7 +128,7 @@ export class SimpleButton extends LitElement {
 }
 ```
 
-För att mocka `handleClick` från `utils.js` kan vi använda `mock`-metoden i vårt test enligt följande:
+För att mocka `handleClick` från `utils.js` kan vi använda `mock`-metoden i vårt test på följande sätt:
 
 ```js title=LitComponent.test.js
 import { expect, $ } from '@wdio/globals'
@@ -172,7 +172,7 @@ export default Users
 
 För att testa denna metod utan att faktiskt träffa API:et (och därmed skapa långsamma och ömtåliga tester), kan vi använda funktionen `mock(...)` för att automatiskt mocka axios-modulen.
 
-När vi mockar modulen kan vi tillhandahålla en [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) för `.get` som returnerar data som vi vill att vårt test ska kontrollera. I praktiken säger vi att vi vill att `axios.get('/users.json')` ska returnera ett falskt svar.
+När vi mockar modulen kan vi tillhandahålla ett [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) för `.get` som returnerar de data vi vill att vårt test ska hävda mot. I praktiken säger vi att vi vill att `axios.get('/users.json')` ska returnera ett fejkat svar.
 
 ```js title=users.test.js
 import axios from 'axios'; // imports defined mock
@@ -204,9 +204,9 @@ describe('User API', () => {
 })
 ```
 
-## Partiella mockar
+## Partiell mockning
 
-Delmängder av en modul kan mockas och resten av modulen kan behålla sin faktiska implementering:
+Delmängder av en modul kan mockas medan resten av modulen behåller sin faktiska implementering:
 
 ```js title=foo-bar-baz.js
 export const foo = 'foo';
@@ -245,9 +245,9 @@ describe('partial mock', () => {
 
 ## Manuella mockar
 
-Manuella mockar definieras genom att skriva en modul i en underkatalog `__mocks__/` (se även alternativet `automockDir`). Om modulen du mockar är en Node-modul (t.ex.: `lodash`), bör mocken placeras i katalogen `__mocks__` och kommer att automatiskt mockas. Det finns inget behov av att uttryckligen anropa `mock('module_name')`.
+Manuella mockar definieras genom att skriva en modul i en undermapp `__mocks__/` (se även alternativet `automockDir`). Om modulen du mockar är en Node-modul (t.ex.: `lodash`), bör mocken placeras i katalogen `__mocks__` och kommer att automatiskt mockas. Det finns ingen anledning att uttryckligen anropa `mock('module_name')`.
 
-Scoped modules (även kända som scoped packages) kan mockas genom att skapa en fil i en katalogstruktur som matchar namnet på den scoped modulen. För att exempelvis mocka en scoped modul som kallas `@scope/project-name`, skapa en fil på `__mocks__/@scope/project-name.js`, och skapa katalogen `@scope/` i enlighet med detta.
+Scoped modules (även kallade scoped packages) kan mockas genom att skapa en fil i en katalogstruktur som matchar namnet på den scoped module. För att till exempel mocka en scoped module kallad `@scope/project-name`, skapa en fil på `__mocks__/@scope/project-name.js`, genom att skapa katalogen `@scope/` på lämpligt sätt.
 
 ```
 .
@@ -261,7 +261,7 @@ Scoped modules (även kända som scoped packages) kan mockas genom att skapa en 
 └── views
 ```
 
-När en manuell mock finns för en given modul kommer WebdriverIO att använda den modulen när man uttryckligen anropar `mock('moduleName')`. Men när automock är inställt på true, kommer den manuella mockimplementationen att användas istället för den automatiskt skapade mocken, även om `mock('moduleName')` inte anropas. För att välja bort detta beteende måste du uttryckligen anropa `unmock('moduleName')` i tester som ska använda den faktiska modulimplementationen, t.ex.:
+När en manuell mock finns för en given modul kommer WebdriverIO att använda den modulen när `mock('moduleName')` uttryckligen anropas. Men när automock är satt till true kommer den manuella mockimplementationen att användas istället för den automatiskt skapade mocken, även om `mock('moduleName')` inte anropas. För att avanmäla sig från detta beteende måste du uttryckligen anropa `unmock('moduleName')` i tester som ska använda den faktiska modulimplementationen, t.ex.:
 
 ```js
 import { unmock } from '@wdio/browser-runner'
@@ -271,7 +271,7 @@ unmock('lodash')
 
 ## Hoisting
 
-För att få mockning att fungera i webbläsaren skriver WebdriverIO om testfilerna och lyfter (hoist) mock-anropen över allt annat (se även [detta blogginlägg](https://www.coolcomputerclub.com/posts/jest-hoist-await/) om hoisting-problemet i Jest). Detta begränsar hur du kan skicka in variabler i mocklösaren, t.ex.:
+För att få mockning att fungera i webbläsaren, skriver WebdriverIO om testfilerna och lyfter upp mockanropen över allt annat (se även [detta blogginlägg](https://www.coolcomputerclub.com/posts/jest-hoist-await/) om lyftproblemet i Jest). Detta begränsar hur du kan skicka in variabler i mock-resolvern, t.ex.:
 
 ```js title=component.test.js
 import dep from 'dependency'
@@ -286,7 +286,7 @@ mock('./some/module.ts', () => ({
 }))
 ```
 
-För att fixa detta måste du definiera alla använda variabler inuti lösaren, t.ex.:
+För att fixa detta måste du definiera alla använda variabler inuti resolvern, t.ex.:
 
 ```js title=component.test.js
 /**
@@ -303,6 +303,6 @@ mock('./some/module.ts', async () => {
 })
 ```
 
-## Requests
+## Förfrågningar
 
-Om du letar efter mockning av webbläsarförfrågningar, t.ex. API-anrop, gå till avsnittet [Request Mock and Spies](/docs/mocksandspies).
+Om du letar efter att mocka webbläsarförfrågningar, t.ex. API-anrop, gå till avsnittet [Request Mock and Spies](/docs/mocksandspies).

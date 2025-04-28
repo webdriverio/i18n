@@ -1,41 +1,41 @@
 ---
 id: emulate
-title: emulate
+title: emulera
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/emulate.ts
 ---
 
-WebdriverIO allows you to emulate Web APIs using the `emulate` command. These Web APIs can then
-behave exactly as you specify it. The following scopes are supported:
+WebdriverIO tillåter dig att emulera Web API:er med hjälp av kommandot `emulate`. Dessa Web API:er kan sedan
+bete sig exakt som du specificerar. Följande omfattningar stöds:
 
-- `geolocation`: Emulate the geolocation API
-- `userAgent`: Emulate the user agent
-- `colorScheme`: Emulate the color scheme
-- `onLine`: Emulate the online status
-- `device`: Emulate a specific mobile or desktop device
-- `clock`: Emulate the system clock
+- `geolocation`: Emulera platspositionerings-API
+- `userAgent`: Emulera användaragenten
+- `colorScheme`: Emulera färgschema
+- `onLine`: Emulera onlinestatus
+- `device`: Emulera en specifik mobil eller skrivbordsenhet
+- `clock`: Emulera systemklockan
 
-The `emulate` command returns a function that can be called to reset the emulation. This is useful
-when you want to reset the emulation after a test or a suite of tests.
+Kommandot `emulate` returnerar en funktion som kan anropas för att återställa emuleringen. Detta är användbart
+när du vill återställa emuleringen efter ett test eller en testsvit.
 
-Read more on this in the [Emulation](/docs/emulation) guidelines.
+Läs mer om detta i [Emulation](/docs/emulation) riktlinjerna.
 
 :::info
 
-Except for the `clock` scope it is not possible to change the emulated value without reloading the page.
+Förutom för omfattningen `clock` är det inte möjligt att ändra det emulerade värdet utan att ladda om sidan.
 
 :::
 
 :::info
 
-This feature requires WebDriver Bidi support for the browser. While recent versions of Chrome, Edge
-and Firefox have such support, Safari __does not__. For updates follow [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned).
-Furthermore if you use a cloud vendor for spawning browsers, make sure your vendor also supports WebDriver Bidi.
+Denna funktion kräver WebDriver Bidi-stöd för webbläsaren. Medan nyare versioner av Chrome, Edge
+och Firefox har sådant stöd, har Safari __inte__ det. För uppdateringar följ [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned).
+Dessutom, om du använder en molnleverantör för att starta webbläsare, se till att din leverantör också stöder WebDriver Bidi.
 
 :::
 
-The `EmulationOptions` object can have the following properties based on the scope:
+Objektet `EmulationOptions` kan ha följande egenskaper baserat på omfattningen:
 
-| Scope         | Options                                          |
+| Omfattning    | Alternativ                                       |
 |---------------|--------------------------------------------------|
 | `geolocation` | `{ latitude: number, longitude: number }`        |
 | `userAgent`   | `string`                                         |
@@ -43,35 +43,35 @@ The `EmulationOptions` object can have the following properties based on the sco
 | `onLine`      | `boolean`                                        |
 | `clock`       | `FakeTimerInstallOpts`                           |
 
-##### Usage
+##### Användning
 
 ```js
 browser.emulate(scope, options)
 ```
 
-##### Parameters
+##### Parametrar
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Namn</th><th>Typ</th><th>Detaljer</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>scope</var></code></td>
       <td>`string`</td>
-      <td>feature of the browser you like to emulate, can be either `clock`, `geolocation`, `userAgent`, `colorScheme` or `onLine`</td>
+      <td>funktion i webbläsaren du vill emulera, kan vara antingen `clock`, `geolocation`, `userAgent`, `colorScheme` eller `onLine`</td>
     </tr>
     <tr>
       <td><code><var>options</var></code></td>
       <td>`EmulationOptions`</td>
-      <td>emulation option for specific scope</td>
+      <td>emuleringsoption för specifik omfattning</td>
     </tr>
   </tbody>
 </table>
 
-##### Examples
+##### Exempel
 
 ```js reference title="example.js" useHTTPS
 https://github.com/webdriverio/example-recipes/blob/9bff2baf8a0678c6886f8591d9fc8dea201895d3/emulate/example.js#L4-L18
@@ -81,7 +81,7 @@ https://github.com/webdriverio/example-recipes/blob/9bff2baf8a0678c6886f8591d9fc
 https://github.com/webdriverio/example-recipes/blob/9bff2baf8a0678c6886f8591d9fc8dea201895d3/emulate/example.js#L20-L36
 ```
 
-##### Returns
+##### Returnerar
 
 - **&lt;Function&gt;**
-            **<code><var>returns</var></code>:**   a function to reset the emulation    
+            **<code><var>returns</var></code>:**   en funktion för att återställa emuleringen

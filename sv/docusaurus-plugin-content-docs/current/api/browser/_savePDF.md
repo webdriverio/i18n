@@ -24,7 +24,7 @@ browser.savePDF(filepath, { orientation, scale, background, width, height, top, 
     <tr>
       <td><code><var>filepath</var></code></td>
       <td>`String`</td>
-      <td>sökväg till den genererade pdf-filen (`.pdf`-suffix krävs) relativt till körningsmappen</td>
+      <td>sökväg till den genererade pdf-filen (`.pdf`-suffix krävs) relativt till körningskatalogen</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
@@ -44,7 +44,7 @@ browser.savePDF(filepath, { orientation, scale, background, width, height, top, 
     <tr>
       <td><code><var>options.background</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`boolean`</td>
-      <td>Inkludera bakgrund av PDF-sidan</td>
+      <td>Inkludera bakgrund i PDF-sidan</td>
     </tr>
     <tr>
       <td><code><var>options.width</var></code><br /><span className="label labelWarning">optional</span></td>
@@ -100,4 +100,4 @@ it('should save a PDF screenshot of the browser view', function () {
 ##### Returns
 
 - **&lt;Buffer&gt;**
-            **<code><var>return</var></code>:**    screenshot buffer    
+            **<code><var>return</var></code>:**    screenshot buffer

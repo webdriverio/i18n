@@ -8,11 +8,11 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 :::info
 
-このコマンドはReact v16.xを使用したアプリケーションでのみ動作します。Reactセレクタの詳細については[セレクタ](/docs/selectors#react-selectors)ガイドをご覧ください。
+このコマンドはReact v16.xを使用するアプリケーションでのみ動作します。Reactセレクタについての詳細は[セレクタ](/docs/selectors#react-selectors)ガイドをご覧ください。
 
 :::
 
-##### 使用法
+##### 使用方法
 
 ```js
 browser.react$$(selector, { props, state })
@@ -33,19 +33,19 @@ browser.react$$(selector, { props, state })
       <td>Reactコンポーネントの</td>
     </tr>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`ReactSelectorOptions`</td>
       <td>Reactセレクタオプション</td>
     </tr>
     <tr>
-      <td><code><var>options.props</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options.props</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Object`</td>
       <td>要素が含むべきReact props</td>
     </tr>
     <tr>
-      <td><code><var>options.state</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options.state</var></code><br /><span className="label labelWarning">optional</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>要素があるべきReact state</td>
+      <td>要素が持つべきReact state</td>
     </tr>
   </tbody>
 </table>

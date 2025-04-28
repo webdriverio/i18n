@@ -31,30 +31,30 @@ export const config = {
 -   **Typ:** `number`
 -   **Obligatorisk:** Nej
 -   **Standard:** `6`
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Padding som behöver läggas till adressfältet på iOS och Android för att göra en korrekt utskärning av visningsområdet.
+Padding som behöver läggas till adressfältet på iOS och Android för att göra en korrekt urklippning av viewporten.
 
 ### `autoElementScroll`
 
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `true`
--   **Stöds:** Webb, Hybrid App (Webview)
+-   **Stöds:** Web, Hybrid App (Webview)
 
-Detta alternativ låter dig inaktivera automatisk rullning av element till visningsområdet när en elementskärmdump skapas.
+Det här alternativet låter dig inaktivera automatisk scrollning av elementet till visning när en elementskärmdump skapas.
 
 ### `addIOSBezelCorners`
 
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `false`
--   **Stöds:** Webb, Hybrid App (Webview), Native App
+-   **Stöds:** Web, Hybrid App (Webview), Native App
 
-Lägg till kantskärmar och notch/dynamic island till skärmdumpen för iOS-enheter.
+Lägg till bezelkanter och skärmutskärning/dynamisk ö till skärmdumpen för iOS-enheter.
 
-:::info NOTERA
-Detta kan endast göras när enhetsnamnet **KAN** automatiskt bestämmas och matchar följande lista av normaliserade enhetsnamn. Normalisering kommer att utföras av denna modul.
+:::info OBS
+Detta kan endast göras när enhetsnamnet **KAN** automatiskt avgöras och matchar följande lista över normaliserade enhetsnamn. Normalisering kommer att göras av denna modul.
 **iPhone:**
 
 -   iPhone X: `iphonex`
@@ -94,18 +94,18 @@ Detta kan endast göras när enhetsnamnet **KAN** automatiskt bestämmas och mat
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `true`
--   **Stöds:** Webb, Hybrid App (Webview), Native App
+-   **Stöds:** Web, Hybrid App (Webview), Native App
 
-Om ingen baseline-bild hittas under jämförelsen kopieras bilden automatiskt till baseline-mappen.
+Om ingen baslinjebild hittas under jämförelsen kopieras bilden automatiskt till baslinjemappen.
 
 ### `baselineFolder`
 
 -   **Typ:** `string|()=> string`
 -   **Obligatorisk:** Nej
 -   **Standard:** `.path/to/testfile/__snapshots__/`
--   **Stöds:** Webb, Hybrid App (Webview), Native App
+-   **Stöds:** Web, Hybrid App (Webview), Native App
 
-Katalogen som kommer att innehålla alla baseline-bilder som används under jämförelsen. Om inget anges kommer standardvärdet att användas, vilket lagrar filerna i en `__snapshots__/`-mapp bredvid den spec som kör de visuella testerna. En funktion som returnerar en `string` kan också användas för att ställa in värdet för `baselineFolder`:
+Katalogen som kommer att innehålla alla baslinjebilder som används under jämförelsen. Om den inte anges kommer standardvärdet att användas, vilket kommer att lagra filerna i en `__snapshots__/`-mapp bredvid specifikationen som kör de visuella testerna. En funktion som returnerar en `string` kan också användas för att ställa in värdet för `baselineFolder`:
 
 ```js
 {
@@ -125,21 +125,21 @@ Katalogen som kommer att innehålla alla baseline-bilder som används under jäm
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `false`
--   **Stöds:** Webb, Hybrid App (Webview), Native App
+-   **Stöds:** Web, Hybrid App (Webview), Native App
 
-Ta bort runtime-mappen (`actual` & `diff`) vid initialisering
+Ta bort körningsmappen (`actual` & `diff`) vid initialisering
 
-:::info NOTERA
-Detta fungerar endast när [`screenshotPath`](#screenshotpath) är inställt genom plugin-alternativen, och **KOMMER INTE ATT FUNGERA** när du ställer in mapparna i metoderna
+:::info OBS
+Detta fungerar endast när [`screenshotPath`](#screenshotpath) är inställd genom plugin-alternativen, och **KOMMER INTE ATT FUNGERA** när du ställer in mapparna i metoderna
 :::
 
-### `createJsonReportFiles` **(NY)**
+### `createJsonReportFiles` **(NYTT)**
 
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `false`
 
-Du har nu möjlighet att exportera jämförelseresultaten till en JSON-rapportfil. Genom att tillhandahålla alternativet `createJsonReportFiles: true`, kommer varje bild som jämförs att skapa en rapport som lagras i mappen `actual`, bredvid varje `actual`-bildresultat. Utdata kommer att se ut så här:
+Du har nu möjlighet att exportera jämförelseresultaten till en JSON-rapportfil. Genom att ange alternativet `createJsonReportFiles: true` kommer varje bild som jämförs att skapa en rapport som lagras i mappen `actual`, bredvid varje `actual`-bildresultat. Utdata kommer att se ut så här:
 
 ```json
 {
@@ -202,7 +202,7 @@ Du har nu möjlighet att exportera jämförelseresultaten till en JSON-rapportfi
 }
 ```
 
-När alla tester har körts kommer en ny JSON-fil med samlingen av jämförelserna att genereras och kan hittas i roten av din `actual`-mapp. Data grupperas efter:
+När alla tester har utförts kommer en ny JSON-fil med samlingen av jämförelserna att genereras och kan hittas i rotkatalogen för din mapp `actual`. Data grupperas efter:
 
 -   `describe` för Jasmine/Mocha eller `Feature` för CucumberJS
 -   `it` för Jasmine/Mocha eller `Scenario` för CucumberJS
@@ -252,9 +252,9 @@ När alla tester har körts kommer en ny JSON-fil med samlingen av jämförelser
 ]
 ```
 
-Rapportdata ger dig möjligheten att bygga din egen visuella rapport utan att behöva göra all magi och datainsamling själv.
+Rapportdata ger dig möjlighet att bygga din egen visuella rapport utan att göra all magi och datainsamling själv.
 
-:::info NOTERA
+:::info OBS
 Du behöver använda `@wdio/visual-testing` version `5.2.0` eller högre
 :::
 
@@ -263,32 +263,32 @@ Du behöver använda `@wdio/visual-testing` version `5.2.0` eller högre
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `false`
--   **Stöds:** Webb, Hybrid App (Webview)
+-   **Stöds:** Web, Hybrid App (Webview)
 
-Aktivera/inaktivera all `input`, `textarea`, `[contenteditable]` markör "blinkande" i applikationen. Om inställt på `true` kommer markören att ställas in på `transparent` innan en skärmdump tas och återställas efteråt
+Aktivera/inaktivera all "blinkande" markör i `input`, `textarea`, `[contenteditable]` i applikationen. Om inställd på `true` kommer markören att ställas in på `transparent` innan en skärmdump tas och återställas när det är klart
 
 ### `disableCSSAnimation`
 
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `false`
--   **Stöds:** Webb, Hybrid App (Webview)
+-   **Stöds:** Web, Hybrid App (Webview)
 
-Aktivera/inaktivera alla CSS-animationer i applikationen. Om inställt på `true` kommer alla animationer att inaktiveras innan en skärmdump tas och återställas efteråt
+Aktivera/inaktivera alla CSS-animationer i applikationen. Om inställd på `true` kommer alla animationer att inaktiveras innan en skärmdump tas och återställas när det är klart
 
 ### `enableLayoutTesting`
 
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `false`
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Detta döljer all text på en sida så att endast layouten kommer att användas för jämförelse. Döljning kommer att göras genom att lägga till stilen `'color': 'transparent !important'` till **varje** element.
+Detta döljer all text på en sida så att endast layouten används för jämförelse. Döljandet görs genom att lägga till stilen `'color': 'transparent !important'` till **varje** element.
 
-För utdata, se [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+För utdata se [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
 
 :::info
-Genom att använda denna flagga kommer varje element som innehåller text (alltså inte bara `p, h1, h2, h3, h4, h5, h6, span, a, li`, utan även `div|button|..`) att få denna egenskap. Det finns **ingen** möjlighet att anpassa detta.
+Genom att använda denna flagga kommer varje element som innehåller text (så inte bara `p, h1, h2, h3, h4, h5, h6, span, a, li`, utan också `div|button|..`) att få denna egenskap. Det finns **ingen** möjlighet att anpassa detta.
 :::
 
 ### `formatImageName`
@@ -296,32 +296,32 @@ Genom att använda denna flagga kommer varje element som innehåller text (allts
 -   **Typ:** `string`
 -   **Obligatorisk:** Nej
 -   **Standard:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **Stöds:** Webb, Hybrid App (Webview), Native App
+-   **Stöds:** Web, Hybrid App (Webview), Native App
 
-Namnet på de sparade bilderna kan anpassas genom att skicka parametern `formatImageName` med en formatsträng som:
+Namnet på de sparade bilderna kan anpassas genom att skicka parametern `formatImageName` med en formaterad sträng som:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-Följande variabler kan skickas för att formatera strängen och kommer automatiskt att läsas från instansens kapabiliteter.
+Följande variabler kan skickas för att formatera strängen och kommer automatiskt att läsas från instansens capabilities.
 Om de inte kan bestämmas kommer standardvärdena att användas.
 
--   `browserName`: Namnet på webbläsaren i de tillhandahållna kapabiliteterna
--   `browserVersion`: Versionen av webbläsaren som anges i kapabiliteterna
--   `deviceName`: Enhetsnamnet från kapabiliteterna
+-   `browserName`: Namnet på webbläsaren i de angivna capabilities
+-   `browserVersion`: Versionen av webbläsaren som anges i capabilities
+-   `deviceName`: Enhetsnamnet från capabilities
 -   `dpr`: Enhetens pixelförhållande
 -   `height`: Skärmens höjd
--   `logName`: LogName från kapabiliteterna
--   `mobile`: Detta lägger till `_app`, eller webbläsarnamnet efter `deviceName` för att skilja appskärmdumpar från webbläsarskärmdumpar
--   `platformName`: Namnet på plattformen i de tillhandahållna kapabiliteterna
--   `platformVersion`: Versionen av plattformen som anges i kapabiliteterna
--   `tag`: Taggen som anges i metoderna som anropas
+-   `logName`: LogName från capabilities
+-   `mobile`: Detta lägger till `_app` eller webbläsarnamnet efter `deviceName` för att skilja app-skärmdumpar från webbläsarskärmdumpar
+-   `platformName`: Namnet på plattformen i de angivna capabilities
+-   `platformVersion`: Versionen av plattformen som anges i capabilities
+-   `tag`: Taggen som tillhandahålls i metoderna som anropas
 -   `width`: Skärmens bredd
 
 :::info
 
-Du kan inte ange anpassade sökvägar/mappar i `formatImageName`. Om du vill ändra sökvägen, vänligen kontrollera ändring av följande alternativ:
+Du kan inte ange anpassade sökvägar/mappar i `formatImageName`. Om du vill ändra sökvägen, kontrollera då följande alternativ:
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
@@ -334,13 +334,13 @@ Du kan inte ange anpassade sökvägar/mappar i `formatImageName`. Om du vill än
 -   **Typ:** `number`
 -   **Obligatorisk:** Nej
 -   **Standard:** `1500`
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Tidsgränsen i millisekunder att vänta efter en rullning. Detta kan hjälpa till att identifiera sidor med lat laddning.
+Timeout i millisekunder att vänta efter en scrollning. Detta kan hjälpa till att identifiera sidor med lat inläsning.
 
 :::info
 
-Detta fungerar endast när service/metodalternativet `userBasedFullPageScreenshot` är inställt på `true`, se även [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
+Detta fungerar endast när tjänst-/metodalternativet `userBasedFullPageScreenshot` är inställt på `true`, se även [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
 
 :::
 
@@ -349,16 +349,16 @@ Detta fungerar endast när service/metodalternativet `userBasedFullPageScreensho
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `true`
--   **Stöds:** Webb, Hybrid App (Webview)
+-   **Stöds:** Web, Hybrid App (Webview)
 
-Dölj rullningslister i applikationen. Om inställt på true kommer alla rullningslister att inaktiveras innan en skärmdump tas. Detta är inställt på standard `true` för att förhindra extra problem.
+Dölj rullningslister i applikationen. Om inställd på true kommer alla rullningslister att inaktiveras innan en skärmdump tas. Detta är inställt på standard `true` för att förhindra extra problem.
 
 ### `logLevel`
 
 -   **Typ:** `string`
 -   **Obligatorisk:** Nej
 -   **Standard:** `info`
--   **Stöds:** Webb, Hybrid App (Webview), Native App
+-   **Stöds:** Web, Hybrid App (Webview), Native App
 
 Lägger till extra loggar, alternativen är `debug | info | warn | silent`
 
@@ -369,18 +369,18 @@ Fel loggas alltid till konsolen.
 -   **Typ:** `boolean`
 -   **Standard:** `false`
 -   **Obligatorisk:** nej
--   **Stöds:** Webb, Hybrid App (Webview), Native App
+-   **Stöds:** Web, Hybrid App (Webview), Native App
 
-Spara bilderna per instans i en separat mapp så att exempelvis alla Chrome-skärmdumpar sparas i en Chrome-mapp som `desktop_chrome`.
+Spara bilderna per instans i en separat mapp så att till exempel alla Chrome-skärmdumpar sparas i en Chrome-mapp som `desktop_chrome`.
 
 ### `screenshotPath`
 
 -   **Typ:** `string | () => string`
 -   **Standard:** `.tmp/`
 -   **Obligatorisk:** nej
--   **Stöds:** Webb, Hybrid App (Webview), Native App
+-   **Stöds:** Web, Hybrid App (Webview), Native App
 
-Katalogen som kommer att innehålla alla faktiska/olika skärmdumpar. Om inget anges kommer standardvärdet att användas. En funktion som
+Katalogen som kommer att innehålla alla faktiska/olika skärmdumpar. Om den inte anges kommer standardvärdet att användas. En funktion som
 returnerar en sträng kan också användas för att ställa in värdet för screenshotPath:
 
 ```js
@@ -400,39 +400,39 @@ returnerar en sträng kan också användas för att ställa in värdet för scre
 
 -   **Typ:** `number`
 -   **Obligatorisk:** Nej
--   **Standard:** `6` för Android och `15` för iOS (`6` som standard och `9` läggs till automatiskt för den möjliga hemknappen på iPhones med en notch eller iPads som har en hemknapp)
--   **Stöds:** Webb
+-   **Standard:** `6` för Android och `15` för iOS (`6` som standard och `9` läggs till automatiskt för den möjliga hemknappen på iPhones med en skärmutskärning eller iPads som har en hemknapp)
+-   **Stöds:** Web
 
-Padding som behöver läggas till verktygsfältet på iOS och Android för att göra en korrekt utskärning av visningsområdet.
+Padding som behöver läggas till verktygsfältet på iOS och Android för att göra en korrekt urklippning av viewporten.
 
 ### `userBasedFullPageScreenshot`
 
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `false`
--   **Stöds:** Webb, Hybrid App (Webview) **Introducerad i visual-service@7.0.0**
+-   **Stöds:** Web, Hybrid App (Webview) **Introducerat i visual-service@7.0.0**
 
-Som standard fångas fullsidesskärmdumpar på desktop-webben med WebDriver BiDi-protokollet, vilket möjliggör snabba, stabila och konsekventa skärmdumpar utan rullning.
-När userBasedFullPageScreenshot är inställt på true simulerar skärmdumpsprocessen en verklig användare: rullning genom sidan, fånga visningsområdesstorleksskärmdumpar och sammanfoga dem. Denna metod är användbar för sidor med lat laddning av innehåll eller dynamisk rendering som beror på rullningsposition.
+Som standard tas skärmdumpar av hela sidor på desktop-webben med WebDriver BiDi-protokollet, vilket möjliggör snabba, stabila och konsekventa skärmdumpar utan scrollning.
+När userBasedFullPageScreenshot är inställt på true, simulerar skärmdumpsprocessen en verklig användare: scrollar genom sidan, tar skärmdumpar i viewportstorlek och sätter ihop dem. Denna metod är användbar för sidor med lat inläsning av innehåll eller dynamisk rendering som beror på scrollpositionen.
 
-Använd detta alternativ om din sida är beroende av innehållsladdning under rullning eller om du vill bevara beteendet för äldre skärmdumpsmetoder.
+Använd detta alternativ om din sida är beroende av innehållsinläsning medan du scrollar eller om du vill bevara beteendet hos äldre skärmdumpsmetoder.
 
 ### `waitForFontsLoaded`
 
 -   **Typ:** `boolean`
 -   **Obligatorisk:** Nej
 -   **Standard:** `true`
--   **Stöds:** Webb, Hybrid App (Webview)
+-   **Stöds:** Web, Hybrid App (Webview)
 
-Typsnitt, inklusive tredjepartstypsnitt, kan laddas synkront eller asynkront. Asynkron laddning innebär att typsnitt kan laddas efter att WebdriverIO fastställer att en sida har laddats helt. För att förhindra problem med typsnittåtergivning kommer denna modul som standard att vänta på att alla typsnitt laddas innan en skärmdump tas.
+Typsnitt, inklusive tredjepartstypsnitt, kan laddas synkront eller asynkront. Asynkron inläsning innebär att typsnitt kan laddas efter att WebdriverIO har fastställt att en sida har fullständigt laddats. För att förhindra problem med typsnittsrendering kommer denna modul som standard att vänta på att alla typsnitt ska laddas innan en skärmdump tas.
 
 ## Tabbable-alternativ
 
-:::info NOTERA
+:::info OBS
 
-Denna modul stöder också att rita hur en användare skulle använda sitt tangentbord för att _tabba_ genom webbplatsen genom att rita linjer och punkter från tabbable element till tabbable element.<br/>
-Arbetet är inspirerat av [Viv Richards](https://github.com/vivrichards600) hans blogginlägg om ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-Sättet tabbable element väljs baseras på modulen [tabbable](https://github.com/davidtheclark/tabbable). Om det finns några problem angående tabbning, vänligen kontrollera [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) och särskilt [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+Denna modul stödjer också att rita hur en användare skulle använda sitt tangentbord för att _tabba_ genom webbplatsen genom att rita linjer och punkter från tabbable-element till tabbable-element.<br/>
+Arbetet är inspirerat av [Viv Richards](https://github.com/vivrichards600) blogginlägg om ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
+Sättet tabbable-element väljs på baseras på modulen [tabbable](https://github.com/davidtheclark/tabbable). Om det finns några problem angående tabbningen, kontrollera [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) och särskilt avsnittet [More details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
@@ -441,7 +441,7 @@ Sättet tabbable element väljs baseras på modulen [tabbable](https://github.co
 -   **Typ:** `object`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
 Alternativen som kan ändras för linjerna och punkterna om du använder `{save|check}Tabbable`-metoderna. Alternativen förklaras nedan.
 
@@ -450,7 +450,7 @@ Alternativen som kan ändras för linjerna och punkterna om du använder `{save|
 -   **Typ:** `object`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
 Alternativen för att ändra cirkeln.
 
@@ -459,45 +459,45 @@ Alternativen för att ändra cirkeln.
 -   **Typ:** `string`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Bakgrundsfärgen på cirkeln.
+Bakgrundsfärgen för cirkeln.
 
 ##### `tabbableOptions.circle.borderColor`
 
 -   **Typ:** `string`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Kantfärgen på cirkeln.
+Kantfärgen för cirkeln.
 
 ##### `tabbableOptions.circle.borderWidth`
 
 -   **Typ:** `number`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Kantbredden på cirkeln.
+Kantbredden för cirkeln.
 
 ##### `tabbableOptions.circle.fontColor`
 
 -   **Typ:** `string`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Färgen på texten i cirkeln. Detta kommer endast att visas om [`showNumber`](./#tabbableoptionscircleshownumber) är inställt på `true`.
+Färgen på texten i cirkeln. Detta kommer endast att visas om [`showNumber`](./#tabbableoptionscircleshownumber) är inställd på `true`.
 
 ##### `tabbableOptions.circle.fontFamily`
 
 -   **Typ:** `string`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Typsnittsfamiljen för texten i cirkeln. Detta kommer endast att visas om [`showNumber`](./#tabbableoptionscircleshownumber) är inställt på `true`.
+Familjen av teckensnittet för texten i cirkeln. Detta kommer endast att visas om [`showNumber`](./#tabbableoptionscircleshownumber) är inställd på `true`.
 
 Se till att ställa in typsnitt som stöds av webbläsarna.
 
@@ -506,16 +506,16 @@ Se till att ställa in typsnitt som stöds av webbläsarna.
 -   **Typ:** `number`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
-Storleken på texten i cirkeln. Detta kommer endast att visas om [`showNumber`](./#tabbableoptionscircleshownumber) är inställt på `true`.
+Storleken på teckensnittet för texten i cirkeln. Detta kommer endast att visas om [`showNumber`](./#tabbableoptionscircleshownumber) är inställd på `true`.
 
 ##### `tabbableOptions.circle.size`
 
 -   **Typ:** `number`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
 Storleken på cirkeln.
 
@@ -524,7 +524,7 @@ Storleken på cirkeln.
 -   **Typ:** `showNumber`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
 Visa tabbsekvensens nummer i cirkeln.
 
@@ -533,7 +533,7 @@ Visa tabbsekvensens nummer i cirkeln.
 -   **Typ:** `object`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
 Alternativen för att ändra linjen.
 
@@ -542,7 +542,7 @@ Alternativen för att ändra linjen.
 -   **Typ:** `string`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
 Färgen på linjen.
 
@@ -551,7 +551,7 @@ Färgen på linjen.
 -   **Typ:** `number`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) för alla standardvärden
--   **Stöds:** Webb
+-   **Stöds:** Web
 
 Bredden på linjen.
 
@@ -562,6 +562,6 @@ Bredden på linjen.
 -   **Typ:** `object`
 -   **Obligatorisk:** Nej
 -   **Standard:** Se [här](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) för alla standardvärden
--   **Stöds:** Webb, Hybrid App (Webview), Native App (Se [Method Compare options](./method-options#compare-check-options) för mer information)
+-   **Stöds:** Web, Hybrid App (Webview), Native App (Se [Method Compare options](./method-options#compare-check-options) för mer information)
 
-Jämförelsealternativen kan också ställas in som servicealternativ, de beskrivs i [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+Jämförelsealternativen kan också ställas in som service-alternativ, de beskrivs i [Method Compare options](/docs/visual-testing/method-options#compare-check-options)

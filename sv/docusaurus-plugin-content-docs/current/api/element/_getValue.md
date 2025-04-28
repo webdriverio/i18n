@@ -4,8 +4,8 @@ title: getValue
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getValue.ts
 ---
 
-Hämta värdet av en `<textarea>`, `<select>` eller text `<input>` som hittas med den angivna selektorn.
-Om flera element hittas via den angivna selektorn returneras istället en array med värden.
+Hämta värdet av en `<textarea>`, `<select>` eller text `<input>` som hittas av angiven väljare.
+Om flera element hittas via den angivna väljaren, returneras en array med värden istället.
 För input med checkbox eller radio-typ, använd isSelected.
 
 ##### Användning
@@ -31,4 +31,4 @@ it('should demonstrate the getValue command', async () => {
 ##### Returnerar
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**   begärt elements/elements värde
+            **<code><var>return</var></code>:**   begärt element(s) värde

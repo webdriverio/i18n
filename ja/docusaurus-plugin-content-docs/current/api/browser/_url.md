@@ -4,9 +4,9 @@ title: url
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/url.ts
 ---
 
-`url`コマンドはブラウザでURLを読み込みます。設定でbaseUrlが指定されている場合、node.jsのurl.resolve()メソッドを使用してurlパラメータの前に追加されます。同じURLで`browser.url('...')`を呼び出すと、ページの再読み込みがトリガーされます。ただし、URLにハッシュが含まれている場合、ブラウザは新しいナビゲーションをトリガーせず、ユーザーはナビゲーションをトリガーするために[refresh](/docs/api/webdriver#refresh)する必要があります。
+`url`コマンドはブラウザでURLを読み込みます。設定でbaseUrlが指定されている場合、node.jsのurl.resolve()メソッドを使用してurlパラメータの前に追加されます。前回と同じURLで`browser.url('...')`を呼び出すと、ページの再読み込みがトリガーされます。ただし、URLにハッシュが含まれている場合、ブラウザは新しいナビゲーションをトリガーせず、ユーザーは[refresh](/docs/api/webdriver#refresh)を実行して新しいナビゲーションをトリガーする必要があります。
 
-このコマンドは、ページ読み込みのリクエストとレスポンスデータに関する情報を含む`WebdriverIO.Request`オブジェクトを返します：
+このコマンドはページロードのリクエストとレスポンスデータに関する情報を含む`WebdriverIO.Request`オブジェクトを返します：
 
 ```ts
 interface WebdriverIO.Request {
@@ -42,10 +42,10 @@ interface WebdriverIO.Request {
 このコマンドは以下のオプションをサポートしています：
 
 ### wait
-リクエストされたリソースがコマンドを完了する前に持つべき望ましい状態。
+要求されたリソースがコマンドを完了する前に持つべき状態。
 以下の状態をサポートしています：
 
- - `none`: ページリクエストが行われ、レスポンスを受信した後に待機しない
+ - `none`: ページリクエスト後とレスポンス受信後に待機しない
  - `interactive`: ページがインタラクティブになるまで待機
  - `complete`: ページのDOMツリーが完全に読み込まれるまで待機
  - `networkIdle`: 保留中のネットワークリクエストがなくなるまで待機
@@ -59,17 +59,17 @@ __デフォルト:__ `{}`
 ### auth
 
 基本認証の資格情報。
-注：これは、`headers`オプションで提供された既存の`Authorization`ヘッダーを上書きします。
+注：これは`headers`オプションで提供されている既存の`Authorization`ヘッダーを上書きします。
 
 ### timeout
 
-数値に設定すると、コマンドは返す前にページが指定されたミリ秒数ですべてのレスポンスを読み込むのを待ちます。
+数値に設定すると、コマンドは指定されたミリ秒数だけページがすべてのレスポンスを読み込むのを待ってから戻ります。
 
-注：これが効果を発揮するには、`wait`オプションが`networkIdle`に設定されている必要があります。
+注意：これが影響を与えるには、`wait`オプションが`networkIdle`に設定されている必要があります。
 
 __デフォルト:__ `5000`
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
@@ -80,42 +80,42 @@ browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>タイプ</th><th>詳細</th>
+      <th>名前</th><th>型</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>url</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>url</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`string`</td>
       <td>ナビゲートするURL</td>
     </tr>
     <tr>
-      <td><code><var>options</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`UrlOptions`</td>
       <td>ナビゲーションオプション</td>
     </tr>
     <tr>
-      <td><code><var>options.wait</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options.wait</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`'none', 'interactive', 'networkIdle', 'complete'`</td>
-      <td>リクエストされたリソースがコマンドを完了する前に持つべき望ましい状態。デフォルト: 'complete'</td>
+      <td>コマンドを完了する前にリクエストされたリソースがあるべき状態。デフォルト: 'complete'</td>
     </tr>
     <tr>
-      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`number`</td>
-      <td>数値に設定すると、コマンドは返す前にページが指定されたミリ秒数ですべてのレスポンスを読み込むのを待ちます。デフォルト: 5000</td>
+      <td>数値に設定すると、コマンドは返す前に指定されたミリ秒数だけページがすべてのレスポンスを読み込むのを待ちます。デフォルト: 5000</td>
     </tr>
     <tr>
-      <td><code><var>options.onBeforeLoad</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options.onBeforeLoad</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`Function`</td>
       <td>ページがすべてのリソースを読み込む前に呼び出される関数。環境を簡単にモックすることができます。例えば、アプリケーションが使用するWeb APIを上書きするなど。</td>
     </tr>
     <tr>
-      <td><code><var>options.auth</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options.auth</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`{user: string, pass: string}`</td>
       <td>基本認証の資格情報</td>
     </tr>
     <tr>
-      <td><code><var>options.headers</var></code><br /><span className="label labelWarning">オプション</span></td>
+      <td><code><var>options.headers</var></code><br /><span className="label labelWarning">省略可能</span></td>
       <td>`Record<string, string>`</td>
       <td>リクエストと共に送信されるヘッダー</td>
     </tr>
@@ -127,7 +127,7 @@ browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
 ```js title="url.js"
 // 新しいURLにナビゲート
 const request = await browser.url('https://webdriver.io');
-// urlをログ出力
+// URLをログ出力
 console.log(request.url); // 出力: "https://webdriver.io"
 console.log(request.response?.status); // 出力: 200
 console.log(request.response?.headers); // 出力: { 'content-type': 'text/html; charset=UTF-8' }
@@ -151,7 +151,7 @@ await browser.url('/rootRelative');
 ```
 
 ```js title="basicAuth.js"
-// 基本認証を使用してURLにナビゲート
+// 基本認証付きのURLにナビゲート
 await browser.url('https://the-internet.herokuapp.com/basic_auth', {
     auth: {
         user
@@ -167,7 +167,7 @@ await expect($('p=Congratulations! You must have the proper credentials.').toBeD
 await browser.url('https://pazguille.github.io/demo-battery-api/', {
     onBeforeLoad (win) {
         // "navigator.battery"プロパティをモック
-        // モックされた充電オブジェクトを返す
+        // モックの充電オブジェクトを返す
         win.navigator.getBattery = () => Promise.resolve({
             level: 0.5,
             charging: false,
@@ -176,13 +176,13 @@ await browser.url('https://pazguille.github.io/demo-battery-api/', {
         })
     }
 })
-// 実際のテキストをアサート - 50%充電されています
+// 実際のテキストをアサートできます - 50%充電されています
 await expect($('.battery-percentage')).toHaveText('50%')
-// 1時間分の電力がある
+// そして1時間分の電力があります
 await expect($('.battery-remaining')).toHaveText('01:00)
 ```
 
 ##### 戻り値
 
 - **&lt;WebdriverIO.Request&gt;**
-            **<code><var>returns</var></code>:**  リクエストとレスポンスデータに関する情報を含むページ読み込みのリクエストオブジェクト
+            **<code><var>returns</var></code>:**  リクエストとレスポンスデータに関する情報を含むページロードのリクエストオブジェクト

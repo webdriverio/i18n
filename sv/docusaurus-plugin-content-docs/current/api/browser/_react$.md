@@ -4,11 +4,11 @@ title: react$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/react$.ts
 ---
 
-Kommandot `react$` är ett användbart kommando för att söka React-komponenter baserat på deras faktiska namn och filtrera dem efter egenskaper och tillstånd.
+Kommandot `react$` är ett användbart kommando för att söka efter React-komponenter med deras faktiska namn och filtrera dem efter egenskaper och tillstånd.
 
 :::info
 
-Kommandot fungerar endast med applikationer som använder React v16.x. Läs mer om React-väljare i [Selectors](/docs/selectors#react-selectors) guiden.
+Kommandot fungerar endast med applikationer som använder React v16.x. Läs mer om React-väljare i [Väljare](/docs/selectors#react-selectors) guiden.
 
 :::
 
@@ -30,22 +30,22 @@ browser.react$(selector, { props, state })
     <tr>
       <td><code><var>selector</var></code></td>
       <td>`string`</td>
-      <td>för React-komponent</td>
+      <td>för React-komponenten</td>
     </tr>
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`ReactSelectorOptions`</td>
-      <td>React-väljaralternativ</td>
+      <td>React väljare-alternativ</td>
     </tr>
     <tr>
       <td><code><var>options.props</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Object`</td>
-      <td>React-egenskaper som elementet ska innehålla</td>
+      <td>React-egenskaper som elementet bör innehålla</td>
     </tr>
     <tr>
       <td><code><var>options.state</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Array<any>, number, string, object, boolean`</td>
-      <td>React-tillstånd som elementet ska vara i</td>
+      <td>React-tillstånd som elementet bör vara i</td>
     </tr>
   </tbody>
 </table>

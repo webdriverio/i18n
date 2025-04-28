@@ -50,4 +50,4 @@ it('should demonstrate the getSize command', async () => {
 ##### Returnerar
 
 - **&lt;Object|Number&gt;**
-            **<code><var>return</var></code>:**     begärd elementstorlek (`{ width: <Number>, height: <Number> }`) eller faktisk bredd/höjd som nummer om prop-parameter anges
+            **<code><var>return</var></code>:**     begärd elementstorlek (`{ width: <Number>, height: <Number> }`) eller faktisk bredd/höjd som ett nummer om prop-parametern anges

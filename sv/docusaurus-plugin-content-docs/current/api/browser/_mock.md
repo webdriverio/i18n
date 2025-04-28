@@ -4,14 +4,14 @@ title: mock
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/mock.ts
 ---
 
-Mock-svaret på en begäran. Du kan definiera en mock baserat på matchande 
+Mock svaret på en begäran. Du kan definiera en mock baserad på ett matchande
 [URLPattern](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
 och motsvarande header och statuskod. Att anropa mock-metoden
-returnerar ett stub-objekt som du kan använda för att modifiera svaret på
+returnerar ett stub-objekt som du kan använda för att modifiera svaret från
 webbresursen.
 
 Med stub-objektet kan du antingen returnera ett anpassat svar eller
-låta begäran misslyckas.
+få begäran att misslyckas.
 
 Det finns 3 sätt att modifiera svaret:
 - returnera ett anpassat JSON-objekt (för att stubba API-begäran)
@@ -20,18 +20,18 @@ Det finns 3 sätt att modifiera svaret:
 
 :::info
 
-Observera att användning av kommandot `mock` kräver stöd för WebDriver Bidi. Det är
+Observera att användning av `mock`-kommandot kräver stöd för WebDriver Bidi. Det är
 vanligtvis fallet när du kör tester lokalt i en Chromium-baserad webbläsare eller på
-Firefox samt om du använder en Selenium Grid v4 eller högre. Om du kör tester
-i molnet, se till att din molnleverantör stöder WebDriver Bidi.
+Firefox samt om du använder Selenium Grid v4 eller högre. Om du kör tester
+i molnet, se till att din molnleverantör stödjer WebDriver Bidi.
 
 :::
 
 :::info
 
 `URLPattern` är en experimentell teknik och stöds ännu inte i vissa miljöer, t.ex. Node.js.
-Vi rekommenderar att importera [en polyfill](https://www.npmjs.com/package/urlpattern-polyfill)
-tills funktionen är mer allmänt stödd.
+Vi rekommenderar att du importerar [en polyfill](https://www.npmjs.com/package/urlpattern-polyfill)
+tills funktionen får bredare stöd.
 
 :::
 
@@ -56,34 +56,34 @@ browser.mock(url, { method, requestHeaders, responseHeaders, postData, statusCod
       <td>url att mocka</td>
     </tr>
     <tr>
-      <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>filterOptions</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`MockFilterOptions`</td>
       <td>filtrera mock-resurs med ytterligare alternativ</td>
     </tr>
     <tr>
-      <td><code><var>filterOptions.method</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>filterOptions.method</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`String, Function`</td>
       <td>filtrera resurs efter HTTP-metod</td>
     </tr>
     <tr>
-      <td><code><var>filterOptions.requestHeaders</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>filterOptions.requestHeaders</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Object, Function`</td>
-      <td>filtrera resurs efter specifika request headers</td>
+      <td>filtrera resurs efter specifika begärandehuvuden</td>
     </tr>
     <tr>
-      <td><code><var>filterOptions.responseHeaders</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>filterOptions.responseHeaders</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Object, Function`</td>
-      <td>filtrera resurs efter specifika response headers</td>
+      <td>filtrera resurs efter specifika svarshuvuden</td>
     </tr>
     <tr>
-      <td><code><var>filterOptions.postData</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>filterOptions.postData</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`String, Function`</td>
-      <td>filtrera resurs efter request postData</td>
+      <td>filtrera resurs efter begäran postData</td>
     </tr>
     <tr>
-      <td><code><var>filterOptions.statusCode</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>filterOptions.statusCode</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Number, Function`</td>
-      <td>filtrera resurs efter response statusCode</td>
+      <td>filtrera resurs efter svar statuskod</td>
     </tr>
   </tbody>
 </table>

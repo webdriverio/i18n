@@ -4,7 +4,7 @@ title: longPress
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mobile/longPress.ts
 ---
 
-Utför en långt tryck-gest på det angivna elementet på skärmen.
+Utför en långtrycksgest på det givna elementet på skärmen.
 
 Detta utfärdar ett WebDriver `action`-kommando för det valda elementet. Det är baserat på `click`-kommandot.
 
@@ -37,7 +37,7 @@ $(selector).longPress({ x, y, duration })
     <tr>
       <td><code><var>options</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`LongPressOptions`</td>
-      <td>Långt tryck-alternativ (valfritt)</td>
+      <td>Långtrycksalternativ (valfritt)</td>
     </tr>
     <tr>
       <td><code><var>options.x</var></code><br /><span className="label labelWarning">valfri</span></td>
@@ -52,7 +52,7 @@ $(selector).longPress({ x, y, duration })
     <tr>
       <td><code><var>options.duration</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>Varaktighet för tryckning i ms, standard är 1500 ms <br /><strong>ENDAST MOBIL</strong></td>
+      <td>Tryckets varaktighet i ms, standard är 1500 ms <br /><strong>ENDAST-MOBIL</strong></td>
     </tr>
   </tbody>
 </table>

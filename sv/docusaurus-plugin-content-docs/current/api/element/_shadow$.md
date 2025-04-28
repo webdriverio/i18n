@@ -4,15 +4,15 @@ title: shadow$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/shadow$.ts
 ---
 
-Kom åt ett element inuti ett givet elements shadowRoot. Om du arbetar 
-med många nästlade shadow roots, finns ett alternativt sätt till `shadow$` som 
-är att använda [deep selector](https://webdriver.io/docs/selectors#deep-selectors).
+Komma åt ett element i ett givet elements shadowRoot. Om du arbetar
+med många nästlade shadow roots, är ett alternativt tillvägagångssätt till `shadow$` att
+använda [deep selector](https://webdriver.io/docs/selectors#deep-selectors).
 
 :::info
 
-WebdriverIO går automatiskt igenom shadow roots när du använder kommandona `$` eller `$$`.
-Detta kommando behövs endast om du automatiserar i en miljö som inte 
-stödjer WebDriver Bidi ännu, t.ex. mobil webbtestning med Appium.
+WebdriverIO går automatiskt igenom shadow roots när man använder `$` eller `$$` kommandon.
+Detta kommando behövs endast om du automatiserar i en miljö som inte
+stöder WebDriver Bidi ännu, t.ex. mobil webbtest med Appium.
 
 :::
 
@@ -34,7 +34,7 @@ $(selector).shadow$(selector)
     <tr>
       <td><code><var>selector</var></code></td>
       <td>`String, Function`</td>
-      <td>selector eller JS-funktion för att hämta ett visst element</td>
+      <td>selektor eller JS-funktion för att hämta ett visst element</td>
     </tr>
   </tbody>
 </table>

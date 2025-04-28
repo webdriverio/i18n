@@ -4,9 +4,9 @@ title: pause（一時停止）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/pause.ts
 ---
 
-特定の時間だけ実行を一時停止します。要素が表示されるのを待つためにこのコマンドを使用することはお勧めしません。テスト結果が不安定になるのを避けるため、[`waitForExist`](/docs/api/element/waitForExist)やその他のwaitFor*コマンドを使用する方が良いでしょう。
+指定した時間だけ実行を一時停止します。この命令を要素の表示を待つために使用することはお勧めしません。不安定なテスト結果を避けるために、[`waitForExist`](/docs/api/element/waitForExist)や他のwaitFor*コマンドのような命令を使用する方が良いでしょう。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.pause(milliseconds)

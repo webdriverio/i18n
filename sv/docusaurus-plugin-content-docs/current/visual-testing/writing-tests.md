@@ -8,13 +8,13 @@ import TabItem from '@theme/TabItem';
 
 ## Testrunner Framework Support
 
-`@wdio/visual-service` är test-runner framework agnostisk, vilket betyder att du kan använda den med alla ramverk som WebdriverIO stöder som:
+`@wdio/visual-service` är test-runner ramverksoberoende, vilket betyder att du kan använda det med alla ramverk som WebdriverIO stödjer såsom:
 
 -   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
 -   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
 -   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-I dina tester kan du _spara_ skärmdumpar eller matcha det aktuella visuella tillståndet hos din applikation under test med en baslinje. För detta tillhandahåller tjänsten [anpassade matchare](/docs/api/expect-webdriverio#visual-matcher), såväl som _kontroll_ metoder:
+I dina tester kan du _spara_ skärmbilder eller matcha det aktuella visuella tillståndet för din applikation under test mot en baslinje. För detta tillhandahåller tjänsten [anpassade matchare](/docs/api/expect-webdriverio#visual-matcher), samt _kontroll_-metoder:
 
 <Tabs
     defaultValue="mocha"
@@ -347,7 +347,7 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 
 :::note VIKTIGT
 
-Denna tjänst tillhandahåller `save` och `check`-metoder. Om du kör dina tester för första gången **BÖR DU INTE** kombinera `save` och `compare`-metoder, `check`-metoderna kommer automatiskt att skapa en baslinjesbild för dig
+Denna tjänst tillhandahåller `save` och `check` metoder. Om du kör dina tester för första gången **BÖR DU INTE** kombinera `save` och `compare` metoder, `check`-metoderna kommer automatiskt att skapa en baslinjesbild åt dig
 
 ```sh
 #####################################################################################
@@ -358,7 +358,7 @@ Denna tjänst tillhandahåller `save` och `check`-metoder. Om du kör dina teste
 ```
 
 
-När du har [inaktiverat för att automatiskt spara baslinjsbilder](service-options#autosavebaseline), kommer Promise att avvisas med följande varning.
+När du har [inaktiverat automatisk lagring av baslinjabilder](service-options#autosavebaseline), kommer Promise att avvisas med följande varning.
 
 ```sh
 #####################################################################################
@@ -368,6 +368,6 @@ När du har [inaktiverat för att automatiskt spara baslinjsbilder](service-opti
 #####################################################################################
 ```
 
-Detta innebär att den aktuella skärmdumpen sparas i den aktuella mappen och du **måste manuellt kopiera den till din baslinje**. Om du instansierar `@wdio/visual-service` med [`autoSaveBaseline: true`](./service-options#autosavebaseline) kommer bilden automatiskt att sparas i baslinjemappen.
+Detta betyder att den aktuella skärmbilden sparas i den faktiska mappen och du **måste manuellt kopiera den till din baslinje**. Om du initierar `@wdio/visual-service` med [`autoSaveBaseline: true`](./service-options#autosavebaseline) kommer bilden automatiskt att sparas i baslinjemappen.
 
 :::

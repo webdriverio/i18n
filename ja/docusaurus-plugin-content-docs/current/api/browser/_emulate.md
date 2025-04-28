@@ -4,8 +4,8 @@ title: エミュレート
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/emulate.ts
 ---
 
-WebdriverIOでは、`emulate`コマンドを使用してWeb APIをエミュレートすることができます。これらのWeb APIは
-指定した通りに正確に動作させることができます。以下のスコープがサポートされています：
+WebdriverIOでは、`emulate`コマンドを使用してWeb APIをエミュレートすることができます。これらのWeb APIは、
+指定したとおりに動作させることができます。以下のスコープがサポートされています：
 
 - `geolocation`: 位置情報APIをエミュレート
 - `userAgent`: ユーザーエージェントをエミュレート
@@ -14,7 +14,7 @@ WebdriverIOでは、`emulate`コマンドを使用してWeb APIをエミュレ�
 - `device`: 特定のモバイルまたはデスクトップデバイスをエミュレート
 - `clock`: システムクロックをエミュレート
 
-`emulate`コマンドは、エミュレーションをリセットするために呼び出せる関数を返します。これは
+`emulate`コマンドは、エミュレーションをリセットするために呼び出すことができる関数を返します。これは
 テストやテストスイートの後にエミュレーションをリセットしたい場合に便利です。
 
 詳細については、[エミュレーション](/docs/emulation)ガイドラインをご覧ください。
@@ -27,15 +27,15 @@ WebdriverIOでは、`emulate`コマンドを使用してWeb APIをエミュレ�
 
 :::info
 
-この機能を使用するには、ブラウザがWebDriver Bidiをサポートしている必要があります。最新バージョンのChrome、Edge、
-Firefoxはサポートしていますが、Safari __はサポートしていません__。アップデートについては[wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned)をフォローしてください。
-さらに、クラウドベンダーを使用してブラウザを起動する場合は、ベンダーがWebDriver Bidiをサポートしていることを確認してください。
+この機能にはブラウザのWebDriver Bidiサポートが必要です。Chrome、Edge、
+Firefoxの最新バージョンではサポートされていますが、Safari __ではサポートされていません__。更新情報は[wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned)でフォローしてください。
+さらに、クラウドベンダーを使用してブラウザを起動する場合は、そのベンダーがWebDriver Bidiをサポートしていることを確認してください。
 
 :::
 
 `EmulationOptions`オブジェクトは、スコープに基づいて以下のプロパティを持つことができます：
 
-| スコープ       | オプション                                       |
+| スコープ      | オプション                                     |
 |---------------|--------------------------------------------------|
 | `geolocation` | `{ latitude: number, longitude: number }`        |
 | `userAgent`   | `string`                                         |
@@ -61,12 +61,12 @@ browser.emulate(scope, options)
     <tr>
       <td><code><var>scope</var></code></td>
       <td>`string`</td>
-      <td>エミュレートしたいブラウザの機能、`clock`、`geolocation`、`userAgent`、`colorScheme`または`onLine`のいずれかを指定できます</td>
+      <td>エミュレートしたいブラウザの機能。`clock`、`geolocation`、`userAgent`、`colorScheme`、`onLine`のいずれか</td>
     </tr>
     <tr>
       <td><code><var>options</var></code></td>
       <td>`EmulationOptions`</td>
-      <td>特定のスコープのエミュレーションオプション</td>
+      <td>特定のスコープに対するエミュレーションオプション</td>
     </tr>
   </tbody>
 </table>

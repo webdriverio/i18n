@@ -3,46 +3,46 @@ id: sponsor
 title: Bli en WebdriverIO-sponsor
 ---
 
-WebdriverIO, ett projekt med öppen källkod under MIT-licensen, är fritt tillgängligt för användning. Hållbarheten i detta omfattande ekosystem, tillsammans med utvecklingen av innovativa funktioner, möjliggörs genom det generösa ekonomiska stödet från våra sponsorer, som bidrar väsentligt till underhåll och kontinuerlig tillväxt av projektet.
+WebdriverIO, ett öppen källkodsprojekt under MIT-licensen, är fritt tillgängligt för användning. Hållbarheten för detta omfattande ekosystem, tillsammans med utvecklingen av innovativa funktioner, möjliggörs genom generöst ekonomiskt stöd från våra sponsorer, som bidrar avsevärt till underhåll och kontinuerlig tillväxt av projektet.
 
-## Hur man blir sponsor​
-Sponsring kan göras via [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) eller [OpenCollective](https://opencollective.com/webdriverio). Fakturor kan erhållas via GitHubs betalningssystem. Både återkommande månatliga sponsringar och engångsdonationer accepteras. Återkommande sponsringar berättigar till logotypplaceringar enligt specificerade sponsornivåer.
+## Hur man sponsrar​
+Sponsring kan göras via [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) eller [OpenCollective](https://opencollective.com/webdriverio). Fakturor kan erhållas via GitHubs betalningssystem. Både månatliga återkommande sponsringar och engångsdonationer accepteras. Återkommande sponsringar berättigar till logotypplaceringar enligt specifikationerna i sponsringsnivåer.
 
-Om du har frågor om nivåer, betalningslogistik eller data om sponsorexponering, vänligen kontakta [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
+Om du har frågor angående nivåer, betalningslogistik eller exponeringsdata för sponsorer, vänligen kontakta [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
 
 Du kan också besöka WebdriverIOs [Swag Store](https://shop.webdriver.io/) där alla intäkter från köp går tillbaka till projektutvecklingen.
 
-## Sponsra WebdriverIO som företag​
-Att sponsra WebdriverIO ger dig stor exponering genom vår webbplats (60k+ sidvisningar per månad) och GitHub-projektets README-filer. Dessutom förbättrar stöd till öppen källkod ditt varumärkes rykte, vilket är en viktig tillgång för alla företag som interagerar med utvecklare.
+## Att sponsra WebdriverIO som företag​
+Att sponsra WebdriverIO ger dig stor exponering genom vår webbplats (60k+ sidvisningar per månad) och GitHubs projekt-READMEs. Dessutom förbättrar stöd till OSS ditt varumärkes rykte, vilket är en viktig tillgång för alla företag som interagerar med utvecklare.
 
 Om du använder WebdriverIO för att testa en intäktsgenererande produkt är det affärsmässigt förnuftigt att sponsra WebdriverIOs utveckling: det säkerställer att projektet som din produkt förlitar sig på förblir hälsosamt och aktivt underhållet. Exponeringen och den positiva varumärkesbilden i WebdriverIO-gemenskapen gör det också lättare att attrahera och rekrytera utvecklare och QA-ingenjörer med WebdriverIO-erfarenhet.
 
-__Obs:__ Vi accepterar inte donationer från spelsajter, uppsatsskrivningstjänster, politiska grupper, hatgrupper, vuxenunderhållningssajter eller andra organisationer som vi inte tror bidrar till projektets bästa. Vi erbjuder inte reklam, vi är ett projekt med öppen källkod som söker ekonomiskt stöd från våra användare.
+__Obs!__ Vi accepterar inte donationer från spelsidor, uppsatsskrivningstjänster, politiska grupper, hatgrupper, vuxenunderhållningssidor eller andra organisationer som vi inte tror bidrar till projektets bästa. Vi erbjuder inte reklam, vi är ett öppen källkodsprojekt som söker ekonomiskt stöd från våra användare.
 
-## Sponsra WebdriverIO som individ​
-Om du är en individuell användare och har uppskattat produktiviteten med WebdriverIO, överväg att donera som ett tecken på uppskattning - som att bjuda oss på kaffe då och då. Många av våra teammedlemmar accepterar sponsring och donationer via GitHub Sponsors.
+## Att sponsra WebdriverIO som individ​
+Om du är en enskild användare och har uppskattat produktiviteten med att använda WebdriverIO, överväg att donera som ett tecken på uppskattning - som att köpa oss en kopp kaffe då och då. Många av våra teammedlemmar accepterar sponsring och donationer via GitHub Sponsors.
 
-Du kan också försöka övertyga din arbetsgivare att sponsra WebdriverIO som företag. Detta kanske inte är lätt, men företagssponsring har vanligtvis mycket större påverkan på hållbarheten hos projekt med öppen källkod än individuella donationer, så du hjälper oss mycket mer om du lyckas.
+Du kan också försöka övertyga din arbetsgivare att sponsra WebdriverIO som företag. Detta kanske inte är lätt, men företagssponsring har vanligtvis en mycket större påverkan på hållbarheten för OSS-projekt än individuella donationer, så du kommer att hjälpa oss mycket mer om du lyckas.
 
-## Fördelar per nivå​
+## Fördelar på olika nivåer​
 
 - __💎 Premium (USD $1000/mån eller högre):__
   - Begränsat till två sponsorer globalt
-  - Exklusiv logotypplacering över vikningen på förstasidan av webdriver.io (~2,8k unika besökare dagligen).
+  - Exklusiv placering av logotyp överst på förstasidan av webdriver.io (~2,8k unika besökare dagligen).
   - Mest framträdande logotypplacering på alla platser från nivåerna nedan.
   - Garanterad exklusivitet under minst ett år, under vilket ingen annan enhet kan "överbjuda" eller ersätta dem, vilket säkerställer en fast period av partnerskap och synlighet.
-- __🥇 Guld (USD $500 / mån):__
+- __🥇 Guld (USD $500/mån):__
   - Stor logotypplacering på förstasidan av [webdriver.io](https://webdriver.io/)
-  - Stor logotypplacering i [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) och [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)-arkivet.
-- __🥈 Silver (USD $250 / mån):__
+  - Stor logotypplacering i [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) och [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)-repositoriet.
+- __🥈 Silver (USD $250/mån):__
   - Medelstor logotypplacering på denna sponsorsida
-  - Medelstor logotypplacering i [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) och [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)-arkivet.
-- __🥉 Brons (USD $100 / mån):__
+  - Medelstor logotypplacering i [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) och [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)-repositoriet.
+- __🥉 Brons (USD $100/mån):__
   - Ditt namn eller företagslogotyp (liten) kommer att placeras i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) och [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)-filerna.
-- __🍺 Generös Supporter (USD $50 / mån):__
-  - Ditt namn kommer att listas under avsnittet "Generösa Supportrar" i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) och [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)-filerna.
-- __☕️ Individuell Supporter (USD $5 / mån):__
-  - Namn listat i [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)-filen i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)-arkivet.
+- __🍺 Generös supporter (USD $50/mån):__
+  - Ditt namn kommer att listas under avsnittet "Generösa supporters" i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) och [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)-filerna.
+- __☕️ Individuell supporter (USD $5/mån):__
+  - Namn listat i [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)-filen i [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)-repositoriet.
 
 ---
 
@@ -126,7 +126,7 @@ Bli en [Bronssponsor](https://opencollective.com/webdriverio/contribute/bronze-s
 <br />
 <br />
 
-### 🙇 Tidigare noterbara sponsorer
+### 🙇 Anmärkningsvärda tidigare sponsorer
 
 Vi är tacksamma för stödet från alla våra sponsorer! Här är några av de företag som har stöttat WebdriverIO tidigare.
 

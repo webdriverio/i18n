@@ -1,18 +1,18 @@
 ---
 id: vscode-extensions
-title: VS Codeエクステンションのテスト
+title: VS Code 拡張機能のテスト
 ---
 
-WebdriverIOでは、[VS Code](https://code.visualstudio.com/)拡張機能をVS Codeデスクトップ IDEまたはウェブ拡張機能としてエンドツーエンドでシームレスにテストすることができます。拡張機能のパスを提供するだけで、フレームワークが残りの作業を行います。[`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service)を使用すれば、すべてが管理され、さらに以下のような機能が提供されます：
+WebdriverIOを使用すると、[VS Code](https://code.visualstudio.com/)拡張機能をVS Codeデスクトップ IDEまたはWeb拡張機能としてシームレスにエンドツーエンドでテストできます。拡張機能へのパスを提供するだけで、フレームワークが残りの処理を行います。[`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service)によって、すべてが処理されるだけでなく、さらに多くの機能があります：
 
 - 🏗️ VSCodeのインストール（安定版、インサイダー版、または指定したバージョン）
 - ⬇️ 特定のVSCodeバージョンに対応するChromedriverのダウンロード
 - 🚀 テストからVSCode APIにアクセスする機能
-- 🖥️ カスタムユーザー設定でVSCodeを起動（Ubuntu、MacOS、Windowsでのサポートを含む）
-- 🌐 またはウェブ拡張機能のテスト用にブラウザからアクセスできるようVSCodeをサーバーから提供
+- 🖥️ カスタムユーザー設定でのVSCodeの起動（Ubuntu、MacOS、WindowsのVSCodeをサポート）
+- 🌐 またはWeb拡張機能のテスト用にVSCodeをサーバーから提供
 - 📔 VSCodeバージョンに合わせたロケーターを持つページオブジェクトのブートストラップ
 
-## はじめに
+## 始めるには
 
 新しいWebdriverIOプロジェクトを開始するには、次のコマンドを実行します：
 
@@ -20,11 +20,11 @@ WebdriverIOでは、[VS Code](https://code.visualstudio.com/)拡張機能をVS C
 npm create wdio@latest ./
 ```
 
-インストールウィザードが手順を案内します。テストの種類を尋ねられたら、「VS Code Extension Testing」を選択し、その後はデフォルトのままにするか、好みに応じて変更してください。
+インストールウィザードが手順をガイドします。どのようなテストを行いたいかを尋ねられたら、必ず_「VS Code拡張機能のテスト」_を選択し、その後はデフォルトのままにするか、好みに合わせて変更してください。
 
 ## 設定例
 
-このサービスを使用するには、サービスのリストに `vscode` を追加し、オプションで設定オブジェクトを指定します。これによりWebdriverIOは指定されたVSCodeバイナリと適切なChromedriverバージョンをダウンロードします：
+このサービスを使用するには、サービスのリストに`vscode`を追加し、必要に応じて設定オブジェクトを続けます。これによりWebdriverIOは指定されたVSCodeバイナリと適切なChromedriverバージョンをダウンロードします：
 
 ```js
 // wdio.conf.ts
@@ -33,7 +33,7 @@ export const config = {
     // ...
     capabilities: [{
         browserName: 'vscode',
-        browserVersion: '1.71.0', // 最新のVSCodeバージョンの場合は "insiders" または "stable"
+        browserVersion: '1.71.0', // 最新のVSCodeバージョンには "insiders" または "stable"
         'wdio:vscodeOptions': {
             extensionPath: __dirname,
             userSettings: {
@@ -51,7 +51,7 @@ export const config = {
 };
 ```
 
-`browserName` を `vscode` 以外のもの（例：`chrome`）に設定し、`wdio:vscodeOptions` を定義すると、サービスは拡張機能をウェブ拡張機能として提供します。Chromeでテストする場合、追加のドライバーサービスは必要ありません：
+`browserName`が`vscode`以外（例えば`chrome`）で`wdio:vscodeOptions`を定義すると、サービスは拡張機能をWeb拡張機能として提供します。Chromeでテストする場合、追加のドライバーサービスは必要ありません：
 
 ```js
 // wdio.conf.ts
@@ -69,11 +69,11 @@ export const config = {
 };
 ```
 
-_注意:_ ウェブ拡張機能をテストする場合、`browserVersion` として `stable` または `insiders` のみ選択できます。
+_注意：_ Web拡張機能をテストする場合、`browserVersion`として`stable`または`insiders`のみを選択できます。
 
 ### TypeScriptの設定
 
-`tsconfig.json` で、タイプのリストに `wdio-vscode-service` を追加してください：
+`tsconfig.json`で、`wdio-vscode-service`を型のリストに追加してください：
 
 ```json
 {
@@ -93,7 +93,7 @@ _注意:_ ウェブ拡張機能をテストする場合、`browserVersion` と�
 
 ## 使用方法
 
-`getWorkbench` メソッドを使用して、希望するVSCodeバージョンに対応するロケーターのページオブジェクトにアクセスできます：
+`getWorkbench`メソッドを使用して、希望するVSCodeバージョンに一致するロケーターのページオブジェクトにアクセスできます：
 
 ```ts
 describe('WDIO VSCode Service', () => {
@@ -105,11 +105,11 @@ describe('WDIO VSCode Service', () => {
 })
 ```
 
-そこから、適切なページオブジェクトメソッドを使用してすべてのページオブジェクトにアクセスできます。利用可能なすべてのページオブジェクトとそのメソッドについては、[ページオブジェクトのドキュメント](https://webdriverio-community.github.io/wdio-vscode-service/)を参照してください。
+そこから適切なページオブジェクトメソッドを使用して、すべてのページオブジェクトにアクセスできます。利用可能なすべてのページオブジェクトとそのメソッドについては、[ページオブジェクトのドキュメント](https://webdriverio-community.github.io/wdio-vscode-service/)で詳細を確認してください。
 
 ### VSCode APIへのアクセス
 
-[VSCode API](https://code.visualstudio.com/api/references/vscode-api)を通じて特定の自動化を実行したい場合は、カスタム `executeWorkbench` コマンドを使用してリモートコマンドを実行できます。このコマンドを使用すると、テストからVSCode環境内でコードをリモート実行し、VSCode APIにアクセスできます。関数に任意のパラメータを渡すことができ、それらは関数に渡されます。`vscode` オブジェクトは、外部関数のパラメータに続いて常に最初の引数として渡されます。コールバックはリモートで実行されるため、関数のスコープ外の変数にはアクセスできないことに注意してください。例：
+[VSCode API](https://code.visualstudio.com/api/references/vscode-api)を通じて特定の自動化を実行したい場合は、カスタム`executeWorkbench`コマンドを使用してリモートコマンドを実行できます。このコマンドを使用すると、テストからVSCode環境内でコードをリモート実行し、VSCode APIにアクセスできるようになります。任意のパラメータを関数に渡すことができ、それらは関数内に伝播されます。`vscode`オブジェクトは常に最初の引数として渡され、その後に外部関数のパラメータが続きます。コールバックはリモートで実行されるため、関数スコープ外の変数にはアクセスできないことに注意してください。例：
 
 ```ts
 const workbench = await browser.getWorkbench()
@@ -121,11 +121,11 @@ const notifs = await workbench.getNotifications()
 console.log(await notifs[0].getMessage()) // 出力: "I am an API call!"
 ```
 
-ページオブジェクトの完全なドキュメントについては、[ドキュメント](https://webdriverio-community.github.io/wdio-vscode-service/modules.html)を確認してください。このプロジェクトの[テストスイート](https://github.com/webdriverio-community/wdio-vscode-service/blob/main/test/specs)で様々な使用例を見つけることができます。
+ページオブジェクトの完全なドキュメントについては、[ドキュメント](https://webdriverio-community.github.io/wdio-vscode-service/modules.html)を確認してください。このプロジェクトの[テストスイート](https://github.com/webdriverio-community/wdio-vscode-service/blob/main/test/specs)にさまざまな使用例があります。
 
 ## 詳細情報
 
-[`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service)の設定方法やカスタムページオブジェクトの作成方法について詳しくは、[サービスのドキュメント](/docs/wdio-vscode-service)を参照してください。また、[Christian Bromann](https://twitter.com/bromann)による[_Webスタンダードの力を使った複雑なVSCode拡張機能のテスト_](https://www.youtube.com/watch?v=PhGNTioBUiU)についての講演も視聴できます：
+[`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service)の設定方法やカスタムページオブジェクトの作成方法については、[サービスドキュメント](/docs/wdio-vscode-service)で詳細を確認できます。また、[Christian Bromann](https://twitter.com/bromann)による[_ウェブ標準の力を使った複雑なVSCode拡張機能のテスト_](https://www.youtube.com/watch?v=PhGNTioBUiU)に関する以下の講演も視聴できます：
 
 <LiteYouTubeEmbed
     id="PhGNTioBUiU"

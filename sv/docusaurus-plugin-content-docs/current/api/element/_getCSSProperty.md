@@ -4,16 +4,16 @@ title: getCSSProperty
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getCSSProperty.ts
 ---
 
-Hämta en css-egenskap från ett DOM-element valt med given selektor. Returvärdet
+Hämta en css-egenskap från ett DOM-element valt med angiven selektor. Returvärdet
 är formaterat för att vara testbart. Färger tolkas via [rgb2hex](https://www.npmjs.org/package/rgb2hex)
 och alla andra egenskaper tolkas via [css-value](https://www.npmjs.org/package/css-value).
 
 :::info
 
 Observera att förkortade CSS-egenskaper (t.ex. `background`, `font`, `border`, `margin`,
-`padding`, `list-style`, `outline`, `pause`, `cue`) kommer att expanderas för att hämta alla långformegenskaper
-vilket resulterar i flera WebDriver-anrop. Om du är intresserad av en specifik
-långformegenskap rekommenderas det att du frågar efter den istället.
+`padding`, `list-style`, `outline`, `pause`, `cue`) kommer att expanderas för att hämta alla långforms-
+egenskaper vilket resulterar i flera WebDriver-anrop. Om du är intresserad av en specifik
+långformsegenskap rekommenderas det att du frågar efter den istället.
 
 :::
 
@@ -100,4 +100,4 @@ it('should demonstrate the getCSSProperty command', async () => {
 ##### Returnerar
 
 - **&lt;CSSProperty&gt;**
-            **<code><var>return</var></code>:**                  Elementets specificerade css
+            **<code><var>return</var></code>:**                  Den angivna css-egenskapen för elementet

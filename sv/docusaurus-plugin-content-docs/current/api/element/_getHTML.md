@@ -4,53 +4,53 @@ title: getHTML
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/getHTML.ts
 ---
 
-Hämta källkoden för specifikt DOM-element med selektor. Som standard går den automatiskt 
+Hämta källkoden för ett specifikt DOM-element med väljare. Som standard går den automatiskt
 igenom alla shadow roots för element som finns i elementet.
 
-##### Usage
+##### Användning
 
 ```js
 $(selector).getHTML({ includeSelectorTag, pierceShadowRoot, removeCommentNodes, prettify })
 ```
 
-##### Parameters
+##### Parametrar
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Namn</th><th>Typ</th><th>Detaljer</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>options</var></code></td>
       <td>`GetHTMLOptions`</td>
-      <td>command options</td>
+      <td>kommandoalternativ</td>
     </tr>
     <tr>
-      <td><code><var>options.includeSelectorTag</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.includeSelectorTag</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Boolean`</td>
-      <td>if true it includes the selector element tag (default: `true`)</td>
+      <td>om true inkluderas väljarelementets tagg (standard: `true`)</td>
     </tr>
     <tr>
-      <td><code><var>options.pierceShadowRoot</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.pierceShadowRoot</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Boolean`</td>
-      <td>if true it includes content of the shadow roots of all web components in the DOM (default: `true`)</td>
+      <td>om true inkluderas innehållet i shadow roots för alla webbkomponenter i DOM (standard: `true`)</td>
     </tr>
     <tr>
-      <td><code><var>options.removeCommentNodes</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.removeCommentNodes</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Boolean`</td>
-      <td>if true it removes all comment nodes from the HTML, e.g. `<!--?lit$206212805$--><!--?lit$206212805$-->` (default: `true`)</td>
+      <td>om true tas alla kommentarnoder bort från HTML, t.ex. `<!--?lit$206212805$--><!--?lit$206212805$-->` (standard: `true`)</td>
     </tr>
     <tr>
-      <td><code><var>options.prettify</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>options.prettify</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Boolean`</td>
-      <td>if true, the html output will be prettified (default: `true`)</td>
+      <td>om true kommer html-utmatningen att formateras snyggt (standard: `true`)</td>
     </tr>
   </tbody>
 </table>
 
-##### Examples
+##### Exempel
 
 ```html title="index.html"
 <div id="test">
@@ -100,7 +100,7 @@ it('allows to snapshot shadow dom', async () => {
 });
 ```
 
-##### Returns
+##### Returnerar
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**   the HTML of the specified element    
+            **<code><var>return</var></code>:**   HTML för det specificerade elementet

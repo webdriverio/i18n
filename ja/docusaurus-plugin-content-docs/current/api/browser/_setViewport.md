@@ -1,13 +1,13 @@
 ---
 id: setViewport
-title: setViewport（ビューポートの設定）
+title: setViewport
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/setViewport.ts
 ---
 
 ブラウザ内でブラウザのビューポートのサイズを変更します。`setWindowSize`とは異なり、
 このコマンドはウィンドウサイズではなく、ビューポートサイズを変更します。
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.setViewport({ width, height, devicePixelRatio })
@@ -18,7 +18,7 @@ browser.setViewport({ width, height, devicePixelRatio })
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>

@@ -3,7 +3,7 @@ id: ocr-click-on-text
 title: ocrClickOnText
 ---
 
-Klicka på ett element baserat på den angivna texten. Kommandot kommer att söka efter den angivna texten och försöka hitta en matchning baserat på Fuzzy Logic från [Fuse.js](https://fusejs.io/). Detta innebär att om du anger en selektor med ett stavfel, eller om den hittade texten inte är en 100% matchning, kommer det ändå att försöka ge dig tillbaka ett element. Se [loggarna](#logs) nedan.
+Klicka på ett element baserat på tillhandahållna texter. Kommandot söker efter den angivna texten och försöker hitta en matchning baserad på fuzzy-logik från [Fuse.js](https://fusejs.io/). Detta innebär att om du skulle ange en selektor med ett stavfel, eller om den hittade texten inte är en 100% matchning, kommer den ändå att försöka ge dig tillbaka ett element. Se [loggarna](#logs) nedan.
 
 ## Användning
 
@@ -24,7 +24,7 @@ await browser.ocrClickOnText({ text: "Start3d" });
 
 ### Image
 
-Du kommer att hitta en bild i din (standard)[`imagesFolder`](./getting-started#imagesfolder) med ett mål som visar var modulen har klickat.
+Du hittar en bild i din (standard)[`imagesFolder`](./getting-started#imagesfolder) med ett mål som visar dig var modulen har klickat.
 
 ![Process steps](/img/ocr/ocr-click-on-text-target.jpg)
 
@@ -33,7 +33,7 @@ Du kommer att hitta en bild i din (standard)[`imagesFolder`](./getting-started#i
 ### `text`
 
 -   **Typ:** `string`
--   **Obligatorisk:** ja
+-   **Obligatoriskt:** ja
 
 Texten du vill söka efter för att klicka på.
 
@@ -46,10 +46,10 @@ await browser.ocrClickOnText({ text: "WebdriverIO" });
 ### `clickDuration`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 -   **Standard:** `500` millisekunder
 
-Detta är klickets varaktighet. Om du vill kan du även skapa ett "långt klick" genom att öka tiden.
+Detta är klickets varaktighet. Om du vill kan du också skapa ett "långt klick" genom att öka tiden.
 
 #### Exempel
 
@@ -63,10 +63,10 @@ await browser.ocrClickOnText({
 ### `contrast`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 -   **Standard:** `0.25`
 
-Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Det accepterar värden mellan `-1` och `1`.
+Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Den accepterar värden mellan `-1` och `1`.
 
 #### Exempel
 
@@ -80,7 +80,7 @@ await browser.ocrClickOnText({
 ### `haystack`
 
 -   **Typ:** `number`
--   **Obligatorisk:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+-   **Obligatoriskt:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
 Detta är sökområdet på skärmen där OCR behöver leta efter text. Detta kan vara ett element eller en rektangel som innehåller `x`, `y`, `width` och `height`
 
@@ -113,10 +113,10 @@ await browser.ocrClickOnText({
 ### `language`
 
 -   **Typ:** `string`
--   **Obligatorisk:** Nej
+-   **Obligatoriskt:** Nej
 -   **Standard:** `eng`
 
-Språket som Tesseract kommer att känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds finns [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Språket som Tesseract kommer att känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de stödda språken kan hittas [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 #### Exempel
 
@@ -124,7 +124,7 @@ Språket som Tesseract kommer att känna igen. Mer information finns [här](http
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    // Använd nederländska som språk
+    // Använd holländska som språk
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
@@ -132,15 +132,15 @@ await browser.ocrClickOnText({
 ### `relativePosition`
 
 -   **Typ:** `object`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 
-Du kan klicka på skärmen relativt till det matchande elementet. Detta kan göras baserat på relativa pixlar `above`, `right`, `below` eller `left` från det matchande elementet
+Du kan klicka på skärmen relativt till det matchande elementet. Detta kan göras baserat på relativa pixlar `above`, `right`, `below` eller `left` från det matchande elementet.
 
 :::note
 
 Följande kombinationer är tillåtna
 
--   enskilda egenskaper
+-   enstaka egenskaper
 -   `above` + `left` eller `above` + `right`
 -   `below` + `left` eller `below` + `right`
 
@@ -154,7 +154,7 @@ Följande kombinationer är **INTE** tillåtna
 #### `relativePosition.above`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 
 Klicka x pixlar `ovanför` det matchande elementet.
 
@@ -172,9 +172,9 @@ await browser.ocrClickOnText({
 #### `relativePosition.right`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 
-Klicka x pixlar `till höger` om det matchande elementet.
+Klicka x pixlar `till höger om` det matchande elementet.
 
 ##### Exempel
 
@@ -190,9 +190,9 @@ await browser.ocrClickOnText({
 #### `relativePosition.below`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 
-Klicka x pixlar `nedanför` det matchande elementet.
+Klicka x pixlar `under` det matchande elementet.
 
 ##### Exempel
 
@@ -208,9 +208,9 @@ await browser.ocrClickOnText({
 #### `relativePosition.left`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 
-Klicka x pixlar `till vänster` om det matchande elementet.
+Klicka x pixlar `till vänster om` det matchande elementet.
 
 ##### Exempel
 
@@ -225,15 +225,15 @@ await browser.ocrClickOnText({
 
 ### `fuzzyFindOptions`
 
-Du kan ändra fuzzy-logiken för att hitta text med följande alternativ. Detta kan hjälpa till att hitta en bättre matchning
+Du kan ändra fuzzy-logiken för att hitta text med följande alternativ. Detta kan hjälpa till att hitta en bättre matchning.
 
 #### `fuzzyFindOptions.distance`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 -   **Standard:** 100
 
-Avgör hur nära matchningen måste vara till den fuzzy-platsen (specificerad av location). En exakt bokstavsmatchning som är distance tecken borta från fuzzy-platsen skulle poängsättas som en fullständig icke-matchning. Ett avstånd på 0 kräver att matchningen ska vara på den exakta angivna platsen. Ett avstånd på 1000 skulle kräva en perfekt matchning inom 800 tecken från platsen för att hittas med ett tröskelvärde på 0,8.
+Bestämmer hur nära matchningen måste vara den osäkra platsen (angiven av location). En exakt bokstavsmatchning som är på avstånd tecken från den osäkra platsen skulle poängsättas som en fullständig icke-matchning. Ett avstånd på 0 kräver att matchningen är på den exakta angivna platsen. Ett avstånd på 1000 skulle kräva en perfekt matchning för att vara inom 800 tecken från platsen för att hittas med en tröskel på 0,8.
 
 ##### Exempel
 
@@ -249,10 +249,10 @@ await browser.ocrClickOnText({
 #### `fuzzyFindOptions.location`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 -   **Standard:** 0
 
-Bestämmer ungefär var i texten mönstret förväntas hittas.
+Bestämmer ungefär var i texten mönstret förväntas finnas.
 
 ##### Exempel
 
@@ -268,10 +268,10 @@ await browser.ocrClickOnText({
 #### `fuzzyFindOptions.threshold`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 -   **Standard:** 0.6
 
-Vid vilken punkt ger matchningsalgoritmen upp. En tröskel på 0 kräver en perfekt matchning (både bokstäver och plats), en tröskel på 1.0 skulle matcha vad som helst.
+Vid vilken punkt ger matchningsalgoritmen upp. En tröskel på 0 kräver en perfekt matchning (av både bokstäver och plats), en tröskel på 1.0 skulle matcha vad som helst.
 
 ##### Exempel
 
@@ -287,7 +287,7 @@ await browser.ocrClickOnText({
 #### `fuzzyFindOptions.isCaseSensitive`
 
 -   **Typ:** `boolean`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 -   **Standard:** false
 
 Om sökningen ska vara skiftlägeskänslig.
@@ -306,10 +306,10 @@ await browser.ocrClickOnText({
 #### `fuzzyFindOptions.minMatchCharLength`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 -   **Standard:** 2
 
-Endast matchningar vars längd överstiger detta värde kommer att returneras. (Till exempel, om du vill ignorera enbokstavsmatchningar i resultatet, sätt den till 2)
+Endast de matchningar vars längd överstiger detta värde kommer att returneras. (Till exempel, om du vill ignorera enstaka tecken-matchningar i resultatet, ställ in det till 2)
 
 ##### Exempel
 
@@ -325,7 +325,7 @@ await browser.ocrClickOnText({
 #### `fuzzyFindOptions.findAllMatches`
 
 -   **Typ:** `number`
--   **Obligatorisk:** nej
+-   **Obligatoriskt:** nej
 -   **Standard:** false
 
 När `true`, kommer matchningsfunktionen att fortsätta till slutet av ett sökmönster även om en perfekt matchning redan har hittats i strängen.

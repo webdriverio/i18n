@@ -4,7 +4,7 @@ title: deleteCookies
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/deleteCookies.ts
 ---
 
-Radera cookies som är synliga för den aktuella sidan. Genom att ange ett cookie-namn 
+Ta bort cookies som är synliga på den aktuella sidan. Genom att ange ett cookie-namn 
 tar den bara bort den enskilda cookien eller flera när flera namn skickas.
 
 ##### Användning
@@ -25,7 +25,7 @@ browser.deleteCookies(filter)
     <tr>
       <td><code><var>filter</var></code></td>
       <td>`StorageCookieFilter[]`</td>
-      <td>Använd filteregenskapen för att identifiera och radera specifika cookies baserat på matchande kriterier.</td>
+      <td>Använd filteregenskapen för att identifiera och ta bort specifika cookies baserat på matchande kriterier.</td>
     </tr>
   </tbody>
 </table>

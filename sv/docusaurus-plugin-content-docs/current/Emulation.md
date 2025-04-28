@@ -3,7 +3,7 @@ id: emulation
 title: Emulering
 ---
 
-Med WebdriverIO kan du emulera webb-API:er med hjälp av kommandot [`emulate`](/docs/api/browser/emulate) för att returnera anpassade värden som hjälper dig att emulera vissa webbläsarbeteenden. Observera att detta kräver att din applikation uttryckligen använder dessa API:er.
+Med WebdriverIO kan du emulera Web-API:er med hjälp av [`emulate`](/docs/api/browser/emulate)-kommandot för att returnera anpassade värden som hjälper dig att emulera vissa webbläsarbeteenden. Observera att detta kräver att din applikation uttryckligen använder dessa API:er.
 
 <LiteYouTubeEmbed
     id="2bQXzIB_97M"
@@ -12,7 +12,7 @@ Med WebdriverIO kan du emulera webb-API:er med hjälp av kommandot [`emulate`](/
 
 :::info
 
-Denna funktion kräver WebDriver Bidi-stöd för webbläsaren. Medan nyare versioner av Chrome, Edge och Firefox har sådant stöd, har Safari __inte det__. För uppdateringar, följ [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). Dessutom, om du använder en molnleverantör för att starta webbläsare, se till att din leverantör också stöder WebDriver Bidi.
+Denna funktion kräver WebDriver Bidi-stöd för webbläsaren. Medan nyare versioner av Chrome, Edge och Firefox har sådant stöd, stöder Safari __inte__ detta. För uppdateringar, följ [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). Dessutom, om du använder en molnleverantör för att starta webbläsare, se till att din leverantör också stöder WebDriver Bidi.
 
 För att aktivera WebDriver Bidi för ditt test, se till att ha `webSocketUrl: true` inställt i dina capabilities.
 
@@ -20,7 +20,7 @@ För att aktivera WebDriver Bidi för ditt test, se till att ha `webSocketUrl: t
 
 ## Geolocation
 
-Ändra webbläsarens geolokalisering till ett specifikt område, t.ex.:
+Ändra webbläsarens geolocation till ett specifikt område, t.ex.:
 
 ```ts
 await browser.emulate('geolocation', {
@@ -34,11 +34,11 @@ await browser.pause(5000)
 console.log(await browser.getUrl()) // outputs: "https://www.google.com/maps/@52.52,13.39,16z?entry=ttu"
 ```
 
-Detta patchar hur [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) fungerar och returnerar platsen som du tillhandahåller.
+Detta kommer att monkey-patcha hur [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) fungerar och returnerar platsen som du angett.
 
 ## Color Scheme
 
-Ändra webbläsarens standardfärginställning via:
+Ändra webbläsarens standardinställning för färgschema via:
 
 ```ts
 await browser.emulate('colorScheme', 'light')
@@ -52,17 +52,17 @@ const backgroundColor = await browser.$('nav').getCSSProperty('background-color'
 console.log(backgroundColor.parsed.hex) // outputs: "#000000"
 ```
 
-Detta patchar hur [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) fungerar när du frågar efter färgschema via `(prefers-color-scheme: dark)`.
+Detta kommer att monkey-patcha hur [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) beter sig när du frågar efter färgschemat via `(prefers-color-scheme: dark)`.
 
 ## User Agent
 
-Ändra webbläsarens användar-agent till en annan sträng via:
+Ändra webbläsarens user agent till en annan sträng via:
 
 ```ts
 await browser.emulate('userAgent', 'Chrome/1.2.3.4 Safari/537.36')
 ```
 
-Detta ändrar värdet av [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Observera att webbläsartillverkare successivt avvecklar User Agent.
+Detta kommer att ändra värdet på [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). Observera att webbläsarleverantörer successivt avvecklar User Agent.
 
 ## onLine Property
 
@@ -72,11 +72,11 @@ Detta ändrar värdet av [`navigator.userAgent`](https://developer.mozilla.org/e
 await browser.emulate('onLine', false)
 ```
 
-Detta kommer __inte__ att stänga av nätverkstrafiken mellan webbläsaren och internet och ändrar endast returvärdet för [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). Om du är intresserad av att modifiera webbläsarens nätverksfunktioner, titta på kommandot [`throttleNetwork`](/docs/api/browser/throttleNetwork).
+Detta kommer __inte__ att stänga av nätverkstrafiken mellan webbläsaren och internet utan ändrar endast returvärdet för [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). Om du är intresserad av att modifiera webbläsarens nätverksfunktioner, titta på [`throttleNetwork`](/docs/api/browser/throttleNetwork)-kommandot.
 
 ## Clock
 
-Du kan ändra webbläsarens systemklocka med hjälp av kommandot [`emulate`](/docs/emulation). Det åsidosätter inbyggda globala funktioner relaterade till tid så att de kan styras synkront via `clock.tick()` eller det genererade klockobjektet. Detta inkluderar styrning av:
+Du kan modifiera webbläsarens systemklocka med [`emulate`](/docs/emulation)-kommandot. Det åsidosätter inbyggda globala funktioner relaterade till tid och låter dem kontrolleras synkront via `clock.tick()` eller det returnerade klockobjektet. Detta inkluderar kontroll över:
 
 - `setTimeout`
 - `clearTimeout`
@@ -84,7 +84,7 @@ Du kan ändra webbläsarens systemklocka med hjälp av kommandot [`emulate`](/do
 - `clearInterval`
 - `Date Objects`
 
-Klockan startar vid unix-epoken (tidsstämpel 0). Detta innebär att när du instansierar new Date i din applikation kommer den att ha tiden 1 januari 1970 om du inte skickar med några andra alternativ till `emulate`-kommandot.
+Klockan startar vid unix-epoken (tidsstämpel 0). Detta innebär att när du instansierar new Date i din applikation kommer den att ha en tid som motsvarar 1 januari 1970 om du inte skickar några andra alternativ till `emulate`-kommandot.
 
 ##### Exempel
 
@@ -110,11 +110,11 @@ console.log(await browser.execute(() => (new Date()).toString()))
 // returns "Thu Aug 01 2024 17:59:59 GMT-0700 (Pacific Daylight Time)"
 ```
 
-Du kan ändra systemtiden genom att anropa [`setSystemTime`](/docs/api/clock/setSystemTime) eller [`tick`](/docs/api/clock/tick).
+Du kan modifiera systemtiden genom att anropa [`setSystemTime`](/docs/api/clock/setSystemTime) eller [`tick`](/docs/api/clock/tick).
 
-Objektet `FakeTimerInstallOpts` kan ha följande egenskaper:
+`FakeTimerInstallOpts`-objektet kan ha följande egenskaper:
 
-```ts
+ ```ts
 interface FakeTimerInstallOpts {
     // Installs fake timers with the specified unix epoch
     // @default: 0
@@ -150,9 +150,9 @@ interface FakeTimerInstallOpts {
 
 ## Device
 
-Kommandot `emulate` stödjer även emulering av en viss mobil eller stationär enhet genom att ändra viewport, enhetens skalfaktor och användar-agent. Detta bör på inga villkor användas för mobil testning eftersom skrivbordets webbläsarmotorer skiljer sig från mobila. Detta bör endast användas om din applikation erbjuder ett specifikt beteende för mindre viewport-storlekar.
+Kommandot `emulate` stöder också emulering av en viss mobil eller stationär enhet genom att ändra viewport, device scale factor och user agent. Detta bör på inga villkor användas för mobiltestning eftersom webbläsarmotorer för datorer skiljer sig från mobila. Detta bör endast användas om din applikation erbjuder ett specifikt beteende för mindre viewport-storlekar.
 
-För att till exempel byta användar-agent och viewport till en iPhone 15, kör bara:
+Till exempel, för att byta user agent och viewport till en iPhone 15, kör bara:
 
 ```ts
 const restore = await browser.emulate('device', 'iPhone 15')
@@ -162,4 +162,4 @@ const restore = await browser.emulate('device', 'iPhone 15')
 await restore()
 ```
 
-WebdriverIO upprätthåller en fast lista över [alla definierade enheter](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).
+WebdriverIO underhåller en fast lista över [alla definierade enheter](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).

@@ -1,19 +1,19 @@
 ---
 id: mocksandspies
-title: Mönsterbegäran och Spioner
+title: Förfrågningsattrapper och spioner
 ---
 
-WebdriverIO levereras med inbyggt stöd för att modifiera nätverkssvar som gör att du kan fokusera på att testa din frontend-applikation utan att behöva installera backend eller en mörkerserver. Du kan definiera anpassade svar för webbresurser som REST API-förfrågningar i ditt test och modifiera dem dynamiskt.
+WebdriverIO kommer med inbyggt stöd för att modifiera nätverkssvar som låter dig fokusera på att testa din frontend-applikation utan att behöva konfigurera din backend eller en attrappserver. Du kan definiera anpassade svar för webresurser som REST API-förfrågningar i ditt test och ändra dem dynamiskt.
 
 :::info
 
-Observera att användning av kommandot `mock` kräver stöd för Chrome DevTools-protokollet. Det stödet finns om du kör tester lokalt i en Chromium-baserad webbläsare, via Selenium Grid v4 eller högre, eller genom en molnleverantör med stöd för Chrome DevTools-protokollet (t.ex. SauceLabs, BrowserStack, LambdaTest). Fullständigt stöd för flera webbläsare kommer att finnas när de nödvändiga primitiven kommer till [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) och implementeras i respektive webbläsare.
+Observera att användning av kommandot `mock` kräver stöd för Chrome DevTools-protokollet. Detta stöd ges om du kör tester lokalt i en Chromium-baserad webbläsare, via en Selenium Grid v4 eller högre, eller genom en molnleverantör med stöd för Chrome DevTools-protokollet (t.ex. SauceLabs, BrowserStack, LambdaTest). Fullt stöd för alla webbläsare kommer att finnas tillgängligt när de nödvändiga primitiva funktionerna landar i [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) och implementeras i respektive webbläsare.
 
 :::
 
-## Skapa en mock
+## Skapa en attrapp
 
-Innan du kan modifiera några svar måste du först definiera en mock. Denna mock beskrivs av resursens URL och kan filtreras efter [request method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) eller [headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). Resursen stöder globuttryck från [minimatch](https://www.npmjs.com/package/minimatch):
+Innan du kan modifiera några svar måste du först definiera en attrapp. Denna attrapp beskrivs av resursens URL och kan filtreras efter [förfrågningsmetod](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) eller [headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). Resursen stöder glob-uttryck via [minimatch](https://www.npmjs.com/package/minimatch):
 
 ```js
 // mock all resources ending with "/users/list"
@@ -31,11 +31,11 @@ const strictMock = await browser.mock('**', {
 
 ## Specificera anpassade svar
 
-När du har definierat en mock kan du definiera anpassade svar för den. Dessa anpassade svar kan antingen vara ett objekt för att svara med JSON, en lokal fil för att svara med en anpassad fixtur eller en webbresurs för att ersätta svaret med en resurs från internet.
+När du har definierat en attrapp kan du definiera anpassade svar för den. Dessa anpassade svar kan antingen vara ett objekt för att svara med JSON, en lokal fil för att svara med en anpassad fixture eller en webresurs för att ersätta svaret med en resurs från internet.
 
-### Mocka API-förfrågningar
+### Attrapper för API-förfrågningar
 
-För att mocka API-förfrågningar där du förväntar dig ett JSON-svar behöver du bara anropa `respond` på mock-objektet med ett godtyckligt objekt som du vill returnera, t.ex.:
+För att skapa attrapper för API-förfrågningar där du förväntar dig ett JSON-svar behöver du bara anropa `respond` på attrapp-objektet med ett godtyckligt objekt som du vill returnera, t.ex.:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -62,7 +62,7 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // outputs: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-Du kan också modifiera svarsheaders samt statuskoden genom att skicka in några mock-svarsparametrar enligt följande:
+Du kan också modifiera svarshuvuden samt statuskoden genom att skicka in några attrapp-svarsparametrar enligt följande:
 
 ```js
 mock.respond({ ... }, {
@@ -73,7 +73,7 @@ mock.respond({ ... }, {
 })
 ```
 
-Om du inte vill att mocken ska anropa backend överhuvudtaget kan du skicka `false` för flaggan `fetchResponse`.
+Om du vill att attrappen inte ska anropa backend alls, kan du skicka `false` för flaggan `fetchResponse`.
 
 ```js
 mock.respond({ ... }, {
@@ -82,7 +82,7 @@ mock.respond({ ... }, {
 })
 ```
 
-Det rekommenderas att lagra anpassade svar i fixtur-filer så att du bara kan kräva dem i ditt test enligt följande:
+Det rekommenderas att lagra anpassade svar i fixture-filer så att du enkelt kan importera dem i ditt test enligt följande:
 
 ```js
 // requires Node.js v16.14.0 or higher to support JSON import assertions
@@ -90,9 +90,9 @@ import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'js
 mock.respond(responseFixture)
 ```
 
-### Mocka textresurser
+### Attrapper för textresurser
 
-Om du vill modifiera textresurser som JavaScript, CSS-filer eller andra textbaserade resurser kan du bara skicka in en filsökväg och WebdriverIO kommer att ersätta originalresursen med den, t.ex.:
+Om du vill modifiera textresurser som JavaScript, CSS-filer eller andra textbaserade resurser kan du bara skicka in en filsökväg och WebdriverIO kommer att ersätta den ursprungliga resursen med den, t.ex.:
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
@@ -102,9 +102,9 @@ scriptMock.respond('./tests/fixtures/script.js')
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
-### Omdirigera webbresurser
+### Omdirigera webresurser
 
-Du kan också bara ersätta en webbresurs med en annan webbresurs om ditt önskade svar redan finns på webben. Detta fungerar med enskilda sidresurser såväl som med en webbsida själv, t.ex.:
+Du kan också ersätta en webresurs med en annan webresurs om ditt önskade svar redan finns på webben. Detta fungerar med enskilda sidresurser såväl som med en webbsida själv, t.ex.:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -115,7 +115,7 @@ console.log(await browser.getTitle()) // returns "WebdriverIO · Next-gen browse
 
 ### Dynamiska svar
 
-Om ditt mocksvar beror på den ursprungliga resursens svar kan du också dynamiskt modifiera resursen genom att skicka in en funktion som tar det ursprungliga svaret som parameter och sätter mocken baserat på returvärdet, t.ex.:
+Om ditt attrapp-svar beror på den ursprungliga resursens svar kan du också dynamiskt modifiera resursen genom att skicka in en funktion som tar emot det ursprungliga svaret som parameter och ställer in attrappen baserat på returvärdet, t.ex.:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -141,7 +141,7 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 // ]
 ```
 
-## Avbryta mockar
+## Avbryta attrapper
 
 Istället för att returnera ett anpassat svar kan du också bara avbryta förfrågan med ett av följande HTTP-fel:
 
@@ -160,7 +160,7 @@ Istället för att returnera ett anpassat svar kan du också bara avbryta förfr
 - BlockedByClient
 - BlockedByResponse
 
-Detta är mycket användbart om du vill blockera tredjepartsskript från din sida som har en negativ inverkan på ditt funktionella test. Du kan avbryta en mock genom att bara anropa `abort` eller `abortOnce`, t.ex.:
+Detta är mycket användbart om du vill blockera skript från tredje part från din sida som har en negativ inverkan på ditt funktionella test. Du kan avbryta en attrapp genom att bara anropa `abort` eller `abortOnce`, t.ex.:
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/**')
@@ -169,7 +169,7 @@ mock.abort('Failed')
 
 ## Spioner
 
-Varje mock är automatiskt en spion som räknar antalet förfrågningar som webbläsaren gjorde till den resursen. Om du inte tillämpar ett anpassat svar eller avbrottsorsak till mocken fortsätter den med standardsvaret du normalt skulle få. Detta låter dig kontrollera hur många gånger webbläsaren gjorde förfrågan, t.ex. till en viss API-endpoint.
+Varje attrapp är automatiskt en spion som räknar antalet förfrågningar som webbläsaren gjorde till den resursen. Om du inte tillämpar ett anpassat svar eller avbrottsanledning till attrappen fortsätter den med standardsvaret du normalt skulle få. Detta låter dig kontrollera hur många gånger webbläsaren gjorde förfrågan, t.ex. till en viss API-slutpunkt.
 
 ```js
 const mock = await browser.mock('**/user', { method: 'post' })

@@ -4,7 +4,7 @@ title: tick
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/tick.ts
 ---
 
-Flytta klockan det specificerade antalet `milliseconds`. Alla timers inom det påverkade tidsintervallet kommer att anropas.
+Flytta klockan det angivna antalet `milliseconds`. Alla timers inom det påverkade tidsintervallet kommer att anropas.
 
 ##### Användning
 

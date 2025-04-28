@@ -5,13 +5,13 @@ title: Testutdata
 
 :::info
 
-[This WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) demo-site har använts för exempel på bildutdata.
+[This WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) demosida har använts för exempelutdata för bilder.
 
 :::
 
 ## `enableLayoutTesting`
 
-Detta kan ställas in på både [Service Options](./service-options#enablelayouttesting) samt på [Method](./method-options) nivå.
+Detta kan ställas in på [Service Options](./service-options#enablelayouttesting) såväl som på [Method](./method-options) nivå.
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,7 +32,7 @@ export const config = {
 }
 ```
 
-Bildutdata för [Service Options](./service-options#enablelayouttesting) är likadan som för [Method](./method-options), se nedan.
+Bildutdata för [Service Options](./service-options#enablelayouttesting) är likvärdiga med [Method](./method-options), se nedan.
 
 ### Bildutdata
 
@@ -177,7 +177,7 @@ await browser.saveScreen("example-page-tag")
 <TabItem value="ios">
 
 :::info TIP
-iOS `saveScreen` exekveringar är som standard inte med enhetens ram-hörn. För att ha detta, lägg till alternativet `addIOSBezelCorners:true` när du instansierar tjänsten, se [detta](./service-options#addiosbezelcorners)
+iOS `saveScreen`-körningar är som standard inte med enhetens ramar. För att ha detta, lägg till alternativet `addIOSBezelCorners:true` när du initierar tjänsten, se [detta](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,7 +216,7 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### Konsolutdata
 
-Som standard kommer metoderna `check(Screen/Element/FullPageScreen)` endast att ge en avvikelseprocent som `1.23`, men när pluginet har alternativet `returnAllCompareData: true` tillhandahålls följande information efter att metoden har körts:
+Som standard kommer metoderna `check(Screen/Element/FullPageScreen)` endast att tillhandahålla en felmatchningsprocent som `1.23`, men när pluginen har alternativet `returnAllCompareData: true` tillhandahålls följande information efter att metoden har körts:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
@@ -244,7 +244,7 @@ console.log(checkResult)
 ### Bildutdata
 
 :::info
-Bilderna nedan visar endast skillnader som ett resultat av att köra checkkommandona. Endast skillnaden i en webbläsare visas, men utdata för Android och iOS är densamma.
+Bilderna nedan visar endast skillnader som ett resultat av att köra check-kommandona. Endast skillnaden i en webbläsare visas, men utdata för Android och iOS är desamma.
 :::
 
 <Tabs
@@ -262,7 +262,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäckts som en förändring.
+Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäcks som en förändring.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +275,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäckts som en förändring.
+Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäcks som en förändring.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +289,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäckts som en förändring.
+Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäcks som en förändring.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)

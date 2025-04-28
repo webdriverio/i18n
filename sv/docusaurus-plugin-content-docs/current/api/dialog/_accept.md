@@ -24,7 +24,7 @@ await dialog.accept(promptText)
     <tr>
       <td><code><var>promptText</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`string`</td>
-      <td>En text att skriva in i prompten. Har ingen effekt om dialogens typ inte är en prompt.</td>
+      <td>En text att skriva in i prompten. Orsakar inga effekter om dialogens typ inte är en prompt.</td>
     </tr>
   </tbody>
 </table>

@@ -4,14 +4,14 @@ title: isDisplayed
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/element/isDisplayed.ts
 ---
 
-Returnerar true om det valda DOM-elementet visas (även när elementet är utanför vyn). Den använder 
+Returnerar sant om det valda DOM-elementet visas (även när elementet är utanför synfältet). Den använder
 [`checkVisibility`](https://developer.mozilla.org/en-US/docs/Web/API/Element/checkVisibility#visibilityproperty)
 metoden som tillhandahålls av webbläsaren för att avgöra om ett element visas eller inte. Eftersom WebdriverIO agerar som en
-verklig användare, är standardvärdena för flaggorna `contentVisibilityAuto`, `opacityProperty`, och `visibilityProperty`
-inställda på `true` för att använda ett mer strikt beteende. Detta innebär att kommandot kommer att kontrollera om elementet är
-synligt baserat på värdet av dess egenskaper `content-visibility`, `opacity` och `visibility`.
+riktig användare, är standardvärdena för flaggorna `contentVisibilityAuto`, `opacityProperty` och `visibilityProperty`
+inställda på `true` för att som standard ha ett mer strikt beteende. Detta innebär att kommandot kommer att kontrollera om elementet är
+synligt på grund av värdet på dess `content-visibility`, `opacity` och `visibility` egenskaper.
 
-Om du också vill verifiera att elementet finns inom vyn, ange flaggan `withinViewport` till kommandot.
+Om du också vill verifiera att elementet är inom synfältet, tillhandahåll flaggan `withinViewport` till kommandot.
 
 :::info
 
@@ -21,51 +21,51 @@ ska existera för att utföra detta kommando.
 :::
 
 WebdriverIO, när det utför webbläsartester, använder ett [anpassat skript](https://github.com/webdriverio/webdriverio/blob/59d349ca847950354d02b9e548f60cc50e7871f0/packages/webdriverio/src/scripts/isElementDisplayed.ts)
-som är särskilt utformat för att bedöma synligheten hos element. Detta skript är nyckeln till att avgöra om ett
-element visas på sidan. Däremot, för nativa mobiltestscenarier med Appium, förlitar sig WebdriverIO
-på kommandot [`isElementDisplayed`](https://appium.io/docs/en/2.1/reference/interfaces/appium_types.ExternalDriver/#elementdisplayed)
-som tillhandahålls av Appium. Detta kommando utvärderar synligheten hos element med hjälp av kriterier som fastställts av
-den underliggande Appium-drivrutinen, vilket säkerställer korrekta och drivrutinsspecifika bedömningar för mobilapplikationer.
+speciellt utformat för att bedöma synligheten av element. Detta skript är nyckeln för att avgöra om ett
+element visas på sidan. Däremot, för nativa mobiltestscenarier med Appium, använder WebdriverIO
+kommandot [`isElementDisplayed`](https://appium.io/docs/en/2.1/reference/interfaces/appium_types.ExternalDriver/#elementdisplayed)
+som tillhandahålls av Appium. Detta kommando utvärderar synligheten av element med hjälp av kriterier som etablerats av den
+underliggande Appium-drivrutinen, vilket säkerställer korrekta och drivrutinsspecifika bedömningar för mobilapplikationer.
 
-##### Usage
+##### Användning
 
 ```js
 $(selector).isDisplayed(withinViewport, contentVisibilityAuto, opacityProperty, visibilityProperty)
 ```
 
-##### Parameters
+##### Parametrar
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Namn</th><th>Typ</th><th>Detaljer</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><var>withinViewport=false</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>withinViewport=false</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>`true` to check if the element is within the viewport. `false` by default.</td>
+      <td>`true` för att kontrollera om elementet är inom synfältet. `false` som standard.</td>
     </tr>
     <tr>
-      <td><code><var>contentVisibilityAuto=true</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>contentVisibilityAuto=true</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>`true` to check if the element content-visibility property has (or inherits) the value auto, and it is currently skipping its rendering. `true` by default.</td>
+      <td>`true` för att kontrollera om elementets content-visibility-egenskap har (eller ärver) värdet auto, och det för närvarande hoppar över sin rendering. `true` som standard.</td>
     </tr>
     <tr>
-      <td><code><var>opacityProperty=true</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>opacityProperty=true</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>`true` to check if the element opacity property has (or inherits) a value of 0. `true` by default.</td>
+      <td>`true` för att kontrollera om elementets opacity-egenskap har (eller ärver) ett värde på 0. `true` som standard.</td>
     </tr>
     <tr>
-      <td><code><var>visibilityProperty=true</var></code><br /><span className="label labelWarning">optional</span></td>
+      <td><code><var>visibilityProperty=true</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>`true` to check if the element is invisible due to the value of its visibility property. `true` by default.</td>
+      <td>`true` för att kontrollera om elementet är osynligt på grund av värdet på dess visibility-egenskap. `true` som standard.</td>
     </tr>
   </tbody>
 </table>
 
-##### Examples
+##### Exempel
 
 ```html title="index.html"
 <div id="noSize"></div>
@@ -125,7 +125,7 @@ it('should detect if an element is visible within the viewport', async () => {
 });
 ```
 
-##### Returns
+##### Returnerar
 
 - **&lt;Boolean&gt;**
-            **<code><var>return</var></code>:**  true if element is displayed
+            **<code><var>return</var></code>:**  sant om elementet visas

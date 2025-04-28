@@ -1,6 +1,6 @@
 ---
 id: throttleCPU
-title: CPUスロットル
+title: throttleCPU（CPUスロットル）
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/throttleCPU.ts
 ---
 
@@ -8,12 +8,14 @@ CPUをスロットルして遅いプロセッサをエミュレートします�
 
 :::info
 
-`throttleCPU`コマンドを使用するには、Chrome DevToolsプロトコルのサポートが必要であり、クラウドで自動テストを実行する場合などには使用できません。Chrome DevToolsプロトコルはデフォルトではインストールされていないため、`npm install puppeteer-core`を使用してインストールしてください。
-詳細は[自動化プロトコル](/docs/automationProtocols)セクションで確認してください。
+`throttleCPU`コマンドを使用するには、Chrome DevToolsプロトコルのサポートが必要であり、例えば
+クラウドで自動テストを実行する場合には使用できません。Chrome DevToolsプロトコルはデフォルトではインストールされていません。
+`npm install puppeteer-core`を使用してインストールしてください。
+詳細は[オートメーションプロトコル](/docs/automationProtocols)セクションをご覧ください。
 
 :::
 
-##### 使用方法
+##### 使用法
 
 ```js
 browser.throttleCPU(factor)
@@ -24,14 +26,14 @@ browser.throttleCPU(factor)
 <table>
   <thead>
     <tr>
-      <th>名前</th><th>型</th><th>詳細</th>
+      <th>名前</th><th>タイプ</th><th>詳細</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code><var>factor</var></code></td>
       <td>`number`</td>
-      <td>遅延係数（1はスロットルなし、2は2倍の遅延など）</td>
+      <td>減速係数（1はスロットルなし、2は2倍の減速、など）</td>
     </tr>
   </tbody>
 </table>
@@ -40,6 +42,6 @@ browser.throttleCPU(factor)
 
 ```js title="throttleCPU.js"
 it('should throttle the CPU', async () => {
-    await browser.throttleCPU(2) // 2倍の遅延
+    await browser.throttleCPU(2) // 2x slowdown
 });
 ```

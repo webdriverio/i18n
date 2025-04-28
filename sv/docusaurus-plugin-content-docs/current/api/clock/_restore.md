@@ -4,7 +4,7 @@ title: återställ
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/clock/restore.ts
 ---
 
-Återställer alla åsidosatta inbyggda funktioner. Detta anropas automatiskt mellan tester, så det behövs 
+Återställ alla överskridna nativa funktioner. Detta kallas automatiskt mellan tester, så det behövs 
 generellt inte.
 
 ##### Användning

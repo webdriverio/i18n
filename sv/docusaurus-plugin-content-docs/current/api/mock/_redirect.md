@@ -4,8 +4,8 @@ title: omdirigera
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/mock/redirect.ts
 ---
 
-Ställer in en omdirigering för en given mock. Detta gör det möjligt att omdirigera en förfrågan till en annan URL.
-Observera: dessa omdirigeringar gäller endast förfrågningar som görs av ett skript i webbläsaren, inte när man anropar `url`-kommandot.
+Ställer in en omdirigering för en given mock. Detta låter dig omdirigera en förfrågan till en annan URL.
+Obs: dessa omdirigeringar gäller endast för förfrågningar som görs av ett skript i webbläsaren, inte när man anropar kommandot `url`.
 
 ##### Användning
 
@@ -18,7 +18,7 @@ mock.redirect(url)
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Namn</th><th>Typ</th><th>Detaljer</th>
     </tr>
   </thead>
   <tbody>

@@ -7,11 +7,11 @@ WebdriverIO sätter följande miljövariabler inom varje arbetare:
 
 ## `NODE_ENV`
 
-Sätts till `'test'` om den inte redan är inställd på något annat.
+Satt till `'test'` om den inte redan är satt till något annat.
 
 ## `WDIO_LOG_LEVEL`
 
-Kan ställas in på värdena `trace`, `debug`, `info`, `warn`, `error`, `silent` för att skriva loggar med motsvarande detaljer. Har prioritet över det angivna `logLevel`-värdet.
+Kan sättas till värden `trace`, `debug`, `info`, `warn`, `error`, `silent` för att skriva loggar med motsvarande detaljer. Har prioritet över det skickade `logLevel`-värdet.
 
 ## `WDIO_WORKER_ID`
 

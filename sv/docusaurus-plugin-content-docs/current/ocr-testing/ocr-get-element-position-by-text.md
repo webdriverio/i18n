@@ -3,7 +3,7 @@ id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
 ---
 
-Få positionen för en text på skärmen. Kommandot söker efter den angivna texten och försöker hitta en matchning baserad på Fuzzy Logic från [Fuse.js](https://fusejs.io/). Detta betyder att om du anger en väljare med ett stavfel, eller om den hittade texten kanske inte är en 100% matchning, kommer den ändå försöka ge dig tillbaka ett element. Se [loggarna](#logs) nedan.
+Få positionen för en text på skärmen. Kommandot söker efter den angivna texten och försöker hitta en matchning baserad på Fuzzy Logic från [Fuse.js](https://fusejs.io/). Detta betyder att om du anger en selektor med ett stavfel, eller om den hittade texten kanske inte är en 100% matchning, kommer den ändå försöka ge dig tillbaka ett element. Se [loggarna](#logs) nedan.
 
 ## Användning
 
@@ -118,7 +118,7 @@ await browser.ocrGetElementPositionByText({
 -   **Obligatorisk:** Nej
 -   **Standard:** `eng`
 
-Språket som Tesseract kommer att känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds kan hittas [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Det språk som Tesseract kommer att känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds finns [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 #### Exempel
 
@@ -141,7 +141,7 @@ Du kan ändra fuzzy-logiken för att hitta text med följande alternativ. Detta 
 -   **Obligatorisk:** nej
 -   **Standard:** 100
 
-Bestämmer hur nära matchningen måste vara till den ungefärliga platsen (specificerad av location). En exakt bokstavsmatchning som är distance tecken bort från den ungefärliga platsen skulle räknas som en fullständig miss. Ett avstånd på 0 kräver att matchningen är på den exakta angivna platsen. Ett avstånd på 1000 skulle kräva en perfekt matchning för att vara inom 800 tecken från platsen för att hittas med ett tröskelvärde på 0,8.
+Avgör hur nära matchningen måste vara till fuzzy-platsen (specificerad av location). En exakt bokstavsmatchning som är på avstånd tecken från fuzzy-platsen skulle bedömas som en fullständig felmatchning. Ett avstånd på 0 kräver att matchningen är på den exakta angivna platsen. Ett avstånd på 1000 skulle kräva en perfekt matchning inom 800 tecken från platsen för att hittas med en tröskel på 0,8.
 
 ##### Exempel
 
@@ -160,7 +160,7 @@ await browser.ocrGetElementPositionByText({
 -   **Obligatorisk:** nej
 -   **Standard:** 0
 
-Bestämmer ungefär var i texten mönstret förväntas hittas.
+Avgör ungefär var i texten mönstret förväntas hittas.
 
 ##### Exempel
 
@@ -179,7 +179,7 @@ await browser.ocrGetElementPositionByText({
 -   **Obligatorisk:** nej
 -   **Standard:** 0.6
 
-Vid vilken punkt ger matchningsalgoritmen upp. Ett tröskelvärde på 0 kräver en perfekt matchning (av både bokstäver och plats), ett tröskelvärde på 1.0 skulle matcha vad som helst.
+Vid vilken punkt ger matchningsalgoritmen upp. En tröskel på 0 kräver en perfekt matchning (av både bokstäver och plats), en tröskel på 1.0 skulle matcha vad som helst.
 
 ##### Exempel
 
@@ -217,7 +217,7 @@ await browser.ocrGetElementPositionByText({
 -   **Obligatorisk:** nej
 -   **Standard:** 2
 
-Endast matchningar vars längd överstiger detta värde kommer att returneras. (Till exempel, om du vill ignorera matchningar med ett tecken i resultatet, ställer du in det på 2)
+Endast matchningar vars längd överstiger detta värde kommer att returneras. (Om du till exempel vill ignorera enskilda teckenöverensstämmelser i resultatet, ställ in det till 2)
 
 ##### Exempel
 
@@ -236,7 +236,7 @@ await browser.ocrGetElementPositionByText({
 -   **Obligatorisk:** nej
 -   **Standard:** false
 
-När `true` fortsätter matchningsfunktionen till slutet av ett sökmönster även om en perfekt matchning redan har hittats i strängen.
+När `true` kommer matchningsfunktionen att fortsätta till slutet av ett sökmönster även om en perfekt matchning redan har hittats i strängen.
 
 ##### Exempel
 

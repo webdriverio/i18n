@@ -1,6 +1,6 @@
 ---
 id: ocr-get-text
-title: استخراج النص من الصور
+title: الحصول على النص من الصورة
 ---
 
 الحصول على النص الموجود في صورة.
@@ -37,7 +37,7 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 -   **إلزامي:** لا
 -   **القيمة الافتراضية:** `0.25`
 
-كلما زاد التباين، كلما أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد هذا في العثور على النص في الصورة. يقبل قيمًا بين `-1` و `1`.
+كلما زاد التباين، كلما أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيمًا بين `-1` و `1`.
 
 #### مثال
 
@@ -47,10 +47,10 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **النوع:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
--   **إلزامي:** `لا`
+-   **النوع:** `number`
+-   **إلزامي:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
 
-هذه هي منطقة البحث على الشاشة حيث يحتاج OCR إلى البحث عن النص. يمكن أن يكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
+هذه هي منطقة البحث في الشاشة حيث يحتاج OCR إلى البحث عن النص. يمكن أن يكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
 
 #### مثال
 
@@ -84,7 +84,7 @@ await browser.ocrGetText({
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // استخدام اللغة الهولندية
+    // استخدم الهولندية كلغة
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

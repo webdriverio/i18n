@@ -4,9 +4,9 @@ title: saveScreenshot
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/saveScreenshot.ts
 ---
 
-Spara en skärmdump av den aktuella webbläsarkontexten till en PNG-fil på ditt operativsystem. Var medveten om att
+Spara en skärmdump av nuvarande webbläsarkontext till en PNG-fil på ditt operativsystem. Var medveten om att
 vissa webbläsardrivrutiner tar skärmdumpar av hela dokumentet (t.ex. Geckodriver med Firefox)
-och andra endast av den aktuella visningsytan (t.ex. Chromedriver med Chrome).
+och andra endast av den aktuella viewporten (t.ex. Chromedriver med Chrome).
 
 ##### Användning
 
@@ -36,22 +36,22 @@ browser.saveScreenshot(filepath, { fullPage, format, quality, clip })
     <tr>
       <td><code><var>options.fullPage=false</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Boolean`</td>
-      <td>om en skärmdump ska tas av hela sidan eller bara den aktuella visningsytan</td>
+      <td>om en skärmdump ska tas av hela sidan eller bara den aktuella viewporten</td>
     </tr>
     <tr>
       <td><code><var>options.format='png'</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`String`</td>
-      <td>formatet på skärmdumpen (antingen `png` eller `jpeg`)</td>
+      <td>formatet för skärmdumpen (antingen `png` eller `jpeg`)</td>
     </tr>
     <tr>
       <td><code><var>options.quality=100</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Number`</td>
-      <td>kvaliteten på skärmdumpen vid JPEG-format i intervallet 0-100 procent</td>
+      <td>kvaliteten på skärmdumpen för JPEG-format inom intervallet 0-100 procent</td>
     </tr>
     <tr>
       <td><code><var>options.clip</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Object`</td>
-      <td>klippning av en rektangel av skärmdumpen</td>
+      <td>klippa ut en rektangel av skärmdumpen</td>
     </tr>
   </tbody>
 </table>

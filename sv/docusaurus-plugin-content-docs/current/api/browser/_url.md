@@ -4,14 +4,14 @@ title: url
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/url.ts
 ---
 
-Kommandot `url` laddar en URL i webbläsaren. Om en baseUrl är specificerad i konfigurationen, 
-kommer den att läggas till i början av url-parametern med hjälp av node's url.resolve()-metod. Att anropa 
-`browser.url('...')` med samma url som senast kommer att utlösa en omladdning av sidan. Men 
-om url:en innehåller en hash, kommer webbläsaren inte att utlösa en ny navigering och användaren 
+Kommandot `url` laddar en URL i webbläsaren. Om en baseUrl är specificerad i konfigurationen,
+kommer den att läggas till i url-parametern med hjälp av node's url.resolve()-metod. Att anropa
+`browser.url('...')` med samma url som tidigare kommer att utlösa en siduppdatering. Men
+om url:en innehåller en hash kommer webbläsaren inte att utlösa en ny navigering och användaren
 måste [uppdatera](/docs/api/webdriver#refresh) sidan för att utlösa en.
 
-Kommandot returnerar ett `WebdriverIO.Request`-objekt som innehåller information om 
-förfrågan och svarsdata för sidladdningen:
+Kommandot returnerar ett `WebdriverIO.Request`-objekt som innehåller information om
+begäran och svarsdata för sidladdningen:
 
 ```ts
 interface WebdriverIO.Request {
@@ -47,31 +47,31 @@ interface WebdriverIO.Request {
 Kommandot stöder följande alternativ:
 
 ### wait
-Det önskade tillståndet som den efterfrågade resursen ska vara i innan kommandot avslutas.
+Det önskade tillstånd som den begärda resursen ska befinna sig i innan kommandot avslutas.
 Det stöder följande tillstånd:
 
- - `none`: ingen väntan efter att sidförfrågan görs och svaret tas emot
+ - `none`: ingen väntan efter att sidbegäran gjorts och svaret mottagits
  - `interactive`: vänta tills sidan är interaktiv
- - `complete`: vänta tills sidans DOM-träd är helt laddat
- - `networkIdle`: vänta tills det inte finns några väntande nätverksförfrågningar
+ - `complete`: vänta tills DOM-trädet för sidan är fullt laddat
+ - `networkIdle`: vänta tills det inte finns några pågående nätverksbegäranden
 
 ### headers
 
-Rubriker som ska skickas med förfrågan.
+Headers som ska skickas med begäran.
 
 __Standard:__ `{}`
 
 ### auth
 
-Autentiseringsuppgifter för grundläggande autentisering.
-Obs: detta kommer att skriva över den befintliga `Authorization`-rubriken om den tillhandahålls i alternativet `headers`.
+Grundläggande autentiseringsuppgifter.
+Obs: detta kommer att skriva över den befintliga `Authorization`-headern om den tillhandahålls i alternativet `headers`.
 
 ### timeout
 
-Om inställt på ett tal, kommer kommandot att vänta på den angivna mängden millisekunder för att sidan ska ladda
-alla svar innan den returnerar.
+Om inställt på ett nummer kommer kommandot att vänta det angivna antalet millisekunder på att sidan ska ladda
+alla svar innan det returnerar.
 
-Obs: för att detta ska ha en påverkan, måste alternativet `wait` vara inställt på `networkIdle`.
+Obs: för att detta ska ha effekt krävs att alternativet `wait` är inställt på `networkIdle`.
 
 __Standard:__ `5000`
 
@@ -103,29 +103,29 @@ browser.url(url, { wait, timeout, onBeforeLoad, auth, headers })
     <tr>
       <td><code><var>options.wait</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`'none', 'interactive', 'networkIdle', 'complete'`</td>
-      <td>Det önskade tillståndet som den efterfrågade resursen ska vara i innan kommandot avslutas. Standard: 'complete'</td>
+      <td>Det önskade tillstånd som den begärda resursen ska befinna sig i innan kommandot avslutas. Standard: 'complete'</td>
     </tr>
     <tr>
       <td><code><var>options.timeout</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`number`</td>
-      <td>Om inställt på ett tal, kommer kommandot att vänta på den angivna mängden millisekunder för att sidan ska ladda
-alla svar innan den returnerar. Standard: 5000</td>
+      <td>Om inställt på ett nummer kommer kommandot att vänta det angivna antalet millisekunder på att sidan ska ladda
+alla svar innan det returnerar. Standard: 5000</td>
     </tr>
     <tr>
       <td><code><var>options.onBeforeLoad</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Function`</td>
-      <td>En funktion som anropas innan din sida har laddat alla sina resurser. Det låter dig enkelt
-simulera miljön, t.ex. skriva över Webb-API:er som din applikation använder.</td>
+      <td>En funktion som anropas innan din sida har laddat alla resurser. Det låter dig enkelt
+simulera miljön, t.ex. skriva över webbAPI:er som din applikation använder.</td>
     </tr>
     <tr>
       <td><code><var>options.auth</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`{user: string, pass: string}`</td>
-      <td>autentiseringsuppgifter för grundläggande autentisering</td>
+      <td>grundläggande autentiseringsuppgifter</td>
     </tr>
     <tr>
       <td><code><var>options.headers</var></code><br /><span className="label labelWarning">valfri</span></td>
       <td>`Record<string, string>`</td>
-      <td>rubriker som ska skickas med förfrågan</td>
+      <td>headers som ska skickas med begäran</td>
     </tr>
   </tbody>
 </table>
@@ -193,4 +193,4 @@ await expect($('.battery-remaining')).toHaveText('01:00)
 ##### Returnerar
 
 - **&lt;WebdriverIO.Request&gt;**
-            **<code><var>returns</var></code>:**  ett förfrågningsobjekt för sidladdningen med information om förfrågan och svarsdata
+            **<code><var>returns</var></code>:**  ett förfrågningsobjekt för sidladdningen med information om förfrågnings- och svarsdata

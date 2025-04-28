@@ -1,6 +1,6 @@
 ---
 id: expect-webdriverio
-title: Expect 
+title: Expect
 custom_edit_url: https://github.com/webdriverio/expect-webdriverio/edit/main/README.md
 ---
 
@@ -12,18 +12,18 @@ När du skriver tester behöver du ofta kontrollera att värden uppfyller vissa 
 
 ## Standardalternativ
 
-Dessa standardalternativ nedan är kopplade till [`waitforTimeout`](https://webdriver.io/docs/options#waitfortimeout) och [`waitforInterval`](https://webdriver.io/docs/options#waitforinterval) alternativ som anges i konfigurationen.
+Dessa standardalternativ nedan är kopplade till alternativen [`waitforTimeout`](https://webdriver.io/docs/options#waitfortimeout) och [`waitforInterval`](https://webdriver.io/docs/options#waitforinterval) som anges i konfigurationen.
 
-Ställ bara in alternativen nedan om du vill vänta på specifika timeouts för dina påståenden.
+Ange endast alternativen nedan om du vill vänta på specifika timeout-tider för dina påståenden.
 
 ```js
 {
-    wait: 2000, // ms att vänta på att förväntan ska lyckas
+    wait: 2000, // ms att vänta på att förväntningen ska lyckas
     interval: 100, // intervall mellan försök
 }
 ```
 
-Om du vill välja olika timeouts och intervall, ställ in dessa alternativ så här:
+Om du vill välja olika timeout-tider och intervaller, ställ in dessa alternativ så här:
 
 ```js
 // wdio.conf.js
@@ -42,34 +42,34 @@ export const config = {
 
 Varje matcher kan ta flera alternativ som låter dig modifiera påståendet:
 
-##### Kommandalternativ
+##### Kommandoalternativ
 
 | Namn | Typ | Detaljer |
 | ---- | ---- | ------- |
-| <code><var>wait</var></code> | number | tid i ms att vänta på att förväntan ska lyckas. Standard: `3000` |
+| <code><var>wait</var></code> | number | tid i ms att vänta på att förväntningen ska lyckas. Standard: `3000` |
 | <code><var>interval</var></code> | number | intervall mellan försök. Standard: `100` |
 | <code><var>beforeAssertion</var></code> | function | funktion som ska anropas innan påståendet görs |
-| <code><var>afterAssertion</var></code> | function | funktion som ska anropas efter att påståendet gjorts innehållande påståenderesultat |
+| <code><var>afterAssertion</var></code> | function | funktion som ska anropas efter att påståendet gjorts och som innehåller resultat från påståendet |
 | <code><var>message</var></code> | string | användarmeddelande att lägga till före påståendefel |
 
-##### Strängalternativ
+##### Stränginställningar
 
-Detta alternativ kan tillämpas utöver kommandalternativen när strängar påstås. 
+Detta alternativ kan tillämpas utöver kommandoalternativen när strängar hävdas.
 
 | Namn | Typ | Detaljer |
 | ---- | ---- | ------- |
 | <code><var>ignoreCase</var></code> | boolean | tillämpa `toLowerCase` på både faktiska och förväntade värden |
 | <code><var>trim</var></code> | boolean | tillämpa `trim` på faktiskt värde |
 | <code><var>replace</var></code> | Replacer \| Replacer[] | ersätt delar av det faktiska värdet som matchar strängen/RegExp. Ersättaren kan vara en sträng eller en funktion.
-| <code><var>containing</var></code> | boolean | förväntar sig att faktiskt värde innehåller förväntat värde, annars strikt lika. |
-| <code><var>asString</var></code> | boolean | kan vara till hjälp för att tvinga konvertering av egenskapsvärde till sträng |
-| <code><var>atStart</var></code> | boolean | förväntar sig att faktiskt värde börjar med det förväntade värdet |
-| <code><var>atEnd</var></code> | boolean | förväntar sig att faktiskt värde slutar med det förväntade värdet |
-| <code><var>atIndex</var></code> | number | förväntar sig att faktiskt värde har det förväntade värdet vid det givna indexet |
+| <code><var>containing</var></code> | boolean | förvänta att faktiskt värde innehåller förväntat värde, annars strikt lika. |
+| <code><var>asString</var></code> | boolean | kan vara användbart för att tvinga konvertering av egenskapsvärde till sträng |
+| <code><var>atStart</var></code> | boolean | förvänta att faktiskt värde börjar med det förväntade värdet |
+| <code><var>atEnd</var></code> | boolean | förvänta att faktiskt värde slutar med det förväntade värdet |
+| <code><var>atIndex</var></code> | number | förvänta att faktiskt värde har det förväntade värdet på det givna indexet |
 
 ##### Nummeralternativ
 
-Detta alternativ kan tillämpas utöver kommandalternativen när nummer påstås.
+Detta alternativ kan tillämpas utöver kommandoalternativen när siffror hävdas.
 
 | Namn | Typ | Detaljer |
 | ---- | ---- | ------- |
@@ -81,7 +81,7 @@ Detta alternativ kan tillämpas utöver kommandalternativen när nummer påstås
 
 En HTML-entitet är en bit text ("sträng") som börjar med ett et-tecken (`&`) och slutar med ett semikolon (`;`). Entiteter används ofta för att visa reserverade tecken (som annars skulle tolkas som HTML-kod) och osynliga tecken (som icke-brytande mellanslag, t.ex. `&nbsp;`).
 
-För att hitta eller interagera med ett sådant element, använd unicode-ekvivalenten för entiteten, t.ex.:
+För att hitta eller interagera med ett sådant element, använd unicode-ekvivalenten av entiteten. t.ex.:
 
 ```html
 <div data="Some&nbsp;Value">Some&nbsp;Text</div>
@@ -95,7 +95,7 @@ await expect(myElem).toHaveText('Some\u00a0Text')
 
 Du kan hitta alla unicode-referenser i [HTML-specifikationen](https://html.spec.whatwg.org/multipage/named-characters.html#named-character-references).
 
-**Obs:** unicode är skiftlägesokänsligt, därför fungerar både `\u00a0` och `\u00A0`. För att hitta element i webbläsarens inspektion, ta bort `u` från unicode, t.ex.: `div[data="Some\00a0Value"]`
+**Obs:** unicode är skiftlägesokänsligt, så både `\u00a0` och `\u00A0` fungerar. För att hitta element i webbläsarinspektionen, ta bort `u` från unicode t.ex.: `div[data="Some\00a0Value"]`
 
 ## Webbläsarmatcher
 
@@ -131,7 +131,7 @@ await expect(browser).toHaveTitle(expect.stringContaining('WebdriverIO'))
 
 ### toHaveClipboardText
 
-Kontrollerar om webbläsaren har en specifik text lagrad i sin urklippshanterare.
+Kontrollerar om webbläsaren har en specifik text lagrad i urklipp.
 
 ##### Användning
 
@@ -144,11 +144,11 @@ await expect(browser).toHaveClipboardText('some clipboard text')
 await expect(browser).toHaveClipboardText(expect.stringContaining('clipboard text'))
 ```
 
-## Element-matcher
+## Elementmatcher
 
 ### toBeDisplayed
 
-Anropar [`isDisplayed`](https://webdriver.io/docs/api/element/isDisplayed/) på det givna elementet.
+Anropar [`isDisplayed`](https://webdriver.io/docs/api/element/isDisplayed/) på givet element.
 
 ##### Användning
 
@@ -159,7 +159,7 @@ await expect(elem).toBeDisplayed()
 
 ### toExist
 
-Anropar [`isExisting`](https://webdriver.io/docs/api/element/isExisting) på det givna elementet.
+Anropar [`isExisting`](https://webdriver.io/docs/api/element/isExisting) på givet element.
 
 ##### Användning
 
@@ -192,7 +192,7 @@ await expect(elem).toBeExisting()
 
 ### toBeFocused
 
-Kontrollerar om elementet har fokus. Denna kontroll fungerar endast i en webbkontext.
+Kontrollerar om element har fokus. Detta påstående fungerar endast i ett webbsammanhang.
 
 ##### Användning
 
@@ -227,7 +227,7 @@ await expect(myInput).toHaveAttr('class', expect.stringContaining('control'))
 
 ### toHaveElementClass
 
-Kontrollerar om ett element har ett enskilt klassnamn. Kan också anropas med en array som parameter när elementet kan ha flera klassnamn.
+Kontrollerar om ett element har ett enda klassnamn. Kan även anropas med en array som parameter när elementet kan ha flera klassnamn.
 
 ##### Användning
 
@@ -252,7 +252,7 @@ await expect(elem).not.toHaveElementProperty('height', 0)
 
 ### toHaveValue
 
-Kontrollerar om ett input-element har ett visst värde.
+Kontrollerar om ett inmatningselement har ett visst värde.
 
 ##### Användning
 
@@ -323,7 +323,7 @@ await expect(elem).toBeChecked()
 
 ### toHaveComputedLabel
 
-Kontrollerar om elementet har en specifik beräknad WAI-ARIA-etikett. Kan också anropas med en array som parameter i fall där elementet kan ha olika etiketter.
+Kontrollerar om element har en specifik beräknad WAI-ARIA-etikett. Kan även anropas med en array som parameter i fall där elementet kan ha olika etiketter.
 
 ##### Användning
 
@@ -345,7 +345,7 @@ await expect(elem).toHaveComputedLabel([expect.stringContaining('GitHub'), expec
 
 ### toHaveComputedRole
 
-Kontrollerar om elementet har en specifik beräknad WAI-ARIA-roll. Kan också anropas med en array som parameter i fall där elementet kan ha olika etiketter.
+Kontrollerar om element har en specifik beräknad WAI-ARIA-roll. Kan även anropas med en array som parameter i fall där elementet kan ha olika etiketter.
 
 ##### Användning
 
@@ -367,7 +367,7 @@ await expect(elem).toHaveComputedRole([expect.stringContaining('reg'), expect.st
 
 ### toHaveHref
 
-Kontrollerar om länkelementet har ett specifikt länkmål.
+Kontrollerar om länkelement har ett specifikt länkmål.
 
 ##### Användning
 
@@ -391,7 +391,7 @@ await expect(link).toHaveLink(expect.stringContaining('webdriver.io'))
 
 ### toHaveId
 
-Kontrollerar om elementet har ett specifikt `id`-attribut.
+Kontrollerar om element har ett specifikt `id`-attribut.
 
 ##### Användning
 
@@ -402,7 +402,7 @@ await expect(elem).toHaveId('elem')
 
 ### toHaveText
 
-Kontrollerar om elementet har en specifik text. Kan också anropas med en array som parameter i fall där elementet kan ha olika texter.
+Kontrollerar om element har en specifik text. Kan även anropas med en array som parameter i fall där elementet kan ha olika texter.
 
 ##### Användning
 
@@ -415,7 +415,7 @@ await expect(elem).toHaveText(['Next-gen browser and mobile automation test fram
 await expect(elem).toHaveText([expect.stringContaining('test framework for Node.js'), expect.stringContaining('Started')])
 ```
 
-Om det finns en lista med element i div:en nedan:
+Om det finns en lista med element i div-taggen nedan:
 
 ```
 <ul>
@@ -434,7 +434,7 @@ await expect(elem).toHaveText(['Coffee', 'Tea', 'Milk'])
 
 ### toHaveHTML
 
-Kontrollerar om elementet har en specifik text. Kan också anropas med en array som parameter i fall där elementet kan ha olika texter.
+Kontrollerar om element har en specifik text. Kan även anropas med en array som parameter i fall där elementet kan ha olika texter.
 
 ##### Användning
 
@@ -468,7 +468,7 @@ await expect(elem).toBeDisplayedInViewport()
 
 ### toHaveChildren
 
-Kontrollerar antalet barn till det hämtade elementet genom att anropa kommandot `element.$('./*')`.
+Kontrollerar antalet hämtade elements underordnade genom att anropa kommandot `element.$('./*')`.
 
 ##### Användning
 
@@ -485,7 +485,7 @@ await expect(list).toHaveChildren({ eq: 3 })
 
 ### toHaveWidth
 
-Kontrollerar om elementet har en specifik bredd.
+Kontrollerar om element har en specifik bredd.
 
 ##### Användning
 
@@ -497,7 +497,7 @@ await expect(logo).toHaveWidth(32)
 
 ### toHaveHeight
 
-Kontrollerar om elementet har en specifik höjd.
+Kontrollerar om element har en specifik höjd.
 
 ##### Användning
 
@@ -509,7 +509,7 @@ await expect(logo).toHaveHeight(32)
 
 ### toHaveSize
 
-Kontrollerar om elementet har en specifik storlek.
+Kontrollerar om element har en specifik storlek.
 
 ##### Användning
 
@@ -523,7 +523,7 @@ await expect(logo).toHaveSize({ width: 32, height: 32 })
 
 Kontrollerar antalet hämtade element med kommandot [`$$`](https://webdriver.io/docs/api/element/$).
 
-**Obs:** Denna matcher kommer att uppdatera den passerade arrayen med de senaste elementen om kontrollen godkänns. Men om du har tilldelat variabeln igen måste du hämta elementen igen.
+**Obs:** Denna matcher kommer att uppdatera den skickade arrayen med de senaste elementen om påståendet godkänns. Om du har tilldelat variabeln på nytt måste du dock hämta elementen igen.
 
 ##### Användning
 
@@ -551,7 +551,7 @@ await expect(mock).toBeRequested()
 
 ### toBeRequestedTimes
 
-Kontrollerar att mock anropades förväntat antal gånger
+Kontrollerar att mock anropades för det förväntade antalet gånger
 
 ##### Användning
 
@@ -559,14 +559,14 @@ Kontrollerar att mock anropades förväntat antal gånger
 const mock = browser.mock('**/api/todo*')
 await expect(mock).toBeRequestedTimes(2) // await expect(mock).toBeRequestedTimes({ eq: 2 })
 
-await expect(mock).toBeRequestedTimes({ gte: 5, lte: 10 }) // förfrågan anropades minst 5 gånger men mindre än 11
+await expect(mock).toBeRequestedTimes({ gte: 5, lte: 10 }) // begäran anropades minst 5 gånger men mindre än 11
 ```
 
 ### toBeRequestedWith
 
 Kontrollerar att mock anropades enligt de förväntade alternativen.
 
-De flesta alternativ stöder expect/jasmine partiella matchers som [expect.objectContaining](https://jestjs.io/docs/en/expect#expectobjectcontainingobject)
+De flesta alternativ stöder förvänta/jasmine partiella matchers som [expect.objectContaining](https://jestjs.io/docs/en/expect#expectobjectcontainingobject)
 
 ##### Användning
 
@@ -574,13 +574,13 @@ De flesta alternativ stöder expect/jasmine partiella matchers som [expect.objec
 const mock = browser.mock('**/api/todo*', { method: 'POST' })
 
 await expect(mock).toBeRequestedWith({
-    url: 'http://localhost:8080/api/todo',          // [valfritt] sträng | funktion | anpassad matcher
-    method: 'POST',                                 // [valfritt] sträng | array
-    statusCode: 200,                                // [valfritt] nummer | array
-    requestHeaders: { Authorization: 'foo' },       // [valfritt] objekt | funktion | anpassad matcher
-    responseHeaders: { Authorization: 'bar' },      // [valfritt] objekt | funktion | anpassad matcher
-    postData: { title: 'foo', description: 'bar' }, // [valfritt] objekt | funktion | anpassad matcher
-    response: { success: true },                    // [valfritt] objekt | funktion | anpassad matcher
+    url: 'http://localhost:8080/api/todo',          // [valfritt] string | function | anpassad matcher
+    method: 'POST',                                 // [valfritt] string | array
+    statusCode: 200,                                // [valfritt] number | array
+    requestHeaders: { Authorization: 'foo' },       // [valfritt] object | function | anpassad matcher
+    responseHeaders: { Authorization: 'bar' },      // [valfritt] object | function | anpassad matcher
+    postData: { title: 'foo', description: 'bar' }, // [valfritt] object | function | anpassad matcher
+    response: { success: true },                    // [valfritt] object | function | anpassad matcher
 })
 
 await expect(mock).toBeRequestedWith({
@@ -593,51 +593,51 @@ await expect(mock).toBeRequestedWith({
 })
 ```
 
-## Snapshot-matcher
+## Snapshot Matcher
 
 WebdriverIO stöder grundläggande snapshot-tester samt DOM-snapshot-testning.
 
 ### toMatchSnapshot
 
-Kontrollerar om något godtyckligt objekt matchar ett visst värde. Om du skickar in ett [`WebdriverIO.Element`](https://webdriver.io/docs/api/element) kommer det automatiskt att ta en snapshot av dess [`outerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML)-tillstånd.
+Kontrollerar om ett godtyckligt objekt matchar ett visst värde. Om du skickar in ett [`WebdriverIO.Element`](https://webdriver.io/docs/api/element) kommer det automatiskt att ta en ögonblicksbild av [`outerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/outerHTML)-tillståndet.
 
 ##### Användning
 
 ```js
-// snapshot godtyckliga objekt (inget "await" behövs här)
+// snapshot av godtyckliga objekt (ingen "await" behövs här)
 expect({ foo: 'bar' }).toMatchSnapshot()
-// snapshot `outerHTML` av WebdriverIO.Element (DOM-snapshot, kräver "await")
+// snapshot av `outerHTML` för WebdriverIO.Element (DOM-snapshot, kräver "await")
 await expect($('elem')).toMatchSnapshot()
-// snapshot resultat av elementkommando
+// snapshot av resultatet från elementkommando
 await expect($('elem').getCSSProperty('background-color')).toMatchSnapshot()
 ```
 
 ### toMatchInlineSnapshot
 
-På samma sätt kan du använda `toMatchInlineSnapshot()` för att lagra snapshoten inline i testfilen. Till exempel, givet:
+På samma sätt kan du använda `toMatchInlineSnapshot()` för att lagra ögonblicksbilden inline i testfilen. Till exempel, givet:
 
 ```js
 await expect($('img')).toMatchInlineSnapshot()
 ```
 
-Istället för att skapa en snapshot-fil kommer WebdriverIO att ändra testfilen direkt för att uppdatera snapshoten som en sträng:
+Istället för att skapa en snapshot-fil kommer WebdriverIO att ändra testfilen direkt för att uppdatera ögonblicksbilden som en sträng:
 
 ```js
 await expect($('img')).toMatchInlineSnapshot(`"<img src="/public/apple-touch-icon-precomposed.png">"`)
 ```
 
-## Visuella snapshot-matchers
+## Visuella Snapshot-matchers
 
 <!--
     These matchers aren't implemented in the `expect-webdriverio` project and can be found
     here: https://github.com/webdriverio-community/visual-testing/blob/e10f7005c1533f5b06811888a9cbb9020e6e765e/packages/service/src/matcher.ts
 -->
 
-Följande matchers är implementerade som en del av `@wdio/visual-service`-pluginet och är endast tillgängliga när tjänsten är konfigurerad. Se till att du följer [installationsanvisningarna](https://webdriver.io/docs/visual-testing) korrekt.
+Följande matcher är implementerade som en del av `@wdio/visual-service`-pluginet och är endast tillgängliga när tjänsten är konfigurerad. Se till att du följer [installationsanvisningarna](https://webdriver.io/docs/visual-testing) korrekt.
 
 ### toMatchElementSnapshot
 
-Kontrollerar om det givna elementet matchar med snapshot av baslinjen.
+Kontrollerar om givet element matchar med ögonblicksbild av baslinje.
 
 ##### Användning
 
@@ -655,7 +655,7 @@ await expect($('.hero__title-logo')).toMatchElementSnapshot('wdioLogo', {
 })
 ```
 
-eller inte skicka in några alternativ alls:
+eller inte ange några alternativ alls:
 
 ```js
 await expect($('.hero__title-logo')).toMatchElementSnapshot()
@@ -663,7 +663,7 @@ await expect($('.hero__title-logo')).toMatchElementSnapshot()
 
 ### toMatchScreenSnapshot
 
-Kontrollerar om den aktuella skärmen matchar med snapshot av baslinjen.
+Kontrollerar om aktuell skärm matchar med ögonblicksbild av baslinje.
 
 ##### Användning
 
@@ -681,7 +681,7 @@ await expect(browser).toMatchScreenSnapshot('partialPage', {
 })
 ```
 
-eller inte skicka in några alternativ alls:
+eller inte ange några alternativ alls:
 
 ```js
 await expect(browser).toMatchScreenSnapshot('partialPage')
@@ -689,7 +689,7 @@ await expect(browser).toMatchScreenSnapshot('partialPage')
 
 ### toMatchFullPageSnapshot
 
-Kontrollerar om skärmavbildningen av hela sidan matchar med snapshot av baslinjen.
+Kontrollerar om skärmbilden av hela sidan matchar med ögonblicksbild av baslinjen.
 
 ##### Användning
 
@@ -707,7 +707,7 @@ await expect(browser).toMatchFullPageSnapshot('fullPage', {
 })
 ```
 
-eller inte skicka in några alternativ alls:
+eller inte ange några alternativ alls:
 
 ```js
 await expect(browser).toMatchFullPageSnapshot('fullPage')
@@ -715,7 +715,7 @@ await expect(browser).toMatchFullPageSnapshot('fullPage')
 
 ### toMatchTabbablePageSnapshot
 
-Kontrollerar om skärmavbildningen av hela sidan inklusive tabbmarkeringar matchar med snapshot av baslinjen.
+Kontrollerar om skärmbilden av hela sidan inklusive fliktecken matchar med ögonblicksbild av baslinjen.
 
 ##### Användning
 
@@ -733,7 +733,7 @@ await expect(browser).toMatchTabbablePageSnapshot('tabbable', {
 })
 ```
 
-eller inte skicka in några alternativ alls:
+eller inte ange några alternativ alls:
 
 ```js
 await expect(browser).toMatchTabbablePageSnapshot('tabbable')
@@ -741,7 +741,7 @@ await expect(browser).toMatchTabbablePageSnapshot('tabbable')
 
 ## Använda reguljära uttryck
 
-Du kan också direkt använda reguljära uttryck för alla matcher som gör textjämförelse.
+Du kan också direkt använda reguljära uttryck för alla matchers som gör textjämförelser.
 
 ##### Användning
 
@@ -755,13 +755,13 @@ await expect(browser).toHaveUrl(/webdriver\.io/)
 await expect(elem).toHaveElementClass(/Container/i)
 ```
 
-## Standardmatcher
+## Standardmatchers
 
-Utöver `expect-webdriverio`-matcher kan du använda inbyggda Jest's [expect](https://jestjs.io/docs/en/expect)-påståenden eller [expect/expectAsync](https://jasmine.github.io/api/3.5/global.html#expect) för Jasmine.
+Förutom `expect-webdriverio`-matchers kan du använda inbyggda Jest [expect](https://jestjs.io/docs/en/expect)-påståenden eller [expect/expectAsync](https://jasmine.github.io/api/3.5/global.html#expect) för Jasmine.
 
-## Asymmetriska matcher
+## Asymmetriska Matchers
 
-WebdriverIO stöder användning av asymmetriska matcher överallt där du jämför textvärden, t.ex.:
+WebdriverIO stöder användning av asymmetriska matchers varhelst du jämför textvärden, t.ex.:
 
 ```ts
 await expect(browser).toHaveTitle(expect.stringContaining('some title'))
@@ -775,7 +775,7 @@ await expect(browser).toHaveTitle(expect.not.stringContaining('some title'))
 
 ## TypeScript
 
-Om du använder [WDIO Testrunner](https://webdriver.io/docs/clioptions) kommer allt att ställas in automatiskt. Följ bara [installationsguiden](https://webdriver.io/docs/typescript#framework-setup) från dokumentationen. Men om du kör WebdriverIO med en annan testrunner eller i ett enkelt Node.js-skript måste du lägga till `expect-webdriverio` till `types` i `tsconfig.json`.
+Om du använder [WDIO Testrunner](https://webdriver.io/docs/clioptions) kommer allt att ställas in automatiskt. Följ bara [installationsguiden](https://webdriver.io/docs/typescript#framework-setup) från dokumentationen. Om du kör WebdriverIO med en annan testrunner eller i ett enkelt Node.js-skript måste du lägga till `expect-webdriverio` till `types` i `tsconfig.json`.
 
 - `"expect-webdriverio"` för alla utom Jasmine/Jest-användare.
 - `"expect-webdriverio/jasmine"` Jasmine
@@ -783,7 +783,7 @@ Om du använder [WDIO Testrunner](https://webdriver.io/docs/clioptions) kommer a
 
 ## JavaScript (VSCode)
 
-Det krävs att skapa `jsconfig.json` i projektets rot och referera till typdefinitionerna för att få autocomplete att fungera i vanlig js.
+Det krävs att du skapar `jsconfig.json` i projektets rot och hänvisar till typdefinitionerna för att göra autocompletation att fungera i vanlig js.
 
 ```json
 {
@@ -795,14 +795,14 @@ Det krävs att skapa `jsconfig.json` i projektets rot och referera till typdefin
 }
 ```
 
-## Lägga till egna matcher
+## Lägga till egna matchers
 
-På liknande sätt som `expect-webdriverio` utökar Jasmine/Jest-matcher är det möjligt att lägga till anpassade matcher.
+På liknande sätt som `expect-webdriverio` utökar Jasmine/Jest-matchers är det möjligt att lägga till anpassade matchers.
 
-- Jasmine se [anpassade matcher](https://jasmine.github.io/2.5/custom_matcher.html) dokumentation
+- Jasmine se dokumentation för [custom matchers](https://jasmine.github.io/2.5/custom_matcher.html)
 - Alla andra se Jests [expect.extend](https://jestjs.io/docs/en/expect#expectextendmatchers)
 
-Anpassade matcher bör läggas till i wdio's `before`-hook
+Anpassade matchers bör läggas till i wdio `before`-krok
 
 ```js
 // wdio.conf.js
@@ -815,9 +815,9 @@ Anpassade matcher bör läggas till i wdio's `before`-hook
 ```
 
 ```js
-// myMatchers.js - Jest-exempel
+// myMatchers.js - Jest example
 export function addCustomMatchers () {
-    if (global.expect.expect !== undefined) { // Temporär lösning. Se https://github.com/webdriverio/expect-webdriverio/issues/835
+    if (global.expect.expect !== undefined) { // Temporary workaround. See https://github.com/webdriverio/expect-webdriverio/issues/835
         global.expect = global.expect.expect;
     }
 

@@ -4,21 +4,21 @@ title: custom$$
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/webdriverio/src/commands/browser/custom$$.ts
 ---
 
-`customs$$` tillåter dig att använda en anpassad strategi som deklarerats med `browser.addLocatorStrategy`.
-Läs mer om anpassade väljarstrategier i [Selector-dokumentationen](../../selectors#custom-selector-strategies).
+Funktionen `customs$$` låter dig använda en anpassad strategi som deklarerats med `browser.addLocatorStrategy`.
+Läs mer om anpassade väljarestrategier i [Väljardokumentationen](../../selectors#custom-selector-strategies).
 
-##### Usage
+##### Användning
 
 ```js
 browser.custom$$(strategyName, strategyArguments)
 ```
 
-##### Parameters
+##### Parametrar
 
 <table>
   <thead>
     <tr>
-      <th>Name</th><th>Type</th><th>Details</th>
+      <th>Namn</th><th>Typ</th><th>Detaljer</th>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +35,7 @@ browser.custom$$(strategyName, strategyArguments)
   </tbody>
 </table>
 
-##### Example
+##### Exempel
 
 ```js title="example.js"
 it('should get all the plugin wrapper buttons', async () => {
@@ -50,6 +50,6 @@ it('should get all the plugin wrapper buttons', async () => {
 })
 ```
 
-##### Returns
+##### Returnerar
 
 - **&lt;WebdriverIO.ElementArray&gt;**

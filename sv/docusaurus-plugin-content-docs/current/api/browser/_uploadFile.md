@@ -6,11 +6,11 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 
 Laddar upp en fil till Selenium Standalone-servern eller annan webbläsardrivrutin
 (t.ex. Chromedriver eller EdgeDriver) genom att använda [`file`](https://webdriver.io/docs/api/selenium#file)-kommandot.
-_Observera:_ att detta kommando endast stöds om du använder en Selenium Hub,
+_Obs:_ Detta kommando stöds endast om du använder en Selenium Hub,
 Chromedriver eller EdgeDriver direkt.
 
-__Observera:__ detta kommando använder en inofficiell protokollfunktion som för närvarande
-endast stöds i Chrome och när du kör ett [Selenium Grid](https://www.selenium.dev/documentation/en/grid/).
+__Obs:__ detta kommando använder en inofficiell protokollfunktion som för närvarande
+endast stöds i Chrome och när man kör ett [Selenium Grid](https://www.selenium.dev/documentation/en/grid/).
 
 ##### Användning
 
@@ -54,4 +54,4 @@ it('should upload a file', async () => {
 ##### Returnerar
 
 - **&lt;String&gt;**
-            **<code><var>return</var></code>:**  fjärr-URL
+            **<code><var>return</var></code>:**  fjärr-URL    

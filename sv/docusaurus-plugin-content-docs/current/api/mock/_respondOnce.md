@@ -5,9 +5,9 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 ---
 
 Svara endast en gång med given överskrivning. Du kan anropa `respondOnce` flera 
-gånger i följd och det kommer att börja med det svar du definierade senast. Om du 
-endast använder `respondOnce` och resursen anropas fler gånger än en mock har 
-definierats så återgår den till den ursprungliga resursen.
+gånger i följd och den kommer att börja med det svar du definierade senast. Om du 
+endast använder `respondOnce` och resursen anropas fler gånger än vad en mock har 
+definierats för, återgår den till den ursprungliga resursen.
 
 ##### Användning
 
@@ -27,27 +27,27 @@ mock.respondOnce(overwrites, { header, statusCode, fetchResponse })
     <tr>
       <td><code><var>overwrites</var></code></td>
       <td>`MockOverwrite`</td>
-      <td>data för att skriva över svaret</td>
+      <td>payload för att skriva över svaret</td>
     </tr>
     <tr>
-      <td><code><var>params</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>params</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`MockResponseParams`</td>
       <td>ytterligare svarsparametrar att skriva över</td>
     </tr>
     <tr>
-      <td><code><var>params.header</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>params.header</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Object`</td>
       <td>skriv över specifika headers</td>
     </tr>
     <tr>
-      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>params.statusCode</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Number`</td>
-      <td>skriv över svarets statuskod</td>
+      <td>skriv över svarsstatuskod</td>
     </tr>
     <tr>
-      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">valfri</span></td>
+      <td><code><var>params.fetchResponse</var></code><br /><span className="label labelWarning">valfritt</span></td>
       <td>`Boolean`</td>
-      <td>hämta verkligt svar innan man svarar med mockad data</td>
+      <td>hämta verkligt svar innan du svarar med mockad data</td>
     </tr>
   </tbody>
 </table>
