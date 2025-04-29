@@ -3,7 +3,7 @@
     "message": "Testez dans des environnements réels"
   },
   "features.realEnvironments.description": {
-    "message": "WebdriverIO vous permet de tester dans des navigateurs ou des appareils mobiles réels utilisés par vos utilisateurs."
+    "message": "WebdriverIO vous permet de tester dans des navigateurs ou appareils mobiles réels utilisés par vos utilisateurs."
   },
   "features.versatile": {
     "message": "Polyvalent et riche en fonctionnalités"
@@ -27,7 +27,7 @@
     "message": "Support mobile natif"
   },
   "homepage.features.mobile": {
-    "message": "Exécutez WebdriverIO sur des appareils mobiles réels, des téléviseurs intelligents ou d'autres appareils IoT via {appiumLink}."
+    "message": "Exécutez WebdriverIO sur de vrais appareils mobiles, des téléviseurs intelligents ou d'autres appareils IoT via {appiumLink}."
   },
   "features.community": {
     "message": "Communauté engagée"
@@ -42,13 +42,13 @@
     "message": "Qui utilise WebdriverIO ?"
   },
   "sponsors.description.openSource": {
-    "message": "\n                Nous sommes un projet open source avec un fort engagement envers la transparence et la gouvernance communautaire.\n                Nous faisons partie de la {openJsFoundationLink} qui est une partie de la {linuxFoundationLink}. Le projet\n                est entièrement géré par des bénévoles et financé par des entreprises investies qui souhaitent voir le projet réussir.\n                L'équipe du projet est reconnaissante pour le généreux parrainage de ces entreprises.\n            "
+    "message": "\n                Nous sommes un projet open source avec un fort engagement envers la transparence et la gouvernance communautaire.\n                Nous faisons partie de la {openJsFoundationLink} qui fait partie de la {linuxFoundationLink}. Le projet\n                est entièrement géré par des bénévoles et financé par des entreprises investies qui souhaitent voir le projet réussir.\n                L'équipe du projet est reconnaissante pour le généreux parrainage de ces entreprises.\n            "
   },
   "sponsors.description.support": {
-    "message": "Si vous utilisez WebdriverIO au sein de votre organisation, veuillez envisager de soutenir le projet en {becomeASponsor}. Cela nous aidera à maintenir le projet en vie et à évoluer."
+    "message": "Si vous utilisez WebdriverIO au sein de votre organisation, veuillez envisager de soutenir le projet en {becomeASponsor}. Cela nous aidera à maintenir le projet en vie et à le faire évoluer."
   },
   "homepage.tagline": {
-    "message": "Framework de test d'automatisation nouvelle génération pour navigateur et mobile pour Node.js"
+    "message": "Framework de test d'automatisation de navigateur et mobile de nouvelle génération pour Node.js"
   },
   "homepage.getStarted": {
     "message": "Commencer"
@@ -66,10 +66,10 @@
     "message": "Sponsorisé par"
   },
   "homepage.componentTesting.heading": {
-    "message": "Tests E2E et tests unitaires/de composants dans un vrai navigateur !"
+    "message": "Tests E2E et unitaires / de composants dans un vrai navigateur !"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIO est un framework {allInOne} pour le développement de votre application web. Il vous permet d'exécuter des tests de composants petits et légers ainsi que des scénarios de test e2e dans le navigateur ou sur un appareil mobile. Cela garantit que vous faites les tests dans un environnement {usedBy}."
+    "message": "WebdriverIO est un framework {allInOne} pour le développement de votre application web. Il vous permet d'exécuter des tests de composants petits et légers ainsi que des scénarios de test e2e dans le navigateur ou sur un appareil mobile. Cela garantit que vous effectuez les tests dans un environnement {usedBy}."
   },
   "homepage.componentTesting.allInOne": {
     "message": "tout-en-un"
@@ -78,7 +78,7 @@
     "message": "utilisé par vos utilisateurs"
   },
   "homepage.componentTesting.para2": {
-    "message": "Il est livré avec des stratégies de sélection intelligentes qui simplifient l'interaction, par exemple, avec des {reactComponents} ou l'exécution de requêtes de sélection profondes avec des arborescences DOM fantômes imbriquées. Comme les interactions se font via un protocole d'automatisation standardisé, il est garanti qu'elles se comportent nativement et ne sont pas simplement émulées par JavaScript."
+    "message": "Il est livré avec des stratégies de sélecteurs intelligentes qui simplifient l'interaction avec, par exemple, des {reactComponents} ou l'exécution de requêtes de sélecteurs profonds avec des arbres DOM imbriqués. Comme les interactions se font via un protocole d'automatisation standardisé, il est garanti qu'elles se comportent de manière native et ne sont pas simplement émulées en JavaScript."
   },
   "homepage.componentTesting.easySetup": {
     "message": "Configuration facile pour les tests de composants web avec :"
@@ -87,7 +87,7 @@
     "message": "Démarrez avec WebdriverIO en quelques secondes"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "Le testrunner WebdriverIO est livré avec une interface en ligne de commande qui fournit un utilitaire de configuration puissant et vous aide à créer votre configuration de test en moins d'une minute. Il vous permet de choisir parmi les intégrations de frameworks de test disponibles et vous permet facilement d'ajouter tous les plugins de reporters et de services pris en charge !"
+    "message": "Le testrunner de WebdriverIO est fourni avec une interface en ligne de commande qui propose un utilitaire de configuration puissant et vous aide à créer votre configuration de test en moins d'une minute. Il vous permet de choisir parmi les intégrations de frameworks de test disponibles et vous permet facilement d'ajouter tous les plugins de rapporteurs et de services pris en charge !"
   },
   "homepage.hightlight.createProject.para2": {
     "message": "Avec une simple commande, vous pouvez configurer une suite de tests complète :"
@@ -103,7 +103,7 @@
     "message": "Regardez des présentations sur WebdriverIO"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "La communauté autour de WebdriverIO intervient activement dans divers groupes d'utilisateurs ou conférences sur des sujets spécifiques liés aux tests automatisés avec WebdriverIO. Découvrez cette présentation sur {youtubeLink} par {videoAuthor} à {conferenceLink}."
+    "message": "La communauté autour de WebdriverIO intervient activement dans divers groupes d'utilisateurs ou conférences sur des sujets spécifiques liés aux tests automatisés avec WebdriverIO. Consultez cette présentation sur {youtubeLink} par {videoAuthor} à {conferenceLink}."
   },
   "homepage.highlight.conferenceTalk.label": {
     "message": "Mes fonctionnalités préférées de WebdriverIO",
@@ -113,10 +113,10 @@
     "message": "Il existe également de nombreuses chaînes YouTube avec des tutoriels utiles réalisés par des membres de la communauté tels que {channelOne}, {channelTwo} ou {channelThree}."
   },
   "homepage.hightlight.lighthouse": {
-    "message": "Intégration Google Lighthouse"
+    "message": "Intégration de Google Lighthouse"
   },
   "homepage.highlight.devtools": {
-    "message": "WebdriverIO exécute non seulement l'automatisation basée sur le protocole WebDriver, mais exploite également les API natives des navigateurs pour permettre des intégrations avec des outils de développement populaires tels que {devtoolsLink} ou {lighthouseLink}. Avec le plugin {devtoolsServiceLink}, vous avez accès à des commandes pour valider si votre application est une application PWA valide ainsi qu'à des commandes pour capturer des métriques de performance frontend telles que `speedIndex` et autres."
+    "message": "WebdriverIO exécute non seulement l'automatisation basée sur le protocole WebDriver, mais exploite également les API natives du navigateur pour permettre des intégrations avec des outils de développement populaires tels que {devtoolsLink} ou {lighthouseLink}. Avec le plugin {devtoolsServiceLink}, vous avez accès à des commandes pour valider si votre application est une application PWA valide ainsi qu'à des commandes pour capturer des métriques de performance frontend telles que `speedIndex` et autres."
   },
   "homepage.hightlight.devtools": {
     "message": "Intégration aux outils de développement tels que :"
@@ -137,19 +137,19 @@
     "message": "depuis décembre 2019"
   },
   "versions.description": {
-    "message": "Page des versions Docusaurus 2 listant toutes les versions documentées du site"
+    "message": "Page des versions de Docusaurus 2 listant toutes les versions documentées du site"
   },
   "WebdriverIO documentation versions": {
     "message": "Versions de la documentation WebdriverIO"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "L'équipe du projet publie de nouvelles versions majeures environ une fois par an. Le statut de version LTS signifie « support à long terme », ce qui garantit généralement que les bugs critiques seront corrigés pendant une durée totale de 12 mois jusqu'à la sortie d'une nouvelle version majeure."
+    "message": "L'équipe du projet publie de nouvelles versions majeures environ une fois par an. Le statut de version LTS est « support à long terme », ce qui garantit généralement que les bugs critiques seront corrigés pendant une durée totale de 12 mois jusqu'à ce qu'une nouvelle version majeure soit publiée."
   },
   "Current version (Stable)": {
     "message": "Version actuelle (Stable)"
   },
   "Here you can find the documentation for current released version.": {
-    "message": "Vous trouverez ici la documentation pour la version actuellement publiée."
+    "message": "Vous pouvez trouver ici la documentation pour la version actuelle publiée."
   },
   "Documentation": {
     "message": "Documentation"
@@ -161,14 +161,14 @@
     "message": "Versions antérieures"
   },
   "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "Vous trouverez ici la documentation pour les versions précédentes de Docusaurus."
+    "message": "Vous pouvez trouver ici la documentation pour les versions précédentes de Docusaurus."
   },
   "theme.ErrorPageContent.title": {
     "message": "Cette page a planté.",
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "Retour en haut de la page",
+    "message": "Retour au début de la page",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
@@ -192,7 +192,7 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Navigation entre les articles du blog",
+    "message": "Navigation des articles du blog",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
@@ -247,7 +247,7 @@
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "Ceci est la documentation pour {siteTitle} {versionLabel}, qui n'est plus activement maintenue.",
+    "message": "Ceci est la documentation de {siteTitle} {versionLabel}, qui n'est plus activement maintenue.",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
@@ -311,7 +311,7 @@
     "description": "The default label used for the Note admonition (:::note)"
   },
   "theme.admonition.tip": {
-    "message": "astuce",
+    "message": "conseil",
     "description": "The default label used for the Tip admonition (:::tip)"
   },
   "theme.admonition.warning": {
@@ -347,11 +347,11 @@
     "description": "The copy button label on code blocks"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "Développer la catégorie de la barre latérale '{label}'",
+    "message": "Développer la catégorie '{label}' de la barre latérale",
     "description": "The ARIA label to expand the sidebar category"
   },
   "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "Réduire la catégorie de la barre latérale '{label}'",
+    "message": "Réduire la catégorie '{label}' de la barre latérale",
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
@@ -359,11 +359,11 @@
     "description": "The ARIA label for the main navigation"
   },
   "theme.NotFound.p1": {
-    "message": "Nous n'avons pas trouvé ce que vous recherchiez.",
+    "message": "Nous n'avons pas trouvé ce que vous recherchez.",
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Veuillez contacter le propriétaire du site qui vous a lié à l'URL d'origine et lui faire savoir que son lien est rompu.",
+    "message": "Veuillez contacter le propriétaire du site qui vous a lié à l'URL d'origine et leur faire savoir que leur lien est rompu.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
@@ -454,7 +454,7 @@
     "description": "The paragraph for empty search result"
   },
   "theme.SearchPage.fetchingNewResults": {
-    "message": "Récupération de nouveaux résultats...",
+    "message": "Recherche de nouveaux résultats...",
     "description": "The paragraph for fetching new search results"
   },
   "theme.SearchBar.label": {
@@ -498,7 +498,7 @@
     "description": "The title for error screen of search modal"
   },
   "theme.SearchModal.errorScreen.helpText": {
-    "message": "Vous voudrez peut-être vérifier votre connexion réseau.",
+    "message": "Vous pourriez vouloir vérifier votre connexion réseau.",
     "description": "The help text for error screen of search modal"
   },
   "theme.SearchModal.footer.selectText": {
@@ -558,7 +558,7 @@
     "description": "When the full-scale image is loading"
   },
   "theme.IdealImageMessage.load": {
-    "message": "Cliquez pour charger{sizeMessage}",
+    "message": "Cliquer pour charger{sizeMessage}",
     "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
   },
   "theme.IdealImageMessage.offline": {
@@ -566,7 +566,7 @@
     "description": "When the user is viewing an offline document"
   },
   "theme.IdealImageMessage.404error": {
-    "message": "404. Image introuvable",
+    "message": "404. Image non trouvée",
     "description": "When the image is not found"
   },
   "theme.IdealImageMessage.error": {
@@ -598,11 +598,11 @@
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
-    "message": "Page non répertoriée",
+    "message": "Page non listée",
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Cette page n'est pas répertoriée. Les moteurs de recherche ne l'indexeront pas, et seuls les utilisateurs disposant d'un lien direct peuvent y accéder.",
+    "message": "Cette page n'est pas listée. Les moteurs de recherche ne l'indexeront pas, et seuls les utilisateurs disposant d'un lien direct peuvent y accéder.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
@@ -610,7 +610,7 @@
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Cette page est un brouillon. Elle ne sera visible qu'en développement et sera exclue de la version de production.",
+    "message": "Cette page est un brouillon. Elle ne sera visible qu'en développement et sera exclue de la build de production.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -624,5 +624,20 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "sponsors.supportChannel": {
+    "message": "canal de support"
+  },
+  "sponsors.title": {
+    "message": "Open Source et gouvernance ouverte"
+  },
+  "sponsors.premiumSponsors": {
+    "message": "💎 Sponsors Premium"
+  },
+  "sponsors.goldSponsors": {
+    "message": "🥇 Sponsors Or"
+  },
+  "sponsors.becomeASponsor": {
+    "message": "devenant sponsor"
   }
 }
