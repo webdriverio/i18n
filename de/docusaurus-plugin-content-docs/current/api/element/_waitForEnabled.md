@@ -1,5 +1,3 @@
-Here is the Markdown content translated from English to German, keeping all the specified requirements intact:
-
 ---
 id: waitForEnabled
 title: waitForEnabled

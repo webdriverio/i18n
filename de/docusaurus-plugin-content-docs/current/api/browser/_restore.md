@@ -1,5 +1,3 @@
-Hier ist die übersetzte Version des Markdown-Inhalts:
-
 ---
 id: restore
 title: restore

@@ -1,5 +1,3 @@
-Here's the translated version of the Markdown content from English to German:
-
 ---
 id: waitForStable
 title: waitForStable

@@ -1,5 +1,3 @@
-I'll translate the requested parts from English to German, keeping the specified technical elements intact.
-
 ---
 id: deleteCookies
 title: deleteCookies

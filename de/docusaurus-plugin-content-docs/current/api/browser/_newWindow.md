@@ -1,5 +1,3 @@
-I'll translate the Markdown content from English to German while keeping all the specified formatting and technical elements intact.
-
 ---
 id: newWindow
 title: newWindow
@@ -99,7 +97,7 @@ it('should open a new window', async () => {
 ##### Gibt zurück
 
 - **&lt;Object&gt;**
-            **<code><var>return</var></code>:**           Ein Objekt, das den Fensterhandle und den Typ des neuen Fensters enthält `{handle: string, type: string}` handle - Die ID des Fensterhandles des neuen Tabs oder Fensters, type - Der Typ des neuen Fensters, entweder 'tab' oder 'window'    
+            **<code><var>return</var></code>:**           Ein Objekt, das den Fensterhandle und den Typ des neuen Fensters enthält `{handle: string, type: string}` handle - Die ID des Fensterhandles des neuen Tabs oder Fensters, type - Der Typ des neuen Fensters, entweder 'tab' oder 'window'
 ##### Wirft
 
 - **Error**:  Wenn `url` ungültig ist, wenn der Befehl auf einem Mobilgerät verwendet wird oder `type` weder 'tab' noch 'window' ist.

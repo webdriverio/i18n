@@ -1,5 +1,3 @@
-Hier ist die übersetzte Version des Markdown-Inhalts von Englisch nach Deutsch:
-
 ---
 id: click
 title: click

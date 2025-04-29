@@ -1,5 +1,3 @@
-I'll translate this Markdown content from English to German, following your specifications.
-
 ---
 id: call
 title: call
@@ -11,7 +9,7 @@ Es akzeptiert Promises und hält die Ausführung an, bis das Promise aufgelöst 
 
 :::info
 
-Da WebdriverIO die synchrone Verwendung auslaufen lässt (siehe [RFC](https://github.com/webdriverio/webdriverio/discussions/6702)), 
+Da WebdriverIO die synchrone Verwendung auslaufen lässt (siehe [RFC](https://github.com/webdriverio/webdriverio/discussions/6702)),
 ist dieser Befehl nicht mehr sehr nützlich.
 
 :::

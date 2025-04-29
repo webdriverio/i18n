@@ -1,5 +1,3 @@
-I'll translate the Markdown content from English to German, following your requirements:
-
 ---
 id: downloadFile
 title: downloadFile

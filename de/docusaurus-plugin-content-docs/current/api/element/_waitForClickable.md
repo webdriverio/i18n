@@ -1,5 +1,3 @@
-I'll translate the Markdown content as requested, maintaining all formatting and keeping code blocks, links, and technical terms intact.
-
 ---
 id: waitForClickable
 title: waitForClickable

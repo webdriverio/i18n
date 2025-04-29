@@ -1,5 +1,3 @@
-Here's the translated content from English to German, maintaining all the specified requirements:
-
 ---
 id: react$
 title: react$

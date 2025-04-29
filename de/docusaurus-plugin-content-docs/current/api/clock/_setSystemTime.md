@@ -1,5 +1,3 @@
-Here's the translated content:
-
 ---
 id: setSystemTime
 title: setSystemTime

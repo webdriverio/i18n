@@ -1,5 +1,3 @@
-I'll translate the provided Markdown content from English to German according to your requirements.
-
 ---
 id: addCommand
 title: addCommand

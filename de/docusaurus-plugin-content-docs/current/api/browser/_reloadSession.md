@@ -1,5 +1,3 @@
-Here's the translated Markdown content from English to German, keeping all the specified rules intact:
-
 ---
 id: reloadSession
 title: reloadSession

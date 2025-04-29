@@ -1,5 +1,3 @@
-Here's the translated Markdown content following your instructions:
-
 ---
 id: actions
 title: Aktionen
