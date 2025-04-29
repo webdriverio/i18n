@@ -136,7 +136,7 @@ export async function fetchGeneratedDocs () {
      * fetch generated docs from existing WebdriverIO project
      */
     if (!process.env.WEBDRIVERIO_DOCS) {
-        throw new Error('WEBDRIVERIO_DOCS is not set')
+        return console.log('WEBDRIVERIO_DOCS is not set, skipping fetching generated docs')
     }
 
     const docsRoot = 'website/docs'
