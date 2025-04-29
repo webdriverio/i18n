@@ -23,17 +23,20 @@ Note: the script is [caching](/src/cache.json) the translations per language, ru
 
 As noted in [`constants.ts`](/src/constants.ts), we currently translate into the following languages:
 
- - de
- - es
- - fr
- - it
- - ja
- - ko
- - nl
- - pl
- - pt
- - ru
- - tr
- - zh
+- 🇸🇦 Arabic
+- 🇩🇪 German
+- 🇪🇸 Spanish
+- 🇮🇷 Persian
+- 🇫🇷 French
+- 🇮🇳 Hindi
+- 🇮🇹 Italian
+- 🇯🇵 Japanese
+- 🇵🇱 Polish
+- 🇵🇹 Portuguese
+- 🇷🇺 Russian
+- 🇸🇪 Swedish
+- 🇮🇳 Tamil
+- 🇺🇦 Ukrainian
+- 🇨🇳 Chinese!
 
-If you like your language supported as well, please raise a PR.
+If you like your language supported as well, please raise a PR and add it to [`constants.ts`](/src/constants.ts#L35-L51).
