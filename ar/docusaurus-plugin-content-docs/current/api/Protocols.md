@@ -3,66 +3,66 @@ id: protocols
 title: أوامر البروتوكول
 ---
 
-يعتمد WebdriverIO على إطار أتمتة يعتمد على مجموعة متنوعة من بروتوكولات الأتمتة للتحكم في وكيل بعيد، مثل المتصفح أو الجهاز المحمول أو التلفزيون. بناءً على الجهاز البعيد، تدخل بروتوكولات مختلفة في اللعبة. يتم تعيين هذه الأوامر إلى كائن [Browser](/docs/api/browser) أو [Element](/docs/api/element) اعتمادًا على معلومات الجلسة من الخادم البعيد (مثل محرك المتصفح).
+WebdriverIO هو إطار أتمتة يعتمد على بروتوكولات أتمتة متنوعة للتحكم في وكيل بعيد، مثل المتصفح أو الأجهزة المحمولة أو التلفزيون. بناءً على الجهاز البعيد، تأتي بروتوكولات مختلفة في اللعب. يتم تعيين هذه الأوامر إلى كائن [Browser](/docs/api/browser) أو [Element](/docs/api/element) اعتمادًا على معلومات الجلسة بواسطة الخادم البعيد (مثل برنامج تشغيل المتصفح).
 
-داخليًا، يستخدم WebdriverIO أوامر البروتوكول لجميع التفاعلات تقريبًا مع الوكيل البعيد. ومع ذلك، تبسط الأوامر الإضافية المعينة إلى كائن [Browser](/docs/api/browser) أو [Element](/docs/api/element) استخدام WebdriverIO، مثلاً الحصول على نص عنصر باستخدام أوامر البروتوكول سيبدو كما يلي:
+داخليًا، يستخدم WebdriverIO أوامر البروتوكول لجميع التفاعلات تقريبًا مع الوكيل البعيد. ومع ذلك، توفر الأوامر الإضافية المعينة لكائن [Browser](/docs/api/browser) أو [Element](/docs/api/element) استخدامًا مبسطًا لـ WebdriverIO، على سبيل المثال، الحصول على نص عنصر باستخدام أوامر البروتوكول سيبدو هكذا:
 
 ```js
 const searchInput = await browser.findElement('css selector', '#lst-ib')
 await client.getElementText(searchInput['element-6066-11e4-a52e-4f735466cecf'])
 ```
 
-باستخدام الأوامر المريحة لكائن [Browser](/docs/api/browser) أو [Element](/docs/api/element) يمكن اختصار هذا إلى:
+باستخدام الأوامر المناسبة لكائن [Browser](/docs/api/browser) أو [Element](/docs/api/element) يمكن تقليص هذا إلى:
 
 ```js
 $('#lst-ib').getText()
 ```
 
-يشرح القسم التالي كل بروتوكول على حدة.
+يشرح القسم التالي كل بروتوكول بشكل فردي.
 
 ## بروتوكول WebDriver
 
-[WebDriver](https://w3c.github.io/webdriver/#elements) هو معيار ويب لأتمتة المتصفح. على عكس بعض أدوات E2E الأخرى، فهو يضمن أن الأتمتة يمكن أن تتم على المتصفحات الفعلية التي يستخدمها مستخدموك، مثل Firefox وSafari وChrome والمتصفحات المعتمدة على Chromium مثل Edge، وليس فقط على محركات المتصفح، مثل WebKit، التي تختلف بشكل كبير.
+بروتوكول [WebDriver](https://w3c.github.io/webdriver/#elements) هو معيار ويب لأتمتة المتصفح. على عكس بعض أدوات E2E الأخرى، فإنه يضمن إمكانية تنفيذ الأتمتة على المتصفحات الفعلية التي يستخدمها المستخدمون، مثل Firefox وSafari وChrome والمتصفحات القائمة على Chromium مثل Edge، وليس فقط على محركات المتصفح، مثل WebKit، والتي تختلف كثيرًا.
 
-ميزة استخدام بروتوكول WebDriver مقابل بروتوكولات التصحيح مثل [Chrome DevTools](https://w3c.github.io/webdriver/#elements) هي أن لديك مجموعة محددة من الأوامر التي تسمح بالتفاعل مع المتصفح بنفس الطريقة عبر جميع المتصفحات مما يقلل من احتمالية التقلب. علاوة على ذلك، يوفر هذا البروتوكول قدرات للتوسع الهائل باستخدام مزودي الخدمات السحابية مثل [Sauce Labs](https://saucelabs.com/) و[BrowserStack](https://www.browserstack.com/) و[غيرهم](https://github.com/christian-bromann/awesome-selenium#cloud-services).
+ميزة استخدام بروتوكول WebDriver على عكس بروتوكولات التصحيح مثل [Chrome DevTools](https://w3c.github.io/webdriver/#elements) هي أن لديك مجموعة محددة من الأوامر التي تسمح بالتفاعل مع المتصفح بنفس الطريقة عبر جميع المتصفحات مما يقلل من احتمالية عدم الاستقرار. علاوة على ذلك، يوفر هذا البروتوكول قدرات للتوسع الهائل باستخدام مزودي الخدمات السحابية مثل [Sauce Labs](https://saucelabs.com/) و[BrowserStack](https://www.browserstack.com/) و[غيرها](https://github.com/christian-bromann/awesome-selenium#cloud-services).
 
 ## بروتوكول WebDriver Bidi
 
-بروتوكول [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) هو الجيل الثاني من البروتوكول ويعمل عليه حاليًا معظم مصنعي المتصفحات. مقارنةً بسلفه، يدعم البروتوكول اتصالًا ثنائي الاتجاه (ومن هنا جاء مصطلح "Bidi") بين الإطار والجهاز البعيد. كما يقدم أيضًا أساسيات إضافية لفحص المتصفح بشكل أفضل لأتمتة تطبيقات الويب الحديثة في المتصفح بشكل أفضل.
+بروتوكول [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) هو الجيل الثاني من البروتوكول ويجري العمل عليه حاليًا من قبل معظم مصنعي المتصفحات. مقارنة بسلفه، يدعم البروتوكول اتصالًا ثنائي الاتجاه (ومن هنا جاء "Bidi") بين الإطار والجهاز البعيد. كما أنه يقدم عناصر أولية إضافية لفحص المتصفح بشكل أفضل لتحسين أتمتة تطبيقات الويب الحديثة في المتصفح.
 
-نظرًا لأن هذا البروتوكول قيد التطوير حاليًا، سيتم إضافة المزيد من الميزات بمرور الوقت ودعمها من قبل المتصفح. إذا كنت تستخدم أوامر WebdriverIO المريحة، فلن يتغير شيء بالنسبة لك. سيستفيد WebdriverIO من قدرات البروتوكول الجديدة هذه بمجرد توفرها ودعمها في المتصفح.
+نظرًا لأن هذا البروتوكول قيد التطوير حاليًا، سيتم إضافة المزيد من الميزات بمرور الوقت ودعمها من قبل المتصفح. إذا كنت تستخدم أوامر WebdriverIO المناسبة، فلن يتغير شيء بالنسبة لك. سيستفيد WebdriverIO من هذه القدرات الجديدة للبروتوكول بمجرد توفرها ودعمها في المتصفح.
 
 ## Appium
 
-يوفر مشروع [Appium](https://appium.io/) إمكانيات لأتمتة الأجهزة المحمولة وأجهزة سطح المكتب وجميع أنواع أجهزة إنترنت الأشياء الأخرى. بينما يركز WebDriver على المتصفح والويب، فإن رؤية Appium هي استخدام نفس النهج ولكن لأي جهاز عشوائي. بالإضافة إلى الأوامر التي يحددها WebDriver، يحتوي على أوامر خاصة غالبًا ما تكون محددة للجهاز البعيد الذي تتم أتمتته. بالنسبة لسيناريوهات اختبار الأجهزة المحمولة، هذا مثالي عندما تريد كتابة وتشغيل نفس الاختبارات لكل من تطبيقات Android وiOS.
+يوفر مشروع [Appium](https://appium.io/) قدرات لأتمتة الأجهزة المحمولة وأجهزة سطح المكتب وجميع أنواع أجهزة إنترنت الأشياء الأخرى. بينما يركز WebDriver على المتصفح والويب، فإن رؤية Appium هي استخدام نفس النهج ولكن لأي جهاز اعتباطي. بالإضافة إلى الأوامر التي يحددها WebDriver، فإنه يحتوي على أوامر خاصة غالبًا ما تكون محددة للجهاز البعيد الذي يتم أتمتته. بالنسبة لسيناريوهات اختبار الأجهزة المحمولة، هذا مثالي عندما تريد كتابة وتشغيل نفس الاختبارات لكل من تطبيقات Android وiOS.
 
-وفقًا لوثائق [Appium](https://appium.github.io/appium.io/docs/en/about-appium/intro/?lang=en)، تم تصميمه لتلبية احتياجات أتمتة الأجهزة المحمولة وفقًا لفلسفة تحددها المبادئ الأربعة التالية:
+وفقًا لوثائق Appium [documentation](https://appium.github.io/appium.io/docs/en/about-appium/intro/?lang=en)، تم تصميمه لتلبية احتياجات أتمتة الأجهزة المحمولة وفقًا لفلسفة محددة بأربعة مبادئ:
 
 - لا ينبغي أن تضطر إلى إعادة تجميع تطبيقك أو تعديله بأي شكل من الأشكال من أجل أتمتته.
-- لا ينبغي أن تكون مقيدًا بلغة أو إطار عمل معين لكتابة اختباراتك وتشغيلها.
-- لا ينبغي أن يعيد إطار أتمتة الأجهزة المحمولة اختراع العجلة عندما يتعلق الأمر بواجهات برمجة التطبيقات للأتمتة.
+- لا ينبغي أن تكون مقيدًا بلغة أو إطار معين لكتابة وتشغيل اختباراتك.
+- لا ينبغي أن يعيد إطار أتمتة الأجهزة المحمولة اختراع العجلة عندما يتعلق الأمر بواجهات برمجة تطبيقات الأتمتة.
 - يجب أن يكون إطار أتمتة الأجهزة المحمولة مفتوح المصدر، في الروح والممارسة وكذلك في الاسم!
 
 ## Chromium
 
-يقدم بروتوكول Chromium مجموعة فائقة من الأوامر فوق بروتوكول WebDriver التي يتم دعمها فقط عند تشغيل جلسات مؤتمتة من خلال [Chromedriver](https://chromedriver.chromium.org/chromedriver-canary) أو [Edgedriver](https://developer.microsoft.com/fr-fr/microsoft-edge/tools/webdriver).
+يقدم بروتوكول Chromium مجموعة فائقة من الأوامر فوق بروتوكول WebDriver والتي يتم دعمها فقط عند تشغيل جلسات أتمتة من خلال [Chromedriver](https://chromedriver.chromium.org/chromedriver-canary) أو [Edgedriver](https://developer.microsoft.com/fr-fr/microsoft-edge/tools/webdriver).
 
 ## Firefox
 
-يقدم بروتوكول Firefox مجموعة فائقة من الأوامر فوق بروتوكول WebDriver التي يتم دعمها فقط عند تشغيل جلسات مؤتمتة من خلال [Geckodriver](https://github.com/mozilla/geckodriver).
+يقدم بروتوكول Firefox مجموعة فائقة من الأوامر فوق بروتوكول WebDriver والتي يتم دعمها فقط عند تشغيل جلسات أتمتة من خلال [Geckodriver](https://github.com/mozilla/geckodriver).
 
 ## Sauce Labs
 
-يقدم بروتوكول [Sauce Labs](https://saucelabs.com/) مجموعة فائقة من الأوامر فوق بروتوكول WebDriver التي يتم دعمها فقط عند تشغيل جلسات مؤتمتة باستخدام سحابة Sauce Labs.
+يقدم بروتوكول [Sauce Labs](https://saucelabs.com/) مجموعة فائقة من الأوامر فوق بروتوكول WebDriver والتي يتم دعمها فقط عند تشغيل جلسات أتمتة باستخدام سحابة Sauce Labs.
 
 ## Selenium Standalone
 
-يقدم بروتوكول [Selenium Standalone](https://www.selenium.dev/documentation/grid/advanced_features/endpoints/) مجموعة فائقة من الأوامر فوق بروتوكول WebDriver التي يتم دعمها فقط عند تشغيل جلسات مؤتمتة باستخدام Selenium Grid.
+يقدم بروتوكول [Selenium Standalone](https://www.selenium.dev/documentation/grid/advanced_features/endpoints/) مجموعة فائقة من الأوامر فوق بروتوكول WebDriver والتي يتم دعمها فقط عند تشغيل جلسات أتمتة باستخدام Selenium Grid.
 
-## بروتوكول JSON Wire
+## JSON Wire Protocol
 
-بروتوكول [JSON Wire](https://www.selenium.dev/documentation/legacy/json_wire_protocol/) هو سلف بروتوكول WebDriver وهو __مهمل__ اليوم. بينما قد يتم دعم بعض الأوامر في بيئات معينة، لا يُنصح باستخدام أي من أوامره.
+بروتوكول [JSON Wire Protocol](https://www.selenium.dev/documentation/legacy/json_wire_protocol/) هو سلف بروتوكول WebDriver و__مهمل__ اليوم. بينما قد لا تزال بعض الأوامر مدعومة في بيئات معينة، فإنه غير موصى به استخدام أي من أوامره.
 
-## بروتوكول Mobile JSON Wire
+## Mobile JSON Wire Protocol
 
-بروتوكول [Mobile JSON Wire](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md) هو مجموعة فائقة من أوامر الجوال فوق بروتوكول JSON Wire. نظرًا لأن هذا الأخير مهمل، فإن بروتوكول Mobile JSON Wire أصبح أيضًا __مهملًا__. قد يدعم Appium بعضًا من أوامره ولكن لا يُنصح باستخدامها.
+بروتوكول [Mobile JSON Wire Protocol](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md) هو مجموعة فائقة من أوامر الأجهزة المحمولة فوق JSON Wire Protocol. نظرًا لأن هذا الأخير مهمل، فإن Mobile JSON Wire Protocol أصبح أيضًا __مهملًا__. قد لا يزال Appium يدعم بعض أوامره ولكن لا يُنصح باستخدامها.

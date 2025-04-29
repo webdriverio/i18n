@@ -3,10 +3,10 @@ id: docker
 title: Docker
 ---
 
-Docker es una potente tecnología de contenedorización que permite encapsular tu suite de pruebas en un contenedor que se comporta igual en todos los sistemas. Esto puede evitar inestabilidades debido a diferentes versiones de navegadores o plataformas. Para ejecutar tus pruebas dentro de un contenedor, crea un archivo `Dockerfile` en el directorio de tu proyecto, por ejemplo:
+Docker es una poderosa tecnología de contenerización que permite encapsular tu suite de pruebas en un contenedor que se comporta igual en todos los sistemas. Esto puede evitar la inestabilidad debida a diferentes versiones de navegadores o plataformas. Para ejecutar tus pruebas dentro de un contenedor, crea un archivo `Dockerfile` en el directorio de tu proyecto, por ejemplo:
 
 ```Dockerfile
-FROM selenium/standalone-chrome:134.0-20250323 # Change the browser and version according to your needs
+FROM selenium/standalone-chrome:134.0-20250323 # Cambia el navegador y versión según tus necesidades
 WORKDIR /app
 ADD . /app
 
@@ -15,17 +15,17 @@ RUN npm install
 CMD npx wdio
 ```
 
-Asegúrate de no incluir tu carpeta `node_modules` en tu imagen Docker y de tenerla instalada al construir la imagen. Para ello, añade un archivo `.dockerignore` con el siguiente contenido:
+Asegúrate de no incluir tu `node_modules` en tu imagen de Docker y de tenerlos instalados al construir la imagen. Para ello, añade un archivo `.dockerignore` con el siguiente contenido:
 
 ```
 node_modules
 ```
 
 :::info
-Aquí estamos utilizando una imagen Docker que viene con Selenium y Google Chrome preinstalados. Hay varias imágenes disponibles con diferentes configuraciones de navegadores y versiones. Consulta las imágenes mantenidas por el proyecto Selenium [en Docker Hub](https://hub.docker.com/u/selenium).
+Estamos usando aquí una imagen de Docker que viene con Selenium y Google Chrome preinstalados. Hay varias imágenes disponibles con diferentes configuraciones de navegadores y versiones. Consulta las imágenes mantenidas por el proyecto Selenium [en Docker Hub](https://hub.docker.com/u/selenium).
 :::
 
-Como solo podemos ejecutar Google Chrome en modo headless en nuestro contenedor Docker, tenemos que modificar nuestro `wdio.conf.js` para asegurarnos de hacerlo:
+Como solo podemos ejecutar Google Chrome en modo headless en nuestro contenedor Docker, tenemos que modificar nuestro `wdio.conf.js` para asegurarnos de hacer eso:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -61,4 +61,4 @@ Luego, para ejecutar las pruebas, ejecuta:
 docker run -it mytest
 ```
 
-Para más información sobre cómo configurar la imagen Docker, consulta la [documentación de Docker](https://docs.docker.com/).
+Para más información sobre cómo configurar la imagen de Docker, consulta la [documentación de Docker](https://docs.docker.com/).

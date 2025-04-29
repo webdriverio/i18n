@@ -3,7 +3,7 @@ id: modules
 title: Modules
 ---
 
-WebdriverIO publie divers modules sur NPM et d'autres registres que vous pouvez utiliser pour construire votre propre framework d'automatisation. Consultez plus de documentation sur les types de configuration WebdriverIO [ici](/docs/setuptypes).
+WebdriverIO publie divers modules sur NPM et d'autres registres que vous pouvez utiliser pour créer votre propre framework d'automatisation. Consultez plus de documentation sur les types de configuration WebdriverIO [ici](/docs/setuptypes).
 
 ## `webdriver` et `devtools`
 
@@ -15,10 +15,10 @@ Démarre une nouvelle session avec des capacités spécifiques. Selon la répons
 
 ##### Paramètres
 
-- `options` : [Options WebDriver](/docs/configuration#webdriver-options)
-- `modifier` : fonction qui permet de modifier l'instance client avant qu'elle ne soit retournée
-- `userPrototype` : objet de propriétés qui permet d'étendre le prototype de l'instance
-- `customCommandWrapper` : fonction qui permet d'envelopper des fonctionnalités autour des appels de fonction
+- `options`: [Options WebDriver](/docs/configuration#webdriver-options)
+- `modifier`: fonction qui permet de modifier l'instance client avant qu'elle ne soit retournée
+- `userPrototype`: objet de propriétés qui permet d'étendre le prototype de l'instance
+- `customCommandWrapper`: fonction qui permet d'envelopper des fonctionnalités autour des appels de fonction
 
 ##### Retourne
 
@@ -38,10 +38,10 @@ Se connecte à une session WebDriver ou DevTools en cours d'exécution.
 
 ##### Paramètres
 
-- `attachInstance` : instance à laquelle se connecter ou au moins un objet avec une propriété `sessionId` (par exemple `{ sessionId: 'xxx' }`)
-- `modifier` : fonction qui permet de modifier l'instance client avant qu'elle ne soit retournée
-- `userPrototype` : objet de propriétés qui permet d'étendre le prototype de l'instance
-- `customCommandWrapper` : fonction qui permet d'envelopper des fonctionnalités autour des appels de fonction
+- `attachInstance`: instance à laquelle se connecter ou au moins un objet avec une propriété `sessionId` (par exemple `{ sessionId: 'xxx' }`)
+- `modifier`: fonction qui permet de modifier l'instance client avant qu'elle ne soit retournée
+- `userPrototype`: objet de propriétés qui permet d'étendre le prototype de l'instance
+- `customCommandWrapper`: fonction qui permet d'envelopper des fonctionnalités autour des appels de fonction
 
 ##### Retourne
 
@@ -56,11 +56,11 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-Recharge une session pour l'instance fournie.
+Recharge une session à partir de l'instance fournie.
 
 ##### Paramètres
 
-- `instance` : instance de package à recharger
+- `instance`: instance de package à recharger
 
 ##### Exemple
 
@@ -79,8 +79,8 @@ Démarre une session WebdriverIO. L'instance contient toutes les commandes du pa
 
 ##### Paramètres
 
-- `options` : [Options WebdriverIO](/docs/configuration#webdriverio)
-- `modifier` : fonction qui permet de modifier l'instance client avant qu'elle ne soit retournée
+- `options`: [Options WebdriverIO](/docs/configuration#webdriverio)
+- `modifier`: fonction qui permet de modifier l'instance client avant qu'elle ne soit retournée
 
 ##### Retourne
 
@@ -102,7 +102,7 @@ Se connecte à une session WebdriverIO en cours d'exécution.
 
 ##### Paramètres
 
-- `attachOptions` : instance à laquelle se connecter ou au moins un objet avec une propriété `sessionId` (par exemple `{ sessionId: 'xxx' }`)
+- `attachOptions`: instance à laquelle se connecter ou au moins un objet avec une propriété `sessionId` (par exemple `{ sessionId: 'xxx' }`)
 
 ##### Retourne
 
@@ -119,11 +119,11 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-Initie une instance multiremote qui vous permet de contrôler plusieurs sessions dans une seule instance. Consultez nos [exemples multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) pour des cas d'utilisation concrets.
+Initie une instance multiremote qui vous permet de contrôler plusieurs sessions au sein d'une seule instance. Consultez nos [exemples multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) pour des cas d'utilisation concrets.
 
 ##### Paramètres
 
-- `multiremoteOptions` : un objet avec des clés représentant le nom du navigateur et leurs [Options WebdriverIO](/docs/configuration#webdriverio).
+- `multiremoteOptions`: un objet avec des clés représentant le nom du navigateur et leurs [Options WebdriverIO](/docs/configuration#webdriverio).
 
 ##### Retourne
 
@@ -180,12 +180,12 @@ Après cela, créez une instance du lanceur et exécutez le test.
 
 #### `Launcher(configPath, opts)`
 
-Le constructeur de la classe `Launcher` attend l'URL du fichier de configuration et un objet `opts` avec des paramètres qui écraseront ceux de la configuration.
+Le constructeur de la classe `Launcher` attend l'URL du fichier de configuration et un objet `opts` avec des paramètres qui remplaceront ceux de la configuration.
 
 ##### Paramètres
 
-- `configPath` : chemin vers le fichier `wdio.conf.js` à exécuter
-- `opts` : arguments ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) pour écraser les valeurs du fichier de configuration
+- `configPath`: chemin vers le `wdio.conf.js` à exécuter
+- `opts`: arguments ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) pour remplacer les valeurs du fichier de configuration
 
 ##### Exemple
 
@@ -207,7 +207,7 @@ La commande `run` renvoie une [Promise](https://developer.mozilla.org/en-US/docs
 
 ## `@wdio/browser-runner`
 
-Lorsque vous exécutez des tests unitaires ou de composants en utilisant le [browser runner](/docs/runner#browser-runner) de WebdriverIO, vous pouvez importer des utilitaires de simulation pour vos tests, par exemple :
+Lorsque vous exécutez des tests unitaires ou de composants à l'aide du [browser runner](/docs/runner#browser-runner) de WebdriverIO, vous pouvez importer des utilitaires de simulation pour vos tests, par exemple :
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
@@ -217,20 +217,20 @@ Les exports nommés suivants sont disponibles :
 
 #### `fn`
 
-Fonction simulée, voir plus dans la [documentation officielle de Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Fonction mock, voir plus dans la [documentation officielle de Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
-Fonction espion, voir plus dans la [documentation officielle de Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Fonction d'espionnage, voir plus dans la [documentation officielle de Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
-Méthode pour simuler un fichier ou un module de dépendance.
+Méthode pour mocker un fichier ou un module de dépendance.
 
 ##### Paramètres
 
-- `moduleName` : soit un chemin relatif vers le fichier à simuler, soit un nom de module.
-- `factory` : fonction pour retourner la valeur simulée (optionnel)
+- `moduleName`: soit un chemin relatif vers le fichier à mocker, soit un nom de module.
+- `factory`: fonction pour retourner la valeur mockée (optionnel)
 
 ##### Exemple
 
@@ -250,11 +250,11 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-Annule la simulation d'une dépendance définie dans le répertoire de simulation manuelle (`__mocks__`).
+Annule le mock d'une dépendance définie dans le répertoire de mock manuel (`__mocks__`).
 
 ##### Paramètres
 
-- `moduleName` : nom du module dont la simulation doit être annulée.
+- `moduleName`: nom du module à démocker.
 
 ##### Exemple
 

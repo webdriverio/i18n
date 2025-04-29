@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "次へ",
+    "message": "次",
     "description": "The label for version current"
   },
   "sidebar.docs.category.Getting Started": {
@@ -19,9 +19,21 @@
     "message": "ガイド",
     "description": "The label for category Guides in sidebar docs"
   },
+  "sidebar.docs.category.Best Practices": {
+    "message": "ベストプラクティス",
+    "description": "The label for category Best Practices in sidebar docs"
+  },
   "sidebar.docs.category.Testrunner": {
     "message": "テストランナー",
     "description": "The label for category Testrunner in sidebar docs"
+  },
+  "sidebar.docs.category.Desktop Testing": {
+    "message": "デスクトップテスト",
+    "description": "The label for category Desktop Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Electron": {
+    "message": "Electron",
+    "description": "The label for category Electron in sidebar docs"
   },
   "sidebar.docs.category.Component Testing": {
     "message": "コンポーネントテスト",
@@ -30,6 +42,34 @@
   "sidebar.docs.category.Framework Setup": {
     "message": "フレームワークセットアップ",
     "description": "The label for category Framework Setup in sidebar docs"
+  },
+  "sidebar.docs.category.Extension Testing": {
+    "message": "拡張機能テスト",
+    "description": "The label for category Extension Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Accessibility Testing": {
+    "message": "アクセシビリティテスト",
+    "description": "The label for category Accessibility Testing in sidebar docs"
+  },
+  "sidebar.docs.category.OCR Testing": {
+    "message": "OCRテスト",
+    "description": "The label for category OCR Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Commands": {
+    "message": "コマンド",
+    "description": "The label for category Commands in sidebar docs"
+  },
+  "sidebar.docs.category.Visual Testing": {
+    "message": "ビジュアルテスト",
+    "description": "The label for category Visual Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Options": {
+    "message": "オプション",
+    "description": "The label for category Options in sidebar docs"
+  },
+  "sidebar.docs.category.Percy": {
+    "message": "Percy",
+    "description": "The label for category Percy in sidebar docs"
   },
   "sidebar.docs.category.Migrate": {
     "message": "移行",
@@ -47,6 +87,10 @@
     "message": "サービス",
     "description": "The label for category Services in sidebar docs"
   },
+  "sidebar.docs.doc.Argos": {
+    "message": "Argos",
+    "description": "The label for the doc item Argos in sidebar docs, linking to the doc visual-testing/argos"
+  },
   "sidebar.api.category.Protocols": {
     "message": "プロトコル",
     "description": "The label for category Protocols in sidebar api"
@@ -56,19 +100,27 @@
     "description": "The label for category browser in sidebar api"
   },
   "sidebar.api.category.element": {
-    "message": "要素",
+    "message": "エレメント",
     "description": "The label for category element in sidebar api"
+  },
+  "sidebar.api.category.mobile": {
+    "message": "モバイル",
+    "description": "The label for category mobile in sidebar api"
   },
   "sidebar.api.category.mock": {
     "message": "モック",
     "description": "The label for category mock in sidebar api"
   },
+  "sidebar.api.category.dialog": {
+    "message": "ダイアログ",
+    "description": "The label for category dialog in sidebar api"
+  },
+  "sidebar.api.category.clock": {
+    "message": "クロック",
+    "description": "The label for category clock in sidebar api"
+  },
   "sidebar.flowcharts.category.Flowcharts": {
     "message": "フローチャート",
     "description": "The label for category Flowcharts in sidebar flowcharts"
-  },
-  "sidebar.docs.category.Web Extension Testing": {
-    "message": "ウェブ拡張機能テスト",
-    "description": "The label for category Web Extension Testing in sidebar docs"
   }
 }

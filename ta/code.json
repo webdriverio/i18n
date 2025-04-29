@@ -1,46 +1,174 @@
 {
+  "features.realEnvironments": {
+    "message": "உண்மையான சூழல்களில் சோதிக்கவும்"
+  },
+  "features.realEnvironments.description": {
+    "message": "WebdriverIO உங்கள் பயனர்கள் பயன்படுத்தும் உண்மையான உலாவி அல்லது மொபைல் சாதனங்களில் சோதிக்க அனுமதிக்கிறது."
+  },
+  "features.versatile": {
+    "message": "பல்துறை மற்றும் அம்சம் நிறைந்தது"
+  },
+  "features.versatile.description": {
+    "message": "முழு e2e அல்லது யூனிட் மற்றும் உலாவியில் கூறு சோதனைக்கு WebdriverIO ஐப் பயன்படுத்தவும்."
+  },
+  "features.autoWait": {
+    "message": "தானியங்கி காத்திருப்பு"
+  },
+  "features.autoWait.description": {
+    "message": "WebdriverIO அவற்றுடன் தொடர்புகொள்வதற்கு முன் கூறுகள் தோன்றுவதற்காக தானாகவே காத்திருக்கும்."
+  },
+  "features.standards": {
+    "message": "வலை தரநிலைகளின் அடிப்படையில்"
+  },
+  "homepage.features.crossBrowser": {
+    "message": "{webdriverLink} மற்றும் {bidiLink} மூலம் தானியக்கம் மூலம் குறுக்கு உலாவி ஆதரவு."
+  },
+  "features.mobileSupport": {
+    "message": "நேட்டிவ் மொபைல் ஆதரவு"
+  },
+  "homepage.features.mobile": {
+    "message": "WebdriverIO ஐ {appiumLink} மூலம் உண்மையான மொபைல் சாதனங்கள், ஸ்மார்ட் டிவிகள் அல்லது பிற IoT சாதனங்களில் இயக்கவும்."
+  },
+  "features.community": {
+    "message": "அர்ப்பணிப்புள்ள சமூகம்"
+  },
+  "homepage.features.support": {
+    "message": "8,000க்கும் மேற்பட்ட உறுப்பினர்களைக் கொண்ட {supportChannelLink} மற்றும் சமூகம் பராமரிக்கும் செழுமையான சுற்றுச்சூழல் செயலிகள்."
+  },
+  "homepage.createBrowserAnimation": {
+    "message": "MacOS பயன்பாடுகளை தானியக்கமாக்க WebdriverIO திட்டத்தை உருவாக்கவும்"
+  },
+  "homepage.logoCarousel.title": {
+    "message": "யார் WebdriverIO ஐப் பயன்படுத்துகிறார்கள்?"
+  },
+  "sponsors.description.openSource": {
+    "message": "\n                நாங்கள் வெளிப்படைத்தன்மை மற்றும் சமூக ஆளுமைக்கு வலுவான உறுதிப்பாட்டுடன் கூடிய ஓபன் சோர்ஸ் திட்டம்.\n                நாங்கள் {linuxFoundationLink}இன் ஒரு பகுதியாக உள்ள {openJsFoundationLink}இன் ஒரு பகுதியாக இருக்கிறோம். இந்த திட்டம்\n                முழுவதுமாக தன்னார்வலர்களால் இயக்கப்படுகிறது மற்றும் திட்டம் வெற்றிபெற வேண்டும் என்று விரும்பும் முதலீடு செய்யப்பட்ட நிறுவனங்களால் நிதியளிக்கப்படுகிறது.\n                திட்டக் குழு இந்த நிறுவனங்களின் தாராளமான அனுசரணைக்கு நன்றியுள்ளது.\n            "
+  },
+  "sponsors.description.support": {
+    "message": "உங்கள் நிறுவனத்திற்குள் WebdriverIO ஐப் பயன்படுத்தினால், {becomeASponsor} மூலம் திட்டத்திற்கு ஆதரவளிக்க பரிசீலிக்கவும். திட்டத்தை இயக்குவதற்கும் வளர்வதற்கும் இது எங்களுக்கு உதவும்."
+  },
+  "homepage.tagline": {
+    "message": "Node.js க்கான அடுத்த தலைமுறை உலாவி மற்றும் மொபைல் தானியக்க சோதனை கட்டமைப்பு"
+  },
+  "homepage.getStarted": {
+    "message": "தொடங்குக"
+  },
+  "homepage.whyWebdriverIO": {
+    "message": "ஏன் WebdriverIO?"
+  },
+  "homepage.viewOnGitHub": {
+    "message": "GitHub-இல் பார்க்க"
+  },
+  "homepage.watchOnYouTube": {
+    "message": "YouTube-இல் பார்க்க"
+  },
+  "homepage.sponsorSection.sponsoredBy": {
+    "message": "இவர்களால் நிதியளிக்கப்பட்டது"
+  },
+  "homepage.componentTesting.heading": {
+    "message": "உண்மையான உலாவியில் E2E மற்றும் யூனிட் / கூறு சோதனை!"
+  },
+  "homepage.componentTesting.para1": {
+    "message": "WebdriverIO உங்கள் வலை பயன்பாட்டு மேம்பாட்டிற்கான {allInOne} கட்டமைப்பாகும். இது சிறிய மற்றும் லைட்வெயிட் கூறு சோதனைகளை இயக்கவும் உலாவி அல்லது மொபைல் சாதனத்தில் e2e சோதனை சூழல்களை இயக்கவும் உங்களை அனுமதிக்கிறது. இது {usedBy} சூழலில் சோதனை செய்வதை உங்களுக்கு உறுதி செய்கிறது."
+  },
+  "homepage.componentTesting.allInOne": {
+    "message": "அனைத்தும் ஒன்றில்"
+  },
+  "homepage.componentTesting.usedBy": {
+    "message": "உங்கள் பயனர்களால் பயன்படுத்தப்படும்"
+  },
+  "homepage.componentTesting.para2": {
+    "message": "இது ஸ்மார்ட் தேர்வு உத்திகளுடன் வருகிறது, எ.கா., {reactComponents} உடன் தொடர்புகொள்வதை எளிதாக்குகிறது அல்லது நெஸ்டட் ஷாடோ DOM மரங்களுடன் ஆழமான தேர்வு வினவல்களை இயக்குகிறது. தொடர்புகள் தரநிலையான தானியக்க நெறிமுறை மூலம் நடக்கிறது, அவை இயற்கையாக நடந்து கொள்கின்றன, வெறும் ஜாவாஸ்கிரிப்ட் போலிப்படுத்தப்படவில்லை என்பது உறுதி செய்யப்படுகிறது."
+  },
+  "homepage.componentTesting.easySetup": {
+    "message": "வலை கூறு சோதனைக்கான எளிய அமைப்பு:"
+  },
+  "homepage.hightlight.createProject": {
+    "message": "நொடிகளில் WebdriverIO உடன் தொடங்கவும்"
+  },
+  "homepage.hightlight.createProject.para1": {
+    "message": "WebdriverIO டெஸ்ட்ரன்னர் ஒரு சக்திவாய்ந்த உள்ளமைவு உபயோகிப்பை வழங்கும் கட்டளை வரி இடைமுகத்துடன் வருகிறது மற்றும் ஒரு நிமிடத்திற்கும் குறைவான நேரத்தில் உங்கள் சோதனை அமைப்பை உருவாக்க உதவுகிறது. இது கிடைக்கும் சோதனை கட்டமைப்பு ஒருங்கிணைப்புகளைத் தேர்ந்தெடுக்க உங்களை அனுமதிக்கிறது மற்றும் அனைத்து ஆதரிக்கப்படும் அறிக்கையாளர் மற்றும் சேவை செயலிகளை எளிதாகச் சேர்க்க அனுமதிக்கிறது!"
+  },
+  "homepage.hightlight.createProject.para2": {
+    "message": "ஒரே எளிய கட்டளையுடன் நீங்கள் ஒரு முழுமையான சோதனை தொகுப்பை அமைக்கலாம்:"
+  },
+  "homepage.highlight.getStartedOnYouTube": {
+    "message": "WebdriverIO பற்றியும் எவ்வாறு தொடங்குவது என்பது பற்றியும் மேலும் அறிய {youtubeLink}."
+  },
+  "homepage.highlight.getStartedOnYouTube.label;": {
+    "message": "YouTube-இல்",
+    "description": "The label for the link to my YouTube"
+  },
+  "homepage.hightlight.watch": {
+    "message": "WebdriverIO பற்றிய உரைகளைப் பார்க்கவும்"
+  },
+  "homepage.highlight.conferenceTalk": {
+    "message": "WebdriverIO ஐச் சுற்றியுள்ள சமூகம் WebdriverIO உடன் தானியக்க சோதனை பற்றிய குறிப்பிட்ட தலைப்புகள் குறித்து பல்வேறு பயனர் குழுக்கள் அல்லது மாநாடுகளில் தீவிரமாகப் பேசுகிறது. {conferenceLink} இல் {videoAuthor} ஆல் {youtubeLink} இல் இந்த உரையைப் பாருங்கள்."
+  },
+  "homepage.highlight.conferenceTalk.label": {
+    "message": "WebdriverIO இன் எனது பிடித்த அம்சங்கள்",
+    "description": "The conference talk title"
+  },
+  "homepage.highlight.youtubeChannels": {
+    "message": "{channelOne}, {channelTwo} அல்லது {channelThree} போன்ற சமூக உறுப்பினர்களால் பயனுள்ள பயிற்சிகளைக் கொண்ட பல YouTube சேனல்களும் உள்ளன."
+  },
+  "homepage.hightlight.lighthouse": {
+    "message": "கூகுள் லைட்ஹவுஸ் ஒருங்கிணைப்பு"
+  },
+  "homepage.highlight.devtools": {
+    "message": "WebdriverIO WebDriver நெறிமுறையின் அடிப்படையில் தானியக்கத்தை இயக்குவதோடு மட்டுமல்லாமல், {devtoolsLink} அல்லது {lighthouseLink} போன்ற பிரபல டெவலப்பர் கருவிகளுக்கான ஒருங்கிணைப்புகளை இயக்க நேட்டிவ் பிரௌசர் API களைப் பயன்படுத்துகிறது. {devtoolsServiceLink} செயலி மூலம், உங்கள் பயன்பாடு சரியான PWA பயன்பாடா என்பதைச் சரிபார்க்க கட்டளைகளும், `speedIndex` மற்றும் பிற முன்னணி செயல்திறன் அளவீடுகளைக் கைப்பற்றுவதற்கான கட்டளைகளும் உங்களுக்குக் கிடைக்கின்றன."
+  },
+  "homepage.hightlight.devtools": {
+    "message": "இவற்றைப் போன்ற டெவலப்பர் கருவிகளுடன் ஒருங்கிணைப்பு:"
+  },
+  "until August 2025": {
+    "message": "ஆகஸ்ட் 2025 வரை"
+  },
+  "since July 2024": {
+    "message": "ஜூலை 2024 முதல்"
+  },
+  "since February 2022": {
+    "message": "பிப்ரவரி 2022 முதல்"
+  },
+  "since January 2021": {
+    "message": "ஜனவரி 2021 முதல்"
+  },
+  "since December 2019": {
+    "message": "டிசம்பர் 2019 முதல்"
+  },
+  "versions.description": {
+    "message": "Docusaurus 2 பதிப்புகள் பக்கம் அனைத்து ஆவணப்படுத்தப்பட்ட தள பதிப்புகளையும் பட்டியலிடுகிறது"
+  },
+  "WebdriverIO documentation versions": {
+    "message": "WebdriverIO ஆவண பதிப்புகள்"
+  },
+  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
+    "message": "திட்டக் குழு ஏறக்குறைய வருடாந்திர அடிப்படையில் புதிய முக்கிய பதிப்புகளை வெளியிடுகிறது. LTS வெளியீட்டு நிலை \"நீண்ட கால ஆதரவு\", இது பொதுவாக புதிய முக்கிய வெளியீடு செய்யப்படும் வரை மொத்தம் 12 மாதங்களுக்கு முக்கிய பிழைகள் சரிசெய்யப்படும் என்பதை உறுதிப்படுத்துகிறது."
+  },
+  "Current version (Stable)": {
+    "message": "தற்போதைய பதிப்பு (நிலையானது)"
+  },
+  "Here you can find the documentation for current released version.": {
+    "message": "இங்கே நீங்கள் தற்போது வெளியிடப்பட்ட பதிப்புக்கான ஆவணங்களைக் காணலாம்."
+  },
+  "Documentation": {
+    "message": "ஆவணங்கள்"
+  },
+  "Release Notes": {
+    "message": "வெளியீட்டு குறிப்புகள்"
+  },
+  "Past versions": {
+    "message": "கடந்த பதிப்புகள்"
+  },
+  "Here you can find documentation for previous versions of Docusaurus.": {
+    "message": "இங்கே நீங்கள் Docusaurus இன் முந்தைய பதிப்புகளுக்கான ஆவணங்களைக் காணலாம்."
+  },
   "theme.ErrorPageContent.title": {
     "message": "இந்தப் பக்கம் செயலிழந்தது.",
     "description": "The title of the fallback page when the page crashed"
   },
-  "theme.ErrorPageContent.tryAgain": {
-    "message": "மீண்டும் முயற்சிக்கவும்",
-    "description": "The label of the button to try again when the page crashed"
-  },
-  "theme.NotFound.title": {
-    "message": "பக்கம் கண்டுபிடிக்கப்படவில்லை",
-    "description": "The title of the 404 page"
-  },
-  "theme.NotFound.p1": {
-    "message": "நீங்கள் தேடியதை எங்களால் கண்டுபிடிக்க முடியவில்லை.",
-    "description": "The first paragraph of the 404 page"
-  },
-  "theme.NotFound.p2": {
-    "message": "உங்களை அசல் URL-க்கு இணைத்த தளத்தின் உரிமையாளரைத் தொடர்பு கொண்டு அவர்களின் இணைப்பு உடைந்துள்ளது என்பதை அவர்களுக்குத் தெரியப்படுத்தவும்.",
-    "description": "The 2nd paragraph of the 404 page"
-  },
-  "theme.admonition.note": {
-    "message": "குறிப்பு",
-    "description": "The default label used for the Note admonition (:::note)"
-  },
-  "theme.admonition.tip": {
-    "message": "குறிப்பு",
-    "description": "The default label used for the Tip admonition (:::tip)"
-  },
-  "theme.admonition.danger": {
-    "message": "ஆபத்து",
-    "description": "The default label used for the Danger admonition (:::danger)"
-  },
-  "theme.admonition.info": {
-    "message": "தகவல்",
-    "description": "The default label used for the Info admonition (:::info)"
-  },
-  "theme.admonition.caution": {
-    "message": "எச்சரிக்கை",
-    "description": "The default label used for the Caution admonition (:::caution)"
-  },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "மேலே செல்லவும்",
+    "message": "மேலே திரும்பச் செல்லுங்கள்",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
@@ -68,94 +196,82 @@
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "புதிய பதிவு",
+    "message": "புதிய இடுகை",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "பழைய பதிவு",
+    "message": "பழைய இடுகை",
     "description": "The blog post button label to navigate to the older/next post"
   },
-  "theme.blog.post.plurals": {
-    "message": "ஒரு பதிவு|{count} பதிவுகள்",
-    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.blog.tagTitle": {
-    "message": "\"{tagName}\" குறிச்சொல்லுடன் {nPosts} பதிவுகள்",
-    "description": "The title of the page for a blog tag"
-  },
   "theme.tags.tagsPageLink": {
-    "message": "அனைத்து குறிச்சொற்களையும் காண",
+    "message": "அனைத்து குறிச்சொற்களையும் காண்க",
     "description": "The label of the link targeting the tag list page"
   },
-  "theme.docs.breadcrumbs.home": {
-    "message": "முகப்பு பக்கம்",
-    "description": "The ARIA label for the home page in the breadcrumbs"
-  },
-  "theme.docs.breadcrumbs.navAriaLabel": {
-    "message": "நெடுவழிகள்",
-    "description": "The ARIA label for the breadcrumbs"
-  },
-  "theme.docs.DocCard.categoryDescription": {
-    "message": "{count} உருப்படிகள்",
-    "description": "The default description for a category card in the generated index about how many items this category includes"
-  },
   "theme.colorToggle.ariaLabel": {
-    "message": "இருள் மற்றும் ஒளி பயன்முறை இடையே மாறவும் (தற்போது {mode})",
+    "message": "இருண்ட மற்றும் ஒளி முறைக்கு இடையே மாற்றவும் (தற்போது {mode})",
     "description": "The ARIA label for the navbar color mode toggle"
   },
   "theme.colorToggle.ariaLabel.mode.dark": {
-    "message": "இருள் பயன்முறை",
+    "message": "இருண்ட பயன்முறை",
     "description": "The name for the dark color mode"
   },
   "theme.colorToggle.ariaLabel.mode.light": {
     "message": "ஒளி பயன்முறை",
     "description": "The name for the light color mode"
   },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "ப்ரெட்க்ரம்ப்ஸ்",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "1 உருப்படி|{count} உருப்படிகள்",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
   "theme.docs.paginator.navAriaLabel": {
-    "message": "ஆவண பக்கங்கள் வழிசெலுத்தல்",
+    "message": "ஆவண பக்கங்கள்",
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
-    "message": "முந்தைய",
+    "message": "முந்தையது",
     "description": "The label used to navigate to the previous doc"
   },
   "theme.docs.paginator.next": {
-    "message": "அடுத்த",
+    "message": "அடுத்தது",
     "description": "The label used to navigate to the next doc"
-  },
-  "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "ஒரு ஆவணம் குறிக்கப்பட்டது|{count} ஆவணங்கள் குறிக்கப்பட்டன",
-    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.docs.tagDocListPageTitle": {
-    "message": "\"{tagName}\" உடன் {nDocsTagged}",
-    "description": "The title of the page for a docs tag"
   },
   "theme.docs.versionBadge.label": {
     "message": "பதிப்பு: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "இது {siteTitle} {versionLabel} பதிப்பின் வெளியிடப்படாத ஆவணம்.",
+    "message": "இது {siteTitle} {versionLabel} பதிப்பிற்கான வெளியிடப்படாத ஆவணமாகும்.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "இது {siteTitle} {versionLabel} பதிப்பின் ஆவணம், இது இனி தீவிரமாக பராமரிக்கப்படவில்லை.",
+    "message": "இது {siteTitle} {versionLabel} க்கான ஆவணமாகும், இது இனி தீவிரமாக பராமரிக்கப்படவில்லை.",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "புதுப்பித்த ஆவணங்களுக்கு, {latestVersionLink} ({versionLabel}) பார்க்கவும்.",
+    "message": "புதுப்பித்த ஆவணங்களுக்கு, {latestVersionLink} ({versionLabel}) ஐப் பார்க்கவும்.",
     "description": "The label used to tell the user to check the latest version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
     "message": "சமீபத்திய பதிப்பு",
     "description": "The label used for the latest version suggestion link label"
   },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "ஒரு ஆவணம் குறிச்சொற்களிடப்பட்டது|{count} ஆவணங்கள் குறிச்சொற்களிடப்பட்டது",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "\"{tagName}\" உடன் {nDocsTagged}",
+    "description": "The title of the page for a docs tag"
+  },
   "theme.common.editThisPage": {
     "message": "இந்தப் பக்கத்தைத் திருத்து",
     "description": "The link label to edit the current page"
   },
   "theme.common.headingLinkTitle": {
-    "message": "தலைப்புக்கு நேரடி இணைப்பு",
+    "message": "{heading}க்கு நேரடி இணைப்பு",
     "description": "Title for link to heading"
   },
   "theme.lastUpdated.atDate": {
@@ -163,28 +279,60 @@
     "description": "The words used to describe on which date a page has been last updated"
   },
   "theme.lastUpdated.byUser": {
-    "message": " {user} மூலம்",
+    "message": " {user} ஆல்",
     "description": "The words used to describe by who the page has been last updated"
   },
   "theme.lastUpdated.lastUpdatedAtBy": {
     "message": "கடைசியாக புதுப்பிக்கப்பட்டது{atDate}{byUser}",
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
+  "theme.NotFound.title": {
+    "message": "பக்கம் காணப்படவில்லை",
+    "description": "The title of the 404 page"
+  },
   "theme.navbar.mobileVersionsDropdown.label": {
     "message": "பதிப்புகள்",
     "description": "The label for the navbar versions dropdown on mobile view"
   },
-  "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "மூடு",
-    "description": "The ARIA label for close button of announcement bar"
+  "theme.admonition.caution": {
+    "message": "எச்சரிக்கை",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.admonition.danger": {
+    "message": "ஆபத்து",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "தகவல்",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.note": {
+    "message": "குறிப்பு",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "குறிப்பு",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.warning": {
+    "message": "எச்சரிக்கை",
+    "description": "The default label used for the Warning admonition (:::warning)"
   },
   "theme.tags.tagsListLabel": {
     "message": "குறிச்சொற்கள்:",
     "description": "The label alongside a tag list"
   },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "மூடு",
+    "description": "The ARIA label for close button of announcement bar"
+  },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "சமீபத்திய வலைப்பதிவுகள் வழிசெலுத்தல்",
+    "message": "வலைப்பதிவு சமீபத்திய இடுகைகள் வழிசெலுத்தல்",
     "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "சொல் மடிப்பை நிலைமாற்று",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
   },
   "theme.CodeBlock.copied": {
     "message": "நகலெடுக்கப்பட்டது",
@@ -198,25 +346,29 @@
     "message": "நகலெடு",
     "description": "The copy button label on code blocks"
   },
-  "theme.CodeBlock.wordWrapToggle": {
-    "message": "சொற் சுற்றுதலை மாற்று",
-    "description": "The title attribute for toggle word wrapping button of code block lines"
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "பக்கப்பட்டி வகையை விரிவாக்கு '{label}'",
+    "description": "The ARIA label to expand the sidebar category"
   },
-  "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
-    "message": "சுருக்கக்கூடிய பக்கப் பட்டி வகை '{label}' ஐ மாற்றவும்",
-    "description": "The ARIA label to toggle the collapsible sidebar category"
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "பக்கப்பட்டி வகையை சுருக்கு '{label}'",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.NavBar.navAriaLabel": {
+    "message": "முதன்மை",
+    "description": "The ARIA label for the main navigation"
+  },
+  "theme.NotFound.p1": {
+    "message": "நீங்கள் தேடுவதை எங்களால் கண்டுபிடிக்க முடியவில்லை.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "அசல் URL க்கு உங்களை இணைத்த தளத்தின் உரிமையாளரைத் தொடர்பு கொண்டு அவர்களின் இணைப்பு உடைந்துள்ளது என்பதை தெரியப்படுத்தவும்.",
+    "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
     "message": "இந்த பக்கத்தில்",
     "description": "The label used by the button on the collapsible TOC component"
-  },
-  "theme.blog.post.readMore": {
-    "message": "மேலும் படிக்க",
-    "description": "The label used in blog post item excerpts to link to full blog posts"
-  },
-  "theme.blog.post.readMoreLabel": {
-    "message": "{title} பற்றி மேலும் படிக்க",
-    "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.blog.post.readingTime.plurals": {
     "message": "ஒரு நிமிட வாசிப்பு|{readingTime} நிமிட வாசிப்பு",
@@ -226,6 +378,18 @@
     "message": "மொழிகள்",
     "description": "The label for the mobile language switcher dropdown"
   },
+  "theme.blog.post.readMore": {
+    "message": "மேலும் படிக்க",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "{title} பற்றி மேலும் படிக்க",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "முகப்பு பக்கம்",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
   "theme.docs.sidebar.collapseButtonTitle": {
     "message": "பக்கப்பட்டியை சுருக்கு",
     "description": "The title attribute for collapse button of doc sidebar"
@@ -234,16 +398,20 @@
     "message": "பக்கப்பட்டியை சுருக்கு",
     "description": "The title attribute for collapse button of doc sidebar"
   },
+  "theme.docs.sidebar.navAriaLabel": {
+    "message": "ஆவணங்கள் பக்கப்பட்டி",
+    "description": "The ARIA label for the sidebar navigation"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← முதன்மை மெனுவிற்குத் திரும்பு",
+    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
   "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
     "message": "வழிசெலுத்தல் பட்டியை மூடு",
     "description": "The ARIA label for close button of mobile sidebar"
   },
-  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
-    "message": "← முதன்மை மெனுவிற்குத் திரும்பவும்",
-    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
-  },
   "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
-    "message": "வழிசெலுத்தல் பட்டியை மாற்று",
+    "message": "வழிசெலுத்தல் பட்டியை நிலைமாற்று",
     "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.docs.sidebar.expandButtonTitle": {
@@ -290,7 +458,7 @@
     "description": "The paragraph for fetching new search results"
   },
   "theme.SearchBar.label": {
-    "message": "தேடு",
+    "message": "தேடல்",
     "description": "The ARIA label and placeholder for search button"
   },
   "theme.SearchModal.searchBox.resetButtonTitle": {
@@ -314,7 +482,7 @@
     "description": "The label for save recent search button"
   },
   "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
-    "message": "இந்த தேடலை வரலாற்றிலிருந்து நீக்குக",
+    "message": "இந்த தேடலை வரலாற்றிலிருந்து அகற்று",
     "description": "The label for remove recent search button"
   },
   "theme.SearchModal.startScreen.favoriteSearchesTitle": {
@@ -322,7 +490,7 @@
     "description": "The title for favorite searches"
   },
   "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
-    "message": "இந்த தேடலை பிடித்தவைகளிலிருந்து நீக்குக",
+    "message": "இந்த தேடலை பிடித்தவைகளிலிருந்து அகற்று",
     "description": "The label for remove favorite search button"
   },
   "theme.SearchModal.errorScreen.titleText": {
@@ -362,7 +530,7 @@
     "description": "The ARIA label for the Escape key button that close the modal"
   },
   "theme.SearchModal.footer.searchByText": {
-    "message": "தேடல் மூலம்",
+    "message": "தேடுதல் மூலம்",
     "description": "The text explain that the search is making by Algolia"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
@@ -374,7 +542,7 @@
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "இந்த வினவல் முடிவுகளைத் திரும்பப் பெற வேண்டும் என்று நம்புகிறீர்களா?",
+    "message": "இந்த வினவல் முடிவுகளைத் திருப்பித் தர வேண்டும் என்று நம்புகிறீர்களா?",
     "description": "The text for the question where the user thinks there are missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
@@ -382,7 +550,7 @@
     "description": "The text for the link to report missing results"
   },
   "theme.SearchModal.placeholder": {
-    "message": "ஆவணங்களைத் தேடு",
+    "message": "ஆவணங்களைத் தேடுங்கள்",
     "description": "The placeholder of the input of the DocSearch pop-up modal"
   },
   "theme.IdealImageMessage.loading": {
@@ -405,17 +573,49 @@
     "message": "பிழை. மீண்டும் ஏற்ற கிளிக் செய்யவும்",
     "description": "When the image fails to load for unknown error"
   },
-  "theme.PwaReloadPopup.info": {
-    "message": "புதிய பதிப்பு கிடைக்கிறது",
-    "description": "The text for PWA reload popup"
+  "theme.blog.post.plurals": {
+    "message": "ஒரு இடுகை|{count} இடுகைகள்",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
-  "theme.PwaReloadPopup.refreshButtonText": {
-    "message": "புதுப்பிக்க",
-    "description": "The text for PWA reload button"
+  "theme.blog.tagTitle": {
+    "message": "\"{tagName}\" உடன் குறிக்கப்பட்ட {nPosts}",
+    "description": "The title of the page for a blog tag"
   },
-  "theme.PwaReloadPopup.closeButtonAriaLabel": {
-    "message": "மூடு",
-    "description": "The ARIA label for close button of PWA reload popup"
+  "theme.blog.author.pageTitle": {
+    "message": "{authorName} - {nPosts}",
+    "description": "The title of the page for a blog author"
+  },
+  "theme.blog.authorsList.pageTitle": {
+    "message": "ஆசிரியர்கள்",
+    "description": "The title of the authors page"
+  },
+  "theme.blog.authorsList.viewAll": {
+    "message": "அனைத்து ஆசிரியர்களையும் காண்க",
+    "description": "The label of the link targeting the blog authors page"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "இந்த ஆசிரியர் இதுவரை எந்த இடுகைகளையும் எழுதவில்லை.",
+    "description": "The text for authors with 0 blog post"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "பட்டியலிடப்படாத பக்கம்",
+    "description": "The unlisted content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "இந்த பக்கம் பட்டியலிடப்படவில்லை. தேடுபொறிகள் இதை குறியிடாது, மற்றும் நேரடி இணைப்பைக் கொண்ட பயனர்கள் மட்டுமே அணுக முடியும்.",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "வரைவு பக்கம்",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "இந்த பக்கம் ஒரு வரைவு. இது உருவாக்க நிலையில் மட்டுமே தெரியும் மற்றும் உற்பத்தி பில்டில் இருந்து விலக்கப்படும்.",
+    "description": "The draft content banner message"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "மீண்டும் முயற்சிக்கவும்",
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.common.skipToMainContent": {
     "message": "முக்கிய உள்ளடக்கத்திற்குச் செல்லவும்",
@@ -424,157 +624,5 @@
   "theme.tags.tagsPageTitle": {
     "message": "குறிச்சொற்கள்",
     "description": "The title of the tag list page"
-  },
-  "WebdriverIO allows you to test in actual browser or mobile devices used by your users.": {
-    "message": "WebdriverIO உங்கள் பயனர்கள் பயன்படுத்தும் உண்மையான உலாவி அல்லது மொபைல் சாதனங்களில் சோதிக்க அனுமதிக்கிறது."
-  },
-  "Use WebdriverIO for full e2e or unit and component testing in the browser.": {
-    "message": "உலாவியில் முழு e2e அல்லது அலகு மற்றும் கூறு சோதனைக்கு WebdriverIO ஐப் பயன்படுத்தவும்."
-  },
-  "WebdriverIO automatically waits for elements to appear before interacting with them.": {
-    "message": "அவற்றுடன் தொடர்புகொள்வதற்கு முன் உறுப்புகள் தோன்றுவதற்காக WebdriverIO தானாகவே காத்திருக்கிறது."
-  },
-  "Get Started": {
-    "message": "தொடங்குங்கள்"
-  },
-  "Why WebdriverIO?": {
-    "message": "ஏன் WebdriverIO?"
-  },
-  "View on GitHub": {
-    "message": "GitHub இல் காண்க"
-  },
-  "Watch on YouTube": {
-    "message": "YouTube இல் காண்க"
-  },
-  "Easy setup for web component testing with:": {
-    "message": "இதனுடன் வலை கூறு சோதனைக்கு எளிய அமைப்பு:"
-  },
-  "homepage.hightlight.createProject": {
-    "message": "வினாடிகளுக்குள் WebdriverIO உடன் தொடங்கவும்"
-  },
-  "The WebdriverIO testrunner comes with a command line interface that provides a powerful configuration utility and helps you to create your test setup in less than a minute. It let's you pick from available test framework integrations and easily allows to add all supported reporter and service plugins!": {
-    "message": "WebdriverIO டெஸ்ட்ரன்னர் ஒரு சக்திவாய்ந்த கட்டமைப்பு பயன்பாட்டை வழங்கும் கட்டளை வரி இடைமுகத்துடன் வருகிறது மற்றும் ஒரு நிமிடத்திற்கும் குறைவான நேரத்தில் உங்கள் சோதனை அமைப்பை உருவாக்க உதவுகிறது. இது கிடைக்கும் சோதனை கட்டமைப்பு ஒருங்கிணைப்புகளிலிருந்து தேர்ந்தெடுக்க உதவுகிறது மற்றும் ஆதரிக்கப்படும் அனைத்து அறிக்கையாளர் மற்றும் சேவை செருகுநிரல்களையும் எளிதாகச் சேர்க்க அனுமதிக்கிறது!"
-  },
-  "With just one simple command you can set up a complete test suite:": {
-    "message": "ஒரு எளிய கட்டளையுடன் நீங்கள் ஒரு முழுமையான சோதனை தொகுப்பை அமைக்கலாம்:"
-  },
-  "homepage.hightlight.watch": {
-    "message": "WebdriverIO பற்றிய உரைகளைப் பார்க்கவும்"
-  },
-  "homepage.hightlight.lighthouse": {
-    "message": "Google Lighthouse ஒருங்கிணைப்பு"
-  },
-  "Integration to developer tools such as:": {
-    "message": "போன்ற டெவலப்பர் கருவிகளுக்கான ஒருங்கிணைப்பு:"
-  },
-  "until October 2023": {
-    "message": "அக்டோபர் 2023 வரை"
-  },
-  "since February 2022": {
-    "message": "பிப்ரவரி 2022 முதல்"
-  },
-  "since January 2021": {
-    "message": "ஜனவரி 2021 முதல்"
-  },
-  "since December 2019": {
-    "message": "டிசம்பர் 2019 முதல்"
-  },
-  "versions.description": {
-    "message": "அனைத்து ஆவணப்படுத்தப்பட்ட தள பதிப்புகளையும் பட்டியலிடும் டாக்யுசாரஸ் 2 பதிப்புகள் பக்கம்"
-  },
-  "WebdriverIO documentation versions": {
-    "message": "WebdriverIO ஆவணப்படுத்தல் பதிப்புகள்"
-  },
-  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "திட்டக் குழு ஆண்டுதோறும் புதிய முக்கிய பதிப்புகளை வெளியிடுகிறது. LTS வெளியீடு நிலை \"நீண்ட கால ஆதரவு\", இது பொதுவாக ஒரு புதிய முக்கிய வெளியீடு செய்யப்படும் வரை மொத்தம் 12 மாதங்களுக்கு முக்கியமான பிழைகள் சரிசெய்யப்படும் என்பதை உறுதி செய்கிறது."
-  },
-  "Current version (Stable)": {
-    "message": "தற்போதைய பதிப்பு (ஸ்திரமான)"
-  },
-  "Here you can find the documentation for current released version.": {
-    "message": "இங்கே நீங்கள் தற்போதைய வெளியிடப்பட்ட பதிப்பிற்கான ஆவணத்தைக் காணலாம்."
-  },
-  "Documentation": {
-    "message": "ஆவணப்படுத்தல்"
-  },
-  "Release Notes": {
-    "message": "வெளியீட்டு குறிப்புகள்"
-  },
-  "Past versions": {
-    "message": "கடந்த காலப் பதிப்புகள்"
-  },
-  "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "இங்கே நீங்கள் டாகுசாரஸின் முந்தைய பதிப்புகளுக்கான ஆவணங்களைக் காணலாம்."
-  },
-  "homepage.createBrowserAnimation": {
-    "message": "WebdriverIO டெமோவை உருவாக்கவும்"
-  },
-  "homepage.highlight.getStartedOnYouTube": {
-    "message": "WebdriverIO மற்றும் எப்படித் தொடங்குவது என்பது பற்றி மேலும் அறிய தொடங்கவும் {youtubeLink}."
-  },
-  "homepage.highlight.getStartedOnYouTube.label;": {
-    "message": "யூடியூபில்",
-    "description": "The label for the link to my YouTube"
-  },
-  "homepage.highlight.conferenceTalk": {
-    "message": "WebdriverIO ஐச் சுற்றியுள்ள சமூகம் WebdriverIO உடன் தானியங்கு சோதனையைப் பற்றிய குறிப்பிட்ட தலைப்புகளில் பல்வேறு பயனர் குழுக்கள் அல்லது மாநாடுகளில் தீவிரமாகப் பேசுகிறது. {conferenceLink} இல் {videoAuthor} ஆல் {youtubeLink} இல் இந்த உரையைப் பார்க்கவும்."
-  },
-  "homepage.highlight.conferenceTalk.label": {
-    "message": "WebdriverIO இன் என் விருப்பமான அம்சங்கள்",
-    "description": "The conference talk title"
-  },
-  "homepage.highlight.youtubeChannels": {
-    "message": "சமூக உறுப்பினர்களால் பயனுள்ள பயிற்சிகளைக் கொண்ட பல YouTube சேனல்களும் உள்ளன, அவை {channelOne}, {channelTwo} அல்லது {channelThree}."
-  },
-  "homepage.highlight.devtools": {
-    "message": "WebdriverIO வெறுமனே WebDriver நெறிமுறையை அடிப்படையாகக் கொண்ட தானியக்கத்தை இயக்குவதில்லை, அது {devtoolsLink} அல்லது {lighthouseLink} போன்ற பிரபலமான டெவலப்பர் கருவிகளுக்கு ஒருங்கிணைப்புகளை செயல்படுத்த பிரபலமான உலாவி APIs ஐப் பயன்படுத்துகிறது. {devtoolsServiceLink} உங்கள் செயலி ஒரு செல்லுபடியாகும் PWA பயன்பாடா என்பதை சரிபார்ப்பதற்கான கட்டளைகளுக்கான அணுகலுடன் உள்ளது மற்றும் `speedIndex` மற்றும் பிற போன்ற முன்னணி செயல்திறன் அளவீடுகளை கைப்பற்றுவதற்கான கட்டளைகளுக்கான அணுகலை கொண்டுள்ளது."
-  },
-  "homepage.features.crossBrowser": {
-    "message": "{webdriverLink} மற்றும் {bidiLink} மூலம் தானியக்கம் மூலம் குறுக்கு உலாவி ஆதரவு."
-  },
-  "homepage.features.mobile": {
-    "message": "{appiumLink} மூலம் உண்மையான மொபைல் சாதனங்கள், ஸ்மார்ட் டிவிகள் அல்லது பிற IoT சாதனங்களில் WebdriverIO ஐ இயக்கவும்."
-  },
-  "homepage.features.support": {
-    "message": "8 ஆயிரத்துக்கும் மேற்பட்ட உறுப்பினர்களைக் கொண்ட {supportChannelLink} மற்றும் சமூகத்தால் பராமரிக்கப்படும் செருகுநிரல்களின் வளமான சூழலமைப்பு."
-  },
-  "homepage.tagline": {
-    "message": "Node.js க்கான அடுத்த-தலைமுறை உலாவி மற்றும் மொபைல் தானியக்க சோதனை கட்டமைப்பு"
-  },
-  "homepage.componentTesting.para1": {
-    "message": "WebdriverIO என்பது உங்கள் வலை ஆப் மேம்பாட்டிற்கான {allInOne} கட்டமைப்பாகும். இது சிறிய மற்றும் லைட்வெயிட் கூறு சோதனைகளை இயக்கவும், உலாவியில் அல்லது மொபைல் சாதனத்தில் e2e சோதனை சூழ்நிலைகளை இயக்கவும் உங்களை அனுமதிக்கிறது. இது உங்கள் சோதனையை {usedBy} சூழலில் செய்வதை உறுதி செய்கிறது."
-  },
-  "features.realEnvironments": {
-    "message": "உண்மையான சூழல்களில் சோதனை"
-  },
-  "features.versatile": {
-    "message": "பன்முக மற்றும் அம்ச வளம்"
-  },
-  "features.autoWait": {
-    "message": "தானியங்கு காத்திருப்பு"
-  },
-  "features.standards": {
-    "message": "வலை தரநிலைகளை அடிப்படையாகக் கொண்டது"
-  },
-  "features.mobileSupport": {
-    "message": "நேடிவ் மொபைல் ஆதரவு"
-  },
-  "features.community": {
-    "message": "அர்ப்பணிப்புள்ள சமூகம்"
-  },
-  "homepage.componentTesting.heading": {
-    "message": "நிஜ உலாவியில் E2E மற்றும் அலகு / கூறு சோதனை!"
-  },
-  "homepage.componentTesting.para2": {
-    "message": "இது ஸ்மார்ட் தேர்வாளர் உத்திகளுடன் வருகிறது, அவை {reactComponents} போன்றவற்றுடன் தொடர்புகொள்வதை எளிதாக்குகின்றன அல்லது நெஸ்டட் ஷேடோ DOM மரங்களுடன் ஆழமான தேர்வாளர் வினவல்களை இயக்குகின்றன. தரநிலையாக்கப்பட்ட தானியக்க நெறிமுறை மூலம் தொடர்புகள் நடைபெறுவதால், அவை இயல்பாக நடந்து கொள்கின்றன, வெறும் JavaScript உருவகப்படுத்தப்படவில்லை என்பது உறுதி செய்யப்படுகிறது."
-  },
-  "Who is using WebdriverIO?": {
-    "message": "யார் WebdriverIO ஐப் பயன்படுத்துகிறார்கள்?"
-  },
-  "all in one": {
-    "message": "அனைத்தும் ஒன்றில்"
-  },
-  "used by your users": {
-    "message": "உங்கள் பயனர்களால் பயன்படுத்தப்படும்"
   }
 }

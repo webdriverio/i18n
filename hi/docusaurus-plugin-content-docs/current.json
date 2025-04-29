@@ -4,7 +4,7 @@
     "description": "The label for version current"
   },
   "sidebar.docs.category.Getting Started": {
-    "message": "शुरुआत करें",
+    "message": "शुरू करना",
     "description": "The label for category Getting Started in sidebar docs"
   },
   "sidebar.docs.category.Core Concepts": {
@@ -16,12 +16,24 @@
     "description": "The label for category Configuration in sidebar docs"
   },
   "sidebar.docs.category.Guides": {
-    "message": "मार्गदर्शिकाएँ",
+    "message": "गाइड",
     "description": "The label for category Guides in sidebar docs"
+  },
+  "sidebar.docs.category.Best Practices": {
+    "message": "सर्वोत्तम अभ्यास",
+    "description": "The label for category Best Practices in sidebar docs"
   },
   "sidebar.docs.category.Testrunner": {
     "message": "टेस्टरनर",
     "description": "The label for category Testrunner in sidebar docs"
+  },
+  "sidebar.docs.category.Desktop Testing": {
+    "message": "डेस्कटॉप टेस्टिंग",
+    "description": "The label for category Desktop Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Electron": {
+    "message": "इलेक्ट्रॉन",
+    "description": "The label for category Electron in sidebar docs"
   },
   "sidebar.docs.category.Component Testing": {
     "message": "कंपोनेंट टेस्टिंग",
@@ -30,6 +42,34 @@
   "sidebar.docs.category.Framework Setup": {
     "message": "फ्रेमवर्क सेटअप",
     "description": "The label for category Framework Setup in sidebar docs"
+  },
+  "sidebar.docs.category.Extension Testing": {
+    "message": "एक्सटेंशन टेस्टिंग",
+    "description": "The label for category Extension Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Accessibility Testing": {
+    "message": "एक्सेसिबिलिटी टेस्टिंग",
+    "description": "The label for category Accessibility Testing in sidebar docs"
+  },
+  "sidebar.docs.category.OCR Testing": {
+    "message": "OCR टेस्टिंग",
+    "description": "The label for category OCR Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Commands": {
+    "message": "कमांड्स",
+    "description": "The label for category Commands in sidebar docs"
+  },
+  "sidebar.docs.category.Visual Testing": {
+    "message": "विज़ुअल टेस्टिंग",
+    "description": "The label for category Visual Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Options": {
+    "message": "विकल्प",
+    "description": "The label for category Options in sidebar docs"
+  },
+  "sidebar.docs.category.Percy": {
+    "message": "पर्सी",
+    "description": "The label for category Percy in sidebar docs"
   },
   "sidebar.docs.category.Migrate": {
     "message": "माइग्रेट",
@@ -47,6 +87,10 @@
     "message": "सेवाएँ",
     "description": "The label for category Services in sidebar docs"
   },
+  "sidebar.docs.doc.Argos": {
+    "message": "आर्गोस",
+    "description": "The label for the doc item Argos in sidebar docs, linking to the doc visual-testing/argos"
+  },
   "sidebar.api.category.Protocols": {
     "message": "प्रोटोकॉल",
     "description": "The label for category Protocols in sidebar api"
@@ -59,16 +103,24 @@
     "message": "एलिमेंट",
     "description": "The label for category element in sidebar api"
   },
+  "sidebar.api.category.mobile": {
+    "message": "मोबाइल",
+    "description": "The label for category mobile in sidebar api"
+  },
   "sidebar.api.category.mock": {
     "message": "मॉक",
     "description": "The label for category mock in sidebar api"
   },
+  "sidebar.api.category.dialog": {
+    "message": "डायलॉग",
+    "description": "The label for category dialog in sidebar api"
+  },
+  "sidebar.api.category.clock": {
+    "message": "क्लॉक",
+    "description": "The label for category clock in sidebar api"
+  },
   "sidebar.flowcharts.category.Flowcharts": {
     "message": "फ्लोचार्ट",
     "description": "The label for category Flowcharts in sidebar flowcharts"
-  },
-  "sidebar.docs.category.Web Extension Testing": {
-    "message": "वेब एक्सटेंशन टेस्टिंग",
-    "description": "The label for category Web Extension Testing in sidebar docs"
   }
 }

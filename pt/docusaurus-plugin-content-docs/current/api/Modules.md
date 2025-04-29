@@ -13,18 +13,18 @@ Os pacotes de protocolo ([`webdriver`](https://www.npmjs.com/package/webdriver) 
 
 Inicia uma nova sessão com capacidades específicas. Com base na resposta da sessão, comandos de diferentes protocolos serão fornecidos.
 
-##### Parâmetros
+##### Paramaters
 
-- `options`: [Opções do WebDriver](/docs/configuration#webdriver-options)
+- `options`: [Opções WebDriver](/docs/configuration#webdriver-options)
 - `modifier`: função que permite modificar a instância do cliente antes de ser retornada
 - `userPrototype`: objeto de propriedades que permite estender o protótipo da instância
-- `customCommandWrapper`: função que permite encapsular funcionalidades em torno das chamadas de função
+- `customCommandWrapper`: função que permite envolver funcionalidades em chamadas de função
 
-##### Retorna
+##### Returns
 
 - Objeto [Browser](/docs/api/browser)
 
-##### Exemplo
+##### Example
 
 ```js
 const client = await WebDriver.newSession({
@@ -36,18 +36,18 @@ const client = await WebDriver.newSession({
 
 Conecta-se a uma sessão WebDriver ou DevTools em execução.
 
-##### Parâmetros
+##### Paramaters
 
-- `attachInstance`: instância para conectar a uma sessão ou pelo menos um objeto com uma propriedade `sessionId` (ex.: `{ sessionId: 'xxx' }`)
+- `attachInstance`: instância para conectar uma sessão ou pelo menos um objeto com uma propriedade `sessionId` (ex: `{ sessionId: 'xxx' }`)
 - `modifier`: função que permite modificar a instância do cliente antes de ser retornada
 - `userPrototype`: objeto de propriedades que permite estender o protótipo da instância
-- `customCommandWrapper`: função que permite encapsular funcionalidades em torno das chamadas de função
+- `customCommandWrapper`: função que permite envolver funcionalidades em chamadas de função
 
-##### Retorna
+##### Returns
 
 - Objeto [Browser](/docs/api/browser)
 
-##### Exemplo
+##### Example
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -58,11 +58,11 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 Recarrega uma sessão dada a instância fornecida.
 
-##### Parâmetros
+##### Paramaters
 
 - `instance`: instância do pacote para recarregar
 
-##### Exemplo
+##### Example
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -71,22 +71,22 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-Semelhante aos pacotes de protocolo (`webdriver` e `devtools`), você também pode usar as APIs do pacote WebdriverIO para gerenciar sessões. As APIs podem ser importadas usando `import { remote, attach, multiremote } from 'webdriverio'` e contêm as seguintes funcionalidades:
+Assim como os pacotes de protocolo (`webdriver` e `devtools`), você também pode usar as APIs do pacote WebdriverIO para gerenciar sessões. As APIs podem ser importadas usando `import { remote, attach, multiremote } from 'webdriverio'` e contêm as seguintes funcionalidades:
 
 #### `remote(options, modifier)`
 
-Inicia uma sessão WebdriverIO. A instância contém todos os comandos do pacote de protocolo, mas com funções de ordem superior adicionais, veja [documentação da API](/docs/api).
+Inicia uma sessão WebdriverIO. A instância contém todos os comandos como o pacote de protocolo, mas com funções de ordem superior adicionais, veja [Documentação da API](/docs/api).
 
-##### Parâmetros
+##### Paramaters
 
-- `options`: [Opções do WebdriverIO](/docs/configuration#webdriverio)
+- `options`: [Opções WebdriverIO](/docs/configuration#webdriverio)
 - `modifier`: função que permite modificar a instância do cliente antes de ser retornada
 
-##### Retorna
+##### Returns
 
 - Objeto [Browser](/docs/api/browser)
 
-##### Exemplo
+##### Example
 
 ```js
 import { remote } from 'webdriverio'
@@ -100,15 +100,15 @@ const browser = await remote({
 
 Conecta-se a uma sessão WebdriverIO em execução.
 
-##### Parâmetros
+##### Paramaters
 
-- `attachOptions`: instância para conectar a uma sessão ou pelo menos um objeto com uma propriedade `sessionId` (ex.: `{ sessionId: 'xxx' }`)
+- `attachOptions`: instância para conectar uma sessão ou pelo menos um objeto com uma propriedade `sessionId` (ex: `{ sessionId: 'xxx' }`)
 
-##### Retorna
+##### Returns
 
 - Objeto [Browser](/docs/api/browser)
 
-##### Exemplo
+##### Example
 
 ```js
 import { remote, attach } from 'webdriverio'
@@ -121,15 +121,15 @@ const newBrowser = await attach(browser)
 
 Inicia uma instância multiremote que permite controlar várias sessões em uma única instância. Confira nossos [exemplos de multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) para casos de uso concretos.
 
-##### Parâmetros
+##### Paramaters
 
-- `multiremoteOptions`: um objeto com chaves representando o nome do navegador e suas [Opções do WebdriverIO](/docs/configuration#webdriverio).
+- `multiremoteOptions`: um objeto com chaves representando o nome do navegador e suas [Opções WebdriverIO](/docs/configuration#webdriverio).
 
-##### Retorna
+##### Returns
 
 - Objeto [Browser](/docs/api/browser)
 
-##### Exemplo
+##### Example
 
 ```js
 import { multiremote } from 'webdriverio'
@@ -180,14 +180,14 @@ Depois disso, crie uma instância do launcher e execute o teste.
 
 #### `Launcher(configPath, opts)`
 
-O construtor da classe `Launcher` espera a URL para o arquivo de configuração e um objeto `opts` com configurações que sobrescreverão as da configuração.
+O construtor da classe `Launcher` espera a URL para o arquivo de configuração e um objeto `opts` com configurações que substituirão as do arquivo de configuração.
 
-##### Parâmetros
+##### Paramaters
 
 - `configPath`: caminho para o `wdio.conf.js` a ser executado
-- `opts`: argumentos ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) para sobrescrever valores do arquivo de configuração
+- `opts`: argumentos ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) para substituir valores do arquivo de configuração
 
-##### Exemplo
+##### Example
 
 ```js
 const wdio = new Launcher(
@@ -203,11 +203,11 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-O comando `run` retorna uma [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Ela é resolvida se os testes foram executados com sucesso ou falharam, e é rejeitada se o launcher não conseguiu iniciar a execução dos testes.
+O comando `run` retorna uma [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Ela é resolvida se os testes foram executados com sucesso ou falharam, e é rejeitada se o launcher não conseguiu iniciar os testes.
 
 ## `@wdio/browser-runner`
 
-Ao executar testes de unidade ou componente usando o [browser runner](/docs/runner#browser-runner) do WebdriverIO, você pode importar utilitários de simulação para seus testes, por exemplo:
+Ao executar testes de unidade ou componentes usando o [browser runner](/docs/runner#browser-runner) do WebdriverIO, você pode importar utilitários de simulação para seus testes, por exemplo:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
@@ -217,22 +217,22 @@ As seguintes exportações nomeadas estão disponíveis:
 
 #### `fn`
 
-Função de simulação, veja mais na [documentação oficial do Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Função mock, veja mais na documentação oficial do [Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
-Função de espionagem, veja mais na [documentação oficial do Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Função spy, veja mais na documentação oficial do [Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
 Método para simular arquivo ou módulo de dependência.
 
-##### Parâmetros
+##### Paramaters
 
 - `moduleName`: caminho relativo para o arquivo a ser simulado ou um nome de módulo.
 - `factory`: função para retornar o valor simulado (opcional)
 
-##### Exemplo
+##### Example
 
 ```js
 mock('../src/constants.ts', () => ({
@@ -252,11 +252,11 @@ mock('lodash', (origModuleFactory) => {
 
 Desfaz a simulação de dependência que é definida dentro do diretório de simulação manual (`__mocks__`).
 
-##### Parâmetros
+##### Paramaters
 
 - `moduleName`: nome do módulo a ser dessimulado.
 
-##### Exemplo
+##### Example
 
 ```js
 unmock('lodash')

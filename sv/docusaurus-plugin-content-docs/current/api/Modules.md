@@ -3,22 +3,22 @@ id: modules
 title: Moduler
 ---
 
-WebdriverIO publicerar ett flertal moduler till NPM och andra register som du kan använda för att bygga ditt eget automatiseringsramverk. Se mer dokumentation om WebdriverIO:s inställningstyper [här](/docs/setuptypes).
+WebdriverIO publicerar olika moduler till NPM och andra register som du kan använda för att bygga ditt eget automatiseringsramverk. Se mer dokumentation om WebdriverIO:s installationstyper [här](/docs/setuptypes).
 
 ## `webdriver` och `devtools`
 
-Protokollpaketen ([`webdriver`](https://www.npmjs.com/package/webdriver) och [`devtools`](https://www.npmjs.com/package/devtools)) exponerar en klass med följande statiska funktioner som låter dig starta sessioner:
+Protokollpaketen ([`webdriver`](https://www.npmjs.com/package/webdriver) och [`devtools`](https://www.npmjs.com/package/devtools)) exponerar en klass med följande statiska funktioner som låter dig initiera sessioner:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Startar en ny session med specifika kapaciteter. Baserat på sessionsvaret kommer kommandon från olika protokoll att tillhandahållas.
+Startar en ny session med specifika funktioner. Baserat på sessionssvaret kommer kommandon från olika protokoll att tillhandahållas.
 
 ##### Parametrar
 
 - `options`: [WebDriver Options](/docs/configuration#webdriver-options)
-- `modifier`: funktion som låter dig modifiera klientinstansen innan den returneras
+- `modifier`: funktion som tillåter modifiering av klientinstansen innan den returneras
 - `userPrototype`: egenskapsobjekt som låter dig utöka instansprototypen
-- `customCommandWrapper`: funktion som låter dig omsluta funktionalitet runt funktionsanrop
+- `customCommandWrapper`: funktion som gör det möjligt att paketera funktionalitet runt funktionsanrop
 
 ##### Returnerar
 
@@ -34,14 +34,14 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-Ansluter till en pågående WebDriver eller DevTools session.
+Ansluter till en pågående WebDriver eller DevTools-session.
 
 ##### Parametrar
 
 - `attachInstance`: instans att ansluta en session till eller åtminstone ett objekt med en egenskap `sessionId` (t.ex. `{ sessionId: 'xxx' }`)
-- `modifier`: funktion som låter dig modifiera klientinstansen innan den returneras
+- `modifier`: funktion som tillåter modifiering av klientinstansen innan den returneras
 - `userPrototype`: egenskapsobjekt som låter dig utöka instansprototypen
-- `customCommandWrapper`: funktion som låter dig omsluta funktionalitet runt funktionsanrop
+- `customCommandWrapper`: funktion som gör det möjligt att paketera funktionalitet runt funktionsanrop
 
 ##### Returnerar
 
@@ -71,16 +71,16 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-Precis som med protokollpaketen (`webdriver` och `devtools`) kan du också använda WebdriverIO-paketets API:er för att hantera sessioner. API:erna kan importeras med `import { remote, attach, multiremote } from 'webdriverio` och innehåller följande funktionalitet:
+På samma sätt som protokollpaketen (`webdriver` och `devtools`) kan du även använda WebdriverIO-paketets API:er för att hantera sessioner. API:erna kan importeras med `import { remote, attach, multiremote } from 'webdriverio'` och innehåller följande funktionalitet:
 
 #### `remote(options, modifier)`
 
-Startar en WebdriverIO-session. Instansen innehåller alla kommandon som protokollpaketet men med ytterligare funktioner av högre ordning, se [API-dokument](/docs/api).
+Startar en WebdriverIO-session. Instansen innehåller alla kommandon som protokollpaketet men med ytterligare funktioner av högre ordning, se [API-docs](/docs/api).
 
 ##### Parametrar
 
 - `options`: [WebdriverIO Options](/docs/configuration#webdriverio)
-- `modifier`: funktion som låter dig modifiera klientinstansen innan den returneras
+- `modifier`: funktion som tillåter modifiering av klientinstansen innan den returneras
 
 ##### Returnerar
 
@@ -119,7 +119,7 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-Initierar en multiremote-instans som låter dig kontrollera flera sessioner inom en enda instans. Kolla in våra [multiremote-exempel](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) för konkreta användningsfall.
+Initierar en multiremote-instans som låter dig kontrollera flera sessioner inom en enda instans. Kolla in våra [multiremote exempel](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) för konkreta användningsfall.
 
 ##### Parametrar
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-Istället för att anropa kommandot `wdio` kan du också inkludera testrunner som en modul och köra den i en godtycklig miljö. För det behöver du importera `@wdio/cli`-paketet som en modul, så här:
+Istället för att anropa kommandot `wdio` kan du också inkludera testkörarmodulen och köra den i en godtycklig miljö. För detta behöver du importera `@wdio/cli`-paketet som en modul, så här:
 
 <Tabs
   defaultValue="esm"
@@ -176,11 +176,11 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-Efter det, skapa en instans av launcher och kör testet.
+Därefter skapar du en instans av startaren och kör testet.
 
 #### `Launcher(configPath, opts)`
 
-Konstruktorn för `Launcher`-klassen förväntar sig URL:en till konfigurationsfilen och ett `opts`-objekt med inställningar som kommer att skriva över de i konfigurationen.
+Konstruktören för `Launcher`-klassen förväntar sig URL:en till konfigurationsfilen och ett `opts`-objekt med inställningar som kommer att skriva över dem i konfigurationen.
 
 ##### Parametrar
 
@@ -203,11 +203,11 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-Kommandot `run` returnerar ett [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Det är löst om testerna kördes framgångsrikt eller misslyckades, och det avvisas om launchen inte kunde starta körningen av testerna.
+Kommandot `run` returnerar ett [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Det löses om testerna kördes framgångsrikt eller misslyckades, och det avvisas om startaren inte kunde starta testen.
 
 ## `@wdio/browser-runner`
 
-När du kör enhets- eller komponenttester med WebdriverIO:s [browser runner](/docs/runner#browser-runner) kan du importera mockverktyg för dina tester, t.ex.:
+När du kör enhets- eller komponenttester med WebdriverIO:s [webbläsarkörare](/docs/runner#browser-runner) kan du importera mockinverktyg för dina tester, t.ex.:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
@@ -217,15 +217,15 @@ Följande namngivna exporter är tillgängliga:
 
 #### `fn`
 
-Mockfunktion, läs mer i den officiella [Vitest-dokumentationen](https://vitest.dev/api/mock.html#mock-functions).
+Mockfunktion, se mer i de officiella [Vitest-dokumenten](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
-Spyfunktion, läs mer i den officiella [Vitest-dokumentationen](https://vitest.dev/api/mock.html#mock-functions).
+Spionerfunktion, se mer i de officiella [Vitest-dokumenten](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
-Metod för att mocka fil eller beroendemodyl.
+Metod för att mocka fil eller beroendemodulmodul.
 
 ##### Parametrar
 
@@ -250,11 +250,11 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-Avmocka beroende som är definierat inom den manuella mockkatalogen (`__mocks__`).
+Avmocka beroende som definieras inom den manuella mock-katalogen (`__mocks__`).
 
 ##### Parametrar
 
-- `moduleName`: namn på modulen som ska avmockas.
+- `moduleName`: namnet på modulen som ska avmockas.
 
 ##### Exempel
 

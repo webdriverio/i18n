@@ -1,4 +1,8 @@
 {
+  "logo.alt": {
+    "message": "WebdriverIO",
+    "description": "The alt text of navbar logo"
+  },
   "item.label.Docs": {
     "message": "مستندات",
     "description": "Navbar item with label Docs"
@@ -16,11 +20,15 @@
     "description": "Navbar item with label Contribute"
   },
   "item.label.Community": {
-    "message": "انجمن",
+    "message": "جامعه",
     "description": "Navbar item with label Community"
   },
-  "item.label.v8": {
-    "message": "v8",
-    "description": "Navbar item with label v8"
+  "item.label.Sponsor": {
+    "message": "حامی مالی",
+    "description": "Navbar item with label Sponsor"
+  },
+  "item.label.v9": {
+    "message": "v9",
+    "description": "Navbar item with label v9"
   }
 }

@@ -1,46 +1,174 @@
 {
+  "features.realEnvironments": {
+    "message": "تست در محیط‌های واقعی"
+  },
+  "features.realEnvironments.description": {
+    "message": "WebdriverIO به شما اجازه می‌دهد در مرورگرها یا دستگاه‌های موبایل واقعی که توسط کاربران شما استفاده می‌شود، تست کنید."
+  },
+  "features.versatile": {
+    "message": "چندمنظوره و پر از ویژگی"
+  },
+  "features.versatile.description": {
+    "message": "از WebdriverIO برای تست کامل end-to-end یا تست واحد و کامپوننت در مرورگر استفاده کنید."
+  },
+  "features.autoWait": {
+    "message": "انتظار خودکار"
+  },
+  "features.autoWait.description": {
+    "message": "WebdriverIO به طور خودکار منتظر می‌ماند تا عناصر قبل از تعامل با آن‌ها ظاهر شوند."
+  },
+  "features.standards": {
+    "message": "بر اساس استانداردهای وب"
+  },
+  "homepage.features.crossBrowser": {
+    "message": "پشتیبانی از چندین مرورگر از طریق اتوماسیون با {webdriverLink} و {bidiLink}."
+  },
+  "features.mobileSupport": {
+    "message": "پشتیبانی بومی از موبایل"
+  },
+  "homepage.features.mobile": {
+    "message": "WebdriverIO را روی دستگاه‌های موبایل واقعی، تلویزیون‌های هوشمند یا سایر دستگاه‌های IoT از طریق {appiumLink} اجرا کنید."
+  },
+  "features.community": {
+    "message": "جامعه متعهد"
+  },
+  "homepage.features.support": {
+    "message": "مدیریت یک {supportChannelLink} با بیش از ۸ هزار عضو و یک اکوسیستم غنی از پلاگین‌های نگهداری شده توسط جامعه."
+  },
+  "homepage.createBrowserAnimation": {
+    "message": "ایجاد پروژه WebdriverIO برای خودکارسازی اپلیکیشن‌های MacOS"
+  },
+  "homepage.logoCarousel.title": {
+    "message": "چه کسانی از WebdriverIO استفاده می‌کنند؟"
+  },
+  "sponsors.description.openSource": {
+    "message": "\n                ما یک پروژه متن‌باز با تعهد قوی به شفافیت و حاکمیت جامعه هستیم.\n                ما بخشی از {openJsFoundationLink} هستیم که بخشی از {linuxFoundationLink} است. این پروژه\n                کاملاً توسط داوطلبان اداره می‌شود و توسط شرکت‌هایی که می‌خواهند پروژه موفق شود، تأمین مالی می‌شود.\n                تیم پروژه از حمایت سخاوتمندانه این شرکت‌ها قدردانی می‌کند.\n            "
+  },
+  "sponsors.description.support": {
+    "message": "اگر از WebdriverIO در سازمان خود استفاده می‌کنید، لطفاً با {becomeASponsor} از این پروژه حمایت کنید. این به ما کمک می‌کند تا پروژه را در حال اجرا و تکامل نگه داریم."
+  },
+  "homepage.tagline": {
+    "message": "چارچوب تست خودکار مرورگر و موبایل نسل بعدی برای Node.js"
+  },
+  "homepage.getStarted": {
+    "message": "شروع کنید"
+  },
+  "homepage.whyWebdriverIO": {
+    "message": "چرا WebdriverIO؟"
+  },
+  "homepage.viewOnGitHub": {
+    "message": "مشاهده در GitHub"
+  },
+  "homepage.watchOnYouTube": {
+    "message": "تماشا در YouTube"
+  },
+  "homepage.sponsorSection.sponsoredBy": {
+    "message": "حمایت شده توسط"
+  },
+  "homepage.componentTesting.heading": {
+    "message": "تست E2E و واحد / کامپوننت در مرورگر واقعی!"
+  },
+  "homepage.componentTesting.para1": {
+    "message": "WebdriverIO یک چارچوب {allInOne} برای توسعه برنامه‌های وب شما است. این به شما امکان می‌دهد تست‌های کوچک و سبک کامپوننت را اجرا کنید و همچنین سناریوهای تست e2e را در مرورگر یا دستگاه موبایل اجرا کنید. این تضمین می‌کند که تست را در محیطی انجام دهید که {usedBy}."
+  },
+  "homepage.componentTesting.allInOne": {
+    "message": "همه در یک"
+  },
+  "homepage.componentTesting.usedBy": {
+    "message": "توسط کاربران شما استفاده می‌شود"
+  },
+  "homepage.componentTesting.para2": {
+    "message": "این با استراتژی‌های انتخابگر هوشمند همراه است که تعامل با {reactComponents} یا اجرای پرس‌وجوهای انتخابگر عمیق با درخت‌های shadow DOM تودرتو را ساده می‌کند. از آنجا که تعاملات از طریق یک پروتکل خودکارسازی استاندارد انجام می‌شوند، تضمین می‌شود که آنها به صورت بومی رفتار می‌کنند و صرفاً با جاوااسکریپت شبیه‌سازی نشده‌اند."
+  },
+  "homepage.componentTesting.easySetup": {
+    "message": "راه‌اندازی آسان برای تست کامپوننت وب با:"
+  },
+  "homepage.hightlight.createProject": {
+    "message": "با WebdriverIO در چند ثانیه شروع کنید"
+  },
+  "homepage.hightlight.createProject.para1": {
+    "message": "آزمونگر WebdriverIO با یک رابط خط فرمان همراه است که یک ابزار پیکربندی قدرتمند ارائه می‌دهد و به شما کمک می‌کند تا محیط تست خود را در کمتر از یک دقیقه ایجاد کنید. این به شما امکان می‌دهد از ادغام‌های چارچوب تست موجود انتخاب کنید و به راحتی اجازه می‌دهد تمام افزونه‌های گزارشگر و سرویس پشتیبانی شده را اضافه کنید!"
+  },
+  "homepage.hightlight.createProject.para2": {
+    "message": "با فقط یک دستور ساده می‌توانید یک مجموعه تست کامل ایجاد کنید:"
+  },
+  "homepage.highlight.getStartedOnYouTube": {
+    "message": "شروع به یادگیری بیشتر درباره WebdriverIO و نحوه شروع {youtubeLink}."
+  },
+  "homepage.highlight.getStartedOnYouTube.label;": {
+    "message": "در یوتیوب",
+    "description": "The label for the link to my YouTube"
+  },
+  "homepage.hightlight.watch": {
+    "message": "تماشای گفتگوها درباره WebdriverIO"
+  },
+  "homepage.highlight.conferenceTalk": {
+    "message": "جامعه پیرامون WebdriverIO به طور فعال در مورد موضوعات خاص مربوط به تست خودکار با WebdriverIO در گروه‌های کاربری یا کنفرانس‌های مختلف صحبت می‌کند. این گفتگو را در {youtubeLink} توسط {videoAuthor} در {conferenceLink} مشاهده کنید."
+  },
+  "homepage.highlight.conferenceTalk.label": {
+    "message": "ویژگی‌های مورد علاقه من در WebdriverIO",
+    "description": "The conference talk title"
+  },
+  "homepage.highlight.youtubeChannels": {
+    "message": "همچنین کانال‌های یوتیوب زیادی با آموزش‌های مفید توسط اعضای جامعه مانند {channelOne}، {channelTwo} یا {channelThree} وجود دارد."
+  },
+  "homepage.hightlight.lighthouse": {
+    "message": "ادغام Google Lighthouse"
+  },
+  "homepage.highlight.devtools": {
+    "message": "WebdriverIO نه تنها اتوماسیون را بر اساس پروتکل WebDriver اجرا می‌کند، بلکه از APIهای بومی مرورگر برای فعال کردن ادغام با ابزارهای توسعه‌دهنده محبوب مانند {devtoolsLink} یا {lighthouseLink} استفاده می‌کند. با افزونه {devtoolsServiceLink} شما به دستورات برای تأیید اینکه آیا برنامه شما یک برنامه PWA معتبر است و همچنین به دستورات برای ضبط معیارهای عملکرد فرانت‌اند مانند `speedIndex` و غیره دسترسی دارید."
+  },
+  "homepage.hightlight.devtools": {
+    "message": "ادغام با ابزارهای توسعه‌دهنده مانند:"
+  },
+  "until August 2025": {
+    "message": "تا آگوست ۲۰۲۵"
+  },
+  "since July 2024": {
+    "message": "از جولای ۲۰۲۴"
+  },
+  "since February 2022": {
+    "message": "از فوریه ۲۰۲۲"
+  },
+  "since January 2021": {
+    "message": "از ژانویه ۲۰۲۱"
+  },
+  "since December 2019": {
+    "message": "از دسامبر ۲۰۱۹"
+  },
+  "versions.description": {
+    "message": "صفحه نسخه‌های Docusaurus 2 که همه نسخه‌های مستندات سایت را فهرست می‌کند"
+  },
+  "WebdriverIO documentation versions": {
+    "message": "نسخه‌های مستندات WebdriverIO"
+  },
+  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
+    "message": "تیم پروژه نسخه‌های اصلی جدید را تقریباً با فاصله سالانه منتشر می‌کند. وضعیت انتشار LTS \"پشتیبانی طولانی مدت\" است، که معمولاً تضمین می‌کند باگ‌های حساس برای مدت ۱۲ ماه تا زمان انتشار نسخه اصلی جدید رفع خواهند شد."
+  },
+  "Current version (Stable)": {
+    "message": "نسخه فعلی (پایدار)"
+  },
+  "Here you can find the documentation for current released version.": {
+    "message": "در اینجا می‌توانید مستندات نسخه فعلی منتشر شده را پیدا کنید."
+  },
+  "Documentation": {
+    "message": "مستندات"
+  },
+  "Release Notes": {
+    "message": "یادداشت‌های انتشار"
+  },
+  "Past versions": {
+    "message": "نسخه‌های گذشته"
+  },
+  "Here you can find documentation for previous versions of Docusaurus.": {
+    "message": "در اینجا می‌توانید مستندات نسخه‌های قبلی Docusaurus را پیدا کنید."
+  },
   "theme.ErrorPageContent.title": {
     "message": "این صفحه خراب شده است.",
     "description": "The title of the fallback page when the page crashed"
   },
-  "theme.ErrorPageContent.tryAgain": {
-    "message": "تلاش مجدد",
-    "description": "The label of the button to try again when the page crashed"
-  },
-  "theme.NotFound.title": {
-    "message": "صفحه پیدا نشد",
-    "description": "The title of the 404 page"
-  },
-  "theme.NotFound.p1": {
-    "message": "ما نتوانستیم آنچه را که به دنبال آن بودید پیدا کنیم.",
-    "description": "The first paragraph of the 404 page"
-  },
-  "theme.NotFound.p2": {
-    "message": "لطفاً با مالک سایتی که شما را به آدرس اصلی پیوند داده است تماس بگیرید و به آنها اطلاع دهید که پیوند آنها شکسته است.",
-    "description": "The 2nd paragraph of the 404 page"
-  },
-  "theme.admonition.note": {
-    "message": "نکته",
-    "description": "The default label used for the Note admonition (:::note)"
-  },
-  "theme.admonition.tip": {
-    "message": "نکته",
-    "description": "The default label used for the Tip admonition (:::tip)"
-  },
-  "theme.admonition.danger": {
-    "message": "خطر",
-    "description": "The default label used for the Danger admonition (:::danger)"
-  },
-  "theme.admonition.info": {
-    "message": "اطلاعات",
-    "description": "The default label used for the Info admonition (:::info)"
-  },
-  "theme.admonition.caution": {
-    "message": "احتیاط",
-    "description": "The default label used for the Caution admonition (:::caution)"
-  },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "برگشت به بالا",
+    "message": "بازگشت به بالا",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
@@ -64,40 +192,20 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "ناوبری صفحه پست وبلاگ",
+    "message": "ناوبری صفحه مطلب وبلاگ",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "پست جدیدتر",
+    "message": "مطلب جدیدتر",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "پست قدیمی‌تر",
+    "message": "مطلب قدیمی‌تر",
     "description": "The blog post button label to navigate to the older/next post"
-  },
-  "theme.blog.post.plurals": {
-    "message": "یک پست|{count} پست",
-    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.blog.tagTitle": {
-    "message": "{nPosts} با برچسب \"{tagName}\"",
-    "description": "The title of the page for a blog tag"
   },
   "theme.tags.tagsPageLink": {
     "message": "مشاهده همه برچسب‌ها",
     "description": "The label of the link targeting the tag list page"
-  },
-  "theme.docs.breadcrumbs.home": {
-    "message": "صفحه اصلی",
-    "description": "The ARIA label for the home page in the breadcrumbs"
-  },
-  "theme.docs.breadcrumbs.navAriaLabel": {
-    "message": "مسیرنما",
-    "description": "The ARIA label for the breadcrumbs"
-  },
-  "theme.docs.DocCard.categoryDescription": {
-    "message": "{count} مورد",
-    "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.colorToggle.ariaLabel": {
     "message": "تغییر بین حالت تاریک و روشن (در حال حاضر {mode})",
@@ -111,8 +219,16 @@
     "message": "حالت روشن",
     "description": "The name for the light color mode"
   },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "مسیر راهنما",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "1 مورد|{count} مورد",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
   "theme.docs.paginator.navAriaLabel": {
-    "message": "ناوبری صفحات مستندات",
+    "message": "صفحات مستندات",
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
@@ -123,23 +239,15 @@
     "message": "بعدی",
     "description": "The label used to navigate to the next doc"
   },
-  "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "یک سند برچسب خورده|{count} سند برچسب خورده",
-    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.docs.tagDocListPageTitle": {
-    "message": "{nDocsTagged} با \"{tagName}\"",
-    "description": "The title of the page for a docs tag"
-  },
   "theme.docs.versionBadge.label": {
     "message": "نسخه: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "این مستندات منتشر نشده برای {siteTitle} نسخه {versionLabel} است.",
+    "message": "این مستندات منتشر نشده برای نسخه {versionLabel} {siteTitle} است.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "این مستندات برای {siteTitle} {versionLabel} است که دیگر به طور فعال نگهداری نمی‌شود.",
+    "message": "این مستندات برای {siteTitle} نسخه {versionLabel} است که دیگر به طور فعال نگهداری نمی‌شود.",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
@@ -150,12 +258,20 @@
     "message": "آخرین نسخه",
     "description": "The label used for the latest version suggestion link label"
   },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "یک سند برچسب خورده|{count} سند برچسب خورده",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} با \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
   "theme.common.editThisPage": {
     "message": "ویرایش این صفحه",
     "description": "The link label to edit the current page"
   },
   "theme.common.headingLinkTitle": {
-    "message": "پیوند مستقیم به عنوان",
+    "message": "لینک مستقیم به {heading}",
     "description": "Title for link to heading"
   },
   "theme.lastUpdated.atDate": {
@@ -170,53 +286,89 @@
     "message": "آخرین به‌روزرسانی{atDate}{byUser}",
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
+  "theme.NotFound.title": {
+    "message": "صفحه پیدا نشد",
+    "description": "The title of the 404 page"
+  },
   "theme.navbar.mobileVersionsDropdown.label": {
     "message": "نسخه‌ها",
     "description": "The label for the navbar versions dropdown on mobile view"
   },
-  "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "بستن",
-    "description": "The ARIA label for close button of announcement bar"
+  "theme.admonition.caution": {
+    "message": "احتیاط",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.admonition.danger": {
+    "message": "خطر",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "اطلاعات",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.note": {
+    "message": "نکته",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "نکته مفید",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.warning": {
+    "message": "هشدار",
+    "description": "The default label used for the Warning admonition (:::warning)"
   },
   "theme.tags.tagsListLabel": {
     "message": "برچسب‌ها:",
     "description": "The label alongside a tag list"
   },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "بستن",
+    "description": "The ARIA label for close button of announcement bar"
+  },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "ناوبری پست‌های اخیر وبلاگ",
+    "message": "ناوبری مطالب اخیر وبلاگ",
     "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "تغییر وضعیت شکستن خطوط",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
   },
   "theme.CodeBlock.copied": {
     "message": "کپی شد",
     "description": "The copied button label on code blocks"
   },
   "theme.CodeBlock.copyButtonAriaLabel": {
-    "message": "کپی کد در کلیپ‌بورد",
+    "message": "کپی کد به کلیپ‌بورد",
     "description": "The ARIA label for copy code blocks button"
   },
   "theme.CodeBlock.copy": {
     "message": "کپی",
     "description": "The copy button label on code blocks"
   },
-  "theme.CodeBlock.wordWrapToggle": {
-    "message": "تغییر وضعیت شکستن خط",
-    "description": "The title attribute for toggle word wrapping button of code block lines"
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "باز کردن دسته‌بندی نوار کناری '{label}'",
+    "description": "The ARIA label to expand the sidebar category"
   },
-  "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
-    "message": "تغییر وضعیت دسته‌بندی قابل جمع شدن '{label}'",
-    "description": "The ARIA label to toggle the collapsible sidebar category"
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "بستن دسته‌بندی نوار کناری '{label}'",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.NavBar.navAriaLabel": {
+    "message": "اصلی",
+    "description": "The ARIA label for the main navigation"
+  },
+  "theme.NotFound.p1": {
+    "message": "نتوانستیم آنچه را که به دنبال آن بودید پیدا کنیم.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "لطفاً با مالک سایتی که شما را به URL اصلی پیوند داده است تماس بگیرید و به آنها اطلاع دهید که پیوندشان شکسته است.",
+    "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
     "message": "در این صفحه",
     "description": "The label used by the button on the collapsible TOC component"
-  },
-  "theme.blog.post.readMore": {
-    "message": "ادامه مطلب",
-    "description": "The label used in blog post item excerpts to link to full blog posts"
-  },
-  "theme.blog.post.readMoreLabel": {
-    "message": "بیشتر بخوانید درباره {title}",
-    "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.blog.post.readingTime.plurals": {
     "message": "یک دقیقه مطالعه|{readingTime} دقیقه مطالعه",
@@ -226,36 +378,52 @@
     "message": "زبان‌ها",
     "description": "The label for the mobile language switcher dropdown"
   },
+  "theme.blog.post.readMore": {
+    "message": "بیشتر بخوانید",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "بیشتر درباره {title} بخوانید",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "صفحه اصلی",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
   "theme.docs.sidebar.collapseButtonTitle": {
-    "message": "جمع کردن نوار کناری",
+    "message": "بستن نوار کناری",
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.collapseButtonAriaLabel": {
-    "message": "جمع کردن نوار کناری",
+    "message": "بستن نوار کناری",
     "description": "The title attribute for collapse button of doc sidebar"
   },
-  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
-    "message": "بستن نوار ناوبری",
-    "description": "The ARIA label for close button of mobile sidebar"
+  "theme.docs.sidebar.navAriaLabel": {
+    "message": "نوار کناری مستندات",
+    "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
     "message": "← بازگشت به منوی اصلی",
     "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "بستن نوار ناوبری",
+    "description": "The ARIA label for close button of mobile sidebar"
   },
   "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
     "message": "تغییر وضعیت نوار ناوبری",
     "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.docs.sidebar.expandButtonTitle": {
-    "message": "گسترش نوار کناری",
+    "message": "باز کردن نوار کناری",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.docs.sidebar.expandButtonAriaLabel": {
-    "message": "گسترش نوار کناری",
+    "message": "باز کردن نوار کناری",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
-    "message": "دیدن تمام {count} نتیجه"
+    "message": "دیدن همه {count} نتیجه"
   },
   "theme.SearchPage.documentsFound.plurals": {
     "message": "یک سند پیدا شد|{count} سند پیدا شد",
@@ -270,7 +438,7 @@
     "description": "The search page title for empty query"
   },
   "theme.SearchPage.inputPlaceholder": {
-    "message": "جستجوی خود را اینجا وارد کنید",
+    "message": "جستجوی خود را اینجا تایپ کنید",
     "description": "The placeholder for search page input"
   },
   "theme.SearchPage.inputLabel": {
@@ -282,7 +450,7 @@
     "description": "The ARIA label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
-    "message": "هیچ نتیجه‌ای یافت نشد",
+    "message": "نتیجه‌ای یافت نشد",
     "description": "The paragraph for empty search result"
   },
   "theme.SearchPage.fetchingNewResults": {
@@ -294,7 +462,7 @@
     "description": "The ARIA label and placeholder for search button"
   },
   "theme.SearchModal.searchBox.resetButtonTitle": {
-    "message": "پاک کردن جستجو",
+    "message": "پاک کردن کوئری",
     "description": "The label and ARIA label for search box reset button"
   },
   "theme.SearchModal.searchBox.cancelButtonText": {
@@ -342,7 +510,7 @@
     "description": "The ARIA label for the Enter key button that makes the selection"
   },
   "theme.SearchModal.footer.navigateText": {
-    "message": "برای ناوبری",
+    "message": "برای پیمایش",
     "description": "The explanatory text of the action for the Arrow up and Arrow down key"
   },
   "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
@@ -374,7 +542,7 @@
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "فکر می‌کنید این جستجو باید نتایجی داشته باشد؟",
+    "message": "باور دارید که این جستجو باید نتایجی داشته باشد؟",
     "description": "The text for the question where the user thinks there are missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
@@ -382,7 +550,7 @@
     "description": "The text for the link to report missing results"
   },
   "theme.SearchModal.placeholder": {
-    "message": "جستجوی مستندات",
+    "message": "جستجو در مستندات",
     "description": "The placeholder of the input of the DocSearch pop-up modal"
   },
   "theme.IdealImageMessage.loading": {
@@ -405,17 +573,49 @@
     "message": "خطا. برای بارگذاری مجدد کلیک کنید",
     "description": "When the image fails to load for unknown error"
   },
-  "theme.PwaReloadPopup.info": {
-    "message": "نسخه جدید در دسترس است",
-    "description": "The text for PWA reload popup"
+  "theme.blog.post.plurals": {
+    "message": "یک پست|{count} پست",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
-  "theme.PwaReloadPopup.refreshButtonText": {
-    "message": "تازه‌سازی",
-    "description": "The text for PWA reload button"
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} با برچسب \"{tagName}\"",
+    "description": "The title of the page for a blog tag"
   },
-  "theme.PwaReloadPopup.closeButtonAriaLabel": {
-    "message": "بستن",
-    "description": "The ARIA label for close button of PWA reload popup"
+  "theme.blog.author.pageTitle": {
+    "message": "{authorName} - {nPosts}",
+    "description": "The title of the page for a blog author"
+  },
+  "theme.blog.authorsList.pageTitle": {
+    "message": "نویسندگان",
+    "description": "The title of the authors page"
+  },
+  "theme.blog.authorsList.viewAll": {
+    "message": "مشاهده همه نویسندگان",
+    "description": "The label of the link targeting the blog authors page"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "این نویسنده هنوز هیچ پستی ننوشته است.",
+    "description": "The text for authors with 0 blog post"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "صفحه فهرست نشده",
+    "description": "The unlisted content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "این صفحه فهرست نشده است. موتورهای جستجو آن را فهرست‌بندی نمی‌کنند و تنها کاربرانی که لینک مستقیم دارند می‌توانند به آن دسترسی داشته باشند.",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "صفحه پیش‌نویس",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "این صفحه یک پیش‌نویس است. فقط در محیط توسعه قابل مشاهده خواهد بود و از ساخت نهایی خارج می‌شود.",
+    "description": "The draft content banner message"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "تلاش مجدد",
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.common.skipToMainContent": {
     "message": "پرش به محتوای اصلی",
@@ -424,157 +624,5 @@
   "theme.tags.tagsPageTitle": {
     "message": "برچسب‌ها",
     "description": "The title of the tag list page"
-  },
-  "WebdriverIO allows you to test in actual browser or mobile devices used by your users.": {
-    "message": "WebdriverIO به شما امکان می‌دهد در مرورگر واقعی یا دستگاه‌های موبایلی که توسط کاربران شما استفاده می‌شود، آزمایش کنید."
-  },
-  "Use WebdriverIO for full e2e or unit and component testing in the browser.": {
-    "message": "از WebdriverIO برای تست کامل e2e یا تست واحد و کامپوننت در مرورگر استفاده کنید."
-  },
-  "WebdriverIO automatically waits for elements to appear before interacting with them.": {
-    "message": "WebdriverIO به طور خودکار منتظر می‌ماند تا عناصر قبل از تعامل با آنها ظاهر شوند."
-  },
-  "Get Started": {
-    "message": "شروع کنید"
-  },
-  "Why WebdriverIO?": {
-    "message": "چرا WebdriverIO؟"
-  },
-  "View on GitHub": {
-    "message": "مشاهده در GitHub"
-  },
-  "Watch on YouTube": {
-    "message": "تماشا در YouTube"
-  },
-  "Easy setup for web component testing with:": {
-    "message": "راه‌اندازی آسان برای تست کامپوننت وب با:"
-  },
-  "homepage.hightlight.createProject": {
-    "message": "در عرض چند ثانیه با WebdriverIO شروع کنید"
-  },
-  "The WebdriverIO testrunner comes with a command line interface that provides a powerful configuration utility and helps you to create your test setup in less than a minute. It let's you pick from available test framework integrations and easily allows to add all supported reporter and service plugins!": {
-    "message": "اجراکننده تست WebdriverIO دارای یک رابط خط فرمان است که یک ابزار پیکربندی قدرتمند را ارائه می‌دهد و به شما کمک می‌کند تا در کمتر از یک دقیقه تنظیمات تست خود را ایجاد کنید. این به شما امکان می‌دهد از ادغام‌های چارچوب تست موجود انتخاب کنید و به راحتی تمام افزونه‌های گزارش‌دهنده و سرویس پشتیبانی شده را اضافه کنید!"
-  },
-  "With just one simple command you can set up a complete test suite:": {
-    "message": "تنها با یک دستور ساده می‌توانید یک مجموعه تست کامل را راه‌اندازی کنید:"
-  },
-  "homepage.hightlight.watch": {
-    "message": "سخنرانی‌های مربوط به WebdriverIO را تماشا کنید"
-  },
-  "homepage.hightlight.lighthouse": {
-    "message": "ادغام با Google Lighthouse"
-  },
-  "Integration to developer tools such as:": {
-    "message": "ادغام با ابزارهای توسعه‌دهنده مانند:"
-  },
-  "until October 2023": {
-    "message": "تا اکتبر 2023"
-  },
-  "since February 2022": {
-    "message": "از فوریه 2022"
-  },
-  "since January 2021": {
-    "message": "از ژانویه 2021"
-  },
-  "since December 2019": {
-    "message": "از دسامبر 2019"
-  },
-  "versions.description": {
-    "message": "صفحه نسخه‌های Docusaurus 2 که تمام نسخه‌های مستند سایت را فهرست می‌کند"
-  },
-  "WebdriverIO documentation versions": {
-    "message": "نسخه‌های مستندات WebdriverIO"
-  },
-  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "تیم پروژه تقریباً سالانه نسخه‌های اصلی جدیدی را منتشر می‌کند. وضعیت انتشار LTS \"پشتیبانی طولانی‌مدت\" است که معمولاً تضمین می‌کند اشکالات بحرانی به مدت 12 ماه تا زمان انتشار نسخه اصلی جدید رفع خواهند شد."
-  },
-  "Current version (Stable)": {
-    "message": "نسخه فعلی (پایدار)"
-  },
-  "Here you can find the documentation for current released version.": {
-    "message": "در اینجا می‌توانید مستندات نسخه منتشر شده فعلی را پیدا کنید."
-  },
-  "Documentation": {
-    "message": "مستندات"
-  },
-  "Release Notes": {
-    "message": "یادداشت‌های انتشار"
-  },
-  "Past versions": {
-    "message": "نسخه‌های قبلی"
-  },
-  "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "در اینجا می‌توانید مستندات نسخه‌های قبلی Docusaurus را پیدا کنید."
-  },
-  "homepage.createBrowserAnimation": {
-    "message": "ایجاد نمایش WebdriverIO"
-  },
-  "homepage.highlight.getStartedOnYouTube": {
-    "message": "شروع به یادگیری بیشتر در مورد WebdriverIO و نحوه شروع کار با آن {youtubeLink}."
-  },
-  "homepage.highlight.getStartedOnYouTube.label;": {
-    "message": "در یوتیوب",
-    "description": "The label for the link to my YouTube"
-  },
-  "homepage.highlight.conferenceTalk": {
-    "message": "جامعه WebdriverIO به طور فعال در گروه‌های کاربری یا کنفرانس‌های مختلف درباره موضوعات خاص مرتبط با تست خودکار با WebdriverIO صحبت می‌کنند. این سخنرانی را در {youtubeLink} توسط {videoAuthor} در {conferenceLink} مشاهده کنید."
-  },
-  "homepage.highlight.conferenceTalk.label": {
-    "message": "ویژگی‌های مورد علاقه من در WebdriverIO",
-    "description": "The conference talk title"
-  },
-  "homepage.highlight.youtubeChannels": {
-    "message": "همچنین کانال‌های یوتیوب زیادی با آموزش‌های مفید توسط اعضای جامعه مانند {channelOne}، {channelTwo} یا {channelThree} وجود دارد."
-  },
-  "homepage.highlight.devtools": {
-    "message": "WebdriverIO نه تنها اتوماسیون را بر اساس پروتکل WebDriver اجرا می‌کند، بلکه از APIهای بومی مرورگر نیز استفاده می‌کند تا ادغام با ابزارهای توسعه‌دهنده محبوب مانند {devtoolsLink} یا {lighthouseLink} را امکان‌پذیر سازد. با افزونه {devtoolsServiceLink} شما به دستوراتی برای اعتبارسنجی برنامه PWA خود و همچنین دستوراتی برای ثبت معیارهای عملکرد فرانت‌اند مانند `speedIndex` و موارد دیگر دسترسی دارید."
-  },
-  "homepage.features.crossBrowser": {
-    "message": "پشتیبانی از مرورگرهای مختلف از طریق اتوماسیون توسط {webdriverLink} و {bidiLink}."
-  },
-  "homepage.features.mobile": {
-    "message": "WebdriverIO را روی دستگاه‌های موبایل واقعی، تلویزیون‌های هوشمند یا سایر دستگاه‌های IoT از طریق {appiumLink} اجرا کنید."
-  },
-  "homepage.features.support": {
-    "message": "اداره یک {supportChannelLink} با بیش از 8 هزار عضو و یک اکوسیستم غنی از افزونه‌های نگهداری شده توسط جامعه."
-  },
-  "homepage.tagline": {
-    "message": "چارچوب تست خودکار مرورگر و موبایل نسل بعدی برای Node.js"
-  },
-  "homepage.componentTesting.para1": {
-    "message": "WebdriverIO یک چارچوب {allInOne} برای توسعه برنامه وب شماست. این به شما امکان می‌دهد تست‌های کامپوننتی کوچک و سبک و همچنین سناریوهای تست e2e را در مرورگر یا روی دستگاه موبایل اجرا کنید. این تضمین می‌کند که شما تست را در محیطی انجام دهید که {usedBy}."
-  },
-  "features.realEnvironments": {
-    "message": "تست در محیط‌های واقعی"
-  },
-  "features.versatile": {
-    "message": "همه‌کاره و پر از ویژگی"
-  },
-  "features.autoWait": {
-    "message": "انتظار خودکار"
-  },
-  "features.standards": {
-    "message": "بر اساس استانداردهای وب"
-  },
-  "features.mobileSupport": {
-    "message": "پشتیبانی بومی از موبایل"
-  },
-  "features.community": {
-    "message": "جامعه متعهد"
-  },
-  "homepage.componentTesting.heading": {
-    "message": "تست E2E و واحد / کامپوننت در مرورگر واقعی!"
-  },
-  "homepage.componentTesting.para2": {
-    "message": "این با استراتژی‌های انتخابگر هوشمند همراه است که تعامل با اجزای {reactComponents} یا اجرای کوئری‌های انتخابگر عمیق با درختان shadow DOM تودرتو را ساده می‌کند. از آنجایی که تعاملات از طریق یک پروتکل اتوماسیون استاندارد انجام می‌شود، تضمین می‌شود که آنها به صورت بومی رفتار می‌کنند و فقط توسط جاوااسکریپت شبیه‌سازی نمی‌شوند."
-  },
-  "Who is using WebdriverIO?": {
-    "message": "چه کسانی از WebdriverIO استفاده می‌کنند؟"
-  },
-  "all in one": {
-    "message": "همه در یک"
-  },
-  "used by your users": {
-    "message": "توسط کاربران شما استفاده می‌شود"
   }
 }

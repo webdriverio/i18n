@@ -7,13 +7,13 @@ Avec le [Browser Runner](/docs/runner#browser-runner) de WebdriverIO, vous pouve
 
 ## Comment ça fonctionne ?
 
-Le Browser Runner utilise [Vite](https://vitejs.dev/) pour rendre une page de test et initialiser un framework de test pour exécuter vos tests dans le navigateur. Actuellement, il ne prend en charge que Mocha, mais Jasmine et Cucumber sont [sur la feuille de route](https://github.com/orgs/webdriverio/projects/1). Cela permet de tester tout type de composants, même pour les projets qui n'utilisent pas Vite.
+Le Browser Runner utilise [Vite](https://vitejs.dev/) pour rendre une page de test et initialiser un framework de test pour exécuter vos tests dans le navigateur. Actuellement, il ne prend en charge que Mocha, mais Jasmine et Cucumber sont [dans la feuille de route](https://github.com/orgs/webdriverio/projects/1). Cela permet de tester toutes sortes de composants, même pour des projets qui n'utilisent pas Vite.
 
-Le serveur Vite est démarré par le testrunner WebdriverIO et configuré de manière à ce que vous puissiez utiliser tous les rapporteurs et services comme vous en aviez l'habitude pour les tests e2e normaux. De plus, il initialise une instance [`browser`](/docs/api/browser) qui vous permet d'accéder à un sous-ensemble de l'[API WebdriverIO](/docs/api) pour interagir avec tous les éléments de la page. Comme pour les tests e2e, vous pouvez accéder à cette instance via la variable `browser` attachée à la portée globale ou en l'important depuis `@wdio/globals` selon la façon dont [`injectGlobals`](/docs/api/globals) est défini.
+Le serveur Vite est démarré par le testrunner de WebdriverIO et configuré pour que vous puissiez utiliser tous les reporters et services comme vous en aviez l'habitude pour les tests e2e normaux. De plus, il initialise une instance [`browser`](/docs/api/browser) qui vous permet d'accéder à un sous-ensemble de l'[API WebdriverIO](/docs/api) pour interagir avec tous les éléments de la page. Comme pour les tests e2e, vous pouvez accéder à cette instance via la variable `browser` attachée à la portée globale ou en l'important depuis `@wdio/globals` selon la façon dont [`injectGlobals`](/docs/api/globals) est configuré.
 
 WebdriverIO prend en charge nativement les frameworks suivants :
 
-- [__Nuxt__](https://nuxt.com/) : Le testrunner de WebdriverIO détecte une application Nuxt et configure automatiquement les composables de votre projet et aide à simuler le backend Nuxt, en savoir plus dans la [documentation Nuxt](/docs/component-testing/vue#testing-vue-components-in-nuxt)
+- [__Nuxt__](https://nuxt.com/) : Le testrunner de WebdriverIO détecte une application Nuxt et configure automatiquement les composables de votre projet et aide à simuler le backend de Nuxt, en savoir plus dans la [documentation Nuxt](/docs/component-testing/vue#testing-vue-components-in-nuxt)
 - [__TailwindCSS__](https://tailwindcss.com/) : Le testrunner de WebdriverIO détecte si vous utilisez TailwindCSS et charge correctement l'environnement dans la page de test
 
 ## Configuration
@@ -26,15 +26,15 @@ npm init wdio@latest ./
 yarn create wdio ./
 ```
 
-Une fois que l'assistant de configuration démarre, choisissez `browser` pour exécuter des tests unitaires et de composants et choisissez l'un des préréglages si vous le souhaitez, sinon optez pour _"Other"_ si vous souhaitez uniquement exécuter des tests unitaires de base. Vous pouvez également configurer une configuration Vite personnalisée si vous utilisez déjà Vite dans votre projet. Pour plus d'informations, consultez toutes les [options du runner](/docs/runner#runner-options).
+Une fois que l'assistant de configuration démarre, choisissez `browser` pour exécuter des tests unitaires et de composants et choisissez l'un des préréglages si vous le souhaitez, sinon optez pour _"Other"_ si vous voulez uniquement exécuter des tests unitaires de base. Vous pouvez également configurer une configuration Vite personnalisée si vous utilisez déjà Vite dans votre projet. Pour plus d'informations, consultez toutes les [options du runner](/docs/runner#runner-options).
 
 :::info
 
-__Remarque :__ WebdriverIO exécutera par défaut les tests de navigateur en mode headless dans un environnement CI, par exemple si une variable d'environnement `CI` est définie sur `'1'` ou `'true'`. Vous pouvez configurer manuellement ce comportement en utilisant l'option [`headless`](/docs/runner#headless) pour le runner.
+__Remarque :__ Par défaut, WebdriverIO exécutera les tests de navigateur en mode headless dans un environnement CI, c'est-à-dire si une variable d'environnement `CI` est définie sur `'1'` ou `'true'`. Vous pouvez configurer manuellement ce comportement en utilisant l'option [`headless`](/docs/runner#headless) pour le runner.
 
 :::
 
-À la fin de ce processus, vous devriez trouver un `wdio.conf.js` qui contient diverses configurations WebdriverIO, y compris une propriété `runner`, par exemple :
+À la fin de ce processus, vous devriez trouver un fichier `wdio.conf.js` qui contient diverses configurations WebdriverIO, y compris une propriété `runner`, par exemple :
 
 ```ts reference useHTTPS runmeRepository="git@github.com:webdriverio/example-recipes.git" runmeFileToOpen="component-testing%2FREADME.md"
 https://github.com/webdriverio/example-recipes/blob/fd54f94306ed8e7b40f967739164dfe4d6d76b41/wdio.comp.conf.js
@@ -51,7 +51,7 @@ Si vous n'êtes toujours pas sûr de comment tout fonctionne, regardez le tutori
 
 ## Harnais de Test
 
-C'est totalement à vous de décider ce que vous voulez exécuter dans vos tests et comment vous souhaitez rendre les composants. Cependant, nous recommandons d'utiliser [Testing Library](https://testing-library.com/) comme framework utilitaire car il fournit des plugins pour divers frameworks de composants, tels que React, Preact, Svelte et Vue. Il est très utile pour rendre les composants dans la page de test et il nettoie automatiquement ces composants après chaque test.
+Il vous appartient entièrement de décider ce que vous voulez exécuter dans vos tests et comment vous souhaitez rendre les composants. Cependant, nous recommandons d'utiliser la [Testing Library](https://testing-library.com/) comme framework utilitaire car elle fournit des plugins pour divers frameworks de composants, tels que React, Preact, Svelte et Vue. Elle est très utile pour rendre les composants dans la page de test et elle nettoie automatiquement ces composants après chaque test.
 
 Vous pouvez mélanger les primitives de Testing Library avec les commandes WebdriverIO comme vous le souhaitez, par exemple :
 
@@ -98,23 +98,23 @@ export const mochaGlobalTeardown = () => {
 
 ```
 
-Maintenant, dans vos tests, vous pouvez fournir des valeurs de réponse personnalisées pour toutes les requêtes du navigateur. En savoir plus sur les fixtures globaux dans la [documentation Mocha](https://mochajs.org/#global-fixtures).
+Maintenant, dans vos tests, vous pouvez fournir des valeurs de réponse personnalisées pour toutes les requêtes du navigateur. Lisez-en plus sur les fixtures globaux dans la [documentation de Mocha](https://mochajs.org/#global-fixtures).
 
 ## Surveiller les Fichiers de Test et d'Application
 
-Il existe plusieurs façons de déboguer vos tests de navigateur. La plus simple est de démarrer le testrunner WebdriverIO avec le flag `--watch`, par exemple :
+Il existe plusieurs façons de déboguer vos tests de navigateur. La plus simple est de démarrer le testrunner WebdriverIO avec l'option `--watch`, par exemple :
 
 ```sh
 $ npx wdio run ./wdio.conf.js --watch
 ```
 
-Cela exécutera tous les tests initialement et s'arrêtera une fois que tous sont exécutés. Vous pouvez ensuite apporter des modifications à des fichiers individuels qui seront alors réexécutés individuellement. Si vous définissez [`filesToWatch`](/docs/configuration#filestowatch) pointant vers vos fichiers d'application, il réexécutera tous les tests lorsque des modifications sont apportées à votre application.
+Cela exécutera tous les tests initialement et s'arrêtera une fois que tous sont exécutés. Vous pouvez ensuite apporter des modifications à des fichiers individuels qui seront ensuite ré-exécutés individuellement. Si vous définissez un [`filesToWatch`](/docs/configuration#filestowatch) pointant vers vos fichiers d'application, tous les tests seront ré-exécutés lorsque des modifications sont apportées à votre application.
 
 ## Débogage
 
 Bien qu'il ne soit pas (encore) possible de définir des points d'arrêt dans votre IDE et de les faire reconnaître par le navigateur distant, vous pouvez utiliser la commande [`debug`](/docs/api/browser/debug) pour arrêter le test à n'importe quel moment. Cela vous permet d'ouvrir DevTools pour ensuite déboguer le test en définissant des points d'arrêt dans l'[onglet sources](https://buddy.works/tutorials/debugging-javascript-efficiently-with-chrome-devtools).
 
-Lorsque la commande `debug` est appelée, vous obtiendrez également une interface repl Node.js dans votre terminal, indiquant :
+Lorsque la commande `debug` est appelée, vous obtiendrez également une interface REPL Node.js dans votre terminal, indiquant :
 
 ```
 The execution has stopped!
@@ -124,14 +124,14 @@ You can now go into the browser or use the command line as REPL
 
 Appuyez sur `Ctrl` ou `Command` + `c` ou entrez `.exit` pour continuer avec le test.
 
-## Exécution à l'aide d'une Grille Selenium
+## Exécution via une grille Selenium
 
-Si vous avez configuré une [Grille Selenium](https://www.selenium.dev/documentation/grid/) et que vous exécutez votre navigateur via cette grille, vous devez définir l'option `host` du browser runner pour permettre au navigateur d'accéder au bon hôte où les fichiers de test sont servis, par exemple :
+Si vous avez configuré une [grille Selenium](https://www.selenium.dev/documentation/grid/) et exécutez votre navigateur via cette grille, vous devez définir l'option `host` du browser runner pour permettre au navigateur d'accéder au bon hôte où les fichiers de test sont servis, par exemple :
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
     runner: ['browser', {
-        // IP réseau de la machine qui exécute le processus WebdriverIO
+        // adresse IP réseau de la machine qui exécute le processus WebdriverIO
         host: 'http://172.168.0.2'
     }]
 }
@@ -141,4 +141,4 @@ Cela garantira que le navigateur ouvre correctement la bonne instance de serveur
 
 ## Exemples
 
-Vous pouvez trouver divers exemples de test de composants utilisant des frameworks de composants populaires dans notre [dépôt d'exemples](https://github.com/webdriverio/component-testing-examples).
+Vous pouvez trouver divers exemples de tests de composants utilisant des frameworks de composants populaires dans notre [dépôt d'exemples](https://github.com/webdriverio/component-testing-examples).

@@ -11,6 +11,10 @@
     "message": "மேலும்",
     "description": "The title of the footer links column with title=More in the footer"
   },
+  "link.title.Sponsored by": {
+    "message": "நிதியுதவி",
+    "description": "The title of the footer links column with title=Sponsored by in the footer"
+  },
   "link.item.label.Getting Started": {
     "message": "தொடங்குதல்",
     "description": "The label of footer link with label=Getting Started linking to docs/gettingstarted"
@@ -43,24 +47,28 @@
     "message": "ட்விட்டர்",
     "description": "The label of footer link with label=Twitter linking to https://twitter.com/webdriverio"
   },
-  "link.item.label.Tidelift Subscription": {
-    "message": "டைட்லிஃப்ட் சந்தா",
-    "description": "The label of footer link with label=Tidelift Subscription linking to /docs/enterprise/"
-  },
-  "link.item.label.Donate to WebdriverIO": {
-    "message": "WebdriverIO-க்கு நன்கொடை அளிக்க",
-    "description": "The label of footer link with label=Donate to WebdriverIO linking to https://opencollective.com/webdriverio"
-  },
   "link.item.label.Blog": {
     "message": "வலைப்பதிவு",
     "description": "The label of footer link with label=Blog linking to blog"
+  },
+  "link.item.label.Sponsor": {
+    "message": "நிதியுதவியாளர்",
+    "description": "The label of footer link with label=Sponsor linking to docs/sponsor"
+  },
+  "link.item.label.Swag Store": {
+    "message": "பொருட்கள் கடை",
+    "description": "The label of footer link with label=Swag Store linking to https://shop.webdriver.io"
+  },
+  "link.item.label.YouTube": {
+    "message": "யூடியூப்",
+    "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
   },
   "copyright": {
     "message": "பதிப்புரிமை © 2025 OpenJS அறக்கட்டளை",
     "description": "The footer copyright"
   },
-  "link.item.label.YouTube": {
-    "message": "யூடியூப்",
-    "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
+  "logo.alt": {
+    "message": "OpenJS அறக்கட்டளை லோகோ",
+    "description": "The alt text of footer logo"
   }
 }

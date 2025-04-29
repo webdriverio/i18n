@@ -22,7 +22,7 @@ La section suivante explique chaque protocole individuel.
 
 ## Protocole WebDriver
 
-Le protocole [WebDriver](https://w3c.github.io/webdriver/#elements) est une norme web pour l'automatisation des navigateurs. Contrairement à d'autres outils E2E, il garantit que l'automatisation peut être effectuée sur des navigateurs réels utilisés par vos utilisateurs, comme Firefox, Safari et Chrome et les navigateurs basés sur Chromium comme Edge, et pas seulement sur des moteurs de navigateur comme WebKit, qui sont très différents.
+Le protocole [WebDriver](https://w3c.github.io/webdriver/#elements) est une norme web pour l'automatisation des navigateurs. Contrairement à certains autres outils E2E, il garantit que l'automatisation peut être effectuée sur les navigateurs réels utilisés par vos utilisateurs, comme Firefox, Safari et Chrome, ainsi que les navigateurs basés sur Chromium comme Edge, et pas seulement sur les moteurs de navigateur comme WebKit, qui sont très différents.
 
 L'avantage d'utiliser le protocole WebDriver par opposition aux protocoles de débogage comme [Chrome DevTools](https://w3c.github.io/webdriver/#elements) est que vous disposez d'un ensemble spécifique de commandes qui permettent d'interagir avec le navigateur de la même manière sur tous les navigateurs, ce qui réduit les risques d'instabilité. De plus, ce protocole offre des capacités de mise à l'échelle massive en utilisant des fournisseurs cloud tels que [Sauce Labs](https://saucelabs.com/), [BrowserStack](https://www.browserstack.com/) et [d'autres](https://github.com/christian-bromann/awesome-selenium#cloud-services).
 
@@ -39,25 +39,25 @@ Le projet [Appium](https://appium.io/) fournit des capacités pour automatiser l
 Selon la [documentation](https://appium.github.io/appium.io/docs/en/about-appium/intro/?lang=en) d'Appium, il a été conçu pour répondre aux besoins d'automatisation mobile selon une philosophie décrite par les quatre principes suivants :
 
 - Vous ne devriez pas avoir à recompiler votre application ou la modifier de quelque manière que ce soit pour l'automatiser.
-- Vous ne devriez pas être limité à un langage ou un framework spécifique pour écrire et exécuter vos tests.
+- Vous ne devriez pas être limité à un langage ou framework spécifique pour écrire et exécuter vos tests.
 - Un framework d'automatisation mobile ne devrait pas réinventer la roue en matière d'API d'automatisation.
 - Un framework d'automatisation mobile devrait être open source, dans l'esprit et la pratique ainsi que dans le nom !
 
 ## Chromium
 
-Le protocole Chromium offre un ensemble étendu de commandes en plus du protocole WebDriver qui n'est pris en charge que lors de l'exécution de sessions automatisées via [Chromedriver](https://chromedriver.chromium.org/chromedriver-canary) ou [Edgedriver](https://developer.microsoft.com/fr-fr/microsoft-edge/tools/webdriver).
+Le protocole Chromium offre un ensemble supérieur de commandes en plus du protocole WebDriver qui n'est pris en charge que lors de l'exécution de sessions automatisées via [Chromedriver](https://chromedriver.chromium.org/chromedriver-canary) ou [Edgedriver](https://developer.microsoft.com/fr-fr/microsoft-edge/tools/webdriver).
 
 ## Firefox
 
-Le protocole Firefox offre un ensemble étendu de commandes en plus du protocole WebDriver qui n'est pris en charge que lors de l'exécution de sessions automatisées via [Geckodriver](https://github.com/mozilla/geckodriver).
+Le protocole Firefox offre un ensemble supérieur de commandes en plus du protocole WebDriver qui n'est pris en charge que lors de l'exécution de sessions automatisées via [Geckodriver](https://github.com/mozilla/geckodriver).
 
 ## Sauce Labs
 
-Le protocole [Sauce Labs](https://saucelabs.com/) offre un ensemble étendu de commandes en plus du protocole WebDriver qui n'est pris en charge que lors de l'exécution de sessions automatisées à l'aide du cloud Sauce Labs.
+Le protocole [Sauce Labs](https://saucelabs.com/) offre un ensemble supérieur de commandes en plus du protocole WebDriver qui n'est pris en charge que lors de l'exécution de sessions automatisées à l'aide du cloud Sauce Labs.
 
 ## Selenium Standalone
 
-Le protocole [Selenium Standalone](https://www.selenium.dev/documentation/grid/advanced_features/endpoints/) offre un ensemble étendu de commandes en plus du protocole WebDriver qui n'est pris en charge que lors de l'exécution de sessions automatisées à l'aide de Selenium Grid.
+Le protocole [Selenium Standalone](https://www.selenium.dev/documentation/grid/advanced_features/endpoints/) offre un ensemble supérieur de commandes en plus du protocole WebDriver qui n'est pris en charge que lors de l'exécution de sessions automatisées à l'aide de Selenium Grid.
 
 ## Protocole JSON Wire
 
@@ -65,4 +65,4 @@ Le [Protocole JSON Wire](https://www.selenium.dev/documentation/legacy/json_wire
 
 ## Protocole Mobile JSON Wire
 
-Le [Protocole Mobile JSON Wire](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md) est un ensemble étendu de commandes mobiles en plus du Protocole JSON Wire. Étant donné que ce dernier est déprécié, le Protocole Mobile JSON Wire est également __déprécié__. Appium peut encore prendre en charge certaines de ses commandes, mais il n'est pas recommandé de les utiliser.
+Le [Protocole Mobile JSON Wire](https://github.com/SeleniumHQ/mobile-spec/blob/master/spec-draft.md) est un ensemble supérieur de commandes mobiles en plus du Protocole JSON Wire. Étant donné que ce dernier est déprécié, le Protocole Mobile JSON Wire est également __déprécié__. Appium pourrait encore prendre en charge certaines de ses commandes, mais il n'est pas recommandé de les utiliser.

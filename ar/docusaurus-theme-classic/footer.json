@@ -11,6 +11,10 @@
     "message": "المزيد",
     "description": "The title of the footer links column with title=More in the footer"
   },
+  "link.title.Sponsored by": {
+    "message": "برعاية",
+    "description": "The title of the footer links column with title=Sponsored by in the footer"
+  },
   "link.item.label.Getting Started": {
     "message": "البدء",
     "description": "The label of footer link with label=Getting Started linking to docs/gettingstarted"
@@ -43,24 +47,28 @@
     "message": "تويتر",
     "description": "The label of footer link with label=Twitter linking to https://twitter.com/webdriverio"
   },
-  "link.item.label.Tidelift Subscription": {
-    "message": "اشتراك تايدليفت",
-    "description": "The label of footer link with label=Tidelift Subscription linking to /docs/enterprise/"
-  },
-  "link.item.label.Donate to WebdriverIO": {
-    "message": "تبرع لـ WebdriverIO",
-    "description": "The label of footer link with label=Donate to WebdriverIO linking to https://opencollective.com/webdriverio"
-  },
   "link.item.label.Blog": {
     "message": "المدونة",
     "description": "The label of footer link with label=Blog linking to blog"
+  },
+  "link.item.label.Sponsor": {
+    "message": "الرعاة",
+    "description": "The label of footer link with label=Sponsor linking to docs/sponsor"
+  },
+  "link.item.label.Swag Store": {
+    "message": "متجر الهدايا",
+    "description": "The label of footer link with label=Swag Store linking to https://shop.webdriver.io"
+  },
+  "link.item.label.YouTube": {
+    "message": "يوتيوب",
+    "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
   },
   "copyright": {
     "message": "حقوق النشر © 2025 مؤسسة OpenJS",
     "description": "The footer copyright"
   },
-  "link.item.label.YouTube": {
-    "message": "يوتيوب",
-    "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
+  "logo.alt": {
+    "message": "شعار مؤسسة OpenJS",
+    "description": "The alt text of footer logo"
   }
 }

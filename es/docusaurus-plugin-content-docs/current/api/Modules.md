@@ -3,7 +3,7 @@ id: modules
 title: Módulos
 ---
 
-WebdriverIO publica varios módulos en NPM y otros registros que puedes usar para construir tu propio framework de automatización. Consulta más documentación sobre los tipos de configuración de WebdriverIO [aquí](/docs/setuptypes).
+WebdriverIO publica varios módulos en NPM y otros registros que puedes usar para construir tu propio marco de automatización. Consulta más documentación sobre los tipos de configuración de WebdriverIO [aquí](/docs/setuptypes).
 
 ## `webdriver` y `devtools`
 
@@ -16,9 +16,9 @@ Inicia una nueva sesión con capacidades específicas. Basado en la respuesta de
 ##### Paramaters
 
 - `options`: [Opciones de WebDriver](/docs/configuration#webdriver-options)
-- `modifier`: función que permite modificar la instancia del cliente antes de que sea devuelta
+- `modifier`: función que permite modificar la instancia del cliente antes de ser devuelta
 - `userPrototype`: objeto de propiedades que permite extender el prototipo de la instancia
-- `customCommandWrapper`: función que permite envolver funcionalidad alrededor de llamadas a funciones
+- `customCommandWrapper`: función que permite envolver funcionalidad alrededor de las llamadas a funciones
 
 ##### Returns
 
@@ -38,10 +38,10 @@ Se conecta a una sesión de WebDriver o DevTools en ejecución.
 
 ##### Paramaters
 
-- `attachInstance`: instancia a la que conectar una sesión o al menos un objeto con una propiedad `sessionId` (por ejemplo, `{ sessionId: 'xxx' }`)
-- `modifier`: función que permite modificar la instancia del cliente antes de que sea devuelta
+- `attachInstance`: instancia a la que conectar una sesión o al menos un objeto con una propiedad `sessionId` (p. ej. `{ sessionId: 'xxx' }`)
+- `modifier`: función que permite modificar la instancia del cliente antes de ser devuelta
 - `userPrototype`: objeto de propiedades que permite extender el prototipo de la instancia
-- `customCommandWrapper`: función que permite envolver funcionalidad alrededor de llamadas a funciones
+- `customCommandWrapper`: función que permite envolver funcionalidad alrededor de las llamadas a funciones
 
 ##### Returns
 
@@ -71,16 +71,16 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-De manera similar a los paquetes de protocolo (`webdriver` y `devtools`), también puedes usar las APIs del paquete WebdriverIO para gestionar sesiones. Las APIs se pueden importar usando `import { remote, attach, multiremote } from 'webdriverio'` y contienen la siguiente funcionalidad:
+De manera similar a los paquetes de protocolo (`webdriver` y `devtools`), también puedes usar las APIs del paquete WebdriverIO para administrar sesiones. Las APIs se pueden importar usando `import { remote, attach, multiremote } from 'webdriverio'` y contienen la siguiente funcionalidad:
 
 #### `remote(options, modifier)`
 
-Inicia una sesión de WebdriverIO. La instancia contiene todos los comandos del paquete de protocolo pero con funciones de orden superior adicionales, consulta [API docs](/docs/api).
+Inicia una sesión de WebdriverIO. La instancia contiene todos los comandos como el paquete de protocolo pero con funciones de orden superior adicionales, consulta [documentación de API](/docs/api).
 
 ##### Paramaters
 
 - `options`: [Opciones de WebdriverIO](/docs/configuration#webdriverio)
-- `modifier`: función que permite modificar la instancia del cliente antes de que sea devuelta
+- `modifier`: función que permite modificar la instancia del cliente antes de ser devuelta
 
 ##### Returns
 
@@ -102,7 +102,7 @@ Se conecta a una sesión de WebdriverIO en ejecución.
 
 ##### Paramaters
 
-- `attachOptions`: instancia a la que conectar una sesión o al menos un objeto con una propiedad `sessionId` (por ejemplo, `{ sessionId: 'xxx' }`)
+- `attachOptions`: instancia a la que conectar una sesión o al menos un objeto con una propiedad `sessionId` (p. ej. `{ sessionId: 'xxx' }`)
 
 ##### Returns
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-En lugar de llamar al comando `wdio`, también puedes incluir el ejecutor de pruebas como módulo y ejecutarlo en un entorno arbitrario. Para eso, necesitarás requerir el paquete `@wdio/cli` como módulo, así:
+En lugar de llamar al comando `wdio`, también puedes incluir el ejecutor de pruebas como módulo y ejecutarlo en un entorno arbitrario. Para eso, necesitarás requerir el paquete `@wdio/cli` como módulo, de esta manera:
 
 <Tabs
   defaultValue="esm"
@@ -203,25 +203,25 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-El comando `run` devuelve una [Promesa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Se resuelve si las pruebas se ejecutaron correctamente o fallaron, y se rechaza si el lanzador no pudo iniciar la ejecución de las pruebas.
+El comando `run` devuelve una [Promesa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Se resuelve si las pruebas se ejecutaron con éxito o fallaron, y se rechaza si el lanzador no pudo iniciar la ejecución de las pruebas.
 
 ## `@wdio/browser-runner`
 
-Cuando ejecutas pruebas unitarias o de componentes usando el [ejecutor de navegador](/docs/runner#browser-runner) de WebdriverIO, puedes importar utilidades de simulación para tus pruebas, por ejemplo:
+Cuando ejecutas pruebas unitarias o de componentes usando el [ejecutor de navegador](/docs/runner#browser-runner) de WebdriverIO, puedes importar utilidades de simulación para tus pruebas, p. ej.:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-Las siguientes exportaciones nombradas están disponibles:
+Están disponibles las siguientes exportaciones con nombre:
 
 #### `fn`
 
-Función simulada, consulta más en la [documentación oficial de Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Función simulada, ver más en la [documentación oficial de Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
-Función espía, consulta más en la [documentación oficial de Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Función espía, ver más en la [documentación oficial de Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
@@ -229,7 +229,7 @@ Método para simular un archivo o módulo de dependencia.
 
 ##### Paramaters
 
-- `moduleName`: ya sea una ruta relativa al archivo que se simulará o un nombre de módulo.
+- `moduleName`: puede ser una ruta relativa al archivo que se simulará o un nombre de módulo.
 - `factory`: función para devolver el valor simulado (opcional)
 
 ##### Example
@@ -250,11 +250,11 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-Deshace la simulación de una dependencia que está definida dentro del directorio de simulación manual (`__mocks__`).
+Desimula la dependencia que está definida dentro del directorio de simulación manual (`__mocks__`).
 
 ##### Paramaters
 
-- `moduleName`: nombre del módulo que se dejará de simular.
+- `moduleName`: nombre del módulo que se desimulará.
 
 ##### Example
 

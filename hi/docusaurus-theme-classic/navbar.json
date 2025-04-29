@@ -1,10 +1,14 @@
 {
+  "logo.alt": {
+    "message": "WebdriverIO",
+    "description": "The alt text of navbar logo"
+  },
   "item.label.Docs": {
     "message": "दस्तावेज़",
     "description": "Navbar item with label Docs"
   },
   "item.label.API": {
-    "message": "एपीआई",
+    "message": "API",
     "description": "Navbar item with label API"
   },
   "item.label.Blog": {
@@ -12,15 +16,19 @@
     "description": "Navbar item with label Blog"
   },
   "item.label.Contribute": {
-    "message": "योगदान",
+    "message": "योगदान करें",
     "description": "Navbar item with label Contribute"
   },
   "item.label.Community": {
     "message": "समुदाय",
     "description": "Navbar item with label Community"
   },
-  "item.label.v8": {
-    "message": "v8",
-    "description": "Navbar item with label v8"
+  "item.label.Sponsor": {
+    "message": "प्रायोजक",
+    "description": "Navbar item with label Sponsor"
+  },
+  "item.label.v9": {
+    "message": "v9",
+    "description": "Navbar item with label v9"
   }
 }

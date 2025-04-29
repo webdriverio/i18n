@@ -11,6 +11,10 @@
     "message": "Więcej",
     "description": "The title of the footer links column with title=More in the footer"
   },
+  "link.title.Sponsored by": {
+    "message": "Sponsorowane przez",
+    "description": "The title of the footer links column with title=Sponsored by in the footer"
+  },
   "link.item.label.Getting Started": {
     "message": "Pierwsze kroki",
     "description": "The label of footer link with label=Getting Started linking to docs/gettingstarted"
@@ -20,7 +24,7 @@
     "description": "The label of footer link with label=API Reference linking to docs/api"
   },
   "link.item.label.Contribute": {
-    "message": "Wnieś wkład",
+    "message": "Weź udział",
     "description": "The label of footer link with label=Contribute linking to docs/contribute/"
   },
   "link.item.label.Help": {
@@ -32,7 +36,7 @@
     "description": "The label of footer link with label=Stack Overflow linking to https://stackoverflow.com/questions/tagged/webdriver-io"
   },
   "link.item.label.Support Chat": {
-    "message": "Czat pomocy",
+    "message": "Czat wsparcia",
     "description": "The label of footer link with label=Support Chat linking to https://discord.webdriver.io"
   },
   "link.item.label.Slack": {
@@ -43,24 +47,28 @@
     "message": "Twitter",
     "description": "The label of footer link with label=Twitter linking to https://twitter.com/webdriverio"
   },
-  "link.item.label.Tidelift Subscription": {
-    "message": "Subskrypcja Tidelift",
-    "description": "The label of footer link with label=Tidelift Subscription linking to /docs/enterprise/"
-  },
-  "link.item.label.Donate to WebdriverIO": {
-    "message": "Wesprzyj WebdriverIO",
-    "description": "The label of footer link with label=Donate to WebdriverIO linking to https://opencollective.com/webdriverio"
-  },
   "link.item.label.Blog": {
     "message": "Blog",
     "description": "The label of footer link with label=Blog linking to blog"
+  },
+  "link.item.label.Sponsor": {
+    "message": "Sponsor",
+    "description": "The label of footer link with label=Sponsor linking to docs/sponsor"
+  },
+  "link.item.label.Swag Store": {
+    "message": "Sklep z gadżetami",
+    "description": "The label of footer link with label=Swag Store linking to https://shop.webdriver.io"
+  },
+  "link.item.label.YouTube": {
+    "message": "YouTube",
+    "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
   },
   "copyright": {
     "message": "Copyright © 2025 OpenJS Foundation",
     "description": "The footer copyright"
   },
-  "link.item.label.YouTube": {
-    "message": "YouTube",
-    "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
+  "logo.alt": {
+    "message": "Logo OpenJS Foundation",
+    "description": "The alt text of footer logo"
   }
 }

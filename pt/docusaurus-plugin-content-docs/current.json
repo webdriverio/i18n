@@ -19,20 +19,60 @@
     "message": "Guias",
     "description": "The label for category Guides in sidebar docs"
   },
+  "sidebar.docs.category.Best Practices": {
+    "message": "Melhores Práticas",
+    "description": "The label for category Best Practices in sidebar docs"
+  },
   "sidebar.docs.category.Testrunner": {
-    "message": "Testrunner",
+    "message": "Executor de Testes",
     "description": "The label for category Testrunner in sidebar docs"
   },
+  "sidebar.docs.category.Desktop Testing": {
+    "message": "Testes de Desktop",
+    "description": "The label for category Desktop Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Electron": {
+    "message": "Electron",
+    "description": "The label for category Electron in sidebar docs"
+  },
   "sidebar.docs.category.Component Testing": {
-    "message": "Teste de Componentes",
+    "message": "Testes de Componentes",
     "description": "The label for category Component Testing in sidebar docs"
   },
   "sidebar.docs.category.Framework Setup": {
     "message": "Configuração de Framework",
     "description": "The label for category Framework Setup in sidebar docs"
   },
+  "sidebar.docs.category.Extension Testing": {
+    "message": "Testes de Extensão",
+    "description": "The label for category Extension Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Accessibility Testing": {
+    "message": "Testes de Acessibilidade",
+    "description": "The label for category Accessibility Testing in sidebar docs"
+  },
+  "sidebar.docs.category.OCR Testing": {
+    "message": "Testes de OCR",
+    "description": "The label for category OCR Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Commands": {
+    "message": "Comandos",
+    "description": "The label for category Commands in sidebar docs"
+  },
+  "sidebar.docs.category.Visual Testing": {
+    "message": "Testes Visuais",
+    "description": "The label for category Visual Testing in sidebar docs"
+  },
+  "sidebar.docs.category.Options": {
+    "message": "Opções",
+    "description": "The label for category Options in sidebar docs"
+  },
+  "sidebar.docs.category.Percy": {
+    "message": "Percy",
+    "description": "The label for category Percy in sidebar docs"
+  },
   "sidebar.docs.category.Migrate": {
-    "message": "Migrar",
+    "message": "Migração",
     "description": "The label for category Migrate in sidebar docs"
   },
   "sidebar.docs.category.Integration": {
@@ -40,35 +80,47 @@
     "description": "The label for category Integration in sidebar docs"
   },
   "sidebar.docs.category.Reporter": {
-    "message": "Relatórios",
+    "message": "Reporter",
     "description": "The label for category Reporter in sidebar docs"
   },
   "sidebar.docs.category.Services": {
     "message": "Serviços",
     "description": "The label for category Services in sidebar docs"
   },
+  "sidebar.docs.doc.Argos": {
+    "message": "Argos",
+    "description": "The label for the doc item Argos in sidebar docs, linking to the doc visual-testing/argos"
+  },
   "sidebar.api.category.Protocols": {
     "message": "Protocolos",
     "description": "The label for category Protocols in sidebar api"
   },
   "sidebar.api.category.browser": {
-    "message": "navegador",
+    "message": "browser",
     "description": "The label for category browser in sidebar api"
   },
   "sidebar.api.category.element": {
-    "message": "elemento",
+    "message": "element",
     "description": "The label for category element in sidebar api"
   },
+  "sidebar.api.category.mobile": {
+    "message": "mobile",
+    "description": "The label for category mobile in sidebar api"
+  },
   "sidebar.api.category.mock": {
-    "message": "simulação",
+    "message": "mock",
     "description": "The label for category mock in sidebar api"
+  },
+  "sidebar.api.category.dialog": {
+    "message": "dialog",
+    "description": "The label for category dialog in sidebar api"
+  },
+  "sidebar.api.category.clock": {
+    "message": "clock",
+    "description": "The label for category clock in sidebar api"
   },
   "sidebar.flowcharts.category.Flowcharts": {
     "message": "Fluxogramas",
     "description": "The label for category Flowcharts in sidebar flowcharts"
-  },
-  "sidebar.docs.category.Web Extension Testing": {
-    "message": "Teste de Extensões Web",
-    "description": "The label for category Web Extension Testing in sidebar docs"
   }
 }

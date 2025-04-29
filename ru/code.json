@@ -1,43 +1,171 @@
 {
+  "features.realEnvironments": {
+    "message": "Тестирование в реальном окружении"
+  },
+  "features.realEnvironments.description": {
+    "message": "WebdriverIO позволяет тестировать в реальных браузерах или мобильных устройствах, используемых вашими пользователями."
+  },
+  "features.versatile": {
+    "message": "Универсальный и многофункциональный"
+  },
+  "features.versatile.description": {
+    "message": "Используйте WebdriverIO для полного сквозного (e2e) или модульного и компонентного тестирования в браузере."
+  },
+  "features.autoWait": {
+    "message": "Автоматическое ожидание"
+  },
+  "features.autoWait.description": {
+    "message": "WebdriverIO автоматически ожидает появления элементов перед взаимодействием с ними."
+  },
+  "features.standards": {
+    "message": "Основан на веб-стандартах"
+  },
+  "homepage.features.crossBrowser": {
+    "message": "Поддержка разных браузеров через автоматизацию с помощью {webdriverLink} и {bidiLink}."
+  },
+  "features.mobileSupport": {
+    "message": "Нативная поддержка мобильных устройств"
+  },
+  "homepage.features.mobile": {
+    "message": "Запускайте WebdriverIO на реальных мобильных устройствах, смарт-телевизорах или других IoT-устройствах через {appiumLink}."
+  },
+  "features.community": {
+    "message": "Преданное сообщество"
+  },
+  "homepage.features.support": {
+    "message": "Существует {supportChannelLink} с более чем 8 тысячами участников и богатой экосистемой плагинов, поддерживаемых сообществом."
+  },
+  "homepage.createBrowserAnimation": {
+    "message": "Создать проект WebdriverIO для автоматизации приложений MacOS"
+  },
+  "homepage.logoCarousel.title": {
+    "message": "Кто использует WebdriverIO?"
+  },
+  "sponsors.description.openSource": {
+    "message": "\n                Мы — проект с открытым исходным кодом с серьезной приверженностью к прозрачности и общественному управлению.\n                Мы являемся частью {openJsFoundationLink}, которая входит в состав {linuxFoundationLink}. Проект\n                полностью поддерживается добровольцами и финансируется заинтересованными компаниями, желающими успеха проекту.\n                Команда проекта благодарна за щедрую спонсорскую поддержку этих компаний.\n            "
+  },
+  "sponsors.description.support": {
+    "message": "Если вы используете WebdriverIO в своей организации, пожалуйста, рассмотрите возможность поддержки проекта, {becomeASponsor}. Это поможет нам поддерживать и развивать проект."
+  },
+  "homepage.tagline": {
+    "message": "Фреймворк нового поколения для автоматизации тестирования браузеров и мобильных устройств на Node.js"
+  },
+  "homepage.getStarted": {
+    "message": "Начать работу"
+  },
+  "homepage.whyWebdriverIO": {
+    "message": "Почему WebdriverIO?"
+  },
+  "homepage.viewOnGitHub": {
+    "message": "Смотреть на GitHub"
+  },
+  "homepage.watchOnYouTube": {
+    "message": "Смотреть на YouTube"
+  },
+  "homepage.sponsorSection.sponsoredBy": {
+    "message": "При поддержке"
+  },
+  "homepage.componentTesting.heading": {
+    "message": "E2E и Модульное / Компонентное тестирование в реальном браузере!"
+  },
+  "homepage.componentTesting.para1": {
+    "message": "WebdriverIO — это {allInOne} фреймворк для разработки веб-приложений. Он позволяет запускать небольшие и легкие компонентные тесты, а также сценарии сквозного тестирования в браузере или на мобильном устройстве. Это гарантирует проведение тестирования в среде, {usedBy}."
+  },
+  "homepage.componentTesting.allInOne": {
+    "message": "универсальный"
+  },
+  "homepage.componentTesting.usedBy": {
+    "message": "используемой вашими пользователями"
+  },
+  "homepage.componentTesting.para2": {
+    "message": "Он поставляется с умными стратегиями селекторов, которые упрощают взаимодействие, например, с {reactComponents} или выполнение глубоких запросов селекторов с вложенными деревьями теневого DOM. Поскольку взаимодействия происходят через стандартизированный протокол автоматизации, гарантируется, что они ведут себя нативно, а не эмулируются с помощью JavaScript."
+  },
+  "homepage.componentTesting.easySetup": {
+    "message": "Простая настройка для тестирования веб-компонентов с:"
+  },
+  "homepage.hightlight.createProject": {
+    "message": "Начните работу с WebdriverIO за считанные секунды"
+  },
+  "homepage.hightlight.createProject.para1": {
+    "message": "Тестовый инструментарий WebdriverIO поставляется с интерфейсом командной строки, который предоставляет мощную утилиту конфигурации и помогает создать тестовую среду менее чем за минуту. Он позволяет выбирать из доступных интеграций тестовых фреймворков и легко добавлять все поддерживаемые плагины репортеров и сервисов!"
+  },
+  "homepage.hightlight.createProject.para2": {
+    "message": "С помощью одной простой команды вы можете настроить полный набор тестов:"
+  },
+  "homepage.highlight.getStartedOnYouTube": {
+    "message": "Начните узнавать больше о WebdriverIO и о том, как начать работу {youtubeLink}."
+  },
+  "homepage.highlight.getStartedOnYouTube.label;": {
+    "message": "на YouTube",
+    "description": "The label for the link to my YouTube"
+  },
+  "homepage.hightlight.watch": {
+    "message": "Смотрите доклады о WebdriverIO"
+  },
+  "homepage.highlight.conferenceTalk": {
+    "message": "Сообщество вокруг WebdriverIO активно выступает на различных пользовательских группах или конференциях по конкретным темам автоматизированного тестирования с WebdriverIO. Посмотрите этот доклад на {youtubeLink} от {videoAuthor} на {conferenceLink}."
+  },
+  "homepage.highlight.conferenceTalk.label": {
+    "message": "Мои любимые функции WebdriverIO",
+    "description": "The conference talk title"
+  },
+  "homepage.highlight.youtubeChannels": {
+    "message": "Также существует множество YouTube-каналов с полезными руководствами от членов сообщества, таких как {channelOne}, {channelTwo} или {channelThree}."
+  },
+  "homepage.hightlight.lighthouse": {
+    "message": "Интеграция с Google Lighthouse"
+  },
+  "homepage.highlight.devtools": {
+    "message": "WebdriverIO не только выполняет автоматизацию на основе протокола WebDriver, но и использует нативные API браузера для обеспечения интеграции с популярными инструментами разработчика, такими как {devtoolsLink} или {lighthouseLink}. С плагином {devtoolsServiceLink} у вас есть доступ к командам для проверки, является ли ваше приложение валидным PWA-приложением, а также к командам для захвата метрик производительности фронтенда, таких как `speedIndex` и другие."
+  },
+  "homepage.hightlight.devtools": {
+    "message": "Интеграция с инструментами разработчика, такими как:"
+  },
+  "until August 2025": {
+    "message": "до августа 2025"
+  },
+  "since July 2024": {
+    "message": "с июля 2024"
+  },
+  "since February 2022": {
+    "message": "с февраля 2022"
+  },
+  "since January 2021": {
+    "message": "с января 2021"
+  },
+  "since December 2019": {
+    "message": "с декабря 2019"
+  },
+  "versions.description": {
+    "message": "Страница версий Docusaurus 2, перечисляющая все документированные версии сайта"
+  },
+  "WebdriverIO documentation versions": {
+    "message": "Версии документации WebdriverIO"
+  },
+  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
+    "message": "Команда проекта выпускает новые основные версии примерно раз в год. Статус выпуска LTS означает \"долгосрочную поддержку\", что обычно гарантирует исправление критических ошибок в течение 12 месяцев до выпуска новой основной версии."
+  },
+  "Current version (Stable)": {
+    "message": "Текущая версия (Стабильная)"
+  },
+  "Here you can find the documentation for current released version.": {
+    "message": "Здесь вы можете найти документацию для текущей выпущенной версии."
+  },
+  "Documentation": {
+    "message": "Документация"
+  },
+  "Release Notes": {
+    "message": "Примечания к выпуску"
+  },
+  "Past versions": {
+    "message": "Предыдущие версии"
+  },
+  "Here you can find documentation for previous versions of Docusaurus.": {
+    "message": "Здесь вы можете найти документацию для предыдущих версий Docusaurus."
+  },
   "theme.ErrorPageContent.title": {
     "message": "Эта страница вышла из строя.",
     "description": "The title of the fallback page when the page crashed"
-  },
-  "theme.ErrorPageContent.tryAgain": {
-    "message": "Попробовать снова",
-    "description": "The label of the button to try again when the page crashed"
-  },
-  "theme.NotFound.title": {
-    "message": "Страница не найдена",
-    "description": "The title of the 404 page"
-  },
-  "theme.NotFound.p1": {
-    "message": "Мы не смогли найти то, что вы искали.",
-    "description": "The first paragraph of the 404 page"
-  },
-  "theme.NotFound.p2": {
-    "message": "Пожалуйста, свяжитесь с владельцем сайта, который дал вам ссылку на исходный URL, и сообщите ему, что ссылка не работает.",
-    "description": "The 2nd paragraph of the 404 page"
-  },
-  "theme.admonition.note": {
-    "message": "примечание",
-    "description": "The default label used for the Note admonition (:::note)"
-  },
-  "theme.admonition.tip": {
-    "message": "совет",
-    "description": "The default label used for the Tip admonition (:::tip)"
-  },
-  "theme.admonition.danger": {
-    "message": "опасность",
-    "description": "The default label used for the Danger admonition (:::danger)"
-  },
-  "theme.admonition.info": {
-    "message": "информация",
-    "description": "The default label used for the Info admonition (:::info)"
-  },
-  "theme.admonition.caution": {
-    "message": "предостережение",
-    "description": "The default label used for the Caution admonition (:::caution)"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
     "message": "Прокрутить наверх",
@@ -52,55 +180,35 @@
     "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.paginator.navAriaLabel": {
-    "message": "Навигация по списку блогов",
+    "message": "Навигация по странице списка блога",
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
-    "message": "Новые записи",
+    "message": "Более новые записи",
     "description": "The label used to navigate to the newer blog posts page (previous page)"
   },
   "theme.blog.paginator.olderEntries": {
-    "message": "Старые записи",
+    "message": "Более старые записи",
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Навигация по страницам блога",
+    "message": "Навигация по странице сообщения блога",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "Новая запись",
+    "message": "Более новый пост",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "Старая запись",
+    "message": "Более старый пост",
     "description": "The blog post button label to navigate to the older/next post"
-  },
-  "theme.blog.post.plurals": {
-    "message": "Одна запись|{count} записей",
-    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.blog.tagTitle": {
-    "message": "{nPosts} с тегом \"{tagName}\"",
-    "description": "The title of the page for a blog tag"
   },
   "theme.tags.tagsPageLink": {
     "message": "Просмотреть все теги",
     "description": "The label of the link targeting the tag list page"
   },
-  "theme.docs.breadcrumbs.home": {
-    "message": "Главная страница",
-    "description": "The ARIA label for the home page in the breadcrumbs"
-  },
-  "theme.docs.breadcrumbs.navAriaLabel": {
-    "message": "Хлебные крошки",
-    "description": "The ARIA label for the breadcrumbs"
-  },
-  "theme.docs.DocCard.categoryDescription": {
-    "message": "{count} элементов",
-    "description": "The default description for a category card in the generated index about how many items this category includes"
-  },
   "theme.colorToggle.ariaLabel": {
-    "message": "Переключение между темным и светлым режимом (сейчас {mode})",
+    "message": "Переключение между темным и светлым режимом (сейчас используется {mode})",
     "description": "The ARIA label for the navbar color mode toggle"
   },
   "theme.colorToggle.ariaLabel.mode.dark": {
@@ -111,8 +219,16 @@
     "message": "светлый режим",
     "description": "The name for the light color mode"
   },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Хлебные крошки",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "1 элемент|{count} элементов",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
   "theme.docs.paginator.navAriaLabel": {
-    "message": "Навигация по страницам документации",
+    "message": "Страницы документации",
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
@@ -123,19 +239,11 @@
     "message": "Следующая",
     "description": "The label used to navigate to the next doc"
   },
-  "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "Один документ с тегом|{count} документов с тегом",
-    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.docs.tagDocListPageTitle": {
-    "message": "{nDocsTagged} с \"{tagName}\"",
-    "description": "The title of the page for a docs tag"
-  },
   "theme.docs.versionBadge.label": {
     "message": "Версия: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "Это невыпущенная документация для версии {siteTitle} {versionLabel}.",
+    "message": "Это неопубликованная документация для версии {siteTitle} {versionLabel}.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
@@ -150,12 +258,20 @@
     "message": "последней версии",
     "description": "The label used for the latest version suggestion link label"
   },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "Один документ с тегом|{count} документов с тегом",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
   "theme.common.editThisPage": {
     "message": "Редактировать эту страницу",
     "description": "The link label to edit the current page"
   },
   "theme.common.headingLinkTitle": {
-    "message": "Прямая ссылка на заголовок",
+    "message": "Прямая ссылка на {heading}",
     "description": "Title for link to heading"
   },
   "theme.lastUpdated.atDate": {
@@ -170,21 +286,53 @@
     "message": "Последнее обновление{atDate}{byUser}",
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
+  "theme.NotFound.title": {
+    "message": "Страница не найдена",
+    "description": "The title of the 404 page"
+  },
   "theme.navbar.mobileVersionsDropdown.label": {
     "message": "Версии",
     "description": "The label for the navbar versions dropdown on mobile view"
   },
-  "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "Закрыть",
-    "description": "The ARIA label for close button of announcement bar"
+  "theme.admonition.caution": {
+    "message": "предостережение",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.admonition.danger": {
+    "message": "опасность",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "информация",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.note": {
+    "message": "примечание",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "совет",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.warning": {
+    "message": "предупреждение",
+    "description": "The default label used for the Warning admonition (:::warning)"
   },
   "theme.tags.tagsListLabel": {
     "message": "Теги:",
     "description": "The label alongside a tag list"
   },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Закрыть",
+    "description": "The ARIA label for close button of announcement bar"
+  },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Навигация по последним записям блога",
+    "message": "Навигация по последним постам блога",
     "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Переключить перенос строк",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
   },
   "theme.CodeBlock.copied": {
     "message": "Скопировано",
@@ -195,20 +343,40 @@
     "description": "The ARIA label for copy code blocks button"
   },
   "theme.CodeBlock.copy": {
-    "message": "Скопировать",
+    "message": "Копировать",
     "description": "The copy button label on code blocks"
   },
-  "theme.CodeBlock.wordWrapToggle": {
-    "message": "Переключить перенос строк",
-    "description": "The title attribute for toggle word wrapping button of code block lines"
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "Развернуть категорию боковой панели '{label}'",
+    "description": "The ARIA label to expand the sidebar category"
   },
-  "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
-    "message": "Переключить сворачиваемую категорию боковой панели '{label}'",
-    "description": "The ARIA label to toggle the collapsible sidebar category"
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "Свернуть категорию боковой панели '{label}'",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.NavBar.navAriaLabel": {
+    "message": "Главная",
+    "description": "The ARIA label for the main navigation"
+  },
+  "theme.NotFound.p1": {
+    "message": "Мы не смогли найти то, что вы искали.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "Пожалуйста, свяжитесь с владельцем сайта, который привел вас к исходному URL, и сообщите ему, что ссылка не работает.",
+    "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
     "message": "На этой странице",
     "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "Чтение займет 1 мин|Чтение займет {readingTime} мин",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Языки",
+    "description": "The label for the mobile language switcher dropdown"
   },
   "theme.blog.post.readMore": {
     "message": "Читать далее",
@@ -218,13 +386,9 @@
     "message": "Узнать больше о {title}",
     "description": "The ARIA label for the link to full blog posts from excerpts"
   },
-  "theme.blog.post.readingTime.plurals": {
-    "message": "Одна минута чтения|{readingTime} минут чтения",
-    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
-  },
-  "theme.navbar.mobileLanguageDropdown.label": {
-    "message": "Языки",
-    "description": "The label for the mobile language switcher dropdown"
+  "theme.docs.breadcrumbs.home": {
+    "message": "Главная страница",
+    "description": "The ARIA label for the home page in the breadcrumbs"
   },
   "theme.docs.sidebar.collapseButtonTitle": {
     "message": "Свернуть боковую панель",
@@ -234,13 +398,17 @@
     "message": "Свернуть боковую панель",
     "description": "The title attribute for collapse button of doc sidebar"
   },
-  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
-    "message": "Закрыть панель навигации",
-    "description": "The ARIA label for close button of mobile sidebar"
+  "theme.docs.sidebar.navAriaLabel": {
+    "message": "Боковая панель документации",
+    "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
     "message": "← Вернуться в главное меню",
     "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "Закрыть панель навигации",
+    "description": "The ARIA label for close button of mobile sidebar"
   },
   "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
     "message": "Переключить панель навигации",
@@ -255,10 +423,10 @@
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
-    "message": "Посмотреть все {count} результатов"
+    "message": "Просмотреть все {count} результатов"
   },
   "theme.SearchPage.documentsFound.plurals": {
-    "message": "Найден один документ|Найдено {count} документов",
+    "message": "Найден 1 документ|Найдено {count} документов",
     "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.SearchPage.existingResultsTitle": {
@@ -278,7 +446,7 @@
     "description": "The ARIA label for search page input"
   },
   "theme.SearchPage.algoliaLabel": {
-    "message": "Поиск от Algolia",
+    "message": "Поиск с помощью Algolia",
     "description": "The ARIA label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
@@ -330,7 +498,7 @@
     "description": "The title for error screen of search modal"
   },
   "theme.SearchModal.errorScreen.helpText": {
-    "message": "Возможно, стоит проверить подключение к сети.",
+    "message": "Возможно, вам стоит проверить подключение к сети.",
     "description": "The help text for error screen of search modal"
   },
   "theme.SearchModal.footer.selectText": {
@@ -374,7 +542,7 @@
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "Считаете, что этот запрос должен давать результаты?",
+    "message": "Считаете, что этот запрос должен выдавать результаты?",
     "description": "The text for the question where the user thinks there are missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
@@ -390,11 +558,11 @@
     "description": "When the full-scale image is loading"
   },
   "theme.IdealImageMessage.load": {
-    "message": "Нажмите для загрузки{sizeMessage}",
+    "message": "Нажмите, чтобы загрузить{sizeMessage}",
     "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
   },
   "theme.IdealImageMessage.offline": {
-    "message": "Ваш браузер офлайн. Изображение не загружено",
+    "message": "Ваш браузер работает в автономном режиме. Изображение не загружено",
     "description": "When the user is viewing an offline document"
   },
   "theme.IdealImageMessage.404error": {
@@ -402,179 +570,59 @@
     "description": "When the image is not found"
   },
   "theme.IdealImageMessage.error": {
-    "message": "Ошибка. Нажмите для перезагрузки",
+    "message": "Ошибка. Нажмите, чтобы перезагрузить",
     "description": "When the image fails to load for unknown error"
   },
-  "theme.PwaReloadPopup.info": {
-    "message": "Доступна новая версия",
-    "description": "The text for PWA reload popup"
+  "theme.blog.post.plurals": {
+    "message": "Один пост|{count} постов",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
-  "theme.PwaReloadPopup.refreshButtonText": {
-    "message": "Обновить",
-    "description": "The text for PWA reload button"
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} с тегом \"{tagName}\"",
+    "description": "The title of the page for a blog tag"
   },
-  "theme.PwaReloadPopup.closeButtonAriaLabel": {
-    "message": "Закрыть",
-    "description": "The ARIA label for close button of PWA reload popup"
+  "theme.blog.author.pageTitle": {
+    "message": "{authorName} - {nPosts}",
+    "description": "The title of the page for a blog author"
+  },
+  "theme.blog.authorsList.pageTitle": {
+    "message": "Авторы",
+    "description": "The title of the authors page"
+  },
+  "theme.blog.authorsList.viewAll": {
+    "message": "Смотреть всех авторов",
+    "description": "The label of the link targeting the blog authors page"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "Этот автор еще не написал ни одного поста.",
+    "description": "The text for authors with 0 blog post"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "Страница не в списке",
+    "description": "The unlisted content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "Эта страница не включена в список. Поисковые системы не будут индексировать её, и только пользователи с прямой ссылкой могут получить к ней доступ.",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "Черновик страницы",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "Эта страница является черновиком. Она будет видима только в режиме разработки и будет исключена из финальной сборки.",
+    "description": "The draft content banner message"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Попробовать снова",
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.common.skipToMainContent": {
-    "message": "Перейти к основному содержанию",
+    "message": "Перейти к основному содержимому",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
   },
   "theme.tags.tagsPageTitle": {
     "message": "Теги",
     "description": "The title of the tag list page"
-  },
-  "WebdriverIO allows you to test in actual browser or mobile devices used by your users.": {
-    "message": "WebdriverIO позволяет тестировать в реальных браузерах или мобильных устройствах, используемых вашими пользователями."
-  },
-  "Use WebdriverIO for full e2e or unit and component testing in the browser.": {
-    "message": "Используйте WebdriverIO для полного end-to-end или модульного и компонентного тестирования в браузере."
-  },
-  "WebdriverIO automatically waits for elements to appear before interacting with them.": {
-    "message": "WebdriverIO автоматически ожидает появления элементов перед взаимодействием с ними."
-  },
-  "Get Started": {
-    "message": "Начать"
-  },
-  "Why WebdriverIO?": {
-    "message": "Почему WebdriverIO?"
-  },
-  "View on GitHub": {
-    "message": "Смотреть на GitHub"
-  },
-  "Watch on YouTube": {
-    "message": "Смотреть на YouTube"
-  },
-  "Easy setup for web component testing with:": {
-    "message": "Простая настройка для тестирования веб-компонентов с:"
-  },
-  "homepage.hightlight.createProject": {
-    "message": "Начните работу с WebdriverIO за считанные секунды"
-  },
-  "The WebdriverIO testrunner comes with a command line interface that provides a powerful configuration utility and helps you to create your test setup in less than a minute. It let's you pick from available test framework integrations and easily allows to add all supported reporter and service plugins!": {
-    "message": "Тестовый исполнитель WebdriverIO поставляется с интерфейсом командной строки, который предоставляет мощную утилиту конфигурации и помогает создать тестовую среду менее чем за минуту. Он позволяет выбрать из доступных интеграций тестовых фреймворков и легко добавить все поддерживаемые плагины репортеров и сервисов!"
-  },
-  "With just one simple command you can set up a complete test suite:": {
-    "message": "Всего одной простой командой вы можете настроить полный набор тестов:"
-  },
-  "homepage.hightlight.watch": {
-    "message": "Смотрите выступления о WebdriverIO"
-  },
-  "homepage.hightlight.lighthouse": {
-    "message": "Интеграция с Google Lighthouse"
-  },
-  "Integration to developer tools such as:": {
-    "message": "Интеграция с инструментами разработчика, такими как:"
-  },
-  "until October 2023": {
-    "message": "до октября 2023"
-  },
-  "since February 2022": {
-    "message": "с февраля 2022"
-  },
-  "since January 2021": {
-    "message": "с января 2021"
-  },
-  "since December 2019": {
-    "message": "с декабря 2019"
-  },
-  "versions.description": {
-    "message": "Страница версий Docusaurus 2, перечисляющая все документированные версии сайта"
-  },
-  "WebdriverIO documentation versions": {
-    "message": "Версии документации WebdriverIO"
-  },
-  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "Команда проекта выпускает новые основные версии примерно раз в год. Статус выпуска LTS означает \"долгосрочную поддержку\", что обычно гарантирует, что критические ошибки будут исправляться в течение 12 месяцев до выхода новой основной версии."
-  },
-  "Current version (Stable)": {
-    "message": "Текущая версия (Стабильная)"
-  },
-  "Here you can find the documentation for current released version.": {
-    "message": "Здесь вы можете найти документацию для текущей выпущенной версии."
-  },
-  "Documentation": {
-    "message": "Документация"
-  },
-  "Release Notes": {
-    "message": "Примечания к выпуску"
-  },
-  "Past versions": {
-    "message": "Предыдущие версии"
-  },
-  "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "Здесь вы можете найти документацию для предыдущих версий Docusaurus."
-  },
-  "homepage.createBrowserAnimation": {
-    "message": "Создать демонстрацию WebdriverIO"
-  },
-  "homepage.highlight.getStartedOnYouTube": {
-    "message": "Начните узнавать больше о WebdriverIO и о том, как начать работу {youtubeLink}."
-  },
-  "homepage.highlight.getStartedOnYouTube.label;": {
-    "message": "на YouTube",
-    "description": "The label for the link to my YouTube"
-  },
-  "homepage.highlight.conferenceTalk": {
-    "message": "Сообщество вокруг WebdriverIO активно выступает на различных пользовательских группах или конференциях по конкретным темам, связанным с автоматизированным тестированием с помощью WebdriverIO. Посмотрите это выступление на {youtubeLink} от {videoAuthor} на {conferenceLink}."
-  },
-  "homepage.highlight.conferenceTalk.label": {
-    "message": "Мои любимые функции WebdriverIO",
-    "description": "The conference talk title"
-  },
-  "homepage.highlight.youtubeChannels": {
-    "message": "Также существует множество YouTube-каналов с полезными учебными материалами от членов сообщества, таких как {channelOne}, {channelTwo} или {channelThree}."
-  },
-  "homepage.highlight.devtools": {
-    "message": "WebdriverIO не только выполняет автоматизацию на основе протокола WebDriver, но и использует нативные API браузера для обеспечения интеграций с популярными инструментами разработчика, такими как {devtoolsLink} или {lighthouseLink}. С плагином {devtoolsServiceLink} у вас есть доступ к командам для проверки, является ли ваше приложение действительным PWA-приложением, а также к командам для сбора метрик производительности фронтенда, таких как `speedIndex` и другие."
-  },
-  "homepage.features.crossBrowser": {
-    "message": "Поддержка кросс-браузерности через автоматизацию с помощью {webdriverLink} и {bidiLink}."
-  },
-  "homepage.features.mobile": {
-    "message": "Запускайте WebdriverIO на реальных мобильных устройствах, смарт-телевизорах или других устройствах Интернета вещей через {appiumLink}."
-  },
-  "homepage.features.support": {
-    "message": "Поддержка {supportChannelLink} с более чем 8 тысячами участников и богатая экосистема плагинов, поддерживаемых сообществом."
-  },
-  "homepage.tagline": {
-    "message": "Фреймворк для автоматизации тестирования в браузере и на мобильных устройствах следующего поколения для Node.js"
-  },
-  "homepage.componentTesting.para1": {
-    "message": "WebdriverIO — это {allInOne} фреймворк для разработки веб-приложений. Он позволяет запускать небольшие и легкие компонентные тесты, а также сценарии end-to-end тестирования в браузере или на мобильном устройстве. Это гарантирует, что вы проводите тестирование в среде, {usedBy}."
-  },
-  "features.realEnvironments": {
-    "message": "Тестирование в реальных средах"
-  },
-  "features.versatile": {
-    "message": "Универсальность и богатый функционал"
-  },
-  "features.autoWait": {
-    "message": "Автоматическое ожидание"
-  },
-  "features.standards": {
-    "message": "Основан на веб-стандартах"
-  },
-  "features.mobileSupport": {
-    "message": "Нативная поддержка мобильных устройств"
-  },
-  "features.community": {
-    "message": "Преданное сообщество"
-  },
-  "homepage.componentTesting.heading": {
-    "message": "E2E и модульное/компонентное тестирование в реальном браузере!"
-  },
-  "homepage.componentTesting.para2": {
-    "message": "Он поставляется с умными стратегиями селекторов, которые упрощают взаимодействие, например, с {reactComponents} или выполнение глубоких запросов селекторов с вложенными деревьями теневого DOM. Поскольку взаимодействия происходят через стандартизированный протокол автоматизации, гарантируется, что они ведут себя нативно, а не просто эмулируются JavaScript."
-  },
-  "Who is using WebdriverIO?": {
-    "message": "Кто использует WebdriverIO?"
-  },
-  "all in one": {
-    "message": "универсальный"
-  },
-  "used by your users": {
-    "message": "используемой вашими пользователями"
   }
 }

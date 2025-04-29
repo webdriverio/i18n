@@ -3,7 +3,7 @@ id: modules
 title: 模块
 ---
 
-WebdriverIO 发布了多个模块到 NPM 和其他注册表，您可以使用这些模块构建自己的自动化框架。关于 WebdriverIO 设置类型的更多文档请参见[此处](/docs/setuptypes)。
+WebdriverIO 在 NPM 和其他注册表上发布了各种模块，您可以使用这些模块构建自己的自动化框架。在[这里](/docs/setuptypes)查看有关 WebdriverIO 设置类型的更多文档。
 
 ## `webdriver` 和 `devtools`
 
@@ -34,11 +34,11 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-附加到正在运行的 WebDriver 或 DevTools 会话。
+连接到正在运行的 WebDriver 或 DevTools 会话。
 
 ##### 参数
 
-- `attachInstance`: 要附加会话的实例，或至少是一个具有 `sessionId` 属性的对象（例如 `{ sessionId: 'xxx' }`）
+- `attachInstance`: 要连接会话的实例，或至少是具有 `sessionId` 属性的对象（例如 `{ sessionId: 'xxx' }`）
 - `modifier`: 允许在返回客户端实例之前修改它的函数
 - `userPrototype`: 允许扩展实例原型的属性对象
 - `customCommandWrapper`: 允许在函数调用周围包装功能的函数
@@ -71,11 +71,11 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-与协议包（`webdriver` 和 `devtools`）类似，您也可以使用 WebdriverIO 包 API 来管理会话。这些 API 可以通过 `import { remote, attach, multiremote } from 'webdriverio` 导入，并包含以下功能：
+与协议包（`webdriver` 和 `devtools`）类似，您也可以使用 WebdriverIO 包 API 来管理会话。这些 API 可以通过 `import { remote, attach, multiremote } from 'webdriverio'` 导入，并包含以下功能：
 
 #### `remote(options, modifier)`
 
-启动 WebdriverIO 会话。该实例包含所有协议包命令，但具有额外的高阶函数，请参见 [API 文档](/docs/api)。
+启动 WebdriverIO 会话。该实例包含协议包的所有命令，以及额外的高阶函数，参见 [API 文档](/docs/api)。
 
 ##### 参数
 
@@ -98,11 +98,11 @@ const browser = await remote({
 
 #### `attach(attachOptions)`
 
-附加到正在运行的 WebdriverIO 会话。
+连接到正在运行的 WebdriverIO 会话。
 
 ##### 参数
 
-- `attachOptions`: 要附加会话的实例，或至少是一个具有 `sessionId` 属性的对象（例如 `{ sessionId: 'xxx' }`）
+- `attachOptions`: 要连接会话的实例，或至少是具有 `sessionId` 属性的对象（例如 `{ sessionId: 'xxx' }`）
 
 ##### 返回
 
@@ -119,11 +119,11 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-初始化一个 multiremote 实例，允许您在单个实例中控制多个会话。查看我们的 [multiremote 示例](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote)了解具体用例。
+初始化 multiremote 实例，使您能够在单个实例内控制多个会话。查看我们的 [multiremote 示例](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) 了解具体用例。
 
 ##### 参数
 
-- `multiremoteOptions`: 一个对象，其键代表浏览器名称，值为其 [WebdriverIO 选项](/docs/configuration#webdriverio)。
+- `multiremoteOptions`: 一个对象，其键表示浏览器名称，值为其 [WebdriverIO 选项](/docs/configuration#webdriverio)。
 
 ##### 返回
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-除了调用 `wdio` 命令外，您还可以将测试运行器作为模块包含，并在任意环境中运行它。为此，您需要将 `@wdio/cli` 包作为模块引入，如下所示：
+除了调用 `wdio` 命令外，您还可以将测试运行器作为模块引入，并在任意环境中运行它。为此，您需要将 `@wdio/cli` 包作为模块引入，如下所示：
 
 <Tabs
   defaultValue="esm"
@@ -176,7 +176,7 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-之后，创建启动器实例，并运行测试。
+之后，创建启动器的实例，并运行测试。
 
 #### `Launcher(configPath, opts)`
 
@@ -217,15 +217,15 @@ import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 
 #### `fn`
 
-模拟函数，在官方 [Vitest 文档](https://vitest.dev/api/mock.html#mock-functions)中查看更多信息。
+模拟函数，更多信息请参见官方 [Vitest 文档](https://vitest.dev/api/mock.html#mock-functions)。
 
 #### `spyOn`
 
-间谍函数，在官方 [Vitest 文档](https://vitest.dev/api/mock.html#mock-functions)中查看更多信息。
+间谍函数，更多信息请参见官方 [Vitest 文档](https://vitest.dev/api/mock.html#mock-functions)。
 
 #### `mock`
 
-模拟文件或依赖模块的方法。
+用于模拟文件或依赖模块的方法。
 
 ##### 参数
 

@@ -1,26 +1,26 @@
 ---
 id: modules
-title: وحدات
+title: الوحدات
 ---
 
-يقوم WebdriverIO بنشر العديد من الوحدات على NPM وسجلات أخرى يمكنك استخدامها لبناء إطار عمل الأتمتة الخاص بك. شاهد المزيد من الوثائق حول أنواع إعداد WebdriverIO [هنا](/docs/setuptypes).
+يقوم WebdriverIO بنشر وحدات مختلفة على NPM وسجلات أخرى يمكنك استخدامها لبناء إطار الأتمتة الخاص بك. شاهد المزيد من الوثائق حول أنواع إعداد WebdriverIO [هنا](/docs/setuptypes).
 
 ## `webdriver` و `devtools`
 
-حزم البروتوكول ([`webdriver`](https://www.npmjs.com/package/webdriver) و [`devtools`](https://www.npmjs.com/package/devtools)) تعرض فئة مع الوظائف الثابتة التالية المرفقة التي تسمح لك ببدء الجلسات:
+حزم البروتوكول ([`webdriver`](https://www.npmjs.com/package/webdriver) و [`devtools`](https://www.npmjs.com/package/devtools)) تكشف عن فئة بها الوظائف الثابتة التالية المرفقة التي تسمح لك ببدء الجلسات:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
 يبدأ جلسة جديدة بقدرات محددة. بناءً على استجابة الجلسة، سيتم توفير أوامر من بروتوكولات مختلفة.
 
-##### المعاملات
+##### المعلمات
 
 - `options`: [خيارات WebDriver](/docs/configuration#webdriver-options)
-- `modifier`: وظيفة تسمح بتعديل نسخة العميل قبل إرجاعها
-- `userPrototype`: كائن خصائص يسمح بتوسيع نموذج النسخة
-- `customCommandWrapper`: وظيفة تتيح تغليف الوظائف حول استدعاءات الوظائف
+- `modifier`: دالة تسمح بتعديل نسخة العميل قبل إرجاعها
+- `userPrototype`: كائن الخصائص الذي يسمح بتوسيع نموذج النسخة
+- `customCommandWrapper`: دالة تسمح بوضع وظائف حول استدعاءات الدالة
 
-##### العائد
+##### القيمة المرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -36,14 +36,14 @@ const client = await WebDriver.newSession({
 
 يرتبط بجلسة WebDriver أو DevTools قيد التشغيل.
 
-##### المعاملات
+##### المعلمات
 
-- `attachInstance`: نسخة للربط بجلسة أو على الأقل كائن يحتوي على خاصية `sessionId` (مثال: `{ sessionId: 'xxx' }`)
-- `modifier`: وظيفة تسمح بتعديل نسخة العميل قبل إرجاعها
-- `userPrototype`: كائن خصائص يسمح بتوسيع نموذج النسخة
-- `customCommandWrapper`: وظيفة تتيح تغليف الوظائف حول استدعاءات الوظائف
+- `attachInstance`: النسخة المراد الارتباط بها أو على الأقل كائن بخاصية `sessionId` (مثل `{ sessionId: 'xxx' }`)
+- `modifier`: دالة تسمح بتعديل نسخة العميل قبل إرجاعها
+- `userPrototype`: كائن الخصائص الذي يسمح بتوسيع نموذج النسخة
+- `customCommandWrapper`: دالة تسمح بوضع وظائف حول استدعاءات الدالة
 
-##### العائد
+##### القيمة المرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -56,11 +56,11 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-يعيد تحميل جلسة بناءً على النسخة المقدمة.
+يعيد تحميل جلسة معطاة لنسخة موفرة.
 
-##### المعاملات
+##### المعلمات
 
-- `instance`: نسخة الحزمة لإعادة التحميل
+- `instance`: نسخة الحزمة لإعادة تحميلها
 
 ##### مثال
 
@@ -71,18 +71,18 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-مشابه لحزم البروتوكول (`webdriver` و `devtools`)، يمكنك أيضًا استخدام واجهات برمجة تطبيقات حزمة WebdriverIO لإدارة الجلسات. يمكن استيراد واجهات برمجة التطبيقات باستخدام `import { remote, attach, multiremote } from 'webdriverio'` وتحتوي على الوظائف التالية:
+بشكل مشابه لحزم البروتوكول (`webdriver` و `devtools`)، يمكنك أيضًا استخدام واجهات برمجة تطبيقات حزمة WebdriverIO لإدارة الجلسات. يمكن استيراد واجهات برمجة التطبيقات باستخدام `import { remote, attach, multiremote } from 'webdriverio` وتحتوي على الوظائف التالية:
 
 #### `remote(options, modifier)`
 
-يبدأ جلسة WebdriverIO. تحتوي النسخة على جميع الأوامر كحزمة البروتوكول ولكن مع وظائف ترتيب أعلى إضافية، انظر [وثائق API](/docs/api).
+يبدأ جلسة WebdriverIO. تحتوي النسخة على جميع الأوامر مثل حزمة البروتوكول ولكن مع وظائف إضافية من مرتبة أعلى، انظر [وثائق API](/docs/api).
 
-##### المعاملات
+##### المعلمات
 
 - `options`: [خيارات WebdriverIO](/docs/configuration#webdriverio)
-- `modifier`: وظيفة تسمح بتعديل نسخة العميل قبل إرجاعها
+- `modifier`: دالة تسمح بتعديل نسخة العميل قبل إرجاعها
 
-##### العائد
+##### القيمة المرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -100,11 +100,11 @@ const browser = await remote({
 
 يرتبط بجلسة WebdriverIO قيد التشغيل.
 
-##### المعاملات
+##### المعلمات
 
-- `attachOptions`: نسخة للربط بجلسة أو على الأقل كائن يحتوي على خاصية `sessionId` (مثال: `{ sessionId: 'xxx' }`)
+- `attachOptions`: النسخة المراد الارتباط بها أو على الأقل كائن بخاصية `sessionId` (مثل `{ sessionId: 'xxx' }`)
 
-##### العائد
+##### القيمة المرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -119,13 +119,13 @@ const newBrowser = await attach(browser)
 
 #### `multiremote(multiremoteOptions)`
 
-يبدأ نسخة متعددة عن بعد والتي تسمح لك بالتحكم في جلسات متعددة ضمن نسخة واحدة. تحقق من [أمثلة multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) للحالات العملية.
+يبدأ نسخة multiremote والتي تسمح لك بالتحكم في جلسات متعددة ضمن نسخة واحدة. راجع [أمثلة multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) لحالات استخدام ملموسة.
 
-##### المعاملات
+##### المعلمات
 
-- `multiremoteOptions`: كائن بمفاتيح تمثل اسم المتصفح و [خيارات WebdriverIO](/docs/configuration#webdriverio) الخاصة بهم.
+- `multiremoteOptions`: كائن بمفاتيح تمثل اسم المتصفح و[خيارات WebdriverIO](/docs/configuration#webdriverio) الخاصة بهم.
 
-##### العائد
+##### القيمة المرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 ## `@wdio/cli`
 
-بدلاً من استدعاء الأمر `wdio`، يمكنك أيضًا تضمين منفذ الاختبار كوحدة وتشغيله في بيئة اعتباطية. لذلك، ستحتاج إلى استيراد حزمة `@wdio/cli` كوحدة، مثل هذا:
+بدلاً من استدعاء الأمر `wdio`، يمكنك أيضًا تضمين مشغل الاختبار كوحدة وتشغيله في أي بيئة. لذلك، ستحتاج إلى استيراد حزمة `@wdio/cli` كوحدة، مثل هذا:
 
 <Tabs
   defaultValue="esm"
@@ -176,16 +176,16 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-بعد ذلك، قم بإنشاء نسخة من المشغل، وقم بتشغيل الاختبار.
+بعد ذلك، قم بإنشاء نسخة من المشغل، وتشغيل الاختبار.
 
 #### `Launcher(configPath, opts)`
 
-يتوقع منشئ فئة `Launcher` عنوان URL لملف التكوين، وكائن `opts` مع إعدادات ستحل محل تلك الموجودة في التكوين.
+يتوقع منشئ فئة `Launcher` عنوان URL لملف التكوين وكائن `opts` مع إعدادات ستتجاوز تلك الموجودة في التكوين.
 
-##### المعاملات
+##### المعلمات
 
-- `configPath`: المسار إلى `wdio.conf.js` للتشغيل
-- `opts`: وسائط ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) لتجاوز القيم من ملف التكوين
+- `configPath`: المسار إلى `wdio.conf.js` المراد تشغيله
+- `opts`: الوسائط ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) لتجاوز القيم من ملف التكوين
 
 ##### مثال
 
@@ -203,7 +203,7 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-يعيد الأمر `run` [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). يتم حلها إذا تم تشغيل الاختبارات بنجاح أو فشلت، ويتم رفضها إذا لم يتمكن المشغل من بدء تشغيل الاختبارات.
+يعيد الأمر `run` [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). يتم حله إذا تم تشغيل الاختبارات بنجاح أو فشلت، ويتم رفضه إذا لم يتمكن المشغل من بدء تشغيل الاختبارات.
 
 ## `@wdio/browser-runner`
 
@@ -217,17 +217,17 @@ import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 
 #### `fn`
 
-دالة محاكاة، انظر المزيد في [وثائق Vitest الرسمية](https://vitest.dev/api/mock.html#mock-functions).
+دالة المحاكاة، انظر المزيد في [وثائق Vitest](https://vitest.dev/api/mock.html#mock-functions) الرسمية.
 
 #### `spyOn`
 
-دالة تجسس، انظر المزيد في [وثائق Vitest الرسمية](https://vitest.dev/api/mock.html#mock-functions).
+دالة التجسس، انظر المزيد في [وثائق Vitest](https://vitest.dev/api/mock.html#mock-functions) الرسمية.
 
 #### `mock`
 
 طريقة لمحاكاة ملف أو وحدة تبعية.
 
-##### المعاملات
+##### المعلمات
 
 - `moduleName`: إما مسار نسبي للملف المراد محاكاته أو اسم وحدة.
 - `factory`: دالة لإرجاع القيمة المحاكاة (اختياري)
@@ -250,9 +250,9 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-إلغاء محاكاة التبعية المحددة في دليل المحاكاة اليدوية (`__mocks__`).
+إلغاء محاكاة التبعية المعرفة داخل دليل المحاكاة اليدوي (`__mocks__`).
 
-##### المعاملات
+##### المعلمات
 
 - `moduleName`: اسم الوحدة المراد إلغاء محاكاتها.
 
