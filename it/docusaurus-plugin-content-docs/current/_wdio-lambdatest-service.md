@@ -4,12 +4,14 @@ title: Servizio LambdaTest
 custom_edit_url: https://github.com/LambdaTest/wdio-lambdatest-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-lambdatest-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/LambdaTest/wdio-lambdatest-service) | [npm](https://www.npmjs.com/package/wdio-lambdatest-service)
 
 [![WDIO health check](https://github.com/LambdaTest/wdio-lambdatest-service/actions/workflows/healthcheck.yml/badge.svg?branch=master)](https://github.com/LambdaTest/wdio-lambdatest-service/actions/workflows/healthcheck.yml)
 
-> Un servizio WebdriverIO che gestisce il tunnel e i metadati dei job per gli utenti LambdaTest.
+> Un servizio WebdriverIO che gestisce tunnel e metadati dei job per gli utenti LambdaTest.
 
 ## Installazione
 
@@ -17,12 +19,12 @@ custom_edit_url: https://github.com/LambdaTest/wdio-lambdatest-service/edit/mast
 npm i wdio-lambdatest-service --save-dev
 ```
 
-Le istruzioni su come installare `WebdriverIO` si trovano [qui.](https://webdriver.io/docs/gettingstarted.html)
+Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui.](https://webdriver.io/docs/gettingstarted.html)
 
 
 ## Configurazione
 
-WebdriverIO ha il supporto per LambdaTest integrato. Dovresti semplicemente impostare `user` e `key` nel tuo file `wdio.conf.js`. Per abilitare la funzionalità per l'automazione delle app, imposta `product: 'appAutomation'` nel tuo file `wdio.conf.js`. Questo plugin di servizio fornisce supporto per [LambdaTest Tunnel](https://www.lambdatest.com/support/docs/troubleshooting-lambda-tunnel/). Imposta anche `tunnel: true` per attivare questa funzionalità.
+WebdriverIO ha il supporto per LambdaTest integrato. Devi semplicemente impostare `user` e `key` nel tuo file `wdio.conf.js`. Per abilitare la funzionalità per l'automazione delle app, imposta `product: 'appAutomation'` nel tuo file `wdio.conf.js`. Questo plugin di servizio fornisce supporto per [LambdaTest Tunnel](https://www.lambdatest.com/support/docs/troubleshooting-lambda-tunnel/). Imposta anche `tunnel: true` per attivare questa funzionalità.
 
 ```js
 // wdio.conf.js
@@ -41,12 +43,12 @@ exports.config = {
 };
 ```
 
-### Per ottenere i commenti sugli errori dei test sulla dashboard di automazione
-Per ottenere i commenti sugli errori dei test sulla dashboard di automazione, aggiungi semplicemente `ltErrorRemark: true` nel tuo `wdio.conf.js`.
+### Per ottenere i commenti sugli errori dei test nella dashboard di automazione
+Per ottenere i commenti sugli errori dei test nella dashboard di automazione, aggiungi semplicemente `ltErrorRemark: true` nel tuo `wdio.conf.js`.
 
 
 ### Per caricare app da locale o URL
-Carica app `android` o `ios` da locale o URL dell'app ospitato aggiungendo questa configurazione richiesta nel tuo `wdio.conf.js`. Per utilizzare l'app caricata per i test nella stessa esecuzione, imposta `enableCapability = true`, questo imposterà il valore dell'URL dell'app nelle capabilities.
+Carica app `android` o `ios` da locale o da URL host dell'app aggiungendo questa configurazione richiesta nel tuo `wdio.conf.js`. Per utilizzare l'app caricata per i test nella stessa esecuzione, imposta `enableCapability = true`, questo imposterà il valore dell'URL dell'app nelle capabilities.
 
 ```js
 // wdio.conf.js
@@ -55,11 +57,11 @@ services: [
         "lambdatest",
         {
         tunnel: true,
-        app_upload: true,
+        app_upload: true, 
         app:{
             app_name : "xyz", //fornisci il nome desiderato per la tua app
             app_path : "/path/to/your/app/file", //fornisci la posizione locale dell'app
-            // o
+            // oppure
             app_url : "https://example.test_android.apk", //fornisci l'URL dove la tua app è ospitata o memorizzata
             custom_id : "12345", //fornisci il tuo ID personalizzato desiderato
             enableCapability : true
@@ -74,21 +76,21 @@ services: [
 Per autorizzare il servizio LambdaTest, la tua configurazione deve contenere le opzioni [`user`](https://webdriver.io/docs/options.html#user) e [`key`](https://webdriver.io/docs/options.html#key).
 
 ### tunnel
-Imposta questo a true per abilitare il routing delle connessioni dal cloud LambdaTest attraverso il tuo computer. Dovrai anche impostare `tunnel` a true nelle capabilities del browser.
+Imposta questo a true per abilitare l'instradamento delle connessioni dal cloud LambdaTest attraverso il tuo computer. Dovrai anche impostare `tunnel` su true nelle capabilities del browser.
 
 Tipo: `Boolean`<br />
-Default: `false`
+Predefinito: `false`
 
 ### lambdatestOpts
-Le opzioni specificate verranno passate a LambdaTest Tunnel.
+Le opzioni specificate saranno passate a LambdaTest Tunnel.
 
 Tipo: `Object`<br />
-Default: `{}`
+Predefinito: `{}`
 
 Di seguito è riportato un elenco completo di tutte le opzioni disponibili:
 
 #### tunnelName
-Specifica il nome personalizzato del LambdaTest Tunnel da utilizzare.
+Specifica il nome personalizzato di LambdaTest Tunnel da utilizzare.
 
 **Esempio:**
 ```json
@@ -96,7 +98,7 @@ Specifica il nome personalizzato del LambdaTest Tunnel da utilizzare.
 ```
 
 #### port
-Porta per l'attivazione di LambdaTest Tunnel.
+Porta per attivare LambdaTest Tunnel.
 
 **Esempio:**
 ```json
@@ -119,7 +121,7 @@ AccessKey LambdaTest.
 ```
 
 #### verbose
-Indica se ogni richiesta proxy deve essere registrata su stdout.
+Ogni richiesta proxy deve essere registrata su stdout.
 
 **Esempio:**
 ```json
@@ -175,7 +177,7 @@ Specifica la password della porta proxy del Tunnel.
 ```
 
 #### proxyPort
-Specifica il numero di porta in cui si attiverà il proxy del Tunnel.
+Specifica il numero di porta dove verrà attivato il proxy del Tunnel.
 
 **Esempio:**
 ```json
@@ -201,7 +203,7 @@ Instrada solo il traffico in entrata tramite il proxy specificato.
 
 
 #### pacfile
-Per utilizzare PAC (Proxy Auto-Configuration) nei test locali, fornisci
+Per utilizzare PAC (Proxy Auto-Configuration) nei test locali, fornire
 il percorso di un file PAC.
 
 **Esempio:**
@@ -218,7 +220,7 @@ Attiva il [Bilanciamento del carico](https://www.lambdatest.com/support/docs/loa
 ```
 
 #### mode
-Specifica in quale modalità deve funzionare il tunnel "ssh" o "ws". (predefinito "ssh").
+Specifica in quale modalità il tunnel dovrebbe funzionare "ssh" o "ws". (predefinito "ssh").
 
 **Esempio:**
 ```json
@@ -250,7 +252,7 @@ Condivisione del Tunnel tra i membri del team.
 ```
 
 #### env
-L'ambiente su cui verrà eseguito LambdaTest Tunnel.
+L'ambiente su cui funzionerà LambdaTest Tunnel.
 
 **Esempio:**
 ```json
@@ -276,7 +278,7 @@ URL di callback per lo stato del tunnel.
 
 
 #### allowHosts
-Elenco separato da virgole di host da instradare tramite tunnel. Tutto il resto sarà instradato tramite Internet.
+Elenco separato da virgole di host da instradare attraverso il tunnel. Tutto il resto verrà instradato tramite Internet.
 
 **Esempio:**
 ```json
@@ -294,7 +296,7 @@ Elenco separato da virgole di host da bypassare dal tunnel. Questi saranno instr
 
 
 #### clientCert
-Percorso del file del Certificato Client mTLS.
+Percorso del file del certificato client mTLS.
 
 **Esempio:**
 ```json
@@ -302,7 +304,7 @@ Percorso del file del Certificato Client mTLS.
 ```
 
 #### clientKey
-Percorso del file della Chiave Client mTLS.
+Percorso del file della chiave client mTLS.
 
 **Esempio:**
 ```json
@@ -336,7 +338,7 @@ Abilita la modalità [MITM (Man-in-the-middle)](https://www.lambdatest.com/suppo
 ```
 
 #### ntlm
-Per utilizzare l'autenticazione Microsoft NTLM (Windows NT LAN Manager) per scopi di comunicazione o trasporto.
+Per utilizzare l'autenticazione Microsoft NTLM (Windows NT LAN Manager) per la comunicazione o il trasporto.
 
 **Esempio:**
 ```json
@@ -363,56 +365,56 @@ Imposta l'indirizzo remoto a un IP interno della macchina client.
 Puoi trovare maggiori informazioni su queste opzioni [qui](https://www.lambdatest.com/support/docs/lambda-tunnel-modifiers/).
 
 ### preferScenarioName
-Solo per Cucumber. Imposta il nome della sessione al nome dello Scenario se è stato eseguito un solo Scenario.
+Solo per Cucumber. Imposta il nome della sessione al nome dello Scenario se viene eseguito un solo Scenario.
 Utile quando si esegue in parallelo con [wdio-cucumber-parallel-execution](https://github.com/SimitTomar/wdio-cucumber-parallel-execution).
 
 Tipo: `Boolean`<br />
-Default: `false`
+Predefinito: `false`
 
 ### sessionNameFormat
 Personalizza il formato del nome della sessione.
 
 Tipo: `Function`<br />
-Default (Cucumber/Jasmine): `(config, capabilities, suiteTitle) => suiteTitle`<br />
-Default (Mocha): `(config, capabilities, suiteTitle, testTitle) => suiteTitle + ' - ' + testTitle`
+Predefinito (Cucumber/Jasmine): `(config, capabilities, suiteTitle) => suiteTitle`<br />
+Predefinito (Mocha): `(config, capabilities, suiteTitle, testTitle) => suiteTitle + ' - ' + testTitle`
 
 ### sessionNameOmitTestTitle
 Solo per Mocha. Non aggiungere il titolo del test al nome della sessione.
 
 Tipo: `Boolean`<br />
-Default: `false`
+Predefinito: `false`
 
 ### sessionNamePrependTopLevelSuiteTitle
-Solo per Mocha. Anteponi il titolo della suite di livello superiore al nome della sessione.
+Solo per Mocha. Antepone il titolo della suite di livello superiore al nome della sessione.
 
 Tipo: `Boolean`<br />
-Default: `false`
+Predefinito: `false`
 
 ### setSessionName
 Imposta automaticamente il nome della sessione.
 
 Tipo: `Boolean`<br />
-Default: `true`
+Predefinito: `true`
 
 ### setSessionStatus
 Imposta automaticamente lo stato della sessione (passato/fallito).
 
 Tipo: `Boolean`<br />
-Default: `true`
+Predefinito: `true`
 
 
 ### ignoreTestCountInName
 Ignora il conteggio dei tentativi di un test nel nome
 
 Tipo: `Boolean`<br />
-Default: `false`
+Predefinito: `false`
 
 
 ### useScenarioName
 Per ottenere i nomi dei test come nomi di scenario per test specifici di cucumber, aggiungi semplicemente `useScenarioName: true` nel tuo `wdio.conf.js`.
 
 ## Passaggi per compilare e pubblicare
-1. git clone di questo repository.
+1. clona questo repository git.
 2. esegui "npm install"
 3. esegui "npm run build"
 4. Passaggi per pubblicare: esegui "npm login"

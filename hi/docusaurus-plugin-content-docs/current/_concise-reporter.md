@@ -4,8 +4,10 @@ title: संक्षिप्त रिपोर्टर
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-concise-reporter/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> संक्षिप्त शैली में रिपोर्ट करने के लिए एक WebdriverIO प्लगइन।
+> एक WebdriverIO प्लगइन जो संक्षिप्त शैली में रिपोर्ट करता है।
 
 ## इंस्टालेशन
 
@@ -15,11 +17,11 @@ custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/w
 npm install @wdio/concise-reporter --save-dev
 ```
 
-`WebdriverIO` को कैसे इंस्टॉल करें इसके निर्देश [यहाँ](https://webdriver.io/docs/gettingstarted) मिल सकते हैं।
+`WebdriverIO` को कैसे इंस्टॉल करें इस पर निर्देश [यहां](https://webdriver.io/docs/gettingstarted) मिल सकते हैं।
 
 ## कॉन्फिगरेशन
 
-निम्नलिखित कोड डिफॉल्ट wdio टेस्ट रनर कॉन्फिगरेशन दिखाता है। बस एरे में रिपोर्टर के रूप में `'concise'` जोड़ें।
+निम्नलिखित कोड डिफ़ॉल्ट wdio टेस्ट रनर कॉन्फिगरेशन दिखाता है। बस `'concise'` को एरे में रिपोर्टर के रूप में जोड़ें।
 
 ```js
 // wdio.conf.js

@@ -362,4 +362,3 @@ E2Eマルチリモートのキュウリテストとデータ駆動型Mochaテス
   - Appium
   - Chromedriver
   - ESLint
-  - http://the-internet.herokuapp.comでのログインと[WebdriverIOネイティブデモアプリ](https://github.com/webdriverio/native-demo-app)のテスト例

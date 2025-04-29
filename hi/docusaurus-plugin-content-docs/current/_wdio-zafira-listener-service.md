@@ -4,6 +4,8 @@ title: ज़फीरा लिसनर सर्विस
 custom_edit_url: https://github.com/shashidharus/wdio-zafira-listener-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-zafira-listener-service is a 3rd party package, for more information please see [GitHub](https://github.com/shashidharus/wdio-zafira-listener-service) | [npm](https://www.npmjs.com/package/wdio-zafira-listener-service)
 A custom service for WDIO to report tests to [Zafira Dashboard](http://demo.qaprosoft.com/zafira/)

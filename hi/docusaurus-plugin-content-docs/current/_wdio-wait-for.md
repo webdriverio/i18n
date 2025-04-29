@@ -4,19 +4,21 @@ title: उपयोगी अपेक्षित शर्तों की ल
 custom_edit_url: https://github.com/webdriverio/wdio-wait-for/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-wait-for एक तृतीय पक्ष पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/webdriverio/wdio-wait-for) | [npm](https://www.npmjs.com/package/wdio-wait-for)
 
-> wdio-wait-for [WebdriverIO](http://webdriver.io/) के लिए एक Node.js लाइब्रेरी है जो सामान्य शर्तों का एक सेट प्रदान करता है जो निर्धारित कार्य पूरा होने तक कुछ शर्तों का इंतजार करने के लिए कार्यक्षमता प्रदान करता है।
+> wdio-wait-for [WebdriverIO](http://webdriver.io/) के लिए एक Node.js लाइब्रेरी है जो सामान्य शर्तों का एक सेट प्रदान करती है जो निश्चित कार्य पूरा होने तक निश्चित शर्तों के लिए प्रतीक्षा करने की कार्यक्षमता प्रदान करती है।
 
-## इंस्टालेशन
+## स्थापना
 अपने प्रोजेक्ट में `wdio-wait-for` का उपयोग करने के लिए, चलाएँ:
 
 ```shell
 npm i -D wdio-wait-for
 ```
 
-यदि आप Yarn का उपयोग करते हैं, तो चलाएँ:
+अगर आप Yarn का उपयोग करते हैं, तो चलाएँ:
 
 ```sh
 yarn add --dev wdio-wait-for
@@ -49,10 +51,10 @@ yarn add --dev wdio-wait-for
 
 ## उदाहरण
 
-### इम्पोर्ट
+### आयात
 #### CommonJS
 
-यदि आप WebdriverIO v7 और इससे नीचे के संस्करण का उपयोग [CommonJS](https://en.wikipedia.org/wiki/CommonJS) के साथ कर रहे हैं, तो आपको पैकेज आयात करने के लिए `require` का उपयोग करना होगा, उदाहरण के लिए:
+अगर आप WebdriverIO v7 और निम्न संस्करण [CommonJS](https://en.wikipedia.org/wiki/CommonJS) के साथ उपयोग कर रहे हैं, तो आपको पैकेज आयात करने के लिए `require` का उपयोग करना होगा, उदाहरण के लिए:
 
 ```javascript
 // import all methods
@@ -70,7 +72,7 @@ browser.waitUntil(alertIsPresent(), { timeout: 5000, timeoutMsg: 'Failed, after 
 
 #### ESM
 
-TypeScript या WebdriverIO v8 और उससे ऊपर के साथ आप सभी हेल्पर मेथड्स को आयात करने के लिए `import` स्टेटमेंट का उपयोग कर सकते हैं, उदाहरण के लिए:
+TypeScript या WebdriverIO v8 और उससे ऊपर के संस्करण के साथ, आप सभी सहायक विधियों को आयात करने के लिए `import` स्टेटमेंट का उपयोग कर सकते हैं, उदाहरण के लिए:
 
 ```typescript
 // import all methods
@@ -79,7 +81,7 @@ import * as EC from 'wdio-wait-for';
 browser.waitUntil(EC.elementToBeEnabled('input'), { timeout: 5000, timeoutMsg: 'Failed, after waiting for the element to be enabled' })
 ```
 
-या केवल विशिष्ट मेथड्स, उदाहरण के लिए:
+या केवल विशिष्ट विधियों को, उदाहरण के लिए:
 
 ```typescript
 // import specific method
@@ -95,9 +97,9 @@ browser.waitUntil(elementToBeEnabled('input'), { timeout: 5000, timeoutMsg: 'Fai
 browser.waitUntil(alertIsPresent(), { timeout: 5000, timeoutMsg: 'Failed, after waiting for the alert to be present' })
 ```
 
-### एलिमेंट्स के लिए प्रतीक्षा करें
+### तत्वों के लिए प्रतीक्षा करें
 
-यह कोड स्निपेट दिखाता है कि कैसे शर्तों का उपयोग एलिमेंट्स की एक निश्चित संख्या के मौजूद होने का इंतजार करने के लिए किया जाता है:
+यह कोड स्निपेट दिखाता है कि शर्तों का उपयोग कैसे करें, उदाहरण के लिए, तत्वों की एक निश्चित संख्या के मौजूद होने के लिए प्रतीक्षा करना:
 
 ```typescript
 browser.waitUntil(numberOfElementsToBe('.links', 2), { timeout: 5000, timeoutMsg: 'Failed, after waiting for the 2 elements' })

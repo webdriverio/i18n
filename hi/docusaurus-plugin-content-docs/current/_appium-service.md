@@ -4,18 +4,20 @@ title: Appium सेवा
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-appium-service/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Appium सर्वर को संभालना वास्तविक WebdriverIO प्रोजेक्ट के दायरे से बाहर है। यह सेवा आपको [WDIO टेस्टरनर](https://webdriver.io/docs/clioptions) के साथ परीक्षण चलाते समय आसानी से Appium सर्वर चलाने में मदद करती है। यह चाइल्ड प्रोसेस में [Appium सर्वर](https://appium.github.io/appium.io/docs/en/about-appium/getting-started/index.html#starting-appium) शुरू करता है।
+Appium सर्वर का प्रबंधन वास्तविक WebdriverIO प्रोजेक्ट के दायरे से बाहर है। यह सेवा आपको [WDIO testrunner](https://webdriver.io/docs/clioptions) के साथ परीक्षण चलाते समय निर्बाध रूप से Appium सर्वर चलाने में मदद करती है। यह चाइल्ड प्रोसेस में [Appium Server](https://appium.github.io/appium.io/docs/en/about-appium/getting-started/index.html#starting-appium) शुरू करता है।
 
-## स्थापना
+## इंस्टालेशन
 
-सबसे आसान तरीका है `@wdio/appium-service` को अपने `package.json` में devDependency के रूप में रखना, इसके माध्यम से:
+सबसे आसान तरीका अपने `package.json` में `@wdio/appium-service` को devDependency के रूप में रखना है, इसके माध्यम से:
 
 ```sh
 npm install @wdio/appium-service --save-dev
 ```
 
-`WebdriverIO` को कैसे स्थापित किया जाए, इस पर निर्देश [यहां](https://webdriver.io/docs/gettingstarted) मिल सकते हैं।
+`WebdriverIO` को कैसे इंस्टॉल करना है, इस पर निर्देश [यहां](https://webdriver.io/docs/gettingstarted) मिल सकते हैं।
 
 ## कॉन्फ़िगरेशन
 
@@ -69,7 +71,7 @@ export const config = {
 ```
 
 ### command
-अपने Appium स्थापना का उपयोग करने के लिए, जैसे कि वैश्विक रूप से स्थापित, उस कमांड को निर्दिष्ट करें जिसे शुरू किया जाना चाहिए।
+अपने Appium इंस्टालेशन का उपयोग करने के लिए, जैसे कि ग्लोबली इंस्टॉल किया गया, उस कमांड को निर्दिष्ट करें जिसे शुरू किया जाना चाहिए।
 
 प्रकार: `String`
 
@@ -87,10 +89,10 @@ export const config = {
 ```
 
 ### args
-Appium सर्वर के लिए तर्कों का मानचित्र, सीधे `appium` को पारित किया जाता है।
+Appium सर्वर के लिए आर्ग्युमेंट्स का मैप, सीधे `appium` को पास किया जाता है।
 
-संभावित तर्कों के लिए [दस्तावेज़ीकरण](https://github.com/appium/appium/blob/master/packages/appium/docs/en/cli/args.md) देखें।
-तर्क लोअर कैमल केस में प्रदान किए जाते हैं। उदाहरण के लिए, `debugLogSpacing: true` `--debug-log-spacing` में परिवर्तित हो जाता है, या वे Appium दस्तावेज़ीकरण में बताए अनुसार प्रदान किए जा सकते हैं।
+संभावित आर्ग्युमेंट्स के लिए [दस्तावेज़ीकरण](https://github.com/appium/appium/blob/master/packages/appium/docs/en/cli/args.md) देखें।
+आर्ग्युमेंट्स लोअर कैमल केस में प्रदान किए जाते हैं। उदाहरण के लिए, `debugLogSpacing: true` को `--debug-log-spacing` में परिवर्तित किया जाता है, या वे Appium दस्तावेज़ीकरण में बताए अनुसार प्रदान किए जा सकते हैं।
 
 प्रकार: `Object`
 
@@ -113,7 +115,7 @@ export const config = {
     // ...
 }
 ```
-**नोट:** उपनामों के उपयोग को हतोत्साहित और असमर्थित किया जाता है। इसके बजाय, कृपया लोअर कैमल केस में पूर्ण प्रॉपर्टी नाम का उपयोग करें।
+**नोट:** उपनामों (एलियास) के उपयोग को हतोत्साहित और असमर्थित किया गया है। इसके बजाय, कृपया लोअर कैमल केस में पूरे प्रॉपर्टी नाम का उपयोग करें।
 
 ----
 

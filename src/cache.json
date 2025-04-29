@@ -205,8 +205,7 @@
       "pt",
       "ru",
       "ja",
-      "pl",
-      "sv"
+      "pl"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CloudServices.md": {
@@ -5168,7 +5167,14 @@
       "fa",
       "fr",
       "hi",
-      "it"
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk"
     ]
   },
   "en/docusaurus-theme-classic/footer.json": {
@@ -5179,7 +5185,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-theme-classic/navbar.json": {
@@ -5191,7 +5206,15 @@
       "fa",
       "fr",
       "hi",
-      "it"
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-blog/options.json": {
@@ -5203,7 +5226,15 @@
       "fa",
       "fr",
       "hi",
-      "it"
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_dot-reporter.md": {
@@ -5214,7 +5245,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_static-server-service.md": {
@@ -5224,7 +5264,15 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_testingbot-service.md": {
@@ -5233,7 +5281,18 @@
       "ar",
       "de",
       "es",
-      "fr"
+      "fr",
+      "fa",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_shared-store-service.md": {
@@ -5243,7 +5302,16 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-cucumber-viewport-logger-service.md": {
@@ -5254,7 +5322,15 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_qajonatasmartins-wdio-google-chat-service.md": {
@@ -5264,7 +5340,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_sap_oss-wdio-qmate-service.md": {
@@ -5274,7 +5360,16 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_spec-reporter.md": {
@@ -5284,7 +5379,16 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_concise-reporter.md": {
@@ -5294,7 +5398,16 @@
       "es",
       "de",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-aws-device-farm-service.md": {
@@ -5306,7 +5419,15 @@
       "fa",
       "fr",
       "hi",
-      "it"
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_json-reporter.md": {
@@ -5317,7 +5438,15 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-cleanuptotal-service.md": {
@@ -5328,7 +5457,16 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_appium-service.md": {
@@ -5338,7 +5476,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_badisi-wdio-harness.md": {
@@ -5349,7 +5497,15 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_sumologic-reporter.md": {
@@ -5360,7 +5516,15 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-docker-service.md": {
@@ -5371,7 +5535,16 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_sauce-service.md": {
@@ -5382,7 +5555,16 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_gmangiapelo-wdio-azure-devops-service.md": {
@@ -5393,7 +5575,16 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-delta-reporter-service.md": {
@@ -5404,7 +5595,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_lighthouse-service.md": {
@@ -5414,7 +5614,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_allure-reporter.md": {
@@ -5425,7 +5635,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_browserstack-service.md": {
@@ -5436,7 +5655,15 @@
       "es",
       "fr",
       "fa",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-cucumberjs-json-reporter.md": {
@@ -5447,7 +5674,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-reportportal-service.md": {
@@ -5457,7 +5693,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-light-reporter.md": {
@@ -5468,7 +5714,16 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_junit-reporter.md": {
@@ -5479,7 +5734,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-html-nice-reporter.md": {
@@ -5490,7 +5754,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-nuxt-service.md": {
@@ -5501,7 +5774,16 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-gmail-service.md": {
@@ -5512,7 +5794,16 @@
       "de",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-ng-apimock-service.md": {
@@ -5522,7 +5813,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-rerun-service.md": {
@@ -5532,7 +5833,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-qunit-service.md": {
@@ -5542,7 +5853,17 @@
       "es",
       "de",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-performancetotal-service.md": {
@@ -5552,7 +5873,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-robonut-service.md": {
@@ -5562,7 +5893,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-reportportal-reporter.md": {
@@ -5572,7 +5913,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-eslinter-service.md": {
@@ -5583,7 +5934,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-lambdatest-service.md": {
@@ -5594,7 +5954,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-json-html-reporter.md": {
@@ -5605,7 +5974,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-winappdriver-service.md": {
@@ -5615,7 +5993,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-zafira-listener-service.md": {
@@ -5625,7 +6013,16 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-teamcity-reporter.md": {
@@ -5635,7 +6032,16 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-ui5-service.md": {
@@ -5645,7 +6051,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-novus-visual-regression-service.md": {
@@ -5655,7 +6071,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-tesults-service.md": {
@@ -5665,7 +6091,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_webdriver-mock-service.md": {
@@ -5675,7 +6111,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-slack-service.md": {
@@ -5685,7 +6131,16 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-testrail-reporter.md": {
@@ -5695,7 +6150,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-ywinappdriver-service.md": {
@@ -5705,7 +6170,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-timeline-reporter.md": {
@@ -5716,7 +6191,16 @@
       "es",
       "fa",
       "fr",
-      "it"
+      "it",
+      "hi",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-wait-for.md": {
@@ -5726,7 +6210,15 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "ru",
+      "sv",
+      "ta",
+      "uk"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-wiremock-service.md": {
@@ -5736,7 +6228,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-intercept-service.md": {
@@ -5747,7 +6249,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-video-reporter.md": {
@@ -5757,7 +6268,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-ocr-service.md": {
@@ -5767,7 +6288,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-vscode-service.md": {
@@ -5777,7 +6308,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-slack-reporter.md": {
@@ -5787,7 +6328,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-visual-service.md": {
@@ -5797,7 +6348,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-roku-service.md": {
@@ -5807,7 +6368,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_firefox-profile-service.md": {
@@ -5817,7 +6388,17 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-electron-service.md": {
@@ -5828,7 +6409,16 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh"
     ]
   }
 }

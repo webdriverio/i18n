@@ -1,14 +1,16 @@
 ---
 id: wdio-zafira-listener-service
-title: Servizio Listener Zafira
+title: Servizio Ascoltatore Zafira
 custom_edit_url: https://github.com/shashidharus/wdio-zafira-listener-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-zafira-listener-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/shashidharus/wdio-zafira-listener-service) | [npm](https://www.npmjs.com/package/wdio-zafira-listener-service)
 Un servizio personalizzato per WDIO per riportare i test alla [Dashboard Zafira](http://demo.qaprosoft.com/zafira/)
 
-## Come utilizzarlo
+## Come utilizzare
 ### Requisiti
 
 - Node.js 10.x +

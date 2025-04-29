@@ -4,6 +4,8 @@ title: Reporter Conciso
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-concise-reporter/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > Un plugin WebdriverIO per generare report in stile conciso.
 
@@ -19,7 +21,8 @@ Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui](http
 
 ## Configurazione
 
-Il codice seguente mostra la configurazione predefinita del test runner wdio. Basta aggiungere `'concise'` come reporter all'array.
+Il seguente codice mostra la configurazione predefinita del test runner wdio. Basta aggiungere `'concise'` come reporter
+all'array.
 
 ```js
 // wdio.conf.js

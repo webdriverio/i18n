@@ -4,6 +4,8 @@ title: Reporter Junit
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-junit-reporter/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > Un reporter WebdriverIO che crea report JUnit basati su XML compatibili con [Jenkins](http://jenkins-ci.org/)
 
@@ -19,8 +21,8 @@ Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui](http
 
 ## Output
 
-Questo reporter produrrà un report per ogni runner, quindi a tua volta riceverai un report xml per ogni file spec. Di seguito
-ci sono esempi di output XML dati diversi scenari nel file spec.
+Questo reporter produrrà un report per ogni runner, quindi a sua volta riceverai un report xml per ogni file spec. Di seguito
+ci sono esempi di output XML relativi a diversi scenari nel file spec.
 
 ### Blocco describe singolo
 ```javascript
@@ -120,7 +122,7 @@ diventa
 ```
 
 ### Fallimenti ed Errori
-Tutti i fallimenti dei casi di test sono mappati come errori dei casi di test JUnit. Un caso di test fallito a causa di un fallimento o un errore di asserzione apparirà così:
+Tutti i fallimenti dei casi di test sono mappati come errori di casi di test JUnit. Un caso di test fallito a causa di un fallimento di asserzione o di un errore apparirà così:
 
 ```xml
 <testcase classname="chrome.a_test_case" name="a_test_suite_a_test_case" time="0.372">
@@ -136,8 +138,8 @@ Error: some assertion failure
 
 ## Configurazione
 
-Il seguente codice mostra la configurazione predefinita del test runner wdio. Basta aggiungere `'junit'` come reporter
-all'array. Per ottenere un po' di output durante il test puoi eseguire il [WDIO Dot Reporter](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter) e il WDIO JUnit Reporter contemporaneamente:
+Il seguente codice mostra la configurazione predefinita del test runner WDIO. Basta aggiungere `'junit'` come reporter
+nell'array. Per ottenere un output durante il test, puoi eseguire il [WDIO Dot Reporter](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter) e il WDIO JUnit Reporter contemporaneamente:
 
 ```js
 // wdio.conf.js
@@ -159,13 +161,13 @@ module.exports = {
 Sono supportate le seguenti opzioni:
 
 ### outputDir
-Definisci una directory dove i tuoi file xml dovrebbero essere archiviati.
+Definisce una directory dove i tuoi file xml devono essere archiviati.
 
 Tipo: `String`<br />
 Obbligatorio
 
 ### outputFileFormat
-Definisci i file xml creati dopo l'esecuzione del test.
+Definisce i file xml creati dopo l'esecuzione del test.
 
 Tipo: `Object`<br />
 Default: ``function (opts) { return `wdio-${this.cid}-${name}-reporter.log` }``
@@ -176,11 +178,11 @@ outputFileFormat: function (options) {
 }
 ```
 
-> Nota: `options.capabilities` rappresenta le capacità dell'oggetto per quel runner, quindi specificare `${options.capabilities}` nella tua stringa restituirà [Object object]. Devi specificare quali proprietà delle capacità desideri nel tuo nome file.
+> Nota: `options.capabilities` sono le tue capabilities per quel runner, quindi specificando `${options.capabilities}` nella tua stringa restituirà [Object object]. Devi specificare quali proprietà delle capabilities vuoi nel tuo nome file.
 
 ### suiteNameFormat
 
-Dà la possibilità di fornire una regex personalizzata per formattare il nome della suite di test (ad es. nell'xml di output).
+Offre la possibilità di fornire regex personalizzate per formattare il nome della suite di test (ad esempio, nell'xml di output).
 
 Tipo: `Regex`,<br />
 Default: `/[^a-zA-Z0-9@]+/`
@@ -205,7 +207,7 @@ module.exports = {
 
 ### addFileAttribute
 
-Aggiunge un attributo file a ogni caso di test. Questa configurazione è principalmente per CircleCI. Questa impostazione fornisce dettagli più ricchi ma potrebbe non funzionare su altre piattaforme CI.
+Aggiunge un attributo file a ogni testcase. Questa configurazione è principalmente per CircleCI. Questa impostazione fornisce dettagli più ricchi ma potrebbe non funzionare su altre piattaforme CI.
 
 Tipo: `Boolean`,<br />
 Default: `false`
@@ -235,7 +237,7 @@ module.exports = {
 
 ### errorOptions
 
-Permette di impostare varie combinazioni di notifiche di errore all'interno dell'xml.<br />
+Consente di impostare varie combinazioni di notifiche di errore all'interno dell'xml.<br />
 Dato un test Jasmine come `expect(true).toBe(false, 'my custom message')` otterrai questo errore di test:
 
 ```
@@ -249,7 +251,7 @@ Dato un test Jasmine come `expect(true).toBe(false, 'my custom message')` otterr
 }
 ```
 
-Pertanto puoi scegliere *quale* chiave verrà utilizzata *dove*, vedi l'esempio di seguito.
+Pertanto, puoi scegliere *quale* chiave sarà utilizzata *dove*, vedi l'esempio di seguito.
 
 Tipo: `Object`,<br />
 Default: `errorOptions: { error: "message" }`<br />
@@ -276,7 +278,7 @@ module.exports = {
 
 ### addWorkerLogs
 
-Parametro opzionale, imposta questo parametro a true per allegare i log della console dal test nel reporter.
+Parametro opzionale, imposta questo parametro su true per allegare i log della console dal test nel reporter.
 
 Tipo: `Boolean`<br />
 Default: `false`<br />
@@ -297,11 +299,11 @@ module.exports = {
 };
 ```
 
-## Aggiunta di proprietà personalizzate ai casi di test
+## Aggiungere proprietà personalizzate ai testcase
 
-Questo plugin fornisce una funzione `addProperty(name, value)`. Questa funzione può essere utilizzata per aggiungere proprietà aggiuntive del caso di test junit al passo di test attualmente in esecuzione. Queste proprietà verranno riportate nell'xml risultante come `<property name="${name}" value="${value}" />`.
+Questo plugin fornisce una funzione `addProperty(name, value)`. Questa funzione può essere utilizzata per aggiungere proprietà aggiuntive del testcase junit al passaggio di test attualmente in esecuzione. Queste proprietà verranno riportate nell'xml risultante come `<property name="${name}" value="${value}" />`.
 
-Un caso d'uso tipico è l'aggiunta di un link a un problema o a un caso di test.
+Un caso d'uso tipico è l'aggiunta di un collegamento a un problema o a un caso di test.
 
 
 ### Esempio di utilizzo
@@ -320,11 +322,11 @@ describe('Suite', () => {
 
 ## Configurazione Jenkins
 
-Infine devi dire al tuo lavoro CI (ad es. Jenkins) dove può trovare il file xml. Per farlo, aggiungi un'azione post-build al tuo lavoro che viene eseguita dopo l'esecuzione del test e indirizza Jenkins (o il sistema CI desiderato) ai tuoi risultati di test XML:
+Infine devi dire al tuo job CI (ad es. Jenkins) dove può trovare il file xml. Per farlo, aggiungi un'azione post-build al tuo job che viene eseguita dopo che il test è stato eseguito e indica a Jenkins (o al tuo sistema CI desiderato) i tuoi risultati di test XML:
 
 ![Point Jenkins to XML files](https://webdriver.io/img/jenkins-postjob.png "Point Jenkins to XML files")
 
-Se non esiste tale passaggio post-build nel tuo sistema CI, probabilmente esiste un plugin per questo da qualche parte su internet.
+Se non esiste una fase post-build di questo tipo nel tuo sistema CI, probabilmente esiste un plugin per questo da qualche parte su internet.
 
 ----
 

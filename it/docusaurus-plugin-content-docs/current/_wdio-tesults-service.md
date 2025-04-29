@@ -4,8 +4,10 @@ title: Servizio Tesults
 custom_edit_url: https://github.com/tesults/wdio-tesults-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-tesults-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/tesults/wdio-tesults-service) | [npm](https://www.npmjs.com/package/wdio-tesults-service)
+> wdio-tesults-service è un pacchetto di terze parti, per ulteriori informazioni consultare [GitHub](https://github.com/tesults/wdio-tesults-service) | [npm](https://www.npmjs.com/package/wdio-tesults-service)
 
 Tesults (https://www.tesults.com) service per WebdriverIO (https://webdriver.io/)
 
@@ -27,7 +29,7 @@ support@tesults.com
 
 ## License
 
-Distribuito secondo i termini della licenza MIT, "wdio-tesults-service" è un software gratuito e open source
+Distribuito secondo i termini della licenza MIT, "wdio-tesults-service" è software gratuito e open source
 
 ## Issues
 

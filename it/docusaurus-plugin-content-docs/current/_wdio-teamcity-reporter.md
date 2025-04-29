@@ -1,13 +1,15 @@
 ---
 id: wdio-teamcity-reporter
-title: Reporter Teamcity
+title: Teamcity Reporter Reporter
 custom_edit_url: https://github.com/webdriverio-community/wdio-teamcity-reporter/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-teamcity-reporter è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/webdriverio-community/wdio-teamcity-reporter) | [npm](https://www.npmjs.com/package/wdio-teamcity-reporter)
+> wdio-teamcity-reporter è un pacchetto di terze parti, per maggiori informazioni consulta [GitHub](https://github.com/webdriverio-community/wdio-teamcity-reporter) | [npm](https://www.npmjs.com/package/wdio-teamcity-reporter)
 
-WebdriverIO Teamcity reporter che rende possibile visualizzare i risultati dei test in tempo reale, rendendo le informazioni dei test disponibili nella scheda Test della pagina dei risultati della build.
+WebdriverIO Teamcity reporter che rende possibile visualizzare i risultati dei test in tempo reale, rende le informazioni sui test disponibili nella scheda Test della pagina Risultati di Build.
 
 
 ## Installazione
@@ -42,14 +44,14 @@ exports.config = {
 
 ### Opzioni
 
-- `captureStandardOutput (boolean)` — se `true`, tutti i messaggi di output standard (e di errore standard) ricevuti tra i messaggi `testStarted` e `testFinished` saranno considerati output di test. Il valore predefinito è `false` e presuppone l'utilizzo dei messaggi di servizio testStdOut e testStdErr per riportare l'output del test. Default `false`.
-- `flowId (boolean)` — se `true`, la proprietà `flowId` verrà aggiunta a tutti i messaggi. Il tracciamento del flusso è necessario ad esempio per distinguere processi separati in esecuzione in parallelo. Default `true`.
-- `message (string)` — possibilità di fornire un formato particolare per la proprietà name. Chiavi possibili: `[browser]`, `[title]`. Esempio, `[browser] / [title]`. Default `[title]`.
+- `captureStandardOutput (boolean)` — se `true`, tutti i messaggi di output standard (e di errore standard) ricevuti tra i messaggi `testStarted` e `testFinished` saranno considerati output di test. Il valore predefinito è `false` e presuppone l'utilizzo dei messaggi di servizio testStdOut e testStdErr per riportare l'output del test. Predefinito `false`.
+- `flowId (boolean)` — se `true`, la proprietà `flowId` verrà aggiunta a tutti i messaggi. Il tracciamento del flusso è necessario ad esempio per distinguere processi separati in esecuzione in parallelo. Predefinito `true`.
+- `message (string)` — possibilità di fornire un formato particolare per la proprietà name. Chiavi possibili: `[browser]`, `[title]`. Esempio, `[browser] / [title]`. Predefinito `[title]`.
 
 
 ## Link
 
-- Riferimento alla documentazione Teamcity sui messaggi di reporting: https://confluence.jetbrains.com/display/TCD65/Build+Script+Interaction+with+TeamCity
+- Riferimento alla documentazione di Teamcity sui messaggi di reporting: https://confluence.jetbrains.com/display/TCD65/Build+Script+Interaction+with+TeamCity
 - Teamcity testdrive: https://blog.jetbrains.com/teamcity/2019/08/getting-started-with-teamcity-testdrive/
 
 

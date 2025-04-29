@@ -4,6 +4,8 @@ title: Servizio Testingbot
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-testingbot-service/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > Servizio WebdriverIO che fornisce una migliore integrazione con TestingBot. Aggiorna i metadati del job ('name', 'passed', 'tags', 'public', 'build', 'extra') ed esegue TestingBot Tunnel se desiderato.
 
@@ -42,13 +44,13 @@ export const config = {
 Per autorizzare il servizio TestingBot, la tua configurazione deve contenere le opzioni [`user`](https://webdriver.io/docs/options#user) e [`key`](https://webdriver.io/docs/options#key).
 
 ### tbTunnel
-Se impostato a true, esegue TestingBot Tunnel e apre una connessione sicura tra una macchina virtuale TestingBot che esegue i test del browser.
+Se impostato a true, esegue TestingBot Tunnel e apre una connessione sicura con una Macchina Virtuale TestingBot che esegue i tuoi test del browser.
 
 Tipo: `Boolean`<br />
 Predefinito: `false`
 
 ### tbTunnelOpts
-Applica le opzioni di TestingBot Tunnel (ad esempio per modificare il numero di porta o le impostazioni del logFile). Vedi [questa lista](https://github.com/testingbot/testingbot-tunnel-launcher) per maggiori informazioni.
+Applica le opzioni di TestingBot Tunnel (ad esempio per modificare il numero di porta o le impostazioni del logFile). Consulta [questa lista](https://github.com/testingbot/testingbot-tunnel-launcher) per maggiori informazioni.
 
 Tipo: `Object`<br />
 Predefinito: `{}`

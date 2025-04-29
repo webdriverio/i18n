@@ -4,8 +4,10 @@ title: Servizio Robonut
 custom_edit_url: https://github.com/udarrr/wdio-robonut-service/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-robonut-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/udarrr/wdio-robonut-service) | [npm](https://www.npmjs.com/package/wdio-robonut-service)
+> wdio-robonut-service è un pacchetto di terze parti, per maggiori informazioni vedere [GitHub](https://github.com/udarrr/wdio-robonut-service) | [npm](https://www.npmjs.com/package/wdio-robonut-service)
 
 ![Tested](https://github.com/udarrr/wdio-robonut-service/workflows/Tests/badge.svg)
 ![Released](https://github.com/udarrr/wdio-robonut-service/workflows/Create%20tagged%20release/badge.svg)
@@ -14,7 +16,7 @@ custom_edit_url: https://github.com/udarrr/wdio-robonut-service/edit/main/README
 
 ### Description
 
-wdio-robonut-service è un servizio cross-platform (windows, darwin, linux) con accesso al mouse di sistema, tastiera, clipboard, schermo e ricerca di modelli di immagini sullo schermo visibile con [nutjs](https://nutjs.dev/) sotto il cofano. Con il servizio è possibile eseguire movimenti di sistema, clic, copia, incolla, digitazione e così via. È possibile verificare l'esistenza e ottenere le coordinate di un modello di immagine, eseguire drag and drop e così via.
+wdio-robonut-service è un servizio multipiattaforma (windows, darwin, linux) con accesso al mouse di sistema, tastiera, clipboard, schermo e ricerca di modelli di immagini sullo schermo visibile con [nutjs](https://nutjs.dev/) sotto il cofano. Con il servizio è possibile eseguire spostamenti di sistema, click, copia, incolla, digitazione e così via. È possibile verificare l'esistenza e ottenere le coordinate di un modello di immagine, trascinarlo e rilasciarlo e così via.
 
 ### Instalation
 

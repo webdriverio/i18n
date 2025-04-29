@@ -4,8 +4,10 @@ title: रिपोर्ट पोर्टल रिपोर्टर
 custom_edit_url: https://github.com/borisosipov/wdio-reportportal-reporter/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-reportportal-reporter एक थर्ड पार्टी पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/borisosipov/wdio-reportportal-reporter) | [npm](https://www.npmjs.com/package/wdio-reportportal-reporter)
+> wdio-reportportal-reporter एक तृतीय पक्ष पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/borisosipov/wdio-reportportal-reporter) | [npm](https://www.npmjs.com/package/wdio-reportportal-reporter)
 
 
 ![npm](https://img.shields.io/npm/v/wdio-reportportal-reporter)
@@ -25,11 +27,11 @@ custom_edit_url: https://github.com/borisosipov/wdio-reportportal-reporter/edit/
 }
 ```
 
-`WebdriverIO` कैसे इंस्टॉल करें, इस पर निर्देश [यहां](https://webdriver.io/docs/gettingstarted.html) पाए जा सकते हैं।
+`WebdriverIO` को कैसे इंस्टॉल करें, इस पर निर्देश [यहां](https://webdriver.io/docs/gettingstarted.html) पाए जा सकते हैं।
 
 ## कॉन्फिगरेशन
 
-अपनी wdio.conf.js फ़ाइल में आउटपुट डायरेक्टरी को कॉन्फ़िगर करें:
+अपनी wdio.conf.js फ़ाइल में आउटपुट निर्देशिका को कॉन्फ़िगर करें:
 
 ```js
 const reportportal = require('wdio-reportportal-reporter');
@@ -92,39 +94,39 @@ const reporter = require('wdio-reportportal-reporter')
 ### मेथड्स का विवरण
 
 * `reporter.addAttribute({key, value})` – वर्तमान टेस्ट में एक एट्रिब्यूट जोड़ें।
-  * `key` (*string*, optional) - एट्रिब्यूट की। यह गैर-खाली स्ट्रिंग होनी चाहिए।
-  * `value` (*string*, required) - एट्रिब्यूट मान। यह गैर-खाली स्ट्रिंग होनी चाहिए।
-* `reporter.addAttributeToCurrentSuite({key, value})` - वर्तमान सुइट में एक एट्रिब्यूट जोड़ें।
-  * `key` (*string*, optional) - एट्रिब्यूट की। यह गैर-खाली स्ट्रिंग होनी चाहिए।
-  * `value` (*string*, required) - एट्रिब्यूट मान। यह गैर-खाली स्ट्रिंग होनी चाहिए।
-* `reporter.addDescriptionToCurrentSuite(description)` - वर्तमान सुइट में कुछ स्ट्रिंग जोड़ें।
-  * `description` (*string*) - विवरण सामग्री। टेक्स्ट को मार्कडाउन के साथ प्रारूपित किया जा सकता है।
-* `reporter.addDescriptionToAllSuites(description)` - सभी आगामी सुइट्स में कुछ स्ट्रिंग जोड़ें। (इसे before all हुक में उपयोग करें, ताकि हर सुइट को एक समान विवरण मिले)
-  * `description` (*string*) - विवरण सामग्री। टेक्स्ट को मार्कडाउन के साथ प्रारूपित किया जा सकता है।
-* `reporter.sendLog(level, message)` – वर्तमान सुइट\टेस्ट आइटम में लॉग भेजें।
-  * `level` (*string*) - लॉग लेवल। मान ['trace', 'debug', 'info', 'warn', 'error']।
-  * `message` (*string*) – लॉग मैसेज सामग्री।
-* `reporter.sendFile(level, name, content, [type])` – वर्तमान सुइट\टेस्ट आइटम में फ़ाइल भेजें।
-  * `level` (*string*) - लॉग लेवल। मान ['trace', 'debug', 'info', 'warn', 'error']।
+  * `key` (*string*, वैकल्पिक) - एट्रिब्यूट की। यह गैर-रिक्त स्ट्रिंग होनी चाहिए।
+  * `value` (*string*, आवश्यक) – एट्रिब्यूट वैल्यू। यह गैर-रिक्त स्ट्रिंग होनी चाहिए।
+* `reporter.addAttributeToCurrentSuite({key, value})` - वर्तमान सूट में एक एट्रिब्यूट जोड़ें।
+  * `key` (*string*, वैकल्पिक) - एट्रिब्यूट की। यह गैर-रिक्त स्ट्रिंग होनी चाहिए।
+  * `value` (*string*, आवश्यक) – एट्रिब्यूट वैल्यू। यह गैर-रिक्त स्ट्रिंग होनी चाहिए।
+* `reporter.addDescriptionToCurrentSuite(description)` - वर्तमान सूट में कुछ स्ट्रिंग जोड़ें।
+  * `description` (*string*) - विवरण सामग्री। टेक्स्ट को मार्कडाउन के साथ फॉर्मेट किया जा सकता है।
+* `reporter.addDescriptionToAllSuites(description)` - सभी आगामी सूट्स में कुछ स्ट्रिंग जोड़ें। (इसे सभी हुक से पहले उपयोग करें, ताकि हर सूट को समान विवरण मिले)
+  * `description` (*string*) - विवरण सामग्री। टेक्स्ट को मार्कडाउन के साथ फॉर्मेट किया जा सकता है।
+* `reporter.sendLog(level, message)` – वर्तमान सूट/टेस्ट आइटम में लॉग भेजें।
+  * `level` (*string*) - लॉग लेवल। वैल्यूज ['trace', 'debug', 'info', 'warn', 'error']।
+  * `message` (*string*) – लॉग संदेश सामग्री।
+* `reporter.sendFile(level, name, content, [type])` – वर्तमान सूट/टेस्ट आइटम में फ़ाइल भेजें।
+  * `level` (*string*) - लॉग लेवल। वैल्यूज ['trace', 'debug', 'info', 'warn', 'error']।
   * `name` (*string*) – फ़ाइल नाम।
   * `content` (*string*) – अटैचमेंट सामग्री
-  * `type` (*string*, optional) – अटैचमेंट MIME-प्रकार, डिफ़ॉल्ट रूप से `image/png`
-  * `message` (*string*) – लॉग मैसेज सामग्री।
-* `reporter.sendLogToTest(test, level, message)` - विशिष्ट टेस्ट को लॉग भेजें।
+  * `type` (*string*, वैकल्पिक) – अटैचमेंट MIME-type, डिफ़ॉल्ट `image/png` है
+  * `message` (*string*) – लॉग संदेश सामग्री।
+* `reporter.sendLogToTest(test, level, message)` - विशिष्ट टेस्ट में लॉग भेजें।
   * `test` (*object*) - `afterTest\afterStep` wdio हुक से टेस्ट ऑब्जेक्ट
-  * `level` (*string*) - लॉग लेवल। मान ['trace', 'debug', 'info', 'warn', 'error']।
-  * `message` (*string*) – लॉग मैसेज सामग्री।
-* `reporter.sendFileToTest(test, level, name, content, [type])` – विशिष्ट टेस्ट को फ़ाइल भेजें।
+  * `level` (*string*) - लॉग लेवल। वैल्यूज ['trace', 'debug', 'info', 'warn', 'error']।
+  * `message` (*string*) – लॉग संदेश सामग्री।
+* `reporter.sendFileToTest(test, level, name, content, [type])` – विशिष्ट टेस्ट में फ़ाइल भेजें।
   * `test` (*object*) - `afterTest\afterStep` wdio हुक से टेस्ट ऑब्जेक्ट
-  * `level` (*string*) - लॉग लेवल। मान ['trace', 'debug', 'info', 'warn', 'error']।
+  * `level` (*string*) - लॉग लेवल। वैल्यूज ['trace', 'debug', 'info', 'warn', 'error']।
   * `name` (*string*) – फ़ाइल नाम।
   * `content` (*string*) – अटैचमेंट सामग्री
-  * `type` (*string*, optional) – अटैचमेंट MIME-प्रकार, डिफ़ॉल्ट रूप से `image/png`
-  * `message` (*string*) – लॉग मैसेज सामग्री।
+  * `type` (*string*, वैकल्पिक) – अटैचमेंट MIME-type, डिफ़ॉल्ट `image/png` है
+  * `message` (*string*) – लॉग संदेश सामग्री।
 
-ध्यान दें: `sendLog`\\`sendFile` **वर्तमान चल रहे टेस्ट आइटम** को लॉग भेजता है। इसका मतलब है कि अगर आप सक्रिय टेस्ट के बिना लॉग भेजते हैं (जैसे हुक्स से या सुइट लेवल पर) तो यह रिपोर्ट पोर्टल UI पर रिपोर्ट नहीं किया जाएगा।
+ध्यान दें: `sendLog`\\`sendFile` लॉग को **वर्तमान चल रहे टेस्ट आइटम** में भेजता है। इसका मतलब है कि अगर आप सक्रिय टेस्ट के बिना लॉग भेजते हैं (जैसे हुक्स से या सूट लेवल पर) तो यह रिपोर्ट पोर्टल UI में रिपोर्ट नहीं किया जाएगा।
 
-मेथड्स `sendLogToTest`\\`sendFileToTest` तब उपयोगी होते हैं जब आपको wdio afterTest हुक से फेल हुए टेस्ट आइटम को स्क्रीनशॉट या लॉग भेजने की आवश्यकता होती है।
+`sendLogToTest`\\`sendFileToTest` मेथड्स तब उपयोगी होते हैं जब आपको wdio afterTest हुक से विफल टेस्ट आइटम में स्क्रीनशॉट या लॉग भेजने की आवश्यकता होती है।
 
 Mocha उदाहरण:
 
@@ -202,7 +204,7 @@ const RpService = require("wdio-reportportal-service");
 ...
 ```
 
-या अधिक जटिल तरीका
+या अधिक जटिल तरीके से
 
 ```js
 const RpService = require("wdio-reportportal-service");
@@ -217,10 +219,10 @@ const RpService = require("wdio-reportportal-service");
 ...
 ```
 
-## मौजूदा लॉन्च में टेस्ट की रिपोर्टिंग
+## मौजूदा लॉन्च में टेस्ट रिपोर्ट करना
 
-यदि आप मौजूदा सक्रिय लॉन्च में टेस्ट रिपोर्ट करना चाहते हैं, तो आप इसे रिपोर्टर को पर्यावरण वेरिएबल `REPORT_PORTAL_LAUNCH_ID` द्वारा पास कर सकते हैं
-आप लॉन्च को समाप्त करने के साथ-साथ ऐसे लॉन्च को शुरू करने के लिए भी जिम्मेदार हैं।
+यदि आप टेस्ट को मौजूदा सक्रिय लॉन्च में रिपोर्ट करना चाहते हैं तो आप इसे पर्यावरण चर `REPORT_PORTAL_LAUNCH_ID` के माध्यम से रिपोर्टर को पास कर सकते हैं
+आप ऐसे लॉन्च को शुरू करने के साथ-साथ समाप्त करने के लिए भी जिम्मेदार हैं।
 
 ```sh
 export REPORT_PORTAL_LAUNCH_ID=SomeLaunchId

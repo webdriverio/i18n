@@ -4,10 +4,12 @@ title: Servizio Report Portal
 custom_edit_url: https://github.com/borisosipov/wdio-reportportal-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-reportportal-service è un pacchetto di terze parti, per ulteriori informazioni consultare [GitHub](https://github.com/borisosipov/wdio-reportportal-service) | [npm](https://www.npmjs.com/package/wdio-reportportal-service)
+> wdio-reportportal-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/borisosipov/wdio-reportportal-service) | [npm](https://www.npmjs.com/package/wdio-reportportal-service)
 
-## Installazione
+## Installation
 Il modo più semplice è mantenere `wdio-reportportal-service` come devDependency nel tuo `package.json`.
 ```json
 {
@@ -16,7 +18,7 @@ Il modo più semplice è mantenere `wdio-reportportal-service` come devDependenc
   }
 }
 ```
-Puoi farlo tramite:
+Puoi farlo con:
 
 ```bash
 npm install wdio-reportportal-reporter --save-dev
@@ -24,7 +26,7 @@ npm install wdio-reportportal-reporter --save-dev
 
 Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui](https://webdriver.io/docs/gettingstarted).
 
-## Configurazione
+## Configuration
 Configura la directory di output nel tuo file wdio.conf.js:
 ```js
 const RpService = require('wdio-reportportal-service');
@@ -36,6 +38,6 @@ exports.config = {
 }
 ```
 
-## Licenza
+## License
 
-Questo progetto è concesso in licenza con la Licenza MIT - vedi il file [LICENSE.md](https://github.com/BorisOsipov/wdio-reportportal-service/blob/master/LICENSE) per i dettagli
+Questo progetto è concesso in licenza secondo la Licenza MIT - vedere il file [LICENSE.md](https://github.com/BorisOsipov/wdio-reportportal-service/blob/master/LICENSE) per i dettagli

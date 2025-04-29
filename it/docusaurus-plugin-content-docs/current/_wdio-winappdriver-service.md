@@ -4,10 +4,12 @@ title: Servizio winappdriver
 custom_edit_url: https://github.com/licanhua/wdio-winappdriver-service/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-winappdriver-service è un pacchetto di terze parti, per maggiori informazioni consulta [GitHub](https://github.com/licanhua/wdio-winappdriver-service) | [npm](https://www.npmjs.com/package/wdio-winappdriver-service)
+> wdio-winappdriver-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/licanhua/wdio-winappdriver-service) | [npm](https://www.npmjs.com/package/wdio-winappdriver-service)
 
-Questo servizio ti aiuta a eseguire il server WinAppDriver senza problemi quando esegui test con il [WDIO testrunner](https://webdriver.io/guide/testrunner/gettingstarted.html). Avvia [WinAppDriver](https://github.com/Microsoft/WinAppDriver) in un processo figlio.
+Questo servizio ti aiuta a eseguire il server WinAppDriver senza problemi quando esegui test con [WDIO testrunner](https://webdriver.io/guide/testrunner/gettingstarted.html). Avvia [WinAppDriver](https://github.com/Microsoft/WinAppDriver) in un processo figlio.
 
 ## Installazione
 
@@ -19,7 +21,7 @@ Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui.](htt
 
 ## Configurazione
 
-Per utilizzare il servizio è necessario aggiungere `winappdriver` all'array dei servizi:
+Per utilizzare il servizio è necessario aggiungere `winappdriver` al tuo array di servizi:
 
 ```js
 // wdio.conf.js
@@ -50,7 +52,7 @@ export.config = {
 
 ### logPath
 
-Percorso in cui tutti i log del server winappdriver dovrebbero essere memorizzati.
+Percorso in cui devono essere memorizzati tutti i log del server winappdriver.
 
 Tipo: `String`
 
@@ -70,7 +72,7 @@ export.config = {
 
 ### command
 
-Per utilizzare la tua installazione di WinAppDriver, ad esempio installato globalmente, specifica il comando che dovrebbe essere avviato.
+Per utilizzare la tua installazione di WinAppDriver, ad esempio installata globalmente, specifica il comando che dovrebbe essere avviato.
 
 Tipo: `String`
 

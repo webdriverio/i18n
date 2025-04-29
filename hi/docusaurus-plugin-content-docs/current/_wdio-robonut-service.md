@@ -4,25 +4,27 @@ title: रोबोनट सेवा
 custom_edit_url: https://github.com/udarrr/wdio-robonut-service/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-robonut-service एक तृतीय पक्ष पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/udarrr/wdio-robonut-service) | [npm](https://www.npmjs.com/package/wdio-robonut-service)
+> wdio-robonut-service एक तीसरे पक्ष का पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/udarrr/wdio-robonut-service) | [npm](https://www.npmjs.com/package/wdio-robonut-service)
 
 ![Tested](https://github.com/udarrr/wdio-robonut-service/workflows/Tests/badge.svg)
 ![Released](https://github.com/udarrr/wdio-robonut-service/workflows/Create%20tagged%20release/badge.svg)
 
 ![image](https://raw.githubusercontent.com/udarrr/wdio-robonut-service/HEAD/READMELOGO.png)
 
-### विवरण
+### Description
 
-wdio-robonut-service एक क्रॉस प्लेटफॉर्म (windows, darwin, linux) सेवा है जिसमें [nutjs](https://nutjs.dev/) के माध्यम से सिस्टम माउस, कीबोर्ड, क्लिपबोर्ड, स्क्रीन और दृश्य स्क्रीन पर छवि टेम्पलेट्स ढूंढने की क्षमता होती है। इस सेवा के साथ सिस्टम मूव, क्लिक, कॉपी, पेस्ट, टाइप आदि कार्य किए जा सकते हैं। छवि टेम्पलेट्स के मौजूद होने की जांच करना और उनके निर्देशांक प्राप्त करना, उन्हें ड्रैग और ड्रॉप करना आदि संभव है।
+wdio-robonut-service एक क्रॉस प्लेटफॉर्म (विंडोज, डार्विन, लिनक्स) सेवा है जिसमें [nutjs](https://nutjs.dev/) के माध्यम से सिस्टम माउस, कीबोर्ड, क्लिपबोर्ड, स्क्रीन और दृश्यमान स्क्रीन पर इमेज टेम्पलेट्स खोजने की क्षमता है। इस सेवा के साथ सिस्टम मूव, क्लिक, कॉपी, पेस्ट, टाइप आदि करना संभव है। इमेज टेम्पलेट के मौजूद होने की जांच करना और उसके कोऑर्डिनेट्स प्राप्त करना, ड्रैग एंड ड्रॉप करना आदि भी संभव है।
 
-### स्थापना
+### Instalation
 
 ```nodejs
 npm install wdio-robonut-service
 ```
 
-##### कॉन्फ़िग
+##### Config
 
 ```typescript
 interface RobotConfig {
@@ -44,7 +46,7 @@ interface RobotConfig {
 }
 ```
 
-##### wdio.conf.ts में wdio सेवा के रूप में
+##### Like wdio service in wdio.conf.ts
 
 ```typescript
 import RobotService from 'wdio-robonut-service';
@@ -58,9 +60,9 @@ services: [[RobotService, robotConfig]],
 }
 ```
 
-##### wdio स्टैंडअलोन/रिमोट के लिए
+##### For wdio standalone/remote
 
-ब्राउज़र इनिशियलाइज़ेशन के बाद कहीं भी एक बार इसे निष्पादित करें
+execute it wherever once after browser initialisation
 
 ```typescript
 import RobotCommands from 'wdio-robonut-service';
@@ -70,7 +72,7 @@ const robotConfig: RobotConfig = {};
 new RobotCommands(browser, robotConfig).addCommands()
 ```
 
-##### स्टैंडअलोन
+##### Standalone
 
 ```typescript
 const robotConfig: RobotConfig = {};
@@ -78,15 +80,15 @@ const robotConfig: RobotConfig = {};
 new RobotDirect(robotConfig).instance()
 ```
 
-### उपयोग
+### Usage
 
-##### मुख्य एक्सेस पॉइंट
+##### Main point access
 
 ```typescript
 browser.robot
 ```
 
-##### उदाहरण
+##### Examples
 
 ```typescript
 async function dragAndDropImage(imageDrag: ImageElement,imageDrop: ImageElement, timeout: number = 10000) {
@@ -155,13 +157,13 @@ options: WaitUntilOptions = { interval: 2500, timeout: 10000 }) {
     }
 ```
 
-### विशेषताएँ
+### Features
 
-- [x] रोबोट इंटरफेस
-- [x] इमेज रोबोट
-- [ ] डॉम एलिमेंट रोबोट (लोकेटर्स द्वारा)
+- [x] Robot interfaces
+- [x] Image robot
+- [ ] Dom element robot (by locators)
 
-### सीमाएँ
+### Constraints
 
-- दृश्य डिस्प्ले के साथ काम करता है (हेडलेस नहीं)
-- एक थ्रेड/इंस्टेंस में काम करता है;
+- Working with visible display (not headless)
+- Working in one thread/instance;

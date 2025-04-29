@@ -1,0 +1,580 @@
+{
+  "theme.ErrorPageContent.title": {
+    "message": "Ця сторінка зазнала збою.",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Спробувати знову",
+    "description": "The label of the button to try again when the page crashed"
+  },
+  "theme.NotFound.title": {
+    "message": "Сторінку не знайдено",
+    "description": "The title of the 404 page"
+  },
+  "theme.NotFound.p1": {
+    "message": "Ми не змогли знайти те, що ви шукали.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "Будь ласка, зв'яжіться з власником сайту, який направив вас на первісну URL-адресу, і повідомте йому, що посилання не працює.",
+    "description": "The 2nd paragraph of the 404 page"
+  },
+  "theme.admonition.note": {
+    "message": "примітка",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "порада",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.danger": {
+    "message": "небезпека",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "інформація",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.caution": {
+    "message": "застереження",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Прокрутити назад до верху",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.blog.archive.title": {
+    "message": "Архів",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "Архів",
+    "description": "The page & hero description of the blog archive page"
+  },
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "Навігація по списку блогу",
+    "description": "The ARIA label for the blog pagination"
+  },
+  "theme.blog.paginator.newerEntries": {
+    "message": "Новіші записи",
+    "description": "The label used to navigate to the newer blog posts page (previous page)"
+  },
+  "theme.blog.paginator.olderEntries": {
+    "message": "Старіші записи",
+    "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "Навігація по сторінці блогу",
+    "description": "The ARIA label for the blog posts pagination"
+  },
+  "theme.blog.post.paginator.newerPost": {
+    "message": "Новіший пост",
+    "description": "The blog post button label to navigate to the newer/previous post"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Старіший пост",
+    "description": "The blog post button label to navigate to the older/next post"
+  },
+  "theme.blog.post.plurals": {
+    "message": "Один пост|{count} постів",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} з тегом \"{tagName}\"",
+    "description": "The title of the page for a blog tag"
+  },
+  "theme.tags.tagsPageLink": {
+    "message": "Переглянути всі теги",
+    "description": "The label of the link targeting the tag list page"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Домашня сторінка",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Хлібні крихти",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription": {
+    "message": "{count} елементів",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "Перемикання між темним та світлим режимом (зараз {mode})",
+    "description": "The ARIA label for the navbar color mode toggle"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "темний режим",
+    "description": "The name for the dark color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "світлий режим",
+    "description": "The name for the light color mode"
+  },
+  "theme.docs.paginator.navAriaLabel": {
+    "message": "Навігація по сторінках документації",
+    "description": "The ARIA label for the docs pagination"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "Попередня",
+    "description": "The label used to navigate to the previous doc"
+  },
+  "theme.docs.paginator.next": {
+    "message": "Наступна",
+    "description": "The label used to navigate to the next doc"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "Один документ з тегом|{count} документів з тегом",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} з \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
+  "theme.docs.versionBadge.label": {
+    "message": "Версія: {versionLabel}"
+  },
+  "theme.docs.versions.unreleasedVersionLabel": {
+    "message": "Це неопублікована документація для {siteTitle} версії {versionLabel}.",
+    "description": "The label used to tell the user that he's browsing an unreleased doc version"
+  },
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "Це документація для {siteTitle} {versionLabel}, яка більше активно не підтримується.",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "Для актуальної документації дивіться {latestVersionLink} ({versionLabel}).",
+    "description": "The label used to tell the user to check the latest version"
+  },
+  "theme.docs.versions.latestVersionLinkLabel": {
+    "message": "останню версію",
+    "description": "The label used for the latest version suggestion link label"
+  },
+  "theme.common.editThisPage": {
+    "message": "Редагувати цю сторінку",
+    "description": "The link label to edit the current page"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "Пряме посилання на заголовок",
+    "description": "Title for link to heading"
+  },
+  "theme.lastUpdated.atDate": {
+    "message": " {date}",
+    "description": "The words used to describe on which date a page has been last updated"
+  },
+  "theme.lastUpdated.byUser": {
+    "message": " користувачем {user}",
+    "description": "The words used to describe by who the page has been last updated"
+  },
+  "theme.lastUpdated.lastUpdatedAtBy": {
+    "message": "Останнє оновлення{atDate}{byUser}",
+    "description": "The sentence used to display when a page has been last updated, and by who"
+  },
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "Версії",
+    "description": "The label for the navbar versions dropdown on mobile view"
+  },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Закрити",
+    "description": "The ARIA label for close button of announcement bar"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "Теги:",
+    "description": "The label alongside a tag list"
+  },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "Навігація по останніх записах блогу",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.CodeBlock.copied": {
+    "message": "Скопійовано",
+    "description": "The copied button label on code blocks"
+  },
+  "theme.CodeBlock.copyButtonAriaLabel": {
+    "message": "Копіювати код в буфер обміну",
+    "description": "The ARIA label for copy code blocks button"
+  },
+  "theme.CodeBlock.copy": {
+    "message": "Копіювати",
+    "description": "The copy button label on code blocks"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Перемикання перенесення тексту",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
+  "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
+    "message": "Перемкнути згорнуту категорію бічної панелі '{label}'",
+    "description": "The ARIA label to toggle the collapsible sidebar category"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "На цій сторінці",
+    "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.blog.post.readMore": {
+    "message": "Читати далі",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "Читати більше про {title}",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "Читання на одну хвилину|Читання на {readingTime} хвилин",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Мови",
+    "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "Згорнути бічну панель",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.collapseButtonAriaLabel": {
+    "message": "Згорнути бічну панель",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "Закрити панель навігації",
+    "description": "The ARIA label for close button of mobile sidebar"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← Назад до головного меню",
+    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "Перемкнути панель навігації",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "Розгорнути бічну панель",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonAriaLabel": {
+    "message": "Розгорнути бічну панель",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "Переглянути всі {count} результатів"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "Знайдено один документ|Знайдено {count} документів",
+    "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "Результати пошуку для \"{query}\"",
+    "description": "The search page title for non-empty query"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "Пошук по документації",
+    "description": "The search page title for empty query"
+  },
+  "theme.SearchPage.inputPlaceholder": {
+    "message": "Введіть тут пошуковий запит",
+    "description": "The placeholder for search page input"
+  },
+  "theme.SearchPage.inputLabel": {
+    "message": "Пошук",
+    "description": "The ARIA label for search page input"
+  },
+  "theme.SearchPage.algoliaLabel": {
+    "message": "Пошук від Algolia",
+    "description": "The ARIA label for Algolia mention"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "Результатів не знайдено",
+    "description": "The paragraph for empty search result"
+  },
+  "theme.SearchPage.fetchingNewResults": {
+    "message": "Отримання нових результатів...",
+    "description": "The paragraph for fetching new search results"
+  },
+  "theme.SearchBar.label": {
+    "message": "Пошук",
+    "description": "The ARIA label and placeholder for search button"
+  },
+  "theme.SearchModal.searchBox.resetButtonTitle": {
+    "message": "Очистити запит",
+    "description": "The label and ARIA label for search box reset button"
+  },
+  "theme.SearchModal.searchBox.cancelButtonText": {
+    "message": "Скасувати",
+    "description": "The label and ARIA label for search box cancel button"
+  },
+  "theme.SearchModal.startScreen.recentSearchesTitle": {
+    "message": "Останні",
+    "description": "The title for recent searches"
+  },
+  "theme.SearchModal.startScreen.noRecentSearchesText": {
+    "message": "Немає останніх пошуків",
+    "description": "The text when no recent searches"
+  },
+  "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
+    "message": "Зберегти цей пошук",
+    "description": "The label for save recent search button"
+  },
+  "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
+    "message": "Видалити цей пошук з історії",
+    "description": "The label for remove recent search button"
+  },
+  "theme.SearchModal.startScreen.favoriteSearchesTitle": {
+    "message": "Улюблені",
+    "description": "The title for favorite searches"
+  },
+  "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
+    "message": "Видалити цей пошук з улюблених",
+    "description": "The label for remove favorite search button"
+  },
+  "theme.SearchModal.errorScreen.titleText": {
+    "message": "Не вдалося отримати результати",
+    "description": "The title for error screen of search modal"
+  },
+  "theme.SearchModal.errorScreen.helpText": {
+    "message": "Вам варто перевірити підключення до мережі.",
+    "description": "The help text for error screen of search modal"
+  },
+  "theme.SearchModal.footer.selectText": {
+    "message": "для вибору",
+    "description": "The explanatory text of the action for the enter key"
+  },
+  "theme.SearchModal.footer.selectKeyAriaLabel": {
+    "message": "Клавіша Enter",
+    "description": "The ARIA label for the Enter key button that makes the selection"
+  },
+  "theme.SearchModal.footer.navigateText": {
+    "message": "для навігації",
+    "description": "The explanatory text of the action for the Arrow up and Arrow down key"
+  },
+  "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
+    "message": "Стрілка вгору",
+    "description": "The ARIA label for the Arrow up key button that makes the navigation"
+  },
+  "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
+    "message": "Стрілка вниз",
+    "description": "The ARIA label for the Arrow down key button that makes the navigation"
+  },
+  "theme.SearchModal.footer.closeText": {
+    "message": "для закриття",
+    "description": "The explanatory text of the action for Escape key"
+  },
+  "theme.SearchModal.footer.closeKeyAriaLabel": {
+    "message": "Клавіша Escape",
+    "description": "The ARIA label for the Escape key button that close the modal"
+  },
+  "theme.SearchModal.footer.searchByText": {
+    "message": "Пошук за допомогою",
+    "description": "The text explain that the search is making by Algolia"
+  },
+  "theme.SearchModal.noResultsScreen.noResultsText": {
+    "message": "Немає результатів для",
+    "description": "The text explains that there are no results for the following search"
+  },
+  "theme.SearchModal.noResultsScreen.suggestedQueryText": {
+    "message": "Спробуйте пошукати",
+    "description": "The text for the suggested query when no results are found for the following search"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
+    "message": "Вважаєте, що цей запит повинен показати результати?",
+    "description": "The text for the question where the user thinks there are missing results"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
+    "message": "Повідомте нам.",
+    "description": "The text for the link to report missing results"
+  },
+  "theme.SearchModal.placeholder": {
+    "message": "Пошук у документації",
+    "description": "The placeholder of the input of the DocSearch pop-up modal"
+  },
+  "theme.IdealImageMessage.loading": {
+    "message": "Завантаження...",
+    "description": "When the full-scale image is loading"
+  },
+  "theme.IdealImageMessage.load": {
+    "message": "Натисніть для завантаження{sizeMessage}",
+    "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
+  },
+  "theme.IdealImageMessage.offline": {
+    "message": "Ваш браузер офлайн. Зображення не завантажено",
+    "description": "When the user is viewing an offline document"
+  },
+  "theme.IdealImageMessage.404error": {
+    "message": "404. Зображення не знайдено",
+    "description": "When the image is not found"
+  },
+  "theme.IdealImageMessage.error": {
+    "message": "Помилка. Натисніть для перезавантаження",
+    "description": "When the image fails to load for unknown error"
+  },
+  "theme.PwaReloadPopup.info": {
+    "message": "Доступна нова версія",
+    "description": "The text for PWA reload popup"
+  },
+  "theme.PwaReloadPopup.refreshButtonText": {
+    "message": "Оновити",
+    "description": "The text for PWA reload button"
+  },
+  "theme.PwaReloadPopup.closeButtonAriaLabel": {
+    "message": "Закрити",
+    "description": "The ARIA label for close button of PWA reload popup"
+  },
+  "theme.common.skipToMainContent": {
+    "message": "Перейти до основного вмісту",
+    "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+  },
+  "theme.tags.tagsPageTitle": {
+    "message": "Теги",
+    "description": "The title of the tag list page"
+  },
+  "WebdriverIO allows you to test in actual browser or mobile devices used by your users.": {
+    "message": "WebdriverIO дозволяє тестувати в реальних браузерах або мобільних пристроях, які використовують ваші користувачі."
+  },
+  "Use WebdriverIO for full e2e or unit and component testing in the browser.": {
+    "message": "Використовуйте WebdriverIO для повного e2e або модульного та компонентного тестування в браузері."
+  },
+  "WebdriverIO automatically waits for elements to appear before interacting with them.": {
+    "message": "WebdriverIO автоматично чекає появи елементів перед взаємодією з ними."
+  },
+  "Get Started": {
+    "message": "Почати"
+  },
+  "Why WebdriverIO?": {
+    "message": "Чому WebdriverIO?"
+  },
+  "View on GitHub": {
+    "message": "Переглянути на GitHub"
+  },
+  "Watch on YouTube": {
+    "message": "Дивитися на YouTube"
+  },
+  "Easy setup for web component testing with:": {
+    "message": "Легке налаштування для тестування веб-компонентів з:"
+  },
+  "homepage.hightlight.createProject": {
+    "message": "Почніть роботу з WebdriverIO за лічені секунди"
+  },
+  "The WebdriverIO testrunner comes with a command line interface that provides a powerful configuration utility and helps you to create your test setup in less than a minute. It let's you pick from available test framework integrations and easily allows to add all supported reporter and service plugins!": {
+    "message": "Testrunner WebdriverIO постачається з інтерфейсом командного рядка, який забезпечує потужну утиліту конфігурації та допомагає створити тестове середовище менш ніж за хвилину. Він дозволяє вибирати з доступних інтеграцій тестових фреймворків і легко додавати всі підтримувані плагіни репортерів та сервісів!"
+  },
+  "With just one simple command you can set up a complete test suite:": {
+    "message": "Лише однією простою командою ви можете налаштувати повний набір тестів:"
+  },
+  "homepage.hightlight.watch": {
+    "message": "Дивіться доповіді про WebdriverIO"
+  },
+  "homepage.hightlight.lighthouse": {
+    "message": "Інтеграція з Google Lighthouse"
+  },
+  "Integration to developer tools such as:": {
+    "message": "Інтеграція з інструментами розробника, такими як:"
+  },
+  "until October 2023": {
+    "message": "до жовтня 2023 року"
+  },
+  "since February 2022": {
+    "message": "з лютого 2022 року"
+  },
+  "since January 2021": {
+    "message": "з січня 2021 року"
+  },
+  "since December 2019": {
+    "message": "з грудня 2019 року"
+  },
+  "versions.description": {
+    "message": "Сторінка версій Docusaurus 2, що перераховує всі задокументовані версії сайту"
+  },
+  "WebdriverIO documentation versions": {
+    "message": "Версії документації WebdriverIO"
+  },
+  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
+    "message": "Команда проекту випускає нові основні версії приблизно раз на рік. Статус релізу LTS означає \"довгострокову підтримку\", що зазвичай гарантує виправлення критичних помилок протягом 12 місяців до випуску нової основної версії."
+  },
+  "Current version (Stable)": {
+    "message": "Поточна версія (стабільна)"
+  },
+  "Here you can find the documentation for current released version.": {
+    "message": "Тут ви можете знайти документацію для поточної випущеної версії."
+  },
+  "Documentation": {
+    "message": "Документація"
+  },
+  "Release Notes": {
+    "message": "Примітки до випуску"
+  },
+  "Past versions": {
+    "message": "Попередні версії"
+  },
+  "Here you can find documentation for previous versions of Docusaurus.": {
+    "message": "Тут ви можете знайти документацію для попередніх версій Docusaurus."
+  },
+  "homepage.createBrowserAnimation": {
+    "message": "Створення демонстрації WebdriverIO"
+  },
+  "homepage.highlight.getStartedOnYouTube": {
+    "message": "Дізнайтеся більше про WebdriverIO і як почати роботу {youtubeLink}."
+  },
+  "homepage.highlight.getStartedOnYouTube.label;": {
+    "message": "на YouTube",
+    "description": "The label for the link to my YouTube"
+  },
+  "homepage.highlight.conferenceTalk": {
+    "message": "Спільнота навколо WebdriverIO активно виступає на різних користувацьких групах або конференціях з конкретних тем автоматизованого тестування з WebdriverIO. Перегляньте цю доповідь на {youtubeLink} від {videoAuthor} на {conferenceLink}."
+  },
+  "homepage.highlight.conferenceTalk.label": {
+    "message": "Мої улюблені функції WebdriverIO",
+    "description": "The conference talk title"
+  },
+  "homepage.highlight.youtubeChannels": {
+    "message": "Також існує багато YouTube-каналів з корисними уроками від членів спільноти, таких як {channelOne}, {channelTwo} або {channelThree}."
+  },
+  "homepage.highlight.devtools": {
+    "message": "WebdriverIO не лише запускає автоматизацію на основі протоколу WebDriver, але також використовує нативні API браузера для забезпечення інтеграції з популярними інструментами розробника, такими як {devtoolsLink} або {lighthouseLink}. З плагіном {devtoolsServiceLink} ви маєте доступ до команд для перевірки, чи є ваша програма дійсним PWA-додатком, а також до команд для збору метрик продуктивності фронтенду, таких як `speedIndex` та інші."
+  },
+  "homepage.features.crossBrowser": {
+    "message": "Підтримка кросбраузерності через автоматизацію за допомогою {webdriverLink} та {bidiLink}."
+  },
+  "homepage.features.mobile": {
+    "message": "Запуск WebdriverIO на реальних мобільних пристроях, смарт-телевізорах або інших IoT-пристроях через {appiumLink}."
+  },
+  "homepage.features.support": {
+    "message": "Ведення {supportChannelLink} з понад 8 тисяч учасників та багатою екосистемою плагінів, підтримуваних спільнотою."
+  },
+  "homepage.tagline": {
+    "message": "Фреймворк тестування автоматизації браузерів та мобільних пристроїв нового покоління для Node.js"
+  },
+  "homepage.componentTesting.para1": {
+    "message": "WebdriverIO - це {allInOne} фреймворк для розробки веб-додатків. Він дозволяє вам запускати невеликі та легкі компонентні тести, а також виконувати сценарії e2e-тестування в браузері або на мобільному пристрої. Це гарантує, що ви проводите тестування в середовищі, {usedBy}."
+  },
+  "features.realEnvironments": {
+    "message": "Тестування в реальних середовищах"
+  },
+  "features.versatile": {
+    "message": "Універсальний та багатофункціональний"
+  },
+  "features.autoWait": {
+    "message": "Автоматичне очікування"
+  },
+  "features.standards": {
+    "message": "Заснований на веб-стандартах"
+  },
+  "features.mobileSupport": {
+    "message": "Нативна підтримка мобільних пристроїв"
+  },
+  "features.community": {
+    "message": "Віддана спільнота"
+  },
+  "homepage.componentTesting.heading": {
+    "message": "E2E та модульне / компонентне тестування в реальному браузері!"
+  },
+  "homepage.componentTesting.para2": {
+    "message": "Він має розумні стратегії селекторів, які спрощують взаємодію, наприклад, з {reactComponents} або виконання глибоких запитів селекторів із вкладеними деревами тіньового DOM. Оскільки взаємодія відбувається через стандартизований протокол автоматизації, гарантується їх нативна поведінка, а не просто емуляція через JavaScript."
+  },
+  "Who is using WebdriverIO?": {
+    "message": "Хто використовує WebdriverIO?"
+  },
+  "all in one": {
+    "message": "універсальний"
+  },
+  "used by your users": {
+    "message": "яке використовують ваші користувачі"
+  }
+}

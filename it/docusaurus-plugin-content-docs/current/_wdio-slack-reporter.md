@@ -1,11 +1,13 @@
 ---
 id: wdio-slack-reporter
-title: Reporter Slack
+title: Reporter Slack Reporter
 custom_edit_url: https://github.com/morooLee/wdio-slack-reporter/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-slack-reporter è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/morooLee/wdio-slack-reporter) | [npm](https://www.npmjs.com/package/@moroo/wdio-slack-reporter)
+> wdio-slack-reporter è un pacchetto di terze parti, per maggiori informazioni si prega di consultare [GitHub](https://github.com/morooLee/wdio-slack-reporter) | [npm](https://www.npmjs.com/package/@moroo/wdio-slack-reporter)
 
 ![version](https://img.shields.io/npm/v/@moroo/wdio-slack-reporter?color=%23CB3837&label=latest)
 ![downloads](https://img.shields.io/npm/dw/@moroo/wdio-slack-reporter?color=%23CB3837&)
@@ -18,11 +20,11 @@ Reporter da [WebdriverIO](https://webdriver.io/) che utilizza [Incoming webhook]
 
 ### Migrazione a [filesUploadV2](https://tools.slack.dev/node-slack-sdk/web-api/#upload-a-file) a causa della [deprecazione di files.upload](https://api.slack.com/changelog/2024-04-a-better-way-to-upload-files-is-here-to-stay)
 
-## Screenshot della notifica Slack
+## Screenshot di notifica Slack
 
 <img src="https://raw.githubusercontent.com/morooLee/wdio-slack-reporter/master/docs/Notification.png" width="80%" height="80%" title="Notification Image" alt="Notification"></img>
 
-## Politica di supporto delle versioni WebdriverIO
+## Politica di supporto delle versioni di WebdriverIO
 
 > Le versioni di WebdriverIO supportate in questo progetto seguono la politica di supporto di WebdriverIO.
 > La politica di supporto di WebdriverIO può essere verificata [qui](https://webdriver.io/versions).
@@ -53,7 +55,7 @@ npm install @moroo/wdio-slack-reporter --save-dev
 yarn add -D @moroo/wdio-slack-reporter
 ```
 
-Le istruzioni su come installare `WebdriverIO` si trovano [qui](https://webdriver.io/docs/gettingstarted.html).
+Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui](https://webdriver.io/docs/gettingstarted.html).
 
 ## Configurazione
 
@@ -96,7 +98,7 @@ Se sono impostati sia `web-api` che `webhook`, viene utilizzato `web-api`.
 
 #### **username (`Opzionale`)**
 
-Il valore di username apparirà nella notifica di slack come l'utente che l'ha inviata.
+Il valore di username apparirà nella notifica slack come l'utente che l'ha inviata.
 
 - Ambito: `webhook`
 - Tipo: `string`
@@ -117,8 +119,8 @@ L'url dell'icona da visualizzare in slack
 
 #### **token (`Obbligatorio`)**
 
-[**Web API**](https://api.slack.com/web) del canale slack a cui inviare le notifiche. È richiesto un [token utente bot](https://api.slack.com/legacy/oauth#bots). I token di accesso del bot iniziano sempre con `xoxb`.
-Il token del bot richiede l'ambito OAuth di [`chat:write`](https://api.slack.com/scopes/chat:write), [`files:write`](https://api.slack.com/scopes/files:write).
+[**Web API**](https://api.slack.com/web) del canale slack a cui inviare le notifiche. È richiesto [un token utente bot](https://api.slack.com/legacy/oauth#bots). I token di accesso bot iniziano sempre con `xoxb`.
+Il token bot richiede l'ambito OAuth di [`chat:write`](https://api.slack.com/scopes/chat:write), [`files:write`](https://api.slack.com/scopes/files:write).
 [Vedi sotto](https://api.slack.com/methods/chat.postMessage#text_usage) per maggiori dettagli.
 
 - Ambito: `web-api`
@@ -147,7 +149,7 @@ Imposta questa opzione su true per allegare uno screenshot al caso fallito.
 
 > Questa opzione funziona solo quando l'opzione notifyTestFinishMessage è true.
 
-Imposta questa opzione su true se desideri aggiungere un thread con i dettagli dei risultati alla notifica dei risultati dei test pubblicata su Slack.
+Imposta questa opzione su true se vuoi aggiungere un thread con i dettagli dei risultati alla notifica dei risultati del test pubblicata su Slack.
 
 - Ambito: `web-api`
 - Tipo: `boolean`
@@ -159,7 +161,7 @@ Imposta questa opzione su true se desideri aggiungere un thread con i dettagli d
 
 Aggiungi il filtro che desideri a questa opzione nell'array e i risultati dettagliati verranno filtrati in Slack e inviati al thread.
 _(Se non ci sono filtri (array vuoto o non definito), vengono applicati tutti i filtri.)_
-**Elenco dei filtri**: `passed`, `failed`, `pending`, `skipped`
+**Lista dei filtri**: `passed`, `failed`, `pending`, `skipped`
 
 - Ambito: `web-api`
 - Tipo: `array (passed | failed | pending | skipped)`
@@ -205,7 +207,7 @@ Imposta questa opzione su true per inviare notifiche all'inizio del test.
 
 #### **notifyFailedCase (`Opzionale`)**
 
-Imposta questa opzione su true per allegare i casi falliti nei risultati dei test riportati a Slack.
+Imposta questa opzione su true per allegare i casi falliti nei risultati del test riportati a Slack.
 
 - Ambito: `webhook`, `web-api`
 - Tipo: `boolean`
@@ -263,9 +265,9 @@ Questa opzione personalizza il payload che viene notificato dei risultati del te
 - Ambito: `webhook`, `web-api`
 - Tipo: `function`
 
-## Utilizzare l'Incoming Webhook
+## Usa l'Incoming Webhook
 
-Se si utilizza il webhook, non si possono creare thread e caricare file.  
+Se stai utilizzando webhook, non è possibile utilizzare thread e upload.  
 Pertanto, le funzioni relative a `upload` e `thread` non sono disponibili.
 
 ### Esempio di configurazione
@@ -330,9 +332,9 @@ export.config = {
 };
 ```
 
-## Utilizzare la Web API
+## Usa la Web API
 
-Per utilizzare l'API, sono necessari ambiti come quelli sotto.  
+Per utilizzare l'API, hai bisogno di scope come quelli qui sotto.  
 [`chat:write`](https://api.slack.com/scopes/chat:write), [`files:write`](https://api.slack.com/scopes/files:write). [Vedi sotto](https://api.slack.com/legacy/oauth-scopes) per maggiori dettagli.  
 
 ### Esempio di configurazione
@@ -474,7 +476,7 @@ describe('Set the resultsUrl value', function () {
 > **tipo**: `(data: string | Buffer<ArrayBufferLike>) => void`
 
 Aggiungi uno screenshot come thread alla notifica del test fallito.  
-_**(Se stai utilizzando un webhook, questo mostrerà un avviso e non farà nulla.)**_
+_**(Se stai utilizzando un webhook, questo stamperà un avviso e non farà nulla.)**_
 
 ```bash
 // terminal console
@@ -590,7 +592,7 @@ describe('Sand Function Test', function () {
 
 ## Aggiungi Screenshot
 
-Se vuoi aggiungere uno screenshot come thread alla notifica del test fallito, aggiungi la funzione `uploadFailedTestScreenshot` dopo aver fatto lo screenshot.
+Se vuoi aggiungere uno screenshot come thread alla notifica del test fallito, aggiungi la funzione `uploadFailedTestScreenshot` dopo aver scattato lo screenshot.
 
 ```js
 // wdio.conf.js
@@ -625,9 +627,9 @@ export.config = {
 }
 ```
 
-### Jasmine Option - expectationResultHandler
+### Opzione Jasmine - expectationResultHandler
 
-Aggiungere la funzione uploadFailedTestScreenshot qui non funziona.  
+L'aggiunta della funzione uploadFailedTestScreenshot qui non funziona.  
 Questo perché la funzione funziona dopo ogni test, quindi il test corrente è sconosciuto.
 
 ```js

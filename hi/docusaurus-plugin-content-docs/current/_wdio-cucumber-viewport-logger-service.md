@@ -1,14 +1,16 @@
 ---
 id: wdio-cucumber-viewport-logger-service
-title: कुकुम्बर व्यूपोर्ट लॉगर सर्विस
+title: कुकम्बर व्यूपोर्ट लॉगर सर्विस
 custom_edit_url: https://github.com/viktor-silakov/wdio-cucumber-viewport-logger-service/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-cucumber-viewport-logger-service is a 3rd party package, for more information please see [GitHub](https://github.com/viktor-silakov/wdio-cucumber-viewport-logger-service) | [npm](https://www.npmjs.com/package/wdio-cucumber-viewport-logger-service)
 ## Cucumber Viewport Logger Service for WebdriverIO
 
-यह सेवा आपके WebdriverIO-आधारित समाधान में आपके Cucumber स्टेप्स और अन्य डीबग जानकारी को सीधे आपकी ब्राउज़र विंडो में लॉग करने की संभावना जोड़ती है। यह विशेष रूप से उन मामलों में उपयोगी हो सकता है जहां उपकरणों या वर्चुअल मशीनों का उपयोग किया जाता है जिनमें प्रत्यक्ष *भौतिक* पहुंच नहीं है और आपके e2e परीक्षणों के गहन डीबगिंग के लिए एक इंटरैक्टिव सत्र स्थापित करने की संभावना नहीं है।
+यह सेवा आपके WebdriverIO-आधारित समाधान में आपके Cucumber स्टेप्स और अन्य डीबग जानकारी को सीधे आपकी ब्राउज़र विंडो में लॉग करने की संभावना जोड़ती है। यह विशेष रूप से उन मामलों में उपयोगी हो सकता है जहां उपकरणों या वर्चुअल मशीनों तक सीधे *भौतिक* पहुंच न हो और आपके e2e टेस्ट को गहराई से डिबग करने के लिए इंटरैक्टिव सेशन सेट करने की संभावना न हो।
 
 ![demo](https://github.com/viktor-silakov/wdio-cucumber-viewport-logger-service/raw/main/img/demo.gif)
 
@@ -34,9 +36,9 @@ npm install wdio-cucumber-viewport-logger-service --save-dev
 
 | Option  | Description | Type |Default value |
 | --- | --- | --- | --- |
-| `numberOfSteps`  | व्यूपोर्ट पर प्रस्तुत होने वाले स्टेप्स की संख्या  | number |3 |
+| `numberOfSteps`  | व्यूपोर्ट पर मौजूद होने वाले स्टेप्स की संख्या  | number |3 |
 | `enabled`  | सेवा को सक्षम/अक्षम करें | boolean |true |
-| `styles`  | लॉगर रैपर, *स्टेप कीवर्ड* और *स्टेप टेक्स्ट* के लिए CSS स्टाइल, नीचे दिए गए उदाहरण देखें  | object |{} |
+| `styles`  | लॉगर रैपर, *स्टेप कीवर्ड* और *स्टेप टेक्स्ट* के लिए CSS स्टाइल, नीचे उदाहरण देखें  | object |{} |
 
 ```js
 // wdio.conf.js
@@ -66,7 +68,7 @@ exports.config = {
 
 ### API
 
-> `logToViewport(message, styles)` - कस्टम CSS स्टाइल (अनिवार्य नहीं) के साथ कस्टम संदेश प्रदर्शित करें, आप इसे अपने स्टेप परिभाषाओं में उपयोग कर सकते हैं
+> `logToViewport(message, styles)` - कस्टम संदेश को कस्टम CSS स्टाइल (अनिवार्य नहीं) के साथ रेंडर करें, आप इसे अपने स्टेप परिभाषाओं में उपयोग कर सकते हैं
 उदाहरण के लिए:
 >```js
 >When(/^I render message: "([^"]*)"$/, { timeout: 120000 }, function (message) {
@@ -75,11 +77,11 @@ exports.config = {
 >```
 
 
-> `removeViewportLogMessage()` - व्यूपोर्ट संदेश अनुभाग हटाएं, उदाहरण के लिए विज़ुअल एसर्शन करने के लिए उपयोगी हो सकता है
+> `removeViewportLogMessage()` - व्यूपोर्ट मैसेज सेक्शन हटाएं, उदाहरण के लिए विजुअल असर्शन करने के लिए उपयोगी हो सकता है
 
 ### pointerEvents: 'none'
 
-डिफ़ॉल्ट रूप से, सभी माउस इवेंट्स (क्लिकिंग, होवरिंग, आदि) संदेश अनुभाग के माध्यम से जाते हैं, उदाहरण के लिए: संदेश अनुभाग पर क्लिक करने के बजाय आपका क्लिक संदेश के आगे मौजूद एलिमेंट (आपके ऐप एलिमेंट) को "पास" हो जाता है, अगर आप इस व्यवहार को बदलना चाहते हैं तो रैपर स्टाइल 'pointerEvents' विकल्प को 'auto' पर सेट करें, उदाहरण:
+डिफ़ॉल्ट रूप से, सभी माउस इवेंट्स (क्लिकिंग, होवरिंग, आदि) मैसेज सेक्शन के माध्यम से जाते हैं, उदाहरण के लिए: मैसेज सेक्शन पर क्लिक करने के बजाय आपका क्लिक मैसेज के बगल में मौजूद एलिमेंट (आपके ऐप एलिमेंट) तक "पास" हो जाता है, यदि आप इस व्यवहार को बदलना चाहते हैं तो रैपर स्टाइल 'pointerEvents' विकल्प को 'auto' पर सेट करें, उदाहरण:
 ```js
 
 / wdio.conf.js

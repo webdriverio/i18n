@@ -4,6 +4,8 @@ title: Servizio ywinappdriver
 custom_edit_url: https://github.com/licanhua/wdio-ywinappdriver-service/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-ywinappdriver-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/licanhua/wdio-ywinappdriver-service) | [npm](https://www.npmjs.com/package/wdio-ywinappdriver-service)
 
@@ -32,7 +34,7 @@ export.config = {
 
 ## Opzioni
 
-Le seguenti opzioni possono essere aggiunte al file wdio.conf.js. Per definire le opzioni per il servizio è necessario aggiungere il servizio alla lista `services` nel seguente modo:
+Le seguenti opzioni possono essere aggiunte al file wdio.conf.js. Per definire le opzioni per il servizio è necessario aggiungere il servizio all'elenco `services` nel seguente modo:
 
 ```js
 // wdio.conf.js
@@ -50,7 +52,7 @@ export.config = {
 
 ### logPath
 
-Percorso in cui devono essere memorizzati tutti i log del server ywinappdriver.
+Percorso in cui tutti i log dal server ywinappdriver dovrebbero essere memorizzati.
 
 Tipo: `String`
 
@@ -90,9 +92,9 @@ export.config = {
 
 ### args
 
-Lista di argomenti passati direttamente a `ywinappdriver`.
+Elenco di argomenti passati direttamente a `ywinappdriver`.
 
-Vedi [la documentazione](https://github.com/licanhua/ywinappdriver) per gli argomenti possibili.
+Vedi [la documentazione](https://github.com/licanhua/ywinappdriver) per possibili argomenti.
 
 Tipo: `Array`
 

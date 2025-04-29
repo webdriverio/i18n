@@ -1,20 +1,22 @@
 ---
 id: wdio-cucumberjs-json-reporter
-title: Reporter CucumberJS JSON
+title: CucumberJS JSON Reporter
 custom_edit_url: https://github.com/wswebcreation/wdio-cucumberjs-json-reporter/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-cucumberjs-json-reporter è un pacchetto di terze parti, per maggiori informazioni consulta [GitHub](https://github.com/wswebcreation/wdio-cucumberjs-json-reporter) | [npm](https://nodei.co/npm/wdio-cucumberjs-json-reporter)
+> wdio-cucumberjs-json-reporter è un pacchetto di terze parti, per ulteriori informazioni consultare [GitHub](https://github.com/wswebcreation/wdio-cucumberjs-json-reporter) | [npm](https://nodei.co/npm/wdio-cucumberjs-json-reporter)
 
-Un reporter WDIO che crea file JSON CucumberJS per WebdriverIO v8 e versioni successive.
+Un reporter WDIO che crea file JSON CucumberJS per WebdriverIO v8 e versioni superiori.
 
 [![NPM](https://nodei.co/npm/wdio-cucumberjs-json-reporter.png)](https://nodei.co/npm/wdio-cucumberjs-json-reporter/)
 
 ## Cosa fa
 Questo reporter genererà un **file JSON Cucumber** per ogni feature che viene testata. Il file JSON può essere utilizzato con qualsiasi report che si desidera utilizzare come ad esempio [multiple-cucumber-html-reporter](https://github.com/wswebcreation/multiple-cucumber-html-reporter).
 
-Aggiungerà anche metadati sull'istanza in esecuzione al file feature e, non meno importante, ti darà l'opportunità di aggiungere allegati all'output JSON.
+Aggiungerà anche metadati sull'istanza in esecuzione al file delle feature e, ultimo ma non meno importante, darà la possibilità di aggiungere allegati all'output JSON.
 
 ## Installazione
 Il modo più semplice è mantenere `wdio-cucumberjs-json-reporter` come devDependency nel tuo `package.json`.
@@ -33,9 +35,9 @@ Puoi farlo semplicemente con:
 npm install wdio-cucumberjs-json-reporter --save-dev
 ```
 
-così verrà automaticamente aggiunto al tuo `package.json`
+così verrà aggiunto automaticamente al tuo `package.json`
 
-Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui](https://webdriver.io/docs/gettingstarted).
+Le istruzioni su come installare `WebdriverIO` si trovano [qui](https://webdriver.io/docs/gettingstarted).
 
 ## Configurazione
 Configura la directory di output e la lingua nel tuo file wdio.conf.js:
@@ -64,33 +66,33 @@ export const config = {
 ### `jsonFolder`
 - **Tipo:** `String`
 - **Obbligatorio:** No
-- **Predefinito:** `.tmp/json/`
+- **Default:** `.tmp/json/`
 
-La directory in cui verranno archiviati i file JSON generati da questo report, relativa da dove viene avviato lo script.
+La directory in cui verranno archiviati i file JSON generati da questo report, relativamente a dove viene avviato lo script.
 
-**N.B.:** Se usi uno script npm dalla riga di comando, come per esempio `npm run test`, il `jsonFolder` sarà relativo al percorso
-da cui viene eseguito lo script. Eseguirlo dalla radice del tuo progetto creerà anche il `jsonFolder` nella radice del tuo progetto.
+**N.B.:** Se utilizzi uno script npm dalla riga di comando, come ad esempio `npm run test`, il `jsonFolder` sarà relativo al percorso
+da cui viene eseguito lo script. L'esecuzione dalla root del tuo progetto creerà anche il `jsonFolder` nella root del tuo progetto.
 
 ### `language`
 - **Tipo:** `String`
 - **Obbligatorio:** No
-- **Predefinito:** `en`
+- **Default:** `en`
 
-La lingua in cui sono scritti gli scenari Gherkin (predefinito in inglese). L'elenco dei codici lingua e delle relative parole chiave può essere trovato [qui](https://cucumber.io/docs/gherkin/reference/#overview).
+La lingua in cui sono scritti gli scenari Gherkin (predefinito inglese). L'elenco dei codici lingua e le relative parole chiave si trovano [qui](https://cucumber.io/docs/gherkin/reference/#overview).
 
 ### `disableHooks`
 - **Tipo:** `boolean`
 - **Obbligatorio:** No
-- **Predefinito:** `false`
+- **Default:** `false`
 
 I dettagli degli hook non faranno parte della generazione se questa proprietà è impostata su `true`.
 
 ### `reportFilePerRetry`
 - **Tipo:** `boolean`
 - **Obbligatorio:** No
-- **Predefinito:** `true`
+- **Default:** `true`
 
-Quando una spec viene riprovata, il report verrà aggiunto al file di report esistente dai tentativi precedenti se questa proprietà è impostata su `false`.
+Quando una specifica viene riprovata, il report verrà aggiunto al file di report esistente dai tentativi precedenti se questa proprietà è impostata su `false`.
 
 **Esempio**:
 `['cucumberjs-json', { jsonFolder: '.tmp/new/', language: 'en', disableHooks:true}]`
@@ -98,27 +100,27 @@ Quando una spec viene riprovata, il report verrà aggiunto al file di report esi
 ## Metadati
 
 > **Nota:**\
-> Questo non è attualmente supportato se stai utilizzando WebdriverIO V6, WebdriverIO V5 lo supporta ancora e WebdriverIO V7 lo supporta nuovamente
+> Questo attualmente non è supportato se stai utilizzando WebdriverIO V6, WebdriverIO V5 lo supporta ancora e WebdriverIO V7 lo supporta nuovamente
 
 Come detto, questo report può memorizzare automaticamente i metadati della macchina/dispositivo corrente su cui è stata eseguita la feature.
 
 Per personalizzarlo puoi aggiungerlo aggiungendo il seguente oggetto alle tue `capabilities`
 
 ```js
-// Esempio wdio.conf.js
+// Example wdio.conf.js
 export const config = {
     //..
     capabilities: [
         {
             browserName: 'chrome',
-            // Aggiungi questo
+            // Add this
             'cjson:metadata': {
-                // Per un browser
+                // For a browser
                 browser: {
                     name: 'chrome',
                     version: '58',
                 },
-                // per un'app
+                // for an app
                 app: {
                   name: 'name.of.app.ipa',
                   version: '1.2.3',
@@ -154,13 +156,13 @@ export const config = {
 #### `metadata.browser.version`
 - **Tipo:** `string`
 
-**es.:** La versione del browser, questa può essere aggiunta manualmente o recuperata durante l'esecuzione dei test per ottenere il numero di versione esatto.
+**es.:** La versione del browser, può essere aggiunta manualmente o recuperata durante l'esecuzione dei test per ottenere il numero di versione esatto.
 
 #### `metadata.device`
 - **Tipo:** `string`
 
-**es.:** Un nome che rappresenta il tipo di dispositivo. Ad esempio, se lo esegui su una macchina virtuale, puoi inserirlo qui `Virtual Machine`,
-o il nome del cellulare, come ad esempio `iPhone 7 Plus`.
+**es.:** Un nome che rappresenta il tipo di dispositivo. Ad esempio, se lo esegui su una macchina virtuale, puoi inserire qui `Virtual Machine`,
+o il nome del mobile, come ad esempio `iPhone 7 Plus`.
 
 #### `metadata.platform.name`
 - **Tipo:** `string`
@@ -173,12 +175,12 @@ o il nome del cellulare, come ad esempio `iPhone 7 Plus`.
 
 > Se non fornisci l'oggetto `browser` nei metadati, questo modulo lo determinerà automaticamente per te. **Sovrascriverà sempre con il valore più recente che può determinare.**
 
-> Se non fornisci il `device` e/o l'oggetto `platform` verrà impostato predefinito a `not known`
+> Se non fornisci l'oggetto `device` e/o l'oggetto `platform`, verrà impostato di default su `not known`
 
-> Se non fornisci un `browser.name` o un `browser.version` il modulo cercherà di determinarlo automaticamente.
+> Se non fornisci un `browser.name` o un `browser.version`, il modulo cercherà di determinarlo automaticamente.
 
 ## Allegato
-Hai l'opzione di allegare dati al file JSON in tutti questi hook/passaggi:
+Hai la possibilità di allegare dati al file JSON in tutti questi hook / step:
 
 - Before(All)
 - After(All)
@@ -187,13 +189,13 @@ Hai l'opzione di allegare dati al file JSON in tutti questi hook/passaggi:
 - Then
 - And
 
-L'unica cosa che devi fornire è il seguente codice nei tuoi file step.
+L'unica cosa che devi fornire è il seguente codice nei tuoi file di step.
 
 Per ES Modules (ESM)
 ```js
 import cucumberJson from 'wdio-cucumberjs-json-reporter';
 
-// Allega una stringa (se non viene fornito alcun tipo, per impostazione predefinita sarà automaticamente `text/plain`)
+// Allega una stringa (se non viene fornito alcun tipo, verrà automaticamente impostato a `text/plain`)
 cucumberJson.attach('just a string');
 cucumberJson.attach('just a second string', 'text/plain');
 
@@ -207,7 +209,7 @@ Per CommonJS (CJS)
 ```js
 const { attach } = require("wdio-cucumberjs-json-reporter");
 
-// Allega una stringa (se non viene fornito alcun tipo, per impostazione predefinita sarà automaticamente `text/plain`)
+// Allega una stringa (se non viene fornito alcun tipo, verrà automaticamente impostato a `text/plain`)
 attach('just a string');
 attach('just a second string', 'text/plain');
 
@@ -218,12 +220,12 @@ attach({"json-string": true}, 'application/json');
 attach(await browser.takeScreenshot(), 'image/png');
 ```
 
-## Utilizzalo con multiple-cucumber-html-reporter
+## Usalo con multiple-cucumber-html-reporter
 Il modulo precedente per WebdriverIO V4, [wdio-multiple-cucumber-html-reporter](https://github.com/webdriverio-community/wdio-multiple-cucumber-html-reporter),
-aveva una connessione integrata con il modulo [multiple-cucumber-html-reporter](https://github.com/wswebcreation/multiple-cucumber-html-reporter). **Questo non è il caso di questo
-reporter** perché la nuova configurazione di WebdriverIO V5 è basata su un'istanza che non mi consente di utilizzare gli hook `onPrepare` e `onComplete`.
+aveva una connessione integrata con il modulo [multiple-cucumber-html-reporter](https://github.com/wswebcreation/multiple-cucumber-html-reporter). **Questo non è il caso per questo
+reporter** perché la nuova configurazione di WebdriverIO V5 è basata su un'istanza che non mi permette di utilizzare gli hook `onPrepare` e `onComplete`.
 
-Se vuoi ancora utilizzare il modulo [multiple-cucumber-html-reporter](https://github.com/wswebcreation/multiple-cucumber-html-reporter) puoi aggiungere quanto segue al tuo file di configurazione.
+Se vuoi comunque utilizzare il modulo [multiple-cucumber-html-reporter](https://github.com/wswebcreation/multiple-cucumber-html-reporter) puoi aggiungere quanto segue al tuo file di configurazione.
 
 - Installa il modulo con
 
@@ -235,10 +237,10 @@ Se vuoi ancora utilizzare il modulo [multiple-cucumber-html-reporter](https://gi
 
     ```js
     import fs from 'node:fs/promises'
-    // Importa il modulo
+    // Import the module
     import { generate } from 'multiple-cucumber-html-reporter'
 
-    // Esempio wdio.conf.js
+    // Example wdio.conf.js
     export const config = {
       //..
 
@@ -246,33 +248,33 @@ Se vuoi ancora utilizzare il modulo [multiple-cucumber-html-reporter](https://gi
       // Hooks
       // =====
       /**
-       * Viene eseguito una volta prima che tutti i worker vengano lanciati.
+       * Gets executed once before all workers get launched.
        */
       onPrepare: () => {
-        // Rimuovi la cartella `.tmp/` che contiene i file json e report
+        // Remove the `.tmp/` folder that holds the json and report files
         return fs.rm('.tmp/', { recursive: true });
       },
       /**
-       * Viene eseguito dopo che tutti i worker sono stati spenti e il processo sta per terminare.
+       * Gets executed after all workers got shut down and the process is about to exit.
        */
       onComplete: () => {
-        // Genera il report quando tutti i test sono terminati
+        // Generate the report when it all tests are done
         generate({
-          // Richiesto
-          // Questa parte deve essere lo stesso percorso in cui memorizzi i file JSON
+          // Required
+          // This part needs to be the same path where you store the JSON files
           // default = '.tmp/json/'
           jsonDir: '.tmp/json/',
           reportPath: '.tmp/report/',
-          // per ulteriori opzioni vedi https://github.com/wswebcreation/multiple-cucumber-html-reporter#options
+          // for more options see https://github.com/wswebcreation/multiple-cucumber-html-reporter#options
         });
       }
     }
     ```
 
-## Versioni precedenti di WebdriverIO
+## Versioni WebdriverIO precedenti
 
 > **QUESTO MODULO PUÒ FUNZIONARE SOLO CON WebdriverIO V8+!**\
 > **Per V6 controlla la documentazione [qui](https://github.com/webdriverio-community/wdio-cucumberjs-json-reporter/tree/v6) e usa la versione 2.0.4**\
 > **Per V5 controlla la documentazione [qui](https://github.com/webdriverio-community/wdio-cucumberjs-json-reporter/tree/v5) e usa la versione 1.3.0**
 
-> **QUESTO MODULO NON È UN SOSTITUTO DI [wdio-multiple-cucumber-html-reporter](https://github.com/wswebcreation/wdio-multiple-cucumber-html-reporter). QUEL MODULO SUPPORTA SOLO WEBDRIVERIO V4 E CREA ANCHE UN REPORT. QUESTO MODULO CREA SOLO UN JSON, NESSUN REPORT!!**
+> **QUESTO MODULO NON È UN SOSTITUTO DI [wdio-multiple-cucumber-html-reporter](https://github.com/wswebcreation/wdio-multiple-cucumber-html-reporter). QUEL MODULO SUPPORTA SOLO WEBDRIVERIO V4 E CREA ANCHE UN REPORT. QUESTO MODULO CREA SOLO UN JSON, NON UN REPORT!!**

@@ -1,15 +1,17 @@
 ---
 id: wdio-wait-for
-title: Libreria di utili condizioni attese Service
+title: Libreria di condizioni attese utili - Servizio
 custom_edit_url: https://github.com/webdriverio/wdio-wait-for/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-wait-for è un pacchetto di terze parti, per ulteriori informazioni consultare [GitHub](https://github.com/webdriverio/wdio-wait-for) | [npm](https://www.npmjs.com/package/wdio-wait-for)
+> wdio-wait-for è un pacchetto di terze parti, per maggiori informazioni si prega di consultare [GitHub](https://github.com/webdriverio/wdio-wait-for) | [npm](https://www.npmjs.com/package/wdio-wait-for)
 
 > wdio-wait-for è una libreria Node.js per [WebdriverIO](http://webdriver.io/) che fornisce un insieme di condizioni comuni che offrono funzionalità per attendere determinate condizioni fino al completamento di un'attività definita.
 
-## Installation
+## Installazione
 Per utilizzare `wdio-wait-for` nel tuo progetto, esegui:
 
 ```shell
@@ -47,7 +49,7 @@ yarn add --dev wdio-wait-for
 - [not](https://github.com/webdriverio/wdio-wait-for/blob/main/docs/modules/logical_not.md)
 - [or](https://github.com/webdriverio/wdio-wait-for/blob/main/docs/modules/logical_or.md)
 
-## Examples
+## Esempi
 
 ### Import
 #### CommonJS
@@ -88,26 +90,26 @@ import { elementToBeEnabled } from 'wdio-wait-for';
 browser.waitUntil(elementToBeEnabled('input'), { timeout: 5000, timeoutMsg: 'Failed, after waiting for the element to be enabled' })
 ```
 
-### Wait for alert
+### Attesa per un alert
 Questo frammento di codice mostra come utilizzare le condizioni
 
 ```typescript
 browser.waitUntil(alertIsPresent(), { timeout: 5000, timeoutMsg: 'Failed, after waiting for the alert to be present' })
 ```
 
-### Wait for Elements
+### Attesa per elementi
 
-Questo frammento di codice mostra come utilizzare le condizioni per attendere, ad esempio, un certo numero di elementi da esistere:
+Questo frammento di codice mostra come utilizzare le condizioni per attendere, ad esempio, un determinato numero di elementi da esistere:
 
 ```typescript
 browser.waitUntil(numberOfElementsToBe('.links', 2), { timeout: 5000, timeoutMsg: 'Failed, after waiting for the 2 elements' })
 ```
 
-## License
+## Licenza
 
 [MIT licensed](https://github.com/webdriverio/wdio-wait-for/blob/main/./LICENSE).
 
-## Author
+## Autore
 
 Yevhen Laichenkov - `elaichenkov@gmail.com`<br />
 Christian Bromann - `mail@bromann.dev`

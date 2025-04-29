@@ -1,7 +1,6 @@
 ---
 id: stencil
 title: Stencil
-description: Stencil
 ---
 
 [Stencil](https://stenciljs.com/) to biblioteka do budowania wielokrotnego użytku, skalowalnych bibliotek komponentów. Możesz testować komponenty Stencil bezpośrednio w prawdziwej przeglądarce przy użyciu WebdriverIO i jego [przeglądarki](/docs/runner#browser-runner).

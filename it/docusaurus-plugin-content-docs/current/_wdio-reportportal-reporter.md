@@ -4,8 +4,10 @@ title: Report Portal Reporter
 custom_edit_url: https://github.com/borisosipov/wdio-reportportal-reporter/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-reportportal-reporter è un pacchetto di terze parti, per maggiori informazioni consulta [GitHub](https://github.com/borisosipov/wdio-reportportal-reporter) | [npm](https://www.npmjs.com/package/wdio-reportportal-reporter)
+> wdio-reportportal-reporter è un pacchetto di terze parti, per ulteriori informazioni si prega di vedere [GitHub](https://github.com/borisosipov/wdio-reportportal-reporter) | [npm](https://www.npmjs.com/package/wdio-reportportal-reporter)
 
 
 ![npm](https://img.shields.io/npm/v/wdio-reportportal-reporter)
@@ -81,9 +83,9 @@ exports.config = {
 };
 ```
 
-# API aggiuntive
+# API Aggiuntiva
 
-I metodi API possono essere accessibili utilizzando:
+I metodi API possono essere accessibili usando:
 
 ```js
 const reporter = require('wdio-reportportal-reporter')
@@ -92,29 +94,29 @@ const reporter = require('wdio-reportportal-reporter')
 ### Descrizione dei metodi
 
 * `reporter.addAttribute({key, value})` – aggiunge un attributo al test corrente.
-  * `key` (*string*, opzionale) - chiave dell'attributo. Deve essere una stringa non vuota.
-  * `value` (*string*, richiesto)– valore dell'attributo. Deve essere una stringa non vuota.
+  * `key` (*string*, opzionale) -  chiave dell'attributo. Deve essere una stringa non vuota.
+  * `value` (*string*, richiesto)–  valore dell'attributo. Deve essere una stringa non vuota.
 * `reporter.addAttributeToCurrentSuite({key, value})` - aggiunge un attributo alla suite corrente.
-  * `key` (*string*, opzionale) - chiave dell'attributo. Deve essere una stringa non vuota.
-  * `value` (*string*, richiesto)– valore dell'attributo. Deve essere una stringa non vuota.
+  * `key` (*string*, opzionale) -  chiave dell'attributo. Deve essere una stringa non vuota.
+  * `value` (*string*, richiesto)–  valore dell'attributo. Deve essere una stringa non vuota.
 * `reporter.addDescriptionToCurrentSuite(description)` - aggiunge una stringa alla suite corrente.
   * `description` (*string*) - contenuto della descrizione. Il testo può essere formattato con markdown.
-* `reporter.addDescriptionToAllSuites(description)` - aggiunge una stringa a tutte le suite future. (Usa questo nell'hook before all, così ogni suite ottiene la stessa descrizione)
+* `reporter.addDescriptionToAllSuites(description)` - aggiunge una stringa a tutte le suite future. (Usalo nell'hook before all, così ogni suite ottiene la stessa descrizione)
   * `description` (*string*) - contenuto della descrizione. Il testo può essere formattato con markdown.
-* `reporter.sendLog(level, message)` – invia un log all'elemento test/suite corrente.
+* `reporter.sendLog(level, message)` – invia log all'elemento test/suite corrente.
   * `level` (*string*) - livello di log. Valori ['trace', 'debug', 'info', 'warn', 'error'].
   * `message` (*string*)– contenuto del messaggio di log.
-* `reporter.sendFile(level, name, content, [type])` – invia un file all'elemento test/suite corrente.
+* `reporter.sendFile(level, name, content, [type])` – invia file all'elemento test/suite corrente.
   * `level` (*string*) - livello di log. Valori ['trace', 'debug', 'info', 'warn', 'error'].
   * `name` (*string*)– nome del file.
   * `content` (*string*) – contenuto dell'allegato
   * `type` (*string*, opzionale) – MIME-type dell'allegato, `image/png` di default
   * `message` (*string*)– contenuto del messaggio di log.
-* `reporter.sendLogToTest(test, level, message)` - invia un log a un test specifico.
+* `reporter.sendLogToTest(test, level, message)` - invia log a un test specifico.
   * `test` (*object*) - oggetto test dall'hook wdio `afterTest\afterStep`
   * `level` (*string*) - livello di log. Valori ['trace', 'debug', 'info', 'warn', 'error'].
   * `message` (*string*)– contenuto del messaggio di log.
-* `reporter.sendFileToTest(test, level, name, content, [type])` – invia un file a un test specifico.
+* `reporter.sendFileToTest(test, level, name, content, [type])` – invia file a un test specifico.
   * `test` (*object*) - oggetto test dall'hook wdio `afterTest\afterStep`
   * `level` (*string*) - livello di log. Valori ['trace', 'debug', 'info', 'warn', 'error'].
   * `name` (*string*)– nome del file.
@@ -122,7 +124,7 @@ const reporter = require('wdio-reportportal-reporter')
   * `type` (*string*, opzionale) – MIME-type dell'allegato, `image/png` di default
   * `message` (*string*)– contenuto del messaggio di log.
 
-Attenzione: `sendLog`\\`sendFile` invia il log all'**elemento di test attualmente in esecuzione**. Ciò significa che se invii un log senza un test attivo (ad esempio da hook o a livello di suite) non verrà visualizzato nell'interfaccia di Report Portal.
+Presta attenzione: `sendLog`\\`sendFile` invia log all'**elemento di test attualmente in esecuzione**. Ciò significa che se invii un log senza un test attivo (ad esempio dagli hook o a livello di suite) non verrà riportato nell'interfaccia di Report Portal.
 
 I metodi `sendLogToTest`\\`sendFileToTest` sono utili quando è necessario inviare screenshot o log all'elemento di test fallito dall'hook afterTest di wdio.
 
@@ -190,7 +192,7 @@ exports.config = {
 }
 ```
 
-## Ottenere il link alla pagina di lancio dell'interfaccia di Report Portal
+## Ottenere il link alla pagina di lancio di Report Portal UI
 
 ```js
 const RpService = require("wdio-reportportal-service");
@@ -217,10 +219,10 @@ const RpService = require("wdio-reportportal-service");
 ...
 ```
 
-## Reportare test su un lancio esistente
+## Reporting test a un lancio esistente
 
-Se vuoi riportare un test su un lancio attivo esistente puoi passarlo al reporter tramite la variabile d'ambiente `REPORT_PORTAL_LAUNCH_ID`
-Sarai responsabile sia della chiusura che dell'avvio di tale lancio.
+Se desideri riportare il test a un lancio attivo esistente, puoi passarlo al reporter tramite la variabile d'ambiente `REPORT_PORTAL_LAUNCH_ID`
+Sei responsabile sia della conclusione del lancio che dell'avvio di tale lancio.
 
 ```sh
 export REPORT_PORTAL_LAUNCH_ID=SomeLaunchId
@@ -229,4 +231,4 @@ npm run wdio
 
 ## Licenza
 
-Questo progetto è concesso in licenza con la licenza MIT - vedere il file [LICENSE.md](https://github.com/BorisOsipov/wdio-reportportal-reporter/blob/master/LICENSE) per i dettagli
+Questo progetto è concesso in licenza secondo la Licenza MIT - vedi il file [LICENSE.md](https://github.com/BorisOsipov/wdio-reportportal-reporter/blob/master/LICENSE) per i dettagli

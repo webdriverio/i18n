@@ -4,13 +4,15 @@ title: स्लैक सेवा
 custom_edit_url: https://github.com/carmenmitru/wdio-slack-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-slack-service एक तीसरी पार्टी पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/carmenmitru/wdio-slack-service) | [npm](https://www.npmjs.com/package/wdio-slack-service)
-Webdriverio लाइब्रेरी परीक्षण परिणामों को स्लैक अधिसूचना/संदेश के रूप में चैनलों पर भेजने के लिए
+> wdio-slack-service एक तृतीय पक्ष पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/carmenmitru/wdio-slack-service) | [npm](https://www.npmjs.com/package/wdio-slack-service)
+Webdriverio लाइब्रेरी जो परीक्षण परिणामों को स्लैक अधिसूचना/संदेश के रूप में चैनलों पर भेजती है
 
-## इंस्टॉलेशन
+## इंस्टालेशन
 
-सबसे आसान तरीका `wdio-slack-service` को अपने `package.json` में devDependency के रूप में रखना है।
+सबसे आसान तरीका है `wdio-slack-service` को अपने `package.json` में एक devDependency के रूप में रखना।
 
 ```json
 {
@@ -20,13 +22,13 @@ Webdriverio लाइब्रेरी परीक्षण परिणाम
 }
 ```
 
-आप इसे आसानी से कर सकते हैं:
+आप इसे सरलता से इस प्रकार कर सकते हैं:
 
 ```bash
 npm install wdio-slack-service --save-dev
 ```
 
-`WebdriverIO` को कैसे इंस्टॉल करें इसके निर्देश [यहां मिल सकते हैं।](https://webdriver.io/docs/gettingstarted.html)
+`WebdriverIO` को कैसे इंस्टॉल करें, इस पर निर्देश [यहां](https://webdriver.io/docs/gettingstarted.html) पाए जा सकते हैं।
 
 ## कॉन्फिगरेशन
 
@@ -37,7 +39,7 @@ npm install wdio-slack-service --save-dev
 const slack = require('wdio-slack-service');
 ```
 
-सेवा का उपयोग करने के लिए आपको अधिसूचना भेजने के लिए स्लैक वेबहुक url की आवश्यकता होती है और आपको अपनी `services` ऐरे में `slack` जोड़ना होगा
+सेवा का उपयोग करने के लिए आपको अधिसूचना भेजने के लिए स्लैक वेबहुक URL की आवश्यकता होगी और आपको `slack` को अपनी `services` सरणी में जोड़ना होगा
 
 उदाहरण:
 
@@ -47,7 +49,7 @@ export.config = {
     // ...
     services: [
         [slack, {
-            webHookUrl: "<SLACK_WEBHOOK_URL>", // किसी विशेष चैनल पर अधिसूचना पोस्ट करने के लिए उपयोग किया जाता है
+            webHookUrl: "<SLACK_WEBHOOK_URL>", // किसी विशेष चैनल को सूचना पोस्ट करने के लिए उपयोग किया जाता है
             notifyOnlyOnFailure: true, // केवल परीक्षण विफलता पर अधिसूचना भेजें
             messageTitle: "<NOTIFICATION_TITLE>" // अधिसूचना का नाम
         }]
@@ -58,10 +60,10 @@ export.config = {
 - परीक्षण परिणामों की परवाह किए बिना अधिसूचना भेजें
 - केवल परीक्षण विफलता पर अधिसूचना भेजें
 - `mocha`, `jasmine` और `cucumber` के लिए समर्थन
-- रीट्राई/रीरन परीक्षण अतिरिक्त जानकारी के साथ लॉग किए जाएंगे
-- परीक्षण अवधि जानकारी
+- पुनः प्रयास/पुनर्चलन परीक्षणों को अतिरिक्त जानकारी के साथ लॉग किया जाएगा
+- परीक्षण अवधि की जानकारी
 - त्रुटि विवरण
-- Cucumber सीनारियो/स्टेप रिपोर्टिंग
+- Cucumber सिनारियो/स्टेप रिपोर्टिंग
 - ब्राउज़र और संस्करण जानकारी
 
 ## यह कैसे काम करता है
@@ -69,11 +71,11 @@ export.config = {
 
 ## विकल्प
 
-अधिसूचना भेजने के लिए, आपके पास स्लैक वेबहुक url होना चाहिए। स्लैक वेबहुक URL कैसे बनाया जाता है, यह जानने के लिए, इस [पेज](https://api.slack.com/messaging/webhooks) को देखें
+अधिसूचना भेजने के लिए, आपके पास स्लैक वेबहुक URL होना चाहिए। स्लैक वेबहुक URL कैसे बनाएं, यह जानने के लिए, इस [पेज](https://api.slack.com/messaging/webhooks) को देखें
 
 ### webHookUrl
 
-इस url का उपयोग पोस्ट संदेश की पहचान/प्रमाणीकरण के लिए किया जाता है और इसे स्लैक चैनल पर भेजता है
+इस URL का उपयोग पोस्ट संदेश की पहचान/प्रमाणीकरण के लिए किया जाता है और इसे एक स्लैक चैनल पर भेजा जाता है
 
 प्रकार: `String` <br/>
 वैकल्पिक: `नहीं` <br/>
@@ -81,7 +83,7 @@ export.config = {
 
 ### notifyOnlyOnFailure
 
-यदि आप केवल परीक्षण विफलता पर स्लैक अधिसूचनाएं प्राप्त करना चाहते हैं, तो इस विकल्प को `true` पर सेट करें। अन्यथा, यह पास/फेल की परवाह किए बिना सभी परीक्षण निष्पादनों के लिए अधिसूचना भेजता है
+यदि आप केवल परीक्षण विफलता पर स्लैक अधिसूचनाएं प्राप्त करना चाहते हैं, तो इस विकल्प को `true` पर सेट करें। अन्यथा, यह सभी परीक्षण निष्पादनों के लिए पास/फेल की परवाह किए बिना अधिसूचना भेजता है
 
 प्रकार: `Boolean` <br/>
 वैकल्पिक: `हां` <br/>
@@ -113,13 +115,13 @@ export.config = {
 
 ![फेल पास](https://github.com/carmenmitru/wdio-slack-service/blob/master//assets/failpass.PNG)
 
-### रीट्राई फेल्ड
+### रीट्राई विफल
 
-![रीट्राई फेल्ड](https://github.com/carmenmitru/wdio-slack-service/blob/master//assets/retryfail.PNG)
+![रीट्राई विफल](https://github.com/carmenmitru/wdio-slack-service/blob/master//assets/retryfail.PNG)
 
-### रीट्राई पास्ड
+### रीट्राई सफल
 
-![रीट्राई पास्ड](https://github.com/carmenmitru/wdio-slack-service/blob/master//assets/retrypassed.PNG)
+![रीट्राई सफल](https://github.com/carmenmitru/wdio-slack-service/blob/master//assets/retrypassed.PNG)
 
 ---
 

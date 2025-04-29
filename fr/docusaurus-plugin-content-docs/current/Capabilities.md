@@ -389,3 +389,4 @@ De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous p
 ```
 
 </TabItem>
+</Tabs>

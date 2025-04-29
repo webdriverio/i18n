@@ -4,13 +4,15 @@ title: Servizio WireMock
 custom_edit_url: https://github.com/erwinheitzman/wdio-wiremock-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-wiremock-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/erwinheitzman/wdio-wiremock-service) | [npm](https://www.npmjs.com/package/wdio-wiremock-service)
 
 [![downloads](https://img.shields.io/npm/dm/wdio-wiremock-service.svg)](https://www.npmjs.com/package/wdio-wiremock-service)
 
 
-Questo servizio ti aiuta a eseguire [WireMock](http://wiremock.org/) senza problemi quando esegui test con [WebdriverIO](https://webdriver.io). Utilizza il ben noto repository [Maven](https://mvnrepository.com/repos/central) per scaricare il jar WireMock per te, che viene poi automaticamente installato, avviato e fermato. Rimani aggiornato unendoti alla comunità su [Gitter](https://gitter.im/erwinheitzman/wdio-wiremock-service) per supporto e aiuto.
+Questo servizio ti aiuta a eseguire [WireMock](http://wiremock.org/) senza problemi quando esegui test con [WebdriverIO](https://webdriver.io). Utilizza il ben noto repository [Maven](https://mvnrepository.com/repos/central) per scaricare il file jar di WireMock per te, che viene poi automaticamente installato, avviato e arrestato. Rimani aggiornato unendoti alla community su [Gitter](https://gitter.im/erwinheitzman/wdio-wiremock-service) per aiuto e supporto.
 
 ## Installazione
 
@@ -22,13 +24,13 @@ Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui.](htt
 
 ## Utilizzo
 
-Nella directory principale (default `./mock`) troverai due sottodirectory, `__files` e `mappings` che sono utilizzate per i tuoi fixture e mock.
+Nella directory principale (predefinita `./mock`) si trovano due sottodirectory, `__files` e `mappings` che vengono utilizzate per i tuoi fixture e mock.
 
-Per maggiori informazioni, consulta la [documentazione ufficiale di WireMock](https://wiremock.org/docs/standalone/).
+Per ulteriori informazioni, consulta la [documentazione ufficiale di WireMock](https://wiremock.org/docs/standalone/).
 
 ## Configurazione
 
-Per utilizzare il servizio con il testrunner wdio devi aggiungerlo al tuo array di servizi:
+Per utilizzare il servizio con il testrunner wdio è necessario aggiungerlo all'array dei servizi:
 
 ```js
 // wdio.conf.js
@@ -47,11 +49,11 @@ Le seguenti opzioni possono essere aggiunte al servizio.
 
 ### port
 
-Porta su cui WireMock dovrebbe essere eseguito.
+Porta su cui WireMock dovrebbe funzionare.
 
 Tipo: `Number`
 
-Default: `8080`
+Predefinito: `8080`
 
 Esempio:
 
@@ -70,7 +72,7 @@ Percorso in cui WireMock cercherà i file.
 
 Tipo: `String`
 
-Default: `./mock`
+Predefinito: `./mock`
 
 Esempio:
 
@@ -89,7 +91,7 @@ Versione di WireMock da scaricare e utilizzare.
 
 Tipo: `String`
 
-Default: `3.3.1`
+Predefinito: `3.3.1`
 
 Esempio:
 
@@ -104,11 +106,11 @@ export const config = {
 
 ### skipWiremockInstall
 
-Indica al servizio di saltare il download di WireMock.
+Dice al servizio di saltare il download di WireMock.
 
 Tipo: `Boolean`
 
-Default: false
+Predefinito: false
 
 Esempio:
 
@@ -123,11 +125,11 @@ export const config = {
 
 ### binPath
 
-Percorso personalizzato verso un binario locale di Wiremock (spesso usato in combinazione con skipWiremockInstall).
+Percorso personalizzato per un binario locale di Wiremock (spesso utilizzato in combinazione con skipWiremockInstall).
 
 Tipo: `String`
 
-Default: './wiremock-standalone-3.0.0.jar' (relativo al servizio)
+Predefinito: './wiremock-standalone-3.0.0.jar' (relativo dal servizio)
 
 Esempio:
 
@@ -142,11 +144,11 @@ export const config = {
 
 ### silent
 
-Modalità silenziosa per la registrazione dell'output di WireMock (inclusi i log aggiuntivi dal servizio stesso).
+Modalità silenziosa per registrare l'output di WireMock (inclusa la registrazione aggiuntiva dal servizio stesso).
 
 Tipo: `Boolean`
 
-Default: `false`
+Predefinito: `false`
 
 Esempio:
 
@@ -165,7 +167,7 @@ URL di base per il download da Maven.
 
 Tipo: `String`
 
-Default: `https://repo1.maven.org/maven2`
+Predefinito: `https://repo1.maven.org/maven2`
 
 Esempio:
 
@@ -180,9 +182,9 @@ export const config = {
 
 ### args
 
-Lista dove puoi passare tutti gli argomenti supportati per configurare WireMock
+Elenco in cui è possibile passare tutti gli argomenti supportati per configurare WireMock
 
-Nota: non puoi passare le opzioni (`port`, `rootDir`, `stdio`, `mavenBaseUrl`) qui poiché saranno ignorate.
+Nota: non è possibile passare le opzioni (`port`, `rootDir`, `stdio`, `mavenBaseUrl`) qui perché verranno ignorate.
 
 Tipo: `Array`
 
@@ -204,15 +206,15 @@ export const config = {
 };
 ```
 
-### Scrittura dei test
+### Scrivere test
 
-Scrivere il tuo primo test è davvero semplice:
+Scrivere il primo test è davvero semplice:
 
-#### Utilizzando il testrunner WDIO
+#### Utilizzo del testrunner WDIO
 
 ```js
-import fetch from 'node-fetch'; // puoi utilizzare qualsiasi client HTTP che preferisci
-import { equal } from 'node:assert'; // puoi utilizzare qualsiasi libreria di asserzioni che preferisci
+import fetch from 'node-fetch'; // puoi usare qualsiasi client HTTP che preferisci
+import { equal } from 'node:assert'; // puoi usare qualsiasi libreria di asserzioni che preferisci
 
 describe('example', () => {
 	it(`should assert the mock data`, async () => {
@@ -222,11 +224,11 @@ describe('example', () => {
 });
 ```
 
-#### Utilizzando WebdriverIO Standalone
+#### Utilizzo di WebdriverIO Standalone
 
 ```js
-import fetch from 'node-fetch'; // puoi utilizzare qualsiasi client HTTP che preferisci
-import { equal } from 'node:assert'; // puoi utilizzare qualsiasi libreria di asserzioni che preferisci
+import fetch from 'node-fetch'; // puoi usare qualsiasi client HTTP che preferisci
+import { equal } from 'node:assert'; // puoi usare qualsiasi libreria di asserzioni che preferisci
 import { remote } from 'webdriverio';
 import { launcher } from 'wdio-wiremock-service';
 

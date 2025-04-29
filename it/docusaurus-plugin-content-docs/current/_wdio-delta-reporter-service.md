@@ -1,16 +1,18 @@
 ---
 id: wdio-delta-reporter-service
-title: Reporter Delta Reporter
+title: Delta Reporter Reporter
 custom_edit_url: https://github.com/delta-reporter/delta-reporter-wdio/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-delta-reporter-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/delta-reporter/delta-reporter-wdio) | [npm](https://www.npmjs.com/package/@delta-reporter/wdio-delta-reporter-service)
 
 
 
 
-> Un plugin reporter per WebdriverIO per creare [Delta reports](https://github.com/delta-reporter/delta-reporter)
+> Un plugin reporter di WebdriverIO per creare [rapporti Delta](https://github.com/delta-reporter/delta-reporter)
 
 
 ![Screenshot di Delta reporter](https://raw.githubusercontent.com/delta-reporter/delta-reporter-wdio/master/src/docs/delta-reporter.png)
@@ -72,7 +74,7 @@ Gli screenshot possono essere allegati al report utilizzando il comando `sendFil
 - `description`: Valore opzionale che verrà visualizzato nel contenitore multimediale in Delta Reporter
 
 
-Come mostrato nell'esempio sopra, quando questa funzione viene chiamata, e il test fallisce, un'immagine screenshot verrà allegata al report Delta.
+Come mostrato nell'esempio sopra, quando questa funzione viene chiamata e il test fallisce, un'immagine screenshot verrà allegata al report Delta.
 
 
 ```js
@@ -88,7 +90,7 @@ Come mostrato nell'esempio sopra, quando questa funzione viene chiamata, e il te
 ```
 
 
-Di seguito è riportato un esempio di tutte le parti necessarie nel file di configurazione wdio per utilizzare questo plugin insieme a [Video Reporter](https://github.com/presidenten/wdio-video-reporter), in modo che Delta Reporter mostri screenshot e video dei test falliti:
+Di seguito è riportato un esempio di tutti i pezzi necessari nel file di configurazione wdio per utilizzare questo plugin insieme a [Video Reporter](https://github.com/presidenten/wdio-video-reporter), in modo che Delta Reporter mostri screenshot e video dei test falliti:
 
 
 
@@ -115,7 +117,7 @@ function getLatestFile({ directory, extension }, callback) {
 
 let delta_config = {
   enabled: true,
-  host: 'delta_host', // inserisci qui l'URL di Delta Core
+  host: 'delta_host', // inserisci qui l'URL di Delta Core 
   project: 'Project Name', // Nome del tuo progetto
   testType: 'Test Type' // es., End to End, E2E, Frontend Acceptance Tests
 };
@@ -155,13 +157,13 @@ exports.config = {
 
 ## Utilizzo
 
-Per ogni esecuzione di test, il plugin Delta è in ascolto di DELTA_LAUNCH_ID. Ci sono due casi principali:
+Per ogni esecuzione di test, il plugin Delta ascolta DELTA_LAUNCH_ID. Ci sono due casi principali:
 
-- Esecuzione locale: Non è necessario fare nulla, puoi semplicemente eseguire il tuo comando wdio (`./node_modules/.bin/wdio ./wdio.conf.js`) e DELTA_LAUNCH_ID verrà generato automaticamente per te, così i risultati dei tuoi test appariranno in Delta Reporter in tempo reale.
+- Esecuzione locale: Non è necessario fare nulla, puoi semplicemente eseguire il tuo comando wdio (`./node_modules/.bin/wdio ./wdio.conf.js`) e DELTA_LAUNCH_ID verrà generato automaticamente per te, quindi i risultati dei test appariranno in Delta Reporter in tempo reale.
 
-- Esecuzione CI: Se è il job dei tuoi test, dovrai definire DELTA_LAUNCH_ID come parametro. Quindi all'interno del tuo stage dovrai inizializzarlo chiamando l'endpoint `/api/v1/launch`, quindi eseguire i tuoi test con `DELTA_LAUNCH_ID=${DELTA_LAUNCH_ID}` come prefisso. L'inizializzazione viene fatta una volta, quindi quando stai eseguendo più tipi di test nella stessa build (ad esempio, test UI, test API, test unitari), questi test vengono raccolti sotto un unico "Launch" su Delta Reporter.
+- Esecuzione CI: Se si tratta del tuo job di test, dovrai definire DELTA_LAUNCH_ID come parametro. Quindi all'interno del tuo stage dovrai inizializzarlo chiamando un endpoint `/api/v1/launch`, quindi eseguire i tuoi test con `DELTA_LAUNCH_ID=${DELTA_LAUNCH_ID}` all'inizio. L'inizializzazione viene eseguita una sola volta, quindi quando si eseguono più tipi di test nella stessa build (ad esempio, test UI, test API, test unitari), questi test vengono raccolti sotto un unico "Launch" su Delta Reporter.
 
-Di seguito è riportato un esempio di codice per il file di configurazione per un job Jenkins:
+Di seguito è riportato un esempio di codice per il file di configurazione per il job Jenkins:
 
 ```groovy
 // ...
@@ -195,7 +197,7 @@ Di seguito è riportato un esempio di codice per il file di configurazione per u
 
 È possibile inviare dati personalizzati da visualizzare in Delta Reporter utilizzando la funzionalità SmartLinks.
 
-Per questo, utilizza i comandi `browser.sendDataToTest` o `sendDataToTestRun`, a seconda del luogo in cui desideri mostrare queste informazioni
+Per questo, utilizza i comandi `browser.sendDataToTest` o `sendDataToTestRun`, a seconda del luogo in cui vuoi mostrare queste informazioni
 
 Questi metodi accettano un oggetto jsonify come argomento
 
@@ -217,4 +219,4 @@ Esempio di integrazione con [Spectre](https://github.com/wearefriday/spectre)
 
 Quindi su Delta Reporter, è possibile creare uno SmartLink con `{spectre_test_run_url}` per l'esecuzione del test
 
-Per maggiori informazioni sugli Smart Links, consultare [Delta Reporter docs](https://delta-reporter.github.io/delta-reporter/main_features/#smart-links)
+Per maggiori informazioni su Smart Links, consultare [Delta Reporter docs](https://delta-reporter.github.io/delta-reporter/main_features/#smart-links)

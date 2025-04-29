@@ -4,10 +4,12 @@ title: Servizio Lighthouse
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-lighthouse-service/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> Un servizio WebdriverIO che ti permette di eseguire test di accessibilità e prestazioni con [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview).
+> Un servizio WebdriverIO che ti permette di eseguire test di accessibilità e performance con [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview).
 
-**Nota:** questo servizio attualmente supporta solo test eseguiti su Google Chrome o Chromium! Dato che la maggior parte dei provider cloud non espone l'accesso al Chrome DevTools Protocol, questo servizio di solito funziona solo quando si eseguono test localmente o attraverso un [Selenium Grid](https://www.selenium.dev/documentation/grid/) v4 o superiore.
+**Nota:** questo servizio attualmente supporta solo test in esecuzione su Google Chrome o Chromium! Dato che la maggior parte dei fornitori cloud non espone l'accesso al Chrome DevTools Protocol, questo servizio solitamente funziona solo quando si eseguono test localmente o attraverso un [Selenium Grid](https://www.selenium.dev/documentation/grid/) v4 o superiore.
 
 ## Installazione
 
@@ -21,7 +23,7 @@ Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui](http
 
 ## Configurazione
 
-Per utilizzare il servizio è sufficiente aggiungere il servizio alla lista dei servizi nel tuo `wdio.conf.js`, come:
+Per utilizzare il servizio devi solo aggiungere il servizio alla tua lista di servizi nel tuo `wdio.conf.js`, così:
 
 ```js
 // wdio.conf.js
@@ -34,11 +36,11 @@ export const config = {
 
 ## Utilizzo
 
-Il `@wdio/lighthouse-service` ti permette di eseguire test di accessibilità e prestazioni di Google Lighthouse attraverso WebdriverIO.
+Il `@wdio/lighthouse-service` ti permette di eseguire test di accessibilità e performance di Google Lighthouse attraverso WebdriverIO.
 
-### Test delle Prestazioni
+### Test di Performance
 
-Il servizio Lighthouse ti permette di catturare dati sulle prestazioni da ogni caricamento di pagina o transizione di pagina causata da un click. Per abilitarlo chiama `browser.enablePerformanceAudits(<options>)`. Dopo aver catturato tutti i dati necessari sulle prestazioni, disabilitalo per ripristinare le impostazioni di throttling, ad esempio:
+Il servizio Lighthouse ti permette di acquisire dati di performance da ogni caricamento di pagina o transizione di pagina causata da un clic. Per abilitarlo chiama `browser.enablePerformanceAudits(<options>)`. Dopo aver acquisito tutti i dati di performance necessari, disabilitalo per ripristinare le impostazioni di throttling, ad esempio:
 
 ```js
 import assert from 'node:assert'
@@ -79,7 +81,7 @@ I seguenti comandi con i loro risultati sono disponibili:
 
 #### `getMetrics`
 
-Ottiene le metriche di prestazione più comunemente utilizzate, ad esempio:
+Ottiene le metriche di performance più comunemente utilizzate, ad esempio:
 
 ```js
 console.log(await browser.getMetrics())
@@ -131,7 +133,7 @@ console.log(await browser.getDiagnostics())
 
 #### getMainThreadWorkBreakdown
 
-Restituisce un elenco con una ripartizione di tutte le attività del thread principale e la loro durata totale.
+Restituisce un elenco con una suddivisione di tutte le attività del thread principale e la loro durata totale.
 
 ```js
 console.log(await browser.getMainThreadWorkBreakdown())
@@ -158,7 +160,7 @@ console.log(await browser.getPerformanceScore())
 
 #### enablePerformanceAudits
 
-Abilita gli audit automatici delle prestazioni per tutti i caricamenti di pagina causati dalla chiamata del comando `url` o cliccando su un link o qualsiasi cosa che provochi un caricamento di pagina. Puoi passare un oggetto di configurazione per determinare alcune opzioni di throttling. Il profilo di throttling predefinito è una rete `Good 3G` con un throttling della CPU 4x.
+Abilita gli audit automatici delle prestazioni per tutti i caricamenti di pagina causati dalla chiamata del comando `url` o cliccando su un link o qualsiasi cosa che provochi un caricamento di pagina. Puoi passare un oggetto di configurazione per determinare alcune opzioni di throttling. Il profilo di throttling predefinito è rete `Good 3G` con un throttling CPU 4x.
 
 ```js
 await browser.enablePerformanceAudits({
@@ -173,7 +175,7 @@ I seguenti profili di throttling di rete sono disponibili: `offline`, `GPRS`, `R
 
 ### Test PWA
 
-Con il comando `checkPWA`, puoi verificare se la tua web app è conforme agli ultimi standard web quando si tratta di progressive web app. Controlla:
+Con il comando `checkPWA`, puoi verificare se la tua web app è conforme agli ultimi standard web per quanto riguarda le progressive web app. Controlla:
 
 - se la tua app è installabile
 - fornisce un service worker
@@ -181,7 +183,7 @@ Con il comando `checkPWA`, puoi verificare se la tua web app è conforme agli ul
 - fornisce icone Apple Touch e Maskable
 - può essere servita su dispositivi mobili
 
-Se non sei interessato a uno di questi controlli, puoi passare un elenco di controlli che desideri eseguire. La proprietà `passed` restituirà `true` se tutti i controlli passano. Se falliscono, puoi utilizzare la proprietà `details` per arricchire il messaggio di errore con dettagli sul fallimento.
+Se non sei interessato a uno di questi controlli, puoi passare un elenco di controlli che desideri eseguire. La proprietà `passed` restituirà `true` se tutti i controlli passano. Se falliscono, puoi utilizzare la proprietà `details` per arricchire il messaggio di errore con i dettagli del fallimento.
 
 ```js
 // open page first
@@ -193,7 +195,7 @@ expect(result.passed).toBe(true)
 
 ### Comando `startTracing(categories, samplingFrequency)`
 
-Inizia a tracciare il browser. Puoi facoltativamente passare categorie di tracciamento personalizzate (predefinite a [questa lista](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-lighthouse-service/src/constants.ts#L12-L56)) e la frequenza di campionamento (predefinita a `10000`).
+Inizia a tracciare il browser. Puoi facoltativamente passare categorie di tracciamento personalizzate (predefinito a [questa lista](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-lighthouse-service/src/constants.ts#L12-L56)) e la frequenza di campionamento (predefinita a `10000`).
 
 ```js
 await browser.startTracing()
@@ -209,7 +211,7 @@ await browser.endTracing()
 
 ### Comando `getTraceLogs`
 
-Restituisce i trace-logs che sono stati catturati durante il periodo di tracciamento. Puoi utilizzare questo comando per memorizzare i log di traccia sul file system per analizzare la traccia tramite l'interfaccia Chrome DevTools.
+Restituisce i log di tracciamento che sono stati catturati durante il periodo di tracciamento. Puoi utilizzare questo comando per archiviare i log di tracciamento sul file system per analizzare la traccia tramite l'interfaccia Chrome DevTools.
 
 ```js
 import fs from 'node:fs/promises'
@@ -248,4 +250,4 @@ console.log(await browser.getPageWeight())
 
 ----
 
-Per ulteriori informazioni su WebdriverIO visita la [homepage](https://webdriver.io).
+Per ulteriori informazioni su WebdriverIO consulta la [homepage](https://webdriver.io).

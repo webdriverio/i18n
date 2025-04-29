@@ -4,13 +4,15 @@ title: Servizio Slack
 custom_edit_url: https://github.com/carmenmitru/wdio-slack-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-slack-service è un pacchetto di terze parti, per maggiori informazioni consulta [GitHub](https://github.com/carmenmitru/wdio-slack-service) | [npm](https://www.npmjs.com/package/wdio-slack-service)
+> wdio-slack-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/carmenmitru/wdio-slack-service) | [npm](https://www.npmjs.com/package/wdio-slack-service)
 Libreria Webdriverio per inviare i risultati dei test come notifica/messaggio Slack ai canali
 
 ## Installazione
 
-Il modo più semplice è mantenere `wdio-slack-service` come devDependency nel tuo file `package.json`.
+Il modo più semplice è mantenere `wdio-slack-service` come devDependency nel tuo `package.json`.
 
 ```json
 {
@@ -30,14 +32,14 @@ Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui.](htt
 
 ## Configurazione
 
-Per prima cosa, importa il servizio nel file di configurazione wdio `wdio.conf.js`
+Innanzitutto, importa il servizio nel file di configurazione wdio `wdio.conf.js`
 
 ```js
 // wdio.conf.js
 const slack = require('wdio-slack-service');
 ```
 
-Per utilizzare il servizio è necessario avere l'URL del webhook Slack per inviare la notifica e devi aggiungere `slack` al tuo array `services`
+Per utilizzare il servizio è necessario avere l'URL del webhook di Slack per inviare la notifica e devi aggiungere `slack` al tuo array `services`
 
 Esempio:
 
@@ -47,8 +49,8 @@ export.config = {
     // ...
     services: [
         [slack, {
-            webHookUrl: "<SLACK_WEBHOOK_URL>", // Utilizzato per pubblicare notifiche su un canale particolare
-            notifyOnlyOnFailure: true, // Invia notifica solo in caso di fallimento del test
+            webHookUrl: "<SLACK_WEBHOOK_URL>", // Utilizzato per inviare notifiche a un canale particolare
+            notifyOnlyOnFailure: true, // Invia notifiche solo in caso di fallimento del test
             messageTitle: "<NOTIFICATION_TITLE>" // Nome della notifica
         }]
 ]
@@ -56,24 +58,24 @@ export.config = {
 ## Funzionalità
 
 - Invia notifiche indipendentemente dai risultati dei test
-- Invia notifiche solo in caso di fallimento dei test
+- Invia notifiche solo in caso di fallimento del test
 - Supporto per `mocha`, `jasmine` e `cucumber`
-- I tentativi/riesecuzioni dei test verranno registrati con informazioni aggiuntive
+- I test ritentati/rieseguiti verranno registrati con informazioni aggiuntive
 - Informazioni sulla durata del test
 - Dettagli degli errori
-- Reportistica degli scenari/passaggi di Cucumber
+- Reportistica di scenario/step di Cucumber
 - Informazioni sul browser e sulla versione
 
 ## Come funziona
-Per `mocha`/`jasmine`, la notifica verrà inviata a livello di spec e per `cucumber`, sarà a livello di feature. Ad esempio, se hai 10 file spec/feature, riceverai 10 notifiche poiché viene attivato nell'hook `after`
+Per `mocha`/`jasmine`, la notifica verrà inviata a livello di spec e per `cucumber` sarà a livello di feature. Ad esempio, se hai 10 file spec/feature, riceverai 10 notifiche poiché viene attivato nell'hook `after`
 
 ## Opzioni
 
-Per inviare una notifica, dovresti avere l'URL del webhook Slack. Per sapere come creare un URL webhook Slack, consulta questa [pagina](https://api.slack.com/messaging/webhooks)
+Per inviare una notifica, dovresti avere l'URL del webhook di Slack. Per sapere come creare un URL webhook di Slack, consulta questa [pagina](https://api.slack.com/messaging/webhooks)
 
 ### webHookUrl
 
-Questo URL viene utilizzato per identificare/autenticare il messaggio e inviarlo a un canale Slack
+Questo URL viene utilizzato per identificare/autenticare il messaggio inviato e lo invia a un canale Slack
 
 Tipo: `String` <br/>
 Opzionale: `NO` <br/>
@@ -81,7 +83,7 @@ Predefinito: `NA`
 
 ### notifyOnlyOnFailure
 
-Se desideri ricevere notifiche Slack solo in caso di fallimento del test, imposta questa opzione su `true`. Altrimenti, invia notifiche per tutte le esecuzioni di test indipendentemente dal risultato (pass/fail)
+Se desideri ricevere notifiche Slack solo in caso di fallimento del test, imposta questa opzione su `true`. Altrimenti, invia notifiche per tutte le esecuzioni di test indipendentemente dal risultato (passato/fallito)
 
 Tipo: `Boolean` <br/>
 Opzionale: `YES` <br/>
@@ -123,4 +125,4 @@ Predefinito: `Webdriverio Slack Reporter`
 
 ---
 
-Per maggiori informazioni su WebdriverIO visita la [homepage](https://webdriver.io).
+Per maggiori informazioni su WebdriverIO consulta la [homepage](https://webdriver.io).

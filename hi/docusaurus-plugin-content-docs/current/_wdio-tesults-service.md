@@ -4,6 +4,8 @@ title: टेसल्ट्स सर्विस
 custom_edit_url: https://github.com/tesults/wdio-tesults-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-tesults-service is a 3rd party package, for more information please see [GitHub](https://github.com/tesults/wdio-tesults-service) | [npm](https://www.npmjs.com/package/wdio-tesults-service)
 

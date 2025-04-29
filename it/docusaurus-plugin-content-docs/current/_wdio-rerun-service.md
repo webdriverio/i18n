@@ -1,9 +1,11 @@
 ---
 id: wdio-rerun-service
-title: Servizio di Ripetizione
+title: Servizio di Ri-esecuzione
 custom_edit_url: https://github.com/jwplayer/wdio-rerun-service/edit/master/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-rerun-service è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/jwplayer/wdio-rerun-service) | [npm](https://www.npmjs.com/package/wdio-rerun-service)
 
@@ -12,28 +14,28 @@ custom_edit_url: https://github.com/jwplayer/wdio-rerun-service/edit/master/READ
 ![npm bundle size](https://img.shields.io/bundlephobia/min/wdio-rerun-service)
 ![GitHub issues](https://img.shields.io/github/issues/webdriverio-community/wdio-rerun-service)
 
-Questo servizio tiene traccia dei test Mocha o Jasmine e degli scenari Cucumber falliti eseguiti all'interno del framework di test [WebdriverIO](https://webdriver.io). Permetterà di rieseguire test o scenari falliti o instabili.
+Questo servizio tiene traccia dei test Mocha o Jasmine falliti e degli scenari Cucumber eseguiti all'interno del framework di test [WebdriverIO](https://webdriver.io). Permetterà di ri-eseguire test o scenari falliti o instabili.
 
-_NOTA_: Gli utenti del Framework Cucumber che eseguono le versioni WebdriverIO `5.x` e `6.x` dovrebbero utilizzare la versione `1.6.x`. Se stai utilizzando l'ultima versione principale `7.x`, usa l'ultima versione `1.7.x` di questo servizio.
+_NOTA_: Gli utenti di Cucumber Framework che eseguono le versioni WebdriverIO `5.x` e `6.x` dovrebbero utilizzare la versione `1.6.x`. Se si utilizza l'ultima versione principale `7.x`, utilizzare l'ultima versione `1.7.x` di questo servizio.
 
-## Re-run vs. Retry
+## Ri-esecuzione vs. Riprova
 
-La logica di `retry` integrata in WebdriverIO per Cucumber e Mocha/Jasmine è utile per gestire passaggi instabili in Cucumber e Mocha/Jasmine. Il ritentativo in ciascun framework presenta delle avvertenze:
-* Cucumber: Non tiene conto che alcuni passaggi potrebbero non essere in grado di essere ripetuti nel mezzo di un test. Eseguire un passaggio due volte potrebbe compromettere il resto dello Scenario o potrebbe non essere possibile nel contesto del test.
-* Mocha/Jasmine: La logica di `retry` può essere applicata a un singolo test, tuttavia, questo viene ancora fatto in tempo reale e forse non tiene conto di problemi temporali o problemi di connettività di rete.
+La logica di `retry` integrata in WebdriverIO per Cucumber e Mocha/Jasmine è utile per gestire passaggi instabili in Cucumber e Mocha/Jasmine. Il ritentare in ciascun framework ha delle limitazioni:
+* Cucumber: Non tiene conto che alcuni passaggi potrebbero non essere ripetibili a metà di un test. Eseguire un passaggio due volte potrebbe compromettere il resto dello Scenario o potrebbe non essere possibile nel contesto del test.
+* Mocha/Jasmine: La logica di `retry` può essere applicata a un singolo test, tuttavia, questa viene ancora eseguita in tempo reale e forse non tiene conto di problemi temporali o di connettività di rete.
 
 Le principali distinzioni del `re-run`:
-* Rieseguirà un intero Scenario di Cucumber e non solo un singolo passaggio
-* Consente di rieseguire un intero file spec dopo il completamento di un'esecuzione di test principale
-* Può essere copiato ed eseguito localmente (`retry` non può)
-* Può ancora essere utilizzato insieme ai metodi `retry`
+* Ri-eseguirà un intero Scenario Cucumber individuale e non solo un singolo passaggio
+* Consente di ri-eseguire un intero file di specifiche dopo il completamento dell'esecuzione del test principale
+* Può essere copiato ed eseguito localmente (il `retry` non può)
+* Può comunque essere utilizzato insieme ai metodi di `retry`
 * Non richiede alcuna modifica del codice per applicare la logica di `retry` a test instabili o problematici
 
-Si consiglia di prendersi del tempo per valutare le opzioni disponibili. Una soluzione ibrida potrebbe essere la soluzione migliore per fornire i risultati di test più reali e utilizzabili.
+Si consiglia di dedicare del tempo alla valutazione delle opzioni disponibili. Una soluzione ibrida potrebbe essere la soluzione migliore per fornire i risultati dei test più reali e utilizzabili.
 
 ## Installazione
 
-Il modo più semplice è aggiungere `wdio-rerun-service` alle `devDependencies` nel tuo `package.json`.
+Il modo più semplice è aggiungere `wdio-rerun-service` a `devDependencies` nel tuo `package.json`.
 
 ```json
 {
@@ -49,7 +51,7 @@ Può essere installato utilizzando `npm`:
 npm install wdio-rerun-service
 ```
 
-Dopo il completamento dell'installazione del pacchetto, aggiungilo all'array `services` in `wdio.conf.js`:
+Dopo aver completato l'installazione del pacchetto, aggiungerlo all'array `services` in `wdio.conf.js`:
 
 ```js
 // wdio.conf.js
@@ -75,7 +77,7 @@ export.config = {
     // ...
     services: [
         [RerunService, {
-            // Opzioni del servizio Re-run qui...
+            // Opzioni del servizio di ri-esecuzione qui...
         }]
     ],
     // ...
@@ -83,7 +85,7 @@ export.config = {
 ```
 
 ### rerunDataDir
-Directory dove tutti i dati JSON di re-run saranno conservati durante l'esecuzione.
+Directory dove verranno conservati tutti i dati JSON di ri-esecuzione durante l'esecuzione.
 
 Tipo: `String`
 
@@ -104,7 +106,7 @@ export.config = {
 ```
 
 ### rerunScriptPath
-Percorso per scrivere lo script Bash di re-run.
+Percorso per scrivere lo script Bash di ri-esecuzione.
 
 Tipo: `String`
 
@@ -125,7 +127,7 @@ export.config = {
 ```
 
 ### ignoredTags
-(Solo Cucumber) Set di tag Cucumber da escludere. Se uno scenario contiene un tag, il servizio re-run salterà l'analisi.
+(Solo per Cucumber) Set di tag Cucumber da escludere. Se lo scenario contiene un tag, il servizio di ri-esecuzione salterà l'analisi.
 
 Tipo: `Array`
 
@@ -146,7 +148,7 @@ export.config = {
 ```
 
 ### commandPrefix
-Prefisso che verrà aggiunto al comando re-run generato.
+Prefisso che verrà aggiunto al comando di ri-esecuzione generato.
 
 Tipo: `String`
 

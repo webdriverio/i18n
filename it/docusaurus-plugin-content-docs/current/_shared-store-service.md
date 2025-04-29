@@ -4,8 +4,10 @@ title: Servizio di Archiviazione Condivisa
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-shared-store-service/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> Scambia dati tra il processo principale e i worker (specifiche).
+> Scambio di dati tra processo principale e worker (specs).
 
 ## Installazione
 
@@ -19,11 +21,11 @@ Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui.](htt
 
 ## Utilizzo
 
-Ottieni/imposta un valore (un oggetto semplice) da/verso l'archivio tramite chiave (stringa). La chiave può essere qualsiasi stringa arbitraria tranne `*` che è riservata poiché consente di recuperare l'intero archivio.
+Ottieni/imposta un valore (un oggetto semplice) da/nello store tramite chiave (stringa). La chiave può essere qualsiasi stringa arbitraria eccetto `*` che è riservata in quanto permette di recuperare l'intero store.
 
 ### Impostare Valori
 
-Per impostare valori nell'archivio chiama:
+Per impostare valori nello store chiama:
 
 ```js
 await browser.sharedStore.set('key', 'foobar123')
@@ -31,23 +33,23 @@ await browser.sharedStore.set('key', 'foobar123')
 
 ### Ottenere Valori
 
-Per ottenere valori dall'archivio chiama:
+Per ottenere valori dallo store chiama:
 
 ```js
 const value = await browser.sharedStore.get('key')
-console.log(value) // ritorna "foobar123"
+console.log(value) // restituisce "foobar123"
 ```
 
 Puoi anche recuperare tutti i valori delle chiavi utilizzando la chiave `*`:
 
 ```js
 const store = await browser.sharedStore.get('*')
-console.log(value) // ritorna `{ key: "foobar" }`
+console.log(value) // restituisce `{ key: "foobar" }`
 ```
 
-### Accedere all'Archivio negli Hook WDIO
+### Accesso allo Store negli Hook WDIO
 
-Potresti anche accedere direttamente ai gestori asincroni `setValue` e `getValue`.
+Puoi anche accedere direttamente ai gestori asincroni `setValue` e `getValue`.
 Assicurati di chiamarli correttamente con la parola chiave `await`.
 
 ```js
@@ -66,13 +68,13 @@ export const config = {
     }
 ```
 
-IMPORTANTE! Ogni file di specifiche dovrebbe essere atomico e isolato dalle specifiche degli altri.
-L'idea del servizio è di gestire problemi di configurazione dell'ambiente molto specifici.
-Si prega di evitare la condivisione dei dati di esecuzione dei test!
+IMPORTANTE! Ogni file spec dovrebbe essere atomico e isolato dalle spec degli altri.
+L'idea del servizio è di affrontare problemi molto specifici di configurazione dell'ambiente.
+Evita di condividere dati di esecuzione dei test!
 
 ### Pool di Risorse
 
-Se i thread dei worker stanno competendo per risorse che devono essere assegnate per ciascun worker, puoi utilizzare l'API del Pool di Risorse:
+Se i thread worker competono per risorse che devono essere assegnate a ciascun worker, puoi utilizzare l'API Resource Pool:
 
 ```js
 // wdio.conf.js
@@ -95,11 +97,11 @@ export const config = {
     }
 ```
 
-Questo esempio garantisce che entrambi i worker non utilizzino mai lo stesso `baseUrl`. Un URL unico viene assegnato a un solo worker fino a quando non viene rilasciato da quest'ultimo.
+Questo esempio garantisce che entrambi i worker non utilizzino mai la stessa `baseUrl`. Un URL unico viene assegnato a un solo worker finché non viene rilasciato.
 
 ## Configurazione
 
-Aggiungi `shared-store` all'elenco dei servizi e l'oggetto `sharedStore` sarà accessibile nell'ambito [`browser`](https://webdriver.io/docs/api/browser) nel tuo test.
+Aggiungi `shared-store` alla lista dei servizi e l'oggetto `sharedStore` sarà accessibile nello [scope `browser`](https://webdriver.io/docs/api/browser) nel tuo test.
 
 ```js
 // wdio.conf.js
@@ -110,7 +112,7 @@ export const config = {
 };
 ```
 
-Se stai utilizzando typescript, assicurati di aggiungere `@wdio/shared-store-service` al tuo `compilerOptions.types`:
+Se stai utilizzando typescript, assicurati di aggiungere `@wdio/shared-store-service` ai tuoi `compilerOptions.types`:
 
 ```js
 {

@@ -4,6 +4,8 @@ title: स्पेक रिपोर्टर
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-spec-reporter/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > A WebdriverIO plugin to report in spec style.
 

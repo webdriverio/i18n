@@ -1,11 +1,13 @@
 ---
 id: wdio-vscode-service
-title: Servizio di Testing per Estensioni VSCode
+title: Servizio di Test per Estensioni VSCode
 custom_edit_url: https://github.com/webdriverio-community/wdio-vscode-service/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> wdio-vscode-service è un pacchetto di terze parti, per maggiori informazioni si prega di consultare [GitHub](https://github.com/webdriverio-community/wdio-vscode-service) | [npm](https://www.npmjs.com/package/wdio-vscode-service)
+> wdio-vscode-service è un pacchetto di terze parti, per maggiori informazioni consulta [GitHub](https://github.com/webdriverio-community/wdio-vscode-service) | [npm](https://www.npmjs.com/package/wdio-vscode-service)
 
 Testato su:
 
@@ -13,18 +15,18 @@ Testato su:
 
 > Servizio WebdriverIO per testare le estensioni VSCode.
 
-Questo servizio WebdriverIO ti permette di testare senza problemi le tue estensioni VSCode end-to-end nell'IDE Desktop VSCode o come estensione web. Devi solo fornire un percorso alla tua estensione e il servizio fa il resto:
+Questo servizio WebdriverIO ti permette di testare senza problemi le tue estensioni VSCode dall'inizio alla fine nell'IDE Desktop VSCode o come estensione web. Devi solo fornire un percorso alla tua estensione e il servizio fa il resto:
 
-- 🏗️ Installando VSCode (sia `stable`, `insiders` o una versione specifica)
-- ⬇️ Scaricando Chromedriver specifico per una determinata versione di VSCode
+- 🏗️ Installa VSCode (sia `stable`, `insiders` o una versione specifica)
+- ⬇️ Scarica Chromedriver specifico per una determinata versione di VSCode
 - 🚀 Ti permette di accedere all'API VSCode dai tuoi test
-- 🖥️ Avviando VSCode con impostazioni utente personalizzate (incluso il supporto per VSCode su Ubuntu, MacOS e Windows)
-- 🌐 O serve VSCode da un server per essere accessibile da qualsiasi browser per testare [estensioni web](https://code.visualstudio.com/api/extension-guides/web-extensions)
-- 📔 Creando page object con locatori corrispondenti alla tua versione VSCode
+- 🖥️ Avvia VSCode con impostazioni utente personalizzate (incluso il supporto per VSCode su Ubuntu, MacOS e Windows)
+- 🌐 Oppure serve VSCode da un server per essere accessibile da qualsiasi browser per testare [estensioni web](https://code.visualstudio.com/api/extension-guides/web-extensions)
+- 📔 Avvia page object con localizzatori corrispondenti alla tua versione di VSCode
 
 Questo progetto è stato fortemente ispirato dal progetto [vscode-extension-tester](https://www.npmjs.com/package/vscode-extension-tester) basato su Selenium. Questo pacchetto prende l'idea e la adatta a WebdriverIO.
 
-A partire da VSCode v1.86 è necessario utilizzare `webdriverio` v8.14 o successivo per installare Chromedriver senza configurazione necessaria. Se hai bisogno di testare versioni precedenti di VSCode, consulta la sezione [Configurazione di Chromedriver](#chromedriver) qui sotto.
+A partire da VSCode v1.86 è necessario utilizzare `webdriverio` v8.14 o successivo per installare Chromedriver senza configurazione necessaria. Se hai bisogno di testare versioni precedenti di VSCode, consulta la sezione [Configurazione Chromedriver](#chromedriver) qui sotto.
 
 ## Installazione
 
@@ -34,7 +36,7 @@ Per iniziare un nuovo progetto WebdriverIO, esegui:
 npm create wdio ./
 ```
 
-Una procedura guidata di installazione ti guiderà attraverso il processo. Assicurati di selezionare TypeScript come compilatore e non generare page object poiché questo progetto include già tutti i page object necessari. Quindi assicurati di selezionare `vscode` nell'elenco dei servizi:
+Una procedura guidata di installazione ti guiderà attraverso il processo. Assicurati di selezionare TypeScript come compilatore e di non generare page object per te dato che questo progetto include già tutti i page object necessari. Poi assicurati di selezionare `vscode` all'interno della lista dei servizi:
 
 ![Install Demo](https://raw.githubusercontent.com/webdriverio-community/wdio-vscode-service/main/.github/assets/demo.gif "Install Demo")
 
@@ -42,7 +44,7 @@ Per maggiori informazioni su come installare `WebdriverIO`, consulta la [documen
 
 ## Configurazione di Esempio
 
-Per utilizzare il servizio devi aggiungere `vscode` alla tua lista di servizi, opzionalmente seguito da un oggetto di configurazione. Questo farà sì che WebdriverIO scarichi i binari di VSCode e la versione appropriata di Chromedriver:
+Per utilizzare il servizio devi aggiungere `vscode` alla tua lista di servizi, opzionalmente seguito da un oggetto di configurazione. Questo farà scaricare a WebdriverIO i binari VSCode specificati e la versione appropriata di Chromedriver:
 
 ```js
 // wdio.conf.ts
@@ -61,14 +63,14 @@ export const config = {
     }],
     services: ['vscode'],
     /**
-     * Opzionalmente definisci il percorso in cui WebdriverIO memorizza tutti i binari VSCode, es.:
+     * Opzionalmente definisci il percorso in cui WebdriverIO memorizza tutti i binari VSCode, ad es.:
      * services: [['vscode', { cachePath: __dirname }]]
      */
     // ...
 };
 ```
 
-Se definisci `wdio:vscodeOptions` con qualsiasi altro `browserName` diverso da `vscode`, ad esempio `chrome`, il servizio servirà l'estensione come estensione web. Se testi su Chrome non è richiesto alcun servizio driver aggiuntivo, ad esempio:
+Se definisci `wdio:vscodeOptions` con qualsiasi altro `browserName` tranne `vscode`, ad esempio `chrome`, il servizio servirà l'estensione come estensione web. Se testi su Chrome non è richiesto alcun servizio driver aggiuntivo, ad esempio:
 
 ```js
 // wdio.conf.ts
@@ -86,7 +88,7 @@ export const config = {
 };
 ```
 
-_Nota:_ quando si testano estensioni web è possibile scegliere solo tra `stable` o `insiders` come `browserVersion`.
+_Nota:_ quando si testano estensioni web si può scegliere solo tra `stable` o `insiders` come `browserVersion`.
 
 ### Configurazione TypeScript
 
@@ -111,7 +113,7 @@ Nel tuo `tsconfig.json` assicurati di aggiungere `wdio-vscode-service` alla tua 
 
 ## Utilizzo
 
-Puoi quindi utilizzare il metodo `getWorkbench` per accedere ai page object per i locatori corrispondenti alla versione VSCode desiderata:
+Puoi quindi utilizzare il metodo `getWorkbench` per accedere ai page object per i localizzatori corrispondenti alla versione VSCode desiderata:
 
 ```ts
 describe('WDIO VSCode Service', () => {
@@ -125,7 +127,7 @@ describe('WDIO VSCode Service', () => {
 
 ### Accesso alle API VSCode
 
-Se desideri eseguire determinate automazioni attraverso l'[API VSCode](https://code.visualstudio.com/api/references/vscode-api), puoi farlo eseguendo comandi remoti tramite il comando personalizzato `executeWorkbench`. Questo comando ti consente di eseguire codice in remoto dai tuoi test all'interno dell'ambiente VSCode e ti permette di accedere all'API VSCode. Puoi passare parametri arbitrari alla funzione che verranno poi propagati nella funzione. L'oggetto `vscode` verrà sempre passato come primo argomento, seguito dai parametri della funzione esterna. Nota che non puoi accedere a variabili al di fuori dell'ambito della funzione poiché la callback viene eseguita in remoto. Ecco un esempio:
+Se desideri eseguire determinati automatismi tramite l'[API VSCode](https://code.visualstudio.com/api/references/vscode-api) puoi farlo eseguendo comandi remoti tramite il comando personalizzato `executeWorkbench`. Questo comando ti consente di eseguire remotamente codice dal tuo test all'interno dell'ambiente VSCode e ti permette di accedere all'API VSCode. Puoi passare parametri arbitrari nella funzione che verranno quindi propagati nella funzione. L'oggetto `vscode` verrà sempre passato come primo argomento seguito dai parametri della funzione esterna. Nota che non puoi accedere a variabili al di fuori dell'ambito della funzione poiché la callback viene eseguita remotamente. Ecco un esempio:
 
 ```ts
 const workbench = await browser.getWorkbench()
@@ -149,47 +151,47 @@ Le opzioni del servizio sono opzioni necessarie per configurare l'ambiente di te
 
 #### `cachePath`
 
-Definisci un percorso cache per evitare di scaricare nuovamente i bundle VS Code. Questo è utile per CI/CD per evitare di scaricare nuovamente VSCode per ogni esecuzione del test.
+Definisce un percorso di cache per evitare di riscaricare i bundle di VS Code. Questo è utile per CI/CD per evitare di riscaricare VSCode per ogni esecuzione di test.
 
 Tipo: `string`<br />
 Default: `process.cwd()`
 
-### Capabilities VSCode (`wdio:vscodeOptions`)
+### Capacità VSCode (`wdio:vscodeOptions`)
 
-Per eseguire test tramite VSCode devi definire `vscode` come `browserName`. Puoi specificare la versione di VSCode fornendo una capability `browserVersion`. Le opzioni personalizzate di VSCode sono poi definite all'interno della capability personalizzata `wdio:vscodeOptions`. Le opzioni sono le seguenti:
+Per eseguire test tramite VSCode devi definire `vscode` come `browserName`. Puoi specificare la versione VSCode fornendo una capacità `browserVersion`. Le opzioni personalizzate di VSCode sono quindi definite all'interno della capacità personalizzata `wdio:vscodeOptions`. Le opzioni sono le seguenti:
 
 #### `binary`
 
-Percorso di un'installazione VSCode locale. Se l'opzione non viene fornita, il servizio scaricherà VSCode in base al `browserVersion` fornito (o `stable` se non specificato).
+Percorso di un'installazione VSCode locale. Se l'opzione non viene fornita, il servizio scaricherà VSCode in base alla `browserVersion` specificata (o `stable` se non specificata).
 
 Tipo: `string`
 
 #### `extensionPath`
 
-Definisci la directory dell'estensione che vuoi testare.
+Definisce la directory dell'estensione che desideri testare.
 
 Tipo: `string`
 
 #### `storagePath`
 
-Definisci una posizione personalizzata in cui VS Code memorizza tutti i suoi dati. Questa è la radice per le directory interne di VS Code come (elenco parziale)
-* **user-data-dir**: La directory in cui sono memorizzate tutte le impostazioni utente (impostazioni globali), i log delle estensioni, ecc.
-* **extension-install-dir**: La directory in cui sono installate le estensioni VS Code.
+Definisce una posizione personalizzata per VS Code per memorizzare tutti i suoi dati. Questa è la root per le directory interne di VS Code come (elenco parziale)
+* **user-data-dir**: La directory dove sono memorizzate tutte le impostazioni utente (impostazioni globali), log delle estensioni ecc.
+* **extension-install-dir**: La directory dove sono installate le estensioni VS Code.
 
-Se non specificato, viene utilizzata una directory temporanea.
+Se non fornito, viene utilizzata una directory temporanea.
 
 Tipo: `string`
 
 #### `userSettings`
 
-Definisci impostazioni utente personalizzate da applicare a VSCode.
+Definisce impostazioni utente personalizzate da applicare a VSCode.
 
 Tipo: `Record<string, number | string | object | boolean>`<br />
 Default: `{}`
 
 #### `workspacePath`
 
-Apre VSCode per uno specifico workspace. Se non fornito, VSCode si avvia senza un workspace aperto.
+Apre VSCode per un workspace specifico. Se non fornito, VSCode si avvia senza un workspace aperto.
 
 Tipo: `string`
 
@@ -239,7 +241,7 @@ Default:
     enable: true,
     /**
      * Porta della connessione WebSocket utilizzata per connettersi al workbench.
-     * Per impostazione predefinita è impostata su una porta disponibile nel tuo sistema operativo.
+     * Di default impostata su una porta disponibile nel tuo sistema operativo.
      */
     // port?: number
     /**
@@ -247,7 +249,7 @@ Default:
      */
     connectionTimeout: 5000,
     /**
-     * Timeout per il comando da eseguire all'interno di VSCode
+     * Timeout per l'esecuzione del comando all'interno di VSCode
      */
     commandTimeout: 5000
 }
@@ -271,17 +273,17 @@ Per testare versioni precedenti di VS Code, trova la versione prevista di Chrome
             binary: path.join(cacheDir, 'chromedriver-108.0.5359.71')
 ```
 
-## Crea i Tuoi PageObjects
+## Creare i Tuoi PageObject
 
-Puoi riutilizzare i componenti utilizzati in questo servizio per i tuoi page object di revisione. Per farlo, crea prima un file che definisce tutti i tuoi selettori, ad esempio:
+Puoi riutilizzare i componenti utilizzati in questo servizio per i tuoi page object di revisione. Per questo, crea prima un file che definisce tutti i tuoi selettori, ad esempio:
 
 ```ts
 // e.g. in /test/pageobjects/locators.ts
 export const componentA = {
     elem: 'form', // elemento contenitore del componente
     submit: 'button[type="submit"]', // pulsante di invio
-    username: 'input.username', // input per il nome utente
-    password: 'input.password' // input per la password
+    username: 'input.username', // input username
+    password: 'input.password' // input password
 }
 ```
 
@@ -295,7 +297,7 @@ export interface LoginForm extends IPageDecorator<typeof componentALocators> {}
 @PageDecorator(componentALocators)
 export class LoginForm extends BasePage<typeof componentALocators, typeof locatorMap> {
     /**
-     * @private chiave di locator per identificare la mappa dei locator (vedi locators.ts)
+     * @private chiave localizzatore per identificare la mappa del localizzatore (vedi locators.ts)
      */
     public locatorKey = 'componentA' as const
 
@@ -307,7 +309,7 @@ export class LoginForm extends BasePage<typeof componentALocators, typeof locato
 }
 ```
 
-Ora nel tuo test, puoi usare il tuo page object come segue:
+Ora nel tuo test, puoi utilizzare il tuo page object come segue:
 
 ```ts
 import { LoginForm } from '../pageobjects/loginForm'
@@ -319,11 +321,11 @@ describe('my extension', () => {
         const loginForm = new LoginForm(locatorMap)
         await loginForm.login('admin', 'test123')
 
-        // puoi anche usare direttamente gli elementi del page object tramite `[selector]$`
+        // puoi anche utilizzare gli elementi del page object direttamente tramite `[selector]$`
         // o `[selector]$$`, ad esempio:
         await loginForm.submit$.click()
 
-        // o accedere direttamente ai locator
+        // o accedere direttamente ai localizzatori
         console.log(loginForm.locators.username)
         // outputs: "input.username"
     })
@@ -352,7 +354,7 @@ Se utilizzi WebdriverIO con TypeScript assicurati di aggiungere `wdio-vscode-ser
 
 ## Supporto Proxy
 
-Durante l'inizializzazione di questo servizio, vengono scaricati ChromeDriver e la distribuzione VSCode. Puoi instradare queste richieste attraverso un proxy impostando la variabile d'ambiente `HTTPS_PROXY` o `https_proxy`. Ad esempio:
+Durante l'inizializzazione di questo servizio, viene scaricata una distribuzione ChromeDriver e VSCode. Puoi indirizzare queste richieste attraverso un proxy impostando la variabile di ambiente `HTTPS_PROXY` o `https_proxy`. Ad esempio:
 
 ```bash
 HTTPS_PROXY=http://127.0.0.1:1080 npm run wdio
@@ -378,12 +380,12 @@ Prima di inviare una pull request, esegui quanto segue:
 1. `npm run build`
 1. `npm run test` (o `npm run ci`)
 
-## Ulteriori Informazioni
+## Per Saperne di Più
 
-Se vuoi saperne di più sui test delle estensioni VSCode, dai un'occhiata al talk di [Christian Bromann](https://twitter.com/bromann) all'[OpenJS World 2022](https://www.youtube.com/watch?v=PhGNTioBUiU):
+Se vuoi saperne di più sul testing delle estensioni VSCode, dai un'occhiata alla presentazione di [Christian Bromann](https://twitter.com/bromann) all'[OpenJS World 2022](https://www.youtube.com/watch?v=PhGNTioBUiU):
 
 [![Testing VSCode Extensions at OpenJS World 2022](https://img.youtube.com/vi/PhGNTioBUiU/sddefault.jpg)](https://www.youtube.com/watch?v=PhGNTioBUiU)
 
 ---
 
-Per ulteriori informazioni su WebdriverIO, consulta la [homepage](https://webdriver.io) del progetto.
+Per maggiori informazioni su WebdriverIO consulta la [homepage](https://webdriver.io) del progetto.

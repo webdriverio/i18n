@@ -1,11 +1,13 @@
 ---
 id: dot-reporter
-title: Reporter Dot
+title: Dot Reporter
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-dot-reporter/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> Un plugin WebdriverIO per generare report in stile dot.
+> Un plugin WebdriverIO per il reporting in stile dot.
 
 ![Dot Reporter](/img/dot.png "Dot Reporter")
 
@@ -21,8 +23,7 @@ Le istruzioni su come installare `WebdriverIO` possono essere trovate [qui](/doc
 
 ## Configurazione
 
-Il seguente codice mostra la configurazione predefinita del test runner wdio. Basta aggiungere `'dot'` come reporter
-all'array.
+Il codice seguente mostra la configurazione predefinita del test runner wdio. Basta aggiungere `'dot'` come reporter all'array.
 
 ```js
 // wdio.conf.js

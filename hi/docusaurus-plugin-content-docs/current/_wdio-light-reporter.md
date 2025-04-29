@@ -4,6 +4,8 @@ title: लाइट रिपोर्टर रिपोर्टर
 custom_edit_url: https://github.com/sarfrajadstreaks/wdio-light-reporter/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 > wdio-light-reporter एक तृतीय पक्ष पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/sarfrajadstreaks/wdio-light-reporter) | [npm](https://www.npmjs.com/package/wdio-light-reporter)
 
@@ -11,22 +13,22 @@ custom_edit_url: https://github.com/sarfrajadstreaks/wdio-light-reporter/edit/ma
 
 !दर्शन:
 
-> यह रिपोर्टर cucumber रिपोर्ट पुनर्निर्माण का समर्थन नहीं करता है और इसे bdd और mocha फ्रेमवर्क को ध्यान में रखकर विकसित किया गया है।
-> यहां, `describe()` सेक्शन को टेस्ट सिनेरियो और `it()` को टेस्ट सिनेरियो के अंदर टेस्टकेस के रूप में माना जाता है।
+> यह रिपोर्टर cucumber रिपोर्ट पुनर्निर्माण का समर्थन नहीं करता है और bdd और mocha फ्रेमवर्क को ध्यान में रखकर विकसित किया गया है।
+> यहां, `describe()` अनुभाग को टेस्ट सिनारियो और `it()` को टेस्ट सिनारियो के अंदर टेस्टकेस के रूप में माना जाता है।
 
-## विशेषताएं
+## विशेषताएँ
 
 1. आसान सेटअप
-2. उन्नत UI
-3. HTML रिपोर्ट में एम्बेडेड स्क्रीनशॉट
+2. उन्नत यूआई
+3. एचटीएमएल रिपोर्ट में एम्बेडेड स्क्रीनशॉट
 4. स्टेप्स कॉन्टेक्स्ट या नाम शामिल करने के लिए addLabel()
 
 
-## रिलीज़
-V 0.1.9 - प्रारंभिक रिलीज़
+## रिलीज
+V 0.1.9 - प्रारंभिक रिलीज
 V 0.2.6 - (नवीनतम)
-  1. एकाधिक पर्यावरण रन शामिल करें और पर्यावरण के आधार पर अलग करें।
-  2. बग फिक्स
+  1. कई पर्यावरण रन शामिल करें और पर्यावरण के आधार पर अलग करें।
+  2. बग्स फिक्स
   3. बेहतर प्रदर्शन।
 
 
@@ -36,7 +38,7 @@ V 0.2.6 - (नवीनतम)
 ![Example](https://github.com/sarfrajadstreaks/wdio-light-reporter/blob/main/./ReadME/example_2.png)
 ![Example](https://github.com/sarfrajadstreaks/wdio-light-reporter/blob/main/./ReadME/example_3.png)
 
-## इंस्टालेशन
+## इंस्टॉलेशन
 
 NPM
 
@@ -57,8 +59,8 @@ reporters: ['dot', ['light',{
 
 ## स्क्रीनशॉट
 
-रिपोर्टर में स्वचालित रूप से स्क्रीनशॉट लेने के लिए कॉन्फिगर करने की क्षमता नहीं है, लेकिन हालांकि अगर मैन्युअल रूप से कॉन्फिगर किया जाता है, तो यह इवेंट को सुनता है और HTML रिपोर्ट में स्क्रीनशॉट संलग्न करता है।
-**रिपोर्ट में स्क्रीनशॉट शामिल करने के लिए wdio conf फाइल में afterTest() हुक में नीचे दिए गए कोड को जोड़ें।**
+रिपोर्टर के पास स्क्रीनशॉट लेने के लिए स्वचालित रूप से कॉन्फिगर करने की क्षमता नहीं है, लेकिन हालांकि अगर मैन्युअल रूप से कॉन्फिगर किया गया है, तो यह इवेंट को सुनता है और HTML रिपोर्ट में स्क्रीनशॉट अटैच करता है।
+**रिपोर्ट में स्क्रीनशॉट शामिल करने के लिए wdio conf फाइल में afterTest() हुक में नीचे दिया गया कोड जोड़ें।**
 
 ```
 afterTest: async function (test,context,{ error, result, duration, passed, retries }) {
@@ -68,7 +70,7 @@ afterTest: async function (test,context,{ error, result, duration, passed, retri
 
 ## रिजल्टफाइल्स
 
-प्रत्येक रन प्रत्येक स्पेक फाइल के लिए json रिपोर्ट को पुनर्जनित करता है, संयुक्त json और HTML रिपोर्ट उत्पन्न करने के लिए, wdio conf फाइल में **onComplete()** हुक में नीचे दिए गए कोड को जोड़ें
+प्रत्येक रन प्रत्येक स्पेक फाइल के लिए json रिपोर्ट को फिर से जनरेट करता है, संयुक्त json और HTML रिपोर्ट जनरेट करने के लिए, wdio conf फाइल में **onComplete()** हुक में नीचे दिया गया कोड जोड़ें
 
 ```
  onComplete: function (exitCode, config, capabilities, results) {
@@ -77,14 +79,14 @@ afterTest: async function (test,context,{ error, result, duration, passed, retri
  },
 ```
 
-> अगर आप अपने टेस्ट को किसी भी --suite विकल्प के बिना चलाते हैं तो यह डिफॉल्ट को सूट के रूप में मानता है
-> यदि आप चलाते समय सूट के रूप में कई पैरामीटर देते हैं तो रिपोर्टर काम नहीं करता है।
-> wdio run `wdio.conf.js --suite firstSuite` - **(अच्छी तरह से काम करता है)** :)  
+> अगर आप अपने टेस्ट को बिना किसी --suite विकल्प के चलाते हैं तो यह डिफॉल्ट रूप से सूट मानता है
+> यदि आप रन करते समय सूट्स के रूप में कई पैरामीटर देते हैं तो रिपोर्टर काम नहीं करता है।
+> wdio run `wdio.conf.js --suite firstSuite` - **(अच्छा काम करता है)** :)  
 >  wdio run `wdio.conf.js --suite firstSuite --suite secondSuite` **(काम नहीं करता)** :(
 
-## कॉन्टेक्स्ट जोड़ना
+## कंटेक्स्ट जोड़ना
 
-> आप किसी भी स्टेप में कॉन्टेक्स्ट जोड़ने के लिए या इसे स्टेप्स के रूप में शामिल करने के लिए `useLabel()` का उपयोग कर सकते हैं।
+> आप किसी भी स्टेप के लिए कंटेक्स्ट जोड़ने के लिए या इसे स्टेप्स के रूप में शामिल करने के लिए `useLabel()` का उपयोग कर सकते हैं।
 
 ```
 const { addLabel } = require("wdio-light-reporter").default;
@@ -99,7 +101,7 @@ describe("Show how to use addLabel ", () => {
 
 
 ```
-## अपडेट
+## अपडेट्स
 ```
  reporters: ['dot', ['light',{
       outputDir: './Results',
@@ -112,4 +114,4 @@ describe("Show how to use addLabel ", () => {
 ## लाइसेंस
 
 MIT
-**फ्री, हां, बिल्कुल!**
+**फ्री, बिल्कुल!**

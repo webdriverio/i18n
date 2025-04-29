@@ -4,16 +4,18 @@ title: Reporter Testrail
 custom_edit_url: https://github.com/webdriverio-community/wdio-testrail-reporter/edit/main/README.md
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-> @wdio/testrail-reporter è un pacchetto di terze parti, per maggiori informazioni consultare [GitHub](https://github.com/webdriverio-community/wdio-testrail-reporter) | [npm](https://www.npmjs.com/package/@wdio/testrail-reporter)
+> @wdio/testrail-reporter è un pacchetto di terze parti, per maggiori informazioni consulta [GitHub](https://github.com/webdriverio-community/wdio-testrail-reporter) | [npm](https://www.npmjs.com/package/@wdio/testrail-reporter)
 
-Questo reporter crea report TestRail. La prima cosa necessaria è abilitare l'API TestRail in modo che il report possa comunicare con TestRail e inviare i risultati dei test. Per farlo, accedi al tuo account TestRail e vai su Administration > Site Settings > API e assicurati di selezionare la casella vicino a Enable API.
+Questo reporter crea rapporti TestRail. La prima cosa necessaria è abilitare l'API TestRail in modo che il report possa comunicare con TestRail e inviare i risultati dei test. Per farlo, accedi al tuo account TestRail e vai su Administration > Site Settings > API e assicurati di selezionare la casella vicino a Enable API.
 
-Aggiungi l'ID del caso di test di TestRail alla descrizione del test. es.
+Aggiungi l'ID del caso di test di TestRail alla descrizione del test. ad esempio:
 ```javascript
 it("C123456 Page loads correctly", async () => {
 ```
-Questo supporta anche ID di casi multipli. es.
+Questo supporta anche più ID di casi. ad esempio:
 ```javascript
 it("C123456 C678910 Page loads correctly", async () => {
 ```
@@ -107,68 +109,68 @@ export const config = {
 
 ID del progetto testrail.
 
-Tipo: `string`
+Type: `string`
 
 ### `suiteId`
 
-ID della suite, la suite 1 è quella predefinita.
+ID della suite, la suite 1 è predefinita.
 
-Tipo: `string`
+Type: `string`
 
 ### `domain`
 
-Dominio della tua istanza testrail, es. `your-domain.testrail.io`.
+Dominio della tua istanza testrail, ad esempio `your-domain.testrail.io`.
 
-Tipo: `string`
+Type: `string`
 
 ### `username`
 
 Nome utente della tua istanza testrail.
 
-Tipo: `string`
+Type: `string`
 
 ### `apiToken`
 
 Token API della tua istanza testrail.
 
-Tipo: `string`
+Type: `string`
 
 ### `runName`
 
 Nome personalizzato per l'esecuzione del test.
 
-Tipo: `string`
+Type: `string`
 
 ### `existingRunId`
 
 ID di un'esecuzione di test esistente da aggiornare.
 
-Tipo: `string`
+Type: `string`
 
 ### `oneReport`
 
 Crea una singola esecuzione di test.
 
-Tipo: `boolean`
+Type: `boolean`
 
 ### `includeAll`
 
 Includi tutti i test nella suite nell'esecuzione del test.
 
-Tipo: `boolean`
+Type: `boolean`
 
 ### `caseIdTagPrefix`
 
-Prefisso utilizzato per individuare l'ID del caso nei tag Cucumber, utile per esecuzioni di Scenari Cucumber multi-piattaforma
+Prefisso utilizzato per individuare l'ID del caso nei tag Cucumber, utile per le esecuzioni di Scenario Cucumber multi-piattaforma.
 
-Tipo: `string`
+Type: `string`
 
 ### `useCucumber`
 
-Indica se i test sono scritti utilizzando il framework Cucumber. Di default, è impostato su `false`.
+Indica se i test sono scritti utilizzando il framework Cucumber. Per impostazione predefinita, è impostato su `false`.
 
-Tipo: `boolean`
+Type: `boolean`
 
 ---
 
-Per maggiori informazioni su WebdriverIO consulta la [homepage](https://webdriver.io).
+Per ulteriori informazioni su WebdriverIO, consulta la [homepage](https://webdriver.io).
