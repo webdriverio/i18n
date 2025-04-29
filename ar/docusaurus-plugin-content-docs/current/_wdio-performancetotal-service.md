@@ -4,8 +4,6 @@ title: خدمة إجمالي الأداء
 custom_edit_url: https://github.com/tzurp/performance-total/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-performancetotal-service هي حزمة تابعة لطرف ثالث، لمزيد من المعلومات يرجى زيارة [GitHub](https://github.com/tzurp/performance-total) | [npm](https://www.npmjs.com/package/wdio-performancetotal-service)
 ملاحظة:<br/>

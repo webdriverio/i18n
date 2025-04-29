@@ -4,8 +4,6 @@ title: مراسل Slack Reporter
 custom_edit_url: https://github.com/morooLee/wdio-slack-reporter/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-slack-reporter هي حزمة تابعة لجهة خارجية، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/morooLee/wdio-slack-reporter) | [npm](https://www.npmjs.com/package/@moroo/wdio-slack-reporter)
 

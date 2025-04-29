@@ -4,8 +4,6 @@ title: خدمة الخادم الثابت
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-static-server-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 بعض المشاريع هي أصول واجهة أمامية فقط، ولا تعمل على أكثر من خادم ثابت. تساعدك هذه الخدمة على تشغيل خادم ملفات ثابت أثناء الاختبار.
 

@@ -4,8 +4,6 @@ title: OCR-Testdienst
 custom_edit_url: https://github.com/webdriverio/visual-testing/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @wdio/ocr-service ist ein Drittanbieter-Paket, weitere Informationen finden Sie auf [GitHub](https://github.com/webdriverio/visual-testing) | [npm](https://www.npmjs.com/package/@wdio/ocr-service)
 

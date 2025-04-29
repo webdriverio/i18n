@@ -3,8 +3,6 @@ id: visual-testing
 title: காட்சி சோதனை
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## இது என்ன செய்யக்கூடும்?
 

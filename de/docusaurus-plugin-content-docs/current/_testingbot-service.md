@@ -4,8 +4,6 @@ title: Testingbot Service
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-testingbot-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > WebdriverIO-Service, der eine bessere Integration in TestingBot bietet. Es aktualisiert die Job-Metadaten ('name', 'passed', 'tags', 'public', 'build', 'extra') und führt TestingBot Tunnel bei Bedarf aus.
 

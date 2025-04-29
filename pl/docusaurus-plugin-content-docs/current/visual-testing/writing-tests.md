@@ -3,8 +3,6 @@ id: writing-tests
 title: Pisanie Testów
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## Wsparcie dla Frameworków Testowania
 

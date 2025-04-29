@@ -4,8 +4,6 @@ title: Reporter de Slack
 custom_edit_url: https://github.com/morooLee/wdio-slack-reporter/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-slack-reporter es un paquete de terceros, para más información por favor consulte [GitHub](https://github.com/morooLee/wdio-slack-reporter) | [npm](https://www.npmjs.com/package/@moroo/wdio-slack-reporter)
 

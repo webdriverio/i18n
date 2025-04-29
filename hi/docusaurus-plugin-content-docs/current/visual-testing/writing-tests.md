@@ -3,8 +3,6 @@ id: writing-tests
 title: परीक्षण लिखना
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## टेस्टरनर फ्रेमवर्क समर्थन
 

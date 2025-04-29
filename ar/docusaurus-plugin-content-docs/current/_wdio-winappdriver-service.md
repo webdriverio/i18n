@@ -4,8 +4,6 @@ title: خدمة winappdriver
 custom_edit_url: https://github.com/licanhua/wdio-winappdriver-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-winappdriver-service هي حزمة من طرف ثالث، لمزيد من المعلومات يرجى زيارة [GitHub](https://github.com/licanhua/wdio-winappdriver-service) | [npm](https://www.npmjs.com/package/wdio-winappdriver-service)
 

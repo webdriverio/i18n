@@ -4,8 +4,6 @@ title: Unterstützung für Angular-Komponententest-Harnesses Service
 custom_edit_url: https://github.com/Badisi/wdio-harness/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @badisi/wdio-harness ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/Badisi/wdio-harness) | [npm](https://www.npmjs.com/package/@badisi/wdio-harness)
 <h1 align="center">

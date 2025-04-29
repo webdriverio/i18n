@@ -1,0 +1,580 @@
+{
+  "theme.ErrorPageContent.title": {
+    "message": "Questa pagina si è bloccata.",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Riprova",
+    "description": "The label of the button to try again when the page crashed"
+  },
+  "theme.NotFound.title": {
+    "message": "Pagina Non Trovata",
+    "description": "The title of the 404 page"
+  },
+  "theme.NotFound.p1": {
+    "message": "Non abbiamo trovato ciò che stavi cercando.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "Ti preghiamo di contattare il proprietario del sito che ti ha indirizzato all'URL originale e di informarlo che il suo link è interrotto.",
+    "description": "The 2nd paragraph of the 404 page"
+  },
+  "theme.admonition.note": {
+    "message": "nota",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "suggerimento",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.danger": {
+    "message": "pericolo",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "info",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.caution": {
+    "message": "attenzione",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Torna all'inizio",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.blog.archive.title": {
+    "message": "Archivio",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "Archivio",
+    "description": "The page & hero description of the blog archive page"
+  },
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "Navigazione dell'elenco del blog",
+    "description": "The ARIA label for the blog pagination"
+  },
+  "theme.blog.paginator.newerEntries": {
+    "message": "Articoli più recenti",
+    "description": "The label used to navigate to the newer blog posts page (previous page)"
+  },
+  "theme.blog.paginator.olderEntries": {
+    "message": "Articoli meno recenti",
+    "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "Navigazione degli articoli del blog",
+    "description": "The ARIA label for the blog posts pagination"
+  },
+  "theme.blog.post.paginator.newerPost": {
+    "message": "Articolo più recente",
+    "description": "The blog post button label to navigate to the newer/previous post"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Articolo meno recente",
+    "description": "The blog post button label to navigate to the older/next post"
+  },
+  "theme.blog.post.plurals": {
+    "message": "Un articolo|{count} articoli",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} con tag \"{tagName}\"",
+    "description": "The title of the page for a blog tag"
+  },
+  "theme.tags.tagsPageLink": {
+    "message": "Visualizza tutti i tag",
+    "description": "The label of the link targeting the tag list page"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Pagina iniziale",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Percorso di navigazione",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription": {
+    "message": "{count} elementi",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "Passa dalla modalità scura a quella chiara (attualmente {mode})",
+    "description": "The ARIA label for the navbar color mode toggle"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "modalità scura",
+    "description": "The name for the dark color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "modalità chiara",
+    "description": "The name for the light color mode"
+  },
+  "theme.docs.paginator.navAriaLabel": {
+    "message": "Navigazione delle pagine della documentazione",
+    "description": "The ARIA label for the docs pagination"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "Precedente",
+    "description": "The label used to navigate to the previous doc"
+  },
+  "theme.docs.paginator.next": {
+    "message": "Successivo",
+    "description": "The label used to navigate to the next doc"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "Un documento taggato|{count} documenti taggati",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} con \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
+  "theme.docs.versionBadge.label": {
+    "message": "Versione: {versionLabel}"
+  },
+  "theme.docs.versions.unreleasedVersionLabel": {
+    "message": "Questa è la documentazione non rilasciata per {siteTitle} versione {versionLabel}.",
+    "description": "The label used to tell the user that he's browsing an unreleased doc version"
+  },
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "Questa è la documentazione per {siteTitle} {versionLabel}, che non è più mantenuta attivamente.",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "Per la documentazione aggiornata, consulta la {latestVersionLink} ({versionLabel}).",
+    "description": "The label used to tell the user to check the latest version"
+  },
+  "theme.docs.versions.latestVersionLinkLabel": {
+    "message": "ultima versione",
+    "description": "The label used for the latest version suggestion link label"
+  },
+  "theme.common.editThisPage": {
+    "message": "Modifica questa pagina",
+    "description": "The link label to edit the current page"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "Link diretto al titolo",
+    "description": "Title for link to heading"
+  },
+  "theme.lastUpdated.atDate": {
+    "message": " il {date}",
+    "description": "The words used to describe on which date a page has been last updated"
+  },
+  "theme.lastUpdated.byUser": {
+    "message": " da {user}",
+    "description": "The words used to describe by who the page has been last updated"
+  },
+  "theme.lastUpdated.lastUpdatedAtBy": {
+    "message": "Ultimo aggiornamento{atDate}{byUser}",
+    "description": "The sentence used to display when a page has been last updated, and by who"
+  },
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "Versioni",
+    "description": "The label for the navbar versions dropdown on mobile view"
+  },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Chiudi",
+    "description": "The ARIA label for close button of announcement bar"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "Tag:",
+    "description": "The label alongside a tag list"
+  },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "Navigazione degli articoli recenti del blog",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.CodeBlock.copied": {
+    "message": "Copiato",
+    "description": "The copied button label on code blocks"
+  },
+  "theme.CodeBlock.copyButtonAriaLabel": {
+    "message": "Copia il codice negli appunti",
+    "description": "The ARIA label for copy code blocks button"
+  },
+  "theme.CodeBlock.copy": {
+    "message": "Copia",
+    "description": "The copy button label on code blocks"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Attiva/disattiva a capo automatico",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
+  "theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel": {
+    "message": "Attiva/disattiva la categoria comprimibile '{label}' della barra laterale",
+    "description": "The ARIA label to toggle the collapsible sidebar category"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "In questa pagina",
+    "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.blog.post.readMore": {
+    "message": "Leggi di più",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "Leggi di più su {title}",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "Un minuto di lettura|{readingTime} minuti di lettura",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Lingue",
+    "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "Comprimi barra laterale",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.collapseButtonAriaLabel": {
+    "message": "Comprimi barra laterale",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "Chiudi barra di navigazione",
+    "description": "The ARIA label for close button of mobile sidebar"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← Torna al menu principale",
+    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "Attiva/disattiva barra di navigazione",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "Espandi barra laterale",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonAriaLabel": {
+    "message": "Espandi barra laterale",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "Vedi tutti i {count} risultati"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "Un documento trovato|{count} documenti trovati",
+    "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "Risultati di ricerca per \"{query}\"",
+    "description": "The search page title for non-empty query"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "Cerca nella documentazione",
+    "description": "The search page title for empty query"
+  },
+  "theme.SearchPage.inputPlaceholder": {
+    "message": "Digita qui la tua ricerca",
+    "description": "The placeholder for search page input"
+  },
+  "theme.SearchPage.inputLabel": {
+    "message": "Cerca",
+    "description": "The ARIA label for search page input"
+  },
+  "theme.SearchPage.algoliaLabel": {
+    "message": "Ricerca tramite Algolia",
+    "description": "The ARIA label for Algolia mention"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "Nessun risultato trovato",
+    "description": "The paragraph for empty search result"
+  },
+  "theme.SearchPage.fetchingNewResults": {
+    "message": "Recupero nuovi risultati...",
+    "description": "The paragraph for fetching new search results"
+  },
+  "theme.SearchBar.label": {
+    "message": "Cerca",
+    "description": "The ARIA label and placeholder for search button"
+  },
+  "theme.SearchModal.searchBox.resetButtonTitle": {
+    "message": "Cancella la query",
+    "description": "The label and ARIA label for search box reset button"
+  },
+  "theme.SearchModal.searchBox.cancelButtonText": {
+    "message": "Annulla",
+    "description": "The label and ARIA label for search box cancel button"
+  },
+  "theme.SearchModal.startScreen.recentSearchesTitle": {
+    "message": "Recenti",
+    "description": "The title for recent searches"
+  },
+  "theme.SearchModal.startScreen.noRecentSearchesText": {
+    "message": "Nessuna ricerca recente",
+    "description": "The text when no recent searches"
+  },
+  "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
+    "message": "Salva questa ricerca",
+    "description": "The label for save recent search button"
+  },
+  "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
+    "message": "Rimuovi questa ricerca dalla cronologia",
+    "description": "The label for remove recent search button"
+  },
+  "theme.SearchModal.startScreen.favoriteSearchesTitle": {
+    "message": "Preferiti",
+    "description": "The title for favorite searches"
+  },
+  "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
+    "message": "Rimuovi questa ricerca dai preferiti",
+    "description": "The label for remove favorite search button"
+  },
+  "theme.SearchModal.errorScreen.titleText": {
+    "message": "Impossibile recuperare i risultati",
+    "description": "The title for error screen of search modal"
+  },
+  "theme.SearchModal.errorScreen.helpText": {
+    "message": "Potresti voler controllare la tua connessione di rete.",
+    "description": "The help text for error screen of search modal"
+  },
+  "theme.SearchModal.footer.selectText": {
+    "message": "per selezionare",
+    "description": "The explanatory text of the action for the enter key"
+  },
+  "theme.SearchModal.footer.selectKeyAriaLabel": {
+    "message": "Tasto Invio",
+    "description": "The ARIA label for the Enter key button that makes the selection"
+  },
+  "theme.SearchModal.footer.navigateText": {
+    "message": "per navigare",
+    "description": "The explanatory text of the action for the Arrow up and Arrow down key"
+  },
+  "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
+    "message": "Freccia su",
+    "description": "The ARIA label for the Arrow up key button that makes the navigation"
+  },
+  "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
+    "message": "Freccia giù",
+    "description": "The ARIA label for the Arrow down key button that makes the navigation"
+  },
+  "theme.SearchModal.footer.closeText": {
+    "message": "per chiudere",
+    "description": "The explanatory text of the action for Escape key"
+  },
+  "theme.SearchModal.footer.closeKeyAriaLabel": {
+    "message": "Tasto Esc",
+    "description": "The ARIA label for the Escape key button that close the modal"
+  },
+  "theme.SearchModal.footer.searchByText": {
+    "message": "Cerca con",
+    "description": "The text explain that the search is making by Algolia"
+  },
+  "theme.SearchModal.noResultsScreen.noResultsText": {
+    "message": "Nessun risultato per",
+    "description": "The text explains that there are no results for the following search"
+  },
+  "theme.SearchModal.noResultsScreen.suggestedQueryText": {
+    "message": "Prova a cercare",
+    "description": "The text for the suggested query when no results are found for the following search"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
+    "message": "Credi che questa query dovrebbe restituire risultati?",
+    "description": "The text for the question where the user thinks there are missing results"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
+    "message": "Faccelo sapere.",
+    "description": "The text for the link to report missing results"
+  },
+  "theme.SearchModal.placeholder": {
+    "message": "Cerca nella documentazione",
+    "description": "The placeholder of the input of the DocSearch pop-up modal"
+  },
+  "theme.IdealImageMessage.loading": {
+    "message": "Caricamento...",
+    "description": "When the full-scale image is loading"
+  },
+  "theme.IdealImageMessage.load": {
+    "message": "Clicca per caricare{sizeMessage}",
+    "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
+  },
+  "theme.IdealImageMessage.offline": {
+    "message": "Il tuo browser è offline. Immagine non caricata",
+    "description": "When the user is viewing an offline document"
+  },
+  "theme.IdealImageMessage.404error": {
+    "message": "404. Immagine non trovata",
+    "description": "When the image is not found"
+  },
+  "theme.IdealImageMessage.error": {
+    "message": "Errore. Clicca per ricaricare",
+    "description": "When the image fails to load for unknown error"
+  },
+  "theme.PwaReloadPopup.info": {
+    "message": "Nuova versione disponibile",
+    "description": "The text for PWA reload popup"
+  },
+  "theme.PwaReloadPopup.refreshButtonText": {
+    "message": "Aggiorna",
+    "description": "The text for PWA reload button"
+  },
+  "theme.PwaReloadPopup.closeButtonAriaLabel": {
+    "message": "Chiudi",
+    "description": "The ARIA label for close button of PWA reload popup"
+  },
+  "theme.common.skipToMainContent": {
+    "message": "Vai al contenuto principale",
+    "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+  },
+  "theme.tags.tagsPageTitle": {
+    "message": "Tag",
+    "description": "The title of the tag list page"
+  },
+  "WebdriverIO allows you to test in actual browser or mobile devices used by your users.": {
+    "message": "WebdriverIO ti permette di testare sui browser reali o dispositivi mobili utilizzati dai tuoi utenti."
+  },
+  "Use WebdriverIO for full e2e or unit and component testing in the browser.": {
+    "message": "Usa WebdriverIO per test e2e completi o test di unità e componenti nel browser."
+  },
+  "WebdriverIO automatically waits for elements to appear before interacting with them.": {
+    "message": "WebdriverIO attende automaticamente che gli elementi appaiano prima di interagire con essi."
+  },
+  "Get Started": {
+    "message": "Inizia"
+  },
+  "Why WebdriverIO?": {
+    "message": "Perché WebdriverIO?"
+  },
+  "View on GitHub": {
+    "message": "Visualizza su GitHub"
+  },
+  "Watch on YouTube": {
+    "message": "Guarda su YouTube"
+  },
+  "Easy setup for web component testing with:": {
+    "message": "Configurazione facile per il test di componenti web con:"
+  },
+  "homepage.hightlight.createProject": {
+    "message": "Inizia con WebdriverIO in pochi secondi"
+  },
+  "The WebdriverIO testrunner comes with a command line interface that provides a powerful configuration utility and helps you to create your test setup in less than a minute. It let's you pick from available test framework integrations and easily allows to add all supported reporter and service plugins!": {
+    "message": "Il testrunner di WebdriverIO è dotato di un'interfaccia a riga di comando che fornisce un potente strumento di configurazione e ti aiuta a creare il tuo setup di test in meno di un minuto. Ti permette di scegliere tra le integrazioni del framework di test disponibili e consente facilmente di aggiungere tutti i plugin di reporter e servizi supportati!"
+  },
+  "With just one simple command you can set up a complete test suite:": {
+    "message": "Con un semplice comando puoi configurare una suite di test completa:"
+  },
+  "homepage.hightlight.watch": {
+    "message": "Guarda i talk su WebdriverIO"
+  },
+  "homepage.hightlight.lighthouse": {
+    "message": "Integrazione con Google Lighthouse"
+  },
+  "Integration to developer tools such as:": {
+    "message": "Integrazione con strumenti per sviluppatori come:"
+  },
+  "until October 2023": {
+    "message": "fino a ottobre 2023"
+  },
+  "since February 2022": {
+    "message": "da febbraio 2022"
+  },
+  "since January 2021": {
+    "message": "da gennaio 2021"
+  },
+  "since December 2019": {
+    "message": "da dicembre 2019"
+  },
+  "versions.description": {
+    "message": "Pagina delle versioni di Docusaurus 2 che elenca tutte le versioni documentate del sito"
+  },
+  "WebdriverIO documentation versions": {
+    "message": "Versioni della documentazione di WebdriverIO"
+  },
+  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
+    "message": "Il team di progetto rilascia nuove versioni principali approssimativamente con cadenza annuale. Lo stato di rilascio LTS è \"supporto a lungo termine\", che in genere garantisce che i bug critici saranno risolti per un totale di 12 mesi fino al rilascio di una nuova versione principale."
+  },
+  "Current version (Stable)": {
+    "message": "Versione attuale (Stabile)"
+  },
+  "Here you can find the documentation for current released version.": {
+    "message": "Qui puoi trovare la documentazione per la versione attualmente rilasciata."
+  },
+  "Documentation": {
+    "message": "Documentazione"
+  },
+  "Release Notes": {
+    "message": "Note di rilascio"
+  },
+  "Past versions": {
+    "message": "Versioni precedenti"
+  },
+  "Here you can find documentation for previous versions of Docusaurus.": {
+    "message": "Qui puoi trovare la documentazione per le versioni precedenti di Docusaurus."
+  },
+  "homepage.createBrowserAnimation": {
+    "message": "Crea demo WebdriverIO"
+  },
+  "homepage.highlight.getStartedOnYouTube": {
+    "message": "Inizia a saperne di più su WebdriverIO e come iniziare {youtubeLink}."
+  },
+  "homepage.highlight.getStartedOnYouTube.label;": {
+    "message": "su YouTube",
+    "description": "The label for the link to my YouTube"
+  },
+  "homepage.highlight.conferenceTalk": {
+    "message": "La comunità intorno a WebdriverIO parla attivamente in vari gruppi di utenti o conferenze su argomenti specifici relativi ai test automatizzati con WebdriverIO. Dai un'occhiata a questo talk su {youtubeLink} di {videoAuthor} al {conferenceLink}."
+  },
+  "homepage.highlight.conferenceTalk.label": {
+    "message": "Le mie funzionalità preferite di WebdriverIO",
+    "description": "The conference talk title"
+  },
+  "homepage.highlight.youtubeChannels": {
+    "message": "Ci sono anche molti canali YouTube con tutorial utili realizzati da membri della comunità come {channelOne}, {channelTwo} o {channelThree}."
+  },
+  "homepage.highlight.devtools": {
+    "message": "WebdriverIO non solo esegue l'automazione basata sul protocollo WebDriver, ma sfrutta anche le API native del browser per abilitare integrazioni con popolari strumenti per sviluppatori come {devtoolsLink} o {lighthouseLink}. Con il plugin {devtoolsServiceLink} hai accesso a comandi per convalidare se la tua app è un'applicazione PWA valida e a comandi per acquisire metriche di prestazioni frontend come `speedIndex` e altre."
+  },
+  "homepage.features.crossBrowser": {
+    "message": "Supporto cross-browser tramite automazione attraverso {webdriverLink} e {bidiLink}."
+  },
+  "homepage.features.mobile": {
+    "message": "Esegui WebdriverIO su dispositivi mobili reali, smart TV o altri dispositivi IoT tramite {appiumLink}."
+  },
+  "homepage.features.support": {
+    "message": "Gestione di un {supportChannelLink} con oltre 8.000 membri e un ricco ecosistema di plugin mantenuti dalla comunità."
+  },
+  "homepage.tagline": {
+    "message": "Framework di test per automazione di browser e dispositivi mobili di nuova generazione per Node.js"
+  },
+  "homepage.componentTesting.para1": {
+    "message": "WebdriverIO è un framework {allInOne} per lo sviluppo delle tue app web. Ti permette di eseguire piccoli e leggeri test di componenti e di eseguire scenari di test e2e nel browser o su un dispositivo mobile. Questo garantisce di effettuare i test in un ambiente {usedBy}."
+  },
+  "features.realEnvironments": {
+    "message": "Test in ambienti reali"
+  },
+  "features.versatile": {
+    "message": "Versatile e ricco di funzionalità"
+  },
+  "features.autoWait": {
+    "message": "Attesa automatica"
+  },
+  "features.standards": {
+    "message": "Basato su standard web"
+  },
+  "features.mobileSupport": {
+    "message": "Supporto nativo per dispositivi mobili"
+  },
+  "features.community": {
+    "message": "Comunità impegnata"
+  },
+  "homepage.componentTesting.heading": {
+    "message": "Test E2E e Unit / Component nei browser reali!"
+  },
+  "homepage.componentTesting.para2": {
+    "message": "È dotato di strategie di selezione intelligenti che semplificano l'interazione ad esempio con {reactComponents} o l'esecuzione di query di selezione profonde con alberi shadow DOM annidati. Poiché le interazioni avvengono attraverso un protocollo di automazione standardizzato, è garantito che si comportino in modo nativo e non siano semplicemente emulate da JavaScript."
+  },
+  "Who is using WebdriverIO?": {
+    "message": "Chi sta utilizzando WebdriverIO?"
+  },
+  "all in one": {
+    "message": "tutto in uno"
+  },
+  "used by your users": {
+    "message": "utilizzato dai tuoi utenti"
+  }
+}

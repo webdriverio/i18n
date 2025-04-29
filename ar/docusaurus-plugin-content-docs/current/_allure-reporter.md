@@ -4,8 +4,6 @@ title: مُسجل التقارير Allure
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-allure-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > إضافة مُسجل تقارير لـ WebdriverIO لإنشاء [تقارير اختبار Allure](https://allurereport.org/docs/webdriverio/).
 

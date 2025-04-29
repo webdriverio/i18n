@@ -4,8 +4,6 @@ title: Static Server Service
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-static-server-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 Einige Projekte bestehen nur aus Frontend-Assets und laufen nicht auf mehr als einem statischen Server. Dieser Service hilft Ihnen, einen statischen Dateiserver während des Testens auszuführen.
 

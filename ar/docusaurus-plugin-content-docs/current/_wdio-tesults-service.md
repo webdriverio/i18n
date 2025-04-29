@@ -4,8 +4,6 @@ title: خدمة تيسلتس
 custom_edit_url: https://github.com/tesults/wdio-tesults-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-tesults-service هي حزمة خارجية من طرف ثالث، لمزيد من المعلومات يرجى زيارة [GitHub](https://github.com/tesults/wdio-tesults-service) | [npm](https://www.npmjs.com/package/wdio-tesults-service)
 

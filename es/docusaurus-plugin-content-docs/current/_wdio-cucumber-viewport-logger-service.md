@@ -4,8 +4,6 @@ title: Servicio de Registro de Viewport para Cucumber
 custom_edit_url: https://github.com/viktor-silakov/wdio-cucumber-viewport-logger-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-cucumber-viewport-logger-service es un paquete de terceros, para más información por favor visita [GitHub](https://github.com/viktor-silakov/wdio-cucumber-viewport-logger-service) | [npm](https://www.npmjs.com/package/wdio-cucumber-viewport-logger-service)
 ## Servicio de Registro de Viewport para Cucumber en WebdriverIO

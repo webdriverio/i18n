@@ -4,8 +4,6 @@ title: Servicio de Almacenamiento Compartido
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-shared-store-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Intercambio de datos entre el proceso principal y los trabajadores (specs).
 

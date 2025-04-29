@@ -4,8 +4,6 @@ title: Allure Reporter
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-allure-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Ein WebdriverIO Reporter-Plugin zum Erstellen von [Allure Test Reports](https://allurereport.org/docs/webdriverio/).
 

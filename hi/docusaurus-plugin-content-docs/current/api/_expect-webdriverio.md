@@ -4,8 +4,6 @@ title: अपेक्षा (Expect)
 custom_edit_url: https://github.com/webdriverio/expect-webdriverio/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 
 जब आप परीक्षण लिख रहे होते हैं, तो अक्सर आपको यह जांचने की आवश्यकता होती है कि मान कुछ निश्चित शर्तों को पूरा करते हैं। `expect` आपको कई "मैचर्स" तक पहुंच प्रदान करता है जो आपको `browser`, `element` या `mock` ऑब्जेक्ट पर विभिन्न चीजों को सत्यापित करने की अनुमति देते हैं।

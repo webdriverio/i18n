@@ -4,8 +4,6 @@ title: Delta Reporter Reporter
 custom_edit_url: https://github.com/delta-reporter/delta-reporter-wdio/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-delta-reporter-service ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/delta-reporter/delta-reporter-wdio) | [npm](https://www.npmjs.com/package/@delta-reporter/wdio-delta-reporter-service)
 

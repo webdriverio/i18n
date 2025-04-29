@@ -4,8 +4,6 @@ title: Light Reporter Reporter
 custom_edit_url: https://github.com/sarfrajadstreaks/wdio-light-reporter/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-light-reporter ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/sarfrajadstreaks/wdio-light-reporter) | [npm](https://www.npmjs.com/package/wdio-light-reporter)
 

@@ -4,8 +4,6 @@ title: تقرير مُبلغ Teamcity
 custom_edit_url: https://github.com/webdriverio-community/wdio-teamcity-reporter/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-teamcity-reporter هو حزمة من طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/webdriverio-community/wdio-teamcity-reporter) | [npm](https://www.npmjs.com/package/wdio-teamcity-reporter)
 

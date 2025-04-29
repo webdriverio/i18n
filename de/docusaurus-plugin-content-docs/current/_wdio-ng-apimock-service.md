@@ -4,8 +4,6 @@ title: Ng-apimock Service
 custom_edit_url: https://github.com/ng-apimock/webdriverio-plugin/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-ng-apimock-service ist ein Paket von Drittanbietern, für weitere Informationen siehe [GitHub](https://github.com/ng-apimock/webdriverio-plugin) | [npm](https://www.npmjs.com/package/wdio-ng-apimock-service)
 webdriver Plugin für @ng-apimock/core

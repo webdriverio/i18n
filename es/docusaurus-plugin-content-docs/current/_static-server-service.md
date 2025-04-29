@@ -4,8 +4,6 @@ title: Servicio de Servidor Estático
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-static-server-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 Algunos proyectos son solo activos front-end y no funcionan más que en un servidor estático. Este servicio te ayuda a ejecutar un servidor de archivos estáticos durante las pruebas.
 

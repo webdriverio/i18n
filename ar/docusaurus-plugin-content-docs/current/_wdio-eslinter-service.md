@@ -4,8 +4,6 @@ title: الكشف التلقائي عن الاستيرادات المفقودة 
 custom_edit_url: https://github.com/jamesmortensen/wdio-eslinter-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-eslinter-service هي حزمة طرف ثالث، لمزيد من المعلومات يرجى مراجعة [GitHub](https://github.com/jamesmortensen/wdio-eslinter-service) | [npm](https://www.npmjs.com/package/wdio-eslinter-service)
 

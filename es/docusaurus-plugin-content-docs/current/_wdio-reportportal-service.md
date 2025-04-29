@@ -4,8 +4,6 @@ title: Servicio de Report Portal
 custom_edit_url: https://github.com/borisosipov/wdio-reportportal-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-reportportal-service es un paquete de terceros, para más información por favor visita [GitHub](https://github.com/borisosipov/wdio-reportportal-service) | [npm](https://www.npmjs.com/package/wdio-reportportal-service)
 

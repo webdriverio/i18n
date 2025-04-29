@@ -4,8 +4,6 @@ title: خدمة اختبار امتدادات VSCode
 custom_edit_url: https://github.com/webdriverio-community/wdio-vscode-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-vscode-service هي حزمة من طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/webdriverio-community/wdio-vscode-service) | [npm](https://www.npmjs.com/package/wdio-vscode-service)
 

@@ -3,8 +3,6 @@ id: visual-testing
 title: الاختبار البصري
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## ما الذي يمكنه فعله؟
 

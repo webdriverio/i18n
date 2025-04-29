@@ -4,8 +4,6 @@ title: Servicio QUnit
 custom_edit_url: https://github.com/mauriciolauffer/wdio-qunit-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-qunit-service es un paquete de terceros, para más información, consulte [GitHub](https://github.com/mauriciolauffer/wdio-qunit-service) | [npm](https://www.npmjs.com/package/wdio-qunit-service)
 

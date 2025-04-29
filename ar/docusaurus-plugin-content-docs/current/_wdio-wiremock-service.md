@@ -4,8 +4,6 @@ title: خدمة WireMock
 custom_edit_url: https://github.com/erwinheitzman/wdio-wiremock-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-wiremock-service هي حزمة طرف ثالث، لمزيد من المعلومات يرجى مراجعة [GitHub](https://github.com/erwinheitzman/wdio-wiremock-service) | [npm](https://www.npmjs.com/package/wdio-wiremock-service)
 

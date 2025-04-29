@@ -4,8 +4,6 @@ title: مُقرر النقطة
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-dot-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > إضافة WebdriverIO للتقارير بنمط النقاط.
 

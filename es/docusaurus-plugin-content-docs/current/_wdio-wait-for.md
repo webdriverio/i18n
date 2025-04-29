@@ -4,8 +4,6 @@ title: Servicio de Biblioteca de condiciones esperadas útiles
 custom_edit_url: https://github.com/webdriverio/wdio-wait-for/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-wait-for es un paquete de terceros, para más información, consulte [GitHub](https://github.com/webdriverio/wdio-wait-for) | [npm](https://www.npmjs.com/package/wdio-wait-for)
 

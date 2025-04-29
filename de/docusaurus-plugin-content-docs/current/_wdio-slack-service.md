@@ -4,8 +4,6 @@ title: Slack Service
 custom_edit_url: https://github.com/carmenmitru/wdio-slack-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-slack-service ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/carmenmitru/wdio-slack-service) | [npm](https://www.npmjs.com/package/wdio-slack-service)
 Webdriverio-Bibliothek zum Senden von Testergebnissen als Slack-Benachrichtigung/Nachricht an Kanäle

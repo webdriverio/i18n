@@ -3,8 +3,6 @@ id: writing-tests
 title: சோதனைகளை எழுதுதல்
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## டெஸ்ட்ரன்னர் கட்டமைப்பு ஆதரவு
 

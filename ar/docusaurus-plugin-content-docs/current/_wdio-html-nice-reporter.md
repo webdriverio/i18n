@@ -4,8 +4,6 @@ title: مُسجل HTML
 custom_edit_url: https://github.com/rpii/wdio-html-reporter/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-html-nice-reporter هو حزمة من طرف ثالث، لمزيد من المعلومات يرجى مراجعة [GitHub](https://github.com/rpii/wdio-html-reporter) | [npm](https://www.npmjs.com/package/wdio-html-nice-reporter)
  # wdio-html-nice-reporter

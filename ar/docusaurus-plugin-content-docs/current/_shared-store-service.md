@@ -4,8 +4,6 @@ title: خدمة المخزن المشترك
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-shared-store-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > تبادل البيانات بين العملية الرئيسية والعمال (المواصفات).
 

@@ -4,8 +4,6 @@ title: Servicio de Google Chat
 custom_edit_url: https://github.com/qajonatasmartins/wdio-google-chat-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @qajonatasmartins/wdio-google-chat-service es un paquete de terceros, para más información por favor consulta [GitHub](https://github.com/qajonatasmartins/wdio-google-chat-service) | [npm](https://www.npmjs.com/package/wdio-google-chat-service)
 

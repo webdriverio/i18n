@@ -3,8 +3,6 @@ id: writing-tests
 title: كتابة الاختبارات
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## دعم إطار عمل Testrunner
 

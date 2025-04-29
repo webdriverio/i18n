@@ -4,8 +4,6 @@ title: Wiederholungs-Service
 custom_edit_url: https://github.com/jwplayer/wdio-rerun-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-rerun-service ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/jwplayer/wdio-rerun-service) | [npm](https://www.npmjs.com/package/wdio-rerun-service)
 

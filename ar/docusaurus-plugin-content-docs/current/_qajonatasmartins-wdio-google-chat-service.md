@@ -4,8 +4,6 @@ title: خدمة دردشة جوجل
 custom_edit_url: https://github.com/qajonatasmartins/wdio-google-chat-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @qajonatasmartins/wdio-google-chat-service هي حزمة من طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/qajonatasmartins/wdio-google-chat-service) | [npm](https://www.npmjs.com/package/wdio-google-chat-service)
 

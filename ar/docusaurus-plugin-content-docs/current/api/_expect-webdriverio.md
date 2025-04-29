@@ -4,8 +4,6 @@ title: توقع
 custom_edit_url: https://github.com/webdriverio/expect-webdriverio/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 
 عند كتابة الاختبارات، غالبًا ما تحتاج إلى التحقق من أن القيم تلبي شروطًا معينة. يوفر لك `expect` الوصول إلى عدد من "المطابقات" التي تتيح لك التحقق من أشياء مختلفة على كائن `browser` أو `element` أو `mock`.

@@ -4,8 +4,6 @@ title: خدمة براوزرستاك
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-browserstack-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > خدمة WebdriverIO تدير النفق المحلي وبيانات الوصف للوظائف لمستخدمي BrowserStack.
 

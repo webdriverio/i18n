@@ -4,8 +4,6 @@ title: Appium Service
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-appium-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 Die Verwaltung des Appium-Servers liegt außerhalb des eigentlichen WebdriverIO-Projekts. Dieser Service hilft Ihnen, den Appium-Server nahtlos zu betreiben, wenn Sie Tests mit dem [WDIO Testrunner](https://webdriver.io/docs/clioptions) ausführen. Er startet den [Appium Server](https://appium.github.io/appium.io/docs/en/about-appium/getting-started/index.html#starting-appium) in einem Kindprozess.
 

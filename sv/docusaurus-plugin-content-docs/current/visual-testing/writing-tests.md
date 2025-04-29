@@ -3,8 +3,6 @@ id: writing-tests
 title: Skriva tester
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## Testrunner Framework Support
 

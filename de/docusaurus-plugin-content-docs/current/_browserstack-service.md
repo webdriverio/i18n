@@ -4,8 +4,6 @@ title: Browserstack Service
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-browserstack-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Ein WebdriverIO-Dienst, der lokale Tunnel und Job-Metadaten für BrowserStack-Benutzer verwaltet.
 

@@ -3,8 +3,6 @@ id: writing-tests
 title: نوشتن تست‌ها
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## پشتیبانی از فریم‌ورک Testrunner
 

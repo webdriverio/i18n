@@ -1,0 +1,53 @@
+---
+id: testingbot-service
+title: टेस्टिंगबॉट सर्विस
+custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-testingbot-service/README.md
+---
+
+
+> WebdriverIO सेवा जो टेस्टिंगबॉट के साथ बेहतर एकीकरण प्रदान करती है। यह जॉब मेटाडेटा ('name', 'passed', 'tags', 'public', 'build', 'extra') को अपडेट करती है और यदि चाहें तो टेस्टिंगबॉट टनल चलाती है।
+
+## इंस्टॉलेशन
+
+सबसे आसान तरीका है `@wdio/testingbot-service` को अपने `package.json` में एक devDependency के रूप में रखना, इसके माध्यम से:
+
+```sh
+npm install @wdio/testingbot-service --save-dev
+```
+
+`WebdriverIO` को कैसे इंस्टॉल करें, इस पर निर्देश [यहां](https://webdriver.io/docs/gettingstarted) मिल सकते हैं।
+
+## कॉन्फिगरेशन
+
+सेवा का उपयोग करने के लिए आपको अपनी `wdio.conf.js` फ़ाइल में `user` और `key` सेट करने की आवश्यकता है, और `hostname` विकल्प को `hub.testingbot.com` पर सेट करें। यदि आप [टेस्टिंगबॉट टनल](https://testingbot.com/support/other/tunnel) का उपयोग करना चाहते हैं तो आपको `tbTunnel: true` सेट करना होगा।
+
+```js
+// wdio.conf.js
+export const config = {
+    // ...
+    user: process.env.TB_KEY,
+    key: process.env.TB_SECRET,
+    services: [
+        ['testingbot', {
+            tbTunnel: true
+        }]
+    ],
+    // ...
+};
+```
+
+## विकल्प
+
+टेस्टिंगबॉट सेवा को अधिकृत करने के लिए आपके कॉन्फिग में [`user`](https://webdriver.io/docs/options#user) और [`key`](https://webdriver.io/docs/options#key) विकल्प होने चाहिए।
+
+### tbTunnel
+यदि सत्य है तो यह टेस्टिंगबॉट टनल चलाता है और आपके ब्राउज़र परीक्षण चलाने वाले टेस्टिंगबॉट वर्चुअल मशीन के बीच एक सुरक्षित कनेक्शन खोलता है।
+
+प्रकार: `Boolean`<br />
+डिफ़ॉल्ट: `false`
+
+### tbTunnelOpts
+टेस्टिंगबॉट टनल विकल्पों को लागू करें (जैसे पोर्ट नंबर या logFile सेटिंग्स बदलने के लिए)। अधिक जानकारी के लिए [इस सूची](https://github.com/testingbot/testingbot-tunnel-launcher) देखें।
+
+प्रकार: `Object`<br />
+डिफ़ॉल्ट: `{}`

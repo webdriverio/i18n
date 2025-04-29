@@ -4,8 +4,6 @@ title: Detección automática de importaciones faltantes con el servicio eslint
 custom_edit_url: https://github.com/jamesmortensen/wdio-eslinter-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-eslinter-service es un paquete de terceros, para más información por favor visita [GitHub](https://github.com/jamesmortensen/wdio-eslinter-service) | [npm](https://www.npmjs.com/package/wdio-eslinter-service)
 

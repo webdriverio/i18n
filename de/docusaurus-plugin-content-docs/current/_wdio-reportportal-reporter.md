@@ -4,8 +4,6 @@ title: Report Portal Reporter
 custom_edit_url: https://github.com/borisosipov/wdio-reportportal-reporter/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-reportportal-reporter ist ein Paket von Drittanbietern, weitere Informationen finden Sie unter [GitHub](https://github.com/borisosipov/wdio-reportportal-reporter) | [npm](https://www.npmjs.com/package/wdio-reportportal-reporter)
 

@@ -3,8 +3,6 @@ id: writing-tests
 title: Écriture de Tests
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## Support des Frameworks de Testrunner
 

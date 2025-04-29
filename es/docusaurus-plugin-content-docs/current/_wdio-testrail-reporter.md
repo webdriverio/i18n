@@ -4,8 +4,6 @@ title: Reportero Testrail Reporter
 custom_edit_url: https://github.com/webdriverio-community/wdio-testrail-reporter/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @wdio/testrail-reporter es un paquete de terceros, para más información por favor consulta [GitHub](https://github.com/webdriverio-community/wdio-testrail-reporter) | [npm](https://www.npmjs.com/package/@wdio/testrail-reporter)
 

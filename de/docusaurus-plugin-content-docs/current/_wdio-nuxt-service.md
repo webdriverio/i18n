@@ -4,8 +4,6 @@ title: Nuxt Service Dienst
 custom_edit_url: https://github.com/webdriverio-community/wdio-nuxt-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-nuxt-service ist ein Drittanbieterpaket, weitere Informationen finden Sie auf [GitHub](https://github.com/webdriverio-community/wdio-nuxt-service) | [npm](https://www.npmjs.com/package/wdio-nuxt-service)
 
@@ -19,7 +17,7 @@ Wenn Sie mit WebdriverIO beginnen, können Sie den Konfigurationsassistenten ver
 npm init wdio@latest .
 ```
 
-Es erkennt Ihr Projekt als Nuxt-Projekt und installiert alle notwendigen Plugins für Sie. Wenn Sie diesen Dienst zu einer bestehenden Konfiguration hinzufügen, können Sie ihn jederzeit über folgenden Befehl installieren:
+Es erkennt Ihr Projekt als Nuxt-Projekt und installiert alleg diff notwendigen Plugins für Sie. Wenn Sie diesen Dienst zu einer bestehenden Konfiguration hinzufügen, können Sie ihn jederzeit über folgenden Befehl installieren:
 
 ```bash
 npm install wdio-nuxt-service --save-dev

@@ -4,38 +4,36 @@ title: QUnit Service
 custom_edit_url: https://github.com/mauriciolauffer/wdio-qunit-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-qunit-service ist ein Paket von Drittanbietern. Weitere Informationen finden Sie auf [GitHub](https://github.com/mauriciolauffer/wdio-qunit-service) | [npm](https://www.npmjs.com/package/wdio-qunit-service)
 
 [![npm](https://img.shields.io/npm/v/wdio-qunit-service)](https://www.npmjs.com/package/wdio-qunit-service) [![test](https://github.com/mauriciolauffer/wdio-qunit-service/actions/workflows/test.yml/badge.svg)](https://github.com/mauriciolauffer/wdio-qunit-service/actions/workflows/test.yml)
 
-[WebdriverIO](https://webdriver.io/) (wdio) Service für die Ausführung von Browser-basierten [QUnit](https://qunitjs.com/) Tests und deren dynamische Konvertierung in `wdio` Test-Suites.
+[WebdriverIO](https://webdriver.io/) (wdio) Service zum Ausführen von browserbasiertem [QUnit](https://qunitjs.com/) Tests und deren dynamischer Konvertierung in `wdio` Testsuiten.
 
 ## Ersatz für Karma
 
-`QUnit Service` ist ein direkter Ersatz für diejenigen, die [Karma JS](https://karma-runner.github.io/latest/index.html) verwenden, um ihre `QUnit` Tests auszuführen ([karma-qunit](https://github.com/karma-runner/karma-qunit/), [karma-ui5](https://github.com/SAP/karma-ui5) oder jede andere Kombination aus Karma und QUnit). Karma ist [veraltet](https://github.com/karma-runner/karma) und Entwickler sollten zu modernen Alternativen wechseln!
+`QUnit Service` ist ein direkter Ersatz für diejenigen, die [Karma JS](https://karma-runner.github.io/latest/index.html) verwenden, um ihre `QUnit` Tests auszuführen ([karma-qunit](https://github.com/karma-runner/karma-qunit/), [karma-ui5](https://github.com/SAP/karma-ui5) oder jede andere Kombination aus Karma und QUnit). Karma ist [veraltet](https://github.com/karma-runner/karma) und Benutzer sollten zu modernen Alternativen wechseln!
 
-Wenn Sie Ihre QUnit-Tests so beibehalten möchten, wie sie sind, ohne Umschreiben und ohne Refactoring, ist `QUnit Service` alles, was Sie brauchen. Es führt Ihre QUnit-HTML-Dateien in einem Browser aus und erfasst alle Ergebnisse im `wdio`-Format.
+Wenn Sie Ihre QUnit-Tests so behalten möchten, wie sie sind, ohne Umschreiben und ohne Refaktorierung, ist `QUnit Service` alles, was Sie brauchen. Es führt Ihre QUnit-HTML-Dateien in einem Browser aus und erfasst alle Ergebnisse im `wdio`-Format.
 
-Dadurch können Entwickler `QUnit Service` in Verbindung mit allem verwenden, was im `wdio`-Ökosystem verfügbar ist.
+Dadurch können Entwickler `QUnit Service` zusammen mit allem anderen verwenden, was im `wdio`-Ökosystem verfügbar ist.
 
-Möchten Sie den Testlauf als [Video](https://webdriver.io/docs/wdio-video-reporter/) aufzeichnen? Vielleicht einen [Screenshot](https://webdriver.io/docs/api/browser/saveScreenshot/) erstellen oder als [PDF](https://webdriver.io/docs/api/browser/savePDF/) speichern? Die [Code-Abdeckung](https://www.npmjs.com/package/wdio-monocart-service) überprüfen? Die Testergebnisse im [JUnit](https://webdriver.io/docs/junit-reporter)-Format speichern? Nur zu, `QUnit Service` steht Ihnen nicht im Weg.
+Möchten Sie den Testlauf in einem [Video](https://webdriver.io/docs/wdio-video-reporter/) aufzeichnen? Vielleicht einen [Screenshot](https://webdriver.io/docs/api/browser/saveScreenshot/) machen oder als [PDF](https://webdriver.io/docs/api/browser/savePDF/) speichern? Die [Code-Abdeckung](https://www.npmjs.com/package/wdio-monocart-service) überprüfen? Die Testergebnisse im [JUnit](https://webdriver.io/docs/junit-reporter)-Format speichern? Nur zu, `QUnit Service` steht Ihnen nicht im Weg.
 
 ## Installation
 
-Nach der Konfiguration von `WebdriverIO` installieren Sie `wdio-qunit-service` als devDependency in Ihrer `package.json` Datei.
+Nach der Konfiguration von `WebdriverIO` installieren Sie `wdio-qunit-service` als devDependency in Ihrer `package.json`-Datei.
 
 ```shell
 npm install wdio-qunit-service --save-dev
 ```
 
-Wenn Sie `WebdriverIO` noch nicht konfiguriert haben, sehen Sie sich die offizielle [Dokumentation](https://webdriver.io/docs/gettingstarted) an.
+Wenn Sie `WebdriverIO` noch nicht konfiguriert haben, lesen Sie die offizielle [Dokumentation](https://webdriver.io/docs/gettingstarted).
 
 ## Konfiguration
 
-Um `QUnit Service` zu verwenden, müssen Sie es nur zur `services`-Liste in Ihrer `wdio.conf.js`-Datei hinzufügen. Die wdio-Dokumentation enthält alle Informationen zur [Konfigurationsdatei](https://webdriver.io/docs/configurationfile):
+Um `QUnit Service` zu verwenden, müssen Sie es lediglich zur Liste der `services` in Ihrer `wdio.conf.js`-Datei hinzufügen. Die wdio-Dokumentation enthält alle Informationen zur [Konfigurationsdatei](https://webdriver.io/docs/configurationfile):
 
 ```js
 // wdio.conf.js
@@ -63,11 +61,11 @@ describe("QUnit test page", () => {
 });
 ```
 
-Es wird empfohlen, für jede QUnit-HTML-Testseite eine WebdriverIO-Testdatei zu haben. Dies stellt sicher, dass die Tests parallel und vollständig isoliert ausgeführt werden.
+Es wird empfohlen, für jede QUnit-HTML-Testseite eine WebdriverIO-Testdatei zu erstellen. Dies stellt sicher, dass die Tests parallel und vollständig isoliert ausgeführt werden.
 
 ### Nur Konfiguration, keine .spec oder .test Dateien
 
-Wenn Sie keine spec/test-Dateien erstellen möchten, können Sie eine Liste von QUnit-HTML-Dateien an die Konfiguration übergeben, und die Tests werden automatisch generiert.
+Wenn Sie keine Spec/Test-Dateien erstellen möchten, können Sie eine Liste von QUnit-HTML-Dateien an die Konfiguration übergeben, und die Tests werden automatisch generiert.
 
 ```js
 // wdio.conf.js
@@ -93,7 +91,7 @@ Testergebnisse könnten so aussehen:
 
 ## Beispiele
 
-Schauen Sie sich den Ordner [examples](https://github.com/mauriciolauffer/wdio-qunit-service/blob/main/./examples/) für Beispiele mit `javascript`, `typescript` und mehr an.
+Schauen Sie sich den [examples](https://github.com/mauriciolauffer/wdio-qunit-service/blob/main/./examples/) Ordner für Beispiele mit `javascript`, `typescript` und mehr an.
 
 ### Verwendung in SAP Fiori / UI5 Apps
 
@@ -109,7 +107,7 @@ Einfaches [Beispiel](https://github.com/mauriciolauffer/wdio-qunit-service/blob/
 
 - Der Webserver muss vor der Ausführung der Tests laufen
 
-- Führen Sie es aus $ `wdio run webapp/test/wdio.conf.js`
+- Führen Sie aus $ `wdio run webapp/test/wdio.conf.js`
 
 ## Autor
 

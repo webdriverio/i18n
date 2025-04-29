@@ -4,8 +4,6 @@ title: مراسل الجدول الزمني
 custom_edit_url: https://github.com/QualityOps/wdio-timeline-reporter/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-timeline-reporter هي حزمة من طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/QualityOps/wdio-timeline-reporter) | [npm](https://www.npmjs.com/package/wdio-timeline-reporter)
 

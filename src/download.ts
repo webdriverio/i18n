@@ -36,10 +36,6 @@ async function fetchRepoContent(octokit: Octokit, path: string, ref: string) {
         ref,
     });
 
-    if (!Array.isArray(data)) {
-        throw new Error(`Repository path does not point to a directory: ${path}`);
-    }
-
     return data;
 }
 
@@ -63,6 +59,10 @@ export async function downloadDocs(path: string, branch: string, outputDir: stri
 
         // Get the contents of the repository path
         const items = await fetchRepoContent(octokit, path, branch);
+        if (!Array.isArray(items)) {
+            throw new Error(`Repository path does not point to a directory: ${path}`);
+        }
+
         console.log(`Found ${items.length} files/directories in ${path}`);
 
         // Process items in parallel with concurrency limit
@@ -92,6 +92,10 @@ async function processRepoItem(octokit: Octokit, item: any, outputDir: string, r
         // Get contents of the directory and process each item
         try {
             const subItems = await fetchRepoContent(octokit, item.path, ref);
+            if (!Array.isArray(subItems)) {
+                throw new Error(`Repository path does not point to a directory: ${path}`);
+            }
+
 
             // Process sub-items in parallel with concurrency limit
             await processBatch(
@@ -104,34 +108,20 @@ async function processRepoItem(octokit: Octokit, item: any, outputDir: string, r
         }
     } else if (item.type === 'file') {
         // Download the file content
-        const fileContent = await downloadFile(octokit, item.path, ref);
+        const fileContent = await fetchRepoContent(octokit, item.path, ref);
+
+        if (!('content' in fileContent) || typeof fileContent.content !== 'string' || !('encoding' in fileContent)) {
+            throw new Error(`File ${item.path} does not have content or encoding`);
+        }
+
+        const content = fileContent.encoding === 'base64'
+            ? Buffer.from(fileContent.content, 'base64').toString('utf-8')
+            : fileContent.content;
 
         // Save file to disk
-        await fs.writeFile(itemPath, fileContent);
+        await fs.writeFile(itemPath, content);
         console.log(`Downloaded: ${itemPath}`);
     }
-}
-
-/**
- * Download a single file's content
- */
-async function downloadFile(octokit: Octokit, path: string, ref: string): Promise<string> {
-    const { data } = await octokit.repos.getContent({
-        owner: REPO_OWNER,
-        repo: REPO_NAME,
-        path,
-        ref,
-    });
-
-    if ('content' in data && 'encoding' in data) {
-        // GitHub returns base64 encoded content
-        if (data.encoding === 'base64') {
-            return Buffer.from(data.content, 'base64').toString('utf-8');
-        }
-        return data.content;
-    }
-
-    throw new Error(`Could not retrieve content for file: ${path}`);
 }
 
 /**

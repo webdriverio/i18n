@@ -4,8 +4,6 @@ title: خدمة مقارنة الصور (اختبار التراجع البصر�
 custom_edit_url: https://github.com/webdriverio/visual-testing/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @wdio/visual-service هي حزمة طرف ثالث، لمزيد من المعلومات يرجى مراجعة [GitHub](https://github.com/webdriverio/visual-testing) | [npm](https://www.npmjs.com/package/@wdio/visual-service)
 

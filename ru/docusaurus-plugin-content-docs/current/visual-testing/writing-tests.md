@@ -3,8 +3,6 @@ id: writing-tests
 title: Написание тестов
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## Поддержка фреймворков тестирования
 

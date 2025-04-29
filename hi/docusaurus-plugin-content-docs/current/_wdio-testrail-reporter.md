@@ -1,0 +1,174 @@
+---
+id: wdio-testrail-reporter
+title: टेस्टरेल रिपोर्टर
+custom_edit_url: https://github.com/webdriverio-community/wdio-testrail-reporter/edit/main/README.md
+---
+
+
+> @wdio/testrail-reporter एक तृतीय पक्ष पैकेज है, अधिक जानकारी के लिए कृपया देखें [GitHub](https://github.com/webdriverio-community/wdio-testrail-reporter) | [npm](https://www.npmjs.com/package/@wdio/testrail-reporter)
+
+यह रिपोर्टर टेस्टरेल रिपोर्ट बनाता है। सबसे पहले आपको टेस्टरेल API को सक्षम करने की आवश्यकता है ताकि रिपोर्ट टेस्टरेल के साथ संवाद कर सके और परीक्षण परिणामों को पुश कर सके। ऐसा करने के लिए, अपने टेस्टरेल खाते में लॉग इन करें और Administration > Site Settings > API पर जाएं और सुनिश्चित करें कि आप Enable API के पास चेकबॉक्स पर क्लिक करें।
+
+परीक्षण विवरण में टेस्टरेल के टेस्ट केस ID को जोड़ें। उदाहरण के लिए:
+```javascript
+it("C123456 Page loads correctly", async () => {
+```
+यह कई केसIDs का भी समर्थन करता है। उदाहरण के लिए:
+```javascript
+it("C123456 C678910 Page loads correctly", async () => {
+```
+
+## इंस्टॉल
+
+रिपोर्टर का उपयोग करने के लिए, इसे अपने `package.json` में जोड़ें:
+
+```sh
+npm i --save-dev @wdio/testrail-reporter
+```
+
+## उपयोग
+
+अपने WDIO कॉन्फिग फ़ाइल में रिपोर्टर जोड़ें।
+
+जब आप एक नया टेस्ट रन बनाना चाहते हैं तब का उदाहरण:
+
+```javascript
+export const config = {
+    // ...
+    reporters:
+        [
+            ['testrail', {
+                projectId: 1,
+                suiteId: 1,
+                domain: 'xxxxx.testrail.io',
+                username: process.env.TESTRAIL_USERNAME,
+                apiToken: process.env.TESTRAIL_API_TOKEN,
+                runName: 'name for the test run',
+                oneReport: true,
+                includeAll: false,
+                caseIdTagPrefix: '' // used only for multi-platform Cucumber Scenarios
+            }
+        ]
+    ],
+    // ...
+}
+```
+
+जब आप मौजूदा टेस्ट रन को अपडेट करना चाहते हैं तब का उदाहरण:
+
+```javascript
+export const config = {
+    // ...
+    reporters:
+        [
+            ['testrail', {
+                projectId: 1,
+                suiteId: 1,
+                domain: 'xxxxx.testrail.io',
+                username: process.env.TESTRAIL_USERNAME,
+                apiToken: process.env.TESTRAIL_API_TOKEN,
+                existingRunId: 2345,
+                oneReport: true,
+                includeAll: false
+            }
+        ]
+    ],
+    // ...
+}
+```
+
+जब आपको निष्पादित करने के लिए टेस्ट सूट के आधार पर अलग-अलग प्रोजेक्ट और/या सूट आईडी की आवश्यकता होती है तब का उदाहरण:
+
+```javascript
+export const config = {
+    // ...
+    reporters:
+        [
+            ['testrail', {
+                projectId: process.env.TESTRAIL_PROJECT_NAME == 'PROJECT_A' ? 1 : 2,
+                suiteId: process.env.TESTRAIL_SUITE_NAME == 'SUITE_A' ? 10 : 20,
+                domain: 'xxxxx.testrail.io',
+                username: process.env.TESTRAIL_USERNAME,
+                apiToken: process.env.TESTRAIL_API_TOKEN,
+                runName: 'name for the test run',
+                oneReport: true,
+                includeAll: false
+            }
+        ]
+    ],
+    // ...
+}
+```
+
+
+## विकल्प
+
+### `projectId`
+
+टेस्टरेल प्रोजेक्ट का आईडी।
+
+प्रकार: `string`
+
+### `suiteId`
+
+सूट का आईडी, सूट 1 डिफ़ॉल्ट है।
+
+प्रकार: `string`
+
+### `domain`
+
+आपके टेस्टरेल इंस्टेंस का डोमेन, जैसे `your-domain.testrail.io`।
+
+प्रकार: `string`
+
+### `username`
+
+आपके टेस्टरेल इंस्टेंस का उपयोगकर्ता नाम।
+
+प्रकार: `string`
+
+### `apiToken`
+
+आपके टेस्टरेल इंस्टेंस का API टोकन।
+
+प्रकार: `string`
+
+### `runName`
+
+टेस्ट रन के लिए कस्टम नाम।
+
+प्रकार: `string`
+
+### `existingRunId`
+
+अपडेट करने के लिए मौजूदा टेस्ट रन का आईडी।
+
+प्रकार: `string`
+
+### `oneReport`
+
+एक एकल टेस्ट रन बनाएँ।
+
+प्रकार: `boolean`
+
+### `includeAll`
+
+टेस्ट रन में सूट के सभी परीक्षणों को शामिल करें।
+
+प्रकार: `boolean`
+
+### `caseIdTagPrefix`
+
+Cucumber टैग में केस ID का पता लगाने के लिए प्रीफिक्स का उपयोग करें, मल्टी-प्लेटफॉर्म Cucumber सिनारियो निष्पादन के लिए उपयोगी
+
+प्रकार: `string`
+
+### `useCucumber`
+
+इंगित करता है कि परीक्षण Cucumber फ्रेमवर्क का उपयोग करके लिखे गए हैं। डिफ़ॉल्ट रूप से, यह `false` पर सेट है।
+
+प्रकार: `boolean`
+
+---
+
+WebdriverIO पर अधिक जानकारी के लिए [होमपेज](https://webdriver.io) देखें।

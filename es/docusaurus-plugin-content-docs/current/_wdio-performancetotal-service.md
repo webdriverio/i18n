@@ -4,8 +4,6 @@ title: Servicio PerformanceTotal
 custom_edit_url: https://github.com/tzurp/performance-total/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-performancetotal-service es un paquete de terceros, para más información por favor consulta [GitHub](https://github.com/tzurp/performance-total) | [npm](https://www.npmjs.com/package/wdio-performancetotal-service)
 Nota:<br/>

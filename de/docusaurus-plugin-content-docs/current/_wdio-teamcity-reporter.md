@@ -4,8 +4,6 @@ title: Teamcity Reporter Reporter
 custom_edit_url: https://github.com/webdriverio-community/wdio-teamcity-reporter/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-teamcity-reporter ist ein Paket von Drittanbietern. Weitere Informationen finden Sie auf [GitHub](https://github.com/webdriverio-community/wdio-teamcity-reporter) | [npm](https://www.npmjs.com/package/wdio-teamcity-reporter)
 

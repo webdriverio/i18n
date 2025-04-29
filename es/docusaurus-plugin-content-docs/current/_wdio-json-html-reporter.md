@@ -4,8 +4,6 @@ title: Reportero JSON HTML Reporter
 custom_edit_url: https://github.com/aswinchembath/wdio-json-html-reporter/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-json-html-reporter es un paquete de terceros, para más información por favor consulta [GitHub](https://github.com/aswinchembath/wdio-json-html-reporter) | [npm](https://www.npmjs.com/package/wdio-json-html-reporter)
 

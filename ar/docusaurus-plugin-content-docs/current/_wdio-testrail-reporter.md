@@ -4,8 +4,6 @@ title: مُشغل تقارير Testrail
 custom_edit_url: https://github.com/webdriverio-community/wdio-testrail-reporter/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @wdio/testrail-reporter هو حزمة من طرف ثالث، لمزيد من المعلومات يرجى زيارة [GitHub](https://github.com/webdriverio-community/wdio-testrail-reporter) | [npm](https://www.npmjs.com/package/@wdio/testrail-reporter)
 

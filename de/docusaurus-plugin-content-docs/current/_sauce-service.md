@@ -4,8 +4,6 @@ title: Sauce Service
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-sauce-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 WebdriverIO-Service, der eine bessere Integration in Sauce Labs bietet. Dieser Service kann verwendet werden für:
 

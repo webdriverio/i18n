@@ -4,8 +4,6 @@ title: Expect
 custom_edit_url: https://github.com/webdriverio/expect-webdriverio/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 
 Beim Schreiben von Tests müssen Sie oft überprüfen, ob Werte bestimmte Bedingungen erfüllen. `expect` gibt Ihnen Zugriff auf eine Reihe von "Matchern", mit denen Sie verschiedene Dinge auf dem `browser`, einem `element` oder `mock` Objekt validieren können.

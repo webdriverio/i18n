@@ -4,8 +4,6 @@ title: خدمة دعم منصات اختبار مكونات Angular
 custom_edit_url: https://github.com/Badisi/wdio-harness/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @badisi/wdio-harness هي حزمة من طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/Badisi/wdio-harness) | [npm](https://www.npmjs.com/package/@badisi/wdio-harness)
 <h1 align="center">

@@ -4,8 +4,6 @@ title: مكتبة لشروط مفيدة متوقعة للخدمة
 custom_edit_url: https://github.com/webdriverio/wdio-wait-for/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-wait-for هي حزمة طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/webdriverio/wdio-wait-for) | [npm](https://www.npmjs.com/package/wdio-wait-for)
 

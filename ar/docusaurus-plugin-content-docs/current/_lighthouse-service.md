@@ -4,8 +4,6 @@ title: خدمة Lighthouse
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-lighthouse-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > خدمة WebdriverIO تسمح لك بتشغيل اختبارات إمكانية الوصول والأداء مع [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview).
 

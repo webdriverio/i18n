@@ -4,8 +4,6 @@ title: Servicio UI5
 custom_edit_url: https://github.com/js-soft/wdi5/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-ui5-service es un paquete de terceros, para más información consulte [GitHub](https://github.com/js-soft/wdi5) | [npm](https://www.npmjs.com/package/wdio-ui5-service)
 

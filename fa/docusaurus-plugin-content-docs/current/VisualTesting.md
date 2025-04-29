@@ -3,8 +3,6 @@ id: visual-testing
 title: تست بصری
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## چه کاری می‌تواند انجام دهد؟
 

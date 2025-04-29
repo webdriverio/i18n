@@ -4,8 +4,6 @@ title: Servicio de CleanupTotal
 custom_edit_url: https://github.com/tzurp/cleanup-total/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-cleanuptotal-service es un paquete de terceros, para más información por favor consulta [GitHub](https://github.com/tzurp/cleanup-total) | [npm](https://www.npmjs.com/package/wdio-cleanuptotal-service)
 

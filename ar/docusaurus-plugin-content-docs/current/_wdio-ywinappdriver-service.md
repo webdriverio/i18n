@@ -4,8 +4,6 @@ title: خدمة ywinappdriver
 custom_edit_url: https://github.com/licanhua/wdio-ywinappdriver-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-ywinappdriver-service هي حزمة طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/licanhua/wdio-ywinappdriver-service) | [npm](https://www.npmjs.com/package/wdio-ywinappdriver-service)
 

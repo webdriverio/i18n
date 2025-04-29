@@ -3,8 +3,6 @@ id: writing-tests
 title: 编写测试
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## 测试运行框架支持
 

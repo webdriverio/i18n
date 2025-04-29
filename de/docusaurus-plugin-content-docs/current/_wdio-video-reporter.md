@@ -4,8 +4,6 @@ title: Video Reporter
 custom_edit_url: https://github.com/presidenten/wdio-video-reporter/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-video-reporter ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/presidenten/wdio-video-reporter) | [npm](https://www.npmjs.com/package/wdio-video-reporter)
 

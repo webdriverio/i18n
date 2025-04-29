@@ -4,8 +4,6 @@ title: VSCode Erweiterung Test Service
 custom_edit_url: https://github.com/webdriverio-community/wdio-vscode-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-vscode-service ist ein Drittanbieter-Paket, für weitere Informationen siehe [GitHub](https://github.com/webdriverio-community/wdio-vscode-service) | [npm](https://www.npmjs.com/package/wdio-vscode-service)
 

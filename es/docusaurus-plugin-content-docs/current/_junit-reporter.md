@@ -4,8 +4,6 @@ title: Reportador Junit
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-junit-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Un reportador de WebdriverIO que crea informes XML basados en JUnit compatibles con [Jenkins](http://jenkins-ci.org/)
 

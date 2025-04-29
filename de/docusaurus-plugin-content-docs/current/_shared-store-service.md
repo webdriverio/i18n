@@ -4,8 +4,6 @@ title: Shared Store Service
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-shared-store-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Datenaustausch zwischen Hauptprozess und Workern (Specs).
 

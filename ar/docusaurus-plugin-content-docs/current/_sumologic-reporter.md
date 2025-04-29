@@ -4,8 +4,6 @@ title: مراسل سوموجيك
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-sumologic-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > مراسل WebdriverIO يرسل نتائج الاختبار إلى [Sumologic](https://www.sumologic.com/) لتحليل البيانات
 

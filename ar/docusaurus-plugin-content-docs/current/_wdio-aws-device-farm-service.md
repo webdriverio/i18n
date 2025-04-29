@@ -4,8 +4,6 @@ title: خدمة AWS Device Farm
 custom_edit_url: https://github.com/awslabs/wdio-aws-device-farm-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-aws-device-farm-service هي حزمة من طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/awslabs/wdio-aws-device-farm-service) | [npm](https://www.npmjs.com/package/wdio-aws-device-farm-service)
 ## خدمة AWS Device Farm لـ WebdriverIO

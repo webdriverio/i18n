@@ -4,8 +4,6 @@ title: Servicio de Simulación de Webdriver
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-webdriver-mock-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Servicio de simulación interno para crear stubs de todos los endpoints con fines de prueba.
 

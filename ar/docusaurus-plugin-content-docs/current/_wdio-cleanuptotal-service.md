@@ -4,8 +4,6 @@ title: خدمة التنظيف الشامل
 custom_edit_url: https://github.com/tzurp/cleanup-total/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-cleanuptotal-service هي حزمة من طرف ثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/tzurp/cleanup-total) | [npm](https://www.npmjs.com/package/wdio-cleanuptotal-service)
 

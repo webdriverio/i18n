@@ -4,8 +4,6 @@ title: خدمة الاعتراض
 custom_edit_url: https://github.com/webdriverio-community/wdio-intercept-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-intercept-service هي حزمة خارجية، لمزيد من المعلومات يرجى زيارة [GitHub](https://github.com/webdriverio-community/wdio-intercept-service) | [npm](https://www.npmjs.com/package/wdio-intercept-service)
 

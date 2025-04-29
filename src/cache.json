@@ -5164,7 +5164,11 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-theme-classic/footer.json": {
@@ -5172,7 +5176,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-theme-classic/navbar.json": {
@@ -5180,7 +5187,11 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-blog/options.json": {
@@ -5188,7 +5199,11 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_dot-reporter.md": {
@@ -5196,7 +5211,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_static-server-service.md": {
@@ -5204,7 +5222,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_testingbot-service.md": {
@@ -5212,7 +5232,8 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_shared-store-service.md": {
@@ -5220,7 +5241,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-cucumber-viewport-logger-service.md": {
@@ -5228,7 +5251,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_qajonatasmartins-wdio-google-chat-service.md": {
@@ -5236,7 +5262,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_sap_oss-wdio-qmate-service.md": {
@@ -5244,7 +5272,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_spec-reporter.md": {
@@ -5252,14 +5282,19 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_concise-reporter.md": {
     "hash": "242cca4133d5a2f52c0500eb1961dccf5d4568852c3a107376a9157c77dda013",
     "languages": [
       "ar",
-      "es"
+      "es",
+      "de",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-aws-device-farm-service.md": {
@@ -5267,7 +5302,11 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_json-reporter.md": {
@@ -5275,7 +5314,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-cleanuptotal-service.md": {
@@ -5283,7 +5325,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_appium-service.md": {
@@ -5291,7 +5336,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_badisi-wdio-harness.md": {
@@ -5299,7 +5346,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_sumologic-reporter.md": {
@@ -5307,7 +5357,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-docker-service.md": {
@@ -5315,7 +5368,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_sauce-service.md": {
@@ -5323,7 +5379,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_gmangiapelo-wdio-azure-devops-service.md": {
@@ -5331,7 +5390,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-delta-reporter-service.md": {
@@ -5339,7 +5401,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_lighthouse-service.md": {
@@ -5347,7 +5412,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_allure-reporter.md": {
@@ -5355,7 +5422,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_browserstack-service.md": {
@@ -5363,7 +5433,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fr",
+      "fa",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-cucumberjs-json-reporter.md": {
@@ -5371,7 +5444,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-reportportal-service.md": {
@@ -5379,7 +5455,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-light-reporter.md": {
@@ -5387,7 +5465,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_junit-reporter.md": {
@@ -5395,7 +5476,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-html-nice-reporter.md": {
@@ -5403,7 +5487,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-nuxt-service.md": {
@@ -5411,14 +5498,21 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-gmail-service.md": {
     "hash": "1fc89e7af5c161b4c91fe234a7f2a175ea52af329bbdfc9ad54061c8aee1ea8d",
     "languages": [
       "ar",
-      "es"
+      "es",
+      "de",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-ng-apimock-service.md": {
@@ -5426,7 +5520,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-rerun-service.md": {
@@ -5434,14 +5530,19 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-qunit-service.md": {
     "hash": "5f6e285b7d95a1935c3d6fd980965008464f8651887a28a8b2572e81e78cc98f",
     "languages": [
       "ar",
-      "es"
+      "es",
+      "de",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-performancetotal-service.md": {
@@ -5449,7 +5550,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-robonut-service.md": {
@@ -5457,7 +5560,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-reportportal-reporter.md": {
@@ -5465,7 +5570,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-eslinter-service.md": {
@@ -5473,7 +5580,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-lambdatest-service.md": {
@@ -5481,7 +5591,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-json-html-reporter.md": {
@@ -5489,7 +5602,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-winappdriver-service.md": {
@@ -5497,7 +5613,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-zafira-listener-service.md": {
@@ -5505,7 +5623,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-teamcity-reporter.md": {
@@ -5513,7 +5633,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-ui5-service.md": {
@@ -5521,7 +5643,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-novus-visual-regression-service.md": {
@@ -5529,7 +5653,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-tesults-service.md": {
@@ -5537,7 +5663,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_webdriver-mock-service.md": {
@@ -5545,7 +5673,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-slack-service.md": {
@@ -5553,7 +5683,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-testrail-reporter.md": {
@@ -5561,7 +5693,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-ywinappdriver-service.md": {
@@ -5569,7 +5703,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-timeline-reporter.md": {
@@ -5577,7 +5713,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-wait-for.md": {
@@ -5585,7 +5724,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-wiremock-service.md": {
@@ -5593,7 +5734,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-intercept-service.md": {
@@ -5601,7 +5744,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-video-reporter.md": {
@@ -5609,7 +5755,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-ocr-service.md": {
@@ -5617,7 +5765,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-vscode-service.md": {
@@ -5625,7 +5775,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-slack-reporter.md": {
@@ -5633,7 +5785,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-visual-service.md": {
@@ -5641,7 +5795,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-roku-service.md": {
@@ -5649,7 +5805,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_firefox-profile-service.md": {
@@ -5657,7 +5815,9 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_wdio-electron-service.md": {
@@ -5665,7 +5825,10 @@
     "languages": [
       "ar",
       "de",
-      "es"
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   }
 }

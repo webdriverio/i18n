@@ -3,8 +3,6 @@ id: writing-tests
 title: Написання тестів
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## Підтримка Testrunner-фреймворків
 

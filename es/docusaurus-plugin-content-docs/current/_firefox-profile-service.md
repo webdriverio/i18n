@@ -4,8 +4,6 @@ title: Servicio de Perfil de Firefox
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-firefox-profile-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ¿Quieres ejecutar tu navegador Firefox con una extensión específica o necesitas establecer algunas preferencias? Selenium te permite usar un perfil para el navegador Firefox pasando este perfil como cadena `base64` a la propiedad `moz:firefoxOptions.profile` en tus capacidades deseadas. Esto requiere construir ese perfil y convertirlo en `base64`. Este servicio para el [testrunner de wdio](https://webdriver.io/docs/clioptions) te quita el trabajo de compilar el perfil y te permite definir cómodamente tus opciones deseadas desde el archivo `wdio.conf.js`.
 

@@ -3,8 +3,6 @@ id: visual-testing
 title: ビジュアルテスト
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## どんなことができるの？
 

@@ -4,8 +4,6 @@ title: Azure DevOps Test Plans Service
 custom_edit_url: https://github.com/gianlucamangiapelo/wdio-azure-devops-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > @gmangiapelo/wdio-azure-devops-service ist ein Drittanbieter-Paket. Weitere Informationen finden Sie auf [GitHub](https://github.com/gianlucamangiapelo/wdio-azure-devops-service) | [npm](https://www.npmjs.com/package/@gmangiapelo/wdio-azure-devops-service)
 

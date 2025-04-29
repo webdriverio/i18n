@@ -4,8 +4,6 @@ title: خدمة ملف تعريف فايرفوكس
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-firefox-profile-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 هل تريد تشغيل متصفح فايرفوكس مع إضافة معينة أو تحتاج لضبط بعض التفضيلات؟ يسمح لك سيلينيوم باستخدام ملف تعريف لمتصفح فايرفوكس عن طريق تمرير هذا الملف كسلسلة `base64` إلى خاصية `moz:firefoxOptions.profile` في الإمكانيات المطلوبة. هذا يتطلب بناء ذلك الملف وتحويله إلى `base64`. تأخذ هذه الخدمة لـ [wdio testrunner](https://webdriver.io/docs/clioptions) عمل تجميع الملف من يديك وتتيح لك تحديد الخيارات المطلوبة بشكل مريح من ملف `wdio.conf.js`.
 

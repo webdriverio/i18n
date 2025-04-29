@@ -4,8 +4,6 @@ title: எதிர்பார்க்கவும்
 custom_edit_url: https://github.com/webdriverio/expect-webdriverio/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 
 சோதனைகளை எழுதும்போது, குறிப்பிட்ட நிபந்தனைகளை மதிப்புகள் பூர்த்தி செய்கின்றனவா என்பதை அடிக்கடி சரிபார்க்க வேண்டியிருக்கும். `expect` உங்களுக்கு பல "பொருத்திகளை" அணுகுவதற்கு அனுமதிக்கிறது, இது `browser`, `element` அல்லது `mock` பொருள் மீது பல்வேறு விஷயங்களை சரிபார்க்க உதவுகிறது.

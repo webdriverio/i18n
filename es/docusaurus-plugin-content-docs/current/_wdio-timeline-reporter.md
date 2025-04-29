@@ -4,8 +4,6 @@ title: Reporter de Línea de Tiempo
 custom_edit_url: https://github.com/QualityOps/wdio-timeline-reporter/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-timeline-reporter es un paquete de terceros, para más información por favor visita [GitHub](https://github.com/QualityOps/wdio-timeline-reporter) | [npm](https://www.npmjs.com/package/wdio-timeline-reporter)
 

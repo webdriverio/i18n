@@ -4,8 +4,6 @@ title: Servicio de Gmail
 custom_edit_url: https://github.com/webdriverio-community/wdio-gmail-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-gmail-service es un paquete de terceros, para más información por favor consulta [GitHub](https://github.com/webdriverio-community/wdio-gmail-service) | [npm](https://www.npmjs.com/package/wdio-gmail-service)
 

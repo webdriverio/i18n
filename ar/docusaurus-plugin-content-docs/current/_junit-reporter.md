@@ -4,8 +4,6 @@ title: مُسجِل Junit
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-junit-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > مُسجِل WebdriverIO ينشئ تقارير JUnit متوافقة مع [Jenkins](http://jenkins-ci.org/) بتنسيق XML
 

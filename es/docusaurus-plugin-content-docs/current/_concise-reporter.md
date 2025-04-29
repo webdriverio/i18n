@@ -4,8 +4,6 @@ title: Reportero Conciso
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-concise-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Un plugin de WebdriverIO para informar en estilo conciso.
 

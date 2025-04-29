@@ -4,8 +4,6 @@ title: Reportero Sumologic
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-sumologic-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > Un reportero de WebdriverIO que envía resultados de pruebas a [Sumologic](https://www.sumologic.com/) para análisis de datos
 

@@ -4,8 +4,6 @@ title: Servicio de Intercepción
 custom_edit_url: https://github.com/webdriverio-community/wdio-intercept-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-intercept-service es un paquete de terceros, para más información por favor visita [GitHub](https://github.com/webdriverio-community/wdio-intercept-service) | [npm](https://www.npmjs.com/package/wdio-intercept-service)
 

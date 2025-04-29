@@ -4,8 +4,6 @@ title: Electron Service
 custom_edit_url: https://github.com/webdriverio-community/wdio-electron-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-electron-service ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/webdriverio-community/wdio-electron-service) | [npm](https://www.npmjs.com/package/wdio-electron-service)
 

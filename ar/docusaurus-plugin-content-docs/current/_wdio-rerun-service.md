@@ -4,8 +4,6 @@ title: خدمة إعادة التشغيل
 custom_edit_url: https://github.com/jwplayer/wdio-rerun-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-rerun-service هي حزمة من الطرف الثالث، لمزيد من المعلومات يرجى الاطلاع على [GitHub](https://github.com/jwplayer/wdio-rerun-service) | [npm](https://www.npmjs.com/package/wdio-rerun-service)
 

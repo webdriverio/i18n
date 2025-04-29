@@ -4,8 +4,6 @@ title: Novus Visual Regression Service
 custom_edit_url: https://github.com/Jnegrier/wdio-novus-visual-regression-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-novus-visual-regression-service ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/Jnegrier/wdio-novus-visual-regression-service) | [npm](https://www.npmjs.com/package/wdio-novus-visual-regression-service)
 

@@ -4,8 +4,6 @@ title: HTML Reporter
 custom_edit_url: https://github.com/rpii/wdio-html-reporter/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-html-nice-reporter ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/rpii/wdio-html-reporter) | [npm](https://www.npmjs.com/package/wdio-html-nice-reporter)
  # wdio-html-nice-reporter

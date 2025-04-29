@@ -4,8 +4,6 @@ title: خدمة تيستنج بوت
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-testingbot-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > خدمة WebdriverIO التي توفر تكاملًا أفضل مع TestingBot. تقوم بتحديث بيانات الوظيفة (الاسم 'name'، النجاح 'passed'، العلامات 'tags'، العام 'public'، البناء 'build'، إضافات 'extra') وتشغيل نفق TestingBot إذا كان مطلوبًا.
 

@@ -4,8 +4,6 @@ title: مُراسل موجز
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-concise-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > إضافة WebdriverIO للإبلاغ بأسلوب موجز.
 

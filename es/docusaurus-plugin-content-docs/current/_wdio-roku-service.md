@@ -4,8 +4,6 @@ title: Servicio Roku
 custom_edit_url: https://github.com/theREDspace/wdio-roku-service/edit/main/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-roku-service es un paquete de terceros, para más información por favor consulte [GitHub](https://github.com/theREDspace/wdio-roku-service) | [npm](https://www.npmjs.com/package/wdio-roku-service)
 Este servicio reemplaza muchas partes de WebdriverIO para permitir que se utilicen con aplicaciones Roku y proporciona acceso al [Roku ECP](https://developer.roku.com/en-ca/docs/developer-program/dev-tools/external-control-api.md) para controlar el Roku durante las pruebas.

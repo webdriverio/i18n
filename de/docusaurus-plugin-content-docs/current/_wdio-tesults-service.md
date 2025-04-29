@@ -4,8 +4,6 @@ title: Tesults Service
 custom_edit_url: https://github.com/tesults/wdio-tesults-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-tesults-service ist ein Paket von Drittanbietern. Weitere Informationen finden Sie auf [GitHub](https://github.com/tesults/wdio-tesults-service) | [npm](https://www.npmjs.com/package/wdio-tesults-service)
 

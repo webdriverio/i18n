@@ -4,8 +4,6 @@ title: LambdaTest Service
 custom_edit_url: https://github.com/LambdaTest/wdio-lambdatest-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-lambdatest-service ist ein Paket von Drittanbietern, weitere Informationen finden Sie auf [GitHub](https://github.com/LambdaTest/wdio-lambdatest-service) | [npm](https://www.npmjs.com/package/wdio-lambdatest-service)
 

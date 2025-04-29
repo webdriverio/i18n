@@ -4,8 +4,6 @@ title: Servicio de Re-ejecución
 custom_edit_url: https://github.com/jwplayer/wdio-rerun-service/edit/master/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 > wdio-rerun-service es un paquete de terceros, para más información consulta [GitHub](https://github.com/jwplayer/wdio-rerun-service) | [npm](https://www.npmjs.com/package/wdio-rerun-service)
 

@@ -4,10 +4,8 @@ title: Kompakter Reporter
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-concise-reporter/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
-> Ein WebdriverIO-Plugin für Berichte im kompakten Stil.
+> Ein WebdriverIO-Plugin zur Berichterstattung im kompakten Stil.
 
 ## Installation
 
@@ -21,7 +19,7 @@ Anweisungen zur Installation von `WebdriverIO` finden Sie [hier](https://webdriv
 
 ## Konfiguration
 
-Der folgende Code zeigt die Standard-Konfiguration des wdio-Testrunners. Fügen Sie einfach `'concise'` als Reporter zum Array hinzu.
+Der folgende Code zeigt die Standardkonfiguration des wdio-Test-Runners. Fügen Sie einfach `'concise'` als Reporter zum Array hinzu.
 
 ```js
 // wdio.conf.js

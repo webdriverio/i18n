@@ -4,8 +4,6 @@ title: خدمة أبيوم
 custom_edit_url: https://github.com/webdriverio/webdriverio/edit/main/packages/wdio-appium-service/README.md
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 التعامل مع خادم أبيوم يقع خارج نطاق مشروع WebdriverIO الفعلي. تساعدك هذه الخدمة على تشغيل خادم أبيوم بسلاسة عند تشغيل الاختبارات باستخدام [WDIO testrunner](https://webdriver.io/docs/clioptions). تقوم بتشغيل [خادم أبيوم](https://appium.github.io/appium.io/docs/en/about-appium/getting-started/index.html#starting-appium) في عملية فرعية.
 

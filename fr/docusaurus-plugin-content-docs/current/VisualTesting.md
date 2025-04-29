@@ -3,8 +3,6 @@ id: visual-testing
 title: Tests Visuels
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 ## Que peut-il faire ?
 
