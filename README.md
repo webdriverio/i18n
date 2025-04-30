@@ -38,5 +38,6 @@ As noted in [`constants.ts`](/src/constants.ts), we currently translate into the
 - 🇮🇳 Tamil
 - 🇺🇦 Ukrainian
 - 🇨🇳 Chinese!
+- 🇻🇳 Vietnamese
 
 If you like your language supported as well, please raise a PR and add it to [`constants.ts`](/src/constants.ts#L35-L51).
