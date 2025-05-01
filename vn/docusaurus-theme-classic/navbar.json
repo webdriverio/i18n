@@ -1,0 +1,34 @@
+{
+  "logo.alt": {
+    "message": "WebdriverIO",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "Tài liệu",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.API": {
+    "message": "API",
+    "description": "Navbar item with label API"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Contribute": {
+    "message": "Đóng góp",
+    "description": "Navbar item with label Contribute"
+  },
+  "item.label.Community": {
+    "message": "Cộng đồng",
+    "description": "Navbar item with label Community"
+  },
+  "item.label.Sponsor": {
+    "message": "Nhà tài trợ",
+    "description": "Navbar item with label Sponsor"
+  },
+  "item.label.v9": {
+    "message": "v9",
+    "description": "Navbar item with label v9"
+  }
+}

@@ -1,0 +1,643 @@
+{
+  "features.realEnvironments": {
+    "message": "Kiểm thử trong Môi trường Thực"
+  },
+  "features.realEnvironments.description": {
+    "message": "WebdriverIO cho phép bạn kiểm thử trên trình duyệt thực tế hoặc thiết bị di động được sử dụng bởi người dùng của bạn."
+  },
+  "features.versatile": {
+    "message": "Linh hoạt và Giàu tính năng"
+  },
+  "features.versatile.description": {
+    "message": "Sử dụng WebdriverIO cho kiểm thử end-to-end hoặc kiểm thử đơn vị và thành phần trong trình duyệt."
+  },
+  "features.autoWait": {
+    "message": "Tự động Chờ đợi"
+  },
+  "features.autoWait.description": {
+    "message": "WebdriverIO tự động chờ các phần tử xuất hiện trước khi tương tác với chúng."
+  },
+  "features.standards": {
+    "message": "Dựa trên Tiêu chuẩn Web"
+  },
+  "homepage.features.crossBrowser": {
+    "message": "Hỗ trợ đa trình duyệt thông qua tự động hóa với {webdriverLink} và {bidiLink}."
+  },
+  "features.mobileSupport": {
+    "message": "Hỗ trợ Di động Gốc"
+  },
+  "homepage.features.mobile": {
+    "message": "Chạy WebdriverIO trên thiết bị di động thực, smart TV hoặc các thiết bị IoT khác thông qua {appiumLink}."
+  },
+  "features.community": {
+    "message": "Cộng đồng Tận tâm"
+  },
+  "homepage.features.support": {
+    "message": "Vận hành một {supportChannelLink} với hơn 8 nghìn thành viên và một hệ sinh thái phong phú của các plugin được cộng đồng duy trì."
+  },
+  "homepage.createBrowserAnimation": {
+    "message": "Tạo Dự án WebdriverIO để tự động hóa ứng dụng MacOS"
+  },
+  "homepage.logoCarousel.title": {
+    "message": "Ai đang sử dụng WebdriverIO?"
+  },
+  "sponsors.description.openSource": {
+    "message": "\n                Chúng tôi là một dự án mã nguồn mở với cam kết mạnh mẽ về tính minh bạch và quản trị cộng đồng.\n                Chúng tôi là một phần của {openJsFoundationLink} thuộc {linuxFoundationLink}. Dự án\n                được vận hành hoàn toàn bởi tình nguyện viên và được tài trợ bởi các công ty đầu tư mong muốn dự án thành công.\n                Nhóm dự án biết ơn sự tài trợ hào phóng của những công ty này.\n            "
+  },
+  "sponsors.description.support": {
+    "message": "Nếu bạn sử dụng WebdriverIO trong tổ chức của mình, vui lòng cân nhắc hỗ trợ dự án bằng cách {becomeASponsor}. Điều này sẽ giúp chúng tôi duy trì và phát triển dự án."
+  },
+  "homepage.tagline": {
+    "message": "Framework kiểm thử tự động hóa trình duyệt và di động thế hệ mới cho Node.js"
+  },
+  "homepage.getStarted": {
+    "message": "Bắt đầu"
+  },
+  "homepage.whyWebdriverIO": {
+    "message": "Tại sao chọn WebdriverIO?"
+  },
+  "homepage.viewOnGitHub": {
+    "message": "Xem trên GitHub"
+  },
+  "homepage.watchOnYouTube": {
+    "message": "Xem trên YouTube"
+  },
+  "homepage.sponsorSection.sponsoredBy": {
+    "message": "Được tài trợ bởi"
+  },
+  "homepage.componentTesting.heading": {
+    "message": "Kiểm thử E2E và Đơn vị / Thành phần trong trình duyệt thực!"
+  },
+  "homepage.componentTesting.para1": {
+    "message": "WebdriverIO là một framework {allInOne} cho phát triển ứng dụng web của bạn. Nó cho phép bạn chạy các bài kiểm thử thành phần nhỏ gọn cũng như các kịch bản kiểm thử e2e trong trình duyệt hoặc trên thiết bị di động. Điều này đảm bảo rằng bạn thực hiện kiểm thử trong môi trường {usedBy}."
+  },
+  "homepage.componentTesting.allInOne": {
+    "message": "tất cả trong một"
+  },
+  "homepage.componentTesting.usedBy": {
+    "message": "được sử dụng bởi người dùng của bạn"
+  },
+  "homepage.componentTesting.para2": {
+    "message": "Nó đi kèm với các chiến lược bộ chọn thông minh giúp đơn giản hóa việc tương tác, ví dụ: với {reactComponents} hoặc chạy các truy vấn bộ chọn sâu với cấu trúc shadow DOM lồng nhau. Vì các tương tác diễn ra thông qua giao thức tự động hóa tiêu chuẩn, nên đảm bảo chúng hoạt động tự nhiên và không chỉ được mô phỏng bằng JavaScript."
+  },
+  "homepage.componentTesting.easySetup": {
+    "message": "Cài đặt dễ dàng cho kiểm thử thành phần web với:"
+  },
+  "homepage.hightlight.createProject": {
+    "message": "Bắt đầu với WebdriverIO trong Vài Giây"
+  },
+  "homepage.hightlight.createProject.para1": {
+    "message": "Testrunner của WebdriverIO đi kèm với giao diện dòng lệnh cung cấp tiện ích cấu hình mạnh mẽ và giúp bạn tạo môi trường kiểm thử trong chưa đầy một phút. Nó cho phép bạn lựa chọn từ các tích hợp framework kiểm thử có sẵn và dễ dàng thêm tất cả các plugin reporter và service được hỗ trợ!"
+  },
+  "homepage.hightlight.createProject.para2": {
+    "message": "Chỉ với một lệnh đơn giản, bạn có thể thiết lập một bộ kiểm thử hoàn chỉnh:"
+  },
+  "homepage.highlight.getStartedOnYouTube": {
+    "message": "Bắt đầu tìm hiểu thêm về WebdriverIO và cách bắt đầu {youtubeLink}."
+  },
+  "homepage.highlight.getStartedOnYouTube.label;": {
+    "message": "trên YouTube",
+    "description": "The label for the link to my YouTube"
+  },
+  "homepage.hightlight.watch": {
+    "message": "Xem các bài nói về WebdriverIO"
+  },
+  "homepage.highlight.conferenceTalk": {
+    "message": "Cộng đồng xung quanh WebdriverIO đang tích cực phát biểu tại các nhóm người dùng hoặc hội nghị khác nhau về các chủ đề cụ thể xoay quanh kiểm thử tự động với WebdriverIO. Hãy xem bài nói này trên {youtubeLink} của {videoAuthor} tại {conferenceLink}."
+  },
+  "homepage.highlight.conferenceTalk.label": {
+    "message": "Các tính năng WebdriverIO yêu thích của tôi",
+    "description": "The conference talk title"
+  },
+  "homepage.highlight.youtubeChannels": {
+    "message": "Ngoài ra còn có nhiều kênh YouTube với các hướng dẫn hữu ích từ các thành viên cộng đồng như {channelOne}, {channelTwo} hoặc {channelThree}."
+  },
+  "homepage.hightlight.lighthouse": {
+    "message": "Tích hợp Google Lighthouse"
+  },
+  "homepage.highlight.devtools": {
+    "message": "WebdriverIO không chỉ chạy tự động hóa dựa trên giao thức WebDriver, mà còn tận dụng API trình duyệt gốc để kích hoạt tích hợp với các công cụ phát triển phổ biến như {devtoolsLink} hoặc {lighthouseLink}. Với plugin {devtoolsServiceLink}, bạn có quyền truy cập vào các lệnh để xác thực xem ứng dụng của bạn có phải là ứng dụng PWA hợp lệ hay không cũng như các lệnh để thu thập số liệu hiệu suất giao diện người dùng như `speedIndex` và các số liệu khác."
+  },
+  "homepage.hightlight.devtools": {
+    "message": "Tích hợp với các công cụ phát triển như:"
+  },
+  "until August 2025": {
+    "message": "đến tháng 8 năm 2025"
+  },
+  "since July 2024": {
+    "message": "từ tháng 7 năm 2024"
+  },
+  "since February 2022": {
+    "message": "từ tháng 2 năm 2022"
+  },
+  "since January 2021": {
+    "message": "từ tháng 1 năm 2021"
+  },
+  "since December 2019": {
+    "message": "từ tháng 12 năm 2019"
+  },
+  "versions.description": {
+    "message": "Trang phiên bản Docusaurus 2 liệt kê tất cả các phiên bản tài liệu của trang web"
+  },
+  "WebdriverIO documentation versions": {
+    "message": "Phiên bản tài liệu WebdriverIO"
+  },
+  "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
+    "message": "Nhóm dự án phát hành các phiên bản chính mới khoảng một năm một lần. Trạng thái phát hành LTS là \"hỗ trợ dài hạn\", thường đảm bảo rằng các lỗi nghiêm trọng sẽ được sửa trong tổng cộng 12 tháng cho đến khi có phiên bản chính mới."
+  },
+  "Current version (Stable)": {
+    "message": "Phiên bản hiện tại (Ổn định)"
+  },
+  "Here you can find the documentation for current released version.": {
+    "message": "Ở đây bạn có thể tìm thấy tài liệu cho phiên bản hiện tại đã phát hành."
+  },
+  "Documentation": {
+    "message": "Tài liệu"
+  },
+  "Release Notes": {
+    "message": "Ghi chú phát hành"
+  },
+  "Past versions": {
+    "message": "Phiên bản trước đây"
+  },
+  "Here you can find documentation for previous versions of Docusaurus.": {
+    "message": "Ở đây bạn có thể tìm thấy tài liệu cho các phiên bản trước của Docusaurus."
+  },
+  "theme.ErrorPageContent.title": {
+    "message": "Trang này đã gặp sự cố.",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Cuộn lên đầu trang",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.blog.archive.title": {
+    "message": "Lưu trữ",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "Lưu trữ",
+    "description": "The page & hero description of the blog archive page"
+  },
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "Điều hướng trang danh sách blog",
+    "description": "The ARIA label for the blog pagination"
+  },
+  "theme.blog.paginator.newerEntries": {
+    "message": "Bài mới hơn",
+    "description": "The label used to navigate to the newer blog posts page (previous page)"
+  },
+  "theme.blog.paginator.olderEntries": {
+    "message": "Bài cũ hơn",
+    "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "Điều hướng trang bài đăng blog",
+    "description": "The ARIA label for the blog posts pagination"
+  },
+  "theme.blog.post.paginator.newerPost": {
+    "message": "Bài mới hơn",
+    "description": "The blog post button label to navigate to the newer/previous post"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Bài cũ hơn",
+    "description": "The blog post button label to navigate to the older/next post"
+  },
+  "theme.tags.tagsPageLink": {
+    "message": "Xem tất cả thẻ",
+    "description": "The label of the link targeting the tag list page"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "Chuyển đổi giữa chế độ tối và sáng (hiện tại là {mode})",
+    "description": "The ARIA label for the navbar color mode toggle"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "chế độ tối",
+    "description": "The name for the dark color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "chế độ sáng",
+    "description": "The name for the light color mode"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Đường dẫn",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "1 mục|{count} mục",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.docs.paginator.navAriaLabel": {
+    "message": "Trang tài liệu",
+    "description": "The ARIA label for the docs pagination"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "Trước",
+    "description": "The label used to navigate to the previous doc"
+  },
+  "theme.docs.paginator.next": {
+    "message": "Tiếp",
+    "description": "The label used to navigate to the next doc"
+  },
+  "theme.docs.versionBadge.label": {
+    "message": "Phiên bản: {versionLabel}"
+  },
+  "theme.docs.versions.unreleasedVersionLabel": {
+    "message": "Đây là tài liệu chưa phát hành cho phiên bản {siteTitle} {versionLabel}.",
+    "description": "The label used to tell the user that he's browsing an unreleased doc version"
+  },
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "Đây là tài liệu cho {siteTitle} {versionLabel}, hiện không còn được bảo trì tích cực.",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "Để xem tài liệu cập nhật, hãy xem {latestVersionLink} ({versionLabel}).",
+    "description": "The label used to tell the user to check the latest version"
+  },
+  "theme.docs.versions.latestVersionLinkLabel": {
+    "message": "phiên bản mới nhất",
+    "description": "The label used for the latest version suggestion link label"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "Một tài liệu được gắn thẻ|{count} tài liệu được gắn thẻ",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} với \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
+  "theme.common.editThisPage": {
+    "message": "Chỉnh sửa trang này",
+    "description": "The link label to edit the current page"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "Liên kết trực tiếp đến {heading}",
+    "description": "Title for link to heading"
+  },
+  "theme.lastUpdated.atDate": {
+    "message": " vào {date}",
+    "description": "The words used to describe on which date a page has been last updated"
+  },
+  "theme.lastUpdated.byUser": {
+    "message": " bởi {user}",
+    "description": "The words used to describe by who the page has been last updated"
+  },
+  "theme.lastUpdated.lastUpdatedAtBy": {
+    "message": "Cập nhật lần cuối{atDate}{byUser}",
+    "description": "The sentence used to display when a page has been last updated, and by who"
+  },
+  "theme.NotFound.title": {
+    "message": "Không tìm thấy trang",
+    "description": "The title of the 404 page"
+  },
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "Phiên bản",
+    "description": "The label for the navbar versions dropdown on mobile view"
+  },
+  "theme.admonition.caution": {
+    "message": "thận trọng",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.admonition.danger": {
+    "message": "nguy hiểm",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "thông tin",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.note": {
+    "message": "ghi chú",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "mẹo",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.warning": {
+    "message": "cảnh báo",
+    "description": "The default label used for the Warning admonition (:::warning)"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "Thẻ:",
+    "description": "The label alongside a tag list"
+  },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Đóng",
+    "description": "The ARIA label for close button of announcement bar"
+  },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "Điều hướng bài đăng blog gần đây",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Bật/tắt ngắt dòng",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
+  "theme.CodeBlock.copied": {
+    "message": "Đã sao chép",
+    "description": "The copied button label on code blocks"
+  },
+  "theme.CodeBlock.copyButtonAriaLabel": {
+    "message": "Sao chép mã vào clipboard",
+    "description": "The ARIA label for copy code blocks button"
+  },
+  "theme.CodeBlock.copy": {
+    "message": "Sao chép",
+    "description": "The copy button label on code blocks"
+  },
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "Mở rộng danh mục thanh bên '{label}'",
+    "description": "The ARIA label to expand the sidebar category"
+  },
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "Thu gọn danh mục thanh bên '{label}'",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.NavBar.navAriaLabel": {
+    "message": "Chính",
+    "description": "The ARIA label for the main navigation"
+  },
+  "theme.NotFound.p1": {
+    "message": "Chúng tôi không thể tìm thấy những gì bạn đang tìm kiếm.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "Vui lòng liên hệ với chủ sở hữu trang web đã liên kết bạn đến URL gốc và cho họ biết liên kết của họ bị hỏng.",
+    "description": "The 2nd paragraph of the 404 page"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "Trên trang này",
+    "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "Đọc trong một phút|Đọc trong {readingTime} phút",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Ngôn ngữ",
+    "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.blog.post.readMore": {
+    "message": "Đọc thêm",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "Đọc thêm về {title}",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Trang chủ",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "Thu gọn thanh bên",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.collapseButtonAriaLabel": {
+    "message": "Thu gọn thanh bên",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.navAriaLabel": {
+    "message": "Thanh bên tài liệu",
+    "description": "The ARIA label for the sidebar navigation"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "← Quay lại menu chính",
+    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "Đóng thanh điều hướng",
+    "description": "The ARIA label for close button of mobile sidebar"
+  },
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "Chuyển đổi thanh điều hướng",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "Mở rộng thanh bên",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonAriaLabel": {
+    "message": "Mở rộng thanh bên",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "Xem tất cả {count} kết quả"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "Tìm thấy một tài liệu|Tìm thấy {count} tài liệu",
+    "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "Kết quả tìm kiếm cho \"{query}\"",
+    "description": "The search page title for non-empty query"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "Tìm kiếm tài liệu",
+    "description": "The search page title for empty query"
+  },
+  "theme.SearchPage.inputPlaceholder": {
+    "message": "Nhập từ khóa tìm kiếm tại đây",
+    "description": "The placeholder for search page input"
+  },
+  "theme.SearchPage.inputLabel": {
+    "message": "Tìm kiếm",
+    "description": "The ARIA label for search page input"
+  },
+  "theme.SearchPage.algoliaLabel": {
+    "message": "Tìm kiếm bởi Algolia",
+    "description": "The ARIA label for Algolia mention"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "Không tìm thấy kết quả nào",
+    "description": "The paragraph for empty search result"
+  },
+  "theme.SearchPage.fetchingNewResults": {
+    "message": "Đang tải kết quả mới...",
+    "description": "The paragraph for fetching new search results"
+  },
+  "theme.SearchBar.label": {
+    "message": "Tìm kiếm",
+    "description": "The ARIA label and placeholder for search button"
+  },
+  "theme.SearchModal.searchBox.resetButtonTitle": {
+    "message": "Xóa truy vấn",
+    "description": "The label and ARIA label for search box reset button"
+  },
+  "theme.SearchModal.searchBox.cancelButtonText": {
+    "message": "Hủy",
+    "description": "The label and ARIA label for search box cancel button"
+  },
+  "theme.SearchModal.startScreen.recentSearchesTitle": {
+    "message": "Gần đây",
+    "description": "The title for recent searches"
+  },
+  "theme.SearchModal.startScreen.noRecentSearchesText": {
+    "message": "Không có tìm kiếm gần đây",
+    "description": "The text when no recent searches"
+  },
+  "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
+    "message": "Lưu tìm kiếm này",
+    "description": "The label for save recent search button"
+  },
+  "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
+    "message": "Xóa tìm kiếm này khỏi lịch sử",
+    "description": "The label for remove recent search button"
+  },
+  "theme.SearchModal.startScreen.favoriteSearchesTitle": {
+    "message": "Yêu thích",
+    "description": "The title for favorite searches"
+  },
+  "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
+    "message": "Xóa tìm kiếm này khỏi mục yêu thích",
+    "description": "The label for remove favorite search button"
+  },
+  "theme.SearchModal.errorScreen.titleText": {
+    "message": "Không thể lấy kết quả",
+    "description": "The title for error screen of search modal"
+  },
+  "theme.SearchModal.errorScreen.helpText": {
+    "message": "Bạn có thể muốn kiểm tra kết nối mạng của mình.",
+    "description": "The help text for error screen of search modal"
+  },
+  "theme.SearchModal.footer.selectText": {
+    "message": "để chọn",
+    "description": "The explanatory text of the action for the enter key"
+  },
+  "theme.SearchModal.footer.selectKeyAriaLabel": {
+    "message": "Phím Enter",
+    "description": "The ARIA label for the Enter key button that makes the selection"
+  },
+  "theme.SearchModal.footer.navigateText": {
+    "message": "để điều hướng",
+    "description": "The explanatory text of the action for the Arrow up and Arrow down key"
+  },
+  "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
+    "message": "Mũi tên lên",
+    "description": "The ARIA label for the Arrow up key button that makes the navigation"
+  },
+  "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
+    "message": "Mũi tên xuống",
+    "description": "The ARIA label for the Arrow down key button that makes the navigation"
+  },
+  "theme.SearchModal.footer.closeText": {
+    "message": "để đóng",
+    "description": "The explanatory text of the action for Escape key"
+  },
+  "theme.SearchModal.footer.closeKeyAriaLabel": {
+    "message": "Phím Escape",
+    "description": "The ARIA label for the Escape key button that close the modal"
+  },
+  "theme.SearchModal.footer.searchByText": {
+    "message": "Tìm kiếm bởi",
+    "description": "The text explain that the search is making by Algolia"
+  },
+  "theme.SearchModal.noResultsScreen.noResultsText": {
+    "message": "Không có kết quả cho",
+    "description": "The text explains that there are no results for the following search"
+  },
+  "theme.SearchModal.noResultsScreen.suggestedQueryText": {
+    "message": "Thử tìm kiếm",
+    "description": "The text for the suggested query when no results are found for the following search"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
+    "message": "Tin rằng truy vấn này nên trả về kết quả?",
+    "description": "The text for the question where the user thinks there are missing results"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
+    "message": "Hãy cho chúng tôi biết.",
+    "description": "The text for the link to report missing results"
+  },
+  "theme.SearchModal.placeholder": {
+    "message": "Tìm kiếm tài liệu",
+    "description": "The placeholder of the input of the DocSearch pop-up modal"
+  },
+  "theme.IdealImageMessage.loading": {
+    "message": "Đang tải...",
+    "description": "When the full-scale image is loading"
+  },
+  "theme.IdealImageMessage.load": {
+    "message": "Nhấp để tải{sizeMessage}",
+    "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
+  },
+  "theme.IdealImageMessage.offline": {
+    "message": "Trình duyệt của bạn đang ngoại tuyến. Hình ảnh không được tải",
+    "description": "When the user is viewing an offline document"
+  },
+  "theme.IdealImageMessage.404error": {
+    "message": "404. Không tìm thấy hình ảnh",
+    "description": "When the image is not found"
+  },
+  "theme.IdealImageMessage.error": {
+    "message": "Lỗi. Nhấp để tải lại",
+    "description": "When the image fails to load for unknown error"
+  },
+  "theme.blog.post.plurals": {
+    "message": "Một bài đăng|{count} bài đăng",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} được gắn thẻ với \"{tagName}\"",
+    "description": "The title of the page for a blog tag"
+  },
+  "theme.blog.author.pageTitle": {
+    "message": "{authorName} - {nPosts}",
+    "description": "The title of the page for a blog author"
+  },
+  "theme.blog.authorsList.pageTitle": {
+    "message": "Tác giả",
+    "description": "The title of the authors page"
+  },
+  "theme.blog.authorsList.viewAll": {
+    "message": "Xem tất cả tác giả",
+    "description": "The label of the link targeting the blog authors page"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "Tác giả này chưa viết bài đăng nào.",
+    "description": "The text for authors with 0 blog post"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "Trang không được liệt kê",
+    "description": "The unlisted content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "Trang này không được liệt kê. Công cụ tìm kiếm sẽ không lập chỉ mục nó, và chỉ những người dùng có liên kết trực tiếp mới có thể truy cập.",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "Trang bản nháp",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "Trang này là bản nháp. Nó sẽ chỉ hiển thị trong môi trường phát triển và sẽ bị loại trừ khỏi bản dựng sản phẩm.",
+    "description": "The draft content banner message"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Thử lại",
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
+  },
+  "theme.common.skipToMainContent": {
+    "message": "Chuyển đến nội dung chính",
+    "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+  },
+  "theme.tags.tagsPageTitle": {
+    "message": "Thẻ",
+    "description": "The title of the tag list page"
+  },
+  "sponsors.supportChannel": {
+    "message": "kênh hỗ trợ"
+  },
+  "sponsors.title": {
+    "message": "Mã nguồn mở và Quản trị mở"
+  },
+  "sponsors.premiumSponsors": {
+    "message": "💎 Nhà tài trợ Premium"
+  },
+  "sponsors.goldSponsors": {
+    "message": "🥇 Nhà tài trợ Vàng"
+  },
+  "sponsors.becomeASponsor": {
+    "message": "trở thành nhà tài trợ"
+  }
+}
