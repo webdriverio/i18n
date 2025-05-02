@@ -48,5 +48,5 @@ export const LANGUAGES_TO_TRANSLATE = {
     ta: 'Tamil',
     uk: 'Ukrainian',
     zh: 'Chinese',
-    vn: 'Vietnamese',
+    vi: 'Vietnamese',
 } as const;
