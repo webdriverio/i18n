@@ -9,7 +9,7 @@
     "message": "Wszechstronny i bogaty w funkcje"
   },
   "features.versatile.description": {
-    "message": "Używaj WebdriverIO do pełnych testów end-to-end lub testów jednostkowych i komponentowych w przeglądarce."
+    "message": "Używaj WebdriverIO do pełnego testowania e2e lub testów jednostkowych i komponentów w przeglądarce."
   },
   "features.autoWait": {
     "message": "Automatyczne oczekiwanie"
@@ -21,13 +21,13 @@
     "message": "Oparty na standardach webowych"
   },
   "homepage.features.crossBrowser": {
-    "message": "Wsparcie dla wielu przeglądarek dzięki automatyzacji poprzez {webdriverLink} i {bidiLink}."
+    "message": "Wsparcie dla wielu przeglądarek poprzez automatyzację za pomocą {webdriverLink} i {bidiLink}."
   },
   "features.mobileSupport": {
     "message": "Natywne wsparcie dla urządzeń mobilnych"
   },
   "homepage.features.mobile": {
-    "message": "Uruchamiaj WebdriverIO na prawdziwych urządzeniach mobilnych, smart TV lub innych urządzeniach IoT za pomocą {appiumLink}."
+    "message": "Uruchamiaj WebdriverIO na rzeczywistych urządzeniach mobilnych, smart TV lub innych urządzeniach IoT za pomocą {appiumLink}."
   },
   "features.community": {
     "message": "Zaangażowana społeczność"
@@ -39,13 +39,13 @@
     "message": "Utwórz projekt WebdriverIO do automatyzacji aplikacji MacOS"
   },
   "homepage.logoCarousel.title": {
-    "message": "Kto korzysta z WebdriverIO?"
+    "message": "Kto używa WebdriverIO?"
   },
   "sponsors.description.openSource": {
-    "message": "\n                Jesteśmy projektem open source z silnym zaangażowaniem w przejrzystość i zarządzanie przez społeczność.\n                Jesteśmy częścią {openJsFoundationLink}, która jest częścią {linuxFoundationLink}. Projekt\n                jest prowadzony całkowicie przez wolontariuszy i finansowany przez zaangażowane firmy, które chcą, by projekt odnosił sukcesy.\n                Zespół projektowy jest wdzięczny za hojne sponsorowanie przez te firmy.\n            "
+    "message": "\n                Jesteśmy projektem open source z silnym zaangażowaniem w przejrzystość i zarządzanie przez społeczność.\n                Jesteśmy częścią {openJsFoundationLink}, która jest częścią {linuxFoundationLink}. Projekt\n                jest w całości prowadzony przez wolontariuszy i finansowany przez zaangażowane firmy, które chcą, aby projekt odniósł sukces.\n                Zespół projektu jest wdzięczny za hojne sponsorowanie przez te firmy.\n            "
   },
   "sponsors.description.support": {
-    "message": "Jeśli korzystasz z WebdriverIO w swojej organizacji, rozważ wsparcie projektu poprzez {becomeASponsor}. Pomoże nam to utrzymać projekt w działaniu i rozwoju."
+    "message": "Jeśli używasz WebdriverIO w swojej organizacji, rozważ wsparcie projektu poprzez {becomeASponsor}. Pomoże nam to utrzymać projekt w działaniu i rozwoju."
   },
   "homepage.tagline": {
     "message": "Framework do automatyzacji testów przeglądarek i urządzeń mobilnych nowej generacji dla Node.js"
@@ -57,40 +57,40 @@
     "message": "Dlaczego WebdriverIO?"
   },
   "homepage.viewOnGitHub": {
-    "message": "Zobacz na GitHubie"
+    "message": "Zobacz na GitHub"
   },
   "homepage.watchOnYouTube": {
-    "message": "Obejrzyj na YouTube"
+    "message": "Oglądaj na YouTube"
   },
   "homepage.sponsorSection.sponsoredBy": {
     "message": "Sponsorowane przez"
   },
   "homepage.componentTesting.heading": {
-    "message": "Testy E2E oraz jednostkowe / komponentowe w prawdziwej przeglądarce!"
+    "message": "Testowanie E2E i jednostkowe / komponentowe w rzeczywistej przeglądarce!"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIO jest frameworkiem {allInOne} do tworzenia aplikacji webowych. Umożliwia uruchamianie małych i lekkich testów komponentów, a także scenariuszy testowych e2e w przeglądarce lub na urządzeniu mobilnym. Gwarantuje to, że testy są przeprowadzane w środowisku {usedBy}."
+    "message": "WebdriverIO to framework {allInOne} do rozwoju aplikacji webowych. Umożliwia uruchamianie małych i lekkich testów komponentów, a także scenariuszy testowych e2e w przeglądarce lub na urządzeniu mobilnym. Gwarantuje to testowanie w środowisku {usedBy}."
   },
   "homepage.componentTesting.allInOne": {
-    "message": "typu all-in-one"
+    "message": "wszystko w jednym"
   },
   "homepage.componentTesting.usedBy": {
     "message": "używanym przez Twoich użytkowników"
   },
   "homepage.componentTesting.para2": {
-    "message": "Posiada inteligentne strategie selektorów, które upraszczają interakcję np. z {reactComponents} lub wykonywanie zaawansowanych zapytań selektorów z zagnieżdżonymi drzewami shadow DOM. Ponieważ interakcje odbywają się za pośrednictwem standardowego protokołu automatyzacji, gwarantuje to, że zachowują się natywnie i nie są tylko emulowane przez JavaScript."
+    "message": "Zawiera inteligentne strategie selektorów, które upraszczają interakcję np. z {reactComponents} lub wykonywanie głębokich zapytań selektorowych z zagnieżdżonymi drzewami shadow DOM. Ponieważ interakcje odbywają się za pośrednictwem standardowego protokołu automatyzacji, gwarantuje to, że zachowują się natywnie i nie są jedynie emulowane przez JavaScript."
   },
   "homepage.componentTesting.easySetup": {
-    "message": "Łatwa konfiguracja do testowania komponentów webowych z:"
+    "message": "Łatwa konfiguracja testowania komponentów webowych z:"
   },
   "homepage.hightlight.createProject": {
     "message": "Rozpocznij pracę z WebdriverIO w kilka sekund"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "Test runner WebdriverIO zawiera interfejs wiersza poleceń, który oferuje potężne narzędzie konfiguracyjne i pomaga stworzyć środowisko testowe w mniej niż minutę. Pozwala wybrać spośród dostępnych integracji frameworków testowych i łatwo dodawać wszystkie obsługiwane wtyczki raportowe i usługowe!"
+    "message": "Testrunner WebdriverIO posiada interfejs wiersza poleceń, który zapewnia potężne narzędzie konfiguracyjne i pomaga stworzyć konfigurację testów w mniej niż minutę. Pozwala wybrać spośród dostępnych integracji frameworków testowych i łatwo dodać wszystkie obsługiwane wtyczki raportów i usług!"
   },
   "homepage.hightlight.createProject.para2": {
-    "message": "Za pomocą jednego prostego polecenia możesz skonfigurować pełny zestaw testów:"
+    "message": "Za pomocą jednego prostego polecenia możesz skonfigurować kompletny zestaw testów:"
   },
   "homepage.highlight.getStartedOnYouTube": {
     "message": "Zacznij uczyć się więcej o WebdriverIO i jak zacząć {youtubeLink}."
@@ -100,26 +100,26 @@
     "description": "The label for the link to my YouTube"
   },
   "homepage.hightlight.watch": {
-    "message": "Obejrzyj prezentacje o WebdriverIO"
+    "message": "Oglądaj prezentacje o WebdriverIO"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "Społeczność WebdriverIO aktywnie występuje na różnych grupach użytkowników lub konferencjach na konkretne tematy związane z automatyzacją testów z WebdriverIO. Sprawdź tę prezentację na {youtubeLink} autorstwa {videoAuthor} na {conferenceLink}."
+    "message": "Społeczność wokół WebdriverIO aktywnie wypowiada się na różnych grupach użytkowników lub konferencjach na temat konkretnych zagadnień związanych z automatycznym testowaniem z WebdriverIO. Sprawdź tę prezentację na {youtubeLink} autorstwa {videoAuthor} na {conferenceLink}."
   },
   "homepage.highlight.conferenceTalk.label": {
     "message": "Moje ulubione funkcje WebdriverIO",
     "description": "The conference talk title"
   },
   "homepage.highlight.youtubeChannels": {
-    "message": "Istnieje również wiele kanałów YouTube z przydatnymi tutorialami przygotowanymi przez członków społeczności, takich jak {channelOne}, {channelTwo} czy {channelThree}."
+    "message": "Istnieje również wiele kanałów YouTube z przydatnymi tutorialami od członków społeczności, takich jak {channelOne}, {channelTwo} czy {channelThree}."
   },
   "homepage.hightlight.lighthouse": {
     "message": "Integracja z Google Lighthouse"
   },
   "homepage.highlight.devtools": {
-    "message": "WebdriverIO nie tylko obsługuje automatyzację opartą na protokole WebDriver, ale również wykorzystuje natywne API przeglądarek, aby umożliwić integrację z popularnymi narzędziami deweloperskimi, takimi jak {devtoolsLink} lub {lighthouseLink}. Dzięki wtyczce {devtoolsServiceLink} masz dostęp do poleceń sprawdzających, czy Twoja aplikacja jest prawidłową aplikacją PWA, a także do poleceń rejestrujących metryki wydajności frontendu, takie jak `speedIndex` i inne."
+    "message": "WebdriverIO nie tylko uruchamia automatyzację opartą na protokole WebDriver, ale również wykorzystuje natywne API przeglądarek, aby umożliwić integrację z popularnymi narzędziami programistycznymi, takimi jak {devtoolsLink} lub {lighthouseLink}. Dzięki wtyczce {devtoolsServiceLink} masz dostęp do poleceń sprawdzających, czy Twoja aplikacja jest ważną aplikacją PWA, a także do poleceń przechwytujących metryki wydajności frontendu, takie jak `speedIndex` i inne."
   },
   "homepage.hightlight.devtools": {
-    "message": "Integracja z narzędziami deweloperskimi takimi jak:"
+    "message": "Integracja z narzędziami programistycznymi takimi jak:"
   },
   "until August 2025": {
     "message": "do sierpnia 2025"
@@ -143,7 +143,7 @@
     "message": "Wersje dokumentacji WebdriverIO"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "Zespół projektu wydaje nowe główne wersje mniej więcej w cyklu rocznym. Status wydania LTS oznacza \"długoterminowe wsparcie\", które zazwyczaj gwarantuje, że krytyczne błędy będą naprawiane przez łącznie 12 miesięcy, aż do wydania nowej głównej wersji."
+    "message": "Zespół projektu wydaje nowe główne wersje mniej więcej w cyklu rocznym. Status wydania LTS oznacza \"długoterminowe wsparcie\", które zazwyczaj gwarantuje, że krytyczne błędy będą naprawiane przez łącznie 12 miesięcy do czasu wydania nowej głównej wersji."
   },
   "Current version (Stable)": {
     "message": "Obecna wersja (Stabilna)"
@@ -192,7 +192,7 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Nawigacja po stronie wpisu na blogu",
+    "message": "Nawigacja po wpisach na blogu",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
@@ -251,7 +251,7 @@
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "Aktualna dokumentacja znajduje się w {latestVersionLink} ({versionLabel}).",
+    "message": "Aby zobaczyć aktualną dokumentację, przejdź do {latestVersionLink} ({versionLabel}).",
     "description": "The label used to tell the user to check the latest version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
@@ -259,7 +259,7 @@
     "description": "The label used for the latest version suggestion link label"
   },
   "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "Jeden dokument oznaczony|{count} dokumentów oznaczonych",
+    "message": "Jeden dokument oznaczony tagiem|{count} dokumentów oznaczonych tagiem",
     "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.docs.tagDocListPageTitle": {
@@ -295,7 +295,7 @@
     "description": "The label for the navbar versions dropdown on mobile view"
   },
   "theme.admonition.caution": {
-    "message": "uwaga",
+    "message": "ostrożnie",
     "description": "The default label used for the Caution admonition (:::caution)"
   },
   "theme.admonition.danger": {
@@ -307,7 +307,7 @@
     "description": "The default label used for the Info admonition (:::info)"
   },
   "theme.admonition.note": {
-    "message": "notatka",
+    "message": "uwaga",
     "description": "The default label used for the Note admonition (:::note)"
   },
   "theme.admonition.tip": {
@@ -327,7 +327,7 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Nawigacja po ostatnich wpisach na blogu",
+    "message": "Nawigacja po najnowszych wpisach na blogu",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.CodeBlock.wordWrapToggle": {
@@ -347,11 +347,11 @@
     "description": "The copy button label on code blocks"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "Rozwiń kategorię bocznego paska '{label}'",
+    "message": "Rozwiń kategorię paska bocznego '{label}'",
     "description": "The ARIA label to expand the sidebar category"
   },
   "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "Zwiń kategorię bocznego paska '{label}'",
+    "message": "Zwiń kategorię paska bocznego '{label}'",
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
@@ -363,7 +363,7 @@
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Skontaktuj się z właścicielem strony, który podał Ci oryginalny adres URL i poinformuj go, że link jest uszkodzony.",
+    "message": "Prosimy o kontakt z właścicielem strony, który przekierował Cię na oryginalny adres URL i poinformowanie go, że link jest uszkodzony.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
@@ -371,7 +371,7 @@
     "description": "The label used by the button on the collapsible TOC component"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "1 min czytania|{readingTime} min czytania",
+    "message": "Czas czytania: 1 min|Czas czytania: {readingTime} min",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.navbar.mobileLanguageDropdown.label": {
@@ -438,7 +438,7 @@
     "description": "The search page title for empty query"
   },
   "theme.SearchPage.inputPlaceholder": {
-    "message": "Wpisz szukane hasło tutaj",
+    "message": "Wpisz swoje wyszukiwanie tutaj",
     "description": "The placeholder for search page input"
   },
   "theme.SearchPage.inputLabel": {
@@ -530,7 +530,7 @@
     "description": "The ARIA label for the Escape key button that close the modal"
   },
   "theme.SearchModal.footer.searchByText": {
-    "message": "Szukaj przez",
+    "message": "Wyszukiwanie przez",
     "description": "The text explain that the search is making by Algolia"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
@@ -550,7 +550,7 @@
     "description": "The text for the link to report missing results"
   },
   "theme.SearchModal.placeholder": {
-    "message": "Szukaj w dokumentacji",
+    "message": "Przeszukaj dokumentację",
     "description": "The placeholder of the input of the DocSearch pop-up modal"
   },
   "theme.IdealImageMessage.loading": {
@@ -570,7 +570,7 @@
     "description": "When the image is not found"
   },
   "theme.IdealImageMessage.error": {
-    "message": "Błąd. Kliknij, aby załadować ponownie",
+    "message": "Błąd. Kliknij, aby odświeżyć",
     "description": "When the image fails to load for unknown error"
   },
   "theme.blog.post.plurals": {
@@ -598,11 +598,11 @@
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
-    "message": "Strona nielistowana",
+    "message": "Strona niewylistowana",
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Ta strona jest nielistowana. Wyszukiwarki nie będą jej indeksować, a tylko użytkownicy posiadający bezpośredni link mogą ją otworzyć.",
+    "message": "Ta strona jest niewylistowana. Wyszukiwarki nie będą jej indeksować, a tylko użytkownicy posiadający bezpośredni link mają do niej dostęp.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
@@ -610,7 +610,7 @@
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Ta strona jest wersją roboczą. Będzie widoczna tylko w środowisku deweloperskim i zostanie wykluczona z kompilacji produkcyjnej.",
+    "message": "Ta strona jest szkicem. Będzie widoczna tylko w środowisku deweloperskim i zostanie wykluczona z wersji produkcyjnej.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -639,5 +639,9 @@
   },
   "sponsors.becomeASponsor": {
     "message": "zostanie sponsorem"
+  },
+  "contributors.thankYouMessage": {
+    "message": "Chcielibyśmy wyrazić nasze serdeczne podziękowania wszystkim współtwórcom, którzy pomogli uczynić {toolName} potężnym narzędziem, jakim jest dzisiaj. Wasze zaangażowanie i wysiłek są naprawdę doceniane!",
+    "description": "Thank you message for contributors"
   }
 }

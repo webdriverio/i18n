@@ -3,16 +3,16 @@
     "message": "اختبار في بيئات حقيقية"
   },
   "features.realEnvironments.description": {
-    "message": "يسمح لك WebdriverIO بالاختبار في متصفحات أو أجهزة محمولة حقيقية يستخدمها المستخدمون."
+    "message": "يتيح لك WebdriverIO الاختبار في متصفحات أو أجهزة محمولة حقيقية يستخدمها المستخدمون."
   },
   "features.versatile": {
-    "message": "متعدد الاستخدامات وغني بالميزات"
+    "message": "متعدد الاستخدامات وغني بالمميزات"
   },
   "features.versatile.description": {
-    "message": "استخدم WebdriverIO للاختبارات الشاملة من البداية إلى النهاية أو اختبارات الوحدات والمكونات في المتصفح."
+    "message": "استخدم WebdriverIO للاختبارات الشاملة من البداية إلى النهاية أو اختبار الوحدات والمكونات في المتصفح."
   },
   "features.autoWait": {
-    "message": "الانتظار التلقائي"
+    "message": "انتظار تلقائي"
   },
   "features.autoWait.description": {
     "message": "ينتظر WebdriverIO تلقائيًا ظهور العناصر قبل التفاعل معها."
@@ -21,19 +21,19 @@
     "message": "مبني على معايير الويب"
   },
   "homepage.features.crossBrowser": {
-    "message": "دعم متعدد المتصفحات عبر الأتمتة من خلال {webdriverLink} و {bidiLink}."
+    "message": "دعم عبر المتصفحات من خلال الأتمتة عبر {webdriverLink} و {bidiLink}."
   },
   "features.mobileSupport": {
-    "message": "دعم الأجهزة المحمولة الأصلي"
+    "message": "دعم المحمول الأصلي"
   },
   "homepage.features.mobile": {
-    "message": "قم بتشغيل WebdriverIO على أجهزة محمولة حقيقية، أجهزة تلفاز ذكية أو أجهزة إنترنت الأشياء الأخرى من خلال {appiumLink}."
+    "message": "قم بتشغيل WebdriverIO على أجهزة محمولة حقيقية أو أجهزة تلفزيون ذكية أو أجهزة إنترنت الأشياء الأخرى من خلال {appiumLink}."
   },
   "features.community": {
     "message": "مجتمع ملتزم"
   },
   "homepage.features.support": {
-    "message": "تشغيل {supportChannelLink} يضم أكثر من 8 آلاف عضو ونظام بيئي غني من الإضافات التي يتم صيانتها من قبل المجتمع."
+    "message": "إدارة {supportChannelLink} يضم أكثر من 8 آلاف عضو ونظام بيئي غني من المكونات الإضافية التي يديرها المجتمع."
   },
   "homepage.createBrowserAnimation": {
     "message": "إنشاء مشروع WebdriverIO لأتمتة تطبيقات MacOS"
@@ -42,13 +42,13 @@
     "message": "من يستخدم WebdriverIO؟"
   },
   "sponsors.description.openSource": {
-    "message": "\n                نحن مشروع مفتوح المصدر ملتزم بالشفافية وحوكمة المجتمع.\n                نحن جزء من {openJsFoundationLink} التي هي جزء من {linuxFoundationLink}. يتم إدارة المشروع\n                بالكامل من قبل متطوعين وممول من قبل شركات مستثمرة ترغب في رؤية المشروع ينجح.\n                فريق المشروع ممتن للرعاية السخية من هذه الشركات.\n            "
+    "message": "\n                نحن مشروع مفتوح المصدر مع التزام قوي بالشفافية وحوكمة المجتمع.\n                نحن جزء من {openJsFoundationLink} التي تعد جزءًا من {linuxFoundationLink}. يتم إدارة المشروع\n                بالكامل من قبل متطوعين وتموله شركات مستثمرة تريد رؤية نجاح المشروع.\n                فريق المشروع ممتن للرعاية السخية من هذه الشركات.\n            "
   },
   "sponsors.description.support": {
-    "message": "إذا كنت تستخدم WebdriverIO داخل مؤسستك، يرجى النظر في دعم المشروع من خلال {becomeASponsor}. سيساعدنا ذلك في الحفاظ على المشروع وتطويره."
+    "message": "إذا كنت تستخدم WebdriverIO داخل منظمتك، فيرجى التفكير في دعم المشروع من خلال {becomeASponsor}. سيساعدنا ذلك في الحفاظ على استمرار المشروع وتطويره."
   },
   "homepage.tagline": {
-    "message": "إطار عمل اختبار أتمتة المتصفح والجوال من الجيل التالي لـ Node.js"
+    "message": "إطار عمل اختبار أتمتة للمتصفح والجوال من الجيل القادم لـ Node.js"
   },
   "homepage.getStarted": {
     "message": "البدء"
@@ -66,34 +66,34 @@
     "message": "برعاية"
   },
   "homepage.componentTesting.heading": {
-    "message": "اختبار من البداية إلى النهاية واختبار الوحدات/المكونات في متصفح حقيقي!"
+    "message": "اختبار من البداية إلى النهاية واختبار الوحدات / المكونات في متصفح حقيقي!"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIO هو إطار عمل {allInOne} لتطوير تطبيقات الويب. يمكنك من تشغيل اختبارات مكونات صغيرة وخفيفة الوزن بالإضافة إلى تشغيل سيناريوهات اختبار من البداية إلى النهاية في المتصفح أو على جهاز محمول. هذا يضمن لك إجراء الاختبار في بيئة {usedBy}."
+    "message": "WebdriverIO هو إطار عمل {allInOne} لتطوير تطبيقات الويب الخاصة بك. يتيح لك تشغيل اختبارات مكونات صغيرة وخفيفة الوزن بالإضافة إلى تشغيل سيناريوهات اختبار شاملة في المتصفح أو على جهاز محمول. هذا يضمن لك إجراء الاختبار في بيئة {usedBy}."
   },
   "homepage.componentTesting.allInOne": {
     "message": "شامل"
   },
   "homepage.componentTesting.usedBy": {
-    "message": "يستخدمها مستخدموك"
+    "message": "يستخدمها المستخدمون"
   },
   "homepage.componentTesting.para2": {
-    "message": "يأتي مع استراتيجيات انتقاء ذكية تبسط التفاعل مع {reactComponents} أو تشغيل استعلامات انتقاء عميقة مع أشجار DOM الظلية المتداخلة. بما أن التفاعلات تحدث من خلال بروتوكول أتمتة قياسي، فمن المضمون أنها تتصرف بشكل طبيعي وليست مجرد محاكاة JavaScript."
+    "message": "يأتي مع استراتيجيات اختيار ذكية تبسط التفاعل مثلاً مع {reactComponents} أو تنفيذ استعلامات محدد عميقة مع أشجار DOM الظلية المتداخلة. نظرًا لأن التفاعلات تحدث من خلال بروتوكول أتمتة موحد، فمن المضمون أنها تتصرف بشكل طبيعي وليست مجرد محاكاة JavaScript."
   },
   "homepage.componentTesting.easySetup": {
     "message": "إعداد سهل لاختبار مكونات الويب مع:"
   },
   "homepage.hightlight.createProject": {
-    "message": "ابدأ مع WebdriverIO في ثوان"
+    "message": "ابدأ مع WebdriverIO في ثوانٍ"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "يأتي برنامج اختبار WebdriverIO مع واجهة سطر أوامر توفر أداة تكوين قوية وتساعدك على إنشاء إعداد الاختبار الخاص بك في أقل من دقيقة. يتيح لك الاختيار من تكاملات إطار عمل الاختبار المتاحة ويسمح بسهولة بإضافة جميع المراسلين المدعومين وإضافات الخدمة!"
+    "message": "يأتي مشغل اختبار WebdriverIO مع واجهة سطر أوامر توفر أداة تكوين قوية وتساعدك على إنشاء إعداد الاختبار الخاص بك في أقل من دقيقة. يتيح لك اختيار تكاملات إطار العمل للاختبار المتاحة ويسمح بسهولة بإضافة جميع المكونات الإضافية للمراسلين والخدمات المدعومة!"
   },
   "homepage.hightlight.createProject.para2": {
-    "message": "بأمر بسيط واحد فقط، يمكنك إعداد مجموعة اختبار كاملة:"
+    "message": "بأمر واحد بسيط يمكنك إعداد مجموعة اختبار كاملة:"
   },
   "homepage.highlight.getStartedOnYouTube": {
-    "message": "ابدأ بمعرفة المزيد عن WebdriverIO وكيفية البدء {youtubeLink}."
+    "message": "ابدأ في تعلم المزيد حول WebdriverIO وكيفية البدء {youtubeLink}."
   },
   "homepage.highlight.getStartedOnYouTube.label;": {
     "message": "على يوتيوب",
@@ -103,23 +103,23 @@
     "message": "شاهد محادثات حول WebdriverIO"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "يتحدث المجتمع حول WebdriverIO بنشاط في مختلف مجموعات المستخدمين أو المؤتمرات حول مواضيع محددة تتعلق بالاختبار الآلي باستخدام WebdriverIO. تحقق من هذه المحادثة على {youtubeLink} بواسطة {videoAuthor} في {conferenceLink}."
+    "message": "يتحدث المجتمع حول WebdriverIO بنشاط في مجموعات المستخدمين المختلفة أو المؤتمرات حول مواضيع محددة تتعلق بالاختبار الآلي باستخدام WebdriverIO. شاهد هذه المحادثة على {youtubeLink} بواسطة {videoAuthor} في {conferenceLink}."
   },
   "homepage.highlight.conferenceTalk.label": {
     "message": "ميزاتي المفضلة في WebdriverIO",
     "description": "The conference talk title"
   },
   "homepage.highlight.youtubeChannels": {
-    "message": "هناك أيضًا العديد من قنوات يوتيوب مع دروس مفيدة من أعضاء المجتمع مثل {channelOne} و {channelTwo} أو {channelThree}."
+    "message": "هناك أيضًا العديد من قنوات يوتيوب مع دروس مفيدة من أعضاء المجتمع مثل {channelOne}، {channelTwo} أو {channelThree}."
   },
   "homepage.hightlight.lighthouse": {
     "message": "تكامل Google Lighthouse"
   },
   "homepage.highlight.devtools": {
-    "message": "لا يقوم WebdriverIO بتشغيل الأتمتة فقط بناءً على بروتوكول WebDriver، بل يستفيد أيضًا من واجهات برمجة تطبيقات المتصفح الأصلية لتمكين التكامل مع أدوات المطور الشهيرة مثل {devtoolsLink} أو {lighthouseLink}. مع ملحق {devtoolsServiceLink} لديك وصول إلى الأوامر للتحقق مما إذا كان تطبيقك عبارة عن تطبيق PWA صالح بالإضافة إلى أوامر التقاط مقاييس أداء الواجهة الأمامية مثل `speedIndex` وغيرها."
+    "message": "لا يقوم WebdriverIO بتشغيل الأتمتة فقط بناءً على بروتوكول WebDriver، بل يستفيد أيضًا من واجهات برمجة التطبيقات الأصلية للمتصفح لتمكين التكامل مع أدوات المطور الشائعة مثل {devtoolsLink} أو {lighthouseLink}. مع المكون الإضافي {devtoolsServiceLink}، يمكنك الوصول إلى الأوامر للتحقق مما إذا كان تطبيقك هو تطبيق PWA صالح بالإضافة إلى الأوامر لالتقاط مقاييس أداء الواجهة الأمامية مثل `speedIndex` وغيرها."
   },
   "homepage.hightlight.devtools": {
-    "message": "التكامل مع أدوات المطور مثل:"
+    "message": "تكامل مع أدوات المطور مثل:"
   },
   "until August 2025": {
     "message": "حتى أغسطس 2025"
@@ -143,13 +143,13 @@
     "message": "إصدارات توثيق WebdriverIO"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "يُصدر فريق المشروع إصدارات رئيسية جديدة تقريبًا على أساس سنوي. حالة إصدار LTS هي \"دعم طويل الأمد\"، والذي يضمن عادة أن الأخطاء الحرجة سيتم إصلاحها لمدة 12 شهرًا إجمالاً حتى يتم إصدار إصدار رئيسي جديد."
+    "message": "يقوم فريق المشروع بإصدار إصدارات رئيسية جديدة تقريبًا على أساس سنوي. حالة إصدار LTS هي \"دعم طويل الأمد\"، والتي تضمن عادةً أنه سيتم إصلاح الأخطاء الحرجة لمدة إجمالية قدرها 12 شهرًا حتى يتم إصدار إصدار رئيسي جديد."
   },
   "Current version (Stable)": {
     "message": "الإصدار الحالي (مستقر)"
   },
   "Here you can find the documentation for current released version.": {
-    "message": "هنا يمكنك العثور على التوثيق للإصدار الحالي المنشور."
+    "message": "هنا يمكنك العثور على الوثائق للإصدار الحالي المطلق."
   },
   "Documentation": {
     "message": "التوثيق"
@@ -161,14 +161,14 @@
     "message": "الإصدارات السابقة"
   },
   "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "هنا يمكنك العثور على التوثيق للإصدارات السابقة من Docusaurus."
+    "message": "هنا يمكنك العثور على وثائق للإصدارات السابقة من Docusaurus."
   },
   "theme.ErrorPageContent.title": {
-    "message": "تعطلت هذه الصفحة.",
+    "message": "هذه الصفحة تعطلت.",
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "التمرير إلى الأعلى",
+    "message": "انتقل إلى أعلى",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
@@ -192,7 +192,7 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "التنقل في صفحة مقال المدونة",
+    "message": "التنقل في صفحة منشور المدونة",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
@@ -228,7 +228,7 @@
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
-    "message": "صفحات التوثيق",
+    "message": "صفحات الوثائق",
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
@@ -243,11 +243,11 @@
     "message": "الإصدار: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "هذه وثائق غير منشورة لإصدار {siteTitle} {versionLabel}.",
+    "message": "هذه وثائق غير مصدرة لـ {siteTitle} الإصدار {versionLabel}.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "هذه هي وثائق {siteTitle} {versionLabel}، التي لم تعد تتم صيانتها بنشاط.",
+    "message": "هذه وثائق {siteTitle} {versionLabel}، وهي لم تعد قيد الصيانة النشطة.",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
@@ -327,7 +327,7 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "التنقل في منشورات المدونة الحديثة",
+    "message": "التنقل في المنشورات الحديثة للمدونة",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.CodeBlock.wordWrapToggle": {
@@ -355,7 +355,7 @@
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
-    "message": "الرئيسية",
+    "message": "رئيسي",
     "description": "The ARIA label for the main navigation"
   },
   "theme.NotFound.p1": {
@@ -371,7 +371,7 @@
     "description": "The label used by the button on the collapsible TOC component"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "دقيقة واحدة للقراءة|{readingTime} دقيقة للقراءة",
+    "message": "دقيقة واحدة للقراءة|{readingTime} دقائق للقراءة",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.navbar.mobileLanguageDropdown.label": {
@@ -399,7 +399,7 @@
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.navAriaLabel": {
-    "message": "الشريط الجانبي للتوثيق",
+    "message": "شريط التنقل الجانبي للوثائق",
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
@@ -423,7 +423,7 @@
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
-    "message": "عرض كل النتائج {count}"
+    "message": "عرض كل {count} النتائج"
   },
   "theme.SearchPage.documentsFound.plurals": {
     "message": "تم العثور على وثيقة واحدة|تم العثور على {count} وثائق",
@@ -434,7 +434,7 @@
     "description": "The search page title for non-empty query"
   },
   "theme.SearchPage.emptyResultsTitle": {
-    "message": "البحث في التوثيق",
+    "message": "بحث في الوثائق",
     "description": "The search page title for empty query"
   },
   "theme.SearchPage.inputPlaceholder": {
@@ -454,7 +454,7 @@
     "description": "The paragraph for empty search result"
   },
   "theme.SearchPage.fetchingNewResults": {
-    "message": "جاري جلب نتائج جديدة...",
+    "message": "جارٍ جلب نتائج جديدة...",
     "description": "The paragraph for fetching new search results"
   },
   "theme.SearchBar.label": {
@@ -482,7 +482,7 @@
     "description": "The label for save recent search button"
   },
   "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
-    "message": "إزالة هذا البحث من السجل",
+    "message": "إزالة هذا البحث من التاريخ",
     "description": "The label for remove recent search button"
   },
   "theme.SearchModal.startScreen.favoriteSearchesTitle": {
@@ -542,7 +542,7 @@
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "هل تعتقد أن هذا الاستعلام يجب أن يعيد نتائج؟",
+    "message": "هل تعتقد أنه يجب أن يعرض هذا الاستعلام نتائج؟",
     "description": "The text for the question where the user thinks there are missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
@@ -550,11 +550,11 @@
     "description": "The text for the link to report missing results"
   },
   "theme.SearchModal.placeholder": {
-    "message": "البحث في التوثيق",
+    "message": "بحث في الوثائق",
     "description": "The placeholder of the input of the DocSearch pop-up modal"
   },
   "theme.IdealImageMessage.loading": {
-    "message": "جاري التحميل...",
+    "message": "جارٍ التحميل...",
     "description": "When the full-scale image is loading"
   },
   "theme.IdealImageMessage.load": {
@@ -578,7 +578,7 @@
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
-    "message": "{nPosts} موسومة بـ \"{tagName}\"",
+    "message": "{nPosts} تم وسمها بـ \"{tagName}\"",
     "description": "The title of the page for a blog tag"
   },
   "theme.blog.author.pageTitle": {
@@ -590,7 +590,7 @@
     "description": "The title of the authors page"
   },
   "theme.blog.authorsList.viewAll": {
-    "message": "عرض كل المؤلفين",
+    "message": "عرض جميع المؤلفين",
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
@@ -602,7 +602,7 @@
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "هذه الصفحة غير مدرجة. لن تفهرسها محركات البحث، وفقط المستخدمون الذين لديهم رابط مباشر يمكنهم الوصول إليها.",
+    "message": "هذه الصفحة غير مدرجة. لن تفهرسها محركات البحث، ويمكن فقط للمستخدمين الذين لديهم رابط مباشر الوصول إليها.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
@@ -618,7 +618,7 @@
     "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.common.skipToMainContent": {
-    "message": "انتقل إلى المحتوى الرئيسي",
+    "message": "تخطى إلى المحتوى الرئيسي",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
   },
   "theme.tags.tagsPageTitle": {
@@ -629,7 +629,7 @@
     "message": "قناة الدعم"
   },
   "sponsors.title": {
-    "message": "مفتوح المصدر وحوكمة مفتوحة"
+    "message": "مفتوح المصدر ومفتوح الحوكمة"
   },
   "sponsors.premiumSponsors": {
     "message": "💎 الرعاة المميزون"
@@ -639,5 +639,9 @@
   },
   "sponsors.becomeASponsor": {
     "message": "أن تصبح راعيًا"
+  },
+  "contributors.thankYouMessage": {
+    "message": "نود أن نعرب عن شكرنا الصادق لجميع المساهمين الذين ساعدوا في جعل {toolName} الأداة القوية التي هي عليه اليوم. نحن نقدر حقًا تفانيكم وجهودكم!",
+    "description": "Thank you message for contributors"
   }
 }

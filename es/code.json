@@ -1,15 +1,15 @@
 {
   "features.realEnvironments": {
-    "message": "Pruebas en Entornos Reales"
+    "message": "Prueba en Entornos Reales"
   },
   "features.realEnvironments.description": {
-    "message": "WebdriverIO te permite realizar pruebas en navegadores o dispositivos móviles reales utilizados por tus usuarios."
+    "message": "WebdriverIO te permite probar en navegadores o dispositivos móviles reales utilizados por tus usuarios."
   },
   "features.versatile": {
-    "message": "Versátil y Rico en Funcionalidades"
+    "message": "Versátil y Rico en Características"
   },
   "features.versatile.description": {
-    "message": "Utiliza WebdriverIO para pruebas completas e2e o pruebas unitarias y de componentes en el navegador."
+    "message": "Usa WebdriverIO para pruebas e2e completas o pruebas unitarias y de componentes en el navegador."
   },
   "features.autoWait": {
     "message": "Espera Automática"
@@ -21,7 +21,7 @@
     "message": "Basado en Estándares Web"
   },
   "homepage.features.crossBrowser": {
-    "message": "Soporte cross-browser vía automatización a través de {webdriverLink} y {bidiLink}."
+    "message": "Soporte para múltiples navegadores a través de automatización mediante {webdriverLink} y {bidiLink}."
   },
   "features.mobileSupport": {
     "message": "Soporte Nativo para Móviles"
@@ -33,7 +33,7 @@
     "message": "Comunidad Comprometida"
   },
   "homepage.features.support": {
-    "message": "Mantenemos un {supportChannelLink} con más de 8 mil miembros y un rico ecosistema de plugins mantenidos por la comunidad."
+    "message": "Manteniendo un {supportChannelLink} con más de 8 mil miembros y un rico ecosistema de plugins mantenidos por la comunidad."
   },
   "homepage.createBrowserAnimation": {
     "message": "Crear Proyecto WebdriverIO para automatizar aplicaciones MacOS"
@@ -42,13 +42,13 @@
     "message": "¿Quién está usando WebdriverIO?"
   },
   "sponsors.description.openSource": {
-    "message": "\n                Somos un proyecto de código abierto con un fuerte compromiso con la transparencia y la gobernanza comunitaria.\n                Formamos parte de la {openJsFoundationLink} que es parte de la {linuxFoundationLink}. El proyecto\n                está dirigido completamente por voluntarios y financiado por empresas comprometidas que quieren ver el proyecto tener éxito.\n                El equipo del proyecto está agradecido por el generoso patrocinio de estas empresas.\n            "
+    "message": "\n                Somos un proyecto de código abierto con un fuerte compromiso con la transparencia y la gobernanza comunitaria.\n                Formamos parte de la {openJsFoundationLink} que es parte de la {linuxFoundationLink}. El proyecto\n                está completamente dirigido por voluntarios y financiado por empresas comprometidas que quieren ver el proyecto tener éxito.\n                El equipo del proyecto está agradecido por el generoso patrocinio de estas empresas.\n            "
   },
   "sponsors.description.support": {
-    "message": "Si utilizas WebdriverIO dentro de tu organización, por favor considera apoyar el proyecto {becomeASponsor}. Nos ayudará a mantener el proyecto en funcionamiento y evolucionando."
+    "message": "Si utilizas WebdriverIO dentro de tu organización, por favor considera apoyar el proyecto {becomeASponsor}. Esto nos ayudará a mantener el proyecto en funcionamiento y evolucionando."
   },
   "homepage.tagline": {
-    "message": "Framework de pruebas de automatización de navegador y móvil de próxima generación para Node.js"
+    "message": "Framework de prueba de automatización de navegadores y móviles de próxima generación para Node.js"
   },
   "homepage.getStarted": {
     "message": "Comenzar"
@@ -69,7 +69,7 @@
     "message": "¡Pruebas E2E y Unitarias / de Componentes en navegadores reales!"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIO es un framework {allInOne} para el desarrollo de tu aplicación web. Te permite ejecutar pruebas de componentes pequeñas y ligeras, así como escenarios de pruebas e2e en el navegador o en un dispositivo móvil. Esto garantiza que realices las pruebas en un entorno {usedBy}."
+    "message": "WebdriverIO es un framework {allInOne} para el desarrollo de aplicaciones web. Te permite ejecutar pruebas de componentes pequeñas y ligeras, así como escenarios de pruebas e2e en el navegador o en un dispositivo móvil. Esto garantiza que realices las pruebas en un entorno {usedBy}."
   },
   "homepage.componentTesting.allInOne": {
     "message": "todo en uno"
@@ -78,22 +78,22 @@
     "message": "utilizado por tus usuarios"
   },
   "homepage.componentTesting.para2": {
-    "message": "Viene con estrategias de selectores inteligentes que simplifican la interacción, por ejemplo, con {reactComponents} o la ejecución de consultas de selectores profundas con árboles anidados de shadow DOM. Como las interacciones ocurren a través de un protocolo de automatización estandarizado, se garantiza que se comporten de forma nativa y no sean simplemente emuladas con JavaScript."
+    "message": "Viene con estrategias de selección inteligentes que simplifican interactuar, por ejemplo, con {reactComponents} o ejecutar consultas de selección profundas con árboles de DOM shadow anidados. Como las interacciones ocurren a través de un protocolo de automatización estandarizado, está garantizado que se comporten de forma nativa y no sean solo emuladas por JavaScript."
   },
   "homepage.componentTesting.easySetup": {
-    "message": "Configuración fácil para pruebas de componentes web con:"
+    "message": "Configuración sencilla para pruebas de componentes web con:"
   },
   "homepage.hightlight.createProject": {
     "message": "Comienza con WebdriverIO en Segundos"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "El ejecutor de pruebas de WebdriverIO viene con una interfaz de línea de comandos que proporciona una potente utilidad de configuración y te ayuda a crear tu configuración de pruebas en menos de un minuto. ¡Te permite elegir entre las integraciones de frameworks de pruebas disponibles y te permite añadir fácilmente todos los plugins de reportes y servicios compatibles!"
+    "message": "El test runner de WebdriverIO viene con una interfaz de línea de comandos que proporciona una potente utilidad de configuración y te ayuda a crear tu configuración de pruebas en menos de un minuto. ¡Te permite elegir entre las integraciones de framework de pruebas disponibles y fácilmente te permite añadir todos los plugins de reportes y servicios compatibles!"
   },
   "homepage.hightlight.createProject.para2": {
-    "message": "Con un simple comando puedes configurar una suite de pruebas completa:"
+    "message": "Con solo un simple comando puedes configurar un conjunto de pruebas completo:"
   },
   "homepage.highlight.getStartedOnYouTube": {
-    "message": "Comienza a aprender más sobre WebdriverIO y cómo empezar {youtubeLink}."
+    "message": "Empieza a aprender más sobre WebdriverIO y cómo comenzar {youtubeLink}."
   },
   "homepage.highlight.getStartedOnYouTube.label;": {
     "message": "en YouTube",
@@ -103,7 +103,7 @@
     "message": "Ver Charlas sobre WebdriverIO"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "La comunidad de WebdriverIO participa activamente en varios grupos de usuarios o conferencias sobre temas específicos relacionados con pruebas automatizadas con WebdriverIO. Mira esta charla en {youtubeLink} de {videoAuthor} en {conferenceLink}."
+    "message": "La comunidad alrededor de WebdriverIO habla activamente en varios grupos de usuarios o conferencias sobre temas específicos relacionados con pruebas automatizadas con WebdriverIO. Mira esta charla en {youtubeLink} de {videoAuthor} en {conferenceLink}."
   },
   "homepage.highlight.conferenceTalk.label": {
     "message": "Mis características favoritas de WebdriverIO",
@@ -116,10 +116,10 @@
     "message": "Integración con Google Lighthouse"
   },
   "homepage.highlight.devtools": {
-    "message": "WebdriverIO no solo ejecuta la automatización basada en el protocolo WebDriver, también aprovecha las APIs nativas del navegador para permitir integraciones con herramientas populares para desarrolladores como {devtoolsLink} o {lighthouseLink}. Con el plugin {devtoolsServiceLink} tienes acceso a comandos para validar si tu aplicación es una aplicación PWA válida, así como a comandos para capturar métricas de rendimiento frontend como `speedIndex` y otros."
+    "message": "WebdriverIO no solo ejecuta automatización basada en el protocolo WebDriver, también aprovecha las APIs nativas del navegador para permitir integraciones con herramientas populares para desarrolladores como {devtoolsLink} o {lighthouseLink}. Con el plugin {devtoolsServiceLink} tienes acceso a comandos para validar si tu aplicación es una aplicación PWA válida, así como a comandos para capturar métricas de rendimiento frontend como `speedIndex` y otras."
   },
   "homepage.hightlight.devtools": {
-    "message": "Integración con herramientas para desarrolladores como:"
+    "message": "Integración con herramientas de desarrollo como:"
   },
   "until August 2025": {
     "message": "hasta agosto de 2025"
@@ -143,7 +143,7 @@
     "message": "Versiones de la documentación de WebdriverIO"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "El equipo del proyecto lanza nuevas versiones principales aproximadamente con una cadencia anual. El estado de lanzamiento LTS es \"soporte a largo plazo\", lo que generalmente garantiza que los errores críticos se corregirán durante un total de 12 meses hasta que se realice una nueva versión principal."
+    "message": "El equipo del proyecto lanza nuevas versiones principales aproximadamente con una cadencia anual. El estado de lanzamiento LTS es \"soporte a largo plazo\", lo que típicamente garantiza que los errores críticos se corregirán durante un total de 12 meses hasta que se haga un nuevo lanzamiento principal."
   },
   "Current version (Stable)": {
     "message": "Versión actual (Estable)"
@@ -168,7 +168,7 @@
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "Volver al inicio",
+    "message": "Volver al principio",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
@@ -192,7 +192,7 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Navegación por páginas de blog",
+    "message": "Navegación por páginas de publicaciones del blog",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
@@ -228,7 +228,7 @@
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
-    "message": "Páginas de documentación",
+    "message": "Páginas de documentos",
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
@@ -243,7 +243,7 @@
     "message": "Versión: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "Esta es la documentación no publicada para {siteTitle} versión {versionLabel}.",
+    "message": "Esta es documentación no publicada para la versión {versionLabel} de {siteTitle}.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
@@ -327,11 +327,11 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Navegación de publicaciones recientes del blog",
+    "message": "Navegación por publicaciones recientes del blog",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.CodeBlock.wordWrapToggle": {
-    "message": "Alternar ajuste de línea",
+    "message": "Alternar el ajuste de línea",
     "description": "The title attribute for toggle word wrapping button of code block lines"
   },
   "theme.CodeBlock.copied": {
@@ -371,7 +371,7 @@
     "description": "The label used by the button on the collapsible TOC component"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "Un minuto de lectura|{readingTime} minutos de lectura",
+    "message": "Lectura de un minuto|Lectura de {readingTime} minutos",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.navbar.mobileLanguageDropdown.label": {
@@ -399,7 +399,7 @@
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.navAriaLabel": {
-    "message": "Barra lateral de documentación",
+    "message": "Barra lateral de documentos",
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
@@ -494,11 +494,11 @@
     "description": "The label for remove favorite search button"
   },
   "theme.SearchModal.errorScreen.titleText": {
-    "message": "No se pueden obtener resultados",
+    "message": "No se pudieron obtener resultados",
     "description": "The title for error screen of search modal"
   },
   "theme.SearchModal.errorScreen.helpText": {
-    "message": "Es posible que desees verificar tu conexión de red.",
+    "message": "Es posible que desees comprobar tu conexión de red.",
     "description": "The help text for error screen of search modal"
   },
   "theme.SearchModal.footer.selectText": {
@@ -558,7 +558,7 @@
     "description": "When the full-scale image is loading"
   },
   "theme.IdealImageMessage.load": {
-    "message": "Haz clic para cargar{sizeMessage}",
+    "message": "Clic para cargar{sizeMessage}",
     "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
   },
   "theme.IdealImageMessage.offline": {
@@ -570,7 +570,7 @@
     "description": "When the image is not found"
   },
   "theme.IdealImageMessage.error": {
-    "message": "Error. Haz clic para recargar",
+    "message": "Error. Clic para recargar",
     "description": "When the image fails to load for unknown error"
   },
   "theme.blog.post.plurals": {
@@ -594,7 +594,7 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "Este autor aún no ha escrito ninguna publicación.",
+    "message": "Este autor aún no ha escrito publicaciones.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -602,15 +602,15 @@
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Esta página no está listada. Los motores de búsqueda no la indexarán, y solo los usuarios que tengan un enlace directo pueden acceder a ella.",
+    "message": "Esta página no está listada. Los motores de búsqueda no la indexarán, y solo los usuarios con un enlace directo pueden acceder a ella.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
-    "message": "Página en borrador",
+    "message": "Página de borrador",
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Esta página es un borrador. Solo será visible en desarrollo y se excluirá de la compilación de producción.",
+    "message": "Esta página es un borrador. Solo será visible en el entorno de desarrollo y será excluida de la construcción de producción.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -629,7 +629,7 @@
     "message": "canal de soporte"
   },
   "sponsors.title": {
-    "message": "Código Abierto y Gobernanza Abierta"
+    "message": "Código Abierto y Gobernado Abiertamente"
   },
   "sponsors.premiumSponsors": {
     "message": "💎 Patrocinadores Premium"
@@ -638,6 +638,10 @@
     "message": "🥇 Patrocinadores Oro"
   },
   "sponsors.becomeASponsor": {
-    "message": "convirtiéndote en patrocinador"
+    "message": "convertirte en patrocinador"
+  },
+  "contributors.thankYouMessage": {
+    "message": "Nos gustaría expresar nuestro más sincero agradecimiento a todos los colaboradores que han ayudado a hacer de {toolName} la poderosa herramienta que es hoy. ¡Tu dedicación y esfuerzo son realmente apreciados!",
+    "description": "Thank you message for contributors"
   }
 }

@@ -1,18 +1,18 @@
 {
   "features.realEnvironments": {
-    "message": "Kiểm thử trong Môi trường Thực"
+    "message": "Kiểm thử trong Môi trường Thực tế"
   },
   "features.realEnvironments.description": {
-    "message": "WebdriverIO cho phép bạn kiểm thử trên trình duyệt thực tế hoặc thiết bị di động được sử dụng bởi người dùng của bạn."
+    "message": "WebdriverIO cho phép bạn kiểm thử trên các trình duyệt hoặc thiết bị di động thực tế được sử dụng bởi người dùng của bạn."
   },
   "features.versatile": {
     "message": "Linh hoạt và Giàu tính năng"
   },
   "features.versatile.description": {
-    "message": "Sử dụng WebdriverIO cho kiểm thử end-to-end hoặc kiểm thử đơn vị và thành phần trong trình duyệt."
+    "message": "Sử dụng WebdriverIO cho kiểm thử e2e đầy đủ hoặc kiểm thử đơn vị và component trong trình duyệt."
   },
   "features.autoWait": {
-    "message": "Tự động Chờ đợi"
+    "message": "Tự động Chờ"
   },
   "features.autoWait.description": {
     "message": "WebdriverIO tự động chờ các phần tử xuất hiện trước khi tương tác với chúng."
@@ -24,28 +24,28 @@
     "message": "Hỗ trợ đa trình duyệt thông qua tự động hóa với {webdriverLink} và {bidiLink}."
   },
   "features.mobileSupport": {
-    "message": "Hỗ trợ Di động Gốc"
+    "message": "Hỗ trợ Di động Tích hợp"
   },
   "homepage.features.mobile": {
-    "message": "Chạy WebdriverIO trên thiết bị di động thực, smart TV hoặc các thiết bị IoT khác thông qua {appiumLink}."
+    "message": "Chạy WebdriverIO trên thiết bị di động thực tế, smart TV hoặc các thiết bị IoT khác thông qua {appiumLink}."
   },
   "features.community": {
     "message": "Cộng đồng Tận tâm"
   },
   "homepage.features.support": {
-    "message": "Vận hành một {supportChannelLink} với hơn 8 nghìn thành viên và một hệ sinh thái phong phú của các plugin được cộng đồng duy trì."
+    "message": "Vận hành một {supportChannelLink} với hơn 8 nghìn thành viên và một hệ sinh thái phong phú các plugin được duy trì bởi cộng đồng."
   },
   "homepage.createBrowserAnimation": {
-    "message": "Tạo Dự án WebdriverIO để tự động hóa ứng dụng MacOS"
+    "message": "Tạo dự án WebdriverIO để tự động hóa ứng dụng MacOS"
   },
   "homepage.logoCarousel.title": {
     "message": "Ai đang sử dụng WebdriverIO?"
   },
   "sponsors.description.openSource": {
-    "message": "\n                Chúng tôi là một dự án mã nguồn mở với cam kết mạnh mẽ về tính minh bạch và quản trị cộng đồng.\n                Chúng tôi là một phần của {openJsFoundationLink} thuộc {linuxFoundationLink}. Dự án\n                được vận hành hoàn toàn bởi tình nguyện viên và được tài trợ bởi các công ty đầu tư mong muốn dự án thành công.\n                Nhóm dự án biết ơn sự tài trợ hào phóng của những công ty này.\n            "
+    "message": "\n                Chúng tôi là một dự án mã nguồn mở với cam kết mạnh mẽ về tính minh bạch và quản trị cộng đồng.\n                Chúng tôi là một phần của {openJsFoundationLink} thuộc {linuxFoundationLink}. Dự án\n                được vận hành hoàn toàn bởi tình nguyện viên và được tài trợ bởi các công ty đầu tư muốn nhìn thấy dự án thành công.\n                Nhóm dự án rất biết ơn sự tài trợ hào phóng từ các công ty này.\n            "
   },
   "sponsors.description.support": {
-    "message": "Nếu bạn sử dụng WebdriverIO trong tổ chức của mình, vui lòng cân nhắc hỗ trợ dự án bằng cách {becomeASponsor}. Điều này sẽ giúp chúng tôi duy trì và phát triển dự án."
+    "message": "Nếu bạn sử dụng WebdriverIO trong tổ chức của bạn, vui lòng cân nhắc hỗ trợ dự án bằng cách {becomeASponsor}. Điều này sẽ giúp chúng tôi duy trì và phát triển dự án."
   },
   "homepage.tagline": {
     "message": "Framework kiểm thử tự động hóa trình duyệt và di động thế hệ mới cho Node.js"
@@ -66,10 +66,10 @@
     "message": "Được tài trợ bởi"
   },
   "homepage.componentTesting.heading": {
-    "message": "Kiểm thử E2E và Đơn vị / Thành phần trong trình duyệt thực!"
+    "message": "Kiểm thử E2E và Đơn vị/Component trong trình duyệt thực tế!"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIO là một framework {allInOne} cho phát triển ứng dụng web của bạn. Nó cho phép bạn chạy các bài kiểm thử thành phần nhỏ gọn cũng như các kịch bản kiểm thử e2e trong trình duyệt hoặc trên thiết bị di động. Điều này đảm bảo rằng bạn thực hiện kiểm thử trong môi trường {usedBy}."
+    "message": "WebdriverIO là một framework {allInOne} cho phát triển ứng dụng web của bạn. Nó cho phép bạn chạy các bài kiểm thử component nhỏ gọn cũng như các kịch bản kiểm thử e2e trên trình duyệt hoặc thiết bị di động. Điều này đảm bảo bạn thực hiện kiểm thử trong môi trường {usedBy}."
   },
   "homepage.componentTesting.allInOne": {
     "message": "tất cả trong một"
@@ -78,16 +78,16 @@
     "message": "được sử dụng bởi người dùng của bạn"
   },
   "homepage.componentTesting.para2": {
-    "message": "Nó đi kèm với các chiến lược bộ chọn thông minh giúp đơn giản hóa việc tương tác, ví dụ: với {reactComponents} hoặc chạy các truy vấn bộ chọn sâu với cấu trúc shadow DOM lồng nhau. Vì các tương tác diễn ra thông qua giao thức tự động hóa tiêu chuẩn, nên đảm bảo chúng hoạt động tự nhiên và không chỉ được mô phỏng bằng JavaScript."
+    "message": "Nó đi kèm với các chiến lược bộ chọn thông minh giúp đơn giản hóa việc tương tác, chẳng hạn như với {reactComponents} hoặc chạy các truy vấn bộ chọn sâu với cây shadow DOM lồng nhau. Vì các tương tác diễn ra thông qua giao thức tự động hóa tiêu chuẩn, nên đảm bảo chúng hoạt động một cách tự nhiên và không chỉ được mô phỏng bằng JavaScript."
   },
   "homepage.componentTesting.easySetup": {
-    "message": "Cài đặt dễ dàng cho kiểm thử thành phần web với:"
+    "message": "Thiết lập dễ dàng cho kiểm thử web component với:"
   },
   "homepage.hightlight.createProject": {
-    "message": "Bắt đầu với WebdriverIO trong Vài Giây"
+    "message": "Bắt đầu với WebdriverIO trong Tích tắc"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "Testrunner của WebdriverIO đi kèm với giao diện dòng lệnh cung cấp tiện ích cấu hình mạnh mẽ và giúp bạn tạo môi trường kiểm thử trong chưa đầy một phút. Nó cho phép bạn lựa chọn từ các tích hợp framework kiểm thử có sẵn và dễ dàng thêm tất cả các plugin reporter và service được hỗ trợ!"
+    "message": "Trình chạy kiểm thử WebdriverIO đi kèm với một giao diện dòng lệnh cung cấp tiện ích cấu hình mạnh mẽ và giúp bạn tạo thiết lập kiểm thử của mình trong chưa đầy một phút. Nó cho phép bạn chọn từ các tích hợp framework kiểm thử có sẵn và dễ dàng cho phép thêm tất cả các plugin báo cáo và dịch vụ được hỗ trợ!"
   },
   "homepage.hightlight.createProject.para2": {
     "message": "Chỉ với một lệnh đơn giản, bạn có thể thiết lập một bộ kiểm thử hoàn chỉnh:"
@@ -100,23 +100,23 @@
     "description": "The label for the link to my YouTube"
   },
   "homepage.hightlight.watch": {
-    "message": "Xem các bài nói về WebdriverIO"
+    "message": "Xem các Bài nói về WebdriverIO"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "Cộng đồng xung quanh WebdriverIO đang tích cực phát biểu tại các nhóm người dùng hoặc hội nghị khác nhau về các chủ đề cụ thể xoay quanh kiểm thử tự động với WebdriverIO. Hãy xem bài nói này trên {youtubeLink} của {videoAuthor} tại {conferenceLink}."
+    "message": "Cộng đồng xung quanh WebdriverIO đang tích cực nói chuyện tại các nhóm người dùng hoặc hội nghị khác nhau về các chủ đề cụ thể xoay quanh kiểm thử tự động hóa với WebdriverIO. Hãy xem bài nói này trên {youtubeLink} của {videoAuthor} tại {conferenceLink}."
   },
   "homepage.highlight.conferenceTalk.label": {
-    "message": "Các tính năng WebdriverIO yêu thích của tôi",
+    "message": "Các tính năng yêu thích của tôi trong WebdriverIO",
     "description": "The conference talk title"
   },
   "homepage.highlight.youtubeChannels": {
-    "message": "Ngoài ra còn có nhiều kênh YouTube với các hướng dẫn hữu ích từ các thành viên cộng đồng như {channelOne}, {channelTwo} hoặc {channelThree}."
+    "message": "Cũng có nhiều kênh YouTube với hướng dẫn hữu ích từ các thành viên cộng đồng như {channelOne}, {channelTwo} hoặc {channelThree}."
   },
   "homepage.hightlight.lighthouse": {
     "message": "Tích hợp Google Lighthouse"
   },
   "homepage.highlight.devtools": {
-    "message": "WebdriverIO không chỉ chạy tự động hóa dựa trên giao thức WebDriver, mà còn tận dụng API trình duyệt gốc để kích hoạt tích hợp với các công cụ phát triển phổ biến như {devtoolsLink} hoặc {lighthouseLink}. Với plugin {devtoolsServiceLink}, bạn có quyền truy cập vào các lệnh để xác thực xem ứng dụng của bạn có phải là ứng dụng PWA hợp lệ hay không cũng như các lệnh để thu thập số liệu hiệu suất giao diện người dùng như `speedIndex` và các số liệu khác."
+    "message": "WebdriverIO không chỉ chạy tự động hóa dựa trên giao thức WebDriver, mà còn tận dụng các API trình duyệt gốc để cho phép tích hợp với các công cụ phát triển phổ biến như {devtoolsLink} hoặc {lighthouseLink}. Với plugin {devtoolsServiceLink}, bạn có quyền truy cập vào các lệnh để xác thực xem ứng dụng của bạn có phải là ứng dụng PWA hợp lệ hay không, cũng như các lệnh để nắm bắt các số liệu hiệu suất giao diện người dùng như `speedIndex` và các chỉ số khác."
   },
   "homepage.hightlight.devtools": {
     "message": "Tích hợp với các công cụ phát triển như:"
@@ -125,43 +125,43 @@
     "message": "đến tháng 8 năm 2025"
   },
   "since July 2024": {
-    "message": "từ tháng 7 năm 2024"
+    "message": "kể từ tháng 7 năm 2024"
   },
   "since February 2022": {
-    "message": "từ tháng 2 năm 2022"
+    "message": "kể từ tháng 2 năm 2022"
   },
   "since January 2021": {
-    "message": "từ tháng 1 năm 2021"
+    "message": "kể từ tháng 1 năm 2021"
   },
   "since December 2019": {
-    "message": "từ tháng 12 năm 2019"
+    "message": "kể từ tháng 12 năm 2019"
   },
   "versions.description": {
-    "message": "Trang phiên bản Docusaurus 2 liệt kê tất cả các phiên bản tài liệu của trang web"
+    "message": "Trang phiên bản Docusaurus 2 liệt kê tất cả các phiên bản tài liệu của trang"
   },
   "WebdriverIO documentation versions": {
-    "message": "Phiên bản tài liệu WebdriverIO"
+    "message": "Các phiên bản tài liệu WebdriverIO"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "Nhóm dự án phát hành các phiên bản chính mới khoảng một năm một lần. Trạng thái phát hành LTS là \"hỗ trợ dài hạn\", thường đảm bảo rằng các lỗi nghiêm trọng sẽ được sửa trong tổng cộng 12 tháng cho đến khi có phiên bản chính mới."
+    "message": "Nhóm dự án phát hành các phiên bản chính mới khoảng hàng năm. Trạng thái phát hành LTS là \"hỗ trợ dài hạn\", thường đảm bảo rằng các lỗi nghiêm trọng sẽ được sửa trong tổng cộng 12 tháng cho đến khi một phiên bản chính mới được tạo ra."
   },
   "Current version (Stable)": {
     "message": "Phiên bản hiện tại (Ổn định)"
   },
   "Here you can find the documentation for current released version.": {
-    "message": "Ở đây bạn có thể tìm thấy tài liệu cho phiên bản hiện tại đã phát hành."
+    "message": "Tại đây bạn có thể tìm thấy tài liệu cho phiên bản hiện tại đã phát hành."
   },
   "Documentation": {
     "message": "Tài liệu"
   },
   "Release Notes": {
-    "message": "Ghi chú phát hành"
+    "message": "Ghi chú Phát hành"
   },
   "Past versions": {
-    "message": "Phiên bản trước đây"
+    "message": "Các phiên bản trước"
   },
   "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "Ở đây bạn có thể tìm thấy tài liệu cho các phiên bản trước của Docusaurus."
+    "message": "Tại đây bạn có thể tìm tài liệu cho các phiên bản trước của Docusaurus."
   },
   "theme.ErrorPageContent.title": {
     "message": "Trang này đã gặp sự cố.",
@@ -184,23 +184,23 @@
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
-    "message": "Bài mới hơn",
+    "message": "Bài viết mới hơn",
     "description": "The label used to navigate to the newer blog posts page (previous page)"
   },
   "theme.blog.paginator.olderEntries": {
-    "message": "Bài cũ hơn",
+    "message": "Bài viết cũ hơn",
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Điều hướng trang bài đăng blog",
+    "message": "Điều hướng trang bài viết blog",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "Bài mới hơn",
+    "message": "Bài viết mới hơn",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "Bài cũ hơn",
+    "message": "Bài viết cũ hơn",
     "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.tags.tagsPageLink": {
@@ -228,7 +228,7 @@
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
-    "message": "Trang tài liệu",
+    "message": "Các trang tài liệu",
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
@@ -247,7 +247,7 @@
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "Đây là tài liệu cho {siteTitle} {versionLabel}, hiện không còn được bảo trì tích cực.",
+    "message": "Đây là tài liệu cho {siteTitle} {versionLabel}, không còn được duy trì tích cực.",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
@@ -327,7 +327,7 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Điều hướng bài đăng blog gần đây",
+    "message": "Điều hướng bài viết blog gần đây",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.CodeBlock.wordWrapToggle": {
@@ -363,7 +363,7 @@
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Vui lòng liên hệ với chủ sở hữu trang web đã liên kết bạn đến URL gốc và cho họ biết liên kết của họ bị hỏng.",
+    "message": "Vui lòng liên hệ với chủ sở hữu của trang web đã liên kết bạn đến URL gốc và cho họ biết liên kết của họ bị hỏng.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
@@ -438,7 +438,7 @@
     "description": "The search page title for empty query"
   },
   "theme.SearchPage.inputPlaceholder": {
-    "message": "Nhập từ khóa tìm kiếm tại đây",
+    "message": "Nhập từ khóa tìm kiếm ở đây",
     "description": "The placeholder for search page input"
   },
   "theme.SearchPage.inputLabel": {
@@ -454,7 +454,7 @@
     "description": "The paragraph for empty search result"
   },
   "theme.SearchPage.fetchingNewResults": {
-    "message": "Đang tải kết quả mới...",
+    "message": "Đang tìm kết quả mới...",
     "description": "The paragraph for fetching new search results"
   },
   "theme.SearchBar.label": {
@@ -542,7 +542,7 @@
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "Tin rằng truy vấn này nên trả về kết quả?",
+    "message": "Tin rằng truy vấn này sẽ trả về kết quả?",
     "description": "The text for the question where the user thinks there are missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
@@ -574,7 +574,7 @@
     "description": "When the image fails to load for unknown error"
   },
   "theme.blog.post.plurals": {
-    "message": "Một bài đăng|{count} bài đăng",
+    "message": "Một bài viết|{count} bài viết",
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
@@ -594,23 +594,23 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "Tác giả này chưa viết bài đăng nào.",
+    "message": "Tác giả này chưa viết bài viết nào.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
-    "message": "Trang không được liệt kê",
+    "message": "Trang không liệt kê",
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Trang này không được liệt kê. Công cụ tìm kiếm sẽ không lập chỉ mục nó, và chỉ những người dùng có liên kết trực tiếp mới có thể truy cập.",
+    "message": "Trang này không được liệt kê. Các công cụ tìm kiếm sẽ không lập chỉ mục nó, và chỉ những người dùng có liên kết trực tiếp mới có thể truy cập.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
-    "message": "Trang bản nháp",
+    "message": "Trang nháp",
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Trang này là bản nháp. Nó sẽ chỉ hiển thị trong môi trường phát triển và sẽ bị loại trừ khỏi bản dựng sản phẩm.",
+    "message": "Trang này là bản nháp. Nó chỉ hiển thị trong môi trường phát triển và sẽ bị loại khỏi bản dựng sản phẩm.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -632,12 +632,16 @@
     "message": "Mã nguồn mở và Quản trị mở"
   },
   "sponsors.premiumSponsors": {
-    "message": "💎 Nhà tài trợ Premium"
+    "message": "💎 Nhà tài trợ Cao cấp"
   },
   "sponsors.goldSponsors": {
     "message": "🥇 Nhà tài trợ Vàng"
   },
   "sponsors.becomeASponsor": {
     "message": "trở thành nhà tài trợ"
+  },
+  "contributors.thankYouMessage": {
+    "message": "Chúng tôi muốn gửi lời cảm ơn chân thành đến tất cả những người đóng góp đã giúp {toolName} trở thành công cụ mạnh mẽ như ngày nay. Sự cống hiến và nỗ lực của bạn thực sự được đánh giá cao!",
+    "description": "Thank you message for contributors"
   }
 }
