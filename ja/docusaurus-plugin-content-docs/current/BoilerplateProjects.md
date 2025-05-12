@@ -400,4 +400,4 @@ E2Eマルチリモートキュウカンバーテストとデータ駆動型Mocha
   - Appium
   - Chromedriver
   - ESLint
-  - http://the-internet.herokuapp.comと[WebdriverIOネイティブデモアプリ](https://github.com/webdriverio/native-demo-app)でのログインテスト例
+  - [WebdriverIOネイティブデモアプリ](https://github.com/webdriverio/native-demo-app)でのログインテスト例
