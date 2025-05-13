@@ -3,7 +3,7 @@ id: method-options
 title: Tùy Chọn Phương Thức
 ---
 
-Tùy chọn phương thức là các tùy chọn có thể được thiết lập cho mỗi [phương thức](./methods). Nếu tùy chọn có cùng khóa với một tùy chọn đã được thiết lập trong quá trình khởi tạo plugin, tùy chọn phương thức này sẽ ghi đè giá trị tùy chọn plugin.
+Tùy chọn phương thức là các tùy chọn có thể được thiết lập cho từng [phương thức](./methods). Nếu tùy chọn có cùng khóa với một tùy chọn đã được thiết lập trong quá trình khởi tạo plugin, tùy chọn phương thức này sẽ ghi đè giá trị tùy chọn plugin.
 
 ## Tùy Chọn Lưu
 
@@ -14,7 +14,8 @@ Tùy chọn phương thức là các tùy chọn có thể được thiết lậ
 -   **Mặc định:** `false`
 -   **Hỗ trợ:** Web, Ứng dụng Hybrid (Webview)
 
-Bật/Tắt tất cả "nhấp nháy" con trỏ của `input`, `textarea`, `[contenteditable]` trong ứng dụng. Nếu được đặt thành `true`, con trỏ sẽ được đặt thành `transparent` trước khi chụp ảnh màn hình và đặt lại khi hoàn thành
+Bật/Tắt tất cả con trỏ "nhấp nháy" trong các phần tử `input`, `textarea`, `[contenteditable]` trong ứng dụng. Nếu được đặt thành `true`, con trỏ sẽ được đặt thành `transparent` trước khi chụp ảnh
+và khôi phục khi hoàn tất
 
 ### `disableCSSAnimation`
 
@@ -23,7 +24,18 @@ Bật/Tắt tất cả "nhấp nháy" con trỏ của `input`, `textarea`, `[con
 -   **Mặc định:** `false`
 -   **Hỗ trợ:** Web, Ứng dụng Hybrid (Webview)
 
-Bật/Tắt tất cả các hoạt ảnh CSS trong ứng dụng. Nếu được đặt thành `true`, tất cả các hoạt ảnh sẽ bị vô hiệu hóa trước khi chụp ảnh màn hình và đặt lại khi hoàn thành
+Bật/Tắt tất cả hoạt ảnh CSS trong ứng dụng. Nếu được đặt thành `true`, tất cả hoạt ảnh sẽ bị vô hiệu hóa trước khi chụp ảnh
+và khôi phục khi hoàn tất
+
+### `enableLegacyScreenshotMethod`
+
+-   **Loại:** `boolean`
+-   **Bắt buộc:** Không
+-   **Mặc định:** `false`
+-   **Hỗ trợ:** Web, Ứng dụng Hybrid (Webview)
+
+Sử dụng tùy chọn này để quay lại phương thức chụp ảnh "cũ hơn" dựa trên giao thức W3C-WebDriver. Điều này có thể hữu ích nếu bài kiểm tra của bạn phụ thuộc vào hình ảnh cơ sở hiện có hoặc nếu bạn đang chạy trong môi trường không hỗ trợ đầy đủ chụp ảnh dựa trên BiDi mới hơn.
+Lưu ý rằng việc bật tính năng này có thể tạo ra ảnh chụp có độ phân giải hoặc chất lượng hơi khác.
 
 ### `enableLayoutTesting`
 
@@ -33,12 +45,12 @@ Bật/Tắt tất cả các hoạt ảnh CSS trong ứng dụng. Nếu được 
 -   **Sử dụng với:** Tất cả [phương thức](./methods)
 -   **Hỗ trợ:** Web
 
-Điều này sẽ ẩn tất cả văn bản trên trang, vì vậy chỉ bố cục sẽ được sử dụng để so sánh. Việc ẩn sẽ được thực hiện bằng cách thêm style `'color': 'transparent !important'` vào __mỗi__ phần tử.
+Điều này sẽ ẩn tất cả văn bản trên trang để chỉ bố cục được sử dụng để so sánh. Việc ẩn sẽ được thực hiện bằng cách thêm kiểu `'color': 'transparent !important'` vào __mỗi__ phần tử.
 
-Đối với đầu ra, xem [Test Output](./test-output#enablelayouttesting)
+Để biết đầu ra, xem [Kết quả kiểm tra](./test-output#enablelayouttesting)
 
 :::info
-Khi sử dụng cờ này, mỗi phần tử chứa văn bản (không chỉ `p, h1, h2, h3, h4, h5, h6, span, a, li`, mà còn cả `div|button|..`) sẽ nhận thuộc tính này. Không có tùy chọn nào để điều chỉnh điều này.
+Khi sử dụng cờ này, mỗi phần tử chứa văn bản (không chỉ `p, h1, h2, h3, h4, h5, h6, span, a, li`, mà còn cả `div|button|..`) sẽ nhận thuộc tính này. __Không__ có tùy chọn để điều chỉnh điều này.
 :::
 
 ### `hideScrollBars`
@@ -49,7 +61,7 @@ Khi sử dụng cờ này, mỗi phần tử chứa văn bản (không chỉ `p,
 -   **Sử dụng với:** Tất cả [phương thức](./methods)
 -   **Hỗ trợ:** Web, Ứng dụng Hybrid (Webview)
 
-Ẩn thanh cuộn trong ứng dụng. Nếu được đặt thành true, tất cả thanh cuộn sẽ bị vô hiệu hóa trước khi chụp ảnh màn hình. Điều này được đặt mặc định là `true` để ngăn chặn các vấn đề phát sinh.
+Ẩn thanh cuộn trong ứng dụng. Nếu được đặt thành true, tất cả thanh cuộn sẽ bị vô hiệu hóa trước khi chụp ảnh. Điều này được đặt mặc định là `true` để ngăn ngừa các vấn đề phát sinh.
 
 ### `hideElements`
 
@@ -67,7 +79,7 @@ Phương thức này có thể ẩn 1 hoặc nhiều phần tử bằng cách th
 -   **Sử dụng với:** Tất cả [phương thức](./methods)
 -   **Hỗ trợ:** Web, Ứng dụng Hybrid (Webview), Ứng dụng Native
 
-Phương thức này có thể _loại bỏ_ 1 hoặc nhiều phần tử bằng cách thêm thuộc tính `display: none` vào chúng bằng cách cung cấp một mảng các phần tử.
+Phương thức này có thể _xóa_ 1 hoặc nhiều phần tử bằng cách thêm thuộc tính `display: none` vào chúng bằng cách cung cấp một mảng các phần tử.
 
 ### `resizeDimensions`
 
@@ -77,7 +89,18 @@ Phương thức này có thể _loại bỏ_ 1 hoặc nhiều phần tử bằng
 -   **Sử dụng với:** Chỉ dành cho [`saveElement`](./methods#saveelement) hoặc [`checkElement`](./methods#checkelement)
 -   **Hỗ trợ:** Web, Ứng dụng Hybrid (Webview), Ứng dụng Native
 
-Một đối tượng cần chứa số lượng pixel `top`, `right`, `bottom` và `left` cần thiết để làm cho vùng cắt của phần tử lớn hơn.
+Một đối tượng cần chứa số lượng pixel `top`, `right`, `bottom` và `left` cần thiết để làm cho vùng cắt phần tử lớn hơn.
+
+### `userBasedFullPageScreenshot`
+
+* **Loại:** `boolean`
+* **Bắt buộc:** Không
+* **Mặc định:** `false`
+* **Hỗ trợ:** Web, Ứng dụng Hybrid (Webview)
+
+Khi được đặt thành `true`, tùy chọn này kích hoạt **chiến lược cuộn và ghép** để chụp ảnh toàn trang.
+Thay vì sử dụng khả năng chụp ảnh gốc của trình duyệt, nó cuộn qua trang thủ công và ghép nhiều ảnh chụp lại với nhau.
+Phương pháp này đặc biệt hữu ích cho các trang có **nội dung tải lười (lazy-loaded)** hoặc bố cục phức tạp yêu cầu cuộn để hiển thị đầy đủ.
 
 ### `fullPageScrollTimeout`
 
@@ -87,7 +110,9 @@ Một đối tượng cần chứa số lượng pixel `top`, `right`, `bottom` 
 -   **Sử dụng với:** Chỉ dành cho [`saveFullPageScreen`](./methods#savefullpagescreen) hoặc [`saveTabbablePage`](./methods#savetabbablepage)
 -   **Hỗ trợ:** Web
 
-Thời gian chờ tính bằng mili giây sau khi cuộn. Điều này có thể giúp xác định các trang có tải chậm.
+Thời gian chờ tính bằng mili giây sau mỗi lần cuộn. Điều này có thể giúp xác định các trang có tính năng tải lười.
+
+> **LƯU Ý:** Điều này chỉ hoạt động khi `userBasedFullPageScreenshot` được đặt thành `true`
 
 ### `hideAfterFirstScroll`
 
@@ -97,7 +122,9 @@ Thời gian chờ tính bằng mili giây sau khi cuộn. Điều này có thể
 -   **Hỗ trợ:** Web
 
 Phương thức này sẽ ẩn một hoặc nhiều phần tử bằng cách thêm thuộc tính `visibility: hidden` vào chúng bằng cách cung cấp một mảng các phần tử.
-Điều này sẽ hữu ích khi một trang ví dụ chứa các phần tử dính (sticky) sẽ cuộn theo trang nếu trang được cuộn nhưng sẽ tạo ra hiệu ứng khó chịu khi chụp ảnh toàn trang
+Điều này sẽ hữu ích khi một trang ví dụ chứa các phần tử cố định sẽ cuộn theo trang nếu trang được cuộn nhưng sẽ tạo ra hiệu ứng khó chịu khi chụp ảnh toàn trang
+
+> **LƯU Ý:** Điều này chỉ hoạt động khi `userBasedFullPageScreenshot` được đặt thành `true`
 
 ### `waitForFontsLoaded`
 
@@ -107,17 +134,17 @@ Phương thức này sẽ ẩn một hoặc nhiều phần tử bằng cách th�
 -   **Sử dụng với:** Tất cả [phương thức](./methods)
 -   **Hỗ trợ:** Web, Ứng dụng Hybrid (Webview)
 
-Phông chữ, bao gồm cả phông chữ của bên thứ ba, có thể được tải đồng bộ hoặc bất đồng bộ. Việc tải bất đồng bộ có nghĩa là phông chữ có thể tải sau khi WebdriverIO xác định rằng trang đã tải hoàn toàn. Để tránh các vấn đề về hiển thị phông chữ, mô-đun này, theo mặc định, sẽ đợi tất cả các phông chữ được tải trước khi chụp ảnh màn hình.
+Phông chữ, bao gồm cả phông chữ của bên thứ ba, có thể được tải đồng bộ hoặc bất đồng bộ. Tải bất đồng bộ có nghĩa là phông chữ có thể tải sau khi WebdriverIO xác định rằng trang đã tải xong. Để ngăn các vấn đề về hiển thị phông chữ, module này, theo mặc định, sẽ chờ tất cả phông chữ được tải trước khi chụp ảnh.
 
 ## Tùy Chọn So Sánh (Kiểm Tra)
 
-Tùy chọn so sánh là các tùy chọn ảnh hưởng đến cách thức so sánh, được thực hiện bởi [ResembleJS](https://github.com/Huddle/Resemble.js).
+Tùy chọn so sánh là các tùy chọn ảnh hưởng đến cách thức so sánh, thông qua [ResembleJS](https://github.com/Huddle/Resemble.js), được thực hiện.
 
 :::info LƯU Ý
 
--   Tất cả các tùy chọn từ [Tùy Chọn Lưu](#tùy-chọn-lưu) có thể được sử dụng cho các phương thức So sánh
--   Tất cả các tùy chọn so sánh có thể được sử dụng trong quá trình khởi tạo dịch vụ __hoặc__ cho mỗi phương thức kiểm tra đơn lẻ. Nếu một tùy chọn phương thức có cùng khóa với một tùy chọn đã được thiết lập trong quá trình khởi tạo dịch vụ, thì tùy chọn so sánh phương thức sẽ ghi đè giá trị tùy chọn so sánh dịch vụ.
-- Tất cả các tùy chọn có thể được sử dụng cho:
+-   Tất cả tùy chọn từ [Tùy Chọn Lưu](#tùy-chọn-lưu) có thể được sử dụng cho các phương thức So sánh
+-   Tất cả tùy chọn so sánh có thể được sử dụng trong quá trình khởi tạo dịch vụ __hoặc__ cho từng phương thức kiểm tra cụ thể. Nếu một tùy chọn phương thức có cùng khóa với một tùy chọn đã được thiết lập trong quá trình khởi tạo dịch vụ, thì tùy chọn so sánh phương thức sẽ ghi đè giá trị tùy chọn so sánh dịch vụ.
+- Tất cả tùy chọn có thể được sử dụng cho:
     - Web
     - Ứng dụng Hybrid
     - Ứng dụng Native
@@ -137,25 +164,25 @@ So sánh hình ảnh và bỏ qua alpha.
 -   **Loại:** `boolean`
 -   **Mặc định:** `true`
 -   **Bắt buộc:** không
--   **Lưu ý:** _Chỉ có thể được sử dụng cho `checkScreen()`. Điều này **chỉ dành cho iPad**_
+-   **Ghi chú:** _Chỉ có thể được sử dụng cho `checkScreen()`. Đây là **chỉ dành cho iPad**_
 
-Tự động chặn thanh bên cho iPad ở chế độ ngang trong khi so sánh. Điều này ngăn chặn các lỗi trên thành phần tab/private/bookmark gốc.
+Tự động chặn thanh bên cho iPad ở chế độ ngang trong quá trình so sánh. Điều này ngăn ngừa lỗi trên thành phần gốc tab/private/bookmark.
 
 ### `blockOutStatusBar`
 
 -   **Loại:** `boolean`
 -   **Mặc định:** `true`
 -   **Bắt buộc:** không
--   **Lưu ý:** _Điều này **chỉ dành cho Thiết bị di động**_
+-   **Ghi chú:** _Đây là **chỉ dành cho Di động**_
 
-Tự động chặn thanh trạng thái và thanh địa chỉ trong quá trình so sánh. Điều này ngăn chặn các lỗi về thời gian, wifi hoặc trạng thái pin.
+Tự động chặn thanh trạng thái và thanh địa chỉ trong quá trình so sánh. Điều này ngăn ngừa lỗi về thời gian, wifi hoặc trạng thái pin.
 
 ### `blockOutToolBar`
 
 -   **Loại:** `boolean`
 -   **Mặc định:** `true`
 -   **Bắt buộc:** không
--   **Lưu ý:** _Điều này **chỉ dành cho Thiết bị di động**_
+-   **Ghi chú:** _Đây là **chỉ dành cho Di động**_
 
 Tự động chặn thanh công cụ.
 
@@ -165,7 +192,7 @@ Tự động chặn thanh công cụ.
 -   **Mặc định:** `false`
 -   **Bắt buộc:** không
 
-So sánh hình ảnh và bỏ qua khử răng cưa.
+So sánh hình ảnh và bỏ qua chống răng cưa.
 
 ### `ignoreColors`
 
@@ -173,7 +200,7 @@ So sánh hình ảnh và bỏ qua khử răng cưa.
 -   **Mặc định:** `false`
 -   **Bắt buộc:** không
 
-Mặc dù hình ảnh có màu, việc so sánh sẽ so sánh 2 hình ảnh đen/trắng
+Mặc dù hình ảnh là màu, việc so sánh sẽ so sánh 2 hình ảnh đen/trắng
 
 ### `ignoreLess`
 
@@ -197,7 +224,7 @@ So sánh hình ảnh và so sánh với `red = 0, green = 0, blue = 0, alpha = 0
 -   **Mặc định:** `false`
 -   **Bắt buộc:** không
 
-Nếu true, phần trăm trả về sẽ như `0.12345678`, mặc định là `0.12`
+Nếu đúng, phần trăm trả về sẽ như `0.12345678`, mặc định là `0.12`
 
 ### `returnAllCompareData`
 
@@ -213,7 +240,7 @@ Nếu true, phần trăm trả về sẽ như `0.12345678`, mặc định là `0
 -   **Mặc định:** `0`
 -   **Bắt buộc:** không
 
-Giá trị cho phép của `misMatchPercentage` ngăn việc lưu hình ảnh có sự khác biệt
+Giá trị cho phép của `misMatchPercentage` ngăn lưu hình ảnh có sự khác biệt
 
 ### `largeImageThreshold`
 
@@ -230,11 +257,11 @@ Khi cung cấp một số cho số lượng pixel ở đây (cao hơn 0), thuậ
 -   **Mặc định:** `false`
 -   **Bắt buộc:** không
 
-Tỷ lệ 2 hình ảnh về cùng một kích thước trước khi thực hiện so sánh. Rất khuyến khích bật `ignoreAntialiasing` và `ignoreAlpha`
+Tỷ lệ 2 hình ảnh về cùng kích thước trước khi thực hiện so sánh. Rất khuyến khích bật `ignoreAntialiasing` và `ignoreAlpha`
 
 ## Tùy chọn thư mục
 
-Thư mục cơ sở và các thư mục ảnh chụp màn hình (thực tế, khác biệt) là các tùy chọn có thể được thiết lập trong quá trình khởi tạo plugin hoặc phương thức. Để đặt tùy chọn thư mục cho một phương thức cụ thể, hãy truyền tùy chọn thư mục vào đối tượng tùy chọn phương thức. Điều này có thể được sử dụng cho:
+Thư mục cơ sở và các thư mục ảnh chụp (thực tế, khác biệt) là các tùy chọn có thể được thiết lập trong quá trình khởi tạo plugin hoặc phương thức. Để đặt tùy chọn thư mục cho một phương thức cụ thể, hãy truyền các tùy chọn thư mục vào đối tượng tùy chọn phương thức. Điều này có thể được sử dụng cho:
 
 - Web
 - Ứng dụng Hybrid
@@ -274,4 +301,4 @@ Thư mục cho hình ảnh cơ sở được sử dụng để so sánh.
 -   **Loại:** `string`
 -   **Bắt buộc:** không
 
-Thư mục cho sự khác biệt hình ảnh được hiển thị bởi ResembleJS.
+Thư mục cho sự khác biệt hình ảnh được tạo ra bởi ResembleJS.

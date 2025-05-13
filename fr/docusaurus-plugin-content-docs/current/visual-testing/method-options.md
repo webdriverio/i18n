@@ -1,9 +1,9 @@
 ---
 id: method-options
-title: Options de méthode
+title: Options des méthodes
 ---
 
-Les options de méthodes sont les options qui peuvent être définies par [méthode](./methods). Si l'option a la même clé qu'une option qui a été définie lors de l'instanciation du plugin, cette option de méthode remplacera la valeur de l'option du plugin.
+Les options des méthodes sont les options qui peuvent être définies par [méthode](./methods). Si l'option a la même clé qu'une option définie lors de l'instanciation du plugin, cette option de méthode remplacera la valeur de l'option du plugin.
 
 ## Options de sauvegarde
 
@@ -14,7 +14,7 @@ Les options de méthodes sont les options qui peuvent être définies par [méth
 -   **Par défaut:** `false`
 -   **Pris en charge:** Web, Application hybride (Webview)
 
-Activer/Désactiver le clignotement du curseur dans tous les éléments `input`, `textarea`, `[contenteditable]` de l'application. Si défini sur `true`, le curseur sera défini comme `transparent` avant de prendre une capture d'écran
+Activer/Désactiver le clignotement du curseur pour tous les éléments `input`, `textarea`, `[contenteditable]` dans l'application. Si défini à `true`, le curseur sera défini comme `transparent` avant de prendre une capture d'écran
 et réinitialisé une fois terminé
 
 ### `disableCSSAnimation`
@@ -24,8 +24,18 @@ et réinitialisé une fois terminé
 -   **Par défaut:** `false`
 -   **Pris en charge:** Web, Application hybride (Webview)
 
-Activer/Désactiver toutes les animations CSS dans l'application. Si défini sur `true`, toutes les animations seront désactivées avant de prendre une capture d'écran
+Activer/Désactiver toutes les animations CSS dans l'application. Si défini à `true`, toutes les animations seront désactivées avant de prendre une capture d'écran
 et réinitialisées une fois terminé
+
+### `enableLegacyScreenshotMethod`
+
+-   **Type:** `boolean`
+-   **Obligatoire:** Non
+-   **Par défaut:** `false`
+-   **Pris en charge:** Web, Application hybride (Webview)
+
+Utilisez cette option pour revenir à l'ancienne méthode de capture d'écran basée sur le protocole W3C-WebDriver. Cela peut être utile si vos tests dépendent d'images de référence existantes ou si vous travaillez dans des environnements qui ne prennent pas entièrement en charge les captures d'écran basées sur BiDi.
+Notez que l'activation de cette option peut produire des captures d'écran avec une résolution ou une qualité légèrement différente.
 
 ### `enableLayoutTesting`
 
@@ -35,7 +45,7 @@ et réinitialisées une fois terminé
 -   **Utilisé avec:** Toutes les [méthodes](./methods)
 -   **Pris en charge:** Web
 
-Cela masquera tout le texte sur une page afin que seule la mise en page soit utilisée pour la comparaison. Le masquage sera effectué en ajoutant le style `'color': 'transparent !important'` à __chaque__ élément.
+Cette option masquera tout le texte sur une page afin que seule la mise en page soit utilisée pour la comparaison. Le masquage sera effectué en ajoutant le style `'color': 'transparent !important'` à __chaque__ élément.
 
 Pour la sortie, voir [Sortie de test](./test-output#enablelayouttesting)
 
@@ -51,7 +61,7 @@ En utilisant ce drapeau, chaque élément contenant du texte (donc pas seulement
 -   **Utilisé avec:** Toutes les [méthodes](./methods)
 -   **Pris en charge:** Web, Application hybride (Webview)
 
-Masquer les barres de défilement dans l'application. Si défini sur true, toutes les barres de défilement seront désactivées avant de prendre une capture d'écran. Cette option est définie par défaut sur `true` pour éviter des problèmes supplémentaires.
+Masquer les barres de défilement dans l'application. Si défini à true, toutes les barres de défilement seront désactivées avant de prendre une capture d'écran. La valeur par défaut est `true` pour éviter des problèmes supplémentaires.
 
 ### `hideElements`
 
@@ -81,6 +91,17 @@ Cette méthode peut _supprimer_ un ou plusieurs éléments en ajoutant la propri
 
 Un objet qui doit contenir un nombre de pixels `top`, `right`, `bottom` et `left` qui doivent agrandir la découpe de l'élément.
 
+### `userBasedFullPageScreenshot`
+
+* **Type:** `boolean`
+* **Obligatoire:** Non
+* **Par défaut:** `false`
+* **Pris en charge:** Web, Application hybride (Webview)
+
+Lorsqu'il est défini à `true`, cette option active la **stratégie de défilement et d'assemblage** pour capturer des captures d'écran de pages entières.
+Au lieu d'utiliser les capacités natives de capture d'écran du navigateur, elle fait défiler manuellement la page et assemble plusieurs captures d'écran.
+Cette méthode est particulièrement utile pour les pages avec du **contenu chargé paresseusement** ou des mises en page complexes qui nécessitent un défilement pour un rendu complet.
+
 ### `fullPageScrollTimeout`
 
 -   **Type:** `number`
@@ -91,6 +112,8 @@ Un objet qui doit contenir un nombre de pixels `top`, `right`, `bottom` et `left
 
 Le délai d'attente en millisecondes après un défilement. Cela peut aider à identifier les pages avec chargement paresseux.
 
+> **REMARQUE:** Cela ne fonctionne que lorsque `userBasedFullPageScreenshot` est défini à `true`
+
 ### `hideAfterFirstScroll`
 
 -   **Type:** `array`
@@ -99,7 +122,9 @@ Le délai d'attente en millisecondes après un défilement. Cela peut aider à i
 -   **Pris en charge:** Web
 
 Cette méthode masquera un ou plusieurs éléments en ajoutant la propriété `visibility: hidden` en fournissant un tableau d'éléments.
-Cela sera pratique lorsqu'une page contient par exemple des éléments fixes qui défileront avec la page si la page est défilée mais donneront un effet gênant lorsqu'une capture d'écran pleine page est réalisée
+Cela sera utile lorsqu'une page contient par exemple des éléments fixes qui défileront avec la page si celle-ci est déroulée mais qui donneront un effet gênant lors de la prise d'une capture d'écran de la page entière.
+
+> **REMARQUE:** Cela ne fonctionne que lorsque `userBasedFullPageScreenshot` est défini à `true`
 
 ### `waitForFontsLoaded`
 
@@ -109,16 +134,16 @@ Cela sera pratique lorsqu'une page contient par exemple des éléments fixes qui
 -   **Utilisé avec:** Toutes les [méthodes](./methods)
 -   **Pris en charge:** Web, Application hybride (Webview)
 
-Les polices, y compris les polices tierces, peuvent être chargées de manière synchrone ou asynchrone. Le chargement asynchrone signifie que les polices peuvent se charger après que WebdriverIO a déterminé qu'une page est complètement chargée. Pour éviter les problèmes de rendu des polices, ce module, par défaut, attendra que toutes les polices soient chargées avant de prendre une capture d'écran.
+Les polices, y compris les polices tierces, peuvent être chargées de manière synchrone ou asynchrone. Le chargement asynchrone signifie que les polices peuvent se charger après que WebdriverIO a déterminé qu'une page est complètement chargée. Pour éviter les problèmes de rendu des polices, ce module attendra par défaut que toutes les polices soient chargées avant de prendre une capture d'écran.
 
-## Options de comparaison (vérification)
+## Options de comparaison (Check)
 
 Les options de comparaison sont des options qui influencent la façon dont la comparaison, par [ResembleJS](https://github.com/Huddle/Resemble.js), est exécutée.
 
 :::info REMARQUE
 
--   Toutes les options des [Options de sauvegarde](#save-options) peuvent être utilisées pour les méthodes de comparaison
--   Toutes les options de comparaison peuvent être utilisées pendant l'instanciation du service __ou__ pour chaque méthode de vérification individuelle. Si une option de méthode a la même clé qu'une option définie lors de l'instanciation du service, alors l'option de comparaison de méthode remplacera la valeur de l'option de comparaison du service.
+-   Toutes les options des [Options de sauvegarde](#options-de-sauvegarde) peuvent être utilisées pour les méthodes de comparaison
+-   Toutes les options de comparaison peuvent être utilisées pendant l'instantiation du service __ou__ pour chaque méthode de vérification individuelle. Si une option de méthode a la même clé qu'une option définie lors de l'instantiation du service, alors l'option de comparaison de la méthode remplacera la valeur de l'option de comparaison du service.
 - Toutes les options peuvent être utilisées pour :
     - Web
     - Application hybride
@@ -141,7 +166,7 @@ Comparer les images et ignorer l'alpha.
 -   **Obligatoire:** non
 -   **Remarque:** _Peut être utilisé uniquement pour `checkScreen()`. Ceci est **uniquement pour iPad**_
 
-Bloquer automatiquement la barre latérale pour les iPads en mode paysage pendant les comparaisons. Cela évite les échecs sur le composant natif onglet/privé/signet.
+Bloquer automatiquement la barre latérale pour les iPads en mode paysage pendant les comparaisons. Cela évite les échecs sur le composant natif onglet/privé/favoris.
 
 ### `blockOutStatusBar`
 
@@ -150,7 +175,7 @@ Bloquer automatiquement la barre latérale pour les iPads en mode paysage pendan
 -   **Obligatoire:** non
 -   **Remarque:** _Ceci est **uniquement pour Mobile**_
 
-Bloquer automatiquement la barre d'état et la barre d'adresse pendant les comparaisons. Cela évite les échecs sur l'heure, le wifi ou l'état de la batterie.
+Bloquer automatiquement la barre d'état et la barre d'adresse pendant les comparaisons. Cela évite les échecs liés à l'heure, au Wi-Fi ou à l'état de la batterie.
 
 ### `blockOutToolBar`
 
@@ -167,7 +192,7 @@ Bloquer automatiquement la barre d'outils.
 -   **Par défaut:** `false`
 -   **Obligatoire:** non
 
-Comparer les images et ignorer l'anticrénelage.
+Comparer les images et ignorer l'anti-aliasing.
 
 ### `ignoreColors`
 
@@ -175,7 +200,7 @@ Comparer les images et ignorer l'anticrénelage.
 -   **Par défaut:** `false`
 -   **Obligatoire:** non
 
-Même si les images sont en couleur, la comparaison comparera 2 images en noir et blanc
+Même si les images sont en couleur, la comparaison comparera 2 images en noir/blanc
 
 ### `ignoreLess`
 
@@ -207,7 +232,7 @@ Si vrai, le pourcentage de retour sera comme `0.12345678`, par défaut c'est `0.
 -   **Par défaut:** `false`
 -   **Obligatoire:** non
 
-Cela retournera toutes les données de comparaison, pas seulement le pourcentage de différence
+Cela retournera toutes les données de comparaison, pas seulement le pourcentage de non-correspondance
 
 ### `saveAboveTolerance`
 
@@ -224,7 +249,7 @@ Valeur admissible de `misMatchPercentage` qui empêche la sauvegarde des images 
 -   **Obligatoire:** non
 
 La comparaison de grandes images peut entraîner des problèmes de performance.
-Lorsqu'un nombre de pixels est fourni ici (supérieur à 0), l'algorithme de comparaison ignore les pixels lorsque la largeur ou la hauteur de l'image est supérieure à `largeImageThreshold` pixels.
+Lorsqu'on fournit un nombre pour le nombre de pixels ici (supérieur à 0), l'algorithme de comparaison ignore les pixels lorsque la largeur ou la hauteur de l'image est supérieure à `largeImageThreshold` pixels.
 
 ### `scaleImagesToSameSize`
 
@@ -236,7 +261,7 @@ Redimensionne 2 images à la même taille avant l'exécution de la comparaison. 
 
 ## Options de dossier
 
-Le dossier de référence et les dossiers de captures d'écran (actuel, différence) sont des options qui peuvent être définies lors de l'instanciation du plugin ou de la méthode. Pour définir les options de dossier sur une méthode particulière, passez les options de dossier à l'objet d'options de méthodes. Cela peut être utilisé pour :
+Le dossier de référence et les dossiers de captures d'écran (réel, différence) sont des options qui peuvent être définies lors de l'instanciation du plugin ou de la méthode. Pour définir les options de dossier sur une méthode particulière, passez les options de dossier à l'objet d'options de méthodes. Cela peut être utilisé pour :
 
 - Web
 - Application hybride
@@ -262,7 +287,7 @@ await expect(
 -   **Type:** `string`
 -   **Obligatoire:** non
 
-Dossier pour la capture d'écran qui a été capturée dans le test.
+Dossier pour la capture qui a été prise dans le test.
 
 ### `baselineFolder`
 
@@ -276,4 +301,4 @@ Dossier pour l'image de référence qui est utilisée pour la comparaison.
 -   **Type:** `string`
 -   **Obligatoire:** non
 
-Dossier pour l'image de différence rendue par ResembleJS.
+Dossier pour la différence d'image rendue par ResembleJS.

@@ -14,7 +14,7 @@ Methoden-Optionen sind die Optionen, die pro [Methode](./methods) festgelegt wer
 -   **Standard:** `false`
 -   **Unterstützt:** Web, Hybrid App (Webview)
 
-Aktiviert/Deaktiviert das "Blinken" des Cursors in allen `input`, `textarea`, `[contenteditable]` Elementen in der Anwendung. Wenn auf `true` gesetzt, wird der Cursor auf `transparent` gesetzt, bevor ein Screenshot gemacht wird, und danach zurückgesetzt.
+Aktiviert/Deaktiviert das "Blinken" des Cursors in allen `input`, `textarea`, `[contenteditable]` Elementen in der Anwendung. Wenn auf `true` gesetzt, wird der Cursor auf `transparent` gestellt, bevor ein Screenshot gemacht wird, und danach zurückgesetzt.
 
 ### `disableCSSAnimation`
 
@@ -25,20 +25,30 @@ Aktiviert/Deaktiviert das "Blinken" des Cursors in allen `input`, `textarea`, `[
 
 Aktiviert/Deaktiviert alle CSS-Animationen in der Anwendung. Wenn auf `true` gesetzt, werden alle Animationen deaktiviert, bevor ein Screenshot gemacht wird, und danach zurückgesetzt.
 
+### `enableLegacyScreenshotMethod`
+
+-   **Typ:** `boolean`
+-   **Pflichtfeld:** Nein
+-   **Standard:** `false`
+-   **Unterstützt:** Web, Hybrid App (Webview)
+
+Verwenden Sie diese Option, um zur "älteren" Screenshot-Methode basierend auf dem W3C-WebDriver-Protokoll zurückzukehren. Dies kann hilfreich sein, wenn Ihre Tests auf vorhandene Baseline-Bilder angewiesen sind oder wenn Sie in Umgebungen arbeiten, die neuere BiDi-basierte Screenshots nicht vollständig unterstützen.
+Beachten Sie, dass das Aktivieren dieser Option Screenshots mit leicht unterschiedlicher Auflösung oder Qualität erzeugen kann.
+
 ### `enableLayoutTesting`
 
 -   **Typ:** `boolean`
 -   **Pflichtfeld:** Nein
 -   **Standard:** `false`
--   **Verwendet mit:** Allen [Methoden](./methods)
+-   **Verwendet mit:** Alle [Methoden](./methods)
 -   **Unterstützt:** Web
 
 Dies blendet den gesamten Text auf einer Seite aus, sodass nur das Layout für den Vergleich verwendet wird. Das Ausblenden erfolgt durch Hinzufügen des Stils `'color': 'transparent !important'` zu __jedem__ Element.
 
-Für die Ausgabe siehe [Test-Ausgabe](./test-output#enablelayouttesting)
+Für die Ausgabe siehe [Test Output](./test-output#enablelayouttesting)
 
 :::info
-Bei Verwendung dieses Flags erhält jedes Element, das Text enthält (also nicht nur `p, h1, h2, h3, h4, h5, h6, span, a, li`, sondern auch `div|button|..`), diese Eigenschaft. Es gibt __keine__ Möglichkeit, dies anzupassen.
+Bei Verwendung dieses Flags erhält jedes Element, das Text enthält (also nicht nur `p, h1, h2, h3, h4, h5, h6, span, a, li`, sondern auch `div|button|..`), diese Eigenschaft. Es gibt __keine__ Option, dies anzupassen.
 :::
 
 ### `hideScrollBars`
@@ -46,28 +56,28 @@ Bei Verwendung dieses Flags erhält jedes Element, das Text enthält (also nicht
 -   **Typ:** `boolean`
 -   **Pflichtfeld:** Nein
 -   **Standard:** `true`
--   **Verwendet mit:** Allen [Methoden](./methods)
+-   **Verwendet mit:** Alle [Methoden](./methods)
 -   **Unterstützt:** Web, Hybrid App (Webview)
 
-Blendet Scrollbalken in der Anwendung aus. Wenn auf true gesetzt, werden alle Scrollbalken vor dem Erstellen eines Screenshots deaktiviert. Dies ist standardmäßig auf `true` gesetzt, um zusätzliche Probleme zu vermeiden.
+Blendet die Scrollleiste(n) in der Anwendung aus. Wenn auf true gesetzt, werden alle Scrollleisten deaktiviert, bevor ein Screenshot gemacht wird. Dies ist standardmäßig auf `true` gesetzt, um zusätzliche Probleme zu vermeiden.
 
 ### `hideElements`
 
 -   **Typ:** `array`
 -   **Pflichtfeld:** nein
--   **Verwendet mit:** Allen [Methoden](./methods)
+-   **Verwendet mit:** Alle [Methoden](./methods)
 -   **Unterstützt:** Web, Hybrid App (Webview), Native App
 
-Diese Methode kann ein oder mehrere Elemente ausblenden, indem die Eigenschaft `visibility: hidden` hinzugefügt wird, indem ein Array von Elementen bereitgestellt wird.
+Diese Methode kann ein oder mehrere Elemente ausblenden, indem sie ihnen die Eigenschaft `visibility: hidden` hinzufügt, indem ein Array von Elementen bereitgestellt wird.
 
 ### `removeElements`
 
 -   **Typ:** `array`
 -   **Pflichtfeld:** nein
--   **Verwendet mit:** Allen [Methoden](./methods)
+-   **Verwendet mit:** Alle [Methoden](./methods)
 -   **Unterstützt:** Web, Hybrid App (Webview), Native App
 
-Diese Methode kann ein oder mehrere Elemente _entfernen_, indem die Eigenschaft `display: none` hinzugefügt wird, indem ein Array von Elementen bereitgestellt wird.
+Diese Methode kann ein oder mehrere Elemente _entfernen_, indem sie ihnen die Eigenschaft `display: none` hinzufügt, indem ein Array von Elementen bereitgestellt wird.
 
 ### `resizeDimensions`
 
@@ -77,7 +87,18 @@ Diese Methode kann ein oder mehrere Elemente _entfernen_, indem die Eigenschaft 
 -   **Verwendet mit:** Nur für [`saveElement`](./methods#saveelement) oder [`checkElement`](./methods#checkelement)
 -   **Unterstützt:** Web, Hybrid App (Webview), Native App
 
-Ein Objekt, das `top`, `right`, `bottom` und `left` Pixelwerte enthalten muss, die den Elementausschnitt vergrößern sollen.
+Ein Objekt, das einen `top`, `right`, `bottom` und `left` Wert in Pixeln enthalten muss, um den Element-Ausschnitt zu vergrößern.
+
+### `userBasedFullPageScreenshot`
+
+* **Typ:** `boolean`
+* **Pflichtfeld:** Nein
+* **Standard:** `false`
+* **Unterstützt:** Web, Hybrid App (Webview)
+
+Wenn auf `true` gesetzt, aktiviert diese Option die **Scroll-and-Stitch-Strategie**, um Screenshots der gesamten Seite zu erstellen.
+Anstatt die nativen Screenshot-Funktionen des Browsers zu verwenden, scrollt es manuell durch die Seite und fügt mehrere Screenshots zusammen.
+Diese Methode ist besonders nützlich für Seiten mit **lazy-loaded Inhalten** oder komplexen Layouts, die ein Scrollen erfordern, um vollständig gerendert zu werden.
 
 ### `fullPageScrollTimeout`
 
@@ -87,7 +108,9 @@ Ein Objekt, das `top`, `right`, `bottom` und `left` Pixelwerte enthalten muss, d
 -   **Verwendet mit:** Nur für [`saveFullPageScreen`](./methods#savefullpagescreen) oder [`saveTabbablePage`](./methods#savetabbablepage)
 -   **Unterstützt:** Web
 
-Das Timeout in Millisekunden, das nach einem Scroll gewartet werden soll. Dies kann bei der Identifizierung von Seiten mit Lazy Loading helfen.
+Die Zeitüberschreitung in Millisekunden, die nach einem Scroll gewartet werden soll. Dies kann helfen, Seiten mit Lazy Loading zu identifizieren.
+
+> **HINWEIS:** Dies funktioniert nur, wenn `userBasedFullPageScreenshot` auf `true` gesetzt ist
 
 ### `hideAfterFirstScroll`
 
@@ -96,18 +119,20 @@ Das Timeout in Millisekunden, das nach einem Scroll gewartet werden soll. Dies k
 -   **Verwendet mit:** Nur für [`saveFullPageScreen`](./methods#savefullpagescreen) oder [`saveTabbablePage`](./methods#savetabbablepage)
 -   **Unterstützt:** Web
 
-Diese Methode blendet ein oder mehrere Elemente aus, indem die Eigenschaft `visibility: hidden` hinzugefügt wird, indem ein Array von Elementen bereitgestellt wird.
-Dies ist praktisch, wenn eine Seite beispielsweise sticky Elemente enthält, die beim Scrollen der Seite mitscrollt, aber einen störenden Effekt erzeugt, wenn ein Vollbild-Screenshot erstellt wird.
+Diese Methode blendet ein oder mehrere Elemente aus, indem sie ihnen die Eigenschaft `visibility: hidden` hinzufügt, wenn ein Array von Elementen bereitgestellt wird.
+Dies ist praktisch, wenn eine Seite beispielsweise sticky-Elemente enthält, die beim Scrollen der Seite mitscrollen, aber einen störenden Effekt haben, wenn ein Screenshot der gesamten Seite erstellt wird.
+
+> **HINWEIS:** Dies funktioniert nur, wenn `userBasedFullPageScreenshot` auf `true` gesetzt ist
 
 ### `waitForFontsLoaded`
 
 -   **Typ:** `boolean`
 -   **Pflichtfeld:** Nein
 -   **Standard:** `true`
--   **Verwendet mit:** Allen [Methoden](./methods)
+-   **Verwendet mit:** Alle [Methoden](./methods)
 -   **Unterstützt:** Web, Hybrid App (Webview)
 
-Schriftarten, einschließlich Drittanbieter-Schriftarten, können synchron oder asynchron geladen werden. Asynchrones Laden bedeutet, dass Schriftarten möglicherweise geladen werden, nachdem WebdriverIO festgestellt hat, dass eine Seite vollständig geladen wurde. Um Probleme bei der Schriftartendarstellung zu vermeiden, wartet dieses Modul standardmäßig, bis alle Schriftarten geladen sind, bevor ein Screenshot erstellt wird.
+Schriftarten, einschließlich Drittanbieter-Schriftarten, können synchron oder asynchron geladen werden. Asynchrones Laden bedeutet, dass Schriftarten möglicherweise geladen werden, nachdem WebdriverIO festgestellt hat, dass eine Seite vollständig geladen ist. Um Probleme bei der Schriftartendarstellung zu vermeiden, wartet dieses Modul standardmäßig darauf, dass alle Schriftarten geladen sind, bevor ein Screenshot erstellt wird.
 
 ## Vergleichs-Optionen
 
@@ -116,7 +141,7 @@ Vergleichsoptionen sind Optionen, die die Art und Weise beeinflussen, wie der Ve
 :::info HINWEIS
 
 -   Alle Optionen aus den [Speicher-Optionen](#save-options) können für die Vergleichsmethoden verwendet werden
--   Alle Vergleichsoptionen können während der Service-Instanziierung __oder__ für jede einzelne Prüfmethode verwendet werden. Wenn eine Methodenoption den gleichen Schlüssel hat wie eine Option, die während der Instanziierung des Services festgelegt wurde, dann überschreibt die Methoden-Vergleichsoption den Wert der Service-Vergleichsoption.
+-   Alle Vergleichsoptionen können während der Service-Instanziierung __oder__ für jede einzelne Prüfmethode verwendet werden. Wenn eine Methodenoption den gleichen Schlüssel hat wie eine Option, die während der Instanziierung des Services festgelegt wurde, überschreibt die Methoden-Vergleichsoption den Wert der Service-Vergleichsoption.
 - Alle Optionen können verwendet werden für:
     - Web
     - Hybrid App
@@ -130,32 +155,32 @@ Vergleichsoptionen sind Optionen, die die Art und Weise beeinflussen, wie der Ve
 -   **Standard:** `false`
 -   **Pflichtfeld:** nein
 
-Vergleicht Bilder und verwirft Alpha.
+Vergleicht Bilder und verwirft den Alpha-Kanal.
 
 ### `blockOutSideBar`
 
 -   **Typ:** `boolean`
 -   **Standard:** `true`
 -   **Pflichtfeld:** nein
--   **Bemerkung:** _Kann nur für `checkScreen()` verwendet werden. Dies ist **nur für iPad**_
+-   **Hinweis:** _Kann nur für `checkScreen()` verwendet werden. Dies ist **nur für iPad**_
 
-Blockiert automatisch die Seitenleiste für iPads im Querformat während der Vergleiche. Dies verhindert Fehler bei der nativen Tab/Privat/Lesezeichen-Komponente.
+Blockiert automatisch die Seitenleiste für iPads im Querformat während der Vergleiche. Dies verhindert Fehler bei der nativen Tab-/Privat-/Lesezeichen-Komponente.
 
 ### `blockOutStatusBar`
 
 -   **Typ:** `boolean`
 -   **Standard:** `true`
 -   **Pflichtfeld:** nein
--   **Bemerkung:** _Dies ist **nur für Mobile**_
+-   **Hinweis:** _Dies ist **nur für Mobilgeräte**_
 
-Blockiert automatisch die Status- und Adressleiste während der Vergleiche. Dies verhindert Fehler bei Zeit-, WLAN- oder Batteriestatus.
+Blockiert automatisch die Status- und Adressleiste während der Vergleiche. Dies verhindert Fehler bei der Anzeige von Uhrzeit, WLAN oder Batteriestatus.
 
 ### `blockOutToolBar`
 
 -   **Typ:** `boolean`
 -   **Standard:** `true`
 -   **Pflichtfeld:** nein
--   **Bemerkung:** _Dies ist **nur für Mobile**_
+-   **Hinweis:** _Dies ist **nur für Mobilgeräte**_
 
 Blockiert automatisch die Symbolleiste.
 
@@ -173,7 +198,7 @@ Vergleicht Bilder und verwirft Anti-Aliasing.
 -   **Standard:** `false`
 -   **Pflichtfeld:** nein
 
-Auch wenn die Bilder farbig sind, vergleicht der Vergleich 2 Schwarz-Weiß-Bilder.
+Auch wenn die Bilder farbig sind, werden beim Vergleich zwei Schwarzweiß-Bilder verglichen.
 
 ### `ignoreLess`
 
@@ -197,7 +222,7 @@ Vergleicht Bilder mit `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0,
 -   **Standard:** `false`
 -   **Pflichtfeld:** nein
 
-Wenn true, wird der Rückgabeprozentsatz wie `0.12345678` sein, Standard ist `0.12`
+Wenn true, wird der Prozentsatz wie `0.12345678` zurückgegeben, standardmäßig ist es `0.12`
 
 ### `returnAllCompareData`
 
@@ -205,7 +230,7 @@ Wenn true, wird der Rückgabeprozentsatz wie `0.12345678` sein, Standard ist `0.
 -   **Standard:** `false`
 -   **Pflichtfeld:** nein
 
-Dies gibt alle Vergleichsdaten zurück, nicht nur den Mismatch-Prozentsatz.
+Dies gibt alle Vergleichsdaten zurück, nicht nur den Prozentsatz der Nichtübereinstimmung
 
 ### `saveAboveTolerance`
 
@@ -213,7 +238,7 @@ Dies gibt alle Vergleichsdaten zurück, nicht nur den Mismatch-Prozentsatz.
 -   **Standard:** `0`
 -   **Pflichtfeld:** nein
 
-Zulässiger Wert von `misMatchPercentage`, der das Speichern von Bildern mit Unterschieden verhindert.
+Zulässiger Wert von `misMatchPercentage`, der das Speichern von Bildern mit Unterschieden verhindert
 
 ### `largeImageThreshold`
 
@@ -234,7 +259,7 @@ Skaliert 2 Bilder auf die gleiche Größe vor der Ausführung des Vergleichs. Es
 
 ## Ordner-Optionen
 
-Der Baseline-Ordner und die Screenshot-Ordner (actual, diff) sind Optionen, die während der Instanziierung des Plugins oder der Methode festgelegt werden können. Um die Ordneroptionen für eine bestimmte Methode festzulegen, übergeben Sie Ordneroptionen an das Optionsobjekt der Methode. Dies kann verwendet werden für:
+Der Baseline-Ordner und die Screenshot-Ordner (actual, diff) sind Optionen, die während der Instanziierung des Plugins oder der Methode festgelegt werden können. Um die Ordneroptionen für eine bestimmte Methode festzulegen, übergeben Sie die Ordneroptionen an das Optionsobjekt der Methode. Dies kann verwendet werden für:
 
 - Web
 - Hybrid App
@@ -274,4 +299,4 @@ Ordner für das Baseline-Bild, das zum Vergleich verwendet wird.
 -   **Typ:** `string`
 -   **Pflichtfeld:** nein
 
-Ordner für die von ResembleJS gerenderte Bilddifferenz.
+Ordner für das von ResembleJS gerenderte Bilddifferenz.
