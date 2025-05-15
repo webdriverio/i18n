@@ -49,4 +49,5 @@ export const LANGUAGES_TO_TRANSLATE = {
     uk: 'Ukrainian',
     zh: 'Chinese',
     vi: 'Vietnamese',
+    ko: 'Korean'
 } as const;
