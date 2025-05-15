@@ -1,0 +1,34 @@
+{
+  "logo.alt": {
+    "message": "WebdriverIO",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "문서",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.API": {
+    "message": "API",
+    "description": "Navbar item with label API"
+  },
+  "item.label.Blog": {
+    "message": "블로그",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Contribute": {
+    "message": "기여하기",
+    "description": "Navbar item with label Contribute"
+  },
+  "item.label.Community": {
+    "message": "커뮤니티",
+    "description": "Navbar item with label Community"
+  },
+  "item.label.Sponsor": {
+    "message": "후원하기",
+    "description": "Navbar item with label Sponsor"
+  },
+  "item.label.v9": {
+    "message": "v9",
+    "description": "Navbar item with label v9"
+  }
+}

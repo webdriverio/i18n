@@ -1,0 +1,74 @@
+{
+  "link.title.Docs": {
+    "message": "문서",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Community": {
+    "message": "커뮤니티",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.More": {
+    "message": "더 보기",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.title.Sponsored by": {
+    "message": "스폰서",
+    "description": "The title of the footer links column with title=Sponsored by in the footer"
+  },
+  "link.item.label.Getting Started": {
+    "message": "시작하기",
+    "description": "The label of footer link with label=Getting Started linking to docs/gettingstarted"
+  },
+  "link.item.label.API Reference": {
+    "message": "API 참조",
+    "description": "The label of footer link with label=API Reference linking to docs/api"
+  },
+  "link.item.label.Contribute": {
+    "message": "기여하기",
+    "description": "The label of footer link with label=Contribute linking to docs/contribute/"
+  },
+  "link.item.label.Help": {
+    "message": "도움말",
+    "description": "The label of footer link with label=Help linking to community/support"
+  },
+  "link.item.label.Stack Overflow": {
+    "message": "스택 오버플로우",
+    "description": "The label of footer link with label=Stack Overflow linking to https://stackoverflow.com/questions/tagged/webdriver-io"
+  },
+  "link.item.label.Support Chat": {
+    "message": "지원 채팅",
+    "description": "The label of footer link with label=Support Chat linking to https://discord.webdriver.io"
+  },
+  "link.item.label.Slack": {
+    "message": "슬랙",
+    "description": "The label of footer link with label=Slack linking to https://seleniumhq.slack.com/join/shared_invite/zt-f7jwg1n7-RVw4v4sMA7Zjufira_~EVw#/"
+  },
+  "link.item.label.Twitter": {
+    "message": "트위터",
+    "description": "The label of footer link with label=Twitter linking to https://twitter.com/webdriverio"
+  },
+  "link.item.label.Blog": {
+    "message": "블로그",
+    "description": "The label of footer link with label=Blog linking to blog"
+  },
+  "link.item.label.Sponsor": {
+    "message": "스폰서",
+    "description": "The label of footer link with label=Sponsor linking to docs/sponsor"
+  },
+  "link.item.label.Swag Store": {
+    "message": "상품 스토어",
+    "description": "The label of footer link with label=Swag Store linking to https://shop.webdriver.io"
+  },
+  "link.item.label.YouTube": {
+    "message": "유튜브",
+    "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
+  },
+  "copyright": {
+    "message": "저작권 © 2025 OpenJS 재단",
+    "description": "The footer copyright"
+  },
+  "logo.alt": {
+    "message": "OpenJS 재단 로고",
+    "description": "The alt text of footer logo"
+  }
+}
