@@ -9,7 +9,7 @@
     },
     "type": "module",
     "dependencies": {
-        "@anthropic-ai/sdk": "^0.50.3",
+        "@anthropic-ai/sdk": "^0.51.0",
         "@types/node": "^22.15.2",
         "ai": "^4.3.10",
         "dotenv": "^16.5.0",
