@@ -1,68 +1,68 @@
 ---
 id: configuration
-title: الإعدادات
+title: التكوين
 ---
 
-بناءً على [نوع الإعداد](/docs/setuptypes) (مثلاً استخدام ارتباطات البروتوكول المباشرة، أو حزمة WebdriverIO المستقلة أو منصة اختبار WDIO) هناك مجموعة مختلفة من الخيارات المتاحة للتحكم في البيئة.
+استنادًا إلى [نوع الإعداد](/docs/setuptypes) (مثل استخدام ارتباطات البروتوكول الخام، أو WebdriverIO كحزمة مستقلة أو مشغل اختبار WDIO)، هناك مجموعة مختلفة من الخيارات المتاحة للتحكم في البيئة.
 
 ## خيارات WebDriver
 
-الخيارات التالية محددة عند استخدام حزمة بروتوكول [`webdriver`](https://www.npmjs.com/package/webdriver):
+الخيارات التالية يتم تعريفها عند استخدام حزمة بروتوكول [`webdriver`](https://www.npmjs.com/package/webdriver):
 
 ### protocol
 
-البروتوكول المستخدم عند التواصل مع خادم السائق.
+البروتوكول المستخدم عند التواصل مع خادم التشغيل.
 
 النوع: `String`<br />
-القيمة الافتراضية: `http`
+الافتراضي: `http`
 
 ### hostname
 
-مضيف خادم السائق الخاص بك.
+مضيف خادم التشغيل الخاص بك.
 
 النوع: `String`<br />
-القيمة الافتراضية: `0.0.0.0`
+الافتراضي: `0.0.0.0`
 
 ### port
 
-المنفذ الذي يعمل عليه خادم السائق.
+المنفذ الذي يعمل عليه خادم التشغيل الخاص بك.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `undefined`
+الافتراضي: `undefined`
 
 ### path
 
-المسار إلى نقطة نهاية خادم السائق.
+المسار إلى نقطة نهاية خادم التشغيل.
 
 النوع: `String`<br />
-القيمة الافتراضية: `/`
+الافتراضي: `/`
 
 ### queryParams
 
-معلمات الاستعلام التي يتم تمريرها إلى خادم السائق.
+معلمات الاستعلام التي يتم تمريرها إلى خادم التشغيل.
 
 النوع: `Object`<br />
-القيمة الافتراضية: `undefined`
+الافتراضي: `undefined`
 
 ### user
 
-اسم المستخدم لخدمة السحابة الخاصة بك (يعمل فقط مع حسابات [Sauce Labs](https://saucelabs.com)، [Browserstack](https://www.browserstack.com)، [TestingBot](https://testingbot.com) أو [LambdaTest](https://www.lambdatest.com)). إذا تم تعيينه، سيقوم WebdriverIO تلقائيًا بتعيين خيارات الاتصال لك. إذا كنت لا تستخدم مزودًا سحابيًا، يمكن استخدام هذا لمصادقة أي خادم WebDriver آخر.
+اسم المستخدم لخدمة السحابة الخاصة بك (يعمل فقط مع حسابات [Sauce Labs](https://saucelabs.com)، [Browserstack](https://www.browserstack.com)، [TestingBot](https://testingbot.com) أو [LambdaTest](https://www.lambdatest.com)). إذا تم تعيينه، سيقوم WebdriverIO تلقائيًا بتعيين خيارات الاتصال لك. إذا كنت لا تستخدم مزود سحابة، يمكن استخدام هذا للمصادقة مع أي خلفية WebDriver أخرى.
 
 النوع: `String`<br />
-القيمة الافتراضية: `undefined`
+الافتراضي: `undefined`
 
 ### key
 
-مفتاح الوصول أو المفتاح السري لخدمة السحابة الخاصة بك (يعمل فقط مع حسابات [Sauce Labs](https://saucelabs.com)، [Browserstack](https://www.browserstack.com)، [TestingBot](https://testingbot.com) أو [LambdaTest](https://www.lambdatest.com)). إذا تم تعيينه، سيقوم WebdriverIO تلقائيًا بتعيين خيارات الاتصال لك. إذا كنت لا تستخدم مزودًا سحابيًا، يمكن استخدام هذا لمصادقة أي خادم WebDriver آخر.
+مفتاح الوصول أو المفتاح السري لخدمة السحابة الخاصة بك (يعمل فقط مع حسابات [Sauce Labs](https://saucelabs.com)، [Browserstack](https://www.browserstack.com)، [TestingBot](https://testingbot.com) أو [LambdaTest](https://www.lambdatest.com)). إذا تم تعيينه، سيقوم WebdriverIO تلقائيًا بتعيين خيارات الاتصال لك. إذا كنت لا تستخدم مزود سحابة، يمكن استخدام هذا للمصادقة مع أي خلفية WebDriver أخرى.
 
 النوع: `String`<br />
-القيمة الافتراضية: `undefined`
+الافتراضي: `undefined`
 
 ### capabilities
 
-يحدد القدرات التي تريد تشغيلها في جلسة WebDriver الخاصة بك. راجع [بروتوكول WebDriver](https://w3c.github.io/webdriver/#capabilities) لمزيد من التفاصيل. إذا كنت تستخدم سائقًا قديمًا لا يدعم بروتوكول WebDriver، فستحتاج إلى استخدام [قدرات JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) لتشغيل جلسة بنجاح.
+يحدد القدرات التي تريد تشغيلها في جلسة WebDriver الخاصة بك. تحقق من [بروتوكول WebDriver](https://w3c.github.io/webdriver/#capabilities) لمزيد من التفاصيل. إذا كنت تقوم بتشغيل برنامج تشغيل أقدم لا يدعم بروتوكول WebDriver، فستحتاج إلى استخدام [قدرات JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) لتشغيل جلسة بنجاح.
 
-بالإضافة إلى القدرات المستندة إلى WebDriver، يمكنك تطبيق خيارات خاصة بالمتصفح والبائع تسمح بتكوين أعمق للمتصفح أو الجهاز البعيد. هذه موثقة في وثائق الموردين المقابلة، على سبيل المثال:
+إلى جانب القدرات المستندة إلى WebDriver، يمكنك تطبيق خيارات خاصة بالمتصفح والبائع تسمح بتكوين أعمق للمتصفح البعيد أو الجهاز. هذه موثقة في وثائق البائع المقابلة، على سبيل المثال:
 
 - `goog:chromeOptions`: لـ [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
 - `moz:firefoxOptions`: لـ [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
@@ -71,60 +71,60 @@ title: الإعدادات
 - `bstack:options`: لـ [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
 - `selenoid:options`: لـ [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
 
-بالإضافة إلى ذلك، هناك أداة مفيدة هي [مكون تكوين الاختبار الآلي](https://docs.saucelabs.com/basics/platform-configurator/) من Sauce Labs، والتي تساعدك على إنشاء هذا الكائن من خلال النقر على القدرات المطلوبة.
+بالإضافة إلى ذلك، هناك أداة مفيدة وهي [مكوّن الاختبار الآلي من Sauce Labs](https://docs.saucelabs.com/basics/platform-configurator/)، الذي يساعدك على إنشاء هذا الكائن من خلال النقر معًا على القدرات المطلوبة.
 
 النوع: `Object`<br />
-القيمة الافتراضية: `null`
+الافتراضي: `null`
 
 **مثال:**
 
 ```js
 {
-    browserName: 'chrome', // الخيارات: `chrome`, `edge`, `firefox`, `safari`
+    browserName: 'chrome', // الخيارات: `chrome`، `edge`، `firefox`، `safari`
     browserVersion: '27.0', // إصدار المتصفح
     platformName: 'Windows 10' // منصة نظام التشغيل
 }
 ```
 
-إذا كنت تقوم بإجراء اختبارات ويب أو اختبارات أصلية على أجهزة محمولة، فإن `capabilities` تختلف عن بروتوكول WebDriver. راجع [وثائق Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/) لمزيد من التفاصيل.
+إذا كنت تقوم بإجراء اختبارات ويب أو اختبارات أصلية على أجهزة محمولة، فإن `capabilities` تختلف عن بروتوكول WebDriver. انظر [وثائق Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/) لمزيد من التفاصيل.
 
 ### logLevel
 
-مستوى تفصيل السجلات.
+مستوى التفصيل في السجلات.
 
 النوع: `String`<br />
-القيمة الافتراضية: `info`<br />
+الافتراضي: `info`<br />
 الخيارات: `trace` | `debug` | `info` | `warn` | `error` | `silent`
 
 ### outputDir
 
-الدليل لتخزين جميع ملفات سجل منصة الاختبار (بما في ذلك سجلات المراسل وسجلات `wdio`). إذا لم يتم تعيينه، يتم بث جميع السجلات إلى `stdout`. نظرًا لأن معظم المراسلين مصممون للسجل في `stdout`، يوصى باستخدام هذا الخيار فقط لمراسلين محددين حيث يكون من المنطقي أكثر دفع التقرير إلى ملف (مثل مراسل `junit`).
+الدليل لتخزين جميع ملفات سجل مشغل الاختبار (بما في ذلك سجلات المراسل وسجلات `wdio`). إذا لم يتم تعيينه، فسيتم بث جميع السجلات إلى `stdout`. نظرًا لأن معظم المراسلين مصممون للتسجيل في `stdout`، فمن المستحسن استخدام هذا الخيار فقط لمراسلين محددين حيث يكون من المنطقي أكثر دفع التقرير إلى ملف (مثل مراسل `junit`، على سبيل المثال).
 
-عند التشغيل في الوضع المستقل، السجل الوحيد الذي يتم إنشاؤه بواسطة WebdriverIO سيكون سجل `wdio`.
+عند التشغيل في الوضع المستقل، السجل الوحيد الذي يولده WebdriverIO هو سجل `wdio`.
 
 النوع: `String`<br />
-القيمة الافتراضية: `null`
+الافتراضي: `null`
 
 ### connectionRetryTimeout
 
-المهلة الزمنية لأي طلب WebDriver إلى سائق أو شبكة.
+المهلة لأي طلب WebDriver إلى برنامج تشغيل أو شبكة.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `120000`
+الافتراضي: `120000`
 
 ### connectionRetryCount
 
 الحد الأقصى لعدد إعادة محاولات الطلب إلى خادم Selenium.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `3`
+الافتراضي: `3`
 
 ### agent
 
-يسمح لك باستخدام وكيل `http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) مخصص لإجراء الطلبات.
+يسمح لك باستخدام وكيل مخصص `http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) لإجراء الطلبات.
 
 النوع: `Object`<br />
-القيمة الافتراضية:
+الافتراضي:
 
 ```js
 {
@@ -135,17 +135,17 @@ title: الإعدادات
 
 ### headers
 
-حدد `headers` مخصصة لتمريرها في كل طلب WebDriver. إذا كانت شبكة Selenium الخاصة بك تتطلب المصادقة الأساسية، نوصي بتمرير رأس `Authorization` من خلال هذا الخيار لمصادقة طلبات WebDriver الخاصة بك، على سبيل المثال:
+حدد `headers` مخصصة لتمريرها في كل طلب WebDriver. إذا كانت شبكة Selenium الخاصة بك تتطلب مصادقة أساسية، فإننا نوصي بتمرير رأس `Authorization` من خلال هذا الخيار لمصادقة طلبات WebDriver الخاصة بك، على سبيل المثال:
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
-// قراءة اسم المستخدم وكلمة المرور من متغيرات البيئة
+// Read the username and password from environment variables
 const username = process.env.SELENIUM_GRID_USERNAME;
 const password = process.env.SELENIUM_GRID_PASSWORD;
 
-// دمج اسم المستخدم وكلمة المرور بفاصل نقطتي
+// Combine the username and password with a colon separator
 const credentials = `${username}:${password}`;
-// ترميز بيانات الاعتماد باستخدام Base64
+// Encode the credentials using Base64
 const encodedCredentials = Buffer.from(credentials).toString('base64');
 
 export const config: WebdriverIO.Config = {
@@ -158,56 +158,73 @@ export const config: WebdriverIO.Config = {
 ```
 
 النوع: `Object`<br />
-القيمة الافتراضية: `{}`
+الافتراضي: `{}`
 
 ### transformRequest
 
-دالة تعترض [خيارات طلب HTTP](https://github.com/sindresorhus/got#options) قبل إجراء طلب WebDriver
+وظيفة تعترض [خيارات طلب HTTP](https://github.com/sindresorhus/got#options) قبل إجراء طلب WebDriver
 
 النوع: `(RequestOptions) => RequestOptions`<br />
-القيمة الافتراضية: *لا شيء*
+الافتراضي: *لا شيء*
 
 ### transformResponse
 
-دالة تعترض كائنات استجابة HTTP بعد وصول استجابة WebDriver. يتم تمرير الدالة كائن الاستجابة الأصلي كمعلمة أولى و`RequestOptions` المقابلة كمعلمة ثانية.
+وظيفة تعترض كائنات استجابة HTTP بعد وصول استجابة WebDriver. يتم تمرير الوظيفة إلى كائن الاستجابة الأصلي كأول معامل و`RequestOptions` المقابل كمعامل ثانٍ.
 
 النوع: `(Response, RequestOptions) => Response`<br />
-القيمة الافتراضية: *لا شيء*
+الافتراضي: *لا شيء*
 
 ### strictSSL
 
 ما إذا كان لا يتطلب أن تكون شهادة SSL صالحة.
-يمكن تعيينها عبر متغيرات بيئية مثل `STRICT_SSL` أو `strict_ssl`.
+يمكن تعيينها عبر متغيرات البيئة مثل `STRICT_SSL` أو `strict_ssl`.
 
 النوع: `Boolean`<br />
-القيمة الافتراضية: `true`
+الافتراضي: `true`
 
 ### enableDirectConnect
 
-ما إذا كان تمكين [ميزة الاتصال المباشر Appium](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments).
-لا يفعل شيئًا إذا لم تحتوي الاستجابة على المفاتيح المناسبة أثناء تمكين العلامة.
+ما إذا كان يتم تمكين [ميزة اتصال Appium المباشر](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments).
+لا تفعل شيئًا إذا لم تحتوِ الاستجابة على المفاتيح المناسبة بينما يتم تمكين العلامة.
 
 النوع: `Boolean`<br />
-القيمة الافتراضية: `true`
+الافتراضي: `true`
 
 ### cacheDir
 
-المسار إلى جذر دليل التخزين المؤقت. يستخدم هذا الدليل لتخزين جميع برامج التشغيل التي يتم تنزيلها عند محاولة بدء جلسة.
+المسار إلى جذر دليل ذاكرة التخزين المؤقت. يستخدم هذا الدليل لتخزين جميع برامج التشغيل التي يتم تنزيلها عند محاولة بدء جلسة.
 
 النوع: `String`<br />
-القيمة الافتراضية: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+الافتراضي: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+
+### maskingPatterns
+
+للحصول على تسجيل أكثر أمانًا، يمكن للتعبيرات النمطية المعينة باستخدام `maskingPatterns` إخفاء المعلومات الحساسة من السجل.
+ - تنسيق السلسلة هو تعبير منتظم مع أو بدون أعلام (مثل `/.../i`) ومفصولة بفواصل لتعبيرات منتظمة متعددة.
+ - لمزيد من التفاصيل حول أنماط التقنيع، راجع [قسم أنماط التقنيع في ملف README لـ WDIO Logger](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
+
+النوع: `String`<br />
+الافتراضي: `undefined`
+
+**مثال:**
+
+```js
+{
+    maskingPatterns: '/--key=([^ ]*)/i,/RESULT (.*)/'
+}
+```
 
 ---
 
 ## WebdriverIO
 
-يمكن استخدام الخيارات التالية (بما في ذلك تلك المذكورة أعلاه) مع WebdriverIO في الوضع المستقل:
+يمكن استخدام الخيارات التالية (بما في ذلك تلك المذكورة أعلاه) مع WebdriverIO بشكل مستقل:
 
 ### automationProtocol
 
-حدد البروتوكول الذي تريد استخدامه لأتمتة المتصفح. حاليًا يتم دعم [`webdriver`](https://www.npmjs.com/package/webdriver) فقط، حيث أنه تقنية أتمتة المتصفح الرئيسية التي يستخدمها WebdriverIO.
+حدد البروتوكول الذي تريد استخدامه لأتمتة المتصفح الخاص بك. حاليًا يتم دعم [`webdriver`](https://www.npmjs.com/package/webdriver) فقط، حيث أنها تقنية أتمتة المتصفح الرئيسية التي يستخدمها WebdriverIO.
 
-إذا كنت تريد أتمتة المتصفح باستخدام تقنية أتمتة مختلفة، تأكد من تعيين هذه الخاصية إلى مسار يحل إلى وحدة تلتزم بالواجهة التالية:
+إذا كنت تريد أتمتة المتصفح باستخدام تقنية أتمتة مختلفة، تأكد من تعيين هذه الخاصية إلى مسار يتم حله إلى وحدة تلتزم بالواجهة التالية:
 
 ```ts
 import type { Capabilities } from '@wdio/types';
@@ -215,15 +232,15 @@ import type { Client, AttachOptions } from 'webdriver';
 
 export default class YourAutomationLibrary {
     /**
-     * بدء جلسة أتمتة وإرجاع [أحادي](https://github.com/webdriverio/webdriverio/blob/940cd30939864bdbdacb2e94ee6e8ada9b1cc74c/packages/wdio-utils/src/monad.ts) WebdriverIO
-     * مع أوامر الأتمتة المعنية. انظر حزمة [webdriver](https://www.npmjs.com/package/webdriver)
-     * كتنفيذ مرجعي
+     * Start a automation session and return a WebdriverIO [monad](https://github.com/webdriverio/webdriverio/blob/940cd30939864bdbdacb2e94ee6e8ada9b1cc74c/packages/wdio-utils/src/monad.ts)
+     * with respective automation commands. See the [webdriver](https://www.npmjs.com/package/webdriver) package
+     * as a reference implementation
      *
-     * @param {Capabilities.RemoteConfig} options خيارات WebdriverIO
-     * @param {Function} hook يسمح بتعديل العميل قبل إطلاقه من الدالة
-     * @param {PropertyDescriptorMap} userPrototype يسمح للمستخدم بإضافة أوامر بروتوكول مخصصة
-     * @param {Function} customCommandWrapper يسمح بتعديل تنفيذ الأمر
-     * @returns مثيل عميل متوافق مع WebdriverIO
+     * @param {Capabilities.RemoteConfig} options WebdriverIO options
+     * @param {Function} hook that allows to modify the client before it gets released from the function
+     * @param {PropertyDescriptorMap} userPrototype allows user to add custom protocol commands
+     * @param {Function} customCommandWrapper allows to modify the command execution
+     * @returns a WebdriverIO compatible client instance
      */
     static newSession(
         options: Capabilities.RemoteConfig,
@@ -233,7 +250,7 @@ export default class YourAutomationLibrary {
     ): Promise<Client>;
 
     /**
-     * يسمح للمستخدم بالاتصال بالجلسات الموجودة
+     * allows user to attach to existing sessions
      * @optional
      */
     static attachToSession(
@@ -243,12 +260,12 @@ export default class YourAutomationLibrary {
     ): Client;
 
     /**
-     * يغير معرف جلسة النسخة وإمكانيات المتصفح للجلسة الجديدة
-     * مباشرة في كائن المتصفح الممرر
+     * Changes The instance session id and browser capabilities for the new session
+     * directly into the passed in browser object
      *
      * @optional
-     * @param   {object} instance  الكائن الذي نحصل عليه من جلسة متصفح جديدة.
-     * @returns {string}           معرف الجلسة الجديد للمتصفح
+     * @param   {object} instance  the object we get from a new browser session.
+     * @returns {string}           the new session id of the browser
      */
     static reloadSession(
         instance: Client,
@@ -258,16 +275,16 @@ export default class YourAutomationLibrary {
 ```
 
 النوع: `String`<br />
-القيمة الافتراضية: `webdriver`
+الافتراضي: `webdriver`
 
 ### baseUrl
 
-اختصر استدعاءات أمر `url` عن طريق تعيين عنوان URL أساسي.
-- إذا بدأت معلمة `url` بـ `/`، فسيتم إضافة `baseUrl` في البداية (باستثناء مسار `baseUrl`، إن وجد).
-- إذا بدأت معلمة `url` بدون مخطط أو `/` (مثل `some/path`)، فسيتم إضافة `baseUrl` الكامل في البداية مباشرة.
+تقصير استدعاءات أمر `url` عن طريق تعيين عنوان URL أساسي.
+- إذا كانت معلمة `url` الخاصة بك تبدأ بـ `/`، فسيتم إضافة `baseUrl` في البداية (باستثناء مسار `baseUrl`، إذا كان له مسار).
+- إذا كانت معلمة `url` الخاصة بك تبدأ بدون مخطط أو `/` (مثل `some/path`)، فسيتم إضافة `baseUrl` الكامل مباشرة في البداية.
 
 النوع: `String`<br />
-القيمة الافتراضية: `null`
+الافتراضي: `null`
 
 ### waitforTimeout
 
@@ -276,173 +293,173 @@ export default class YourAutomationLibrary {
 لزيادة المهلة لـ _اختبار_، يرجى الاطلاع على وثائق الإطار.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `5000`
+الافتراضي: `5000`
 
 ### waitforInterval
 
-الفاصل الزمني الافتراضي لجميع أوامر `waitFor*` للتحقق مما إذا كانت الحالة المتوقعة (مثل الرؤية) قد تغيرت.
+الفاصل الزمني الافتراضي لجميع أوامر `waitFor*` للتحقق مما إذا كانت حالة متوقعة (مثل الرؤية) قد تغيرت.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `100`
+الافتراضي: `100`
 
 ### region
 
 إذا كنت تعمل على Sauce Labs، يمكنك اختيار تشغيل الاختبارات بين مراكز بيانات مختلفة: الولايات المتحدة أو الاتحاد الأوروبي.
 لتغيير منطقتك إلى الاتحاد الأوروبي، أضف `region: 'eu'` إلى التكوين الخاص بك.
 
-__ملاحظة:__ هذا يؤثر فقط إذا قدمت خيارات `user` و `key` المرتبطة بحساب Sauce Labs الخاص بك.
+__ملاحظة:__ هذا له تأثير فقط إذا قمت بتوفير خيارات `user` و `key` المرتبطة بحساب Sauce Labs الخاص بك.
 
 النوع: `String`<br />
-القيمة الافتراضية: `us`
+الافتراضي: `us`
 
-*(فقط للأجهزة الافتراضية و/أو المحاكيات)*
+*(فقط للآلات الافتراضية و/أو المحاكيات/أجهزة المحاكاة)*
 
 ---
 
-## خيارات منصة الاختبار
+## خيارات مشغل الاختبار
 
-الخيارات التالية (بما في ذلك تلك المذكورة أعلاه) محددة فقط لتشغيل WebdriverIO مع منصة اختبار WDIO:
+الخيارات التالية (بما في ذلك تلك المذكورة أعلاه) محددة فقط لتشغيل WebdriverIO باستخدام مشغل اختبار WDIO:
 
 ### specs
 
-تحديد المواصفات لتنفيذ الاختبار. يمكنك إما تحديد نمط عام لمطابقة ملفات متعددة في وقت واحد أو تغليف نمط عام أو مجموعة من المسارات في مصفوفة لتشغيلها ضمن عملية عامل واحدة. يتم اعتبار جميع المسارات نسبية من مسار ملف التكوين.
+تحديد ملفات الاختبار للتنفيذ. يمكنك إما تحديد نمط glob لمطابقة ملفات متعددة في وقت واحد أو لف نمط glob أو مجموعة من المسارات في مصفوفة لتشغيلها ضمن عملية عامل واحدة. يتم اعتبار جميع المسارات نسبية من مسار ملف التكوين.
 
 النوع: `(String | String[])[]`<br />
-القيمة الافتراضية: `[]`
+الافتراضي: `[]`
 
 ### exclude
 
-استبعاد المواصفات من تنفيذ الاختبار. يتم اعتبار جميع المسارات نسبية من مسار ملف التكوين.
+استبعاد ملفات من تنفيذ الاختبار. يتم اعتبار جميع المسارات نسبية من مسار ملف التكوين.
 
 النوع: `String[]`<br />
-القيمة الافتراضية: `[]`
+الافتراضي: `[]`
 
 ### suites
 
 كائن يصف مجموعات مختلفة، والتي يمكنك بعد ذلك تحديدها باستخدام خيار `--suite` على واجهة سطر الأوامر `wdio`.
 
 النوع: `Object`<br />
-القيمة الافتراضية: `{}`
+الافتراضي: `{}`
 
 ### capabilities
 
-نفس قسم `capabilities` الموصوف أعلاه، باستثناء إمكانية تحديد إما كائن [`multiremote`](/docs/multiremote)، أو جلسات WebDriver متعددة في مصفوفة للتنفيذ المتوازي.
+نفس قسم `capabilities` الموصوف أعلاه، باستثناء خيار تحديد إما كائن [`multiremote`](/docs/multiremote)، أو جلسات WebDriver متعددة في مصفوفة للتنفيذ المتوازي.
 
 يمكنك تطبيق نفس القدرات الخاصة بالبائع والمتصفح كما هو محدد [أعلاه](/docs/configuration#capabilities).
 
 النوع: `Object`|`Object[]`<br />
-القيمة الافتراضية: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
+الافتراضي: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
 
 ### maxInstances
 
-الحد الأقصى لعدد العمال المتوازية التي تعمل بشكل إجمالي.
+الحد الأقصى لعدد العمال المتوازية الإجمالية.
 
-__ملاحظة:__ قد يكون هذا رقمًا يصل إلى `100` عندما يتم إجراء الاختبارات على بعض البائعين الخارجيين مثل آلات Sauce Labs. هناك، لا يتم اختبار الاختبارات على جهاز واحد، بل على العديد من الآلات الافتراضية. إذا كانت الاختبارات ستتم على جهاز تطوير محلي، فاستخدم رقمًا أكثر منطقية، مثل `3` أو `4` أو `5`. في الأساس، هذا هو عدد المتصفحات التي سيتم بدؤها بشكل متزامن وتشغيل اختباراتك في نفس الوقت، لذا فهو يعتمد على مقدار ذاكرة الوصول العشوائي (RAM) الموجودة على جهازك، وكم عدد التطبيقات الأخرى التي تعمل على جهازك.
+__ملاحظة:__ قد يكون رقمًا يصل إلى `100`، عندما يتم إجراء الاختبارات على بعض البائعين الخارجيين مثل آلات Sauce Labs. هناك، لا يتم اختبار الاختبارات على جهاز واحد، بل على آلات افتراضية متعددة. إذا كان من المقرر تشغيل الاختبارات على جهاز تطوير محلي، فاستخدم رقمًا أكثر معقولية، مثل `3` أو `4` أو `5`. في الأساس، هذا هو عدد المتصفحات التي سيتم بدؤها بالتزامن وتشغيل اختباراتك في نفس الوقت، لذلك يعتمد ذلك على مقدار ذاكرة الوصول العشوائي الموجودة على جهازك، وعدد التطبيقات الأخرى التي تعمل على جهازك.
 
-يمكنك أيضًا تطبيق `maxInstances` داخل كائنات القدرة الخاصة بك باستخدام قدرة `wdio:maxInstances`. هذا سيحد من عدد الجلسات المتوازية لتلك القدرة المحددة.
+يمكنك أيضًا تطبيق `maxInstances` ضمن كائنات القدرات الخاصة بك باستخدام قدرة `wdio:maxInstances`. سيحد هذا من عدد الجلسات المتوازية لتلك القدرة المعينة.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `100`
+الافتراضي: `100`
 
 ### maxInstancesPerCapability
 
-الحد الأقصى لعدد العمال المتوازية التي تعمل لكل قدرة.
+الحد الأقصى لعدد العمال المتوازية الإجمالية لكل قدرة.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `100`
+الافتراضي: `100`
 
 ### injectGlobals
 
-يدخل متغيرات WebdriverIO العالمية (مثل `browser` و `$` و `$$`) في البيئة العالمية.
+يُدخِل متغيرات WebdriverIO العالمية (مثل `browser` و `$` و `$$`) في البيئة العالمية.
 إذا قمت بتعيينها إلى `false`، يجب عليك الاستيراد من `@wdio/globals`، على سبيل المثال:
 
 ```ts
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-ملاحظة: لا يتعامل WebdriverIO مع حقن المتغيرات العالمية الخاصة بإطار الاختبار.
+ملاحظة: لا يتعامل WebdriverIO مع حقن متغيرات عالمية خاصة بإطار الاختبار.
 
 النوع: `Boolean`<br />
-القيمة الافتراضية: `true`
+الافتراضي: `true`
 
 ### bail
 
-إذا كنت تريد إيقاف تشغيل الاختبار بعد عدد محدد من فشل الاختبارات، استخدم `bail`.
-(القيمة الافتراضية هي `0`، والتي تشغل جميع الاختبارات بغض النظر عن النتيجة.) **ملاحظة:** الاختبار في هذا السياق هو جميع الاختبارات داخل ملف مواصفات واحد (عند استخدام Mocha أو Jasmine) أو جميع الخطوات داخل ملف ميزة (عند استخدام Cucumber). إذا كنت تريد التحكم في سلوك الإنهاء داخل اختبارات ملف اختبار واحد، فألق نظرة على خيارات [الإطار](frameworks) المتاحة.
+إذا كنت تريد أن يتوقف تشغيل الاختبار الخاص بك بعد عدد معين من فشل الاختبارات، استخدم `bail`.
+(الافتراضي هو `0`، مما يؤدي إلى تشغيل جميع الاختبارات بغض النظر عن النتيجة.) **ملاحظة:** الاختبار في هذا السياق هو جميع الاختبارات ضمن ملف مواصفات واحد (عند استخدام Mocha أو Jasmine) أو جميع الخطوات ضمن ملف ميزة (عند استخدام Cucumber). إذا كنت ترغب في التحكم في سلوك الإيقاف داخل اختبارات ملف اختبار واحد، فألقِ نظرة على خيارات [إطار العمل](frameworks) المتاحة.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `0` (لا تتوقف؛ قم بتشغيل جميع الاختبارات)
+الافتراضي: `0` (لا تتوقف؛ قم بتشغيل جميع الاختبارات)
 
 ### specFileRetries
 
-عدد المرات لإعادة محاولة ملف المواصفات بالكامل عندما يفشل ككل.
+عدد المرات التي يجب فيها إعادة محاولة ملف مواصفات بأكمله عندما يفشل ككل.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `0`
+الافتراضي: `0`
 
 ### specFileRetriesDelay
 
 التأخير بالثواني بين محاولات إعادة ملف المواصفات
 
 النوع: `Number`<br />
-القيمة الافتراضية: `0`
+الافتراضي: `0`
 
 ### specFileRetriesDeferred
 
-ما إذا كان يجب إعادة محاولة ملفات المواصفات المعاد تجربتها على الفور أو تأجيلها إلى نهاية قائمة الانتظار.
+ما إذا كان يجب إعادة محاولة ملفات المواصفات التي تمت إعادة المحاولة فورًا أو تأجيلها إلى نهاية قائمة الانتظار.
 
 النوع: `Boolean`<br />
-القيمة الافتراضية: `true`
+الافتراضي: `true`
 
 ### groupLogsByTestSpec
 
 اختر عرض إخراج السجل.
 
-إذا تم تعيينه على `false`، سيتم طباعة السجلات من ملفات الاختبار المختلفة في الوقت الفعلي. يرجى ملاحظة أن هذا قد يؤدي إلى خلط مخرجات السجل من ملفات مختلفة عند التشغيل بالتوازي.
+إذا تم تعيينه على `false`، فسيتم طباعة السجلات من ملفات الاختبار المختلفة في الوقت الفعلي. يرجى ملاحظة أن هذا قد يؤدي إلى خلط مخرجات السجل من ملفات مختلفة عند التشغيل بالتوازي.
 
-إذا تم تعيينه على `true`، سيتم تجميع مخرجات السجل حسب المواصفات وطباعتها فقط عند اكتمال المواصفات.
+إذا تم تعيينه على `true`، فسيتم تجميع مخرجات السجل حسب مواصفات الاختبار وطباعتها فقط عند اكتمال مواصفات الاختبار.
 
 بشكل افتراضي، يتم تعيينه على `false` بحيث يتم طباعة السجلات في الوقت الفعلي.
 
 النوع: `Boolean`<br />
-القيمة الافتراضية: `false`
+الافتراضي: `false`
 
 ### services
 
-الخدمات تتولى مهمة محددة لا تريد الاهتمام بها. إنها تعزز إعداد الاختبار الخاص بك بجهد ضئيل تقريبًا.
+الخدمات تتولى مهمة محددة لا تريد الاهتمام بها. فهي تعزز إعداد الاختبار الخاص بك بجهد ضئيل تقريبًا.
 
 النوع: `String[]|Object[]`<br />
-القيمة الافتراضية: `[]`
+الافتراضي: `[]`
 
 ### framework
 
-يحدد إطار الاختبار الذي سيتم استخدامه بواسطة منصة اختبار WDIO.
+يحدد إطار الاختبار الذي سيستخدمه مشغل اختبار WDIO.
 
 النوع: `String`<br />
-القيمة الافتراضية: `mocha`<br />
+الافتراضي: `mocha`<br />
 الخيارات: `mocha` | `jasmine`
 
-### mochaOpts، jasmineOpts، وcucumberOpts
+### mochaOpts, jasmineOpts and cucumberOpts
 
-خيارات متعلقة بإطار عمل محدد. انظر وثائق محول الإطار حول الخيارات المتاحة. اقرأ المزيد حول هذا في [الأطر](frameworks).
+خيارات محددة متعلقة بإطار العمل. راجع وثائق محول إطار العمل حول الخيارات المتاحة. اقرأ المزيد عن هذا في [أطر العمل](frameworks).
 
 النوع: `Object`<br />
-القيمة الافتراضية: `{ timeout: 10000 }`
+الافتراضي: `{ timeout: 10000 }`
 
 ### cucumberFeaturesWithLineNumbers
 
-قائمة ميزات cucumber مع أرقام السطور (عند [استخدام إطار عمل cucumber](./Frameworks.md#using-cucumber)).
+قائمة ميزات cucumber مع أرقام الأسطر (عند [استخدام إطار cucumber](./Frameworks.md#using-cucumber)).
 
 النوع: `String[]`
-القيمة الافتراضية: `[]`
+الافتراضي: `[]`
 
 ### reporters
 
-قائمة المراسلين للاستخدام. يمكن أن يكون المراسل إما سلسلة أو مصفوفة من
-`['reporterName', { /* reporter options */}]` حيث العنصر الأول هو سلسلة باسم المراسل والعنصر الثاني كائن مع خيارات المراسل.
+قائمة المراسلين للاستخدام. يمكن أن يكون المراسل إما سلسلة، أو مصفوفة من
+`['reporterName', { /* reporter options */}]` حيث العنصر الأول هو سلسلة باسم المراسل والعنصر الثاني كائن بخيارات المراسل.
 
 النوع: `String[]|Object[]`<br />
-القيمة الافتراضية: `[]`
+الافتراضي: `[]`
 
 مثال:
 
@@ -459,42 +476,42 @@ reporters: [
 
 ### reporterSyncInterval
 
-يحدد الفاصل الزمني الذي يجب على المراسل التحقق فيه مما إذا كانوا متزامنين إذا كانوا يبلغون عن سجلاتهم بشكل غير متزامن (على سبيل المثال، إذا تم بث السجلات إلى بائع طرف ثالث).
+يحدد الفاصل الزمني الذي يجب أن يتحقق فيه المراسل مما إذا كانوا متزامنين إذا كانوا يبلغون عن سجلاتهم بشكل غير متزامن (على سبيل المثال، إذا تم بث السجلات إلى بائع طرف ثالث).
 
 النوع: `Number`<br />
-القيمة الافتراضية: `100` (مللي ثانية)
+الافتراضي: `100` (مللي ثانية)
 
 ### reporterSyncTimeout
 
-يحدد الحد الأقصى للوقت الذي يستغرقه المراسلون لإنهاء تحميل جميع سجلاتهم حتى يتم إلقاء خطأ بواسطة منصة الاختبار.
+يحدد الحد الأقصى للوقت الذي يتمتع به المراسلون لإنهاء تحميل جميع سجلاتهم حتى يتم إلقاء خطأ بواسطة مشغل الاختبار.
 
 النوع: `Number`<br />
-القيمة الافتراضية: `5000` (مللي ثانية)
+الافتراضي: `5000` (مللي ثانية)
 
 ### execArgv
 
 وسيطات Node لتحديدها عند إطلاق العمليات الفرعية.
 
 النوع: `String[]`<br />
-القيمة الافتراضية: `null`
+الافتراضي: `null`
 
 ### filesToWatch
 
-قائمة أنماط سلسلة تدعم العلامات العامة التي تخبر منصة الاختبار بمراقبة ملفات أخرى إضافية، مثل ملفات التطبيق، عند تشغيلها مع العلامة `--watch`. بشكل افتراضي، تراقب منصة الاختبار بالفعل جميع ملفات المواصفات.
+قائمة من أنماط السلاسل التي تدعم glob والتي تخبر مشغل الاختبار بمراقبة ملفات أخرى إضافيًا، مثل ملفات التطبيق، عند تشغيلها باستخدام علامة `--watch`. بشكل افتراضي، يراقب مشغل الاختبار بالفعل جميع ملفات المواصفات.
 
 النوع: `String[]`<br />
-القيمة الافتراضية: `[]`
+الافتراضي: `[]`
 
 ### updateSnapshots
 
-قم بتعيينه على "true" إذا كنت تريد تحديث اللقطات الخاصة بك. يستخدم بشكل مثالي كجزء من معلمة CLI، على سبيل المثال، `wdio run wdio.conf.js --s`.
+قم بالتعيين على true إذا كنت تريد تحديث لقطاتك. يُستخدم بشكل مثالي كجزء من معلمة واجهة سطر الأوامر، على سبيل المثال `wdio run wdio.conf.js --s`.
 
 النوع: `'new' | 'all' | 'none'`<br />
-القيمة الافتراضية: `none` إذا لم يتم توفيره وتم تشغيل الاختبارات في CI، و`new` إذا لم يتم توفيره، وإلا ما تم توفيره
+الافتراضي: `none` إذا لم يتم توفيره وتشغيل الاختبارات في CI، `new` إذا لم يتم توفيره، وإلا ما تم توفيره
 
 ### resolveSnapshotPath
 
-يتجاوز مسار اللقطة الافتراضي. على سبيل المثال، لتخزين اللقطات بجوار ملفات الاختبار.
+تجاوز مسار اللقطة الافتراضي. على سبيل المثال، لتخزين اللقطات بجانب ملفات الاختبار.
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -503,24 +520,24 @@ export const config: WebdriverIO.Config = {
 ```
 
 النوع: `(testPath: string, snapExtension: string) => string`<br />
-القيمة الافتراضية: يخزن ملفات اللقطات في دليل `__snapshots__` بجوار ملف الاختبار
+الافتراضي: يخزن ملفات اللقطة في دليل `__snapshots__` بجانب ملف الاختبار
 
 ### tsConfigPath
 
-يستخدم WDIO `tsx` لتجميع ملفات TypeScript. يتم اكتشاف TSConfig الخاص بك تلقائيًا من الدليل الحالي ولكن يمكنك تحديد مسار مخصص هنا أو عن طريق تعيين متغير البيئة TSX_TSCONFIG_PATH.
+يستخدم WDIO `tsx` لتجميع ملفات TypeScript. يتم اكتشاف ملف TSConfig الخاص بك تلقائيًا من الدليل الحالي ولكن يمكنك تحديد مسار مخصص هنا أو عن طريق تعيين متغير البيئة TSX_TSCONFIG_PATH.
 
 انظر وثائق `tsx`: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
 
 النوع: `String`<br />
-القيمة الافتراضية: `null`<br />
+الافتراضي: `null`<br />
 
-## الخطافات (Hooks)
+## الخطافات
 
-تسمح منصة اختبار WDIO بتعيين خطافات ليتم تشغيلها في أوقات محددة من دورة حياة الاختبار. يتيح ذلك إجراءات مخصصة (مثل التقاط لقطة شاشة إذا فشل الاختبار).
+يتيح لك مشغل اختبار WDIO تعيين خطافات ليتم تشغيلها في أوقات محددة من دورة حياة الاختبار. هذا يسمح بإجراءات مخصصة (مثل التقاط لقطة شاشة إذا فشل الاختبار).
 
-كل خطاف لديه كمعلمة معلومات محددة حول دورة الحياة (مثل معلومات حول مجموعة الاختبار أو الاختبار). اقرأ المزيد حول جميع خصائص الخطاف في [ملف التكوين المثالي](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
+كل خطاف له كمعلمة معلومات محددة حول دورة الحياة (مثل معلومات حول مجموعة الاختبار أو الاختبار). اقرأ المزيد حول جميع خصائص الخطاف في [مثال التكوين الخاص بنا](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
 
-**ملاحظة:** يتم تنفيذ بعض الخطافات (`onPrepare` و `onWorkerStart` و `onWorkerEnd` و `onComplete`) في عملية مختلفة وبالتالي لا يمكنها مشاركة أي بيانات عالمية مع الخطافات الأخرى الموجودة في عملية العامل.
+**ملاحظة:** بعض الخطافات (`onPrepare` و `onWorkerStart` و `onWorkerEnd` و `onComplete`) يتم تنفيذها في عملية مختلفة وبالتالي لا يمكنها مشاركة أي بيانات عالمية مع الخطافات الأخرى التي تعيش في عملية العامل.
 
 ### onPrepare
 
@@ -533,46 +550,46 @@ export const config: WebdriverIO.Config = {
 
 ### onWorkerStart
 
-يتم تنفيذه قبل إنشاء عملية عامل ويمكن استخدامه لتهيئة خدمة محددة لذلك العامل وكذلك لتعديل بيئات التشغيل بطريقة غير متزامنة.
+يتم تنفيذه قبل إنشاء عملية عامل ويمكن استخدامه لتهيئة خدمة معينة لذلك العامل وكذلك تعديل بيئات التشغيل بطريقة غير متزامنة.
 
 المعلمات:
 
 - `cid` (`string`): معرف القدرة (مثل 0-0)
-- `caps` (`object`): يحتوي على قدرات الجلسة التي سيتم إنشاؤها في عملية العامل
+- `caps` (`object`): يحتوي على قدرات للجلسة التي سيتم إنشاؤها في العامل
 - `specs` (`string[]`): المواصفات التي سيتم تشغيلها في عملية العامل
 - `args` (`object`): كائن سيتم دمجه مع التكوين الرئيسي بمجرد تهيئة العامل
 - `execArgv` (`string[]`): قائمة وسيطات السلسلة الممررة إلى عملية العامل
 
 ### onWorkerEnd
 
-يتم تنفيذه بعد خروج عملية عامل مباشرةً.
+يتم تنفيذه بعد خروج عملية العامل مباشرة.
 
 المعلمات:
 
 - `cid` (`string`): معرف القدرة (مثل 0-0)
 - `exitCode` (`number`): 0 - نجاح، 1 - فشل
-- `specs` (`string[]`): المواصفات التي سيتم تشغيلها في عملية العامل
-- `retries` (`number`): عدد إعادة محاولات مستوى المواصفات المستخدمة كما هو محدد في [_"إضافة إعادة المحاولات على أساس ملف المواصفات"_](./Retry.md#add-retries-on-a-per-specfile-basis)
+- `specs` (`string[]`): المواصفات التي تم تشغيلها في عملية العامل
+- `retries` (`number`): عدد إعادة المحاولات على مستوى المواصفات المستخدمة كما هو محدد في [_"إضافة إعادة المحاولات على أساس ملف المواصفات"_](./Retry.md#add-retries-on-a-per-specfile-basis)
 
 ### beforeSession
 
-يتم تنفيذه قبل تهيئة جلسة WebDriver وإطار الاختبار مباشرةً. يسمح لك بالتلاعب بالتكوينات اعتمادًا على القدرة أو المواصفات.
+يتم تنفيذه قبل تهيئة جلسة webdriver وإطار الاختبار مباشرة. يسمح لك بالتلاعب بالتكوينات اعتمادًا على القدرة أو المواصفات.
 
 المعلمات:
 
 - `config` (`object`): كائن تكوين WebdriverIO
-- `caps` (`object`): يحتوي على قدرات الجلسة التي سيتم إنشاؤها في العامل
+- `caps` (`object`): يحتوي على قدرات للجلسة التي سيتم إنشاؤها في العامل
 - `specs` (`string[]`): المواصفات التي سيتم تشغيلها في عملية العامل
 
 ### before
 
-يتم تنفيذه قبل بدء تنفيذ الاختبار. في هذه النقطة يمكنك الوصول إلى جميع المتغيرات العالمية مثل `browser`. إنه المكان المثالي لتحديد الأوامر المخصصة.
+يتم تنفيذه قبل بدء تنفيذ الاختبار. في هذه المرحلة، يمكنك الوصول إلى جميع المتغيرات العالمية مثل `browser`. إنه المكان المثالي لتعريف الأوامر المخصصة.
 
 المعلمات:
 
-- `caps` (`object`): يحتوي على قدرات الجلسة التي سيتم إنشاؤها في العامل
+- `caps` (`object`): يحتوي على قدرات للجلسة التي سيتم إنشاؤها في العامل
 - `specs` (`string[]`): المواصفات التي سيتم تشغيلها في عملية العامل
-- `browser` (`object`): نسخة من جلسة المتصفح/الجهاز التي تم إنشاؤها
+- `browser` (`object`): مثيل جلسة المتصفح/الجهاز التي تم إنشاؤها
 
 ### beforeSuite
 
@@ -584,7 +601,7 @@ export const config: WebdriverIO.Config = {
 
 ### beforeHook
 
-خطاف يتم تنفيذه *قبل* خطاف داخل المجموعة يبدأ (على سبيل المثال يعمل قبل استدعاء beforeEach في Mocha)
+خطاف يتم تنفيذه *قبل* بدء خطاف داخل المجموعة (على سبيل المثال، يعمل قبل استدعاء beforeEach في Mocha)
 
 المعلمات:
 
@@ -593,17 +610,17 @@ export const config: WebdriverIO.Config = {
 
 ### afterHook
 
-خطاف يتم تنفيذه *بعد* انتهاء خطاف داخل المجموعة (على سبيل المثال يعمل بعد استدعاء afterEach في Mocha)
+خطاف يتم تنفيذه *بعد* انتهاء خطاف داخل المجموعة (على سبيل المثال، يعمل بعد استدعاء afterEach في Mocha)
 
 المعلمات:
 
 - `test` (`object`): تفاصيل الاختبار
 - `context` (`object`): سياق الاختبار (يمثل كائن World في Cucumber)
-- `result` (`object`): نتيجة الخطاف (تحتوي على خصائص `error`، `result`، `duration`، `passed`، `retries`)
+- `result` (`object`): نتيجة الخطاف (تحتوي على خصائص `error` و `result` و `duration` و `passed` و `retries`)
 
 ### beforeTest
 
-دالة يتم تنفيذها قبل اختبار (في Mocha/Jasmine فقط).
+وظيفة يتم تنفيذها قبل اختبار (في Mocha/Jasmine فقط).
 
 المعلمات:
 
@@ -626,24 +643,24 @@ export const config: WebdriverIO.Config = {
 المعلمات:
 
 - `commandName` (`string`): اسم الأمر
-- `args` (`*`): الوسيطات التي سيتلقاها الأمر
+- `args` (`*`): الوسيطات التي تلقاها الأمر
 - `result` (`number`): 0 - نجاح الأمر، 1 - خطأ في الأمر
 - `error` (`Error`): كائن الخطأ إن وجد
 
 ### afterTest
 
-دالة يتم تنفيذها بعد انتهاء اختبار (في Mocha/Jasmine).
+وظيفة يتم تنفيذها بعد انتهاء اختبار (في Mocha/Jasmine).
 
 المعلمات:
 
 - `test` (`object`): تفاصيل الاختبار
 - `context` (`object`): كائن النطاق الذي تم تنفيذ الاختبار معه
 - `result.error` (`Error`): كائن الخطأ في حالة فشل الاختبار، وإلا `undefined`
-- `result.result` (`Any`): كائن إرجاع دالة الاختبار
+- `result.result` (`Any`): كائن إرجاع وظيفة الاختبار
 - `result.duration` (`Number`): مدة الاختبار
 - `result.passed` (`Boolean`): صحيح إذا نجح الاختبار، وإلا خطأ
-- `result.retries` (`Object`): معلومات حول إعادة محاولات الاختبار المفردة كما هو محدد لـ [Mocha و Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) وكذلك [Cucumber](./Retry.md#rerunning-in-cucumber)، مثل `{ attempts: 0, limit: 0 }`، انظر
-- `result` (`object`): نتيجة الخطاف (تحتوي على خصائص `error`، `result`، `duration`، `passed`، `retries`)
+- `result.retries` (`Object`): معلومات حول إعادة المحاولات المتعلقة باختبار واحد كما هو محدد لـ [Mocha و Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) وكذلك [Cucumber](./Retry.md#rerunning-in-cucumber)، مثل `{ attempts: 0, limit: 0 }`، انظر
+- `result` (`object`): نتيجة الخطاف (تحتوي على خصائص `error` و `result` و `duration` و `passed` و `retries`)
 
 ### afterSuite
 
@@ -655,33 +672,33 @@ export const config: WebdriverIO.Config = {
 
 ### after
 
-يتم تنفيذه بعد الانتهاء من جميع الاختبارات. لا يزال لديك إمكانية الوصول إلى جميع المتغيرات العالمية من الاختبار.
+يتم تنفيذه بعد الانتهاء من جميع الاختبارات. لا يزال لديك حق الوصول إلى جميع المتغيرات العالمية من الاختبار.
 
 المعلمات:
 
 - `result` (`number`): 0 - نجاح الاختبار، 1 - فشل الاختبار
-- `caps` (`object`): يحتوي على قدرات الجلسة التي تم إنشاؤها في العامل
+- `caps` (`object`): يحتوي على قدرات للجلسة التي تم إنشاؤها في العامل
 - `specs` (`string[]`): المواصفات التي تم تشغيلها في عملية العامل
 
 ### afterSession
 
-يتم تنفيذه بعد إنهاء جلسة WebDriver مباشرةً.
+يتم تنفيذه بعد إنهاء جلسة webdriver مباشرة.
 
 المعلمات:
 
 - `config` (`object`): كائن تكوين WebdriverIO
-- `caps` (`object`): يحتوي على قدرات الجلسة التي تم إنشاؤها في العامل
+- `caps` (`object`): يحتوي على قدرات للجلسة التي تم إنشاؤها في العامل
 - `specs` (`string[]`): المواصفات التي تم تشغيلها في عملية العامل
 
 ### onComplete
 
-يتم تنفيذه بعد إيقاف تشغيل جميع العمال وعلى وشك الخروج من العملية. سيؤدي الخطأ المطروح في خطاف onComplete إلى فشل تشغيل الاختبار.
+يتم تنفيذه بعد إيقاف تشغيل جميع العمال وعلى وشك إنهاء العملية. سيؤدي خطأ تم إلقاؤه في خطاف onComplete إلى فشل تشغيل الاختبار.
 
 المعلمات:
 
 - `exitCode` (`number`): 0 - نجاح، 1 - فشل
 - `config` (`object`): كائن تكوين WebdriverIO
-- `caps` (`object`): يحتوي على قدرات الجلسة التي تم إنشاؤها في العامل
+- `caps` (`object`): يحتوي على قدرات للجلسة التي تم إنشاؤها في العامل
 - `result` (`object`): كائن النتائج الذي يحتوي على نتائج الاختبار
 
 ### onReload
@@ -717,8 +734,8 @@ export const config: WebdriverIO.Config = {
 
 المعلمات:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): كائن عالم يحتوي على معلومات حول pickle وخطوة الاختبار
-- `context` (`object`): كائن عالم Cucumber
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): كائن عالمي يحتوي على معلومات حول المخلل وخطوة الاختبار
+- `context` (`object`): كائن Cucumber World
 
 ### afterScenario
 
@@ -726,12 +743,12 @@ export const config: WebdriverIO.Config = {
 
 المعلمات:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): كائن عالم يحتوي على معلومات حول pickle وخطوة الاختبار
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): كائن عالمي يحتوي على معلومات حول المخلل وخطوة الاختبار
 - `result` (`object`): كائن النتائج الذي يحتوي على نتائج السيناريو
 - `result.passed` (`boolean`): صحيح إذا نجح السيناريو
 - `result.error` (`string`): مكدس الخطأ إذا فشل السيناريو
 - `result.duration` (`number`): مدة السيناريو بالمللي ثانية
-- `context` (`object`): كائن عالم Cucumber
+- `context` (`object`): كائن Cucumber World
 
 ### beforeStep
 
@@ -741,7 +758,7 @@ export const config: WebdriverIO.Config = {
 
 - `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): كائن خطوة Cucumber
 - `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): كائن سيناريو Cucumber
-- `context` (`object`): كائن عالم Cucumber
+- `context` (`object`): كائن Cucumber World
 
 ### afterStep
 
@@ -755,7 +772,7 @@ export const config: WebdriverIO.Config = {
 - `result.passed` (`boolean`): صحيح إذا نجح السيناريو
 - `result.error` (`string`): مكدس الخطأ إذا فشل السيناريو
 - `result.duration` (`number`): مدة السيناريو بالمللي ثانية
-- `context` (`object`): كائن عالم Cucumber
+- `context` (`object`): كائن Cucumber World
 
 ### beforeAssertion
 

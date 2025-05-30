@@ -264,7 +264,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Configuration.md": {
-    "hash": "74c6deb23ed43a29630ab3882fdb6b1d9ac0db436c5857c9e126e710eabc04e3",
+    "hash": "fd92855ce820fd710c79818f0cf4e00ab921529eccbe44a9ad0d0b157bdc153a",
     "languages": [
       "sv",
       "it",
@@ -6561,6 +6561,17 @@
       "ta",
       "uk",
       "zh"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/Security.md": {
+    "hash": "b2176fba2fc9d2505704db5c1cca61cad1d6800955216c44396ebcb7b8dd19ae",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi"
     ]
   }
 }
