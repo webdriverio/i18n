@@ -1,28 +1,28 @@
 ---
 id: sponsor
-title: Conviértete en Patrocinador de WebdriverIO
+title: Conviértete en un Patrocinador de WebdriverIO
 ---
 
-WebdriverIO, un proyecto de código abierto bajo la licencia MIT, es de libre acceso para su uso. La sostenibilidad de este amplio ecosistema, junto con el desarrollo de características innovadoras, es posible gracias al generoso apoyo financiero de nuestros patrocinadores, quienes contribuyen significativamente al mantenimiento y crecimiento continuo del proyecto.
+WebdriverIO, un proyecto de código abierto bajo la licencia MIT, es de libre acceso para su uso. La sostenibilidad de este extenso ecosistema, junto con el desarrollo de características innovadoras, es posible gracias al generoso apoyo financiero de nuestros patrocinadores, quienes contribuyen significativamente al mantenimiento y crecimiento continuo del proyecto.
 
 ## Cómo Patrocinar​
-Los patrocinios pueden realizarse a través de [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) o [OpenCollective](https://opencollective.com/webdriverio). Las facturas pueden obtenerse a través del sistema de pago de GitHub. Se aceptan tanto patrocinios mensuales recurrentes como donaciones únicas. Los patrocinios recurrentes tienen derecho a la colocación de logotipos según se especifica en los Niveles de Patrocinio.
+Los patrocinios pueden realizarse a través de [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) o [OpenCollective](https://opencollective.com/webdriverio). Las facturas pueden obtenerse a través del sistema de pago de GitHub. Se aceptan tanto patrocinios recurrentes mensuales como donaciones únicas. Los patrocinios recurrentes tienen derecho a la colocación de logotipos según se especifica en los Niveles de Patrocinio.
 
-Si tienes preguntas sobre los niveles, la logística de pagos o datos de exposición de patrocinadores, comunícate con [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
+Si tienes preguntas sobre los niveles, la logística de pagos o datos de exposición de patrocinadores, por favor contáctanos en [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
 
 También puedes visitar la [Tienda de Merchandising](https://shop.webdriver.io/) de WebdriverIO donde todas las ganancias de las compras se destinarán al desarrollo del proyecto.
 
 ## Patrocinar WebdriverIO como Empresa​
-Patrocinar WebdriverIO te brinda una gran exposición a través de nuestro sitio web (más de 60 mil visitas de página por mes) y los archivos README de los proyectos en GitHub. Además, apoyar el software de código abierto mejora la reputación de tu marca, lo cual es un activo importante para cualquier empresa que interactúa con desarrolladores.
+Patrocinar WebdriverIO te brinda una gran exposición a través de nuestro sitio web (más de 60.000 visitas de página por mes) y los READMEs del proyecto en GitHub. Además, apoyar el software de código abierto mejora la reputación de tu marca, lo cual es un activo importante para cualquier empresa que interactúa con desarrolladores.
 
-Si estás utilizando WebdriverIO para probar un producto que genera ingresos, tiene sentido comercial patrocinar el desarrollo de WebdriverIO: asegura que el proyecto del que depende tu producto se mantenga saludable y activamente mantenido. La exposición y la imagen positiva de la marca en la comunidad de WebdriverIO también facilitan atraer y reclutar desarrolladores e ingenieros de control de calidad con experiencia en WebdriverIO.
+Si estás utilizando WebdriverIO para probar un producto que genera ingresos, tiene sentido desde el punto de vista empresarial patrocinar el desarrollo de WebdriverIO: esto asegura que el proyecto del que depende tu producto se mantenga saludable y activamente mantenido. La exposición y la imagen positiva de la marca en la comunidad de WebdriverIO también facilita atraer y reclutar desarrolladores e ingenieros de QA con experiencia en WebdriverIO.
 
 __Nota:__ No aceptamos donaciones de sitios de juegos de azar, servicios de redacción de documentos, grupos políticos, grupos de odio, sitios de entretenimiento para adultos o cualquier otra organización que creamos que no contribuye al bien del proyecto. No ofrecemos publicidad, somos un proyecto de código abierto que busca apoyo financiero de nuestros usuarios.
 
 ## Patrocinar WebdriverIO como Individuo​
-Si eres un usuario individual y has disfrutado de la productividad al usar WebdriverIO, considera hacer una donación como muestra de agradecimiento, como invitarnos a un café de vez en cuando. Muchos de los miembros de nuestro equipo aceptan patrocinios y donaciones a través de GitHub Sponsors.
+Si eres un usuario individual y has disfrutado de la productividad al usar WebdriverIO, considera hacer una donación como muestra de aprecio, como invitarnos a un café de vez en cuando. Muchos de los miembros de nuestro equipo aceptan patrocinios y donaciones a través de GitHub Sponsors.
 
-También puedes intentar convencer a tu empleador para que patrocine WebdriverIO como empresa. Esto puede no ser fácil, pero los patrocinios empresariales típicamente tienen un impacto mucho mayor en la sostenibilidad de los proyectos de código abierto que las donaciones individuales, por lo que nos ayudarás mucho más si lo logras.
+También puedes intentar convencer a tu empleador de patrocinar WebdriverIO como empresa. Esto puede no ser fácil, pero los patrocinios empresariales generalmente tienen un impacto mucho mayor en la sostenibilidad de los proyectos de código abierto que las donaciones individuales, por lo que nos ayudarás mucho más si lo consigues.
 
 ## Beneficios por Nivel​
 
@@ -38,9 +38,9 @@ También puedes intentar convencer a tu empleador para que patrocine WebdriverIO
   - Colocación de logotipo mediano en esta página de patrocinadores
   - Colocación de logotipo mediano en el [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) y [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) del repositorio [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
 - __🥉 Bronce (USD $100 / mes):__
-  - Tu nombre o logotipo de empresa (pequeño) se colocará en [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) y [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md).
+  - Tu nombre o logotipo de empresa (pequeño) será colocado en [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) y [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md).
 - __🍺 Patrocinador Generoso (USD $50 / mes):__
-  - Tu nombre aparecerá en la sección "Patrocinadores Generosos" en [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) y [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md).
+  - Tu nombre será listado bajo la sección "Patrocinadores Generosos" en [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) y [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md).
 - __☕️ Patrocinador Individual (USD $5 / mes):__
   - Nombre listado en el archivo [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) del repositorio [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
 
@@ -64,10 +64,10 @@ También puedes intentar convencer a tu empleador para que patrocine WebdriverIO
 ### 🥇 Oro
 
 <ImageSwitcher
-    lightImageSrc="/img/sponsors/route4me.svg"
-    darkImageSrc="/img/sponsors/route4me.svg"
-    alt="Route4Me"
-    link="https://www.route4me.com/"
+    lightImageSrc="/img/sponsors/jetify_black.png"
+    darkImageSrc="/img/sponsors/jetify_white.png"
+    alt="Jetify"
+    link="https://www.jetify.com/"
     width="250"
     target="_blank"
     style={{ marginRight: '20px', position: 'relative', top: '8px' }}
@@ -82,7 +82,7 @@ También puedes intentar convencer a tu empleador para que patrocine WebdriverIO
     width="250"
 />
 
-Conviértete en [Patrocinador Oro](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me).
+Conviértete en un [Patrocinador Oro](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me).
 
 <br />
 
@@ -97,7 +97,7 @@ Conviértete en [Patrocinador Oro](https://opencollective.com/webdriverio/contri
     target="_blank"
 />
 
-Conviértete en [Patrocinador Plata](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me).
+Conviértete en un [Patrocinador Plata](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me).
 
 <br />
 
@@ -121,7 +121,7 @@ Conviértete en [Patrocinador Plata](https://opencollective.com/webdriverio/cont
     width="150"
 />
 
-Conviértete en [Patrocinador Bronce](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me).
+Conviértete en un [Patrocinador Bronce](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me).
 
 <br />
 <br />
@@ -137,4 +137,14 @@ Estamos agradecidos por el apoyo de todos nuestros patrocinadores. Aquí hay alg
     link="https://saucelabs.com/"
     width="150"
     target="_blank"
+/>
+
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/route4me.svg"
+    darkImageSrc="/img/sponsors/route4me.svg"
+    alt="Route4Me"
+    link="https://www.route4me.com/"
+    width="250"
+    target="_blank"
+    style={{ marginRight: '20px', position: 'relative', top: '8px' }}
 />

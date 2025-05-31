@@ -924,7 +924,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Sponsor.md": {
-    "hash": "20cef6eb35df8f4242551f14c1144b0c4d2b443dc8f5f79f4a83669401d4131e",
+    "hash": "307bc9510baa16f024babfefa5b2d1029d9bd28484c8434aadad3af5befdbc69",
     "languages": [
       "sv",
       "it",
@@ -6571,7 +6571,18 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
     ]
   }
 }
