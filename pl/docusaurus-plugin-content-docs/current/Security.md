@@ -3,19 +3,19 @@ id: security
 title: Bezpieczeństwo
 ---
 
-WebdriverIO ma na uwadze aspekt bezpieczeństwa podczas dostarczania rozwiązań. Poniżej przedstawiono kilka sposobów lepszego zabezpieczenia testów.
+WebdriverIO uwzględnia aspekt bezpieczeństwa w swoich rozwiązaniach. Poniżej przedstawiono kilka sposobów na lepsze zabezpieczenie testów.
 
-# Maskowanie wrażliwych danych
+# Maskowanie danych wrażliwych
 
-Jeśli używasz wrażliwych danych podczas testowania, istotne jest, aby upewnić się, że nie są one widoczne dla wszystkich, na przykład w logach. Ponadto, podczas korzystania z dostawcy usług w chmurze, często używane są klucze prywatne. Te informacje muszą być maskowane w logach, raportach i innych punktach styku. Poniżej przedstawiono kilka rozwiązań maskowania, aby uruchomić testy bez ujawniania tych wartości.
+Jeśli używasz wrażliwych danych podczas testów, ważne jest, aby upewnić się, że nie są one widoczne dla wszystkich, na przykład w logach. Ponadto, korzystając z dostawcy usług w chmurze, często używane są klucze prywatne. Te informacje muszą być maskowane w logach, raportach i innych punktach styku. Poniżej przedstawiono kilka rozwiązań maskowania, aby uruchamiać testy bez ujawniania tych wartości.
 
 ## WebDriverIO
 
-### Maskowanie wartości tekstowych poleceń
+### Maskowanie wartości tekstowych komend
 
-Polecenia `addValue` i `setValue` obsługują maskowanie za pomocą wartości boolean, aby ukryć dane w logach WDIO i Appium, a także w raportach. Co więcej, inne narzędzia, takie jak narzędzia wydajności i narzędzia firm trzecich, również otrzymają zamaskowaną wersję, zwiększając bezpieczeństwo.
+Komendy `addValue` i `setValue` obsługują maskowanie wartości w logach WDIO i Appium, a także w raportach. Co więcej, inne narzędzia, takie jak narzędzia wydajnościowe i narzędzia firm trzecich, również otrzymają zamaskowaną wersję, zwiększając bezpieczeństwo.
 
-Na przykład, jeśli używasz prawdziwego użytkownika produkcyjnego i musisz wprowadzić hasło, które chcesz zamaskować, możesz to teraz zrobić w następujący sposób:
+Na przykład, jeśli używasz prawdziwego użytkownika produkcyjnego i musisz wprowadzić hasło, które chcesz zamaskować, jest to teraz możliwe w następujący sposób:
 
 ```ts
   async enterPassword(userPassword) {
@@ -28,7 +28,7 @@ Na przykład, jeśli używasz prawdziwego użytkownika produkcyjnego i musisz wp
   }
 ```
 
-Powyższy kod ukryje wartość tekstową w logach WDIO, a także w logach Appium.
+Powyższy kod ukryje wartość tekstową zarówno w logach WDIO, jak i Appium.
 
 Przykład logów:
 ```text
@@ -36,8 +36,8 @@ Przykład logów:
 ```
 
 Ograniczenia:
-  - W Appium dodatkowe wtyczki mogą wyciekać informacje, mimo że prosimy o zamaskowanie informacji.
-  - Dostawcy usług w chmurze mogą używać proxy do logowania HTTP, które omija mechanizm maskowania.
+  - W Appium dodatkowe wtyczki mogą wyciekać informacje, mimo że prosimy o ich zamaskowanie.
+  - Dostawcy usług w chmurze mogą używać proxy do logowania HTTP, co omija mechanizm maskowania.
 
 :::info
 
@@ -47,23 +47,23 @@ Minimalna wymagana wersja:
 
 ### Maskowanie w logach WDIO
 
-Korzystając z konfiguracji `maskingPatterns`, możemy maskować wrażliwe informacje w logach WDIO. Jednak logi Appium nie są objęte tą funkcją.
+Korzystając z konfiguracji `maskingPatterns`, możemy maskować wrażliwe informacje w logach WDIO. Jednakże logi Appium nie są objęte tą funkcją.
 
-Na przykład, jeśli korzystasz z dostawcy usług w chmurze i używasz poziomu info, najprawdopodobniej "wyciekniesz" klucz użytkownika, jak pokazano poniżej:
+Na przykład, jeśli korzystasz z dostawcy usług w chmurze i używasz poziomu logowania info, to najprawdopodobniej "wyciekniesz" klucz użytkownika, jak pokazano poniżej:
 
 ```text
 2025-05-29T19:09:11.309Z INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=myCloudSecretExposedKey --spec myTest.test.ts
 ```
 
-Aby temu zapobiec, możemy przekazać wyrażenie regularne `'--key=([^ ]*)'` i teraz w logach zobaczysz:
+Aby temu przeciwdziałać, możemy przekazać wyrażenie regularne `'--key=([^ ]*)'`, a teraz w logach zobaczysz:
 
 ```text
 2025-05-29T19:09:11.309Z INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=**MASKED** --spec myTest.test.ts
 ```
 
-Możesz osiągnąć powyższe, dostarczając wyrażenie regularne do pola `maskingPatterns` konfiguracji.
-  - Dla wielu wyrażeń regularnych użyj pojedynczego ciągu, ale z wartościami oddzielonymi przecinkami.
-  - Więcej informacji na temat wzorców maskowania znajdziesz w [sekcji Masking Patterns w README loggera WDIO](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
+Możesz osiągnąć powyższe, dostarczając wyrażenie regularne do pola `maskingPatterns` w konfiguracji.
+  - W przypadku wielu wyrażeń regularnych użyj pojedynczego ciągu znaków, ale z wartościami oddzielonymi przecinkami.
+  - Więcej szczegółów na temat wzorców maskowania znajdziesz w [sekcji Masking Patterns w README loggera WDIO](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
 
 ```ts
 export const config: WebdriverIO.Config = {
@@ -119,12 +119,12 @@ export const withSilentLogger = async <T>(promise: () => Promise<T>): Promise<T>
 ## Rozwiązania firm trzecich
 
 ### Appium
-Appium oferuje własne rozwiązanie maskowania; zobacz [Log filter](https://appium.io/docs/en/2.0/guides/log-filters/)
- - Korzystanie z ich rozwiązania może być trudne. Jednym ze sposobów, jeśli to możliwe, jest przekazanie tokenu w ciągu, takiego jak `@mask@` i użycie go jako wyrażenia regularnego
+Appium oferuje własne rozwiązanie maskowania; zobacz [Log filter](https://appium.io/docs/en/latest/guides/log-filters/)
+ - Korzystanie z ich rozwiązania może być trudne. Jednym ze sposobów, jeśli to możliwe, jest przekazanie tokenu w ciągu znaków, takiego jak `@mask@` i użycie go jako wyrażenia regularnego
  - W niektórych wersjach Appium wartości są również logowane z każdym znakiem oddzielonym przecinkiem, więc musimy być ostrożni.
- - Niestety, BrowserStack nie obsługuje tego rozwiązania, ale jest ono nadal przydatne lokalnie
+ - Niestety, BrowserStack nie obsługuje tego rozwiązania, ale nadal jest ono przydatne lokalnie
  
-Używając przykładu `@mask@` wspomnianego wcześniej, możemy użyć następującego pliku JSON o nazwie `appiumMaskLogFilters.json`
+Używając wcześniej wspomnianego przykładu `@mask@`, możemy użyć następującego pliku JSON o nazwie `appiumMaskLogFilters.json`
 ```json
 [
   {
@@ -158,5 +158,5 @@ const appium = [
 
 ### BrowserStack
 
-BrowserStack również oferuje pewien poziom maskowania w celu ukrycia danych; zobacz [hide sensitive data](https://www.browserstack.com/docs/automate/selenium/hide-sensitive-data)
- - Niestety, rozwiązanie to jest typu "wszystko albo nic", więc wszystkie wartości tekstowe dostarczonych poleceń będą maskowane.
+BrowserStack również oferuje pewien poziom maskowania w celu ukrycia niektórych danych; zobacz [hide sensitive data](https://www.browserstack.com/docs/automate/selenium/hide-sensitive-data)
+ - Niestety, rozwiązanie jest typu wszystko albo nic, więc wszystkie wartości tekstowe dostarczonych komend będą maskowane.

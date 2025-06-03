@@ -22,7 +22,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Appium.md": {
-    "hash": "2b58e7fbcb6c085036cad00813d2adf3a4d03a8071ee5a3e489c55adc995e7e2",
+    "hash": "874c53fae1f384687c193b99bbdc948698e327f0d493b853c022c0554692deb5",
     "languages": [
       "sv",
       "it",
@@ -198,7 +198,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Capabilities.md": {
-    "hash": "afddce59357e49296effcb9472afc4919df61195b4e59f2ea50f7e9005825818",
+    "hash": "f1d5dbaf0b4a1a8873a55fc58ef0763f3a9c919b9066efb03a30b75a55494ce7",
     "languages": [
       "sv",
       "it",
@@ -264,7 +264,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Configuration.md": {
-    "hash": "fd92855ce820fd710c79818f0cf4e00ab921529eccbe44a9ad0d0b157bdc153a",
+    "hash": "a6172cf1d86f55b430cbc6388219ae2d51e9558305c9f68379d136b16b579b6c",
     "languages": [
       "sv",
       "it",
@@ -1628,7 +1628,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/MacOS.md": {
-    "hash": "27e8743f5eeb720ac576f712227a90db89fbec74645db36cc6e54dbb510da56d",
+    "hash": "91de638e3e2d8a178a0726fddc68f20eb091cfc6266403fd35a69c1964d8a948",
     "languages": [
       "sv",
       "it",
@@ -6564,7 +6564,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Security.md": {
-    "hash": "b2176fba2fc9d2505704db5c1cca61cad1d6800955216c44396ebcb7b8dd19ae",
+    "hash": "56a3cd6e26b3807b2989c79d9653c8fd11447ebd5d160d6717d943414e80a132",
     "languages": [
       "ar",
       "de",

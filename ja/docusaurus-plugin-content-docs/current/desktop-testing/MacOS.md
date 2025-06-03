@@ -3,19 +3,19 @@ id: macos
 title: MacOS
 ---
 
-WebdriverIOは[Appium](https://appium.io/docs/en/2.0/)を使用して任意のMacOSアプリケーションを自動化できます。必要なのは、システムにインストールされた[XCode](https://developer.apple.com/xcode/)、依存関係としてインストールされたAppiumと[Mac2 Driver](https://github.com/appium/appium-mac2-driver)、そして正しく設定されたケイパビリティだけです。
+WebdriverIOは[Appium](https://appium.io/)を使用して任意のMacOSアプリケーションを自動化できます。必要なのは、システムにインストールされた[XCode](https://developer.apple.com/xcode/)、依存関係としてインストールされたAppiumと[Mac2 Driver](https://github.com/appium/appium-mac2-driver)、そして正しく設定されたケイパビリティだけです。
 
 ## はじめに
 
-WebdriverIOプロジェクトを新しく開始するには、以下を実行します：
+新しいWebdriverIOプロジェクトを開始するには、次のコマンドを実行します：
 
 ```sh
 npm create wdio@latest ./
 ```
 
-インストールウィザードがプロセスをガイドします。どのタイプのテストを行いたいかを尋ねられたら、_「デスクトップテスト - MacOSアプリケーション」_を選択してください。その後はデフォルトのままにするか、必要に応じて変更してください。
+インストールウィザードがプロセスをガイドします。どのタイプのテストを行いたいか尋ねられたら、「Desktop Testing - of MacOS Applications」を選択してください。その後はデフォルトのままにするか、お好みに合わせて変更してください。
 
-設定ウィザードは必要なAppiumパッケージをすべてインストールし、MacOSでテストするために必要な設定を含む`wdio.conf.js`または`wdio.conf.ts`を作成します。テストファイルの自動生成に同意した場合は、`npm run wdio`を実行して最初のテストを実行できます。
+設定ウィザードは必要なAppiumパッケージをすべてインストールし、MacOSでテストするために必要な設定を含む`wdio.conf.js`または`wdio.conf.ts`を作成します。テストファイルの自動生成に同意した場合は、`npm run wdio`で最初のテストを実行できます。
 
 <CreateMacOSProjectAnimation />
 
@@ -23,7 +23,7 @@ npm create wdio@latest ./
 
 ## 例
 
-以下は、電卓アプリケーションを開き、計算を行ってその結果を検証する簡単なテストの例です：
+これは、電卓アプリケーションを開き、計算を行ってその結果を検証する簡単なテストの例です：
 
 ```js
 describe('My Login application', () => {
@@ -41,4 +41,4 @@ __注意:__ 電卓アプリはケイパビリティオプションとして`'app
 
 ## 詳細情報
 
-MacOSでのテストに関する具体的な情報については、[Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver)プロジェクトをチェックすることをお勧めします。
+MacOSでのテストに関する詳細については、[Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver)プロジェクトをご確認ください。

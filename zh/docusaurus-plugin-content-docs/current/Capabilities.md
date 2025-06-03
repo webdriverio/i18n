@@ -1,9 +1,9 @@
 ---
 id: capabilities
-title: 能力（Capabilities）
+title: 能力
 ---
 
-能力（capability）是远程接口的定义。它帮助 WebdriverIO 理解您希望在哪种浏览器或移动环境中运行测试。在本地开发测试时，能力的重要性较低，因为您大多数时间只在一个远程接口上运行测试；但在 CI/CD 中运行大量集成测试时，能力变得更加重要。
+能力是对远程接口的定义。它帮助 WebdriverIO 理解您希望在哪种浏览器或移动环境中运行测试。在本地开发测试时，能力不那么关键，因为大多数时候您只在一个远程接口上运行测试，但在 CI/CD 中运行大量集成测试时，能力变得更加重要。
 
 :::info
 
@@ -17,9 +17,9 @@ title: 能力（Capabilities）
 
 ### 浏览器特定的能力扩展
 
-- `goog:chromeOptions`：[Chromedriver](https://chromedriver.chromium.org/capabilities) 扩展，仅适用于 Chrome 测试
-- `moz:firefoxOptions`：[Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) 扩展，仅适用于 Firefox 测试
-- `ms:edgeOptions`：[EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) 用于使用 EdgeDriver 测试 Chromium Edge 时指定环境
+- `goog:chromeOptions`：[Chromedriver](https://chromedriver.chromium.org/capabilities) 扩展，仅适用于在 Chrome 中测试
+- `moz:firefoxOptions`：[Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) 扩展，仅适用于在 Firefox 中测试
+- `ms:edgeOptions`：[EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) 用于在使用 EdgeDriver 测试 Chromium Edge 时指定环境
 
 ### 云供应商能力扩展
 
@@ -30,13 +30,13 @@ title: 能力（Capabilities）
 
 ### 自动化引擎能力扩展
 
-- `appium:xxx`：[Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)
+- `appium:xxx`：[Appium](https://appium.io/docs/en/latest/guides/caps/)
 - `selenoid:xxx`：[Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
 - 以及更多...
 
-### WebdriverIO 管理浏览器驱动程序选项的能力
+### WebdriverIO 用于管理浏览器驱动程序选项的能力
 
-WebdriverIO 为您管理浏览器驱动程序的安装和运行。WebdriverIO 使用自定义能力，允许您向驱动程序传递参数。
+WebdriverIO 为您管理安装和运行浏览器驱动程序。WebdriverIO 使用自定义能力，允许您向驱动程序传递参数。
 
 #### `wdio:chromedriverOptions`
 
@@ -56,19 +56,19 @@ WebdriverIO 为您管理浏览器驱动程序的安装和运行。WebdriverIO �
 
 #### `wdio:maxInstances`
 
-特定浏览器/能力的最大并行运行工作进程总数。优先于 [maxInstances](#configuration#maxInstances) 和 [maxInstancesPerCapability](configuration/#maxinstancespercapability)。
+特定浏览器/能力的并行运行工作程序的最大总数。优先于 [maxInstances](#configuration#maxInstances) 和 [maxInstancesPerCapability](configuration/#maxinstancespercapability)。
 
 类型：`number`
 
 #### `wdio:specs`
 
-为该浏览器/能力定义测试执行的规格。与[常规 `specs` 配置选项](configuration#specs)相同，但特定于浏览器/能力。优先于 `specs`。
+为该浏览器/能力定义测试执行的规格。与[常规的 `specs` 配置选项](configuration#specs)相同，但特定于浏览器/能力。优先于 `specs`。
 
 类型：`(String | String[])[]`
 
 #### `wdio:exclude`
 
-从该浏览器/能力的测试执行中排除规格。与[常规 `exclude` 配置选项](configuration#exclude)相同，但特定于浏览器/能力。优先于 `exclude`。
+从该浏览器/能力的测试执行中排除规格。与[常规的 `exclude` 配置选项](configuration#exclude)相同，但特定于浏览器/能力。优先于 `exclude`。
 
 类型：`String[]`
 
@@ -80,18 +80,18 @@ WebdriverIO 为您管理浏览器驱动程序的安装和运行。WebdriverIO �
 
 #### 常见驱动程序选项
 
-虽然所有驱动程序都提供不同的配置参数，但有一些 WebdriverIO 理解并用于设置驱动程序或浏览器的通用参数：
+虽然所有驱动程序提供不同的配置参数，但有一些共同的参数，WebdriverIO 理解并用于设置驱动程序或浏览器：
 
 ##### `cacheDir`
 
-缓存目录的根路径。此目录用于存储尝试启动会话时下载的所有驱动程序。
+缓存目录的根路径。此目录用于存储在尝试启动会话时下载的所有驱动程序。
 
 类型：`string`<br />
-默认值：`process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+默认：`process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ##### `binary`
 
-自定义驱动程序二进制文件的路径。如果设置了此项，WebdriverIO 将不会尝试下载驱动程序，而是使用此路径提供的驱动程序。请确保驱动程序与您使用的浏览器兼容。
+自定义驱动程序二进制文件的路径。如果设置，WebdriverIO 不会尝试下载驱动程序，而是使用此路径提供的驱动程序。确保驱动程序与您使用的浏览器兼容。
 
 您可以通过 `CHROMEDRIVER_PATH`、`GECKODRIVER_PATH` 或 `EDGEDRIVER_PATH` 环境变量提供此路径。
 
@@ -99,13 +99,13 @@ WebdriverIO 为您管理浏览器驱动程序的安装和运行。WebdriverIO �
 
 :::caution
 
-如果设置了驱动程序 `binary`，WebdriverIO 将不会尝试下载驱动程序，而是使用此路径提供的驱动程序。请确保驱动程序与您使用的浏览器兼容。
+如果设置了驱动程序 `binary`，WebdriverIO 不会尝试下载驱动程序，而是使用此路径提供的驱动程序。确保驱动程序与您使用的浏览器兼容。
 
 :::
 
-#### 浏览器特定的驱动程序选项
+#### 浏览器特定驱动程序选项
 
-为了向驱动程序传递选项，您可以使用以下自定义能力：
+为了将选项传播到驱动程序，您可以使用以下自定义能力：
 
 - Chrome 或 Chromium：`wdio:chromedriverOptions`
 - Firefox：`wdio:geckodriverOptions`
@@ -138,22 +138,22 @@ ADB 驱动程序应运行的端口。
 类型：`string`
 
 ##### logPath
-将服务器日志写入文件而不是标准错误，将日志级别增加到 `INFO`。
+将服务器日志写入文件而不是标准错误，将日志级别增加到 `INFO`
 
 类型：`string`
 
 ##### logLevel
-设置日志级别。可能的选项有 `ALL`、`DEBUG`、`INFO`、`WARNING`、`SEVERE`、`OFF`。
+设置日志级别。可能的选项 `ALL`、`DEBUG`、`INFO`、`WARNING`、`SEVERE`、`OFF`。
 
 类型：`string`
 
 ##### verbose
-详细记录日志（相当于 `--log-level=ALL`）。
+详细记录日志（相当于 `--log-level=ALL`）
 
 类型：`boolean`
 
 ##### silent
-不记录任何内容（相当于 `--log-level=OFF`）。
+不记录任何内容（相当于 `--log-level=OFF`）
 
 类型：`boolean`
 
@@ -163,7 +163,7 @@ ADB 驱动程序应运行的端口。
 类型：`boolean`
 
 ##### replayable
-详细记录日志，并且不截断长字符串，以便可以重播日志（实验性）。
+详细记录日志并且不截断长字符串，以便可以重放日志（实验性）。
 
 类型：`boolean`
 
@@ -186,45 +186,45 @@ ADB 驱动程序应运行的端口。
 允许连接到 EdgeDriver 的远程 IP 地址的逗号分隔白名单。
 
 类型：`string[]`<br />
-默认值：`['']`
+默认：`['']`
 
 ##### allowedOrigins
-允许连接到 EdgeDriver 的请求源的逗号分隔白名单。使用 `*` 允许任何主机源是危险的！
+允许连接到 EdgeDriver 的请求来源的逗号分隔白名单。使用 `*` 允许任何主机来源是危险的！
 
 类型：`string[]`<br />
-默认值：`['*']`
+默认：`['*']`
 
 ##### spawnOpts
-要传递给驱动程序进程的选项。
+要传递到驱动程序进程的选项。
 
 类型：`SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
-默认值：`undefined`
+默认：`undefined`
 
 </TabItem>
 <TabItem value="firefox">
 
-请参阅官方[驱动程序包](https://github.com/webdriverio-community/node-geckodriver#options)中的所有 Geckodriver 选项。
+在官方[驱动程序包](https://github.com/webdriverio-community/node-geckodriver#options)中查看所有 Geckodriver 选项。
 
 </TabItem>
 <TabItem value="msedge">
 
-请参阅官方[驱动程序包](https://github.com/webdriverio-community/node-edgedriver#options)中的所有 Edgedriver 选项。
+在官方[驱动程序包](https://github.com/webdriverio-community/node-edgedriver#options)中查看所有 Edgedriver 选项。
 
 </TabItem>
 <TabItem value="safari">
 
-请参阅官方[驱动程序包](https://github.com/webdriverio-community/node-safaridriver#options)中的所有 Safaridriver 选项。
+在官方[驱动程序包](https://github.com/webdriverio-community/node-safaridriver#options)中查看所有 Safaridriver 选项。
 
 </TabItem>
 </Tabs>
 
 ## 特定用例的特殊能力
 
-以下是一系列示例，展示了为实现某种用例需要应用哪些能力。
+这是一个示例列表，展示了为实现特定用例需要应用哪些能力。
 
-### 无头运行浏览器
+### 以无头模式运行浏览器
 
-无头运行浏览器意味着运行没有窗口或 UI 的浏览器实例。这主要用于没有显示器的 CI/CD 环境中。要以无头模式运行浏览器，请应用以下能力：
+以无头模式运行浏览器意味着运行没有窗口或 UI 的浏览器实例。这主要用于没有显示器的 CI/CD 环境中。要以无头模式运行浏览器，请应用以下能力：
 
 <Tabs
   defaultValue="chrome"
@@ -274,9 +274,9 @@ ADB 驱动程序应运行的端口。
 </TabItem>
 </Tabs>
 
-### 自动化不同的浏览器通道
+### 自动化不同的浏览器渠道
 
-如果您想测试尚未作为稳定版发布的浏览器版本，例如 Chrome Canary，您可以通过设置能力并指向您想要启动的浏览器来实现，例如：
+如果您想测试尚未作为稳定版发布的浏览器版本，例如 Chrome Canary，您可以通过设置能力并指向您想启动的浏览器来实现，例如：
 
 <Tabs
   defaultValue="chrome"
@@ -289,7 +289,7 @@ ADB 驱动程序应运行的端口。
 }>
 <TabItem value="chrome">
 
-在测试 Chrome 时，WebdriverIO 将根据定义的 `browserVersion` 自动为您下载所需的浏览器版本和驱动程序，例如：
+在 Chrome 上测试时，WebdriverIO 会根据定义的 `browserVersion` 自动为您下载所需的浏览器版本和驱动程序，例如：
 
 ```ts
 {
@@ -323,7 +323,7 @@ ADB 驱动程序应运行的端口。
 </TabItem>
 <TabItem value="firefox">
 
-在测试 Firefox 时，WebdriverIO 将根据定义的 `browserVersion` 自动为您下载所需的浏览器版本和驱动程序，例如：
+在 Firefox 上测试时，WebdriverIO 会根据定义的 `browserVersion` 自动为您下载所需的浏览器版本和驱动程序，例如：
 
 ```ts
 {
@@ -357,7 +357,7 @@ ADB 驱动程序应运行的端口。
 </TabItem>
 <TabItem value="msedge">
 
-在测试 Microsoft Edge 时，请确保您的机器上已安装所需的浏览器版本。您可以通过以下方式指向 WebdriverIO 要执行的浏览器：
+在 Microsoft Edge 上测试时，确保您的机器上已安装所需的浏览器版本。您可以通过以下方式指示 WebdriverIO 执行的浏览器：
 
 ```ts
 {
@@ -368,7 +368,7 @@ ADB 驱动程序应运行的端口。
 }
 ```
 
-WebdriverIO 将根据定义的 `browserVersion` 自动为您下载所需的驱动程序版本，例如：
+WebdriverIO 会根据定义的 `browserVersion` 自动为您下载所需的驱动程序版本，例如：
 
 ```ts
 {
@@ -391,7 +391,7 @@ WebdriverIO 将根据定义的 `browserVersion` 自动为您下载所需的驱�
 </TabItem>
 <TabItem value="safari">
 
-在测试 Safari 时，请确保您的机器上已安装 [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/)。您可以通过以下方式指向 WebdriverIO 该版本：
+在 Safari 上测试时，确保您的机器上已安装 [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/)。您可以通过以下方式指向该版本：
 
 ```ts
 {
@@ -404,7 +404,7 @@ WebdriverIO 将根据定义的 `browserVersion` 自动为您下载所需的驱�
 
 ## 扩展自定义能力
 
-如果您想定义自己的一组能力，例如存储任意数据以在特定能力的测试中使用，您可以通过以下方式实现：
+如果您想定义自己的能力集，例如存储任意数据以在特定能力的测试中使用，您可以通过以下方式设置：
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -418,7 +418,7 @@ export const config = {
 }
 ```
 
-在能力命名方面，建议遵循 [W3C 协议](https://w3c.github.io/webdriver/#dfn-extension-capability)，该协议要求使用 `:` (冒号) 字符，表示实现特定的命名空间。在测试中，您可以通过以下方式访问自定义能力：
+在能力命名方面，建议遵循 [W3C 协议](https://w3c.github.io/webdriver/#dfn-extension-capability)，该协议要求使用 `:` (冒号) 字符，表示特定于实现的命名空间。在测试中，您可以通过以下方式访问自定义能力：
 
 ```ts
 browser.capabilities['custom:caps']

@@ -1,42 +1,42 @@
 ---
 id: capabilities
-title: Förmågor
+title: Funktioner
 ---
 
-En förmåga (capability) är en definition för ett fjärrgränssnitt. Det hjälper WebdriverIO att förstå i vilken webbläsare eller mobil miljö du vill köra dina tester på. Förmågor är mindre avgörande när du utvecklar tester lokalt eftersom du oftast kör det på ett fjärrgränssnitt, men blir viktigare när du kör en stor uppsättning integrationstester i CI/CD.
+En funktion (capability) är en definition för ett fjärrgränssnitt. Det hjälper WebdriverIO att förstå i vilken webbläsar- eller mobilmiljö du vill köra dina tester. Funktioner är mindre avgörande när du utvecklar tester lokalt eftersom du oftast kör dem på ett fjärrgränssnitt åt gången, men blir viktigare när du kör en stor uppsättning integrationstester i CI/CD.
 
 :::info
 
-Formatet för ett förmågaobjekt är väl definierat av [WebDriver-specifikationen](https://w3c.github.io/webdriver/#capabilities). WebdriverIO-testrunner kommer att misslyckas tidigt om användardefinierade förmågor inte följer den specifikationen.
+Formatet för ett funktionsobjekt är väl definierat av [WebDriver-specifikationen](https://w3c.github.io/webdriver/#capabilities). WebdriverIO-testrunner kommer att misslyckas tidigt om användardefinierade funktioner inte följer den specifikationen.
 
 :::
 
-## Anpassade förmågor
+## Anpassade funktioner
 
-Medan antalet fast definierade förmågor är mycket lågt, kan alla tillhandahålla och acceptera anpassade förmågor som är specifika för automationsdrivrutinen eller fjärrgränssnittet:
+Medan antalet fast definierade funktioner är mycket lågt kan alla tillhandahålla och acceptera anpassade funktioner som är specifika för automationsdrivrutinen eller fjärrgränssnittet:
 
-### Webbläsarspecifika förmågotillägg
+### Webbläsarspecifika funktionsutökningar
 
-- `goog:chromeOptions`: [Chromedriver](https://chromedriver.chromium.org/capabilities) tillägg, endast tillämpligt för testning i Chrome
-- `moz:firefoxOptions`: [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) tillägg, endast tillämpligt för testning i Firefox
-- `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) för att specificera miljön när du använder EdgeDriver för att testa Chromium Edge
+- `goog:chromeOptions`: [Chromedriver](https://chromedriver.chromium.org/capabilities)-tillägg, endast tillämpliga för testning i Chrome
+- `moz:firefoxOptions`: [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)-tillägg, endast tillämpliga för testning i Firefox
+- `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) för att specificera miljön när du använder EdgeDriver för testning av Chromium Edge
 
-### Molnleverantörers förmågotillägg
+### Molnleverantörers funktionsutökningar
 
 - `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
 - `bstack:options`: [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
 - `tb:options`: [TestingBot](https://testingbot.com/support/other/test-options)
 - och många fler...
 
-### Automationsmotor förmågotillägg
+### Automatiseringsmotorns funktionsutökningar
 
-- `appium:xxx`: [Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)
+- `appium:xxx`: [Appium](https://appium.io/docs/en/latest/guides/caps/)
 - `selenoid:xxx`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
 - och många fler...
 
-### WebdriverIO förmågor för att hantera webbläsardrivrutinsalternativ
+### WebdriverIO-funktioner för att hantera webbläsardrivrutinsalternativ
 
-WebdriverIO hanterar installation och körning av webbläsardrivrutiner för dig. WebdriverIO använder en anpassad förmåga som låter dig skicka in parametrar till drivrutinen.
+WebdriverIO hanterar installation och körning av webbläsardrivrutiner åt dig. WebdriverIO använder en anpassad funktion som låter dig skicka in parametrar till drivrutinen.
 
 #### `wdio:chromedriverOptions`
 
@@ -56,19 +56,19 @@ Specifika alternativ som skickas till Safari vid start.
 
 #### `wdio:maxInstances`
 
-Maximalt antal parallellt körande arbetare för den specifika webbläsaren/förmågan. Har företräde framför [maxInstances](#configuration#maxInstances) och [maxInstancesPerCapability](configuration/#maxinstancespercapability).
+Maximalt antal totala parallellt körande arbetare för den specifika webbläsaren/funktionen. Har företräde framför [maxInstances](#configuration#maxInstances) och [maxInstancesPerCapability](configuration/#maxinstancespercapability).
 
 Typ: `number`
 
 #### `wdio:specs`
 
-Definiera specifikationer för testkörning för den webbläsaren/förmågan. Samma som det [vanliga `specs`-konfigurationsalternativet](configuration#specs), men specifikt för webbläsaren/förmågan. Har företräde framför `specs`.
+Definiera specs för testkörning för den webbläsaren/funktionen. Samma som det [vanliga konfigurationsalternativet `specs`](configuration#specs), men specifikt för webbläsaren/funktionen. Har företräde framför `specs`.
 
 Typ: `(String | String[])[]`
 
 #### `wdio:exclude`
 
-Exkludera specifikationer från testkörning för den webbläsaren/förmågan. Samma som det [vanliga `exclude`-konfigurationsalternativet](configuration#exclude), men specifikt för webbläsaren/förmågan. Har företräde framför `exclude`.
+Uteslut specs från testkörning för den webbläsaren/funktionen. Samma som det [vanliga konfigurationsalternativet `exclude`](configuration#exclude), men specifikt för webbläsaren/funktionen. Har företräde framför `exclude`.
 
 Typ: `String[]`
 
@@ -78,20 +78,20 @@ Som standard försöker WebdriverIO upprätta en WebDriver Bidi-session. Om du i
 
 Typ: `boolean`
 
-#### Gemensamma drivrutinsalternativ
+#### Vanliga drivrutinsalternativ
 
-Medan alla drivrutiner erbjuder olika parametrar för konfiguration, finns det några gemensamma som WebdriverIO förstår och använder för att konfigurera din drivrutin eller webbläsare:
+Även om alla drivrutiner erbjuder olika parametrar för konfiguration finns det några gemensamma som WebdriverIO förstår och använder för att konfigurera din drivrutin eller webbläsare:
 
 ##### `cacheDir`
 
-Sökvägen till roten av cachekatalogen. Denna katalog används för att lagra alla drivrutiner som laddas ner när du försöker starta en session.
+Sökvägen till roten av cachemappen. Denna mapp används för att lagra alla drivrutiner som laddas ner när du försöker starta en session.
 
 Typ: `string`<br />
 Standard: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ##### `binary`
 
-Sökväg till en anpassad drivrutinsbinär. Om angiven kommer WebdriverIO inte att försöka ladda ner en drivrutin utan kommer att använda den som anges via denna sökväg. Se till att drivrutinen är kompatibel med webbläsaren du använder.
+Sökväg till en anpassad drivrutinsbinär. Om den är inställd kommer WebdriverIO inte att försöka ladda ner en drivrutin utan använder den som tillhandahålls av denna sökväg. Se till att drivrutinen är kompatibel med webbläsaren du använder.
 
 Du kan ange denna sökväg via miljövariablerna `CHROMEDRIVER_PATH`, `GECKODRIVER_PATH` eller `EDGEDRIVER_PATH`.
 
@@ -99,13 +99,13 @@ Typ: `string`
 
 :::caution
 
-Om drivrutinens `binary` är inställd, kommer WebdriverIO inte att försöka ladda ner en drivrutin utan kommer att använda den som anges via denna sökväg. Se till att drivrutinen är kompatibel med webbläsaren du använder.
+Om drivrutinens `binary` är inställd kommer WebdriverIO inte att försöka ladda ner en drivrutin utan använder den som tillhandahålls av denna sökväg. Se till att drivrutinen är kompatibel med webbläsaren du använder.
 
 :::
 
 #### Webbläsarspecifika drivrutinsalternativ
 
-För att skicka alternativ till drivrutinen kan du använda följande anpassade förmågor:
+För att skicka alternativ till drivrutinen kan du använda följande anpassade funktioner:
 
 - Chrome eller Chromium: `wdio:chromedriverOptions`
 - Firefox: `wdio:geckodriverOptions`
@@ -124,7 +124,7 @@ För att skicka alternativ till drivrutinen kan du använda följande anpassade 
 <TabItem value="chrome">
 
 ##### adbPort
-Porten på vilken ADB-drivrutinen ska köras.
+Porten som ADB-drivrutinen ska köras på.
 
 Exempel: `9515`
 
@@ -138,7 +138,7 @@ Exempel: `/`
 Typ: `string`
 
 ##### logPath
-Skriv serverloggen till fil istället för stderr, ökar loggnivån till `INFO`
+Skriv serverlogg till fil istället för stderr, ökar loggnivån till `INFO`
 
 Typ: `string`
 
@@ -148,7 +148,7 @@ Ställ in loggnivå. Möjliga alternativ `ALL`, `DEBUG`, `INFO`, `WARNING`, `SEV
 Typ: `string`
 
 ##### verbose
-Logga detaljerat (motsvarar `--log-level=ALL`)
+Logga utförligt (motsvarar `--log-level=ALL`)
 
 Typ: `boolean`
 
@@ -158,17 +158,17 @@ Logga ingenting (motsvarar `--log-level=OFF`)
 Typ: `boolean`
 
 ##### appendLog
-Lägg till i loggfil istället för att skriva över.
+Lägg till i loggfilen istället för att skriva över.
 
 Typ: `boolean`
 
 ##### replayable
-Logga detaljerat och trunkera inte långa strängar så att loggen kan spelas upp igen (experimentell).
+Logga utförligt och trunkera inte långa strängar så att loggen kan spelas upp (experimentell).
 
 Typ: `boolean`
 
 ##### readableTimestamp
-Lägg till läsbara tidsstämplar i loggen.
+Lägg till läsbara tidsstämplar till loggen.
 
 Typ: `boolean`
 
@@ -178,18 +178,18 @@ Visa loggar från webbläsaren (åsidosätter andra loggningsalternativ).
 Typ: `boolean`
 
 ##### bidiMapperPath
-Anpassad bidi mapper-sökväg.
+Anpassad bidi-mappersökväg.
 
 Typ: `string`
 
 ##### allowedIps
-Kommaseparerad lista med tillåtna fjärr-IP-adresser som får ansluta till EdgeDriver.
+Kommaseparerad vitlista över fjärr-IP-adresser som tillåts ansluta till EdgeDriver.
 
 Typ: `string[]`<br />
 Standard: `['']`
 
 ##### allowedOrigins
-Kommaseparerad lista med tillåtna förfrågningsursprung som får ansluta till EdgeDriver. Att använda `*` för att tillåta vilket värdusprung som helst är farligt!
+Kommaseparerad vitlista över begärandeorigins som tillåts ansluta till EdgeDriver. Att använda `*` för att tillåta alla värdorigins är farligt!
 
 Typ: `string[]`<br />
 Standard: `['*']`
@@ -218,13 +218,13 @@ Se alla Safaridriver-alternativ i det officiella [drivrutinspaketet](https://git
 </TabItem>
 </Tabs>
 
-## Speciella förmågor för specifika användningsfall
+## Särskilda funktioner för specifika användningsfall
 
-Detta är en lista med exempel som visar vilka förmågor som behöver tillämpas för att uppnå ett visst användningsfall.
+Detta är en lista med exempel som visar vilka funktioner som behöver tillämpas för att uppnå ett visst användningsfall.
 
 ### Kör webbläsare i Headless-läge
 
-Att köra en webbläsare i headless-läge innebär att köra en webbläsarinstans utan fönster eller UI. Detta används oftast inom CI/CD-miljöer där ingen display används. För att köra en webbläsare i headless-läge, tillämpa följande förmågor:
+Att köra en headless-webbläsare innebär att köra en webbläsarinstans utan fönster eller användargränssnitt. Detta används oftast inom CI/CD-miljöer där ingen display används. För att köra en webbläsare i headless-läge, tillämpa följande funktioner:
 
 <Tabs
   defaultValue="chrome"
@@ -276,7 +276,7 @@ Det verkar som att Safari [inte stöder](https://discussions.apple.com/thread/25
 
 ### Automatisera olika webbläsarkanaler
 
-Om du vill testa en webbläsarversion som ännu inte har släppts som stabil, t.ex. Chrome Canary, kan du göra det genom att ställa in förmågor och peka på den webbläsare du vill starta, t.ex.:
+Om du vill testa en webbläsarversion som ännu inte släppts som stabil, t.ex. Chrome Canary, kan du göra det genom att ställa in funktioner och peka på den webbläsare du vill starta, t.ex.:
 
 <Tabs
   defaultValue="chrome"
@@ -289,7 +289,7 @@ Om du vill testa en webbläsarversion som ännu inte har släppts som stabil, t.
 }>
 <TabItem value="chrome">
 
-När du testar på Chrome kommer WebdriverIO automatiskt att ladda ner önskad webbläsarversion och drivrutin baserat på den definierade `browserVersion`, t.ex.:
+När du testar på Chrome kommer WebdriverIO automatiskt ladda ner den önskade webbläsarversionen och drivrutinen åt dig baserat på den definierade `browserVersion`, t.ex.:
 
 ```ts
 {
@@ -323,7 +323,7 @@ Dessutom, om du vill använda en manuellt nedladdad drivrutin, kan du ange en bi
 </TabItem>
 <TabItem value="firefox">
 
-När du testar på Firefox kommer WebdriverIO automatiskt att ladda ner önskad webbläsarversion och drivrutin baserat på den definierade `browserVersion`, t.ex.:
+När du testar på Firefox kommer WebdriverIO automatiskt ladda ner den önskade webbläsarversionen och drivrutinen åt dig baserat på den definierade `browserVersion`, t.ex.:
 
 ```ts
 {
@@ -357,7 +357,7 @@ Dessutom, om du vill använda en manuellt nedladdad drivrutin, kan du ange en bi
 </TabItem>
 <TabItem value="msedge">
 
-När du testar på Microsoft Edge, se till att du har den önskade webbläsarversionen installerad på din maskin. Du kan peka WebdriverIO till webbläsaren som ska köras via:
+När du testar på Microsoft Edge, se till att du har den önskade webbläsarversionen installerad på din maskin. Du kan peka WebdriverIO till webbläsaren för att köra via:
 
 ```ts
 {
@@ -368,7 +368,7 @@ När du testar på Microsoft Edge, se till att du har den önskade webbläsarver
 }
 ```
 
-WebdriverIO kommer automatiskt att ladda ner önskad drivrutinsversion baserat på den definierade `browserVersion`, t.ex.:
+WebdriverIO kommer automatiskt ladda ner den önskade drivrutinsversionen åt dig baserat på den definierade `browserVersion`, t.ex.:
 
 ```ts
 {
@@ -391,7 +391,7 @@ Dessutom, om du vill använda en manuellt nedladdad drivrutin, kan du ange en bi
 </TabItem>
 <TabItem value="safari">
 
-När du testar på Safari, se till att du har [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) installerat på din maskin. Du kan peka WebdriverIO till den versionen via:
+När du testar på Safari, se till att du har [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) installerad på din maskin. Du kan peka WebdriverIO till den versionen via:
 
 ```ts
 {
@@ -402,9 +402,9 @@ När du testar på Safari, se till att du har [Safari Technology Preview](https:
 </TabItem>
 </Tabs>
 
-## Utöka anpassade förmågor
+## Utöka anpassade funktioner
 
-Om du vill definiera din egen uppsättning förmågor för att t.ex. lagra godtycklig data som ska användas i testerna för den specifika förmågan, kan du göra det genom att t.ex. ställa in:
+Om du vill definiera din egen uppsättning funktioner för att t.ex. lagra godtycklig data som ska användas inom testerna för den specifika funktionen, kan du göra det genom att t.ex. ställa in:
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -418,13 +418,13 @@ export const config = {
 }
 ```
 
-Det rekommenderas att följa [W3C-protokollet](https://w3c.github.io/webdriver/#dfn-extension-capability) när det gäller namngivning av förmågor, vilket kräver ett `:` (kolon)-tecken som betecknar ett implementationsspecifikt namnområde. I dina tester kan du komma åt din anpassade förmåga genom, t.ex.:
+Det rekommenderas att följa [W3C-protokollet](https://w3c.github.io/webdriver/#dfn-extension-capability) när det gäller namngivning av funktioner, vilket kräver ett `:` (kolon) tecken som betecknar ett implementationsspecifikt namnområde. I dina tester kan du komma åt din anpassade funktion genom, t.ex.:
 
 ```ts
 browser.capabilities['custom:caps']
 ```
 
-För att säkerställa typsäkerhet kan du utöka WebdriverIOs förmågagränssnitt via:
+För att säkerställa typsäkerhet kan du utöka WebdriverIOs funktionsgränssnitt via:
 
 ```ts
 declare global {

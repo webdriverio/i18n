@@ -3,38 +3,38 @@ id: capabilities
 title: Khả năng
 ---
 
-Một khả năng (capability) là định nghĩa cho giao diện từ xa. Nó giúp WebdriverIO hiểu được môi trường trình duyệt hoặc di động mà bạn muốn chạy các bài kiểm thử của mình. Khả năng ít quan trọng hơn khi phát triển các bài kiểm thử cục bộ vì bạn thường chạy chúng trên một giao diện từ xa hầu hết thời gian, nhưng trở nên quan trọng hơn khi chạy một bộ lớn các bài kiểm thử tích hợp trong CI/CD.
+Khả năng (capability) là định nghĩa cho một giao diện điều khiển từ xa. Nó giúp WebdriverIO hiểu bạn muốn chạy các bài kiểm thử của mình trên môi trường trình duyệt hoặc di động nào. Capabilities ít quan trọng hơn khi phát triển kiểm thử cục bộ vì bạn thường chỉ chạy trên một giao diện điều khiển từ xa, nhưng trở nên quan trọng hơn khi chạy một bộ lớn các bài kiểm thử tích hợp trong CI/CD.
 
 :::info
 
-Format của đối tượng capability được định nghĩa rõ ràng bởi [đặc tả WebDriver](https://w3c.github.io/webdriver/#capabilities). Trình chạy kiểm thử WebdriverIO sẽ thất bại sớm nếu người dùng định nghĩa capabilities không tuân thủ đặc tả đó.
+Định dạng của một đối tượng capability được định nghĩa rõ ràng bởi [đặc tả WebDriver](https://w3c.github.io/webdriver/#capabilities). Trình chạy kiểm thử WebdriverIO sẽ thông báo lỗi sớm nếu các capability do người dùng định nghĩa không tuân theo đặc tả đó.
 
 :::
 
-## Các Capabilities Tùy chỉnh
+## Capability tùy chỉnh
 
-Mặc dù số lượng capabilities cố định được xác định rất thấp, mọi người đều có thể cung cấp và chấp nhận các capabilities tùy chỉnh dành riêng cho trình điều khiển tự động hoặc giao diện từ xa:
+Mặc dù số lượng capability được định nghĩa cố định là rất ít, nhưng mọi người đều có thể cung cấp và chấp nhận các capability tùy chỉnh dành riêng cho trình điều khiển tự động hoặc giao diện điều khiển từ xa:
 
-### Các Phần Mở rộng Capability Dành riêng cho Trình duyệt
+### Phần mở rộng Capability cho trình duyệt cụ thể
 
 - `goog:chromeOptions`: Phần mở rộng [Chromedriver](https://chromedriver.chromium.org/capabilities), chỉ áp dụng cho kiểm thử trong Chrome
 - `moz:firefoxOptions`: Phần mở rộng [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html), chỉ áp dụng cho kiểm thử trong Firefox
 - `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) để chỉ định môi trường khi sử dụng EdgeDriver để kiểm thử Chromium Edge
 
-### Các Phần Mở rộng Capability của Nhà cung cấp Đám mây
+### Phần mở rộng Capability cho nhà cung cấp dịch vụ đám mây
 
 - `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
 - `bstack:options`: [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
 - `tb:options`: [TestingBot](https://testingbot.com/support/other/test-options)
-- và nhiều hơn nữa...
+- và nhiều nữa...
 
-### Các Phần Mở rộng Capability của Công cụ Tự động hóa
+### Phần mở rộng Capability cho công cụ tự động hóa
 
-- `appium:xxx`: [Appium](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/)
+- `appium:xxx`: [Appium](https://appium.io/docs/en/latest/guides/caps/)
 - `selenoid:xxx`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
-- và nhiều hơn nữa...
+- và nhiều nữa...
 
-### Các Capabilities của WebdriverIO để quản lý tùy chọn trình điều khiển trình duyệt
+### Capability của WebdriverIO để quản lý tùy chọn trình điều khiển trình duyệt
 
 WebdriverIO quản lý việc cài đặt và chạy trình điều khiển trình duyệt cho bạn. WebdriverIO sử dụng một capability tùy chỉnh cho phép bạn truyền các tham số vào trình điều khiển.
 
@@ -56,42 +56,42 @@ Các tùy chọn cụ thể được truyền vào Safari khi khởi động.
 
 #### `wdio:maxInstances`
 
-Số lượng tối đa của tổng số worker chạy song song cho trình duyệt/capability cụ thể. Có độ ưu tiên cao hơn [maxInstances](#configuration#maxInstances) và [maxInstancesPerCapability](configuration/#maxinstancespercapability).
+Số lượng tối đa các worker chạy song song cho trình duyệt/capability cụ thể. Ưu tiên cao hơn [maxInstances](#configuration#maxInstances) và [maxInstancesPerCapability](configuration/#maxinstancespercapability).
 
 Kiểu: `number`
 
 #### `wdio:specs`
 
-Xác định specs cho việc thực thi kiểm thử cho trình duyệt/capability đó. Giống như [tùy chọn cấu hình `specs` thông thường](configuration#specs), nhưng dành riêng cho trình duyệt/capability. Có độ ưu tiên cao hơn `specs`.
+Xác định các tệp đặc tả để thực thi kiểm thử cho trình duyệt/capability đó. Giống như [tùy chọn cấu hình `specs` thông thường](configuration#specs), nhưng dành riêng cho trình duyệt/capability cụ thể. Ưu tiên cao hơn `specs`.
 
 Kiểu: `(String | String[])[]`
 
 #### `wdio:exclude`
 
-Loại trừ specs khỏi việc thực thi kiểm thử cho trình duyệt/capability đó. Giống như [tùy chọn cấu hình `exclude` thông thường](configuration#exclude), nhưng dành riêng cho trình duyệt/capability. Có độ ưu tiên cao hơn `exclude`.
+Loại trừ các đặc tả khỏi việc thực thi kiểm thử cho trình duyệt/capability đó. Giống như [tùy chọn cấu hình `exclude` thông thường](configuration#exclude), nhưng dành riêng cho trình duyệt/capability cụ thể. Ưu tiên cao hơn `exclude`.
 
 Kiểu: `String[]`
 
 #### `wdio:enforceWebDriverClassic`
 
-Mặc định, WebdriverIO cố gắng thiết lập một phiên WebDriver Bidi. Nếu bạn không thích điều đó, bạn có thể đặt cờ này để vô hiệu hóa hành vi này.
+Mặc định, WebdriverIO cố gắng thiết lập một phiên WebDriver Bidi. Nếu bạn không muốn điều đó, bạn có thể đặt cờ này để vô hiệu hóa hành vi này.
 
 Kiểu: `boolean`
 
-#### Các Tùy chọn Driver Phổ biến
+#### Tùy chọn trình điều khiển phổ biến
 
-Mặc dù tất cả các driver đều cung cấp các tham số cấu hình khác nhau, có một số tham số phổ biến mà WebdriverIO hiểu và sử dụng để thiết lập driver hoặc trình duyệt của bạn:
+Mặc dù tất cả các trình điều khiển đều cung cấp các tham số cấu hình khác nhau, có một số tùy chọn phổ biến mà WebdriverIO hiểu và sử dụng để thiết lập trình điều khiển hoặc trình duyệt của bạn:
 
 ##### `cacheDir`
 
-Đường dẫn đến thư mục gốc của bộ nhớ cache. Thư mục này được sử dụng để lưu trữ tất cả các driver được tải xuống khi cố gắng bắt đầu một phiên.
+Đường dẫn đến thư mục gốc của bộ nhớ cache. Thư mục này được sử dụng để lưu trữ tất cả các trình điều khiển được tải xuống khi cố gắng bắt đầu một phiên.
 
 Kiểu: `string`<br />
 Mặc định: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ##### `binary`
 
-Đường dẫn đến một binary driver tùy chỉnh. Nếu được đặt, WebdriverIO sẽ không cố gắng tải xuống driver mà sẽ sử dụng driver được cung cấp bởi đường dẫn này. Hãy đảm bảo driver tương thích với trình duyệt bạn đang sử dụng.
+Đường dẫn đến tệp nhị phân trình điều khiển tùy chỉnh. Nếu được đặt, WebdriverIO sẽ không cố gắng tải xuống trình điều khiển mà sẽ sử dụng trình điều khiển được cung cấp bởi đường dẫn này. Đảm bảo rằng trình điều khiển tương thích với trình duyệt bạn đang sử dụng.
 
 Bạn có thể cung cấp đường dẫn này thông qua các biến môi trường `CHROMEDRIVER_PATH`, `GECKODRIVER_PATH` hoặc `EDGEDRIVER_PATH`.
 
@@ -99,13 +99,13 @@ Kiểu: `string`
 
 :::caution
 
-Nếu `binary` của driver được đặt, WebdriverIO sẽ không cố gắng tải xuống driver mà sẽ sử dụng driver được cung cấp bởi đường dẫn này. Hãy đảm bảo driver tương thích với trình duyệt bạn đang sử dụng.
+Nếu `binary` của trình điều khiển được đặt, WebdriverIO sẽ không cố gắng tải xuống trình điều khiển mà sẽ sử dụng trình điều khiển được cung cấp bởi đường dẫn này. Đảm bảo rằng trình điều khiển tương thích với trình duyệt bạn đang sử dụng.
 
 :::
 
-#### Các Tùy chọn Driver Dành riêng cho Trình duyệt
+#### Tùy chọn trình điều khiển cho trình duyệt cụ thể
 
-Để truyền các tùy chọn đến driver, bạn có thể sử dụng các capabilities tùy chỉnh sau:
+Để truyền các tùy chọn đến trình điều khiển, bạn có thể sử dụng các capability tùy chỉnh sau:
 
 - Chrome hoặc Chromium: `wdio:chromedriverOptions`
 - Firefox: `wdio:geckodriverOptions`
@@ -124,7 +124,7 @@ Nếu `binary` của driver được đặt, WebdriverIO sẽ không cố gắng
 <TabItem value="chrome">
 
 ##### adbPort
-Cổng mà driver ADB nên chạy.
+Cổng mà trình điều khiển ADB nên chạy.
 
 Ví dụ: `9515`
 
@@ -158,17 +158,17 @@ Không ghi nhật ký (tương đương với `--log-level=OFF`)
 Kiểu: `boolean`
 
 ##### appendLog
-Thêm vào tệp nhật ký thay vì viết lại.
+Thêm vào tệp nhật ký thay vì ghi đè.
 
 Kiểu: `boolean`
 
 ##### replayable
-Ghi nhật ký chi tiết và không cắt ngắn chuỗi dài để nhật ký có thể được phát lại (thử nghiệm).
+Ghi nhật ký chi tiết và không cắt bớt chuỗi dài để nhật ký có thể được phát lại (thử nghiệm).
 
 Kiểu: `boolean`
 
 ##### readableTimestamp
-Thêm dấu thời gian dễ đọc vào nhật ký.
+Thêm dấu thời gian có thể đọc được vào nhật ký.
 
 Kiểu: `boolean`
 
@@ -178,24 +178,24 @@ Hiển thị nhật ký từ trình duyệt (ghi đè các tùy chọn ghi nhậ
 Kiểu: `boolean`
 
 ##### bidiMapperPath
-Đường dẫn bộ ánh xạ bidi tùy chỉnh.
+Đường dẫn bản đồ bidi tùy chỉnh.
 
 Kiểu: `string`
 
 ##### allowedIps
-Danh sách cho phép các địa chỉ IP từ xa được phép kết nối với EdgeDriver, phân cách bằng dấu phẩy.
+Danh sách các địa chỉ IP từ xa được phép kết nối với EdgeDriver, phân tách bằng dấu phẩy.
 
 Kiểu: `string[]`<br />
 Mặc định: `['']`
 
 ##### allowedOrigins
-Danh sách cho phép các nguồn gốc yêu cầu được phép kết nối với EdgeDriver, phân cách bằng dấu phẩy. Sử dụng `*` để cho phép bất kỳ nguồn gốc máy chủ nào là nguy hiểm!
+Danh sách các nguồn gốc yêu cầu được phép kết nối với EdgeDriver, phân tách bằng dấu phẩy. Sử dụng `*` để cho phép bất kỳ nguồn gốc máy chủ nào đều nguy hiểm!
 
 Kiểu: `string[]`<br />
 Mặc định: `['*']`
 
 ##### spawnOpts
-Các tùy chọn được truyền vào quá trình driver.
+Các tùy chọn được truyền vào quá trình trình điều khiển.
 
 Kiểu: `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
 Mặc định: `undefined`
@@ -203,28 +203,28 @@ Mặc định: `undefined`
 </TabItem>
 <TabItem value="firefox">
 
-Xem tất cả các tùy chọn Geckodriver trong [gói driver chính thức](https://github.com/webdriverio-community/node-geckodriver#options).
+Xem tất cả các tùy chọn Geckodriver trong [gói trình điều khiển](https://github.com/webdriverio-community/node-geckodriver#options) chính thức.
 
 </TabItem>
 <TabItem value="msedge">
 
-Xem tất cả các tùy chọn Edgedriver trong [gói driver chính thức](https://github.com/webdriverio-community/node-edgedriver#options).
+Xem tất cả các tùy chọn Edgedriver trong [gói trình điều khiển](https://github.com/webdriverio-community/node-edgedriver#options) chính thức.
 
 </TabItem>
 <TabItem value="safari">
 
-Xem tất cả các tùy chọn Safaridriver trong [gói driver chính thức](https://github.com/webdriverio-community/node-safaridriver#options).
+Xem tất cả các tùy chọn Safaridriver trong [gói trình điều khiển](https://github.com/webdriverio-community/node-safaridriver#options) chính thức.
 
 </TabItem>
 </Tabs>
 
-## Các Capabilities Đặc biệt cho Các Trường hợp Sử dụng Cụ thể
+## Capability đặc biệt cho các trường hợp sử dụng cụ thể
 
-Đây là danh sách các ví dụ cho thấy những capabilities nào cần được áp dụng để đạt được một trường hợp sử dụng nhất định.
+Đây là danh sách các ví dụ cho thấy các capability nào cần được áp dụng để đạt được một trường hợp sử dụng nhất định.
 
-### Chạy Trình duyệt Headless
+### Chạy trình duyệt ở chế độ Headless
 
-Chạy trình duyệt headless có nghĩa là chạy một phiên bản trình duyệt mà không có cửa sổ hoặc giao diện người dùng. Điều này chủ yếu được sử dụng trong môi trường CI/CD nơi không có màn hình hiển thị. Để chạy trình duyệt ở chế độ headless, hãy áp dụng các capabilities sau:
+Chạy trình duyệt ở chế độ headless có nghĩa là chạy một phiên bản trình duyệt mà không có cửa sổ hoặc giao diện người dùng. Điều này thường được sử dụng trong môi trường CI/CD nơi không có màn hình hiển thị. Để chạy trình duyệt ở chế độ headless, hãy áp dụng các capability sau:
 
 <Tabs
   defaultValue="chrome"
@@ -274,9 +274,9 @@ Có vẻ như Safari [không hỗ trợ](https://discussions.apple.com/thread/25
 </TabItem>
 </Tabs>
 
-### Tự động hóa Các Kênh Trình duyệt Khác nhau
+### Tự động hóa các kênh trình duyệt khác nhau
 
-Nếu bạn muốn kiểm thử phiên bản trình duyệt chưa được phát hành ở dạng ổn định, ví dụ: Chrome Canary, bạn có thể làm điều đó bằng cách thiết lập capabilities và trỏ đến trình duyệt bạn muốn khởi động, ví dụ:
+Nếu bạn muốn kiểm thử phiên bản trình duyệt chưa được phát hành dưới dạng ổn định, ví dụ: Chrome Canary, bạn có thể thực hiện bằng cách đặt capability và trỏ đến trình duyệt bạn muốn khởi động, ví dụ:
 
 <Tabs
   defaultValue="chrome"
@@ -289,7 +289,7 @@ Nếu bạn muốn kiểm thử phiên bản trình duyệt chưa được phát
 }>
 <TabItem value="chrome">
 
-Khi kiểm thử trên Chrome, WebdriverIO sẽ tự động tải xuống phiên bản trình duyệt và driver mong muốn cho bạn dựa trên `browserVersion` được xác định, ví dụ:
+Khi kiểm thử trên Chrome, WebdriverIO sẽ tự động tải xuống phiên bản trình duyệt và trình điều khiển mong muốn cho bạn dựa trên `browserVersion` đã định nghĩa, ví dụ:
 
 ```ts
 {
@@ -298,7 +298,7 @@ Khi kiểm thử trên Chrome, WebdriverIO sẽ tự động tải xuống phiê
 }
 ```
 
-Nếu bạn muốn kiểm thử trình duyệt đã tải xuống thủ công, bạn có thể cung cấp đường dẫn binary đến trình duyệt qua:
+Nếu bạn muốn kiểm thử trình duyệt đã tải xuống thủ công, bạn có thể cung cấp đường dẫn nhị phân đến trình duyệt qua:
 
 ```ts
 {
@@ -309,7 +309,7 @@ Nếu bạn muốn kiểm thử trình duyệt đã tải xuống thủ công, b
 }
 ```
 
-Ngoài ra, nếu bạn muốn sử dụng driver đã tải xuống thủ công, bạn có thể cung cấp đường dẫn binary đến driver qua:
+Ngoài ra, nếu bạn muốn sử dụng trình điều khiển đã tải xuống thủ công, bạn có thể cung cấp đường dẫn nhị phân đến trình điều khiển qua:
 
 ```ts
 {
@@ -323,7 +323,7 @@ Ngoài ra, nếu bạn muốn sử dụng driver đã tải xuống thủ công,
 </TabItem>
 <TabItem value="firefox">
 
-Khi kiểm thử trên Firefox, WebdriverIO sẽ tự động tải xuống phiên bản trình duyệt và driver mong muốn cho bạn dựa trên `browserVersion` được xác định, ví dụ:
+Khi kiểm thử trên Firefox, WebdriverIO sẽ tự động tải xuống phiên bản trình duyệt và trình điều khiển mong muốn cho bạn dựa trên `browserVersion` đã định nghĩa, ví dụ:
 
 ```ts
 {
@@ -332,7 +332,7 @@ Khi kiểm thử trên Firefox, WebdriverIO sẽ tự động tải xuống phi�
 }
 ```
 
-Nếu bạn muốn kiểm thử phiên bản đã tải xuống thủ công, bạn có thể cung cấp đường dẫn binary đến trình duyệt qua:
+Nếu bạn muốn kiểm thử phiên bản đã tải xuống thủ công, bạn có thể cung cấp đường dẫn nhị phân đến trình duyệt qua:
 
 ```ts
 {
@@ -343,7 +343,7 @@ Nếu bạn muốn kiểm thử phiên bản đã tải xuống thủ công, b�
 }
 ```
 
-Ngoài ra, nếu bạn muốn sử dụng driver đã tải xuống thủ công, bạn có thể cung cấp đường dẫn binary đến driver qua:
+Ngoài ra, nếu bạn muốn sử dụng trình điều khiển đã tải xuống thủ công, bạn có thể cung cấp đường dẫn nhị phân đến trình điều khiển qua:
 
 ```ts
 {
@@ -357,7 +357,7 @@ Ngoài ra, nếu bạn muốn sử dụng driver đã tải xuống thủ công,
 </TabItem>
 <TabItem value="msedge">
 
-Khi kiểm thử trên Microsoft Edge, hãy đảm bảo bạn đã cài đặt phiên bản trình duyệt mong muốn trên máy của mình. Bạn có thể chỉ định cho WebdriverIO trình duyệt để thực thi qua:
+Khi kiểm thử trên Microsoft Edge, hãy đảm bảo bạn đã cài đặt phiên bản trình duyệt mong muốn trên máy của mình. Bạn có thể chỉ cho WebdriverIO trình duyệt để thực thi qua:
 
 ```ts
 {
@@ -368,7 +368,7 @@ Khi kiểm thử trên Microsoft Edge, hãy đảm bảo bạn đã cài đặt 
 }
 ```
 
-WebdriverIO sẽ tự động tải xuống phiên bản driver mong muốn cho bạn dựa trên `browserVersion` được xác định, ví dụ:
+WebdriverIO sẽ tự động tải xuống phiên bản trình điều khiển mong muốn cho bạn dựa trên `browserVersion` đã định nghĩa, ví dụ:
 
 ```ts
 {
@@ -377,7 +377,7 @@ WebdriverIO sẽ tự động tải xuống phiên bản driver mong muốn cho 
 }
 ```
 
-Ngoài ra, nếu bạn muốn sử dụng driver đã tải xuống thủ công, bạn có thể cung cấp đường dẫn binary đến driver qua:
+Ngoài ra, nếu bạn muốn sử dụng trình điều khiển đã tải xuống thủ công, bạn có thể cung cấp đường dẫn nhị phân đến trình điều khiển qua:
 
 ```ts
 {
@@ -391,7 +391,7 @@ Ngoài ra, nếu bạn muốn sử dụng driver đã tải xuống thủ công,
 </TabItem>
 <TabItem value="safari">
 
-Khi kiểm thử trên Safari, hãy đảm bảo bạn đã cài đặt [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) trên máy của mình. Bạn có thể chỉ định WebdriverIO đến phiên bản đó qua:
+Khi kiểm thử trên Safari, hãy đảm bảo bạn đã cài đặt [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) trên máy của mình. Bạn có thể chỉ cho WebdriverIO phiên bản đó qua:
 
 ```ts
 {
@@ -402,9 +402,9 @@ Khi kiểm thử trên Safari, hãy đảm bảo bạn đã cài đặt [Safari 
 </TabItem>
 </Tabs>
 
-## Mở rộng Capabilities Tùy chỉnh
+## Mở rộng Capability tùy chỉnh
 
-Nếu bạn muốn định nghĩa bộ capabilities riêng của mình để ví dụ: lưu trữ dữ liệu tùy ý để sử dụng trong các bài kiểm thử cho capability cụ thể đó, bạn có thể làm như vậy bằng cách thiết lập:
+Nếu bạn muốn định nghĩa bộ capability riêng của mình để ví dụ như lưu trữ dữ liệu tùy ý để sử dụng trong các bài kiểm thử cho capability cụ thể đó, bạn có thể làm như sau:
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -418,7 +418,7 @@ export const config = {
 }
 ```
 
-Bạn nên tuân theo [giao thức W3C](https://w3c.github.io/webdriver/#dfn-extension-capability) khi đặt tên capability, cần có ký tự `:` (dấu hai chấm), biểu thị không gian tên cụ thể cho việc triển khai. Trong các bài kiểm thử của bạn, bạn có thể truy cập capability tùy chỉnh của mình qua:
+Bạn nên tuân theo [giao thức W3C](https://w3c.github.io/webdriver/#dfn-extension-capability) khi đặt tên capability, yêu cầu có ký tự `:` (dấu hai chấm), biểu thị không gian tên cụ thể của việc triển khai. Trong các bài kiểm thử, bạn có thể truy cập capability tùy chỉnh của mình thông qua, ví dụ:
 
 ```ts
 browser.capabilities['custom:caps']

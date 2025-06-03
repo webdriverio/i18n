@@ -3,128 +3,128 @@ id: configuration
 title: Konfiguration
 ---
 
-Baserat på [installationstypen](/docs/setuptypes) (t.ex. användning av råprotokollbindningar, WebdriverIO som fristående paket eller WDIO-testkörnare) finns det olika uppsättningar alternativ tillgängliga för att kontrollera miljön.
+Based on the [setup type](/docs/setuptypes) (e.g. using the raw protocol bindings, WebdriverIO as standalone package or the WDIO testrunner) there is a different set of options available to control the environment.
 
-## WebDriver-alternativ
+## WebDriver Options
 
-Följande alternativ definieras när du använder paketet [`webdriver`](https://www.npmjs.com/package/webdriver) protokoll:
+The following options are defined when using the [`webdriver`](https://www.npmjs.com/package/webdriver) protocol package:
 
 ### protocol
 
-Protokoll som används vid kommunikation med drivrutinsservern.
+Protocol to use when communicating with the driver server.
 
-Typ: `String`<br />
-Standard: `http`
+Type: `String`<br />
+Default: `http`
 
 ### hostname
 
-Värdnamn för din drivrutinsserver.
+Host of your driver server.
 
-Typ: `String`<br />
-Standard: `0.0.0.0`
+Type: `String`<br />
+Default: `0.0.0.0`
 
 ### port
 
-Porten som din drivrutinsserver använder.
+Port your driver server is on.
 
-Typ: `Number`<br />
-Standard: `undefined`
+Type: `Number`<br />
+Default: `undefined`
 
 ### path
 
-Sökväg till drivrutinsserverns slutpunkt.
+Path to driver server endpoint.
 
-Typ: `String`<br />
-Standard: `/`
+Type: `String`<br />
+Default: `/`
 
 ### queryParams
 
-Frågeparametrar som propageras till drivrutinsservern.
+Query parameters that are propagated to the driver server.
 
-Typ: `Object`<br />
-Standard: `undefined`
+Type: `Object`<br />
+Default: `undefined`
 
 ### user
 
-Ditt molntjänstanvändarnamn (fungerar endast för [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) eller [LambdaTest](https://www.lambdatest.com) konton). Om angiven kommer WebdriverIO automatiskt att ställa in anslutningsalternativ för dig. Om du inte använder en molnleverantör kan detta användas för att autentisera andra WebDriver-backend.
+Your cloud service username (only works for [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) or [LambdaTest](https://www.lambdatest.com) accounts). If set, WebdriverIO will automatically set connection options for you. If you don't use a cloud provider this can be used to authenticate any other WebDriver backend.
 
-Typ: `String`<br />
-Standard: `undefined`
+Type: `String`<br />
+Default: `undefined`
 
 ### key
 
-Din molntjänståtkomstnyckel eller hemliga nyckel (fungerar endast för [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) eller [LambdaTest](https://www.lambdatest.com) konton). Om angiven kommer WebdriverIO automatiskt att ställa in anslutningsalternativ för dig. Om du inte använder en molnleverantör kan detta användas för att autentisera andra WebDriver-backend.
+Your cloud service access key or secret key (only works for [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) or [LambdaTest](https://www.lambdatest.com) accounts). If set, WebdriverIO will automatically set connection options for you. If you don't use a cloud provider this can be used to authenticate any other WebDriver backend.
 
-Typ: `String`<br />
-Standard: `undefined`
+Type: `String`<br />
+Default: `undefined`
 
 ### capabilities
 
-Definierar de funktioner du vill köra i din WebDriver-session. Kolla in [WebDriver-protokollet](https://w3c.github.io/webdriver/#capabilities) för mer detaljer. Om du kör en äldre drivrutin som inte stöder WebDriver-protokollet behöver du använda [JSONWireProtocol-funktioner](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) för att framgångsrikt köra en session.
+Defines the capabilities you want to run in your WebDriver session. Check out the [WebDriver Protocol](https://w3c.github.io/webdriver/#capabilities) for more details. If you run an older driver that doesn't support the WebDriver protocol, you'll need to use the [JSONWireProtocol capabilities](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) to successfully run a session.
 
-Förutom WebDriver-baserade funktioner kan du tillämpa webbläsar- och leverantörsspecifika alternativ som möjliggör djupare konfiguration till fjärrwebbläsaren eller enheten. Dessa dokumenteras i motsvarande leverantörsdokumentation, t.ex.:
+Next to the WebDriver based capabilities you can apply browser and vendor specific options that allow deeper configuration to the remote browser or device. These are documented in the corresponding vendor docs, e.g.:
 
-- `goog:chromeOptions`: för [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
-- `moz:firefoxOptions`: för [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
-- `ms:edgeOptions`: för [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)
-- `sauce:options`: för [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)
-- `bstack:options`: för [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
-- `selenoid:options`: för [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
+- `goog:chromeOptions`: for [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
+- `moz:firefoxOptions`: for [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
+- `ms:edgeOptions`: for [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)
+- `sauce:options`: for [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)
+- `bstack:options`: for [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
+- `selenoid:options`: for [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
 
-Dessutom är ett användbart verktyg Sauce Labs [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/), som hjälper dig att skapa detta objekt genom att klicka ihop dina önskade funktioner.
+Additionally, a useful utility is the Sauce Labs [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/), which helps you create this object by clicking together your desired capabilities.
 
-Typ: `Object`<br />
-Standard: `null`
+Type: `Object`<br />
+Default: `null`
 
-**Exempel:**
+**Example:**
 
 ```js
 {
-    browserName: 'chrome', // alternativ: `chrome`, `edge`, `firefox`, `safari`
-    browserVersion: '27.0', // webbläsarversion
-    platformName: 'Windows 10' // OS-plattform
+    browserName: 'chrome', // options: `chrome`, `edge`, `firefox`, `safari`
+    browserVersion: '27.0', // browser version
+    platformName: 'Windows 10' // OS platform
 }
 ```
 
-Om du kör webb- eller nativa tester på mobila enheter, skiljer sig `capabilities` från WebDriver-protokollet. Se [Appium Docs](https://appium.github.io/appium.io/docs/en/writing-running-appium/caps/) för mer detaljer.
+If you're running web or native tests on mobile devices, `capabilities` differs from the WebDriver protocol. See the [Appium Docs](https://appium.io/docs/en/latest/guides/caps/) for more details.
 
 ### logLevel
 
-Nivå av loggningens detaljnivå.
+Level of logging verbosity.
 
-Typ: `String`<br />
-Standard: `info`<br />
-Alternativ: `trace` | `debug` | `info` | `warn` | `error` | `silent`
+Type: `String`<br />
+Default: `info`<br />
+Options: `trace` | `debug` | `info` | `warn` | `error` | `silent`
 
 ### outputDir
 
-Katalog för att lagra alla testkörarloggfiler (inklusive rapportörloggar och `wdio`-loggar). Om inte inställt, streamas alla loggar till `stdout`. Eftersom de flesta rapportörer är gjorda för att logga till `stdout`, rekommenderas det att endast använda detta alternativ för specifika rapportörer där det är mer meningsfullt att skicka rapporten till en fil (som `junit`-rapportören, till exempel).
+Directory to store all testrunner log files (including reporter logs and `wdio` logs). If not set, all logs are streamed to `stdout`. Since most reporters are made to log to `stdout`, it is recommended to only use this option for specific reporters where it makes more sense to push report into a file (like the `junit` reporter, for example).
 
-När du kör i fristående läge är den enda loggen som genereras av WebdriverIO `wdio`-loggen.
+When running in standalone mode, the only log generated by WebdriverIO will be the `wdio` log.
 
-Typ: `String`<br />
-Standard: `null`
+Type: `String`<br />
+Default: `null`
 
 ### connectionRetryTimeout
 
-Timeout för alla WebDriver-förfrågningar till en drivrutin eller grid.
+Timeout for any WebDriver request to a driver or grid.
 
-Typ: `Number`<br />
-Standard: `120000`
+Type: `Number`<br />
+Default: `120000`
 
 ### connectionRetryCount
 
-Maximalt antal förfrågningsförsök till Selenium-servern.
+Maximum count of request retries to the Selenium server.
 
-Typ: `Number`<br />
-Standard: `3`
+Type: `Number`<br />
+Default: `3`
 
 ### agent
 
-Tillåter dig att använda en anpassad `http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) för att göra förfrågningar.
+Allows you to use a custom` http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) to make requests.
 
-Typ: `Object`<br />
-Standard:
+Type: `Object`<br />
+Default:
 
 ```js
 {
@@ -135,7 +135,7 @@ Standard:
 
 ### headers
 
-Specificera anpassade `headers` för att skicka med i varje WebDriver-förfrågan. Om din Selenium Grid kräver Basic Authentication rekommenderar vi att du skickar in en `Authorization`-header genom detta alternativ för att autentisera dina WebDriver-förfrågningar, t.ex.:
+Specify custom `headers` to pass into every WebDriver request. If your Selenium Grid requires Basic Authentification we recommend to pass in an `Authorization` header through this option to authenticate your WebDriver requests, e.g.:
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
@@ -157,57 +157,74 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Typ: `Object`<br />
-Standard: `{}`
+Type: `Object`<br />
+Default: `{}`
 
 ### transformRequest
 
-Funktion som fångar upp [HTTP-förfrågningsalternativ](https://github.com/sindresorhus/got#options) innan en WebDriver-förfrågan görs
+Function intercepting [HTTP request options](https://github.com/sindresorhus/got#options) before a WebDriver request is made
 
-Typ: `(RequestOptions) => RequestOptions`<br />
-Standard: *none*
+Type: `(RequestOptions) => RequestOptions`<br />
+Default: *none*
 
 ### transformResponse
 
-Funktion som fångar upp HTTP-svarsobjekt efter att ett WebDriver-svar har anlänt. Funktionen får det ursprungliga svarsobjektet som första och motsvarande `RequestOptions` som andra argument.
+Function intercepting HTTP response objects after a WebDriver response has arrived. The function is passed the original response object as the first and the corresponding `RequestOptions` as the second argument.
 
-Typ: `(Response, RequestOptions) => Response`<br />
-Standard: *none*
+Type: `(Response, RequestOptions) => Response`<br />
+Default: *none*
 
 ### strictSSL
 
-Huruvida det inte kräver att SSL-certifikatet är giltigt.
-Det kan ställas in via miljövariabler som `STRICT_SSL` eller `strict_ssl`.
+Whether it does not require SSL certificate to be valid.
+It can be set via an environment variables as `STRICT_SSL` or `strict_ssl`.
 
-Typ: `Boolean`<br />
-Standard: `true`
+Type: `Boolean`<br />
+Default: `true`
 
 ### enableDirectConnect
 
-Huruvida aktivera [Appium direktanslutningsfunktion](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments).
-Det gör ingenting om svaret inte har rätt nycklar medan flaggan är aktiverad.
+Whether enable [Appium direct connection feature](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments).
+It does nothing if the response did not have proper keys while the flag is enabled.
 
-Typ: `Boolean`<br />
-Standard: `true`
+Type: `Boolean`<br />
+Default: `true`
 
 ### cacheDir
 
-Sökvägen till roten av cachekatalogen. Denna katalog används för att lagra alla drivrutiner som laddas ner när man försöker starta en session.
+The path to the root of the cache directory. This directory is used to store all drivers that are downloaded when attempting to start a session.
 
-Typ: `String`<br />
-Standard: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+Type: `String`<br />
+Default: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+
+### maskingPatterns
+
+For more secure logging, regular expressions set with `maskingPatterns` can obfuscate sensitive information from the log.
+ - The string format is a regular expression with or without flags (e.g. `/.../i`) and comma-separated for multiple regular expressions.
+ - For more details on masking patterns, see the [Masking Patterns section in the WDIO Logger README](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
+
+Type: `String`<br />
+Default: `undefined`
+
+**Example:**
+
+```js
+{
+    maskingPatterns: '/--key=([^ ]*)/i,/RESULT (.*)/'
+}
+```
 
 ---
 
 ## WebdriverIO
 
-Följande alternativ (inklusive de som anges ovan) kan användas med WebdriverIO i fristående läge:
+The following options (including the ones listed above) can be used with WebdriverIO in standalone:
 
 ### automationProtocol
 
-Definiera det protokoll du vill använda för din webbläsarautomation. För närvarande stöds endast [`webdriver`](https://www.npmjs.com/package/webdriver), eftersom det är den huvudsakliga webbläsarautomatiseringsteknologin som WebdriverIO använder.
+Define the protocol you want to use for your browser automation. Currently only [`webdriver`](https://www.npmjs.com/package/webdriver) is supported, as it is the main browser automation technology WebdriverIO uses.
 
-Om du vill automatisera webbläsaren med en annan automatiseringsteknologi, se till att du ställer in denna egenskap till en sökväg som löser till en modul som följer följande gränssnitt:
+If you want to automate the browser using a different automation technology, make you set this property to a path that resolves to a module that adheres to the following interface:
 
 ```ts
 import type { Capabilities } from '@wdio/types';
@@ -257,194 +274,194 @@ export default class YourAutomationLibrary {
 }
 ```
 
-Typ: `String`<br />
-Standard: `webdriver`
+Type: `String`<br />
+Default: `webdriver`
 
 ### baseUrl
 
-Förkorta `url`-kommandoanrop genom att ställa in en basURL.
-- Om din `url`-parameter börjar med `/`, föregås `baseUrl` (förutom `baseUrl`-sökvägen, om den har en).
-- Om din `url`-parameter börjar utan ett schema eller `/` (som `some/path`), föregås hela `baseUrl` direkt.
+Shorten `url` command calls by setting a base URL.
+- If your `url` parameter starts with `/`, then `baseUrl` is prepended (except the `baseUrl` path, if it has one).
+- If your `url` parameter starts without a scheme or `/` (like `some/path`), then the full `baseUrl` is prepended directly.
 
-Typ: `String`<br />
-Standard: `null`
+Type: `String`<br />
+Default: `null`
 
 ### waitforTimeout
 
-Standardtimeout för alla `waitFor*`-kommandon. (Observera det lilla `f` i alternativnamnet.) Denna timeout påverkar __endast__ kommandon som börjar med `waitFor*` och deras standardväntetid.
+Default timeout for all `waitFor*` commands. (Note the lowercase `f` in the option name.) This timeout __only__ affects commands starting with `waitFor*` and their default wait time.
 
-För att öka timeout för ett _test_, se ramverksdokumentationen.
+To increase the timeout for a _test_, please see the framework docs.
 
-Typ: `Number`<br />
-Standard: `5000`
+Type: `Number`<br />
+Default: `5000`
 
 ### waitforInterval
 
-Standardintervall för alla `waitFor*`-kommandon för att kontrollera om ett förväntat tillstånd (t.ex. synlighet) har ändrats.
+Default interval for all `waitFor*` commands to check if an expected state (e.g., visibility) has been changed.
 
-Typ: `Number`<br />
-Standard: `100`
+Type: `Number`<br />
+Default: `100`
 
 ### region
 
-Om du kör på Sauce Labs kan du välja att köra tester mellan olika datacenter: US eller EU.
-För att ändra din region till EU, lägg till `region: 'eu'` i din konfiguration.
+If running on Sauce Labs, you can choose to run tests between different data centers: US or EU.
+To change your region to EU, add `region: 'eu'` to your config.
 
-__Observera:__ Detta har endast effekt om du tillhandahåller `user` och `key`-alternativ som är kopplade till ditt Sauce Labs-konto.
+__Note:__ This only has an effect if you provide `user` and `key` options that are connected to your Sauce Labs account.
 
-Typ: `String`<br />
-Standard: `us`
+Type: `String`<br />
+Default: `us`
 
-*(endast för vm och/eller em/simulatorer)*
+*(only for vm and or em/simulators)*
 
 ---
 
-## Testköraralternativ
+## Testrunner Options
 
-Följande alternativ (inklusive de som anges ovan) definieras endast för att köra WebdriverIO med WDIO-testköraren:
+The following options (including the ones listed above) are defined only for running WebdriverIO with the WDIO testrunner:
 
 ### specs
 
-Definiera specifikationer för testkörning. Du kan antingen ange ett globalt mönster för att matcha flera filer på en gång eller paketera ett globalt mönster eller uppsättning sökvägar till en array för att köra dem inom en enda arbetarprocess. Alla sökvägar ses som relativa från konfigurationsfilens sökväg.
+Define specs for test execution. You can either specify a glob pattern to match multiple files at once or wrap a glob or set of paths into an array to run them within a single worker process. All paths are seen as relative from the config file path.
 
-Typ: `(String | String[])[]`<br />
-Standard: `[]`
+Type: `(String | String[])[]`<br />
+Default: `[]`
 
 ### exclude
 
-Exkludera specifikationer från testkörning. Alla sökvägar ses som relativa från konfigurationsfilens sökväg.
+Exclude specs from test execution. All paths are seen as relative from the config file path.
 
-Typ: `String[]`<br />
-Standard: `[]`
+Type: `String[]`<br />
+Default: `[]`
 
 ### suites
 
-Ett objekt som beskriver olika sviter, som du sedan kan specificera med alternativet `--suite` på `wdio`-kommandoraden.
+An object describing various suites, which you can then specify with the `--suite` option on the `wdio` CLI.
 
-Typ: `Object`<br />
-Standard: `{}`
+Type: `Object`<br />
+Default: `{}`
 
 ### capabilities
 
-Samma som avsnittet `capabilities` som beskrivs ovan, förutom alternativet att specificera antingen ett [`multiremote`](/docs/multiremote)-objekt, eller flera WebDriver-sessioner i en array för parallell körning.
+The same as the `capabilities` section described above, except with the option to specify either a [`multiremote`](/docs/multiremote) object, or multiple WebDriver sessions in an array for parallel execution.
 
-Du kan tillämpa samma leverantörs- och webbläsarspecifika funktioner som definieras [ovan](/docs/configuration#capabilities).
+You can apply the same vendor and browser specific capabilities as defined [above](/docs/configuration#capabilities).
 
-Typ: `Object`|`Object[]`<br />
-Standard: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
+Type: `Object`|`Object[]`<br />
+Default: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
 
 ### maxInstances
 
-Maximalt antal parallella arbetare totalt.
+Maximum number of total parallel running workers.
 
-__Observera:__ att det kan vara ett tal så högt som `100`, när testerna utförs på externa leverantörer som Sauce Labs maskiner. Där testas inte testerna på en enda maskin, utan snarare på flera virtuella maskiner. Om testerna ska köras på en lokal utvecklingsmaskin, använd ett mer rimligt tal som `3`, `4` eller `5`. I grund och botten är detta antalet webbläsare som kommer att startas samtidigt och köra dina tester samtidigt, så det beror på hur mycket RAM det finns på din maskin och hur många andra appar som körs på din maskin.
+__Note:__ that it may be a number as high as `100`, when the tests are being performed on some external vendors such as Sauce Labs's machines. There, the tests are not tested on a single machine, but rather, on multiple VMs. If the tests are to be run on a local development machine, use a number that is more reasonable, such as `3`, `4`, or `5`. Essentially, this is the number of browsers that will be concurrently started and running your tests at the same time, so it depends on how much RAM there is on your machine, and how many other apps are running on your machine.
 
-Du kan också tillämpa `maxInstances` inom dina capability-objekt med hjälp av `wdio:maxInstances`-förmågan. Detta begränsar antalet parallella sessioner för den specifika förmågan.
+You can also apply `maxInstances` within your capability objects using the `wdio:maxInstances` capability. This will limit the amount of parallel sessions for that particular capability.
 
-Typ: `Number`<br />
-Standard: `100`
+Type: `Number`<br />
+Default: `100`
 
 ### maxInstancesPerCapability
 
-Maximalt antal parallella arbetare per förmåga.
+Maximum number of total parallel running workers per capability.
 
-Typ: `Number`<br />
-Standard: `100`
+Type: `Number`<br />
+Default: `100`
 
 ### injectGlobals
 
-Infogar WebdriverIOs globala variabler (t.ex. `browser`, `$` och `$$`) i den globala miljön.
-Om du ställer in till `false`, bör du importera från `@wdio/globals`, t.ex.:
+Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment.
+If you set to `false`, you should import from `@wdio/globals`, e.g.:
 
 ```ts
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-Observera: WebdriverIO hanterar inte injektion av testramverksspecifika globala variabler.
+Note: WebdriverIO doesn't handle injection of test framework specific globals.
 
-Typ: `Boolean`<br />
-Standard: `true`
+Type: `Boolean`<br />
+Default: `true`
 
 ### bail
 
-Om du vill att din testkörning ska stoppa efter ett specifikt antal testmisslyckanden, använd `bail`.
-(Det är som standard `0`, vilket kör alla tester oavsett vad.) **Observera:** Ett test i detta sammanhang är alla tester inom en enda specifikationsfil (när du använder Mocha eller Jasmine) eller alla steg inom en funktionsfil (när du använder Cucumber). Om du vill kontrollera bail-beteendet inom tester i en enda testfil, ta en titt på de tillgängliga [ramverksalternativen](frameworks).
+If you want your test run to stop after a specific number of test failures, use `bail`.
+(It defaults to `0`, which runs all tests no matter what.) **Note:** A test in this context are all tests within a single spec file (when using Mocha or Jasmine) or all steps within a feature file (when using Cucumber). If you want to control the bail behavior within tests of a single test file, take a look at the available [framework](frameworks) options.
 
-Typ: `Number`<br />
-Standard: `0` (avbryt inte; kör alla tester)
+Type: `Number`<br />
+Default: `0` (don't bail; run all tests)
 
 ### specFileRetries
 
-Antalet gånger att försöka köra en hel specifikationsfil när den misslyckas som helhet.
+The number of times to retry an entire specfile when it fails as a whole.
 
-Typ: `Number`<br />
-Standard: `0`
+Type: `Number`<br />
+Default: `0`
 
 ### specFileRetriesDelay
 
-Fördröjning i sekunder mellan försöken att köra specifikationsfilen
+Delay in seconds between the spec file retry attempts
 
-Typ: `Number`<br />
-Standard: `0`
+Type: `Number`<br />
+Default: `0`
 
 ### specFileRetriesDeferred
 
-Huruvida omförsök för specifikationsfiler ska göras omedelbart eller skjutas upp till slutet av kön.
+Whether or not retried spec files should be retried immediately or deferred to the end of the queue.
 
-Typ: `Boolean`<br />
-Standard: `true`
+Type: `Boolean`<br />
+Default: `true`
 
 ### groupLogsByTestSpec
 
-Välj loggutdatavyn.
+Choose the log output view.
 
-Om inställd på `false` skrivs loggar från olika testfiler ut i realtid. Observera att detta kan resultera i blandning av loggutdata från olika filer när du kör parallellt.
+If set to `false` logs from different test files will be printed in real-time. Please note that this may result in the mixing of log outputs from different files when running in parallel.
 
-Om inställd på `true` grupperas loggutdata efter testspecifikation och skrivs ut först när testspecifikationen är klar.
+If set to `true` log outputs will be grouped by Test Spec and printed only when the Test Spec is completed.
 
-Som standard är den inställd på `false` så loggar skrivs ut i realtid.
+By default, it is set to `false` so logs are printed in real-time.
 
-Typ: `Boolean`<br />
-Standard: `false`
+Type: `Boolean`<br />
+Default: `false`
 
 ### services
 
-Tjänster tar över en specifik uppgift som du inte vill ta hand om. De förbättrar din testuppsättning med nästan ingen ansträngning.
+Services take over a specific job you don't want to take care of. They enhance your test setup with almost no effort.
 
-Typ: `String[]|Object[]`<br />
-Standard: `[]`
+Type: `String[]|Object[]`<br />
+Default: `[]`
 
 ### framework
 
-Definierar det testramverk som ska användas av WDIO-testköraren.
+Defines the test framework to be used by the WDIO testrunner.
 
-Typ: `String`<br />
-Standard: `mocha`<br />
-Alternativ: `mocha` | `jasmine`
+Type: `String`<br />
+Default: `mocha`<br />
+Options: `mocha` | `jasmine`
 
-### mochaOpts, jasmineOpts och cucumberOpts
+### mochaOpts, jasmineOpts and cucumberOpts
 
-Specifika ramverksrelaterade alternativ. Se ramverksadapterdokumentationen för vilka alternativ som är tillgängliga. Läs mer om detta i [Ramverk](frameworks).
+Specific framework-related options. See the framework adapter documentation on which options are available. Read more on this in [Frameworks](frameworks).
 
-Typ: `Object`<br />
-Standard: `{ timeout: 10000 }`
+Type: `Object`<br />
+Default: `{ timeout: 10000 }`
 
 ### cucumberFeaturesWithLineNumbers
 
-Lista över cucumber-funktioner med radnummer (när [använda cucumber-ramverket](./Frameworks.md#using-cucumber)).
+List of cucumber features with line numbers (when [using cucumber framework](./Frameworks.md#using-cucumber)).
 
-Typ: `String[]`
-Standard: `[]`
+Type: `String[]`
+Default: `[]`
 
 ### reporters
 
-Lista över rapportörer att använda. En rapportör kan antingen vara en sträng eller en array av
-`['reporterName', { /* reporter options */}]` där det första elementet är en sträng med rapportörens namn och det andra elementet ett objekt med rapportörsalternativ.
+List of reporters to use. A reporter can be either a string, or an array of
+`['reporterName', { /* reporter options */}]` where the first element is a string with the reporter name and the second element an object with reporter options.
 
-Typ: `String[]|Object[]`<br />
-Standard: `[]`
+Type: `String[]|Object[]`<br />
+Default: `[]`
 
-Exempel:
+Example:
 
 ```js
 reporters: [
@@ -459,42 +476,42 @@ reporters: [
 
 ### reporterSyncInterval
 
-Bestämmer i vilket intervall rapportören ska kontrollera om de är synkroniserade om de rapporterar sina loggar asynkront (t.ex. om loggar strömmas till en tredjepartsleverantör).
+Determines in which interval the reporter should check if they are synchronized if they report their logs asynchronously (e.g. if logs are streamed to a 3rd party vendor).
 
-Typ: `Number`<br />
-Standard: `100` (ms)
+Type: `Number`<br />
+Default: `100` (ms)
 
 ### reporterSyncTimeout
 
-Bestämmer den maximala tiden som rapportörer har på sig att slutföra uppladdningen av alla sina loggar innan ett fel kastas av testköraren.
+Determines the maximum time reporters have to finish uploading all their logs until an error is being thrown by the testrunner.
 
-Typ: `Number`<br />
-Standard: `5000` (ms)
+Type: `Number`<br />
+Default: `5000` (ms)
 
 ### execArgv
 
-Node-argument att specificera när barnprocesser startas.
+Node arguments to specify when launching child processes.
 
-Typ: `String[]`<br />
-Standard: `null`
+Type: `String[]`<br />
+Default: `null`
 
 ### filesToWatch
 
-En lista med glob-stödjande strängmönster som talar om för testköraren att den dessutom ska övervaka andra filer, t.ex. applikationsfiler, när den körs med flaggan `--watch`. Som standard övervakar testköraren redan alla specifikationsfiler.
+A list of glob supporting string patterns that tell the testrunner to have it additionally watch other files, e.g. application files, when running it with the `--watch` flag. By default the testrunner already watches all spec files.
 
-Typ: `String[]`<br />
-Standard: `[]`
+Type: `String[]`<br />
+Default: `[]`
 
 ### updateSnapshots
 
-Ställ in till true om du vill uppdatera dina snapshots. Helst används som en del av en CLI-parameter, t.ex. `wdio run wdio.conf.js --s`.
+Set to true if you want to update your snapshots. Ideally used as part of a CLI parameter, e.g. `wdio run wdio.conf.js --s`.
 
-Typ: `'new' | 'all' | 'none'`<br />
-Standard: `none` om inte angiven och tester körs i CI, `new` om inte angiven, annars det som har angetts
+Type: `'new' | 'all' | 'none'`<br />
+Default: `none` if not provided and tests run in CI, `new` if not provided, otherwise what's been provided
 
 ### resolveSnapshotPath
 
-Åsidosätter standard snapshot-sökväg. Till exempel, för att lagra snapshots bredvid testfiler.
+Overrides default snapshot path. For example, to store snapshots next to test files.
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -502,280 +519,280 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Typ: `(testPath: string, snapExtension: string) => string`<br />
-Standard: lagrar snapshot-filer i katalogen `__snapshots__` bredvid testfilen
+Type: `(testPath: string, snapExtension: string) => string`<br />
+Default: stores snapshot files in `__snapshots__` directory next to test file
 
 ### tsConfigPath
 
-WDIO använder `tsx` för att kompilera TypeScript-filer. Din TSConfig upptäcks automatiskt från den aktuella arbetskatalogen men du kan ange en anpassad sökväg här eller genom att ställa in miljövariabeln TSX_TSCONFIG_PATH.
+WDIO uses `tsx` to compile TypeScript files.  Your TSConfig is automatically detected from the current working directory but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH environment variable.
 
-Se `tsx`-dokumentationen: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
 
-Typ: `String`<br />
-Standard: `null`<br />
+Type: `String`<br />
+Default: `null`<br />
 
 ## Hooks
 
-WDIO-testköraren låter dig ställa in krokar som utlöses vid specifika tidpunkter i testlivscykeln. Detta möjliggör anpassade åtgärder (t.ex. ta en skärmdump om ett test misslyckas).
+The WDIO testrunner allows you to set hooks to be triggered at specific times of the test lifecycle. This allows custom actions (e.g. take screenshot if a test fails).
 
-Varje krok har som parameter specifik information om livscykeln (t.ex. information om testsviten eller testet). Läs mer om alla krokegenskaper i [vår exempelkonfiguration](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
+Every hook has as parameter specific information about the lifecycle (e.g. information about the test suite or test). Read more about all hook properties in [our example config](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
 
-**Observera:** Vissa krokar (`onPrepare`, `onWorkerStart`, `onWorkerEnd` och `onComplete`) körs i en annan process och kan därför inte dela någon global data med de andra krokarna som finns i arbetarprocessen.
+**Note:** Some hooks (`onPrepare`, `onWorkerStart`, `onWorkerEnd` and `onComplete`) are executed in a different process and therefore can not share any global data with the other hooks that live in the worker process.
 
 ### onPrepare
 
-Körs en gång innan alla arbetare startas.
+Gets executed once before all workers get launched.
 
-Parametrar:
+Parameters:
 
-- `config` (`object`): WebdriverIO-konfigurationsobjekt
-- `param` (`object[]`): lista med funktionsdetaljer
+- `config` (`object`): WebdriverIO configuration object
+- `param` (`object[]`): list of capabilities details
 
 ### onWorkerStart
 
-Körs innan en arbetarprocess startas och kan användas för att initialisera specifika tjänster för den arbetaren samt modifiera körningsmiljöer på ett asynkront sätt.
+Gets executed before a worker process is spawned and can be used to initialize specific service for that worker as well as modify runtime environments in an async fashion.
 
-Parametrar:
+Parameters:
 
-- `cid` (`string`): förmåge-id (t.ex. 0-0)
-- `caps` (`object`): innehåller funktioner för sessionen som kommer att startas i arbetaren
-- `specs` (`string[]`): specifikationer som ska köras i arbetarprocessen
-- `args` (`object`): objekt som kommer att slås samman med huvudkonfigurationen när arbetaren är initierad
-- `execArgv` (`string[]`): lista med strängargument som skickas till arbetarprocessen
+- `cid` (`string`): capability id (e.g 0-0)
+- `caps` (`object`): containing capabilities for session that will be spawn in the worker
+- `specs` (`string[]`): specs to be run in the worker process
+- `args` (`object`): object that will be merged with the main configuration once worker is initialized
+- `execArgv` (`string[]`): list of string arguments passed to the worker process
 
 ### onWorkerEnd
 
-Körs precis efter att en arbetarprocess har avslutats.
+Gets executed just after a worker process has exited.
 
-Parametrar:
+Parameters:
 
-- `cid` (`string`): förmåge-id (t.ex. 0-0)
-- `exitCode` (`number`): 0 - framgång, 1 - misslyckande
-- `specs` (`string[]`): specifikationer som ska köras i arbetarprocessen
-- `retries` (`number`): antal specifikationsnivåförsök som används enligt definitionen i [_"Lägg till omförsök på en per-specifikationsfil-basis"_](./Retry.md#add-retries-on-a-per-specfile-basis)
+- `cid` (`string`): capability id (e.g 0-0)
+- `exitCode` (`number`): 0 - success, 1 - fail
+- `specs` (`string[]`): specs to be run in the worker process
+- `retries` (`number`): number of spec level retries used as defined in [_"Add retries on a per-specfile basis"_](./Retry.md#add-retries-on-a-per-specfile-basis)
 
 ### beforeSession
 
-Körs precis innan WebDriver-sessionen och testramverket initieras. Det låter dig manipulera konfigurationer beroende på förmåga eller specifikation.
+Gets executed just before initializing the webdriver session and test framework. It allows you to manipulate configurations depending on the capability or spec.
 
-Parametrar:
+Parameters:
 
-- `config` (`object`): WebdriverIO-konfigurationsobjekt
-- `caps` (`object`): innehåller funktioner för sessionen som kommer att startas i arbetaren
-- `specs` (`string[]`): specifikationer som ska köras i arbetarprocessen
+- `config` (`object`): WebdriverIO configuration object
+- `caps` (`object`): containing capabilities for session that will be spawn in the worker
+- `specs` (`string[]`): specs to be run in the worker process
 
 ### before
 
-Körs innan testutförandet börjar. Vid denna tidpunkt kan du komma åt alla globala variabler som `browser`. Det är den perfekta platsen att definiera anpassade kommandon.
+Gets executed before test execution begins. At this point you can access to all global variables like `browser`. It is the perfect place to define custom commands.
 
-Parametrar:
+Parameters:
 
-- `caps` (`object`): innehåller funktioner för sessionen som kommer att startas i arbetaren
-- `specs` (`string[]`): specifikationer som ska köras i arbetarprocessen
-- `browser` (`object`): instans av skapad webbläsare/enhetssession
+- `caps` (`object`): containing capabilities for session that will be spawn in the worker
+- `specs` (`string[]`): specs to be run in the worker process
+- `browser` (`object`): instance of created browser/device session
 
 ### beforeSuite
 
-Krok som körs innan sviten startar (endast i Mocha/Jasmine)
+Hook that gets executed before the suite starts (in Mocha/Jasmine only)
 
-Parametrar:
+Parameters:
 
-- `suite` (`object`): svitdetaljer
+- `suite` (`object`): suite details
 
 ### beforeHook
 
-Krok som körs *före* en krok inom sviten startar (t.ex. körs före anrop till beforeEach i Mocha)
+Hook that gets executed *before* a hook within the suite starts (e.g. runs before calling beforeEach in Mocha)
 
-Parametrar:
+Parameters:
 
-- `test` (`object`): testdetaljer
-- `context` (`object`): testkontext (representerar World-objekt i Cucumber)
+- `test` (`object`): test details
+- `context` (`object`): test context (represents World object in Cucumber)
 
 ### afterHook
 
-Krok som körs *efter* att en krok inom sviten avslutas (t.ex. körs efter anrop till afterEach i Mocha)
+Hook that gets executed *after* a hook within the suite ends (e.g. runs after calling afterEach in Mocha)
 
-Parametrar:
+Parameters:
 
-- `test` (`object`): testdetaljer
-- `context` (`object`): testkontext (representerar World-objekt i Cucumber)
-- `result` (`object`): krokresultat (innehåller egenskaperna `error`, `result`, `duration`, `passed`, `retries`)
+- `test` (`object`): test details
+- `context` (`object`): test context (represents World object in Cucumber)
+- `result` (`object`): hook result (contains `error`, `result`, `duration`, `passed`, `retries` properties)
 
 ### beforeTest
 
-Funktion som ska köras före ett test (endast i Mocha/Jasmine).
+Function to be executed before a test (in Mocha/Jasmine only).
 
-Parametrar:
+Parameters:
 
-- `test` (`object`): testdetaljer
-- `context` (`object`): scopeobjekt som testet utfördes med
+- `test` (`object`): test details
+- `context` (`object`): scope object the test was executed with
 
 ### beforeCommand
 
-Körs innan ett WebdriverIO-kommando utförs.
+Runs before a WebdriverIO command gets executed.
 
-Parametrar:
+Parameters:
 
-- `commandName` (`string`): kommandonamn
-- `args` (`*`): argument som kommandot skulle ta emot
+- `commandName` (`string`): command name
+- `args` (`*`): arguments that command would receive
 
 ### afterCommand
 
-Körs efter att ett WebdriverIO-kommando har utförts.
+Runs after a WebdriverIO command gets executed.
 
-Parametrar:
+Parameters:
 
-- `commandName` (`string`): kommandonamn
-- `args` (`*`): argument som kommandot skulle ta emot
-- `result` (`number`): 0 - kommandot lyckades, 1 - kommandofel
-- `error` (`Error`): felobjekt om något
+- `commandName` (`string`): command name
+- `args` (`*`): arguments that command would receive
+- `result` (`number`): 0 - command success, 1 - command error
+- `error` (`Error`): error object if any
 
 ### afterTest
 
-Funktion som ska köras efter att ett test (i Mocha/Jasmine) avslutas.
+Function to be executed after a test (in Mocha/Jasmine) ends.
 
-Parametrar:
+Parameters:
 
-- `test` (`object`): testdetaljer
-- `context` (`object`): scopeobjekt som testet utfördes med
-- `result.error` (`Error`): felobjekt om testet misslyckas, annars `undefined`
-- `result.result` (`Any`): returvärde för testfunktionen
-- `result.duration` (`Number`): testets varaktighet
-- `result.passed` (`Boolean`): true om testet har passerat, annars false
-- `result.retries` (`Object`): information om enskilda testrelaterade omförsök som definieras för [Mocha och Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) samt [Cucumber](./Retry.md#rerunning-in-cucumber), t.ex. `{ attempts: 0, limit: 0 }`, se
-- `result` (`object`): krokresultat (innehåller egenskaperna `error`, `result`, `duration`, `passed`, `retries`)
+- `test` (`object`): test details
+- `context` (`object`): scope object the test was executed with
+- `result.error` (`Error`): error object in case the test fails, otherwise `undefined`
+- `result.result` (`Any`): return object of test function
+- `result.duration` (`Number`): duration of test
+- `result.passed` (`Boolean`): true if test has passed, otherwise false
+- `result.retries` (`Object`): information about single test related retries as defined for [Mocha and Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) as well as [Cucumber](./Retry.md#rerunning-in-cucumber), e.g. `{ attempts: 0, limit: 0 }`, see
+- `result` (`object`): hook result (contains `error`, `result`, `duration`, `passed`, `retries` properties)
 
 ### afterSuite
 
-Krok som körs efter att sviten har avslutats (endast i Mocha/Jasmine)
+Hook that gets executed after the suite has ended (in Mocha/Jasmine only)
 
-Parametrar:
+Parameters:
 
-- `suite` (`object`): svitdetaljer
+- `suite` (`object`): suite details
 
 ### after
 
-Körs efter att alla tester är klara. Du har fortfarande tillgång till alla globala variabler från testet.
+Gets executed after all tests are done. You still have access to all global variables from the test.
 
-Parametrar:
+Parameters:
 
-- `result` (`number`): 0 - testpasserat, 1 - testmisslyckades
-- `caps` (`object`): innehåller funktioner för sessionen som kommer att startas i arbetaren
-- `specs` (`string[]`): specifikationer som ska köras i arbetarprocessen
+- `result` (`number`): 0 - test pass, 1 - test fail
+- `caps` (`object`): containing capabilities for session that will be spawn in the worker
+- `specs` (`string[]`): specs to be run in the worker process
 
 ### afterSession
 
-Körs direkt efter att WebDriver-sessionen avslutas.
+Gets executed right after terminating the webdriver session.
 
-Parametrar:
+Parameters:
 
-- `config` (`object`): WebdriverIO-konfigurationsobjekt
-- `caps` (`object`): innehåller funktioner för sessionen som kommer att startas i arbetaren
-- `specs` (`string[]`): specifikationer som ska köras i arbetarprocessen
+- `config` (`object`): WebdriverIO configuration object
+- `caps` (`object`): containing capabilities for session that will be spawn in the worker
+- `specs` (`string[]`): specs to be run in the worker process
 
 ### onComplete
 
-Körs efter att alla arbetare har stängts ner och processen är på väg att avslutas. Ett fel som kastas i onComplete-kroken kommer att resultera i att testkörningen misslyckas.
+Gets executed after all workers got shut down and the process is about to exit. An error thrown in the onComplete hook will result in the test run failing.
 
-Parametrar:
+Parameters:
 
-- `exitCode` (`number`): 0 - framgång, 1 - misslyckande
-- `config` (`object`): WebdriverIO-konfigurationsobjekt
-- `caps` (`object`): innehåller funktioner för sessionen som kommer att startas i arbetaren
-- `result` (`object`): resultatobjekt som innehåller testresultat
+- `exitCode` (`number`): 0 - success, 1 - fail
+- `config` (`object`): WebdriverIO configuration object
+- `caps` (`object`): containing capabilities for session that will be spawn in the worker
+- `result` (`object`): results object containing test results
 
 ### onReload
 
-Körs när en uppdatering sker.
+Gets executed when a refresh happens.
 
-Parametrar:
+Parameters:
 
-- `oldSessionId` (`string`): sessions-ID för den gamla sessionen
-- `newSessionId` (`string`): sessions-ID för den nya sessionen
+- `oldSessionId` (`string`): session ID of the old session
+- `newSessionId` (`string`): session ID of the new session
 
 ### beforeFeature
 
-Körs före en Cucumber-feature.
+Runs before a Cucumber Feature.
 
-Parametrar:
+Parameters:
 
-- `uri` (`string`): sökväg till featurefilen
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber-featureobjekt
+- `uri` (`string`): path to feature file
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
 
 ### afterFeature
 
-Körs efter en Cucumber-feature.
+Runs after a Cucumber Feature.
 
-Parametrar:
+Parameters:
 
-- `uri` (`string`): sökväg till featurefilen
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber-featureobjekt
+- `uri` (`string`): path to feature file
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
 
 ### beforeScenario
 
-Körs före ett Cucumber-scenario.
+Runs before a Cucumber Scenario.
 
-Parametrar:
+Parameters:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): världsobjekt som innehåller information om pickle och teststeg
-- `context` (`object`): Cucumber World-objekt
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): world object containing information on pickle and test step
+- `context` (`object`): Cucumber World object
 
 ### afterScenario
 
-Körs efter ett Cucumber-scenario.
+Runs after a Cucumber Scenario.
 
-Parametrar:
+Parameters:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): världsobjekt som innehåller information om pickle och teststeg
-- `result` (`object`): resultatobjekt som innehåller scenarioresultat
-- `result.passed` (`boolean`): true om scenariot har passerat
-- `result.error` (`string`): felstack om scenariot misslyckades
-- `result.duration` (`number`): scenariots varaktighet i millisekunder
-- `context` (`object`): Cucumber World-objekt
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): world object containing information on pickle and test step
+- `result` (`object`): results object containing scenario results
+- `result.passed` (`boolean`): true if scenario has passed
+- `result.error` (`string`): error stack if scenario failed
+- `result.duration` (`number`): duration of scenario in milliseconds
+- `context` (`object`): Cucumber World object
 
 ### beforeStep
 
-Körs före ett Cucumber-steg.
+Runs before a Cucumber Step.
 
-Parametrar:
+Parameters:
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber-stegobjekt
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber-scenarioobjekt
-- `context` (`object`): Cucumber World-objekt
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
+- `context` (`object`): Cucumber World object
 
 ### afterStep
 
-Körs efter ett Cucumber-steg.
+Runs after a Cucumber Step.
 
-Parametrar:
+Parameters:
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber-stegobjekt
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber-scenarioobjekt
-- `result`: (`object`): resultatobjekt som innehåller stegresultat
-- `result.passed` (`boolean`): true om scenariot har passerat
-- `result.error` (`string`): felstack om scenariot misslyckades
-- `result.duration` (`number`): scenariots varaktighet i millisekunder
-- `context` (`object`): Cucumber World-objekt
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
+- `result`: (`object`): results object containing step results
+- `result.passed` (`boolean`): true if scenario has passed
+- `result.error` (`string`): error stack if scenario failed
+- `result.duration` (`number`): duration of scenario in milliseconds
+- `context` (`object`): Cucumber World object
 
 ### beforeAssertion
 
-Krok som körs innan en WebdriverIO-bekräftelse sker.
+Hook that gets executed before a WebdriverIO assertion happens.
 
-Parametrar:
+Parameters:
 
-- `params`: bekräftelseinformation
-- `params.matcherName` (`string`): namn på matcharen (t.ex. `toHaveTitle`)
-- `params.expectedValue`: värde som skickas in i matcharen
-- `params.options`: bekräftelsealternativ
+- `params`: assertion information
+- `params.matcherName` (`string`): name of the matcher (e.g. `toHaveTitle`)
+- `params.expectedValue`: value that is passed into the matcher
+- `params.options`: assertion options
 
 ### afterAssertion
 
-Krok som körs efter att en WebdriverIO-bekräftelse har skett.
+Hook that gets executed after a WebdriverIO assertion happened.
 
-Parametrar:
+Parameters:
 
-- `params`: bekräftelseinformation
-- `params.matcherName` (`string`): namn på matcharen (t.ex. `toHaveTitle`)
-- `params.expectedValue`: värde som skickas in i matcharen
-- `params.options`: bekräftelsealternativ
-- `params.result`: bekräftelseresultat
+- `params`: assertion information
+- `params.matcherName` (`string`): name of the matcher (e.g. `toHaveTitle`)
+- `params.expectedValue`: value that is passed into the matcher
+- `params.options`: assertion options
+- `params.result`: assertion results
