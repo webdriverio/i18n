@@ -41,6 +41,7 @@ export const LANGUAGES_TO_TRANSLATE = {
     hi: 'Hindi',
     it: 'Italian',
     ja: 'Japanese',
+    el: 'Greek',
     pl: 'Polish',
     pt: 'Portuguese',
     ru: 'Russian',

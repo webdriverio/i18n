@@ -28,6 +28,7 @@ As noted in [`constants.ts`](/src/constants.ts), we currently translate into the
 - 🇪🇸 Spanish
 - 🇮🇷 Persian
 - 🇫🇷 French
+- 🇬🇷 Greek
 - 🇮🇳 Hindi
 - 🇮🇹 Italian
 - 🇯🇵 Japanese
