@@ -1,0 +1,34 @@
+{
+  "logo.alt": {
+    "message": "WebdriverIO",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Docs": {
+    "message": "Έγγραφα",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.API": {
+    "message": "API",
+    "description": "Navbar item with label API"
+  },
+  "item.label.Blog": {
+    "message": "Ιστολόγιο",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Contribute": {
+    "message": "Συνεισφορά",
+    "description": "Navbar item with label Contribute"
+  },
+  "item.label.Community": {
+    "message": "Κοινότητα",
+    "description": "Navbar item with label Community"
+  },
+  "item.label.Sponsor": {
+    "message": "Χορηγός",
+    "description": "Navbar item with label Sponsor"
+  },
+  "item.label.v9": {
+    "message": "v9",
+    "description": "Navbar item with label v9"
+  }
+}

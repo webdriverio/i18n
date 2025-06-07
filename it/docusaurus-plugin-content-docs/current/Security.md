@@ -5,17 +5,29 @@ title: Sicurezza
 
 WebdriverIO tiene in considerazione l'aspetto della sicurezza quando fornisce soluzioni. Di seguito sono riportati alcuni modi per proteggere meglio i tuoi test.
 
-# Mascheramento dei Dati Sensibili
+## Migliori Pratiche
 
-Se stai utilizzando dati sensibili durante il test, è essenziale assicurarsi che non siano visibili a tutti, ad esempio nei log. Inoltre, quando si utilizza un provider cloud, spesso sono coinvolte chiavi private. Queste informazioni devono essere mascherate dai log, dai reporter e da altri punti di contatto. Di seguito sono riportate alcune soluzioni di mascheramento per eseguire test senza esporre tali valori.
+- Non codificare mai dati sensibili che potrebbero danneggiare la tua organizzazione se esposti in testo chiaro.
+- Utilizza un meccanismo (come una cassaforte) per archiviare in modo sicuro chiavi e password e recuperarle quando avvii i tuoi test end-to-end.
+- Verifica che nessun dato sensibile sia esposto nei Log e dal provider cloud, come i token di autenticazione nei Log di Rete.
 
-## WebDriverIO
+:::info
 
-### Mascheramento del Valore di Testo dei Comandi
+Anche per i dati di test, è essenziale chiedersi se, nelle mani sbagliate, una persona malintenzionata potrebbe recuperare informazioni o utilizzare tali risorse con intenti dannosi.
 
-I comandi `addValue` e `setValue` supportano un valore booleano mask per mascherare nei log WDIO e Appium, nonché nei reporter. Inoltre, altri strumenti, come strumenti di performance e strumenti di terze parti, riceveranno anche la versione mascherata, migliorando la sicurezza.
+:::
 
-Ad esempio, se stai utilizzando un utente di produzione reale e devi inserire una password che desideri mascherare, è ora possibile con quanto segue:
+## Mascheramento dei Dati Sensibili
+
+Se stai utilizzando dati sensibili durante il test, è essenziale assicurarsi che non siano visibili a tutti, ad esempio nei log. Inoltre, quando si utilizza un provider cloud, sono spesso coinvolte chiavi private. Queste informazioni devono essere mascherate dai log, dai reporter e da altri punti di contatto. Di seguito sono riportate alcune soluzioni di mascheramento per eseguire test senza esporre questi valori.
+
+### WebDriverIO
+
+#### Mascherare il Valore Testuale dei Comandi
+
+I comandi `addValue` e `setValue` supportano un valore booleano mask per mascherare nei log e nei reporter. Inoltre, altri strumenti, come strumenti di performance e strumenti di terze parti, riceveranno anche la versione mascherata, migliorando la sicurezza.
+
+Ad esempio, se stai utilizzando un utente di produzione reale e devi inserire una password che vuoi mascherare, ora è possibile con quanto segue:
 
 ```ts
   async enterPassword(userPassword) {
@@ -28,42 +40,48 @@ Ad esempio, se stai utilizzando un utente di produzione reale e devi inserire un
   }
 ```
 
-Quanto sopra nasconderà il valore di testo dai log WDIO e anche dai log Appium.
+Quanto sopra nasconderà il valore testuale dai log WDIO come segue:
 
 Esempio di log:
 ```text
-2025-05-25T23:02:42. 336Z INFO webdriver: DATA { text: "**MASKED**" }
+INFO webdriver: DATA { text: "**MASKED**" }
 ```
 
-Limitazioni:
-  - In Appium, plugin aggiuntivi potrebbero causare perdite di informazioni anche se chiediamo di mascherare le informazioni.
-  - I provider cloud potrebbero utilizzare un proxy per la registrazione HTTP, che aggira il meccanismo di mascheramento messo in atto.
+I reporter, come Allure, e strumenti di terze parti come Percy di BrowserStack gestiranno anche la versione mascherata.
+Abbinato alla versione appropriata di Appium, anche i Log di Appium saranno esenti dai tuoi dati sensibili.
 
 :::info
 
+Limitazioni:
+  - In Appium, plugin aggiuntivi potrebbero perdere informazioni anche se chiediamo di mascherare le informazioni.
+  - I provider cloud potrebbero utilizzare un proxy per la registrazione HTTP, che aggira il meccanismo di mascheramento implementato.
+  - Il comando `getValue` non è supportato. Inoltre, se utilizzato sullo stesso elemento, può esporre il valore che si intendeva mascherare quando si utilizza `addValue` o `setValue`.
+
 Versione minima richiesta:
  - WDIO v9.15.0
- - Appium v2.19.0
+ - Appium v3.0.0
 
-### Mascheramento nei Log WDIO
+:::
 
-Utilizzando la configurazione `maskingPatterns`, possiamo mascherare informazioni sensibili dai log WDIO. Tuttavia, i log Appium non sono coperti.
+#### Mascheramento nei Log WDIO
 
-Ad esempio, se stai utilizzando un provider Cloud e utilizzi il livello info, molto probabilmente "perderai" la chiave dell'utente come mostrato di seguito:
+Utilizzando la configurazione `maskingPatterns`, possiamo mascherare informazioni sensibili dai log WDIO. Tuttavia, i log di Appium non sono coperti.
+
+Ad esempio, se stai utilizzando un provider Cloud e usi il livello info, molto probabilmente "perderai" la chiave dell'utente come mostrato di seguito:
 
 ```text
-2025-05-29T19:09:11.309Z INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=myCloudSecretExposedKey --spec myTest.test.ts
+INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=myCloudSecretExposedKey --spec myTest.test.ts
 ```
 
-Per contrastare ciò, possiamo passare l'espressione regolare `'--key=([^ ]*)'` e ora nei log vedrai:
+Per contrastare ciò, possiamo passare l'espressione regolare `'--key=([^ ]*)'` e ora nei log vedrai 
 
 ```text
-2025-05-29T19:09:11.309Z INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=**MASKED** --spec myTest.test.ts
+INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=**MASKED** --spec myTest.test.ts
 ```
 
 Puoi ottenere quanto sopra fornendo l'espressione regolare al campo `maskingPatterns` della configurazione.
   - Per più espressioni regolari, usa una singola stringa ma con valori separati da virgola.
-  - Per maggiori dettagli sui pattern di mascheramento, consulta la [sezione Masking Patterns nel README del WDIO Logger](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
+  - Per maggiori dettagli sui modelli di mascheramento, vedi la [sezione Masking Patterns nel README del WDIO Logger](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
 
 ```ts
 export const config: WebdriverIO.Config = {
@@ -93,7 +111,9 @@ export const config: WebdriverIO.Config = {
 Versione minima richiesta:
  - WDIO v9.15.0
 
-### Disabilitazione dei Logger WDIO
+:::
+
+#### Disabilitare i Logger WDIO
 
 Un altro modo per bloccare la registrazione di dati sensibili è abbassare o silenziare il livello di log o disabilitare il logger.
 Può essere ottenuto come segue:
@@ -116,15 +136,15 @@ export const withSilentLogger = async <T>(promise: () => Promise<T>): Promise<T>
 };
 ```
 
-## Soluzioni di Terze Parti
+### Soluzioni di Terze Parti
 
-### Appium
+#### Appium
 Appium offre la sua soluzione di mascheramento; vedi [Log filter](https://appium.io/docs/en/latest/guides/log-filters/)
  - Può essere complicato utilizzare la loro soluzione. Un modo, se possibile, è passare un token nella tua stringa come `@mask@` e usarlo come espressione regolare
- - In alcune versioni di Appium, i valori vengono anche registrati con ciascun carattere separato da virgole, quindi dobbiamo fare attenzione.
+ - In alcune versioni di Appium, i valori vengono anche registrati con ogni carattere separato da virgole, quindi dobbiamo fare attenzione.
  - Sfortunatamente, BrowserStack non supporta questa soluzione, ma è comunque utile localmente
  
-Utilizzando l'esempio `@mask@` menzionato in precedenza, possiamo utilizzare il seguente file JSON denominato `appiumMaskLogFilters.json`
+Utilizzando l'esempio `@mask@` menzionato in precedenza, possiamo usare il seguente file JSON chiamato `appiumMaskLogFilters.json`
 ```json
 [
   {
@@ -156,7 +176,7 @@ const appium = [
 ] satisfies ServiceEntry;
 ```
 
-### BrowserStack
+#### BrowserStack
 
 BrowserStack offre anche un certo livello di mascheramento per nascondere alcuni dati; vedi [hide sensitive data](https://www.browserstack.com/docs/automate/selenium/hide-sensitive-data)
- - Sfortunatamente, la soluzione è tutto o niente, quindi tutti i valori di testo dei comandi forniti saranno mascherati.
+ - Sfortunatamente, la soluzione è tutto o niente, quindi tutti i valori testuali dei comandi forniti saranno mascherati.

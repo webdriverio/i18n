@@ -106,7 +106,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/AutomationProtocols.md": {
@@ -2416,7 +2417,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Events.md": {
@@ -5310,7 +5312,8 @@
       "ta",
       "uk",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-theme-classic/footer.json": {
@@ -5332,7 +5335,8 @@
       "uk",
       "zh",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-theme-classic/navbar.json": {
@@ -5354,7 +5358,8 @@
       "uk",
       "zh",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-blog/options.json": {
@@ -6564,7 +6569,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Security.md": {
-    "hash": "56a3cd6e26b3807b2989c79d9653c8fd11447ebd5d160d6717d943414e80a132",
+    "hash": "43266f0b6f469fe3ee7cb42ef63343efc9492afa1fa910c56ba3063e45d7bec7",
     "languages": [
       "ar",
       "de",

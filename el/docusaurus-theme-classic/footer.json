@@ -1,0 +1,74 @@
+{
+  "link.title.Docs": {
+    "message": "Έγγραφα",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Community": {
+    "message": "Κοινότητα",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.More": {
+    "message": "Περισσότερα",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.title.Sponsored by": {
+    "message": "Χορηγείται από",
+    "description": "The title of the footer links column with title=Sponsored by in the footer"
+  },
+  "link.item.label.Getting Started": {
+    "message": "Ξεκινώντας",
+    "description": "The label of footer link with label=Getting Started linking to docs/gettingstarted"
+  },
+  "link.item.label.API Reference": {
+    "message": "Αναφορά API",
+    "description": "The label of footer link with label=API Reference linking to docs/api"
+  },
+  "link.item.label.Contribute": {
+    "message": "Συνεισφορά",
+    "description": "The label of footer link with label=Contribute linking to docs/contribute/"
+  },
+  "link.item.label.Help": {
+    "message": "Βοήθεια",
+    "description": "The label of footer link with label=Help linking to community/support"
+  },
+  "link.item.label.Stack Overflow": {
+    "message": "Stack Overflow",
+    "description": "The label of footer link with label=Stack Overflow linking to https://stackoverflow.com/questions/tagged/webdriver-io"
+  },
+  "link.item.label.Support Chat": {
+    "message": "Συνομιλία Υποστήριξης",
+    "description": "The label of footer link with label=Support Chat linking to https://discord.webdriver.io"
+  },
+  "link.item.label.Slack": {
+    "message": "Slack",
+    "description": "The label of footer link with label=Slack linking to https://seleniumhq.slack.com/join/shared_invite/zt-f7jwg1n7-RVw4v4sMA7Zjufira_~EVw#/"
+  },
+  "link.item.label.Twitter": {
+    "message": "Twitter",
+    "description": "The label of footer link with label=Twitter linking to https://twitter.com/webdriverio"
+  },
+  "link.item.label.Blog": {
+    "message": "Ιστολόγιο",
+    "description": "The label of footer link with label=Blog linking to blog"
+  },
+  "link.item.label.Sponsor": {
+    "message": "Χορηγός",
+    "description": "The label of footer link with label=Sponsor linking to docs/sponsor"
+  },
+  "link.item.label.Swag Store": {
+    "message": "Κατάστημα Διαφημιστικών",
+    "description": "The label of footer link with label=Swag Store linking to https://shop.webdriver.io"
+  },
+  "link.item.label.YouTube": {
+    "message": "YouTube",
+    "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
+  },
+  "copyright": {
+    "message": "Πνευματικά δικαιώματα © 2025 OpenJS Foundation",
+    "description": "The footer copyright"
+  },
+  "logo.alt": {
+    "message": "Λογότυπο OpenJS Foundation",
+    "description": "The alt text of footer logo"
+  }
+}
