@@ -18,7 +18,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Appium.md": {
@@ -327,7 +328,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomMatchers.md": {
@@ -2395,7 +2397,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Donate.md": {
@@ -2506,7 +2509,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current.json": {
@@ -2528,7 +2532,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs-community/current/Team.md": {
