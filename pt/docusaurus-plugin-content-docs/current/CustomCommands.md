@@ -21,7 +21,7 @@ Tipo: `Function`
 
 ### Escopo Alvo
 
-Flag para decidir se o comando deve ser anexado ao escopo do navegador ou do elemento. Se definido como `true`, o comando será um comando de elemento.
+Sinalizador para decidir se deve anexar o comando ao escopo do navegador ou do elemento. Se definido como `true`, o comando será um comando de elemento.
 
 Tipo: `Boolean`<br />
 Padrão: `false`
@@ -51,7 +51,7 @@ browser.addCommand("waitAndClick", async function () {
 }, true)
 ```
 
-Comandos personalizados dão a oportunidade de agrupar uma sequência específica de comandos que você usa frequentemente como uma única chamada. Você pode definir comandos personalizados em qualquer ponto de sua suíte de testes; apenas certifique-se de que o comando seja definido *antes* de seu primeiro uso. (O hook `before` no seu `wdio.conf.js` é um bom lugar para criá-los.)
+Comandos personalizados oferecem a oportunidade de agrupar uma sequência específica de comandos que você usa frequentemente como uma única chamada. Você pode definir comandos personalizados em qualquer ponto de sua suíte de testes; apenas certifique-se de que o comando seja definido *antes* de seu primeiro uso. (O hook `before` em seu `wdio.conf.js` é um bom lugar para criá-los.)
 
 Uma vez definidos, você pode usá-los da seguinte forma:
 
@@ -66,23 +66,23 @@ it('should use my custom command', async () => {
 })
 ```
 
-__Nota:__ Se você registrar um comando personalizado no escopo do `browser`, o comando não ficará acessível para elementos. Da mesma forma, se você registrar um comando no escopo do elemento, ele não ficará acessível no escopo do `browser`:
+__Nota:__ Se você registrar um comando personalizado no escopo `browser`, o comando não estará acessível para elementos. Da mesma forma, se você registrar um comando no escopo do elemento, ele não estará acessível no escopo do `browser`:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
 const elem = await $('body')
-console.log(typeof browser.myCustomBrowserCommand) // saída "function"
-console.log(typeof elem.myCustomBrowserCommand()) // saída "undefined"
+console.log(typeof browser.myCustomBrowserCommand) // saída: "function"
+console.log(typeof elem.myCustomBrowserCommand()) // saída: "undefined"
 
 browser.addCommand("myCustomElementCommand", () => { return 1 }, true)
 const elem2 = await $('body')
-console.log(typeof browser.myCustomElementCommand) // saída "undefined"
-console.log(await elem2.myCustomElementCommand('foobar')) // saída "1"
+console.log(typeof browser.myCustomElementCommand) // saída: "undefined"
+console.log(await elem2.myCustomElementCommand('foobar')) // saída: "1"
 
 const elem3 = await $('body')
 elem3.addCommand("myCustomElementCommand2", () => { return 2 })
-console.log(typeof browser.myCustomElementCommand2) // saída "undefined"
-console.log(await elem3.myCustomElementCommand2('foobar')) // saída "2"
+console.log(typeof browser.myCustomElementCommand2) // saída: "undefined"
+console.log(await elem3.myCustomElementCommand2('foobar')) // saída: "2"
 ```
 
 __Nota:__ Se você precisar encadear um comando personalizado, o comando deve terminar com `$`,
@@ -95,11 +95,11 @@ await browser.user$('foo').user$('bar').click()
 
 Tenha cuidado para não sobrecarregar o escopo do `browser` com muitos comandos personalizados.
 
-Recomendamos definir lógica personalizada em [objetos de página](pageobjects), para que estejam vinculados a uma página específica.
+Recomendamos definir lógica personalizada em [objetos de página](pageobjects), para que eles estejam vinculados a uma página específica.
 
 ### Multiremote
 
-`addCommand` funciona de maneira semelhante para multiremote, exceto que o novo comando se propagará para as instâncias filhas. Você deve estar atento ao usar o objeto `this` já que o `browser` multiremote e suas instâncias filhas têm diferentes `this`.
+`addCommand` funciona de maneira semelhante para multiremote, exceto que o novo comando se propagará para as instâncias filhas. Você deve estar atento ao usar o objeto `this`, já que o `browser` multiremote e suas instâncias filhas têm diferentes `this`.
 
 Este exemplo mostra como adicionar um novo comando para multiremote.
 
@@ -146,7 +146,7 @@ Com TypeScript, é fácil estender as interfaces do WebdriverIO. Adicione tipos 
 1. Crie um arquivo de definição de tipo (por exemplo, `./src/types/wdio.d.ts`)
 2. a. Se estiver usando um arquivo de definição de tipo estilo módulo (usando import/export e `declare global WebdriverIO` no arquivo de definição de tipo), certifique-se de incluir o caminho do arquivo na propriedade `include` do `tsconfig.json`.
 
-   b. Se estiver usando arquivos de definição de tipo estilo ambiente (sem import/export nos arquivos de definição de tipo e `declare namespace WebdriverIO` para comandos personalizados), certifique-se de que o `tsconfig.json` *não* contenha nenhuma seção `include`, pois isso fará com que todos os arquivos de definição de tipo não listados na seção `include` não sejam reconhecidos pelo typescript.
+   b. Se estiver usando arquivos de definição de tipo de estilo ambiente (sem import/export nos arquivos de definição de tipo e `declare namespace WebdriverIO` para comandos personalizados), certifique-se de que o `tsconfig.json` *não* contenha nenhuma seção `include`, pois isso fará com que todos os arquivos de definição de tipo não listados na seção `include` não sejam reconhecidos pelo typescript.
 
 <Tabs
   defaultValue="modules"
@@ -232,9 +232,9 @@ declare namespace WebdriverIO {
 
 ## Integrar Bibliotecas de Terceiros
 
-Se você usa bibliotecas externas (por exemplo, para fazer chamadas de banco de dados) que suportam promises, uma boa abordagem para integrá-las é envolver certos métodos da API com um comando personalizado.
+Se você usar bibliotecas externas (por exemplo, para fazer chamadas de banco de dados) que suportam promessas, uma abordagem interessante para integrá-las é empacotar certos métodos de API com um comando personalizado.
 
-Ao retornar a promise, o WebdriverIO garante que não continue com o próximo comando até que a promise seja resolvida. Se a promise for rejeitada, o comando lançará um erro.
+Ao retornar a promessa, o WebdriverIO garante que não continue com o próximo comando até que a promessa seja resolvida. Se a promessa for rejeitada, o comando lançará um erro.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -253,7 +253,7 @@ it('execute external library in a sync way', async () => {
 })
 ```
 
-**Nota:** O resultado do seu comando personalizado é o resultado da promise que você retorna.
+**Nota:** O resultado do seu comando personalizado é o resultado da promessa que você retorna.
 
 ## Sobrescrevendo Comandos
 
@@ -267,13 +267,16 @@ A abordagem geral é semelhante a `addCommand`, a única diferença é que o pri
 
 ```js
 /**
- * imprime milissegundos antes da pausa e retorna seu valor.
- */
-// 'pause'            - nome do comando a ser sobrescrito
-// origPauseFunction  - função original de pausa
-browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
+ * Imprime milissegundos antes da pausa e retorna seu valor.
+ * 
+ * @param pause - nome do comando a ser sobrescrito
+ * @param this of func - a instância original do navegador na qual a função foi chamada
+ * @param originalPauseFunction of func - a função de pausa original
+ * @param ms of func - os parâmetros reais passados
+  */
+browser.overwriteCommand('pause', async function (this, originalPauseFunction, ms) {
     console.log(`sleeping for ${ms}`)
-    await origPauseFunction(ms)
+    await originalPauseFunction(ms)
     return ms
 })
 
@@ -281,42 +284,49 @@ browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### Sobrescrevendo Comandos de Elementos
+### Sobrescrevendo Comandos de Elemento
 
 Sobrescrever comandos no nível do elemento é quase o mesmo. Simplesmente passe `true` como o terceiro argumento para `overwriteCommand`:
 
 ```js
 /**
- * Tenta rolar até o elemento se ele não for clicável.
+ * Tenta rolar para o elemento se ele não for clicável.
  * Passe { force: true } para clicar com JS mesmo se o elemento não estiver visível ou clicável.
+ * Mostra que o tipo de argumento da função original pode ser mantido com `options?: ClickOptions`
+ *
+ * @param this of func - o elemento no qual a função original foi chamada
+ * @param originalClickFunction of func - a função de pausa original
+ * @param options of func - os parâmetros reais passados
  */
-// 'click'            - nome do comando a ser sobrescrito
-// origClickFunction  - função original de clique
-browser.overwriteCommand('click', async function (origClickFunction, { force = false } = {}) {
-    if (!force) {
-        try {
-            // tentativa de clique
-            await origClickFunction()
-            return null
-        } catch (err) {
-            if (err.message.includes('not clickable at point')) {
-                console.warn('WARN: Element', this.selector, 'is not clickable.',
-                    'Scrolling to it before clicking again.')
+browser.overwriteCommand(
+    'click',
+    async function (this, originalClickFunction, options?: ClickOptions & { force?: boolean }) {
+        const { force, ...restOptions } = options || {}
+        if (!force) {
+            try {
+                // tenta clicar
+                await originalClickFunction(options)
+                return
+            } catch (err) {
+                if ((err as Error).message.includes('not clickable at point')) {
+                    console.warn('WARN: Element', this.selector, 'is not clickable.', 'Scrolling to it before clicking again.')
 
-                // rola até o elemento e clica novamente
-                await this.scrollIntoView()
-                return origClickFunction()
+                    // rola para o elemento e clica novamente
+                    await this.scrollIntoView()
+                    return originalClickFunction(options)
+                }
+                throw err
             }
-            throw err
         }
-    }
 
-    // clicando com js
-    console.warn('WARN: Using force click for', this.selector)
-    await browser.execute((el) => {
-        el.click()
-    }, this)
-}, true) // não esqueça de passar `true` como 3º argumento
+        // clicando com js
+        console.warn('WARN: Using force click for', this.selector)
+        await browser.execute((el) => {
+            el.click()
+        }, this)
+    },
+    true, // não esqueça de passar `true` como 3º argumento
+)
 
 // então use-o como antes
 const elem = await $('body')
@@ -353,7 +363,7 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 Chamar este comando com parâmetros inválidos resulta no mesmo tratamento de erro que os comandos de protocolo predefinidos, por exemplo:
 
 ```js
-// chamando o comando sem o parâmetro de url obrigatório e payload
+// chama o comando sem o parâmetro de url necessário e payload
 await browser.myNewCommand()
 
 /**
@@ -371,7 +381,7 @@ await browser.myNewCommand()
  */
 ```
 
-Chamando o comando corretamente, por exemplo, `browser.myNewCommand('foo', 'bar')`, faz corretamente uma requisição WebDriver para, por exemplo, `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` com um payload como `{ foo: 'bar' }`.
+Chamar o comando corretamente, por exemplo, `browser.myNewCommand('foo', 'bar')`, faz corretamente uma requisição WebDriver para, por exemplo, `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` com um payload como `{ foo: 'bar' }`.
 
 :::note
 O parâmetro de url `:sessionId` será automaticamente substituído pelo id da sessão da sessão WebDriver. Outros parâmetros de url podem ser aplicados, mas precisam ser definidos dentro de `variables`.

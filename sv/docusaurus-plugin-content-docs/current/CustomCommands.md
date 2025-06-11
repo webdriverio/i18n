@@ -1,34 +1,34 @@
 ---
 id: customcommands
-title: Anpassade kommandon
+title: Anpassade Kommandon
 ---
 
-Om du vill utöka `browser`-instansen med dina egna kommandon, finns browser-metoden `addCommand` tillgänglig för dig. Du kan skriva ditt kommando på ett asynkront sätt, precis som i dina testspecifikationer.
+Om du vill utöka `browser`-instansen med egna kommandon finns metoden `addCommand`. Du kan skriva ditt kommando på ett asynkront sätt, precis som i dina specifikationer.
 
 ## Parametrar
 
 ### Kommandonamn
 
-Ett namn som definierar kommandot och som kommer att kopplas till webbläsarens eller elementets omfattning.
+Ett namn som definierar kommandot och som kommer att kopplas till webbläsaren eller elementets omfattning.
 
 Typ: `String`
 
 ### Anpassad funktion
 
-En funktion som exekveras när kommandot anropas. `this`-omfattningen är antingen [`WebdriverIO.Browser`](/docs/api/browser) eller [`WebdriverIO.Element`](/docs/api/element) beroende på om kommandot kopplas till webbläsarens eller elementets omfattning.
+En funktion som körs när kommandot anropas. `this`-omfattningen är antingen [`WebdriverIO.Browser`](/docs/api/browser) eller [`WebdriverIO.Element`](/docs/api/element) beroende på om kommandot kopplas till webbläsaren eller elementets omfattning.
 
 Typ: `Function`
 
 ### Målomfattning
 
-Flagga för att bestämma om kommandot ska kopplas till webbläsarens eller elementets omfattning. Om satt till `true` blir kommandot ett elementkommando.
+Flagga för att bestämma om kommandot ska kopplas till webbläsaren eller elementets omfattning. Om den är inställd på `true` kommer kommandot att vara ett elementkommando.
 
 Typ: `Boolean`<br />
 Standard: `false`
 
 ## Exempel
 
-Detta exempel visar hur du lägger till ett nytt kommando som returnerar nuvarande URL och titel som ett resultat. Omfattningen (`this`) är ett [`WebdriverIO.Browser`](/docs/api/browser)-objekt.
+Detta exempel visar hur man lägger till ett nytt kommando som returnerar aktuell URL och titel som ett resultat. Omfattningen (`this`) är ett [`WebdriverIO.Browser`](/docs/api/browser)-objekt.
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
@@ -41,7 +41,7 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-Dessutom kan du utöka elementinstansen med dina egna kommandon genom att skicka `true` som det sista argumentet. Omfattningen (`this`) i detta fall är ett [`WebdriverIO.Element`](/docs/api/element)-objekt.
+Dessutom kan du utöka elementinstansen med egna kommandon genom att skicka `true` som det sista argumentet. Omfattningen (`this`) i detta fall är ett [`WebdriverIO.Element`](/docs/api/element)-objekt.
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -51,9 +51,9 @@ browser.addCommand("waitAndClick", async function () {
 }, true)
 ```
 
-Anpassade kommandon ger dig möjligheten att samla en specifik sekvens av kommandon som du använder ofta som ett enda anrop. Du kan definiera anpassade kommandon när som helst i din testsvit; se bara till att kommandot definieras *innan* det används första gången. (`before`-hooken i din `wdio.conf.js` är en lämplig plats att skapa dem.)
+Anpassade kommandon ger dig möjlighet att paketera en specifik sekvens av kommandon du använder ofta som ett enda anrop. Du kan definiera anpassade kommandon när som helst i din testsvit; se bara till att kommandot definieras *innan* det används första gången. (`before`-kroken i din `wdio.conf.js` är en bra plats att skapa dem.)
 
-När de väl är definierade kan du använda dem så här:
+När de är definierade kan du använda dem så här:
 
 ```js
 it('should use my custom command', async () => {
@@ -66,7 +66,7 @@ it('should use my custom command', async () => {
 })
 ```
 
-__Obs:__ Om du registrerar ett anpassat kommando till `browser`-omfattningen, kommer kommandot inte att vara tillgängligt för element. På samma sätt, om du registrerar ett kommando till elementomfattningen, kommer det inte att vara tillgängligt i `browser`-omfattningen:
+__Obs:__ Om du registrerar ett anpassat kommando till `browser`-omfattningen kommer kommandot inte att vara tillgängligt för element. På samma sätt, om du registrerar ett kommando till elementets omfattning, kommer det inte att vara tillgängligt i `browser`-omfattningen:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
@@ -93,15 +93,15 @@ browser.addCommand("user$", (locator) => { return ele }, true)
 await browser.user$('foo').user$('bar').click()
 ```
 
-Var försiktig med att inte överbelasta `browser`-omfattningen med för många anpassade kommandon.
+Var försiktig så att du inte överbelastar `browser`-omfattningen med för många anpassade kommandon.
 
-Vi rekommenderar att definiera anpassad logik i [sidobjekt](pageobjects), så att de är knutna till en specifik sida.
+Vi rekommenderar att definiera anpassad logik i [sidobjekt](pageobjects), så att de är bundna till en specifik sida.
 
 ### Multiremote
 
-`addCommand` fungerar på ett liknande sätt för multiremote, förutom att det nya kommandot kommer att spridas nedåt till barninstanserna. Du måste vara uppmärksam när du använder `this`-objektet eftersom multiremote `browser` och dess barninstanser har olika `this`.
+`addCommand` fungerar på ett liknande sätt för multiremote, förutom att det nya kommandot kommer att spridas ner till barninstanserna. Du måste vara uppmärksam när du använder `this`-objektet eftersom multiremote `browser` och dess barninstanser har olika `this`.
 
-Detta exempel visar hur du lägger till ett nytt kommando för multiremote.
+Detta exempel visar hur man lägger till ett nytt kommando för multiremote.
 
 ```js
 import { multiremotebrowser } from '@wdio/globals'
@@ -144,9 +144,9 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 Med TypeScript är det enkelt att utöka WebdriverIO-gränssnitten. Lägg till typer till dina anpassade kommandon så här:
 
 1. Skapa en typdefinitionsfil (t.ex. `./src/types/wdio.d.ts`)
-2. a. Om du använder en modulstil typdefinitionsfil (med import/export och `declare global WebdriverIO` i typdefinitionsfilen), se till att inkludera filsökvägen i `tsconfig.json` `include`-egenskapen.
+2. a. Om du använder en modulstyld typdefinitionsfil (med import/export och `declare global WebdriverIO` i typdefinitionsfilen), se till att inkludera filsökvägen i `tsconfig.json` `include`-egenskapen.
 
-   b. Om du använder ambient-stil typdefinitionsfiler (inga import/export i typdefinitionsfiler och `declare namespace WebdriverIO` för anpassade kommandon), se till att `tsconfig.json` *inte* innehåller något `include`-avsnitt, eftersom detta kommer att orsaka att alla typdefinitionsfiler som inte finns listade i `include`-avsnittet inte kommer att kännas igen av typescript.
+   b. Om du använder ambient-stil typdefinitionsfiler (ingen import/export i typdefinitionsfiler och `declare namespace WebdriverIO` för anpassade kommandon), se till att `tsconfig.json` *inte* innehåller någon `include`-sektion, eftersom detta kommer att göra att alla typdefinitionsfiler som inte finns med i `include`-sektionen inte kommer att kännas igen av typescript.
 
 <Tabs
   defaultValue="modules"
@@ -179,7 +179,7 @@ Med TypeScript är det enkelt att utöka WebdriverIO-gränssnitten. Lägg till t
 </TabItem>
 </Tabs>
 
-3. Lägg till definitioner för dina kommandon enligt ditt exekveringsläge.
+3. Lägg till definitioner för dina kommandon enligt ditt körläge.
 
 <Tabs
   defaultValue="modules"
@@ -232,9 +232,9 @@ declare namespace WebdriverIO {
 
 ## Integrera tredjepartsbibliotek
 
-Om du använder externa bibliotek (t.ex. för databasanrop) som stöder löften (promises), är ett bra sätt att integrera dem att omsluta vissa API-metoder med ett anpassat kommando.
+Om du använder externa bibliotek (t.ex. för databasanrop) som stöder promises, är ett bra sätt att integrera dem att omsluta vissa API-metoder med ett anpassat kommando.
 
-När du returnerar löftet, ser WebdriverIO till att det inte fortsätter med nästa kommando förrän löftet är löst. Om löftet avvisas, kommer kommandot att kasta ett fel.
+När du returnerar löftet ser WebdriverIO till att det inte fortsätter med nästa kommando förrän löftet är löst. Om löftet avvisas kommer kommandot att kasta ett fel.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -255,25 +255,28 @@ it('execute external library in a sync way', async () => {
 
 **Obs:** Resultatet av ditt anpassade kommando är resultatet av löftet du returnerar.
 
-## Skriva över kommandon
+## Överskriva kommandon
 
-Du kan också skriva över inbyggda kommandon med `overwriteCommand`.
+Du kan också överskriva inbyggda kommandon med `overwriteCommand`.
 
-Det rekommenderas inte att göra detta, eftersom det kan leda till oförutsägbart beteende i ramverket!
+Det rekommenderas inte att göra detta, eftersom det kan leda till oförutsägbart beteende hos ramverket!
 
-Det övergripande tillvägagångssättet liknar `addCommand`, den enda skillnaden är att det första argumentet i kommandofunktionen är den ursprungliga funktionen som du ska skriva över. Se några exempel nedan.
+Det övergripande tillvägagångssättet liknar `addCommand`, den enda skillnaden är att det första argumentet i kommandfunktionen är den ursprungliga funktionen som du håller på att överskriva. Se några exempel nedan.
 
-### Skriva över webbläsarkommandon
+### Överskriva webbläsarkommandon
 
 ```js
 /**
- * print milliseconds before pause and return its value.
- */
-// 'pause'            - name of command to be overwritten
-// origPauseFunction  - original pause function
-browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
+ * Print milliseconds before pause and return its value.
+ * 
+ * @param pause - name of command to be overwritten
+ * @param this of func - the original browser instance on which the function was called
+ * @param originalPauseFunction of func - the original pause function
+ * @param ms of func - the actual parameters passed
+  */
+browser.overwriteCommand('pause', async function (this, originalPauseFunction, ms) {
     console.log(`sleeping for ${ms}`)
-    await origPauseFunction(ms)
+    await originalPauseFunction(ms)
     return ms
 })
 
@@ -281,42 +284,49 @@ browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### Skriva över elementkommandon
+### Överskriva elementkommandon
 
-Att skriva över kommandon på elementnivå är nästan detsamma. Skicka helt enkelt `true` som det tredje argumentet till `overwriteCommand`:
+Att överskriva kommandon på elementnivå är nästan detsamma. Skicka helt enkelt `true` som det tredje argumentet till `overwriteCommand`:
 
 ```js
 /**
  * Attempt to scroll to element if it is not clickable.
  * Pass { force: true } to click with JS even if element is not visible or clickable.
+ * Show that the original function argument type can be kept with `options?: ClickOptions`
+ *
+ * @param this of func - the element on which the original function was called
+ * @param originalClickFunction of func - the original pause function
+ * @param options of func - the actual parameters passed
  */
-// 'click'            - name of command to be overwritten
-// origClickFunction  - original click function
-browser.overwriteCommand('click', async function (origClickFunction, { force = false } = {}) {
-    if (!force) {
-        try {
-            // attempt to click
-            await origClickFunction()
-            return null
-        } catch (err) {
-            if (err.message.includes('not clickable at point')) {
-                console.warn('WARN: Element', this.selector, 'is not clickable.',
-                    'Scrolling to it before clicking again.')
+browser.overwriteCommand(
+    'click',
+    async function (this, originalClickFunction, options?: ClickOptions & { force?: boolean }) {
+        const { force, ...restOptions } = options || {}
+        if (!force) {
+            try {
+                // attempt to click
+                await originalClickFunction(options)
+                return
+            } catch (err) {
+                if ((err as Error).message.includes('not clickable at point')) {
+                    console.warn('WARN: Element', this.selector, 'is not clickable.', 'Scrolling to it before clicking again.')
 
-                // scroll to element and click again
-                await this.scrollIntoView()
-                return origClickFunction()
+                    // scroll to element and click again
+                    await this.scrollIntoView()
+                    return originalClickFunction(options)
+                }
+                throw err
             }
-            throw err
         }
-    }
 
-    // clicking with js
-    console.warn('WARN: Using force click for', this.selector)
-    await browser.execute((el) => {
-        el.click()
-    }, this)
-}, true) // don't forget to pass `true` as 3rd argument
+        // clicking with js
+        console.warn('WARN: Using force click for', this.selector)
+        await browser.execute((el) => {
+            el.click()
+        }, this)
+    },
+    true, // don't forget to pass `true` as 3rd argument
+)
 
 // then use it as before
 const elem = await $('body')
@@ -328,7 +338,7 @@ await elem.click({ force: true })
 
 ## Lägg till fler WebDriver-kommandon
 
-Om du använder WebDriver-protokollet och kör tester på en plattform som stöder ytterligare kommandon som inte definieras av någon av protokolldefinitionerna i [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) kan du manuellt lägga till dem genom `addCommand`-gränssnittet. Paketet `webdriver` erbjuder en kommandoförpackning som gör det möjligt att registrera dessa nya ändpunkter på samma sätt som andra kommandon, vilket ger samma parameterkontroller och felhantering. För att registrera denna nya ändpunkt, importera kommandoförpackningen och registrera ett nytt kommando med den enligt följande:
+Om du använder WebDriver-protokollet och kör tester på en plattform som stöder ytterligare kommandon som inte definieras av någon av protokolldefinitionerna i [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) kan du manuellt lägga till dem via `addCommand`-gränssnittet. Paketet `webdriver` erbjuder en kommandowrapper som gör det möjligt att registrera dessa nya slutpunkter på samma sätt som andra kommandon, med samma parameterkontroller och felhantering. För att registrera denna nya slutpunkt, importera kommandowrappern och registrera ett nytt kommando med det enligt följande:
 
 ```js
 import { command } from 'webdriver'
@@ -374,7 +384,7 @@ await browser.myNewCommand()
 Att anropa kommandot korrekt, t.ex. `browser.myNewCommand('foo', 'bar')`, gör korrekt en WebDriver-förfrågan till t.ex. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` med en nyttolast som `{ foo: 'bar' }`.
 
 :::note
-URL-parametern `:sessionId` kommer automatiskt att ersättas med sessions-id för WebDriver-sessionen. Andra URL-parametrar kan tillämpas men måste definieras inom `variables`.
+URL-parametern `:sessionId` kommer automatiskt att ersättas med session-id för WebDriver-sessionen. Andra URL-parametrar kan tillämpas men måste definieras inom `variables`.
 :::
 
-Se exempel på hur protokollkommandon kan definieras i paketet [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).
+Se exempel på hur protokollkommandon kan definieras i [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)-paketet.

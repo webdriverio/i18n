@@ -87,7 +87,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Autocompletion.md": {
@@ -267,7 +268,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Configuration.md": {
@@ -316,7 +318,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomCommands.md": {
-    "hash": "f4ce1097f8350af8ff715441038839eda882884237b01c2118948847b37c9d4f",
+    "hash": "c08ead0e7d7d568571ad2b3f8a1dd06453476b883823aaccd0f5b03f5adfe5e0",
     "languages": [
       "sv",
       "it",
@@ -357,7 +359,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomReporter.md": {
@@ -445,7 +448,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/DriverBinaries.md": {
@@ -2565,7 +2569,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/_appium.md": {
