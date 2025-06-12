@@ -3,7 +3,7 @@ id: assertion
 title: Asserzione
 ---
 
-Il [WDIO testrunner](https://webdriver.io/docs/clioptions) viene fornito con una libreria di asserzioni integrata che ti permette di fare potenti asserzioni su vari aspetti del browser o degli elementi all'interno della tua applicazione (web). Estende la funzionalità dei [Matchers di Jest](https://jestjs.io/docs/en/using-matchers) con matcher aggiuntivi, ottimizzati per i test e2e, ad esempio:
+Il [WDIO testrunner](https://webdriver.io/docs/clioptions) include una libreria di asserzioni integrata che consente di effettuare potenti asserzioni su vari aspetti del browser o elementi all'interno della tua applicazione (web). Estende la funzionalità di [Jests Matchers](https://jestjs.io/docs/en/using-matchers) con ulteriori matcher ottimizzati per i test e2e, ad esempio:
 
 ```js
 const $button = await $('button')
@@ -21,9 +21,24 @@ await expect(selectOptions).toHaveChildren({ gte: 1 })
 
 Per l'elenco completo, consulta la [documentazione API di expect](/docs/api/expect-webdriverio).
 
+## Asserzioni Soft
+
+WebdriverIO include asserzioni soft di default da expect-webdriver(5.2.0). Le asserzioni soft consentono ai tuoi test di continuare l'esecuzione anche quando un'asserzione fallisce. Tutti i fallimenti vengono raccolti e segnalati alla fine del test.
+
+### Utilizzo
+
+```js
+// These won't throw immediately if they fail
+await expect.soft(await $('h1').getText()).toEqual('Basketball Shoes');
+await expect.soft(await $('#price').getText()).toMatch(/€\d+/);
+
+// Regular assertions still throw immediately
+await expect(await $('.add-to-cart').isClickable()).toBe(true);
+```
+
 ## Migrazione da Chai
 
-[Chai](https://www.chaijs.com/) e [expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme) possono coesistere, e con alcune piccole modifiche è possibile ottenere una transizione graduale verso expect-webdriverio. Se hai aggiornato a WebdriverIO v6, avrai accesso a tutte le asserzioni di `expect-webdriverio` già pronte all'uso. Ciò significa che a livello globale, ovunque tu usi `expect`, chiamerai un'asserzione di `expect-webdriverio`. Questo a meno che tu non abbia impostato [`injectGlobals`](/docs/configuration#injectglobals) su `false` o abbia esplicitamente sovrascritto l'`expect` globale per utilizzare Chai. In questo caso, non avresti accesso a nessuna delle asserzioni di expect-webdriverio senza importare esplicitamente il pacchetto expect-webdriverio dove ne hai bisogno.
+[Chai](https://www.chaijs.com/) e [expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme) possono coesistere, e con alcune piccole modifiche è possibile ottenere una transizione fluida verso expect-webdriverio. Se hai aggiornato a WebdriverIO v6, avrai accesso a tutte le asserzioni di `expect-webdriverio` sin dall'inizio. Ciò significa che ovunque tu usi `expect` chiamerai un'asserzione `expect-webdriverio`. Questo a meno che tu non abbia impostato [`injectGlobals`](/docs/configuration#injectglobals) su `false` o abbia esplicitamente sovrascritto il globale `expect` per utilizzare Chai. In questo caso non avresti accesso a nessuna delle asserzioni expect-webdriverio senza importare esplicitamente il pacchetto expect-webdriverio dove necessario.
 
 Questa guida mostrerà esempi di come migrare da Chai se è stato sovrascritto localmente e come migrare da Chai se è stato sovrascritto globalmente.
 
@@ -43,7 +58,7 @@ describe('Homepage', () => {
 })
 ```
 
-Per migrare questo codice, rimuovi l'importazione di Chai e usa il nuovo metodo di asserzione expect-webdriverio `toHaveUrl` invece:
+Per migrare questo codice, rimuovi l'importazione di Chai e usa invece il nuovo metodo di asserzione expect-webdriverio `toHaveUrl`:
 
 ```js
 // myfile.js - migrated code
@@ -55,7 +70,7 @@ describe('Homepage', () => {
 });
 ```
 
-Se volessi utilizzare sia Chai che expect-webdriverio nello stesso file, dovresti mantenere l'importazione di Chai e `expect` sarebbe di default l'asserzione expect-webdriverio, ad esempio:
+Se volessi utilizzare sia Chai che expect-webdriverio nello stesso file, manterresti l'importazione di Chai e `expect` di default sarebbe l'asserzione expect-webdriverio, ad esempio:
 
 ```js
 // myfile.js
@@ -90,7 +105,7 @@ before: async () => {
 }
 ```
 
-Ora Chai e expect-webdriverio possono essere utilizzati l'uno accanto all'altro. Nel tuo codice, utilizzeresti le asserzioni Chai e expect-webdriverio nel seguente modo, ad esempio:
+Ora Chai e expect-webdriverio possono essere utilizzati insieme. Nel tuo codice utilizzeresti le asserzioni Chai e expect-webdriverio come segue, ad esempio:
 
 ```js
 // myfile.js

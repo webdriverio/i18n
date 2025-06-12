@@ -46,7 +46,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Assertion.md": {
-    "hash": "f592ddbb5904b0fa17c72392dfd29df17eaaa83f38b9d55a4cab08a7176fdab0",
+    "hash": "0ca09d72e42de0d561c03c0b214e27426913bd352e4871351dd54dfc3e6292d3",
     "languages": [
       "sv",
       "it",
@@ -276,7 +276,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Configuration.md": {
-    "hash": "a6172cf1d86f55b430cbc6388219ae2d51e9558305c9f68379d136b16b579b6c",
+    "hash": "32dae6e08a21c3af8a9ad185fd884f554f54822f775bf8c022cdf3d3cf09d3a4",
     "languages": [
       "sv",
       "it",
@@ -2226,7 +2226,8 @@
       "ja",
       "pl",
       "vi",
-      "ko"
+      "ko",
+      "el"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/argos.md": {

@@ -21,9 +21,24 @@ await expect(selectOptions).toHaveChildren({ gte: 1 })
 
 För hela listan, se [expect API-dokumentationen](/docs/api/expect-webdriverio).
 
+## Mjuka påståenden
+
+WebdriverIO inkluderar mjuka påståenden som standard från expect-webdriver(5.2.0). Mjuka påståenden tillåter dina tester att fortsätta köras även när ett påstående misslyckas. Alla misslyckanden samlas in och rapporteras i slutet av testet.
+
+### Användning
+
+```js
+// These won't throw immediately if they fail
+await expect.soft(await $('h1').getText()).toEqual('Basketball Shoes');
+await expect.soft(await $('#price').getText()).toMatch(/€\d+/);
+
+// Regular assertions still throw immediately
+await expect(await $('.add-to-cart').isClickable()).toBe(true);
+```
+
 ## Migrering från Chai
 
-[Chai](https://www.chaijs.com/) och [expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme) kan samexistera, och med några mindre justeringar kan en smidig övergång till expect-webdriverio uppnås. Om du har uppgraderat till WebdriverIO v6 så har du som standard tillgång till alla påståenden från `expect-webdriverio` direkt. Detta innebär att globalt var du än använder `expect` skulle du anropa ett `expect-webdriverio`-påstående. Det vill säga, såvida du inte ställer in [`injectGlobals`](/docs/configuration#injectglobals) till `false` eller uttryckligen har åsidosatt den globala `expect` för att använda Chai. I det här fallet skulle du inte ha tillgång till några av expect-webdriverio-påståendena utan att uttryckligen importera expect-webdriverio-paketet där du behöver det.
+[Chai](https://www.chaijs.com/) och [expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme) kan samexistera, och med några mindre justeringar kan en smidig övergång till expect-webdriverio uppnås. Om du har uppgraderat till WebdriverIO v6 har du som standard tillgång till alla påståenden från `expect-webdriverio` direkt. Detta innebär att globalt där du använder `expect` skulle du anropa ett `expect-webdriverio`-påstående. Detta gäller såvida du inte ställer in [`injectGlobals`](/docs/configuration#injectglobals) till `false` eller uttryckligen har åsidosatt den globala `expect` för att använda Chai. I detta fall skulle du inte ha tillgång till några av expect-webdriverio-påståendena utan att uttryckligen importera expect-webdriverio-paketet där du behöver det.
 
 Denna guide visar exempel på hur man migrerar från Chai om det har åsidosatts lokalt och hur man migrerar från Chai om det har åsidosatts globalt.
 
@@ -43,7 +58,7 @@ describe('Homepage', () => {
 })
 ```
 
-För att migrera denna kod, ta bort Chai-importen och använd den nya expect-webdriverio-påståendemetoden `toHaveUrl` istället:
+För att migrera denna kod, ta bort Chai-importen och använd den nya expect-webdriverio påståendemetoden `toHaveUrl` istället:
 
 ```js
 // myfile.js - migrated code
@@ -55,7 +70,7 @@ describe('Homepage', () => {
 });
 ```
 
-Om du ville använda både Chai och expect-webdriverio i samma fil skulle du behålla Chai-importen och `expect` skulle som standard vara expect-webdriverio-påståendet, t.ex.:
+Om du ville använda både Chai och expect-webdriverio i samma fil skulle du behålla Chai-importen och `expect` skulle som standard använda expect-webdriverio-påståendet, t.ex.:
 
 ```js
 // myfile.js
@@ -78,7 +93,7 @@ describe('Other element', () => {
 
 ### Globalt
 
-Anta att `expect` globalt har åsidosatts för att använda Chai. För att använda expect-webdriverio-påståenden behöver vi ställa in en global variabel i "before"-kroken, t.ex.:
+Anta att `expect` globalt åsidosattes för att använda Chai. För att använda expect-webdriverio-påståenden måste vi globalt ställa in en variabel i "before"-kroken, t.ex.:
 
 ```js
 // wdio.conf.js
@@ -90,7 +105,7 @@ before: async () => {
 }
 ```
 
-Nu kan Chai och expect-webdriverio användas sida vid sida. I din kod skulle du använda Chai och expect-webdriverio-påståenden enligt följande, t.ex.:
+Nu kan Chai och expect-webdriverio användas tillsammans. I din kod skulle du använda Chai och expect-webdriverio-påståenden enligt följande, t.ex.:
 
 ```js
 // myfile.js
@@ -108,4 +123,4 @@ describe('Other element', () => {
 });
 ```
 
-För att migrera skulle du långsamt flytta varje Chai-påstående till expect-webdriverio. När alla Chai-påståenden har ersatts i hela kodbasen kan "before"-kroken tas bort. En global sök och ersätt för att ersätta alla instanser av `wdioExpect` till `expect` kommer sedan att avsluta migreringen.
+För att migrera skulle du långsamt flytta varje Chai-påstående över till expect-webdriverio. När alla Chai-påståenden har ersatts i hela kodbasen kan "before"-kroken tas bort. En global sök och ersätt för att ersätta alla instanser av `wdioExpect` med `expect` kommer sedan att avsluta migreringen.

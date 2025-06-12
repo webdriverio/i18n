@@ -3,7 +3,7 @@ id: assertion
 title: 断言
 ---
 
-[WDIO 测试运行器](https://webdriver.io/docs/clioptions)内置了一个断言库，允许你对浏览器或应用程序中的元素的各个方面进行强大的断言。它扩展了 [Jest 的 Matchers](https://jestjs.io/docs/en/using-matchers) 功能，针对 e2e 测试进行了优化，添加了额外的匹配器，例如：
+[WDIO 测试运行器](https://webdriver.io/docs/clioptions)内置了一个断言库，允许您对浏览器或Web应用程序中的元素进行强大的断言。它扩展了[Jest Matchers](https://jestjs.io/docs/en/using-matchers)的功能，增加了为端到端测试优化的匹配器，例如：
 
 ```js
 const $button = await $('button')
@@ -15,24 +15,39 @@ await expect($button).toBeDisplayed()
 ```js
 const selectOptions = await $$('form select>option')
 
-// make sure there is at least one option in select
+// 确保select中至少有一个选项
 await expect(selectOptions).toHaveChildren({ gte: 1 })
 ```
 
-完整列表请参阅 [expect API 文档](/docs/api/expect-webdriverio)。
+完整列表请参见[expect API 文档](/docs/api/expect-webdriverio)。
+
+## 软断言
+
+WebdriverIO 从 expect-webdriver(5.2.0) 开始默认包含软断言。软断言允许您的测试在断言失败时继续执行。所有失败都会被收集并在测试结束时报告。
+
+### 使用方法
+
+```js
+// 这些断言失败时不会立即抛出错误
+await expect.soft(await $('h1').getText()).toEqual('Basketball Shoes');
+await expect.soft(await $('#price').getText()).toMatch(/€\d+/);
+
+// 常规断言仍然会立即抛出错误
+await expect(await $('.add-to-cart').isClickable()).toBe(true);
+```
 
 ## 从 Chai 迁移
 
-[Chai](https://www.chaijs.com/) 和 [expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme) 可以共存，通过一些小调整可以平稳过渡到 expect-webdriverio。如果你已经升级到 WebdriverIO v6，那么默认情况下你可以直接使用所有 `expect-webdriverio` 的断言。这意味着，在全局范围内，无论你在哪里使用 `expect`，你都会调用 `expect-webdriverio` 断言。当然，除非你将 [`injectGlobals`](/docs/configuration#injectglobals) 设置为 `false` 或者显式地覆盖全局 `expect` 以使用 Chai。在这种情况下，如果不在需要的地方显式导入 expect-webdriverio 包，你将无法访问任何 expect-webdriverio 断言。
+[Chai](https://www.chaijs.com/) 和 [expect-webdriverio](https://github.com/webdriverio/expect-webdriverio#readme) 可以共存，通过一些小调整可以平滑过渡到 expect-webdriverio。如果您已升级到 WebdriverIO v6，那么默认情况下您可以直接使用 `expect-webdriverio` 的所有断言。这意味着在任何地方使用 `expect` 时，您都会调用 `expect-webdriverio` 断言。除非您将 [`injectGlobals`](/docs/configuration#injectglobals) 设置为 `false` 或明确地覆盖了全局 `expect` 以使用 Chai。在这种情况下，没有明确导入 expect-webdriverio 包，您将无法访问任何 expect-webdriverio 断言。
 
-本指南将展示如何在 Chai 被局部覆盖和全局覆盖的情况下进行迁移的示例。
+本指南将展示如果 Chai 在本地被覆盖以及如果 Chai 在全局被覆盖时如何迁移的示例。
 
-### 局部
+### 本地
 
-假设在文件中显式导入了 Chai，例如：
+假设在文件中明确导入了 Chai，例如：
 
 ```js
-// myfile.js - original code
+// myfile.js - 原始代码
 import { expect as expectChai } from 'chai'
 
 describe('Homepage', () => {
@@ -43,19 +58,19 @@ describe('Homepage', () => {
 })
 ```
 
-要迁移此代码，请移除 Chai 导入并使用新的 expect-webdriverio 断言方法 `toHaveUrl`：
+要迁移此代码，请删除 Chai 导入并使用新的 expect-webdriverio 断言方法 `toHaveUrl` 代替：
 
 ```js
-// myfile.js - migrated code
+// myfile.js - 迁移后的代码
 describe('Homepage', () => {
     it('should assert', async () => {
         await browser.url('./')
-        await expect(browser).toHaveUrl('/login') // new expect-webdriverio API method https://webdriver.io/docs/api/expect-webdriverio.html#tohaveurl
+        await expect(browser).toHaveUrl('/login') // 新的 expect-webdriverio API 方法 https://webdriver.io/docs/api/expect-webdriverio.html#tohaveurl
     });
 });
 ```
 
-如果你想在同一个文件中同时使用 Chai 和 expect-webdriverio，可以保留 Chai 导入，而 `expect` 将默认为 expect-webdriverio 断言，例如：
+如果您想在同一个文件中同时使用 Chai 和 expect-webdriverio，您可以保留 Chai 导入，而 `expect` 默认为 expect-webdriverio 断言，例如：
 
 ```js
 // myfile.js
@@ -65,13 +80,13 @@ import { expect as expectWDIO } from '@wdio/globals'
 describe('Element', () => {
     it('should be displayed', async () => {
         const isDisplayed = await $("#element").isDisplayed()
-        expectChai(isDisplayed).to.equal(true); // Chai assertion
+        expectChai(isDisplayed).to.equal(true); // Chai 断言
     })
 });
 
 describe('Other element', () => {
     it('should not be displayed', async () => {
-        await expectWDIO($("#element")).not.toBeDisplayed(); // expect-webdriverio assertion
+        await expectWDIO($("#element")).not.toBeDisplayed(); // expect-webdriverio 断言
     })
 })
 ```
@@ -90,22 +105,22 @@ before: async () => {
 }
 ```
 
-现在 Chai 和 expect-webdriverio 可以同时使用。在你的代码中，可以按如下方式使用 Chai 和 expect-webdriverio 断言：
+现在 Chai 和 expect-webdriverio 可以并行使用。在您的代码中，您可以按照以下方式使用 Chai 和 expect-webdriverio 断言，例如：
 
 ```js
 // myfile.js
 describe('Element', () => {
     it('should be displayed', async () => {
         const isDisplayed = await $("#element").isDisplayed()
-        expect(isDisplayed).to.equal(true); // Chai assertion
+        expect(isDisplayed).to.equal(true); // Chai 断言
     });
 });
 
 describe('Other element', () => {
     it('should not be displayed', async () => {
-        await expectWdio($("#element")).not.toBeDisplayed(); // expect-webdriverio assertion
+        await expectWdio($("#element")).not.toBeDisplayed(); // expect-webdriverio 断言
     });
 });
 ```
 
-要进行迁移，可以逐步将每个 Chai 断言替换为 expect-webdriverio。一旦代码库中所有 Chai 断言都被替换，就可以删除 "before" 钩子。最后进行全局查找和替换，将所有 `wdioExpect` 替换为 `expect` 来完成迁移。
+迁移时，您可以逐步将每个 Chai 断言替换为 expect-webdriverio。一旦代码库中的所有 Chai 断言都被替换，可以删除 "before" 钩子。全局查找并替换所有 `wdioExpect` 为 `expect` 将完成迁移。
