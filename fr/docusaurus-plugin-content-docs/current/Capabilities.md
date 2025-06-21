@@ -3,7 +3,7 @@ id: capabilities
 title: Capacités
 ---
 
-Une capacité est une définition pour une interface distante. Elle aide WebdriverIO à comprendre dans quel environnement de navigateur ou mobile vous souhaitez exécuter vos tests. Les capacités sont moins cruciales lors du développement de tests en local, car vous les exécutez la plupart du temps sur une seule interface distante, mais elles deviennent plus importantes lors de l'exécution d'un grand ensemble de tests d'intégration en CI/CD.
+Une capacité est une définition d'une interface distante. Elle aide WebdriverIO à comprendre dans quel environnement de navigateur ou mobile vous souhaitez exécuter vos tests. Les capacités sont moins cruciales lors du développement de tests en local car vous les exécutez généralement sur une seule interface distante, mais elles deviennent plus importantes lors de l'exécution d'un grand ensemble de tests d'intégration dans un CI/CD.
 
 :::info
 
@@ -13,30 +13,30 @@ Le format d'un objet de capacité est bien défini par la [spécification WebDri
 
 ## Capacités personnalisées
 
-Bien que le nombre de capacités définies de manière fixe soit très faible, chacun peut fournir et accepter des capacités personnalisées spécifiques au pilote d'automatisation ou à l'interface distante :
+Bien que le nombre de capacités définies de manière fixe soit très faible, chacun peut fournir et accepter des capacités personnalisées spécifiques au pilote d'automatisation ou à l'interface distante:
 
-### Extensions de capacités spécifiques au navigateur
+### Extensions de capacités spécifiques aux navigateurs
 
-- `goog:chromeOptions` : Extensions [Chromedriver](https://chromedriver.chromium.org/capabilities), applicables uniquement pour les tests dans Chrome
-- `moz:firefoxOptions` : Extensions [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html), applicables uniquement pour les tests dans Firefox
-- `ms:edgeOptions` : [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) pour spécifier l'environnement lors de l'utilisation d'EdgeDriver pour tester Chromium Edge
+- `goog:chromeOptions`: Extensions [Chromedriver](https://chromedriver.chromium.org/capabilities), applicables uniquement pour les tests dans Chrome
+- `moz:firefoxOptions`: Extensions [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html), applicables uniquement pour les tests dans Firefox
+- `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) pour spécifier l'environnement lors de l'utilisation d'EdgeDriver pour tester Chromium Edge
 
 ### Extensions de capacités des fournisseurs cloud
 
-- `sauce:options` : [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
-- `bstack:options` : [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
-- `tb:options` : [TestingBot](https://testingbot.com/support/other/test-options)
+- `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
+- `bstack:options`: [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
+- `tb:options`: [TestingBot](https://testingbot.com/support/other/test-options)
 - et bien d'autres...
 
-### Extensions de capacités du moteur d'automatisation
+### Extensions de capacités des moteurs d'automatisation
 
-- `appium:xxx` : [Appium](https://appium.io/docs/en/latest/guides/caps/)
-- `selenoid:xxx` : [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
+- `appium:xxx`: [Appium](https://appium.io/docs/en/latest/guides/caps/)
+- `selenoid:xxx`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
 - et bien d'autres...
 
 ### Capacités WebdriverIO pour gérer les options du pilote de navigateur
 
-WebdriverIO gère l'installation et l'exécution du pilote de navigateur pour vous. WebdriverIO utilise une capacité personnalisée qui vous permet de passer des paramètres au pilote.
+WebdriverIO gère l'installation et l'exécution du pilote de navigateur pour vous. WebdriverIO utilise une capacité personnalisée qui vous permet de transmettre des paramètres au pilote.
 
 #### `wdio:chromedriverOptions`
 
@@ -56,38 +56,38 @@ Options spécifiques transmises à Safari lors de son démarrage.
 
 #### `wdio:maxInstances`
 
-Nombre maximum total de travailleurs exécutés en parallèle pour le navigateur/capacité spécifique. Prend la priorité sur [maxInstances](#configuration#maxInstances) et [maxInstancesPerCapability](configuration/#maxinstancespercapability).
+Nombre maximum total de workers parallèles pour le navigateur/capacité spécifique. Prend la priorité sur [maxInstances](#configuration#maxInstances) et [maxInstancesPerCapability](configuration/#maxinstancespercapability).
 
-Type : `number`
+Type: `number`
 
 #### `wdio:specs`
 
-Définit les spécifications pour l'exécution des tests pour ce navigateur/capacité. Identique à l'[option de configuration `specs` standard](configuration#specs), mais spécifique au navigateur/capacité. Prend la priorité sur `specs`.
+Définit les spécifications pour l'exécution des tests pour ce navigateur/capacité. Identique à l'[option de configuration `specs` normale](configuration#specs), mais spécifique au navigateur/capacité. Prend la priorité sur `specs`.
 
-Type : `(String | String[])[]`
+Type: `(String | String[])[]`
 
 #### `wdio:exclude`
 
-Exclut les spécifications de l'exécution des tests pour ce navigateur/capacité. Identique à l'[option de configuration `exclude` standard](configuration#exclude), mais spécifique au navigateur/capacité. Prend la priorité sur `exclude`.
+Exclut des spécifications de l'exécution des tests pour ce navigateur/capacité. Identique à l'[option de configuration `exclude` normale](configuration#exclude), mais spécifique au navigateur/capacité. S'applique après l'option de configuration globale `exclude`.
 
-Type : `String[]`
+Type: `String[]`
 
 #### `wdio:enforceWebDriverClassic`
 
 Par défaut, WebdriverIO tente d'établir une session WebDriver Bidi. Si vous ne préférez pas cela, vous pouvez définir ce drapeau pour désactiver ce comportement.
 
-Type : `boolean`
+Type: `boolean`
 
 #### Options de pilote communes
 
-Bien que tous les pilotes offrent différents paramètres de configuration, il existe des options communes que WebdriverIO comprend et utilise pour configurer votre pilote ou navigateur :
+Bien que tous les pilotes offrent différents paramètres de configuration, il existe des options communes que WebdriverIO comprend et utilise pour configurer votre pilote ou navigateur:
 
 ##### `cacheDir`
 
 Le chemin vers la racine du répertoire de cache. Ce répertoire est utilisé pour stocker tous les pilotes téléchargés lors des tentatives de démarrage d'une session.
 
-Type : `string`<br />
-Par défaut : `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+Type: `string`<br />
+Par défaut: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ##### `binary`
 
@@ -95,7 +95,7 @@ Chemin vers un binaire de pilote personnalisé. Si défini, WebdriverIO ne tente
 
 Vous pouvez fournir ce chemin via les variables d'environnement `CHROMEDRIVER_PATH`, `GECKODRIVER_PATH` ou `EDGEDRIVER_PATH`.
 
-Type : `string`
+Type: `string`
 
 :::caution
 
@@ -105,12 +105,12 @@ Si le `binary` du pilote est défini, WebdriverIO ne tentera pas de télécharge
 
 #### Options de pilote spécifiques au navigateur
 
-Pour propager des options au pilote, vous pouvez utiliser les capacités personnalisées suivantes :
+Pour propager des options au pilote, vous pouvez utiliser les capacités personnalisées suivantes:
 
-- Chrome ou Chromium : `wdio:chromedriverOptions`
-- Firefox : `wdio:geckodriverOptions`
-- Microsoft Edge : `wdio:edgedriverOptions`
-- Safari : `wdio:safaridriverOptions`
+- Chrome ou Chromium: `wdio:chromedriverOptions`
+- Firefox: `wdio:geckodriverOptions`
+- Microsoft Edge: `wdio:edgedriverOptions`
+- Safari: `wdio:safaridriverOptions`
 
 <Tabs
   defaultValue="chrome"
@@ -126,79 +126,79 @@ Pour propager des options au pilote, vous pouvez utiliser les capacités personn
 ##### adbPort
 Le port sur lequel le pilote ADB doit s'exécuter.
 
-Exemple : `9515`
+Exemple: `9515`
 
-Type : `number`
+Type: `number`
 
 ##### urlBase
-Préfixe de chemin d'URL de base pour les commandes, par exemple `wd/url`.
+Préfixe de chemin URL de base pour les commandes, par exemple `wd/url`.
 
-Exemple : `/`
+Exemple: `/`
 
-Type : `string`
+Type: `string`
 
 ##### logPath
 Écrire le journal du serveur dans un fichier au lieu de stderr, augmente le niveau de journalisation à `INFO`
 
-Type : `string`
+Type: `string`
 
 ##### logLevel
 Définir le niveau de journalisation. Options possibles `ALL`, `DEBUG`, `INFO`, `WARNING`, `SEVERE`, `OFF`.
 
-Type : `string`
+Type: `string`
 
 ##### verbose
-Journaliser en mode verbeux (équivalent à `--log-level=ALL`)
+Journal verbeux (équivalent à `--log-level=ALL`)
 
-Type : `boolean`
+Type: `boolean`
 
 ##### silent
 Ne rien journaliser (équivalent à `--log-level=OFF`)
 
-Type : `boolean`
+Type: `boolean`
 
 ##### appendLog
 Ajouter au fichier journal au lieu de le réécrire.
 
-Type : `boolean`
+Type: `boolean`
 
 ##### replayable
-Journaliser en mode verbeux et ne pas tronquer les longues chaînes afin que le journal puisse être rejoué (expérimental).
+Journal verbeux et ne pas tronquer les longues chaînes pour que le journal puisse être rejoué (expérimental).
 
-Type : `boolean`
+Type: `boolean`
 
 ##### readableTimestamp
 Ajouter des horodatages lisibles au journal.
 
-Type : `boolean`
+Type: `boolean`
 
 ##### enableChromeLogs
 Afficher les journaux du navigateur (remplace les autres options de journalisation).
 
-Type : `boolean`
+Type: `boolean`
 
 ##### bidiMapperPath
-Chemin du mappeur bidi personnalisé.
+Chemin personnalisé du mappeur bidi.
 
-Type : `string`
+Type: `string`
 
 ##### allowedIps
 Liste d'adresses IP distantes autorisées à se connecter à EdgeDriver, séparées par des virgules.
 
-Type : `string[]`<br />
-Par défaut : `['']`
+Type: `string[]`<br />
+Par défaut: `['']`
 
 ##### allowedOrigins
-Liste d'origines de requêtes autorisées à se connecter à EdgeDriver, séparées par des virgules. L'utilisation de `*` pour autoriser n'importe quelle origine d'hôte est dangereuse !
+Liste des origines de requêtes autorisées à se connecter à EdgeDriver, séparées par des virgules. L'utilisation de `*` pour autoriser n'importe quelle origine d'hôte est dangereuse!
 
-Type : `string[]`<br />
-Par défaut : `['*']`
+Type: `string[]`<br />
+Par défaut: `['*']`
 
 ##### spawnOpts
-Options à passer au processus du pilote.
+Options à transmettre au processus du pilote.
 
-Type : `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
-Par défaut : `undefined`
+Type: `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
+Par défaut: `undefined`
 
 </TabItem>
 <TabItem value="firefox">
@@ -222,9 +222,9 @@ Voir toutes les options de Safaridriver dans le [package de pilote](https://gith
 
 Voici une liste d'exemples montrant quelles capacités doivent être appliquées pour atteindre un certain cas d'utilisation.
 
-### Exécuter le navigateur en mode headless
+### Exécuter un navigateur en mode headless
 
-Exécuter un navigateur en mode headless signifie exécuter une instance de navigateur sans fenêtre ni interface utilisateur. Cela est principalement utilisé dans les environnements CI/CD où aucun affichage n'est utilisé. Pour exécuter un navigateur en mode headless, appliquez les capacités suivantes :
+Exécuter un navigateur en mode headless signifie exécuter une instance de navigateur sans fenêtre ni interface utilisateur. Cela est principalement utilisé dans les environnements CI/CD où aucun affichage n'est utilisé. Pour exécuter un navigateur en mode headless, appliquez les capacités suivantes:
 
 <Tabs
   defaultValue="chrome"
@@ -276,7 +276,7 @@ Il semble que Safari [ne prenne pas en charge](https://discussions.apple.com/thr
 
 ### Automatiser différents canaux de navigateur
 
-Si vous souhaitez tester une version de navigateur qui n'est pas encore publiée en version stable, par exemple Chrome Canary, vous pouvez le faire en définissant des capacités et en pointant vers le navigateur que vous souhaitez démarrer, par exemple :
+Si vous souhaitez tester une version de navigateur qui n'est pas encore publiée en version stable, par exemple Chrome Canary, vous pouvez le faire en définissant des capacités et en pointant vers le navigateur que vous souhaitez démarrer, par exemple:
 
 <Tabs
   defaultValue="chrome"
@@ -289,7 +289,7 @@ Si vous souhaitez tester une version de navigateur qui n'est pas encore publiée
 }>
 <TabItem value="chrome">
 
-Lors des tests sur Chrome, WebdriverIO téléchargera automatiquement la version de navigateur et le pilote souhaités en fonction du `browserVersion` défini, par exemple :
+Lors des tests sur Chrome, WebdriverIO téléchargera automatiquement la version de navigateur et le pilote souhaités en fonction du `browserVersion` défini, par exemple:
 
 ```ts
 {
@@ -298,7 +298,7 @@ Lors des tests sur Chrome, WebdriverIO téléchargera automatiquement la version
 }
 ```
 
-Si vous souhaitez tester un navigateur téléchargé manuellement, vous pouvez fournir un chemin binaire vers le navigateur via :
+Si vous souhaitez tester un navigateur téléchargé manuellement, vous pouvez fournir un chemin binaire vers le navigateur via:
 
 ```ts
 {
@@ -309,7 +309,7 @@ Si vous souhaitez tester un navigateur téléchargé manuellement, vous pouvez f
 }
 ```
 
-De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via :
+De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via:
 
 ```ts
 {
@@ -323,7 +323,7 @@ De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous p
 </TabItem>
 <TabItem value="firefox">
 
-Lors des tests sur Firefox, WebdriverIO téléchargera automatiquement la version de navigateur et le pilote souhaités en fonction du `browserVersion` défini, par exemple :
+Lors des tests sur Firefox, WebdriverIO téléchargera automatiquement la version de navigateur et le pilote souhaités en fonction du `browserVersion` défini, par exemple:
 
 ```ts
 {
@@ -332,7 +332,7 @@ Lors des tests sur Firefox, WebdriverIO téléchargera automatiquement la versio
 }
 ```
 
-Si vous souhaitez tester une version téléchargée manuellement, vous pouvez fournir un chemin binaire vers le navigateur via :
+Si vous souhaitez tester une version téléchargée manuellement, vous pouvez fournir un chemin binaire vers le navigateur via:
 
 ```ts
 {
@@ -343,7 +343,7 @@ Si vous souhaitez tester une version téléchargée manuellement, vous pouvez fo
 }
 ```
 
-De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via :
+De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via:
 
 ```ts
 {
@@ -357,7 +357,7 @@ De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous p
 </TabItem>
 <TabItem value="msedge">
 
-Lors des tests sur Microsoft Edge, assurez-vous d'avoir la version de navigateur souhaitée installée sur votre machine. Vous pouvez indiquer à WebdriverIO le navigateur à exécuter via :
+Lors des tests sur Microsoft Edge, assurez-vous d'avoir la version de navigateur souhaitée installée sur votre machine. Vous pouvez indiquer à WebdriverIO le navigateur à exécuter via:
 
 ```ts
 {
@@ -368,7 +368,7 @@ Lors des tests sur Microsoft Edge, assurez-vous d'avoir la version de navigateur
 }
 ```
 
-WebdriverIO téléchargera automatiquement la version de pilote souhaitée en fonction du `browserVersion` défini, par exemple :
+WebdriverIO téléchargera automatiquement la version de pilote souhaitée en fonction du `browserVersion` défini, par exemple:
 
 ```ts
 {
@@ -377,7 +377,7 @@ WebdriverIO téléchargera automatiquement la version de pilote souhaitée en fo
 }
 ```
 
-De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via :
+De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via:
 
 ```ts
 {
@@ -391,7 +391,7 @@ De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous p
 </TabItem>
 <TabItem value="safari">
 
-Lors des tests sur Safari, assurez-vous d'avoir [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) installé sur votre machine. Vous pouvez pointer WebdriverIO vers cette version via :
+Lors des tests sur Safari, assurez-vous d'avoir installé [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) sur votre machine. Vous pouvez indiquer à WebdriverIO d'utiliser cette version via:
 
 ```ts
 {
@@ -404,7 +404,7 @@ Lors des tests sur Safari, assurez-vous d'avoir [Safari Technology Preview](http
 
 ## Étendre les capacités personnalisées
 
-Si vous souhaitez définir votre propre ensemble de capacités afin, par exemple, de stocker des données arbitraires à utiliser dans les tests pour cette capacité spécifique, vous pouvez le faire en définissant par exemple :
+Si vous souhaitez définir votre propre ensemble de capacités, par exemple pour stocker des données arbitraires à utiliser dans les tests pour cette capacité spécifique, vous pouvez le faire en définissant:
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -418,13 +418,13 @@ export const config = {
 }
 ```
 
-Il est conseillé de suivre le [protocole W3C](https://w3c.github.io/webdriver/#dfn-extension-capability) en ce qui concerne la dénomination des capacités, qui nécessite un caractère `:` (deux-points), indiquant un espace de noms spécifique à l'implémentation. Dans vos tests, vous pouvez accéder à votre capacité personnalisée via, par exemple :
+Il est conseillé de suivre le [protocole W3C](https://w3c.github.io/webdriver/#dfn-extension-capability) en ce qui concerne la dénomination des capacités, qui nécessite un caractère `:` (deux-points), indiquant un espace de noms spécifique à l'implémentation. Dans vos tests, vous pouvez accéder à votre capacité personnalisée via, par exemple:
 
 ```ts
 browser.capabilities['custom:caps']
 ```
 
-Pour assurer la sécurité des types, vous pouvez étendre l'interface de capacité de WebdriverIO via :
+Pour assurer la sécurité de type, vous pouvez étendre l'interface de capacité de WebdriverIO via:
 
 ```ts
 declare global {

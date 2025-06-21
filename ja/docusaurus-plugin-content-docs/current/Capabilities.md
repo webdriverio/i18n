@@ -1,42 +1,42 @@
 ---
 id: capabilities
-title: ケーパビリティ
+title: 機能
 ---
 
-ケーパビリティとは、リモートインターフェースの定義です。これは、WebdriverIOがどのブラウザまたはモバイル環境でテストを実行したいかを理解するのに役立ちます。ケーパビリティは、ローカルでテストを開発する場合、ほとんどの場合1つのリモートインターフェース上で実行するため、それほど重要ではありませんが、CI/CDで大規模な統合テストを実行する際には重要になります。
+機能（capability）はリモートインターフェースの定義です。これはWebdriverIOが、あなたがどのブラウザやモバイル環境でテストを実行したいかを理解するのに役立ちます。機能は、ローカルでテストを開発する場合、ほとんどの時間を一つのリモートインターフェースで実行するため、それほど重要ではありませんが、CI/CDで大規模な統合テストを実行する場合には重要になります。
 
 :::info
 
-ケーパビリティオブジェクトのフォーマットは[WebDriver仕様](https://w3c.github.io/webdriver/#capabilities)によって明確に定義されています。WebdriverIOのテストランナーは、ユーザー定義のケーパビリティがその仕様に準拠していない場合、早期に失敗します。
+機能オブジェクトの形式は[WebDriver仕様](https://w3c.github.io/webdriver/#capabilities)によって明確に定義されています。WebdriverIOテストランナーは、ユーザー定義の機能がこの仕様に準拠していない場合、早期に失敗します。
 
 :::
 
-## カスタムケーパビリティ
+## カスタム機能
 
-固定的に定義されたケーパビリティの数は非常に少ないですが、誰でも自動化ドライバーやリモートインターフェースに特化したカスタムケーパビリティを提供および受け入れることができます：
+固定的に定義された機能の数は非常に少ないですが、誰でも自動化ドライバーやリモートインターフェース特有のカスタム機能を提供し、受け入れることができます：
 
-### ブラウザ固有のケーパビリティ拡張
+### ブラウザ固有の機能拡張
 
-- `goog:chromeOptions`: [Chromedriver](https://chromedriver.chromium.org/capabilities)の拡張機能、Chromeでのテストにのみ適用可能
-- `moz:firefoxOptions`: [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)の拡張機能、Firefoxでのテストにのみ適用可能
+- `goog:chromeOptions`: [Chromedriver](https://chromedriver.chromium.org/capabilities)拡張機能、Chromeでのテストにのみ適用可能
+- `moz:firefoxOptions`: [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)拡張機能、Firefoxでのテストにのみ適用可能
 - `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) Chromium EdgeをテストするためにEdgeDriverを使用する環境を指定するため
 
-### クラウドベンダーのケーパビリティ拡張
+### クラウドベンダーの機能拡張
 
 - `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
 - `bstack:options`: [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
 - `tb:options`: [TestingBot](https://testingbot.com/support/other/test-options)
-- その他多数...
+- など多数...
 
-### 自動化エンジンのケーパビリティ拡張
+### 自動化エンジンの機能拡張
 
 - `appium:xxx`: [Appium](https://appium.io/docs/en/latest/guides/caps/)
 - `selenoid:xxx`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
-- その他多数...
+- など多数...
 
-### ブラウザドライバーオプションを管理するためのWebdriverIOケーパビリティ
+### ブラウザドライバーオプションを管理するWebdriverIOの機能
 
-WebdriverIOは、ブラウザドライバーのインストールと実行を管理します。WebdriverIOは、ドライバーにパラメータを渡すことができるカスタムケーパビリティを使用します。
+WebdriverIOはブラウザドライバーのインストールと実行を管理します。WebdriverIOはドライバーにパラメータを渡すことを可能にするカスタム機能を使用します。
 
 #### `wdio:chromedriverOptions`
 
@@ -56,60 +56,60 @@ Safariを起動する際に渡される特定のオプション。
 
 #### `wdio:maxInstances`
 
-特定のブラウザ/ケーパビリティに対して並行して実行されるワーカーの最大数。[maxInstances](#configuration#maxInstances)と[maxInstancesPerCapability](configuration/#maxinstancespercapability)よりも優先されます。
+特定のブラウザ/機能に対する並列実行ワーカーの最大数。[maxInstances](#configuration#maxInstances)と[maxInstancesPerCapability](configuration/#maxinstancespercapability)よりも優先されます。
 
-型: `number`
+タイプ: `number`
 
 #### `wdio:specs`
 
-そのブラウザ/ケーパビリティのテスト実行用のスペックを定義します。[通常の`specs`設定オプション](configuration#specs)と同じですが、特定のブラウザ/ケーパビリティに固有です。`specs`よりも優先されます。
+そのブラウザ/機能に対するテスト実行のためのスペックを定義します。[通常の`specs`設定オプション](configuration#specs)と同じですが、特定のブラウザ/機能に限定されます。`specs`よりも優先されます。
 
-型: `(String | String[])[]`
+タイプ: `(String | String[])[]`
 
 #### `wdio:exclude`
 
-そのブラウザ/ケーパビリティのテスト実行からスペックを除外します。[通常の`exclude`設定オプション](configuration#exclude)と同じですが、特定のブラウザ/ケーパビリティに固有です。`exclude`よりも優先されます。
+そのブラウザ/機能に対するテスト実行からスペックを除外します。[通常の`exclude`設定オプション](configuration#exclude)と同じですが、特定のブラウザ/機能に限定されます。グローバルな`exclude`設定オプション適用後に除外されます。
 
-型: `String[]`
+タイプ: `String[]`
 
 #### `wdio:enforceWebDriverClassic`
 
-デフォルトでは、WebdriverIOはWebDriver Bidiセッションの確立を試みます。これを希望しない場合は、このフラグを設定して無効にすることができます。
+デフォルトでは、WebdriverIOはWebDriver Bidiセッションの確立を試みます。これを好まない場合は、このフラグを設定して無効にすることができます。
 
-型: `boolean`
+タイプ: `boolean`
 
-#### 共通のドライバーオプション
+#### 共通ドライバーオプション
 
-すべてのドライバーは異なる設定パラメータを提供しますが、WebdriverIOが理解し、ドライバーまたはブラウザの設定に使用するいくつかの共通のものがあります：
+すべてのドライバーは設定のための異なるパラメータを提供していますが、WebdriverIOが理解し、ドライバーまたはブラウザの設定に使用するいくつかの共通のものがあります：
 
 ##### `cacheDir`
 
-キャッシュディレクトリのルートへのパス。このディレクトリは、セッションを開始しようとするときにダウンロードされるすべてのドライバーを保存するために使用されます。
+キャッシュディレクトリのルートへのパス。このディレクトリはセッションを開始しようとするときにダウンロードされるすべてのドライバーを保存するために使用されます。
 
-型: `string`<br />
+タイプ: `string`<br />
 デフォルト: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
 
 ##### `binary`
 
-カスタムドライバーバイナリへのパス。設定されている場合、WebdriverIOはドライバーをダウンロードせず、このパスで提供されるものを使用します。ドライバーが使用しているブラウザと互換性があることを確認してください。
+カスタムドライバーバイナリへのパス。設定されている場合、WebdriverIOはドライバーをダウンロードしようとせず、このパスで提供されたものを使用します。ドライバーが使用しているブラウザと互換性があることを確認してください。
 
-このパスは`CHROMEDRIVER_PATH`、`GECKODRIVER_PATH`または`EDGEDRIVER_PATH`環境変数を通じて提供できます。
+このパスは `CHROMEDRIVER_PATH`、`GECKODRIVER_PATH`、または `EDGEDRIVER_PATH` 環境変数を通じて提供することができます。
 
-型: `string`
+タイプ: `string`
 
 :::caution
 
-ドライバーの`binary`が設定されている場合、WebdriverIOはドライバーをダウンロードせず、このパスで提供されるものを使用します。ドライバーが使用しているブラウザと互換性があることを確認してください。
+ドライバーの `binary` が設定されている場合、WebdriverIOはドライバーをダウンロードしようとせず、このパスで提供されたものを使用します。ドライバーが使用しているブラウザと互換性があることを確認してください。
 
 :::
 
 #### ブラウザ固有のドライバーオプション
 
-ドライバーにオプションを伝播するために、以下のカスタムケーパビリティを使用できます：
+ドライバーにオプションを伝えるために、次のカスタム機能を使用できます：
 
 - Chrome または Chromium: `wdio:chromedriverOptions`
 - Firefox: `wdio:geckodriverOptions`
-- Microsoft Egde: `wdio:edgedriverOptions`
+- Microsoft Edge: `wdio:edgedriverOptions`
 - Safari: `wdio:safaridriverOptions`
 
 <Tabs
@@ -124,107 +124,107 @@ Safariを起動する際に渡される特定のオプション。
 <TabItem value="chrome">
 
 ##### adbPort
-ADBドライバーが実行されるべきポート。
+ADBドライバーが実行すべきポート。
 
 例: `9515`
 
-型: `number`
+タイプ: `number`
 
 ##### urlBase
-コマンド用のベースURLパスプレフィックス、例：`wd/url`。
+コマンドのベースURLパスプレフィックス、例えば `wd/url`。
 
 例: `/`
 
-型: `string`
+タイプ: `string`
 
 ##### logPath
-標準エラー出力の代わりにファイルにサーバーログを書き込み、ログレベルを`INFO`に上げます。
+stderrの代わりにファイルにサーバーログを書き込み、ログレベルを `INFO` に上げます。
 
-型: `string`
+タイプ: `string`
 
 ##### logLevel
-ログレベルを設定します。可能なオプションは`ALL`、`DEBUG`、`INFO`、`WARNING`、`SEVERE`、`OFF`です。
+ログレベルを設定します。可能なオプションは `ALL`、`DEBUG`、`INFO`、`WARNING`、`SEVERE`、`OFF` です。
 
-型: `string`
+タイプ: `string`
 
 ##### verbose
-詳細にログを記録します（`--log-level=ALL`と同等）。
+詳細にログを記録します（`--log-level=ALL` と同等）。
 
-型: `boolean`
+タイプ: `boolean`
 
 ##### silent
-何もログに記録しません（`--log-level=OFF`と同等）。
+何もログに記録しません（`--log-level=OFF` と同等）。
 
-型: `boolean`
+タイプ: `boolean`
 
 ##### appendLog
-ログファイルを上書きする代わりに追加します。
+ログファイルを書き換えるのではなく、追加します。
 
-型: `boolean`
+タイプ: `boolean`
 
 ##### replayable
-詳細にログを記録し、長い文字列を切り詰めないため、ログを再生できます（実験的）。
+詳細にログを記録し、長い文字列を切り捨てないようにして、ログを再生できるようにします（実験的）。
 
-型: `boolean`
+タイプ: `boolean`
 
 ##### readableTimestamp
-読みやすいタイムスタンプをログに追加します。
+ログに読みやすいタイムスタンプを追加します。
 
-型: `boolean`
+タイプ: `boolean`
 
 ##### enableChromeLogs
 ブラウザからのログを表示します（他のログオプションを上書きします）。
 
-型: `boolean`
+タイプ: `boolean`
 
 ##### bidiMapperPath
 カスタムbidiマッパーパス。
 
-型: `string`
+タイプ: `string`
 
 ##### allowedIps
-EdgeDriverへの接続を許可されるリモートIPアドレスのカンマ区切りの許可リスト。
+EdgeDriverへの接続を許可するリモートIPアドレスのカンマ区切りの許可リスト。
 
-型: `string[]`<br />
+タイプ: `string[]`<br />
 デフォルト: `['']`
 
 ##### allowedOrigins
-EdgeDriverへの接続を許可されるリクエスト元のカンマ区切りの許可リスト。任意のホスト元を許可するために`*`を使用することは危険です！
+EdgeDriverへの接続を許可するリクエスト元のカンマ区切りの許可リスト。`*` を使用して任意のホスト元を許可することは危険です！
 
-型: `string[]`<br />
+タイプ: `string[]`<br />
 デフォルト: `['*']`
 
 ##### spawnOpts
 ドライバープロセスに渡されるオプション。
 
-型: `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
+タイプ: `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
 デフォルト: `undefined`
 
 </TabItem>
 <TabItem value="firefox">
 
-すべてのGeckodriverオプションは公式の[ドライバーパッケージ](https://github.com/webdriverio-community/node-geckodriver#options)を参照してください。
+公式の[ドライバーパッケージ](https://github.com/webdriverio-community/node-geckodriver#options)でGeckodriverのすべてのオプションを確認してください。
 
 </TabItem>
 <TabItem value="msedge">
 
-すべてのEdgedriverオプションは公式の[ドライバーパッケージ](https://github.com/webdriverio-community/node-edgedriver#options)を参照してください。
+公式の[ドライバーパッケージ](https://github.com/webdriverio-community/node-edgedriver#options)でEdgedriverのすべてのオプションを確認してください。
 
 </TabItem>
 <TabItem value="safari">
 
-すべてのSafaridriverオプションは公式の[ドライバーパッケージ](https://github.com/webdriverio-community/node-safaridriver#options)を参照してください。
+公式の[ドライバーパッケージ](https://github.com/webdriverio-community/node-safaridriver#options)でSafariのすべてのオプションを確認してください。
 
 </TabItem>
 </Tabs>
 
-## 特定のユースケース向けの特別なケーパビリティ
+## 特定の使用例のための特別な機能
 
-これは、特定のユースケースを実現するために適用する必要があるケーパビリティの例のリストです。
+これは、特定の使用例を達成するために適用する必要がある機能を示す例のリストです。
 
 ### ブラウザをヘッドレスで実行する
 
-ヘッドレスブラウザを実行するということは、ウィンドウやUIなしでブラウザインスタンスを実行することを意味します。これは、ディスプレイが使用されないCI/CD環境内で主に使用されます。ブラウザをヘッドレスモードで実行するには、次のケーパビリティを適用します：
+ヘッドレスブラウザを実行するということは、ウィンドウやUIなしでブラウザインスタンスを実行することを意味します。これは主にディスプレイが使用されないCI/CD環境で使用されます。ブラウザをヘッドレスモードで実行するには、以下の機能を適用してください：
 
 <Tabs
   defaultValue="chrome"
@@ -239,7 +239,7 @@ EdgeDriverへの接続を許可されるリクエスト元のカンマ区切り�
 
 ```ts
 {
-    browserName: 'chrome',   // or 'chromium'
+    browserName: 'chrome',   // または 'chromium'
     'goog:chromeOptions': {
         args: ['headless', 'disable-gpu']
     }
@@ -276,7 +276,7 @@ Safariはヘッドレスモードでの実行を[サポートしていない](ht
 
 ### 異なるブラウザチャンネルを自動化する
 
-まだ安定版としてリリースされていないブラウザバージョン、例えばChrome Canaryをテストしたい場合、ケーパビリティを設定し、起動したいブラウザを指定することでそれが可能です：
+まだ安定版としてリリースされていないブラウザバージョン、例えばChrome Canaryをテストしたい場合、機能を設定し、起動したいブラウザを指定することで実現できます：
 
 <Tabs
   defaultValue="chrome"
@@ -289,31 +289,31 @@ Safariはヘッドレスモードでの実行を[サポートしていない](ht
 }>
 <TabItem value="chrome">
 
-Chromeでテストする場合、WebdriverIOは定義された`browserVersion`に基づいて、必要なブラウザバージョンとドライバーを自動的にダウンロードします：
+Chromeでテストする場合、WebdriverIOは定義された `browserVersion` に基づいて、必要なブラウザバージョンとドライバーを自動的にダウンロードします：
 
 ```ts
 {
-    browserName: 'chrome', // or 'chromium'
-    browserVersion: '116' // or '116.0.5845.96', 'stable', 'dev', 'canary', 'beta' or 'latest' (same as 'canary')
+    browserName: 'chrome', // または 'chromium'
+    browserVersion: '116' // または '116.0.5845.96', 'stable', 'dev', 'canary', 'beta', 'latest' ('canary'と同じ)
 }
 ```
 
-手動でダウンロードしたブラウザをテストしたい場合は、ブラウザへのバイナリパスを次のように提供できます：
+手動でダウンロードしたブラウザをテストしたい場合は、ブラウザへのバイナリパスを提供できます：
 
 ```ts
 {
-    browserName: 'chrome',  // or 'chromium'
+    browserName: 'chrome',  // または 'chromium'
     'goog:chromeOptions': {
         binary: '/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
     }
 }
 ```
 
-さらに、手動でダウンロードしたドライバーを使用したい場合は、ドライバーへのバイナリパスを次のように提供できます：
+さらに、手動でダウンロードしたドライバーを使用したい場合は、ドライバーへのバイナリパスを提供できます：
 
 ```ts
 {
-    browserName: 'chrome', // or 'chromium'
+    browserName: 'chrome', // または 'chromium'
     'wdio:chromedriverOptions': {
         binary: '/path/to/chromdriver'
     }
@@ -323,16 +323,16 @@ Chromeでテストする場合、WebdriverIOは定義された`browserVersion`�
 </TabItem>
 <TabItem value="firefox">
 
-Firefoxでテストする場合、WebdriverIOは定義された`browserVersion`に基づいて、必要なブラウザバージョンとドライバーを自動的にダウンロードします：
+Firefoxでテストする場合、WebdriverIOは定義された `browserVersion` に基づいて、必要なブラウザバージョンとドライバーを自動的にダウンロードします：
 
 ```ts
 {
     browserName: 'firefox',
-    browserVersion: '119.0a1' // or 'latest'
+    browserVersion: '119.0a1' // または 'latest'
 }
 ```
 
-手動でダウンロードしたバージョンをテストしたい場合は、ブラウザへのバイナリパスを次のように提供できます：
+手動でダウンロードしたバージョンをテストしたい場合は、ブラウザへのバイナリパスを提供できます：
 
 ```ts
 {
@@ -343,7 +343,7 @@ Firefoxでテストする場合、WebdriverIOは定義された`browserVersion`�
 }
 ```
 
-さらに、手動でダウンロードしたドライバーを使用したい場合は、ドライバーへのバイナリパスを次のように提供できます：
+さらに、手動でダウンロードしたドライバーを使用したい場合は、ドライバーへのバイナリパスを提供できます：
 
 ```ts
 {
@@ -357,7 +357,7 @@ Firefoxでテストする場合、WebdriverIOは定義された`browserVersion`�
 </TabItem>
 <TabItem value="msedge">
 
-Microsoft Edgeでテストする場合、マシンに必要なブラウザバージョンがインストールされていることを確認してください。実行するブラウザにWebdriverIOを指定するには：
+Microsoft Edgeでテストする場合は、必要なブラウザバージョンがマシンにインストールされていることを確認してください。実行するブラウザにWebdriverIOを向けることができます：
 
 ```ts
 {
@@ -368,16 +368,16 @@ Microsoft Edgeでテストする場合、マシンに必要なブラウザバー
 }
 ```
 
-WebdriverIOは、定義された`browserVersion`に基づいて、必要なドライバーバージョンを自動的にダウンロードします：
+WebdriverIOは定義された `browserVersion` に基づいて、必要なドライバーバージョンを自動的にダウンロードします：
 
 ```ts
 {
     browserName: 'msedge',
-    browserVersion: '109' // or '109.0.1467.0', 'stable', 'dev', 'canary', 'beta'
+    browserVersion: '109' // または '109.0.1467.0', 'stable', 'dev', 'canary', 'beta'
 }
 ```
 
-さらに、手動でダウンロードしたドライバーを使用したい場合は、ドライバーへのバイナリパスを次のように提供できます：
+さらに、手動でダウンロードしたドライバーを使用したい場合は、ドライバーへのバイナリパスを提供できます：
 
 ```ts
 {
@@ -391,7 +391,7 @@ WebdriverIOは、定義された`browserVersion`に基づいて、必要なド�
 </TabItem>
 <TabItem value="safari">
 
-Safariでテストする場合、マシンに[Safari Technology Preview](https://developer.apple.com/safari/technology-preview/)がインストールされていることを確認してください。WebdriverIOをそのバージョンに指定するには：
+Safariでテストする場合は、[Safari Technology Preview](https://developer.apple.com/safari/technology-preview/)がマシンにインストールされていることを確認してください。そのバージョンにWebdriverIOを向けることができます：
 
 ```ts
 {
@@ -402,9 +402,9 @@ Safariでテストする場合、マシンに[Safari Technology Preview](https:/
 </TabItem>
 </Tabs>
 
-## カスタムケーパビリティの拡張
+## カスタム機能の拡張
 
-例えば、特定のケーパビリティのテスト内で使用する任意のデータを保存するなど、独自のケーパビリティセットを定義したい場合は、次のように設定できます：
+例えば、その特定の機能のテスト内で使用する任意のデータを保存するために、独自の機能セットを定義したい場合は、以下のように設定できます：
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -418,13 +418,13 @@ export const config = {
 }
 ```
 
-ケーパビリティの命名に関しては、実装固有の名前空間を示す`:` (コロン) 文字を必要とする[W3Cプロトコル](https://w3c.github.io/webdriver/#dfn-extension-capability)に従うことをお勧めします。テスト内でカスタムケーパビリティにアクセスするには、例えば：
+機能の命名に関しては、実装固有の名前空間を示す `:` (コロン) 文字を必要とする[W3Cプロトコル](https://w3c.github.io/webdriver/#dfn-extension-capability)に従うことをお勧めします。テスト内で、例えば以下のようにカスタム機能にアクセスできます：
 
 ```ts
 browser.capabilities['custom:caps']
 ```
 
-型の安全性を確保するために、WebdriverIOのケーパビリティインターフェースを次のように拡張できます：
+型の安全性を確保するために、WebdriverIOの機能インターフェースを拡張できます：
 
 ```ts
 declare global {
