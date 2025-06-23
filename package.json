@@ -10,7 +10,7 @@
     "type": "module",
     "dependencies": {
         "@anthropic-ai/sdk": "^0.54.0",
-        "@types/node": "^22.15.2",
+        "@types/node": "^24.0.3",
         "ai": "^4.3.10",
         "dotenv": "^16.5.0",
         "tsx": "^4.19.3",
