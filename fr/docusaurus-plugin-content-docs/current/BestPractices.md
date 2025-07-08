@@ -5,11 +5,11 @@ title: Bonnes Pratiques
 
 # Bonnes Pratiques
 
-Ce guide vise à partager nos bonnes pratiques qui vous aident à écrire des tests performants et robustes.
+Ce guide vise à partager nos meilleures pratiques qui vous aident à écrire des tests performants et robustes.
 
 ## Utiliser des sélecteurs robustes
 
-En utilisant des sélecteurs qui résistent aux changements dans le DOM, vous aurez moins ou même aucun test qui échoue lorsque, par exemple, une classe est supprimée d'un élément.
+En utilisant des sélecteurs qui résistent aux changements dans le DOM, vous aurez moins de tests qui échouent, voire aucun, lorsque par exemple une classe est supprimée d'un élément.
 
 Les classes peuvent être appliquées à plusieurs éléments et devraient être évitées si possible, sauf si vous souhaitez délibérément récupérer tous les éléments avec cette classe.
 
@@ -27,11 +27,11 @@ await $('[test-id="submit-button"]')
 await $('#submit-button')
 ```
 
-__Remarque :__ Pour découvrir tous les sélecteurs possibles que WebdriverIO prend en charge, consultez notre page [Selectors](./Selectors.md).
+__Note:__ Pour découvrir tous les sélecteurs possibles que WebdriverIO prend en charge, consultez notre page [Selectors](./Selectors.md).
 
 ## Limiter le nombre de requêtes d'éléments
 
-Chaque fois que vous utilisez la commande [`$`](https://webdriver.io/docs/api/browser/$) ou [`$$`](https://webdriver.io/docs/api/browser/$$) (cela inclut leur chaînage), WebdriverIO essaie de localiser l'élément dans le DOM. Ces requêtes sont coûteuses, vous devriez donc essayer de les limiter autant que possible.
+Chaque fois que vous utilisez la commande [`$`](https://webdriver.io/docs/api/browser/$) ou [`$$`](https://webdriver.io/docs/api/browser/$$) (y compris en les chaînant), WebdriverIO essaie de localiser l'élément dans le DOM. Ces requêtes sont coûteuses, vous devriez donc essayer de les limiter autant que possible.
 
 Requête trois éléments.
 
@@ -57,7 +57,7 @@ await $('custom-datepicker').$('#calendar').$('aria/Select')
 
 ### Préférer localiser un seul élément plutôt que d'en prendre un dans une liste
 
-Ce n'est pas toujours possible, mais en utilisant des pseudo-classes CSS comme [:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child), vous pouvez faire correspondre des éléments en fonction des index des éléments dans la liste des enfants de leurs parents.
+Ce n'est pas toujours possible, mais en utilisant des pseudo-classes CSS comme [:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child), vous pouvez faire correspondre des éléments en fonction des indices des éléments dans la liste enfant de leurs parents.
 
 Requête toutes les lignes du tableau.
 
@@ -66,7 +66,7 @@ Requête toutes les lignes du tableau.
 await $$('table tr')[15]
 ```
 
-Requête une seule ligne du tableau.
+Requête une seule ligne de tableau.
 
 ```js
 // 👍
@@ -116,7 +116,7 @@ await $('div').$('button').click()
 
 ## Ne pas surutiliser les commandes et les assertions
 
-Lorsque vous utilisez expect.toBeDisplayed, vous attendez implicitement que l'élément existe. Il n'est pas nécessaire d'utiliser les commandes waitForXXX lorsque vous avez déjà une assertion qui fait la même chose.
+Lorsque vous utilisez expect.toBeDisplayed, vous attendez implicitement également que l'élément existe. Il n'est pas nécessaire d'utiliser les commandes waitForXXX lorsque vous avez déjà une assertion qui fait la même chose.
 
 ```js
 // 👎
@@ -155,7 +155,7 @@ await button.click()
 await expect(button).toHaveText('Submit')
 ```
 
-## Tests dynamiques
+## Tests Dynamiques
 
 Utilisez des variables d'environnement pour stocker des données de test dynamiques, par exemple des identifiants secrets, dans votre environnement plutôt que de les coder en dur dans le test. Rendez-vous sur la page [Parameterize Tests](parameterize-tests) pour plus d'informations à ce sujet.
 
@@ -170,7 +170,7 @@ Il peut être tentant d'utiliser la commande pause, mais c'est une mauvaise idé
 ```js
 // 👎
 await nameInput.setValue('Bob')
-await browser.pause(200) // attendre que le bouton de soumission soit activé
+await browser.pause(200) // wait for submit button to enable
 await submitFormButton.click()
 
 // 👍
@@ -181,10 +181,10 @@ await submitFormButton.click()
 
 ## Boucles asynchrones
 
-Lorsque vous avez du code asynchrone que vous souhaitez répéter, il est important de savoir que toutes les boucles ne peuvent pas le faire.
-Par exemple, la fonction forEach des tableaux ne permet pas les callbacks asynchrones comme on peut le lire sur [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
+Lorsque vous avez du code asynchrone que vous souhaitez répéter, il est important de savoir que toutes les boucles ne peuvent pas faire cela.
+Par exemple, la fonction forEach du tableau ne permet pas les callbacks asynchrones, comme on peut le lire sur [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
 
-__Remarque :__ Vous pouvez toujours les utiliser lorsque vous n'avez pas besoin que l'opération soit synchrone comme dans cet exemple `console.log(await $$('h1').map((h1) => h1.getText()))`.
+__Note:__ Vous pouvez toujours les utiliser lorsque vous n'avez pas besoin que l'opération soit asynchrone comme dans cet exemple `console.log(await $$('h1').map((h1) => h1.getText()))`.
 
 Voici quelques exemples de ce que cela signifie.
 
@@ -210,7 +210,7 @@ for (const character of characters) {
 
 ## Garder les choses simples
 
-Parfois, nous voyons nos utilisateurs mapper des données comme du texte ou des valeurs. Ce n'est souvent pas nécessaire et c'est souvent un signe de code suspect, vérifiez les exemples ci-dessous pour comprendre pourquoi c'est le cas.
+Parfois, nous voyons nos utilisateurs mapper des données comme du texte ou des valeurs. Ce n'est souvent pas nécessaire et est souvent un signe de code malodorant, consultez les exemples ci-dessous pour comprendre pourquoi c'est le cas.
 
 ```js
 // 👎 trop complexe, assertion synchrone, utilisez les assertions intégrées pour éviter les tests instables
@@ -226,7 +226,7 @@ for (let i = 0; i < columns.length; i++) {
     await expect(columns[i]).toHaveText(headerText[i]);
 }
 
-// 👎 trouve des éléments par leur texte mais ne tient pas compte de la position des éléments
+// 👎 trouve des éléments par leur texte mais ne prend pas en compte la position des éléments
 await expect($('th=Products')).toExist();
 await expect($('th=Prices')).toExist();
 ```
@@ -234,7 +234,7 @@ await expect($('th=Prices')).toExist();
 ```js
 // 👍 utiliser des identifiants uniques (souvent utilisés pour les éléments personnalisés)
 await expect($('[data-testid="Products"]')).toHaveText('Products');
-// 👍 noms d'accessibilité (souvent utilisés pour les éléments HTML natifs)
+// 👍 noms d'accessibilité (souvent utilisés pour les éléments html natifs)
 await expect($('aria/Product Prices')).toHaveText('Prices');
 ```
 
@@ -286,9 +286,9 @@ class BetterExample {
 
 ## Exécution de code en parallèle
 
-Si vous ne vous souciez pas de l'ordre dans lequel certains codes sont exécutés, vous pouvez utiliser [`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) pour accélérer l'exécution.
+Si vous ne vous souciez pas de l'ordre dans lequel un certain code est exécuté, vous pouvez utiliser [`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) pour accélérer l'exécution.
 
-__Remarque :__ Comme cela rend le code plus difficile à lire, vous pourriez l'abstraire en utilisant un objet de page ou une fonction, bien que vous devriez également vous demander si le gain de performance vaut le coût de lisibilité.
+__Note:__ Comme cela rend le code plus difficile à lire, vous pourriez l'abstraire en utilisant un objet de page ou une fonction, bien que vous devriez également vous demander si le gain de performance vaut le coût de lisibilité.
 
 ```js
 // 👎

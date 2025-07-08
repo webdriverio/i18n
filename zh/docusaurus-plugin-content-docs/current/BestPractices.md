@@ -9,9 +9,9 @@ title: 最佳实践
 
 ## 使用稳健的选择器
 
-使用对DOM变化具有弹性的选择器，当例如从元素中移除类时，您将会减少甚至不会出现测试失败的情况。
+使用对DOM变化具有弹性的选择器，当例如某个元素的类被移除时，您将减少甚至不会有测试失败的情况。
 
-类可以应用于多个元素，如果可能的话应该避免使用，除非您故意想要获取所有具有该类的元素。
+类可以应用于多个元素，如果可能的话应该避免使用，除非您故意想要获取具有该类的所有元素。
 
 ```js
 // 👎
@@ -27,11 +27,11 @@ await $('[test-id="submit-button"]')
 await $('#submit-button')
 ```
 
-__注意:__ 要了解WebdriverIO支持的所有可能的选择器，请查看我们的[选择器](./Selectors.md)页面。
+__注意：__ 要了解WebdriverIO支持的所有可能的选择器，请查看我们的[选择器](./Selectors.md)页面。
 
 ## 限制元素查询的数量
 
-每次使用[`$`](https://webdriver.io/docs/api/browser/$)或[`$$`](https://webdriver.io/docs/api/browser/$$)命令（包括链式调用）时，WebdriverIO都会尝试在DOM中定位元素。这些查询是昂贵的，所以您应该尽量限制它们。
+每次使用[`$`](https://webdriver.io/docs/api/browser/$)或[`$$`](https://webdriver.io/docs/api/browser/$$)命令（包括链式调用）时，WebdriverIO都会尝试在DOM中定位元素。这些查询成本很高，所以您应该尽量限制它们的使用。
 
 查询三个元素。
 
@@ -48,16 +48,16 @@ await $('table tr td')
 ```
 
 唯一应该使用链式调用的时候是当您想要组合不同的[选择器策略](https://webdriver.io/docs/selectors/#custom-selector-strategies)时。
-在示例中，我们使用[深层选择器](https://webdriver.io/docs/selectors#deep-selectors)，这是一种进入元素Shadow DOM的策略。
+在示例中，我们使用[Deep Selectors](https://webdriver.io/docs/selectors#deep-selectors)，这是一种进入元素的shadow DOM的策略。
 
 ``` js
 // 👍
 await $('custom-datepicker').$('#calendar').$('aria/Select')
 ```
 
-### 优先定位单个元素而不是从列表中选取一个
+### 优先定位单个元素而不是从列表中取一个
 
-这并不总是可能的，但使用CSS伪类如[:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)，您可以基于元素在其父元素子列表中的索引来匹配元素。
+这并不总是可行的，但使用CSS伪类如[:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)，您可以根据父元素子列表中的索引匹配元素。
 
 查询所有表格行。
 
@@ -90,12 +90,12 @@ expect(await button.isDisplayed()).toBe(true)
 await expect(button).toBeDisplayed()
 ```
 
-## 懒加载和Promise链
+## 懒加载和promise链
 
-WebdriverIO在编写干净代码方面有一些技巧，因为它可以懒加载元素，这允许您链接Promise并减少`await`的使用量。这还允许您将元素作为ChainablePromiseElement而不是Element传递，以便更容易与页面对象一起使用。
+在编写干净代码方面，WebdriverIO有一些技巧，它可以懒加载元素，这允许您链式调用promises并减少`await`的使用量。这也允许您将元素作为ChainablePromiseElement而不是Element传递，并更容易与页面对象一起使用。
 
 那么什么时候必须使用`await`呢？
-除了`$`和`$$`命令外，您应该始终使用`await`。
+您应该始终使用`await`，但`$`和`$$`命令除外。
 
 ```js
 // 👎
@@ -131,7 +131,7 @@ await expect(button).toBeDisplayed()
 await expect(button).toBeDisplayed()
 ```
 
-在交互或断言元素文本时，不需要等待元素存在或显示，除非元素可以明确地不可见（例如opacity: 0）或可以明确地被禁用（例如disabled属性），在这种情况下，等待元素显示是有意义的。
+与元素交互或断言其文本等内容时，不需要等待元素存在或显示，除非元素可能明确不可见（例如opacity: 0）或明确禁用（例如disabled属性），在这种情况下等待元素显示是有意义的。
 
 ```js
 // 👎
@@ -157,15 +157,15 @@ await expect(button).toHaveText('Submit')
 
 ## 动态测试
 
-使用环境变量在您的环境中存储动态测试数据，例如密码凭证，而不是将它们硬编码到测试中。有关此主题的更多信息，请查看[参数化测试](parameterize-tests)页面。
+使用环境变量在您的环境中存储动态测试数据，例如秘密凭据，而不是将它们硬编码到测试中。有关此主题的更多信息，请前往[参数化测试](parameterize-tests)页面。
 
-## 对代码进行Lint检查
+## 对代码进行lint检查
 
-使用eslint对您的代码进行lint检查，您可以潜在地早期发现错误，使用我们的[lint规则](https://www.npmjs.com/package/eslint-plugin-wdio)确保始终应用一些最佳实践。
+使用eslint对代码进行lint检查，您可以在早期发现潜在的错误，使用我们的[lint规则](https://www.npmjs.com/package/eslint-plugin-wdio)确保始终应用一些最佳实践。
 
 ## 不要暂停
 
-使用pause命令可能很诱人，但这样做是个坏主意，因为它不够稳健，从长远来看只会导致测试不稳定。
+使用pause命令可能很诱人，但这样做是个坏主意，因为它不具有弹性，从长远来看只会导致测试不稳定。
 
 ```js
 // 👎
@@ -181,14 +181,14 @@ await submitFormButton.click()
 
 ## 异步循环
 
-当您有一些想要重复的异步代码时，重要的是要知道并非所有循环都可以做到这一点。
-例如，数组的forEach函数不允许异步回调，可以在[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)上阅读相关内容。
+当您有一些想要重复的异步代码时，重要的是要知道并非所有循环都能做到这一点。
+例如，Array的forEach函数不允许异步回调，正如在[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)上所述。
 
-__注意:__ 当您不需要操作是同步的时候，您仍然可以使用这些，就像在这个例子中所示`console.log(await $$('h1').map((h1) => h1.getText()))`。
+__注意：__ 当您不需要操作是异步的时候，您仍然可以使用这些，如在这个例子中所示：`console.log(await $$('h1').map((h1) => h1.getText()))`。
 
-以下是一些示例，说明这意味着什么。
+下面是一些说明这意味着什么的例子。
 
-以下代码不会起作用，因为不支持异步回调。
+以下代码将不起作用，因为不支持异步回调。
 
 ```js
 // 👎
@@ -210,7 +210,7 @@ for (const character of characters) {
 
 ## 保持简单
 
-有时我们看到用户会映射数据，如文本或值。这通常是不必要的，而且往往是代码异味，请查看以下示例，了解为什么会这样。
+有时我们看到用户映射数据如文本或值。这通常是不必要的，而且往往是代码异味，请查看下面的例子，了解为什么是这种情况。
 
 ```js
 // 👎 太复杂，同步断言，使用内置断言防止测试不稳定
@@ -234,11 +234,11 @@ await expect($('th=Prices')).toExist();
 ```js
 // 👍 使用唯一标识符（通常用于自定义元素）
 await expect($('[data-testid="Products"]')).toHaveText('Products');
-// 👍 无障碍名称（通常用于原生html元素）
+// 👍 可访问性名称（通常用于原生html元素）
 await expect($('aria/Product Prices')).toHaveText('Prices');
 ```
 
-我们有时看到的另一件事是简单的事情有过于复杂的解决方案。
+我们有时看到的另一件事是简单的事情有一个过于复杂的解决方案。
 
 ```js
 // 👎
@@ -286,9 +286,9 @@ class BetterExample {
 
 ## 并行执行代码
 
-如果您不关心一些代码的执行顺序，您可以利用[`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)来加速执行。
+如果您不关心代码运行的顺序，可以利用[`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)来加速执行。
 
-__注意:__ 由于这会使代码更难阅读，您可以使用页面对象或函数对其进行抽象，尽管您也应该质疑性能上的收益是否值得可读性的成本。
+__注意：__ 由于这会使代码更难阅读，您可以使用页面对象或函数将其抽象化，尽管您也应该质疑性能收益是否值得可读性的成本。
 
 ```js
 // 👎
@@ -308,7 +308,7 @@ await submitFormButton.waitForEnabled()
 await submitFormButton.click()
 ```
 
-如果抽象化，它可能看起来像下面这样，其中逻辑放在一个名为submitWithDataOf的方法中，数据由Person类获取。
+如果抽象化，它可能看起来像下面这样，其中逻辑放在一个名为submitWithDataOf的方法中，数据由Person类检索。
 
 ```js
 // 👍

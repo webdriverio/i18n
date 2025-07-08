@@ -5,13 +5,13 @@ title: Melhores Práticas
 
 # Melhores Práticas
 
-Este guia tem como objetivo compartilhar nossas melhores práticas que ajudam a escrever testes eficientes e resilientes.
+Este guia tem como objetivo compartilhar nossas melhores práticas que ajudam você a escrever testes performáticos e resilientes.
 
 ## Use seletores resilientes
 
-Usando seletores que são resilientes a mudanças no DOM, você terá menos ou até mesmo nenhum teste falhando quando, por exemplo, uma classe for removida de um elemento.
+Usando seletores que são resilientes a mudanças no DOM, você terá menos ou até mesmo nenhum teste falhando quando, por exemplo, uma classe é removida de um elemento.
 
-Classes podem ser aplicadas a múltiplos elementos e devem ser evitadas se possível, a menos que você deliberadamente queira buscar todos os elementos com essa classe.
+Classes podem ser aplicadas a vários elementos e devem ser evitadas, se possível, a menos que você deliberadamente queira buscar todos os elementos com essa classe.
 
 ```js
 // 👎
@@ -27,7 +27,7 @@ await $('[test-id="submit-button"]')
 await $('#submit-button')
 ```
 
-__Nota:__ Para descobrir todos os possíveis seletores que o WebdriverIO suporta, consulte nossa página de [Seletores](./Selectors.md).
+__Nota:__ Para descobrir todos os seletores possíveis que o WebdriverIO suporta, confira nossa página de [Seletores](./Selectors.md).
 
 ## Limite a quantidade de consultas de elementos
 
@@ -47,7 +47,7 @@ Consulta apenas um elemento.
 await $('table tr td')
 ```
 
-O único momento em que você deve usar encadeamento é quando deseja combinar diferentes [estratégias de seletor](https://webdriver.io/docs/selectors/#custom-selector-strategies).
+A única vez que você deve usar encadeamento é quando quer combinar diferentes [estratégias de seletor](https://webdriver.io/docs/selectors/#custom-selector-strategies).
 No exemplo, usamos os [Seletores Profundos](https://webdriver.io/docs/selectors#deep-selectors), que é uma estratégia para entrar no shadow DOM de um elemento.
 
 ``` js
@@ -57,7 +57,7 @@ await $('custom-datepicker').$('#calendar').$('aria/Select')
 
 ### Prefira localizar um único elemento em vez de pegar um de uma lista
 
-Nem sempre é possível fazer isso, mas usando pseudo-classes CSS como [:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child), você pode corresponder elementos com base nos índices dos elementos na lista filha de seus pais.
+Nem sempre é possível fazer isso, mas usando pseudo-classes CSS como [:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child), você pode corresponder elementos com base nos índices dos elementos na lista de filhos de seus pais.
 
 Consulta todas as linhas da tabela.
 
@@ -73,29 +73,29 @@ Consulta uma única linha da tabela.
 await $('table tr:nth-child(15)')
 ```
 
-## Use as asserções incorporadas
+## Use as asserções integradas
 
-Não use asserções manuais que não esperam automaticamente que os resultados correspondam, pois isso causará testes instáveis.
+Não use asserções manuais que não aguardam automaticamente que os resultados correspondam, pois isso causará testes instáveis.
 
 ```js
 // 👎
 expect(await button.isDisplayed()).toBe(true)
 ```
 
-Ao usar as asserções incorporadas, o WebdriverIO automaticamente esperará que o resultado real corresponda ao resultado esperado, resultando em testes resilientes.
-Ele consegue isso repetindo automaticamente a asserção até que ela passe ou esgote o tempo limite.
+Ao usar as asserções integradas, o WebdriverIO aguardará automaticamente que o resultado real corresponda ao resultado esperado, resultando em testes resilientes.
+Ele consegue isso tentando novamente a asserção automaticamente até que ela passe ou atinja o tempo limite.
 
 ```js
 // 👍
 await expect(button).toBeDisplayed()
 ```
 
-## Carregamento preguiçoso e encadeamento de promessas
+## Lazy loading e encadeamento de promessas
 
-O WebdriverIO tem alguns truques quando se trata de escrever código limpo, pois pode carregar preguiçosamente o elemento, o que permite encadear suas promessas e reduzir a quantidade de `await`. Isso também permite passar o elemento como um ChainablePromiseElement em vez de um Element e para uso mais fácil com objetos de página.
+O WebdriverIO tem alguns truques quando se trata de escrever código limpo, pois pode carregar elementos de forma preguiçosa (lazy loading), o que permite encadear promessas e reduzir a quantidade de `await`. Isso também permite passar o elemento como um ChainablePromiseElement em vez de um Element, facilitando o uso com objetos de página.
 
 Então, quando você deve usar `await`?
-Você deve sempre usar `await` com exceção do comando `$` e `$$`.
+Você sempre deve usar `await`, com exceção dos comandos `$` e `$$`.
 
 ```js
 // 👎
@@ -157,20 +157,20 @@ await expect(button).toHaveText('Submit')
 
 ## Testes Dinâmicos
 
-Use variáveis de ambiente para armazenar dados de teste dinâmicos, por exemplo, credenciais secretas, dentro do seu ambiente em vez de codificá-los no teste. Vá para a página [Parameterize Tests](parameterize-tests) para mais informações sobre este tópico.
+Use variáveis de ambiente para armazenar dados de teste dinâmicos, como credenciais secretas, em seu ambiente, em vez de codificá-los diretamente no teste. Vá para a página [Parameterize Tests](parameterize-tests) para mais informações sobre este tópico.
 
-## Lint em seu código
+## Faça lint do seu código
 
-Usando eslint para fazer lint em seu código, você pode potencialmente detectar erros cedo, use nossas [regras de linting](https://www.npmjs.com/package/eslint-plugin-wdio) para garantir que algumas das melhores práticas sejam sempre aplicadas.
+Usando eslint para fazer lint do seu código, você pode potencialmente detectar erros antecipadamente. Use nossas [regras de linting](https://www.npmjs.com/package/eslint-plugin-wdio) para garantir que algumas das melhores práticas sejam sempre aplicadas.
 
 ## Não pause
 
-Pode ser tentador usar o comando pause, mas usar isso é uma má ideia, pois não é resiliente e só causará testes instáveis a longo prazo.
+Pode ser tentador usar o comando pause, mas usá-lo é uma má ideia, pois não é resiliente e só causará testes instáveis a longo prazo.
 
 ```js
 // 👎
 await nameInput.setValue('Bob')
-await browser.pause(200) // esperar que o botão de envio seja habilitado
+await browser.pause(200) // esperar que o botão de envio seja ativado
 await submitFormButton.click()
 
 // 👍
@@ -184,7 +184,7 @@ await submitFormButton.click()
 Quando você tem algum código assíncrono que deseja repetir, é importante saber que nem todos os loops podem fazer isso.
 Por exemplo, a função forEach do Array não permite callbacks assíncronos, como pode ser lido no [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach).
 
-__Nota:__ Você ainda pode usá-los quando não precisar que a operação seja síncrona, como mostrado neste exemplo `console.log(await $$('h1').map((h1) => h1.getText()))`.
+__Nota:__ Você ainda pode usá-los quando não precisar que a operação seja assíncrona, como mostrado neste exemplo `console.log(await $$('h1').map((h1) => h1.getText()))`.
 
 Abaixo estão alguns exemplos do que isso significa.
 
@@ -210,10 +210,10 @@ for (const character of characters) {
 
 ## Mantenha simples
 
-Às vezes, vemos nossos usuários mapeando dados como texto ou valores. Isso geralmente não é necessário e muitas vezes é um indício de problemas no código. Veja os exemplos abaixo de por que esse é o caso.
+Às vezes, vemos nossos usuários mapeando dados como texto ou valores. Frequentemente, isso não é necessário e geralmente é um indício de código problemático. Veja os exemplos abaixo de por que este é o caso.
 
 ```js
-// 👎 muito complexo, asserção síncrona, use as asserções incorporadas para evitar testes instáveis
+// 👎 muito complexo, asserção síncrona, use as asserções integradas para evitar testes instáveis
 const headerText = ['Products', 'Prices']
 const texts = await $$('th').map(e => e.getText());
 expect(texts).toBe(headerText)
@@ -226,7 +226,7 @@ for (let i = 0; i < columns.length; i++) {
     await expect(columns[i]).toHaveText(headerText[i]);
 }
 
-// 👎 encontra elementos pelo texto, mas não leva em consideração a posição dos elementos
+// 👎 encontra elementos pelo texto, mas não leva em conta a posição dos elementos
 await expect($('th=Products')).toExist();
 await expect($('th=Prices')).toExist();
 ```
@@ -234,7 +234,7 @@ await expect($('th=Prices')).toExist();
 ```js
 // 👍 use identificadores únicos (frequentemente usados para elementos personalizados)
 await expect($('[data-testid="Products"]')).toHaveText('Products');
-// 👍 nomes de acessibilidade (frequentemente usados para elementos html nativos)
+// 👍 nomes de acessibilidade (frequentemente usados para elementos HTML nativos)
 await expect($('aria/Product Prices')).toHaveText('Prices');
 ```
 
@@ -288,7 +288,7 @@ class BetterExample {
 
 Se você não se importa com a ordem em que algum código é executado, pode utilizar [`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) para acelerar a execução.
 
-__Nota:__ Como isso torna o código mais difícil de ler, você pode abstraí-lo usando um objeto de página ou uma função, embora você também deva questionar se o benefício em desempenho vale o custo de legibilidade.
+__Nota:__ Como isso torna o código mais difícil de ler, você pode abstrair isso usando um objeto de página ou uma função, embora você também deva questionar se o benefício em desempenho vale o custo de legibilidade.
 
 ```js
 // 👎
