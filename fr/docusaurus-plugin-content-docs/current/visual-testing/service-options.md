@@ -3,7 +3,7 @@ id: service-options
 title: Options de Service
 ---
 
-Les options de service sont les options qui peuvent être définies lors de l'instanciation du service et qui seront utilisées pour chaque appel de méthode.
+Les options de service sont les options qui peuvent être définies lorsque le service est instancié et seront utilisées pour chaque appel de méthode.
 
 ```js
 // wdio.conf.(js|ts)
@@ -16,7 +16,7 @@ export const config = {
         [
             "visual",
             {
-                // Les options
+                // The options
             },
         ],
     ],
@@ -51,7 +51,7 @@ Cette option vous permet de désactiver le défilement automatique de l'élémen
 -   **Défaut:** `false`
 -   **Supporté:** Web, Application hybride (Webview), Application native
 
-Ajouter des coins de cadre et une encoche/île dynamique à la capture d'écran pour les appareils iOS.
+Ajouter des coins de lunette et une encoche/île dynamique à la capture d'écran pour les appareils iOS.
 
 :::info NOTE
 Cela ne peut être fait que lorsque le nom de l'appareil **PEUT** être déterminé automatiquement et correspond à la liste suivante de noms d'appareils normalisés. La normalisation sera effectuée par ce module.
@@ -105,7 +105,7 @@ Si aucune image de référence n'est trouvée pendant la comparaison, l'image es
 -   **Défaut:** `.path/to/testfile/__snapshots__/`
 -   **Supporté:** Web, Application hybride (Webview), Application native
 
-Le répertoire qui contiendra toutes les images de référence utilisées lors de la comparaison. Si non défini, la valeur par défaut sera utilisée, ce qui stockera les fichiers dans un dossier `__snapshots__/` à côté du spec qui exécute les tests visuels. Une fonction qui renvoie une `string` peut également être utilisée pour définir la valeur `baselineFolder`:
+Le répertoire qui contiendra toutes les images de référence utilisées pendant la comparaison. Si non défini, la valeur par défaut sera utilisée, ce qui stockera les fichiers dans un dossier `__snapshots__/` à côté du fichier de spécification qui exécute les tests visuels. Une fonction qui renvoie une `string` peut également être utilisée pour définir la valeur `baselineFolder`:
 
 ```js
 {
@@ -114,7 +114,7 @@ Le répertoire qui contiendra toutes les images de référence utilisées lors d
 // OU
 {
     baselineFolder: () => {
-        // Faire de la magie ici
+        // Faites de la magie ici
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -130,7 +130,7 @@ Le répertoire qui contiendra toutes les images de référence utilisées lors d
 Supprimer le dossier d'exécution (`actual` & `diff`) lors de l'initialisation
 
 :::info NOTE
-Cela ne fonctionnera que lorsque [`screenshotPath`](#screenshotpath) est défini via les options du plugin, et **NE FONCTIONNERA PAS** lorsque vous définissez les dossiers dans les méthodes
+Cela ne fonctionnera que lorsque le [`screenshotPath`](#screenshotpath) est défini via les options du plugin, et **NE FONCTIONNERA PAS** lorsque vous définissez les dossiers dans les méthodes
 :::
 
 ### `createJsonReportFiles` **(NOUVEAU)**
@@ -139,7 +139,7 @@ Cela ne fonctionnera que lorsque [`screenshotPath`](#screenshotpath) est défini
 -   **Obligatoire:** Non
 -   **Défaut:** `false`
 
-Vous avez maintenant la possibilité d'exporter les résultats de comparaison dans un fichier de rapport JSON. En fournissant l'option `createJsonReportFiles: true`, chaque image comparée créera un rapport stocké dans le dossier `actual`, à côté de chaque résultat d'image `actual`. La sortie ressemblera à ceci:
+Vous avez maintenant la possibilité d'exporter les résultats de comparaison dans un fichier de rapport JSON. En fournissant l'option `createJsonReportFiles: true`, chaque image qui est comparée créera un rapport stocké dans le dossier `actual`, à côté de chaque résultat d'image `actual`. La sortie ressemblera à ceci:
 
 ```json
 {
@@ -265,7 +265,7 @@ Vous devez utiliser `@wdio/visual-testing` version `5.2.0` ou supérieure
 -   **Défaut:** `false`
 -   **Supporté:** Web, Application hybride (Webview)
 
-Activer/Désactiver le "clignotement" du curseur dans tous les `input`, `textarea`, `[contenteditable]` de l'application. Si défini sur `true`, le curseur sera défini sur `transparent` avant de prendre une capture d'écran
+Activer/Désactiver tous les "clignotements" du curseur dans les `input`, `textarea`, `[contenteditable]` de l'application. Si défini sur `true`, le curseur sera défini sur `transparent` avant de prendre une capture d'écran
 et réinitialisé une fois terminé
 
 ### `disableCSSAnimation`
@@ -300,7 +300,7 @@ En utilisant ce drapeau, chaque élément contenant du texte (donc pas seulement
 -   **Défaut:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
 -   **Supporté:** Web, Application hybride (Webview), Application native
 
-Le nom des images sauvegardées peut être personnalisé en passant le paramètre `formatImageName` avec une chaîne de format comme:
+Le nom des images enregistrées peut être personnalisé en passant le paramètre `formatImageName` avec une chaîne de format comme:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
@@ -315,7 +315,7 @@ Si elles ne peuvent pas être déterminées, les valeurs par défaut seront util
 -   `dpr`: Le rapport de pixels de l'appareil
 -   `height`: La hauteur de l'écran
 -   `logName`: Le logName des capacités
--   `mobile`: Cela ajoutera `_app`, ou le nom du navigateur après le `deviceName` pour distinguer les captures d'écran d'application des captures d'écran de navigateur
+-   `mobile`: Cela ajoutera `_app`, ou le nom du navigateur après le `deviceName` pour distinguer les captures d'écran d'applications des captures d'écran de navigateur
 -   `platformName`: Le nom de la plateforme dans les capacités fournies
 -   `platformVersion`: La version de la plateforme fournie dans les capacités
 -   `tag`: Le tag qui est fourni dans les méthodes qui sont appelées
@@ -353,11 +353,217 @@ Cela ne fonctionnera que lorsque l'option de service/méthode `userBasedFullPage
 -   **Défaut:** `true`
 -   **Supporté:** Web, Application hybride (Webview)
 
-Masquer les barres de défilement dans l'application. Si défini sur true, toutes les barres de défilement seront désactivées avant de prendre une capture d'écran. C'est défini par défaut sur `true` pour éviter des problèmes supplémentaires.
+Masquer les barres de défilement dans l'application. Si défini sur true, toutes les barres de défilement seront désactivées avant de prendre une capture d'écran. Ceci est défini par défaut sur `true` pour éviter des problèmes supplémentaires.
 
 ### `logLevel`
 
 -   **Type:** `string`
 -   **Obligatoire:** Non
 -   **Défaut:** `info`
--   **Supporté:** Web, Application hybride (Webview), Application
+-   **Supporté:** Web, Application hybride (Webview), Application native
+
+Ajoute des journaux supplémentaires, les options sont `debug | info | warn | silent`
+
+Les erreurs sont toujours enregistrées dans la console.
+
+### `savePerInstance`
+
+-   **Type:** `boolean`
+-   **Défaut:** `false`
+-   **Obligatoire:** non
+-   **Supporté:** Web, Application hybride (Webview), Application native
+
+Enregistrer les images par instance dans un dossier séparé, par exemple, toutes les captures d'écran Chrome seront enregistrées dans un dossier Chrome comme `desktop_chrome`.
+
+### `screenshotPath`
+
+-   **Type:** `string | () => string`
+-   **Défaut:** `.tmp/`
+-   **Obligatoire:** non
+-   **Supporté:** Web, Application hybride (Webview), Application native
+
+Le répertoire qui contiendra toutes les captures d'écran réelles/différentes. Si non défini, la valeur par défaut sera utilisée. Une fonction qui
+renvoie une chaîne peut également être utilisée pour définir la valeur screenshotPath:
+
+```js
+{
+    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
+},
+// OU
+{
+    screenshotPath: () => {
+        // Faites de la magie ici
+        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
+    }
+}
+```
+
+### `toolBarShadowPadding`
+
+-   **Type:** `number`
+-   **Obligatoire:** Non
+-   **Défaut:** `6` pour Android et `15` pour iOS (`6` par défaut et `9` seront ajoutés automatiquement pour la barre d'accueil possible sur les iPhones avec une encoche ou les iPads qui ont une barre d'accueil)
+-   **Supporté:** Web
+
+Le rembourrage qui doit être ajouté à la barre d'outils sur iOS et Android pour effectuer une découpe appropriée de la fenêtre d'affichage.
+
+### `userBasedFullPageScreenshot`
+
+-   **Type:** `boolean`
+-   **Obligatoire:** Non
+-   **Défaut:** `false`
+-   **Supporté:** Web, Application hybride (Webview) **Introduit dans visual-service@7.0.0**
+
+Par défaut, les captures d'écran pleine page sur le web de bureau sont capturées à l'aide du protocole WebDriver BiDi, qui permet des captures d'écran rapides, stables et cohérentes sans défilement.
+Lorsque userBasedFullPageScreenshot est défini sur true, le processus de capture d'écran simule un utilisateur réel: défilement à travers la page, capture de captures d'écran de la taille de la fenêtre d'affichage et assemblage. Cette méthode est utile pour les pages avec contenu à chargement paresseux ou rendu dynamique qui dépend de la position de défilement.
+
+Utilisez cette option si votre page dépend du chargement de contenu pendant le défilement ou si vous souhaitez préserver le comportement des méthodes de capture d'écran plus anciennes.
+
+### `waitForFontsLoaded`
+
+-   **Type:** `boolean`
+-   **Obligatoire:** Non
+-   **Défaut:** `true`
+-   **Supporté:** Web, Application hybride (Webview)
+
+Les polices, y compris les polices tierces, peuvent être chargées de manière synchrone ou asynchrone. Le chargement asynchrone signifie que les polices peuvent se charger après que WebdriverIO a déterminé qu'une page est complètement chargée. Pour éviter les problèmes de rendu des polices, ce module attendra par défaut que toutes les polices soient chargées avant de prendre une capture d'écran.
+
+## Options Tabbable
+
+:::info NOTE
+
+Ce module prend également en charge le dessin de la façon dont un utilisateur utiliserait son clavier pour _tabber_ à travers le site Web en dessinant des lignes et des points d'élément tabbable à élément tabbable.<br/>
+Le travail est inspiré par le billet de blog de [Viv Richards](https://github.com/vivrichards600) sur ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
+La façon dont les éléments tabbables sont sélectionnés est basée sur le module [tabbable](https://github.com/davidtheclark/tabbable). S'il y a des problèmes concernant le tabbing, veuillez consulter le [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) et en particulier la section [Plus de détails](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+
+:::
+
+### `tabbableOptions`
+
+-   **Type:** `object`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+Les options qui peuvent être modifiées pour les lignes et les points si vous utilisez les méthodes `{save|check}Tabbable`. Les options sont expliquées ci-dessous.
+
+#### `tabbableOptions.circle`
+
+-   **Type:** `object`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+Les options pour changer le cercle.
+
+##### `tabbableOptions.circle.backgroundColor`
+
+-   **Type:** `string`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La couleur de fond du cercle.
+
+##### `tabbableOptions.circle.borderColor`
+
+-   **Type:** `string`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La couleur de bordure du cercle.
+
+##### `tabbableOptions.circle.borderWidth`
+
+-   **Type:** `number`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La largeur de bordure du cercle.
+
+##### `tabbableOptions.circle.fontColor`
+
+-   **Type:** `string`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La couleur de la police du texte dans le cercle. Cela ne sera affiché que si [`showNumber`](./#tabbableoptionscircleshownumber) est défini sur `true`.
+
+##### `tabbableOptions.circle.fontFamily`
+
+-   **Type:** `string`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La famille de la police du texte dans le cercle. Cela ne sera affiché que si [`showNumber`](./#tabbableoptionscircleshownumber) est défini sur `true`.
+
+Assurez-vous de définir des polices qui sont prises en charge par les navigateurs.
+
+##### `tabbableOptions.circle.fontSize`
+
+-   **Type:** `number`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La taille de la police du texte dans le cercle. Cela ne sera affiché que si [`showNumber`](./#tabbableoptionscircleshownumber) est défini sur `true`.
+
+##### `tabbableOptions.circle.size`
+
+-   **Type:** `number`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La taille du cercle.
+
+##### `tabbableOptions.circle.showNumber`
+
+-   **Type:** `showNumber`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+Afficher le numéro de séquence de tabulation dans le cercle.
+
+#### `tabbableOptions.line`
+
+-   **Type:** `object`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+Les options pour changer la ligne.
+
+##### `tabbableOptions.line.color`
+
+-   **Type:** `string`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La couleur de la ligne.
+
+##### `tabbableOptions.line.width`
+
+-   **Type:** `number`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) pour toutes les valeurs par défaut
+-   **Supporté:** Web
+
+La largeur de la ligne.
+
+## Options de comparaison
+
+### `compareOptions`
+
+-   **Type:** `object`
+-   **Obligatoire:** Non
+-   **Défaut:** Voir [ici](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) pour toutes les valeurs par défaut
+-   **Supporté:** Web, Application hybride (Webview), Application native (Voir [Options de comparaison de méthode](./method-options#compare-check-options) pour plus d'informations)
+
+Les options de comparaison peuvent également être définies comme options de service, elles sont décrites dans les [Options de comparaison de méthode](/docs/visual-testing/method-options#compare-check-options)
