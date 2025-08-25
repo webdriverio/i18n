@@ -6705,5 +6705,28 @@
       "ko",
       "el"
     ]
+  },
+  "en/docusaurus-plugin-content-docs/current/HeadlessAndXvfb.md": {
+    "hash": "ac4d38b783ea31bc70518e53c223880304bab482d3e65bdc0a3853a0be221c97",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
   }
 }
