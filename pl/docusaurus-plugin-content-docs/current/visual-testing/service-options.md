@@ -1,9 +1,9 @@
 ---
 id: service-options
-title: Opcje Usługi
+title: Opcje Serwisu
 ---
 
-Opcje usługi to opcje, które można ustawić podczas tworzenia instancji usługi i będą używane dla każdego wywołania metody.
+Service options to opcje, które można ustawić podczas tworzenia instancji serwisu i będą używane dla każdego wywołania metody.
 
 ```js
 // wdio.conf.(js|ts)
@@ -24,23 +24,23 @@ export const config = {
 };
 ```
 
-## Domyślne Opcje
+## Opcje domyślne
 
 ### `addressBarShadowPadding`
 
 -   **Typ:** `number`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `6`
--   **Wspierane:** Web
+-   **Wspierane konteksty aplikacji:** Web
 
-Padding, który musi być dodany do paska adresu na iOS i Android, aby poprawnie wyciąć viewport.
+Wypełnienie, które musi być dodane do paska adresu na iOS i Android, aby prawidłowo wyciąć obszar widoczny.
 
 ### `autoElementScroll`
 
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `true`
--   **Wspierane:** Web, Hybrid App (Webview)
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview)
 
 Ta opcja pozwala wyłączyć automatyczne przewijanie elementu do widoku podczas tworzenia zrzutu ekranu elementu.
 
@@ -49,12 +49,12 @@ Ta opcja pozwala wyłączyć automatyczne przewijanie elementu do widoku podczas
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `false`
--   **Wspierane:** Web, Hybrid App (Webview), Native App
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App
 
-Dodaj narożniki ramki i wcięcie/dynamiczną wyspę do zrzutu ekranu dla urządzeń iOS.
+Dodaj narożniki ramki i wycięcie/dynamiczną wyspę do zrzutu ekranu dla urządzeń iOS.
 
 :::info UWAGA
-To może być zrobione tylko wtedy, gdy nazwa urządzenia **MOŻE** być automatycznie określona i pasuje do następującej listy znormalizowanych nazw urządzeń. Normalizacja zostanie wykonana przez ten moduł.
+Może to być zrobione tylko wtedy, gdy nazwa urządzenia **MOŻE** zostać automatycznie określona i pasuje do poniższej listy znormalizowanych nazw urządzeń. Normalizacja zostanie przeprowadzona przez ten moduł.
 **iPhone:**
 
 -   iPhone X: `iphonex`
@@ -76,7 +76,7 @@ To może być zrobione tylko wtedy, gdy nazwa urządzenia **MOŻE** być automat
 -   iPhone 14 Plus: `iphone14plus`
 -   iPhone 14 Pro: `iphone14pro`
 -   iPhone 14 Pro Max: `iphone14promax`
-    **iPads:**
+    **iPady:**
 -   iPad Mini 6th Generation: `ipadmini`
 -   iPad Air 4th Generation: `ipadair`
 -   iPad Air 5th Generation: `ipadair`
@@ -94,7 +94,7 @@ To może być zrobione tylko wtedy, gdy nazwa urządzenia **MOŻE** być automat
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `true`
--   **Wspierane:** Web, Hybrid App (Webview), Native App
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App
 
 Jeśli podczas porównania nie zostanie znaleziony obraz bazowy, obraz jest automatycznie kopiowany do folderu bazowego.
 
@@ -103,9 +103,9 @@ Jeśli podczas porównania nie zostanie znaleziony obraz bazowy, obraz jest auto
 -   **Typ:** `string|()=> string`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `.path/to/testfile/__snapshots__/`
--   **Wspierane:** Web, Hybrid App (Webview), Native App
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App
 
-Katalog, który będzie zawierał wszystkie obrazy bazowe używane podczas porównania. Jeśli nie jest ustawiony, zostanie użyta domyślna wartość, która przechowa pliki w folderze `__snapshots__/` obok specyfikacji, która wykonuje testy wizualne. Funkcja zwracająca `string` może być również użyta do ustawienia wartości `baselineFolder`:
+Katalog, który będzie przechowywał wszystkie obrazy bazowe używane podczas porównania. Jeśli nie jest ustawiony, zostanie użyta domyślna wartość, która zapisze pliki w folderze `__snapshots__/` obok specyfikacji wykonującej testy wizualne. Można również użyć funkcji zwracającej `string`, aby ustawić wartość `baselineFolder`:
 
 ```js
 {
@@ -114,7 +114,7 @@ Katalog, który będzie zawierał wszystkie obrazy bazowe używane podczas poró
 // LUB
 {
     baselineFolder: () => {
-        // Tu wykonaj magię
+        // Wykonaj jakąś magię tutaj
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -125,21 +125,21 @@ Katalog, który będzie zawierał wszystkie obrazy bazowe używane podczas poró
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `false`
--   **Wspierane:** Web, Hybrid App (Webview), Native App
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App
 
-Usuń folder runtime (`actual` & `diff`) podczas inicjalizacji
+Usuń folder środowiska wykonawczego (`actual` i `diff`) podczas inicjalizacji
 
 :::info UWAGA
 To zadziała tylko wtedy, gdy [`screenshotPath`](#screenshotpath) jest ustawione w opcjach wtyczki i **NIE ZADZIAŁA**, gdy ustawisz foldery w metodach
 :::
 
-### `createJsonReportFiles` **(NOWE)**
+### `createJsonReportFiles` **(NOWOŚĆ)**
 
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `false`
 
-Masz teraz możliwość eksportu wyników porównania do pliku raportu JSON. Podając opcję `createJsonReportFiles: true`, każdy porównywany obraz utworzy raport zapisany w folderze `actual`, obok każdego wyniku obrazu `actual`. Wynik będzie wyglądał tak:
+Masz teraz możliwość eksportowania wyników porównania do pliku raportu JSON. Podając opcję `createJsonReportFiles: true`, każdy porównywany obraz utworzy raport przechowywany w folderze `actual`, obok każdego wyniku obrazu `actual`. Wynik będzie wyglądał następująco:
 
 ```json
 {
@@ -202,12 +202,12 @@ Masz teraz możliwość eksportu wyników porównania do pliku raportu JSON. Pod
 }
 ```
 
-Po wykonaniu wszystkich testów, nowy plik JSON z kolekcją porównań zostanie wygenerowany i będzie dostępny w głównym katalogu folderu `actual`. Dane są pogrupowane według:
+Po wykonaniu wszystkich testów, nowy plik JSON z kolekcją porównań zostanie wygenerowany i można go znaleźć w katalogu głównym folderu `actual`. Dane są pogrupowane według:
 
 -   `describe` dla Jasmine/Mocha lub `Feature` dla CucumberJS
 -   `it` dla Jasmine/Mocha lub `Scenario` dla CucumberJS
     a następnie posortowane według:
--   `commandName`, które są nazwami metod porównujących używanymi do porównywania obrazów
+-   `commandName`, czyli nazw metod porównawczych używanych do porównywania obrazów
 -   `instanceData`, najpierw przeglądarka, potem urządzenie, następnie platforma
     będzie to wyglądać tak
 
@@ -252,10 +252,10 @@ Po wykonaniu wszystkich testów, nowy plik JSON z kolekcją porównań zostanie 
 ]
 ```
 
-Dane raportu dadzą Ci możliwość zbudowania własnego raportu wizualnego bez konieczności wykonywania całej magii i zbierania danych samodzielnie.
+Dane raportu dadzą Ci możliwość zbudowania własnego raportu wizualnego bez konieczności wykonywania całej magii i samodzielnego zbierania danych.
 
 :::info UWAGA
-Potrzebujesz wersji `@wdio/visual-testing` 5.2.0 lub wyższej
+Musisz używać `@wdio/visual-testing` w wersji `5.2.0` lub wyższej
 :::
 
 ### `disableBlinkingCursor`
@@ -263,34 +263,32 @@ Potrzebujesz wersji `@wdio/visual-testing` 5.2.0 lub wyższej
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `false`
--   **Wspierane:** Web, Hybrid App (Webview)
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview)
 
-Włącz/Wyłącz wszystkie "migające" kursory w `input`, `textarea`, `[contenteditable]` w aplikacji. Jeśli ustawione na `true`, kursor zostanie ustawiony na `transparent` przed wykonaniem zrzutu ekranu
-i zresetowany po zakończeniu
+Włącza/Wyłącza "miganie" kursora we wszystkich `input`, `textarea`, `[contenteditable]` w aplikacji. Jeśli ustawione na `true`, kursor zostanie ustawiony na `transparent` przed wykonaniem zrzutu ekranu i zresetowany po zakończeniu
 
 ### `disableCSSAnimation`
 
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `false`
--   **Wspierane:** Web, Hybrid App (Webview)
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview)
 
-Włącz/Wyłącz wszystkie animacje CSS w aplikacji. Jeśli ustawione na `true`, wszystkie animacje zostaną wyłączone przed wykonaniem zrzutu ekranu
-i zresetowane po zakończeniu
+Włącza/Wyłącza wszystkie animacje CSS w aplikacji. Jeśli ustawione na `true`, wszystkie animacje zostaną wyłączone przed wykonaniem zrzutu ekranu i zresetowane po zakończeniu
 
 ### `enableLayoutTesting`
 
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `false`
--   **Wspierane:** Web
+-   **Wspierane konteksty aplikacji:** Web
 
-To ukryje cały tekst na stronie, więc tylko układ będzie używany do porównania. Ukrywanie będzie wykonane przez dodanie stylu `'color': 'transparent !important'` do **każdego** elementu.
+Ukryje cały tekst na stronie, więc do porównania zostanie użyty tylko układ. Ukrywanie będzie dokonane przez dodanie stylu `'color': 'transparent !important'` do **każdego** elementu.
 
-Aby zobaczyć wynik, zobacz [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+Zobacz wynik w [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
 
 :::info
-Używając tej flagi, każdy element zawierający tekst (więc nie tylko `p, h1, h2, h3, h4, h5, h6, span, a, li`, ale także `div|button|..`) otrzyma tę właściwość. NIE ma opcji dostosowania tego.
+Używając tej flagi, każdy element zawierający tekst (więc nie tylko `p, h1, h2, h3, h4, h5, h6, span, a, li`, ale również `div|button|..`) otrzyma tę właściwość. Nie ma opcji dostosowania tego.
 :::
 
 ### `formatImageName`
@@ -298,36 +296,36 @@ Używając tej flagi, każdy element zawierający tekst (więc nie tylko `p, h1,
 -   **Typ:** `string`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **Wspierane:** Web, Hybrid App (Webview), Native App
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App
 
-Nazwa zapisanych obrazów może być dostosowana przez przekazanie parametru `formatImageName` z formatem ciągu jak:
+Nazwę zapisanych obrazów można dostosować, przekazując parametr `formatImageName` z ciągiem formatu, jak:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-Następujące zmienne mogą być przekazane do formatowania ciągu i będą automatycznie odczytane z możliwości instancji.
-Jeśli nie mogą być określone, zostaną użyte domyślne wartości.
+Następujące zmienne można przekazać do formatowania ciągu i zostaną automatycznie odczytane z możliwości instancji.
+Jeśli nie można ich określić, zostaną użyte wartości domyślne.
 
--   `browserName`: Nazwa przeglądarki w podanych możliwościach
+-   `browserName`: Nazwa przeglądarki z dostarczonych możliwości
 -   `browserVersion`: Wersja przeglądarki podana w możliwościach
 -   `deviceName`: Nazwa urządzenia z możliwości
--   `dpr`: Stosunek pikseli urządzenia
+-   `dpr`: Współczynnik pikseli urządzenia
 -   `height`: Wysokość ekranu
--   `logName`: LogName z możliwości
--   `mobile`: To doda `_app` lub nazwę przeglądarki po `deviceName`, aby odróżnić zrzuty ekranu aplikacji od zrzutów ekranu przeglądarki
--   `platformName`: Nazwa platformy w podanych możliwościach
+-   `logName`: Nazwa dziennika z możliwości
+-   `mobile`: Dodaje `_app` lub nazwę przeglądarki po `deviceName`, aby odróżnić zrzuty ekranu aplikacji od zrzutów ekranu przeglądarki
+-   `platformName`: Nazwa platformy w dostarczonych możliwościach
 -   `platformVersion`: Wersja platformy podana w możliwościach
--   `tag`: Tag, który jest dostarczany w wywoływanych metodach
+-   `tag`: Tag dostarczony w wywoływanej metodzie
 -   `width`: Szerokość ekranu
 
 :::info
 
-Nie można podać niestandardowych ścieżek/folderów w `formatImageName`. Jeśli chcesz zmienić ścieżkę, sprawdź zmianę następujących opcji:
+Nie możesz podać niestandardowych ścieżek/folderów w `formatImageName`. Jeśli chcesz zmienić ścieżkę, sprawdź zmianę następujących opcji:
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) na metodę
+- [`folderOptions`](/docs/visual-testing/method-options#folder-options) dla każdej metody
 
 :::
 
@@ -336,13 +334,13 @@ Nie można podać niestandardowych ścieżek/folderów w `formatImageName`. Jeś
 -   **Typ:** `number`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `1500`
--   **Wspierane:** Web
+-   **Wspierane konteksty aplikacji:** Web
 
-Timeout w milisekundach oczekiwania po przewinięciu. To może pomóc zidentyfikować strony z leniwym ładowaniem.
+Czas oczekiwania w milisekundach po przewinięciu. Może to pomóc w identyfikacji stron z leniwym ładowaniem.
 
 :::info
 
-To zadziała tylko, gdy opcja usługi/metody `userBasedFullPageScreenshot` jest ustawiona na `true`, zobacz również [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
+To zadziała tylko wtedy, gdy opcja serwisu/metody `userBasedFullPageScreenshot` jest ustawiona na `true`, zobacz także [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
 
 :::
 
@@ -351,7 +349,7 @@ To zadziała tylko, gdy opcja usługi/metody `userBasedFullPageScreenshot` jest 
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `true`
--   **Wspierane:** Web, Hybrid App (Webview)
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview)
 
 Ukryj paski przewijania w aplikacji. Jeśli ustawione na true, wszystkie paski przewijania zostaną wyłączone przed wykonaniem zrzutu ekranu. Jest to domyślnie ustawione na `true`, aby zapobiec dodatkowym problemom.
 
@@ -360,30 +358,30 @@ Ukryj paski przewijania w aplikacji. Jeśli ustawione na true, wszystkie paski p
 -   **Typ:** `string`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `info`
--   **Wspierane:** Web, Hybrid App (Webview), Native App
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App
 
 Dodaje dodatkowe logi, opcje to `debug | info | warn | silent`
 
-Błędy są zawsze rejestrowane w konsoli.
+Błędy są zawsze zapisywane w konsoli.
 
 ### `savePerInstance`
 
 -   **Typ:** `boolean`
 -   **Domyślnie:** `false`
 -   **Obowiązkowe:** nie
--   **Wspierane:** Web, Hybrid App (Webview), Native App
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App
 
-Zapisz obrazy na instancję w osobnym folderze, więc na przykład wszystkie zrzuty ekranu Chrome zostaną zapisane w folderze Chrome jak `desktop_chrome`.
+Zapisuj obrazy dla każdej instancji w osobnym folderze, np. wszystkie zrzuty ekranu Chrome będą zapisywane w folderze Chrome, takim jak `desktop_chrome`.
 
 ### `screenshotPath`
 
 -   **Typ:** `string | () => string`
 -   **Domyślnie:** `.tmp/`
 -   **Obowiązkowe:** nie
--   **Wspierane:** Web, Hybrid App (Webview), Native App
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App
 
-Katalog, który będzie zawierał wszystkie rzeczywiste/różne zrzuty ekranu. Jeśli nie jest ustawiony, zostanie użyta domyślna wartość. Funkcja, która
-zwraca ciąg znaków, może być również użyta do ustawienia wartości screenshotPath:
+Katalog, który będzie przechowywał wszystkie aktualne/różne zrzuty ekranu. Jeśli nie jest ustawiony, zostanie użyta wartość domyślna. Funkcja, która
+zwraca ciąg znaków, może być również używana do ustawienia wartości screenshotPath:
 
 ```js
 {
@@ -392,7 +390,7 @@ zwraca ciąg znaków, może być również użyta do ustawienia wartości screen
 // LUB
 {
     screenshotPath: () => {
-        // Tu wykonaj magię
+        // Wykonaj jakąś magię tutaj
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -402,39 +400,39 @@ zwraca ciąg znaków, może być również użyta do ustawienia wartości screen
 
 -   **Typ:** `number`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** `6` dla Androida i `15` dla iOS (`6` domyślnie i `9` zostanie dodane automatycznie dla możliwego paska głównego na iPhone'ach z notchem lub iPadach, które mają pasek główny)
--   **Wspierane:** Web
+-   **Domyślnie:** `6` dla Androida i `15` dla iOS (`6` domyślnie i `9` zostanie dodane automatycznie dla możliwego paska domowego w iPhone'ach z wycięciem lub iPadach z paskiem domowym)
+-   **Wspierane konteksty aplikacji:** Web
 
-Padding, który musi być dodany do paska narzędzi na iOS i Android, aby poprawnie wyciąć viewport.
+Wypełnienie, które musi być dodane do paska narzędzi na iOS i Androidzie, aby prawidłowo wyciąć obszar widoczny.
 
 ### `userBasedFullPageScreenshot`
 
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `false`
--   **Wspierane:** Web, Hybrid App (Webview) **Wprowadzone w visual-service@7.0.0**
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview) **Wprowadzone w visual-service@7.0.0**
 
-Domyślnie, zrzuty ekranu całej strony na komputerach są przechwytywane za pomocą protokołu WebDriver BiDi, co umożliwia szybkie, stabilne i spójne zrzuty ekranu bez przewijania.
-Gdy userBasedFullPageScreenshot jest ustawione na true, proces wykonywania zrzutu ekranu symuluje prawdziwego użytkownika: przewija stronę, przechwytuje zrzuty ekranu wielkości viewportu i łączy je razem. Ta metoda jest przydatna dla stron z leniwie ładowaną zawartością lub dynamicznym renderowaniem, które zależy od pozycji przewinięcia.
+Domyślnie, pełnoekranowe zrzuty ekranu na pulpicie web są przechwytywane za pomocą protokołu WebDriver BiDi, który umożliwia szybkie, stabilne i spójne zrzuty ekranu bez przewijania.
+Gdy userBasedFullPageScreenshot jest ustawione na true, proces tworzenia zrzutu ekranu symuluje rzeczywistego użytkownika: przewija stronę, przechwytuje zrzuty ekranu o rozmiarze okna i łączy je razem. Ta metoda jest przydatna dla stron z leniwie ładowaną zawartością lub dynamicznym renderowaniem, które zależy od pozycji przewijania.
 
-Użyj tej opcji, jeśli Twoja strona opiera się na ładowaniu treści podczas przewijania lub jeśli chcesz zachować zachowanie starszych metod wykonywania zrzutów ekranu.
+Użyj tej opcji, jeśli Twoja strona opiera się na ładowaniu treści podczas przewijania lub jeśli chcesz zachować zachowanie starszych metod tworzenia zrzutów ekranu.
 
 ### `waitForFontsLoaded`
 
 -   **Typ:** `boolean`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** `true`
--   **Wspierane:** Web, Hybrid App (Webview)
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview)
 
-Czcionki, w tym czcionki firm trzecich, mogą być ładowane synchronicznie lub asynchronicznie. Asynchroniczne ładowanie oznacza, że czcionki mogą załadować się po tym, jak WebdriverIO stwierdzi, że strona została w pełni załadowana. Aby zapobiec problemom z renderowaniem czcionek, ten moduł domyślnie będzie czekał na załadowanie wszystkich czcionek przed wykonaniem zrzutu ekranu.
+Czcionki, w tym czcionki zewnętrzne, mogą być ładowane synchronicznie lub asynchronicznie. Asynchroniczne ładowanie oznacza, że czcionki mogą być ładowane po tym, jak WebdriverIO określi, że strona została w pełni załadowana. Aby zapobiec problemom z renderowaniem czcionek, ten moduł domyślnie poczeka na załadowanie wszystkich czcionek przed wykonaniem zrzutu ekranu.
 
-## Opcje Tabbable
+## Opcje nawigacji tabulatorem
 
 :::info UWAGA
 
-Ten moduł obsługuje również rysowanie sposobu, w jaki użytkownik użyłby klawiatury do _tab_ przez stronę internetową, rysując linie i kropki od elementu tabbable do elementu tabbable.<br/>
-Praca jest inspirowana wpisem na blogu [Viv Richards](https://github.com/vivrichards600) o ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-Sposób wyboru elementów tabbable opiera się na module [tabbable](https://github.com/davidtheclark/tabbable). Jeśli istnieją jakiekolwiek problemy dotyczące tabulacji, sprawdź [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md), a zwłaszcza sekcję [More details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+Ten moduł obsługuje również rysowanie sposobu, w jaki użytkownik używałby klawiatury do _nawigacji_ przez stronę, rysując linie i kropki od elementu dostępnego przez tabulację do elementu dostępnego przez tabulację.<br/>
+Praca została zainspirowana postem na blogu [Viv Richards](https://github.com/vivrichards600) o ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
+Sposób, w jaki elementy dostępne przez tabulację są wybierane, opiera się na module [tabbable](https://github.com/davidtheclark/tabbable). Jeśli występują jakiekolwiek problemy związane z nawigacją tabulatorem, sprawdź [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) i szczególnie sekcję [More details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
@@ -442,8 +440,8 @@ Sposób wyboru elementów tabbable opiera się na module [tabbable](https://gith
 
 -   **Typ:** `object`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Opcje, które można zmienić dla linii i kropek, jeśli używasz metod `{save|check}Tabbable`. Opcje są wyjaśnione poniżej.
 
@@ -451,8 +449,8 @@ Opcje, które można zmienić dla linii i kropek, jeśli używasz metod `{save|c
 
 -   **Typ:** `object`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Opcje zmiany koła.
 
@@ -460,8 +458,8 @@ Opcje zmiany koła.
 
 -   **Typ:** `string`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Kolor tła koła.
 
@@ -469,8 +467,8 @@ Kolor tła koła.
 
 -   **Typ:** `string`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Kolor obramowania koła.
 
@@ -478,8 +476,8 @@ Kolor obramowania koła.
 
 -   **Typ:** `number`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Szerokość obramowania koła.
 
@@ -487,37 +485,37 @@ Szerokość obramowania koła.
 
 -   **Typ:** `string`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
-Kolor czcionki tekstu w kole. To będzie widoczne tylko, jeśli [`showNumber`](./#tabbableoptionscircleshownumber) jest ustawione na `true`.
+Kolor czcionki tekstu w kole. Będzie to pokazane tylko jeśli [`showNumber`](./#tabbableoptionscircleshownumber) jest ustawione na `true`.
 
 ##### `tabbableOptions.circle.fontFamily`
 
 -   **Typ:** `string`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
-Rodzina czcionki tekstu w kole. To będzie widoczne tylko, jeśli [`showNumber`](./#tabbableoptionscircleshownumber) jest ustawione na `true`.
+Rodzina czcionki tekstu w kole. Będzie to pokazane tylko jeśli [`showNumber`](./#tabbableoptionscircleshownumber) jest ustawione na `true`.
 
-Upewnij się, że ustawione czcionki są obsługiwane przez przeglądarki.
+Upewnij się, że ustawiasz czcionki, które są obsługiwane przez przeglądarki.
 
 ##### `tabbableOptions.circle.fontSize`
 
 -   **Typ:** `number`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
-Rozmiar czcionki tekstu w kole. To będzie widoczne tylko, jeśli [`showNumber`](./#tabbableoptionscircleshownumber) jest ustawione na `true`.
+Rozmiar czcionki tekstu w kole. Będzie to pokazane tylko jeśli [`showNumber`](./#tabbableoptionscircleshownumber) jest ustawione na `true`.
 
 ##### `tabbableOptions.circle.size`
 
 -   **Typ:** `number`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Rozmiar koła.
 
@@ -525,17 +523,17 @@ Rozmiar koła.
 
 -   **Typ:** `showNumber`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
-Pokaż numer sekwencji tab w kole.
+Pokaż numer sekwencji tabulacji w kole.
 
 #### `tabbableOptions.line`
 
 -   **Typ:** `object`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Opcje zmiany linii.
 
@@ -543,8 +541,8 @@ Opcje zmiany linii.
 
 -   **Typ:** `string`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Kolor linii.
 
@@ -552,18 +550,18 @@ Kolor linii.
 
 -   **Typ:** `number`
 -   **Obowiązkowe:** Nie
--   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/b7d66afadc88f03f09646c28806a687d2ae46000/packages/webdriver-image-comparison/src/helpers/options.ts#L6-L68) dla wszystkich wartości domyślnych
--   **Wspierane:** Web
+-   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) dla wszystkich wartości domyślnych
+-   **Wspierane konteksty aplikacji:** Web
 
 Szerokość linii.
 
-## Opcje porównania
+## Opcje porównywania
 
 ### `compareOptions`
 
 -   **Typ:** `object`
 -   **Obowiązkowe:** Nie
 -   **Domyślnie:** Zobacz [tutaj](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) dla wszystkich wartości domyślnych
--   **Wspierane:** Web, Hybrid App (Webview), Native App (Zobacz [Opcje porównania metod](./method-options#compare-check-options) dla więcej informacji)
+-   **Wspierane konteksty aplikacji:** Web, Hybrid App (Webview), Native App (Zobacz [Opcje porównywania metod](./method-options#compare-check-options) dla większej ilości informacji)
 
-Opcje porównania mogą być również ustawione jako opcje usługi, są one opisane w [Opcje porównania metod](/docs/visual-testing/method-options#compare-check-options)
+Opcje porównywania mogą być również ustawione jako opcje serwisu, są one opisane w [Opcje porównywania metod](/docs/visual-testing/method-options#compare-check-options)

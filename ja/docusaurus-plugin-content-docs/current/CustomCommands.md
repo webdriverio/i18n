@@ -3,36 +3,49 @@ id: customcommands
 title: カスタムコマンド
 ---
 
-`browser`インスタンスを独自のコマンドセットで拡張したい場合、ブラウザメソッド`addCommand`がその役割を果たします。仕様書と同様に、非同期方式でコマンドを記述することができます。
+`browser`インスタンスを独自のコマンドセットで拡張したい場合は、ブラウザメソッド`addCommand`がその目的のために用意されています。スペックと同様に、非同期方式でコマンドを記述することができます。
 
 ## パラメータ
 
 ### コマンド名
 
-コマンドを定義し、ブラウザまたは要素のスコープに付加される名前。
+コマンドを定義し、ブラウザまたは要素のスコープに追加される名前。
 
-タイプ：`String`
+タイプ: `String`
 
 ### カスタム関数
 
 コマンドが呼び出されたときに実行される関数。`this`スコープは、コマンドがブラウザスコープに付加されるか要素スコープに付加されるかによって、[`WebdriverIO.Browser`](/docs/api/browser)または[`WebdriverIO.Element`](/docs/api/element)のいずれかになります。
 
-タイプ：`Function`
+タイプ: `Function`
 
-### ターゲットスコープ
+### オプション
+
+カスタムコマンドの動作を修正する設定オプションを含むオブジェクト
+
+#### ターゲットスコープ
 
 コマンドをブラウザスコープに付加するか要素スコープに付加するかを決定するフラグ。`true`に設定すると、コマンドは要素コマンドになります。
 
-タイプ：`Boolean`<br />
-デフォルト：`false`
+オプション名: `attachToElement`
+タイプ: `Boolean`<br />
+デフォルト: `false`
+
+#### implicitWaitの無効化
+
+カスタムコマンドを呼び出す前に、要素が存在するのを暗黙的に待つかどうかを決定するフラグ。
+
+オプション名: `disableElementImplicitWait`
+タイプ: `Boolean`<br />
+デフォルト: `false`
 
 ## 例
 
-この例では、現在のURLとタイトルを1つの結果として返す新しいコマンドを追加する方法を示しています。スコープ（`this`）は[`WebdriverIO.Browser`](/docs/api/browser)オブジェクトです。
+この例では、現在のURLとタイトルを1つの結果として返す新しいコマンドを追加する方法を示しています。スコープ(`this`)は[`WebdriverIO.Browser`](/docs/api/browser)オブジェクトです。
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
-    // `this`は`browser`スコープを参照します
+    // `this` refers to the `browser` scope
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -41,19 +54,30 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-さらに、最後の引数として`true`を渡すことで、要素インスタンスを独自のコマンドセットで拡張することができます。この場合、スコープ（`this`）は[`WebdriverIO.Element`](/docs/api/element)オブジェクトです。
+さらに、最後の引数として`true`を渡すことで、要素インスタンスを独自のコマンドセットで拡張することもできます。この場合、スコープ(`this`)は[`WebdriverIO.Element`](/docs/api/element)オブジェクトです。
 
 ```js
 browser.addCommand("waitAndClick", async function () {
-    // `this`は$(selector)の戻り値です
+    // `this` is return value of $(selector)
     await this.waitForDisplayed()
     await this.click()
-}, true)
+}, { attachToElement: true })
 ```
 
-カスタムコマンドを使用すると、頻繁に使用する特定のコマンドシーケンスを単一の呼び出しにまとめることができます。テストスイートの任意の場所でカスタムコマンドを定義できますが、最初に使用する前にコマンドが定義されていることを確認してください。（`wdio.conf.js`の`before`フックはコマンドを作成するのに適した場所の一つです。）
+デフォルトでは、要素カスタムコマンドはカスタムコマンドを呼び出す前に要素が存在するのを待ちます。これは多くの場合望ましいですが、必要でない場合は`disableImplicitWait`で無効にできます：
 
-定義後、次のように使用できます：
+```js
+browser.addCommand("waitAndClick", async function () {
+    // `this` is return value of $(selector)
+    await this.waitForExists()
+    await this.click()
+}, { attachToElement: true, disableElementImplicitWait: true })
+```
+
+
+カスタムコマンドを使用すると、頻繁に使用する特定のコマンドシーケンスを単一の呼び出しにまとめることができます。テストスイートの任意の場所でカスタムコマンドを定義できますが、最初に使用する前にコマンドが定義されていることを確認してください（`wdio.conf.js`の`before`フックは作成に適した場所の一つです）。
+
+定義後は、次のように使用できます：
 
 ```js
 it('should use my custom command', async () => {
@@ -66,50 +90,50 @@ it('should use my custom command', async () => {
 })
 ```
 
-__注意：__ `browser`スコープにカスタムコマンドを登録すると、そのコマンドは要素からアクセスできません。同様に、要素スコープにコマンドを登録すると、`browser`スコープからアクセスできません：
+__注意:__ カスタムコマンドを`browser`スコープに登録すると、そのコマンドは要素からアクセスできなくなります。同様に、コマンドを要素スコープに登録すると、`browser`スコープからアクセスできなくなります：
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
 const elem = await $('body')
-console.log(typeof browser.myCustomBrowserCommand) // 「function」と出力
-console.log(typeof elem.myCustomBrowserCommand()) // 「undefined」と出力
+console.log(typeof browser.myCustomBrowserCommand) // outputs "function"
+console.log(typeof elem.myCustomBrowserCommand()) // outputs "undefined"
 
-browser.addCommand("myCustomElementCommand", () => { return 1 }, true)
+browser.addCommand("myCustomElementCommand", () => { return 1 }, { attachToElement: true })
 const elem2 = await $('body')
-console.log(typeof browser.myCustomElementCommand) // 「undefined」と出力
-console.log(await elem2.myCustomElementCommand('foobar')) // 「1」と出力
+console.log(typeof browser.myCustomElementCommand) // outputs "undefined"
+console.log(await elem2.myCustomElementCommand('foobar')) // outputs "1"
 
 const elem3 = await $('body')
 elem3.addCommand("myCustomElementCommand2", () => { return 2 })
-console.log(typeof browser.myCustomElementCommand2) // 「undefined」と出力
-console.log(await elem3.myCustomElementCommand2('foobar')) // 「2」と出力
+console.log(typeof browser.myCustomElementCommand2) // outputs "undefined"
+console.log(await elem3.myCustomElementCommand2('foobar')) // outputs "2"
 ```
 
-__注意：__ カスタムコマンドをチェーンする必要がある場合、コマンドは`$`で終わるべきです。
+__注意:__ カスタムコマンドをチェーンする必要がある場合、コマンドは`$`で終わるべきです。
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
-browser.addCommand("user$", (locator) => { return ele }, true)
+browser.addCommand("user$", (locator) => { return ele }, { attachToElement: true })
 await browser.user$('foo').user$('bar').click()
 ```
 
-`browser`スコープに多すぎるカスタムコマンドを追加しないよう注意してください。
+あまりにも多くのカスタムコマンドで`browser`スコープを過負荷にしないように注意してください。
 
-特定のページに関連するカスタムロジックは[ページオブジェクト](pageobjects)で定義することをお勧めします。
+カスタムロジックは[ページオブジェクト](pageobjects)で定義することをお勧めします。そうすることで、特定のページに関連付けられます。
 
 ### Multiremote
 
-`addCommand`はマルチリモートでも同様に動作しますが、新しいコマンドは子インスタンスに伝播します。マルチリモートの`browser`とその子インスタンスは異なる`this`を持つため、`this`オブジェクトを使用する際には注意が必要です。
+`addCommand`はmultiremoteでも同様に動作しますが、新しいコマンドは子インスタンスに伝播します。マルチリモートの`browser`とその子インスタンスは異なる`this`を持つため、`this`オブジェクトを使用する際には注意が必要です。
 
-この例は、マルチリモート用に新しいコマンドを追加する方法を示しています。
+この例は、マルチリモート用の新しいコマンドを追加する方法を示しています。
 
 ```js
 import { multiremotebrowser } from '@wdio/globals'
 
 multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
-    // `this`は以下を参照します：
-    //      - ブラウザの場合はMultiRemoteBrowserスコープ
-    //      - インスタンスの場合はBrowserスコープ
+    // `this` refers to:
+    //      - MultiRemoteBrowser scope for browser
+    //      - Browser scope for instances
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -141,18 +165,18 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 
 ## 型定義の拡張
 
-TypeScriptを使用すると、WebdriverIOインターフェースを簡単に拡張できます。カスタムコマンドに型を追加する方法は次のとおりです：
+TypeScriptを使えば、WebdriverIOインターフェースを簡単に拡張できます。カスタムコマンドに型を追加するには以下のようにします：
 
 1. 型定義ファイルを作成します（例：`./src/types/wdio.d.ts`）
-2. a. モジュールスタイルの型定義ファイル（型定義ファイル内でimport/exportを使用し、`declare global WebdriverIO`を使用）を使用する場合は、`tsconfig.json`の`include`プロパティにファイルパスを含めてください。
+2. a. モジュールスタイルの型定義ファイル（型定義ファイル内で import/export と `declare global WebdriverIO` を使用）を使用する場合、ファイルパスを `tsconfig.json` の `include` プロパティに含めるようにしてください。
 
-   b. アンビエントスタイルの型定義ファイル（型定義ファイル内にimport/exportがなく、カスタムコマンドに`declare namespace WebdriverIO`を使用）を使用する場合は、`tsconfig.json`に`include`セクションが含まれていないことを確認してください。これは、`include`セクションに記載されていない型定義ファイルがTypeScriptに認識されなくなるためです。
+   b. アンビエントスタイルの型定義ファイル（型定義ファイルに import/export がなく、カスタムコマンドに `declare namespace WebdriverIO` を使用）を使用する場合、`tsconfig.json` に `include` セクションが含まれていないことを確認してください。これは、`include` セクションに記載されていない型定義ファイルが TypeScript に認識されなくなるためです。
 
 <Tabs
   defaultValue="modules"
   values={[
-    {label: 'モジュール（import/exportを使用）', value: 'modules'},
-    {label: 'アンビエント型定義（tsconfigのincludeなし）', value: 'ambient'},
+    {label: 'Modules (using import/export)', value: 'modules'},
+    {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
   ]
 }>
 <TabItem value="modules">
@@ -184,8 +208,8 @@ TypeScriptを使用すると、WebdriverIOインターフェースを簡単に�
 <Tabs
   defaultValue="modules"
   values={[
-    {label: 'モジュール（import/exportを使用）', value: 'modules'},
-    {label: 'アンビエント型定義', value: 'ambient'},
+    {label: 'Modules (using import/export)', value: 'modules'},
+    {label: 'Ambient Type Definitions', value: 'ambient'},
   ]
 }>
 <TabItem value="modules">
@@ -232,7 +256,7 @@ declare namespace WebdriverIO {
 
 ## サードパーティライブラリの統合
 
-プロミスをサポートする外部ライブラリ（例：データベース呼び出しを行うライブラリ）を使用する場合、特定のAPIメソッドをカスタムコマンドでラップするのは良いアプローチです。
+プロミスをサポートする外部ライブラリ（データベース呼び出しを行うなど）を使用する場合、それらを統合するための良いアプローチは、特定のAPIメソッドをカスタムコマンドでラップすることです。
 
 プロミスを返すとき、WebdriverIOはプロミスが解決されるまで次のコマンドに進まないようにします。プロミスが拒否された場合、コマンドはエラーをスローします。
 
@@ -243,36 +267,36 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-そして、WDIOテスト仕様で以下のように使用します：
+その後、WDIOテスト仕様で次のように使用できます：
 
 ```js
 it('execute external library in a sync way', async () => {
     await browser.url('...')
     const body = await browser.makeRequest('http://...')
-    console.log(body) // レスポンスボディを返す
+    console.log(body) // returns response body
 })
 ```
 
-**注意：** カスタムコマンドの結果は、返すプロミスの結果です。
+**注意:** カスタムコマンドの結果は、返すプロミスの結果です。
 
 ## コマンドの上書き
 
 `overwriteCommand`を使用してネイティブコマンドを上書きすることもできます。
 
-これはフレームワークの予測不可能な動作につながる可能性があるため、推奨されません！
+これはフレームワークの予測不可能な動作を引き起こす可能性があるため、推奨されません！
 
-全体的なアプローチは`addCommand`と似ていますが、唯一の違いはコマンド関数の最初の引数が上書きしようとしているオリジナルの関数であることです。以下にいくつかの例を示します。
+全体的なアプローチは`addCommand`と似ていますが、唯一の違いはコマンド関数の最初の引数が上書きしようとしている元の関数であることです。以下にいくつかの例を示します。
 
 ### ブラウザコマンドの上書き
 
 ```js
 /**
- * 一時停止前にミリ秒を表示し、その値を返す。
+ * Print milliseconds before pause and return its value.
  * 
- * @param pause - 上書きするコマンドの名前
- * @param this of func - 関数が呼び出された元のブラウザインスタンス
- * @param originalPauseFunction of func - 元のpause関数
- * @param ms of func - 実際に渡されたパラメータ
+ * @param pause - name of command to be overwritten
+ * @param this of func - the original browser instance on which the function was called
+ * @param originalPauseFunction of func - the original pause function
+ * @param ms of func - the actual parameters passed
   */
 browser.overwriteCommand('pause', async function (this, originalPauseFunction, ms) {
     console.log(`sleeping for ${ms}`)
@@ -280,23 +304,23 @@ browser.overwriteCommand('pause', async function (this, originalPauseFunction, m
     return ms
 })
 
-// 以前と同じように使用する
+// then use it as before
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
 ### 要素コマンドの上書き
 
-要素レベルでのコマンドの上書きもほぼ同じです。単に`overwriteCommand`の3番目の引数として`true`を渡します：
+要素レベルでのコマンドの上書きはほぼ同じです。単に`overwriteCommand`の第3引数として`true`を渡します：
 
 ```js
 /**
- * 要素がクリック可能でない場合、要素までスクロールを試みる。
- * 要素が表示されていないかクリック可能でない場合でもJSでクリックするには{ force: true }を渡す。
- * 元の関数の引数タイプを`options?: ClickOptions`で保持できることを示す。
+ * Attempt to scroll to element if it is not clickable.
+ * Pass { force: true } to click with JS even if element is not visible or clickable.
+ * Show that the original function argument type can be kept with `options?: ClickOptions`
  *
- * @param this of func - 元の関数が呼び出された要素
- * @param originalClickFunction of func - 元のpause関数
- * @param options of func - 実際に渡されたパラメータ
+ * @param this of func - the element on which the original function was called
+ * @param originalClickFunction of func - the original pause function
+ * @param options of func - the actual parameters passed
  */
 browser.overwriteCommand(
     'click',
@@ -304,14 +328,14 @@ browser.overwriteCommand(
         const { force, ...restOptions } = options || {}
         if (!force) {
             try {
-                // クリックを試みる
+                // attempt to click
                 await originalClickFunction(options)
                 return
             } catch (err) {
                 if ((err as Error).message.includes('not clickable at point')) {
                     console.warn('WARN: Element', this.selector, 'is not clickable.', 'Scrolling to it before clicking again.')
 
-                    // 要素までスクロールして再度クリック
+                    // scroll to element and click again
                     await this.scrollIntoView()
                     return originalClickFunction(options)
                 }
@@ -319,26 +343,26 @@ browser.overwriteCommand(
             }
         }
 
-        // JSでクリック
+        // clicking with js
         console.warn('WARN: Using force click for', this.selector)
         await browser.execute((el) => {
             el.click()
         }, this)
     },
-    true, // 3番目の引数として`true`を渡すことを忘れないでください
+    { attachToElement: true }, // Don't forget to attach it to the element
 )
 
-// 以前と同じように使用する
+// then use it as before
 const elem = await $('body')
 await elem.click()
 
-// またはパラメータを渡す
+// or pass params
 await elem.click({ force: true })
 ```
 
 ## WebDriverコマンドの追加
 
-WebDriverプロトコルを使用し、[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)のプロトコル定義で定義されていない追加コマンドをサポートするプラットフォームでテストを実行する場合、`addCommand`インターフェースを通じて手動でそれらを追加できます。`webdriver`パッケージは、他のコマンドと同様の方法でこれらの新しいエンドポイントを登録できるコマンドラッパーを提供し、同じパラメータチェックとエラー処理を提供します。この新しいエンドポイントを登録するには、コマンドラッパーをインポートし、次のように新しいコマンドを登録します：
+WebDriverプロトコルを使用し、[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)のプロトコル定義で定義されていない追加コマンドをサポートするプラットフォームでテストを実行している場合、`addCommand`インターフェースを通じて手動でそれらを追加できます。`webdriver`パッケージは、これらの新しいエンドポイントを他のコマンドと同じ方法で登録できるコマンドラッパーを提供し、同じパラメータチェックとエラー処理を提供します。この新しいエンドポイントを登録するには、コマンドラッパーをインポートし、以下のように新しいコマンドを登録します：
 
 ```js
 import { command } from 'webdriver'
@@ -363,11 +387,11 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 無効なパラメータでこのコマンドを呼び出すと、事前定義されたプロトコルコマンドと同じエラー処理が行われます。例：
 
 ```js
-// 必須のURLパラメータとペイロードなしでコマンドを呼び出す
+// call command without required url parameter and payload
 await browser.myNewCommand()
 
 /**
- * 次のようなエラーが発生します：
+ * results in the following error:
  * Error: Wrong parameters applied for myNewCommand
  * Usage: myNewCommand(someId, foo)
  *
@@ -381,10 +405,10 @@ await browser.myNewCommand()
  */
 ```
 
-コマンドを正しく呼び出す場合（例：`browser.myNewCommand('foo', 'bar')`）、WebDriverリクエストは正しく実行されます（例：`http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo`）、ペイロードは`{ foo: 'bar' }`のようになります。
+コマンドを正しく呼び出す場合（例：`browser.myNewCommand('foo', 'bar')`）、正しくWebDriverリクエストが例えば`http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo`に対して行われ、ペイロードは`{ foo: 'bar' }`のようになります。
 
 :::note
 `:sessionId` URLパラメータは、WebDriverセッションのセッションIDで自動的に置き換えられます。他のURLパラメータも適用できますが、`variables`内で定義する必要があります。
 :::
 
-プロトコルコマンドの定義方法の例は、[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)パッケージを参照してください。
+プロトコルコマンドを定義する方法の例は、[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)パッケージを参照してください。

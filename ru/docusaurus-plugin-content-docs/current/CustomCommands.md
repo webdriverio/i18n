@@ -3,7 +3,7 @@ id: customcommands
 title: Пользовательские команды
 ---
 
-Если вы хотите расширить экземпляр `browser` своим собственным набором команд, метод браузера `addCommand` к вашим услугам. Вы можете написать вашу команду в асинхронном стиле, так же как в ваших спецификациях.
+Если вы хотите расширить экземпляр `browser` своим набором команд, метод браузера `addCommand` к вашим услугам. Вы можете написать свою команду асинхронно, так же как в ваших тестах.
 
 ## Параметры
 
@@ -15,14 +15,27 @@ title: Пользовательские команды
 
 ### Пользовательская функция
 
-Функция, которая выполняется при вызове команды. Область видимости `this` - это либо [`WebdriverIO.Browser`](/docs/api/browser), либо [`WebdriverIO.Element`](/docs/api/element), в зависимости от того, прикрепляется ли команда к области видимости браузера или элемента.
+Функция, которая выполняется при вызове команды. Область видимости `this` - это либо [`WebdriverIO.Browser`](/docs/api/browser), либо [`WebdriverIO.Element`](/docs/api/element) в зависимости от того, прикреплена ли команда к области видимости браузера или элемента.
 
 Тип: `Function`
 
-### Целевая область
+### Опции
 
-Флаг для определения, привязывать ли команду к области видимости браузера или элемента. Если установлено значение `true`, команда будет командой элемента.
+Объект с параметрами конфигурации, изменяющими поведение пользовательской команды
 
+#### Целевая область видимости
+
+Флаг для определения, следует ли прикреплять команду к области видимости браузера или элемента. Если установлено значение `true`, команда будет командой элемента.
+
+Имя опции: `attachToElement`
+Тип: `Boolean`<br />
+По умолчанию: `false`
+
+#### Отключение неявного ожидания
+
+Флаг для определения, нужно ли неявно ожидать существования элемента перед вызовом пользовательской команды.
+
+Имя опции: `disableElementImplicitWait`
 Тип: `Boolean`<br />
 По умолчанию: `false`
 
@@ -32,7 +45,7 @@ title: Пользовательские команды
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
-    // `this` относится к области видимости `browser`
+    // `this` ссылается на область видимости `browser`
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -41,17 +54,28 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-Кроме того, вы можете расширить экземпляр элемента своим собственным набором команд, передав `true` в качестве последнего аргумента. Область видимости (`this`) в этом случае - объект [`WebdriverIO.Element`](/docs/api/element).
+Кроме того, вы можете расширить экземпляр элемента своим набором команд, передав `true` в качестве последнего аргумента. Областью видимости (`this`) в этом случае является объект [`WebdriverIO.Element`](/docs/api/element).
 
 ```js
 browser.addCommand("waitAndClick", async function () {
     // `this` - это возвращаемое значение $(selector)
     await this.waitForDisplayed()
     await this.click()
-}, true)
+}, { attachToElement: true })
 ```
 
-Пользовательские команды дают вам возможность объединить определенную последовательность команд, которые вы часто используете, в один вызов. Вы можете определить пользовательские команды в любой момент вашего тестового набора; просто убедитесь, что команда определена *до* ее первого использования. (Хук `before` в вашем `wdio.conf.js` - одно хорошее место для их создания.)
+По умолчанию пользовательские команды элемента ожидают существования элемента перед вызовом пользовательской команды. Хотя в большинстве случаев это желательно, при необходимости можно отключить это с помощью `disableImplicitWait`:
+
+```js
+browser.addCommand("waitAndClick", async function () {
+    // `this` - это возвращаемое значение $(selector)
+    await this.waitForExists()
+    await this.click()
+}, { attachToElement: true, disableElementImplicitWait: true })
+```
+
+
+Пользовательские команды дают вам возможность объединить определенную последовательность часто используемых команд в один вызов. Вы можете определить пользовательские команды в любой точке вашего набора тестов; просто убедитесь, что команда определена *до* ее первого использования. (Хук `before` в вашем `wdio.conf.js` - хорошее место для их создания.)
 
 После определения вы можете использовать их следующим образом:
 
@@ -74,7 +98,7 @@ const elem = await $('body')
 console.log(typeof browser.myCustomBrowserCommand) // выводит "function"
 console.log(typeof elem.myCustomBrowserCommand()) // выводит "undefined"
 
-browser.addCommand("myCustomElementCommand", () => { return 1 }, true)
+browser.addCommand("myCustomElementCommand", () => { return 1 }, { attachToElement: true })
 const elem2 = await $('body')
 console.log(typeof browser.myCustomElementCommand) // выводит "undefined"
 console.log(await elem2.myCustomElementCommand('foobar')) // выводит "1"
@@ -85,11 +109,11 @@ console.log(typeof browser.myCustomElementCommand2) // выводит "undefined
 console.log(await elem3.myCustomElementCommand2('foobar')) // выводит "2"
 ```
 
-__Примечание:__ Если вам нужно создать цепочку пользовательских команд, команда должна заканчиваться на `$`,
+__Примечание:__ Если вам нужно создать цепочку из пользовательской команды, команда должна заканчиваться на `$`,
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
-browser.addCommand("user$", (locator) => { return ele }, true)
+browser.addCommand("user$", (locator) => { return ele }, { attachToElement: true })
 await browser.user$('foo').user$('bar').click()
 ```
 
@@ -99,7 +123,7 @@ await browser.user$('foo').user$('bar').click()
 
 ### Multiremote
 
-`addCommand` работает аналогично для multiremote, за исключением того, что новая команда будет распространяться на дочерние экземпляры. Вы должны быть внимательны при использовании объекта `this`, поскольку multiremote `browser` и его дочерние экземпляры имеют разные `this`.
+`addCommand` работает аналогичным образом для multiremote, за исключением того, что новая команда будет распространяться на дочерние экземпляры. Нужно быть внимательным при использовании объекта `this`, так как у multiremote `browser` и его дочерних экземпляров разные `this`.
 
 Этот пример показывает, как добавить новую команду для multiremote.
 
@@ -107,9 +131,9 @@ await browser.user$('foo').user$('bar').click()
 import { multiremotebrowser } from '@wdio/globals'
 
 multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
-    // `this` относится к:
-    //      - области MultiRemoteBrowser для браузера
-    //      - области Browser для экземпляров
+    // `this` ссылается на:
+    //      - область MultiRemoteBrowser для браузера
+    //      - область Browser для экземпляров
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -139,20 +163,20 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 */
 ```
 
-## Расширение определений типов
+## Расширение типов
 
 С TypeScript легко расширить интерфейсы WebdriverIO. Добавьте типы к вашим пользовательским командам следующим образом:
 
 1. Создайте файл определения типов (например, `./src/types/wdio.d.ts`)
-2. a. Если вы используете файл определения типов в стиле модуля (с import/export и `declare global WebdriverIO` в файле определения типов), убедитесь, что путь к файлу включен в свойство `include` файла `tsconfig.json`.
+2. a. Если вы используете файл определения типов в стиле модулей (используя import/export и `declare global WebdriverIO` в файле определения типов), убедитесь, что путь к файлу включен в свойство `include` в `tsconfig.json`.
 
-   b. Если вы используете файлы определения типов в окружающем стиле (без import/export в файлах определения типов и `declare namespace WebdriverIO` для пользовательских команд), убедитесь, что `tsconfig.json` *не* содержит никакого раздела `include`, поскольку это приведет к тому, что все файлы определения типов, не перечисленные в разделе `include`, не будут распознаны typescript.
+   b. Если вы используете файлы определения типов в ambient-стиле (без import/export в файлах определения типов и с `declare namespace WebdriverIO` для пользовательских команд), убедитесь, что `tsconfig.json` *не* содержит никаких разделов `include`, так как это приведет к тому, что все файлы определения типов, не перечисленные в разделе `include`, не будут распознаны TypeScript.
 
 <Tabs
   defaultValue="modules"
   values={[
-    {label: 'Modules (using import/export)', value: 'modules'},
-    {label: 'Ambient Type Definitions (no tsconfig include)', value: 'ambient'},
+    {label: 'Модули (с import/export)', value: 'modules'},
+    {label: 'Ambient-определения типов (без include в tsconfig)', value: 'ambient'},
   ]
 }>
 <TabItem value="modules">
@@ -179,13 +203,13 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 </TabItem>
 </Tabs>
 
-3. Добавьте определения для ваших команд в соответствии с вашим режимом выполнения.
+3. Добавьте определения для ваших команд в соответствии с режимом выполнения.
 
 <Tabs
   defaultValue="modules"
   values={[
-    {label: 'Modules (using import/export)', value: 'modules'},
-    {label: 'Ambient Type Definitions', value: 'ambient'},
+    {label: 'Модули (с import/export)', value: 'modules'},
+    {label: 'Ambient-определения типов', value: 'ambient'},
   ]
 }>
 <TabItem value="modules">
@@ -234,7 +258,7 @@ declare namespace WebdriverIO {
 
 Если вы используете внешние библиотеки (например, для вызовов базы данных), которые поддерживают промисы, хороший подход для их интеграции - обернуть определенные методы API пользовательской командой.
 
-При возврате промиса WebdriverIO гарантирует, что он не перейдет к следующей команде, пока промис не будет выполнен. Если промис отклоняется, команда выдаст ошибку.
+При возвращении промиса WebdriverIO гарантирует, что он не продолжит выполнение следующей команды, пока промис не будет разрешен. Если промис отклоняется, команда выдаст ошибку.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -243,7 +267,7 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-Затем просто используйте это в ваших спецификациях тестов WDIO:
+Затем просто используйте ее в ваших тестовых спецификациях WDIO:
 
 ```js
 it('execute external library in a sync way', async () => {
@@ -253,26 +277,26 @@ it('execute external library in a sync way', async () => {
 })
 ```
 
-**Примечание:** Результат вашей пользовательской команды - это результат возвращаемого вами промиса.
+**Примечание:** Результатом вашей пользовательской команды является результат промиса, который вы возвращаете.
 
-## Перезапись команд
+## Переопределение команд
 
-Вы также можете перезаписать встроенные команды с помощью `overwriteCommand`.
+Вы также можете переопределять нативные команды с помощью `overwriteCommand`.
 
 Не рекомендуется делать это, так как это может привести к непредсказуемому поведению фреймворка!
 
-Общий подход аналогичен `addCommand`, единственное отличие состоит в том, что первым аргументом в функции команды является оригинальная функция, которую вы собираетесь перезаписать. Пожалуйста, см. некоторые примеры ниже.
+Общий подход аналогичен `addCommand`, единственное отличие в том, что первым аргументом в функции команды является оригинальная функция, которую вы собираетесь переопределить. Пожалуйста, ознакомьтесь с примерами ниже.
 
-### Перезапись команд браузера
+### Переопределение команд браузера
 
 ```js
 /**
- * Вывести миллисекунды перед паузой и вернуть его значение.
+ * Выводит миллисекунды перед паузой и возвращает их значение.
  * 
- * @param pause - имя команды для перезаписи
- * @param this функции - исходный экземпляр браузера, на котором была вызвана функция
- * @param originalPauseFunction функции - исходная функция паузы
- * @param ms функции - фактически переданные параметры
+ * @param pause - имя команды для переопределения
+ * @param this в func - исходный экземпляр браузера, на котором была вызвана функция
+ * @param originalPauseFunction в func - оригинальная функция паузы
+ * @param ms в func - фактические переданные параметры
   */
 browser.overwriteCommand('pause', async function (this, originalPauseFunction, ms) {
     console.log(`sleeping for ${ms}`)
@@ -280,23 +304,23 @@ browser.overwriteCommand('pause', async function (this, originalPauseFunction, m
     return ms
 })
 
-// затем используйте как и раньше
+// затем используйте как раньше
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### Перезапись команд элемента
+### Переопределение команд элемента
 
-Перезапись команд на уровне элемента почти такая же. Просто передайте `true` в качестве третьего аргумента в `overwriteCommand`:
+Переопределение команд на уровне элемента выполняется почти так же. Просто передайте `true` в качестве третьего аргумента в `overwriteCommand`:
 
 ```js
 /**
  * Попытка прокрутки до элемента, если он не кликабельный.
- * Передайте { force: true }, чтобы кликнуть с помощью JS, даже если элемент не виден или не кликабелен.
- * Показать, что тип аргумента исходной функции можно сохранить с помощью `options?: ClickOptions`
+ * Передайте { force: true }, чтобы кликнуть с помощью JS, даже если элемент не видим или не кликабельный.
+ * Показывает, что тип аргумента оригинальной функции можно сохранить с помощью `options?: ClickOptions`
  *
- * @param this функции - элемент, на котором была вызвана исходная функция
- * @param originalClickFunction функции - исходная функция паузы
- * @param options функции - фактически переданные параметры
+ * @param this в func - элемент, на котором была вызвана исходная функция
+ * @param originalClickFunction в func - оригинальная функция клика
+ * @param options в func - фактические переданные параметры
  */
 browser.overwriteCommand(
     'click',
@@ -311,7 +335,7 @@ browser.overwriteCommand(
                 if ((err as Error).message.includes('not clickable at point')) {
                     console.warn('WARN: Element', this.selector, 'is not clickable.', 'Scrolling to it before clicking again.')
 
-                    // прокрутка до элемента и повторный клик
+                    // прокрутка к элементу и повторный клик
                     await this.scrollIntoView()
                     return originalClickFunction(options)
                 }
@@ -325,10 +349,10 @@ browser.overwriteCommand(
             el.click()
         }, this)
     },
-    true, // не забудьте передать `true` в качестве 3-го аргумента
+    { attachToElement: true }, // Не забудьте прикрепить его к элементу
 )
 
-// затем используйте как и раньше
+// затем используйте как раньше
 const elem = await $('body')
 await elem.click()
 
@@ -338,7 +362,7 @@ await elem.click({ force: true })
 
 ## Добавление дополнительных команд WebDriver
 
-Если вы используете протокол WebDriver и запускаете тесты на платформе, которая поддерживает дополнительные команды, не определенные ни одним из определений протокола в [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols), вы можете вручную добавить их через интерфейс `addCommand`. Пакет `webdriver` предлагает обертку команд, которая позволяет регистрировать эти новые конечные точки так же, как и другие команды, обеспечивая те же проверки параметров и обработку ошибок. Чтобы зарегистрировать эту новую конечную точку, импортируйте обертку команд и зарегистрируйте новую команду с ее помощью следующим образом:
+Если вы используете протокол WebDriver и запускаете тесты на платформе, которая поддерживает дополнительные команды, не определенные ни в одном из определений протокола в [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols), вы можете вручную добавить их через интерфейс `addCommand`. Пакет `webdriver` предлагает обертку для команд, которая позволяет регистрировать эти новые конечные точки так же, как и другие команды, обеспечивая те же проверки параметров и обработку ошибок. Для регистрации этой новой конечной точки импортируйте обертку команд и зарегистрируйте новую команду с ее помощью следующим образом:
 
 ```js
 import { command } from 'webdriver'
@@ -360,14 +384,14 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-Вызов этой команды с недопустимыми параметрами приводит к той же обработке ошибок, что и предопределенные команды протокола, например:
+Вызов этой команды с неверными параметрами приводит к такой же обработке ошибок, как и предопределенные команды протокола, например:
 
 ```js
 // вызов команды без обязательного параметра URL и полезной нагрузки
 await browser.myNewCommand()
 
 /**
- * приводит к следующей ошибке:
+ * результат в следующей ошибке:
  * Error: Wrong parameters applied for myNewCommand
  * Usage: myNewCommand(someId, foo)
  *
@@ -381,10 +405,10 @@ await browser.myNewCommand()
  */
 ```
 
-Правильный вызов команды, например `browser.myNewCommand('foo', 'bar')`, правильно делает запрос WebDriver на, например, `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` с полезной нагрузкой типа `{ foo: 'bar' }`.
+Правильный вызов команды, например `browser.myNewCommand('foo', 'bar')`, правильно делает запрос WebDriver к, например, `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` с полезной нагрузкой типа `{ foo: 'bar' }`.
 
 :::note
-Параметр URL `:sessionId` будет автоматически заменен идентификатором сеанса сеанса WebDriver. Другие параметры URL могут быть применены, но должны быть определены в `variables`.
+Параметр URL `:sessionId` будет автоматически заменен идентификатором сессии WebDriver. Другие параметры URL могут быть применены, но должны быть определены в `variables`.
 :::
 
-См. примеры того, как можно определить команды протокола в пакете [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).
+Примеры того, как могут быть определены команды протокола, смотрите в пакете [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).
