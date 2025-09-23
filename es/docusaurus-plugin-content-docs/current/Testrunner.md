@@ -1,9 +1,9 @@
 ---
 id: testrunner
-title: Ejecutor de pruebas
+title: Testrunner
 ---
 
-WebdriverIO viene con su propio ejecutor de pruebas para ayudarte a comenzar a realizar pruebas lo más rápido posible. Está diseñado para hacer todo el trabajo por ti, permite integrar servicios de terceros y te ayuda a ejecutar tus pruebas de la manera más eficiente posible.
+WebdriverIO viene con su propio ejecutor de pruebas para ayudarte a comenzar a probar lo más rápido posible. Se supone que debe hacer todo el trabajo por ti, permite integrar servicios de terceros y te ayuda a ejecutar tus pruebas de la manera más eficiente posible.
 
 El ejecutor de pruebas de WebdriverIO está empaquetado por separado en el paquete NPM `@wdio/cli`.
 
@@ -34,7 +34,7 @@ Options:
   --help     Show help                                                 [boolean]
 ```
 
-¡Genial! Ahora necesitas definir un archivo de configuración donde se establezca toda la información sobre tus pruebas, capacidades y configuraciones. Dirígete a la sección [Archivo de Configuración](/docs/configuration) para ver cómo debería ser ese archivo.
+¡Genial! Ahora necesitas definir un archivo de configuración donde se establezca toda la información sobre tus pruebas, capacidades y ajustes. Pasa a la sección de [Archivo de Configuración](/docs/configuration) para ver cómo debe ser ese archivo.
 
 Con el asistente de configuración `wdio`, es muy fácil generar tu archivo de configuración. Simplemente ejecuta:
 
@@ -42,19 +42,19 @@ Con el asistente de configuración `wdio`, es muy fácil generar tu archivo de c
 $ npx wdio config
 ```
 
-...y se iniciará la utilidad de ayuda.
+...y se iniciará la utilidad de asistencia.
 
 Te hará preguntas y generará un archivo de configuración para ti en menos de un minuto.
 
 ![Utilidad de configuración WDIO](/img/config-utility.gif)
 
-Una vez que tengas configurado tu archivo de configuración, puedes iniciar tus pruebas ejecutando:
+Una vez que tengas tu archivo de configuración configurado, puedes comenzar tus pruebas ejecutando:
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-También puedes inicializar tu ejecución de prueba sin el comando `run`:
+También puedes inicializar tu ejecución de pruebas sin el comando `run`:
 
 ```sh
 npx wdio wdio.conf.js
@@ -78,7 +78,7 @@ Opciones:
 
 ```
 --help            muestra el menú de ayuda de WebdriverIO                     [boolean]
---npm             Si se deben instalar los paquetes usando NPM en lugar de yarn [boolean]
+--npm             Si instalar los paquetes usando NPM en lugar de yarn        [boolean]
 ```
 
 ### `wdio run`
@@ -98,38 +98,38 @@ Opciones:
 ```
 --help                muestra el menú de ayuda de WebdriverIO        [boolean]
 --version             muestra la versión de WebdriverIO              [boolean]
---hostname, -h        dirección del host del controlador de automatización [string]
---port, -p            puerto del controlador de automatización        [number]
---user, -u            nombre de usuario si se usa un servicio en la nube como backend
+--hostname, -h        dirección host del driver de automatización     [string]
+--port, -p            puerto del driver de automatización             [number]
+--user, -u            nombre de usuario si se utiliza un servicio en la nube como backend de automatización
                                                                         [string]
 --key, -k             clave de acceso correspondiente al usuario      [string]
---watch               observa los specs para detectar cambios        [boolean]
+--watch               observa los specs para cambios                 [boolean]
 --logLevel, -l        nivel de detalle de los registros
-                            [opciones: "trace", "debug", "info", "warn", "error", "silent"]
---bail                detiene el ejecutor de pruebas después de que una cantidad específica
-                        de pruebas hayan fallado                       [number]
---baseUrl             acorta las llamadas de comandos de URL estableciendo una URL base
-                                                                        [string]
+                            [choices: "trace", "debug", "info", "warn", "error", "silent"]
+--bail                detiene el ejecutor de pruebas después de que una cantidad específica de pruebas hayan
+                        fallado                                          [number]
+--baseUrl             acorta las llamadas de comando de url estableciendo una url base [string]
 --waitforTimeout, -w  tiempo de espera para todos los comandos waitForXXX [number]
 --framework, -f       define el framework (Mocha, Jasmine o Cucumber) para
-                        ejecutar los specs                              [string]
---reporters, -r       reporteros para imprimir los resultados en stdout  [array]
+                        ejecutar los specs                                [string]
+--reporters, -r       reporteros para mostrar los resultados en stdout     [array]
 --suite               sobrescribe el atributo specs y ejecuta la suite
-                        definida                                         [array]
---spec                ejecuta un archivo spec específico o comodines - anula los specs
-                        canalizados desde stdin                          [array]
---exclude             excluye archivo(s) spec de una ejecución - anula los specs
-                        canalizados desde stdin                          [array]
---repeat              Repite specs y/o suites específicos N veces        [number]
+                        definida                                           [array]
+--spec                ejecuta un archivo spec específico o comodines - sobrescribe los specs canalizados
+                        desde stdin                                        [array]
+--exclude             excluye archivo(s) spec de una ejecución - sobrescribe los specs canalizados
+                        desde stdin                                        [array]
+--repeat              Repite specs y/o suites específicos N veces         [number]
 --mochaOpts           Opciones de Mocha
 --jasmineOpts         Opciones de Jasmine
 --cucumberOpts        Opciones de Cucumber
+--tsConfigPath        Ruta personalizada para `tsconfig.json` o usar la [configuración tsConfigPath](/docs/configurationfile) del config wdio
 ```
 
-> Nota: La autocompilación se puede controlar fácilmente con las variables de entorno `tsx`. Consulta también la [documentación de TypeScript](/docs/typescript).
+> Nota: La autocompilación se puede controlar fácilmente con las variables de entorno `tsx`. Ver también la [documentación de TypeScript](/docs/typescript).
 
 ### `wdio install`
-El comando `install` te permite agregar reporteros y servicios a tus proyectos WebdriverIO a través de la CLI.
+El comando `install` te permite añadir reporteros y servicios a tus proyectos WebdriverIO a través de la CLI.
 
 Ejemplo:
 
@@ -139,7 +139,7 @@ wdio install reporter dot # instala @wdio/dot-reporter
 wdio install framework mocha # instala @wdio/mocha-framework
 ```
 
-Si deseas instalar los paquetes usando `yarn` en su lugar, puedes pasar la bandera `--yarn` al comando:
+Si quieres instalar los paquetes usando `yarn` en su lugar, puedes pasar la bandera `--yarn` al comando:
 
 ```sh
 wdio install service sauce --yarn
@@ -197,7 +197,7 @@ cucumber
 
 ### `wdio repl`
 
-El comando repl permite iniciar una interfaz de línea de comandos interactiva para ejecutar comandos de WebdriverIO. Se puede utilizar con fines de prueba o simplemente para iniciar rápidamente una sesión de WebdriverIO.
+El comando repl permite iniciar una interfaz de línea de comandos interactiva para ejecutar comandos WebdriverIO. Se puede utilizar con fines de prueba o simplemente para iniciar rápidamente una sesión de WebdriverIO.
 
 Ejecutar pruebas en chrome local:
 

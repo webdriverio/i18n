@@ -1,11 +1,11 @@
 ---
 id: testrunner
-title: Testrunner
+title: Trình chạy kiểm thử
 ---
 
-WebdriverIO đi kèm với trình chạy kiểm thử riêng để giúp bạn bắt đầu kiểm thử nhanh nhất có thể. Nó được thiết kế để làm tất cả công việc cho bạn, cho phép tích hợp với các dịch vụ bên thứ ba, và giúp bạn chạy các bài kiểm thử của mình một cách hiệu quả nhất có thể.
+WebdriverIO đi kèm với trình chạy kiểm thử riêng để giúp bạn bắt đầu kiểm thử nhanh nhất có thể. Nó được thiết kế để làm tất cả công việc cho bạn, cho phép tích hợp với các dịch vụ bên thứ 3, và giúp bạn chạy các bài kiểm tra của mình một cách hiệu quả nhất có thể.
 
-Testrunner của WebdriverIO được đóng gói riêng trong gói NPM `@wdio/cli`.
+Trình chạy kiểm thử của WebdriverIO được đóng gói riêng trong gói NPM `@wdio/cli`.
 
 Cài đặt như sau:
 
@@ -13,7 +13,7 @@ Cài đặt như sau:
 npm install @wdio/cli
 ```
 
-Để xem trợ giúp về giao diện dòng lệnh, nhập lệnh sau vào terminal của bạn:
+Để xem trợ giúp về giao diện dòng lệnh, gõ lệnh sau trong terminal của bạn:
 
 ```sh
 $ npx wdio --help
@@ -34,9 +34,9 @@ Options:
   --help     Show help                                                 [boolean]
 ```
 
-Tuyệt vời! Bây giờ bạn cần định nghĩa một tệp cấu hình nơi tất cả thông tin về các bài kiểm thử, khả năng và cài đặt của bạn được thiết lập. Chuyển qua phần [Configuration File](/docs/configuration) để xem tệp đó nên trông như thế nào.
+Tuyệt! Bây giờ bạn cần định nghĩa một tệp cấu hình nơi tất cả thông tin về các bài kiểm tra, khả năng và cài đặt của bạn được thiết lập. Chuyển sang phần [Tệp cấu hình](/docs/configuration) để xem tệp đó nên trông như thế nào.
 
-Với tiện ích hỗ trợ cấu hình `wdio`, việc tạo tệp cấu hình của bạn trở nên cực kỳ dễ dàng. Chỉ cần chạy:
+Với tiện ích hỗ trợ cấu hình `wdio`, việc tạo tệp cấu hình của bạn cực kỳ đơn giản. Chỉ cần chạy:
 
 ```sh
 $ npx wdio config
@@ -44,29 +44,29 @@ $ npx wdio config
 
 ...và nó sẽ khởi chạy tiện ích hỗ trợ.
 
-Nó sẽ hỏi bạn một số câu hỏi và tạo một tệp cấu hình cho bạn trong chưa đầy một phút.
+Nó sẽ đặt cho bạn một số câu hỏi và tạo ra một tệp cấu hình cho bạn trong chưa đầy một phút.
 
 ![WDIO configuration utility](/img/config-utility.gif)
 
-Khi bạn đã thiết lập xong tệp cấu hình, bạn có thể bắt đầu các bài kiểm thử bằng cách chạy:
+Khi bạn đã thiết lập tệp cấu hình của mình, bạn có thể bắt đầu các bài kiểm tra bằng cách chạy:
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-Bạn cũng có thể khởi tạo việc chạy kiểm thử mà không cần lệnh `run`:
+Bạn cũng có thể khởi chạy các bài kiểm tra của mình mà không cần lệnh `run`:
 
 ```sh
 npx wdio wdio.conf.js
 ```
 
-Vậy là xong! Bây giờ, bạn có thể truy cập đến instance selenium thông qua biến toàn cục `browser`.
+Vậy là xong! Bây giờ, bạn có thể truy cập vào phiên bản selenium thông qua biến toàn cục `browser`.
 
-## Commands
+## Các lệnh
 
 ### `wdio config`
 
-Lệnh `config` chạy tiện ích hỗ trợ cấu hình WebdriverIO. Tiện ích này sẽ hỏi bạn một vài câu hỏi về dự án WebdriverIO của bạn và tạo một tệp `wdio.conf.js` dựa trên câu trả lời của bạn.
+Lệnh `config` chạy trình hỗ trợ cấu hình WebdriverIO. Trình hỗ trợ này sẽ hỏi bạn một vài câu hỏi về dự án WebdriverIO của bạn và tạo một tệp `wdio.conf.js` dựa trên câu trả lời của bạn.
 
 Ví dụ:
 
@@ -85,7 +85,7 @@ Tùy chọn:
 
 > Đây là lệnh mặc định để chạy cấu hình của bạn.
 
-Lệnh `run` khởi tạo tệp cấu hình WebdriverIO của bạn và chạy các bài kiểm thử của bạn.
+Lệnh `run` khởi tạo tệp cấu hình WebdriverIO của bạn và chạy các bài kiểm tra của bạn.
 
 Ví dụ:
 
@@ -123,9 +123,10 @@ Tùy chọn:
 --mochaOpts           Mocha options
 --jasmineOpts         Jasmine options
 --cucumberOpts        Cucumber options
+--tsConfigPath        Custom path for `tsconfig.json` or use wdio config's [tsConfigPath setting](/docs/configurationfile)
 ```
 
-> Lưu ý: Tự động biên dịch có thể dễ dàng kiểm soát bằng các biến môi trường `tsx`. Xem thêm [tài liệu TypeScript](/docs/typescript).
+> Lưu ý: Tự động biên dịch có thể dễ dàng điều khiển với các biến môi trường `tsx`. Xem thêm [tài liệu TypeScript](/docs/typescript).
 
 ### `wdio install`
 Lệnh `install` cho phép bạn thêm các trình báo cáo và dịch vụ vào dự án WebdriverIO của bạn thông qua CLI.
@@ -196,18 +197,18 @@ cucumber
 
 ### `wdio repl`
 
-Lệnh repl cho phép khởi động một giao diện dòng lệnh tương tác để chạy các lệnh WebdriverIO. Nó có thể được sử dụng cho mục đích kiểm thử hoặc chỉ đơn giản là để nhanh chóng khởi tạo một phiên WebdriverIO.
+Lệnh repl cho phép khởi động giao diện dòng lệnh tương tác để chạy các lệnh WebdriverIO. Nó có thể được sử dụng cho mục đích kiểm tra hoặc chỉ để nhanh chóng khởi động một phiên WebdriverIO.
 
-Chạy kiểm thử trong chrome cục bộ:
+Chạy kiểm tra trên Chrome cục bộ:
 
 ```sh
 wdio repl chrome
 ```
 
-hoặc chạy kiểm thử trên Sauce Labs:
+hoặc chạy kiểm tra trên Sauce Labs:
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY
 ```
 
-Bạn có thể áp dụng các đối số tương tự như trong [lệnh run](#wdio-run).
+Bạn có thể áp dụng các đối số giống như bạn có thể trong [lệnh run](#wdio-run).
