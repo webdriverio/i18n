@@ -3,13 +3,13 @@ id: mock
 title: Объект Mock
 ---
 
-Объект mock - это объект, представляющий сетевой мок и содержащий информацию о запросах, соответствующих заданному `url` и `filterOptions`. Его можно получить с помощью команды [`mock`](/docs/api/browser/mock).
+Объект mock - это объект, который представляет сетевой мок и содержит информацию о запросах, соответствующих заданному `url` и `filterOptions`. Его можно получить с помощью команды [`mock`](/docs/api/browser/mock).
 
 :::info
 
 Обратите внимание, что использование команды `mock` требует поддержки протокола Chrome DevTools.
-Эта поддержка доступна при локальном запуске тестов в браузере на базе Chromium или при
-использовании Selenium Grid версии 4 или выше. Эта команда __не может__ быть использована при запуске
+Такая поддержка предоставляется при локальном запуске тестов в браузере на основе Chromium или при
+использовании Selenium Grid версии 4 или выше. Эта команда __не может__ использоваться при запуске
 автоматизированных тестов в облаке. Узнайте больше в разделе [Протоколы автоматизации](/docs/automationProtocols).
 
 :::
@@ -20,12 +20,12 @@ title: Объект Mock
 
 Объект mock содержит следующие свойства:
 
-| Имя | Тип | Детали |
+| Имя | Тип | Подробности |
 | ---- | ---- | ------- |
 | `url` | `String` | URL, переданный в команду mock |
-| `filterOptions` | `Object` | Параметры фильтра ресурсов, переданные в команду mock |
+| `filterOptions` | `Object` | Параметры фильтрации ресурсов, переданные в команду mock |
 | `browser` | `Object` | [Объект Browser](/docs/api/browser), используемый для получения объекта mock. |
-| `calls` | `Object[]` | Информация о соответствующих запросах браузера, содержащая такие свойства, как `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` и `body` |
+| `calls` | `Object[]` | Информация о соответствующих запросах браузера, содержащая такие свойства как `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` и `body` |
 
 ## Методы
 
@@ -39,18 +39,19 @@ title: Объект Mock
 - [`respond`](/docs/api/mock/respond)
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
+- [`waitForResponse`](/docs/api/mock/waitForResponse)
 
 ## События
 
-Объект mock является EventEmitter, и для ваших сценариев использования генерируется несколько событий.
+Объект mock является EventEmitter, и для вашего использования испускаются несколько событий.
 
 Вот список событий.
 
 ### `request`
 
-Это событие генерируется при запуске сетевого запроса, соответствующего шаблонам мока. Запрос передается в обратный вызов события.
+Это событие испускается при запуске сетевого запроса, соответствующего шаблонам мока. Запрос передается в обратный вызов события.
 
-Интерфейс запроса:
+Интерфейс Request:
 ```ts
 interface RequestEvent {
     requestId: number
@@ -62,9 +63,9 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Это событие генерируется, когда сетевой ответ перезаписывается с помощью [`respond`](/docs/api/mock/respond) или [`respondOnce`](/docs/api/mock/respondOnce). Ответ передается в обратный вызов события.
+Это событие испускается, когда сетевой ответ перезаписывается с помощью [`respond`](/docs/api/mock/respond) или [`respondOnce`](/docs/api/mock/respondOnce). Ответ передается в обратный вызов события.
 
-Интерфейс ответа:
+Интерфейс Response:
 ```ts
 interface OverwriteEvent {
     requestId: number
@@ -76,9 +77,9 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Это событие генерируется, когда сетевой запрос прерывается с помощью [`abort`](/docs/api/mock/abort) или [`abortOnce`](/docs/api/mock/abortOnce). Отказ передается в обратный вызов события.
+Это событие испускается, когда сетевой запрос прерывается с помощью [`abort`](/docs/api/mock/abort) или [`abortOnce`](/docs/api/mock/abortOnce). Сбой передается в обратный вызов события.
 
-Интерфейс отказа:
+Интерфейс Fail:
 ```ts
 interface FailEvent {
     requestId: number
@@ -88,31 +89,31 @@ interface FailEvent {
 
 ### `match`
 
-Это событие генерируется при добавлении нового совпадения, перед `continue` или `overwrite`. Совпадение передается в обратный вызов события.
+Это событие испускается, когда добавляется новое совпадение, перед `continue` или `overwrite`. Совпадение передается в обратный вызов события.
 
-Интерфейс совпадения:
+Интерфейс Match:
 ```ts
 interface MatchEvent {
     url: string // URL запроса (без фрагмента).
-    urlFragment?: string // Фрагмент запрашиваемого URL, начинающийся с хэша, если он присутствует.
-    method: string // Метод HTTP-запроса.
+    urlFragment?: string // Фрагмент запрашиваемого URL, начинающийся с хеша, если он присутствует.
+    method: string // HTTP-метод запроса.
     headers: Record<string, string> // Заголовки HTTP-запроса.
     postData?: string // Данные HTTP POST-запроса.
     hasPostData?: boolean // True, когда запрос имеет данные POST.
     mixedContentType?: MixedContentType // Тип экспорта смешанного содержимого запроса.
     initialPriority: ResourcePriority // Приоритет запроса ресурса на момент отправки запроса.
     referrerPolicy: ReferrerPolicy // Политика реферера запроса, как определено в https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Загружается ли через предварительную загрузку ссылки.
+    isLinkPreload?: boolean // Загружается ли через предзагрузку ссылки.
     body: string | Buffer | JsonCompatible // Тело ответа фактического ресурса.
     responseHeaders: Record<string, string> // Заголовки HTTP-ответа.
-    statusCode: number // Код состояния HTTP-ответа.
-    mockedResponse?: string | Buffer // Если мок, генерирующий событие, также изменил свой ответ.
+    statusCode: number // Код статуса HTTP-ответа.
+    mockedResponse?: string | Buffer // Если мок, испускающий событие, также модифицировал свой ответ.
 }
 ```
 
 ### `continue`
 
-Это событие генерируется, когда сетевой ответ не был ни перезаписан, ни прерван, или если ответ уже был отправлен другим моком. `requestId` передается в обратный вызов события.
+Это событие испускается, когда сетевой ответ не был ни перезаписан, ни прерван, или если ответ был уже отправлен другим моком. `requestId` передается в обратный вызов события.
 
 ## Примеры
 
@@ -131,7 +132,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Вызов ошибки при сетевом сбое 404:
+Генерация ошибки при сбое сети с кодом 404:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -145,7 +146,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // ожидание здесь, потому что некоторые запросы могут все еще ожидать
+    // ждем здесь, потому что некоторые запросы могут все еще быть в ожидании
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -160,7 +161,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Определение, использовалось ли значение ответа мока:
+Определение, было ли использовано значение ответа mock:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')

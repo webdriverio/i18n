@@ -3,18 +3,18 @@ id: mock
 title: Obiekt Mock
 ---
 
-Obiekt mock to obiekt reprezentujący makietę sieciową, zawierający informacje o żądaniach, które pasowały do podanego `url` i `filterOptions`. Można go otrzymać za pomocą polecenia [`mock`](/docs/api/browser/mock).
+Obiekt mock to obiekt, który reprezentuje atrapy sieciowe i zawiera informacje o żądaniach, które pasowały do podanego `url` i `filterOptions`. Można go otrzymać używając polecenia [`mock`](/docs/api/browser/mock).
 
 :::info
 
-Pamiętaj, że używanie polecenia `mock` wymaga wsparcia dla protokołu Chrome DevTools.
+Zauważ, że używanie polecenia `mock` wymaga wsparcia dla protokołu Chrome DevTools.
 To wsparcie jest dostępne, jeśli uruchamiasz testy lokalnie w przeglądarce opartej na Chromium lub jeśli
-używasz Selenium Grid w wersji 4 lub wyższej. To polecenie __nie może__ być używane podczas uruchamiania
+używasz Selenium Grid w wersji 4 lub wyższej. Tego polecenia __nie można__ używać podczas uruchamiania
 zautomatyzowanych testów w chmurze. Dowiedz się więcej w sekcji [Protokoły Automatyzacji](/docs/automationProtocols).
 
 :::
 
-Więcej informacji o tworzeniu makiet dla żądań i odpowiedzi w WebdriverIO znajdziesz w naszym przewodniku [Makiety i Szpiedzy](/docs/mocksandspies).
+Możesz przeczytać więcej o tworzeniu atrap żądań i odpowiedzi w WebdriverIO w naszym przewodniku [Atrapy i Szpiedzy](/docs/mocksandspies).
 
 ## Właściwości
 
@@ -24,8 +24,8 @@ Obiekt mock zawiera następujące właściwości:
 | ---- | ---- | ------- |
 | `url` | `String` | Adres URL przekazany do polecenia mock |
 | `filterOptions` | `Object` | Opcje filtrowania zasobów przekazane do polecenia mock |
-| `browser` | `Object` | [Obiekt przeglądarki](/docs/api/browser) używany do uzyskania obiektu mock. |
-| `calls` | `Object[]` | Informacje o pasujących żądaniach przeglądarki, zawierające właściwości takie jak `url`, `method`, `headers`, `initialPriority`, `referrerPolicy`, `statusCode`, `responseHeaders` i `body` |
+| `browser` | `Object` | [Obiekt Przeglądarki](/docs/api/browser) użyty do uzyskania obiektu mock. |
+| `calls` | `Object[]` | Informacje o pasujących żądaniach przeglądarki, zawierające właściwości takie jak `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` i `body` |
 
 ## Metody
 
@@ -39,16 +39,17 @@ Obiekty mock udostępniają różne polecenia, wymienione w sekcji `mock`, któr
 - [`respond`](/docs/api/mock/respond)
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
+- [`waitForResponse`](/docs/api/mock/waitForResponse)
 
-## Zdarzenia
+## Wydarzenia
 
-Obiekt mock jest emiterem zdarzeń (EventEmitter) i kilka zdarzeń jest emitowanych do wykorzystania w twoich przypadkach użycia.
+Obiekt mock jest instancją EventEmitter, która emituje kilka zdarzeń na potrzeby Twoich przypadków użycia.
 
 Oto lista zdarzeń.
 
 ### `request`
 
-To zdarzenie jest emitowane przy uruchamianiu żądania sieciowego, które pasuje do wzorców mocka. Żądanie jest przekazywane w callbacku zdarzenia.
+To zdarzenie jest emitowane podczas uruchamiania żądania sieciowego, które pasuje do wzorców atrapy. Żądanie jest przekazywane w wywołaniu zwrotnym zdarzenia.
 
 Interfejs żądania:
 ```ts
@@ -62,7 +63,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-To zdarzenie jest emitowane, gdy odpowiedź sieciowa jest nadpisywana za pomocą [`respond`](/docs/api/mock/respond) lub [`respondOnce`](/docs/api/mock/respondOnce). Odpowiedź jest przekazywana w callbacku zdarzenia.
+To zdarzenie jest emitowane, gdy odpowiedź sieciowa jest nadpisana za pomocą [`respond`](/docs/api/mock/respond) lub [`respondOnce`](/docs/api/mock/respondOnce). Odpowiedź jest przekazywana w wywołaniu zwrotnym zdarzenia.
 
 Interfejs odpowiedzi:
 ```ts
@@ -76,7 +77,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-To zdarzenie jest emitowane, gdy żądanie sieciowe jest przerywane za pomocą [`abort`](/docs/api/mock/abort) lub [`abortOnce`](/docs/api/mock/abortOnce). Błąd jest przekazywany w callbacku zdarzenia.
+To zdarzenie jest emitowane, gdy żądanie sieciowe jest przerywane za pomocą [`abort`](/docs/api/mock/abort) lub [`abortOnce`](/docs/api/mock/abortOnce). Informacja o błędzie jest przekazywana w wywołaniu zwrotnym zdarzenia.
 
 Interfejs błędu:
 ```ts
@@ -88,39 +89,39 @@ interface FailEvent {
 
 ### `match`
 
-To zdarzenie jest emitowane, gdy dodawane jest nowe dopasowanie, przed `continue` lub `overwrite`. Dopasowanie jest przekazywane w callbacku zdarzenia.
+To zdarzenie jest emitowane, gdy dodawane jest nowe dopasowanie, przed zdarzeniami `continue` lub `overwrite`. Dopasowanie jest przekazywane w wywołaniu zwrotnym zdarzenia.
 
 Interfejs dopasowania:
 ```ts
 interface MatchEvent {
     url: string // URL żądania (bez fragmentu).
-    urlFragment?: string // Fragment żądanego URL zaczynający się od #, jeśli jest obecny.
+    urlFragment?: string // Fragment żądanego URL zaczynający się od znaku hash, jeśli obecny.
     method: string // Metoda żądania HTTP.
     headers: Record<string, string> // Nagłówki żądania HTTP.
     postData?: string // Dane żądania HTTP POST.
     hasPostData?: boolean // Prawda, gdy żądanie ma dane POST.
-    mixedContentType?: MixedContentType // Typ eksportu mieszanej zawartości żądania.
+    mixedContentType?: MixedContentType // Typ eksportu zawartości mieszanej żądania.
     initialPriority: ResourcePriority // Priorytet żądania zasobu w momencie wysłania żądania.
-    referrerPolicy: ReferrerPolicy // Polityka odnośnika żądania, zgodnie z definicją w https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Czy jest ładowany za pomocą preload linku.
-    body: string | Buffer | JsonCompatible // Zawartość odpowiedzi rzeczywistego zasobu.
+    referrerPolicy: ReferrerPolicy // Polityka referrera żądania, zdefiniowana w https://www.w3.org/TR/referrer-policy/
+    isLinkPreload?: boolean // Czy jest ładowany przez link preload.
+    body: string | Buffer | JsonCompatible // Treść odpowiedzi rzeczywistego zasobu.
     responseHeaders: Record<string, string> // Nagłówki odpowiedzi HTTP.
     statusCode: number // Kod statusu odpowiedzi HTTP.
-    mockedResponse?: string | Buffer // Jeśli mock emitujący zdarzenie również zmodyfikował swoją odpowiedź.
+    mockedResponse?: string | Buffer // Jeśli atrapa emitująca zdarzenie również zmodyfikowała swoją odpowiedź.
 }
 ```
 
 ### `continue`
 
-To zdarzenie jest emitowane, gdy odpowiedź sieciowa nie została ani nadpisana, ani przerwana, lub jeśli odpowiedź została już wysłana przez inny mock. `requestId` jest przekazywany w callbacku zdarzenia.
+To zdarzenie jest emitowane, gdy odpowiedź sieciowa nie została ani nadpisana, ani przerwana, lub jeśli odpowiedź została już wysłana przez inną atrapę. `requestId` jest przekazywany w wywołaniu zwrotnym zdarzenia.
 
 ## Przykłady
 
-Uzyskiwanie liczby oczekujących żądań:
+Pobieranie liczby oczekujących żądań:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // ważne jest, aby dopasować wszystkie żądania, w przeciwnym razie wynikowa wartość może być bardzo myląca.
+const mock = await browser.mock('**') // ważne jest, aby dopasować wszystkie żądania, w przeciwnym razie uzyskana wartość może być bardzo myląca.
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`dopasowano żądanie do ${request.url}, oczekuje ${pendingRequests} żądań`)
@@ -131,7 +132,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Zgłaszanie błędu przy niepowodzeniu sieciowym 404:
+Wyrzucanie błędu przy niepowodzeniu sieci 404:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -145,7 +146,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // oczekiwanie tutaj, ponieważ niektóre żądania mogą nadal być w toku
+    // czekamy tutaj, ponieważ niektóre żądania mogą nadal być w toku
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }

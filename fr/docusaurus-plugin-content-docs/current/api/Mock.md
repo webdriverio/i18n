@@ -3,14 +3,14 @@ id: mock
 title: L'Objet Mock
 ---
 
-L'objet mock est un objet qui représente une simulation de réseau et contient des informations sur les requêtes correspondant à une `url` et des `filterOptions` données. Il peut être obtenu en utilisant la commande [`mock`](/docs/api/browser/mock).
+L'objet mock est un objet qui représente une simulation réseau et contient des informations sur les requêtes correspondant à une `url` et des `filterOptions` donnés. Il peut être obtenu en utilisant la commande [`mock`](/docs/api/browser/mock).
 
 :::info
 
 Notez que l'utilisation de la commande `mock` nécessite la prise en charge du protocole Chrome DevTools.
-Cette prise en charge est assurée si vous exécutez des tests localement dans un navigateur basé sur Chromium ou si
+Cette prise en charge est disponible si vous exécutez des tests localement dans un navigateur basé sur Chromium ou si
 vous utilisez Selenium Grid v4 ou supérieur. Cette commande __ne peut pas__ être utilisée lors de l'exécution
-de tests automatisés dans le cloud. Pour en savoir plus, consultez la section [Protocoles d'automatisation](/docs/automationProtocols).
+de tests automatisés dans le cloud. Pour en savoir plus, consultez la section [Protocoles d'Automatisation](/docs/automationProtocols).
 
 :::
 
@@ -23,7 +23,7 @@ Un objet mock contient les propriétés suivantes :
 | Nom | Type | Détails |
 | ---- | ---- | ------- |
 | `url` | `String` | L'URL passée à la commande mock |
-| `filterOptions` | `Object` | Les options de filtrage de ressources passées à la commande mock |
+| `filterOptions` | `Object` | Les options de filtrage des ressources passées à la commande mock |
 | `browser` | `Object` | L'[Objet Browser](/docs/api/browser) utilisé pour obtenir l'objet mock. |
 | `calls` | `Object[]` | Informations sur les requêtes du navigateur correspondantes, contenant des propriétés telles que `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` et `body` |
 
@@ -39,6 +39,7 @@ Les objets mock fournissent diverses commandes, listées dans la section `mock`,
 - [`respond`](/docs/api/mock/respond)
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
+- [`waitForResponse`](/docs/api/mock/waitForResponse)
 
 ## Événements
 
@@ -48,7 +49,7 @@ Voici une liste des événements.
 
 ### `request`
 
-Cet événement est émis lors du lancement d'une requête réseau qui correspond aux modèles de mock. La requête est transmise dans le callback de l'événement.
+Cet événement est émis lors du lancement d'une requête réseau qui correspond aux modèles mock. La requête est passée dans le callback de l'événement.
 
 Interface de requête :
 ```ts
@@ -62,7 +63,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Cet événement est émis lorsque la réponse réseau est remplacée avec [`respond`](/docs/api/mock/respond) ou [`respondOnce`](/docs/api/mock/respondOnce). La réponse est transmise dans le callback de l'événement.
+Cet événement est émis lorsque la réponse réseau est remplacée avec [`respond`](/docs/api/mock/respond) ou [`respondOnce`](/docs/api/mock/respondOnce). La réponse est passée dans le callback de l'événement.
 
 Interface de réponse :
 ```ts
@@ -76,7 +77,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Cet événement est émis lorsque la requête réseau est interrompue avec [`abort`](/docs/api/mock/abort) ou [`abortOnce`](/docs/api/mock/abortOnce). L'échec est transmis dans le callback de l'événement.
+Cet événement est émis lorsqu'une requête réseau est interrompue avec [`abort`](/docs/api/mock/abort) ou [`abortOnce`](/docs/api/mock/abortOnce). L'échec est passé dans le callback de l'événement.
 
 Interface d'échec :
 ```ts
@@ -88,7 +89,7 @@ interface FailEvent {
 
 ### `match`
 
-Cet événement est émis lorsqu'une nouvelle correspondance est ajoutée, avant `continue` ou `overwrite`. La correspondance est transmise dans le callback de l'événement.
+Cet événement est émis lorsqu'une nouvelle correspondance est ajoutée, avant `continue` ou `overwrite`. La correspondance est passée dans le callback de l'événement.
 
 Interface de correspondance :
 ```ts
@@ -106,13 +107,13 @@ interface MatchEvent {
     body: string | Buffer | JsonCompatible // Corps de réponse de la ressource réelle.
     responseHeaders: Record<string, string> // En-têtes de réponse HTTP.
     statusCode: number // Code d'état de réponse HTTP.
-    mockedResponse?: string | Buffer // Si le mock émettant l'événement a également modifié sa réponse.
+    mockedResponse?: string | Buffer // Si le mock, émettant l'événement, a également modifié sa réponse.
 }
 ```
 
 ### `continue`
 
-Cet événement est émis lorsque la réponse réseau n'a été ni remplacée ni interrompue, ou si la réponse a déjà été envoyée par un autre mock. `requestId` est transmis dans le callback de l'événement.
+Cet événement est émis lorsque la réponse réseau n'a été ni remplacée ni interrompue, ou si la réponse a déjà été envoyée par un autre mock. `requestId` est passé dans le callback de l'événement.
 
 ## Exemples
 
@@ -120,18 +121,18 @@ Obtenir le nombre de requêtes en attente :
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // il est important de correspondre à toutes les requêtes, sinon la valeur résultante peut être très déroutante.
+const mock = await browser.mock('**') // il est important de correspondre à toutes les requêtes, sinon, la valeur résultante peut être très déroutante.
 mock.on('request', ({request}) => {
     pendingRequests++
-    console.log(`requête correspondante vers ${request.url}, ${pendingRequests} requêtes en attente`)
+    console.log(`requête correspondante pour ${request.url}, ${pendingRequests} requêtes en attente`)
 })
 mock.on('match', ({url}) => {
     pendingRequests--
-    console.log(`requête résolue vers ${url}, ${pendingRequests} requêtes en attente`)
+    console.log(`requête résolue pour ${url}, ${pendingRequests} requêtes en attente`)
 })
 ```
 
-Lancer une erreur sur un échec réseau 404 :
+Générer une erreur en cas d'échec réseau 404 :
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -145,7 +146,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // attente ici, car certaines requêtes peuvent encore être en attente
+    // attente ici, car certaines requêtes peuvent être encore en attente
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -172,14 +173,14 @@ secondMock.respond({id: 4, title: 'four'})
 firstMock.on('overwrite', () => {
     // se déclenche pour la première requête vers '**/foo/**'
 }).on('continue', () => {
-    // se déclenche pour les requêtes restantes vers '**/foo/**'
+    // se déclenche pour le reste des requêtes vers '**/foo/**'
 })
 
 secondMock.on('continue', () => {
     // se déclenche pour la première requête vers '**/foo/bar/**'
 }).on('overwrite', () => {
-    // se déclenche pour les requêtes restantes vers '**/foo/bar/**'
+    // se déclenche pour le reste des requêtes vers '**/foo/bar/**'
 })
 ```
 
-Dans cet exemple, `firstMock` a été défini en premier et a un appel `respondOnce`, donc la valeur de réponse de `secondMock` ne sera pas utilisée pour la première requête, mais sera utilisée pour le reste des requêtes.
+Dans cet exemple, `firstMock` a été défini en premier et possède un appel `respondOnce`, donc la valeur de réponse de `secondMock` ne sera pas utilisée pour la première requête, mais sera utilisée pour les suivantes.

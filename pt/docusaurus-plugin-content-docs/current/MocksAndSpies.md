@@ -3,24 +3,24 @@ id: mocksandspies
 title: Mocks e Spies de Requisição
 ---
 
-WebdriverIO vem com suporte integrado para modificar respostas de rede, o que permite que você se concentre em testar sua aplicação frontend sem precisar configurar seu backend ou um servidor de mock. Você pode definir respostas personalizadas para recursos da web, como solicitações de API REST em seu teste, e modificá-las dinamicamente.
+O WebdriverIO vem com suporte integrado para modificar respostas de rede, permitindo que você se concentre em testar sua aplicação frontend sem precisar configurar seu backend ou um servidor mock. Você pode definir respostas personalizadas para recursos da web como requisições de API REST em seu teste e modificá-las dinamicamente.
 
 :::info
 
-Observe que o uso do comando `mock` requer suporte para o protocolo Chrome DevTools. Esse suporte é fornecido se você executar testes localmente em um navegador baseado em Chromium, via Selenium Grid v4 ou superior, ou através de um fornecedor de nuvem com suporte para o protocolo Chrome DevTools (por exemplo, SauceLabs, BrowserStack, LambdaTest). Suporte completo para todos os navegadores estará disponível quando as primitivas necessárias chegarem ao [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) e forem implementadas nos respectivos navegadores.
+Observe que usar o comando `mock` requer suporte ao protocolo Chrome DevTools. Esse suporte é fornecido se você executar testes localmente em um navegador baseado em Chromium, via Selenium Grid v4 ou superior, ou através de um fornecedor de nuvem com suporte ao protocolo Chrome DevTools (por exemplo, SauceLabs, BrowserStack, LambdaTest). O suporte completo para vários navegadores estará disponível quando os primitivos necessários forem implementados no [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) e implementados nos respectivos navegadores.
 
 :::
 
 ## Criando um mock
 
-Antes de poder modificar qualquer resposta, você precisa definir um mock primeiro. Este mock é descrito pela URL do recurso e pode ser filtrado pelo [método de requisição](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) ou [cabeçalhos](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). O recurso suporta expressões glob através do [minimatch](https://www.npmjs.com/package/minimatch):
+Antes de poder modificar quaisquer respostas, você precisa definir um mock primeiro. Este mock é descrito pela URL do recurso e pode ser filtrado pelo [método de requisição](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) ou [cabeçalhos](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). O recurso suporta expressões glob pelo [minimatch](https://www.npmjs.com/package/minimatch):
 
 ```js
-// mock para todos os recursos que terminam com "/users/list"
+// mock para todos os recursos terminando com "/users/list"
 const userListMock = await browser.mock('**/users/list')
 
 // ou você pode especificar o mock filtrando recursos por cabeçalhos ou
-// código de status, mockando apenas requisições bem-sucedidas para recursos json
+// código de status, apenas mock para requisições bem-sucedidas a recursos json
 const strictMock = await browser.mock('**', {
     // mock para todas as respostas json
     requestHeaders: { 'Content-Type': 'application/json' },
@@ -31,11 +31,11 @@ const strictMock = await browser.mock('**', {
 
 ## Especificando respostas personalizadas
 
-Depois de definir um mock, você pode definir respostas personalizadas para ele. Essas respostas personalizadas podem ser um objeto para responder com JSON, um arquivo local para responder com um fixture personalizado ou um recurso da web para substituir a resposta com um recurso da internet.
+Uma vez definido um mock, você pode definir respostas personalizadas para ele. Essas respostas personalizadas podem ser um objeto para responder um JSON, um arquivo local para responder com um fixture personalizado ou um recurso da web para substituir a resposta com um recurso da internet.
 
-### Mockando requisições de API
+### Mockando Requisições de API
 
-Para mockar requisições de API onde você espera uma resposta JSON, tudo o que você precisa fazer é chamar `respond` no objeto de mock com um objeto arbitrário que você deseja retornar, por exemplo:
+Para criar mock de requisições de API onde você espera uma resposta JSON, tudo o que precisa fazer é chamar `respond` no objeto mock com um objeto arbitrário que deseja retornar, por exemplo:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -62,7 +62,7 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // saída: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-Você também pode modificar os cabeçalhos de resposta, bem como o código de status, passando alguns parâmetros de resposta mock da seguinte forma:
+Você também pode modificar os cabeçalhos de resposta e o código de status passando alguns parâmetros de resposta de mock da seguinte forma:
 
 ```js
 mock.respond({ ... }, {
@@ -73,7 +73,7 @@ mock.respond({ ... }, {
 })
 ```
 
-Se você não quiser que o mock chame o backend, você pode passar `false` para a flag `fetchResponse`.
+Se você não quiser que o mock chame o backend, você pode passar `false` para o flag `fetchResponse`.
 
 ```js
 mock.respond({ ... }, {
@@ -82,7 +82,7 @@ mock.respond({ ... }, {
 })
 ```
 
-É recomendável armazenar respostas personalizadas em arquivos de fixture para que você possa simplesmente importá-los em seu teste da seguinte forma:
+É recomendado armazenar respostas personalizadas em arquivos de fixture para que você possa simplesmente importá-los em seu teste da seguinte forma:
 
 ```js
 // requer Node.js v16.14.0 ou superior para suportar afirmações de importação JSON
@@ -92,7 +92,7 @@ mock.respond(responseFixture)
 
 ### Mockando recursos de texto
 
-Se você quiser modificar recursos de texto como JavaScript, arquivos CSS ou outros recursos baseados em texto, você pode apenas passar um caminho de arquivo e o WebdriverIO substituirá o recurso original por ele, por exemplo:
+Se você quiser modificar recursos de texto como arquivos JavaScript, CSS ou outros recursos baseados em texto, você pode simplesmente passar um caminho de arquivo e o WebdriverIO substituirá o recurso original por ele, por exemplo:
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
@@ -102,9 +102,9 @@ scriptMock.respond('./tests/fixtures/script.js')
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
-### Redirecionando recursos da web
+### Redirecionar recursos da web
 
-Você também pode simplesmente substituir um recurso da web por outro recurso da web se sua resposta desejada já estiver hospedada na web. Isso funciona com recursos de página individuais, bem como com uma página da web inteira, por exemplo:
+Você também pode simplesmente substituir um recurso da web por outro recurso da web se sua resposta desejada já estiver hospedada na web. Isso funciona tanto com recursos individuais de página quanto com a própria página da web, por exemplo:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -115,7 +115,7 @@ console.log(await browser.getTitle()) // retorna "WebdriverIO · Next-gen browse
 
 ### Respostas dinâmicas
 
-Se sua resposta de mock depende da resposta do recurso original, você também pode modificar dinamicamente o recurso passando uma função que recebe a resposta original como parâmetro e define o mock com base no valor de retorno, por exemplo:
+Se sua resposta mock depende da resposta do recurso original, você também pode modificar dinamicamente o recurso passando uma função que recebe a resposta original como parâmetro e define o mock com base no valor retornado, por exemplo:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -123,7 +123,7 @@ const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com
 })
 
 mock.respond((req) => {
-    // substituir o conteúdo do todo pelo seu número na lista
+    // substituir conteúdo todo com seu número na lista
     return req.body.map((item, i) => ({ ...item, title: i }))
 })
 
@@ -169,7 +169,7 @@ mock.abort('Failed')
 
 ## Spies
 
-Cada mock é automaticamente um spy que conta a quantidade de requisições que o navegador fez para esse recurso. Se você não aplicar uma resposta personalizada ou motivo de aborto ao mock, ele continua com a resposta padrão que você normalmente receberia. Isso permite que você verifique quantas vezes o navegador fez a solicitação, por exemplo, para um determinado endpoint de API.
+Cada mock é automaticamente um spy que conta a quantidade de requisições que o navegador fez para esse recurso. Se você não aplicar uma resposta personalizada ou motivo de aborto ao mock, ele continua com a resposta padrão que você normalmente receberia. Isso permite que você verifique quantas vezes o navegador fez a requisição, por exemplo, para um determinado endpoint de API.
 
 ```js
 const mock = await browser.mock('**/user', { method: 'post' })
@@ -187,3 +187,5 @@ expect(mock.calls.length).toBe(1)
 // verificar resposta
 expect(mock.calls[0].body).toEqual({ success: true })
 ```
+
+Se você precisar esperar até que uma requisição correspondente tenha respondido, use `mock.waitForResponse(options)`. Veja a referência da API: [waitForResponse](/docs/api/mock/waitForResponse).

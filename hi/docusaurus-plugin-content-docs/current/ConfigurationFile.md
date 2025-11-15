@@ -1,11 +1,11 @@
 ---
 id: configurationfile
-title: कॉन्फ़िगरेशन फ़ाइल
+title: कॉन्फिगरेशन फाइल
 ---
 
-कॉन्फ़िगरेशन फ़ाइल में आपके टेस्ट सूट को चलाने के लिए सभी आवश्यक जानकारी होती है। यह एक NodeJS मॉड्यूल है जो एक JSON एक्सपोर्ट करता है।
+कॉन्फिगरेशन फाइल में आपकी टेस्ट सुइट चलाने के लिए सभी आवश्यक जानकारी होती है। यह एक NodeJS मॉड्यूल है जो JSON एक्सपोर्ट करता है।
 
-यहां सभी समर्थित प्रॉपर्टीज और अतिरिक्त जानकारी के साथ एक उदाहरण कॉन्फ़िगरेशन है:
+यहां सभी समर्थित प्रॉपर्टीज और अतिरिक्त जानकारी के साथ एक उदाहरण कॉन्फिगरेशन है:
 
 ```js
 export const config = {
@@ -260,6 +260,11 @@ export const config = {
     // Your TSConfig is automatically detected from the current working directory
     // but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH env var
     // See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+    //
+    // Note: This setting will be overriden by the TSX_TSCONFIG_PATH env var and/or the cli --tsConfigPath argument if they are specified.
+    // This setting will be ignored if node is unable to parse your wdio.conf.ts file without help from tsx, e.g. if you have path
+    // aliases setup in tsconfig.json and you use those path aliases inside your wdio.config.ts file.
+    // Only use this if you are using a .js config file or your .ts config file is valid JavaScript.
     tsConfigPath: 'path/to/tsconfig.json',
     //
     // =====
@@ -352,8 +357,8 @@ export const config = {
      * Runs after a WebdriverIO command gets executed
      * @param {string} commandName hook command name
      * @param {Array} args arguments that command would receive
-     * @param {number} result 0 - command success, 1 - command error
-     * @param {object} error error object, if any
+     * @param {*} result result of the command
+     * @param {Error} error error object, if any
      */
     afterCommand: function (commandName, args, result, error) {
     },
@@ -487,4 +492,4 @@ export const config = {
 }
 ```
 
-आप [example फोल्डर](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js) में सभी संभावित विकल्पों और भिन्नताओं के साथ एक फाइल भी पा सकते हैं।
+आप [example फोल्डर](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js) में सभी संभावित विकल्पों और विविधताओं वाली फाइल भी पा सकते हैं।

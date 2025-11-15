@@ -3,14 +3,14 @@ id: mock
 title: L'Oggetto Mock
 ---
 
-L'oggetto mock è un oggetto che rappresenta un mock di rete e contiene informazioni sulle richieste che corrispondono a un determinato `url` e `filterOptions`. Può essere ottenuto utilizzando il comando [`mock`](/docs/api/browser/mock).
+L'oggetto mock è un oggetto che rappresenta un mock di rete e contiene informazioni sulle richieste che corrispondono a un dato `url` e `filterOptions`. Può essere ottenuto utilizzando il comando [`mock`](/docs/api/browser/mock).
 
 :::info
 
 Nota che l'utilizzo del comando `mock` richiede il supporto per il protocollo Chrome DevTools.
 Questo supporto è garantito se esegui i test localmente in un browser basato su Chromium o se
-utilizzi Selenium Grid v4 o superiore. Questo comando __non__ può essere utilizzato quando si eseguono
-test automatizzati nel cloud. Scopri di più nella sezione [Protocolli di Automazione](/docs/automationProtocols).
+utilizzi Selenium Grid v4 o superiore. Questo comando __non__ può essere utilizzato durante l'esecuzione
+di test automatizzati nel cloud. Scopri di più nella sezione [Automation Protocols](/docs/automationProtocols).
 
 :::
 
@@ -23,7 +23,7 @@ Un oggetto mock contiene le seguenti proprietà:
 | Nome | Tipo | Dettagli |
 | ---- | ---- | ------- |
 | `url` | `String` | L'url passato al comando mock |
-| `filterOptions` | `Object` | Le opzioni di filtro delle risorse passate al comando mock |
+| `filterOptions` | `Object` | Le opzioni di filtro della risorsa passate al comando mock |
 | `browser` | `Object` | L'[Oggetto Browser](/docs/api/browser) utilizzato per ottenere l'oggetto mock. |
 | `calls` | `Object[]` | Informazioni sulle richieste del browser corrispondenti, contenenti proprietà come `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` e `body` |
 
@@ -39,16 +39,17 @@ Gli oggetti mock forniscono vari comandi, elencati nella sezione `mock`, che con
 - [`respond`](/docs/api/mock/respond)
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
+- [`waitForResponse`](/docs/api/mock/waitForResponse)
 
 ## Eventi
 
 L'oggetto mock è un EventEmitter e vengono emessi diversi eventi per i tuoi casi d'uso.
 
-Ecco un elenco di eventi.
+Ecco una lista di eventi.
 
 ### `request`
 
-Questo evento viene emesso quando si avvia una richiesta di rete che corrisponde ai pattern del mock. La richiesta viene passata nella callback dell'evento.
+Questo evento viene emesso quando si avvia una richiesta di rete che corrisponde ai pattern del mock. La richiesta viene passata nel callback dell'evento.
 
 Interfaccia della richiesta:
 ```ts
@@ -62,7 +63,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Questo evento viene emesso quando la risposta di rete viene sovrascritta con [`respond`](/docs/api/mock/respond) o [`respondOnce`](/docs/api/mock/respondOnce). La risposta viene passata nella callback dell'evento.
+Questo evento viene emesso quando la risposta di rete viene sovrascritta con [`respond`](/docs/api/mock/respond) o [`respondOnce`](/docs/api/mock/respondOnce). La risposta viene passata nel callback dell'evento.
 
 Interfaccia della risposta:
 ```ts
@@ -76,7 +77,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Questo evento viene emesso quando la richiesta di rete viene interrotta con [`abort`](/docs/api/mock/abort) o [`abortOnce`](/docs/api/mock/abortOnce). Il fallimento viene passato nella callback dell'evento.
+Questo evento viene emesso quando una richiesta di rete viene interrotta con [`abort`](/docs/api/mock/abort) o [`abortOnce`](/docs/api/mock/abortOnce). Il fallimento viene passato nel callback dell'evento.
 
 Interfaccia del fallimento:
 ```ts
@@ -88,31 +89,31 @@ interface FailEvent {
 
 ### `match`
 
-Questo evento viene emesso quando viene aggiunta una nuova corrispondenza, prima di `continue` o `overwrite`. La corrispondenza viene passata nella callback dell'evento.
+Questo evento viene emesso quando viene aggiunta una nuova corrispondenza, prima di `continue` o `overwrite`. La corrispondenza viene passata nel callback dell'evento.
 
 Interfaccia della corrispondenza:
 ```ts
 interface MatchEvent {
-    url: string // Request URL (without fragment).
-    urlFragment?: string // Fragment of the requested URL starting with hash, if present.
-    method: string // HTTP request method.
-    headers: Record<string, string> // HTTP request headers.
-    postData?: string // HTTP POST request data.
-    hasPostData?: boolean // True when the request has POST data.
-    mixedContentType?: MixedContentType // The mixed content export type of the request.
-    initialPriority: ResourcePriority // Priority of the resource request at the time request is sent.
-    referrerPolicy: ReferrerPolicy // The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Whether is loaded via link preload.
-    body: string | Buffer | JsonCompatible // Body response of actual resource.
-    responseHeaders: Record<string, string> // HTTP response headers.
-    statusCode: number // HTTP response status code.
-    mockedResponse?: string | Buffer // If mock, emitting the event, also modified it's response.
+    url: string // URL della richiesta (senza frammento).
+    urlFragment?: string // Frammento dell'URL richiesto che inizia con hash, se presente.
+    method: string // Metodo della richiesta HTTP.
+    headers: Record<string, string> // Header della richiesta HTTP.
+    postData?: string // Dati della richiesta HTTP POST.
+    hasPostData?: boolean // True quando la richiesta ha dati POST.
+    mixedContentType?: MixedContentType // Il tipo di export di contenuto misto della richiesta.
+    initialPriority: ResourcePriority // Priorità della richiesta di risorsa al momento dell'invio della richiesta.
+    referrerPolicy: ReferrerPolicy // La policy del referrer della richiesta, come definito in https://www.w3.org/TR/referrer-policy/
+    isLinkPreload?: boolean // Se è caricato tramite preload del link.
+    body: string | Buffer | JsonCompatible // Corpo della risposta della risorsa effettiva.
+    responseHeaders: Record<string, string> // Header della risposta HTTP.
+    statusCode: number // Codice di stato della risposta HTTP.
+    mockedResponse?: string | Buffer // Se il mock, che emette l'evento, ha anche modificato la sua risposta.
 }
 ```
 
 ### `continue`
 
-Questo evento viene emesso quando la risposta di rete non è stata né sovrascritta né interrotta, o se la risposta è stata già inviata da un altro mock. `requestId` viene passato nella callback dell'evento.
+Questo evento viene emesso quando la risposta di rete non è stata né sovrascritta né interrotta, o se la risposta è già stata inviata da un altro mock. `requestId` viene passato nel callback dell'evento.
 
 ## Esempi
 
@@ -120,7 +121,7 @@ Ottenere il numero di richieste in sospeso:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // it is important to match all requests otherwise, the resulting value can be very confusing.
+const mock = await browser.mock('**') // è importante corrispondere a tutte le richieste altrimenti, il valore risultante può essere molto confuso.
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -131,7 +132,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Generare un errore in caso di fallimento di rete 404:
+Lanciare un errore su un fallimento di rete 404:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -170,16 +171,16 @@ firstMock.respondOnce({id: 3, title: 'three'})
 secondMock.respond({id: 4, title: 'four'})
 
 firstMock.on('overwrite', () => {
-    // triggers for first request to '**/foo/**'
+    // si attiva per la prima richiesta a '**/foo/**'
 }).on('continue', () => {
-    // triggers for rest requests to '**/foo/**'
+    // si attiva per le richieste rimanenti a '**/foo/**'
 })
 
 secondMock.on('continue', () => {
-    // triggers for first request to '**/foo/bar/**'
+    // si attiva per la prima richiesta a '**/foo/bar/**'
 }).on('overwrite', () => {
-    // triggers for rest requests to '**/foo/bar/**'
+    // si attiva per le richieste rimanenti a '**/foo/bar/**'
 })
 ```
 
-In questo esempio, `firstMock` è stato definito per primo e ha una chiamata `respondOnce`, quindi il valore di risposta di `secondMock` non verrà utilizzato per la prima richiesta, ma verrà utilizzato per tutte le altre.
+In questo esempio, `firstMock` è stato definito per primo e ha una chiamata `respondOnce`, quindi il valore di risposta di `secondMock` non verrà utilizzato per la prima richiesta, ma verrà utilizzato per le rimanenti.

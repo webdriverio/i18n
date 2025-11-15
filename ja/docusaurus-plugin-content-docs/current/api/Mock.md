@@ -3,17 +3,17 @@ id: mock
 title: モックオブジェクト
 ---
 
-モックオブジェクトは、ネットワークモックを表すオブジェクトであり、指定された`url`と`filterOptions`に一致するリクエストに関する情報を含んでいます。これは[`mock`](/docs/api/browser/mock)コマンドを使用して取得できます。
+モックオブジェクトは、ネットワークモックを表し、指定された`url`と`filterOptions`に一致するリクエストに関する情報を含むオブジェクトです。これは[`mock`](/docs/api/browser/mock)コマンドを使用して取得できます。
 
 :::info
 
-`mock`コマンドを使用するには、Chrome DevToolsプロトコルのサポートが必要です。
-このサポートは、Chromiumベースのブラウザでテストをローカルで実行する場合や、
-Selenium Grid v4以上を使用する場合に提供されます。このコマンドは、クラウドで自動テストを実行する際には使用__できません__。詳細は[オートメーションプロトコル](/docs/automationProtocols)セクションをご覧ください。
+`mock`コマンドの使用にはChrome DevToolsプロトコルのサポートが必要であることに注意してください。
+このサポートは、Chromiumベースのブラウザでローカルにテストを実行する場合、または
+Selenium Grid v4以上を使用する場合に提供されます。このコマンドは、クラウドで自動化テストを実行する場合には使用**できません**。詳細は[自動化プロトコル](/docs/automationProtocols)セクションをご覧ください。
 
 :::
 
-WebdriverIOでのリクエストとレスポンスのモック化について詳しくは、[モックとスパイ](/docs/mocksandspies)ガイドをご覧ください。
+WebdriverIOでのリクエストとレスポンスのモッキングについて詳しくは、[モックとスパイ](/docs/mocksandspies)ガイドをご覧ください。
 
 ## プロパティ
 
@@ -21,14 +21,14 @@ WebdriverIOでのリクエストとレスポンスのモック化について詳
 
 | 名前 | 型 | 詳細 |
 | ---- | ---- | ------- |
-| `url` | `String` | mockコマンドに渡されたURL |
-| `filterOptions` | `Object` | mockコマンドに渡されたリソースフィルターオプション |
-| `browser` | `Object` | モックオブジェクトの取得に使用された[ブラウザオブジェクト](/docs/api/browser) |
-| `calls` | `Object[]` | 一致するブラウザリクエストに関する情報で、`url`、`method`、`headers`、`initialPriority`、`referrerPolic`、`statusCode`、`responseHeaders`、`body`などのプロパティを含みます |
+| `url` | `String` | モックコマンドに渡されたURL |
+| `filterOptions` | `Object` | モックコマンドに渡されたリソースフィルターオプション |
+| `browser` | `Object` | モックオブジェクトの取得に使用された[ブラウザオブジェクト](/docs/api/browser)。 |
+| `calls` | `Object[]` | 一致するブラウザリクエストに関する情報。`url`、`method`、`headers`、`initialPriority`、`referrerPolic`、`statusCode`、`responseHeaders`、`body`などのプロパティを含む |
 
 ## メソッド
 
-モックオブジェクトは、`mock`セクションにリストされているさまざまなコマンドを提供し、リクエストやレスポンスの動作を変更することができます。
+モックオブジェクトは、リクエストやレスポンスの動作を変更できる様々なコマンドを提供しています。これらは`mock`セクションに記載されています。
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -38,16 +38,17 @@ WebdriverIOでのリクエストとレスポンスのモック化について詳
 - [`respond`](/docs/api/mock/respond)
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
+- [`waitForResponse`](/docs/api/mock/waitForResponse)
 
 ## イベント
 
-モックオブジェクトはEventEmitterであり、いくつかのイベントがユースケースのために発行されます。
+モックオブジェクトはEventEmitterであり、ユースケースに応じていくつかのイベントが発行されます。
 
 以下はイベントのリストです。
 
 ### `request`
 
-このイベントは、モックパターンに一致するネットワークリクエストを開始するときに発行されます。リクエストはイベントコールバックで渡されます。
+このイベントは、モックパターンに一致するネットワークリクエストを開始したときに発行されます。リクエストはイベントコールバックに渡されます。
 
 リクエストインターフェース：
 ```ts
@@ -61,7 +62,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-このイベントは、[`respond`](/docs/api/mock/respond)または[`respondOnce`](/docs/api/mock/respondOnce)でネットワークレスポンスが上書きされるときに発行されます。レスポンスはイベントコールバックで渡されます。
+このイベントは、[`respond`](/docs/api/mock/respond)または[`respondOnce`](/docs/api/mock/respondOnce)でネットワークレスポンスが上書きされたときに発行されます。レスポンスはイベントコールバックに渡されます。
 
 レスポンスインターフェース：
 ```ts
@@ -75,7 +76,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-このイベントは、[`abort`](/docs/api/mock/abort)または[`abortOnce`](/docs/api/mock/abortOnce)でネットワークリクエストが中断されるときに発行されます。失敗はイベントコールバックで渡されます。
+このイベントは、[`abort`](/docs/api/mock/abort)または[`abortOnce`](/docs/api/mock/abortOnce)でネットワークリクエストが中断されたときに発行されます。失敗はイベントコールバックに渡されます。
 
 失敗インターフェース：
 ```ts
@@ -87,39 +88,39 @@ interface FailEvent {
 
 ### `match`
 
-このイベントは、新しい一致が追加されたとき、`continue`または`overwrite`の前に発行されます。一致はイベントコールバックで渡されます。
+このイベントは、新しい一致が追加された時、`continue`または`overwrite`の前に発行されます。一致はイベントコールバックに渡されます。
 
 一致インターフェース：
 ```ts
 interface MatchEvent {
-    url: string // リクエストURL（フラグメントなし）。
-    urlFragment?: string // 存在する場合、ハッシュから始まるリクエストされたURLのフラグメント。
-    method: string // HTTPリクエストメソッド。
-    headers: Record<string, string> // HTTPリクエストヘッダー。
-    postData?: string // HTTP POSTリクエストデータ。
-    hasPostData?: boolean // リクエストがPOSTデータを持つ場合はtrue。
-    mixedContentType?: MixedContentType // リクエストの混合コンテンツエクスポートタイプ。
-    initialPriority: ResourcePriority // リクエスト送信時のリソースリクエストの優先度。
-    referrerPolicy: ReferrerPolicy // https://www.w3.org/TR/referrer-policy/で定義されているリクエストのリファラーポリシー。
-    isLinkPreload?: boolean // リンクプリロードを介して読み込まれているかどうか。
-    body: string | Buffer | JsonCompatible // 実際のリソースのボディレスポンス。
-    responseHeaders: Record<string, string> // HTTPレスポンスヘッダー。
-    statusCode: number // HTTPレスポンスステータスコード。
-    mockedResponse?: string | Buffer // モックがイベントを発行し、レスポンスも変更した場合。
+    url: string // リクエストURL（フラグメントなし）
+    urlFragment?: string // 存在する場合、ハッシュから始まるリクエストURLのフラグメント
+    method: string // HTTPリクエストメソッド
+    headers: Record<string, string> // HTTPリクエストヘッダー
+    postData?: string // HTTP POSTリクエストデータ
+    hasPostData?: boolean // リクエストがPOSTデータを持つ場合はtrue
+    mixedContentType?: MixedContentType // リクエストの混合コンテンツエクスポートタイプ
+    initialPriority: ResourcePriority // リクエスト送信時のリソースリクエストの優先度
+    referrerPolicy: ReferrerPolicy // https://www.w3.org/TR/referrer-policy/で定義されたリクエストのリファラーポリシー
+    isLinkPreload?: boolean // リンクプリロードを介して読み込まれるかどうか
+    body: string | Buffer | JsonCompatible // 実際のリソースのボディレスポンス
+    responseHeaders: Record<string, string> // HTTPレスポンスヘッダー
+    statusCode: number // HTTPレスポンスステータスコード
+    mockedResponse?: string | Buffer // モックがイベントを発行し、そのレスポンスも変更した場合
 }
 ```
 
 ### `continue`
 
-このイベントは、ネットワークレスポンスが上書きされず、中断されていない場合、または別のモックによってレスポンスが既に送信されている場合に発行されます。イベントコールバックでは`requestId`が渡されます。
+このイベントは、ネットワークレスポンスが上書きも中断もされていない場合、または別のモックによってレスポンスがすでに送信された場合に発行されます。`requestId`はイベントコールバックに渡されます。
 
 ## 例
 
-保留中のリクエスト数を取得する：
+保留中のリクエスト数の取得：
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // すべてのリクエストを一致させることが重要です。さもないと、結果の値が非常に混乱する可能性があります。
+const mock = await browser.mock('**') // すべてのリクエストを一致させることが重要です。そうしないと、結果の値が非常に混乱する可能性があります。
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -144,7 +145,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // 一部のリクエストがまだ保留中である可能性があるため、ここで待機
+    // いくつかのリクエストがまだ保留中である可能性があるため、ここで待機
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -159,7 +160,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-モックのレスポンス値が使用されたかどうかを判断する：
+モックのレスポンド値が使用されたかどうかの判断：
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -181,4 +182,4 @@ secondMock.on('continue', () => {
 })
 ```
 
-この例では、`firstMock`が最初に定義され、1つの`respondOnce`呼び出しがあるため、最初のリクエストに対しては`secondMock`のレスポンス値は使用されませんが、残りのリクエストには使用されます。
+この例では、`firstMock`が最初に定義され、1つの`respondOnce`呼び出しを持っているため、最初のリクエストには`secondMock`のレスポンス値は使用されませんが、残りのリクエストには使用されます。

@@ -1,41 +1,41 @@
 ---
 id: mocksandspies
-title: Atrapy i Szpiedzy Zapytań
+title: Imitacje i Szpiedzy Żądań
 ---
 
-WebdriverIO zawiera wbudowane wsparcie dla modyfikowania odpowiedzi sieciowych, które pozwala ci skupić się na testowaniu aplikacji frontendowej bez konieczności konfigurowania backendu lub serwera atrap. Możesz definiować niestandardowe odpowiedzi dla zasobów sieciowych, takich jak żądania REST API w swoim teście i dynamicznie je modyfikować.
+WebdriverIO posiada wbudowaną obsługę modyfikowania odpowiedzi sieciowych, co pozwala skupić się na testowaniu aplikacji frontendowej bez konieczności konfigurowania backendu lub serwera imitującego. Możesz zdefiniować niestandardowe odpowiedzi dla zasobów internetowych, takich jak żądania REST API w swoim teście i dynamicznie je modyfikować.
 
 :::info
 
-Zauważ, że korzystanie z polecenia `mock` wymaga wsparcia dla protokołu Chrome DevTools. To wsparcie jest dostępne, jeśli uruchamiasz testy lokalnie w przeglądarce opartej na Chromium, przez Selenium Grid v4 lub nowszy, lub przez dostawcę chmurowego z obsługą protokołu Chrome DevTools (np. SauceLabs, BrowserStack, LambdaTest). Pełne wsparcie dla różnych przeglądarek będzie dostępne, gdy wymagane elementy zostaną wprowadzone w [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) i zaimplementowane w odpowiednich przeglądarkach.
+Należy zauważyć, że korzystanie z polecenia `mock` wymaga wsparcia dla protokołu Chrome DevTools. To wsparcie jest dostępne, jeśli uruchamiasz testy lokalnie w przeglądarce opartej na Chromium, poprzez Selenium Grid w wersji 4 lub wyższej, lub za pośrednictwem dostawcy chmury z obsługą protokołu Chrome DevTools (np. SauceLabs, BrowserStack, LambdaTest). Pełne wsparcie dla różnych przeglądarek będzie dostępne, gdy wymagane elementy pojawią się w [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) i zostaną zaimplementowane w odpowiednich przeglądarkach.
 
 :::
 
-## Tworzenie atrapy
+## Tworzenie imitacji
 
-Zanim będziesz mógł modyfikować jakiekolwiek odpowiedzi, musisz najpierw zdefiniować atrapę. Ta atrapa jest opisana przez URL zasobu i może być filtrowana według [metody zapytania](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) lub [nagłówków](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). Zasób obsługuje wyrażenia glob dzięki [minimatch](https://www.npmjs.com/package/minimatch):
+Zanim będziesz mógł modyfikować jakiekolwiek odpowiedzi, musisz najpierw zdefiniować imitację. Ta imitacja jest opisana przez URL zasobu i może być filtrowana według [metody żądania](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) lub [nagłówków](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). Zasób obsługuje wyrażenia globalne przez [minimatch](https://www.npmjs.com/package/minimatch):
 
 ```js
-// atrapa wszystkich zasobów kończących się na "/users/list"
+// imituj wszystkie zasoby kończące się na "/users/list"
 const userListMock = await browser.mock('**/users/list')
 
-// lub możesz określić atrapę filtrując zasoby według nagłówków lub
-// kodu statusu, tylko atrapuj pomyślne żądania do zasobów json
+// lub możesz określić imitację, filtrując zasoby według nagłówków lub
+// kodu statusu, imituj tylko udane żądania do zasobów json
 const strictMock = await browser.mock('**', {
-    // atrapuj wszystkie odpowiedzi json
+    // imituj wszystkie odpowiedzi json
     requestHeaders: { 'Content-Type': 'application/json' },
-    // które były pomyślne
+    // które były udane
     statusCode: 200
 })
 ```
 
 ## Określanie niestandardowych odpowiedzi
 
-Po zdefiniowaniu atrapy możesz zdefiniować dla niej niestandardowe odpowiedzi. Te niestandardowe odpowiedzi mogą być obiektem, który odpowiada jako JSON, lokalnym plikiem, który odpowiada niestandardowym elementem lub zasobem internetowym, aby zastąpić odpowiedź zasobem z internetu.
+Po zdefiniowaniu imitacji możesz zdefiniować dla niej niestandardowe odpowiedzi. Te niestandardowe odpowiedzi mogą być obiektem do odpowiedzi w formacie JSON, lokalnym plikiem do odpowiedzi z niestandardowym elementem lub zasobem internetowym, aby zastąpić odpowiedź zasobem z internetu.
 
-### Atrapowanie żądań API
+### Imitowanie żądań API
 
-Aby atrapować żądania API, gdzie oczekujesz odpowiedzi JSON, wszystko co musisz zrobić, to wywołać `respond` na obiekcie atrapy z dowolnym obiektem, który chcesz zwrócić, np.:
+Aby imitować żądania API, w których oczekujesz odpowiedzi JSON, wystarczy wywołać `respond` na obiekcie imitacji z dowolnym obiektem, który chcesz zwrócić, np.:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -62,18 +62,18 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // wyświetla: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-Możesz również modyfikować nagłówki odpowiedzi, a także kod statusu, przekazując parametry odpowiedzi atrapy w następujący sposób:
+Możesz również modyfikować nagłówki odpowiedzi, a także kod statusu, przekazując niektóre parametry odpowiedzi imitacji w następujący sposób:
 
 ```js
 mock.respond({ ... }, {
     // odpowiedz kodem statusu 404
     statusCode: 404,
-    // scal nagłówki odpowiedzi z następującymi nagłówkami
+    // połącz nagłówki odpowiedzi z następującymi nagłówkami
     headers: { 'x-custom-header': 'foobar' }
 })
 ```
 
-Jeśli chcesz, aby atrapa wcale nie wywoływała backendu, możesz przekazać `false` dla flagi `fetchResponse`.
+Jeśli nie chcesz, aby imitacja w ogóle wywoływała backend, możesz przekazać `false` dla flagi `fetchResponse`.
 
 ```js
 mock.respond({ ... }, {
@@ -82,7 +82,7 @@ mock.respond({ ... }, {
 })
 ```
 
-Zaleca się przechowywanie niestandardowych odpowiedzi w plikach fixtures, abyś mógł je po prostu zaimportować w swoim teście w następujący sposób:
+Zaleca się przechowywanie niestandardowych odpowiedzi w plikach elementów, dzięki czemu możesz je po prostu zaimportować w swoim teście w następujący sposób:
 
 ```js
 // wymaga Node.js v16.14.0 lub wyższego, aby obsługiwać asercje importu JSON
@@ -90,21 +90,21 @@ import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'js
 mock.respond(responseFixture)
 ```
 
-### Atrapowanie zasobów tekstowych
+### Imitowanie zasobów tekstowych
 
-Jeśli chcesz modyfikować zasoby tekstowe, takie jak pliki JavaScript, CSS lub inne zasoby tekstowe, możesz po prostu przekazać ścieżkę do pliku, a WebdriverIO zastąpi oryginalny zasób tym plikiem, np.:
+Jeśli chcesz modyfikować zasoby tekstowe, takie jak pliki JavaScript, CSS lub inne zasoby tekstowe, możesz po prostu przekazać ścieżkę do pliku, a WebdriverIO zastąpi oryginalny zasób, np.:
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
 scriptMock.respond('./tests/fixtures/script.js')
 
-// lub odpowiedz własnym JS
+// lub odpowiedz własnym kodem JS
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
 ### Przekierowanie zasobów internetowych
 
-Możesz również zastąpić zasób internetowy innym zasobem internetowym, jeśli twoja pożądana odpowiedź jest już hostowana w sieci. To działa zarówno z indywidualnymi zasobami strony, jak i z całą stroną internetową, np.:
+Możesz również zastąpić zasób internetowy innym zasobem internetowym, jeśli Twoja pożądana odpowiedź jest już hostowana w sieci. Działa to zarówno z pojedynczymi zasobami strony, jak i z całą stroną internetową, np.:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -115,7 +115,7 @@ console.log(await browser.getTitle()) // zwraca "WebdriverIO · Next-gen browser
 
 ### Dynamiczne odpowiedzi
 
-Jeśli twoja odpowiedź atrapy zależy od oryginalnej odpowiedzi zasobu, możesz również dynamicznie modyfikować zasób, przekazując funkcję, która otrzymuje oryginalną odpowiedź jako parametr i ustawia atrapę na podstawie zwracanej wartości, np.:
+Jeśli Twoja odpowiedź imitacji zależy od odpowiedzi oryginalnego zasobu, możesz również dynamicznie modyfikować zasób, przekazując funkcję, która otrzymuje oryginalną odpowiedź jako parametr i ustawia imitację na podstawie zwracanej wartości, np.:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -123,7 +123,7 @@ const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com
 })
 
 mock.respond((req) => {
-    // zastąp treść zadania ich numerem listy
+    // zastąp treść zadania ich numerem na liście
     return req.body.map((item, i) => ({ ...item, title: i }))
 })
 
@@ -141,9 +141,9 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 // ]
 ```
 
-## Przerywanie atrap
+## Przerywanie imitacji
 
-Zamiast zwracać niestandardową odpowiedź, możesz także przerwać żądanie z jednym z następujących błędów HTTP:
+Zamiast zwracać niestandardową odpowiedź, możesz również po prostu przerwać żądanie jednym z następujących błędów HTTP:
 
 - Failed
 - Aborted
@@ -160,7 +160,7 @@ Zamiast zwracać niestandardową odpowiedź, możesz także przerwać żądanie 
 - BlockedByClient
 - BlockedByResponse
 
-Jest to bardzo przydatne, jeśli chcesz zablokować skrypty firm trzecich ze swojej strony, które mają negatywny wpływ na twój test funkcjonalny. Możesz przerwać atrapę po prostu wywołując `abort` lub `abortOnce`, np.:
+Jest to bardzo przydatne, jeśli chcesz zablokować skrypty innych firm ze swojej strony, które mają negatywny wpływ na Twój test funkcjonalny. Możesz przerwać imitację po prostu wywołując `abort` lub `abortOnce`, np.:
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/**')
@@ -169,7 +169,7 @@ mock.abort('Failed')
 
 ## Szpiedzy
 
-Każda atrapa automatycznie staje się szpiegiem, który liczy ilość żądań, które przeglądarka wykonała do tego zasobu. Jeśli nie zastosujesz niestandardowej odpowiedzi lub powodu przerwania do atrapy, kontynuuje ona z domyślną odpowiedzią, którą normalnie byś otrzymał. Pozwala to sprawdzić, ile razy przeglądarka wykonała żądanie, np. do określonego punktu końcowego API.
+Każda imitacja jest automatycznie szpiegiem, który zlicza ilość żądań, jakie przeglądarka wykonała do tego zasobu. Jeśli nie zastosujesz niestandardowej odpowiedzi lub powodu przerwania do imitacji, kontynuuje ona z domyślną odpowiedzią, którą normalnie byś otrzymał. Pozwala to sprawdzić, ile razy przeglądarka wykonała żądanie, np. do określonego punktu końcowego API.
 
 ```js
 const mock = await browser.mock('**/user', { method: 'post' })
@@ -187,3 +187,5 @@ expect(mock.calls.length).toBe(1)
 // sprawdź odpowiedź
 expect(mock.calls[0].body).toEqual({ success: true })
 ```
+
+Jeśli musisz poczekać, aż pasujące żądanie otrzyma odpowiedź, użyj `mock.waitForResponse(options)`. Zobacz referencję API: [waitForResponse](/docs/api/mock/waitForResponse).

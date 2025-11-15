@@ -1,20 +1,20 @@
 ---
 id: mock
-title: كائن المحاكاة (Mock)
+title: كائن المحاكاة
 ---
 
-كائن المحاكاة هو كائن يمثل محاكاة شبكية ويحتوي على معلومات حول الطلبات التي تطابق `url` و`filterOptions` المعطاة. يمكن الحصول عليه باستخدام أمر [`mock`](/docs/api/browser/mock).
+كائن المحاكاة هو كائن يمثل محاكاة للشبكة ويحتوي على معلومات حول الطلبات التي تطابق `url` و`filterOptions` المحددة. يمكن الحصول عليه باستخدام أمر [`mock`](/docs/api/browser/mock).
 
 :::info
 
 لاحظ أن استخدام أمر `mock` يتطلب دعمًا لبروتوكول Chrome DevTools.
-يتم توفير هذا الدعم إذا كنت تقوم بتشغيل الاختبارات محليًا في متصفح يعتمد على Chromium أو إذا
+يتوفر هذا الدعم إذا كنت تقوم بتشغيل الاختبارات محليًا في متصفح يعتمد على Chromium أو إذا
 كنت تستخدم Selenium Grid الإصدار 4 أو أعلى. لا يمكن استخدام هذا الأمر عند تشغيل
-الاختبارات التلقائية في السحابة. اكتشف المزيد في قسم [بروتوكولات الأتمتة](/docs/automationProtocols).
+اختبارات آلية في السحابة. اكتشف المزيد في قسم [بروتوكولات الأتمتة](/docs/automationProtocols).
 
 :::
 
-يمكنك قراءة المزيد عن محاكاة الطلبات والاستجابات في WebdriverIO في دليل [المحاكاة والتجسس](/docs/mocksandspies) الخاص بنا.
+يمكنك قراءة المزيد حول محاكاة الطلبات والاستجابات في WebdriverIO في دليلنا [المحاكاة والتجسس](/docs/mocksandspies).
 
 ## الخصائص
 
@@ -25,11 +25,11 @@ title: كائن المحاكاة (Mock)
 | `url` | `String` | عنوان URL الذي تم تمريره إلى أمر المحاكاة |
 | `filterOptions` | `Object` | خيارات تصفية الموارد التي تم تمريرها إلى أمر المحاكاة |
 | `browser` | `Object` | [كائن المتصفح](/docs/api/browser) المستخدم للحصول على كائن المحاكاة. |
-| `calls` | `Object[]` | معلومات حول طلبات المتصفح المطابقة، تحتوي على خصائص مثل `url` و`method` و`headers` و`initialPriority` و`referrerPolic` و`statusCode` و`responseHeaders` و`body` |
+| `calls` | `Object[]` | معلومات حول طلبات المتصفح المطابقة، وتحتوي على خصائص مثل `url` و`method` و`headers` و`initialPriority` و`referrerPolic` و`statusCode` و`responseHeaders` و`body` |
 
 ## الطرق
 
-توفر كائنات المحاكاة أوامر متنوعة، مدرجة في قسم `mock`، تتيح للمستخدمين تعديل سلوك الطلب أو الاستجابة.
+توفر كائنات المحاكاة أوامر متنوعة، مدرجة في قسم `mock`، والتي تسمح للمستخدمين بتعديل سلوك الطلب أو الاستجابة.
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -39,16 +39,17 @@ title: كائن المحاكاة (Mock)
 - [`respond`](/docs/api/mock/respond)
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
+- [`waitForResponse`](/docs/api/mock/waitForResponse)
 
 ## الأحداث
 
-كائن المحاكاة هو مُصدر أحداث (EventEmitter) ويتم إصدار عدة أحداث لحالات الاستخدام الخاصة بك.
+كائن المحاكاة هو مرسل أحداث (EventEmitter) ويتم إصدار عدد من الأحداث لحالات الاستخدام الخاصة بك.
 
 فيما يلي قائمة بالأحداث.
 
 ### `request`
 
-يتم إصدار هذا الحدث عند إطلاق طلب شبكي يتطابق مع أنماط المحاكاة. يتم تمرير الطلب في استدعاء الحدث.
+يتم إصدار هذا الحدث عند إطلاق طلب شبكة يطابق أنماط المحاكاة. يتم تمرير الطلب في استدعاء الحدث.
 
 واجهة الطلب:
 ```ts
@@ -76,7 +77,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-يتم إصدار هذا الحدث عندما يتم إلغاء طلب الشبكة باستخدام [`abort`](/docs/api/mock/abort) أو [`abortOnce`](/docs/api/mock/abortOnce). يتم تمرير الفشل في استدعاء الحدث.
+يتم إصدار هذا الحدث عندما يتم إجهاض طلب الشبكة باستخدام [`abort`](/docs/api/mock/abort) أو [`abortOnce`](/docs/api/mock/abortOnce). يتم تمرير الفشل في استدعاء الحدث.
 
 واجهة الفشل:
 ```ts
@@ -94,7 +95,7 @@ interface FailEvent {
 ```ts
 interface MatchEvent {
     url: string // عنوان URL للطلب (بدون جزء الشظية).
-    urlFragment?: string // جزء من عنوان URL المطلوب بدءًا من علامة التجزئة، إذا كان موجودًا.
+    urlFragment?: string // جزء من عنوان URL المطلوب يبدأ بعلامة الهاش، إذا كان موجودًا.
     method: string // طريقة طلب HTTP.
     headers: Record<string, string> // رؤوس طلب HTTP.
     postData?: string // بيانات طلب HTTP POST.
@@ -103,16 +104,16 @@ interface MatchEvent {
     initialPriority: ResourcePriority // أولوية طلب المورد في وقت إرسال الطلب.
     referrerPolicy: ReferrerPolicy // سياسة المحيل للطلب، كما هو محدد في https://www.w3.org/TR/referrer-policy/
     isLinkPreload?: boolean // ما إذا كان يتم تحميله عبر التحميل المسبق للرابط.
-    body: string | Buffer | JsonCompatible // محتوى الاستجابة للمورد الفعلي.
+    body: string | Buffer | JsonCompatible // استجابة الجسم للمورد الفعلي.
     responseHeaders: Record<string, string> // رؤوس استجابة HTTP.
     statusCode: number // رمز حالة استجابة HTTP.
-    mockedResponse?: string | Buffer // إذا كانت المحاكاة تصدر الحدث، وقد عدلت أيضًا استجابتها.
+    mockedResponse?: string | Buffer // إذا كانت المحاكاة، التي تصدر الحدث، تعدل أيضًا استجابتها.
 }
 ```
 
 ### `continue`
 
-يتم إصدار هذا الحدث عندما لا يتم استبدال استجابة الشبكة ولا مقاطعتها، أو إذا تم إرسال الاستجابة بالفعل بواسطة محاكاة أخرى. يتم تمرير `requestId` في استدعاء الحدث.
+يتم إصدار هذا الحدث عندما لا يتم استبدال استجابة الشبكة ولا يتم مقاطعتها، أو إذا كانت الاستجابة قد أرسلت بالفعل بواسطة محاكاة أخرى. يتم تمرير `requestId` في استدعاء الحدث.
 
 ## أمثلة
 
@@ -120,7 +121,7 @@ interface MatchEvent {
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // من المهم مطابقة جميع الطلبات، وإلا ستكون القيمة الناتجة مربكة للغاية.
+const mock = await browser.mock('**') // من المهم مطابقة جميع الطلبات وإلا فإن القيمة الناتجة يمكن أن تكون مربكة جداً.
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -131,7 +132,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-إطلاق خطأ عند فشل الشبكة 404:
+إلقاء خطأ عند فشل الشبكة 404:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -145,7 +146,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // الانتظار هنا، لأنه قد لا تزال هناك بعض الطلبات معلقة
+    // الانتظار هنا، لأن بعض الطلبات قد تكون لا تزال معلقة
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -182,4 +183,4 @@ secondMock.on('continue', () => {
 })
 ```
 
-في هذا المثال، تم تعريف `firstMock` أولاً ويحتوي على استدعاء `respondOnce` واحد، لذلك لن يتم استخدام قيمة استجابة `secondMock` للطلب الأول، ولكن سيتم استخدامها لبقية الطلبات.
+في هذا المثال، تم تعريف `firstMock` أولاً ولديه مكالمة `respondOnce` واحدة، لذلك لن يتم استخدام قيمة استجابة `secondMock` للطلب الأول، ولكن سيتم استخدامها لبقية الطلبات.

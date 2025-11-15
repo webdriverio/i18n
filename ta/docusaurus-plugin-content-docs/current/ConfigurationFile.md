@@ -3,9 +3,9 @@ id: configurationfile
 title: கட்டமைப்பு கோப்பு
 ---
 
-கட்டமைப்பு கோப்பில் உங்கள் சோதனை தொகுப்பை இயக்குவதற்கு தேவையான அனைத்து தகவல்களும் உள்ளன. இது ஒரு JSON ஐ ஏற்றுமதி செய்யும் NodeJS தொகுதி ஆகும்.
+கட்டமைப்பு கோப்பு உங்கள் சோதனை தொகுப்பை இயக்க தேவையான அனைத்து தகவல்களையும் கொண்டுள்ளது. இது ஒரு JSON ஐ ஏற்றுமதி செய்யும் NodeJS தொகுதியாகும்.
 
-இங்கே ஆதரிக்கப்படும் அனைத்து பண்புகளுடனும் கூடுதல் தகவல்களுடனும் ஒரு உதாரண கட்டமைப்பு உள்ளது:
+இதோ ஆதரிக்கப்படும் அனைத்து பண்புகளுடன் கூடிய எடுத்துக்காட்டு கட்டமைப்பு மற்றும் கூடுதல் தகவல்கள்:
 
 ```js
 export const config = {
@@ -260,6 +260,11 @@ export const config = {
     // Your TSConfig is automatically detected from the current working directory
     // but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH env var
     // See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+    //
+    // Note: This setting will be overriden by the TSX_TSCONFIG_PATH env var and/or the cli --tsConfigPath argument if they are specified.
+    // This setting will be ignored if node is unable to parse your wdio.conf.ts file without help from tsx, e.g. if you have path
+    // aliases setup in tsconfig.json and you use those path aliases inside your wdio.config.ts file.
+    // Only use this if you are using a .js config file or your .ts config file is valid JavaScript.
     tsConfigPath: 'path/to/tsconfig.json',
     //
     // =====
@@ -352,8 +357,8 @@ export const config = {
      * Runs after a WebdriverIO command gets executed
      * @param {string} commandName hook command name
      * @param {Array} args arguments that command would receive
-     * @param {number} result 0 - command success, 1 - command error
-     * @param {object} error error object, if any
+     * @param {*} result result of the command
+     * @param {Error} error error object, if any
      */
     afterCommand: function (commandName, args, result, error) {
     },
@@ -487,4 +492,4 @@ export const config = {
 }
 ```
 
-நீங்கள் அனைத்து சாத்தியமான விருப்பங்கள் மற்றும் மாறுபாடுகளுடன் உள்ள கோப்பை [எடுத்துக்காட்டு கோப்புறையில்](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js) காணலாம்.
+[உதாரண கோப்புறை](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js) இல் அனைத்து சாத்தியமான விருப்பங்கள் மற்றும் மாறுபாடுகளுடன் கூடிய கோப்பையும் நீங்கள் காணலாம்.

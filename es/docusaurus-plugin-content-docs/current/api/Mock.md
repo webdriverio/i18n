@@ -3,18 +3,18 @@ id: mock
 title: El Objeto Mock
 ---
 
-El objeto mock es un objeto que representa una simulación de red y contiene información sobre las solicitudes que coincidieron con una `url` y `filterOptions` determinadas. Se puede obtener utilizando el comando [`mock`](/docs/api/browser/mock).
+El objeto mock es un objeto que representa una simulación de red y contiene información sobre solicitudes que coincidieron con una `url` y `filterOptions` determinadas. Puede obtenerse utilizando el comando [`mock`](/docs/api/browser/mock).
 
 :::info
 
 Ten en cuenta que el uso del comando `mock` requiere soporte para el protocolo Chrome DevTools.
 Este soporte se proporciona si ejecutas pruebas localmente en un navegador basado en Chromium o si
-utilizas Selenium Grid v4 o superior. Este comando __no__ puede utilizarse cuando se ejecutan
+utilizas Selenium Grid v4 o superior. Este comando __no__ puede usarse cuando se ejecutan
 pruebas automatizadas en la nube. Obtén más información en la sección [Protocolos de Automatización](/docs/automationProtocols).
 
 :::
 
-Puedes leer más sobre la simulación de solicitudes y respuestas en WebdriverIO en nuestra guía de [Mocks y Spies](/docs/mocksandspies).
+Puedes leer más sobre la simulación de solicitudes y respuestas en WebdriverIO en nuestra guía [Mocks y Spies](/docs/mocksandspies).
 
 ## Propiedades
 
@@ -25,7 +25,7 @@ Un objeto mock contiene las siguientes propiedades:
 | `url` | `String` | La url pasada al comando mock |
 | `filterOptions` | `Object` | Las opciones de filtro de recursos pasadas al comando mock |
 | `browser` | `Object` | El [Objeto Browser](/docs/api/browser) utilizado para obtener el objeto mock. |
-| `calls` | `Object[]` | Información sobre las solicitudes del navegador coincidentes, que contiene propiedades como `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` y `body` |
+| `calls` | `Object[]` | Información sobre las solicitudes del navegador coincidentes, que contienen propiedades como `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` y `body` |
 
 ## Métodos
 
@@ -39,16 +39,17 @@ Los objetos mock proporcionan varios comandos, listados en la sección `mock`, q
 - [`respond`](/docs/api/mock/respond)
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
+- [`waitForResponse`](/docs/api/mock/waitForResponse)
 
 ## Eventos
 
-El objeto mock es un EventEmitter y se emiten varios eventos para tus casos de uso.
+El objeto mock es un EventEmitter y emite varios eventos para tus casos de uso.
 
 Aquí hay una lista de eventos.
 
 ### `request`
 
-Este evento se emite cuando se lanza una solicitud de red que coincide con los patrones de mock. La solicitud se pasa en el callback del evento.
+Este evento se emite al lanzar una solicitud de red que coincide con los patrones del mock. La solicitud se pasa en la devolución de llamada del evento.
 
 Interfaz de solicitud:
 ```ts
@@ -62,7 +63,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Este evento se emite cuando la respuesta de red se sobrescribe con [`respond`](/docs/api/mock/respond) o [`respondOnce`](/docs/api/mock/respondOnce). La respuesta se pasa en el callback del evento.
+Este evento se emite cuando la respuesta de red se sobrescribe con [`respond`](/docs/api/mock/respond) o [`respondOnce`](/docs/api/mock/respondOnce). La respuesta se pasa en la devolución de llamada del evento.
 
 Interfaz de respuesta:
 ```ts
@@ -76,7 +77,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Este evento se emite cuando la solicitud de red se aborta con [`abort`](/docs/api/mock/abort) o [`abortOnce`](/docs/api/mock/abortOnce). El fallo se pasa en el callback del evento.
+Este evento se emite cuando la solicitud de red se aborta con [`abort`](/docs/api/mock/abort) o [`abortOnce`](/docs/api/mock/abortOnce). El fallo se pasa en la devolución de llamada del evento.
 
 Interfaz de fallo:
 ```ts
@@ -88,31 +89,31 @@ interface FailEvent {
 
 ### `match`
 
-Este evento se emite cuando se agrega una nueva coincidencia, antes de `continue` o `overwrite`. La coincidencia se pasa en el callback del evento.
+Este evento se emite cuando se agrega una nueva coincidencia, antes de `continue` o `overwrite`. La coincidencia se pasa en la devolución de llamada del evento.
 
 Interfaz de coincidencia:
 ```ts
 interface MatchEvent {
-    url: string // URL de la solicitud (sin fragmento).
-    urlFragment?: string // Fragmento de la URL solicitada que comienza con hash, si está presente.
-    method: string // Método de solicitud HTTP.
-    headers: Record<string, string> // Encabezados de solicitud HTTP.
-    postData?: string // Datos de solicitud HTTP POST.
-    hasPostData?: boolean // Verdadero cuando la solicitud tiene datos POST.
-    mixedContentType?: MixedContentType // El tipo de exportación de contenido mixto de la solicitud.
-    initialPriority: ResourcePriority // Prioridad de la solicitud de recurso en el momento en que se envía la solicitud.
-    referrerPolicy: ReferrerPolicy // La política de referencia de la solicitud, como se define en https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Si se carga a través de precarga de enlace.
-    body: string | Buffer | JsonCompatible // Cuerpo de respuesta del recurso actual.
-    responseHeaders: Record<string, string> // Encabezados de respuesta HTTP.
-    statusCode: number // Código de estado de respuesta HTTP.
-    mockedResponse?: string | Buffer // Si el mock, que emite el evento, también modificó su respuesta.
+    url: string // Request URL (without fragment).
+    urlFragment?: string // Fragment of the requested URL starting with hash, if present.
+    method: string // HTTP request method.
+    headers: Record<string, string> // HTTP request headers.
+    postData?: string // HTTP POST request data.
+    hasPostData?: boolean // True when the request has POST data.
+    mixedContentType?: MixedContentType // The mixed content export type of the request.
+    initialPriority: ResourcePriority // Priority of the resource request at the time request is sent.
+    referrerPolicy: ReferrerPolicy // The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
+    isLinkPreload?: boolean // Whether is loaded via link preload.
+    body: string | Buffer | JsonCompatible // Body response of actual resource.
+    responseHeaders: Record<string, string> // HTTP response headers.
+    statusCode: number // HTTP response status code.
+    mockedResponse?: string | Buffer // If mock, emitting the event, also modified it's response.
 }
 ```
 
 ### `continue`
 
-Este evento se emite cuando la respuesta de red no ha sido sobrescrita ni interrumpida, o si la respuesta ya fue enviada por otro mock. `requestId` se pasa en el callback del evento.
+Este evento se emite cuando la respuesta de red no ha sido sobrescrita ni interrumpida, o si la respuesta ya fue enviada por otro mock. `requestId` se pasa en la devolución de llamada del evento.
 
 ## Ejemplos
 
@@ -120,7 +121,7 @@ Obtener el número de solicitudes pendientes:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // es importante coincidir con todas las solicitudes, de lo contrario, el valor resultante puede ser muy confuso.
+const mock = await browser.mock('**') // it is important to match all requests otherwise, the resulting value can be very confusing.
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -145,7 +146,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // esperando aquí, porque algunas solicitudes pueden estar pendientes
+    // waiting here, because some requests can still be pending
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -160,7 +161,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Determinar si se utilizó el valor de respuesta del mock:
+Determinar si se usó el valor de respuesta del mock:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -170,16 +171,16 @@ firstMock.respondOnce({id: 3, title: 'three'})
 secondMock.respond({id: 4, title: 'four'})
 
 firstMock.on('overwrite', () => {
-    // se activa para la primera solicitud a '**/foo/**'
+    // triggers for first request to '**/foo/**'
 }).on('continue', () => {
-    // se activa para el resto de solicitudes a '**/foo/**'
+    // triggers for rest requests to '**/foo/**'
 })
 
 secondMock.on('continue', () => {
-    // se activa para la primera solicitud a '**/foo/bar/**'
+    // triggers for first request to '**/foo/bar/**'
 }).on('overwrite', () => {
-    // se activa para el resto de solicitudes a '**/foo/bar/**'
+    // triggers for rest requests to '**/foo/bar/**'
 })
 ```
 
-En este ejemplo, `firstMock` se definió primero y tiene una llamada `respondOnce`, por lo que el valor de respuesta de `secondMock` no se utilizará para la primera solicitud, pero se utilizará para el resto de ellas.
+En este ejemplo, `firstMock` fue definido primero y tiene una llamada `respondOnce`, por lo que el valor de respuesta de `secondMock` no se utilizará para la primera solicitud, pero se utilizará para el resto de ellas.

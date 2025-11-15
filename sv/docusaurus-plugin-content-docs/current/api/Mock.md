@@ -3,13 +3,13 @@ id: mock
 title: Mock-objektet
 ---
 
-Mock-objektet är ett objekt som representerar en nätverksmock och innehåller information om förfrågningar som matchade given `url` och `filterOptions`. Det kan erhållas med hjälp av kommandot [`mock`](/docs/api/browser/mock).
+Mock-objektet är ett objekt som representerar en nätverksmock och innehåller information om förfrågningar som matchade en given `url` och `filterOptions`. Det kan erhållas med kommandot [`mock`](/docs/api/browser/mock).
 
 :::info
 
 Observera att användning av `mock`-kommandot kräver stöd för Chrome DevTools-protokollet.
 Detta stöd ges om du kör tester lokalt i Chromium-baserade webbläsare eller om
-du använder Selenium Grid v4 eller högre. Detta kommando kan __inte__ användas när du kör
+du använder en Selenium Grid v4 eller högre. Detta kommando kan __inte__ användas när du kör
 automatiserade tester i molnet. Läs mer i avsnittet [Automation Protocols](/docs/automationProtocols).
 
 :::
@@ -22,14 +22,14 @@ Ett mock-objekt innehåller följande egenskaper:
 
 | Namn | Typ | Detaljer |
 | ---- | ---- | ------- |
-| `url` | `String` | URL:en som skickades in i mock-kommandot |
-| `filterOptions` | `Object` | Resursfiltreringsalternativen som skickades in i mock-kommandot |
-| `browser` | `Object` | [Browser Object](/docs/api/browser) som användes för att få mock-objektet. |
+| `url` | `String` | URL:en som skickats in i mock-kommandot |
+| `filterOptions` | `Object` | Resursfiltreringsalternativen som skickats in i mock-kommandot |
+| `browser` | `Object` | [Browser-objektet](/docs/api/browser) som användes för att få mock-objektet. |
 | `calls` | `Object[]` | Information om matchande webbläsarförfrågningar, innehållande egenskaper som `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` och `body` |
 
 ## Metoder
 
-Mock-objekt tillhandahåller olika kommandon, listade i avsnittet `mock`, som låter användare modifiera beteendet för förfrågan eller svaret.
+Mock-objekt tillhandahåller olika kommandon, listade i `mock`-sektionen, som låter användare modifiera beteendet för förfrågan eller svaret.
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -39,16 +39,17 @@ Mock-objekt tillhandahåller olika kommandon, listade i avsnittet `mock`, som l�
 - [`respond`](/docs/api/mock/respond)
 - [`respondOnce`](/docs/api/mock/respondOnce)
 - [`restore`](/docs/api/mock/restore)
+- [`waitForResponse`](/docs/api/mock/waitForResponse)
 
 ## Händelser
 
-Mock-objektet är en EventEmitter och ett antal händelser emitteras för dina användningsfall.
+Mock-objektet är en EventEmitter och ett antal händelser sänds ut för dina användningsfall.
 
-Här är en lista över händelser.
+Här är en lista på händelser.
 
 ### `request`
 
-Denna händelse emitteras när en nätverksförfrågan som matchar mock-mönster görs. Förfrågan skickas i händelsecallback.
+Denna händelse sänds ut när en nätverksförfrågan som matchar mock-mönster initieras. Förfrågan skickas i händelsecallbacken.
 
 Request-gränssnitt:
 ```ts
@@ -62,7 +63,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Denna händelse emitteras när nätverkssvar skrivs över med [`respond`](/docs/api/mock/respond) eller [`respondOnce`](/docs/api/mock/respondOnce). Svaret skickas i händelsecallback.
+Denna händelse sänds ut när ett nätverkssvar skrivs över med [`respond`](/docs/api/mock/respond) eller [`respondOnce`](/docs/api/mock/respondOnce). Svaret skickas i händelsecallbacken.
 
 Response-gränssnitt:
 ```ts
@@ -76,7 +77,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Denna händelse emitteras när nätverksförfrågan avbryts med [`abort`](/docs/api/mock/abort) eller [`abortOnce`](/docs/api/mock/abortOnce). Felet skickas i händelsecallback.
+Denna händelse sänds ut när en nätverksförfrågan avbryts med [`abort`](/docs/api/mock/abort) eller [`abortOnce`](/docs/api/mock/abortOnce). Felet skickas i händelsecallbacken.
 
 Fail-gränssnitt:
 ```ts
@@ -88,7 +89,7 @@ interface FailEvent {
 
 ### `match`
 
-Denna händelse emitteras när en ny matchning läggs till, före `continue` eller `overwrite`. Matchningen skickas i händelsecallback.
+Denna händelse sänds ut när en ny matchning läggs till, före `continue` eller `overwrite`. Matchningen skickas i händelsecallbacken.
 
 Match-gränssnitt:
 ```ts
@@ -112,11 +113,11 @@ interface MatchEvent {
 
 ### `continue`
 
-Denna händelse emitteras när nätverkssvaret varken har skrivits över eller avbrutits, eller om svaret redan har skickats av en annan mock. `requestId` skickas i händelsecallback.
+Denna händelse sänds ut när nätverkssvaret varken har skrivits över eller avbrutits, eller om svaret redan har skickats av en annan mock. `requestId` skickas i händelsecallbacken.
 
 ## Exempel
 
-Att få antal väntande förfrågningar:
+Få antal pågående förfrågningar:
 
 ```js
 let pendingRequests = 0
@@ -131,7 +132,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Att kasta ett fel vid 404-nätverksfel:
+Kasta ett fel vid 404 nätverksfel:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -160,7 +161,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Att avgöra om mock respond-värdet användes:
+Avgöra om mock-svarsvärdet användes:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')

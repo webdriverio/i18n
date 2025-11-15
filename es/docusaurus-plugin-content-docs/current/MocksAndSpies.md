@@ -1,13 +1,13 @@
 ---
 id: mocksandspies
-title: Mocks y Espías de Solicitudes
+title: Solicitudes Simuladas y Espías
 ---
 
-WebdriverIO viene con soporte integrado para modificar respuestas de red que te permite enfocarte en probar tu aplicación frontend sin tener que configurar tu backend o un servidor de simulación. Puedes definir respuestas personalizadas para recursos web como solicitudes de API REST en tu prueba y modificarlas dinámicamente.
+WebdriverIO viene con soporte incorporado para modificar respuestas de red que te permite enfocarte en probar tu aplicación frontend sin tener que configurar tu backend o un servidor simulado. Puedes definir respuestas personalizadas para recursos web como solicitudes de API REST en tu prueba y modificarlas dinámicamente.
 
 :::info
 
-Ten en cuenta que usar el comando `mock` requiere soporte para el protocolo Chrome DevTools. Ese soporte se proporciona si ejecutas pruebas localmente en un navegador basado en Chromium, a través de Selenium Grid v4 o superior, o a través de un proveedor en la nube con soporte para el protocolo Chrome DevTools (por ejemplo, SauceLabs, BrowserStack, LambdaTest). El soporte completo para todos los navegadores estará disponible una vez que las primitivas requeridas lleguen a [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) y se implementen en los respectivos navegadores.
+Ten en cuenta que usar el comando `mock` requiere soporte para el protocolo Chrome DevTools. Ese soporte se da si ejecutas pruebas localmente en un navegador basado en Chromium, a través de Selenium Grid v4 o superior, o a través de un proveedor en la nube con soporte para el protocolo Chrome DevTools (por ejemplo, SauceLabs, BrowserStack, LambdaTest). El soporte completo para todos los navegadores estará disponible una vez que las primitivas requeridas lleguen a [Webdriver Bidi](https://wpt.fyi/results/webdriver/tests/bidi/network?label=experimental&label=master&aligned) y se implementen en los respectivos navegadores.
 
 :::
 
@@ -31,11 +31,11 @@ const strictMock = await browser.mock('**', {
 
 ## Especificando respuestas personalizadas
 
-Una vez que hayas definido un mock, puedes definir respuestas personalizadas para él. Esas respuestas personalizadas pueden ser un objeto para responder un JSON, un archivo local para responder con un fixture personalizado o un recurso web para reemplazar la respuesta con un recurso de internet.
+Una vez que hayas definido un mock, puedes definir respuestas personalizadas para él. Estas respuestas personalizadas pueden ser un objeto para responder con JSON, un archivo local para responder con un fixture personalizado o un recurso web para reemplazar la respuesta con un recurso de internet.
 
-### Simulando solicitudes de API
+### Simulando Solicitudes API
 
-Para simular solicitudes de API donde esperas una respuesta JSON, todo lo que necesitas hacer es llamar a `respond` en el objeto mock con un objeto arbitrario que quieras devolver, por ejemplo:
+Para simular solicitudes API donde esperas una respuesta JSON, todo lo que necesitas hacer es llamar a `respond` en el objeto mock con un objeto arbitrario que quieras devolver, por ejemplo:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -85,14 +85,14 @@ mock.respond({ ... }, {
 Se recomienda almacenar respuestas personalizadas en archivos de fixture para que puedas simplemente requerirlos en tu prueba de la siguiente manera:
 
 ```js
-// requiere Node.js v16.14.0 o superior para soportar aserciones de importación JSON
+// requiere Node.js v16.14.0 o superior para admitir aserciones de importación JSON
 import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'json' }
 mock.respond(responseFixture)
 ```
 
 ### Simulando recursos de texto
 
-Si deseas modificar recursos de texto como JavaScript, archivos CSS u otros recursos basados en texto, puedes simplemente pasar una ruta de archivo y WebdriverIO reemplazará el recurso original con él, por ejemplo:
+Si deseas modificar recursos de texto como archivos JavaScript, CSS u otros recursos basados en texto, puedes simplemente pasar una ruta de archivo y WebdriverIO reemplazará el recurso original con él, por ejemplo:
 
 ```js
 const scriptMock = await browser.mock('**/script.min.js')
@@ -104,7 +104,7 @@ scriptMock.respond('alert("I am a mocked resource")')
 
 ### Redirigir recursos web
 
-También puedes simplemente reemplazar un recurso web con otro recurso web si tu respuesta deseada ya está alojada en la web. Esto funciona con recursos de página individuales así como con una página web completa, por ejemplo:
+También puedes reemplazar un recurso web con otro recurso web si tu respuesta deseada ya está alojada en la web. Esto funciona con recursos de página individuales así como con una página web completa, por ejemplo:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -115,7 +115,7 @@ console.log(await browser.getTitle()) // devuelve "WebdriverIO · Next-gen brows
 
 ### Respuestas dinámicas
 
-Si tu respuesta mock depende de la respuesta del recurso original, también puedes modificar dinámicamente el recurso pasando una función que recibe la respuesta original como parámetro y establece el mock basado en el valor de retorno, por ejemplo:
+Si tu respuesta simulada depende de la respuesta del recurso original, también puedes modificar dinámicamente el recurso pasando una función que recibe la respuesta original como parámetro y establece el mock basado en el valor de retorno, por ejemplo:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -123,7 +123,7 @@ const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com
 })
 
 mock.respond((req) => {
-    // reemplazar contenido de todo con su número de lista
+    // reemplazar contenido del todo con su número de lista
     return req.body.map((item, i) => ({ ...item, title: i }))
 })
 
@@ -181,9 +181,11 @@ await $('password').setValue('password123')
 await $('password_repeat').setValue('password123')
 await $('button[type="submit"]').click()
 
-// verificar si se realizó la solicitud API
+// verificar si se hizo la solicitud API
 expect(mock.calls.length).toBe(1)
 
-// afirmar respuesta
+// verificar respuesta
 expect(mock.calls[0].body).toEqual({ success: true })
 ```
+
+Si necesitas esperar hasta que se haya respondido a una solicitud coincidente, usa `mock.waitForResponse(options)`. Consulta la referencia de la API: [waitForResponse](/docs/api/mock/waitForResponse).
