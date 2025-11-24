@@ -14,7 +14,7 @@ Wenn Sie sofortige Hilfe für Ihr eigenes Projekt suchen, wenden Sie sich an ein
 
 ## Stack Overflow
 
-Stack Overflow ist ein beliebtes Forum, um Fragen auf Code-Ebene zu stellen oder wenn Sie bei einem bestimmten Fehler feststecken. Lesen Sie die [bestehenden Fragen](https://stackoverflow.com/questions/tagged/webdriver-io), die mit webdriver-io getaggt sind, oder [stellen Sie Ihre eigene Frage](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
+Stack Overflow ist ein beliebtes Forum, um Code-Level-Fragen zu stellen oder wenn Sie mit einem bestimmten Fehler feststecken. Lesen Sie durch die [bestehenden Fragen](https://stackoverflow.com/questions/tagged/webdriver-io), die mit webdriver-io getaggt sind, oder [stellen Sie Ihre eigene Frage](https://stackoverflow.com/questions/ask?tags=webdriver-io)!
 
 ## Diskussionsforen
 
@@ -26,4 +26,4 @@ Es gibt viele Online-Foren, die ein großartiger Ort für Diskussionen über Web
 
 ## Neuigkeiten
 
-Für die neuesten Nachrichten über WebdriverIO, [folgen Sie @webdriverio auf Twitter](https://twitter.com/webdriverio) und dem offiziellen [WebdriverIO-Blog](/blog) auf dieser Website.
+Für die neuesten Nachrichten über WebdriverIO [folgen Sie @webdriverio auf 𝕏](https://x.com/webdriverio) und dem offiziellen [WebdriverIO-Blog](/blog) auf dieser Website.

@@ -3,7 +3,7 @@ id: gettingstarted
 title: Erste Schritte
 ---
 
-Willkommen zur WebdriverIO-Dokumentation. Sie wird Ihnen helfen, schnell loszulegen. Wenn Sie auf Probleme stoßen, können Sie Hilfe und Antworten auf unserem [Discord Support Server](https://discord.webdriver.io) finden oder mich auf [Twitter](https://twitter.com/webdriverio) kontaktieren.
+Willkommen bei der WebdriverIO-Dokumentation. Sie wird Ihnen helfen, schnell einzusteigen. Wenn Sie auf Probleme stoßen, können Sie Hilfe und Antworten auf unserem [Discord Support Server](https://discord.webdriver.io) finden oder uns auf [𝕏](https://x.com/webdriverio) kontaktieren.
 
 :::info
 Dies ist die Dokumentation für die neueste Version (__>=9.x__) von WebdriverIO. Wenn Sie noch eine ältere Version verwenden, besuchen Sie bitte die [alten Dokumentationswebsites](/versions)!
@@ -16,13 +16,13 @@ Dies ist die Dokumentation für die neueste Version (__>=9.x__) von WebdriverIO.
 
 :::tip Offizieller YouTube-Kanal 🎥
 
-Weitere Videos rund um WebdriverIO finden Sie auf dem [offiziellen YouTube-Kanal](https://youtube.com/@webdriverio). Abonnieren Sie ihn unbedingt!
+Weitere Videos rund um WebdriverIO finden Sie auf dem [offiziellen YouTube-Kanal](https://youtube.com/@webdriverio). Vergessen Sie nicht zu abonnieren!
 
 :::
 
 ## WebdriverIO-Setup initiieren
 
-Um ein vollständiges WebdriverIO-Setup zu einem bestehenden oder neuen Projekt hinzuzufügen, verwenden Sie das [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio):
+Um ein vollständiges WebdriverIO-Setup zu einem bestehenden oder neuen Projekt hinzuzufügen, verwenden Sie das [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio) mit folgendem Befehl:
 
 Wenn Sie sich im Stammverzeichnis eines bestehenden Projekts befinden, führen Sie aus:
 
@@ -93,7 +93,7 @@ Dieser einzelne Befehl lädt das WebdriverIO CLI-Tool herunter und führt einen 
 
 <CreateProjectAnimation />
 
-Der Assistent stellt eine Reihe von Fragen, die Sie durch die Einrichtung führen. Sie können einen `--yes`-Parameter übergeben, um eine Standardeinrichtung zu wählen, die Mocha mit Chrome unter Verwendung des [Page Object](https://martinfowler.com/bliki/PageObject.html)-Musters verwendet.
+Der Assistent stellt eine Reihe von Fragen, die Sie durch die Einrichtung führen. Sie können einen `--yes` Parameter übergeben, um eine Standardeinrichtung zu wählen, die Mocha mit Chrome unter Verwendung des [Page Object](https://martinfowler.com/bliki/PageObject.html) Musters verwendet.
 
 <Tabs
   defaultValue="npm"
@@ -154,7 +154,7 @@ Sie können Ihre Testsuite mit dem Befehl `run` starten und auf die WebdriverIO-
 npx wdio run ./wdio.conf.js
 ```
 
-Wenn Sie bestimmte Testdateien ausführen möchten, können Sie einen `--spec`-Parameter hinzufügen:
+Wenn Sie bestimmte Testdateien ausführen möchten, können Sie einen `--spec` Parameter hinzufügen:
 
 ```sh
 npx wdio run ./wdio.conf.js --spec example.e2e.js
@@ -174,17 +174,17 @@ Wenn Sie WebdriverIO als Automatisierungs-Engine im [Standalone-Modus](/docs/set
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
 ```
 
-__Hinweis:__ Alle WebdriverIO-Befehle sind asynchron und müssen mit [`async/await`](https://javascript.info/async-await) korrekt behandelt werden.
+__Hinweis:__ Alle WebdriverIO-Befehle sind asynchron und müssen mit [`async/await`](https://javascript.info/async-await) ordnungsgemäß behandelt werden.
 
 ## Tests aufzeichnen
 
-WebdriverIO bietet Tools, die Ihnen helfen, durch Aufzeichnen Ihrer Testaktionen auf dem Bildschirm und automatisches Generieren von WebdriverIO-Testskripten zu beginnen. Weitere Informationen finden Sie unter [Tests mit Chrome DevTools Recorder aufzeichnen](/docs/record).
+WebdriverIO bietet Tools, die Ihnen helfen, den Einstieg zu erleichtern, indem Sie Ihre Testaktionen auf dem Bildschirm aufzeichnen und automatisch WebdriverIO-Testskripte generieren. Weitere Informationen finden Sie unter [Tests mit Chrome DevTools Recorder aufzeichnen](/docs/record).
 
 ## Systemanforderungen
 
-Sie benötigen [Node.js](http://nodejs.org).
+Sie benötigen [Node.js](http://nodejs.org) auf Ihrem System.
 
 - Installieren Sie mindestens v18.20.0 oder höher, da dies die älteste aktive LTS-Version ist
-- Nur Versionen, die eine LTS-Version sind oder werden, werden offiziell unterstützt
+- Offiziell werden nur Versionen unterstützt, die bereits eine LTS-Version sind oder eine werden
 
-Wenn Node derzeit nicht auf Ihrem System installiert ist, empfehlen wir die Verwendung eines Tools wie [NVM](https://github.com/creationix/nvm) oder [Volta](https://volta.sh/), um bei der Verwaltung mehrerer aktiver Node.js-Versionen zu helfen. NVM ist eine beliebte Wahl, während Volta ebenfalls eine gute Alternative ist.
+Wenn Node derzeit nicht auf Ihrem System installiert ist, empfehlen wir die Verwendung eines Tools wie [NVM](https://github.com/creationix/nvm) oder [Volta](https://volta.sh/), um bei der Verwaltung mehrerer aktiver Node.js-Versionen zu helfen. NVM ist eine beliebte Wahl, während Volta ebenfalls eine gute Alternative darstellt.

@@ -3,7 +3,7 @@ id: gettingstarted
 title: Premiers pas
 ---
 
-Bienvenue dans la documentation WebdriverIO. Elle vous aidera à démarrer rapidement. Si vous rencontrez des problèmes, vous pouvez trouver de l'aide et des réponses sur notre [Serveur de Support Discord](https://discord.webdriver.io) ou vous pouvez me contacter sur [Twitter](https://twitter.com/webdriverio).
+Bienvenue dans la documentation WebdriverIO. Elle vous aidera à démarrer rapidement. Si vous rencontrez des problèmes, vous pouvez trouver de l'aide et des réponses sur notre [Serveur de Support Discord](https://discord.webdriver.io) ou vous pouvez nous contacter sur [𝕏](https://x.com/webdriverio).
 
 :::info
 Ceci est la documentation pour la dernière version (__>=9.x__) de WebdriverIO. Si vous utilisez encore une ancienne version, veuillez consulter les [anciens sites de documentation](/versions) !
@@ -134,19 +134,19 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-## Installer le CLI manuellement
+## Installer la CLI manuellement
 
-Vous pouvez également ajouter le package CLI à votre projet manuellement via :
+Vous pouvez également ajouter manuellement le package CLI à votre projet via :
 
 ```sh
 npm i --save-dev @wdio/cli
-npx wdio --version # affiche par ex. `8.13.10`
+npx wdio --version # affiche p. ex. `8.13.10`
 
 # exécuter l'assistant de configuration
 npx wdio config
 ```
 
-## Exécuter un test
+## Exécuter les tests
 
 Vous pouvez démarrer votre suite de tests en utilisant la commande `run` et en pointant vers la configuration WebdriverIO que vous venez de créer :
 
@@ -168,7 +168,7 @@ npx wdio run ./wdio.conf.js --suite exampleSuiteName
 
 ## Exécuter dans un script
 
-Si vous souhaitez utiliser WebdriverIO comme moteur d'automatisation en [Mode Autonome](/docs/setuptypes#standalone-mode) dans un script Node.JS, vous pouvez également installer directement WebdriverIO et l'utiliser comme un package, par exemple pour générer une capture d'écran d'un site web :
+Si vous souhaitez utiliser WebdriverIO comme moteur d'automatisation en [Mode autonome](/docs/setuptypes#standalone-mode) dans un script Node.JS, vous pouvez également installer directement WebdriverIO et l'utiliser comme un package, par exemple pour générer une capture d'écran d'un site web :
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
@@ -180,11 +180,11 @@ __Remarque :__ toutes les commandes WebdriverIO sont asynchrones et doivent êtr
 
 WebdriverIO fournit des outils pour vous aider à démarrer en enregistrant vos actions de test à l'écran et en générant automatiquement des scripts de test WebdriverIO. Voir [Enregistrer des tests avec Chrome DevTools Recorder](/docs/record) pour plus d'informations.
 
-## Configuration requise
+## Prérequis système
 
 Vous aurez besoin de [Node.js](http://nodejs.org) installé.
 
 - Installez au moins la version v18.20.0 ou supérieure car c'est la plus ancienne version LTS active
-- Seules les versions qui sont ou deviendront une version LTS sont officiellement prises en charge
+- Seules les versions qui sont ou deviendront une version LTS sont officiellement supportées
 
 Si Node n'est pas actuellement installé sur votre système, nous vous suggérons d'utiliser un outil tel que [NVM](https://github.com/creationix/nvm) ou [Volta](https://volta.sh/) pour vous aider à gérer plusieurs versions actives de Node.js. NVM est un choix populaire, tandis que Volta est également une bonne alternative.

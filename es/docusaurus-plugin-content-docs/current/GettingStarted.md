@@ -3,7 +3,7 @@ id: gettingstarted
 title: Primeros Pasos
 ---
 
-Bienvenido a la documentación de WebdriverIO. Te ayudará a comenzar rápidamente. Si encuentras problemas, puedes obtener ayuda y respuestas en nuestro [Servidor de Soporte en Discord](https://discord.webdriver.io) o puedes contactarme en [Twitter](https://twitter.com/webdriverio).
+Bienvenido a la documentación de WebdriverIO. Te ayudará a comenzar rápidamente. Si encuentras problemas, puedes obtener ayuda y respuestas en nuestro [Servidor de Soporte en Discord](https://discord.webdriver.io) o puedes contactarnos en [𝕏](https://x.com/webdriverio).
 
 :::info
 Esta es la documentación para la última versión (__>=9.x__) de WebdriverIO. Si todavía estás utilizando una versión anterior, ¡visita los [sitios web de documentación antiguos](/versions)!
@@ -20,9 +20,9 @@ Puedes encontrar más videos sobre WebdriverIO en el [canal oficial de YouTube](
 
 :::
 
-## Iniciar una Configuración de WebdriverIO
+## Iniciar una configuración de WebdriverIO
 
-Para agregar una configuración completa de WebdriverIO a un proyecto existente o nuevo utilizando el [Kit de Inicio de WebdriverIO](https://www.npmjs.com/package/create-wdio), ejecuta:
+Para agregar una configuración completa de WebdriverIO a un proyecto existente o nuevo usando el [Kit de Inicio de WebdriverIO](https://www.npmjs.com/package/create-wdio), ejecuta:
 
 Si estás en el directorio raíz de un proyecto existente, ejecuta:
 
@@ -134,7 +134,7 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-## Instalar CLI Manualmente
+## Instalar CLI manualmente
 
 También puedes agregar el paquete CLI a tu proyecto manualmente mediante:
 
@@ -142,13 +142,13 @@ También puedes agregar el paquete CLI a tu proyecto manualmente mediante:
 npm i --save-dev @wdio/cli
 npx wdio --version # imprime p.ej. `8.13.10`
 
-# ejecutar el asistente de configuración
+# ejecutar asistente de configuración
 npx wdio config
 ```
 
-## Ejecutar Prueba
+## Ejecutar prueba
 
-Puedes iniciar tu suite de pruebas utilizando el comando `run` y apuntando a la configuración de WebdriverIO que acabas de crear:
+Puedes iniciar tu suite de pruebas usando el comando `run` y apuntando a la configuración de WebdriverIO que acabas de crear:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -168,7 +168,7 @@ npx wdio run ./wdio.conf.js --suite exampleSuiteName
 
 ## Ejecutar en un script
 
-Si deseas utilizar WebdriverIO como un motor de automatización en [Modo Independiente](/docs/setuptypes#standalone-mode) dentro de un script Node.JS, también puedes instalar WebdriverIO directamente y usarlo como un paquete, por ejemplo, para generar una captura de pantalla de un sitio web:
+Si deseas utilizar WebdriverIO como motor de automatización en [Modo Independiente](/docs/setuptypes#standalone-mode) dentro de un script de Node.JS, también puedes instalar directamente WebdriverIO y utilizarlo como un paquete, por ejemplo, para generar una captura de pantalla de un sitio web:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
@@ -180,11 +180,11 @@ __Nota:__ todos los comandos de WebdriverIO son asincrónicos y deben manejarse 
 
 WebdriverIO proporciona herramientas para ayudarte a comenzar grabando tus acciones de prueba en pantalla y generando scripts de prueba de WebdriverIO automáticamente. Consulta [Grabar pruebas con Chrome DevTools Recorder](/docs/record) para obtener más información.
 
-## Requisitos del Sistema
+## Requisitos del sistema
 
 Necesitarás tener instalado [Node.js](http://nodejs.org).
 
 - Instala al menos la versión v18.20.0 o superior, ya que esta es la versión LTS activa más antigua
 - Solo se admiten oficialmente las versiones que son o serán una versión LTS
 
-Si Node no está instalado actualmente en tu sistema, sugerimos utilizar una herramienta como [NVM](https://github.com/creationix/nvm) o [Volta](https://volta.sh/) para ayudar a gestionar múltiples versiones activas de Node.js. NVM es una opción popular, mientras que Volta también es una buena alternativa.
+Si Node no está instalado actualmente en tu sistema, te sugerimos utilizar una herramienta como [NVM](https://github.com/creationix/nvm) o [Volta](https://volta.sh/) para ayudar a administrar múltiples versiones activas de Node.js. NVM es una opción popular, mientras que Volta también es una buena alternativa.

@@ -3,10 +3,10 @@ id: gettingstarted
 title: はじめに
 ---
 
-WebdriverIOドキュメントへようこそ。このドキュメントは、素早く始めるのに役立ちます。問題が発生した場合は、[Discord サポートサーバー](https://discord.webdriver.io)で助けを求めたり、[Twitter](https://twitter.com/webdriverio)で連絡することもできます。
+WebdriverIOのドキュメントへようこそ。このドキュメントは素早く始めるのに役立ちます。問題が発生した場合は、[Discordサポートサーバー](https://discord.webdriver.io)で助けと回答を見つけることができるか、[𝕏](https://x.com/webdriverio)で質問することができます。
 
 :::info
-これは最新バージョン（__>=9.x__）のWebdriverIOのドキュメントです。まだ古いバージョンを使用している場合は、[古いドキュメントウェブサイト](/versions)をご覧ください！
+これはWebdriverIOの最新バージョン（__>=9.x__）のドキュメントです。まだ古いバージョンを使用している場合は、[古いドキュメントウェブサイト](/versions)をご覧ください！
 :::
 
 <LiteYouTubeEmbed
@@ -16,7 +16,7 @@ WebdriverIOドキュメントへようこそ。このドキュメントは、素
 
 :::tip 公式YouTubeチャンネル 🎥
 
-WebdriverIOに関するさらに多くの動画は[公式YouTubeチャンネル](https://youtube.com/@webdriverio)でご覧いただけます。チャンネル登録をお忘れなく！
+WebdriverIOに関するより多くの動画は[公式YouTubeチャンネル](https://youtube.com/@webdriverio)で見つけることができます。チャンネル登録をお忘れなく！
 
 :::
 
@@ -24,7 +24,7 @@ WebdriverIOに関するさらに多くの動画は[公式YouTubeチャンネル]
 
 既存または新しいプロジェクトに[WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio)を使用して完全なWebdriverIOセットアップを追加するには、次のコマンドを実行します：
 
-既存のプロジェクトのルートディレクトリにいる場合は、次のように実行します：
+既存のプロジェクトのルートディレクトリにいる場合は、次のコマンドを実行します：
 
 <Tabs
   defaultValue="npm"
@@ -41,7 +41,7 @@ WebdriverIOに関するさらに多くの動画は[公式YouTubeチャンネル]
 npm init wdio@latest .
 ```
 
-または、新しいプロジェクトを作成したい場合：
+または新しいプロジェクトを作成したい場合：
 
 ```sh
 npm init wdio@latest ./path/to/new/project
@@ -54,7 +54,7 @@ npm init wdio@latest ./path/to/new/project
 yarn create wdio .
 ```
 
-または、新しいプロジェクトを作成したい場合：
+または新しいプロジェクトを作成したい場合：
 
 ```sh
 yarn create wdio ./path/to/new/project
@@ -67,7 +67,7 @@ yarn create wdio ./path/to/new/project
 pnpm create wdio@latest .
 ```
 
-または、新しいプロジェクトを作成したい場合：
+または新しいプロジェクトを作成したい場合：
 
 ```sh
 pnpm create wdio@latest ./path/to/new/project
@@ -80,7 +80,7 @@ pnpm create wdio@latest ./path/to/new/project
 bun create wdio@latest .
 ```
 
-または、新しいプロジェクトを作成したい場合：
+または新しいプロジェクトを作成したい場合：
 
 ```sh
 bun create wdio@latest ./path/to/new/project
@@ -89,11 +89,11 @@ bun create wdio@latest ./path/to/new/project
 </TabItem>
 </Tabs>
 
-このコマンド一つでWebdriverIO CLIツールをダウンロードし、テストスイートを設定するのに役立つ設定ウィザードを実行します。
+このコマンド一つでWebdriverIO CLIツールをダウンロードし、テストスイートの設定を支援する設定ウィザードを実行します。
 
 <CreateProjectAnimation />
 
-ウィザードはセットアップをガイドする一連の質問を表示します。`--yes`パラメータを渡すと、[Page Object](https://martinfowler.com/bliki/PageObject.html)パターンを使用してChromeでMochaを使用するデフォルトのセットアップを選択できます。
+ウィザードはセットアップをガイドする一連の質問を表示します。`--yes`パラメータを渡すと、[ページオブジェクト](https://martinfowler.com/bliki/PageObject.html)パターンを使用してChromeでMochaを使用するデフォルト設定を選択できます。
 
 <Tabs
   defaultValue="npm"
@@ -134,13 +134,13 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-## CLIを手動でインストール
+## CLIを手動でインストールする
 
-CLIパッケージを以下のように手動でプロジェクトに追加することもできます：
+次のように、プロジェクトに手動でCLIパッケージを追加することもできます：
 
 ```sh
 npm i --save-dev @wdio/cli
-npx wdio --version # 例えば `8.13.10` などを表示します
+npx wdio --version # 例えば「8.13.10」と表示されます
 
 # 設定ウィザードを実行
 npx wdio config
@@ -148,7 +148,7 @@ npx wdio config
 
 ## テストを実行する
 
-`run`コマンドを使用して、作成したWebdriverIO設定を指定することで、テストスイートを開始できます：
+`run`コマンドを使用して、先ほど作成したWebdriverIO設定ファイルを指定することで、テストスイートを開始できます：
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -160,7 +160,7 @@ npx wdio run ./wdio.conf.js
 npx wdio run ./wdio.conf.js --spec example.e2e.js
 ```
 
-または、設定ファイルでスイートを定義し、スイートで定義されたテストファイルのみを実行することもできます：
+または設定ファイルでスイートを定義して、そのスイートで定義されたテストファイルのみを実行することもできます：
 
 ```sh
 npx wdio run ./wdio.conf.js --suite exampleSuiteName
@@ -178,13 +178,13 @@ __注意：__ すべてのWebdriverIOコマンドは非同期であり、[`async
 
 ## テストを記録する
 
-WebdriverIOは、画面上でのテストアクションを記録し、WebdriverIOテストスクリプトを自動生成するためのツールを提供しています。詳細は[Chrome DevTools Recorderを使用したテスト記録](/docs/record)をご覧ください。
+WebdriverIOは、画面上でテスト操作を記録し、WebdriverIOテストスクリプトを自動的に生成するためのツールを提供しています。詳細については、[Chrome DevTools Recorderでテストを記録する](/docs/record)を参照してください。
 
 ## システム要件
 
 [Node.js](http://nodejs.org)がインストールされている必要があります。
 
 - 最も古いアクティブなLTSバージョンであるv18.20.0以上をインストールしてください
-- 公式にサポートされているのは、現在LTSリリースであるか、将来LTSリリースになるバージョンのみです
+- 現在または将来LTSリリースになるリリースのみが公式にサポートされています
 
-現在システムにNodeがインストールされていない場合は、[NVM](https://github.com/creationix/nvm)や[Volta](https://volta.sh/)などのツールを使用して、複数のアクティブなNode.jsバージョンを管理することをお勧めします。NVMは人気のある選択肢で、Voltaも良い代替手段です。
+現在システムにNodeがインストールされていない場合は、[NVM](https://github.com/creationix/nvm)や[Volta](https://volta.sh/)などのツールを利用して、複数のアクティブなNode.jsバージョンを管理することをお勧めします。NVMは人気のある選択肢ですが、Voltaも良い代替手段です。
