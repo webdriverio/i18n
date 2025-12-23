@@ -9,13 +9,13 @@
     },
     "type": "module",
     "dependencies": {
-        "@anthropic-ai/sdk": "^0.54.0",
-        "@types/node": "^24.0.7",
-        "ai": "^4.3.10",
-        "dotenv": "^17.0.0",
-        "tsx": "^4.19.3",
-        "typescript": "^5.8.3",
-        "@octokit/rest": "^22.0.0",
+        "@anthropic-ai/sdk": "^0.71.2",
+        "@types/node": "^25.0.3",
+        "ai": "^6.0.1",
+        "dotenv": "^17.2.3",
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3",
+        "@octokit/rest": "^22.0.1",
         "node-fetch": "^3.3.2"
     }
 }
