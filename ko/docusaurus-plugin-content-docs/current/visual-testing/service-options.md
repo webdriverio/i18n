@@ -28,34 +28,34 @@ export const config = {
 
 ### `addressBarShadowPadding`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `6`
--   **Supported Application Contexts:** Web
+-   **타입:** `number`
+-   **필수:** 아니오
+-   **기본값:** `6`
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
-iOS 및 Android에서 주소 표시줄을 적절하게 잘라내기 위해 추가해야 하는 패딩입니다.
+iOS와 Android에서 주소 표시줄에 추가해야 하는 패딩으로 뷰포트를 적절하게 잘라내기 위해 필요합니다.
 
 ### `autoElementScroll`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `true`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰)
 
-이 옵션을 사용하면 요소 스크린샷을 생성할 때 요소를 자동으로 뷰로 스크롤하는 기능을 비활성화할 수 있습니다.
+이 옵션을 사용하면 요소 스크린샷이 생성될 때 요소를 자동으로 화면에 표시하기 위한 스크롤을 비활성화할 수 있습니다.
 
 ### `addIOSBezelCorners`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `false`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱
 
-iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜드를 추가합니다.
+iOS 장치의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜드를 추가합니다.
 
 :::info 참고
-이 기능은 기기 이름이 **자동으로** 결정될 수 있고 다음 정규화된 기기 이름 목록과 일치하는 경우에만 적용됩니다. 정규화는 이 모듈에 의해 수행됩니다.
-**iPhone:**
+이 기능은 장치 이름이 **자동으로** 결정될 수 있고 다음 목록의 정규화된 장치 이름과 일치할 때만 사용할 수 있습니다. 정규화는 이 모듈에 의해 수행됩니다.
+**아이폰:**
 
 -   iPhone X: `iphonex`
 -   iPhone XS: `iphonexs`
@@ -76,7 +76,7 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 -   iPhone 14 Plus: `iphone14plus`
 -   iPhone 14 Pro: `iphone14pro`
 -   iPhone 14 Pro Max: `iphone14promax`
-    **iPads:**
+    **아이패드:**
 -   iPad Mini 6th Generation: `ipadmini`
 -   iPad Air 4th Generation: `ipadair`
 -   iPad Air 5th Generation: `ipadair`
@@ -86,26 +86,39 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 -   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
 -   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
 -   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
-
 :::
 
 ### `autoSaveBaseline`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `true`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱
 
-비교 중에 기준 이미지가 없으면 이미지가 자동으로 기준 폴더에 복사됩니다.
+비교 중 기준 이미지를 찾을 수 없으면 이미지가 자동으로 기준 폴더에 복사됩니다.
+
+### `alwaysSaveActualImage`
+
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `true`
+-   **지원되는 애플리케이션 컨텍스트:** 모두
+
+이 옵션을 `false`로 설정하면:
+
+- 차이가 **없을 때** 실제 이미지를 저장하지 않음
+- `createJsonReportFiles`가 `true`로 설정된 경우에도 jsonreport 파일을 저장하지 않음. 또한 로그에 `createJsonReportFiles`가 비활성화되었다는 경고를 표시함
+
+이렇게 하면 시스템에 파일을 쓰지 않아 성능이 향상되고 `actual` 폴더에 불필요한 파일이 생성되는 것을 방지할 수 있습니다.
 
 ### `baselineFolder`
 
--   **Type:** `string|()=> string`
--   **Mandatory:** No
--   **Default:** `.path/to/testfile/__snapshots__/`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+-   **타입:** `string|()=> string`
+-   **필수:** 아니오
+-   **기본값:** `.path/to/testfile/__snapshots__/`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱
 
-비교 중에 사용되는 모든 기준 이미지를 보관하는 디렉토리입니다. 설정하지 않으면, 시각적 테스트를 실행하는 스펙 옆에 있는 `__snapshots__/` 폴더에 파일이 저장되는 기본값이 사용됩니다. `string`을 반환하는 함수를 사용하여 `baselineFolder` 값을 설정할 수도 있습니다:
+비교 중 사용되는 모든 기준 이미지가 저장될 디렉토리입니다. 설정하지 않으면 기본값이 사용되며, 이는 비주얼 테스트를 실행하는 스펙 옆의 `__snapshots__/` 폴더에 파일을 저장합니다. `string`을 반환하는 함수를 사용하여 `baselineFolder` 값을 설정할 수도 있습니다:
 
 ```js
 {
@@ -114,7 +127,7 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 // 또는
 {
     baselineFolder: () => {
-        // 여기서 특별한 작업 수행
+        // 여기서 작업 수행
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -122,12 +135,12 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 
 ### `clearRuntimeFolder`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `false`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱
 
-초기화 시 런타임 폴더(`actual` & `diff)를 삭제합니다
+초기화시 런타임 폴더(`actual` 및 `diff`)를 삭제합니다.
 
 :::info 참고
 이 기능은 [`screenshotPath`](#screenshotpath)가 플러그인 옵션을 통해 설정된 경우에만 작동하며, 메소드에서 폴더를 설정할 경우에는 **작동하지 않습니다**
@@ -135,11 +148,11 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 
 ### `createJsonReportFiles` **(신규)**
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `false`
 
-이제 비교 결과를 JSON 보고서 파일로 내보낼 수 있는 옵션이 있습니다. `createJsonReportFiles: true` 옵션을 제공하면, 비교된 각 이미지는 `actual` 폴더에 각 `actual` 이미지 결과 옆에 저장된 보고서를 생성합니다. 출력은 다음과 같습니다:
+이제 비교 결과를 JSON 보고서 파일로 내보낼 수 있습니다. `createJsonReportFiles: true` 옵션을 제공하면, 비교되는 각 이미지마다 `actual` 폴더에 각 `actual` 이미지 결과 옆에 보고서가 저장됩니다. 출력은 다음과 같습니다:
 
 ```json
 {
@@ -202,14 +215,14 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 }
 ```
 
-모든 테스트가 실행되면, 비교 컬렉션이 포함된 새 JSON 파일이 생성되어 `actual` 폴더의 루트에서 찾을 수 있습니다. 데이터는 다음과 같이 그룹화됩니다:
+모든 테스트가 실행되면 비교 컬렉션이 포함된 새 JSON 파일이 생성되어 `actual` 폴더의 루트에서 찾을 수 있습니다. 데이터는 다음과 같이 그룹화됩니다:
 
--   Jasmine/Mocha의 경우 `describe` 또는 CucumberJS의 경우 `Feature`
--   Jasmine/Mocha의 경우 `it` 또는 CucumberJS의 경우 `Scenario`
+-   Jasmine/Mocha의 `describe` 또는 CucumberJS의 `Feature`
+-   Jasmine/Mocha의 `it` 또는 CucumberJS의 `Scenario`
     그리고 다음 기준으로 정렬됩니다:
--   `commandName`, 이미지를 비교하는 데 사용된 비교 메소드 이름
--   `instanceData`, 먼저 브라우저, 그 다음 장치, 그 다음 플랫폼
-    다음과 같이 표시됩니다
+-   `commandName` - 이미지 비교에 사용된 메소드 이름
+-   `instanceData` - 브라우저 우선, 그 다음 장치, 그 다음 플랫폼
+    다음과 같이 표시됩니다:
 
 ```json
 [
@@ -252,7 +265,7 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 ]
 ```
 
-보고서 데이터는 모든 마법과 데이터 수집을 직접 수행하지 않고도 자신만의 시각적 보고서를 구축할 수 있는 기회를 제공합니다.
+보고서 데이터를 통해 모든 복잡한 작업과 데이터 수집 없이도 자신만의 시각적 보고서를 구축할 수 있습니다.
 
 :::info 참고
 `@wdio/visual-testing` 버전 `5.2.0` 이상을 사용해야 합니다
@@ -260,70 +273,68 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 
 ### `disableBlinkingCursor`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `false`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰)
 
-애플리케이션에서 모든 `input`, `textarea`, `[contenteditable]` 캐럿 "깜빡임"을 활성화/비활성화합니다. `true`로 설정하면 스크린샷을 찍기 전에 캐럿이 `transparent`로 설정되고
-완료되면 재설정됩니다
+애플리케이션의 모든 `input`, `textarea`, `[contenteditable]` 커서 "깜빡임"을 활성화/비활성화합니다. `true`로 설정하면 스크린샷을 찍기 전에 커서가 `transparent`로 설정되고 완료 후 재설정됩니다.
 
 ### `disableCSSAnimation`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `false`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰)
 
-애플리케이션의 모든 CSS 애니메이션을 활성화/비활성화합니다. `true`로 설정하면 스크린샷을 찍기 전에 모든 애니메이션이 비활성화되고
-완료되면 재설정됩니다
+애플리케이션의 모든 CSS 애니메이션을 활성화/비활성화합니다. `true`로 설정하면 스크린샷을 찍기 전에 모든 애니메이션이 비활성화되고 완료 후 재설정됩니다.
 
 ### `enableLayoutTesting`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `false`
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
-이 옵션은 페이지의 모든 텍스트를 숨겨서 비교에 레이아웃만 사용되도록 합니다. 숨기기는 **모든** 요소에 `'color': 'transparent !important'` 스타일을 추가하여 수행됩니다.
+이 옵션은 페이지의 모든 텍스트를 숨겨서 레이아웃만 비교에 사용되도록 합니다. 숨김 처리는 **모든** 요소에 `'color': 'transparent !important'` 스타일을 추가하여 수행됩니다.
 
-출력에 대해서는 [테스트 출력](/docs/visual-testing/test-output#enablelayouttesting)을 참조하세요.
+출력 결과는 [테스트 출력](/docs/visual-testing/test-output#enablelayouttesting)을 참조하세요.
 
 :::info
-이 플래그를 사용하면 텍스트를 포함하는 각 요소(즉, `p, h1, h2, h3, h4, h5, h6, span, a, li`뿐만 아니라 `div|button|..`도 포함)가 이 속성을 갖게 됩니다. 이를 조정할 수 있는 옵션은 **없습니다**.
+이 플래그를 사용하면 텍스트가 포함된 각 요소(`p, h1, h2, h3, h4, h5, h6, span, a, li`뿐만 아니라 `div|button|..` 등)에 이 속성이 적용됩니다. 이를 조정할 수 있는 옵션은 **없습니다**.
 :::
 
 ### `formatImageName`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+-   **타입:** `string`
+-   **필수:** 아니오
+-   **기본값:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱
 
-저장된 이미지의 이름은 다음과 같은 형식 문자열을 가진 `formatImageName` 매개변수를 전달하여 사용자 정의할 수 있습니다:
+저장된 이미지의 이름은 다음과 같은 형식 문자열로 `formatImageName` 매개변수를 전달하여 사용자 지정할 수 있습니다:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-다음 변수를 문자열 형식을 지정하기 위해 전달할 수 있으며 인스턴스 기능에서 자동으로 읽습니다.
-이들을 결정할 수 없는 경우 기본값이 사용됩니다.
+다음 변수를 문자열 형식을 지정하는 데 전달할 수 있으며 인스턴스 기능에서 자동으로 읽습니다.
+결정할 수 없는 경우 기본값이 사용됩니다.
 
--   `browserName`: 제공된 기능에서의 브라우저 이름
--   `browserVersion`: 기능에서 제공된 브라우저 버전
--   `deviceName`: 기능에서의 장치 이름
+-   `browserName`: 제공된 기능의 브라우저 이름
+-   `browserVersion`: 기능에 제공된 브라우저 버전
+-   `deviceName`: 기능의 장치 이름
 -   `dpr`: 장치 픽셀 비율
--   `height`: 화면의 높이
--   `logName`: 기능에서의 logName
--   `mobile`: 앱 스크린샷을 브라우저 스크린샷과 구별하기 위해 `deviceName` 뒤에 `_app` 또는 브라우저 이름을 추가
--   `platformName`: 제공된 기능에서의 플랫폼 이름
--   `platformVersion`: 제공된 기능에서의 플랫폼 버전
--   `tag`: 호출되는 메소드에서 제공되는 태그
--   `width`: 화면의 너비
+-   `height`: 화면 높이
+-   `logName`: 기능의 logName
+-   `mobile`: 앱 스크린샷과 브라우저 스크린샷을 구분하기 위해 `deviceName` 뒤에 `_app` 또는 브라우저 이름을 추가합니다
+-   `platformName`: 제공된 기능의 플랫폼 이름
+-   `platformVersion`: 제공된 기능의 플랫폼 버전
+-   `tag`: 호출되는 메소드에서 제공하는 태그
+-   `width`: 화면 너비
 
 :::info
 
-`formatImageName`에서 사용자 정의 경로/폴더를 제공할 수 없습니다. 경로를 변경하려면 다음 옵션을 확인하세요:
+`formatImageName`에서 사용자 지정 경로/폴더를 제공할 수 없습니다. 경로를 변경하려면 다음 옵션을 확인하세요:
 
 - [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
 - [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
@@ -333,12 +344,12 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 
 ### `fullPageScrollTimeout`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `1500`
--   **Supported Application Contexts:** Web
+-   **타입:** `number`
+-   **필수:** 아니오
+-   **기본값:** `1500`
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
-스크롤 후 대기할 시간(밀리초)입니다. 이는 지연 로딩이 있는 페이지를 식별하는 데 도움이 될 수 있습니다.
+스크롤 후 대기하는 시간(밀리초)입니다. 이는 지연 로딩이 있는 페이지를 식별하는 데 도움이 될 수 있습니다.
 
 :::info
 
@@ -348,41 +359,41 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 
 ### `hideScrollBars`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `true`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰)
 
-애플리케이션에서 스크롤바를 숨깁니다. true로 설정하면 스크린샷을 찍기 전에 모든 스크롤바가 비활성화됩니다. 추가 문제를 방지하기 위해 기본값은 `true`로 설정되어 있습니다.
+애플리케이션의 스크롤바를 숨깁니다. `true`로 설정하면 스크린샷을 찍기 전에 모든 스크롤바가 비활성화됩니다. 추가적인 문제를 방지하기 위해 기본값이 `true`로 설정되어 있습니다.
 
 ### `logLevel`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `info`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+-   **타입:** `string`
+-   **필수:** 아니오
+-   **기본값:** `info`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱
 
-추가 로그를 추가하며, 옵션은 `debug | info | warn | silent`입니다.
+추가 로그를 제공합니다. 옵션은 `debug | info | warn | silent`입니다.
 
 오류는 항상 콘솔에 기록됩니다.
 
 ### `savePerInstance`
 
--   **Type:** `boolean`
--   **Default:** `false`
--   **Mandatory:** no
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+-   **타입:** `boolean`
+-   **기본값:** `false`
+-   **필수:** 아니오
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱
 
-인스턴스별로 이미지를 별도의 폴더에 저장합니다. 예를 들어 모든 Chrome 스크린샷은 `desktop_chrome`과 같은 Chrome 폴더에 저장됩니다.
+이미지를 인스턴스별로 별도의 폴더에 저장합니다. 예를 들어 모든 Chrome 스크린샷은 `desktop_chrome`과 같은 Chrome 폴더에 저장됩니다.
 
 ### `screenshotPath`
 
--   **Type:** `string | () => string`
--   **Default:** `.tmp/`
--   **Mandatory:** no
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+-   **타입:** `string | () => string`
+-   **기본값:** `.tmp/`
+-   **필수:** 아니오
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱
 
-실제/다른 스크린샷을 저장할 디렉토리입니다. 설정하지 않으면 기본값이 사용됩니다. 문자열을 반환하는 함수를 사용하여 screenshotPath 값을 설정할 수도 있습니다:
+모든 실제/차이 스크린샷을 저장할 디렉토리입니다. 설정하지 않으면 기본값이 사용됩니다. 문자열을 반환하는 함수를 사용하여 screenshotPath 값을 설정할 수도 있습니다:
 
 ```js
 {
@@ -391,7 +402,7 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 // 또는
 {
     screenshotPath: () => {
-        // 여기서 특별한 작업 수행
+        // 여기서 작업 수행
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -399,160 +410,160 @@ iOS 기기의 스크린샷에 베젤 모서리와 노치/다이내믹 아일랜�
 
 ### `toolBarShadowPadding`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** Android의 경우 `6`, iOS의 경우 `15`(기본적으로 `6`이며, 노치가 있는 iPhone 또는 홈바가 있는 iPad의 경우 가능한 홈바를 위해 `9`가 자동으로 추가됨)
--   **Supported Application Contexts:** Web
+-   **타입:** `number`
+-   **필수:** 아니오
+-   **기본값:** Android의 경우 `6`, iOS의 경우 `15`(`6` 기본값에 노치가 있는 아이폰이나 홈 바가 있는 아이패드의 홈 바를 위해 자동으로 `9`가 추가됨)
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
-iOS 및 Android에서 뷰포트를 적절하게 잘라내기 위해 툴바에 추가해야 하는 패딩입니다.
+iOS 및 Android의 툴바에 추가해야 하는 패딩으로 뷰포트를 적절하게 잘라내기 위해 필요합니다.
 
 ### `userBasedFullPageScreenshot`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview) **visual-service@7.0.0에서 도입**
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `false`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰) **visual-service@7.0.0에서 도입**
 
-기본적으로 데스크톱 웹에서의 전체 페이지 스크린샷은 WebDriver BiDi 프로토콜을 사용하여 캡처되어 스크롤 없이 빠르고 안정적이며 일관된 스크린샷을 가능하게 합니다.
-userBasedFullPageScreenshot이 true로 설정되면, 스크린샷 프로세스는 실제 사용자를 시뮬레이션합니다: 페이지를 스크롤하여 뷰포트 크기의 스크린샷을 캡처하고 이들을 함께 결합합니다. 이 방법은 지연 로드된 콘텐츠가 있거나 스크롤 위치에 의존하는 동적 렌더링이 있는 페이지에 유용합니다.
+기본적으로 데스크톱 웹에서 전체 페이지 스크린샷은 WebDriver BiDi 프로토콜을 사용하여 캡처되며, 이를 통해 스크롤 없이 빠르고 안정적이며 일관된 스크린샷을 촬영할 수 있습니다.
+userBasedFullPageScreenshot이 true로 설정되면, 스크린샷 프로세스는 실제 사용자와 같이 페이지를 스크롤하면서 뷰포트 크기의 스크린샷을 캡처하고 이를 함께 결합합니다. 이 방법은 지연 로드된 콘텐츠나 스크롤 위치에 따라 동적으로 렌더링되는 페이지에 유용합니다.
 
 페이지가 스크롤하는 동안 콘텐츠 로딩에 의존하거나 이전 스크린샷 방법의 동작을 유지하려는 경우 이 옵션을 사용하세요.
 
 ### `waitForFontsLoaded`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+-   **타입:** `boolean`
+-   **필수:** 아니오
+-   **기본값:** `true`
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰)
 
-서드파티 폰트를 포함한 폰트는 동기적으로 또는 비동기적으로 로드될 수 있습니다. 비동기 로딩은 WebdriverIO가 페이지가 완전히 로드되었다고 판단한 후에 폰트가 로드될 수 있음을 의미합니다. 폰트 렌더링 문제를 방지하기 위해 이 모듈은 기본적으로 스크린샷을 찍기 전에 모든 폰트가 로드될 때까지 기다립니다.
+폰트(서드파티 폰트 포함)는 동기적으로 또는 비동기적으로 로드될 수 있습니다. 비동기 로딩은 WebdriverIO가 페이지가 완전히 로드되었다고 판단한 후에 폰트가 로드될 수 있음을 의미합니다. 폰트 렌더링 문제를 방지하기 위해 이 모듈은 기본적으로 스크린샷을 찍기 전에 모든 폰트가 로드될 때까지 기다립니다.
 
 ## Tabbable 옵션
 
 :::info 참고
 
-이 모듈은 또한 사용자가 키보드로 웹사이트를 _탭_ 이동하는 방식을 그리는 것을 지원하여 탭 이동 가능한 요소에서 다음 요소로 선과 점을 그립니다.<br/>
-이 작업은 [Viv Richards](https://github.com/vivrichards600)의 블로그 게시물 ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript)에서 영감을 받았습니다.<br/>
-탭 이동 가능한 요소를 선택하는 방식은 [tabbable](https://github.com/davidtheclark/tabbable) 모듈을 기반으로 합니다. 탭 이동과 관련된 문제가 있는 경우 [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md)와 특히 [More details 섹션](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)을 확인하세요.
+이 모듈은 사용자가 키보드로 웹사이트를 _탭_ 이동하는 방식을 시각화하기 위해 탭 이동 가능한 요소에서 다음 요소로 선과 점을 그리는 기능을 지원합니다.<br/>
+이 작업은 [Viv Richards](https://github.com/vivrichards600)의 블로그 포스트 ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript)에서 영감을 받았습니다.<br/>
+탭 이동 가능한 요소를 선택하는 방식은 [tabbable](https://github.com/davidtheclark/tabbable) 모듈을 기반으로 합니다. 탭 이동에 관한 문제가 있으면 [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md)와 특히 [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)을 확인하세요.
 
 :::
 
 ### `tabbableOptions`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `object`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 `{save|check}Tabbable`-메소드를 사용할 때 변경할 수 있는 선과 점에 대한 옵션입니다. 옵션은 아래에 설명되어 있습니다.
 
 #### `tabbableOptions.circle`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `object`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 원을 변경하는 옵션입니다.
 
 ##### `tabbableOptions.circle.backgroundColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `string`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 원의 배경색입니다.
 
 ##### `tabbableOptions.circle.borderColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `string`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 원의 테두리 색상입니다.
 
 ##### `tabbableOptions.circle.borderWidth`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `number`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 원의 테두리 너비입니다.
 
 ##### `tabbableOptions.circle.fontColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `string`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
-원 안의 텍스트 폰트 색상입니다. 이는 [`showNumber`](./#tabbableoptionscircleshownumber)가 `true`로 설정된 경우에만 표시됩니다.
+원 안의 텍스트 글꼴 색상입니다. 이는 [`showNumber`](./#tabbableoptionscircleshownumber)가 `true`로 설정된 경우에만 표시됩니다.
 
 ##### `tabbableOptions.circle.fontFamily`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `string`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
-원 안의 텍스트 폰트 패밀리입니다. 이는 [`showNumber`](./#tabbableoptionscircleshownumber)가 `true`로 설정된 경우에만 표시됩니다.
+원 안의 텍스트 글꼴 패밀리입니다. 이는 [`showNumber`](./#tabbableoptionscircleshownumber)가 `true`로 설정된 경우에만 표시됩니다.
 
-브라우저에서 지원하는 폰트를 설정해야 합니다.
+브라우저에서 지원하는 글꼴을 설정해야 합니다.
 
 ##### `tabbableOptions.circle.fontSize`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `number`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
-원 안의 텍스트 폰트 크기입니다. 이는 [`showNumber`](./#tabbableoptionscircleshownumber)가 `true`로 설정된 경우에만 표시됩니다.
+원 안의 텍스트 글꼴 크기입니다. 이는 [`showNumber`](./#tabbableoptionscircleshownumber)가 `true`로 설정된 경우에만 표시됩니다.
 
 ##### `tabbableOptions.circle.size`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `number`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 원의 크기입니다.
 
 ##### `tabbableOptions.circle.showNumber`
 
--   **Type:** `showNumber`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `showNumber`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 원 안에 탭 순서 번호를 표시합니다.
 
 #### `tabbableOptions.line`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `object`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 선을 변경하는 옵션입니다.
 
 ##### `tabbableOptions.line.color`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `string`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 선의 색상입니다.
 
 ##### `tabbableOptions.line.width`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) 참조
--   **Supported Application Contexts:** Web
+-   **타입:** `number`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹
 
 선의 너비입니다.
 
@@ -560,9 +571,9 @@ userBasedFullPageScreenshot이 true로 설정되면, 스크린샷 프로세스�
 
 ### `compareOptions`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) 참조
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App (자세한 정보는 [Method Compare options](./method-options#compare-check-options) 참조)
+-   **타입:** `object`
+-   **필수:** 아니오
+-   **기본값:** 모든 기본값은 [여기](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60)에서 확인하세요
+-   **지원되는 애플리케이션 컨텍스트:** 웹, 하이브리드 앱(웹뷰), 네이티브 앱 (자세한 정보는 [메소드 비교 옵션](./method-options#compare-check-options) 참조)
 
-비교 옵션은 서비스 옵션으로도 설정할 수 있으며, [Method Compare options](/docs/visual-testing/method-options#compare-check-options)에 설명되어 있습니다.
+비교 옵션은 서비스 옵션으로도 설정할 수 있으며, [메소드 비교 옵션](/docs/visual-testing/method-options#compare-check-options)에 설명되어 있습니다.

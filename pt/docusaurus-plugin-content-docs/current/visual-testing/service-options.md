@@ -3,7 +3,7 @@ id: service-options
 title: Opções de Serviço
 ---
 
-As opções de serviço são as opções que podem ser definidas quando o serviço é instanciado e serão usadas para cada chamada de método.
+As opções de serviço são as configurações que podem ser definidas quando o serviço é instanciado e serão utilizadas para cada chamada de método.
 
 ```js
 // wdio.conf.(js|ts)
@@ -51,7 +51,7 @@ Esta opção permite desativar a rolagem automática do elemento para a visualiz
 -   **Padrão:** `false`
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
 
-Adicionar cantos de moldura e entalhe/ilha dinâmica à captura de tela para dispositivos iOS.
+Adiciona cantos de moldura e entalhe/ilha dinâmica à captura de tela para dispositivos iOS.
 
 :::info NOTA
 Isso só pode ser feito quando o nome do dispositivo **PODE** ser determinado automaticamente e corresponde à seguinte lista de nomes de dispositivos normalizados. A normalização será feita por este módulo.
@@ -86,7 +86,6 @@ Isso só pode ser feito quando o nome do dispositivo **PODE** ser determinado au
 -   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
 -   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
 -   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
-
 :::
 
 ### `autoSaveBaseline`
@@ -96,7 +95,21 @@ Isso só pode ser feito quando o nome do dispositivo **PODE** ser determinado au
 -   **Padrão:** `true`
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
 
-Se nenhuma imagem de linha de base for encontrada durante a comparação, a imagem será automaticamente copiada para a pasta de linha de base.
+Se nenhuma imagem de referência for encontrada durante a comparação, a imagem é automaticamente copiada para a pasta de referência.
+
+### `alwaysSaveActualImage`
+
+-   **Tipo:** `boolean`
+-   **Obrigatório:** Não
+-   **Padrão:** `true`
+-   **Contextos de Aplicação Suportados:** Todos
+
+Quando esta opção é definida como `false`:
+
+- não salva a imagem atual quando não há **nenhuma** diferença
+- não armazena o arquivo jsonreport quando `createJsonReportFiles` está definido como `true`. Também mostrará um aviso nos logs de que `createJsonReportFiles` está desativado
+
+Isso deve criar um melhor desempenho porque nenhum arquivo é escrito no sistema e deve garantir que não haja muito ruído na pasta `actual`.
 
 ### `baselineFolder`
 
@@ -105,7 +118,7 @@ Se nenhuma imagem de linha de base for encontrada durante a comparação, a imag
 -   **Padrão:** `.path/to/testfile/__snapshots__/`
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
 
-O diretório que conterá todas as imagens de linha de base usadas durante a comparação. Se não for definido, o valor padrão será usado, o que armazenará os arquivos em uma pasta `__snapshots__/` ao lado do spec que executa os testes visuais. Uma função que retorna uma `string` também pode ser usada para definir o valor de `baselineFolder`:
+O diretório que conterá todas as imagens de referência usadas durante a comparação. Se não for definido, o valor padrão será usado, que armazenará os arquivos em uma pasta `__snapshots__/` ao lado da especificação que executa os testes visuais. Uma função que retorna uma `string` também pode ser usada para definir o valor `baselineFolder`:
 
 ```js
 {
@@ -114,7 +127,7 @@ O diretório que conterá todas as imagens de linha de base usadas durante a com
 // OU
 {
     baselineFolder: () => {
-        // Faça alguma mágica aqui
+        // Faz alguma mágica aqui
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -139,7 +152,7 @@ Isso só funcionará quando o [`screenshotPath`](#screenshotpath) for definido a
 -   **Obrigatório:** Não
 -   **Padrão:** `false`
 
-Agora você tem a opção de exportar os resultados de comparação para um arquivo de relatório JSON. Fornecendo a opção `createJsonReportFiles: true`, cada imagem comparada criará um relatório armazenado na pasta `actual`, ao lado de cada resultado de imagem `actual`. A saída se parecerá com isto:
+Agora você tem a opção de exportar os resultados da comparação para um arquivo de relatório JSON. Ao fornecer a opção `createJsonReportFiles: true`, cada imagem comparada criará um relatório armazenado na pasta `actual`, ao lado de cada resultado de imagem `actual`. A saída será assim:
 
 ```json
 {
@@ -202,14 +215,14 @@ Agora você tem a opção de exportar os resultados de comparação para um arqu
 }
 ```
 
-Quando todos os testes forem executados, um novo arquivo JSON com a coleção das comparações será gerado e poderá ser encontrado na raiz da sua pasta `actual`. Os dados são agrupados por:
+Quando todos os testes são executados, um novo arquivo JSON com a coleção das comparações será gerado e pode ser encontrado na raiz da sua pasta `actual`. Os dados são agrupados por:
 
 -   `describe` para Jasmine/Mocha ou `Feature` para CucumberJS
 -   `it` para Jasmine/Mocha ou `Scenario` para CucumberJS
     e depois ordenados por:
--   `commandName`, que são os nomes de métodos de comparação usados para comparar as imagens
--   `instanceData`, primeiro navegador, depois dispositivo, depois plataforma
-    ficará assim
+-   `commandName`, que são os nomes dos métodos de comparação usados para comparar as imagens
+-   `instanceData`, navegador primeiro, depois dispositivo, depois plataforma
+    será assim:
 
 ```json
 [
@@ -255,7 +268,7 @@ Quando todos os testes forem executados, um novo arquivo JSON com a coleção da
 Os dados do relatório darão a você a oportunidade de construir seu próprio relatório visual sem fazer toda a mágica e coleta de dados você mesmo.
 
 :::info NOTA
-Você precisa usar a versão `@wdio/visual-testing` 5.2.0 ou superior
+Você precisa usar a versão `5.2.0` ou superior do `@wdio/visual-testing`
 :::
 
 ### `disableBlinkingCursor`
@@ -265,8 +278,8 @@ Você precisa usar a versão `@wdio/visual-testing` 5.2.0 ou superior
 -   **Padrão:** `false`
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
 
-Ativar/Desativar o "piscar" do cursor de todos os elementos `input`, `textarea`, `[contenteditable]` na aplicação. Se definido como `true`, o cursor será definido como `transparent` antes de tirar uma captura de tela
-e restaurado quando concluído
+Ativar/Desativar o "piscar" do cursor em todos os elementos `input`, `textarea`, `[contenteditable]` na aplicação. Se definido como `true`, o cursor será configurado como `transparent` antes de tirar uma captura de tela
+e redefinido quando concluído
 
 ### `disableCSSAnimation`
 
@@ -276,7 +289,7 @@ e restaurado quando concluído
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
 
 Ativar/Desativar todas as animações CSS na aplicação. Se definido como `true`, todas as animações serão desativadas antes de tirar uma captura de tela
-e restauradas quando concluído
+e redefinidas quando concluído
 
 ### `enableLayoutTesting`
 
@@ -285,12 +298,12 @@ e restauradas quando concluído
 -   **Padrão:** `false`
 -   **Contextos de Aplicação Suportados:** Web
 
-Isso ocultará todo o texto em uma página para que apenas o layout seja usado para comparação. O ocultamento será feito adicionando o estilo `'color': 'transparent !important'` a **cada** elemento.
+Isso ocultará todo o texto em uma página para que apenas o layout seja usado para comparação. A ocultação será feita adicionando o estilo `'color': 'transparent !important'` a **cada** elemento.
 
-Para a saída, veja [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+Para a saída, consulte [Saída de Teste](/docs/visual-testing/test-output#enablelayouttesting)
 
 :::info
-Ao usar essa flag, cada elemento que contém texto (não apenas `p, h1, h2, h3, h4, h5, h6, span, a, li`, mas também `div|button|..`) receberá essa propriedade. **Não** há opção para personalizar isso.
+Ao usar esta flag, cada elemento que contém texto (não apenas `p, h1, h2, h3, h4, h5, h6, span, a, li`, mas também `div|button|..`) receberá esta propriedade. **Não** há opção para personalizar isso.
 :::
 
 ### `formatImageName`
@@ -306,19 +319,19 @@ O nome das imagens salvas pode ser personalizado passando o parâmetro `formatIm
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
-As seguintes variáveis podem ser passadas para formatar a string e serão automaticamente lidas das capabilities da instância.
-Se não puderem ser determinadas, os valores padrão serão usados.
+As seguintes variáveis podem ser passadas para formatar a string e serão lidas automaticamente das capacidades da instância.
+Se não puderem ser determinadas, os padrões serão usados.
 
--   `browserName`: O nome do navegador nas capabilities fornecidas
--   `browserVersion`: A versão do navegador fornecida nas capabilities
--   `deviceName`: O nome do dispositivo das capabilities
+-   `browserName`: O nome do navegador nas capacidades fornecidas
+-   `browserVersion`: A versão do navegador fornecida nas capacidades
+-   `deviceName`: O nome do dispositivo das capacidades
 -   `dpr`: A proporção de pixels do dispositivo
 -   `height`: A altura da tela
--   `logName`: O logName das capabilities
--   `mobile`: Isso adicionará `_app`, ou o nome do navegador após o `deviceName` para distinguir capturas de tela de aplicativo das capturas de tela do navegador
--   `platformName`: O nome da plataforma nas capabilities fornecidas
--   `platformVersion`: A versão da plataforma fornecida nas capabilities
--   `tag`: A tag que é fornecida nos métodos que estão sendo chamados
+-   `logName`: O logName das capacidades
+-   `mobile`: Isso adicionará `_app` ou o nome do navegador após o `deviceName` para distinguir capturas de tela de aplicativos das capturas de tela de navegador
+-   `platformName`: O nome da plataforma nas capacidades fornecidas
+-   `platformVersion`: A versão da plataforma fornecida nas capacidades
+-   `tag`: A tag fornecida nos métodos que estão sendo chamados
 -   `width`: A largura da tela
 
 :::info
@@ -342,7 +355,7 @@ O tempo limite em milissegundos para aguardar após uma rolagem. Isso pode ajuda
 
 :::info
 
-Isso só funcionará quando a opção de serviço/método `userBasedFullPageScreenshot` estiver definida como `true`, veja também [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
+Isso só funcionará quando a opção de serviço/método `userBasedFullPageScreenshot` estiver definida como `true`, consulte também [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
 
 :::
 
@@ -353,7 +366,7 @@ Isso só funcionará quando a opção de serviço/método `userBasedFullPageScre
 -   **Padrão:** `true`
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
 
-Ocultar barras de rolagem na aplicação. Se definido como true, todas as barras de rolagem serão desativadas antes de tirar uma captura de tela. Isso é definido como padrão `true` para evitar problemas extras.
+Oculta barras de rolagem na aplicação. Se definido como true, todas as barras de rolagem serão desativadas antes de tirar uma captura de tela. Isso é definido como padrão `true` para evitar problemas extras.
 
 ### `logLevel`
 
@@ -373,7 +386,7 @@ Erros são sempre registrados no console.
 -   **Obrigatório:** não
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
 
-Salvar as imagens por instância em uma pasta separada, de modo que, por exemplo, todas as capturas de tela do Chrome serão salvas em uma pasta Chrome como `desktop_chrome`.
+Salva as imagens por instância em uma pasta separada, por exemplo, todas as capturas de tela do Chrome serão salvas em uma pasta Chrome como `desktop_chrome`.
 
 ### `screenshotPath`
 
@@ -382,8 +395,8 @@ Salvar as imagens por instância em uma pasta separada, de modo que, por exemplo
 -   **Obrigatório:** não
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
 
-O diretório que conterá todas as capturas de tela atuais/diferentes. Se não for definido, o valor padrão será usado. Uma função que
-retorna uma string também pode ser usada para definir o valor de screenshotPath:
+O diretório que conterá todas as capturas de tela reais/diferentes. Se não for definido, o valor padrão será usado. Uma função que
+retorna uma string também pode ser usada para definir o valor screenshotPath:
 
 ```js
 {
@@ -392,7 +405,7 @@ retorna uma string também pode ser usada para definir o valor de screenshotPath
 // OU
 {
     screenshotPath: () => {
-        // Faça alguma mágica aqui
+        // Faz alguma mágica aqui
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -402,7 +415,7 @@ retorna uma string também pode ser usada para definir o valor de screenshotPath
 
 -   **Tipo:** `number`
 -   **Obrigatório:** Não
--   **Padrão:** `6` para Android e `15` para iOS (`6` por padrão e `9` serão adicionados automaticamente para a possível barra de início em iPhones com um entalhe ou iPads que têm uma barra de início)
+-   **Padrão:** `6` para Android e `15` para iOS (`6` por padrão e `9` serão adicionados automaticamente para a possível barra inicial em iPhones com entalhe ou iPads que têm uma barra inicial)
 -   **Contextos de Aplicação Suportados:** Web
 
 O preenchimento que precisa ser adicionado à barra de ferramentas no iOS e Android para fazer um recorte adequado da viewport.
@@ -414,10 +427,10 @@ O preenchimento que precisa ser adicionado à barra de ferramentas no iOS e Andr
 -   **Padrão:** `false`
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview) **Introduzido no visual-service@7.0.0**
 
-Por padrão, capturas de tela de página inteira no desktop web são capturadas usando o protocolo WebDriver BiDi, que permite capturas de tela rápidas, estáveis e consistentes sem rolagem.
-Quando userBasedFullPageScreenshot é definido como true, o processo de captura de tela simula um usuário real: rolando pela página, capturando capturas de tela do tamanho da viewport e costurando-as. Este método é útil para páginas com conteúdo carregado preguiçosamente ou renderização dinâmica que depende da posição de rolagem.
+Por padrão, as capturas de tela de página completa na web desktop são capturadas usando o protocolo WebDriver BiDi, que permite capturas de tela rápidas, estáveis e consistentes sem rolagem.
+Quando userBasedFullPageScreenshot é definido como true, o processo de captura de tela simula um usuário real: rolando pela página, capturando capturas de tela do tamanho da viewport e juntando-as. Este método é útil para páginas com conteúdo de carregamento preguiçoso ou renderização dinâmica que depende da posição de rolagem.
 
-Use esta opção se sua página depende de conteúdo carregado durante a rolagem ou se você deseja preservar o comportamento de métodos de captura de tela mais antigos.
+Use esta opção se sua página depende do carregamento de conteúdo durante a rolagem ou se você quiser preservar o comportamento dos métodos de captura de tela mais antigos.
 
 ### `waitForFontsLoaded`
 
@@ -426,15 +439,15 @@ Use esta opção se sua página depende de conteúdo carregado durante a rolagem
 -   **Padrão:** `true`
 -   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
 
-Fontes, incluindo fontes de terceiros, podem ser carregadas de forma síncrona ou assíncrona. O carregamento assíncrono significa que as fontes podem ser carregadas após o WebdriverIO determinar que uma página foi totalmente carregada. Para evitar problemas de renderização de fontes, este módulo, por padrão, aguardará que todas as fontes sejam carregadas antes de tirar uma captura de tela.
+Fontes, incluindo fontes de terceiros, podem ser carregadas de forma síncrona ou assíncrona. O carregamento assíncrono significa que as fontes podem carregar depois que o WebdriverIO determina que uma página foi totalmente carregada. Para evitar problemas de renderização de fontes, este módulo, por padrão, aguardará que todas as fontes sejam carregadas antes de tirar uma captura de tela.
 
 ## Opções de Tabulação
 
 :::info NOTA
 
-Este módulo também suporta desenhar a forma como um usuário usaria seu teclado para _tabular_ pelo site, desenhando linhas e pontos de elemento tabulável para elemento tabulável.<br/>
+Este módulo também suporta o desenho da maneira como um usuário usaria seu teclado para _tabular_ pelo site, desenhando linhas e pontos de elemento tabulável para elemento tabulável.<br/>
 O trabalho é inspirado no post do blog de [Viv Richards](https://github.com/vivrichards600) sobre ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-A forma como os elementos tabuláveis são selecionados é baseada no módulo [tabbable](https://github.com/davidtheclark/tabbable). Se houver algum problema relacionado à tabulação, verifique o [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) e especialmente a [seção Mais detalhes](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+A maneira como os elementos tabuláveis são selecionados é baseada no módulo [tabbable](https://github.com/davidtheclark/tabbable). Se houver algum problema relacionado à tabulação, verifique o [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) e especialmente a seção [Mais detalhes](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
@@ -528,7 +541,7 @@ O tamanho do círculo.
 -   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
 -   **Contextos de Aplicação Suportados:** Web
 
-Mostrar o número da sequência de tabulação no círculo.
+Mostra o número da sequência de tabulação no círculo.
 
 #### `tabbableOptions.line`
 
@@ -564,6 +577,6 @@ A largura da linha.
 -   **Tipo:** `object`
 -   **Obrigatório:** Não
 -   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo (Veja [Opções de comparação de método](./method-options#compare-check-options) para mais informações)
+-   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo (Veja [Opções de comparação do método](./method-options#compare-check-options) para mais informações)
 
-As opções de comparação também podem ser definidas como opções de serviço, elas são descritas nas [Opções de comparação de método](/docs/visual-testing/method-options#compare-check-options)
+As opções de comparação também podem ser definidas como opções de serviço, elas são descritas nas [Opções de comparação do método](/docs/visual-testing/method-options#compare-check-options)

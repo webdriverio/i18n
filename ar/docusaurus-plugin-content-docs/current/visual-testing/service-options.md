@@ -3,7 +3,7 @@ id: service-options
 title: خيارات الخدمة
 ---
 
-خيارات الخدمة هي الخيارات التي يمكن تعيينها عند إنشاء الخدمة وسيتم استخدامها لكل استدعاء طريقة.
+خيارات الخدمة هي الخيارات التي يمكن تعيينها عند تهيئة الخدمة وستستخدم لكل استدعاء طريقة.
 
 ```js
 // wdio.conf.(js|ts)
@@ -30,31 +30,31 @@ export const config = {
 
 -   **النوع:** `number`
 -   **إلزامي:** لا
--   **الافتراضي:** `6`
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** `6`
+-   **سياقات التطبيق المدعومة:** ويب
 
-الهوامش التي يجب إضافتها إلى شريط العنوان على iOS و Android لإجراء اقتطاع مناسب للعرض.
+الحشوة التي تحتاج إلى إضافتها إلى شريط العنوان على iOS وAndroid للقيام باقتطاع مناسب لمنفذ العرض.
 
 ### `autoElementScroll`
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `true`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)
+-   **القيمة الافتراضية:** `true`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)
 
-يسمح لك هذا الخيار بتعطيل التمرير التلقائي للعنصر إلى العرض عند إنشاء لقطة شاشة للعنصر.
+هذا الخيار يسمح لك بتعطيل التمرير التلقائي للعنصر إلى العرض عند إنشاء لقطة شاشة للعنصر.
 
 ### `addIOSBezelCorners`
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `false`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
+-   **القيمة الافتراضية:** `false`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي
 
-إضافة زوايا الإطار والنوتش/الجزيرة الديناميكية إلى لقطة الشاشة لأجهزة iOS.
+إضافة زوايا إطار وشق/جزيرة ديناميكية إلى لقطة الشاشة لأجهزة iOS.
 
 :::info ملاحظة
-يمكن القيام بذلك فقط عندما **يمكن** تحديد اسم الجهاز تلقائيًا ويتطابق مع قائمة أسماء الأجهزة التالية المعيارية. سيتم التعديل بواسطة هذه الوحدة.
+يمكن القيام بذلك فقط عندما **يمكن** تحديد اسم الجهاز تلقائيًا ويتطابق مع القائمة التالية من أسماء الأجهزة المعيارية. سيتم التطبيع بواسطة هذه الوحدة.
 **iPhone:**
 
 -   iPhone X: `iphonex`
@@ -86,26 +86,39 @@ export const config = {
 -   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
 -   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
 -   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
-
 :::
 
 ### `autoSaveBaseline`
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `true`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
+-   **القيمة الافتراضية:** `true`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي
 
-إذا لم يتم العثور على صورة أساسية أثناء المقارنة، يتم نسخ الصورة تلقائيًا إلى مجلد الأساس.
+إذا لم يتم العثور على صورة أساسية خلال المقارنة، يتم نسخ الصورة تلقائيًا إلى مجلد الخط الأساسي.
+
+### `alwaysSaveActualImage`
+
+-   **النوع:** `boolean`
+-   **إلزامي:** لا
+-   **القيمة الافتراضية:** `true`
+-   **سياقات التطبيق المدعومة:** الكل
+
+عند تعيين هذا الخيار على `false` سيؤدي إلى:
+
+- عدم حفظ الصورة الفعلية عندما لا يكون هناك فرق
+- عدم تخزين ملف تقرير JSON عندما يتم تعيين `createJsonReportFiles` إلى `true`. سيظهر أيضًا تحذير في السجلات بأن `createJsonReportFiles` معطل
+
+يجب أن يؤدي ذلك إلى أداء أفضل لأنه لا توجد ملفات تكتب إلى النظام ويجب أن يضمن عدم وجود الكثير من الضوضاء في مجلد `actual`.
 
 ### `baselineFolder`
 
 -   **النوع:** `string|()=> string`
 -   **إلزامي:** لا
--   **الافتراضي:** `.path/to/testfile/__snapshots__/`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
+-   **القيمة الافتراضية:** `.path/to/testfile/__snapshots__/`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي
 
-الدليل الذي سيحتفظ بجميع الصور الأساسية التي تستخدم أثناء المقارنة. إذا لم يتم تعيينه، سيتم استخدام القيمة الافتراضية التي ستخزن الملفات في مجلد `__snapshots__/` بجوار الاختبار الذي ينفذ اختبارات المرئيات. يمكن أيضًا استخدام دالة ترجع `string` لتعيين قيمة `baselineFolder`:
+الدليل الذي سيحتوي على جميع الصور الأساسية التي تستخدم أثناء المقارنة. إذا لم يتم تعيينه، سيتم استخدام القيمة الافتراضية التي ستخزن الملفات في مجلد `__snapshots__/` بجوار الملف الذي ينفذ اختبارات المرئية. يمكن أيضًا استخدام دالة تعيد `string` لتعيين قيمة `baselineFolder`:
 
 ```js
 {
@@ -114,7 +127,7 @@ export const config = {
 // أو
 {
     baselineFolder: () => {
-        // قم ببعض السحر هنا
+        // افعل بعض السحر هنا
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
@@ -124,20 +137,20 @@ export const config = {
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `false`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
+-   **القيمة الافتراضية:** `false`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي
 
-حذف مجلد وقت التشغيل (`actual` و `diff`) عند التهيئة
+حذف مجلد وقت التشغيل (`actual` و`diff`) عند التهيئة
 
 :::info ملاحظة
-سيعمل هذا فقط عندما يتم تعيين [`screenshotPath`](#screenshotpath) من خلال خيارات البلاجن، و **لن يعمل** عندما تقوم بتعيين المجلدات في الطرق
+سيعمل هذا فقط عندما يتم تعيين [`screenshotPath`](#screenshotpath) من خلال خيارات البرنامج المساعد، و**لن يعمل** عندما تقوم بتعيين المجلدات في الطرق
 :::
 
 ### `createJsonReportFiles` **(جديد)**
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `false`
+-   **القيمة الافتراضية:** `false`
 
 لديك الآن خيار تصدير نتائج المقارنة إلى ملف تقرير JSON. من خلال توفير الخيار `createJsonReportFiles: true`، ستنشئ كل صورة يتم مقارنتها تقريرًا مخزنًا في مجلد `actual`، بجوار كل نتيجة صورة `actual`. سيبدو الإخراج كما يلي:
 
@@ -202,14 +215,14 @@ export const config = {
 }
 ```
 
-عند تنفيذ جميع الاختبارات، سيتم إنشاء ملف JSON جديد مع مجموعة المقارنات ويمكن العثور عليه في جذر مجلد `actual` الخاص بك. يتم تجميع البيانات حسب:
+عند تنفيذ جميع الاختبارات، سيتم إنشاء ملف JSON جديد مع مجموعة المقارنات ويمكن العثور عليه في جذر مجلد `actual`. يتم تجميع البيانات حسب:
 
 -   `describe` لـ Jasmine/Mocha أو `Feature` لـ CucumberJS
 -   `it` لـ Jasmine/Mocha أو `Scenario` لـ CucumberJS
     ثم يتم فرزها حسب:
 -   `commandName`، وهي أسماء طريقة المقارنة المستخدمة لمقارنة الصور
 -   `instanceData`، المتصفح أولاً، ثم الجهاز، ثم المنصة
-    سيبدو هكذا
+    سيبدو كما يلي
 
 ```json
 [
@@ -252,7 +265,7 @@ export const config = {
 ]
 ```
 
-ستمنحك بيانات التقرير فرصة لبناء تقريرك المرئي الخاص دون القيام بكل السحر وجمع البيانات بنفسك.
+ستتيح لك بيانات التقرير فرصة بناء تقريرك المرئي الخاص بدون القيام بكل السحر وجمع البيانات بنفسك.
 
 :::info ملاحظة
 تحتاج إلى استخدام `@wdio/visual-testing` الإصدار `5.2.0` أو أعلى
@@ -262,63 +275,61 @@ export const config = {
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `false`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)
+-   **القيمة الافتراضية:** `false`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)
 
-تمكين/تعطيل جميع "وميض" مؤشر الإدخال في `input`، `textarea`، `[contenteditable]` في التطبيق. إذا تم تعيينه إلى `true`، سيتم تعيين المؤشر إلى `transparent` قبل التقاط لقطة شاشة
-وإعادة تعيينه عند الانتهاء
+تمكين/تعطيل جميع وميض المؤشر في `input`, `textarea`, `[contenteditable]` في التطبيق. إذا تم تعيينه على `true`، سيتم تعيين المؤشر إلى `transparent` قبل التقاط لقطة شاشة وإعادة تعيينه عند الانتهاء
 
 ### `disableCSSAnimation`
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `false`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)
+-   **القيمة الافتراضية:** `false`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)
 
-تمكين/تعطيل جميع الرسوم المتحركة CSS في التطبيق. إذا تم تعيينه إلى `true`، سيتم تعطيل جميع الرسوم المتحركة قبل التقاط لقطة شاشة
-وإعادة تعيينها عند الانتهاء
+تمكين/تعطيل جميع رسوم CSS المتحركة في التطبيق. إذا تم تعيينه على `true`، سيتم تعطيل جميع الرسوم المتحركة قبل التقاط لقطة شاشة وإعادة تعيينها عند الانتهاء
 
 ### `enableLayoutTesting`
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `false`
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** `false`
+-   **سياقات التطبيق المدعومة:** ويب
 
-سيؤدي هذا إلى إخفاء كل النص على الصفحة بحيث يتم استخدام التخطيط فقط للمقارنة. سيتم إجراء الإخفاء عن طريق إضافة النمط `'color': 'transparent !important'` إلى **كل** عنصر.
+هذا سيخفي جميع النصوص في الصفحة بحيث يتم استخدام التخطيط فقط للمقارنة. سيتم إخفاء النصوص عن طريق إضافة النمط `'color': 'transparent !important'` إلى **كل** عنصر.
 
-للإخراج، راجع [إخراج الاختبار](/docs/visual-testing/test-output#enablelayouttesting)
+لمشاهدة الإخراج، انظر [مخرجات الاختبار](/docs/visual-testing/test-output#enablelayouttesting)
 
 :::info
-باستخدام هذه العلامة، سيحصل كل عنصر يحتوي على نص (ليس فقط `p، h1، h2، h3، h4، h5، h6، span، a، li`، ولكن أيضًا `div|button|..`) على هذه الخاصية. لا يوجد خيار **لتخصيص** هذا.
+باستخدام هذه العلامة، سيحصل كل عنصر يحتوي على نص (ليس فقط `p, h1, h2, h3, h4, h5, h6, span, a, li`، ولكن أيضًا `div|button|..`) على هذه الخاصية. لا يوجد خيار لتخصيص هذا.
 :::
 
 ### `formatImageName`
 
 -   **النوع:** `string`
 -   **إلزامي:** لا
--   **الافتراضي:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
+-   **القيمة الافتراضية:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي
 
-يمكن تخصيص اسم الصور المحفوظة عن طريق تمرير المعلمة `formatImageName` بسلسلة تنسيق مثل:
+يمكن تخصيص اسم الصور المحفوظة عن طريق تمرير المعلمة `formatImageName` مع سلسلة تنسيق مثل:
 
 ```sh
 {tag}-{browserName}-{width}x{height}-dpr-{dpr}
 ```
 
 يمكن تمرير المتغيرات التالية لتنسيق السلسلة وسيتم قراءتها تلقائيًا من قدرات المثيل.
-إذا تعذر تحديدها، فسيتم استخدام القيم الافتراضية.
+إذا لم يمكن تحديدها، سيتم استخدام القيم الافتراضية.
 
 -   `browserName`: اسم المتصفح في القدرات المقدمة
 -   `browserVersion`: إصدار المتصفح المقدم في القدرات
 -   `deviceName`: اسم الجهاز من القدرات
 -   `dpr`: نسبة بكسل الجهاز
 -   `height`: ارتفاع الشاشة
--   `logName`: logName من القدرات
--   `mobile`: سيضيف `_app`، أو اسم المتصفح بعد `deviceName` للتمييز بين لقطات شاشة التطبيق ولقطات شاشة المتصفح
+-   `logName`: اسم السجل من القدرات
+-   `mobile`: سيضيف هذا `_app`، أو اسم المتصفح بعد `deviceName` للتمييز بين لقطات شاشة التطبيق ولقطات شاشة المتصفح
 -   `platformName`: اسم المنصة في القدرات المقدمة
 -   `platformVersion`: إصدار المنصة المقدم في القدرات
--   `tag`: العلامة التي يتم توفيرها في الطرق التي يتم استدعاؤها
+-   `tag`: العلامة المقدمة في الطرق التي يتم استدعاؤها
 -   `width`: عرض الشاشة
 
 :::info
@@ -335,14 +346,14 @@ export const config = {
 
 -   **النوع:** `number`
 -   **إلزامي:** لا
--   **الافتراضي:** `1500`
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** `1500`
+-   **سياقات التطبيق المدعومة:** ويب
 
 المهلة بالميلي ثانية للانتظار بعد التمرير. قد يساعد هذا في تحديد الصفحات ذات التحميل الكسول.
 
 :::info
 
-سيعمل هذا فقط عندما يتم تعيين خيار الخدمة/الطريقة `userBasedFullPageScreenshot` إلى `true`، راجع أيضًا [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
+سيعمل هذا فقط عندما يتم تعيين خيار الخدمة/الطريقة `userBasedFullPageScreenshot` إلى `true`، انظر أيضًا [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
 
 :::
 
@@ -350,17 +361,17 @@ export const config = {
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `true`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)
+-   **القيمة الافتراضية:** `true`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)
 
-إخفاء أشرطة التمرير في التطبيق. إذا تم تعيينه إلى true، سيتم تعطيل جميع أشرطة التمرير قبل التقاط لقطة شاشة. هذا معين افتراضيًا إلى `true` لمنع مشكلات إضافية.
+إخفاء أشرطة التمرير في التطبيق. إذا تم تعيينه على true، سيتم تعطيل جميع أشرطة التمرير قبل التقاط لقطة شاشة. يتم تعيين هذا على `true` افتراضيًا لمنع المشكلات الإضافية.
 
 ### `logLevel`
 
 -   **النوع:** `string`
 -   **إلزامي:** لا
--   **الافتراضي:** `info`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
+-   **القيمة الافتراضية:** `info`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي
 
 يضيف سجلات إضافية، الخيارات هي `debug | info | warn | silent`
 
@@ -369,21 +380,20 @@ export const config = {
 ### `savePerInstance`
 
 -   **النوع:** `boolean`
--   **الافتراضي:** `false`
+-   **القيمة الافتراضية:** `false`
 -   **إلزامي:** لا
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي
 
 حفظ الصور لكل مثيل في مجلد منفصل، على سبيل المثال، سيتم حفظ جميع لقطات شاشة Chrome في مجلد Chrome مثل `desktop_chrome`.
 
 ### `screenshotPath`
 
 -   **النوع:** `string | () => string`
--   **الافتراضي:** `.tmp/`
+-   **القيمة الافتراضية:** `.tmp/`
 -   **إلزامي:** لا
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي
 
-الدليل الذي سيحتوي على جميع لقطات الشاشة الفعلية/المختلفة. إذا لم يتم تعيينه، سيتم استخدام القيمة الافتراضية. يمكن أيضًا استخدام دالة
-ترجع سلسلة لتعيين قيمة screenshotPath:
+الدليل الذي سيحتفظ بجميع لقطات الشاشة الفعلية/المختلفة. إذا لم يتم تعيينه، سيتم استخدام القيمة الافتراضية. يمكن أيضًا استخدام دالة تعيد سلسلة لتعيين قيمة screenshotPath:
 
 ```js
 {
@@ -392,7 +402,7 @@ export const config = {
 // أو
 {
     screenshotPath: () => {
-        // قم ببعض السحر هنا
+        // افعل بعض السحر هنا
         return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
     }
 }
@@ -402,39 +412,39 @@ export const config = {
 
 -   **النوع:** `number`
 -   **إلزامي:** لا
--   **الافتراضي:** `6` لـ Android و `15` لـ iOS (`6` افتراضيًا و `9` ستتم إضافتها تلقائيًا لشريط الصفحة الرئيسية المحتمل على أجهزة iPhone ذات نوتش أو أجهزة iPad التي تحتوي على شريط الصفحة الرئيسية)
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** `6` لـ Android و `15` لـ iOS (`6` افتراضيًا و `9` سيتم إضافتها تلقائيًا للشريط الرئيسي المحتمل على أجهزة iPhone ذات النتوء أو أجهزة iPad التي تحتوي على شريط رئيسي)
+-   **سياقات التطبيق المدعومة:** ويب
 
-الهامش الذي يجب إضافته إلى شريط الأدوات على iOS و Android لإجراء اقتطاع مناسب لمنطقة العرض.
+الحشوة التي تحتاج إلى إضافتها إلى شريط الأدوات على iOS وAndroid للقيام باقتطاع مناسب لمنفذ العرض.
 
 ### `userBasedFullPageScreenshot`
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `false`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview) **تم تقديمه في visual-service@7.0.0**
+-   **القيمة الافتراضية:** `false`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب) **تم تقديمه في visual-service@7.0.0**
 
-افتراضيًا، يتم التقاط لقطات الشاشة للصفحة الكاملة على سطح المكتب باستخدام بروتوكول WebDriver BiDi، مما يتيح لقطات شاشة سريعة ومستقرة ومتسقة دون تمرير.
-عند تعيين userBasedFullPageScreenshot إلى true، تقوم عملية لقطة الشاشة بمحاكاة مستخدم حقيقي: التمرير عبر الصفحة، والتقاط لقطات شاشة بحجم منطقة العرض، وتجميعها معًا. هذه الطريقة مفيدة للصفحات ذات المحتوى المحمّل كسولًا أو العرض الديناميكي الذي يعتمد على موضع التمرير.
+بشكل افتراضي، يتم التقاط لقطات شاشة للصفحة الكاملة على الويب المكتبي باستخدام بروتوكول WebDriver BiDi، مما يتيح لقطات شاشة سريعة ومستقرة ومتسقة دون تمرير.
+عند تعيين userBasedFullPageScreenshot إلى true، تحاكي عملية لقطة الشاشة مستخدمًا حقيقيًا: التمرير عبر الصفحة والتقاط لقطات شاشة بحجم منفذ العرض وتجميعها معًا. هذه الطريقة مفيدة للصفحات ذات المحتوى المحمّل بكسل أو العرض الديناميكي الذي يعتمد على موضع التمرير.
 
-استخدم هذا الخيار إذا كانت صفحتك تعتمد على تحميل المحتوى أثناء التمرير أو إذا كنت تريد الحفاظ على سلوك طرق لقطة الشاشة القديمة.
+استخدم هذا الخيار إذا كانت صفحتك تعتمد على تحميل المحتوى أثناء التمرير أو إذا كنت ترغب في الحفاظ على سلوك طرق لقطة الشاشة القديمة.
 
 ### `waitForFontsLoaded`
 
 -   **النوع:** `boolean`
 -   **إلزامي:** لا
--   **الافتراضي:** `true`
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)
+-   **القيمة الافتراضية:** `true`
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)
 
-يمكن تحميل الخطوط، بما في ذلك خطوط الطرف الثالث، بشكل متزامن أو غير متزامن. يعني التحميل غير المتزامن أن الخطوط قد تتحمل بعد أن يحدد WebdriverIO أن الصفحة قد تم تحميلها بالكامل. لمنع مشاكل عرض الخطوط، ستنتظر هذه الوحدة، بشكل افتراضي، حتى يتم تحميل جميع الخطوط قبل التقاط لقطة شاشة.
+يمكن تحميل الخطوط، بما في ذلك خطوط الطرف الثالث، بشكل متزامن أو غير متزامن. يعني التحميل غير المتزامن أن الخطوط قد تُحمّل بعد أن تحدد WebdriverIO أن الصفحة قد تم تحميلها بالكامل. لمنع مشاكل عرض الخطوط، ستنتظر هذه الوحدة، بشكل افتراضي، تحميل جميع الخطوط قبل التقاط لقطة شاشة.
 
-## خيارات Tabbable
+## خيارات التنقل بالتاب
 
 :::info ملاحظة
 
-تدعم هذه الوحدة أيضًا رسم الطريقة التي سيستخدم بها المستخدم لوحة المفاتيح للتنقل _tab_ خلال الموقع من خلال رسم خطوط ونقاط من عنصر قابل للتبويب إلى عنصر قابل للتبويب آخر.<br/>
-العمل مستوحى من مقالة مدونة [Viv Richards](https://github.com/vivrichards600) حول ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-تستند طريقة اختيار العناصر القابلة للتبويب إلى وحدة [tabbable](https://github.com/davidtheclark/tabbable). إذا كانت هناك أي مشكلات تتعلق بالتبويب، فيرجى التحقق من [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) وخاصة [قسم المزيد من التفاصيل](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+تدعم هذه الوحدة أيضًا رسم الطريقة التي يستخدمها المستخدم لوحة المفاتيح للتنقل بمفتاح _tab_ عبر الموقع عن طريق رسم خطوط ونقاط من عنصر يمكن التنقل إليه بالتاب إلى آخر.<br/>
+العمل مستوحى من منشور [Viv Richards](https://github.com/vivrichards600) على المدونة حول ["أتمتة قابلية التنقل بالتاب في الصفحة (هل هذه كلمة؟) باستخدام الاختبار المرئي"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
+تستند طريقة اختيار العناصر القابلة للتنقل بالتاب على وحدة [tabbable](https://github.com/davidtheclark/tabbable). إذا كانت هناك أي مشاكل تتعلق بالتنقل بالتاب، يرجى التحقق من [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) وخاصة [قسم المزيد من التفاصيل](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
@@ -442,26 +452,26 @@ export const config = {
 
 -   **النوع:** `object`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
-الخيارات التي يمكن تغييرها للخطوط والنقاط إذا كنت تستخدم طرق `{save|check}Tabbable`. يتم شرح الخيارات أدناه.
+الخيارات التي يمكن تغييرها للخطوط والنقاط إذا كنت تستخدم طرق `{save|check}Tabbable`. الخيارات موضحة أدناه.
 
 #### `tabbableOptions.circle`
 
 -   **النوع:** `object`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
-الخيارات لتغيير الدائرة.
+خيارات تغيير الدائرة.
 
 ##### `tabbableOptions.circle.backgroundColor`
 
 -   **النوع:** `string`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 لون خلفية الدائرة.
 
@@ -469,8 +479,8 @@ export const config = {
 
 -   **النوع:** `string`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 لون حدود الدائرة.
 
@@ -478,8 +488,8 @@ export const config = {
 
 -   **النوع:** `number`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 عرض حدود الدائرة.
 
@@ -487,8 +497,8 @@ export const config = {
 
 -   **النوع:** `string`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 لون خط النص في الدائرة. سيظهر هذا فقط إذا تم تعيين [`showNumber`](./#tabbableoptionscircleshownumber) إلى `true`.
 
@@ -496,19 +506,19 @@ export const config = {
 
 -   **النوع:** `string`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 عائلة خط النص في الدائرة. سيظهر هذا فقط إذا تم تعيين [`showNumber`](./#tabbableoptionscircleshownumber) إلى `true`.
 
-تأكد من تعيين خطوط مدعومة من قبل المتصفحات.
+تأكد من تعيين الخطوط المدعومة من قبل المتصفحات.
 
 ##### `tabbableOptions.circle.fontSize`
 
 -   **النوع:** `number`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 حجم خط النص في الدائرة. سيظهر هذا فقط إذا تم تعيين [`showNumber`](./#tabbableoptionscircleshownumber) إلى `true`.
 
@@ -516,8 +526,8 @@ export const config = {
 
 -   **النوع:** `number`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 حجم الدائرة.
 
@@ -525,26 +535,26 @@ export const config = {
 
 -   **النوع:** `showNumber`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
-إظهار رقم تسلسل التبويب في الدائرة.
+إظهار رقم تسلسل التاب في الدائرة.
 
 #### `tabbableOptions.line`
 
 -   **النوع:** `object`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
-الخيارات لتغيير الخط.
+خيارات تغيير الخط.
 
 ##### `tabbableOptions.line.color`
 
 -   **النوع:** `string`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 لون الخط.
 
@@ -552,8 +562,8 @@ export const config = {
 
 -   **النوع:** `number`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب
 
 عرض الخط.
 
@@ -563,7 +573,7 @@ export const config = {
 
 -   **النوع:** `object`
 -   **إلزامي:** لا
--   **الافتراضي:** راجع [هنا](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) لجميع القيم الافتراضية
--   **سياقات التطبيق المدعومة:** الويب، تطبيق هجين (Webview)، تطبيق أصلي (انظر [خيارات مقارنة الطريقة](./method-options#compare-check-options) لمزيد من المعلومات)
+-   **القيمة الافتراضية:** انظر [هنا](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) لجميع القيم الافتراضية
+-   **سياقات التطبيق المدعومة:** ويب، تطبيق هجين (العرض الويب)، تطبيق أصلي (انظر [خيارات مقارنة الطريقة](./method-options#compare-check-options) لمزيد من المعلومات)
 
 يمكن أيضًا تعيين خيارات المقارنة كخيارات خدمة، وهي موضحة في [خيارات مقارنة الطريقة](/docs/visual-testing/method-options#compare-check-options)
