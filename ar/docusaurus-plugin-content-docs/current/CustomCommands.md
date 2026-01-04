@@ -3,7 +3,7 @@ id: customcommands
 title: الأوامر المخصصة
 ---
 
-إذا كنت ترغب في توسيع مثيل `browser` بمجموعتك الخاصة من الأوامر، فإن طريقة المتصفح `addCommand` متوفرة لك. يمكنك كتابة أوامرك بطريقة غير متزامنة، تمامًا كما في مواصفاتك.
+إذا كنت ترغب في توسيع مثيل `browser` بمجموعتك الخاصة من الأوامر، فإن طريقة المتصفح `addCommand` موجودة من أجلك. يمكنك كتابة أمرك بطريقة غير متزامنة، تمامًا كما في مواصفاتك.
 
 ## المعلمات
 
@@ -13,9 +13,9 @@ title: الأوامر المخصصة
 
 النوع: `String`
 
-### الدالة المخصصة
+### الوظيفة المخصصة
 
-دالة يتم تنفيذها عند استدعاء الأمر. نطاق `this` هو إما [`WebdriverIO.Browser`](/docs/api/browser) أو [`WebdriverIO.Element`](/docs/api/element) اعتمادًا على ما إذا كان الأمر مرفقًا بنطاق المتصفح أو العنصر.
+وظيفة يتم تنفيذها عند استدعاء الأمر. نطاق `this` هو إما [`WebdriverIO.Browser`](/docs/api/browser) أو [`WebdriverIO.Element`](/docs/api/element) اعتمادًا على ما إذا كان الأمر مرتبطًا بنطاق المتصفح أو العنصر.
 
 النوع: `Function`
 
@@ -23,17 +23,17 @@ title: الأوامر المخصصة
 
 كائن مع خيارات التكوين التي تعدل سلوك الأمر المخصص
 
-#### نطاق الهدف
+#### النطاق المستهدف
 
-علم لتحديد ما إذا كان يجب إرفاق الأمر بنطاق المتصفح أو نطاق العنصر. إذا تم تعيينه على `true`، سيكون الأمر أمر عنصر.
+علم لتحديد ما إذا كان سيتم إرفاق الأمر بنطاق المتصفح أو العنصر. إذا تم تعيينه إلى `true` سيكون الأمر أمرًا للعنصر.
 
 اسم الخيار: `attachToElement`
 النوع: `Boolean`<br />
 الافتراضي: `false`
 
-#### تعطيل implicitWait
+#### تعطيل الانتظار الضمني
 
-علم لتحديد ما إذا كان يجب الانتظار ضمنيًا حتى يوجد العنصر قبل استدعاء الأمر المخصص.
+علم لتحديد ما إذا كان سيتم الانتظار ضمنيًا لوجود العنصر قبل استدعاء الأمر المخصص.
 
 اسم الخيار: `disableElementImplicitWait`
 النوع: `Boolean`<br />
@@ -41,7 +41,7 @@ title: الأوامر المخصصة
 
 ## أمثلة
 
-يوضح هذا المثال كيفية إضافة أمر جديد يقوم بإرجاع عنوان URL الحالي والعنوان كنتيجة واحدة. النطاق (`this`) هو كائن [`WebdriverIO.Browser`](/docs/api/browser).
+يوضح هذا المثال كيفية إضافة أمر جديد يُرجع عنوان URL الحالي والعنوان كنتيجة واحدة. النطاق (`this`) هو كائن [`WebdriverIO.Browser`](/docs/api/browser).
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
@@ -54,7 +54,7 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-بالإضافة إلى ذلك، يمكنك توسيع مثيل العنصر بمجموعتك الخاصة من الأوامر، عن طريق تمرير `true` كوسيطة نهائية. النطاق (`this`) في هذه الحالة هو كائن [`WebdriverIO.Element`](/docs/api/element).
+بالإضافة إلى ذلك، يمكنك توسيع مثيل العنصر بمجموعتك الخاصة من الأوامر، من خلال تمرير `true` كوسيط نهائي. النطاق (`this`) في هذه الحالة هو كائن [`WebdriverIO.Element`](/docs/api/element).
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -64,7 +64,7 @@ browser.addCommand("waitAndClick", async function () {
 }, { attachToElement: true })
 ```
 
-بشكل افتراضي، تنتظر أوامر العناصر المخصصة وجود العنصر قبل استدعاء الأمر المخصص. على الرغم من أن هذا مرغوب فيه في معظم الأوقات، إلا أنه يمكن تعطيله باستخدام `disableImplicitWait`:
+بشكل افتراضي، تنتظر أوامر العناصر المخصصة وجود العنصر قبل استدعاء الأمر المخصص. على الرغم من أن هذا هو السلوك المرغوب في معظم الأوقات، إلا أنه يمكن تعطيله باستخدام `disableImplicitWait`:
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -74,10 +74,9 @@ browser.addCommand("waitAndClick", async function () {
 }, { attachToElement: true, disableElementImplicitWait: true })
 ```
 
+تمنحك الأوامر المخصصة الفرصة لجمع تسلسل معين من الأوامر التي تستخدمها بشكل متكرر في استدعاء واحد. يمكنك تحديد الأوامر المخصصة في أي نقطة في مجموعة الاختبار الخاصة بك؛ فقط تأكد من أن الأمر محدد *قبل* استخدامه الأول. (خطاف `before` في ملف `wdio.conf.js` هو مكان جيد لإنشائها).
 
-تمنحك الأوامر المخصصة فرصة لتجميع تسلسل محدد من الأوامر التي تستخدمها بشكل متكرر في مكالمة واحدة. يمكنك تحديد أوامر مخصصة في أي نقطة في مجموعة اختبارك؛ فقط تأكد من تعريف الأمر *قبل* استخدامه لأول مرة. (الخطاف `before` في ملف `wdio.conf.js` هو مكان جيد لإنشائها.)
-
-بمجرد تعريفها، يمكنك استخدامها على النحو التالي:
+بمجرد تحديدها، يمكنك استخدامها على النحو التالي:
 
 ```js
 it('should use my custom command', async () => {
@@ -90,7 +89,7 @@ it('should use my custom command', async () => {
 })
 ```
 
-__ملاحظة:__ إذا قمت بتسجيل أمر مخصص في نطاق `browser`، فلن يكون الأمر متاحًا للعناصر. وبالمثل، إذا قمت بتسجيل أمر في نطاق العنصر، فلن يكون متاحًا في نطاق `browser`:
+__ملاحظة:__ إذا قمت بتسجيل أمر مخصص في نطاق `browser`، فلن يكون الأمر متاحًا للعناصر. وبالمثل، إذا قمت بتسجيل أمر لنطاق العنصر، فلن يكون متاحًا في نطاق `browser`:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
@@ -109,7 +108,7 @@ console.log(typeof browser.myCustomElementCommand2) // outputs "undefined"
 console.log(await elem3.myCustomElementCommand2('foobar')) // outputs "2"
 ```
 
-__ملاحظة:__ إذا كنت بحاجة إلى ربط أمر مخصص، يجب أن ينتهي الأمر بـ `$`,
+__ملاحظة:__ إذا كنت بحاجة إلى ربط أمر مخصص، يجب أن ينتهي الأمر بـ `$`،
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -117,20 +116,20 @@ browser.addCommand("user$", (locator) => { return ele }, { attachToElement: true
 await browser.user$('foo').user$('bar').click()
 ```
 
-كن حذرًا من عدم إثقال نطاق `browser` بالكثير من الأوامر المخصصة.
+كن حذرًا من عدم تحميل نطاق `browser` بالكثير من الأوامر المخصصة.
 
-نوصي بتعريف المنطق المخصص في [page objects](pageobjects)، بحيث تكون مرتبطة بصفحة محددة.
+نوصي بتحديد المنطق المخصص في [كائنات الصفحة](pageobjects)، بحيث تكون مرتبطة بصفحة محددة.
 
 ### Multiremote
 
-يعمل `addCommand` بطريقة مماثلة لـ multiremote، باستثناء أن الأمر الجديد سينتشر إلى الأنظمة الفرعية للأطفال. يجب أن تكون حذرًا عند استخدام الكائن `this` لأن المتصفح متعدد التحكم `browser` ومثيلات الأطفال التابعة له لها `this` مختلفة.
+يعمل `addCommand` بطريقة مشابهة لـ multiremote، باستثناء أن الأمر الجديد سيتم توزيعه إلى مثيلات الأطفال. يجب أن تكون حذرًا عند استخدام كائن `this` لأن `browser` متعدد التحكم عن بعد ومثيلات أطفاله لديهم `this` مختلف.
 
 يوضح هذا المثال كيفية إضافة أمر جديد لـ multiremote.
 
 ```js
-import { multiremotebrowser } from '@wdio/globals'
+import { multiRemoteBrowser } from '@wdio/globals'
 
-multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
+multiRemoteBrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
     // `this` refers to:
     //      - MultiRemoteBrowser scope for browser
     //      - Browser scope for instances
@@ -141,7 +140,7 @@ multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverI
     }
 })
 
-multiremotebrowser.getUrlAndTitle()
+multiRemoteBrowser.getUrlAndTitle()
 /*
 {
     url: [ 'https://webdriver.io/', 'https://webdriver.io/' ],
@@ -153,7 +152,7 @@ multiremotebrowser.getUrlAndTitle()
 }
 */
 
-multiremotebrowser.getInstance('browserA').getUrlAndTitle()
+multiRemoteBrowser.getInstance('browserA').getUrlAndTitle()
 /*
 {
     url: 'https://webdriver.io/',
@@ -167,10 +166,10 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 
 مع TypeScript، من السهل توسيع واجهات WebdriverIO. أضف أنواعًا إلى أوامرك المخصصة كما يلي:
 
-1. قم بإنشاء ملف تعريف النوع (مثل `./src/types/wdio.d.ts`)
-2. أ. إذا كنت تستخدم ملف تعريف النوع على نمط الوحدة (باستخدام import/export و `declare global WebdriverIO` في ملف تعريف النوع)، تأكد من تضمين مسار الملف في خاصية `include` في ملف `tsconfig.json`.
+1. أنشئ ملف تعريف الأنواع (مثل `./src/types/wdio.d.ts`)
+2. أ. إذا كنت تستخدم ملف تعريف أنواع على طريقة الوحدات (باستخدام import/export و `declare global WebdriverIO` في ملف تعريف الأنواع)، تأكد من تضمين مسار الملف في خاصية `include` في `tsconfig.json`.
 
-   ب. إذا كنت تستخدم ملفات تعريف النوع بأسلوب محيط (بدون import/export في ملفات تعريف النوع و `declare namespace WebdriverIO` للأوامر المخصصة)، تأكد من أن ملف `tsconfig.json` *لا* يحتوي على أي قسم `include`، لأن هذا سيتسبب في عدم التعرف على جميع ملفات تعريف النوع غير المدرجة في قسم `include` بواسطة TypeScript.
+   ب. إذا كنت تستخدم ملفات تعريف أنواع محيطة (بدون import/export في ملفات تعريف الأنواع و `declare namespace WebdriverIO` للأوامر المخصصة)، تأكد من أن `tsconfig.json` *لا* يحتوي على أي قسم `include`، لأن هذا سيؤدي إلى عدم تعرف TypeScript على جميع ملفات تعريف الأنواع غير المدرجة في قسم `include`.
 
 <Tabs
   defaultValue="modules"
@@ -256,9 +255,9 @@ declare namespace WebdriverIO {
 
 ## دمج مكتبات الطرف الثالث
 
-إذا كنت تستخدم مكتبات خارجية (مثل إجراء مكالمات قاعدة البيانات) التي تدعم الوعود، فإن النهج الجيد لدمجها هو تغليف طرق API معينة بأمر مخصص.
+إذا كنت تستخدم مكتبات خارجية (مثل استدعاءات قاعدة البيانات) التي تدعم الوعود (promises)، فإن الطريقة الجيدة لدمجها هي تغليف بعض طرق واجهة برمجة التطبيقات (API) بأمر مخصص.
 
-عند إرجاع الوعد، يضمن WebdriverIO عدم المتابعة مع الأمر التالي حتى يتم حل الوعد. إذا تم رفض الوعد، فإن الأمر سيطرح خطأ.
+عند إرجاع الوعد، يضمن WebdriverIO أنه لن يستمر مع الأمر التالي حتى يتم حل الوعد. إذا تم رفض الوعد، سيرمي الأمر خطأً.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -267,7 +266,7 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-ثم، ما عليك سوى استخدامه في مواصفات اختبار WDIO الخاصة بك:
+ثم، استخدمه فقط في مواصفات اختبار WDIO الخاصة بك:
 
 ```js
 it('execute external library in a sync way', async () => {
@@ -277,22 +276,22 @@ it('execute external library in a sync way', async () => {
 })
 ```
 
-**ملاحظة:** نتيجة الأمر المخصص الخاص بك هي نتيجة الوعد الذي ترجعه.
+**ملاحظة:** نتيجة أمرك المخصص هي نتيجة الوعد الذي تعيده.
 
-## استبدال الأوامر
+## تجاوز الأوامر
 
-يمكنك أيضًا استبدال الأوامر الأصلية باستخدام `overwriteCommand`.
+يمكنك أيضًا تجاوز الأوامر الأصلية باستخدام `overwriteCommand`.
 
-لا يُنصح بالقيام بذلك، لأنه قد يؤدي إلى سلوك غير متوقع للإطار!
+لا يُنصح بفعل ذلك، لأنه قد يؤدي إلى سلوك غير متوقع للإطار!
 
-النهج العام مشابه لـ `addCommand`، الفرق الوحيد هو أن الوسيطة الأولى في دالة الأمر هي الدالة الأصلية التي أنت على وشك استبدالها. يرجى الاطلاع على بعض الأمثلة أدناه.
+النهج العام مشابه لـ `addCommand`، الفرق الوحيد هو أن الوسيطة الأولى في وظيفة الأمر هي الوظيفة الأصلية التي أنت على وشك تجاوزها. يرجى الاطلاع على بعض الأمثلة أدناه.
 
-### استبدال أوامر المتصفح
+### تجاوز أوامر المتصفح
 
 ```js
 /**
  * Print milliseconds before pause and return its value.
- * 
+ *
  * @param pause - name of command to be overwritten
  * @param this of func - the original browser instance on which the function was called
  * @param originalPauseFunction of func - the original pause function
@@ -308,9 +307,9 @@ browser.overwriteCommand('pause', async function (this, originalPauseFunction, m
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### استبدال أوامر العناصر
+### تجاوز أوامر العنصر
 
-استبدال الأوامر على مستوى العنصر هو نفسه تقريبًا. ببساطة قم بتمرير `true` كوسيطة ثالثة إلى `overwriteCommand`:
+تجاوز الأوامر على مستوى العنصر هو نفسه تقريبًا. ببساطة مرر `true` كوسيطة ثالثة إلى `overwriteCommand`:
 
 ```js
 /**
@@ -362,7 +361,7 @@ await elem.click({ force: true })
 
 ## إضافة المزيد من أوامر WebDriver
 
-إذا كنت تستخدم بروتوكول WebDriver وتقوم بتشغيل اختبارات على منصة تدعم أوامر إضافية غير محددة بأي من تعريفات البروتوكول في [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)، يمكنك إضافتها يدويًا من خلال واجهة `addCommand`. توفر حزمة `webdriver` مغلفًا للأمر يسمح بتسجيل نقاط النهاية الجديدة بنفس طريقة الأوامر الأخرى، مما يوفر نفس فحوصات المعلمات ومعالجة الأخطاء. لتسجيل نقطة النهاية الجديدة هذه، قم باستيراد مغلف الأمر وتسجيل أمر جديد معها على النحو التالي:
+إذا كنت تستخدم بروتوكول WebDriver وتقوم بتشغيل الاختبارات على منصة تدعم أوامر إضافية غير محددة في أي من تعريفات البروتوكول في [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) يمكنك إضافتها يدويًا من خلال واجهة `addCommand`. توفر حزمة `webdriver` غلافًا للأوامر يسمح بتسجيل نقاط النهاية الجديدة هذه بنفس طريقة الأوامر الأخرى، مع توفير نفس فحوصات المعلمات ومعالجة الأخطاء. لتسجيل نقطة النهاية الجديدة هذه، قم باستيراد غلاف الأمر وتسجيل أمر جديد به كما يلي:
 
 ```js
 import { command } from 'webdriver'
@@ -408,7 +407,7 @@ await browser.myNewCommand()
 استدعاء الأمر بشكل صحيح، مثل `browser.myNewCommand('foo', 'bar')`، يجعل طلب WebDriver بشكل صحيح إلى على سبيل المثال `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` مع حمولة مثل `{ foo: 'bar' }`.
 
 :::note
-سيتم استبدال معلمة عنوان URL `:sessionId` تلقائيًا بمعرف الجلسة لجلسة WebDriver. يمكن تطبيق معلمات عنوان URL الأخرى ولكن يجب تعريفها ضمن `variables`.
+سيتم استبدال معلمة عنوان URL `:sessionId` تلقائيًا بمعرف جلسة WebDriver. يمكن تطبيق معلمات عنوان URL الأخرى ولكن يجب تحديدها ضمن `variables`.
 :::
 
-انظر أمثلة على كيفية تعريف أوامر البروتوكول في حزمة [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).
+انظر أمثلة على كيفية تحديد أوامر البروتوكول في حزمة [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).

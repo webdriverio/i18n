@@ -3,11 +3,11 @@ id: multiremote
 title: Multiremote
 ---
 
-WebdriverIO pozwala na uruchamianie wielu zautomatyzowanych sesji w jednym teście. Jest to przydatne podczas testowania funkcji, które wymagają wielu użytkowników (na przykład aplikacje czatu lub WebRTC).
+WebdriverIO pozwala na uruchomienie wielu zautomatyzowanych sesji w jednym teście. Jest to przydatne podczas testowania funkcji, które wymagają wielu użytkowników (na przykład aplikacje czatu lub WebRTC).
 
-Zamiast tworzyć kilka zdalnych instancji, gdzie musisz wykonywać wspólne polecenia takie jak [`newSession`](/docs/api/webdriver#newsession) lub [`url`](/docs/api/browser/url) na każdej instancji, możesz po prostu utworzyć instancję **multiremote** i kontrolować wszystkie przeglądarki jednocześnie.
+Zamiast tworzenia kilku zdalnych instancji, w których musisz wykonać wspólne polecenia, takie jak [`newSession`](/docs/api/webdriver#newsession) lub [`url`](/docs/api/browser/url) na każdej instancji, możesz po prostu utworzyć instancję **multiremote** i kontrolować wszystkie przeglądarki jednocześnie.
 
-Aby to zrobić, użyj funkcji `multiremote()` i przekaż obiekt z nazwami przypisanymi do wartości `capabilities`. Nadając każdej funkcji nazwę, możesz łatwo wybierać i uzyskiwać dostęp do pojedynczej instancji podczas wykonywania poleceń na jednej instancji.
+Aby to zrobić, użyj funkcji `multiremote()` i przekaż obiekt z nazwami przypisanymi do wartości `capabilities`. Nadając każdej funkcji nazwę, możesz łatwo wybierać i uzyskiwać dostęp do pojedynczej instancji podczas wykonywania poleceń na niej.
 
 :::info
 
@@ -16,9 +16,9 @@ Jest przeznaczony do pomocy w koordynacji wielu przeglądarek i/lub urządzeń m
 
 :::
 
-Wszystkie instancje multiremote zwracają tablicę wyników. Pierwszy wynik reprezentuje pierwszą zdefiniowaną funkcję w obiekcie możliwości, drugi wynik drugą funkcję i tak dalej.
+Wszystkie instancje multiremote zwracają tablicę wyników. Pierwszy wynik reprezentuje pierwszą zdefiniowaną funkcję w obiekcie capabilities, drugi wynik drugą funkcję i tak dalej.
 
-## Korzystanie z trybu Standalone
+## Używanie trybu Standalone
 
 Oto przykład jak utworzyć instancję multiremote w __trybie standalone__:
 
@@ -55,9 +55,9 @@ import { multiremote } from 'webdriverio'
 })()
 ```
 
-## Korzystanie z WDIO Testrunner
+## Używanie WDIO Testrunner
 
-Aby używać multiremote w WDIO testrunner, wystarczy zdefiniować obiekt `capabilities` w pliku `wdio.conf.js` jako obiekt z nazwami przeglądarek jako kluczami (zamiast listy capabilities):
+Aby używać multiremote w WDIO testrunner, zdefiniuj obiekt `capabilities` w swoim `wdio.conf.js` jako obiekt z nazwami przeglądarek jako kluczami (zamiast listy capabilities):
 
 ```js
 export const config = {
@@ -78,9 +78,9 @@ export const config = {
 }
 ```
 
-Spowoduje to utworzenie dwóch sesji WebDriver z Chrome i Firefox. Zamiast tylko Chrome i Firefox, możesz również uruchomić dwa urządzenia mobilne za pomocą [Appium](http://appium.io) lub jedno urządzenie mobilne i jedną przeglądarkę.
+Spowoduje to utworzenie dwóch sesji WebDriver z Chrome i Firefox. Zamiast tylko Chrome i Firefox możesz również uruchomić dwa urządzenia mobilne przy użyciu [Appium](http://appium.io) lub jedno urządzenie mobilne i jedną przeglądarkę.
 
-Możesz również uruchamiać multiremote równolegle, umieszczając obiekt możliwości przeglądarki w tablicy. Upewnij się, że w każdej przeglądarce dodano pole `capabilities`, ponieważ w ten sposób rozróżniamy poszczególne tryby.
+Możesz także uruchamiać multiremote równolegle, umieszczając obiekt zdolności przeglądarek w tablicy. Upewnij się, że każda przeglądarka zawiera pole `capabilities`, ponieważ w ten sposób rozróżniamy poszczególne tryby.
 
 ```js
 export const config = {
@@ -112,7 +112,7 @@ export const config = {
 }
 ```
 
-Możesz nawet uruchomić jeden z [backendu usług w chmurze](https://webdriver.io/docs/cloudservices.html) razem z lokalnymi instancjami Webdriver/Appium lub Selenium Standalone. WebdriverIO automatycznie wykrywa możliwości backendu w chmurze, jeśli podasz `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html)), `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html)) lub `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) w możliwościach przeglądarki.
+Możesz nawet uruchomić jeden z [backendów usług chmurowych](https://webdriver.io/docs/cloudservices.html) razem z lokalnymi instancjami Webdriver/Appium lub Selenium Standalone. WebdriverIO automatycznie wykrywa możliwości backendu chmurowego, jeśli określiłeś `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html)), `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html)) lub `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) w możliwościach przeglądarki.
 
 ```js
 export const config = {
@@ -141,15 +141,15 @@ export const config = {
 }
 ```
 
-Możliwa jest każda kombinacja systemu operacyjnego/przeglądarki (w tym przeglądarki mobilne i desktopowe). Wszystkie polecenia, które twoje testy wywołują za pomocą zmiennej `browser`, są wykonywane równolegle z każdą instancją. Pomaga to usprawnić testy integracyjne i przyspieszyć ich wykonanie.
+Możliwa jest dowolna kombinacja systemu operacyjnego/przeglądarki (w tym przeglądarki mobilne i desktopowe). Wszystkie polecenia, które Twoje testy wywołują za pośrednictwem zmiennej `browser`, są wykonywane równolegle na każdej instancji. Pomaga to usprawnić testy integracyjne i przyspieszyć ich wykonanie.
 
-Na przykład, jeśli otworzysz adres URL:
+Na przykład, jeśli otwierasz adres URL:
 
 ```js
 browser.url('https://socketio-chat-h9jt.herokuapp.com/')
 ```
 
-Wynik każdego polecenia będzie obiektem z nazwami przeglądarek jako kluczami i wynikami poleceń jako wartościami, na przykład:
+Wynik każdego polecenia będzie obiektem z nazwami przeglądarek jako kluczami i wynikami polecenia jako wartościami, jak poniżej:
 
 ```js
 // wdio testrunner example
@@ -162,11 +162,11 @@ console.log(result[0]) // returns: 'Chrome 40 on Mac OS X (Yosemite)'
 console.log(result[1]) // returns: 'Firefox 35 on Mac OS X (Yosemite)'
 ```
 
-Zauważ, że każde polecenie jest wykonywane jedno po drugim. Oznacza to, że polecenie kończy się, gdy wszystkie przeglądarki je wykonają. Jest to pomocne, ponieważ utrzymuje akcje przeglądarki zsynchronizowane, co ułatwia zrozumienie, co się aktualnie dzieje.
+Zauważ, że każde polecenie jest wykonywane jedno po drugim. Oznacza to, że polecenie kończy się, gdy wszystkie przeglądarki je wykonały. Jest to pomocne, ponieważ utrzymuje zsynchronizowane działania przeglądarek, co ułatwia zrozumienie, co dzieje się w danym momencie.
 
-Czasami konieczne jest wykonanie różnych czynności w każdej przeglądarce, aby coś przetestować. Na przykład, jeśli chcemy przetestować aplikację czatu, jedna przeglądarka musi wysłać wiadomość tekstową, podczas gdy druga czeka na jej otrzymanie, a następnie przeprowadza na niej asercję.
+Czasami konieczne jest wykonanie różnych rzeczy w każdej przeglądarce w celu przetestowania czegoś. Na przykład, jeśli chcemy przetestować aplikację czatu, jedna przeglądarka musi wysłać wiadomość tekstową, podczas gdy druga przeglądarka czeka na jej otrzymanie, a następnie przeprowadza na niej test.
 
-Podczas korzystania z WDIO testrunner, rejestruje on nazwy przeglądarek z ich instancjami w globalnym zakresie:
+Podczas korzystania z WDIO testrunner, rejestruje on nazwy przeglądarek wraz z ich instancjami w zakresie globalnym:
 
 ```js
 const myChromeBrowser = browser.getInstance('myChromeBrowser')
@@ -185,10 +185,10 @@ assert.true(
 
 W tym przykładzie instancja `myFirefoxBrowser` zacznie czekać na wiadomość, gdy instancja `myChromeBrowser` kliknie przycisk `#send`.
 
-Multiremote sprawia, że kontrolowanie wielu przeglądarek jest łatwe i wygodne, niezależnie od tego, czy chcesz, aby robiły to samo równolegle, czy różne rzeczy w uzgodnieniu.
+Multiremote sprawia, że kontrolowanie wielu przeglądarek jest łatwe i wygodne, niezależnie od tego, czy chcesz, aby robiły to samo równolegle, czy różne rzeczy w uzgodniony sposób.
 
-## Dostęp do instancji przeglądarki za pomocą ciągów znaków przez obiekt przeglądarki
-Oprócz dostępu do instancji przeglądarki za pomocą zmiennych globalnych (np. `myChromeBrowser`, `myFirefoxBrowser`), możesz również uzyskać do nich dostęp za pomocą obiektu `browser`, np. `browser["myChromeBrowser"]` lub `browser["myFirefoxBrowser"]`. Możesz uzyskać listę wszystkich instancji za pomocą `browser.instances`. Jest to szczególnie przydatne podczas pisania wielokrotnie używanych kroków testowych, które można wykonać w dowolnej przeglądarce, np.:
+## Dostęp do instancji przeglądarek za pomocą ciągów znaków przez obiekt przeglądarki
+Oprócz dostępu do instancji przeglądarki za pośrednictwem ich zmiennych globalnych (np. `myChromeBrowser`, `myFirefoxBrowser`), możesz również uzyskać do nich dostęp za pośrednictwem obiektu `browser`, np. `browser["myChromeBrowser"]` lub `browser["myFirefoxBrowser"]`. Możesz uzyskać listę wszystkich swoich instancji za pomocą `browser.instances`. Jest to szczególnie przydatne podczas pisania ponownie używanych kroków testowych, które można wykonać w dowolnej przeglądarce, np.:
 
 wdio.conf.js:
 ```js
@@ -211,7 +211,7 @@ Plik Cucumber:
     When User A types a message into the chat
     ```
 
-Plik definicji kroku:
+Plik definicji kroków:
 ```js
 When(/^User (.) types a message into the chat/, async (userId) => {
     await browser.getInstance(`user${userId}`).$('#message').setValue('Hi, I am Chrome')
@@ -249,9 +249,9 @@ declare namespace WebdriverIO {
 }
 ```
 
-Teraz możesz uzyskać dostęp do sterowników bezpośrednio, np.:
+Teraz możesz uzyskać dostęp do sterowników bezpośrednio za pomocą, np.:
 
 ```ts
-multiremotebrowser.myAppiumDriver.$$(...)
-multiremotebrowser.myChromeDriver.$(...)
+multiRemoteBrowser.myAppiumDriver.$$(...)
+multiRemoteBrowser.myChromeDriver.$(...)
 ```

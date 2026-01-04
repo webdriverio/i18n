@@ -8,10 +8,10 @@ In Ihren Testdateien stellt WebdriverIO jede dieser Methoden und Objekte in die 
 Die folgenden globalen Objekte werden gesetzt, wenn nicht anders konfiguriert:
 
 - `browser`: WebdriverIO [Browser-Objekt](https://webdriver.io/docs/api/browser)
-- `driver`: Alias für `browser` (wird bei der Ausführung von mobilen Tests verwendet)
-- `multiremotebrowser`: Alias für `browser` oder `driver`, aber nur für [Multiremote](/docs/multiremote)-Sitzungen gesetzt
-- `$`: Befehl zum Abrufen eines Elements (weitere Informationen in den [API-Dokumenten](/docs/api/browser/$))
-- `$$`: Befehl zum Abrufen von Elementen (weitere Informationen in den [API-Dokumenten](/docs/api/browser/$$))
+- `driver`: Alias zu `browser` (wird bei der Ausführung von mobilen Tests verwendet)
+- `multiRemoteBrowser`: Alias zu `browser` oder `driver`, aber nur für [Multiremote](/docs/multiremote)-Sitzungen gesetzt
+- `$`: Befehl zum Abrufen eines Elements (siehe mehr in [API-Dokumentation](/docs/api/browser/$))
+- `$$`: Befehl zum Abrufen von Elementen (siehe mehr in [API-Dokumentation](/docs/api/browser/$$))
 - `expect`: Assertion-Framework für WebdriverIO (siehe [API-Dokumentation](/docs/api/expect-webdriverio))
 
-__Hinweis:__ WebdriverIO hat keine Kontrolle darüber, welche Frameworks (z.B. Mocha oder Jasmine) globale Variablen setzen, wenn sie ihre Umgebung initialisieren.
+__Hinweis:__ WebdriverIO hat keine Kontrolle darüber, wenn verwendete Frameworks (z.B. Mocha oder Jasmine) globale Variablen setzen, wenn sie ihre Umgebung initialisieren.

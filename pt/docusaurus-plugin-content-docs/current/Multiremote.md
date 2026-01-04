@@ -3,16 +3,16 @@ id: multiremote
 title: Multiremote
 ---
 
-O WebdriverIO permite que você execute múltiplas sessões automatizadas em um único teste. Isso se torna útil quando você está testando recursos que exigem múltiplos usuários (por exemplo, aplicativos de chat ou WebRTC).
+O WebdriverIO permite que você execute várias sessões automatizadas em um único teste. Isso se torna útil quando você está testando recursos que exigem vários usuários (por exemplo, aplicativos de chat ou WebRTC).
 
 Em vez de criar várias instâncias remotas onde você precisa executar comandos comuns como [`newSession`](/docs/api/webdriver#newsession) ou [`url`](/docs/api/browser/url) em cada instância, você pode simplesmente criar uma instância **multiremote** e controlar todos os navegadores ao mesmo tempo.
 
-Para fazer isso, basta usar a função `multiremote()` e passar um objeto com nomes associados a `capabilities` como valores. Ao dar um nome a cada capacidade, você pode facilmente selecionar e acessar essa única instância ao executar comandos em uma instância específica.
+Para fazer isso, basta usar a função `multiremote()` e passar um objeto com nomes associados a `capabilities` como valores. Ao dar um nome a cada capacidade, você pode facilmente selecionar e acessar essa única instância ao executar comandos em uma única instância.
 
 :::info
 
-Multiremote _não_ foi feito para executar todos os seus testes em paralelo.
-Ele é destinado a ajudar a coordenar múltiplos navegadores e/ou dispositivos móveis para testes de integração especiais (por exemplo, aplicativos de chat).
+Multiremote _não_ foi projetado para executar todos os seus testes em paralelo.
+Ele se destina a ajudar a coordenar vários navegadores e/ou dispositivos móveis para testes de integração especiais (por exemplo, aplicativos de chat).
 
 :::
 
@@ -55,9 +55,9 @@ import { multiremote } from 'webdriverio'
 })()
 ```
 
-## Usando o WDIO Testrunner
+## Usando WDIO Testrunner
 
-Para usar o multiremote no testrunner WDIO, basta definir o objeto `capabilities` no seu `wdio.conf.js` como um objeto com os nomes dos navegadores como chaves (em vez de uma lista de capacidades):
+Para usar multiremote no testrunner do WDIO, basta definir o objeto `capabilities` em seu `wdio.conf.js` como um objeto com os nomes dos navegadores como chaves (em vez de uma lista de capacidades):
 
 ```js
 export const config = {
@@ -78,9 +78,9 @@ export const config = {
 }
 ```
 
-Isso criará duas sessões WebDriver com Chrome e Firefox. Em vez de apenas Chrome e Firefox, você também pode iniciar dois dispositivos móveis usando [Appium](http://appium.io) ou um dispositivo móvel e um navegador.
+Isso criará duas sessões WebDriver com Chrome e Firefox. Em vez de apenas Chrome e Firefox, você também pode inicializar dois dispositivos móveis usando [Appium](http://appium.io) ou um dispositivo móvel e um navegador.
 
-Você também pode executar multiremote em paralelo colocando o objeto de capacidades do navegador em um array. Certifique-se de incluir o campo `capabilities` em cada navegador, pois é assim que diferenciamos cada modo.
+Você também pode executar multiremote em paralelo colocando o objeto de capacidades do navegador em um array. Certifique-se de incluir o campo `capabilities` em cada navegador, pois é assim que distinguimos cada modo.
 
 ```js
 export const config = {
@@ -112,7 +112,7 @@ export const config = {
 }
 ```
 
-Você pode até mesmo iniciar um dos [serviços em nuvem](https://webdriver.io/docs/cloudservices.html) juntamente com instâncias locais de Webdriver/Appium, ou Selenium Standalone. O WebdriverIO detecta automaticamente as capacidades de backend em nuvem se você especificar qualquer um dos `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html)), `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html)), ou `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) nas capacidades do navegador.
+Você pode até mesmo inicializar um dos [backends de serviços em nuvem](https://webdriver.io/docs/cloudservices.html) juntamente com instâncias locais do Webdriver/Appium, ou Selenium Standalone. O WebdriverIO detecta automaticamente as capacidades de backend em nuvem se você especificou qualquer um dos `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html)), `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html)) ou `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) nas capacidades do navegador.
 
 ```js
 export const config = {
@@ -141,7 +141,7 @@ export const config = {
 }
 ```
 
-Qualquer tipo de combinação de OS/navegador é possível aqui (incluindo navegadores móveis e desktop). Todos os comandos que seus testes chamam através da variável `browser` são executados em paralelo com cada instância. Isso ajuda a simplificar seus testes de integração e acelerar sua execução.
+Qualquer tipo de combinação OS/navegador é possível aqui (incluindo navegadores móveis e desktop). Todos os comandos que seus testes chamam através da variável `browser` são executados em paralelo com cada instância. Isso ajuda a otimizar seus testes de integração e acelerar sua execução.
 
 Por exemplo, se você abrir uma URL:
 
@@ -162,9 +162,9 @@ console.log(result[0]) // returns: 'Chrome 40 on Mac OS X (Yosemite)'
 console.log(result[1]) // returns: 'Firefox 35 on Mac OS X (Yosemite)'
 ```
 
-Observe que cada comando é executado um por um. Isso significa que o comando termina quando todos os navegadores o executaram. Isso é útil porque mantém as ações do navegador sincronizadas, o que facilita a compreensão do que está acontecendo no momento.
+Observe que cada comando é executado um por um. Isso significa que o comando termina quando todos os navegadores o executarem. Isso é útil porque mantém as ações do navegador sincronizadas, o que torna mais fácil entender o que está acontecendo atualmente.
 
-Às vezes, é necessário fazer coisas diferentes em cada navegador para testar algo. Por exemplo, se quisermos testar um aplicativo de chat, deve haver um navegador que envia uma mensagem de texto enquanto outro navegador espera para recebê-la e, em seguida, executa uma verificação sobre ela.
+Às vezes, é necessário fazer coisas diferentes em cada navegador para testar algo. Por exemplo, se queremos testar um aplicativo de chat, deve haver um navegador que envie uma mensagem de texto enquanto outro navegador espera para recebê-la e, em seguida, executar uma asserção sobre ela.
 
 Ao usar o testrunner WDIO, ele registra os nomes dos navegadores com suas instâncias no escopo global:
 
@@ -183,12 +183,12 @@ assert.true(
 )
 ```
 
-Neste exemplo, a instância `myFirefoxBrowser` começará a esperar por uma mensagem assim que a instância `myChromeBrowser` tiver clicado no botão `#send`.
+Neste exemplo, a instância `myFirefoxBrowser` começará a aguardar uma mensagem assim que a instância `myChromeBrowser` tiver clicado no botão `#send`.
 
-O Multiremote torna fácil e conveniente controlar vários navegadores, seja você querer que eles façam a mesma coisa em paralelo ou coisas diferentes em conjunto.
+Multiremote torna fácil e conveniente controlar vários navegadores, seja você querendo que eles façam a mesma coisa em paralelo ou coisas diferentes em conjunto.
 
-## Acessando instâncias do navegador usando strings através do objeto browser
-Além de acessar a instância do navegador através de suas variáveis globais (por exemplo, `myChromeBrowser`, `myFirefoxBrowser`), você também pode acessá-las através do objeto `browser`, por exemplo, `browser["myChromeBrowser"]` ou `browser["myFirefoxBrowser"]`. Você pode obter uma lista de todas as suas instâncias através de `browser.instances`. Isso é especialmente útil ao escrever etapas de teste reutilizáveis que podem ser executadas em qualquer navegador, por exemplo:
+## Acessando instâncias de navegador usando strings via objeto browser
+Além de acessar a instância do navegador por meio de suas variáveis globais (por exemplo, `myChromeBrowser`, `myFirefoxBrowser`), você também pode acessá-las por meio do objeto `browser`, por exemplo, `browser["myChromeBrowser"]` ou `browser["myFirefoxBrowser"]`. Você pode obter uma lista de todas as suas instâncias via `browser.instances`. Isso é especialmente útil ao escrever etapas de teste reutilizáveis que podem ser executadas em qualquer navegador, por exemplo:
 
 wdio.conf.js:
 ```js
@@ -219,9 +219,9 @@ When(/^User (.) types a message into the chat/, async (userId) => {
 })
 ```
 
-## Estendendo os Tipos TypeScript
+## Estendendo Tipos TypeScript
 
-Se você está usando TypeScript e gostaria de acessar a instância do driver diretamente do objeto multiremote, você também pode estender os tipos multiremote para isso. Por exemplo, dadas as seguintes capacidades:
+Se você está usando TypeScript e deseja acessar a instância do driver diretamente do objeto multiremote, você também pode estender os tipos multiremote para fazer isso. Por exemplo, dadas as seguintes capacidades:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.MultiremoteConfig = {
@@ -249,9 +249,9 @@ declare namespace WebdriverIO {
 }
 ```
 
-Agora você pode acessar os drivers diretamente através de, por exemplo:
+Agora você pode acessar os drivers diretamente, por exemplo:
 
 ```ts
-multiremotebrowser.myAppiumDriver.$$(...)
-multiremotebrowser.myChromeDriver.$(...)
+multiRemoteBrowser.myAppiumDriver.$$(...)
+multiRemoteBrowser.myChromeDriver.$(...)
 ```

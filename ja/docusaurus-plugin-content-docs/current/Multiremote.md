@@ -3,24 +3,24 @@ id: multiremote
 title: マルチリモート
 ---
 
-WebdriverIOでは、1つのテスト内で複数の自動化セッションを実行することができます。これは、複数のユーザーを必要とする機能（例えば、チャットやWebRTCアプリケーション）をテストする際に便利です。
+WebdriverIOでは、1つのテストで複数の自動化セッションを実行できます。これは、複数のユーザーを必要とする機能（例えば、チャットやWebRTCアプリケーション）をテストする際に便利です。
 
-複数のリモートインスタンスを作成し、それぞれのインスタンスで[`newSession`](/docs/api/webdriver#newsession)や[`url`](/docs/api/browser/url)などの共通コマンドを実行する代わりに、**マルチリモート**インスタンスを作成して、すべてのブラウザを同時に制御することができます。
+[`newSession`](/docs/api/webdriver#newsession)や[`url`](/docs/api/browser/url)のような共通コマンドを各インスタンスで実行する必要がある複数のリモートインスタンスを作成する代わりに、**マルチリモート**インスタンスを作成して、すべてのブラウザを同時に制御できます。
 
-そのためには、`multiremote()`関数を使用し、名前を付けた`capabilities`オブジェクトを渡すだけです。各capabilityに名前を付けることで、単一のインスタンスでコマンドを実行する際に、その特定のインスタンスを簡単に選択してアクセスすることができます。
+そのためには、`multiremote()`関数を使用し、名前を付けた`capabilities`オブジェクトを渡すだけです。各機能に名前を付けることで、単一インスタンスでコマンドを実行する際に、その単一インスタンスを簡単に選択してアクセスできます。
 
 :::info
 
 マルチリモートは、すべてのテストを並行して実行するためのものでは_ありません_。
-特別な統合テスト（例：チャットアプリケーション）のために複数のブラウザやモバイルデバイスを連携させるためのものです。
+これは、特別な統合テスト（例：チャットアプリケーション）のために複数のブラウザやモバイルデバイスを調整するのに役立つことを目的としています。
 
 :::
 
-すべてのマルチリモートインスタンスは結果の配列を返します。最初の結果はcapabilityオブジェクトで最初に定義されたcapability、2番目の結果は2番目のcapability、というように対応しています。
+すべてのマルチリモートインスタンスは結果の配列を返します。最初の結果はケーパビリティオブジェクトで最初に定義された機能を表し、2番目の結果は2番目の機能を表し、以下同様です。
 
-## スタンドアロンモードの使用
+## スタンドアロンモードでの使用
 
-以下は__スタンドアロンモード__でマルチリモートインスタンスを作成する例です：
+以下は**スタンドアロンモード**でマルチリモートインスタンスを作成する例です：
 
 ```js
 import { multiremote } from 'webdriverio'
@@ -39,25 +39,25 @@ import { multiremote } from 'webdriverio'
         }
     })
 
-    // 両方のブラウザで同時にURLを開く
+    // open url with both browser at the same time
     await browser.url('http://json.org')
 
-    // 同時にコマンドを呼び出す
+    // call commands at the same time
     const title = await browser.getTitle()
     expect(title).toEqual(['JSON', 'JSON'])
 
-    // 同時に要素をクリック
+    // click on an element at the same time
     const elem = await browser.$('#someElem')
     await elem.click()
 
-    // 1つのブラウザ（Firefox）でのみクリック
+    // only click with one browser (Firefox)
     await elem.getInstance('myFirefoxBrowser').click()
 })()
 ```
 
-## WDIOテストランナーの使用
+## WDIOテストランナーでの使用
 
-WDIOテストランナーでマルチリモートを使用するには、`wdio.conf.js`の`capabilities`オブジェクトをcapabilitiesのリストの代わりに、ブラウザ名をキーとするオブジェクトとして定義するだけです：
+WDIOテストランナーでマルチリモートを使用するには、`wdio.conf.js`の`capabilities`オブジェクトをブラウザ名をキーとするオブジェクトとして定義します（機能のリストではなく）：
 
 ```js
 export const config = {
@@ -80,7 +80,7 @@ export const config = {
 
 これにより、ChromeとFirefoxで2つのWebDriverセッションが作成されます。ChromeとFirefoxだけでなく、[Appium](http://appium.io)を使用して2つのモバイルデバイスを起動したり、1つのモバイルデバイスと1つのブラウザを起動したりすることもできます。
 
-ブラウザcapabilitiesオブジェクトを配列に入れることで、マルチリモートを並列で実行することもできます。各モードを区別するために、各ブラウザに`capabilities`フィールドを含めるようにしてください。
+ブラウザの機能オブジェクトを配列に入れることで、マルチリモートを並行して実行することもできます。各モードを区別するために、各ブラウザに`capabilities`フィールドが含まれていることを確認してください。
 
 ```js
 export const config = {
@@ -112,7 +112,7 @@ export const config = {
 }
 ```
 
-ローカルのWebdriver/AppiumやSelenium Standaloneインスタンスと一緒に[クラウドサービスバックエンド](https://webdriver.io/docs/cloudservices.html)のいずれかを起動することもできます。WebdriverIOは、ブラウザcapabilitiesに`bstack:options`（[Browserstack](https://webdriver.io/docs/browserstack-service.html)）、`sauce:options`（[SauceLabs](https://webdriver.io/docs/sauce-service.html)）、または`tb:options`（[TestingBot](https://webdriver.io/docs/testingbot-service.html)）のいずれかが指定されている場合、クラウドバックエンドcapabilitiesを自動的に検出します。
+ローカルのWebdriver/AppiumやSelenium Standaloneインスタンスと一緒に[クラウドサービスバックエンド](https://webdriver.io/docs/cloudservices.html)のいずれかを起動することもできます。WebdriverIOは、ブラウザの機能に`bstack:options`（[Browserstack](https://webdriver.io/docs/browserstack-service.html)）、`sauce:options`（[SauceLabs](https://webdriver.io/docs/sauce-service.html)）、または`tb:options`（[TestingBot](https://webdriver.io/docs/testingbot-service.html)）のいずれかを指定した場合、自動的にクラウドバックエンド機能を検出します。
 
 ```js
 export const config = {
@@ -141,7 +141,7 @@ export const config = {
 }
 ```
 
-ここでは、あらゆる種類のOS/ブラウザの組み合わせが可能です（モバイルブラウザとデスクトップブラウザを含む）。テストが`browser`変数を通じて呼び出すすべてのコマンドは、各インスタンスで並行して実行されます。これにより、統合テストを効率化し、実行速度を向上させることができます。
+ここではあらゆる種類のOS/ブラウザの組み合わせが可能です（モバイルブラウザとデスクトップブラウザを含む）。テストが`browser`変数を介して呼び出すすべてのコマンドは、各インスタンスと並行して実行されます。これにより、統合テストを合理化し、実行を高速化することができます。
 
 例えば、URLを開く場合：
 
@@ -149,33 +149,33 @@ export const config = {
 browser.url('https://socketio-chat-h9jt.herokuapp.com/')
 ```
 
-各コマンドの結果は、キーとしてブラウザ名、値としてコマンドの結果を持つオブジェクトになります：
+各コマンドの結果は、ブラウザ名をキーとし、コマンドの結果を値とするオブジェクトになります：
 
 ```js
-// wdioテストランナーの例
+// wdio testrunner example
 await browser.url('https://www.whatismybrowser.com')
 
 const elem = await $('.string-major')
 const result = await elem.getText()
 
-console.log(result[0]) // 返り値: 'Chrome 40 on Mac OS X (Yosemite)'
-console.log(result[1]) // 返り値: 'Firefox 35 on Mac OS X (Yosemite)'
+console.log(result[0]) // returns: 'Chrome 40 on Mac OS X (Yosemite)'
+console.log(result[1]) // returns: 'Firefox 35 on Mac OS X (Yosemite)'
 ```
 
-各コマンドは1つずつ実行されることに注意してください。これは、すべてのブラウザがコマンドを実行した時点でコマンドが完了することを意味します。これにより、ブラウザのアクションが同期され、現在何が起こっているかを理解しやすくなります。
+各コマンドは一つずつ実行されることに注意してください。つまり、すべてのブラウザがコマンドを実行した時点でコマンドが終了します。これはブラウザのアクションを同期させ、現在何が起こっているかを理解しやすくするのに役立ちます。
 
-何かをテストするために、各ブラウザで異なることを行う必要がある場合があります。例えば、チャットアプリケーションをテストする場合、1つのブラウザがテキストメッセージを送信し、別のブラウザがそれを受信するのを待ってからアサーションを実行する必要があります。
+何かをテストするために、各ブラウザで異なることを行う必要がある場合もあります。例えば、チャットアプリケーションをテストする場合、あるブラウザがテキストメッセージを送信し、別のブラウザがそれを受信するのを待って、アサーションを実行する必要があります。
 
-WDIOテストランナーを使用する場合、ブラウザ名とそのインスタンスをグローバルスコープに登録します：
+WDIOテストランナーを使用する場合、ブラウザ名をそのインスタンスとともにグローバルスコープに登録します：
 
 ```js
 const myChromeBrowser = browser.getInstance('myChromeBrowser')
 await myChromeBrowser.$('#message').setValue('Hi, I am Chrome')
 await myChromeBrowser.$('#send').click()
 
-// メッセージが到着するまで待つ
+// wait until messages arrive
 await $('.messages').waitForExist()
-// メッセージの1つにChromeのメッセージが含まれているか確認
+// check if one of the messages contain the Chrome message
 assert.true(
     (
         await $$('.messages').map((m) => m.getText())
@@ -183,12 +183,12 @@ assert.true(
 )
 ```
 
-この例では、`myChromeBrowser`インスタンスが`#send`ボタンをクリックすると、`myFirefoxBrowser`インスタンスがメッセージを待ち始めます。
+この例では、`myChromeBrowser`インスタンスが`#send`ボタンをクリックした後、`myFirefoxBrowser`インスタンスがメッセージを待ち始めます。
 
-マルチリモートを使えば、複数のブラウザを並行して同じことをさせるか、協調して異なることをさせるかにかかわらず、簡単かつ便利に制御することができます。
+マルチリモートを使用すると、複数のブラウザを制御することが簡単で便利になります。ブラウザが並行して同じことを実行するか、協調して異なることを実行するかにかかわらずです。
 
-## ブラウザオブジェクトを介して文字列を使用してブラウザインスタンスにアクセスする
-グローバル変数（例：`myChromeBrowser`、`myFirefoxBrowser`）を介してブラウザインスタンスにアクセスするだけでなく、`browser`オブジェクトを介してもアクセスできます（例：`browser["myChromeBrowser"]`または`browser["myFirefoxBrowser"]`）。`browser.instances`を使用して、すべてのインスタンスのリストを取得できます。これは、どちらのブラウザでも実行できる再利用可能なテストステップを記述する場合に特に便利です：
+## 文字列を使用したブラウザオブジェクトからのブラウザインスタンスへのアクセス
+グローバル変数（例：`myChromeBrowser`、`myFirefoxBrowser`）を介してブラウザインスタンスにアクセスするだけでなく、`browser`オブジェクトを介して`browser["myChromeBrowser"]`や`browser["myFirefoxBrowser"]`としてもアクセスできます。`browser.instances`を使用してすべてのインスタンスのリストを取得できます。これは、どちらのブラウザでも実行できる再利用可能なテストステップを作成する場合に特に便利です：
 
 wdio.conf.js:
 ```js
@@ -219,9 +219,9 @@ When(/^User (.) types a message into the chat/, async (userId) => {
 })
 ```
 
-## TypeScriptタイプの拡張
+## TypeScript型の拡張
 
-TypeScriptを使用していて、マルチリモートオブジェクトからドライバーインスタンスに直接アクセスしたい場合は、マルチリモートタイプを拡張することもできます。例えば、次のcapabilitiesがある場合：
+TypeScriptを使用していて、マルチリモートオブジェクトからドライバーインスタンスに直接アクセスしたい場合は、マルチリモート型を拡張することもできます。例えば、次のケーパビリティが与えられている場合：
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.MultiremoteConfig = {
@@ -238,7 +238,7 @@ export const config: WebdriverIO.MultiremoteConfig = {
 }
 ```
 
-カスタムドライバ名を追加してマルチリモートインスタンスを拡張できます：
+カスタムドライバー名を追加して、マルチリモートインスタンスを拡張できます：
 
 ```ts title=wdio.d.ts
 declare namespace WebdriverIO {
@@ -249,9 +249,9 @@ declare namespace WebdriverIO {
 }
 ```
 
-これで、以下のようにドライバに直接アクセスできます：
+これで、次のようにドライバーに直接アクセスできます：
 
 ```ts
-multiremotebrowser.myAppiumDriver.$$(...)
-multiremotebrowser.myChromeDriver.$(...)
+multiRemoteBrowser.myAppiumDriver.$$(...)
+multiRemoteBrowser.myChromeDriver.$(...)
 ```

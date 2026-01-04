@@ -1,31 +1,31 @@
 ---
 id: customcommands
-title: Niestandardowe Komendy
+title: Własne Komendy
 ---
 
-Jeśli chcesz rozszerzyć instancję `browser` o własny zestaw komend, metoda przeglądarki `addCommand` jest do Twojej dyspozycji. Możesz napisać swoją komendę w sposób asynchroniczny, tak jak w swoich specyfikacjach testowych.
+Jeśli chcesz rozszerzyć instancję `browser` o własne zestaw komend, metoda przeglądarki `addCommand` jest dla Ciebie. Możesz napisać swoje komendy w sposób asynchroniczny, tak jak w specyfikacjach.
 
 ## Parametry
 
-### Nazwa komendy
+### Nazwa Komendy
 
-Nazwa, która definiuje komendę i zostanie dołączona do przeglądarki lub zakresu elementu.
+Nazwa definiująca komendę, która zostanie dołączona do zakresu przeglądarki lub elementu.
 
 Typ: `String`
 
-### Funkcja niestandardowa
+### Funkcja Niestandardowa
 
-Funkcja, która jest wykonywana, gdy komenda jest wywoływana. Zakres `this` to albo [`WebdriverIO.Browser`](/docs/api/browser) albo [`WebdriverIO.Element`](/docs/api/element) w zależności od tego, czy komenda jest dołączana do zakresu przeglądarki czy elementu.
+Funkcja, która jest wykonywana, gdy komenda jest wywoływana. Zakres `this` to albo [`WebdriverIO.Browser`](/docs/api/browser) albo [`WebdriverIO.Element`](/docs/api/element), w zależności od tego, czy komenda zostanie dołączona do zakresu przeglądarki czy elementu.
 
 Typ: `Function`
 
 ### Opcje
 
-Obiekt z opcjami konfiguracji modyfikującymi zachowanie niestandardowej komendy
+Obiekt z opcjami konfiguracyjnymi modyfikującymi zachowanie niestandardowej komendy
 
-#### Zakres docelowy
+#### Zakres Docelowy
 
-Flaga decydująca, czy dołączyć komendę do zakresu przeglądarki, czy elementu. Jeśli ustawiona na `true`, komenda będzie komendą elementu.
+Flaga decydująca o tym, czy dołączyć komendę do zakresu przeglądarki czy elementu. Jeśli ustawiono na `true`, komenda będzie komendą elementu.
 
 Nazwa opcji: `attachToElement`
 Typ: `Boolean`<br />
@@ -33,7 +33,7 @@ Domyślnie: `false`
 
 #### Wyłączenie implicitWait
 
-Flaga decydująca, czy automatycznie czekać na istnienie elementu przed wywołaniem niestandardowej komendy.
+Flaga decydująca o tym, czy implicite czekać na istnienie elementu przed wywołaniem niestandardowej komendy.
 
 Nazwa opcji: `disableElementImplicitWait`
 Typ: `Boolean`<br />
@@ -41,7 +41,7 @@ Domyślnie: `false`
 
 ## Przykłady
 
-Ten przykład pokazuje, jak dodać nową komendę, która zwraca bieżący URL i tytuł jako jeden wynik. Zakres (`this`) to obiekt [`WebdriverIO.Browser`](/docs/api/browser).
+Ten przykład pokazuje, jak dodać nową komendę, która zwraca aktualny URL i tytuł jako jeden wynik. Zakres (`this`) to obiekt [`WebdriverIO.Browser`](/docs/api/browser).
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
@@ -58,26 +58,26 @@ Dodatkowo możesz rozszerzyć instancję elementu o własny zestaw komend, przek
 
 ```js
 browser.addCommand("waitAndClick", async function () {
-    // `this` to wartość zwracana przez $(selector)
+    // `this` jest wartością zwracaną przez $(selector)
     await this.waitForDisplayed()
     await this.click()
 }, { attachToElement: true })
 ```
 
-Domyślnie niestandardowe komendy elementów czekają na istnienie elementu przed wywołaniem niestandardowej komendy. Mimo że najczęściej jest to pożądane, można to wyłączyć za pomocą `disableImplicitWait`:
+Domyślnie niestandardowe komendy elementu czekają na istnienie elementu przed wywołaniem niestandardowej komendy. Mimo że często jest to pożądane, można to wyłączyć za pomocą `disableImplicitWait`:
 
 ```js
 browser.addCommand("waitAndClick", async function () {
-    // `this` to wartość zwracana przez $(selector)
+    // `this` jest wartością zwracaną przez $(selector)
     await this.waitForExists()
     await this.click()
 }, { attachToElement: true, disableElementImplicitWait: true })
 ```
 
 
-Niestandardowe komendy dają możliwość połączenia konkretnej sekwencji komend, których często używasz, w jedno wywołanie. Możesz definiować niestandardowe komendy w dowolnym momencie zestawu testów; po prostu upewnij się, że komenda jest zdefiniowana *przed* jej pierwszym użyciem. (Hook `before` w pliku `wdio.conf.js` to dobre miejsce do ich tworzenia.)
+Niestandardowe komendy dają Ci możliwość pakowania określonej sekwencji komend, których często używasz, jako jedno wywołanie. Możesz definiować niestandardowe komendy w dowolnym momencie w swojej zestawie testów; upewnij się tylko, że komenda jest zdefiniowana *przed* jej pierwszym użyciem. (Hook `before` w Twoim `wdio.conf.js` jest dobrym miejscem na ich utworzenie.)
 
-Po zdefiniowaniu możesz używać ich w następujący sposób:
+Po zdefiniowaniu możesz ich używać w następujący sposób:
 
 ```js
 it('should use my custom command', async () => {
@@ -117,20 +117,20 @@ browser.addCommand("user$", (locator) => { return ele }, { attachToElement: true
 await browser.user$('foo').user$('bar').click()
 ```
 
-Uważaj, aby nie przeciążyć zakresu `browser` zbyt wieloma niestandardowymi komendami.
+Uważaj, aby nie przeciążać zakresu `browser` zbyt wieloma niestandardowymi komendami.
 
-Zalecamy definiowanie niestandardowej logiki w [obiektach stron](pageobjects), dzięki czemu są one związane z określoną stroną.
+Zalecamy definiowanie niestandardowej logiki w [obiektach stron](pageobjects), aby były one powiązane z określoną stroną.
 
 ### Multiremote
 
-`addCommand` działa podobnie dla multiremote, z tą różnicą, że nowa komenda będzie propagowana do instancji potomnych. Musisz uważać przy używaniu obiektu `this`, ponieważ multiremote `browser` i jego instancje potomne mają różne `this`.
+`addCommand` działa podobnie dla multiremote, z tą różnicą, że nowa komenda będzie propagowana w dół do instancji podrzędnych. Musisz uważać przy używaniu obiektu `this`, ponieważ multiremote `browser` i jego instancje potomne mają różne `this`.
 
 Ten przykład pokazuje, jak dodać nową komendę dla multiremote.
 
 ```js
-import { multiremotebrowser } from '@wdio/globals'
+import { multiRemoteBrowser } from '@wdio/globals'
 
-multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
+multiRemoteBrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
     // `this` odnosi się do:
     //      - zakresu MultiRemoteBrowser dla przeglądarki
     //      - zakresu Browser dla instancji
@@ -141,7 +141,7 @@ multiremotebrowser.addCommand('getUrlAndTitle', async function (this: WebdriverI
     }
 })
 
-multiremotebrowser.getUrlAndTitle()
+multiRemoteBrowser.getUrlAndTitle()
 /*
 {
     url: [ 'https://webdriver.io/', 'https://webdriver.io/' ],
@@ -153,7 +153,7 @@ multiremotebrowser.getUrlAndTitle()
 }
 */
 
-multiremotebrowser.getInstance('browserA').getUrlAndTitle()
+multiRemoteBrowser.getInstance('browserA').getUrlAndTitle()
 /*
 {
     url: 'https://webdriver.io/',
@@ -163,14 +163,14 @@ multiremotebrowser.getInstance('browserA').getUrlAndTitle()
 */
 ```
 
-## Rozszerzanie definicji typów
+## Rozszerzanie Definicji Typów
 
-Z TypeScript łatwo jest rozszerzać interfejsy WebdriverIO. Dodaj typy do swoich niestandardowych komend w następujący sposób:
+Z TypeScript łatwo jest rozszerzyć interfejsy WebdriverIO. Dodaj typy do swoich niestandardowych komend w następujący sposób:
 
-1. Utwórz plik definicji typów (np. `./src/types/wdio.d.ts`)
-2. a. Jeśli używasz pliku definicji typów w stylu modułowym (z import/export i `declare global WebdriverIO` w pliku definicji typów), upewnij się, że ścieżka do pliku jest uwzględniona we właściwości `include` pliku `tsconfig.json`.
+1. Utwórz plik definicji typu (np. `./src/types/wdio.d.ts`)
+2. a. W przypadku korzystania z pliku definicji typu w stylu modułowym (używając import/export i `declare global WebdriverIO` w pliku definicji typu), upewnij się, że ścieżka do pliku jest zawarta we właściwości `include` pliku `tsconfig.json`.
 
-   b. Jeśli używasz plików definicji typów w stylu ambient (brak import/export w plikach definicji typów i `declare namespace WebdriverIO` dla niestandardowych komend), upewnij się, że `tsconfig.json` *nie* zawiera żadnej sekcji `include`, ponieważ spowoduje to, że wszystkie pliki definicji typów niewymienione w sekcji `include` nie będą rozpoznawane przez TypeScript.
+   b. W przypadku korzystania z plików definicji typów w stylu otoczenia (bez import/export w plikach definicji typów i `declare namespace WebdriverIO` dla niestandardowych poleceń), upewnij się, że `tsconfig.json` *nie* zawiera żadnej sekcji `include`, ponieważ spowoduje to, że wszystkie pliki definicji typów niewymienione w sekcji `include` nie będą rozpoznawane przez TypeScript.
 
 <Tabs
   defaultValue="modules"
@@ -203,7 +203,7 @@ Z TypeScript łatwo jest rozszerzać interfejsy WebdriverIO. Dodaj typy do swoic
 </TabItem>
 </Tabs>
 
-3. Dodaj definicje swoich komend zgodnie z trybem wykonania.
+3. Dodaj definicje dla swoich poleceń zgodnie z trybem wykonania.
 
 <Tabs
   defaultValue="modules"
@@ -254,11 +254,11 @@ declare namespace WebdriverIO {
 </TabItem>
 </Tabs>
 
-## Integracja bibliotek zewnętrznych
+## Integracja Bibliotek Zewnętrznych
 
-Jeśli używasz bibliotek zewnętrznych (np. do wykonywania zapytań do bazy danych), które obsługują obietnice (promises), dobrym podejściem do ich integracji jest opakowanie określonych metod API w niestandardową komendę.
+Jeśli korzystasz z zewnętrznych bibliotek (np. do wywołań bazy danych), które obsługują obietnice (promises), dobrym podejściem do integracji jest zawinięcie określonych metod API w niestandardową komendę.
 
-Zwracając obietnicę, WebdriverIO zapewnia, że nie kontynuuje wykonywania następnej komendy, dopóki obietnica nie zostanie rozwiązana. Jeśli obietnica zostanie odrzucona, komenda zgłosi błąd.
+Gdy zwracasz obietnicę, WebdriverIO upewnia się, że nie przejdzie do następnej komendy, dopóki obietnica nie zostanie rozwiązana. Jeśli obietnica zostanie odrzucona, komenda wyrzuci błąd.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -267,7 +267,7 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-Następnie wystarczy użyć jej w specyfikacjach testów WDIO:
+Następnie po prostu użyj go w swoich specyfikacjach testowych WDIO:
 
 ```js
 it('execute external library in a sync way', async () => {
@@ -277,24 +277,24 @@ it('execute external library in a sync way', async () => {
 })
 ```
 
-**Uwaga:** Wynikiem niestandardowej komendy jest wynik zwracanej przez ciebie obietnicy.
+**Uwaga:** Rezultatem twojej niestandardowej komendy jest wynik obietnicy, którą zwracasz.
 
-## Nadpisywanie komend
+## Nadpisywanie Komend
 
 Możesz również nadpisywać natywne komendy za pomocą `overwriteCommand`.
 
-Nie jest to zalecane, ponieważ może prowadzić do nieprzewidywalnego zachowania frameworka!
+Nie zaleca się tego, ponieważ może to prowadzić do nieprzewidywalnego zachowania frameworka!
 
-Ogólne podejście jest podobne do `addCommand`, jedyną różnicą jest to, że pierwszym argumentem w funkcji komendy jest oryginalna funkcja, którą zamierzasz nadpisać. Zobacz przykłady poniżej.
+Ogólne podejście jest podobne do `addCommand`, jedyną różnicą jest to, że pierwszym argumentem w funkcji komendy jest oryginalna funkcja, którą zamierzasz nadpisać. Proszę zobaczyć kilka przykładów poniżej.
 
-### Nadpisywanie komend przeglądarki
+### Nadpisywanie Komend Przeglądarki
 
 ```js
 /**
- * Wyświetl milisekundy przed pauzą i zwróć ich wartość.
- * 
+ * Wydrukuj milisekundy przed pauzą i zwróć jej wartość.
+ *
  * @param pause - nazwa komendy do nadpisania
- * @param this of func - oryginalna instancja przeglądarki, na której wywołano funkcję
+ * @param this of func - oryginalna instancja przeglądarki, na której funkcja została wywołana
  * @param originalPauseFunction of func - oryginalna funkcja pauzy
  * @param ms of func - rzeczywiste przekazane parametry
   */
@@ -304,19 +304,19 @@ browser.overwriteCommand('pause', async function (this, originalPauseFunction, m
     return ms
 })
 
-// następnie użyj jak poprzednio
+// następnie użyj jej jak wcześniej
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### Nadpisywanie komend elementu
+### Nadpisywanie Komend Elementu
 
 Nadpisywanie komend na poziomie elementu jest prawie takie samo. Po prostu przekaż `true` jako trzeci argument do `overwriteCommand`:
 
 ```js
 /**
- * Próba przewinięcia do elementu, jeśli nie jest klikalny.
+ * Próbuj przewinąć do elementu, jeśli nie jest klikalny.
  * Przekaż { force: true }, aby kliknąć za pomocą JS, nawet jeśli element nie jest widoczny lub klikalny.
- * Pokazuje, że typ argumentu oryginalnej funkcji może być zachowany z `options?: ClickOptions`
+ * Pokaż, że oryginalny typ argumentu funkcji można zachować przy użyciu `options?: ClickOptions`
  *
  * @param this of func - element, na którym wywołano oryginalną funkcję
  * @param originalClickFunction of func - oryginalna funkcja pauzy
@@ -343,16 +343,16 @@ browser.overwriteCommand(
             }
         }
 
-        // kliknięcie za pomocą js
+        // klikanie za pomocą js
         console.warn('WARN: Using force click for', this.selector)
         await browser.execute((el) => {
             el.click()
         }, this)
     },
-    { attachToElement: true }, // Nie zapomnij dołączyć tego do elementu
+    { attachToElement: true }, // Nie zapomnij dołączyć go do elementu
 )
 
-// następnie użyj jak poprzednio
+// następnie użyj go jak wcześniej
 const elem = await $('body')
 await elem.click()
 
@@ -360,9 +360,9 @@ await elem.click()
 await elem.click({ force: true })
 ```
 
-## Dodawanie większej liczby komend WebDriver
+## Dodawanie Więcej Komend WebDriver
 
-Jeśli używasz protokołu WebDriver i uruchamiasz testy na platformie, która obsługuje dodatkowe komendy niezdefiniowane w definicjach protokołów w [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols), możesz ręcznie dodać je za pomocą interfejsu `addCommand`. Pakiet `webdriver` oferuje wrapper komend, który pozwala zarejestrować te nowe endpointy w taki sam sposób jak inne komendy, zapewniając te same kontrole parametrów i obsługę błędów. Aby zarejestrować ten nowy endpoint, zaimportuj wrapper komend i zarejestruj nową komendę w następujący sposób:
+Jeśli używasz protokołu WebDriver i uruchamiasz testy na platformie, która obsługuje dodatkowe komendy niezdefiniowane przez żadną z definicji protokołu w [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols), możesz ręcznie dodać je za pomocą interfejsu `addCommand`. Pakiet `webdriver` oferuje wrapper komendy, który pozwala na rejestrowanie tych nowych punktów końcowych w ten sam sposób co inne komendy, zapewniając te same kontrole parametrów i obsługę błędów. Aby zarejestrować ten nowy punkt końcowy, zaimportuj wrapper komendy i zarejestruj nową komendę za jego pomocą w następujący sposób:
 
 ```js
 import { command } from 'webdriver'
@@ -387,7 +387,7 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 Wywołanie tej komendy z nieprawidłowymi parametrami powoduje taką samą obsługę błędów jak predefiniowane komendy protokołu, np.:
 
 ```js
-// wywołanie komendy bez wymaganego parametru URL i ładunku
+// wywołaj komendę bez wymaganego parametru URL i ładunku
 await browser.myNewCommand()
 
 /**
@@ -405,10 +405,10 @@ await browser.myNewCommand()
  */
 ```
 
-Poprawne wywołanie komendy, np. `browser.myNewCommand('foo', 'bar')`, poprawnie wykonuje żądanie WebDriver do np. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` z ładunkiem typu `{ foo: 'bar' }`.
+Prawidłowe wywołanie komendy, np. `browser.myNewCommand('foo', 'bar')`, prawidłowo wykonuje żądanie WebDriver do np. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` z ładunkiem typu `{ foo: 'bar' }`.
 
 :::note
-Parametr URL `:sessionId` zostanie automatycznie zastąpiony identyfikatorem sesji WebDriver. Inne parametry URL mogą być zastosowane, ale muszą być zdefiniowane w `variables`.
+Parametr URL `:sessionId` zostanie automatycznie zastąpiony identyfikatorem sesji sesji WebDriver. Inne parametry URL mogą być stosowane, ale muszą być zdefiniowane w `variables`.
 :::
 
-Zobacz przykłady definicji komend protokołu w pakiecie [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).
+Zobacz przykłady definiowania komend protokołu w pakiecie [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols).
