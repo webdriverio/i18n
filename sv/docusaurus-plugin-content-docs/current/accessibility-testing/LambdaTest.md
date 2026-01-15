@@ -1,7 +1,6 @@
 ---
 id: lambdatest
 title: LambdaTest tillgänglighetstestning
-description: 
 ---
 
 # LambdaTest tillgänglighetstestning
