@@ -184,7 +184,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BoilerplateProjects.md": {
-    "hash": "b8b4aa7c8fda59e13fcc118458f8110c05eb94ec4494e3c3902c973cd577c510",
+    "hash": "1cfce80754eda75b28b08d7c2fef89689939677c61f5d58a3ff031334dd616b4",
     "languages": [
       "sv",
       "it",
@@ -6754,6 +6754,121 @@
   },
   "en/docusaurus-plugin-content-docs/current/accessibility-testing/LambdaTest.md": {
     "hash": "8512851e1bc7aa158bb0ab066e90ab4c26a7105178af16d78b9123ee35951b5f",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/mcp/tools.md": {
+    "hash": "455fec0503b60648c4a7b8d9e63c0878323a19a3e566ae2e152b3b8ab5d4cac6",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/mcp/configuration.md": {
+    "hash": "dcf84daadf64b048e74bb3347d1ea58a83ea94f9048305597074899001b1e238",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/MCP.md": {
+    "hash": "f56d04ada8d58bc13fc808a4b2e4127625237578505a5dbb5ca9950270d1c485",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/mcp/selectors.md": {
+    "hash": "301e31fe2d2d5b997b50a5d522b732f76dbdd1450723fb1103f94a71742f4995",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/mcp/faq.md": {
+    "hash": "69381635b5f62ebfea8bdeadad116d7b0a13d4ba3a758c122c797dec1710e987",
     "languages": [
       "ar",
       "de",
