@@ -3,17 +3,17 @@ id: integrate-with-smartui
 title: SmartUI
 ---
 
-O LambdaTest [SmartUI](https://www.lambdatest.com/smart-visual-testing) oferece testes de regressão visual com tecnologia de IA para seus testes WebdriverIO. Ele captura screenshots, compara-os com linhas de base e destaca diferenças visuais com algoritmos de comparação inteligentes.
+TestMu AI (Anteriormente LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) fornece testes de regressão visual com tecnologia de IA para seus testes WebdriverIO. Ele captura screenshots, compara-os com as linhas de base e destaca diferenças visuais com algoritmos de comparação inteligentes.
 
-## Setup
+## Configuração
 
 **Crie um projeto SmartUI**
 
-[Faça login](https://accounts.lambdatest.com/register) no LambdaTest e navegue até [Projetos SmartUI](https://smartui.lambdatest.com/) para criar um novo projeto. Selecione **Web** como plataforma e configure o nome do projeto, aprovadores e tags.
+[Faça login](https://accounts.lambdatest.com/register) no TestMu AI (Anteriormente LambdaTest) e navegue até [Projetos SmartUI](https://smartui.lambdatest.com/) para criar um novo projeto. Selecione **Web** como plataforma e configure o nome do seu projeto, aprovadores e tags.
 
 **Configure suas credenciais**
 
-Obtenha seu `LT_USERNAME` e `LT_ACCESS_KEY` do painel do LambdaTest e defina-os como variáveis de ambiente:
+Obtenha seu `LT_USERNAME` e `LT_ACCESS_KEY` do painel do TestMu AI (Anteriormente LambdaTest) e defina-os como variáveis de ambiente:
 
 ```sh
 export LT_USERNAME="<your username>"
@@ -34,7 +34,7 @@ Atualize seu `wdio.conf.js`:
 exports.config = {
   user: process.env.LT_USERNAME,
   key: process.env.LT_ACCESS_KEY,
-  
+
   capabilities: [{
     browserName: 'chrome',
     browserVersion: 'latest',
@@ -58,11 +58,11 @@ Use `browser.execute('smartui.takeScreenshot')` para capturar screenshots:
 describe('WebdriverIO SmartUI Test', () => {
   it('should capture screenshot for visual testing', async () => {
     await browser.url('https://webdriver.io');
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage Screenshot'
     });
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage with Options',
       ignoreDOM: {
@@ -110,9 +110,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## Recursos
 
-| Recurso                                                                                           | Descrição                                |
-|---------------------------------------------------------------------------------------------------|------------------------------------------|
-| [Documentação Oficial](https://www.lambdatest.com/support/docs/smart-ui-cypress/)               | Documentação do SmartUI                  |
-| [Painel SmartUI](https://smartui.lambdatest.com/)                                                | Acesse seus projetos e builds SmartUI    |
-| [Configurações Avançadas](https://www.lambdatest.com/support/docs/test-settings-options/)       | Configure a sensibilidade de comparação  |
-| [Opções de Build](https://www.lambdatest.com/support/docs/smart-ui-build-options/)              | Configuração avançada de builds          |
+| Recurso                                                                                          | Descrição                                |
+|--------------------------------------------------------------------------------------------------|------------------------------------------|
+| [Documentação Oficial](https://www.testmuai.com/support/docs/smart-ui-cypress/)               | Documentação do SmartUI                   |
+| [Painel SmartUI](https://smartui.lambdatest.com/)                                                | Acesse seus projetos e builds do SmartUI  |
+| [Configurações Avançadas](https://www.testmuai.com/support/docs/test-settings-options/)       | Configure a sensibilidade de comparação  |
+| [Opções de Build](https://www.testmuai.com/support/docs/smart-ui-build-options/)              | Configuração avançada de build           |

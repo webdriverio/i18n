@@ -184,7 +184,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BoilerplateProjects.md": {
-    "hash": "1cfce80754eda75b28b08d7c2fef89689939677c61f5d58a3ff031334dd616b4",
+    "hash": "546ccc6c7b5384c7e73fde9508459e903fdc24e0fb3bc9ffebebb818aba48589",
     "languages": [
       "sv",
       "it",
@@ -230,7 +230,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CloudServices.md": {
-    "hash": "1ac8ac96c7e658a145a23ad67829219d6d6f6881b60b84bf02c985e983e83cdc",
+    "hash": "21193fea61fa24cbd28d97ae0fb9c3bfce89214be89f0a85b1eac45e56f94db5",
     "languages": [
       "sv",
       "it",
@@ -276,7 +276,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Configuration.md": {
-    "hash": "325063df7596fce9cad6807b6c3b6e93491c57b26000fa7f2043887aab05c9b6",
+    "hash": "9a0c63f00d130b706cd4b42c42f0c058bce5f0647b59d0bc529acca13a88d7c3",
     "languages": [
       "sv",
       "it",
@@ -299,7 +299,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ConfigurationFile.md": {
-    "hash": "4624dae15359a66ccce4f425234e2f358b0d7d6a53b8d2afd36ec74c59287860",
+    "hash": "308b50c19a10be594dcc1812e3767984440224779edb12abb2e9f1be97f821c6",
     "languages": [
       "sv",
       "it",
@@ -621,7 +621,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/MocksAndSpies.md": {
-    "hash": "7f15dadfc83800ddf4ad2c6059b7f364ba332cb796feae617d0c7205abc5ec8c",
+    "hash": "830262eaa732808a063239d1e6945c73579791fde0efd66bd8c038cb13e612fe",
     "languages": [
       "sv",
       "it",
@@ -966,7 +966,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Sponsor.md": {
-    "hash": "307bc9510baa16f024babfefa5b2d1029d9bd28484c8434aadad3af5befdbc69",
+    "hash": "97784070d4b7da64a996398cbfd508384d6e8501ace9137b34539a2bf6668c53",
     "languages": [
       "sv",
       "it",
@@ -5431,7 +5431,7 @@
     ]
   },
   "en/docusaurus-theme-classic/footer.json": {
-    "hash": "4351451bc673d3f22681f39572e99ad0b19927ea9736aa40b308bb804c59a997",
+    "hash": "7674f9d3b6db26a12309169acbd5a93b1b11b65fffb68f7cd4dbcaef271e63cd",
     "languages": [
       "ar",
       "de",
@@ -6730,7 +6730,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/integrate-with-smartui.md": {
-    "hash": "baea2bbe95372dc1f04989897e7a44a562ee7a35fd6d23ee430b263ad66ee955",
+    "hash": "63bd0803e5ada840b48d0cf50b77ef4fb2e545240a90e6ffc937dc17f9cb54cb",
     "languages": [
       "ar",
       "de",
@@ -6753,7 +6753,7 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/accessibility-testing/LambdaTest.md": {
-    "hash": "8512851e1bc7aa158bb0ab066e90ab4c26a7105178af16d78b9123ee35951b5f",
+    "hash": "db732566b725e4f19e7c48e13e892e502b7a9ed73a8cfd4b8c06628415efad00",
     "languages": [
       "ar",
       "de",

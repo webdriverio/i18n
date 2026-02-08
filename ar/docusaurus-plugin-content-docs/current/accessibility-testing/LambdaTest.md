@@ -1,28 +1,28 @@
 ---
-id: lambdatest
-title: اختبار إمكانية الوصول LambdaTest
+id: testmuai
+title: اختبار إمكانية الوصول لـ TestMu AI (سابقًا LambdaTest)
 ---
 
-# اختبار إمكانية الوصول LambdaTest
+# TestMu AI Accessibility Testing
 
-يمكنك بسهولة دمج اختبارات إمكانية الوصول في مجموعات اختبارات WebdriverIO باستخدام [اختبار إمكانية الوصول LambdaTest](https://www.lambdatest.com/support/docs/accessibility-automation-settings/).
+يمكنك بسهولة دمج اختبارات إمكانية الوصول في مجموعات اختبار WebdriverIO الخاصة بك باستخدام [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
 
-## مزايا اختبار إمكانية الوصول LambdaTest
+## مزايا TestMu AI لاختبار إمكانية الوصول
 
-يساعدك اختبار إمكانية الوصول LambdaTest على تحديد وإصلاح مشكلات إمكانية الوصول في تطبيقات الويب الخاصة بك. فيما يلي المزايا الرئيسية:
+يساعدك TestMu AI Accessibility Testing على تحديد وإصلاح مشكلات إمكانية الوصول في تطبيقات الويب الخاصة بك. فيما يلي المزايا الرئيسية:
 
-* يتكامل بسلاسة مع أتمتة اختبارات WebdriverIO الحالية.
-* فحص تلقائي لإمكانية الوصول أثناء تنفيذ الاختبار.
-* تقارير شاملة عن توافق معايير WCAG.
-* تتبع مفصل للمشكلات مع إرشادات للإصلاح.
-* دعم لمعايير WCAG المتعددة (WCAG 2.0, WCAG 2.1, WCAG 2.2).
-* رؤى فورية حول إمكانية الوصول في لوحة تحكم LambdaTest.
+* يتكامل بسلاسة مع أتمتة اختبار WebdriverIO الحالية.
+* فحص أوتوماتيكي لإمكانية الوصول أثناء تنفيذ الاختبار.
+* تقارير شاملة عن الامتثال لمعايير WCAG.
+* تتبع تفصيلي للمشكلات مع إرشادات للإصلاح.
+* دعم لمعايير WCAG المتعددة (WCAG 2.0، WCAG 2.1، WCAG 2.2).
+* رؤى فورية حول إمكانية الوصول في لوحة تحكم TestMu AI.
 
-## البدء مع اختبار إمكانية الوصول LambdaTest
+## ابدأ مع TestMu AI لاختبار إمكانية الوصول
 
-اتبع هذه الخطوات لدمج مجموعات اختبارات WebdriverIO الخاصة بك مع اختبار إمكانية الوصول من LambdaTest:
+اتبع هذه الخطوات لدمج مجموعات اختبار WebdriverIO الخاصة بك مع اختبار إمكانية الوصول من TestMu AI:
 
-1. قم بتثبيت حزمة خدمة LambdaTest WebdriverIO.
+1. قم بتثبيت حزمة خدمة TestMu AI WebdriverIO.
 
 ```bash npm2yarn
 npm install --save-dev @lambdatest/wdio-lambdatest-service
@@ -35,7 +35,7 @@ exports.config = {
     //...
     user: process.env.LT_USERNAME || '<lambdatest_username>',
     key: process.env.LT_ACCESS_KEY || '<lambdatest_access_key>',
-    
+
     capabilities: [{
         browserName: 'chrome',
         'LT:Options': {
@@ -49,7 +49,7 @@ exports.config = {
             }
         }
     }],
-    
+
     services: [
         ['lambdatest', {
             tunnel: false
@@ -59,7 +59,7 @@ exports.config = {
 };
 ```
 
-3. قم بتشغيل اختباراتك كالمعتاد. سيقوم LambdaTest تلقائياً بفحص مشكلات إمكانية الوصول أثناء تنفيذ الاختبار.
+3. قم بتشغيل اختباراتك كالمعتاد. سيقوم TestMu AI تلقائيًا بفحص مشكلات إمكانية الوصول أثناء تنفيذ الاختبار.
 
 ```bash
 npx wdio run wdio.conf.js
@@ -69,7 +69,7 @@ npx wdio run wdio.conf.js
 
 يدعم كائن `accessibilityOptions` المعلمات التالية:
 
-* **wcagVersion**: حدد إصدار معيار WCAG للاختبار مقابله
+* **wcagVersion**: حدد إصدار معيار WCAG للاختبار
   - `wcag20` - WCAG 2.0 المستوى A
   - `wcag21a` - WCAG 2.1 المستوى A
   - `wcag21aa` - WCAG 2.1 المستوى AA (الافتراضي)
@@ -81,11 +81,11 @@ npx wdio run wdio.conf.js
 
 ## عرض تقارير إمكانية الوصول
 
-بعد اكتمال اختباراتك، يمكنك عرض تقارير مفصلة عن إمكانية الوصول في [لوحة تحكم LambdaTest](https://automation.lambdatest.com/):
+بعد اكتمال اختباراتك، يمكنك عرض تقارير مفصلة عن إمكانية الوصول في [لوحة تحكم TestMu AI](https://automation.lambdatest.com/):
 
 1. انتقل إلى تنفيذ الاختبار الخاص بك
 2. انقر على علامة التبويب "Accessibility"
 3. راجع المشكلات المحددة مع مستويات الخطورة
-4. احصل على إرشادات الإصلاح لكل مشكلة
+4. احصل على إرشادات للإصلاح لكل مشكلة
 
-لمزيد من المعلومات التفصيلية، قم بزيارة [وثائق أتمتة إمكانية الوصول LambdaTest](https://www.lambdatest.com/support/docs/accessibility-automation-settings/).
+لمزيد من المعلومات التفصيلية، قم بزيارة [وثائق أتمتة إمكانية الوصول TestMu AI](https://www.testmuai.com/support/docs/accessibility-automation-settings/).

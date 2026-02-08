@@ -1,19 +1,19 @@
 ---
 id: integrate-with-smartui
-title: स्मार्टUI
+title: स्मार्टयूआई
 ---
 
-LambdaTest [SmartUI](https://www.lambdatest.com/smart-visual-testing) आपके WebdriverIO टेस्ट के लिए AI-संचालित विजुअल रिग्रेशन टेस्टिंग प्रदान करता है। यह स्क्रीनशॉट कैप्चर करता है, उन्हें बेसलाइन के साथ तुलना करता है, और बुद्धिमान तुलना एल्गोरिदम के साथ दृश्य अंतर को हाइलाइट करता है।
+TestMu AI (पूर्व में LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) आपके WebdriverIO परीक्षणों के लिए AI-संचालित विज़ुअल रिग्रेशन टेस्टिंग प्रदान करता है। यह स्क्रीनशॉट कैप्चर करता है, उन्हें बेसलाइन के साथ तुलना करता है, और बुद्धिमान तुलना एल्गोरिदम के साथ दृश्य अंतर को हाइलाइट करता है।
 
 ## सेटअप
 
-**एक SmartUI प्रोजेक्ट बनाएं**
+**SmartUI प्रोजेक्ट बनाएं**
 
-LambdaTest पर [साइन इन](https://accounts.lambdatest.com/register) करें और एक नया प्रोजेक्ट बनाने के लिए [SmartUI Projects](https://smartui.lambdatest.com/) पर जाएं। प्लेटफॉर्म के रूप में **Web** चुनें और अपना प्रोजेक्ट नाम, अप्रूवर्स और टैग कॉन्फ़िगर करें।
+TestMu AI (पूर्व में LambdaTest) पर [साइन इन](https://accounts.lambdatest.com/register) करें और नया प्रोजेक्ट बनाने के लिए [SmartUI Projects](https://smartui.lambdatest.com/) पर नेविगेट करें। प्लेटफॉर्म के रूप में **Web** का चयन करें और अपने प्रोजेक्ट का नाम, अप्रूवर्स और टैग कॉन्फ़िगर करें।
 
 **क्रेडेंशियल्स सेट करें**
 
-LambdaTest डैशबोर्ड से अपना `LT_USERNAME` और `LT_ACCESS_KEY` प्राप्त करें और उन्हें पर्यावरण वेरिएबल के रूप में सेट करें:
+TestMu AI (पूर्व में LambdaTest) डैशबोर्ड से अपना `LT_USERNAME` और `LT_ACCESS_KEY` प्राप्त करें और उन्हें एनवायरनमेंट वेरिएबल्स के रूप में सेट करें:
 
 ```sh
 export LT_USERNAME="<your username>"
@@ -34,7 +34,7 @@ npm install @lambdatest/wdio-driver
 exports.config = {
   user: process.env.LT_USERNAME,
   key: process.env.LT_ACCESS_KEY,
-  
+
   capabilities: [{
     browserName: 'chrome',
     browserVersion: 'latest',
@@ -58,11 +58,11 @@ exports.config = {
 describe('WebdriverIO SmartUI Test', () => {
   it('should capture screenshot for visual testing', async () => {
     await browser.url('https://webdriver.io');
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage Screenshot'
     });
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage with Options',
       ignoreDOM: {
@@ -84,7 +84,7 @@ npx wdio wdio.conf.js
 
 ## उन्नत विकल्प
 
-**एलिमेंट्स को इग्नोर करें**
+**तत्वों को अनदेखा करें**
 
 ```javascript
 await browser.execute('smartui.takeScreenshot', {
@@ -110,9 +110,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## संसाधन
 
-| संसाधन                                                                                           | विवरण                                   |
+| संसाधन                                                                                           | विवरण                                  |
 |---------------------------------------------------------------------------------------------------|------------------------------------------|
-| [आधिकारिक दस्तावेज़ीकरण](https://www.lambdatest.com/support/docs/smart-ui-cypress/)              | SmartUI दस्तावेज़ीकरण                    |
-| [SmartUI डैशबोर्ड](https://smartui.lambdatest.com/)                                               | अपने SmartUI प्रोजेक्ट्स और बिल्ड्स तक पहुंचें  |
-| [उन्नत सेटिंग्स](https://www.lambdatest.com/support/docs/test-settings-options/)                 | तुलना संवेदनशीलता कॉन्फ़िगर करें           |
-| [बिल्ड विकल्प](https://www.lambdatest.com/support/docs/smart-ui-build-options/)                  | उन्नत बिल्ड कॉन्फ़िगरेशन                  |
+| [आधिकारिक दस्तावेज़ीकरण](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | SmartUI दस्तावेज़ीकरण                    |
+| [SmartUI डैशबोर्ड](https://smartui.lambdatest.com/)                                              | अपने SmartUI प्रोजेक्ट और बिल्ड तक पहुंचें  |
+| [उन्नत सेटिंग्स](https://www.testmuai.com/support/docs/test-settings-options/)              | तुलना संवेदनशीलता कॉन्फ़िगर करें         |
+| [बिल्ड विकल्प](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | उन्नत बिल्ड कॉन्फ़िगरेशन             |

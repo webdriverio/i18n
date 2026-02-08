@@ -3,38 +3,38 @@ id: integrate-with-smartui
 title: SmartUI
 ---
 
-Το LambdaTest [SmartUI](https://www.lambdatest.com/smart-visual-testing) παρέχει AI-powered οπτικές δοκιμές παλινδρόμησης για τα WebdriverIO τεστ σας. Καταγράφει στιγμιότυπα οθόνης, τα συγκρίνει με τις βασικές γραμμές και επισημαίνει οπτικές διαφορές με ευφυείς αλγόριθμους σύγκρισης.
+Το TestMu AI (Πρώην LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) παρέχει οπτικές δοκιμές παλινδρόμησης με τεχνητή νοημοσύνη για τις δοκιμές WebdriverIO σας. Καταγράφει στιγμιότυπα οθόνης, τα συγκρίνει με βάσεις αναφοράς και επισημαίνει οπτικές διαφορές με έξυπνους αλγόριθμους σύγκρισης.
 
-## Setup
+## Εγκατάσταση
 
 **Δημιουργία έργου SmartUI**
 
-[Συνδεθείτε](https://accounts.lambdatest.com/register) στο LambdaTest και πλοηγηθείτε στο [SmartUI Projects](https://smartui.lambdatest.com/) για να δημιουργήσετε ένα νέο έργο. Επιλέξτε **Web** ως πλατφόρμα και διαμορφώστε το όνομα του έργου σας, τους εγκριτές και τις ετικέτες.
+[Συνδεθείτε](https://accounts.lambdatest.com/register) στο TestMu AI (Πρώην LambdaTest) και πλοηγηθείτε στα [SmartUI Projects](https://smartui.lambdatest.com/) για να δημιουργήσετε ένα νέο έργο. Επιλέξτε **Web** ως πλατφόρμα και διαμορφώστε το όνομα του έργου σας, τους εγκριτές και τις ετικέτες.
 
 **Ρύθμιση διαπιστευτηρίων**
 
-Αποκτήστε το `LT_USERNAME` και το `LT_ACCESS_KEY` σας από τον πίνακα ελέγχου του LambdaTest και ορίστε τα ως μεταβλητές περιβάλλοντος:
+Αποκτήστε το `LT_USERNAME` και το `LT_ACCESS_KEY` από τον πίνακα ελέγχου του TestMu AI (Πρώην LambdaTest) και ορίστε τα ως μεταβλητές περιβάλλοντος:
 
 ```sh
 export LT_USERNAME="<your username>"
 export LT_ACCESS_KEY="<your access key>"
 ```
 
-**Εγκατάσταση SmartUI SDK**
+**Εγκατάσταση του SmartUI SDK**
 
 ```sh
 npm install @lambdatest/wdio-driver
 ```
 
-**Διαμόρφωση WebdriverIO**
+**Διαμόρφωση του WebdriverIO**
 
-Ενημερώστε το `wdio.conf.js`:
+Ενημερώστε το αρχείο `wdio.conf.js`:
 
 ```javascript
 exports.config = {
   user: process.env.LT_USERNAME,
   key: process.env.LT_ACCESS_KEY,
-  
+
   capabilities: [{
     browserName: 'chrome',
     browserVersion: 'latest',
@@ -58,11 +58,11 @@ exports.config = {
 describe('WebdriverIO SmartUI Test', () => {
   it('should capture screenshot for visual testing', async () => {
     await browser.url('https://webdriver.io');
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage Screenshot'
     });
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage with Options',
       ignoreDOM: {
@@ -80,11 +80,11 @@ describe('WebdriverIO SmartUI Test', () => {
 npx wdio wdio.conf.js
 ```
 
-Δείτε τα αποτελέσματα στον [SmartUI Dashboard](https://smartui.lambdatest.com/).
+Δείτε τα αποτελέσματα στον [Πίνακα Ελέγχου SmartUI](https://smartui.lambdatest.com/).
 
-## Προχωρημένες Επιλογές
+## Προηγμένες Επιλογές
 
-**Αγνόηση στοιχείων**
+**Παράβλεψη στοιχείων**
 
 ```javascript
 await browser.execute('smartui.takeScreenshot', {
@@ -110,9 +110,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## Πόροι
 
-| Πόρος                                                                                             | Περιγραφή                                |
+| Πόρος                                                                                          | Περιγραφή                              |
 |---------------------------------------------------------------------------------------------------|------------------------------------------|
-| [Official Documentation](https://www.lambdatest.com/support/docs/smart-ui-cypress/)              | Τεκμηρίωση SmartUI                       |
-| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                              | Πρόσβαση στα έργα και τις δομές SmartUI  |
-| [Advanced Settings](https://www.lambdatest.com/support/docs/test-settings-options/)              | Διαμόρφωση ευαισθησίας σύγκρισης         |
-| [Build Options](https://www.lambdatest.com/support/docs/smart-ui-build-options/)                 | Προχωρημένη διαμόρφωση δομής             |
+| [Επίσημη Τεκμηρίωση](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | Τεκμηρίωση SmartUI                    |
+| [Πίνακας Ελέγχου SmartUI](https://smartui.lambdatest.com/)                                              | Πρόσβαση στα έργα και τις κατασκευές SmartUI  |
+| [Προηγμένες Ρυθμίσεις](https://www.testmuai.com/support/docs/test-settings-options/)              | Διαμόρφωση ευαισθησίας σύγκρισης         |
+| [Επιλογές Κατασκευής](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | Προηγμένη διαμόρφωση κατασκευής             |

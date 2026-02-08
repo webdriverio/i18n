@@ -1,11 +1,11 @@
 ---
 id: cloudservices
-title: Uso de Servicios en la Nube
+title: Usando Servicios en la Nube
 ---
 
-El uso de servicios bajo demanda como Sauce Labs, Browserstack, TestingBot, LambdaTest o Perfecto con WebdriverIO es bastante simple. Todo lo que necesitas hacer es configurar el `user` y `key` de tu servicio en tus opciones.
+Using on-demand services like Sauce Labs, Browserstack, TestingBot, TestMu AI (Formerly LambdaTest) or Perfecto with WebdriverIO is pretty simple. All you need to do is to set your service's `user` and `key` in your options.
 
-Opcionalmente, también puedes parametrizar tu prueba configurando capacidades específicas de la nube como `build`. Si solo quieres ejecutar servicios en la nube en Travis, puedes usar la variable de entorno `CI` para verificar si estás en Travis y modificar la configuración en consecuencia.
+Optionally, you can also parametrize your test by setting cloud-specific capabilities like `build`. If you only want to run cloud services in Travis, you can use the `CI` environment variable to check if you are in Travis and modify the config accordingly.
 
 ```js
 // wdio.conf.js
@@ -18,31 +18,31 @@ if (process.env.CI) {
 
 ## Sauce Labs
 
-Puedes configurar tus pruebas para que se ejecuten de forma remota en [Sauce Labs](https://saucelabs.com).
+You can set up your tests to run remotely in [Sauce Labs](https://saucelabs.com).
 
-El único requisito es establecer el `user` y `key` en tu configuración (ya sea exportado por `wdio.conf.js` o pasado a `webdriverio.remote(...)`) con tu nombre de usuario y clave de acceso de Sauce Labs.
+The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your Sauce Labs username and access key.
 
-También puedes pasar cualquier [opción de configuración de prueba](https://docs.saucelabs.com/dev/test-configuration-options/) opcional como clave/valor en las capacidades para cualquier navegador.
+You can also pass in any optional [test configuration option](https://docs.saucelabs.com/dev/test-configuration-options/) as a key/value in the capabilities for any browser.
 
 ### Sauce Connect
 
-Si deseas ejecutar pruebas contra un servidor que no es accesible desde Internet (como en `localhost`), entonces necesitas usar [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
+If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
 
-Está fuera del alcance de WebdriverIO soportar esto, por lo que tendrás que iniciarlo por tu cuenta.
+It is out of the scope of WebdriverIO to support this, so you'll have to start it by yourself.
 
-Si estás utilizando el testrunner de WDIO, descarga y configura el [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) en tu `wdio.conf.js`. Ayuda a ejecutar Sauce Connect y viene con características adicionales que integran mejor tus pruebas en el servicio de Sauce.
+If you are using the WDIO testrunner download and configure the [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) in your `wdio.conf.js`. It helps getting Sauce Connect running and comes with additional features that better integrate your tests into the Sauce service.
 
-### Con Travis CI
+### With Travis CI
 
-Sin embargo, Travis CI [tiene soporte](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect) para iniciar Sauce Connect antes de cada prueba, por lo que seguir sus instrucciones para eso es una opción.
+Travis CI, however, does [have support](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect) for starting Sauce Connect before each test, so following their directions for that is an option.
 
-Si lo haces, debes establecer la opción de configuración de prueba `tunnel-identifier` en las `capabilities` de cada navegador. Travis establece esto en la variable de entorno `TRAVIS_JOB_NUMBER` por defecto.
+If you do so, you must set the `tunnel-identifier` test configuration option in each browser's `capabilities`. Travis sets this to the `TRAVIS_JOB_NUMBER` environmental variable by default.
 
-Además, si deseas que Sauce Labs agrupe tus pruebas por número de compilación, puedes establecer el `build` en `TRAVIS_BUILD_NUMBER`.
+Also, if you want to have Sauce Labs group your tests by build number, you can set the `build` to `TRAVIS_BUILD_NUMBER`.
 
-Por último, si estableces `name`, esto cambia el nombre de esta prueba en Sauce Labs para esta compilación. Si estás utilizando el testrunner de WDIO combinado con el [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service), WebdriverIO establece automáticamente un nombre adecuado para la prueba.
+Lastly, if you set `name`, this changes the name of this test in Sauce Labs for this build. If you are using the WDIO testrunner combined with the [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service), WebdriverIO automatically sets a proper name for the test.
 
-Ejemplo de `capabilities`:
+Example `capabilities`:
 
 ```javascript
 browserName: 'chrome',
@@ -53,35 +53,35 @@ name: 'integration',
 build: process.env.TRAVIS_BUILD_NUMBER
 ```
 
-### Tiempos de espera
+### Timeouts
 
-Dado que estás ejecutando tus pruebas de forma remota, puede ser necesario aumentar algunos tiempos de espera.
+Since you are running your tests remotely, it might be necessary to increase some timeouts.
 
-Puedes cambiar el [tiempo de espera de inactividad](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) pasando `idle-timeout` como una opción de configuración de prueba. Esto controla cuánto tiempo esperará Sauce entre comandos antes de cerrar la conexión.
+You can change the [idle timeout](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) by passing `idle-timeout` as a test configuration option. This controls how long Sauce will wait between commands before closing the connection.
 
 ## BrowserStack
 
-WebdriverIO también tiene una integración con [Browserstack](https://www.browserstack.com) incorporada.
+WebdriverIO also has a [Browserstack](https://www.browserstack.com) integration built-in.
 
-El único requisito es establecer el `user` y `key` en tu configuración (ya sea exportado por `wdio.conf.js` o pasado a `webdriverio.remote(...)`) con tu nombre de usuario y clave de acceso de automatización de Browserstack.
+The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your Browserstack automate username and access key.
 
-También puedes pasar cualquier [capacidad soportada](https://www.browserstack.com/automate/capabilities) opcional como clave/valor en las capacidades para cualquier navegador. Si estableces `browserstack.debug` en `true`, grabará una captura de pantalla de la sesión, lo que podría ser útil.
+You can also pass in any optional [supported capabilities](https://www.browserstack.com/automate/capabilities) as a key/value in the capabilities for any browser. If you set `browserstack.debug` to `true` it will record a screencast of the session, which might be helpful.
 
-### Pruebas locales
+### Local Testing
 
-Si deseas ejecutar pruebas contra un servidor que no es accesible desde Internet (como en `localhost`), entonces necesitas usar [Pruebas locales](https://www.browserstack.com/local-testing#command-line).
+If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://www.browserstack.com/local-testing#command-line).
 
-Está fuera del alcance de WebdriverIO soportar esto, por lo que debes iniciarlo por tu cuenta.
+It is out of the scope of WebdriverIO to support this, so you must start it by yourself.
 
-Si usas local, debes establecer `browserstack.local` en `true` en tus capacidades.
+If you do use local, you should set `browserstack.local` to `true` in your capabilities.
 
-Si estás utilizando el testrunner de WDIO, descarga y configura el [`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service) en tu `wdio.conf.js`. Ayuda a ejecutar BrowserStack y viene con características adicionales que integran mejor tus pruebas en el servicio de BrowserStack.
+If you are using the WDIO testrunner, download and configure the [`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service) in your `wdio.conf.js`. It helps get BrowserStack running, and comes with additional features that better integrate your tests into the BrowserStack service.
 
-### Con Travis CI
+### With Travis CI
 
-Si deseas agregar Pruebas locales en Travis, debes iniciarlo por tu cuenta.
+If you want to add Local Testing in Travis, you have to start it by yourself.
 
-El siguiente script descargará e iniciará en segundo plano. Deberías ejecutar esto en Travis antes de iniciar las pruebas.
+The following script will download and start it in the background. You should run this in Travis before starting the tests.
 
 ```sh
 wget https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
@@ -90,9 +90,9 @@ unzip BrowserStackLocal-linux-x64.zip
 sleep 3
 ```
 
-Además, es posible que desees establecer el `build` en el número de compilación de Travis.
+Also, you might wish set the `build` to the Travis build number.
 
-Ejemplo de `capabilities`:
+Example `capabilities`:
 
 ```javascript
 browserName: 'chrome',
@@ -105,41 +105,41 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## TestingBot
 
-El único requisito es establecer el `user` y `key` en tu configuración (ya sea exportado por `wdio.conf.js` o pasado a `webdriverio.remote(...)`) con tu nombre de usuario y clave secreta de [TestingBot](https://testingbot.com).
+The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your [TestingBot](https://testingbot.com) username and secret key.
 
-También puedes pasar cualquier [capacidad soportada](https://testingbot.com/support/other/test-options) opcional como clave/valor en las capacidades para cualquier navegador.
+You can also pass in any optional [supported capabilities](https://testingbot.com/support/other/test-options) as a key/value in the capabilities for any browser.
 
-### Pruebas locales
+### Local Testing
 
-Si deseas ejecutar pruebas contra un servidor que no es accesible desde Internet (como en `localhost`), entonces necesitas usar [Pruebas locales](https://testingbot.com/support/other/tunnel). TestingBot proporciona un túnel basado en Java para permitirte probar sitios web no accesibles desde Internet.
+If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://testingbot.com/support/other/tunnel). TestingBot provides a Java-based tunnel to allow you to test websites not accessible from the internet.
 
-Su página de soporte de túnel contiene la información necesaria para ponerlo en marcha.
+Their tunnel support page contains the information necessary to get this up and running.
 
-Si estás utilizando el testrunner de WDIO, descarga y configura el [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) en tu `wdio.conf.js`. Ayuda a ejecutar TestingBot y viene con características adicionales que integran mejor tus pruebas en el servicio de TestingBot.
+If you are using the WDIO testrunner, download and configure the [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) in your `wdio.conf.js`. It helps get TestingBot running, and comes with additional features that better integrate your tests into the TestingBot service.
 
-## LambdaTest
+## TestMu AI (Formerly LambdaTest)
 
-La integración con [LambdaTest](https://www.lambdatest.com) también está incorporada.
+[TestMu AI](https://www.testmuai.com/) integration is also built-in.
 
-El único requisito es establecer el `user` y `key` en tu configuración (ya sea exportado por `wdio.conf.js` o pasado a `webdriverio.remote(...)`) con tu nombre de usuario y clave de acceso de la cuenta de LambdaTest.
+The only requirement is to set the `user` and `key` in your config (either exported by `wdio.conf.js` or passed into `webdriverio.remote(...)`) to your TestMu AI account username and access key.
 
-También puedes pasar cualquier [capacidad soportada](https://www.lambdatest.com/capabilities-generator/) opcional como clave/valor en las capacidades para cualquier navegador. Si estableces `visual` en `true`, grabará una captura de pantalla de la sesión, lo que podría ser útil.
+You can also pass in any optional [supported capabilities](https://www.testmuai.com/capabilities-generator/) as a key/value in the capabilities for any browser. If you set `visual` to `true` it will record a screencast of the session, which might be helpful.
 
-### Túnel para pruebas locales
+### Tunnel for local testing
 
-Si deseas ejecutar pruebas contra un servidor que no es accesible desde Internet (como en `localhost`), entonces necesitas usar [Pruebas locales](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/).
+If you want to run tests against a server that is not accessible to the Internet (like on `localhost`), then you need to use [Local Testing](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/).
 
-Está fuera del alcance de WebdriverIO soportar esto, por lo que debes iniciarlo por tu cuenta.
+It is out of the scope of WebdriverIO to support this, so you must start it by yourself.
 
-Si usas local, debes establecer `tunnel` en `true` en tus capacidades.
+If you do use local, you should set `tunnel` to `true` in your capabilities.
 
-Si estás utilizando el testrunner de WDIO, descarga y configura el [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) en tu `wdio.conf.js`. Ayuda a ejecutar LambdaTest y viene con características adicionales que integran mejor tus pruebas en el servicio de LambdaTest.
+If you are using the WDIO testrunner, download and configure the [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) in your `wdio.conf.js`. It helps get TestMu AI running, and comes with additional features that better integrate your tests into the TestMu AI service.
 
-### Con Travis CI
+### With Travis CI
 
-Si deseas agregar Pruebas locales en Travis, debes iniciarlo por tu cuenta.
+If you want to add Local Testing in Travis, you have to start it by yourself.
 
-El siguiente script descargará e iniciará en segundo plano. Deberías ejecutar esto en Travis antes de iniciar las pruebas.
+The following script will download and start it in the background. You should run this in Travis before starting the tests.
 
 ```sh
 wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
@@ -148,9 +148,9 @@ unzip LT_Linux.zip
 sleep 3
 ```
 
-Además, es posible que desees establecer el `build` en el número de compilación de Travis.
+Also, you might wish set the `build` to the Travis build number.
 
-Ejemplo de `capabilities`:
+Example `capabilities`:
 
 ```javascript
 platform: 'Windows 10',
@@ -163,7 +163,7 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## Perfecto
 
-Cuando usas wdio con [`Perfecto`](https://www.perfecto.io), necesitas crear un token de seguridad para cada usuario y agregarlo en la estructura de capacidades (además de otras capacidades), de la siguiente manera:
+When using wdio with [`Perfecto`](https://www.perfecto.io), you need to create a security token for each user and add this in the capabilities structure (in addition to other capabilities), as follows:
 
 ```js
 export const config = {
@@ -173,7 +173,7 @@ export const config = {
   }],
 ```
 
-Además, necesitas agregar la configuración de la nube, de la siguiente manera:
+In addition, you need to add cloud configuration, as follows:
 
 ```js
   hostname: "your_cloud_name.perfectomobile.com",

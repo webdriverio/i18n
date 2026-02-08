@@ -1,28 +1,29 @@
 ---
-id: lambdatest
-title: Test di Accessibilità LambdaTest
+id: testmuai
+title: Test di Accessibilità TestMu AI (Precedentemente LambdaTest)
+description: 
 ---
 
-# Test di Accessibilità LambdaTest
+# TestMu AI Accessibility Testing
 
-Puoi facilmente integrare i test di accessibilità nelle tue suite di test WebdriverIO utilizzando [LambdaTest Accessibility Testing](https://www.lambdatest.com/support/docs/accessibility-automation-settings/).
+Puoi facilmente integrare i test di accessibilità nelle tue suite di test WebdriverIO utilizzando [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
 
-## Vantaggi dei Test di Accessibilità LambdaTest
+## Vantaggi di TestMu AI Accessibility Testing
 
-I Test di Accessibilità LambdaTest ti aiutano a identificare e risolvere i problemi di accessibilità nelle tue applicazioni web. I seguenti sono i vantaggi principali:
+TestMu AI Accessibility Testing ti aiuta a identificare e correggere i problemi di accessibilità nelle tue applicazioni web. I seguenti sono i vantaggi principali:
 
 * Si integra perfettamente con la tua automazione di test WebdriverIO esistente.
 * Scansione automatica dell'accessibilità durante l'esecuzione dei test.
-* Reporting completo di conformità WCAG.
-* Monitoraggio dettagliato dei problemi con guida alla risoluzione.
-* Supporto per diversi standard WCAG (WCAG 2.0, WCAG 2.1, WCAG 2.2).
-* Informazioni sull'accessibilità in tempo reale nella dashboard LambdaTest.
+* Reportistica completa sulla conformità WCAG.
+* Monitoraggio dettagliato dei problemi con guida alla correzione.
+* Supporto per molteplici standard WCAG (WCAG 2.0, WCAG 2.1, WCAG 2.2).
+* Informazioni in tempo reale sull'accessibilità nella dashboard di TestMu AI.
 
-## Iniziare con i Test di Accessibilità LambdaTest
+## Inizia con TestMu AI Accessibility Testing
 
-Segui questi passaggi per integrare le tue suite di test WebdriverIO con i Test di Accessibilità di LambdaTest:
+Segui questi passaggi per integrare le tue suite di test WebdriverIO con i test di accessibilità di TestMu AI:
 
-1. Installa il pacchetto di servizio LambdaTest WebdriverIO.
+1. Installa il pacchetto di servizio WebdriverIO di TestMu AI.
 
 ```bash npm2yarn
 npm install --save-dev @lambdatest/wdio-lambdatest-service
@@ -35,7 +36,7 @@ exports.config = {
     //...
     user: process.env.LT_USERNAME || '<lambdatest_username>',
     key: process.env.LT_ACCESS_KEY || '<lambdatest_access_key>',
-    
+
     capabilities: [{
         browserName: 'chrome',
         'LT:Options': {
@@ -49,7 +50,7 @@ exports.config = {
             }
         }
     }],
-    
+
     services: [
         ['lambdatest', {
             tunnel: false
@@ -59,7 +60,7 @@ exports.config = {
 };
 ```
 
-3. Esegui i tuoi test come al solito. LambdaTest eseguirà automaticamente la scansione dei problemi di accessibilità durante l'esecuzione del test.
+3. Esegui i tuoi test come al solito. TestMu AI eseguirà automaticamente la scansione per rilevare problemi di accessibilità durante l'esecuzione del test.
 
 ```bash
 npx wdio run wdio.conf.js
@@ -77,15 +78,15 @@ L'oggetto `accessibilityOptions` supporta i seguenti parametri:
 
 * **bestPractice**: Includi raccomandazioni sulle migliori pratiche (predefinito: `false`)
 
-* **needsReview**: Includi problemi che necessitano di revisione manuale (predefinito: `true`)
+* **needsReview**: Includi problemi che richiedono revisione manuale (predefinito: `true`)
 
 ## Visualizzazione dei Report di Accessibilità
 
-Dopo il completamento dei test, puoi visualizzare report dettagliati sull'accessibilità nella [Dashboard LambdaTest](https://automation.lambdatest.com/):
+Dopo il completamento dei test, puoi visualizzare report dettagliati sull'accessibilità nella [Dashboard di TestMu AI](https://automation.lambdatest.com/):
 
-1. Vai alla tua esecuzione di test
+1. Naviga alla tua esecuzione di test
 2. Fai clic sulla scheda "Accessibility"
 3. Esamina i problemi identificati con i livelli di gravità
-4. Ottieni indicazioni per la risoluzione di ciascun problema
+4. Ottieni una guida alla correzione per ciascun problema
 
-Per informazioni più dettagliate, visita la [documentazione sull'automazione dell'accessibilità LambdaTest](https://www.lambdatest.com/support/docs/accessibility-automation-settings/).
+Per informazioni più dettagliate, visita la [documentazione di TestMu AI Accessibility Automation](https://www.testmuai.com/support/docs/accessibility-automation-settings/).

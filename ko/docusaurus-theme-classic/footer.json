@@ -8,11 +8,11 @@
     "description": "The title of the footer links column with title=Community in the footer"
   },
   "link.title.More": {
-    "message": "더 보기",
+    "message": "더보기",
     "description": "The title of the footer links column with title=More in the footer"
   },
   "link.title.Sponsored by": {
-    "message": "스폰서",
+    "message": "후원사",
     "description": "The title of the footer links column with title=Sponsored by in the footer"
   },
   "link.item.label.Getting Started": {
@@ -52,7 +52,7 @@
     "description": "The label of footer link with label=Blog linking to blog"
   },
   "link.item.label.Sponsor": {
-    "message": "스폰서",
+    "message": "후원하기",
     "description": "The label of footer link with label=Sponsor linking to docs/sponsor"
   },
   "link.item.label.Swag Store": {
@@ -62,10 +62,6 @@
   "link.item.label.YouTube": {
     "message": "유튜브",
     "description": "The label of footer link with label=YouTube linking to https://youtube.com/@webdriverio"
-  },
-  "copyright": {
-    "message": "저작권 © 2025 OpenJS 재단",
-    "description": "The footer copyright"
   },
   "logo.alt": {
     "message": "OpenJS 재단 로고",

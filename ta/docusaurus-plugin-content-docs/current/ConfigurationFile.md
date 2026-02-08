@@ -3,9 +3,9 @@ id: configurationfile
 title: கட்டமைப்பு கோப்பு
 ---
 
-கட்டமைப்பு கோப்பு உங்கள் சோதனை தொகுப்பை இயக்க தேவையான அனைத்து தகவல்களையும் கொண்டுள்ளது. இது ஒரு JSON ஐ ஏற்றுமதி செய்யும் NodeJS தொகுதியாகும்.
+கட்டமைப்பு கோப்பானது உங்கள் சோதனை தொகுப்பை இயக்க தேவையான அனைத்து தகவல்களையும் கொண்டுள்ளது. இது ஒரு JSON ஐ ஏற்றுமதி செய்யும் NodeJS தொகுதியாகும்.
 
-இதோ ஆதரிக்கப்படும் அனைத்து பண்புகளுடன் கூடிய எடுத்துக்காட்டு கட்டமைப்பு மற்றும் கூடுதல் தகவல்கள்:
+இங்கே ஆதரிக்கப்படும் அனைத்து பண்புகளும் கூடுதல் தகவல்களும் கொண்ட உதாரண கட்டமைப்பு உள்ளது:
 
 ```js
 export const config = {
@@ -21,7 +21,7 @@ export const config = {
     // =====================
     // Host address of the running Selenium server. This information is usually obsolete, as
     // WebdriverIO automatically connects to localhost. Also if you are using one of the
-    // supported cloud services like Sauce Labs, Browserstack, Testing Bot or LambdaTest, you also don't
+    // supported cloud services like Sauce Labs, Browserstack, Testing Bot or TestMu AI (Formerly LambdaTest), you also don't
     // need to define host and port information (because WebdriverIO can figure that out
     // from your user and key information). However, if you are using a private Selenium
     // backend, you should define the `hostname`, `port`, and `path` here.
@@ -35,7 +35,7 @@ export const config = {
     // =================
     // Service Providers
     // =================
-    // WebdriverIO supports Sauce Labs, Browserstack, Testing Bot and LambdaTest. (Other cloud providers
+    // WebdriverIO supports Sauce Labs, Browserstack, Testing Bot and TestMu AI (Formerly LambdaTest). (Other cloud providers
     // should work, too.) These services define specific `user` and `key` (or access key)
     // values you must put here, in order to connect to these services.
     //
@@ -492,4 +492,4 @@ export const config = {
 }
 ```
 
-[உதாரண கோப்புறை](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js) இல் அனைத்து சாத்தியமான விருப்பங்கள் மற்றும் மாறுபாடுகளுடன் கூடிய கோப்பையும் நீங்கள் காணலாம்.
+நீங்கள் அனைத்து சாத்தியமான விருப்பங்கள் மற்றும் மாறுபாடுகளுடன் ஒரு கோப்பை [example folder](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js) இல் காணலாம்.

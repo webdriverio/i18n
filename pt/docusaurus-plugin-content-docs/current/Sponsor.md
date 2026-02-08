@@ -3,34 +3,34 @@ id: sponsor
 title: Torne-se um Patrocinador do WebdriverIO
 ---
 
-WebdriverIO, um projeto de código aberto sob a licença MIT, é livremente acessível para uso. A sustentabilidade deste ecossistema expansivo, juntamente com o desenvolvimento de recursos inovadores, é possível graças ao generoso apoio financeiro de nossos patrocinadores, que contribuem significativamente para a manutenção e o crescimento contínuo do projeto.
+WebdriverIO, um projeto de código aberto sob a licença MIT, é livremente acessível para uso. A sustentabilidade deste ecossistema expansivo, juntamente com o desenvolvimento de recursos inovadores, é possível graças ao generoso apoio financeiro dos nossos patrocinadores, que contribuem significativamente para a manutenção e crescimento contínuo do projeto.
 
 ## Como Patrocinar​
-Os patrocínios podem ser feitos através do [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) ou [OpenCollective](https://opencollective.com/webdriverio). Faturas podem ser obtidas através do sistema de pagamento do GitHub. São aceitos tanto patrocínios mensais recorrentes quanto doações únicas. Patrocínios recorrentes têm direito a colocação de logotipos conforme especificado nos Níveis de Patrocínio.
+Patrocínios podem ser feitos via [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) ou [OpenCollective](https://opencollective.com/webdriverio). Faturas podem ser obtidas através do sistema de pagamento do GitHub. São aceitos tanto patrocínios mensais recorrentes quanto doações únicas. Patrocínios recorrentes têm direito à colocação de logotipos conforme especificado nos Níveis de Patrocínio.
 
 Se você tiver dúvidas sobre os níveis, logística de pagamento ou dados de exposição do patrocinador, entre em contato com [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
 
-Você também pode visitar a [Loja de Produtos](https://shop.webdriver.io/) do WebdriverIO, onde todos os ganhos nas compras serão destinados ao desenvolvimento do projeto.
+Você também pode visitar a [Loja de Produtos](https://shop.webdriver.io/) do WebdriverIO onde todos os ganhos das compras serão destinados ao desenvolvimento do projeto.
 
 ## Patrocinando o WebdriverIO como Empresa​
-Patrocinar o WebdriverIO oferece grande exposição através do nosso site (mais de 60 mil visualizações de página por mês) e READMEs do projeto no GitHub. Além disso, apoiar o OSS melhora a reputação da sua marca, o que é um ativo importante para qualquer empresa que interage com desenvolvedores.
+Patrocinar o WebdriverIO oferece grande visibilidade através do nosso site (mais de 60 mil visualizações de página por mês) e READMEs do projeto no GitHub. Além disso, apoiar software de código aberto melhora a reputação da sua marca, o que é um ativo importante para qualquer empresa que interage com desenvolvedores.
 
-Se você está usando o WebdriverIO para testar um produto que gera receita, faz sentido comercial patrocinar o desenvolvimento do WebdriverIO: isso garante que o projeto do qual seu produto depende permaneça saudável e ativamente mantido. A exposição e a imagem positiva da marca na comunidade WebdriverIO também facilitam atrair e recrutar desenvolvedores e engenheiros de QA com experiência em WebdriverIO.
+Se você está usando o WebdriverIO para testar um produto que gera receita, faz sentido do ponto de vista comercial patrocinar o desenvolvimento do WebdriverIO: isso garante que o projeto do qual seu produto depende permaneça saudável e ativamente mantido. A exposição e a imagem positiva da marca na comunidade WebdriverIO também facilitam a atração e o recrutamento de desenvolvedores e engenheiros de QA com experiência em WebdriverIO.
 
-__Nota:__ Não aceitamos doações de sites de apostas, serviços de redação de trabalhos, grupos políticos, grupos de ódio, sites de entretenimento adulto ou qualquer outra organização que acreditamos não estar contribuindo para o bem do projeto. Não oferecemos publicidade, somos um projeto de código aberto buscando apoio financeiro de nossos usuários.
+__Nota:__ Não aceitamos doações de sites de jogos de azar, serviços de redação de trabalhos acadêmicos, grupos políticos, grupos de ódio, sites de entretenimento adulto ou qualquer outra organização que não acreditamos estar contribuindo para o bem do projeto. Não oferecemos publicidade, somos um projeto de código aberto buscando apoio financeiro dos nossos usuários.
 
 ## Patrocinando o WebdriverIO como Indivíduo​
-Se você é um usuário individual e gostou da produtividade ao usar o WebdriverIO, considere fazer uma doação como sinal de agradecimento - como nos comprar um café de vez em quando. Muitos dos membros da nossa equipe aceitam patrocínios e doações via GitHub Sponsors.
+Se você é um usuário individual e tem aproveitado a produtividade de usar o WebdriverIO, considere fazer uma doação como um sinal de agradecimento - como nos comprar um café de vez em quando. Muitos dos membros da nossa equipe aceitam patrocínios e doações via GitHub Sponsors.
 
-Você também pode tentar convencer seu empregador a patrocinar o WebdriverIO como empresa. Isso pode não ser fácil, mas os patrocínios empresariais geralmente têm um impacto muito maior na sustentabilidade dos projetos OSS do que doações individuais, então você nos ajudará muito mais se tiver sucesso.
+Você também pode tentar convencer seu empregador a patrocinar o WebdriverIO como empresa. Isso pode não ser fácil, mas patrocínios corporativos geralmente têm um impacto muito maior na sustentabilidade dos projetos de código aberto do que doações individuais, então você nos ajudará muito mais se conseguir.
 
 ## Benefícios por Nível​
 
 - __💎 Premium (USD $1000/mês ou mais):__
   - Limitado a dois patrocinadores globalmente
-  - Colocação exclusiva de logotipo acima da dobra na página inicial de webdriver.io (~2,8 mil visitantes únicos diários).
+  - Colocação exclusiva do logotipo acima da dobra na página inicial de webdriver.io (~2,8 mil visitantes únicos diários).
   - Colocação de logotipo mais proeminente em todos os locais dos níveis abaixo.
-  - Exclusividade garantida por pelo menos um ano, durante o qual nenhuma outra entidade pode "superar a oferta" ou substituí-los, garantindo um período fixo de parceria e visibilidade.
+  - Exclusividade garantida por no mínimo um ano, durante o qual nenhuma outra entidade pode "superar a oferta" ou substituí-los, garantindo um período fixo de parceria e visibilidade.
 - __🥇 Ouro (USD $500 / mês):__
   - Colocação de logotipo grande na página inicial de [webdriver.io](https://webdriver.io/)
   - Colocação de logotipo grande no [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) e [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) do repositório [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
@@ -74,11 +74,11 @@ Você também pode tentar convencer seu empregador a patrocinar o WebdriverIO co
 />
 
 <ImageSwitcher
-    lightImageSrc="/img/sponsors/lambdatest_black.svg"
-    darkImageSrc="/img/sponsors/lambdatest_white.svg"
-    alt="Lambdatest"
+    lightImageSrc="/img/sponsors/testmu_ai_black.svg"
+    darkImageSrc="/img/sponsors/testmu_ai_white.svg"
+    alt="TestMu AI (Formerly LambdaTest)"
     target="_blank"
-    link="https://www.lambdatest.com/"
+    link="https://www.testmuai.com/"
     width="250"
 />
 

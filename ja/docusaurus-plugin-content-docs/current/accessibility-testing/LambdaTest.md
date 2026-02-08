@@ -1,28 +1,29 @@
 ---
-id: lambdatest
-title: LambdaTestアクセシビリティテスト
+id: testmuai
+title: TestMu AI（旧LambdaTest）アクセシビリティテスト
+description: WebdriverIOテストスイートにTestMu AIアクセシビリティテストを簡単に統合する方法
 ---
 
-# LambdaTest Accessibility Testing
+# TestMu AIアクセシビリティテスト
 
-[LambdaTest Accessibility Testing](https://www.lambdatest.com/support/docs/accessibility-automation-settings/)を使用して、WebdriverIOのテストスイートにアクセシビリティテストを簡単に統合できます。
+WebdriverIOテストスイートに[TestMu AIアクセシビリティテスト](https://www.testmuai.com/support/docs/accessibility-automation-settings/)を簡単に統合できます。
 
-## LambdaTest Accessibility Testingのメリット
+## TestMu AIアクセシビリティテストの利点
 
-LambdaTest Accessibility Testingは、Webアプリケーションのアクセシビリティの問題を特定して修正するのに役立ちます。主なメリットは次のとおりです：
+TestMu AIアクセシビリティテストは、Webアプリケーションのアクセシビリティ問題を特定して修正するのに役立ちます。主な利点は次のとおりです：
 
-* 既存のWebdriverIOテスト自動化とシームレスに統合
+* 既存のWebdriverIOテスト自動化にシームレスに統合
 * テスト実行中の自動アクセシビリティスキャン
-* 包括的なWCAGコンプライアンスレポート
-* 詳細な問題追跡と修正ガイダンス
+* 包括的なWCAG準拠レポート
+* 修正ガイダンス付きの詳細な問題追跡
 * 複数のWCAG標準（WCAG 2.0、WCAG 2.1、WCAG 2.2）のサポート
-* LambdaTestダッシュボードでのリアルタイムアクセシビリティインサイト
+* TestMu AIダッシュボードでのリアルタイムアクセシビリティインサイト
 
-## LambdaTest Accessibility Testingを始める
+## TestMu AIアクセシビリティテストを始める
 
-WebdriverIOのテストスイートをLambdaTestのAccessibility Testingと統合するには、次の手順に従ってください：
+WebdriverIOテストスイートをTestMu AIのアクセシビリティテストと統合するには、次の手順に従います：
 
-1. LambdaTest WebdriverIOサービスパッケージをインストールします。
+1. TestMu AI WebdriverIOサービスパッケージをインストールします。
 
 ```bash npm2yarn
 npm install --save-dev @lambdatest/wdio-lambdatest-service
@@ -35,7 +36,7 @@ exports.config = {
     //...
     user: process.env.LT_USERNAME || '<lambdatest_username>',
     key: process.env.LT_ACCESS_KEY || '<lambdatest_access_key>',
-    
+
     capabilities: [{
         browserName: 'chrome',
         'LT:Options': {
@@ -49,7 +50,7 @@ exports.config = {
             }
         }
     }],
-    
+
     services: [
         ['lambdatest', {
             tunnel: false
@@ -59,7 +60,7 @@ exports.config = {
 };
 ```
 
-3. 通常どおりテストを実行します。LambdaTestはテスト実行中に自動的にアクセシビリティの問題をスキャンします。
+3. 通常通りテストを実行します。TestMu AIはテスト実行中に自動的にアクセシビリティの問題をスキャンします。
 
 ```bash
 npx wdio run wdio.conf.js
@@ -67,9 +68,9 @@ npx wdio run wdio.conf.js
 
 ## 設定オプション
 
-`accessibilityOptions`オブジェクトは次のパラメーターをサポートしています：
+`accessibilityOptions`オブジェクトは次のパラメータをサポートしています：
 
-* **wcagVersion**: テストするWCAG標準バージョンを指定
+* **wcagVersion**: テストする対象のWCAG標準バージョンを指定
   - `wcag20` - WCAG 2.0 レベルA
   - `wcag21a` - WCAG 2.1 レベルA
   - `wcag21aa` - WCAG 2.1 レベルAA（デフォルト）
@@ -81,11 +82,11 @@ npx wdio run wdio.conf.js
 
 ## アクセシビリティレポートの表示
 
-テストが完了したら、[LambdaTestダッシュボード](https://automation.lambdatest.com/)で詳細なアクセシビリティレポートを表示できます：
+テストが完了した後、[TestMu AIダッシュボード](https://automation.lambdatest.com/)で詳細なアクセシビリティレポートを確認できます：
 
 1. テスト実行に移動
 2. 「Accessibility」タブをクリック
-3. 重要度レベル付きの特定された問題を確認
+3. 重要度レベル付きで特定された問題を確認
 4. 各問題の修正ガイダンスを取得
 
-詳細については、[LambdaTest Accessibility Automationドキュメント](https://www.lambdatest.com/support/docs/accessibility-automation-settings/)をご覧ください。
+詳細な情報については、[TestMu AIアクセシビリティ自動化ドキュメント](https://www.testmuai.com/support/docs/accessibility-automation-settings/)をご覧ください。

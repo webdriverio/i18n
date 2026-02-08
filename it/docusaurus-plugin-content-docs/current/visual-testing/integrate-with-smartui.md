@@ -3,17 +3,17 @@ id: integrate-with-smartui
 title: SmartUI
 ---
 
-LambdaTest [SmartUI](https://www.lambdatest.com/smart-visual-testing) fornisce test di regressione visiva basati su IA per i tuoi test WebdriverIO. Cattura screenshot, li confronta con le baseline e evidenzia le differenze visive con algoritmi di confronto intelligenti.
+TestMu AI (ex LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) fornisce test di regressione visiva basati su IA per i tuoi test WebdriverIO. Cattura screenshot, li confronta con le linee di base e evidenzia le differenze visive con algoritmi di confronto intelligenti.
 
-## Setup
+## Configurazione
 
 **Crea un progetto SmartUI**
 
-[Accedi](https://accounts.lambdatest.com/register) a LambdaTest e naviga su [Progetti SmartUI](https://smartui.lambdatest.com/) per creare un nuovo progetto. Seleziona **Web** come piattaforma e configura il nome del tuo progetto, gli approvatori e i tag.
+[Accedi](https://accounts.lambdatest.com/register) a TestMu AI (ex LambdaTest) e naviga su [SmartUI Projects](https://smartui.lambdatest.com/) per creare un nuovo progetto. Seleziona **Web** come piattaforma e configura il nome del tuo progetto, gli approvatori e i tag.
 
 **Configura le credenziali**
 
-Ottieni il tuo `LT_USERNAME` e `LT_ACCESS_KEY` dalla dashboard di LambdaTest e impostali come variabili d'ambiente:
+Ottieni il tuo `LT_USERNAME` e `LT_ACCESS_KEY` dalla dashboard di TestMu AI (ex LambdaTest) e impostali come variabili d'ambiente:
 
 ```sh
 export LT_USERNAME="<your username>"
@@ -34,7 +34,7 @@ Aggiorna il tuo `wdio.conf.js`:
 exports.config = {
   user: process.env.LT_USERNAME,
   key: process.env.LT_ACCESS_KEY,
-  
+
   capabilities: [{
     browserName: 'chrome',
     browserVersion: 'latest',
@@ -58,11 +58,11 @@ Usa `browser.execute('smartui.takeScreenshot')` per catturare screenshot:
 describe('WebdriverIO SmartUI Test', () => {
   it('should capture screenshot for visual testing', async () => {
     await browser.url('https://webdriver.io');
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage Screenshot'
     });
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage with Options',
       ignoreDOM: {
@@ -84,7 +84,7 @@ Visualizza i risultati nella [Dashboard SmartUI](https://smartui.lambdatest.com/
 
 ## Opzioni Avanzate
 
-**Ignora elementi**
+**Ignorare elementi**
 
 ```javascript
 await browser.execute('smartui.takeScreenshot', {
@@ -97,7 +97,7 @@ await browser.execute('smartui.takeScreenshot', {
 });
 ```
 
-**Seleziona aree specifiche**
+**Selezionare aree specifiche**
 
 ```javascript
 await browser.execute('smartui.takeScreenshot', {
@@ -110,9 +110,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## Risorse
 
-| Risorsa                                                                                            | Descrizione                              |
-|----------------------------------------------------------------------------------------------------|------------------------------------------|
-| [Documentazione Ufficiale](https://www.lambdatest.com/support/docs/smart-ui-cypress/)              | Documentazione SmartUI                   |
-| [Dashboard SmartUI](https://smartui.lambdatest.com/)                                               | Accedi ai tuoi progetti e build SmartUI  |
-| [Impostazioni Avanzate](https://www.lambdatest.com/support/docs/test-settings-options/)           | Configura la sensibilità di confronto    |
-| [Opzioni di Build](https://www.lambdatest.com/support/docs/smart-ui-build-options/)               | Configurazione avanzata delle build      |
+| Risorsa                                                                                          | Descrizione                                  |
+|--------------------------------------------------------------------------------------------------|---------------------------------------------|
+| [Documentazione Ufficiale](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | Documentazione SmartUI                      |
+| [Dashboard SmartUI](https://smartui.lambdatest.com/)                                             | Accedi ai tuoi progetti e build SmartUI     |
+| [Impostazioni Avanzate](https://www.testmuai.com/support/docs/test-settings-options/)            | Configura la sensibilità di confronto       |
+| [Opzioni di Build](https://www.testmuai.com/support/docs/smart-ui-build-options/)                | Configurazione avanzata delle build         |

@@ -3,17 +3,17 @@ id: integrate-with-smartui
 title: SmartUI
 ---
 
-LambdaTest [SmartUI](https://www.lambdatest.com/smart-visual-testing) cung cấp kiểm thử hồi quy trực quan được hỗ trợ bởi AI cho các bài kiểm tra WebdriverIO của bạn. Nó chụp ảnh màn hình, so sánh chúng với các đường cơ sở và làm nổi bật sự khác biệt trực quan bằng thuật toán so sánh thông minh.
+TestMu AI (Trước đây là LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) cung cấp kiểm thử hồi quy trực quan được hỗ trợ bởi AI cho các bài kiểm thử WebdriverIO của bạn. Nó chụp ảnh màn hình, so sánh chúng với các đường cơ sở và làm nổi bật sự khác biệt trực quan bằng thuật toán so sánh thông minh.
 
 ## Thiết lập
 
-**Tạo dự án SmartUI**
+**Tạo một dự án SmartUI**
 
-[Đăng nhập](https://accounts.lambdatest.com/register) vào LambdaTest và điều hướng đến [Dự án SmartUI](https://smartui.lambdatest.com/) để tạo một dự án mới. Chọn **Web** làm nền tảng và cấu hình tên dự án, người phê duyệt và thẻ.
+[Đăng nhập](https://accounts.lambdatest.com/register) vào TestMu AI (Trước đây là LambdaTest) và điều hướng đến [SmartUI Projects](https://smartui.lambdatest.com/) để tạo một dự án mới. Chọn **Web** làm nền tảng và cấu hình tên dự án, người phê duyệt và thẻ.
 
 **Thiết lập thông tin đăng nhập**
 
-Lấy `LT_USERNAME` và `LT_ACCESS_KEY` từ bảng điều khiển LambdaTest và đặt chúng làm biến môi trường:
+Lấy `LT_USERNAME` và `LT_ACCESS_KEY` từ bảng điều khiển TestMu AI (Trước đây là LambdaTest) và thiết lập chúng dưới dạng biến môi trường:
 
 ```sh
 export LT_USERNAME="<your username>"
@@ -34,7 +34,7 @@ Cập nhật `wdio.conf.js` của bạn:
 exports.config = {
   user: process.env.LT_USERNAME,
   key: process.env.LT_ACCESS_KEY,
-  
+
   capabilities: [{
     browserName: 'chrome',
     browserVersion: 'latest',
@@ -50,7 +50,7 @@ exports.config = {
 }
 ```
 
-## Sử dụng
+## Cách sử dụng
 
 Sử dụng `browser.execute('smartui.takeScreenshot')` để chụp ảnh màn hình:
 
@@ -58,11 +58,11 @@ Sử dụng `browser.execute('smartui.takeScreenshot')` để chụp ảnh màn 
 describe('WebdriverIO SmartUI Test', () => {
   it('should capture screenshot for visual testing', async () => {
     await browser.url('https://webdriver.io');
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage Screenshot'
     });
-    
+
     await browser.execute('smartui.takeScreenshot', {
       screenshotName: 'Homepage with Options',
       ignoreDOM: {
@@ -74,13 +74,13 @@ describe('WebdriverIO SmartUI Test', () => {
 });
 ```
 
-**Chạy kiểm tra**
+**Chạy kiểm thử**
 
 ```sh
 npx wdio wdio.conf.js
 ```
 
-Xem kết quả trong [Bảng điều khiển SmartUI](https://smartui.lambdatest.com/).
+Xem kết quả trong [SmartUI Dashboard](https://smartui.lambdatest.com/).
 
 ## Tùy chọn nâng cao
 
@@ -110,9 +110,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## Tài nguyên
 
-| Tài nguyên                                                                                      | Mô tả                                   |
-|-------------------------------------------------------------------------------------------------|------------------------------------------|
-| [Tài liệu chính thức](https://www.lambdatest.com/support/docs/smart-ui-cypress/)               | Tài liệu SmartUI                         |
-| [Bảng điều khiển SmartUI](https://smartui.lambdatest.com/)                                      | Truy cập dự án và bản dựng SmartUI       |
-| [Cài đặt nâng cao](https://www.lambdatest.com/support/docs/test-settings-options/)             | Cấu hình độ nhạy so sánh                |
-| [Tùy chọn bản dựng](https://www.lambdatest.com/support/docs/smart-ui-build-options/)           | Cấu hình bản dựng nâng cao               |
+| Tài nguyên                                                                                       | Mô tả                                    |
+|--------------------------------------------------------------------------------------------------|------------------------------------------|
+| [Tài liệu chính thức](https://www.testmuai.com/support/docs/smart-ui-cypress/)                | Tài liệu SmartUI                         |
+| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                             | Truy cập dự án và bản dựng SmartUI của bạn |
+| [Cài đặt nâng cao](https://www.testmuai.com/support/docs/test-settings-options/)             | Cấu hình độ nhạy so sánh               |
+| [Tùy chọn bản dựng](https://www.testmuai.com/support/docs/smart-ui-build-options/)            | Cấu hình bản dựng nâng cao              |

@@ -1,9 +1,9 @@
 ---
 id: configurationfile
-title: Plik konfiguracyjny
+title: Plik Konfiguracyjny
 ---
 
-Plik konfiguracyjny zawiera wszystkie niezbędne informacje do uruchomienia zestawu testów. Jest to moduł NodeJS, który eksportuje obiekt JSON.
+Plik konfiguracyjny zawiera wszystkie niezbędne informacje do uruchomienia zestawu testów. Jest to moduł NodeJS, który eksportuje JSON.
 
 Oto przykładowa konfiguracja ze wszystkimi obsługiwanymi właściwościami i dodatkowymi informacjami:
 
@@ -11,7 +11,7 @@ Oto przykładowa konfiguracja ze wszystkimi obsługiwanymi właściwościami i d
 export const config = {
 
     // ==================================
-    // Gdzie powinny być uruchamiane Twoje testy
+    // Gdzie powinny być uruchomione Twoje testy
     // ==================================
     //
     runner: 'local',
@@ -19,12 +19,12 @@ export const config = {
     // =====================
     // Konfiguracje serwera
     // =====================
-    // Adres hosta działającego serwera Selenium. Ta informacja jest zazwyczaj zbędna, ponieważ
-    // WebdriverIO automatycznie łączy się z localhost. Również jeśli używasz jednej z
-    // obsługiwanych usług chmurowych, takich jak Sauce Labs, Browserstack, Testing Bot lub LambdaTest, również nie
-    // musisz definiować informacji o hoście i porcie (ponieważ WebdriverIO może to ustalić
-    // na podstawie informacji o użytkowniku i kluczu). Jednak jeśli korzystasz z prywatnego backendu
-    // Selenium, powinieneś zdefiniować tutaj `hostname`, `port` i `path`.
+    // Adres hosta uruchomionego serwera Selenium. Ta informacja jest zazwyczaj zbędna,
+    // ponieważ WebdriverIO automatycznie łączy się z localhost. Również jeśli używasz jednej
+    // z obsługiwanych usług w chmurze, takich jak Sauce Labs, Browserstack, Testing Bot lub TestMu AI (dawniej LambdaTest), 
+    // również nie musisz definiować informacji o hoście i porcie (ponieważ WebdriverIO może to ustalić
+    // na podstawie informacji o użytkowniku i kluczu). Jednakże, jeśli używasz prywatnego backendu Selenium,
+    // powinieneś zdefiniować tutaj `hostname`, `port` i `path`.
     //
     hostname: 'localhost',
     port: 4444,
@@ -35,36 +35,36 @@ export const config = {
     // =================
     // Dostawcy usług
     // =================
-    // WebdriverIO obsługuje Sauce Labs, Browserstack, Testing Bot i LambdaTest. (Inni dostawcy chmurowi
-    // również powinni działać.) Te usługi definiują konkretne wartości `user` i `key` (lub klucz dostępu),
+    // WebdriverIO wspiera Sauce Labs, Browserstack, Testing Bot i TestMu AI (dawniej LambdaTest). (Inni dostawcy chmury
+    // również powinni działać). Te usługi definiują konkretne wartości `user` i `key` (lub klucz dostępu),
     // które musisz tutaj umieścić, aby połączyć się z tymi usługami.
     //
     user: 'webdriverio',
     key:  'xxxxxxxxxxxxxxxx-xxxxxx-xxxxx-xxxxxxxxx',
 
-    // Jeśli uruchamiasz swoje testy w Sauce Labs, możesz określić region, w którym chcesz uruchamiać swoje testy
-    // za pomocą właściwości `region`. Dostępne skrócone oznaczenia regionów to `us` (domyślnie) i `eu`.
-    // Te regiony są używane dla Sauce Labs VM cloud i Sauce Labs Real Device Cloud.
-    // Jeśli nie podasz regionu, domyślnie będzie to `us`.
+    // Jeśli uruchamiasz testy w Sauce Labs, możesz określić region, w którym chcesz uruchamiać testy
+    // za pomocą właściwości `region`. Dostępne skróty dla regionów to `us` (domyślnie) i `eu`.
+    // Te regiony są używane dla chmury VM Sauce Labs i Real Device Cloud Sauce Labs.
+    // Jeśli nie podasz regionu, domyślnie jest to `us`.
     region: 'us',
     //
-    // Sauce Labs oferuje [testowanie bezgłowicowe](https://saucelabs.com/products/web-testing/sauce-headless-testing),
-    // które umożliwia uruchamianie testów Chrome i Firefox w trybie headless.
+    // Sauce Labs oferuje [rozwiązanie bezgłowe](https://saucelabs.com/products/web-testing/sauce-headless-testing)
+    // które pozwala uruchamiać testy Chrome i Firefox w trybie bezgłowym.
     //
     headless: false,
     //
     // ==================
-    // Określenie plików testowych
+    // Określ pliki testowe
     // ==================
-    // Zdefiniuj, które pliki specyfikacji testów powinny zostać uruchomione. Wzorzec jest względny do katalogu
+    // Zdefiniuj, które specyfikacje testów powinny być uruchomione. Wzorzec jest względny w stosunku do katalogu
     // pliku konfiguracyjnego, który jest uruchamiany.
     //
-    // Specyfikacje są definiowane jako tablica plików specyfikacji (opcjonalnie z użyciem znaków wieloznacznych,
-    // które zostaną rozwinięte). Test dla każdego pliku specyfikacji będzie uruchamiany w oddzielnym
-    // procesie roboczym. Aby mieć grupę plików specyfikacji uruchamianych w tym samym procesie
-    // roboczym, umieść je w tablicy wewnątrz tablicy specs.
+    // Specyfikacje są definiowane jako tablica plików specyfikacji (opcjonalnie z użyciem wieloznaczników,
+    // które zostaną rozszerzone). Test dla każdego pliku specyfikacji będzie uruchomiony w oddzielnym
+    // procesie roboczym. Aby grupa plików specyfikacji była uruchamiana w tym samym procesie roboczym,
+    // umieść je w tablicy wewnątrz tablicy specs.
     //
-    // Ścieżka plików specyfikacji zostanie rozwiązana względem katalogu
+    // Ścieżka plików specyfikacji będzie rozwiązywana względem katalogu
     // pliku konfiguracyjnego, chyba że jest bezwzględna.
     //
     specs: [
@@ -83,37 +83,37 @@ export const config = {
     // Zdefiniuj swoje możliwości tutaj. WebdriverIO może uruchamiać wiele możliwości jednocześnie.
     // W zależności od liczby możliwości, WebdriverIO uruchamia kilka sesji testowych.
     // W ramach swoich `capabilities` możesz nadpisać opcje `spec` i `exclude`,
-    // aby zgrupować konkretne specyfikacje dla konkretnych możliwości.
+    // aby grupować konkretne specyfikacje do określonej możliwości.
     //
-    // Najpierw możesz zdefiniować, ile instancji powinno być uruchomionych w tym samym czasie. Powiedzmy,
+    // Najpierw możesz zdefiniować, ile instancji powinno być uruchomionych jednocześnie. Powiedzmy,
     // że masz 3 różne możliwości (Chrome, Firefox i Safari) i masz
     // ustawione `maxInstances` na 1. wdio uruchomi 3 procesy.
     //
-    // Dlatego, jeśli masz 10 plików specyfikacji i ustawisz `maxInstances` na 10, wszystkie pliki specyfikacji
-    // będą testowane jednocześnie i zostanie uruchomionych 30 procesów.
+    // Dlatego, jeśli masz 10 plików specyfikacji i ustawiłeś `maxInstances` na 10, wszystkie pliki specyfikacji
+    // będą testowane jednocześnie i zostanie utworzonych 30 procesów.
     //
-    // Ta właściwość określa, ile możliwości z tego samego testu powinno uruchamiać testy.
+    // Właściwość określa, ile możliwości z tego samego testu powinno uruchamiać testy.
     //
     maxInstances: 10,
     //
-    // Lub ustaw limit, aby uruchamiać testy z konkretną możliwością.
+    // Lub ustaw limit uruchamiania testów z określoną możliwością.
     maxInstancesPerCapability: 10,
     //
     // Wstawia globalne zmienne WebdriverIO (np. `browser`, `$` i `$$`) do globalnego środowiska.
     // Jeśli ustawisz na `false`, powinieneś importować z `@wdio/globals`. Uwaga: WebdriverIO nie
-    // obsługuje wstrzykiwania globalnych zmiennych specyficznych dla frameworka testowego.
+    // obsługuje wstawiania globalnych zmiennych specyficznych dla framework testowego.
     //
     injectGlobals: true,
     //
-    // Jeśli masz problemy z zebraniem wszystkich ważnych możliwości, sprawdź
-    // konfigurator platformy Sauce Labs - świetne narzędzie do konfigurowania możliwości:
+    // Jeśli masz problemy ze zgromadzeniem wszystkich ważnych możliwości, sprawdź
+    // konfigurator platformy Sauce Labs - świetne narzędzie do konfigurowania twoich możliwości:
     // https://docs.saucelabs.com/basics/platform-configurator
     //
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-        // aby uruchomić chrome w trybie headless wymagane są następujące flagi
-        // (zobacz https://developers.google.com/web/updates/2017/04/headless-chrome)
+        // do uruchomienia chrome w trybie headless wymagane są następujące flagi
+        // (patrz https://developers.google.com/web/updates/2017/04/headless-chrome)
         // args: ['--headless', '--disable-gpu'],
         }
         //
@@ -125,8 +125,8 @@ export const config = {
         //    ignoreDefaultArgs: ['--disable-sync', '--disable-extensions'],
         // }
     }, {
-        // maxInstances może zostać nadpisane dla każdej możliwości. Więc jeśli masz własną sieć Selenium
-        // z tylko 5 instancjami Firefoxa, możesz upewnić się, że nie więcej niż
+        // maxInstances może zostać nadpisane dla poszczególnych możliwości. Więc jeśli masz wewnętrzną sieć Selenium
+        // grid z tylko 5 dostępnymi instancjami Firefox, możesz upewnić się, że nie więcej niż
         // 5 instancji zostanie uruchomionych jednocześnie.
         'wdio:maxInstances': 5,
         browserName: 'firefox',
@@ -134,7 +134,7 @@ export const config = {
             'test/ffOnly/*'
         ],
         'moz:firefoxOptions': {
-          // flaga do aktywowania trybu headless Firefoxa (zobacz https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities, aby uzyskać więcej informacji o moz:firefoxOptions)
+          // flaga do aktywacji trybu bezgłowego Firefox (zobacz https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities, aby uzyskać więcej informacji o moz:firefoxOptions)
           // args: ['-headless']
         },
         // Jeśli podano outputDir, WebdriverIO może przechwytywać logi sesji sterownika
@@ -143,7 +143,7 @@ export const config = {
         excludeDriverLogs: ['bugreport', 'server'],
         //
         // Parametr do ignorowania niektórych lub wszystkich domyślnych argumentów Puppeteer
-        // ignoreDefaultArgs: ['-foreground'], // ustaw wartość na true, aby ignorować wszystkie domyślne argumenty
+        // ignoreDefaultArgs: ['-foreground'], // ustaw wartość na true, aby zignorować wszystkie domyślne argumenty
     }],
     //
     // Dodatkowa lista argumentów node do użycia przy uruchamianiu procesów potomnych
@@ -152,12 +152,12 @@ export const config = {
     // ===================
     // Konfiguracje testów
     // ===================
-    // Zdefiniuj wszystkie opcje, które są istotne dla instancji WebdriverIO tutaj
+    // Zdefiniuj wszystkie opcje, które są istotne dla instancji WebdriverIO
     //
     // Poziom szczegółowości logowania: trace | debug | info | warn | error | silent
     logLevel: 'info',
     //
-    // Ustaw określone poziomy logowania dla poszczególnych loggerów
+    // Ustaw określone poziomy logów dla każdego loggera
     // użyj poziomu 'silent', aby wyłączyć logger
     logLevels: {
         webdriver: 'info',
@@ -167,70 +167,70 @@ export const config = {
     // Ustaw katalog do przechowywania wszystkich logów
     outputDir: __dirname,
     //
-    // Jeśli chcesz uruchamiać testy tylko do momentu, gdy określona liczba testów zakończy się niepowodzeniem, użyj
+    // Jeśli chcesz uruchamiać testy tylko do momentu, gdy określona liczba testów nie powiedzie się, użyj
     // bail (domyślnie 0 - nie przerywaj, uruchom wszystkie testy).
     bail: 0,
     //
-    // Ustaw bazowy URL, aby skrócić wywołania komendy `url()`. Jeśli Twój parametr `url` zaczyna się
-    // od `/`, `baseUrl` jest dołączany, z wyłączeniem części ścieżki `baseUrl`.
+    // Ustaw bazowy URL, aby skrócić wywołania komendy `url()`. Jeśli twój parametr `url` zaczyna się
+    // od `/`, `baseUrl` jest dodawany na początku, nie uwzględniając części ścieżki `baseUrl`.
     //
-    // Jeśli Twój parametr `url` zaczyna się bez schematu lub `/` (jak `some/path`), `baseUrl`
-    // jest dołączany bezpośrednio.
+    // Jeśli twój parametr `url` zaczyna się bez schematu lub `/` (jak `some/path`), `baseUrl`
+    // jest dodawany bezpośrednio na początku.
     baseUrl: 'http://localhost:8080',
     //
     // Domyślny limit czasu dla wszystkich poleceń waitForXXX.
     waitforTimeout: 1000,
     //
-    // Dodaj pliki do obserwacji (np. kod aplikacji lub obiekty stron) podczas uruchamiania polecenia `wdio`
-    // z flagą `--watch`. Obsługiwane jest globbing.
+    // Dodaj pliki do obserwowania (np. kod aplikacji lub obiekty stronowe) podczas uruchamiania komendy `wdio`
+    // z flagą `--watch`. Obsługa globbing jest wspierana.
     filesToWatch: [
-        // np. uruchom testy ponownie, jeśli zmienię kod mojej aplikacji
+        // np. uruchom ponownie testy, jeśli zmienię kod aplikacji
         // './app/**/*.js'
     ],
     //
     // Framework, z którym chcesz uruchamiać swoje specyfikacje.
-    // Obsługiwane są następujące: 'mocha', 'jasmine' i 'cucumber'
-    // Zobacz także: https://webdriver.io/docs/frameworks.html
+    // Następujące są obsługiwane: 'mocha', 'jasmine' i 'cucumber'
+    // Zobacz również: https://webdriver.io/docs/frameworks.html
     //
     // Upewnij się, że masz zainstalowany pakiet adaptera wdio dla konkretnego frameworka przed uruchomieniem jakichkolwiek testów.
     framework: 'mocha',
     //
-    // Liczba prób ponownego uruchomienia całego pliku specyfikacji, gdy cały plik kończy się niepowodzeniem
+    // Liczba powtórzeń całego pliku specyfikacji, gdy nie powiedzie się jako całość
     specFileRetries: 1,
-    // Opóźnienie w sekundach między próbami ponownego uruchomienia pliku specyfikacji
+    // Opóźnienie w sekundach między próbami pliku specyfikacji
     specFileRetriesDelay: 0,
-    // Czy powtórzone pliki specyfikacji powinny być ponownie uruchamiane natychmiast czy odłożone na koniec kolejki
+    // Czy powtórzone pliki specyfikacji powinny być powtórzone natychmiast, czy odłożone na koniec kolejki
     specFileRetriesDeferred: false,
     //
     // Reporter testów dla stdout.
     // Jedynym obsługiwanym domyślnie jest 'dot'
-    // Zobacz także: https://webdriver.io/docs/dot-reporter.html i kliknij "Reporters" w lewej kolumnie
+    // Zobacz również: https://webdriver.io/docs/dot-reporter.html i kliknij "Reporters" w lewej kolumnie
     reporters: [
         'dot',
         ['allure', {
             //
-            // Jeśli używasz reportera "allure", powinieneś zdefiniować katalog, w którym
-            // WebdriverIO powinno zapisywać wszystkie raporty allure.
+            // Jeśli używasz reportera "allure", powinieneś zdefiniować katalog, gdzie
+            // WebdriverIO powinno zapisać wszystkie raporty allure.
             outputDir: './'
         }]
     ],
     //
-    // Opcje, które mają być przekazane do Mocha.
+    // Opcje przekazywane do Mocha.
     // Zobacz pełną listę na: http://mochajs.org
     mochaOpts: {
         ui: 'bdd'
     },
     //
-    // Opcje, które mają być przekazane do Jasmine.
-    // Zobacz także: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
+    // Opcje przekazywane do Jasmine.
+    // Zobacz również: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
     jasmineOpts: {
         //
-        // Domyślny limit czasu Jasmine
+        // Domyślny timeout Jasmine
         defaultTimeoutInterval: 5000,
         //
-        // Framework Jasmine pozwala przechwytywać każdą asercję, aby rejestrować stan aplikacji
-        // lub strony internetowej w zależności od wyniku. Na przykład, jest dość przydatne robienie zrzutu ekranu za każdym razem,
-        // gdy asercja kończy się niepowodzeniem.
+        // Framework Jasmine pozwala przechwytywać każde zapewnienie w celu logowania stanu aplikacji
+        // lub strony internetowej w zależności od wyniku. Na przykład, bardzo wygodne jest robienie zrzutu ekranu za każdym razem,
+        // gdy zapewnienie nie powiedzie się.
         expectationResultHandler: function(passed, assertion) {
             // zrób coś
         },
@@ -240,157 +240,157 @@ export const config = {
         invertGrep: null
     },
     //
-    // Jeśli używasz Cucumber, musisz określić, gdzie znajdują się definicje kroków.
-    // Zobacz także: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
+    // Jeśli używasz Cucumber, musisz określić, gdzie znajdują się definicje twoich kroków.
+    // Zobacz również: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
     cucumberOpts: {
-        require: [],        // <string[]> (plik/katalog) wymaga plików przed wykonaniem funkcji
+        require: [],        // <string[]> (plik/katalog) wymagaj plików przed wykonaniem funkcji
         backtrace: false,   // <boolean> pokaż pełny ślad dla błędów
-        compiler: [],       // <string[]> ("rozszerzenie:moduł") wymaga plików z podanym ROZSZERZENIEM po wymaganiu MODUŁU (powtarzalne)
-        dryRun: false,      // <boolean> wywołuj formaty bez wykonywania kroków
-        failFast: false,    // <boolean> przerwij uruchomienie przy pierwszym niepowodzeniu
+        compiler: [],       // <string[]> ("extension:module") wymagaj plików z danym ROZSZERZENIEM po wymaganiu MODUŁU (powtarzalne)
+        dryRun: false,      // <boolean> wywołaj formatery bez wykonywania kroków
+        failFast: false,    // <boolean> przerwij działanie przy pierwszym niepowodzeniu
         snippets: true,     // <boolean> ukryj fragmenty definicji kroków dla oczekujących kroków
-        source: true,       // <boolean> ukryj źródłowe URI
-        strict: false,      // <boolean> zakończ niepowodzeniem, jeśli istnieją niezdefiniowane lub oczekujące kroki
+        source: true,       // <boolean> ukryj identyfikatory URI źródeł
+        strict: false,      // <boolean> nie powiedzie się, jeśli istnieją jakiekolwiek niezdefiniowane lub oczekujące kroki
         tagExpression: '',  // <string> (wyrażenie) wykonaj tylko funkcje lub scenariusze z tagami pasującymi do wyrażenia
-        timeout: 20000,     // <number> limit czasu dla definicji kroków
+        timeout: 20000,     // <number> timeout dla definicji kroków
         ignoreUndefinedDefinitions: false, // <boolean> Włącz tę konfigurację, aby traktować niezdefiniowane definicje jako ostrzeżenia.
-        scenarioLevelReporter: false // Włącz to, aby sprawić, by webdriver.io zachowywał się tak, jakby scenariusze, a nie kroki, były testami.
+        scenarioLevelReporter: false // Włącz to, aby sprawić, że webdriver.io zachowywał się tak, jakby scenariusze, a nie kroki były testami.
     },
     // Określ niestandardową ścieżkę tsconfig - WDIO używa `tsx` do kompilacji plików TypeScript
     // Twój TSConfig jest automatycznie wykrywany z bieżącego katalogu roboczego
     // ale możesz określić niestandardową ścieżkę tutaj lub ustawiając zmienną środowiskową TSX_TSCONFIG_PATH
     // Zobacz dokumentację `tsx`: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
     //
-    // Uwaga: To ustawienie zostanie nadpisane przez zmienną środowiskową TSX_TSCONFIG_PATH i/lub argument --tsConfigPath cli, jeśli są określone.
-    // To ustawienie zostanie zignorowane, jeśli node nie jest w stanie przeanalizować pliku wdio.conf.ts bez pomocy tsx, np. jeśli masz
-    // aliasy ścieżek skonfigurowane w tsconfig.json i używasz tych aliasów ścieżek w pliku wdio.config.ts.
-    // Używaj tego tylko wtedy, gdy używasz pliku konfiguracyjnego .js lub plik konfiguracyjny .ts jest prawidłowym kodem JavaScript.
+    // Uwaga: To ustawienie zostanie zastąpione przez zmienną środowiskową TSX_TSCONFIG_PATH i/lub argument cli --tsConfigPath, jeśli zostaną określone.
+    // To ustawienie zostanie zignorowane, jeśli node nie jest w stanie przeanalizować pliku wdio.conf.ts bez pomocy tsx, np. jeśli masz ustawione 
+    // aliasy ścieżek w tsconfig.json i używasz tych aliasów ścieżek w pliku wdio.config.ts.
+    // Używaj tego tylko, jeśli używasz pliku konfiguracyjnego .js lub twój plik konfiguracyjny .ts jest poprawnym kodem JavaScript.
     tsConfigPath: 'path/to/tsconfig.json',
     //
     // =====
-    // Hooki
+    // Hooks
     // =====
-    // WebdriverIO udostępnia kilka hooków, których możesz użyć do ingerowania w proces testowy w celu jego ulepszenia
-    // i budowania usług wokół niego. Możesz zastosować pojedynczą funkcję lub tablicę
-    // metod. Jeśli jedna z nich zwraca obietnicę, WebdriverIO poczeka, aż ta obietnica zostanie
+    // WebdriverIO udostępnia kilka hooków, których możesz użyć do ingerencji w proces testowy w celu jego rozszerzenia
+    // i budowania wokół niego usług. Możesz zastosować pojedynczą funkcję lub tablicę
+    // metod. Jeśli jedna z nich zwróci obietnicę, WebdriverIO poczeka, aż ta obietnica zostanie
     // rozwiązana, aby kontynuować.
     //
     /**
-     * Wykonywane raz przed uruchomieniem wszystkich pracowników.
+     * Wykonuje się raz przed uruchomieniem wszystkich workerów.
      * @param {object} config obiekt konfiguracyjny wdio
      * @param {Array.<Object>} capabilities lista szczegółów możliwości
      */
     onPrepare: function (config, capabilities) {
     },
     /**
-     * Wykonywane przed uruchomieniem procesu roboczego i może być używane do inicjalizacji określonej usługi
-     * dla tego pracownika, a także do modyfikacji środowisk wykonawczych w sposób asynchroniczny.
+     * Wykonuje się przed utworzeniem procesu workera i może być używany do inicjalizacji określonej usługi
+     * dla tego workera, a także do modyfikowania środowisk wykonawczych w sposób asynchroniczny.
      * @param  {string} cid      identyfikator możliwości (np. 0-0)
-     * @param  {object} caps     obiekt zawierający możliwości dla sesji, która zostanie utworzona w procesie roboczym
-     * @param  {object} specs    specyfikacje do uruchomienia w procesie roboczym
-     * @param  {object} args     obiekt, który zostanie połączony z główną konfiguracją po zainicjowaniu pracownika
-     * @param  {object} execArgv lista argumentów ciągów przekazywanych do procesu roboczego
+     * @param  {object} caps     obiekt zawierający możliwości dla sesji, która zostanie utworzona w workerze
+     * @param  {object} specs    specyfikacje do uruchomienia w procesie workera
+     * @param  {object} args     obiekt, który zostanie połączony z główną konfiguracją po inicjalizacji workera
+     * @param  {object} execArgv lista argumentów ciągowych przekazanych do procesu workera
      */
     onWorkerStart: function (cid, caps, specs, args, execArgv) {
     },
     /**
-     * Wykonywane po zakończeniu procesu roboczego.
+     * Wykonuje się po zakończeniu procesu workera.
      * @param  {string} cid      identyfikator możliwości (np. 0-0)
      * @param  {number} exitCode 0 - sukces, 1 - niepowodzenie
-     * @param  {object} specs    specyfikacje do uruchomienia w procesie roboczym
-     * @param  {number} retries  liczba użytych ponownych prób
+     * @param  {object} specs    specyfikacje do uruchomienia w procesie workera
+     * @param  {number} retries  liczba użytych powtórzeń
      */
     onWorkerEnd: function (cid, exitCode, specs, retries) {
     },
     /**
-     * Wykonywane przed inicjalizacją sesji webdriver i frameworka testowego. Pozwala to na
-     * manipulowanie konfiguracjami w zależności od możliwości lub specyfikacji.
+     * Wykonuje się przed inicjalizacją sesji webdrivera i frameworka testowego. Pozwala
+     * manipulować konfiguracjami w zależności od możliwości lub specyfikacji.
      * @param {object} config obiekt konfiguracyjny wdio
      * @param {Array.<Object>} capabilities lista szczegółów możliwości
-     * @param {Array.<String>} specs Lista ścieżek plików specyfikacji, które mają być uruchomione
+     * @param {Array.<String>} specs Lista ścieżek plików specyfikacji, które mają zostać uruchomione
      */
     beforeSession: function (config, capabilities, specs) {
     },
     /**
-     * Wykonywane przed rozpoczęciem wykonania testu. W tym momencie masz dostęp do wszystkich zmiennych globalnych
-     * takich jak `browser`. Jest to idealne miejsce do definiowania niestandardowych poleceń.
+     * Wykonuje się przed rozpoczęciem wykonania testu. W tym momencie masz dostęp do wszystkich globalnych
+     * zmiennych jak `browser`. Jest to idealne miejsce do definiowania niestandardowych poleceń.
      * @param {Array.<Object>} capabilities lista szczegółów możliwości
-     * @param {Array.<String>} specs        Lista ścieżek plików specyfikacji, które mają być uruchomione
+     * @param {Array.<String>} specs        Lista ścieżek plików specyfikacji, które mają zostać uruchomione
      * @param {object}         browser      instancja utworzonej sesji przeglądarki/urządzenia
      */
     before: function (capabilities, specs, browser) {
     },
     /**
-     * Wykonywane przed rozpoczęciem pakietu (tylko w Mocha/Jasmine).
-     * @param {object} suite szczegóły pakietu
+     * Wykonuje się przed rozpoczęciem zestawu (tylko w Mocha/Jasmine).
+     * @param {object} suite szczegóły zestawu
      */
     beforeSuite: function (suite) {
     },
     /**
-     * Ten hook jest wykonywany _przed_ każdym hookiem w pakiecie.
-     * (Na przykład, działa to przed wywołaniem `before`, `beforeEach`, `after`, `afterEach` w Mocha.) W Cucumber `context` to obiekt World.
+     * Ten hook wykonuje się _przed_ każdym hookiem w zestawie.
+     * (Na przykład, działa przed wywołaniem `before`, `beforeEach`, `after`, `afterEach` w Mocha.). W Cucumber `context` to obiekt World.
      *
      */
     beforeHook: function (test, context, hookName) {
     },
     /**
-     * Hook, który jest wykonywany _po_ każdym hooku w pakiecie.
-     * (Na przykład, działa to po wywołaniu `before`, `beforeEach`, `after`, `afterEach` w Mocha.) W Cucumber `context` to obiekt World.
+     * Hook, który wykonuje się _po_ każdym hooku w zestawie.
+     * (Na przykład, działa po wywołaniu `before`, `beforeEach`, `after`, `afterEach` w Mocha.). W Cucumber `context` to obiekt World.
      */
     afterHook: function (test, context, { error, result, duration, passed, retries }, hookName) {
     },
     /**
-     * Funkcja do wykonania przed testem (tylko w Mocha/Jasmine)
+     * Funkcja, która zostanie wykonana przed testem (tylko w Mocha/Jasmine)
      * @param {object} test    obiekt testowy
-     * @param {object} context obiekt zakresu, w którym test został wykonany
+     * @param {object} context obiekt zakresu, z którym test został wykonany
      */
     beforeTest: function (test, context) {
     },
     /**
-     * Uruchamiane przed wykonaniem polecenia WebdriverIO.
+     * Uruchamia się przed wykonaniem polecenia WebdriverIO.
      * @param {string} commandName nazwa polecenia hook
-     * @param {Array} args argumenty, które polecenie by otrzymało
+     * @param {Array} args argumenty, które polecenie otrzymałoby
      */
     beforeCommand: function (commandName, args) {
     },
     /**
-     * Uruchamiane po wykonaniu polecenia WebdriverIO
+     * Uruchamia się po wykonaniu polecenia WebdriverIO
      * @param {string} commandName nazwa polecenia hook
-     * @param {Array} args argumenty, które polecenie by otrzymało
+     * @param {Array} args argumenty, które polecenie otrzymałoby
      * @param {*} result wynik polecenia
-     * @param {Error} error obiekt błędu, jeśli występuje
+     * @param {Error} error obiekt błędu, jeśli istnieje
      */
     afterCommand: function (commandName, args, result, error) {
     },
     /**
-     * Funkcja do wykonania po teście (tylko w Mocha/Jasmine)
+     * Funkcja, która zostanie wykonana po teście (tylko w Mocha/Jasmine)
      * @param {object}  test             obiekt testowy
-     * @param {object}  context          obiekt zakresu, w którym test został wykonany
+     * @param {object}  context          obiekt zakresu, z którym test został wykonany
      * @param {Error}   result.error     obiekt błędu w przypadku niepowodzenia testu, w przeciwnym razie `undefined`
      * @param {*}       result.result    obiekt zwracany funkcji testowej
      * @param {number}  result.duration  czas trwania testu
-     * @param {boolean} result.passed    true, jeśli test przeszedł, w przeciwnym razie false
-     * @param {object}  result.retries   informacje o ponownych próbach związanych ze specyfikacją, np. `{ attempts: 0, limit: 0 }`
+     * @param {boolean} result.passed    true, jeśli test został zaliczony, w przeciwnym razie false
+     * @param {object}  result.retries   informacje o powtórzeniach związanych ze specyfikacją, np. `{ attempts: 0, limit: 0 }`
      */
     afterTest: function (test, context, { error, result, duration, passed, retries }) {
     },
     /**
-     * Hook, który jest wykonywany po zakończeniu pakietu (tylko w Mocha/Jasmine).
-     * @param {object} suite szczegóły pakietu
+     * Hook, który wykonuje się po zakończeniu zestawu (tylko w Mocha/Jasmine).
+     * @param {object} suite szczegóły zestawu
      */
     afterSuite: function (suite) {
     },
     /**
-     * Wykonywane po zakończeniu wszystkich testów. Nadal masz dostęp do wszystkich zmiennych globalnych
-     * z testu.
-     * @param {number} result 0 - test przeszedł, 1 - test nie powiódł się
+     * Wykonuje się po zakończeniu wszystkich testów. Nadal masz dostęp do wszystkich zmiennych globalnych z
+     * testu.
+     * @param {number} result 0 - test zdany, 1 - test nie powiódł się
      * @param {Array.<Object>} capabilities lista szczegółów możliwości
      * @param {Array.<String>} specs Lista ścieżek plików specyfikacji, które zostały uruchomione
      */
     after: function (result, capabilities, specs) {
     },
     /**
-     * Wykonywane zaraz po zakończeniu sesji webdriver.
+     * Wykonuje się bezpośrednio po zakończeniu sesji webdrivera.
      * @param {object} config obiekt konfiguracyjny wdio
      * @param {Array.<Object>} capabilities lista szczegółów możliwości
      * @param {Array.<String>} specs Lista ścieżek plików specyfikacji, które zostały uruchomione
@@ -398,8 +398,8 @@ export const config = {
     afterSession: function (config, capabilities, specs) {
     },
     /**
-     * Wykonywane po zatrzymaniu wszystkich pracowników i tuż przed zakończeniem procesu.
-     * Błąd zgłoszony w hooku `onComplete` spowoduje niepowodzenie uruchomienia testu.
+     * Wykonuje się po zakończeniu pracy wszystkich workerów i przed zakończeniem procesu.
+     * Błąd rzucony w hooku `onComplete` spowoduje niepowodzenie uruchomienia testu.
      * @param {object} exitCode 0 - sukces, 1 - niepowodzenie
      * @param {object} config obiekt konfiguracyjny wdio
      * @param {Array.<Object>} capabilities lista szczegółów możliwości
@@ -408,16 +408,16 @@ export const config = {
     onComplete: function (exitCode, config, capabilities, results) {
     },
     /**
-    * Wykonywane, gdy następuje odświeżenie.
-    * @param {string} oldSessionId identyfikator sesji starej sesji
-    * @param {string} newSessionId identyfikator sesji nowej sesji
+    * Wykonuje się, gdy następuje odświeżenie.
+    * @param {string} oldSessionId ID sesji starej sesji
+    * @param {string} newSessionId ID sesji nowej sesji
     */
     onReload: function(oldSessionId, newSessionId) {
     },
     /**
      * Hooki Cucumber
      *
-     * Uruchamiane przed funkcją Cucumber.
+     * Uruchamia się przed funkcją Cucumber.
      * @param {string}                   uri      ścieżka do pliku funkcji
      * @param {GherkinDocument.IFeature} feature  obiekt funkcji Cucumber
      */
@@ -425,65 +425,65 @@ export const config = {
     },
     /**
      *
-     * Uruchamiane przed scenariuszem Cucumber.
+     * Uruchamia się przed scenariuszem Cucumber.
      * @param {ITestCaseHookParameter} world    obiekt świata zawierający informacje o pickle i kroku testowym
-     * @param {object}                 context  obiekt Cucumber World
+     * @param {object}                 context  obiekt świata Cucumber
      */
     beforeScenario: function (world, context) {
     },
     /**
      *
-     * Uruchamiane przed krokiem Cucumber.
+     * Uruchamia się przed krokiem Cucumber.
      * @param {Pickle.IPickleStep} step     dane kroku
      * @param {IPickle}            scenario pickle scenariusza
-     * @param {object}             context  obiekt Cucumber World
+     * @param {object}             context  obiekt świata Cucumber
      */
     beforeStep: function (step, scenario, context) {
     },
     /**
      *
-     * Uruchamiane po kroku Cucumber.
+     * Uruchamia się po kroku Cucumber.
      * @param {Pickle.IPickleStep} step             dane kroku
      * @param {IPickle}            scenario         pickle scenariusza
      * @param {object}             result           obiekt wyników zawierający wyniki scenariusza
-     * @param {boolean}            result.passed    true jeśli scenariusz przeszedł
-     * @param {string}             result.error     stos błędu, jeśli scenariusz nie powiódł się
+     * @param {boolean}            result.passed    true, jeśli scenariusz został zaliczony
+     * @param {string}             result.error     stos błędów, jeśli scenariusz nie powiódł się
      * @param {number}             result.duration  czas trwania scenariusza w milisekundach
-     * @param {object}             context          obiekt Cucumber World
+     * @param {object}             context          obiekt świata Cucumber
      */
     afterStep: function (step, scenario, result, context) {
     },
     /**
      *
-     * Uruchamiane po scenariuszu Cucumber.
+     * Uruchamia się po scenariuszu Cucumber.
      * @param {ITestCaseHookParameter} world            obiekt świata zawierający informacje o pickle i kroku testowym
      * @param {object}                 result           obiekt wyników zawierający wyniki scenariusza `{passed: boolean, error: string, duration: number}`
-     * @param {boolean}                result.passed    true jeśli scenariusz przeszedł
-     * @param {string}                 result.error     stos błędu, jeśli scenariusz nie powiódł się
+     * @param {boolean}                result.passed    true, jeśli scenariusz został zaliczony
+     * @param {string}                 result.error     stos błędów, jeśli scenariusz nie powiódł się
      * @param {number}                 result.duration  czas trwania scenariusza w milisekundach
-     * @param {object}                 context          obiekt Cucumber World
+     * @param {object}                 context          obiekt świata Cucumber
      */
     afterScenario: function (world, result, context) {
     },
     /**
      *
-     * Uruchamiane po funkcji Cucumber.
+     * Uruchamia się po funkcji Cucumber.
      * @param {string}                   uri      ścieżka do pliku funkcji
      * @param {GherkinDocument.IFeature} feature  obiekt funkcji Cucumber
      */
     afterFeature: function (uri, feature) {
     },
     /**
-     * Uruchamiane przed dokonaniem asercji przez bibliotekę asercji WebdriverIO.
+     * Uruchamia się przed wykonaniem asercji przez bibliotekę asercji WebdriverIO.
      * @param commandName nazwa polecenia
-     * @param args        argumenty, które polecenie by otrzymało
+     * @param args argumenty, które polecenie otrzymałoby
      */
     beforeAssertion: function (params) {
     },
     /**
-     * Uruchamiane po wykonaniu polecenia WebdriverIO
+     * Uruchamia się po wykonaniu polecenia WebdriverIO
      * @param commandName  nazwa polecenia
-     * @param args         argumenty, które polecenie by otrzymało
+     * @param args         argumenty, które polecenie otrzymałoby
      * @param result       wynik polecenia
      * @param error        błąd w przypadku, gdy coś poszło nie tak
      */

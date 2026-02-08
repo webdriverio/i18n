@@ -1,41 +1,41 @@
 ---
-id: lambdatest
-title: Δοκιμές Προσβασιμότητας LambdaTest
+id: testmuai
+title: Δοκιμές Προσβασιμότητας TestMu AI (Πρώην LambdaTest)
 ---
 
-# Δοκιμές Προσβασιμότητας LambdaTest
+# TestMu AI Accessibility Testing
 
-Μπορείτε εύκολα να ενσωματώσετε δοκιμές προσβασιμότητας στις σουίτες δοκιμών WebdriverIO σας χρησιμοποιώντας το [LambdaTest Accessibility Testing](https://www.lambdatest.com/support/docs/accessibility-automation-settings/).
+Μπορείτε εύκολα να ενσωματώσετε δοκιμές προσβασιμότητας στις σουίτες δοκιμών WebdriverIO σας χρησιμοποιώντας το [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
 
-## Πλεονεκτήματα των Δοκιμών Προσβασιμότητας LambdaTest
+## Πλεονεκτήματα του TestMu AI Accessibility Testing
 
-Οι Δοκιμές Προσβασιμότητας LambdaTest σας βοηθούν να εντοπίσετε και να διορθώσετε προβλήματα προσβασιμότητας στις διαδικτυακές εφαρμογές σας. Τα παρακάτω είναι τα βασικά πλεονεκτήματα:
+Το TestMu AI Accessibility Testing σας βοηθάει να εντοπίσετε και να διορθώσετε προβλήματα προσβασιμότητας στις διαδικτυακές εφαρμογές σας. Τα ακόλουθα είναι τα βασικά πλεονεκτήματα:
 
 * Ενσωματώνεται απρόσκοπτα με τον υπάρχοντα αυτοματισμό δοκιμών WebdriverIO.
 * Αυτοματοποιημένη σάρωση προσβασιμότητας κατά την εκτέλεση των δοκιμών.
-* Ολοκληρωμένη αναφορά συμμόρφωσης WCAG.
-* Λεπτομερής παρακολούθηση προβλημάτων με καθοδήγηση αποκατάστασης.
+* Ολοκληρωμένη αναφορά συμμόρφωσης με WCAG.
+* Λεπτομερής παρακολούθηση προβλημάτων με οδηγίες αποκατάστασης.
 * Υποστήριξη για πολλαπλά πρότυπα WCAG (WCAG 2.0, WCAG 2.1, WCAG 2.2).
-* Πληροφορίες προσβασιμότητας σε πραγματικό χρόνο στον πίνακα ελέγχου του LambdaTest.
+* Πληροφορίες προσβασιμότητας σε πραγματικό χρόνο στον πίνακα ελέγχου του TestMu AI.
 
-## Ξεκινήστε με τις Δοκιμές Προσβασιμότητας LambdaTest
+## Ξεκινήστε με το TestMu AI Accessibility Testing
 
-Ακολουθήστε αυτά τα βήματα για να ενσωματώσετε τις σουίτες δοκιμών WebdriverIO σας με τις Δοκιμές Προσβασιμότητας του LambdaTest:
+Ακολουθήστε αυτά τα βήματα για να ενσωματώσετε τις σουίτες δοκιμών WebdriverIO σας με το Accessibility Testing του TestMu AI:
 
-1. Εγκαταστήστε το πακέτο υπηρεσίας LambdaTest WebdriverIO.
+1. Εγκαταστήστε το πακέτο υπηρεσίας TestMu AI WebdriverIO.
 
 ```bash npm2yarn
 npm install --save-dev @lambdatest/wdio-lambdatest-service
 ```
 
-2. Ενημερώστε το αρχείο ρύθμισης `wdio.conf.js`.
+2. Ενημερώστε το αρχείο διαμόρφωσης `wdio.conf.js`.
 
 ```javascript
 exports.config = {
     //...
     user: process.env.LT_USERNAME || '<lambdatest_username>',
     key: process.env.LT_ACCESS_KEY || '<lambdatest_access_key>',
-    
+
     capabilities: [{
         browserName: 'chrome',
         'LT:Options': {
@@ -49,7 +49,7 @@ exports.config = {
             }
         }
     }],
-    
+
     services: [
         ['lambdatest', {
             tunnel: false
@@ -59,7 +59,7 @@ exports.config = {
 };
 ```
 
-3. Εκτελέστε τις δοκιμές σας όπως συνήθως. Το LambdaTest θα σαρώσει αυτόματα για προβλήματα προσβασιμότητας κατά την εκτέλεση των δοκιμών.
+3. Εκτελέστε τις δοκιμές σας ως συνήθως. Το TestMu AI θα σαρώσει αυτόματα για προβλήματα προσβασιμότητας κατά την εκτέλεση των δοκιμών.
 
 ```bash
 npx wdio run wdio.conf.js
@@ -69,23 +69,23 @@ npx wdio run wdio.conf.js
 
 Το αντικείμενο `accessibilityOptions` υποστηρίζει τις ακόλουθες παραμέτρους:
 
-* **wcagVersion**: Καθορίστε την έκδοση προτύπου WCAG για έλεγχο
-  - `wcag20` - WCAG 2.0 Επίπεδο Α
-  - `wcag21a` - WCAG 2.1 Επίπεδο Α
-  - `wcag21aa` - WCAG 2.1 Επίπεδο ΑΑ (προεπιλογή)
-  - `wcag22aa` - WCAG 2.2 Επίπεδο ΑΑ
+* **wcagVersion**: Καθορίστε την έκδοση του προτύπου WCAG για τον έλεγχο
+  - `wcag20` - WCAG 2.0 Επίπεδο A
+  - `wcag21a` - WCAG 2.1 Επίπεδο A
+  - `wcag21aa` - WCAG 2.1 Επίπεδο AA (προεπιλογή)
+  - `wcag22aa` - WCAG 2.2 Επίπεδο AA
 
-* **bestPractice**: Συμπερίληψη συστάσεων βέλτιστης πρακτικής (προεπιλογή: `false`)
+* **bestPractice**: Συμπεριλάβετε συστάσεις βέλτιστων πρακτικών (προεπιλογή: `false`)
 
-* **needsReview**: Συμπερίληψη ζητημάτων που χρειάζονται χειροκίνητη αξιολόγηση (προεπιλογή: `true`)
+* **needsReview**: Συμπεριλάβετε ζητήματα που χρειάζονται χειροκίνητη αναθεώρηση (προεπιλογή: `true`)
 
 ## Προβολή Αναφορών Προσβασιμότητας
 
-Μετά την ολοκλήρωση των δοκιμών σας, μπορείτε να δείτε λεπτομερείς αναφορές προσβασιμότητας στον [Πίνακα Ελέγχου LambdaTest](https://automation.lambdatest.com/):
+Μετά την ολοκλήρωση των δοκιμών σας, μπορείτε να δείτε λεπτομερείς αναφορές προσβασιμότητας στον [Πίνακα Ελέγχου TestMu AI](https://automation.lambdatest.com/):
 
 1. Πλοηγηθείτε στην εκτέλεση της δοκιμής σας
 2. Κάντε κλικ στην καρτέλα "Accessibility"
-3. Επιθεωρήστε τα αναγνωρισμένα προβλήματα με επίπεδα σοβαρότητας
-4. Λάβετε καθοδήγηση αποκατάστασης για κάθε ζήτημα
+3. Εξετάστε τα προβλήματα που εντοπίστηκαν με επίπεδα σοβαρότητας
+4. Λάβετε οδηγίες αποκατάστασης για κάθε ζήτημα
 
-Για πιο λεπτομερείς πληροφορίες, επισκεφτείτε την [τεκμηρίωση Αυτοματισμού Προσβασιμότητας LambdaTest](https://www.lambdatest.com/support/docs/accessibility-automation-settings/).
+Για πιο λεπτομερείς πληροφορίες, επισκεφθείτε την [τεκμηρίωση Accessibility Automation του TestMu AI](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
