@@ -1,7 +1,6 @@
 ---
 id: testmuai
 title: Test di Accessibilità TestMu AI (Precedentemente LambdaTest)
-description: 
 ---
 
 # TestMu AI Accessibility Testing
