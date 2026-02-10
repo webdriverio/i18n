@@ -438,4 +438,3 @@ project-root/
   - Appium
   - Chromedriver
   - ESLint
-  - 登录http://the-internet.herokuapp.com和[WebdriverIO原生演示应用](https://github.com/webdriverio/native-demo-app)的测试示例
