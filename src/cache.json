@@ -6889,5 +6889,141 @@
       "vi",
       "ko"
     ]
+  },
+  "en/docusaurus-plugin-content-docs/current/devtools/TestLens.md": {
+    "hash": "f027ba2ce4a5ae790c6ff94360da675639462bdad5352c7ac2f7890c753b3e28",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/devtools/ConsoleLogs.md": {
+    "hash": "e58a8d6ae416bfabceccb8c88dbc89a5bbed97b7d55f592ea2f8feb00bf375fa",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/devtools/InteractiveTestRerunning.md": {
+    "hash": "93eec13cd7a0b97e0e19f9e1087eba36f6df056e7dc7cc00e2e919488decdc70",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/devtools/NetworkLogs.md": {
+    "hash": "6446bc3189abe22881db31eadc9700bb838dabbadafce0f43477ef8a0cd19089",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/devtools/MultiFrameworkSupport.md": {
+    "hash": "b1622154e2a9d796d0d79e41957e88e9dd9d4f4235189bc996f4c6e79e25953c",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
+  },
+  "en/docusaurus-plugin-content-docs/current/Devtools.md": {
+    "hash": "f93e4c49cd62ee488c4eb16a30a0fdf62a746fc87256b52005d220f2bf26112f",
+    "languages": [
+      "ar",
+      "de",
+      "es",
+      "fa",
+      "fr",
+      "hi",
+      "it",
+      "ja",
+      "el",
+      "pl",
+      "pt",
+      "ru",
+      "sv",
+      "ta",
+      "uk",
+      "zh",
+      "vi",
+      "ko"
+    ]
   }
 }
