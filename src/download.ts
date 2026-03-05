@@ -114,12 +114,12 @@ async function processRepoItem(octokit: Octokit, item: any, outputDir: string, r
             throw new Error(`File ${item.path} does not have content or encoding`);
         }
 
-        const content = fileContent.encoding === 'base64'
-            ? Buffer.from(fileContent.content, 'base64').toString('utf-8')
-            : fileContent.content;
-
-        // Save file to disk
-        await fs.writeFile(itemPath, content);
+        if (fileContent.encoding === 'base64') {
+            const buffer = Buffer.from(fileContent.content, 'base64');
+            await fs.writeFile(itemPath, buffer);
+        } else {
+            await fs.writeFile(itemPath, fileContent.content);
+        }
         console.log(`Downloaded: ${itemPath}`);
     }
 }

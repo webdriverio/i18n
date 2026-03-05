@@ -9,13 +9,13 @@ import dotenv from 'dotenv';
 import { Processor } from './processor.js';
 import { walkThroughTranslationFiles } from './utils.js';
 import cache from './cache.json' with { type: 'json' };
-import { LANGUAGES_TO_TRANSLATE, ROOT_DIR, DOCUMENT_LABELS, TRANSLATION_INSTRUCTIONS, DocumentType } from './constants.js';
+import { LANGUAGES_TO_TRANSLATE, ROOT_DIR, DOCUMENT_LABELS, TRANSLATION_INSTRUCTIONS, TRANSLATABLE_EXTENSIONS, DocumentType } from './constants.js';
 
 // Load environment variables
 dotenv.config();
 
 // Cache file path
-const model = 'claude-3-7-sonnet-latest'
+const model = 'claude-sonnet-4-6-latest'
 const CACHE_FILE_PATH = path.join(ROOT_DIR, 'src', 'cache.json');
 const CONTENT_SEPARATOR = '---'
 const MAX_TOKENS = 128 * 1000
@@ -104,6 +104,14 @@ export async function translate(language: string) {
 }
 
 async function translateFile(sourcePath: string, targetPath: string, language: string) {
+    const extension = path.extname(sourcePath);
+    if (!TRANSLATABLE_EXTENSIONS.includes(extension)) {
+        await fs.mkdir(path.dirname(targetPath), { recursive: true });
+        await fs.copyFile(sourcePath, targetPath);
+        console.log(`Copied non-translatable file: ${path.basename(sourcePath)}`);
+        return;
+    }
+
     try {
         console.log(`Processing ${sourcePath} for ${language}...`);
 

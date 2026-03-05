@@ -14,6 +14,8 @@ export const DOCUMENT_LABELS = {
     [DocumentType.JSON]: 'JSON'
 }
 
+export const TRANSLATABLE_EXTENSIONS = ['.md', '.json']
+
 export const TRANSLATION_INSTRUCTIONS = {
     [DocumentType.MARKDOWN]: [
         'The document is a Docusaurus documentation page and separated in frontmatter and body.',
@@ -24,6 +26,7 @@ export const TRANSLATION_INSTRUCTIONS = {
         'Do not translate code inside code blocks, variable names, or technical terms that should remain in English.',
         'Do not translate HTML tags or attributes.',
         'Do not change URLs.',
+        'Do not change Markdown image references. Keep the entire image syntax exactly as-is, including the file path/URL. For example, `![Console Logs](./demo/console-logs.gif)` must remain unchanged — do not translate the alt text or modify the path.',
     ].join('\n'),
     [DocumentType.JSON]: [
         'The document is a JSON file that contains documentation for a WebdriverIO project.',
