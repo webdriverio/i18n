@@ -15,7 +15,7 @@ import { LANGUAGES_TO_TRANSLATE, ROOT_DIR, DOCUMENT_LABELS, TRANSLATION_INSTRUCT
 dotenv.config();
 
 // Cache file path
-const model = 'claude-sonnet-4-latest'
+const model = 'claude-sonnet-4-6-latest'
 const CACHE_FILE_PATH = path.join(ROOT_DIR, 'src', 'cache.json');
 const CONTENT_SEPARATOR = '---'
 const MAX_TOKENS = 128 * 1000
