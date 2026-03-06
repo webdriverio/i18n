@@ -16,6 +16,6 @@ API சிக்கல்களைத் தீர்ப்பதற்கும
 ## டெமோ
 
 ### 🌐 நெட்வொர்க் பதிவுகள்
-![Network Logs Overview](./demo/network-logs-1.gif)
+![Network Logs Overview](pathname://./demo/network-logs-1.gif)
 
-![Network Logs Details](./demo/network-logs-2.gif)
+![Network Logs Details](pathname://./demo/network-logs-2.gif)

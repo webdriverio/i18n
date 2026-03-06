@@ -16,6 +16,6 @@ C'est inestimable pour déboguer les problèmes d'API, identifier les requêtes 
 ## Demo
 
 ### 🌐 Journaux Réseau
-![Network Logs Overview](./demo/network-logs-1.gif)
+![Network Logs Overview](pathname://./demo/network-logs-1.gif)
 
-![Network Logs Details](./demo/network-logs-2.gif)
+![Network Logs Details](pathname://./demo/network-logs-2.gif)

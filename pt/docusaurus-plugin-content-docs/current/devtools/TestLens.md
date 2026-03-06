@@ -16,4 +16,4 @@ Esta conexão perfeita entre interface e código acelera a depuração, eliminan
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](pathname://./demo/testlens.gif)

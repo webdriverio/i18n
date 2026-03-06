@@ -16,4 +16,4 @@ UIとコード間のこのシームレスな接続により、テスト失敗を
 ## デモ
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](pathname://./demo/testlens.gif)

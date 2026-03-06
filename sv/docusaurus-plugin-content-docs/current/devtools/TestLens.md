@@ -17,4 +17,4 @@ Denna sömlösa koppling mellan användargränssnitt och kod påskyndar felsökn
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](pathname://./demo/testlens.gif)

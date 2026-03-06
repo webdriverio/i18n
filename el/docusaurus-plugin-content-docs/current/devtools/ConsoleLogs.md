@@ -27,4 +27,4 @@ export const config = {
 ## Επίδειξη
 
 ### >_ Αρχεία Καταγραφής Κονσόλας
-![Console Logs](./demo/console-logs.gif)
+![Console Logs](pathname://./demo/console-logs.gif)

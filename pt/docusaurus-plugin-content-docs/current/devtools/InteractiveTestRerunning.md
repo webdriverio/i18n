@@ -18,7 +18,7 @@ Após a conclusão da execução inicial do teste, clique em qualquer caso de te
 ## Demonstração
 
 ### 🛠️ Reexecutor de Testes & Snapshot
-![Demonstração do Reexecutor de Testes & Snapshot](./demo/test-rerunner.gif)
+![Demonstração do Reexecutor de Testes & Snapshot](pathname://./demo/test-rerunner.gif)
 
 ### 🛑 Parar o Executor de Testes
-![Demonstração de Parar o Executor de Testes](./demo/stop-runner.gif)
+![Demonstração de Parar o Executor de Testes](pathname://./demo/stop-runner.gif)

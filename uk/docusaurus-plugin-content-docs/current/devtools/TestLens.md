@@ -16,4 +16,4 @@ TestLens забезпечує інтелектуальну навігацію п
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](pathname://./demo/testlens.gif)

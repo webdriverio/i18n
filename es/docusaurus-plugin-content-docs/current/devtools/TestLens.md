@@ -16,4 +16,4 @@ Esta conexión sin problemas entre la interfaz de usuario y el código acelera l
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](pathname://./demo/testlens.gif)

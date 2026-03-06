@@ -27,4 +27,4 @@ Detta gör det enkelt att felsöka JavaScript-fel, spåra applikationsbeteende o
 ## Demo
 
 ### >_ Konsolloggar
-![Console Logs](./demo/console-logs.gif)
+![Console Logs](pathname://./demo/console-logs.gif)

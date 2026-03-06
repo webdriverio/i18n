@@ -16,6 +16,6 @@ title: سجلات الشبكة
 ## العرض التوضيحي
 
 ### 🌐 سجلات الشبكة
-![نظرة عامة على سجلات الشبكة](./demo/network-logs-1.gif)
+![نظرة عامة على سجلات الشبكة](pathname://./demo/network-logs-1.gif)
 
-![تفاصيل سجلات الشبكة](./demo/network-logs-2.gif)
+![تفاصيل سجلات الشبكة](pathname://./demo/network-logs-2.gif)

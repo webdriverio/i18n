@@ -27,4 +27,4 @@ export const config = {
 ## عرض توضيحي
 
 ### >_ سجلات وحدة التحكم
-![سجلات وحدة التحكم](./demo/console-logs.gif)
+![سجلات وحدة التحكم](pathname://./demo/console-logs.gif)

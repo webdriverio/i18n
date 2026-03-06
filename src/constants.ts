@@ -26,7 +26,7 @@ export const TRANSLATION_INSTRUCTIONS = {
         'Do not translate code inside code blocks, variable names, or technical terms that should remain in English.',
         'Do not translate HTML tags or attributes.',
         'Do not change URLs.',
-        'Do not change Markdown image references. Keep the entire image syntax exactly as-is, including the file path/URL. For example, `![Console Logs](./demo/console-logs.gif)` must remain unchanged — do not translate the alt text or modify the path.',
+        'Do not modify Markdown image references — keep the file path/URL and alt text exactly as they appear in the source document.',
     ].join('\n'),
     [DocumentType.JSON]: [
         'The document is a JSON file that contains documentation for a WebdriverIO project.',

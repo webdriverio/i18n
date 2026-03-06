@@ -27,4 +27,4 @@ Dzięki temu łatwo można debugować błędy JavaScript, śledzić zachowanie a
 ## Demo
 
 ### >_ Console Logs
-![Console Logs](./demo/console-logs.gif)
+![Console Logs](pathname://./demo/console-logs.gif)

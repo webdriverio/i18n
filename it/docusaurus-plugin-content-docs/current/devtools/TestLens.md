@@ -16,4 +16,4 @@ Questa connessione fluida tra interfaccia utente e codice velocizza il debugging
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](pathname://./demo/testlens.gif)

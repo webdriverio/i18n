@@ -16,6 +16,6 @@ Isso é inestimável para depurar problemas de API, identificar requisições le
 ## Demo
 
 ### 🌐 Logs de Rede
-![Visão Geral dos Logs de Rede](./demo/network-logs-1.gif)
+![Visão Geral dos Logs de Rede](pathname://./demo/network-logs-1.gif)
 
-![Detalhes dos Logs de Rede](./demo/network-logs-2.gif)
+![Detalhes dos Logs de Rede](pathname://./demo/network-logs-2.gif)

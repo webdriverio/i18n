@@ -16,6 +16,6 @@ title: گزارش‌های شبکه
 ## دمو
 
 ### 🌐 گزارش‌های شبکه
-![نمای کلی گزارش‌های شبکه](./demo/network-logs-1.gif)
+![نمای کلی گزارش‌های شبکه](pathname://./demo/network-logs-1.gif)
 
-![جزئیات گزارش‌های شبکه](./demo/network-logs-2.gif)
+![جزئیات گزارش‌های شبکه](pathname://./demo/network-logs-2.gif)

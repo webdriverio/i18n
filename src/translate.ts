@@ -103,6 +103,20 @@ export async function translate(language: string) {
     console.log(`Translation to ${language} completed!`);
 }
 
+/**
+ * Docusaurus resolves relative image paths against the markdown file's location.
+ * Translated docs live in i18n/<locale>/... where the original image assets don't
+ * exist, so relative paths like ./demo/foo.gif break the build. The pathname://
+ * protocol tells Docusaurus to emit the URL as-is without trying to resolve it
+ * as a local file.
+ */
+function postProcessMarkdown(content: string): string {
+    return content.replace(
+        /!\[([^\]]*)\]\(\.\/([^)]+)\)/g,
+        '![$1](pathname://./$2)'
+    )
+}
+
 async function translateFile(sourcePath: string, targetPath: string, language: string) {
     const extension = path.extname(sourcePath);
     if (!TRANSLATABLE_EXTENSIONS.includes(extension)) {
@@ -130,7 +144,11 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
         }
 
         // Translate the body content using Anthropic
-        const translatedContent = await translateContent(content, language, path.extname(sourcePath));
+        let translatedContent = await translateContent(content, language, path.extname(sourcePath));
+
+        if (extension === '.md') {
+            translatedContent = postProcessMarkdown(translatedContent);
+        }
 
         // Write the translated content to the target file
         await fs.mkdir(path.dirname(targetPath), { recursive: true });

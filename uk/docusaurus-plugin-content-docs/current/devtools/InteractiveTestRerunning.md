@@ -18,7 +18,7 @@ title: Інтерактивний перезапуск і візуалізаці
 ## Демонстрація
 
 ### 🛠️ Перезапускач тестів і знімки
-![Test Rerunner & Snapshot Demo](./demo/test-rerunner.gif)
+![Test Rerunner & Snapshot Demo](pathname://./demo/test-rerunner.gif)
 
 ### 🛑 Зупинка тестового запускача
-![Stop Test Runner Demo](./demo/stop-runner.gif)
+![Stop Test Runner Demo](pathname://./demo/stop-runner.gif)

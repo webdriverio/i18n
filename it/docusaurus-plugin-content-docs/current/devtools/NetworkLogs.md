@@ -16,6 +16,6 @@ Questo è inestimabile per il debug di problemi API, l'identificazione di richie
 ## Demo
 
 ### 🌐 Log di Rete
-![Network Logs Overview](./demo/network-logs-1.gif)
+![Network Logs Overview](pathname://./demo/network-logs-1.gif)
 
-![Network Logs Details](./demo/network-logs-2.gif)
+![Network Logs Details](pathname://./demo/network-logs-2.gif)

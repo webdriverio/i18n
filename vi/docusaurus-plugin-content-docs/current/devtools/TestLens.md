@@ -16,4 +16,4 @@ Kết nối liền mạch giữa giao diện người dùng và mã này giúp t
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](pathname://./demo/testlens.gif)

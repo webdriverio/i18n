@@ -27,4 +27,4 @@ export const config = {
 ## 演示
 
 ### >_ 控制台日志
-![Console Logs](./demo/console-logs.gif)
+![Console Logs](pathname://./demo/console-logs.gif)
