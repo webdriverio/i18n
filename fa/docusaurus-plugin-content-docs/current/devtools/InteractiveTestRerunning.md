@@ -18,7 +18,7 @@ title: اجرای مجدد تعاملی و مصورسازی تست
 ## نمایش
 
 ### 🛠️ اجراکننده مجدد تست و عکس‌برداری
-![Test Rerunner & Snapshot Demo](./demo/test-rerunner.gif)
+![Test Rerunner & Snapshot Demo](/img/devtools/test-rerunner.gif)
 
 ### 🛑 توقف اجراکننده تست
-![Stop Test Runner Demo](./demo/stop-runner.gif)
+![Stop Test Runner Demo](/img/devtools/stop-runner.gif)

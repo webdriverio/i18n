@@ -16,6 +16,6 @@ title: 网络日志
 ## 演示
 
 ### 🌐 网络日志
-![网络日志概览](./demo/network-logs-1.gif)
+![网络日志概览](/img/devtools/network-logs-1.gif)
 
-![网络日志详情](./demo/network-logs-2.gif)
+![网络日志详情](/img/devtools/network-logs-2.gif)

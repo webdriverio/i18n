@@ -16,4 +16,4 @@ title: TestLens
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](/img/devtools/testlens.gif)

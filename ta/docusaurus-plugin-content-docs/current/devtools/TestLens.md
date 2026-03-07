@@ -16,4 +16,4 @@ UI மற்றும் குறியீட்டிற்கு இடைய
 ## டெமோ
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](/img/devtools/testlens.gif)

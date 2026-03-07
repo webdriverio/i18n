@@ -27,4 +27,4 @@ export const config = {
 ## डेमो
 
 ### >_ कंसोल लॉग्स
-![Console Logs](./demo/console-logs.gif)
+![Console Logs](/img/devtools/console-logs.gif)

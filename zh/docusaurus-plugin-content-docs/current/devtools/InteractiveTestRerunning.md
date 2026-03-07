@@ -18,7 +18,7 @@ title: 交互式测试重新运行与可视化
 ## 演示
 
 ### 🛠️ 测试重新运行器和快照
-![Test Rerunner & Snapshot Demo](./demo/test-rerunner.gif)
+![Test Rerunner & Snapshot Demo](/img/devtools/test-rerunner.gif)
 
 ### 🛑 停止测试运行器
-![Stop Test Runner Demo](./demo/stop-runner.gif)
+![Stop Test Runner Demo](/img/devtools/stop-runner.gif)

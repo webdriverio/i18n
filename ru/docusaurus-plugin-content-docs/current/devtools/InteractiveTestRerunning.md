@@ -18,7 +18,7 @@ title: Интерактивный перезапуск и визуализаци
 ## Демонстрация
 
 ### 🛠️ Инструмент перезапуска тестов и снимки
-![Test Rerunner & Snapshot Demo](./demo/test-rerunner.gif)
+![Test Rerunner & Snapshot Demo](/img/devtools/test-rerunner.gif)
 
 ### 🛑 Остановка тестового раннера
-![Stop Test Runner Demo](./demo/stop-runner.gif)
+![Stop Test Runner Demo](/img/devtools/stop-runner.gif)

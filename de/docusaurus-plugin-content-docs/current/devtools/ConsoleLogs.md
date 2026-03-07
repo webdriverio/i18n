@@ -27,4 +27,4 @@ Dies macht es einfach, JavaScript-Fehler zu debuggen, Anwendungsverhalten zu ver
 ## Demo
 
 ### >_ Konsolenprotokolle
-![Console Logs](./demo/console-logs.gif)
+![Console Logs](/img/devtools/console-logs.gif)

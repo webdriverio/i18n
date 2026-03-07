@@ -16,4 +16,4 @@ To bezproblemowe połączenie między interfejsem a kodem przyspiesza debugowani
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](/img/devtools/testlens.gif)

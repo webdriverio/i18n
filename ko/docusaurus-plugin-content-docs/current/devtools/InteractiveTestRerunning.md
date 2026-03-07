@@ -18,7 +18,7 @@ title: 인터랙티브 테스트 재실행 및 시각화
 ## 데모
 
 ### 🛠️ 테스트 재실행기 & 스냅샷
-![Test Rerunner & Snapshot Demo](./demo/test-rerunner.gif)
+![Test Rerunner & Snapshot Demo](/img/devtools/test-rerunner.gif)
 
 ### 🛑 테스트 러너 중지
-![Stop Test Runner Demo](./demo/stop-runner.gif)
+![Stop Test Runner Demo](/img/devtools/stop-runner.gif)

@@ -16,4 +16,4 @@ TestLens امکان پیمایش هوشمند کد بین رابط کاربری 
 ## نمایش
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](/img/devtools/testlens.gif)

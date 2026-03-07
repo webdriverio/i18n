@@ -16,4 +16,4 @@ UI와 코드 간의 이러한 원활한 연결은 테스트 실패를 조사할 
 ## 데모
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](/img/devtools/testlens.gif)

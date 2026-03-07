@@ -27,4 +27,4 @@ Esto facilita la depuración de errores de JavaScript, el seguimiento del compor
 ## Demo
 
 ### >_ Registros de Consola
-![Console Logs](./demo/console-logs.gif)
+![Console Logs](/img/devtools/console-logs.gif)

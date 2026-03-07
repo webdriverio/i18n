@@ -16,4 +16,4 @@ Diese nahtlose Verbindung zwischen Benutzeroberfläche und Code beschleunigt das
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](/img/devtools/testlens.gif)

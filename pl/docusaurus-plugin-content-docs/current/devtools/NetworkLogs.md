@@ -16,6 +16,6 @@ Jest to nieocenione przy debugowaniu problemów z API, identyfikacji wolnych ż�
 ## Demo
 
 ### 🌐 Logi sieciowe
-![Przegląd logów sieciowych](./demo/network-logs-1.gif)
+![Przegląd logów sieciowych](/img/devtools/network-logs-1.gif)
 
-![Szczegóły logów sieciowych](./demo/network-logs-2.gif)
+![Szczegóły logów sieciowych](/img/devtools/network-logs-2.gif)

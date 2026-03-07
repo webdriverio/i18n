@@ -18,7 +18,7 @@ Une fois votre exécution de test initiale terminée, cliquez sur n'importe quel
 ## Démo
 
 ### 🛠️ Relanceur de test et capture instantanée
-![Test Rerunner & Snapshot Demo](./demo/test-rerunner.gif)
+![Test Rerunner & Snapshot Demo](/img/devtools/test-rerunner.gif)
 
 ### 🛑 Arrêt du testeur
-![Stop Test Runner Demo](./demo/stop-runner.gif)
+![Stop Test Runner Demo](/img/devtools/stop-runner.gif)

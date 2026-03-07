@@ -16,6 +16,6 @@ title: 네트워크 로그
 ## 데모
 
 ### 🌐 네트워크 로그
-![네트워크 로그 개요](./demo/network-logs-1.gif)
+![네트워크 로그 개요](/img/devtools/network-logs-1.gif)
 
-![네트워크 로그 세부 정보](./demo/network-logs-2.gif)
+![네트워크 로그 세부 정보](/img/devtools/network-logs-2.gif)

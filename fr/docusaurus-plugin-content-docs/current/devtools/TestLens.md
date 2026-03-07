@@ -16,4 +16,4 @@ Cette connexion transparente entre l'interface et le code accélère le débogag
 ## Demo
 
 ### 🔍︎ TestLens
-![TestLens Demo](./demo/testlens.gif)
+![TestLens Demo](/img/devtools/testlens.gif)

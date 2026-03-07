@@ -27,4 +27,4 @@ Cela facilite le débogage des erreurs JavaScript, le suivi du comportement de l
 ## Démo
 
 ### >_ Journaux de Console
-![Console Logs](./demo/console-logs.gif)
+![Console Logs](/img/devtools/console-logs.gif)
