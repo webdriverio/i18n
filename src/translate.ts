@@ -15,7 +15,7 @@ import { LANGUAGES_TO_TRANSLATE, ROOT_DIR, DOCUMENT_LABELS, TRANSLATION_INSTRUCT
 dotenv.config();
 
 // Cache file path
-const model = 'claude-sonnet-4-6-latest'
+const model = 'claude-opus-5-5'
 const CACHE_FILE_PATH = path.join(ROOT_DIR, 'src', 'cache.json');
 const CONTENT_SEPARATOR = '---'
 const MAX_TOKENS = 128 * 1000
@@ -40,9 +40,6 @@ if (!process.env.ANTHROPIC_API_KEY) {
 
 const client = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY,
-    defaultHeaders: {
-        'anthropic-beta': 'output-128k-2025-02-19',
-    }
 })
 
 /**
@@ -172,6 +169,7 @@ async function translateContent(content: string, language: string, extension: st
                 params: {
                     model,
                     max_tokens: MAX_TOKENS,
+                    output_config: { effort: 'medium' },
                     messages: getMessages(language, section, extension),
                 },
             }))
@@ -183,6 +181,13 @@ async function translateContent(content: string, language: string, extension: st
         for await (const chunk of chunks) {
             if (chunk.result.type !== 'succeeded') {
                 throw new Error(`Batch ${batch.id} failed: ${JSON.stringify(chunk.result, null, 2)}`)
+            }
+            /**
+             * don't write empty or truncated translations
+             */
+            const { stop_reason, stop_details } = chunk.result.message
+            if (stop_reason === 'refusal' || stop_reason === 'max_tokens') {
+                throw new Error(`Batch ${batch.id} stopped with "${stop_reason}": ${JSON.stringify(stop_details)}`)
             }
             text += chunk.result.message.content
                 .filter((c) => c.type === 'text')
