@@ -43,14 +43,6 @@ const client = new Anthropic({
 })
 
 /**
- * fetch the latest batch id so we know where to start checking
- * for finished batches
- */
-const latestBatchId = await client.beta.messages.batches.list({
-    limit: 1
-}).then(({ data }) => data[0].id)
-
-/**
  * update the cache
  * @param cacheKey - the key of the cache
  * @param contentShasum - the shasum of the content
@@ -287,34 +279,48 @@ function getBatchId(language: string, contentShasum: string, i: number) {
     return `msgbatch_${language}-${contentShasum.slice(0, 40)}-${i}`
 }
 
+let isCheckingBatchStatus = false
 async function checkBatchStatus () {
-    const batchList = await client.beta.messages.batches.list({
-        limit: 1000,
-        before_id: latestBatchId
-    })
-
-    const allBatchIds = Array.from(batchStatuses.keys())
-    const batchesOfThisProcess = batchList.data.filter(
-        (batch) => allBatchIds.includes(batch.id)
-    )
-    const processingBatches = batchesOfThisProcess.filter(
-        (batch) => batch.processing_status === 'in_progress'
-    )
-    const resolvedBatches = batchesOfThisProcess.filter(
-        (batch) => batch.processing_status === 'ended'
-    )
-
-    for (const batch of batchesOfThisProcess) {
-        /**
-         * fullfill batch promise if it's done
-         */
-        const batchStatus = batchStatuses.get(batch.id)
-        if (batchStatus && !batchStatus.resolved && batch.processing_status === 'ended') {
-            batchStatus.resolved = true
-            batchStatus.resolve()
-            console.log(`Batch ${batch.id} finished`)
-        }
+    /**
+     * skip this tick if the previous check is still running
+     */
+    if (isCheckingBatchStatus) {
+        return
     }
+    isCheckingBatchStatus = true
 
-    console.log(`Batches processing ${resolvedBatches.length}/${batchesOfThisProcess.length} (${processingBatches.length} processing)`)
+    try {
+        /**
+         * retrieve every pending batch by its id rather than listing batches,
+         * as a single list page is capped at 1000 entries and would never
+         * contain batches created after that
+         */
+        const pendingBatches = Array.from(batchStatuses.entries())
+            .filter(([, batchStatus]) => !batchStatus.resolved)
+        const results = await Promise.allSettled(pendingBatches.map(
+            ([batchId]) => client.beta.messages.batches.retrieve(batchId)
+        ))
+
+        for (const [i, result] of results.entries()) {
+            const [batchId, batchStatus] = pendingBatches[i]
+            if (result.status === 'rejected') {
+                console.error(`Failed to check status of batch ${batchId}:`, result.reason?.message)
+                continue
+            }
+
+            /**
+             * fullfill batch promise if it's done
+             */
+            if (result.value.processing_status === 'ended') {
+                batchStatus.resolved = true
+                batchStatus.resolve()
+                console.log(`Batch ${batchId} finished`)
+            }
+        }
+
+        const resolvedBatches = Array.from(batchStatuses.values()).filter(({ resolved }) => resolved)
+        console.log(`Batches processing ${resolvedBatches.length}/${batchStatuses.size} (${batchStatuses.size - resolvedBatches.length} processing)`)
+    } finally {
+        isCheckingBatchStatus = false
+    }
 }
