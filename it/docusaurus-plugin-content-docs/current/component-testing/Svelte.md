@@ -1,13 +1,14 @@
 ---
 id: svelte
 title: Svelte
+description: "Configura il browser runner di WebdriverIO per un progetto Svelte con il preset svelte e scrivi test dei componenti con Testing Library."
 ---
 
-[Svelte](https://svelte.dev/) è un approccio radicalmente nuovo alla creazione di interfacce utente. Mentre i framework tradizionali come React e Vue svolgono la maggior parte del loro lavoro nel browser, Svelte sposta quel lavoro in una fase di compilazione che avviene quando costruisci la tua app. Puoi testare i componenti Svelte direttamente in un browser reale utilizzando WebdriverIO e il suo [browser runner](/docs/runner#browser-runner).
+[Svelte](https://svelte.dev/) è un nuovo approccio radicale alla creazione di interfacce utente. Mentre i framework tradizionali come React e Vue svolgono la maggior parte del loro lavoro nel browser, Svelte sposta quel lavoro in una fase di compilazione che avviene quando costruisci la tua app. Puoi testare i componenti Svelte direttamente in un browser reale utilizzando WebdriverIO e il suo [browser runner](/docs/runner#browser-runner).
 
-## Setup
+## Configurazione
 
-Per configurare WebdriverIO all'interno del tuo progetto Svelte, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione di test dei componenti. Assicurati di selezionare `svelte` come preset all'interno delle tue opzioni runner, ad esempio:
+Per configurare WebdriverIO all'interno del tuo progetto Svelte, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione sul test dei componenti. Assicurati di selezionare `svelte` come preset nelle opzioni del runner, ad esempio:
 
 ```js
 // wdio.conf.js
@@ -22,11 +23,11 @@ export const config = {
 
 :::info
 
-Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, puoi anche riutilizzare la tua configurazione in `vite.config.ts` all'interno della tua configurazione WebdriverIO. Per maggiori informazioni, vedi `viteConfig` nelle [opzioni runner](/docs/runner#runner-options).
+Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, puoi anche semplicemente riutilizzare la tua configurazione in `vite.config.ts` all'interno della configurazione di WebdriverIO. Per maggiori informazioni, consulta `viteConfig` nelle [opzioni del runner](/docs/runner#runner-options).
 
 :::
 
-Il preset Svelte richiede che `@sveltejs/vite-plugin-svelte` sia installato. Inoltre, consigliamo di utilizzare [Testing Library](https://testing-library.com/) per renderizzare il componente nella pagina di test. Pertanto, dovrai installare le seguenti dipendenze aggiuntive:
+Il preset Svelte richiede che `@sveltejs/vite-plugin-svelte` sia installato. Inoltre, consigliamo di utilizzare [Testing Library](https://testing-library.com/) per renderizzare il componente nella pagina di test. Pertanto dovrai installare le seguenti dipendenze aggiuntive:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
@@ -38,9 +39,9 @@ Puoi quindi avviare i test eseguendo:
 npx wdio run ./wdio.conf.js
 ```
 
-## Scrivere Test
+## Scrivere i Test
 
-Dato che hai il seguente componente Svelte:
+Supponendo di avere il seguente componente Svelte:
 
 ```html title="./components/Component.svelte"
 <script>
@@ -57,7 +58,7 @@ Dato che hai il seguente componente Svelte:
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-Nel tuo test, utilizza il metodo `render` da `@testing-library/svelte` per collegare il componente alla pagina di test. Per interagire con il componente, consigliamo di utilizzare i comandi WebdriverIO poiché si comportano in modo più simile alle interazioni utente reali, ad esempio:
+Nel tuo test usa il metodo `render` di `@testing-library/svelte` per collegare il componente alla pagina di test. Per interagire con il componente consigliamo di utilizzare i comandi di WebdriverIO, poiché si comportano in modo più simile alle reali interazioni dell'utente, ad esempio:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'
@@ -78,4 +79,4 @@ describe('Svelte Component Testing', () => {
 })
 ```
 
-Puoi trovare un esempio completo di una suite di test di componenti WebdriverIO per Svelte nel nostro [repository di esempi](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite).
+Puoi trovare un esempio completo di una suite di test dei componenti WebdriverIO per Svelte nel nostro [repository di esempi](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite).

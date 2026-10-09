@@ -1,17 +1,18 @@
 ---
 id: test-output
 title: Testutdata
+description: "Förstå utdata och bilder som produceras av save- och check-metoderna i visual-tjänsten, inklusive layouttestning och block-outs."
 ---
 
 :::info
 
-[This WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) demosida har använts för exempelutdata för bilder.
+[Denna WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html)-demosida har använts för exemplen på bildutdata.
 
 :::
 
 ## `enableLayoutTesting`
 
-Detta kan ställas in på [Service Options](./service-options#enablelayouttesting) såväl som på [Method](./method-options) nivå.
+Detta kan ställas in i [Service Options](./service-options#enablelayouttesting) samt på [Method](./method-options)-nivå.
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,7 +33,7 @@ export const config = {
 }
 ```
 
-Bildutdata för [Service Options](./service-options#enablelayouttesting) är likvärdiga med [Method](./method-options), se nedan.
+Bildutdata för [Service Options](./service-options#enablelayouttesting) är densamma som för [Method](./method-options), se nedan.
 
 ### Bildutdata
 
@@ -97,18 +98,18 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 
 ### Konsolutdata
 
-Metoderna `save(Screen/Element/FullPageScreen)` kommer att tillhandahålla följande information efter att metoden har körts:
+Metoderna `save(Screen/Element/FullPageScreen)` ger följande information efter att metoden har körts:
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // The device pixel ratio of the instance that has run
+ *   // Enhetens pixelförhållande för instansen som har körts
  *   devicePixelRatio: 1,
- *   // The formatted filename, this depends on the options `formatImageName`
+ *   // Det formaterade filnamnet, detta beror på alternativet `formatImageName`
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // The path where the actual screenshot file can be found
+ *   // Sökvägen där den faktiska skärmbildsfilen finns
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
@@ -176,8 +177,8 @@ await browser.saveScreen("example-page-tag")
 </TabItem>
 <TabItem value="ios">
 
-:::info TIP
-iOS `saveScreen`-körningar är som standard inte med enhetens ramar. För att ha detta, lägg till alternativet `addIOSBezelCorners:true` när du initierar tjänsten, se [detta](./service-options#addiosbezelcorners)
+:::info TIPS
+iOS-körningar av `saveScreen` sker som standard utan enhetens ramhörn. För att få med dem, lägg till alternativet `addIOSBezelCorners:true` när tjänsten instansieras, se [detta](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,26 +217,26 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### Konsolutdata
 
-Som standard kommer metoderna `check(Screen/Element/FullPageScreen)` endast att tillhandahålla en felmatchningsprocent som `1.23`, men när pluginen har alternativet `returnAllCompareData: true` tillhandahålls följande information efter att metoden har körts:
+Som standard ger metoderna `check(Screen/Element/FullPageScreen)` endast en avvikelseprocent som `1.23`, men när pluginet har alternativet `returnAllCompareData: true` ges följande information efter att metoden har körts:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // The formatted filename, this depends on the options `formatImageName`
+ *     // Det formaterade filnamnet, detta beror på alternativet `formatImageName`
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // The actual folder and the file name
+ *         // Mappen för faktiska bilder och filnamnet
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // The baseline folder and the file name
+ *         // Baslinjemappen och filnamnet
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // This following folder is optional and only if there is a mismatch
- *         // The folder that holds the diffs and the file name
+ *         // Följande mapp är valfri och finns endast om det finns en avvikelse
+ *         // Mappen som innehåller diff-bilderna och filnamnet
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
- *     // The mismatch percentage
+ *     // Avvikelseprocenten
  *     misMatchPercentage: 2.34,
  * };
  */
@@ -244,7 +245,7 @@ console.log(checkResult)
 ### Bildutdata
 
 :::info
-Bilderna nedan visar endast skillnader som ett resultat av att köra check-kommandona. Endast skillnaden i en webbläsare visas, men utdata för Android och iOS är desamma.
+Bilderna nedan visar endast skillnader som resultat av att check-kommandona körts. Endast diffen i en webbläsare visas, men utdata för Android och iOS är densamma.
 :::
 
 <Tabs
@@ -262,7 +263,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäcks som en förändring.
+Knappens text har ändrats från `Get Started` till `Getting Started!` och upptäckts som en förändring.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +276,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäcks som en förändring.
+Knappens text har ändrats från `Get Started` till `Getting Started!` och upptäckts som en förändring.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +290,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäcks som en förändring.
+Knappens text har ändrats från `Get Started` till `Getting Started!` och upptäckts som en förändring.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -298,9 +299,9 @@ Knapptexten har ändrats från `Get Started` till `Getting Started!` och upptäc
 
 </Tabs>
 
-## Block-Outs
+## Block-outs
 
-Här hittar du ett exempel på utdata för block-outs i Android NativeWebScreenshot och iOS där status+adress och verktygsfält är blockerade.
+Här hittar du ett exempel på utdata för block-outs i Android NativeWebScreenshot och iOS, där status- och adressfältet samt verktygsfältet är maskerade.
 
 <Tabs
     defaultValue="nativeWebScreenshot"

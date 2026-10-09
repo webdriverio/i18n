@@ -1,78 +1,31 @@
 ---
 id: devtools
 title: DevTools
+description: "Visualize, controle e inspecione execuções de testes em uma interface de depuração baseada em navegador que funciona com WebdriverIO, Nightwatch.js e Selenium WebDriver."
 ---
 
-O serviço DevTools fornece uma poderosa interface de depuração baseada em navegador para execuções de testes WebdriverIO. Ele permite visualizar, depurar e controlar seus testes em tempo real por meio de uma aplicação web interativa.
+DevTools é uma poderosa interface de depuração baseada em navegador para visualizar, controlar e inspecionar as execuções dos seus testes em tempo real. Funciona com **WebdriverIO**, **Nightwatch.js** e **Selenium WebDriver** (qualquer runner) — mesmo backend, mesma interface, mesma infraestrutura de captura.
 
-## Visão Geral
+## O Que Oferece
 
-Este serviço permite que você:
-
-- **Execute testes seletivamente** - Clique em qualquer caso de teste ou suíte para reexecutá-lo instantaneamente
-- **Depure visualmente** - Veja previsualizações ao vivo do navegador com capturas de tela automáticas
-- **Acompanhe a execução** - Visualize registros detalhados de comandos com carimbos de data/hora e resultados
-- **Monitore rede e console** - Inspecione chamadas de API e logs JavaScript
-- **Navegue até o código** - Vá diretamente aos arquivos de origem do teste
-
-## Instalação
-
-Instale o serviço como uma dependência de desenvolvimento:
-
-```sh
-npm install --save-dev @wdio/devtools-service
-```
-
-## Configuração
-
-Adicione o serviço à sua configuração WebDriverIO:
-
-```js
-// wdio.conf.js
-export const config = {
-    // ...
-    services: ['devtools'],
-    // ...
-};
-```
-
-### Opções do Serviço
-
-Configure o serviço DevTools com estas opções:
-
-```js
-// wdio.conf.js
-export const config = {
-    // ...
-    services: [
-        ['devtools', {
-            port: 3000,      // Porta para a interface do devtools (padrão: 3000)
-        }]
-    ],
-    // ...
-};
-```
-
-#### Opções
-
-- **port** (número, padrão: `3000`) - Número da porta para o servidor da interface DevTools
+- **Reexecute testes seletivamente** - Clique em qualquer caso de teste ou suíte para reexecutá-lo instantaneamente ([detalhes](/docs/devtools/wdio/interactive-test-rerunning))
+- **Preserve & Rerun (Comparar)** - Tire um snapshot de um teste com falha, reexecute-o e compare as duas execuções lado a lado, alinhadas por comando ([detalhes](/docs/devtools/wdio/preserve-and-rerun))
+- **Depure visualmente** - Veja pré-visualizações ao vivo do navegador com capturas de tela automáticas após cada comando
+- **Acompanhe a execução** - Visualize logs detalhados de comandos com timestamps e resultados
+- **Monitore rede e console** - Inspecione chamadas de API e logs de JavaScript ([rede](/docs/devtools/wdio/network-logs) · [console](/docs/devtools/wdio/console-logs))
+- **Navegue até o código** - Vá diretamente para os arquivos-fonte dos testes com o TestLens ([detalhes](/docs/devtools/wdio/testlens))
+- **Grave sessões** - Vídeo contínuo `.webm` do navegador, por sessão ([detalhes](/docs/devtools/wdio/screencast))
+- **Modo trace** - Caminho de captura headless que produz um artefato portátil `trace.zip` para reprodução offline ou consumo por agentes ([detalhes](/docs/devtools/wdio/trace-mode))
 
 ## Como Funciona
 
-Quando você executa seus testes WebdriverIO com o serviço DevTools habilitado:
+1. Inicie seus testes normalmente
+2. O DevTools abre automaticamente uma janela do navegador em `http://localhost:3000`
+3. A interface mostra a hierarquia de testes, a pré-visualização do navegador, a linha do tempo de comandos e os logs em tempo real
+4. Após a conclusão dos testes, clique em qualquer teste para reexecutá-lo individualmente na mesma sessão do navegador
 
-1. O serviço abre uma janela do navegador em `http://localhost:3000` (configurável)
-2. Seus testes são executados normalmente enquanto a interface DevTools exibe atualizações em tempo real
-3. A interface mostra a hierarquia de testes, visualização do navegador, linha do tempo de comandos e logs
-4. Após a conclusão dos testes, você pode clicar em qualquer teste para executá-lo novamente individualmente
-5. Os testes são reexecutados na mesma sessão do navegador para uma depuração mais rápida
+## Escolha Seu Framework
 
-## Recursos
-
-Explore os recursos do DevTools em detalhes:
-
-- **[Reexecução e Visualização Interativa de Testes](devtools/interactive-test-rerunning)** - Visualizações em tempo real do navegador com reexecução de testes
-- **[Suporte a Múltiplos Frameworks](devtools/multi-framework-support)** - Funciona com Mocha, Jasmine e Cucumber
-- **[Logs de Console](devtools/console-logs)** - Capture e inspecione a saída do console do navegador
-- **[Logs de Rede](devtools/network-logs)** - Monitore chamadas de API e atividade de rede
-- **[TestLens](devtools/testlens)** - Navegue até o código-fonte com navegação inteligente de código
+- **[WebDriverIO](/docs/devtools/wdio)** - Use `@wdio/devtools-service` com Mocha, Jasmine ou Cucumber
+- **[Nightwatch](/docs/devtools/nightwatch)** - Use `@wdio/nightwatch-devtools` sem nenhuma alteração no código dos testes
+- **[Selenium](/docs/devtools/selenium)** - Use `@wdio/selenium-devtools` com Mocha, Jest, Cucumber ou scripts Node simples

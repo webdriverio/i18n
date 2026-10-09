@@ -1,22 +1,23 @@
 ---
 id: service-options
-title: सेवा विकल्प
+title: सर्विस विकल्प
+description: "विज़ुअल सर्विस के लिए डिफ़ॉल्ट विकल्प कॉन्फ़िगर करें, जिनमें स्क्रीनशॉट कैप्चर, फ़ुल-पेज स्क्रीनशॉट, बेसलाइन, फ़ोल्डर और रिपोर्टिंग शामिल हैं।"
 ---
 
-सेवा विकल्प वे विकल्प हैं जो तब सेट किए जा सकते हैं जब सेवा को प्रारंभ किया जाता है और प्रत्येक विधि कॉल के लिए उपयोग किया जाएगा।
+सर्विस विकल्प वे विकल्प हैं जिन्हें सर्विस के इंस्टेंशिएट होते समय सेट किया जा सकता है। ये हर मेथड कॉल में इस्तेमाल होंगे।
 
 ```js
 // wdio.conf.(js|ts)
 export const config = {
     // ...
     // =====
-    // Setup
+    // सेटअप
     // =====
     services: [
         [
             "visual",
             {
-                // The options
+                // विकल्प
             },
         ],
     ],
@@ -24,37 +25,108 @@ export const config = {
 };
 ```
 
-## डिफ़ॉल्ट विकल्प
+# डिफ़ॉल्ट विकल्प
 
-### `addressBarShadowPadding`
+## स्क्रीनशॉट कैप्चर
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `6`
--   **Supported Application Contexts:** Web
+---
 
-पैडिंग को iOS और Android पर एड्रेस बार में जोड़ा जाना चाहिए ताकि व्यूपोर्ट का उचित कटआउट किया जा सके।
+### `hideScrollBars`
 
-### `autoElementScroll`
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+एप्लिकेशन में स्क्रॉलबार छिपाएँ। `true` पर सेट करने पर स्क्रीनशॉट लेने से पहले सभी स्क्रॉलबार डिसेबल कर दिए जाएँगे। अतिरिक्त समस्याओं से बचने के लिए इसका डिफ़ॉल्ट मान `true` है।
 
-यह विकल्प आपको स्वचालित तत्व स्क्रॉलिंग को अक्षम करने की अनुमति देता है जब एक तत्व स्क्रीनशॉट बनाया जाता है।
+</Option>
+### `disableBlinkingCursor`
 
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview)">
+
+एप्लिकेशन में सभी `input`, `textarea`, `[contenteditable]` के कैरेट की "ब्लिंकिंग" को एनेबल/डिसेबल करें। `true` पर सेट करने पर स्क्रीनशॉट लेने से पहले कैरेट को `transparent` कर दिया जाएगा
+और काम पूरा होने पर पहले जैसा कर दिया जाएगा।
+
+</Option>
+### `disableCSSAnimation`
+
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview)">
+
+एप्लिकेशन में सभी CSS एनिमेशन को एनेबल/डिसेबल करें। `true` पर सेट करने पर स्क्रीनशॉट लेने से पहले सभी एनिमेशन डिसेबल कर दिए जाएँगे
+और काम पूरा होने पर पहले जैसा कर दिए जाएँगे।
+
+</Option>
+### `enableLayoutTesting`
+
+<Option type="boolean" default="false" required="No" contexts="Web">
+
+यह पेज का सारा टेक्स्ट छिपा देगा, ताकि तुलना के लिए केवल लेआउट का उपयोग हो। टेक्स्ट छिपाने के लिए **हर** एलिमेंट में स्टाइल `'color': 'transparent !important'` जोड़ी जाती है।
+
+आउटपुट के लिए [Test Output](/docs/visual-testing/test-output#enablelayouttesting) देखें।
+
+:::info
+इस फ़्लैग का उपयोग करने पर टेक्स्ट वाले हर एलिमेंट को यह प्रॉपर्टी मिलेगी। इसमें केवल `p, h1, h2, h3, h4, h5, h6, span, a, li` ही नहीं, बल्कि `div|button|..` भी शामिल हैं। इसे अपने हिसाब से बदलने का **कोई** विकल्प नहीं है।
+:::
+
+</Option>
+### `ignoreRegionPadding`
+
+<Option type="number" default="1" required="No" contexts="Web, Hybrid App (Webview)">
+
+इग्नोर रीजन की हर तरफ़ जोड़ी जाने वाली पैडिंग, डिवाइस पिक्सेल में। इससे हर रीजन की चौड़ाई और ऊँचाई इस मान के 2× जितनी बढ़ जाती है। यह उन 1 px सीमा अंतरों से बचाता है जो हाई-DPR डिस्प्ले पर या BiDi स्क्रीनशॉट प्रोटोकॉल के साथ दिख सकते हैं। इसे डिसेबल करने के लिए `0` सेट करें।
+
+</Option>
+### `waitForFontsLoaded`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
+
+फ़ॉन्ट, जिनमें थर्ड-पार्टी फ़ॉन्ट भी शामिल हैं, सिंक्रोनस या एसिंक्रोनस रूप से लोड हो सकते हैं। एसिंक्रोनस लोडिंग में फ़ॉन्ट तब भी लोड हो सकते हैं जब WebdriverIO पेज को पूरी तरह लोड मान चुका हो। फ़ॉन्ट रेंडरिंग की समस्याओं से बचने के लिए यह मॉड्यूल डिफ़ॉल्ट रूप से स्क्रीनशॉट लेने से पहले सभी फ़ॉन्ट लोड होने का इंतज़ार करता है।
+
+</Option>
+## फ़ुल-पेज स्क्रीनशॉट
+
+---
+
+### `userBasedFullPageScreenshot`
+
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview) **Introduced in visual-service@7.0.0">
+
+डिफ़ॉल्ट रूप से, डेस्कटॉप वेब पर फ़ुल-पेज स्क्रीनशॉट WebDriver BiDi प्रोटोकॉल से कैप्चर किए जाते हैं। इससे बिना स्क्रॉल किए तेज़, स्थिर और एक जैसे स्क्रीनशॉट मिलते हैं।
+जब userBasedFullPageScreenshot को true पर सेट किया जाता है, तो स्क्रीनशॉट प्रक्रिया एक असली यूज़र की तरह काम करती है: यह पेज को स्क्रॉल करती है, व्यूपोर्ट के आकार के स्क्रीनशॉट लेती है और उन्हें आपस में जोड़ देती है। यह तरीका उन पेजों के लिए उपयोगी है जिनमें लेज़ी-लोडेड कंटेंट है या जिनकी डायनामिक रेंडरिंग स्क्रॉल पोज़िशन पर निर्भर करती है।
+
+इस विकल्प का उपयोग तब करें जब आपके पेज का कंटेंट स्क्रॉल करते समय लोड होता हो, या जब आप पुराने स्क्रीनशॉट तरीकों वाला व्यवहार बनाए रखना चाहते हों।
+
+</Option>
+### `fullPageScrollTimeout`
+
+<Option type="number" default="1500" required="No" contexts="Web">
+
+स्क्रॉल के बाद इंतज़ार करने का टाइमआउट, मिलीसेकंड में। यह लेज़ी लोडिंग वाले पेजों को पहचानने में मदद कर सकता है।
+
+:::info
+
+यह केवल तभी काम करेगा जब सर्विस/मेथड विकल्प `userBasedFullPageScreenshot` को `true` पर सेट किया गया हो। [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedfullpagescreenshot) भी देखें।
+
+:::
+
+</Option>
+## मोबाइल और डिवाइस
+
+---
+
+### `isHybridApp`
+
+<Option type="boolean" default="false" required="No" contexts="Hybrid App (Webview)">
+
+हाइब्रिड ऐप (एक या अधिक एम्बेडेड वेबव्यू वाला नेटिव शेल) की टेस्टिंग करते समय इसे `true` पर सेट करें। इससे वेबव्यू-आधारित स्क्रीनों के लिए स्टेटस बार और एड्रेस बार के कटआउट को संभालने का तरीका बदल जाता है। नेटिव डिवाइस रेक्टेंगल डेटा उपलब्ध न होने पर मॉड्यूल सुरक्षित डिफ़ॉल्ट मानों का उपयोग करता है।
+
+</Option>
 ### `addIOSBezelCorners`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-iOS उपकरणों के लिए स्क्रीनशॉट में बेज़ल कोने और नॉच/डायनामिक आइलैंड जोड़ें।
+iOS डिवाइसों के स्क्रीनशॉट में बेज़ल कॉर्नर और नॉच/डायनामिक आइलैंड जोड़ें।
 
 :::info नोट
-यह केवल तभी किया जा सकता है जब डिवाइस का नाम **स्वचालित रूप से** निर्धारित किया जा सकता है और नॉर्मलाइज़्ड डिवाइस नामों की निम्नलिखित सूची से मेल खाता है। नॉर्मलाइज़िंग इस मॉड्यूल द्वारा किया जाएगा।
+यह केवल तभी हो सकता है जब डिवाइस का नाम अपने-आप पता **लगाया जा सके** और वह नीचे दी गई नॉर्मलाइज़्ड डिवाइस नामों की सूची से मेल खाता हो। नॉर्मलाइज़ करने का काम यह मॉड्यूल करेगा।
 **iPhone:**
 
 -   iPhone X: `iphonex`
@@ -88,71 +160,159 @@ iOS उपकरणों के लिए स्क्रीनशॉट मे
 -   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
 :::
 
-### `autoSaveBaseline`
+</Option>
+### `addressBarShadowPadding`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="number" default="6" required="No" contexts="Web">
 
-यदि तुलना के दौरान कोई बेसलाइन छवि नहीं मिलती है तो छवि स्वचालित रूप से बेसलाइन फ़ोल्डर में कॉपी कर दी जाती है।
+iOS और Android पर व्यूपोर्ट का सही कटआउट करने के लिए एड्रेस बार में जोड़ी जाने वाली पैडिंग।
 
-### `alwaysSaveActualImage`
+</Option>
+### `toolBarShadowPadding`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** All
+<Option type="number" default={`6 for Android and \`15\` for iOS (\`6\` by default and \`9\` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)`} required="No" contexts="Web">
 
-इस विकल्प को `false` पर सेट करने पर यह:
+iOS और Android पर व्यूपोर्ट का सही कटआउट करने के लिए टूलबार में जोड़ी जाने वाली पैडिंग।
 
-- वास्तविक छवि को सहेज नहीं करेगा जब कोई अंतर **नहीं** होता
-- जब `createJsonReportFiles` `true` पर सेट किया जाता है, तो jsonreport फ़ाइल को स्टोर नहीं करेगा। यह लॉग्स में यह चेतावनी भी दिखाएगा कि `createJsonReportFiles` अक्षम है
+</Option>
+## फ़ाइल और फ़ोल्डर प्रबंधन
 
-इससे बेहतर प्रदर्शन होना चाहिए क्योंकि सिस्टम में कोई फ़ाइल नहीं लिखी जाती है और यह सुनिश्चित करना चाहिए कि `actual` फ़ोल्डर में बहुत अधिक शोर न हो।
+---
 
 ### `baselineFolder`
 
--   **Type:** `string|()=> string`
--   **Mandatory:** No
--   **Default:** `.path/to/testfile/__snapshots__/`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="string|()=> string" default=".path/to/testfile/__snapshots__/" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-वह डायरेक्टरी जिसमें तुलना के दौरान उपयोग की जाने वाली सभी बेसलाइन छवियां होंगी। यदि सेट नहीं किया गया है, तो डिफ़ॉल्ट मान का उपयोग किया जाएगा जो फ़ाइल्स को स्पेक के बगल में `__snapshots__/`-फ़ोल्डर में स्टोर करेगा जो विज़ुअल टेस्ट को निष्पादित करता है। `baselineFolder` मान को सेट करने के लिए एक फ़ंक्शन जो `string` रिटर्न करता है का भी उपयोग किया जा सकता है:
+वह डायरेक्टरी जिसमें तुलना के दौरान उपयोग होने वाली सभी बेसलाइन इमेज रखी जाएँगी। अगर इसे सेट नहीं किया गया, तो डिफ़ॉल्ट मान का उपयोग होगा। ऐसे में फ़ाइलें विज़ुअल टेस्ट चलाने वाली spec के बगल में एक `__snapshots__/`-फ़ोल्डर में सेव होंगी। `baselineFolder` का मान सेट करने के लिए `string` लौटाने वाला फ़ंक्शन भी इस्तेमाल किया जा सकता है:
 
 ```js
 {
     baselineFolder: path.join(process.cwd(), 'foo', 'bar', 'baseline')
 },
-// OR
+// या
 {
     baselineFolder: () => {
-        // Do some magic here
+        // यहाँ कुछ जादू करें
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
 ```
 
+</Option>
+### `screenshotPath`
+
+<Option type="string | () => string" default=".tmp/" required="no" contexts="Web, Hybrid App (Webview), Native App">
+
+वह डायरेक्टरी जिसमें सभी actual/different स्क्रीनशॉट रखे जाएँगे। अगर इसे सेट नहीं किया गया, तो डिफ़ॉल्ट मान का उपयोग होगा। screenshotPath का मान सेट करने के लिए
+string लौटाने वाला फ़ंक्शन भी इस्तेमाल किया जा सकता है:
+
+```js
+{
+    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
+},
+// या
+{
+    screenshotPath: () => {
+        // यहाँ कुछ जादू करें
+        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
+    }
+}
+```
+
+</Option>
 ### `clearRuntimeFolder`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-इनिशियलाइजेशन पर रनटाइम फ़ोल्डर (`actual` और `diff`) हटाएँ
+इनिशियलाइज़ेशन पर रनटाइम फ़ोल्डर (`actual` & `diff) डिलीट करें।
 
 :::info नोट
-यह केवल तभी काम करेगा जब प्लगइन विकल्पों के माध्यम से [`screenshotPath`](#screenshotpath) सेट किया गया हो, और **काम नहीं करेगा** जब आप मेथड्स में फ़ोल्डर सेट करते हैं
+यह केवल तभी काम करेगा जब [`screenshotPath`](#screenshotpath) को प्लगइन विकल्पों के ज़रिए सेट किया गया हो। अगर आप फ़ोल्डर मेथड्स में सेट करते हैं, तो यह **काम नहीं करेगा**।
 :::
+
+</Option>
+### `savePerInstance`
+
+<Option type="boolean" default="false" required="no" contexts="Web, Hybrid App (Webview), Native App">
+
+हर इंस्टेंस की इमेज एक अलग फ़ोल्डर में सेव करें। उदाहरण के लिए, सभी Chrome स्क्रीनशॉट `desktop_chrome` जैसे Chrome फ़ोल्डर में सेव होंगे।
+
+</Option>
+### `formatImageName`
+
+<Option type="string" default={`{tag}-{browserName}-{width}x{height}-dpr-{dpr}`} required="No" contexts="Web, Hybrid App (Webview), Native App">
+
+सेव की गई इमेज का नाम पैरामीटर `formatImageName` में एक फ़ॉर्मेट स्ट्रिंग देकर कस्टमाइज़ किया जा सकता है, जैसे:
+
+```sh
+{tag}-{browserName}-{width}x{height}-dpr-{dpr}
+```
+
+स्ट्रिंग को फ़ॉर्मेट करने के लिए नीचे दिए गए वेरिएबल इस्तेमाल किए जा सकते हैं। इनके मान इंस्टेंस की capabilities से अपने-आप पढ़े जाएँगे।
+अगर कोई मान पता नहीं चल पाता, तो डिफ़ॉल्ट मान का उपयोग होगा।
+
+-   `browserName`: दी गई capabilities में ब्राउज़र का नाम
+-   `browserVersion`: capabilities में दिया गया ब्राउज़र का वर्ज़न
+-   `deviceName`: capabilities से डिवाइस का नाम
+-   `dpr`: डिवाइस पिक्सेल रेशियो
+-   `height`: स्क्रीन की ऊँचाई
+-   `logName`: capabilities से logName
+-   `mobile`: यह `deviceName` के बाद `_app` या ब्राउज़र का नाम जोड़ देगा, ताकि ऐप स्क्रीनशॉट और ब्राउज़र स्क्रीनशॉट में अंतर किया जा सके
+-   `platformName`: दी गई capabilities में प्लेटफ़ॉर्म का नाम
+-   `platformVersion`: capabilities में दिया गया प्लेटफ़ॉर्म का वर्ज़न
+-   `tag`: कॉल की जा रही मेथड में दिया गया टैग
+-   `width`: स्क्रीन की चौड़ाई
+
+:::info
+
+`formatImageName` में कस्टम पाथ/फ़ोल्डर नहीं दिए जा सकते। अगर आप पाथ बदलना चाहते हैं, तो इनमें से कोई विकल्प बदलें:
+
+- [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
+- [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
+- हर मेथड के लिए [`folderOptions`](/docs/visual-testing/method-options#folder-options)
+
+:::
+
+</Option>
+## बेसलाइन और सेव व्यवहार
+
+---
+
+### `autoSaveBaseline`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview), Native App">
+
+अगर तुलना के दौरान कोई बेसलाइन इमेज नहीं मिलती, तो इमेज अपने-आप बेसलाइन फ़ोल्डर में कॉपी हो जाती है।
+
+</Option>
+### `autoElementScroll`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
+
+एलिमेंट स्क्रीनशॉट बनाते समय एलिमेंट अपने-आप स्क्रॉल होकर व्यू में आ जाता है। इस विकल्प से आप यह ऑटोमैटिक स्क्रॉलिंग डिसेबल कर सकते हैं।
+
+</Option>
+### `alwaysSaveActualImage`
+
+<Option type="boolean" default="true" required="No" contexts="All">
+
+इस विकल्प को `false` पर सेट करने पर:
+
+- **कोई** अंतर न होने पर actual इमेज सेव नहीं होगी
+- `createJsonReportFiles` को `true` पर सेट करने पर भी jsonreport फ़ाइल स्टोर नहीं होगी। लॉग में यह चेतावनी भी दिखेगी कि `createJsonReportFiles` डिसेबल है
+
+इससे परफ़ॉर्मेंस बेहतर होनी चाहिए, क्योंकि सिस्टम पर कोई फ़ाइल नहीं लिखी जाती। साथ ही `actual` फ़ोल्डर में बेवजह की फ़ाइलें भी जमा नहीं होंगी।
+
+</Option>
+## रिपोर्टिंग
+
+---
 
 ### `createJsonReportFiles` **(नया)**
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
+<Option type="boolean" default="false" required="No">
 
-अब आपके पास तुलना परिणामों को JSON रिपोर्ट फ़ाइल में निर्यात करने का विकल्प है। `createJsonReportFiles: true` विकल्प प्रदान करके, प्रत्येक छवि जिसकी तुलना की जाती है, एक रिपोर्ट बनाएगी जो प्रत्येक `actual` छवि परिणाम के बगल में `actual` फ़ोल्डर में संग्रहित होगी। आउटपुट इस तरह दिखेगा:
+अब आप तुलना के परिणामों को एक JSON रिपोर्ट फ़ाइल में एक्सपोर्ट कर सकते हैं। विकल्प `createJsonReportFiles: true` देने पर, तुलना की गई हर इमेज के लिए एक रिपोर्ट बनेगी। यह रिपोर्ट `actual` फ़ोल्डर में हर `actual` इमेज परिणाम के बगल में स्टोर होगी। आउटपुट कुछ ऐसा दिखेगा:
 
 ```json
 {
@@ -215,14 +375,14 @@ iOS उपकरणों के लिए स्क्रीनशॉट मे
 }
 ```
 
-जब सभी परीक्षण निष्पादित हो जाते हैं, तो तुलनाओं के संग्रह के साथ एक नई JSON फ़ाइल जनरेट की जाएगी और इसे आपके `actual` फ़ोल्डर के रूट में देखा जा सकता है। डेटा निम्न द्वारा समूहीकृत है:
+सभी टेस्ट चलने के बाद, सभी तुलनाओं के संग्रह वाली एक नई JSON फ़ाइल बनेगी। यह फ़ाइल आपके `actual` फ़ोल्डर के रूट में मिलेगी। डेटा को इनके आधार पर समूहित किया जाता है:
 
 -   Jasmine/Mocha के लिए `describe` या CucumberJS के लिए `Feature`
 -   Jasmine/Mocha के लिए `it` या CucumberJS के लिए `Scenario`
-    और फिर निम्नानुसार सॉर्ट किया गया:
--   `commandName`, जो छवियों की तुलना करने के लिए उपयोग किए गए तुलना विधि नाम हैं
--   `instanceData`, पहले ब्राउज़र, फिर डिवाइस, फिर प्लेटफॉर्म
-    यह इस तरह दिखेगा
+    और फिर इनके आधार पर क्रमबद्ध किया जाता है:
+-   `commandName`, यानी इमेज की तुलना के लिए इस्तेमाल हुई compare मेथड्स के नाम
+-   `instanceData`, पहले ब्राउज़र, फिर डिवाइस, फिर प्लेटफ़ॉर्म
+    यह कुछ ऐसा दिखेगा
 
 ```json
 [
@@ -265,315 +425,142 @@ iOS उपकरणों के लिए स्क्रीनशॉट मे
 ]
 ```
 
-रिपोर्ट डेटा आपको सभी जादू और डेटा संग्रह को स्वयं किए बिना अपनी खुद की विज़ुअल रिपोर्ट बनाने का अवसर देगा।
+इस रिपोर्ट डेटा से आप अपनी खुद की विज़ुअल रिपोर्ट बना सकते हैं। इसके लिए आपको सारा जादू और डेटा संग्रह खुद नहीं करना पड़ेगा।
 
 :::info नोट
-आपको `@wdio/visual-testing` संस्करण `5.2.0` या उच्चतर का उपयोग करने की आवश्यकता है
+आपको `@wdio/visual-testing` का वर्ज़न `5.2.0` या उससे ऊपर इस्तेमाल करना होगा।
 :::
 
-### `disableBlinkingCursor`
+</Option>
+### `diffPixelBoundingBoxProximity`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+<Option type="number" default="5" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-एप्लिकेशन में सभी `input`, `textarea`, `[contenteditable]` कैरेट "ब्लिंकिंग" सक्षम/अक्षम करें। यदि `true` पर सेट किया गया है, तो स्क्रीनशॉट लेने से पहले कैरेट को `transparent` पर सेट किया जाएगा और होने पर रीसेट किया जाएगा
+[`createJsonReportFiles`](#createjsonreportfiles) से बनी JSON रिपोर्ट में diff पिक्सेल्स को एक साथ समूहित करने के लिए इस्तेमाल होने वाली पिक्सेल निकटता। ज़्यादा मान रखने पर अधिक पिक्सेल कम बाउंडिंग बॉक्स में समूहित होते हैं। कम मान रखने पर बॉक्स ज़्यादा सटीक होते हैं, लेकिन उनकी संख्या भी ज़्यादा होती है।
 
-### `disableCSSAnimation`
+</Option>
+## सामान्य
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
-
-एप्लिकेशन में सभी CSS एनिमेशन सक्षम/अक्षम करें। यदि `true` पर सेट किया गया है, तो स्क्रीनशॉट लेने से पहले सभी एनिमेशन अक्षम कर दिए जाएंगे और होने पर रीसेट किया जाएगा
-
-### `enableLayoutTesting`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web
-
-यह पेज पर सभी टेक्स्ट को छिपा देगा ताकि तुलना के लिए केवल लेआउट का उपयोग किया जाए। छिपाने का कार्य **प्रत्येक** एलिमेंट में स्टाइल `'color': 'transparent !important'` जोड़कर किया जाएगा।
-
-आउटपुट के लिए [टेस्ट आउटपुट](/docs/visual-testing/test-output#enablelayouttesting) देखें
-
-:::info
-इस फ्लैग का उपयोग करके प्रत्येक एलिमेंट जिसमें टेक्स्ट होता है (इसलिए न केवल `p, h1, h2, h3, h4, h5, h6, span, a, li`, बल्कि `div|button|..`) को यह प्रॉपर्टी मिलेगी। इसे अनुकूलित करने का कोई विकल्प **नहीं** है।
-:::
-
-### `formatImageName`
-
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
-
-सहेजी गई छवियों के नाम को इस तरह के फॉर्मेट स्ट्रिंग के साथ `formatImageName` पैरामीटर पास करके अनुकूलित किया जा सकता है:
-
-```sh
-{tag}-{browserName}-{width}x{height}-dpr-{dpr}
-```
-
-स्ट्रिंग को फॉर्मेट करने के लिए निम्नलिखित वेरिएबल्स पास किए जा सकते हैं और स्वचालित रूप से इंस्टेंस कैपेबिलिटीज से पढ़े जाएंगे।
-यदि उन्हें निर्धारित नहीं किया जा सकता है, तो डिफ़ॉल्ट का उपयोग किया जाएगा।
-
--   `browserName`: प्रदान की गई क्षमताओं में ब्राउज़र का नाम
--   `browserVersion`: क्षमताओं में प्रदान किया गया ब्राउज़र का संस्करण
--   `deviceName`: क्षमताओं से डिवाइस का नाम
--   `dpr`: डिवाइस पिक्सेल अनुपात
--   `height`: स्क्रीन की ऊंचाई
--   `logName`: क्षमताओं से logName
--   `mobile`: यह ब्राउज़र स्क्रीनशॉट से ऐप स्क्रीनशॉट को अलग करने के लिए `deviceName` के बाद `_app`, या ब्राउज़र नाम जोड़ेगा
--   `platformName`: प्रदान की गई क्षमताओं में प्लेटफ़ॉर्म का नाम
--   `platformVersion`: क्षमताओं में प्रदान किया गया प्लेटफ़ॉर्म का संस्करण
--   `tag`: टैग जो उन मेथड्स में प्रदान किया जाता है जिन्हें कॉल किया जा रहा है
--   `width`: स्क्रीन की चौड़ाई
-
-:::info
-
-आप `formatImageName` में कस्टम पाथ/फ़ोल्डर प्रदान नहीं कर सकते। यदि आप पाथ बदलना चाहते हैं तो कृपया निम्न विकल्पों को बदलने की जांच करें:
-
-- [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
-- [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- प्रति मेथड [`folderOptions`](/docs/visual-testing/method-options#folder-options)
-
-:::
-
-### `fullPageScrollTimeout`
-
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `1500`
--   **Supported Application Contexts:** Web
-
-स्क्रॉल के बाद प्रतीक्षा करने के लिए मिलीसेकंड में टाइमआउट। यह आलसी लोडिंग वाले पृष्ठों की पहचान करने में मदद कर सकता है।
-
-:::info
-
-यह केवल तभी काम करेगा जब सर्विस/मेथड विकल्प `userBasedFullPageScreenshot` को `true` पर सेट किया गया हो, [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot) भी देखें
-
-:::
-
-### `hideScrollBars`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
-
-एप्लिकेशन में स्क्रॉलबार छिपाएं। यदि true पर सेट किया गया है, तो स्क्रीनशॉट लेने से पहले सभी स्क्रॉलबार अक्षम कर दिए जाएंगे। यह अतिरिक्त समस्याओं को रोकने के लिए डिफ़ॉल्ट `true` पर सेट है।
+---
 
 ### `logLevel`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `info`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="string" default="info" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-अतिरिक्त लॉग जोड़ता है, विकल्प हैं `debug | info | warn | silent`
+अतिरिक्त लॉग जोड़ता है। विकल्प हैं `debug | info | warn | silent`
 
-त्रुटियां हमेशा कंसोल में लॉग की जाती हैं।
+त्रुटियाँ हमेशा कंसोल में लॉग होती हैं।
 
-### `savePerInstance`
-
--   **Type:** `boolean`
--   **Default:** `false`
--   **Mandatory:** no
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
-
-इंस्टेंस के अनुसार छवियों को एक अलग फ़ोल्डर में सहेजें, उदाहरण के लिए सभी Chrome स्क्रीनशॉट एक Chrome फ़ोल्डर जैसे `desktop_chrome` में सहेजे जाएंगे।
-
-### `screenshotPath`
-
--   **Type:** `string | () => string`
--   **Default:** `.tmp/`
--   **Mandatory:** no
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
-
-वह डायरेक्टरी जिसमें सभी वास्तविक/अलग स्क्रीनशॉट होंगे। यदि सेट नहीं किया गया है, तो डिफ़ॉल्ट मान का उपयोग किया जाएगा। screenshotPath मान सेट करने के लिए एक स्ट्रिंग रिटर्न करने वाले फंक्शन का भी उपयोग किया जा सकता है:
-
-```js
-{
-    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
-},
-// OR
-{
-    screenshotPath: () => {
-        // Do some magic here
-        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
-    }
-}
-```
-
-### `toolBarShadowPadding`
-
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** Android के लिए `6` और iOS के लिए `15` (डिफॉल्ट रूप से `6` और नॉच या होम बार वाले iPads वाले iPhones पर संभावित होम बार के लिए `9` स्वचालित रूप से जोड़ा जाएगा)
--   **Supported Application Contexts:** Web
-
-पैडिंग जिसे iOS और Android पर टूलबार बार में जोड़ने की आवश्यकता होती है ताकि व्यूपोर्ट का उचित कटआउट किया जा सके।
-
-### `userBasedFullPageScreenshot`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview) **visual-service@7.0.0 में प्रस्तुत किया गया**
-
-डिफ़ॉल्ट रूप से, डेस्कटॉप वेब पर पूर्ण-पेज स्क्रीनशॉट WebDriver BiDi प्रोटोकॉल का उपयोग करके कैप्चर किए जाते हैं, जो तेज़, स्थिर, और स्क्रॉलिंग के बिना स्थिर स्क्रीनशॉट को सक्षम करता है।
-जब userBasedFullPageScreenshot को true पर सेट किया जाता है, तो स्क्रीनशॉट प्रक्रिया एक वास्तविक उपयोगकर्ता का अनुकरण करती है: पेज के माध्यम से स्क्रॉल करना, व्यूपोर्ट-आकार के स्क्रीनशॉट कैप्चर करना, और उन्हें एक साथ जोड़ना। यह विधि उन पेजों के लिए उपयोगी है जिनमें आलसी लोड की गई सामग्री या स्क्रॉल स्थिति पर निर्भर डायनामिक रेंडरिंग होती है।
-
-इस विकल्प का उपयोग करें यदि आपका पेज स्क्रॉलिंग के दौरान लोड होने वाली सामग्री पर निर्भर करता है या यदि आप पुराने स्क्रीनशॉट विधियों के व्यवहार को बनाए रखना चाहते हैं।
-
-### `waitForFontsLoaded`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
-
-फ़ॉन्ट्स, जिनमें थर्ड-पार्टी फ़ॉन्ट्स भी शामिल हैं, को सिंक्रोनस या एसिंक्रोनस रूप से लोड किया जा सकता है। एसिंक्रोनस लोडिंग का मतलब है कि फ़ॉन्ट्स तब लोड हो सकते हैं जब WebdriverIO यह निर्धारित करता है कि एक पेज पूरी तरह से लोड हो गया है। फ़ॉन्ट रेंडरिंग समस्याओं को रोकने के लिए, यह मॉड्यूल, डिफ़ॉल्ट रूप से, स्क्रीनशॉट लेने से पहले सभी फ़ॉन्ट्स के लोड होने तक प्रतीक्षा करेगा।
-
+</Option>
 ## Tabbable विकल्प
 
 :::info नोट
 
-यह मॉड्यूल उस तरीके को भी दर्शाता है जिस तरह से एक उपयोगकर्ता अपने कीबोर्ड का उपयोग करके वेबसाइट को _tab_ करेगा, टैब करने योग्य तत्व से टैब करने योग्य तत्व तक रेखाएँ और बिंदु खींचकर।<br/>
-यह कार्य [Viv Richards](https://github.com/vivrichards600) के ब्लॉग पोस्ट ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript) से प्रेरित है।<br/>
-टैब करने योग्य तत्वों का चयन करने का तरीका [tabbable](https://github.com/davidtheclark/tabbable) मॉड्यूल पर आधारित है। यदि टैबिंग के संबंध में कोई समस्या है, तो कृपया [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) और विशेष रूप से [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details) की जांच करें।
+यह मॉड्यूल यह भी दिखा सकता है कि यूज़र अपने कीबोर्ड से वेबसाइट में कैसे _tab_ करेगा। इसके लिए यह एक tabbable एलिमेंट से दूसरे tabbable एलिमेंट तक लाइनें और डॉट बनाता है।<br/>
+यह काम [Viv Richards](https://github.com/vivrichards600) के ब्लॉग पोस्ट ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript) से प्रेरित है।<br/>
+Tabbable एलिमेंट चुनने का तरीका मॉड्यूल [tabbable](https://github.com/davidtheclark/tabbable) पर आधारित है। टैबिंग से जुड़ी कोई समस्या हो, तो कृपया [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) और ख़ास तौर पर [More details section](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details) देखें।
 
 :::
 
 ### `tabbableOptions`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-विकल्प जिन्हें लाइनों और बिंदुओं के लिए बदला जा सकता है यदि आप `{save|check}Tabbable`-मेथड्स का उपयोग करते हैं। विकल्प नीचे समझाए गए हैं।
+`{save|check}Tabbable`-मेथड्स का उपयोग करते समय लाइनों और डॉट्स के लिए बदले जा सकने वाले विकल्प। इन विकल्पों की जानकारी नीचे दी गई है।
 
+</Option>
 #### `tabbableOptions.circle`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल को बदलने के विकल्प।
+सर्कल बदलने के विकल्प।
 
+</Option>
 ##### `tabbableOptions.circle.backgroundColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल का बैकग्राउंड कलर।
+सर्कल का बैकग्राउंड रंग।
 
+</Option>
 ##### `tabbableOptions.circle.borderColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल का बॉर्डर कलर।
+सर्कल के बॉर्डर का रंग।
 
+</Option>
 ##### `tabbableOptions.circle.borderWidth`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल का बॉर्डर विड्थ।
+सर्कल के बॉर्डर की चौड़ाई।
 
+</Option>
 ##### `tabbableOptions.circle.fontColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल में टेक्स्ट के फॉन्ट का कलर। यह केवल तभी दिखाया जाएगा जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
+सर्कल में दिखने वाले टेक्स्ट के फ़ॉन्ट का रंग। यह केवल तभी दिखेगा जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
 
+</Option>
 ##### `tabbableOptions.circle.fontFamily`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल में टेक्स्ट के फॉन्ट का फैमिली। यह केवल तभी दिखाया जाएगा जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
+सर्कल में दिखने वाले टेक्स्ट की फ़ॉन्ट फ़ैमिली। यह केवल तभी दिखेगी जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
 
-सुनिश्चित करें कि ब्राउज़रों द्वारा समर्थित फॉन्ट सेट करें।
+ध्यान रखें कि आप वही फ़ॉन्ट सेट करें जो ब्राउज़र सपोर्ट करते हों।
 
+</Option>
 ##### `tabbableOptions.circle.fontSize`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल में टेक्स्ट के फॉन्ट का साइज़। यह केवल तभी दिखाया जाएगा जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
+सर्कल में दिखने वाले टेक्स्ट के फ़ॉन्ट का आकार। यह केवल तभी दिखेगा जब [`showNumber`](./#tabbableoptionscircleshownumber) को `true` पर सेट किया गया हो।
 
+</Option>
 ##### `tabbableOptions.circle.size`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल का साइज़।
+सर्कल का आकार।
 
+</Option>
 ##### `tabbableOptions.circle.showNumber`
 
--   **Type:** `showNumber`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="showNumber" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-सर्कल में टैब क्रम संख्या दिखाएं।
+सर्कल में टैब क्रम संख्या दिखाएँ।
 
+</Option>
 #### `tabbableOptions.line`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-लाइन को बदलने के विकल्प।
+लाइन बदलने के विकल्प।
 
+</Option>
 ##### `tabbableOptions.line.color`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-लाइन का कलर।
+लाइन का रंग।
 
+</Option>
 ##### `tabbableOptions.line.width`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) देखें
--   **Supported Application Contexts:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-लाइन की विड्थ।
+लाइन की चौड़ाई।
 
-## तुलना विकल्प
+</Option>
+## Compare विकल्प
 
 ### `compareOptions`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** सभी डिफ़ॉल्ट मानों के लिए [यहां](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) देखें
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App (अधिक जानकारी के लिए [मेथड तुलना विकल्प](./method-options#compare-check-options) देखें)
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values" required="No" contexts="Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)">
 
-तुलना विकल्पों को सर्विस विकल्प के रूप में भी सेट किया जा सकता है, उन्हें [मेथड तुलना विकल्प](/docs/visual-testing/method-options#compare-check-options) में वर्णित किया गया है
+Compare विकल्पों को सर्विस विकल्पों के रूप में भी सेट किया जा सकता है। इनकी जानकारी [Method Compare options](/docs/visual-testing/method-options#compare-check-options) में दी गई है।
+
+</Option>

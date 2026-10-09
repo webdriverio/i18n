@@ -1,19 +1,20 @@
 ---
 id: file-download
 title: Pobieranie plików
+description: "Skonfiguruj katalogi pobierania dla Chrome, Firefox i Edge, poczekaj na zakończenie pobierania i zweryfikuj pobrane pliki w różnych przeglądarkach."
 ---
 
-Podczas automatyzacji pobierania plików w testowaniu stron internetowych, kluczowe jest obsługiwanie ich spójnie w różnych przeglądarkach, aby zapewnić niezawodne wykonanie testów.
+Podczas automatyzacji pobierania plików w testach webowych kluczowe jest spójne obsługiwanie ich w różnych przeglądarkach, aby zapewnić niezawodne wykonywanie testów.
 
-Tutaj przedstawiamy najlepsze praktyki dotyczące pobierania plików i pokazujemy, jak skonfigurować katalogi pobierania dla przeglądarek **Google Chrome**, **Mozilla Firefox** i **Microsoft Edge**.
+Poniżej przedstawiamy najlepsze praktyki dotyczące pobierania plików oraz pokazujemy, jak skonfigurować katalogi pobierania dla przeglądarek **Google Chrome**, **Mozilla Firefox** i **Microsoft Edge**.
 
 ## Ścieżki pobierania
 
-**Hardcodowanie** ścieżek pobierania w skryptach testowych może prowadzić do problemów z utrzymaniem i przenośnością. Wykorzystuj **ścieżki względne** dla katalogów pobierania, aby zapewnić przenośność i kompatybilność w różnych środowiskach.
+**Zakodowanie na stałe** ścieżek pobierania w skryptach testowych może prowadzić do problemów z utrzymaniem i przenośnością. Używaj **ścieżek względnych** dla katalogów pobierania, aby zapewnić przenośność i kompatybilność w różnych środowiskach.
 
 ```javascript
 // 👎
-// Hardcodowana ścieżka pobierania
+// Ścieżka pobierania zakodowana na stałe
 const downloadPath = '/path/to/downloads';
 
 // 👍
@@ -23,7 +24,7 @@ const downloadPath = path.join(__dirname, 'downloads');
 
 ## Strategie oczekiwania
 
-Brak odpowiednich strategii oczekiwania może prowadzić do warunków wyścigu lub niezawodnych testów, szczególnie w przypadku zakończenia pobierania. Zaimplementuj **jawne** strategie oczekiwania, aby poczekać na zakończenie pobierania plików, zapewniając synchronizację między krokami testowymi.
+Brak odpowiednich strategii oczekiwania może prowadzić do wyścigów (race conditions) lub niestabilnych testów, szczególnie w przypadku oczekiwania na zakończenie pobierania. Stosuj **jawne** strategie oczekiwania na zakończenie pobierania plików, zapewniając synchronizację między krokami testu.
 
 ```javascript
 // 👎
@@ -37,7 +38,7 @@ await waitUntil(async ()=> await fs.existsSync(downloadPath), 5000);
 
 ## Konfigurowanie katalogów pobierania
 
-Aby zastąpić domyślne zachowanie pobierania plików dla przeglądarek **Google Chrome**, **Mozilla Firefox** i **Microsoft Edge**, podaj katalog pobierania w możliwościach WebDriverIO:
+Aby nadpisać zachowanie pobierania plików w przeglądarkach **Google Chrome**, **Mozilla Firefox** i **Microsoft Edge**, podaj katalog pobierania w capabilities WebDriverIO:
 
 <Tabs
 defaultValue="chrome"
@@ -80,32 +81,32 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 </Tabs>
 
-Przykładową implementację można znaleźć w [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
+Przykładową implementację znajdziesz w [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
 
-## Konfigurowanie pobierania plików w przeglądarkach Chromium
+## Konfigurowanie pobierania w przeglądarkach Chromium
 
-Aby zmienić ścieżkę pobierania dla przeglądarek __opartych na Chromium__ (takich jak Chrome, Edge, Brave itp.) używając metody `getPuppeteer` WebDriverIO w celu uzyskania dostępu do Chrome DevTools.
+Aby zmienić ścieżkę pobierania w przeglądarkach __opartych na Chromium__ (takich jak Chrome, Edge, Brave itp.), użyj metody `getPuppeteer` z WebDriverIO, która zapewnia dostęp do Chrome DevTools.
 
 ```javascript
 const page = await browser.getPuppeteer();
-// Inicjacja sesji CDP:
+// Zainicjuj sesję CDP:
 const cdpSession = await page.target().createCDPSession();
-// Ustawienie ścieżki pobierania:
+// Ustaw ścieżkę pobierania:
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Obsługa wielu pobieranych plików
+## Obsługa pobierania wielu plików
 
-W przypadku scenariuszy obejmujących pobieranie wielu plików, ważne jest zastosowanie strategii skutecznego zarządzania i weryfikacji każdego pobrania. Rozważ następujące podejścia:
+W scenariuszach obejmujących pobieranie wielu plików kluczowe jest wdrożenie strategii pozwalających skutecznie zarządzać każdym pobraniem i je weryfikować. Rozważ następujące podejścia:
 
-__Sekwencyjne obsługiwanie pobierania:__ Pobieraj pliki jeden po drugim i weryfikuj każde pobieranie przed rozpoczęciem następnego, aby zapewnić uporządkowane wykonanie i dokładną walidację.
+__Sekwencyjna obsługa pobierania:__ Pobieraj pliki jeden po drugim i weryfikuj każde pobranie przed rozpoczęciem kolejnego, aby zapewnić uporządkowane wykonanie i dokładną weryfikację.
 
-__Równoległe obsługiwanie pobierania:__ Wykorzystaj techniki programowania asynchronicznego, aby jednocześnie inicjować wiele pobierań plików, optymalizując czas wykonania testu. Wdrażaj solidne mechanizmy walidacji, aby weryfikować wszystkie pobrania po ich zakończeniu.
+__Równoległa obsługa pobierania:__ Wykorzystaj techniki programowania asynchronicznego, aby jednocześnie rozpocząć pobieranie wielu plików, optymalizując czas wykonywania testów. Wdróż solidne mechanizmy weryfikacji, aby sprawdzić wszystkie pobrane pliki po zakończeniu.
 
-## Kwestie dotyczące kompatybilności między przeglądarkami
+## Kwestie kompatybilności między przeglądarkami
 
-Chociaż WebDriverIO zapewnia ujednolicony interfejs do automatyzacji przeglądarek, ważne jest uwzględnienie różnic w zachowaniu i możliwościach przeglądarek. Rozważ przetestowanie funkcji pobierania plików w różnych przeglądarkach, aby zapewnić kompatybilność i spójność.
+Chociaż WebDriverIO zapewnia ujednolicony interfejs do automatyzacji przeglądarek, ważne jest uwzględnienie różnic w zachowaniu i możliwościach przeglądarek. Rozważ przetestowanie funkcjonalności pobierania plików w różnych przeglądarkach, aby zapewnić kompatybilność i spójność.
 
-__Konfiguracje specyficzne dla przeglądarek:__ Dostosuj ustawienia ścieżki pobierania i strategie oczekiwania, aby uwzględnić różnice w zachowaniu i preferencjach przeglądarek w Chrome, Firefox, Edge i innych obsługiwanych przeglądarkach.
+__Konfiguracje specyficzne dla przeglądarek:__ Dostosuj ustawienia ścieżki pobierania i strategie oczekiwania do różnic w zachowaniu i preferencjach przeglądarek Chrome, Firefox, Edge oraz innych obsługiwanych przeglądarek.
 
-__Kompatybilność wersji przeglądarek:__ Regularnie aktualizuj wersje WebDriverIO i przeglądarek, aby korzystać z najnowszych funkcji i ulepszeń, zapewniając jednocześnie kompatybilność z istniejącym zestawem testów.
+__Kompatybilność wersji przeglądarek:__ Regularnie aktualizuj WebDriverIO i przeglądarki, aby korzystać z najnowszych funkcji i ulepszeń, jednocześnie zapewniając kompatybilność z istniejącym zestawem testów.

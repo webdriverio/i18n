@@ -1,15 +1,16 @@
 ---
 id: axe-core
 title: Axe Core
+description: "Kör automatiserade tillgänglighetskontroller i dina tester med Deques Axe-adapter med öppen källkod, i fristående läge eller testrunner-läge."
 ---
 
-Du kan inkludera tillgänglighetstester i din WebdriverIO-testsvit med hjälp av de öppna källkodsverktygen för tillgänglighet [från Deque som kallas Axe](https://www.deque.com/axe/). Konfigurationen är mycket enkel, allt du behöver göra är att installera WebdriverIO Axe-adaptern via:
+Du kan inkludera tillgänglighetstester i din WebdriverIO-testsvit med hjälp av tillgänglighetsverktygen med öppen källkod [från Deque som heter Axe](https://www.deque.com/axe/). Installationen är mycket enkel, allt du behöver göra är att installera WebdriverIO Axe-adaptern via:
 
 ```bash npm2yarn
 npm install -g @axe-core/webdriverio
 ```
 
-Axe-adaptern kan användas i antingen [fristående eller testrunner](/docs/setuptypes) läge genom att helt enkelt importera och initialisera den med [browser-objektet](/docs/api/browser), t.ex.:
+Axe-adaptern kan användas antingen i [fristående läge eller testrunner-läge](/docs/setuptypes) genom att helt enkelt importera och initiera den med [browser-objektet](/docs/api/browser), t.ex.:
 
 ```ts
 import { browser } from '@wdio/globals'

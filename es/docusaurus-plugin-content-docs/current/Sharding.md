@@ -1,13 +1,14 @@
 ---
 id: sharding
-title: Fragmentación
+title: Fragmentación (Sharding)
+description: "Divide tu conjunto de pruebas entre varias máquinas con la opción --shard para ejecutar las pruebas más rápido, por ejemplo en GitHub Actions."
 ---
 
-Por defecto, WebdriverIO ejecuta pruebas en paralelo y se esfuerza por lograr una utilización óptima de los núcleos de CPU en tu máquina. Para lograr una paralelización aún mayor, puedes escalar aún más la ejecución de pruebas de WebdriverIO ejecutando pruebas en múltiples máquinas simultáneamente. Llamamos a este modo de operación "fragmentación" (sharding).
+Por defecto, WebdriverIO ejecuta las pruebas en paralelo y se esfuerza por lograr una utilización óptima de los núcleos de CPU de tu máquina. Para lograr una paralelización aún mayor, puedes escalar aún más la ejecución de pruebas de WebdriverIO ejecutando pruebas en varias máquinas simultáneamente. Llamamos a este modo de operación "sharding" (fragmentación).
 
-## Fragmentación de pruebas entre múltiples máquinas
+## Fragmentación de pruebas entre varias máquinas
 
-Para fragmentar el conjunto de pruebas, pasa `--shard=x/y` a la línea de comandos. Por ejemplo, para dividir el conjunto en cuatro fragmentos, cada uno ejecutando un cuarto de las pruebas:
+Para fragmentar el conjunto de pruebas, pasa `--shard=x/y` a la línea de comandos. Por ejemplo, para dividir el conjunto en cuatro fragmentos, cada uno ejecutando una cuarta parte de las pruebas:
 
 ```sh
 npx wdio run wdio.conf.js --shard=1/4
@@ -16,19 +17,19 @@ npx wdio run wdio.conf.js --shard=3/4
 npx wdio run wdio.conf.js --shard=4/4
 ```
 
-Ahora, si ejecutas estos fragmentos en paralelo en diferentes computadoras, tu conjunto de pruebas se completa cuatro veces más rápido.
+Ahora, si ejecutas estos fragmentos en paralelo en diferentes computadoras, tu conjunto de pruebas se completará cuatro veces más rápido.
 
 ## Ejemplo de GitHub Actions
 
-GitHub Actions admite [fragmentar pruebas entre múltiples trabajos](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) utilizando la opción [`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix). La opción matrix ejecutará un trabajo separado para cada posible combinación de las opciones proporcionadas.
+GitHub Actions admite la [fragmentación de pruebas entre varios jobs](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) mediante la opción [`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix). La opción matrix ejecutará un job independiente para cada combinación posible de las opciones proporcionadas.
 
-El siguiente ejemplo muestra cómo configurar un trabajo para ejecutar tus pruebas en cuatro máquinas en paralelo. Puedes encontrar toda la configuración del pipeline en el proyecto [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml).
+El siguiente ejemplo muestra cómo configurar un job para ejecutar tus pruebas en cuatro máquinas en paralelo. Puedes encontrar la configuración completa del pipeline en el proyecto [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml).
 
--   Primero, agregamos una opción matrix a nuestra configuración de trabajo con la opción shard que contiene el número de fragmentos que queremos crear. `shard: [1, 2, 3, 4]` creará cuatro fragmentos, cada uno con un número de fragmento diferente.
--   Luego ejecutamos nuestras pruebas WebdriverIO con la opción `--shard ${{ matrix.shard }}/${{ strategy.job-total }}`. Este será nuestro comando de prueba para cada fragmento.
--   Finalmente, subimos nuestro informe de registro wdio a los Artefactos de GitHub Actions. Esto hará que los registros estén disponibles en caso de que el fragmento falle.
+-   Primero agregamos una opción matrix a la configuración de nuestro job con la opción shard que contiene el número de fragmentos que queremos crear. `shard: [1, 2, 3, 4]` creará cuatro fragmentos, cada uno con un número de fragmento diferente.
+-   Luego ejecutamos nuestras pruebas de WebdriverIO con la opción `--shard ${{ matrix.shard }}/${{ strategy.job-total }}`. Este será nuestro comando de prueba para cada fragmento.
+-   Finalmente, subimos nuestro informe de logs de wdio a los Artifacts de GitHub Actions. Esto hará que los logs estén disponibles en caso de que el fragmento falle.
 
-El pipeline de prueba se define de la siguiente manera:
+El pipeline de pruebas se define de la siguiente manera:
 
 ```yaml title=.github/workflows/test.yaml
 name: Test
@@ -59,7 +60,7 @@ jobs:
                   path: logs
 ```
 
-Esto ejecutará todos los fragmentos en paralelo, reduciendo el tiempo de ejecución de las pruebas por 4:
+Esto ejecutará todos los fragmentos en paralelo, reduciendo el tiempo de ejecución de las pruebas a una cuarta parte:
 
 ![GitHub Actions example](/img/sharding.png "GitHub Actions example")
 

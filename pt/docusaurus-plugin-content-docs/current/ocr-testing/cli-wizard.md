@@ -1,11 +1,12 @@
 ---
 id: cli-wizard
-title: Assistente de CLI
+title: Assistente CLI
+description: "Verifique qual texto o serviço de OCR consegue encontrar em uma imagem sem executar um teste, usando o assistente CLI de OCR."
 ---
 
-Você pode validar qual texto pode ser encontrado em uma imagem sem executar um teste usando o Assistente de CLI OCR. As únicas coisas necessárias são:
+Você pode validar qual texto pode ser encontrado em uma imagem sem executar um teste usando o Assistente CLI de OCR. As únicas coisas necessárias são:
 
--   você ter instalado o `@wdio/ocr-service` como dependência, veja [Primeiros Passos](./getting-started)
+-   ter instalado o `@wdio/ocr-service` como dependência, veja [Primeiros Passos](./getting-started)
 -   uma imagem que você deseja processar
 
 Em seguida, execute o seguinte comando para iniciar o assistente
@@ -14,38 +15,38 @@ Em seguida, execute o seguinte comando para iniciar o assistente
 npx ocr-service
 ```
 
-Isso iniciará um assistente que o guiará pelas etapas para selecionar uma imagem e usar um haystack mais o modo avançado. As seguintes perguntas são feitas
+Isso iniciará um assistente que guiará você pelas etapas para selecionar uma imagem e usar um haystack, além do modo avançado. As seguintes perguntas são feitas
 
-## Como você gostaria de especificar o arquivo?
+## How would you like to specify the file?
 
 As seguintes opções podem ser selecionadas
 
--   Usar um "explorador de arquivos"
--   Digitar o caminho do arquivo manualmente
+-   Use a "file explorer"
+-   Type the file path manually
 
-### Usar um "explorador de arquivos"
+### Use a "file explorer"
 
-O assistente de CLI fornece uma opção para usar um "explorador de arquivos" para procurar arquivos em seu sistema. Ele começa a partir da pasta de onde você chama o comando. Após selecionar uma imagem (use as teclas de seta e a tecla ENTER), você prosseguirá para a próxima pergunta
+O assistente CLI oferece uma opção para usar um "explorador de arquivos" para procurar arquivos no seu sistema. Ele começa a partir da pasta onde você executa o comando. Após selecionar uma imagem (use as setas do teclado e a tecla ENTER), você seguirá para a próxima pergunta
 
-### Digitar o caminho do arquivo manualmente
+### Type the file path manually
 
 Este é um caminho direto para um arquivo em algum lugar da sua máquina local
 
-### Você gostaria de usar um haystack?
+### Would you like to use a haystack?
 
-Aqui você tem a opção de selecionar uma área que precisa ser processada. Isso pode acelerar o processo ou reduzir/diminuir a quantidade de texto que o mecanismo OCR pode encontrar. Você precisa fornecer dados de `x`, `y`, `width`, `height` com base nas seguintes perguntas:
+Aqui você tem a opção de selecionar uma área que precisa ser processada. Isso pode acelerar o processo ou reduzir/limitar a quantidade de texto que o mecanismo de OCR pode encontrar. Você precisa fornecer os dados `x`, `y`, `width`, `height` com base nas seguintes perguntas:
 
--   Digite a coordenada x:
--   Digite a coordenada y:
--   Digite a largura:
--   Digite a altura:
+-   Enter the x coordinate:
+-   Enter the y coordinate:
+-   Enter the width:
+-   Enter the height:
 
-## Você quer usar o modo avançado?
+## Do you want to use the advanced mode?
 
-O modo avançado terá recursos extras como:
+O modo avançado conterá recursos extras como:
 
--   configuração do contraste
--   mais recursos no futuro
+-   definir o contraste
+-   mais recursos virão no futuro
 
 ## Demonstração
 

@@ -1,6 +1,7 @@
 ---
 id: typescript
 title: إعداد TypeScript
+description: "اكتب اختبارات WebdriverIO بلغة TypeScript باستخدام tsx، وقم بإعداد ملف tsconfig.json وأضف تعريفات الأنواع لأطر العمل والخدمات والأوامر المخصصة."
 ---
 
 يمكنك كتابة الاختبارات باستخدام [TypeScript](http://www.typescriptlang.org) للحصول على الإكمال التلقائي وأمان الأنواع.
@@ -11,20 +12,20 @@ title: إعداد TypeScript
 $ npm install tsx --save-dev
 ```
 
-سيكتشف WebdriverIO تلقائيًا ما إذا كانت هذه التبعيات مثبتة وسيقوم بتجميع التكوين والاختبارات لك. تأكد من وجود ملف `tsconfig.json` في نفس دليل تكوين WDIO الخاص بك.
+سيكتشف WebdriverIO تلقائيًا ما إذا كانت هذه التبعيات مثبتة وسيقوم بترجمة ملف الإعدادات والاختبارات نيابةً عنك. تأكد من وجود ملف `tsconfig.json` في نفس المجلد الذي يوجد فيه ملف إعدادات WDIO.
 
 #### TSConfig مخصص
 
-إذا كنت بحاجة إلى تعيين مسار مختلف لـ `tsconfig.json`، يرجى تعيين متغير البيئة TSCONFIG_PATH بالمسار المطلوب، أو استخدام [إعداد tsConfigPath](/docs/configurationfile) في تكوين wdio.
+إذا كنت بحاجة إلى تعيين مسار مختلف لملف `tsconfig.json`، يرجى تعيين متغير البيئة TSCONFIG_PATH بالمسار المطلوب، أو استخدام [إعداد tsConfigPath](/docs/configurationfile) في ملف إعدادات wdio.
 
-بدلاً من ذلك، يمكنك استخدام [متغير البيئة](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) لـ `tsx`.
+بدلاً من ذلك، يمكنك استخدام [متغير البيئة](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) الخاص بـ `tsx`.
 
 
-#### فحص الأنواع
+#### التحقق من الأنواع
 
-لاحظ أن `tsx` لا يدعم فحص الأنواع - إذا كنت ترغب في التحقق من الأنواع الخاصة بك، فستحتاج إلى القيام بذلك في خطوة منفصلة باستخدام `tsc`.
+لاحظ أن `tsx` لا يدعم التحقق من الأنواع - إذا كنت ترغب في التحقق من الأنواع، فستحتاج إلى القيام بذلك في خطوة منفصلة باستخدام `tsc`.
 
-## إعداد الإطار
+## إعداد إطار العمل
 
 يحتاج ملف `tsconfig.json` الخاص بك إلى ما يلي:
 
@@ -37,13 +38,13 @@ $ npm install tsx --save-dev
 ```
 
 يرجى تجنب استيراد `webdriverio` أو `@wdio/sync` بشكل صريح.
-أنواع `WebdriverIO` و `WebDriver` يمكن الوصول إليها من أي مكان بمجرد إضافتها إلى `types` في `tsconfig.json`. إذا كنت تستخدم خدمات WebdriverIO إضافية أو إضافات أو حزمة أتمتة `devtools`، فيرجى إضافتها أيضًا إلى قائمة `types` حيث توفر الكثير منها أنواعًا إضافية.
+يمكن الوصول إلى أنواع `WebdriverIO` و`WebDriver` من أي مكان بمجرد إضافتها إلى `types` في ملف `tsconfig.json`. إذا كنت تستخدم خدمات أو إضافات WebdriverIO إضافية أو حزمة الأتمتة `devtools`، يرجى إضافتها أيضًا إلى قائمة `types` حيث يوفر الكثير منها تعريفات أنواع إضافية.
 
-## أنواع الإطار
+## أنواع إطار العمل
 
-اعتمادًا على الإطار الذي تستخدمه، ستحتاج إلى إضافة أنواع لذلك الإطار إلى خاصية `types` في `tsconfig.json`، وكذلك تثبيت تعريفات النوع الخاصة به. هذا مهم بشكل خاص إذا كنت تريد دعم النوع لمكتبة التأكيد المدمجة [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
+بناءً على إطار العمل الذي تستخدمه، ستحتاج إلى إضافة أنواع ذلك الإطار إلى خاصية types في ملف `tsconfig.json`، بالإضافة إلى تثبيت تعريفات الأنواع الخاصة به. وهذا مهم بشكل خاص إذا كنت ترغب في الحصول على دعم الأنواع لمكتبة التأكيدات المدمجة [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
 
-على سبيل المثال، إذا قررت استخدام إطار Mocha، فأنت بحاجة إلى تثبيت `@types/mocha` وإضافته بهذه الطريقة لجعل جميع الأنواع متاحة عالميًا:
+على سبيل المثال، إذا قررت استخدام إطار عمل Mocha، فستحتاج إلى تثبيت `@types/mocha` وإضافته بهذا الشكل لجعل جميع الأنواع متاحة بشكل عام:
 
 <Tabs
   defaultValue="mocha"
@@ -69,10 +70,12 @@ $ npm install tsx --save-dev
 ```json title="tsconfig.json"
 {
     "compilerOptions": {
-        "types": ["node", "@wdio/globals/types", "@wdio/jasmine-framework"]
+        "types": ["node", "jasmine", "@wdio/globals/types", "@wdio/jasmine-framework"]
     }
 }
 ```
+
+يقوم `jasmine` بتحميل `@types/jasmine`، الذي يوفر `jasmine` و`spyOn` و`expectAsync`. مع `@wdio/jasmine-framework`، تُرجع الدالة العامة `expect` القيمة `void` لمطابقات Jasmine المتزامنة و`Promise` لمطابقات WebdriverIO ومطابقات Jasmine غير المتزامنة. كما يحتوي `expectAsync` أيضًا على مطابقات WebdriverIO. أما تصدير `expect` من `expect-webdriverio` فيحتفظ بمطابقات Jest الخاصة به.
 
 </TabItem>
 <TabItem value="cucumber">
@@ -90,7 +93,7 @@ $ npm install tsx --save-dev
 
 ## الخدمات
 
-إذا كنت تستخدم خدمات تضيف أوامر إلى نطاق المتصفح، فأنت بحاجة أيضًا إلى تضمينها في `tsconfig.json` الخاص بك. على سبيل المثال، إذا كنت تستخدم `@wdio/lighthouse-service`، تأكد من إضافته إلى `types` أيضًا، مثل:
+إذا كنت تستخدم خدمات تضيف أوامر إلى نطاق المتصفح، فستحتاج أيضًا إلى تضمينها في ملف `tsconfig.json`. على سبيل المثال، إذا كنت تستخدم `@wdio/lighthouse-service`، فتأكد من إضافتها إلى `types` أيضًا، على سبيل المثال:
 
 ```json title="tsconfig.json"
 {
@@ -105,33 +108,33 @@ $ npm install tsx --save-dev
 }
 ```
 
-تضيف إضافة الخدمات والمراقبين إلى تكوين TypeScript الخاص بك أيضًا على تعزيز سلامة النوع لملف تكوين WebdriverIO الخاص بك.
+كما أن إضافة الخدمات والمُبلِّغات (reporters) إلى إعدادات TypeScript الخاصة بك تعزز أيضًا أمان الأنواع في ملف إعدادات WebdriverIO.
 
-## تعريفات النوع
+## تعريفات الأنواع
 
-عند تشغيل أوامر WebdriverIO، تكون جميع الخصائص عادةً مكتوبة بحيث لا تضطر إلى التعامل مع استيراد أنواع إضافية. ومع ذلك، هناك حالات ترغب فيها في تحديد المتغيرات مسبقًا. لضمان أن هذه آمنة من حيث النوع، يمكنك استخدام جميع الأنواع المحددة في حزمة [`@wdio/types`](https://www.npmjs.com/package/@wdio/types). على سبيل المثال، إذا كنت ترغب في تحديد خيار التحكم عن بعد لـ `webdriverio`، يمكنك القيام بذلك:
+عند تشغيل أوامر WebdriverIO، تكون جميع الخصائص عادةً محددة الأنواع بحيث لا تضطر للتعامل مع استيراد أنواع إضافية. ومع ذلك، هناك حالات تريد فيها تعريف المتغيرات مسبقًا. لضمان أن تكون هذه المتغيرات آمنة من حيث الأنواع، يمكنك استخدام جميع الأنواع المعرّفة في حزمة [`@wdio/types`](https://www.npmjs.com/package/@wdio/types). على سبيل المثال، إذا كنت ترغب في تعريف الخيار البعيد (remote option) لـ `webdriverio`، يمكنك القيام بما يلي:
 
 ```ts
 import type { Options } from '@wdio/types'
 
-// Here is an example where you might want to import the types directly
+// هذا مثال على حالة قد ترغب فيها باستيراد الأنواع مباشرةً
 const remoteConfig: Options.WebdriverIO = {
     hostname: 'http://localhost',
-    port: '4444' // Error: Type 'string' is not assignable to type 'number'.ts(2322)
+    port: '4444' // خطأ: النوع 'string' غير قابل للإسناد إلى النوع 'number'.ts(2322)
     capabilities: {
         browserName: 'chrome'
     }
 }
 
-// For other cases, you can use the `WebdriverIO` namespace
+// في الحالات الأخرى، يمكنك استخدام مساحة الأسماء `WebdriverIO`
 export const config: WebdriverIO.Config = {
   ...remoteConfig
-  // Other configs options
+  // خيارات الإعدادات الأخرى
 }
 ```
 
 ## نصائح وتلميحات
 
-### التجميع والتدقيق
+### الترجمة والتدقيق
 
-لتكون آمنًا تمامًا، قد تفكر في اتباع أفضل الممارسات: قم بتجميع التعليمات البرمجية الخاصة بك باستخدام مترجم TypeScript (قم بتشغيل `tsc` أو `npx tsc`) واستخدم [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) الذي يعمل على [خطاف ما قبل الالتزام](https://github.com/typicode/husky).
+لتكون في أمان تام، يمكنك التفكير في اتباع أفضل الممارسات: قم بترجمة الكود الخاص بك باستخدام مترجم TypeScript (شغّل `tsc` أو `npx tsc`) واجعل [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) يعمل على [خطاف ما قبل الإيداع (pre-commit hook)](https://github.com/typicode/husky).

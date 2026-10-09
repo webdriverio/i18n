@@ -1,19 +1,20 @@
 ---
 id: mocking
-title: Δημιουργία Ψευδών Αντικειμένων (Mocking)
+title: Mocking
+description: "Δημιουργήστε mocks για συναρτήσεις, modules και αιτήματα δικτύου σε component tests του browser runner με τα fn, spyOn και mock από το @wdio/browser-runner."
 ---
 
-When writing tests it's only a matter of time before you need to create a "fake" version of an internal — or external — service. This is commonly referred to as mocking. WebdriverIO provides utility functions to help you out. You can `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` to access it. See more information about the available mocking utilities in the [API docs](/docs/api/modules#wdiobrowser-runner).
+Όταν γράφετε tests, είναι θέμα χρόνου να χρειαστεί να δημιουργήσετε μια «ψεύτικη» έκδοση μιας εσωτερικής — ή εξωτερικής — υπηρεσίας. Αυτό συνήθως αναφέρεται ως mocking. Το WebdriverIO παρέχει βοηθητικές συναρτήσεις για να σας διευκολύνει. Μπορείτε να κάνετε `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` για να αποκτήσετε πρόσβαση σε αυτές. Δείτε περισσότερες πληροφορίες σχετικά με τα διαθέσιμα εργαλεία mocking στην [τεκμηρίωση API](/docs/api/modules#wdiobrowser-runner).
 
-## Functions
+## Συναρτήσεις
 
-Για την επαλήθευση του αν συγκεκριμένοι χειριστές συναρτήσεων καλούνται ως μέρος των δοκιμών των στοιχείων σας, η μονάδα `@wdio/browser-runner` εξάγει πρωτόγονα στοιχεία mocking που μπορείτε να χρησιμοποιήσετε για να ελέγξετε αν αυτές οι συναρτήσεις έχουν κληθεί. Μπορείτε να εισάγετε αυτές τις μεθόδους μέσω:
+Για να επαληθεύσετε αν ορισμένοι χειριστές συναρτήσεων καλούνται ως μέρος των component tests σας, το module `@wdio/browser-runner` εξάγει βασικά στοιχεία mocking που μπορείτε να χρησιμοποιήσετε για να ελέγξετε αν αυτές οι συναρτήσεις έχουν κληθεί. Μπορείτε να εισαγάγετε αυτές τις μεθόδους μέσω:
 
 ```js
 import { fn, spyOn } from '@wdio/browser-runner'
 ```
 
-Εισάγοντας το `fn` μπορείτε να δημιουργήσετε μια συνάρτηση κατασκοπείας (mock) για να παρακολουθήσετε την εκτέλεσή της και με το `spyOn` να παρακολουθήσετε μια μέθοδο σε ένα ήδη δημιουργημένο αντικείμενο.
+Εισάγοντας το `fn` μπορείτε να δημιουργήσετε μια συνάρτηση spy (mock) για να παρακολουθείτε την εκτέλεσή της, και με το `spyOn` να παρακολουθείτε μια μέθοδο σε ένα ήδη δημιουργημένο αντικείμενο.
 
 <Tabs
   defaultValue="mocks"
@@ -44,7 +45,7 @@ describe('LoginForm', () => {
         await browser.keys(Key.Enter)
 
         /**
-         * verify the handler was called
+         * επαληθεύστε ότι ο χειριστής κλήθηκε
          */
         expect(onLogin).toBeCalledTimes(1)
         expect(onLogin).toBeCalledWith(expect.equal({
@@ -95,27 +96,27 @@ describe('Lit Component testing', () => {
 </TabItem>
 </Tabs>
 
-Το WebdriverIO απλά επανεξάγει το [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) εδώ, το οποίο είναι μια ελαφριά υλοποίηση κατασκοπείας συμβατή με το Jest που μπορεί να χρησιμοποιηθεί με τους ελεγκτές [`expect`](/docs/api/expect-webdriverio) του WebdriverIO. Μπορείτε να βρείτε περισσότερη τεκμηρίωση για αυτές τις λειτουργίες mock στη [σελίδα του έργου Vitest](https://vitest.dev/api/mock.html).
+Το WebdriverIO απλώς επανεξάγει εδώ το [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy), το οποίο είναι μια ελαφριά υλοποίηση spy συμβατή με το Jest που μπορεί να χρησιμοποιηθεί με τους matchers [`expect`](/docs/api/expect-webdriverio) του WebdriverIO. Μπορείτε να βρείτε περισσότερη τεκμηρίωση για αυτές τις συναρτήσεις mock στη [σελίδα του έργου Vitest](https://vitest.dev/api/mock.html).
 
-Φυσικά, μπορείτε επίσης να εγκαταστήσετε και να εισαγάγετε οποιοδήποτε άλλο πλαίσιο κατασκοπείας, π.χ. [SinonJS](https://sinonjs.org/), αρκεί να υποστηρίζει το περιβάλλον του προγράμματος περιήγησης.
+Φυσικά, μπορείτε επίσης να εγκαταστήσετε και να εισαγάγετε οποιοδήποτε άλλο framework spy, π.χ. το [SinonJS](https://sinonjs.org/), εφόσον υποστηρίζει το περιβάλλον του browser.
 
 ## Modules
 
-Δημιουργήστε ψευδή τοπικά modules ή παρακολουθήστε βιβλιοθήκες τρίτων, που επικαλούνται σε κάποιον άλλο κώδικα, επιτρέποντάς σας να ελέγξετε τα ορίσματα, την έξοδο ή ακόμα και να επαναπροσδιορίσετε την υλοποίησή τους.
+Κάντε mock σε τοπικά modules ή παρακολουθήστε βιβλιοθήκες τρίτων που καλούνται σε κάποιον άλλο κώδικα, επιτρέποντάς σας να ελέγχετε ορίσματα, έξοδο ή ακόμα και να επαναορίσετε την υλοποίησή τους.
 
-Υπάρχουν δύο τρόποι για να δημιουργήσετε ψευδή αντικείμενα συναρτήσεων: Είτε δημιουργώντας μια συνάρτηση mock για χρήση στον κώδικα δοκιμών, είτε γράφοντας ένα χειροκίνητο mock για να παρακάμψετε μια εξάρτηση της μονάδας.
+Υπάρχουν δύο τρόποι για να κάνετε mock σε συναρτήσεις: Είτε δημιουργώντας μια συνάρτηση mock για χρήση στον κώδικα του test, είτε γράφοντας ένα χειροκίνητο mock για να παρακάμψετε μια εξάρτηση module.
 
-### Δημιουργία Ψευδών Αντικειμένων για Εισαγωγές Αρχείων
+### Mocking σε εισαγωγές αρχείων
 
-Ας φανταστούμε ότι το στοιχείο μας εισάγει μια βοηθητική μέθοδο από ένα αρχείο για τον χειρισμό ενός κλικ.
+Ας φανταστούμε ότι το component μας εισάγει μια βοηθητική μέθοδο από ένα αρχείο για να χειριστεί ένα κλικ.
 
 ```js title=utils.js
 export function handleClick () {
-    // handler implementation
+    // υλοποίηση του χειριστή
 }
 ```
 
-Στο στοιχείο μας ο χειριστής κλικ χρησιμοποιείται ως εξής:
+Στο component μας ο χειριστής κλικ χρησιμοποιείται ως εξής:
 
 ```ts title=LitComponent.js
 import { handleClick } from './utils.js'
@@ -128,7 +129,7 @@ export class SimpleButton extends LitElement {
 }
 ```
 
-Για να δημιουργήσουμε ένα ψευδές αντικείμενο για το `handleClick` από το `utils.js` μπορούμε να χρησιμοποιήσουμε τη μέθοδο `mock` στη δοκιμή μας ως εξής:
+Για να κάνουμε mock το `handleClick` από το `utils.js` μπορούμε να χρησιμοποιήσουμε τη μέθοδο `mock` στο test μας ως εξής:
 
 ```js title=LitComponent.test.js
 import { expect, $ } from '@wdio/globals'
@@ -139,7 +140,7 @@ import { SimpleButton } from './LitComponent.ts'
 import { handleClick } from './utils.js'
 
 /**
- * mock named export "handleClick" of `utils.ts` file
+ * mock στο named export "handleClick" του αρχείου `utils.ts`
  */
 mock('./utils.ts', () => ({
     handleClick: fn()
@@ -154,9 +155,9 @@ describe('Simple Button Component Test', () => {
 })
 ```
 
-### Δημιουργία Ψευδών Αντικειμένων για Εξαρτήσεις
+### Mocking σε εξαρτήσεις
 
-Ας υποθέσουμε ότι έχουμε μια κλάση που ανακτά χρήστες από το API μας. Η κλάση χρησιμοποιεί το [`axios`](https://github.com/axios/axios) για να καλέσει το API και στη συνέχεια επιστρέφει το χαρακτηριστικό δεδομένων που περιέχει όλους τους χρήστες:
+Ας υποθέσουμε ότι έχουμε μια κλάση που ανακτά χρήστες από το API μας. Η κλάση χρησιμοποιεί το [`axios`](https://github.com/axios/axios) για να καλέσει το API και στη συνέχεια επιστρέφει το χαρακτηριστικό data που περιέχει όλους τους χρήστες:
 
 ```js title=users.js
 import axios from 'axios';
@@ -170,18 +171,18 @@ class Users {
 export default Users
 ```
 
-Τώρα, για να δοκιμάσουμε αυτή τη μέθοδο χωρίς να χτυπήσουμε πραγματικά το API (και έτσι δημιουργώντας αργές και εύθραυστες δοκιμές), μπορούμε να χρησιμοποιήσουμε τη συνάρτηση `mock(...)` για να δημιουργήσουμε αυτόματα ένα ψευδές αντικείμενο της μονάδας axios.
+Τώρα, για να ελέγξουμε αυτή τη μέθοδο χωρίς να καλέσουμε πραγματικά το API (και έτσι να δημιουργήσουμε αργά και εύθραυστα tests), μπορούμε να χρησιμοποιήσουμε τη συνάρτηση `mock(...)` για να κάνουμε αυτόματα mock το module axios.
 
-Μόλις δημιουργήσουμε το ψευδές αντικείμενο της μονάδας, μπορούμε να παρέχουμε ένα [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) για το `.get` που επιστρέφει τα δεδομένα που θέλουμε να ελέγξει η δοκιμή μας. Στην ουσία, λέμε ότι θέλουμε το `axios.get('/users.json')` να επιστρέψει μια ψεύτικη απάντηση.
+Μόλις κάνουμε mock το module, μπορούμε να παρέχουμε ένα [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) για το `.get` που επιστρέφει τα δεδομένα με τα οποία θέλουμε να γίνει ο έλεγχος στο test μας. Στην ουσία, λέμε ότι θέλουμε το `axios.get('/users.json')` να επιστρέψει μια ψεύτικη απόκριση.
 
 ```js title=users.test.js
-import axios from 'axios'; // imports defined mock
+import axios from 'axios'; // εισάγει το ορισμένο mock
 import { mock, fn } from '@wdio/browser-runner'
 
 import Users from './users.js'
 
 /**
- * mock default export of `axios` dependency
+ * mock στο default export της εξάρτησης `axios`
  */
 mock('axios', () => ({
     default: {
@@ -195,7 +196,7 @@ describe('User API', () => {
         const resp = {data: users}
         axios.get.mockResolvedValue(resp)
 
-        // or you could use the following depending on your use case:
+        // ή μπορείτε να χρησιμοποιήσετε το παρακάτω ανάλογα με την περίπτωσή σας:
         // axios.get.mockImplementation(() => Promise.resolve(resp))
 
         const data = await Users.all()
@@ -204,9 +205,9 @@ describe('User API', () => {
 })
 ```
 
-## Partials
+## Μερικά mocks
 
-Υποσύνολα μιας μονάδας μπορούν να γίνουν ψευδή αντικείμενα και το υπόλοιπο της μονάδας μπορεί να διατηρήσει την πραγματική τους υλοποίηση:
+Μπορείτε να κάνετε mock σε υποσύνολα ενός module, ενώ το υπόλοιπο module διατηρεί την πραγματική του υλοποίηση:
 
 ```js title=foo-bar-baz.js
 export const foo = 'foo';
@@ -214,15 +215,15 @@ export const bar = () => 'bar';
 export default () => 'baz';
 ```
 
-Η αρχική μονάδα θα περαστεί στο εργοστάσιο ψευδών αντικειμένων που μπορείτε να χρησιμοποιήσετε π.χ. για να δημιουργήσετε μερικώς ψευδή αντικείμενα για μια εξάρτηση:
+Το αρχικό module θα περάσει στο mock factory, το οποίο μπορείτε να χρησιμοποιήσετε π.χ. για να κάνετε μερικό mock σε μια εξάρτηση:
 
 ```js
 import { mock, fn } from '@wdio/browser-runner'
 import defaultExport, { bar, foo } from './foo-bar-baz.js';
 
 mock('./foo-bar-baz.js', async (originalModule) => {
-    // Mock the default export and named export 'foo'
-    // and propagate named export from the original module
+    // Mock στο default export και στο named export 'foo'
+    // και διάδοση των named exports από το αρχικό module
     return {
         __esModule: true,
         ...originalModule,
@@ -243,11 +244,11 @@ describe('partial mock', () => {
 })
 ```
 
-## Manual Mocks
+## Χειροκίνητα mocks
 
-Τα χειροκίνητα mock ορίζονται γράφοντας μια μονάδα σε έναν υποκατάλογο `__mocks__/` (δείτε επίσης την επιλογή `automockDir`). Αν η μονάδα που δημιουργείτε ψευδές αντικείμενο είναι μια μονάδα Node (π.χ.: `lodash`), το ψευδές αντικείμενο θα πρέπει να τοποθετηθεί στον κατάλογο `__mocks__` και θα γίνει αυτόματα ψευδές αντικείμενο. Δεν χρειάζεται να καλέσετε ρητά `mock('module_name')`.
+Τα χειροκίνητα mocks ορίζονται γράφοντας ένα module σε έναν υποκατάλογο `__mocks__/` (δείτε επίσης την επιλογή `automockDir`). Αν το module που κάνετε mock είναι ένα Node module (π.χ.: `lodash`), το mock θα πρέπει να τοποθετηθεί στον κατάλογο `__mocks__` και θα γίνει αυτόματα mock. Δεν χρειάζεται να καλέσετε ρητά το `mock('module_name')`.
 
-Μπορούν να δημιουργηθούν ψευδή αντικείμενα για μονάδες με scope (γνωστές και ως πακέτα με scope) δημιουργώντας ένα αρχείο σε μια δομή καταλόγου που αντιστοιχεί στο όνομα της μονάδας με scope. Για παράδειγμα, για να δημιουργήσετε ένα ψευδές αντικείμενο για μια μονάδα με scope που ονομάζεται `@scope/project-name`, δημιουργήστε ένα αρχείο στο `__mocks__/@scope/project-name.js`, δημιουργώντας αντίστοιχα τον κατάλογο `@scope/`.
+Τα scoped modules (γνωστά και ως scoped packages) μπορούν να γίνουν mock δημιουργώντας ένα αρχείο σε μια δομή καταλόγων που ταιριάζει με το όνομα του scoped module. Για παράδειγμα, για να κάνετε mock ένα scoped module με όνομα `@scope/project-name`, δημιουργήστε ένα αρχείο στο `__mocks__/@scope/project-name.js`, δημιουργώντας αντίστοιχα τον κατάλογο `@scope/`.
 
 ```
 .
@@ -261,7 +262,7 @@ describe('partial mock', () => {
 └── views
 ```
 
-Όταν υπάρχει ένα χειροκίνητο ψευδές αντικείμενο για μια δεδομένη μονάδα, το WebdriverIO θα χρησιμοποιήσει αυτή τη μονάδα όταν καλείται ρητά `mock('moduleName')`. Ωστόσο, όταν το automock έχει οριστεί σε true, η υλοποίηση του χειροκίνητου ψευδούς αντικειμένου θα χρησιμοποιηθεί αντί του αυτόματα δημιουργημένου ψευδούς αντικειμένου, ακόμη και αν δεν καλείται το `mock('moduleName')`. Για να εξαιρεθείτε από αυτήν τη συμπεριφορά, θα πρέπει να καλέσετε ρητά το `unmock('moduleName')` σε δοκιμές που πρέπει να χρησιμοποιούν την πραγματική υλοποίηση της μονάδας, π.χ.:
+Όταν υπάρχει χειροκίνητο mock για ένα συγκεκριμένο module, το WebdriverIO θα χρησιμοποιήσει αυτό το module όταν καλείται ρητά το `mock('moduleName')`. Ωστόσο, όταν το automock έχει οριστεί σε true, θα χρησιμοποιηθεί η υλοποίηση του χειροκίνητου mock αντί για το αυτόματα δημιουργημένο mock, ακόμα και αν δεν κληθεί το `mock('moduleName')`. Για να εξαιρεθείτε από αυτή τη συμπεριφορά, θα πρέπει να καλέσετε ρητά το `unmock('moduleName')` στα tests που πρέπει να χρησιμοποιούν την πραγματική υλοποίηση του module, π.χ.:
 
 ```js
 import { unmock } from '@wdio/browser-runner'
@@ -271,14 +272,14 @@ unmock('lodash')
 
 ## Hoisting
 
-Για να λειτουργήσει η δημιουργία ψευδών αντικειμένων στο πρόγραμμα περιήγησης, το WebdriverIO ξαναγράφει τα αρχεία δοκιμών και ανυψώνει τις κλήσεις mock πάνω από όλα τα άλλα (δείτε επίσης [αυτήν την ανάρτηση ιστολογίου](https://www.coolcomputerclub.com/posts/jest-hoist-await/) σχετικά με το πρόβλημα ανύψωσης στο Jest). Αυτό περιορίζει τον τρόπο με τον οποίο μπορείτε να περάσετε μεταβλητές στον επιλυτή mock, π.χ.:
+Για να λειτουργήσει το mocking στον browser, το WebdriverIO ξαναγράφει τα αρχεία των tests και μετακινεί (hoists) τις κλήσεις mock πάνω από οτιδήποτε άλλο (δείτε επίσης [αυτή την ανάρτηση](https://www.coolcomputerclub.com/posts/jest-hoist-await/) σχετικά με το πρόβλημα του hoisting στο Jest). Αυτό περιορίζει τον τρόπο με τον οποίο μπορείτε να περάσετε μεταβλητές στον mock resolver, π.χ.:
 
 ```js title=component.test.js
 import dep from 'dependency'
 const variable = 'foobar'
 
 /**
- * ❌ this fails as `dep` and `variable` are not defined inside the mock resolver
+ * ❌ αυτό αποτυγχάνει καθώς τα `dep` και `variable` δεν ορίζονται μέσα στον mock resolver
  */
 mock('./some/module.ts', () => ({
     exportA: dep,
@@ -286,11 +287,11 @@ mock('./some/module.ts', () => ({
 }))
 ```
 
-Για να το διορθώσετε αυτό, πρέπει να ορίσετε όλες τις χρησιμοποιούμενες μεταβλητές μέσα στον επιλυτή, π.χ.:
+Για να το διορθώσετε, πρέπει να ορίσετε όλες τις μεταβλητές που χρησιμοποιούνται μέσα στον resolver, π.χ.:
 
 ```js title=component.test.js
 /**
- * ✔️ this works as all variables are defined within the resolver
+ * ✔️ αυτό λειτουργεί καθώς όλες οι μεταβλητές ορίζονται μέσα στον resolver
  */
 mock('./some/module.ts', async () => {
     const dep = await import('dependency')
@@ -303,6 +304,10 @@ mock('./some/module.ts', async () => {
 })
 ```
 
-## Requests
+## Αιτήματα
 
-Αν ψάχνετε για τη δημιουργία ψευδών αντικειμένων για αιτήματα προγράμματος περιήγησης, π.χ. κλήσεις API, μεταβείτε στην ενότητα [Request Mock and Spies](/docs/mocksandspies).
+Αν ψάχνετε για mocking αιτημάτων του browser, π.χ. κλήσεων API, μεταβείτε στην ενότητα [Request Mock and Spies](/docs/mocksandspies).
+
+Στα component tests, χρησιμοποιήστε ένα απόλυτο μοτίβο URL με σταθερό πρωτόκολλο και hostname για το `browser.mock()`, όπως `https://api.webdriver.io/api/*`. Ένα μοτίβο χωρίς host, όπως `*/api/*`, παρεμβαίνει σε κάθε αίτημα της σελίδας, συμπεριλαμβανομένης της κίνησης του ίδιου του browser runner από το Vite και τον driver.
+
+Χρησιμοποιήστε ένα μόνο `*`, το οποίο ταιριάζει επίσης με καθέτους. Διαδοχικά wildcards πριν από σταθερό κείμενο, όπως `**/api/**` ή `**/data.json`, μπορεί να προκαλέσουν υπερβολικό regex backtracking σε άσχετα URLs και να παγώσουν ένα test. Δείτε το [issue #13548](https://github.com/webdriverio/webdriverio/issues/13548), το [issue #15739](https://github.com/webdriverio/webdriverio/issues/15739) και την [προειδοποίηση για τα URL wildcards](/docs/mocksandspies#creating-a-mock).

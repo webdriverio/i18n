@@ -1,21 +1,22 @@
 ---
 id: pageobjects
-title: Padrão de Objeto de Página
+title: Padrão Page Object
+description: "Estruture seus testes com o padrão page object, movendo seletores e ações específicas de página para classes de página reutilizáveis."
 ---
 
-A versão 5 do WebdriverIO foi projetada com suporte ao Padrão de Objeto de Página em mente. Ao introduzir o princípio de "elementos como cidadãos de primeira classe", agora é possível construir grandes suítes de teste usando esse padrão.
+A versão 5 do WebdriverIO foi projetada com o suporte ao Padrão Page Object em mente. Com a introdução do princípio de "elementos como cidadãos de primeira classe", agora é possível construir grandes suítes de testes usando esse padrão.
 
-Não são necessários pacotes adicionais para criar objetos de página. Verifica-se que classes modernas e limpas fornecem todos os recursos necessários:
+Não são necessários pacotes adicionais para criar page objects. Acontece que classes limpas e modernas fornecem todos os recursos necessários de que precisamos:
 
-- herança entre objetos de página
-- carregamento preguiçoso de elementos
+- herança entre page objects
+- carregamento lazy de elementos
 - encapsulamento de métodos e ações
 
-O objetivo de usar objetos de página é abstrair qualquer informação da página dos testes reais. Idealmente, você deve armazenar todos os seletores ou instruções específicas que são exclusivas para uma determinada página em um objeto de página, para que você ainda possa executar seu teste após ter redesenhado completamente sua página.
+O objetivo de usar page objects é abstrair qualquer informação da página dos testes propriamente ditos. Idealmente, você deve armazenar todos os seletores ou instruções específicas que são exclusivas de uma determinada página em um page object, para que você ainda possa executar seu teste depois de ter redesenhado completamente sua página.
 
-## Criando Um Objeto de Página
+## Criando Um Page Object
 
-Primeiro, precisamos de um objeto de página principal que chamamos de `Page.js`. Ele conterá seletores ou métodos gerais que todos os objetos de página herdarão.
+Primeiro, precisamos de um page object principal que chamamos de `Page.js`. Ele conterá seletores ou métodos gerais dos quais todos os page objects herdarão.
 
 ```js
 // Page.js
@@ -30,15 +31,15 @@ export default class Page {
 }
 ```
 
-Sempre `exportamos` uma instância de um objeto de página, e nunca criamos essa instância no teste. Como estamos escrevendo testes de ponta a ponta, sempre consideramos a página como uma construção sem estado&mdash;assim como cada requisição HTTP é uma construção sem estado.
+Sempre faremos `export` de uma instância de um page object, e nunca criaremos essa instância no teste. Como estamos escrevendo testes end-to-end, sempre consideramos a página como uma construção sem estado&mdash;assim como cada requisição HTTP é uma construção sem estado.
 
-Claro, o navegador pode carregar informações de sessão e, portanto, pode exibir páginas diferentes com base em diferentes sessões, mas isso não deve ser refletido em um objeto de página. Esse tipo de mudança de estado deve estar em seus testes reais.
+Claro, o navegador pode carregar informações de sessão e, portanto, pode exibir páginas diferentes com base em sessões diferentes, mas isso não deve ser refletido dentro de um page object. Esses tipos de mudanças de estado devem ficar nos seus testes propriamente ditos.
 
-Vamos começar a testar a primeira página. Para fins de demonstração, usamos o site [The Internet](http://the-internet.herokuapp.com) do [Elemental Selenium](http://elementalselenium.com) como cobaia. Vamos tentar construir um exemplo de objeto de página para a [página de login](http://the-internet.herokuapp.com/login).
+Vamos começar testando a primeira página. Para fins de demonstração, usamos o site [The Internet](http://the-internet.herokuapp.com) da [Elemental Selenium](http://elementalselenium.com) como cobaia. Vamos tentar construir um exemplo de page object para a [página de login](http://the-internet.herokuapp.com/login).
 
-## Obtendo Seus Seletores com `Get`
+## Usando `Get` Para Seus Seletores
 
-O primeiro passo é escrever todos os seletores importantes necessários em nosso objeto `login.page` como funções getter:
+O primeiro passo é escrever todos os seletores importantes que são necessários em nosso objeto `login.page` como funções getter:
 
 ```js
 // login.page.js
@@ -65,7 +66,7 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Definir seletores em funções getter pode parecer um pouco estranho, mas é muito útil. Essas funções são avaliadas _quando você acessa a propriedade_, não quando você gera o objeto. Com isso, você sempre solicita o elemento antes de executar uma ação nele.
+Definir seletores em funções getter pode parecer um pouco estranho, mas é realmente útil. Essas funções são avaliadas _quando você acessa a propriedade_, não quando você gera o objeto. Com isso, você sempre solicita o elemento antes de executar uma ação sobre ele.
 
 ## Encadeando Comandos
 
@@ -88,13 +89,13 @@ ou
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Usando Objetos de Página em Seus Testes
+## Usando Page Objects Em Seus Testes
 
-Depois de definir os elementos e métodos necessários para a página, você pode começar a escrever o teste para ela. Tudo o que você precisa fazer para usar o objeto de página é `importá-lo` (ou `require`). É isso!
+Depois de definir os elementos e métodos necessários para a página, você pode começar a escrever o teste para ela. Tudo o que você precisa fazer para usar o page object é fazer `import` (ou `require`) dele. É só isso!
 
-Como você exportou uma instância já criada do objeto de página, importá-la permite que você comece a usá-la imediatamente.
+Como você exportou uma instância já criada do page object, importá-lo permite que você comece a usá-lo imediatamente.
 
-Se você usar um framework de asserção, seus testes podem ser ainda mais expressivos:
+Se você usar um framework de asserções, seus testes podem ser ainda mais expressivos:
 
 ```js
 // login.spec.js
@@ -121,10 +122,10 @@ describe('login form', () => {
 })
 ```
 
-Do lado estrutural, faz sentido separar arquivos de especificação e objetos de página em diretórios diferentes. Além disso, você pode dar a cada objeto de página o sufixo: `.page.js`. Isso torna mais claro que você está importando um objeto de página.
+Do ponto de vista estrutural, faz sentido separar arquivos de spec e page objects em diretórios diferentes. Além disso, você pode dar a cada page object a terminação: `.page.js`. Isso deixa mais claro que você está importando um page object.
 
 ## Indo Além
 
-Este é o princípio básico de como escrever objetos de página com WebdriverIO. Mas você pode construir estruturas de objetos de página muito mais complexas do que esta! Por exemplo, você pode ter objetos de página específicos para modais, ou dividir um enorme objeto de página em classes diferentes (cada uma representando uma parte diferente da página web geral) que herdam do objeto de página principal. O padrão realmente oferece muitas oportunidades para separar informações da página de seus testes, o que é importante para manter sua suíte de testes estruturada e clara em momentos em que o projeto e o número de testes crescem.
+Este é o princípio básico de como escrever page objects com o WebdriverIO. Mas você pode construir estruturas de page objects muito mais complexas do que esta! Por exemplo, você pode ter page objects específicos para modais, ou dividir um page object enorme em diferentes classes (cada uma representando uma parte diferente da página web como um todo) que herdam do page object principal. O padrão realmente oferece muitas oportunidades para separar as informações da página dos seus testes, o que é importante para manter sua suíte de testes estruturada e clara em momentos em que o projeto e o número de testes crescem.
 
-Você pode encontrar este exemplo (e ainda mais exemplos de objetos de página) na [`pasta example`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) no GitHub.
+Você pode encontrar este exemplo (e ainda mais exemplos de page objects) na [pasta `example`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) no GitHub.

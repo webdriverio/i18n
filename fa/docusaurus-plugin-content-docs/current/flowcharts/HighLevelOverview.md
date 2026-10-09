@@ -1,7 +1,24 @@
 ---
 id: highleveloverview
 title: نمای کلی سطح بالا
+description: "نمودار جریانی از نحوه تعامل اکوسیستم WebdriverIO و بسته‌های اصلی آن در طول اجرای تست را ببینید."
 ---
-نمودار جریان یک نمای کلی سطح بالا از چگونگی تعامل اکوسیستم WebdriverIO با بسته‌های اصلی را ارائه می‌دهد.
+این نمودار جریان، نمای کلی سطح بالایی از نحوه تعامل اکوسیستم WebdriverIO با بسته‌های اصلی ارائه می‌دهد.
 
-<CreateFlowcharts id='highleveloverview' />
+```mermaid
+graph LR
+    START("Start wdio in the CLI<br> @wdio/cli index / run.js")-->
+    LAUNCHER["@wdio/cli launcher.js"]-->
+    LOCALRUNNER["@wdio/local-runner"]-->
+    RUNNER["@wdio/runner"]
+    LISTOFSERVICES["Any package that ends with -service<br>@wdio/appium-service<br>@wdio/applitools-service<br>@wdio/browserstack-service<br>wdio-lambdatest-service<br>@wdio/lighthouse-service<br>@wdio/firefox-profile-service<br>@wdio/sauce-service<br>@wdio/selenium-standalone-service<br>@wdio/static-server-service<br>@wdio/testingbot-service<br>wdio-chromedriver-service<br>wdio-intercept-service<br>wdio-zafira-listener-service<br>wdio-reportportal-service<br>wdio-docker-service"]-->
+    LAUNCHER
+    LISTOFSERVICES-->LOCALRUNNER
+    LISTOFSERVICES-->RUNNER
+    REPORTER["Any package that ends with -reporter<br>@wdio/allure-reporter<br>@wdio/concise-reporter<br>@wdio/dot-reporter<br>@wdio/junit-reporter<br>@wdio/reporter<br>@wdio/spec-reporter<br>@wdio/sumologic-reporter<br>@wdio/json-reporter<br>wdio-reportportal-reporter<br>wdio-video-reporter<br>@rpii/wdio-html-reporter<br>wdio-mochawesome-reporter<br>wdio-timeline-reporter<br>wdio-cucumberjs-json-reporter"]-->RUNNER
+    FRAMEWORK["Any package that ends with -framework<br>@wdio/jasmine-framework<br>@wdio/mocha-framework<br>@wdio/cucumber-framework<br>"]-->
+    RUNNER
+    WEBDRIVER["webdriverio<br>webdriver"]-->
+    RUNNER
+    GLOBAL["GLOBALS<br>@wdio/sync<br>@wdio/config<br>@wdio/logger<br>@wdio/utils"]
+```

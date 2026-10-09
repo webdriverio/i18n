@@ -1,34 +1,35 @@
 ---
 id: getting-started
 title: Ξεκινώντας
+description: "Εγκαταστήστε και διαμορφώστε το @wdio/ocr-service, ρυθμίστε την υποστήριξη TypeScript και προσαρμόστε τις επιλογές αντίθεσης, φακέλου εικόνων και γλώσσας."
 ---
 
-## Installation
+## Εγκατάσταση
 
-The easiest way is to keep `@wdio/ocr-service` as a dependency in your `package.json` via.
+Ο ευκολότερος τρόπος είναι να διατηρήσετε το `@wdio/ocr-service` ως εξάρτηση στο `package.json` σας μέσω της παρακάτω εντολής.
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
 ```
 
-Instructions on how to install `WebdriverIO` can be found [here.](../gettingstarted)
+Οδηγίες για το πώς να εγκαταστήσετε το `WebdriverIO` μπορείτε να βρείτε [εδώ.](../gettingstarted)
 
 :::note
-Αυτή η μονάδα χρησιμοποιεί το Tesseract ως μηχανή OCR. Από προεπιλογή, θα επαληθεύσει αν έχετε μια τοπική εγκατάσταση του Tesseract στο σύστημά σας, αν ναι, θα χρησιμοποιήσει αυτή. Αν όχι, θα χρησιμοποιήσει τη μονάδα [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) που εγκαθίσταται αυτόματα για εσάς.
+Αυτή η μονάδα χρησιμοποιεί το Tesseract ως μηχανή OCR. Από προεπιλογή, θα ελέγξει αν έχετε τοπική εγκατάσταση του Tesseract στο σύστημά σας και, αν ναι, θα τη χρησιμοποιήσει. Αν όχι, θα χρησιμοποιήσει τη μονάδα [Node.js Tesseract.js](https://github.com/naptha/tesseract.js), η οποία εγκαθίσταται αυτόματα για εσάς.
 
-Αν θέλετε να επιταχύνετε την επεξεργασία εικόνας, τότε η συμβουλή είναι να χρησιμοποιήσετε μια τοπικά εγκατεστημένη έκδοση του Tesseract. Δείτε επίσης [Test execution time](./more-test-optimization#using-a-local-installation-of-tesseract).
+Αν θέλετε να επιταχύνετε την επεξεργασία εικόνων, η συμβουλή είναι να χρησιμοποιήσετε μια τοπικά εγκατεστημένη έκδοση του Tesseract. Δείτε επίσης [Χρόνος εκτέλεσης δοκιμών](./more-test-optimization#using-a-local-installation-of-tesseract).
 :::
 
 Οδηγίες για το πώς να εγκαταστήσετε το Tesseract ως εξάρτηση συστήματος στο τοπικό σας σύστημα μπορείτε να βρείτε [εδώ](https://tesseract-ocr.github.io/tessdoc/Installation.html).
 
 :::caution
-Για ερωτήσεις/σφάλματα εγκατάστασης με το Tesseract, ανατρέξτε στο έργο
+Για ερωτήσεις/σφάλματα εγκατάστασης σχετικά με το Tesseract, ανατρέξτε στο έργο
 [Tesseract](https://github.com/tesseract-ocr/tesseract).
 :::
 
-## Typescript support
+## Υποστήριξη Typescript
 
-Βεβαιωθείτε ότι προσθέτετε το `@wdio/ocr-service` στο αρχείο ρύθμισης παραμέτρων `tsconfig.json`.
+Βεβαιωθείτε ότι έχετε προσθέσει το `@wdio/ocr-service` στο αρχείο διαμόρφωσης `tsconfig.json`.
 
 ```json title="tsconfig.json"
 {
@@ -38,16 +39,16 @@ Instructions on how to install `WebdriverIO` can be found [here.](../gettingstar
 }
 ```
 
-## Configuration
+## Διαμόρφωση
 
-Για να χρησιμοποιήσετε την υπηρεσία, πρέπει να προσθέσετε το `ocr` στον πίνακα υπηρεσιών σας στο `wdio.conf.ts`
+Για να χρησιμοποιήσετε την υπηρεσία, πρέπει να προσθέσετε το `ocr` στον πίνακα services στο `wdio.conf.ts`
 
 ```js
 // wdio.conf.js
 exports.config = {
     //...
     services: [
-        // your other services
+        // οι άλλες υπηρεσίες σας
         [
             "ocr",
             {
@@ -60,39 +61,36 @@ exports.config = {
 };
 ```
 
-### Configuration Options
+### Επιλογές διαμόρφωσης
 
 #### `contrast`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `0.25`
+<Option type="number" default="0.25" required="No">
 
-Όσο υψηλότερη είναι η αντίθεση, τόσο πιο σκούρα είναι η εικόνα και αντίστροφα. Αυτό μπορεί να βοηθήσει στην εύρεση κειμένου σε μια εικόνα. Δέχεται τιμές μεταξύ `-1` και `1`.
+Όσο υψηλότερη είναι η αντίθεση, τόσο πιο σκοτεινή είναι η εικόνα και αντίστροφα. Αυτό μπορεί να βοηθήσει στον εντοπισμό κειμένου σε μια εικόνα. Δέχεται τιμές μεταξύ `-1` και `1`.
 
+</Option>
 #### `imagesFolder`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `{project-root}/.tmp/ocr`
+<Option type="string" default={`{project-root}/.tmp/ocr`} required="No">
 
-Ο φάκελος όπου αποθηκεύονται τα αποτελέσματα OCR.
+Ο φάκελος όπου αποθηκεύονται τα αποτελέσματα του OCR.
 
 :::note
-Αν παρέχετε προσαρμοσμένο `imagesFolder`, τότε η υπηρεσία θα προσθέσει αυτόματα τον υποφάκελο `ocr` σε αυτόν.
+Αν ορίσετε έναν προσαρμοσμένο `imagesFolder`, τότε η υπηρεσία θα προσθέσει αυτόματα τον υποφάκελο `ocr` σε αυτόν.
 :::
 
+</Option>
 #### `language`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `eng`
+<Option type="string" default="eng" required="No">
 
-Η γλώσσα που θα αναγνωρίσει το Tesseract. Περισσότερες πληροφορίες μπορείτε να βρείτε [εδώ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) και τις υποστηριζόμενες γλώσσες μπορείτε να βρείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Η γλώσσα που θα αναγνωρίσει το Tesseract. Περισσότερες πληροφορίες μπορείτε να βρείτε [εδώ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) και τις υποστηριζόμενες γλώσσες μπορείτε να τις βρείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-## Logs
+</Option>
+## Αρχεία καταγραφής
 
-Αυτή η μονάδα θα προσθέσει αυτόματα επιπλέον αρχεία καταγραφής στα αρχεία καταγραφής WebdriverIO. Γράφει στα αρχεία καταγραφής `INFO` και `WARN` με το όνομα `@wdio/ocr-service`.
+Αυτή η μονάδα θα προσθέσει αυτόματα επιπλέον καταγραφές στα αρχεία καταγραφής του WebdriverIO. Γράφει στα αρχεία καταγραφής `INFO` και `WARN` με το όνομα `@wdio/ocr-service`.
 Παραδείγματα μπορείτε να βρείτε παρακάτω.
 
 ```log

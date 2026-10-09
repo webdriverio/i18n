@@ -1,26 +1,27 @@
 ---
 id: faq
 title: よくある質問
+description: "ベースラインの更新、Canvasのインストールエラーの修正、v10へのアップグレードなど、ビジュアルテストに関するよくある質問への回答をご覧ください。"
 ---
 
-### `check(Screen/Element/FullPageScreen)`を実行する際に`save(Screen/Element/FullPageScreen)`メソッドを使用する必要がありますか？
+### `check(Screen/Element/FullPageScreen)` を実行したい場合、`save(Screen/Element/FullPageScreen)` メソッドを使用する必要がありますか？
 
-いいえ、必要ありません。`check(Screen/Element/FullPageScreen)`が自動的にこれを行います。
+いいえ、その必要はありません。`check(Screen/Element/FullPageScreen)` が自動的に行います。
 
-### ビジュアルテストが差異で失敗した場合、ベースラインを更新するにはどうすればよいですか？
+### ビジュアルテストが差分ありで失敗します。ベースラインを更新するにはどうすればよいですか？
 
-コマンドラインに引数`--update-visual-baseline`を追加することで、ベースライン画像を更新できます。これにより
+コマンドラインで引数 `--update-visual-baseline` を追加することで、ベースライン画像を更新できます。これにより、以下が行われます。
 
-- 実際に撮影したスクリーンショットが自動的にコピーされ、ベースラインフォルダに配置されます
-- 差異がある場合でも、ベースラインが更新されたためテストは合格します
+-   実際に取得したスクリーンショットを自動的にコピーし、ベースラインフォルダに配置します
+-   差分がある場合でも、ベースラインが更新されたためテストは合格となります
 
-**使用法：**
+**使用方法:**
 
 ```sh
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-ログをinfo/debugモードで実行すると、以下のようなログが追加されます
+ログを info/debug モードで実行すると、以下のログが追加されていることが確認できます。
 
 ```logs
 [0-0] ..............
@@ -32,15 +33,19 @@ npm run test.local.desktop  --update-visual-baseline
 [0-0] ..........
 ```
 
-### 幅と高さがマイナスになることはできません
+### Width and height cannot be negative
 
-「Width and height cannot be negative」（幅と高さがマイナスになることはできません）というエラーが発生することがあります。10回中9回は、ビュー内にない要素の画像を作成しようとしていることに関連しています。要素の画像を作成する前に、必ず要素がビュー内にあることを確認してください。
+`Width and height cannot be negative` というエラーがスローされることがあります。10回中9回は、ビュー内にない要素の画像を作成しようとしたことが原因です。要素の画像を作成する前に、必ずその要素がビュー内にあることを確認してください。
 
-### WindowsでのCanvasのインストールがNode-Gypログでエラーになる
+### Windows で Canvas のインストールが Node-Gyp のログとともに失敗する
 
-WindowsでNode-Gypエラーによりcanvasのインストールに問題が発生した場合、これはバージョン4以下にのみ適用されることに注意してください。これらの問題を避けるには、これらの依存関係がなく、画像処理に[Jimp](https://github.com/jimp-dev/jimp)を使用するバージョン5以降に更新することを検討してください。
+Node-Gyp のエラーにより Windows で Canvas のインストールに問題が発生した場合、これはバージョン4以前にのみ該当することに注意してください。これらの問題を回避するには、これらの依存関係を持たないバージョン5以降へのアップデートを検討してください。バージョン5から9では画像処理に [Jimp](https://github.com/jimp-dev/jimp) を使用していました。バージョン10以降では、ネイティブ依存関係のない [fast-png](https://github.com/image-js/fast-png) と [Pixelmatch](https://github.com/mapbox/pixelmatch) を使用しています。
 
-バージョン4での問題を解決する必要がある場合は、以下を確認してください：
+それでもバージョン4で問題を解決する必要がある場合は、以下を確認してください。
 
-- [はじめに](/docs/visual-testing#system-requirements)ガイドのNode Canvasセクション
-- Windows上でのNode-Gyp問題を修正するための[この投稿](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/)（[IgorSasovets](https://github.com/IgorSasovets)に感謝します）
+-   [Getting Started](/docs/visual-testing#system-requirements) ガイドの Node Canvas セクション
+-   Windows での Node-Gyp の問題の修正については [こちらの記事](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/)（[IgorSasovets](https://github.com/IgorSasovets) に感謝します）
+
+### v10 にアップグレードしたところ、ビジュアルテストが失敗するのはなぜですか？
+
+v10 では、比較エンジンが ResembleJS から [Pixelmatch](https://github.com/mapbox/pixelmatch) に変更されました。Pixelmatch は生の RGB ではなく知覚的な（YIQ）カラーモデルを使用するため、不一致率が v9 とは異なります。テストが壊れたわけではなく、ベースラインを一度再生成する必要があるだけです。新しい値を受け入れるには `--update-visual-baseline` を付けてテストを実行するか、ベースラインフォルダを削除して `autoSaveBaseline` に再作成させてください。

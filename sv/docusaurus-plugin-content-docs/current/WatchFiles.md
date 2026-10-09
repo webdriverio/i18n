@@ -1,22 +1,23 @@
 ---
 id: watcher
 title: Bevaka testfiler
+description: "Kör om tester automatiskt när spec- eller applikationsfiler ändras genom att köra WDIO-testrunnern med flaggan --watch och filesToWatch."
 ---
 
-Med WDIO-testkörnaren kan du bevaka filer medan du arbetar med dem. De körs automatiskt om på nytt om du ändrar något i din app eller i dina testfiler. Genom att lägga till flaggan `--watch` när du anropar kommandot `wdio` kommer testkörnaren att vänta på filändringar efter att den har kört alla tester, t.ex.
+Med WDIO-testrunnern kan du bevaka filer medan du arbetar med dem. Testerna körs automatiskt om när du ändrar något i din app eller i dina testfiler. Genom att lägga till flaggan `--watch` när du anropar kommandot `wdio` väntar testrunnern på filändringar efter att den har kört alla tester, t.ex.
 
 ```sh
 wdio wdio.conf.js --watch
 ```
 
-Som standard bevakar den endast ändringar i dina `specs`-filer. Genom att ställa in en `filesToWatch`-egenskap i din `wdio.conf.js` som innehåller en lista med filsökvägar (globbing stöds) kommer den även att bevaka ändringar i dessa filer för att köra om hela testsviten. Detta är användbart om du vill att alla dina tester automatiskt ska köras om när du har ändrat din applikationskod, t.ex.
+Som standard bevakas endast ändringar i dina `specs`-filer. Genom att ange egenskapen `filesToWatch` i din `wdio.conf.js`, som innehåller en lista med filsökvägar (globbing stöds), bevakas även dessa filer för ändringar så att hela sviten körs om. Detta är användbart om du vill köra om alla dina tester automatiskt när du har ändrat din applikationskod, t.ex.
 
 ```js
 // wdio.conf.js
 export const config = {
     // ...
     filesToWatch: [
-        // watch for all JS files in my app
+        // bevaka alla JS-filer i min app
         './src/app/**/*.js'
     ],
     // ...
@@ -24,5 +25,5 @@ export const config = {
 ```
 
 :::info
-Försök att köra tester parallellt så mycket som möjligt. E2E-tester är av naturen långsamma. Omkörning av tester är bara användbart om du kan hålla den individuella testkörningens tid kort. För att spara tid håller testkörnaren WebDriver-sessioner aktiva medan den väntar på filändringar. Se till att din WebDriver-backend kan modifieras så att den inte automatiskt stänger sessionen om inget kommando har utförts efter en viss tid.
+Försök att köra tester parallellt så mycket som möjligt. E2E-tester är till sin natur långsamma. Att köra om tester är bara användbart om du kan hålla körtiden för de enskilda testerna kort. För att spara tid håller testrunnern WebDriver-sessioner vid liv medan den väntar på filändringar. Se till att din WebDriver-backend kan konfigureras så att den inte automatiskt stänger sessionen om inget kommando har körts under en viss tid.
 :::

@@ -1,78 +1,31 @@
 ---
 id: devtools
 title: DevTools
+description: "Visualisera, styr och inspektera testkörningar i ett webbläsarbaserat felsökningsgränssnitt som fungerar med WebdriverIO, Nightwatch.js och Selenium WebDriver."
 ---
 
-DevTools-tjänsten tillhandahåller ett kraftfullt webbläsarbaserat felsökningsgränssnitt för WebdriverIO-testkörningar. Den gör det möjligt att visualisera, felsöka och kontrollera dina tester i realtid genom en interaktiv webbapplikation.
+DevTools är ett kraftfullt webbläsarbaserat felsökningsgränssnitt för att visualisera, styra och inspektera dina testkörningar i realtid. Det fungerar med **WebdriverIO**, **Nightwatch.js** och **Selenium WebDriver** (valfri runner) — samma backend, samma gränssnitt, samma infrastruktur för datainsamling.
 
-## Översikt
+## Vad det erbjuder
 
-Denna tjänst gör det möjligt att:
-
-- **Köra om tester selektivt** - Klicka på valfritt testfall eller test-suite för att köra om det omedelbart
-- **Felsöka visuellt** - Se livförhandsvisningar av webbläsaren med automatiska skärmdumpar
-- **Spåra körning** - Visa detaljerade kommandologgar med tidsstämplar och resultat
-- **Övervaka nätverk & konsol** - Inspektera API-anrop och JavaScript-loggar
-- **Navigera till kod** - Hoppa direkt till testkällfiler
-
-## Installation
-
-Installera tjänsten som ett utvecklingsberoende:
-
-```sh
-npm install --save-dev @wdio/devtools-service
-```
-
-## Konfiguration
-
-Lägg till tjänsten i din WebDriverIO-konfiguration:
-
-```js
-// wdio.conf.js
-export const config = {
-    // ...
-    services: ['devtools'],
-    // ...
-};
-```
-
-### Tjänstalternativ
-
-Konfigurera DevTools-tjänsten med dessa alternativ:
-
-```js
-// wdio.conf.js
-export const config = {
-    // ...
-    services: [
-        ['devtools', {
-            port: 3000,      // Port för devtools UI (standard: 3000)
-        }]
-    ],
-    // ...
-};
-```
-
-#### Alternativ
-
-- **port** (nummer, standard: `3000`) - Portnummer för devtools UI-servern
+- **Kör om tester selektivt** - Klicka på valfritt testfall eller valfri testsvit för att köra om det direkt ([detaljer](/docs/devtools/wdio/interactive-test-rerunning))
+- **Bevara och kör om (Jämför)** - Ta en ögonblicksbild av ett misslyckat test, kör om det och jämför de två körningarna sida vid sida, justerade per kommando ([detaljer](/docs/devtools/wdio/preserve-and-rerun))
+- **Felsök visuellt** - Se live-förhandsvisningar av webbläsaren med automatiska skärmdumpar efter varje kommando
+- **Spåra körningen** - Visa detaljerade kommandologgar med tidsstämplar och resultat
+- **Övervaka nätverk och konsol** - Inspektera API-anrop och JavaScript-loggar ([nätverk](/docs/devtools/wdio/network-logs) · [konsol](/docs/devtools/wdio/console-logs))
+- **Navigera till koden** - Hoppa direkt till testets källfiler med TestLens ([detaljer](/docs/devtools/wdio/testlens))
+- **Spela in sessioner** - Kontinuerlig `.webm`-video av webbläsaren, per session ([detaljer](/docs/devtools/wdio/screencast))
+- **Trace-läge** - Headless insamling som producerar en portabel `trace.zip`-artefakt för uppspelning offline eller användning av AI-agenter ([detaljer](/docs/devtools/wdio/trace-mode))
 
 ## Hur det fungerar
 
-När du kör dina WebdriverIO-tester med DevTools-tjänsten aktiverad:
+1. Starta dina tester som vanligt
+2. DevTools öppnar automatiskt ett webbläsarfönster på `http://localhost:3000`
+3. Gränssnittet visar testhierarki, förhandsvisning av webbläsaren, kommandotidslinje och loggar i realtid
+4. När testerna är klara kan du klicka på valfritt test för att köra om det individuellt i samma webbläsarsession
 
-1. Tjänsten öppnar ett webbläsarfönster på `http://localhost:3000` (konfigurerbart)
-2. Dina tester körs normalt medan DevTools UI visar realtidsuppdateringar
-3. Gränssnittet visar testhierarki, webbläsarförhandsvisning, kommandotidslinje och loggar
-4. Efter att testerna slutförts kan du klicka på valfritt test för att köra om det individuellt
-5. Tester körs om i samma webbläsarsession för snabbare felsökning
+## Välj ditt ramverk
 
-## Funktioner
-
-Utforska DevTools-funktionerna i detalj:
-
-- **[Interaktiv testkörning och visualisering](devtools/interactive-test-rerunning)** - Realtidsförhandsvisning av webbläsare med testkörning
-- **[Multi-ramverksstöd](devtools/multi-framework-support)** - Fungerar med Mocha, Jasmine och Cucumber
-- **[Konsolloggar](devtools/console-logs)** - Fånga och inspektera webbläsarens konsoloutput
-- **[Nätverksloggar](devtools/network-logs)** - Övervaka API-anrop och nätverksaktivitet
-- **[TestLens](devtools/testlens)** - Navigera till källkod med intelligent kodnavigering
+- **[WebDriverIO](/docs/devtools/wdio)** - Använd `@wdio/devtools-service` med Mocha, Jasmine eller Cucumber
+- **[Nightwatch](/docs/devtools/nightwatch)** - Använd `@wdio/nightwatch-devtools` utan några ändringar i testkoden
+- **[Selenium](/docs/devtools/selenium)** - Använd `@wdio/selenium-devtools` med Mocha, Jest, Cucumber eller vanliga Node-skript

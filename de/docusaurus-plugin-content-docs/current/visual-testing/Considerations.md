@@ -2,31 +2,32 @@
 index: 1
 id: considerations
 title: Überlegungen
+description: "Verstehen Sie die Grenzen des Bildvergleichs, der Plattformkonsistenz, der Abweichungsprozentsätze und von Headless-Browsern, bevor Sie sich auf visuelle Tests verlassen."
 ---
 
-# Wichtige Überlegungen für den optimalen Einsatz
+# Wichtige Überlegungen für eine optimale Nutzung
 
-Bevor Sie in die leistungsstarken Funktionen des `@wdio/visual-service` eintauchen, ist es entscheidend, einige wichtige Überlegungen zu verstehen, die sicherstellen, dass Sie das Beste aus diesem Tool herausholen. Die folgenden Punkte sollen Sie durch Best Practices und häufige Fallstricke führen und Ihnen helfen, genaue und effiziente visuelle Testergebnisse zu erzielen. Diese Überlegungen sind nicht nur Empfehlungen, sondern wesentliche Aspekte, die Sie für die effektive Nutzung des Dienstes in realen Szenarien beachten sollten.
+Bevor Sie in die leistungsstarken Funktionen des `@wdio/visual-service` eintauchen, ist es wichtig, einige zentrale Überlegungen zu verstehen, die sicherstellen, dass Sie das Beste aus diesem Tool herausholen. Die folgenden Punkte sollen Sie durch Best Practices und häufige Fallstricke führen und Ihnen helfen, genaue und effiziente Ergebnisse bei visuellen Tests zu erzielen. Diese Überlegungen sind nicht nur Empfehlungen, sondern wesentliche Aspekte, die Sie beachten sollten, um den Service in realen Szenarien effektiv zu nutzen.
 
 ## Art des Vergleichs
 
--   **Pixel-für-Pixel-Basis:** Das Modul führt einen pixelgenauen Vergleich von Bildern durch. Während bestimmte Aspekte angepasst werden können (siehe Vergleichsoptionen), bleibt der Kernansatz ein grundlegender Pixelvergleich.
--   **Auswirkungen von Browser-Updates:** Beachten Sie, dass Updates für Browser wie Chrome die Schriftdarstellung beeinflussen können, was möglicherweise eine Aktualisierung Ihrer Baseline-Bilder erforderlich macht.
+-   **Wahrnehmungsbasierter Vergleich:** Das Modul führt einen wahrnehmungsbasierten Pixelvergleich von Bildern unter Verwendung des YIQ-Farbraums durch, der sich stärker daran orientiert, wie Menschen Farbunterschiede wahrnehmen. Bestimmte Aspekte können über die [Vergleichsoptionen](./compare-options) angepasst werden.
+-   **Auswirkungen von Browser-Updates:** Beachten Sie, dass Updates von Browsern wie Chrome die Schriftdarstellung beeinflussen können, was möglicherweise eine Aktualisierung Ihrer Baseline-Bilder erforderlich macht.
 
-## Konsistenz bei Plattformen
+## Konsistenz der Plattformen
 
--   **Vergleich identischer Plattformen:** Stellen Sie sicher, dass Screenshots innerhalb derselben Plattform verglichen werden. Ein Screenshot von Chrome auf einem Mac sollte beispielsweise nicht mit einem von Chrome auf Ubuntu oder Windows verglichen werden.
--   **Analogie:** Einfach ausgedrückt, vergleichen Sie _'Äpfel mit Äpfeln, nicht Äpfel mit Androiden'_.
+-   **Vergleich identischer Plattformen:** Stellen Sie sicher, dass Screenshots innerhalb derselben Plattform verglichen werden. Beispielsweise sollte ein Screenshot von Chrome auf einem Mac nicht mit einem Screenshot von Chrome unter Ubuntu oder Windows verglichen werden.
+-   **Analogie:** Einfach ausgedrückt: Vergleichen Sie _„Äpfel mit Äpfeln, nicht Äpfel mit Androids“_.
 
-## Vorsicht bei Abweichungsprozentsätzen
+## Vorsicht beim Abweichungsprozentsatz
 
--   **Risiko bei der Akzeptanz von Abweichungen:** Seien Sie vorsichtig, wenn Sie einen Abweichungsprozentsatz akzeptieren. Dies gilt besonders für große Screenshots, bei denen die Akzeptanz einer Abweichung versehentlich erhebliche Diskrepanzen wie fehlende Schaltflächen oder Elemente übersehen könnte.
+-   **Risiko beim Akzeptieren von Abweichungen:** Seien Sie vorsichtig, wenn Sie einen Abweichungsprozentsatz akzeptieren. Dies gilt insbesondere für große Screenshots, bei denen das Akzeptieren einer Abweichung unbeabsichtigt dazu führen kann, dass erhebliche Unterschiede übersehen werden, wie etwa fehlende Buttons oder Elemente.
 
-## Simulation von Mobilbildschirmen
+## Simulation mobiler Bildschirme
 
--   **Vermeiden Sie Browser-Größenänderungen zur Mobilsimulation:** Versuchen Sie nicht, mobile Bildschirmgrößen durch Größenänderung von Desktop-Browsern zu simulieren und diese als mobile Browser zu behandeln. Desktop-Browser, selbst wenn sie in der Größe angepasst werden, replizieren nicht genau die Darstellung echter mobiler Browser.
--   **Authentizität beim Vergleich:** Dieses Tool zielt darauf ab, Visuals so zu vergleichen, wie sie einem Endbenutzer erscheinen würden. Ein in der Größe angepasster Desktop-Browser spiegelt nicht die wahre Erfahrung auf einem mobilen Gerät wider.
+-   **Vermeiden Sie Browser-Größenänderungen zur mobilen Simulation:** Versuchen Sie nicht, mobile Bildschirmgrößen zu simulieren, indem Sie die Größe von Desktop-Browsern ändern und diese als mobile Browser behandeln. Desktop-Browser bilden selbst bei geänderter Größe die Darstellung echter mobiler Browser nicht genau ab.
+-   **Authentizität beim Vergleich:** Dieses Tool zielt darauf ab, die Darstellung so zu vergleichen, wie sie einem Endbenutzer erscheinen würde. Ein in der Größe veränderter Desktop-Browser spiegelt nicht das tatsächliche Erlebnis auf einem mobilen Gerät wider.
 
 ## Haltung zu Headless-Browsern
 
--   **Nicht empfohlen für Headless-Browser:** Die Verwendung dieses Moduls mit Headless-Browsern wird nicht empfohlen. Der Grund dafür ist, dass Endbenutzer nicht mit Headless-Browsern interagieren, und daher werden Probleme, die aus einer solchen Nutzung entstehen, nicht unterstützt.
+-   **Nicht empfohlen für Headless-Browser:** Die Verwendung dieses Moduls mit Headless-Browsern wird nicht empfohlen. Der Grund dafür ist, dass Endbenutzer nicht mit Headless-Browsern interagieren, weshalb Probleme, die sich aus einer solchen Nutzung ergeben, nicht unterstützt werden.

@@ -1,9 +1,10 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
+description: "Vänta tills en specifik text visas på skärmen med ocrWaitForTextDisplayed från OCR-tjänsten."
 ---
 
-Vänta på att en specifik text visas på skärmen.
+Vänta på att en specifik text ska visas på skärmen.
 
 ## Användning
 
@@ -20,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayed uses ocrGetElementPositionByText under the hood, that is why you see the command ocrGetElementPositionByText in the logs
+# ocrWaitForTextDisplayed använder ocrGetElementPositionByText under huven, det är därför du ser kommandot ocrGetElementPositionByText i loggarna
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -28,11 +29,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `text`
 
--   **Typ:** `string`
--   **Obligatorisk:** ja
+<Option type="string" required="yes">
 
 Texten du vill söka efter för att klicka på.
 
+</Option>
 #### Exempel
 
 ```js
@@ -41,12 +42,11 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
--   **Typ:** `number`
--   **Obligatorisk:** nej
--   **Standard:** 18000 (18 sekunder)
+<Option type="number" default="18000 (18 seconds)" required="no">
 
-Tid i millisekunder. Var medveten om att OCR-processen kan ta lite tid, så ställ inte in för lågt värde.
+Tid i millisekunder. Var medveten om att OCR-processen kan ta en stund, så sätt inte värdet för lågt.
 
+</Option>
 #### Exempel
 
 ```js
@@ -58,12 +58,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `timeoutMsg`
 
--   **Typ:** `string`
--   **Obligatorisk:** nej
--   **Standard:** `Could not find the text "{selector}" within the requested time.`
+<Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
-Den åsidosätter standardfelmeddelandet.
+Det ersätter standardfelmeddelandet.
 
+</Option>
 #### Exempel
 
 ```js
@@ -75,12 +74,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
--   **Typ:** `number`
--   **Obligatorisk:** nej
--   **Standard:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Den accepterar värden mellan `-1` och `1`.
+Ju högre kontrast, desto mörkare bild och vice versa. Detta kan hjälpa till att hitta text i en bild. Det accepterar värden mellan `-1` och `1`.
 
+</Option>
 #### Exempel
 
 ```js
@@ -92,11 +90,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
--   **Typ:** `number`
--   **Obligatorisk:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Detta är sökområdet på skärmen där OCR behöver leta efter text. Detta kan vara ett element eller en rektangel som innehåller `x`, `y`, `width` och `height`
+Detta är sökområdet på skärmen där OCR ska leta efter text. Detta kan vara ett element eller en rektangel som innehåller `x`, `y`, `width` och `height`
 
+</Option>
 #### Exempel
 
 ```js
@@ -125,12 +123,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej
--   **Standard:** `eng`
+<Option type="string" default="eng" required="No">
 
-Språket som Tesseract kommer att känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds finns [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Språket som Tesseract ska känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds finns [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Exempel
 
 ```js
@@ -144,16 +141,15 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `fuzzyFindOptions`
 
-Du kan ändra fuzzy-logiken för att hitta text med följande alternativ. Detta kan hjälpa till att hitta en bättre matchning
+Du kan ändra den ungefärliga (fuzzy) logiken för att hitta text med följande alternativ. Detta kan hjälpa till att hitta en bättre matchning
 
 #### `fuzzyFindOptions.distance`
 
--   **Typ:** `number`
--   **Obligatorisk:** nej
--   **Standard:** 100
+<Option type="number" default="100" required="no">
 
-Avgör hur nära matchningen måste vara till den ungefärliga platsen (anges av location). En exakt bokstavsmatchning som är "distance" tecken från den ungefärliga platsen skulle bedömas som en fullständig felmatchning. Ett avstånd på 0 kräver att matchningen är på den exakta platsen som anges. Ett avstånd på 1000 skulle kräva en perfekt matchning för att vara inom 800 tecken från platsen för att hittas med ett tröskelvärde på 0,8.
+Bestämmer hur nära matchningen måste vara den ungefärliga platsen (angiven av location). En exakt bokstavsmatchning som ligger distance tecken bort från den ungefärliga platsen skulle bedömas som en fullständig felmatchning. Ett avstånd på 0 kräver att matchningen sker på exakt den angivna platsen. Ett avstånd på 1000 skulle kräva att en perfekt matchning ligger inom 800 tecken från platsen för att hittas med ett tröskelvärde på 0.8.
 
+</Option>
 ##### Exempel
 
 ```js
@@ -167,12 +163,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
--   **Typ:** `number`
--   **Obligatorisk:** nej
--   **Standard:** 0
+<Option type="number" default="0" required="no">
 
-Avgör ungefär var i texten mönstret förväntas hittas.
+Bestämmer ungefär var i texten mönstret förväntas hittas.
 
+</Option>
 ##### Exempel
 
 ```js
@@ -186,12 +181,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Typ:** `number`
--   **Obligatorisk:** nej
--   **Standard:** 0.6
+<Option type="number" default="0.6" required="no">
 
-Vid vilken punkt ger matchningsalgoritmen upp. Ett tröskelvärde på 0 kräver en perfekt matchning (av både bokstäver och plats), ett tröskelvärde på 1,0 skulle matcha vad som helst.
+Vid vilken punkt matchningsalgoritmen ger upp. Ett tröskelvärde på 0 kräver en perfekt matchning (av både bokstäver och plats), ett tröskelvärde på 1.0 skulle matcha vad som helst.
 
+</Option>
 ##### Exempel
 
 ```js
@@ -205,12 +199,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** nej
--   **Standard:** false
+<Option type="boolean" default="false" required="no">
 
 Om sökningen ska vara skiftlägeskänslig.
 
+</Option>
 ##### Exempel
 
 ```js
@@ -224,12 +217,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Typ:** `number`
--   **Obligatorisk:** nej
--   **Standard:** 2
+<Option type="number" default="2" required="no">
 
-Endast matchningar vars längd överstiger detta värde kommer att returneras. (Till exempel, om du vill ignorera matchningar med enskilda tecken i resultatet, ställ in det på 2)
+Endast matchningar vars längd överstiger detta värde returneras. (Om du till exempel vill ignorera matchningar med enstaka tecken i resultatet, sätt det till 2)
 
+</Option>
 ##### Exempel
 
 ```js
@@ -243,12 +235,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Typ:** `number`
--   **Obligatorisk:** nej
--   **Standard:** false
+<Option type="number" default="false" required="no">
 
-När `true` kommer matchningsfunktionen att fortsätta till slutet av sökmönstret även om en perfekt matchning redan har hittats i strängen.
+När `true` fortsätter matchningsfunktionen till slutet av ett sökmönster även om en perfekt matchning redan har hittats i strängen.
 
+</Option>
 ##### Exempel
 
 ```js

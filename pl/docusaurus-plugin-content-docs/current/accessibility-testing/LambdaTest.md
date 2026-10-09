@@ -1,35 +1,35 @@
 ---
 id: testmuai
-title: Testowanie dostępności TestMu AI (dawniej LambdaTest)
-description: Testowanie dostępności TestMu AI
+title: Testowanie dostępności w TestMu AI (dawniej LambdaTest)
+description: "Włącz testowanie dostępności TestMu AI (dawniej LambdaTest) w swoim zestawie testów WebdriverIO, skonfiguruj opcje skanowania i przeglądaj raporty dostępności."
 ---
 
-# TestMu AI Accessibility Testing
+# Testowanie dostępności w TestMu AI
 
-Możesz łatwo zintegrować testy dostępności w swoich zestawach testów WebdriverIO używając [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
+Możesz łatwo zintegrować testy dostępności ze swoimi zestawami testów WebdriverIO, korzystając z [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
 
-## Zalety TestMu AI Accessibility Testing
+## Zalety testowania dostępności w TestMu AI
 
-TestMu AI Accessibility Testing pomaga identyfikować i naprawiać problemy z dostępnością w aplikacjach internetowych. Oto główne zalety:
+TestMu AI Accessibility Testing pomaga identyfikować i naprawiać problemy z dostępnością w aplikacjach internetowych. Oto kluczowe zalety:
 
 * Bezproblemowa integracja z istniejącą automatyzacją testów WebdriverIO.
 * Automatyczne skanowanie dostępności podczas wykonywania testów.
-* Kompleksowe raporty zgodności z WCAG.
-* Szczegółowe śledzenie problemów wraz z wskazówkami dotyczącymi naprawy.
-* Wsparcie dla wielu standardów WCAG (WCAG 2.0, WCAG 2.1, WCAG 2.2).
-* Wgląd w dostępność w czasie rzeczywistym w panelu TestMu AI.
+* Kompleksowe raportowanie zgodności z WCAG.
+* Szczegółowe śledzenie problemów wraz ze wskazówkami dotyczącymi ich naprawy.
+* Obsługa wielu standardów WCAG (WCAG 2.0, WCAG 2.1, WCAG 2.2).
+* Informacje o dostępności w czasie rzeczywistym w panelu TestMu AI.
 
-## Rozpocznij pracę z TestMu AI Accessibility Testing
+## Pierwsze kroki z testowaniem dostępności w TestMu AI
 
-Wykonaj następujące kroki, aby zintegrować swoje zestawy testów WebdriverIO z Testowaniem Dostępności TestMu AI:
+Wykonaj poniższe kroki, aby zintegrować swoje zestawy testów WebdriverIO z TestMu AI Accessibility Testing:
 
-1. Zainstaluj pakiet usługi WebdriverIO TestMu AI.
+1. Zainstaluj pakiet usługi TestMu AI dla WebdriverIO.
 
 ```bash npm2yarn
 npm install --save-dev @lambdatest/wdio-lambdatest-service
 ```
 
-2. Zaktualizuj swój plik konfiguracyjny `wdio.conf.js`.
+2. Zaktualizuj plik konfiguracyjny `wdio.conf.js`.
 
 ```javascript
 exports.config = {
@@ -42,9 +42,9 @@ exports.config = {
         'LT:Options': {
             platform: 'Windows 10',
             version: 'latest',
-            accessibility: true, // Enable accessibility testing
+            accessibility: true, // Włącz testowanie dostępności
             accessibilityOptions: {
-                wcagVersion: 'wcag21a', // WCAG version (wcag20, wcag21a, wcag21aa, wcag22aa)
+                wcagVersion: 'wcag21a', // Wersja WCAG (wcag20, wcag21a, wcag21aa, wcag22aa)
                 bestPractice: false,
                 needsReview: true
             }
@@ -60,7 +60,7 @@ exports.config = {
 };
 ```
 
-3. Uruchom swoje testy jak zwykle. TestMu AI automatycznie przeskanuje problemy z dostępnością podczas wykonywania testów.
+3. Uruchom testy jak zwykle. TestMu AI automatycznie przeskanuje aplikację pod kątem problemów z dostępnością podczas wykonywania testów.
 
 ```bash
 npx wdio run wdio.conf.js
@@ -70,23 +70,23 @@ npx wdio run wdio.conf.js
 
 Obiekt `accessibilityOptions` obsługuje następujące parametry:
 
-* **wcagVersion**: Określa wersję standardu WCAG, względem której testować
-  - `wcag20` - WCAG 2.0 Poziom A
-  - `wcag21a` - WCAG 2.1 Poziom A
-  - `wcag21aa` - WCAG 2.1 Poziom AA (domyślnie)
-  - `wcag22aa` - WCAG 2.2 Poziom AA
+* **wcagVersion**: Określa wersję standardu WCAG, względem której przeprowadzane są testy
+  - `wcag20` - WCAG 2.0 poziom A
+  - `wcag21a` - WCAG 2.1 poziom A
+  - `wcag21aa` - WCAG 2.1 poziom AA (domyślnie)
+  - `wcag22aa` - WCAG 2.2 poziom AA
 
-* **bestPractice**: Uwzględnia rekomendacje najlepszych praktyk (domyślnie: `false`)
+* **bestPractice**: Uwzględnia rekomendacje dobrych praktyk (domyślnie: `false`)
 
-* **needsReview**: Uwzględnia problemy wymagające ręcznego przeglądu (domyślnie: `true`)
+* **needsReview**: Uwzględnia problemy wymagające ręcznej weryfikacji (domyślnie: `true`)
 
 ## Przeglądanie raportów dostępności
 
-Po zakończeniu testów możesz przeglądać szczegółowe raporty dostępności w [Panelu TestMu AI](https://automation.lambdatest.com/):
+Po zakończeniu testów możesz przeglądać szczegółowe raporty dostępności w [panelu TestMu AI](https://automation.lambdatest.com/):
 
-1. Przejdź do wykonania testu
-2. Kliknij na zakładkę "Accessibility"
-3. Przejrzyj zidentyfikowane problemy z poziomami ważności
+1. Przejdź do wykonania swojego testu
+2. Kliknij zakładkę „Accessibility”
+3. Przejrzyj zidentyfikowane problemy wraz z poziomami ich ważności
 4. Uzyskaj wskazówki dotyczące naprawy każdego problemu
 
-Aby uzyskać bardziej szczegółowe informacje, odwiedź [dokumentację automatyzacji dostępności TestMu AI](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
+Więcej szczegółowych informacji znajdziesz w [dokumentacji TestMu AI Accessibility Automation](https://www.testmuai.com/support/docs/accessibility-automation-settings/).

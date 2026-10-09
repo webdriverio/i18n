@@ -1,19 +1,20 @@
 ---
 id: integrate-with-smartui
 title: SmartUI
+description: "Προσθέστε οπτικό έλεγχο παλινδρόμησης με τεχνητή νοημοσύνη στα τεστ WebdriverIO με το SmartUI της TestMu AI (πρώην LambdaTest), συμπεριλαμβανομένης της ρύθμισης και των επιλογών."
 ---
 
-Το TestMu AI (Πρώην LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) παρέχει οπτικές δοκιμές παλινδρόμησης με τεχνητή νοημοσύνη για τις δοκιμές WebdriverIO σας. Καταγράφει στιγμιότυπα οθόνης, τα συγκρίνει με βάσεις αναφοράς και επισημαίνει οπτικές διαφορές με έξυπνους αλγόριθμους σύγκρισης.
+Το [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) της TestMu AI (πρώην LambdaTest) παρέχει οπτικό έλεγχο παλινδρόμησης με τεχνητή νοημοσύνη για τα τεστ WebdriverIO σας. Καταγράφει στιγμιότυπα οθόνης, τα συγκρίνει με τα baselines και επισημαίνει τις οπτικές διαφορές με έξυπνους αλγορίθμους σύγκρισης.
 
-## Εγκατάσταση
+## Ρύθμιση
 
 **Δημιουργία έργου SmartUI**
 
-[Συνδεθείτε](https://accounts.lambdatest.com/register) στο TestMu AI (Πρώην LambdaTest) και πλοηγηθείτε στα [SmartUI Projects](https://smartui.lambdatest.com/) για να δημιουργήσετε ένα νέο έργο. Επιλέξτε **Web** ως πλατφόρμα και διαμορφώστε το όνομα του έργου σας, τους εγκριτές και τις ετικέτες.
+[Συνδεθείτε](https://accounts.lambdatest.com/register) στην TestMu AI (πρώην LambdaTest) και μεταβείτε στα [SmartUI Projects](https://smartui.lambdatest.com/) για να δημιουργήσετε ένα νέο έργο. Επιλέξτε **Web** ως πλατφόρμα και ρυθμίστε το όνομα του έργου, τους εγκρίνοντες και τις ετικέτες.
 
 **Ρύθμιση διαπιστευτηρίων**
 
-Αποκτήστε το `LT_USERNAME` και το `LT_ACCESS_KEY` από τον πίνακα ελέγχου του TestMu AI (Πρώην LambdaTest) και ορίστε τα ως μεταβλητές περιβάλλοντος:
+Λάβετε τα `LT_USERNAME` και `LT_ACCESS_KEY` από τον πίνακα ελέγχου της TestMu AI (πρώην LambdaTest) και ορίστε τα ως μεταβλητές περιβάλλοντος:
 
 ```sh
 export LT_USERNAME="<your username>"
@@ -26,9 +27,9 @@ export LT_ACCESS_KEY="<your access key>"
 npm install @lambdatest/wdio-driver
 ```
 
-**Διαμόρφωση του WebdriverIO**
+**Ρύθμιση του WebdriverIO**
 
-Ενημερώστε το αρχείο `wdio.conf.js`:
+Ενημερώστε το `wdio.conf.js` σας:
 
 ```javascript
 exports.config = {
@@ -74,15 +75,15 @@ describe('WebdriverIO SmartUI Test', () => {
 });
 ```
 
-**Εκτέλεση δοκιμών**
+**Εκτέλεση τεστ**
 
 ```sh
 npx wdio wdio.conf.js
 ```
 
-Δείτε τα αποτελέσματα στον [Πίνακα Ελέγχου SmartUI](https://smartui.lambdatest.com/).
+Δείτε τα αποτελέσματα στο [SmartUI Dashboard](https://smartui.lambdatest.com/).
 
-## Προηγμένες Επιλογές
+## Προχωρημένες επιλογές
 
 **Παράβλεψη στοιχείων**
 
@@ -110,9 +111,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## Πόροι
 
-| Πόρος                                                                                          | Περιγραφή                              |
-|---------------------------------------------------------------------------------------------------|------------------------------------------|
-| [Επίσημη Τεκμηρίωση](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | Τεκμηρίωση SmartUI                    |
-| [Πίνακας Ελέγχου SmartUI](https://smartui.lambdatest.com/)                                              | Πρόσβαση στα έργα και τις κατασκευές SmartUI  |
-| [Προηγμένες Ρυθμίσεις](https://www.testmuai.com/support/docs/test-settings-options/)              | Διαμόρφωση ευαισθησίας σύγκρισης         |
-| [Επιλογές Κατασκευής](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | Προηγμένη διαμόρφωση κατασκευής             |
+| Πόρος                                                                                             | Περιγραφή                                          |
+|---------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| [Επίσημη τεκμηρίωση](https://www.testmuai.com/support/docs/smart-ui-cypress/)                     | Τεκμηρίωση SmartUI                                 |
+| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                              | Πρόσβαση στα έργα και τα builds SmartUI σας        |
+| [Προχωρημένες ρυθμίσεις](https://www.testmuai.com/support/docs/test-settings-options/)            | Ρύθμιση της ευαισθησίας σύγκρισης                  |
+| [Επιλογές build](https://www.testmuai.com/support/docs/smart-ui-build-options/)                   | Προχωρημένη διαμόρφωση build                       |

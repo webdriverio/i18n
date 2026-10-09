@@ -1,13 +1,14 @@
 ---
 id: preact
 title: Preact
+description: "preact プリセットを使用して Preact プロジェクト向けに WebdriverIO ブラウザランナーをセットアップし、Testing Library でコンポーネントテストを作成します。"
 ---
 
-[Preact](https://preactjs.com/)は、同じ最新のAPIを持つReactの高速な3kB代替品です。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザで直接Preactコンポーネントをテストできます。
+[Preact](https://preactjs.com/) は、React と同じモダンな API を備えた高速な 3kB の代替ライブラリです。WebdriverIO とその[ブラウザランナー](/docs/runner#browser-runner)を使用すると、実際のブラウザで Preact コンポーネントを直接テストできます。
 
-## セットアップ
+## Setup
 
-PreactプロジェクトでWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`preact`を選択してください。例：
+Preact プロジェクト内で WebdriverIO をセットアップするには、コンポーネントテストのドキュメントにある[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして `preact` を選択してください。例:
 
 ```js
 // wdio.conf.js
@@ -22,25 +23,25 @@ export const config = {
 
 :::info
 
-すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、WebdriverIO設定内で`vite.config.ts`の設定を再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
+すでに開発サーバーとして [Vite](https://vitejs.dev/) を使用している場合は、`vite.config.ts` の設定を WebdriverIO の設定内でそのまま再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の `viteConfig` を参照してください。
 
 :::
 
-Preactプリセットでは`@preact/preset-vite`のインストールが必要です。また、コンポーネントをテストページにレンダリングするために[Testing Library](https://testing-library.com/)の使用をお勧めします。そのため、以下の追加依存関係をインストールする必要があります：
+Preact プリセットを使用するには、`@preact/preset-vite` がインストールされている必要があります。また、コンポーネントをテストページにレンダリングするには [Testing Library](https://testing-library.com/) の使用をお勧めします。そのため、以下の追加の依存関係をインストールする必要があります:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
 ```
 
-その後、以下のコマンドでテストを開始できます：
+その後、次のコマンドを実行してテストを開始できます:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## テストの作成
+## Writing Tests
 
-以下のようなPreactコンポーネントがあるとします：
+次のような Preact コンポーネントがあるとします:
 
 ```tsx title="./components/Component.jsx"
 import { h } from 'preact'
@@ -64,7 +65,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-テストでは、`@testing-library/preact`の`render`メソッドを使用して、コンポーネントをテストページに追加します。コンポーネントと対話するには、実際のユーザー操作により近い動作をするWebdriverIOコマンドの使用をお勧めします：
+テストでは、`@testing-library/preact` の `render` メソッドを使用してコンポーネントをテストページにアタッチします。コンポーネントを操作する際は、実際のユーザー操作により近い動作をする WebdriverIO のコマンドを使用することをお勧めします。例:
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'
@@ -84,4 +85,4 @@ describe('Preact Component Testing', () => {
 })
 ```
 
-WebdriverIOのPreact用コンポーネントテストスイートの完全な例は、当社の[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite)で確認できます。
+Preact 向けの WebdriverIO コンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite)で確認できます。

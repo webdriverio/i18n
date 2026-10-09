@@ -1,13 +1,14 @@
 ---
 id: jenkins
 title: Jenkins
+description: "JenkinsでWebdriverIOテストを実行し、JUnitレポーターの結果を公開して、失敗のデバッグやテスト履歴の追跡を行います。"
 ---
 
-WebdriverIOは[Jenkins](https://jenkins-ci.org)のようなCIシステムとの緊密な統合を提供しています。`junit`レポーターを使用することで、テストのデバッグやテスト結果の追跡が簡単にできます。統合は非常に簡単です。
+WebdriverIOは、[Jenkins](https://jenkins-ci.org)のようなCIシステムとの緊密な統合を提供しています。`junit`レポーターを使用すると、テストを簡単にデバッグできるだけでなく、テスト結果を追跡することもできます。統合は非常に簡単です。
 
-1. `junit`テストレポーターをインストールします：`$ npm install @wdio/junit-reporter --save-dev`)
-1. JenkinsがXUnit結果を見つけられる場所に保存するようにコンフィグを更新し、
-    （`junit`レポーターを指定します）：
+1. `junit`テストレポーターをインストールします: `$ npm install @wdio/junit-reporter --save-dev`)
+1. XUnitの結果をJenkinsが見つけられる場所に保存するように設定を更新します
+    （そして`junit`レポーターを指定します）:
 
 ```js
 // wdio.conf.js
@@ -23,31 +24,31 @@ module.exports = {
 }
 ```
 
-どのフレームワークを選ぶかはあなた次第です。レポートは似たようなものになります。
+どのフレームワークを選択するかはあなた次第です。レポートは同様のものになります。
 このチュートリアルでは、Jasmineを使用します。
 
-いくつかのテストを書いた後、新しいJenkinsジョブをセットアップできます。名前と説明を付けましょう：
+いくつかのテストを書いたら、新しいJenkinsジョブをセットアップできます。名前と説明を付けてください:
 
-![名前と説明](/img/jenkins/jobname.png "名前と説明")
+![Name And Description](/img/jenkins/jobname.png "Name And Description")
 
-そして、常にリポジトリの最新バージョンを取得するようにします：
+次に、常にリポジトリの最新バージョンを取得するようにしてください:
 
-![Jenkins Gitセットアップ](/img/jenkins/gitsetup.png "Jenkins Gitセットアップ")
+![Jenkins Git Setup](/img/jenkins/gitsetup.png "Jenkins Git Setup")
 
-**ここが重要なポイントです：** シェルコマンドを実行する`build`ステップを作成します。`build`ステップはプロジェクトをビルドする必要があります。このデモプロジェクトは外部アプリをテストするだけなので、何もビルドする必要はありません。node依存関係をインストールして`npm test`コマンド（これは`node_modules/.bin/wdio test/wdio.conf.js`のエイリアスです）を実行するだけです。
+**ここが重要な部分です:** シェルコマンドを実行する`build`ステップを作成します。`build`ステップではプロジェクトをビルドする必要があります。このデモプロジェクトは外部アプリをテストするだけなので、何もビルドする必要はありません。nodeの依存関係をインストールし、`npm test`コマンド（`node_modules/.bin/wdio test/wdio.conf.js`のエイリアス）を実行するだけです。
 
-AnsiColorのようなプラグインをインストールしてもログに色がつかない場合は、環境変数`FORCE_COLOR=1`を付けてテストを実行してください（例：`FORCE_COLOR=1 npm test`）。
+AnsiColorのようなプラグインをインストールしているにもかかわらずログに色が付かない場合は、環境変数`FORCE_COLOR=1`を指定してテストを実行してください（例: `FORCE_COLOR=1 npm test`）。
 
-![ビルドステップ](/img/jenkins/runjob.png "ビルドステップ")
+![Build Step](/img/jenkins/runjob.png "Build Step")
 
-テスト後、JenkinsにXUnitレポートを追跡させたいでしょう。そのためには、_"Publish JUnit test result report"_と呼ばれるポストビルドアクションを追加する必要があります。
+テストの後、JenkinsにXUnitレポートを追跡させたいでしょう。そのためには、_"Publish JUnit test result report"_ というビルド後の処理を追加する必要があります。
 
-XUnitを追跡するための外部XUnitプラグインをインストールすることもできます。JUnitのものは基本的なJenkinsインストールに付属しており、今のところ十分です。
+レポートを追跡するために外部のXUnitプラグインをインストールすることもできます。JUnitプラグインはJenkinsの基本インストールに含まれており、現時点ではこれで十分です。
 
-コンフィグファイルによると、XUnitレポートはプロジェクトのルートディレクトリに保存されます。これらのレポートはXMLファイルです。レポートを追跡するために必要なのは、JenkinsをルートディレクトリのすべてのXMLファイルにポイントすることだけです：
+設定ファイルによると、XUnitレポートはプロジェクトのルートディレクトリに保存されます。これらのレポートはXMLファイルです。したがって、レポートを追跡するために必要なのは、Jenkinsにルートディレクトリ内のすべてのXMLファイルを指定することだけです:
 
-![ポストビルドアクション](/img/jenkins/postjob.png "ポストビルドアクション")
+![Post-build Action](/img/jenkins/postjob.png "Post-build Action")
 
-これで完了です！WebdriverIOジョブを実行するようにJenkinsをセットアップしました。ジョブは詳細なテスト結果を提供し、履歴チャート、失敗したジョブのスタックトレース情報、各テストで使用されたペイロード付きのコマンドリストが含まれています。
+以上です！これで、WebdriverIOジョブを実行するようにJenkinsをセットアップできました。ジョブは、履歴チャート、失敗したジョブのスタックトレース情報、および各テストで使用されたペイロード付きのコマンド一覧を含む詳細なテスト結果を提供するようになります。
 
-![Jenkins最終統合](/img/jenkins/final.png "Jenkins最終統合")
+![Jenkins Final Integration](/img/jenkins/final.png "Jenkins Final Integration")

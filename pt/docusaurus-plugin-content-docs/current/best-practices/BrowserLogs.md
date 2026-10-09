@@ -1,16 +1,16 @@
 ---
 id: browser-logs
 title: Logs do Navegador
-description: Logs do Navegador
+description: "Capture os logs do console do navegador durante um teste com eventos de log do WebDriver Bidi e faça asserções sobre as mensagens coletadas."
 ---
 
-Ao executar testes, o navegador pode registrar informações importantes que você pode ter interesse ou queira verificar.
+Ao executar testes, o navegador pode registrar informações importantes nas quais você está interessado ou sobre as quais deseja fazer asserções.
 
 <Tabs
 defaultValue="bidi"
 values={[
     {label: 'Bidi', value: 'bidi'},
-    {label: 'Classic (Deprecated)', value: 'classic'
+    {label: 'Classic (Descontinuado)', value: 'classic'
 }]
 }>
 
@@ -22,12 +22,12 @@ Ao usar o WebDriver Bidi, que é a forma padrão como o WebdriverIO automatiza o
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 
 /**
- * returns: {"type":"console","method":"log","realm":null,"args":[{"type":"string","value":"Hello Bidi"}],"level":"info","text":"Hello Bidi","timestamp":1657282076037}
+ * retorna: {"type":"console","method":"log","realm":null,"args":[{"type":"string","value":"Hello Bidi"}],"level":"info","text":"Hello Bidi","timestamp":1657282076037}
  */
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-Em um teste, você pode simplesmente enviar os eventos de log para um array e verificar esse array quando sua ação for concluída, por exemplo:
+Em um teste, você pode simplesmente adicionar os eventos de log a um array e fazer asserções sobre esse array assim que sua ação for concluída, por exemplo:
 
 ```ts
 import type { local } from 'webdriver'
@@ -36,7 +36,7 @@ describe('should log when doing a certain action', () => {
     const logs: string[] = []
 
     function logEvents (event: local.LogEntry) {
-        logs.push(event.text) // add log message to the array
+        logs.push(event.text) // adiciona a mensagem de log ao array
     }
 
     before(async () => {
@@ -45,14 +45,14 @@ describe('should log when doing a certain action', () => {
     })
 
     it('should trigger the console event', () => {
-        // trigger the browser send a message to the console
+        // faz o navegador enviar uma mensagem para o console
         ...
 
-        // assert if log was captured
+        // verifica se o log foi capturado
         expect(logs).toContain('Hello Bidi')
     })
 
-    // clean up listener afterwards
+    // remove o listener depois
     after(() => {
         browser.off('log.entryAdded', logEvents)
     })
@@ -63,9 +63,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-Se você ainda usa o WebDriver Classic ou desabilitou o uso do Bidi através da capacidade `'wdio:enforceWebDriverClassic': true`, você pode usar o comando JSONWire `getLogs` para buscar os logs mais recentes. Como o WebdriverIO removeu esses comandos obsoletos, você precisará usar o [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) para adicionar o comando de volta à sua instância do navegador.
-
-Depois de adicionar ou iniciar o serviço, você pode buscar logs via:
+Se o Bidi estiver desativado com a capability `'wdio:enforceWebDriverClassic': true`, sessões Chromium ainda podem ler o buffer de logs do navegador com `getLogs`:
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -73,7 +71,7 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Nota: o comando `getLogs` só pode buscar os logs mais recentes do navegador. Ele pode limpar as mensagens de log eventualmente se elas ficarem muito antigas.
+Observação: o comando `getLogs` só consegue obter os logs mais recentes do navegador. Ele pode eventualmente descartar mensagens de log se elas ficarem muito antigas.
 </TabItem>
 
 </Tabs>

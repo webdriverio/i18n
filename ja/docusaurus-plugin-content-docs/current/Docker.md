@@ -1,12 +1,13 @@
 ---
 id: docker
 title: Docker
+description: "ブラウザがプリインストールされたDockerコンテナ内でWebdriverIOのテストスイートを実行し、どのマシンでも一貫した結果を得られるようにします。"
 ---
 
-Dockerは強力なコンテナ技術で、テストスイートをどのシステムでも同じように動作するコンテナにカプセル化することができます。これにより、異なるブラウザやプラットフォームのバージョンによる不安定さを避けることができます。コンテナ内でテストを実行するには、プロジェクトディレクトリに`Dockerfile`を作成します：
+Dockerは強力なコンテナ化技術で、テストスイートをどのシステムでも同じように動作するコンテナにカプセル化することができます。これにより、ブラウザやプラットフォームのバージョンの違いによる不安定さを回避できます。コンテナ内でテストを実行するには、プロジェクトディレクトリに`Dockerfile`を作成します。例：
 
 ```Dockerfile
-FROM selenium/standalone-chrome:134.0-20250323 # 必要に応じてブラウザとバージョンを変更してください
+FROM selenium/standalone-chrome:134.0-20250323 # Change the browser and version according to your needs
 WORKDIR /app
 ADD . /app
 
@@ -15,17 +16,17 @@ RUN npm install
 CMD npx wdio
 ```
 
-Dockerイメージに`node_modules`を含めないようにし、イメージのビルド時にインストールするようにしてください。そのために、以下の内容の`.dockerignore`ファイルを追加します：
+Dockerイメージに`node_modules`を含めず、イメージのビルド時にインストールされるようにしてください。そのためには、次の内容で`.dockerignore`ファイルを追加します：
 
 ```
 node_modules
 ```
 
 :::info
-ここではSeleniumとGoogle ChromeがプリインストールされたDockerイメージを使用しています。様々なブラウザセットアップとブラウザバージョンを持つ複数のイメージが利用可能です。Seleniumプロジェクトが管理している[Docker Hub](https://hub.docker.com/u/selenium)のイメージをチェックしてください。
+ここでは、SeleniumとGoogle Chromeがプリインストールされた Docker イメージを使用しています。さまざまなブラウザ構成やブラウザバージョンのイメージが利用可能です。Seleniumプロジェクトが管理しているイメージについては[Docker Hub](https://hub.docker.com/u/selenium)を確認してください。
 :::
 
-Dockerコンテナ内ではGoogle Chromeをヘッドレスモードでのみ実行できるため、`wdio.conf.js`を修正して確実にそうするようにします：
+DockerコンテナではGoogle Chromeをヘッドレスモードでしか実行できないため、`wdio.conf.js`を変更してヘッドレスモードで実行されるようにする必要があります：
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -47,7 +48,7 @@ export const config = {
 }
 ```
 
-[Automation Protocols](/docs/automationProtocols)で言及されているように、WebdriverIOはWebDriverプロトコルまたはWebDriver BiDiプロトコルを使用して実行できます。イメージにインストールされているChromeのバージョンが、`package.json`で定義している[Chromedriver](https://www.npmjs.com/package/chromedriver)のバージョンと一致することを確認してください。
+[自動化プロトコル](/docs/automationProtocols)で説明したように、WebdriverIOはWebDriverプロトコルまたはWebDriver BiDiプロトコルを使用して実行できます。イメージにインストールされているChromeのバージョンが、`package.json`で定義している[Chromedriver](https://www.npmjs.com/package/chromedriver)のバージョンと一致していることを確認してください。
 
 Dockerコンテナをビルドするには、次のコマンドを実行します：
 
@@ -55,10 +56,10 @@ Dockerコンテナをビルドするには、次のコマンドを実行しま�
 docker build -t mytest -f Dockerfile .
 ```
 
-そして、テストを実行するには、次のコマンドを実行します：
+次に、テストを実行するには以下を実行します：
 
 ```sh
 docker run -it mytest
 ```
 
-Dockerイメージの設定方法の詳細については、[Docker docs](https://docs.docker.com/)を参照してください。
+Dockerイメージの設定方法の詳細については、[Dockerのドキュメント](https://docs.docker.com/)を確認してください。

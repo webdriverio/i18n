@@ -1,29 +1,32 @@
 ---
 id: driverbinaries
 title: Drivrutinsbinärer
+description: "Låt WebdriverIO ladda ner och hantera webbläsardrivrutiner automatiskt, eller konfigurera Chromedriver, Geckodriver, Edgedriver och Safaridriver manuellt."
 ---
 
-För att köra automatisering baserad på WebDriver-protokollet behöver du ha webbläsardrivrutiner installerade som översätter automatiseringskommandon och kan utföra dem i webbläsaren.
+För att köra automatisering baserad på WebDriver-protokollet behöver du ha webbläsardrivrutiner konfigurerade som översätter automatiseringskommandona och kan köra dem i webbläsaren.
 
-## Automatiserad installation
+## Automatisk konfiguration
 
-Med WebdriverIO `v8.14` och senare finns det inte längre behov av att manuellt ladda ner och installera några webbläsardrivrutiner eftersom detta hanteras av WebdriverIO. Allt du behöver göra är att ange vilken webbläsare du vill testa och WebdriverIO gör resten.
+Med WebdriverIO `v8.14` och senare behöver du inte längre manuellt ladda ner och konfigurera några webbläsardrivrutiner, eftersom detta hanteras av WebdriverIO. Allt du behöver göra är att ange vilken webbläsare du vill testa så sköter WebdriverIO resten.
 
-### Anpassa graden av automatisering
+På ARM64, se [Chromedriver på ARM64](arm64-chromedriver) för hur konfigurationen av drivrutiner fungerar på macOS, Windows och Linux, och vad du ska göra när den inte kan konfigureras automatiskt.
 
-WebdriverIO har tre nivåer av automatisering:
+### Anpassa automatiseringsnivån
 
-**1. Ladda ner och installera webbläsaren med hjälp av [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+WebdriverIO har tre automatiseringsnivåer:
 
-Om du anger en `browserName`/`browserVersion`-kombination i [capabilities](configuration#capabilities-1)-konfigurationen, kommer WebdriverIO att ladda ner och installera den begärda kombinationen, oavsett om det finns en befintlig installation på datorn. Om du utelämnar `browserVersion` kommer WebdriverIO först att försöka hitta och använda en befintlig installation med [locate-app](https://www.npmjs.com/package/locate-app), annars kommer den att ladda ner och installera den aktuella stabila webbläsarversionen. För mer information om `browserVersion`, se [här](capabilities#automate-different-browser-channels).
+**1. Ladda ner och installera webbläsaren med [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+
+Om du anger en kombination av `browserName`/`browserVersion` i [capabilities](configuration#capabilities-1)-konfigurationen kommer WebdriverIO att ladda ner och installera den begärda kombinationen, oavsett om det finns en befintlig installation på datorn. Om du utelämnar `browserVersion` kommer WebdriverIO först att försöka hitta och använda en befintlig installation med [locate-app](https://www.npmjs.com/package/locate-app), annars laddar den ner och installerar den aktuella stabila webbläsarversionen. För mer information om `browserVersion`, se [här](capabilities#automate-different-browser-channels).
 
 :::caution
 
-Automatiserad webbläsarinställning stöder inte Microsoft Edge. För närvarande stöds endast Chrome, Chromium och Firefox.
+Automatisk webbläsarkonfiguration stöder inte Microsoft Edge. För närvarande stöds endast Chrome, Chromium och Firefox.
 
 :::
 
-Om du har en webbläsarinstallation på en plats som inte kan upptäckas automatiskt av WebdriverIO, kan du ange webbläsarbinärer vilket inaktiverar den automatiska nedladdningen och installationen.
+Om du har en webbläsarinstallation på en plats som inte kan identifieras automatiskt av WebdriverIO kan du ange webbläsarens binärfil, vilket inaktiverar den automatiska nedladdningen och installationen.
 
 ```ts
 {
@@ -38,9 +41,9 @@ Om du har en webbläsarinstallation på en plats som inte kan upptäckas automat
 }
 ```
 
-**2. Ladda ner och installera drivrutinen med hjälp av [Chromedriver](https://www.npmjs.com/package/chromedriver), [Edgedriver](https://www.npmjs.com/package/edgedriver) eller [Geckodriver](https://www.npmjs.com/package/geckodriver).**
+**2. Ladda ner och installera drivrutinen: Chromedriver från [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/), Edgedriver och Geckodriver med paketen [edgedriver](https://www.npmjs.com/package/edgedriver) och [geckodriver](https://www.npmjs.com/package/geckodriver).**
 
-WebdriverIO kommer alltid att göra detta, såvida inte drivrutinens [binary](capabilities#binary) specificeras i konfigurationen:
+WebdriverIO gör alltid detta, såvida inte drivrutinens [binary](capabilities#binary) anges i konfigurationen:
 
 ```ts
 {
@@ -55,45 +58,71 @@ WebdriverIO kommer alltid att göra detta, såvida inte drivrutinens [binary](ca
 }
 ```
 
+WebdriverIO laddar som standard ner Chromedriver från Chrome for Testing, men i vissa fall används en [Electron-release](https://github.com/electron/electron/releases):
+
+- [`wdio:electronVersion`](capabilities#wdioelectronversion) är angiven, för en Electron-app. Den releasen används, såvida inte både `browserVersion` och `CHROMEDRIVER_CDNURL` är angivna.
+- Chrome är äldre än `153.0.8001.0` på Linux ARM64, där Chrome for Testing saknar Chromedriver-byggen (se [Chromedriver på ARM64](arm64-chromedriver)). Den senaste releasen med samma Chromium-huvudversion används.
+- Nedladdningen från Chrome for Testing misslyckas, till exempel under ett avbrott, och `CHROMEDRIVER_CDNURL` är inte angiven. Den senaste releasen med samma Chromium-huvudversion används.
+
 :::info
 
-WebdriverIO kommer inte att automatiskt ladda ner Safari-drivrutinen eftersom den redan är installerad på macOS.
+WebdriverIO laddar inte automatiskt ner Safari-drivrutinen eftersom den redan är installerad på macOS.
+
+:::
+
+:::info Firefox / Geckodriver
+
+Firefox använder ett annat versionsschema för webbläsaren (t.ex. `stable_151.0.1`) än [Geckodriver](https://github.com/mozilla/geckodriver/releases) (t.ex. `0.36.0`), så `browserVersion` används **inte** för att välja drivrutinsversion. Som standard laddar WebdriverIO ner den senaste Geckodriver. För att låsa en specifik drivrutinsversion, ange `geckoDriverVersion` i `wdio:geckodriverOptions`:
+
+```ts
+{
+    capabilities: [
+        {
+            browserName: 'firefox',
+            browserVersion: 'stable_151.0.1',
+            'wdio:geckodriverOptions': {
+                geckoDriverVersion: '0.36.0'
+            }
+        }
+    ]
+}
+```
 
 :::
 
 :::caution
 
-Undvik att ange en `binary` för webbläsaren och utelämna motsvarande drivrutins `binary` eller vice versa. Om endast ett av `binary`-värdena anges kommer WebdriverIO att försöka använda eller ladda ner en kompatibel webbläsare/drivrutin. I vissa scenarier kan det dock resultera i en inkompatibel kombination. Därför rekommenderas att du alltid anger båda för att undvika problem orsakade av versionsinkompatibiliteter.
+Undvik att ange en `binary` för webbläsaren och utelämna motsvarande `binary` för drivrutinen, eller tvärtom. Om endast ett av `binary`-värdena anges kommer WebdriverIO att försöka använda eller ladda ner en webbläsare/drivrutin som är kompatibel med det. I vissa fall kan det dock leda till en inkompatibel kombination. Därför rekommenderas det att du alltid anger båda för att undvika problem orsakade av versionsinkompatibiliteter.
 
 :::
 
 **3. Starta/stoppa drivrutinen.**
 
-Som standard kommer WebdriverIO automatiskt att starta och stoppa drivrutinen med hjälp av en godtycklig oanvänd port. Att ange något av följande konfigurationer kommer att inaktivera denna funktion, vilket innebär att du måste starta och stoppa drivrutinen manuellt:
+Som standard startar och stoppar WebdriverIO drivrutinen automatiskt med en godtycklig oanvänd port. Om du anger någon av följande konfigurationer inaktiveras denna funktion, vilket innebär att du måste starta och stoppa drivrutinen manuellt:
 
 - Valfritt värde för [port](configuration#port).
-- Valfritt värde som avviker från standardvärdet för [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
+- Valfritt värde som skiljer sig från standardvärdet för [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
 - Valfritt värde för både [user](configuration#user) och [key](configuration#key).
 
-## Manuell installation
+## Manuell konfiguration
 
-Följande beskriver hur du fortfarande kan installera varje drivrutin individuellt. Du hittar en lista med alla drivrutiner i [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver) README.
+Följande beskriver hur du fortfarande kan konfigurera varje drivrutin individuellt. Du hittar en lista med alla drivrutiner i README-filen för [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
 
 :::tip
 
-Om du letar efter att installera mobila och andra UI-plattformar, ta en titt på vår [Appium Setup](appium) guide.
+Om du vill konfigurera mobila och andra UI-plattformar, ta en titt på vår guide för [Appium-konfiguration](appium).
 
 :::
 
 ### Chromedriver
 
-För att automatisera Chrome kan du ladda ner Chromedriver direkt från [projektets webbplats](http://chromedriver.chromium.org/downloads) eller genom NPM-paketet:
+För att automatisera Chrome kan du ladda ner Chromedriver direkt från [projektets webbplats](http://chromedriver.chromium.org/downloads) eller via NPM-paketet:
 
 ```bash npm2yarn
 npm install -g chromedriver
 ```
 
-Du kan sedan starta det via:
+Du kan sedan starta den via:
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,7 +130,7 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-För att automatisera Firefox, ladda ner den senaste versionen av `geckodriver` för din miljö och packa upp den i din projektmapp:
+För att automatisera Firefox, ladda ner den senaste versionen av `geckodriver` för din miljö och packa upp den i din projektkatalog:
 
 <Tabs
   defaultValue="npm"
@@ -128,7 +157,7 @@ Linux:
 curl -L https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz | tar xz
 ```
 
-MacOS (64 bit):
+MacOS (64 bitar):
 
 ```sh
 curl -L https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-macos.tar.gz | tar xz
@@ -152,30 +181,30 @@ choco install selenium-gecko-driver
 <TabItem value="powershell">
 
 ```sh
-# Run as privileged session. Right-click and set 'Run as Administrator'
-# Use geckodriver-v0.24.0-win32.zip for 32 bit Windows
+# Kör som privilegierad session. Högerklicka och välj 'Kör som administratör'
+# Använd geckodriver-v0.24.0-win32.zip för 32-bitars Windows
 $url = "https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-win64.zip"
-$output = "geckodriver.zip" # will drop into current directory unless defined otherwise
-$unzipped_file = "geckodriver" # will unzip to this folder name
+$output = "geckodriver.zip" # hamnar i aktuell katalog om inget annat anges
+$unzipped_file = "geckodriver" # packas upp till detta mappnamn
 
-# By default, Powershell uses TLS 1.0 the site security requires TLS 1.2
+# Som standard använder Powershell TLS 1.0, men webbplatsens säkerhet kräver TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Downloads Geckodriver
+# Laddar ner Geckodriver
 Invoke-WebRequest -Uri $url -OutFile $output
 
-# Unzip Geckodriver
+# Packa upp Geckodriver
 Expand-Archive $output -DestinationPath $unzipped_file
 cd $unzipped_file
 
-# Globally Set Geckodriver to PATH
+# Lägg till Geckodriver i PATH globalt
 [System.Environment]::SetEnvironmentVariable("PATH", "$Env:Path;$pwd\geckodriver.exe", [System.EnvironmentVariableTarget]::Machine)
 ```
 
 </TabItem>
 </Tabs>
 
-**Obs:** Andra `geckodriver`-releaser finns tillgängliga [här](https://github.com/mozilla/geckodriver/releases). Efter nedladdning kan du starta drivrutinen via:
+**Obs:** Andra `geckodriver`-releaser finns tillgängliga [här](https://github.com/mozilla/geckodriver/releases). Efter nedladdningen kan du starta drivrutinen via:
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -183,16 +212,16 @@ cd $unzipped_file
 
 ### Edgedriver
 
-Du kan ladda ner drivrutinen för Microsoft Edge på [projektets webbplats](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) eller som NPM-paket via:
+Du kan ladda ner drivrutinen för Microsoft Edge från [projektets webbplats](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) eller som NPM-paket via:
 
 ```sh
 npm install -g edgedriver
-edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
+edgedriver --version # skriver ut: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
 ```
 
 ### Safaridriver
 
-Safaridriver kommer förinstallerat på din MacOS och kan startas direkt via:
+Safaridriver är förinstallerad på din MacOS och kan startas direkt via:
 
 ```sh
 safaridriver -p 4444

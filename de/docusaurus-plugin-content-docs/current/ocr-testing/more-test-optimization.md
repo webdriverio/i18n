@@ -1,11 +1,13 @@
 ---
 id: more-test-optimization
 title: Testausführungszeit
+description: "Beschleunigen Sie OCR-basierte Tests, indem Sie den Suchbereich des Bildschirms zuschneiden und eine lokale Tesseract-Installation verwenden."
 ---
 
-Standardmäßig prüft dieses Modul, ob Sie eine lokale Installation von Tesseract auf Ihrem Gerät/in Ihrer Pipeline haben. Wenn Sie keine lokale Installation haben, wird automatisch eine [NodeJS](https://github.com/naptha/tesseract.js)-Version verwendet. Dies kann zu Verlangsamungen führen, da die Bildverarbeitung von Node.js durchgeführt wird. NodeJS ist nicht das beste System für umfangreiche Verarbeitungsprozesse.
+Standardmäßig prüft dieses Modul, ob Sie eine lokale Installation von Tesseract auf Ihrem Rechner bzw. in Ihrer Pipeline haben. Wenn Sie keine lokale Installation haben, wird automatisch eine [NodeJS](https://github.com/naptha/tesseract.js)-Version verwendet. Dies kann zu einer gewissen Verlangsamung führen, da die Bildverarbeitung von Node.js durchgeführt wird. NodeJS ist nicht das beste System für
+rechenintensive Verarbeitung.
 
-**ABER...**, es gibt Möglichkeiten, die Ausführungszeit zu optimieren. Nehmen wir das folgende Testskript:
+**ABER....**, es gibt Möglichkeiten, die Ausführungszeit zu optimieren. Nehmen wir das folgende Testskript
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -61,9 +63,9 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 
 ## Zuschneiden des Suchbereichs eines Bildschirms
 
-Sie können die Ausführungszeit optimieren, indem Sie einen zugeschnittenen Bereich für die OCR-Ausführung angeben.
+Sie können die Ausführungszeit optimieren, indem Sie einen zugeschnittenen Bereich angeben, auf dem die OCR ausgeführt werden soll.
 
-Wenn Sie das Skript wie folgt ändern würden:
+Wenn Sie das Skript dann wie folgt ändern:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -88,7 +90,7 @@ describe("Search", () => {
 });
 ```
 
-Dann werden Sie eine andere Ausführungszeit sehen.
+Dann sehen Sie eine andere Ausführungszeit.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -120,13 +122,13 @@ Execution of 1 workers started at 2024-05-26T04:56:55.326Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-:::tip Bilder zuschneiden
-Dies reduzierte die lokale Ausführungszeit von **5,9** auf **4,8 Sekunden**. Das ist eine Reduzierung um fast **19%**. Stellen Sie sich vor, was es für ein größeres Skript mit mehr Daten bewirken kann.
+:::tip Zuschneiden von Bildern
+Dies hat die lokale Ausführungszeit von **5,9** auf **4,8 Sekunden** reduziert. Das ist eine Reduzierung um fast **19 %**. Stellen Sie sich vor, was dies bei einem größeren Skript mit mehr Daten bewirken kann.
 :::
 
 ## Verwendung einer lokalen Installation von Tesseract
 
-Sie können Ihre Ausführungszeit auf weniger als eine Minute verkürzen, wenn Sie eine lokale Installation von Tesseract auf Ihrem lokalen Gerät und/oder in Ihrer Pipeline haben (weitere Informationen zur Installation von Tesseract auf Ihrem lokalen System finden Sie [hier](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Unten finden Sie die Ausführungszeit desselben Skripts mit einer lokalen Installation von Tesseract.
+Sie können Ihre Ausführungszeit sogar auf weniger als eine Minute verkürzen, wenn Sie eine lokale Installation von Tesseract auf Ihrem lokalen Rechner und/oder in Ihrer Pipeline haben (weitere Informationen zur Installation von Tesseract auf Ihrem lokalen System finden Sie [hier](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Nachfolgend finden Sie die Ausführungszeit desselben Skripts unter Verwendung einer lokalen Installation von Tesseract.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -156,5 +158,5 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
 :::tip Lokale Installation
-Dies reduzierte die lokale Ausführungszeit von **5,9** auf **3,9 Sekunden**. Das ist eine Reduzierung um fast **34%**. Stellen Sie sich vor, was es für ein größeres Skript mit mehr Daten bewirken kann.
+Dies hat die lokale Ausführungszeit von **5,9** auf **3,9 Sekunden** reduziert. Das ist eine Reduzierung um fast **34 %**. Stellen Sie sich vor, was dies bei einem größeren Skript mit mehr Daten bewirken kann.
 :::

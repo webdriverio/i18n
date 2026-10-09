@@ -1,19 +1,18 @@
 ---
 id: configuration
 title: Konfiguration
+description: "Konfigurera WebdriverIO MCP-servern, inklusive alternativ för session, webbläsare, mobil, molnleverantör, elementdetektering och Appium."
 ---
 
 Den här sidan dokumenterar alla konfigurationsalternativ för WebdriverIO MCP-servern.
 
-## MCP-serverkonfiguration
+## Konfiguration av MCP-server
 
-MCP-servern konfigureras genom Claude Desktop eller Claude Code konfigurationsfiler.
+MCP-servern konfigureras via konfigurationsfiler eller kommandon.
 
 ### Grundläggande konfiguration
 
-#### macOS
-
-Redigera `~/Library/Application Support/Claude/claude_desktop_config.json`:
+Redigera din MCP-konfigurationsfil (t.ex. `./.mcp.json`) och lägg till följande:
 
 ```json
 {
@@ -26,519 +25,450 @@ Redigera `~/Library/Application Support/Claude/claude_desktop_config.json`:
 }
 ```
 
-#### Windows
+## Sessionsalternativ
 
-Redigera `%APPDATA%\Claude\claude_desktop_config.json`:
+Alla sessionsalternativ skickas till verktyget `start_session`. Det finns ett enda enhetligt verktyg för webbläsar- och mobilsessioner; parametern `platform` avgör sessionstypen.
 
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"]
-        }
-    }
-}
-```
-
-#### Claude Code
-
-Redigera projektets `.claude/settings.json`:
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"]
-        }
-    }
-}
-```
-
----
-
-## Miljövariabler
-
-Konfigurera Appium-serveranslutningen och andra inställningar via miljövariabler.
-
-### Appium-anslutning
-
-| Variabel | Typ | Standard | Beskrivning |
-|----------|------|---------|-------------|
-| `APPIUM_URL` | string | `127.0.0.1` | Appium-serverns värdnamn |
-| `APPIUM_URL_PORT` | number | `4723` | Appium-serverns port |
-| `APPIUM_PATH` | string | `/` | Appium-serverns sökväg |
-
-### Exempel med miljövariabler
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"],
-            "env": {
-                "APPIUM_URL": "192.168.1.100",
-                "APPIUM_URL_PORT": "4724",
-                "APPIUM_PATH": "/wd/hub"
-            }
-        }
-    }
-}
-```
-
----
-
-## Webbläsarsessionsalternativ
-
-Alternativ tillgängliga när en webbläsarsession startas via verktyget `start_browser`.
-
-### `headless`
-
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `false`
-
-Kör Chrome i headless-läge (inget synligt webbläsarfönster). Användbart för CI/CD-miljöer eller när du inte behöver se webbläsaren.
-
-### `windowWidth`
-
--   **Typ:** `number`
--   **Obligatorisk:** Nej
--   **Standard:** `1920`
--   **Intervall:** `400` - `3840`
-
-Initial fönsterbredd för webbläsaren i pixlar.
-
-### `windowHeight`
-
--   **Typ:** `number`
--   **Obligatorisk:** Nej
--   **Standard:** `1080`
--   **Intervall:** `400` - `2160`
-
-Initial fönsterhöjd för webbläsaren i pixlar.
-
-### `navigationUrl`
-
--   **Typ:** `string`
--   **Obligatorisk:** Nej
-
-URL att navigera till direkt efter webbläsarstart. Detta är mer effektivt än att anropa `start_browser` följt av `navigate` separat.
-
-**Exempel:** Starta webbläsare och navigera i ett anrop:
-```
-Start Chrome and navigate to https://webdriver.io
-```
-
----
-
-## Mobilsessionsalternativ
-
-Alternativ tillgängliga när en mobilappsession startas via verktyget `start_app_session`.
-
-### Plattformsalternativ
+### Gemensamma alternativ
 
 #### `platform`
 
--   **Typ:** `string`
--   **Obligatorisk:** Ja
--   **Värden:** `iOS` | `Android`
+<Option type={`"browser" | "ios" | "android"`} required="Ja">
 
-Den mobila plattformen som ska automatiseras.
+Plattformen som ska automatiseras.
 
-#### `platformVersion`
+</Option>
+#### `provider`
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej
+<Option type={`"local" | "browserstack" | "saucelabs" | "testmu" | "testingbot"`} default={`"local"`} required="Nej">
 
-OS-versionen för enheten/simulatorn/emulatorn (t.ex. `17.0` för iOS, `14` för Android).
+Var sessionen körs. Använd namnet på en molnleverantör för fjärrenheter; var och en kräver sina egna miljövariabler. Se [Molnleverantörer](./cloud-providers) för detaljer.
 
-#### `automationName`
+</Option>
+## Alternativ för webbläsarsessioner
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej
--   **Värden:** `XCUITest` (iOS), `UiAutomator2` | `Espresso` (Android)
+Alternativ för sessioner med `platform: "browser"`.
 
-Automatiseringsdrivrutinen som ska användas. Standardvärdet är `XCUITest` för iOS och `UiAutomator2` för Android.
+### `browser`
 
-### Enhetsalternativ
+<Option type={`"chrome" | "firefox" | "edge" | "safari"`} required="Ja (för webbläsarplattform)">
 
-#### `deviceName`
+Webbläsare som ska startas.
 
--   **Typ:** `string`
--   **Obligatorisk:** Ja
+</Option>
+### `browserVersion`
 
-Namnet på enheten, simulatorn eller emulatorn som ska användas.
+<Option type="string" default={`"latest"`} required="Nej">
+
+Webbläsarversion. Endast molnleverantörer (standard: latest).
+
+</Option>
+### `os` / `osVersion`
+
+<Option type="string" required="Nej">
+
+Operativsystem för webbläsarsessioner hos molnleverantörer. Exempel: `os: "Windows"`, `osVersion: "11"` eller `os: "OS X"`, `osVersion: "Sequoia"`.
+
+</Option>
+### `headless`
+
+<Option type="boolean" default="true" required="Nej">
+
+Kör webbläsaren i headless-läge (inget synligt fönster). Sätt till `false` för att se webbläsaren.
+
+</Option>
+### `windowWidth`
+
+<Option type="number" default="1920" required="Nej">
+
+-   **Intervall:** `400` - `3840`
+
+Webbläsarfönstrets initiala bredd i pixlar.
+
+</Option>
+### `windowHeight`
+
+<Option type="number" default="1080" required="Nej">
+
+-   **Intervall:** `400` - `2160`
+
+Webbläsarfönstrets initiala höjd i pixlar.
+
+</Option>
+### `navigationUrl`
+
+<Option type="string" required="Nej">
+
+URL att navigera till direkt efter att webbläsaren har startats. Effektivare än att anropa `start_session` följt av `navigate` separat.
+
+</Option>
+### `attach`
+
+<Option type="boolean" default="false" required="Nej">
+
+Anslut till en befintlig Chrome-instans i stället för att starta en ny. Använd efter `launch_chrome` för att ansluta via CDP.
+
+</Option>
+### `attachConfig`
+
+<Option type={`{ port?: number; host?: string }`} default={`{ port: 9222, host: "localhost" }`} required="Nej">
+
+Anslutningskonfiguration för Chromes fjärrfelsökning. Gäller endast när `attach: true`.
+
+</Option>
+## Alternativ för mobilsessioner
+
+Alternativ för sessioner med `platform: "ios"` eller `platform: "android"`.
+
+### `deviceName`
+
+<Option type="string" required="Ja (för mobilplattformar)">
+
+Namnet på enheten, simulatorn eller emulatorn.
 
 **Exempel:**
--   iOS Simulator: `iPhone 15 Pro`, `iPad Air (5th generation)`
--   Android Emulator: `Pixel 7`, `Nexus 5X`
--   Fysisk enhet: Enhetsnamnet som visas i ditt system
+-   iOS-simulator: `"iPhone 16"`, `"iPad Air (5th generation)"`
+-   Android-emulator: `"Pixel 7"`, `"Nexus 5X"`
+-   Riktig enhet: Enhetsnamnet som det visas i ditt system
 
-#### `udid`
+</Option>
+### `platformVersion`
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej (Krävs för fysiska iOS-enheter)
+<Option type="string" required="Nej">
 
-Unik enhetsidentifierare. Krävs för fysiska iOS-enheter (40-teckens identifierare) och rekommenderas för fysiska Android-enheter.
+OS-version för enheten/simulatorn/emulatorn (t.ex. `"18.0"` för iOS, `"14"` för Android).
+
+</Option>
+### `automationName`
+
+<Option type={`"XCUITest" | "UiAutomator2"`} required="Nej">
+
+Automationsdrivrutin. Standard är `XCUITest` för iOS och `UiAutomator2` för Android.
+
+</Option>
+### `udid`
+
+<Option type="string" required="Nej (krävs för riktiga iOS-enheter)">
+
+Unik enhetsidentifierare (Unique Device Identifier). Krävs för riktiga iOS-enheter (identifierare på 40 tecken).
 
 **Hitta UDID:**
--   **iOS:** Anslut enhet, öppna Finder/iTunes, klicka på enheten → Serienummer (klicka för att visa UDID)
+-   **iOS:** Anslut enheten, öppna Finder, klicka på enheten → Serienummer (klicka för att visa UDID)
 -   **Android:** Kör `adb devices` i terminalen
 
-### Appalternativ
+</Option>
+### `appPath`
 
-#### `appPath`
-
--   **Typ:** `string`
--   **Obligatorisk:** Nej*
+<Option type="string" required="Nej">
 
 Sökväg till applikationsfilen som ska installeras och startas.
 
-**Stödda format:**
--   iOS Simulator: `.app`-katalog
--   iOS fysisk enhet: `.ipa`-fil
+**Format som stöds:**
+-   iOS-simulator: `.app`-katalog
+-   Riktig iOS-enhet: `.ipa`-fil
 -   Android: `.apk`-fil
 
-*Antingen måste `appPath` anges, eller `noReset: true` för att ansluta till en app som redan körs.
+Antingen måste `appPath` anges, eller `noReset: true` för att ansluta till en app som redan körs.
 
-#### `appWaitActivity`
+</Option>
+### `app`
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej (Endast Android)
+<Option type="string" required="Nej">
 
-Aktivitet att vänta på vid app-start. Om den inte anges används appens huvudaktivitet.
+App-URL hos molnleverantören (`bs://...` för BrowserStack, `storage:filename=` för Sauce Labs, `lt://...` för TestMu, TestingBot app_url) eller `customId`. Används i stället för `appPath` för mobilsessioner i molnet.
 
-**Exempel:** `com.example.app.MainActivity`
+</Option>
+### `appWaitActivity`
 
-### Sessionstillståndsalternativ
+<Option type="string" required="Nej (endast Android)">
+
+Aktivitet att vänta på vid appstart. Om den inte anges används appens huvud-/startaktivitet.
+
+**Exempel:** `"com.example.app.MainActivity"`
+
+</Option>
+### Alternativ för sessionstillstånd
 
 #### `noReset`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `false`
+<Option type="boolean" required="Nej">
 
-Bevara appens tillstånd mellan sessioner. När `true`:
--   Appdata bevaras (inloggningsstatus, inställningar, etc.)
--   Sessionen kommer att **kopplas bort** istället för att stängas (håller appen igång)
--   Användbart för att testa användarresor över flera sessioner
+Bevara apptillståndet mellan sessioner. När `true`:
+-   Appdata bevaras (inloggningsstatus, inställningar osv.)
+-   Sessionen kommer att **kopplas från** i stället för att stängas (appen fortsätter köras)
 -   Kan användas utan `appPath` för att ansluta till en app som redan körs
 
+</Option>
 #### `fullReset`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `true`
+<Option type="boolean" required="Nej">
 
-Återställ appen helt före sessionen. När `true`:
--   iOS: Avinstallerar och återinstallerar appen
+Återställ appen helt före sessionen:
+-   iOS: Avinstallerar och installerar om appen
 -   Android: Rensar appdata och cache
--   Användbart för att starta med ett rent tillstånd
 
-Ställ in `fullReset: false` med `noReset: true` för att bevara apptillståndet helt.
+Sätt `fullReset: false` tillsammans med `noReset: true` för att bevara apptillståndet helt.
 
+</Option>
 ### Sessionstimeout
 
 #### `newCommandTimeout`
 
--   **Typ:** `number`
--   **Obligatorisk:** Nej
--   **Standard:** `60`
+<Option type="number" default="300" required="Nej">
 
-Hur länge (i sekunder) Appium ska vänta på ett nytt kommando innan den antar att klienten har avslutat och avslutar sessionen. Öka detta värde för längre felsökningssessioner.
+Hur länge (i sekunder) Appium väntar på ett nytt kommando innan sessionen avslutas. Öka för längre felsökningssessioner.
 
-**Exempel:**
--   `60` - Standard, lämplig för de flesta automatiseringar
--   `300` - 5 minuter, för felsökning eller långsammare operationer
--   `600` - 10 minuter, för mycket långvariga tester
-
-### Automatiska hanteringsalternativ
+</Option>
+### Automatisk hantering
 
 #### `autoGrantPermissions`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `true`
+<Option type="boolean" default="true" required="Nej">
 
-Bevilja automatiskt appbehörigheter vid installation/start. När `true`:
--   Kamera, mikrofon, plats, etc. behörigheter beviljas automatiskt
--   Ingen manuell hantering av behörighetsdialoger behövs
--   Effektiviserar automatisering genom att undvika behörighetsmeddelanden
+Bevilja automatiskt appbehörigheter vid installation/start (kamera, mikrofon, plats osv.).
 
 :::note Endast Android
-Detta alternativ påverkar främst Android. iOS-behörigheter måste hanteras annorlunda på grund av systembegränsningar.
+Det här alternativet påverkar främst Android. iOS-behörigheter måste hanteras på annat sätt på grund av systembegränsningar.
 :::
 
+</Option>
 #### `autoAcceptAlerts`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `true`
+<Option type="boolean" default="true" required="Nej">
 
-Acceptera automatiskt systemvarningar (dialogrutor) som visas under automatisering.
+Acceptera automatiskt systemaviseringar (dialogrutor) under automatisering ("Tillåt notiser?" osv.).
 
-**Exempel på automatiskt accepterade varningar:**
--   "Tillåt notifieringar?"
--   "Appen vill ha åtkomst till din plats"
--   "Tillåt appen att komma åt foton?"
-
+</Option>
 #### `autoDismissAlerts`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `false`
+<Option type="boolean" default="false" required="Nej">
 
-Stäng (avbryt) systemvarningar istället för att acceptera dem. Har företräde framför `autoAcceptAlerts` när den är inställd på `true`.
+Avvisa systemaviseringar i stället för att acceptera dem. Har företräde framför `autoAcceptAlerts` när `true`.
 
-### Appium-server-åsidosättning
+</Option>
+### Anslutning till Appium-server
 
-Du kan åsidosätta Appium-serveranslutningen per session:
+Åsidosätt anslutningen till Appium-servern per session med `appiumConfig`:
 
-#### `appiumHost`
+```js
+start_session({
+  platform: "ios",
+  deviceName: "iPhone 16",
+  appPath: "/path/to/app.app",
+  appiumConfig: { host: "192.168.1.100", port: 4724, path: "/wd/hub" }
+})
+```
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej
+#### `appiumConfig`
 
-Appium-serverns värdnamn. Åsidosätter miljövariabeln `APPIUM_URL`.
+<Option type={`{ host?: string; port?: number; path?: string }`} required="Nej">
 
-#### `appiumPort`
+Anslutning till Appium-servern. Standard är `{ host: "127.0.0.1", port: 4723, path: "/" }`.
 
--   **Typ:** `number`
--   **Obligatorisk:** Nej
+</Option>
+## Alternativ för molnleverantörer
 
-Appium-serverns port. Åsidosätter miljövariabeln `APPIUM_URL_PORT`.
+### Autentiseringsuppgifter
 
-#### `appiumPath`
+Varje molnleverantör kräver sina egna miljövariabler:
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej
+| Leverantör   | Variabel för användarnamn | Variabel för åtkomstnyckel |
+| ------------ | ------------------------- | -------------------------- |
+| BrowserStack | `BROWSERSTACK_USERNAME`   | `BROWSERSTACK_ACCESS_KEY`  |
+| Sauce Labs   | `SAUCE_USERNAME`          | `SAUCE_ACCESS_KEY`         |
+| TestMu       | `TESTMU_USERNAME`         | `TESTMU_ACCESS_KEY`        |
+| TestingBot   | `TESTINGBOT_KEY`          | `TESTINGBOT_SECRET`        |
 
-Appium-serverns sökväg. Åsidosätter miljövariabeln `APPIUM_PATH`.
+Ange dessa innan du startar MCP-servern.
 
----
+### `region`
 
-## Elementdetekteringsalternativ
+<Option type={`"us-west-1" | "eu-central-1" | "apac-southeast-1"`} default={`"eu-central-1"`} required="Nej">
 
-Alternativ för verktyget `get_visible_elements`.
+Region för Sauce Labs datacenter. Ignoreras för andra leverantörer.
 
-### `elementType`
+</Option>
+### `tunnel`
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej
--   **Standard:** `interactable`
--   **Värden:** `interactable` | `visual` | `all`
+<Option type={`boolean | "external"`} default="false" required="Nej">
 
-Typ av element att returnera:
--   `interactable`: Knappar, länkar, inmatningsfält och andra klickbara element
--   `visual`: Bilder, SVG:er och visuella element
--   `all`: Både interaktiva och visuella element
+Aktivera lokal tunnelroutning för sessioner hos molnleverantörer (åtkomst till localhost, stagingmiljöer, interna tjänster).
+
+-   `true` — Startar tunneln automatiskt före sessionen och stoppar den vid stängning
+-   `"external"` — Tunneln körs redan externt; sätter endast leverantörsspecifika flaggor
+
+Innan du använder `true`, läs leverantörens local-binary-resurs (`wdio://browserstack/local-binary`, `wdio://saucelabs/local-binary`, `wdio://testmu/local-binary` eller `wdio://testingbot/local-binary`) för installationsinstruktioner specifika för ditt OS och din arkitektur.
+
+</Option>
+### `tunnelName`
+
+<Option type="string" required="Nej">
+
+Tunnelns identifierarnamn. Krävs när `tunnel: "external"` för att matcha den körande tunneln. När `tunnel: true` genereras ett unikt namn automatiskt om inget anges.
+
+</Option>
+### `reporting`
+
+<Option type={`{ project?: string; build?: string; session?: string }`} required="Nej">
+
+Sessionsetiketter hos molnleverantören som visas i leverantörens dashboard. Fungerar identiskt för BrowserStack, Sauce Labs, TestMu och TestingBot.
+
+</Option>
+### `trace`
+
+<Option type="boolean" default="false" required="Nej">
+
+Aktivera spårningsinspelning. Skapar en Playwright-kompatibel `.trace`-zipfil som sparas i `.trace/` vid `close_session`. Visa spårningar på [player.vibium.dev](https://player.vibium.dev).
+
+</Option>
+## Alternativ för elementdetektering
+
+Alternativ för verktyget `get_elements`.
 
 ### `inViewportOnly`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `true`
+<Option type="boolean" default="false" required="Nej">
 
-Returnera endast element som är synliga inom den aktuella visningsrutan. När `false` returneras alla element i vyhierarkin (användbart för att hitta element utanför skärmen).
+Returnera endast element som är synliga i den aktuella vyporten. Sätt till `true` för att minska antalet resultat på långa sidor.
 
+</Option>
 ### `includeContainers`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `false`
+<Option type="boolean" default="false" required="Nej">
 
-Inkludera container/layout-element i resultaten. När `true`:
+Inkludera container-/layoutelement i resultaten:
 
-**Android-behållare som inkluderas:**
--   `ViewGroup`, `FrameLayout`, `LinearLayout`
--   `RelativeLayout`, `ConstraintLayout`
--   `ScrollView`, `RecyclerView`
+**Android-containrar:** `ViewGroup`, `FrameLayout`, `LinearLayout`, `RelativeLayout`, `ConstraintLayout`, `ScrollView`, `RecyclerView`
 
-**iOS-behållare som inkluderas:**
--   `View`, `StackView`, `CollectionView`
--   `ScrollView`, `TableView`
+**iOS-containrar:** `View`, `StackView`, `CollectionView`, `ScrollView`, `TableView`
 
-Användbart för att felsöka layoutproblem eller förstå vyhierarkin.
-
+</Option>
 ### `includeBounds`
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `false`
+<Option type="boolean" default="false" required="Nej">
 
-Inkludera elementgränser/koordinater (x, y, bredd, höjd) i svaret. Ange till `true` för:
--   Koordinatbaserade interaktioner
--   Layout-felsökning
--   Visuell elementpositionering
+Inkludera elementens koordinater för avgränsningsramen (x, y, width, height) i svaret.
 
-### Pagineringsalternativ
-
-För stora sidor med många element, använd paginering för att minska tokenanvändningen:
+</Option>
+### Paginering
 
 #### `limit`
 
--   **Typ:** `number`
--   **Obligatorisk:** Nej
--   **Standard:** `0` (obegränsat)
+<Option type="number" default="0 (obegränsat)" required="Nej">
 
 Maximalt antal element att returnera.
 
+</Option>
 #### `offset`
 
--   **Typ:** `number`
--   **Obligatorisk:** Nej
--   **Standard:** `0`
+<Option type="number" default="0" required="Nej">
 
 Antal element att hoppa över innan resultat returneras.
 
-**Exempel:** Hämta element 21-40:
-```
-Get visible elements with limit 20 and offset 20
+**Exempel:** Hämta element 21–40:
+```text
+Get elements with limit 20 and offset 20
 ```
 
----
-
+</Option>
 ## Alternativ för tillgänglighetsträd
 
-Alternativ för verktyget `get_accessibility` (endast webbläsare).
+Alternativ för verktyget `get_accessibility_tree` (endast webbläsare).
 
 ### `limit`
 
--   **Typ:** `number`
--   **Obligatorisk:** Nej
--   **Standard:** `100`
+<Option type="number" default="0 (obegränsat)" required="Nej">
 
-Maximalt antal noder att returnera. Använd `0` för obegränsat (rekommenderas inte för stora sidor).
+Maximalt antal noder att returnera.
 
+</Option>
 ### `offset`
 
--   **Typ:** `number`
--   **Obligatorisk:** Nej
--   **Standard:** `0`
+<Option type="number" default="0" required="Nej">
 
-Antal noder att hoppa över för paginering.
+Antal noder att hoppa över vid paginering.
 
+</Option>
 ### `roles`
 
--   **Typ:** `string[]`
--   **Obligatorisk:** Nej
--   **Standard:** Alla roller
+<Option type="string[]" default="Alla roller" required="Nej">
 
-Filtrera till specifika tillgänglighetsroller.
+Filtrera på specifika tillgänglighetsroller.
 
 **Vanliga roller:** `button`, `link`, `textbox`, `checkbox`, `radio`, `heading`, `img`, `listitem`
 
 **Exempel:** Hämta endast knappar och länkar:
-```
+```text
 Get accessibility tree filtered to button and link roles
 ```
 
-### `namedOnly`
+</Option>
+## Skärmdump
 
--   **Typ:** `boolean`
--   **Obligatorisk:** Nej
--   **Standard:** `true`
+Verktyget `get_screenshot` tar inga parametrar. Skärmdumpar bearbetas automatiskt:
 
-Returnera endast noder som har ett namn/etikett. Filtrerar bort anonyma containrar och reducerar brus i resultaten.
-
----
-
-## Skärmbildsalternativ
-
-Alternativ för verktyget `take_screenshot`.
-
-### `outputPath`
-
--   **Typ:** `string`
--   **Obligatorisk:** Nej
-
-Sökväg där skärmbildsfilen ska sparas. Om den inte anges returneras base64-kodad bilddata.
-
-### Automatisk optimering
-
-Skärmbilder bearbetas automatiskt för att optimera för LLM-förbrukning:
-
-| Optimering | Värde | Beskrivning |
-|--------------|-------|-------------|
-| Max dimension | 2000px | Bilder större än 2000px skalas ned |
-| Max filstorlek | 1MB | Bilder komprimeras för att hålla sig under 1MB |
-| Format | PNG/JPEG | PNG med maximal komprimering; JPEG om det behövs för storleken |
-
-Denna optimering säkerställer att skärmbilder kan bearbetas effektivt utan att överskrida tokengränser.
-
----
+| Optimering        | Värde    | Beskrivning                                              |
+| ----------------- | -------- | -------------------------------------------------------- |
+| Max dimension     | 2000px   | Bilder större än 2000px skalas ned                       |
+| Max filstorlek    | 1MB      | Bilder komprimeras för att hålla sig under 1MB           |
+| Format            | PNG/JPEG | PNG med maximal komprimering; JPEG om det behövs för storleken |
 
 ## Sessionsbeteende
 
 ### Sessionstyper
 
-MCP-servern spårar sessionstyper för att tillhandahålla lämpliga verktyg och beteende:
+| Typ       | Beskrivning          | Automatisk frånkoppling                     |
+| --------- | -------------------- | ------------------------------------------- |
+| `browser` | Webbläsarsession     | Nej                                         |
+| `ios`     | iOS-appsession       | Ja (om `noReset: true` eller ingen `appPath`) |
+| `android` | Android-appsession   | Ja (om `noReset: true` eller ingen `appPath`) |
 
-| Typ | Beskrivning | Auto-frånkoppling |
-|------|-------------|-------------|
-| `browser` | Chrome webbläsarsession | Nej |
-| `ios` | iOS app-session | Ja (om `noReset: true` eller ingen `appPath`) |
-| `android` | Android app-session | Ja (om `noReset: true` eller ingen `appPath`) |
+### Modell med en session
 
-### Enkelssionsmodell
+MCP-servern arbetar med en **modell med en enda session**:
 
-MCP-servern arbetar med en **ensessionmodell**:
+-   Endast en webbläsar- ELLER appsession kan vara aktiv åt gången
+-   Att starta en ny session stänger/kopplar från den aktuella sessionen
+-   Sessionstillståndet upprätthålls globalt över verktygsanrop
 
--   Endast en webbläsare ELLER app-session kan vara aktiv åt gången
--   Start av en ny session kommer att stänga/koppla bort den aktuella sessionen
--   Sessionstillstånd upprätthålls globalt över verktygsanrop
+### Koppla från vs stänga
 
-### Frånkoppling vs stängning
-
-| Åtgärd | `detach: false` (Stäng) | `detach: true` (Koppla från) |
-|--------|-------------------------|-------------------------|
-| Webbläsare | Stänger Chrome helt | Håller Chrome igång, kopplar från WebDriver |
-| Mobilapp | Avslutar appen | Håller appen igång i nuvarande tillstånd |
-| Användningsfall | Rent utgångsläge för nästa session | Bevara tillstånd, manuell inspektion |
-
----
+| Åtgärd     | `detach: false` (Stäng)          | `detach: true` (Koppla från)                     |
+| ---------- | -------------------------------- | ------------------------------------------------ |
+| Webbläsare | Stänger webbläsaren helt         | Låter webbläsaren köras, kopplar från WebDriver  |
+| Mobilapp   | Avslutar appen                   | Låter appen köras i aktuellt tillstånd           |
+| Användning | Rent blad för nästa session      | Bevara tillstånd, manuell inspektion             |
 
 ## Prestandaöverväganden
-
-MCP-servern är optimerad för effektiv LLM-kommunikation med formatet **TOON (Token-Oriented Object Notation)**, vilket minimerar tokenanvändningen vid sändning av data till Claude.
 
 ### Webbläsarautomatisering
 
 -   **Headless-läge** är snabbare men renderar inte visuella element
--   **Mindre fönsterstorlekar** minskar tiden för skärmbildstagning
--   **Elementdetektering** är optimerad med en enda skriptexekvering
--   **Skärmbildsoptimering** håller bilder under 1MB för effektiv bearbetning
--   **`inViewportOnly: true`** (standard) filtrerar till endast synliga element
+-   **Mindre fönsterstorlekar** minskar tiden för att ta skärmdumpar
+-   **Elementdetektering** är optimerad med en enda skriptkörning
+-   **Skärmdumpsoptimering** håller bilder under 1MB för effektiv bearbetning
 
 ### Mobilautomatisering
 
--   **XML-sidkällsanalys** använder endast 2 HTTP-anrop (mot 600+ för traditionella elementfrågor)
--   **Accessibility ID-väljare** är snabbast och mest pålitliga
--   **XPath-väljare** är långsammast - använd endast som en sista utväg
--   **`inViewportOnly: true`** (standard) minskar antalet element avsevärt
+-   **Tolkning av XML-sidkälla** använder endast 2 HTTP-anrop (jämfört med 600+ för traditionella elementförfrågningar)
+-   **Accessibility ID-selektorer** är snabbast och mest tillförlitliga
+-   **XPath-selektorer** är långsammast; använd dem endast som sista utväg
 -   **Paginering** (`limit` och `offset`) minskar tokenanvändningen för skärmar med många element
--   **`includeBounds: false`** (standard) utelämnar koordinatdata om det inte behövs
 
 ### Tips för tokenanvändning
 
-| Inställning | Påverkan |
-|---------|--------|
-| `inViewportOnly: true` | Filtrerar element utanför skärmen, minskar svarsstorlek |
-| `includeContainers: false` | Utesluter layoutelement (ViewGroup, etc.) |
-| `includeBounds: false` | Utelämnar x/y/bredd/höjd-data |
-| `limit` med paginering | Bearbeta element i satser istället för alla på en gång |
-| `namedOnly: true` (tillgänglighet) | Filtrerar anonyma noder |
+| Inställning                | Effekt                                                    |
+| -------------------------- | --------------------------------------------------------- |
+| `inViewportOnly: true`     | Filtrerar bort element utanför skärmen, minskar svarsstorleken |
+| `includeContainers: false` | Exkluderar layoutelement (ViewGroup osv.)                 |
+| `includeBounds: false`     | Utelämnar x/y/width/height-data                           |
+| `limit` med paginering     | Bearbeta element i omgångar i stället för alla på en gång |
 
----
-
-## Appium-serverinställning
+## Installation av Appium-server
 
 Innan du använder mobilautomatisering, se till att Appium är korrekt konfigurerat.
 
-### Grundinställning
+### Grundläggande installation
 
 ```sh
 # Installera Appium globalt
@@ -565,7 +495,7 @@ appium --log-level debug
 appium --base-path /wd/hub
 ```
 
-### Verifiera installation
+### Verifiera installationen
 
 ```sh
 # Kontrollera installerade drivrutiner
@@ -574,36 +504,34 @@ appium driver list --installed
 # Kontrollera Appium-version
 appium --version
 
-# Testa anslutning
+# Testa anslutningen
 curl http://localhost:4723/status
 ```
-
----
 
 ## Felsökning av konfiguration
 
 ### MCP-servern startar inte
 
 1. Verifiera att npm/npx är installerat: `npm --version`
-2. Försök köra manuellt: `npx @wdio/mcp`
-3. Kontrollera Claude Desktop-loggarna för fel
+2. Prova att köra manuellt: `npx @wdio/mcp`
+3. Kontrollera din miljös loggar efter fel
 
-### Appium-anslutningsproblem
+### Problem med Appium-anslutning
 
 1. Verifiera att Appium körs: `curl http://localhost:4723/status`
-2. Kontrollera att miljövariabler matchar Appium-serverinställningar
+2. Kontrollera att `appiumConfig` i `start_session` matchar Appium-serverns inställningar
 3. Se till att brandväggen tillåter anslutningar på Appium-porten
 
 ### Sessionen startar inte
 
-1. **Webbläsare:** Se till att Chrome är installerat
+1. **Webbläsare:** Se till att målwebbläsaren är installerad
 2. **iOS:** Verifiera att Xcode och simulatorer är tillgängliga
 3. **Android:** Kontrollera `ANDROID_HOME` och att emulatorn körs
-4. Granska Appium-serverloggar för detaljerade felmeddelanden
+4. Granska Appium-serverns loggar för detaljerade felmeddelanden
 
-### Sessionstidsbegränsningar
+### Sessionstimeouts
 
 Om sessioner får timeout under felsökning:
 1. Öka `newCommandTimeout` när du startar sessionen
-2. Använd `noReset: true` för att bevara tillstånd mellan sessioner
-3. Använd `detach: true` vid stängning för att hålla appen igång
+2. Använd `noReset: true` för att bevara tillståndet mellan sessioner
+3. Använd `detach: true` vid stängning för att låta appen fortsätta köras

@@ -1,19 +1,18 @@
 ---
 id: configuration
 title: Configuración
+description: "Configura el servidor MCP de WebdriverIO, incluidas las opciones de sesión, navegador, dispositivos móviles, proveedores en la nube, detección de elementos y Appium."
 ---
 
-Esta página documenta todas las opciones de configuración para el servidor MCP de WebdriverIO.
+Esta página documenta todas las opciones de configuración del servidor MCP de WebdriverIO.
 
-## Configuración del Servidor MCP
+## Configuración del servidor MCP
 
-El servidor MCP se configura a través de los archivos de configuración de Claude Desktop o Claude Code.
+El servidor MCP se configura mediante archivos de configuración o comandos.
 
-### Configuración Básica
+### Configuración básica
 
-#### macOS
-
-Edita `~/Library/Application Support/Claude/claude_desktop_config.json`:
+Edita tu archivo de configuración de MCP (p. ej., `./.mcp.json`) y añade lo siguiente:
 
 ```json
 {
@@ -26,525 +25,456 @@ Edita `~/Library/Application Support/Claude/claude_desktop_config.json`:
 }
 ```
 
-#### Windows
+## Opciones de sesión
 
-Edita `%APPDATA%\Claude\claude_desktop_config.json`:
+Todas las opciones de sesión se pasan a la herramienta `start_session`. Existe una única herramienta unificada para sesiones de navegador y móviles; el parámetro `platform` determina el tipo de sesión.
 
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"]
-        }
-    }
-}
-```
+### Opciones comunes
 
-#### Claude Code
+#### `platform`
 
-Edita el archivo `.claude/settings.json` de tu proyecto:
+<Option type={`"browser" | "ios" | "android"`} required="Yes">
 
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"]
-        }
-    }
-}
-```
+La plataforma que se va a automatizar.
 
----
+</Option>
+#### `provider`
 
-## Variables de Entorno
+<Option type={`"local" | "browserstack" | "saucelabs" | "testmu" | "testingbot"`} default={`"local"`} required="No">
 
-Configura la conexión del servidor Appium y otras configuraciones a través de variables de entorno.
+Dónde se ejecuta la sesión. Usa el nombre de un proveedor en la nube para dispositivos remotos; cada uno requiere sus propias variables de entorno. Consulta [Proveedores en la nube](./cloud-providers) para más detalles.
 
-### Conexión Appium
+</Option>
+## Opciones de sesión de navegador
 
-| Variable | Tipo | Valor predeterminado | Descripción |
-|----------|------|---------|-------------|
-| `APPIUM_URL` | string | `127.0.0.1` | Nombre de host del servidor Appium |
-| `APPIUM_URL_PORT` | number | `4723` | Puerto del servidor Appium |
-| `APPIUM_PATH` | string | `/` | Ruta del servidor Appium |
+Opciones para sesiones con `platform: "browser"`.
 
-### Ejemplo con Variables de Entorno
+### `browser`
 
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"],
-            "env": {
-                "APPIUM_URL": "192.168.1.100",
-                "APPIUM_URL_PORT": "4724",
-                "APPIUM_PATH": "/wd/hub"
-            }
-        }
-    }
-}
-```
+<Option type={`"chrome" | "firefox" | "edge" | "safari"`} required="Yes (for browser platform)">
 
----
+Navegador que se va a iniciar.
 
-## Opciones de Sesión del Navegador
+</Option>
+### `browserVersion`
 
-Opciones disponibles al iniciar una sesión de navegador mediante la herramienta `start_browser`.
+<Option type="string" default={`"latest"`} required="No">
 
+Versión del navegador. Solo para proveedores en la nube (predeterminado: latest).
+
+</Option>
+### `os` / `osVersion`
+
+<Option type="string" required="No">
+
+Sistema operativo para sesiones de navegador en proveedores en la nube. Ejemplos: `os: "Windows"`, `osVersion: "11"` o `os: "OS X"`, `osVersion: "Sequoia"`.
+
+</Option>
 ### `headless`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `false`
+<Option type="boolean" default="true" required="No">
 
-Ejecuta Chrome en modo headless (sin ventana visible del navegador). Útil para entornos CI/CD o cuando no necesitas ver el navegador.
+Ejecuta el navegador en modo headless (sin ventana visible). Establécelo en `false` para ver el navegador.
 
+</Option>
 ### `windowWidth`
 
--   **Tipo:** `number`
--   **Obligatorio:** No
--   **Valor predeterminado:** `1920`
+<Option type="number" default="1920" required="No">
+
 -   **Rango:** `400` - `3840`
 
 Ancho inicial de la ventana del navegador en píxeles.
 
+</Option>
 ### `windowHeight`
 
--   **Tipo:** `number`
--   **Obligatorio:** No
--   **Valor predeterminado:** `1080`
+<Option type="number" default="1080" required="No">
+
 -   **Rango:** `400` - `2160`
 
-Altura inicial de la ventana del navegador en píxeles.
+Alto inicial de la ventana del navegador en píxeles.
 
+</Option>
 ### `navigationUrl`
 
--   **Tipo:** `string`
--   **Obligatorio:** No
+<Option type="string" required="No">
 
-URL a la que navegar inmediatamente después de iniciar el navegador. Es más eficiente que llamar a `start_browser` seguido de `navigate` por separado.
+URL a la que navegar inmediatamente después de iniciar el navegador. Es más eficiente que llamar a `start_session` y luego a `navigate` por separado.
 
-**Ejemplo:** Iniciar navegador y navegar en una sola llamada:
-```
-Start Chrome and navigate to https://webdriver.io
-```
+</Option>
+### `attach`
 
----
+<Option type="boolean" default="false" required="No">
 
-## Opciones de Sesión Móvil
+Se conecta a una instancia existente de Chrome en lugar de iniciar una nueva. Úsalo después de `launch_chrome` para conectarte mediante CDP.
 
-Opciones disponibles al iniciar una sesión de aplicación móvil mediante la herramienta `start_app_session`.
+</Option>
+### `attachConfig`
 
-### Opciones de Plataforma
+<Option type={`{ port?: number; host?: string }`} default={`{ port: 9222, host: "localhost" }`} required="No">
 
-#### `platform`
+Configuración de conexión de depuración remota de Chrome. Solo se aplica cuando `attach: true`.
 
--   **Tipo:** `string`
--   **Obligatorio:** Sí
--   **Valores:** `iOS` | `Android`
+</Option>
+## Opciones de sesión móvil
 
-La plataforma móvil a automatizar.
+Opciones para sesiones con `platform: "ios"` o `platform: "android"`.
 
-#### `platformVersion`
+### `deviceName`
 
--   **Tipo:** `string`
--   **Obligatorio:** No
+<Option type="string" required="Yes (for mobile platforms)">
 
-La versión del sistema operativo del dispositivo/simulador/emulador (p. ej., `17.0` para iOS, `14` para Android).
-
-#### `automationName`
-
--   **Tipo:** `string`
--   **Obligatorio:** No
--   **Valores:** `XCUITest` (iOS), `UiAutomator2` | `Espresso` (Android)
-
-El controlador de automatización a utilizar. El valor predeterminado es `XCUITest` para iOS y `UiAutomator2` para Android.
-
-### Opciones de Dispositivo
-
-#### `deviceName`
-
--   **Tipo:** `string`
--   **Obligatorio:** Sí
-
-Nombre del dispositivo, simulador o emulador a utilizar.
+Nombre del dispositivo, simulador o emulador.
 
 **Ejemplos:**
--   Simulador iOS: `iPhone 15 Pro`, `iPad Air (5th generation)`
--   Emulador Android: `Pixel 7`, `Nexus 5X`
--   Dispositivo real: El nombre del dispositivo como se muestra en tu sistema
+-   Simulador de iOS: `"iPhone 16"`, `"iPad Air (5th generation)"`
+-   Emulador de Android: `"Pixel 7"`, `"Nexus 5X"`
+-   Dispositivo real: el nombre del dispositivo tal como aparece en tu sistema
 
-#### `udid`
+</Option>
+### `platformVersion`
 
--   **Tipo:** `string`
--   **Obligatorio:** No (Requerido para dispositivos iOS reales)
+<Option type="string" required="No">
 
-Identificador único de dispositivo. Requerido para dispositivos iOS reales (identificador de 40 caracteres) y recomendado para dispositivos reales Android.
+Versión del sistema operativo del dispositivo/simulador/emulador (p. ej., `"18.0"` para iOS, `"14"` para Android).
+
+</Option>
+### `automationName`
+
+<Option type={`"XCUITest" | "UiAutomator2"`} required="No">
+
+Driver de automatización. De forma predeterminada es `XCUITest` para iOS y `UiAutomator2` para Android.
+
+</Option>
+### `udid`
+
+<Option type="string" required="No (Required for real iOS devices)">
+
+Identificador único del dispositivo (Unique Device Identifier). Obligatorio para dispositivos iOS reales (identificador de 40 caracteres).
 
 **Cómo encontrar el UDID:**
--   **iOS:** Conecta el dispositivo, abre Finder/iTunes, haz clic en el dispositivo → Número de serie (haz clic para mostrar el UDID)
+-   **iOS:** Conecta el dispositivo, abre Finder, haz clic en el dispositivo → Número de serie (haz clic para mostrar el UDID)
 -   **Android:** Ejecuta `adb devices` en la terminal
 
-### Opciones de la Aplicación
+</Option>
+### `appPath`
 
-#### `appPath`
+<Option type="string" required="No">
 
--   **Tipo:** `string`
--   **Obligatorio:** No*
+Ruta al archivo de la aplicación que se va a instalar e iniciar.
 
-Ruta al archivo de aplicación para instalar y lanzar.
-
-**Formatos admitidos:**
--   Simulador iOS: directorio `.app`
--   Dispositivo real iOS: archivo `.ipa`
+**Formatos compatibles:**
+-   Simulador de iOS: directorio `.app`
+-   Dispositivo iOS real: archivo `.ipa`
 -   Android: archivo `.apk`
 
-*Se debe proporcionar `appPath`, o establecer `noReset: true` para conectarse a una aplicación ya en ejecución.
+Se debe proporcionar `appPath`, o bien `noReset: true` para conectarse a una aplicación que ya se esté ejecutando.
 
-#### `appWaitActivity`
+</Option>
+### `app`
 
--   **Tipo:** `string`
--   **Obligatorio:** No (Solo Android)
+<Option type="string" required="No">
 
-Actividad a esperar en el lanzamiento de la aplicación. Si no se especifica, se utiliza la actividad principal/de inicio de la aplicación.
+URL de la aplicación en el proveedor en la nube (`bs://...` para BrowserStack, `storage:filename=` para Sauce Labs, `lt://...` para TestMu, app_url de TestingBot) o `customId`. Se usa en lugar de `appPath` para sesiones móviles en la nube.
 
-**Ejemplo:** `com.example.app.MainActivity`
+</Option>
+### `appWaitActivity`
 
-### Opciones de Estado de Sesión
+<Option type="string" required="No (Android only)">
+
+Activity que se debe esperar al iniciar la aplicación. Si no se especifica, se usa la activity principal/launcher de la aplicación.
+
+**Ejemplo:** `"com.example.app.MainActivity"`
+
+</Option>
+### Opciones de estado de la sesión
 
 #### `noReset`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `false`
+<Option type="boolean" required="No">
 
-Preserva el estado de la aplicación entre sesiones. Cuando es `true`:
--   Los datos de la aplicación se preservan (estado de inicio de sesión, preferencias, etc.)
--   La sesión se **desvinculará** en lugar de cerrarse (mantiene la aplicación en ejecución)
--   Útil para probar recorridos de usuario a través de múltiples sesiones
--   Se puede usar sin `appPath` para conectarse a una aplicación ya en ejecución
+Conserva el estado de la aplicación entre sesiones. Cuando es `true`:
+-   Se conservan los datos de la aplicación (estado de inicio de sesión, preferencias, etc.)
+-   La sesión se **desconectará (detach)** en lugar de cerrarse (mantiene la aplicación en ejecución)
+-   Se puede usar sin `appPath` para conectarse a una aplicación que ya se esté ejecutando
 
+</Option>
 #### `fullReset`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `true`
+<Option type="boolean" required="No">
 
-Reinicia completamente la aplicación antes de la sesión. Cuando es `true`:
--   iOS: Desinstala y reinstala la aplicación
--   Android: Borra los datos y la caché de la aplicación
--   Útil para comenzar con un estado limpio
+Restablece completamente la aplicación antes de la sesión:
+-   iOS: desinstala y vuelve a instalar la aplicación
+-   Android: borra los datos y la caché de la aplicación
 
-Establece `fullReset: false` con `noReset: true` para preservar completamente el estado de la aplicación.
+Establece `fullReset: false` junto con `noReset: true` para conservar por completo el estado de la aplicación.
 
-### Tiempo de Espera de Sesión
+</Option>
+### Tiempo de espera de la sesión
 
 #### `newCommandTimeout`
 
--   **Tipo:** `number`
--   **Obligatorio:** No
--   **Valor predeterminado:** `60`
+<Option type="number" default="300" required="No">
 
-Cuánto tiempo (en segundos) Appium esperará un nuevo comando antes de asumir que el cliente ha finalizado y terminar la sesión. Aumenta este valor para sesiones de depuración más largas.
+Cuánto tiempo (en segundos) esperará Appium un nuevo comando antes de finalizar la sesión. Auméntalo para sesiones de depuración más largas.
 
-**Ejemplos:**
--   `60` - Predeterminado, adecuado para la mayoría de las automatizaciones
--   `300` - 5 minutos, para depuración u operaciones más lentas
--   `600` - 10 minutos, para pruebas de muy larga duración
-
-### Opciones de Manejo Automático
+</Option>
+### Gestión automática
 
 #### `autoGrantPermissions`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `true`
+<Option type="boolean" default="true" required="No">
 
-Concede automáticamente permisos de la aplicación en la instalación/inicio. Cuando es `true`:
--   Los permisos de cámara, micrófono, ubicación, etc. se conceden automáticamente
--   No se necesita manejo manual de diálogos de permisos
--   Agiliza la automatización al evitar ventanas emergentes de permisos
+Concede automáticamente los permisos de la aplicación al instalarla/iniciarla (cámara, micrófono, ubicación, etc.).
 
 :::note Solo Android
-Esta opción afecta principalmente a Android. Los permisos de iOS deben manejarse de manera diferente debido a las restricciones del sistema.
+Esta opción afecta principalmente a Android. Los permisos de iOS deben gestionarse de otra manera debido a restricciones del sistema.
 :::
 
+</Option>
 #### `autoAcceptAlerts`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `true`
+<Option type="boolean" default="true" required="No">
 
-Acepta automáticamente alertas del sistema (diálogos) que aparecen durante la automatización.
+Acepta automáticamente las alertas del sistema (diálogos) durante la automatización ("¿Permitir notificaciones?", etc.).
 
-**Ejemplos de alertas aceptadas automáticamente:**
--   "¿Permitir notificaciones?"
--   "La aplicación desea acceder a tu ubicación"
--   "¿Permitir que la aplicación acceda a fotos?"
-
+</Option>
 #### `autoDismissAlerts`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `false`
+<Option type="boolean" default="false" required="No">
 
-Descarta (cancela) las alertas del sistema en lugar de aceptarlas. Tiene prioridad sobre `autoAcceptAlerts` cuando se establece en `true`.
+Descarta las alertas del sistema en lugar de aceptarlas. Tiene prioridad sobre `autoAcceptAlerts` cuando es `true`.
 
-### Anulación del Servidor Appium
+</Option>
+### Conexión al servidor Appium
 
-Puedes anular la conexión del servidor Appium por sesión:
+Sobrescribe la conexión al servidor Appium para cada sesión usando `appiumConfig`:
 
-#### `appiumHost`
+```js
+start_session({
+  platform: "ios",
+  deviceName: "iPhone 16",
+  appPath: "/path/to/app.app",
+  appiumConfig: { host: "192.168.1.100", port: 4724, path: "/wd/hub" }
+})
+```
 
--   **Tipo:** `string`
--   **Obligatorio:** No
+#### `appiumConfig`
 
-Nombre de host del servidor Appium. Anula la variable de entorno `APPIUM_URL`.
+<Option type={`{ host?: string; port?: number; path?: string }`} required="No">
 
-#### `appiumPort`
+Conexión al servidor Appium. De forma predeterminada es `{ host: "127.0.0.1", port: 4723, path: "/" }`.
 
--   **Tipo:** `number`
--   **Obligatorio:** No
+</Option>
+## Opciones de proveedores en la nube
 
-Puerto del servidor Appium. Anula la variable de entorno `APPIUM_URL_PORT`.
+### Credenciales
 
-#### `appiumPath`
+Cada proveedor en la nube requiere sus propias variables de entorno:
 
--   **Tipo:** `string`
--   **Obligatorio:** No
+| Proveedor    | Variable de usuario     | Variable de clave de acceso |
+| ------------ | ----------------------- | --------------------------- |
+| BrowserStack | `BROWSERSTACK_USERNAME` | `BROWSERSTACK_ACCESS_KEY`   |
+| Sauce Labs   | `SAUCE_USERNAME`        | `SAUCE_ACCESS_KEY`          |
+| TestMu       | `TESTMU_USERNAME`       | `TESTMU_ACCESS_KEY`         |
+| TestingBot   | `TESTINGBOT_KEY`        | `TESTINGBOT_SECRET`         |
 
-Ruta del servidor Appium. Anula la variable de entorno `APPIUM_PATH`.
+Configúralas antes de iniciar el servidor MCP.
 
----
+### `region`
 
-## Opciones de Detección de Elementos
+<Option type={`"us-west-1" | "eu-central-1" | "apac-southeast-1"`} default={`"eu-central-1"`} required="No">
 
-Opciones para la herramienta `get_visible_elements`.
+Región del centro de datos de Sauce Labs. Se ignora para otros proveedores.
 
-### `elementType`
+</Option>
+### `tunnel`
 
--   **Tipo:** `string`
--   **Obligatorio:** No
--   **Valor predeterminado:** `interactable`
--   **Valores:** `interactable` | `visual` | `all`
+<Option type={`boolean | "external"`} default="false" required="No">
 
-Tipo de elementos a devolver:
--   `interactable`: Botones, enlaces, campos de entrada y otros elementos en los que se puede hacer clic
--   `visual`: Imágenes, SVGs y elementos visuales
--   `all`: Tanto elementos interactivos como visuales
+Habilita el enrutamiento mediante túnel local para sesiones en proveedores en la nube (acceso a localhost, entornos de staging, servicios internos).
+
+-   `true` — Inicia automáticamente el túnel antes de la sesión y lo detiene al cerrarla
+-   `"external"` — El túnel ya se está ejecutando externamente; solo establece los flags apropiados para el proveedor
+
+Antes de usar `true`, lee el recurso local-binary del proveedor (`wdio://browserstack/local-binary`, `wdio://saucelabs/local-binary`, `wdio://testmu/local-binary` o `wdio://testingbot/local-binary`) para obtener instrucciones de configuración específicas para tu sistema operativo y arquitectura.
+
+</Option>
+### `tunnelName`
+
+<Option type="string" required="No">
+
+Nombre identificador del túnel. Obligatorio cuando `tunnel: "external"` para que coincida con el túnel en ejecución. Cuando `tunnel: true`, se genera automáticamente un nombre único si no se proporciona.
+
+</Option>
+### `reporting`
+
+<Option type={`{ project?: string; build?: string; session?: string }`} required="No">
+
+Etiquetas de sesión del proveedor en la nube visibles en el panel del proveedor. Funciona de forma idéntica en BrowserStack, Sauce Labs, TestMu y TestingBot.
+
+</Option>
+### `trace`
+
+<Option type="boolean" default="false" required="No">
+
+Habilita la grabación de trazas. Genera un archivo zip `.trace` compatible con Playwright que se guarda en `.trace/` al ejecutar `close_session`. Visualiza las trazas en [player.vibium.dev](https://player.vibium.dev).
+
+</Option>
+## Opciones de detección de elementos
+
+Opciones para la herramienta `get_elements`.
 
 ### `inViewportOnly`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `true`
+<Option type="boolean" default="false" required="No">
 
-Solo devuelve elementos que son visibles dentro del viewport actual. Cuando es `false`, devuelve todos los elementos en la jerarquía de vista (útil para encontrar elementos fuera de la pantalla).
+Devuelve solo los elementos visibles en el viewport actual. Establécelo en `true` para reducir los resultados en páginas largas.
 
+</Option>
 ### `includeContainers`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `false`
+<Option type="boolean" default="false" required="No">
 
-Incluye elementos contenedores/de diseño en los resultados. Cuando es `true`:
+Incluye elementos contenedores/de diseño en los resultados:
 
-**Contenedores Android incluidos:**
--   `ViewGroup`, `FrameLayout`, `LinearLayout`
--   `RelativeLayout`, `ConstraintLayout`
--   `ScrollView`, `RecyclerView`
+**Contenedores de Android:** `ViewGroup`, `FrameLayout`, `LinearLayout`, `RelativeLayout`, `ConstraintLayout`, `ScrollView`, `RecyclerView`
 
-**Contenedores iOS incluidos:**
--   `View`, `StackView`, `CollectionView`
--   `ScrollView`, `TableView`
+**Contenedores de iOS:** `View`, `StackView`, `CollectionView`, `ScrollView`, `TableView`
 
-Útil para depurar problemas de diseño o entender la jerarquía de vista.
-
+</Option>
 ### `includeBounds`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `false`
+<Option type="boolean" default="false" required="No">
 
-Incluye los límites/coordenadas del elemento (x, y, ancho, alto) en la respuesta. Establece en `true` para:
--   Interacciones basadas en coordenadas
--   Depuración de diseño
--   Posicionamiento de elementos visuales
+Incluye las coordenadas del cuadro delimitador del elemento (x, y, ancho, alto) en la respuesta.
 
-### Opciones de Paginación
-
-Para páginas grandes con muchos elementos, usa la paginación para reducir el uso de tokens:
+</Option>
+### Paginación
 
 #### `limit`
 
--   **Tipo:** `number`
--   **Obligatorio:** No
--   **Valor predeterminado:** `0` (ilimitado)
+<Option type="number" default="0 (unlimited)" required="No">
 
-Número máximo de elementos a devolver.
+Número máximo de elementos que se devolverán.
 
+</Option>
 #### `offset`
 
--   **Tipo:** `number`
--   **Obligatorio:** No
--   **Valor predeterminado:** `0`
+<Option type="number" default="0" required="No">
 
-Número de elementos a omitir antes de devolver resultados.
+Número de elementos que se omitirán antes de devolver resultados.
 
-**Ejemplo:** Obtener elementos 21-40:
-```
-Get visible elements with limit 20 and offset 20
+**Ejemplo:** Obtener los elementos 21–40:
+```text
+Get elements with limit 20 and offset 20
 ```
 
----
+</Option>
+## Opciones del árbol de accesibilidad
 
-## Opciones de Árbol de Accesibilidad
-
-Opciones para la herramienta `get_accessibility` (solo navegador).
+Opciones para la herramienta `get_accessibility_tree` (solo navegador).
 
 ### `limit`
 
--   **Tipo:** `number`
--   **Obligatorio:** No
--   **Valor predeterminado:** `100`
+<Option type="number" default="0 (unlimited)" required="No">
 
-Número máximo de nodos a devolver. Usa `0` para ilimitado (no recomendado para páginas grandes).
+Número máximo de nodos que se devolverán.
 
+</Option>
 ### `offset`
 
--   **Tipo:** `number`
--   **Obligatorio:** No
--   **Valor predeterminado:** `0`
+<Option type="number" default="0" required="No">
 
-Número de nodos a omitir para paginación.
+Número de nodos que se omitirán para la paginación.
 
+</Option>
 ### `roles`
 
--   **Tipo:** `string[]`
--   **Obligatorio:** No
--   **Valor predeterminado:** Todos los roles
+<Option type="string[]" default="All roles" required="No">
 
-Filtrar a roles de accesibilidad específicos.
+Filtra por roles de accesibilidad específicos.
 
 **Roles comunes:** `button`, `link`, `textbox`, `checkbox`, `radio`, `heading`, `img`, `listitem`
 
 **Ejemplo:** Obtener solo botones y enlaces:
-```
+```text
 Get accessibility tree filtered to button and link roles
 ```
 
-### `namedOnly`
+</Option>
+## Captura de pantalla
 
--   **Tipo:** `boolean`
--   **Obligatorio:** No
--   **Valor predeterminado:** `true`
+La herramienta `get_screenshot` no recibe parámetros. Las capturas de pantalla se procesan automáticamente:
 
-Solo devuelve nodos que tienen un nombre/etiqueta. Filtra contenedores anónimos y reduce el ruido en los resultados.
+| Optimización         | Valor    | Descripción                                                      |
+| -------------------- | -------- | ---------------------------------------------------------------- |
+| Dimensión máxima     | 2000px   | Las imágenes de más de 2000px se reducen                         |
+| Tamaño máximo        | 1MB      | Las imágenes se comprimen para mantenerse por debajo de 1MB      |
+| Formato              | PNG/JPEG | PNG con compresión máxima; JPEG si es necesario por el tamaño    |
 
----
+## Comportamiento de la sesión
 
-## Opciones de Captura de Pantalla
+### Tipos de sesión
 
-Opciones para la herramienta `take_screenshot`.
+| Tipo      | Descripción                  | Desconexión automática                    |
+| --------- | ---------------------------- | ----------------------------------------- |
+| `browser` | Sesión de navegador          | No                                        |
+| `ios`     | Sesión de aplicación iOS     | Sí (si `noReset: true` o no hay `appPath`) |
+| `android` | Sesión de aplicación Android | Sí (si `noReset: true` o no hay `appPath`) |
 
-### `outputPath`
+### Modelo de sesión única
 
--   **Tipo:** `string`
--   **Obligatorio:** No
+El servidor MCP funciona con un **modelo de sesión única**:
 
-Ruta donde guardar el archivo de captura de pantalla. Si no se proporciona, devuelve datos de imagen codificados en base64.
+-   Solo puede haber una sesión de navegador O de aplicación activa a la vez
+-   Iniciar una nueva sesión cerrará/desconectará la sesión actual
+-   El estado de la sesión se mantiene de forma global entre llamadas a herramientas
 
-### Optimización Automática
+### Desconectar vs. cerrar
 
-Las capturas de pantalla se procesan automáticamente para optimizarlas para el consumo de LLM:
+| Acción          | `detach: false` (Cerrar)               | `detach: true` (Desconectar)                         |
+| --------------- | -------------------------------------- | ---------------------------------------------------- |
+| Navegador       | Cierra el navegador por completo       | Mantiene el navegador en ejecución, desconecta WebDriver |
+| App móvil       | Finaliza la aplicación                 | Mantiene la aplicación en ejecución en su estado actual |
+| Caso de uso     | Empezar de cero en la siguiente sesión | Conservar el estado, inspección manual               |
 
-| Optimización | Valor | Descripción |
-|--------------|-------|-------------|
-| Dimensión máxima | 2000px | Las imágenes mayores de 2000px se redimensionan |
-| Tamaño máximo de archivo | 1MB | Las imágenes se comprimen para mantenerse por debajo de 1MB |
-| Formato | PNG/JPEG | PNG con máxima compresión; JPEG si es necesario para el tamaño |
+## Consideraciones de rendimiento
 
-Esta optimización asegura que las capturas de pantalla puedan procesarse eficientemente sin exceder los límites de tokens.
+### Automatización de navegador
 
----
-
-## Comportamiento de Sesión
-
-### Tipos de Sesión
-
-El servidor MCP rastrea los tipos de sesión para proporcionar herramientas y comportamiento apropiados:
-
-| Tipo | Descripción | Auto-Desvinculación |
-|------|-------------|-------------|
-| `browser` | Sesión del navegador Chrome | No |
-| `ios` | Sesión de aplicación iOS | Sí (si `noReset: true` o sin `appPath`) |
-| `android` | Sesión de aplicación Android | Sí (si `noReset: true` o sin `appPath`) |
-
-### Modelo de Sesión Única
-
-El servidor MCP opera con un **modelo de sesión única**:
-
--   Solo una sesión de navegador O aplicación puede estar activa a la vez
--   Iniciar una nueva sesión cerrará/desvinculará la sesión actual
--   El estado de la sesión se mantiene globalmente a través de las llamadas a herramientas
-
-### Desvincular vs Cerrar
-
-| Acción | `detach: false` (Cerrar) | `detach: true` (Desvincular) |
-|--------|-------------------------|-------------------------|
-| Navegador | Cierra Chrome completamente | Mantiene Chrome en ejecución, desconecta WebDriver |
-| Aplicación Móvil | Termina la aplicación | Mantiene la aplicación en ejecución en el estado actual |
-| Caso de uso | Estado limpio para la próxima sesión | Preservar estado, inspección manual |
-
----
-
-## Consideraciones de Rendimiento
-
-El servidor MCP está optimizado para una comunicación eficiente con LLM utilizando el formato **TOON (Token-Oriented Object Notation)**, que minimiza el uso de tokens al enviar datos a Claude.
-
-### Automatización de Navegador
-
--   El **modo headless** es más rápido pero no renderiza elementos visuales
--   **Tamaños de ventana más pequeños** reducen el tiempo de captura de pantalla
+-   El **modo headless** es más rápido, pero no renderiza los elementos visuales
+-   Los **tamaños de ventana más pequeños** reducen el tiempo de captura de pantalla
 -   La **detección de elementos** está optimizada con una única ejecución de script
 -   La **optimización de capturas de pantalla** mantiene las imágenes por debajo de 1MB para un procesamiento eficiente
--   **`inViewportOnly: true`** (predeterminado) filtra a solo elementos visibles
 
-### Automatización Móvil
+### Automatización móvil
 
--   El **análisis de código fuente XML de página** usa solo 2 llamadas HTTP (vs 600+ para consultas tradicionales de elementos)
--   Los **selectores de ID de accesibilidad** son los más rápidos y confiables
--   Los **selectores XPath** son los más lentos - úsalos solo como último recurso
--   **`inViewportOnly: true`** (predeterminado) reduce significativamente el recuento de elementos
--   La **paginación** (`limit` y `offset`) reduce el uso de tokens para pantallas con muchos elementos
--   **`includeBounds: false`** (predeterminado) omite datos de coordenadas a menos que sean necesarios
+-   El **análisis del código fuente XML de la página** usa solo 2 llamadas HTTP (frente a más de 600 de las consultas de elementos tradicionales)
+-   Los **selectores de Accessibility ID** son los más rápidos y fiables
+-   Los **selectores XPath** son los más lentos; úsalos solo como último recurso
+-   La **paginación** (`limit` y `offset`) reduce el uso de tokens en pantallas con muchos elementos
 
-### Consejos de Uso de Tokens
+### Consejos sobre el uso de tokens
 
-| Configuración | Impacto |
-|---------|--------|
-| `inViewportOnly: true` | Filtra elementos fuera de pantalla, reduciendo el tamaño de respuesta |
-| `includeContainers: false` | Excluye elementos de diseño (ViewGroup, etc.) |
-| `includeBounds: false` | Omite datos x/y/ancho/alto |
-| `limit` con paginación | Procesa elementos en lotes en vez de todos a la vez |
-| `namedOnly: true` (accesibilidad) | Filtra nodos anónimos |
+| Ajuste                     | Impacto                                                        |
+| -------------------------- | -------------------------------------------------------------- |
+| `inViewportOnly: true`     | Filtra los elementos fuera de pantalla, reduciendo el tamaño de la respuesta |
+| `includeContainers: false` | Excluye los elementos de diseño (ViewGroup, etc.)              |
+| `includeBounds: false`     | Omite los datos de x/y/ancho/alto                              |
+| `limit` con paginación     | Procesa los elementos por lotes en lugar de todos a la vez     |
 
----
+## Configuración del servidor Appium
 
-## Configuración del Servidor Appium
+Antes de usar la automatización móvil, asegúrate de que Appium esté configurado correctamente.
 
-Antes de usar la automatización móvil, asegúrate de que Appium esté correctamente configurado.
-
-### Configuración Básica
+### Configuración básica
 
 ```sh
 # Instalar Appium globalmente
 npm install -g appium
 
-# Instalar controladores
+# Instalar drivers
 appium driver install xcuitest    # iOS
 appium driver install uiautomator2  # Android
 
@@ -552,58 +482,56 @@ appium driver install uiautomator2  # Android
 appium
 ```
 
-### Configuración Personalizada del Servidor
+### Configuración personalizada del servidor
 
 ```sh
 # Iniciar con host y puerto personalizados
 appium --address 0.0.0.0 --port 4724
 
-# Iniciar con registro
+# Iniciar con registro de logs
 appium --log-level debug
 
-# Iniciar con ruta base específica
+# Iniciar con una ruta base específica
 appium --base-path /wd/hub
 ```
 
-### Verificar Instalación
+### Verificar la instalación
 
 ```sh
-# Verificar controladores instalados
+# Comprobar los drivers instalados
 appium driver list --installed
 
-# Verificar versión de Appium
+# Comprobar la versión de Appium
 appium --version
 
-# Probar conexión
+# Probar la conexión
 curl http://localhost:4723/status
 ```
 
----
+## Solución de problemas de configuración
 
-## Solución de Problemas de Configuración
+### El servidor MCP no se inicia
 
-### El Servidor MCP No Inicia
-
-1. Verifica que npm/npx está instalado: `npm --version`
+1. Verifica que npm/npx esté instalado: `npm --version`
 2. Intenta ejecutarlo manualmente: `npx @wdio/mcp`
-3. Revisa los registros de Claude Desktop para errores
+3. Revisa los logs de tu harness en busca de errores
 
-### Problemas de Conexión con Appium
+### Problemas de conexión con Appium
 
-1. Verifica que Appium está ejecutándose: `curl http://localhost:4723/status`
-2. Comprueba que las variables de entorno coincidan con la configuración del servidor Appium
-3. Asegúrate de que el firewall permite conexiones en el puerto Appium
+1. Verifica que Appium se esté ejecutando: `curl http://localhost:4723/status`
+2. Comprueba que `appiumConfig` en `start_session` coincida con la configuración del servidor Appium
+3. Asegúrate de que el firewall permita conexiones en el puerto de Appium
 
-### La Sesión No Inicia
+### La sesión no se inicia
 
-1. **Navegador:** Asegúrate de que Chrome está instalado
-2. **iOS:** Verifica que Xcode y los simuladores están disponibles
-3. **Android:** Comprueba `ANDROID_HOME` y que el emulador está ejecutándose
-4. Revisa los registros del servidor Appium para mensajes de error detallados
+1. **Navegador:** Asegúrate de que el navegador de destino esté instalado
+2. **iOS:** Verifica que Xcode y los simuladores estén disponibles
+3. **Android:** Comprueba `ANDROID_HOME` y que el emulador se esté ejecutando
+4. Revisa los logs del servidor Appium para ver mensajes de error detallados
 
-### Tiempos de Espera de Sesión
+### Tiempos de espera de la sesión
 
-Si las sesiones están agotando el tiempo de espera durante la depuración:
+Si las sesiones agotan el tiempo de espera durante la depuración:
 1. Aumenta `newCommandTimeout` al iniciar la sesión
-2. Usa `noReset: true` para preservar el estado entre sesiones
+2. Usa `noReset: true` para conservar el estado entre sesiones
 3. Usa `detach: true` al cerrar para mantener la aplicación en ejecución

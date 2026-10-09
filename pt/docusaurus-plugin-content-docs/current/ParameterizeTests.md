@@ -1,9 +1,10 @@
 ---
 id: parameterize-tests
 title: Parametrizar Testes
+description: "Parametrize testes com loops e funções dinâmicas, variáveis de ambiente, arquivos .env ou dados de um arquivo CSV."
 ---
 
-Você pode simplesmente parametrizar testes em nível de teste, através de simples loops `for`, por exemplo:
+Você pode simplesmente parametrizar testes no nível do teste, por meio de simples loops `for`, por exemplo:
 
 ```ts title=example.spec.js
 const people = ['Alice', 'Bob']
@@ -16,7 +17,7 @@ describe('my tests', () => {
 })
 ```
 
-ou extraindo testes para funções dinâmicas, por exemplo:
+ou extraindo os testes para funções dinâmicas, por exemplo:
 
 ```js title=dynamic.spec.js
 import { browser } from '@wdio/globals'
@@ -38,7 +39,7 @@ describe('page components', () => {
 
 Você pode usar variáveis de ambiente para configurar testes a partir da linha de comando.
 
-Por exemplo, considere o seguinte arquivo de teste que precisa de um nome de usuário e uma senha. Geralmente é uma boa ideia não armazenar seus segredos no código-fonte, então precisaremos de uma maneira de passar segredos de fora.
+Por exemplo, considere o seguinte arquivo de teste que precisa de um nome de usuário e uma senha. Geralmente é uma boa ideia não armazenar seus segredos no código-fonte, então precisaremos de uma forma de passar os segredos de fora.
 
 ```ts title=example.spec.ts
 it(`example test`, async () => {
@@ -85,7 +86,7 @@ npx wdio run wdio.conf.js
 </TabItem>
 </Tabs>
 
-Da mesma forma, o arquivo de configuração também pode ler variáveis de ambiente passadas através da linha de comando.
+Da mesma forma, o arquivo de configuração também pode ler variáveis de ambiente passadas pela linha de comando.
 
 ```ts title=wdio.config.js
 export const config = {
@@ -134,24 +135,24 @@ npx wdio run wdio.conf.js
 
 ## Arquivos `.env`
 
-Para facilitar o gerenciamento das variáveis de ambiente, considere algo como arquivos `.env`. O WebdriverIO carrega arquivos `.env` automaticamente em seu ambiente. Em vez de definir a variável de ambiente como parte da chamada de comando, você pode definir o seguinte `.env`:
+Para facilitar o gerenciamento das variáveis de ambiente, considere usar algo como arquivos `.env`. O WebdriverIO carrega arquivos `.env` automaticamente no seu ambiente. Em vez de definir a variável de ambiente como parte da chamada do comando, você pode definir o seguinte `.env`:
 
 ```bash title=".env"
-# .env file
+# arquivo .env
 STAGING=0
 USERNAME=me
 PASSWORD=secret
 ```
 
-Execute os testes como de costume, suas variáveis de ambiente devem ser detectadas.
+Execute os testes normalmente; suas variáveis de ambiente devem ser reconhecidas.
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-## Criar testes através de um arquivo CSV
+## Criar testes a partir de um arquivo CSV
 
-O test-runner do WebdriverIO é executado no Node.js, isso significa que você pode ler arquivos diretamente do sistema de arquivos e analisá-los com sua biblioteca CSV preferida.
+O test-runner do WebdriverIO é executado no Node.js, o que significa que você pode ler arquivos diretamente do sistema de arquivos e analisá-los com sua biblioteca CSV preferida.
 
 Veja, por exemplo, este arquivo CSV, em nosso exemplo input.csv:
 
@@ -163,7 +164,7 @@ Veja, por exemplo, este arquivo CSV, em nosso exemplo input.csv:
 "value 4","value 44","foobar4321"
 ```
 
-Com base nisso, vamos gerar alguns testes usando a biblioteca csv-parse do NPM:
+Com base nele, vamos gerar alguns testes usando a biblioteca csv-parse do NPM:
 
 ```js title=test.spec.ts
 import fs from 'node:fs'

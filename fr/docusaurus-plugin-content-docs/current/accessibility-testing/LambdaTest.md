@@ -1,27 +1,27 @@
 ---
 id: testmuai
-title: Test d'Accessibilité TestMu AI (Anciennement LambdaTest)
-description: ""
+title: Tests d'accessibilité TestMu AI (anciennement LambdaTest)
+description: "Activez les tests d'accessibilité TestMu AI (anciennement LambdaTest) dans votre suite WebdriverIO, configurez les options d'analyse et consultez les rapports d'accessibilité."
 ---
 
-# TestMu AI Accessibility Testing
+# Tests d'accessibilité TestMu AI
 
 Vous pouvez facilement intégrer des tests d'accessibilité dans vos suites de tests WebdriverIO en utilisant [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
 
-## Avantages de TestMu AI Accessibility Testing
+## Avantages des tests d'accessibilité TestMu AI
 
-TestMu AI Accessibility Testing vous aide à identifier et corriger les problèmes d'accessibilité dans vos applications web. Voici les principaux avantages :
+Les tests d'accessibilité TestMu AI vous aident à identifier et à corriger les problèmes d'accessibilité dans vos applications web. Voici les principaux avantages :
 
-* S'intègre parfaitement à votre automatisation de test WebdriverIO existante.
-* Analyse automatique de l'accessibilité pendant l'exécution des tests.
-* Rapports complets de conformité aux WCAG.
-* Suivi détaillé des problèmes avec des conseils pour y remédier.
+* S'intègre parfaitement à votre automatisation de tests WebdriverIO existante.
+* Analyse automatisée de l'accessibilité pendant l'exécution des tests.
+* Rapports complets de conformité WCAG.
+* Suivi détaillé des problèmes avec des conseils de correction.
 * Prise en charge de plusieurs normes WCAG (WCAG 2.0, WCAG 2.1, WCAG 2.2).
-* Informations sur l'accessibilité en temps réel dans le tableau de bord TestMu AI.
+* Informations d'accessibilité en temps réel dans le tableau de bord TestMu AI.
 
-## Démarrer avec TestMu AI Accessibility Testing
+## Démarrer avec les tests d'accessibilité TestMu AI
 
-Suivez ces étapes pour intégrer vos suites de tests WebdriverIO avec l'Accessibility Testing de TestMu AI :
+Suivez ces étapes pour intégrer vos suites de tests WebdriverIO aux tests d'accessibilité de TestMu AI :
 
 1. Installez le package de service WebdriverIO de TestMu AI.
 
@@ -42,9 +42,9 @@ exports.config = {
         'LT:Options': {
             platform: 'Windows 10',
             version: 'latest',
-            accessibility: true, // Enable accessibility testing
+            accessibility: true, // Activer les tests d'accessibilité
             accessibilityOptions: {
-                wcagVersion: 'wcag21a', // WCAG version (wcag20, wcag21a, wcag21aa, wcag22aa)
+                wcagVersion: 'wcag21a', // Version WCAG (wcag20, wcag21a, wcag21aa, wcag22aa)
                 bestPractice: false,
                 needsReview: true
             }
@@ -70,23 +70,23 @@ npx wdio run wdio.conf.js
 
 L'objet `accessibilityOptions` prend en charge les paramètres suivants :
 
-* **wcagVersion** : Spécifiez la version standard WCAG à tester
+* **wcagVersion** : Spécifie la version de la norme WCAG à utiliser pour les tests
   - `wcag20` - WCAG 2.0 Niveau A
   - `wcag21a` - WCAG 2.1 Niveau A
   - `wcag21aa` - WCAG 2.1 Niveau AA (par défaut)
   - `wcag22aa` - WCAG 2.2 Niveau AA
 
-* **bestPractice** : Inclure les recommandations de bonnes pratiques (par défaut : `false`)
+* **bestPractice** : Inclut les recommandations de bonnes pratiques (par défaut : `false`)
 
-* **needsReview** : Inclure les problèmes nécessitant une révision manuelle (par défaut : `true`)
+* **needsReview** : Inclut les problèmes nécessitant une vérification manuelle (par défaut : `true`)
 
-## Consultation des rapports d'accessibilité
+## Consulter les rapports d'accessibilité
 
-Après l'exécution de vos tests, vous pouvez consulter des rapports d'accessibilité détaillés dans le [Tableau de bord TestMu AI](https://automation.lambdatest.com/) :
+Une fois vos tests terminés, vous pouvez consulter des rapports d'accessibilité détaillés dans le [tableau de bord TestMu AI](https://automation.lambdatest.com/) :
 
-1. Accédez à votre exécution de test
-2. Cliquez sur l'onglet "Accessibility"
+1. Accédez à l'exécution de votre test
+2. Cliquez sur l'onglet « Accessibility »
 3. Examinez les problèmes identifiés avec leurs niveaux de gravité
-4. Obtenez des conseils pour remédier à chaque problème
+4. Obtenez des conseils de correction pour chaque problème
 
-Pour des informations plus détaillées, consultez la [documentation d'automatisation de l'accessibilité de TestMu AI](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
+Pour des informations plus détaillées, consultez la [documentation TestMu AI Accessibility Automation](https://www.testmuai.com/support/docs/accessibility-automation-settings/).

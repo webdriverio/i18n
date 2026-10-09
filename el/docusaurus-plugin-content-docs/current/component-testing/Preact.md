@@ -1,13 +1,14 @@
 ---
 id: preact
 title: Preact
+description: "Ρυθμίστε τον browser runner του WebdriverIO για ένα έργο Preact με το preset preact και γράψτε δοκιμές components με το Testing Library."
 ---
 
-[Preact](https://preactjs.com/) είναι μια γρήγορη εναλλακτική 3kB του React με το ίδιο σύγχρονο API. Μπορείτε να δοκιμάσετε τα συστατικά Preact απευθείας σε ένα πραγματικό πρόγραμμα περιήγησης χρησιμοποιώντας το WebdriverIO και το [browser runner](/docs/runner#browser-runner).
+Το [Preact](https://preactjs.com/) είναι μια γρήγορη εναλλακτική λύση του React, μεγέθους 3kB, με το ίδιο σύγχρονο API. Μπορείτε να δοκιμάσετε components του Preact απευθείας σε έναν πραγματικό browser χρησιμοποιώντας το WebdriverIO και τον [browser runner](/docs/runner#browser-runner) του.
 
 ## Ρύθμιση
 
-Για να ρυθμίσετε το WebdriverIO στο έργο Preact σας, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στα έγγραφα δοκιμών των συστατικών μας. Βεβαιωθείτε ότι έχετε επιλέξει `preact` ως προεπιλογή στις επιλογές του runner σας, π.χ.:
+Για να ρυθμίσετε το WebdriverIO στο έργο σας Preact, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στην τεκμηρίωσή μας για τις δοκιμές components. Βεβαιωθείτε ότι έχετε επιλέξει το `preact` ως preset στις επιλογές του runner σας, π.χ.:
 
 ```js
 // wdio.conf.js
@@ -22,11 +23,11 @@ export const config = {
 
 :::info
 
-Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως διακομιστή ανάπτυξης, μπορείτε επίσης να επαναχρησιμοποιήσετε τη διαμόρφωσή σας στο `vite.config.ts` μέσα στη διαμόρφωση WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές runner](/docs/runner#runner-options).
+Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως development server, μπορείτε επίσης απλώς να επαναχρησιμοποιήσετε τη διαμόρφωσή σας από το `vite.config.ts` μέσα στη διαμόρφωση του WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές του runner](/docs/runner#runner-options).
 
 :::
 
-Η προεπιλογή Preact απαιτεί την εγκατάσταση του `@preact/preset-vite`. Επίσης, συνιστούμε τη χρήση του [Testing Library](https://testing-library.com/) για την απόδοση του συστατικού στη σελίδα δοκιμής. Για αυτό, θα χρειαστεί να εγκαταστήσετε τις ακόλουθες πρόσθετες εξαρτήσεις:
+Το preset του Preact απαιτεί να είναι εγκατεστημένο το `@preact/preset-vite`. Επίσης, συνιστούμε τη χρήση του [Testing Library](https://testing-library.com/) για την απόδοση (rendering) του component στη σελίδα δοκιμής. Επομένως, θα χρειαστεί να εγκαταστήσετε τις ακόλουθες επιπλέον εξαρτήσεις:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
@@ -38,9 +39,9 @@ npm install --save-dev @testing-library/preact @preact/preset-vite
 npx wdio run ./wdio.conf.js
 ```
 
-## Γράφοντας Δοκιμές
+## Συγγραφή Δοκιμών
 
-Δεδομένου ότι έχετε το ακόλουθο συστατικό Preact:
+Δεδομένου ότι έχετε το ακόλουθο component του Preact:
 
 ```tsx title="./components/Component.jsx"
 import { h } from 'preact'
@@ -64,7 +65,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-Στη δοκιμή σας, χρησιμοποιήστε τη μέθοδο `render` από το `@testing-library/preact` για να επισυνάψετε το συστατικό στη σελίδα δοκιμής. Για να αλληλεπιδράσετε με το συστατικό, συνιστούμε να χρησιμοποιήσετε εντολές WebdriverIO καθώς συμπεριφέρονται πιο κοντά στις πραγματικές αλληλεπιδράσεις χρηστών, π.χ.:
+Στη δοκιμή σας, χρησιμοποιήστε τη μέθοδο `render` από το `@testing-library/preact` για να προσαρτήσετε το component στη σελίδα δοκιμής. Για την αλληλεπίδραση με το component, συνιστούμε τη χρήση εντολών του WebdriverIO, καθώς συμπεριφέρονται πιο κοντά σε πραγματικές αλληλεπιδράσεις χρήστη, π.χ.:
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'
@@ -84,4 +85,4 @@ describe('Preact Component Testing', () => {
 })
 ```
 
-Μπορείτε να βρείτε ένα πλήρες παράδειγμα μιας σουίτας δοκιμών συστατικών WebdriverIO για Preact στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite) μας.
+Μπορείτε να βρείτε ένα πλήρες παράδειγμα σουίτας δοκιμών components του WebdriverIO για το Preact στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite) μας.

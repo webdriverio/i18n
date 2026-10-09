@@ -3,37 +3,37 @@
     "message": "Тестирование в реальных средах"
   },
   "features.realEnvironments.description": {
-    "message": "WebdriverIO позволяет тестировать в реальных браузерах или мобильных устройствах, используемых вашими пользователями."
+    "message": "WebdriverIO позволяет проводить тестирование в настоящих браузерах и на мобильных устройствах, которыми пользуются ваши пользователи."
   },
   "features.versatile": {
     "message": "Универсальность и богатый функционал"
   },
   "features.versatile.description": {
-    "message": "Используйте WebdriverIO для полного e2e или модульного и компонентного тестирования в браузере."
+    "message": "Используйте WebdriverIO для полноценного e2e-тестирования, а также модульного и компонентного тестирования в браузере."
   },
   "features.autoWait": {
     "message": "Автоматическое ожидание"
   },
   "features.autoWait.description": {
-    "message": "WebdriverIO автоматически ожидает появления элементов перед взаимодействием с ними."
+    "message": "WebdriverIO автоматически ожидает появления элементов, прежде чем взаимодействовать с ними."
   },
   "features.standards": {
     "message": "Основан на веб-стандартах"
   },
   "homepage.features.crossBrowser": {
-    "message": "Поддержка кросс-браузерности через автоматизацию с помощью {webdriverLink} и {bidiLink}."
+    "message": "Кроссбраузерная поддержка благодаря автоматизации через {webdriverLink} и {bidiLink}."
   },
   "features.mobileSupport": {
     "message": "Нативная поддержка мобильных устройств"
   },
   "homepage.features.mobile": {
-    "message": "Запускайте WebdriverIO на реальных мобильных устройствах, смарт-телевизорах или других устройствах IoT через {appiumLink}."
+    "message": "Запускайте WebdriverIO на реальных мобильных устройствах, смарт-телевизорах и других IoT-устройствах с помощью {appiumLink}."
   },
   "features.community": {
     "message": "Преданное сообщество"
   },
   "homepage.features.support": {
-    "message": "Ведение {supportChannelLink} с более чем 8 тысячами участников и богатой экосистемой плагинов, поддерживаемых сообществом."
+    "message": "У нас есть {supportChannelLink}, в котором более 8 тысяч участников, а также богатая экосистема плагинов, поддерживаемых сообществом."
   },
   "homepage.createBrowserAnimation": {
     "message": "Создайте проект WebdriverIO для автоматизации приложений MacOS"
@@ -42,22 +42,22 @@
     "message": "Кто использует WebdriverIO?"
   },
   "sponsors.description.openSource": {
-    "message": "\n                Мы являемся проектом с открытым исходным кодом с твердой приверженностью прозрачности и общественному управлению.\n                Мы являемся частью {openJsFoundationLink}, который входит в состав {linuxFoundationLink}. Проект\n                полностью управляется добровольцами и финансируется заинтересованными компаниями, которые хотят видеть успех проекта.\n                Команда проекта благодарна за щедрое спонсорство этих компаний.\n            "
+    "message": "\n                Мы — проект с открытым исходным кодом, твёрдо приверженный принципам прозрачности и управления сообществом.\n                Мы входим в {openJsFoundationLink}, который является частью {linuxFoundationLink}. Проект\n                полностью ведётся волонтёрами и финансируется заинтересованными компаниями, которые хотят, чтобы проект был успешным.\n                Команда проекта благодарна этим компаниям за щедрую спонсорскую поддержку.\n            "
   },
   "sponsors.description.support": {
-    "message": "Если вы используете WebdriverIO в своей организации, пожалуйста, рассмотрите возможность поддержки проекта {becomeASponsor}. Это поможет нам поддерживать проект и развивать его."
+    "message": "Если вы используете WebdriverIO в своей организации, пожалуйста, рассмотрите возможность поддержать проект, {becomeASponsor}. Это поможет нам поддерживать и развивать проект."
   },
   "homepage.tagline": {
-    "message": "Фреймворк нового поколения для автоматизации тестирования браузеров и мобильных устройств на Node.js"
+    "message": "Автоматизация тестирования веб-, мобильных и десктопных приложений с открытым исходным кодом"
   },
   "homepage.getStarted": {
-    "message": "Начать работу"
+    "message": "Начать"
   },
   "homepage.whyWebdriverIO": {
     "message": "Почему WebdriverIO?"
   },
   "homepage.viewOnGitHub": {
-    "message": "Посмотреть на GitHub"
+    "message": "Открыть на GitHub"
   },
   "homepage.watchOnYouTube": {
     "message": "Смотреть на YouTube"
@@ -65,35 +65,38 @@
   "homepage.sponsorSection.sponsoredBy": {
     "message": "При поддержке"
   },
+  "homepage.sponsorSection.and": {
+    "message": "и"
+  },
   "homepage.componentTesting.heading": {
-    "message": "E2E и модульное/компонентное тестирование в реальном браузере!"
+    "message": "E2E и модульное / компонентное тестирование в реальном браузере!"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIO — это {allInOne} фреймворк для разработки веб-приложений. Он позволяет запускать небольшие и легкие компонентные тесты, а также сценарии e2e-тестирования в браузере или на мобильном устройстве. Это гарантирует, что вы проводите тестирование в среде, {usedBy}."
+    "message": "WebdriverIO — это фреймворк «{allInOne}» для разработки ваших веб-приложений. Он позволяет запускать небольшие и легковесные компонентные тесты, а также выполнять e2e-сценарии в браузере или на мобильном устройстве. Это гарантирует, что вы проводите тестирование в среде, {usedBy}."
   },
   "homepage.componentTesting.allInOne": {
-    "message": "универсальный"
+    "message": "всё в одном"
   },
   "homepage.componentTesting.usedBy": {
-    "message": "используемой вашими пользователями"
+    "message": "которой пользуются ваши пользователи"
   },
   "homepage.componentTesting.para2": {
-    "message": "Он поставляется с умными стратегиями селекторов, которые упрощают взаимодействие, например, с {reactComponents} или выполнение глубоких запросов селекторов с вложенными деревьями теневого DOM. Поскольку взаимодействия происходят через стандартизированный протокол автоматизации, гарантируется, что они ведут себя нативно и не эмулируются с помощью JavaScript."
+    "message": "Он поставляется с умными стратегиями селекторов, которые упрощают, например, взаимодействие с {reactComponents} или выполнение глубоких запросов селекторов во вложенных деревьях shadow DOM. Поскольку взаимодействие происходит через стандартизированный протокол автоматизации, гарантируется, что оно ведёт себя нативно, а не просто эмулируется с помощью JavaScript."
   },
   "homepage.componentTesting.easySetup": {
-    "message": "Простая настройка для тестирования веб-компонентов с:"
+    "message": "Простая настройка тестирования веб-компонентов с:"
   },
   "homepage.hightlight.createProject": {
     "message": "Начните работу с WebdriverIO за считанные секунды"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "Тестовый исполнитель WebdriverIO поставляется с интерфейсом командной строки, который предоставляет мощную утилиту конфигурации и помогает создать тестовую среду менее чем за минуту. Он позволяет выбирать из доступных интеграций с тестовыми фреймворками и легко добавлять все поддерживаемые плагины репортеров и сервисов!"
+    "message": "Тестраннер WebdriverIO поставляется с интерфейсом командной строки, который предоставляет мощную утилиту конфигурации и помогает создать тестовое окружение менее чем за минуту. Он позволяет выбрать одну из доступных интеграций с тестовыми фреймворками и легко добавить все поддерживаемые плагины репортеров и сервисов!"
   },
   "homepage.hightlight.createProject.para2": {
-    "message": "С помощью всего одной простой команды вы можете настроить полный набор тестов:"
+    "message": "Всего одной простой командой вы можете настроить полноценный набор тестов:"
   },
   "homepage.highlight.getStartedOnYouTube": {
-    "message": "Начните узнавать больше о WebdriverIO и о том, как начать работу {youtubeLink}."
+    "message": "Узнайте больше о WebdriverIO и о том, как начать работу, {youtubeLink}."
   },
   "homepage.highlight.getStartedOnYouTube.label;": {
     "message": "на YouTube",
@@ -103,20 +106,20 @@
     "message": "Смотрите доклады о WebdriverIO"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "Сообщество вокруг WebdriverIO активно выступает в различных пользовательских группах или конференциях по конкретным темам автоматизированного тестирования с WebdriverIO. Посмотрите этот доклад на {youtubeLink} от {videoAuthor} на {conferenceLink}."
+    "message": "Сообщество WebdriverIO активно выступает на различных встречах пользователей и конференциях, рассказывая о конкретных темах автоматизированного тестирования с WebdriverIO. Посмотрите этот доклад на {youtubeLink} от {videoAuthor} на {conferenceLink}."
   },
   "homepage.highlight.conferenceTalk.label": {
-    "message": "Мои любимые функции WebdriverIO",
+    "message": "Мои любимые возможности WebdriverIO",
     "description": "The conference talk title"
   },
   "homepage.highlight.youtubeChannels": {
-    "message": "Также существует множество YouTube-каналов с полезными учебными материалами от членов сообщества, таких как {channelOne}, {channelTwo} или {channelThree}."
+    "message": "Также существует множество YouTube-каналов с полезными руководствами от участников сообщества, например {channelOne}, {channelTwo} или {channelThree}."
   },
   "homepage.hightlight.lighthouse": {
     "message": "Интеграция с Google Lighthouse"
   },
   "homepage.highlight.devtools": {
-    "message": "WebdriverIO не только запускает автоматизацию на основе протокола WebDriver, но и использует нативные API браузера для обеспечения интеграции с популярными инструментами разработчика, такими как {devtoolsLink} или {lighthouseLink}. С плагином {devtoolsServiceLink} у вас есть доступ к командам для проверки, является ли ваше приложение действительным PWA-приложением, а также к командам для сбора метрик производительности интерфейса, таких как `speedIndex` и другие."
+    "message": "WebdriverIO не только выполняет автоматизацию на основе протокола WebDriver, но и использует нативные API браузера для интеграции с популярными инструментами разработчика, такими как {devtoolsLink} или {lighthouseLink}. С плагином {devtoolsServiceLink} вам доступны команды для проверки того, является ли ваше приложение корректным PWA-приложением, а также команды для сбора метрик производительности фронтенда, таких как `speedIndex` и других."
   },
   "homepage.hightlight.devtools": {
     "message": "Интеграция с инструментами разработчика, такими как:"
@@ -137,16 +140,16 @@
     "message": "с декабря 2019"
   },
   "versions.description": {
-    "message": "Страница версий Docusaurus 2, перечисляющая все документированные версии сайта"
+    "message": "Все размещённые версии документации WebdriverIO"
   },
   "WebdriverIO documentation versions": {
     "message": "Версии документации WebdriverIO"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "Команда проекта выпускает новые основные версии примерно раз в год. Статус выпуска LTS — это \"долгосрочная поддержка\", что обычно гарантирует, что критические ошибки будут исправляться в течение 12 месяцев до выпуска новой основной версии."
+    "message": "Команда проекта выпускает новые мажорные версии примерно раз в год. Статус релиза LTS означает «долгосрочная поддержка» (long-term support), что, как правило, гарантирует исправление критических ошибок в течение 12 месяцев, пока не будет выпущена новая мажорная версия."
   },
   "Current version (Stable)": {
-    "message": "Текущая версия (Стабильная)"
+    "message": "Текущая версия (стабильная)"
   },
   "Here you can find the documentation for current released version.": {
     "message": "Здесь вы можете найти документацию для текущей выпущенной версии."
@@ -164,7 +167,7 @@
     "message": "Здесь вы можете найти документацию для предыдущих версий Docusaurus."
   },
   "theme.ErrorPageContent.title": {
-    "message": "Эта страница вышла из строя.",
+    "message": "На этой странице произошёл сбой.",
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
@@ -180,7 +183,7 @@
     "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.paginator.navAriaLabel": {
-    "message": "Навигация по списку блога",
+    "message": "Навигация по страницам списка блога",
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
@@ -192,27 +195,27 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Навигация по странице поста блога",
+    "message": "Навигация по записям блога",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "Более новый пост",
+    "message": "Следующая запись",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "Более старый пост",
+    "message": "Предыдущая запись",
     "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.tags.tagsPageLink": {
-    "message": "Просмотреть все теги",
+    "message": "Посмотреть все теги",
     "description": "The label of the link targeting the tag list page"
   },
   "theme.colorToggle.ariaLabel": {
-    "message": "Переключение между темным и светлым режимом (сейчас используется {mode})",
+    "message": "Переключение между тёмным и светлым режимом (сейчас: {mode})",
     "description": "The ARIA label for the navbar color mode toggle"
   },
   "theme.colorToggle.ariaLabel.mode.dark": {
-    "message": "темный режим",
+    "message": "тёмный режим",
     "description": "The name for the dark color mode"
   },
   "theme.colorToggle.ariaLabel.mode.light": {
@@ -220,11 +223,11 @@
     "description": "The name for the light color mode"
   },
   "theme.docs.breadcrumbs.navAriaLabel": {
-    "message": "Хлебные крошки",
+    "message": "Навигационная цепочка",
     "description": "The ARIA label for the breadcrumbs"
   },
   "theme.docs.DocCard.categoryDescription.plurals": {
-    "message": "1 элемент|{count} элементов",
+    "message": "{count} элемент|{count} элемента|{count} элементов",
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
@@ -232,22 +235,22 @@
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
-    "message": "Предыдущая",
+    "message": "Назад",
     "description": "The label used to navigate to the previous doc"
   },
   "theme.docs.paginator.next": {
-    "message": "Следующая",
+    "message": "Далее",
     "description": "The label used to navigate to the next doc"
   },
   "theme.docs.versionBadge.label": {
     "message": "Версия: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "Это неопубликованная документация для {siteTitle} версии {versionLabel}.",
+    "message": "Это документация для ещё не выпущенной версии {siteTitle} {versionLabel}.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "Это документация для {siteTitle} {versionLabel}, которая больше активно не поддерживается.",
+    "message": "Это документация для {siteTitle} {versionLabel}, которая больше не поддерживается активно.",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
@@ -259,11 +262,11 @@
     "description": "The label used for the latest version suggestion link label"
   },
   "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "Один документ с тегом|{count} документов с тегом",
+    "message": "{count} документ с тегом|{count} документа с тегом|{count} документов с тегом",
     "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.docs.tagDocListPageTitle": {
-    "message": "{nDocsTagged} с \"{tagName}\"",
+    "message": "{nDocsTagged} «{tagName}»",
     "description": "The title of the page for a docs tag"
   },
   "theme.common.editThisPage": {
@@ -327,7 +330,7 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Навигация по последним постам блога",
+    "message": "Навигация по последним записям блога",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.CodeBlock.wordWrapToggle": {
@@ -343,7 +346,7 @@
     "description": "The ARIA label for copy code blocks button"
   },
   "theme.CodeBlock.copy": {
-    "message": "Скопировать",
+    "message": "Копировать",
     "description": "The copy button label on code blocks"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
@@ -355,7 +358,7 @@
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
-    "message": "Главная",
+    "message": "Основная",
     "description": "The ARIA label for the main navigation"
   },
   "theme.NotFound.p1": {
@@ -363,7 +366,7 @@
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Пожалуйста, свяжитесь с владельцем сайта, который дал вам ссылку на исходный URL, и сообщите ему, что его ссылка не работает.",
+    "message": "Пожалуйста, свяжитесь с владельцем сайта, с которого вы перешли по исходной ссылке, и сообщите ему, что ссылка не работает.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
@@ -371,7 +374,7 @@
     "description": "The label used by the button on the collapsible TOC component"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "Одна минута чтения|{readingTime} минут чтения",
+    "message": "{readingTime} минута чтения|{readingTime} минуты чтения|{readingTime} минут чтения",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.navbar.mobileLanguageDropdown.label": {
@@ -383,7 +386,7 @@
     "description": "The label used in blog post item excerpts to link to full blog posts"
   },
   "theme.blog.post.readMoreLabel": {
-    "message": "Узнать больше о {title}",
+    "message": "Подробнее о {title}",
     "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.docs.breadcrumbs.home": {
@@ -403,7 +406,7 @@
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
-    "message": "← Вернуться в главное меню",
+    "message": "← Назад в главное меню",
     "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
   },
   "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
@@ -423,14 +426,14 @@
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
-    "message": "Просмотреть все {count} результатов"
+    "message": "Посмотреть все результаты ({count})"
   },
   "theme.SearchPage.documentsFound.plurals": {
-    "message": "Найден один документ|Найдено {count} документов",
+    "message": "Найден {count} документ|Найдено {count} документа|Найдено {count} документов",
     "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.SearchPage.existingResultsTitle": {
-    "message": "Результаты поиска для \"{query}\"",
+    "message": "Результаты поиска по запросу «{query}»",
     "description": "The search page title for non-empty query"
   },
   "theme.SearchPage.emptyResultsTitle": {
@@ -438,7 +441,7 @@
     "description": "The search page title for empty query"
   },
   "theme.SearchPage.inputPlaceholder": {
-    "message": "Введите поисковый запрос здесь",
+    "message": "Введите поисковый запрос",
     "description": "The placeholder for search page input"
   },
   "theme.SearchPage.inputLabel": {
@@ -450,11 +453,11 @@
     "description": "The ARIA label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
-    "message": "Результаты не найдены",
+    "message": "Ничего не найдено",
     "description": "The paragraph for empty search result"
   },
   "theme.SearchPage.fetchingNewResults": {
-    "message": "Получение новых результатов...",
+    "message": "Загрузка новых результатов...",
     "description": "The paragraph for fetching new search results"
   },
   "theme.SearchBar.label": {
@@ -474,15 +477,15 @@
     "description": "The title for recent searches"
   },
   "theme.SearchModal.startScreen.noRecentSearchesText": {
-    "message": "Нет недавних поисков",
+    "message": "Нет недавних запросов",
     "description": "The text when no recent searches"
   },
   "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
-    "message": "Сохранить этот поиск",
+    "message": "Сохранить этот запрос",
     "description": "The label for save recent search button"
   },
   "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
-    "message": "Удалить этот поиск из истории",
+    "message": "Удалить этот запрос из истории",
     "description": "The label for remove recent search button"
   },
   "theme.SearchModal.startScreen.favoriteSearchesTitle": {
@@ -490,7 +493,7 @@
     "description": "The title for favorite searches"
   },
   "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
-    "message": "Удалить этот поиск из избранного",
+    "message": "Удалить этот запрос из избранного",
     "description": "The label for remove favorite search button"
   },
   "theme.SearchModal.errorScreen.titleText": {
@@ -498,11 +501,11 @@
     "description": "The title for error screen of search modal"
   },
   "theme.SearchModal.errorScreen.helpText": {
-    "message": "Возможно, вам стоит проверить подключение к сети.",
+    "message": "Возможно, стоит проверить подключение к сети.",
     "description": "The help text for error screen of search modal"
   },
   "theme.SearchModal.footer.selectText": {
-    "message": "для выбора",
+    "message": "выбрать",
     "description": "The explanatory text of the action for the enter key"
   },
   "theme.SearchModal.footer.selectKeyAriaLabel": {
@@ -510,7 +513,7 @@
     "description": "The ARIA label for the Enter key button that makes the selection"
   },
   "theme.SearchModal.footer.navigateText": {
-    "message": "для навигации",
+    "message": "перемещаться",
     "description": "The explanatory text of the action for the Arrow up and Arrow down key"
   },
   "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
@@ -522,7 +525,7 @@
     "description": "The ARIA label for the Arrow down key button that makes the navigation"
   },
   "theme.SearchModal.footer.closeText": {
-    "message": "для закрытия",
+    "message": "закрыть",
     "description": "The explanatory text of the action for Escape key"
   },
   "theme.SearchModal.footer.closeKeyAriaLabel": {
@@ -558,11 +561,11 @@
     "description": "When the full-scale image is loading"
   },
   "theme.IdealImageMessage.load": {
-    "message": "Нажмите для загрузки{sizeMessage}",
+    "message": "Нажмите, чтобы загрузить{sizeMessage}",
     "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
   },
   "theme.IdealImageMessage.offline": {
-    "message": "Ваш браузер не в сети. Изображение не загружено",
+    "message": "Ваш браузер не подключён к сети. Изображение не загружено",
     "description": "When the user is viewing an offline document"
   },
   "theme.IdealImageMessage.404error": {
@@ -574,11 +577,11 @@
     "description": "When the image fails to load for unknown error"
   },
   "theme.blog.post.plurals": {
-    "message": "Один пост|{count} постов",
+    "message": "{count} запись|{count} записи|{count} записей",
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
-    "message": "{nPosts} с тегом \"{tagName}\"",
+    "message": "{nPosts} с тегом «{tagName}»",
     "description": "The title of the page for a blog tag"
   },
   "theme.blog.author.pageTitle": {
@@ -590,11 +593,11 @@
     "description": "The title of the authors page"
   },
   "theme.blog.authorsList.viewAll": {
-    "message": "Просмотреть всех авторов",
+    "message": "Посмотреть всех авторов",
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "Этот автор еще не написал ни одного поста.",
+    "message": "Этот автор ещё не написал ни одной записи.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -602,15 +605,15 @@
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Эта страница скрыта. Поисковые системы не будут индексировать ее, и только пользователи, имеющие прямую ссылку, могут получить к ней доступ.",
+    "message": "Эта страница скрыта. Поисковые системы не будут её индексировать, и доступ к ней есть только у пользователей с прямой ссылкой.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
-    "message": "Черновик страницы",
+    "message": "Черновик",
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Эта страница является черновиком. Она будет видна только в режиме разработки и будет исключена из производственной сборки.",
+    "message": "Эта страница является черновиком. Она будет видна только в режиме разработки и будет исключена из production-сборки.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -618,7 +621,7 @@
     "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.common.skipToMainContent": {
-    "message": "Перейти к основному содержанию",
+    "message": "Перейти к основному содержимому",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
   },
   "theme.tags.tagsPageTitle": {
@@ -626,22 +629,22 @@
     "description": "The title of the tag list page"
   },
   "sponsors.supportChannel": {
-    "message": "канала поддержки"
+    "message": "канал поддержки"
   },
   "sponsors.title": {
     "message": "Открытый исходный код и открытое управление"
   },
   "sponsors.premiumSponsors": {
-    "message": "💎 Премиальные спонсоры"
+    "message": "Премиум-спонсоры"
   },
   "sponsors.goldSponsors": {
-    "message": "🥇 Золотые спонсоры"
+    "message": "Золотые спонсоры"
   },
   "sponsors.becomeASponsor": {
     "message": "став спонсором"
   },
   "contributors.thankYouMessage": {
-    "message": "Мы хотели бы выразить искреннюю благодарность всем участникам, которые помогли сделать {toolName} тем мощным инструментом, которым он является сегодня. Ваша самоотверженность и усилия действительно ценятся!",
+    "message": "Мы хотим выразить искреннюю благодарность всем контрибьюторам, которые помогли сделать {toolName} тем мощным инструментом, которым он является сегодня. Мы искренне ценим вашу преданность и усилия!",
     "description": "Thank you message for contributors"
   }
 }

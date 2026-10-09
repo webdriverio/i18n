@@ -3,19 +3,19 @@
     "message": "Testa i verkliga miljöer"
   },
   "features.realEnvironments.description": {
-    "message": "WebdriverIO låter dig testa i faktiska webbläsare eller mobila enheter som används av dina användare."
+    "message": "Med WebdriverIO kan du testa i de faktiska webbläsare eller mobila enheter som dina användare använder."
   },
   "features.versatile": {
     "message": "Mångsidigt och funktionsrikt"
   },
   "features.versatile.description": {
-    "message": "Använd WebdriverIO för fullständig e2e eller enhets- och komponenttestning i webbläsaren."
+    "message": "Använd WebdriverIO för fullständiga e2e-tester eller enhets- och komponenttester i webbläsaren."
   },
   "features.autoWait": {
     "message": "Automatisk väntan"
   },
   "features.autoWait.description": {
-    "message": "WebdriverIO väntar automatiskt på att element ska visas innan interaktion med dem sker."
+    "message": "WebdriverIO väntar automatiskt på att element ska visas innan de interageras med."
   },
   "features.standards": {
     "message": "Baserat på webbstandarder"
@@ -30,25 +30,25 @@
     "message": "Kör WebdriverIO på riktiga mobila enheter, smarta TV-apparater eller andra IoT-enheter genom {appiumLink}."
   },
   "features.community": {
-    "message": "Engagerad gemenskap"
+    "message": "Engagerad community"
   },
   "homepage.features.support": {
-    "message": "Driver en {supportChannelLink} med över 8 000 medlemmar och ett rikt ekosystem av gemenskapsutvecklade plugins."
+    "message": "Driver en {supportChannelLink} med över 8 000 medlemmar och ett rikt ekosystem av plugins som underhålls av communityn."
   },
   "homepage.createBrowserAnimation": {
-    "message": "Skapa WebdriverIO-projekt för att automatisera MacOS-appar"
+    "message": "Skapa ett WebdriverIO-projekt för att automatisera MacOS-appar"
   },
   "homepage.logoCarousel.title": {
-    "message": "Vilka använder WebdriverIO?"
+    "message": "Vem använder WebdriverIO?"
   },
   "sponsors.description.openSource": {
-    "message": "\n                Vi är ett open source-projekt med ett starkt engagemang för transparens och gemenskapsstyrning.\n                Vi är en del av {openJsFoundationLink} som är en del av {linuxFoundationLink}. Projektet\n                drivs helt av volontärer och finansieras av engagerade företag som vill se projektet lyckas.\n                Projektteamet är tacksamt för dessa företags generösa sponsring.\n            "
+    "message": "\n                Vi är ett open source-projekt med ett starkt engagemang för transparens och communitystyrning.\n                Vi är en del av {openJsFoundationLink}, som i sin tur är en del av {linuxFoundationLink}. Projektet\n                drivs helt av frivilliga och finansieras av engagerade företag som vill se projektet lyckas.\n                Projektteamet är tacksamt för det generösa sponsorskapet från dessa företag.\n            "
   },
   "sponsors.description.support": {
-    "message": "Om du använder WebdriverIO inom din organisation, överväg gärna att stödja projektet genom att {becomeASponsor}. Det hjälper oss att hålla projektet igång och utvecklas."
+    "message": "Om du använder WebdriverIO inom din organisation, överväg att stödja projektet genom {becomeASponsor}. Det hjälper oss att hålla projektet igång och fortsätta utveckla det."
   },
   "homepage.tagline": {
-    "message": "Nästa generations ramverk för webbläsare- och mobilautomatisering för Node.js"
+    "message": "Testautomatisering med öppen källkod för webb-, mobil- och skrivbordsappar"
   },
   "homepage.getStarted": {
     "message": "Kom igång"
@@ -65,11 +65,14 @@
   "homepage.sponsorSection.sponsoredBy": {
     "message": "Sponsrat av"
   },
+  "homepage.sponsorSection.and": {
+    "message": "och"
+  },
   "homepage.componentTesting.heading": {
-    "message": "E2E och enhets-/komponenttestning i riktiga webbläsare!"
+    "message": "E2E- och enhets-/komponenttestning i en riktig webbläsare!"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIO är ett {allInOne}-ramverk för din webbutveckling. Det låter dig köra små och lättviktiga komponenttester samt köra e2e-testscenarier i webbläsaren eller på en mobil enhet. Detta garanterar att du testar i en miljö {usedBy}."
+    "message": "WebdriverIO är ett {allInOne}-ramverk för utvecklingen av din webbapp. Det gör det möjligt att köra små och lätta komponenttester samt att köra e2e-testscenarier i webbläsaren eller på en mobil enhet. Detta garanterar att du utför testerna i en miljö {usedBy}."
   },
   "homepage.componentTesting.allInOne": {
     "message": "allt-i-ett"
@@ -78,16 +81,16 @@
     "message": "som används av dina användare"
   },
   "homepage.componentTesting.para2": {
-    "message": "Det kommer med smarta selectorstrategier som förenklar interaktion med till exempel {reactComponents} eller att köra djupa selectorförfrågningar med nästlade shadow DOM-träd. Eftersom interaktioner sker genom ett standardiserat automatiseringsprotokoll är det garanterat att de beter sig som nativa och inte bara är JavaScript-emulerade."
+    "message": "Det levereras med smarta selektorstrategier som förenklar interaktion med t.ex. {reactComponents} eller att köra djupa selektorfrågor med nästlade shadow DOM-träd. Eftersom interaktionerna sker via ett standardiserat automatiseringsprotokoll är det garanterat att de beter sig nativt och inte bara emuleras med JavaScript."
   },
   "homepage.componentTesting.easySetup": {
-    "message": "Enkel installation för webbkomponenttestning med:"
+    "message": "Enkel konfiguration för testning av webbkomponenter med:"
   },
   "homepage.hightlight.createProject": {
     "message": "Kom igång med WebdriverIO på några sekunder"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "WebdriverIO-testrunner kommer med ett kommandoradsgränssnitt som tillhandahåller ett kraftfullt konfigurationsverktyg och hjälper dig att skapa din testuppsättning på mindre än en minut. Det låter dig välja bland tillgängliga testramverksintegrationer och gör det enkelt att lägga till alla plugin för rapportering och tjänster som stöds!"
+    "message": "WebdriverIO:s testkörare levereras med ett kommandoradsgränssnitt som erbjuder ett kraftfullt konfigurationsverktyg och hjälper dig att skapa din testmiljö på mindre än en minut. Du kan välja bland tillgängliga integrationer med testramverk och enkelt lägga till alla rapportörs- och tjänsteplugins som stöds!"
   },
   "homepage.hightlight.createProject.para2": {
     "message": "Med bara ett enkelt kommando kan du sätta upp en komplett testsvit:"
@@ -103,23 +106,23 @@
     "message": "Titta på föredrag om WebdriverIO"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "Gemenskapen kring WebdriverIO talar aktivt på olika användargrupper eller konferenser om specifika ämnen relaterade till automatiserad testning med WebdriverIO. Kolla in detta föredrag på {youtubeLink} av {videoAuthor} på {conferenceLink}."
+    "message": "Communityn kring WebdriverIO talar aktivt på olika användargrupper och konferenser om specifika ämnen kring automatiserad testning med WebdriverIO. Kolla in det här föredraget på {youtubeLink} av {videoAuthor} på {conferenceLink}."
   },
   "homepage.highlight.conferenceTalk.label": {
     "message": "Mina favoritfunktioner i WebdriverIO",
     "description": "The conference talk title"
   },
   "homepage.highlight.youtubeChannels": {
-    "message": "Det finns också många YouTube-kanaler med användbara handledningar av gemenskapsmedlemmar som {channelOne}, {channelTwo} eller {channelThree}."
+    "message": "Det finns också många YouTube-kanaler med användbara guider från communitymedlemmar, till exempel {channelOne}, {channelTwo} eller {channelThree}."
   },
   "homepage.hightlight.lighthouse": {
-    "message": "Google Lighthouse-integration"
+    "message": "Integration med Google Lighthouse"
   },
   "homepage.highlight.devtools": {
-    "message": "WebdriverIO kör inte bara automatisering baserad på WebDriver-protokollet, det utnyttjar också inbyggda webbläsar-API:er för att möjliggöra integrationer till populära utvecklarverktyg som {devtoolsLink} eller {lighthouseLink}. Med plugin-modulen {devtoolsServiceLink} har du tillgång till kommandon för att validera om din app är en giltig PWA-applikation samt kommandon för att fånga frontend-prestandamått som `speedIndex` och andra."
+    "message": "WebdriverIO kör inte bara automatisering baserad på WebDriver-protokollet, utan använder även webbläsarens inbyggda API:er för att möjliggöra integrationer med populära utvecklarverktyg som {devtoolsLink} eller {lighthouseLink}. Med pluginet {devtoolsServiceLink} får du tillgång till kommandon för att validera om din app är en giltig PWA-applikation samt kommandon för att mäta prestandamått för frontend, såsom `speedIndex` med flera."
   },
   "homepage.hightlight.devtools": {
-    "message": "Integration till utvecklarverktyg såsom:"
+    "message": "Integration med utvecklarverktyg som:"
   },
   "until August 2025": {
     "message": "till augusti 2025"
@@ -137,34 +140,34 @@
     "message": "sedan december 2019"
   },
   "versions.description": {
-    "message": "Docusaurus 2 versionssida som listar alla dokumenterade webbplatsversioner"
+    "message": "Alla publicerade versioner av WebdriverIO-dokumentationen"
   },
   "WebdriverIO documentation versions": {
-    "message": "WebdriverIO dokumentationsversioner"
+    "message": "Versioner av WebdriverIO-dokumentationen"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "Projektteamet släpper nya huvudversioner ungefär på årsbasis. LTS-releasestatus står för \"långtidsstöd\", vilket vanligtvis garanterar att kritiska buggar kommer att åtgärdas under totalt 12 månader tills en ny huvudversion görs."
+    "message": "Projektteamet släpper nya huvudversioner ungefär en gång om året. LTS-status betyder \"long-term support\" (långsiktigt stöd), vilket vanligtvis garanterar att kritiska buggar åtgärdas under totalt 12 månader tills en ny huvudversion släpps."
   },
   "Current version (Stable)": {
-    "message": "Nuvarande version (Stabil)"
+    "message": "Aktuell version (stabil)"
   },
   "Here you can find the documentation for current released version.": {
-    "message": "Här kan du hitta dokumentationen för nuvarande släppt version."
+    "message": "Här hittar du dokumentationen för den aktuella släppta versionen."
   },
   "Documentation": {
     "message": "Dokumentation"
   },
   "Release Notes": {
-    "message": "Versionskommentarer"
+    "message": "Versionsinformation"
   },
   "Past versions": {
     "message": "Tidigare versioner"
   },
   "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "Här kan du hitta dokumentation för tidigare versioner av Docusaurus."
+    "message": "Här hittar du dokumentation för tidigare versioner av Docusaurus."
   },
   "theme.ErrorPageContent.title": {
-    "message": "Denna sida kraschade.",
+    "message": "Den här sidan kraschade.",
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
@@ -180,7 +183,7 @@
     "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.paginator.navAriaLabel": {
-    "message": "Navigering för blogglista",
+    "message": "Sidnavigering för blogglistan",
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
@@ -192,7 +195,7 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Navigering för blogginlägg",
+    "message": "Sidnavigering för blogginlägg",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
@@ -243,7 +246,7 @@
     "message": "Version: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "Detta är ej utgiven dokumentation för {siteTitle} version {versionLabel}.",
+    "message": "Detta är osläppt dokumentation för {siteTitle} version {versionLabel}.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
@@ -251,7 +254,7 @@
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "För uppdaterad dokumentation, se {latestVersionLink} ({versionLabel}).",
+    "message": "För aktuell dokumentation, se {latestVersionLink} ({versionLabel}).",
     "description": "The label used to tell the user to check the latest version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
@@ -267,7 +270,7 @@
     "description": "The title of the page for a docs tag"
   },
   "theme.common.editThisPage": {
-    "message": "Redigera denna sida",
+    "message": "Redigera den här sidan",
     "description": "The link label to edit the current page"
   },
   "theme.common.headingLinkTitle": {
@@ -307,7 +310,7 @@
     "description": "The default label used for the Info admonition (:::info)"
   },
   "theme.admonition.note": {
-    "message": "anteckning",
+    "message": "notera",
     "description": "The default label used for the Note admonition (:::note)"
   },
   "theme.admonition.tip": {
@@ -335,7 +338,7 @@
     "description": "The title attribute for toggle word wrapping button of code block lines"
   },
   "theme.CodeBlock.copied": {
-    "message": "Kopierad",
+    "message": "Kopierat",
     "description": "The copied button label on code blocks"
   },
   "theme.CodeBlock.copyButtonAriaLabel": {
@@ -347,15 +350,15 @@
     "description": "The copy button label on code blocks"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "Expandera sidofältskategori '{label}'",
+    "message": "Expandera sidofältskategorin '{label}'",
     "description": "The ARIA label to expand the sidebar category"
   },
   "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "Fäll ihop sidofältskategori '{label}'",
+    "message": "Fäll ihop sidofältskategorin '{label}'",
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
-    "message": "Huvud",
+    "message": "Huvudmeny",
     "description": "The ARIA label for the main navigation"
   },
   "theme.NotFound.p1": {
@@ -363,11 +366,11 @@
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Kontakta ägaren till webbplatsen som länkade dig till den ursprungliga URL:en och meddela dem att deras länk är trasig.",
+    "message": "Kontakta ägaren till webbplatsen som länkade dig till den ursprungliga URL:en och meddela dem att länken är trasig.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
-    "message": "På denna sida",
+    "message": "På den här sidan",
     "description": "The label used by the button on the collapsible TOC component"
   },
   "theme.blog.post.readingTime.plurals": {
@@ -399,7 +402,7 @@
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.navAriaLabel": {
-    "message": "Dokumentationssidofält",
+    "message": "Dokumentationens sidofält",
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
@@ -423,10 +426,10 @@
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
-    "message": "Se alla {count} resultat"
+    "message": "Visa alla {count} resultat"
   },
   "theme.SearchPage.documentsFound.plurals": {
-    "message": "Ett dokument hittat|{count} dokument hittade",
+    "message": "Ett dokument hittades|{count} dokument hittades",
     "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.SearchPage.existingResultsTitle": {
@@ -446,7 +449,7 @@
     "description": "The ARIA label for search page input"
   },
   "theme.SearchPage.algoliaLabel": {
-    "message": "Sök med Algolia",
+    "message": "Sökning via Algolia",
     "description": "The ARIA label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
@@ -478,23 +481,23 @@
     "description": "The text when no recent searches"
   },
   "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
-    "message": "Spara denna sökning",
+    "message": "Spara den här sökningen",
     "description": "The label for save recent search button"
   },
   "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
-    "message": "Ta bort denna sökning från historiken",
+    "message": "Ta bort den här sökningen från historiken",
     "description": "The label for remove recent search button"
   },
   "theme.SearchModal.startScreen.favoriteSearchesTitle": {
-    "message": "Favorit",
+    "message": "Favoriter",
     "description": "The title for favorite searches"
   },
   "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
-    "message": "Ta bort denna sökning från favoriter",
+    "message": "Ta bort den här sökningen från favoriter",
     "description": "The label for remove favorite search button"
   },
   "theme.SearchModal.errorScreen.titleText": {
-    "message": "Kan inte hämta resultat",
+    "message": "Det gick inte att hämta resultat",
     "description": "The title for error screen of search modal"
   },
   "theme.SearchModal.errorScreen.helpText": {
@@ -506,7 +509,7 @@
     "description": "The explanatory text of the action for the enter key"
   },
   "theme.SearchModal.footer.selectKeyAriaLabel": {
-    "message": "Enter-tangent",
+    "message": "Enter-tangenten",
     "description": "The ARIA label for the Enter key button that makes the selection"
   },
   "theme.SearchModal.footer.navigateText": {
@@ -526,11 +529,11 @@
     "description": "The explanatory text of the action for Escape key"
   },
   "theme.SearchModal.footer.closeKeyAriaLabel": {
-    "message": "Escape-tangent",
+    "message": "Escape-tangenten",
     "description": "The ARIA label for the Escape key button that close the modal"
   },
   "theme.SearchModal.footer.searchByText": {
-    "message": "Sök med",
+    "message": "Sökning via",
     "description": "The text explain that the search is making by Algolia"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
@@ -538,15 +541,15 @@
     "description": "The text explains that there are no results for the following search"
   },
   "theme.SearchModal.noResultsScreen.suggestedQueryText": {
-    "message": "Försök söka efter",
+    "message": "Prova att söka efter",
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "Tror du att denna sökning borde ge resultat?",
+    "message": "Tycker du att den här sökningen borde ge resultat?",
     "description": "The text for the question where the user thinks there are missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
-    "message": "Låt oss veta.",
+    "message": "Meddela oss.",
     "description": "The text for the link to report missing results"
   },
   "theme.SearchModal.placeholder": {
@@ -594,7 +597,7 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "Denna författare har inte skrivit några inlägg ännu.",
+    "message": "Den här författaren har inte skrivit några inlägg ännu.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -602,15 +605,15 @@
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Denna sida är olistad. Sökmotorer kommer inte indexera den, och endast användare med direktlänk kan komma åt den.",
+    "message": "Den här sidan är olistad. Sökmotorer kommer inte att indexera den, och endast användare med en direktlänk kan komma åt den.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
-    "message": "Utkastssida",
+    "message": "Utkast",
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Denna sida är ett utkast. Den kommer endast att vara synlig i utvecklingsläge och kommer att exkluderas från produktionsbygget.",
+    "message": "Den här sidan är ett utkast. Den visas endast i utvecklingsläge och utesluts från produktionsbygget.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -618,7 +621,7 @@
     "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.common.skipToMainContent": {
-    "message": "Hoppa till huvudinnehåll",
+    "message": "Hoppa till huvudinnehållet",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
   },
   "theme.tags.tagsPageTitle": {
@@ -629,19 +632,19 @@
     "message": "supportkanal"
   },
   "sponsors.title": {
-    "message": "Open Source och gemenskapsstyrt"
+    "message": "Öppen källkod och öppen styrning"
   },
   "sponsors.premiumSponsors": {
-    "message": "💎 Premium-sponsorer"
+    "message": "Premiumsponsorer"
   },
   "sponsors.goldSponsors": {
-    "message": "🥇 Guldsponsorer"
+    "message": "Guldsponsorer"
   },
   "sponsors.becomeASponsor": {
-    "message": "bli en sponsor"
+    "message": "att bli sponsor"
   },
   "contributors.thankYouMessage": {
-    "message": "Vi vill rikta ett varmt tack till alla bidragsgivare som har hjälpt till att göra {toolName} till det kraftfulla verktyg det är idag. Ert engagemang och er insats uppskattas verkligen!",
+    "message": "Vi vill rikta ett varmt tack till alla bidragsgivare som har hjälpt till att göra {toolName} till det kraftfulla verktyg det är i dag. Ert engagemang och era insatser uppskattas verkligen!",
     "description": "Thank you message for contributors"
   }
 }

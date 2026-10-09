@@ -3,28 +3,28 @@ id: modules
 title: Moduli
 ---
 
-WebdriverIO pubblica vari moduli su NPM e altri registri che puoi utilizzare per costruire il tuo framework di automazione. Vedi ulteriore documentazione sui tipi di configurazione WebdriverIO [qui](/docs/setuptypes).
+WebdriverIO pubblica vari moduli su NPM e altri registri che puoi utilizzare per costruire il tuo framework di automazione. Consulta ulteriore documentazione sui tipi di configurazione di WebdriverIO [qui](/docs/setuptypes).
 
 ## `webdriver` e `devtools`
 
-I pacchetti di protocollo ([`webdriver`](https://www.npmjs.com/package/webdriver) e [`devtools`](https://www.npmjs.com/package/devtools)) espongono una classe con le seguenti funzioni statiche allegate che ti consentono di avviare sessioni:
+I pacchetti di protocollo ([`webdriver`](https://www.npmjs.com/package/webdriver) e [`devtools`](https://www.npmjs.com/package/devtools)) espongono una classe con le seguenti funzioni statiche che consentono di avviare sessioni:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Avvia una nuova sessione con capacità specifiche. In base alla risposta della sessione, verranno forniti comandi da diversi protocolli.
+Avvia una nuova sessione con capabilities specifiche. In base alla risposta della sessione, verranno forniti i comandi dei diversi protocolli.
 
-##### Paramaters
+##### Parametri
 
 - `options`: [Opzioni WebDriver](/docs/configuration#webdriver-options)
 - `modifier`: funzione che consente di modificare l'istanza del client prima che venga restituita
 - `userPrototype`: oggetto di proprietà che consente di estendere il prototipo dell'istanza
 - `customCommandWrapper`: funzione che consente di avvolgere funzionalità attorno alle chiamate di funzione
 
-##### Returns
+##### Restituisce
 
 - Oggetto [Browser](/docs/api/browser)
 
-##### Example
+##### Esempio
 
 ```js
 const client = await WebDriver.newSession({
@@ -36,18 +36,18 @@ const client = await WebDriver.newSession({
 
 Si collega a una sessione WebDriver o DevTools in esecuzione.
 
-##### Paramaters
+##### Parametri
 
-- `attachInstance`: istanza a cui collegare una sessione o almeno un oggetto con una proprietà `sessionId` (ad esempio `{ sessionId: 'xxx' }`)
+- `attachInstance`: istanza a cui collegare una sessione o almeno un oggetto con una proprietà `sessionId` (ad es. `{ sessionId: 'xxx' }`)
 - `modifier`: funzione che consente di modificare l'istanza del client prima che venga restituita
 - `userPrototype`: oggetto di proprietà che consente di estendere il prototipo dell'istanza
 - `customCommandWrapper`: funzione che consente di avvolgere funzionalità attorno alle chiamate di funzione
 
-##### Returns
+##### Restituisce
 
 - Oggetto [Browser](/docs/api/browser)
 
-##### Example
+##### Esempio
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -58,11 +58,11 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 Ricarica una sessione data l'istanza fornita.
 
-##### Paramaters
+##### Parametri
 
 - `instance`: istanza del pacchetto da ricaricare
 
-##### Example
+##### Esempio
 
 ```js
 const client = await WebDriver.newSession({...})
@@ -71,22 +71,22 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-Analogamente ai pacchetti di protocollo (`webdriver` e `devtools`), puoi anche utilizzare le API del pacchetto WebdriverIO per gestire le sessioni. Le API possono essere importate utilizzando `import { remote, attach, multiremote } from 'webdriverio'` e contengono le seguenti funzionalità:
+Analogamente ai pacchetti di protocollo (`webdriver` e `devtools`), puoi anche utilizzare le API del pacchetto WebdriverIO per gestire le sessioni. Le API possono essere importate usando `import { remote, attach, multiRemote } from 'webdriverio` e contengono le seguenti funzionalità:
 
 #### `remote(options, modifier)`
 
-Avvia una sessione WebdriverIO. L'istanza contiene tutti i comandi come il pacchetto di protocollo ma con funzioni di ordine superiore aggiuntive, vedi [API docs](/docs/api).
+Avvia una sessione WebdriverIO. L'istanza contiene tutti i comandi del pacchetto di protocollo, ma con funzioni aggiuntive di ordine superiore, vedi la [documentazione API](/docs/api).
 
-##### Paramaters
+##### Parametri
 
 - `options`: [Opzioni WebdriverIO](/docs/configuration#webdriverio)
 - `modifier`: funzione che consente di modificare l'istanza del client prima che venga restituita
 
-##### Returns
+##### Restituisce
 
 - Oggetto [Browser](/docs/api/browser)
 
-##### Example
+##### Esempio
 
 ```js
 import { remote } from 'webdriverio'
@@ -100,15 +100,15 @@ const browser = await remote({
 
 Si collega a una sessione WebdriverIO in esecuzione.
 
-##### Paramaters
+##### Parametri
 
-- `attachOptions`: istanza a cui collegare una sessione o almeno un oggetto con una proprietà `sessionId` (ad esempio `{ sessionId: 'xxx' }`)
+- `attachOptions`: istanza a cui collegare una sessione o almeno un oggetto con una proprietà `sessionId` (ad es. `{ sessionId: 'xxx' }`)
 
-##### Returns
+##### Restituisce
 
 - Oggetto [Browser](/docs/api/browser)
 
-##### Example
+##### Esempio
 
 ```js
 import { remote, attach } from 'webdriverio'
@@ -117,24 +117,24 @@ const browser = await remote({...})
 const newBrowser = await attach(browser)
 ```
 
-#### `multiremote(multiremoteOptions)`
+#### `multiRemote(multiRemoteOptions)`
 
-Avvia un'istanza multiremote che ti consente di controllare più sessioni all'interno di una singola istanza. Consulta i nostri [esempi multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) per casi d'uso concreti.
+Avvia un'istanza multi-remote che consente di controllare più sessioni all'interno di una singola istanza. Consulta i nostri [esempi multi-remote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) per casi d'uso concreti.
 
-##### Paramaters
+##### Parametri
 
-- `multiremoteOptions`: un oggetto con chiavi che rappresentano il nome del browser e le loro [Opzioni WebdriverIO](/docs/configuration#webdriverio).
+- `multiRemoteOptions`: un oggetto con chiavi che rappresentano il nome del browser e le relative [Opzioni WebdriverIO](/docs/configuration#webdriverio).
 
-##### Returns
+##### Restituisce
 
 - Oggetto [Browser](/docs/api/browser)
 
-##### Example
+##### Esempio
 
 ```js
-import { multiremote } from 'webdriverio'
+import { multiRemote } from 'webdriverio'
 
-const matrix = await multiremote({
+const matrix = await multiRemote({
     myChromeBrowser: {
         capabilities: { browserName: 'chrome' }
     },
@@ -146,12 +146,108 @@ await matrix.url('http://json.org')
 await matrix.getInstance('browserA').url('https://google.com')
 
 console.log(await matrix.getTitle())
-// returns ['Google', 'JSON']
+// restituisce ['Google', 'JSON']
 ```
+
+#### `Key`
+
+Un oggetto contenente costanti di caratteri speciali da utilizzare con il comando [`browser.keys`](/docs/api/browser/keys). Queste costanti rappresentano tasti speciali che possono essere inviati al browser, come `Enter`, `Tab`, `Escape`, tasti freccia, tasti funzione e altro ancora.
+
+##### Esempio
+
+```js
+import { Key } from 'webdriverio'
+
+// Premi il tasto Invio
+await browser.keys(Key.Enter)
+
+// Usa Ctrl+A per selezionare tutto (funziona su tutte le piattaforme)
+await browser.keys([Key.Ctrl, 'a'])
+
+// Naviga con i tasti freccia
+await browser.keys([Key.ArrowDown, Key.ArrowDown, Key.Enter])
+```
+
+##### Tasti disponibili
+
+I seguenti tasti speciali sono disponibili tramite l'oggetto `Key`:
+
+**Tasti modificatori:**
+
+| Costante | Descrizione |
+|----------|-------------|
+| `Key.Ctrl` | Tasto control multipiattaforma (Command su Mac, Control su Windows/Linux) |
+| `Key.Control` | Tasto Control |
+| `Key.Shift` | Tasto Shift |
+| `Key.Alt` | Tasto Alt |
+| `Key.Command` | Tasto Command (Mac) |
+| `Key.NULL` | Tasto Null/rilascio — rilascia tutti i tasti modificatori attualmente premuti |
+
+**Tasti di navigazione:**
+
+| Costante | Descrizione |
+|----------|-------------|
+| `Key.Cancel` | Tasto Cancel |
+| `Key.Help` | Tasto Help |
+| `Key.Backspace` | Tasto Backspace |
+| `Key.Tab` | Tasto Tab |
+| `Key.Clear` | Tasto Clear |
+| `Key.Return` | Tasto Return |
+| `Key.Enter` | Tasto Invio |
+| `Key.Pause` | Tasto Pausa |
+| `Key.Escape` | Tasto Esc |
+| `Key.Space` | Tasto Spazio |
+| `Key.PageUp` | Tasto Pagina su |
+| `Key.PageDown` | Tasto Pagina giù |
+| `Key.End` | Tasto Fine |
+| `Key.Home` | Tasto Home |
+| `Key.ArrowLeft` | Tasto freccia sinistra |
+| `Key.ArrowUp` | Tasto freccia su |
+| `Key.ArrowRight` | Tasto freccia destra |
+| `Key.ArrowDown` | Tasto freccia giù |
+| `Key.Insert` | Tasto Ins |
+| `Key.Delete` | Tasto Canc |
+
+**Tasti carattere:**
+
+| Costante | Descrizione |
+|----------|-------------|
+| `Key.Semicolon` | Tasto punto e virgola |
+| `Key.Equals` | Tasto uguale |
+
+**Tasti del tastierino numerico:**
+
+| Costante | Descrizione |
+|----------|-------------|
+| `Key.Numpad0` - `Key.Numpad9` | Tastierino numerico 0-9 |
+| `Key.Multiply` | Moltiplicazione del tastierino numerico |
+| `Key.Add` | Addizione del tastierino numerico |
+| `Key.Separator` | Separatore del tastierino numerico |
+| `Key.Subtract` | Sottrazione del tastierino numerico |
+| `Key.Decimal` | Decimale del tastierino numerico |
+| `Key.Divide` | Divisione del tastierino numerico |
+
+**Tasti funzione:**
+
+| Costante | Descrizione |
+|----------|-------------|
+| `Key.F1` - `Key.F12` | Tasti funzione da F1 a F12 |
+
+**Altri tasti:**
+
+| Costante | Descrizione |
+|----------|-------------|
+| `Key.ZenkakuHankaku` | Tasto Zenkaku/Hankaku (giapponese) |
+
+:::info Tasti modificatori multipiattaforma
+
+La costante `Key.Ctrl` offre un modo pratico per utilizzare il modificatore "control" su diversi sistemi operativi. Su macOS corrisponde al tasto `Command`, mentre su Windows e Linux corrisponde al tasto `Control`. Questo è utile quando si scrivono test che devono funzionare su più piattaforme, ad esempio per le operazioni di seleziona tutto (`Ctrl+A`), copia (`Ctrl+C`) o incolla (`Ctrl+V`).
+
+:::
 
 ## `@wdio/cli`
 
-Invece di chiamare il comando `wdio`, puoi anche includere il test runner come modulo ed eseguirlo in un ambiente arbitrario. Per questo, dovrai richiedere il pacchetto `@wdio/cli` come modulo, così:
+Invece di chiamare il comando `wdio`, puoi anche includere il test runner come modulo ed eseguirlo in un ambiente arbitrario. Per farlo, dovrai richiedere il pacchetto `@wdio/cli` come modulo, in questo modo:
 
 <Tabs
   defaultValue="esm"
@@ -180,14 +276,14 @@ Dopodiché, crea un'istanza del launcher ed esegui il test.
 
 #### `Launcher(configPath, opts)`
 
-Il costruttore della classe `Launcher` si aspetta l'URL al file di configurazione e un oggetto `opts` con impostazioni che sovrascriveranno quelle nella configurazione.
+Il costruttore della classe `Launcher` si aspetta l'URL del file di configurazione e un oggetto `opts` con impostazioni che sovrascriveranno quelle presenti nella configurazione.
 
-##### Paramaters
+##### Parametri
 
-- `configPath`: percorso del `wdio.conf.js` da eseguire
-- `opts`: argomenti ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) per sovrascrivere i valori dal file di configurazione
+- `configPath`: percorso del file `wdio.conf.js` da eseguire
+- `opts`: argomenti ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) per sovrascrivere i valori del file di configurazione
 
-##### Example
+##### Esempio
 
 ```js
 const wdio = new Launcher(
@@ -203,36 +299,36 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-Il comando `run` restituisce una [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Viene risolta se i test sono stati eseguiti con successo o sono falliti, e viene rifiutata se il launcher non è stato in grado di avviare i test.
+Il comando `run` restituisce una [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Viene risolta se i test sono stati eseguiti con successo o sono falliti, e viene rifiutata se il launcher non è stato in grado di avviare l'esecuzione dei test.
 
 ## `@wdio/browser-runner`
 
-Quando esegui test unitari o di componenti utilizzando il [browser runner](/docs/runner#browser-runner) di WebdriverIO, puoi importare utilità di mock per i tuoi test, ad esempio:
+Quando esegui test unitari o di componenti utilizzando il [browser runner](/docs/runner#browser-runner) di WebdriverIO, puoi importare utility di mocking per i tuoi test, ad es.:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-Sono disponibili le seguenti esportazioni nominate:
+Sono disponibili i seguenti export con nome:
 
 #### `fn`
 
-Funzione mock, vedi maggiori informazioni nella documentazione ufficiale di [Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Funzione mock, vedi di più nella [documentazione ufficiale di Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
-Funzione spia, vedi maggiori informazioni nella documentazione ufficiale di [Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Funzione spy, vedi di più nella [documentazione ufficiale di Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
-Metodo per simulare un file o un modulo di dipendenza.
+Metodo per effettuare il mock di un file o di un modulo di dipendenza.
 
-##### Paramaters
+##### Parametri
 
-- `moduleName`: un percorso relativo al file da simulare o un nome di modulo.
-- `factory`: funzione per restituire il valore simulato (opzionale)
+- `moduleName`: un percorso relativo al file di cui effettuare il mock oppure il nome di un modulo.
+- `factory`: funzione che restituisce il valore mockato (opzionale)
 
-##### Example
+##### Esempio
 
 ```js
 mock('../src/constants.ts', () => ({
@@ -250,13 +346,13 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-Rimuove il mock della dipendenza definito nella directory di mock manuale (`__mocks__`).
+Rimuove il mock di una dipendenza definita all'interno della directory dei mock manuali (`__mocks__`).
 
-##### Paramaters
+##### Parametri
 
-- `moduleName`: nome del modulo da demockare.
+- `moduleName`: nome del modulo di cui rimuovere il mock.
 
-##### Example
+##### Esempio
 
 ```js
 unmock('lodash')

@@ -1,33 +1,34 @@
 ---
 id: proxy
-title: Konfiguracja Proxy
+title: Konfiguracja proxy
+description: "Kieruj żądania przez proxy, pomiędzy testami a sterownikiem lub pomiędzy przeglądarką a internetem."
 ---
 
-Możesz tunelować dwa różne rodzaje żądań przez proxy:
+Możesz tunelować dwa różne typy żądań przez proxy:
 
-- połączenie między Twoim skryptem testowym a sterownikiem przeglądarki (lub punktem końcowym WebDrivera)
+- połączenie między skryptem testowym a sterownikiem przeglądarki (lub endpointem WebDriver)
 - połączenie między przeglądarką a internetem
 
-## Proxy Między Sterownikiem a Testem
+## Proxy między sterownikiem a testem
 
-Jeśli Twoja firma ma firmowe proxy (np. na `http://my.corp.proxy.com:9090`) dla wszystkich wychodzących żądań, masz dwie opcje konfiguracji WebdriverIO, aby używało proxy:
+Jeśli Twoja firma korzysta z firmowego proxy (np. pod adresem `http://my.corp.proxy.com:9090`) dla wszystkich wychodzących żądań, masz dwie możliwości skonfigurowania WebdriverIO do korzystania z proxy:
 
-### Opcja 1: Używanie Zmiennych Środowiskowych (Zalecane)
+### Opcja 1: Użycie zmiennych środowiskowych (zalecane)
 
 Począwszy od WebdriverIO v9.12.0, możesz po prostu ustawić standardowe zmienne środowiskowe proxy:
 
 ```bash
 export HTTP_PROXY=http://my.corp.proxy.com:9090
 export HTTPS_PROXY=http://my.corp.proxy.com:9090
-# Opcjonalnie: omijaj proxy dla określonych hostów
+# Opcjonalnie: pomiń proxy dla określonych hostów
 export NO_PROXY=localhost,127.0.0.1,.internal.domain
 ```
 
-Następnie uruchom swoje testy jak zwykle. WebdriverIO automatycznie użyje tych zmiennych środowiskowych do konfiguracji proxy.
+Następnie uruchom testy jak zwykle. WebdriverIO automatycznie użyje tych zmiennych środowiskowych do konfiguracji proxy.
 
-### Opcja 2: Używanie setGlobalDispatcher z undici
+### Opcja 2: Użycie setGlobalDispatcher z undici
 
-Dla bardziej zaawansowanych konfiguracji proxy lub jeśli potrzebujesz programowej kontroli, możesz użyć metody `setGlobalDispatcher` z undici:
+W przypadku bardziej zaawansowanych konfiguracji proxy lub jeśli potrzebujesz programowej kontroli, możesz użyć metody `setGlobalDispatcher` z biblioteki undici:
 
 #### Zainstaluj undici
 
@@ -35,9 +36,9 @@ Dla bardziej zaawansowanych konfiguracji proxy lub jeśli potrzebujesz programow
 npm install undici --save-dev
 ```
 
-#### Dodaj undici setGlobalDispatcher do pliku konfiguracyjnego
+#### Dodaj setGlobalDispatcher z undici do pliku konfiguracyjnego
 
-Dodaj następującą instrukcję require na początku swojego pliku konfiguracyjnego.
+Dodaj następującą instrukcję require na początku pliku konfiguracyjnego.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -50,28 +51,28 @@ export const config = {
 }
 ```
 
-Dodatkowe informacje o konfigurowaniu proxy można znaleźć [tutaj](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+Dodatkowe informacje na temat konfigurowania proxy można znaleźć [tutaj](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-### Którą Metodę Powinienem Wybrać?
+### Której metody powinienem użyć?
 
-- **Używaj zmiennych środowiskowych** jeśli chcesz prostego, standardowego podejścia, które działa w różnych narzędziach i nie wymaga zmian w kodzie.
-- **Używaj setGlobalDispatcher** jeśli potrzebujesz zaawansowanych funkcji proxy, takich jak niestandardowa autoryzacja, różne konfiguracje proxy dla różnych środowisk lub chcesz programowo kontrolować zachowanie proxy.
+- **Użyj zmiennych środowiskowych**, jeśli chcesz prostego, standardowego podejścia, które działa w różnych narzędziach i nie wymaga zmian w kodzie.
+- **Użyj setGlobalDispatcher**, jeśli potrzebujesz zaawansowanych funkcji proxy, takich jak niestandardowe uwierzytelnianie, różne konfiguracje proxy dla poszczególnych środowisk, lub chcesz programowo kontrolować zachowanie proxy.
 
-Obie metody są w pełni obsługiwane, a WebdriverIO sprawdzi najpierw globalny dispatcher, zanim powróci do zmiennych środowiskowych.
+Obie metody są w pełni obsługiwane, a WebdriverIO najpierw sprawdzi, czy istnieje globalny dispatcher, zanim skorzysta ze zmiennych środowiskowych.
 
 ### Sauce Connect Proxy
 
-Jeśli używasz [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), uruchom go za pomocą:
+Jeśli korzystasz z [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), uruchom go za pomocą:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Między Przeglądarką a Internetem
+## Proxy między przeglądarką a internetem
 
-Aby tunelować połączenie między przeglądarką a internetem, możesz skonfigurować proxy, co może być przydatne (na przykład) do przechwytywania informacji o sieci i innych danych za pomocą narzędzi takich jak [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+Aby tunelować połączenie między przeglądarką a internetem, możesz skonfigurować proxy, co może być przydatne (na przykład) do przechwytywania informacji o ruchu sieciowym i innych danych za pomocą narzędzi takich jak [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-Parametry `proxy` można zastosować za pomocą standardowych funkcji w następujący sposób:
+Parametry `proxy` można zastosować za pomocą standardowych capabilities w następujący sposób:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -92,4 +93,4 @@ export const config = {
 }
 ```
 
-Aby uzyskać więcej informacji, zobacz [specyfikację WebDriver](https://w3c.github.io/webdriver/#proxy).
+Więcej informacji znajdziesz w [specyfikacji WebDriver](https://w3c.github.io/webdriver/#proxy).

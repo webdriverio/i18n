@@ -1,77 +1,78 @@
 ---
 id: configurationfile
 title: Konfigurationsfil
+description: "Bläddra i ett kommenterat exempel på wdio.conf.js som listar alla testrunner-alternativ, capabilities och hooks som stöds, med förklaringar."
 ---
 
-Konfigurationsfilen innehåller all nödvändig information för att köra din testsvit. Det är en NodeJS-modul som exporterar en JSON.
+Konfigurationsfilen innehåller all information som behövs för att köra din testsvit. Det är en NodeJS-modul som exporterar en JSON.
 
-Här är ett exempel på en konfiguration med alla stödda egenskaper och ytterligare information:
+Här är en exempelkonfiguration med alla egenskaper som stöds och ytterligare information:
 
 ```js
 export const config = {
 
     // ==================================
-    // Where should your test be launched
+    // Var ska ditt test startas
     // ==================================
     //
     runner: 'local',
     //
     // =====================
-    // Server Configurations
+    // Serverkonfigurationer
     // =====================
-    // Host address of the running Selenium server. This information is usually obsolete, as
-    // WebdriverIO automatically connects to localhost. Also if you are using one of the
-    // supported cloud services like Sauce Labs, Browserstack, Testing Bot or TestMu AI (Formerly LambdaTest), you also don't
-    // need to define host and port information (because WebdriverIO can figure that out
-    // from your user and key information). However, if you are using a private Selenium
-    // backend, you should define the `hostname`, `port`, and `path` here.
+    // Värdadress för den körande Selenium-servern. Denna information är vanligtvis överflödig, eftersom
+    // WebdriverIO automatiskt ansluter till localhost. Om du använder någon av de
+    // molntjänster som stöds, som Sauce Labs, Browserstack, Testing Bot eller TestMu AI (tidigare LambdaTest), behöver du inte heller
+    // definiera värd- och portinformation (eftersom WebdriverIO kan räkna ut det
+    // från din användar- och nyckelinformation). Om du däremot använder en privat Selenium-
+    // backend bör du definiera `hostname`, `port` och `path` här.
     //
     hostname: 'localhost',
     port: 4444,
     path: '/',
-    // Protocol: http | https
+    // Protokoll: http | https
     // protocol: 'http',
     //
     // =================
-    // Service Providers
+    // Tjänsteleverantörer
     // =================
-    // WebdriverIO supports Sauce Labs, Browserstack, Testing Bot and TestMu AI (Formerly LambdaTest). (Other cloud providers
-    // should work, too.) These services define specific `user` and `key` (or access key)
-    // values you must put here, in order to connect to these services.
+    // WebdriverIO stöder Sauce Labs, Browserstack, Testing Bot och TestMu AI (tidigare LambdaTest). (Andra molnleverantörer
+    // bör också fungera.) Dessa tjänster definierar specifika `user`- och `key`-värden (eller åtkomstnyckel)
+    // som du måste ange här för att ansluta till dessa tjänster.
     //
     user: 'webdriverio',
     key:  'xxxxxxxxxxxxxxxx-xxxxxx-xxxxx-xxxxxxxxx',
 
-    // If you run your tests on Sauce Labs you can specify the region you want to run your tests
-    // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
-    // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
-    // If you don't provide the region, it defaults to `us`.
+    // Om du kör dina tester på Sauce Labs kan du ange vilken region du vill köra dina tester
+    // i via egenskapen `region`. Tillgängliga förkortningar för regioner är `us` (standard) och `eu`.
+    // Dessa regioner används för Sauce Labs VM-moln och Sauce Labs Real Device Cloud.
+    // Om du inte anger någon region används `us` som standard.
     region: 'us',
     //
-    // Sauce Labs provides a [headless offering](https://saucelabs.com/products/web-testing/sauce-headless-testing)
-    // that allows you to run Chrome and Firefox tests headless.
+    // Sauce Labs erbjuder en [headless-tjänst](https://saucelabs.com/products/web-testing/sauce-headless-testing)
+    // som låter dig köra Chrome- och Firefox-tester headless.
     //
     headless: false,
     //
     // ==================
-    // Specify Test Files
+    // Ange testfiler
     // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // of the configuration file being run.
+    // Definiera vilka testspecifikationer som ska köras. Mönstret är relativt till katalogen
+    // för den konfigurationsfil som körs.
     //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
-    // process enclose them in an array within the specs array.
+    // Specifikationerna definieras som en array av spec-filer (eventuellt med jokertecken
+    // som kommer att expanderas). Testet för varje spec-fil körs i en separat
+    // worker-process. För att låta en grupp spec-filer köras i samma worker-
+    // process, omslut dem i en array inuti specs-arrayen.
     //
-    // The path of the spec files will be resolved relative from the directory of
-    // of the config file unless it's absolute.
+    // Sökvägen till spec-filerna löses relativt till katalogen för
+    // konfigurationsfilen, såvida den inte är absolut.
     //
     specs: [
         'test/spec/**',
         ['group/spec/**']
     ],
-    // Patterns to exclude.
+    // Mönster att exkludera.
     exclude: [
         'test/spec/multibrowser/**',
         'test/spec/mobile/**'
@@ -80,416 +81,417 @@ export const config = {
     // ============
     // Capabilities
     // ============
-    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, WebdriverIO launches several test
-    // sessions. Within your `capabilities`, you can overwrite the `spec` and `exclude`
-    // options in order to group specific specs to a specific capability.
+    // Definiera dina capabilities här. WebdriverIO kan köra flera capabilities samtidigt.
+    // Beroende på antalet capabilities startar WebdriverIO flera test-
+    // sessioner. Inom dina `capabilities` kan du skriva över vilka filer som körs med
+    // `wdio:specs` och `wdio:exclude` för att gruppera specifika specs till en specifik capability.
     //
-    // First, you can define how many instances should be started at the same time. Let's
-    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-    // set `maxInstances` to 1. wdio will spawn 3 processes.
+    // Först kan du definiera hur många instanser som ska startas samtidigt. Låt oss
+    // säga att du har 3 olika capabilities (Chrome, Firefox och Safari) och att du har
+    // satt `maxInstances` till 1. wdio kommer då att starta 3 processer.
     //
-    // Therefore, if you have 10 spec files and you set `maxInstances` to 10, all spec files
-    // will be tested at the same time and 30 processes will be spawned.
+    // Om du alltså har 10 spec-filer och sätter `maxInstances` till 10 kommer alla spec-filer
+    // att testas samtidigt och 30 processer kommer att startas.
     //
-    // The property handles how many capabilities from the same test should run tests.
+    // Egenskapen styr hur många capabilities från samma test som ska köra tester.
     //
     maxInstances: 10,
     //
-    // Or set a limit to run tests with a specific capability.
+    // Eller sätt en gräns för att köra tester med en specifik capability.
     maxInstancesPerCapability: 10,
     //
-    // Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment.
-    // If you set to `false`, you should import from `@wdio/globals`. Note: WebdriverIO doesn't
-    // handle injection of test framework specific globals.
+    // Infogar WebdriverIO:s globaler (t.ex. `browser`, `$` och `$$`) i den globala miljön.
+    // Om du sätter detta till `false` bör du importera från `@wdio/globals`. Obs: WebdriverIO
+    // hanterar inte injicering av testramverksspecifika globaler.
     //
     injectGlobals: true,
     //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
+    // Om du har svårt att få ihop alla viktiga capabilities, kolla in
+    // Sauce Labs plattformskonfigurator - ett utmärkt verktyg för att konfigurera dina capabilities:
     // https://docs.saucelabs.com/basics/platform-configurator
     //
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-        // to run chrome headless the following flags are required
-        // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+        // för att köra chrome headless krävs följande flaggor
+        // (se https://developers.google.com/web/updates/2017/04/headless-chrome)
         // args: ['--headless', '--disable-gpu'],
         }
         //
-        // Parameter to ignore some or all default flags
-        // - if value is true: ignore all DevTools 'default flags' and Puppeteer 'default arguments'
-        // - if value is an array: DevTools filters given default arguments
+        // Parameter för att ignorera vissa eller alla standardflaggor
+        // - om värdet är true: ignorera alla DevTools 'default flags' och Puppeteer 'default arguments'
+        // - om värdet är en array: DevTools filtrerar angivna standardargument
         // 'wdio:devtoolsOptions': {
         //    ignoreDefaultArgs: true,
         //    ignoreDefaultArgs: ['--disable-sync', '--disable-extensions'],
         // }
     }, {
-        // maxInstances can get overwritten per capability. So if you have an in house Selenium
-        // grid with only 5 firefox instance available you can make sure that not more than
-        // 5 instance gets started at a time.
+        // maxInstances kan skrivas över per capability. Så om du har ett internt Selenium-
+        // grid med endast 5 firefox-instanser tillgängliga kan du se till att inte fler än
+        // 5 instanser startas åt gången.
         'wdio:maxInstances': 5,
         browserName: 'firefox',
         'wdio:specs': [
             'test/ffOnly/*'
         ],
         'moz:firefoxOptions': {
-          // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
+          // flagga för att aktivera Firefox headless-läge (se https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities för mer information om moz:firefoxOptions)
           // args: ['-headless']
         },
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+        // Om outputDir anges kan WebdriverIO fånga drivrutinens sessionsloggar
+        // det är möjligt att konfigurera vilka logTypes som ska exkluderas.
+        // excludeDriverLogs: ['*'], // ange '*' för att exkludera alla drivrutinens sessionsloggar
         excludeDriverLogs: ['bugreport', 'server'],
         //
-        // Parameter to ignore some or all Puppeteer default arguments
-        // ignoreDefaultArgs: ['-foreground'], // set value to true to ignore all default arguments
+        // Parameter för att ignorera vissa eller alla Puppeteer-standardargument
+        // ignoreDefaultArgs: ['-foreground'], // sätt värdet till true för att ignorera alla standardargument
     }],
     //
-    // Additional list of node arguments to use when starting child processes
+    // Ytterligare lista med node-argument att använda när barnprocesser startas
     execArgv: [],
     //
     // ===================
-    // Test Configurations
+    // Testkonfigurationer
     // ===================
-    // Define all options that are relevant for the WebdriverIO instance here
+    // Definiera alla alternativ som är relevanta för WebdriverIO-instansen här
     //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    // Nivå på loggningens detaljrikedom: trace | debug | info | warn | error | silent
     logLevel: 'info',
     //
-    // Set specific log levels per logger
-    // use 'silent' level to disable logger
+    // Ange specifika loggnivåer per logger
+    // använd nivån 'silent' för att inaktivera en logger
     logLevels: {
         webdriver: 'info',
         '@wdio/appium-service': 'info'
     },
     //
-    // Set directory to store all logs into
+    // Ange katalog där alla loggar ska sparas
     outputDir: __dirname,
     //
-    // If you only want to run your tests until a specific amount of tests have failed use
-    // bail (default is 0 - don't bail, run all tests).
+    // Om du bara vill köra dina tester tills ett visst antal tester har misslyckats, använd
+    // bail (standard är 0 - avbryt inte, kör alla tester).
     bail: 0,
     //
-    // Set a base URL in order to shorten `url()` command calls. If your `url` parameter starts
-    // with `/`, the `baseUrl` is prepended, not including the path portion of `baseUrl`.
+    // Ange en bas-URL för att förkorta anrop till kommandot `url()`. Om din `url`-parameter börjar
+    // med `/` läggs `baseUrl` till före, exklusive sökvägsdelen av `baseUrl`.
     //
-    // If your `url` parameter starts without a scheme or `/` (like `some/path`), the `baseUrl`
-    // gets prepended directly.
+    // Om din `url`-parameter börjar utan schema eller `/` (som `some/path`) läggs `baseUrl`
+    // till direkt före.
     baseUrl: 'http://localhost:8080',
     //
-    // Default timeout for all waitForXXX commands.
+    // Standardtimeout för alla waitForXXX-kommandon.
     waitforTimeout: 1000,
     //
-    // Add files to watch (e.g. application code or page objects) when running `wdio` command
-    // with `--watch` flag. Globbing is supported.
+    // Lägg till filer att bevaka (t.ex. applikationskod eller page objects) när du kör kommandot `wdio`
+    // med flaggan `--watch`. Globbing stöds.
     filesToWatch: [
-        // e.g. rerun tests if I change my application code
+        // t.ex. kör om tester om jag ändrar min applikationskod
         // './app/**/*.js'
     ],
     //
-    // Framework you want to run your specs with.
-    // The following are supported: 'mocha', 'jasmine', and 'cucumber'
-    // See also: https://webdriver.io/docs/frameworks.html
+    // Ramverk du vill köra dina specs med.
+    // Följande stöds: 'mocha', 'jasmine' och 'cucumber'
+    // Se även: https://webdriver.io/docs/frameworks.html
     //
-    // Make sure you have the wdio adapter package for the specific framework installed before running any tests.
+    // Se till att du har wdio-adapterpaketet för det specifika ramverket installerat innan du kör några tester.
     framework: 'mocha',
     //
-    // The number of times to retry the entire specfile when it fails as a whole
+    // Antal gånger hela spec-filen ska köras om när den misslyckas som helhet
     specFileRetries: 1,
-    // Delay in seconds between the spec file retry attempts
+    // Fördröjning i sekunder mellan försöken att köra om spec-filen
     specFileRetriesDelay: 0,
-    // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
+    // Huruvida omkörda spec-filer ska köras om omedelbart eller skjutas upp till slutet av kön
     specFileRetriesDeferred: false,
     //
-    // Test reporter for stdout.
-    // The only one supported by default is 'dot'
-    // See also: https://webdriver.io/docs/dot-reporter.html , and click on "Reporters" in left column
+    // Testrapportör för stdout.
+    // Den enda som stöds som standard är 'dot'
+    // Se även: https://webdriver.io/docs/dot-reporter.html , och klicka på "Reporters" i vänsterkolumnen
     reporters: [
         'dot',
         ['allure', {
             //
-            // If you are using the "allure" reporter you should define the directory where
-            // WebdriverIO should save all allure reports.
+            // Om du använder rapportören "allure" bör du definiera katalogen där
+            // WebdriverIO ska spara alla allure-rapporter.
             outputDir: './'
         }]
     ],
     //
-    // Options to be passed to Mocha.
-    // See the full list at: http://mochajs.org
+    // Alternativ som skickas till Mocha.
+    // Se hela listan på: http://mochajs.org
     mochaOpts: {
         ui: 'bdd'
     },
     //
-    // Options to be passed to Jasmine.
-    // See also: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
+    // Alternativ som skickas till Jasmine.
+    // Se även: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
     jasmineOpts: {
         //
-        // Jasmine default timeout
+        // Jasmines standardtimeout
         defaultTimeoutInterval: 5000,
         //
-        // The Jasmine framework allows it to intercept each assertion in order to log the state of the application
-        // or website depending on the result. For example, it is pretty handy to take a screenshot every time
-        // an assertion fails.
+        // Jasmine-ramverket gör det möjligt att fånga upp varje assertion för att logga applikationens
+        // eller webbplatsens tillstånd beroende på resultatet. Det är till exempel mycket praktiskt att ta en skärmdump varje gång
+        // en assertion misslyckas.
         expectationResultHandler: function(passed, assertion) {
-            // do something
+            // gör något
         },
         //
-        // Make use of Jasmine-specific grep functionality
+        // Använd Jasmine-specifik grep-funktionalitet
         grep: null,
         invertGrep: null
     },
     //
-    // If you are using Cucumber you need to specify where your step definitions are located.
-    // See also: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
+    // Om du använder Cucumber måste du ange var dina stegdefinitioner finns.
+    // Se även: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
     cucumberOpts: {
-        require: [],        // <string[]> (file/dir) require files before executing features
-        backtrace: false,   // <boolean> show full backtrace for errors
-        compiler: [],       // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-        dryRun: false,      // <boolean> invoke formatters without executing steps
-        failFast: false,    // <boolean> abort the run on first failure
-        snippets: true,     // <boolean> hide step definition snippets for pending steps
-        source: true,       // <boolean> hide source URIs
-        strict: false,      // <boolean> fail if there are any undefined or pending steps
-        tagExpression: '',  // <string> (expression) only execute the features or scenarios with tags matching the expression
-        timeout: 20000,     // <number> timeout for step definitions
-        ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
-        scenarioLevelReporter: false // Enable this to make webdriver.io behave as if scenarios and not steps were the tests.
+        require: [],        // <string[]> (fil/katalog) läs in filer innan features körs
+        backtrace: false,   // <boolean> visa fullständig backtrace för fel
+        compiler: [],       // <string[]> ("extension:module") läs in filer med angiven EXTENSION efter att MODULE lästs in (upprepningsbar)
+        dryRun: false,      // <boolean> anropa formatterare utan att köra steg
+        failFast: false,    // <boolean> avbryt körningen vid första fel
+        snippets: true,     // <boolean> dölj kodsnuttar för stegdefinitioner för väntande steg
+        source: true,       // <boolean> dölj käll-URI:er
+        strict: false,      // <boolean> misslyckas om det finns odefinierade eller väntande steg
+        tags: '',           // <string> (uttryck) kör endast features eller scenarier med taggar som matchar uttrycket
+        timeout: 20000,     // <number> timeout för stegdefinitioner
+        ignoreUndefinedDefinitions: false, // <boolean> Aktivera denna inställning för att behandla odefinierade definitioner som varningar.
+        scenarioLevelReporter: false // Aktivera detta för att få webdriver.io att bete sig som om scenarier, och inte steg, vore testerna.
     },
-    // Specify a custom tsconfig path - WDIO uses `tsx` to compile TypeScript files
-    // Your TSConfig is automatically detected from the current working directory
-    // but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH env var
-    // See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+    // Ange en anpassad tsconfig-sökväg - WDIO använder `tsx` för att kompilera TypeScript-filer
+    // Din TSConfig identifieras automatiskt från den aktuella arbetskatalogen
+    // men du kan ange en anpassad sökväg här eller genom att sätta miljövariabeln TSX_TSCONFIG_PATH
+    // Se `tsx`-dokumentationen: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
     //
-    // Note: This setting will be overriden by the TSX_TSCONFIG_PATH env var and/or the cli --tsConfigPath argument if they are specified.
-    // This setting will be ignored if node is unable to parse your wdio.conf.ts file without help from tsx, e.g. if you have path
-    // aliases setup in tsconfig.json and you use those path aliases inside your wdio.config.ts file.
-    // Only use this if you are using a .js config file or your .ts config file is valid JavaScript.
+    // Obs: Denna inställning skrivs över av miljövariabeln TSX_TSCONFIG_PATH och/eller cli-argumentet --tsConfigPath om de anges.
+    // Denna inställning ignoreras om node inte kan tolka din wdio.conf.ts-fil utan hjälp av tsx, t.ex. om du har sökvägs-
+    // alias konfigurerade i tsconfig.json och använder dessa sökvägsalias i din wdio.config.ts-fil.
+    // Använd endast detta om du använder en .js-konfigurationsfil eller om din .ts-konfigurationsfil är giltig JavaScript.
     tsConfigPath: 'path/to/tsconfig.json',
     //
     // =====
     // Hooks
     // =====
-    // WebdriverIO provides a several hooks you can use to interfere the test process in order to enhance
-    // it and build services around it. You can either apply a single function to it or an array of
-    // methods. If one of them returns with a promise, WebdriverIO will wait until that promise is
-    // resolved to continue.
+    // WebdriverIO tillhandahåller flera hooks som du kan använda för att ingripa i testprocessen för att förbättra
+    // den och bygga tjänster kring den. Du kan antingen tillämpa en enskild funktion eller en array av
+    // metoder. Om någon av dem returnerar ett promise väntar WebdriverIO tills det promise:t har
+    // lösts innan den fortsätter.
     //
     /**
-     * Gets executed once before all workers get launched.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
+     * Körs en gång innan alla workers startas.
+     * @param {object} config wdio-konfigurationsobjekt
+     * @param {Array.<Object>} capabilities lista med capabilities-detaljer
      */
     onPrepare: function (config, capabilities) {
     },
     /**
-     * Gets executed before a worker process is spawned and can be used to initialize specific service
-     * for that worker as well as modify runtime environments in an async fashion.
-     * @param  {string} cid      capability id (e.g 0-0)
-     * @param  {object} caps     object containing capabilities for session that will be spawn in the worker
-     * @param  {object} specs    specs to be run in the worker process
-     * @param  {object} args     object that will be merged with the main configuration once worker is initialized
-     * @param  {object} execArgv list of string arguments passed to the worker process
+     * Körs innan en worker-process startas och kan användas för att initiera en specifik tjänst
+     * för den workern samt modifiera körmiljöer asynkront.
+     * @param  {string} cid      capability-id (t.ex. 0-0)
+     * @param  {object} caps     objekt som innehåller capabilities för sessionen som ska startas i workern
+     * @param  {object} specs    specs som ska köras i worker-processen
+     * @param  {object} args     objekt som slås samman med huvudkonfigurationen när workern har initierats
+     * @param  {object} execArgv lista med strängargument som skickas till worker-processen
      */
     onWorkerStart: function (cid, caps, specs, args, execArgv) {
     },
     /**
-     * Gets executed after a worker process has exited.
-     * @param  {string} cid      capability id (e.g 0-0)
-     * @param  {number} exitCode 0 - success, 1 - fail
-     * @param  {object} specs    specs to be run in the worker process
-     * @param  {number} retries  number of retries used
+     * Körs efter att en worker-process har avslutats.
+     * @param  {string} cid      capability-id (t.ex. 0-0)
+     * @param  {number} exitCode 0 - lyckat, 1 - misslyckat
+     * @param  {object} specs    specs som ska köras i worker-processen
+     * @param  {number} retries  antal använda omförsök
      */
     onWorkerEnd: function (cid, exitCode, specs, retries) {
     },
     /**
-     * Gets executed before initializing the webdriver session and test framework. It allows you
-     * to manipulate configurations depending on the capability or spec.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that are to be run
+     * Körs innan webdriver-sessionen och testramverket initieras. Den låter dig
+     * manipulera konfigurationer beroende på capability eller spec.
+     * @param {object} config wdio-konfigurationsobjekt
+     * @param {Array.<Object>} capabilities lista med capabilities-detaljer
+     * @param {Array.<String>} specs Lista med sökvägar till spec-filer som ska köras
      */
     beforeSession: function (config, capabilities, specs) {
     },
     /**
-     * Gets executed before test execution begins. At this point you can access to all global
-     * variables like `browser`. It is the perfect place to define custom commands.
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs        List of spec file paths that are to be run
-     * @param {object}         browser      instance of created browser/device session
+     * Körs innan testkörningen börjar. Vid denna tidpunkt har du tillgång till alla globala
+     * variabler som `browser`. Det är det perfekta stället att definiera anpassade kommandon.
+     * @param {Array.<Object>} capabilities lista med capabilities-detaljer
+     * @param {Array.<String>} specs        Lista med sökvägar till spec-filer som ska köras
+     * @param {object}         browser      instans av skapad webbläsar-/enhetssession
      */
     before: function (capabilities, specs, browser) {
     },
     /**
-     * Gets executed before the suite starts (in Mocha/Jasmine only).
-     * @param {object} suite suite details
+     * Körs innan sviten startar (endast i Mocha/Jasmine).
+     * @param {object} suite svitdetaljer
      */
     beforeSuite: function (suite) {
     },
     /**
-     * This hook gets executed _before_ every hook within the suite starts.
-     * (For example, this runs before calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
+     * Denna hook körs _innan_ varje hook inom sviten startar.
+     * (Till exempel körs denna innan `before`, `beforeEach`, `after`, `afterEach` anropas i Mocha.). I Cucumber är `context` World-objektet.
      *
      */
     beforeHook: function (test, context, hookName) {
     },
     /**
-     * Hook that gets executed _after_ every hook within the suite ends.
-     * (For example, this runs after calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
+     * Hook som körs _efter_ att varje hook inom sviten har avslutats.
+     * (Till exempel körs denna efter att `before`, `beforeEach`, `after`, `afterEach` anropats i Mocha.). I Cucumber är `context` World-objektet.
      */
     afterHook: function (test, context, { error, result, duration, passed, retries }, hookName) {
     },
     /**
-     * Function to be executed before a test (in Mocha/Jasmine only)
-     * @param {object} test    test object
-     * @param {object} context scope object the test was executed with
+     * Funktion som körs före ett test (endast i Mocha/Jasmine)
+     * @param {object} test    testobjekt
+     * @param {object} context scope-objekt som testet kördes med
      */
     beforeTest: function (test, context) {
     },
     /**
-     * Runs before a WebdriverIO command is executed.
-     * @param {string} commandName hook command name
-     * @param {Array} args arguments that the command would receive
+     * Körs innan ett WebdriverIO-kommando utförs.
+     * @param {string} commandName hook-kommandots namn
+     * @param {Array} args argument som kommandot skulle ta emot
      */
     beforeCommand: function (commandName, args) {
     },
     /**
-     * Runs after a WebdriverIO command gets executed
-     * @param {string} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     * @param {*} result result of the command
-     * @param {Error} error error object, if any
+     * Körs efter att ett WebdriverIO-kommando har utförts
+     * @param {string} commandName hook-kommandots namn
+     * @param {Array} args argument som kommandot skulle ta emot
+     * @param {*} result kommandots resultat
+     * @param {Error} error felobjekt, om något
      */
     afterCommand: function (commandName, args, result, error) {
     },
     /**
-     * Function to be executed after a test (in Mocha/Jasmine only)
-     * @param {object}  test             test object
-     * @param {object}  context          scope object the test was executed with
-     * @param {Error}   result.error     error object in case the test fails, otherwise `undefined`
-     * @param {*}       result.result    return object of test function
-     * @param {number}  result.duration  duration of test
-     * @param {boolean} result.passed    true if test has passed, otherwise false
-     * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
+     * Funktion som körs efter ett test (endast i Mocha/Jasmine)
+     * @param {object}  test             testobjekt
+     * @param {object}  context          scope-objekt som testet kördes med
+     * @param {Error}   result.error     felobjekt om testet misslyckas, annars `undefined`
+     * @param {*}       result.result    returobjekt från testfunktionen
+     * @param {number}  result.duration  testets varaktighet
+     * @param {boolean} result.passed    true om testet har lyckats, annars false
+     * @param {object}  result.retries   information om spec-relaterade omförsök, t.ex. `{ attempts: 0, limit: 0 }`
      */
     afterTest: function (test, context, { error, result, duration, passed, retries }) {
     },
     /**
-     * Hook that gets executed after the suite has ended (in Mocha/Jasmine only).
-     * @param {object} suite suite details
+     * Hook som körs efter att sviten har avslutats (endast i Mocha/Jasmine).
+     * @param {object} suite svitdetaljer
      */
     afterSuite: function (suite) {
     },
     /**
-     * Gets executed after all tests are done. You still have access to all global variables from
-     * the test.
-     * @param {number} result 0 - test pass, 1 - test fail
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
+     * Körs efter att alla tester är klara. Du har fortfarande tillgång till alla globala variabler från
+     * testet.
+     * @param {number} result 0 - test lyckades, 1 - test misslyckades
+     * @param {Array.<Object>} capabilities lista med capabilities-detaljer
+     * @param {Array.<String>} specs Lista med sökvägar till spec-filer som kördes
      */
     after: function (result, capabilities, specs) {
     },
     /**
-     * Gets executed right after terminating the webdriver session.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
+     * Körs direkt efter att webdriver-sessionen har avslutats.
+     * @param {object} config wdio-konfigurationsobjekt
+     * @param {Array.<Object>} capabilities lista med capabilities-detaljer
+     * @param {Array.<String>} specs Lista med sökvägar till spec-filer som kördes
      */
     afterSession: function (config, capabilities, specs) {
     },
     /**
-     * Gets executed after all workers have shut down and the process is about to exit.
-     * An error thrown in the `onComplete` hook will result in the test run failing.
-     * @param {object} exitCode 0 - success, 1 - fail
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {<Object>} results object containing test results
+     * Körs efter att alla workers har stängts ner och processen är på väg att avslutas.
+     * Ett fel som kastas i hooken `onComplete` leder till att testkörningen misslyckas.
+     * @param {object} exitCode 0 - lyckat, 1 - misslyckat
+     * @param {object} config wdio-konfigurationsobjekt
+     * @param {Array.<Object>} capabilities lista med capabilities-detaljer
+     * @param {<Object>} results objekt som innehåller testresultat
      */
     onComplete: function (exitCode, config, capabilities, results) {
     },
     /**
-    * Gets executed when a refresh happens.
-    * @param {string} oldSessionId session ID of the old session
-    * @param {string} newSessionId session ID of the new session
+    * Körs när en uppdatering sker.
+    * @param {string} oldSessionId sessions-ID för den gamla sessionen
+    * @param {string} newSessionId sessions-ID för den nya sessionen
     */
     onReload: function(oldSessionId, newSessionId) {
     },
     /**
-     * Cucumber Hooks
+     * Cucumber-hooks
      *
-     * Runs before a Cucumber Feature.
-     * @param {string}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     * Körs före en Cucumber-feature.
+     * @param {string}                   uri      sökväg till feature-fil
+     * @param {GherkinDocument.IFeature} feature  Cucumber-feature-objekt
      */
     beforeFeature: function (uri, feature) {
     },
     /**
      *
-     * Runs before a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
-     * @param {object}                 context  Cucumber World object
+     * Körs före ett Cucumber-scenario.
+     * @param {ITestCaseHookParameter} world    world-objekt som innehåller information om pickle och teststeg
+     * @param {object}                 context  Cucumber World-objekt
      */
     beforeScenario: function (world, context) {
     },
     /**
      *
-     * Runs before a Cucumber Step.
-     * @param {Pickle.IPickleStep} step     step data
-     * @param {IPickle}            scenario scenario pickle
-     * @param {object}             context  Cucumber World object
+     * Körs före ett Cucumber-steg.
+     * @param {Pickle.IPickleStep} step     stegdata
+     * @param {IPickle}            scenario scenario-pickle
+     * @param {object}             context  Cucumber World-objekt
      */
     beforeStep: function (step, scenario, context) {
     },
     /**
      *
-     * Runs after a Cucumber Step.
-     * @param {Pickle.IPickleStep} step             step data
-     * @param {IPickle}            scenario         scenario pickle
-     * @param {object}             result           results object containing scenario results
-     * @param {boolean}            result.passed    true if scenario has passed
-     * @param {string}             result.error     error stack if scenario failed
-     * @param {number}             result.duration  duration of scenario in milliseconds
-     * @param {object}             context          Cucumber World object
+     * Körs efter ett Cucumber-steg.
+     * @param {Pickle.IPickleStep} step             stegdata
+     * @param {IPickle}            scenario         scenario-pickle
+     * @param {object}             result           resultatobjekt som innehåller scenarioresultat
+     * @param {boolean}            result.passed    true om scenariot har lyckats
+     * @param {string}             result.error     felstack om scenariot misslyckades
+     * @param {number}             result.duration  scenariots varaktighet i millisekunder
+     * @param {object}             context          Cucumber World-objekt
      */
     afterStep: function (step, scenario, result, context) {
     },
     /**
      *
-     * Runs after a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
-     * @param {object}                 result           results object containing scenario results `{passed: boolean, error: string, duration: number}`
-     * @param {boolean}                result.passed    true if scenario has passed
-     * @param {string}                 result.error     error stack if scenario failed
-     * @param {number}                 result.duration  duration of scenario in milliseconds
-     * @param {object}                 context          Cucumber World object
+     * Körs efter ett Cucumber-scenario.
+     * @param {ITestCaseHookParameter} world            world-objekt som innehåller information om pickle och teststeg
+     * @param {object}                 result           resultatobjekt som innehåller scenarioresultat `{passed: boolean, error: string, duration: number}`
+     * @param {boolean}                result.passed    true om scenariot har lyckats
+     * @param {string}                 result.error     felstack om scenariot misslyckades
+     * @param {number}                 result.duration  scenariots varaktighet i millisekunder
+     * @param {object}                 context          Cucumber World-objekt
      */
     afterScenario: function (world, result, context) {
     },
     /**
      *
-     * Runs after a Cucumber Feature.
-     * @param {string}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     * Körs efter en Cucumber-feature.
+     * @param {string}                   uri      sökväg till feature-fil
+     * @param {GherkinDocument.IFeature} feature  Cucumber-feature-objekt
      */
     afterFeature: function (uri, feature) {
     },
     /**
-     * Runs before a WebdriverIO assertion library makes an assertion.
-     * @param commandName command name
-     * @param args        arguments that command would receive
+     * Körs innan ett WebdriverIO-assertionbibliotek gör en assertion.
+     * @param {object} params                 assertion-information
+     * @param {string} params.matcherName     namnet på den matcher som testet anropade (för ett alias, aliasnamnet)
+     * @param {*}      params.expectedValue   värde som skickas till matchern
+     * @param {object} params.options         assertion-alternativ
      */
     beforeAssertion: function (params) {
     },
     /**
-     * Runs after a WebdriverIO command gets executed
-     * @param commandName  command name
-     * @param args         arguments that command would receive
-     * @param result       result of the command
-     * @param error        error in case something went wrong
+     * Körs efter att ett WebdriverIO-assertionbibliotek har gjort en assertion.
+     * @param {object} params                 assertion-information, samma som i `beforeAssertion`
+     * @param {object} params.result          matcherns resultat, med `pass` (boolean) och `message()`.
+     *                                        `pass` är true när värdet matchar, även med `.not`
      */
     afterAssertion: function (params) {
     }
 }
 ```
 
-Du kan också hitta en fil med alla möjliga alternativ och variationer i [exempelmappen](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).
+Du kan också hitta en fil med alla möjliga alternativ och varianter i [exempelmappen](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio.conf.js).

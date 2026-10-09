@@ -1,15 +1,16 @@
 ---
 id: ocr-set-value
 title: ocrSetValue
+description: "Wpisuj tekst w pole wejściowe zlokalizowane na podstawie widocznego tekstu za pomocą ocrSetValue, które znajduje pole przy użyciu OCR i dopasowania rozmytego."
 ---
 
-Wysyła sekwencję naciśnięć klawiszy do elementu. Funkcja:
+Wysyła sekwencję naciśnięć klawiszy do elementu. Polecenie:
 
--   automatycznie wykrywa element
--   ustawia fokus na polu, klikając na niego
--   ustawia wartość w polu
+-   automatycznie wykryje element
+-   ustawi fokus na polu, klikając w nie
+-   ustawi wartość w polu
 
-Komenda wyszuka podany tekst i spróbuje znaleźć dopasowanie oparte na logice rozmytej z [Fuse.js](https://fusejs.io/). Oznacza to, że nawet jeśli podasz selektor z literówką lub znaleziony tekst nie będzie w 100% pasował, nadal spróbuje zwrócić element. Zobacz [logi](#logs) poniżej.
+Polecenie wyszuka podany tekst i spróbuje znaleźć dopasowanie na podstawie logiki rozmytej (Fuzzy Logic) z [Fuse.js](https://fusejs.io/). Oznacza to, że nawet jeśli podasz selektor z literówką lub znaleziony tekst nie będzie w 100% zgodny, polecenie i tak spróbuje zwrócić element. Zobacz [logi](#logs) poniżej.
 
 ## Użycie
 
@@ -34,11 +35,11 @@ await brower.ocrSetValue({
 
 ### `text`
 
--   **Typ:** `string`
--   **Obowiązkowy:** tak
+<Option type="string" required="yes">
 
-Tekst, którego szukasz, aby kliknąć.
+Tekst, który chcesz wyszukać, aby w niego kliknąć.
 
+</Option>
 #### Przykład
 
 ```js
@@ -50,11 +51,11 @@ await browser.ocrSetValue({
 
 ### `value`
 
--   **Typ:** `string`
--   **Obowiązkowy:** tak
+<Option type="string" required="yes">
 
 Wartość do dodania.
 
+</Option>
 #### Przykład
 
 ```js
@@ -66,12 +67,11 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
--   **Typ:** `boolean`
--   **Obowiązkowy:** nie
--   **Domyślnie:** `false`
+<Option type="boolean" default="false" required="no">
 
-Czy wartość również powinna zostać przesłana do pola wprowadzania. Oznacza to, że na końcu ciągu zostanie wysłany klawisz "ENTER".
+Określa, czy wartość ma również zostać zatwierdzona w polu wejściowym. Oznacza to, że na końcu ciągu znaków zostanie wysłany klawisz "ENTER".
 
+</Option>
 #### Przykład
 
 ```js
@@ -84,30 +84,28 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** `500` milisekund
+<Option type="number" default="500 milliseconds" required="no">
 
-To jest czas trwania kliknięcia. Jeśli chcesz, możesz również stworzyć "długie kliknięcie", zwiększając czas.
+Jest to czas trwania kliknięcia. Jeśli chcesz, możesz również wykonać "długie kliknięcie", zwiększając ten czas.
 
+</Option>
 #### Przykład
 
 ```js
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // To jest 3 sekundy
+    clickDuration: 3000, // To są 3 sekundy
 });
 ```
 
 ### `contrast`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Akceptuje wartości między `-1` a `1`.
+Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Akceptuje wartości od `-1` do `1`.
 
+</Option>
 #### Przykład
 
 ```js
@@ -120,11 +118,11 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
--   **Typ:** `number`
--   **Obowiązkowy:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Jest to obszar wyszukiwania na ekranie, w którym OCR ma szukać tekstu. Może to być element lub prostokąt zawierający `x`, `y`, `width` i `height`.
+Jest to obszar wyszukiwania na ekranie, w którym OCR ma szukać tekstu. Może to być element lub prostokąt zawierający `x`, `y`, `width` i `height`
 
+</Option>
 #### Przykład
 
 ```js
@@ -156,12 +154,11 @@ await browser.ocrSetValue({
 
 ### `language`
 
--   **Typ:** `string`
--   **Obowiązkowy:** Nie
--   **Domyślnie:** `eng`
+<Option type="string" default="eng" required="No">
 
-Język, który Tesseract rozpozna. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki można znaleźć [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Język, który będzie rozpoznawany przez Tesseract. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Przykład
 
 ```js
@@ -169,40 +166,40 @@ import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Użyj holenderskiego jako języka
+    // Użyj języka niderlandzkiego
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
--   **Typ:** `object`
--   **Obowiązkowy:** nie
+<Option type="object" required="no">
 
-Możesz kliknąć na ekranie względem pasującego elementu. Można to zrobić na podstawie względnych pikseli `above`, `right`, `below` lub `left` od pasującego elementu.
+Możesz kliknąć na ekranie względem dopasowanego elementu. Można to zrobić na podstawie względnej liczby pikseli `above` (powyżej), `right` (w prawo), `below` (poniżej) lub `left` (w lewo) od dopasowanego elementu
 
 :::note
 
-Dozwolone są następujące kombinacje:
+Dozwolone są następujące kombinacje
 
 -   pojedyncze właściwości
 -   `above` + `left` lub `above` + `right`
 -   `below` + `left` lub `below` + `right`
 
-Następujące kombinacje **NIE** są dozwolone:
+Następujące kombinacje są **NIEDOZWOLONE**
 
 -   `above` plus `below`
 -   `left` plus `right`
 
 :::
 
+</Option>
 #### `relativePosition.above`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
+<Option type="number" required="no">
 
-Kliknij x pikseli `above` od pasującego elementu.
+Kliknij x pikseli `above` (powyżej) dopasowanego elementu.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -217,11 +214,11 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
+<Option type="number" required="no">
 
-Kliknij x pikseli `right` od pasującego elementu.
+Kliknij x pikseli `right` (w prawo) od dopasowanego elementu.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -236,11 +233,11 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
+<Option type="number" required="no">
 
-Kliknij x pikseli `below` od pasującego elementu.
+Kliknij x pikseli `below` (poniżej) dopasowanego elementu.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -255,11 +252,11 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
+<Option type="number" required="no">
 
-Kliknij x pikseli `left` od pasującego elementu.
+Kliknij x pikseli `left` (w lewo) od dopasowanego elementu.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -274,16 +271,15 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-Możesz zmienić logikę rozmytą do wyszukiwania tekstu za pomocą następujących opcji. Może to pomóc znaleźć lepsze dopasowanie.
+Możesz zmienić logikę rozmytą służącą do wyszukiwania tekstu za pomocą poniższych opcji. Może to pomóc w znalezieniu lepszego dopasowania
 
 #### `fuzzyFindOptions.distance`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** 100
+<Option type="number" default="100" required="no">
 
-Określa, jak blisko dopasowania musi być do rozmytej lokalizacji (określonej przez location). Dokładne dopasowanie litery, które jest oddalone o distance znaków od rozmytej lokalizacji, byłoby oceniane jako całkowite niedopasowanie. Odległość 0 wymaga, aby dopasowanie było w dokładnej określonej lokalizacji. Odległość 1000 wymagałaby idealnego dopasowania w odległości 800 znaków od lokalizacji, aby zostało znalezione przy użyciu progu 0,8.
+Określa, jak blisko lokalizacji rozmytej (określonej przez location) musi znajdować się dopasowanie. Dokładne dopasowanie litery, które znajduje się w odległości distance znaków od lokalizacji rozmytej, zostanie ocenione jako całkowity brak dopasowania. Wartość distance równa 0 wymaga, aby dopasowanie znajdowało się dokładnie w określonej lokalizacji. Wartość distance równa 1000 wymagałaby, aby idealne dopasowanie znajdowało się w obrębie 800 znaków od lokalizacji, aby zostało znalezione przy progu (threshold) 0.8.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -298,12 +294,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** 0
+<Option type="number" default="0" required="no">
 
-Określa w przybliżeniu, gdzie w tekście ma być znaleziony wzorzec.
+Określa, mniej więcej w którym miejscu tekstu oczekuje się znalezienia wzorca.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -318,12 +313,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** 0.6
+<Option type="number" default="0.6" required="no">
 
-W jakim momencie algorytm dopasowujący się poddaje. Próg 0 wymaga idealnego dopasowania (zarówno liter, jak i lokalizacji), próg 1.0 dopasuje wszystko.
+W którym momencie algorytm dopasowania się poddaje. Próg (threshold) równy 0 wymaga idealnego dopasowania (zarówno liter, jak i lokalizacji), a próg równy 1.0 dopasuje cokolwiek.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -338,12 +332,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Typ:** `boolean`
--   **Obowiązkowy:** nie
--   **Domyślnie:** false
+<Option type="boolean" default="false" required="no">
 
-Czy wyszukiwanie powinno rozróżniać wielkość liter.
+Określa, czy wyszukiwanie ma uwzględniać wielkość liter.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -358,12 +351,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** 2
+<Option type="number" default="2" required="no">
 
-Tylko dopasowania, których długość przekracza tę wartość, zostaną zwrócone. (Na przykład, jeśli chcesz zignorować pojedyncze dopasowania znaków w wyniku, ustaw to na 2)
+Zwracane będą tylko te dopasowania, których długość przekracza tę wartość. (Na przykład, jeśli chcesz zignorować w wynikach dopasowania jednoznakowe, ustaw ją na 2)
 
+</Option>
 ##### Przykład
 
 ```js
@@ -378,12 +370,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** false
+<Option type="number" default="false" required="no">
 
-Gdy `true`, funkcja dopasowująca będzie kontynuować do końca wzorca wyszukiwania, nawet jeśli idealne dopasowanie zostało już zlokalizowane w ciągu.
+Gdy ustawione na `true`, funkcja dopasowująca będzie kontynuować do końca wzorca wyszukiwania, nawet jeśli w ciągu znaków zostało już znalezione idealne dopasowanie.
 
+</Option>
 ##### Przykład
 
 ```js

@@ -1,60 +1,59 @@
 ---
 id: browser
-title: Obiekt przeglądarki
+title: Obiekt Browser
 ---
 
 __Rozszerza:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-Obiekt przeglądarki to instancja sesji, której używasz do kontrolowania przeglądarki lub urządzenia mobilnego. Jeśli używasz test runnera WDIO, możesz uzyskać dostęp do instancji WebDrivera przez globalny obiekt `browser` lub `driver`, albo zaimportować go za pomocą [`@wdio/globals`](/docs/api/globals). Jeśli używasz WebdriverIO w trybie samodzielnym, obiekt przeglądarki jest zwracany przez metodę [`remote`](/docs/api/modules#remoteoptions-modifier).
+Obiekt browser to instancja sesji, której używasz do sterowania przeglądarką lub urządzeniem mobilnym. Jeśli korzystasz z WDIO test runnera, możesz uzyskać dostęp do instancji WebDriver poprzez globalny obiekt `browser` lub `driver` albo zaimportować go za pomocą [`@wdio/globals`](/docs/api/globals). Jeśli używasz WebdriverIO w trybie standalone, obiekt browser jest zwracany przez metodę [`remote`](/docs/api/modules#remoteoptions-modifier).
 
-Sesja jest inicjowana przez test runner. To samo dotyczy kończenia sesji. Jest to również wykonywane przez proces test runnera.
+Sesja jest inicjalizowana przez test runner. To samo dotyczy zakończenia sesji. Robi to również proces test runnera.
 
 ## Właściwości
 
-Obiekt przeglądarki ma następujące właściwości:
+Obiekt browser posiada następujące właściwości:
 
 | Nazwa | Typ | Szczegóły |
 | ---- | ---- | ------- |
-| `capabilities` | `Object` | Przypisane możliwości z serwera zdalnego.<br /><b>Przykład:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
-| `requestedCapabilities` | `Object` | Możliwości żądane z serwera zdalnego.<br /><b>Przykład:</b><pre>\{ browserName: 'chrome' \}</pre>
-| `sessionId` | `String` | Identyfikator sesji przypisany z serwera zdalnego. |
-| `options` | `Object` | [Opcje](/docs/configuration) WebdriverIO w zależności od tego, jak został utworzony obiekt przeglądarki. Zobacz więcej w [typy konfiguracji](/docs/setuptypes). |
-| `commandList` | `String[]` | Lista poleceń zarejestrowanych w instancji przeglądarki |
-| `isW3C` | `Boolean` | Wskazuje, czy jest to sesja W3C |
+| `capabilities` | `Object` | Przypisane capabilities ze zdalnego serwera.<br /><b>Przykład:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
+| `requestedCapabilities` | `Object` | Capabilities żądane od zdalnego serwera.<br /><b>Przykład:</b><pre>\{ browserName: 'chrome' \}</pre>
+| `sessionId` | `String` | Identyfikator sesji przypisany przez zdalny serwer. |
+| `options` | `Object` | [Opcje](/docs/configuration) WebdriverIO zależne od sposobu utworzenia obiektu browser. Zobacz więcej o [typach konfiguracji](/docs/setuptypes). |
+| `commandList` | `String[]` | Lista komend zarejestrowanych w instancji przeglądarki |
 | `isChrome` | `Boolean` | Wskazuje, czy jest to instancja Chrome |
 | `isFirefox` | `Boolean` | Wskazuje, czy jest to instancja Firefox |
 | `isBidi` | `Boolean` | Wskazuje, czy ta sesja używa Bidi |
-| `isSauce` | `Boolean` | Wskazuje, czy ta sesja działa na Sauce Labs |
-| `isMacApp` | `Boolean` | Wskazuje, czy ta sesja działa dla natywnej aplikacji Mac |
-| `isWindowsApp` | `Boolean` | Wskazuje, czy ta sesja działa dla natywnej aplikacji Windows |
-| `isMobile` | `Boolean` | Wskazuje sesję mobilną. Zobacz więcej w [Flagi mobilne](#mobile-flags). |
-| `isIOS` | `Boolean` | Wskazuje sesję iOS. Zobacz więcej w [Flagi mobilne](#mobile-flags). |
-| `isAndroid` | `Boolean` | Wskazuje sesję Android. Zobacz więcej w [Flagi mobilne](#mobile-flags). |
-| `isNativeContext` | `Boolean`  | Wskazuje, czy urządzenie mobilne jest w kontekście `NATIVE_APP`. Zobacz więcej w [Flagi mobilne](#mobile-flags). |
-| `mobileContext` | `string`  | Zapewnia **bieżący** kontekst, w którym znajduje się sterownik, na przykład `NATIVE_APP`, `WEBVIEW_<packageName>` dla Androida lub `WEBVIEW_<pid>` dla iOS. Zaoszczędzi dodatkowego WebDrivera do `driver.getContext()`. Zobacz więcej w [Flagi mobilne](#mobile-flags). |
+| `isSauce` | `Boolean` | Wskazuje, czy ta sesja jest uruchomiona na Sauce Labs |
+| `isMacApp` | `Boolean` | Wskazuje, czy ta sesja jest uruchomiona dla natywnej aplikacji Mac |
+| `isWindowsApp` | `Boolean` | Wskazuje, czy ta sesja jest uruchomiona dla natywnej aplikacji Windows |
+| `isMobile` | `Boolean` | Wskazuje sesję mobilną. Zobacz więcej w sekcji [Flagi mobilne](#mobile-flags). |
+| `isIOS` | `Boolean` | Wskazuje sesję iOS. Zobacz więcej w sekcji [Flagi mobilne](#mobile-flags). |
+| `isAndroid` | `Boolean` | Wskazuje sesję Android. Zobacz więcej w sekcji [Flagi mobilne](#mobile-flags). |
+| `isNativeContext` | `Boolean`  | Wskazuje, czy urządzenie mobilne jest w kontekście `NATIVE_APP`. Zobacz więcej w sekcji [Flagi mobilne](#mobile-flags). |
+| `mobileContext` | `string`  | Zwraca **bieżący** kontekst, w którym znajduje się sterownik, na przykład `NATIVE_APP`, `WEBVIEW_<packageName>` dla Androida lub `WEBVIEW_<pid>` dla iOS. Oszczędza to dodatkowe wywołanie WebDriver do `driver.getContext()`. Zobacz więcej w sekcji [Flagi mobilne](#mobile-flags). |
 
 
 ## Metody
 
-Na podstawie używanego backendu automatyzacji dla Twojej sesji, WebdriverIO identyfikuje, które [Polecenia Protokołu](/docs/api/protocols) zostaną dołączone do [obiektu przeglądarki](/docs/api/browser). Na przykład, jeśli uruchamiasz zautomatyzowaną sesję w Chrome, będziesz mieć dostęp do specyficznych dla Chromium poleceń, takich jak [`elementHover`](/docs/api/chromium#elementhover), ale nie do żadnych [poleceń Appium](/docs/api/appium).
+Na podstawie backendu automatyzacji używanego w Twojej sesji WebdriverIO określa, które [komendy protokołu](/docs/api/protocols) zostaną dołączone do [obiektu browser](/docs/api/browser). Na przykład, jeśli uruchamiasz zautomatyzowaną sesję w Chrome, będziesz mieć dostęp do komend specyficznych dla Chromium, takich jak [`elementHover`](/docs/api/chromium#elementhover), ale nie do żadnych [komend Appium](/docs/api/appium).
 
-Ponadto WebdriverIO zapewnia zestaw wygodnych metod, które są zalecane do korzystania, aby wchodzić w interakcję z [przeglądarką](/docs/api/browser) lub [elementami](/docs/api/element) na stronie.
+Ponadto WebdriverIO udostępnia zestaw wygodnych metod, których zaleca się używać do interakcji z [przeglądarką](/docs/api/browser) lub [elementami](/docs/api/element) na stronie.
 
-Dodatkowo dostępne są następujące polecenia:
+Oprócz tego dostępne są następujące komendy:
 
 | Nazwa | Parametry | Szczegóły |
 | ---- | ---------- | ------- |
-| `addCommand` | - `commandName` (Typ: `String`)<br />- `fn` (Typ: `Function`)<br />- `attachToElement` (Typ: `boolean`) | Pozwala zdefiniować niestandardowe polecenia, które można wywołać z obiektu przeglądarki w celach kompozycji. Przeczytaj więcej w przewodniku [Własne polecenia](/docs/customcommands). |
-| `overwriteCommand` | - `commandName` (Typ: `String`)<br />- `fn` (Typ: `Function`)<br />- `attachToElement` (Typ: `boolean`) | Pozwala nadpisać dowolne polecenie przeglądarki niestandardową funkcjonalnością. Używaj ostrożnie, ponieważ może to dezorientować użytkowników frameworka. Przeczytaj więcej w przewodniku [Własne polecenia](/docs/customcommands#overwriting-native-commands). |
-| `addLocatorStrategy` | - `strategyName` (Typ: `String`)<br />- `fn` (Typ: `Function`) | Pozwala zdefiniować niestandardową strategię selektora, przeczytaj więcej w przewodniku [Selektory](/docs/selectors#custom-selector-strategies). |
+| `addCommand` | - `commandName` (Typ: `String`)<br />- `fn` (Typ: `Function`)<br />- `attachToElement` (Typ: `boolean`) | Pozwala definiować niestandardowe komendy, które można wywoływać z obiektu browser w celu kompozycji. Przeczytaj więcej w przewodniku [Niestandardowe komendy](/docs/customcommands). |
+| `overwriteCommand` | - `commandName` (Typ: `String`)<br />- `fn` (Typ: `Function`)<br />- `attachToElement` (Typ: `boolean`) | Pozwala nadpisać dowolną komendę przeglądarki niestandardową funkcjonalnością. Używaj ostrożnie, ponieważ może to wprowadzać w błąd użytkowników frameworka. Przeczytaj więcej w przewodniku [Niestandardowe komendy](/docs/customcommands#overwriting-native-commands). |
+| `addLocatorStrategy` | - `strategyName` (Typ: `String`)<br />- `fn` (Typ: `Function`) | Pozwala zdefiniować niestandardową strategię selektorów, przeczytaj więcej w przewodniku [Selektory](/docs/selectors#custom-selector-strategies). |
 
 ## Uwagi
 
 ### Flagi mobilne
 
-Jeśli musisz modyfikować swój test w zależności od tego, czy sesja działa na urządzeniu mobilnym, możesz sprawdzić flagi mobilne.
+Jeśli musisz zmodyfikować swój test w zależności od tego, czy sesja działa na urządzeniu mobilnym, możesz sprawdzić flagi mobilne.
 
-Na przykład, biorąc pod uwagę tę konfigurację:
+Na przykład, mając taką konfigurację:
 
 ```js
 // wdio.conf.js
@@ -74,14 +73,14 @@ export const config = {
 Możesz uzyskać dostęp do tych flag w swoim teście w następujący sposób:
 
 ```js
-// Uwaga: `driver` jest odpowiednikiem obiektu `browser`, ale semantycznie bardziej poprawny
+// Uwaga: `driver` jest odpowiednikiem obiektu `browser`, ale semantycznie bardziej poprawnym
 // możesz wybrać, której zmiennej globalnej chcesz używać
-console.log(driver.isMobile) // wynik: true
-console.log(driver.isIOS) // wynik: true
-console.log(driver.isAndroid) // wynik: false
+console.log(driver.isMobile) // wypisuje: true
+console.log(driver.isIOS) // wypisuje: true
+console.log(driver.isAndroid) // wypisuje: false
 ```
 
-Może to być przydatne, jeśli na przykład chcesz definiować selektory w swoich [obiektach stron](../pageobjects) w zależności od typu urządzenia, w taki sposób:
+Może to być przydatne, jeśli na przykład chcesz definiować selektory w swoich [page objectach](../pageobjects) w zależności od typu urządzenia, w ten sposób:
 
 ```js
 // mypageobject.page.js
@@ -100,13 +99,13 @@ class LoginPage extends Page {
 }
 ```
 
-Możesz również używać tych flag, aby uruchamiać tylko niektóre testy dla określonych typów urządzeń:
+Możesz także używać tych flag, aby uruchamiać tylko określone testy dla określonych typów urządzeń:
 
 ```js
 // mytest.e2e.js
 describe('my test', () => {
     // ...
-    // uruchom test tylko na urządzeniach Android
+    // uruchom test tylko na urządzeniach z Androidem
     if (driver.isAndroid) {
         it('tests something only for Android', () => {
             // ...
@@ -117,51 +116,51 @@ describe('my test', () => {
 ```
 
 ### Zdarzenia
-Obiekt przeglądarki jest emiterem zdarzeń (EventEmitter) i kilka zdarzeń jest emitowanych do wykorzystania.
+Obiekt browser jest EventEmitterem i emituje kilka zdarzeń, które możesz wykorzystać w swoich przypadkach użycia.
 
 Oto lista zdarzeń. Pamiętaj, że nie jest to jeszcze pełna lista dostępnych zdarzeń.
-Zachęcamy do współpracy przy aktualizacji dokumentu poprzez dodawanie opisów większej liczby zdarzeń.
+Zachęcamy do współtworzenia i aktualizowania dokumentu poprzez dodawanie tutaj opisów kolejnych zdarzeń.
 
 #### `command`
 
-To zdarzenie jest emitowane za każdym razem, gdy WebdriverIO wysyła klasyczne polecenie WebDrivera. Zawiera następujące informacje:
+To zdarzenie jest emitowane za każdym razem, gdy WebdriverIO wysyła komendę WebDriver Classic. Zawiera następujące informacje:
 
-- `command`: nazwa polecenia, np. `navigateTo`
-- `method`: metoda HTTP używana do wysłania zapytania polecenia, np. `POST`
-- `endpoint`: punkt końcowy polecenia, np. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
-- `body`: ładunek polecenia, np. `{ url: 'https://webdriver.io' }`
+- `command`: nazwa komendy, np. `navigateTo`
+- `method`: metoda HTTP użyta do wysłania żądania komendy, np. `POST`
+- `endpoint`: endpoint komendy, np. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
+- `body`: ładunek komendy, np. `{ url: 'https://webdriver.io' }`
 
 #### `result`
 
-To zdarzenie jest emitowane za każdym razem, gdy WebdriverIO otrzymuje wynik klasycznego polecenia WebDrivera. Zawiera te same informacje co zdarzenie `command` z dodatkiem następujących informacji:
+To zdarzenie jest emitowane za każdym razem, gdy WebdriverIO otrzymuje wynik komendy WebDriver Classic. Zawiera te same informacje co zdarzenie `command`, z dodatkiem następujących informacji:
 
-- `result`: wynik polecenia
+- `result`: wynik komendy
 
 #### `bidiCommand`
 
-To zdarzenie jest emitowane za każdym razem, gdy WebdriverIO wysyła polecenie WebDriver Bidi do sterownika przeglądarki. Zawiera informacje o:
+To zdarzenie jest emitowane za każdym razem, gdy WebdriverIO wysyła komendę WebDriver Bidi do sterownika przeglądarki. Zawiera informacje o:
 
-- `method`: metoda polecenia WebDriver Bidi
-- `params`: powiązane parametry polecenia (zobacz [API](/docs/api/webdriverBidi))
+- `method`: metoda komendy WebDriver Bidi
+- `params`: powiązane parametry komendy (zobacz [API](/docs/api/webdriverBidi))
 
 #### `bidiResult`
 
-W przypadku pomyślnego wykonania polecenia, ładunek zdarzenia będzie zawierał:
+W przypadku pomyślnego wykonania komendy ładunek zdarzenia będzie następujący:
 
 - `type`: `success`
-- `id`: id polecenia
-- `result`: wynik polecenia (zobacz [API](/docs/api/webdriverBidi))
+- `id`: identyfikator komendy
+- `result`: wynik komendy (zobacz [API](/docs/api/webdriverBidi))
 
-W przypadku błędu polecenia, ładunek zdarzenia będzie zawierał:
+W przypadku błędu komendy ładunek zdarzenia będzie następujący:
 
 - `type`: `error`
-- `id`: id polecenia
+- `id`: identyfikator komendy
 - `error`: kod błędu, np. `invalid argument`
 - `message`: szczegóły dotyczące błędu
 - `stacktrace`: ślad stosu
 
 #### `request.start`
-To zdarzenie jest wyzwalane przed wysłaniem żądania WebDrivera do sterownika. Zawiera informacje o żądaniu i jego ładunku.
+To zdarzenie jest wywoływane przed wysłaniem żądania WebDriver do sterownika. Zawiera informacje o żądaniu i jego ładunku.
 
 ```ts
 browser.on('request.start', (ev: RequestInit) => {
@@ -170,7 +169,7 @@ browser.on('request.start', (ev: RequestInit) => {
 ```
 
 #### `request.end`
-To zdarzenie jest wyzwalane po otrzymaniu odpowiedzi na żądanie do sterownika. Obiekt zdarzenia zawiera albo treść odpowiedzi jako wynik, albo błąd, jeśli polecenie WebDrivera nie powiodło się.
+To zdarzenie jest wywoływane, gdy żądanie do sterownika otrzyma odpowiedź. Obiekt zdarzenia zawiera albo treść odpowiedzi jako wynik, albo błąd, jeśli komenda WebDriver się nie powiodła.
 
 ```ts
 browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
@@ -179,7 +178,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-Zdarzenie retry może powiadamiać, kiedy WebdriverIO próbuje ponownie uruchomić polecenie, np. z powodu problemu z siecią. Zawiera informacje o błędzie, który spowodował ponowienie próby i liczbę już wykonanych ponowień.
+Zdarzenie retry może powiadomić Cię, gdy WebdriverIO próbuje ponownie wykonać komendę, np. z powodu problemu z siecią. Zawiera informacje o błędzie, który spowodował ponowienie, oraz liczbę już wykonanych ponowień.
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
@@ -188,13 +187,13 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 ```
 
 #### `request.performance`
-Jest to zdarzenie do mierzenia operacji na poziomie WebDrivera. Za każdym razem, gdy WebdriverIO wysyła żądanie do backendu WebDrivera, to zdarzenie zostanie wyemitowane z pewnymi użytecznymi informacjami:
+Jest to zdarzenie służące do pomiaru operacji na poziomie WebDriver. Za każdym razem, gdy WebdriverIO wysyła żądanie do backendu WebDriver, to zdarzenie zostanie wyemitowane z kilkoma przydatnymi informacjami:
 
 - `durationMillisecond`: Czas trwania żądania w milisekundach.
-- `error`: Obiekt błędu, jeśli żądanie nie powiodło się.
-- `request`: Obiekt żądania. Możesz znaleźć url, metodę, nagłówki, itp.
-- `retryCount`: Jeśli wynosi `0`, żądanie było pierwszą próbą. Będzie wzrastać, gdy WebDriverIO będzie ponawiał próby w tle.
-- `success`: Wartość logiczna reprezentująca sukces lub porażkę żądania. Jeśli jest `false`, właściwość `error` również będzie dostarczona.
+- `error`: Obiekt błędu, jeśli żądanie się nie powiodło.
+- `request`: Obiekt żądania. Znajdziesz w nim url, metodę, nagłówki itp.
+- `retryCount`: Jeśli wynosi `0`, żądanie było pierwszą próbą. Wartość wzrasta, gdy WebDriverIO ponawia próbę w tle.
+- `success`: Wartość logiczna określająca, czy żądanie zakończyło się powodzeniem. Jeśli wynosi `false`, dostępna będzie również właściwość `error`.
 
 Przykładowe zdarzenie:
 ```js
@@ -207,6 +206,6 @@ Object {
 },
 ```
 
-### Niestandardowe polecenia
+### Niestandardowe komendy
 
-Możesz ustawić niestandardowe polecenia w zakresie przeglądarki, aby wyabstrahować często używane przepływy pracy. Sprawdź nasz przewodnik o [Niestandardowych poleceniach](/docs/customcommands#adding-custom-commands), aby uzyskać więcej informacji.
+Możesz ustawić niestandardowe komendy w zakresie obiektu browser, aby wyabstrahować często używane przepływy pracy. Zapoznaj się z naszym przewodnikiem [Niestandardowe komendy](/docs/customcommands#adding-custom-commands), aby uzyskać więcej informacji.

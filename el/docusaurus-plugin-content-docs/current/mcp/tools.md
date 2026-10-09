@@ -1,681 +1,466 @@
 ---
 id: tools
 title: Εργαλεία
+description: "Αναζητήστε τα εργαλεία που εκθέτει ο διακομιστής MCP του WebdriverIO για συνεδρίες, πλοήγηση, αλληλεπίδραση με στοιχεία, στιγμιότυπα οθόνης, χειρονομίες και κύκλο ζωής εφαρμογών."
 ---
 
-Τα ακόλουθα εργαλεία είναι διαθέσιμα μέσω του διακομιστή WebdriverIO MCP. Αυτά τα εργαλεία επιτρέπουν στους βοηθούς AI να αυτοματοποιούν προγράμματα περιήγησης και εφαρμογές για κινητά.
+Ο διακομιστής MCP του WebdriverIO εκθέτει 29 εργαλεία οργανωμένα ανά λειτουργία. Τα εργαλεία με την ένδειξη **μόνο για browser** απαιτούν συνεδρία `platform: "browser"`. Τα εργαλεία με την ένδειξη **μόνο για κινητά** απαιτούν `platform: "ios"` ή `platform: "android"`.
 
-## Session Management
+## Διαχείριση Συνεδριών
 
-### `start_browser`
+### `start_session`
 
-Ξεκινάει μια συνεδρία περιηγητή Chrome.
+Ξεκινά μια νέα συνεδρία αυτοματοποίησης browser ή κινητού. Επιτρέπεται μόνο μία ενεργή συνεδρία τη φορά· η έναρξη μιας νέας κλείνει την υπάρχουσα.
 
-#### Parameters
+| Παράμετρος             | Τύπος                                                                  | Απαιτείται      | Προεπιλογή       | Περιγραφή                                                                                                                         |
+| ---------------------- | ---------------------------------------------------------------------- | --------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `platform`             | `"browser" \| "ios" \| "android"`                                      | ✓               | —                | Πλατφόρμα συνεδρίας                                                                                                               |
+| `provider`             | `"local" \| "browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | —               | `"local"`        | Πάροχος συνεδρίας                                                                                                                 |
+| `browser`              | `"chrome" \| "firefox" \| "edge" \| "safari"`                          | μόνο για browser | —               | Browser προς εκκίνηση                                                                                                             |
+| `browserVersion`       | string                                                                 | —               | τελευταία        | Έκδοση browser (μόνο για παρόχους cloud, προεπιλογή: τελευταία)                                                                   |
+| `os`                   | string                                                                 | —               | —                | Λειτουργικό σύστημα (μόνο για παρόχους cloud, π.χ. `"Windows"`, `"OS X"`)                                                         |
+| `osVersion`            | string                                                                 | —               | —                | Έκδοση λειτουργικού συστήματος (μόνο για παρόχους cloud, π.χ. `"11"`, `"Sequoia"`)                                                |
+| `headless`             | boolean                                                                | —               | `true`           | Εκτέλεση του browser σε λειτουργία headless                                                                                       |
+| `windowWidth`          | number                                                                 | —               | `1920`           | Πλάτος παραθύρου browser (400–3840)                                                                                               |
+| `windowHeight`         | number                                                                 | —               | `1080`           | Ύψος παραθύρου browser (400–2160)                                                                                                 |
+| `navigationUrl`        | string                                                                 | —               | —                | URL στο οποίο θα γίνει πλοήγηση μετά την έναρξη                                                                                   |
+| `deviceName`           | string                                                                 | μόνο για κινητά | —                | Όνομα συσκευής/emulator/simulator                                                                                                 |
+| `platformVersion`      | string                                                                 | —               | —                | Έκδοση λειτουργικού συστήματος (π.χ. `"17.0"`, `"14"`)                                                                            |
+| `appPath`              | string                                                                 | —               | —                | Διαδρομή προς `.app` / `.apk` / `.ipa`                                                                                            |
+| `app`                  | string                                                                 | —               | —                | URL εφαρμογής (`bs://...` για BrowserStack, `storage:filename=` για Sauce Labs, `lt://...` για TestMu, app_url για TestingBot) ή custom_id |
+| `automationName`       | `"XCUITest" \| "UiAutomator2"`                                         | —               | αυτόματο         | Driver αυτοματοποίησης                                                                                                            |
+| `autoGrantPermissions` | boolean                                                                | —               | `true`           | Αυτόματη παραχώρηση δικαιωμάτων εφαρμογής                                                                                         |
+| `autoAcceptAlerts`     | boolean                                                                | —               | `true`           | Αυτόματη αποδοχή ειδοποιήσεων                                                                                                     |
+| `autoDismissAlerts`    | boolean                                                                | —               | `false`          | Αυτόματη απόρριψη ειδοποιήσεων                                                                                                    |
+| `appWaitActivity`      | string                                                                 | —               | —                | Activity του Android που θα αναμένεται κατά την εκκίνηση                                                                          |
+| `udid`                 | string                                                                 | —               | —                | UDID πραγματικής συσκευής iOS                                                                                                     |
+| `noReset`              | boolean                                                                | —               | —                | Διατήρηση δεδομένων εφαρμογής μεταξύ συνεδριών                                                                                    |
+| `fullReset`            | boolean                                                                | —               | —                | Απεγκατάσταση εφαρμογής πριν/μετά τη συνεδρία                                                                                     |
+| `newCommandTimeout`    | number                                                                 | —               | `300`            | Χρονικό όριο εντολών Appium (δευτερόλεπτα)                                                                                        |
+| `attach`               | boolean                                                                | —               | `false`          | Σύνδεση σε υπάρχον Chrome μέσω CDP                                                                                                |
+| `attachConfig`         | object                                                                 | —               | —                | Σύνδεση CDP: `{ port: 9222, host: "localhost" }`                                                                                  |
+| `appiumConfig`         | object                                                                 | —               | —                | Διακομιστής Appium: `{ host, port, path }`                                                                                        |
+| `tunnel`               | `boolean \| "external"`                                                | —               | `false`          | Δρομολόγηση μέσω τοπικού tunnel (πάροχοι cloud). `true` = αυτόματη εκκίνηση, `"external"` = το tunnel εκτελείται ήδη εξωτερικά     |
+| `reporting`            | object                                                                 | —               | —                | Ετικέτες αναφορών παρόχου cloud: `{ project, build, session }`                                                                    |
+| `trace`                | boolean                                                                | —               | `false`          | Ενεργοποίηση καταγραφής trace — παράγει ένα συμβατό με Playwright zip `.trace`                                                    |
+| `region`               | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`                  | —               | `"eu-central-1"` | Περιοχή κέντρου δεδομένων Sauce Labs                                                                                              |
+| `tunnelName`           | string                                                                 | —               | —                | Όνομα αναγνωριστικού tunnel (απαιτείται για `tunnel: "external"`)                                                                 |
+| `capabilities`         | object                                                                 | —               | —                | Πρόσθετα raw capabilities προς συγχώνευση                                                                                         |
 
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `headless` | boolean | No | `false` | Εκτέλεση του Chrome σε λειτουργία headless |
-| `windowWidth` | number | No | `1920` | Πλάτος παραθύρου περιηγητή (400-3840) |
-| `windowHeight` | number | No | `1080` | Ύψος παραθύρου περιηγητή (400-2160) |
-| `navigationUrl` | string | No | - | URL για πλοήγηση μετά την εκκίνηση του περιηγητή |
+```js
+// Τοπικός browser Chrome
+start_session({ platform: "browser", browser: "chrome" })
 
-#### Example
+// Simulator iOS
+start_session({ platform: "ios", deviceName: "iPhone 16", platformVersion: "18.0", appPath: "/path/to/app.app" })
 
+// Android στο BrowserStack
+start_session({ platform: "android", provider: "browserstack", deviceName: "Samsung Galaxy S24", app: "bs://abc123" })
+
+// iOS στο Sauce Labs
+start_session({ platform: "ios", provider: "saucelabs", deviceName: "iPhone 15", platformVersion: "17.0", app: "storage:filename=MyApp.ipa" })
+
+// Browser στο TestMu
+start_session({ platform: "browser", provider: "testmu", browser: "chrome", os: "Windows", osVersion: "11" })
+
+// Browser στο TestingBot
+start_session({ platform: "browser", provider: "testingbot", browser: "chrome", os: "Windows", osVersion: "11" })
+
+// Πάροχος cloud με tunnel
+start_session({ platform: "browser", provider: "browserstack", browser: "chrome", tunnel: true })
+
+// Σύνδεση σε υπάρχον Chrome (μετά το launch_chrome)
+start_session({ platform: "browser", browser: "chrome", attach: true })
 ```
-Start a browser with 1920x1080 resolution and navigate to webdriver.io
-```
-
-#### Support
-
-- Desktop Browsers
-
----
-
-### `start_app_session`
-
-Ξεκινάει μια συνεδρία εφαρμογής για κινητά σε iOS ή Android μέσω Appium.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `platform` | string | Yes | - | Πλατφόρμα για αυτοματοποίηση: `iOS` ή `Android` |
-| `deviceName` | string | Yes | - | Όνομα της συσκευής ή του προσομοιωτή/εξομοιωτή |
-| `appPath` | string | No* | - | Διαδρομή προς το αρχείο εφαρμογής (.app, .ipa, ή .apk) |
-| `platformVersion` | string | No | - | Έκδοση λειτουργικού συστήματος (π.χ., `17.0`, `14`) |
-| `automationName` | string | No | Auto | `XCUITest` (iOS), `UiAutomator2` ή `Espresso` (Android) |
-| `udid` | string | No | - | Μοναδικό αναγνωριστικό συσκευής (απαιτείται για πραγματικές συσκευές iOS) |
-| `noReset` | boolean | No | `false` | Διατήρηση της κατάστασης της εφαρμογής μεταξύ συνεδριών |
-| `fullReset` | boolean | No | `true` | Απεγκατάσταση και επανεγκατάσταση της εφαρμογής πριν από τη συνεδρία |
-| `autoGrantPermissions` | boolean | No | `true` | Αυτόματη χορήγηση δικαιωμάτων εφαρμογής |
-| `autoAcceptAlerts` | boolean | No | `true` | Αυτόματη αποδοχή ειδοποιήσεων συστήματος |
-| `autoDismissAlerts` | boolean | No | `false` | Απόρριψη (αντί για αποδοχή) ειδοποιήσεων |
-| `appWaitActivity` | string | No | - | Δραστηριότητα αναμονής κατά την εκκίνηση (μόνο για Android) |
-| `newCommandTimeout` | number | No | `60` | Δευτερόλεπτα πριν λήξει η συνεδρία λόγω αδράνειας |
-| `appiumHost` | string | No | `127.0.0.1` | Όνομα διακομιστή Appium |
-| `appiumPort` | number | No | `4723` | Θύρα διακομιστή Appium |
-| `appiumPath` | string | No | `/` | Διαδρομή διακομιστή Appium |
-
-*Είτε πρέπει να παρέχεται το `appPath`, είτε `noReset: true` για σύνδεση σε μια ήδη εκτελούμενη εφαρμογή.
-
-#### Example
-
-```
-Start an iOS app session on iPhone 15 simulator with my app at /path/to/app.app
-```
-
-#### Support
-
-- iOS Simulators
-- iOS Real Devices
-- Android Emulators
-- Android Real Devices
 
 ---
 
 ### `close_session`
 
-Κλείνει την τρέχουσα συνεδρία περιηγητή ή εφαρμογής.
+Κλείνει ή αποσυνδέεται από την τρέχουσα συνεδρία.
 
-#### Parameters
+| Παράμετρος | Τύπος   | Απαιτείται | Προεπιλογή | Περιγραφή                                                                  |
+| ---------- | ------- | ---------- | ---------- | -------------------------------------------------------------------------- |
+| `detach`   | boolean | —          | `false`    | Αποσύνδεση χωρίς τερματισμό (διατηρεί την κατάσταση της εφαρμογής στο Appium) |
 
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `detach` | boolean | No | `false` | Αποσύνδεση από τη συνεδρία αντί για κλείσιμο (κρατάει τον περιηγητή/εφαρμογή σε λειτουργία) |
-
-#### Notes
-
-Συνεδρίες με `noReset: true` ή χωρίς `appPath` αποσυνδέονται αυτόματα κατά το κλείσιμο για τη διατήρηση της κατάστασης.
-
-#### Support
-
-- Desktop Browsers
-- Mobile Apps
+Οι συνεδρίες που ξεκίνησαν με `noReset: true` αποσυνδέονται αυτόματα από προεπιλογή.
 
 ---
 
-## Navigation
+### `launch_chrome`
+
+Προετοιμάζει ένα στιγμιότυπο Chrome με ενεργοποιημένο το remote debugging, ώστε το `start_session({ attach: true })` να μπορεί να συνδεθεί. Δύο λειτουργίες:
+
+- `newInstance` (προεπιλογή): ανοίγει το Chrome παράλληλα με το υπάρχον, χρησιμοποιώντας ξεχωριστό κατάλογο προφίλ· η τρέχουσα συνεδρία σας παραμένει ανέπαφη.
+- `freshSession`: εκκινεί το Chrome με κενό προφίλ (χωρίς cookies, χωρίς συνδέσεις). Χρησιμοποιήστε `copyProfileFiles: true` για να μεταφέρετε cookies και συνδέσεις.
+
+| Παράμετρος         | Τύπος                             | Απαιτείται | Προεπιλογή      | Περιγραφή                                                                  |
+| ------------------ | --------------------------------- | ---------- | --------------- | -------------------------------------------------------------------------- |
+| `port`             | number                            | —          | `9222`          | Θύρα remote debugging                                                      |
+| `mode`             | `"newInstance" \| "freshSession"` | —          | `"newInstance"` | Λειτουργία εκκίνησης                                                       |
+| `copyProfileFiles` | boolean                           | —          | `false`         | Αντιγραφή του προφίλ Default του Chrome (cookies, συνδέσεις) στη συνεδρία debug |
+
+Μόλις αυτό το εργαλείο ολοκληρωθεί επιτυχώς, καλέστε `start_session({ platform: "browser", browser: "chrome", attach: true })`.
+
+## Πλοήγηση & Καρτέλες
 
 ### `navigate`
 
-Πλοηγείται σε μια διεύθυνση URL.
+Φορτώνει ένα URL στην τρέχουσα καρτέλα και περιμένει το συμβάν φόρτωσης σελίδας. Επαναφέρει την κατάσταση της σελίδας (DOM, JS runtime). **Μόνο για browser.**
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `url` | string | Yes | Η διεύθυνση URL για πλοήγηση |
-
-#### Example
-
-```
-Navigate to https://webdriver.io
-```
-
-#### Support
-
-- Desktop Browsers
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                       |
+| ---------- | ------ | ---------- | ------------------------------- |
+| `url`      | string | ✓          | URL στο οποίο θα γίνει πλοήγηση |
 
 ---
 
-## Element Interaction
+### `get_tabs`
+
+Εμφανίζει όλες τις καρτέλες του browser με handle, τίτλο, URL και ποια είναι ενεργή. Χρησιμοποιήστε το πριν από το `switch_tab` για να βρείτε το handle-στόχο. **Μόνο για browser.**
+
+Χωρίς παραμέτρους.
+
+---
+
+### `switch_tab`
+
+Εστιάζει σε μια καρτέλα του browser βάσει window handle ή δείκτη με αρχή το 0. Όλες οι επόμενες κλήσεις εργαλείων λειτουργούν στη νέα ενεργή καρτέλα. **Μόνο για browser.**
+
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                 |
+| ---------- | ------ | ---------- | ----------------------------------------- |
+| `handle`   | string | —          | Window handle στο οποίο θα γίνει εναλλαγή |
+| `index`    | number | —          | Δείκτης καρτέλας με αρχή το 0 (≥ 0)       |
+
+Δώστε είτε `handle` είτε `index`. Λάβετε τα handles από το `get_tabs` ή το `wdio://session/current/tabs`.
+
+---
+
+### `switch_frame`
+
+Αλλάζει το πλαίσιο (frame context) του WebDriver σε ένα iframe βάσει selector CSS/XPath, ή επιστρέφει στο ανώτατο επίπεδο αν παραλειφθεί ο selector. Οι αλλαγές διατηρούνται· όλες οι επόμενες κλήσεις `click_element`, `set_value`, `get_elements` λειτουργούν εντός του επιλεγμένου frame μέχρι να επιστρέψετε. Περιμένει έως 5s για το iframe. **Μόνο για browser.**
+
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                                                                          |
+| ---------- | ------ | ---------- | -------------------------------------------------------------------------------------------------- |
+| `selector` | string | —          | Selector CSS/XPath για το στοιχείο iframe. Παραλείψτε τον για επιστροφή στο frame ανώτατου επιπέδου. |
+
+```js
+// Εναλλαγή σε ένα iframe
+switch_frame({ selector: "#my-iframe" })
+
+// Αλληλεπίδραση με στοιχεία εντός του iframe
+click_element({ selector: "button.submit" })
+
+// Επιστροφή στο ανώτατο επίπεδο
+switch_frame()
+```
+
+## Αλληλεπίδραση με Στοιχεία
 
 ### `click_element`
 
-Κάνει κλικ σε ένα στοιχείο που προσδιορίζεται από έναν επιλογέα.
+Περιμένει να υπάρξει ένα στοιχείο, το κάνει scroll ώστε να είναι ορατό και κάνει κλικ σε αυτό. Λειτουργεί σε browser και κινητά. Στο iOS, προτιμήστε το `tap_element`· το `click_element` μερικές φορές αγνοείται από το native επίπεδο.
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `selector` | string | Yes | - | Επιλογέας CSS, XPath ή επιλογέας για κινητά |
-| `scrollToView` | boolean | No | `true` | Κύλιση του στοιχείου σε ορατή θέση πριν το κλικ |
-| `timeout` | number | No | `3000` | Μέγιστος χρόνος αναμονής για το στοιχείο (ms) |
-
-#### Notes
-
-- Υποστηρίζει επιλογείς κειμένου WebdriverIO: `button=Exact text` ή `a*=Contains text`
-- Χρησιμοποιεί κεντρική στοίχιση για τη θέση κύλισης
-
-#### Example
-
-```
-Click the element with selector "#submit-button"
-```
-
-#### Support
-
-- Desktop Browsers
-- Mobile Native Apps
+| Παράμετρος     | Τύπος   | Απαιτείται | Προεπιλογή | Περιγραφή                                            |
+| -------------- | ------- | ---------- | ---------- | ---------------------------------------------------- |
+| `selector`     | string  | ✓          | —          | Selector CSS, XPath ή κειμένου                       |
+| `scrollToView` | boolean | —          | `true`     | Scroll ώστε το στοιχείο να είναι ορατό πριν το κλικ  |
+| `timeout`      | number  | —          | —          | Μέγιστος χρόνος αναμονής (ms)                        |
 
 ---
 
 ### `set_value`
 
-Πληκτρολογεί κείμενο σε ένα πεδίο εισαγωγής.
+Καθαρίζει ένα input ή textarea και πληκτρολογεί το δοσμένο κείμενο. Πάντα αντικαθιστά το υπάρχον περιεχόμενο.
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `selector` | string | Yes | - | Επιλογέας για το στοιχείο εισαγωγής |
-| `value` | string | Yes | - | Κείμενο για πληκτρολόγηση |
-| `scrollToView` | boolean | No | `true` | Κύλιση του στοιχείου σε ορατή θέση πριν την πληκτρολόγηση |
-| `timeout` | number | No | `3000` | Μέγιστος χρόνος αναμονής για το στοιχείο (ms) |
-
-#### Notes
-
-Καθαρίζει την υπάρχουσα τιμή πριν πληκτρολογήσει νέο κείμενο.
-
-#### Example
-
-```
-Set the value "john@example.com" in the element with selector "#email"
-```
-
-#### Support
-
-- Desktop Browsers
-- Mobile Native Apps
+| Παράμετρος     | Τύπος   | Απαιτείται | Προεπιλογή | Περιγραφή                                                   |
+| -------------- | ------- | ---------- | ---------- | ----------------------------------------------------------- |
+| `selector`     | string  | ✓          | —          | Selector CSS, XPath ή κειμένου                              |
+| `value`        | string  | ✓          | —          | Κείμενο προς πληκτρολόγηση                                  |
+| `scrollToView` | boolean | —          | `true`     | Scroll ώστε το στοιχείο να είναι ορατό πριν την πληκτρολόγηση |
+| `timeout`      | number  | —          | —          | Μέγιστος χρόνος αναμονής (ms)                               |
 
 ---
-
-## Page Analysis
-
-### `get_visible_elements`
-
-Παίρνει ορατά και διαδραστικά στοιχεία στην τρέχουσα σελίδα ή οθόνη. Αυτό είναι το κύριο εργαλείο για την ανακάλυψη των διαθέσιμων στοιχείων για αλληλεπίδραση.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `elementType` | string | No | `interactable` | Τύπος στοιχείων: `interactable` (κουμπιά/σύνδεσμοι/πεδία), `visual` (εικόνες/SVGs), ή `all` |
-| `inViewportOnly` | boolean | No | `true` | Επιστροφή μόνο των στοιχείων που είναι ορατά στο viewport |
-| `includeContainers` | boolean | No | `false` | Συμπερίληψη περιεκτών διάταξης (ViewGroup, ScrollView, κλπ.) |
-| `includeBounds` | boolean | No | `false` | Συμπερίληψη συντεταγμένων στοιχείου (x, y, πλάτος, ύψος) |
-| `limit` | number | No | `0` | Μέγιστος αριθμός στοιχείων προς επιστροφή (0 = απεριόριστα) |
-| `offset` | number | No | `0` | Αριθμός στοιχείων προς παράλειψη (για σελιδοποίηση) |
-
-#### Returns
-
-```json
-{
-  "total": 42,
-  "showing": 20,
-  "hasMore": true,
-  "elements": [...]
-}
-```
-
-**Τα στοιχεία ιστού περιλαμβάνουν:** tagName, type, id, className, textContent, value, placeholder, href, ariaLabel, role, cssSelector, isInViewport
-
-**Τα στοιχεία κινητών περιλαμβάνουν:** Πολλαπλές στρατηγικές εντοπισμού (accessibility ID, resource ID, XPath, UiAutomator/predicates), τύπο στοιχείου, κείμενο και προαιρετικά όρια
-
-#### Notes
-
-- **Web**: Χρησιμοποιεί βελτιστοποιημένο σενάριο περιηγητή για γρήγορο εντοπισμό στοιχείων
-- **Mobile**: Χρησιμοποιεί αποδοτική ανάλυση XML πηγής σελίδας (2 HTTP κλήσεις αντί για 600+ για ερωτήματα στοιχείων)
-- Χρησιμοποιήστε σελιδοποίηση (`limit` και `offset`) για μεγάλες σελίδες για να μειώσετε τη χρήση tokens
-
-#### Example
-
-```
-Get all visible elements on the page with their coordinates
-```
-
-#### Support
-
-- Desktop Browsers
-- Mobile Apps
-
----
-
-### `get_accessibility`
-
-Λαμβάνει το δέντρο προσβασιμότητας της τρέχουσας σελίδας με σημασιολογικές πληροφορίες σχετικά με ρόλους, ονόματα και καταστάσεις.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `limit` | number | No | `100` | Μέγιστος αριθμός κόμβων προς επιστροφή (0 = απεριόριστοι) |
-| `offset` | number | No | `0` | Αριθμός κόμβων προς παράλειψη (για σελιδοποίηση) |
-| `roles` | string[] | No | All | Φιλτράρισμα σε συγκεκριμένους ρόλους (π.χ., `["button", "link", "textbox"]`) |
-| `namedOnly` | boolean | No | `true` | Επιστροφή μόνο κόμβων με όνομα/ετικέτα |
-
-#### Returns
-
-```json
-{
-  "total": 85,
-  "showing": 100,
-  "hasMore": false,
-  "nodes": [
-    { "role": "button", "name": "Submit" },
-    { "role": "link", "name": "Home" }
-  ]
-}
-```
-
-#### Notes
-
-- Μόνο για περιηγητές. Για εφαρμογές κινητών, χρησιμοποιήστε το `get_visible_elements`
-- Χρήσιμο όταν το `get_visible_elements` δεν επιστρέφει τα αναμενόμενα στοιχεία
-- Το `namedOnly: true` φιλτράρει ανώνυμους περιέκτες και μειώνει τον θόρυβο
-
-#### Support
-
-- Desktop Browsers
-
----
-
-## Screenshots
-
-### `take_screenshot`
-
-Λαμβάνει ένα στιγμιότυπο οθόνης του τρέχοντος viewport.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `outputPath` | string | No | Διαδρομή για αποθήκευση του αρχείου στιγμιότυπου. Αν παραλειφθεί, επιστρέφει δεδομένα base64 |
-
-#### Returns
-
-Δεδομένα εικόνας κωδικοποιημένα σε base64 (PNG ή JPEG) με πληροφορίες μεγέθους.
-
-#### Notes
-
-Τα στιγμιότυπα οθόνης βελτιστοποιούνται αυτόματα:
-- Μέγιστη διάσταση: 2000px (κλιμακώνεται προς τα κάτω αν είναι μεγαλύτερη)
-- Μέγιστο μέγεθος αρχείου: 1MB
-- Μορφή: PNG με μέγιστη συμπίεση, ή JPEG αν χρειάζεται για το όριο μεγέθους
-
-#### Support
-
-- Desktop Browsers
-- Mobile Apps
-
----
-
-## Scrolling
 
 ### `scroll`
 
-Κυλάει τη σελίδα προς τα πάνω ή κάτω κατά ένα συγκεκριμένο αριθμό εικονοστοιχείων.
+Κάνει scroll τη σελίδα κατά έναν αριθμό pixels. **Μόνο για browser.** Για κινητά, χρησιμοποιήστε το `swipe`.
 
-#### Parameters
+| Παράμετρος  | Τύπος            | Απαιτείται | Προεπιλογή | Περιγραφή           |
+| ----------- | ---------------- | ---------- | ---------- | ------------------- |
+| `direction` | `"up" \| "down"` | ✓          | —          | Κατεύθυνση scroll   |
+| `pixels`    | number           | —          | `500`      | Pixels για scroll   |
 
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `direction` | string | Yes | - | Κατεύθυνση κύλισης: `up` ή `down` |
-| `pixels` | number | No | `500` | Αριθμός εικονοστοιχείων για κύλιση |
+## Ανάλυση Στοιχείων
 
-#### Notes
+### `get_elements`
 
-Μόνο για περιηγητές. Για κύλιση σε κινητά, χρησιμοποιήστε το εργαλείο `swipe`.
+Επιστρέφει τα στοιχεία με δυνατότητα αλληλεπίδρασης στην τρέχουσα σελίδα, με selectors έτοιμους προς χρήση. Προτιμήστε τον πόρο `wdio://session/current/elements` για συνεχή επίγνωση· χρησιμοποιήστε αυτό το εργαλείο όταν χρειάζεστε φιλτράρισμα ή σελιδοποίηση.
 
-#### Support
-
-- Desktop Browsers
+| Παράμετρος          | Τύπος   | Απαιτείται | Προεπιλογή | Περιγραφή                                              |
+| ------------------- | ------- | ---------- | ---------- | ------------------------------------------------------ |
+| `inViewportOnly`    | boolean | —          | `false`    | Επιστροφή μόνο στοιχείων ορατών στο viewport           |
+| `includeContainers` | boolean | —          | `false`    | Συμπερίληψη στοιχείων-περιεκτών (divs, sections)       |
+| `includeBounds`     | boolean | —          | `false`    | Συμπερίληψη συντεταγμένων bounding box                 |
+| `limit`             | number  | —          | `0`        | Μέγιστος αριθμός στοιχείων προς επιστροφή (0 = απεριόριστα) |
+| `offset`            | number  | —          | `0`        | Στοιχεία προς παράλειψη (σελιδοποίηση)                 |
 
 ---
 
-## Cookie Management
+### `get_accessibility_tree`
+
+Επιστρέφει το δέντρο προσβασιμότητας της σελίδας με ρόλους, ονόματα και selectors. Υποστηρίζει φιλτράρισμα και σελιδοποίηση. **Μόνο για browser.**
+
+| Παράμετρος | Τύπος    | Απαιτείται | Προεπιλογή | Περιγραφή                                                     |
+| ---------- | -------- | ---------- | ---------- | ------------------------------------------------------------- |
+| `limit`    | number   | —          | `0`        | Μέγιστος αριθμός κόμβων προς επιστροφή (0 = απεριόριστοι)     |
+| `offset`   | number   | —          | `0`        | Κόμβοι προς παράλειψη (σελιδοποίηση)                          |
+| `roles`    | string[] | —          | —          | Φιλτράρισμα βάσει ρόλων ARIA, π.χ. `["button", "link", "heading"]` |
+
+## Στιγμιότυπα Οθόνης
+
+### `get_screenshot`
+
+Λαμβάνει στιγμιότυπο της τρέχουσας σελίδας ή οθόνης. Επιστρέφει μια εικόνα κωδικοποιημένη σε base64, η οποία αλλάζει αυτόματα μέγεθος και συμπιέζεται ώστε να παραμένει εντός των ορίων context του μοντέλου (έως 1 MB, έως 2000px).
+
+Χωρίς παραμέτρους. Προτιμήστε το `wdio://session/current/elements` αντί για στιγμιότυπα οθόνης για τον εντοπισμό στοιχείων· είναι ταχύτερο και χρησιμοποιεί πολύ λιγότερα tokens. Χρησιμοποιήστε στιγμιότυπα οθόνης για οπτική επαλήθευση ή αποσφαλμάτωση διάταξης.
+
+## Διαχείριση Cookies
 
 ### `get_cookies`
 
-Λαμβάνει cookies από την τρέχουσα συνεδρία.
+Επιστρέφει όλα τα cookies της τρέχουσας συνεδρίας ή ένα μεμονωμένο cookie βάσει ονόματος. **Μόνο για browser.**
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `name` | string | No | Συγκεκριμένο όνομα cookie για ανάκτηση (παραλείψτε για όλα τα cookies) |
-
-#### Returns
-
-Αντικείμενα cookie με ιδιότητες name, value, domain, path, expiry, secure και httpOnly.
-
-#### Support
-
-- Desktop Browsers
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                                 |
+| ---------- | ------ | ---------- | --------------------------------------------------------- |
+| `name`     | string | —          | Όνομα cookie. Παραλείψτε το για επιστροφή όλων των cookies. |
 
 ---
 
 ### `set_cookie`
 
-Ορίζει ένα cookie στην τρέχουσα συνεδρία.
+Ορίζει ένα cookie του browser. Ο browser πρέπει να βρίσκεται ήδη στο domain-στόχο — τα cookies δεν μπορούν να οριστούν μεταξύ διαφορετικών domains. Χρησιμοποιήστε το για να εισάγετε session tokens ή feature flags χωρίς να περάσετε από διαδικασίες σύνδεσης. **Μόνο για browser.**
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `name` | string | Yes | - | Όνομα cookie |
-| `value` | string | Yes | - | Τιμή cookie |
-| `domain` | string | No | Current | Τομέας cookie |
-| `path` | string | No | `/` | Διαδρομή cookie |
-| `expiry` | number | No | - | Λήξη ως χρονοσφραγίδα Unix (δευτερόλεπτα) |
-| `secure` | boolean | No | - | Σημαία ασφαλείας |
-| `httpOnly` | boolean | No | - | Σημαία HttpOnly |
-| `sameSite` | string | No | - | Χαρακτηριστικό SameSite: `strict`, `lax`, ή `none` |
-
-#### Support
-
-- Desktop Browsers
+| Παράμετρος | Τύπος                         | Απαιτείται | Περιγραφή                                           |
+| ---------- | ----------------------------- | ---------- | --------------------------------------------------- |
+| `name`     | string                        | ✓          | Όνομα cookie                                        |
+| `value`    | string                        | ✓          | Τιμή cookie                                         |
+| `domain`   | string                        | —          | Domain του cookie (προεπιλογή το τρέχον domain)     |
+| `path`     | string                        | —          | Διαδρομή του cookie (προεπιλογή `/`)                |
+| `expiry`   | number                        | —          | Λήξη ως Unix timestamp (δευτερόλεπτα)               |
+| `httpOnly` | boolean                       | —          | Σημαία HttpOnly                                     |
+| `secure`   | boolean                       | —          | Σημαία Secure                                       |
+| `sameSite` | `"strict" \| "lax" \| "none"` | —          | Χαρακτηριστικό SameSite                             |
 
 ---
 
 ### `delete_cookies`
 
-Διαγράφει cookies από την τρέχουσα συνεδρία.
+Διαγράφει όλα τα cookies ή ένα συγκεκριμένο cookie βάσει ονόματος. **Μόνο για browser.**
 
-#### Parameters
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                                          |
+| ---------- | ------ | ---------- | ------------------------------------------------------------------ |
+| `name`     | string | —          | Όνομα cookie προς διαγραφή. Παραλείψτε το για διαγραφή όλων των cookies. |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `name` | string | No | Συγκεκριμένο όνομα cookie για διαγραφή (παραλείψτε για διαγραφή όλων) |
-
-#### Support
-
-- Desktop Browsers
-
----
-
-## Touch Gestures (Mobile)
+## Χειρονομίες Αφής (Κινητά)
 
 ### `tap_element`
 
-Πατάει σε ένα στοιχείο ή σε συντεταγμένες οθόνης.
+Καλεί το `element.tap()` σε ένα στοιχείο που ταιριάζει ή κάνει tap σε απόλυτες συντεταγμένες οθόνης. Χρησιμοποιήστε το στο iOS όταν το `click_element` αγνοείται· το tap είναι η native χειρονομία στην οποία ανταποκρίνεται το iOS. **Μόνο για κινητά.**
 
-#### Parameters
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                            |
+| ---------- | ------ | ---------- | ---------------------------------------------------- |
+| `selector` | string | —          | Selector στοιχείου                                   |
+| `x`        | number | —          | Συντεταγμένη X για tap στην οθόνη (αν δεν υπάρχει selector) |
+| `y`        | number | —          | Συντεταγμένη Y για tap στην οθόνη (αν δεν υπάρχει selector) |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `selector` | string | No* | Επιλογέας για το στοιχείο προς πάτημα |
-| `x` | number | No* | Συντεταγμένη X για πάτημα |
-| `y` | number | No* | Συντεταγμένη Y για πάτημα |
-
-*Είτε το `selector` είτε και τα `x` και `y` απαιτούνται.
-
-#### Support
-
-- Mobile Apps
+Δώστε είτε `selector` είτε συντεταγμένες `x`/`y`.
 
 ---
 
 ### `swipe`
 
-Εκτελεί μια κίνηση σάρωσης προς την καθορισμένη κατεύθυνση.
+Εκτελεί μια χειρονομία swipe σε όλη την οθόνη. Η κατεύθυνση είναι η κατεύθυνση κίνησης του περιεχομένου (π.χ. το `"up"` κάνει scroll μια λίστα προς τα πάνω). Χρησιμοποιήστε το για scroll πέρα από τα ορατά όρια. Για τη μετακίνηση ενός συγκεκριμένου στοιχείου, χρησιμοποιήστε το `drag_and_drop`. **Μόνο για κινητά.** Για browsers, χρησιμοποιήστε το `scroll`.
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `direction` | string | Yes | - | Κατεύθυνση σάρωσης: `up`, `down`, `left`, `right` |
-| `duration` | number | No | `500` | Διάρκεια σάρωσης σε χιλιοστά δευτερολέπτου (100-5000) |
-| `percent` | number | No | 0.5/0.95 | Ποσοστό της οθόνης για σάρωση (0-1) |
-
-#### Notes
-
-- Προεπιλεγμένο ποσοστό: 0.5 για κάθετες σαρώσεις, 0.95 για οριζόντιες
-- Η κατεύθυνση υποδεικνύει την κίνηση περιεχομένου: "swipe up" κυλάει το περιεχόμενο προς τα πάνω
-
-#### Example
-
-```
-Swipe up to scroll down the screen
-```
-
-#### Support
-
-- Mobile Apps
+| Παράμετρος  | Τύπος                                 | Απαιτείται | Προεπιλογή     | Περιγραφή                                  |
+| ----------- | ------------------------------------- | ---------- | -------------- | ------------------------------------------ |
+| `direction` | `"up" \| "down" \| "left" \| "right"` | ✓          | —              | Κατεύθυνση swipe                           |
+| `duration`  | number                                | —          | `500`          | Διάρκεια swipe (ms, 100–5000)              |
+| `percent`   | number                                | —          | `0.5` / `0.95` | Ποσοστό της οθόνης για swipe (0–1)         |
 
 ---
 
 ### `drag_and_drop`
 
-Σύρει ένα στοιχείο σε ένα άλλο στοιχείο ή συντεταγμένες.
+Σύρει ένα στοιχείο σε ένα άλλο στοιχείο ή σε συντεταγμένες. **Μόνο για κινητά.**
 
-#### Parameters
+| Παράμετρος       | Τύπος  | Απαιτείται | Προεπιλογή | Περιγραφή                                       |
+| ---------------- | ------ | ---------- | ---------- | ----------------------------------------------- |
+| `sourceSelector` | string | ✓          | —          | Στοιχείο-πηγή προς σύρσιμο                      |
+| `targetSelector` | string | —          | —          | Στοιχείο-στόχος για απόθεση                     |
+| `x`              | number | —          | —          | Μετατόπιση X στόχου (αν δεν υπάρχει targetSelector) |
+| `y`              | number | —          | —          | Μετατόπιση Y στόχου (αν δεν υπάρχει targetSelector) |
+| `duration`       | number | —          | —          | Διάρκεια συρσίματος (ms, 100–5000)              |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `sourceSelector` | string | Yes | Επιλογέας στοιχείου προέλευσης για σύρσιμο |
-| `targetSelector` | string | No* | Επιλογέας στοιχείου προορισμού για απόθεση |
-| `x` | number | No* | Μετατόπιση X προορισμού (αν δεν υπάρχει targetSelector) |
-| `y` | number | No* | Μετατόπιση Y προορισμού (αν δεν υπάρχει targetSelector) |
-| `duration` | number | No | Default | Διάρκεια σύρσιμου σε χιλιοστά δευτερολέπτου (100-5000) |
-
-*Είτε το `targetSelector` είτε και τα `x` και `y` απαιτούνται.
-
-#### Support
-
-- Mobile Apps
-
----
-
-## App Lifecycle (Mobile)
-
-### `get_app_state`
-
-Λαμβάνει την τρέχουσα κατάσταση μιας εφαρμογής.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `bundleId` | string | Yes | Αναγνωριστικό εφαρμογής (bundle ID για iOS, package name για Android) |
-
-#### Returns
-
-Κατάσταση εφαρμογής: `not installed`, `not running`, `running in background (suspended)`, `running in background`, ή `running in foreground`.
-
-#### Support
-
-- Mobile Apps
-
----
-
-## Context Switching (Hybrid Apps)
+## Εναλλαγή Context (Κινητά)
 
 ### `get_contexts`
 
-Παραθέτει όλα τα διαθέσιμα πλαίσια (native και webviews).
+Επιστρέφει τα διαθέσιμα contexts αυτοματοποίησης και αυτό που είναι ενεργό. Χρησιμοποιήστε το πριν από το `switch_context` για να ανακαλύψετε τους στόχους `NATIVE_APP` και `WEBVIEW_*`. **Μόνο για κινητά.**
 
-#### Parameters
-
-Κανένα
-
-#### Returns
-
-Πίνακας ονομάτων πλαισίων (π.χ., `["NATIVE_APP", "WEBVIEW_com.example.app"]`).
-
-#### Support
-
-- Mobile Hybrid Apps
-
----
-
-### `get_current_context`
-
-Λαμβάνει το τρέχον ενεργό πλαίσιο.
-
-#### Parameters
-
-Κανένα
-
-#### Returns
-
-Όνομα τρέχοντος πλαισίου (π.χ., `NATIVE_APP` ή `WEBVIEW_*`).
-
-#### Support
-
-- Mobile Hybrid Apps
+Χωρίς παραμέτρους.
 
 ---
 
 ### `switch_context`
 
-Εναλλάσσεται μεταξύ native και webview πλαισίων.
+Εναλλάσσει μεταξύ native και webview contexts αυτοματοποίησης σε μια υβριδική εφαρμογή κινητού. Απαιτείται πριν από τη χρήση selectors CSS/XPath μέσα σε ένα ενσωματωμένο webview. **Μόνο για κινητά.**
 
-#### Parameters
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                                        |
+| ---------- | ------ | ---------- | ---------------------------------------------------------------- |
+| `context`  | string | ✓          | Όνομα context, π.χ. `"NATIVE_APP"`, `"WEBVIEW_com.example.app"`  |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `context` | string | Yes | Όνομα πλαισίου ή δείκτης (με βάση το 1) από το `get_contexts` |
+Λάβετε τα διαθέσιμα ονόματα context από το `get_contexts` ή το `wdio://session/current/contexts`.
 
-#### Example
+```js
+// 1. Ελέγξτε τι είναι διαθέσιμο
+get_contexts()
+// → { contexts: ["NATIVE_APP", "WEBVIEW_com.example.app"], currentContext: "NATIVE_APP" }
 
+// 2. Εναλλαγή στο webview για CSS/XPath
+switch_context({ context: "WEBVIEW_com.example.app" })
+
+// 3. Αλληλεπίδραση με στοιχεία του webview με χρήση selectors CSS
+click_element({ selector: "#login-button" })
+
+// 4. Επιστροφή στο native για το native UI
+switch_context({ context: "NATIVE_APP" })
 ```
-Switch to the WEBVIEW_com.example.app context
-```
 
-#### Support
-
-- Mobile Hybrid Apps
-
----
-
-## Device Control (Mobile)
+## Έλεγχος Συσκευής (Κινητά)
 
 ### `rotate_device`
 
-Περιστρέφει τη συσκευή σε συγκεκριμένο προσανατολισμό.
+Περιστρέφει τη συσκευή σε κατακόρυφο ή οριζόντιο προσανατολισμό και περιμένει να ολοκληρωθεί η περιστροφή από το λειτουργικό σύστημα. Χρησιμοποιήστε το για να δοκιμάσετε διατάξεις που εξαρτώνται από τον προσανατολισμό. **Μόνο για κινητά.**
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `orientation` | string | Yes | `PORTRAIT` ή `LANDSCAPE` |
-
-#### Support
-
-- Mobile Apps
+| Παράμετρος    | Τύπος                       | Απαιτείται | Περιγραφή               |
+| ------------- | --------------------------- | ---------- | ----------------------- |
+| `orientation` | `"PORTRAIT" \| "LANDSCAPE"` | ✓          | Προσανατολισμός-στόχος  |
 
 ---
 
 ### `hide_keyboard`
 
-Κρύβει το πληκτρολόγιο οθόνης.
+Κλείνει το πληκτρολόγιο λογισμικού. Καλέστε το μετά την εισαγωγή κειμένου όταν το πληκτρολόγιο κρύβει στοιχεία που χρειάζεστε στη συνέχεια. Δεν κάνει τίποτα αν είναι ήδη κρυμμένο. **Μόνο για κινητά.**
 
-#### Parameters
-
-Κανένα
-
-#### Support
-
-- Mobile Apps
-
----
-
-### `get_geolocation`
-
-Λαμβάνει τις τρέχουσες συντεταγμένες GPS.
-
-#### Parameters
-
-Κανένα
-
-#### Returns
-
-Αντικείμενο με `latitude`, `longitude` και `altitude`.
-
-#### Support
-
-- Mobile Apps
+Χωρίς παραμέτρους.
 
 ---
 
 ### `set_geolocation`
 
-Ορίζει τις συντεταγμένες GPS της συσκευής.
+Παρακάμπτει τις συντεταγμένες GPS της συσκευής για τη συνεδρία. Επηρεάζει το `navigator.geolocation` στο web και τις υπηρεσίες τοποθεσίας στα κινητά. Τα δικαιώματα τοποθεσίας πρέπει να έχουν παραχωρηθεί στην εφαρμογή εκ των προτέρων.
 
-#### Parameters
+| Παράμετρος  | Τύπος  | Απαιτείται | Περιγραφή                       |
+| ----------- | ------ | ---------- | ------------------------------- |
+| `latitude`  | number | ✓          | Γεωγραφικό πλάτος (−90 έως 90)  |
+| `longitude` | number | ✓          | Γεωγραφικό μήκος (−180 έως 180) |
+| `altitude`  | number | —          | Υψόμετρο σε μέτρα               |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `latitude` | number | Yes | Συντεταγμένη γεωγραφικού πλάτους (-90 έως 90) |
-| `longitude` | number | Yes | Συντεταγμένη γεωγραφικού μήκους (-180 έως 180) |
-| `altitude` | number | No | Υψόμετρο σε μέτρα |
+## Κύκλος Ζωής Εφαρμογής (Κινητά)
 
-#### Example
+### `get_app_state`
 
-```
-Set geolocation to San Francisco (37.7749, -122.4194)
-```
+Επιστρέφει την τρέχουσα κατάσταση κύκλου ζωής μιας εφαρμογής κινητού. **Μόνο για κινητά.**
 
-#### Support
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                                            |
+| ---------- | ------ | ---------- | -------------------------------------------------------------------- |
+| `bundleId` | string | ✓          | Bundle ID του iOS ή όνομα πακέτου Android, π.χ. `"com.example.app"`  |
 
-- Mobile Apps
+Επιστρέφει ένα από τα εξής: `not installed`, `not running`, `background (suspended)`, `background`, `foreground`.
+
+## Βοηθητικά Εργαλεία Browser
+
+### `emulate_device`
+
+Προσομοιώνει μια συσκευή κινητού ή tablet στην τρέχουσα συνεδρία browser (ορίζει viewport, DPR, user-agent, συμβάντα αφής). Απαιτεί συνεδρία με ενεργοποιημένο BiDi: `start_session({ capabilities: { webSocketUrl: true } })`. **Μόνο για browser.**
+
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                                                                                                                        |
+| ---------- | ------ | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `device`   | string | —          | Όνομα προκαθορισμένης συσκευής (π.χ. `"iPhone 15"`, `"Pixel 7"`). Παραλείψτε το για εμφάνιση των προκαθορισμένων. Δώστε `"reset"` για επαναφορά των προεπιλογών desktop. |
 
 ---
 
-## Script Execution
-
 ### `execute_script`
 
-Εκτελεί JavaScript στον περιηγητή ή εντολές για κινητά μέσω Appium.
+Εκτελεί JavaScript στον browser ή εντολές κινητού μέσω Appium.
 
-#### Parameters
+| Παράμετρος | Τύπος  | Απαιτείται | Περιγραφή                                                          |
+| ---------- | ------ | ---------- | ------------------------------------------------------------------ |
+| `script`   | string | ✓          | Κώδικας JS (browser) ή εντολή Appium όπως `"mobile: pressKey"`     |
+| `args`     | any[]  | —          | Ορίσματα που περνούν στο script ή στην εντολή                      |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `script` | string | Yes | Κώδικας JavaScript (περιηγητής) ή εντολή για κινητά (π.χ., `mobile: pressKey`) |
-| `args` | array | No | Ορίσματα για το σενάριο |
-
-#### Browser Examples
+**Browser:** χρησιμοποιήστε `return` για να λάβετε τιμές πίσω.
 
 ```javascript
-// Get page title
+// Λήψη τίτλου σελίδας
 execute_script({ script: "return document.title" })
 
-// Get scroll position
-execute_script({ script: "return window.scrollY" })
-
-// Click element by selector
-execute_script({ script: "arguments[0].click()", args: ["#myButton"] })
+// Scroll ώστε το στοιχείο να είναι ορατό
+execute_script({ script: "arguments[0].scrollIntoView()", args: ["#my-element"] })
 ```
 
-#### Mobile (Appium) Examples
+**Κινητά (Appium):** χρησιμοποιεί σύνταξη `mobile: <command>`.
 
 ```javascript
-// Press back key (Android)
+// Πάτημα του πλήκτρου επιστροφής του Android
 execute_script({ script: "mobile: pressKey", args: [{ keycode: 4 }] })
 
-// Activate app
-execute_script({ script: "mobile: activateApp", args: [{ appId: "com.example" }] })
+// Ενεργοποίηση εφαρμογής (iOS/Android)
+execute_script({ script: "mobile: activateApp", args: [{ bundleId: "com.example.app" }] })
 
-// Terminate app
-execute_script({ script: "mobile: terminateApp", args: [{ appId: "com.example" }] })
-
-// Deep link
-execute_script({ script: "mobile: deepLink", args: [{ url: "myapp://screen", package: "com.example" }] })
-
-// Shell command (Android)
-execute_script({ script: "mobile: shell", args: [{ command: "dumpsys", args: ["battery"] }] })
+// Deep link (iOS)
+execute_script({ script: "mobile: deepLink", args: [{ url: "myapp://route", bundleId: "com.example.app" }] })
 ```
 
-#### Common Android Key Codes
+## Πάροχοι Cloud
 
-| Key | Code |
-|-----|------|
-| BACK | 4 |
-| HOME | 3 |
-| ENTER | 66 |
-| MENU | 82 |
-| SEARCH | 84 |
+### `list_apps`
 
-#### More Mobile Commands
+Εμφανίζει τις εφαρμογές που έχουν μεταφορτωθεί σε έναν πάροχο cloud (BrowserStack App Automate, Sauce Labs App Storage, TestMu ή TestingBot Storage). Διαβάζει τα διαπιστευτήρια του εκάστοτε παρόχου από το περιβάλλον.
 
-For a complete list of available Appium mobile commands, see:
-- [XCUITest Mobile Commands](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/) (iOS)
-- [UiAutomator2 Mobile Commands](https://github.com/appium/appium-uiautomator2-driver#mobile-commands) (Android)
+| Παράμετρος         | Τύπος                                                       | Απαιτείται | Προεπιλογή       | Περιγραφή                                                   |
+| ------------------ | ----------------------------------------------------------- | ---------- | ---------------- | ----------------------------------------------------------- |
+| `provider`         | `"browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | ✓          | —                | Πάροχος cloud                                               |
+| `sortBy`           | `"app_name" \| "uploaded_at"`                               | —          | `"uploaded_at"`  | Σειρά ταξινόμησης                                           |
+| `organizationWide` | boolean                                                     | —          | `false`          | (Μόνο για BrowserStack) Εμφάνιση όλων των μεταφορτώσεων του οργανισμού |
+| `limit`            | number                                                      | —          | `20`             | Μέγιστος αριθμός αποτελεσμάτων                              |
+| `region`           | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`       | —          | `"eu-central-1"` | Περιοχή Sauce Labs                                          |
 
-#### Support
+```js
+// Εμφάνιση για όλους τους τέσσερις παρόχους
+list_apps({ provider: "browserstack" })
+list_apps({ provider: "saucelabs", region: "us-west-1" })
+list_apps({ provider: "testmu" })
+list_apps({ provider: "testingbot" })
+```
 
-- Desktop Browsers
-- Mobile Apps (via Appium mobile commands)
+---
+
+### `upload_app`
+
+Μεταφορτώνει ένα τοπικό `.apk` ή `.ipa` σε έναν πάροχο cloud (BrowserStack, Sauce Labs, TestMu ή TestingBot). Επιστρέφει το URL της εφαρμογής για χρήση στο `start_session`.
+
+| Παράμετρος | Τύπος                                                       | Απαιτείται | Προεπιλογή       | Περιγραφή                                                        |
+| ---------- | ----------------------------------------------------------- | ---------- | ---------------- | ---------------------------------------------------------------- |
+| `provider` | `"browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | ✓          | —                | Πάροχος cloud                                                    |
+| `path`     | string                                                      | ✓          | —                | Απόλυτη διαδρομή προς το αρχείο `.apk` ή `.ipa`                  |
+| `customId` | string                                                      | —          | —                | Προαιρετικό προσαρμοσμένο ID για μελλοντική αναφορά στην εφαρμογή |
+| `region`   | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`       | —          | `"eu-central-1"` | Περιοχή Sauce Labs                                               |
+
+```js
+// Μεταφόρτωση σε κάθε πάροχο
+upload_app({ provider: "browserstack", path: "/path/to/app.apk" })
+upload_app({ provider: "saucelabs", path: "/path/to/app.ipa", region: "us-west-1" })
+upload_app({ provider: "testmu", path: "/path/to/app.apk" })
+upload_app({ provider: "testingbot", path: "/path/to/app.apk" })
+```

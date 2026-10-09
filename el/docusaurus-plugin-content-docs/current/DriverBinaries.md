@@ -1,29 +1,32 @@
 ---
 id: driverbinaries
-title: Οδηγοί Προγραμμάτων Περιήγησης
+title: Εκτελέσιμα Αρχεία Drivers
+description: "Αφήστε το WebdriverIO να κατεβάζει και να διαχειρίζεται αυτόματα τους drivers των browsers ή ρυθμίστε χειροκίνητα τους Chromedriver, Geckodriver, Edgedriver και Safaridriver."
 ---
 
-Για να εκτελέσετε αυτοματισμούς που βασίζονται στο πρωτόκολλο WebDriver χρειάζεστε οδηγούς προγραμμάτων περιήγησης που μεταφράζουν τις εντολές αυτοματισμού και μπορούν να τις εκτελέσουν στο πρόγραμμα περιήγησης.
+Για να εκτελέσετε αυτοματοποίηση βασισμένη στο πρωτόκολλο WebDriver, χρειάζεται να έχετε ρυθμίσει drivers για τους browsers, οι οποίοι μεταφράζουν τις εντολές αυτοματοποίησης και μπορούν να τις εκτελέσουν στον browser.
 
-## Αυτοματοποιημένη εγκατάσταση
+## Αυτοματοποιημένη ρύθμιση
 
-Με το WebdriverIO `v8.14` και νεότερο, δεν χρειάζεται πλέον να κατεβάζετε και να ρυθμίζετε χειροκίνητα τους οδηγούς προγραμμάτων περιήγησης, καθώς αυτό χειρίζεται το WebdriverIO. Το μόνο που χρειάζεται να κάνετε είναι να καθορίσετε το πρόγραμμα περιήγησης που θέλετε να δοκιμάσετε και το WebdriverIO θα κάνει τα υπόλοιπα.
+Με το WebdriverIO `v8.14` και νεότερες εκδόσεις, δεν υπάρχει πλέον ανάγκη να κατεβάσετε και να ρυθμίσετε χειροκίνητα κανέναν driver browser, καθώς αυτό το αναλαμβάνει το WebdriverIO. Το μόνο που χρειάζεται να κάνετε είναι να ορίσετε τον browser που θέλετε να δοκιμάσετε και το WebdriverIO θα κάνει τα υπόλοιπα.
 
-### Προσαρμογή του επιπέδου αυτοματισμού
+Σε ARM64, δείτε το [Chromedriver σε ARM64](arm64-chromedriver) για το πώς λειτουργεί η ρύθμιση του driver σε macOS, Windows και Linux, καθώς και τι να κάνετε όταν δεν μπορεί να ρυθμιστεί αυτόματα.
 
-Το WebdriverIO διαθέτει τρία επίπεδα αυτοματισμού:
+### Προσαρμογή του επιπέδου αυτοματοποίησης
 
-**1. Λήψη και εγκατάσταση του προγράμματος περιήγησης χρησιμοποιώντας το [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+Το WebdriverIO διαθέτει τρία επίπεδα αυτοματοποίησης:
 
-Εάν καθορίσετε έναν συνδυασμό `browserName`/`browserVersion` στις [δυνατότητες](configuration#capabilities-1), το WebdriverIO θα κατεβάσει και θα εγκαταστήσει τον ζητούμενο συνδυασμό, ανεξάρτητα από το αν υπάρχει ήδη εγκατάσταση στο μηχάνημα. Εάν παραλείψετε το `browserVersion`, το WebdriverIO θα προσπαθήσει πρώτα να εντοπίσει και να χρησιμοποιήσει μια υπάρχουσα εγκατάσταση με το [locate-app](https://www.npmjs.com/package/locate-app), διαφορετικά θα κατεβάσει και θα εγκαταστήσει την τρέχουσα σταθερή έκδοση του προγράμματος περιήγησης. Για περισσότερες λεπτομέρειες σχετικά με το `browserVersion`, δείτε [εδώ](capabilities#automate-different-browser-channels).
+**1. Λήψη και εγκατάσταση του browser με χρήση του [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+
+Αν ορίσετε έναν συνδυασμό `browserName`/`browserVersion` στη διαμόρφωση των [capabilities](configuration#capabilities-1), το WebdriverIO θα κατεβάσει και θα εγκαταστήσει τον ζητούμενο συνδυασμό, ανεξάρτητα από το αν υπάρχει ήδη εγκατάσταση στο μηχάνημα. Αν παραλείψετε το `browserVersion`, το WebdriverIO θα προσπαθήσει πρώτα να εντοπίσει και να χρησιμοποιήσει μια υπάρχουσα εγκατάσταση με το [locate-app](https://www.npmjs.com/package/locate-app), διαφορετικά θα κατεβάσει και θα εγκαταστήσει την τρέχουσα σταθερή έκδοση του browser. Για περισσότερες λεπτομέρειες σχετικά με το `browserVersion`, δείτε [εδώ](capabilities#automate-different-browser-channels).
 
 :::caution
 
-Η αυτοματοποιημένη εγκατάσταση προγράμματος περιήγησης δεν υποστηρίζει το Microsoft Edge. Επί του παρόντος, υποστηρίζονται μόνο τα Chrome, Chromium και Firefox.
+Η αυτοματοποιημένη ρύθμιση browser δεν υποστηρίζει τον Microsoft Edge. Προς το παρόν, υποστηρίζονται μόνο οι Chrome, Chromium και Firefox.
 
 :::
 
-Εάν έχετε εγκαταστήσει ένα πρόγραμμα περιήγησης σε μια τοποθεσία που δεν μπορεί να εντοπιστεί αυτόματα από το WebdriverIO, μπορείτε να καθορίσετε το εκτελέσιμο του προγράμματος περιήγησης, το οποίο θα απενεργοποιήσει την αυτόματη λήψη και εγκατάσταση.
+Αν έχετε εγκατάσταση browser σε τοποθεσία που δεν μπορεί να εντοπιστεί αυτόματα από το WebdriverIO, μπορείτε να ορίσετε το εκτελέσιμο αρχείο του browser, κάτι που θα απενεργοποιήσει την αυτοματοποιημένη λήψη και εγκατάσταση.
 
 ```ts
 {
@@ -38,9 +41,9 @@ title: Οδηγοί Προγραμμάτων Περιήγησης
 }
 ```
 
-**2. Λήψη και εγκατάσταση του οδηγού χρησιμοποιώντας [Chromedriver](https://www.npmjs.com/package/chromedriver), [Edgedriver](https://www.npmjs.com/package/edgedriver) ή [Geckodriver](https://www.npmjs.com/package/geckodriver).**
+**2. Λήψη και εγκατάσταση του driver: Chromedriver από το [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/), Edgedriver και Geckodriver με τα πακέτα [edgedriver](https://www.npmjs.com/package/edgedriver) και [geckodriver](https://www.npmjs.com/package/geckodriver).**
 
-Το WebdriverIO θα το κάνει πάντα αυτό, εκτός αν καθοριστεί το [binary](capabilities#binary) του οδηγού στη διαμόρφωση:
+Το WebdriverIO θα το κάνει πάντα αυτό, εκτός αν έχει οριστεί το [binary](capabilities#binary) του driver στη διαμόρφωση:
 
 ```ts
 {
@@ -55,45 +58,71 @@ title: Οδηγοί Προγραμμάτων Περιήγησης
 }
 ```
 
+Το WebdriverIO κατεβάζει από προεπιλογή το Chromedriver από το Chrome for Testing, αλλά σε ορισμένες περιπτώσεις θα χρησιμοποιήσει μια [έκδοση του Electron](https://github.com/electron/electron/releases):
+
+- Έχει οριστεί το [`wdio:electronVersion`](capabilities#wdioelectronversion), για μια εφαρμογή Electron. Χρησιμοποιεί αυτήν την έκδοση, εκτός αν έχουν οριστεί και το `browserVersion` και το `CHROMEDRIVER_CDNURL`.
+- Ο Chrome είναι παλαιότερος από την `153.0.8001.0` σε Linux ARM64, όπου το Chrome for Testing δεν διαθέτει builds του Chromedriver (δείτε το [Chromedriver σε ARM64](arm64-chromedriver)). Χρησιμοποιεί την τελευταία έκδοση με την ίδια κύρια έκδοση Chromium.
+- Η λήψη από το Chrome for Testing αποτυγχάνει, για παράδειγμα κατά τη διάρκεια διακοπής λειτουργίας, και το `CHROMEDRIVER_CDNURL` δεν έχει οριστεί. Χρησιμοποιεί την τελευταία έκδοση με την ίδια κύρια έκδοση Chromium.
+
 :::info
 
-Το WebdriverIO δεν θα κατεβάσει αυτόματα τον οδηγό Safari καθώς είναι ήδη εγκατεστημένος στο macOS.
+Το WebdriverIO δεν θα κατεβάσει αυτόματα τον Safari driver, καθώς είναι ήδη εγκατεστημένος στο macOS.
+
+:::
+
+:::info Firefox / Geckodriver
+
+Ο Firefox χρησιμοποιεί διαφορετικό σχήμα αρίθμησης εκδόσεων για τον browser (π.χ. `stable_151.0.1`) από το [Geckodriver](https://github.com/mozilla/geckodriver/releases) (π.χ. `0.36.0`), επομένως το `browserVersion` **δεν** χρησιμοποιείται για την επιλογή της έκδοσης του driver. Από προεπιλογή, το WebdriverIO κατεβάζει την τελευταία έκδοση του Geckodriver. Για να καθορίσετε μια συγκεκριμένη έκδοση driver, ορίστε το `geckoDriverVersion` στο `wdio:geckodriverOptions`:
+
+```ts
+{
+    capabilities: [
+        {
+            browserName: 'firefox',
+            browserVersion: 'stable_151.0.1',
+            'wdio:geckodriverOptions': {
+                geckoDriverVersion: '0.36.0'
+            }
+        }
+    ]
+}
+```
 
 :::
 
 :::caution
 
-Αποφύγετε να καθορίζετε ένα `binary` για το πρόγραμμα περιήγησης και να παραλείπετε το αντίστοιχο `binary` του οδηγού ή το αντίστροφο. Εάν καθορίζεται μόνο μία από τις τιμές `binary`, το WebdriverIO θα προσπαθήσει να χρησιμοποιήσει ή να κατεβάσει ένα συμβατό πρόγραμμα περιήγησης/οδηγό. Ωστόσο, σε ορισμένα σενάρια αυτό μπορεί να οδηγήσει σε μη συμβατό συνδυασμό. Επομένως, συνιστάται να καθορίζετε πάντα και τα δύο για να αποφύγετε προβλήματα που προκαλούνται από ασυμβατότητες εκδόσεων.
+Αποφύγετε να ορίζετε ένα `binary` για τον browser και να παραλείπετε το αντίστοιχο `binary` του driver ή το αντίστροφο. Αν οριστεί μόνο μία από τις τιμές `binary`, το WebdriverIO θα προσπαθήσει να χρησιμοποιήσει ή να κατεβάσει έναν browser/driver συμβατό με αυτήν. Ωστόσο, σε ορισμένα σενάρια αυτό μπορεί να οδηγήσει σε μη συμβατό συνδυασμό. Επομένως, συνιστάται να ορίζετε πάντα και τα δύο, ώστε να αποφεύγετε προβλήματα που προκαλούνται από ασυμβατότητες εκδόσεων.
 
 :::
 
-**3. Εκκίνηση/διακοπή του οδηγού.**
+**3. Εκκίνηση/τερματισμός του driver.**
 
-Από προεπιλογή, το WebdriverIO θα εκκινεί και θα διακόπτει αυτόματα τον οδηγό χρησιμοποιώντας μια αυθαίρετη αχρησιμοποίητη θύρα. Ο καθορισμός οποιασδήποτε από τις ακόλουθες ρυθμίσεις θα απενεργοποιήσει αυτή τη λειτουργία, πράγμα που σημαίνει ότι θα πρέπει να εκκινείτε και να διακόπτετε χειροκίνητα τον οδηγό:
+Από προεπιλογή, το WebdriverIO θα εκκινεί και θα τερματίζει αυτόματα τον driver χρησιμοποιώντας μια τυχαία αχρησιμοποίητη θύρα. Ο ορισμός οποιασδήποτε από τις παρακάτω ρυθμίσεις θα απενεργοποιήσει αυτήν τη λειτουργία, που σημαίνει ότι θα πρέπει να εκκινείτε και να τερματίζετε τον driver χειροκίνητα:
 
 - Οποιαδήποτε τιμή για το [port](configuration#port).
-- Οποιαδήποτε τιμή διαφορετική από την προεπιλογή για τα [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
-- Οποιαδήποτε τιμή τόσο για το [user](configuration#user) όσο και για το [key](configuration#key).
+- Οποιαδήποτε τιμή διαφορετική από την προεπιλεγμένη για τα [protocol](configuration#protocol), [hostname](configuration#hostname), [path](configuration#path).
+- Οποιαδήποτε τιμή και για τα δύο [user](configuration#user) και [key](configuration#key).
 
-## Χειροκίνητη εγκατάσταση
+## Χειροκίνητη ρύθμιση
 
-Τα παρακάτω περιγράφουν πώς μπορείτε να ρυθμίσετε κάθε οδηγό ξεχωριστά. Μπορείτε να βρείτε μια λίστα με όλους τους οδηγούς στο README του [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
+Στη συνέχεια περιγράφεται πώς μπορείτε να ρυθμίσετε ακόμα κάθε driver ξεχωριστά. Μπορείτε να βρείτε μια λίστα με όλους τους drivers στο README του [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
 
 :::tip
 
-Εάν ψάχνετε να ρυθμίσετε κινητές και άλλες πλατφόρμες UI, δείτε τον οδηγό [Appium Setup](appium).
+Αν θέλετε να ρυθμίσετε πλατφόρμες κινητών και άλλες πλατφόρμες UI, ρίξτε μια ματιά στον οδηγό μας [Ρύθμιση Appium](appium).
 
 :::
 
 ### Chromedriver
 
-Για να αυτοματοποιήσετε το Chrome, μπορείτε να κατεβάσετε το Chromedriver απευθείας από τον [ιστότοπο του έργου](http://chromedriver.chromium.org/downloads) ή μέσω του πακέτου NPM:
+Για να αυτοματοποιήσετε τον Chrome, μπορείτε να κατεβάσετε το Chromedriver απευθείας από τον [ιστότοπο του έργου](http://chromedriver.chromium.org/downloads) ή μέσω του πακέτου NPM:
 
 ```bash npm2yarn
 npm install -g chromedriver
 ```
 
-Στη συνέχεια, μπορείτε να το ξεκινήσετε μέσω:
+Στη συνέχεια μπορείτε να το εκκινήσετε μέσω:
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,7 +130,7 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-Για να αυτοματοποιήσετε το Firefox, κατεβάστε την πιο πρόσφατη έκδοση του `geckodriver` για το περιβάλλον σας και αποσυμπιέστε το στον κατάλογο του έργου σας:
+Για να αυτοματοποιήσετε τον Firefox, κατεβάστε την τελευταία έκδοση του `geckodriver` για το περιβάλλον σας και αποσυμπιέστε τη στον κατάλογο του έργου σας:
 
 <Tabs
   defaultValue="npm"
@@ -152,30 +181,30 @@ choco install selenium-gecko-driver
 <TabItem value="powershell">
 
 ```sh
-# Run as privileged session. Right-click and set 'Run as Administrator'
-# Use geckodriver-v0.24.0-win32.zip for 32 bit Windows
+# Εκτελέστε ως προνομιούχα συνεδρία. Κάντε δεξί κλικ και επιλέξτε 'Run as Administrator'
+# Χρησιμοποιήστε το geckodriver-v0.24.0-win32.zip για Windows 32 bit
 $url = "https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-win64.zip"
-$output = "geckodriver.zip" # will drop into current directory unless defined otherwise
-$unzipped_file = "geckodriver" # will unzip to this folder name
+$output = "geckodriver.zip" # θα τοποθετηθεί στον τρέχοντα κατάλογο εκτός αν οριστεί διαφορετικά
+$unzipped_file = "geckodriver" # θα αποσυμπιεστεί σε φάκελο με αυτό το όνομα
 
-# By default, Powershell uses TLS 1.0 the site security requires TLS 1.2
+# Από προεπιλογή, το Powershell χρησιμοποιεί TLS 1.0, ενώ η ασφάλεια του ιστότοπου απαιτεί TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Downloads Geckodriver
+# Λήψη του Geckodriver
 Invoke-WebRequest -Uri $url -OutFile $output
 
-# Unzip Geckodriver
+# Αποσυμπίεση του Geckodriver
 Expand-Archive $output -DestinationPath $unzipped_file
 cd $unzipped_file
 
-# Globally Set Geckodriver to PATH
+# Καθολική προσθήκη του Geckodriver στο PATH
 [System.Environment]::SetEnvironmentVariable("PATH", "$Env:Path;$pwd\geckodriver.exe", [System.EnvironmentVariableTarget]::Machine)
 ```
 
 </TabItem>
 </Tabs>
 
-**Σημείωση:** Άλλες εκδόσεις του `geckodriver` είναι διαθέσιμες [εδώ](https://github.com/mozilla/geckodriver/releases). Μετά τη λήψη μπορείτε να ξεκινήσετε τον οδηγό μέσω:
+**Σημείωση:** Άλλες εκδόσεις του `geckodriver` είναι διαθέσιμες [εδώ](https://github.com/mozilla/geckodriver/releases). Μετά τη λήψη, μπορείτε να εκκινήσετε τον driver μέσω:
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -183,16 +212,16 @@ cd $unzipped_file
 
 ### Edgedriver
 
-Μπορείτε να κατεβάσετε τον οδηγό για το Microsoft Edge στον [ιστότοπο του έργου](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) ή ως πακέτο NPM μέσω:
+Μπορείτε να κατεβάσετε τον driver για τον Microsoft Edge από τον [ιστότοπο του έργου](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) ή ως πακέτο NPM μέσω:
 
 ```sh
 npm install -g edgedriver
-edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
+edgedriver --version # εμφανίζει: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
 ```
 
 ### Safaridriver
 
-Το Safaridriver είναι προεγκατεστημένο στο MacOS σας και μπορεί να ξεκινήσει απευθείας μέσω:
+Το Safaridriver είναι προεγκατεστημένο στο MacOS σας και μπορεί να εκκινηθεί απευθείας μέσω:
 
 ```sh
 safaridriver -p 4444

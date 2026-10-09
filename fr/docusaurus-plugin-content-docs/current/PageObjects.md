@@ -1,21 +1,22 @@
 ---
 id: pageobjects
-title: Modèle d'Objet Page
+title: Pattern Page Object
+description: "Structurez vos tests avec le pattern page object en déplaçant les sélecteurs et les actions spécifiques à une page dans des classes de page réutilisables."
 ---
 
-La version 5 de WebdriverIO a été conçue en tenant compte du support du modèle d'Objet Page. En introduisant le principe des "éléments en tant que citoyens de première classe", il est maintenant possible de construire de grandes suites de tests en utilisant ce modèle.
+La version 5 de WebdriverIO a été conçue en tenant compte du support du Page Object Pattern. En introduisant le principe des « éléments comme citoyens de première classe », il est désormais possible de construire de grandes suites de tests en utilisant ce pattern.
 
-Aucun package supplémentaire n'est nécessaire pour créer des objets page. Il s'avère que les classes modernes et propres fournissent toutes les fonctionnalités nécessaires :
+Aucun package supplémentaire n'est nécessaire pour créer des page objects. Il s'avère que des classes modernes et épurées fournissent toutes les fonctionnalités dont nous avons besoin :
 
-- héritage entre objets page
-- chargement paresseux des éléments
-- encapsulation des méthodes et actions
+- l'héritage entre page objects
+- le chargement paresseux (lazy loading) des éléments
+- l'encapsulation des méthodes et des actions
 
-L'objectif de l'utilisation des objets page est d'abstraire toute information de page des tests réels. Idéalement, vous devriez stocker tous les sélecteurs ou instructions spécifiques qui sont uniques à une certaine page dans un objet page, afin que vous puissiez toujours exécuter votre test après avoir complètement redessiné votre page.
+L'objectif de l'utilisation des page objects est d'abstraire toute information relative à la page des tests eux-mêmes. Idéalement, vous devriez stocker tous les sélecteurs ou instructions spécifiques propres à une page donnée dans un page object, afin de pouvoir toujours exécuter votre test après avoir complètement remanié votre page.
 
-## Créer un Objet Page
+## Créer un Page Object
 
-Tout d'abord, nous avons besoin d'un objet page principal que nous appelons `Page.js`. Il contiendra des sélecteurs ou méthodes généraux dont tous les objets page hériteront.
+Tout d'abord, nous avons besoin d'un page object principal que nous appelons `Page.js`. Il contiendra des sélecteurs ou méthodes généraux dont tous les page objects hériteront.
 
 ```js
 // Page.js
@@ -30,13 +31,13 @@ export default class Page {
 }
 ```
 
-Nous exporterons toujours une instance d'un objet page, et ne créerons jamais cette instance dans le test. Puisque nous écrivons des tests de bout en bout, nous considérons toujours la page comme une construction sans état&mdash;tout comme chaque requête HTTP est une construction sans état.
+Nous allons toujours exporter (`export`) une instance d'un page object, et ne jamais créer cette instance dans le test. Puisque nous écrivons des tests de bout en bout, nous considérons toujours la page comme une construction sans état&mdash;tout comme chaque requête HTTP est une construction sans état.
 
-Bien sûr, le navigateur peut contenir des informations de session et donc afficher différentes pages basées sur différentes sessions, mais cela ne devrait pas se refléter dans un objet page. Ces types de changements d'état devraient se trouver dans vos tests réels.
+Certes, le navigateur peut transporter des informations de session et donc afficher différentes pages selon différentes sessions, mais cela ne devrait pas se refléter dans un page object. Ce genre de changements d'état devrait se trouver dans vos tests eux-mêmes.
 
-Commençons à tester la première page. À des fins de démonstration, nous utilisons le site web [The Internet](http://the-internet.herokuapp.com) de [Elemental Selenium](http://elementalselenium.com) comme cobaye. Essayons de construire un exemple d'objet page pour la [page de connexion](http://the-internet.herokuapp.com/login).
+Commençons à tester la première page. À des fins de démonstration, nous utilisons le site [The Internet](http://the-internet.herokuapp.com) d'[Elemental Selenium](http://elementalselenium.com) comme cobaye. Essayons de construire un exemple de page object pour la [page de connexion](http://the-internet.herokuapp.com/login).
 
-## Obtenir vos sélecteurs avec `Get`
+## Utiliser `Get` pour vos sélecteurs
 
 La première étape consiste à écrire tous les sélecteurs importants nécessaires dans notre objet `login.page` sous forme de fonctions getter :
 
@@ -75,7 +76,7 @@ WebdriverIO mémorise en interne le dernier résultat d'une commande. Si vous ch
 await LoginPage.username.setValue('Max Mustermann')
 ```
 
-Ce qui est fondamentalement la même chose que :
+Ce qui revient pratiquement au même que :
 
 ```js
 let elem = await $('#username')
@@ -88,11 +89,11 @@ ou
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Utiliser les objets page dans vos tests
+## Utiliser les Page Objects dans vos tests
 
-Après avoir défini les éléments et méthodes nécessaires pour la page, vous pouvez commencer à écrire le test correspondant. Tout ce que vous avez à faire pour utiliser l'objet page est de l'`import`er (ou `require`). C'est tout !
+Après avoir défini les éléments et méthodes nécessaires pour la page, vous pouvez commencer à écrire le test correspondant. Tout ce que vous avez à faire pour utiliser le page object est de l'importer (`import`, ou `require`). C'est tout !
 
-Puisque vous avez exporté une instance déjà créée de l'objet page, l'importer vous permet de commencer à l'utiliser immédiatement.
+Puisque vous avez exporté une instance déjà créée du page object, son importation vous permet de commencer à l'utiliser immédiatement.
 
 Si vous utilisez un framework d'assertion, vos tests peuvent être encore plus expressifs :
 
@@ -121,10 +122,10 @@ describe('login form', () => {
 })
 ```
 
-Du point de vue structurel, il est logique de séparer les fichiers spec et les objets page dans différents répertoires. De plus, vous pouvez donner à chaque objet page la terminaison : `.page.js`. Cela rend plus clair le fait que vous importez un objet page.
+D'un point de vue structurel, il est logique de séparer les fichiers de spécification et les page objects dans des répertoires différents. De plus, vous pouvez donner à chaque page object l'extension : `.page.js`. Cela indique plus clairement que vous importez un page object.
 
 ## Aller plus loin
 
-C'est le principe de base de la façon d'écrire des objets page avec WebdriverIO. Mais vous pouvez construire des structures d'objets page bien plus complexes que cela ! Par exemple, vous pourriez avoir des objets page spécifiques pour les modales, ou diviser un énorme objet page en différentes classes (chacune représentant une partie différente de la page web globale) qui héritent de l'objet page principal. Ce modèle offre vraiment beaucoup d'opportunités pour séparer les informations de page de vos tests, ce qui est important pour garder votre suite de tests structurée et claire à mesure que le projet et le nombre de tests augmentent.
+Voici le principe de base pour écrire des page objects avec WebdriverIO. Mais vous pouvez construire des structures de page objects bien plus complexes que celle-ci ! Par exemple, vous pourriez avoir des page objects spécifiques pour les modales, ou diviser un énorme page object en différentes classes (chacune représentant une partie différente de la page web globale) qui héritent du page object principal. Ce pattern offre vraiment de nombreuses possibilités pour séparer les informations de page de vos tests, ce qui est important pour garder votre suite de tests structurée et claire à mesure que le projet et le nombre de tests augmentent.
 
-Vous pouvez trouver cet exemple (et encore plus d'exemples d'objets page) dans le [`dossier example`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) sur GitHub.
+Vous pouvez trouver cet exemple (et encore plus d'exemples de page objects) dans le [dossier `example`](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) sur GitHub.

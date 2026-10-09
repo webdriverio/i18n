@@ -1,17 +1,18 @@
 ---
 id: test-output
 title: टेस्ट आउटपुट
+description: "विज़ुअल सर्विस के save और check मेथड्स द्वारा उत्पन्न आउटपुट और इमेजेज़ को समझें, जिसमें लेआउट टेस्टिंग और ब्लॉक-आउट्स शामिल हैं।"
 ---
 
 :::info
 
-[इस WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) डेमो साइट का उपयोग उदाहरण इमेज आउटपुट के लिए किया गया है।
+उदाहरण इमेज आउटपुट के लिए [इस WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) डेमो साइट का उपयोग किया गया है।
 
 :::
 
 ## `enableLayoutTesting`
 
-इसे [सर्विस ऑप्शंस](./service-options#enablelayouttesting) के साथ-साथ [मेथड](./method-options) लेवल पर भी सेट किया जा सकता है।
+इसे [सर्विस ऑप्शंस](./service-options#enablelayouttesting) के साथ-साथ [मेथड](./method-options) स्तर पर भी सेट किया जा सकता है।
 
 ```js
 // wdio.conf.(js|ts)
@@ -49,7 +50,7 @@ export const config = {
 
 ```js
 await browser.saveElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
-// Or
+// या
 await browser.checkElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
 ```
 
@@ -71,7 +72,7 @@ await browser.saveScreen("example-page-tag")
 
 ```js
 await browser.saveFullPageScreen("full-page-tag")
-// Or
+// या
 await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -83,7 +84,7 @@ await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 
 ```js
 await browser.saveTabbablePage("tabbable-page-tag")
-// Or
+// या
 await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -97,18 +98,18 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 
 ### कंसोल आउटपुट
 
-`save(Screen/Element/FullPageScreen)` मेथड्स निम्नलिखित जानकारी प्रदान करेंगे मेथड निष्पादित होने के बाद:
+`save(Screen/Element/FullPageScreen)` मेथड्स, मेथड के निष्पादित होने के बाद निम्नलिखित जानकारी प्रदान करेंगे:
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // The device pixel ratio of the instance that has run
+ *   // उस इंस्टेंस का डिवाइस पिक्सेल रेशियो जो चलाया गया है
  *   devicePixelRatio: 1,
- *   // The formatted filename, this depends on the options `formatImageName`
+ *   // फॉर्मेट किया गया फ़ाइल नाम, यह `formatImageName` ऑप्शंस पर निर्भर करता है
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // The path where the actual screenshot file can be found
+ *   // वह पाथ जहाँ वास्तविक स्क्रीनशॉट फ़ाइल पाई जा सकती है
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
@@ -177,7 +178,7 @@ await browser.saveScreen("example-page-tag")
 <TabItem value="ios">
 
 :::info TIP
-iOS `saveScreen` क्रियान्वयन डिफ़ॉल्ट रूप से डिवाइस बेज़ेल कॉर्नर्स के साथ नहीं होते हैं। इसे प्राप्त करने के लिए सर्विस को इंस्टेंटिएट करते समय `addIOSBezelCorners:true` विकल्प जोड़ें, [यहाँ देखें](./service-options#addiosbezelcorners)
+iOS `saveScreen` निष्पादन डिफ़ॉल्ट रूप से डिवाइस बेज़ल कॉर्नर्स के साथ नहीं होते हैं। इसे प्राप्त करने के लिए कृपया सर्विस को इंस्टैंशिएट करते समय `addIOSBezelCorners:true` ऑप्शन जोड़ें, [यह](./service-options#addiosbezelcorners) देखें
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,26 +217,26 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### कंसोल आउटपुट
 
-डिफ़ॉल्ट रूप से, `check(Screen/Element/FullPageScreen)` मेथड्स केवल एक मिसमैच प्रतिशत जैसे `1.23` प्रदान करेंगे, लेकिन जब प्लगइन में `returnAllCompareData: true` विकल्प होता है, तो मेथड निष्पादित होने के बाद निम्नलिखित जानकारी प्रदान की जाती है:
+डिफ़ॉल्ट रूप से, `check(Screen/Element/FullPageScreen)` मेथड्स केवल `1.23` जैसा मिसमैच प्रतिशत प्रदान करेंगे, लेकिन जब प्लगइन में `returnAllCompareData: true` ऑप्शन होता है, तो मेथड के निष्पादित होने के बाद निम्नलिखित जानकारी प्रदान की जाती है:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // The formatted filename, this depends on the options `formatImageName`
+ *     // फॉर्मेट किया गया फ़ाइल नाम, यह `formatImageName` ऑप्शंस पर निर्भर करता है
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // The actual folder and the file name
+ *         // वास्तविक (actual) फ़ोल्डर और फ़ाइल नाम
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // The baseline folder and the file name
+ *         // बेसलाइन फ़ोल्डर और फ़ाइल नाम
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // This following folder is optional and only if there is a mismatch
- *         // The folder that holds the diffs and the file name
+ *         // निम्नलिखित फ़ोल्डर वैकल्पिक है और केवल तभी होता है जब कोई मिसमैच हो
+ *         // वह फ़ोल्डर जिसमें डिफ़्स होते हैं और फ़ाइल नाम
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
- *     // The mismatch percentage
+ *     // मिसमैच प्रतिशत
  *     misMatchPercentage: 2.34,
  * };
  */
@@ -244,7 +245,7 @@ console.log(checkResult)
 ### इमेज आउटपुट
 
 :::info
-नीचे दिए गए चित्र केवल चेक कमांड चलाने के परिणामस्वरूप अंतरों को दिखाएंगे। केवल ब्राउज़र में अंतर दिखाया गया है, लेकिन Android और iOS के लिए आउटपुट समान है।
+नीचे दी गई इमेजेज़ केवल check कमांड्स चलाने के परिणामस्वरूप अंतर दिखाएंगी। केवल ब्राउज़र में डिफ़ दिखाया गया है, लेकिन Android और iOS के लिए आउटपुट समान है।
 :::
 
 <Tabs
@@ -262,7 +263,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-बटन टेक्स्ट `Get Started` से बदलकर `Getting Started!` कर दिया गया है और इसे परिवर्तन के रूप में पहचाना गया है।
+बटन टेक्स्ट को `Get Started` से `Getting Started!` में बदल दिया गया है और इसे एक बदलाव के रूप में पहचाना गया है।
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +276,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-बटन टेक्स्ट `Get Started` से बदलकर `Getting Started!` कर दिया गया है और इसे परिवर्तन के रूप में पहचाना गया है।
+बटन टेक्स्ट को `Get Started` से `Getting Started!` में बदल दिया गया है और इसे एक बदलाव के रूप में पहचाना गया है।
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +290,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-बटन टेक्स्ट `Get Started` से बदलकर `Getting Started!` कर दिया गया है और इसे परिवर्तन के रूप में पहचाना गया है।
+बटन टेक्स्ट को `Get Started` से `Getting Started!` में बदल दिया गया है और इसे एक बदलाव के रूप में पहचाना गया है।
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -300,7 +301,7 @@ await browser.checkFullPageScreen("full-page-tag")
 
 ## ब्लॉक-आउट्स
 
-यहां आप Android NativeWebScreenshot और iOS में ब्लॉक-आउट्स के लिए एक उदाहरण आउटपुट पाएंगे जहां स्टेटस+एड्रेस और टूलबार ब्लॉक आउट हैं।
+यहाँ आपको Android NativeWebScreenshot और iOS में ब्लॉक-आउट्स के लिए एक उदाहरण आउटपुट मिलेगा, जहाँ स्टेटस+एड्रेस बार और टूलबार को ब्लॉक आउट किया गया है।
 
 <Tabs
     defaultValue="nativeWebScreenshot"

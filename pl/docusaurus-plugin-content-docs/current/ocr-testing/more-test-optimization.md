@@ -1,10 +1,11 @@
 ---
 id: more-test-optimization
 title: Czas wykonania testów
+description: "Przyspiesz testy oparte na OCR, przycinając obszar wyszukiwania na ekranie i korzystając z lokalnej instalacji Tesseract."
 ---
 
-Domyślnie, ten moduł sprawdzi, czy masz lokalną instalację Tesseract na swoim komputerze/w swoim pipeline. Jeśli nie masz lokalnej instalacji, automatycznie użyje wersji [NodeJS](https://github.com/naptha/tesseract.js). Może to powodować pewne spowolnienie, ponieważ przetwarzanie obrazu będzie wykonywane przez Node.js. NodeJS nie jest najlepszym systemem do przeprowadzania
-ciężkiego przetwarzania.
+Domyślnie ten moduł sprawdza, czy masz lokalną instalację Tesseract na swoim komputerze/w swoim pipeline. Jeśli nie masz lokalnej instalacji, automatycznie zostanie użyta wersja dla [NodeJS](https://github.com/naptha/tesseract.js). Może to powodować pewne spowolnienie, ponieważ przetwarzanie obrazu będzie wykonywane przez Node.js. NodeJS nie jest najlepszym systemem do
+wykonywania ciężkiego przetwarzania.
 
 **ALE....**, istnieją sposoby na optymalizację czasu wykonania. Weźmy następujący skrypt testowy
 
@@ -28,7 +29,7 @@ describe("Search", () => {
 });
 ```
 
-Kiedy wykonasz to po raz pierwszy, możesz zobaczyć następujące wyniki, gdzie wykonanie testu zajęło 5,9 sekundy.
+Gdy uruchomisz go po raz pierwszy, możesz zobaczyć następujące wyniki, w których wykonanie testu zajęło 5,9 sekundy.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -62,9 +63,9 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 
 ## Przycinanie obszaru wyszukiwania na ekranie
 
-Możesz zoptymalizować czas wykonania, określając przycięty obszar do wykonania OCR.
+Możesz zoptymalizować czas wykonania, podając przycięty obszar, na którym ma zostać wykonane OCR.
 
-Jeśli zmienisz skrypt na ten:
+Jeśli zmienisz skrypt na następujący:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -122,12 +123,12 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
 :::tip Przycinanie obrazów
-To zmniejszyło lokalny czas wykonania z **5,9** do **4,8 sekundy**. Jest to redukcja o prawie **19%**. Wyobraź sobie, co może zrobić dla większego skryptu z większą ilością danych.
+To skróciło lokalny czas wykonania z **5,9** do **4,8 sekundy**. To redukcja o prawie **19%**. Wyobraź sobie, co może to dać w przypadku większego skryptu z większą ilością danych.
 :::
 
 ## Korzystanie z lokalnej instalacji Tesseract
 
-Możesz przyspieszyć czas wykonania do nawet mniej niż minuty, jeśli masz lokalną instalację Tessarect na swoim komputerze i/lub w pipeline (więcej informacji o instalacji Tesseract w systemie lokalnym można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Poniżej znajdziesz czas wykonania tego samego skryptu przy użyciu lokalnej instalacji Tesseract.
+Możesz skrócić czas wykonania nawet do mniej niż minuty, jeśli masz lokalną instalację Tesseract na swoim komputerze i/lub w swoim pipeline (więcej informacji o instalacji Tesseract w systemie lokalnym znajdziesz [tutaj](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Poniżej znajdziesz czas wykonania tego samego skryptu przy użyciu lokalnej instalacji Tesseract.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -157,5 +158,5 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
 :::tip Lokalna instalacja
-To zmniejszyło lokalny czas wykonania z **5,9** do **3,9 sekundy**. Jest to redukcja o prawie **34%**. Wyobraź sobie, co może zrobić dla większego skryptu z większą ilością danych.
+To skróciło lokalny czas wykonania z **5,9** do **3,9 sekundy**. To redukcja o prawie **34%**. Wyobraź sobie, co może to dać w przypadku większego skryptu z większą ilością danych.
 :::

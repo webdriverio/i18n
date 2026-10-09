@@ -1,33 +1,66 @@
 ---
 id: why-webdriverio
-title: Varför Webdriver.IO?
+title: Varför WebdriverIO?
+description: Vad som skiljer WebdriverIO från andra verktyg för testautomatisering – ett API för alla plattformar, webbstandarder, öppen styrning och förstklassigt stöd för kodagenter.
 ---
 
-WebdriverIO är ett progressivt automatiseringsramverk byggt för att automatisera moderna webb- och mobilapplikationer. Det förenklar interaktionen med din app och tillhandahåller en uppsättning plugins som hjälper dig att skapa en skalbar, robust och stabil testsvit.
+WebdriverIO är ett ramverk med öppen källkod för testautomatisering i Node.js. Med en testkörare och ett API kan du automatisera webbläsare, native- och hybridappar för mobilen, skrivbordsappar och editortillägg, och dessutom lägga till visuell testning, tillgänglighetstestning och komponenttestning. Det drivs av sin community under paraplyet [OpenJS Foundation](https://openjsf.org/).
 
-Det är utformat för att vara:
+## Ett ramverk för alla plattformar
 
-- __Utökningsbart__ - Att lägga till hjälpfunktioner eller mer komplicerade uppsättningar och kombinationer av befintliga kommandon är __enkelt__ och __mycket användbart__
-- __Kompatibelt__ - WebdriverIO kan köras på [WebDriver Protocol](https://w3c.github.io/webdriver/) för __äkta cross-browser-testning__ såväl som [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) för Chromium-baserad automatisering med hjälp av [Puppeteer](https://pptr.dev/).
-- __Funktionsrikt__ - Den stora variationen av inbyggda och gemenskapsplugins gör att du __enkelt kan integrera__ och __utöka__ din installation för att uppfylla dina krav.
+De flesta team levererar mer än en webbplats. Med WebdriverIO kan du testa allt med samma selektorer, assertions, rapportörer och CI-uppsättning:
 
-Du kan använda WebdriverIO för att automatisera:
+| Plattform | Hur WebdriverIO automatiserar den | Börja här |
+| --- | --- | --- |
+| Webbläsare | WebDriver och WebDriver BiDi i Chrome, Firefox, Safari och Edge | [Webbläsare](/docs/platforms/web) |
+| Webbkomponenter | Komponenttester i en riktig webbläsare för React, Vue, Svelte, Solid, Preact, Lit och Stencil | [Komponenttestning](/docs/component-testing) |
+| Mobilappar | Native, hybrid och mobilwebb på iOS och Android via Appium, inklusive Flutter | [Mobilappar](/docs/platforms/mobile) |
+| Skrivbordsappar | Electron-, Tauri- och Dioxus-appar på macOS, Windows och Linux, native macOS-appar via Appium | [Skrivbordsappar](/docs/platforms/desktop) |
+| Editorer och tillägg | VS Code-tillägg och webbläsartillägg | [Tillägg och editorer](/docs/platforms/apps-and-extensions) |
+| Visuella regressioner | Jämförelser av skärm, element och hela sidor för webb och mobil | [Visuell testning](/docs/visual-testing) |
 
-- 🌐 <span>&nbsp;</span> __moderna webbapplikationer__ skrivna i React, Vue, Angular, Svelte eller andra frontend-ramverk
-- 📱 <span>&nbsp;</span> __hybrid__ eller __nativa mobilapplikationer__ som körs i en emulator/simulator eller på en riktig enhet
-- 💻 <span>&nbsp;</span> __nativa skrivbordsapplikationer__ (t.ex. skrivna med Electron.js)
-- 📦 <span>&nbsp;</span> __enhets- eller komponenttestning__ av webbkomponenter i webbläsaren
+Samma test kan till och med styra flera av dessa samtidigt, t.ex. en mobilapp och en webbpanel i ett och samma scenario, med [multi-remote](/docs/multiremote).
 
-## Baserat på webbstandarder
+## Byggt på webbstandarder
 
-WebdriverIO utnyttjar kraften i [WebDriver](https://w3c.github.io/webdriver/) och [WebDriver-BiDi](https://github.com/w3c/webdriver-bidi) protokollen som utvecklas och stöds av alla webbläsarleverantörer och garanterar en äkta cross-browser-testupplevelse. Medan andra automatiseringsverktyg kräver att du laddar ner modifierade webbläsarmotorer som inte används av faktiska användare eller emulerar användarbeteende genom att injicera JavaScript, förlitar sig WebdriverIO på en gemensamt överenskommen standard för automatisering som är [ordentligt testad](https://wpt.fyi/results/webdriver/tests?label=experimental&label=master&aligned) och säkerställer kompatibilitet för årtionden framöver.
+WebdriverIO automatiserar webbläsare via [WebDriver](https://w3c.github.io/webdriver/) och [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/), de W3C-standarder som alla webbläsarleverantörer implementerar och [testar](https://wpt.fyi/results/webdriver/tests). Dina tester körs mot samma webbläsarversioner som dina användare har, och interaktioner som klick och tangenttryckningar skickas av webbläsaren själv i stället för att emuleras med JavaScript. WebDriver BiDi tillför nätverksmockning, konsol- och logghändelser med mera i alla webbläsare, inte bara Chromium.
 
-Dessutom har WebdriverIO även stöd för alternativa, proprietära automatiseringsprotokoll som [Chrome DevTools](https://chromedevtools.github.io/devtools-protocol/) för felsökning och introspektionsändamål. Detta gör att användaren sömlöst kan växla mellan konventionella kommandon baserade på WebDriver och kraftfulla webbläsarinteraktioner genom [Puppeteer](https://pptr.dev/).
+När du behöver webbläsarspecifika möjligheter ger WebdriverIO dig tillgång till Chrome DevTools Protocol via [Puppeteer](/docs/api/browser/getPuppeteer). Läs mer i [Automatiseringsprotokoll](/docs/automationProtocols).
 
-Läs mer om skillnaderna mellan dessa automatiseringsstandarder i avsnittet om [Automation Protocols](automationProtocols).
+## Communitydrivet och öppet styrt
 
-## Verkligt öppen källkod
+WebdriverIO är inte en produkt från en testleverantör. Projektet:
 
-Jämfört med många automatiseringsverktyg i ekosystemet är WebdriverIO ett verkligt öppen källkodsprojekt som drivs med öppen styrning och ägs av en ideell organisation kallad [OpenJS Foundation](https://openjsf.org/). Detta binder juridiskt projektet till att växa och ledas i intresse för alla deltagare. Projektteamet värdesätter öppenhet och samarbete och drivs inte av monetära intressen.
+- ägs av [OpenJS Foundation](https://openjsf.org/), en leverantörsneutral ideell organisation, vilket juridiskt förpliktar det att tjäna alla sina användares intressen
+- följer en offentlig [styrningsmodell](https://github.com/webdriverio/webdriverio/blob/main/GOVERNANCE.md): vem som helst kan bidra, och committers samt den tekniska styrgruppen (Technical Steering Committee) växer fram ur communityn
+- har ingen betalnivå och inga låsta funktioner; varje funktion är gratis och du kan köra dina tester var som helst, lokalt eller hos valfri molnleverantör
+- kanaliserar sponsring tillbaka till de personer som bygger det genom ett [stipendieprogram för bidragsgivare](/blog/2024/02/15/new-contributor-stipend-program)
+- erbjuder gratis communitysupport på [Discord](https://discord.webdriver.io) och [GitHub Discussions](https://github.com/webdriverio/webdriverio/discussions)
 
-Detta gör projektet oberoende i hur det utvecklas och vart det är tänkt att gå. Det låter oss tillhandahålla gratis support dygnet runt i vår [gemenskapskanal](https://discord.webdriver.io) när vi bygger en hållbar gemenskap som stödjer och lär från varandra. Slutligen ger det många möjligheter till personer som bidrar till och engagerar sig i projektet på grund av dess [öppna styrning](https://github.com/webdriverio/webdriverio/blob/main/GOVERNANCE.md).
+## Redo för kodagenter
+
+Dokumentationen, verktygen och testartefakterna är utformade så att kodagenter kan arbeta med WebdriverIO på egen hand:
+
+- **Agentanpassad dokumentation**: varje sida finns tillgänglig som Markdown, det finns en kurerad [`llms.txt`](https://webdriver.io/llms.txt) och en MCP-server för dokumentationen på `https://webdriver.io/mcp`.
+- **WebdriverIO MCP**: servern [`@wdio/mcp`](/docs/mcp) låter en agent styra webbläsare och mobilappar för att utforska ditt gränssnitt och verifiera selektorer.
+- **Traces**: [DevTools trace-läge](/docs/devtools/wdio/trace-mode) skriver en transkription i Markdown, skärmbilder och tillgänglighetsögonblicksbilder för varje misslyckat test.
+
+Se [WebdriverIO för kodagenter](/docs/ai-agents) för hur du konfigurerar det.
+
+## Allt som behövs ingår, lätt att utöka
+
+- En [testkörare](/docs/testrunner) med stöd för Mocha, Jasmine och Cucumber, parallell körning, [sharding](/docs/sharding), [omförsök](/docs/retry) och ett [bevakningsläge](/docs/watcher)
+- [Automatisk väntan](/docs/autowait) för varje interaktion och ett inbyggt [assertion-bibliotek](/docs/assertion)
+- [Nätverksmockning](/docs/mocksandspies), [emulering](/docs/emulation) och [snapshot-testning](/docs/snapshot)
+- En [felsökningspanel och trace-visare](/docs/devtools)
+- [Över 70 tjänster och rapportörer](/docs/ecosystem) för moln, ramverk och CI, plus enkla API:er för att skriva egna [kommandon](/docs/customcommands), [tjänster](/docs/customservices) och [rapportörer](/docs/customreporter)
+
+## När du bör välja något annat
+
+WebdriverIO passar bra när du testar mer än en plattform, vill köra mot riktiga webbläsare och enheter eller värdesätter ett oberoende, communityägt verktyg. Om du bara någonsin testar en enda webbapp i en enda webbläsare och inte behöver mobil-, skrivbords- eller molnenheter kan ett verktyg som enbart hanterar webbläsare kännas lättare att komma igång med. Om du är osäker kan du [skapa ett projekt](/docs/gettingstarted) med `npm init wdio@latest` och prova: uppsättningen tar ungefär en minut.
+
+## Nästa steg
+
+- [Kom igång](/docs/gettingstarted) - skapa ett projekt och kör ditt första test
+- [Typer av uppsättning](/docs/setuptypes) - testkörare eller fristående läge
+- [WebdriverIO för kodagenter](/docs/ai-agents) - konfigurera din agent

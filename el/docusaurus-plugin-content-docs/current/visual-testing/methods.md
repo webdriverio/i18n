@@ -1,9 +1,10 @@
 ---
 id: methods
 title: Μέθοδοι
+description: "Χρησιμοποιήστε τις μεθόδους save και check της υπηρεσίας visual για να καταγράψετε στιγμιότυπα οθόνης και να συγκρίνετε οθόνες, στοιχεία και πλήρεις σελίδες με εικόνες αναφοράς."
 ---
 
-Οι ακόλουθες μέθοδοι προστίθενται στο καθολικό WebdriverIO αντικείμενο [`browser`](/docs/api/browser).
+Οι παρακάτω μέθοδοι προστίθενται στο καθολικό αντικείμενο [`browser`](/docs/api/browser) του WebdriverIO.
 
 ## Μέθοδοι Αποθήκευσης
 
@@ -32,10 +33,10 @@ await browser.saveElement(
 
 #### Υποστήριξη
 
-- Περιηγητές Υπολογιστή
-- Περιηγητές Κινητών
-- Υβριδικές Εφαρμογές Κινητών
-- Εγγενείς Εφαρμογές Κινητών
+- Desktop Browsers
+- Mobile Browsers
+- Mobile Hybrid Apps
+- Mobile Native Apps
 
 #### Παράμετροι
 
@@ -51,11 +52,11 @@ await browser.saveElement(
 
 #### Έξοδος:
 
-Δείτε τη σελίδα [Έξοδος Δοκιμής](./test-output#savescreenelementfullpagescreen).
+Δείτε τη σελίδα [Έξοδος Δοκιμών](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
-Αποθηκεύει μια εικόνα μιας προβολής.
+Αποθηκεύει μια εικόνα του viewport.
 
 #### Χρήση
 
@@ -72,10 +73,10 @@ await browser.saveScreen(
 
 #### Υποστήριξη
 
-- Περιηγητές Υπολογιστή
-- Περιηγητές Κινητών
-- Υβριδικές Εφαρμογές Κινητών
-- Εγγενείς Εφαρμογές Κινητών
+- Desktop Browsers
+- Mobile Browsers
+- Mobile Hybrid Apps
+- Mobile Native Apps
 
 #### Παράμετροι
 -   **`tag`:**
@@ -87,13 +88,13 @@ await browser.saveScreen(
 
 #### Έξοδος:
 
-Δείτε τη σελίδα [Έξοδος Δοκιμής](./test-output#savescreenelementfullpagescreen).
+Δείτε τη σελίδα [Έξοδος Δοκιμών](./test-output#savescreenelementfullpagescreen).
 
 ### `saveFullPageScreen`
 
 #### Χρήση
 
-Αποθηκεύει μια εικόνα της πλήρους οθόνης.
+Αποθηκεύει μια εικόνα ολόκληρης της οθόνης.
 
 ```ts
 await browser.saveFullPageScreen(
@@ -108,8 +109,8 @@ await browser.saveFullPageScreen(
 
 #### Υποστήριξη
 
-- Περιηγητές Υπολογιστή
-- Περιηγητές Κινητών
+- Desktop Browsers
+- Mobile Browsers
 
 #### Παράμετροι
 -   **`tag`:**
@@ -121,11 +122,11 @@ await browser.saveFullPageScreen(
 
 #### Έξοδος:
 
-Δείτε τη σελίδα [Έξοδος Δοκιμής](./test-output#savescreenelementfullpagescreen).
+Δείτε τη σελίδα [Έξοδος Δοκιμών](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Αποθηκεύει μια εικόνα της πλήρους οθόνης με τις γραμμές και τα σημεία tabbable.
+Αποθηκεύει μια εικόνα ολόκληρης της οθόνης με τις γραμμές και τις κουκκίδες πλοήγησης με Tab (tabbable).
 
 #### Χρήση
 
@@ -142,7 +143,7 @@ await browser.saveTabbablePage(
 
 #### Υποστήριξη
 
-- Περιηγητές Υπολογιστή
+- Desktop Browsers
 
 #### Παράμετροι
 -   **`tag`:**
@@ -154,12 +155,12 @@ await browser.saveTabbablePage(
 
 #### Έξοδος:
 
-Δείτε τη σελίδα [Έξοδος Δοκιμής](./test-output#savescreenelementfullpagescreen).
+Δείτε τη σελίδα [Έξοδος Δοκιμών](./test-output#savescreenelementfullpagescreen).
 
 ## Μέθοδοι Ελέγχου
 
 :::info ΣΥΜΒΟΥΛΗ
-Όταν οι μέθοδοι `check` χρησιμοποιούνται για πρώτη φορά, θα δείτε την παρακάτω προειδοποίηση στα αρχεία καταγραφής. Αυτό σημαίνει ότι δεν χρειάζεται να συνδυάσετε τις μεθόδους `save` και `check` αν θέλετε να δημιουργήσετε τη βασική σας γραμμή.
+Όταν οι μέθοδοι `check` χρησιμοποιούνται για πρώτη φορά, θα δείτε την παρακάτω προειδοποίηση στα logs. Αυτό σημαίνει ότι δεν χρειάζεται να συνδυάσετε τις μεθόδους `save` και `check` αν θέλετε να δημιουργήσετε την εικόνα αναφοράς (baseline) σας.
 
 ```shell
 #####################################################################################
@@ -194,10 +195,10 @@ await browser.checkElement(
 
 #### Υποστήριξη
 
-- Περιηγητές Υπολογιστή
-- Περιηγητές Κινητών
-- Υβριδικές Εφαρμογές Κινητών
-- Εγγενείς Εφαρμογές Κινητών
+- Desktop Browsers
+- Mobile Browsers
+- Mobile Hybrid Apps
+- Mobile Native Apps
 
 #### Παράμετροι
 -   **`element`:**
@@ -212,11 +213,11 @@ await browser.checkElement(
 
 #### Έξοδος:
 
-Δείτε τη σελίδα [Έξοδος Δοκιμής](./test-output#checkscreenelementfullpagescreen).
+Δείτε τη σελίδα [Έξοδος Δοκιμών](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkScreen`
 
-Συγκρίνει μια εικόνα μιας προβολής με μια εικόνα αναφοράς.
+Συγκρίνει μια εικόνα του viewport με μια εικόνα αναφοράς.
 
 #### Χρήση
 
@@ -233,10 +234,10 @@ await browser.checkScreen(
 
 #### Υποστήριξη
 
-- Περιηγητές Υπολογιστή
-- Περιηγητές Κινητών
-- Υβριδικές Εφαρμογές Κινητών
-- Εγγενείς Εφαρμογές Κινητών
+- Desktop Browsers
+- Mobile Browsers
+- Mobile Hybrid Apps
+- Mobile Native Apps
 
 #### Παράμετροι
 -   **`tag`:**
@@ -248,11 +249,11 @@ await browser.checkScreen(
 
 #### Έξοδος:
 
-Δείτε τη σελίδα [Έξοδος Δοκιμής](./test-output#checkscreenelementfullpagescreen).
+Δείτε τη σελίδα [Έξοδος Δοκιμών](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
-Συγκρίνει μια εικόνα της πλήρους οθόνης με μια εικόνα αναφοράς.
+Συγκρίνει μια εικόνα ολόκληρης της οθόνης με μια εικόνα αναφοράς.
 
 #### Χρήση
 
@@ -269,8 +270,8 @@ await browser.checkFullPageScreen(
 
 #### Υποστήριξη
 
-- Περιηγητές Υπολογιστή
-- Περιηγητές Κινητών
+- Desktop Browsers
+- Mobile Browsers
 
 #### Παράμετροι
 -   **`tag`:**
@@ -282,11 +283,11 @@ await browser.checkFullPageScreen(
 
 #### Έξοδος:
 
-Δείτε τη σελίδα [Έξοδος Δοκιμής](./test-output#checkscreenelementfullpagescreen).
+Δείτε τη σελίδα [Έξοδος Δοκιμών](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Συγκρίνει μια εικόνα της πλήρους οθόνης με τις γραμμές και τα σημεία tabbable με μια εικόνα αναφοράς.
+Συγκρίνει μια εικόνα ολόκληρης της οθόνης με τις γραμμές και τις κουκκίδες πλοήγησης με Tab (tabbable) με μια εικόνα αναφοράς.
 
 #### Χρήση
 
@@ -303,7 +304,7 @@ await browser.checkTabbablePage(
 
 #### Υποστήριξη
 
-- Περιηγητές Υπολογιστή
+- Desktop Browsers
 
 #### Παράμετροι
 -   **`tag`:**
@@ -315,4 +316,4 @@ await browser.checkTabbablePage(
 
 #### Έξοδος:
 
-Δείτε τη σελίδα [Έξοδος Δοκιμής](./test-output#checkscreenelementfullpagescreen).
+Δείτε τη σελίδα [Έξοδος Δοκιμών](./test-output#checkscreenelementfullpagescreen).

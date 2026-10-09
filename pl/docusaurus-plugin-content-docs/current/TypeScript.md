@@ -1,32 +1,33 @@
 ---
 id: typescript
 title: Konfiguracja TypeScript
+description: "Pisz testy WebdriverIO w TypeScript z użyciem tsx, skonfiguruj tsconfig.json i dodaj definicje typów dla frameworków, usług i niestandardowych komend."
 ---
 
-Możesz pisać testy przy użyciu [TypeScript](http://www.typescriptlang.org), aby uzyskać auto-uzupełnianie i bezpieczeństwo typów.
+Możesz pisać testy, używając [TypeScript](http://www.typescriptlang.org), aby uzyskać autouzupełnianie i bezpieczeństwo typów.
 
-Będziesz potrzebować zainstalowanego [`tsx`](https://github.com/privatenumber/tsx) w `devDependencies` poprzez:
+Będziesz potrzebować [`tsx`](https://github.com/privatenumber/tsx) zainstalowanego w `devDependencies` za pomocą:
 
 ```bash npm2yarn
 $ npm install tsx --save-dev
 ```
 
-WebdriverIO automatycznie wykryje, czy te zależności są zainstalowane i skompiluje Twoją konfigurację i testy za Ciebie. Upewnij się, że masz plik `tsconfig.json` w tym samym katalogu, co Twoja konfiguracja WDIO.
+WebdriverIO automatycznie wykryje, czy te zależności są zainstalowane, i skompiluje za Ciebie konfigurację oraz testy. Upewnij się, że masz plik `tsconfig.json` w tym samym katalogu co konfiguracja WDIO.
 
 #### Niestandardowy TSConfig
 
-Jeśli potrzebujesz ustawić inną ścieżkę dla `tsconfig.json`, ustaw zmienną środowiskową TSCONFIG_PATH z wybraną ścieżką lub użyj [ustawienia tsConfigPath](/docs/configurationfile) w konfiguracji wdio.
+Jeśli musisz ustawić inną ścieżkę dla `tsconfig.json`, ustaw zmienną środowiskową TSCONFIG_PATH na żądaną ścieżkę lub użyj [ustawienia tsConfigPath](/docs/configurationfile) w konfiguracji wdio.
 
 Alternatywnie możesz użyć [zmiennej środowiskowej](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path) dla `tsx`.
 
 
 #### Sprawdzanie typów
 
-Zauważ, że `tsx` nie obsługuje sprawdzania typów - jeśli chcesz sprawdzić swoje typy, musisz to zrobić w osobnym kroku za pomocą `tsc`.
+Pamiętaj, że `tsx` nie obsługuje sprawdzania typów – jeśli chcesz sprawdzić typy, musisz to zrobić w osobnym kroku za pomocą `tsc`.
 
 ## Konfiguracja frameworka
 
-Twój `tsconfig.json` potrzebuje następujących ustawień:
+Twój `tsconfig.json` musi zawierać następujące elementy:
 
 ```json title="tsconfig.json"
 {
@@ -37,13 +38,13 @@ Twój `tsconfig.json` potrzebuje następujących ustawień:
 ```
 
 Unikaj jawnego importowania `webdriverio` lub `@wdio/sync`.
-Typy `WebdriverIO` i `WebDriver` są dostępne z dowolnego miejsca po dodaniu ich do `types` w `tsconfig.json`. Jeśli używasz dodatkowych usług WebdriverIO, wtyczek lub pakietu automatyzacji `devtools`, dodaj je również do listy `types`, ponieważ wiele z nich zapewnia dodatkowe typy.
+Typy `WebdriverIO` i `WebDriver` są dostępne z dowolnego miejsca po dodaniu ich do `types` w `tsconfig.json`. Jeśli używasz dodatkowych usług WebdriverIO, wtyczek lub pakietu automatyzacji `devtools`, dodaj je również do listy `types`, ponieważ wiele z nich zapewnia dodatkowe definicje typów.
 
 ## Typy frameworków
 
-W zależności od używanego frameworka, będziesz musiał dodać typy dla tego frameworka do właściwości `types` w `tsconfig.json`, a także zainstalować jego definicje typów. Jest to szczególnie ważne, jeśli chcesz mieć obsługę typów dla wbudowanej biblioteki asercji [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
+W zależności od używanego frameworka musisz dodać typy tego frameworka do właściwości types w `tsconfig.json`, a także zainstalować jego definicje typów. Jest to szczególnie ważne, jeśli chcesz mieć obsługę typów dla wbudowanej biblioteki asercji [`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio).
 
-Na przykład, jeśli zdecydujesz się użyć frameworka Mocha, musisz zainstalować `@types/mocha` i dodać go w następujący sposób, aby wszystkie typy były dostępne globalnie:
+Na przykład, jeśli zdecydujesz się użyć frameworka Mocha, musisz zainstalować `@types/mocha` i dodać go w ten sposób, aby wszystkie typy były dostępne globalnie:
 
 <Tabs
   defaultValue="mocha"
@@ -69,10 +70,12 @@ Na przykład, jeśli zdecydujesz się użyć frameworka Mocha, musisz zainstalow
 ```json title="tsconfig.json"
 {
     "compilerOptions": {
-        "types": ["node", "@wdio/globals/types", "@wdio/jasmine-framework"]
+        "types": ["node", "jasmine", "@wdio/globals/types", "@wdio/jasmine-framework"]
     }
 }
 ```
+
+`jasmine` ładuje `@types/jasmine`, co zapewnia `jasmine`, `spyOn` i `expectAsync`. Z `@wdio/jasmine-framework` globalne `expect` zwraca `void` dla synchronicznych matcherów Jasmine oraz `Promise` dla matcherów WebdriverIO i asynchronicznych matcherów Jasmine. `expectAsync` również zawiera matchery WebdriverIO. Eksport `expect` z `expect-webdriverio` zachowuje swoje matchery Jest.
 
 </TabItem>
 <TabItem value="cucumber">
@@ -90,7 +93,7 @@ Na przykład, jeśli zdecydujesz się użyć frameworka Mocha, musisz zainstalow
 
 ## Usługi
 
-Jeśli używasz usług, które dodają polecenia do zakresu przeglądarki, musisz również uwzględnić je w swoim `tsconfig.json`. Na przykład, jeśli używasz `@wdio/lighthouse-service`, upewnij się, że dodajesz go również do `types`, np.:
+Jeśli używasz usług, które dodają komendy do zakresu przeglądarki, musisz je również uwzględnić w swoim `tsconfig.json`. Na przykład, jeśli używasz `@wdio/lighthouse-service`, upewnij się, że dodałeś go także do `types`, np.:
 
 ```json title="tsconfig.json"
 {
@@ -105,16 +108,16 @@ Jeśli używasz usług, które dodają polecenia do zakresu przeglądarki, musis
 }
 ```
 
-Dodanie usług i reporterów do konfiguracji TypeScript zwiększa również bezpieczeństwo typów w pliku konfiguracyjnym WebdriverIO.
+Dodanie usług i reporterów do konfiguracji TypeScript wzmacnia również bezpieczeństwo typów pliku konfiguracyjnego WebdriverIO.
 
 ## Definicje typów
 
-Podczas uruchamiania poleceń WebdriverIO wszystkie właściwości są zwykle typowane, więc nie musisz zajmować się importowaniem dodatkowych typów. Jednak istnieją przypadki, w których chcesz z góry zdefiniować zmienne. Aby upewnić się, że są one bezpieczne pod względem typów, możesz użyć wszystkich typów zdefiniowanych w pakiecie [`@wdio/types`](https://www.npmjs.com/package/@wdio/types). Na przykład, jeśli chcesz zdefiniować opcje zdalnego dla `webdriverio`, możesz to zrobić w następujący sposób:
+Podczas uruchamiania komend WebdriverIO wszystkie właściwości są zazwyczaj otypowane, więc nie musisz importować dodatkowych typów. Istnieją jednak przypadki, w których chcesz zdefiniować zmienne z wyprzedzeniem. Aby zapewnić ich bezpieczeństwo typów, możesz użyć wszystkich typów zdefiniowanych w pakiecie [`@wdio/types`](https://www.npmjs.com/package/@wdio/types). Na przykład, jeśli chcesz zdefiniować opcje zdalne dla `webdriverio`, możesz zrobić:
 
 ```ts
 import type { Options } from '@wdio/types'
 
-// Here is an example where you might want to import the types directly
+// Oto przykład, w którym możesz chcieć zaimportować typy bezpośrednio
 const remoteConfig: Options.WebdriverIO = {
     hostname: 'http://localhost',
     port: '4444' // Error: Type 'string' is not assignable to type 'number'.ts(2322)
@@ -123,15 +126,15 @@ const remoteConfig: Options.WebdriverIO = {
     }
 }
 
-// For other cases, you can use the `WebdriverIO` namespace
+// W innych przypadkach możesz użyć przestrzeni nazw `WebdriverIO`
 export const config: WebdriverIO.Config = {
   ...remoteConfig
-  // Other configs options
+  // Inne opcje konfiguracji
 }
 ```
 
-## Wskazówki i podpowiedzi
+## Wskazówki i porady
 
 ### Kompilacja i lintowanie
 
-Aby być całkowicie bezpiecznym, możesz rozważyć stosowanie najlepszych praktyk: kompiluj swój kod za pomocą kompilatora TypeScript (uruchom `tsc` lub `npx tsc`) i miej uruchomiony [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) na [hooku pre-commit](https://github.com/typicode/husky).
+Aby mieć całkowitą pewność, możesz rozważyć stosowanie najlepszych praktyk: kompiluj swój kod za pomocą kompilatora TypeScript (uruchom `tsc` lub `npx tsc`) i uruchamiaj [eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) w [hooku pre-commit](https://github.com/typicode/husky).

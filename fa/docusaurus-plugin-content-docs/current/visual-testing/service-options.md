@@ -1,9 +1,10 @@
 ---
 id: service-options
 title: گزینه‌های سرویس
+description: "پیکربندی گزینه‌های پیش‌فرض سرویس بصری، شامل ثبت اسکرین‌شات، اسکرین‌شات‌های تمام‌صفحه، تصاویر مرجع (baseline)، پوشه‌ها و گزارش‌دهی."
 ---
 
-گزینه‌های سرویس همان گزینه‌هایی هستند که هنگام راه‌اندازی سرویس می‌توانند تنظیم شوند و برای هر فراخوانی متد استفاده می‌شوند.
+گزینه‌های سرویس، گزینه‌هایی هستند که هنگام نمونه‌سازی سرویس تنظیم می‌شوند و برای هر فراخوانی متد مورد استفاده قرار می‌گیرند.
 
 ```js
 // wdio.conf.(js|ts)
@@ -24,38 +25,109 @@ export const config = {
 };
 ```
 
-## گزینه‌های پیش‌فرض
+# گزینه‌های پیش‌فرض
 
-### `addressBarShadowPadding`
+## ثبت اسکرین‌شات
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** `6`
--   **بافت‌های برنامه پشتیبانی شده:** وب
+---
 
-پدینگی که باید به نوار آدرس در iOS و اندروید اضافه شود تا برش مناسبی از صفحه نمایش انجام شود.
+### `hideScrollBars`
 
-### `autoElementScroll`
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `true`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)
+پنهان کردن نوارهای اسکرول در برنامه. اگر روی true تنظیم شود، تمام نوارهای اسکرول قبل از گرفتن اسکرین‌شات غیرفعال می‌شوند. این گزینه به‌طور پیش‌فرض روی `true` تنظیم شده است تا از بروز مشکلات اضافی جلوگیری شود.
 
-این گزینه به شما اجازه می‌دهد تا اسکرول خودکار عنصر به نمای قابل رویت را هنگام ایجاد اسکرین‌شات از عنصر غیرفعال کنید.
+</Option>
+### `disableBlinkingCursor`
 
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview)">
+
+فعال/غیرفعال کردن «چشمک زدن» نشانگر (caret) در تمام `input`، `textarea` و `[contenteditable]` های برنامه. اگر روی `true` تنظیم شود، نشانگر قبل از گرفتن اسکرین‌شات روی `transparent` تنظیم می‌شود
+و پس از اتمام کار به حالت قبل بازمی‌گردد
+
+</Option>
+### `disableCSSAnimation`
+
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview)">
+
+فعال/غیرفعال کردن تمام انیمیشن‌های CSS در برنامه. اگر روی `true` تنظیم شود، تمام انیمیشن‌ها قبل از گرفتن اسکرین‌شات غیرفعال می‌شوند
+و پس از اتمام کار به حالت قبل بازمی‌گردند
+
+</Option>
+### `enableLayoutTesting`
+
+<Option type="boolean" default="false" required="No" contexts="Web">
+
+این گزینه تمام متن‌های صفحه را پنهان می‌کند تا فقط چیدمان (layout) برای مقایسه استفاده شود. پنهان‌سازی با افزودن استایل `'color': 'transparent !important'` به **هر** عنصر انجام می‌شود.
+
+برای مشاهده خروجی، [خروجی تست](/docs/visual-testing/test-output#enablelayouttesting) را ببینید
+
+:::info
+با استفاده از این پرچم، هر عنصری که حاوی متن باشد (یعنی نه فقط `p, h1, h2, h3, h4, h5, h6, span, a, li`، بلکه `div|button|..` نیز) این ویژگی را دریافت خواهد کرد. **هیچ** گزینه‌ای برای سفارشی‌سازی این رفتار وجود ندارد.
+:::
+
+</Option>
+### `ignoreRegionPadding`
+
+<Option type="number" default="1" required="No" contexts="Web, Hybrid App (Webview)">
+
+فاصله (padding) بر حسب پیکسل دستگاه که به هر طرف نواحی نادیده‌گرفته‌شده اضافه می‌شود و باعث می‌شود هر ناحیه به اندازه ۲ برابر این مقدار عریض‌تر و بلندتر شود. این کار به جلوگیری از تفاوت‌های مرزی ۱ پیکسلی کمک می‌کند که ممکن است در نمایشگرهای با DPR بالا یا با پروتکل اسکرین‌شات BiDi ظاهر شوند. برای غیرفعال کردن، مقدار را روی `0` تنظیم کنید.
+
+</Option>
+### `waitForFontsLoaded`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
+
+فونت‌ها، از جمله فونت‌های شخص ثالث، می‌توانند به‌صورت همزمان یا ناهمزمان بارگذاری شوند. بارگذاری ناهمزمان به این معناست که فونت‌ها ممکن است پس از آنکه WebdriverIO تشخیص داد صفحه به‌طور کامل بارگذاری شده است، بارگذاری شوند. برای جلوگیری از مشکلات رندر فونت، این ماژول به‌طور پیش‌فرض قبل از گرفتن اسکرین‌شات منتظر بارگذاری تمام فونت‌ها می‌ماند.
+
+</Option>
+## اسکرین‌شات‌های تمام‌صفحه
+
+---
+
+### `userBasedFullPageScreenshot`
+
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview) **Introduced in visual-service@7.0.0">
+
+به‌طور پیش‌فرض، اسکرین‌شات‌های تمام‌صفحه در وب دسکتاپ با استفاده از پروتکل WebDriver BiDi گرفته می‌شوند که امکان گرفتن اسکرین‌شات‌های سریع، پایدار و یکنواخت را بدون نیاز به اسکرول فراهم می‌کند.
+هنگامی که userBasedFullPageScreenshot روی true تنظیم شود، فرآیند گرفتن اسکرین‌شات رفتار یک کاربر واقعی را شبیه‌سازی می‌کند: اسکرول در طول صفحه، گرفتن اسکرین‌شات‌هایی به اندازه viewport و چسباندن آن‌ها به یکدیگر. این روش برای صفحاتی با محتوای lazy-load یا رندر پویا که به موقعیت اسکرول وابسته است، مفید است.
+
+اگر صفحه شما به بارگذاری محتوا در حین اسکرول متکی است یا می‌خواهید رفتار روش‌های قدیمی‌تر گرفتن اسکرین‌شات را حفظ کنید، از این گزینه استفاده کنید.
+
+</Option>
+### `fullPageScrollTimeout`
+
+<Option type="number" default="1500" required="No" contexts="Web">
+
+مدت زمان انتظار بر حسب میلی‌ثانیه پس از هر اسکرول. این گزینه ممکن است به شناسایی صفحاتی با بارگذاری تنبل (lazy loading) کمک کند.
+
+:::info
+
+این گزینه فقط زمانی کار می‌کند که گزینه سرویس/متد `userBasedFullPageScreenshot` روی `true` تنظیم شده باشد، همچنین [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedfullpagescreenshot) را ببینید
+
+:::
+
+</Option>
+## موبایل و دستگاه
+
+---
+
+### `isHybridApp`
+
+<Option type="boolean" default="false" required="No" contexts="Hybrid App (Webview)">
+
+هنگام تست یک برنامه هیبریدی (یک پوسته نیتیو با یک یا چند webview تعبیه‌شده) این گزینه را روی `true` تنظیم کنید. این کار نحوه مدیریت برش نوار وضعیت و نوار آدرس را برای صفحات مبتنی بر webview تنظیم می‌کند و زمانی که داده‌های مستطیل نیتیو دستگاه در دسترس نباشد، به مقادیر پیش‌فرض امن بازمی‌گردد.
+
+</Option>
 ### `addIOSBezelCorners`
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `false`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-اضافه کردن گوشه‌های بزل و ناچ/دینامیک آیلند به اسکرین‌شات برای دستگاه‌های iOS.
+افزودن گوشه‌های قاب (bezel) و ناچ/dynamic island به اسکرین‌شات برای دستگاه‌های iOS.
 
-:::info نکته
-این فقط زمانی امکان‌پذیر است که نام دستگاه **می‌تواند** به طور خودکار تعیین شود و با لیست زیر از نام‌های نرمال‌شده دستگاه مطابقت داشته باشد. نرمال‌سازی توسط این ماژول انجام خواهد شد.
-**آیفون:**
+:::info NOTE
+این کار فقط زمانی امکان‌پذیر است که نام دستگاه به‌طور خودکار **قابل** تشخیص باشد و با فهرست زیر از نام‌های نرمال‌شده دستگاه‌ها مطابقت داشته باشد. نرمال‌سازی توسط این ماژول انجام می‌شود.
+**iPhone:**
 
 -   iPhone X: `iphonex`
 -   iPhone XS: `iphonexs`
@@ -76,83 +148,171 @@ export const config = {
 -   iPhone 14 Plus: `iphone14plus`
 -   iPhone 14 Pro: `iphone14pro`
 -   iPhone 14 Pro Max: `iphone14promax`
-    **آیپد:**
--   iPad Mini 6th Generation: `ipadmini`
--   iPad Air 4th Generation: `ipadair`
--   iPad Air 5th Generation: `ipadair`
--   iPad Pro (11-inch) 1st Generation: `ipadpro11`
--   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
--   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
--   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
--   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
--   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+    **iPads:**
+-   iPad Mini نسل ششم: `ipadmini`
+-   iPad Air نسل چهارم: `ipadair`
+-   iPad Air نسل پنجم: `ipadair`
+-   iPad Pro (۱۱ اینچ) نسل اول: `ipadpro11`
+-   iPad Pro (۱۱ اینچ) نسل دوم: `ipadpro11`
+-   iPad Pro (۱۱ اینچ) نسل سوم: `ipadpro11`
+-   iPad Pro (۱۲.۹ اینچ) نسل سوم: `ipadpro129`
+-   iPad Pro (۱۲.۹ اینچ) نسل چهارم: `ipadpro129`
+-   iPad Pro (۱۲.۹ اینچ) نسل پنجم: `ipadpro129`
 :::
 
-### `autoSaveBaseline`
+</Option>
+### `addressBarShadowPadding`
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `true`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی
+<Option type="number" default="6" required="No" contexts="Web">
 
-اگر در طول مقایسه هیچ تصویر پایه‌ای یافت نشود، تصویر به طور خودکار به پوشه پایه کپی می‌شود.
+فاصله‌ای (padding) که باید به نوار آدرس در iOS و Android اضافه شود تا برش صحیحی از viewport انجام شود.
 
-### `alwaysSaveActualImage`
+</Option>
+### `toolBarShadowPadding`
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `true`
--   **بافت‌های برنامه پشتیبانی شده:** همه
+<Option type="number" default={`6 for Android and \`15\` for iOS (\`6\` by default and \`9\` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)`} required="No" contexts="Web">
 
-هنگام تنظیم این گزینه به `false`:
+فاصله‌ای (padding) که باید به نوار ابزار در iOS و Android اضافه شود تا برش صحیحی از viewport انجام شود.
 
-- تصویر واقعی را زمانی که تفاوتی **وجود ندارد** ذخیره نمی‌کند
-- فایل گزارش JSON را هنگامی که `createJsonReportFiles` روی `true` تنظیم شده است، ذخیره نمی‌کند. همچنین هشداری در لاگ‌ها نشان می‌دهد که `createJsonReportFiles` غیرفعال است
+</Option>
+## مدیریت فایل و پوشه
 
-این باید عملکرد بهتری ایجاد کند زیرا فایلی در سیستم نوشته نمی‌شود و باید اطمینان حاصل شود که نویز زیادی در پوشه `actual` وجود ندارد.
+---
 
 ### `baselineFolder`
 
--   **نوع:** `string|()=> string`
--   **اجباری:** خیر
--   **پیش‌فرض:** `.path/to/testfile/__snapshots__/`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی
+<Option type="string|()=> string" default=".path/to/testfile/__snapshots__/" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-دایرکتوری که تمام تصاویر پایه مورد استفاده در مقایسه را نگه می‌دارد. اگر تنظیم نشود، مقدار پیش‌فرض استفاده می‌شود که فایل‌ها را در پوشه `__snapshots__/` کنار تست‌هایی که آزمون‌های بصری را اجرا می‌کنند، ذخیره می‌کند. تابعی که یک `string` برمی‌گرداند نیز می‌تواند برای تنظیم مقدار `baselineFolder` استفاده شود:
+پوشه‌ای که تمام تصاویر مرجع (baseline) مورد استفاده در مقایسه را در خود نگه می‌دارد. اگر تنظیم نشود، از مقدار پیش‌فرض استفاده می‌شود که فایل‌ها را در یک پوشه `__snapshots__/` در کنار فایل spec اجراکننده تست‌های بصری ذخیره می‌کند. برای تنظیم مقدار `baselineFolder` می‌توان از تابعی که یک `string` برمی‌گرداند نیز استفاده کرد:
 
 ```js
 {
     baselineFolder: path.join(process.cwd(), 'foo', 'bar', 'baseline')
 },
-// یا
+// OR
 {
     baselineFolder: () => {
-        // انجام بعضی از عملیات جادویی اینجا
+        // Do some magic here
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
 ```
 
+</Option>
+### `screenshotPath`
+
+<Option type="string | () => string" default=".tmp/" required="no" contexts="Web, Hybrid App (Webview), Native App">
+
+پوشه‌ای که تمام اسکرین‌شات‌های واقعی (actual) و تفاوت (diff) را در خود نگه می‌دارد. اگر تنظیم نشود، از مقدار پیش‌فرض استفاده می‌شود. برای تنظیم مقدار screenshotPath می‌توان از تابعی
+که یک رشته برمی‌گرداند نیز استفاده کرد:
+
+```js
+{
+    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
+},
+// OR
+{
+    screenshotPath: () => {
+        // Do some magic here
+        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
+    }
+}
+```
+
+</Option>
 ### `clearRuntimeFolder`
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `false`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-حذف پوشه زمان اجرا (`actual` و `diff`) در هنگام راه‌اندازی
+حذف پوشه زمان اجرا (`actual` و `diff`) هنگام راه‌اندازی
 
-:::info نکته
-این فقط زمانی کار می‌کند که [`screenshotPath`](#screenshotpath) از طریق گزینه‌های پلاگین تنظیم شده باشد و **کار نخواهد کرد** وقتی پوشه‌ها را در متدها تنظیم می‌کنید
+:::info NOTE
+این گزینه فقط زمانی کار می‌کند که [`screenshotPath`](#screenshotpath) از طریق گزینه‌های پلاگین تنظیم شده باشد و در صورتی که پوشه‌ها را در متدها تنظیم کنید **کار نخواهد کرد**
 :::
+
+</Option>
+### `savePerInstance`
+
+<Option type="boolean" default="false" required="no" contexts="Web, Hybrid App (Webview), Native App">
+
+ذخیره تصاویر هر نمونه (instance) در یک پوشه جداگانه؛ به‌عنوان مثال، تمام اسکرین‌شات‌های Chrome در یک پوشه Chrome مانند `desktop_chrome` ذخیره می‌شوند.
+
+</Option>
+### `formatImageName`
+
+<Option type="string" default={`{tag}-{browserName}-{width}x{height}-dpr-{dpr}`} required="No" contexts="Web, Hybrid App (Webview), Native App">
+
+نام تصاویر ذخیره‌شده را می‌توان با ارسال پارامتر `formatImageName` همراه با یک رشته قالب مانند زیر سفارشی کرد:
+
+```sh
+{tag}-{browserName}-{width}x{height}-dpr-{dpr}
+```
+
+متغیرهای زیر را می‌توان برای قالب‌بندی رشته ارسال کرد و به‌طور خودکار از capabilities نمونه خوانده می‌شوند.
+اگر قابل تشخیص نباشند، از مقادیر پیش‌فرض استفاده می‌شود.
+
+-   `browserName`: نام مرورگر در capabilities ارائه‌شده
+-   `browserVersion`: نسخه مرورگر ارائه‌شده در capabilities
+-   `deviceName`: نام دستگاه از capabilities
+-   `dpr`: نسبت پیکسل دستگاه (device pixel ratio)
+-   `height`: ارتفاع صفحه نمایش
+-   `logName`: مقدار logName از capabilities
+-   `mobile`: این متغیر `_app` یا نام مرورگر را پس از `deviceName` اضافه می‌کند تا اسکرین‌شات‌های برنامه از اسکرین‌شات‌های مرورگر متمایز شوند
+-   `platformName`: نام پلتفرم در capabilities ارائه‌شده
+-   `platformVersion`: نسخه پلتفرم ارائه‌شده در capabilities
+-   `tag`: برچسبی (tag) که در متد فراخوانی‌شده ارائه می‌شود
+-   `width`: عرض صفحه نمایش
+
+:::info
+
+شما نمی‌توانید مسیرها/پوشه‌های سفارشی را در `formatImageName` ارائه دهید. اگر می‌خواهید مسیر را تغییر دهید، لطفاً تغییر گزینه‌های زیر را بررسی کنید:
+
+- [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
+- [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
+- [`folderOptions`](/docs/visual-testing/method-options#folder-options) برای هر متد
+
+:::
+
+</Option>
+## رفتار تصویر مرجع و ذخیره‌سازی
+
+---
+
+### `autoSaveBaseline`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview), Native App">
+
+اگر در طول مقایسه هیچ تصویر مرجعی (baseline) یافت نشود، تصویر به‌طور خودکار در پوشه baseline کپی می‌شود.
+
+</Option>
+### `autoElementScroll`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
+
+این گزینه به شما اجازه می‌دهد اسکرول خودکار عنصر به داخل دید را هنگام ایجاد اسکرین‌شات از یک عنصر غیرفعال کنید.
+
+</Option>
+### `alwaysSaveActualImage`
+
+<Option type="boolean" default="true" required="No" contexts="All">
+
+هنگامی که این گزینه روی `false` تنظیم شود:
+
+- در صورتی که **هیچ** تفاوتی وجود نداشته باشد، تصویر واقعی (actual) را ذخیره نمی‌کند
+- در صورتی که `createJsonReportFiles` روی `true` تنظیم شده باشد، فایل گزارش JSON را ذخیره نمی‌کند. همچنین یک هشدار در لاگ‌ها نمایش می‌دهد مبنی بر اینکه `createJsonReportFiles` غیرفعال شده است
+
+این کار باید عملکرد بهتری ایجاد کند، زیرا هیچ فایلی در سیستم نوشته نمی‌شود و اطمینان حاصل می‌کند که پوشه `actual` شلوغ نشود.
+
+</Option>
+## گزارش‌دهی
+
+---
 
 ### `createJsonReportFiles` **(جدید)**
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `false`
+<Option type="boolean" default="false" required="No">
 
-اکنون می‌توانید نتایج مقایسه را به یک فایل گزارش JSON صادر کنید. با ارائه گزینه `createJsonReportFiles: true`، برای هر تصویر که مقایسه می‌شود، یک گزارش در پوشه `actual`، کنار هر نتیجه تصویر `actual` ذخیره می‌شود. خروجی به این شکل خواهد بود:
+اکنون این امکان را دارید که نتایج مقایسه را در یک فایل گزارش JSON صادر کنید. با ارائه گزینه `createJsonReportFiles: true`، برای هر تصویری که مقایسه می‌شود یک گزارش ایجاد شده و در پوشه `actual`، در کنار نتیجه هر تصویر `actual` ذخیره می‌شود. خروجی به این شکل خواهد بود:
 
 ```json
 {
@@ -215,14 +375,14 @@ export const config = {
 }
 ```
 
-پس از اجرای تمام آزمون‌ها، یک فایل JSON جدید با مجموعه مقایسه‌ها ایجاد می‌شود و می‌توان آن را در ریشه پوشه `actual` یافت. داده‌ها بر اساس موارد زیر گروه‌بندی می‌شوند:
+پس از اجرای تمام تست‌ها، یک فایل JSON جدید شامل مجموعه مقایسه‌ها تولید می‌شود که در ریشه پوشه `actual` شما قابل دسترسی است. داده‌ها بر اساس موارد زیر گروه‌بندی می‌شوند:
 
 -   `describe` برای Jasmine/Mocha یا `Feature` برای CucumberJS
 -   `it` برای Jasmine/Mocha یا `Scenario` برای CucumberJS
-    و سپس مرتب‌سازی بر اساس:
--   `commandName`، که نام‌های متد مقایسه استفاده شده برای مقایسه تصاویر هستند
--   `instanceData`، ابتدا مرورگر، سپس دستگاه، سپس پلتفرم
-    به این شکل خواهد بود:
+    و سپس بر اساس موارد زیر مرتب می‌شوند:
+-   `commandName`، که نام متدهای مقایسه‌ای است که برای مقایسه تصاویر استفاده می‌شوند
+-   `instanceData`، ابتدا مرورگر، سپس دستگاه و سپس پلتفرم
+    که به این شکل خواهد بود
 
 ```json
 [
@@ -265,315 +425,142 @@ export const config = {
 ]
 ```
 
-داده‌های گزارش این فرصت را به شما می‌دهد تا گزارش بصری خود را بدون انجام تمام جادو و جمع‌آوری داده‌ها به صورت دستی، ایجاد کنید.
+داده‌های گزارش این فرصت را به شما می‌دهند که گزارش بصری خود را بسازید، بدون اینکه خودتان تمام کارهای پیچیده و جمع‌آوری داده‌ها را انجام دهید.
 
-:::info نکته
-شما باید از نسخه `5.2.0` یا بالاتر `@wdio/visual-testing` استفاده کنید
+:::info NOTE
+شما باید از `@wdio/visual-testing` نسخه `5.2.0` یا بالاتر استفاده کنید
 :::
 
-### `disableBlinkingCursor`
+</Option>
+### `diffPixelBoundingBoxProximity`
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `false`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)
+<Option type="number" default="5" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-فعال/غیرفعال کردن چشمک زدن نشانگر در تمام عناصر `input`، `textarea`، `[contenteditable]` در برنامه. اگر روی `true` تنظیم شود، نشانگر قبل از گرفتن اسکرین‌شات به `transparent` تنظیم می‌شود و پس از اتمام کار بازنشانی می‌شود.
+میزان مجاورت پیکسلی که برای گروه‌بندی پیکسل‌های متفاوت در گزارش JSON تولیدشده توسط [`createJsonReportFiles`](#createjsonreportfiles) استفاده می‌شود. مقادیر بالاتر پیکسل‌های بیشتری را در کادرهای محدودکننده (bounding box) کمتری گروه‌بندی می‌کنند؛ مقادیر پایین‌تر کادرهای دقیق‌تر اما بیشتری تولید می‌کنند.
 
-### `disableCSSAnimation`
+</Option>
+## عمومی
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `false`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)
-
-فعال/غیرفعال کردن تمام انیمیشن‌های CSS در برنامه. اگر روی `true` تنظیم شود، تمام انیمیشن‌ها قبل از گرفتن اسکرین‌شات غیرفعال می‌شوند و پس از اتمام کار بازنشانی می‌شوند.
-
-### `enableLayoutTesting`
-
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `false`
--   **بافت‌های برنامه پشتیبانی شده:** وب
-
-این گزینه تمام متن‌ها را در صفحه پنهان می‌کند تا فقط طرح‌بندی برای مقایسه استفاده شود. پنهان‌سازی با افزودن استایل `'color': 'transparent !important'` به **هر** عنصر انجام می‌شود.
-
-برای مشاهده خروجی به [خروجی تست](/docs/visual-testing/test-output#enablelayouttesting) مراجعه کنید.
-
-:::info
-با استفاده از این پرچم، هر عنصری که حاوی متن است (نه فقط `p, h1, h2, h3, h4, h5, h6, span, a, li`، بلکه همچنین `div|button|..`) این ویژگی را دریافت می‌کند. هیچ گزینه‌ای برای سفارشی‌سازی این ویژگی وجود **ندارد**.
-:::
-
-### `formatImageName`
-
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی
-
-نام تصاویر ذخیره شده را می‌توان با ارسال پارامتر `formatImageName` با یک رشته قالب مانند زیر سفارشی کرد:
-
-```sh
-{tag}-{browserName}-{width}x{height}-dpr-{dpr}
-```
-
-متغیرهای زیر را می‌توان برای قالب‌بندی رشته ارسال کرد و به طور خودکار از قابلیت‌های نمونه خوانده می‌شوند.
-اگر نتوانند تعیین شوند، مقادیر پیش‌فرض استفاده می‌شوند.
-
--   `browserName`: نام مرورگر در قابلیت‌های ارائه شده
--   `browserVersion`: نسخه مرورگر ارائه شده در قابلیت‌ها
--   `deviceName`: نام دستگاه از قابلیت‌ها
--   `dpr`: نسبت پیکسل دستگاه
--   `height`: ارتفاع صفحه نمایش
--   `logName`: نام لاگ از قابلیت‌ها
--   `mobile`: این `_app` یا نام مرورگر را پس از `deviceName` اضافه می‌کند تا اسکرین‌شات‌های برنامه از اسکرین‌شات‌های مرورگر متمایز شوند
--   `platformName`: نام پلتفرم در قابلیت‌های ارائه شده
--   `platformVersion`: نسخه پلتفرم ارائه شده در قابلیت‌ها
--   `tag`: برچسبی که در متدهای فراخوانی شده ارائه می‌شود
--   `width`: عرض صفحه نمایش
-
-:::info
-
-شما نمی‌توانید مسیرها/پوشه‌های سفارشی را در `formatImageName` ارائه دهید. اگر می‌خواهید مسیر را تغییر دهید، لطفا بررسی کنید که گزینه‌های زیر را تغییر دهید:
-
-- [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
-- [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) برای هر متد
-
-:::
-
-### `fullPageScrollTimeout`
-
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** `1500`
--   **بافت‌های برنامه پشتیبانی شده:** وب
-
-مهلت زمانی به میلی‌ثانیه برای انتظار پس از اسکرول. این می‌تواند به شناسایی صفحات با بارگذاری تنبل کمک کند.
-
-:::info
-
-این فقط زمانی کار می‌کند که گزینه سرویس/متد `userBasedFullPageScreenshot` روی `true` تنظیم شده باشد، همچنین به [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot) مراجعه کنید.
-
-:::
-
-### `hideScrollBars`
-
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `true`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)
-
-پنهان کردن نوارهای اسکرول در برنامه. اگر روی true تنظیم شود، تمام نوارهای اسکرول قبل از گرفتن اسکرین‌شات غیرفعال می‌شوند. این به صورت پیش‌فرض `true` است تا از مشکلات اضافی جلوگیری شود.
+---
 
 ### `logLevel`
 
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** `info`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی
+<Option type="string" default="info" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
 لاگ‌های اضافی اضافه می‌کند، گزینه‌ها عبارتند از `debug | info | warn | silent`
 
 خطاها همیشه در کنسول ثبت می‌شوند.
 
-### `savePerInstance`
-
--   **نوع:** `boolean`
--   **پیش‌فرض:** `false`
--   **اجباری:** خیر
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی
-
-ذخیره تصاویر به ازای هر نمونه در یک پوشه جداگانه، به عنوان مثال تمام اسکرین‌شات‌های Chrome در یک پوشه Chrome مانند `desktop_chrome` ذخیره می‌شوند.
-
-### `screenshotPath`
-
--   **نوع:** `string | () => string`
--   **پیش‌فرض:** `.tmp/`
--   **اجباری:** خیر
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی
-
-دایرکتوری که تمام اسکرین‌شات‌های واقعی/متفاوت را نگه می‌دارد. اگر تنظیم نشود، مقدار پیش‌فرض استفاده می‌شود. تابعی که یک رشته برمی‌گرداند نیز می‌تواند برای تنظیم مقدار screenshotPath استفاده شود:
-
-```js
-{
-    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
-},
-// یا
-{
-    screenshotPath: () => {
-        // انجام بعضی از عملیات جادویی اینجا
-        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
-    }
-}
-```
-
-### `toolBarShadowPadding`
-
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** `6` برای اندروید و `15` برای iOS (`6` به طور پیش‌فرض و `9` به طور خودکار برای نوار خانه احتمالی در آیفون‌های دارای ناچ یا آیپدهایی که دارای نوار خانه هستند اضافه می‌شود)
--   **بافت‌های برنامه پشتیبانی شده:** وب
-
-پدینگی که باید به نوار ابزار در iOS و اندروید اضافه شود تا برش مناسبی از صفحه نمایش انجام شود.
-
-### `userBasedFullPageScreenshot`
-
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `false`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو) **معرفی شده در visual-service@7.0.0**
-
-به طور پیش‌فرض، اسکرین‌شات‌های تمام صفحه در وب دسکتاپ با استفاده از پروتکل WebDriver BiDi گرفته می‌شوند که امکان اسکرین‌شات‌های سریع، پایدار و سازگار بدون اسکرول را فراهم می‌کند.
-وقتی userBasedFullPageScreenshot روی true تنظیم شود، فرآیند اسکرین‌شات یک کاربر واقعی را شبیه‌سازی می‌کند: اسکرول در صفحه، گرفتن اسکرین‌شات‌های به اندازه صفحه نمایش و ترکیب آن‌ها با هم. این روش برای صفحاتی با محتوای بارگذاری تنبل یا رندر پویا که به موقعیت اسکرول بستگی دارد، مفید است.
-
-از این گزینه استفاده کنید اگر صفحه شما به بارگذاری محتوا هنگام اسکرول متکی است یا اگر می‌خواهید رفتار روش‌های قدیمی‌تر اسکرین‌شات را حفظ کنید.
-
-### `waitForFontsLoaded`
-
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** `true`
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)
-
-فونت‌ها، از جمله فونت‌های شخص ثالث، می‌توانند به صورت همزمان یا ناهمزمان بارگذاری شوند. بارگذاری ناهمزمان به این معنی است که فونت‌ها ممکن است پس از اینکه WebdriverIO تعیین کند که یک صفحه کاملاً بارگذاری شده است، بارگذاری شوند. برای جلوگیری از مشکلات رندر فونت، این ماژول به طور پیش‌فرض، قبل از گرفتن اسکرین‌شات، منتظر بارگذاری تمام فونت‌ها می‌ماند.
-
+</Option>
 ## گزینه‌های Tabbable
 
-:::info نکته
+:::info NOTE
 
-این ماژول همچنین از ترسیم نحوه استفاده کاربر از صفحه کلید برای _tab_ زدن در وب‌سایت پشتیبانی می‌کند، با ترسیم خطوط و نقاط از عنصر tabbable به عنصر tabbable دیگر.<br/>
-این کار الهام گرفته از پست وبلاگ [Viv Richards](https://github.com/vivrichards600) با عنوان ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript) است.<br/>
-نحوه انتخاب عناصر tabbable بر اساس ماژول [tabbable](https://github.com/davidtheclark/tabbable) است. اگر مشکلی در مورد tab زدن وجود دارد، لطفا [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) و به ویژه بخش [جزئیات بیشتر](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details) را بررسی کنید.
+این ماژول همچنین از ترسیم مسیری که یک کاربر با استفاده از صفحه‌کلید برای _tab_ کردن در وب‌سایت طی می‌کند پشتیبانی می‌کند؛ این کار با کشیدن خطوط و نقاط از یک عنصر قابل tab به عنصر قابل tab دیگر انجام می‌شود.<br/>
+این کار از پست وبلاگ [Viv Richards](https://github.com/vivrichards600) با عنوان ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript) الهام گرفته شده است.<br/>
+نحوه انتخاب عناصر قابل tab بر اساس ماژول [tabbable](https://github.com/davidtheclark/tabbable) است. اگر مشکلی در رابطه با tab کردن وجود دارد، لطفاً [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) و به‌ویژه [بخش More details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details) را بررسی کنید.
 
 :::
 
 ### `tabbableOptions`
 
--   **نوع:** `object`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-گزینه‌هایی که می‌توان برای خطوط و نقاط تغییر داد اگر از متدهای `{save|check}Tabbable` استفاده می‌کنید. گزینه‌ها در زیر توضیح داده شده‌اند.
+گزینه‌هایی که در صورت استفاده از متدهای `{save|check}Tabbable` می‌توان برای خطوط و نقاط تغییر داد. این گزینه‌ها در ادامه توضیح داده شده‌اند.
 
+</Option>
 #### `tabbableOptions.circle`
 
--   **نوع:** `object`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 گزینه‌های تغییر دایره.
 
+</Option>
 ##### `tabbableOptions.circle.backgroundColor`
 
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 رنگ پس‌زمینه دایره.
 
+</Option>
 ##### `tabbableOptions.circle.borderColor`
 
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 رنگ حاشیه دایره.
 
+</Option>
 ##### `tabbableOptions.circle.borderWidth`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-عرض حاشیه دایره.
+ضخامت حاشیه دایره.
 
+</Option>
 ##### `tabbableOptions.circle.fontColor`
 
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-رنگ فونت متن در دایره. این فقط نشان داده می‌شود اگر [`showNumber`](./#tabbableoptionscircleshownumber) روی `true` تنظیم شده باشد.
+رنگ فونت متن داخل دایره. این مورد فقط در صورتی نمایش داده می‌شود که [`showNumber`](./#tabbableoptionscircleshownumber) روی `true` تنظیم شده باشد.
 
+</Option>
 ##### `tabbableOptions.circle.fontFamily`
 
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-خانواده فونت متن در دایره. این فقط نشان داده می‌شود اگر [`showNumber`](./#tabbableoptionscircleshownumber) روی `true` تنظیم شده باشد.
+خانواده فونت متن داخل دایره. این مورد فقط در صورتی نمایش داده می‌شود که [`showNumber`](./#tabbableoptionscircleshownumber) روی `true` تنظیم شده باشد.
 
-مطمئن شوید که فونت‌هایی تنظیم می‌کنید که توسط مرورگرها پشتیبانی می‌شوند.
+مطمئن شوید فونت‌هایی را تنظیم می‌کنید که توسط مرورگرها پشتیبانی می‌شوند.
 
+</Option>
 ##### `tabbableOptions.circle.fontSize`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-اندازه فونت متن در دایره. این فقط نشان داده می‌شود اگر [`showNumber`](./#tabbableoptionscircleshownumber) روی `true` تنظیم شده باشد.
+اندازه فونت متن داخل دایره. این مورد فقط در صورتی نمایش داده می‌شود که [`showNumber`](./#tabbableoptionscircleshownumber) روی `true` تنظیم شده باشد.
 
+</Option>
 ##### `tabbableOptions.circle.size`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 اندازه دایره.
 
+</Option>
 ##### `tabbableOptions.circle.showNumber`
 
--   **نوع:** `showNumber`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="showNumber" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-نمایش شماره توالی tab در دایره.
+نمایش شماره ترتیب tab در داخل دایره.
 
+</Option>
 #### `tabbableOptions.line`
 
--   **نوع:** `object`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 گزینه‌های تغییر خط.
 
+</Option>
 ##### `tabbableOptions.line.color`
 
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 رنگ خط.
 
+</Option>
 ##### `tabbableOptions.line.width`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-عرض خط.
+ضخامت خط.
 
+</Option>
 ## گزینه‌های مقایسه
 
 ### `compareOptions`
 
--   **نوع:** `object`
--   **اجباری:** خیر
--   **پیش‌فرض:** برای تمام مقادیر پیش‌فرض [اینجا](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) را ببینید
--   **بافت‌های برنامه پشتیبانی شده:** وب، اپلیکیشن هیبریدی (وبویو)، اپلیکیشن بومی (برای اطلاعات بیشتر به [گزینه‌های مقایسه متد](./method-options#compare-check-options) مراجعه کنید)
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values" required="No" contexts="Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)">
 
-گزینه‌های مقایسه همچنین می‌توانند به عنوان گزینه‌های سرویس تنظیم شوند، آن‌ها در [گزینه‌های مقایسه متد](/docs/visual-testing/method-options#compare-check-options) توضیح داده شده‌اند.
+گزینه‌های مقایسه را می‌توان به‌عنوان گزینه‌های سرویس نیز تنظیم کرد؛ این گزینه‌ها در [گزینه‌های مقایسه متد](/docs/visual-testing/method-options#compare-check-options) توضیح داده شده‌اند
+
+</Option>

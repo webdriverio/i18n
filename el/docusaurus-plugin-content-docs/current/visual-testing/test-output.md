@@ -1,17 +1,18 @@
 ---
 id: test-output
-title: Έλεγχος Εξόδου
+title: Έξοδος Δοκιμών
+description: "Κατανοήστε την έξοδο και τις εικόνες που παράγονται από τις μεθόδους save και check της υπηρεσίας visual, συμπεριλαμβανομένων των δοκιμών διάταξης και των block-outs."
 ---
 
 :::info
 
-[Αυτός ο ιστότοπος επίδειξης WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) έχει χρησιμοποιηθεί για το παράδειγμα εξόδου εικόνας.
+[Αυτός ο ιστότοπος επίδειξης του WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) έχει χρησιμοποιηθεί για το παράδειγμα εξόδου εικόνων.
 
 :::
 
 ## `enableLayoutTesting`
 
-Αυτό μπορεί να οριστεί στις [Επιλογές Υπηρεσίας](./service-options#enablelayouttesting) καθώς και σε [επίπεδο Μεθόδου](./method-options).
+Αυτό μπορεί να οριστεί τόσο στις [Επιλογές Υπηρεσίας](./service-options#enablelayouttesting) όσο και σε επίπεδο [Μεθόδου](./method-options).
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,9 +33,9 @@ export const config = {
 }
 ```
 
-Η έξοδος εικόνας για τις [Επιλογές Υπηρεσίας](./service-options#enablelayouttesting) είναι ίδια με αυτή της [Μεθόδου](./method-options), δείτε παρακάτω.
+Η έξοδος εικόνων για τις [Επιλογές Υπηρεσίας](./service-options#enablelayouttesting) είναι ίδια με αυτή της [Μεθόδου](./method-options), δείτε παρακάτω.
 
-### Έξοδος Εικόνας
+### Έξοδος Εικόνων
 
 <Tabs
     defaultValue="saveelement"
@@ -49,7 +50,7 @@ export const config = {
 
 ```js
 await browser.saveElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
-// Or
+// Ή
 await browser.checkElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
 ```
 
@@ -71,7 +72,7 @@ await browser.saveScreen("example-page-tag")
 
 ```js
 await browser.saveFullPageScreen("full-page-tag")
-// Or
+// Ή
 await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -83,7 +84,7 @@ await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 
 ```js
 await browser.saveTabbablePage("tabbable-page-tag")
-// Or
+// Ή
 await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -97,24 +98,24 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 
 ### Έξοδος Κονσόλας
 
-Οι μέθοδοι `save(Screen/Element/FullPageScreen)` θα παρέχουν τις ακόλουθες πληροφορίες μετά την εκτέλεση της μεθόδου:
+Οι μέθοδοι `save(Screen/Element/FullPageScreen)` θα παρέχουν τις ακόλουθες πληροφορίες μετά την εκτέλεσή τους:
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // The device pixel ratio of the instance that has run
+ *   // Η αναλογία pixel συσκευής (device pixel ratio) του instance που εκτελέστηκε
  *   devicePixelRatio: 1,
- *   // The formatted filename, this depends on the options `formatImageName`
+ *   // Το μορφοποιημένο όνομα αρχείου, εξαρτάται από τις επιλογές `formatImageName`
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // The path where the actual screenshot file can be found
+ *   // Η διαδρομή όπου βρίσκεται το πραγματικό αρχείο στιγμιότυπου οθόνης
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
 ```
 
-### Έξοδος Εικόνας
+### Έξοδος Εικόνων
 
 <Tabs
     defaultValue="saveelement"
@@ -176,8 +177,8 @@ await browser.saveScreen("example-page-tag")
 </TabItem>
 <TabItem value="ios">
 
-:::info TIP
-Οι εκτελέσεις `saveScreen` στο iOS από προεπιλογή δεν έχουν τις γωνίες του πλαισίου της συσκευής. Για να τις έχετε, προσθέστε την επιλογή `addIOSBezelCorners:true` κατά την αρχικοποίηση της υπηρεσίας, δείτε [εδώ](./service-options#addiosbezelcorners)
+:::info ΣΥΜΒΟΥΛΗ
+Οι εκτελέσεις της `saveScreen` σε iOS από προεπιλογή δεν περιλαμβάνουν τις γωνίες του πλαισίου (bezel) της συσκευής. Για να τις έχετε, προσθέστε την επιλογή `addIOSBezelCorners:true` κατά την αρχικοποίηση της υπηρεσίας, δείτε [εδώ](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,35 +217,35 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### Έξοδος Κονσόλας
 
-Από προεπιλογή, οι μέθοδοι `check(Screen/Element/FullPageScreen)` θα παρέχουν μόνο ένα ποσοστό αναντιστοιχίας όπως `1.23`, αλλά όταν το πρόσθετο έχει την επιλογή `returnAllCompareData: true` παρέχονται οι ακόλουθες πληροφορίες μετά την εκτέλεση της μεθόδου:
+Από προεπιλογή, οι μέθοδοι `check(Screen/Element/FullPageScreen)` θα παρέχουν μόνο ένα ποσοστό αναντιστοιχίας όπως `1.23`, αλλά όταν το plugin έχει την επιλογή `returnAllCompareData: true`, παρέχονται οι ακόλουθες πληροφορίες μετά την εκτέλεση της μεθόδου:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // The formatted filename, this depends on the options `formatImageName`
+ *     // Το μορφοποιημένο όνομα αρχείου, εξαρτάται από τις επιλογές `formatImageName`
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // The actual folder and the file name
+ *         // Ο φάκελος actual και το όνομα αρχείου
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // The baseline folder and the file name
+ *         // Ο φάκελος baseline και το όνομα αρχείου
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // This following folder is optional and only if there is a mismatch
- *         // The folder that holds the diffs and the file name
+ *         // Ο ακόλουθος φάκελος είναι προαιρετικός και υπάρχει μόνο αν υπάρχει αναντιστοιχία
+ *         // Ο φάκελος που περιέχει τις διαφορές (diffs) και το όνομα αρχείου
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
- *     // The mismatch percentage
+ *     // Το ποσοστό αναντιστοιχίας
  *     misMatchPercentage: 2.34,
  * };
  */
 ```
 
-### Έξοδος Εικόνας
+### Έξοδος Εικόνων
 
 :::info
-Οι παρακάτω εικόνες θα δείχνουν μόνο διαφορές ως αποτέλεσμα της εκτέλεσης των εντολών ελέγχου. Εμφανίζεται μόνο η διαφορά σε ένα πρόγραμμα περιήγησης, αλλά η έξοδος για Android και iOS είναι η ίδια.
+Οι παρακάτω εικόνες δείχνουν μόνο διαφορές ως αποτέλεσμα της εκτέλεσης των εντολών check. Εμφανίζεται μόνο η διαφορά σε έναν browser, αλλά η έξοδος για Android και iOS είναι ίδια.
 :::
 
 <Tabs
@@ -262,7 +263,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-Το κείμενο του κουμπιού έχει αλλάξει από `Get Started` σε `Getting Started!` και ανιχνεύτηκε ως αλλαγή.
+Το κείμενο του κουμπιού έχει αλλάξει από `Get Started` σε `Getting Started!` και εντοπίστηκε ως αλλαγή.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +276,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-Το κείμενο του κουμπιού έχει αλλάξει από `Get Started` σε `Getting Started!` και ανιχνεύτηκε ως αλλαγή.
+Το κείμενο του κουμπιού έχει αλλάξει από `Get Started` σε `Getting Started!` και εντοπίστηκε ως αλλαγή.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +290,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-Το κείμενο του κουμπιού έχει αλλάξει από `Get Started` σε `Getting Started!` και ανιχνεύτηκε ως αλλαγή.
+Το κείμενο του κουμπιού έχει αλλάξει από `Get Started` σε `Getting Started!` και εντοπίστηκε ως αλλαγή.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -300,7 +301,7 @@ await browser.checkFullPageScreen("full-page-tag")
 
 ## Block-Outs
 
-Εδώ θα βρείτε ένα παράδειγμα εξόδου για αποκλεισμούς (block-outs) στο Android NativeWebScreenshot και iOS όπου η κατάσταση+διεύθυνση και η γραμμή εργαλείων έχουν αποκλειστεί.
+Εδώ θα βρείτε ένα παράδειγμα εξόδου για block-outs σε Android NativeWebScreenshot και iOS, όπου η γραμμή κατάστασης+διεύθυνσης και η γραμμή εργαλείων έχουν αποκλειστεί (blocked out).
 
 <Tabs
     defaultValue="nativeWebScreenshot"

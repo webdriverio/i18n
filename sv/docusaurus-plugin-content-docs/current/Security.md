@@ -1,33 +1,34 @@
 ---
 id: security
 title: Säkerhet
+description: "Skydda känsliga testdata genom att följa bästa praxis för säkerhet och maskera lösenord och nycklar i loggar och rapporter."
 ---
 
-WebdriverIO har säkerhetsaspekten i åtanke när de tillhandahåller lösningar. Nedan finns några sätt att bättre säkra dina tester.
+WebdriverIO har säkerhetsaspekten i åtanke när lösningar tas fram. Nedan följer några sätt att bättre säkra dina tester.
 
 ## Bästa praxis
 
-- Hårdkoda aldrig känslig data som kan skada din organisation om den exponeras i klartext.
-- Använd en mekanism (som ett valv) för att säkert lagra nycklar och lösenord och hämta dem när du startar dina end-to-end-tester.
-- Verifiera att ingen känslig data exponeras i loggar eller av molnleverantören, såsom autentiseringstoken i nätverksloggar.
+- Hårdkoda aldrig känsliga data som kan skada din organisation om de exponeras i klartext.
+- Använd en mekanism (till exempel ett valv) för att lagra nycklar och lösenord säkert och hämta dem när du startar dina end-to-end-tester.
+- Kontrollera att inga känsliga data exponeras i loggar eller hos molnleverantören, till exempel autentiseringstokens i nätverksloggar.
 
 :::info
 
-Även för testdata är det viktigt att fråga om en illvillig person med fel händer skulle kunna hämta information eller använda dessa resurser med skadlig avsikt.
+Även för testdata är det viktigt att fråga sig om en illasinnad person, i fel händer, skulle kunna hämta information eller använda dessa resurser i skadligt syfte.
 
 :::
 
-## Maskering av känslig data
+## Maskera känsliga data
 
-Om du använder känslig data under ditt test är det viktigt att säkerställa att de inte är synliga för alla, till exempel i loggar. När du använder en molnleverantör är privata nycklar ofta inblandade. Denna information måste maskeras från loggar, rapportörer och andra kontaktpunkter. Följande ger några maskeringslösningar för att köra tester utan att exponera dessa värden.
+Om du använder känsliga data under dina tester är det viktigt att säkerställa att de inte är synliga för alla, till exempel i loggar. När du använder en molnleverantör är dessutom privata nycklar ofta inblandade. Denna information måste maskeras från loggar, rapportörer och andra beröringspunkter. Nedan beskrivs några maskeringslösningar för att köra tester utan att exponera dessa värden.
 
 ### WebDriverIO
 
-#### Maskera textvärdena i kommandon
+#### Maskera kommandons textvärde
 
-Kommandona `addValue` och `setValue` stöder ett booleskt mask-värde för att maskera i loggar och rapportörer. Dessutom kommer andra verktyg, såsom prestandaverktyg och tredjepartsverktyg, också att ta emot den maskerade versionen, vilket förbättrar säkerheten.
+Kommandona `addValue` och `setValue` stöder ett booleskt mask-värde för att maskera i loggar samt i rapportörer. Dessutom kommer andra verktyg, såsom prestandaverktyg och tredjepartsverktyg, också att få den maskerade versionen, vilket förbättrar säkerheten.
 
-Om du till exempel använder en verklig produktionsanvändare och behöver ange ett lösenord som du vill maskera, då är det nu möjligt med följande:
+Om du till exempel använder en riktig produktionsanvändare och behöver ange ett lösenord som du vill maskera, är det nu möjligt med följande:
 
 ```ts
   async enterPassword(userPassword) {
@@ -40,40 +41,40 @@ Om du till exempel använder en verklig produktionsanvändare och behöver ange 
   }
 ```
 
-Ovanstående kommer att dölja textvärdet från WDIO-loggar enligt följande:
+Ovanstående döljer textvärdet i WDIO-loggarna enligt följande:
 
 Loggexempel:
 ```text
 INFO webdriver: DATA { text: "**MASKED**" }
 ```
 
-Rapportörer, som Allure-rapportörer, och tredjepartsverktyg som Percy från BrowserStack kommer också att hantera den maskerade versionen.
-Tillsammans med rätt Appium-version kommer även Appium-loggarna att undantas från din känsliga data.
+Rapportörer, såsom Allure-rapportörer, och tredjepartsverktyg som Percy från BrowserStack hanterar också den maskerade versionen.
+I kombination med rätt Appium-version kommer även Appium-loggarna att vara fria från dina känsliga data.
 
 :::info
 
 Begränsningar:
-  - I Appium kan ytterligare plugins läcka även om vi ber om att maskera informationen.
-  - Molnleverantörer kan använda en proxy för HTTP-loggning, vilket kringgår maskeringsmekanismen.
-  - Kommandot `getValue` stöds inte. Om det används på samma element kan det dessutom exponera värdet som är avsett att maskeras när man använder `addValue` eller `setValue`.
+  - I Appium kan ytterligare plugins läcka information trots att vi begär att den ska maskeras.
+  - Molnleverantörer kan använda en proxy för HTTP-loggning, vilket kringgår den maskeringsmekanism som införts.
+  - Kommandot `getValue` stöds inte. Om det används på samma element kan det dessutom exponera värdet som var avsett att maskeras när `addValue` eller `setValue` används.
 
-Minsta version som krävs:
+Lägsta version som krävs:
  - WDIO v9.15.0
  - Appium v3.0.0
 
 :::
 
-#### Maskering i WDIO-loggar
+#### Maskera i WDIO-loggar
 
 Med konfigurationen `maskingPatterns` kan vi maskera känslig information från WDIO-loggar. Appium-loggar omfattas dock inte.
 
-Om du till exempel använder en molnleverantör och använder info-nivån, kommer du med största sannolikhet att "läcka" användarens nyckel som visas nedan:
+Om du till exempel använder en molnleverantör och loggnivån info, kommer du med största sannolikhet att "läcka" användarens nyckel enligt nedan:
 
 ```text
 INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=myCloudSecretExposedKey --spec myTest.test.ts
 ```
 
-För att motverka detta kan vi skicka det reguljära uttrycket `'--key=([^ ]*)'` och nu i loggarna ser du 
+För att motverka detta kan vi ange det reguljära uttrycket `'--key=([^ ]*)'`, och nu kommer du att se följande i loggarna
 
 ```text
 INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=**MASKED** --spec myTest.test.ts
@@ -81,7 +82,7 @@ INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_
 
 Du kan uppnå ovanstående genom att ange det reguljära uttrycket i fältet `maskingPatterns` i konfigurationen.
   - För flera reguljära uttryck, använd en enda sträng men med kommaseparerade värden.
-  - För mer information om maskeringsmönster, se [Masking Patterns-avsnittet i WDIO Logger README](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
+  - För mer information om maskeringsmönster, se [avsnittet Masking Patterns i WDIO Logger README](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
 
 ```ts
 export const config: WebdriverIO.Config = {
@@ -107,22 +108,24 @@ export const config: WebdriverIO.Config = {
 ```
 
 :::info
-
-Minsta version som krävs:
+Lägsta version som krävs:
  - WDIO v9.15.0
-
 :::
 
-#### Inaktivera WDIO-loggar
+:::warning
+För hemligheter som skickas via kommandoraden kan maskeringen misslyckas eftersom filen wdio.conf.ts tolkas senare i exekveringscykeln. Att använda miljövariabler i dessa fall rekommenderas starkt och är mycket säkrare.
+:::
 
-Ett annat sätt att blockera loggning av känslig data är att sänka eller tysta loggnivån eller inaktivera loggaren.
-Det kan uppnås enligt följande:
+#### Inaktivera WDIO-loggare
+
+Ett annat sätt att förhindra loggning av känsliga data är att sänka eller tysta loggnivån eller inaktivera loggaren.
+Det kan åstadkommas på följande sätt:
 
 ```ts
 import logger from '@wdio/logger';
 
 /**
-  * Set the logger level of the WDIO logger to 'silent' before *running a promise, which helps hide sensitive information in the logs.
+  * Sätt WDIO-loggarens loggnivå till 'silent' innan *ett promise körs, vilket hjälper till att dölja känslig information i loggarna.
  */
 export const withSilentLogger = async <T>(promise: () => Promise<T>): Promise<T> => {
   const webdriverLogLevel = driver.options.logLevel ?? 'error';
@@ -139,11 +142,11 @@ export const withSilentLogger = async <T>(promise: () => Promise<T>): Promise<T>
 ### Tredjepartslösningar
 
 #### Appium
-Appium erbjuder sin egen maskeringslösning; se [Log filter](https://appium.io/docs/en/latest/guides/log-filters/)
- - Det kan vara svårt att använda deras lösning. Ett sätt om möjligt är att skicka en token i din sträng som `@mask@` och använda den som ett reguljärt uttryck
- - I vissa Appium-versioner loggas värdena också med varje tecken kommaseparerat, så vi måste vara försiktiga.
- - Tyvärr stöder BrowserStack inte denna lösning, men den är fortfarande användbar lokalt
- 
+Appium erbjuder en egen maskeringslösning; se [Log filter](https://appium.io/docs/en/latest/guides/log-filters/)
+ - Det kan vara knepigt att använda deras lösning. Ett sätt, om möjligt, är att lägga in en token i din sträng, till exempel `@mask@`, och använda den som ett reguljärt uttryck
+ - I vissa Appium-versioner loggas värdena också med varje tecken kommaseparerat, så vi behöver vara försiktiga.
+ - Tyvärr stöder BrowserStack inte denna lösning, men den är ändå användbar lokalt
+
 Med exemplet `@mask@` som nämndes tidigare kan vi använda följande JSON-fil med namnet `appiumMaskLogFilters.json`
 ```json
 [
@@ -160,7 +163,7 @@ Med exemplet `@mask@` som nämndes tidigare kan vi använda följande JSON-fil m
 ]
 ```
 
-Skicka sedan JSON-filnamnet till fältet `logFilters` i appium-tjänstens konfiguration:
+Ange sedan JSON-filens namn i fältet `logFilters` i Appium-tjänstens konfiguration:
 ```ts
 import { AppiumServerArguments, AppiumServiceConfig } from '@wdio/appium-service';
 import { ServiceEntry } from '@wdio/types/build/Services';
@@ -179,4 +182,4 @@ const appium = [
 #### BrowserStack
 
 BrowserStack erbjuder också en viss nivå av maskering för att dölja vissa data; se [hide sensitive data](https://www.browserstack.com/docs/automate/selenium/hide-sensitive-data)
- - Tyvärr är lösningen allt-eller-inget, så alla textvärden för angivna kommandon kommer att maskeras.
+ - Tyvärr är lösningen allt-eller-inget, så alla textvärden för de angivna kommandona kommer att maskeras.

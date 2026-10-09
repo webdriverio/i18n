@@ -1,9 +1,10 @@
 ---
 id: browser-logs
 title: Browser-Logs
+description: "Erfassen Sie Browser-Konsolenlogs während eines Tests mit WebDriver-Bidi-Log-Events und prüfen Sie die gesammelten Nachrichten."
 ---
 
-Beim Ausführen von Tests kann der Browser wichtige Informationen protokollieren, die für Sie interessant sind oder gegen die Sie prüfen möchten.
+Beim Ausführen von Tests kann der Browser wichtige Informationen protokollieren, die für Sie von Interesse sind oder die Sie überprüfen möchten.
 
 <Tabs
 defaultValue="bidi"
@@ -15,7 +16,7 @@ values={[
 
 <TabItem value='bidi'>
 
-Bei der Verwendung von WebDriver Bidi, der Standardmethode, mit der WebdriverIO den Browser automatisiert, können Sie Ereignisse abonnieren, die vom Browser kommen. Für Log-Ereignisse möchten Sie auf `log.entryAdded` hören, z.B.:
+Wenn Sie WebDriver Bidi verwenden, was die Standardmethode ist, mit der WebdriverIO den Browser automatisiert, können Sie Events abonnieren, die vom Browser kommen. Für Log-Events sollten Sie auf `log.entryAdded'` hören, z. B.:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +27,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-In einem Test können Sie Log-Ereignisse einfach in ein Array übertragen und dieses Array überprüfen, sobald Ihre Aktion abgeschlossen ist, z.B.:
+In einem Test können Sie Log-Events einfach in ein Array einfügen und dieses Array überprüfen, sobald Ihre Aktion abgeschlossen ist, z. B.:
 
 ```ts
 import type { local } from 'webdriver'
@@ -35,7 +36,7 @@ describe('should log when doing a certain action', () => {
     const logs: string[] = []
 
     function logEvents (event: local.LogEntry) {
-        logs.push(event.text) // add log message to the array
+        logs.push(event.text) // Log-Nachricht zum Array hinzufügen
     }
 
     before(async () => {
@@ -44,14 +45,14 @@ describe('should log when doing a certain action', () => {
     })
 
     it('should trigger the console event', () => {
-        // trigger the browser send a message to the console
+        // den Browser dazu veranlassen, eine Nachricht an die Konsole zu senden
         ...
 
-        // assert if log was captured
+        // prüfen, ob das Log erfasst wurde
         expect(logs).toContain('Hello Bidi')
     })
 
-    // clean up listener afterwards
+    // Listener anschließend aufräumen
     after(() => {
         browser.off('log.entryAdded', logEvents)
     })
@@ -62,9 +63,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-Wenn Sie noch WebDriver Classic verwenden oder die Bidi-Nutzung über die Capability `'wdio:enforceWebDriverClassic': true` deaktiviert haben, können Sie den JSONWire-Befehl `getLogs` verwenden, um die neuesten Logs abzurufen. Da WebdriverIO diese veralteten Befehle entfernt hat, müssen Sie den [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) verwenden, um den Befehl wieder zu Ihrer Browser-Instanz hinzuzufügen.
-
-Nachdem Sie den Service hinzugefügt oder initiiert haben, können Sie Logs wie folgt abrufen:
+Wenn Bidi mit der Capability `'wdio:enforceWebDriverClassic': true` deaktiviert ist, können Chromium-Sessions den Log-Puffer des Browsers weiterhin mit `getLogs` auslesen:
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,9 +71,9 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Hinweis: Der Befehl `getLogs` kann nur die neuesten Logs aus dem Browser abrufen. Er kann Protokollnachrichten eventuell bereinigen, wenn sie zu alt werden.
+Hinweis: Der Befehl `getLogs` kann nur die neuesten Logs aus dem Browser abrufen. Log-Nachrichten können irgendwann entfernt werden, wenn sie zu alt werden.
 </TabItem>
 
 </Tabs>
 
-Bitte beachten Sie, dass Sie diese Methode verwenden können, um Fehlermeldungen abzurufen und zu überprüfen, ob Ihre Anwendung auf Fehler gestoßen ist.
+Bitte beachten Sie, dass Sie diese Methode verwenden können, um Fehlermeldungen abzurufen und zu überprüfen, ob in Ihrer Anwendung Fehler aufgetreten sind.

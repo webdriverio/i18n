@@ -1,26 +1,27 @@
 ---
 id: browserstack
-title: ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग
+title: BrowserStack एक्सेसिबिलिटी टेस्टिंग
+description: "BrowserStack Automate पर चल रहे WebdriverIO टेस्ट में स्वचालित एक्सेसिबिलिटी स्कैन जोड़ें और BrowserStack रिपोर्ट में पाई गई समस्याओं की समीक्षा करें।"
 ---
 
-# ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग
+# BrowserStack एक्सेसिबिलिटी टेस्टिंग
 
-आप अपने WebdriverIO टेस्ट सूट में [ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग की ऑटोमेटेड टेस्ट फीचर](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) का उपयोग करके आसानी से एक्सेसिबिलिटी टेस्ट को एकीकृत कर सकते हैं।
+आप [BrowserStack एक्सेसिबिलिटी टेस्टिंग के स्वचालित टेस्ट फीचर](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) का उपयोग करके अपने WebdriverIO टेस्ट सूट में एक्सेसिबिलिटी टेस्ट आसानी से इंटीग्रेट कर सकते हैं।
 
-## ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग में ऑटोमेटेड टेस्ट के फायदे
+## BrowserStack एक्सेसिबिलिटी टेस्टिंग में स्वचालित टेस्ट के लाभ
 
-ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग में ऑटोमेटेड टेस्ट का उपयोग करने के लिए, आपके टेस्ट BrowserStack Automate पर चल रहे होने चाहिए।
+BrowserStack एक्सेसिबिलिटी टेस्टिंग में स्वचालित टेस्ट का उपयोग करने के लिए, आपके टेस्ट BrowserStack Automate पर चलने चाहिए।
 
-ऑटोमेटेड टेस्ट के निम्नलिखित फायदे हैं:
+स्वचालित टेस्ट के लाभ निम्नलिखित हैं:
 
-* आपके पहले से मौजूद ऑटोमेशन टेस्ट सूट में सहजता से एकीकृत होता है।
-* टेस्ट केसेस में कोई कोड परिवर्तन की आवश्यकता नहीं है।
-* एक्सेसिबिलिटी टेस्टिंग के लिए शून्य अतिरिक्त रखरखाव की आवश्यकता है।
-* ऐतिहासिक रुझानों को समझें और टेस्ट-केस अंतर्दृष्टि प्राप्त करें।
+* आपके पहले से मौजूद ऑटोमेशन टेस्ट सूट में सहजता से इंटीग्रेट हो जाता है।
+* टेस्ट केस में किसी कोड बदलाव की आवश्यकता नहीं है।
+* एक्सेसिबिलिटी टेस्टिंग के लिए किसी अतिरिक्त रखरखाव की आवश्यकता नहीं है।
+* ऐतिहासिक रुझानों को समझें और टेस्ट-केस संबंधी इनसाइट्स प्राप्त करें।
 
-## ब्राउज़रस्टैक एक्सेसिबिलिटी टेस्टिंग के साथ शुरुआत करें
+## BrowserStack एक्सेसिबिलिटी टेस्टिंग के साथ शुरुआत करें
 
-अपने WebdriverIO टेस्ट सूट को ब्राउज़रस्टैक की एक्सेसिबिलिटी टेस्टिंग के साथ एकीकृत करने के लिए इन चरणों का पालन करें:
+अपने WebdriverIO टेस्ट सूट को BrowserStack की एक्सेसिबिलिटी टेस्टिंग के साथ इंटीग्रेट करने के लिए इन चरणों का पालन करें:
 
 1. `@wdio/browserstack-service` npm पैकेज इंस्टॉल करें।
 
@@ -28,7 +29,7 @@ title: ब्राउज़रस्टैक एक्सेसिबिलि
 npm install --save-dev @wdio/browserstack-service
 ```
 
-2. `wdio.conf.js` कॉन्फिग फाइल अपडेट करें।
+2. `wdio.conf.js` कॉन्फ़िग फ़ाइल को अपडेट करें।
 
 ```javascript
 exports.config = {
@@ -44,7 +45,7 @@ exports.config = {
     services: [
       ['browserstack', {
         accessibility: true,
-        // Optional configuration options
+        // वैकल्पिक कॉन्फ़िगरेशन विकल्प
         accessibilityOptions: {
           'wcagVersion': 'wcag21a',
           'includeIssueType': {
@@ -60,4 +61,4 @@ exports.config = {
   };
 ```
 
-आप विस्तृत निर्देश [यहां](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) देख सकते हैं।
+आप विस्तृत निर्देश [यहाँ](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) देख सकते हैं।

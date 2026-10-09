@@ -1,43 +1,41 @@
 ---
 id: faq
 title: Vanliga frågor
+description: "Hitta svar på vanliga frågor om installation, användning och felsökning av WebdriverIO MCP-servern för webbläsar- och mobilautomatisering."
 ---
 
-Vanligt förekommande frågor om WebdriverIO MCP.
+Vanliga frågor om WebdriverIO MCP.
 
 ## Allmänt
 
 ### Vad är MCP?
 
-MCP (Model Context Protocol) är ett öppet protokoll som gör det möjligt för AI-assistenter som Claude att interagera med externa verktyg och tjänster. WebdriverIO MCP implementerar detta protokoll för att tillhandahålla webbläsar- och mobilautomatiseringsmöjligheter till Claude Desktop och Claude Code.
+MCP (Model Context Protocol) är ett öppet protokoll som gör det möjligt för AI-assistenter som Claude att interagera med externa verktyg och tjänster. WebdriverIO MCP implementerar detta protokoll för att erbjuda funktioner för webbläsar- och mobilautomatisering till Claude Desktop och Claude Code.
 
 ### Vad kan jag automatisera med WebdriverIO MCP?
 
 Du kan automatisera:
--   **Skrivbordswebbläsare** (Chrome) - navigering, klickning, skrivning, skärmdumpar
--   **iOS-appar** - på simulatorer eller fysiska enheter
--   **Android-appar** - på emulatorer eller fysiska enheter
--   **Hybridappar** - växla mellan native- och webbkontext
+-   **Skrivbordswebbläsare** (Chrome, Firefox, Edge, Safari) - navigering, klickning, skrivning, skärmdumpar
+-   **iOS-appar** - på simulatorer eller riktiga enheter
+-   **Android-appar** - på emulatorer eller riktiga enheter
+-   **Hybridappar** - växling mellan native- och webbkontexter
+-   **Molnenheter** - via enhetsmolnen BrowserStack, Sauce Labs, TestMu och TestingBot
 
 ### Behöver jag skriva kod?
 
-Nej! Det är den största fördelen med MCP. Du kan beskriva vad du vill göra med naturligt språk, och Claude kommer att använda de lämpliga verktygen för att utföra uppgiften.
+Nej! Det är den största fördelen med MCP. Du kan beskriva vad du vill göra med naturligt språk, och Claude använder lämpliga verktyg för att utföra uppgiften.
 
-**Exempel på uppmaningar:**
+**Exempel på prompter:**
 -   "Öppna Chrome och navigera till webdriver.io"
--   "Klicka på knappen Kom igång"
+-   "Klicka på knappen Get Started"
 -   "Ta en skärmdump av den aktuella sidan"
 -   "Starta min iOS-app och logga in som testanvändare"
-
----
 
 ## Installation och konfiguration
 
 ### Hur installerar jag WebdriverIO MCP?
 
-Du behöver inte installera det separat. MCP-servern körs automatiskt via npx när du konfigurerar den i Claude Desktop eller Claude Code.
-
-Lägg till detta i din Claude Desktop-konfiguration:
+Du behöver inte installera den separat. MCP-servern körs automatiskt via npx när du konfigurerar den i din harness. Lägg till detta i din konfiguration:
 
 ```json
 {
@@ -50,45 +48,46 @@ Lägg till detta i din Claude Desktop-konfiguration:
 }
 ```
 
-### Var finns Claude Desktop-konfigurationsfilen?
+### Var finns konfigurationsfilen för Claude Desktop?
 
 -   **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 -   **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
 ### Behöver jag Appium för webbläsarautomatisering?
 
-Nej. Webbläsarautomatisering kräver bara att Chrome är installerat. WebdriverIO hanterar ChromeDriver automatiskt.
+Nej. Webbläsarautomatisering kräver bara att målwebbläsaren är installerad. WebdriverIO hanterar drivrutinerna automatiskt.
 
 ### Behöver jag Appium för mobilautomatisering?
 
 Ja. Mobilautomatisering kräver:
-1. Appium-server som körs (`npm install -g appium && appium`)
-2. Plattformsdrivrutiner installerade (`appium driver install xcuitest` för iOS, `appium driver install uiautomator2` för Android)
+1. En körande Appium-server (`npm install -g appium && appium`)
+2. Installerade plattformsdrivrutiner (`appium driver install xcuitest` för iOS, `appium driver install uiautomator2` för Android)
 3. Lämpliga utvecklingsverktyg (Xcode för iOS, Android SDK för Android)
-
----
 
 ## Webbläsarautomatisering
 
 ### Vilka webbläsare stöds?
 
-För närvarande stöds endast **Chrome**. Stöd för andra webbläsare kan läggas till i framtida versioner.
+Chrome, Firefox, Edge och Safari stöds alla. Använd parametern `browser` i `start_session`:
 
-### Kan jag köra Chrome i headless-läge?
+```text
+"Start a Firefox session"
+"Start Chrome in headless mode"
+```
 
-Ja! Be Claude att starta webbläsaren i headless-läge:
+### Kan jag köra webbläsaren i headless-läge?
 
-"Starta Chrome i headless-läge"
+Ja. Headless är standard (`headless: true`). Be Claude att köra med synligt fönster om du vill se webbläsaren:
 
-Eller så kommer Claude att använda detta alternativ när det är lämpligt (t.ex. i CI/CD-sammanhang).
+"Starta Chrome i headed-läge (inte headless)"
 
-### Kan jag ställa in webbläsarens fönsterstorlek?
+### Kan jag ställa in webbläsarfönstrets storlek?
 
 Ja. Du kan ange dimensioner när du startar webbläsaren:
 
 "Starta Chrome med en fönsterstorlek på 1920x1080"
 
-Stödda dimensioner: 400-3840 pixlar bred, 400-2160 pixlar hög. Standard är 1920x1080.
+Dimensioner som stöds: 400–3840 pixlar breda, 400–2160 pixlar höga. Standard är 1920×1080.
 
 ### Kan jag starta webbläsaren och navigera i ett steg?
 
@@ -96,62 +95,67 @@ Ja! Använd parametern `navigationUrl`:
 
 "Starta Chrome och navigera till https://webdriver.io"
 
-Detta är mer effektivt än att starta webbläsaren och sedan navigera separat.
+Detta är effektivare än att starta webbläsaren och sedan navigera separat.
 
 ### Hur tar jag skärmdumpar?
 
-Be Claude helt enkelt:
+Fråga helt enkelt:
 
 "Ta en skärmdump av den aktuella sidan"
 
 Skärmdumpar optimeras automatiskt:
-- Skalade till max 2000px dimension
-- Komprimerade till max 1MB filstorlek
+- Skalas till max 2000px
+- Komprimeras till max 1MB filstorlek
 - Format: PNG eller JPEG (väljs automatiskt för optimal kvalitet)
 
 ### Kan jag interagera med iframes?
 
-För närvarande fungerar MCP-servern på huvuddokumentet. iframe-interaktion kan läggas till i framtida versioner.
+Ja. Använd verktyget `switch_frame` för att växla in i en iframe med en CSS- eller XPath-selektor. Alla efterföljande anrop till `click_element`, `set_value` och `get_elements` utförs inom den valda ramen. Utelämna selektorn för att växla tillbaka till ramen på toppnivå. Iframes måste ha samma ursprung som huvudsidan.
 
-### Kan jag köra anpassad JavaScript?
+### Kan jag köra egen JavaScript?
 
 Ja! Använd verktyget `execute_script`:
 
 "Kör skript för att hämta sidans titel"
 "Kör skript: return document.querySelectorAll('button').length"
 
----
+### Kan jag ansluta till en befintlig Chrome-session?
+
+Ja. Använd först `launch_chrome` (öppnar Chrome med fjärrfelsökning), sedan `start_session` med `attach: true`.
+
+"Starta Chrome med fjärrfelsökning och anslut sedan till den"
+
+### Kan jag arbeta med flera flikar?
+
+Ja. Använd `get_tabs` för att lista öppna flikar och `switch_tab` för att fokusera på en specifik flik:
+
+"Hämta alla öppna flikar"
+"Växla till fliken med index 1"
 
 ## Mobilautomatisering
 
-### Hur startar jag en iOS-app?
+### Hur startar jag en iOS- eller Android-session?
 
-Be Claude med nödvändiga detaljer:
+Använd `start_session` med lämplig plattform:
 
 "Starta min iOS-app som finns på /path/to/MyApp.app på iPhone 15-simulatorn"
 
-Eller för en installerad app:
+"Starta min Android-app på /path/to/app.apk på Pixel 7-emulatorn"
+
+Eller för en redan installerad app:
 
 "Starta appen med noReset aktiverat på iPhone 15-simulatorn"
 
-### Hur startar jag en Android-app?
+### Kan jag testa på riktiga enheter?
 
-"Starta min Android-app på /path/to/app.apk på Pixel 7-emulatorn"
+Ja! För riktiga enheter behöver du enhetens UDID:
 
-Eller för en installerad app:
-
-"Starta appen med noReset aktiverat på Pixel 7-emulatorn"
-
-### Kan jag testa på fysiska enheter?
-
-Ja! För fysiska enheter behöver du enhetens UDID:
-
--   **iOS:** Anslut enheten, öppna Finder, klicka på enheten, klicka på serienumret för att visa UDID
+-   **iOS:** Anslut enheten, öppna Finder, klicka på enheten och klicka på serienumret för att visa UDID
 -   **Android:** Kör `adb devices` i terminalen
 
-Be sedan Claude:
+Fråga sedan:
 
-"Starta min iOS-app på den fysiska enheten med UDID abc123..."
+"Starta min iOS-app på den riktiga enheten med UDID abc123..."
 
 ### Hur hanterar jag behörighetsdialoger?
 
@@ -161,18 +165,18 @@ Som standard beviljas behörigheter automatiskt (`autoGrantPermissions: true`). 
 
 ### Vilka gester stöds?
 
--   **Tryck:** Tryck på element eller koordinater
--   **Svep:** Svep upp, ner, vänster eller höger
--   **Dra och släpp:** Dra från ett element till ett annat eller till koordinater
+-   **Tryck:** Tryck på element eller koordinater (`tap_element`)
+-   **Svep:** Svep uppåt, nedåt, åt vänster eller höger (`swipe`)
+-   **Dra och släpp:** Dra från ett element till ett annat eller till koordinater (`drag_and_drop`)
 
 Obs: `long_press` är tillgängligt via `execute_script` med Appiums mobilkommandon.
 
-### Hur rullar jag i mobilappar?
+### Hur scrollar jag i mobilappar?
 
 Använd svepgester:
 
-"Svep uppåt för att rulla nedåt"
-"Svep nedåt för att rulla uppåt"
+"Svep uppåt för att scrolla nedåt"
+"Svep nedåt för att scrolla uppåt"
 
 ### Kan jag rotera enheten?
 
@@ -183,243 +187,220 @@ Ja:
 
 ### Hur hanterar jag hybridappar?
 
-För appar med webvyer kan du växla kontext:
+För appar med webbvyer kan du växla kontext:
 
 "Hämta tillgängliga kontexter"
-"Växla till webview-kontext"
-"Växla tillbaka till native-kontext"
+"Växla till webview-kontexten"
+"Växla tillbaka till native-kontexten"
 
-### Kan jag köra Appium mobilkommandon?
+### Kan jag köra Appiums mobilkommandon?
 
 Ja! Använd verktyget `execute_script`:
 
+```text
+Execute script "mobile: pressKey" with args [{ keycode: 4 }]  // Tryck på BACK på Android
+Execute script "mobile: activateApp" with args [{ bundleId: "com.example.app" }]
+Execute script "mobile: terminateApp" with args [{ bundleId: "com.example.app" }]
 ```
-Kör skript "mobile: pressKey" med argumenten [{ keycode: 4 }]  // Tryck på TILLBAKA på Android
-Kör skript "mobile: activateApp" med argumenten [{ appId: "com.example.app" }]
-Kör skript "mobile: terminateApp" med argumenten [{ bundleId: "com.example.app" }]
-```
-
----
 
 ## Elementval
 
-### Hur vet Claude vilket element som ska interageras med?
+### Hur vet AI-assistenten vilket element den ska interagera med?
 
-Claude använder verktyget `get_visible_elements` för att identifiera interaktiva element på sidan/skärmen. Varje element kommer med flera väljarstrategier.
+Den använder resursen `wdio://session/current/elements` eller verktyget `get_elements` för att identifiera interaktiva element på sidan/skärmen. Varje element levereras med färdiga selektorer.
 
 ### Vad händer om det finns för många element på sidan?
 
 Använd paginering för att hantera stora elementlistor:
 
-"Hämta de första 20 synliga elementen"
-"Hämta synliga element med offset 20 och begränsa till 20"
+"Hämta de första 20 elementen"
+"Hämta element med offset 20 och limit 20"
 
-Svaret inkluderar `total`, `showing` och `hasMore` för att hjälpa till att navigera genom elementen.
+Svaret innehåller `total`, `showing` och `hasMore` för att hjälpa dig att navigera bland elementen.
 
-### Kan jag hämta endast specifika typer av element?
-
-Ja! Använd parametern `elementType`:
-
--   `interactable` (standard): Knappar, länkar, inmatningsfält
--   `visual`: Bilder, SVG:er
--   `all`: Båda typerna
-
-"Hämta synliga visuella element på sidan"
-
-### Vad gör jag om Claude klickar på fel element?
+### Vad händer om Claude klickar på fel element?
 
 Du kan vara mer specifik:
 
--   Ange exakt text: "Klicka på knappen som säger 'Skicka beställning'"
--   Ange väljare: "Klicka på elementet med väljare #submit-btn"
+-   Ange exakt text: "Klicka på knappen med texten 'Submit Order'"
+-   Ange selektor: "Klicka på elementet med selektorn #submit-btn"
 -   Ange tillgänglighets-ID: "Klicka på elementet med tillgänglighets-ID loginButton"
 
-### Vilken är den bästa väljarstrategin för mobil?
+### Vilken är den bästa selektorstrategin för mobil?
 
-1. **Tillgänglighets-ID** (bäst) - `~loginButton`
-2. **Resurs-ID** (Android) - `id=login_button`
+1. **Accessibility ID** (bäst) - `~loginButton`
+2. **Resource ID** (Android) - `id=login_button`
 3. **Predicate String** (iOS) - `-ios predicate string:label == "Login"`
 4. **XPath** (sista utväg) - långsammare men fungerar överallt
 
-### Vad är tillgänglighetsträdet och när bör jag använda det?
+### Vad är tillgänglighetsträdet och när ska jag använda det?
 
-Tillgänglighetsträdet tillhandahåller semantisk information om sidelement (roller, namn, tillstånd). Använd `get_accessibility` när:
-- `get_visible_elements` inte returnerar förväntade element
-- Du behöver hitta element efter tillgänglighetsroll (knapp, länk, textfält osv.)
+Tillgänglighetsträdet ger semantisk information om sidans element (roller, namn, tillstånd). Använd `get_accessibility_tree` när:
+- `get_elements` inte returnerar förväntade element
+- Du behöver hitta element efter tillgänglighetsroll (button, link, textbox osv.)
 - Du behöver detaljerad semantisk information om element
 
-"Hämta tillgänglighetsträdet filtrerat till knapp- och länkroller"
-
----
+"Hämta tillgänglighetsträdet filtrerat på rollerna button och link"
 
 ## Sessionshantering
 
 ### Kan jag ha flera sessioner samtidigt?
 
-Nej. MCP-servern använder en modell med en session. Endast en webbläsar- eller appsession kan vara aktiv åt gången.
+Nej. MCP-servern använder en modell med en enda session. Endast en webbläsar- eller appsession kan vara aktiv åt gången.
 
 ### Vad händer när jag stänger en session?
 
 Det beror på sessionstyp och inställningar:
 
--   **Webbläsare:** Chrome stängs helt
+-   **Webbläsare:** Webbläsaren stängs helt
 -   **Mobil med `noReset: false`:** Appen avslutas
--   **Mobil med `noReset: true` eller utan `appPath`:** Appen förblir öppen (sessionen kopplas bort automatiskt)
+-   **Mobil med `noReset: true` eller utan `appPath`:** Appen förblir öppen (sessionen kopplas från automatiskt)
 
-### Kan jag bevara apptillstånd mellan sessioner?
+### Kan jag bevara appens tillstånd mellan sessioner?
 
 Ja! Använd alternativet `noReset`:
 
 "Starta min app med noReset aktiverat"
 
-Detta bevarar inloggningsstatus, inställningar och andra appdata.
+Detta bevarar inloggningsstatus, inställningar och annan appdata.
 
-### Vad är skillnaden mellan stänga och koppla bort?
+### Vad är skillnaden mellan att stänga och koppla från?
 
--   **Stänga:** Avslutar webbläsaren/appen helt
--   **Koppla bort:** Kopplar bort automatisering men håller webbläsaren/appen igång
+-   **Stäng:** Avslutar webbläsaren/appen helt
+-   **Koppla från:** Kopplar bort automatiseringen men låter webbläsaren/appen fortsätta köras
 
-Bortkoppling är användbart när du vill inspektera tillståndet manuellt efter automatisering.
+Att koppla från är användbart när du vill inspektera tillståndet manuellt efter automatiseringen.
 
-### Min session löper ut under felsökning
+### Min session får hela tiden timeout under felsökning
 
-Öka kommandots tidsgräns:
+Öka kommandots timeout:
 
 "Starta min app med newCommandTimeout på 300 sekunder"
 
-Standard är 60 sekunder. För långa felsökningssessioner, prova 300-600 sekunder.
-
----
+Standard är 300 sekunder. För mycket långa felsökningssessioner, prova 600 sekunder.
 
 ## Felsökning
 
-### "Session not found"-fel
+### Felet "Session not found"
 
-Detta betyder att ingen aktiv session finns. Starta en webbläsar- eller appsession först:
+Detta betyder att det inte finns någon aktiv session. Starta först en webbläsar- eller appsession:
 
 "Starta Chrome och navigera till google.com"
 
-### "Element not found"-fel
+### Felet "Element not found"
 
-Elementet kanske inte är synligt eller kan ha en annan väljare. Prova:
+Elementet kanske inte är synligt eller har en annan selektor. Prova att:
 
 1. Be Claude att först hämta alla synliga element
-2. Ange en mer specifik väljare
+2. Ange en mer specifik selektor
 3. Vänta tills sidan/appen har laddats helt
-4. Använd `inViewportOnly: false` för att hitta element utanför skärmen
+4. Använda `inViewportOnly: false` för att hitta element utanför skärmen
 
 ### Webbläsaren startar inte
 
-1. Se till att Chrome är installerat
+1. Kontrollera att målwebbläsaren är installerad
 2. Kontrollera om en annan process använder felsökningsporten (9222)
 3. Prova headless-läge
 
-### Appium-anslutning misslyckades
+### Anslutningen till Appium misslyckades
 
-Detta är det vanligaste problemet när mobilautomatisering startas.
+Detta är det vanligaste problemet när man startar mobilautomatisering.
 
-1. **Verifiera att Appium körs**: `curl http://localhost:4723/status`
-2. Starta Appium om det behövs: `appium`
-3. Kontrollera att din Appium URL-konfiguration matchar servern
-4. Se till att drivrutiner är installerade: `appium driver list --installed`
+1. **Kontrollera att Appium körs**: `curl http://localhost:4723/status`
+2. Starta Appium vid behov: `appium`
+3. Kontrollera att din Appium-anslutning matchar servern (använd `appiumConfig` i `start_session`)
+4. Säkerställ att drivrutinerna är installerade: `appium driver list --installed`
 
 :::tip
 MCP-servern kräver att Appium körs innan mobilsessioner startas. Se till att starta Appium först:
 ```sh
 appium
 ```
-Framtida versioner kan inkludera automatisk hantering av Appium-tjänsten.
+Framtida versioner kan komma att inkludera automatisk hantering av Appium-tjänsten.
 :::
 
-### iOS Simulator startar inte
+### iOS-simulatorn startar inte
 
-1. Se till att Xcode är installerat: `xcode-select --install`
+1. Kontrollera att Xcode är installerat: `xcode-select --install`
 2. Lista tillgängliga simulatorer: `xcrun simctl list devices`
-3. Kontrollera specifika simulatorfel i Console.app
+3. Leta efter specifika simulatorfel i Console.app
 
-### Android Emulator startar inte
+### Android-emulatorn startar inte
 
 1. Ställ in `ANDROID_HOME`: `export ANDROID_HOME=$HOME/Library/Android/sdk`
 2. Kontrollera emulatorer: `emulator -list-avds`
 3. Starta emulatorn manuellt: `emulator -avd <avd-name>`
-4. Verifiera att enheten är ansluten: `adb devices`
+4. Kontrollera att enheten är ansluten: `adb devices`
 
 ### Skärmdumpar fungerar inte
 
-1. För mobil, se till att sessionen är aktiv
+1. För mobil, säkerställ att sessionen är aktiv
 2. För webbläsare, prova en annan sida (vissa sidor blockerar skärmdumpar)
-3. Kontrollera Claude Desktop-loggar för fel
+3. Kontrollera loggarna i Claude Desktop efter fel
 
-Skärmdumpar komprimeras automatiskt till max 1MB, så stora skärmdumpar fungerar men kan ha lägre kvalitet.
-
----
+Skärmdumpar komprimeras automatiskt till max 1MB, så stora skärmdumpar fungerar men kan få lägre kvalitet.
 
 ## Prestanda
 
 ### Varför är mobilautomatisering långsam?
 
-Mobilautomatisering involverar:
-1. Nätverkskommunikation med Appium-server
-2. Appium kommunicerar med enheten/simulatorn
-3. Enhetsrendering och svar
+Mobilautomatisering innefattar:
+1. Nätverkskommunikation med Appium-servern
+2. Appiums kommunikation med enheten/simulatorn
+3. Enhetens rendering och svar
 
 Tips för snabbare automatisering:
--   Använd emulatorer/simulatorer istället för fysiska enheter för utveckling
--   Använd tillgänglighets-ID istället för XPath
+-   Använd emulatorer/simulatorer i stället för riktiga enheter under utveckling
+-   Använd tillgänglighets-ID:n i stället för XPath
 -   Aktivera `inViewportOnly: true` för elementdetektering
--   Använd paginering (`limit`) för att minska tokenanvändning
+-   Använd paginering (`limit`) för att minska tokenanvändningen
 
-### Hur kan jag påskynda elementdetektering?
+### Hur kan jag snabba upp elementdetekteringen?
 
-MCP-servern optimerar redan elementdetektering med XML-sidkällparsning (2 HTTP-anrop vs 600+ för traditionella elementfrågor). Ytterligare tips:
+MCP-servern optimerar redan elementdetekteringen genom att tolka XML-sidkällan (2 HTTP-anrop jämfört med 600+ för traditionella elementförfrågningar). Ytterligare tips:
 
--   Håll `inViewportOnly: true` (standard)
+-   Ställ in `inViewportOnly: true` för att filtrera bort element utanför skärmen
 -   Ställ in `includeContainers: false` (standard)
 -   Använd `limit` och `offset` för paginering på stora skärmar
--   Använd specifika väljare istället för att hitta alla element
+-   Använd specifika selektorer i stället för att hämta alla element
 
 ### Skärmdumpar är långsamma eller misslyckas
 
 Skärmdumpar optimeras automatiskt:
 - Storleksändras om de är större än 2000px
-- Komprimeras för att stanna under 1MB
-- Konverteras till JPEG om PNG är för stor
+- Komprimeras för att hålla sig under 1MB
+- Konverteras till JPEG om PNG blir för stor
 
 Denna optimering minskar bearbetningstiden och säkerställer att Claude kan hantera bilden.
-
----
 
 ## Begränsningar
 
 ### Vilka är de nuvarande begränsningarna?
 
 -   **En session:** Endast en webbläsare/app åt gången
--   **Webbläsarstöd:** Endast Chrome (för närvarande)
--   **iframe-stöd:** Begränsat stöd för iframes
+-   **Stöd för iframes:** Iframes med samma ursprung stöds via `switch_frame`; iframes med annat ursprung är inte åtkomliga på grund av webbläsarens säkerhetsbegränsningar
 -   **Filuppladdningar:** Stöds inte direkt via verktyg
--   **Ljud/Video:** Kan inte interagera med mediauppspelning
+-   **Ljud/video:** Kan inte interagera med mediauppspelning
 -   **Webbläsartillägg:** Stöds inte
 
 ### Kan jag använda detta för produktionstestning?
 
-WebdriverIO MCP är utformat för interaktiv AI-assisterad automatisering. För produktions-CI/CD-testning, överväg att använda WebdriverIOs traditionella testrunner med full programmatisk kontroll.
-
----
+WebdriverIO MCP är utformat för interaktiv AI-assisterad automatisering. För CI/CD-testning i produktion bör du överväga att använda WebdriverIO:s traditionella testkörare med full programmatisk kontroll.
 
 ## Säkerhet
 
 ### Är mina data säkra?
 
-MCP-servern körs lokalt på din dator. All automatisering sker genom lokala webbläsar-/Appium-anslutningar. Inga data skickas till externa servrar utöver vad du uttryckligen navigerar till.
+MCP-servern körs lokalt på din dator. All automatisering sker via lokala webbläsar-/Appium-anslutningar. Inga data skickas till externa servrar utöver det du uttryckligen navigerar till.
+
+När du använder HTTP-transportläget (`--http`) accepterar servern som standard endast anslutningar från `localhost`; använd `--allowedHosts` och `--allowedOrigins` för att styra åtkomsten. Se [Transport](./transport) för mer information.
 
 ### Kan Claude komma åt mina lösenord?
 
 Claude kan se sidinnehåll och interagera med element, men:
--   Lösenord i `<input type="password">`-fält är maskerade
--   Du bör undvika att automatisera känsliga uppgifter
+-   Lösenord i fält av typen `<input type="password">` är maskerade
+-   Du bör undvika att automatisera känsliga inloggningsuppgifter
 -   Använd testkonton för automatisering
-
----
 
 ## Bidra
 
@@ -427,11 +408,11 @@ Claude kan se sidinnehåll och interagera med element, men:
 
 Besök [GitHub-repositoriet](https://github.com/webdriverio/mcp) för att:
 -   Rapportera buggar
--   Begära funktioner
--   Skicka in pull-förfrågningar
+-   Önska funktioner
+-   Skicka in pull requests
 
 ### Var kan jag få hjälp?
 
 -   [WebdriverIO Discord](https://discord.webdriver.io/)
 -   [GitHub Issues](https://github.com/webdriverio/mcp/issues)
--   [WebdriverIO Documentation](https://webdriver.io/)
+-   [WebdriverIO-dokumentation](https://webdriver.io/)

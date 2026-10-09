@@ -1,17 +1,18 @@
 ---
 id: test-output
 title: خروجی تست
+description: "خروجی و تصاویر تولید شده توسط متدهای save و check در سرویس بصری، از جمله تست طرح‌بندی و پوشاندن نواحی (block-outs) را درک کنید."
 ---
 
 :::info
 
-از [این سایت نمایشی WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) برای مثال خروجی تصویر استفاده شده است.
+سایت نمایشی [این WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) برای نمونه خروجی تصویر استفاده شده است.
 
 :::
 
 ## `enableLayoutTesting`
 
-این می‌تواند هم در [گزینه‌های سرویس](./service-options#enablelayouttesting) و هم در سطح [متد](./method-options) تنظیم شود.
+این گزینه را می‌توان هم در [گزینه‌های سرویس](./service-options#enablelayouttesting) و هم در سطح [متد](./method-options) تنظیم کرد.
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,7 +33,7 @@ export const config = {
 }
 ```
 
-خروجی تصویر برای [گزینه‌های سرویس](./service-options#enablelayouttesting) مشابه [متد](./method-options) است، در زیر مشاهده کنید.
+خروجی تصویر برای [گزینه‌های سرویس](./service-options#enablelayouttesting) با خروجی [متد](./method-options) یکسان است، به موارد زیر مراجعه کنید.
 
 ### خروجی تصویر
 
@@ -97,18 +98,18 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 
 ### خروجی کنسول
 
-متدهای `save(Screen/Element/FullPageScreen)` اطلاعات زیر را پس از اجرای متد ارائه می‌دهند:
+متدهای `save(Screen/Element/FullPageScreen)` پس از اجرا، اطلاعات زیر را ارائه می‌دهند:
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // نسبت پیکسل دستگاه نمونه‌ای که اجرا شده است
+ *   // نسبت پیکسل دستگاه (device pixel ratio) نمونه‌ای که اجرا شده است
  *   devicePixelRatio: 1,
- *   // نام فایل فرمت‌بندی شده، این به گزینه‌های `formatImageName` بستگی دارد
+ *   // نام فایل قالب‌بندی شده، این به گزینه‌های `formatImageName` بستگی دارد
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // مسیری که فایل اسکرین‌شات واقعی را می‌توان یافت
+ *   // مسیری که فایل اسکرین‌شات واقعی در آن قرار دارد
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
@@ -177,7 +178,7 @@ await browser.saveScreen("example-page-tag")
 <TabItem value="ios">
 
 :::info نکته
-اجرای `saveScreen` در iOS به طور پیش‌فرض با گوشه‌های قاب دستگاه نیست. برای داشتن این گزینه، لطفاً گزینه `addIOSBezelCorners:true` را هنگام راه‌اندازی سرویس اضافه کنید، [اینجا](./service-options#addiosbezelcorners) را ببینید.
+اجراهای `saveScreen` در iOS به طور پیش‌فرض شامل گوشه‌های قاب (bezel) دستگاه نیستند. برای داشتن این قابلیت، لطفاً هنگام راه‌اندازی سرویس گزینه `addIOSBezelCorners:true` را اضافه کنید، [این](./service-options#addiosbezelcorners) را ببینید
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,23 +217,23 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### خروجی کنسول
 
-به طور پیش‌فرض، متدهای `check(Screen/Element/FullPageScreen)` فقط درصد عدم تطابق مانند `1.23` را ارائه می‌دهند، اما وقتی افزونه با گزینه `returnAllCompareData: true` تنظیم شده باشد، اطلاعات زیر پس از اجرای متد ارائه می‌شود:
+به طور پیش‌فرض، متدهای `check(Screen/Element/FullPageScreen)` فقط یک درصد عدم تطابق مانند `1.23` ارائه می‌دهند، اما هنگامی که افزونه دارای گزینه `returnAllCompareData: true` باشد، اطلاعات زیر پس از اجرای متد ارائه می‌شود:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // نام فایل فرمت‌بندی شده، این به گزینه‌های `formatImageName` بستگی دارد
+ *     // نام فایل قالب‌بندی شده، این به گزینه‌های `formatImageName` بستگی دارد
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // پوشه واقعی و نام فایل
+ *         // پوشه واقعی (actual) و نام فایل
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // پوشه پایه و نام فایل
+ *         // پوشه مرجع (baseline) و نام فایل
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // این پوشه زیر اختیاری است و فقط در صورت عدم تطابق وجود دارد
- *         // پوشه‌ای که تفاوت‌ها و نام فایل را نگه می‌دارد
+ *         // پوشه زیر اختیاری است و فقط در صورت وجود عدم تطابق وجود دارد
+ *         // پوشه‌ای که تفاوت‌ها (diffs) را نگه می‌دارد و نام فایل
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
  *     // درصد عدم تطابق
@@ -244,7 +245,7 @@ console.log(checkResult)
 ### خروجی تصویر
 
 :::info
-تصاویر زیر فقط تفاوت‌ها را در نتیجه اجرای دستورات بررسی نشان می‌دهند. فقط تفاوت در مرورگر نشان داده شده است، اما خروجی برای اندروید و iOS یکسان است.
+تصاویر زیر فقط تفاوت‌های حاصل از اجرای دستورات check را نشان می‌دهند. فقط تفاوت در یک مرورگر نشان داده شده است، اما خروجی برای Android و iOS یکسان است.
 :::
 
 <Tabs
@@ -262,7 +263,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-متن دکمه از `Get Started` به `Getting Started!` تغییر کرده و به عنوان تغییر شناسایی شده است.
+متن دکمه از `Get Started` به `Getting Started!` تغییر داده شده و به عنوان یک تغییر شناسایی شده است.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +276,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-متن دکمه از `Get Started` به `Getting Started!` تغییر کرده و به عنوان تغییر شناسایی شده است.
+متن دکمه از `Get Started` به `Getting Started!` تغییر داده شده و به عنوان یک تغییر شناسایی شده است.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +290,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-متن دکمه از `Get Started` به `Getting Started!` تغییر کرده و به عنوان تغییر شناسایی شده است.
+متن دکمه از `Get Started` به `Getting Started!` تغییر داده شده و به عنوان یک تغییر شناسایی شده است.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -298,9 +299,9 @@ await browser.checkFullPageScreen("full-page-tag")
 
 </Tabs>
 
-## مسدودسازی‌ها (Block-Outs)
+## پوشاندن نواحی (Block-Outs)
 
-در اینجا می‌توانید یک نمونه خروجی برای مسدودسازی‌ها در Android NativeWebScreenshot و iOS را ببینید که در آن‌ها وضعیت+آدرس و نوار ابزار مسدود شده‌اند.
+در اینجا نمونه‌ای از خروجی پوشاندن نواحی در Android NativeWebScreenshot و iOS را خواهید یافت که در آن نوار وضعیت + نوار آدرس و نوار ابزار پوشانده شده‌اند.
 
 <Tabs
     defaultValue="nativeWebScreenshot"

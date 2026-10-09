@@ -3,18 +3,24 @@ id: mock
 title: Mock-objektet
 ---
 
-Mock-objektet är ett objekt som representerar en nätverksmock och innehåller information om förfrågningar som matchade en given `url` och `filterOptions`. Det kan erhållas med kommandot [`mock`](/docs/api/browser/mock).
+Mock-objektet är ett objekt som representerar en nätverks-mock och innehåller information om förfrågningar som matchade angivna `url` och `filterOptions`. Det kan erhållas med kommandot [`mock`](/docs/api/browser/mock).
 
 :::info
 
-Observera att användning av `mock`-kommandot kräver stöd för Chrome DevTools-protokollet.
-Detta stöd ges om du kör tester lokalt i Chromium-baserade webbläsare eller om
-du använder en Selenium Grid v4 eller högre. Detta kommando kan __inte__ användas när du kör
+Observera att användning av kommandot `mock` kräver stöd för Chrome DevTools-protokollet.
+Detta stöd finns om du kör tester lokalt i en Chromium-baserad webbläsare eller om
+du använder Selenium Grid v4 eller högre. Detta kommando kan __inte__ användas när du kör
 automatiserade tester i molnet. Läs mer i avsnittet [Automation Protocols](/docs/automationProtocols).
 
 :::
 
 Du kan läsa mer om att mocka förfrågningar och svar i WebdriverIO i vår guide [Mocks and Spies](/docs/mocksandspies).
+
+## Multi-remote
+
+I en [multi-remote](/docs/multiremote)-webbläsare returnerar [`browser.mock()`](/docs/api/browser/mock) en `MultiRemoteMock` istället för detta objekt. `instances` listar webbläsarnamnen, och `getInstance(name)` returnerar `Mock` för den webbläsaren. `respond()`, `restore()` och de andra metoderna nedan körs på varje instans. `calls` finns kvar på varje instans mock: `mock.getInstance('myChromeBrowser').calls`.
+
+`getInstance` kastar `Multi-remote object has no instance named "<name>"` när `name` inte är en av `instances`.
 
 ## Egenskaper
 
@@ -22,14 +28,14 @@ Ett mock-objekt innehåller följande egenskaper:
 
 | Namn | Typ | Detaljer |
 | ---- | ---- | ------- |
-| `url` | `String` | URL:en som skickats in i mock-kommandot |
-| `filterOptions` | `Object` | Resursfiltreringsalternativen som skickats in i mock-kommandot |
+| `url` | `String` | URL:en som skickades till mock-kommandot |
+| `filterOptions` | `Object` | Resursfilteralternativen som skickades till mock-kommandot |
 | `browser` | `Object` | [Browser-objektet](/docs/api/browser) som användes för att få mock-objektet. |
-| `calls` | `Object[]` | Information om matchande webbläsarförfrågningar, innehållande egenskaper som `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` och `body` |
+| `calls` | `Object[]` | Information om matchande webbläsarförfrågningar, med egenskaper som `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` och `body` |
 
 ## Metoder
 
-Mock-objekt tillhandahåller olika kommandon, listade i `mock`-sektionen, som låter användare modifiera beteendet för förfrågan eller svaret.
+Mock-objekt tillhandahåller olika kommandon, listade i avsnittet `mock`, som låter användare modifiera beteendet hos förfrågan eller svaret.
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -43,13 +49,13 @@ Mock-objekt tillhandahåller olika kommandon, listade i `mock`-sektionen, som l�
 
 ## Händelser
 
-Mock-objektet är en EventEmitter och ett antal händelser sänds ut för dina användningsfall.
+Mock-objektet är en EventEmitter och ett par händelser sänds ut för dina användningsfall.
 
-Här är en lista på händelser.
+Här är en lista över händelser.
 
 ### `request`
 
-Denna händelse sänds ut när en nätverksförfrågan som matchar mock-mönster initieras. Förfrågan skickas i händelsecallbacken.
+Denna händelse sänds ut när en nätverksförfrågan som matchar mock-mönstren startas. Förfrågan skickas med i händelsens callback.
 
 Request-gränssnitt:
 ```ts
@@ -63,7 +69,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Denna händelse sänds ut när ett nätverkssvar skrivs över med [`respond`](/docs/api/mock/respond) eller [`respondOnce`](/docs/api/mock/respondOnce). Svaret skickas i händelsecallbacken.
+Denna händelse sänds ut när nätverkssvaret skrivs över med [`respond`](/docs/api/mock/respond) eller [`respondOnce`](/docs/api/mock/respondOnce). Svaret skickas med i händelsens callback.
 
 Response-gränssnitt:
 ```ts
@@ -77,7 +83,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Denna händelse sänds ut när en nätverksförfrågan avbryts med [`abort`](/docs/api/mock/abort) eller [`abortOnce`](/docs/api/mock/abortOnce). Felet skickas i händelsecallbacken.
+Denna händelse sänds ut när en nätverksförfrågan avbryts med [`abort`](/docs/api/mock/abort) eller [`abortOnce`](/docs/api/mock/abortOnce). Fail skickas med i händelsens callback.
 
 Fail-gränssnitt:
 ```ts
@@ -89,39 +95,39 @@ interface FailEvent {
 
 ### `match`
 
-Denna händelse sänds ut när en ny matchning läggs till, före `continue` eller `overwrite`. Matchningen skickas i händelsecallbacken.
+Denna händelse sänds ut när en ny matchning läggs till, före `continue` eller `overwrite`. Matchningen skickas med i händelsens callback.
 
 Match-gränssnitt:
 ```ts
 interface MatchEvent {
-    url: string // Request URL (without fragment).
-    urlFragment?: string // Fragment of the requested URL starting with hash, if present.
-    method: string // HTTP request method.
-    headers: Record<string, string> // HTTP request headers.
-    postData?: string // HTTP POST request data.
-    hasPostData?: boolean // True when the request has POST data.
-    mixedContentType?: MixedContentType // The mixed content export type of the request.
-    initialPriority: ResourcePriority // Priority of the resource request at the time request is sent.
-    referrerPolicy: ReferrerPolicy // The referrer policy of the request, as defined in https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Whether is loaded via link preload.
-    body: string | Buffer | JsonCompatible // Body response of actual resource.
-    responseHeaders: Record<string, string> // HTTP response headers.
-    statusCode: number // HTTP response status code.
-    mockedResponse?: string | Buffer // If mock, emitting the event, also modified it's response.
+    url: string // Förfrågans URL (utan fragment).
+    urlFragment?: string // Fragment av den begärda URL:en som börjar med hash, om det finns.
+    method: string // HTTP-förfrågningsmetod.
+    headers: Record<string, string> // HTTP-förfrågningshuvuden.
+    postData?: string // HTTP POST-förfrågningsdata.
+    hasPostData?: boolean // Sant när förfrågan har POST-data.
+    mixedContentType?: MixedContentType // Förfrågans exporttyp för blandat innehåll.
+    initialPriority: ResourcePriority // Resursförfrågans prioritet vid tidpunkten då förfrågan skickas.
+    referrerPolicy: ReferrerPolicy // Förfrågans referrer-policy, enligt definitionen i https://www.w3.org/TR/referrer-policy/
+    isLinkPreload?: boolean // Om den laddas via link preload.
+    body: string | Buffer | JsonCompatible // Svarets body för den faktiska resursen.
+    responseHeaders: Record<string, string> // HTTP-svarshuvuden.
+    statusCode: number // HTTP-svarets statuskod.
+    mockedResponse?: string | Buffer // Om mocken som sänder ut händelsen också modifierade dess svar.
 }
 ```
 
 ### `continue`
 
-Denna händelse sänds ut när nätverkssvaret varken har skrivits över eller avbrutits, eller om svaret redan har skickats av en annan mock. `requestId` skickas i händelsecallbacken.
+Denna händelse sänds ut när nätverkssvaret varken har skrivits över eller avbrutits, eller om svaret redan har skickats av en annan mock. `requestId` skickas med i händelsens callback.
 
 ## Exempel
 
-Få antal pågående förfrågningar:
+Hämta antalet väntande förfrågningar:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // it is important to match all requests otherwise, the resulting value can be very confusing.
+const mock = await browser.mock('**') // det är viktigt att matcha alla förfrågningar, annars kan det resulterande värdet bli mycket förvirrande.
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -132,7 +138,7 @@ mock.on('match', ({url}) => {
 })
 ```
 
-Kasta ett fel vid 404 nätverksfel:
+Kasta ett fel vid 404-nätverksfel:
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -146,7 +152,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // waiting here, because some requests can still be pending
+    // väntar här, eftersom vissa förfrågningar fortfarande kan vara väntande
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -161,7 +167,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 await browser.loadPageWithout404(browser, 'some/url', { selector: 'main' })
 ```
 
-Avgöra om mock-svarsvärdet användes:
+Avgöra om mockens svarsvärde användes:
 
 ```js
 const firstMock = await browser.mock('**/foo/**')
@@ -171,16 +177,16 @@ firstMock.respondOnce({id: 3, title: 'three'})
 secondMock.respond({id: 4, title: 'four'})
 
 firstMock.on('overwrite', () => {
-    // triggers for first request to '**/foo/**'
+    // utlöses för första förfrågan till '**/foo/**'
 }).on('continue', () => {
-    // triggers for rest requests to '**/foo/**'
+    // utlöses för resterande förfrågningar till '**/foo/**'
 })
 
 secondMock.on('continue', () => {
-    // triggers for first request to '**/foo/bar/**'
+    // utlöses för första förfrågan till '**/foo/bar/**'
 }).on('overwrite', () => {
-    // triggers for rest requests to '**/foo/bar/**'
+    // utlöses för resterande förfrågningar till '**/foo/bar/**'
 })
 ```
 
-I detta exempel definierades `firstMock` först och har ett `respondOnce`-anrop, så `secondMock`-svarsvärdet kommer inte att användas för den första förfrågan, men kommer att användas för resten av dem.
+I det här exemplet definierades `firstMock` först och har ett `respondOnce`-anrop, så svarsvärdet från `secondMock` kommer inte att användas för den första förfrågan, men kommer att användas för resten av dem.

@@ -4,11 +4,11 @@
     "description": "The title for the blog used in SEO"
   },
   "description": {
-    "message": "ब्लॉग",
+    "message": "WebdriverIO टीम की ओर से रिलीज़ नोट्स, गाइड और प्रोजेक्ट से जुड़ी खबरें",
     "description": "The description for the blog used in SEO"
   },
   "sidebar.title": {
-    "message": "हाल के पोस्ट",
+    "message": "हाल की पोस्ट",
     "description": "The label for the left sidebar"
   }
 }

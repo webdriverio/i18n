@@ -1,33 +1,56 @@
 ---
 id: method-options
-title: Opciones de Método
+title: Opciones de métodos
+description: "Configura opciones de guardado, comparación y carpetas por método para los métodos de pruebas visuales, que sobrescriben las opciones a nivel de servicio."
 ---
 
-Las opciones de métodos son las opciones que se pueden configurar por [método](./methods). Si la opción tiene la misma clave que una opción que se ha establecido durante la instanciación del plugin, esta opción de método anulará el valor de la opción del plugin.
+Las opciones de métodos son las opciones que se pueden establecer por [método](./methods). Si la opción tiene la misma clave que una opción que se ha establecido durante la instanciación del plugin, esta opción del método sobrescribirá el valor de la opción del plugin.
 
 :::info NOTA
 
--   Todas las opciones de [Opciones de Guardado](#save-options) pueden ser utilizadas para los métodos de [Comparación](#compare-check-options)
--   Todas las opciones de comparación pueden ser utilizadas durante la instanciación del servicio __o__ para cada método de verificación individual. Si una opción de método tiene la misma clave que una opción que se ha establecido durante la instanciación del servicio, entonces la opción de comparación del método anulará el valor de la opción de comparación del servicio.
-- Todas las opciones pueden ser utilizadas para los siguientes contextos de aplicación a menos que se mencione lo contrario:
+-   Todas las opciones de las [Opciones de guardado](#save-options) se pueden usar para los métodos de [Comparación](#compare-check-options)
+-   Todas las opciones de comparación se pueden usar durante la instanciación del servicio __o__ para cada método de verificación individual. Si una opción de método tiene la misma clave que una opción que se ha establecido durante la instanciación del servicio, entonces la opción de comparación del método sobrescribirá el valor de la opción de comparación del servicio.
+- Todas las opciones se pueden usar para los siguientes contextos de aplicación, salvo que se indique lo contrario:
     - Web
-    - App Híbrida
-    - App Nativa
-- Los ejemplos a continuación son con los métodos `save*`, pero también pueden ser utilizados con los métodos `check*`
+    - Hybrid App
+    - Native App
+- Los ejemplos siguientes usan los métodos `save*`, pero también se pueden usar con los métodos `check*`
 
 :::
 
-## Opciones de Guardado
+# Opciones de guardado
 
+## Visualización y renderizado
+
+---
+
+### `hideScrollBars`
+
+<Option type="boolean" default="true" required="No">
+
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Oculta la(s) barra(s) de desplazamiento en la aplicación. Si se establece en true, todas las barras de desplazamiento se desactivarán antes de tomar una captura de pantalla. Por defecto está en `true` para evitar problemas adicionales.
+
+```typescript
+await browser.saveScreen(
+    'sample-tag',
+    {
+        hideScrollBars: false
+    }
+)
+```
+
+</Option>
 ### `disableBlinkingCursor`
 
-- **Tipo:** `boolean`
-- **Obligatorio:** No
-- **Predeterminado:** `false`
-- **Usado con:** Todos los [métodos](./methods)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="boolean" default="false" required="No">
 
-Habilita/Deshabilita el "parpadeo" del cursor en todos los elementos `input`, `textarea`, `[contenteditable]` en la aplicación. Si se establece en `true`, el cursor se establecerá como `transparent` antes de tomar una captura de pantalla
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Activa/desactiva el "parpadeo" del cursor en todos los `input`, `textarea` y `[contenteditable]` de la aplicación. Si se establece en `true`, el cursor se establecerá como `transparent` antes de tomar una captura de pantalla
 y se restablecerá al terminar.
 
 ```typescript
@@ -39,16 +62,16 @@ await browser.saveScreen(
 )
 ```
 
+</Option>
 ### `disableCSSAnimation`
 
-- **Tipo:** `boolean`
-- **Obligatorio:** No
-- **Predeterminado:** `false`
-- **Usado con:** Todos los [métodos](./methods)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="boolean" default="false" required="No">
 
-Habilita/Deshabilita todas las animaciones CSS en la aplicación. Si se establece en `true`, todas las animaciones serán deshabilitadas antes de tomar una captura de pantalla
-y se restablecerán al terminar.
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Activa/desactiva todas las animaciones CSS en la aplicación. Si se establece en `true`, todas las animaciones se desactivarán antes de tomar una captura de pantalla
+y se restablecerán al terminar
 
 ```typescript
 await browser.saveScreen(
@@ -59,40 +82,20 @@ await browser.saveScreen(
 )
 ```
 
-### `enableLegacyScreenshotMethod`
-
-- **Tipo:** `boolean`
-- **Obligatorio:** No
-- **Predeterminado:** `false`
-- **Usado con:** Todos los [métodos](./methods)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
-
-Utilice esta opción para volver al método "antiguo" de capturas de pantalla basado en el protocolo W3C-WebDriver. Esto puede ser útil si sus pruebas dependen de imágenes de referencia existentes o si está ejecutando en entornos que no admiten completamente las capturas de pantalla basadas en BiDi más recientes.
-Tenga en cuenta que habilitar esto puede producir capturas de pantalla con una resolución o calidad ligeramente diferentes.
-
-```typescript
-await browser.saveScreen(
-    'sample-tag',
-    {
-        enableLegacyScreenshotMethod: true
-    }
-)
-```
-
+</Option>
 ### `enableLayoutTesting`
 
-- **Tipo:** `boolean`
-- **Obligatorio:** No
-- **Predeterminado:** `false`
-- **Usado con:** Todos los [métodos](./methods)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="boolean" default="false" required="No">
 
-Esto ocultará todo el texto en una página para que solo se utilice el diseño para la comparación. La ocultación se realizará agregando el estilo `'color': 'transparent !important'` a __cada__ elemento.
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
 
-Para la salida, consulte [Salida de Prueba](./test-output#enablelayouttesting).
+Esto ocultará todo el texto de una página para que solo se use el diseño (layout) en la comparación. El ocultamiento se realiza añadiendo el estilo `'color': 'transparent !important'` a __cada__ elemento.
+
+Para ver la salida, consulta [Salida de pruebas](./test-output#enablelayouttesting).
 
 :::info
-Al usar esta opción, cada elemento que contiene texto (no solo `p, h1, h2, h3, h4, h5, h6, span, a, li`, sino también `div|button|..`) recibirá esta propiedad. __NO__ hay opción para personalizarlo.
+Al usar esta opción, cada elemento que contenga texto (no solo `p, h1, h2, h3, h4, h5, h6, span, a, li`, sino también `div|button|..`) recibirá esta propiedad. __No__ hay ninguna opción para personalizar esto.
 :::
 
 ```typescript
@@ -104,33 +107,77 @@ await browser.saveScreen(
 )
 ```
 
-### `hideScrollBars`
+</Option>
+### `enableLegacyScreenshotMethod`
 
-- **Tipo:** `boolean`
-- **Obligatorio:** No
-- **Predeterminado:** `true`
-- **Usado con:** Todos los [métodos](./methods)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="boolean" default="false" required="No">
 
-Oculta las barras de desplazamiento en la aplicación. Si se establece en true, todas las barras de desplazamiento se deshabilitarán antes de tomar una captura de pantalla. Esto se establece por defecto en `true` para prevenir problemas adicionales.
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Usa esta opción para volver al método de captura de pantalla "antiguo" basado en el protocolo W3C-WebDriver. Esto puede ser útil si tus pruebas dependen de imágenes de referencia existentes o si se ejecutan en entornos que no soportan completamente las capturas más nuevas basadas en BiDi.
+Ten en cuenta que activar esto puede producir capturas de pantalla con una resolución o calidad ligeramente diferente.
 
 ```typescript
 await browser.saveScreen(
     'sample-tag',
     {
-        hideScrollBars: false
+        enableLegacyScreenshotMethod: true
     }
 )
 ```
 
+</Option>
+### `ignoreRegionPadding`
+
+<Option type="number" default="1" required="No">
+
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Relleno en píxeles del dispositivo añadido a cada lado de las regiones ignoradas, haciendo que cada región sea 2× este valor más ancha y más alta. Esto ayuda a evitar diferencias de 1 px en los bordes que pueden aparecer en pantallas con DPR alto o con el protocolo de capturas BiDi. Establécelo en `0` para desactivarlo.
+
+```typescript
+await browser.saveScreen(
+    'sample-tag',
+    {
+        ignoreRegionPadding: 0
+    }
+)
+```
+
+</Option>
+### `waitForFontsLoaded`
+
+<Option type="boolean" default="true" required="No">
+
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Las fuentes, incluidas las de terceros, pueden cargarse de forma síncrona o asíncrona. La carga asíncrona significa que las fuentes pueden cargarse después de que WebdriverIO determine que una página se ha cargado por completo. Para evitar problemas de renderizado de fuentes, este módulo, por defecto, esperará a que se carguen todas las fuentes antes de tomar una captura de pantalla.
+
+```typescript
+await browser.saveScreen(
+    'sample-tag',
+    {
+        waitForFontsLoaded: true
+    }
+)
+```
+
+</Option>
+## Visibilidad de elementos
+
+---
+
 ### `hideElements`
 
-- **Tipo:** `array`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos](./methods)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="array" required="No">
 
-Este método puede ocultar 1 o múltiples elementos agregando la propiedad `visibility: hidden` a ellos proporcionando un array de elementos.
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Este método puede ocultar 1 o varios elementos añadiéndoles la propiedad `visibility: hidden`, proporcionando un array de elementos.
 
 ```typescript
 await browser.saveScreen(
@@ -144,14 +191,15 @@ await browser.saveScreen(
 )
 ```
 
+</Option>
 ### `removeElements`
 
-- **Tipo:** `array`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos](./methods)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="array" required="No">
 
-Este método puede _eliminar_ 1 o múltiples elementos agregando la propiedad `display: none` a ellos proporcionando un array de elementos.
+- **Se usa con:** Todos los [métodos](./methods)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Este método puede _eliminar_ 1 o varios elementos añadiéndoles la propiedad `display: none`, proporcionando un array de elementos.
 
 ```typescript
 await browser.saveScreen(
@@ -165,15 +213,19 @@ await browser.saveScreen(
 )
 ```
 
+</Option>
+## Específicas de elementos
+
+---
+
 ### `resizeDimensions`
 
-- **Tipo:** `object`
-- **Obligatorio:** No
-- **Predeterminado:** `{ top: 0, right: 0, bottom: 0, left: 0}`
-- **Usado con:** Solo para [`saveElement`](./methods#saveelement) o [`checkElement`](./methods#checkelement)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview), App Nativa
+<Option type="object" default={`{ top: 0, right: 0, bottom: 0, left: 0}`} required="No">
 
-Un objeto que debe contener una cantidad de píxeles `top`, `right`, `bottom` y `left` que necesitan hacer que el recorte del elemento sea más grande.
+- **Se usa con:** Solo para [`saveElement`](./methods#saveelement) o [`checkElement`](./methods#checkelement)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview), Native App
+
+Un objeto que debe contener una cantidad de píxeles `top`, `right`, `bottom` y `left` con la que se agrandará el recorte del elemento.
 
 ```typescript
 await browser.saveElement(
@@ -189,17 +241,44 @@ await browser.saveElement(
 )
 ```
 
+</Option>
+### `biDiOrigin`
+
+<Option type="'document' | 'viewport'" default="'document'" required="No">
+
+- **Se usa con:** Solo para [`saveElement`](./methods#saveelement) o [`checkElement`](./methods#checkelement)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Opción exclusiva de BiDi que controla qué origen de coordenadas se usa al capturar capturas de pantalla de elementos mediante el protocolo WebDriver BiDi.
+
+- `'document'` _(por defecto)_: renderiza el diseño del documento. Funciona para cualquier posición del elemento, pero **no** captura capas compuestas (p. ej., barras de desplazamiento, superposiciones fixed/sticky, elementos con `will-change`).
+- `'viewport'`: captura el fotograma compuesto tal como se pinta, incluidas las barras de desplazamiento y las superposiciones. Requiere que el elemento sea **completamente visible** en el viewport; lanza un error descriptivo cuando el elemento está fuera del viewport o es más grande que este.
+
+```typescript
+await browser.saveElement(
+    await $('#my-element'),
+    'sample-tag',
+    {
+        biDiOrigin: 'viewport'
+    }
+)
+```
+
+</Option>
+## Específicas de página completa
+
+---
+
 ### `userBasedFullPageScreenshot`
 
-- **Tipo:** `boolean`
-- **Obligatorio:** No
-- **Predeterminado:** `false`
-- **Usado con:** Solo para [`saveFullPageScreen`](./methods#savefullpagescreen), [`saveTabbablePage`](./methods#savetabbablepage), [`checkFullPageScreen`](./methods#checkfullpagescreen) o [`checkTabbablePage`](./methods#checktabbablepage)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="boolean" default="false" required="No">
 
-Cuando se establece en `true`, esta opción habilita la **estrategia de desplazamiento y costura** para capturar capturas de pantalla de página completa.
-En lugar de utilizar las capacidades nativas de captura de pantalla del navegador, se desplaza manualmente a través de la página y une varias capturas de pantalla.
-Este método es especialmente útil para páginas con **contenido cargado perezosamente** o diseños complejos que requieren desplazamiento para renderizarse completamente.
+- **Se usa con:** Solo para [`saveFullPageScreen`](./methods#savefullpagescreen), [`saveTabbablePage`](./methods#savetabbablepage), [`checkFullPageScreen`](./methods#checkfullpagescreen) o [`checkTabbablePage`](./methods#checktabbablepage)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Cuando se establece en `true`, esta opción activa la **estrategia de desplazar y unir** (scroll-and-stitch) para capturar capturas de pantalla de página completa.
+En lugar de usar las capacidades nativas de captura del navegador, desplaza la página manualmente y une varias capturas de pantalla.
+Este método es especialmente útil para páginas con **contenido de carga diferida** (lazy-loaded) o diseños complejos que requieren desplazamiento para renderizarse por completo.
 
 ```typescript
 await browser.saveScreen(
@@ -210,15 +289,15 @@ await browser.saveScreen(
 )
 ```
 
+</Option>
 ### `fullPageScrollTimeout`
 
-- **Tipo:** `number`
-- **Obligatorio:** No
-- **Predeterminado:** `1500`
-- **Usado con:** Solo para [`saveFullPageScreen`](./methods#savefullpagescreen) o [`saveTabbablePage`](./methods#savetabbablepage)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="number" default="1500" required="No">
 
-El tiempo de espera en milisegundos después de un desplazamiento. Esto puede ayudar a identificar páginas con carga perezosa.
+- **Se usa con:** Solo para [`saveFullPageScreen`](./methods#savefullpagescreen) o [`saveTabbablePage`](./methods#savetabbablepage)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+El tiempo de espera en milisegundos después de un desplazamiento. Esto puede ayudar a identificar páginas con carga diferida.
 
 > **NOTA:** Esto solo funciona cuando `userBasedFullPageScreenshot` está establecido en `true`
 
@@ -231,15 +310,16 @@ await browser.saveFullPageScreen(
 )
 ```
 
+</Option>
 ### `hideAfterFirstScroll`
 
-- **Tipo:** `array`
-- **Obligatorio:** No
-- **Usado con:** Solo para [`saveFullPageScreen`](./methods#savefullpagescreen) o [`saveTabbablePage`](./methods#savetabbablepage)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+<Option type="array" required="No">
 
-Este método ocultará uno o varios elementos agregando la propiedad `visibility: hidden` a ellos proporcionando un array de elementos.
-Esto será útil cuando una página, por ejemplo, contiene elementos fijos que se desplazarán con la página si se desplaza la página pero dará un efecto molesto cuando se realiza una captura de pantalla de página completa.
+- **Se usa con:** Solo para [`saveFullPageScreen`](./methods#savefullpagescreen) o [`saveTabbablePage`](./methods#savetabbablepage)
+- **Contextos de aplicación soportados:** Web, Hybrid App (Webview)
+
+Este método ocultará uno o varios elementos añadiéndoles la propiedad `visibility: hidden`, proporcionando un array de elementos.
+Esto resulta útil cuando, por ejemplo, una página contiene elementos fijos (sticky) que se desplazan con la página al hacer scroll, pero que producen un efecto molesto cuando se hace una captura de pantalla de página completa
 
 > **NOTA:** Esto solo funciona cuando `userBasedFullPageScreenshot` está establecido en `true`
 
@@ -255,38 +335,50 @@ await browser.saveFullPageScreen(
 )
 ```
 
-### `waitForFontsLoaded`
+# Opciones de comparación (verificación)
 
-- **Tipo:** `boolean`
-- **Obligatorio:** No
-- **Predeterminado:** `true`
-- **Usado con:** Todos los [métodos](./methods)
-- **Contextos de Aplicación Soportados:** Web, App Híbrida (Webview)
+Las opciones de comparación son opciones que influyen en la forma en que se ejecuta la comparación.
 
-Las fuentes, incluidas las fuentes de terceros, pueden cargarse de forma síncrona o asíncrona. La carga asíncrona significa que las fuentes podrían cargarse después de que WebdriverIO determine que una página se ha cargado completamente. Para evitar problemas de renderizado de fuentes, este módulo, de forma predeterminada, esperará a que todas las fuentes se carguen antes de tomar una captura de pantalla.
+</Option>
+## Sensibilidad visual
+
+---
+
+:::info Historial de versiones de las opciones `ignore*`
+Estos ajustes predefinidos cambiaron de comportamiento una vez, como un cambio incompatible, cuando el motor de comparación pasó de ResembleJS (v9 e inferiores) a Pixelmatch (v10 y superiores). Consulta la [tabla de historial de versiones](./compare-options#visual-sensitivity) en la página de Opciones de comparación para más detalles. Todo lo posterior a v10.0.0 se indica con una nota "Desde" en la opción correspondiente más abajo.
+:::
+
+**Orden de prioridad (gana el último):** cuando se activa más de una opción `ignore*` al mismo tiempo, solo se aplica un ajuste predefinido, siguiendo este orden (gana el posterior): `ignoreAlpha` → `ignoreAntialiasing` → `ignoreColors` → `ignoreLess` → `ignoreNothing`. A partir de `v10.1.0` se registra una advertencia indicando qué ajuste predefinido ganó.
+
+### `ignoreColors`
+
+<Option type="boolean" default="false" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+- **Desde:** `v10.1.0`: comparación solo de brillo usando los pesos de luma de resemble (`0.3/0.59/0.11`).
+
+Compara solo el brillo (pesos de luma de resemble `0.3/0.59/0.11`), ignorando las diferencias de tono/color. Úsalo cuando se espera que el color varíe, pero aun así quieres detectar cambios de diseño o de brillo.
 
 ```typescript
-await browser.saveScreen(
+await browser.checkScreen(
     'sample-tag',
     {
-        waitForFontsLoaded: true
+        ignoreColors: true
     }
 )
 ```
 
-## Opciones de Comparación (Check)
-
-Las opciones de comparación son opciones que influyen en la forma en que se ejecuta la comparación, mediante [ResembleJS](https://github.com/Huddle/Resemble.js).
-
+</Option>
 ### `ignoreAlpha`
 
-- **Tipo:** `boolean`
-- **Predeterminado:** `false`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
+<Option type="boolean" default="false" required="No">
 
-Compara imágenes y descarta el alfa.
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+- **Desde:** `v10.1.0`: aplica su propia regla de umbral/AA independientemente de otras opciones `ignore*`.
+
+Compara imágenes y descarta las diferencias del canal alfa. Úsalo cuando el renderizado de transparencia/opacidad es inestable, pero los colores de los píxeles subyacentes importan.
 
 ```typescript
 await browser.checkScreen(
@@ -297,34 +389,120 @@ await browser.checkScreen(
 )
 ```
 
-### `blockOutSideBar`
+</Option>
+### `ignoreAntialiasing`
 
-- **Tipo:** `boolean`
-- **Predeterminado:** `true`
-- **Obligatorio:** No
-- **Usado con:** _Solo puede usarse para `checkScreen()`. Esto es **solo para iPad**_
-- **Contextos de Aplicación Soportados:** Todos
+<Option type="boolean" default="true" required="No">
 
-Bloquea automáticamente la barra lateral para iPads en modo horizontal durante las comparaciones. Esto evita fallos en el componente nativo de pestañas/privado/marcadores.
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+- **Desde:** `v10`: el valor por defecto cambió a `true` (era `false` en v9 e inferiores).
+
+Tolera los píxeles con antialiasing durante la comparación. Establécelo en `false` para una comparación estricta en la que los píxeles con antialiasing deban contar como discrepancias. Esto resuelve la fuente más común de inestabilidad en las pruebas visuales: los bordes de texto/formas que se renderizan con un antialiasing ligeramente diferente entre máquinas aunque nada haya cambiado.
 
 ```typescript
 await browser.checkScreen(
     'sample-tag',
     {
-        blockOutSideBar: true
+        ignoreAntialiasing: true
     }
 )
 ```
 
+</Option>
+### `ignoreLess`
+
+<Option type="boolean" default="false" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+- **Desde:** `v10.1.0`: aplica su propia regla de umbral/AA independientemente de otras opciones `ignore*`.
+
+Compara imágenes usando una tolerancia RGB relajada (~16/255 por canal en el espacio YIQ). El antialiasing no se tolera. Úsalo para tener un pequeño margen frente al ruido de renderizado (artefactos de compresión, redondeo de color) sin tolerar el antialiasing.
+
+```typescript
+await browser.checkScreen(
+    'sample-tag',
+    {
+        ignoreLess: true
+    }
+)
+```
+
+</Option>
+### `ignoreNothing`
+
+<Option type="boolean" default="false" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+- **Desde:** `v10.1.0`: aplica su propia regla de umbral/AA independientemente de otras opciones `ignore*`.
+
+Usa tolerancia cero: cualquier diferencia de píxel cuenta como discrepancia, incluido el antialiasing. Úsalo cuando necesites una prueba perfecta a nivel de píxel de que no ha cambiado absolutamente nada.
+
+```typescript
+await browser.checkScreen(
+    'sample-tag',
+    {
+        ignoreNothing: true
+    }
+)
+```
+
+</Option>
+### `pixelmatch`
+
+<Option type="object" default="undefined" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+- **Añadido en:** `v10.1.0`
+
+Sobrescribe el modo de comparación para una única llamada `check*` con ajustes directos de [pixelmatch](https://github.com/mapbox/pixelmatch) (`threshold`, `includeAA`, `diffColor`, `aaColor`, `diffColorAlt`, `alpha`, `diffMask`, `checkerboard`), en lugar de un ajuste predefinido `ignore*`. Úsalo cuando los ajustes predefinidos sean demasiado generales para una prueba concreta, p. ej., si necesita su propio valor de umbral o un color de diferencia que realmente destaque en tu informe. Consulta [Control directo de pixelmatch](./compare-options#direct-pixelmatch-control) para la referencia completa de campos y qué resuelve cada uno.
+
+No se puede combinar con opciones `ignore*` en el mismo objeto de opciones de la llamada: eso lanza `CompareOptionsConflictError`. Sin embargo, sí puede sobrescribir una configuración del servicio que use ajustes predefinidos `ignore*` (o viceversa); se registra una advertencia cuando una llamada a un método cambia el modo de comparación de esta manera.
+
+```typescript
+await browser.checkScreen(
+    'sample-tag',
+    {
+        pixelmatch: { threshold: 0.05 }
+    }
+)
+```
+
+</Option>
+### `scaleImagesToSameSize`
+
+<Option type="boolean" default="false" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+
+Escala 2 imágenes al mismo tamaño antes de ejecutar la comparación. Se recomienda encarecidamente activar `ignoreAntialiasing` e `ignoreAlpha`
+
+```typescript
+await browser.checkScreen(
+    'sample-tag',
+    {
+        scaleImagesToSameSize: true
+    }
+)
+```
+
+</Option>
+## Bloqueos en móvil
+
+---
+
 ### `blockOutStatusBar`
 
-- **Tipo:** `boolean`
-- **Predeterminado:** `true`
-- **Obligatorio:** No
-- **Usado con:** _Esto es **solo para Móvil**_
-- **Contextos de Aplicación Soportados:** Híbrido (parte nativa) y Apps Nativas
+<Option type="boolean" default="true" required="No">
 
-Bloquea automáticamente la barra de estado y la barra de direcciones durante las comparaciones. Esto evita fallos en la hora, el wifi o el estado de la batería.
+- **Se usa con:** _Esto es **solo para móvil**_
+- **Contextos de aplicación soportados:** Hybrid (parte nativa) y Native Apps
+
+Bloquea automáticamente la barra de estado y la barra de direcciones durante las comparaciones. Esto evita fallos debidos a la hora, el wifi o el estado de la batería.
 
 ```typescript
 await browser.checkScreen(
@@ -335,13 +513,13 @@ await browser.checkScreen(
 )
 ```
 
+</Option>
 ### `blockOutToolBar`
 
-- **Tipo:** `boolean`
-- **Predeterminado:** `true`
-- **Obligatorio:** No
-- **Usado con:** _Esto es **solo para Móvil**_
-- **Contextos de Aplicación Soportados:** Híbrido (parte nativa) y Apps Nativas
+<Option type="boolean" default="true" required="No">
+
+- **Se usa con:** _Esto es **solo para móvil**_
+- **Contextos de aplicación soportados:** Hybrid (parte nativa) y Native Apps
 
 Bloquea automáticamente la barra de herramientas.
 
@@ -354,186 +532,60 @@ await browser.checkScreen(
 )
 ```
 
-### `ignoreAntialiasing`
+</Option>
+### `blockOutSideBar`
 
-- **Tipo:** `boolean`
-- **Predeterminado:** `false`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
+<Option type="boolean" default="true" required="No">
 
-Compara imágenes y descarta el antialiasing.
+- **Se usa con:** _Solo se puede usar con `checkScreen()`. Esto es **solo para iPad**_
+- **Contextos de aplicación soportados:** Todos
 
-```typescript
-await browser.checkScreen(
-    'sample-tag',
-    {
-        ignoreAntialiasing: true
-    }
-)
-```
-
-### `ignoreColors`
-
-- **Tipo:** `boolean`
-- **Predeterminado:** `false`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
-
-Aunque las imágenes están en color, la comparación comparará 2 imágenes en blanco/negro
+Bloquea automáticamente la barra lateral en iPads en modo horizontal durante las comparaciones. Esto evita fallos en el componente nativo de pestañas/privado/marcadores.
 
 ```typescript
 await browser.checkScreen(
     'sample-tag',
     {
-        ignoreColors: true
+        blockOutSideBar: true
     }
 )
 ```
 
-### `ignoreLess`
+</Option>
+## Gestión de regiones
 
-- **Tipo:** `boolean`
-- **Predeterminado:** `false`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
+---
 
-Compara imágenes y compara con `red = 16, green = 16, blue = 16, alpha = 16, minBrightness=16, maxBrightness=240`
+### `blockOut`
+
+<Option type="array" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+
+Un array de áreas rectangulares que se bloquean antes de la comparación. Cada entrada debe ser un objeto con los valores `x`, `y`, `width` y `height` (en píxeles). Las áreas bloqueadas se pintan por encima antes de calcular la diferencia, evitando que esas regiones contribuyan al porcentaje de discrepancia.
 
 ```typescript
 await browser.checkScreen(
     'sample-tag',
     {
-        ignoreLess: true
+        blockOut: [
+            { x: 0, y: 0, width: 100, height: 50 },
+            { x: 300, y: 200, width: 80, height: 80 },
+        ]
     }
 )
 ```
 
-### `ignoreNothing`
-
-- **Tipo:** `boolean`
-- **Predeterminado:** `false`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
-
-Compara imágenes y compara con `red = 0, green = 0, blue = 0, alpha = 0, minBrightness=0, maxBrightness=255`
-
-```typescript
-await browser.checkScreen(
-    'sample-tag',
-    {
-        ignoreNothing: true
-    }
-)
-```
-
-### `rawMisMatchPercentage`
-
-- **Tipo:** `boolean`
-- **Predeterminado:** `false`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
-
-Si es true, el porcentaje de retorno será como `0.12345678`, por defecto es `0.12`
-
-```typescript
-await browser.checkScreen(
-    'sample-tag',
-    {
-        rawMisMatchPercentage: true
-    }
-)
-```
-
-### `returnAllCompareData`
-
-- **Tipo:** `boolean`
-- **Predeterminado:** `false`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
-
-Esto devolverá todos los datos de comparación, no solo el porcentaje de desajuste, ver también [Salida de Consola](./test-output#console-output-1)
-
-```typescript
-await browser.checkScreen(
-    'sample-tag',
-    {
-        returnAllCompareData: true
-    }
-)
-```
-
-### `saveAboveTolerance`
-
-- **Tipo:** `number`
-- **Predeterminado:** `0`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
-
-Valor permitido de `misMatchPercentage` que evita guardar imágenes con diferencias
-
-```typescript
-await browser.checkScreen(
-    'sample-tag',
-    {
-        saveAboveTolerance: 0.25
-    }
-)
-```
-
-### `largeImageThreshold`
-
-- **Tipo:** `number`
-- **Predeterminado:** `0`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
-
-Comparar imágenes grandes puede llevar a problemas de rendimiento.
-Al proporcionar un número para la cantidad de píxeles aquí (mayor que 0), el algoritmo de comparación omite píxeles cuando el ancho o alto de la imagen es mayor que `largeImageThreshold` píxeles.
-
-```typescript
-await browser.checkScreen(
-    'sample-tag',
-    {
-        largeImageThreshold: 1500
-    }
-)
-```
-
-### `scaleImagesToSameSize`
-
-- **Tipo:** `boolean`
-- **Predeterminado:** `false`
-- **Obligatorio:** No
-- **Usado con:** Todos los [métodos de Verificación](./methods#check-methods)
-- **Contextos de Aplicación Soportados:** Todos
-
-Escala 2 imágenes al mismo tamaño antes de la ejecución de la comparación. Altamente recomendable habilitar `ignoreAntialiasing` e `ignoreAlpha`
-
-```typescript
-await browser.checkScreen(
-    'sample-tag',
-    {
-        scaleImagesToSameSize: true
-    }
-)
-```
-
+</Option>
 ### `ignore`
 
-- **Tipo:** `array`
-- **Obligatorio:** No
-- **Usado con:** Solo con el método `checkScreen`, **NO** con el método `checkElement`
-- **Contextos de Aplicación Soportados:** App Nativa
+<Option type="array" required="No">
 
-Este método bloqueará automáticamente elementos o un área en una pantalla basándose en un array de elementos o un objeto de `x|y|width|height`.
+- **Se usa con:** Solo con el método `checkScreen`, **NO** con el método `checkElement`
+- **Contextos de aplicación soportados:** Native App
+
+Este método bloqueará automáticamente elementos o un área de la pantalla basándose en un array de elementos o en un objeto de `x|y|width|height`.
 
 ```typescript
 await browser.checkScreen(
@@ -553,13 +605,95 @@ await browser.checkScreen(
 )
 ```
 
-## Opciones de carpeta
+</Option>
+## Resultados e informes
 
-La carpeta de referencia y las carpetas de capturas de pantalla (actual, diff) son opciones que se pueden establecer durante la instanciación del plugin o método. Para establecer las opciones de carpeta en un método particular, pase las opciones de carpeta al objeto de opciones de métodos. Esto puede utilizarse para:
+---
+
+### `rawMisMatchPercentage`
+
+<Option type="boolean" default="false" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+
+Si es true, el porcentaje devuelto será como `0.12345678`; por defecto es `0.12`
+
+```typescript
+await browser.checkScreen(
+    'sample-tag',
+    {
+        rawMisMatchPercentage: true
+    }
+)
+```
+
+</Option>
+### `returnAllCompareData`
+
+<Option type="boolean" default="false" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+
+Esto devolverá todos los datos de comparación, no solo el porcentaje de discrepancia; consulta también [Salida de consola](./test-output#console-output-1)
+
+```typescript
+await browser.checkScreen(
+    'sample-tag',
+    {
+        returnAllCompareData: true
+    }
+)
+```
+
+</Option>
+### `saveAboveTolerance`
+
+<Option type="number" default="0" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+
+Valor permitido de `misMatchPercentage` que evita guardar imágenes con diferencias
+
+```typescript
+await browser.checkScreen(
+    'sample-tag',
+    {
+        saveAboveTolerance: 0.25
+    }
+)
+```
+
+</Option>
+### `diffPixelBoundingBoxProximity`
+
+<Option type="number" default="5" required="No">
+
+- **Se usa con:** Todos los [métodos Check](./methods#check-methods)
+- **Contextos de aplicación soportados:** Todos
+
+La proximidad en píxeles utilizada para agrupar los píxeles de diferencia en los informes JSON. Los valores más altos agrupan más píxeles en menos cuadros delimitadores; los valores más bajos producen cuadros más precisos pero más numerosos. Solo es relevante cuando [`createJsonReportFiles`](/docs/visual-testing/service-options#createjsonreportfiles) está activado.
+
+```typescript
+await browser.checkScreen(
+    'sample-tag',
+    {
+        diffPixelBoundingBoxProximity: 10
+    }
+)
+```
+
+# Opciones de carpetas
+
+---
+
+La carpeta de referencia (baseline) y las carpetas de capturas de pantalla (actual, diff) son opciones que se pueden establecer durante la instanciación del plugin o en el método. Para establecer las opciones de carpetas en un método concreto, pasa las opciones de carpetas al objeto de opciones del método. Esto se puede usar para:
 
 - Web
-- App Híbrida
-- App Nativa
+- Hybrid App
+- Native App
 
 ```ts
 import path from 'node:path'
@@ -576,26 +710,25 @@ await expect(
 ).toEqual(0)
 ```
 
+</Option>
 ### `actualFolder`
 
-- **Tipo:** `string`
-- **Obligatorio:** No
-- **Contextos de Aplicación Soportados:** Todos
+<Option type="string" required="No" contexts="All">
 
-Carpeta para la instantánea que ha sido capturada en la prueba.
+Carpeta para la captura que se ha tomado en la prueba.
 
+</Option>
 ### `baselineFolder`
 
-- **Tipo:** `string`
-- **Obligatorio:** No
-- **Contextos de Aplicación Soportados:** Todos
+<Option type="string" required="No" contexts="All">
 
 Carpeta para la imagen de referencia que se utiliza para comparar.
 
+</Option>
 ### `diffFolder`
 
-- **Tipo:** `string`
-- **Obligatorio:** No
-- **Contextos de Aplicación Soportados:** Todos
+<Option type="string" required="No" contexts="All">
 
-Carpeta para la diferencia de imagen renderizada por ResembleJS.
+Carpeta para la imagen de diferencias generada durante la comparación.
+
+</Option>

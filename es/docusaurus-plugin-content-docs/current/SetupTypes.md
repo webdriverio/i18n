@@ -1,64 +1,46 @@
 ---
 id: setuptypes
-title: Tipos de Configuración
+title: Tipos de configuración
+description: "Compara las formas de usar WebdriverIO, desde los enlaces de protocolo sin procesar hasta el modo independiente y el testrunner de WDIO, y elige la adecuada."
 ---
 
-WebdriverIO puede ser utilizado para diversos propósitos. Implementa la API del protocolo WebDriver y puede ejecutar un navegador de forma automatizada. El framework está diseñado para trabajar en cualquier entorno arbitrario y para cualquier tipo de tarea. Es independiente de frameworks de terceros y solo requiere Node.js para ejecutarse.
+WebdriverIO puede utilizarse para diversos propósitos. Implementa la API del protocolo WebDriver y puede ejecutar un navegador de forma automatizada. El framework está diseñado para funcionar en cualquier entorno arbitrario y para cualquier tipo de tarea. Es independiente de cualquier framework de terceros y solo requiere Node.js para ejecutarse.
 
-## Enlaces de Protocolo
+## Enlaces de protocolo
 
-Para interacciones básicas con WebDriver y otros protocolos de automatización, WebdriverIO utiliza sus propios enlaces de protocolo basados en el paquete NPM [`webdriver`](https://www.npmjs.com/package/webdriver):
-
-<Tabs
-  defaultValue="webdriver"
-  values={[
-    {label: 'WebDriver', value: 'webdriver'},
-    {label: 'Chrome DevTools', value: 'devtools'},
-  ]
-}>
-<TabItem value="webdriver">
+Para interacciones básicas con el protocolo WebDriver, WebdriverIO utiliza sus propios enlaces de protocolo basados en el paquete NPM [`webdriver`](https://www.npmjs.com/package/webdriver):
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/webdriver.js#L5-L20
 ```
 
-</TabItem>
-<TabItem value="devtools">
+Todos los [comandos del protocolo](api/webdriver) devuelven la respuesta sin procesar del driver de automatización. El paquete es muy ligero y __no__ hay lógica inteligente como esperas automáticas para simplificar la interacción con el uso del protocolo.
 
-```js reference useHTTPS
-https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/devtools.js#L2-L17
-```
+Los comandos del protocolo aplicados a la instancia dependen de la respuesta inicial de sesión del driver. Por ejemplo, si la respuesta indica que se inició una sesión móvil, el paquete aplica los comandos de Appium al prototipo de la instancia.
 
-</TabItem>
-</Tabs>
+Para obtener más información sobre la interfaz del paquete `webdriver`, consulta [API de módulos](/docs/api/modules).
 
-Todos los [comandos de protocolo](api/webdriver) devuelven la respuesta sin procesar del controlador de automatización. El paquete es muy ligero y __no__ hay lógica inteligente como auto-esperas para simplificar la interacción con el uso del protocolo.
+[WebdriverIO DevTools](/docs/devtools) no es un protocolo de automatización. Es la interfaz de depuración para observar una ejecución en vivo y reproducir trazas posteriormente.
 
-Los comandos de protocolo aplicados a la instancia dependen de la respuesta inicial de sesión del controlador. Por ejemplo, si la respuesta indica que se inició una sesión móvil, el paquete aplica todos los comandos del protocolo Appium y Mobile JSON Wire al prototipo de la instancia.
+## Modo independiente
 
-Puedes ejecutar el mismo conjunto de comandos (excepto los móviles) utilizando el protocolo Chrome DevTools al importar el paquete NPM [`devtools`](https://www.npmjs.com/package/devtools). Tiene la misma interfaz que el paquete `webdriver` pero ejecuta su automatización basada en [Puppeteer](https://pptr.dev/).
-
-Para más información sobre estas interfaces de paquetes, consulta [API de Módulos](/docs/api/modules).
-
-## Modo Independiente
-
-Para simplificar la interacción con el protocolo WebDriver, el paquete `webdriverio` implementa una variedad de comandos sobre el protocolo (por ejemplo, el comando [`dragAndDrop`](api/element/dragAndDrop)) y conceptos básicos como [selectores inteligentes](selectors) o [auto-esperas](autowait). El ejemplo anterior se puede simplificar así:
+Para simplificar la interacción con el protocolo WebDriver, el paquete `webdriverio` implementa una variedad de comandos sobre el protocolo (por ejemplo, el comando [`dragAndDrop`](api/element/dragAndDrop)) y conceptos fundamentales como [selectores inteligentes](selectors) o [esperas automáticas](autowait). El ejemplo anterior se puede simplificar así:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/standalone.js#L2-L19
 ```
 
-Usar WebdriverIO en modo independiente todavía te da acceso a todos los comandos del protocolo, pero proporciona un superconjunto de comandos adicionales que ofrecen una interacción de nivel superior con el navegador. Te permite integrar esta herramienta de automatización en tu propio proyecto (de prueba) para crear una nueva biblioteca de automatización. Ejemplos populares incluyen [Oxygen](https://github.com/oxygenhq/oxygen) o [CodeceptJS](http://codecept.io). También puedes escribir scripts simples de Node para extraer contenido web (o cualquier otra cosa que requiera un navegador en ejecución).
+Usar WebdriverIO en modo independiente te sigue dando acceso a todos los comandos del protocolo, pero proporciona un superconjunto de comandos adicionales que ofrecen una interacción de más alto nivel con el navegador. Te permite integrar esta herramienta de automatización en tu propio proyecto (de pruebas) para crear una nueva biblioteca de automatización. Algunos ejemplos populares son [Oxygen](https://github.com/oxygenhq/oxygen) o [CodeceptJS](http://codecept.io). También puedes escribir scripts de Node simples para extraer contenido de la web (o cualquier otra cosa que requiera un navegador en ejecución).
 
-Si no se establecen opciones específicas, WebdriverIO siempre intentará descargar y configurar el controlador del navegador que coincida con la propiedad `browserName` en tus capacidades. En el caso de Chrome y Firefox, también podría instalarlos dependiendo de si puede encontrar el navegador correspondiente en la máquina.
+Si no se establecen opciones específicas, WebdriverIO siempre intentará descargar y configurar el driver del navegador que coincida con la propiedad `browserName` en tus capacidades. En el caso de Chrome y Firefox, también podría instalarlos dependiendo de si puede encontrar el navegador correspondiente en la máquina.
 
-Para más información sobre las interfaces del paquete `webdriverio`, consulta [API de Módulos](/docs/api/modules).
+Para obtener más información sobre las interfaces del paquete `webdriverio`, consulta [API de módulos](/docs/api/modules).
 
-## El Ejecutor de Pruebas WDIO
+## El Testrunner de WDIO
 
-Sin embargo, el propósito principal de WebdriverIO es realizar pruebas de extremo a extremo a gran escala. Por lo tanto, implementamos un ejecutor de pruebas que te ayuda a construir un conjunto de pruebas confiable que sea fácil de leer y mantener.
+Sin embargo, el propósito principal de WebdriverIO son las pruebas de extremo a extremo a gran escala. Por ello, implementamos un test runner que te ayuda a construir una suite de pruebas fiable que sea fácil de leer y mantener.
 
-El ejecutor de pruebas se encarga de muchos problemas que son comunes cuando se trabaja con bibliotecas de automatización simples. Por un lado, organiza tus ejecuciones de prueba y divide las especificaciones de prueba para que tus pruebas puedan ejecutarse con la máxima concurrencia. También maneja la gestión de sesiones y proporciona muchas funciones para ayudarte a depurar problemas y encontrar errores en tus pruebas.
+El test runner se encarga de muchos problemas que son comunes al trabajar con bibliotecas de automatización simples. Por un lado, organiza tus ejecuciones de pruebas y divide las especificaciones de prueba para que tus pruebas se puedan ejecutar con la máxima concurrencia. También gestiona la administración de sesiones y proporciona muchas funciones para ayudarte a depurar problemas y encontrar errores en tus pruebas.
 
 Aquí está el mismo ejemplo de arriba, escrito como una especificación de prueba y ejecutado por WDIO:
 
@@ -66,6 +48,6 @@ Aquí está el mismo ejemplo de arriba, escrito como una especificación de prue
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/setup/testrunner.js
 ```
 
-El ejecutor de pruebas es una abstracción de frameworks de prueba populares como Mocha, Jasmine o Cucumber. Para ejecutar tus pruebas usando el ejecutor de pruebas WDIO, consulta la sección [Primeros Pasos](gettingstarted) para obtener más información.
+El test runner es una abstracción de frameworks de pruebas populares como Mocha, Jasmine o Cucumber. Para ejecutar tus pruebas usando el test runner de WDIO, consulta la sección [Primeros pasos](gettingstarted) para obtener más información.
 
-Para más información sobre la interfaz del paquete ejecutor de pruebas `@wdio/cli`, consulta [API de Módulos](/docs/api/modules).
+Para obtener más información sobre la interfaz del paquete testrunner `@wdio/cli`, consulta [API de módulos](/docs/api/modules).

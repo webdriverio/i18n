@@ -1,9 +1,10 @@
 ---
 id: browser-logs
 title: Log del Browser
+description: "Cattura i log della console del browser durante un test con gli eventi di log di WebDriver Bidi ed esegui asserzioni sui messaggi raccolti."
 ---
 
-Quando esegui i test, il browser potrebbe registrare informazioni importanti che potrebbero interessarti o su cui potresti voler fare delle asserzioni.
+Durante l'esecuzione dei test, il browser potrebbe registrare informazioni importanti che ti interessano o su cui vuoi eseguire asserzioni.
 
 <Tabs
 defaultValue="bidi"
@@ -15,7 +16,7 @@ values={[
 
 <TabItem value='bidi'>
 
-Quando utilizzi WebDriver Bidi, che è il modo predefinito con cui WebdriverIO automatizza il browser, puoi sottoscriverti agli eventi provenienti dal browser. Per gli eventi di log, devi ascoltare `log.entryAdded'`, ad esempio:
+Quando si utilizza WebDriver Bidi, che è il modo predefinito con cui WebdriverIO automatizza il browser, puoi iscriverti agli eventi provenienti dal browser. Per gli eventi di log devi metterti in ascolto su `log.entryAdded'`, ad esempio:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +27,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-In un test puoi semplicemente aggiungere gli eventi di log a un array e verificare quell'array una volta completata l'azione, ad esempio:
+In un test puoi semplicemente inserire gli eventi di log in un array ed eseguire asserzioni su quell'array una volta completata la tua azione, ad esempio:
 
 ```ts
 import type { local } from 'webdriver'
@@ -35,7 +36,7 @@ describe('should log when doing a certain action', () => {
     const logs: string[] = []
 
     function logEvents (event: local.LogEntry) {
-        logs.push(event.text) // add log message to the array
+        logs.push(event.text) // aggiunge il messaggio di log all'array
     }
 
     before(async () => {
@@ -44,14 +45,14 @@ describe('should log when doing a certain action', () => {
     })
 
     it('should trigger the console event', () => {
-        // trigger the browser send a message to the console
+        // fa sì che il browser invii un messaggio alla console
         ...
 
-        // assert if log was captured
+        // verifica se il log è stato catturato
         expect(logs).toContain('Hello Bidi')
     })
 
-    // clean up listener afterwards
+    // rimuove il listener alla fine
     after(() => {
         browser.off('log.entryAdded', logEvents)
     })
@@ -62,9 +63,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-Se utilizzi ancora WebDriver Classic o hai disabilitato l'utilizzo di Bidi tramite la capability `'wdio:enforceWebDriverClassic': true`, puoi utilizzare il comando JSONWire `getLogs` per recuperare gli ultimi log. Poiché WebdriverIO ha rimosso questi comandi deprecati, dovrai utilizzare il [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) per aggiungere nuovamente il comando alla tua istanza del browser.
-
-Dopo aver aggiunto o inizializzato il servizio, puoi recuperare i log tramite:
+Se Bidi è disabilitato con la capability `'wdio:enforceWebDriverClassic': true`, le sessioni Chromium possono comunque leggere il buffer dei log del browser con `getLogs`:
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,9 +71,9 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Nota: il comando `getLogs` può recuperare solo i log più recenti dal browser. Potrebbe eliminare i messaggi di log se diventano troppo vecchi.
+Nota: il comando `getLogs` può recuperare solo i log più recenti dal browser. I messaggi di log potrebbero essere eliminati col tempo se diventano troppo vecchi.
 </TabItem>
 
 </Tabs>
 
-Tieni presente che puoi utilizzare questo metodo per recuperare i messaggi di errore e verificare se la tua applicazione ha riscontrato errori.
+Tieni presente che puoi utilizzare questo metodo per recuperare i messaggi di errore e verificare se la tua applicazione ha riscontrato degli errori.

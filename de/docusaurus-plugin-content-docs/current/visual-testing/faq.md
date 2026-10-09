@@ -1,18 +1,19 @@
 ---
 id: faq
 title: FAQ
+description: "Finden Sie Antworten auf häufige Fragen zum visuellen Testen, z. B. zum Aktualisieren von Baselines, zum Beheben von Canvas-Installationsfehlern und zum Upgrade auf v10."
 ---
 
-### Muss ich eine `save(Screen/Element/FullPageScreen)`-Methode verwenden, wenn ich `check(Screen/Element/FullPageScreen)` ausführen möchte?
+### Muss ich die Methoden `save(Screen/Element/FullPageScreen)` verwenden, wenn ich `check(Screen/Element/FullPageScreen)` ausführen möchte?
 
-Nein, das ist nicht nötig. Die `check(Screen/Element/FullPageScreen)`-Methode erledigt das automatisch für dich.
+Nein, das ist nicht nötig. `check(Screen/Element/FullPageScreen)` erledigt das automatisch für Sie.
 
-### Meine visuellen Tests schlagen mit einer Differenz fehl, wie kann ich meine Baseline aktualisieren?
+### Meine visuellen Tests schlagen mit einer Abweichung fehl. Wie kann ich meine Baseline aktualisieren?
 
-Du kannst die Baseline-Bilder über die Kommandozeile aktualisieren, indem du das Argument `--update-visual-baseline` hinzufügst. Dies wird
+Sie können die Baseline-Bilder über die Kommandozeile aktualisieren, indem Sie das Argument `--update-visual-baseline` hinzufügen. Dadurch wird
 
--   automatisch den aktuellen Screenshot kopieren und in den Baseline-Ordner legen
--   wenn es Unterschiede gibt, wird der Test bestanden, da die Baseline aktualisiert wurde
+-   der tatsächlich aufgenommene Screenshot automatisch kopiert und im Baseline-Ordner abgelegt
+-   der Test bei Abweichungen als bestanden gewertet, da die Baseline aktualisiert wurde
 
 **Verwendung:**
 
@@ -20,7 +21,7 @@ Du kannst die Baseline-Bilder über die Kommandozeile aktualisieren, indem du da
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-Bei der Ausführung im Info/Debug-Modus werden folgende Logs angezeigt
+Wenn Sie die Logs im Info-/Debug-Modus ausführen, sehen Sie die folgenden zusätzlichen Logs
 
 ```logs
 [0-0] ..............
@@ -34,13 +35,17 @@ Bei der Ausführung im Info/Debug-Modus werden folgende Logs angezeigt
 
 ### Width and height cannot be negative
 
-Es kann sein, dass der Fehler `Width and height cannot be negative` auftritt. In 9 von 10 Fällen hängt dies damit zusammen, dass ein Bild von einem Element erstellt wird, das nicht im Sichtfeld ist. Bitte stelle sicher, dass das Element immer im Sichtfeld ist, bevor du versuchst, ein Bild davon zu erstellen.
+Es kann vorkommen, dass der Fehler `Width and height cannot be negative` ausgelöst wird. In 9 von 10 Fällen hängt dies damit zusammen, dass ein Bild von einem Element erstellt wird, das sich nicht im sichtbaren Bereich befindet. Stellen Sie bitte immer sicher, dass sich das Element im sichtbaren Bereich befindet, bevor Sie versuchen, ein Bild des Elements zu erstellen.
 
-### Installation von Canvas unter Windows ist mit Node-Gyp-Logs fehlgeschlagen
+### Installation von Canvas unter Windows mit Node-Gyp-Logs fehlgeschlagen
 
-Wenn du bei der Installation von Canvas unter Windows auf Probleme mit Node-Gyp-Fehlern stößt, beachte bitte, dass dies nur für Version 4 und niedriger gilt. Um diese Probleme zu vermeiden, solltest du auf Version 5 oder höher aktualisieren, die diese Abhängigkeiten nicht hat und [Jimp](https://github.com/jimp-dev/jimp) für die Bildverarbeitung verwendet.
+Wenn Sie aufgrund von Node-Gyp-Fehlern Probleme bei der Installation von Canvas unter Windows haben, beachten Sie bitte, dass dies nur für Version 4 und älter gilt. Um diese Probleme zu vermeiden, sollten Sie ein Update auf Version 5 oder höher in Betracht ziehen, die diese Abhängigkeiten nicht hat. Die Versionen 5 bis 9 verwendeten [Jimp](https://github.com/jimp-dev/jimp) für die Bildverarbeitung; ab Version 10 werden [fast-png](https://github.com/image-js/fast-png) und [Pixelmatch](https://github.com/mapbox/pixelmatch) ohne native Abhängigkeiten verwendet.
 
-Wenn du die Probleme mit Version 4 trotzdem lösen musst, überprüfe bitte:
+Falls Sie die Probleme mit Version 4 dennoch lösen müssen, sehen Sie sich bitte Folgendes an:
 
--   den Node Canvas-Abschnitt im [Getting Started](/docs/visual-testing#system-requirements)-Leitfaden
+-   den Abschnitt zu Node Canvas im [Getting Started](/docs/visual-testing#system-requirements)-Leitfaden
 -   [diesen Beitrag](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/) zur Behebung von Node-Gyp-Problemen unter Windows. (Danke an [IgorSasovets](https://github.com/IgorSasovets))
+
+### Ich habe auf v10 aktualisiert. Warum schlagen meine visuellen Tests fehl?
+
+In v10 wurde die Vergleichs-Engine von ResembleJS auf [Pixelmatch](https://github.com/mapbox/pixelmatch) umgestellt. Pixelmatch verwendet ein wahrnehmungsbasiertes (YIQ-)Farbmodell anstelle von reinem RGB, daher unterscheiden sich die Abweichungsprozentsätze von v9. Ihre Tests sind nicht kaputt; die Baselines müssen lediglich einmal neu generiert werden. Führen Sie Ihre Tests mit `--update-visual-baseline` aus, um die neuen Werte zu übernehmen, oder löschen Sie Ihren Baseline-Ordner und lassen Sie ihn von `autoSaveBaseline` neu erstellen.

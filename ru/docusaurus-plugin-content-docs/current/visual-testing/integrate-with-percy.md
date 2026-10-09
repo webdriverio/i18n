@@ -1,24 +1,25 @@
 ---
 id: integrate-with-percy
 title: Для веб-приложений
+description: "Интеграция тестов WebdriverIO для веб-приложений с BrowserStack Percy для визуального тестирования: от создания проекта до запуска сборок."
 ---
 
-## Интеграция ваших тестов WebdriverIO с Percy
+## Интеграция тестов WebdriverIO с Percy
 
-Перед интеграцией, вы можете изучить [учебное пособие Percy по созданию примера для WebdriverIO](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
-Интегрируйте ваши автоматизированные тесты WebdriverIO с BrowserStack Percy, вот обзор шагов интеграции:
+Перед интеграцией вы можете ознакомиться с [руководством Percy по примеру сборки для WebdriverIO](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Интегрируйте ваши автоматизированные тесты WebdriverIO с BrowserStack Percy. Ниже приведён обзор шагов интеграции:
 
 ### Шаг 1: Создайте проект Percy
-[Зарегистрируйтесь](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) в Percy. В Percy создайте проект типа Web и назовите его. После создания проекта Percy генерирует токен. Запишите его. Вам нужно будет использовать его для установки переменной среды на следующем шаге.
+[Войдите](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) в Percy. В Percy создайте проект типа Web и задайте ему имя. После создания проекта Percy сгенерирует токен. Сохраните его. Он понадобится для установки переменной окружения на следующем шаге.
 
-Для подробной информации о создании проекта см. [Создание проекта Percy](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Подробнее о создании проекта см. в разделе [Создание проекта Percy](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-### Шаг 2: Установите токен проекта как переменную среды
+### Шаг 2: Установите токен проекта как переменную окружения
 
-Запустите данную команду, чтобы установить PERCY_TOKEN как переменную среды:
+Выполните указанную команду, чтобы установить PERCY_TOKEN как переменную окружения:
 
 ```sh
-export PERCY_TOKEN="<your token here>"   // macOS or Linux
+export PERCY_TOKEN="<your token here>"   // macOS или Linux
 $Env:PERCY_TOKEN="<your token here>"   // Windows PowerShell
 set PERCY_TOKEN="<your token here>"    // Windows CMD
 ```
@@ -27,16 +28,16 @@ set PERCY_TOKEN="<your token here>"    // Windows CMD
 
 Установите компоненты, необходимые для создания среды интеграции для вашего набора тестов.
 
-Для установки зависимостей выполните следующую команду:
+Чтобы установить зависимости, выполните следующую команду:
 
 ```sh
 npm install --save-dev @percy/cli @percy/webdriverio
 ```
 
-### Шаг 4: Обновите ваш тестовый скрипт
+### Шаг 4: Обновите тестовый скрипт
 
-Импортируйте библиотеку Percy, чтобы использовать метод и атрибуты, необходимые для создания скриншотов.
-В следующем примере используется функция percySnapshot() в асинхронном режиме:
+Импортируйте библиотеку Percy, чтобы использовать метод и атрибуты, необходимые для создания снимков экрана.
+В следующем примере функция percySnapshot() используется в асинхронном режиме:
 
 ```sh
 import percySnapshot from '@percy/webdriverio';
@@ -49,7 +50,7 @@ describe('webdriver.io page', () => {
 });
 ```
 
-При использовании WebdriverIO в [автономном режиме](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation), предоставьте объект браузера как первый аргумент функции `percySnapshot`:
+При использовании WebdriverIO в [автономном режиме](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) передайте объект браузера в качестве первого аргумента функции `percySnapshot`:
 
 ```sh
 import { remote } from 'webdriverio'
@@ -68,11 +69,11 @@ const inputElem = await browser.$('#search_form_input_homepage');
 await inputElem.setValue('WebdriverIO');
 const submitBtn = await browser.$('#search_button_homepage');
 await submitBtn.click();
-// the browser object is required in standalone mode
+// в автономном режиме объект браузера обязателен
 percySnapshot(browser, 'WebdriverIO at DuckDuckGo');
 await browser.deleteSession();
 ```
-Аргументы метода снимка:
+Аргументы метода создания снимка:
 
 ```sh
 percySnapshot(name[, options])
@@ -83,16 +84,16 @@ percySnapshot(name[, options])
 percySnapshot(browser, name[, options])
 ```
 
-- browser (обязательно) - Объект браузера WebdriverIO
-- name (обязательно) - Имя снимка; должно быть уникальным для каждого снимка
-- options - Смотрите настройки конфигурации для каждого снимка
+- browser (обязательный) — объект браузера WebdriverIO
+- name (обязательный) — имя снимка; должно быть уникальным для каждого снимка
+- options — см. параметры конфигурации для отдельных снимков
 
-Чтобы узнать больше, см. [Percy snapshot](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Подробнее см. в разделе [Снимки Percy](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
 ### Шаг 5: Запустите Percy
-Запустите ваши тесты с помощью команды `percy exec`, как показано ниже:
+Запустите тесты с помощью команды `percy exec`, как показано ниже:
 
-Если вы не можете использовать команду `percy:exec` или предпочитаете запускать тесты с помощью параметров запуска IDE, вы можете использовать команды `percy:exec:start` и `percy:exec:stop`. Чтобы узнать больше, посетите [Run Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Если вы не можете использовать команду `percy:exec` или предпочитаете запускать тесты через параметры запуска IDE, вы можете использовать команды `percy:exec:start` и `percy:exec:stop`. Подробнее см. в разделе [Запуск Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
 ```sh
 percy exec -- wdio wdio.conf.js
@@ -113,16 +114,15 @@ percy exec -- wdio wdio.conf.js
 
 ```
 
-## Посетите следующие страницы для получения дополнительной информации:
-- [Интеграция ваших тестов WebdriverIO с Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
-- [Страница переменных среды](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
-- [Интеграция с использованием BrowserStack SDK](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation), если вы используете BrowserStack Automate.
+## Посетите следующие страницы для получения подробной информации:
+- [Интеграция тестов WebdriverIO с Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [Страница о переменных окружения](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [Интеграция с помощью BrowserStack SDK](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation), если вы используете BrowserStack Automate.
 
 
 | Ресурс                                                                                                                                                              | Описание                          |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| [Официальная документация](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)   | Документация Percy по WebdriverIO |
-| [Пример сборки - Руководство](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | Руководство Percy по WebdriverIO  |
-| [Официальное видео](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                            | Визуальное тестирование с Percy   |
-| [Блог](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                      | Представляем Visual Reviews 2.0   |
-```
+| [Официальная документация](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)  | Документация Percy по WebdriverIO |
+| [Пример сборки — руководство](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | Руководство Percy по WebdriverIO  |
+| [Официальное видео](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                           | Визуальное тестирование с Percy   |
+| [Блог](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | Представляем Visual Reviews 2.0   |

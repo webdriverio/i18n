@@ -1,47 +1,48 @@
 ---
 id: electron
 title: Electron
+description: "WebdriverIO Electronサービスを使用してElectronアプリをテストします。このサービスはChromedriverをセットアップし、アプリのバイナリを検出し、Electron APIをモックできるようにします。"
 ---
 
-Electron は JavaScript、HTML、CSS を使用してデスクトップアプリケーションを構築するためのフレームワークです。Chromium と Node.js をバイナリに組み込むことで、Electron は1つの JavaScript コードベースを維持しながら、Windows、macOS、Linux で動作するクロスプラットフォームアプリを作成することができます — ネイティブ開発の経験は必要ありません。
+Electronは、JavaScript、HTML、CSSを使用してデスクトップアプリケーションを構築するためのフレームワークです。ChromiumとNode.jsをバイナリに組み込むことで、Electronは1つのJavaScriptコードベースを維持しながら、Windows、macOS、Linuxで動作するクロスプラットフォームアプリを作成できます。ネイティブ開発の経験は必要ありません。
 
-WebdriverIO は、Electron アプリとの対話を簡素化し、テストを非常に簡単にする統合サービスを提供しています。Electron アプリケーションのテストに WebdriverIO を使用する利点は以下の通りです：
+WebdriverIOは、Electronアプリとのやり取りを簡素化し、テストを非常に簡単にする統合サービスを提供しています。Electronアプリケーションのテストに WebdriverIO を使用する利点は次のとおりです：
 
-- 🚗 必要な Chromedriver の自動セットアップ
-- 📦 Electron アプリケーションのパスの自動検出 - [Electron Forge](https://www.electronforge.io/) と [Electron Builder](https://www.electron.build/) をサポート
-- 🧩 テスト内で Electron API にアクセス
-- 🕵️ Vitest のような API を通じた Electron API のモック
+- 🚗 必要なChromedriverの自動セットアップ
+- 📦 Electronアプリケーションのパスの自動検出 - [Electron Forge](https://www.electronforge.io/)と[Electron Builder](https://www.electron.build/)をサポート
+- 🧩 テスト内でElectron APIにアクセス
+- 🕵️ Vitestライクな APIによるElectron APIのモック
 
-始めるには、いくつかの簡単なステップが必要です。[WebdriverIO YouTube](https://www.youtube.com/@webdriverio) チャンネルからの、このシンプルなステップバイステップの入門ビデオチュートリアルをご覧ください：
+いくつかの簡単なステップで始めることができます。[WebdriverIO YouTube](https://www.youtube.com/@webdriverio)チャンネルの、シンプルなステップバイステップの入門ビデオチュートリアルをご覧ください：
 
 <LiteYouTubeEmbed
     id="iQNxTdWedk0"
     title="Getting Started with ElectronJS Testing in WebdriverIO"
 />
 
-または、以下のセクションのガイドに従ってください。
+または、次のセクションのガイドに従ってください。
 
 ## はじめに
 
-新しい WebdriverIO プロジェクトを開始するには、次のコマンドを実行します：
+新しいWebdriverIOプロジェクトを開始するには、次を実行します：
 
 ```sh
 npm create wdio@latest ./
 ```
 
-インストールウィザードがプロセスをガイドします。どのタイプのテストを行いたいかと尋ねられたら、_「デスクトップテスト - Electron アプリケーション」_ を選択してください。その後、コンパイルされた Electron アプリケーションへのパス（例：`./dist`）を提供し、デフォルト設定を維持するか、好みに応じて変更してください。
+インストールウィザードがプロセスをガイドします。どのような種類のテストを行いたいか尋ねられたら、_"Desktop Testing - of Electron, Tauri, or macOS Applications"_を選択し、フレームワークのプロンプトで_Electron_を選択します。その後、コンパイル済みのElectronアプリケーションへのパス（例：`./dist`）を指定し、あとはデフォルトのままにするか、好みに応じて変更してください。
 
-設定ウィザードは必要なパッケージをすべてインストールし、アプリケーションをテストするために必要な設定で `wdio.conf.js` または `wdio.conf.ts` を作成します。テストファイルの自動生成に同意すれば、`npm run wdio` で最初のテストを実行できます。
+設定ウィザードは必要なすべてのパッケージをインストールし、アプリケーションのテストに必要な設定を含む`wdio.conf.js`または`wdio.conf.ts`を作成します。テストファイルの自動生成に同意した場合は、`npm run wdio`で最初のテストを実行できます。
 
 ## 手動セットアップ
 
-すでにプロジェクトで WebdriverIO を使用している場合は、インストールウィザードをスキップして、以下の依存関係を追加するだけです：
+プロジェクトですでにWebdriverIOを使用している場合は、インストールウィザードをスキップして、次の依存関係を追加するだけです：
 
 ```sh
-npm install --save-dev wdio-electron-service
+npm install --save-dev @wdio/electron-service
 ```
 
-そして、以下の設定を使用できます：
+その後、次の設定を使用できます：
 
 ```ts
 // wdio.conf.ts
@@ -56,4 +57,4 @@ export const config: WebdriverIO.Config = {
 
 以上です 🎉
 
-[Electron Service の設定方法](/docs/desktop-testing/electron/configuration)、[Electron API のモック方法](/docs/desktop-testing/electron/mocking)、[Electron API へのアクセス方法](/docs/desktop-testing/electron/api)についての詳細をご覧ください。
+[Electronサービスの設定方法](/docs/desktop-testing/electron/configuration)、[Electron APIのモック方法](/docs/desktop-testing/electron/api-reference)、[Electron APIへのアクセス方法](/docs/desktop-testing/electron/api)について詳しくご覧ください。

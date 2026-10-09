@@ -1,18 +1,21 @@
 ---
 id: writing-tests
 title: Tests schreiben
+description: "Schreiben Sie visuelle Tests mit Mocha, Jasmine oder Cucumber, die Screenshots speichern oder sie mit benutzerdefinierten Matchern und Check-Methoden mit Baselines abgleichen."
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Unterstützung für Testrunner-Frameworks
+## Unterstützung von Testrunner-Frameworks
 
-`@wdio/visual-service` ist unabhängig vom Test-Runner-Framework, was bedeutet, dass Sie es mit allen Frameworks verwenden können, die WebdriverIO unterstützt, wie:
+`@wdio/visual-service` ist unabhängig vom Testrunner-Framework, was bedeutet, dass Sie es mit allen Frameworks verwenden können, die WebdriverIO unterstützt, wie z. B.:
 
 -   [`Mocha`](https://webdriver.io/docs/frameworks#using-mocha)
 -   [`Jasmine`](https://webdriver.io/docs/frameworks#using-jasmine)
 -   [`CucumberJS`](https://webdriver.io/docs/frameworks#using-cucumber)
 
-In Ihren Tests können Sie Screenshots _speichern_ oder den aktuellen visuellen Zustand Ihrer Anwendung mit einer Baseline vergleichen. Dafür bietet der Service [benutzerdefinierte Matcher](/docs/api/expect-webdriverio#visual-matcher) sowie _check_-Methoden:
+In Ihren Tests können Sie Screenshots _speichern_ oder den aktuellen visuellen Zustand Ihrer zu testenden Anwendung mit einer Baseline abgleichen. Dafür stellt der Service [benutzerdefinierte Matcher](/docs/api/expect-webdriverio#visual-matcher) sowie _check_-Methoden bereit:
 
 <Tabs
     defaultValue="mocha"
@@ -31,99 +34,99 @@ describe('Mocha Example', () => {
     })
 
     it('using visual matchers to assert against baseline', async () => {
-        // Check screen to exactly match with baseline
+        // Prüfen, ob der Bildschirm exakt mit der Baseline übereinstimmt
         await expect(browser).toMatchScreenSnapshot('partialPage')
-        // check an element to have a mismatch percentage of 5% with the baseline
+        // Prüfen, ob ein Element eine Abweichung von 5 % gegenüber der Baseline hat
         await expect(browser).toMatchScreenSnapshot('partialPage', 5)
-        // check an element with options for `saveScreen` command
+        // Ein Element mit Optionen für den `saveScreen`-Befehl prüfen
         await expect(browser).toMatchScreenSnapshot('partialPage', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Check an element to exactly match with baseline
+        // Prüfen, ob ein Element exakt mit der Baseline übereinstimmt
         await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement')
-        // check an element to have a mismatch percentage of 5% with the baseline
+        // Prüfen, ob ein Element eine Abweichung von 5 % gegenüber der Baseline hat
         await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement', 5)
-        // check an element with options for `saveElement` command
+        // Ein Element mit Optionen für den `saveElement`-Befehl prüfen
         await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Check a full page screenshot match with baseline
+        // Prüfen, ob ein ganzseitiger Screenshot mit der Baseline übereinstimmt
         await expect(browser).toMatchFullPageSnapshot('fullPage')
-        // Check a full page screenshot to have a mismatch percentage of 5% with the baseline
+        // Prüfen, ob ein ganzseitiger Screenshot eine Abweichung von 5 % gegenüber der Baseline hat
         await expect(browser).toMatchFullPageSnapshot('fullPage', 5)
-        // Check a full page screenshot with options for `checkFullPageScreen` command
+        // Einen ganzseitigen Screenshot mit Optionen für den `checkFullPageScreen`-Befehl prüfen
         await expect(browser).toMatchFullPageSnapshot('fullPage', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Check a full page screenshot with all tab executions
+        // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen prüfen
         await expect(browser).toMatchTabbablePageSnapshot('check-tabbable')
-        // Check a full page screenshot to have a mismatch percentage of 5% with the baseline
+        // Prüfen, ob ein ganzseitiger Screenshot eine Abweichung von 5 % gegenüber der Baseline hat
         await expect(browser).toMatchTabbablePageSnapshot('check-tabbable', 5)
-        // Check a full page screenshot with options for `checkTabbablePage` command
+        // Einen ganzseitigen Screenshot mit Optionen für den `checkTabbablePage`-Befehl prüfen
         await expect(browser).toMatchTabbablePageSnapshot('check-tabbable', {
-            /* some options */
+            /* einige Optionen */
         })
     })
 
     it('should save some screenshots', async () => {
-        // Save a screen
+        // Einen Bildschirm speichern
         await browser.saveScreen('examplePage', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Save an element
+        // Ein Element speichern
         await browser.saveElement(
             await $('#element-id'),
             'firstButtonElement',
             {
-                /* some options */
+                /* einige Optionen */
             }
         )
 
-        // Save a full page screenshot
+        // Einen ganzseitigen Screenshot speichern
         await browser.saveFullPageScreen('fullPage', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Save a full page screenshot with all tab executions
+        // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen speichern
         await browser.saveTabbablePage('save-tabbable', {
-            /* some options, use the same options as for saveFullPageScreen */
+            /* einige Optionen, verwenden Sie dieselben Optionen wie für saveFullPageScreen */
         })
     })
 
     it('should compare successful with a baseline', async () => {
-        // Check a screen
+        // Einen Bildschirm prüfen
         await expect(
             await browser.checkScreen('examplePage', {
-                /* some options */
+                /* einige Optionen */
             })
         ).toEqual(0)
 
-        // Check an element
+        // Ein Element prüfen
         await expect(
             await browser.checkElement(
                 await $('#element-id'),
                 'firstButtonElement',
                 {
-                    /* some options */
+                    /* einige Optionen */
                 }
             )
         ).toEqual(0)
 
-        // Check a full page screenshot
+        // Einen ganzseitigen Screenshot prüfen
         await expect(
             await browser.checkFullPageScreen('fullPage', {
-                /* some options */
+                /* einige Optionen */
             })
         ).toEqual(0)
 
-        // Check a full page screenshot with all tab executions
+        // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen prüfen
         await expect(
             await browser.checkTabbablePage('check-tabbable', {
-                /* some options, use the same options as for checkFullPageScreen */
+                /* einige Optionen, verwenden Sie dieselben Optionen wie für checkFullPageScreen */
             })
         ).toEqual(0)
     })
@@ -140,99 +143,99 @@ describe('Jasmine Example', () => {
     })
 
     it('using visual matchers to assert against baseline', async () => {
-        // Check screen to exactly match with baseline
+        // Prüfen, ob der Bildschirm exakt mit der Baseline übereinstimmt
         await expect(browser).toMatchScreenSnapshot('partialPage')
-        // check an element to have a mismatch percentage of 5% with the baseline
+        // Prüfen, ob ein Element eine Abweichung von 5 % gegenüber der Baseline hat
         await expect(browser).toMatchScreenSnapshot('partialPage', 5)
-        // check an element with options for `saveScreen` command
+        // Ein Element mit Optionen für den `saveScreen`-Befehl prüfen
         await expect(browser).toMatchScreenSnapshot('partialPage', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Check an element to exactly match with baseline
+        // Prüfen, ob ein Element exakt mit der Baseline übereinstimmt
         await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement')
-        // check an element to have a mismatch percentage of 5% with the baseline
+        // Prüfen, ob ein Element eine Abweichung von 5 % gegenüber der Baseline hat
         await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement', 5)
-        // check an element with options for `saveElement` command
+        // Ein Element mit Optionen für den `saveElement`-Befehl prüfen
         await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Check a full page screenshot match with baseline
+        // Prüfen, ob ein ganzseitiger Screenshot mit der Baseline übereinstimmt
         await expect(browser).toMatchFullPageSnapshot('fullPage')
-        // Check a full page screenshot to have a mismatch percentage of 5% with the baseline
+        // Prüfen, ob ein ganzseitiger Screenshot eine Abweichung von 5 % gegenüber der Baseline hat
         await expect(browser).toMatchFullPageSnapshot('fullPage', 5)
-        // Check a full page screenshot with options for `checkFullPageScreen` command
+        // Einen ganzseitigen Screenshot mit Optionen für den `checkFullPageScreen`-Befehl prüfen
         await expect(browser).toMatchFullPageSnapshot('fullPage', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Check a full page screenshot with all tab executions
+        // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen prüfen
         await expect(browser).toMatchTabbablePageSnapshot('check-tabbable')
-        // Check a full page screenshot to have a mismatch percentage of 5% with the baseline
+        // Prüfen, ob ein ganzseitiger Screenshot eine Abweichung von 5 % gegenüber der Baseline hat
         await expect(browser).toMatchTabbablePageSnapshot('check-tabbable', 5)
-        // Check a full page screenshot with options for `checkTabbablePage` command
+        // Einen ganzseitigen Screenshot mit Optionen für den `checkTabbablePage`-Befehl prüfen
         await expect(browser).toMatchTabbablePageSnapshot('check-tabbable', {
-            /* some options */
+            /* einige Optionen */
         })
     })
 
     it('should save some screenshots', async () => {
-        // Save a screen
+        // Einen Bildschirm speichern
         await browser.saveScreen('examplePage', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Save an element
+        // Ein Element speichern
         await browser.saveElement(
             await $('#element-id'),
             'firstButtonElement',
             {
-                /* some options */
+                /* einige Optionen */
             }
         )
 
-        // Save a full page screenshot
+        // Einen ganzseitigen Screenshot speichern
         await browser.saveFullPageScreen('fullPage', {
-            /* some options */
+            /* einige Optionen */
         })
 
-        // Save a full page screenshot with all tab executions
+        // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen speichern
         await browser.saveTabbablePage('save-tabbable', {
-            /* some options, use the same options as for saveFullPageScreen */
+            /* einige Optionen, verwenden Sie dieselben Optionen wie für saveFullPageScreen */
         })
     })
 
     it('should compare successful with a baseline', async () => {
-        // Check a screen
+        // Einen Bildschirm prüfen
         await expect(
             await browser.checkScreen('examplePage', {
-                /* some options */
+                /* einige Optionen */
             })
         ).toEqual(0)
 
-        // Check an element
+        // Ein Element prüfen
         await expect(
             await browser.checkElement(
                 await $('#element-id'),
                 'firstButtonElement',
                 {
-                    /* some options */
+                    /* einige Optionen */
                 }
             )
         ).toEqual(0)
 
-        // Check a full page screenshot
+        // Einen ganzseitigen Screenshot prüfen
         await expect(
             await browser.checkFullPageScreen('fullPage', {
-                /* some options */
+                /* einige Optionen */
             })
         ).toEqual(0)
 
-        // Check a full page screenshot with all tab executions
+        // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen prüfen
         await expect(
             await browser.checkTabbablePage('check-tabbable', {
-                /* some options, use the same options as for checkFullPageScreen */
+                /* einige Optionen, verwenden Sie dieselben Optionen wie für checkFullPageScreen */
             })
         ).toEqual(0)
     })
@@ -246,95 +249,95 @@ describe('Jasmine Example', () => {
 import { When, Then } from '@wdio/cucumber-framework'
 
 When('I save some screenshots', async function () {
-    // Save a screen
+    // Einen Bildschirm speichern
     await browser.saveScreen('examplePage', {
-        /* some options */
+        /* einige Optionen */
     })
 
-    // Save an element
+    // Ein Element speichern
     await browser.saveElement(await $('#element-id'), 'firstButtonElement', {
-        /* some options */
+        /* einige Optionen */
     })
 
-    // Save a full page screenshot
+    // Einen ganzseitigen Screenshot speichern
     await browser.saveFullPageScreen('fullPage', {
-        /* some options */
+        /* einige Optionen */
     })
 
-    // Save a full page screenshot with all tab executions
+    // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen speichern
     await browser.saveTabbablePage('save-tabbable', {
-        /* some options, use the same options as for saveFullPageScreen */
+        /* einige Optionen, verwenden Sie dieselben Optionen wie für saveFullPageScreen */
     })
 })
 
 Then('I should be able to match some screenshots with a baseline', async function () {
-    // Check screen to exactly match with baseline
+    // Prüfen, ob der Bildschirm exakt mit der Baseline übereinstimmt
     await expect(browser).toMatchScreenSnapshot('partialPage')
-    // check an element to have a mismatch percentage of 5% with the baseline
+    // Prüfen, ob ein Element eine Abweichung von 5 % gegenüber der Baseline hat
     await expect(browser).toMatchScreenSnapshot('partialPage', 5)
-    // check an element with options for `saveScreen` command
+    // Ein Element mit Optionen für den `saveScreen`-Befehl prüfen
     await expect(browser).toMatchScreenSnapshot('partialPage', {
-        /* some options */
+        /* einige Optionen */
     })
 
-    // Check an element to exactly match with baseline
+    // Prüfen, ob ein Element exakt mit der Baseline übereinstimmt
     await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement')
-    // check an element to have a mismatch percentage of 5% with the baseline
+    // Prüfen, ob ein Element eine Abweichung von 5 % gegenüber der Baseline hat
     await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement', 5)
-    // check an element with options for `saveElement` command
+    // Ein Element mit Optionen für den `saveElement`-Befehl prüfen
     await expect($('#element-id')).toMatchElementSnapshot('firstButtonElement', {
-        /* some options */
+        /* einige Optionen */
     })
 
-    // Check a full page screenshot match with baseline
+    // Prüfen, ob ein ganzseitiger Screenshot mit der Baseline übereinstimmt
     await expect(browser).toMatchFullPageSnapshot('fullPage')
-    // Check a full page screenshot to have a mismatch percentage of 5% with the baseline
+    // Prüfen, ob ein ganzseitiger Screenshot eine Abweichung von 5 % gegenüber der Baseline hat
     await expect(browser).toMatchFullPageSnapshot('fullPage', 5)
-    // Check a full page screenshot with options for `checkFullPageScreen` command
+    // Einen ganzseitigen Screenshot mit Optionen für den `checkFullPageScreen`-Befehl prüfen
     await expect(browser).toMatchFullPageSnapshot('fullPage', {
-        /* some options */
+        /* einige Optionen */
     })
 
-    // Check a full page screenshot with all tab executions
+    // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen prüfen
     await expect(browser).toMatchTabbablePageSnapshot('check-tabbable')
-    // Check a full page screenshot to have a mismatch percentage of 5% with the baseline
+    // Prüfen, ob ein ganzseitiger Screenshot eine Abweichung von 5 % gegenüber der Baseline hat
     await expect(browser).toMatchTabbablePageSnapshot('check-tabbable', 5)
-    // Check a full page screenshot with options for `checkTabbablePage` command
+    // Einen ganzseitigen Screenshot mit Optionen für den `checkTabbablePage`-Befehl prüfen
     await expect(browser).toMatchTabbablePageSnapshot('check-tabbable', {
-        /* some options */
+        /* einige Optionen */
     })
 })
 
 Then('I should be able to compare some screenshots with a baseline', async function () {
-    // Check a screen
+    // Einen Bildschirm prüfen
     await expect(
         await browser.checkScreen('examplePage', {
-            /* some options */
+            /* einige Optionen */
         })
     ).toEqual(0)
 
-    // Check an element
+    // Ein Element prüfen
     await expect(
         await browser.checkElement(
             await $('#element-id'),
             'firstButtonElement',
             {
-                /* some options */
+                /* einige Optionen */
             }
         )
     ).toEqual(0)
 
-    // Check a full page screenshot
+    // Einen ganzseitigen Screenshot prüfen
     await expect(
         await browser.checkFullPageScreen('fullPage', {
-            /* some options */
+            /* einige Optionen */
         })
     ).toEqual(0)
 
-    // Check a full page screenshot with all tab executions
+    // Einen ganzseitigen Screenshot mit allen Tab-Ausführungen prüfen
     await expect(
         await browser.checkTabbablePage('check-tabbable', {
-            /* some options, use the same options as for checkFullPageScreen */
+            /* einige Optionen, verwenden Sie dieselben Optionen wie für checkFullPageScreen */
         })
     ).toEqual(0)
 })
@@ -345,7 +348,7 @@ Then('I should be able to compare some screenshots with a baseline', async funct
 
 :::note WICHTIG
 
-Dieser Service bietet `save`- und `check`-Methoden. Wenn Sie Ihre Tests zum ersten Mal ausführen, **SOLLTEN SIE NICHT** `save`- und `compare`-Methoden kombinieren. Die `check`-Methoden erstellen automatisch ein Baseline-Bild für Sie
+Dieser Service stellt `save`- und `check`-Methoden bereit. Wenn Sie Ihre Tests zum ersten Mal ausführen, **SOLLTEN SIE** `save`- und `compare`-Methoden **NICHT** kombinieren, da die `check`-Methoden automatisch ein Baseline-Bild für Sie erstellen
 
 ```sh
 #####################################################################################
@@ -356,7 +359,7 @@ Dieser Service bietet `save`- und `check`-Methoden. Wenn Sie Ihre Tests zum erst
 ```
 
 
-Wenn Sie [das automatische Speichern von Baseline-Bildern deaktiviert haben](service-options#autosavebaseline), wird die Promise mit der folgenden Warnung abgelehnt.
+Wenn Sie das [automatische Speichern von Baseline-Bildern deaktiviert haben](service-options#autosavebaseline), wird das Promise mit der folgenden Warnung abgelehnt.
 
 ```sh
 #####################################################################################
@@ -366,6 +369,6 @@ Wenn Sie [das automatische Speichern von Baseline-Bildern deaktiviert haben](ser
 #####################################################################################
 ```
 
-Dies bedeutet, dass der aktuelle Screenshot im actual-Ordner gespeichert wird und Sie ihn **manuell in Ihre Baseline kopieren müssen**. Wenn Sie `@wdio/visual-service` mit [`autoSaveBaseline: true`](./service-options#autosavebaseline) initialisieren, wird das Bild automatisch im Baseline-Ordner gespeichert.
+Das bedeutet, dass der aktuelle Screenshot im Ordner „actual“ gespeichert wird und Sie ihn **manuell in Ihren Baseline-Ordner kopieren müssen**. Wenn Sie `@wdio/visual-service` mit [`autoSaveBaseline: true`](./service-options#autosavebaseline) instanziieren, wird das Bild automatisch im Baseline-Ordner gespeichert.
 
 :::

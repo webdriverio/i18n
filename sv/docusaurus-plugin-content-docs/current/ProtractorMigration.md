@@ -1,15 +1,16 @@
 ---
 id: protractor-migration
 title: Från Protractor
+description: "Migrera en Protractor-testsvit till WebdriverIO steg för steg, inklusive beroenden, konfigurationsfil och testfiler, med hjälp av en codemod."
 ---
 
-Denna handledning är för personer som använder Protractor och vill migrera sitt ramverk till WebdriverIO. Den initierades efter att Angular-teamet [har meddelat](https://github.com/angular/protractor/issues/5502) att Protractor inte längre kommer att stödjas. WebdriverIO har influerats av många av Protractors designbeslut, vilket är anledningen till att det troligen är det närmaste ramverket att migrera till. WebdriverIO-teamet uppskattar arbetet från varje enskild Protractor-bidragsgivare och hoppas att denna handledning gör övergången till WebdriverIO enkel och okomplicerad.
+Den här handledningen är för dig som använder Protractor och vill migrera ditt ramverk till WebdriverIO. Den togs fram efter att Angular-teamet [meddelade](https://github.com/angular/protractor/issues/5502) att Protractor inte längre kommer att stödjas. WebdriverIO har influerats av många av Protractors designbeslut, vilket är anledningen till att det förmodligen är det ramverk som ligger närmast till hands att migrera till. WebdriverIO-teamet uppskattar arbetet från varje enskild Protractor-bidragsgivare och hoppas att den här handledningen gör övergången till WebdriverIO enkel och okomplicerad.
 
-Även om vi skulle vilja ha en helt automatiserad process för detta ser verkligheten annorlunda ut. Alla har olika uppsättningar och använder Protractor på olika sätt. Varje steg bör ses som vägledning och mindre som en steg-för-steg-instruktion. Om du har problem med migreringen, tveka inte att [kontakta oss](https://github.com/webdriverio/codemod/discussions/new).
+Även om vi gärna skulle ha en helt automatiserad process för detta ser verkligheten annorlunda ut. Alla har olika uppsättningar och använder Protractor på olika sätt. Varje steg bör ses som vägledning snarare än som en steg-för-steg-instruktion. Om du stöter på problem med migreringen, tveka inte att [kontakta oss](https://github.com/webdriverio/codemod/discussions/new).
 
 ## Installation
 
-Protractor och WebdriverIO API är faktiskt väldigt lika, till den punkt där majoriteten av kommandon kan skrivas om på ett automatiserat sätt genom en [codemod](https://github.com/webdriverio/codemod).
+Protractors och WebdriverIOs API:er är faktiskt mycket lika, till den grad att majoriteten av kommandona kan skrivas om automatiskt med hjälp av en [codemod](https://github.com/webdriverio/codemod).
 
 För att installera codemod, kör:
 
@@ -19,13 +20,13 @@ npm install jscodeshift @wdio/codemod
 
 ## Strategi
 
-Det finns många migreringsstrategier. Beroende på storleken på ditt team, antal testfiler och brådskande behov att migrera kan du försöka transformera alla tester på en gång eller fil för fil. Med tanke på att Protractor kommer att fortsätta underhållas fram till Angular version 15 (slutet av 2022) har du fortfarande gott om tid. Du kan ha Protractor och WebdriverIO-tester som körs samtidigt och börja skriva nya tester i WebdriverIO. Beroende på din tidsbudget kan du sedan börja migrera de viktiga testfallen först och arbeta dig nedåt till tester som du kanske till och med kan ta bort.
+Det finns många migreringsstrategier. Beroende på storleken på ditt team, antalet testfiler och hur brådskande migreringen är kan du försöka omvandla alla tester på en gång eller fil för fil. Eftersom Protractor kommer att fortsätta underhållas fram till Angular version 15 (slutet av 2022) har du fortfarande gott om tid. Du kan köra Protractor- och WebdriverIO-tester samtidigt och börja skriva nya tester i WebdriverIO. Beroende på din tidsbudget kan du sedan börja med att migrera de viktiga testfallen först och arbeta dig nedåt till tester som du kanske till och med kan ta bort.
 
 ## Först konfigurationsfilen
 
-Efter att vi har installerat codemod kan vi börja transformera den första filen. Titta först på [WebdriverIOs konfigurationsalternativ](configuration). Konfigurationsfiler kan bli mycket komplexa och det kan vara vettigt att endast överföra de väsentliga delarna och se hur resten kan läggas till när motsvarande tester som behöver vissa alternativ migreras.
+Efter att vi har installerat codemod kan vi börja omvandla den första filen. Ta först en titt på [WebdriverIOs konfigurationsalternativ](configuration). Konfigurationsfiler kan bli mycket komplexa och det kan vara vettigt att bara överföra de viktigaste delarna och se hur resten kan läggas till när motsvarande tester som behöver vissa alternativ migreras.
 
-För den första migreringen transformerar vi endast konfigurationsfilen och kör:
+För den första migreringen omvandlar vi bara konfigurationsfilen och kör:
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/protractor ./conf.ts
@@ -33,13 +34,13 @@ npx jscodeshift -t ./node_modules/@wdio/codemod/protractor ./conf.ts
 
 :::info
 
-Din konfiguration kan ha ett annat namn, men principen bör vara densamma: börja med att migrera konfigurationen först.
+ Din konfiguration kan ha ett annat namn, men principen bör vara densamma: börja med att migrera konfigurationen.
 
 :::
 
 ## Installera WebdriverIO-beroenden
 
-Nästa steg är att konfigurera en minimal WebdriverIO-installation som vi börjar bygga upp när vi migrerar från ett ramverk till ett annat. Först installerar vi WebdriverIO CLI via:
+Nästa steg är att konfigurera en minimal WebdriverIO-uppsättning som vi bygger vidare på allteftersom vi migrerar från det ena ramverket till det andra. Först installerar vi WebdriverIO CLI via:
 
 ```sh
 npm install --save-dev @wdio/cli
@@ -51,50 +52,50 @@ Därefter kör vi konfigurationsguiden:
 npx wdio config
 ```
 
-Detta kommer att guida dig genom ett par frågor. För detta migreringsscenario:
+Detta leder dig igenom ett par frågor. För det här migreringsscenariot:
 - välj standardalternativen
-- vi rekommenderar att inte autogenerera exempelfiler
+- rekommenderar vi att inte autogenerera exempelfiler
 - välj en annan mapp för WebdriverIO-filer
-- och att välja Mocha framför Jasmine.
+- och välj Mocha framför Jasmine.
 
 :::info Varför Mocha?
-Även om du kanske har använt Protractor med Jasmine tidigare, erbjuder Mocha bättre återförsöksmekanismer. Valet är ditt!
+Även om du tidigare kan ha använt Protractor med Jasmine erbjuder Mocha bättre mekanismer för omförsök. Valet är ditt!
 :::
 
-Efter den lilla frågestunden kommer guiden att installera alla nödvändiga paket och spara dem i din `package.json`.
+Efter det lilla frågeformuläret installerar guiden alla nödvändiga paket och sparar dem i din `package.json`.
 
-## Migrera konfigurationsfil
+## Migrera konfigurationsfilen
 
-Efter att vi har transformerat `conf.ts` och en ny `wdio.conf.ts`, är det nu dags att migrera konfigurationen från en config till en annan. Se till att endast överföra kod som är nödvändig för att alla tester ska kunna köras. I vår konfiguration överför vi hook-funktionen och ramverkets timeout.
+När vi har en omvandlad `conf.ts` och en ny `wdio.conf.ts` är det nu dags att migrera konfigurationen från den ena konfigurationen till den andra. Se till att bara överföra kod som är nödvändig för att alla tester ska kunna köras. I vårt fall överför vi hook-funktionen och ramverkets timeout.
 
-Vi kommer nu att fortsätta med vår `wdio.conf.ts`-fil endast och därför behöver vi inte göra några ändringar i den ursprungliga Protractor-konfigurationen längre. Vi kan återgå till den så att båda ramverken kan köras sida vid sida och vi kan överföra en fil i taget.
+Vi fortsätter nu enbart med vår `wdio.conf.ts`-fil och behöver därför inte längre göra några ändringar i den ursprungliga Protractor-konfigurationen. Vi kan återställa dessa så att båda ramverken kan köras sida vid sida och vi kan överföra en fil i taget.
 
 ## Migrera testfil
 
-Vi är nu redo att överföra den första testfilen. För att starta enkelt, låt oss börja med en som inte har många beroenden till tredjepartspaket eller andra filer som PageObjects. I vårt exempel är den första filen att migrera `first-test.spec.ts`. Skapa först katalogen där den nya WebdriverIO-konfigurationen förväntar sina filer och flytta den sedan:
+Nu är vi redo att överföra den första testfilen. För att börja enkelt tar vi en som inte har många beroenden till tredjepartspaket eller andra filer som PageObjects. I vårt exempel är den första filen att migrera `first-test.spec.ts`. Skapa först katalogen där den nya WebdriverIO-konfigurationen förväntar sig sina filer och flytta sedan över filen:
 
 ```sh
 mv mkdir -p ./test/specs/
 mv test-suites/first-test.spec.ts ./test/specs
 ```
 
-Nu låt oss transformera denna fil:
+Nu omvandlar vi den här filen:
 
 ```sh
 npx jscodeshift -t ./node_modules/@wdio/codemod/protractor ./test/specs/first-test.spec.ts
 ```
 
-Det är allt! Denna fil är så enkel att vi inte behöver några ytterligare ändringar och kan direkt försöka köra WebdriverIO via:
+Det var allt! Den här filen är så enkel att vi inte behöver göra några ytterligare ändringar och direkt kan försöka köra WebdriverIO via:
 
 ```sh
 npx wdio run wdio.conf.ts
 ```
 
-Grattis 🥳 du har just migrerat den första filen!
+Grattis 🥳 du har precis migrerat den första filen!
 
 ## Nästa steg
 
-Från denna punkt fortsätter du att transformera test för test och page object för page object. Det finns risker att codemod kommer att misslyckas för vissa filer med ett fel som:
+Från och med nu fortsätter du att omvandla test för test och page object för page object. Det finns en risk att codemod misslyckas för vissa filer med ett fel som:
 
 ```
 ERR /path/to/project/test/testdata/failing_submit.js Transformation error (Error transforming /test/testdata/failing_submit.js:2)
@@ -107,8 +108,8 @@ The command "submit" is not supported in WebdriverIO. We advise to use the click
   at /path/to/project/test/testdata/failing_submit.js:132:0
 ```
 
-För vissa Protractor-kommandon finns det helt enkelt ingen ersättning i WebdriverIO. I detta fall kommer codemod att ge dig råd om hur du kan refaktorera det. Om du stöter på sådana felmeddelanden för ofta, känner dig fri att [skapa ett ärende](https://github.com/webdriverio/codemod/issues/new) och begära att lägga till en viss transformation. Medan codemod redan transformerar majoriteten av Protractor API, finns det fortfarande mycket utrymme för förbättringar.
+För vissa Protractor-kommandon finns det helt enkelt ingen motsvarighet i WebdriverIO. I sådana fall ger codemod dig råd om hur du kan refaktorera koden. Om du stöter på sådana felmeddelanden alltför ofta är du välkommen att [skapa ett ärende](https://github.com/webdriverio/codemod/issues/new) och begära att en viss omvandling läggs till. Även om codemod redan omvandlar majoriteten av Protractor-API:et finns det fortfarande mycket utrymme för förbättringar.
 
 ## Slutsats
 
-Vi hoppas att denna handledning guidar dig lite genom migreringsprocessen till WebdriverIO. Gemenskapen fortsätter att förbättra codemod medan den testas med olika team i olika organisationer. Tveka inte att [skapa ett ärende](https://github.com/webdriverio/codemod/issues/new) om du har feedback eller [starta en diskussion](https://github.com/webdriverio/codemod/discussions/new) om du har problem under migreringsprocessen.
+Vi hoppas att den här handledningen guidar dig en bit på vägen genom migreringsprocessen till WebdriverIO. Communityn fortsätter att förbättra codemod samtidigt som den testas med olika team i olika organisationer. Tveka inte att [skapa ett ärende](https://github.com/webdriverio/codemod/issues/new) om du har feedback eller [starta en diskussion](https://github.com/webdriverio/codemod/discussions/new) om du har svårigheter under migreringsprocessen.

@@ -1,13 +1,14 @@
 ---
 id: sharding
 title: شاردینگ
+description: "مجموعه تست‌های خود را با گزینه --shard بین چندین ماشین تقسیم کنید تا تست‌ها سریع‌تر اجرا شوند، برای مثال در GitHub Actions."
 ---
 
-به طور پیش‌فرض، WebdriverIO تست‌ها را به صورت موازی اجرا می‌کند و برای استفاده بهینه از هسته‌های CPU روی دستگاه شما تلاش می‌کند. برای دستیابی به موازی‌سازی بیشتر، می‌توانید اجرای تست WebdriverIO را با اجرای همزمان تست‌ها روی چندین ماشین مقیاس‌پذیر کنید. ما این حالت عملیات را "شاردینگ" می‌نامیم.
+به‌طور پیش‌فرض، WebdriverIO تست‌ها را به‌صورت موازی اجرا می‌کند و تلاش می‌کند از هسته‌های CPU ماشین شما به بهینه‌ترین شکل استفاده کند. برای دستیابی به موازی‌سازی بیشتر، می‌توانید اجرای تست‌های WebdriverIO را با اجرای هم‌زمان تست‌ها روی چندین ماشین، مقیاس‌پذیرتر کنید. ما این حالت اجرا را «شاردینگ» (sharding) می‌نامیم.
 
 ## شاردینگ تست‌ها بین چندین ماشین
 
-برای شارد کردن مجموعه تست، `--shard=x/y` را به خط فرمان ارسال کنید. به عنوان مثال، برای تقسیم مجموعه به چهار شارد، که هر کدام یک چهارم تست‌ها را اجرا می‌کنند:
+برای شارد کردن مجموعه تست، `--shard=x/y` را به خط فرمان ارسال کنید. برای مثال، برای تقسیم مجموعه به چهار شارد که هر کدام یک‌چهارم تست‌ها را اجرا می‌کند:
 
 ```sh
 npx wdio run wdio.conf.js --shard=1/4
@@ -16,19 +17,19 @@ npx wdio run wdio.conf.js --shard=3/4
 npx wdio run wdio.conf.js --shard=4/4
 ```
 
-حال، اگر این شاردها را به طور موازی روی کامپیوترهای مختلف اجرا کنید، مجموعه تست شما چهار برابر سریع‌تر تکمیل می‌شود.
+اکنون، اگر این شاردها را به‌صورت موازی روی کامپیوترهای مختلف اجرا کنید، مجموعه تست شما چهار برابر سریع‌تر به پایان می‌رسد.
 
 ## مثال GitHub Actions
 
-GitHub Actions از [شارد کردن تست‌ها بین چندین کار](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) با استفاده از گزینه [`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) پشتیبانی می‌کند. گزینه ماتریس یک کار جداگانه برای هر ترکیب ممکن از گزینه‌های ارائه شده اجرا می‌کند.
+GitHub Actions از [شاردینگ تست‌ها بین چندین job](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs) با استفاده از گزینه [`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) پشتیبانی می‌کند. گزینه matrix برای هر ترکیب ممکن از گزینه‌های ارائه‌شده، یک job جداگانه اجرا می‌کند.
 
-مثال زیر نحوه پیکربندی یک کار برای اجرای تست‌ها روی چهار ماشین به صورت موازی را نشان می‌دهد. می‌توانید کل تنظیمات پایپلاین را در پروژه [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml) مشاهده کنید.
+مثال زیر به شما نشان می‌دهد که چگونه یک job را پیکربندی کنید تا تست‌هایتان را روی چهار ماشین به‌صورت موازی اجرا کند. می‌توانید کل تنظیمات pipeline را در پروژه [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml) پیدا کنید.
 
--   ابتدا یک گزینه ماتریس به پیکربندی کار خود با گزینه شارد که حاوی تعداد شاردهایی است که می‌خواهیم ایجاد کنیم، اضافه می‌کنیم. `shard: [1, 2, 3, 4]` چهار شارد ایجاد می‌کند، هر کدام با شماره شارد متفاوت.
+-   ابتدا یک گزینه matrix به پیکربندی job خود اضافه می‌کنیم که گزینه shard شامل تعداد شاردهایی است که می‌خواهیم ایجاد کنیم. `shard: [1, 2, 3, 4]` چهار شارد ایجاد می‌کند که هر کدام شماره شارد متفاوتی دارند.
 -   سپس تست‌های WebdriverIO خود را با گزینه `--shard ${{ matrix.shard }}/${{ strategy.job-total }}` اجرا می‌کنیم. این دستور تست ما برای هر شارد خواهد بود.
--   در نهایت، گزارش لاگ wdio خود را به آرتیفکت‌های GitHub Actions آپلود می‌کنیم. این کار لاگ‌ها را در صورت شکست شارد در دسترس قرار می‌دهد.
+-   در نهایت گزارش لاگ wdio خود را در Artifacts مربوط به GitHub Actions آپلود می‌کنیم. این کار باعث می‌شود در صورت شکست یک شارد، لاگ‌ها در دسترس باشند.
 
-پایپلاین تست به شرح زیر تعریف شده است:
+pipeline تست به‌صورت زیر تعریف شده است:
 
 ```yaml title=.github/workflows/test.yaml
 name: Test
@@ -59,8 +60,8 @@ jobs:
                   path: logs
 ```
 
-این کار تمام شاردها را به طور موازی اجرا می‌کند و زمان اجرای تست‌ها را به میزان ۴ برابر کاهش می‌دهد:
+این کار همه شاردها را به‌صورت موازی اجرا می‌کند و زمان اجرای تست‌ها را به یک‌چهارم کاهش می‌دهد:
 
-![مثال GitHub Actions](/img/sharding.png "مثال GitHub Actions")
+![GitHub Actions example](/img/sharding.png "GitHub Actions example")
 
-کامیت [`96d444e`](https://github.com/webdriverio/cucumber-boilerplate/commit/96d444ea23919389682b9b1c9408ed91c452c7f8) از پروژه [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) را ببینید که شاردینگ را به پایپلاین تست خود معرفی کرده است و به کاهش زمان کلی اجرا از `2:23 دقیقه` به `1:30 دقیقه`، یعنی کاهش __37%__ کمک کرده است 🎉.
+کامیت [`96d444e`](https://github.com/webdriverio/cucumber-boilerplate/commit/96d444ea23919389682b9b1c9408ed91c452c7f8) از پروژه [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) را ببینید که شاردینگ را به pipeline تست آن اضافه کرد و به کاهش زمان کلی اجرا از `2:23 min` به `1:30 min` کمک کرد، یعنی کاهشی معادل __۳۷٪__ 🎉.

@@ -1,51 +1,52 @@
 ---
 id: customservices
-title: Własne Usługi
+title: Niestandardowe usługi
+description: "Napisz niestandardową usługę launchera lub workera dla testrunnera WDIO, korzystając z hooków testrunnera, obsługuj błędy usług i opublikuj ją w NPM."
 ---
 
-Możesz napisać własną niestandardową usługę dla programu testowego WDIO, aby dokładnie dopasować ją do swoich potrzeb.
+Możesz napisać własną niestandardową usługę dla test runnera WDIO, dopasowaną do Twoich potrzeb.
 
-Usługi to dodatki stworzone dla wielokrotnie używanej logiki, która upraszcza testy, zarządza pakietem testów i integruje wyniki. Usługi mają dostęp do tych samych [haków](/docs/configurationfile), które są dostępne w pliku `wdio.conf.js`.
+Usługi to dodatki tworzone w celu zapewnienia logiki wielokrotnego użytku, która upraszcza testy, pomaga zarządzać zestawem testów i integrować wyniki. Usługi mają dostęp do tych samych [hooków](/docs/configurationfile), które są dostępne w `wdio.conf.js`.
 
-Istnieją dwa rodzaje usług, które można zdefiniować: usługa uruchamiająca (launcher), która ma dostęp tylko do haków `onPrepare`, `onWorkerStart`, `onWorkerEnd` i `onComplete`, które są wykonywane tylko raz na cykl testowy, oraz usługa pracownika (worker), która ma dostęp do wszystkich innych haków i jest wykonywana dla każdego pracownika. Pamiętaj, że nie możesz współdzielić (globalnych) zmiennych między obydwoma typami usług, ponieważ usługi pracownika działają w innym procesie (procesie pracownika).
+Można zdefiniować dwa typy usług: usługę launchera (launcher service), która ma dostęp tylko do hooków `onPrepare`, `onWorkerStart`, `onWorkerEnd` i `onComplete`, wykonywanych tylko raz na przebieg testów, oraz usługę workera (worker service), która ma dostęp do wszystkich pozostałych hooków i jest wykonywana dla każdego workera. Pamiętaj, że nie można współdzielić (globalnych) zmiennych między oboma typami usług, ponieważ usługi workera działają w innym procesie (workera).
 
-Usługę uruchamiającą można zdefiniować w następujący sposób:
+Usługę launchera można zdefiniować w następujący sposób:
 
 ```js
 export default class CustomLauncherService {
-    // Jeśli hak zwraca obietnicę, WebdriverIO będzie czekać, aż ta obietnica zostanie rozwiązana, aby kontynuować.
+    // Jeśli hook zwraca promise, WebdriverIO poczeka, aż ten promise zostanie rozwiązany, zanim będzie kontynuować.
     async onPrepare(config, capabilities) {
-        // TODO: coś przed uruchomieniem wszystkich pracowników
+        // TODO: coś przed uruchomieniem wszystkich workerów
     }
 
     onComplete(exitCode, config, capabilities) {
-        // TODO: coś po zakończeniu pracy pracowników
+        // TODO: coś po zamknięciu workerów
     }
 
     // niestandardowe metody usługi ...
 }
 ```
 
-Z kolei usługa pracownika powinna wyglądać tak:
+Natomiast usługa workera powinna wyglądać tak:
 
 ```js
 export default class CustomWorkerService {
     /**
      * `serviceOptions` zawiera wszystkie opcje specyficzne dla usługi
-     * np. jeśli zdefiniowano w następujący sposób:
+     * np. jeśli zdefiniowano je następująco:
      *
      * ```
      * services: [['custom', { foo: 'bar' }]]
      * ```
      *
-     * parametr `serviceOptions` będzie: `{ foo: 'bar' }`
+     * parametr `serviceOptions` będzie miał wartość: `{ foo: 'bar' }`
      */
     constructor (serviceOptions, capabilities, config) {
         this.options = serviceOptions
     }
 
     /**
-     * obiekt przeglądarki jest przekazywany tutaj po raz pierwszy
+     * tutaj obiekt browser jest przekazywany po raz pierwszy
      */
     async before(config, capabilities, browser) {
         this.browser = browser
@@ -55,22 +56,22 @@ export default class CustomWorkerService {
     }
 
     after(exitCode, config, capabilities) {
-        // TODO: coś po wykonaniu wszystkich testów
+        // TODO: coś po uruchomieniu wszystkich testów
     }
 
     beforeTest(test, context) {
-        // TODO: coś przed każdym testem Mocha/Jasmine
+        // TODO: coś przed każdym uruchomieniem testu Mocha/Jasmine
     }
 
     beforeScenario(test, context) {
-        // TODO: coś przed każdym scenariuszem Cucumber
+        // TODO: coś przed każdym uruchomieniem scenariusza Cucumber
     }
 
-    // inne haki lub niestandardowe metody usługi ...
+    // inne hooki lub niestandardowe metody usługi ...
 }
 ```
 
-Zaleca się przechowywanie obiektu przeglądarki przez parametr przekazany w konstruktorze. Na koniec należy wyeksportować oba typy pracowników w następujący sposób:
+Zaleca się przechowywanie obiektu browser przekazanego jako parametr w konstruktorze. Na koniec wyeksportuj oba typy workerów w następujący sposób:
 
 ```js
 import CustomLauncherService from './launcher'
@@ -80,7 +81,7 @@ export default CustomWorkerService
 export const launcher = CustomLauncherService
 ```
 
-Jeśli używasz TypeScript i chcesz upewnić się, że parametry metod hacków są bezpieczne typowo, możesz zdefiniować swoją klasę usługi w następujący sposób:
+Jeśli używasz TypeScriptu i chcesz mieć pewność, że parametry metod hooków są bezpieczne typowo, możesz zdefiniować klasę usługi w następujący sposób:
 
 ```ts
 import type { Capabilities, Options, Services } from '@wdio/types'
@@ -98,29 +99,74 @@ export default class CustomWorkerService implements Services.ServiceInstance {
 }
 ```
 
-## Obsługa Błędów Usługi
+## Warunkowe usługi workera
 
-Błąd zgłoszony podczas wykonywania hooka usługi zostanie zalogowany, podczas gdy program testowy będzie kontynuował działanie. Jeśli hook w twojej usłudze jest krytyczny dla konfiguracji lub zamknięcia programu testowego, można użyć `SevereServiceError` wyeksportowanego z pakietu `webdriverio`, aby zatrzymać program.
+Usługa może zdecydować, czy jej kod workera jest potrzebny dla danego przebiegu testów lub dla konkretnego workera. Dostępne są dwa opcjonalne sprawdzenia:
+
+| Sprawdzenie | Gdzie jest wykonywane | Argumenty | Skutek zwrócenia `false` |
+| --- | --- | --- | --- |
+| Nazwany eksport modułu `shouldLoad` | Proces launchera, po zaimportowaniu modułu usługi | Konfiguracja, wszystkie skonfigurowane capabilities | Moduł usługi nie jest importowany w żadnym workerze. Jego usługa launchera nadal działa. |
+| Statyczna metoda usługi workera `shouldRun` | Proces workera, przed utworzeniem usługi | Opcje usługi, capabilities danego workera, konfiguracja | Usługa workera nie jest tworzona, więc żaden z jej hooków nie jest uruchamiany w tym workerze. |
+
+Używaj `shouldLoad(config, capabilities)` dla modułów usług konfigurowanych za pomocą nazwy lub ścieżki. Jest to decyzja dotycząca całego pakietu: jeśli ta sama usługa występuje więcej niż raz z różnymi opcjami, wynik dotyczy wszystkich tych wpisów. Na przykład niestandardowa usługa wymagająca zdalnych danych uwierzytelniających mogłaby eksportować:
+
+```js
+// wdio-custom-service/index.js
+import CustomLauncherService from './launcher.js'
+import CustomWorkerService from './service.js'
+
+export function shouldLoad(config, capabilities) {
+    return Boolean(config.user && config.key)
+}
+
+export default CustomWorkerService
+export const launcher = CustomLauncherService
+```
+
+Używaj `static shouldRun(options, capabilities, config)`, aby podejmować decyzję osobno dla każdego wpisu usługi i każdego workera. Działa to również z niestandardowymi klasami usług przekazanymi bezpośrednio w `services`. Na przykład ta usługa może ograniczyć swoje hooki do skonfigurowanej przeglądarki:
+
+```js
+// wdio-custom-service/service.js
+export default class CustomWorkerService {
+    static shouldRun(options, capabilities, config) {
+        return !options.browserName || options.browserName === capabilities.browserName
+    }
+
+    before(capabilities, specs, browser) {
+        // Uruchamiane tylko w workerach, które przeszły shouldRun.
+    }
+}
+```
+
+Przy `services: [['custom', { browserName: 'chrome' }]]` ta usługa workera jest tworzona tylko dla capabilities Chrome, pod warunkiem że sprawdzenie `shouldLoad` pakietu również na to pozwala. Worker musi zaimportować moduł usługi, aby wywołać `shouldRun`; zwrócenie `false` z tej metody nie zapobiega temu importowi ani nie wpływa na usługę launchera.
+
+Oba sprawdzenia mogą zwracać wartość logiczną lub promise wartości logicznej. WebdriverIO oczekuje na każdy wynik i tylko `false` wyłącza ładowanie lub tworzenie usługi. Usługi bez tych sprawdzeń zachowują dotychczasowe działanie. Już utworzone obiekty usług zawierające hooki pozostają bez zmian.
+
+Jeśli którekolwiek ze sprawdzeń zgłosi błąd lub zostanie odrzucone, inicjalizacja usługi kończy się niepowodzeniem z błędem identyfikującym usługę. Różni się to od błędów zgłaszanych przez hooki usług, opisanych poniżej.
+
+## Obsługa błędów usług
+
+Błąd zgłoszony podczas hooka usługi zostanie zalogowany, a runner będzie kontynuował działanie. Jeśli hook w Twojej usłudze jest krytyczny dla przygotowania lub zakończenia działania test runnera, można użyć `SevereServiceError` udostępnianego przez pakiet `webdriverio`, aby zatrzymać runner.
 
 ```js
 import { SevereServiceError } from 'webdriverio'
 
 export default class CustomServiceLauncher {
     async onPrepare(config, capabilities) {
-        // TODO: coś krytycznego dla konfiguracji przed uruchomieniem wszystkich pracowników
+        // TODO: coś krytycznego dla przygotowania przed uruchomieniem wszystkich workerów
 
-        throw new SevereServiceError('Coś poszło nie tak.')
+        throw new SevereServiceError('Something went wrong.')
     }
 
     // niestandardowe metody usługi ...
 }
 ```
 
-## Importowanie Usługi z Modułu
+## Importowanie usługi z modułu
 
-Jedyną rzeczą, którą trzeba teraz zrobić, aby skorzystać z tej usługi, jest przypisanie jej do właściwości `services`.
+Jedyne, co trzeba teraz zrobić, aby użyć tej usługi, to przypisać ją do właściwości `services`.
 
-Zmodyfikuj swój plik `wdio.conf.js`, aby wyglądał następująco:
+Zmodyfikuj plik `wdio.conf.js`, aby wyglądał następująco:
 
 ```js
 import CustomService from './service/my.custom.service'
@@ -135,7 +181,7 @@ export const config = {
             someOption: true
         }],
         /**
-         * użyj bezwzględnej ścieżki do usługi
+         * użyj ścieżki bezwzględnej do usługi
          */
         ['/path/to/service.js', {
             someOption: true
@@ -145,16 +191,16 @@ export const config = {
 }
 ```
 
-## Publikowanie Usługi w NPM
+## Publikowanie usługi w NPM
 
-Aby ułatwić korzystanie z usług i ich odkrywanie przez społeczność WebdriverIO, postępuj zgodnie z poniższymi zaleceniami:
+Aby ułatwić społeczności WebdriverIO korzystanie z usług i ich odnajdywanie, postępuj zgodnie z poniższymi zaleceniami:
 
-* Usługi powinny używać tej konwencji nazewnictwa: `wdio-*-service`
+* Usługi powinny stosować następującą konwencję nazewnictwa: `wdio-*-service`
 * Używaj słów kluczowych NPM: `wdio-plugin`, `wdio-service`
-* Wpis `main` powinien `eksportować` instancję usługi
+* Wpis `main` powinien eksportować (`export`) instancję usługi
 * Przykładowe usługi: [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)
 
-Stosowanie zalecanego wzorca nazewnictwa pozwala na dodawanie usług po nazwie:
+Stosowanie zalecanego wzorca nazewnictwa pozwala dodawać usługi za pomocą nazwy:
 
 ```js
 // Dodaj wdio-custom-service
@@ -165,11 +211,11 @@ export const config = {
 }
 ```
 
-### Dodawanie Opublikowanej Usługi do WDIO CLI i Dokumentacji
+### Dodawanie opublikowanej usługi do WDIO CLI i dokumentacji
 
-Doceniamy każdy nowy plugin, który może pomóc innym osobom w lepszym przeprowadzaniu testów! Jeśli stworzyłeś taki plugin, rozważ dodanie go do naszego CLI i dokumentacji, aby był łatwiejszy do znalezienia.
+Bardzo doceniamy każdą nową wtyczkę, która może pomóc innym w uruchamianiu lepszych testów! Jeśli stworzyłeś taką wtyczkę, rozważ dodanie jej do naszego CLI i dokumentacji, aby łatwiej było ją znaleźć.
 
-Zgłoś pull request z następującymi zmianami:
+Utwórz pull request z następującymi zmianami:
 
 - dodaj swoją usługę do listy [obsługiwanych usług](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L92-L128)) w module CLI
-- uzupełnij [listę usług](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/services.json), aby dodać swoją dokumentację do oficjalnej strony Webdriver.io
+- rozszerz [listę usług](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/services.json), aby dodać swoją dokumentację do oficjalnej strony Webdriver.io

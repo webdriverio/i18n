@@ -1,12 +1,13 @@
 ---
 id: cli-wizard
 title: Kreator CLI
+description: "Sprawdź, jaki tekst usługa OCR może znaleźć na obrazie, bez uruchamiania testu, korzystając z kreatora OCR CLI."
 ---
 
-Możesz sprawdzić, jaki tekst można znaleźć na obrazie bez uruchamiania testu, korzystając z Kreatora OCR CLI. Jedyne co jest potrzebne to:
+Możesz sprawdzić, jaki tekst można znaleźć na obrazie, bez uruchamiania testu, korzystając z kreatora OCR CLI. Potrzebujesz jedynie:
 
--   zainstalowana zależność `@wdio/ocr-service`, zobacz [Pierwsze kroki](./getting-started)
--   obraz, który chcesz przetworzyć
+-   zainstalowanego pakietu `@wdio/ocr-service` jako zależności, zobacz [Pierwsze kroki](./getting-started)
+-   obrazu, który chcesz przetworzyć
 
 Następnie uruchom poniższe polecenie, aby uruchomić kreator
 
@@ -14,42 +15,42 @@ Następnie uruchom poniższe polecenie, aby uruchomić kreator
 npx ocr-service
 ```
 
-Spowoduje to uruchomienie kreatora, który przeprowadzi Cię przez kroki wyboru obrazu i użycia obszaru wyszukiwania (haystack) oraz trybu zaawansowanego. Zadawane są następujące pytania
+Spowoduje to uruchomienie kreatora, który przeprowadzi Cię przez kolejne kroki wyboru obrazu oraz użycia haystacka i trybu zaawansowanego. Zadawane są następujące pytania
 
-## Jak chcesz określić plik?
+## How would you like to specify the file?
 
-Można wybrać następujące opcje
+Można wybrać jedną z następujących opcji
 
--   Użyj "eksploratora plików"
--   Wpisz ścieżkę do pliku ręcznie
+-   Use a "file explorer"
+-   Type the file path manually
 
-### Użyj "eksploratora plików"
+### Use a "file explorer"
 
-Kreator CLI oferuje opcję użycia "eksploratora plików" do wyszukiwania plików w Twoim systemie. Rozpoczyna od folderu, z którego wywołujesz polecenie. Po wybraniu obrazu (użyj klawiszy strzałek i klawisza ENTER) przejdziesz do następnego pytania
+Kreator CLI udostępnia opcję użycia „eksploratora plików” do wyszukiwania plików w systemie. Rozpoczyna on od folderu, z którego wywołujesz polecenie. Po wybraniu obrazu (użyj klawiszy strzałek i klawisza ENTER) przejdziesz do następnego pytania
 
-### Wpisz ścieżkę do pliku ręcznie
+### Type the file path manually
 
-Jest to bezpośrednia ścieżka do pliku znajdującego się gdzieś na Twoim lokalnym komputerze
+Jest to bezpośrednia ścieżka do pliku znajdującego się gdzieś na Twoim komputerze
 
-### Czy chcesz użyć obszaru wyszukiwania (haystack)?
+### Would you like to use a haystack?
 
-Tutaj masz możliwość wybrania obszaru, który ma zostać przetworzony. Może to przyspieszyć proces lub zmniejszyć/zawęzić ilość tekstu, który silnik OCR może znaleźć. Musisz podać dane `x`, `y`, `width`, `height` na podstawie następujących pytań:
+Tutaj masz możliwość wybrania obszaru, który ma zostać przetworzony. Może to przyspieszyć proces lub ograniczyć/zawęzić ilość tekstu, jaką może znaleźć silnik OCR. Musisz podać dane `x`, `y`, `width`, `height` w odpowiedzi na następujące pytania:
 
--   Wprowadź współrzędną x:
--   Wprowadź współrzędną y:
--   Wprowadź szerokość:
--   Wprowadź wysokość:
+-   Enter the x coordinate:
+-   Enter the y coordinate:
+-   Enter the width:
+-   Enter the height:
 
-## Czy chcesz użyć trybu zaawansowanego?
+## Do you want to use the advanced mode?
 
-Tryb zaawansowany będzie zawierał dodatkowe funkcje, takie jak:
+Tryb zaawansowany zawiera dodatkowe funkcje, takie jak:
 
 -   ustawianie kontrastu
--   więcej funkcji pojawi się w przyszłości
+-   więcej w przyszłości
 
 ## Demo
 
-Oto demonstracja
+Oto demo
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

@@ -1,54 +1,53 @@
 ---
 id: sponsor
-title: كن راعياً لـ WebdriverIO
+title: كن راعيًا لـ WebdriverIO
+description: "ادعم WebdriverIO ماليًا كشركة أو كفرد عبر GitHub Sponsors أو Tidelift أو OpenCollective، واطّلع على مزايا مستويات الرعاية."
 ---
 
-WebdriverIO، وهو مشروع مفتوح المصدر تحت رخصة MIT، متاح مجانًا للاستخدام. إن استدامة هذا النظام البيئي الواسع، إلى جانب تطوير ميزات مبتكرة، تتحقق من خلال الدعم المالي السخي من رعاة المشروع، الذين يساهمون بشكل كبير في صيانة ونمو المشروع المستمر.
+WebdriverIO هو مشروع مفتوح المصدر مرخّص بموجب رخصة MIT، ومتاح للاستخدام مجانًا. إن استدامة هذا النظام البيئي الواسع، إلى جانب تطوير الميزات المبتكرة، أمر ممكن بفضل الدعم المالي السخي من رعاتنا، الذين يساهمون بشكل كبير في صيانة المشروع ونموه المستمر.
 
-## كيفية الرعاية
-يمكن تقديم الرعاية عبر [GitHub Sponsors](https://github.com/sponsors/webdriverio) أو [Tidelift](enterprise) أو [OpenCollective](https://opencollective.com/webdriverio). يمكن الحصول على الفواتير من خلال نظام الدفع الخاص بـ GitHub. يتم قبول كل من الرعاية الشهرية المتكررة والتبرعات لمرة واحدة. الرعاية المتكررة تمنح الحق في وضع الشعار كما هو محدد في مستويات الرعاية.
+## كيفية الرعاية​
+يمكن تقديم الرعاية عبر [GitHub Sponsors](https://github.com/sponsors/webdriverio) أو [Tidelift](enterprise) أو [OpenCollective](https://opencollective.com/webdriverio). يمكن الحصول على الفواتير من خلال نظام الدفع الخاص بـ GitHub. نقبل كلًا من الرعايات الشهرية المتكررة والتبرعات لمرة واحدة. يحق للرعايات المتكررة وضع الشعارات كما هو محدد في مستويات الرعاية.
 
-إذا كان لديك أسئلة حول المستويات، أو تفاصيل الدفع، أو بيانات ظهور الراعي، يرجى التواصل مع [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
+إذا كانت لديك أسئلة بخصوص المستويات أو تفاصيل الدفع أو بيانات ظهور الرعاة، يرجى التواصل عبر [sponsor@webdriver.io](mailto:sponsor@webdriver.io).
 
-يمكنك أيضًا زيارة [متجر هدايا WebdriverIO](https://shop.webdriver.io/) حيث ستعود جميع الأرباح من المشتريات إلى تطوير المشروع.
+يمكنك أيضًا زيارة [متجر الهدايا التذكارية](https://shop.webdriver.io/) الخاص بـ WebdriverIO حيث ستعود جميع الأرباح من المشتريات إلى تطوير المشروع.
 
-## رعاية WebdriverIO كشركة
-رعاية WebdriverIO تمنحك ظهورًا كبيرًا من خلال موقعنا الإلكتروني (أكثر من 60 ألف مشاهدة للصفحة شهريًا) وملفات README للمشروع على GitHub. بالإضافة إلى ذلك، فإن دعم البرامج مفتوحة المصدر يحسن سمعة علامتك التجارية، وهو أصل مهم لأي شركة تتفاعل مع المطورين.
+## رعاية WebdriverIO كشركة​
+تمنحك رعاية WebdriverIO ظهورًا كبيرًا من خلال موقعنا الإلكتروني (أكثر من 60 ألف مشاهدة صفحة شهريًا) وملفات README الخاصة بمشاريعنا على GitHub. بالإضافة إلى ذلك، فإن دعم البرمجيات مفتوحة المصدر يحسّن سمعة علامتك التجارية، وهي أصل مهم لأي شركة تتعامل مع المطورين.
 
-إذا كنت تستخدم WebdriverIO لاختبار منتج يدر دخلاً، فمن المنطقي تجاريًا رعاية تطوير WebdriverIO: فهذا يضمن بقاء المشروع الذي يعتمد عليه منتجك بصحة جيدة ويتم صيانته بنشاط. الظهور والصورة الإيجابية للعلامة التجارية في مجتمع WebdriverIO تجعل من السهل أيضًا جذب وتوظيف مطورين ومهندسي ضمان جودة ذوي خبرة في WebdriverIO.
+إذا كنت تستخدم WebdriverIO لاختبار منتج يدرّ أرباحًا، فمن المنطقي تجاريًا أن ترعى تطوير WebdriverIO: فهذا يضمن بقاء المشروع الذي يعتمد عليه منتجك سليمًا ومُصانًا بنشاط. كما أن الظهور والصورة الإيجابية للعلامة التجارية في مجتمع WebdriverIO يسهّلان جذب وتوظيف المطورين ومهندسي ضمان الجودة ذوي الخبرة في WebdriverIO.
 
-__ملاحظة:__ نحن لا نقبل تبرعات من مواقع المقامرة، أو خدمات كتابة الأوراق، أو المجموعات السياسية، أو مجموعات الكراهية، أو مواقع الترفيه للبالغين، أو أي منظمة أخرى نعتقد أنها لا تساهم في صالح المشروع. نحن لا نقدم إعلانات، نحن مشروع مفتوح المصدر يبحث عن دعم مالي من مستخدمينا.
+__ملاحظة:__ لا نقبل التبرعات من مواقع القمار، أو خدمات كتابة الأبحاث، أو الجماعات السياسية، أو جماعات الكراهية، أو مواقع الترفيه للبالغين، أو أي منظمة أخرى لا نعتقد أنها تساهم في خير المشروع. نحن لا نقدّم إعلانات، بل نحن مشروع مفتوح المصدر يبحث عن دعم مالي من مستخدميه.
 
-## رعاية WebdriverIO كفرد
-إذا كنت مستخدمًا فرديًا واستمتعت بإنتاجية استخدام WebdriverIO، فكر في التبرع كعلامة تقدير - مثل شراء القهوة لنا من وقت لآخر. العديد من أعضاء فريقنا يقبلون الرعاية والتبرعات عبر GitHub Sponsors.
+## رعاية WebdriverIO كفرد​
+إذا كنت مستخدمًا فرديًا واستمتعت بالإنتاجية التي يوفرها استخدام WebdriverIO، ففكّر في التبرع كعربون تقدير - كأن تشتري لنا القهوة من حين لآخر. يقبل العديد من أعضاء فريقنا الرعايات والتبرعات عبر GitHub Sponsors.
 
-يمكنك أيضًا محاولة إقناع صاحب العمل برعاية WebdriverIO كشركة. قد لا يكون هذا سهلاً، ولكن الرعاية التجارية عادة ما يكون لها تأثير أكبر بكثير على استدامة مشاريع البرامج مفتوحة المصدر من التبرعات الفردية، لذلك ستساعدنا بشكل أكبر إذا نجحت في ذلك.
+يمكنك أيضًا محاولة إقناع صاحب العمل الذي تعمل لديه برعاية WebdriverIO كشركة. قد لا يكون ذلك سهلًا، لكن رعايات الشركات عادةً ما يكون لها تأثير أكبر بكثير على استدامة المشاريع مفتوحة المصدر مقارنةً بالتبرعات الفردية، لذا ستساعدنا كثيرًا إذا نجحت في ذلك.
 
-## فوائد المستويات
+## مزايا المستويات​
 
-- __💎 المميز (1000 دولار أمريكي/شهر أو أعلى):__
-  - مقتصر على راعيين عالميًا
-  - وضع شعار حصري في الجزء العلوي من الصفحة الرئيسية لـ webdriver.io (حوالي 2.8 ألف زائر فريد يوميًا).
-  - وضع الشعار الأكثر بروزًا في جميع المواقع من المستويات أدناه.
-  - ضمان الحصرية لمدة عام واحد على الأقل، لا يمكن لأي كيان آخر خلالها "المزايدة" أو الاستبدال، مما يضمن فترة ثابتة من الشراكة والظهور.
-- __🥇 الذهبي (500 دولار أمريكي/شهر):__
-  - وضع شعار كبير على الصفحة الرئيسية لـ [webdriver.io](https://webdriver.io/)
-  - وضع شعار كبير في [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) في مستودع [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
-- __🥈 الفضي (250 دولار أمريكي/شهر):__
-  - وضع شعار متوسط على صفحة الرعاة هذه
-  - وضع شعار متوسط في [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) في مستودع [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
-- __🥉 البرونزي (100 دولار أمريكي/شهر):__
-  - سيتم وضع اسمك أو شعار شركتك (صغير) في [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) و [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md).
-- __🍺 داعم سخي (50 دولار أمريكي/شهر):__
-  - سيتم إدراج اسمك ضمن قسم "الداعمين السخيين" في [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) و [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md).
-- __☕️ داعم فردي (5 دولار أمريكي/شهر):__
+- __<TierIcon tier="premium" /> المستوى المميز (1000 دولار أمريكي شهريًا أو أكثر):__
+  - يقتصر على راعيَين اثنين على مستوى العالم
+  - وضع حصري للشعار في الجزء العلوي المرئي من الصفحة الرئيسية لموقع webdriver.io (حوالي 2.8 ألف زائر فريد يوميًا).
+  - الوضع الأبرز للشعار في جميع المواقع الخاصة بالمستويات الأدنى.
+  - حصرية مضمونة لمدة عام واحد على الأقل، لا يمكن خلالها لأي جهة أخرى "المزايدة" عليهم أو استبدالهم، مما يضمن فترة ثابتة من الشراكة والظهور.
+- __<TierIcon tier="gold" /> المستوى الذهبي (500 دولار أمريكي شهريًا):__
+  - وضع شعار كبير على الصفحة الرئيسية لموقع [webdriver.io](https://webdriver.io/)
+  - وضع شعار كبير في ملفي [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) في مستودع [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
+- __<TierIcon tier="silver" /> المستوى الفضي (250 دولارًا أمريكيًا شهريًا):__
+  - وضع شعار متوسط الحجم في صفحة الرعاة هذه
+  - وضع شعار متوسط الحجم في ملفي [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) في مستودع [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
+- __<TierIcon tier="bronze" /> المستوى البرونزي (100 دولار أمريكي شهريًا):__
+  - سيتم وضع اسمك أو شعار شركتك (بحجم صغير) في ملفات [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) و[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md).
+- __<TierIcon tier="backer" /> داعم سخي (50 دولارًا أمريكيًا شهريًا):__
+  - سيُدرج اسمك ضمن قسم "Generous Backers" في ملفات [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) و[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md).
+- __<TierIcon tier="individual" /> داعم فردي (5 دولارات أمريكية شهريًا):__
   - إدراج الاسم في ملف [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) في مستودع [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
-
----
 
 ## الرعاة الحاليون
 
-### 💎 المميز
+### المستوى المميز <TierIcon tier="premium" /> {#premium}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/browserstack_black.svg"
@@ -58,20 +57,20 @@ __ملاحظة:__ نحن لا نقبل تبرعات من مواقع المقام
     link="https://www.browserstack.com/automation-webdriverio"
 />
 
-<br />
-<br />
-
-### 🥇 الذهبي
-
 <ImageSwitcher
-    lightImageSrc="/img/sponsors/jetify_black.png"
-    darkImageSrc="/img/sponsors/jetify_white.png"
-    alt="Jetify"
-    link="https://www.jetify.com/"
-    width="250"
+    lightImageSrc="/img/sponsors/momentic_black.svg"
+    darkImageSrc="/img/sponsors/momentic_white.svg"
+    alt="Momentic"
     target="_blank"
-    style={{ marginRight: '20px', position: 'relative', top: '8px' }}
+    link="https://momentic.ai/"
+    width="300"
+    style={{ marginLeft: '30px', position: 'relative', top: '6px' }}
 />
+
+<br />
+<br />
+
+### المستوى الذهبي <TierIcon tier="gold" /> {#gold}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testmu_ai_black.svg"
@@ -82,11 +81,11 @@ __ملاحظة:__ نحن لا نقبل تبرعات من مواقع المقام
     width="250"
 />
 
-كن [راعياً ذهبياً](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me).
+كن [راعيًا ذهبيًا](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me).
 
 <br />
 
-### 🥈 الفضي
+### المستوى الفضي <TierIcon tier="silver" /> {#silver}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testingbot.svg"
@@ -97,11 +96,20 @@ __ملاحظة:__ نحن لا نقبل تبرعات من مواقع المقام
     target="_blank"
 />
 
-كن [راعياً فضياً](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me).
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/sap.png"
+    darkImageSrc="/img/sponsors/sap.png"
+    alt="SAP"
+    link="https://www.sap.com/"
+    width="150"
+    target="_blank"
+/>
+
+كن [راعيًا فضيًا](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me).
 
 <br />
 
-### 🥉 البرونزي
+### المستوى البرونزي <TierIcon tier="bronze" /> {#bronze}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/eslint_black.svg"
@@ -121,14 +129,23 @@ __ملاحظة:__ نحن لا نقبل تبرعات من مواقع المقام
     width="150"
 />
 
-كن [راعياً برونزياً](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me).
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/rapidproxy.png"
+    darkImageSrc="/img/sponsors/rapidproxy.png"
+    alt="Rapidproxy"
+    target="_blank"
+    link="https://www.rapidproxy.io/?ref=webdriverio"
+    width="200"
+/>
+
+كن [راعيًا برونزيًا](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me).
 
 <br />
 <br />
 
-### 🙇 رعاة سابقون بارزون
+### أبرز الرعاة السابقين <TierIcon tier="past" /> {#past}
 
-نحن ممتنون لدعم جميع رعاتنا! فيما يلي بعض الشركات التي دعمت WebdriverIO في الماضي.
+نحن ممتنون لدعم جميع رعاتنا! إليك بعض الشركات التي دعمت WebdriverIO في الماضي.
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/saucelabs_black.svg"

@@ -1,9 +1,10 @@
 ---
 id: service-options
-title: Opções de Serviço
+title: Opções do Serviço
+description: "Configure as opções padrão do serviço visual, incluindo captura de screenshots, screenshots de página inteira, baselines, pastas e relatórios."
 ---
 
-As opções de serviço são as configurações que podem ser definidas quando o serviço é instanciado e serão utilizadas para cada chamada de método.
+As opções do serviço são as opções que podem ser definidas quando o serviço é instanciado e serão usadas em cada chamada de método.
 
 ```js
 // wdio.conf.(js|ts)
@@ -16,7 +17,7 @@ export const config = {
         [
             "visual",
             {
-                // The options
+                // As opções
             },
         ],
     ],
@@ -24,34 +25,105 @@ export const config = {
 };
 ```
 
-## Opções Padrão
+# Opções Padrão
 
-### `addressBarShadowPadding`
+## Captura de screenshots
 
--   **Tipo:** `number`
--   **Obrigatório:** Não
--   **Padrão:** `6`
--   **Contextos de Aplicação Suportados:** Web
+---
 
-O preenchimento que precisa ser adicionado à barra de endereço no iOS e Android para fazer um recorte adequado da viewport.
+### `hideScrollBars`
 
-### `autoElementScroll`
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
 
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `true`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
+Oculta as barras de rolagem na aplicação. Se definido como true, todas as barras de rolagem serão desativadas antes de capturar um screenshot. O padrão é `true` para evitar problemas adicionais.
 
-Esta opção permite desativar a rolagem automática do elemento para a visualização quando uma captura de tela do elemento é criada.
+</Option>
+### `disableBlinkingCursor`
 
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview)">
+
+Ativa/Desativa o "piscar" do cursor de todos os `input`, `textarea` e `[contenteditable]` na aplicação. Se definido como `true`, o cursor será definido como `transparent` antes de capturar um screenshot
+e restaurado ao final
+
+</Option>
+### `disableCSSAnimation`
+
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview)">
+
+Ativa/Desativa todas as animações CSS na aplicação. Se definido como `true`, todas as animações serão desativadas antes de capturar um screenshot
+e restauradas ao final
+
+</Option>
+### `enableLayoutTesting`
+
+<Option type="boolean" default="false" required="No" contexts="Web">
+
+Isso ocultará todo o texto de uma página, de modo que apenas o layout será usado para comparação. A ocultação é feita adicionando o estilo `'color': 'transparent !important'` a **cada** elemento.
+
+Para ver o resultado, consulte [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+
+:::info
+Ao usar esta flag, cada elemento que contém texto (não apenas `p, h1, h2, h3, h4, h5, h6, span, a, li`, mas também `div|button|..`) receberá essa propriedade. **Não** há opção para personalizar isso.
+:::
+
+</Option>
+### `ignoreRegionPadding`
+
+<Option type="number" default="1" required="No" contexts="Web, Hybrid App (Webview)">
+
+Padding em pixels do dispositivo adicionado a cada lado das regiões ignoradas, tornando cada região 2× esse valor mais larga e mais alta. Isso ajuda a evitar diferenças de 1 px nas bordas que podem aparecer em telas com DPR alto ou com o protocolo de screenshot BiDi. Defina como `0` para desativar.
+
+</Option>
+### `waitForFontsLoaded`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
+
+Fontes, incluindo fontes de terceiros, podem ser carregadas de forma síncrona ou assíncrona. O carregamento assíncrono significa que as fontes podem ser carregadas depois que o WebdriverIO determinar que uma página foi totalmente carregada. Para evitar problemas de renderização de fontes, este módulo, por padrão, aguardará que todas as fontes sejam carregadas antes de capturar um screenshot.
+
+</Option>
+## Screenshots de página inteira
+
+---
+
+### `userBasedFullPageScreenshot`
+
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview) **Introduced in visual-service@7.0.0">
+
+Por padrão, screenshots de página inteira na web desktop são capturados usando o protocolo WebDriver BiDi, que permite screenshots rápidos, estáveis e consistentes sem rolagem.
+Quando userBasedFullPageScreenshot é definido como true, o processo de captura simula um usuário real: rolando pela página, capturando screenshots do tamanho do viewport e juntando-os. Este método é útil para páginas com conteúdo carregado sob demanda (lazy-loading) ou renderização dinâmica que depende da posição de rolagem.
+
+Use esta opção se sua página depende de conteúdo carregado durante a rolagem ou se você deseja preservar o comportamento dos métodos de screenshot mais antigos.
+
+</Option>
+### `fullPageScrollTimeout`
+
+<Option type="number" default="1500" required="No" contexts="Web">
+
+O tempo limite em milissegundos para aguardar após uma rolagem. Isso pode ajudar a identificar páginas com lazy loading.
+
+:::info
+
+Isso só funcionará quando a opção de serviço/método `userBasedFullPageScreenshot` estiver definida como `true`, veja também [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedfullpagescreenshot)
+
+:::
+
+</Option>
+## Mobile e dispositivo
+
+---
+
+### `isHybridApp`
+
+<Option type="boolean" default="false" required="No" contexts="Hybrid App (Webview)">
+
+Defina como `true` ao testar um aplicativo híbrido (um shell nativo com uma ou mais webviews incorporadas). Isso ajusta como o módulo lida com os recortes da barra de status e da barra de endereço para telas baseadas em webview, recorrendo a padrões seguros quando os dados de retângulo nativos do dispositivo não estão disponíveis.
+
+</Option>
 ### `addIOSBezelCorners`
 
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `false`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-Adiciona cantos de moldura e entalhe/ilha dinâmica à captura de tela para dispositivos iOS.
+Adiciona cantos de moldura e notch/dynamic island ao screenshot para dispositivos iOS.
 
 :::info NOTA
 Isso só pode ser feito quando o nome do dispositivo **PODE** ser determinado automaticamente e corresponde à seguinte lista de nomes de dispositivos normalizados. A normalização será feita por este módulo.
@@ -77,48 +149,41 @@ Isso só pode ser feito quando o nome do dispositivo **PODE** ser determinado au
 -   iPhone 14 Pro: `iphone14pro`
 -   iPhone 14 Pro Max: `iphone14promax`
     **iPads:**
--   iPad Mini 6th Generation: `ipadmini`
--   iPad Air 4th Generation: `ipadair`
--   iPad Air 5th Generation: `ipadair`
--   iPad Pro (11-inch) 1st Generation: `ipadpro11`
--   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
--   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
--   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
--   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
--   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+-   iPad Mini 6ª Geração: `ipadmini`
+-   iPad Air 4ª Geração: `ipadair`
+-   iPad Air 5ª Geração: `ipadair`
+-   iPad Pro (11 polegadas) 1ª Geração: `ipadpro11`
+-   iPad Pro (11 polegadas) 2ª Geração: `ipadpro11`
+-   iPad Pro (11 polegadas) 3ª Geração: `ipadpro11`
+-   iPad Pro (12,9 polegadas) 3ª Geração: `ipadpro129`
+-   iPad Pro (12,9 polegadas) 4ª Geração: `ipadpro129`
+-   iPad Pro (12,9 polegadas) 5ª Geração: `ipadpro129`
 :::
 
-### `autoSaveBaseline`
+</Option>
+### `addressBarShadowPadding`
 
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `true`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
+<Option type="number" default="6" required="No" contexts="Web">
 
-Se nenhuma imagem de referência for encontrada durante a comparação, a imagem é automaticamente copiada para a pasta de referência.
+O padding que precisa ser adicionado à barra de endereço no iOS e Android para fazer um recorte adequado do viewport.
 
-### `alwaysSaveActualImage`
+</Option>
+### `toolBarShadowPadding`
 
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `true`
--   **Contextos de Aplicação Suportados:** Todos
+<Option type="number" default={`6 for Android and \`15\` for iOS (\`6\` by default and \`9\` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)`} required="No" contexts="Web">
 
-Quando esta opção é definida como `false`:
+O padding que precisa ser adicionado à barra de ferramentas no iOS e Android para fazer um recorte adequado do viewport.
 
-- não salva a imagem atual quando não há **nenhuma** diferença
-- não armazena o arquivo jsonreport quando `createJsonReportFiles` está definido como `true`. Também mostrará um aviso nos logs de que `createJsonReportFiles` está desativado
+</Option>
+## Gerenciamento de arquivos e pastas
 
-Isso deve criar um melhor desempenho porque nenhum arquivo é escrito no sistema e deve garantir que não haja muito ruído na pasta `actual`.
+---
 
 ### `baselineFolder`
 
--   **Tipo:** `string|()=> string`
--   **Obrigatório:** Não
--   **Padrão:** `.path/to/testfile/__snapshots__/`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
+<Option type="string|()=> string" default=".path/to/testfile/__snapshots__/" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-O diretório que conterá todas as imagens de referência usadas durante a comparação. Se não for definido, o valor padrão será usado, que armazenará os arquivos em uma pasta `__snapshots__/` ao lado da especificação que executa os testes visuais. Uma função que retorna uma `string` também pode ser usada para definir o valor `baselineFolder`:
+O diretório que conterá todas as imagens de baseline usadas durante a comparação. Se não for definido, será usado o valor padrão, que armazenará os arquivos em uma pasta `__snapshots__/` ao lado do spec que executa os testes visuais. Uma função que retorna uma `string` também pode ser usada para definir o valor de `baselineFolder`:
 
 ```js
 {
@@ -127,32 +192,127 @@ O diretório que conterá todas as imagens de referência usadas durante a compa
 // OU
 {
     baselineFolder: () => {
-        // Faz alguma mágica aqui
+        // Faça alguma mágica aqui
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
 ```
 
+</Option>
+### `screenshotPath`
+
+<Option type="string | () => string" default=".tmp/" required="no" contexts="Web, Hybrid App (Webview), Native App">
+
+O diretório que conterá todos os screenshots atuais/de diferença. Se não for definido, será usado o valor padrão. Uma função que
+retorna uma string também pode ser usada para definir o valor de screenshotPath:
+
+```js
+{
+    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
+},
+// OU
+{
+    screenshotPath: () => {
+        // Faça alguma mágica aqui
+        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
+    }
+}
+```
+
+</Option>
 ### `clearRuntimeFolder`
 
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `false`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-Excluir pasta de tempo de execução (`actual` e `diff`) na inicialização
+Exclui a pasta de runtime (`actual` & `diff) na inicialização
 
 :::info NOTA
-Isso só funcionará quando o [`screenshotPath`](#screenshotpath) for definido através das opções do plugin e **NÃO FUNCIONARÁ** quando você definir as pastas nos métodos
+Isso só funcionará quando o [`screenshotPath`](#screenshotpath) for definido através das opções do plugin, e **NÃO FUNCIONARÁ** quando você definir as pastas nos métodos
 :::
+
+</Option>
+### `savePerInstance`
+
+<Option type="boolean" default="false" required="no" contexts="Web, Hybrid App (Webview), Native App">
+
+Salva as imagens por instância em uma pasta separada, de modo que, por exemplo, todos os screenshots do Chrome serão salvos em uma pasta do Chrome como `desktop_chrome`.
+
+</Option>
+### `formatImageName`
+
+<Option type="string" default={`{tag}-{browserName}-{width}x{height}-dpr-{dpr}`} required="No" contexts="Web, Hybrid App (Webview), Native App">
+
+O nome das imagens salvas pode ser personalizado passando o parâmetro `formatImageName` com uma string de formato como:
+
+```sh
+{tag}-{browserName}-{width}x{height}-dpr-{dpr}
+```
+
+As seguintes variáveis podem ser passadas para formatar a string e serão lidas automaticamente das capabilities da instância.
+Se não puderem ser determinadas, os padrões serão usados.
+
+-   `browserName`: O nome do navegador nas capabilities fornecidas
+-   `browserVersion`: A versão do navegador fornecida nas capabilities
+-   `deviceName`: O nome do dispositivo nas capabilities
+-   `dpr`: A proporção de pixels do dispositivo (device pixel ratio)
+-   `height`: A altura da tela
+-   `logName`: O logName das capabilities
+-   `mobile`: Isso adicionará `_app`, ou o nome do navegador após o `deviceName` para distinguir screenshots de apps de screenshots de navegadores
+-   `platformName`: O nome da plataforma nas capabilities fornecidas
+-   `platformVersion`: A versão da plataforma fornecida nas capabilities
+-   `tag`: A tag fornecida nos métodos que estão sendo chamados
+-   `width`: A largura da tela
+
+:::info
+
+Você não pode fornecer caminhos/pastas personalizados no `formatImageName`. Se quiser alterar o caminho, verifique a alteração das seguintes opções:
+
+- [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
+- [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
+- [`folderOptions`](/docs/visual-testing/method-options#folder-options) por método
+
+:::
+
+</Option>
+## Comportamento de baseline e salvamento
+
+---
+
+### `autoSaveBaseline`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview), Native App">
+
+Se nenhuma imagem de baseline for encontrada durante a comparação, a imagem será automaticamente copiada para a pasta de baseline.
+
+</Option>
+### `autoElementScroll`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
+
+Esta opção permite desativar a rolagem automática do elemento para a área visível quando um screenshot de elemento é criado.
+
+</Option>
+### `alwaysSaveActualImage`
+
+<Option type="boolean" default="true" required="No" contexts="All">
+
+Ao definir esta opção como `false`, ela irá:
+
+- não salvar a imagem atual quando **não** houver diferença
+- não armazenar o arquivo de relatório JSON quando `createJsonReportFiles` estiver definido como `true`. Também mostrará um aviso nos logs de que `createJsonReportFiles` está desativado
+
+Isso deve proporcionar um melhor desempenho, pois nenhum arquivo é gravado no sistema, e deve garantir que não haja muito ruído na pasta `actual`.
+
+</Option>
+## Relatórios
+
+---
 
 ### `createJsonReportFiles` **(NOVO)**
 
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `false`
+<Option type="boolean" default="false" required="No">
 
-Agora você tem a opção de exportar os resultados da comparação para um arquivo de relatório JSON. Ao fornecer a opção `createJsonReportFiles: true`, cada imagem comparada criará um relatório armazenado na pasta `actual`, ao lado de cada resultado de imagem `actual`. A saída será assim:
+Agora você tem a opção de exportar os resultados da comparação para um arquivo de relatório JSON. Ao fornecer a opção `createJsonReportFiles: true`, cada imagem comparada criará um relatório armazenado na pasta `actual`, ao lado de cada resultado de imagem `actual`. A saída ficará assim:
 
 ```json
 {
@@ -215,14 +375,14 @@ Agora você tem a opção de exportar os resultados da comparação para um arqu
 }
 ```
 
-Quando todos os testes são executados, um novo arquivo JSON com a coleção das comparações será gerado e pode ser encontrado na raiz da sua pasta `actual`. Os dados são agrupados por:
+Quando todos os testes forem executados, um novo arquivo JSON com a coleção das comparações será gerado e poderá ser encontrado na raiz da sua pasta `actual`. Os dados são agrupados por:
 
 -   `describe` para Jasmine/Mocha ou `Feature` para CucumberJS
 -   `it` para Jasmine/Mocha ou `Scenario` para CucumberJS
-    e depois ordenados por:
+    e então ordenados por:
 -   `commandName`, que são os nomes dos métodos de comparação usados para comparar as imagens
--   `instanceData`, navegador primeiro, depois dispositivo, depois plataforma
-    será assim:
+-   `instanceData`, primeiro o navegador, depois o dispositivo, depois a plataforma
+    ficará assim
 
 ```json
 [
@@ -265,318 +425,142 @@ Quando todos os testes são executados, um novo arquivo JSON com a coleção das
 ]
 ```
 
-Os dados do relatório darão a você a oportunidade de construir seu próprio relatório visual sem fazer toda a mágica e coleta de dados você mesmo.
+Os dados do relatório lhe darão a oportunidade de criar seu próprio relatório visual sem precisar fazer toda a mágica e a coleta de dados por conta própria.
 
 :::info NOTA
 Você precisa usar a versão `5.2.0` ou superior do `@wdio/visual-testing`
 :::
 
-### `disableBlinkingCursor`
+</Option>
+### `diffPixelBoundingBoxProximity`
 
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `false`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
+<Option type="number" default="5" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-Ativar/Desativar o "piscar" do cursor em todos os elementos `input`, `textarea`, `[contenteditable]` na aplicação. Se definido como `true`, o cursor será configurado como `transparent` antes de tirar uma captura de tela
-e redefinido quando concluído
+A proximidade de pixels usada para agrupar os pixels de diferença no relatório JSON gerado por [`createJsonReportFiles`](#createjsonreportfiles). Valores mais altos agrupam mais pixels em menos bounding boxes; valores mais baixos produzem caixas mais precisas, porém mais numerosas.
 
-### `disableCSSAnimation`
+</Option>
+## Geral
 
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `false`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
-
-Ativar/Desativar todas as animações CSS na aplicação. Se definido como `true`, todas as animações serão desativadas antes de tirar uma captura de tela
-e redefinidas quando concluído
-
-### `enableLayoutTesting`
-
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `false`
--   **Contextos de Aplicação Suportados:** Web
-
-Isso ocultará todo o texto em uma página para que apenas o layout seja usado para comparação. A ocultação será feita adicionando o estilo `'color': 'transparent !important'` a **cada** elemento.
-
-Para a saída, consulte [Saída de Teste](/docs/visual-testing/test-output#enablelayouttesting)
-
-:::info
-Ao usar esta flag, cada elemento que contém texto (não apenas `p, h1, h2, h3, h4, h5, h6, span, a, li`, mas também `div|button|..`) receberá esta propriedade. **Não** há opção para personalizar isso.
-:::
-
-### `formatImageName`
-
--   **Tipo:** `string`
--   **Obrigatório:** Não
--   **Padrão:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
-
-O nome das imagens salvas pode ser personalizado passando o parâmetro `formatImageName` com uma string de formato como:
-
-```sh
-{tag}-{browserName}-{width}x{height}-dpr-{dpr}
-```
-
-As seguintes variáveis podem ser passadas para formatar a string e serão lidas automaticamente das capacidades da instância.
-Se não puderem ser determinadas, os padrões serão usados.
-
--   `browserName`: O nome do navegador nas capacidades fornecidas
--   `browserVersion`: A versão do navegador fornecida nas capacidades
--   `deviceName`: O nome do dispositivo das capacidades
--   `dpr`: A proporção de pixels do dispositivo
--   `height`: A altura da tela
--   `logName`: O logName das capacidades
--   `mobile`: Isso adicionará `_app` ou o nome do navegador após o `deviceName` para distinguir capturas de tela de aplicativos das capturas de tela de navegador
--   `platformName`: O nome da plataforma nas capacidades fornecidas
--   `platformVersion`: A versão da plataforma fornecida nas capacidades
--   `tag`: A tag fornecida nos métodos que estão sendo chamados
--   `width`: A largura da tela
-
-:::info
-
-Você não pode fornecer caminhos/pastas personalizados no `formatImageName`. Se você quiser alterar o caminho, verifique a alteração das seguintes opções:
-
-- [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
-- [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) por método
-
-:::
-
-### `fullPageScrollTimeout`
-
--   **Tipo:** `number`
--   **Obrigatório:** Não
--   **Padrão:** `1500`
--   **Contextos de Aplicação Suportados:** Web
-
-O tempo limite em milissegundos para aguardar após uma rolagem. Isso pode ajudar a identificar páginas com carregamento preguiçoso.
-
-:::info
-
-Isso só funcionará quando a opção de serviço/método `userBasedFullPageScreenshot` estiver definida como `true`, consulte também [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
-
-:::
-
-### `hideScrollBars`
-
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `true`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
-
-Oculta barras de rolagem na aplicação. Se definido como true, todas as barras de rolagem serão desativadas antes de tirar uma captura de tela. Isso é definido como padrão `true` para evitar problemas extras.
+---
 
 ### `logLevel`
 
--   **Tipo:** `string`
--   **Obrigatório:** Não
--   **Padrão:** `info`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
+<Option type="string" default="info" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
 Adiciona logs extras, as opções são `debug | info | warn | silent`
 
 Erros são sempre registrados no console.
 
-### `savePerInstance`
-
--   **Tipo:** `boolean`
--   **Padrão:** `false`
--   **Obrigatório:** não
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
-
-Salva as imagens por instância em uma pasta separada, por exemplo, todas as capturas de tela do Chrome serão salvas em uma pasta Chrome como `desktop_chrome`.
-
-### `screenshotPath`
-
--   **Tipo:** `string | () => string`
--   **Padrão:** `.tmp/`
--   **Obrigatório:** não
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo
-
-O diretório que conterá todas as capturas de tela reais/diferentes. Se não for definido, o valor padrão será usado. Uma função que
-retorna uma string também pode ser usada para definir o valor screenshotPath:
-
-```js
-{
-    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
-},
-// OU
-{
-    screenshotPath: () => {
-        // Faz alguma mágica aqui
-        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
-    }
-}
-```
-
-### `toolBarShadowPadding`
-
--   **Tipo:** `number`
--   **Obrigatório:** Não
--   **Padrão:** `6` para Android e `15` para iOS (`6` por padrão e `9` serão adicionados automaticamente para a possível barra inicial em iPhones com entalhe ou iPads que têm uma barra inicial)
--   **Contextos de Aplicação Suportados:** Web
-
-O preenchimento que precisa ser adicionado à barra de ferramentas no iOS e Android para fazer um recorte adequado da viewport.
-
-### `userBasedFullPageScreenshot`
-
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `false`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview) **Introduzido no visual-service@7.0.0**
-
-Por padrão, as capturas de tela de página completa na web desktop são capturadas usando o protocolo WebDriver BiDi, que permite capturas de tela rápidas, estáveis e consistentes sem rolagem.
-Quando userBasedFullPageScreenshot é definido como true, o processo de captura de tela simula um usuário real: rolando pela página, capturando capturas de tela do tamanho da viewport e juntando-as. Este método é útil para páginas com conteúdo de carregamento preguiçoso ou renderização dinâmica que depende da posição de rolagem.
-
-Use esta opção se sua página depende do carregamento de conteúdo durante a rolagem ou se você quiser preservar o comportamento dos métodos de captura de tela mais antigos.
-
-### `waitForFontsLoaded`
-
--   **Tipo:** `boolean`
--   **Obrigatório:** Não
--   **Padrão:** `true`
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview)
-
-Fontes, incluindo fontes de terceiros, podem ser carregadas de forma síncrona ou assíncrona. O carregamento assíncrono significa que as fontes podem carregar depois que o WebdriverIO determina que uma página foi totalmente carregada. Para evitar problemas de renderização de fontes, este módulo, por padrão, aguardará que todas as fontes sejam carregadas antes de tirar uma captura de tela.
-
-## Opções de Tabulação
+</Option>
+## Opções de Tabbable
 
 :::info NOTA
 
-Este módulo também suporta o desenho da maneira como um usuário usaria seu teclado para _tabular_ pelo site, desenhando linhas e pontos de elemento tabulável para elemento tabulável.<br/>
-O trabalho é inspirado no post do blog de [Viv Richards](https://github.com/vivrichards600) sobre ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-A maneira como os elementos tabuláveis são selecionados é baseada no módulo [tabbable](https://github.com/davidtheclark/tabbable). Se houver algum problema relacionado à tabulação, verifique o [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) e especialmente a seção [Mais detalhes](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+Este módulo também suporta desenhar a forma como um usuário usaria o teclado para navegar com _tab_ pelo site, desenhando linhas e pontos de um elemento tabulável para outro.<br/>
+O trabalho foi inspirado no post do blog de [Viv Richards](https://github.com/vivrichards600) sobre ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
+A forma como os elementos tabuláveis são selecionados é baseada no módulo [tabbable](https://github.com/davidtheclark/tabbable). Se houver algum problema relacionado à tabulação, verifique o [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) e especialmente a [seção More details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
 ### `tabbableOptions`
 
--   **Tipo:** `object`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 As opções que podem ser alteradas para as linhas e pontos se você usar os métodos `{save|check}Tabbable`. As opções são explicadas abaixo.
 
+</Option>
 #### `tabbableOptions.circle`
 
--   **Tipo:** `object`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 As opções para alterar o círculo.
 
+</Option>
 ##### `tabbableOptions.circle.backgroundColor`
 
--   **Tipo:** `string`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 A cor de fundo do círculo.
 
+</Option>
 ##### `tabbableOptions.circle.borderColor`
 
--   **Tipo:** `string`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 A cor da borda do círculo.
 
+</Option>
 ##### `tabbableOptions.circle.borderWidth`
 
--   **Tipo:** `number`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 A largura da borda do círculo.
 
+</Option>
 ##### `tabbableOptions.circle.fontColor`
 
--   **Tipo:** `string`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-A cor da fonte do texto no círculo. Isso só será mostrado se [`showNumber`](./#tabbableoptionscircleshownumber) estiver definido como `true`.
+A cor da fonte do texto no círculo. Isso só será exibido se [`showNumber`](./#tabbableoptionscircleshownumber) estiver definido como `true`.
 
+</Option>
 ##### `tabbableOptions.circle.fontFamily`
 
--   **Tipo:** `string`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-A família da fonte do texto no círculo. Isso só será mostrado se [`showNumber`](./#tabbableoptionscircleshownumber) estiver definido como `true`.
+A família da fonte do texto no círculo. Isso só será exibido se [`showNumber`](./#tabbableoptionscircleshownumber) estiver definido como `true`.
 
 Certifique-se de definir fontes que sejam suportadas pelos navegadores.
 
+</Option>
 ##### `tabbableOptions.circle.fontSize`
 
--   **Tipo:** `number`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-O tamanho da fonte do texto no círculo. Isso só será mostrado se [`showNumber`](./#tabbableoptionscircleshownumber) estiver definido como `true`.
+O tamanho da fonte do texto no círculo. Isso só será exibido se [`showNumber`](./#tabbableoptionscircleshownumber) estiver definido como `true`.
 
+</Option>
 ##### `tabbableOptions.circle.size`
 
--   **Tipo:** `number`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 O tamanho do círculo.
 
+</Option>
 ##### `tabbableOptions.circle.showNumber`
 
--   **Tipo:** `showNumber`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="showNumber" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 Mostra o número da sequência de tabulação no círculo.
 
+</Option>
 #### `tabbableOptions.line`
 
--   **Tipo:** `object`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 As opções para alterar a linha.
 
+</Option>
 ##### `tabbableOptions.line.color`
 
--   **Tipo:** `string`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 A cor da linha.
 
+</Option>
 ##### `tabbableOptions.line.width`
 
--   **Tipo:** `number`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 A largura da linha.
 
+</Option>
 ## Opções de comparação
 
 ### `compareOptions`
 
--   **Tipo:** `object`
--   **Obrigatório:** Não
--   **Padrão:** Veja [aqui](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) para todos os valores padrão
--   **Contextos de Aplicação Suportados:** Web, Aplicativo Híbrido (Webview), Aplicativo Nativo (Veja [Opções de comparação do método](./method-options#compare-check-options) para mais informações)
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values" required="No" contexts="Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)">
 
-As opções de comparação também podem ser definidas como opções de serviço, elas são descritas nas [Opções de comparação do método](/docs/visual-testing/method-options#compare-check-options)
+As opções de comparação também podem ser definidas como opções do serviço; elas estão descritas em [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+
+</Option>

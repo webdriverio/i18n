@@ -1,9 +1,10 @@
 ---
 id: ocr-click-on-text
 title: ocrClickOnText
+description: "Haz clic en un elemento por su texto visible con ocrClickOnText, que encuentra el texto en pantalla mediante OCR y coincidencia difusa."
 ---
 
-Haz clic en un elemento basado en los textos proporcionados. El comando buscará el texto proporcionado e intentará encontrar una coincidencia basada en Lógica Difusa de [Fuse.js](https://fusejs.io/). Esto significa que si proporcionas un selector con un error tipográfico, o el texto encontrado no es una coincidencia 100%, aún intentará devolverte un elemento. Mira los [registros](#logs) a continuación.
+Hace clic en un elemento basándose en los textos proporcionados. El comando buscará el texto proporcionado e intentará encontrar una coincidencia basada en la lógica difusa (Fuzzy Logic) de [Fuse.js](https://fusejs.io/). Esto significa que, si proporcionas un selector con un error tipográfico o si el texto encontrado no coincide al 100 %, igualmente intentará devolverte un elemento. Consulta los [logs](#logs) a continuación.
 
 ## Uso
 
@@ -16,7 +17,7 @@ await browser.ocrClickOnText({ text: "Start3d" });
 ### Logs
 
 ```log
-# Aún encontrando una coincidencia aunque buscamos "Start3d" y el texto encontrado fue "Started"
+# Todavía encuentra una coincidencia aunque buscamos "Start3d" y el texto encontrado fue "Started"
 [0-0] 2024-05-25T05:05:20.096Z INFO webdriver: COMMAND ocrClickOnText(<object>)
 ......................
 [0-0] 2024-05-25T05:05:21.022Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
@@ -24,7 +25,7 @@ await browser.ocrClickOnText({ text: "Start3d" });
 
 ### Imagen
 
-Encontrarás una imagen en tu (predeterminada)[`imagesFolder`](./getting-started#imagesfolder) con un objetivo para mostrarte dónde ha hecho clic el módulo.
+Encontrarás una imagen en tu [`imagesFolder`](./getting-started#imagesfolder) (predeterminada) con un objetivo que te muestra dónde ha hecho clic el módulo.
 
 ![Process steps](/img/ocr/ocr-click-on-text-target.jpg)
 
@@ -32,11 +33,11 @@ Encontrarás una imagen en tu (predeterminada)[`imagesFolder`](./getting-started
 
 ### `text`
 
--   **Tipo:** `string`
--   **Obligatorio:** sí
+<Option type="string" required="yes">
 
-El texto que quieres buscar para hacer clic.
+El texto que quieres buscar para hacer clic en él.
 
+</Option>
 #### Ejemplo
 
 ```js
@@ -45,12 +46,11 @@ await browser.ocrClickOnText({ text: "WebdriverIO" });
 
 ### `clickDuration`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
--   **Predeterminado:** `500` milisegundos
+<Option type="number" default="500 milliseconds" required="no">
 
-Esta es la duración del clic. Si quieres, también puedes crear un "clic largo" aumentando el tiempo.
+Es la duración del clic. Si lo deseas, también puedes crear un "clic largo" aumentando el tiempo.
 
+</Option>
 #### Ejemplo
 
 ```js
@@ -62,12 +62,11 @@ await browser.ocrClickOnText({
 
 ### `contrast`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
--   **Predeterminado:** `0.25`
+<Option type="number" default="0.25" required="no">
 
 Cuanto mayor sea el contraste, más oscura será la imagen y viceversa. Esto puede ayudar a encontrar texto en una imagen. Acepta valores entre `-1` y `1`.
 
+</Option>
 #### Ejemplo
 
 ```js
@@ -79,11 +78,11 @@ await browser.ocrClickOnText({
 
 ### `haystack`
 
--   **Tipo:** `number`
--   **Obligatorio:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Esta es el área de búsqueda en la pantalla donde el OCR necesita buscar texto. Puede ser un elemento o un rectángulo que contenga `x`, `y`, `width` y `height`
+Es el área de búsqueda en la pantalla donde el OCR debe buscar el texto. Puede ser un elemento o un rectángulo que contenga `x`, `y`, `width` y `height`
 
+</Option>
 #### Ejemplo
 
 ```js
@@ -112,52 +111,51 @@ await browser.ocrClickOnText({
 
 ### `language`
 
--   **Tipo:** `string`
--   **Obligatorio:** No
--   **Predeterminado:** `eng`
+<Option type="string" default="eng" required="No">
 
-El idioma que Tesseract reconocerá. Más información se puede encontrar [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas soportados se pueden encontrar [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+El idioma que reconocerá Tesseract. Puedes encontrar más información [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas compatibles [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Ejemplo
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    // Usar holandés como idioma
+    // Usar neerlandés como idioma
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
--   **Tipo:** `object`
--   **Obligatorio:** no
+<Option type="object" required="no">
 
-Puedes hacer clic en la pantalla en relación con el elemento coincidente. Esto se puede hacer basándose en píxeles relativos `above`, `right`, `below` o `left` desde el elemento coincidente.
+Puedes hacer clic en la pantalla de forma relativa al elemento coincidente. Esto se puede hacer en base a píxeles relativos `above`, `right`, `below` o `left` del elemento coincidente
 
 :::note
 
-Las siguientes combinaciones están permitidas
+Se permiten las siguientes combinaciones
 
 -   propiedades individuales
 -   `above` + `left` o `above` + `right`
 -   `below` + `left` o `below` + `right`
 
-Las siguientes combinaciones **NO** están permitidas
+**NO** se permiten las siguientes combinaciones
 
 -   `above` más `below`
 -   `left` más `right`
 
 :::
 
+</Option>
 #### `relativePosition.above`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
+<Option type="number" required="no">
 
-Haz clic x píxeles `above` (encima) del elemento coincidente.
+Hace clic x píxeles por encima (`above`) del elemento coincidente.
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -171,11 +169,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.right`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
+<Option type="number" required="no">
 
-Haz clic x píxeles `right` (a la derecha) del elemento coincidente.
+Hace clic x píxeles a la derecha (`right`) del elemento coincidente.
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -189,11 +187,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.below`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
+<Option type="number" required="no">
 
-Haz clic x píxeles `below` (debajo) del elemento coincidente.
+Hace clic x píxeles por debajo (`below`) del elemento coincidente.
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -207,11 +205,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.left`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
+<Option type="number" required="no">
 
-Haz clic x píxeles `left` (a la izquierda) del elemento coincidente.
+Hace clic x píxeles a la izquierda (`left`) del elemento coincidente.
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -225,16 +223,15 @@ await browser.ocrClickOnText({
 
 ### `fuzzyFindOptions`
 
-Puedes alterar la lógica difusa para encontrar texto con las siguientes opciones. Esto puede ayudar a encontrar una mejor coincidencia.
+Puedes modificar la lógica difusa para encontrar texto con las siguientes opciones. Esto puede ayudar a encontrar una mejor coincidencia
 
 #### `fuzzyFindOptions.distance`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
--   **Predeterminado:** 100
+<Option type="number" default="100" required="no">
 
-Determina qué tan cerca debe estar la coincidencia de la ubicación difusa (especificada por location). Una coincidencia exacta de letra que está a una distancia de caracteres de la ubicación difusa se puntuaría como una falta de coincidencia completa. Una distancia de 0 requiere que la coincidencia esté en la ubicación exacta especificada. Una distancia de 1000 requeriría una coincidencia perfecta para estar dentro de 800 caracteres de la ubicación para ser encontrada usando un umbral de 0.8.
+Determina qué tan cerca debe estar la coincidencia de la ubicación difusa (especificada por location). Una coincidencia exacta de letras que esté a distance caracteres de la ubicación difusa se puntuaría como una falta de coincidencia total. Una distancia de 0 requiere que la coincidencia esté en la ubicación exacta especificada. Una distancia de 1000 requeriría que una coincidencia perfecta estuviera dentro de los 800 caracteres de la ubicación para ser encontrada usando un umbral de 0.8.
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -248,12 +245,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.location`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
--   **Predeterminado:** 0
+<Option type="number" default="0" required="no">
 
-Determina aproximadamente dónde en el texto se espera encontrar el patrón.
+Determina aproximadamente en qué parte del texto se espera encontrar el patrón.
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -267,12 +263,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
--   **Predeterminado:** 0.6
+<Option type="number" default="0.6" required="no">
 
-En qué punto el algoritmo de coincidencia se rinde. Un umbral de 0 requiere una coincidencia perfecta (tanto de letras como de ubicación), un umbral de 1.0 coincidiría con cualquier cosa.
+En qué punto se rinde el algoritmo de coincidencia. Un umbral de 0 requiere una coincidencia perfecta (tanto de letras como de ubicación), un umbral de 1.0 coincidiría con cualquier cosa.
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -286,12 +281,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Tipo:** `boolean`
--   **Obligatorio:** no
--   **Predeterminado:** false
+<Option type="boolean" default="false" required="no">
 
-Si la búsqueda debe distinguir entre mayúsculas y minúsculas.
+Indica si la búsqueda debe distinguir entre mayúsculas y minúsculas.
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -305,12 +299,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
--   **Predeterminado:** 2
+<Option type="number" default="2" required="no">
 
-Solo se devolverán las coincidencias cuya longitud exceda este valor. (Por ejemplo, si quieres ignorar coincidencias de un solo carácter en el resultado, establécelo en 2)
+Solo se devolverán las coincidencias cuya longitud supere este valor. (Por ejemplo, si quieres ignorar las coincidencias de un solo carácter en el resultado, establécelo en 2)
 
+</Option>
 ##### Ejemplo
 
 ```js
@@ -324,12 +317,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
--   **Predeterminado:** false
+<Option type="number" default="false" required="no">
 
 Cuando es `true`, la función de coincidencia continuará hasta el final de un patrón de búsqueda incluso si ya se ha localizado una coincidencia perfecta en la cadena.
 
+</Option>
 ##### Ejemplo
 
 ```js

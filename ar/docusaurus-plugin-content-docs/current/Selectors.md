@@ -1,11 +1,12 @@
 ---
 id: selectors
 title: المحددات
+description: "اعثر على العناصر باستخدام CSS والنص وXPath والاسم الوصولي (accessibility name) ودور ARIA وغيرها من استراتيجيات المحددات، وتعرّف على أكثرها موثوقية."
 ---
 
-يوفر [بروتوكول WebDriver](https://w3c.github.io/webdriver/) عدة استراتيجيات للمحددات للاستعلام عن عنصر. يقوم WebdriverIO بتبسيطها للحفاظ على بساطة تحديد العناصر. يرجى ملاحظة أنه على الرغم من أن أمر الاستعلام عن العناصر يسمى `$` و `$$`، إلا أنها لا علاقة لها بـ jQuery أو [Sizzle Selector Engine](https://github.com/jquery/sizzle).
+يوفر [بروتوكول WebDriver](https://w3c.github.io/webdriver/) عدة استراتيجيات للمحددات للاستعلام عن عنصر ما. يبسّطها WebdriverIO لإبقاء تحديد العناصر أمرًا سهلًا. يُرجى ملاحظة أنه على الرغم من أن أمرَي الاستعلام عن العناصر يُسمّيان `$` و`$$`، إلا أنهما لا علاقة لهما بـ jQuery أو [محرك المحددات Sizzle](https://github.com/jquery/sizzle).
 
-بينما هناك العديد من المحددات المختلفة المتاحة، فإن عددًا قليلًا منها فقط يوفر طريقة مرنة للعثور على العنصر المناسب. على سبيل المثال، بالنظر إلى الزر التالي:
+على الرغم من توفر العديد من المحددات المختلفة، إلا أن القليل منها فقط يوفر طريقة موثوقة للعثور على العنصر الصحيح. على سبيل المثال، لنأخذ الزر التالي:
 
 ```html
 <button
@@ -19,22 +20,49 @@ title: المحددات
 </button>
 ```
 
-نحن __نوصي__ و __لا نوصي__ بالمحددات التالية:
+__نوصي__ و__لا نوصي__ بالمحددات التالية:
 
 | المحدد | موصى به | ملاحظات |
 | -------- | ----------- | ----- |
-| `$('button')` | 🚨 أبدًا | الأسوأ - عام جدًا، بدون سياق. |
-| `$('.btn.btn-large')` | 🚨 أبدًا | سيء. مرتبط بالتصميم. عرضة للتغيير بشكل كبير. |
-| `$('#main')` | ⚠️ بشكل متقطع | أفضل. لكنه لا يزال مرتبطًا بالتصميم أو مستمعي أحداث JS. |
-| `$(() => document.queryElement('button'))` | ⚠️ بشكل متقطع | استعلام فعال، معقد في الكتابة. |
-| `$('button[name="submission"]')` | ⚠️ بشكل متقطع | مرتبط بسمة `name` التي لها دلالات HTML. |
-| `$('button[data-testid="submit"]')` | ✅ جيد | يتطلب سمة إضافية، غير متصل بإمكانية الوصول. |
-| `$('aria/Submit')` | ✅ جيد | جيد. يشبه كيفية تفاعل المستخدم مع الصفحة. يوصى باستخدام ملفات الترجمة حتى لا تنكسر اختباراتك عند تحديث الترجمات. ملاحظة: قد يكون هذا المحدد أبطأ من غيره على الصفحات الكبيرة. |
-| `$('button=Submit')` | ✅ دائمًا | الأفضل. يشبه كيفية تفاعل المستخدم مع الصفحة وهو سريع. يوصى باستخدام ملفات الترجمة حتى لا تنكسر اختباراتك عند تحديث الترجمات. |
+| `$('button')` | 🚨 أبدًا | الأسوأ - عام جدًا، بلا سياق. |
+| `$('.btn.btn-large')` | 🚨 أبدًا | سيئ. مرتبط بالتنسيق. معرّض للتغيير بشدة. |
+| `$('#main')` | ⚠️ باعتدال | أفضل. لكنه لا يزال مرتبطًا بالتنسيق أو بمستمعي أحداث JS. |
+| `$(() => document.queryElement('button'))` | ⚠️ باعتدال | استعلام فعّال، لكنه معقد في الكتابة. |
+| `$('button[name="submission"]')` | ⚠️ باعتدال | مرتبط بالسمة `name` التي لها دلالات في HTML. |
+| `$('button[data-testid="submit"]')` | ✅ جيد | يتطلب سمة إضافية، وغير مرتبط بإمكانية الوصول (a11y). |
+| `$('aria/Submit')` | ✅ جيد | جيد. يحاكي طريقة تفاعل المستخدم مع الصفحة. يُوصى باستخدام ملفات الترجمة حتى لا تتعطل اختباراتك عند تحديث الترجمات. في جلسات WebDriver BiDi يستخدم هذا شجرة إمكانية الوصول في المتصفح. أما في الجلسات الكلاسيكية فيعود إلى XPath وقد يكون أبطأ في الصفحات الكبيرة. |
+| `$('button=Submit')` | ✅ دائمًا | الأفضل. يحاكي طريقة تفاعل المستخدم مع الصفحة وهو سريع. يُوصى باستخدام ملفات الترجمة حتى لا تتعطل اختباراتك عند تحديث الترجمات. |
+
+## الوضع الصارم {#strict-mode}
+
+اعتبارًا من الإصدار v10، أصبح الأمر [`$`](/docs/api/browser/$) __صارمًا__: فهو يمثل عنصرًا واحدًا بالضبط. إذا طابق المحدد أكثر من عنصر واحد، يرمي الأمر خطأ `StrictSelectorError` بدلًا من اختيار أول تطابق بصمت:
+
+```js
+// توجد 12 زرًا في الصفحة
+await $('button').click()
+// StrictSelectorError: strict mode violation: `$("button")` resolved to 12 elements, expected 1.
+```
+
+هذا هو السلوك نفسه الموجود في [محددات مواقع Playwright](https://playwright.dev/docs/locators#strictness). يختلف Cypress في ذلك: إذ قد تُرجع استعلاماته عدة عناصر، وأوامر الإجراءات مثل [`.click()`](https://docs.cypress.io/api/commands/click#Click-all-elements-with-id-starting-with-btn) هي التي ترفض افتراضيًا العمل على مجموعة متعددة العناصر. يكشف الوضع الصارم المحددات الواسعة جدًا، والتي كانت ستتفاعل بصمت مع العنصر الخاطئ بمجرد أن تكبر الصفحة.
+
+تنطبق هذه القاعدة على كل خطوة من خطوات [السلسلة](#chain-selectors) وعلى كل نوع من أنواع المحددات التي يقبلها `$` — المحددات النصية (بما فيها تلك التي تخترق shadow DOM)، و[دوال JS](#js-function)، و[محددات الأجهزة المحمولة](#mobile-selectors)، ومراجع [الاستراتيجيات المخصصة](#custom-selector-strategies).
+
+### ما لا يتأثر
+
+- يستمر `$$` في إرجاع صفر أو أكثر من العناصر، على شكل [`ElementArray`](/docs/api/browser/$$). انتظر القائمة (أو خاصيتها `.length`) باستخدام await قبل قراءة العدد أو استخدام `for...of`. أما `for await` فتعمل على القائمة مباشرة.
+- أوامر المساعدة المخصصة `custom$` و`shadow$` و`react$` ليست صارمة — فهي لا تزال تُرجع أول تطابق، وكذلك نظيراتها `$$`.
+- المحدد الذي لا يطابق أي شيء لا يزال يُرجع عنصرًا يُحَلّ بشكل كسول (lazily)، لذا يبقى [`waitForExist`](/docs/api/element/waitForExist) وسلوك [الانتظار التلقائي](/docs/autowait) دون تغيير.
+- تمرير مرجع لعنصر، مثل `$(await browser.getActiveElement())`، يشير دائمًا إلى عقدة واحدة ولا يخضع للتحقق أبدًا.
+
+:::info الترحيل إلى v10
+
+لمعرفة كيفية تدقيق مجموعة اختباراتك بحثًا عن انتهاكات الوضع الصارم، وتضييق نطاق استعلامات فردية أو استثنائها، وتعطيل الوضع الصارم على مستوى المشروع بأكمله، راجع [دليل الترحيل إلى v10](/docs/v10-migration).
+
+:::
 
 ## محدد استعلام CSS
 
-إذا لم يتم الإشارة إلى خلاف ذلك، سيقوم WebdriverIO بالاستعلام عن العناصر باستخدام نمط [محدد CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)، على سبيل المثال:
+ما لم يُشَر إلى خلاف ذلك، سيستعلم WebdriverIO عن العناصر باستخدام نمط [محدد CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)، على سبيل المثال:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L7-L8
@@ -42,7 +70,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 ## نص الرابط
 
-للحصول على عنصر الرابط بنص محدد، استعلم عن النص الذي يبدأ بعلامة يساوي (`=`).
+للحصول على عنصر رابط (anchor) يحتوي على نص محدد، استعلم عن النص مسبوقًا بعلامة المساواة (`=`).
 
 على سبيل المثال:
 
@@ -58,74 +86,74 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 ## نص الرابط الجزئي
 
-للعثور على عنصر رابط يتطابق نصه المرئي جزئيًا مع قيمة البحث الخاصة بك،
-استعلم عنه باستخدام `*=` في بداية سلسلة الاستعلام (مثل `*=driver`).
+للعثور على عنصر رابط يطابق نصه المرئي قيمة البحث جزئيًا،
+استعلم عنه باستخدام `*=` قبل نص الاستعلام (مثل `*=driver`).
 
-يمكنك الاستعلام عن العنصر من المثال أعلاه أيضًا عن طريق الاستدعاء:
+يمكنك أيضًا الاستعلام عن العنصر من المثال أعلاه عن طريق استدعاء:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L24-L26
 ```
 
-__ملاحظة:__ لا يمكنك مزج استراتيجيات محدد متعددة في محدد واحد. استخدم استعلامات العناصر المتسلسلة المتعددة للوصول إلى نفس الهدف، على سبيل المثال:
+__ملاحظة:__ لا يمكنك الجمع بين عدة استراتيجيات محددات في محدد واحد. استخدم عدة استعلامات عناصر متسلسلة لتحقيق الهدف نفسه، على سبيل المثال:
 
 ```js
 const elem = await $('header h1*=Welcome') // لا يعمل!!!
-// استخدم بدلاً من ذلك
+// استخدم بدلًا من ذلك
 const elem = await $('header').$('*=driver')
 ```
 
-## عنصر بنص معين
+## عنصر يحتوي على نص معين
 
-يمكن تطبيق نفس التقنية على العناصر أيضًا. بالإضافة إلى ذلك، من الممكن أيضًا إجراء مطابقة بدون مراعاة حالة الأحرف باستخدام `.=` أو `.*=` داخل الاستعلام.
+يمكن تطبيق التقنية نفسها على العناصر أيضًا. بالإضافة إلى ذلك، من الممكن أيضًا إجراء مطابقة غير حساسة لحالة الأحرف باستخدام `.=` أو `.*=` ضمن الاستعلام.
 
-على سبيل المثال، هنا استعلام لعنوان من المستوى 1 بنص "Welcome to my Page":
+على سبيل المثال، إليك استعلامًا عن عنوان من المستوى الأول يحتوي على النص "Welcome to my Page":
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L2
 ```
 
-يمكنك الاستعلام عن هذا العنصر عن طريق الاستدعاء:
+يمكنك الاستعلام عن هذا العنصر عن طريق استدعاء:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L35C1-L38
 ```
 
-أو استخدام استعلام النص الجزئي:
+أو باستخدام الاستعلام بنص جزئي:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L44C9-L47
 ```
 
-نفس الأمر ينطبق على أسماء `id` و `class`:
+ينطبق الأمر نفسه على أسماء `id` و`class`:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L4
 ```
 
-يمكنك الاستعلام عن هذا العنصر عن طريق الاستدعاء:
+يمكنك الاستعلام عن هذا العنصر عن طريق استدعاء:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/13eddfac6f18a2a4812cc09ed7aa5e468f392060/selectors/example.js#L49-L67
 ```
 
-__ملاحظة:__ لا يمكنك مزج استراتيجيات محدد متعددة في محدد واحد. استخدم استعلامات العناصر المتسلسلة المتعددة للوصول إلى نفس الهدف، على سبيل المثال:
+__ملاحظة:__ لا يمكنك الجمع بين عدة استراتيجيات محددات في محدد واحد. استخدم عدة استعلامات عناصر متسلسلة لتحقيق الهدف نفسه، على سبيل المثال:
 
 ```js
 const elem = await $('header h1*=Welcome') // لا يعمل!!!
-// استخدم بدلاً من ذلك
+// استخدم بدلًا من ذلك
 const elem = await $('header').$('h1*=Welcome')
 ```
 
-## اسم العلامة
+## اسم الوسم
 
-للاستعلام عن عنصر باسم علامة محدد، استخدم `<tag>` أو `<tag />`.
+للاستعلام عن عنصر باسم وسم محدد، استخدم `<tag>` أو `<tag />`.
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L5
 ```
 
-يمكنك الاستعلام عن هذا العنصر عن طريق الاستدعاء:
+يمكنك الاستعلام عن هذا العنصر عن طريق استدعاء:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L61-L62
@@ -133,7 +161,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 ## سمة الاسم
 
-للاستعلام عن العناصر بسمة اسم محددة، يمكنك إما استخدام محدد CSS3 عادي أو استراتيجية الاسم المقدمة من [JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol) عن طريق تمرير شيء مثل [name="some-name"] كمعلمة محدد:
+للاستعلام عن عناصر ذات سمة name محددة، استخدم محدد CSS مثل `[name="some-name"]`. في جلسة الأجهزة المحمولة، يُرسَل هذا الاختصار نفسه باستخدام استراتيجية تحديد المواقع `name` الخاصة بـ Appium:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.html#L6
@@ -143,41 +171,43 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L68-L69
 ```
 
-__ملاحظة:__ استراتيجية المحدد هذه مهملة وتعمل فقط في المتصفحات القديمة التي يتم تشغيلها بواسطة بروتوكول JSONWireProtocol أو باستخدام Appium.
+__ملاحظة:__ استراتيجية تحديد المواقع `name` هي محدد مواقع خاص بـ Appium. تُبقي جلسات سطح المكتب `[name="some-name"]` على استراتيجية CSS.
 
 ## xPath
 
 من الممكن أيضًا الاستعلام عن العناصر عبر [xPath](https://developer.mozilla.org/en-US/docs/Web/XPath) محدد.
 
-محدد xPath له صيغة مثل `//body/div[6]/div[1]/span[1]`.
+يكون لمحدد xPath تنسيق مثل `//body/div[6]/div[1]/span[1]`.
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/xpath.html
 ```
 
-يمكنك الاستعلام عن الفقرة الثانية عن طريق الاستدعاء:
+يمكنك الاستعلام عن الفقرة الثانية عن طريق استدعاء:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L75-L76
 ```
 
-يمكنك استخدام xPath أيضًا للتنقل لأعلى ولأسفل في شجرة DOM:
+يمكنك أيضًا استخدام xPath للتنقل صعودًا ونزولًا في شجرة DOM:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L78-L79
 ```
 
-## محدد اسم إمكانية الوصول
+## محدد الاسم الوصولي
 
-استعلم عن العناصر حسب أسمائها الوصولية. الاسم الوصولي هو ما يتم إعلانه بواسطة قارئ الشاشة عندما يتلقى هذا العنصر التركيز. يمكن أن تكون قيمة الاسم الوصولي محتوى مرئيًا أو بدائل نصية مخفية.
+استعلم عن العناصر من خلال اسمها الوصولي (accessible name). الاسم الوصولي هو ما يُعلنه قارئ الشاشة عندما يتلقى ذلك العنصر التركيز. يمكن أن تكون قيمة الاسم الوصولي محتوى مرئيًا أو بدائل نصية مخفية.
+
+في جلسات [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/) (Chrome وEdge وFirefox وغيرها من المتصفحات الداعمة لـ BiDi) يستخدم WebdriverIO أولًا [`browsingContext.locateNodes`](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes) مع محدد مواقع لإمكانية الوصول. يستعلم ذلك عن شجرة إمكانية الوصول في المتصفح مباشرة، وعادة ما يكون أسرع بكثير من التقريب عبر XPath. إذا لم يعثر محدد مواقع إمكانية الوصول على أي شيء، يعود WebdriverIO إلى أسلوب XPath الكلاسيكي التقريبي حتى تستمر استعلامات `aria/` الحالية في المطابقة.
 
 :::info
 
-يمكنك قراءة المزيد حول هذا المحدد في [منشور مدونة الإصدار](/blog/2022/09/05/accessibility-selector)
+يمكنك قراءة المزيد عن هذا المحدد في [منشور المدونة الخاص بالإصدار](/blog/2022/09/05/accessibility-selector)
 
 :::
 
-### البحث بواسطة `aria-label`
+### الجلب حسب `aria-label`
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L1
@@ -187,7 +217,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L86-L87
 ```
 
-### البحث بواسطة `aria-labelledby`
+### الجلب حسب `aria-labelledby`
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L2-L3
@@ -197,7 +227,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L93-L94
 ```
 
-### البحث حسب المحتوى
+### الجلب حسب المحتوى
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L4
@@ -207,7 +237,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L100-L101
 ```
 
-### البحث حسب العنوان
+### الجلب حسب العنوان
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L5
@@ -217,7 +247,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L107-L108
 ```
 
-### البحث بواسطة خاصية `alt`
+### الجلب حسب الخاصية `alt`
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L6
@@ -227,9 +257,36 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L114-L115
 ```
 
+## محدد الدور {#role-selector}
+
+استعلم عن العناصر من خلال دور ARIA الخاص بها واسمها الوصولي، بالطريقة التي يصفها بها قارئ الشاشة: "زر *Add to cart*". يستمر الجمع بين الدور والاسم في المطابقة عند تغيّر أسماء الفئات أو معرّفات الاختبار أو بنية DOM.
+
+```js
+await $('role/button[name="Add to cart"]').click()
+await expect($('role/heading[name="Order summary"]')).toBeDisplayed()
+
+// الدور فقط
+const rows = await $$('role/row')
+
+// محصور ضمن عنصر أب
+const dialog = $('role/dialog[name="Checkout"]')
+await dialog.$('role/button[name="Pay now"]').click()
+```
+
+الصيغة هي `role/<role>` أو `role/<role>[name="<accessible name>"]`. تعمل علامات الاقتباس المفردة أيضًا، ويتم تهريب علامة الاقتباس داخل الاسم بشرطة مائلة عكسية: `role/button[name="Say \"hi\""]`.
+
+- يجب أن يطابق الاسم الاسم الوصولي بالكامل.
+- يجب أن يكون الدور دور ARIA. يفشل الخطأ الإملائي مع اقتراح أقرب دور صالح، على سبيل المثال `"buton" is not an ARIA role. Did you mean "button"?`.
+- `img` واسمه في ARIA 1.3 وهو `image` يمثلان الدور نفسه.
+- يتبع المحدد [الوضع الصارم](#strict-mode) لـ `$` مثل أي محدد آخر.
+
+في جلسة [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/)، يمرر WebdriverIO الدور والاسم إلى [`browsingContext.locateNodes`](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes). يحسب المتصفح كليهما بنفسه، بالطريقة نفسها التي ترى بها التقنيات المساعدة الصفحة. يتم العثور على العناصر داخل جذور الظل المفتوحة (open shadow roots) وداخل الإطارات، بما في ذلك الإطارات من أصل آخر. إذا لم يعثر المتصفح على أي عنصر، فلا يوجد رجوع إلى أسلوب تقريبي. لاحظ أن المتصفح هو من يقرر الدور: على سبيل المثال، قد يكون `<table>` بدون عناوين أو تسمية توضيحية جدول تخطيط، وعندها لا يكون لصفوفه الدور `row`.
+
+في جلسة WebDriver الكلاسيكية، وعندما لا يدعم المتصفح محدد مواقع الدور، يحسب WebdriverIO الدور والاسم الوصولي داخل الصفحة باستخدام [`dom-accessibility-api`](https://github.com/eps1lon/dom-accessibility-api)، وهو التطبيق الذي تستخدمه Testing Library. يُسمّى حقل النص الذي لا يملك تسمية من خلال `placeholder` الخاص به، كما تفعل المتصفحات. محدد الدور غير متاح في سياق تطبيق محمول أصلي (native). استخدم [معرّف إمكانية الوصول](#accessibility-id) هناك.
+
 ## ARIA - سمة الدور
 
-للاستعلام عن العناصر بناءً على [أدوار ARIA](https://www.w3.org/TR/html-aria/#docconformance)، يمكنك تحديد دور العنصر مباشرةً مثل `[role=button]` كمعلمة محدد:
+للاستعلام عن العناصر بناءً على [أدوار ARIA](https://www.w3.org/TR/html-aria/#docconformance)، يمكنك تحديد دور العنصر مباشرة مثل `[role=button]` كمعامل للمحدد. يقرّب هذا المحدد الدور من اسم العنصر وسماته. يُفضَّل استخدام [محدد الدور](#role-selector)، الذي يستخدم الدور الذي يحسبه المتصفح ويمكنه أيضًا مطابقة الاسم الوصولي:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L13
@@ -239,27 +296,27 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L131-L132
 ```
 
-## سمة ID
+## سمة المعرّف (ID)
 
-استراتيجية محدد "id" غير مدعومة في بروتوكول WebDriver، يجب على المرء استخدام استراتيجيات محدد CSS أو xPath بدلاً من ذلك للعثور على العناصر باستخدام ID.
+استراتيجية تحديد المواقع "id" غير مدعومة في بروتوكول WebDriver، ويجب استخدام استراتيجيات محددات CSS أو xPath بدلًا منها للعثور على العناصر باستخدام المعرّف.
 
 ومع ذلك، قد تظل بعض برامج التشغيل (مثل [Appium You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)) [تدعم](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies) هذا المحدد.
 
-صيغ المحدد المدعومة حاليًا لـ ID هي:
+صيغ المحددات المدعومة حاليًا للمعرّف هي:
 
 ```js
-//css locator
+//محدد مواقع css
 const button = await $('#someid')
-//xpath locator
+//محدد مواقع xpath
 const button = await $('//*[@id="someid"]')
-//id strategy
-// Note: works only in Appium or similar frameworks which supports locator strategy "ID"
+//استراتيجية id
+// ملاحظة: تعمل فقط في Appium أو أطر العمل المشابهة التي تدعم استراتيجية تحديد المواقع "ID"
 const button = await $('id=resource-id/iosname')
 ```
 
-## دالة JS
+## دالة JS {#js-function}
 
-يمكنك أيضًا استخدام دوال JavaScript لجلب العناصر باستخدام واجهات برمجة التطبيقات الأصلية للويب. بالطبع، يمكنك فقط القيام بذلك داخل سياق الويب (مثل `browser`، أو سياق الويب في الجوال).
+يمكنك أيضًا استخدام دوال JavaScript لجلب العناصر باستخدام واجهات برمجة الويب الأصلية. بالطبع، لا يمكنك القيام بذلك إلا داخل سياق ويب (مثل `browser`، أو سياق الويب في الأجهزة المحمولة).
 
 بالنظر إلى بنية HTML التالية:
 
@@ -277,31 +334,31 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 :::warning
 
-بدءًا من الإصدار `v9` من WebdriverIO، لا حاجة إلى هذا المحدد الخاص حيث يخترق WebdriverIO تلقائيًا DOM الظلي من أجلك. يوصى بالتخلي عن هذا المحدد عن طريق إزالة `>>>` في مقدمته.
+بدءًا من الإصدار `v9` من WebdriverIO، لم تعد هناك حاجة لهذا المحدد الخاص لأن WebdriverIO يخترق Shadow DOM تلقائيًا نيابة عنك. يُوصى بالتخلي عن هذا المحدد عن طريق إزالة `>>>` من أمامه.
 
 :::
 
-تعتمد العديد من تطبيقات الواجهة الأمامية بشكل كبير على العناصر ذات [DOM الظلي](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). من المستحيل تقنيًا الاستعلام عن العناصر داخل DOM الظلي بدون حلول بديلة. كانت [`shadow$`](https://webdriver.io/docs/api/element/shadow$) و[`shadow$$`](https://webdriver.io/docs/api/element/shadow$$) مثل هذه الحلول البديلة التي كانت لها [قيود](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow). باستخدام المحدد العميق، يمكنك الآن الاستعلام عن جميع العناصر داخل أي DOM ظلي باستخدام أمر الاستعلام الشائع.
+تعتمد العديد من تطبيقات الواجهة الأمامية بشكل كبير على عناصر ذات [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). من المستحيل تقنيًا الاستعلام عن العناصر داخل shadow DOM دون حلول بديلة. كان [`shadow$`](https://webdriver.io/docs/api/element/shadow$) و[`shadow$$`](https://webdriver.io/docs/api/element/shadow$$) من هذه الحلول البديلة التي كانت لها [قيودها](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow). باستخدام المحدد العميق، يمكنك الآن الاستعلام عن جميع العناصر داخل أي shadow DOM باستخدام أمر الاستعلام الشائع.
 
-بفرض أن لدينا تطبيقًا بالهيكل التالي:
+لنفترض أن لدينا تطبيقًا بالبنية التالية:
 
-![مثال Chrome](https://github.com/Georgegriff/query-selector-shadow-dom/raw/main/Chrome-example.png "مثال Chrome")
+![Chrome Example](https://github.com/Georgegriff/query-selector-shadow-dom/raw/main/Chrome-example.png "Chrome Example")
 
-باستخدام هذا المحدد، يمكنك الاستعلام عن عنصر `<button />` المتداخل داخل DOM ظلي آخر، على سبيل المثال:
+باستخدام هذا المحدد، يمكنك الاستعلام عن العنصر `<button />` المتداخل داخل shadow DOM آخر، على سبيل المثال:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/example.js#L147-L149
 ```
 
-## محددات الجوال
+## محددات الأجهزة المحمولة {#mobile-selectors}
 
-بالنسبة لاختبار الجوال الهجين، من المهم أن يكون خادم الأتمتة في *السياق* الصحيح قبل تنفيذ الأوامر. لأتمتة الإيماءات، يجب أن يتم تعيين برنامج التشغيل على السياق الأصلي بشكل مثالي. ولكن لتحديد العناصر من DOM، سيحتاج برنامج التشغيل إلى التعيين إلى سياق عرض الويب للمنصة. فقط *بعد ذلك* يمكن استخدام الطرق المذكورة أعلاه.
+لاختبار تطبيقات الأجهزة المحمولة الهجينة، من المهم أن يكون خادم الأتمتة في *السياق* الصحيح قبل تنفيذ الأوامر. لأتمتة الإيماءات، يجب ضبط برنامج التشغيل بشكل مثالي على السياق الأصلي (native). ولكن لتحديد العناصر من DOM، سيحتاج برنامج التشغيل إلى ضبطه على سياق webview الخاص بالمنصة. *عندها فقط* يمكن استخدام الطرق المذكورة أعلاه.
 
-بالنسبة لاختبار الجوال الأصلي، لا يوجد تبديل بين السياقات، حيث يجب عليك استخدام استراتيجيات الجوال واستخدام تقنية أتمتة الجهاز الأساسية مباشرةً. هذا مفيد بشكل خاص عندما يحتاج الاختبار إلى بعض التحكم الدقيق في العثور على العناصر.
+لاختبار تطبيقات الأجهزة المحمولة الأصلية، لا يوجد تبديل بين السياقات، إذ يجب عليك استخدام استراتيجيات الأجهزة المحمولة واستخدام تقنية أتمتة الجهاز الأساسية مباشرة. يكون هذا مفيدًا بشكل خاص عندما يحتاج الاختبار إلى تحكم دقيق في العثور على العناصر.
 
 ### Android UiAutomator
 
-يوفر إطار عمل UI Automator في Android عددًا من الطرق للعثور على العناصر. يمكنك استخدام [واجهة برمجة تطبيقات UI Automator](https://developer.android.com/tools/testing-support-library/index.html#uia-apis)، وخاصة [فئة UiSelector](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) لتحديد مواقع العناصر. في Appium، ترسل كود Java، كسلسلة، إلى الخادم، الذي ينفذه في بيئة التطبيق، مع إعادة العنصر أو العناصر.
+يوفر إطار عمل UI Automator في Android عددًا من الطرق للعثور على العناصر. يمكنك استخدام [واجهة برمجة UI Automator](https://developer.android.com/tools/testing-support-library/index.html#uia-apis)، وبالأخص [الفئة UiSelector](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) لتحديد مواقع العناصر. في Appium، ترسل شيفرة Java كسلسلة نصية إلى الخادم، الذي ينفذها في بيئة التطبيق، ويُرجع العنصر أو العناصر.
 
 ```js
 const selector = 'new UiSelector().text("Cancel").className("android.widget.Button")'
@@ -309,9 +366,9 @@ const button = await $(`android=${selector}`)
 await button.click()
 ```
 
-### Android DataMatcher و ViewMatcher (Espresso فقط)
+### Android DataMatcher وViewMatcher (Espresso فقط)
 
-توفر استراتيجية DataMatcher في Android طريقة للعثور على العناصر بواسطة [Data Matcher](https://developer.android.com/reference/android/support/test/espresso/DataInteraction)
+توفر استراتيجية DataMatcher في Android طريقة للعثور على العناصر باستخدام [Data Matcher](https://developer.android.com/reference/android/support/test/espresso/DataInteraction)
 
 ```js
 const menuItem = await $({
@@ -334,7 +391,7 @@ await menuItem.click()
 
 ### Android View Tag (Espresso فقط)
 
-توفر استراتيجية علامة العرض طريقة مريحة للعثور على العناصر حسب [علامتها](https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html#withTagValue%28org.hamcrest.Matcher%3Cjava.lang.Object%3E%29).
+توفر استراتيجية view tag طريقة مريحة للعثور على العناصر من خلال [الوسم](https://developer.android.com/reference/android/support/test/espresso/matcher/ViewMatchers.html#withTagValue%28org.hamcrest.Matcher%3Cjava.lang.Object%3E%29) الخاص بها.
 
 ```js
 const elem = await $('-android viewtag:tag_identifier')
@@ -345,7 +402,7 @@ await elem.click()
 
 عند أتمتة تطبيق iOS، يمكن استخدام [إطار عمل UI Automation](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html) من Apple للعثور على العناصر.
 
-واجهة برمجة تطبيقات JavaScript هذه [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) لها طرق للوصول إلى العرض وكل شيء عليه.
+تحتوي [واجهة البرمجة](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) هذه المكتوبة بـ JavaScript على طرق للوصول إلى العرض (view) وكل ما عليه.
 
 ```js
 const selector = 'UIATarget.localTarget().frontMostApp().mainWindow().buttons()[0]'
@@ -353,11 +410,11 @@ const button = await $(`ios=${selector}`)
 await button.click()
 ```
 
-يمكنك أيضًا استخدام البحث عن المسند ضمن iOS UI Automation في Appium لتحسين تحديد العنصر بشكل أكبر. انظر [هنا](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md) للحصول على التفاصيل.
+يمكنك أيضًا استخدام البحث بالشروط (predicate) ضمن iOS UI Automation في Appium لتحسين تحديد العناصر بشكل أكبر. راجع [هنا](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md) للتفاصيل.
 
-### سلاسل المسند XCUITest لـ iOS وسلاسل الفئة
+### سلاسل الشروط وسلاسل الفئات في iOS XCUITest
 
-مع iOS 10 وما فوق (باستخدام برنامج التشغيل `XCUITest`)، يمكنك استخدام [سلاسل المسند](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules):
+مع iOS 10 وما فوق (باستخدام برنامج التشغيل `XCUITest`)، يمكنك استخدام [سلاسل الشروط (predicate strings)](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules):
 
 ```js
 const selector = `type == 'XCUIElementTypeSwitch' && name CONTAINS 'Allow'`
@@ -365,7 +422,7 @@ const switch = await $(`-ios predicate string:${selector}`)
 await switch.click()
 ```
 
-و[سلاسل الفئة](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules):
+و[سلاسل الفئات (class chains)](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules):
 
 ```js
 const selector = '**/XCUIElementTypeCell[`name BEGINSWITH "D"`]/**/XCUIElementTypeButton'
@@ -373,14 +430,14 @@ const button = await $(`-ios class chain:${selector}`)
 await button.click()
 ```
 
-### معرف إمكانية الوصول
+### معرّف إمكانية الوصول {#accessibility-id}
 
-تم تصميم استراتيجية محدد `accessibility id` لقراءة معرف فريد لعنصر واجهة المستخدم. هذا له فائدة عدم التغيير أثناء الترجمة أو أي عملية أخرى قد تغير النص. بالإضافة إلى ذلك، يمكن أن تكون مساعدة في إنشاء اختبارات عبر المنصات، إذا كان للعناصر التي هي وظيفيًا نفسها نفس معرف إمكانية الوصول.
+صُممت استراتيجية تحديد المواقع `accessibility id` لقراءة معرّف فريد لعنصر واجهة المستخدم. ميزة ذلك أنه لا يتغير أثناء الترجمة المحلية أو أي عملية أخرى قد تغيّر النص. بالإضافة إلى ذلك، يمكن أن يساعد في إنشاء اختبارات متعددة المنصات، إذا كانت العناصر المتطابقة وظيفيًا تمتلك معرّف إمكانية الوصول نفسه.
 
-- بالنسبة لـ iOS، هذا هو `accessibility identifier` الذي وضعته Apple [هنا](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html).
-- بالنسبة لـ Android، يتم تعيين `accessibility id` إلى `content-description` للعنصر، كما هو موضح [هنا](https://developer.android.com/training/accessibility/accessible-app.html).
+- في iOS، هذا هو `accessibility identifier` الذي حددته Apple [هنا](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html).
+- في Android، يقابل `accessibility id` الخاصية `content-description` للعنصر، كما هو موضح [هنا](https://developer.android.com/training/accessibility/accessible-app.html).
 
-بالنسبة لكلتا المنصتين، يعد الحصول على عنصر (أو عناصر متعددة) حسب `accessibility id` الخاص بها هو أفضل طريقة عادةً. وهي أيضًا الطريقة المفضلة على استراتيجية `name` المهملة.
+على كلتا المنصتين، يُعد الحصول على عنصر (أو عدة عناصر) من خلال `accessibility id` الخاص بها عادةً الطريقة الأفضل. كما أنها الطريقة المفضلة بدلًا من استراتيجية `name` المهملة.
 
 ```js
 const elem = await $('~my_accessibility_identifier')
@@ -389,11 +446,11 @@ await elem.click()
 
 ### اسم الفئة
 
-استراتيجية `class name` هي `string` تمثل عنصر واجهة المستخدم في العرض الحالي.
+استراتيجية `class name` هي `string` تمثل عنصر واجهة مستخدم في العرض الحالي.
 
-- بالنسبة لـ iOS، هو الاسم الكامل لفئة [UIAutomation](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html)، وسيبدأ بـ `UIA-`، مثل `UIATextField` لحقل نص. يمكن العثور على مرجع كامل [هنا](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation).
-- بالنسبة لـ Android، هو الاسم المؤهل بالكامل لفئة [UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator) [class](https://developer.android.com/reference/android/widget/package-summary.html)، مثل `android.widget.EditText` لحقل نص. يمكن العثور على مرجع كامل [هنا](https://developer.android.com/reference/android/widget/package-summary.html).
-- بالنسبة لـ Youi.tv، هو الاسم الكامل لفئة Youi.tv، وسيبدأ بـ `CYI-`، مثل `CYIPushButtonView` لعنصر زر الدفع. يمكن العثور على مرجع كامل في [صفحة GitHub الخاصة بـ You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver)
+- في iOS، هي الاسم الكامل لـ [فئة UIAutomation](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html)، وتبدأ بـ `UIA-`، مثل `UIATextField` لحقل نصي. يمكن العثور على المرجع الكامل [هنا](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation).
+- في Android، هي الاسم المؤهل بالكامل لـ [فئة](https://developer.android.com/reference/android/widget/package-summary.html) [UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator)، مثل `android.widget.EditText` لحقل نصي. يمكن العثور على المرجع الكامل [هنا](https://developer.android.com/reference/android/widget/package-summary.html).
+- في Youi.tv، هي الاسم الكامل لفئة Youi.tv، وتبدأ بـ `CYI-`، مثل `CYIPushButtonView` لعنصر زر ضغط. يمكن العثور على المرجع الكامل في [صفحة GitHub الخاصة بـ You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver)
 
 ```js
 // مثال iOS
@@ -404,11 +461,12 @@ await $('android.widget.DatePicker').click()
 await $('CYIPushButtonView').click()
 ```
 
-## سلسلة المحددات
+## سلسلة المحددات {#chain-selectors}
 
-إذا كنت ترغب في أن تكون أكثر تحديدًا في استعلامك، يمكنك تسلسل المحددات حتى تجد العنصر المناسب. إذا استدعيت `element` قبل الأمر الفعلي، يبدأ WebdriverIO الاستعلام من ذلك العنصر.
+إذا كنت تريد أن تكون أكثر تحديدًا في استعلامك، يمكنك ربط المحددات بشكل متسلسل حتى تعثر على العنصر
+الصحيح. إذا استدعيت `element` قبل أمرك الفعلي، يبدأ WebdriverIO الاستعلام من ذلك العنصر.
 
-على سبيل المثال، إذا كان لديك هيكل DOM مثل:
+على سبيل المثال، إذا كانت لديك بنية DOM مثل:
 
 ```html
 <div class="row">
@@ -430,19 +488,19 @@ await $('CYIPushButtonView').click()
 </div>
 ```
 
-وتريد إضافة المنتج B إلى العربة، سيكون من الصعب القيام بذلك باستخدام محدد CSS فقط.
+وأردت إضافة المنتج B إلى سلة التسوق، فسيكون من الصعب القيام بذلك باستخدام محدد CSS فقط.
 
-باستخدام تسلسل المحددات، الأمر أسهل بكثير. ما عليك سوى تضييق نطاق العنصر المطلوب خطوة بخطوة:
+مع تسلسل المحددات، يصبح الأمر أسهل بكثير. ما عليك سوى تضييق نطاق العنصر المطلوب خطوة بخطوة:
 
 ```js
 await $('.row .entry:nth-child(2)').$('button*=Add').click()
 ```
 
-### محدد صورة Appium
+### محدد الصور في Appium
 
-باستخدام استراتيجية محدد `-image`، من الممكن إرسال ملف صورة إلى Appium يمثل العنصر الذي تريد الوصول إليه.
+باستخدام استراتيجية تحديد المواقع `-image`، من الممكن إرسال ملف صورة إلى Appium يمثل العنصر الذي تريد الوصول إليه.
 
-تنسيقات الملفات المدعومة `jpg,png,gif,bmp,svg`
+صيغ الملفات المدعومة `jpg,png,gif,bmp,svg`
 
 يمكن العثور على المرجع الكامل [هنا](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md)
 
@@ -451,25 +509,31 @@ const elem = await $('./file/path/of/image/test.jpg')
 await elem.click()
 ```
 
-**ملاحظة**: الطريقة التي يعمل بها Appium مع هذا المحدد هي أنه سيقوم داخليًا بعمل لقطة شاشة (للتطبيق) واستخدام محدد الصورة المقدم للتحقق مما إذا كان يمكن العثور على العنصر في لقطة الشاشة (للتطبيق) تلك.
+**ملاحظة**: الطريقة التي يعمل بها Appium مع هذا المحدد هي أنه سيلتقط داخليًا لقطة شاشة (للتطبيق) ويستخدم محدد الصورة المقدَّم
+للتحقق مما إذا كان يمكن العثور على العنصر في لقطة الشاشة تلك.
 
-كن على دراية بحقيقة أن Appium قد يغير حجم لقطة الشاشة (للتطبيق) المأخوذة لجعلها تتطابق مع حجم CSS لشاشة (تطبيق)ك (سيحدث هذا على أجهزة iPhone ولكن أيضًا على أجهزة Mac مع شاشة Retina لأن DPR أكبر من 1). سيؤدي هذا إلى عدم العثور على تطابق لأن محدد الصورة المقدم ربما تم أخذه من لقطة الشاشة الأصلية.
-يمكنك إصلاح ذلك عن طريق تحديث إعدادات خادم Appium، راجع [وثائق Appium](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings) للإعدادات و[هذا التعليق](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) للحصول على شرح مفصل.
+انتبه إلى أن Appium قد يغيّر حجم لقطة الشاشة الملتقطة لتتطابق مع حجم CSS لشاشتك (أو شاشة التطبيق) (سيحدث هذا
+على أجهزة iPhone وأيضًا على أجهزة Mac ذات شاشة Retina لأن DPR أكبر من 1). سيؤدي ذلك إلى عدم العثور على تطابق لأن
+محدد الصورة المقدَّم ربما يكون قد التُقط من لقطة الشاشة الأصلية.
+يمكنك إصلاح ذلك عن طريق تحديث إعدادات خادم Appium، راجع [وثائق Appium](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings)
+للاطلاع على الإعدادات و[هذا التعليق](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) للحصول على شرح مفصّل.
 
 ## محددات React
 
-يوفر WebdriverIO طريقة لتحديد مكونات React بناءً على اسم المكون. للقيام بذلك، لديك خيار من بين أمرين: `react$` و `react$$`.
+يوفر WebdriverIO طريقة لتحديد مكونات React بناءً على اسم المكون. للقيام بذلك، لديك خيار بين أمرين: `react$` و`react$$`.
 
-تتيح لك هذه الأوامر تحديد المكونات من [React VirtualDOM](https://reactjs.org/docs/faq-internals.html) وإرجاع إما عنصر WebdriverIO واحد أو مصفوفة من العناصر (اعتمادًا على الدالة المستخدمة).
+تتيح لك هذه الأوامر تحديد المكونات من [React VirtualDOM](https://reactjs.org/docs/faq-internals.html) وإرجاع إما عنصر WebdriverIO واحد أو مصفوفة من العناصر (حسب الدالة المستخدمة).
 
-**ملاحظة**: الأوامر `react$` و `react$$` متشابهة في الوظائف، باستثناء أن `react$$` ستعيد *جميع* الحالات المطابقة كمصفوفة من عناصر WebdriverIO، و`react$` ستعيد الحالة الأولى التي تم العثور عليها.
+**ملاحظة**: الأمران `react$` و`react$$` متشابهان في الوظيفة، باستثناء أن `react$$` سيُرجع *جميع* النسخ المطابقة كمصفوفة من عناصر WebdriverIO، بينما سيُرجع `react$` أول نسخة يعثر عليها.
+
+تعمل الأوامر مع React من الإصدار 16 إلى 19، لتطبيق يبدأ باستخدام `createRoot` أو `ReactDOM.render`. وهي تقرأ مكونات عملية العرض الحالية، لذا تعثر أيضًا على المكونات التي أضافها تغيير في الحالة. إذا لم يكن React قد عرض جذرًا للصفحة بعد، فإنها تنتظر حتى 5 ثوانٍ لذلك.
 
 #### مثال أساسي
 
 ```jsx
 // index.jsx
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 function MyComponent() {
     return (
@@ -483,22 +547,22 @@ function App() {
     return (<MyComponent />)
 }
 
-ReactDOM.render(<App />, document.querySelector('#root'))
+createRoot(document.querySelector('#root')).render(<App />)
 ```
 
-في الكود أعلاه، هناك نسخة بسيطة من `MyComponent` داخل التطبيق، والتي يقوم React بعرضها داخل عنصر HTML مع `id="root"`.
+في الشيفرة أعلاه توجد نسخة بسيطة من `MyComponent` داخل التطبيق، يعرضها React داخل عنصر HTML ذي `id="root"`.
 
-باستخدام أمر `browser.react$`، يمكنك تحديد نسخة من `MyComponent`:
+باستخدام الأمر `browser.react$`، يمكنك تحديد نسخة من `MyComponent`:
 
 ```js
 const myCmp = await browser.react$('MyComponent')
 ```
 
-الآن بعد أن أصبح لديك عنصر WebdriverIO المخزن في متغير `myCmp`، يمكنك تنفيذ أوامر العنصر ضده.
+الآن بعد أن خزّنت عنصر WebdriverIO في المتغير `myCmp`، يمكنك تنفيذ أوامر العناصر عليه.
 
 #### تصفية المكونات
 
-تتيح المكتبة التي يستخدمها WebdriverIO داخليًا تصفية تحديدك حسب خصائص و/أو حالة المكون. للقيام بذلك، تحتاج إلى تمرير وسيطة ثانية للخصائص و/أو وسيطة ثالثة للحالة إلى أمر المتصفح.
+يمكنك تصفية اختيارك حسب الخصائص (props) و/أو الحالة (state) للمكون. للقيام بذلك، مرّر `props` و/أو `state` في الوسيط الثاني للأمر.
 
 ```jsx
 // index.jsx
@@ -525,7 +589,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-إذا كنت تريد تحديد نسخة من `MyComponent` التي لها خاصية `name` بقيمة `WebdriverIO`، يمكنك تنفيذ الأمر كالتالي:
+إذا أردت تحديد نسخة `MyComponent` التي تمتلك الخاصية `name` بقيمة `WebdriverIO`، يمكنك تنفيذ الأمر على النحو التالي:
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -533,7 +597,7 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-إذا كنت ترغب في تصفية تحديدك حسب الحالة، فإن أمر `browser` سيبدو شيئًا مثل:
+إذا أردت تصفية اختيارك حسب الحالة، سيبدو أمر `browser` على النحو التالي:
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -541,9 +605,26 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
+يتطابق المرشّح عندما يتطابق كل مفتاح من مفاتيحه الموجودة أيضًا لدى المكون. يتم تجاهل المفتاح غير الموجود لدى المكون. يتطابق الكائن المتداخل بالطريقة نفسها، وتتطابق المصفوفة عندما تشترك في قيمة واحدة مع مصفوفة المكون. تتطابق `null` و`false` و`0` مع القيمة نفسها. بالنسبة لمكون دالة يستخدم hooks، تكون الحالة هي حالة أول hook (`useState` أو `useReducer`): إذا كان أول hook من نوع آخر، مثل `useRef`، فلن يتطابق مرشّح الحالة. عند استخدام `props` و`state` معًا، يجب أن يتطابق المكون مع كليهما.
+
+#### قواعد المحددات
+
+- يطابق `*` حرفًا واحدًا أو أكثر: `browser.react$$('My*')` يعثر على `MyComponent` و`MyOtherComponent`.
+- الأسماء المفصولة بمسافات تعثر على مكون داخل مكون آخر: `browser.react$$('List Item')` يعثر على كل `Item` داخل `List`.
+- اسم المكون هو `displayName` الخاص به، وإلا فاسم دالته أو فئته. المكون المُنشأ باستخدام `React.memo` يحمل اسم دالته (كما يمنحه إصدار التطوير من React 17 أيضًا `displayName` الخاص بكائن memo). المكون المُنشأ باستخدام `React.forwardRef` ليس له اسم، ما لم يكن لديه `displayName`.
+- بالنسبة لمكون عالي الرتبة (higher-order component) باسم مثل `withRouter(MyComponent)`، يُستخدم الاسم الموجود داخل الأقواس: `MyComponent`.
+- بدون نطاق عنصر، تبحث الأوامر في جميع جذور React في الصفحة، بترتيب المستند، بما في ذلك الجذور داخل جذور أخرى والجذور داخل جذور الظل المفتوحة. يُرجع `react$` أول تطابق. للبحث في جذر واحد فقط، استدعِ الأمر على حاويته أو على عنصر من ذلك الجذر: `$('#other-root').react$$('MyComponent')`.
+- تأتي النتائج جذرًا تلو الآخر. داخل الجذر، تأتي بترتيب شجرة المكونات، مستوى تلو الآخر، وليس بترتيب المستند. يُرجع `react$$` كل عقدة DOM مرة واحدة.
+- لتطبيق داخل إطار، استدعِ الأمر على سياق التصفح الخاص بالإطار، أو على عنصر من الإطار: `(await page.frame({ selector: 'iframe' })).react$$('MyComponent')`.
+
+القيود المعروفة:
+
+- المكون الذي يعرض نصًا فقط يُنتج عقدة نصية. مع WebDriver الكلاسيكي، لا يمكن إرسال العقدة النصية مرة أخرى، ويفشل الأمر مع `javascript error: circular reference`.
+- بينما يقوم React بعملية الترطيب (hydration) لحدود `Suspense` في صفحة معروضة من الخادم، لا تكون المكونات الموجودة داخلها موجودة بعد. انتظر حتى تنتهي الصفحة من عملية الترطيب.
+
 #### التعامل مع `React.Fragment`
 
-عند استخدام أمر `react$` لتحديد [أجزاء](https://reactjs.org/docs/fragments.html) React، سيعيد WebdriverIO الطفل الأول لهذا المكون كعقدة المكون. إذا استخدمت `react$$`، فستتلقى مصفوفة تحتوي على جميع عقد HTML داخل الأجزاء التي تطابق المحدد.
+عند استخدام الأمر `react$` لتحديد [أجزاء (fragments)](https://reactjs.org/docs/fragments.html) React، سيُرجع WebdriverIO الابن الأول لذلك المكون كعقدة المكون. إذا استخدمت `react$$`، فستتلقى مصفوفة تحتوي على جميع عقد HTML داخل الأجزاء التي تطابق المحدد.
 
 ```jsx
 // index.jsx
@@ -573,16 +654,16 @@ ReactDOM.render(<App />, document.querySelector('#root'))
 بالنظر إلى المثال أعلاه، هكذا ستعمل الأوامر:
 
 ```js
-await browser.react$('MyComponent') // يعيد عنصر WebdriverIO للـ <div /> الأول
-await browser.react$$('MyComponent') // يعيد عناصر WebdriverIO للمصفوفة [<div />, <div />]
+await browser.react$('MyComponent') // يُرجع عنصر WebdriverIO لأول <div />
+await browser.react$$('MyComponent') // يُرجع عناصر WebdriverIO للمصفوفة [<div />, <div />]
 ```
 
-**ملاحظة:** إذا كان لديك نسخ متعددة من `MyComponent` واستخدمت `react$$` لتحديد مكونات الأجزاء هذه، فسيتم إرجاع مصفوفة أحادية الأبعاد من جميع العقد. بعبارة أخرى، إذا كان لديك 3 نسخ من `<MyComponent />`، فسيتم إرجاع مصفوفة بستة عناصر WebdriverIO.
+**ملاحظة:** إذا كانت لديك عدة نسخ من `MyComponent` واستخدمت `react$$` لتحديد مكونات الأجزاء هذه، فستُرجَع إليك مصفوفة أحادية البعد تحتوي على جميع العقد. بعبارة أخرى، إذا كانت لديك 3 نسخ من `<MyComponent />`، فستُرجَع إليك مصفوفة تحتوي على ستة عناصر WebdriverIO.
 
-## استراتيجيات المحدد المخصصة
+## استراتيجيات المحددات المخصصة {#custom-selector-strategies}
 
 
-إذا كان تطبيقك يتطلب طريقة محددة لجلب العناصر، يمكنك تعريف استراتيجية محدد مخصصة يمكنك استخدامها مع `custom$` و `custom$$`. لذلك قم بتسجيل استراتيجيتك مرة واحدة في بداية الاختبار، على سبيل المثال في دالة `before`:
+إذا كان تطبيقك يتطلب طريقة محددة لجلب العناصر، يمكنك تعريف استراتيجية محددات مخصصة بنفسك لاستخدامها مع `custom$` و`custom$$`. لذلك، سجّل استراتيجيتك مرة واحدة في بداية الاختبار، على سبيل المثال في خطاف `before`:
 
 ```js reference
 https://github.com/webdriverio/example-recipes/blob/38f70a694d3b47d7f87d1d8ebda2b540809b0c04/queryElements/customStrategy.js#L3-L10
@@ -594,10 +675,10 @@ https://github.com/webdriverio/example-recipes/blob/38f70a694d3b47d7f87d1d8ebda2
 https://github.com/webdriverio/example-recipes/blob/38f70a694d3b47d7f87d1d8ebda2b540809b0c04/queryElements/example.html#L8-L12
 ```
 
-ثم استخدمه عن طريق الاستدعاء:
+ثم استخدمها عن طريق استدعاء:
 
 ```js reference
 https://github.com/webdriverio/example-recipes/blob/38f70a694d3b47d7f87d1d8ebda2b540809b0c04/queryElements/customStrategy.js#L16-L19
 ```
 
-**ملاحظة:** هذا يعمل فقط في بيئة الويب التي يمكن فيها تشغيل أمر [`execute`](/docs/api/browser/execute).
+**ملاحظة:** يعمل هذا فقط في بيئة ويب يمكن فيها تشغيل الأمر [`execute`](/docs/api/browser/execute).

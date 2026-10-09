@@ -1,37 +1,39 @@
 ---
 id: mcp
-title: MCP (Protocolo de Contexto de Modelo)
+title: MCP (Model Context Protocol)
+description: "Permita que assistentes de IA automatizem navegadores e aplicativos móveis por meio do servidor MCP do WebdriverIO, incluindo instalação, uso com o Claude e ferramentas disponíveis."
 ---
 
 ## O que ele pode fazer?
 
-WebdriverIO MCP é um **servidor de Protocolo de Contexto de Modelo (MCP)** que permite assistentes de IA como Claude Desktop e Claude Code automatizar e interagir com navegadores web e aplicativos móveis.
+O WebdriverIO MCP é um **servidor Model Context Protocol (MCP)** que permite que assistentes de IA automatizem e interajam com navegadores web e aplicativos móveis.
 
-### Por que WebdriverIO MCP?
+### Por que o WebdriverIO MCP?
 
--   **Mobile-First**: Diferente dos servidores MCP apenas para navegador, o WebdriverIO MCP suporta automação de aplicativos nativos iOS e Android via Appium
--   **Seletores Multiplataforma**: A detecção inteligente de elementos gera múltiplas estratégias de localização (ID de acessibilidade, XPath, UiAutomator, predicados iOS) automaticamente
--   **Ecossistema WebdriverIO**: Construído sobre o framework WebdriverIO testado em batalha com seu rico ecossistema de serviços e relatores
+-   **Mobile-First**: Diferentemente de servidores MCP exclusivos para navegadores, o WebdriverIO MCP oferece suporte à automação de aplicativos nativos iOS e Android via Appium
+-   **Seletores Multiplataforma**: A detecção inteligente de elementos gera automaticamente múltiplas estratégias de localização (accessibility ID, XPath, UiAutomator, iOS predicates)
+-   **Ecossistema WebdriverIO**: Construído sobre o consolidado framework WebdriverIO, com seu rico ecossistema de serviços e reporters
 
 Ele fornece uma interface unificada para:
 
--   🖥️ **Navegadores Desktop** (Chrome - modo com cabeçalho ou sem cabeçalho)
+-   🖥️ **Navegadores Desktop** (Chrome, Firefox, Edge, Safari, com interface gráfica ou headless)
 -   📱 **Aplicativos Móveis Nativos** (Simuladores iOS / Emuladores Android / Dispositivos Reais via Appium)
--   📳 **Aplicativos Móveis Híbridos** (Alternância de contexto Nativo + WebView via Appium)
+-   📳 **Aplicativos Móveis Híbridos** (alternância de contexto entre Nativo + WebView via Appium)
+-   ☁️ **Dispositivos na Nuvem** (nuvens de dispositivos reais e navegadores BrowserStack, Sauce Labs, TestMu)
 
-através do pacote [`@wdio/mcp`](https://www.npmjs.com/package/@wdio/mcp).
+por meio do pacote [`@wdio/mcp`](https://www.npmjs.com/package/@wdio/mcp).
 
 Isso permite que assistentes de IA:
 
--   **Iniciem e controlem navegadores** com dimensões configuráveis, modo sem cabeçalho e navegação inicial opcional
--   **Naveguem por sites** e interajam com elementos (clicar, digitar, rolar)
--   **Analisem o conteúdo da página** via árvore de acessibilidade e detecção de elementos visíveis com suporte à paginação
--   **Capturem capturas de tela** automaticamente otimizadas (redimensionadas, comprimidas para máximo 1MB)
--   **Gerenciem cookies** para tratamento de sessão
--   **Controlem dispositivos móveis** incluindo gestos (tocar, deslizar, arrastar e soltar)
+-   **Iniciem e controlem navegadores** com dimensões configuráveis, modo headless e navegação inicial opcional
+-   **Naveguem em sites** e interajam com elementos (clicar, digitar, rolar)
+-   **Analisem o conteúdo da página** por meio da árvore de acessibilidade e da detecção de elementos visíveis, com suporte a paginação
+-   **Capturem screenshots** otimizados automaticamente (redimensionados, comprimidos para no máximo 1MB)
+-   **Gerenciem cookies** para manipulação de sessão
+-   **Controlem dispositivos móveis**, incluindo gestos (tocar, deslizar, arrastar e soltar)
 -   **Alternem contextos** em aplicativos híbridos entre nativo e webview
--   **Executem scripts** - JavaScript em navegadores, comandos móveis Appium em dispositivos
--   **Gerenciem recursos do dispositivo** como rotação, teclado, geolocalização
+-   **Executem scripts** - JavaScript em navegadores, comandos móveis do Appium em dispositivos
+-   **Manipulem recursos do dispositivo**, como rotação, teclado, geolocalização
 -   e muito mais, veja as opções de [Ferramentas](./mcp/tools) e [Configuração](./mcp/configuration)
 
 :::info
@@ -43,21 +45,21 @@ A automação móvel requer um servidor Appium em execução com os drivers apro
 
 ## Instalação
 
-A maneira mais fácil de usar `@wdio/mcp` é via npx sem nenhuma instalação local:
+A maneira mais fácil de usar o `@wdio/mcp` é via npx, sem nenhuma instalação local:
 
 ```sh
 npx @wdio/mcp
 ```
 
-Ou instale globalmente:
+Ou instale-o globalmente:
 
 ```sh
 npm install -g @wdio/mcp
 ```
 
-## Uso com Claude
+## Uso com o Claude
 
-Para usar WebdriverIO MCP com Claude, modifique o arquivo de configuração:
+Para usar o WebdriverIO MCP com o Claude, modifique o arquivo de configuração:
 
 ```json
 {
@@ -70,88 +72,98 @@ Para usar WebdriverIO MCP com Claude, modifique o arquivo de configuração:
 }
 ```
 
-Após adicionar a configuração, reinicie o Claude. As ferramentas WebdriverIO MCP estarão disponíveis para tarefas de automação de navegador e móvel.
+Após adicionar a configuração, reinicie seu harness. As ferramentas do WebdriverIO MCP estarão disponíveis para tarefas de automação de navegadores e dispositivos móveis.
 
-### Uso com Claude Code
+### Uso com o Claude Code
 
-Claude Code detecta automaticamente servidores MCP. Você pode configurá-lo no arquivo `.claude/settings.json` do seu projeto, ou `.mcp.json`.
+O Claude Code detecta servidores MCP automaticamente. Você pode configurá-lo no `.claude/settings.json` ou `.mcp.json` do seu projeto.
 
-Ou adicione-o ao .claude.json globalmente executando:
+Ou adicione-o globalmente ao .claude.json executando:
 ```bash
 claude mcp add --transport stdio wdio-mcp -- npx -y @wdio/mcp
 ```
 Valide executando o comando `/mcp` dentro do claude code.
 
-## Exemplos Rápidos
+## Exemplos de Início Rápido
 
 ### Automação de Navegador
 
-Peça ao Claude para automatizar tarefas de navegador:
+Peça ao Claude para automatizar tarefas no navegador:
 
 ```
-"Abra o Chrome e navegue até https://webdriver.io"
-"Clique no botão 'Get Started'"
-"Tire uma captura de tela da página"
-"Encontre todos os links visíveis na página"
+"Open Chrome and navigate to https://webdriver.io"
+"Click the 'Get Started' button"
+"Take a screenshot of the page"
+"Find all visible links on the page"
 ```
 
-### Automação de Aplicativo Móvel
+### Automação de Aplicativos Móveis
 
 Peça ao Claude para automatizar aplicativos móveis:
 
 ```
-"Inicie meu aplicativo iOS no simulador do iPhone 15"
-"Toque no botão de login"
-"Deslize para cima para rolar para baixo"
-"Tire uma captura de tela da tela atual"
+"Start my iOS app on the iPhone 15 simulator"
+"Tap the login button"
+"Swipe up to scroll down"
+"Take a screenshot of the current screen"
 ```
 
 ## Capacidades
 
-### Automação de Navegador (Chrome)
+### Automação de Navegador
 
 | Recurso | Descrição |
 |---------|-------------|
-| **Gerenciamento de Sessão** | Inicia o Chrome em modo com/sem cabeçalho com dimensões personalizadas e URL de navegação opcional |
-| **Navegação** | Navega para URLs |
-| **Interação com Elementos** | Clica em elementos, digita texto, encontra elementos por vários seletores |
-| **Análise de Página** | Obtém elementos visíveis (com paginação), árvore de acessibilidade (com filtragem) |
-| **Capturas de Tela** | Captura screenshots (auto-otimizados para máx. 1MB) |
-| **Rolagem** | Rola para cima/baixo em quantidades configuráveis de pixels |
-| **Gerenciamento de Cookies** | Obtém, define e exclui cookies |
-| **Execução de Script** | Executa JavaScript personalizado no contexto do navegador |
+| **Gerenciamento de Sessão** | Inicie Chrome, Firefox, Edge ou Safari no modo com interface/headless com dimensões personalizadas; conecte-se a uma instância existente do Chrome via CDP |
+| **Navegação** | Navegue para URLs; gerencie múltiplas abas |
+| **Interação com Elementos** | Clique em elementos, digite texto, encontre elementos por vários seletores |
+| **Análise de Página** | Obtenha elementos interativos (com paginação), árvore de acessibilidade (com filtragem por role) |
+| **Screenshots** | Capture screenshots (otimizados automaticamente para no máximo 1MB) |
+| **Rolagem** | Role para cima/baixo por quantidades configuráveis de pixels |
+| **Gerenciamento de Cookies** | Obtenha, defina e exclua cookies |
+| **Emulação de Dispositivos** | Emule viewports de celular/tablet no navegador (requer BiDi) |
+| **Execução de Scripts** | Execute JavaScript personalizado no contexto do navegador |
 
-### Automação de Aplicativo Móvel (iOS/Android)
+### Automação de Aplicativos Móveis (iOS/Android)
 
 | Recurso | Descrição |
 |---------|-------------|
-| **Gerenciamento de Sessão** | Inicia aplicativos em simuladores, emuladores ou dispositivos reais |
-| **Gestos de Toque** | Toque, deslize, arrastar e soltar |
+| **Gerenciamento de Sessão** | Inicie aplicativos em simuladores, emuladores ou dispositivos reais |
+| **Gestos de Toque** | Tocar (elemento ou coordenadas), deslizar, arrastar e soltar |
 | **Detecção de Elementos** | Detecção inteligente de elementos com múltiplas estratégias de localização e paginação |
-| **Ciclo de Vida do Aplicativo** | Obtém o estado do aplicativo (via `execute_script` para ativar/encerrar) |
-| **Alternância de Contexto** | Alterna entre contextos nativos e webview em aplicativos híbridos |
-| **Controle de Dispositivo** | Rotaciona dispositivo, controle de teclado |
-| **Geolocalização** | Obtém e define coordenadas GPS do dispositivo |
+| **Ciclo de Vida do App** | Obtenha o estado do app (primeiro plano, segundo plano, não em execução, não instalado) |
+| **Alternância de Contexto** | Alterne entre contextos nativo e webview em aplicativos híbridos |
+| **Controle do Dispositivo** | Gire o dispositivo, controle o teclado, substitua o GPS |
 | **Permissões** | Tratamento automático de permissões e alertas |
-| **Execução de Script** | Executa comandos móveis Appium (pressKey, deepLink, shell, etc.) |
+| **Execução de Scripts** | Execute comandos móveis do Appium (pressKey, deepLink, shell, etc.) |
+
+### Provedores de Nuvem
+
+| Recurso | Descrição |
+|---------|-------------|
+| **Sessões de Navegador** | Execute sessões de navegador no BrowserStack, Sauce Labs, TestMu ou TestingBot (Windows, macOS, Linux) |
+| **Sessões Móveis** | Execute sessões de aplicativos em dispositivos reais via BrowserStack, Sauce Labs, TestMu ou TestingBot |
+| **Gerenciamento de Apps** | Faça upload de arquivos `.apk`/`.ipa`; liste apps enviados anteriormente em todos os quatro provedores |
+| **Túnel Local** | Gerencie automaticamente os binários de túnel específicos de cada provedor para acessar o localhost |
+| **Relatórios** | Marque sessões com rótulos de projeto/build/sessão (funciona de forma idêntica em todos os provedores) |
 
 ## Pré-requisitos
 
 ### Automação de Navegador
 
--   **Chrome** deve estar instalado no seu sistema
--   WebdriverIO gerencia automaticamente o ChromeDriver
+-   **Chrome, Firefox, Edge ou Safari** deve estar instalado
+-   O WebdriverIO cuida do gerenciamento automatizado de drivers
 
 ### Automação Móvel
 
 #### iOS
 
-1. **Instale Xcode** pela Mac App Store
-2. **Instale as Ferramentas de Linha de Comando do Xcode**:
+1. **Instale o Xcode** pela Mac App Store
+2. **Instale as Xcode Command Line Tools**:
    ```sh
    xcode-select --install
    ```
-3. **Instale Appium**:
+3. **Instale o Appium**:
    ```sh
    npm install -g appium
    ```
@@ -168,14 +180,14 @@ Peça ao Claude para automatizar aplicativos móveis:
 
 #### Android
 
-1. **Instale Android Studio** e configure o Android SDK
-2. **Configure variáveis de ambiente**:
+1. **Instale o Android Studio** e configure o Android SDK
+2. **Defina as variáveis de ambiente**:
    ```sh
    export ANDROID_HOME=$HOME/Library/Android/sdk
    export PATH=$PATH:$ANDROID_HOME/emulator
    export PATH=$PATH:$ANDROID_HOME/platform-tools
    ```
-3. **Instale Appium**:
+3. **Instale o Appium**:
    ```sh
    npm install -g appium
    ```
@@ -188,35 +200,35 @@ Peça ao Claude para automatizar aplicativos móveis:
    appium
    ```
 6. **Crie um emulador** via Android Studio → Virtual Device Manager
-7. **Inicie o emulador** antes de executar testes
+7. **Inicie o emulador** antes de executar os testes
 
 ## Arquitetura
 
 ### Como Funciona
 
-WebdriverIO MCP atua como uma ponte entre assistentes de IA e automação de navegador/móvel:
+O WebdriverIO MCP atua como uma ponte entre assistentes de IA e a automação de navegadores/dispositivos móveis:
 
 ```
-┌─────────────────┐     Protocolo MCP      ┌─────────────────┐
+┌─────────────────┐     MCP Protocol      ┌─────────────────┐
 │  Claude Desktop │ ◄──────────────────►  │    @wdio/mcp    │
-│  ou Claude Code │      (stdio)          │     Servidor     │
+│  or Claude Code │   (stdio or HTTP)     │     Server      │
 └─────────────────┘                       └────────┬────────┘
                                                    │
-                                             API WebDriverIO
+                                             WebDriverIO API
                                                    │
                     ┌──────────────────────────────┼──────────────────────────────┐
                     │                              │                              │
             ┌───────▼───────┐             ┌───────▼───────┐             ┌───────▼───────┐
-            │    Chrome     │             │    Appium     │             │    Appium     │
-            │  (Navegador)  │             │     (iOS)     │             │   (Android)   │
+            │    Browser    │             │    Appium     │             │   Cloud        │
+            │ (local/CDP)   │             │  (iOS/Android)│             │   Providers    │
             └───────────────┘             └───────────────┘             └───────────────┘
 ```
 
 ### Gerenciamento de Sessão
 
--   **Modelo de sessão única**: Apenas uma sessão de navegador OU aplicativo pode estar ativa de cada vez
--   **Estado da sessão** é mantido globalmente em todas as chamadas de ferramentas
--   **Auto-desanexação**: Sessões com estado preservado (`noReset: true`) automaticamente se desanexam ao fechar
+-   **Modelo de sessão única**: Apenas uma sessão de navegador OU de aplicativo pode estar ativa por vez
+-   **O estado da sessão** é mantido globalmente entre as chamadas de ferramentas
+-   **Desconexão automática**: Sessões com estado preservado (`noReset: true`) são desconectadas automaticamente ao fechar
 
 ### Detecção de Elementos
 
@@ -224,22 +236,22 @@ WebdriverIO MCP atua como uma ponte entre assistentes de IA e automação de nav
 
 -   Usa um script de navegador otimizado para encontrar todos os elementos visíveis e interativos
 -   Retorna elementos com seletores CSS, IDs, classes e informações ARIA
--   Filtra para elementos visíveis na viewport por padrão
+-   Suporta filtragem por viewport e paginação
 
-#### Móvel (Aplicativos Nativos)
+#### Mobile (Aplicativos Nativos)
 
--   Usa análise eficiente de fonte de página XML (2 chamadas HTTP vs 600+ para consultas tradicionais)
+-   Usa análise eficiente do XML do page source (2 chamadas HTTP vs 600+ em consultas tradicionais)
 -   Classificação de elementos específica da plataforma para Android e iOS
 -   Gera múltiplas estratégias de localização por elemento:
-    -   ID de Acessibilidade (multiplataforma, mais estável)
-    -   ID de Recurso / atributo Name
-    -   Correspondência de Texto / Rótulo
+    -   Accessibility ID (multiplataforma, mais estável)
+    -   Resource ID / atributo Name
+    -   Correspondência por Text / Label
     -   XPath (completo e simplificado)
-    -   UiAutomator (Android) / Predicados (iOS)
+    -   UiAutomator (Android) / Predicates (iOS)
 
-## Sintaxe de Seletor
+## Sintaxe de Seletores
 
-O servidor MCP suporta múltiplas estratégias de seletor. Veja [Seletores](./mcp/selectors) para documentação detalhada.
+O servidor MCP suporta múltiplas estratégias de seletores. Veja [Seletores](./mcp/selectors) para a documentação detalhada.
 
 ### Web (CSS/XPath)
 
@@ -253,15 +265,15 @@ button.my-class
 //button[@class='submit']
 //a[contains(text(), 'Click')]
 
-# Seletores de Texto (específico do WebdriverIO)
-button=Texto Exato do Botão
-a*=Texto Parcial do Link
+# Seletores de Texto (específicos do WebdriverIO)
+button=Exact Button Text
+a*=Partial Link Text
 ```
 
-### Móvel (Multiplataforma)
+### Mobile (Multiplataforma)
 
 ```
-# ID de Acessibilidade (recomendado - funciona em iOS e Android)
+# Accessibility ID (recomendado - funciona no iOS e Android)
 ~loginButton
 
 # Android UiAutomator
@@ -273,98 +285,103 @@ android=new UiSelector().text("Login")
 # iOS Class Chain
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
-# XPath (funciona em ambas plataformas)
+# XPath (funciona em ambas as plataformas)
 //android.widget.Button[@text="Login"]
 //XCUIElementTypeButton[@label="Login"]
 ```
 
 ## Ferramentas Disponíveis
 
-O servidor MCP fornece 25 ferramentas para automação de navegador e móvel. Veja [Ferramentas](./mcp/tools) para a referência completa.
+O servidor MCP fornece 29 ferramentas para automação de navegadores e dispositivos móveis. Veja [Ferramentas](./mcp/tools) para a referência completa.
 
-### Ferramentas de Navegador
+| Ferramenta | Plataforma | Descrição |
+|------|----------|-------------|
+| `start_session` | all | Inicia uma sessão de navegador ou móvel (local ou provedor de nuvem) |
+| `close_session` | all | Fecha ou desconecta da sessão atual |
+| `launch_chrome` | browser | Abre o Chrome com depuração remota para conexão via CDP |
+| `navigate` | browser | Carrega uma URL na aba atual |
+| `get_tabs` | browser | Lista todas as abas abertas |
+| `switch_tab` | browser | Foca uma aba por handle ou índice |
+| `switch_frame` | browser | Entra em um iframe por seletor, ou volta ao nível superior |
+| `click_element` | browser | Clica em um elemento |
+| `set_value` | all | Digita texto em um campo de entrada |
+| `scroll` | browser | Rola a página para cima ou para baixo |
+| `get_elements` | all | Obtém elementos interativos (com filtragem + paginação) |
+| `get_accessibility_tree` | browser | Obtém a árvore de acessibilidade (com filtragem por role) |
+| `get_screenshot` | all | Captura screenshot (otimizado automaticamente) |
+| `get_cookies` | browser | Obtém todos os cookies ou um cookie específico |
+| `set_cookie` | browser | Define um cookie do navegador |
+| `delete_cookies` | browser | Exclui todos ou um cookie |
+| `emulate_device` | browser | Emula o viewport de um dispositivo celular/tablet |
+| `execute_script` | all | Executa JavaScript (navegador) ou comandos do Appium (mobile) |
+| `tap_element` | mobile | Toca em um elemento ou em coordenadas da tela |
+| `swipe` | mobile | Gesto de deslizar em uma direção |
+| `drag_and_drop` | mobile | Arrasta entre elementos ou coordenadas |
+| `get_contexts` | mobile | Lista os contextos nativo/webview disponíveis |
+| `switch_context` | mobile | Alterna entre contextos nativo e webview |
+| `rotate_device` | mobile | Gira para retrato ou paisagem |
+| `hide_keyboard` | mobile | Oculta o teclado virtual |
+| `set_geolocation` | all | Substitui as coordenadas GPS do dispositivo |
+| `get_app_state` | mobile | Obtém o estado do ciclo de vida do app |
+| `list_apps` | cloud | Lista apps enviados (BrowserStack, Sauce Labs, TestMu, TestingBot) |
+| `upload_app` | cloud | Faz upload de um `.apk`/`.ipa` para um provedor de nuvem |
 
-| Ferramenta | Descrição |
-|------|-------------|
-| `start_browser` | Inicia navegador Chrome (com URL inicial opcional) |
-| `close_session` | Fecha ou desanexa da sessão |
-| `navigate` | Navega para uma URL |
-| `click_element` | Clica em um elemento |
-| `set_value` | Digita texto em um campo |
-| `get_visible_elements` | Obtém elementos visíveis/interativos (com paginação) |
-| `get_accessibility` | Obtém árvore de acessibilidade (com filtragem) |
-| `take_screenshot` | Captura screenshot (auto-otimizado) |
-| `scroll` | Rola a página para cima ou para baixo |
-| `get_cookies` / `set_cookie` / `delete_cookies` | Gerenciamento de cookies |
-| `execute_script` | Executa JavaScript no contexto do navegador |
+## Recursos MCP
 
-### Ferramentas Móveis
+Além das ferramentas, o servidor expõe o estado da sessão ao vivo como recursos MCP. Veja [Recursos](./mcp/resources) para a referência completa.
 
-| Ferramenta | Descrição |
-|------|-------------|
-| `start_app_session` | Inicia aplicativo iOS/Android |
-| `tap_element` | Toca em elemento ou coordenadas |
-| `swipe` | Desliza em uma direção |
-| `drag_and_drop` | Arrasta entre localizações |
-| `get_app_state` | Verifica se o aplicativo está em execução |
-| `get_contexts` / `switch_context` | Alternância de contexto em aplicativos híbridos |
-| `rotate_device` | Rotaciona para modo retrato/paisagem |
-| `get_geolocation` / `set_geolocation` | Obtém ou define coordenadas GPS |
-| `hide_keyboard` | Oculta o teclado na tela |
-| `execute_script` | Executa comandos móveis Appium |
+| URI do Recurso | Descrição |
+|-------------|-------------|
+| `wdio://sessions` | Índice de todas as sessões |
+| `wdio://session/current/elements` | Elementos interativos (preferível ao screenshot) |
+| `wdio://session/current/screenshot` | Screenshot em base64 |
+| `wdio://session/current/accessibility` | Árvore de acessibilidade |
+| `wdio://session/current/cookies` | Cookies do navegador |
+| `wdio://session/current/tabs` | Abas abertas do navegador |
+| `wdio://session/current/contexts` | Contextos móveis disponíveis |
+| `wdio://session/current/context` | Contexto móvel ativo |
+| `wdio://session/current/app-state/{bundleId}` | Estado do ciclo de vida do app móvel |
+| `wdio://session/current/geolocation` | Substituição de GPS atual |
+| `wdio://session/current/logs` | Logs da sessão (console do navegador, logcat, crashlog) |
+| `wdio://session/current/capabilities` | Capabilities brutas do WebDriver |
+| `wdio://session/current/code` | JS do WebdriverIO gerado |
+| `wdio://session/current/steps` | Log de etapas da sessão |
+| `wdio://session/{sessionId}/code` | JS gerado para uma sessão anterior |
+| `wdio://session/{sessionId}/steps` | Etapas de uma sessão anterior |
+| `wdio://browserstack/local-binary` | Instruções de configuração do BrowserStack Local |
+| `wdio://saucelabs/local-binary` | Instruções de configuração do Sauce Connect Proxy |
+| `wdio://testmu/local-binary` | Instruções de configuração do TestMu Tunnel |
+| `wdio://testingbot/local-binary` | Instruções de configuração do TestingBot Tunnel |
 
 ## Tratamento Automático
 
 ### Permissões
 
-Por padrão, o servidor MCP concede automaticamente permissões de aplicativo (`autoGrantPermissions: true`), eliminando a necessidade de lidar manualmente com diálogos de permissão durante a automação.
+Por padrão, o servidor MCP concede automaticamente as permissões do app (`autoGrantPermissions: true`), eliminando a necessidade de lidar manualmente com diálogos de permissão durante a automação.
 
 ### Alertas do Sistema
 
-Alertas do sistema (como "Permitir notificações?") são automaticamente aceitos por padrão (`autoAcceptAlerts: true`). Isso pode ser configurado para dispensar em vez disso com `autoDismissAlerts: true`.
+Alertas do sistema (como "Permitir notificações?") são aceitos automaticamente por padrão (`autoAcceptAlerts: true`). Isso pode ser configurado para dispensá-los com `autoDismissAlerts: true`.
 
-## Configuração
+## Transporte
 
-### Variáveis de Ambiente
+Por padrão, o servidor é executado via **stdio** (iniciado como um subprocesso pelo cliente de IA). Para clientes que não suportam MCP baseado em subprocesso (llama.cpp, modo seguro do Codex), use o **transporte HTTP**:
 
-Configure a conexão do servidor Appium:
-
-| Variável | Padrão | Descrição |
-|----------|---------|-------------|
-| `APPIUM_URL` | `127.0.0.1` | Nome do host do servidor Appium |
-| `APPIUM_URL_PORT` | `4723` | Porta do servidor Appium |
-| `APPIUM_PATH` | `/` | Caminho do servidor Appium |
-
-### Exemplo com Servidor Appium Personalizado
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"],
-            "env": {
-                "APPIUM_URL": "192.168.1.100",
-                "APPIUM_URL_PORT": "4724"
-            }
-        }
-    }
-}
+```bash
+npx @wdio/mcp --http --port 3000
 ```
+
+Veja [Transporte](./mcp/transport) para todas as opções, incluindo `--allowedHosts` e `--allowedOrigins`.
 
 ## Otimização de Desempenho
 
-O servidor MCP é otimizado para comunicação eficiente com assistentes de IA:
+O servidor MCP é otimizado para uma comunicação eficiente com assistentes de IA:
 
 -   **Formato TOON**: Usa Token-Oriented Object Notation para uso mínimo de tokens
--   **Análise XML**: A detecção de elementos móveis usa 2 chamadas HTTP (vs 600+ tradicionalmente)
--   **Compressão de Screenshot**: Imagens auto-comprimidas para máximo 1MB usando Sharp
--   **Filtragem de Viewport**: Apenas elementos visíveis são retornados por padrão
--   **Paginação**: Grandes listas de elementos podem ser paginadas para reduzir o tamanho da resposta
-
-## Suporte a TypeScript
-
-O servidor MCP é escrito em TypeScript e inclui definições de tipo completas. Se você estiver estendendo ou integrando com o servidor programaticamente, você se beneficiará de auto-completação e segurança de tipos.
+-   **Análise de XML**: A detecção de elementos móveis usa 2 chamadas HTTP (vs 600+ tradicionalmente)
+-   **Compressão de Screenshots**: Imagens comprimidas automaticamente para no máximo 1MB
+-   **Filtragem por Viewport**: Apenas elementos visíveis são retornados por padrão
+-   **Paginação**: Listas grandes de elementos podem ser paginadas para reduzir o tamanho da resposta
 
 ## Tratamento de Erros
 
@@ -379,48 +396,48 @@ Todas as ferramentas são projetadas com tratamento robusto de erros:
 ### Garantia de Qualidade
 
 -   Execução de casos de teste com IA
--   Testes de regressão visual com capturas de tela
--   Auditoria de acessibilidade via análise de árvore de acessibilidade
+-   Testes de regressão visual com screenshots
+-   Auditoria de acessibilidade por meio da análise da árvore de acessibilidade
 
 ### Web Scraping e Extração de Dados
 
--   Navegar por fluxos complexos de múltiplas páginas
--   Extrair dados estruturados de conteúdo dinâmico
--   Lidar com autenticação e gerenciamento de sessão
+-   Navegue por fluxos complexos de múltiplas páginas
+-   Extraia dados estruturados de conteúdo dinâmico
+-   Lide com autenticação e gerenciamento de sessão
 
-### Teste de Aplicativo Móvel
+### Testes de Aplicativos Móveis
 
 -   Automação de testes multiplataforma (iOS + Android)
--   Validação de fluxo de integração
--   Teste de deep linking e navegação
+-   Validação de fluxos de onboarding
+-   Testes de deep linking e navegação
 
 ### Testes de Integração
 
--   Teste de fluxo de trabalho de ponta a ponta
+-   Testes de fluxos de trabalho de ponta a ponta
 -   Verificação de integração API + UI
 -   Verificações de consistência multiplataforma
 
 ## Solução de Problemas
 
-### Navegador não inicia
+### O navegador não inicia
 
--   Certifique-se de que o Chrome está instalado
+-   Certifique-se de que o navegador de destino está instalado
 -   Verifique se nenhum outro processo está usando a porta de depuração padrão (9222)
--   Tente o modo sem cabeçalho se ocorrerem problemas de exibição
+-   Tente o modo headless se ocorrerem problemas de exibição
 
-### Falha na conexão Appium
+### Falha na conexão com o Appium
 
 -   Verifique se o servidor Appium está em execução (`appium`)
--   Verifique a configuração de URL e porta do Appium
+-   Verifique o host e a porta do Appium em `appiumConfig`
 -   Certifique-se de que o driver apropriado está instalado (`appium driver list`)
 
-### Problemas com Simulador iOS
+### Problemas com o Simulador iOS
 
 -   Certifique-se de que o Xcode está instalado e atualizado
 -   Verifique se os simuladores estão disponíveis (`xcrun simctl list devices`)
 -   Para dispositivos reais, verifique se o UDID está correto
 
-### Problemas com Emulador Android
+### Problemas com o Emulador Android
 
 -   Certifique-se de que o Android SDK está configurado corretamente
 -   Verifique se o emulador está em execução (`adb devices`)
@@ -429,9 +446,12 @@ Todas as ferramentas são projetadas com tratamento robusto de erros:
 ## Recursos
 
 -   [Referência de Ferramentas](./mcp/tools) - Lista completa de ferramentas disponíveis
--   [Guia de Seletores](./mcp/selectors) - Documentação de sintaxe de seletor
+-   [Referência de Recursos](./mcp/resources) - Recursos MCP para o estado da sessão ao vivo
+-   [Guia de Seletores](./mcp/selectors) - Documentação da sintaxe de seletores
 -   [Configuração](./mcp/configuration) - Opções de configuração
+-   [Transporte](./mcp/transport) - Configuração do transporte HTTP
+-   [Provedores de Nuvem](./mcp/cloud-providers) - Integração com as nuvens BrowserStack, Sauce Labs, TestMu e TestingBot
 -   [FAQ](./mcp/faq) - Perguntas frequentes
--   [Repositório GitHub](https://github.com/webdriverio/mcp) - Código fonte e issues
+-   [Repositório no GitHub](https://github.com/webdriverio/mcp) - Código-fonte e issues
 -   [Pacote NPM](https://www.npmjs.com/package/@wdio/mcp) - Pacote no npm
--   [Model Context Protocol](https://modelcontextprotocol.io/) - Especificação MCP
+-   [Model Context Protocol](https://modelcontextprotocol.io/) - Especificação do MCP

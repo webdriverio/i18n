@@ -1,17 +1,17 @@
 ---
 id: globals
-title: المتغيرات العالمية
+title: المتغيرات العامة
 ---
 
-في ملفات الاختبار الخاصة بك، يضع WebdriverIO كل من هذه الطرق والكائنات في البيئة العالمية. لا تحتاج إلى استيراد أي شيء لاستخدامها. ومع ذلك، إذا كنت تفضل الاستيرادات الصريحة، يمكنك استخدام `import { browser, $, $$, expect } from '@wdio/globals'` وضبط `injectGlobals: false` في تكوين WDIO الخاص بك.
+في ملفات الاختبار الخاصة بك، يضع WebdriverIO كلًا من هذه الدوال والكائنات في البيئة العامة. لا تحتاج إلى استيراد أي شيء لاستخدامها. ومع ذلك، إذا كنت تفضل الاستيراد الصريح، يمكنك استخدام `import { browser, $, $$, expect } from '@wdio/globals'` وتعيين `injectGlobals: false` في إعدادات WDIO الخاصة بك.
 
-يتم تعيين الكائنات العالمية التالية إذا لم يتم تكوينها بطريقة أخرى:
+يتم تعيين الكائنات العامة التالية ما لم يتم تكوينها بخلاف ذلك:
 
-- `browser`: كائن [Browser object](https://webdriver.io/docs/api/browser) الخاص بـ WebdriverIO
-- `driver`: اسم مستعار لـ `browser` (يستخدم عند تشغيل اختبارات الجوال)
-- `multiRemoteBrowser`: اسم مستعار لـ `browser` أو `driver` ولكن يتم تعيينه فقط لجلسات [Multiremote](/docs/multiremote)
-- `$`: أمر لجلب عنصر (انظر المزيد في [API docs](/docs/api/browser/$))
-- `$$`: أمر لجلب العناصر (انظر المزيد في [API docs](/docs/api/browser/$$))
-- `expect`: إطار التأكيد لـ WebdriverIO (انظر [API docs](/docs/api/expect-webdriverio))
+- `browser`: [كائن Browser](https://webdriver.io/docs/api/browser) في WebdriverIO
+- `driver`: اسم بديل لـ `browser` (يُستخدم عند تشغيل اختبارات الأجهزة المحمولة)
+- `multiRemoteBrowser`: اسم بديل لـ `browser` أو `driver` ولكن يتم تعيينه فقط لجلسات [multi-remote](/docs/multiremote)
+- `$`: أمر لجلب عنصر (اطلع على المزيد في [وثائق API](/docs/api/browser/$))
+- `$$`: أمر لجلب عناصر متعددة (اطلع على المزيد في [وثائق API](/docs/api/browser/$$))
+- `expect`: إطار عمل التأكيدات لـ WebdriverIO (راجع [وثائق API](/docs/api/expect-webdriverio))
 
-__ملاحظة:__ ليس لدى WebdriverIO أي تحكم في الأطر المستخدمة (مثل Mocha أو Jasmine) التي تقوم بتعيين متغيرات عالمية عند تهيئة بيئتها.
+__ملاحظة:__ لا يملك WebdriverIO أي تحكم في قيام أطر العمل المستخدمة (مثل Mocha أو Jasmine) بتعيين متغيرات عامة عند تهيئة بيئتها.

@@ -1,31 +1,33 @@
 ---
 id: typescript
 title: TypeScriptのセットアップ
+description: "tsxを使用してTypeScriptでWebdriverIOテストを記述し、tsconfig.jsonを設定して、フレームワーク、サービス、カスタムコマンドの型定義を追加します。"
 ---
 
-[TypeScript](http://www.typescriptlang.org)を使用してテストを書くことで、自動補完と型安全性を得ることができます。
+[TypeScript](http://www.typescriptlang.org)を使用してテストを記述することで、自動補完と型安全性を得ることができます。
 
-[`tsx`](https://github.com/privatenumber/tsx)を`devDependencies`にインストールする必要があります：
+`devDependencies`に[`tsx`](https://github.com/privatenumber/tsx)をインストールする必要があります。以下のコマンドでインストールできます：
 
 ```bash npm2yarn
 $ npm install tsx --save-dev
 ```
 
-WebdriverIOは、これらの依存関係がインストールされているかを自動的に検出し、設定とテストをコンパイルします。WDIOの設定と同じディレクトリに`tsconfig.json`を配置してください。
+WebdriverIOはこれらの依存関係がインストールされているかを自動的に検出し、設定ファイルとテストをコンパイルします。WDIO設定ファイルと同じディレクトリに`tsconfig.json`があることを確認してください。
 
 #### カスタムTSConfig
 
-`tsconfig.json`に別のパスを設定する必要がある場合は、TSCONFIG_PATH環境変数に希望のパスを設定するか、wdio設定の[tsConfigPath設定](/docs/configurationfile)を使用してください。
+`tsconfig.json`に別のパスを設定する必要がある場合は、TSCONFIG_PATH環境変数に目的のパスを設定するか、wdio設定の[tsConfigPath設定](/docs/configurationfile)を使用してください。
 
-あるいは、`tsx`の[環境変数](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path)を使用することもできます。
+または、`tsx`の[環境変数](https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path)を使用することもできます。
+
 
 #### 型チェック
 
-`tsx`は型チェックをサポートしていないことに注意してください - 型をチェックしたい場合は、`tsc`を使用して別のステップでこれを行う必要があります。
+`tsx`は型チェックをサポートしていないことに注意してください。型をチェックしたい場合は、`tsc`を使用して別のステップで行う必要があります。
 
 ## フレームワークのセットアップ
 
-`tsconfig.json`には以下が必要です：
+`tsconfig.json`には以下の設定が必要です：
 
 ```json title="tsconfig.json"
 {
@@ -36,13 +38,13 @@ WebdriverIOは、これらの依存関係がインストールされているか
 ```
 
 `webdriverio`や`@wdio/sync`を明示的にインポートすることは避けてください。
-`WebdriverIO`と`WebDriver`の型は、`tsconfig.json`の`types`に追加すれば、どこからでもアクセスできます。追加のWebdriverIOサービス、プラグイン、または`devtools`自動化パッケージを使用する場合は、それらも`types`リストに追加してください。多くの場合、追加の型定義が提供されます。
+`tsconfig.json`の`types`に追加すると、`WebdriverIO`と`WebDriver`の型はどこからでもアクセスできるようになります。追加のWebdriverIOサービス、プラグイン、または`devtools`自動化パッケージを使用する場合は、多くのものが追加の型定義を提供しているため、それらも`types`リストに追加してください。
 
 ## フレームワークの型
 
-使用するフレームワークに応じて、そのフレームワークの型を`tsconfig.json`の`types`プロパティに追加し、その型定義をインストールする必要があります。これは、組み込みのアサーションライブラリ[`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio)の型サポートを持ちたい場合に特に重要です。
+使用するフレームワークに応じて、そのフレームワークの型を`tsconfig.json`のtypesプロパティに追加し、その型定義をインストールする必要があります。これは、組み込みのアサーションライブラリ[`expect-webdriverio`](https://www.npmjs.com/package/expect-webdriverio)の型サポートを得たい場合に特に重要です。
 
-例えば、Mochaフレームワークを使用する場合、`@types/mocha`をインストールし、以下のように追加して、すべての型をグローバルに利用できるようにする必要があります：
+例えば、Mochaフレームワークを使用する場合は、`@types/mocha`をインストールし、すべての型をグローバルに利用できるように以下のように追加する必要があります：
 
 <Tabs
   defaultValue="mocha"
@@ -68,10 +70,12 @@ WebdriverIOは、これらの依存関係がインストールされているか
 ```json title="tsconfig.json"
 {
     "compilerOptions": {
-        "types": ["node", "@wdio/globals/types", "@wdio/jasmine-framework"]
+        "types": ["node", "jasmine", "@wdio/globals/types", "@wdio/jasmine-framework"]
     }
 }
 ```
+
+`jasmine`は`@types/jasmine`を読み込み、`jasmine`、`spyOn`、`expectAsync`を提供します。`@wdio/jasmine-framework`を使用すると、グローバルな`expect`はJasmineの同期マッチャーに対しては`void`を返し、WebdriverIOマッチャーとJasmineの非同期マッチャーに対しては`Promise`を返します。`expectAsync`にもWebdriverIOマッチャーが含まれています。`expect-webdriverio`の`expect`エクスポートは、Jestマッチャーを保持します。
 
 </TabItem>
 <TabItem value="cucumber">
@@ -89,7 +93,7 @@ WebdriverIOは、これらの依存関係がインストールされているか
 
 ## サービス
 
-ブラウザスコープにコマンドを追加するサービスを使用する場合は、それらも`tsconfig.json`に含める必要があります。例えば、`@wdio/lighthouse-service`を使用する場合は、それも`types`に追加してください：
+ブラウザスコープにコマンドを追加するサービスを使用する場合は、それらも`tsconfig.json`に含める必要があります。例えば、`@wdio/lighthouse-service`を使用する場合は、以下のように`types`にも追加してください：
 
 ```json title="tsconfig.json"
 {
@@ -104,33 +108,33 @@ WebdriverIOは、これらの依存関係がインストールされているか
 }
 ```
 
-サービスとレポーターをTypeScript設定に追加することで、WebdriverIO設定ファイルの型安全性も強化されます。
+TypeScript設定にサービスとレポーターを追加することで、WebdriverIO設定ファイルの型安全性も強化されます。
 
 ## 型定義
 
-WebdriverIOコマンドを実行する際、通常はすべてのプロパティが型付けされているため、追加の型をインポートする必要はありません。ただし、変数を事前に定義したい場合があります。これらが型安全であることを確認するために、[`@wdio/types`](https://www.npmjs.com/package/@wdio/types)パッケージで定義されているすべての型を使用できます。例えば、`webdriverio`のリモートオプションを定義したい場合は、次のようにします：
+WebdriverIOコマンドを実行する際、通常はすべてのプロパティに型が付けられているため、追加の型をインポートする必要はありません。しかし、変数を事前に定義したい場合もあります。これらの型安全性を確保するために、[`@wdio/types`](https://www.npmjs.com/package/@wdio/types)パッケージで定義されているすべての型を使用できます。例えば、`webdriverio`のリモートオプションを定義したい場合は、以下のようにできます：
 
 ```ts
 import type { Options } from '@wdio/types'
 
-// 型を直接インポートしたい例
+// 型を直接インポートしたい場合の例
 const remoteConfig: Options.WebdriverIO = {
     hostname: 'http://localhost',
-    port: '4444' // エラー: Type 'string' is not assignable to type 'number'.ts(2322)
+    port: '4444' // エラー: 型 'string' を型 'number' に割り当てることはできません。ts(2322)
     capabilities: {
         browserName: 'chrome'
     }
 }
 
-// その他の場合、`WebdriverIO`名前空間を使用できます
+// その他の場合は、`WebdriverIO` 名前空間を使用できます
 export const config: WebdriverIO.Config = {
   ...remoteConfig
   // その他の設定オプション
 }
 ```
 
-## ヒントとコツ
+## ヒントとアドバイス
 
 ### コンパイルとリント
 
-完全に安全を期すためには、ベストプラクティスに従うことを検討してください：TypeScriptコンパイラ（`tsc`または`npx tsc`を実行）でコードをコンパイルし、[eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)を[プリコミットフック](https://github.com/typicode/husky)で実行します。
+完全に安全を期すために、ベストプラクティスに従うことを検討してください：TypeScriptコンパイラでコードをコンパイルし（`tsc`または`npx tsc`を実行）、[pre-commitフック](https://github.com/typicode/husky)で[eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)を実行するようにしましょう。

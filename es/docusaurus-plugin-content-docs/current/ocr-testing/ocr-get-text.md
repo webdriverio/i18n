@@ -1,9 +1,10 @@
 ---
 id: ocr-get-text
 title: ocrGetText
+description: "Lee el texto que se muestra en la pantalla o en un área específica con ocrGetText del servicio OCR."
 ---
 
-Obtener el texto en una imagen.
+Obtiene el texto de una imagen.
 
 ### Uso
 
@@ -33,12 +34,11 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 ### `contrast`
 
--   **Tipo:** `number`
--   **Obligatorio:** no
--   **Predeterminado:** `0.25`
+<Option type="number" default="0.25" required="no">
 
 Cuanto mayor sea el contraste, más oscura será la imagen y viceversa. Esto puede ayudar a encontrar texto en una imagen. Acepta valores entre `-1` y `1`.
 
+</Option>
 #### Ejemplo
 
 ```js
@@ -47,11 +47,11 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **Tipo:** `number`
--   **Obligatorio:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Esta es el área de búsqueda en la pantalla donde el OCR necesita buscar texto. Puede ser un elemento o un rectángulo que contenga `x`, `y`, `width` y `height`
+Esta es el área de búsqueda en la pantalla donde el OCR debe buscar texto. Puede ser un elemento o un rectángulo que contenga `x`, `y`, `width` y `height`
 
+</Option>
 #### Ejemplo
 
 ```js
@@ -73,18 +73,17 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **Tipo:** `string`
--   **Obligatorio:** No
--   **Predeterminado:** `eng`
+<Option type="string" default="eng" required="No">
 
-El idioma que Tesseract reconocerá. Se puede encontrar más información [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas compatibles se pueden encontrar [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+El idioma que reconocerá Tesseract. Puedes encontrar más información [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas compatibles [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Ejemplo
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // Usar holandés como idioma
+    // Usar neerlandés como idioma
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

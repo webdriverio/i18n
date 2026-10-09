@@ -1,6 +1,7 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
+description: "Aguarde até que um texto específico seja exibido na tela com ocrWaitForTextDisplayed do serviço OCR."
 ---
 
 Aguarda até que um texto específico seja exibido na tela.
@@ -20,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayed uses ocrGetElementPositionByText under the hood, that is why you see the command ocrGetElementPositionByText in the logs
+# ocrWaitForTextDisplayed usa ocrGetElementPositionByText internamente, é por isso que você vê o comando ocrGetElementPositionByText nos logs
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -28,11 +29,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `text`
 
--   **Tipo:** `string`
--   **Obrigatório:** sim
+<Option type="string" required="yes">
 
 O texto que você deseja procurar para clicar.
 
+</Option>
 #### Exemplo
 
 ```js
@@ -41,29 +42,27 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
--   **Tipo:** `number`
--   **Obrigatório:** não
--   **Padrão:** 18000 (18 segundos)
+<Option type="number" default="18000 (18 seconds)" required="no">
 
 Tempo em milissegundos. Esteja ciente de que o processo de OCR pode levar algum tempo, então não defina um valor muito baixo.
 
+</Option>
 #### Exemplo
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // esperar por 25 segundos
+    timeout: 25000 // aguarda por 25 segundos
 });
 ```
 
 ### `timeoutMsg`
 
--   **Tipo:** `string`
--   **Obrigatório:** não
--   **Padrão:** `Could not find the text "{selector}" within the requested time.`
+<Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
 Substitui a mensagem de erro padrão.
 
+</Option>
 #### Exemplo
 
 ```js
@@ -75,12 +74,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
--   **Tipo:** `number`
--   **Obrigatório:** não
--   **Padrão:** `0.25`
+<Option type="number" default="0.25" required="no">
 
 Quanto maior o contraste, mais escura a imagem e vice-versa. Isso pode ajudar a encontrar texto em uma imagem. Aceita valores entre `-1` e `1`.
 
+</Option>
 #### Exemplo
 
 ```js
@@ -92,11 +90,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
--   **Tipo:** `number`
--   **Obrigatório:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Esta é a área de busca na tela onde o OCR precisa procurar texto. Pode ser um elemento ou um retângulo contendo `x`, `y`, `width` e `height`
+Esta é a área de busca na tela onde o OCR precisa procurar o texto. Pode ser um elemento ou um retângulo contendo `x`, `y`, `width` e `height`
 
+</Option>
 #### Exemplo
 
 ```js
@@ -125,35 +123,33 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
--   **Tipo:** `string`
--   **Obrigatório:** Não
--   **Padrão:** `eng`
+<Option type="string" default="eng" required="No">
 
-O idioma que o Tesseract reconhecerá. Mais informações podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e os idiomas suportados podem ser encontrados [aqui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+O idioma que o Tesseract irá reconhecer. Mais informações podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e os idiomas suportados podem ser encontrados [aqui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Exemplo
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Use Dutch as a language
+    // Usa holandês como idioma
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-Você pode alterar a lógica fuzzy para encontrar texto com as seguintes opções. Isso pode ajudar a encontrar uma correspondência melhor
+Você pode alterar a lógica difusa (fuzzy) para encontrar texto com as seguintes opções. Isso pode ajudar a encontrar uma correspondência melhor
 
 #### `fuzzyFindOptions.distance`
 
--   **Tipo:** `number`
--   **Obrigatório:** não
--   **Padrão:** 100
+<Option type="number" default="100" required="no">
 
-Determina o quão próxima deve ser a correspondência da localização fuzzy (especificada por location). Uma correspondência exata de letra que esteja a "distance" caracteres de distância da localização fuzzy seria pontuada como uma incompatibilidade completa. Uma distância de 0 requer que a correspondência esteja no local exato especificado. Uma distância de 1000 exigiria uma correspondência perfeita para estar dentro de 800 caracteres da localização a ser encontrada usando um limiar de 0,8.
+Determina quão próxima a correspondência deve estar da localização difusa (especificada por location). Uma correspondência exata de letras que esteja a uma distância de distance caracteres da localização difusa seria pontuada como uma não correspondência completa. Uma distância de 0 exige que a correspondência esteja na localização exata especificada. Uma distância de 1000 exigiria que uma correspondência perfeita estivesse dentro de 800 caracteres da localização para ser encontrada usando um threshold de 0.8.
 
+</Option>
 ##### Exemplo
 
 ```js
@@ -167,12 +163,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
--   **Tipo:** `number`
--   **Obrigatório:** não
--   **Padrão:** 0
+<Option type="number" default="0" required="no">
 
-Determina aproximadamente onde no texto espera-se encontrar o padrão.
+Determina aproximadamente onde no texto se espera que o padrão seja encontrado.
 
+</Option>
 ##### Exemplo
 
 ```js
@@ -186,12 +181,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Tipo:** `number`
--   **Obrigatório:** não
--   **Padrão:** 0.6
+<Option type="number" default="0.6" required="no">
 
-Em que ponto o algoritmo de correspondência desiste. Um limiar de 0 requer uma correspondência perfeita (tanto de letras quanto de localização), um limiar de 1.0 corresponderia a qualquer coisa.
+Em que ponto o algoritmo de correspondência desiste. Um threshold de 0 exige uma correspondência perfeita (tanto de letras quanto de localização), um threshold de 1.0 corresponderia a qualquer coisa.
 
+</Option>
 ##### Exemplo
 
 ```js
@@ -205,12 +199,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Tipo:** `boolean`
--   **Obrigatório:** não
--   **Padrão:** false
+<Option type="boolean" default="false" required="no">
 
 Se a busca deve diferenciar maiúsculas de minúsculas.
 
+</Option>
 ##### Exemplo
 
 ```js
@@ -224,12 +217,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Tipo:** `number`
--   **Obrigatório:** não
--   **Padrão:** 2
+<Option type="number" default="2" required="no">
 
-Somente as correspondências cujo comprimento exceda este valor serão retornadas. (Por exemplo, se você quiser ignorar correspondências de caracteres únicos no resultado, defina como 2)
+Apenas as correspondências cujo comprimento exceda este valor serão retornadas. (Por exemplo, se você quiser ignorar correspondências de um único caractere no resultado, defina como 2)
 
+</Option>
 ##### Exemplo
 
 ```js
@@ -243,12 +235,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Tipo:** `number`
--   **Obrigatório:** não
--   **Padrão:** false
+<Option type="number" default="false" required="no">
 
-Quando `true`, a função de correspondência continuará até o final de um padrão de pesquisa, mesmo que uma correspondência perfeita já tenha sido localizada na string.
+Quando `true`, a função de correspondência continuará até o final de um padrão de busca, mesmo que uma correspondência perfeita já tenha sido localizada na string.
 
+</Option>
 ##### Exemplo
 
 ```js

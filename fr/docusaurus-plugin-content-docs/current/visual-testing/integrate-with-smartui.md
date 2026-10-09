@@ -1,26 +1,27 @@
 ---
 id: integrate-with-smartui
 title: SmartUI
+description: "Ajoutez des tests de régression visuelle basés sur l'IA à vos tests WebdriverIO avec SmartUI de TestMu AI (anciennement LambdaTest), y compris la configuration et les options."
 ---
 
-TestMu AI (Anciennement LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) fournit des tests de régression visuelle alimentés par l'IA pour vos tests WebdriverIO. Il capture des captures d'écran, les compare aux références de base et met en évidence les différences visuelles avec des algorithmes de comparaison intelligents.
+[SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) de TestMu AI (anciennement LambdaTest) fournit des tests de régression visuelle basés sur l'IA pour vos tests WebdriverIO. Il capture des captures d'écran, les compare à des références (baselines) et met en évidence les différences visuelles grâce à des algorithmes de comparaison intelligents.
 
 ## Configuration
 
 **Créer un projet SmartUI**
 
-[Connectez-vous](https://accounts.lambdatest.com/register) à TestMu AI (Anciennement LambdaTest) et naviguez vers [SmartUI Projects](https://smartui.lambdatest.com/) pour créer un nouveau projet. Sélectionnez **Web** comme plateforme et configurez le nom de votre projet, les approbateurs et les tags.
+[Connectez-vous](https://accounts.lambdatest.com/register) à TestMu AI (anciennement LambdaTest) et accédez à [SmartUI Projects](https://smartui.lambdatest.com/) pour créer un nouveau projet. Sélectionnez **Web** comme plateforme et configurez le nom de votre projet, les approbateurs et les tags.
 
 **Configurer les identifiants**
 
-Obtenez votre `LT_USERNAME` et `LT_ACCESS_KEY` depuis le tableau de bord TestMu AI (Anciennement LambdaTest) et définissez-les comme variables d'environnement :
+Récupérez votre `LT_USERNAME` et votre `LT_ACCESS_KEY` depuis le tableau de bord de TestMu AI (anciennement LambdaTest) et définissez-les comme variables d'environnement :
 
 ```sh
 export LT_USERNAME="<your username>"
 export LT_ACCESS_KEY="<your access key>"
 ```
 
-**Installer SmartUI SDK**
+**Installer le SDK SmartUI**
 
 ```sh
 npm install @lambdatest/wdio-driver
@@ -110,9 +111,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## Ressources
 
-| Ressource                                                                                       | Description                                 |
-|-------------------------------------------------------------------------------------------------|---------------------------------------------|
-| [Documentation officielle](https://www.testmuai.com/support/docs/smart-ui-cypress/)          | Documentation SmartUI                       |
-| [Tableau de bord SmartUI](https://smartui.lambdatest.com/)                                      | Accédez à vos projets et builds SmartUI     |
-| [Paramètres avancés](https://www.testmuai.com/support/docs/test-settings-options/)           | Configurer la sensibilité de comparaison    |
-| [Options de build](https://www.testmuai.com/support/docs/smart-ui-build-options/)            | Configuration avancée des builds            |
+| Ressource                                                                                         | Description                                          |
+|---------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| [Documentation officielle](https://www.testmuai.com/support/docs/smart-ui-cypress/)            | Documentation SmartUI                                |
+| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                              | Accédez à vos projets et builds SmartUI              |
+| [Paramètres avancés](https://www.testmuai.com/support/docs/test-settings-options/)             | Configurer la sensibilité de la comparaison          |
+| [Options de build](https://www.testmuai.com/support/docs/smart-ui-build-options/)              | Configuration avancée des builds                     |

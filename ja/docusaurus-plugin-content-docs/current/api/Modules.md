@@ -3,26 +3,26 @@ id: modules
 title: モジュール
 ---
 
-WebdriverIOは、NPMやその他のレジストリに様々なモジュールを公開しており、それらを使用して独自の自動化フレームワークを構築することができます。WebdriverIOのセットアップタイプについての詳細は[こちら](/docs/setuptypes)をご覧ください。
+WebdriverIOは、独自の自動化フレームワークを構築するために使用できるさまざまなモジュールをNPMやその他のレジストリに公開しています。WebdriverIOのセットアップタイプに関する詳細なドキュメントは[こちら](/docs/setuptypes)をご覧ください。
 
 ## `webdriver` と `devtools`
 
-プロトコルパッケージ（[`webdriver`](https://www.npmjs.com/package/webdriver)と[`devtools`](https://www.npmjs.com/package/devtools)）は、セッションを開始できる以下の静的関数を持つクラスを公開しています：
+プロトコルパッケージ（[`webdriver`](https://www.npmjs.com/package/webdriver)および[`devtools`](https://www.npmjs.com/package/devtools)）は、セッションを開始するための以下の静的関数を持つクラスを公開しています：
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-特定の機能を持つ新しいセッションを開始します。セッションレスポンスに基づいて、異なるプロトコルからのコマンドが提供されます。
+特定のケイパビリティで新しいセッションを開始します。セッションのレスポンスに基づいて、異なるプロトコルのコマンドが提供されます。
 
-##### パラメーター
+##### パラメータ
 
-- `options`: [WebDriver オプション](/docs/configuration#webdriver-options)
-- `modifier`: 返される前にクライアントインスタンスを変更できる関数
-- `userPrototype`: インスタンスプロトタイプを拡張できるプロパティオブジェクト
-- `customCommandWrapper`: 関数呼び出しの周りに機能をラップできる関数
+- `options`: [WebDriverオプション](/docs/configuration#webdriver-options)
+- `modifier`: クライアントインスタンスが返される前に変更するための関数
+- `userPrototype`: インスタンスのプロトタイプを拡張するためのプロパティオブジェクト
+- `customCommandWrapper`: 関数呼び出しの周りに機能をラップするための関数
 
 ##### 戻り値
 
-- [Browser](/docs/api/browser) オブジェクト
+- [Browser](/docs/api/browser)オブジェクト
 
 ##### 例
 
@@ -34,18 +34,18 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-実行中のWebDriverまたはDevToolsセッションに接続します。
+実行中のWebDriverまたはDevToolsセッションにアタッチします。
 
-##### パラメーター
+##### パラメータ
 
-- `attachInstance`: セッションに接続するインスタンス、または少なくとも`sessionId`プロパティを持つオブジェクト（例：`{ sessionId: 'xxx' }`）
-- `modifier`: 返される前にクライアントインスタンスを変更できる関数
-- `userPrototype`: インスタンスプロトタイプを拡張できるプロパティオブジェクト
-- `customCommandWrapper`: 関数呼び出しの周りに機能をラップできる関数
+- `attachInstance`: セッションをアタッチするインスタンス、または少なくとも`sessionId`プロパティを持つオブジェクト（例：`{ sessionId: 'xxx' }`）
+- `modifier`: クライアントインスタンスが返される前に変更するための関数
+- `userPrototype`: インスタンスのプロトタイプを拡張するためのプロパティオブジェクト
+- `customCommandWrapper`: 関数呼び出しの周りに機能をラップするための関数
 
 ##### 戻り値
 
-- [Browser](/docs/api/browser) オブジェクト
+- [Browser](/docs/api/browser)オブジェクト
 
 ##### 例
 
@@ -56,11 +56,11 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-提供されたインスタンスのセッションを再読み込みします。
+指定されたインスタンスのセッションをリロードします。
 
-##### パラメーター
+##### パラメータ
 
-- `instance`: 再読み込みするパッケージインスタンス
+- `instance`: リロードするパッケージインスタンス
 
 ##### 例
 
@@ -71,20 +71,20 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-プロトコルパッケージ（`webdriver`と`devtools`）と同様に、WebdriverIOパッケージのAPIを使用してセッションを管理することもできます。これらのAPIは`import { remote, attach, multiremote } from 'webdriverio'`を使ってインポートでき、以下の機能を含んでいます：
+プロトコルパッケージ（`webdriver`および`devtools`）と同様に、WebdriverIOパッケージのAPIを使用してセッションを管理することもできます。APIは`import { remote, attach, multiRemote } from 'webdriverio`を使用してインポートでき、以下の機能が含まれています：
 
 #### `remote(options, modifier)`
 
-WebdriverIOセッションを開始します。インスタンスはプロトコルパッケージのすべてのコマンドを含みますが、追加の高階関数も含みます。[APIドキュメント](/docs/api)を参照してください。
+WebdriverIOセッションを開始します。このインスタンスにはプロトコルパッケージのすべてのコマンドに加えて、追加の高階関数が含まれています。[APIドキュメント](/docs/api)を参照してください。
 
-##### パラメーター
+##### パラメータ
 
-- `options`: [WebdriverIO オプション](/docs/configuration#webdriverio)
-- `modifier`: 返される前にクライアントインスタンスを変更できる関数
+- `options`: [WebdriverIOオプション](/docs/configuration#webdriverio)
+- `modifier`: クライアントインスタンスが返される前に変更するための関数
 
 ##### 戻り値
 
-- [Browser](/docs/api/browser) オブジェクト
+- [Browser](/docs/api/browser)オブジェクト
 
 ##### 例
 
@@ -98,15 +98,15 @@ const browser = await remote({
 
 #### `attach(attachOptions)`
 
-実行中のWebdriverIOセッションに接続します。
+実行中のWebdriverIOセッションにアタッチします。
 
-##### パラメーター
+##### パラメータ
 
-- `attachOptions`: セッションに接続するインスタンス、または少なくとも`sessionId`プロパティを持つオブジェクト（例：`{ sessionId: 'xxx' }`）
+- `attachOptions`: セッションをアタッチするインスタンス、または少なくとも`sessionId`プロパティを持つオブジェクト（例：`{ sessionId: 'xxx' }`）
 
 ##### 戻り値
 
-- [Browser](/docs/api/browser) オブジェクト
+- [Browser](/docs/api/browser)オブジェクト
 
 ##### 例
 
@@ -117,24 +117,24 @@ const browser = await remote({...})
 const newBrowser = await attach(browser)
 ```
 
-#### `multiremote(multiremoteOptions)`
+#### `multiRemote(multiRemoteOptions)`
 
-単一のインスタンス内で複数のセッションを制御できるマルチリモートインスタンスを開始します。具体的な使用例については、[multiremote examples](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote)をご覧ください。
+単一のインスタンス内で複数のセッションを制御できるマルチリモートインスタンスを開始します。具体的なユースケースについては、[マルチリモートの例](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote)をご覧ください。
 
-##### パラメーター
+##### パラメータ
 
-- `multiremoteOptions`: ブラウザ名とその[WebdriverIO オプション](/docs/configuration#webdriverio)を表すキーを持つオブジェクト。
+- `multiRemoteOptions`: ブラウザ名を表すキーと、その[WebdriverIOオプション](/docs/configuration#webdriverio)を持つオブジェクト。
 
 ##### 戻り値
 
-- [Browser](/docs/api/browser) オブジェクト
+- [Browser](/docs/api/browser)オブジェクト
 
 ##### 例
 
 ```js
-import { multiremote } from 'webdriverio'
+import { multiRemote } from 'webdriverio'
 
-const matrix = await multiremote({
+const matrix = await multiRemote({
     myChromeBrowser: {
         capabilities: { browserName: 'chrome' }
     },
@@ -146,12 +146,108 @@ await matrix.url('http://json.org')
 await matrix.getInstance('browserA').url('https://google.com')
 
 console.log(await matrix.getTitle())
-// returns ['Google', 'JSON']
+// ['Google', 'JSON'] を返します
 ```
+
+#### `Key`
+
+[`browser.keys`](/docs/api/browser/keys)コマンドで使用する特殊文字の定数を含むオブジェクトです。これらの定数は、`Enter`、`Tab`、`Escape`、矢印キー、ファンクションキーなど、ブラウザに送信できる特殊キーを表します。
+
+##### 例
+
+```js
+import { Key } from 'webdriverio'
+
+// Enterキーを押す
+await browser.keys(Key.Enter)
+
+// Ctrl+Aですべて選択する（クロスプラットフォームで動作）
+await browser.keys([Key.Ctrl, 'a'])
+
+// 矢印キーで移動する
+await browser.keys([Key.ArrowDown, Key.ArrowDown, Key.Enter])
+```
+
+##### 利用可能なキー
+
+`Key`オブジェクトを介して以下の特殊キーが利用可能です：
+
+**修飾キー：**
+
+| 定数 | 説明 |
+|----------|-------------|
+| `Key.Ctrl` | クロスプラットフォームのコントロールキー（MacではCommand、Windows/LinuxではControl） |
+| `Key.Control` | Controlキー |
+| `Key.Shift` | Shiftキー |
+| `Key.Alt` | Altキー |
+| `Key.Command` | Commandキー（Mac） |
+| `Key.NULL` | Null/リリースキー — 現在押されているすべての修飾キーを解放します |
+
+**ナビゲーションキー：**
+
+| 定数 | 説明 |
+|----------|-------------|
+| `Key.Cancel` | Cancelキー |
+| `Key.Help` | Helpキー |
+| `Key.Backspace` | Backspaceキー |
+| `Key.Tab` | Tabキー |
+| `Key.Clear` | Clearキー |
+| `Key.Return` | Returnキー |
+| `Key.Enter` | Enterキー |
+| `Key.Pause` | Pauseキー |
+| `Key.Escape` | Escapeキー |
+| `Key.Space` | Spaceキー |
+| `Key.PageUp` | Page Upキー |
+| `Key.PageDown` | Page Downキー |
+| `Key.End` | Endキー |
+| `Key.Home` | Homeキー |
+| `Key.ArrowLeft` | 左矢印キー |
+| `Key.ArrowUp` | 上矢印キー |
+| `Key.ArrowRight` | 右矢印キー |
+| `Key.ArrowDown` | 下矢印キー |
+| `Key.Insert` | Insertキー |
+| `Key.Delete` | Deleteキー |
+
+**文字キー：**
+
+| 定数 | 説明 |
+|----------|-------------|
+| `Key.Semicolon` | セミコロンキー |
+| `Key.Equals` | イコールキー |
+
+**テンキー：**
+
+| 定数 | 説明 |
+|----------|-------------|
+| `Key.Numpad0` - `Key.Numpad9` | テンキー 0-9 |
+| `Key.Multiply` | テンキー 乗算 |
+| `Key.Add` | テンキー 加算 |
+| `Key.Separator` | テンキー 区切り |
+| `Key.Subtract` | テンキー 減算 |
+| `Key.Decimal` | テンキー 小数点 |
+| `Key.Divide` | テンキー 除算 |
+
+**ファンクションキー：**
+
+| 定数 | 説明 |
+|----------|-------------|
+| `Key.F1` - `Key.F12` | ファンクションキー F1〜F12 |
+
+**その他のキー：**
+
+| 定数 | 説明 |
+|----------|-------------|
+| `Key.ZenkakuHankaku` | 全角/半角キー（日本語） |
+
+:::info クロスプラットフォームの修飾キー
+
+`Key.Ctrl`定数は、異なるオペレーティングシステム間で「コントロール」修飾キーを使用するための便利な方法を提供します。macOSでは`Command`キーに、WindowsとLinuxでは`Control`キーにマッピングされます。これは、すべて選択（`Ctrl+A`）、コピー（`Ctrl+C`）、貼り付け（`Ctrl+V`）などの操作で、複数のプラットフォームで動作する必要があるテストを書く場合に便利です。
+
+:::
 
 ## `@wdio/cli`
 
-`wdio`コマンドを呼び出す代わりに、テストランナーをモジュールとして含め、任意の環境で実行することもできます。そのためには、`@wdio/cli`パッケージをモジュールとして要求する必要があります：
+`wdio`コマンドを呼び出す代わりに、テストランナーをモジュールとして組み込み、任意の環境で実行することもできます。そのためには、次のように`@wdio/cli`パッケージをモジュールとして読み込む必要があります：
 
 <Tabs
   defaultValue="esm"
@@ -180,12 +276,12 @@ const Launcher = require('@wdio/cli').default
 
 #### `Launcher(configPath, opts)`
 
-`Launcher`クラスのコンストラクタは、設定ファイルへのURLと、設定を上書きする`opts`オブジェクトを期待します。
+`Launcher`クラスのコンストラクタは、設定ファイルへのURLと、設定ファイル内の設定を上書きする設定を含む`opts`オブジェクトを受け取ります。
 
-##### パラメーター
+##### パラメータ
 
 - `configPath`: 実行する`wdio.conf.js`へのパス
-- `opts`: 設定ファイルから値を上書きする引数（[`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)）
+- `opts`: 設定ファイルの値を上書きする引数（[`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)）
 
 ##### 例
 
@@ -203,11 +299,11 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-`run`コマンドは[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)を返します。テストが正常に実行されたか失敗した場合は解決され、ランチャーがテストの実行を開始できなかった場合は拒否されます。
+`run`コマンドは[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)を返します。テストが正常に実行された場合または失敗した場合はresolveされ、ランチャーがテストの実行を開始できなかった場合はrejectされます。
 
 ## `@wdio/browser-runner`
 
-WebdriverIOの[ブラウザランナー](/docs/runner#browser-runner)を使用してユニットテストやコンポーネントテストを実行する際、テスト用のモッキングユーティリティをインポートできます：
+WebdriverIOの[ブラウザランナー](/docs/runner#browser-runner)を使用してユニットテストやコンポーネントテストを実行する場合、テスト用のモックユーティリティをインポートできます。例：
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
@@ -217,17 +313,17 @@ import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 
 #### `fn`
 
-モック関数。詳細は公式の[Vitestドキュメント](https://vitest.dev/api/mock.html#mock-functions)を参照してください。
+モック関数です。詳細は公式の[Vitestドキュメント](https://vitest.dev/api/mock.html#mock-functions)をご覧ください。
 
 #### `spyOn`
 
-スパイ関数。詳細は公式の[Vitestドキュメント](https://vitest.dev/api/mock.html#mock-functions)を参照してください。
+スパイ関数です。詳細は公式の[Vitestドキュメント](https://vitest.dev/api/mock.html#mock-functions)をご覧ください。
 
 #### `mock`
 
-ファイルまたは依存モジュールをモックするメソッド。
+ファイルまたは依存モジュールをモックするメソッドです。
 
-##### パラメーター
+##### パラメータ
 
 - `moduleName`: モックするファイルへの相対パス、またはモジュール名。
 - `factory`: モックされた値を返す関数（オプション）
@@ -250,11 +346,11 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-マニュアルモック（`__mocks__`）ディレクトリ内で定義された依存関係のモックを解除します。
+手動モック（`__mocks__`）ディレクトリ内で定義された依存関係のモックを解除します。
 
-##### パラメーター
+##### パラメータ
 
-- `moduleName`: モック解除するモジュールの名前。
+- `moduleName`: モックを解除するモジュールの名前。
 
 ##### 例
 

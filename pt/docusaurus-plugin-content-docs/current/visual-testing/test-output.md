@@ -1,17 +1,18 @@
 ---
 id: test-output
-title: Saída de Teste
+title: Saída dos Testes
+description: "Entenda a saída e as imagens produzidas pelos métodos save e check do serviço visual, incluindo testes de layout e block-outs."
 ---
 
 :::info
 
-[Este site de demonstração WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) foi usado para o exemplo de saída de imagem.
+[Este site de demonstração do WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) foi utilizado para a saída de imagem de exemplo.
 
 :::
 
 ## `enableLayoutTesting`
 
-Isso pode ser configurado nas [Opções de Serviço](./service-options#enablelayouttesting) assim como no nível do [Método](./method-options).
+Isso pode ser definido nas [Opções do Serviço](./service-options#enablelayouttesting), bem como no nível do [Método](./method-options).
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,7 +33,7 @@ export const config = {
 }
 ```
 
-A saída de imagem para as [Opções de Serviço](./service-options#enablelayouttesting) é igual à do [Método](./method-options), veja abaixo.
+A saída de imagem para as [Opções do Serviço](./service-options#enablelayouttesting) é igual à do [Método](./method-options), veja abaixo.
 
 ### Saída de Imagem
 
@@ -49,7 +50,7 @@ A saída de imagem para as [Opções de Serviço](./service-options#enablelayout
 
 ```js
 await browser.saveElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
-// Or
+// Ou
 await browser.checkElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
 ```
 
@@ -71,7 +72,7 @@ await browser.saveScreen("example-page-tag")
 
 ```js
 await browser.saveFullPageScreen("full-page-tag")
-// Or
+// Ou
 await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -83,7 +84,7 @@ await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 
 ```js
 await browser.saveTabbablePage("tabbable-page-tag")
-// Or
+// Ou
 await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -104,11 +105,11 @@ const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // The device pixel ratio of the instance that has run
+ *   // A proporção de pixels do dispositivo (device pixel ratio) da instância que foi executada
  *   devicePixelRatio: 1,
- *   // The formatted filename, this depends on the options `formatImageName`
+ *   // O nome do arquivo formatado, isso depende das opções `formatImageName`
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // The path where the actual screenshot file can be found
+ *   // O caminho onde o arquivo da captura de tela atual pode ser encontrado
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
@@ -177,7 +178,7 @@ await browser.saveScreen("example-page-tag")
 <TabItem value="ios">
 
 :::info DICA
-As execuções `saveScreen` no iOS, por padrão, não vêm com os cantos do dispositivo. Para ter isso, adicione a opção `addIOSBezelCorners:true` ao instanciar o serviço, veja [aqui](./service-options#addiosbezelcorners)
+Por padrão, as execuções de `saveScreen` no iOS não incluem os cantos da moldura (bezel) do dispositivo. Para tê-los, adicione a opção `addIOSBezelCorners:true` ao instanciar o serviço, veja [isto](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,26 +217,26 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### Saída do Console
 
-Por padrão, os métodos `check(Screen/Element/FullPageScreen)` fornecerão apenas uma porcentagem de incompatibilidade como `1.23`, mas quando o plugin tem a opção `returnAllCompareData: true`, as seguintes informações são fornecidas após a execução do método:
+Por padrão, os métodos `check(Screen/Element/FullPageScreen)` fornecerão apenas uma porcentagem de divergência, como `1.23`, mas quando o plugin tiver a opção `returnAllCompareData: true`, as seguintes informações serão fornecidas após a execução do método:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // The formatted filename, this depends on the options `formatImageName`
+ *     // O nome do arquivo formatado, isso depende das opções `formatImageName`
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // The actual folder and the file name
+ *         // A pasta atual (actual) e o nome do arquivo
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // The baseline folder and the file name
+ *         // A pasta da baseline e o nome do arquivo
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // This following folder is optional and only if there is a mismatch
- *         // The folder that holds the diffs and the file name
+ *         // A pasta a seguir é opcional e existe apenas se houver uma divergência
+ *         // A pasta que contém as diferenças (diffs) e o nome do arquivo
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
- *     // The mismatch percentage
+ *     // A porcentagem de divergência
  *     misMatchPercentage: 2.34,
  * };
  */
@@ -244,7 +245,7 @@ console.log(checkResult)
 ### Saída de Imagem
 
 :::info
-As imagens abaixo mostrarão apenas diferenças como resultado da execução dos comandos de verificação. Apenas a diferença em um navegador é mostrada, mas a saída para Android e iOS é a mesma.
+As imagens abaixo mostrarão apenas as diferenças resultantes da execução dos comandos check. Apenas a diferença em um navegador é mostrada, mas a saída para Android e iOS é a mesma.
 :::
 
 <Tabs
@@ -262,7 +263,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-O texto do botão foi alterado de `Get Started` para `Getting Started!` e detectado como uma mudança.
+O texto do botão foi alterado de `Get Started` para `Getting Started!` e foi detectado como uma alteração.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +276,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-O texto do botão foi alterado de `Get Started` para `Getting Started!` e detectado como uma mudança.
+O texto do botão foi alterado de `Get Started` para `Getting Started!` e foi detectado como uma alteração.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +290,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-O texto do botão foi alterado de `Get Started` para `Getting Started!` e detectado como uma mudança.
+O texto do botão foi alterado de `Get Started` para `Getting Started!` e foi detectado como uma alteração.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -300,7 +301,7 @@ O texto do botão foi alterado de `Get Started` para `Getting Started!` e detect
 
 ## Block-Outs
 
-Aqui você encontrará um exemplo de saída para bloqueios no Android NativeWebScreenshot e iOS onde o status+endereço e barra de ferramentas estão bloqueados.
+Aqui você encontrará um exemplo de saída para block-outs no Android NativeWebScreenshot e no iOS, onde a barra de status + endereço e a barra de ferramentas estão bloqueadas.
 
 <Tabs
     defaultValue="nativeWebScreenshot"

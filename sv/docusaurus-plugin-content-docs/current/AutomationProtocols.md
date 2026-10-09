@@ -1,25 +1,26 @@
 ---
 id: automationProtocols
-title: Automationsprotokoll
+title: Automatiseringsprotokoll
+description: "Förstå automatiseringsprotokollen WebDriver Bidi och WebDriver och välj vilket av dem WebdriverIO ska använda för att automatisera webbläsare och enheter."
 ---
 
-Med WebdriverIO kan du välja mellan flera automationsteknologier när du kör dina E2E-tester lokalt eller i molnet. Som standard försöker WebdriverIO starta en lokal automationssession med [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) protokollet.
+Med WebdriverIO kan du välja mellan flera automatiseringstekniker när du kör dina E2E-tester lokalt eller i molnet. Som standard försöker WebdriverIO starta en lokal automatiseringssession med protokollet [WebDriver Bidi](https://w3c.github.io/webdriver-bidi/).
 
-## WebDriver Bidi Protocol
+## WebDriver Bidi-protokollet
 
-[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) är ett automationsprotokoll för att automatisera webbläsare med hjälp av dubbelriktad kommunikation. Det är efterföljaren till [WebDriver](https://w3c.github.io/webdriver/) protokollet och möjliggör mycket fler introspektion-möjligheter för olika testfall.
+[WebDriver Bidi](https://w3c.github.io/webdriver-bidi/) är ett automatiseringsprotokoll för att automatisera webbläsare med hjälp av dubbelriktad kommunikation. Det är efterföljaren till protokollet [WebDriver](https://w3c.github.io/webdriver/) och ger betydligt fler möjligheter till introspektion för olika testscenarier.
 
-Detta protokoll är för närvarande under utveckling och nya primitiver kan komma att läggas till i framtiden. Alla webbläsarleverantörer har åtagit sig att implementera denna webbstandard och många [primitiver](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) har redan implementerats i webbläsare.
+Protokollet är för närvarande under utveckling och nya primitiver kan komma att läggas till i framtiden. Alla webbläsartillverkare har åtagit sig att implementera denna webbstandard, och många [primitiver](https://wpt.fyi/results/webdriver/tests/bidi?label=experimental&label=master&aligned) har redan implementerats i webbläsarna.
 
-## WebDriver Protocol
+## WebDriver-protokollet
 
-> [WebDriver](https://w3c.github.io/webdriver/) är ett fjärrkontrollsgränssnitt som möjliggör inspektion och kontroll av användarprogram. Det tillhandahåller ett plattforms- och språkneutralt protokoll som ett sätt för externa program att fjärrstyra webbläsares beteende.
+> [WebDriver](https://w3c.github.io/webdriver/) är ett fjärrstyrningsgränssnitt som möjliggör introspektion och kontroll av användaragenter. Det tillhandahåller ett plattforms- och språkneutralt överföringsprotokoll som gör det möjligt för program som körs i separata processer att fjärrstyra webbläsares beteende.
 
-WebDriver-protokollet är utformat för att automatisera en webbläsare från användarens perspektiv, vilket innebär att allt en användare kan göra, kan du göra med webbläsaren. Det tillhandahåller en uppsättning kommandon som abstraherar vanliga interaktioner med en applikation (t.ex. navigering, klickning eller läsning av ett elements tillstånd). Eftersom det är en webbstandard är den väl supporterad av alla stora webbläsarleverantörer och används också som underliggande protokoll för mobilautomation med [Appium](http://appium.io).
+WebDriver-protokollet utformades för att automatisera en webbläsare ur användarens perspektiv, vilket innebär att allt en användare kan göra kan du också göra med webbläsaren. Det tillhandahåller en uppsättning kommandon som abstraherar bort vanliga interaktioner med en applikation (t.ex. att navigera, klicka eller läsa av ett elements tillstånd). Eftersom det är en webbstandard har det bra stöd hos alla stora webbläsartillverkare och används också som underliggande protokoll för mobilautomatisering med [Appium](http://appium.io).
 
-För att använda detta automationsprotokoll behöver du en proxyserver som översätter alla kommandon och utför dem i målmiljön (dvs. webbläsaren eller mobilappen).
+För att använda detta automatiseringsprotokoll behöver du en proxyserver som översätter alla kommandon och utför dem i målmiljön (dvs. webbläsaren eller mobilappen).
 
-För webbläsarautomation är proxyservern vanligtvis webbläsardrivrutinen. Det finns drivrutiner tillgängliga för alla webbläsare:
+För webbläsarautomatisering är proxyservern vanligtvis webbläsardrivrutinen. Det finns drivrutiner tillgängliga för alla webbläsare:
 
 - Chrome – [ChromeDriver](http://chromedriver.chromium.org/downloads)
 - Firefox – [Geckodriver](https://github.com/mozilla/geckodriver/releases)
@@ -27,8 +28,13 @@ För webbläsarautomation är proxyservern vanligtvis webbläsardrivrutinen. Det
 - Internet Explorer – [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
 - Safari – [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
-För alla typer av mobilautomatisering behöver du installera och konfigurera [Appium](http://appium.io). Det låter dig automatisera mobila (iOS/Android) eller till och med stationära (macOS/Windows) applikationer med samma WebdriverIO-konfiguration.
+För all typ av mobilautomatisering behöver du installera och konfigurera [Appium](http://appium.io). Det gör att du kan automatisera mobilapplikationer (iOS/Android) eller till och med skrivbordsapplikationer (macOS/Windows) med samma WebdriverIO-konfiguration.
 
-Det finns också gott om tjänster som låter dig köra dina automationstester i molnet i stor skala. Istället för att behöva konfigurera alla dessa drivrutiner lokalt kan du bara kommunicera med dessa tjänster (t.ex. [Sauce Labs](https://saucelabs.com)) i molnet och inspektera resultaten på deras plattform. Kommunikationen mellan testskript och automationsmiljö kommer att se ut så här:
+Det finns också många tjänster som låter dig köra dina automatiseringstester i molnet i stor skala. I stället för att behöva konfigurera alla dessa drivrutiner lokalt kan du helt enkelt kommunicera med dessa tjänster (t.ex. [Sauce Labs](https://saucelabs.com)) i molnet och granska resultaten på deras plattform. Kommunikationen mellan testskriptet och automatiseringsmiljön ser ut så här:
 
-![WebDriver Setup](/img/webdriver.png)
+```mermaid
+flowchart LR
+    Script["Test script"] <--> Driver["Browser driver or Appium"]
+    Driver <--> Network["Local network or Internet"]
+    Network <--> Target["Browser or device"]
+```

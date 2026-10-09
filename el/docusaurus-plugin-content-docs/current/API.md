@@ -1,14 +1,15 @@
 ---
 id: api
 title: Εισαγωγή
+description: "Βρείτε τεκμηρίωση αναφοράς για τις συνδέσεις πρωτοκόλλου και τις εντολές διευκόλυνσης του WebdriverIO, συμπεριλαμβανομένων των εντολών WebDriver, WebDriver Bidi και Appium."
 ---
 
-Welcome to the WebdriverIO API docs. These pages contain reference materials for all implemented protocol bindings and convenience commands. Protocol commands, including [WebDriver](/docs/api/webdriver), [WebDriver Bidi](/docs/api/webdriverBidi) or mobile commands like [Appium](http://appium.io) are commands that are directly send to the underlying driver backend. Convenience commands provided by the [`browser`](/docs/api/browser), [`element`](/docs/api/element) or [`mock`](/docs/api/mock) object offer higher level interactivity.
+Καλώς ήρθατε στην τεκμηρίωση του API του WebdriverIO. Αυτές οι σελίδες περιέχουν υλικό αναφοράς για όλες τις υλοποιημένες συνδέσεις πρωτοκόλλου (protocol bindings) και τις εντολές διευκόλυνσης (convenience commands). Οι εντολές πρωτοκόλλου, συμπεριλαμβανομένων των [WebDriver](/docs/api/webdriver), [WebDriver Bidi](/docs/api/webdriverBidi) ή εντολών για κινητές συσκευές όπως το [Appium](http://appium.io), είναι εντολές που αποστέλλονται απευθείας στο υποκείμενο backend του driver. Οι εντολές διευκόλυνσης που παρέχονται από τα αντικείμενα [`browser`](/docs/api/browser), [`element`](/docs/api/element) ή [`mock`](/docs/api/mock) προσφέρουν αλληλεπίδραση υψηλότερου επιπέδου.
 
 :::info
-These are the docs for the latest version (__>=8.x__) of WebdriverIO. If you are still using an older version, please visit the [old documentation websites](/versions)!
+Αυτή είναι η τεκμηρίωση για το WebdriverIO __v10__. Χρησιμοποιείτε ακόμα την v9; Χρησιμοποιήστε την [τεκμηρίωση της v9](https://v9.webdriver.io) ή ακολουθήστε τον [οδηγό μετάβασης στην v10](/docs/v10-migration).
 :::
 
-## Contribute
+## Συνεισφορά
 
-If you feel like you have a good example for a command, don't hesitate to open a PR and submit it. Just click on the orange link on the bottom left with the label _"Edit this page"_. Make sure you understand the way we write these docs by checking the [Contributing](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md) section.
+Αν πιστεύετε ότι έχετε ένα καλό παράδειγμα για μια εντολή, μη διστάσετε να ανοίξετε ένα PR και να το υποβάλετε. Απλώς κάντε κλικ στον πορτοκαλί σύνδεσμο κάτω αριστερά με την ετικέτα _«Edit this page»_. Βεβαιωθείτε ότι κατανοείτε τον τρόπο με τον οποίο γράφουμε αυτή την τεκμηρίωση, ελέγχοντας την ενότητα [Contributing](https://github.com/webdriverio/webdriverio/blob/main/CONTRIBUTING.md).

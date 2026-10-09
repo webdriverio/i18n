@@ -1,13 +1,14 @@
 ---
 id: vue
 title: Vue.js
+description: "Ρυθμίστε τον browser runner του WebdriverIO για το Vue.js, γράψτε δοκιμές components με το Testing Library και δοκιμάστε async components και εφαρμογές Nuxt."
 ---
 
-[Vue.js](https://vuejs.org/) είναι ένα προσιτό, αποδοτικό και ευέλικτο πλαίσιο για την κατασκευή διεπαφών χρήστη ιστού. Μπορείτε να δοκιμάσετε τα συστατικά Vue.js απευθείας σε ένα πραγματικό πρόγραμμα περιήγησης χρησιμοποιώντας το WebdriverIO και το [browser runner](/docs/runner#browser-runner).
+Το [Vue.js](https://vuejs.org/) είναι ένα προσιτό, αποδοτικό και ευέλικτο framework για τη δημιουργία διεπαφών χρήστη για το web. Μπορείτε να δοκιμάσετε components του Vue.js απευθείας σε έναν πραγματικό browser χρησιμοποιώντας το WebdriverIO και τον [browser runner](/docs/runner#browser-runner) του.
 
-## Setup
+## Ρύθμιση
 
-Για να ρυθμίσετε το WebdriverIO στο έργο σας Vue.js, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στα έγγραφα δοκιμών συστατικών μας. Βεβαιωθείτε ότι επιλέγετε `vue` ως προεπιλογή στις επιλογές του runner, π.χ.:
+Για να ρυθμίσετε το WebdriverIO στο project σας με Vue.js, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στην τεκμηρίωσή μας για τη δοκιμή components. Βεβαιωθείτε ότι έχετε επιλέξει το `vue` ως preset στις επιλογές του runner σας, π.χ.:
 
 ```js
 // wdio.conf.js
@@ -22,11 +23,11 @@ export const config = {
 
 :::info
 
-Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως διακομιστή ανάπτυξης, μπορείτε επίσης να επαναχρησιμοποιήσετε τη διαμόρφωσή σας στο `vite.config.ts` μέσα στη διαμόρφωση WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές runner](/docs/runner#runner-options).
+Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως development server, μπορείτε επίσης απλώς να επαναχρησιμοποιήσετε τη διαμόρφωσή σας από το `vite.config.ts` μέσα στη διαμόρφωση του WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές του runner](/docs/runner#runner-options).
 
 :::
 
-Η προεπιλογή Vue απαιτεί την εγκατάσταση του `@vitejs/plugin-vue`. Επίσης, συνιστούμε τη χρήση του [Testing Library](https://testing-library.com/) για την απόδοση του συστατικού στη σελίδα δοκιμής. Για αυτό θα χρειαστεί να εγκαταστήσετε τις ακόλουθες πρόσθετες εξαρτήσεις:
+Το preset του Vue απαιτεί να είναι εγκατεστημένο το `@vitejs/plugin-vue`. Επίσης, συνιστούμε τη χρήση του [Testing Library](https://testing-library.com/) για την απόδοση (rendering) του component στη σελίδα δοκιμής. Επομένως, θα χρειαστεί να εγκαταστήσετε τις ακόλουθες επιπλέον εξαρτήσεις:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
@@ -38,9 +39,9 @@ npm install --save-dev @testing-library/vue @vitejs/plugin-vue
 npx wdio run ./wdio.conf.js
 ```
 
-## Writing Tests
+## Συγγραφή Δοκιμών
 
-Δεδομένου ότι έχετε το ακόλουθο συστατικό Vue.js:
+Δεδομένου ότι έχετε το ακόλουθο component του Vue.js:
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -65,7 +66,7 @@ export default {
 </script>
 ```
 
-Στη δοκιμή σας, αποδώστε το συστατικό στο DOM και εκτελέστε ισχυρισμούς σε αυτό. Συνιστούμε να χρησιμοποιήσετε είτε το [`@vue/test-utils`](https://test-utils.vuejs.org/) είτε το [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) για να συνδέσετε το συστατικό στη σελίδα δοκιμής. Για να αλληλεπιδράσετε με το συστατικό, χρησιμοποιήστε εντολές WebdriverIO καθώς συμπεριφέρονται πιο κοντά στις πραγματικές αλληλεπιδράσεις χρηστών, π.χ.:
+Στη δοκιμή σας, αποδώστε το component στο DOM και εκτελέστε assertions πάνω του. Συνιστούμε να χρησιμοποιήσετε είτε το [`@vue/test-utils`](https://test-utils.vuejs.org/) είτε το [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) για να προσαρτήσετε το component στη σελίδα δοκιμής. Για να αλληλεπιδράσετε με το component, χρησιμοποιήστε εντολές του WebdriverIO, καθώς συμπεριφέρονται πιο κοντά σε πραγματικές αλληλεπιδράσεις χρήστη, π.χ.:
 
 
 <Tabs
@@ -84,18 +85,18 @@ import Component from './components/Component.vue'
 
 describe('Vue Component Testing', () => {
     it('increments value on click', async () => {
-        // The render method returns a collection of utilities to query your component.
+        // Η μέθοδος render επιστρέφει μια συλλογή βοηθητικών εργαλείων για την αναζήτηση στο component σας.
         const wrapper = mount(Component, { attachTo: document.body })
         expect(wrapper.text()).toContain('Times clicked: 0')
 
         const button = await $('aria/increment')
 
-        // Dispatch a native click event to our button element.
+        // Αποστολή ενός native συμβάντος click στο στοιχείο button μας.
         await button.click()
         await button.click()
 
         expect(wrapper.text()).toContain('Times clicked: 2')
-        await expect($('p=Times clicked: 2')).toExist() // same assertion with WebdriverIO
+        await expect($('p=Times clicked: 2')).toExist() // ίδιο assertion με το WebdriverIO
     })
 })
 ```
@@ -110,21 +111,21 @@ import Component from './components/Component.vue'
 
 describe('Vue Component Testing', () => {
     it('increments value on click', async () => {
-        // The render method returns a collection of utilities to query your component.
+        // Η μέθοδος render επιστρέφει μια συλλογή βοηθητικών εργαλείων για την αναζήτηση στο component σας.
         const { getByText } = render(Component)
 
-        // getByText returns the first matching node for the provided text, and
-        // throws an error if no elements match or if more than one match is found.
+        // Η getByText επιστρέφει τον πρώτο κόμβο που ταιριάζει με το δοθέν κείμενο και
+        // προκαλεί σφάλμα αν δεν ταιριάζει κανένα στοιχείο ή αν βρεθούν περισσότερα από ένα.
         getByText('Times clicked: 0')
 
         const button = await $(getByText('increment'))
 
-        // Dispatch a native click event to our button element.
+        // Αποστολή ενός native συμβάντος click στο στοιχείο button μας.
         await button.click()
         await button.click()
 
-        getByText('Times clicked: 2') // assert with Testing Library
-        await expect($('p=Times clicked: 2')).toExist() // assert with WebdriverIO
+        getByText('Times clicked: 2') // assertion με το Testing Library
+        await expect($('p=Times clicked: 2')).toExist() // assertion με το WebdriverIO
     })
 })
 ```
@@ -132,11 +133,11 @@ describe('Vue Component Testing', () => {
 </TabItem>
 </Tabs>
 
-Μπορείτε να βρείτε ένα πλήρες παράδειγμα μιας σουίτας δοκιμών συστατικών WebdriverIO για Vue.js στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) μας.
+Μπορείτε να βρείτε ένα πλήρες παράδειγμα σουίτας δοκιμών components του WebdriverIO για το Vue.js στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) μας.
 
-## Testing Async Components in Vue3
+## Δοκιμή Async Components στο Vue3
 
-Αν χρησιμοποιείτε Vue v3 και δοκιμάζετε [ασύγχρονα συστατικά](https://vuejs.org/guide/built-ins/suspense.html#async-setup) όπως το ακόλουθο:
+Αν χρησιμοποιείτε το Vue v3 και δοκιμάζετε [async components](https://vuejs.org/guide/built-ins/suspense.html#async-setup) όπως το ακόλουθο:
 
 ```vue
 <script setup>
@@ -149,7 +150,7 @@ const posts = await res.json()
 </template>
 ```
 
-Συνιστούμε να χρησιμοποιήσετε το [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) και ένα μικρό περιτύλιγμα suspense για να αποδώσετε το συστατικό. Δυστυχώς, το [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) δεν έχει ακόμη υποστήριξη για αυτό. Δημιουργήστε ένα αρχείο `helper.ts` με το ακόλουθο περιεχόμενο:
+Συνιστούμε να χρησιμοποιήσετε το [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) και ένα μικρό suspense wrapper για να αποδοθεί το component. Δυστυχώς, το [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) δεν υποστηρίζει ακόμη αυτή τη δυνατότητα. Δημιουργήστε ένα αρχείο `helper.ts` με το ακόλουθο περιεχόμενο:
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -190,7 +191,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-Στη συνέχεια, εισάγετε και δοκιμάστε το συστατικό ως εξής:
+Στη συνέχεια, κάντε import και δοκιμάστε το component ως εξής:
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -214,40 +215,40 @@ describe('Testing Async Components', () => {
 })
 ```
 
-## Testing Vue Components in Nuxt
+## Δοκιμή Vue Components στο Nuxt
 
-Αν χρησιμοποιείτε το πλαίσιο ιστού [Nuxt](https://nuxt.com/), το WebdriverIO θα ενεργοποιήσει αυτόματα τη λειτουργία [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) και καθιστά εύκολη τη δοκιμή των συστατικών Vue και των σελίδων Nuxt. Ωστόσο, οποιαδήποτε [ενότητα Nuxt](https://nuxt.com/modules) που μπορεί να ορίσετε στη διαμόρφωσή σας και απαιτεί πλαίσιο στην εφαρμογή Nuxt δεν μπορεί να υποστηριχθεί.
+Αν χρησιμοποιείτε το web framework [Nuxt](https://nuxt.com/), το WebdriverIO θα ενεργοποιήσει αυτόματα τη λειτουργία [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) και κάνει εύκολη τη δοκιμή των Vue components και των σελίδων Nuxt σας. Ωστόσο, τυχόν [Nuxt modules](https://nuxt.com/modules) που ενδέχεται να ορίσετε στη διαμόρφωσή σας και απαιτούν context της εφαρμογής Nuxt δεν μπορούν να υποστηριχθούν.
 
-__Οι λόγοι για αυτό είναι:__
-- Το WebdriverIO δεν μπορεί να ξεκινήσει μια εφαρμογή Nuxt αποκλειστικά σε περιβάλλον περιηγητή
-- Η δημιουργία υπερβολικής εξάρτησης των δοκιμών συστατικών από το περιβάλλον Nuxt δημιουργεί πολυπλοκότητα και συνιστούμε να εκτελείτε αυτές τις δοκιμές ως δοκιμές e2e
+__Οι λόγοι γι' αυτό είναι:__
+- Το WebdriverIO δεν μπορεί να εκκινήσει μια εφαρμογή Nuxt αποκλειστικά σε περιβάλλον browser
+- Η υπερβολική εξάρτηση των δοκιμών components από το περιβάλλον του Nuxt δημιουργεί πολυπλοκότητα και συνιστούμε την εκτέλεση αυτών των δοκιμών ως δοκιμές e2e
 
 :::info
 
-Το WebdriverIO παρέχει επίσης μια υπηρεσία για την εκτέλεση δοκιμών e2e σε εφαρμογές Nuxt, δείτε το [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) για πληροφορίες.
+Το WebdriverIO παρέχει επίσης ένα service για την εκτέλεση δοκιμών e2e σε εφαρμογές Nuxt, δείτε το [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) για πληροφορίες.
 
 :::
 
-### Mocking built-in composables
+### Mocking ενσωματωμένων composables
 
-Σε περίπτωση που το συστατικό σας χρησιμοποιεί ένα εγγενές composable του Nuxt, π.χ. [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), το WebdriverIO θα δημιουργήσει αυτόματα μια προσομοίωση αυτών των λειτουργιών και σας επιτρέπει να τροποποιήσετε τη συμπεριφορά τους ή να κάνετε ισχυρισμούς εναντίον τους, π.χ.:
+Σε περίπτωση που το component σας χρησιμοποιεί ένα native composable του Nuxt, π.χ. το [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), το WebdriverIO θα κάνει αυτόματα mock αυτές τις συναρτήσεις και σας επιτρέπει να τροποποιήσετε τη συμπεριφορά τους ή να κάνετε assertions πάνω τους, π.χ.:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
 
-// e.g. your component uses calls `useNuxtData` the following way
+// π.χ. το component σας καλεί το `useNuxtData` με τον ακόλουθο τρόπο
 // `const { data: posts } = useNuxtData('posts')`
-// in your test you can assert against it
+// στη δοκιμή σας μπορείτε να κάνετε assertion πάνω του
 expect(useNuxtData).toBeCalledWith('posts')
-// and change their behavior
+// και να αλλάξετε τη συμπεριφορά του
 mocked(useNuxtData).mockReturnValue({
     data: [...]
 })
 ```
 
-### Handling 3rd party composables
+### Χειρισμός composables τρίτων
 
-Όλες οι [ενότητες τρίτων](https://nuxt.com/modules) που μπορούν να ενισχύσουν το έργο Nuxt σας δεν μπορούν να προσομοιωθούν αυτόματα. Σε αυτές τις περιπτώσεις πρέπει να τις προσομοιώσετε χειροκίνητα, π.χ. δεδομένου ότι η εφαρμογή σας χρησιμοποιεί το πρόσθετο ενότητας [Supabase](https://nuxt.com/modules/supabase):
+Όλα τα [modules τρίτων](https://nuxt.com/modules) που μπορούν να ενισχύσουν το Nuxt project σας δεν μπορούν να γίνουν αυτόματα mock. Σε αυτές τις περιπτώσεις πρέπει να τα κάνετε mock χειροκίνητα, π.χ. δεδομένου ότι η εφαρμογή σας χρησιμοποιεί το module plugin του [Supabase](https://nuxt.com/modules/supabase):
 
 ```js title=""
 export default defineNuxtConfig({
@@ -259,19 +260,19 @@ export default defineNuxtConfig({
 });
 ```
 
-και δημιουργείτε μια παρουσία του Supabase κάπου στα composables σας, π.χ.:
+και δημιουργείτε ένα instance του Supabase κάπου στα composables σας, π.χ.:
 
 ```ts
 const superbase = useSupabaseClient()
 ```
 
-η δοκιμή θα αποτύχει λόγω:
+η δοκιμή θα αποτύχει λόγω του:
 
 ```
 ReferenceError: useSupabaseClient is not defined
 ```
 
-Εδώ, συνιστούμε είτε να προσομοιώσετε ολόκληρη την ενότητα που χρησιμοποιεί τη λειτουργία `useSupabaseClient` είτε να δημιουργήσετε μια καθολική μεταβλητή που προσομοιώνει αυτή τη λειτουργία, π.χ.:
+Εδώ, συνιστούμε είτε να κάνετε mock ολόκληρο το module που χρησιμοποιεί τη συνάρτηση `useSupabaseClient` είτε να δημιουργήσετε μια global μεταβλητή που κάνει mock αυτή τη συνάρτηση, π.χ.:
 
 ```ts
 import { fn } from '@wdio/browser-runner'

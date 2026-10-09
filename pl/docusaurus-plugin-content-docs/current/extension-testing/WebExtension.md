@@ -1,23 +1,26 @@
 ---
 id: web-extensions
-title: Testowanie Rozszerzeń Internetowych
+title: Testowanie rozszerzeń przeglądarki
+description: "Ładowanie rozszerzenia przeglądarki do Chrome lub Firefox na potrzeby sesji WebdriverIO, w tym instalacja i odinstalowanie przez BiDi w trakcie sesji."
 ---
 
-WebdriverIO jest idealnym narzędziem do automatyzacji przeglądarki. Rozszerzenia internetowe są częścią przeglądarki i mogą być automatyzowane w ten sam sposób. Gdy twoje rozszerzenie internetowe wykorzystuje skrypty zawartości do uruchamiania JavaScriptu na stronach internetowych lub oferuje wyskakujące okienko, możesz przeprowadzić test e2e za pomocą WebdriverIO.
+WebdriverIO to idealne narzędzie do automatyzacji przeglądarki. Rozszerzenia przeglądarki (Web Extensions) są częścią przeglądarki i można je automatyzować w ten sam sposób. Jeśli Twoje rozszerzenie używa skryptów treści (content scripts) do uruchamiania JavaScriptu na stronach internetowych lub oferuje okno popup, możesz przeprowadzić dla niego test e2e przy użyciu WebdriverIO.
 
-## Ładowanie Rozszerzenia Internetowego do Przeglądarki
+Załaduj rozszerzenie przed pierwszą nawigacją, korzystając z poniższej konfiguracji capabilities. Aby zainstalować i usunąć rozszerzenie w trakcie sesji [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/#module-webExtension), użyj [`installExtension`](/docs/api/browser/installExtension) oraz [`uninstallExtension`](/docs/api/browser/uninstallExtension).
 
-Pierwszym krokiem jest załadowanie testowanego rozszerzenia do przeglądarki jako część naszej sesji. Proces ten różni się dla Chrome i Firefoxa.
+## Ładowanie rozszerzenia do przeglądarki
+
+W pierwszym kroku musimy załadować testowane rozszerzenie do przeglądarki w ramach naszej sesji. W Chrome i Firefox działa to inaczej.
 
 :::info
 
-W tych dokumentach pomijamy rozszerzenia internetowe dla Safari, ponieważ ich wsparcie jest znacznie opóźnione, a zapotrzebowanie użytkowników nie jest wysokie. Jeśli tworzysz rozszerzenie internetowe dla Safari, prosimy o [zgłoszenie problemu](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) i współpracę przy włączeniu go również tutaj.
+Ta dokumentacja pomija rozszerzenia dla Safari, ponieważ ich wsparcie jest mocno w tyle, a zapotrzebowanie użytkowników nie jest duże. Safari nie ma też sesji WebDriver BiDi, więc [`installExtension`](/docs/api/browser/installExtension) nie obsługuje Safari. Jeśli tworzysz rozszerzenie dla Safari, [zgłoś issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) i pomóż dodać je również tutaj.
 
 :::
 
 ### Chrome
 
-Ładowanie rozszerzenia internetowego w Chrome można wykonać przez dostarczenie zakodowanego ciągu `base64` pliku `crx` lub przez wskazanie ścieżki do folderu rozszerzenia internetowego. Najłatwiej jest zrobić to drugie, definiując swoje możliwości Chrome w następujący sposób:
+Rozszerzenie można załadować w Chrome, podając zakodowany w `base64` ciąg pliku `crx` lub podając ścieżkę do folderu z rozszerzeniem. Najprościej jest zrobić to drugie, definiując capabilities Chrome w następujący sposób:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -31,7 +34,7 @@ export const config = {
         browserName,
         'goog:chromeOptions': {
             // zakładając, że wdio.conf.js znajduje się w katalogu głównym, a skompilowane
-            // pliki rozszerzenia internetowego znajdują się w folderze `./dist`
+            // pliki rozszerzenia znajdują się w folderze `./dist`
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -40,11 +43,11 @@ export const config = {
 
 :::info
 
-Jeśli automatyzujesz inną przeglądarkę niż Chrome, np. Brave, Edge lub Opera, istnieje szansa, że opcje przeglądarki są zgodne z powyższym przykładem, tylko używając innej nazwy możliwości, np. `ms:edgeOptions`.
+Jeśli automatyzujesz inną przeglądarkę niż Chrome, np. Brave, Edge lub Opera, prawdopodobnie opcje przeglądarki są zgodne z powyższym przykładem, tylko z inną nazwą capability, np. `ms:edgeOptions`.
 
 :::
 
-Jeśli kompilujesz swoje rozszerzenie jako plik `.crx` za pomocą np. pakietu NPM [crx](https://www.npmjs.com/package/crx), możesz również wstrzyknąć spakowane rozszerzenie przez:
+Jeśli kompilujesz rozszerzenie do pliku `.crx`, używając np. pakietu NPM [crx](https://www.npmjs.com/package/crx), możesz również wstrzyknąć spakowane rozszerzenie za pomocą:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +70,7 @@ export const config = {
 
 ### Firefox
 
-Aby utworzyć profil Firefoksa, który zawiera rozszerzenia, możesz użyć [Firefox Profile Service](/docs/firefox-profile-service) do odpowiedniego skonfigurowania sesji. Jednak możesz napotkać problemy, gdy twoje lokalnie opracowane rozszerzenie nie może zostać załadowane z powodu problemów z podpisywaniem. W takim przypadku możesz również załadować rozszerzenie w hooku `before` za pomocą polecenia [`installAddOn`](/docs/api/gecko#installaddon), np.:
+Aby utworzyć profil Firefox zawierający rozszerzenia, możesz użyć [Firefox Profile Service](/docs/firefox-profile-service), aby odpowiednio skonfigurować sesję. Możesz jednak napotkać problemy, w których lokalnie rozwijane rozszerzenie nie może zostać załadowane z powodu problemów z podpisem. W takim przypadku możesz również załadować rozszerzenie w hooku `before` za pomocą polecenia [`installAddOn`](/docs/api/gecko#installaddon), np.:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,21 +91,94 @@ export const config = {
 }
 ```
 
-Aby wygenerować plik `.xpi`, zaleca się korzystanie z pakietu NPM [`web-ext`](https://www.npmjs.com/package/web-ext). Możesz spakować swoje rozszerzenie za pomocą następującego przykładowego polecenia:
+Do wygenerowania pliku `.xpi` zaleca się użycie pakietu NPM [`web-ext`](https://www.npmjs.com/package/web-ext). Możesz spakować swoje rozszerzenie, używając następującego przykładowego polecenia:
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
-## Wskazówki i Triki
+## Instalowanie rozszerzenia w trakcie sesji
 
-Poniższa sekcja zawiera zestaw przydatnych wskazówek i trików, które mogą być pomocne podczas testowania rozszerzenia internetowego.
+Od wersji v10 [`browser.installExtension`](/docs/api/browser/installExtension) i [`browser.uninstallExtension`](/docs/api/browser/uninstallExtension) instalują rozszerzenie przeglądarki w trakcie sesji WebDriver BiDi i zwracają jego id. Używaj ich, gdy rozszerzenie nie może być obecne przy uruchomieniu lub gdy ten sam test je instaluje, testuje i usuwa.
 
-### Testowanie Wyskakującego Okienka w Chrome
+Opisana wyżej konfiguracja capabilities oraz `installAddOn` pozostają sposobem na załadowanie rozszerzenia przed pierwszą nawigacją. `installExtension` ich nie zastępuje. `browser.webExtensionInstall` i `browser.webExtensionUninstall` pozostają dostępne, gdy chcesz samodzielnie przygotować [payload zgodny ze specyfikacją](https://w3c.github.io/webdriver-bidi/#command-webExtension-install).
 
-Jeśli definiujesz wpis `default_popup` akcji przeglądarki w [manifeście rozszerzenia](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action), możesz testować tę stronę HTML bezpośrednio, ponieważ kliknięcie ikony rozszerzenia na górnym pasku przeglądarki nie zadziała. Zamiast tego musisz bezpośrednio otworzyć plik HTML wyskakującego okienka.
+```ts title="test/specs/extension.e2e.ts"
+import path from 'node:path'
+import url from 'node:url'
+import { browser, expect } from '@wdio/globals'
 
-W Chrome działa to poprzez pobranie identyfikatora rozszerzenia i otwarcie strony wyskakującego okienka za pomocą `browser.url('...')`. Zachowanie na tej stronie będzie takie samo jak w wyskakującym okienku. Zalecamy napisanie następującego niestandardowego polecenia:
+const extensionPath = path.resolve(
+    path.dirname(url.fileURLToPath(import.meta.url)),
+    '../../dist'
+)
+
+describe('web extension', () => {
+    it('installs and removes the extension', async () => {
+        const extensionId = await browser.installExtension(extensionPath)
+        expect(extensionId).not.toEqual('')
+
+        await browser.url('https://webdriver.io')
+        await browser.uninstallExtension(extensionId)
+    })
+})
+```
+
+`installExtension` akceptuje trzy rodzaje danych wejściowych:
+
+| Dane wejściowe | Payload wysyłany do przeglądarki |
+| --- | --- |
+| Ścieżka do katalogu | `{ type: 'path', path }` po `path.resolve`. Przeglądarka musi mieć możliwość odczytu tego katalogu. |
+| Ścieżka do pliku `.zip`, `.xpi` lub `.crx` | `{ type: 'archivePath', path }` po `path.resolve`. |
+| `{ base64: string }` | `{ type: 'base64', value }`. Bajty archiwum. Każdy inny obiekt jest odrzucany. |
+
+Ścieżka w postaci ciągu znaków jest zawsze rozwiązywana po stronie test runnera. W sesji zdalnej — z nazwą hosta inną niż `localhost`, `127.0.0.1` lub `::1`, albo z chmurowymi `user` i `key` — ta ścieżka nie jest ścieżką na maszynie przeglądarki. Polecenie odczytuje archiwum lub pakuje katalog do ZIP w pamięci i wysyła `base64`. Nie musisz samodzielnie rozróżniać sesji lokalnej i zdalnej. Sesje lokalne wysyłają `path` lub `archivePath` i nie odczytują bajtów.
+
+Wskaż katalog główny rozszerzenia, czyli folder zawierający `manifest.json`.
+
+Sesja musi obsługiwać WebDriver BiDi. Sesja klasyczna rzuca błąd `installExtension requires a WebDriver BiDi session (webExtension.install)`. Przeglądarka, która implementuje BiDi, ale nie ten moduł, kończy polecenie błędem `unsupported operation` (lub `unknown command`, gdy modułu brak). Nieprawidłowe archiwum kończy się błędem `invalid web extension`. Odinstalowanie id, którego przeglądarka nie zna, kończy się błędem `no such web extension`.
+
+`uninstallExtension` przyjmuje ciąg id zwrócony przez `installExtension`.
+
+### Chromium
+
+Chrome i Edge implementują `webExtension.install`, ale pozostawiają tę funkcję wyłączoną, dopóki nie uruchomisz przeglądarki z `--enable-unsafe-extension-debugging` i `--remote-debugging-pipe`. Chrome 136 i nowsze wymagają również `--user-data-dir`, gdy ustawiono `--remote-debugging-pipe`. Bez tych argumentów polecenie kończy się błędem `unknown error - Method not available`.
+
+`--remote-debugging-pipe` to potok (pipe) między sterownikiem a przeglądarką. Sesja BiDi nadal używa `webSocketUrl`.
+
+```ts title="wdio.conf.ts"
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+
+const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wdio-chrome-'))
+
+export const config: WebdriverIO.Config = {
+    // ...
+    capabilities: [{
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: [
+                '--enable-unsafe-extension-debugging',
+                '--remote-debugging-pipe',
+                `--user-data-dir=${userDataDir}`
+            ]
+        }
+    }]
+}
+```
+
+Dla Edge użyj `ms:edgeOptions`. Firefox ładuje rozszerzenie w zwykłej sesji BiDi i nie potrzebuje tych argumentów.
+
+## Porady i triki
+
+Poniższa sekcja zawiera zestaw przydatnych porad i trików, które mogą pomóc podczas testowania rozszerzenia przeglądarki.
+
+### Testowanie okna popup w Chrome
+
+Jeśli w [manifeście rozszerzenia](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) zdefiniujesz wpis akcji przeglądarki `default_popup`, możesz bezpośrednio przetestować tę stronę HTML, ponieważ kliknięcie ikony rozszerzenia na górnym pasku przeglądarki nie zadziała. Zamiast tego musisz bezpośrednio otworzyć plik HTML okna popup.
+
+W Chrome działa to poprzez pobranie ID rozszerzenia i otwarcie strony popup za pomocą `browser.url('...')`. Zachowanie na tej stronie będzie takie samo jak w oknie popup. W tym celu zalecamy napisanie następującego niestandardowego polecenia:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -134,7 +210,7 @@ declare global {
 }
 ```
 
-W swoim `wdio.conf.js` możesz zaimportować ten plik i zarejestrować niestandardowe polecenie w swoim hooku `before`, np.:
+W pliku `wdio.conf.js` możesz zaimportować ten plik i zarejestrować niestandardowe polecenie w hooku `before`, np.:
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'
@@ -149,8 +225,8 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Teraz w swoim teście możesz uzyskać dostęp do strony wyskakującego okienka za pomocą:
+Teraz w swoim teście możesz uzyskać dostęp do strony popup za pomocą:
 
 ```ts
-await browser.openExtensionPopup('Moje Rozszerzenie Internetowe')
+await browser.openExtensionPopup('My Web Extension')
 ```

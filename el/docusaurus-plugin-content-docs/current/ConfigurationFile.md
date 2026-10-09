@@ -1,77 +1,78 @@
 ---
 id: configurationfile
-title: Αρχείο Διαμόρφωσης
+title: Αρχείο Ρυθμίσεων
+description: "Περιηγηθείτε σε ένα σχολιασμένο παράδειγμα wdio.conf.js που παραθέτει κάθε υποστηριζόμενη επιλογή του testrunner, capability και hook με επεξηγήσεις."
 ---
 
-Το αρχείο διαμόρφωσης περιέχει όλες τις απαραίτητες πληροφορίες για την εκτέλεση της σουίτας δοκιμών σας. Είναι μια μονάδα NodeJS που εξάγει ένα JSON.
+Το αρχείο ρυθμίσεων περιέχει όλες τις απαραίτητες πληροφορίες για την εκτέλεση της σουίτας δοκιμών σας. Είναι ένα module του NodeJS που εξάγει ένα JSON.
 
-Εδώ είναι ένα παράδειγμα διαμόρφωσης με όλες τις υποστηριζόμενες ιδιότητες και πρόσθετες πληροφορίες:
+Ακολουθεί ένα παράδειγμα ρυθμίσεων με όλες τις υποστηριζόμενες ιδιότητες και πρόσθετες πληροφορίες:
 
 ```js
 export const config = {
 
     // ==================================
-    // Where should your test be launched
+    // Πού πρέπει να εκκινηθεί η δοκιμή σας
     // ==================================
     //
     runner: 'local',
     //
     // =====================
-    // Server Configurations
+    // Ρυθμίσεις Διακομιστή
     // =====================
-    // Host address of the running Selenium server. This information is usually obsolete, as
-    // WebdriverIO automatically connects to localhost. Also if you are using one of the
-    // supported cloud services like Sauce Labs, Browserstack, Testing Bot or TestMu AI (Formerly LambdaTest), you also don't
-    // need to define host and port information (because WebdriverIO can figure that out
-    // from your user and key information). However, if you are using a private Selenium
-    // backend, you should define the `hostname`, `port`, and `path` here.
+    // Διεύθυνση host του εκτελούμενου διακομιστή Selenium. Αυτή η πληροφορία συνήθως δεν χρειάζεται, καθώς
+    // το WebdriverIO συνδέεται αυτόματα στο localhost. Επίσης, αν χρησιμοποιείτε μία από τις
+    // υποστηριζόμενες υπηρεσίες cloud όπως Sauce Labs, Browserstack, Testing Bot ή TestMu AI (πρώην LambdaTest), επίσης δεν
+    // χρειάζεται να ορίσετε πληροφορίες host και port (επειδή το WebdriverIO μπορεί να τις εντοπίσει
+    // από τις πληροφορίες user και key). Ωστόσο, αν χρησιμοποιείτε ένα ιδιωτικό Selenium
+    // backend, θα πρέπει να ορίσετε εδώ τα `hostname`, `port` και `path`.
     //
     hostname: 'localhost',
     port: 4444,
     path: '/',
-    // Protocol: http | https
+    // Πρωτόκολλο: http | https
     // protocol: 'http',
     //
     // =================
-    // Service Providers
+    // Πάροχοι Υπηρεσιών
     // =================
-    // WebdriverIO supports Sauce Labs, Browserstack, Testing Bot and TestMu AI (Formerly LambdaTest). (Other cloud providers
-    // should work, too.) These services define specific `user` and `key` (or access key)
-    // values you must put here, in order to connect to these services.
+    // Το WebdriverIO υποστηρίζει Sauce Labs, Browserstack, Testing Bot και TestMu AI (πρώην LambdaTest). (Και άλλοι πάροχοι cloud
+    // θα πρέπει να λειτουργούν.) Αυτές οι υπηρεσίες ορίζουν συγκεκριμένες τιμές `user` και `key` (ή access key)
+    // που πρέπει να βάλετε εδώ, ώστε να συνδεθείτε σε αυτές τις υπηρεσίες.
     //
     user: 'webdriverio',
     key:  'xxxxxxxxxxxxxxxx-xxxxxx-xxxxx-xxxxxxxxx',
 
-    // If you run your tests on Sauce Labs you can specify the region you want to run your tests
-    // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
-    // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
-    // If you don't provide the region, it defaults to `us`.
+    // Αν εκτελείτε τις δοκιμές σας στο Sauce Labs, μπορείτε να καθορίσετε την περιοχή στην οποία θέλετε να εκτελούνται οι δοκιμές
+    // μέσω της ιδιότητας `region`. Οι διαθέσιμες συντομεύσεις για περιοχές είναι `us` (προεπιλογή) και `eu`.
+    // Αυτές οι περιοχές χρησιμοποιούνται για το Sauce Labs VM cloud και το Sauce Labs Real Device Cloud.
+    // Αν δεν δώσετε περιοχή, η προεπιλογή είναι `us`.
     region: 'us',
     //
-    // Sauce Labs provides a [headless offering](https://saucelabs.com/products/web-testing/sauce-headless-testing)
-    // that allows you to run Chrome and Firefox tests headless.
+    // Το Sauce Labs παρέχει μια [headless προσφορά](https://saucelabs.com/products/web-testing/sauce-headless-testing)
+    // που σας επιτρέπει να εκτελείτε δοκιμές Chrome και Firefox σε headless λειτουργία.
     //
     headless: false,
     //
     // ==================
-    // Specify Test Files
+    // Καθορισμός Αρχείων Δοκιμών
     // ==================
-    // Define which test specs should run. The pattern is relative to the directory
-    // of the configuration file being run.
+    // Ορίστε ποια test specs πρέπει να εκτελεστούν. Το μοτίβο είναι σχετικό με τον κατάλογο
+    // του αρχείου ρυθμίσεων που εκτελείται.
     //
-    // The specs are defined as an array of spec files (optionally using wildcards
-    // that will be expanded). The test for each spec file will be run in a separate
-    // worker process. In order to have a group of spec files run in the same worker
-    // process enclose them in an array within the specs array.
+    // Τα specs ορίζονται ως πίνακας αρχείων spec (προαιρετικά με χρήση wildcards
+    // που θα επεκταθούν). Η δοκιμή για κάθε αρχείο spec θα εκτελεστεί σε ξεχωριστή
+    // διεργασία worker. Για να εκτελεστεί μια ομάδα αρχείων spec στην ίδια διεργασία
+    // worker, περικλείστε τα σε έναν πίνακα μέσα στον πίνακα specs.
     //
-    // The path of the spec files will be resolved relative from the directory of
-    // of the config file unless it's absolute.
+    // Η διαδρομή των αρχείων spec θα επιλυθεί σχετικά με τον κατάλογο
+    // του αρχείου ρυθμίσεων, εκτός αν είναι απόλυτη.
     //
     specs: [
         'test/spec/**',
         ['group/spec/**']
     ],
-    // Patterns to exclude.
+    // Μοτίβα προς εξαίρεση.
     exclude: [
         'test/spec/multibrowser/**',
         'test/spec/mobile/**'
@@ -80,412 +81,413 @@ export const config = {
     // ============
     // Capabilities
     // ============
-    // Define your capabilities here. WebdriverIO can run multiple capabilities at the same
-    // time. Depending on the number of capabilities, WebdriverIO launches several test
-    // sessions. Within your `capabilities`, you can overwrite the `spec` and `exclude`
-    // options in order to group specific specs to a specific capability.
+    // Ορίστε εδώ τα capabilities σας. Το WebdriverIO μπορεί να εκτελεί πολλά capabilities ταυτόχρονα.
+    // Ανάλογα με τον αριθμό των capabilities, το WebdriverIO εκκινεί αρκετές συνεδρίες
+    // δοκιμών. Μέσα στα `capabilities` σας, μπορείτε να αντικαταστήσετε ποια αρχεία εκτελούνται με
+    // `wdio:specs` και `wdio:exclude` ώστε να ομαδοποιήσετε συγκεκριμένα specs σε ένα συγκεκριμένο capability.
     //
-    // First, you can define how many instances should be started at the same time. Let's
-    // say you have 3 different capabilities (Chrome, Firefox, and Safari) and you have
-    // set `maxInstances` to 1. wdio will spawn 3 processes.
+    // Πρώτα, μπορείτε να ορίσετε πόσα instances πρέπει να ξεκινούν ταυτόχρονα. Ας
+    // πούμε ότι έχετε 3 διαφορετικά capabilities (Chrome, Firefox και Safari) και έχετε
+    // ορίσει το `maxInstances` σε 1. Το wdio θα δημιουργήσει 3 διεργασίες.
     //
-    // Therefore, if you have 10 spec files and you set `maxInstances` to 10, all spec files
-    // will be tested at the same time and 30 processes will be spawned.
+    // Επομένως, αν έχετε 10 αρχεία spec και ορίσετε το `maxInstances` σε 10, όλα τα αρχεία spec
+    // θα ελεγχθούν ταυτόχρονα και θα δημιουργηθούν 30 διεργασίες.
     //
-    // The property handles how many capabilities from the same test should run tests.
+    // Η ιδιότητα καθορίζει πόσα capabilities από την ίδια δοκιμή πρέπει να εκτελούν δοκιμές.
     //
     maxInstances: 10,
     //
-    // Or set a limit to run tests with a specific capability.
+    // Ή ορίστε ένα όριο για την εκτέλεση δοκιμών με ένα συγκεκριμένο capability.
     maxInstancesPerCapability: 10,
     //
-    // Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment.
-    // If you set to `false`, you should import from `@wdio/globals`. Note: WebdriverIO doesn't
-    // handle injection of test framework specific globals.
+    // Εισάγει τα globals του WebdriverIO (π.χ. `browser`, `$` και `$$`) στο global περιβάλλον.
+    // Αν το ορίσετε σε `false`, θα πρέπει να κάνετε import από το `@wdio/globals`. Σημείωση: Το WebdriverIO δεν
+    // χειρίζεται την εισαγωγή globals που αφορούν συγκεκριμένα test frameworks.
     //
     injectGlobals: true,
     //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
+    // Αν δυσκολεύεστε να συγκεντρώσετε όλα τα σημαντικά capabilities, δείτε τον
+    // Sauce Labs platform configurator - ένα εξαιρετικό εργαλείο για τη ρύθμιση των capabilities σας:
     // https://docs.saucelabs.com/basics/platform-configurator
     //
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-        // to run chrome headless the following flags are required
-        // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
+        // για να εκτελέσετε το chrome σε headless λειτουργία απαιτούνται οι παρακάτω σημαίες
+        // (δείτε https://developers.google.com/web/updates/2017/04/headless-chrome)
         // args: ['--headless', '--disable-gpu'],
         }
         //
-        // Parameter to ignore some or all default flags
-        // - if value is true: ignore all DevTools 'default flags' and Puppeteer 'default arguments'
-        // - if value is an array: DevTools filters given default arguments
+        // Παράμετρος για την παράβλεψη ορισμένων ή όλων των προεπιλεγμένων σημαιών
+        // - αν η τιμή είναι true: παραβλέπονται όλες οι 'default flags' του DevTools και τα 'default arguments' του Puppeteer
+        // - αν η τιμή είναι πίνακας: το DevTools φιλτράρει τα δοσμένα προεπιλεγμένα ορίσματα
         // 'wdio:devtoolsOptions': {
         //    ignoreDefaultArgs: true,
         //    ignoreDefaultArgs: ['--disable-sync', '--disable-extensions'],
         // }
     }, {
-        // maxInstances can get overwritten per capability. So if you have an in house Selenium
-        // grid with only 5 firefox instance available you can make sure that not more than
-        // 5 instance gets started at a time.
+        // Το maxInstances μπορεί να αντικατασταθεί ανά capability. Έτσι, αν έχετε ένα εσωτερικό Selenium
+        // grid με μόνο 5 διαθέσιμα instances firefox, μπορείτε να διασφαλίσετε ότι δεν θα ξεκινούν
+        // περισσότερα από 5 instances ταυτόχρονα.
         'wdio:maxInstances': 5,
         browserName: 'firefox',
         'wdio:specs': [
             'test/ffOnly/*'
         ],
         'moz:firefoxOptions': {
-          // flag to activate Firefox headless mode (see https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities for more details about moz:firefoxOptions)
+          // σημαία για ενεργοποίηση της headless λειτουργίας του Firefox (δείτε https://github.com/mozilla/geckodriver/blob/master/README.md#firefox-capabilities για περισσότερες λεπτομέρειες σχετικά με το moz:firefoxOptions)
           // args: ['-headless']
         },
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+        // Αν παρέχεται το outputDir, το WebdriverIO μπορεί να καταγράφει τα logs συνεδρίας του driver
+        // είναι δυνατό να ρυθμίσετε ποια logTypes θα εξαιρεθούν.
+        // excludeDriverLogs: ['*'], // δώστε '*' για να εξαιρέσετε όλα τα logs συνεδρίας του driver
         excludeDriverLogs: ['bugreport', 'server'],
         //
-        // Parameter to ignore some or all Puppeteer default arguments
-        // ignoreDefaultArgs: ['-foreground'], // set value to true to ignore all default arguments
+        // Παράμετρος για την παράβλεψη ορισμένων ή όλων των προεπιλεγμένων ορισμάτων του Puppeteer
+        // ignoreDefaultArgs: ['-foreground'], // ορίστε την τιμή σε true για να παραβλέψετε όλα τα προεπιλεγμένα ορίσματα
     }],
     //
-    // Additional list of node arguments to use when starting child processes
+    // Πρόσθετη λίστα ορισμάτων node που χρησιμοποιούνται κατά την εκκίνηση θυγατρικών διεργασιών
     execArgv: [],
     //
     // ===================
-    // Test Configurations
+    // Ρυθμίσεις Δοκιμών
     // ===================
-    // Define all options that are relevant for the WebdriverIO instance here
+    // Ορίστε εδώ όλες τις επιλογές που σχετίζονται με το instance του WebdriverIO
     //
-    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    // Επίπεδο λεπτομέρειας καταγραφής: trace | debug | info | warn | error | silent
     logLevel: 'info',
     //
-    // Set specific log levels per logger
-    // use 'silent' level to disable logger
+    // Ορίστε συγκεκριμένα επίπεδα καταγραφής ανά logger
+    // χρησιμοποιήστε το επίπεδο 'silent' για να απενεργοποιήσετε τον logger
     logLevels: {
         webdriver: 'info',
         '@wdio/appium-service': 'info'
     },
     //
-    // Set directory to store all logs into
+    // Ορίστε τον κατάλογο στον οποίο θα αποθηκεύονται όλα τα logs
     outputDir: __dirname,
     //
-    // If you only want to run your tests until a specific amount of tests have failed use
-    // bail (default is 0 - don't bail, run all tests).
+    // Αν θέλετε να εκτελούνται οι δοκιμές σας μόνο μέχρι να αποτύχει ένας συγκεκριμένος αριθμός δοκιμών, χρησιμοποιήστε
+    // το bail (η προεπιλογή είναι 0 - χωρίς διακοπή, εκτέλεση όλων των δοκιμών).
     bail: 0,
     //
-    // Set a base URL in order to shorten `url()` command calls. If your `url` parameter starts
-    // with `/`, the `baseUrl` is prepended, not including the path portion of `baseUrl`.
+    // Ορίστε ένα βασικό URL για να συντομεύσετε τις κλήσεις της εντολής `url()`. Αν η παράμετρος `url` ξεκινά
+    // με `/`, το `baseUrl` προτάσσεται, χωρίς να περιλαμβάνεται το τμήμα διαδρομής του `baseUrl`.
     //
-    // If your `url` parameter starts without a scheme or `/` (like `some/path`), the `baseUrl`
-    // gets prepended directly.
+    // Αν η παράμετρος `url` ξεκινά χωρίς scheme ή `/` (όπως `some/path`), το `baseUrl`
+    // προτάσσεται απευθείας.
     baseUrl: 'http://localhost:8080',
     //
-    // Default timeout for all waitForXXX commands.
+    // Προεπιλεγμένο χρονικό όριο για όλες τις εντολές waitForXXX.
     waitforTimeout: 1000,
     //
-    // Add files to watch (e.g. application code or page objects) when running `wdio` command
-    // with `--watch` flag. Globbing is supported.
+    // Προσθέστε αρχεία προς παρακολούθηση (π.χ. κώδικα εφαρμογής ή page objects) όταν εκτελείτε την εντολή `wdio`
+    // με τη σημαία `--watch`. Υποστηρίζεται το globbing.
     filesToWatch: [
-        // e.g. rerun tests if I change my application code
+        // π.χ. επανεκτέλεση δοκιμών αν αλλάξω τον κώδικα της εφαρμογής μου
         // './app/**/*.js'
     ],
     //
-    // Framework you want to run your specs with.
-    // The following are supported: 'mocha', 'jasmine', and 'cucumber'
-    // See also: https://webdriver.io/docs/frameworks.html
+    // Framework με το οποίο θέλετε να εκτελείτε τα specs σας.
+    // Υποστηρίζονται τα εξής: 'mocha', 'jasmine' και 'cucumber'
+    // Δείτε επίσης: https://webdriver.io/docs/frameworks.html
     //
-    // Make sure you have the wdio adapter package for the specific framework installed before running any tests.
+    // Βεβαιωθείτε ότι έχετε εγκαταστήσει το πακέτο προσαρμογέα wdio για το συγκεκριμένο framework πριν εκτελέσετε οποιαδήποτε δοκιμή.
     framework: 'mocha',
     //
-    // The number of times to retry the entire specfile when it fails as a whole
+    // Ο αριθμός των φορών που θα επαναληφθεί ολόκληρο το specfile όταν αποτυγχάνει στο σύνολό του
     specFileRetries: 1,
-    // Delay in seconds between the spec file retry attempts
+    // Καθυστέρηση σε δευτερόλεπτα μεταξύ των προσπαθειών επανάληψης του αρχείου spec
     specFileRetriesDelay: 0,
-    // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
+    // Αν τα αρχεία spec που επαναλαμβάνονται θα πρέπει να επαναληφθούν αμέσως ή να μετατεθούν στο τέλος της ουράς
     specFileRetriesDeferred: false,
     //
-    // Test reporter for stdout.
-    // The only one supported by default is 'dot'
-    // See also: https://webdriver.io/docs/dot-reporter.html , and click on "Reporters" in left column
+    // Test reporter για το stdout.
+    // Ο μόνος που υποστηρίζεται από προεπιλογή είναι ο 'dot'
+    // Δείτε επίσης: https://webdriver.io/docs/dot-reporter.html , και κάντε κλικ στο "Reporters" στην αριστερή στήλη
     reporters: [
         'dot',
         ['allure', {
             //
-            // If you are using the "allure" reporter you should define the directory where
-            // WebdriverIO should save all allure reports.
+            // Αν χρησιμοποιείτε τον reporter "allure", θα πρέπει να ορίσετε τον κατάλογο όπου
+            // το WebdriverIO θα αποθηκεύει όλες τις αναφορές allure.
             outputDir: './'
         }]
     ],
     //
-    // Options to be passed to Mocha.
-    // See the full list at: http://mochajs.org
+    // Επιλογές που θα μεταβιβαστούν στο Mocha.
+    // Δείτε την πλήρη λίστα στο: http://mochajs.org
     mochaOpts: {
         ui: 'bdd'
     },
     //
-    // Options to be passed to Jasmine.
-    // See also: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
+    // Επιλογές που θα μεταβιβαστούν στο Jasmine.
+    // Δείτε επίσης: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-jasmine-framework#jasmineopts-options
     jasmineOpts: {
         //
-        // Jasmine default timeout
+        // Προεπιλεγμένο χρονικό όριο του Jasmine
         defaultTimeoutInterval: 5000,
         //
-        // The Jasmine framework allows it to intercept each assertion in order to log the state of the application
-        // or website depending on the result. For example, it is pretty handy to take a screenshot every time
-        // an assertion fails.
+        // Το framework Jasmine επιτρέπει την παρεμβολή σε κάθε assertion ώστε να καταγράφεται η κατάσταση της εφαρμογής
+        // ή του ιστότοπου ανάλογα με το αποτέλεσμα. Για παράδειγμα, είναι αρκετά χρήσιμο να λαμβάνεται ένα στιγμιότυπο οθόνης κάθε φορά
+        // που αποτυγχάνει ένα assertion.
         expectationResultHandler: function(passed, assertion) {
-            // do something
+            // κάντε κάτι
         },
         //
-        // Make use of Jasmine-specific grep functionality
+        // Αξιοποιήστε τη λειτουργικότητα grep που είναι ειδική για το Jasmine
         grep: null,
         invertGrep: null
     },
     //
-    // If you are using Cucumber you need to specify where your step definitions are located.
-    // See also: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
+    // Αν χρησιμοποιείτε το Cucumber, πρέπει να καθορίσετε πού βρίσκονται οι ορισμοί των βημάτων σας.
+    // Δείτε επίσης: https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options
     cucumberOpts: {
-        require: [],        // <string[]> (file/dir) require files before executing features
-        backtrace: false,   // <boolean> show full backtrace for errors
-        compiler: [],       // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-        dryRun: false,      // <boolean> invoke formatters without executing steps
-        failFast: false,    // <boolean> abort the run on first failure
-        snippets: true,     // <boolean> hide step definition snippets for pending steps
-        source: true,       // <boolean> hide source URIs
-        strict: false,      // <boolean> fail if there are any undefined or pending steps
-        tagExpression: '',  // <string> (expression) only execute the features or scenarios with tags matching the expression
-        timeout: 20000,     // <number> timeout for step definitions
-        ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
-        scenarioLevelReporter: false // Enable this to make webdriver.io behave as if scenarios and not steps were the tests.
+        require: [],        // <string[]> (file/dir) φόρτωση αρχείων πριν από την εκτέλεση των features
+        backtrace: false,   // <boolean> εμφάνιση πλήρους backtrace για σφάλματα
+        compiler: [],       // <string[]> ("extension:module") φόρτωση αρχείων με τη δοσμένη EXTENSION μετά τη φόρτωση του MODULE (επαναλαμβανόμενο)
+        dryRun: false,      // <boolean> κλήση των formatters χωρίς εκτέλεση βημάτων
+        failFast: false,    // <boolean> διακοπή της εκτέλεσης στην πρώτη αποτυχία
+        snippets: true,     // <boolean> απόκρυψη αποσπασμάτων ορισμών βημάτων για εκκρεμή βήματα
+        source: true,       // <boolean> απόκρυψη URIs πηγής
+        strict: false,      // <boolean> αποτυχία αν υπάρχουν μη ορισμένα ή εκκρεμή βήματα
+        tags: '',           // <string> (expression) εκτέλεση μόνο των features ή scenarios με tags που ταιριάζουν στην έκφραση
+        timeout: 20000,     // <number> χρονικό όριο για τους ορισμούς βημάτων
+        ignoreUndefinedDefinitions: false, // <boolean> Ενεργοποιήστε αυτή τη ρύθμιση για να αντιμετωπίζονται οι μη ορισμένοι ορισμοί ως προειδοποιήσεις.
+        scenarioLevelReporter: false // Ενεργοποιήστε το ώστε το webdriver.io να συμπεριφέρεται σαν τα scenarios και όχι τα βήματα να είναι οι δοκιμές.
     },
-    // Specify a custom tsconfig path - WDIO uses `tsx` to compile TypeScript files
-    // Your TSConfig is automatically detected from the current working directory
-    // but you can specify a custom path here or by setting the TSX_TSCONFIG_PATH env var
-    // See the `tsx` docs: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
+    // Καθορίστε μια προσαρμοσμένη διαδρομή tsconfig - το WDIO χρησιμοποιεί το `tsx` για τη μεταγλώττιση αρχείων TypeScript
+    // Το TSConfig σας εντοπίζεται αυτόματα από τον τρέχοντα κατάλογο εργασίας
+    // αλλά μπορείτε να καθορίσετε μια προσαρμοσμένη διαδρομή εδώ ή ορίζοντας τη μεταβλητή περιβάλλοντος TSX_TSCONFIG_PATH
+    // Δείτε την τεκμηρίωση του `tsx`: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
     //
-    // Note: This setting will be overriden by the TSX_TSCONFIG_PATH env var and/or the cli --tsConfigPath argument if they are specified.
-    // This setting will be ignored if node is unable to parse your wdio.conf.ts file without help from tsx, e.g. if you have path
-    // aliases setup in tsconfig.json and you use those path aliases inside your wdio.config.ts file.
-    // Only use this if you are using a .js config file or your .ts config file is valid JavaScript.
+    // Σημείωση: Αυτή η ρύθμιση θα παρακαμφθεί από τη μεταβλητή περιβάλλοντος TSX_TSCONFIG_PATH ή/και το όρισμα cli --tsConfigPath αν έχουν καθοριστεί.
+    // Αυτή η ρύθμιση θα αγνοηθεί αν το node δεν μπορεί να αναλύσει το αρχείο wdio.conf.ts χωρίς βοήθεια από το tsx, π.χ. αν έχετε
+    // ρυθμίσει path aliases στο tsconfig.json και χρησιμοποιείτε αυτά τα path aliases μέσα στο αρχείο wdio.config.ts.
+    // Χρησιμοποιήστε το μόνο αν χρησιμοποιείτε αρχείο ρυθμίσεων .js ή αν το αρχείο ρυθμίσεων .ts είναι έγκυρη JavaScript.
     tsConfigPath: 'path/to/tsconfig.json',
     //
     // =====
     // Hooks
     // =====
-    // WebdriverIO provides a several hooks you can use to interfere the test process in order to enhance
-    // it and build services around it. You can either apply a single function to it or an array of
-    // methods. If one of them returns with a promise, WebdriverIO will wait until that promise is
-    // resolved to continue.
+    // Το WebdriverIO παρέχει αρκετά hooks που μπορείτε να χρησιμοποιήσετε για να παρέμβετε στη διαδικασία δοκιμών ώστε να τη βελτιώσετε
+    // και να δημιουργήσετε υπηρεσίες γύρω από αυτήν. Μπορείτε να εφαρμόσετε είτε μία μόνο συνάρτηση είτε έναν πίνακα
+    // μεθόδων. Αν μία από αυτές επιστρέψει ένα promise, το WebdriverIO θα περιμένει μέχρι να επιλυθεί αυτό το promise
+    // για να συνεχίσει.
     //
     /**
-     * Gets executed once before all workers get launched.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
+     * Εκτελείται μία φορά πριν εκκινηθούν όλοι οι workers.
+     * @param {object} config αντικείμενο ρυθμίσεων wdio
+     * @param {Array.<Object>} capabilities λίστα με λεπτομέρειες capabilities
      */
     onPrepare: function (config, capabilities) {
     },
     /**
-     * Gets executed before a worker process is spawned and can be used to initialize specific service
-     * for that worker as well as modify runtime environments in an async fashion.
-     * @param  {string} cid      capability id (e.g 0-0)
-     * @param  {object} caps     object containing capabilities for session that will be spawn in the worker
-     * @param  {object} specs    specs to be run in the worker process
-     * @param  {object} args     object that will be merged with the main configuration once worker is initialized
-     * @param  {object} execArgv list of string arguments passed to the worker process
+     * Εκτελείται πριν δημιουργηθεί μια διεργασία worker και μπορεί να χρησιμοποιηθεί για την αρχικοποίηση συγκεκριμένης υπηρεσίας
+     * για αυτόν τον worker καθώς και για την τροποποίηση περιβαλλόντων εκτέλεσης με ασύγχρονο τρόπο.
+     * @param  {string} cid      capability id (π.χ. 0-0)
+     * @param  {object} caps     αντικείμενο που περιέχει τα capabilities για τη συνεδρία που θα δημιουργηθεί στον worker
+     * @param  {object} specs    specs που θα εκτελεστούν στη διεργασία worker
+     * @param  {object} args     αντικείμενο που θα συγχωνευθεί με τις κύριες ρυθμίσεις μόλις αρχικοποιηθεί ο worker
+     * @param  {object} execArgv λίστα ορισμάτων string που μεταβιβάζονται στη διεργασία worker
      */
     onWorkerStart: function (cid, caps, specs, args, execArgv) {
     },
     /**
-     * Gets executed after a worker process has exited.
-     * @param  {string} cid      capability id (e.g 0-0)
-     * @param  {number} exitCode 0 - success, 1 - fail
-     * @param  {object} specs    specs to be run in the worker process
-     * @param  {number} retries  number of retries used
+     * Εκτελείται αφού τερματιστεί μια διεργασία worker.
+     * @param  {string} cid      capability id (π.χ. 0-0)
+     * @param  {number} exitCode 0 - επιτυχία, 1 - αποτυχία
+     * @param  {object} specs    specs που θα εκτελεστούν στη διεργασία worker
+     * @param  {number} retries  αριθμός επαναλήψεων που χρησιμοποιήθηκαν
      */
     onWorkerEnd: function (cid, exitCode, specs, retries) {
     },
     /**
-     * Gets executed before initializing the webdriver session and test framework. It allows you
-     * to manipulate configurations depending on the capability or spec.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that are to be run
+     * Εκτελείται πριν από την αρχικοποίηση της συνεδρίας webdriver και του test framework. Σας επιτρέπει
+     * να χειριστείτε τις ρυθμίσεις ανάλογα με το capability ή το spec.
+     * @param {object} config αντικείμενο ρυθμίσεων wdio
+     * @param {Array.<Object>} capabilities λίστα με λεπτομέρειες capabilities
+     * @param {Array.<String>} specs Λίστα διαδρομών αρχείων spec που πρόκειται να εκτελεστούν
      */
     beforeSession: function (config, capabilities, specs) {
     },
     /**
-     * Gets executed before test execution begins. At this point you can access to all global
-     * variables like `browser`. It is the perfect place to define custom commands.
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs        List of spec file paths that are to be run
-     * @param {object}         browser      instance of created browser/device session
+     * Εκτελείται πριν ξεκινήσει η εκτέλεση των δοκιμών. Σε αυτό το σημείο έχετε πρόσβαση σε όλες τις global
+     * μεταβλητές όπως το `browser`. Είναι το ιδανικό σημείο για τον ορισμό προσαρμοσμένων εντολών.
+     * @param {Array.<Object>} capabilities λίστα με λεπτομέρειες capabilities
+     * @param {Array.<String>} specs        Λίστα διαδρομών αρχείων spec που πρόκειται να εκτελεστούν
+     * @param {object}         browser      instance της δημιουργημένης συνεδρίας browser/συσκευής
      */
     before: function (capabilities, specs, browser) {
     },
     /**
-     * Gets executed before the suite starts (in Mocha/Jasmine only).
-     * @param {object} suite suite details
+     * Εκτελείται πριν ξεκινήσει η σουίτα (μόνο σε Mocha/Jasmine).
+     * @param {object} suite λεπτομέρειες σουίτας
      */
     beforeSuite: function (suite) {
     },
     /**
-     * This hook gets executed _before_ every hook within the suite starts.
-     * (For example, this runs before calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
+     * Αυτό το hook εκτελείται _πριν_ ξεκινήσει κάθε hook μέσα στη σουίτα.
+     * (Για παράδειγμα, εκτελείται πριν από την κλήση των `before`, `beforeEach`, `after`, `afterEach` στο Mocha.). Στο Cucumber το `context` είναι το αντικείμενο World.
      *
      */
     beforeHook: function (test, context, hookName) {
     },
     /**
-     * Hook that gets executed _after_ every hook within the suite ends.
-     * (For example, this runs after calling `before`, `beforeEach`, `after`, `afterEach` in Mocha.). In Cucumber `context` is the World object.
+     * Hook που εκτελείται _μετά_ το τέλος κάθε hook μέσα στη σουίτα.
+     * (Για παράδειγμα, εκτελείται μετά την κλήση των `before`, `beforeEach`, `after`, `afterEach` στο Mocha.). Στο Cucumber το `context` είναι το αντικείμενο World.
      */
     afterHook: function (test, context, { error, result, duration, passed, retries }, hookName) {
     },
     /**
-     * Function to be executed before a test (in Mocha/Jasmine only)
-     * @param {object} test    test object
-     * @param {object} context scope object the test was executed with
+     * Συνάρτηση που εκτελείται πριν από μια δοκιμή (μόνο σε Mocha/Jasmine)
+     * @param {object} test    αντικείμενο δοκιμής
+     * @param {object} context αντικείμενο εμβέλειας με το οποίο εκτελέστηκε η δοκιμή
      */
     beforeTest: function (test, context) {
     },
     /**
-     * Runs before a WebdriverIO command is executed.
-     * @param {string} commandName hook command name
-     * @param {Array} args arguments that the command would receive
+     * Εκτελείται πριν από την εκτέλεση μιας εντολής WebdriverIO.
+     * @param {string} commandName όνομα εντολής του hook
+     * @param {Array} args ορίσματα που θα λάμβανε η εντολή
      */
     beforeCommand: function (commandName, args) {
     },
     /**
-     * Runs after a WebdriverIO command gets executed
-     * @param {string} commandName hook command name
-     * @param {Array} args arguments that command would receive
-     * @param {*} result result of the command
-     * @param {Error} error error object, if any
+     * Εκτελείται μετά την εκτέλεση μιας εντολής WebdriverIO
+     * @param {string} commandName όνομα εντολής του hook
+     * @param {Array} args ορίσματα που θα λάμβανε η εντολή
+     * @param {*} result αποτέλεσμα της εντολής
+     * @param {Error} error αντικείμενο σφάλματος, αν υπάρχει
      */
     afterCommand: function (commandName, args, result, error) {
     },
     /**
-     * Function to be executed after a test (in Mocha/Jasmine only)
-     * @param {object}  test             test object
-     * @param {object}  context          scope object the test was executed with
-     * @param {Error}   result.error     error object in case the test fails, otherwise `undefined`
-     * @param {*}       result.result    return object of test function
-     * @param {number}  result.duration  duration of test
-     * @param {boolean} result.passed    true if test has passed, otherwise false
-     * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
+     * Συνάρτηση που εκτελείται μετά από μια δοκιμή (μόνο σε Mocha/Jasmine)
+     * @param {object}  test             αντικείμενο δοκιμής
+     * @param {object}  context          αντικείμενο εμβέλειας με το οποίο εκτελέστηκε η δοκιμή
+     * @param {Error}   result.error     αντικείμενο σφάλματος σε περίπτωση αποτυχίας της δοκιμής, διαφορετικά `undefined`
+     * @param {*}       result.result    αντικείμενο επιστροφής της συνάρτησης δοκιμής
+     * @param {number}  result.duration  διάρκεια της δοκιμής
+     * @param {boolean} result.passed    true αν η δοκιμή πέρασε, διαφορετικά false
+     * @param {object}  result.retries   πληροφορίες για επαναλήψεις σχετικές με το spec, π.χ. `{ attempts: 0, limit: 0 }`
      */
     afterTest: function (test, context, { error, result, duration, passed, retries }) {
     },
     /**
-     * Hook that gets executed after the suite has ended (in Mocha/Jasmine only).
-     * @param {object} suite suite details
+     * Hook που εκτελείται αφού τελειώσει η σουίτα (μόνο σε Mocha/Jasmine).
+     * @param {object} suite λεπτομέρειες σουίτας
      */
     afterSuite: function (suite) {
     },
     /**
-     * Gets executed after all tests are done. You still have access to all global variables from
-     * the test.
-     * @param {number} result 0 - test pass, 1 - test fail
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
+     * Εκτελείται αφού ολοκληρωθούν όλες οι δοκιμές. Εξακολουθείτε να έχετε πρόσβαση σε όλες τις global μεταβλητές από
+     * τη δοκιμή.
+     * @param {number} result 0 - επιτυχία δοκιμής, 1 - αποτυχία δοκιμής
+     * @param {Array.<Object>} capabilities λίστα με λεπτομέρειες capabilities
+     * @param {Array.<String>} specs Λίστα διαδρομών αρχείων spec που εκτελέστηκαν
      */
     after: function (result, capabilities, specs) {
     },
     /**
-     * Gets executed right after terminating the webdriver session.
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs List of spec file paths that ran
+     * Εκτελείται αμέσως μετά τον τερματισμό της συνεδρίας webdriver.
+     * @param {object} config αντικείμενο ρυθμίσεων wdio
+     * @param {Array.<Object>} capabilities λίστα με λεπτομέρειες capabilities
+     * @param {Array.<String>} specs Λίστα διαδρομών αρχείων spec που εκτελέστηκαν
      */
     afterSession: function (config, capabilities, specs) {
     },
     /**
-     * Gets executed after all workers have shut down and the process is about to exit.
-     * An error thrown in the `onComplete` hook will result in the test run failing.
-     * @param {object} exitCode 0 - success, 1 - fail
-     * @param {object} config wdio configuration object
-     * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {<Object>} results object containing test results
+     * Εκτελείται αφού τερματιστούν όλοι οι workers και η διεργασία πρόκειται να τερματιστεί.
+     * Ένα σφάλμα που προκύπτει στο hook `onComplete` θα οδηγήσει σε αποτυχία της εκτέλεσης δοκιμών.
+     * @param {object} exitCode 0 - επιτυχία, 1 - αποτυχία
+     * @param {object} config αντικείμενο ρυθμίσεων wdio
+     * @param {Array.<Object>} capabilities λίστα με λεπτομέρειες capabilities
+     * @param {<Object>} results αντικείμενο που περιέχει τα αποτελέσματα των δοκιμών
      */
     onComplete: function (exitCode, config, capabilities, results) {
     },
     /**
-    * Gets executed when a refresh happens.
-    * @param {string} oldSessionId session ID of the old session
-    * @param {string} newSessionId session ID of the new session
+    * Εκτελείται όταν συμβαίνει ανανέωση.
+    * @param {string} oldSessionId session ID της παλιάς συνεδρίας
+    * @param {string} newSessionId session ID της νέας συνεδρίας
     */
     onReload: function(oldSessionId, newSessionId) {
     },
     /**
-     * Cucumber Hooks
+     * Hooks του Cucumber
      *
-     * Runs before a Cucumber Feature.
-     * @param {string}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     * Εκτελείται πριν από ένα Feature του Cucumber.
+     * @param {string}                   uri      διαδρομή προς το αρχείο feature
+     * @param {GherkinDocument.IFeature} feature  αντικείμενο feature του Cucumber
      */
     beforeFeature: function (uri, feature) {
     },
     /**
      *
-     * Runs before a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
-     * @param {object}                 context  Cucumber World object
+     * Εκτελείται πριν από ένα Scenario του Cucumber.
+     * @param {ITestCaseHookParameter} world    αντικείμενο world που περιέχει πληροφορίες για το pickle και το βήμα δοκιμής
+     * @param {object}                 context  αντικείμενο World του Cucumber
      */
     beforeScenario: function (world, context) {
     },
     /**
      *
-     * Runs before a Cucumber Step.
-     * @param {Pickle.IPickleStep} step     step data
-     * @param {IPickle}            scenario scenario pickle
-     * @param {object}             context  Cucumber World object
+     * Εκτελείται πριν από ένα Step του Cucumber.
+     * @param {Pickle.IPickleStep} step     δεδομένα βήματος
+     * @param {IPickle}            scenario pickle του scenario
+     * @param {object}             context  αντικείμενο World του Cucumber
      */
     beforeStep: function (step, scenario, context) {
     },
     /**
      *
-     * Runs after a Cucumber Step.
-     * @param {Pickle.IPickleStep} step             step data
-     * @param {IPickle}            scenario         scenario pickle
-     * @param {object}             result           results object containing scenario results
-     * @param {boolean}            result.passed    true if scenario has passed
-     * @param {string}             result.error     error stack if scenario failed
-     * @param {number}             result.duration  duration of scenario in milliseconds
-     * @param {object}             context          Cucumber World object
+     * Εκτελείται μετά από ένα Step του Cucumber.
+     * @param {Pickle.IPickleStep} step             δεδομένα βήματος
+     * @param {IPickle}            scenario         pickle του scenario
+     * @param {object}             result           αντικείμενο αποτελεσμάτων που περιέχει τα αποτελέσματα του scenario
+     * @param {boolean}            result.passed    true αν το scenario πέρασε
+     * @param {string}             result.error     stack σφάλματος αν το scenario απέτυχε
+     * @param {number}             result.duration  διάρκεια του scenario σε χιλιοστά του δευτερολέπτου
+     * @param {object}             context          αντικείμενο World του Cucumber
      */
     afterStep: function (step, scenario, result, context) {
     },
     /**
      *
-     * Runs after a Cucumber Scenario.
-     * @param {ITestCaseHookParameter} world            world object containing information on pickle and test step
-     * @param {object}                 result           results object containing scenario results `{passed: boolean, error: string, duration: number}`
-     * @param {boolean}                result.passed    true if scenario has passed
-     * @param {string}                 result.error     error stack if scenario failed
-     * @param {number}                 result.duration  duration of scenario in milliseconds
-     * @param {object}                 context          Cucumber World object
+     * Εκτελείται μετά από ένα Scenario του Cucumber.
+     * @param {ITestCaseHookParameter} world            αντικείμενο world που περιέχει πληροφορίες για το pickle και το βήμα δοκιμής
+     * @param {object}                 result           αντικείμενο αποτελεσμάτων που περιέχει τα αποτελέσματα του scenario `{passed: boolean, error: string, duration: number}`
+     * @param {boolean}                result.passed    true αν το scenario πέρασε
+     * @param {string}                 result.error     stack σφάλματος αν το scenario απέτυχε
+     * @param {number}                 result.duration  διάρκεια του scenario σε χιλιοστά του δευτερολέπτου
+     * @param {object}                 context          αντικείμενο World του Cucumber
      */
     afterScenario: function (world, result, context) {
     },
     /**
      *
-     * Runs after a Cucumber Feature.
-     * @param {string}                   uri      path to feature file
-     * @param {GherkinDocument.IFeature} feature  Cucumber feature object
+     * Εκτελείται μετά από ένα Feature του Cucumber.
+     * @param {string}                   uri      διαδρομή προς το αρχείο feature
+     * @param {GherkinDocument.IFeature} feature  αντικείμενο feature του Cucumber
      */
     afterFeature: function (uri, feature) {
     },
     /**
-     * Runs before a WebdriverIO assertion library makes an assertion.
-     * @param commandName command name
-     * @param args        arguments that command would receive
+     * Εκτελείται πριν η βιβλιοθήκη assertions του WebdriverIO εκτελέσει ένα assertion.
+     * @param {object} params                 πληροφορίες assertion
+     * @param {string} params.matcherName     όνομα του matcher που κάλεσε η δοκιμή (για alias, το όνομα του alias)
+     * @param {*}      params.expectedValue   τιμή που μεταβιβάζεται στον matcher
+     * @param {object} params.options         επιλογές assertion
      */
     beforeAssertion: function (params) {
     },
     /**
-     * Runs after a WebdriverIO command gets executed
-     * @param commandName  command name
-     * @param args         arguments that command would receive
-     * @param result       result of the command
-     * @param error        error in case something went wrong
+     * Εκτελείται αφού η βιβλιοθήκη assertions του WebdriverIO εκτελέσει ένα assertion.
+     * @param {object} params                 πληροφορίες assertion, ίδιες με αυτές του `beforeAssertion`
+     * @param {object} params.result          αποτέλεσμα του matcher, με `pass` (boolean) και `message()`.
+     *                                        το `pass` είναι true όταν η τιμή ταιριάζει, επίσης με `.not`
      */
     afterAssertion: function (params) {
     }

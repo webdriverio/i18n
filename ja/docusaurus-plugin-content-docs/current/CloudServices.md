@@ -1,11 +1,12 @@
 ---
 id: cloudservices
-title: クラウドサービスの使用
+title: クラウドサービスの利用
+description: "Sauce Labs、BrowserStack、TestingBot、TestMu AI（旧LambdaTest）、Perfecto、その他のクラウドプロバイダーでWebdriverIOテストを実行します。"
 ---
 
-WebdriverIOでSauce Labs、Browserstack、TestingBot、TestMu AI（旧LambdaTest）やPerfectoなどのオンデマンドサービスを使用するのは非常に簡単です。必要なのは、オプションにサービスの`user`と`key`を設定するだけです。
+Sauce Labs、Browserstack、TestingBot、TestMu AI（旧LambdaTest）、Perfectoなどのオンデマンドサービスを WebdriverIO で利用するのは非常に簡単です。必要なのは、オプションでサービスの `user` と `key` を設定することだけです。
 
-オプションで、`build`のようなクラウド固有の機能を設定してテストをパラメータ化することもできます。Travisでのみクラウドサービスを実行したい場合は、`CI`環境変数を使用してTravisにいるかどうかを確認し、それに応じて設定を変更できます。
+オプションとして、`build` などのクラウド固有のケイパビリティを設定してテストをパラメータ化することもできます。Travis でのみクラウドサービスを実行したい場合は、`CI` 環境変数を使用して Travis 上で実行されているかどうかを確認し、それに応じて設定を変更できます。
 
 ```js
 // wdio.conf.js
@@ -18,31 +19,31 @@ if (process.env.CI) {
 
 ## Sauce Labs
 
-テストを[Sauce Labs](https://saucelabs.com)でリモート実行するように設定できます。
+テストを [Sauce Labs](https://saucelabs.com) でリモート実行するように設定できます。
 
-唯一の要件は、設定（`wdio.conf.js`からエクスポートされるか、`webdriverio.remote(...)`に渡される）に、Sauce Labsのユーザー名とアクセスキーを`user`と`key`として設定することです。
+唯一の要件は、設定（`wdio.conf.js` からエクスポートされるもの、または `webdriverio.remote(...)` に渡されるもの）の `user` と `key` に、Sauce Labs のユーザー名とアクセスキーを設定することです。
 
-また、任意のブラウザのケイパビリティに、オプションの[テスト設定オプション](https://docs.saucelabs.com/dev/test-configuration-options/)をキー/値として渡すこともできます。
+また、任意の[テスト設定オプション](https://docs.saucelabs.com/dev/test-configuration-options/)を、任意のブラウザのケイパビリティにキー/値として渡すこともできます。
 
 ### Sauce Connect
 
-インターネットからアクセスできないサーバー（`localhost`など）に対してテストを実行したい場合は、[Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy)を使用する必要があります。
+インターネットからアクセスできないサーバー（`localhost` など）に対してテストを実行したい場合は、[Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy) を使用する必要があります。
 
-これをサポートすることはWebdriverIOの範囲外であるため、自分で起動する必要があります。
+これをサポートすることは WebdriverIO の範囲外であるため、自分で起動する必要があります。
 
-WDIOテストランナーを使用している場合は、`wdio.conf.js`で[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)をダウンロードして設定してください。これはSauce Connectの実行を支援し、テストをSauceサービスにより適切に統合する追加機能を提供します。
+WDIO テストランナーを使用している場合は、[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) をダウンロードして `wdio.conf.js` で設定してください。これは Sauce Connect の実行を支援し、テストを Sauce サービスとより良く統合するための追加機能も備えています。
 
-### Travis CIとの連携
+### Travis CI での利用
 
-ただし、Travis CIは各テストの前にSauce Connectを起動するための[サポート](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect)を提供しているため、その指示に従うことも選択肢です。
+ただし、Travis CI は各テストの前に Sauce Connect を起動するための[サポートを提供しています](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect)ので、その手順に従うことも選択肢の一つです。
 
-そうする場合は、各ブラウザの`capabilities`に`tunnel-identifier`テスト設定オプションを設定する必要があります。Travisはデフォルトでこれを`TRAVIS_JOB_NUMBER`環境変数に設定します。
+その場合は、各ブラウザの `capabilities` で `tunnel-identifier` テスト設定オプションを設定する必要があります。Travis はデフォルトでこれを `TRAVIS_JOB_NUMBER` 環境変数に設定します。
 
-また、Sauce Labsでビルド番号ごとにテストをグループ化したい場合は、`build`を`TRAVIS_BUILD_NUMBER`に設定できます。
+また、Sauce Labs でテストをビルド番号ごとにグループ化したい場合は、`build` を `TRAVIS_BUILD_NUMBER` に設定できます。
 
-最後に、`name`を設定すると、このビルドのSauce Labsでのテスト名が変更されます。WDIOテストランナーを[`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)と組み合わせて使用している場合、WebdriverIOは自動的にテストに適切な名前を設定します。
+最後に、`name` を設定すると、このビルドにおける Sauce Labs 上のこのテストの名前が変更されます。WDIO テストランナーを [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) と組み合わせて使用している場合、WebdriverIO はテストに適切な名前を自動的に設定します。
 
-`capabilities`の例：
+`capabilities` の例：
 
 ```javascript
 browserName: 'chrome',
@@ -55,33 +56,33 @@ build: process.env.TRAVIS_BUILD_NUMBER
 
 ### タイムアウト
 
-テストをリモートで実行しているため、一部のタイムアウトを増やす必要がある場合があります。
+テストをリモートで実行しているため、一部のタイムアウトを延長する必要がある場合があります。
 
-テスト設定オプションとして`idle-timeout`を渡すことで[アイドルタイムアウト](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout)を変更できます。これは、接続を閉じる前にSauceがコマンド間で待機する時間を制御します。
+テスト設定オプションとして `idle-timeout` を渡すことで、[アイドルタイムアウト](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout)を変更できます。これは、Sauce が接続を閉じる前にコマンド間でどれだけ待機するかを制御します。
 
 ## BrowserStack
 
-WebdriverIOには[Browserstack](https://www.browserstack.com)との統合も組み込まれています。
+WebdriverIO には [Browserstack](https://www.browserstack.com) との統合も組み込まれています。
 
-唯一の要件は、設定（`wdio.conf.js`からエクスポートされるか、`webdriverio.remote(...)`に渡される）に、Browserstackの自動化ユーザー名とアクセスキーを`user`と`key`として設定することです。
+唯一の要件は、設定（`wdio.conf.js` からエクスポートされるもの、または `webdriverio.remote(...)` に渡されるもの）の `user` と `key` に、Browserstack Automate のユーザー名とアクセスキーを設定することです。
 
-また、任意のブラウザのケイパビリティに、オプションの[サポートされているケイパビリティ](https://www.browserstack.com/automate/capabilities)をキー/値として渡すこともできます。`browserstack.debug`を`true`に設定すると、セッションのスクリーンキャストが記録され、役立つ場合があります。
+また、任意の[サポートされているケイパビリティ](https://www.browserstack.com/automate/capabilities)を、任意のブラウザのケイパビリティにキー/値として渡すこともできます。`browserstack.debug` を `true` に設定すると、セッションのスクリーンキャストが記録されるため、役立つ場合があります。
 
 ### ローカルテスト
 
-インターネットからアクセスできないサーバー（`localhost`など）に対してテストを実行したい場合は、[ローカルテスト](https://www.browserstack.com/local-testing#command-line)を使用する必要があります。
+インターネットからアクセスできないサーバー（`localhost` など）に対してテストを実行したい場合は、[ローカルテスト](https://www.browserstack.com/local-testing#command-line)を使用する必要があります。
 
-これをサポートすることはWebdriverIOの範囲外であるため、自分で起動する必要があります。
+これをサポートすることは WebdriverIO の範囲外であるため、自分で起動する必要があります。
 
-ローカルを使用する場合は、ケイパビリティで`browserstack.local`を`true`に設定する必要があります。
+ローカルを使用する場合は、ケイパビリティで `browserstack.local` を `true` に設定する必要があります。
 
-WDIOテストランナーを使用している場合は、`wdio.conf.js`で[`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service)をダウンロードして設定してください。これはBrowserStackの実行を支援し、テストをBrowserStackサービスにより適切に統合する追加機能を提供します。
+WDIO テストランナーを使用している場合は、[`@wdio/browserstack-service`](https://github.com/browserstack/wdio-browserstack-service) をダウンロードして `wdio.conf.js` で設定してください。これは BrowserStack の実行を支援し、テストを BrowserStack サービスとより良く統合するための追加機能も備えています。
 
-### Travis CIとの連携
+### Travis CI での利用
 
-Travis CIでローカルテストを追加したい場合は、自分で起動する必要があります。
+Travis でローカルテストを追加したい場合は、自分で起動する必要があります。
 
-次のスクリプトは、ローカルテストをダウンロードしてバックグラウンドで起動します。Travisでテストを開始する前にこれを実行する必要があります。
+次のスクリプトはそれをダウンロードし、バックグラウンドで起動します。テストを開始する前に、Travis でこれを実行してください。
 
 ```sh
 wget https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
@@ -90,9 +91,9 @@ unzip BrowserStackLocal-linux-x64.zip
 sleep 3
 ```
 
-また、`build`をTravisのビルド番号に設定することもできます。
+また、`build` を Travis のビルド番号に設定することもできます。
 
-`capabilities`の例：
+`capabilities` の例：
 
 ```javascript
 browserName: 'chrome',
@@ -105,41 +106,41 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## TestingBot
 
-唯一の要件は、設定（`wdio.conf.js`からエクスポートされるか、`webdriverio.remote(...)`に渡される）に、[TestingBot](https://testingbot.com)のユーザー名とシークレットキーを`user`と`key`として設定することです。
+唯一の要件は、設定（`wdio.conf.js` からエクスポートされるもの、または `webdriverio.remote(...)` に渡されるもの）の `user` と `key` に、[TestingBot](https://testingbot.com) のユーザー名とシークレットキーを設定することです。
 
-また、任意のブラウザのケイパビリティに、オプションの[サポートされているケイパビリティ](https://testingbot.com/support/other/test-options)をキー/値として渡すこともできます。
+また、任意の[サポートされているケイパビリティ](https://testingbot.com/support/other/test-options)を、任意のブラウザのケイパビリティにキー/値として渡すこともできます。
 
 ### ローカルテスト
 
-インターネットからアクセスできないサーバー（`localhost`など）に対してテストを実行したい場合は、[ローカルテスト](https://testingbot.com/support/other/tunnel)を使用する必要があります。TestingBotは、インターネットからアクセスできないウェブサイトをテストできるようにするJavaベースのトンネルを提供しています。
+インターネットからアクセスできないサーバー（`localhost` など）に対してテストを実行したい場合は、[ローカルテスト](https://testingbot.com/support/other/tunnel)を使用する必要があります。TestingBot は、インターネットからアクセスできないウェブサイトをテストできるようにする Java ベースのトンネルを提供しています。
 
-トンネルサポートページには、これを起動して実行するために必要な情報が含まれています。
+同社のトンネルサポートページには、これをセットアップして実行するために必要な情報が記載されています。
 
-WDIOテストランナーを使用している場合は、`wdio.conf.js`で[`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service)をダウンロードして設定してください。これはTestingBotの実行を支援し、テストをTestingBotサービスにより適切に統合する追加機能を提供します。
+WDIO テストランナーを使用している場合は、[`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) をダウンロードして `wdio.conf.js` で設定してください。これは TestingBot の実行を支援し、テストを TestingBot サービスとより良く統合するための追加機能も備えています。
 
 ## TestMu AI（旧LambdaTest）
 
-[TestMu AI](https://www.testmuai.com/)との統合も組み込まれています。
+[TestMu AI](https://www.testmuai.com/) との統合も組み込まれています。
 
-唯一の要件は、設定（`wdio.conf.js`からエクスポートされるか、`webdriverio.remote(...)`に渡される）に、TestMu AIアカウントのユーザー名とアクセスキーを`user`と`key`として設定することです。
+唯一の要件は、設定（`wdio.conf.js` からエクスポートされるもの、または `webdriverio.remote(...)` に渡されるもの）の `user` と `key` に、TestMu AI アカウントのユーザー名とアクセスキーを設定することです。
 
-また、任意のブラウザのケイパビリティに、オプションの[サポートされているケイパビリティ](https://www.testmuai.com/capabilities-generator/)をキー/値として渡すこともできます。`visual`を`true`に設定すると、セッションのスクリーンキャストが記録され、役立つ場合があります。
+また、任意の[サポートされているケイパビリティ](https://www.testmuai.com/capabilities-generator/)を、任意のブラウザのケイパビリティにキー/値として渡すこともできます。`visual` を `true` に設定すると、セッションのスクリーンキャストが記録されるため、役立つ場合があります。
 
-### ローカルテスト用トンネル
+### ローカルテスト用のトンネル
 
-インターネットからアクセスできないサーバー（`localhost`など）に対してテストを実行したい場合は、[ローカルテスト](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/)を使用する必要があります。
+インターネットからアクセスできないサーバー（`localhost` など）に対してテストを実行したい場合は、[ローカルテスト](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/)を使用する必要があります。
 
-これをサポートすることはWebdriverIOの範囲外であるため、自分で起動する必要があります。
+これをサポートすることは WebdriverIO の範囲外であるため、自分で起動する必要があります。
 
-ローカルを使用する場合は、ケイパビリティで`tunnel`を`true`に設定する必要があります。
+ローカルを使用する場合は、ケイパビリティで `tunnel` を `true` に設定する必要があります。
 
-WDIOテストランナーを使用している場合は、`wdio.conf.js`で[`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service)をダウンロードして設定してください。これはTestMu AIの実行を支援し、テストをTestMu AIサービスにより適切に統合する追加機能を提供します。
+WDIO テストランナーを使用している場合は、[`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) をダウンロードして `wdio.conf.js` で設定してください。これは TestMu AI の実行を支援し、テストを TestMu AI サービスとより良く統合するための追加機能も備えています。
 
-### Travis CIとの連携
+### Travis CI での利用
 
-Travis CIでローカルテストを追加したい場合は、自分で起動する必要があります。
+Travis でローカルテストを追加したい場合は、自分で起動する必要があります。
 
-次のスクリプトは、ローカルテストをダウンロードしてバックグラウンドで起動します。Travisでテストを開始する前にこれを実行する必要があります。
+次のスクリプトはそれをダウンロードし、バックグラウンドで起動します。テストを開始する前に、Travis でこれを実行してください。
 
 ```sh
 wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
@@ -148,9 +149,9 @@ unzip LT_Linux.zip
 sleep 3
 ```
 
-また、`build`をTravisのビルド番号に設定することもできます。
+また、`build` を Travis のビルド番号に設定することもできます。
 
-`capabilities`の例：
+`capabilities` の例：
 
 ```javascript
 platform: 'Windows 10',
@@ -163,7 +164,7 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## Perfecto
 
-wdioと[`Perfecto`](https://www.perfecto.io)を使用する場合、各ユーザーのセキュリティトークンを作成し、これをケイパビリティ構造に追加する必要があります（他のケイパビリティに加えて）：
+wdio を [`Perfecto`](https://www.perfecto.io) と共に使用する場合は、ユーザーごとにセキュリティトークンを作成し、次のようにケイパビリティ構造に（他のケイパビリティに加えて）追加する必要があります：
 
 ```js
 export const config = {
@@ -173,11 +174,65 @@ export const config = {
   }],
 ```
 
-さらに、クラウド設定を追加する必要があります：
+さらに、次のようにクラウド設定を追加する必要があります：
 
 ```js
   hostname: "your_cloud_name.perfectomobile.com",
   path: "/nexperience/perfectomobile/wd/hub",
   port: 443,
   protocol: "https",
+```
+
+## RobotActions
+
+[RobotActions](https://robotactions.com) は、実機の Android および iOS デバイスとブラウザノードを単一のエンドポイントで提供します。認証には `user` と `key` のペアではなく API トークンを使用します。トークンは Bearer ヘッダーとして送信します：
+
+```js
+export const config = {
+  protocol: 'https',
+  hostname: 'grid.robotactions.com',
+  port: 443,
+  path: '/',
+  headers: {
+    Authorization: `Bearer ${process.env.RA_API_TOKEN}`
+  },
+  capabilities: [{
+    browserName: 'chrome'
+  }]
+}
+```
+
+または、トークンをパスのプレフィックスとして渡すこともできます。グリッドはリクエストを転送する前にこのプレフィックスを取り除きます：
+
+```js
+export const config = {
+  protocol: 'https',
+  hostname: 'grid.robotactions.com',
+  port: 443,
+  path: `/t/${process.env.RA_API_TOKEN}/`,
+  capabilities: [{
+    browserName: 'chrome'
+  }]
+}
+```
+
+グリッドは、他の WebDriver クライアント向けに URL に埋め込まれた認証情報（`https://user:token@host`）も受け付けますが、この形式は WebdriverIO からは使用できません。WebdriverIO は fetch ベースであり、Node.js は URL に埋め込まれた認証情報を拒否するためです。
+
+実機デバイスで実行するには、上記のいずれかの接続方式と合わせて、ブラウザを Appium ケイパビリティとして渡します：
+
+```js
+export const config = {
+  protocol: 'https',
+  hostname: 'grid.robotactions.com',
+  port: 443,
+  path: '/',
+  headers: {
+    Authorization: `Bearer ${process.env.RA_API_TOKEN}`
+  },
+  capabilities: [{
+    platformName: 'Android',
+    'appium:browserName': 'chrome',
+    'appium:automationName': 'UiAutomator2'
+  }]
+}
 ```

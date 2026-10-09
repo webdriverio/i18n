@@ -1,48 +1,49 @@
 ---
 id: integrate-with-app-percy
-title: Para Aplicação Móvel
+title: Para Aplicativos Móveis
+description: "Integre testes de aplicativos móveis do WebdriverIO com o BrowserStack App Percy para testes visuais, começando pela configuração do seu PERCY_TOKEN."
 ---
 
-## Integrate your WebdriverIO tests with App Percy
+## Integre seus testes WebdriverIO com o App Percy
 
-Before integration, you can explore [App Percy's sample build tutorial for WebdriverIO](https://www.browserstack.com/docs/app-percy/sample-build/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
-Integrate your test suite with BrowserStack App Percy and here's an overview of the integration steps:
+Antes da integração, você pode explorar o [tutorial de build de exemplo do App Percy para WebdriverIO](https://www.browserstack.com/docs/app-percy/sample-build/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Integre sua suíte de testes com o BrowserStack App Percy. Aqui está uma visão geral das etapas de integração:
 
-### Step 1: Create new app project on percy dashboard
+### Etapa 1: Crie um novo projeto de aplicativo no painel do Percy
 
-[Sign in](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) to Percy and [create a new app type project](https://www.browserstack.com/docs/app-percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation). After you've created the project, you'll be shown a `PERCY_TOKEN` environment variable. Percy will use the `PERCY_TOKEN` to know which organisation and project to upload the screenshots to. You will need this `PERCY_TOKEN` in next steps.
+[Faça login](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) no Percy e [crie um novo projeto do tipo aplicativo](https://www.browserstack.com/docs/app-percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation). Depois de criar o projeto, será exibida uma variável de ambiente `PERCY_TOKEN`. O Percy usará o `PERCY_TOKEN` para saber para qual organização e projeto enviar as capturas de tela. Você precisará deste `PERCY_TOKEN` nas próximas etapas.
 
-### Step 2: Set the project token as an environment variable
+### Etapa 2: Defina o token do projeto como uma variável de ambiente
 
-Run the given command to set PERCY_TOKEN as an environment variable:
+Execute o comando a seguir para definir o PERCY_TOKEN como uma variável de ambiente:
 
 ```sh
-export PERCY_TOKEN="<your token here>"   // macOS or Linux
+export PERCY_TOKEN="<your token here>"   // macOS ou Linux
 $Env:PERCY_TOKEN="<your token here>"    // Windows PowerShell
 set PERCY_TOKEN="<your token here>"    // Windows CMD
 ```
 
-### Step 3: Install Percy packages
+### Etapa 3: Instale os pacotes do Percy
 
-Install the components required to establish the integration environment for your test suite.
-To install the dependencies, run the following command:
+Instale os componentes necessários para estabelecer o ambiente de integração para sua suíte de testes.
+Para instalar as dependências, execute o seguinte comando:
 
 ```sh
 npm install --save-dev @percy/cli
 ```
 
-### Step 4: Install dependencies
+### Etapa 4: Instale as dependências
 
-Install the Percy Appium app
+Instale o Percy Appium app
 
 ```sh
 npm install --save-dev @percy/appium-app
 ```
 
-### Step 5: Update test script
-Make sure to import @percy/appium-app in your code.
+### Etapa 5: Atualize o script de teste
+Certifique-se de importar @percy/appium-app no seu código.
 
-Below is an example test using the percyScreenshot function. Use this function wherever you have to take a screenshot.
+Abaixo está um exemplo de teste usando a função percyScreenshot. Use esta função sempre que precisar tirar uma captura de tela.
 
 ```sh
 import percyScreenshot from '@percy/appium-app';
@@ -52,23 +53,23 @@ describe('Appium webdriverio test example', function() {
   });
 });
 ```
-We are passing the required arguments.percyScreenshot method.
+Estamos passando os argumentos necessários para o método percyScreenshot.
 
-The screenshot method arguments are:
+Os argumentos do método de captura de tela são:
 
 ```sh
 percyScreenshot(driver, name[, options])
 ```
-### Step 6: Run your test script
+### Etapa 6: Execute seu script de teste
 
-Run your tests using `percy app:exec`.
+Execute seus testes usando `percy app:exec`.
 
-If you are unable to use the percy app:exec command or prefer to run your tests using IDE run options, you can use the percy app:exec:start and percy app:exec:stop commands. To learn more, visit [Run Percy](https://www.browserstack.com/docs/app-percy/references/commands/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Se você não puder usar o comando percy app:exec ou preferir executar seus testes usando as opções de execução da IDE, você pode usar os comandos percy app:exec:start e percy app:exec:stop. Para saber mais, visite [Run Percy](https://www.browserstack.com/docs/app-percy/references/commands/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
 ```sh
 $ percy app:exec -- appium test command
 ```
-This command starts Percy, create a new Percy build, takes snapshots and uploads them to your project, and stops Percy:
+Este comando inicia o Percy, cria um novo build do Percy, tira snapshots e os envia para o seu projeto, e encerra o Percy:
 
 
 ```sh
@@ -80,15 +81,15 @@ This command starts Percy, create a new Percy build, takes snapshots and uploads
 [percy] Done!
 ```
 
-## Visit the following pages for more details:
-- [Integrate your WebdriverIO tests with Percy](https://www.browserstack.com/docs/app-percy/integrate/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
-- [Environment variable page](https://www.browserstack.com/docs/app-percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
-- [Integrate using BrowserStack SDK](https://www.browserstack.com/docs/app-percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) if you are using BrowserStack Automate.
+## Visite as seguintes páginas para mais detalhes:
+- [Integre seus testes WebdriverIO com o Percy](https://www.browserstack.com/docs/app-percy/integrate/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [Página de variáveis de ambiente](https://www.browserstack.com/docs/app-percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
+- [Integre usando o BrowserStack SDK](https://www.browserstack.com/docs/app-percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) se você estiver usando o BrowserStack Automate.
 
 
-| Resource                                                                                                                                                            | Description                       |
+| Recurso                                                                                                                                                            | Descrição                       |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| [Official docs](https://www.browserstack.com/docs/app-percy/integrate/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)             | App Percy's WebdriverIO documentation |
-| [Sample build - Tutorial](https://www.browserstack.com/docs/app-percy/sample-build/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | App Percy's WebdriverIO tutorial      |
-| [Official video](https://youtu.be/a4I_RGFdwvc/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                              | Visual Testing with App Percy         |
-| [Blog](https://www.browserstack.com/blog/product-launch-app-percy/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | Meet App Percy: AI-powered automated visual testing platform for native apps    |
+| [Documentação oficial](https://www.browserstack.com/docs/app-percy/integrate/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)             | Documentação do App Percy para WebdriverIO |
+| [Build de exemplo - Tutorial](https://www.browserstack.com/docs/app-percy/sample-build/webdriverio-javascript/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | Tutorial do App Percy para WebdriverIO      |
+| [Vídeo oficial](https://youtu.be/a4I_RGFdwvc/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                              | Testes Visuais com o App Percy         |
+| [Blog](https://www.browserstack.com/blog/product-launch-app-percy/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | Conheça o App Percy: plataforma de testes visuais automatizados com IA para aplicativos nativos    |

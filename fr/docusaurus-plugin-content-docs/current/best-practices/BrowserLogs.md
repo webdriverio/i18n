@@ -1,9 +1,10 @@
 ---
 id: browser-logs
-title: Journaux du Navigateur
+title: Journaux du navigateur
+description: "Capturez les journaux de la console du navigateur pendant un test grâce aux événements de log WebDriver Bidi et effectuez des assertions sur les messages collectés."
 ---
 
-Lors de l'exécution des tests, le navigateur peut enregistrer des informations importantes qui vous intéressent ou contre lesquelles vous souhaitez effectuer des assertions.
+Lors de l'exécution des tests, le navigateur peut journaliser des informations importantes qui vous intéressent ou sur lesquelles vous souhaitez effectuer des assertions.
 
 <Tabs
 defaultValue="bidi"
@@ -15,7 +16,7 @@ values={[
 
 <TabItem value='bidi'>
 
-Lorsque vous utilisez WebDriver Bidi, qui est la méthode par défaut utilisée par WebdriverIO pour automatiser le navigateur, vous pouvez vous abonner aux événements provenant du navigateur. Pour les événements de journal, vous devez écouter `log.entryAdded'`, par exemple :
+Lorsque vous utilisez WebDriver Bidi, qui est la manière par défaut dont WebdriverIO automatise le navigateur, vous pouvez vous abonner aux événements provenant du navigateur. Pour les événements de log, vous devez écouter `log.entryAdded'`, par exemple :
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +27,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-Dans un test, vous pouvez simplement ajouter les événements de journal à un tableau et vérifier ce tableau une fois votre action terminée, par exemple :
+Dans un test, vous pouvez simplement ajouter les événements de log à un tableau et effectuer une assertion sur ce tableau une fois votre action terminée, par exemple :
 
 ```ts
 import type { local } from 'webdriver'
@@ -35,7 +36,7 @@ describe('should log when doing a certain action', () => {
     const logs: string[] = []
 
     function logEvents (event: local.LogEntry) {
-        logs.push(event.text) // add log message to the array
+        logs.push(event.text) // ajoute le message de log au tableau
     }
 
     before(async () => {
@@ -44,14 +45,14 @@ describe('should log when doing a certain action', () => {
     })
 
     it('should trigger the console event', () => {
-        // trigger the browser send a message to the console
+        // déclenche l'envoi d'un message à la console par le navigateur
         ...
 
-        // assert if log was captured
+        // vérifie si le log a été capturé
         expect(logs).toContain('Hello Bidi')
     })
 
-    // clean up listener afterwards
+    // nettoie l'écouteur par la suite
     after(() => {
         browser.off('log.entryAdded', logEvents)
     })
@@ -62,9 +63,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-Si vous utilisez toujours WebDriver Classic ou si vous avez désactivé l'utilisation de Bidi via la capacité `'wdio:enforceWebDriverClassic': true`, vous pouvez utiliser la commande JSONWire `getLogs` pour récupérer les derniers journaux. Comme WebdriverIO a supprimé ces commandes obsolètes, vous devrez utiliser le [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) pour ajouter la commande à votre instance de navigateur.
-
-Après avoir ajouté ou initialisé le service, vous pouvez récupérer les journaux via :
+Si Bidi est désactivé avec la capability `'wdio:enforceWebDriverClassic': true`, les sessions Chromium peuvent toujours lire le tampon de logs du navigateur avec `getLogs` :
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,7 +71,7 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Remarque : la commande `getLogs` ne peut récupérer que les journaux les plus récents du navigateur. Elle peut éventuellement nettoyer les messages de journal s'ils deviennent trop anciens.
+Remarque : la commande `getLogs` ne peut récupérer que les logs les plus récents du navigateur. Elle peut finir par supprimer des messages de log s'ils deviennent trop anciens.
 </TabItem>
 
 </Tabs>

@@ -1,11 +1,12 @@
 ---
 id: ocr-get-text
-title: استخراج متن از تصویر (ocrGetText)
+title: ocrGetText
+description: "متن نمایش داده شده روی صفحه یا در یک ناحیه‌ی مشخص را با ocrGetText از سرویس OCR بخوانید."
 ---
 
-دریافت متن روی یک تصویر.
+دریافت متن موجود در یک تصویر.
 
-### استفاده
+### نحوه‌ی استفاده
 
 ```js
 const result = await browser.ocrGetText();
@@ -21,7 +22,7 @@ console.log("result = ", JSON.stringify(result, null, 2));
 result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube"
 ```
 
-### گزارش‌ها
+### لاگ‌ها
 
 ```log
 [0-0] 2024-05-25T17:38:25.970Z INFO webdriver: COMMAND ocrGetText()
@@ -33,12 +34,11 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 ### `contrast`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-هرچه کنتراست بالاتر باشد، تصویر تیره‌تر می‌شود و برعکس. این می‌تواند به پیدا کردن متن در تصویر کمک کند. مقادیر بین `-1` و `1` را می‌پذیرد.
+هرچه کنتراست بیشتر باشد، تصویر تیره‌تر می‌شود و برعکس. این کار می‌تواند به یافتن متن در تصویر کمک کند. این گزینه مقادیری بین `-1` و `1` را می‌پذیرد.
 
+</Option>
 #### مثال
 
 ```js
@@ -47,20 +47,20 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **نوع:** `number`
--   **اجباری:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-این منطقه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک المان یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
+این ناحیه‌ی جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این مقدار می‌تواند یک المنت یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
 
+</Option>
 #### مثال
 
 ```js
 await browser.ocrGetText({ haystack: $("elementSelector") });
 
-// یا
+// OR
 await browser.ocrGetText({ haystack: await $("elementSelector") });
 
-// یا
+// OR
 await browser.ocrGetText({
     haystack: {
         x: 10,
@@ -73,18 +73,17 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** `eng`
+<Option type="string" default="eng" required="No">
 
-زبانی که Tesseract آن را تشخیص می‌دهد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) پیدا کنید و زبان‌های پشتیبانی شده را می‌توانید [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) مشاهده کنید.
+زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) و زبان‌های پشتیبانی‌شده را [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) پیدا کنید.
 
+</Option>
 #### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // استفاده از هلندی به عنوان زبان
+    // استفاده از زبان هلندی
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

@@ -1,14 +1,14 @@
 {
   "title": {
-    "message": "مدونة",
+    "message": "المدونة",
     "description": "The title for the blog used in SEO"
   },
   "description": {
-    "message": "مدونة",
+    "message": "ملاحظات الإصدار والأدلة وأخبار المشروع من فريق WebdriverIO",
     "description": "The description for the blog used in SEO"
   },
   "sidebar.title": {
-    "message": "المنشورات الأخيرة",
+    "message": "أحدث المنشورات",
     "description": "The label for the left sidebar"
   }
 }

@@ -1,11 +1,13 @@
 ---
 id: more-test-optimization
-title: Testkörningens exekveringstid
+title: Exekveringstid för tester
+description: "Snabba upp OCR-baserade tester genom att beskära sökområdet på skärmen och använda en lokal installation av Tesseract."
 ---
 
-Som standard kommer denna modul att kontrollera om du har en lokal installation av Tesseract på din maskin/i din pipeline. Om du inte har en lokal installation kommer den automatiskt att använda en [NodeJS](https://github.com/naptha/tesseract.js)-version. Detta kan orsaka viss långsamhet eftersom bildbehandlingen kommer att göras av Node.js. NodeJS är inte det bästa systemet för tung bearbetning.
+Som standard kontrollerar den här modulen om du har en lokal installation av Tesseract på din maskin/i din pipeline. Om du inte har en lokal installation kommer den automatiskt att använda en [NodeJS](https://github.com/naptha/tesseract.js)-version. Detta kan leda till viss långsamhet eftersom bildbehandlingen kommer att utföras av Node.js. NodeJS är inte det bästa systemet för att utföra
+tung bearbetning.
 
-**MEN...**, det finns sätt att optimera exekveringstiden. Låt oss ta följande testskript
+**MEN....**, det finns sätt att optimera exekveringstiden. Låt oss ta följande testskript
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -27,7 +29,7 @@ describe("Search", () => {
 });
 ```
 
-När du kör detta för första gången kan du se följande resultat där det tog 5,9 sekunder att slutföra testet.
+När du kör detta för första gången kan du se följande resultat, där det tog 5,9 sekunder att slutföra testet.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -61,9 +63,9 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 
 ## Beskära sökområdet på en skärm
 
-Du kan optimera exekveringstiden genom att tillhandahålla ett beskuret område för att utföra OCR på.
+Du kan optimera exekveringstiden genom att ange ett beskuret område som OCR ska utföras på.
 
-Om du skulle ändra skriptet till detta:
+Om du sedan ändrar skriptet till detta:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -121,12 +123,12 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
 :::tip Beskära bilder
-Detta minskade den lokala exekveringstiden från **5,9** till **4,8 sekunder**. Detta är en minskning med nästan **19%**. Föreställ dig vad det kan göra för ett större skript med mer data.
+Detta minskade den lokala exekveringstiden från **5,9** till **4,8 sekunder**. Det är en minskning med nästan **19 %**. Föreställ dig vad det kan göra för ett större skript med mer data.
 :::
 
 ## Använda en lokal installation av Tesseract
 
-Du kan öka din exekveringshastighet till mindre än en minut om du har en lokal installation av Tesseract på din lokala maskin och/eller i din pipeline (mer information om att installera Tesseract på ditt lokala system finns [här](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Du kan se exekveringstiden för samma skript med en lokal installation av Tesseract nedan.
+Du kan snabba upp din exekveringstid till och med till mindre än en minut om du har en lokal installation av Tesseract på din lokala maskin och/eller i din pipeline (mer information om hur du installerar Tesseract på ditt lokala system finns [här](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Nedan ser du exekveringstiden för samma skript med en lokal installation av Tesseract.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -156,5 +158,5 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
 :::tip Lokal installation
-Detta minskade den lokala exekveringstiden från **5,9** till **3,9 sekunder**. Detta är en minskning med nästan **34%**. Föreställ dig vad det kan göra för ett större skript med mer data.
+Detta minskade den lokala exekveringstiden från **5,9** till **3,9 sekunder**. Det är en minskning med nästan **34 %**. Föreställ dig vad det kan göra för ett större skript med mer data.
 :::

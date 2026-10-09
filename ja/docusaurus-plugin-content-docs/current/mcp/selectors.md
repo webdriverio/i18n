@@ -1,41 +1,40 @@
 ---
 id: selectors
-title: セレクタ
+title: セレクター
+description: "WebdriverIO MCP サーバーで自動化する際に、Web ページやモバイルアプリ上の要素を特定するためのセレクターを選択します。"
 ---
 
-WebdriverIO MCPサーバーは、ウェブページやモバイルアプリの要素を特定するための複数のセレクタ戦略をサポートしています。
+WebdriverIO MCP サーバーは、Web ページやモバイルアプリ上の要素を特定するための複数のセレクター戦略をサポートしています。
 
 :::info
 
-すべてのWebdriverIOセレクタ戦略を含む包括的なセレクタのドキュメントについては、メインの[セレクタ](/docs/selectors)ガイドを参照してください。このページでは、MCPサーバーで一般的に使用されるセレクタに焦点を当てています。
+WebdriverIO のすべてのセレクター戦略を含む包括的なセレクターのドキュメントについては、メインの [Selectors](/docs/selectors) ガイドを参照してください。このページでは、MCP サーバーでよく使用されるセレクターに焦点を当てています。
 
 :::
 
-## ウェブセレクタ
+## Web セレクター
 
-ブラウザ自動化のために、MCPサーバーはすべての標準WebdriverIOセレクタをサポートしています。最もよく使用されるものには以下が含まれます：
+ブラウザ自動化では、MCP サーバーは WebdriverIO の標準セレクターをすべてサポートしています。最もよく使用されるものは以下のとおりです。
 
-| セレクタ | 例 | 説明 |
-|----------|---------|-------------|
-| CSS | `#login-button`, `.submit-btn` | 標準CSSセレクタ |
-| XPath | `//button[@id='submit']` | XPath式 |
-| Text | `button=Submit`, `a*=Click` | WebdriverIOテキストセレクタ |
-| ARIA | `aria/Submit Button` | アクセシビリティ名セレクタ |
-| Test ID | `[data-testid="submit"]` | テスト用に推奨 |
+| セレクター | 例                             | 説明                         |
+| ---------- | ------------------------------ | ---------------------------- |
+| CSS        | `#login-button`, `.submit-btn` | 標準の CSS セレクター        |
+| XPath      | `//button[@id='submit']`       | XPath 式                     |
+| Text       | `button=Submit`, `a*=Click`    | WebdriverIO のテキストセレクター |
+| ARIA       | `aria/Submit Button`           | アクセシビリティ名セレクター |
+| Test ID    | `[data-testid="submit"]`       | テスト用に推奨               |
 
-詳細な例とベストプラクティスについては、[セレクタ](/docs/selectors)ドキュメントを参照してください。
+詳細な例とベストプラクティスについては、[Selectors](/docs/selectors) のドキュメントを参照してください。
 
----
+## モバイルセレクター
 
-## モバイルセレクタ
+モバイルセレクターは、Appium を通じて iOS と Android の両方のプラットフォームで動作します。
 
-モバイルセレクタはAppiumを通じてiOSとAndroidの両プラットフォームで機能します。
+### Accessibility ID（推奨）
 
-### アクセシビリティID（推奨）
+Accessibility ID は**最も信頼性の高いクロスプラットフォームセレクター**です。iOS と Android の両方で動作し、アプリのアップデート後も安定しています。
 
-アクセシビリティIDは**最も信頼性の高いクロスプラットフォームセレクタ**です。iOSとAndroidの両方で動作し、アプリの更新間でも安定しています。
-
-```
+```text
 # 構文
 ~accessibilityId
 
@@ -46,136 +45,136 @@ WebdriverIO MCPサーバーは、ウェブページやモバイルアプリの�
 ```
 
 :::tip ベストプラクティス
-可能な限りアクセシビリティIDを優先してください。以下の利点があります：
+利用可能な場合は、常に Accessibility ID を優先してください。以下のメリットがあります。
 - クロスプラットフォーム互換性（iOS + Android）
-- UI変更時の安定性
-- テストの保守性向上
-- アプリのアクセシビリティ改善
+- UI の変更に対する安定性
+- テストの保守性の向上
+- アプリのアクセシビリティの向上
 :::
 
-### Androidセレクタ
+### Android セレクター
 
 #### UiAutomator
 
-UiAutomatorセレクタはAndroidで強力かつ高速です。
+UiAutomator セレクターは、Android において強力かつ高速です。
 
-```
-# テキストで
+```text
+# テキストで指定
 android=new UiSelector().text("Login")
 
-# 部分的なテキストで
+# 部分テキストで指定
 android=new UiSelector().textContains("Log")
 
-# リソースIDで
+# リソース ID で指定
 android=new UiSelector().resourceId("com.example:id/login_button")
 
-# クラス名で
+# クラス名で指定
 android=new UiSelector().className("android.widget.Button")
 
-# 説明（アクセシビリティ）で
+# 説明（アクセシビリティ）で指定
 android=new UiSelector().description("Login button")
 
-# 複合条件
+# 条件の組み合わせ
 android=new UiSelector().className("android.widget.Button").text("Login")
 
 # スクロール可能なコンテナ
-android=new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text("Item")
+android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text("Item"))
 ```
 
-#### リソースID
+#### Resource ID
 
-リソースIDはAndroidで安定した要素識別を提供します。
+Resource ID は、Android で安定した要素の識別を提供します。
 
-```
-# 完全なリソースID
+```text
+# 完全なリソース ID
 id=com.example.app:id/login_button
 
-# 部分的なID（アプリパッケージ推測）
+# 部分 ID（アプリパッケージは推測される）
 id=login_button
 ```
 
 #### XPath（Android）
 
-XPathはAndroidで動作しますが、UiAutomatorより遅いです。
+XPath は Android でも動作しますが、UiAutomator よりも低速です。
 
-```
-# クラスとテキストで
+```text
+# クラスとテキストで指定
 //android.widget.Button[@text='Login']
 
-# リソースIDで
+# リソース ID で指定
 //android.widget.EditText[@resource-id='com.example:id/username']
 
-# コンテンツ説明で
+# コンテンツの説明で指定
 //android.widget.ImageButton[@content-desc='Menu']
 
-# 階層的
+# 階層指定
 //android.widget.LinearLayout/android.widget.Button[1]
 ```
 
-### iOSセレクタ
+### iOS セレクター
 
-#### 述語文字列
+#### Predicate String
 
-iOS述語文字列はiOS自動化に強力で高速です。
+iOS Predicate String は、iOS 自動化において高速かつ強力です。
 
-```
-# ラベルで
+```text
+# ラベルで指定
 -ios predicate string:label == "Login"
 
-# 部分的なラベルで
+# 部分ラベルで指定
 -ios predicate string:label CONTAINS "Log"
 
-# 名前で
+# 名前で指定
 -ios predicate string:name == "loginButton"
 
-# タイプで
+# タイプで指定
 -ios predicate string:type == "XCUIElementTypeButton"
 
-# 値で
+# 値で指定
 -ios predicate string:value == "ON"
 
-# 複合条件
+# 条件の組み合わせ
 -ios predicate string:type == "XCUIElementTypeButton" AND label == "Login"
 
-# 可視性
+# 表示状態
 -ios predicate string:label == "Login" AND visible == 1
 
 # 大文字小文字を区別しない
 -ios predicate string:label ==[c] "login"
 ```
 
-**述語演算子:**
+**Predicate 演算子:**
 
-| 演算子 | 説明 |
-|----------|-------------|
-| `==` | 等しい |
-| `!=` | 等しくない |
-| `CONTAINS` | 部分文字列を含む |
-| `BEGINSWITH` | で始まる |
-| `ENDSWITH` | で終わる |
-| `LIKE` | ワイルドカード一致 |
-| `MATCHES` | 正規表現一致 |
-| `AND` | 論理AND |
-| `OR` | 論理OR |
+| 演算子       | 説明                   |
+| ------------ | ---------------------- |
+| `==`         | 等しい                 |
+| `!=`         | 等しくない             |
+| `CONTAINS`   | 部分文字列を含む       |
+| `BEGINSWITH` | 前方一致               |
+| `ENDSWITH`   | 後方一致               |
+| `LIKE`       | ワイルドカード一致     |
+| `MATCHES`    | 正規表現一致           |
+| `AND`        | 論理 AND               |
+| `OR`         | 論理 OR                |
 
-#### クラスチェーン
+#### Class Chain
 
-iOSクラスチェーンは、階層的な要素の特定と優れたパフォーマンスを提供します。
+iOS Class Chain は、優れたパフォーマンスで階層的な要素の特定を提供します。
 
-```
+```text
 # 直接の子
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
 # 任意の子孫
 -ios class chain:**/XCUIElementTypeButton
 
-# インデックスで
+# インデックスで指定
 -ios class chain:**/XCUIElementTypeCell[3]
 
-# 述語と組み合わせ
+# Predicate との組み合わせ
 -ios class chain:**/XCUIElementTypeButton[`name == "submit" AND visible == 1`]
 
-# 階層的
+# 階層指定
 -ios class chain:**/XCUIElementTypeTable/XCUIElementTypeCell[`label == "Settings"`]
 
 # 最後の要素
@@ -184,189 +183,181 @@ iOSクラスチェーンは、階層的な要素の特定と優れたパフォ�
 
 #### XPath（iOS）
 
-XPathはiOSで動作しますが、述語文字列より遅いです。
+XPath は iOS でも動作しますが、Predicate String よりも低速です。
 
-```
-# タイプとラベルで
+```text
+# タイプとラベルで指定
 //XCUIElementTypeButton[@label='Login']
 
-# 名前で
+# 名前で指定
 //XCUIElementTypeTextField[@name='username']
 
-# 値で
+# 値で指定
 //XCUIElementTypeSwitch[@value='1']
 
-# 階層的
+# 階層指定
 //XCUIElementTypeTable/XCUIElementTypeCell[1]
 ```
 
----
+## クロスプラットフォームのセレクター戦略
 
-## クロスプラットフォームセレクタ戦略
+iOS と Android の両方で動作する必要があるテストを書く場合は、以下の優先順位を使用してください。
 
-iOSとAndroidの両方で動作する必要があるテストを作成する場合は、以下の優先順位を使用してください：
+### 1. Accessibility ID（最適）
 
-### 1. アクセシビリティID（最適）
-
-```
-# 両プラットフォームで動作
+```text
+# 両方のプラットフォームで動作
 ~loginButton
 ```
 
-### 2. プラットフォーム固有の条件付きロジック
+### 2. 条件分岐を伴うプラットフォーム固有のセレクター
 
-アクセシビリティIDが利用できない場合は、プラットフォーム固有のセレクタを使用します：
+Accessibility ID が利用できない場合は、プラットフォーム固有のセレクターを使用します。
 
 **Android:**
-```
+```text
 android=new UiSelector().text("Login")
 ```
 
 **iOS:**
-```
+```text
 -ios predicate string:label == "Login"
 ```
 
-### 3. XPath（最後の手段）
+### 3. XPath（最終手段）
 
-XPathは両プラットフォームで動作しますが、異なる要素タイプを使用します：
+XPath は両方のプラットフォームで動作しますが、要素タイプが異なります。
 
 **Android:**
-```
+```text
 //android.widget.Button[@text='Login']
 ```
 
 **iOS:**
-```
+```text
 //XCUIElementTypeButton[@label='Login']
 ```
 
----
+## 要素タイプのリファレンス
 
-## 要素タイプリファレンス
+### Android の要素タイプ
 
-### Android要素タイプ
+| タイプ                        | 説明                 |
+| ----------------------------- | -------------------- |
+| `android.widget.Button`       | ボタン               |
+| `android.widget.EditText`     | テキスト入力         |
+| `android.widget.TextView`     | テキストラベル       |
+| `android.widget.ImageView`    | 画像                 |
+| `android.widget.ImageButton`  | 画像ボタン           |
+| `android.widget.CheckBox`     | チェックボックス     |
+| `android.widget.RadioButton`  | ラジオボタン         |
+| `android.widget.Switch`       | トグルスイッチ       |
+| `android.widget.Spinner`      | ドロップダウン       |
+| `android.widget.ListView`     | リストビュー         |
+| `android.widget.RecyclerView` | リサイクラービュー   |
+| `android.widget.ScrollView`   | スクロールコンテナ   |
 
-| タイプ | 説明 |
-|------|-------------|
-| `android.widget.Button` | ボタン |
-| `android.widget.EditText` | テキスト入力 |
-| `android.widget.TextView` | テキストラベル |
-| `android.widget.ImageView` | 画像 |
-| `android.widget.ImageButton` | 画像ボタン |
-| `android.widget.CheckBox` | チェックボックス |
-| `android.widget.RadioButton` | ラジオボタン |
-| `android.widget.Switch` | トグルスイッチ |
-| `android.widget.Spinner` | ドロップダウン |
-| `android.widget.ListView` | リストビュー |
-| `android.widget.RecyclerView` | リサイクラービュー |
-| `android.widget.ScrollView` | スクロールコンテナ |
+### iOS の要素タイプ
 
-### iOS要素タイプ
-
-| タイプ | 説明 |
-|------|-------------|
-| `XCUIElementTypeButton` | ボタン |
-| `XCUIElementTypeTextField` | テキスト入力 |
-| `XCUIElementTypeSecureTextField` | パスワード入力 |
-| `XCUIElementTypeStaticText` | テキストラベル |
-| `XCUIElementTypeImage` | 画像 |
-| `XCUIElementTypeSwitch` | トグルスイッチ |
-| `XCUIElementTypeSlider` | スライダー |
-| `XCUIElementTypePicker` | ピッカーホイール |
-| `XCUIElementTypeTable` | テーブルビュー |
-| `XCUIElementTypeCell` | テーブルセル |
-| `XCUIElementTypeCollectionView` | コレクションビュー |
-| `XCUIElementTypeScrollView` | スクロールビュー |
-
----
+| タイプ                           | 説明                 |
+| -------------------------------- | -------------------- |
+| `XCUIElementTypeButton`          | ボタン               |
+| `XCUIElementTypeTextField`       | テキスト入力         |
+| `XCUIElementTypeSecureTextField` | パスワード入力       |
+| `XCUIElementTypeStaticText`      | テキストラベル       |
+| `XCUIElementTypeImage`           | 画像                 |
+| `XCUIElementTypeSwitch`          | トグルスイッチ       |
+| `XCUIElementTypeSlider`          | スライダー           |
+| `XCUIElementTypePicker`          | ピッカーホイール     |
+| `XCUIElementTypeTable`           | テーブルビュー       |
+| `XCUIElementTypeCell`            | テーブルセル         |
+| `XCUIElementTypeCollectionView`  | コレクションビュー   |
+| `XCUIElementTypeScrollView`      | スクロールビュー     |
 
 ## ベストプラクティス
 
 ### 推奨事項
 
-- **アクセシビリティID** を使用して、安定したクロスプラットフォームセレクタを作成
-- ウェブ要素にテスト用の **data-testid 属性** を追加
-- アクセシビリティIDが利用できない場合は、Androidで **リソースID** を使用
-- iOSでは、XPathよりも **述語文字列** を優先
-- セレクタは **シンプルで具体的に** 保つ
+- 安定したクロスプラットフォームのセレクターには **Accessibility ID を使用する**
+- テストのために Web 要素に **data-testid 属性を追加する**
+- Accessibility ID が利用できない場合、Android では **Resource ID を使用する**
+- iOS では XPath より **Predicate String を優先する**
+- **セレクターはシンプルかつ具体的に保つ**
 
-### 非推奨事項
+### 避けるべきこと
 
-- **長いXPath式を避ける** - 遅くて脆弱
+- **長い XPath 式は避ける** - 低速で壊れやすい
 - 動的なリストでは **インデックスに依存しない**
-- ローカライズされたアプリでは **テキストベースのセレクタを避ける**
-- **絶対XPath**（ルートから始まる）を使用しない
+- ローカライズされたアプリでは **テキストベースのセレクターを避ける**
+- **絶対 XPath（ルートから始まるもの）を使用しない**
 
-### 良いvs悪いセレクタの例
+### 良いセレクターと悪いセレクターの例
 
-```
-# 良い - 安定したアクセシビリティID
+```text
+# 良い - 安定した Accessibility ID
 ~loginButton
 
-# 悪い - 脆弱なインデックス付きXPath
+# 悪い - インデックスを使った壊れやすい XPath
 //div[3]/form/button[2]
 
-# 良い - テストID付きの具体的なCSS
+# 良い - テスト ID を使った具体的な CSS
 [data-testid="submit-button"]
 
 # 悪い - 変更される可能性のあるクラス
 .btn-primary-lg-v2
 
-# 良い - リソースID付きのUiAutomator
+# 良い - リソース ID を使った UiAutomator
 android=new UiSelector().resourceId("com.app:id/submit")
 
 # 悪い - ローカライズされる可能性のあるテキスト
 android=new UiSelector().text("Submit")
 ```
 
----
+## セレクターのデバッグ
 
-## セレクタのデバッグ
+### Web（Chrome DevTools）
 
-### ウェブ（Chrome DevTools）
-
-1. Chrome DevTools（F12）を開く
-2. Elements パネルで要素を検査
-3. 要素を右クリック → コピー → セレクタをコピー
-4. コンソールでセレクタをテスト：`document.querySelector('your-selector')`
+1. Chrome DevTools を開く（F12）
+2. Elements パネルを使用して要素を検査する
+3. 要素を右クリック → Copy → Copy selector
+4. Console でセレクターをテストする: `document.querySelector('your-selector')`
 
 ### モバイル（Appium Inspector）
 
-1. Appium Inspectorを起動
-2. 実行中のセッションに接続
-3. 要素をクリックして、利用可能なすべての属性を確認
-4. 「Search for element」機能を使用してセレクタをテスト
+1. Appium Inspector を起動する
+2. 実行中のセッションに接続する
+3. 要素をクリックして、利用可能なすべての属性を確認する
+4. 「Search for element」機能を使用してセレクターをテストする
 
-### `get_visible_elements` の使用
+### `get_elements` の使用
 
-MCPサーバーの `get_visible_elements` ツールは、各要素に対して複数のセレクタ戦略を返します：
+MCP サーバーの `get_elements` ツールは、各要素に対して複数のセレクター戦略を返します。
 
+```text
+Ask: "Get all visible elements on the screen"
 ```
-Ask Claude: "Get all visible elements on the screen"
-```
 
-これにより、直接使用できる事前生成されたセレクタを持つ要素が返されます。
+これにより、そのまま使用できる事前生成されたセレクター付きの要素が返されます。
 
 #### 高度なオプション
 
-要素検出をより細かく制御するには：
+要素の検出をより細かく制御するには:
 
-```
-# 画像や視覚要素のみを取得
+```text
+# 画像とビジュアル要素のみを取得
 Get visible elements with elementType "visual"
 
-# レイアウトデバッグ用に座標付きの要素を取得
+# レイアウトのデバッグ用に座標付きで要素を取得
 Get visible elements with includeBounds enabled
 
-# 次の20要素を取得（ページネーション）
+# 次の 20 要素を取得（ページネーション）
 Get visible elements with limit 20 and offset 20
 
 # デバッグ用にレイアウトコンテナを含める
 Get visible elements with includeContainers enabled
 ```
 
-このツールはページ分割されたレスポンスを返します：
+このツールはページネーションされたレスポンスを返します:
 ```json
 {
   "total": 42,
@@ -378,10 +369,10 @@ Get visible elements with includeContainers enabled
 
 ### `get_accessibility` の使用（ブラウザのみ）
 
-ブラウザ自動化では、`get_accessibility` ツールがページ要素に関するセマンティック情報を提供します：
+ブラウザ自動化では、`get_accessibility` ツールがページ要素に関するセマンティックな情報を提供します。
 
-```
-# すべての名前付きアクセシビリティノードを取得
+```text
+# 名前付きのアクセシビリティノードをすべて取得
 Get accessibility tree
 
 # ボタンとリンクのみにフィルタリング
@@ -391,5 +382,4 @@ Get accessibility tree filtered to button and link roles
 Get accessibility tree with limit 50 and offset 50
 ```
 
-これは `get_visible_elements` が期待通りの要素を返さない場合に便利で、ブラウザのネイティブアクセシビリティAPIを照会します。
-```
+これはブラウザのネイティブなアクセシビリティ API に問い合わせるため、`get_elements` が期待する要素を返さない場合に便利です。

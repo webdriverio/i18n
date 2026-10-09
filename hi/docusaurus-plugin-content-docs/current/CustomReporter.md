@@ -1,13 +1,14 @@
 ---
 id: customreporter
 title: कस्टम रिपोर्टर
+description: "@wdio/reporter के आधार पर WDIO टेस्टरनर के लिए एक कस्टम रिपोर्टर बनाएं, रनर इवेंट्स को हैंडल करें और इसे NPM पर प्रकाशित करें।"
 ---
 
-आप WDIO टेस्ट रनर के लिए अपना खुद का कस्टम रिपोर्टर लिख सकते हैं जो आपकी जरूरतों के अनुरूप हो। और यह आसान है!
+आप WDIO टेस्ट रनर के लिए अपना खुद का कस्टम रिपोर्टर लिख सकते हैं जो आपकी आवश्यकताओं के अनुरूप हो। और यह आसान है!
 
-आपको बस एक नोड मॉड्यूल बनाना होगा जो `@wdio/reporter` पैकेज से विरासत में मिला हो, ताकि यह टेस्ट से संदेश प्राप्त कर सके।
+आपको बस एक node मॉड्यूल बनाना है जो `@wdio/reporter` पैकेज से इनहेरिट करता हो, ताकि यह टेस्ट से संदेश प्राप्त कर सके।
 
-बेसिक सेटअप कुछ इस तरह का होना चाहिए:
+बुनियादी सेटअप इस तरह दिखना चाहिए:
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -15,7 +16,7 @@ import WDIOReporter from '@wdio/reporter'
 export default class CustomReporter extends WDIOReporter {
     constructor(options) {
         /*
-         * make reporter to write to the output stream by default
+         * रिपोर्टर को डिफ़ॉल्ट रूप से आउटपुट स्ट्रीम में लिखने के लिए सेट करें
          */
         options = Object.assign(options, { stdout: true })
         super(options)
@@ -27,7 +28,7 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-इस रिपोर्टर का उपयोग करने के लिए, आपको केवल इसे अपने कॉन्फिगरेशन में `reporter` प्रॉपर्टी को असाइन करने की आवश्यकता है।
+इस रिपोर्टर का उपयोग करने के लिए, आपको बस इसे अपने कॉन्फ़िगरेशन में `reporter` प्रॉपर्टी को असाइन करना है।
 
 
 आपकी `wdio.conf.js` फ़ाइल इस तरह दिखनी चाहिए:
@@ -39,13 +40,13 @@ export const config = {
     // ...
     reporters: [
         /**
-         * use imported reporter class
+         * इम्पोर्ट की गई रिपोर्टर क्लास का उपयोग करें
          */
         [CustomReporter, {
             someOption: 'foobar'
         }],
         /**
-         * use absolute path to reporter
+         * रिपोर्टर के एब्सोल्यूट पाथ का उपयोग करें
          */
         ['/path/to/reporter.js', {
             someOption: 'foobar'
@@ -55,15 +56,15 @@ export const config = {
 }
 ```
 
-आप रिपोर्टर को NPM पर भी प्रकाशित कर सकते हैं ताकि हर कोई इसका उपयोग कर सके। पैकेज का नाम अन्य रिपोर्टर की तरह `wdio-<reportername>-reporter` रखें, और इसे `wdio` या `wdio-reporter` जैसे कीवर्ड के साथ टैग करें।
+आप रिपोर्टर को NPM पर भी प्रकाशित कर सकते हैं ताकि हर कोई इसका उपयोग कर सके। पैकेज का नाम अन्य रिपोर्टर्स की तरह `wdio-<reportername>-reporter` रखें, और इसे `wdio` या `wdio-reporter` जैसे कीवर्ड्स के साथ टैग करें।
 
 ## इवेंट हैंडलर
 
-आप कई इवेंट्स के लिए इवेंट हैंडलर रजिस्टर कर सकते हैं जो टेस्टिंग के दौरान ट्रिगर होते हैं। निम्नलिखित सभी हैंडलर वर्तमान स्थिति और प्रगति के बारे में उपयोगी जानकारी के साथ पेलोड प्राप्त करेंगे।
+आप टेस्टिंग के दौरान ट्रिगर होने वाले कई इवेंट्स के लिए एक इवेंट हैंडलर रजिस्टर कर सकते हैं। निम्नलिखित सभी हैंडलर्स को वर्तमान स्थिति और प्रगति के बारे में उपयोगी जानकारी के साथ पेलोड प्राप्त होंगे।
 
-इन पेलोड ऑब्जेक्ट्स की संरचना इवेंट पर निर्भर करती है, और फ्रेमवर्क (Mocha, Jasmine, और Cucumber) में एकरूप होती है। एक बार जब आप एक कस्टम रिपोर्टर लागू करते हैं, तो यह सभी फ्रेमवर्क के लिए काम करना चाहिए।
+इन पेलोड ऑब्जेक्ट्स की संरचना इवेंट पर निर्भर करती है, और सभी फ्रेमवर्क्स (Mocha, Jasmine, और Cucumber) में एकीकृत होती है। एक बार जब आप कस्टम रिपोर्टर इम्प्लीमेंट कर लेते हैं, तो यह सभी फ्रेमवर्क्स के लिए काम करना चाहिए।
 
-निम्नलिखित सूची में सभी संभावित विधियाँ शामिल हैं जिन्हें आप अपनी रिपोर्टर क्लास में जोड़ सकते हैं:
+निम्नलिखित सूची में वे सभी संभावित मेथड्स शामिल हैं जिन्हें आप अपनी रिपोर्टर क्लास में जोड़ सकते हैं:
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -85,9 +86,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-मेथड के नाम काफी स्पष्ट हैं।
+मेथड्स के नाम काफी हद तक स्वतः स्पष्ट हैं।
 
-किसी निश्चित इवेंट पर कुछ प्रिंट करने के लिए, `this.write(...)` मेथड का उपयोग करें, जो पैरेंट `WDIOReporter` क्लास द्वारा प्रदान किया गया है। यह या तो सामग्री को `stdout` पर स्ट्रीम करता है, या लॉग फाइल में (रिपोर्टर के विकल्पों के आधार पर)।
+किसी विशेष इवेंट पर कुछ प्रिंट करने के लिए, `this.write(...)` मेथड का उपयोग करें, जो पैरेंट `WDIOReporter` क्लास द्वारा प्रदान किया जाता है। यह या तो कंटेंट को `stdout` पर स्ट्रीम करता है, या एक लॉग फ़ाइल में (रिपोर्टर के विकल्पों के आधार पर)।
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -99,15 +100,15 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-ध्यान दें कि आप किसी भी तरह से टेस्ट एक्जिक्यूशन को स्थगित नहीं कर सकते।
+ध्यान दें कि आप किसी भी तरह से टेस्ट निष्पादन को स्थगित नहीं कर सकते।
 
-सभी इवेंट हैंडलर को सिंक्रोनस रूटीन को निष्पादित करना चाहिए (या आप रेस कंडीशन में पड़ जाएंगे)।
+सभी इवेंट हैंडलर्स को सिंक्रोनस रूटीन निष्पादित करने चाहिए (अन्यथा आप रेस कंडीशंस में फंस जाएंगे)।
 
-[उदाहरण अनुभाग](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) को जरूर देखें जहां आप एक उदाहरण कस्टम रिपोर्टर पा सकते हैं जो प्रत्येक इवेंट के लिए इवेंट नाम प्रिंट करता है।
+[उदाहरण अनुभाग](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) अवश्य देखें जहां आपको एक उदाहरण कस्टम रिपोर्टर मिलेगा जो प्रत्येक इवेंट के लिए इवेंट का नाम प्रिंट करता है।
 
-यदि आपने एक कस्टम रिपोर्टर लागू किया है जो समुदाय के लिए उपयोगी हो सकता है, तो पुल रिक्वेस्ट बनाने में संकोच न करें ताकि हम रिपोर्टर को जनता के लिए उपलब्ध करा सकें!
+यदि आपने कोई ऐसा कस्टम रिपोर्टर इम्प्लीमेंट किया है जो समुदाय के लिए उपयोगी हो सकता है, तो Pull Request बनाने में संकोच न करें ताकि हम रिपोर्टर को सार्वजनिक रूप से उपलब्ध करा सकें!
 
-इसके अलावा, यदि आप WDIO टेस्टरनर को `Launcher` इंटरफ़ेस के माध्यम से चलाते हैं, तो आप निम्नानुसार फ़ंक्शन के रूप में एक कस्टम रिपोर्टर लागू नहीं कर सकते:
+साथ ही, यदि आप WDIO टेस्टरनर को `Launcher` इंटरफ़ेस के माध्यम से चलाते हैं, तो आप निम्नानुसार कस्टम रिपोर्टर को फ़ंक्शन के रूप में लागू नहीं कर सकते:
 
 ```js
 import Launcher from '@wdio/cli'
@@ -115,14 +116,14 @@ import Launcher from '@wdio/cli'
 import CustomReporter from './reporter/my.custom.reporter'
 
 const launcher = new Launcher('/path/to/config.file.js', {
-    // this will NOT work, because CustomReporter is not serializable
+    // यह काम नहीं करेगा, क्योंकि CustomReporter सीरियलाइज़ करने योग्य नहीं है
     reporters: ['dot', CustomReporter]
 })
 ```
 
-## `isSynchronised` होने तक प्रतीक्षा करें
+## `isSynchronised` तक प्रतीक्षा करें
 
-अगर आपके रिपोर्टर को डेटा की रिपोर्ट करने के लिए एसिंक ऑपरेशन निष्पादित करने होते हैं (जैसे लॉग फाइलों या अन्य एसेट्स का अपलोड) तो आप अपने कस्टम रिपोर्टर में `isSynchronised` मेथड को ओवरराइट कर सकते हैं ताकि WebdriverIO रनर तब तक प्रतीक्षा करे जब तक आप सबकुछ कंप्यूट न कर लें। इसका एक उदाहरण [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts) में देखा जा सकता है:
+यदि आपके रिपोर्टर को डेटा रिपोर्ट करने के लिए async ऑपरेशंस निष्पादित करने हैं (जैसे लॉग फ़ाइलों या अन्य एसेट्स का अपलोड), तो आप अपने कस्टम रिपोर्टर में `isSynchronised` मेथड को ओवरराइट कर सकते हैं ताकि WebdriverIO रनर तब तक प्रतीक्षा करे जब तक आप सब कुछ कंप्यूट नहीं कर लेते। इसका एक उदाहरण [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts) में देखा जा सकता है:
 
 ```js
 export default class SumoLogicReporter extends WDIOReporter {
@@ -134,14 +135,14 @@ export default class SumoLogicReporter extends WDIOReporter {
     }
 
     /**
-     * overwrite isSynchronised method
+     * isSynchronised मेथड को ओवरराइट करें
      */
     get isSynchronised () {
         return this.unsynced.length === 0
     }
 
     /**
-     * sync log files
+     * लॉग फ़ाइलों को सिंक करें
      */
     sync () {
         // ...
@@ -152,7 +153,7 @@ export default class SumoLogicReporter extends WDIOReporter {
         }, (err, resp) => {
             // ...
             /**
-             * remove transferred logs from log bucket
+             * स्थानांतरित लॉग्स को लॉग बकेट से हटाएं
              */
             this.unsynced.splice(0, MAX_LINES)
             // ...
@@ -161,21 +162,21 @@ export default class SumoLogicReporter extends WDIOReporter {
 }
 ```
 
-इस तरह से रनर तब तक प्रतीक्षा करेगा जब तक सभी लॉग जानकारी अपलोड नहीं हो जाती है।
+इस तरह रनर तब तक प्रतीक्षा करेगा जब तक सभी लॉग जानकारी अपलोड नहीं हो जाती।
 
 ## NPM पर रिपोर्टर प्रकाशित करें
 
-रिपोर्टर को WebdriverIO समुदाय द्वारा आसानी से उपयोग और खोजने योग्य बनाने के लिए, कृपया इन सिफारिशों का पालन करें:
+WebdriverIO समुदाय द्वारा रिपोर्टर को उपयोग करने और खोजने में आसान बनाने के लिए, कृपया इन सिफारिशों का पालन करें:
 
-* सर्विसेज को इस नामकरण कनवेंशन का उपयोग करना चाहिए: `wdio-*-reporter`
+* सर्विसेज़ को इस नामकरण परंपरा का उपयोग करना चाहिए: `wdio-*-reporter`
 * NPM कीवर्ड्स का उपयोग करें: `wdio-plugin`, `wdio-reporter`
-* `main` एंट्री को रिपोर्टर का इंस्टेंस `export` करना चाहिए
+* `main` एंट्री को रिपोर्टर का एक इंस्टेंस `export` करना चाहिए
 * उदाहरण रिपोर्टर: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
-अनुशंसित नामकरण पैटर्न का पालन करने से सेवाओं को नाम से जोड़ा जा सकता है:
+अनुशंसित नामकरण पैटर्न का पालन करने से सर्विसेज़ को नाम से जोड़ा जा सकता है:
 
 ```js
-// Add wdio-custom-reporter
+// wdio-custom-reporter जोड़ें
 export const config = {
     // ...
     reporter: ['custom'],
@@ -183,11 +184,11 @@ export const config = {
 }
 ```
 
-### WDIO CLI और डॉक्स में प्रकाशित सेवा जोड़ें
+### प्रकाशित सर्विस को WDIO CLI और डॉक्स में जोड़ें
 
-हम वास्तव में हर नए प्लगइन की सराहना करते हैं जो दूसरे लोगों को बेहतर परीक्षण चलाने में मदद कर सकते हैं! यदि आपने ऐसा प्लगइन बनाया है, तो कृपया इसे हमारे CLI और डॉक्स में जोड़ने पर विचार करें ताकि इसे आसानी से खोजा जा सके।
+हम हर उस नए प्लगइन की वास्तव में सराहना करते हैं जो अन्य लोगों को बेहतर टेस्ट चलाने में मदद कर सकता है! यदि आपने ऐसा कोई प्लगइन बनाया है, तो कृपया इसे हमारे CLI और डॉक्स में जोड़ने पर विचार करें ताकि इसे ढूंढना आसान हो सके।
 
-कृपया निम्नलिखित परिवर्तनों के साथ एक पुल रिक्वेस्ट बनाएँ:
+कृपया निम्नलिखित परिवर्तनों के साथ एक pull request बनाएं:
 
-- अपनी सेवा को CLI मॉड्यूल में [समर्थित रिपोर्टर्स](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) की सूची में जोड़ें
-- आधिकारिक Webdriver.io पेज पर अपने डॉक्स को जोड़ने के लिए [रिपोर्टर सूची](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/reporters.json) को बढ़ाएं
+- CLI मॉड्यूल में [समर्थित रिपोर्टर्स](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) की सूची में अपनी सर्विस जोड़ें
+- आधिकारिक Webdriver.io पेज पर अपने डॉक्स जोड़ने के लिए [रिपोर्टर सूची](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json) को अपडेट करें

@@ -1,9 +1,10 @@
 ---
 id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
+description: "Pobierz pozycję tekstu na ekranie za pomocą ocrGetElementPositionByText, wykorzystując OCR i dopasowanie rozmyte do jego odnalezienia."
 ---
 
-Pobierz pozycję tekstu na ekranie. Komenda przeszuka podany tekst i spróbuje znaleźć dopasowanie w oparciu o logikę rozmytą z [Fuse.js](https://fusejs.io/). Oznacza to, że nawet jeśli podasz selektor z literówką lub znaleziony tekst nie będzie w 100% pasował, nadal spróbuje zwrócić element. Zobacz [logi](#logs) poniżej.
+Pobiera pozycję tekstu na ekranie. Polecenie wyszuka podany tekst i spróbuje znaleźć dopasowanie na podstawie logiki rozmytej (Fuzzy Logic) z [Fuse.js](https://fusejs.io/). Oznacza to, że nawet jeśli podasz selektor z literówką lub znaleziony tekst nie będzie w 100% zgodny, polecenie nadal spróbuje zwrócić element. Zobacz [logi](#logs) poniżej.
 
 ## Użycie
 
@@ -41,7 +42,7 @@ result = {
 ### Logi
 
 ```log
-# Still finding a match even though we searched for "Start3d" and the found text was "Started"
+# Nadal znajduje dopasowanie, mimo że szukaliśmy "Start3d", a znaleziony tekst to "Started"
 [0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
@@ -51,11 +52,11 @@ result = {
 
 ### `text`
 
--   **Typ:** `string`
--   **Obowiązkowy:** tak
+<Option type="string" required="yes">
 
-Tekst, który chcesz wyszukać, aby kliknąć.
+Tekst, który chcesz wyszukać, aby go kliknąć.
 
+</Option>
 #### Przykład
 
 ```js
@@ -64,12 +65,11 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Akceptuje wartości między `-1` a `1`.
+Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Akceptuje wartości od `-1` do `1`.
 
+</Option>
 #### Przykład
 
 ```js
@@ -81,11 +81,11 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
--   **Typ:** `number`
--   **Obowiązkowy:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
 Jest to obszar wyszukiwania na ekranie, w którym OCR ma szukać tekstu. Może to być element lub prostokąt zawierający `x`, `y`, `width` i `height`
 
+</Option>
 #### Przykład
 
 ```js
@@ -94,13 +94,13 @@ await browser.ocrGetElementPositionByText({
     haystack: $("elementSelector"),
 });
 
-// LUB
+// OR
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// LUB
+// OR
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: {
@@ -114,35 +114,33 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
--   **Typ:** `string`
--   **Obowiązkowy:** Nie
--   **Domyślnie:** `eng`
+<Option type="string" default="eng" required="No">
 
-Język, który Tesseract rozpozna. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki można znaleźć [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Język, który Tesseract będzie rozpoznawał. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Przykład
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
-    // Użyj holenderskiego jako języka
+    // Użyj języka niderlandzkiego
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-Możesz zmienić logikę rozmytą, aby znaleźć tekst z następującymi opcjami. Może to pomóc w znalezieniu lepszego dopasowania.
+Możesz zmienić logikę rozmytą służącą do wyszukiwania tekstu za pomocą poniższych opcji. Może to pomóc w znalezieniu lepszego dopasowania
 
 #### `fuzzyFindOptions.distance`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** 100
+<Option type="number" default="100" required="no">
 
-Określa, jak blisko dopasowanie musi być do rozmytej lokalizacji (określonej przez lokalizację). Dokładne dopasowanie litery, które znajduje się w odległości znaków od rozmytej lokalizacji, zostałoby ocenione jako całkowity brak dopasowania. Odległość 0 wymaga, aby dopasowanie znajdowało się w dokładnej określonej lokalizacji. Odległość 1000 wymagałaby perfekcyjnego dopasowania w odległości 800 znaków od lokalizacji, aby zostać znalezioną przy progu 0,8.
+Określa, jak blisko lokalizacji rozmytej (określonej przez location) musi znajdować się dopasowanie. Dokładne dopasowanie litery, które znajduje się o distance znaków od lokalizacji rozmytej, zostanie ocenione jako całkowity brak dopasowania. Wartość distance równa 0 wymaga, aby dopasowanie znajdowało się dokładnie w określonej lokalizacji. Wartość distance równa 1000 wymagałaby, aby idealne dopasowanie znajdowało się w odległości do 800 znaków od lokalizacji, aby zostało znalezione przy progu (threshold) 0.8.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -156,12 +154,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** 0
+<Option type="number" default="0" required="no">
 
-Określa w przybliżeniu, gdzie w tekście wzorzec powinien zostać znaleziony.
+Określa, w którym miejscu tekstu w przybliżeniu oczekuje się znalezienia wzorca.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -175,12 +172,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** 0.6
+<Option type="number" default="0.6" required="no">
 
-W jakim momencie algorytm dopasowania poddaje się. Próg 0 wymaga idealnego dopasowania (zarówno liter, jak i lokalizacji), próg 1.0 pasowałby do czegokolwiek.
+W którym momencie algorytm dopasowujący się poddaje. Próg równy 0 wymaga idealnego dopasowania (zarówno liter, jak i lokalizacji), a próg równy 1.0 dopasuje wszystko.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -194,12 +190,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Typ:** `boolean`
--   **Obowiązkowy:** nie
--   **Domyślnie:** false
+<Option type="boolean" default="false" required="no">
 
-Czy wyszukiwanie powinno rozróżniać wielkość liter.
+Określa, czy wyszukiwanie ma uwzględniać wielkość liter.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -213,12 +208,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** 2
+<Option type="number" default="2" required="no">
 
-Tylko dopasowania, których długość przekracza tę wartość, zostaną zwrócone. (Na przykład, jeśli chcesz zignorować dopasowania pojedynczych znaków w wyniku, ustaw na 2)
+Zwrócone zostaną tylko dopasowania, których długość przekracza tę wartość. (Na przykład, jeśli chcesz zignorować w wyniku dopasowania jednoznakowe, ustaw tę wartość na 2)
 
+</Option>
 ##### Przykład
 
 ```js
@@ -232,12 +226,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Typ:** `number`
--   **Obowiązkowy:** nie
--   **Domyślnie:** false
+<Option type="number" default="false" required="no">
 
-Gdy `true`, funkcja dopasowania będzie kontynuować do końca wzorca wyszukiwania, nawet jeśli idealne dopasowanie zostało już zlokalizowane w ciągu.
+Gdy ustawione na `true`, funkcja dopasowująca będzie kontynuować aż do końca wzorca wyszukiwania, nawet jeśli idealne dopasowanie zostało już znalezione w ciągu znaków.
 
+</Option>
 ##### Przykład
 
 ```js

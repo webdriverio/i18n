@@ -1,44 +1,56 @@
 ---
 id: visual-testing
 title: Visuell testning
+description: "Jämför skärmdumpar av skärmar, element eller helsidor mot baslinjer med @wdio/visual-service, inklusive installation och användning."
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Vad kan det göra?
+## Vad kan den göra?
 
-WebdriverIO tillhandahåller bildjämförelser på skärmar, element eller hela sidor för
+WebdriverIO erbjuder bildjämförelser av skärmar, element eller en helsida för
 
 -   🖥️ Skrivbordswebbläsare (Chrome / Firefox / Safari / Microsoft Edge)
--   📱 Mobil- / surfplattewebbläsare (Chrome på Android-emulatorer / Safari på iOS-simulatorer / Simulatorer / verkliga enheter) via Appium
--   📱 Nativa appar (Android-emulatorer / iOS-simulatorer / verkliga enheter) via Appium (🌟 **NY** 🌟)
+-   📱 Mobil- / surfplattewebbläsare (Chrome på Android-emulatorer / Safari på iOS-simulatorer / simulatorer / riktiga enheter) via Appium
+-   📱 Native-appar (Android-emulatorer / iOS-simulatorer / riktiga enheter) via Appium (🌟 **NYTT** 🌟)
 -   📳 Hybridappar via Appium
 
 genom [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service) som är en lättviktig WebdriverIO-tjänst.
 
-Detta gör att du kan:
+Detta låter dig:
 
--   spara eller jämföra **skärmar/element/helsidesbilder** mot en baslinje
+-   spara eller jämföra **skärmar/element/helsidor** mot en baslinje
 -   automatiskt **skapa en baslinje** när ingen baslinje finns
--   **blockera anpassade regioner** och till och med **automatiskt exkludera** status- och/eller verktygsfält (endast mobil) under en jämförelse
--   öka elementdimensionerna för skärmbilder
--   **dölja text** under webbplatsjämförelse för att:
-    -   **förbättra stabiliteten** och förhindra flakighet i teckensnittsrendering
-    -   endast fokusera på **layouten** av en webbplats
--   använda **olika jämförelsemetoder** och en uppsättning **ytterligare matchare** för mer läsbara tester
--   verifiera hur din webbplats kommer att **stödja tabnavigering med ditt tangentbord**, se även [Tabba genom en webbplats](#tabbing-through-a-website)
--   och mycket mer, se [tjänst](./visual-testing/service-options) och [metod](./visual-testing/method-options) alternativ
+-   **maskera anpassade regioner** och till och med **automatiskt exkludera** en statusrad och/eller verktygsfält (endast mobil) under en jämförelse
+-   öka dimensionerna för elementskärmdumpar
+-   **dölja text** vid jämförelse av webbplatser för att:
+    -   **förbättra stabiliteten** och förhindra instabilitet vid typsnittsrendering
+    -   endast fokusera på webbplatsens **layout**
+-   använda **olika jämförelsemetoder** och en uppsättning **ytterligare matchers** för mer lättlästa tester
+-   verifiera hur din webbplats **stöder tabbning med tangentbordet)**, se även [Tabba genom en webbplats](#tabbing-through-a-website)
+-   och mycket mer, se [tjänst](./visual-testing/service-options)- och [metod](./visual-testing/method-options)-alternativen
 
-Tjänsten är en lättviktsmodul för att hämta nödvändig data och skärmbilder för alla webbläsare/enheter. Jämförelsekraften kommer från [ResembleJS](https://github.com/Huddle/Resemble.js). Om du vill jämföra bilder online kan du kolla in [onlineverktyget](http://rsmbl.github.io/Resemble.js/).
+Tjänsten är en lättviktig modul för att hämta nödvändig data och skärmdumpar för alla webbläsare/enheter. Jämförelsekraften kommer från [Pixelmatch](https://github.com/mapbox/pixelmatch), ett snabbt och precist bibliotek för perceptuell bildjämförelse som använder färgrymden YIQ. Bilder bearbetas med [fast-png](https://github.com/image-js/fast-png), en PNG-codec utan native-beroenden.
 
-:::info NOTERA För nativa/hybridappar
-Metoderna `saveScreen`, `saveElement`, `checkScreen`, `checkElement` och matcharna `toMatchScreenSnapshot` och `toMatchElementSnapshot` kan användas för nativa appar/kontext.
+:::info OBS För Native-/Hybridappar
+Metoderna `saveScreen`, `saveElement`, `checkScreen`, `checkElement` och matcharna `toMatchScreenSnapshot` och `toMatchElementSnapshot` kan användas för Native-appar/kontext.
 
 Använd egenskapen `isHybridApp:true` i dina tjänstinställningar när du vill använda den för hybridappar.
 :::
 
+:::caution Uppgraderar du från v9 (eller lägre)?
+
+`@wdio/visual-service` **v10** bytte jämförelsemotor från **ResembleJS** till **[Pixelmatch](https://github.com/mapbox/pixelmatch)**. Pixelmatch använder en perceptuell (YIQ) färgmodell istället för rå RGB, så avvikelseprocenten kommer att skilja sig från v9. Detta innebär:
+
+-   **Din testkod behöver inte ändras.** Alla metodnamn, alternativnamn och matchers är identiska.
+-   **Dina baslinjebilder kan behöva uppdateras.** Efter uppgraderingen, kör din testsvit och granska eventuella visuella skillnader. Du kan uppdatera enskilda misslyckade baslinjer med `--update-visual-baseline`, eller radera hela din baslinjemapp och låta `autoSaveBaseline` återskapa den från grunden. Se [FAQ](/docs/visual-testing/faq#my-visual-tests-fail-with-a-difference-how-can-i-update-my-baseline) för detaljer.
+
+:::
+
 ## Installation
 
-Det enklaste sättet är att behålla `@wdio/visual-service` som en utvecklingsberoende i din `package.json`, via:
+Det enklaste sättet är att ha `@wdio/visual-service` som ett dev-beroende i din `package.json`, via:
 
 ```sh
 npm install --save-dev @wdio/visual-service
@@ -46,7 +58,7 @@ npm install --save-dev @wdio/visual-service
 
 ## Användning
 
-`@wdio/visual-service` kan användas som en normal tjänst. Du kan ställa in den i din konfigurationsfil med följande:
+`@wdio/visual-service` kan användas som en vanlig tjänst. Du kan konfigurera den i din konfigurationsfil med följande:
 
 ```js
 import path from "node:path";
@@ -61,7 +73,7 @@ export const config = {
         [
             "visual",
             {
-                // Några alternativ, se dokumentationen för mer
+                // Några alternativ, se dokumentationen för fler
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 formatImageName: "{tag}-{logName}-{width}x{height}",
                 screenshotPath: path.join(process.cwd(), "tmp"),
@@ -76,14 +88,14 @@ export const config = {
 
 Fler tjänstalternativ finns [här](/docs/visual-testing/service-options).
 
-När det är konfigurerat i din WebdriverIO-konfiguration kan du lägga till visuella tester till [dina tester](/docs/visual-testing/writing-tests).
+När den är konfigurerad i din WebdriverIO-konfiguration kan du börja lägga till visuella assertions i [dina tester](/docs/visual-testing/writing-tests).
 
-### Kapaciteter
-För att använda modulen för visuell testning **behöver du inte lägga till några extra alternativ till dina kapaciteter**. I vissa fall kan du dock vilja lägga till ytterligare metadata till dina visuella tester, som ett `logName`.
+### Capabilities
+För att använda modulen för visuell testning **behöver du inte lägga till några extra alternativ i dina capabilities**. I vissa fall kan du dock vilja lägga till ytterligare metadata till dina visuella tester, till exempel ett `logName`.
 
-`logName` låter dig tilldela ett anpassat namn till varje kapacitet, som sedan kan inkluderas i bildfilnamnen. Detta är särskilt användbart för att skilja mellan skärmbilder tagna över olika webbläsare, enheter eller konfigurationer.
+Med `logName` kan du tilldela ett anpassat namn till varje capability, som sedan kan inkluderas i bildfilnamnen. Detta är särskilt användbart för att skilja mellan skärmdumpar tagna i olika webbläsare, enheter eller konfigurationer.
 
-För att aktivera detta kan du definiera `logName` i avsnittet `capabilities` och se till att alternativet `formatImageName` i Visual Testing-tjänsten refererar till det. Så här kan du ställa in det:
+För att aktivera detta kan du definiera `logName` i avsnittet `capabilities` och se till att alternativet `formatImageName` i tjänsten för visuell testning refererar till det. Så här kan du konfigurera det:
 
 ```js
 import path from "node:path";
@@ -112,10 +124,10 @@ export const config = {
         [
             "visual",
             {
-                // Några alternativ, se dokumentationen för mer
+                // Några alternativ, se dokumentationen för fler
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 screenshotPath: path.join(process.cwd(), "tmp"),
-                // Formatet nedan kommer att använda `logName` från kapaciteter
+                // Formatet nedan använder `logName` från capabilities
                 formatImageName: "{tag}-{logName}-{width}x{height}",
                 // ... fler alternativ
             },
@@ -126,30 +138,30 @@ export const config = {
 ```
 
 #### Hur det fungerar
-1. Ställa in `logName`:
+1. Konfigurera `logName`:
 
-    - I avsnittet `capabilities`, tilldela ett unikt `logName` till varje webbläsare eller enhet. Till exempel identifierar `chrome-mac-15` tester som körs på Chrome på macOS version 15.
+    - I avsnittet `capabilities`, tilldela ett unikt `logName` till varje webbläsare eller enhet. Till exempel identifierar `chrome-mac-15` tester som körs i Chrome på macOS version 15.
 
 2. Anpassad bildnamngivning:
 
-    - Alternativet `formatImageName` integrerar `logName` i skärmbildsfilnamnen. Om till exempel `tag` är hemsida och upplösningen är `1920x1080` kan det resulterande filnamnet se ut så här:
+    - Alternativet `formatImageName` integrerar `logName` i skärmdumpens filnamn. Om till exempel `tag` är homepage och upplösningen är `1920x1080` kan det resulterande filnamnet se ut så här:
 
         `homepage-chrome-mac-15-1920x1080.png`
 
 3. Fördelar med anpassad namngivning:
 
-    - Det blir mycket enklare att skilja mellan skärmbilder från olika webbläsare eller enheter, särskilt vid hantering av baslinjer och felsökning av avvikelser.
+    - Det blir mycket enklare att skilja mellan skärmdumpar från olika webbläsare eller enheter, särskilt när du hanterar baslinjer och felsöker avvikelser.
 
-4. Notera om standardvärden:
+4. Anmärkning om standardvärden:
 
-    -Om `logName` inte är inställt i kapaciteterna kommer alternativet `formatImageName` att visa det som en tom sträng i filnamnen (`homepage--15-1920x1080.png`)
+    -Om `logName` inte är angivet i capabilities kommer alternativet `formatImageName` att visa det som en tom sträng i filnamnen (`homepage--15-1920x1080.png`)
 
-### WebdriverIO MultiRemote
+### WebdriverIO multi-remote
 
-Vi stöder även [MultiRemote](https://webdriver.io/docs/multiremote/). För att detta ska fungera ordentligt, se till att du lägger till `wdio-ics:options` till dina
-kapaciteter som du kan se nedan. Detta säkerställer att varje skärmbild får ett eget unikt namn.
+Vi stöder även [multi-remote](https://webdriver.io/docs/multiremote/). För att detta ska fungera korrekt, se till att du lägger till `wdio-ics:options` i dina
+capabilities som du kan se nedan. Detta säkerställer att varje skärmdump får ett eget unikt namn.
 
-[Att skriva dina tester](/docs/visual-testing/writing-tests) kommer inte att vara annorlunda jämfört med att använda [testrunner](https://webdriver.io/docs/testrunner)
+[Att skriva dina tester](/docs/visual-testing/writing-tests) skiljer sig inte på något sätt jämfört med att använda [testrunnern](https://webdriver.io/docs/testrunner)
 
 ```js
 // wdio.conf.js
@@ -185,7 +197,7 @@ export const config = {
 
 ### Köra programmatiskt
 
-Här är ett minimalt exempel på hur man använder `@wdio/visual-service` via `remote`-alternativ:
+Här är ett minimalt exempel på hur du använder `@wdio/visual-service` via `remote`-alternativ:
 
 ```js
 import { remote } from "webdriverio";
@@ -202,12 +214,12 @@ const browser = await remote({
     },
 });
 
-// "Starta" tjänsten för att lägga till anpassade kommandon till `browser`
+// "Starta" tjänsten för att lägga till de anpassade kommandona till `browser`
 visualService.remoteSetup(browser);
 
 await browser.url("https://webdriver.io/");
 
-// eller använd detta för att ENDAST spara en skärmbild
+// eller använd detta för att ENDAST spara en skärmdump
 await browser.saveFullPageScreen("examplePaged", {});
 
 // eller använd detta för validering. Båda metoderna behöver inte kombineras, se FAQ
@@ -218,49 +230,48 @@ await browser.deleteSession();
 
 ### Tabba genom en webbplats
 
-Du kan kontrollera om en webbplats är tillgänglig genom att använda tangentbordsknappen <kbd>TAB</kbd>. Att testa denna del av tillgänglighet har alltid varit ett tidskrävande (manuellt) jobb och ganska svårt att göra genom automatisering.
-Med metoderna `saveTabbablePage` och `checkTabbablePage` kan du nu rita linjer och punkter på din webbplats för att verifiera tabordningen.
+Du kan kontrollera om en webbplats är tillgänglig genom att använda tangentbordets <kbd>TAB</kbd>-tangent. Att testa denna del av tillgängligheten har alltid varit ett tidskrävande (manuellt) arbete och ganska svårt att göra genom automatisering.
+Med metoderna `saveTabbablePage` och `checkTabbablePage` kan du nu rita linjer och punkter på din webbplats för att verifiera tabbordningen.
 
-Var medveten om att detta bara är användbart för skrivbordswebbläsare och **INTE\*\*** för mobila enheter. Alla skrivbordswebbläsare stöder denna funktion.
+Var medveten om att detta endast är användbart för skrivbordswebbläsare och **INTE\*\*** för mobila enheter. Alla skrivbordswebbläsare stöder denna funktion.
 
 :::note
 
-Arbetet är inspirerat av [Viv Richards](https://github.com/vivrichards600) blogginlägg om ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).
+Arbetet är inspirerat av [Viv Richards](https://github.com/vivrichards600) och hans blogginlägg om ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).
 
-Sättet tabbara element väljs baseras på modulen [tabbable](https://github.com/davidtheclark/tabbable). Om det finns några problem gällande tabbning, kolla [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) och särskilt avsnittet [More Details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+Sättet som tabbbara element väljs på baseras på modulen [tabbable](https://github.com/davidtheclark/tabbable). Om det finns några problem med tabbningen, kontrollera [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) och särskilt avsnittet [More ](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)Details.
 
 :::
 
 #### Hur fungerar det
 
-Båda metoderna skapar ett `canvas`-element på din webbplats och ritar linjer och punkter för att visa dig var din TAB skulle gå om en slutanvändare skulle använda den. Efter det skapas en helsidesbildskärmbild för att ge dig en bra översikt över flödet.
+Båda metoderna skapar ett `canvas`-element på din webbplats och ritar linjer och punkter för att visa var din TAB skulle hamna om en slutanvändare använde den. Därefter skapas en helsidesskärmdump för att ge dig en bra överblick över flödet.
 
 :::important
 
-**Använd `saveTabbablePage` endast när du behöver skapa en skärmbild och INTE vill jämföra den **med en **baslinje**-bild.\*\*\*\*
+**Använd `saveTabbablePage` endast när du behöver skapa en skärmdump och INTE vill jämföra den **med en **baslinjebild**.\*\*\*\*
 
 :::
 
-När du vill jämföra tabbningsflödet med en baslinje kan du använda metoden `checkTabbablePage`. Du behöver **INTE** använda de två metoderna tillsammans. Om det redan finns en baslinjebild, vilket automatiskt kan göras genom att ange `autoSaveBaseline: true` när du instansierar tjänsten,
-kommer `checkTabbablePage` först att skapa den _aktuella_ bilden och sedan jämföra den med baslinjen.
+När du vill jämföra tabbflödet med en baslinje kan du använda metoden `checkTabbablePage`. Du behöver **INTE** använda de två metoderna tillsammans. Om det redan finns en baslinjebild skapad, vilket kan göras automatiskt genom att ange `autoSaveBaseline: true` när du instansierar tjänsten,
+kommer `checkTabbablePage` först att skapa den _faktiska_ bilden och sedan jämföra den mot baslinjen.
 
 ##### Alternativ
 
-Båda metoderna använder samma alternativ som [`saveFullPageScreen`](https://github.com/wswebcreation/webdriver-image-comparison/blob/master/docs/OPTIONS.md#savefullpagescreen-or-savetabbablepage) eller
-[`compareFullPageScreen`](https://github.com/wswebcreation/webdriver-image-comparison/blob/master/docs/OPTIONS.md#comparefullpagescreen-or-comparetabbablepage).
+Båda metoderna använder samma alternativ som `saveFullPageScreen` eller `compareFullPageScreen`.
 
 #### Exempel
 
-Detta är ett exempel på hur tabbning fungerar på vår [guinea pig-webbplats](https://guinea-pig.webdriver.io/image-compare.html):
+Detta är ett exempel på hur tabbningen fungerar på vår [försökskaninwebbplats](https://guinea-pig.webdriver.io/image-compare.html):
 
 ![WDIO tabbing example](/img/visual/tabbable-chrome-latest-1366x768.png)
 
-### Automatiskt uppdatera misslyckade visuella ögonblicksbilder
+### Uppdatera misslyckade visuella ögonblicksbilder automatiskt
 
 Uppdatera baslinjebilderna via kommandoraden genom att lägga till argumentet `--update-visual-baseline`. Detta kommer att
 
--   automatiskt kopiera den faktiska skärmbilden och lägga den i baslinjen-mappen
--   om det finns skillnader kommer det att låta testet passera eftersom baslinjen har uppdaterats
+-   automatiskt kopiera den faktiska tagna skärmdumpen och placera den i baslinjemappen
+-   om det finns skillnader låta testet passera eftersom baslinjen har uppdaterats
 
 **Användning:**
 
@@ -268,7 +279,7 @@ Uppdatera baslinjebilderna via kommandoraden genom att lägga till argumentet `-
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-När du kör loggar i info/felsökningsläge ser du följande loggar läggas till
+När du kör med loggläget info/debug kommer du att se följande loggar tillagda
 
 ```logs
 [0-0] ..............
@@ -282,10 +293,10 @@ När du kör loggar i info/felsökningsläge ser du följande loggar läggas til
 
 ## Typescript-stöd
 
-Denna modul inkluderar TypeScript-stöd, vilket gör att du kan dra nytta av automatisk komplettering, typsäkerhet och förbättrad utvecklarupplevelse när du använder Visual Testing-tjänsten.
+Denna modul inkluderar TypeScript-stöd, vilket gör att du kan dra nytta av automatisk komplettering, typsäkerhet och en förbättrad utvecklarupplevelse när du använder tjänsten för visuell testning.
 
 ### Steg 1: Lägg till typdefinitioner
-För att säkerställa att TypeScript känner igen modultyperna, lägg till följande post i typfältet i din tsconfig.json:
+För att säkerställa att TypeScript känner igen modulens typer, lägg till följande post i fältet types i din tsconfig.json:
 
 ```json
 {
@@ -296,7 +307,7 @@ För att säkerställa att TypeScript känner igen modultyperna, lägg till föl
 ```
 
 ### Steg 2: Aktivera typsäkerhet för tjänstalternativ
-För att tvinga typkontroll på tjänstalternativen, uppdatera din WebdriverIO-konfiguration:
+För att tvinga fram typkontroll av tjänstalternativen, uppdatera din WebdriverIO-konfiguration:
 
 ```ts
 // wdio.conf.ts
@@ -326,19 +337,23 @@ export const config = {
 
 ## Systemkrav
 
-### Version 5 och uppåt
+### Version 10 och senare (aktuell)
 
-För version 5 och uppåt är denna modul en rent JavaScript-baserad modul utan ytterligare systemberoenden utöver de allmänna [projektkraven](/docs/gettingstarted#system-requirements). Den använder [Jimp](https://github.com/jimp-dev/jimp) som är ett bildbehandlingsbibliotek för Node skrivet helt i JavaScript, utan några systemspecifika beroenden.
+För version 10 och senare har denna modul inga ytterligare systemberoenden utöver de allmänna [projektkraven](/docs/gettingstarted#system-requirements). Den använder [Pixelmatch](https://github.com/mapbox/pixelmatch) för perceptuell bildjämförelse och [fast-png](https://github.com/image-js/fast-png) för bildkodning/-avkodning. Båda är ren JavaScript utan några native-beroenden.
+
+### Version 5 till 9 (äldre)
+
+Version 5 till 9 använde [Jimp](https://github.com/jimp-dev/jimp), ett bildbehandlingsbibliotek för Node skrivet helt i JavaScript, utan några native-beroenden. Inga ytterligare systemberoenden krävdes.
 
 ### Version 4 och lägre
 
-För version 4 och lägre förlitar sig denna modul på [Canvas](https://github.com/Automattic/node-canvas), en canvas-implementation för Node.js. Canvas beror på [Cairo](https://cairographics.org/).
+För version 4 och lägre förlitar sig denna modul på [Canvas](https://github.com/Automattic/node-canvas), en canvas-implementation för Node.js. Canvas är beroende av [Cairo](https://cairographics.org/).
 
 #### Installationsdetaljer
 
-Som standard kommer binärfiler för macOS, Linux och Windows att laddas ned under ditt projekts `npm install`. Om du inte har ett operativsystem eller en processorarkitektur som stöds kommer modulen att kompileras på ditt system. Detta kräver flera beroenden, inklusive Cairo och Pango.
+Som standard laddas binärfiler för macOS, Linux och Windows ned under ditt projekts `npm install`. Om du inte har ett operativsystem eller en processorarkitektur som stöds kommer modulen att kompileras på ditt system. Detta kräver flera beroenden, inklusive Cairo och Pango.
 
-För detaljerad installationsinformation, se [node-canvas wiki](https://github.com/Automattic/node-canvas/wiki/_pages). Nedan finns installationsinstruktioner på en rad för vanliga operativsystem. Observera att `libgif/giflib`, `librsvg` och `libjpeg` är valfria och endast behövs för stöd för GIF, SVG respektive JPEG. Cairo v1.10.0 eller senare krävs.
+För detaljerad installationsinformation, se [node-canvas-wikin](https://github.com/Automattic/node-canvas/wiki/_pages). Nedan finns installationsinstruktioner på en rad för vanliga operativsystem. Observera att `libgif/giflib`, `librsvg` och `libjpeg` är valfria och endast behövs för stöd för GIF, SVG respektive JPEG. Cairo v1.10.0 eller senare krävs.
 
 <Tabs
 defaultValue="osx"
@@ -360,8 +375,8 @@ values={[
      brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
      ```
 
-    **Mac OS X v10.11+:** Om du nyligen har uppdaterat till Mac OS X v10.11+ och upplever problem vid kompilering, kör följande kommando: `xcode-select --install`. Läs mer om problemet [på Stack Overflow](http://stackoverflow.com/a/32929012/148072).
-    Om du har Xcode 10.0 eller högre installerat behöver du NPM 6.4.1 eller högre för att bygga från källkod.
+    **Mac OS X v10.11+:** Om du nyligen har uppdaterat till Mac OS X v10.11+ och har problem vid kompilering, kör följande kommando: `xcode-select --install`. Läs mer om problemet [på Stack Overflow](http://stackoverflow.com/a/32929012/148072).
+    Om du har Xcode 10.0 eller senare installerat behöver du NPM 6.4.1 eller senare för att bygga från källkod.
 
 </TabItem>
 <TabItem value="ubuntu">

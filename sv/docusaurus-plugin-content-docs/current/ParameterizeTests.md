@@ -1,9 +1,10 @@
 ---
 id: parameterize-tests
 title: Parametrisera tester
+description: "Parametrisera tester med loopar och dynamiska funktioner, miljövariabler, .env-filer eller data från en CSV-fil."
 ---
 
-Du kan enkelt parametrisera tester på testnivå, via enkla `for`-loopar t.ex.:
+Du kan enkelt parametrisera tester på testnivå, via enkla `for`-loopar, t.ex.:
 
 ```ts title=example.spec.js
 const people = ['Alice', 'Bob']
@@ -16,7 +17,7 @@ describe('my tests', () => {
 })
 ```
 
-eller genom att extrahera tester till dynamiska funktioner, t.ex.:
+eller genom att bryta ut tester till dynamiska funktioner, t.ex.:
 
 ```js title=dynamic.spec.js
 import { browser } from '@wdio/globals'
@@ -38,7 +39,7 @@ describe('page components', () => {
 
 Du kan använda miljövariabler för att konfigurera tester från kommandoraden.
 
-Betrakta till exempel följande testfil som behöver ett användarnamn och ett lösenord. Det är vanligtvis en bra idé att inte lagra dina hemligheter i källkoden, så vi behöver ett sätt att skicka hemligheter utifrån.
+Ta till exempel följande testfil som behöver ett användarnamn och ett lösenord. Det är oftast en bra idé att inte lagra dina hemligheter i källkoden, så vi behöver ett sätt att skicka in hemligheter utifrån.
 
 ```ts title=example.spec.ts
 it(`example test`, async () => {
@@ -48,7 +49,7 @@ it(`example test`, async () => {
 })
 ```
 
-Du kan köra detta test med ditt hemliga användarnamn och lösenord inställda i kommandoraden.
+Du kan köra detta test med ditt hemliga användarnamn och lösenord angivna på kommandoraden.
 
 <Tabs
   defaultValue="bash"
@@ -97,7 +98,7 @@ export const config = {
 }
 ```
 
-Nu kan du köra tester mot en staging- eller produktionsmiljö:
+Nu kan du köra tester mot en staging- eller en produktionsmiljö:
 
 <Tabs
   defaultValue="bash"
@@ -134,16 +135,16 @@ npx wdio run wdio.conf.js
 
 ## `.env`-filer
 
-För att göra miljövariabler lättare att hantera, överväg något som `.env`-filer. WebdriverIO laddar `.env`-filer automatiskt in i din miljö. Istället för att definiera miljövariabeln som en del av kommandoanropet kan du definiera följande `.env`:
+För att göra miljövariabler enklare att hantera kan du överväga något som `.env`-filer. WebdriverIO läser automatiskt in `.env`-filer i din miljö. Istället för att definiera miljövariabeln som en del av kommandoanropet kan du definiera följande `.env`:
 
 ```bash title=".env"
-# .env file
+# .env-fil
 STAGING=0
 USERNAME=me
 PASSWORD=secret
 ```
 
-Kör tester som vanligt, dina miljövariabler bör registreras.
+Kör testerna som vanligt, dina miljövariabler bör plockas upp.
 
 ```sh
 npx wdio run wdio.conf.js
@@ -151,7 +152,7 @@ npx wdio run wdio.conf.js
 
 ## Skapa tester via en CSV-fil
 
-WebdriverIO-testrunner körs i Node.js, vilket betyder att du direkt kan läsa filer från filsystemet och tolka dem med ditt föredragna CSV-bibliotek.
+WebdriverIO:s testkörare körs i Node.js, vilket innebär att du direkt kan läsa filer från filsystemet och tolka dem med ditt föredragna CSV-bibliotek.
 
 Se till exempel denna CSV-fil, i vårt exempel input.csv:
 
@@ -163,7 +164,7 @@ Se till exempel denna CSV-fil, i vårt exempel input.csv:
 "value 4","value 44","foobar4321"
 ```
 
-Baserat på detta kommer vi att generera några tester genom att använda csv-parse-biblioteket från NPM:
+Utifrån detta genererar vi några tester med hjälp av biblioteket csv-parse från NPM:
 
 ```js title=test.spec.ts
 import fs from 'node:fs'

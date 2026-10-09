@@ -2,31 +2,32 @@
 index: 1
 id: considerations
 title: Överväganden
+description: "Förstå begränsningarna med bildjämförelse, plattformskonsekvens, procentuella avvikelser och headless-webbläsare innan du förlitar dig på visuella tester."
 ---
 
 # Viktiga överväganden för optimal användning
 
-Innan du dyker in i de kraftfulla funktionerna i `@wdio/visual-service`, är det avgörande att förstå några viktiga överväganden som säkerställer att du får ut det mesta av detta verktyg. Följande punkter är utformade för att guida dig genom bästa praxis och vanliga fallgropar, vilket hjälper dig att uppnå noggranna och effektiva resultat vid visuell testning. Dessa överväganden är inte bara rekommendationer, utan väsentliga aspekter att ha i åtanke för att effektivt använda tjänsten i verkliga scenarier.
+Innan du dyker in i de kraftfulla funktionerna i `@wdio/visual-service` är det viktigt att förstå några centrala överväganden som säkerställer att du får ut det mesta av detta verktyg. Följande punkter är utformade för att vägleda dig genom bästa praxis och vanliga fallgropar, och hjälpa dig att uppnå korrekta och effektiva resultat vid visuell testning. Dessa överväganden är inte bara rekommendationer, utan viktiga aspekter att ha i åtanke för att effektivt använda tjänsten i verkliga scenarier.
 
 ## Jämförelsens natur
 
--   **Pixel-för-pixel-basis:** Modulen utför en pixel-för-pixel-jämförelse av bilder. Även om vissa aspekter kan justeras (se Jämförelsealternativ), så förblir kärnmetoden en grundläggande pixeljämförelse.
--   **Påverkan av webbläsaruppdateringar:** Var medveten om att uppdateringar av webbläsare, som Chrome, kan påverka teckensnittåtergivning, vilket potentiellt kräver en uppdatering av dina referensbilder.
+-   **Perceptuell jämförelse:** Modulen utför en perceptuell pixeljämförelse av bilder med hjälp av färgrymden YIQ, som bättre överensstämmer med hur människor uppfattar färgskillnader. Vissa aspekter kan justeras via [Jämförelsealternativ](./compare-options).
+-   **Påverkan av webbläsaruppdateringar:** Var medveten om att uppdateringar av webbläsare, som Chrome, kan påverka typsnittsrenderingen, vilket potentiellt kan kräva att du uppdaterar dina baslinjebilder.
 
-## Konsekvens i plattformar
+## Konsekvens mellan plattformar
 
--   **Jämföra identiska plattformar:** Se till att skärmdumpar jämförs inom samma plattform. Till exempel bör en skärmdump från Chrome på en Mac inte användas för att jämföra med en från Chrome på Ubuntu eller Windows.
--   **Analogi:** För att uttrycka det enkelt, jämför _'Äpplen med äpplen, inte äpplen med androider'_.
+-   **Jämföra identiska plattformar:** Se till att skärmdumpar jämförs inom samma plattform. Till exempel bör en skärmdump från Chrome på en Mac inte användas för att jämföras med en från Chrome på Ubuntu eller Windows.
+-   **Analogi:** Enkelt uttryckt, jämför _'äpplen med äpplen, inte äpplen med Androids'_.
 
-## Försiktighet med misspassningsprocent
+## Försiktighet med procentuell avvikelse
 
--   **Risk för att acceptera misspassningar:** Var försiktig när du accepterar en misspassningsprocent. Detta är särskilt viktigt för stora skärmdumpar, där accepterande av en misspassning oavsiktligt kan förbise betydande avvikelser, som saknade knappar eller element.
+-   **Risk med att acceptera avvikelser:** Var försiktig när du accepterar en procentuell avvikelse. Detta gäller särskilt för stora skärmdumpar, där en accepterad avvikelse oavsiktligt kan leda till att betydande skillnader förbises, såsom saknade knappar eller element.
 
-## Simulering av mobilskärm
+## Simulering av mobilskärmar
 
--   **Undvik webbläsarändring av storlek för mobilsimulering:** Försök inte simulera mobilskärmstorlekar genom att ändra storlek på skrivbordswebbläsare och behandla dem som mobilwebbläsare. Skrivbordswebbläsare, även när de ändras i storlek, replikerar inte korrekt renderingen av faktiska mobilwebbläsare.
--   **Autenticitet i jämförelse:** Detta verktyg syftar till att jämföra visuella element som de skulle visas för en slutanvändare. En storleksändrad skrivbordswebbläsare speglar inte den verkliga upplevelsen på en mobil enhet.
+-   **Undvik att ändra webbläsarstorlek för mobilsimulering:** Försök inte simulera mobila skärmstorlekar genom att ändra storlek på skrivbordswebbläsare och behandla dem som mobila webbläsare. Skrivbordswebbläsare, även när storleken ändrats, återger inte renderingen i faktiska mobila webbläsare korrekt.
+-   **Autenticitet i jämförelsen:** Detta verktyg syftar till att jämföra det visuella så som det skulle se ut för en slutanvändare. En skrivbordswebbläsare med ändrad storlek återspeglar inte den verkliga upplevelsen på en mobil enhet.
 
-## Ställningstagande om headless-webbläsare
+## Hållning till headless-webbläsare
 
--   **Rekommenderas inte för headless-webbläsare:** Användning av denna modul med headless-webbläsare rekommenderas inte. Motiveringen är att slutanvändare inte interagerar med headless-webbläsare, och därför kommer problem som uppstår vid sådan användning inte att stödjas.
+-   **Rekommenderas inte för headless-webbläsare:** Användning av denna modul med headless-webbläsare avråds. Anledningen är att slutanvändare inte interagerar med headless-webbläsare, och därför kommer problem som uppstår vid sådan användning inte att få support.

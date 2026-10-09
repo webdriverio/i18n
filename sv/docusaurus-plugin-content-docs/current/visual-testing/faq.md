@@ -1,18 +1,19 @@
 ---
 id: faq
 title: Vanliga frågor
+description: "Hitta svar på vanliga frågor om visuell testning, till exempel hur du uppdaterar baslinjer, åtgärdar installationsfel för canvas och uppgraderar till v10."
 ---
 
 ### Behöver jag använda metoderna `save(Screen/Element/FullPageScreen)` när jag vill köra `check(Screen/Element/FullPageScreen)`?
 
-Nej, du behöver inte göra detta. Metoden `check(Screen/Element/FullPageScreen)` gör detta automatiskt åt dig.
+Nej, det behöver du inte. `check(Screen/Element/FullPageScreen)` gör detta automatiskt åt dig.
 
-### Mina visuella tester misslyckas med en skillnad, hur kan jag uppdatera min baseline?
+### Mina visuella tester misslyckas på grund av en skillnad, hur kan jag uppdatera min baslinje?
 
-Du kan uppdatera baseline-bilderna via kommandoraden genom att lägga till argumentet `--update-visual-baseline`. Detta kommer att
+Du kan uppdatera baslinjebilderna via kommandoraden genom att lägga till argumentet `--update-visual-baseline`. Detta kommer att
 
--   automatiskt kopiera den faktiska skärmbilden och placera den i baseline-mappen
--   om det finns skillnader kommer det att låta testet passera eftersom baseline har uppdaterats
+-   automatiskt kopiera den faktiska skärmdumpen och placera den i baslinjemappen
+-   låta testet passera om det finns skillnader, eftersom baslinjen har uppdaterats
 
 **Användning:**
 
@@ -20,7 +21,7 @@ Du kan uppdatera baseline-bilderna via kommandoraden genom att lägga till argum
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-När du kör loggar i info/debug-läge kommer du att se följande loggar läggas till
+När loggarna körs i info-/debug-läge ser du följande loggar
 
 ```logs
 [0-0] ..............
@@ -34,13 +35,17 @@ När du kör loggar i info/debug-läge kommer du att se följande loggar läggas
 
 ### Width and height cannot be negative
 
-Det kan hända att felet `Width and height cannot be negative` kastas. 9 av 10 gånger beror detta på att man skapar en bild av ett element som inte är i vyn. Se till att du alltid ser till att elementet är i vyn innan du försöker skapa en bild av elementet.
+Det kan hända att felet `Width and height cannot be negative` kastas. I 9 fall av 10 beror detta på att man försöker skapa en bild av ett element som inte är synligt i vyn. Se alltid till att elementet är synligt i vyn innan du försöker skapa en bild av det.
 
-### Installation av Canvas på Windows misslyckades med Node-Gyp loggar
+### Installationen av Canvas på Windows misslyckades med Node-Gyp-loggar
 
-Om du stöter på problem med Canvas-installation på Windows på grund av Node-Gyp-fel, observera att detta endast gäller för Version 4 och lägre. För att undvika dessa problem, överväg att uppdatera till Version 5 eller högre, som inte har dessa beroenden och använder [Jimp](https://github.com/jimp-dev/jimp) för bildbehandling.
+Om du stöter på problem med installationen av Canvas på Windows på grund av Node-Gyp-fel, observera att detta endast gäller version 4 och lägre. För att undvika dessa problem kan du uppdatera till version 5 eller högre, som inte har dessa beroenden. Version 5 till 9 använde [Jimp](https://github.com/jimp-dev/jimp) för bildbehandling; version 10 och senare använder [fast-png](https://github.com/image-js/fast-png) och [Pixelmatch](https://github.com/mapbox/pixelmatch) utan några native-beroenden.
 
-Om du fortfarande behöver lösa problemen med Version 4, vänligen kontrollera:
+Om du ändå behöver lösa problemen med version 4, se:
 
--   Node Canvas-avsnittet i [Komma igång](/docs/visual-testing#system-requirements) guiden
--   [detta inlägg](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/) för att åtgärda Node-Gyp-problem på Windows. (Tack till [IgorSasovets](https://github.com/IgorSasovets))
+-   avsnittet om Node Canvas i guiden [Kom igång](/docs/visual-testing#system-requirements)
+-   [detta inlägg](https://spin.atomicobject.com/2019/03/27/node-gyp-windows/) om att åtgärda Node-Gyp-problem på Windows. (Tack till [IgorSasovets](https://github.com/IgorSasovets))
+
+### Jag uppgraderade till v10, varför misslyckas mina visuella tester?
+
+Jämförelsemotorn byttes från ResembleJS till [Pixelmatch](https://github.com/mapbox/pixelmatch) i v10. Pixelmatch använder en perceptuell (YIQ) färgmodell i stället för rå RGB, så avvikelseprocenten skiljer sig från v9. Dina tester är inte trasiga; baslinjerna behöver bara genereras om en gång. Kör dina tester med `--update-visual-baseline` för att acceptera de nya värdena, eller ta bort din baslinjemapp och låt `autoSaveBaseline` återskapa den.

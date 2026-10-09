@@ -1,15 +1,16 @@
 ---
 id: axe-core
-title: एक्स कोर
+title: Axe Core
+description: "Deque के ओपन-सोर्स Axe एडाप्टर के साथ, स्टैंडअलोन या टेस्टरनर मोड में, अपने टेस्ट में स्वचालित एक्सेसिबिलिटी जाँच चलाएँ।"
 ---
 
-आप अपने WebdriverIO टेस्ट सूट के भीतर एक्सेसिबिलिटी टेस्ट को [Deque के एक्स नामक ओपन-सोर्स एक्सेसिबिलिटी टूल्स](https://www.deque.com/axe/) का उपयोग करके शामिल कर सकते हैं। सेटअप बहुत आसान है, आपको केवल WebdriverIO Axe एडाप्टर को इस प्रकार इंस्टॉल करने की आवश्यकता है:
+आप [Deque के Axe नामक](https://www.deque.com/axe/) ओपन-सोर्स एक्सेसिबिलिटी टूल्स का उपयोग करके अपने WebdriverIO टेस्ट सूट में एक्सेसिबिलिटी टेस्ट शामिल कर सकते हैं। सेटअप बहुत आसान है, आपको बस WebdriverIO Axe एडाप्टर को इस प्रकार इंस्टॉल करना है:
 
 ```bash npm2yarn
 npm install -g @axe-core/webdriverio
 ```
 
-Axe एडाप्टर का उपयोग [स्टैंडअलोन या टेस्टरनर](/docs/setuptypes) मोड में [ब्राउज़र ऑब्जेक्ट](/docs/api/browser) के साथ आयात और इनिशियलाइज़ करके किया जा सकता है, उदाहरण के लिए:
+Axe एडाप्टर का उपयोग [स्टैंडअलोन या टेस्टरनर](/docs/setuptypes) मोड में किया जा सकता है, बस इसे इम्पोर्ट करें और [browser ऑब्जेक्ट](/docs/api/browser) के साथ इनिशियलाइज़ करें, उदाहरण के लिए:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -26,4 +27,4 @@ describe('Accessibility Test', () => {
 })
 ```
 
-आप Axe WebdriverIO एडाप्टर पर अधिक दस्तावेज़ [GitHub पर](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage) पा सकते हैं।
+Axe WebdriverIO एडाप्टर पर अधिक दस्तावेज़ीकरण आप [GitHub पर](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage) पा सकते हैं।

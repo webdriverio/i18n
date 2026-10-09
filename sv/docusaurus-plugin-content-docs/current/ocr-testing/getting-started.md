@@ -1,34 +1,35 @@
 ---
 id: getting-started
 title: Kom igång
+description: "Installera och konfigurera @wdio/ocr-service, konfigurera TypeScript-stöd och justera alternativ för kontrast, bildmapp och språk."
 ---
 
 ## Installation
 
-Det enklaste sättet är att behålla `@wdio/ocr-service` som en beroende i din `package.json` via.
+Det enklaste sättet är att ha `@wdio/ocr-service` som ett beroende i din `package.json`.
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
 ```
 
-Instruktioner om hur man installerar `WebdriverIO` finns [här.](../gettingstarted)
+Instruktioner för hur du installerar `WebdriverIO` finns [här.](../gettingstarted)
 
 :::note
-Denna modul använder Tesseract som OCR-motor. Som standard kommer den att kontrollera om du har en lokal installation av Tesseract installerad på ditt system, om så är fallet, kommer den att använda den. Om inte, kommer den att använda [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) modulen som automatiskt installeras för dig.
+Den här modulen använder Tesseract som OCR-motor. Som standard kontrollerar den om du har en lokal installation av Tesseract på ditt system, och i så fall används den. Om inte, används modulen [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) som installeras automatiskt åt dig.
 
-Om du vill påskynda bildbehandlingen så är rådet att använda en lokalt installerad version av Tesseract. Se även [Testkörningshastighet](./more-test-optimization#using-a-local-installation-of-tesseract).
+Om du vill snabba upp bildbehandlingen rekommenderas att du använder en lokalt installerad version av Tesseract. Se även [Testkörningstid](./more-test-optimization#using-a-local-installation-of-tesseract).
 :::
 
-Instruktioner om hur man installerar Tesseract som ett systemberoende på ditt lokala system finns [här](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+Instruktioner för hur du installerar Tesseract som ett systemberoende på ditt lokala system finns [här](https://tesseract-ocr.github.io/tessdoc/Installation.html).
 
 :::caution
 För installationsfrågor/fel med Tesseract, vänligen hänvisa till
-[Tesseract](https://github.com/tesseract-ocr/tesseract) projektet.
+[Tesseract](https://github.com/tesseract-ocr/tesseract)-projektet.
 :::
 
 ## Typescript-stöd
 
-Se till att du lägger till `@wdio/ocr-service` i din `tsconfig.json` konfigurationsfil.
+Se till att du lägger till `@wdio/ocr-service` i din konfigurationsfil `tsconfig.json`.
 
 ```json title="tsconfig.json"
 {
@@ -40,7 +41,7 @@ Se till att du lägger till `@wdio/ocr-service` i din `tsconfig.json` konfigurat
 
 ## Konfiguration
 
-För att använda tjänsten behöver du lägga till `ocr` i din tjänstearray i `wdio.conf.ts`
+För att använda tjänsten behöver du lägga till `ocr` i din services-array i `wdio.conf.ts`
 
 ```js
 // wdio.conf.js
@@ -64,35 +65,32 @@ exports.config = {
 
 #### `contrast`
 
--   **Typ:** `number`
--   **Obligatorisk:** Nej
--   **Standard:** `0.25`
+<Option type="number" default="0.25" required="No">
 
-Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Den accepterar värden mellan `-1` och `1`.
+Ju högre kontrast, desto mörkare bild och vice versa. Detta kan hjälpa till att hitta text i en bild. Den accepterar värden mellan `-1` och `1`.
 
+</Option>
 #### `imagesFolder`
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej
--   **Standard:** `{project-root}/.tmp/ocr`
+<Option type="string" default={`{project-root}/.tmp/ocr`} required="No">
 
 Mappen där OCR-resultaten lagras.
 
 :::note
-Om du anger en anpassad `imagesFolder`, kommer tjänsten automatiskt att lägga till undermappen `ocr` till den.
+Om du anger en anpassad `imagesFolder` kommer tjänsten automatiskt att lägga till undermappen `ocr` i den.
 :::
 
+</Option>
 #### `language`
 
--   **Typ:** `string`
--   **Obligatorisk:** Nej
--   **Standard:** `eng`
+<Option type="string" default="eng" required="No">
 
-Språket som Tesseract kommer att känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds kan hittas [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Språket som Tesseract ska känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds finns [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 ## Loggar
 
-Denna modul kommer automatiskt att lägga till extra loggar i WebdriverIO-loggarna. Den skriver till `INFO` och `WARN`-loggar med namnet `@wdio/ocr-service`.
+Den här modulen lägger automatiskt till extra loggar i WebdriverIO-loggarna. Den skriver till `INFO`- och `WARN`-loggarna med namnet `@wdio/ocr-service`.
 Exempel finns nedan.
 
 ```log

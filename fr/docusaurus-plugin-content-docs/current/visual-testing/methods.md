@@ -1,14 +1,15 @@
 ---
 id: methods
 title: Méthodes
+description: "Utilisez les méthodes save et check du service visuel pour capturer des captures d'écran et comparer des écrans, des éléments et des pages complètes à des images de référence."
 ---
 
 Les méthodes suivantes sont ajoutées à l'objet global WebdriverIO [`browser`](/docs/api/browser).
 
 ## Méthodes de sauvegarde
 
-:::info CONSEIL
-Utilisez les méthodes de sauvegarde uniquement lorsque vous **ne souhaitez pas** comparer des écrans, mais que vous voulez simplement avoir une capture d'écran d'un élément.
+:::info ASTUCE
+N'utilisez les méthodes de sauvegarde que lorsque vous **ne** souhaitez **pas** comparer des écrans, mais seulement obtenir une capture d'écran ou une image d'un élément.
 :::
 
 ### `saveElement`
@@ -19,7 +20,7 @@ Enregistre une image d'un élément.
 
 ```ts
 await browser.saveElement(
-    // element
+    // élément
     await $('#element-selector'),
     // tag
     'your-reference',
@@ -34,28 +35,28 @@ await browser.saveElement(
 
 - Navigateurs de bureau
 - Navigateurs mobiles
-- Applications hybrides mobiles
-- Applications natives mobiles
+- Applications mobiles hybrides
+- Applications mobiles natives
 
 #### Paramètres
 
--   **`element`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** Élément WebdriverIO
--   **`tag`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** string
--   **`saveElementOptions`:**
-    -   **Obligatoire:** Non
-    -   **Type:** un objet d'options, voir [Options de sauvegarde](./method-options#save-options)
+-   **`element` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** Élément WebdriverIO
+-   **`tag` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** string
+-   **`saveElementOptions` :**
+    -   **Obligatoire :** Non
+    -   **Type :** un objet d'options, voir [Options de sauvegarde](./method-options#save-options)
 
-#### Sortie:
+#### Sortie :
 
-Voir la page [Sortie de test](./test-output#savescreenelementfullpagescreen).
+Consultez la page [Sortie des tests](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
-Enregistre une image d'une fenêtre d'affichage.
+Enregistre une image d'une zone d'affichage (viewport).
 
 #### Utilisation
 
@@ -74,20 +75,20 @@ await browser.saveScreen(
 
 - Navigateurs de bureau
 - Navigateurs mobiles
-- Applications hybrides mobiles
-- Applications natives mobiles
+- Applications mobiles hybrides
+- Applications mobiles natives
 
 #### Paramètres
--   **`tag`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** string
--   **`saveScreenOptions`:**
-    -   **Obligatoire:** Non
-    -   **Type:** un objet d'options, voir [Options de sauvegarde](./method-options#save-options)
+-   **`tag` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** string
+-   **`saveScreenOptions` :**
+    -   **Obligatoire :** Non
+    -   **Type :** un objet d'options, voir [Options de sauvegarde](./method-options#save-options)
 
-#### Sortie:
+#### Sortie :
 
-Voir la page [Sortie de test](./test-output#savescreenelementfullpagescreen).
+Consultez la page [Sortie des tests](./test-output#savescreenelementfullpagescreen).
 
 ### `saveFullPageScreen`
 
@@ -112,20 +113,20 @@ await browser.saveFullPageScreen(
 - Navigateurs mobiles
 
 #### Paramètres
--   **`tag`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** string
--   **`saveFullPageScreenOptions`:**
-    -   **Obligatoire:** Non
-    -   **Type:** un objet d'options, voir [Options de sauvegarde](./method-options#save-options)
+-   **`tag` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** string
+-   **`saveFullPageScreenOptions` :**
+    -   **Obligatoire :** Non
+    -   **Type :** un objet d'options, voir [Options de sauvegarde](./method-options#save-options)
 
-#### Sortie:
+#### Sortie :
 
-Voir la page [Sortie de test](./test-output#savescreenelementfullpagescreen).
+Consultez la page [Sortie des tests](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Enregistre une image de l'écran complet avec les lignes et points tabulables.
+Enregistre une image de l'écran complet avec les lignes et les points de tabulation.
 
 #### Utilisation
 
@@ -145,21 +146,21 @@ await browser.saveTabbablePage(
 - Navigateurs de bureau
 
 #### Paramètres
--   **`tag`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** string
--   **`saveTabbableOptions`:**
-    -   **Obligatoire:** Non
-    -   **Type:** un objet d'options, voir [Options de sauvegarde](./method-options#save-options)
+-   **`tag` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** string
+-   **`saveTabbableOptions` :**
+    -   **Obligatoire :** Non
+    -   **Type :** un objet d'options, voir [Options de sauvegarde](./method-options#save-options)
 
-#### Sortie:
+#### Sortie :
 
-Voir la page [Sortie de test](./test-output#savescreenelementfullpagescreen).
+Consultez la page [Sortie des tests](./test-output#savescreenelementfullpagescreen).
 
 ## Méthodes de vérification
 
-:::info CONSEIL
-Lorsque les méthodes `check` sont utilisées pour la première fois, vous verrez l'avertissement ci-dessous dans les journaux. Cela signifie que vous n'avez pas besoin de combiner les méthodes `save` et `check` si vous souhaitez créer votre référence.
+:::info ASTUCE
+Lorsque les méthodes `check` sont utilisées pour la première fois, vous verrez l'avertissement ci-dessous dans les logs. Cela signifie que vous n'avez pas besoin de combiner les méthodes `save` et `check` si vous souhaitez créer votre image de référence.
 
 ```shell
 #####################################################################################
@@ -181,7 +182,7 @@ Compare une image d'un élément à une image de référence.
 
 ```ts
 await browser.checkElement(
-    // element
+    // élément
     '#element-selector',
     // tag
     'your-reference',
@@ -196,27 +197,27 @@ await browser.checkElement(
 
 - Navigateurs de bureau
 - Navigateurs mobiles
-- Applications hybrides mobiles
-- Applications natives mobiles
+- Applications mobiles hybrides
+- Applications mobiles natives
 
 #### Paramètres
--   **`element`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** Élément WebdriverIO
--   **`tag`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** string
--   **`checkElementOptions`:**
-    -   **Obligatoire:** Non
-    -   **Type:** un objet d'options, voir [Options de comparaison/vérification](./method-options#compare-check-options)
+-   **`element` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** Élément WebdriverIO
+-   **`tag` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** string
+-   **`checkElementOptions` :**
+    -   **Obligatoire :** Non
+    -   **Type :** un objet d'options, voir [Options de comparaison/vérification](./method-options#compare-check-options)
 
-#### Sortie:
+#### Sortie :
 
-Voir la page [Sortie de test](./test-output#checkscreenelementfullpagescreen).
+Consultez la page [Sortie des tests](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkScreen`
 
-Compare une image d'une fenêtre d'affichage à une image de référence.
+Compare une image d'une zone d'affichage (viewport) à une image de référence.
 
 #### Utilisation
 
@@ -235,20 +236,20 @@ await browser.checkScreen(
 
 - Navigateurs de bureau
 - Navigateurs mobiles
-- Applications hybrides mobiles
-- Applications natives mobiles
+- Applications mobiles hybrides
+- Applications mobiles natives
 
 #### Paramètres
--   **`tag`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** string
--   **`checkScreenOptions`:**
-    -   **Obligatoire:** Non
-    -   **Type:** un objet d'options, voir [Options de comparaison/vérification](./method-options#compare-check-options)
+-   **`tag` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** string
+-   **`checkScreenOptions` :**
+    -   **Obligatoire :** Non
+    -   **Type :** un objet d'options, voir [Options de comparaison/vérification](./method-options#compare-check-options)
 
-#### Sortie:
+#### Sortie :
 
-Voir la page [Sortie de test](./test-output#checkscreenelementfullpagescreen).
+Consultez la page [Sortie des tests](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
@@ -273,20 +274,20 @@ await browser.checkFullPageScreen(
 - Navigateurs mobiles
 
 #### Paramètres
--   **`tag`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** string
--   **`checkFullPageOptions`:**
-    -   **Obligatoire:** Non
-    -   **Type:** un objet d'options, voir [Options de comparaison/vérification](./method-options#compare-check-options)
+-   **`tag` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** string
+-   **`checkFullPageOptions` :**
+    -   **Obligatoire :** Non
+    -   **Type :** un objet d'options, voir [Options de comparaison/vérification](./method-options#compare-check-options)
 
-#### Sortie:
+#### Sortie :
 
-Voir la page [Sortie de test](./test-output#checkscreenelementfullpagescreen).
+Consultez la page [Sortie des tests](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Compare une image de l'écran complet avec les lignes et points tabulables à une image de référence.
+Compare une image de l'écran complet avec les lignes et les points de tabulation à une image de référence.
 
 #### Utilisation
 
@@ -306,13 +307,13 @@ await browser.checkTabbablePage(
 - Navigateurs de bureau
 
 #### Paramètres
--   **`tag`:**
-    -   **Obligatoire:** Oui
-    -   **Type:** string
--   **`checkTabbableOptions`:**
-    -   **Obligatoire:** Non
-    -   **Type:** un objet d'options, voir [Options de comparaison/vérification](./method-options#compare-check-options)
+-   **`tag` :**
+    -   **Obligatoire :** Oui
+    -   **Type :** string
+-   **`checkTabbableOptions` :**
+    -   **Obligatoire :** Non
+    -   **Type :** un objet d'options, voir [Options de comparaison/vérification](./method-options#compare-check-options)
 
-#### Sortie:
+#### Sortie :
 
-Voir la page [Sortie de test](./test-output#checkscreenelementfullpagescreen).
+Consultez la page [Sortie des tests](./test-output#checkscreenelementfullpagescreen).

@@ -1,13 +1,14 @@
 ---
 id: svelte
-title: स्वेल्ट
+title: Svelte
+description: "svelte प्रीसेट के साथ Svelte प्रोजेक्ट के लिए WebdriverIO ब्राउज़र रनर सेट अप करें और Testing Library के साथ कंपोनेंट टेस्ट लिखें।"
 ---
 
-[Svelte](https://svelte.dev/) यूजर इंटरफेस बनाने के लिए एक मौलिक नया दृष्टिकोण है। जहां React और Vue जैसे पारंपरिक फ्रेमवर्क अधिकांश काम ब्राउज़र में करते हैं, वहीं Svelte उस काम को एक कंपाइल चरण में स्थानांतरित करता है जो आपके ऐप को बनाते समय होता है। आप WebdriverIO और उसके [ब्राउज़र रनर](/docs/runner#browser-runner) का उपयोग करके Svelte कंपोनेंट्स का सीधे एक वास्तविक ब्राउज़र में परीक्षण कर सकते हैं।
+[Svelte](https://svelte.dev/) यूज़र इंटरफ़ेस बनाने का एक बिल्कुल नया तरीका है। जहाँ React और Vue जैसे पारंपरिक फ्रेमवर्क अपना अधिकांश काम ब्राउज़र में करते हैं, वहीं Svelte उस काम को एक कंपाइल चरण में ले जाता है जो आपके ऐप को बिल्ड करते समय होता है। आप WebdriverIO और इसके [ब्राउज़र रनर](/docs/runner#browser-runner) का उपयोग करके Svelte कंपोनेंट्स को सीधे एक वास्तविक ब्राउज़र में टेस्ट कर सकते हैं।
 
 ## सेटअप
 
-अपने Svelte प्रोजेक्ट में WebdriverIO को सेटअप करने के लिए, हमारे कंपोनेंट टेस्टिंग दस्तावेज़ों में [निर्देशों](/docs/component-testing#set-up) का पालन करें। अपने रनर विकल्पों में प्रीसेट के रूप में `svelte` का चयन करना सुनिश्चित करें, उदाहरण के लिए:
+अपने Svelte प्रोजेक्ट में WebdriverIO सेट अप करने के लिए, हमारे कंपोनेंट टेस्टिंग डॉक्स में दिए गए [निर्देशों](/docs/component-testing#set-up) का पालन करें। अपने रनर विकल्पों में प्रीसेट के रूप में `svelte` चुनना सुनिश्चित करें, उदाहरण के लिए:
 
 ```js
 // wdio.conf.js
@@ -22,17 +23,17 @@ export const config = {
 
 :::info
 
-यदि आप पहले से ही [Vite](https://vitejs.dev/) का उपयोग विकास सर्वर के रूप में कर रहे हैं, तो आप अपने `vite.config.ts` में अपने कॉन्फ़िगरेशन को अपने WebdriverIO कॉन्फ़िग के भीतर पुन: उपयोग कर सकते हैं। अधिक जानकारी के लिए, [रनर विकल्पों](/docs/runner#runner-options) में `viteConfig` देखें।
+यदि आप पहले से ही डेवलपमेंट सर्वर के रूप में [Vite](https://vitejs.dev/) का उपयोग कर रहे हैं, तो आप अपने WebdriverIO कॉन्फ़िग में `vite.config.ts` के अपने कॉन्फ़िगरेशन का पुनः उपयोग भी कर सकते हैं। अधिक जानकारी के लिए, [रनर विकल्पों](/docs/runner#runner-options) में `viteConfig` देखें।
 
 :::
 
-Svelte प्रीसेट के लिए `@sveltejs/vite-plugin-svelte` का इंस्टॉल होना आवश्यक है। साथ ही, हम कंपोनेंट को टेस्ट पेज में रेंडर करने के लिए [Testing Library](https://testing-library.com/) का उपयोग करने की सलाह देते हैं। इसके लिए आपको निम्नलिखित अतिरिक्त डिपेंडेंसीज इंस्टॉल करनी होंगी:
+Svelte प्रीसेट के लिए `@sveltejs/vite-plugin-svelte` का इंस्टॉल होना आवश्यक है। साथ ही, हम कंपोनेंट को टेस्ट पेज में रेंडर करने के लिए [Testing Library](https://testing-library.com/) का उपयोग करने की सलाह देते हैं। इसलिए आपको निम्नलिखित अतिरिक्त डिपेंडेंसीज़ इंस्टॉल करनी होंगी:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
 ```
 
-फिर आप निम्न कमांड चलाकर टेस्ट शुरू कर सकते हैं:
+फिर आप निम्नलिखित कमांड चलाकर टेस्ट शुरू कर सकते हैं:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -57,7 +58,7 @@ npx wdio run ./wdio.conf.js
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-अपने टेस्ट में, कंपोनेंट को टेस्ट पेज से जोड़ने के लिए `@testing-library/svelte` से `render` मेथड का उपयोग करें। कंपोनेंट के साथ इंटरैक्ट करने के लिए हम WebdriverIO कमांड्स का उपयोग करने की सलाह देते हैं क्योंकि वे वास्तविक उपयोगकर्ता इंटरैक्शन के करीब व्यवहार करते हैं, उदाहरण के लिए:
+अपने टेस्ट में कंपोनेंट को टेस्ट पेज से जोड़ने के लिए `@testing-library/svelte` के `render` मेथड का उपयोग करें। कंपोनेंट के साथ इंटरैक्ट करने के लिए हम WebdriverIO कमांड्स का उपयोग करने की सलाह देते हैं क्योंकि वे वास्तविक यूज़र इंटरैक्शन के अधिक करीब व्यवहार करते हैं, उदाहरण के लिए:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'
@@ -78,4 +79,4 @@ describe('Svelte Component Testing', () => {
 })
 ```
 
-आप हमारे [उदाहरण रिपॉजिटरी](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite) में Svelte के लिए WebdriverIO कंपोनेंट टेस्ट सूट का पूर्ण उदाहरण पा सकते हैं।
+आप Svelte के लिए WebdriverIO कंपोनेंट टेस्ट सूट का पूरा उदाहरण हमारी [उदाहरण रिपॉजिटरी](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite) में पा सकते हैं।

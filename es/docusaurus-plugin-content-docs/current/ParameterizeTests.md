@@ -1,9 +1,10 @@
 ---
 id: parameterize-tests
-title: Parametrizar Pruebas
+title: Parametrizar pruebas
+description: "Parametriza pruebas con bucles y funciones dinámicas, variables de entorno, archivos .env o datos de un archivo CSV."
 ---
 
-Puedes parametrizar pruebas a nivel de test, mediante simples bucles `for`, por ejemplo:
+Puedes parametrizar pruebas fácilmente a nivel de prueba, mediante simples bucles `for`, por ejemplo:
 
 ```ts title=example.spec.js
 const people = ['Alice', 'Bob']
@@ -16,7 +17,7 @@ describe('my tests', () => {
 })
 ```
 
-o extrayendo pruebas en funciones dinámicas, por ejemplo:
+o extrayendo las pruebas en funciones dinámicas, por ejemplo:
 
 ```js title=dynamic.spec.js
 import { browser } from '@wdio/globals'
@@ -34,11 +35,11 @@ describe('page components', () => {
 })
 ```
 
-## Pasando Variables de Entorno
+## Pasar variables de entorno
 
-Puedes usar variables de entorno para configurar pruebas desde la línea de comandos.
+Puedes usar variables de entorno para configurar las pruebas desde la línea de comandos.
 
-Por ejemplo, considera el siguiente archivo de prueba que necesita un nombre de usuario y una contraseña. Generalmente es una buena idea no almacenar tus secretos en el código fuente, por lo que necesitaremos una forma de pasar secretos desde el exterior.
+Por ejemplo, considera el siguiente archivo de prueba que necesita un nombre de usuario y una contraseña. Normalmente es una buena idea no almacenar tus secretos en el código fuente, por lo que necesitaremos una forma de pasar los secretos desde fuera.
 
 ```ts title=example.spec.ts
 it(`example test`, async () => {
@@ -97,7 +98,7 @@ export const config = {
 }
 ```
 
-Ahora, puedes ejecutar pruebas contra un entorno de staging o de producción:
+Ahora puedes ejecutar las pruebas contra un entorno de staging o de producción:
 
 <Tabs
   defaultValue="bash"
@@ -134,26 +135,26 @@ npx wdio run wdio.conf.js
 
 ## Archivos `.env`
 
-Para facilitar la gestión de variables de entorno, considera algo como los archivos `.env`. WebdriverIO carga automáticamente los archivos `.env` en tu entorno. En lugar de definir la variable de entorno como parte de la llamada de comando, puedes definir el siguiente `.env`:
+Para que las variables de entorno sean más fáciles de gestionar, considera usar algo como archivos `.env`. WebdriverIO carga automáticamente los archivos `.env` en tu entorno. En lugar de definir la variable de entorno como parte de la llamada al comando, puedes definir el siguiente `.env`:
 
 ```bash title=".env"
-# .env file
+# archivo .env
 STAGING=0
 USERNAME=me
 PASSWORD=secret
 ```
 
-Ejecuta las pruebas como de costumbre, tus variables de entorno deberían ser detectadas.
+Ejecuta las pruebas como de costumbre; tus variables de entorno deberían ser detectadas.
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-## Crear pruebas a través de un archivo CSV
+## Crear pruebas a partir de un archivo CSV
 
-El test-runner de WebdriverIO se ejecuta en Node.js, esto significa que puedes leer archivos directamente desde el sistema de archivos y analizarlos con tu biblioteca CSV preferida.
+El test-runner de WebdriverIO se ejecuta en Node.js, lo que significa que puedes leer archivos directamente desde el sistema de archivos y analizarlos con tu biblioteca CSV preferida.
 
-Mira por ejemplo este archivo CSV, en nuestro ejemplo input.csv:
+Observa por ejemplo este archivo CSV, en nuestro ejemplo input.csv:
 
 ```csv
 "test_case","some_value","some_other_value"
@@ -163,7 +164,7 @@ Mira por ejemplo este archivo CSV, en nuestro ejemplo input.csv:
 "value 4","value 44","foobar4321"
 ```
 
-Basándonos en esto, generaremos algunas pruebas utilizando la biblioteca csv-parse de NPM:
+A partir de esto, generaremos algunas pruebas utilizando la biblioteca csv-parse de NPM:
 
 ```js title=test.spec.ts
 import fs from 'node:fs'

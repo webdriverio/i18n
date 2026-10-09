@@ -1,68 +1,78 @@
 ---
 id: configuration
 title: Konfiguracja
+description: "Sprawdź wszystkie opcje konfiguracyjne dla WebDriver, samodzielnego WebdriverIO oraz testrunnera WDIO, w tym wszystkie hooki testrunnera."
 ---
 
-W zależności od [typu konfiguracji](/docs/setuptypes) (np. używanie surowych protokołów WebDriver, WebdriverIO jako samodzielnego pakietu lub testrunner WDIO) dostępne są różne opcje kontrolowania środowiska.
+W zależności od [typu konfiguracji](/docs/setuptypes) (np. korzystanie z surowych powiązań protokołu, WebdriverIO jako samodzielnego pakietu lub testrunnera WDIO) dostępny jest inny zestaw opcji do sterowania środowiskiem.
 
 ## Opcje WebDriver
 
-Następujące opcje są zdefiniowane podczas używania pakietu protokołu [`webdriver`](https://www.npmjs.com/package/webdriver):
+Następujące opcje są zdefiniowane podczas korzystania z pakietu protokołu [`webdriver`](https://www.npmjs.com/package/webdriver):
 
 ### protocol
 
+<Option type="String" default="http">
+
 Protokół używany do komunikacji z serwerem sterownika.
 
-Typ: `String`<br />
-Domyślnie: `http`
+</Option>
 
 ### hostname
 
-Host serwera sterownika.
+<Option type="String" default="0.0.0.0">
 
-Typ: `String`<br />
-Domyślnie: `0.0.0.0`
+Host Twojego serwera sterownika.
+
+</Option>
 
 ### port
 
-Port, na którym działa serwer sterownika.
+<Option type="Number" default="undefined">
 
-Typ: `Number`<br />
-Domyślnie: `undefined`
+Port, na którym działa Twój serwer sterownika.
+
+</Option>
 
 ### path
 
+<Option type="String" default="/">
+
 Ścieżka do punktu końcowego serwera sterownika.
 
-Typ: `String`<br />
-Domyślnie: `/`
+</Option>
 
 ### queryParams
 
+<Option type="Object" default="undefined">
+
 Parametry zapytania przekazywane do serwera sterownika.
 
-Typ: `Object`<br />
-Domyślnie: `undefined`
+</Option>
 
 ### user
 
-Twoja nazwa użytkownika usługi w chmurze (działa tylko dla kont [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) lub [TestMu AI](https://www.testmuai.com/)). Jeśli ustawiona, WebdriverIO automatycznie skonfiguruje opcje połączenia za Ciebie. Jeśli nie korzystasz z dostawcy chmury, może być używana do uwierzytelnienia dowolnego innego backendu WebDrivera.
+<Option type="String" default="undefined">
 
-Typ: `String`<br />
-Domyślnie: `undefined`
+Nazwa użytkownika Twojej usługi chmurowej (działa tylko dla kont [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) lub [TestMu AI](https://www.testmuai.com/)). Jeśli jest ustawiona, WebdriverIO automatycznie ustawi za Ciebie opcje połączenia. Jeśli nie korzystasz z dostawcy chmurowego, możesz jej użyć do uwierzytelnienia w dowolnym innym backendzie WebDriver.
+
+</Option>
 
 ### key
 
-Twój klucz dostępu lub klucz tajny do usługi w chmurze (działa tylko dla kont [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) lub [TestMu AI](https://www.testmuai.com/)). Jeśli ustawiony, WebdriverIO automatycznie skonfiguruje opcje połączenia za Ciebie. Jeśli nie korzystasz z dostawcy chmury, może być używany do uwierzytelnienia dowolnego innego backendu WebDrivera.
+<Option type="String" default="undefined">
 
-Typ: `String`<br />
-Domyślnie: `undefined`
+Klucz dostępu lub klucz tajny Twojej usługi chmurowej (działa tylko dla kont [Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) lub [TestMu AI](https://www.testmuai.com/)). Jeśli jest ustawiony, WebdriverIO automatycznie ustawi za Ciebie opcje połączenia. Jeśli nie korzystasz z dostawcy chmurowego, możesz go użyć do uwierzytelnienia w dowolnym innym backendzie WebDriver.
+
+</Option>
 
 ### capabilities
 
-Definiuje możliwości, które chcesz uruchomić w swojej sesji WebDrivera. Sprawdź [Protokół WebDriver](https://w3c.github.io/webdriver/#capabilities), aby uzyskać więcej szczegółów. Jeśli używasz starszego sterownika, który nie obsługuje protokołu WebDriver, musisz użyć [możliwości JSONWireProtocol](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities), aby pomyślnie uruchomić sesję.
+<Option type="Object" default="null">
 
-Oprócz możliwości opartych na WebDriver, możesz zastosować opcje specyficzne dla przeglądarki i dostawcy, które pozwalają na głębszą konfigurację zdalnej przeglądarki lub urządzenia. Są one udokumentowane w odpowiednich dokumentach dostawców, np.:
+Definiuje capabilities, które chcesz uruchomić w swojej sesji WebDriver. Więcej szczegółów znajdziesz w [protokole WebDriver](https://w3c.github.io/webdriver/#capabilities).
+
+Oprócz capabilities opartych na WebDriver możesz zastosować opcje specyficzne dla przeglądarki i dostawcy, które pozwalają na głębszą konfigurację zdalnej przeglądarki lub urządzenia. Są one opisane w dokumentacji odpowiednich dostawców, np.:
 
 - `goog:chromeOptions`: dla [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)
 - `moz:firefoxOptions`: dla [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)
@@ -71,11 +81,9 @@ Oprócz możliwości opartych na WebDriver, możesz zastosować opcje specyficzn
 - `bstack:options`: dla [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)
 - `selenoid:options`: dla [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
 
-Dodatkowo, przydatnym narzędziem jest [Konfigurator Automatycznych Testów](https://docs.saucelabs.com/basics/platform-configurator/) od Sauce Labs, który pomaga stworzyć ten obiekt poprzez wybieranie pożądanych możliwości.
+Dodatkowo przydatnym narzędziem jest [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/) od Sauce Labs, który pomaga utworzyć ten obiekt poprzez wyklikanie żądanych capabilities.
 
-Typ: `Object`<br />
-Domyślnie: `null`
-
+</Option>
 **Przykład:**
 
 ```js
@@ -86,56 +94,66 @@ Domyślnie: `null`
 }
 ```
 
-Jeśli uruchamiasz testy webowe lub natywne na urządzeniach mobilnych, `capabilities` różnią się od protokołu WebDriver. Zobacz [Dokumentację Appium](https://appium.io/docs/en/latest/guides/caps/) aby uzyskać więcej szczegółów.
+Jeśli uruchamiasz testy webowe lub natywne na urządzeniach mobilnych, `capabilities` różnią się od protokołu WebDriver. Więcej szczegółów znajdziesz w [dokumentacji Appium](https://appium.io/docs/en/latest/guides/caps/).
 
 ### logLevel
 
+<Option type="String" default="info" values="trace | debug | info | warn | error | silent">
+
 Poziom szczegółowości logowania.
 
-Typ: `String`<br />
-Domyślnie: `info`<br />
-Opcje: `trace` | `debug` | `info` | `warn` | `error` | `silent`
+</Option>
 
 ### outputDir
 
-Katalog do przechowywania wszystkich plików logów testrunner (w tym logów reporterów i logów `wdio`). Jeśli nie jest ustawiony, wszystkie logi są przesyłane do `stdout`. Ponieważ większość reporterów jest skonfigurowana do logowania do `stdout`, zalecane jest używanie tej opcji tylko dla określonych reporterów, gdzie bardziej sensowne jest zapisywanie raportów do pliku (jak na przykład reporter `junit`).
+<Option type="String" default="null">
 
-W trybie standalone, jedynym generowanym logiem przez WebdriverIO będzie log `wdio`.
+Katalog do przechowywania wszystkich plików logów testrunnera (w tym logów reporterów i logów `wdio`). Jeśli nie jest ustawiony, wszystkie logi są przesyłane strumieniowo do `stdout`. Ponieważ większość reporterów jest przystosowana do logowania do `stdout`, zaleca się używanie tej opcji tylko dla określonych reporterów, w przypadku których bardziej sensowne jest zapisywanie raportu do pliku (jak na przykład reporter `junit`).
 
-Typ: `String`<br />
-Domyślnie: `null`
+Podczas działania w trybie samodzielnym jedynym logiem generowanym przez WebdriverIO będzie log `wdio`.
+
+</Option>
 
 ### connectionRetryTimeout
 
-Limit czasu dla dowolnego żądania WebDrivera do sterownika lub grida.
+<Option type="Number" default="120000">
 
-Typ: `Number`<br />
-Domyślnie: `120000`
+Limit czasu dla dowolnego żądania WebDriver do sterownika lub gridu.
+
+</Option>
 
 ### connectionRetryCount
 
-Maksymalna liczba prób ponowienia żądania do serwera Selenium.
+<Option type="Number" default="3">
 
-Typ: `Number`<br />
-Domyślnie: `3`
+Maksymalna liczba ponownych prób żądań do serwera Selenium.
+
+</Option>
+
+### bidiResponseTimeout
+
+<Option type="Number" default="180000">
+
+Limit czasu (w ms) na otrzymanie odpowiedzi z przeglądarki na polecenie WebDriver Bidi. Zwiększ tę wartość, jeśli uruchamiasz polecenia, np. [`execute`](/docs/api/browser/execute), których rozwiązanie w uzasadniony sposób trwa dłużej niż domyślnie — w przeciwnym razie WebdriverIO przestanie czekać, zanim przeglądarka zakończy działanie.
+
+</Option>
 
 ### agent
 
-Pozwala na użycie niestandardowego agenta `http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) do wykonywania żądań.
-
-Typ: `Object`<br />
-Domyślnie:
-
-```js
-{
+<Option type="Object" default={`{
     http: new http.Agent({ keepAlive: true }),
     https: new https.Agent({ keepAlive: true })
-}
-```
+}`}>
+
+Pozwala na użycie niestandardowego [agenta](https://www.npmjs.com/package/got#agent)` http`/`https`/`http2` do wykonywania żądań.
+
+</Option>
 
 ### headers
 
-Określa niestandardowe nagłówki `headers` przekazywane do każdego żądania WebDrivera. Jeśli Twój Grid Selenium wymaga Uwierzytelnienia Podstawowego, zalecamy przekazanie nagłówka `Authorization` przez tę opcję w celu uwierzytelnienia żądań WebDrivera, np.:
+<Option type="Object" default={`{}`}>
+
+Określ niestandardowe `headers`, które mają być przekazywane w każdym żądaniu WebDriver. Jeśli Twój Selenium Grid wymaga uwierzytelniania Basic, zalecamy przekazanie nagłówka `Authorization` za pomocą tej opcji, aby uwierzytelnić żądania WebDriver, np.:
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
@@ -143,9 +161,9 @@ import { Buffer } from 'buffer';
 const username = process.env.SELENIUM_GRID_USERNAME;
 const password = process.env.SELENIUM_GRID_PASSWORD;
 
-// Połącz nazwę użytkownika i hasło separatorem dwukropka
+// Połącz nazwę użytkownika i hasło, rozdzielając je dwukropkiem
 const credentials = `${username}:${password}`;
-// Zakoduj poświadczenia używając Base64
+// Zakoduj dane uwierzytelniające za pomocą Base64
 const encodedCredentials = Buffer.from(credentials).toString('base64');
 
 export const config: WebdriverIO.Config = {
@@ -157,55 +175,59 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Typ: `Object`<br />
-Domyślnie: `{}`
+</Option>
 
 ### transformRequest
 
-Funkcja przechwytująca [opcje żądania HTTP](https://github.com/sindresorhus/got#options) przed wykonaniem żądania WebDrivera.
+<Option type="(RequestOptions) => RequestOptions" default="none">
 
-Typ: `(RequestOptions) => RequestOptions`<br />
-Domyślnie: *brak*
+Funkcja przechwytująca [opcje żądania HTTP](https://github.com/sindresorhus/got#options) przed wykonaniem żądania WebDriver
+
+</Option>
 
 ### transformResponse
 
-Funkcja przechwytująca obiekty odpowiedzi HTTP po otrzymaniu odpowiedzi WebDrivera. Funkcja otrzymuje oryginalny obiekt odpowiedzi jako pierwszy argument i odpowiadające mu `RequestOptions` jako drugi argument.
+<Option type="(Response, RequestOptions) => Response" default="none">
 
-Typ: `(Response, RequestOptions) => Response`<br />
-Domyślnie: *brak*
+Funkcja przechwytująca obiekty odpowiedzi HTTP po nadejściu odpowiedzi WebDriver. Funkcja otrzymuje oryginalny obiekt odpowiedzi jako pierwszy argument i odpowiadające mu `RequestOptions` jako drugi argument.
+
+</Option>
 
 ### strictSSL
 
-Określa, czy wymagane jest, aby certyfikat SSL był ważny.
-Może być ustawione za pomocą zmiennych środowiskowych jako `STRICT_SSL` lub `strict_ssl`.
+<Option type="Boolean" default="true">
 
-Typ: `Boolean`<br />
-Domyślnie: `true`
+Określa, czy certyfikat SSL nie musi być ważny.
+Można to ustawić za pomocą zmiennych środowiskowych `STRICT_SSL` lub `strict_ssl`.
+
+</Option>
 
 ### enableDirectConnect
 
-Określa, czy włączyć [funkcję bezpośredniego połączenia Appium](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments).
-Nie robi nic, jeśli odpowiedź nie ma odpowiednich kluczy, podczas gdy flaga jest włączona.
+<Option type="Boolean" default="true">
 
-Typ: `Boolean`<br />
-Domyślnie: `true`
+Określa, czy włączyć [funkcję bezpośredniego połączenia Appium](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments).
+Nie ma żadnego efektu, jeśli odpowiedź nie zawierała odpowiednich kluczy, mimo że flaga jest włączona.
+
+</Option>
 
 ### cacheDir
 
-Ścieżka do katalogu głównego pamięci podręcznej. Ten katalog jest używany do przechowywania wszystkich sterowników, które są pobierane podczas próby rozpoczęcia sesji.
+<Option type="String" default="process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()">
 
-Typ: `String`<br />
-Domyślnie: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+Ścieżka do katalogu głównego pamięci podręcznej. Ten katalog służy do przechowywania wszystkich sterowników pobieranych podczas próby uruchomienia sesji.
+
+</Option>
 
 ### maskingPatterns
 
-Dla bezpieczniejszego logowania, wyrażenia regularne ustawione za pomocą `maskingPatterns` mogą zasłonić poufne informacje z dziennika.
- - Format ciągu to wyrażenie regularne z flagami lub bez (np. `/.../i`) i oddzielone przecinkami dla wielu wyrażeń regularnych.
- - Więcej szczegółów na temat wzorców maskowania znajdziesz w [sekcji Masking Patterns w README Loggera WDIO](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
+<Option type="String" default="undefined">
 
-Typ: `String`<br />
-Domyślnie: `undefined`
+Dla bezpieczniejszego logowania wyrażenia regularne ustawione w `maskingPatterns` mogą ukrywać wrażliwe informacje w logach.
+ - Format ciągu znaków to wyrażenie regularne z flagami lub bez nich (np. `/.../i`), a wiele wyrażeń regularnych oddziela się przecinkami.
+ - Więcej szczegółów na temat wzorców maskowania znajdziesz w [sekcji Masking Patterns w README WDIO Logger](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
 
+</Option>
 **Przykład:**
 
 ```js
@@ -214,17 +236,17 @@ Domyślnie: `undefined`
 }
 ```
 
----
-
 ## WebdriverIO
 
-Następujące opcje (w tym te wymienione powyżej) mogą być używane z WebdriverIO w trybie standalone:
+Następujące opcje (w tym wymienione powyżej) mogą być używane z WebdriverIO w trybie samodzielnym:
 
 ### automationProtocol
 
-Definiuj protokół, którego chcesz użyć do automatyzacji przeglądarki. Obecnie obsługiwany jest tylko [`webdriver`](https://www.npmjs.com/package/webdriver), ponieważ jest to główna technologia automatyzacji przeglądarki używana przez WebdriverIO.
+<Option type="String" default="webdriver">
 
-Jeśli chcesz automatyzować przeglądarkę za pomocą innej technologii automatyzacji, upewnij się, że ustawiłeś tę właściwość na ścieżkę, która prowadzi do modułu zgodnego z następującym interfejsem:
+Określ protokół, którego chcesz używać do automatyzacji przeglądarki. Obecnie obsługiwany jest tylko [`webdriver`](https://www.npmjs.com/package/webdriver), ponieważ jest to główna technologia automatyzacji przeglądarki używana przez WebdriverIO.
+
+Jeśli chcesz automatyzować przeglądarkę przy użyciu innej technologii automatyzacji, ustaw tę właściwość na ścieżkę wskazującą na moduł zgodny z następującym interfejsem:
 
 ```ts
 import type { Capabilities } from '@wdio/types';
@@ -237,10 +259,10 @@ export default class YourAutomationLibrary {
      * jako implementację referencyjną
      *
      * @param {Capabilities.RemoteConfig} options opcje WebdriverIO
-     * @param {Function} hook który pozwala modyfikować klienta przed zwolnieniem z funkcji
+     * @param {Function} hook pozwalający zmodyfikować klienta, zanim zostanie zwrócony z funkcji
      * @param {PropertyDescriptorMap} userPrototype pozwala użytkownikowi dodawać niestandardowe polecenia protokołu
-     * @param {Function} customCommandWrapper pozwala modyfikować wykonanie polecenia
-     * @returns instancję klienta zgodną z WebdriverIO
+     * @param {Function} customCommandWrapper pozwala modyfikować wykonywanie poleceń
+     * @returns instancja klienta zgodna z WebdriverIO
      */
     static newSession(
         options: Capabilities.RemoteConfig,
@@ -250,7 +272,7 @@ export default class YourAutomationLibrary {
     ): Promise<Client>;
 
     /**
-     * pozwala użytkownikowi dołączyć do istniejących sesji
+     * pozwala użytkownikowi podłączyć się do istniejących sesji
      * @optional
      */
     static attachToSession(
@@ -260,11 +282,11 @@ export default class YourAutomationLibrary {
     ): Client;
 
     /**
-     * Zmienia identyfikator sesji instancji i możliwości przeglądarki dla nowej sesji
+     * Zmienia identyfikator sesji instancji i capabilities przeglądarki dla nowej sesji
      * bezpośrednio w przekazanym obiekcie przeglądarki
      *
      * @optional
-     * @param   {object} instance  obiekt, który otrzymujemy z nowej sesji przeglądarki.
+     * @param   {object} instance  obiekt otrzymany z nowej sesji przeglądarki.
      * @returns {string}           nowy identyfikator sesji przeglądarki
      */
     static reloadSession(
@@ -274,200 +296,236 @@ export default class YourAutomationLibrary {
 }
 ```
 
-Typ: `String`<br />
-Domyślnie: `webdriver`
+</Option>
 
 ### baseUrl
 
-Skróć wywołania polecenia `url` ustawiając bazowy URL.
-- Jeśli Twój parametr `url` zaczyna się od `/`, to `baseUrl` jest dołączany na początku (z wyjątkiem ścieżki `baseUrl`, jeśli ją ma).
-- Jeśli Twój parametr `url` zaczyna się bez schematu lub `/` (jak `some/path`), to pełny `baseUrl` jest dołączany bezpośrednio na początku.
+<Option type="String" default="null">
 
-Typ: `String`<br />
-Domyślnie: `null`
+Skróć wywołania polecenia `url`, ustawiając bazowy URL.
+- Jeśli Twój parametr `url` zaczyna się od `/`, wówczas `baseUrl` jest dodawany na początku (z wyjątkiem ścieżki `baseUrl`, jeśli ją posiada).
+- Jeśli Twój parametr `url` nie zaczyna się od schematu ani od `/` (np. `some/path`), wówczas pełny `baseUrl` jest dodawany bezpośrednio na początku.
+
+</Option>
 
 ### waitforTimeout
 
-Domyślny limit czasu dla wszystkich poleceń `waitFor*`. (Zwróć uwagę na małą literę `f` w nazwie opcji.) Ten limit czasu __tylko__ wpływa na polecenia zaczynające się od `waitFor*` i ich domyślny czas oczekiwania.
+<Option type="Number" default="5000">
+
+Domyślny limit czasu dla wszystkich poleceń `waitFor*`. (Zwróć uwagę na małą literę `f` w nazwie opcji). Ten limit czasu wpływa __tylko__ na polecenia zaczynające się od `waitFor*` i ich domyślny czas oczekiwania.
 
 Aby zwiększyć limit czasu dla _testu_, zapoznaj się z dokumentacją frameworka.
 
-Typ: `Number`<br />
-Domyślnie: `5000`
+</Option>
 
 ### waitforInterval
 
-Domyślny interwał dla wszystkich poleceń `waitFor*` do sprawdzania, czy oczekiwany stan (np. widoczność) uległ zmianie.
+<Option type="Number" default="100">
 
-Typ: `Number`<br />
-Domyślnie: `100`
+Domyślny interwał, w jakim wszystkie polecenia `waitFor*` sprawdzają, czy oczekiwany stan (np. widoczność) uległ zmianie.
+
+</Option>
+
+### strictSelectors
+
+<Option type="Boolean" default="true">
+
+Sprawia, że polecenie [`$`](/docs/api/browser/$) zgłasza `StrictSelectorError`, gdy podany selektor wskazuje na więcej niż jeden element, zamiast po cichu używać pierwszego dopasowania. Nie dotyczy to `$$`.
+
+Możesz zrezygnować z tego zachowania dla pojedynczego zapytania, przekazując `{ strict: false }` jako drugi argument, np. `$('button', { strict: false })`.
+
+Szczegóły znajdziesz w przewodniku [Selektory](/docs/selectors#strict-mode).
+
+</Option>
+
+### maxSpyCollectedBodySize
+
+<Option type="Number" default="10485760 (10MB)">
+
+Maksymalny rozmiar treści odpowiedzi (w bajtach), która może zostać zwrócona podczas używania polecenia [`mock`](/docs/api/browser/mock). Użyj `0`, aby wyłączyć zbieranie danych szpiegowanego ładunku.
+
+</Option>
 
 ### region
 
-Jeśli korzystasz z Sauce Labs, możesz wybrać uruchamianie testów między różnymi centrami danych: US lub EU.
-Aby zmienić region na EU, dodaj `region: 'eu'` do swojej konfiguracji.
+<Option type="String" default="us" values="us | eu | us-west-1 | eu-central-1 | us-east-4 | asia-south-2 | staging">
 
-__Uwaga:__ Ma to wpływ tylko wtedy, gdy podasz opcje `user` i `key`, które są połączone z Twoim kontem Sauce Labs.
+Jeśli uruchamiasz testy w Sauce Labs, możesz wybrać uruchamianie testów w różnych centrach danych.
+Użyj krótkich oznaczeń regionów `us` (domyślnie, odpowiada `us-west-1`) lub `eu` (odpowiada `eu-central-1`) albo bezpośrednio pełnych nazw regionów.
 
-Typ: `String`<br />
-Domyślnie: `us`
+__Uwaga:__ Ma to wpływ tylko wtedy, gdy podasz opcje `user` i `key` powiązane z Twoim kontem Sauce Labs.
 
-*(tylko dla maszyn wirtualnych i/lub emulatorów/symulatorów)*
+</Option>
+*(tylko dla maszyn wirtualnych i/lub emulatorów/symulatorów, z wyjątkiem `us-east-4` i `asia-south-2`, które obsługują wyłącznie prawdziwe urządzenia)*
 
----
+## Opcje testrunnera
 
-## Opcje Testrunner
-
-Następujące opcje (w tym te wymienione powyżej) są zdefiniowane tylko dla uruchamiania WebdriverIO z testrunnerem WDIO:
+Następujące opcje (w tym wymienione powyżej) są zdefiniowane tylko dla uruchamiania WebdriverIO z testrunnerem WDIO:
 
 ### specs
 
-Definiuje pliki specyfikacji do wykonania testów. Możesz określić wzorzec glob, aby dopasować wiele plików naraz, lub owinąć glob lub zestaw ścieżek w tablicę, aby uruchomić je w ramach jednego procesu roboczego. Wszystkie ścieżki są traktowane jako względne od ścieżki pliku konfiguracyjnego.
+<Option type="(String | String[])[]" default="[]">
 
-Typ: `(String | String[])[]`<br />
-Domyślnie: `[]`
+Zdefiniuj specyfikacje (specs) do wykonania testów. Możesz określić wzorzec glob, aby dopasować wiele plików naraz, albo opakować glob lub zestaw ścieżek w tablicę, aby uruchomić je w ramach jednego procesu workera. Wszystkie ścieżki są traktowane jako względne wobec ścieżki pliku konfiguracyjnego.
+
+</Option>
 
 ### exclude
 
-Wyklucza specyfikacje z wykonania testów. Wszystkie ścieżki są traktowane jako względne od ścieżki pliku konfiguracyjnego.
+<Option type="String[]" default="[]">
 
-Typ: `String[]`<br />
-Domyślnie: `[]`
+Wyklucz specyfikacje z wykonywania testów. Wszystkie ścieżki są traktowane jako względne wobec ścieżki pliku konfiguracyjnego.
+
+</Option>
 
 ### suites
 
-Obiekt opisujący różne zestawy, które można następnie określić za pomocą opcji `--suite` w interfejsie wiersza poleceń `wdio`.
+<Option type="Object" default={`{}`}>
 
-Typ: `Object`<br />
-Domyślnie: `{}`
+Obiekt opisujący różne zestawy testów (suites), które możesz następnie wskazać za pomocą opcji `--suite` w CLI `wdio`.
+
+</Option>
 
 ### capabilities
 
-To samo co sekcja `capabilities` opisana powyżej, z opcją określenia obiektu [`multiremote`](/docs/multiremote) lub wielu sesji WebDrivera w tablicy do równoległego wykonania.
+<Option type="Object|Object[]" default={`[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`}>
 
-Możesz zastosować te same możliwości specyficzne dla dostawcy i przeglądarki, jak zdefiniowano [powyżej](/docs/configuration#capabilities).
+To samo co opisana powyżej sekcja `capabilities`, z tą różnicą, że można określić obiekt [multi-remote](/docs/multiremote) lub wiele sesji WebDriver w tablicy w celu równoległego wykonania.
 
-Typ: `Object`|`Object[]`<br />
-Domyślnie: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
+Możesz zastosować te same capabilities specyficzne dla dostawcy i przeglądarki, co zdefiniowane [powyżej](/docs/configuration#capabilities).
+
+</Option>
 
 ### maxInstances
 
-Maksymalna liczba wszystkich równolegle działających pracowników.
+<Option type="Number" default="100">
 
-__Uwaga:__ może to być liczba tak wysoka jak `100`, gdy testy są wykonywane na zewnętrznych dostawcach, takich jak maszyny Sauce Labs. Tam testy nie są testowane na pojedynczej maszynie, ale raczej na wielu maszynach wirtualnych. Jeśli testy mają być uruchamiane na lokalnej maszynie developerskiej, użyj bardziej rozsądnej liczby, takiej jak `3`, `4` lub `5`. Zasadniczo jest to liczba przeglądarek, które będą jednocześnie uruchamiane i wykonywać Twoje testy w tym samym czasie, więc zależy to od ilości pamięci RAM na Twojej maszynie i od tego, ile innych aplikacji jest uruchomionych na Twojej maszynie.
+Maksymalna łączna liczba równolegle działających workerów.
 
-Możesz również zastosować `maxInstances` w obiektach capability za pomocą możliwości `wdio:maxInstances`. Ograniczy to liczbę równoległych sesji dla tej konkretnej możliwości.
+__Uwaga:__ może to być liczba nawet tak wysoka jak `100`, gdy testy są wykonywane u zewnętrznych dostawców, takich jak maszyny Sauce Labs. Tam testy nie są uruchamiane na jednej maszynie, lecz na wielu maszynach wirtualnych. Jeśli testy mają być uruchamiane na lokalnej maszynie deweloperskiej, użyj rozsądniejszej liczby, takiej jak `3`, `4` lub `5`. Zasadniczo jest to liczba przeglądarek, które zostaną jednocześnie uruchomione i będą wykonywać Twoje testy w tym samym czasie, więc zależy ona od ilości pamięci RAM na Twojej maszynie oraz od tego, ile innych aplikacji na niej działa.
 
-Typ: `Number`<br />
-Domyślnie: `100`
+Możesz także zastosować `maxInstances` w swoich obiektach capabilities, używając capability `wdio:maxInstances`. Ograniczy to liczbę równoległych sesji dla tej konkretnej capability.
+
+</Option>
 
 ### maxInstancesPerCapability
 
-Maksymalna liczba wszystkich równolegle działających pracowników na możliwość.
+<Option type="Number" default="100">
 
-Typ: `Number`<br />
-Domyślnie: `100`
+Maksymalna łączna liczba równolegle działających workerów na jedną capability.
+
+</Option>
 
 ### injectGlobals
 
-Wstawia globalne zmienne WebdriverIO (np. `browser`, `$` i `$$`) do globalnego środowiska.
-Jeśli ustawisz na `false`, powinieneś importować z `@wdio/globals`, np.:
+<Option type="Boolean" default="true">
+
+Wstrzykuje globalne zmienne WebdriverIO (np. `browser`, `$` i `$$`) do środowiska globalnego.
+Jeśli ustawisz ją na `false`, powinieneś importować je z `@wdio/globals`, np.:
 
 ```ts
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-Uwaga: WebdriverIO nie obsługuje wstrzykiwania globalnych zmiennych specyficznych dla frameworka testowego.
+Uwaga: WebdriverIO nie obsługuje wstrzykiwania zmiennych globalnych specyficznych dla frameworka testowego.
 
-Typ: `Boolean`<br />
-Domyślnie: `true`
+</Option>
 
 ### bail
 
-Jeśli chcesz, aby uruchomienie testów zatrzymało się po określonej liczbie niepowodzeń testów, użyj `bail`.
-(Domyślnie jest to `0`, co oznacza uruchomienie wszystkich testów niezależnie od wyniku.) **Uwaga:** Test w tym kontekście to wszystkie testy w ramach jednego pliku specyfikacji (podczas używania Mocha lub Jasmine) lub wszystkie kroki w pliku funkcji (podczas używania Cucumber). Jeśli chcesz kontrolować zachowanie bail w ramach testów w pojedynczym pliku testowym, zapoznaj się z dostępnymi opcjami [frameworków](frameworks).
+<Option type="Number" default="0 (don't bail; run all tests)">
 
-Typ: `Number`<br />
-Domyślnie: `0` (nie zatrzymuje; uruchamia wszystkie testy)
+Jeśli chcesz, aby przebieg testów zatrzymał się po określonej liczbie niepowodzeń testów, użyj `bail`.
+(Domyślnie wynosi `0`, co oznacza uruchomienie wszystkich testów bez względu na wszystko). **Uwaga:** Test w tym kontekście to wszystkie testy w obrębie jednego pliku specyfikacji (przy użyciu Mocha lub Jasmine) lub wszystkie kroki w obrębie pliku feature (przy użyciu Cucumber). Jeśli chcesz kontrolować zachowanie bail w obrębie testów pojedynczego pliku testowego, zapoznaj się z dostępnymi opcjami [frameworka](frameworks).
+
+</Option>
 
 ### specFileRetries
 
-Liczba prób ponowienia całego pliku specyfikacji, gdy całość kończy się niepowodzeniem.
+<Option type="Number" default="0">
 
-Typ: `Number`<br />
-Domyślnie: `0`
+Liczba ponownych prób uruchomienia całego pliku specyfikacji, gdy zakończy się on niepowodzeniem jako całość.
+
+</Option>
 
 ### specFileRetriesDelay
 
-Opóźnienie w sekundach między próbami ponownego uruchomienia pliku specyfikacji.
+<Option type="Number" default="0">
 
-Typ: `Number`<br />
-Domyślnie: `0`
+Opóźnienie w sekundach między kolejnymi próbami ponownego uruchomienia pliku specyfikacji
+
+</Option>
 
 ### specFileRetriesDeferred
 
-Określa, czy powtórzone pliki specyfikacji powinny być powtarzane natychmiast, czy odłożone na koniec kolejki.
+<Option type="Boolean" default="true">
 
-Typ: `Boolean`<br />
-Domyślnie: `true`
+Określa, czy ponownie uruchamiane pliki specyfikacji mają być uruchamiane natychmiast, czy odkładane na koniec kolejki.
+
+</Option>
 
 ### groupLogsByTestSpec
 
-Wybierz widok wyjścia dziennika.
+<Option type="Boolean" default="false">
 
-Jeśli ustawione na `false`, logi z różnych plików testowych będą drukowane w czasie rzeczywistym. Należy pamiętać, że może to prowadzić do mieszania wyjść logów z różnych plików podczas równoległego uruchamiania.
+Wybierz widok wyjścia logów.
 
-Jeśli ustawione na `true`, wyjścia logów będą grupowane według specyfikacji testowej i drukowane tylko po zakończeniu specyfikacji testowej.
+Jeśli ustawiono `false`, logi z różnych plików testowych będą wyświetlane w czasie rzeczywistym. Pamiętaj, że może to powodować mieszanie się wyjścia logów z różnych plików podczas równoległego uruchamiania.
 
-Domyślnie jest ustawione na `false`, więc logi są drukowane w czasie rzeczywistym.
+Jeśli ustawiono `true`, wyjście logów będzie grupowane według specyfikacji testu (Test Spec) i wyświetlane dopiero po jej zakończeniu.
 
-Typ: `Boolean`<br />
-Domyślnie: `false`
+Domyślnie ustawiono `false`, więc logi są wyświetlane w czasie rzeczywistym.
+
+</Option>
 
 ### autoAssertOnTestEnd
 
-Kontroluje, czy WebdriverIO automatycznie sprawdza wszystkie miękkie asercje na końcu każdego testu. Gdy ustawione na `true`, wszystkie zgromadzone miękkie asercje zostaną automatycznie sprawdzone i spowodują niepowodzenie testu, jeśli którakolwiek z asercji się nie powiedzie. Gdy ustawione na `false`, musisz ręcznie wywołać metodę assert, aby sprawdzić miękkie asercje.
+<Option type="Boolean" default="true">
 
-Typ: `Boolean`<br />
-Domyślnie: `true`
+Określa, czy WebdriverIO automatycznie weryfikuje wszystkie miękkie asercje (soft assertions) na końcu każdego testu. Gdy ustawiono `true`, wszystkie zgromadzone miękkie asercje zostaną automatycznie sprawdzone i spowodują niepowodzenie testu, jeśli którakolwiek asercja nie przeszła. Gdy ustawiono `false`, musisz ręcznie wywołać metodę assert, aby sprawdzić miękkie asercje.
+
+</Option>
 
 ### services
 
-Usługi przejmują określoną pracę, o którą nie chcesz się martwić. Ulepszają Twoją konfigurację testową prawie bez wysiłku.
+<Option type="String[]|Object[]" default="[]">
 
-Typ: `String[]|Object[]`<br />
-Domyślnie: `[]`
+Usługi (services) przejmują konkretne zadanie, którym nie chcesz się zajmować. Rozszerzają one Twoją konfigurację testów niemal bez wysiłku.
+
+</Option>
 
 ### framework
 
-Definiuje framework testowy, który ma być używany przez testrunner WDIO.
+<Option type="String" default="mocha" values="mocha | jasmine | cucumber">
 
-Typ: `String`<br />
-Domyślnie: `mocha`<br />
-Opcje: `mocha` | `jasmine`
+Określa framework testowy, który ma być używany przez testrunner WDIO.
 
-### mochaOpts, jasmineOpts i cucumberOpts
+</Option>
 
-Opcje specyficzne dla frameworka. Zobacz dokumentację adaptera frameworka, aby dowiedzieć się, które opcje są dostępne. Przeczytaj więcej na ten temat w [Frameworkach](frameworks).
+### mochaOpts, jasmineOpts and cucumberOpts
 
-Typ: `Object`<br />
-Domyślnie: `{ timeout: 10000 }`
+<Option type="Object" default={`{ timeout: 10000 }`}>
+
+Opcje specyficzne dla danego frameworka. Sprawdź w dokumentacji adaptera frameworka, które opcje są dostępne. Więcej na ten temat przeczytasz w sekcji [Frameworki](frameworks).
+
+</Option>
 
 ### cucumberFeaturesWithLineNumbers
 
-Lista funkcji cucumber z numerami linii (podczas [używania frameworka cucumber](./Frameworks.md#using-cucumber)).
+<Option type="String[]" default="[]">
 
-Typ: `String[]`
-Domyślnie: `[]`
+Lista funkcjonalności (features) Cucumber z numerami linii (podczas [korzystania z frameworka Cucumber](./Frameworks.md#using-cucumber)).
+
+</Option>
 
 ### reporters
 
-Lista reporterów do użycia. Reporter może być albo ciągiem znaków, albo tablicą
-`['reporterName', { /* opcje reportera */}]`, gdzie pierwszy element to ciąg z nazwą reportera, a drugi element to obiekt z opcjami reportera.
+<Option type="String[]|Object[]" default="[]">
 
-Typ: `String[]|Object[]`<br />
-Domyślnie: `[]`
+Lista reporterów do użycia. Reporter może być ciągiem znaków lub tablicą
+`['reporterName', { /* reporter options */}]`, w której pierwszy element jest ciągiem znaków z nazwą reportera, a drugi element obiektem z opcjami reportera.
 
+</Option>
 Przykład:
 
 ```js
@@ -483,42 +541,73 @@ reporters: [
 
 ### reporterSyncInterval
 
-Określa, w jakim interwale reporter powinien sprawdzać, czy są zsynchronizowane, jeśli raportują swoje dzienniki asynchronicznie (np. jeśli dzienniki są przesyłane do dostawcy zewnętrznego).
+<Option type="Number" default="100 (ms)">
 
-Typ: `Number`<br />
-Domyślnie: `100` (ms)
+Określa, w jakim interwale reportery powinny sprawdzać, czy są zsynchronizowane, jeśli raportują swoje logi asynchronicznie (np. gdy logi są przesyłane strumieniowo do zewnętrznego dostawcy).
+
+</Option>
 
 ### reporterSyncTimeout
 
-Określa maksymalny czas, jaki reportery mają na zakończenie przesyłania wszystkich swoich dzienników, zanim zostanie zgłoszony błąd przez testrunner.
+<Option type="Number" default="5000 (ms)">
 
-Typ: `Number`<br />
-Domyślnie: `5000` (ms)
+Określa maksymalny czas, jaki reportery mają na zakończenie przesyłania wszystkich swoich logów, zanim testrunner zgłosi błąd.
+
+</Option>
 
 ### execArgv
 
-Argumenty Node do określenia podczas uruchamiania procesów podrzędnych.
+<Option type="String[]" default="null">
 
-Typ: `String[]`<br />
-Domyślnie: `null`
+Argumenty Node, które mają zostać przekazane podczas uruchamiania procesów potomnych.
+
+</Option>
+
+### cpuProf
+
+<Option type="Boolean" default="false">
+
+Włącza profilowanie CPU dla procesu workera. Profil zostanie wygenerowany automatycznie po zakończeniu procesu workera.
+
+</Option>
+
+### heapProf
+
+<Option type="Boolean" default="false">
+
+Włącza profilowanie sterty (Heap) dla procesu workera. Zrzut zostanie wygenerowany automatycznie po zakończeniu procesu workera (używa próbkującego profilera sterty).
+
+</Option>
+
+### profileOutputDir
+
+<Option type="String" default="./profiles">
+
+Katalog, w którym zostaną zapisane profile CPU (`.cpuprofile`) oraz profile sterty (`.heapprofile`).
+
+</Option>
 
 ### filesToWatch
 
-Lista wzorców ciągów obsługujących glob, które informują testrunner, aby dodatkowo obserwował inne pliki, np. pliki aplikacji, podczas uruchamiania go z flagą `--watch`. Domyślnie testrunner już obserwuje wszystkie pliki specyfikacji.
+<Option type="String[]" default="[]">
 
-Typ: `String[]`<br />
-Domyślnie: `[]`
+Lista wzorców tekstowych obsługujących glob, które informują testrunner, aby dodatkowo obserwował inne pliki, np. pliki aplikacji, podczas uruchamiania go z flagą `--watch`. Domyślnie testrunner obserwuje już wszystkie pliki specyfikacji.
+
+</Option>
 
 ### updateSnapshots
 
-Ustaw na true, jeśli chcesz zaktualizować swoje snapshoty. Idealnie używany jako parametr CLI, np. `wdio run wdio.conf.js --s`.
+<Option type="'new' | 'all' | 'none'" default="none if not provided and tests run in CI, new if not provided, otherwise what's been provided">
 
-Typ: `'new' | 'all' | 'none'`<br />
-Domyślnie: `none` jeśli nie podano i testy są uruchamiane w CI, `new` jeśli nie podano, w przeciwnym razie to, co zostało podane
+Ustaw na true, jeśli chcesz zaktualizować swoje snapshoty. Najlepiej używać jako parametru CLI, np. `wdio run wdio.conf.js --s`.
+
+</Option>
 
 ### resolveSnapshotPath
 
-Nadpisuje domyślną ścieżkę snapshota. Na przykład, aby przechowywać snapshoty obok plików testowych.
+<Option type="(testPath: string, snapExtension: string) => string" default="stores snapshot files in __snapshots__ directory next to test file">
+
+Nadpisuje domyślną ścieżkę snapshotów. Na przykład, aby przechowywać snapshoty obok plików testowych.
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -526,89 +615,154 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Typ: `(testPath: string, snapExtension: string) => string`<br />
-Domyślnie: przechowuje pliki snapshotów w katalogu `__snapshots__` obok pliku testowego
+</Option>
 
 ### tsConfigPath
 
-WDIO używa `tsx` do kompilacji plików TypeScript. Twój TSConfig jest automatycznie wykrywany z bieżącego katalogu roboczego, ale możesz określić niestandardową ścieżkę tutaj lub ustawiając zmienną środowiskową TSX_TSCONFIG_PATH.
+<Option type="String" default="null">
+
+WDIO używa `tsx` do kompilowania plików TypeScript. Twój plik TSConfig jest automatycznie wykrywany w bieżącym katalogu roboczym, ale możesz tutaj określić niestandardową ścieżkę lub ustawić zmienną środowiskową TSX_TSCONFIG_PATH.
 
 Zobacz dokumentację `tsx`: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
 
-Typ: `String`<br />
-Domyślnie: `null`<br />
+</Option>
+
+### displayServerEnabled
+
+<Option type="Boolean" default="true">
+
+Uruchamia wirtualny ekran na potrzeby przebiegu w systemie Linux, gdy nie jest ustawiona ani zmienna `DISPLAY`, ani `WAYLAND_DISPLAY`. Ustaw na `false`, gdy uruchamiasz testy w trybie headless lub wyłącznie w usłudze chmurowej albo zdalnym gridzie. Opcja ta kontroluje jedynie, czy uruchamiany jest serwer wyświetlania: gdy ustawiona jest tylko zmienna `WAYLAND_DISPLAY`, testrunner nadal ustawia `XDG_SESSION_TYPE`, `GDK_BACKEND` i `ELECTRON_OZONE_PLATFORM_HINT` na `wayland` na potrzeby przebiegu. Zobacz [Headless i serwery wyświetlania](/docs/headless-and-display-servers).
+
+</Option>
+
+### displayServer
+
+<Option type="String" default="auto" values="auto | wayland | xvfb">
+
+Który serwer wyświetlania uruchomić. `auto` próbuje uruchomić Weston, a w przypadku jego braku lub niepowodzenia uruchomienia przełącza się na Xvfb. `wayland` i `xvfb` próbują uruchomić tylko dany serwer.
+
+</Option>
+
+### displayServerAutoInstall
+
+<Option type="Boolean" default="false">
+
+Instaluje brakujący serwer wyświetlania za pomocą systemowego menedżera pakietów, gdy żaden z zainstalowanych się nie uruchamia.
+
+</Option>
+
+### displayServerAutoInstallMode
+
+<Option type="String" default="sudo" values="root | sudo">
+
+Sposób działania wbudowanej instalacji: `root` instaluje tylko wtedy, gdy proces działa jako root, `sudo` używa nieinteraktywnego `sudo -n`, gdy proces nie działa jako root, lub instaluje bez niego, gdy `sudo` nie jest zainstalowane.
+
+</Option>
+
+### displayServerAutoInstallCommand
+
+<Option type="String | String[]">
+
+Polecenie uruchamiane zamiast wbudowanej instalacji, w niezmienionej postaci i bez `sudo`. Jest uruchamiane tylko przy `displayServerAutoInstall: true`. Ciąg znaków jest uruchamiany w powłoce, tablica — bez niej. Przy `auto` polecenie uruchamiane jest najpierw dla Westona, a ponownie dla Xvfb tylko wtedy, gdy Weston nadal jest niedostępny lub nie udaje się go uruchomić, a Xvfb wciąż brakuje. Ustaw `displayServer` na serwer, który instaluje to polecenie, aby pominąć próbę z drugim serwerem.
+
+</Option>
+
+### displayServerWidth
+
+<Option type="Number" default="1920">
+
+Szerokość ekranu wirtualnego wyświetlacza w pikselach.
+
+</Option>
+
+### displayServerHeight
+
+<Option type="Number" default="1080">
+
+Wysokość ekranu wirtualnego wyświetlacza w pikselach.
+
+</Option>
+
+### displayServerDepth
+
+<Option type="Number" default="24">
+
+Głębia kolorów wirtualnego wyświetlacza. Tylko Xvfb.
+
+</Option>
 
 ## Hooki
 
-Testrunner WDIO pozwala na ustawienie hooków, które są wyzwalane w określonych momentach cyklu życia testu. Pozwala to na niestandardowe działania (np. wykonanie zrzutu ekranu, jeśli test się nie powiedzie).
+Testrunner WDIO pozwala ustawić hooki wywoływane w określonych momentach cyklu życia testu. Umożliwia to wykonywanie niestandardowych akcji (np. zrobienie zrzutu ekranu, jeśli test się nie powiedzie).
 
-Każdy hook ma jako parametr konkretne informacje o cyklu życia (np. informacje o zestawie testów lub teście). Przeczytaj więcej o wszystkich właściwościach hooków w [naszej przykładowej konfiguracji](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
+Każdy hook otrzymuje jako parametr określone informacje o cyklu życia (np. informacje o zestawie testów lub teście). Więcej o wszystkich właściwościach hooków przeczytasz w [naszej przykładowej konfiguracji](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326).
 
-**Uwaga:** Niektóre hooki (`onPrepare`, `onWorkerStart`, `onWorkerEnd` i `onComplete`) są wykonywane w innym procesie i dlatego nie mogą dzielić żadnych globalnych danych z innymi hookami, które działają w procesie roboczym.
+**Uwaga:** Niektóre hooki (`onPrepare`, `onWorkerStart`, `onWorkerEnd` i `onComplete`) są wykonywane w innym procesie i dlatego nie mogą współdzielić żadnych danych globalnych z pozostałymi hookami działającymi w procesie workera.
 
 ### onPrepare
 
-Wykonywany jednorazowo przed uruchomieniem wszystkich pracowników.
+Wykonywany jednokrotnie przed uruchomieniem wszystkich workerów.
 
 Parametry:
 
-- `config` (`object`): obiekt konfiguracyjny WebdriverIO
-- `param` (`object[]`): lista szczegółów możliwości
+- `config` (`object`): obiekt konfiguracji WebdriverIO
+- `param` (`object[]`): lista szczegółów capabilities
 
 ### onWorkerStart
 
-Wykonywany przed uruchomieniem procesu roboczego i może być używany do inicjalizacji konkretnej usługi dla tego pracownika, a także do modyfikacji środowisk wykonawczych w sposób asynchroniczny.
+Wykonywany przed utworzeniem procesu workera; może służyć do inicjalizacji określonej usługi dla tego workera, a także do asynchronicznej modyfikacji środowisk uruchomieniowych.
 
 Parametry:
 
-- `cid` (`string`): identyfikator możliwości (np. 0-0)
-- `caps` (`object`): zawierający możliwości dla sesji, która zostanie uruchomiona w procesie roboczym
-- `specs` (`string[]`): specyfikacje do uruchomienia w procesie roboczym
-- `args` (`object`): obiekt, który zostanie scalony z główną konfiguracją po inicjalizacji pracownika
-- `execArgv` (`string[]`): lista argumentów ciągu przekazanych do procesu roboczego
+- `cid` (`string`): identyfikator capability (np. 0-0)
+- `caps` (`object`): zawiera capabilities dla sesji, która zostanie utworzona w workerze
+- `specs` (`string[]`): specyfikacje do uruchomienia w procesie workera
+- `args` (`object`): obiekt, który zostanie scalony z główną konfiguracją po zainicjalizowaniu workera
+- `execArgv` (`string[]`): lista argumentów tekstowych przekazanych do procesu workera
 
 ### onWorkerEnd
 
-Wykonywany zaraz po zakończeniu procesu roboczego.
+Wykonywany zaraz po zakończeniu procesu workera.
 
 Parametry:
 
-- `cid` (`string`): identyfikator możliwości (np. 0-0)
-- `exitCode` (`number`): 0 - sukces, 1 - niepowodzenie
-- `specs` (`string[]`): specyfikacje uruchomione w procesie roboczym
-- `retries` (`number`): liczba ponownych prób specyfikacji użytych zgodnie z definicją w [_"Dodaj ponowne próby na poziomie pliku specyfikacji"_](./Retry.md#add-retries-on-a-per-specfile-basis)
+- `cid` (`string`): identyfikator capability (np. 0-0)
+- `exitCode` (`number`): 0 - sukces, 1 - niepowodzenie. Worker zakończony przez sygnał zgłasza zamiast tego `128` + numer sygnału, np. `139` dla `SIGSEGV`
+- `specs` (`string[]`): specyfikacje do uruchomienia w procesie workera
+- `retries` (`number`): liczba wykorzystanych ponownych prób na poziomie specyfikacji, zgodnie z opisem w [_"Dodawanie ponownych prób dla poszczególnych plików specyfikacji"_](./Retry.md#add-retries-on-a-per-specfile-basis)
+- `signal` (`string`): sygnał, który zakończył workera, np. `SIGSEGV`, lub `null`, jeśli zakończył się on samodzielnie
 
 ### beforeSession
 
-Wykonywany tuż przed inicjalizacją sesji webdriver i frameworka testowego. Pozwala manipulować konfiguracjami w zależności od możliwości lub specyfikacji.
+Wykonywany tuż przed zainicjalizowaniem sesji webdriver i frameworka testowego. Pozwala manipulować konfiguracją w zależności od capability lub specyfikacji.
 
 Parametry:
 
-- `config` (`object`): obiekt konfiguracyjny WebdriverIO
-- `caps` (`object`): zawierający możliwości dla sesji, która zostanie uruchomiona w procesie roboczym
-- `specs` (`string[]`): specyfikacje do uruchomienia w procesie roboczym
+- `config` (`object`): obiekt konfiguracji WebdriverIO
+- `caps` (`object`): zawiera capabilities dla sesji, która zostanie utworzona w workerze
+- `specs` (`string[]`): specyfikacje do uruchomienia w procesie workera
 
 ### before
 
-Wykonywany przed rozpoczęciem wykonania testu. W tym momencie możesz uzyskać dostęp do wszystkich zmiennych globalnych takich jak `browser`. Jest to idealne miejsce do definiowania niestandardowych poleceń.
+Wykonywany przed rozpoczęciem wykonywania testów. W tym momencie masz dostęp do wszystkich zmiennych globalnych, takich jak `browser`. To idealne miejsce do definiowania niestandardowych poleceń.
 
 Parametry:
 
-- `caps` (`object`): zawierający możliwości dla sesji, która zostanie uruchomiona w procesie roboczym
-- `specs` (`string[]`): specyfikacje do uruchomienia w procesie roboczym
+- `caps` (`object`): zawiera capabilities dla sesji, która zostanie utworzona w workerze
+- `specs` (`string[]`): specyfikacje do uruchomienia w procesie workera
 - `browser` (`object`): instancja utworzonej sesji przeglądarki/urządzenia
 
 ### beforeSuite
 
-Hook, który jest wykonywany przed rozpoczęciem zestawu (tylko w Mocha/Jasmine)
+Hook wykonywany przed rozpoczęciem zestawu testów (tylko w Mocha/Jasmine)
 
 Parametry:
 
-- `suite` (`object`): szczegóły zestawu
+- `suite` (`object`): szczegóły zestawu testów
 
 ### beforeHook
 
-Hook, który jest wykonywany *przed* hookiem w ramach zestawu (np. uruchamia się przed wywołaniem beforeEach w Mocha)
+Hook wykonywany *przed* rozpoczęciem hooka w obrębie zestawu testów (np. uruchamia się przed wywołaniem beforeEach w Mocha)
 
 Parametry:
 
@@ -617,7 +771,7 @@ Parametry:
 
 ### afterHook
 
-Hook, który jest wykonywany *po* zakończeniu hooka w ramach zestawu (np. uruchamia się po wywołaniu afterEach w Mocha)
+Hook wykonywany *po* zakończeniu hooka w obrębie zestawu testów (np. uruchamia się po wywołaniu afterEach w Mocha)
 
 Parametry:
 
@@ -627,55 +781,55 @@ Parametry:
 
 ### beforeTest
 
-Funkcja do wykonania przed testem (tylko w Mocha/Jasmine).
+Funkcja wykonywana przed testem (tylko w Mocha/Jasmine).
 
 Parametry:
 
 - `test` (`object`): szczegóły testu
-- `context` (`object`): obiekt zakresu, z którym test został wykonany
+- `context` (`object`): obiekt zakresu, w którym test został wykonany
 
 ### beforeCommand
 
-Uruchamia się przed wykonaniem polecenia WebdriverIO.
+Uruchamiany przed wykonaniem polecenia WebdriverIO.
 
 Parametry:
 
 - `commandName` (`string`): nazwa polecenia
-- `args` (`*`): argumenty, które polecenie otrzymałoby
+- `args` (`*`): argumenty, które otrzymałoby polecenie
 
 ### afterCommand
 
-Uruchamia się po wykonaniu polecenia WebdriverIO.
+Uruchamiany po wykonaniu polecenia WebdriverIO.
 
 Parametry:
 
 - `commandName` (`string`): nazwa polecenia
-- `args` (`*`): argumenty, które polecenie otrzymałoby
+- `args` (`*`): argumenty, które otrzymałoby polecenie
 - `result` (`*`): wynik polecenia
 - `error` (`Error`): obiekt błędu, jeśli wystąpił
 
 ### afterTest
 
-Funkcja do wykonania po zakończeniu testu (w Mocha/Jasmine).
+Funkcja wykonywana po zakończeniu testu (w Mocha/Jasmine).
 
 Parametry:
 
 - `test` (`object`): szczegóły testu
-- `context` (`object`): obiekt zakresu, z którym test został wykonany
+- `context` (`object`): obiekt zakresu, w którym test został wykonany
 - `result.error` (`Error`): obiekt błędu w przypadku niepowodzenia testu, w przeciwnym razie `undefined`
-- `result.result` (`Any`): obiekt zwrotny funkcji testowej
+- `result.result` (`Any`): obiekt zwrócony przez funkcję testu
 - `result.duration` (`Number`): czas trwania testu
-- `result.passed` (`Boolean`): true jeśli test został zaliczony, w przeciwnym razie false
-- `result.retries` (`Object`): informacje o pojedynczych ponownych próbach testu zgodnie z definicją dla [Mocha i Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) oraz [Cucumber](./Retry.md#rerunning-in-cucumber), np. `{ attempts: 0, limit: 0 }`, zobacz
+- `result.passed` (`Boolean`): true, jeśli test zakończył się powodzeniem, w przeciwnym razie false
+- `result.retries` (`Object`): informacje o ponownych próbach pojedynczego testu, zgodnie z definicją dla [Mocha i Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) oraz [Cucumber](./Retry.md#rerunning-in-cucumber), np. `{ attempts: 0, limit: 0 }`, zobacz
 - `result` (`object`): wynik hooka (zawiera właściwości `error`, `result`, `duration`, `passed`, `retries`)
 
 ### afterSuite
 
-Hook, który jest wykonywany po zakończeniu zestawu (tylko w Mocha/Jasmine)
+Hook wykonywany po zakończeniu zestawu testów (tylko w Mocha/Jasmine)
 
 Parametry:
 
-- `suite` (`object`): szczegóły zestawu
+- `suite` (`object`): szczegóły zestawu testów
 
 ### after
 
@@ -683,9 +837,9 @@ Wykonywany po zakończeniu wszystkich testów. Nadal masz dostęp do wszystkich 
 
 Parametry:
 
-- `result` (`number`): 0 - test zaliczony, 1 - test nie zaliczony
-- `caps` (`object`): zawierający możliwości dla sesji, która zostanie uruchomiona w procesie roboczym
-- `specs` (`string[]`): specyfikacje do uruchomienia w procesie roboczym
+- `result` (`number`): 0 - test zaliczony, 1 - test niezaliczony
+- `caps` (`object`): zawiera capabilities dla sesji, która zostanie utworzona w workerze
+- `specs` (`string[]`): specyfikacje do uruchomienia w procesie workera
 
 ### afterSession
 
@@ -693,19 +847,19 @@ Wykonywany zaraz po zakończeniu sesji webdriver.
 
 Parametry:
 
-- `config` (`object`): obiekt konfiguracyjny WebdriverIO
-- `caps` (`object`): zawierający możliwości dla sesji, która zostanie uruchomiona w procesie roboczym
-- `specs` (`string[]`): specyfikacje do uruchomienia w procesie roboczym
+- `config` (`object`): obiekt konfiguracji WebdriverIO
+- `caps` (`object`): zawiera capabilities dla sesji, która zostanie utworzona w workerze
+- `specs` (`string[]`): specyfikacje do uruchomienia w procesie workera
 
 ### onComplete
 
-Wykonywany po zamknięciu wszystkich pracowników i przed zakończeniem procesu. Błąd zgłoszony w hooku onComplete spowoduje niepowodzenie uruchomienia testu.
+Wykonywany po zamknięciu wszystkich workerów, gdy proces ma się zakończyć. Błąd zgłoszony w hooku onComplete spowoduje niepowodzenie przebiegu testów.
 
 Parametry:
 
 - `exitCode` (`number`): 0 - sukces, 1 - niepowodzenie
-- `config` (`object`): obiekt konfiguracyjny WebdriverIO
-- `caps` (`object`): zawierający możliwości dla sesji, która zostanie uruchomiona w procesie roboczym
+- `config` (`object`): obiekt konfiguracji WebdriverIO
+- `caps` (`object`): zawiera capabilities dla sesji, która zostanie utworzona w workerze
 - `result` (`object`): obiekt wyników zawierający wyniki testów
 
 ### onReload
@@ -714,92 +868,92 @@ Wykonywany, gdy następuje odświeżenie.
 
 Parametry:
 
-- `oldSessionId` (`string`): identyfikator sesji starej sesji
-- `newSessionId` (`string`): identyfikator sesji nowej sesji
+- `oldSessionId` (`string`): identyfikator starej sesji
+- `newSessionId` (`string`): identyfikator nowej sesji
 
 ### beforeFeature
 
-Uruchamia się przed funkcją Cucumber.
+Uruchamiany przed funkcjonalnością (Feature) Cucumber.
 
 Parametry:
 
-- `uri` (`string`): ścieżka do pliku funkcji
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): obiekt funkcji Cucumber
+- `uri` (`string`): ścieżka do pliku feature
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): obiekt funkcjonalności Cucumber
 
 ### afterFeature
 
-Uruchamia się po funkcji Cucumber.
+Uruchamiany po funkcjonalności (Feature) Cucumber.
 
 Parametry:
 
-- `uri` (`string`): ścieżka do pliku funkcji
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): obiekt funkcji Cucumber
+- `uri` (`string`): ścieżka do pliku feature
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): obiekt funkcjonalności Cucumber
 
 ### beforeScenario
 
-Uruchamia się przed scenariuszem Cucumber.
+Uruchamiany przed scenariuszem Cucumber.
 
 Parametry:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): obiekt świata zawierający informacje o pickle i kroku testowym
-- `context` (`object`): obiekt Cucumber World
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): obiekt world zawierający informacje o pickle i kroku testu
+- `context` (`object`): obiekt World w Cucumber
 
 ### afterScenario
 
-Uruchamia się po scenariuszu Cucumber.
+Uruchamiany po scenariuszu Cucumber.
 
 Parametry:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): obiekt świata zawierający informacje o pickle i kroku testowym
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): obiekt world zawierający informacje o pickle i kroku testu
 - `result` (`object`): obiekt wyników zawierający wyniki scenariusza
-- `result.passed` (`boolean`): true jeśli scenariusz został zaliczony
-- `result.error` (`string`): stos błędów, jeśli scenariusz się nie powiódł
+- `result.passed` (`boolean`): true, jeśli scenariusz zakończył się powodzeniem
+- `result.error` (`string`): stos błędu, jeśli scenariusz się nie powiódł
 - `result.duration` (`number`): czas trwania scenariusza w milisekundach
-- `context` (`object`): obiekt Cucumber World
+- `context` (`object`): obiekt World w Cucumber
 
 ### beforeStep
 
-Uruchamia się przed krokiem Cucumber.
+Uruchamiany przed krokiem Cucumber.
 
 Parametry:
 
 - `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): obiekt kroku Cucumber
 - `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): obiekt scenariusza Cucumber
-- `context` (`object`): obiekt Cucumber World
+- `context` (`object`): obiekt World w Cucumber
 
 ### afterStep
 
-Uruchamia się po kroku Cucumber.
+Uruchamiany po kroku Cucumber.
 
 Parametry:
 
 - `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): obiekt kroku Cucumber
 - `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): obiekt scenariusza Cucumber
 - `result`: (`object`): obiekt wyników zawierający wyniki kroku
-- `result.passed` (`boolean`): true jeśli scenariusz został zaliczony
-- `result.error` (`string`): stos błędów, jeśli scenariusz się nie powiódł
+- `result.passed` (`boolean`): true, jeśli scenariusz zakończył się powodzeniem
+- `result.error` (`string`): stos błędu, jeśli scenariusz się nie powiódł
 - `result.duration` (`number`): czas trwania scenariusza w milisekundach
-- `context` (`object`): obiekt Cucumber World
+- `context` (`object`): obiekt World w Cucumber
 
 ### beforeAssertion
 
-Hook, który jest wykonywany przed asercją WebdriverIO.
+Hook wykonywany przed wykonaniem asercji WebdriverIO.
 
 Parametry:
 
 - `params`: informacje o asercji
-- `params.matcherName` (`string`): nazwa matchera (np. `toHaveTitle`)
-- `params.expectedValue`: wartość przekazywana do matchera
+- `params.matcherName` (`string`): nazwa matchera wywołanego przez test (np. `toHaveTitle`). W przypadku aliasu jest to nazwa aliasu (np. `toBeExisting`, a nie `toExist`).
+- `params.expectedValue`: wartość przekazana do matchera
 - `params.options`: opcje asercji
 
 ### afterAssertion
 
-Hook, który jest wykonywany po asercji WebdriverIO.
+Hook wykonywany po wykonaniu asercji WebdriverIO.
 
 Parametry:
 
 - `params`: informacje o asercji
-- `params.matcherName` (`string`): nazwa matchera (np. `toHaveTitle`)
-- `params.expectedValue`: wartość przekazywana do matchera
+- `params.matcherName` (`string`): nazwa matchera wywołanego przez test (np. `toHaveTitle`). W przypadku aliasu jest to nazwa aliasu (np. `toBeExisting`, a nie `toExist`).
+- `params.expectedValue`: wartość przekazana do matchera
 - `params.options`: opcje asercji
-- `params.result`: wyniki asercji
+- `params.result` (`object`): wynik matchera, zawierający `pass` (`boolean`) oraz `message()`. `pass` ma wartość `true`, gdy wartość odpowiada wartości oczekiwanej, również w przypadku `.not`: z `.not` asercja przechodzi, gdy `pass` ma wartość `false`.

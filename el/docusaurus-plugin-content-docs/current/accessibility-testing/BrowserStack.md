@@ -1,34 +1,35 @@
 ---
 id: browserstack
-title: Δοκιμές Προσβασιμότητας BrowserStack
+title: Έλεγχος Προσβασιμότητας BrowserStack
+description: "Προσθέστε αυτοματοποιημένους ελέγχους προσβασιμότητας στα τεστ WebdriverIO που εκτελούνται στο BrowserStack Automate και εξετάστε τα προβλήματα που εντοπίστηκαν στις αναφορές του BrowserStack."
 ---
 
-# Δοκιμές Προσβασιμότητας BrowserStack
+# Έλεγχος Προσβασιμότητας BrowserStack
 
-Μπορείτε εύκολα να ενσωματώσετε δοκιμές προσβασιμότητας στις σουίτες δοκιμών WebdriverIO χρησιμοποιώντας το [Χαρακτηριστικό Αυτοματοποιημένων δοκιμών του BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Μπορείτε εύκολα να ενσωματώσετε τεστ προσβασιμότητας στις σουίτες τεστ WebdriverIO χρησιμοποιώντας τη [λειτουργία Αυτοματοποιημένων τεστ του BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-## Πλεονεκτήματα των Αυτοματοποιημένων Δοκιμών στο BrowserStack Accessibility Testing
+## Πλεονεκτήματα των Αυτοματοποιημένων Τεστ στο BrowserStack Accessibility Testing
 
-Για να χρησιμοποιήσετε τις Αυτοματοποιημένες δοκιμές στο BrowserStack Accessibility Testing, οι δοκιμές σας πρέπει να εκτελούνται στο BrowserStack Automate.
+Για να χρησιμοποιήσετε τα Αυτοματοποιημένα τεστ στο BrowserStack Accessibility Testing, τα τεστ σας θα πρέπει να εκτελούνται στο BrowserStack Automate.
 
-Τα ακόλουθα είναι τα πλεονεκτήματα των Αυτοματοποιημένων δοκιμών:
+Τα πλεονεκτήματα των Αυτοματοποιημένων τεστ είναι τα εξής:
 
-* Ενσωματώνεται απρόσκοπτα στην προϋπάρχουσα σουίτα αυτοματοποιημένων δοκιμών σας.
-* Δεν απαιτούνται αλλαγές κώδικα στις περιπτώσεις δοκιμών.
-* Απαιτεί μηδενική πρόσθετη συντήρηση για δοκιμές προσβασιμότητας.
-* Κατανοήστε τις ιστορικές τάσεις και αποκτήστε πληροφορίες για τις περιπτώσεις δοκιμών.
+* Ενσωματώνονται απρόσκοπτα στην υπάρχουσα σουίτα αυτοματοποιημένων τεστ σας.
+* Δεν απαιτούνται αλλαγές κώδικα στις περιπτώσεις τεστ.
+* Δεν απαιτείται καμία επιπλέον συντήρηση για τον έλεγχο προσβασιμότητας.
+* Κατανοήστε τις ιστορικές τάσεις και αποκτήστε πληροφορίες για τις περιπτώσεις τεστ.
 
 ## Ξεκινήστε με το BrowserStack Accessibility Testing
 
-Ακολουθήστε αυτά τα βήματα για να ενσωματώσετε τις σουίτες δοκιμών WebdriverIO με το Accessibility Testing του BrowserStack:
+Ακολουθήστε αυτά τα βήματα για να ενσωματώσετε τις σουίτες τεστ WebdriverIO με το Accessibility Testing του BrowserStack:
 
-1. Εγκαταστήστε το πακέτο npm `@wdio/browserstack-service`.
+1. Εγκαταστήστε το npm πακέτο `@wdio/browserstack-service`.
 
 ```bash npm2yarn
 npm install --save-dev @wdio/browserstack-service
 ```
 
-2. Ενημερώστε το αρχείο διαμόρφωσης `wdio.conf.js`.
+2. Ενημερώστε το αρχείο ρυθμίσεων `wdio.conf.js`.
 
 ```javascript
 exports.config = {
@@ -44,7 +45,7 @@ exports.config = {
     services: [
       ['browserstack', {
         accessibility: true,
-        // Optional configuration options
+        // Προαιρετικές επιλογές ρυθμίσεων
         accessibilityOptions: {
           'wcagVersion': 'wcag21a',
           'includeIssueType': {
@@ -60,4 +61,4 @@ exports.config = {
   };
 ```
 
-Μπορείτε να δείτε αναλυτικές οδηγίες [εδώ](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Μπορείτε να δείτε λεπτομερείς οδηγίες [εδώ](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).

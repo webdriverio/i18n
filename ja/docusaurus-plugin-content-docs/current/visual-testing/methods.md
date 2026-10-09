@@ -1,14 +1,15 @@
 ---
 id: methods
 title: メソッド
+description: "ビジュアルサービスの save および check メソッドを使用して、スクリーンショットを取得し、画面、要素、フルページをベースラインと比較します。"
 ---
 
-以下のメソッドは、グローバルなWebdriverIOの[`browser`](/docs/api/browser)オブジェクトに追加されます。
+以下のメソッドは、グローバルな WebdriverIO の [`browser`](/docs/api/browser) オブジェクトに追加されます。
 
-## 保存メソッド
+## Save メソッド
 
-:::info ヒント
-画面を比較せず、要素/スクリーンショットを取得したい場合のみ、保存メソッドを使用してください。
+:::info TIP
+Save メソッドは、画面を比較する必要が**なく**、要素のスクリーンショットやスクリーンショットだけが欲しい場合にのみ使用してください。
 :::
 
 ### `saveElement`
@@ -47,7 +48,7 @@ await browser.saveElement(
     -   **型:** string
 -   **`saveElementOptions`:**
     -   **必須:** いいえ
-    -   **型:** オプションのオブジェクト、[保存オプション](./method-options#save-options)を参照
+    -   **型:** オプションのオブジェクト。[Save オプション](./method-options#save-options)を参照してください
 
 #### 出力:
 
@@ -83,7 +84,7 @@ await browser.saveScreen(
     -   **型:** string
 -   **`saveScreenOptions`:**
     -   **必須:** いいえ
-    -   **型:** オプションのオブジェクト、[保存オプション](./method-options#save-options)を参照
+    -   **型:** オプションのオブジェクト。[Save オプション](./method-options#save-options)を参照してください
 
 #### 出力:
 
@@ -93,7 +94,7 @@ await browser.saveScreen(
 
 #### 使用方法
 
-完全なスクリーンの画像を保存します。
+画面全体の画像を保存します。
 
 ```ts
 await browser.saveFullPageScreen(
@@ -117,7 +118,7 @@ await browser.saveFullPageScreen(
     -   **型:** string
 -   **`saveFullPageScreenOptions`:**
     -   **必須:** いいえ
-    -   **型:** オプションのオブジェクト、[保存オプション](./method-options#save-options)を参照
+    -   **型:** オプションのオブジェクト。[Save オプション](./method-options#save-options)を参照してください
 
 #### 出力:
 
@@ -125,7 +126,7 @@ await browser.saveFullPageScreen(
 
 ### `saveTabbablePage`
 
-タブ可能なラインとドットを含む完全なスクリーンの画像を保存します。
+タブ移動可能な要素を示す線とドットを含む、画面全体の画像を保存します。
 
 #### 使用方法
 
@@ -150,16 +151,16 @@ await browser.saveTabbablePage(
     -   **型:** string
 -   **`saveTabbableOptions`:**
     -   **必須:** いいえ
-    -   **型:** オプションのオブジェクト、[保存オプション](./method-options#save-options)を参照
+    -   **型:** オプションのオブジェクト。[Save オプション](./method-options#save-options)を参照してください
 
 #### 出力:
 
 [テスト出力](./test-output#savescreenelementfullpagescreen)ページを参照してください。
 
-## チェックメソッド
+## Check メソッド
 
-:::info ヒント
-`check`メソッドを初めて使用する場合、以下の警告がログに表示されます。これは、ベースラインを作成したい場合に`save`メソッドと`check`メソッドを組み合わせる必要がないことを意味します。
+:::info TIP
+`check` メソッドを初めて使用すると、ログに以下の警告が表示されます。つまり、ベースラインを作成したい場合でも、`save` メソッドと `check` メソッドを組み合わせる必要はありません。
 
 ```shell
 #####################################################################################
@@ -208,7 +209,7 @@ await browser.checkElement(
     -   **型:** string
 -   **`checkElementOptions`:**
     -   **必須:** いいえ
-    -   **型:** オプションのオブジェクト、[比較/チェックオプション](./method-options#compare-check-options)を参照
+    -   **型:** オプションのオブジェクト。[Compare/Check オプション](./method-options#compare-check-options)を参照してください
 
 #### 出力:
 
@@ -244,7 +245,7 @@ await browser.checkScreen(
     -   **型:** string
 -   **`checkScreenOptions`:**
     -   **必須:** いいえ
-    -   **型:** オプションのオブジェクト、[比較/チェックオプション](./method-options#compare-check-options)を参照
+    -   **型:** オプションのオブジェクト。[Compare/Check オプション](./method-options#compare-check-options)を参照してください
 
 #### 出力:
 
@@ -252,7 +253,7 @@ await browser.checkScreen(
 
 ### `checkFullPageScreen`
 
-完全なスクリーンの画像をベースライン画像と比較します。
+画面全体の画像をベースライン画像と比較します。
 
 #### 使用方法
 
@@ -278,7 +279,7 @@ await browser.checkFullPageScreen(
     -   **型:** string
 -   **`checkFullPageOptions`:**
     -   **必須:** いいえ
-    -   **型:** オプションのオブジェクト、[比較/チェックオプション](./method-options#compare-check-options)を参照
+    -   **型:** オプションのオブジェクト。[Compare/Check オプション](./method-options#compare-check-options)を参照してください
 
 #### 出力:
 
@@ -286,7 +287,7 @@ await browser.checkFullPageScreen(
 
 ### `checkTabbablePage`
 
-タブ可能なラインとドットを含む完全なスクリーンの画像をベースライン画像と比較します。
+タブ移動可能な要素を示す線とドットを含む画面全体の画像を、ベースライン画像と比較します。
 
 #### 使用方法
 
@@ -311,7 +312,7 @@ await browser.checkTabbablePage(
     -   **型:** string
 -   **`checkTabbableOptions`:**
     -   **必須:** いいえ
-    -   **型:** オプションのオブジェクト、[比較/チェックオプション](./method-options#compare-check-options)を参照
+    -   **型:** オプションのオブジェクト。[Compare/Check オプション](./method-options#compare-check-options)を参照してください
 
 #### 出力:
 

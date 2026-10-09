@@ -1,19 +1,20 @@
 ---
 id: integrate-with-smartui
 title: SmartUI
+description: "Lägg till AI-driven visuell regressionstestning i WebdriverIO-tester med TestMu AI (tidigare LambdaTest) SmartUI, inklusive installation och alternativ."
 ---
 
-TestMu AI (Tidigare LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) erbjuder AI-driven visuell regressionstestning för dina WebdriverIO-tester. Det tar skärmbilder, jämför dem mot baslinjer och markerar visuella skillnader med intelligenta jämförelsealgorimer.
+TestMu AI (tidigare LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) erbjuder AI-driven visuell regressionstestning för dina WebdriverIO-tester. Det tar skärmbilder, jämför dem med baslinjer och markerar visuella skillnader med intelligenta jämförelsealgoritmer.
 
 ## Installation
 
 **Skapa ett SmartUI-projekt**
 
-[Logga in](https://accounts.lambdatest.com/register) på TestMu AI (Tidigare LambdaTest) och navigera till [SmartUI Projects](https://smartui.lambdatest.com/) för att skapa ett nytt projekt. Välj **Web** som plattform och konfigurera projektnamn, godkännare och taggar.
+[Logga in](https://accounts.lambdatest.com/register) på TestMu AI (tidigare LambdaTest) och navigera till [SmartUI Projects](https://smartui.lambdatest.com/) för att skapa ett nytt projekt. Välj **Web** som plattform och konfigurera projektnamn, godkännare och taggar.
 
-**Ställ in autentiseringsuppgifter**
+**Konfigurera inloggningsuppgifter**
 
-Hämta dina `LT_USERNAME` och `LT_ACCESS_KEY` från TestMu AI (Tidigare LambdaTest)-instrumentpanelen och ställ in dem som miljövariabler:
+Hämta ditt `LT_USERNAME` och din `LT_ACCESS_KEY` från TestMu AI (tidigare LambdaTest)-instrumentpanelen och ange dem som miljövariabler:
 
 ```sh
 export LT_USERNAME="<your username>"
@@ -80,7 +81,7 @@ describe('WebdriverIO SmartUI Test', () => {
 npx wdio wdio.conf.js
 ```
 
-Se resultat i [SmartUI Dashboard](https://smartui.lambdatest.com/).
+Visa resultaten i [SmartUI Dashboard](https://smartui.lambdatest.com/).
 
 ## Avancerade alternativ
 
@@ -110,9 +111,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## Resurser
 
-| Resurs                                                                                           | Beskrivning                                 |
-|--------------------------------------------------------------------------------------------------|--------------------------------------------|
-| [Official Documentation](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | SmartUI-dokumentation                      |
-| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                              | Åtkomst till dina SmartUI-projekt och byggen |
-| [Advanced Settings](https://www.testmuai.com/support/docs/test-settings-options/)              | Konfigurera jämförelsekänslighet           |
-| [Build Options](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | Avancerad byggkonfiguration               |
+| Resurs                                                                                            | Beskrivning                                   |
+|---------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| [Officiell dokumentation](https://www.testmuai.com/support/docs/smart-ui-cypress/)             | SmartUI-dokumentation                         |
+| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                              | Kom åt dina SmartUI-projekt och byggen        |
+| [Avancerade inställningar](https://www.testmuai.com/support/docs/test-settings-options/)       | Konfigurera jämförelsekänslighet              |
+| [Byggalternativ](https://www.testmuai.com/support/docs/smart-ui-build-options/)                | Avancerad byggkonfiguration                   |

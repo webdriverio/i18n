@@ -1,54 +1,53 @@
 ---
 id: sponsor
 title: حامی WebdriverIO شوید
+description: "به‌عنوان یک کسب‌وکار یا فرد، از طریق GitHub Sponsors، Tidelift یا OpenCollective از WebdriverIO حمایت مالی کنید و مزایای هر سطح را ببینید."
 ---
 
-WebdriverIO، یک پروژه متن‌باز تحت مجوز MIT، به صورت رایگان برای استفاده در دسترس است. پایداری این اکوسیستم گسترده، همراه با توسعه ویژگی‌های نوآورانه، از طریق حمایت مالی سخاوتمندانه حامیان ما امکان‌پذیر می‌شود، که نقش مهمی در نگهداری و رشد مداوم پروژه دارند.
+WebdriverIO یک پروژه متن‌باز تحت مجوز MIT است و استفاده از آن رایگان است. پایداری این اکوسیستم گسترده و توسعه ویژگی‌های نوآورانه، به لطف حمایت مالی سخاوتمندانه حامیان ما امکان‌پذیر شده است؛ حامیانی که سهم قابل‌توجهی در نگهداری و رشد مستمر پروژه دارند.
 
-## چگونه حامی شویم
-حمایت مالی می‌تواند از طریق [GitHub Sponsors](https://github.com/sponsors/webdriverio)، [Tidelift](enterprise) یا [OpenCollective](https://opencollective.com/webdriverio) انجام شود. فاکتورها را می‌توان از طریق سیستم پرداخت GitHub دریافت کرد. هم حمایت‌های مالی ماهانه و هم کمک‌های یکباره پذیرفته می‌شوند. حامیان مالی دوره‌ای حق قرار دادن لوگو را طبق سطوح حمایت مالی خواهند داشت.
+## نحوه حمایت​
+حمایت مالی را می‌توان از طریق [GitHub Sponsors](https://github.com/sponsors/webdriverio)، [Tidelift](enterprise) یا [OpenCollective](https://opencollective.com/webdriverio) انجام داد. فاکتورها را می‌توان از طریق سیستم پرداخت GitHub دریافت کرد. هم حمایت‌های ماهانه دوره‌ای و هم کمک‌های یک‌باره پذیرفته می‌شوند. حمایت‌های دوره‌ای مطابق با آنچه در سطوح حمایت مشخص شده، از امکان نمایش لوگو برخوردار هستند.
 
-اگر سوالاتی درباره سطوح، لجستیک پرداخت، یا داده‌های نمایش حامی دارید، لطفا با [sponsor@webdriver.io](mailto:sponsor@webdriver.io) تماس بگیرید.
+اگر درباره سطوح حمایت، جزئیات پرداخت یا داده‌های میزان دیده‌شدن حامیان سؤالی دارید، لطفاً با [sponsor@webdriver.io](mailto:sponsor@webdriver.io) تماس بگیرید.
 
-شما همچنین می‌توانید به فروشگاه کالاهای WebdriverIO [Swag Store](https://shop.webdriver.io/) مراجعه کنید که تمام درآمدهای حاصل از خریدها به توسعه پروژه برگردانده می‌شود.
+همچنین می‌توانید به [فروشگاه Swag](https://shop.webdriver.io/) WebdriverIO سر بزنید؛ تمام درآمد حاصل از خریدها صرف توسعه پروژه خواهد شد.
 
-## حمایت از WebdriverIO به عنوان یک کسب و کار
-حمایت از WebdriverIO دید خوبی از طریق وب‌سایت ما (بیش از ۶۰ هزار بازدید صفحه در ماه) و README‌های پروژه GitHub به شما می‌دهد. علاوه بر این، حمایت از نرم‌افزارهای متن‌باز باعث بهبود اعتبار برند شما می‌شود، که دارایی مهمی برای هر شرکتی است که با توسعه‌دهندگان تعامل دارد.
+## حمایت از WebdriverIO به‌عنوان یک کسب‌وکار​
+حمایت از WebdriverIO از طریق وب‌سایت ما (بیش از ۶۰ هزار بازدید صفحه در ماه) و فایل‌های README پروژه‌های GitHub، دیده‌شدن قابل‌توجهی برای شما به همراه دارد. علاوه بر این، حمایت از نرم‌افزارهای متن‌باز (OSS) اعتبار برند شما را بهبود می‌بخشد؛ این موضوع برای هر شرکتی که با توسعه‌دهندگان در ارتباط است، دارایی مهمی محسوب می‌شود.
 
-اگر از WebdriverIO برای آزمایش محصولی که درآمدزا است استفاده می‌کنید، حمایت مالی از توسعه WebdriverIO از نظر تجاری منطقی است: این تضمین می‌کند پروژه‌ای که محصول شما به آن متکی است، سالم و فعال باقی می‌ماند. حضور و تصویر مثبت برند در جامعه WebdriverIO همچنین جذب و استخدام توسعه‌دهندگان و مهندسان کنترل کیفیت با تجربه WebdriverIO را آسان‌تر می‌کند.
+اگر از WebdriverIO برای تست محصولی درآمدزا استفاده می‌کنید، حمایت از توسعه WebdriverIO از نظر تجاری منطقی است: این کار تضمین می‌کند پروژه‌ای که محصول شما به آن وابسته است، سالم و به‌طور فعال نگهداری شود. دیده‌شدن و تصویر مثبت برند در جامعه WebdriverIO همچنین جذب و استخدام توسعه‌دهندگان و مهندسان QA با تجربه WebdriverIO را آسان‌تر می‌کند.
 
-__توجه:__ ما از سایت‌های قمار، خدمات نوشتن مقاله، گروه‌های سیاسی، گروه‌های نفرت‌پراکنی، سایت‌های سرگرمی بزرگسالان، یا هر سازمان دیگری که معتقدیم به خیر پروژه کمک نمی‌کند، کمک مالی نمی‌پذیریم. ما تبلیغات ارائه نمی‌دهیم، ما یک پروژه متن‌باز هستیم که به دنبال حمایت مالی از کاربران خود هستیم.
+__توجه:__ ما کمک‌های مالی از سایت‌های قمار، خدمات نگارش مقاله، گروه‌های سیاسی، گروه‌های نفرت‌پراکن، سایت‌های سرگرمی بزرگسالان یا هر سازمان دیگری که معتقد نباشیم به نفع پروژه فعالیت می‌کند را نمی‌پذیریم. ما تبلیغات ارائه نمی‌دهیم؛ ما یک پروژه متن‌باز هستیم که به دنبال حمایت مالی از سوی کاربران خود است.
 
-## حمایت از WebdriverIO به عنوان یک فرد
-اگر شما یک کاربر فردی هستید و از بهره‌وری استفاده از WebdriverIO لذت برده‌اید، به عنوان نشانه قدردانی، کمک مالی کنید - مثل خریدن قهوه برای ما هر از گاهی. بسیاری از اعضای تیم ما حامیان مالی و کمک‌های مالی را از طریق GitHub Sponsors می‌پذیرند.
+## حمایت از WebdriverIO به‌عنوان یک فرد​
+اگر کاربری انفرادی هستید و از بهره‌وری استفاده از WebdriverIO لذت برده‌اید، کمک مالی را به نشانه قدردانی در نظر بگیرید - مثل اینکه هر از گاهی برای ما یک قهوه بخرید. بسیاری از اعضای تیم ما حمایت‌ها و کمک‌های مالی را از طریق GitHub Sponsors می‌پذیرند.
 
-همچنین می‌توانید کارفرمای خود را متقاعد کنید که به عنوان یک کسب و کار از WebdriverIO حمایت کند. این ممکن است آسان نباشد، اما حمایت‌های مالی کسب و کار معمولاً تأثیر بسیار بیشتری بر پایداری پروژه‌های متن‌باز نسبت به کمک‌های فردی دارند، بنابراین اگر موفق شوید، به ما بسیار کمک خواهید کرد.
+همچنین می‌توانید تلاش کنید کارفرمای خود را متقاعد کنید که به‌عنوان یک کسب‌وکار از WebdriverIO حمایت کند. این کار شاید آسان نباشد، اما حمایت‌های تجاری معمولاً تأثیر بسیار بیشتری نسبت به کمک‌های فردی بر پایداری پروژه‌های OSS دارند، بنابراین اگر موفق شوید، کمک بسیار بیشتری به ما خواهید کرد.
 
-## مزایای سطوح حمایتی
+## مزایای سطوح حمایت​
 
-- __💎 پرمیوم (۱۰۰۰ دلار آمریکا/ماه یا بیشتر):__
+- __<TierIcon tier="premium" /> ممتاز (۱۰۰۰ دلار آمریکا در ماه یا بیشتر):__
   - محدود به دو حامی در سطح جهانی
-  - قرارگیری انحصاری لوگو در بالای صفحه اصلی webdriver.io (حدود ۲.۸ هزار بازدیدکننده منحصر به فرد روزانه).
-  - برجسته‌ترین مکان قرارگیری لوگو در تمام مکان‌های سطوح پایین‌تر.
-  - تضمین انحصاری بودن برای حداقل یک سال، که طی آن هیچ نهاد دیگری نمی‌تواند آنها را "رد کند" یا جایگزین کند، که دوره ثابتی از همکاری و قابلیت دید را تضمین می‌کند.
-- __🥇 طلایی (۵۰۰ دلار آمریکا / ماه):__
-  - قرارگیری لوگوی بزرگ در صفحه اصلی [webdriver.io](https://webdriver.io/)
-  - قرارگیری لوگوی بزرگ در [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) مخزن [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
-- __🥈 نقره‌ای (۲۵۰ دلار آمریکا / ماه):__
-  - قرارگیری لوگوی متوسط در این صفحه حامیان
-  - قرارگیری لوگوی متوسط در [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) مخزن [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
-- __🥉 برنزی (۱۰۰ دلار آمریکا / ماه):__
-  - نام یا لوگوی شرکت شما (کوچک) در [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)، [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) قرار خواهد گرفت.
-- __🍺 حامی سخاوتمند (۵۰ دلار آمریکا / ماه):__
-  - نام شما در بخش "حامیان سخاوتمند" در [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)، [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) فهرست خواهد شد.
-- __☕️ حامی فردی (۵ دلار آمریکا / ماه):__
-  - نام در فایل [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) مخزن [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) فهرست خواهد شد.
-
----
+  - نمایش انحصاری لوگو در بالای صفحه اصلی webdriver.io (حدود ۲.۸ هزار بازدیدکننده یکتای روزانه).
+  - برجسته‌ترین جایگاه نمایش لوگو در تمام مکان‌های مربوط به سطوح پایین‌تر.
+  - انحصار تضمین‌شده برای حداقل یک سال، که طی آن هیچ نهاد دیگری نمی‌تواند با پیشنهاد بالاتر جایگزین آن‌ها شود؛ این امر دوره ثابتی از همکاری و دیده‌شدن را تضمین می‌کند.
+- __<TierIcon tier="gold" /> طلایی (۵۰۰ دلار آمریکا در ماه):__
+  - نمایش لوگوی بزرگ در صفحه اصلی [webdriver.io](https://webdriver.io/)
+  - نمایش لوگوی بزرگ در فایل‌های [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) مخزن [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
+- __<TierIcon tier="silver" /> نقره‌ای (۲۵۰ دلار آمریکا در ماه):__
+  - نمایش لوگوی متوسط در همین صفحه حامیان
+  - نمایش لوگوی متوسط در فایل‌های [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) مخزن [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio).
+- __<TierIcon tier="bronze" /> برنزی (۱۰۰ دلار آمریکا در ماه):__
+  - نام یا لوگوی (کوچک) شرکت شما در فایل‌های [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)، [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) قرار خواهد گرفت.
+- __<TierIcon tier="backer" /> پشتیبان سخاوتمند (۵۰ دلار آمریکا در ماه):__
+  - نام شما در بخش «Generous Backers» در فایل‌های [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)، [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) و [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) فهرست خواهد شد.
+- __<TierIcon tier="individual" /> پشتیبان فردی (۵ دلار آمریکا در ماه):__
+  - نام شما در فایل [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) مخزن [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) فهرست می‌شود.
 
 ## حامیان فعلی
 
-### 💎 پرمیوم
+### ممتاز <TierIcon tier="premium" /> {#premium}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/browserstack_black.svg"
@@ -58,20 +57,20 @@ __توجه:__ ما از سایت‌های قمار، خدمات نوشتن مق�
     link="https://www.browserstack.com/automation-webdriverio"
 />
 
-<br />
-<br />
-
-### 🥇 طلایی
-
 <ImageSwitcher
-    lightImageSrc="/img/sponsors/jetify_black.png"
-    darkImageSrc="/img/sponsors/jetify_white.png"
-    alt="Jetify"
-    link="https://www.jetify.com/"
-    width="250"
+    lightImageSrc="/img/sponsors/momentic_black.svg"
+    darkImageSrc="/img/sponsors/momentic_white.svg"
+    alt="Momentic"
     target="_blank"
-    style={{ marginRight: '20px', position: 'relative', top: '8px' }}
+    link="https://momentic.ai/"
+    width="300"
+    style={{ marginLeft: '30px', position: 'relative', top: '6px' }}
 />
+
+<br />
+<br />
+
+### طلایی <TierIcon tier="gold" /> {#gold}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testmu_ai_black.svg"
@@ -82,11 +81,11 @@ __توجه:__ ما از سایت‌های قمار، خدمات نوشتن مق�
     width="250"
 />
 
-تبدیل به یک [حامی طلایی](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me) شوید.
+یک [حامی طلایی](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me) شوید.
 
 <br />
 
-### 🥈 نقره‌ای
+### نقره‌ای <TierIcon tier="silver" /> {#silver}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testingbot.svg"
@@ -97,11 +96,20 @@ __توجه:__ ما از سایت‌های قمار، خدمات نوشتن مق�
     target="_blank"
 />
 
-تبدیل به یک [حامی نقره‌ای](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me) شوید.
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/sap.png"
+    darkImageSrc="/img/sponsors/sap.png"
+    alt="SAP"
+    link="https://www.sap.com/"
+    width="150"
+    target="_blank"
+/>
+
+یک [حامی نقره‌ای](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me) شوید.
 
 <br />
 
-### 🥉 برنزی
+### برنزی <TierIcon tier="bronze" /> {#bronze}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/eslint_black.svg"
@@ -121,14 +129,23 @@ __توجه:__ ما از سایت‌های قمار، خدمات نوشتن مق�
     width="150"
 />
 
-تبدیل به یک [حامی برنزی](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me) شوید.
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/rapidproxy.png"
+    darkImageSrc="/img/sponsors/rapidproxy.png"
+    alt="Rapidproxy"
+    target="_blank"
+    link="https://www.rapidproxy.io/?ref=webdriverio"
+    width="200"
+/>
+
+یک [حامی برنزی](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me) شوید.
 
 <br />
 <br />
 
-### 🙇 حامیان قابل توجه گذشته
+### حامیان برجسته گذشته <TierIcon tier="past" /> {#past}
 
-ما از حمایت تمام حامیان خود سپاسگزاریم! در اینجا برخی از شرکت‌هایی که در گذشته از WebdriverIO حمایت کرده‌اند، آورده شده‌اند.
+ما از حمایت همه حامیان خود سپاسگزاریم! در اینجا برخی از شرکت‌هایی که در گذشته از WebdriverIO حمایت کرده‌اند آورده شده است.
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/saucelabs_black.svg"

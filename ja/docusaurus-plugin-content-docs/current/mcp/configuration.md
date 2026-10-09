@@ -1,19 +1,18 @@
 ---
 id: configuration
 title: 設定
+description: "セッション、ブラウザ、モバイル、クラウドプロバイダー、要素検出、Appiumのオプションを含む、WebdriverIO MCPサーバーの設定方法を説明します。"
 ---
 
-このページではWebdriverIO MCPサーバーのすべての設定オプションについて説明します。
+このページでは、WebdriverIO MCPサーバーのすべての設定オプションについて説明します。
 
-## MCPサーバー設定
+## MCPサーバーの設定
 
-MCPサーバーはClaude DesktopまたはClaude Codeの設定ファイルを通じて設定されます。
+MCPサーバーは、設定ファイルまたはコマンドを通じて設定します。
 
 ### 基本設定
 
-#### macOS
-
-`~/Library/Application Support/Claude/claude_desktop_config.json`を編集します：
+MCP設定ファイル（例：`./.mcp.json`）を編集し、以下を追加します：
 
 ```json
 {
@@ -26,517 +25,448 @@ MCPサーバーはClaude DesktopまたはClaude Codeの設定ファイルを通�
 }
 ```
 
-#### Windows
+## セッションオプション
 
-`%APPDATA%\Claude\claude_desktop_config.json`を編集します：
+すべてのセッションオプションは`start_session`ツールに渡されます。ブラウザセッションとモバイルセッションには単一の統合ツールが用意されており、`platform`パラメータによってセッションの種類が決まります。
 
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"]
-        }
-    }
-}
-```
-
-#### Claude Code
-
-プロジェクトの`.claude/settings.json`を編集します：
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"]
-        }
-    }
-}
-```
-
----
-
-## 環境変数
-
-環境変数を通じてAppiumサーバー接続やその他の設定を構成します。
-
-### Appium接続
-
-| 変数 | タイプ | デフォルト | 説明 |
-|----------|------|---------|-------------|
-| `APPIUM_URL` | string | `127.0.0.1` | Appiumサーバーのホスト名 |
-| `APPIUM_URL_PORT` | number | `4723` | Appiumサーバーのポート |
-| `APPIUM_PATH` | string | `/` | Appiumサーバーのパス |
-
-### 環境変数を使用した例
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"],
-            "env": {
-                "APPIUM_URL": "192.168.1.100",
-                "APPIUM_URL_PORT": "4724",
-                "APPIUM_PATH": "/wd/hub"
-            }
-        }
-    }
-}
-```
-
----
-
-## ブラウザセッションオプション
-
-`start_browser`ツールでブラウザセッションを開始する際に利用可能なオプション。
-
-### `headless`
-
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `false`
-
-Chromeをヘッドレスモードで実行します（ブラウザウィンドウが表示されません）。CI/CD環境やブラウザを表示する必要がない場合に便利です。
-
-### `windowWidth`
-
--   **タイプ:** `number`
--   **必須:** いいえ
--   **デフォルト:** `1920`
--   **範囲:** `400` - `3840`
-
-ブラウザウィンドウの初期幅（ピクセル単位）。
-
-### `windowHeight`
-
--   **タイプ:** `number`
--   **必須:** いいえ
--   **デフォルト:** `1080`
--   **範囲:** `400` - `2160`
-
-ブラウザウィンドウの初期高さ（ピクセル単位）。
-
-### `navigationUrl`
-
--   **タイプ:** `string`
--   **必須:** いいえ
-
-ブラウザを起動した直後に移動するURL。`start_browser`に続けて`navigate`を別々に呼び出すよりも効率的です。
-
-**例:** ブラウザを起動して一度にナビゲートする：
-```
-Start Chrome and navigate to https://webdriver.io
-```
-
----
-
-## モバイルセッションオプション
-
-`start_app_session`ツールでモバイルアプリセッションを開始する際に利用可能なオプション。
-
-### プラットフォームオプション
+### 共通オプション
 
 #### `platform`
 
--   **タイプ:** `string`
--   **必須:** はい
--   **値:** `iOS` | `Android`
+<Option type={`"browser" | "ios" | "android"`} required="Yes">
 
-自動化するモバイルプラットフォーム。
+自動化するプラットフォームです。
 
-#### `platformVersion`
+</Option>
+#### `provider`
 
--   **タイプ:** `string`
--   **必須:** いいえ
+<Option type={`"local" | "browserstack" | "saucelabs" | "testmu" | "testingbot"`} default={`"local"`} required="No">
 
-デバイス/シミュレータ/エミュレータのOSバージョン（例：iOSの場合は`17.0`、Androidの場合は`14`）。
+セッションを実行する場所です。リモートデバイスを使用する場合はクラウドプロバイダー名を指定します。各プロバイダーにはそれぞれ専用の環境変数が必要です。詳細は[クラウドプロバイダー](./cloud-providers)を参照してください。
 
-#### `automationName`
+</Option>
+## ブラウザセッションオプション
 
--   **タイプ:** `string`
--   **必須:** いいえ
--   **値:** `XCUITest`（iOS）、`UiAutomator2` | `Espresso`（Android）
+`platform: "browser"`セッション用のオプションです。
 
-使用する自動化ドライバー。iOSの場合はデフォルトで`XCUITest`、Androidの場合は`UiAutomator2`。
+### `browser`
 
-### デバイスオプション
+<Option type={`"chrome" | "firefox" | "edge" | "safari"`} required="Yes (for browser platform)">
 
-#### `deviceName`
+起動するブラウザです。
 
--   **タイプ:** `string`
--   **必須:** はい
+</Option>
+### `browserVersion`
 
-使用するデバイス、シミュレータ、またはエミュレータの名前。
+<Option type="string" default={`"latest"`} required="No">
 
-**例:**
--   iOS シミュレータ: `iPhone 15 Pro`, `iPad Air (5th generation)`
--   Android エミュレータ: `Pixel 7`, `Nexus 5X`
--   実機: システムに表示されているデバイス名
+ブラウザのバージョンです。クラウドプロバイダーのみ（デフォルト：latest）。
 
-#### `udid`
+</Option>
+### `os` / `osVersion`
 
--   **タイプ:** `string`
--   **必須:** いいえ（実機iOSデバイスでは必須）
+<Option type="string" required="No">
 
-固有デバイス識別子。実機iOSデバイス（40文字の識別子）では必須で、Android実機では推奨されます。
+クラウドプロバイダーのブラウザセッションで使用するオペレーティングシステムです。例：`os: "Windows"`, `osVersion: "11"` または `os: "OS X"`, `osVersion: "Sequoia"`。
 
-**UDIDの確認方法:**
--   **iOS:** デバイスを接続し、Finder/iTunesを開き、デバイスをクリック → シリアル番号（クリックしてUDIDを表示）
--   **Android:** ターミナルで`adb devices`を実行
+</Option>
+### `headless`
 
-### アプリオプション
+<Option type="boolean" default="true" required="No">
 
-#### `appPath`
+ブラウザをヘッドレスモード（ウィンドウ非表示）で実行します。ブラウザを表示するには`false`に設定します。
 
--   **タイプ:** `string`
--   **必須:** いいえ*
+</Option>
+### `windowWidth`
 
-インストールして起動するアプリケーションファイルへのパス。
+<Option type="number" default="1920" required="No">
 
-**サポートされているフォーマット:**
--   iOSシミュレータ: `.app`ディレクトリ
--   iOS実機: `.ipa`ファイル
--   Android: `.apk`ファイル
+-   **範囲：** `400` - `3840`
 
-*`appPath`の提供か、既に実行中のアプリに接続するための`noReset: true`のいずれかが必要です。
+ブラウザウィンドウの初期幅（ピクセル単位）です。
 
-#### `appWaitActivity`
+</Option>
+### `windowHeight`
 
--   **タイプ:** `string`
--   **必須:** いいえ（Androidのみ）
+<Option type="number" default="1080" required="No">
 
-アプリ起動時に待機するアクティビティ。指定しない場合、アプリのメイン/ランチャーアクティビティが使用されます。
+-   **範囲：** `400` - `2160`
 
-**例:** `com.example.app.MainActivity`
+ブラウザウィンドウの初期高さ（ピクセル単位）です。
 
+</Option>
+### `navigationUrl`
+
+<Option type="string" required="No">
+
+ブラウザ起動直後に移動するURLです。`start_session`の後に`navigate`を個別に呼び出すよりも効率的です。
+
+</Option>
+### `attach`
+
+<Option type="boolean" default="false" required="No">
+
+新しいChromeインスタンスを起動する代わりに、既存のChromeインスタンスにアタッチします。`launch_chrome`の後に使用して、CDP経由で接続します。
+
+</Option>
+### `attachConfig`
+
+<Option type={`{ port?: number; host?: string }`} default={`{ port: 9222, host: "localhost" }`} required="No">
+
+Chromeリモートデバッグの接続設定です。`attach: true`の場合にのみ適用されます。
+
+</Option>
+## モバイルセッションオプション
+
+`platform: "ios"`または`platform: "android"`セッション用のオプションです。
+
+### `deviceName`
+
+<Option type="string" required="Yes (for mobile platforms)">
+
+デバイス、シミュレーター、またはエミュレーターの名前です。
+
+**例：**
+-   iOSシミュレーター：`"iPhone 16"`、`"iPad Air (5th generation)"`
+-   Androidエミュレーター：`"Pixel 7"`、`"Nexus 5X"`
+-   実機：システムに表示されるデバイス名
+
+</Option>
+### `platformVersion`
+
+<Option type="string" required="No">
+
+デバイス/シミュレーター/エミュレーターのOSバージョンです（例：iOSの場合は`"18.0"`、Androidの場合は`"14"`）。
+
+</Option>
+### `automationName`
+
+<Option type={`"XCUITest" | "UiAutomator2"`} required="No">
+
+自動化ドライバーです。デフォルトはiOSでは`XCUITest`、Androidでは`UiAutomator2`です。
+
+</Option>
+### `udid`
+
+<Option type="string" required="No (Required for real iOS devices)">
+
+一意のデバイス識別子（Unique Device Identifier）です。iOS実機の場合は必須です（40文字の識別子）。
+
+**UDIDの確認方法：**
+-   **iOS：** デバイスを接続し、Finderを開いてデバイスをクリック → シリアル番号（クリックするとUDIDが表示されます）
+-   **Android：** ターミナルで`adb devices`を実行
+
+</Option>
+### `appPath`
+
+<Option type="string" required="No">
+
+インストールして起動するアプリケーションファイルへのパスです。
+
+**サポートされている形式：**
+-   iOSシミュレーター：`.app`ディレクトリ
+-   iOS実機：`.ipa`ファイル
+-   Android：`.apk`ファイル
+
+`appPath`を指定するか、すでに実行中のアプリに接続するために`noReset: true`を指定する必要があります。
+
+</Option>
+### `app`
+
+<Option type="string" required="No">
+
+クラウドプロバイダーのアプリURL（BrowserStackの場合は`bs://...`、Sauce Labsの場合は`storage:filename=`、TestMuの場合は`lt://...`、TestingBotの場合はapp_url）または`customId`です。クラウドのモバイルセッションでは`appPath`の代わりに使用します。
+
+</Option>
+### `appWaitActivity`
+
+<Option type="string" required="No (Android only)">
+
+アプリ起動時に待機するアクティビティです。指定しない場合は、アプリのメイン/ランチャーアクティビティが使用されます。
+
+**例：** `"com.example.app.MainActivity"`
+
+</Option>
 ### セッション状態オプション
 
 #### `noReset`
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `false`
+<Option type="boolean" required="No">
 
-セッション間でアプリの状態を保持します。`true`の場合:
--   アプリデータが保持されます（ログイン状態、設定など）
--   セッションは**切り離し**され、終了しません（アプリは実行し続けます）
--   複数のセッションにまたがるユーザージャーニーのテストに便利です
--   既に実行中のアプリに接続するために、`appPath`なしで使用できます
+セッション間でアプリの状態を保持します。`true`の場合：
+-   アプリのデータ（ログイン状態、設定など）が保持されます
+-   セッションはクローズではなく**デタッチ**されます（アプリは実行されたまま）
+-   `appPath`なしで使用して、すでに実行中のアプリに接続できます
 
+</Option>
 #### `fullReset`
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `true`
+<Option type="boolean" required="No">
 
-セッション前にアプリを完全にリセットします。`true`の場合:
--   iOS: アプリをアンインストールして再インストールします
--   Android: アプリデータとキャッシュをクリアします
--   クリーンな状態からの開始に便利です
+セッション開始前にアプリを完全にリセットします：
+-   iOS：アプリをアンインストールして再インストールします
+-   Android：アプリのデータとキャッシュをクリアします
 
 アプリの状態を完全に保持するには、`fullReset: false`と`noReset: true`を設定します。
 
+</Option>
 ### セッションタイムアウト
 
 #### `newCommandTimeout`
 
--   **タイプ:** `number`
--   **必須:** いいえ
--   **デフォルト:** `60`
+<Option type="number" default="300" required="No">
 
-Appiumが新しいコマンドを待機する時間（秒）。この時間が経過するとクライアントが終了したと判断し、セッションを終了します。より長いデバッグセッションの場合は、この値を増やします。
+Appiumがセッションを終了する前に新しいコマンドを待機する時間（秒単位）です。長時間のデバッグセッションでは値を増やしてください。
 
-**例:**
--   `60` - デフォルト、ほとんどの自動化に適しています
--   `300` - 5分、デバッグや遅い操作のため
--   `600` - 10分、非常に長時間実行されるテストのため
-
-### 自動処理オプション
+</Option>
+### 自動処理
 
 #### `autoGrantPermissions`
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `true`
+<Option type="boolean" default="true" required="No">
 
-インストール/起動時にアプリの権限を自動的に許可します。`true`の場合:
--   カメラ、マイク、位置情報などの権限が自動的に許可されます
--   手動での権限ダイアログ処理が不要になります
--   権限ポップアップを回避して自動化を効率化します
+インストール/起動時にアプリの権限（カメラ、マイク、位置情報など）を自動的に付与します。
 
 :::note Androidのみ
-このオプションは主にAndroidに影響します。iOSの権限はシステムの制限により異なる方法で処理する必要があります。
+このオプションは主にAndroidに影響します。iOSの権限はシステムの制限により、別の方法で処理する必要があります。
 :::
 
+</Option>
 #### `autoAcceptAlerts`
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `true`
+<Option type="boolean" default="true" required="No">
 
-自動化中に表示されるシステムアラート（ダイアログ）を自動的に受け入れます。
+自動化中にシステムアラート（ダイアログ）を自動的に承認します（「通知を許可しますか？」など）。
 
-**自動受け入れされるアラートの例:**
--   「通知を許可しますか？」
--   「アプリが位置情報へのアクセスを求めています」
--   「アプリが写真へのアクセスを許可しますか？」
-
+</Option>
 #### `autoDismissAlerts`
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `false`
+<Option type="boolean" default="false" required="No">
 
-システムアラートを受け入れる代わりに却下（キャンセル）します。`true`に設定されている場合、`autoAcceptAlerts`よりも優先されます。
+システムアラートを承認する代わりに閉じます。`true`の場合、`autoAcceptAlerts`よりも優先されます。
 
-### Appiumサーバーのオーバーライド
+</Option>
+### Appiumサーバー接続
 
-セッションごとにAppiumサーバー接続を上書きできます：
+`appiumConfig`を使用して、セッションごとにAppiumサーバー接続を上書きできます：
 
-#### `appiumHost`
+```js
+start_session({
+  platform: "ios",
+  deviceName: "iPhone 16",
+  appPath: "/path/to/app.app",
+  appiumConfig: { host: "192.168.1.100", port: 4724, path: "/wd/hub" }
+})
+```
 
--   **タイプ:** `string`
--   **必須:** いいえ
+#### `appiumConfig`
 
-Appiumサーバーのホスト名。`APPIUM_URL`環境変数を上書きします。
+<Option type={`{ host?: string; port?: number; path?: string }`} required="No">
 
-#### `appiumPort`
+Appiumサーバーの接続設定です。デフォルトは`{ host: "127.0.0.1", port: 4723, path: "/" }`です。
 
--   **タイプ:** `number`
--   **必須:** いいえ
+</Option>
+## クラウドプロバイダーオプション
 
-Appiumサーバーのポート。`APPIUM_URL_PORT`環境変数を上書きします。
+### 認証情報
 
-#### `appiumPath`
+各クラウドプロバイダーには、それぞれ専用の環境変数が必要です：
 
--   **タイプ:** `string`
--   **必須:** いいえ
+| プロバイダー | ユーザー名の変数        | アクセスキーの変数        |
+| ------------ | ----------------------- | ------------------------- |
+| BrowserStack | `BROWSERSTACK_USERNAME` | `BROWSERSTACK_ACCESS_KEY` |
+| Sauce Labs   | `SAUCE_USERNAME`        | `SAUCE_ACCESS_KEY`        |
+| TestMu       | `TESTMU_USERNAME`       | `TESTMU_ACCESS_KEY`       |
+| TestingBot   | `TESTINGBOT_KEY`        | `TESTINGBOT_SECRET`       |
 
-Appiumサーバーのパス。`APPIUM_PATH`環境変数を上書きします。
+MCPサーバーを起動する前にこれらを設定してください。
 
----
+### `region`
 
+<Option type={`"us-west-1" | "eu-central-1" | "apac-southeast-1"`} default={`"eu-central-1"`} required="No">
+
+Sauce Labsのデータセンターリージョンです。他のプロバイダーでは無視されます。
+
+</Option>
+### `tunnel`
+
+<Option type={`boolean | "external"`} default="false" required="No">
+
+クラウドプロバイダーのセッションでローカルトンネルルーティングを有効にします（localhost、ステージング環境、内部サービスへのアクセス）。
+
+-   `true` — セッション前にトンネルを自動的に開始し、クローズ時に停止します
+-   `"external"` — トンネルがすでに外部で実行されている場合に使用します。プロバイダーに適したフラグのみを設定します
+
+`true`を使用する前に、プロバイダーのlocal-binaryリソース（`wdio://browserstack/local-binary`、`wdio://saucelabs/local-binary`、`wdio://testmu/local-binary`、または`wdio://testingbot/local-binary`）を読み、お使いのOSとアーキテクチャに固有のセットアップ手順を確認してください。
+
+</Option>
+### `tunnelName`
+
+<Option type="string" required="No">
+
+トンネルの識別名です。`tunnel: "external"`の場合、実行中のトンネルと一致させるために必須です。`tunnel: true`の場合、指定しなければ一意の名前が自動生成されます。
+
+</Option>
+### `reporting`
+
+<Option type={`{ project?: string; build?: string; session?: string }`} required="No">
+
+プロバイダーのダッシュボードに表示されるクラウドプロバイダーのセッションラベルです。BrowserStack、Sauce Labs、TestMu、TestingBotのすべてで同じように動作します。
+
+</Option>
+### `trace`
+
+<Option type="boolean" default="false" required="No">
+
+トレース記録を有効にします。`close_session`時に、Playwright互換の`.trace` zipファイルが`.trace/`に保存されます。トレースは[player.vibium.dev](https://player.vibium.dev)で閲覧できます。
+
+</Option>
 ## 要素検出オプション
 
-`get_visible_elements`ツールのオプション。
-
-### `elementType`
-
--   **タイプ:** `string`
--   **必須:** いいえ
--   **デフォルト:** `interactable`
--   **値:** `interactable` | `visual` | `all`
-
-返す要素のタイプ:
--   `interactable`: ボタン、リンク、入力フィールドなどのクリック可能な要素
--   `visual`: 画像、SVGなどの視覚的要素
--   `all`: インタラクティブな要素と視覚的要素の両方
+`get_elements`ツール用のオプションです。
 
 ### `inViewportOnly`
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `true`
+<Option type="boolean" default="false" required="No">
 
-現在のビューポート内に表示されている要素のみを返します。`false`の場合、ビュー階層内のすべての要素を返します（画面外の要素を見つけるのに便利）。
+現在のビューポート内に表示されている要素のみを返します。長いページで結果を減らすには`true`に設定します。
 
+</Option>
 ### `includeContainers`
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `false`
+<Option type="boolean" default="false" required="No">
 
-結果にコンテナ/レイアウト要素を含めます。`true`の場合：
+コンテナ/レイアウト要素を結果に含めます：
 
-**含まれるAndroidコンテナ:**
--   `ViewGroup`, `FrameLayout`, `LinearLayout`
--   `RelativeLayout`, `ConstraintLayout`
--   `ScrollView`, `RecyclerView`
+**Androidのコンテナ：** `ViewGroup`、`FrameLayout`、`LinearLayout`、`RelativeLayout`、`ConstraintLayout`、`ScrollView`、`RecyclerView`
 
-**含まれるiOSコンテナ:**
--   `View`, `StackView`, `CollectionView`
--   `ScrollView`, `TableView`
+**iOSのコンテナ：** `View`、`StackView`、`CollectionView`、`ScrollView`、`TableView`
 
-レイアウトの問題のデバッグやビュー階層の理解に役立ちます。
-
+</Option>
 ### `includeBounds`
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `false`
+<Option type="boolean" default="false" required="No">
 
-レスポンスに要素の境界/座標（x、y、幅、高さ）を含めます。以下の場合に`true`に設定します：
--   座標ベースのインタラクション
--   レイアウトのデバッグ
--   視覚的要素の位置決め
+要素のバウンディングボックス座標（x、y、width、height）をレスポンスに含めます。
 
-### ページネーションオプション
-
-多くの要素を持つ大きなページでは、トークン使用量を減らすためにページネーションを使用します：
+</Option>
+### ページネーション
 
 #### `limit`
 
--   **タイプ:** `number`
--   **必須:** いいえ
--   **デフォルト:** `0`（無制限）
+<Option type="number" default="0 (unlimited)" required="No">
 
-返す要素の最大数。
+返す要素の最大数です。
 
+</Option>
 #### `offset`
 
--   **タイプ:** `number`
--   **必須:** いいえ
--   **デフォルト:** `0`
+<Option type="number" default="0" required="No">
 
-結果を返す前にスキップする要素の数。
+結果を返す前にスキップする要素の数です。
 
-**例:** 21-40の要素を取得する：
-```
-Get visible elements with limit 20 and offset 20
+**例：** 21〜40番目の要素を取得：
+```text
+Get elements with limit 20 and offset 20
 ```
 
----
-
+</Option>
 ## アクセシビリティツリーオプション
 
-`get_accessibility`ツール（ブラウザのみ）のオプション。
+`get_accessibility_tree`ツール（ブラウザのみ）用のオプションです。
 
 ### `limit`
 
--   **タイプ:** `number`
--   **必須:** いいえ
--   **デフォルト:** `100`
+<Option type="number" default="0 (unlimited)" required="No">
 
-返すノードの最大数。無制限の場合は`0`を使用します（大きなページには推奨されません）。
+返すノードの最大数です。
 
+</Option>
 ### `offset`
 
--   **タイプ:** `number`
--   **必須:** いいえ
--   **デフォルト:** `0`
+<Option type="number" default="0" required="No">
 
-ページネーション用にスキップするノードの数。
+ページネーションのためにスキップするノードの数です。
 
+</Option>
 ### `roles`
 
--   **タイプ:** `string[]`
--   **必須:** いいえ
--   **デフォルト:** すべてのロール
+<Option type="string[]" default="All roles" required="No">
 
-特定のアクセシビリティロールにフィルタリングします。
+特定のアクセシビリティロールに絞り込みます。
 
-**一般的なロール:** `button`, `link`, `textbox`, `checkbox`, `radio`, `heading`, `img`, `listitem`
+**一般的なロール：** `button`、`link`、`textbox`、`checkbox`、`radio`、`heading`、`img`、`listitem`
 
-**例:** ボタンとリンクのみを取得する：
-```
+**例：** ボタンとリンクのみを取得：
+```text
 Get accessibility tree filtered to button and link roles
 ```
 
-### `namedOnly`
+</Option>
+## スクリーンショット
 
--   **タイプ:** `boolean`
--   **必須:** いいえ
--   **デフォルト:** `true`
+`get_screenshot`ツールはパラメータを取りません。スクリーンショットは自動的に処理されます：
 
-名前/ラベルを持つノードのみを返します。匿名のコンテナをフィルタリングし、結果のノイズを減らします。
-
----
-
-## スクリーンショットオプション
-
-`take_screenshot`ツールのオプション。
-
-### `outputPath`
-
--   **タイプ:** `string`
--   **必須:** いいえ
-
-スクリーンショットファイルを保存するパス。指定しない場合、base64エンコードされた画像データを返します。
-
-### 自動最適化
-
-スクリーンショットはLLM消費のために自動的に処理されて最適化されます：
-
-| 最適化 | 値 | 説明 |
-|--------------|-------|-------------|
-| 最大寸法 | 2000px | 2000pxより大きい画像は縮小されます |
-| 最大ファイルサイズ | 1MB | 画像は1MB未満に圧縮されます |
-| フォーマット | PNG/JPEG | 最大圧縮のPNG、サイズが必要な場合はJPEG |
-
-この最適化により、トークン制限を超えることなく、スクリーンショットを効率的に処理できます。
-
----
+| 最適化           | 値       | 説明                                                         |
+| ---------------- | -------- | ------------------------------------------------------------ |
+| 最大寸法         | 2000px   | 2000pxより大きい画像は縮小されます                           |
+| 最大ファイルサイズ | 1MB      | 画像は1MB未満に収まるよう圧縮されます                        |
+| 形式             | PNG/JPEG | 最大圧縮のPNG。サイズ上必要な場合はJPEG                      |
 
 ## セッションの動作
 
-### セッションタイプ
+### セッションの種類
 
-MCPサーバーは、適切なツールと動作を提供するためにセッションタイプを追跡します：
-
-| タイプ | 説明 | 自動切り離し |
-|------|-------------|-------------|
-| `browser` | Chromeブラウザセッション | いいえ |
-| `ios` | iOSアプリセッション | はい（`noReset: true`または`appPath`なしの場合） |
+| 種類      | 説明                    | 自動デタッチ                                    |
+| --------- | ----------------------- | ----------------------------------------------- |
+| `browser` | ブラウザセッション      | いいえ                                          |
+| `ios`     | iOSアプリセッション     | はい（`noReset: true`または`appPath`なしの場合） |
 | `android` | Androidアプリセッション | はい（`noReset: true`または`appPath`なしの場合） |
 
-### 単一セッションモデル
+### シングルセッションモデル
 
-MCPサーバーは**単一セッションモデル**で動作します：
+MCPサーバーは**シングルセッションモデル**で動作します：
 
--   一度にアクティブにできるのは1つのブラウザまたはアプリセッションのみです
--   新しいセッションを開始すると、現在のセッションが閉じられるか切り離されます
--   セッション状態はツール呼び出し間でグローバルに維持されます
+-   同時にアクティブにできるのは、ブラウザまたはアプリのいずれか1つのセッションのみです
+-   新しいセッションを開始すると、現在のセッションはクローズ/デタッチされます
+-   セッションの状態はツール呼び出し間でグローバルに維持されます
 
-### 切り離しと閉じる
+### デタッチとクローズ
 
-| アクション | `detach: false`（閉じる） | `detach: true`（切り離す） |
-|--------|-------------------------|-------------------------|
-| ブラウザ | Chromeを完全に閉じます | Chromeを実行したまま、WebDriverとの接続を切断します |
-| モバイルアプリ | アプリを終了します | アプリを現在の状態で実行したままにします |
-| ユースケース | 次のセッションのためのクリーンな状態 | 状態の保持、手動検査 |
+| アクション     | `detach: false`（クローズ）      | `detach: true`（デタッチ）                         |
+| -------------- | -------------------------------- | -------------------------------------------------- |
+| ブラウザ       | ブラウザを完全に閉じます         | ブラウザを実行したまま、WebDriverを切断します      |
+| モバイルアプリ | アプリを終了します               | アプリを現在の状態のまま実行し続けます             |
+| ユースケース   | 次のセッションをクリーンな状態で開始 | 状態の保持、手動での検査                        |
 
----
-
-## パフォーマンスの考慮事項
-
-MCPサーバーは**TOON（Token-Oriented Object Notation）**フォーマットを使用して、Claudeへのデータ送信時のトークン使用量を最小限に抑えるよう最適化されています。
+## パフォーマンスに関する考慮事項
 
 ### ブラウザ自動化
 
--   **ヘッドレスモード**はより高速ですが、視覚的な要素をレンダリングしません
--   **小さいウィンドウサイズ**はスクリーンショットのキャプチャ時間を削減します
+-   **ヘッドレスモード**は高速ですが、視覚的な要素はレンダリングされません
+-   **ウィンドウサイズを小さくする**と、スクリーンショットの取得時間が短縮されます
 -   **要素検出**は単一のスクリプト実行で最適化されています
--   **スクリーンショット最適化**は効率的な処理のために画像を1MB未満に保ちます
--   **`inViewportOnly: true`**（デフォルト）は表示されている要素のみにフィルタリングします
+-   **スクリーンショットの最適化**により、効率的な処理のために画像は1MB未満に抑えられます
 
 ### モバイル自動化
 
--   **XMLページソース解析**は従来の要素クエリ（600+回）と比較して2回のHTTP呼び出しのみを使用します
--   **アクセシビリティIDセレクタ**が最速で最も信頼性が高いです
--   **XPathセレクタ**は最も遅いです - 最後の手段としてのみ使用してください
--   **`inViewportOnly: true`**（デフォルト）は要素数を大幅に削減します
--   **ページネーション**（`limit`と`offset`）は多くの要素を持つ画面のトークン使用量を削減します
--   **`includeBounds: false`**（デフォルト）は必要でない限り座標データを省略します
+-   **XMLページソースの解析**では、HTTP呼び出しはわずか2回です（従来の要素クエリでは600回以上）
+-   **アクセシビリティIDセレクター**が最も高速で信頼性があります
+-   **XPathセレクター**は最も低速です。最後の手段としてのみ使用してください
+-   **ページネーション**（`limit`と`offset`）により、多数の要素がある画面でのトークン使用量を削減できます
 
-### トークン使用のヒント
+### トークン使用量のヒント
 
-| 設定 | 影響 |
-|---------|--------|
-| `inViewportOnly: true` | 画面外の要素をフィルタリングし、レスポンスサイズを削減します |
-| `includeContainers: false` | レイアウト要素（ViewGroupなど）を除外します |
-| `includeBounds: false` | x/y/width/heightデータを省略します |
-| `limit`とページネーション | すべてを一度に処理する代わりに要素をバッチで処理します |
-| `namedOnly: true`（アクセシビリティ） | 匿名ノードをフィルタリングします |
+| 設定                       | 効果                                                     |
+| -------------------------- | -------------------------------------------------------- |
+| `inViewportOnly: true`     | 画面外の要素を除外し、レスポンスサイズを削減します       |
+| `includeContainers: false` | レイアウト要素（ViewGroupなど）を除外します              |
+| `includeBounds: false`     | x/y/width/heightのデータを省略します                     |
+| ページネーション付きの`limit` | すべての要素を一度に処理する代わりに、バッチ単位で処理します |
 
----
+## Appiumサーバーのセットアップ
 
-## Appiumサーバーセットアップ
-
-モバイル自動化を使用する前に、Appiumが適切に設定されていることを確認してください。
+モバイル自動化を使用する前に、Appiumが正しく設定されていることを確認してください。
 
 ### 基本セットアップ
 
@@ -552,58 +482,56 @@ appium driver install uiautomator2  # Android
 appium
 ```
 
-### カスタムサーバー構成
+### カスタムサーバー設定
 
 ```sh
 # カスタムホストとポートで起動
 appium --address 0.0.0.0 --port 4724
 
-# ログ付きで起動
+# ログ出力付きで起動
 appium --log-level debug
 
 # 特定のベースパスで起動
 appium --base-path /wd/hub
 ```
 
-### インストール確認
+### インストールの確認
 
 ```sh
-# インストールされたドライバーを確認
+# インストール済みのドライバーを確認
 appium driver list --installed
 
-# Appiumバージョンを確認
+# Appiumのバージョンを確認
 appium --version
 
 # 接続をテスト
 curl http://localhost:4723/status
 ```
 
----
-
 ## 設定のトラブルシューティング
 
 ### MCPサーバーが起動しない
 
-1. npm/npxがインストールされていることを確認する: `npm --version`
-2. 手動で実行してみる: `npx @wdio/mcp`
-3. Claude Desktopのログでエラーを確認する
+1. npm/npxがインストールされていることを確認します：`npm --version`
+2. 手動で実行してみます：`npx @wdio/mcp`
+3. ハーネスのログでエラーを確認します
 
-### Appium接続の問題
+### Appiumの接続の問題
 
-1. Appiumが実行中であることを確認する: `curl http://localhost:4723/status`
-2. 環境変数がAppiumサーバー設定と一致することを確認する
-3. ファイアウォールがAppiumポートへの接続を許可していることを確認する
+1. Appiumが実行中であることを確認します：`curl http://localhost:4723/status`
+2. `start_session`の`appiumConfig`がAppiumサーバーの設定と一致していることを確認します
+3. ファイアウォールがAppiumポートでの接続を許可していることを確認します
 
 ### セッションが開始しない
 
-1. **ブラウザ:** Chromeがインストールされていることを確認する
-2. **iOS:** Xcodeとシミュレータが利用可能であることを確認する
-3. **Android:** `ANDROID_HOME`とエミュレータが実行中であることを確認する
-4. 詳細なエラーメッセージについてAppiumサーバーログを確認する
+1. **ブラウザ：** 対象のブラウザがインストールされていることを確認します
+2. **iOS：** Xcodeとシミュレーターが利用可能であることを確認します
+3. **Android：** `ANDROID_HOME`を確認し、エミュレーターが実行中であることを確認します
+4. 詳細なエラーメッセージについては、Appiumサーバーのログを確認します
 
-### セッションタイムアウト
+### セッションのタイムアウト
 
 デバッグ中にセッションがタイムアウトする場合：
-1. セッション開始時に`newCommandTimeout`を増やす
-2. セッション間で状態を保持するために`noReset: true`を使用する
-3. アプリを実行したままにするために閉じるときに`detach: true`を使用する
+1. セッション開始時に`newCommandTimeout`を増やします
+2. `noReset: true`を使用して、セッション間で状態を保持します
+3. クローズ時に`detach: true`を使用して、アプリを実行したままにします

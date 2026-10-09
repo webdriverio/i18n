@@ -1,13 +1,14 @@
 ---
 id: react
 title: React
+description: "Ρυθμίστε τον browser runner του WebdriverIO για ένα έργο React με το preset react και γράψτε δοκιμές components με το Testing Library."
 ---
 
-[React](https://reactjs.org/) κάνει εύκολη τη δημιουργία διαδραστικών διεπαφών χρήστη. Σχεδιάστε απλές προβολές για κάθε κατάσταση στην εφαρμογή σας, και το React θα ενημερώνει και θα αποδίδει αποτελεσματικά μόνο τα σωστά στοιχεία όταν αλλάζουν τα δεδομένα σας. Μπορείτε να δοκιμάσετε τα στοιχεία React απευθείας σε ένα πραγματικό πρόγραμμα περιήγησης χρησιμοποιώντας το WebdriverIO και το [browser runner](/docs/runner#browser-runner).
+Το [React](https://reactjs.org/) κάνει τη δημιουργία διαδραστικών UI ανώδυνη. Σχεδιάστε απλές προβολές για κάθε κατάσταση της εφαρμογής σας και το React θα ενημερώνει και θα αποδίδει αποτελεσματικά ακριβώς τα σωστά components όταν αλλάζουν τα δεδομένα σας. Μπορείτε να δοκιμάσετε τα React components απευθείας σε έναν πραγματικό browser χρησιμοποιώντας το WebdriverIO και τον [browser runner](/docs/runner#browser-runner) του.
 
-## Εγκατάσταση
+## Ρύθμιση
 
-Για να ρυθμίσετε το WebdriverIO στο έργο React σας, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στα έγγραφα δοκιμών των στοιχείων μας. Βεβαιωθείτε ότι έχετε επιλέξει `react` ως προκαθορισμένη ρύθμιση στις επιλογές του runner σας, π.χ.:
+Για να ρυθμίσετε το WebdriverIO στο έργο React σας, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στην τεκμηρίωση για τις δοκιμές components. Βεβαιωθείτε ότι έχετε επιλέξει το `react` ως preset στις επιλογές του runner, π.χ.:
 
 ```js
 // wdio.conf.js
@@ -22,11 +23,11 @@ export const config = {
 
 :::info
 
-Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως διακομιστή ανάπτυξης, μπορείτε επίσης να επαναχρησιμοποιήσετε τη διαμόρφωσή σας στο `vite.config.ts` μέσα στη διαμόρφωση WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές runner](/docs/runner#runner-options).
+Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως development server, μπορείτε επίσης απλώς να επαναχρησιμοποιήσετε τη διαμόρφωσή σας από το `vite.config.ts` μέσα στη διαμόρφωση του WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές του runner](/docs/runner#runner-options).
 
 :::
 
-Η προκαθορισμένη ρύθμιση React απαιτεί την εγκατάσταση του `@vitejs/plugin-react`. Επίσης, συνιστούμε τη χρήση του [Testing Library](https://testing-library.com/) για την απόδοση του στοιχείου στη σελίδα δοκιμών. Για αυτό θα χρειαστεί να εγκαταστήσετε τις ακόλουθες πρόσθετες εξαρτήσεις:
+Το preset του React απαιτεί να είναι εγκατεστημένο το `@vitejs/plugin-react`. Επίσης, συνιστούμε τη χρήση του [Testing Library](https://testing-library.com/) για την απόδοση του component στη σελίδα δοκιμής. Επομένως, θα χρειαστεί να εγκαταστήσετε τις ακόλουθες πρόσθετες εξαρτήσεις:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/react @vitejs/plugin-react
@@ -38,9 +39,9 @@ npm install --save-dev @testing-library/react @vitejs/plugin-react
 npx wdio run ./wdio.conf.js
 ```
 
-## Γράφοντας Δοκιμές
+## Συγγραφή Δοκιμών
 
-Δεδομένου ότι έχετε το ακόλουθο στοιχείο React:
+Δεδομένου ότι έχετε το ακόλουθο React component:
 
 ```tsx title="./components/Component.jsx"
 import React, { useState } from 'react'
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-Στη δοκιμή σας, χρησιμοποιήστε τη μέθοδο `render` από το `@testing-library/react` για να συνδέσετε το στοιχείο στη σελίδα δοκιμών. Για αλληλεπίδραση με το στοιχείο, συνιστούμε να χρησιμοποιήσετε εντολές WebdriverIO καθώς συμπεριφέρονται πιο κοντά στις πραγματικές αλληλεπιδράσεις χρήστη, π.χ.:
+Στη δοκιμή σας χρησιμοποιήστε τη μέθοδο `render` από το `@testing-library/react` για να προσαρτήσετε το component στη σελίδα δοκιμής. Για να αλληλεπιδράσετε με το component, συνιστούμε να χρησιμοποιείτε εντολές του WebdriverIO, καθώς συμπεριφέρονται πιο κοντά σε πραγματικές αλληλεπιδράσεις χρήστη, π.χ.:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -84,4 +85,4 @@ describe('React Component Testing', () => {
 })
 ```
 
-Μπορείτε να βρείτε ένα πλήρες παράδειγμα σουίτας δοκιμών στοιχείων WebdriverIO για React στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/react-typescript-vite) μας.
+Μπορείτε να βρείτε ένα πλήρες παράδειγμα σουίτας δοκιμών components του WebdriverIO για το React στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/react-typescript-vite) μας.

@@ -1,13 +1,14 @@
 ---
 id: vue
 title: Vue.js
+description: "Vue.js के लिए WebdriverIO ब्राउज़र रनर सेट अप करें, Testing Library के साथ कंपोनेंट टेस्ट लिखें और async कंपोनेंट्स तथा Nuxt ऐप्स का परीक्षण करें।"
 ---
 
-[Vue.js](https://vuejs.org/) एक सरल, उच्च प्रदर्शन वाला और बहुमुखी फ्रेमवर्क है वेब यूजर इंटरफेस बनाने के लिए। आप WebdriverIO और इसके [ब्राउज़र रनर](/docs/runner#browser-runner) का उपयोग करके Vue.js कंपोनेंट्स का सीधे वास्तविक ब्राउज़र में परीक्षण कर सकते हैं।
+[Vue.js](https://vuejs.org/) वेब यूज़र इंटरफ़ेस बनाने के लिए एक सुलभ, उच्च प्रदर्शन वाला और बहुमुखी फ्रेमवर्क है। आप WebdriverIO और इसके [ब्राउज़र रनर](/docs/runner#browser-runner) का उपयोग करके Vue.js कंपोनेंट्स को सीधे एक वास्तविक ब्राउज़र में टेस्ट कर सकते हैं।
 
 ## सेटअप
 
-अपने Vue.js प्रोजेक्ट में WebdriverIO सेट करने के लिए, हमारे कंपोनेंट टेस्टिंग डॉक्स में [निर्देशों](/docs/component-testing#set-up) का पालन करें। अपने रनर विकल्पों में प्रीसेट के रूप में `vue` का चयन करना सुनिश्चित करें, उदाहरण के लिए:
+अपने Vue.js प्रोजेक्ट में WebdriverIO सेटअप करने के लिए, हमारे कंपोनेंट टेस्टिंग डॉक्स में दिए गए [निर्देशों](/docs/component-testing#set-up) का पालन करें। अपने रनर विकल्पों में प्रीसेट के रूप में `vue` का चयन करना सुनिश्चित करें, उदाहरण के लिए:
 
 ```js
 // wdio.conf.js
@@ -22,11 +23,11 @@ export const config = {
 
 :::info
 
-यदि आप पहले से ही [Vite](https://vitejs.dev/) को विकास सर्वर के रूप में उपयोग कर रहे हैं, तो आप अपने WebdriverIO कॉन्फिगरेशन में `vite.config.ts` में अपने कॉन्फिगरेशन को फिर से उपयोग कर सकते हैं। अधिक जानकारी के लिए, [रनर विकल्प](/docs/runner#runner-options) में `viteConfig` देखें।
+यदि आप पहले से ही डेवलपमेंट सर्वर के रूप में [Vite](https://vitejs.dev/) का उपयोग कर रहे हैं, तो आप अपने WebdriverIO कॉन्फ़िग में `vite.config.ts` के अपने कॉन्फ़िगरेशन का पुन: उपयोग भी कर सकते हैं। अधिक जानकारी के लिए, [रनर विकल्पों](/docs/runner#runner-options) में `viteConfig` देखें।
 
 :::
 
-Vue प्रीसेट के लिए `@vitejs/plugin-vue` इंस्टॉल होना आवश्यक है। इसके अलावा, हम टेस्ट पेज में कंपोनेंट को रेंडर करने के लिए [Testing Library](https://testing-library.com/) का उपयोग करने की सलाह देते हैं। इसके लिए आपको निम्नलिखित अतिरिक्त डिपेंडेंसीज इंस्टॉल करने होंगे:
+Vue प्रीसेट के लिए `@vitejs/plugin-vue` का इंस्टॉल होना आवश्यक है। साथ ही, हम कंपोनेंट को टेस्ट पेज में रेंडर करने के लिए [Testing Library](https://testing-library.com/) का उपयोग करने की सलाह देते हैं। इसलिए आपको निम्नलिखित अतिरिक्त डिपेंडेंसी इंस्टॉल करनी होंगी:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
@@ -40,7 +41,7 @@ npx wdio run ./wdio.conf.js
 
 ## टेस्ट लिखना
 
-मान लीजिए आपके पास निम्न Vue.js कंपोनेंट है:
+मान लीजिए आपके पास निम्नलिखित Vue.js कंपोनेंट है:
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -65,7 +66,7 @@ export default {
 </script>
 ```
 
-अपने टेस्ट में कंपोनेंट को DOM में रेंडर करें और उस पर assertions चलाएं। हम कंपोनेंट को टेस्ट पेज पर अटैच करने के लिए या तो [`@vue/test-utils`](https://test-utils.vuejs.org/) या [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) का उपयोग करने की सलाह देते हैं। कंपोनेंट के साथ इंटरैक्ट करने के लिए WebdriverIO कमांड्स का उपयोग करें क्योंकि वे वास्तविक उपयोगकर्ता इंटरैक्शन्स के करीब व्यवहार करते हैं, उदाहरण के लिए:
+अपने टेस्ट में कंपोनेंट को DOM में रेंडर करें और उस पर असर्शन चलाएँ। कंपोनेंट को टेस्ट पेज से जोड़ने के लिए हम [`@vue/test-utils`](https://test-utils.vuejs.org/) या [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) में से किसी एक का उपयोग करने की सलाह देते हैं। कंपोनेंट के साथ इंटरैक्ट करने के लिए WebdriverIO कमांड्स का उपयोग करें क्योंकि वे वास्तविक यूज़र इंटरैक्शन के अधिक करीब व्यवहार करती हैं, उदाहरण के लिए:
 
 
 <Tabs
@@ -84,18 +85,18 @@ import Component from './components/Component.vue'
 
 describe('Vue Component Testing', () => {
     it('increments value on click', async () => {
-        // The render method returns a collection of utilities to query your component.
+        // render मेथड आपके कंपोनेंट को क्वेरी करने के लिए यूटिलिटीज़ का एक संग्रह लौटाता है।
         const wrapper = mount(Component, { attachTo: document.body })
         expect(wrapper.text()).toContain('Times clicked: 0')
 
         const button = await $('aria/increment')
 
-        // Dispatch a native click event to our button element.
+        // हमारे बटन एलिमेंट पर एक नेटिव क्लिक इवेंट भेजें।
         await button.click()
         await button.click()
 
         expect(wrapper.text()).toContain('Times clicked: 2')
-        await expect($('p=Times clicked: 2')).toExist() // same assertion with WebdriverIO
+        await expect($('p=Times clicked: 2')).toExist() // WebdriverIO के साथ वही असर्शन
     })
 })
 ```
@@ -110,21 +111,21 @@ import Component from './components/Component.vue'
 
 describe('Vue Component Testing', () => {
     it('increments value on click', async () => {
-        // The render method returns a collection of utilities to query your component.
+        // render मेथड आपके कंपोनेंट को क्वेरी करने के लिए यूटिलिटीज़ का एक संग्रह लौटाता है।
         const { getByText } = render(Component)
 
-        // getByText returns the first matching node for the provided text, and
-        // throws an error if no elements match or if more than one match is found.
+        // getByText दिए गए टेक्स्ट से मेल खाने वाला पहला नोड लौटाता है, और
+        // यदि कोई एलिमेंट मेल नहीं खाता या एक से अधिक मेल मिलते हैं तो एरर थ्रो करता है।
         getByText('Times clicked: 0')
 
         const button = await $(getByText('increment'))
 
-        // Dispatch a native click event to our button element.
+        // हमारे बटन एलिमेंट पर एक नेटिव क्लिक इवेंट भेजें।
         await button.click()
         await button.click()
 
-        getByText('Times clicked: 2') // assert with Testing Library
-        await expect($('p=Times clicked: 2')).toExist() // assert with WebdriverIO
+        getByText('Times clicked: 2') // Testing Library के साथ असर्ट करें
+        await expect($('p=Times clicked: 2')).toExist() // WebdriverIO के साथ असर्ट करें
     })
 })
 ```
@@ -132,11 +133,11 @@ describe('Vue Component Testing', () => {
 </TabItem>
 </Tabs>
 
-आप हमारे [उदाहरण रिपॉजिटरी](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) में Vue.js के लिए एक पूर्ण WebdriverIO कंपोनेंट टेस्ट सूट का उदाहरण पा सकते हैं।
+आप Vue.js के लिए WebdriverIO कंपोनेंट टेस्ट सूट का पूरा उदाहरण हमारी [उदाहरण रिपॉजिटरी](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite) में पा सकते हैं।
 
-## Vue3 में एसिंक कंपोनेंट्स का टेस्टिंग
+## Vue3 में Async कंपोनेंट्स का परीक्षण
 
-यदि आप Vue v3 का उपयोग कर रहे हैं और निम्न जैसे [एसिंक कंपोनेंट्स](https://vuejs.org/guide/built-ins/suspense.html#async-setup) का परीक्षण कर रहे हैं:
+यदि आप Vue v3 का उपयोग कर रहे हैं और निम्नलिखित जैसे [async कंपोनेंट्स](https://vuejs.org/guide/built-ins/suspense.html#async-setup) का परीक्षण कर रहे हैं:
 
 ```vue
 <script setup>
@@ -149,7 +150,7 @@ const posts = await res.json()
 </template>
 ```
 
-हम कंपोनेंट को रेंडर करने के लिए [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) और एक छोटे से suspense wrapper का उपयोग करने की सलाह देते हैं। दुर्भाग्य से [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) में अभी इसका समर्थन नहीं है। निम्न सामग्री के साथ एक `helper.ts` फ़ाइल बनाएं:
+तो हम कंपोनेंट को रेंडर करने के लिए [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) और एक छोटे suspense रैपर का उपयोग करने की सलाह देते हैं। दुर्भाग्य से [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) में अभी इसके लिए सपोर्ट नहीं है। निम्नलिखित सामग्री के साथ एक `helper.ts` फ़ाइल बनाएँ:
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -190,7 +191,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-फिर कंपोनेंट को निम्नानुसार इम्पोर्ट करें और टेस्ट करें:
+फिर कंपोनेंट को इस प्रकार इम्पोर्ट और टेस्ट करें:
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -214,40 +215,40 @@ describe('Testing Async Components', () => {
 })
 ```
 
-## Nuxt में Vue कंपोनेंट्स का टेस्टिंग
+## Nuxt में Vue कंपोनेंट्स का परीक्षण
 
-यदि आप वेब फ्रेमवर्क [Nuxt](https://nuxt.com/) का उपयोग कर रहे हैं, तो WebdriverIO स्वचालित रूप से [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) सुविधा को सक्षम करेगा और आपके Vue कंपोनेंट्स और Nuxt पेजेज का परीक्षण आसान बनाता है। हालांकि, कोई भी [Nuxt मॉड्यूल्स](https://nuxt.com/modules) जिन्हें आप अपने कॉन्फिग में परिभाषित कर सकते हैं और जिन्हें Nuxt एप्लिकेशन के संदर्भ की आवश्यकता होती है, समर्थित नहीं किया जा सकता है।
+यदि आप वेब फ्रेमवर्क [Nuxt](https://nuxt.com/) का उपयोग कर रहे हैं, तो WebdriverIO स्वचालित रूप से [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) फ़ीचर को सक्षम कर देगा और आपके Vue कंपोनेंट्स और Nuxt पेजों का परीक्षण आसान बना देगा। हालाँकि, कोई भी [Nuxt मॉड्यूल](https://nuxt.com/modules) जिन्हें आप अपने कॉन्फ़िग में परिभाषित करते हैं और जिन्हें Nuxt एप्लिकेशन के कॉन्टेक्स्ट की आवश्यकता होती है, उन्हें सपोर्ट नहीं किया जा सकता।
 
 __इसके कारण हैं:__
-- WebdriverIO केवल ब्राउज़र वातावरण में Nuxt एप्लिकेशन शुरू नहीं कर सकता
-- कंपोनेंट टेस्ट को Nuxt पर्यावरण पर अधिक निर्भर होने से जटिलता बढ़ती है और हम इन परीक्षणों को e2e परीक्षणों के रूप में चलाने की सलाह देते हैं
+- WebdriverIO केवल ब्राउज़र वातावरण में Nuxt एप्लिकेशन को आरंभ नहीं कर सकता
+- कंपोनेंट टेस्ट का Nuxt वातावरण पर बहुत अधिक निर्भर होना जटिलता पैदा करता है, और हम इन टेस्ट को e2e टेस्ट के रूप में चलाने की सलाह देते हैं
 
 :::info
 
-WebdriverIO Nuxt एप्लिकेशन पर e2e टेस्ट चलाने के लिए भी एक सेवा प्रदान करता है, जानकारी के लिए [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) देखें।
+WebdriverIO, Nuxt एप्लिकेशन पर e2e टेस्ट चलाने के लिए एक सर्विस भी प्रदान करता है, जानकारी के लिए [`webdriverio-community/wdio-nuxt-service`](https://github.com/webdriverio-community/wdio-nuxt-service) देखें।
 
 :::
 
-### बिल्ट-इन कम्पोज़ेबल्स की मॉकिंग
+### बिल्ट-इन composables को मॉक करना
 
-यदि आपका कंपोनेंट मूल Nuxt कम्पोज़ेबल का उपयोग करता है, जैसे [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO स्वचालित रूप से इन फ़ंक्शन्स को मॉक करेगा और आपको उनके व्यवहार को संशोधित करने या उनके खिलाफ असर्ट करने की अनुमति देगा, उदाहरण के लिए:
+यदि आपका कंपोनेंट किसी नेटिव Nuxt composable का उपयोग करता है, उदाहरण के लिए [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), तो WebdriverIO इन फ़ंक्शंस को स्वचालित रूप से मॉक कर देगा और आपको उनके व्यवहार को संशोधित करने या उनके विरुद्ध असर्ट करने की अनुमति देगा, उदाहरण के लिए:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
 
-// e.g. your component uses calls `useNuxtData` the following way
+// उदाहरण के लिए, आपका कंपोनेंट `useNuxtData` को निम्न तरीके से कॉल करता है
 // `const { data: posts } = useNuxtData('posts')`
-// in your test you can assert against it
+// अपने टेस्ट में आप इसके विरुद्ध असर्ट कर सकते हैं
 expect(useNuxtData).toBeCalledWith('posts')
-// and change their behavior
+// और उनके व्यवहार को बदल सकते हैं
 mocked(useNuxtData).mockReturnValue({
     data: [...]
 })
 ```
 
-### तृतीय पक्ष कम्पोज़ेबल्स का प्रबंधन
+### थर्ड पार्टी composables को संभालना
 
-सभी [तृतीय पक्ष मॉड्यूल्स](https://nuxt.com/modules) जो आपके Nuxt प्रोजेक्ट को सुपरचार्ज कर सकते हैं, स्वचालित रूप से मॉक नहीं किए जा सकते। ऐसे मामलों में आपको मैन्युअल रूप से उन्हें मॉक करने की आवश्यकता होती है, उदाहरण के लिए, मान लीजिए आपका एप्लिकेशन [Supabase](https://nuxt.com/modules/supabase) मॉड्यूल प्लगइन का उपयोग करता है:
+सभी [थर्ड पार्टी मॉड्यूल](https://nuxt.com/modules) जो आपके Nuxt प्रोजेक्ट को और सशक्त बना सकते हैं, स्वचालित रूप से मॉक नहीं हो सकते। ऐसे मामलों में आपको उन्हें मैन्युअल रूप से मॉक करना होगा, उदाहरण के लिए, मान लीजिए आपका एप्लिकेशन [Supabase](https://nuxt.com/modules/supabase) मॉड्यूल प्लगइन का उपयोग करता है:
 
 ```js title=""
 export default defineNuxtConfig({
@@ -259,19 +260,19 @@ export default defineNuxtConfig({
 });
 ```
 
-और आप अपने कम्पोज़ेबल्स में कहीं Supabase का इंस्टेंस बनाते हैं, उदाहरण के लिए:
+और आप अपने composables में कहीं Supabase का एक इंस्टेंस बनाते हैं, उदाहरण के लिए:
 
 ```ts
 const superbase = useSupabaseClient()
 ```
 
-टेस्ट निम्न कारण से विफल हो जाएगा:
+तो टेस्ट निम्न कारण से विफल हो जाएगा:
 
 ```
 ReferenceError: useSupabaseClient is not defined
 ```
 
-यहां, हम या तो पूरे मॉड्यूल को मॉक करने की सलाह देते हैं जो `useSupabaseClient` फ़ंक्शन का उपयोग करता है या एक ग्लोबल वेरिएबल बनाएं जो इस फ़ंक्शन को मॉक करता है, उदाहरण के लिए:
+यहाँ, हम या तो उस पूरे मॉड्यूल को मॉक करने की सलाह देते हैं जो `useSupabaseClient` फ़ंक्शन का उपयोग करता है, या एक ग्लोबल वेरिएबल बनाने की जो इस फ़ंक्शन को मॉक करे, उदाहरण के लिए:
 
 ```ts
 import { fn } from '@wdio/browser-runner'

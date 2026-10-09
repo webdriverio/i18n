@@ -1,6 +1,7 @@
 ---
 id: visual-testing
-title: Tests Visuels
+title: Tests visuels
+description: "Comparez des captures d'écran d'écrans, d'éléments ou de pages complètes avec des références grâce au @wdio/visual-service, y compris l'installation et l'utilisation."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,39 +9,48 @@ import TabItem from '@theme/TabItem';
 
 ## Que peut-il faire ?
 
-WebdriverIO fournit des comparaisons d'images sur les écrans, les éléments ou une page complète pour
+WebdriverIO fournit des comparaisons d'images sur des écrans, des éléments ou une page complète pour
 
--   🖥️ Navigateurs de bureau (Chrome / Firefox / Safari / Microsoft Edge)
--   📱 Navigateurs mobiles / tablettes (Chrome sur émulateurs Android / Safari sur Simulateurs iOS / Simulateurs / appareils réels) via Appium
--   📱 Applications natives (émulateurs Android / Simulateurs iOS / appareils réels) via Appium (🌟 **NOUVEAU** 🌟)
--   📳 Applications hybrides via Appium
+-   🖥️ Les navigateurs de bureau (Chrome / Firefox / Safari / Microsoft Edge)
+-   📱 Les navigateurs mobiles / tablettes (Chrome sur émulateurs Android / Safari sur simulateurs iOS / simulateurs / appareils réels) via Appium
+-   📱 Les applications natives (émulateurs Android / simulateurs iOS / appareils réels) via Appium (🌟 **NOUVEAU** 🌟)
+-   📳 Les applications hybrides via Appium
 
-à travers le [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service) qui est un service WebdriverIO léger.
+grâce au [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service), un service WebdriverIO léger.
 
 Cela vous permet de :
 
--   sauvegarder ou comparer des **écrans/éléments/pages complètes** par rapport à une référence
--   **créer automatiquement une référence** lorsqu'aucune référence n'existe
--   **bloquer des régions personnalisées** et même **exclure automatiquement** une barre d'état et/ou des barres d'outils (uniquement mobile) pendant une comparaison
+-   enregistrer ou comparer des captures d'**écrans/éléments/pages complètes** par rapport à une référence (baseline)
+-   **créer automatiquement une référence** lorsqu'aucune n'existe
+-   **masquer des zones personnalisées** et même **exclure automatiquement** une barre d'état et/ou des barres d'outils (mobile uniquement) lors d'une comparaison
 -   augmenter les dimensions des captures d'écran d'éléments
--   **masquer le texte** pendant la comparaison de sites web pour :
-    -   **améliorer la stabilité** et éviter les problèmes de rendu de police
+-   **masquer le texte** lors de la comparaison de sites web pour :
+    -   **améliorer la stabilité** et éviter l'instabilité liée au rendu des polices
     -   se concentrer uniquement sur la **mise en page** d'un site web
 -   utiliser **différentes méthodes de comparaison** et un ensemble de **matchers supplémentaires** pour des tests plus lisibles
--   vérifier comment votre site web **prendra en charge la navigation par tabulation avec votre clavier**, voir aussi [Navigation par tabulation sur un site web](#tabbing-through-a-website)
--   et bien plus encore, voir les options de [service](./visual-testing/service-options) et de [méthode](./visual-testing/method-options)
+-   vérifier comment votre site web **prend en charge la navigation avec la touche Tab du clavier)**, voir aussi [Naviguer avec la touche Tab sur un site web](#tabbing-through-a-website)
+-   et bien plus encore, consultez les options du [service](./visual-testing/service-options) et des [méthodes](./visual-testing/method-options)
 
-Le service est un module léger pour récupérer les données et captures d'écran nécessaires pour tous les navigateurs/appareils. La puissance de comparaison provient de [ResembleJS](https://github.com/Huddle/Resemble.js). Si vous souhaitez comparer des images en ligne, vous pouvez consulter l'[outil en ligne](http://rsmbl.github.io/Resemble.js/).
+Le service est un module léger permettant de récupérer les données et les captures d'écran nécessaires pour tous les navigateurs/appareils. La puissance de comparaison provient de [Pixelmatch](https://github.com/mapbox/pixelmatch), une bibliothèque de comparaison d'images perceptuelle rapide et précise utilisant l'espace colorimétrique YIQ. Les images sont traitées avec [fast-png](https://github.com/image-js/fast-png), un codec PNG sans aucune dépendance native.
 
-:::info REMARQUE pour les applications natives/hybrides
+:::info REMARQUE Pour les applications natives/hybrides
 Les méthodes `saveScreen`, `saveElement`, `checkScreen`, `checkElement` et les matchers `toMatchScreenSnapshot` et `toMatchElementSnapshot` peuvent être utilisés pour les applications/contextes natifs.
 
-Veuillez utiliser la propriété `isHybridApp:true` dans vos paramètres de service lorsque vous souhaitez l'utiliser pour des applications hybrides.
+Veuillez utiliser la propriété `isHybridApp:true` dans les paramètres de votre service lorsque vous souhaitez l'utiliser pour des applications hybrides.
+:::
+
+:::caution Mise à niveau depuis la v9 (ou inférieure) ?
+
+`@wdio/visual-service` **v10** a remplacé le moteur de comparaison **ResembleJS** par **[Pixelmatch](https://github.com/mapbox/pixelmatch)**. Pixelmatch utilise un modèle de couleur perceptuel (YIQ) au lieu du RGB brut, les pourcentages de différence seront donc différents de ceux de la v9. Cela signifie que :
+
+-   **Votre code de test n'a pas besoin de changer.** Tous les noms de méthodes, noms d'options et matchers sont identiques.
+-   **Vos images de référence devront peut-être être mises à jour.** Après la mise à niveau, exécutez votre suite de tests et examinez les éventuelles différences visuelles. Vous pouvez mettre à jour individuellement les références en échec avec `--update-visual-baseline`, ou supprimer l'intégralité de votre dossier de références et laisser `autoSaveBaseline` le recréer de zéro. Consultez la [FAQ](/docs/visual-testing/faq#my-visual-tests-fail-with-a-difference-how-can-i-update-my-baseline) pour plus de détails.
+
 :::
 
 ## Installation
 
-La façon la plus simple est de garder `@wdio/visual-service` comme dépendance de développement dans votre `package.json`, via :
+Le moyen le plus simple est de conserver `@wdio/visual-service` comme dépendance de développement dans votre `package.json`, via :
 
 ```sh
 npm install --save-dev @wdio/visual-service
@@ -48,7 +58,7 @@ npm install --save-dev @wdio/visual-service
 
 ## Utilisation
 
-`@wdio/visual-service` peut être utilisé comme un service normal. Vous pouvez le configurer dans votre fichier de configuration comme suit :
+`@wdio/visual-service` peut être utilisé comme un service normal. Vous pouvez le configurer dans votre fichier de configuration de la manière suivante :
 
 ```js
 import path from "node:path";
@@ -57,13 +67,13 @@ import path from "node:path";
 export const config = {
     // ...
     // =====
-    // Configuration
+    // Setup
     // =====
     services: [
         [
             "visual",
             {
-                // Quelques options, voir la documentation pour plus d'informations
+                // Quelques options, consultez la documentation pour en savoir plus
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 formatImageName: "{tag}-{logName}-{width}x{height}",
                 screenshotPath: path.join(process.cwd(), "tmp"),
@@ -76,16 +86,16 @@ export const config = {
 };
 ```
 
-Plus d'options de service peuvent être trouvées [ici](/docs/visual-testing/service-options).
+D'autres options du service sont disponibles [ici](/docs/visual-testing/service-options).
 
 Une fois configuré dans votre configuration WebdriverIO, vous pouvez ajouter des assertions visuelles à [vos tests](/docs/visual-testing/writing-tests).
 
 ### Capabilities
-Pour utiliser le module de tests visuels, **vous n'avez pas besoin d'ajouter d'options supplémentaires à vos capabilities**. Cependant, dans certains cas, vous pourriez vouloir ajouter des métadonnées supplémentaires à vos tests visuels, comme un `logName`.
+Pour utiliser le module de tests visuels, **vous n'avez pas besoin d'ajouter d'options supplémentaires à vos capabilities**. Cependant, dans certains cas, vous pouvez souhaiter ajouter des métadonnées supplémentaires à vos tests visuels, comme un `logName`.
 
-Le `logName` vous permet d'attribuer un nom personnalisé à chaque capability, qui peut ensuite être inclus dans les noms de fichiers d'images. C'est particulièrement utile pour distinguer les captures d'écran prises sur différents navigateurs, appareils ou configurations.
+Le `logName` vous permet d'attribuer un nom personnalisé à chaque capability, qui peut ensuite être inclus dans les noms de fichiers des images. C'est particulièrement utile pour distinguer les captures d'écran prises sur différents navigateurs, appareils ou configurations.
 
-Pour activer cela, vous pouvez définir `logName` dans la section `capabilities` et vous assurer que l'option `formatImageName` dans le service de tests visuels y fait référence. Voici comment vous pouvez le configurer :
+Pour l'activer, vous pouvez définir `logName` dans la section `capabilities` et vous assurer que l'option `formatImageName` du service de tests visuels y fait référence. Voici comment le configurer :
 
 ```js
 import path from "node:path";
@@ -94,19 +104,19 @@ import path from "node:path";
 export const config = {
     // ...
     // =====
-    // Configuration
+    // Setup
     // =====
     capabilities: [
         {
             browserName: 'chrome',
             'wdio-ics:options': {
-                logName: 'chrome-mac-15', // Nom de journal personnalisé pour Chrome
+                logName: 'chrome-mac-15', // Nom de log personnalisé pour Chrome
             },
         }
         {
             browserName: 'firefox',
             'wdio-ics:options': {
-                logName: 'firefox-mac-15', // Nom de journal personnalisé pour Firefox
+                logName: 'firefox-mac-15', // Nom de log personnalisé pour Firefox
             },
         }
     ],
@@ -114,7 +124,7 @@ export const config = {
         [
             "visual",
             {
-                // Quelques options, voir la documentation pour plus d'informations
+                // Quelques options, consultez la documentation pour en savoir plus
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 screenshotPath: path.join(process.cwd(), "tmp"),
                 // Le format ci-dessous utilisera le `logName` des capabilities
@@ -130,28 +140,28 @@ export const config = {
 #### Comment ça fonctionne
 1. Configuration du `logName` :
 
-    - Dans la section `capabilities`, attribuez un `logName` unique à chaque navigateur ou appareil. Par exemple, `chrome-mac-15` identifie les tests exécutés sur Chrome sur macOS version 15.
+    - Dans la section `capabilities`, attribuez un `logName` unique à chaque navigateur ou appareil. Par exemple, `chrome-mac-15` identifie les tests exécutés sur Chrome sous macOS version 15.
 
-2. Nommage d'image personnalisé :
+2. Nommage personnalisé des images :
 
-    - L'option `formatImageName` intègre le `logName` dans les noms de fichiers de captures d'écran. Par exemple, si le `tag` est homepage et la résolution est `1920x1080`, le nom de fichier résultant pourrait ressembler à ceci :
+    - L'option `formatImageName` intègre le `logName` dans les noms de fichiers des captures d'écran. Par exemple, si le `tag` est homepage et la résolution est `1920x1080`, le nom de fichier résultant pourrait ressembler à ceci :
 
         `homepage-chrome-mac-15-1920x1080.png`
 
 3. Avantages du nommage personnalisé :
 
-    - La distinction entre les captures d'écran de différents navigateurs ou appareils devient beaucoup plus facile, surtout lors de la gestion des références et du débogage des écarts.
+    - Il devient beaucoup plus facile de distinguer les captures d'écran provenant de différents navigateurs ou appareils, notamment lors de la gestion des références et du débogage des divergences.
 
 4. Remarque sur les valeurs par défaut :
 
     -Si `logName` n'est pas défini dans les capabilities, l'option `formatImageName` l'affichera comme une chaîne vide dans les noms de fichiers (`homepage--15-1920x1080.png`)
 
-### WebdriverIO MultiRemote
+### WebdriverIO multi-remote
 
-Nous prenons également en charge [MultiRemote](https://webdriver.io/docs/multiremote/). Pour que cela fonctionne correctement, assurez-vous d'ajouter `wdio-ics:options` à vos
+Nous prenons également en charge le [multi-remote](https://webdriver.io/docs/multiremote/). Pour que cela fonctionne correctement, assurez-vous d'ajouter `wdio-ics:options` à vos
 capabilities comme vous pouvez le voir ci-dessous. Cela garantira que chaque capture d'écran aura son propre nom unique.
 
-[Écrire vos tests](/docs/visual-testing/writing-tests) ne sera pas différent par rapport à l'utilisation du [testrunner](https://webdriver.io/docs/testrunner)
+[L'écriture de vos tests](/docs/visual-testing/writing-tests) ne sera pas différente par rapport à l'utilisation du [testrunner](https://webdriver.io/docs/testrunner)
 
 ```js
 // wdio.conf.js
@@ -185,9 +195,9 @@ export const config = {
 };
 ```
 
-### Exécution programmatique
+### Exécution par programmation
 
-Voici un exemple minimal de la façon d'utiliser `@wdio/visual-service` via les options `remote` :
+Voici un exemple minimal d'utilisation de `@wdio/visual-service` via les options `remote` :
 
 ```js
 import { remote } from "webdriverio";
@@ -209,7 +219,7 @@ visualService.remoteSetup(browser);
 
 await browser.url("https://webdriver.io/");
 
-// ou utilisez ceci pour SEULEMENT sauvegarder une capture d'écran
+// ou utilisez ceci UNIQUEMENT pour enregistrer une capture d'écran
 await browser.saveFullPageScreen("examplePaged", {});
 
 // ou utilisez ceci pour valider. Les deux méthodes n'ont pas besoin d'être combinées, voir la FAQ
@@ -218,32 +228,32 @@ await browser.checkFullPageScreen("examplePaged", {});
 await browser.deleteSession();
 ```
 
-### Navigation par tabulation sur un site web
+### Naviguer avec la touche Tab sur un site web
 
-Vous pouvez vérifier si un site web est accessible en utilisant la touche <kbd>TAB</kbd> du clavier. Tester cette partie de l'accessibilité a toujours été une tâche (manuelle) chronophage et assez difficile à réaliser par l'automatisation.
-Avec les méthodes `saveTabbablePage` et `checkTabbablePage`, vous pouvez maintenant dessiner des lignes et des points sur votre site web pour vérifier l'ordre de tabulation.
+Vous pouvez vérifier si un site web est accessible à l'aide de la touche <kbd>TAB</kbd> du clavier. Tester cet aspect de l'accessibilité a toujours été une tâche (manuelle) chronophage et assez difficile à automatiser.
+Avec les méthodes `saveTabbablePage` et `checkTabbablePage`, vous pouvez désormais dessiner des lignes et des points sur votre site web pour vérifier l'ordre de tabulation.
 
-Soyez conscient du fait que cela n'est utile que pour les navigateurs de bureau et **PAS\*\*** pour les appareils mobiles. Tous les navigateurs de bureau prennent en charge cette fonctionnalité.
+Sachez que cela n'est utile que pour les navigateurs de bureau et **PAS\*\*** pour les appareils mobiles. Tous les navigateurs de bureau prennent en charge cette fonctionnalité.
 
 :::note
 
-Le travail est inspiré par le billet de blog de [Viv Richards](https://github.com/vivrichards600) sur ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).
+Ce travail est inspiré de l'article de blog de [Viv Richards](https://github.com/vivrichards600) intitulé ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).
 
-La façon dont les éléments tabulables sont sélectionnés est basée sur le module [tabbable](https://github.com/davidtheclark/tabbable). S'il y a des problèmes concernant la tabulation, veuillez consulter le [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) et en particulier la section [More Details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+La façon dont les éléments tabulables sont sélectionnés est basée sur le module [tabbable](https://github.com/davidtheclark/tabbable). En cas de problème concernant la tabulation, veuillez consulter le [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) et en particulier la section [More ](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)Details.
 
 :::
 
 #### Comment ça fonctionne
 
-Les deux méthodes créeront un élément `canvas` sur votre site web et dessineront des lignes et des points pour vous montrer où votre TAB irait si un utilisateur final l'utilisait. Après cela, il créera une capture d'écran de la page complète pour vous donner un bon aperçu du flux.
+Les deux méthodes créeront un élément `canvas` sur votre site web et dessineront des lignes et des points pour vous montrer où irait votre TAB si un utilisateur final l'utilisait. Ensuite, elles créeront une capture d'écran de la page complète pour vous donner une bonne vue d'ensemble du parcours.
 
 :::important
 
-**Utilisez `saveTabbablePage` uniquement lorsque vous devez créer une capture d'écran et que vous ne voulez PAS la comparer **avec une image de **référence**.\*\*\*\*
+**Utilisez `saveTabbablePage` uniquement lorsque vous devez créer une capture d'écran et que vous NE voulez PAS la comparer **avec une image de **référence**.\*\*\*\*
 
 :::
 
-Lorsque vous voulez comparer le flux de tabulation avec une référence, vous pouvez utiliser la méthode `checkTabbablePage`. Vous **N'AVEZ PAS** besoin d'utiliser les deux méthodes ensemble. S'il existe déjà une image de référence créée, qui peut être automatiquement générée en fournissant `autoSaveBaseline: true` lors de l'instanciation du service,
+Lorsque vous souhaitez comparer le parcours de tabulation avec une référence, vous pouvez utiliser la méthode `checkTabbablePage`. Vous n'avez **PAS** besoin d'utiliser les deux méthodes ensemble. Si une image de référence a déjà été créée, ce qui peut être fait automatiquement en fournissant `autoSaveBaseline: true` lors de l'instanciation du service,
 `checkTabbablePage` créera d'abord l'image _actuelle_ puis la comparera à la référence.
 
 ##### Options
@@ -252,16 +262,16 @@ Les deux méthodes utilisent les mêmes options que `saveFullPageScreen` ou `com
 
 #### Exemple
 
-Voici un exemple de fonctionnement de la tabulation sur notre [site web guinea pig](https://guinea-pig.webdriver.io/image-compare.html) :
+Voici un exemple du fonctionnement de la tabulation sur notre [site web cobaye](https://guinea-pig.webdriver.io/image-compare.html) :
 
-![Exemple de tabulation WDIO](/img/visual/tabbable-chrome-latest-1366x768.png)
+![WDIO tabbing example](/img/visual/tabbable-chrome-latest-1366x768.png)
 
-### Mettre à jour automatiquement les instantanés visuels échoués
+### Mettre à jour automatiquement les instantanés visuels en échec
 
 Mettez à jour les images de référence via la ligne de commande en ajoutant l'argument `--update-visual-baseline`. Cela va
 
--   copier automatiquement la capture d'écran réelle et la placer dans le dossier de référence
--   s'il y a des différences, il fera passer le test car la référence a été mise à jour
+-   copier automatiquement la capture d'écran actuelle et la placer dans le dossier de référence
+-   en cas de différences, laisser le test réussir car la référence a été mise à jour
 
 **Utilisation :**
 
@@ -269,7 +279,7 @@ Mettez à jour les images de référence via la ligne de commande en ajoutant l'
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-Lors de l'exécution des journaux en mode info/debug, vous verrez les journaux suivants ajoutés
+Lors de l'exécution en mode de log info/debug, vous verrez les logs suivants ajoutés
 
 ```logs
 [0-0] ..............
@@ -281,12 +291,12 @@ Lors de l'exécution des journaux en mode info/debug, vous verrez les journaux s
 [0-0] ..........
 ```
 
-## Support TypeScript
+## Prise en charge de TypeScript
 
-Ce module inclut la prise en charge de TypeScript, vous permettant de bénéficier de l'auto-complétion, de la sécurité de type et d'une meilleure expérience de développement lors de l'utilisation du service de tests visuels.
+Ce module inclut la prise en charge de TypeScript, vous permettant de bénéficier de l'autocomplétion, de la sécurité des types et d'une meilleure expérience de développement lors de l'utilisation du service de tests visuels.
 
-### Étape 1 : Ajouter les définitions de type
-Pour vous assurer que TypeScript reconnaît les types du module, ajoutez l'entrée suivante au champ types dans votre tsconfig.json :
+### Étape 1 : Ajouter les définitions de types
+Pour que TypeScript reconnaisse les types du module, ajoutez l'entrée suivante au champ types de votre tsconfig.json :
 
 ```json
 {
@@ -296,8 +306,8 @@ Pour vous assurer que TypeScript reconnaît les types du module, ajoutez l'entr�
 }
 ```
 
-### Étape 2 : Activer la sécurité de type pour les options de service
-Pour appliquer la vérification de type sur les options de service, mettez à jour votre configuration WebdriverIO :
+### Étape 2 : Activer la sécurité des types pour les options du service
+Pour appliquer la vérification des types sur les options du service, mettez à jour votre configuration WebdriverIO :
 
 ```ts
 // wdio.conf.ts
@@ -308,28 +318,32 @@ import type { VisualServiceOptions } from '@wdio/visual-service';
 export const config = {
     // ...
     // =====
-    // Configuration
+    // Setup
     // =====
     services: [
         [
             "visual",
             {
-                // Options de service
+                // Options du service
                 baselineFolder: join(process.cwd(), './__snapshots__/'),
                 formatImageName: '{tag}-{logName}-{width}x{height}',
                 screenshotPath: join(process.cwd(), '.tmp/'),
-            } satisfies VisualServiceOptions, // Assure la sécurité de type
+            } satisfies VisualServiceOptions, // Garantit la sécurité des types
         ],
     ],
     // ...
 };
 ```
 
-## Exigences système
+## Configuration système requise
 
-### Version 5 et supérieure
+### Version 10 et supérieure (actuelle)
 
-Pour la version 5 et supérieure, ce module est un module purement basé sur JavaScript sans dépendances système supplémentaires au-delà des [exigences générales du projet](/docs/gettingstarted#system-requirements). Il utilise [Jimp](https://github.com/jimp-dev/jimp), une bibliothèque de traitement d'images pour Node écrite entièrement en JavaScript, sans aucune dépendance native.
+Pour la version 10 et supérieure, ce module n'a aucune dépendance système supplémentaire au-delà des [exigences générales du projet](/docs/gettingstarted#system-requirements). Il utilise [Pixelmatch](https://github.com/mapbox/pixelmatch) pour la comparaison d'images perceptuelle et [fast-png](https://github.com/image-js/fast-png) pour l'encodage/décodage des images. Les deux sont écrits en JavaScript pur, sans aucune dépendance native.
+
+### Versions 5 à 9 (anciennes)
+
+Les versions 5 à 9 utilisaient [Jimp](https://github.com/jimp-dev/jimp), une bibliothèque de traitement d'images pour Node entièrement écrite en JavaScript, sans aucune dépendance native. Aucune dépendance système supplémentaire n'était requise.
 
 ### Version 4 et inférieure
 
@@ -337,9 +351,9 @@ Pour la version 4 et inférieure, ce module s'appuie sur [Canvas](https://github
 
 #### Détails d'installation
 
-Par défaut, les binaires pour macOS, Linux et Windows seront téléchargés pendant l'installation `npm install` de votre projet. Si vous n'avez pas un système d'exploitation ou une architecture de processeur pris en charge, le module sera compilé sur votre système. Cela nécessite plusieurs dépendances, notamment Cairo et Pango.
+Par défaut, les binaires pour macOS, Linux et Windows seront téléchargés lors du `npm install` de votre projet. Si vous ne disposez pas d'un système d'exploitation ou d'une architecture de processeur pris en charge, le module sera compilé sur votre système. Cela nécessite plusieurs dépendances, dont Cairo et Pango.
 
-Pour des informations d'installation détaillées, consultez le [wiki node-canvas](https://github.com/Automattic/node-canvas/wiki/_pages). Voici des instructions d'installation en une ligne pour les systèmes d'exploitation courants. Notez que `libgif/giflib`, `librsvg` et `libjpeg` sont optionnels et ne sont nécessaires que pour la prise en charge de GIF, SVG et JPEG, respectivement. Cairo v1.10.0 ou ultérieur est requis.
+Pour des informations d'installation détaillées, consultez le [wiki node-canvas](https://github.com/Automattic/node-canvas/wiki/_pages). Vous trouverez ci-dessous des instructions d'installation en une ligne pour les systèmes d'exploitation courants. Notez que `libgif/giflib`, `librsvg` et `libjpeg` sont facultatifs et ne sont nécessaires que pour la prise en charge respectivement des formats GIF, SVG et JPEG. Cairo v1.10.0 ou ultérieur est requis.
 
 <Tabs
 defaultValue="osx"
@@ -361,8 +375,8 @@ values={[
      brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
      ```
 
-    **Mac OS X v10.11+:** Si vous avez récemment mis à jour vers Mac OS X v10.11+ et rencontrez des problèmes lors de la compilation, exécutez la commande suivante : `xcode-select --install`. En savoir plus sur le problème [sur Stack Overflow](http://stackoverflow.com/a/32929012/148072).
-    Si vous avez Xcode 10.0 ou supérieur installé, pour compiler à partir des sources, vous avez besoin de NPM 6.4.1 ou supérieur.
+    **Mac OS X v10.11+ :** Si vous avez récemment effectué une mise à jour vers Mac OS X v10.11+ et rencontrez des problèmes lors de la compilation, exécutez la commande suivante : `xcode-select --install`. Pour en savoir plus sur ce problème, consultez [Stack Overflow](http://stackoverflow.com/a/32929012/148072).
+    Si vous avez installé Xcode 10.0 ou supérieur, vous avez besoin de NPM 6.4.1 ou supérieur pour compiler depuis les sources.
 
 </TabItem>
 <TabItem value="ubuntu">
@@ -395,12 +409,12 @@ values={[
 </TabItem>
 <TabItem value="windows">
 
-    Voir le [wiki](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows)
+    Consultez le [wiki](https://github.com/Automattic/node-canvas/wiki/Installation:-Windows)
 
 </TabItem>
 <TabItem value="others">
 
-    Voir le [wiki](https://github.com/Automattic/node-canvas/wiki)
+    Consultez le [wiki](https://github.com/Automattic/node-canvas/wiki)
 
 </TabItem>
 </Tabs>

@@ -1,15 +1,16 @@
 ---
 id: lit
 title: Lit
+description: "Configure o browser runner do WebdriverIO para web components Lit e escreva testes que consultam elementos dentro de shadow roots aninhados."
 ---
 
-Lit é uma biblioteca simples para construir componentes web rápidos e leves. Testar componentes web Lit com WebdriverIO é muito fácil graças aos [seletores de shadow DOM](/docs/selectors#deep-selectors) do WebdriverIO, que permitem consultar elementos aninhados em shadow roots com apenas um único comando.
+Lit é uma biblioteca simples para construir web components rápidos e leves. Testar web components Lit com o WebdriverIO é muito fácil graças aos [seletores de shadow DOM](/docs/selectors#deep-selectors) do WebdriverIO, com os quais você pode consultar elementos aninhados em shadow roots com apenas um único comando.
 
 ## Configuração
 
-Para configurar o WebdriverIO em seu projeto Lit, siga as [instruções](/docs/component-testing#set-up) em nossa documentação de testes de componentes. Para o Lit, você não precisa de um preset, pois os componentes web Lit não precisam passar por um compilador, eles são aprimoramentos puros de web components.
+Para configurar o WebdriverIO no seu projeto Lit, siga as [instruções](/docs/component-testing#set-up) na nossa documentação de testes de componentes. Para o Lit, você não precisa de um preset, pois os web components Lit não precisam passar por um compilador; eles são aprimoramentos puros de web components.
 
-Uma vez configurado, você pode iniciar os testes executando:
+Depois de configurado, você pode iniciar os testes executando:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -17,7 +18,7 @@ npx wdio run ./wdio.conf.js
 
 ## Escrevendo Testes
 
-Dado que você tem o seguinte componente Lit:
+Considerando que você tem o seguinte componente Lit:
 
 ```ts title="./components/Component.ts"
 import { LitElement, css, html } from 'lit'
@@ -28,20 +29,20 @@ export class SimpleGreeting extends LitElement {
     @property()
     name?: string = 'World'
 
-    // Render the UI as a function of component state
+    // Renderiza a UI como uma função do estado do componente
     render() {
         return html`<p>Hello, ${this.name}!</p>`
     }
 }
 ```
 
-Para testar o componente, você precisa renderizá-lo na página de teste antes do início do teste e garantir que ele seja limpo posteriormente:
+Para testar o componente, você precisa renderizá-lo na página de teste antes do início do teste e garantir que ele seja removido depois:
 
 ```ts title="lit.test.js"
 import expect from 'expect'
 import { waitFor } from '@testing-library/dom'
 
-// import Lit component
+// importa o componente Lit
 import './components/Component.ts'
 
 describe('Lit Component testing', () => {
@@ -66,4 +67,4 @@ describe('Lit Component testing', () => {
 })
 ```
 
-Você pode encontrar um exemplo completo de uma suíte de testes de componentes WebdriverIO para Lit em nosso [repositório de exemplos](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite).
+Você pode encontrar um exemplo completo de uma suíte de testes de componentes do WebdriverIO para Lit no nosso [repositório de exemplos](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite).

@@ -1,9 +1,10 @@
 ---
 id: seleniumgrid
 title: Selenium Grid
+description: "Połącz testy WebdriverIO z istniejącym Selenium Grid, ustawiając protokół, nazwę hosta, port i ścieżkę w swojej konfiguracji."
 ---
 
-Możesz używać WebdriverIO z istniejącą instancją Selenium Grid. Aby połączyć swoje testy z Selenium Grid, wystarczy zaktualizować opcje w konfiguracjach test runnera.
+Możesz używać WebdriverIO z istniejącą instancją Selenium Grid. Aby połączyć swoje testy z Selenium Grid, wystarczy zaktualizować opcje w konfiguracji test runnera.
 
 Oto fragment kodu z przykładowego pliku wdio.conf.ts.
 
@@ -18,7 +19,7 @@ export const config: WebdriverIO.Config = {
 
 }
 ```
-Musisz podać odpowiednie wartości dla protokołu, nazwy hosta, portu i ścieżki w oparciu o konfigurację Selenium Grid.
+Musisz podać odpowiednie wartości dla protokołu, nazwy hosta, portu i ścieżki w zależności od konfiguracji Twojego Selenium Grid.
 Jeśli uruchamiasz Selenium Grid na tej samej maszynie co skrypty testowe, oto kilka typowych opcji:
 
 ```ts title=wdio.conf.ts
@@ -33,14 +34,14 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-### Podstawowa autentykacja z zabezpieczoną Selenium Grid
+### Uwierzytelnianie podstawowe z chronionym Selenium Grid
 
-Zdecydowanie zaleca się zabezpieczenie Selenium Grid. Jeśli masz zabezpieczoną Selenium Grid, która wymaga uwierzytelnienia, możesz przekazać nagłówki uwierzytelniania za pomocą opcji. 
-Zapoznaj się z sekcją [headers](https://webdriver.io/docs/configuration/#headers) w dokumentacji, aby uzyskać więcej informacji.
+Zdecydowanie zaleca się zabezpieczenie Selenium Grid. Jeśli masz chroniony Selenium Grid, który wymaga uwierzytelniania, możesz przekazać nagłówki uwierzytelniające za pomocą opcji. 
+Więcej informacji znajdziesz w sekcji [headers](https://webdriver.io/docs/configuration/#headers) w dokumentacji.
 
-### Konfiguracje timeoutu z dynamiczną Selenium Grid
+### Konfiguracja limitów czasu z dynamicznym Selenium Grid
 
-Podczas korzystania z dynamicznej Selenium Grid, gdzie pody przeglądarek są uruchamiane na żądanie, tworzenie sesji może napotkać na zimny start. W takich przypadkach zaleca się zwiększenie limitów czasu tworzenia sesji. Domyślna wartość w opcjach to 120 sekund, ale możesz ją zwiększyć, jeśli twoja siatka potrzebuje więcej czasu na utworzenie nowej sesji.
+W przypadku korzystania z dynamicznego Selenium Grid, w którym pody przeglądarek są uruchamiane na żądanie, tworzenie sesji może napotkać zimny start. W takich przypadkach zaleca się zwiększenie limitów czasu tworzenia sesji. Domyślna wartość w opcjach wynosi 120 sekund, ale możesz ją zwiększyć, jeśli Twój grid potrzebuje więcej czasu na utworzenie nowej sesji. 
 
 ```ts
 connectionRetryTimeout: 180000,
@@ -48,15 +49,15 @@ connectionRetryTimeout: 180000,
 
 ### Zaawansowane konfiguracje
 
-Aby uzyskać zaawansowane konfiguracje, zapoznaj się z [plikiem konfiguracyjnym](https://webdriver.io/docs/configurationfile) Testrunner.
+W przypadku zaawansowanych konfiguracji zapoznaj się z [plikiem konfiguracyjnym](https://webdriver.io/docs/configurationfile) Testrunnera.
 
 ### Operacje na plikach z Selenium Grid
 
-Podczas uruchamiania przypadków testowych ze zdalną Selenium Grid, przeglądarka działa na zdalnej maszynie, i musisz zwrócić szczególną uwagę na przypadki testowe obejmujące przesyłanie i pobieranie plików.
+Podczas uruchamiania przypadków testowych ze zdalnym Selenium Grid przeglądarka działa na zdalnej maszynie, dlatego należy zachować szczególną ostrożność w przypadku testów obejmujących przesyłanie i pobieranie plików.
 
 ### Pobieranie plików
 
-W przypadku przeglądarek opartych na Chromium możesz zapoznać się z dokumentacją [Download file](https://webdriver.io/docs/api/browser/downloadFile). Jeśli twoje skrypty testowe muszą odczytać zawartość pobranego pliku, musisz pobrać go ze zdalnego węzła Selenium do maszyny test runnera. Oto przykładowy fragment kodu z próbki konfiguracji `wdio.conf.ts` dla przeglądarki Chrome:
+W przypadku przeglądarek opartych na Chromium możesz zapoznać się z dokumentacją [Download file](https://webdriver.io/docs/api/browser/downloadFile). Jeśli Twoje skrypty testowe muszą odczytać zawartość pobranego pliku, musisz pobrać go ze zdalnego węzła Selenium na maszynę test runnera. Oto przykładowy fragment kodu z przykładowej konfiguracji `wdio.conf.ts` dla przeglądarki Chrome:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
@@ -74,16 +75,23 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-### Przesyłanie plików ze zdalną Selenium Grid
+### Przesyłanie plików ze zdalnym Selenium Grid
 
-Aby przesłać plik do aplikacji internetowej w zdalnej przeglądarce, musisz najpierw przesłać plik do zdalnej siatki. Możesz zapoznać się z dokumentacją [uploadFile](https://webdriver.io/docs/api/browser/uploadFile), aby uzyskać szczegółowe informacje.
+[`element.setFiles()`](/docs/api/element/setFiles) ustawia pole wyboru pliku za pomocą WebDriver BiDi. Przekazywane ścieżki są otwierane przez przeglądarkę, więc muszą istnieć na maszynie, na której działa przeglądarka. WebdriverIO nie przenosi lokalnego pliku na węzeł Selenium.
+
+```ts
+await $('#file-upload').setFiles('/path/on/the/node/file.png')
+```
+
+Zestaw testów, który używał `browser.uploadFile()` do przesyłania danych na węzeł, musi umieścić plik w miejscu, z którego przeglądarka może go odczytać, a następnie wywołać `setFiles`. Endpoint Selenium [`file`](/docs/api/selenium#file) jest nadal dostępny jako `browser.file()` dla Chromedriver, Edgedriver i Selenium Grid. Nie jest to polecenie WebDriver ani WebDriver BiDi.
 
 ### Inne operacje na plikach/gridzie
 
-Istnieje kilka innych operacji, które możesz wykonać z Selenium Grid. Instrukcje dla Selenium Standalone powinny działać dobrze również z Selenium Grid. Zapoznaj się z dokumentacją [Selenium Standalone](https://webdriver.io/docs/api/selenium/), aby poznać dostępne opcje.
+Istnieje jeszcze kilka innych operacji, które możesz wykonać z Selenium Grid. Instrukcje dla Selenium Standalone powinny działać poprawnie również z Selenium Grid. Dostępne opcje znajdziesz w dokumentacji [Selenium Standalone](https://webdriver.io/docs/api/selenium/).
+
 
 ### Oficjalna dokumentacja Selenium Grid
 
-Aby uzyskać więcej informacji na temat Selenium Grid, możesz zapoznać się z oficjalną [dokumentacją](https://www.selenium.dev/documentation/grid/) Selenium Grid.
+Więcej informacji o Selenium Grid znajdziesz w oficjalnej [dokumentacji](https://www.selenium.dev/documentation/grid/) Selenium Grid. 
 
-Jeśli chcesz uruchomić Selenium Grid w Dockerze, Docker compose lub Kubernetes, zapoznaj się z [repozytorium GitHub](https://github.com/SeleniumHQ/docker-selenium) Selenium-Docker.
+Jeśli chcesz uruchomić Selenium Grid w Dockerze, Docker Compose lub Kubernetes, zapoznaj się z [repozytorium GitHub](https://github.com/SeleniumHQ/docker-selenium) Selenium-Docker.

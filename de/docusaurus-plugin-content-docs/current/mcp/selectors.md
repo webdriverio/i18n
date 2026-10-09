@@ -1,41 +1,40 @@
 ---
 id: selectors
 title: Selektoren
+description: "Wählen Sie Selektoren, um Elemente auf Webseiten und in mobilen Apps zu finden, wenn Sie mit dem WebdriverIO MCP-Server automatisieren."
 ---
 
-Der WebdriverIO MCP-Server unterstützt mehrere Selektorstrategien zur Lokalisierung von Elementen auf Webseiten und mobilen Apps.
+Der WebdriverIO MCP-Server unterstützt mehrere Selektor-Strategien, um Elemente auf Webseiten und in mobilen Apps zu finden.
 
 :::info
 
-Für eine umfassende Dokumentation zu Selektoren, einschließlich aller WebdriverIO-Selektorstrategien, siehe den Hauptleitfaden [Selektoren](/docs/selectors). Diese Seite konzentriert sich auf Selektoren, die häufig mit dem MCP-Server verwendet werden.
+Eine umfassende Dokumentation zu Selektoren, einschließlich aller WebdriverIO-Selektor-Strategien, finden Sie im Hauptleitfaden [Selektoren](/docs/selectors). Diese Seite konzentriert sich auf Selektoren, die häufig mit dem MCP-Server verwendet werden.
 
 :::
 
 ## Web-Selektoren
 
-Für die Browser-Automatisierung unterstützt der MCP-Server alle Standard-WebdriverIO-Selektoren. Die am häufigsten verwendeten sind:
+Für die Browser-Automatisierung unterstützt der MCP-Server alle Standard-Selektoren von WebdriverIO. Zu den am häufigsten verwendeten gehören:
 
-| Selektor | Beispiel | Beschreibung |
-|----------|---------|-------------|
-| CSS | `#login-button`, `.submit-btn` | Standard-CSS-Selektoren |
-| XPath | `//button[@id='submit']` | XPath-Ausdrücke |
-| Text | `button=Submit`, `a*=Click` | WebdriverIO-Textselektoren |
-| ARIA | `aria/Submit Button` | Accessibility-Name-Selektoren |
-| Test ID | `[data-testid="submit"]` | Empfohlen für Tests |
+| Selektor | Beispiel                       | Beschreibung                       |
+| -------- | ------------------------------ | ---------------------------------- |
+| CSS      | `#login-button`, `.submit-btn` | Standard-CSS-Selektoren            |
+| XPath    | `//button[@id='submit']`       | XPath-Ausdrücke                    |
+| Text     | `button=Submit`, `a*=Click`    | WebdriverIO-Textselektoren         |
+| ARIA     | `aria/Submit Button`           | Selektoren für barrierefreie Namen |
+| Test ID  | `[data-testid="submit"]`       | Empfohlen für Tests                |
 
-Für detaillierte Beispiele und Best Practices siehe die [Selektoren](/docs/selectors) Dokumentation.
+Ausführliche Beispiele und Best Practices finden Sie in der Dokumentation zu [Selektoren](/docs/selectors).
 
----
+## Mobile Selektoren
 
-## Mobile-Selektoren
+Mobile Selektoren funktionieren über Appium sowohl auf iOS- als auch auf Android-Plattformen.
 
-Mobile Selektoren funktionieren mit iOS- und Android-Plattformen über Appium.
+### Accessibility ID (empfohlen)
 
-### Accessibility ID (Empfohlen)
+Accessibility IDs sind der **zuverlässigste plattformübergreifende Selektor**. Sie funktionieren sowohl auf iOS als auch auf Android und bleiben über App-Updates hinweg stabil.
 
-Accessibility IDs sind die **zuverlässigsten plattformübergreifenden Selektoren**. Sie funktionieren sowohl auf iOS als auch auf Android und bleiben bei App-Updates stabil.
-
-```
+```text
 # Syntax
 ~accessibilityId
 
@@ -46,11 +45,11 @@ Accessibility IDs sind die **zuverlässigsten plattformübergreifenden Selektore
 ```
 
 :::tip Best Practice
-Bevorzuge immer Accessibility IDs, wenn verfügbar. Sie bieten:
+Bevorzugen Sie immer Accessibility IDs, wenn sie verfügbar sind. Sie bieten:
 - Plattformübergreifende Kompatibilität (iOS + Android)
 - Stabilität bei UI-Änderungen
 - Bessere Wartbarkeit der Tests
-- Verbesserte Barrierefreiheit deiner App
+- Verbesserte Barrierefreiheit Ihrer App
 :::
 
 ### Android-Selektoren
@@ -59,11 +58,11 @@ Bevorzuge immer Accessibility IDs, wenn verfügbar. Sie bieten:
 
 UiAutomator-Selektoren sind leistungsstark und schnell für Android.
 
-```
+```text
 # Nach Text
 android=new UiSelector().text("Login")
 
-# Nach Teil-Text
+# Nach Teiltext
 android=new UiSelector().textContains("Log")
 
 # Nach Resource ID
@@ -84,13 +83,13 @@ android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new U
 
 #### Resource ID
 
-Resource IDs bieten stabile Elementidentifikation auf Android.
+Resource IDs ermöglichen eine stabile Identifizierung von Elementen auf Android.
 
-```
+```text
 # Vollständige Resource ID
 id=com.example.app:id/login_button
 
-# Teil-ID (App-Paket wird abgeleitet)
+# Teilweise ID (App-Paket wird abgeleitet)
 id=login_button
 ```
 
@@ -98,7 +97,7 @@ id=login_button
 
 XPath funktioniert auf Android, ist aber langsamer als UiAutomator.
 
-```
+```text
 # Nach Klasse und Text
 //android.widget.Button[@text='Login']
 
@@ -118,7 +117,7 @@ XPath funktioniert auf Android, ist aber langsamer als UiAutomator.
 
 iOS Predicate Strings sind schnell und leistungsstark für die iOS-Automatisierung.
 
-```
+```text
 # Nach Label
 -ios predicate string:label == "Login"
 
@@ -146,23 +145,23 @@ iOS Predicate Strings sind schnell und leistungsstark für die iOS-Automatisieru
 
 **Predicate-Operatoren:**
 
-| Operator | Beschreibung |
-|----------|-------------|
-| `==` | Gleich |
-| `!=` | Ungleich |
-| `CONTAINS` | Enthält Teilstring |
-| `BEGINSWITH` | Beginnt mit |
-| `ENDSWITH` | Endet mit |
-| `LIKE` | Platzhalter-Match |
-| `MATCHES` | Regex-Match |
-| `AND` | Logisches UND |
-| `OR` | Logisches ODER |
+| Operator     | Beschreibung              |
+| ------------ | ------------------------- |
+| `==`         | Gleich                    |
+| `!=`         | Ungleich                  |
+| `CONTAINS`   | Enthält Teilzeichenfolge  |
+| `BEGINSWITH` | Beginnt mit               |
+| `ENDSWITH`   | Endet mit                 |
+| `LIKE`       | Platzhalter-Übereinstimmung |
+| `MATCHES`    | Regex-Übereinstimmung     |
+| `AND`        | Logisches UND             |
+| `OR`         | Logisches ODER            |
 
 #### Class Chain
 
-iOS Class Chains bieten hierarchische Elementlokalisierung mit guter Performance.
+iOS Class Chains ermöglichen eine hierarchische Elementsuche mit guter Performance.
 
-```
+```text
 # Direktes Kind
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
@@ -186,7 +185,7 @@ iOS Class Chains bieten hierarchische Elementlokalisierung mit guter Performance
 
 XPath funktioniert auf iOS, ist aber langsamer als Predicate Strings.
 
-```
+```text
 # Nach Typ und Label
 //XCUIElementTypeButton[@label='Login']
 
@@ -200,111 +199,105 @@ XPath funktioniert auf iOS, ist aber langsamer als Predicate Strings.
 //XCUIElementTypeTable/XCUIElementTypeCell[1]
 ```
 
----
+## Plattformübergreifende Selektor-Strategie
 
-## Plattformübergreifende Selektorstrategie
+Wenn Sie Tests schreiben, die sowohl auf iOS als auch auf Android funktionieren sollen, verwenden Sie diese Prioritätsreihenfolge:
 
-Beim Schreiben von Tests, die sowohl auf iOS als auch auf Android funktionieren sollen, verwende diese Prioritätsreihenfolge:
+### 1. Accessibility ID (am besten)
 
-### 1. Accessibility ID (Beste Option)
-
-```
+```text
 # Funktioniert auf beiden Plattformen
 ~loginButton
 ```
 
 ### 2. Plattformspezifisch mit bedingter Logik
 
-Wenn Accessibility IDs nicht verfügbar sind, verwende plattformspezifische Selektoren:
+Wenn keine Accessibility IDs verfügbar sind, verwenden Sie plattformspezifische Selektoren:
 
 **Android:**
-```
+```text
 android=new UiSelector().text("Login")
 ```
 
 **iOS:**
-```
+```text
 -ios predicate string:label == "Login"
 ```
 
-### 3. XPath (Letzte Option)
+### 3. XPath (letzter Ausweg)
 
-XPath funktioniert auf beiden Plattformen, aber mit unterschiedlichen Elementtypen:
+XPath funktioniert auf beiden Plattformen, jedoch mit unterschiedlichen Elementtypen:
 
 **Android:**
-```
+```text
 //android.widget.Button[@text='Login']
 ```
 
 **iOS:**
-```
+```text
 //XCUIElementTypeButton[@label='Login']
 ```
 
----
-
-## Elementtyp-Referenz
+## Referenz der Elementtypen
 
 ### Android-Elementtypen
 
-| Typ | Beschreibung |
-|------|-------------|
-| `android.widget.Button` | Button |
-| `android.widget.EditText` | Texteingabe |
-| `android.widget.TextView` | Textlabel |
-| `android.widget.ImageView` | Bild |
-| `android.widget.ImageButton` | Bildbutton |
-| `android.widget.CheckBox` | Checkbox |
-| `android.widget.RadioButton` | Radiobutton |
-| `android.widget.Switch` | Schalter |
-| `android.widget.Spinner` | Dropdown |
-| `android.widget.ListView` | Listenansicht |
-| `android.widget.RecyclerView` | Recycler-Ansicht |
-| `android.widget.ScrollView` | Scroll-Container |
+| Typ                           | Beschreibung       |
+| ----------------------------- | ------------------ |
+| `android.widget.Button`       | Schaltfläche       |
+| `android.widget.EditText`     | Texteingabe        |
+| `android.widget.TextView`     | Textlabel          |
+| `android.widget.ImageView`    | Bild               |
+| `android.widget.ImageButton`  | Bildschaltfläche   |
+| `android.widget.CheckBox`     | Kontrollkästchen   |
+| `android.widget.RadioButton`  | Optionsfeld        |
+| `android.widget.Switch`       | Umschalter         |
+| `android.widget.Spinner`      | Dropdown           |
+| `android.widget.ListView`     | Listenansicht      |
+| `android.widget.RecyclerView` | Recycler View      |
+| `android.widget.ScrollView`   | Scroll-Container   |
 
 ### iOS-Elementtypen
 
-| Typ | Beschreibung |
-|------|-------------|
-| `XCUIElementTypeButton` | Button |
-| `XCUIElementTypeTextField` | Texteingabe |
-| `XCUIElementTypeSecureTextField` | Passworteingabe |
-| `XCUIElementTypeStaticText` | Textlabel |
-| `XCUIElementTypeImage` | Bild |
-| `XCUIElementTypeSwitch` | Schalter |
-| `XCUIElementTypeSlider` | Schieberegler |
-| `XCUIElementTypePicker` | Auswahlrad |
-| `XCUIElementTypeTable` | Tabellenansicht |
-| `XCUIElementTypeCell` | Tabellenzelle |
-| `XCUIElementTypeCollectionView` | Sammlungsansicht |
-| `XCUIElementTypeScrollView` | Scrollansicht |
-
----
+| Typ                              | Beschreibung      |
+| -------------------------------- | ----------------- |
+| `XCUIElementTypeButton`          | Schaltfläche      |
+| `XCUIElementTypeTextField`       | Texteingabe       |
+| `XCUIElementTypeSecureTextField` | Passworteingabe   |
+| `XCUIElementTypeStaticText`      | Textlabel         |
+| `XCUIElementTypeImage`           | Bild              |
+| `XCUIElementTypeSwitch`          | Umschalter        |
+| `XCUIElementTypeSlider`          | Schieberegler     |
+| `XCUIElementTypePicker`          | Auswahlrad        |
+| `XCUIElementTypeTable`           | Tabellenansicht   |
+| `XCUIElementTypeCell`            | Tabellenzelle     |
+| `XCUIElementTypeCollectionView`  | Collection View   |
+| `XCUIElementTypeScrollView`      | Scroll View       |
 
 ## Best Practices
 
-### Do
+### Empfohlen
 
-- **Verwende Accessibility IDs** für stabile, plattformübergreifende Selektoren
-- **Füge data-testid-Attribute** zu Web-Elementen für Tests hinzu
-- **Verwende Resource IDs** auf Android, wenn Accessibility IDs nicht verfügbar sind
-- **Bevorzuge Predicate Strings** gegenüber XPath auf iOS
-- **Halte Selektoren einfach** und spezifisch
+- **Verwenden Sie Accessibility IDs** für stabile, plattformübergreifende Selektoren
+- **Fügen Sie data-testid-Attribute** zu Web-Elementen für Tests hinzu
+- **Verwenden Sie Resource IDs** auf Android, wenn keine Accessibility IDs verfügbar sind
+- **Bevorzugen Sie Predicate Strings** gegenüber XPath auf iOS
+- **Halten Sie Selektoren einfach** und spezifisch
 
-### Don't
+### Zu vermeiden
 
-- **Vermeide lange XPath-Ausdrücke** - sie sind langsam und fragil
-- **Verlasse dich nicht auf Indizes** für dynamische Listen
-- **Vermeide textbasierte Selektoren** für lokalisierte Apps
-- **Verwende keinen absoluten XPath** (beginnend vom Wurzelelement)
+- **Vermeiden Sie lange XPath-Ausdrücke** – sie sind langsam und fehleranfällig
+- **Verlassen Sie sich nicht auf Indizes** bei dynamischen Listen
+- **Vermeiden Sie textbasierte Selektoren** bei lokalisierten Apps
+- **Verwenden Sie keinen absoluten XPath** (beginnend beim Wurzelelement)
 
-### Beispiele für gute vs. schlechte Selektoren
+### Beispiele für gute und schlechte Selektoren
 
-```
+```text
 # Gut - Stabile Accessibility ID
 ~loginButton
 
-# Schlecht - Fragiler XPath mit Indizes
+# Schlecht - Fehleranfälliger XPath mit Indizes
 //div[3]/form/button[2]
 
 # Gut - Spezifisches CSS mit Test-ID
@@ -320,49 +313,47 @@ android=new UiSelector().resourceId("com.app:id/submit")
 android=new UiSelector().text("Submit")
 ```
 
----
-
-## Debugging von Selektoren
+## Debuggen von Selektoren
 
 ### Web (Chrome DevTools)
 
-1. Öffne Chrome DevTools (F12)
-2. Verwende das Elements-Panel zum Untersuchen von Elementen
-3. Rechtsklick auf ein Element → Kopieren → Selektor kopieren
-4. Teste Selektoren in der Konsole: `document.querySelector('your-selector')`
+1. Öffnen Sie die Chrome DevTools (F12)
+2. Verwenden Sie das Elements-Panel, um Elemente zu untersuchen
+3. Rechtsklick auf ein Element → Copy → Copy selector
+4. Testen Sie Selektoren in der Konsole: `document.querySelector('your-selector')`
 
-### Mobile (Appium Inspector)
+### Mobil (Appium Inspector)
 
-1. Starte Appium Inspector
-2. Verbinde dich mit deiner laufenden Session
-3. Klicke auf Elemente, um alle verfügbaren Attribute zu sehen
-4. Verwende die "Search for element"-Funktion zum Testen von Selektoren
+1. Starten Sie den Appium Inspector
+2. Verbinden Sie sich mit Ihrer laufenden Session
+3. Klicken Sie auf Elemente, um alle verfügbaren Attribute zu sehen
+4. Verwenden Sie die Funktion „Search for element“, um Selektoren zu testen
 
-### Verwendung von `get_visible_elements`
+### Verwendung von `get_elements`
 
-Das `get_visible_elements`-Tool des MCP-Servers gibt mehrere Selektorstrategien für jedes Element zurück:
+Das Tool `get_elements` des MCP-Servers liefert für jedes Element mehrere Selektor-Strategien:
 
+```text
+Ask: "Get all visible elements on the screen"
 ```
-Ask Claude: "Get all visible elements on the screen"
-```
 
-Dies gibt Elemente mit vorgenerierten Selektoren zurück, die du direkt verwenden kannst.
+Dies liefert Elemente mit vorgenerierten Selektoren, die Sie direkt verwenden können.
 
 #### Erweiterte Optionen
 
 Für mehr Kontrolle bei der Elementsuche:
 
-```
+```text
 # Nur Bilder und visuelle Elemente abrufen
 Get visible elements with elementType "visual"
 
-# Elemente mit ihren Koordinaten für Layout-Debugging abrufen
+# Elemente mit ihren Koordinaten zum Debuggen des Layouts abrufen
 Get visible elements with includeBounds enabled
 
 # Die nächsten 20 Elemente abrufen (Paginierung)
 Get visible elements with limit 20 and offset 20
 
-# Layout-Container für Debugging einbeziehen
+# Layout-Container zum Debuggen einbeziehen
 Get visible elements with includeContainers enabled
 ```
 
@@ -376,19 +367,19 @@ Das Tool liefert eine paginierte Antwort:
 }
 ```
 
-### Verwendung von `get_accessibility` (Nur Browser)
+### Verwendung von `get_accessibility` (nur Browser)
 
-Für Browser-Automatisierung bietet das `get_accessibility`-Tool semantische Informationen über Seitenelemente:
+Für die Browser-Automatisierung liefert das Tool `get_accessibility` semantische Informationen über Seitenelemente:
 
-```
-# Alle benannten Barrierefreiheitsknoten abrufen
+```text
+# Alle benannten Accessibility-Knoten abrufen
 Get accessibility tree
 
-# Nur auf Buttons und Links filtern
+# Nur nach Schaltflächen- und Link-Rollen filtern
 Get accessibility tree filtered to button and link roles
 
-# Nächste Seite mit Ergebnissen abrufen
+# Nächste Ergebnisseite abrufen
 Get accessibility tree with limit 50 and offset 50
 ```
 
-Dies ist nützlich, wenn `get_visible_elements` nicht die erwarteten Elemente zurückgibt, da es die native Barrierefreiheits-API des Browsers abfragt.
+Dies ist nützlich, wenn `get_elements` nicht die erwarteten Elemente liefert, da es die native Accessibility-API des Browsers abfragt.

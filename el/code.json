@@ -1,54 +1,54 @@
 {
   "features.realEnvironments": {
-    "message": "Δοκιμές σε Πραγματικά Περιβάλλοντα"
+    "message": "Δοκιμές σε πραγματικά περιβάλλοντα"
   },
   "features.realEnvironments.description": {
-    "message": "Το WebdriverIO σας επιτρέπει να δοκιμάζετε σε πραγματικούς περιηγητές ή κινητές συσκευές που χρησιμοποιούν οι χρήστες σας."
+    "message": "Το WebdriverIO σάς επιτρέπει να εκτελείτε δοκιμές στους πραγματικούς περιηγητές ή στις κινητές συσκευές που χρησιμοποιούν οι χρήστες σας."
   },
   "features.versatile": {
-    "message": "Ευέλικτο και Πλούσιο σε Λειτουργίες"
+    "message": "Ευέλικτο και πλούσιο σε δυνατότητες"
   },
   "features.versatile.description": {
-    "message": "Χρησιμοποιήστε το WebdriverIO για πλήρεις δοκιμές end-to-end ή unit και component στον περιηγητή."
+    "message": "Χρησιμοποιήστε το WebdriverIO για πλήρεις δοκιμές e2e ή για δοκιμές μονάδων και στοιχείων στον περιηγητή."
   },
   "features.autoWait": {
-    "message": "Αυτόματη Αναμονή"
+    "message": "Αυτόματη αναμονή"
   },
   "features.autoWait.description": {
     "message": "Το WebdriverIO περιμένει αυτόματα να εμφανιστούν τα στοιχεία πριν αλληλεπιδράσει μαζί τους."
   },
   "features.standards": {
-    "message": "Βασισμένο σε Πρότυπα Ιστού"
+    "message": "Βασισμένο σε πρότυπα του web"
   },
   "homepage.features.crossBrowser": {
-    "message": "Υποστήριξη διαφορετικών περιηγητών μέσω αυτοματισμού με {webdriverLink} και {bidiLink}."
+    "message": "Υποστήριξη πολλαπλών περιηγητών μέσω αυτοματοποίησης με {webdriverLink} και {bidiLink}."
   },
   "features.mobileSupport": {
-    "message": "Εγγενής Υποστήριξη Κινητών"
+    "message": "Εγγενής υποστήριξη κινητών"
   },
   "homepage.features.mobile": {
     "message": "Εκτελέστε το WebdriverIO σε πραγματικές κινητές συσκευές, έξυπνες τηλεοράσεις ή άλλες συσκευές IoT μέσω του {appiumLink}."
   },
   "features.community": {
-    "message": "Αφοσιωμένη Κοινότητα"
+    "message": "Αφοσιωμένη κοινότητα"
   },
   "homepage.features.support": {
-    "message": "Διαχειριζόμαστε ένα {supportChannelLink} με πάνω από 8.000 μέλη και ένα πλούσιο οικοσύστημα πρόσθετων που συντηρούνται από την κοινότητα."
+    "message": "Διατηρούμε ένα {supportChannelLink} με πάνω από 8 χιλιάδες μέλη και ένα πλούσιο οικοσύστημα από πρόσθετα που συντηρούνται από την κοινότητα."
   },
   "homepage.createBrowserAnimation": {
-    "message": "Δημιουργία Έργου WebdriverIO για αυτοματισμό εφαρμογών MacOS"
+    "message": "Δημιουργήστε ένα έργο WebdriverIO για την αυτοματοποίηση εφαρμογών MacOS"
   },
   "homepage.logoCarousel.title": {
     "message": "Ποιος χρησιμοποιεί το WebdriverIO;"
   },
   "sponsors.description.openSource": {
-    "message": "\n                Είμαστε ένα έργο ανοιχτού κώδικα με ισχυρή δέσμευση στη διαφάνεια και τη διακυβέρνηση από την κοινότητα.\n                Είμαστε μέρος του {openJsFoundationLink} που αποτελεί μέρος του {linuxFoundationLink}. Το έργο\n                διευθύνεται εξ ολοκλήρου από εθελοντές και χρηματοδοτείται από επενδυμένες εταιρείες που επιθυμούν να δουν το έργο να επιτυχαίνει.\n                Η ομάδα του έργου είναι ευγνώμων για τη γενναιόδωρη χορηγία αυτών των εταιρειών.\n            "
+    "message": "\n                Είμαστε ένα έργο ανοιχτού κώδικα με ισχυρή δέσμευση στη διαφάνεια και στη διακυβέρνηση από την κοινότητα.\n                Είμαστε μέλος του {openJsFoundationLink}, το οποίο αποτελεί μέρος του {linuxFoundationLink}. Το έργο\n                διευθύνεται εξ ολοκλήρου από εθελοντές και χρηματοδοτείται από εταιρείες που επενδύουν σε αυτό και θέλουν να δουν το έργο να πετυχαίνει.\n                Η ομάδα του έργου είναι ευγνώμων για τη γενναιόδωρη χορηγία αυτών των εταιρειών.\n            "
   },
   "sponsors.description.support": {
-    "message": "Εάν χρησιμοποιείτε το WebdriverIO στον οργανισμό σας, παρακαλούμε εξετάστε το ενδεχόμενο να υποστηρίξετε το έργο {becomeASponsor}. Θα μας βοηθήσει να διατηρήσουμε το έργο σε λειτουργία και να εξελίσσεται."
+    "message": "Αν χρησιμοποιείτε το WebdriverIO στον οργανισμό σας, εξετάστε το ενδεχόμενο να υποστηρίξετε το έργο {becomeASponsor}. Θα μας βοηθήσει να διατηρήσουμε το έργο ενεργό και να συνεχίσει να εξελίσσεται."
   },
   "homepage.tagline": {
-    "message": "Πλαίσιο δοκιμών αυτοματισμού περιηγητή και κινητών επόμενης γενιάς για Node.js"
+    "message": "Αυτοματοποίηση δοκιμών ανοιχτού κώδικα για εφαρμογές web, κινητών και επιτραπέζιων υπολογιστών"
   },
   "homepage.getStarted": {
     "message": "Ξεκινήστε"
@@ -63,87 +63,90 @@
     "message": "Παρακολούθηση στο YouTube"
   },
   "homepage.sponsorSection.sponsoredBy": {
-    "message": "Χορηγείται από"
+    "message": "Με τη χορηγία των"
+  },
+  "homepage.sponsorSection.and": {
+    "message": "και"
   },
   "homepage.componentTesting.heading": {
-    "message": "E2E και Unit / Component Testing σε πραγματικό περιηγητή!"
+    "message": "Δοκιμές E2E και δοκιμές μονάδων / στοιχείων σε πραγματικό περιηγητή!"
   },
   "homepage.componentTesting.para1": {
-    "message": "Το WebdriverIO είναι ένα πλαίσιο {allInOne} για την ανάπτυξη των web εφαρμογών σας. Σας επιτρέπει να εκτελείτε μικρές και ελαφριές δοκιμές συστατικών καθώς και σενάρια δοκιμών e2e στον περιηγητή ή σε κινητή συσκευή. Αυτό εγγυάται ότι κάνετε τις δοκιμές σε ένα περιβάλλον που {usedBy}."
+    "message": "Το WebdriverIO είναι ένα framework {allInOne} για την ανάπτυξη της web εφαρμογής σας. Σας επιτρέπει να εκτελείτε μικρές και ελαφριές δοκιμές στοιχείων, καθώς και σενάρια δοκιμών e2e στον περιηγητή ή σε κινητή συσκευή. Αυτό εγγυάται ότι πραγματοποιείτε τις δοκιμές σε ένα περιβάλλον {usedBy}."
   },
   "homepage.componentTesting.allInOne": {
     "message": "όλα σε ένα"
   },
   "homepage.componentTesting.usedBy": {
-    "message": "χρησιμοποιείται από τους χρήστες σας"
+    "message": "που χρησιμοποιείται από τους χρήστες σας"
   },
   "homepage.componentTesting.para2": {
-    "message": "Διαθέτει έξυπνες στρατηγικές επιλογής που απλοποιούν την αλληλεπίδραση π.χ. με {reactComponents} ή την εκτέλεση βαθιών ερωτημάτων επιλογής με ένθετα δέντρα shadow DOM. Καθώς οι αλληλεπιδράσεις γίνονται μέσω ενός τυποποιημένου πρωτοκόλλου αυτοματισμού, είναι εγγυημένο ότι συμπεριφέρονται εγγενώς και δεν προσομοιώνονται απλώς με JavaScript."
+    "message": "Διαθέτει έξυπνες στρατηγικές επιλογέων που απλοποιούν την αλληλεπίδραση, π.χ. με {reactComponents}, ή την εκτέλεση βαθιών ερωτημάτων επιλογέων σε ένθετα δέντρα shadow DOM. Καθώς οι αλληλεπιδράσεις γίνονται μέσω ενός τυποποιημένου πρωτοκόλλου αυτοματοποίησης, είναι εγγυημένο ότι συμπεριφέρονται εγγενώς και δεν αποτελούν απλώς εξομοίωση μέσω JavaScript."
   },
   "homepage.componentTesting.easySetup": {
     "message": "Εύκολη ρύθμιση για δοκιμές web components με:"
   },
   "homepage.hightlight.createProject": {
-    "message": "Ξεκινήστε με το WebdriverIO μέσα σε Δευτερόλεπτα"
+    "message": "Ξεκινήστε με το WebdriverIO μέσα σε λίγα δευτερόλεπτα"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "Ο δρομολογητής δοκιμών του WebdriverIO διαθέτει διεπαφή γραμμής εντολών που παρέχει ένα ισχυρό βοηθητικό πρόγραμμα διαμόρφωσης και σας βοηθά να δημιουργήσετε τη ρύθμιση δοκιμών σας σε λιγότερο από ένα λεπτό. Σας επιτρέπει να επιλέξετε από τις διαθέσιμες ενσωματώσεις πλαισίων δοκιμών και σας επιτρέπει εύκολα να προσθέσετε όλα τα υποστηριζόμενα πρόσθετα αναφοράς και υπηρεσίας!"
+    "message": "Το testrunner του WebdriverIO διαθέτει μια διεπαφή γραμμής εντολών που παρέχει ένα ισχυρό εργαλείο διαμόρφωσης και σας βοηθά να δημιουργήσετε τη ρύθμιση των δοκιμών σας σε λιγότερο από ένα λεπτό. Σας επιτρέπει να επιλέξετε ανάμεσα στις διαθέσιμες ενσωματώσεις frameworks δοκιμών και να προσθέσετε εύκολα όλα τα υποστηριζόμενα πρόσθετα reporter και service!"
   },
   "homepage.hightlight.createProject.para2": {
-    "message": "Με μόνο μία απλή εντολή μπορείτε να δημιουργήσετε μια πλήρη σουίτα δοκιμών:"
+    "message": "Με μία μόνο απλή εντολή μπορείτε να δημιουργήσετε μια πλήρη σουίτα δοκιμών:"
   },
   "homepage.highlight.getStartedOnYouTube": {
-    "message": "Ξεκινήστε να μαθαίνετε περισσότερα για το WebdriverIO και πώς να ξεκινήσετε {youtubeLink}."
+    "message": "Ξεκινήστε να μαθαίνετε περισσότερα για το WebdriverIO και για το πώς να ξεκινήσετε {youtubeLink}."
   },
   "homepage.highlight.getStartedOnYouTube.label;": {
     "message": "στο YouTube",
     "description": "The label for the link to my YouTube"
   },
   "homepage.hightlight.watch": {
-    "message": "Παρακολουθήστε Ομιλίες για το WebdriverIO"
+    "message": "Παρακολουθήστε ομιλίες για το WebdriverIO"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "Η κοινότητα γύρω από το WebdriverIO μιλάει ενεργά σε διάφορες ομάδες χρηστών ή συνέδρια για συγκεκριμένα θέματα σχετικά με τον αυτοματοποιημένο έλεγχο με το WebdriverIO. Δείτε αυτή την ομιλία στο {youtubeLink} από τον/την {videoAuthor} στο {conferenceLink}."
+    "message": "Η κοινότητα γύρω από το WebdriverIO μιλά ενεργά σε διάφορες ομάδες χρηστών ή συνέδρια για συγκεκριμένα θέματα σχετικά με τις αυτοματοποιημένες δοκιμές με το WebdriverIO. Δείτε αυτήν την ομιλία στο {youtubeLink} από τον/την {videoAuthor} στο {conferenceLink}."
   },
   "homepage.highlight.conferenceTalk.label": {
-    "message": "Οι αγαπημένες μου λειτουργίες του WebdriverIO",
+    "message": "Οι αγαπημένες μου δυνατότητες του WebdriverIO",
     "description": "The conference talk title"
   },
   "homepage.highlight.youtubeChannels": {
-    "message": "Υπάρχουν επίσης πολλά κανάλια YouTube με χρήσιμα σεμινάρια από μέλη της κοινότητας όπως {channelOne}, {channelTwo} ή {channelThree}."
+    "message": "Υπάρχουν επίσης πολλά κανάλια YouTube με χρήσιμους οδηγούς από μέλη της κοινότητας, όπως τα {channelOne}, {channelTwo} ή {channelThree}."
   },
   "homepage.hightlight.lighthouse": {
-    "message": "Ενσωμάτωση Google Lighthouse"
+    "message": "Ενσωμάτωση με το Google Lighthouse"
   },
   "homepage.highlight.devtools": {
-    "message": "Το WebdriverIO όχι μόνο εκτελεί αυτοματισμό βασισμένο στο πρωτόκολλο WebDriver, αλλά αξιοποιεί επίσης εγγενή API περιηγητών για να επιτρέψει ενσωματώσεις σε δημοφιλή εργαλεία προγραμματιστών όπως {devtoolsLink} ή {lighthouseLink}. Με το πρόσθετο {devtoolsServiceLink} έχετε πρόσβαση σε εντολές για να επικυρώσετε εάν η εφαρμογή σας είναι μια έγκυρη εφαρμογή PWA καθώς και σε εντολές για την καταγραφή μετρήσεων απόδοσης frontend όπως το `speedIndex` και άλλα."
+    "message": "Το WebdriverIO όχι μόνο εκτελεί αυτοματοποίηση βασισμένη στο πρωτόκολλο WebDriver, αλλά αξιοποιεί επίσης εγγενή APIs του περιηγητή για να επιτρέψει ενσωματώσεις με δημοφιλή εργαλεία προγραμματιστών, όπως τα {devtoolsLink} ή {lighthouseLink}. Με το πρόσθετο {devtoolsServiceLink} έχετε πρόσβαση σε εντολές για να επαληθεύσετε αν η εφαρμογή σας είναι έγκυρη εφαρμογή PWA, καθώς και σε εντολές για την καταγραφή μετρικών απόδοσης του frontend, όπως το `speedIndex` και άλλες."
   },
   "homepage.hightlight.devtools": {
-    "message": "Ενσωμάτωση σε εργαλεία προγραμματιστών όπως:"
+    "message": "Ενσωμάτωση με εργαλεία προγραμματιστών όπως:"
   },
   "until August 2025": {
-    "message": "μέχρι τον Αύγουστο 2025"
+    "message": "έως τον Αύγουστο του 2025"
   },
   "since July 2024": {
-    "message": "από τον Ιούλιο 2024"
+    "message": "από τον Ιούλιο του 2024"
   },
   "since February 2022": {
-    "message": "από τον Φεβρουάριο 2022"
+    "message": "από τον Φεβρουάριο του 2022"
   },
   "since January 2021": {
-    "message": "από τον Ιανουάριο 2021"
+    "message": "από τον Ιανουάριο του 2021"
   },
   "since December 2019": {
-    "message": "από τον Δεκέμβριο 2019"
+    "message": "από τον Δεκέμβριο του 2019"
   },
   "versions.description": {
-    "message": "Σελίδα εκδόσεων Docusaurus 2 που παραθέτει όλες τις τεκμηριωμένες εκδόσεις του ιστότοπου"
+    "message": "Όλες οι φιλοξενούμενες εκδόσεις της τεκμηρίωσης του WebdriverIO"
   },
   "WebdriverIO documentation versions": {
-    "message": "Εκδόσεις τεκμηρίωσης WebdriverIO"
+    "message": "Εκδόσεις τεκμηρίωσης του WebdriverIO"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "Η ομάδα του έργου κυκλοφορεί νέες κύριες εκδόσεις περίπου σε ετήσια βάση. Η κατάσταση έκδοσης LTS είναι \"μακροπρόθεσμη υποστήριξη\", η οποία συνήθως εγγυάται ότι τα κρίσιμα σφάλματα θα διορθώνονται για συνολικά 12 μήνες μέχρι να γίνει μια νέα κύρια έκδοση."
+    "message": "Η ομάδα του έργου κυκλοφορεί νέες κύριες εκδόσεις περίπου μία φορά τον χρόνο. Η κατάσταση έκδοσης LTS σημαίνει \"μακροχρόνια υποστήριξη\" (long-term support), η οποία συνήθως εγγυάται ότι τα κρίσιμα σφάλματα θα διορθώνονται για συνολικά 12 μήνες, μέχρι να κυκλοφορήσει μια νέα κύρια έκδοση."
   },
   "Current version (Stable)": {
     "message": "Τρέχουσα έκδοση (Σταθερή)"
@@ -155,20 +158,20 @@
     "message": "Τεκμηρίωση"
   },
   "Release Notes": {
-    "message": "Σημειώσεις Έκδοσης"
+    "message": "Σημειώσεις έκδοσης"
   },
   "Past versions": {
-    "message": "Παλαιότερες εκδόσεις"
+    "message": "Προηγούμενες εκδόσεις"
   },
   "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "Εδώ μπορείτε να βρείτε τεκμηρίωση για προηγούμενες εκδόσεις του Docusaurus."
+    "message": "Εδώ μπορείτε να βρείτε την τεκμηρίωση για προηγούμενες εκδόσεις του Docusaurus."
   },
   "theme.ErrorPageContent.title": {
     "message": "Αυτή η σελίδα κατέρρευσε.",
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "Κύλιση πίσω στην κορυφή",
+    "message": "Επιστροφή στην αρχή",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
@@ -180,7 +183,7 @@
     "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.paginator.navAriaLabel": {
-    "message": "Πλοήγηση στη λίστα του ιστολογίου",
+    "message": "Πλοήγηση στη λίστα αναρτήσεων του ιστολογίου",
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
@@ -192,7 +195,7 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Πλοήγηση στη σελίδα ανάρτησης ιστολογίου",
+    "message": "Πλοήγηση στις αναρτήσεις του ιστολογίου",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
@@ -208,11 +211,11 @@
     "description": "The label of the link targeting the tag list page"
   },
   "theme.colorToggle.ariaLabel": {
-    "message": "Εναλλαγή μεταξύ σκούρας και φωτεινής λειτουργίας (τρέχουσα {mode})",
+    "message": "Εναλλαγή μεταξύ σκοτεινής και φωτεινής λειτουργίας (τρέχουσα: {mode})",
     "description": "The ARIA label for the navbar color mode toggle"
   },
   "theme.colorToggle.ariaLabel.mode.dark": {
-    "message": "σκούρα λειτουργία",
+    "message": "σκοτεινή λειτουργία",
     "description": "The name for the dark color mode"
   },
   "theme.colorToggle.ariaLabel.mode.light": {
@@ -220,11 +223,11 @@
     "description": "The name for the light color mode"
   },
   "theme.docs.breadcrumbs.navAriaLabel": {
-    "message": "Ψίχουλα",
+    "message": "Διαδρομή πλοήγησης",
     "description": "The ARIA label for the breadcrumbs"
   },
   "theme.docs.DocCard.categoryDescription.plurals": {
-    "message": "1 αντικείμενο|{count} αντικείμενα",
+    "message": "1 στοιχείο|{count} στοιχεία",
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
@@ -243,7 +246,7 @@
     "message": "Έκδοση: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "Αυτή είναι μη εκδοθείσα τεκμηρίωση για την έκδοση {siteTitle} {versionLabel}.",
+    "message": "Αυτή είναι τεκμηρίωση για την έκδοση {versionLabel} του {siteTitle}, η οποία δεν έχει κυκλοφορήσει ακόμη.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
@@ -255,7 +258,7 @@
     "description": "The label used to tell the user to check the latest version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
-    "message": "τελευταία έκδοση",
+    "message": "πιο πρόσφατη έκδοση",
     "description": "The label used for the latest version suggestion link label"
   },
   "theme.docs.tagDocListPageTitle.nDocsTagged": {
@@ -263,7 +266,7 @@
     "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.docs.tagDocListPageTitle": {
-    "message": "{nDocsTagged} με \"{tagName}\"",
+    "message": "{nDocsTagged} \"{tagName}\"",
     "description": "The title of the page for a docs tag"
   },
   "theme.common.editThisPage": {
@@ -271,7 +274,7 @@
     "description": "The link label to edit the current page"
   },
   "theme.common.headingLinkTitle": {
-    "message": "Απευθείας σύνδεσμος προς {heading}",
+    "message": "Άμεσος σύνδεσμος προς {heading}",
     "description": "Title for link to heading"
   },
   "theme.lastUpdated.atDate": {
@@ -287,7 +290,7 @@
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
   "theme.NotFound.title": {
-    "message": "Η Σελίδα Δεν Βρέθηκε",
+    "message": "Η σελίδα δεν βρέθηκε",
     "description": "The title of the 404 page"
   },
   "theme.navbar.mobileVersionsDropdown.label": {
@@ -327,7 +330,7 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Πλοήγηση πρόσφατων αναρτήσεων ιστολογίου",
+    "message": "Πλοήγηση στις πρόσφατες αναρτήσεις του ιστολογίου",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.CodeBlock.wordWrapToggle": {
@@ -347,15 +350,15 @@
     "description": "The copy button label on code blocks"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "Επέκταση κατηγορίας πλευρικής μπάρας '{label}'",
+    "message": "Ανάπτυξη της κατηγορίας '{label}' της πλαϊνής στήλης",
     "description": "The ARIA label to expand the sidebar category"
   },
   "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "Σύμπτυξη κατηγορίας πλευρικής μπάρας '{label}'",
+    "message": "Σύμπτυξη της κατηγορίας '{label}' της πλαϊνής στήλης",
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
-    "message": "Κύριο",
+    "message": "Κύρια",
     "description": "The ARIA label for the main navigation"
   },
   "theme.NotFound.p1": {
@@ -363,7 +366,7 @@
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Παρακαλούμε επικοινωνήστε με τον ιδιοκτήτη του ιστότοπου που σας οδήγησε στον αρχικό URL και ενημερώστε τον ότι ο σύνδεσμός του είναι κατεστραμμένος.",
+    "message": "Επικοινωνήστε με τον ιδιοκτήτη του ιστότοπου που σας παρέπεμψε στο αρχικό URL και ενημερώστε τον ότι ο σύνδεσμός του δεν λειτουργεί.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
@@ -371,7 +374,7 @@
     "description": "The label used by the button on the collapsible TOC component"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "Διάβασμα ενός λεπτού|Διάβασμα {readingTime} λεπτών",
+    "message": "Ανάγνωση ενός λεπτού|Ανάγνωση {readingTime} λεπτών",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.navbar.mobileLanguageDropdown.label": {
@@ -383,7 +386,7 @@
     "description": "The label used in blog post item excerpts to link to full blog posts"
   },
   "theme.blog.post.readMoreLabel": {
-    "message": "Διαβάστε περισσότερα για {title}",
+    "message": "Διαβάστε περισσότερα για το {title}",
     "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.docs.breadcrumbs.home": {
@@ -391,15 +394,15 @@
     "description": "The ARIA label for the home page in the breadcrumbs"
   },
   "theme.docs.sidebar.collapseButtonTitle": {
-    "message": "Σύμπτυξη πλευρικής μπάρας",
+    "message": "Σύμπτυξη πλαϊνής στήλης",
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.collapseButtonAriaLabel": {
-    "message": "Σύμπτυξη πλευρικής μπάρας",
+    "message": "Σύμπτυξη πλαϊνής στήλης",
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.navAriaLabel": {
-    "message": "Πλευρική μπάρα εγγράφων",
+    "message": "Πλαϊνή στήλη τεκμηρίωσης",
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
@@ -415,15 +418,15 @@
     "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.docs.sidebar.expandButtonTitle": {
-    "message": "Επέκταση πλευρικής μπάρας",
+    "message": "Ανάπτυξη πλαϊνής στήλης",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.docs.sidebar.expandButtonAriaLabel": {
-    "message": "Επέκταση πλευρικής μπάρας",
+    "message": "Ανάπτυξη πλαϊνής στήλης",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
-    "message": "Δείτε όλα τα {count} αποτελέσματα"
+    "message": "Δείτε και τα {count} αποτελέσματα"
   },
   "theme.SearchPage.documentsFound.plurals": {
     "message": "Βρέθηκε ένα έγγραφο|Βρέθηκαν {count} έγγραφα",
@@ -446,7 +449,7 @@
     "description": "The ARIA label for search page input"
   },
   "theme.SearchPage.algoliaLabel": {
-    "message": "Αναζήτηση από την Algolia",
+    "message": "Αναζήτηση μέσω Algolia",
     "description": "The ARIA label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
@@ -470,7 +473,7 @@
     "description": "The label and ARIA label for search box cancel button"
   },
   "theme.SearchModal.startScreen.recentSearchesTitle": {
-    "message": "Πρόσφατα",
+    "message": "Πρόσφατες",
     "description": "The title for recent searches"
   },
   "theme.SearchModal.startScreen.noRecentSearchesText": {
@@ -486,7 +489,7 @@
     "description": "The label for remove recent search button"
   },
   "theme.SearchModal.startScreen.favoriteSearchesTitle": {
-    "message": "Αγαπημένα",
+    "message": "Αγαπημένες",
     "description": "The title for favorite searches"
   },
   "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
@@ -494,11 +497,11 @@
     "description": "The label for remove favorite search button"
   },
   "theme.SearchModal.errorScreen.titleText": {
-    "message": "Αδυναμία λήψης αποτελεσμάτων",
+    "message": "Δεν είναι δυνατή η λήψη αποτελεσμάτων",
     "description": "The title for error screen of search modal"
   },
   "theme.SearchModal.errorScreen.helpText": {
-    "message": "Ίσως θέλετε να ελέγξετε τη σύνδεση δικτύου σας.",
+    "message": "Ίσως θα πρέπει να ελέγξετε τη σύνδεσή σας στο δίκτυο.",
     "description": "The help text for error screen of search modal"
   },
   "theme.SearchModal.footer.selectText": {
@@ -514,11 +517,11 @@
     "description": "The explanatory text of the action for the Arrow up and Arrow down key"
   },
   "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
-    "message": "Βέλος πάνω",
+    "message": "Πάνω βέλος",
     "description": "The ARIA label for the Arrow up key button that makes the navigation"
   },
   "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
-    "message": "Βέλος κάτω",
+    "message": "Κάτω βέλος",
     "description": "The ARIA label for the Arrow down key button that makes the navigation"
   },
   "theme.SearchModal.footer.closeText": {
@@ -530,7 +533,7 @@
     "description": "The ARIA label for the Escape key button that close the modal"
   },
   "theme.SearchModal.footer.searchByText": {
-    "message": "Αναζήτηση από",
+    "message": "Αναζήτηση μέσω",
     "description": "The text explain that the search is making by Algolia"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
@@ -538,7 +541,7 @@
     "description": "The text explains that there are no results for the following search"
   },
   "theme.SearchModal.noResultsScreen.suggestedQueryText": {
-    "message": "Δοκιμάστε αναζήτηση για",
+    "message": "Δοκιμάστε να αναζητήσετε",
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
@@ -550,7 +553,7 @@
     "description": "The text for the link to report missing results"
   },
   "theme.SearchModal.placeholder": {
-    "message": "Αναζήτηση εγγράφων",
+    "message": "Αναζήτηση στην τεκμηρίωση",
     "description": "The placeholder of the input of the DocSearch pop-up modal"
   },
   "theme.IdealImageMessage.loading": {
@@ -558,7 +561,7 @@
     "description": "When the full-scale image is loading"
   },
   "theme.IdealImageMessage.load": {
-    "message": "Κλικ για φόρτωση{sizeMessage}",
+    "message": "Κάντε κλικ για φόρτωση{sizeMessage}",
     "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
   },
   "theme.IdealImageMessage.offline": {
@@ -570,7 +573,7 @@
     "description": "When the image is not found"
   },
   "theme.IdealImageMessage.error": {
-    "message": "Σφάλμα. Κλικ για επαναφόρτωση",
+    "message": "Σφάλμα. Κάντε κλικ για επαναφόρτωση",
     "description": "When the image fails to load for unknown error"
   },
   "theme.blog.post.plurals": {
@@ -578,7 +581,7 @@
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
-    "message": "{nPosts} με ετικέτα \"{tagName}\"",
+    "message": "{nPosts} με την ετικέτα \"{tagName}\"",
     "description": "The title of the page for a blog tag"
   },
   "theme.blog.author.pageTitle": {
@@ -594,7 +597,7 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "Αυτός ο συγγραφέας δεν έχει γράψει ακόμα αναρτήσεις.",
+    "message": "Αυτός ο συγγραφέας δεν έχει γράψει ακόμη καμία ανάρτηση.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -602,15 +605,15 @@
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Αυτή η σελίδα δεν είναι καταχωρημένη. Οι μηχανές αναζήτησης δεν θα την ευρετηριάσουν και μόνο οι χρήστες που έχουν απευθείας σύνδεσμο μπορούν να την προσπελάσουν.",
+    "message": "Αυτή η σελίδα δεν είναι καταχωρημένη. Οι μηχανές αναζήτησης δεν θα την ευρετηριάσουν και μόνο οι χρήστες που έχουν άμεσο σύνδεσμο μπορούν να έχουν πρόσβαση σε αυτήν.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
-    "message": "Σελίδα προσχεδίου",
+    "message": "Πρόχειρη σελίδα",
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Αυτή η σελίδα είναι προσχέδιο. Θα είναι ορατή μόνο στην ανάπτυξη και θα εξαιρεθεί από την παραγωγική έκδοση.",
+    "message": "Αυτή η σελίδα είναι πρόχειρη. Θα είναι ορατή μόνο κατά την ανάπτυξη και θα εξαιρεθεί από το build παραγωγής.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -629,19 +632,19 @@
     "message": "κανάλι υποστήριξης"
   },
   "sponsors.title": {
-    "message": "Ανοικτού Κώδικα και Ανοικτής Διακυβέρνησης"
+    "message": "Ανοιχτός κώδικας και ανοιχτή διακυβέρνηση"
   },
   "sponsors.premiumSponsors": {
-    "message": "💎 Premium Χορηγοί"
+    "message": "Premium χορηγοί"
   },
   "sponsors.goldSponsors": {
-    "message": "🥇 Χρυσοί Χορηγοί"
+    "message": "Χρυσοί χορηγοί"
   },
   "sponsors.becomeASponsor": {
-    "message": "γίνοντας χορηγός"
+    "message": "γινόμενοι χορηγοί"
   },
   "contributors.thankYouMessage": {
-    "message": "Θα θέλαμε να εκφράσουμε τις θερμές μας ευχαριστίες σε όλους τους συνεισφέροντες που βοήθησαν να γίνει το {toolName} το ισχυρό εργαλείο που είναι σήμερα. Η αφοσίωση και η προσπάθειά σας εκτιμώνται πραγματικά!",
+    "message": "Θα θέλαμε να εκφράσουμε τις εγκάρδιες ευχαριστίες μας σε όλους τους συνεισφέροντες που βοήθησαν ώστε το {toolName} να γίνει το ισχυρό εργαλείο που είναι σήμερα. Η αφοσίωση και η προσπάθειά σας εκτιμώνται πραγματικά!",
     "description": "Thank you message for contributors"
   }
 }

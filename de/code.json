@@ -3,55 +3,55 @@
     "message": "Testen in realen Umgebungen"
   },
   "features.realEnvironments.description": {
-    "message": "WebdriverIO ermöglicht das Testen in echten Browsern oder mobilen Geräten, die von Ihren Benutzern verwendet werden."
+    "message": "Mit WebdriverIO können Sie in echten Browsern oder auf echten Mobilgeräten testen, die auch Ihre Nutzer verwenden."
   },
   "features.versatile": {
     "message": "Vielseitig und funktionsreich"
   },
   "features.versatile.description": {
-    "message": "Nutzen Sie WebdriverIO für vollständige E2E- oder Unit- und Komponententests im Browser."
+    "message": "Verwenden Sie WebdriverIO für vollständige E2E-Tests oder für Unit- und Komponententests im Browser."
   },
   "features.autoWait": {
     "message": "Automatisches Warten"
   },
   "features.autoWait.description": {
-    "message": "WebdriverIO wartet automatisch darauf, dass Elemente erscheinen, bevor mit ihnen interagiert wird."
+    "message": "WebdriverIO wartet automatisch, bis Elemente erscheinen, bevor mit ihnen interagiert wird."
   },
   "features.standards": {
-    "message": "Basierend auf Web-Standards"
+    "message": "Basierend auf Webstandards"
   },
   "homepage.features.crossBrowser": {
-    "message": "Cross-Browser-Unterstützung durch Automatisierung mittels {webdriverLink} und {bidiLink}."
+    "message": "Browserübergreifende Unterstützung durch Automatisierung über {webdriverLink} und {bidiLink}."
   },
   "features.mobileSupport": {
     "message": "Native Mobile-Unterstützung"
   },
   "homepage.features.mobile": {
-    "message": "Führen Sie WebdriverIO auf echten Mobilgeräten, Smart-TVs oder anderen IoT-Geräten über {appiumLink} aus."
+    "message": "Führen Sie WebdriverIO über {appiumLink} auf echten Mobilgeräten, Smart-TVs oder anderen IoT-Geräten aus."
   },
   "features.community": {
     "message": "Engagierte Community"
   },
   "homepage.features.support": {
-    "message": "Betreibt einen {supportChannelLink} mit über 8.000 Mitgliedern und einem umfangreichen Ökosystem von Community-gepflegten Plugins."
+    "message": "Wir betreiben einen {supportChannelLink} mit über 8.000 Mitgliedern und ein reichhaltiges Ökosystem an von der Community gepflegten Plugins."
   },
   "homepage.createBrowserAnimation": {
-    "message": "WebdriverIO-Projekt erstellen, um MacOS-Apps zu automatisieren"
+    "message": "WebdriverIO-Projekt erstellen, um macOS-Apps zu automatisieren"
   },
   "homepage.logoCarousel.title": {
-    "message": "Wer nutzt WebdriverIO?"
+    "message": "Wer verwendet WebdriverIO?"
   },
   "sponsors.description.openSource": {
-    "message": "\n                Wir sind ein Open-Source-Projekt mit einem starken Engagement für Transparenz und Community-Governance.\n                Wir sind Teil der {openJsFoundationLink}, die ein Teil der {linuxFoundationLink} ist. Das Projekt\n                wird vollständig von Freiwilligen betrieben und von investierten Unternehmen finanziert, die möchten, dass das Projekt erfolgreich ist.\n                Das Projektteam ist dankbar für die großzügige Unterstützung dieser Unternehmen.\n            "
+    "message": "\n                Wir sind ein Open-Source-Projekt mit einem starken Bekenntnis zu Transparenz und gemeinschaftlicher Steuerung.\n                Wir sind Teil der {openJsFoundationLink}, die wiederum Teil der {linuxFoundationLink} ist. Das Projekt\n                wird vollständig von Freiwilligen betrieben und von engagierten Unternehmen finanziert, die den Erfolg des Projekts sehen möchten.\n                Das Projektteam ist diesen Unternehmen für ihr großzügiges Sponsoring sehr dankbar.\n            "
   },
   "sponsors.description.support": {
-    "message": "Wenn Sie WebdriverIO in Ihrer Organisation verwenden, erwägen Sie bitte, das Projekt durch {becomeASponsor} zu unterstützen. Dies wird uns helfen, das Projekt am Laufen zu halten und weiterzuentwickeln."
+    "message": "Wenn Sie WebdriverIO in Ihrer Organisation einsetzen, ziehen Sie bitte in Betracht, das Projekt zu unterstützen, indem Sie {becomeASponsor}. Das hilft uns, das Projekt am Laufen zu halten und weiterzuentwickeln."
   },
   "homepage.tagline": {
-    "message": "Next-Gen Browser- und Mobile-Automatisierungs-Testframework für Node.js"
+    "message": "Open-Source-Testautomatisierung für Web-, Mobile- und Desktop-Apps"
   },
   "homepage.getStarted": {
-    "message": "Erste Schritte"
+    "message": "Loslegen"
   },
   "homepage.whyWebdriverIO": {
     "message": "Warum WebdriverIO?"
@@ -65,35 +65,38 @@
   "homepage.sponsorSection.sponsoredBy": {
     "message": "Gesponsert von"
   },
+  "homepage.sponsorSection.and": {
+    "message": "und"
+  },
   "homepage.componentTesting.heading": {
-    "message": "E2E- und Unit-/Komponententests in echten Browsern!"
+    "message": "E2E- und Unit-/Komponententests im echten Browser!"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIO ist ein {allInOne}-Framework für Ihre Webentwicklung. Es ermöglicht Ihnen, kleine und leichtgewichtige Komponententests durchzuführen sowie E2E-Testszenarien im Browser oder auf einem Mobilgerät auszuführen. Dies garantiert, dass Sie Tests in einer Umgebung durchführen, die {usedBy}."
+    "message": "WebdriverIO ist ein {allInOne}-Framework für die Entwicklung Ihrer Web-App. Es ermöglicht Ihnen, kleine und leichtgewichtige Komponententests sowie E2E-Testszenarien im Browser oder auf einem Mobilgerät auszuführen. Dadurch ist garantiert, dass Sie Ihre Tests in einer Umgebung durchführen, die {usedBy} wird."
   },
   "homepage.componentTesting.allInOne": {
     "message": "All-in-One"
   },
   "homepage.componentTesting.usedBy": {
-    "message": "von Ihren Nutzern verwendet wird"
+    "message": "von Ihren Nutzern verwendet"
   },
   "homepage.componentTesting.para2": {
-    "message": "Es verfügt über intelligente Selektorstrategien, die die Interaktion, z.B. mit {reactComponents}, oder die Ausführung tiefer Selektorabfragen mit verschachtelten Shadow-DOM-Bäumen vereinfachen. Da Interaktionen über ein standardisiertes Automatisierungsprotokoll erfolgen, ist garantiert, dass sie sich nativ verhalten und nicht nur in JavaScript emuliert werden."
+    "message": "Es bietet intelligente Selektorstrategien, die beispielsweise die Interaktion mit {reactComponents} oder tiefe Selektorabfragen in verschachtelten Shadow-DOM-Bäumen vereinfachen. Da Interaktionen über ein standardisiertes Automatisierungsprotokoll erfolgen, ist garantiert, dass sie sich nativ verhalten und nicht nur per JavaScript emuliert werden."
   },
   "homepage.componentTesting.easySetup": {
-    "message": "Einfaches Setup für Web-Komponententests mit:"
+    "message": "Einfache Einrichtung für Webkomponententests mit:"
   },
   "homepage.hightlight.createProject": {
-    "message": "Starten Sie mit WebdriverIO innerhalb von Sekunden"
+    "message": "Starten Sie mit WebdriverIO in wenigen Sekunden"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "Der WebdriverIO-Testrunner verfügt über eine Befehlszeilenschnittstelle, die ein leistungsstarkes Konfigurationswerkzeug bietet und Ihnen hilft, Ihr Test-Setup in weniger als einer Minute zu erstellen. Es lässt Sie aus verfügbaren Testframework-Integrationen wählen und ermöglicht einfach das Hinzufügen aller unterstützten Reporter- und Service-Plugins!"
+    "message": "Der WebdriverIO-Testrunner verfügt über eine Kommandozeilenschnittstelle mit einem leistungsstarken Konfigurationswerkzeug, mit dem Sie Ihr Test-Setup in weniger als einer Minute erstellen können. Sie können aus verfügbaren Testframework-Integrationen wählen und ganz einfach alle unterstützten Reporter- und Service-Plugins hinzufügen!"
   },
   "homepage.hightlight.createProject.para2": {
     "message": "Mit nur einem einfachen Befehl können Sie eine komplette Testsuite einrichten:"
   },
   "homepage.highlight.getStartedOnYouTube": {
-    "message": "Lernen Sie mehr über WebdriverIO und wie Sie beginnen können {youtubeLink}."
+    "message": "Erfahren Sie {youtubeLink} mehr über WebdriverIO und wie Sie loslegen können."
   },
   "homepage.highlight.getStartedOnYouTube.label;": {
     "message": "auf YouTube",
@@ -103,23 +106,23 @@
     "message": "Vorträge über WebdriverIO ansehen"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "Die Community rund um WebdriverIO spricht aktiv auf verschiedenen Benutzergruppen oder Konferenzen über spezifische Themen rund um automatisiertes Testen mit WebdriverIO. Schauen Sie sich diesen Vortrag auf {youtubeLink} von {videoAuthor} bei {conferenceLink} an."
+    "message": "Die Community rund um WebdriverIO spricht aktiv bei verschiedenen User Groups und Konferenzen über spezifische Themen rund um automatisiertes Testen mit WebdriverIO. Sehen Sie sich diesen Vortrag {youtubeLink} von {videoAuthor} auf der {conferenceLink} an."
   },
   "homepage.highlight.conferenceTalk.label": {
     "message": "Meine Lieblingsfunktionen von WebdriverIO",
     "description": "The conference talk title"
   },
   "homepage.highlight.youtubeChannels": {
-    "message": "Es gibt auch viele YouTube-Kanäle mit nützlichen Tutorials von Community-Mitgliedern wie {channelOne}, {channelTwo} oder {channelThree}."
+    "message": "Es gibt außerdem viele YouTube-Kanäle mit nützlichen Tutorials von Community-Mitgliedern, wie zum Beispiel {channelOne}, {channelTwo} oder {channelThree}."
   },
   "homepage.hightlight.lighthouse": {
-    "message": "Google Lighthouse-Integration"
+    "message": "Google-Lighthouse-Integration"
   },
   "homepage.highlight.devtools": {
-    "message": "WebdriverIO führt nicht nur Automatisierung basierend auf dem WebDriver-Protokoll durch, sondern nutzt auch native Browser-APIs, um Integrationen in beliebte Entwicklertools wie {devtoolsLink} oder {lighthouseLink} zu ermöglichen. Mit dem {devtoolsServiceLink}-Plugin haben Sie Zugriff auf Befehle zur Überprüfung, ob Ihre App eine gültige PWA-Anwendung ist, sowie auf Befehle zur Erfassung von Frontend-Leistungsmetriken wie `speedIndex` und andere."
+    "message": "WebdriverIO führt nicht nur Automatisierung auf Basis des WebDriver-Protokolls aus, sondern nutzt auch native Browser-APIs, um Integrationen mit beliebten Entwicklerwerkzeugen wie {devtoolsLink} oder {lighthouseLink} zu ermöglichen. Mit dem Plugin {devtoolsServiceLink} haben Sie Zugriff auf Befehle, mit denen Sie überprüfen können, ob Ihre App eine gültige PWA-Anwendung ist, sowie auf Befehle zur Erfassung von Frontend-Performance-Metriken wie `speedIndex` und weiteren."
   },
   "homepage.hightlight.devtools": {
-    "message": "Integration in Entwicklertools wie:"
+    "message": "Integration mit Entwicklerwerkzeugen wie:"
   },
   "until August 2025": {
     "message": "bis August 2025"
@@ -137,13 +140,13 @@
     "message": "seit Dezember 2019"
   },
   "versions.description": {
-    "message": "Docusaurus 2 Versionsseite mit Auflistung aller dokumentierten Website-Versionen"
+    "message": "Alle gehosteten Versionen der WebdriverIO-Dokumentation"
   },
   "WebdriverIO documentation versions": {
-    "message": "WebdriverIO Dokumentationsversionen"
+    "message": "Versionen der WebdriverIO-Dokumentation"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "Das Projektteam veröffentlicht neue Hauptversionen ungefähr jährlich. Der LTS-Release-Status bedeutet \"Long-Term Support\" (Langzeitunterstützung), was typischerweise garantiert, dass kritische Fehler für insgesamt 12 Monate behoben werden, bis eine neue Hauptversion veröffentlicht wird."
+    "message": "Das Projektteam veröffentlicht neue Hauptversionen ungefähr im jährlichen Rhythmus. Der Release-Status LTS steht für \"Long-Term Support\" (Langzeitunterstützung), was in der Regel garantiert, dass kritische Fehler insgesamt 12 Monate lang behoben werden, bis eine neue Hauptversion veröffentlicht wird."
   },
   "Current version (Stable)": {
     "message": "Aktuelle Version (Stabil)"
@@ -161,7 +164,7 @@
     "message": "Frühere Versionen"
   },
   "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "Hier finden Sie Dokumentation für frühere Versionen von Docusaurus."
+    "message": "Hier finden Sie die Dokumentation für frühere Versionen von Docusaurus."
   },
   "theme.ErrorPageContent.title": {
     "message": "Diese Seite ist abgestürzt.",
@@ -180,7 +183,7 @@
     "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.paginator.navAriaLabel": {
-    "message": "Blog-Listenseiten-Navigation",
+    "message": "Navigation der Blog-Listenseite",
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
@@ -192,7 +195,7 @@
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Blog-Beitragsseiten-Navigation",
+    "message": "Navigation der Blogbeitragsseite",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
@@ -208,15 +211,15 @@
     "description": "The label of the link targeting the tag list page"
   },
   "theme.colorToggle.ariaLabel": {
-    "message": "Zwischen dunklem und hellem Modus wechseln (aktuell {mode})",
+    "message": "Zwischen dunklem und hellem Modus wechseln (derzeit {mode})",
     "description": "The ARIA label for the navbar color mode toggle"
   },
   "theme.colorToggle.ariaLabel.mode.dark": {
-    "message": "dunkler Modus",
+    "message": "Dunkler Modus",
     "description": "The name for the dark color mode"
   },
   "theme.colorToggle.ariaLabel.mode.light": {
-    "message": "heller Modus",
+    "message": "Heller Modus",
     "description": "The name for the light color mode"
   },
   "theme.docs.breadcrumbs.navAriaLabel": {
@@ -224,7 +227,7 @@
     "description": "The ARIA label for the breadcrumbs"
   },
   "theme.docs.DocCard.categoryDescription.plurals": {
-    "message": "1 Element|{count} Elemente",
+    "message": "1 Eintrag|{count} Einträge",
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
@@ -243,7 +246,7 @@
     "message": "Version: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "Dies ist eine unveröffentlichte Dokumentation für {siteTitle} Version {versionLabel}.",
+    "message": "Dies ist die unveröffentlichte Dokumentation für {siteTitle} Version {versionLabel}.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
@@ -251,7 +254,7 @@
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "Für die aktuellste Dokumentation siehe {latestVersionLink} ({versionLabel}).",
+    "message": "Die aktuelle Dokumentation finden Sie unter {latestVersionLink} ({versionLabel}).",
     "description": "The label used to tell the user to check the latest version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
@@ -259,7 +262,7 @@
     "description": "The label used for the latest version suggestion link label"
   },
   "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "Ein Dokument markiert|{count} Dokumente markiert",
+    "message": "Ein Dokument getaggt|{count} Dokumente getaggt",
     "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.docs.tagDocListPageTitle": {
@@ -295,7 +298,7 @@
     "description": "The label for the navbar versions dropdown on mobile view"
   },
   "theme.admonition.caution": {
-    "message": "Achtung",
+    "message": "Vorsicht",
     "description": "The default label used for the Caution admonition (:::caution)"
   },
   "theme.admonition.danger": {
@@ -327,7 +330,7 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Navigation zu aktuellen Blog-Beiträgen",
+    "message": "Navigation der neuesten Blogbeiträge",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.CodeBlock.wordWrapToggle": {
@@ -347,11 +350,11 @@
     "description": "The copy button label on code blocks"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "Seitenleisten-Kategorie '{label}' erweitern",
+    "message": "Seitenleistenkategorie '{label}' aufklappen",
     "description": "The ARIA label to expand the sidebar category"
   },
   "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "Seitenleisten-Kategorie '{label}' einklappen",
+    "message": "Seitenleistenkategorie '{label}' zuklappen",
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
@@ -363,7 +366,7 @@
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Bitte kontaktieren Sie den Besitzer der Seite, die Sie mit der ursprünglichen URL verlinkt hat, und teilen Sie ihm mit, dass der Link nicht mehr funktioniert.",
+    "message": "Bitte kontaktieren Sie den Betreiber der Website, die Sie auf die ursprüngliche URL verwiesen hat, und teilen Sie ihm mit, dass der Link defekt ist.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
@@ -383,7 +386,7 @@
     "description": "The label used in blog post item excerpts to link to full blog posts"
   },
   "theme.blog.post.readMoreLabel": {
-    "message": "Mehr lesen über {title}",
+    "message": "Mehr über {title} lesen",
     "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.docs.breadcrumbs.home": {
@@ -399,7 +402,7 @@
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.navAriaLabel": {
-    "message": "Dokumentationsseitenleiste",
+    "message": "Dokumentations-Seitenleiste",
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
@@ -415,11 +418,11 @@
     "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.docs.sidebar.expandButtonTitle": {
-    "message": "Seitenleiste erweitern",
+    "message": "Seitenleiste ausklappen",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.docs.sidebar.expandButtonAriaLabel": {
-    "message": "Seitenleiste erweitern",
+    "message": "Seitenleiste ausklappen",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
@@ -438,7 +441,7 @@
     "description": "The search page title for empty query"
   },
   "theme.SearchPage.inputPlaceholder": {
-    "message": "Geben Sie hier Ihre Suche ein",
+    "message": "Geben Sie hier Ihren Suchbegriff ein",
     "description": "The placeholder for search page input"
   },
   "theme.SearchPage.inputLabel": {
@@ -446,11 +449,11 @@
     "description": "The ARIA label for search page input"
   },
   "theme.SearchPage.algoliaLabel": {
-    "message": "Suche mit Algolia",
+    "message": "Suche von Algolia",
     "description": "The ARIA label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
-    "message": "Keine Ergebnisse gefunden",
+    "message": "Es wurden keine Ergebnisse gefunden",
     "description": "The paragraph for empty search result"
   },
   "theme.SearchPage.fetchingNewResults": {
@@ -470,11 +473,11 @@
     "description": "The label and ARIA label for search box cancel button"
   },
   "theme.SearchModal.startScreen.recentSearchesTitle": {
-    "message": "Letzte Suchen",
+    "message": "Zuletzt gesucht",
     "description": "The title for recent searches"
   },
   "theme.SearchModal.startScreen.noRecentSearchesText": {
-    "message": "Keine letzten Suchen",
+    "message": "Keine kürzlichen Suchanfragen",
     "description": "The text when no recent searches"
   },
   "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
@@ -498,19 +501,19 @@
     "description": "The title for error screen of search modal"
   },
   "theme.SearchModal.errorScreen.helpText": {
-    "message": "Überprüfen Sie bitte Ihre Netzwerkverbindung.",
+    "message": "Überprüfen Sie gegebenenfalls Ihre Netzwerkverbindung.",
     "description": "The help text for error screen of search modal"
   },
   "theme.SearchModal.footer.selectText": {
-    "message": "auswählen",
+    "message": "zum Auswählen",
     "description": "The explanatory text of the action for the enter key"
   },
   "theme.SearchModal.footer.selectKeyAriaLabel": {
-    "message": "Enter-Taste",
+    "message": "Eingabetaste",
     "description": "The ARIA label for the Enter key button that makes the selection"
   },
   "theme.SearchModal.footer.navigateText": {
-    "message": "navigieren",
+    "message": "zum Navigieren",
     "description": "The explanatory text of the action for the Arrow up and Arrow down key"
   },
   "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
@@ -522,7 +525,7 @@
     "description": "The ARIA label for the Arrow down key button that makes the navigation"
   },
   "theme.SearchModal.footer.closeText": {
-    "message": "schließen",
+    "message": "zum Schließen",
     "description": "The explanatory text of the action for Escape key"
   },
   "theme.SearchModal.footer.closeKeyAriaLabel": {
@@ -530,7 +533,7 @@
     "description": "The ARIA label for the Escape key button that close the modal"
   },
   "theme.SearchModal.footer.searchByText": {
-    "message": "Suche mit",
+    "message": "Suche von",
     "description": "The text explain that the search is making by Algolia"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
@@ -538,11 +541,11 @@
     "description": "The text explains that there are no results for the following search"
   },
   "theme.SearchModal.noResultsScreen.suggestedQueryText": {
-    "message": "Versuchen Sie nach Folgendem zu suchen",
+    "message": "Versuchen Sie, nach Folgendem zu suchen:",
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "Glauben Sie, dass diese Suchanfrage Ergebnisse liefern sollte?",
+    "message": "Sind Sie der Meinung, dass diese Suche Ergebnisse liefern sollte?",
     "description": "The text for the question where the user thinks there are missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
@@ -570,7 +573,7 @@
     "description": "When the image is not found"
   },
   "theme.IdealImageMessage.error": {
-    "message": "Fehler. Zum Neuladen klicken",
+    "message": "Fehler. Zum erneuten Laden klicken",
     "description": "When the image fails to load for unknown error"
   },
   "theme.blog.post.plurals": {
@@ -578,7 +581,7 @@
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
-    "message": "{nPosts} mit \"{tagName}\" markiert",
+    "message": "{nPosts} mit dem Tag \"{tagName}\"",
     "description": "The title of the page for a blog tag"
   },
   "theme.blog.author.pageTitle": {
@@ -594,7 +597,7 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "Dieser Autor hat noch keine Beiträge geschrieben.",
+    "message": "Dieser Autor hat noch keine Beiträge verfasst.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -602,7 +605,7 @@
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Diese Seite ist nicht gelistet. Suchmaschinen werden sie nicht indexieren, und nur Benutzer mit einem direkten Link können darauf zugreifen.",
+    "message": "Diese Seite ist nicht gelistet. Suchmaschinen werden sie nicht indexieren, und nur Nutzer mit einem direkten Link können darauf zugreifen.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
@@ -610,7 +613,7 @@
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "Diese Seite ist ein Entwurf. Sie wird nur in der Entwicklungsumgebung sichtbar sein und vom Produktions-Build ausgeschlossen.",
+    "message": "Diese Seite ist ein Entwurf. Sie ist nur in der Entwicklungsumgebung sichtbar und wird vom Produktions-Build ausgeschlossen.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
@@ -632,16 +635,16 @@
     "message": "Open Source und offen verwaltet"
   },
   "sponsors.premiumSponsors": {
-    "message": "💎 Premium-Sponsoren"
+    "message": "Premium-Sponsoren"
   },
   "sponsors.goldSponsors": {
-    "message": "🥇 Gold-Sponsoren"
+    "message": "Gold-Sponsoren"
   },
   "sponsors.becomeASponsor": {
     "message": "Sponsor werden"
   },
   "contributors.thankYouMessage": {
-    "message": "Wir möchten allen Mitwirkenden unseren herzlichen Dank aussprechen, die dazu beigetragen haben, {toolName} zu dem leistungsstarken Werkzeug zu machen, das es heute ist. Euer Engagement und eure Mühe werden wirklich geschätzt!",
+    "message": "Wir möchten allen Mitwirkenden, die dazu beigetragen haben, {toolName} zu dem leistungsstarken Werkzeug zu machen, das es heute ist, unseren herzlichsten Dank aussprechen. Euer Engagement und eure Mühe werden sehr geschätzt!",
     "description": "Thank you message for contributors"
   }
 }

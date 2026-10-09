@@ -1,15 +1,16 @@
 ---
 id: axe-core
 title: Axe Core
+description: "Εκτελέστε αυτοματοποιημένους ελέγχους προσβασιμότητας στα τεστ σας με τον προσαρμογέα ανοιχτού κώδικα Axe της Deque, σε λειτουργία standalone ή testrunner."
 ---
 
-Μπορείτε να συμπεριλάβετε δοκιμές προσβασιμότητας στη σουίτα δοκιμών WebdriverIO χρησιμοποιώντας τα εργαλεία προσβασιμότητας ανοιχτού κώδικα [από την Deque που ονομάζεται Axe](https://www.deque.com/axe/). Η εγκατάσταση είναι πολύ εύκολη, το μόνο που χρειάζεται να κάνετε είναι να εγκαταστήσετε τον προσαρμογέα WebdriverIO Axe μέσω:
+Μπορείτε να συμπεριλάβετε τεστ προσβασιμότητας στη σουίτα τεστ του WebdriverIO χρησιμοποιώντας τα εργαλεία προσβασιμότητας ανοιχτού κώδικα [της Deque που ονομάζονται Axe](https://www.deque.com/axe/). Η ρύθμιση είναι πολύ εύκολη, το μόνο που χρειάζεται να κάνετε είναι να εγκαταστήσετε τον προσαρμογέα Axe για το WebdriverIO μέσω:
 
 ```bash npm2yarn
 npm install -g @axe-core/webdriverio
 ```
 
-Ο προσαρμογέας Axe μπορεί να χρησιμοποιηθεί είτε σε λειτουργία [standalone ή testrunner](/docs/setuptypes) απλά εισάγοντας και αρχικοποιώντας το με το [αντικείμενο browser](/docs/api/browser), π.χ.:
+Ο προσαρμογέας Axe μπορεί να χρησιμοποιηθεί είτε σε λειτουργία [standalone είτε testrunner](/docs/setuptypes), απλώς εισάγοντάς τον και αρχικοποιώντας τον με το [αντικείμενο browser](/docs/api/browser), π.χ.:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -26,4 +27,4 @@ describe('Accessibility Test', () => {
 })
 ```
 
-Μπορείτε να βρείτε περισσότερη τεκμηρίωση για τον προσαρμογέα Axe WebdriverIO [στο GitHub](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage).
+Μπορείτε να βρείτε περισσότερη τεκμηρίωση για τον προσαρμογέα Axe για το WebdriverIO [στο GitHub](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage).

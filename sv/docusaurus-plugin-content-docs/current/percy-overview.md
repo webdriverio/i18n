@@ -1,26 +1,27 @@
 ---
 id: percy-overview
-title: Låsa upp Percy - En översikt 
+title: Lås upp Percy - En översikt
+description: "Få en översikt över visuell testning för webbplatser och inbyggda mobilappar med Percy och App Percy, samt hur Percy jämför ögonblicksbilder."
 ---
 
-## Introduction
+## Introduktion
 
-[Percy](https://percy.io/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) is an all-in-one visual testing and review platform. It captures screenshots, compares them against the baseline, and highlights visual changes. With increased visual coverage, teams can deploy code changes with confidence with every commit.
+[Percy](https://percy.io/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) är en allt-i-ett-plattform för visuell testning och granskning. Den tar skärmbilder, jämför dem mot baslinjen och markerar visuella förändringar. Med ökad visuell täckning kan team driftsätta kodändringar med självförtroende vid varje commit.
 
-WebdriverIO supports cross-browser visual testing natively using Percy and App Percy. You can use Percy for visual testing of website and native mobile applications.
-The benefits of utilizing Percy for visual testing include the following:
+WebdriverIO har inbyggt stöd för visuell testning i flera webbläsare med Percy och App Percy. Du kan använda Percy för visuell testning av webbplatser och inbyggda mobilapplikationer.
+Fördelarna med att använda Percy för visuell testning inkluderar följande:
 
-- Consistency: Promotes consistent user experience by identifying visual discrepancies early in the development process.
-- Efficiency: Improves efficiency by reducing the time and effort required to manually spot visual regressions.
-- Integrations: Percy integrates with popular tools and services like GitHub, GitLab, Bitbucket, and more.
-- Collaboration: Improves collaboration between developers, designers, and QA teams by providing a visual representation of changes.
-- Prevent regression: Prevents you from experiencing unintended visual regressions.
+- Konsekvens: Främjar en konsekvent användarupplevelse genom att identifiera visuella avvikelser tidigt i utvecklingsprocessen.
+- Effektivitet: Förbättrar effektiviteten genom att minska den tid och ansträngning som krävs för att manuellt upptäcka visuella regressioner.
+- Integrationer: Percy integreras med populära verktyg och tjänster som GitHub, GitLab, Bitbucket med flera.
+- Samarbete: Förbättrar samarbetet mellan utvecklare, designers och QA-team genom att ge en visuell representation av förändringar.
+- Förhindra regression: Förhindrar att du drabbas av oavsiktliga visuella regressioner.
 
-## How does Percy work?
+## Hur fungerar Percy?
 
-Percy compares new snapshots against relevant baselines to detect visual changes. Percy manages baseline selection across branches so your tests are always relevant. If visual changes are detected, Percy highlights and groups the resulting differences for you to review.
+Percy jämför nya ögonblicksbilder mot relevanta baslinjer för att upptäcka visuella förändringar. Percy hanterar valet av baslinje över grenar så att dina tester alltid är relevanta. Om visuella förändringar upptäcks markerar och grupperar Percy de resulterande skillnaderna så att du kan granska dem.
 
-## Next steps
+## Nästa steg
 
-- [Use Percy for web applications](https://webdriver.io/docs/visual-testing/integrate-with-percy)
-- [Use App Percy for mobile applications](https://webdriver.io/docs/visual-testing/integrate-with-app-percy)
+- [Använd Percy för webbapplikationer](https://webdriver.io/docs/visual-testing/integrate-with-percy)
+- [Använd App Percy för mobilapplikationer](https://webdriver.io/docs/visual-testing/integrate-with-app-percy)

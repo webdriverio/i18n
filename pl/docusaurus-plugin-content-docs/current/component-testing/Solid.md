@@ -1,13 +1,14 @@
 ---
 id: solid
 title: SolidJS
+description: "Skonfiguruj browser runner WebdriverIO dla projektu SolidJS z presetem solid i pisz testy komponentów, które renderują się na stronie."
 ---
 
-[SolidJS](https://www.solidjs.com/) to framework do budowania interfejsów użytkownika z prostą i wydajną reaktywnością. Możesz testować komponenty SolidJS bezpośrednio w prawdziwej przeglądarce, korzystając z WebdriverIO i jego [uruchamiania w przeglądarce](/docs/runner#browser-runner).
+[SolidJS](https://www.solidjs.com/) to framework do budowania interfejsów użytkownika z prostą i wydajną reaktywnością. Możesz testować komponenty SolidJS bezpośrednio w prawdziwej przeglądarce, używając WebdriverIO i jego [browser runnera](/docs/runner#browser-runner).
 
 ## Konfiguracja
 
-Aby skonfigurować WebdriverIO w swoim projekcie SolidJS, postępuj zgodnie z [instrukcjami](/docs/component-testing#set-up) w naszej dokumentacji testowania komponentów. Upewnij się, że wybierzesz `solid` jako preset w opcjach runnera, np.:
+Aby skonfigurować WebdriverIO w swoim projekcie SolidJS, postępuj zgodnie z [instrukcjami](/docs/component-testing#set-up) w naszej dokumentacji testowania komponentów. Upewnij się, że wybrałeś `solid` jako preset w opcjach runnera, np.:
 
 ```js
 // wdio.conf.js
@@ -22,7 +23,7 @@ export const config = {
 
 :::info
 
-Jeśli już używasz [Vite](https://vitejs.dev/) jako serwera deweloperskiego, możesz również ponownie wykorzystać swoją konfigurację z `vite.config.ts` w konfiguracji WebdriverIO. Aby uzyskać więcej informacji, zobacz `viteConfig` w [opcjach runnera](/docs/runner#runner-options).
+Jeśli już używasz [Vite](https://vitejs.dev/) jako serwera deweloperskiego, możesz po prostu ponownie wykorzystać swoją konfigurację z `vite.config.ts` w konfiguracji WebdriverIO. Więcej informacji znajdziesz w opisie `viteConfig` w [opcjach runnera](/docs/runner#runner-options).
 
 :::
 
@@ -71,8 +72,8 @@ import App from './components/Component.jsx'
 
 describe('Solid Component Testing', () => {
     /**
-     * ensure we render the component for every test in a
-     * new root container
+     * upewnij się, że komponent jest renderowany dla każdego testu
+     * w nowym kontenerze głównym
      */
     let root: Element
     beforeEach(() => {
@@ -94,4 +95,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-Pełny przykład zestawu testów komponentów WebdriverIO dla SolidJS możesz znaleźć w naszym [repozytorium przykładów](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite).
+Pełny przykład zestawu testów komponentów WebdriverIO dla SolidJS znajdziesz w naszym [repozytorium przykładów](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite).

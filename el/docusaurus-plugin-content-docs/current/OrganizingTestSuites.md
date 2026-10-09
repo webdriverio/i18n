@@ -1,82 +1,83 @@
 ---
 id: organizingsuites
-title: Οργάνωση Δοκιμαστικής Σουίτας
+title: Οργάνωση Σουίτας Δοκιμών
+description: "Οργανώστε μια αυξανόμενη σουίτα δοκιμών μοιράζοντας αρχεία ρυθμίσεων, ομαδοποιώντας specs σε σουίτες, εκτελώντας specs διαδοχικά και συμπεριλαμβάνοντας ή εξαιρώντας δοκιμές."
 ---
 
-As projects grow, inevitably more and more integration tests are added. This increases build time and slows productivity.
+Καθώς τα έργα μεγαλώνουν, αναπόφευκτα προστίθενται όλο και περισσότερες δοκιμές ενσωμάτωσης. Αυτό αυξάνει τον χρόνο build και μειώνει την παραγωγικότητα.
 
-To prevent this, you should run your tests in parallel. WebdriverIO already tests each spec (or _feature file_ in Cucumber) in parallel within a single session. In general, try to test only a single feature per spec file. Try to not have too many or too few tests in one file. (However, there is no golden rule here.)
+Για να το αποτρέψετε αυτό, θα πρέπει να εκτελείτε τις δοκιμές σας παράλληλα. Το WebdriverIO ήδη δοκιμάζει κάθε spec (ή _feature file_ στο Cucumber) παράλληλα μέσα σε μία μόνο συνεδρία. Γενικά, προσπαθήστε να δοκιμάζετε μόνο ένα χαρακτηριστικό ανά αρχείο spec. Προσπαθήστε να μην έχετε πάρα πολλές ή πολύ λίγες δοκιμές σε ένα αρχείο. (Ωστόσο, δεν υπάρχει χρυσός κανόνας εδώ.)
 
-Once your tests have several spec files, you should start running your tests concurrently. To do so, adjust the `maxInstances` property in your config file. WebdriverIO allows you to run your tests with maximum concurrency—meaning that no matter how many files and tests you have, they can all run in parallel.  (This is still subject to certain limits, like your computer's CPU, concurrency restrictions, etc.)
+Μόλις οι δοκιμές σας αποκτήσουν αρκετά αρχεία spec, θα πρέπει να αρχίσετε να εκτελείτε τις δοκιμές σας ταυτόχρονα. Για να το κάνετε αυτό, προσαρμόστε την ιδιότητα `maxInstances` στο αρχείο ρυθμίσεών σας. Το WebdriverIO σας επιτρέπει να εκτελείτε τις δοκιμές σας με μέγιστη ταυτοχρονία—που σημαίνει ότι ανεξάρτητα από το πόσα αρχεία και δοκιμές έχετε, μπορούν όλα να εκτελεστούν παράλληλα.  (Αυτό εξακολουθεί να υπόκειται σε ορισμένους περιορισμούς, όπως η CPU του υπολογιστή σας, περιορισμοί ταυτοχρονίας κ.λπ.)
 
-> Ας πούμε ότι έχετε 3 διαφορετικές δυνατότητες (Chrome, Firefox, και Safari) και έχετε ορίσει το `maxInstances` σε `1`. Ο δοκιμαστής WDIO θα δημιουργήσει 3 διεργασίες. Επομένως, εάν έχετε 10 αρχεία προδιαγραφών και ορίσετε το `maxInstances` σε `10`, _όλα_ τα αρχεία προδιαγραφών θα δοκιμαστούν ταυτόχρονα, και θα δημιουργηθούν 30 διεργασίες.
+> Ας πούμε ότι έχετε 3 διαφορετικά capabilities (Chrome, Firefox και Safari) και έχετε ορίσει το `maxInstances` σε `1`. Ο WDIO test runner θα δημιουργήσει 3 διεργασίες. Επομένως, αν έχετε 10 αρχεία spec και ορίσετε το `maxInstances` σε `10`, _όλα_ τα αρχεία spec θα δοκιμαστούν ταυτόχρονα και θα δημιουργηθούν 30 διεργασίες.
 
-You can define the `maxInstances` property globally to set the attribute for all browsers.
+Μπορείτε να ορίσετε την ιδιότητα `maxInstances` καθολικά για να ορίσετε το χαρακτηριστικό για όλους τους browsers.
 
-If you run your own WebDriver grid, you may (for example) have more capacity for one browser than another. In that case, you can _limit_ the `maxInstances` in your capability object:
+Αν εκτελείτε το δικό σας WebDriver grid, μπορεί (για παράδειγμα) να έχετε περισσότερη χωρητικότητα για έναν browser σε σχέση με κάποιον άλλο. Σε αυτή την περίπτωση, μπορείτε να _περιορίσετε_ το `maxInstances` στο αντικείμενο capability σας:
 
 ```js
 // wdio.conf.js
 export const config = {
     // ...
-    // set maxInstance for all browser
+    // ορισμός maxInstance για όλους τους browsers
     maxInstances: 10,
     // ...
     capabilities: [{
         browserName: 'firefox'
     }, {
-        // maxInstances can get overwritten per capability. So if you have an in-house WebDriver
-        // grid with only 5 firefox instance available you can make sure that not more than
-        // 5 instance gets started at a time.
+        // το maxInstances μπορεί να αντικατασταθεί ανά capability. Έτσι, αν έχετε ένα εσωτερικό WebDriver
+        // grid με μόνο 5 διαθέσιμα instances firefox, μπορείτε να βεβαιωθείτε ότι δεν θα ξεκινούν
+        // περισσότερα από 5 instances ταυτόχρονα.
         browserName: 'chrome'
     }],
     // ...
 }
 ```
 
-## Inherit From Main Config File
+## Κληρονομικότητα από το Κύριο Αρχείο Ρυθμίσεων
 
-If you run your test suite in multiple environments (e.g., dev and integration) it may help to use multiple configuration files to keep things manageable.
+Αν εκτελείτε τη σουίτα δοκιμών σας σε πολλαπλά περιβάλλοντα (π.χ. dev και integration), μπορεί να βοηθήσει η χρήση πολλαπλών αρχείων ρυθμίσεων ώστε να διατηρούνται τα πράγματα διαχειρίσιμα.
 
-Similar to the [page object concept](pageobjects), the first thing you'll need is a main config file. It contains all configurations you share across environments.
+Παρόμοια με την [έννοια των page objects](pageobjects), το πρώτο πράγμα που θα χρειαστείτε είναι ένα κύριο αρχείο ρυθμίσεων. Περιέχει όλες τις ρυθμίσεις που μοιράζεστε μεταξύ των περιβαλλόντων.
 
-Then create another config file for each environment, and supplement the the main config with the environment-specific ones:
+Στη συνέχεια, δημιουργήστε ένα ακόμη αρχείο ρυθμίσεων για κάθε περιβάλλον και συμπληρώστε το κύριο αρχείο ρυθμίσεων με τις ρυθμίσεις που αφορούν το κάθε περιβάλλον:
 
 ```js
 // wdio.dev.config.js
 import { deepmerge } from 'deepmerge-ts'
 import wdioConf from './wdio.conf.js'
 
-// have main config file as default but overwrite environment specific information
+// χρήση του κύριου αρχείου ρυθμίσεων ως προεπιλογή, αλλά αντικατάσταση των πληροφοριών που αφορούν το περιβάλλον
 export const config = deepmerge(wdioConf.config, {
     capabilities: [
-        // more caps defined here
+        // περισσότερα caps ορίζονται εδώ
         // ...
     ],
 
-    // run tests on sauce instead locally
+    // εκτέλεση δοκιμών στο sauce αντί για τοπικά
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
     services: ['sauce']
 }, { clone: false })
 
-// add an additional reporter
+// προσθήκη ενός επιπλέον reporter
 config.reporters.push('allure')
 ```
 
-## Grouping Test Specs In Suites
+## Ομαδοποίηση Test Specs σε Σουίτες
 
-You can group test specs in suites and run single specific suites instead of all of them.
+Μπορείτε να ομαδοποιήσετε test specs σε σουίτες και να εκτελείτε μεμονωμένες συγκεκριμένες σουίτες αντί για όλες.
 
-First, define your suites in your WDIO config:
+Πρώτα, ορίστε τις σουίτες σας στις ρυθμίσεις WDIO:
 
 ```js
 // wdio.conf.js
 export const config = {
-    // define all tests
+    // ορισμός όλων των δοκιμών
     specs: ['./test/specs/**/*.spec.js'],
     // ...
-    // define specific suites
+    // ορισμός συγκεκριμένων σουιτών
     suites: {
         login: [
             './test/specs/login.success.spec.js',
@@ -90,23 +91,23 @@ export const config = {
 }
 ```
 
-Now, if you want to only run a single suite, you can pass the suite name as a CLI argument:
+Τώρα, αν θέλετε να εκτελέσετε μόνο μία σουίτα, μπορείτε να περάσετε το όνομα της σουίτας ως όρισμα CLI:
 
 ```sh
 wdio wdio.conf.js --suite login
 ```
 
-Or, run multiple suites at once:
+Ή, να εκτελέσετε πολλαπλές σουίτες ταυτόχρονα:
 
 ```sh
 wdio wdio.conf.js --suite login --suite otherFeature
 ```
 
-## Grouping Test Specs To Run Sequentially
+## Ομαδοποίηση Test Specs για Διαδοχική Εκτέλεση
 
-As described above, there are benefits in running the tests concurrently. However, there are cases where it would be beneficial to group tests together to run sequentially in a single instance. Examples of this are mainly where there is a large setup cost e.g. transpiling code or provisioning cloud instances, but there are also advanced usage models that benefit from this capability.
+Όπως περιγράφεται παραπάνω, υπάρχουν οφέλη στην ταυτόχρονη εκτέλεση των δοκιμών. Ωστόσο, υπάρχουν περιπτώσεις όπου θα ήταν επωφελές να ομαδοποιηθούν δοκιμές ώστε να εκτελούνται διαδοχικά σε ένα μόνο instance. Παραδείγματα αυτού είναι κυρίως περιπτώσεις όπου υπάρχει μεγάλο κόστος προετοιμασίας, π.χ. transpiling κώδικα ή provisioning cloud instances, αλλά υπάρχουν επίσης προηγμένα μοντέλα χρήσης που επωφελούνται από αυτή τη δυνατότητα.
 
-To group tests to run in a single instance, define them as an array within the specs definition.
+Για να ομαδοποιήσετε δοκιμές ώστε να εκτελούνται σε ένα μόνο instance, ορίστε τις ως πίνακα (array) μέσα στον ορισμό των specs.
 
 ```json
     "specs": [
@@ -118,9 +119,9 @@ To group tests to run in a single instance, define them as an array within the s
         "./test/specs/test_b*.js",
     ],
 ```
-In the example above, the tests 'test_login.js', 'test_product_order.js' and 'test_checkout.js' will be run sequentially in a single instance and each of the "test_b*" tests will run concurrently in individual instances.
+Στο παραπάνω παράδειγμα, οι δοκιμές 'test_login.js', 'test_product_order.js' και 'test_checkout.js' θα εκτελεστούν διαδοχικά σε ένα μόνο instance και κάθε μία από τις δοκιμές "test_b*" θα εκτελεστεί ταυτόχρονα σε ξεχωριστά instances.
 
-It is also possible to group specs defined in suites, so you can now also define suites like this:
+Είναι επίσης δυνατό να ομαδοποιήσετε specs που ορίζονται σε σουίτες, οπότε μπορείτε πλέον να ορίσετε σουίτες και ως εξής:
 ```json
     "suites": {
         end2end: [
@@ -133,9 +134,9 @@ It is also possible to group specs defined in suites, so you can now also define
         allb: ["./test/specs/test_b*.js"]
 },
 ```
-and in this case all of the tests of the "end2end" suite would be run in a single instance.
+και σε αυτή την περίπτωση όλες οι δοκιμές της σουίτας "end2end" θα εκτελεστούν σε ένα μόνο instance.
 
-When running tests sequentially using a pattern, it will run the spec files in an alphabetical order
+Όταν εκτελείτε δοκιμές διαδοχικά χρησιμοποιώντας ένα μοτίβο (pattern), τα αρχεία spec θα εκτελεστούν με αλφαβητική σειρά
 
 ```json
   "suites": {
@@ -143,7 +144,7 @@ When running tests sequentially using a pattern, it will run the spec files in a
   },
 ```
 
-This will run the files matching the pattern above in the following order:
+Αυτό θα εκτελέσει τα αρχεία που ταιριάζουν με το παραπάνω μοτίβο με την ακόλουθη σειρά:
 
 ```
   [
@@ -153,159 +154,159 @@ This will run the files matching the pattern above in the following order:
   ]
 ```
 
-## Run Selected Tests
+## Εκτέλεση Επιλεγμένων Δοκιμών
 
-In some cases, you may wish to only execute a single test (or subset of tests) of your suites.
+Σε ορισμένες περιπτώσεις, μπορεί να θέλετε να εκτελέσετε μόνο μία δοκιμή (ή ένα υποσύνολο δοκιμών) των σουιτών σας.
 
-With the `--spec` parameter, you can specify which _suite_ (Mocha, Jasmine) or _feature_ (Cucumber) should be run. The path is resolved relative from your current working directory.
+Με την παράμετρο `--spec`, μπορείτε να καθορίσετε ποια _σουίτα_ (Mocha, Jasmine) ή ποιο _feature_ (Cucumber) θα πρέπει να εκτελεστεί. Η διαδρομή επιλύεται σχετικά με τον τρέχοντα κατάλογο εργασίας σας.
 
-For example, to run only your login test:
+Για παράδειγμα, για να εκτελέσετε μόνο τη δοκιμή login:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js
 ```
 
-Or run multiple specs at once:
+Ή να εκτελέσετε πολλαπλά specs ταυτόχρονα:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/signup.js --spec ./test/specs/forgot-password.js
 ```
 
-If the `--spec` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+Αν η τιμή του `--spec` δεν δείχνει σε ένα συγκεκριμένο αρχείο spec, χρησιμοποιείται αντί αυτού για να φιλτράρει τα ονόματα αρχείων spec που ορίζονται στις ρυθμίσεις σας.
 
-To run all specs with the word "dialog" in the spec file names, you could use:
+Για να εκτελέσετε όλα τα specs που περιέχουν τη λέξη “dialog” στα ονόματα των αρχείων spec, μπορείτε να χρησιμοποιήσετε:
 
 ```sh
 wdio wdio.conf.js --spec dialog
 ```
 
-Note that each test file is running in a single test runner process. Since we don't scan files in advance (see the next section for information on piping filenames to `wdio`), you _can't_ use (for example) `describe.only` at the top of your spec file to instruct Mocha to run only that suite.
+Σημειώστε ότι κάθε αρχείο δοκιμής εκτελείται σε μία μόνο διεργασία test runner. Επειδή δεν σαρώνουμε τα αρχεία εκ των προτέρων (δείτε την επόμενη ενότητα για πληροφορίες σχετικά με το piping ονομάτων αρχείων στο `wdio`), _δεν μπορείτε_ να χρησιμοποιήσετε (για παράδειγμα) το `describe.only` στην κορυφή του αρχείου spec σας για να δώσετε εντολή στο Mocha να εκτελέσει μόνο αυτή τη σουίτα.
 
-This feature will help you to accomplish the same goal.
+Αυτή η λειτουργία θα σας βοηθήσει να επιτύχετε τον ίδιο στόχο.
 
-When the `--spec` option is provided, it will override any patterns defined by the config or capability level's `specs` parameter.
+Όταν παρέχεται η επιλογή `--spec`, θα αντικαταστήσει οποιαδήποτε μοτίβα ορίζονται από το `specs` των ρυθμίσεων ή το `wdio:specs` ενός capability.
 
-## Exclude Selected Tests
+## Εξαίρεση Επιλεγμένων Δοκιμών
 
-When needed, if you need to exclude particular spec file(s) from a run, you can use the `--exclude` parameter (Mocha, Jasmine) or feature (Cucumber).
+Όταν χρειάζεται, αν πρέπει να εξαιρέσετε συγκεκριμένο(α) αρχείο(α) spec από μια εκτέλεση, μπορείτε να χρησιμοποιήσετε την παράμετρο `--exclude` (Mocha, Jasmine) ή feature (Cucumber).
 
-For example, to exclude your login test from the test run:
+Για παράδειγμα, για να εξαιρέσετε τη δοκιμή login από την εκτέλεση δοκιμών:
 
 ```sh
 wdio wdio.conf.js --exclude ./test/specs/e2e/login.js
 ```
 
-Or, exclude multiple spec files:
+Ή, να εξαιρέσετε πολλαπλά αρχεία spec:
 
  ```sh
 wdio wdio.conf.js --exclude ./test/specs/signup.js --exclude ./test/specs/forgot-password.js
 ```
 
-Or, exclude a spec file when filtering using a suite:
+Ή, να εξαιρέσετε ένα αρχείο spec όταν φιλτράρετε χρησιμοποιώντας μια σουίτα:
 
 ```sh
 wdio wdio.conf.js --suite login --exclude ./test/specs/e2e/login.js
 ```
 
-If the `--exclude` value does not point to a particular spec file, it is instead used to filter the spec filenames defined in your configuration.
+Αν η τιμή του `--exclude` δεν δείχνει σε ένα συγκεκριμένο αρχείο spec, χρησιμοποιείται αντί αυτού για να φιλτράρει τα ονόματα αρχείων spec που ορίζονται στις ρυθμίσεις σας.
 
-To exclude all specs with the word "dialog" in the spec file names, you could use:
+Για να εξαιρέσετε όλα τα specs που περιέχουν τη λέξη “dialog” στα ονόματα των αρχείων spec, μπορείτε να χρησιμοποιήσετε:
 
 ```sh
 wdio wdio.conf.js --exclude dialog
 ```
 
-### Exclude an Entire Suite
+### Εξαίρεση Ολόκληρης Σουίτας
 
-You can also exclude an entire suite by name. If the exclusion value matches a suite name defined in your config and doesn't look like a file path, the entire suite will be skipped:
+Μπορείτε επίσης να εξαιρέσετε μια ολόκληρη σουίτα με βάση το όνομά της. Αν η τιμή εξαίρεσης ταιριάζει με ένα όνομα σουίτας που ορίζεται στις ρυθμίσεις σας και δεν μοιάζει με διαδρομή αρχείου, ολόκληρη η σουίτα θα παραλειφθεί:
 
 ```sh
 wdio wdio.conf.js --suite login --suite checkout --exclude login
 ```
 
-This will run only the `checkout` suite, skipping the `login` suite entirely.
+Αυτό θα εκτελέσει μόνο τη σουίτα `checkout`, παραλείποντας εντελώς τη σουίτα `login`.
 
-Mixed exclusions (suites and spec patterns) work as expected:
+Οι μικτές εξαιρέσεις (σουίτες και μοτίβα spec) λειτουργούν όπως αναμένεται:
 
 ```sh
 wdio wdio.conf.js --suite login --exclude dialog --exclude signup
 ```
 
-In this example, if `signup` is a defined suite name, that suite will be excluded. The pattern `dialog` will filter out any spec files containing "dialog" in their filename.
+Σε αυτό το παράδειγμα, αν το `signup` είναι ορισμένο όνομα σουίτας, αυτή η σουίτα θα εξαιρεθεί. Το μοτίβο `dialog` θα φιλτράρει οποιαδήποτε αρχεία spec περιέχουν το "dialog" στο όνομα αρχείου τους.
 
 :::note
-If you specify both `--suite X` and `--exclude X`, the exclusion takes precedence and suite `X` will not run.
+Αν καθορίσετε τόσο `--suite X` όσο και `--exclude X`, η εξαίρεση έχει προτεραιότητα και η σουίτα `X` δεν θα εκτελεστεί.
 :::
 
-When the `--exclude` option is provided, it will override any patterns defined by the config or capability level's `exclude` parameter.
+Όταν παρέχεται η επιλογή `--exclude`, θα αντικαταστήσει οποιαδήποτε μοτίβα ορίζονται από το `exclude` των ρυθμίσεων ή το `wdio:exclude` ενός capability.
 
-## Run Suites and Test Specs
+## Εκτέλεση Σουιτών και Test Specs
 
-Run an entire suite along with individual specs.
+Εκτελέστε μια ολόκληρη σουίτα μαζί με μεμονωμένα specs.
 
 ```sh
 wdio wdio.conf.js --suite login --spec ./test/specs/signup.js
 ```
 
-## Run Multiple, Specific Test Specs
+## Εκτέλεση Πολλαπλών, Συγκεκριμένων Test Specs
 
-It is sometimes necessary&mdash;in the context of continuous integration and otherwise&mdash;to specify multiple sets of specs to run. WebdriverIO's `wdio` command line utility accepts piped-in filenames (from `find`, `grep`, or others).
+Μερικές φορές είναι απαραίτητο&mdash;στο πλαίσιο του continuous integration και αλλού&mdash;να καθορίσετε πολλαπλά σύνολα specs προς εκτέλεση. Το εργαλείο γραμμής εντολών `wdio` του WebdriverIO δέχεται ονόματα αρχείων μέσω pipe (από `find`, `grep` ή άλλα).
 
-Piped-in filenames override the list of globs or filenames specified in the configuration's `spec` list.
+Τα ονόματα αρχείων που περνούν μέσω pipe αντικαθιστούν τη λίστα των globs ή ονομάτων αρχείων που καθορίζονται στη λίστα `spec` των ρυθμίσεων.
 
 ```sh
 grep -r -l --include "*.js" "myText" | wdio wdio.conf.js
 ```
 
-_**Note:** This will_ not _override the `--spec` flag for running a single spec._
+_**Σημείωση:** Αυτό_ δεν _αντικαθιστά τη σημαία `--spec` για την εκτέλεση ενός μεμονωμένου spec._
 
-## Running Specific Tests with MochaOpts
+## Εκτέλεση Συγκεκριμένων Δοκιμών με MochaOpts
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to run by passing a mocha specific argument: `--mochaOpts.grep` to the wdio CLI.
+Μπορείτε επίσης να φιλτράρετε ποιο συγκεκριμένο `suite|describe` ή/και `it|test` θέλετε να εκτελέσετε, περνώντας ένα όρισμα ειδικό για το mocha: `--mochaOpts.grep` στο wdio CLI.
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep myText
 wdio wdio.conf.js --mochaOpts.grep "Text with spaces"
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**Σημείωση:** Το Mocha θα φιλτράρει τις δοκιμές αφού ο WDIO test runner δημιουργήσει τα instances, οπότε μπορεί να δείτε αρκετά instances να δημιουργούνται αλλά να μην εκτελούνται στην πραγματικότητα._
 
-## Exclude Specific Tests with MochaOpts
+## Εξαίρεση Συγκεκριμένων Δοκιμών με MochaOpts
 
-You can also filter which specific `suite|describe` and/or `it|test` you want to exclude by passing a mocha specific argument: `--mochaOpts.invert` to the wdio CLI. `--mochaOpts.invert` performs opposite of `--mochaOpts.grep`
+Μπορείτε επίσης να φιλτράρετε ποιο συγκεκριμένο `suite|describe` ή/και `it|test` θέλετε να εξαιρέσετε, περνώντας ένα όρισμα ειδικό για το mocha: `--mochaOpts.invert` στο wdio CLI. Το `--mochaOpts.invert` εκτελεί το αντίθετο του `--mochaOpts.grep`
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 ```
 
-_**Note:** Mocha will filter the tests after the WDIO test runner creates the instances, so you might see several instances being spawned but not actually executed._
+_**Σημείωση:** Το Mocha θα φιλτράρει τις δοκιμές αφού ο WDIO test runner δημιουργήσει τα instances, οπότε μπορεί να δείτε αρκετά instances να δημιουργούνται αλλά να μην εκτελούνται στην πραγματικότητα._
 
-## Stop testing after failure
+## Διακοπή δοκιμών μετά από αποτυχία
 
-With the `bail` option, you can tell WebdriverIO to stop testing after any test fails.
+Με την επιλογή `bail`, μπορείτε να πείτε στο WebdriverIO να σταματήσει τις δοκιμές αφού αποτύχει οποιαδήποτε δοκιμή.
 
-This is helpful with large test suites when you already know that your build will break, but you want to avoid the lengthy wait of a full testing run.
+Αυτό είναι χρήσιμο σε μεγάλες σουίτες δοκιμών όταν γνωρίζετε ήδη ότι το build σας θα αποτύχει, αλλά θέλετε να αποφύγετε τη μακρά αναμονή μιας πλήρους εκτέλεσης δοκιμών.
 
-The `bail` option expects a number, which specifies how many test failures can occur before WebDriver stop the entire testing run. The default is `0`, meaning that it always runs all tests specs it can find.
+Η επιλογή `bail` αναμένει έναν αριθμό, ο οποίος καθορίζει πόσες αποτυχίες δοκιμών μπορούν να συμβούν πριν το WebDriver σταματήσει ολόκληρη την εκτέλεση των δοκιμών. Η προεπιλογή είναι `0`, που σημαίνει ότι εκτελεί πάντα όλα τα test specs που μπορεί να βρει.
 
-Please see [Options Page](configuration) for additional information on the bail configuration.
-## Run options hierarchy
+Δείτε τη [Σελίδα Επιλογών](configuration) για επιπλέον πληροφορίες σχετικά με τη ρύθμιση bail.
+## Ιεραρχία επιλογών εκτέλεσης
 
-When declaring what specs to run, there is a certain hierarchy defining what pattern will take precedence. Currently, this is how it works, from highest priority to lowest:
+Όταν δηλώνετε ποια specs θα εκτελεστούν, υπάρχει μια συγκεκριμένη ιεραρχία που καθορίζει ποιο μοτίβο θα έχει προτεραιότητα. Προς το παρόν, έτσι λειτουργεί, από την υψηλότερη προτεραιότητα προς τη χαμηλότερη:
 
-> CLI `--spec` argument > capability `specs` pattern > config `specs` pattern
-> CLI `--exclude` argument > config `exclude` pattern > capability `exclude` pattern
+> CLI `--spec` argument > capability `wdio:specs` > config `specs`
+> CLI `--exclude` argument > config `exclude` > capability `wdio:exclude`
 
-If only the config parameter is given, it will be used for all capabilities. However, if defining the pattern at the capability level, it will be used instead of the config pattern. Finally, any spec pattern defined on the command line will override all other patterns given.
+Αν δοθεί μόνο η παράμετρος των ρυθμίσεων, θα χρησιμοποιηθεί για όλα τα capabilities. Ωστόσο, αν ορίσετε το μοτίβο σε επίπεδο capability, θα χρησιμοποιηθεί αυτό αντί για το μοτίβο των ρυθμίσεων. Τέλος, οποιοδήποτε μοτίβο spec οριστεί στη γραμμή εντολών θα αντικαταστήσει όλα τα άλλα μοτίβα που έχουν δοθεί.
 
-### Using capability-defined spec patterns
+### Χρήση μοτίβων spec που ορίζονται σε επίπεδο capability
 
-When you define a spec pattern at the capability level, it will override any patterns defined at the config level. This is useful when needing to separate tests based on differentiating device capabilities. In cases like this, it is more useful to use a generic spec pattern at the config level, and more specific patterns at the capability level.
+Όταν ορίζετε ένα μοτίβο spec σε επίπεδο capability, θα αντικαταστήσει οποιαδήποτε μοτίβα ορίζονται σε επίπεδο ρυθμίσεων. Αυτό είναι χρήσιμο όταν χρειάζεται να διαχωρίσετε δοκιμές με βάση διαφορετικά capabilities συσκευών. Σε τέτοιες περιπτώσεις, είναι πιο χρήσιμο να χρησιμοποιείτε ένα γενικό μοτίβο spec σε επίπεδο ρυθμίσεων και πιο συγκεκριμένα μοτίβα σε επίπεδο capability.
 
-For example, let's say you had two directories, with one for Android tests, and one for iOS tests.
+Για παράδειγμα, ας πούμε ότι είχατε δύο καταλόγους, έναν για δοκιμές Android και έναν για δοκιμές iOS.
 
-Your config file may define the pattern as such, for non-specific device tests:
+Το αρχείο ρυθμίσεών σας μπορεί να ορίζει το μοτίβο ως εξής, για δοκιμές που δεν αφορούν συγκεκριμένη συσκευή:
 
 ```js
 {
@@ -313,12 +314,12 @@ Your config file may define the pattern as such, for non-specific device tests:
 }
 ```
 
-but then, you will have different capabilities for your Android and iOS devices, where the patterns could look like such:
+αλλά στη συνέχεια, θα έχετε διαφορετικά capabilities για τις συσκευές Android και iOS, όπου τα μοτίβα θα μπορούσαν να μοιάζουν ως εξής:
 
 ```json
 {
   "platformName": "Android",
-  "specs": [
+  "wdio:specs": [
     "tests/android/**/*.js"
   ]
 }
@@ -327,13 +328,13 @@ but then, you will have different capabilities for your Android and iOS devices,
 ```json
 {
   "platformName": "iOS",
-  "specs": [
+  "wdio:specs": [
     "tests/ios/**/*.js"
   ]
 }
 ```
 
-If you require both of these capabilities in your config file, then the Android device will only run the tests under the "android" namespace, and the iOS tests will run only tests under the "ios" namespace!
+Αν χρειάζεστε και τα δύο αυτά capabilities στο αρχείο ρυθμίσεών σας, τότε η συσκευή Android θα εκτελέσει μόνο τις δοκιμές κάτω από το namespace "android" και οι δοκιμές iOS θα εκτελέσουν μόνο δοκιμές κάτω από το namespace "ios"!
 
 ```js
 //wdio.conf.js
@@ -344,17 +345,17 @@ export const config = {
     "capabilities": [
         {
             platformName: "Android",
-            specs: ["tests/android/**/*.js"],
+            "wdio:specs": ["tests/android/**/*.js"],
             //...
         },
         {
             platformName: "iOS",
-            specs: ["tests/ios/**/*.js"],
+            "wdio:specs": ["tests/ios/**/*.js"],
             //...
         },
         {
             platformName: "Chrome",
-            //config level specs will be used
+            //θα χρησιμοποιηθούν τα specs σε επίπεδο ρυθμίσεων
         }
     ]
 }

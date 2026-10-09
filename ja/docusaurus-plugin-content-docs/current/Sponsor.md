@@ -1,54 +1,53 @@
 ---
 id: sponsor
 title: WebdriverIOのスポンサーになる
+description: "GitHub Sponsors、Tidelift、またはOpenCollectiveを通じて、企業または個人としてWebdriverIOを財政的に支援し、各ティアの特典をご確認ください。"
 ---
 
-WebdriverIOは、MITライセンスの下でのオープンソースプロジェクトであり、自由に利用可能です。この広範なエコシステムの持続可能性と革新的な機能の開発は、プロジェクトの維持と継続的な成長に大きく貢献するスポンサーの寛大な財政支援によって可能となっています。
+WebdriverIOはMITライセンスのもとで提供されるオープンソースプロジェクトであり、誰でも無料で利用できます。この広大なエコシステムの持続可能性と革新的な機能の開発は、スポンサーの皆様からの寛大な財政的支援によって支えられており、プロジェクトの保守と継続的な成長に大きく貢献しています。
 
-## スポンサー方法​
-スポンサーシップは[GitHub Sponsors](https://github.com/sponsors/webdriverio)、[Tidelift](enterprise)または[OpenCollective](https://opencollective.com/webdriverio)を通じて行うことができます。請求書はGitHubの支払いシステムを通じて取得できます。毎月の継続的なスポンサーシップと一回限りの寄付の両方が受け付けられています。継続的なスポンサーシップには、スポンサーシップ層で指定されているロゴの掲載権が与えられます。
+## スポンサーになる方法​
+スポンサーシップは、[GitHub Sponsors](https://github.com/sponsors/webdriverio)、[Tidelift](enterprise)、または[OpenCollective](https://opencollective.com/webdriverio)を通じて行うことができます。請求書はGitHubの決済システムから取得できます。毎月の定期スポンサーシップと一回限りの寄付のどちらも受け付けています。定期スポンサーシップには、スポンサーシップティアに定められたロゴ掲載の特典があります。
 
-層、支払いの仕組み、またはスポンサー露出データに関する質問がある場合は、[sponsor@webdriver.io](mailto:sponsor@webdriver.io)までお問い合わせください。
+ティア、支払い手続き、またはスポンサーの露出データに関するご質問は、[sponsor@webdriver.io](mailto:sponsor@webdriver.io)までお問い合わせください。
 
-また、WebdriverIOの[Swag Store](https://shop.webdriver.io/)にアクセスすることもできます。購入による収益はすべてプロジェクト開発に還元されます。
+また、WebdriverIOの[Swag Store](https://shop.webdriver.io/)もご利用いただけます。購入による収益はすべてプロジェクトの開発に還元されます。
 
-## ビジネスとしてWebdriverIOをスポンサーする​
-WebdriverIOをスポンサーすることで、私たちのウェブサイト（月間6万以上のページビュー）とGitHubプロジェクトのREADMEを通じて素晴らしい露出が得られます。さらに、OSSをサポートすることはブランドの評判を向上させ、開発者と関わるすべての企業にとって重要な資産となります。
+## 企業としてWebdriverIOをスポンサーする​
+WebdriverIOをスポンサーすることで、当プロジェクトのウェブサイト（月間60,000以上のページビュー）やGitHubプロジェクトのREADMEを通じて大きな露出を得ることができます。さらに、OSSを支援することはブランドの評判を高めることにつながり、これは開発者と関わるあらゆる企業にとって重要な資産です。
 
-収益を生み出す製品のテストにWebdriverIOを使用している場合、WebdriverIOの開発をスポンサーすることはビジネス的に意味があります。それにより、あなたの製品が依存するプロジェクトが健全で積極的に維持されることを保証します。WebdriverIOコミュニティでの露出とポジティブなブランドイメージは、WebdriverIO経験を持つ開発者やQAエンジニアを引き付け、採用することも容易にします。
+収益を生み出す製品のテストにWebdriverIOを使用している場合、WebdriverIOの開発をスポンサーすることはビジネス上理にかなっています。それにより、製品が依存しているプロジェクトが健全に保たれ、積極的にメンテナンスされ続けることが保証されます。また、WebdriverIOコミュニティにおける露出とポジティブなブランドイメージにより、WebdriverIOの経験を持つ開発者やQAエンジニアを惹きつけ、採用することも容易になります。
 
-__注意:__ 私たちはギャンブルサイト、論文執筆サービス、政治団体、憎悪グループ、アダルトエンターテイメントサイト、またはプロジェクトに貢献していないと考えられるその他の組織からの寄付は受け付けていません。私たちは広告を提供しておらず、ユーザーからの財政支援を求めるオープンソースプロジェクトです。
+__注意:__ ギャンブルサイト、論文代筆サービス、政治団体、ヘイト団体、アダルトエンターテインメントサイト、その他プロジェクトの利益に貢献していないと私たちが判断する組織からの寄付は受け付けていません。私たちは広告を提供しているわけではなく、ユーザーからの財政的支援を求めているオープンソースプロジェクトです。
 
 ## 個人としてWebdriverIOをスポンサーする​
-個人ユーザーとしてWebdriverIOの生産性を楽しんだ場合は、感謝の印として寄付を検討してください - たまにコーヒーを奢るような感じです。私たちのチームメンバーの多くはGitHub Sponsorsを通じてスポンサーシップと寄付を受け付けています。
+個人ユーザーとしてWebdriverIOを使用して生産性の向上を実感していただけたなら、感謝の印として寄付をご検討ください。たまにコーヒーをおごるような感覚で構いません。多くのチームメンバーがGitHub Sponsorsを通じてスポンサーシップや寄付を受け付けています。
 
-また、あなたの雇用主にビジネスとしてWebdriverIOをスポンサーするよう説得することも試みてください。これは簡単ではないかもしれませんが、ビジネスのスポンサーシップは一般的に個人の寄付よりもOSSプロジェクトの持続可能性に大きな影響を与えるため、成功すればより大きな助けになります。
+また、勤務先の企業に対して、企業としてWebdriverIOをスポンサーするよう働きかけていただくこともできます。簡単ではないかもしれませんが、企業スポンサーシップは通常、個人の寄付よりもOSSプロジェクトの持続可能性にはるかに大きな影響を与えるため、成功すれば私たちにとって非常に大きな助けとなります。
 
-## 各層の特典​
+## ティアの特典​
 
-- __💎 プレミアム (USD $1000/月以上):__
-  - 世界中で2社に限定
-  - webdriver.ioのフロントページ上部（フォールドの上）に排他的なロゴ配置（1日あたり約2.8kのユニークビジター）。
-  - 下位層のすべての場所で最も目立つロゴの配置。
-  - 最低1年間の保証された排他性。この期間中、他の団体が「上回る入札」をしたり取って代わったりすることはできず、固定されたパートナーシップと可視性の期間を確保。
-- __🥇 ゴールド (USD $500/月):__
-  - [webdriver.io](https://webdriver.io/)のフロントページに大きなロゴを配置
-  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)リポジトリの[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md)と[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)に大きなロゴを配置。
-- __🥈 シルバー (USD $250/月):__
-  - このスポンサーページに中サイズのロゴを配置
-  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)リポジトリの[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md)と[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)に中サイズのロゴを配置。
-- __🥉 ブロンズ (USD $100/月):__
-  - あなたの名前または会社のロゴ（小）が[`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)、[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md)、[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)ファイルに掲載されます。
-- __🍺 寛大なバッカー (USD $50/月):__
-  - あなたの名前が[`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)、[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md)、[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)ファイルの「寛大なバッカー」セクションに掲載されます。
-- __☕️ 個人バッカー (USD $5/月):__
-  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)リポジトリの[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)ファイルに名前が掲載されます。
-
----
+- __<TierIcon tier="premium" /> Premium（月額USD $1000以上）:__
+  - 全世界で2社のスポンサーに限定
+  - webdriver.ioのトップページのファーストビューに独占的なロゴ掲載（1日あたり約2,800人のユニーク訪問者）。
+  - 下位ティアのすべての掲載場所において、最も目立つロゴ掲載。
+  - 最低1年間の独占性を保証。この期間中は他の企業が「より高額で入札」したり置き換わったりすることはなく、一定期間のパートナーシップと露出が確保されます。
+- __<TierIcon tier="gold" /> Gold（月額USD $500）:__
+  - [webdriver.io](https://webdriver.io/)のトップページに大きなロゴを掲載
+  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)リポジトリの[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md)および[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)に大きなロゴを掲載。
+- __<TierIcon tier="silver" /> Silver（月額USD $250）:__
+  - このスポンサーページに中サイズのロゴを掲載
+  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)リポジトリの[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md)および[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)に中サイズのロゴを掲載。
+- __<TierIcon tier="bronze" /> Bronze（月額USD $100）:__
+  - お名前または企業ロゴ（小）が[`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)の[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md)および[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)ファイルに掲載されます。
+- __<TierIcon tier="backer" /> Generous Backer（月額USD $50）:__
+  - お名前が[`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)の[`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md)および[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)ファイルの「Generous Backers」セクションに掲載されます。
+- __<TierIcon tier="individual" /> Individual Backer（月額USD $5）:__
+  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio)リポジトリの[`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md)ファイルにお名前が掲載されます。
 
 ## 現在のスポンサー
 
-### 💎 プレミアム
+### Premium <TierIcon tier="premium" /> {#premium}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/browserstack_black.svg"
@@ -58,20 +57,20 @@ __注意:__ 私たちはギャンブルサイト、論文執筆サービス、�
     link="https://www.browserstack.com/automation-webdriverio"
 />
 
-<br />
-<br />
-
-### 🥇 ゴールド
-
 <ImageSwitcher
-    lightImageSrc="/img/sponsors/jetify_black.png"
-    darkImageSrc="/img/sponsors/jetify_white.png"
-    alt="Jetify"
-    link="https://www.jetify.com/"
-    width="250"
+    lightImageSrc="/img/sponsors/momentic_black.svg"
+    darkImageSrc="/img/sponsors/momentic_white.svg"
+    alt="Momentic"
     target="_blank"
-    style={{ marginRight: '20px', position: 'relative', top: '8px' }}
+    link="https://momentic.ai/"
+    width="300"
+    style={{ marginLeft: '30px', position: 'relative', top: '6px' }}
 />
+
+<br />
+<br />
+
+### Gold <TierIcon tier="gold" /> {#gold}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testmu_ai_black.svg"
@@ -82,11 +81,11 @@ __注意:__ 私たちはギャンブルサイト、論文執筆サービス、�
     width="250"
 />
 
-[ゴールドスポンサー](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me)になる。
+[Gold Sponsor](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me)になる。
 
 <br />
 
-### 🥈 シルバー
+### Silver <TierIcon tier="silver" /> {#silver}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testingbot.svg"
@@ -97,11 +96,20 @@ __注意:__ 私たちはギャンブルサイト、論文執筆サービス、�
     target="_blank"
 />
 
-[シルバースポンサー](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me)になる。
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/sap.png"
+    darkImageSrc="/img/sponsors/sap.png"
+    alt="SAP"
+    link="https://www.sap.com/"
+    width="150"
+    target="_blank"
+/>
+
+[Silver Sponsor](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me)になる。
 
 <br />
 
-### 🥉 ブロンズ
+### Bronze <TierIcon tier="bronze" /> {#bronze}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/eslint_black.svg"
@@ -121,14 +129,23 @@ __注意:__ 私たちはギャンブルサイト、論文執筆サービス、�
     width="150"
 />
 
-[ブロンズスポンサー](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me)になる。
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/rapidproxy.png"
+    darkImageSrc="/img/sponsors/rapidproxy.png"
+    alt="Rapidproxy"
+    target="_blank"
+    link="https://www.rapidproxy.io/?ref=webdriverio"
+    width="200"
+/>
+
+[Bronze Sponsor](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me)になる。
 
 <br />
 <br />
 
-### 🙇 注目の過去のスポンサー
+### 過去の主なスポンサー <TierIcon tier="past" /> {#past}
 
-すべてのスポンサーのサポートに感謝します！以下は過去にWebdriverIOをサポートした企業の一部です。
+すべてのスポンサーの皆様のご支援に感謝しています！以下は、過去にWebdriverIOを支援してくださった企業の一部です。
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/saucelabs_black.svg"

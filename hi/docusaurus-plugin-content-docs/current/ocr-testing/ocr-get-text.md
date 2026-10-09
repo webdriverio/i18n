@@ -1,9 +1,10 @@
 ---
 id: ocr-get-text
 title: ocrGetText
+description: "OCR सेवा के ocrGetText के साथ स्क्रीन पर या किसी विशिष्ट क्षेत्र में दिखाया गया टेक्स्ट पढ़ें।"
 ---
 
-किसी छवि पर मौजूद टेक्स्ट प्राप्त करें।
+किसी इमेज पर मौजूद टेक्स्ट प्राप्त करें।
 
 ### उपयोग
 
@@ -33,12 +34,11 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 ### `contrast`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-जितना अधिक कंट्रास्ट होगा, उतनी ही गहरी छवि होगी और इसके विपरीत। यह छवि में टेक्स्ट खोजने में मदद कर सकता है। यह `-1` और `1` के बीच मान स्वीकार करता है।
+कंट्रास्ट जितना अधिक होगा, इमेज उतनी ही गहरी होगी और इसके विपरीत भी। यह इमेज में टेक्स्ट खोजने में मदद कर सकता है। यह `-1` और `1` के बीच के मान स्वीकार करता है।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -47,11 +47,11 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-यह स्क्रीन में खोज क्षेत्र है जहां OCR को टेक्स्ट के लिए देखने की आवश्यकता है। यह एक एलिमेंट या एक आयत हो सकता है जिसमें `x`, `y`, `width` और `height` शामिल हो।
+यह स्क्रीन में वह खोज क्षेत्र है जहाँ OCR को टेक्स्ट खोजना होता है। यह एक एलिमेंट या `x`, `y`, `width` और `height` वाला एक आयत (rectangle) हो सकता है
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -73,18 +73,17 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **प्रकार:** `string`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `eng`
+<Option type="string" default="eng" required="No">
 
-वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहां](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएं [यहां](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) मिल सकती हैं।
+वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहाँ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएँ [यहाँ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) मिल सकती हैं।
 
+</Option>
 #### उदाहरण
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // डच को भाषा के रूप में उपयोग करें
+    // भाषा के रूप में डच का उपयोग करें
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

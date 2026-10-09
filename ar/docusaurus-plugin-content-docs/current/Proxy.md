@@ -1,33 +1,34 @@
 ---
 id: proxy
 title: إعداد البروكسي
+description: "توجيه الطلبات عبر بروكسي، إما بين اختباراتك والمشغل أو بين المتصفح والإنترنت."
 ---
 
-يمكنك توجيه نوعين مختلفين من الطلبات عبر بروكسي:
+يمكنك تمرير نوعين مختلفين من الطلبات عبر بروكسي:
 
 - الاتصال بين سكريبت الاختبار الخاص بك ومشغل المتصفح (أو نقطة نهاية WebDriver)
 - الاتصال بين المتصفح والإنترنت
 
 ## البروكسي بين المشغل والاختبار
 
-إذا كانت شركتك تستخدم بروكسي مؤسسي (على سبيل المثال على `http://my.corp.proxy.com:9090`) لجميع الطلبات الصادرة، فلديك خياران لتكوين WebdriverIO لاستخدام البروكسي:
+إذا كان لدى شركتك بروكسي مؤسسي (على سبيل المثال على `http://my.corp.proxy.com:9090`) لجميع الطلبات الصادرة، فلديك خياران لتكوين WebdriverIO لاستخدام البروكسي:
 
 ### الخيار 1: استخدام متغيرات البيئة (موصى به)
 
-بدءًا من WebdriverIO v9.12.0، يمكنك ببساطة تعيين متغيرات بيئة البروكسي القياسية:
+بدءًا من WebdriverIO v9.12.0، يمكنك ببساطة تعيين متغيرات البيئة القياسية للبروكسي:
 
 ```bash
 export HTTP_PROXY=http://my.corp.proxy.com:9090
 export HTTPS_PROXY=http://my.corp.proxy.com:9090
-# اختياري: تجاوز البروكسي لمضيفين معينين
+# Optional: bypass proxy for certain hosts
 export NO_PROXY=localhost,127.0.0.1,.internal.domain
 ```
 
-ثم قم بتشغيل اختباراتك كالمعتاد. سيستخدم WebdriverIO تلقائيًا متغيرات البيئة هذه لتكوين البروكسي.
+ثم قم بتشغيل اختباراتك كالمعتاد. سيستخدم WebdriverIO متغيرات البيئة هذه تلقائيًا لتكوين البروكسي.
 
 ### الخيار 2: استخدام setGlobalDispatcher من undici
 
-للحصول على تكوينات بروكسي أكثر تقدمًا أو إذا كنت بحاجة إلى تحكم برمجي، يمكنك استخدام طريقة `setGlobalDispatcher` من undici:
+لتكوينات البروكسي الأكثر تقدمًا أو إذا كنت بحاجة إلى تحكم برمجي، يمكنك استخدام طريقة `setGlobalDispatcher` من undici:
 
 #### تثبيت undici
 
@@ -35,9 +36,9 @@ export NO_PROXY=localhost,127.0.0.1,.internal.domain
 npm install undici --save-dev
 ```
 
-#### إضافة undici setGlobalDispatcher إلى ملف التكوين الخاص بك
+#### إضافة setGlobalDispatcher من undici إلى ملف التكوين الخاص بك
 
-أضف بيان require التالي إلى أعلى ملف التكوين الخاص بك.
+أضف عبارة الاستيراد التالية إلى أعلى ملف التكوين الخاص بك.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -55,13 +56,13 @@ export const config = {
 ### أي طريقة يجب أن أستخدم؟
 
 - **استخدم متغيرات البيئة** إذا كنت تريد نهجًا بسيطًا وقياسيًا يعمل عبر أدوات مختلفة ولا يتطلب تغييرات في الكود.
-- **استخدم setGlobalDispatcher** إذا كنت بحاجة إلى ميزات بروكسي متقدمة مثل المصادقة المخصصة، أو تكوينات بروكسي مختلفة لكل بيئة، أو تريد التحكم برمجيًا في سلوك البروكسي.
+- **استخدم setGlobalDispatcher** إذا كنت بحاجة إلى ميزات بروكسي متقدمة مثل المصادقة المخصصة، أو تكوينات بروكسي مختلفة لكل بيئة، أو تريد التحكم في سلوك البروكسي برمجيًا.
 
-كلا الطريقتين مدعومتان بالكامل وسيتحقق WebdriverIO من وجود موزع عام أولاً قبل الرجوع إلى متغيرات البيئة.
+كلتا الطريقتين مدعومتان بالكامل، وسيتحقق WebdriverIO من وجود مُرسِل عام (global dispatcher) أولاً قبل الرجوع إلى متغيرات البيئة.
 
-### بروكسي Sauce Connect
+### Sauce Connect Proxy
 
-إذا كنت تستخدم [بروكسي Sauce Connect](https://docs.saucelabs.com/secure-connections/sauce-connect-5)، قم بتشغيله عبر:
+إذا كنت تستخدم [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5)، فابدأ تشغيله عبر:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
@@ -69,9 +70,9 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 
 ## البروكسي بين المتصفح والإنترنت
 
-لتوجيه الاتصال بين المتصفح والإنترنت، يمكنك إعداد بروكسي مما قد يكون مفيدًا (على سبيل المثال) لالتقاط معلومات الشبكة وبيانات أخرى باستخدام أدوات مثل [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+لتمرير الاتصال بين المتصفح والإنترنت، يمكنك إعداد بروكسي يمكن أن يكون مفيدًا (على سبيل المثال) لالتقاط معلومات الشبكة والبيانات الأخرى باستخدام أدوات مثل [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-يمكن تطبيق معلمات `proxy` عبر القدرات القياسية بالطريقة التالية:
+يمكن تطبيق معاملات `proxy` عبر الإمكانيات (capabilities) القياسية بالطريقة التالية:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -92,4 +93,4 @@ export const config = {
 }
 ```
 
-للمزيد من المعلومات، راجع [مواصفات WebDriver](https://w3c.github.io/webdriver/#proxy).
+لمزيد من المعلومات، راجع [مواصفات WebDriver](https://w3c.github.io/webdriver/#proxy).

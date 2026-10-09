@@ -1,11 +1,12 @@
 ---
 id: seleniumgrid
 title: Selenium Grid
+description: "Συνδέστε τα τεστ του WebdriverIO σε ένα υπάρχον Selenium Grid ορίζοντας το protocol, το hostname, το port και το path στη διαμόρφωσή σας."
 ---
 
-Μπορείτε να χρησιμοποιήσετε το WebdriverIO με την υπάρχουσα εγκατάσταση Selenium Grid σας. Για να συνδέσετε τις δοκιμές σας με το Selenium Grid, χρειάζεται απλώς να ενημερώσετε τις επιλογές στις ρυθμίσεις του test runner σας.
+Μπορείτε να χρησιμοποιήσετε το WebdriverIO με το υπάρχον στιγμιότυπο Selenium Grid που διαθέτετε. Για να συνδέσετε τα τεστ σας στο Selenium Grid, χρειάζεται απλώς να ενημερώσετε τις επιλογές στις διαμορφώσεις του test runner σας.
 
-Εδώ είναι ένα απόσπασμα κώδικα από ένα δείγμα wdio.conf.ts.
+Ακολουθεί ένα απόσπασμα κώδικα από ένα δείγμα wdio.conf.ts.
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
@@ -18,8 +19,8 @@ export const config: WebdriverIO.Config = {
 
 }
 ```
-Πρέπει να παρέχετε τις κατάλληλες τιμές για το πρωτόκολλο, το hostname, τη θύρα και τη διαδρομή με βάση τη ρύθμιση του Selenium Grid σας.
-Εάν εκτελείτε το Selenium Grid στον ίδιο υπολογιστή με τα σενάρια δοκιμών σας, εδώ είναι ορισμένες τυπικές επιλογές:
+Πρέπει να δώσετε τις κατάλληλες τιμές για το protocol, το hostname, το port και το path με βάση τη ρύθμιση του Selenium Grid σας.
+Αν εκτελείτε το Selenium Grid στο ίδιο μηχάνημα με τα test scripts σας, ακολουθούν μερικές τυπικές επιλογές:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
@@ -33,30 +34,30 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-### Βασική πιστοποίηση με προστατευμένο Selenium Grid
+### Βασικός έλεγχος ταυτότητας με προστατευμένο Selenium Grid
 
-Συνιστάται ιδιαίτερα να ασφαλίσετε το Selenium Grid σας. Αν έχετε ένα προστατευμένο Selenium Grid που απαιτεί πιστοποίηση, μπορείτε να περάσετε επικεφαλίδες πιστοποίησης μέσω επιλογών.
-Παρακαλώ ανατρέξτε στην ενότητα [headers](https://webdriver.io/docs/configuration/#headers) στην τεκμηρίωση για περισσότερες πληροφορίες.
+Συνιστάται ιδιαίτερα να ασφαλίσετε το Selenium Grid σας. Αν έχετε ένα προστατευμένο Selenium Grid που απαιτεί έλεγχο ταυτότητας, μπορείτε να περάσετε headers ελέγχου ταυτότητας μέσω των επιλογών. 
+Ανατρέξτε στην ενότητα [headers](https://webdriver.io/docs/configuration/#headers) της τεκμηρίωσης για περισσότερες πληροφορίες.
 
-### Ρυθμίσεις χρονικού ορίου με δυναμικό Selenium Grid
+### Διαμορφώσεις timeout με δυναμικό Selenium Grid
 
-Όταν χρησιμοποιείτε ένα δυναμικό Selenium Grid όπου τα pods των προγραμμάτων περιήγησης δημιουργούνται κατ' απαίτηση, η δημιουργία συνεδρίας μπορεί να αντιμετωπίσει καθυστέρηση εκκίνησης. Σε τέτοιες περιπτώσεις, συνιστάται να αυξήσετε τα χρονικά όρια δημιουργίας συνεδρίας. Η προεπιλεγμένη τιμή στις επιλογές είναι 120 δευτερόλεπτα, αλλά μπορείτε να την αυξήσετε εάν το grid σας χρειάζεται περισσότερο χρόνο για τη δημιουργία μιας νέας συνεδρίας.
+Όταν χρησιμοποιείτε ένα δυναμικό Selenium Grid όπου τα browser pods δημιουργούνται κατά απαίτηση, η δημιουργία session ενδέχεται να αντιμετωπίσει cold start. Σε τέτοιες περιπτώσεις, συνιστάται να αυξήσετε τα timeouts δημιουργίας session. Η προεπιλεγμένη τιμή στις επιλογές είναι 120 δευτερόλεπτα, αλλά μπορείτε να την αυξήσετε αν το grid σας χρειάζεται περισσότερο χρόνο για να δημιουργήσει ένα νέο session. 
 
 ```ts
 connectionRetryTimeout: 180000,
 ```
 
-### Προηγμένες ρυθμίσεις
+### Προηγμένες διαμορφώσεις
 
-Για προηγμένες ρυθμίσεις, ανατρέξτε στο [configuration file](https://webdriver.io/docs/configurationfile) του Testrunner.
+Για προηγμένες διαμορφώσεις, ανατρέξτε στο [αρχείο διαμόρφωσης](https://webdriver.io/docs/configurationfile) του Testrunner.
 
 ### Λειτουργίες αρχείων με Selenium Grid
 
-Όταν εκτελείτε περιπτώσεις δοκιμών με απομακρυσμένο Selenium Grid, το πρόγραμμα περιήγησης εκτελείται σε έναν απομακρυσμένο υπολογιστή, και πρέπει να δώσετε ιδιαίτερη προσοχή σε περιπτώσεις δοκιμών που περιλαμβάνουν αποστολές και λήψεις αρχείων.
+Όταν εκτελείτε test cases με ένα απομακρυσμένο Selenium Grid, ο browser εκτελείται σε ένα απομακρυσμένο μηχάνημα και πρέπει να δώσετε ιδιαίτερη προσοχή στα test cases που περιλαμβάνουν μεταφορτώσεις (uploads) και λήψεις (downloads) αρχείων.
 
 ### Λήψεις αρχείων
 
-Για προγράμματα περιήγησης που βασίζονται στο Chromium, μπορείτε να ανατρέξετε στην τεκμηρίωση [Download file](https://webdriver.io/docs/api/browser/downloadFile). Εάν τα σενάρια δοκιμών σας χρειάζεται να διαβάσουν το περιεχόμενο ενός ληφθέντος αρχείου, πρέπει να το κατεβάσετε από τον απομακρυσμένο κόμβο Selenium στον υπολογιστή του test runner. Ακολουθεί ένα παράδειγμα αποσπάσματος κώδικα από τη δειγματική ρύθμιση `wdio.conf.ts` για το πρόγραμμα περιήγησης Chrome:
+Για browsers βασισμένους στο Chromium, μπορείτε να ανατρέξετε στην τεκμηρίωση [Download file](https://webdriver.io/docs/api/browser/downloadFile). Αν τα test scripts σας χρειάζεται να διαβάσουν το περιεχόμενο ενός αρχείου που έχει ληφθεί, πρέπει να το κατεβάσετε από τον απομακρυσμένο κόμβο Selenium στο μηχάνημα του test runner. Ακολουθεί ένα παράδειγμα αποσπάσματος κώδικα από το δείγμα διαμόρφωσης `wdio.conf.ts` για τον browser Chrome:
 
 ```ts title=wdio.conf.ts
 export const config: WebdriverIO.Config = {
@@ -74,16 +75,23 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-### Αποστολή αρχείων με απομακρυσμένο Selenium Grid
+### Μεταφόρτωση αρχείων με απομακρυσμένο Selenium Grid
 
-Για να αποστείλετε ένα αρχείο σε μια εφαρμογή ιστού στο απομακρυσμένο πρόγραμμα περιήγησης, πρέπει πρώτα να αποστείλετε το αρχείο στο απομακρυσμένο grid. Μπορείτε να ανατρέξετε στην τεκμηρίωση [uploadFile](https://webdriver.io/docs/api/browser/uploadFile) για λεπτομέρειες.
+Η [`element.setFiles()`](/docs/api/element/setFiles) ορίζει ένα file input μέσω του WebDriver BiDi. Οι διαδρομές που περνάτε ανοίγονται από τον browser, επομένως πρέπει να υπάρχουν στο μηχάνημα που εκτελεί τον browser. Το WebdriverIO δεν μεταφέρει ένα τοπικό αρχείο σε έναν κόμβο Selenium.
+
+```ts
+await $('#file-upload').setFiles('/path/on/the/node/file.png')
+```
+
+Ένα suite που χρησιμοποιούσε την `browser.uploadFile()` για να στείλει bytes στον κόμβο πρέπει να τοποθετήσει το αρχείο εκεί όπου ο browser μπορεί να το διαβάσει και στη συνέχεια να καλέσει την `setFiles`. Το endpoint [`file`](/docs/api/selenium#file) του Selenium εξακολουθεί να είναι διαθέσιμο ως `browser.file()` για τους Chromedriver, Edgedriver και Selenium Grid. Δεν είναι εντολή WebDriver ή WebDriver BiDi.
 
 ### Άλλες λειτουργίες αρχείων/grid
 
-Υπάρχουν μερικές ακόμη λειτουργίες που μπορείτε να εκτελέσετε με το Selenium Grid. Οι οδηγίες για το Selenium Standalone θα πρέπει να λειτουργούν καλά και με το Selenium Grid. Παρακαλώ ανατρέξτε στην τεκμηρίωση [Selenium Standalone](https://webdriver.io/docs/api/selenium/) για τις διαθέσιμες επιλογές.
+Υπάρχουν μερικές ακόμη λειτουργίες που μπορείτε να εκτελέσετε με το Selenium Grid. Οι οδηγίες για το Selenium Standalone θα πρέπει να λειτουργούν σωστά και με το Selenium Grid. Ανατρέξτε στην τεκμηρίωση του [Selenium Standalone](https://webdriver.io/docs/api/selenium/) για τις διαθέσιμες επιλογές.
 
-### Επίσημη τεκμηρίωση Selenium Grid
 
-Για περισσότερες πληροφορίες σχετικά με το Selenium Grid, μπορείτε να ανατρέξετε στην επίσημη [τεκμηρίωση](https://www.selenium.dev/documentation/grid/) του Selenium Grid.
+### Επίσημη τεκμηρίωση του Selenium Grid
 
-Εάν επιθυμείτε να εκτελέσετε το Selenium Grid σε Docker, Docker compose ή Kubernetes, ανατρέξτε στο [GitHub repository](https://github.com/SeleniumHQ/docker-selenium) Selenium-Docker.
+Για περισσότερες πληροφορίες σχετικά με το Selenium Grid, μπορείτε να ανατρέξετε στην επίσημη [τεκμηρίωση](https://www.selenium.dev/documentation/grid/) του Selenium Grid. 
+
+Αν θέλετε να εκτελέσετε το Selenium Grid σε Docker, Docker compose ή Kubernetes, ανατρέξτε στο [αποθετήριο GitHub](https://github.com/SeleniumHQ/docker-selenium) του Selenium-Docker.

@@ -1,21 +1,22 @@
 ---
 id: lit
 title: Lit
+description: "Skonfiguruj WebdriverIO browser runner dla komponentów webowych Lit i pisz testy, które wyszukują elementy wewnątrz zagnieżdżonych shadow roots."
 ---
 
-Lit to prosta biblioteka do budowania szybkich, lekkich komponentów webowych. Testowanie komponentów webowych Lit z WebdriverIO jest bardzo łatwe dzięki [selektorom Shadow DOM](/docs/selectors#deep-selectors) WebdriverIO, które pozwalają na odpytywanie zagnieżdżonych elementów w shadow roots za pomocą jednego polecenia.
+Lit to prosta biblioteka do tworzenia szybkich, lekkich komponentów webowych. Testowanie komponentów webowych Lit za pomocą WebdriverIO jest bardzo łatwe dzięki [selektorom shadow DOM](/docs/selectors#deep-selectors) w WebdriverIO, za pomocą których możesz wyszukiwać elementy zagnieżdżone w shadow roots przy użyciu zaledwie jednego polecenia.
 
 ## Konfiguracja
 
-Aby skonfigurować WebdriverIO w projekcie Lit, postępuj zgodnie z [instrukcjami](/docs/component-testing#set-up) w naszej dokumentacji testowania komponentów. Dla Lit nie potrzebujesz presetu, ponieważ komponenty webowe Lit nie muszą przechodzić przez kompilator, są to czyste rozszerzenia komponentów webowych.
+Aby skonfigurować WebdriverIO w swoim projekcie Lit, postępuj zgodnie z [instrukcjami](/docs/component-testing#set-up) w naszej dokumentacji dotyczącej testowania komponentów. W przypadku Lit nie potrzebujesz presetu, ponieważ komponenty webowe Lit nie muszą przechodzić przez kompilator – są czystymi rozszerzeniami komponentów webowych.
 
-Po skonfigurowaniu możesz uruchomić testy, wykonując:
+Po zakończeniu konfiguracji możesz uruchomić testy, wykonując:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## Pisanie Testów
+## Pisanie testów
 
 Załóżmy, że masz następujący komponent Lit:
 
@@ -28,20 +29,20 @@ export class SimpleGreeting extends LitElement {
     @property()
     name?: string = 'World'
 
-    // Render the UI as a function of component state
+    // Renderuj UI jako funkcję stanu komponentu
     render() {
         return html`<p>Hello, ${this.name}!</p>`
     }
 }
 ```
 
-Aby przetestować komponent, musisz wyrenderować go na stronie testowej przed rozpoczęciem testu i upewnić się, że zostanie wyczyszczony po zakończeniu:
+Aby przetestować komponent, musisz wyrenderować go na stronie testowej przed rozpoczęciem testu i upewnić się, że zostanie on później usunięty:
 
 ```ts title="lit.test.js"
 import expect from 'expect'
 import { waitFor } from '@testing-library/dom'
 
-// import Lit component
+// importuj komponent Lit
 import './components/Component.ts'
 
 describe('Lit Component testing', () => {

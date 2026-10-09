@@ -1,49 +1,51 @@
 ---
 id: mcp
 title: MCP (Model Context Protocol)
+description: "Låt AI-assistenter automatisera webbläsare och mobilappar via WebdriverIO MCP-servern, inklusive installation, användning med Claude och tillgängliga verktyg."
 ---
 
-## Vad kan det göra?
+## Vad kan den göra?
 
-WebdriverIO MCP är en **Model Context Protocol (MCP) server** som gör det möjligt för AI-assistenter som Claude Desktop och Claude Code att automatisera och interagera med webbläsare och mobilapplikationer.
+WebdriverIO MCP är en **Model Context Protocol (MCP)-server** som gör det möjligt för AI-assistenter att automatisera och interagera med webbläsare och mobilapplikationer.
 
 ### Varför WebdriverIO MCP?
 
--   **Mobil-först**: Till skillnad från enbart webbläsarbaserade MCP-servrar stöder WebdriverIO MCP automatisering av iOS- och Android-appar via Appium
+-   **Mobile-First**: Till skillnad från MCP-servrar som bara stöder webbläsare har WebdriverIO MCP stöd för automatisering av native-appar på iOS och Android via Appium
 -   **Plattformsoberoende selektorer**: Smart elementdetektering genererar automatiskt flera lokaliseringsstrategier (accessibility ID, XPath, UiAutomator, iOS predicates)
--   **WebdriverIO-ekosystem**: Byggt på det beprövade WebdriverIO-ramverket med dess rika ekosystem av tjänster och rapportverktyg
+-   **WebdriverIO-ekosystemet**: Byggt på det beprövade WebdriverIO-ramverket med dess rika ekosystem av tjänster och rapportörer
 
-Det tillhandahåller ett enhetligt gränssnitt för:
+Den tillhandahåller ett enhetligt gränssnitt för:
 
--   🖥️ **Skrivbordsbrowsers** (Chrome - med eller utan huvud)
--   📱 **Nativa mobilappar** (iOS-simulatorer / Android-emulatorer / fysiska enheter via Appium)
--   📳 **Hybrida mobilappar** (Native + WebView-kontextbyte via Appium)
+-   🖥️ **Skrivbordswebbläsare** (Chrome, Firefox, Edge, Safari, med eller utan grafiskt gränssnitt)
+-   📱 **Native mobilappar** (iOS-simulatorer / Android-emulatorer / riktiga enheter via Appium)
+-   📳 **Hybrida mobilappar** (växling mellan Native- och WebView-kontext via Appium)
+-   ☁️ **Molnenheter** (BrowserStack, Sauce Labs, TestMu-moln med riktiga enheter och webbläsare)
 
 genom paketet [`@wdio/mcp`](https://www.npmjs.com/package/@wdio/mcp).
 
-Detta låter AI-assistenter:
+Detta gör det möjligt för AI-assistenter att:
 
--   **Starta och kontrollera webbläsare** med konfigurerbara dimensioner, headless-läge och valfri initial navigering
--   **Navigera webbplatser** och interagera med element (klicka, skriva, scrolla)
--   **Analysera sidinnehåll** via tillgänglighetsträd och detektering av synliga element med stöd för paginering
--   **Ta skärmdumpar** automatiskt optimerade (skalade, komprimerade till max 1MB)
+-   **Starta och styra webbläsare** med konfigurerbara dimensioner, headless-läge och valfri initial navigering
+-   **Navigera på webbplatser** och interagera med element (klicka, skriva, scrolla)
+-   **Analysera sidinnehåll** via tillgänglighetsträdet och detektering av synliga element med stöd för paginering
+-   **Ta skärmdumpar** som optimeras automatiskt (storleksändras, komprimeras till max 1 MB)
 -   **Hantera cookies** för sessionshantering
--   **Kontrollera mobilenheter** inklusive gester (trycka, svepa, dra och släppa)
--   **Byta kontext** i hybridappar mellan native och webview
+-   **Styra mobila enheter** inklusive gester (tryck, svep, dra och släpp)
+-   **Växla kontext** i hybridappar mellan native och webview
 -   **Köra skript** - JavaScript i webbläsare, Appium-mobilkommandon på enheter
 -   **Hantera enhetsfunktioner** som rotation, tangentbord, geolokalisering
--   och mycket mer, se [Verktyg](./mcp/tools) och [Konfiguration](./mcp/configuration) för alternativ
+-   och mycket mer, se alternativen för [Verktyg](./mcp/tools) och [Konfiguration](./mcp/configuration)
 
 :::info
 
-OBS För mobilappar
+OBS för mobilappar
 Mobilautomatisering kräver en körande Appium-server med lämpliga drivrutiner installerade. Se [Förutsättningar](#prerequisites) för installationsinstruktioner.
 
 :::
 
 ## Installation
 
-Det enklaste sättet att använda `@wdio/mcp` är via npx utan lokal installation:
+Det enklaste sättet att använda `@wdio/mcp` är via npx utan någon lokal installation:
 
 ```sh
 npx @wdio/mcp
@@ -57,7 +59,7 @@ npm install -g @wdio/mcp
 
 ## Användning med Claude
 
-För att använda WebdriverIO MCP med Claude, modifiera konfigurationsfilen:
+För att använda WebdriverIO MCP med Claude, ändra konfigurationsfilen:
 
 ```json
 {
@@ -70,17 +72,17 @@ För att använda WebdriverIO MCP med Claude, modifiera konfigurationsfilen:
 }
 ```
 
-Efter att ha lagt till konfigurationen, starta om Claude. WebdriverIO MCP-verktygen kommer att vara tillgängliga för automatiseringsuppgifter för webbläsare och mobil.
+Efter att du har lagt till konfigurationen, starta om din klient. WebdriverIO MCP-verktygen blir då tillgängliga för automatiseringsuppgifter i webbläsare och på mobil.
 
 ### Användning med Claude Code
 
-Claude Code upptäcker automatiskt MCP-servrar. Du kan konfigurera det i ditt projekts `.claude/settings.json`, eller `.mcp.json`.
+Claude Code upptäcker MCP-servrar automatiskt. Du kan konfigurera den i ditt projekts `.claude/settings.json` eller `.mcp.json`.
 
-Eller lägg till det i .claude.json globalt genom att köra:
+Eller lägg till den globalt i .claude.json genom att köra:
 ```bash
 claude mcp add --transport stdio wdio-mcp -- npx -y @wdio/mcp
 ```
-Validera det genom att köra kommandot `/mcp` inuti Claude Code.
+Verifiera den genom att köra kommandot `/mcp` i Claude Code.
 
 ## Snabbstartsexempel
 
@@ -89,58 +91,68 @@ Validera det genom att köra kommandot `/mcp` inuti Claude Code.
 Be Claude att automatisera webbläsaruppgifter:
 
 ```
-"Öppna Chrome och navigera till https://webdriver.io"
-"Klicka på 'Get Started'-knappen"
-"Ta en skärmdump av sidan"
-"Hitta alla synliga länkar på sidan"
+"Open Chrome and navigate to https://webdriver.io"
+"Click the 'Get Started' button"
+"Take a screenshot of the page"
+"Find all visible links on the page"
 ```
 
-### Mobilappsautomatisering
+### Automatisering av mobilappar
 
 Be Claude att automatisera mobilappar:
 
 ```
-"Starta min iOS-app på iPhone 15-simulatorn"
-"Tryck på inloggningsknappen"
-"Svep upp för att scrolla ner"
-"Ta en skärmdump av den nuvarande skärmen"
+"Start my iOS app on the iPhone 15 simulator"
+"Tap the login button"
+"Swipe up to scroll down"
+"Take a screenshot of the current screen"
 ```
 
 ## Funktioner
 
-### Webbläsarautomatisering (Chrome)
+### Webbläsarautomatisering
 
 | Funktion | Beskrivning |
 |---------|-------------|
-| **Sessionshantering** | Starta Chrome i headed/headless-läge med anpassade dimensioner och valfri navigerings-URL |
-| **Navigering** | Navigera till URL:er |
-| **Elementinteraktion** | Klicka på element, skriv text, hitta element med olika selektorer |
-| **Sidanalys** | Få synliga element (med paginering), tillgänglighetsträd (med filtrering) |
-| **Skärmdumpar** | Ta skärmdumpar (auto-optimerade till max 1MB) |
-| **Scrollning** | Scrolla upp/ner med konfigurerbara pixelmängder |
-| **Cookie-hantering** | Hämta, sätta och ta bort cookies |
-| **Skriptexekvering** | Kör anpassad JavaScript i webbläsarkontext |
+| **Sessionshantering** | Starta Chrome, Firefox, Edge eller Safari i headed/headless-läge med anpassade dimensioner; anslut till en befintlig Chrome-instans via CDP |
+| **Navigering** | Navigera till URL:er; hantera flera flikar |
+| **Elementinteraktion** | Klicka på element, skriva text, hitta element med olika selektorer |
+| **Sidanalys** | Hämta interagerbara element (med paginering), tillgänglighetsträd (med rollfiltrering) |
+| **Skärmdumpar** | Ta skärmdumpar (automatiskt optimerade till max 1 MB) |
+| **Scrollning** | Scrolla upp/ner med konfigurerbart antal pixlar |
+| **Cookiehantering** | Hämta, sätta och ta bort cookies |
+| **Enhetsemulering** | Emulera mobil-/surfplatte-viewports i webbläsaren (kräver BiDi) |
+| **Skriptkörning** | Kör anpassad JavaScript i webbläsarkontexten |
 
-### Mobilappsautomatisering (iOS/Android)
+### Automatisering av mobilappar (iOS/Android)
 
 | Funktion | Beskrivning |
 |---------|-------------|
-| **Sessionshantering** | Starta appar på simulatorer, emulatorer eller fysiska enheter |
-| **Tryckgester** | Trycka, svepa, dra och släppa |
+| **Sessionshantering** | Starta appar på simulatorer, emulatorer eller riktiga enheter |
+| **Pekgester** | Tryck (element eller koordinater), svep, dra och släpp |
 | **Elementdetektering** | Smart elementdetektering med flera lokaliseringsstrategier och paginering |
-| **Applivscykel** | Få appstatus (via `execute_script` för aktivera/avsluta) |
-| **Kontextbyte** | Byt mellan native- och webview-kontexter i hybridappar |
-| **Enhetskontroll** | Rotera enhet, tangentbordskontroll |
-| **Geolokalisering** | Hämta och sätt enhetens GPS-koordinater |
-| **Behörigheter** | Automatisk hantering av behörigheter och varningar |
-| **Skriptexekvering** | Kör Appium mobilkommandon (pressKey, deepLink, shell, etc.) |
+| **Appens livscykel** | Hämta appens tillstånd (förgrund, bakgrund, körs inte, inte installerad) |
+| **Kontextväxling** | Växla mellan native- och webview-kontexter i hybridappar |
+| **Enhetskontroll** | Rotera enheten, tangentbordskontroll, GPS-åsidosättning |
+| **Behörigheter** | Automatisk hantering av behörigheter och aviseringar |
+| **Skriptkörning** | Kör Appium-mobilkommandon (pressKey, deepLink, shell, etc.) |
+
+### Molnleverantörer
+
+| Funktion | Beskrivning |
+|---------|-------------|
+| **Webbläsarsessioner** | Kör webbläsarsessioner på BrowserStack, Sauce Labs, TestMu eller TestingBot (Windows, macOS, Linux) |
+| **Mobilsessioner** | Kör appsessioner på riktiga enheter via BrowserStack, Sauce Labs, TestMu eller TestingBot |
+| **Apphantering** | Ladda upp `.apk`/`.ipa`-filer; lista tidigare uppladdade appar hos alla fyra leverantörerna |
+| **Lokal tunnel** | Hanterar automatiskt leverantörsspecifika tunnelbinärer för åtkomst till localhost |
+| **Rapportering** | Tagga sessioner med projekt-/bygg-/sessionsetiketter (fungerar identiskt hos alla leverantörer) |
 
 ## Förutsättningar
 
 ### Webbläsarautomatisering
 
--   **Chrome** måste vara installerat på ditt system
--   WebdriverIO hanterar automatiserad ChromeDriver-hantering
+-   **Chrome, Firefox, Edge eller Safari** måste vara installerad
+-   WebdriverIO hanterar drivrutinerna automatiskt
 
 ### Mobilautomatisering
 
@@ -164,7 +176,7 @@ Be Claude att automatisera mobilappar:
    appium
    ```
 6. **För simulatorer**: Öppna Xcode → Window → Devices and Simulators för att skapa/hantera simulatorer
-7. **För fysiska enheter**: Du behöver enhetens UDID (40-teckens unik identifierare)
+7. **För riktiga enheter**: Du behöver enhetens UDID (unik identifierare på 40 tecken)
 
 #### Android
 
@@ -188,18 +200,18 @@ Be Claude att automatisera mobilappar:
    appium
    ```
 6. **Skapa en emulator** via Android Studio → Virtual Device Manager
-7. **Starta emulatorn** innan tester körs
+7. **Starta emulatorn** innan du kör tester
 
 ## Arkitektur
 
 ### Hur det fungerar
 
-WebdriverIO MCP fungerar som en brygga mellan AI-assistenter och webbläsar-/mobilautomatisering:
+WebdriverIO MCP fungerar som en brygga mellan AI-assistenter och automatisering av webbläsare/mobil:
 
 ```
 ┌─────────────────┐     MCP Protocol      ┌─────────────────┐
 │  Claude Desktop │ ◄──────────────────►  │    @wdio/mcp    │
-│  or Claude Code │      (stdio)          │     Server      │
+│  or Claude Code │   (stdio or HTTP)     │     Server      │
 └─────────────────┘                       └────────┬────────┘
                                                    │
                                              WebDriverIO API
@@ -207,33 +219,33 @@ WebdriverIO MCP fungerar som en brygga mellan AI-assistenter och webbläsar-/mob
                     ┌──────────────────────────────┼──────────────────────────────┐
                     │                              │                              │
             ┌───────▼───────┐             ┌───────▼───────┐             ┌───────▼───────┐
-            │    Chrome     │             │    Appium     │             │    Appium     │
-            │   (Browser)   │             │     (iOS)     │             │   (Android)   │
+            │    Browser    │             │    Appium     │             │   Cloud        │
+            │ (local/CDP)   │             │  (iOS/Android)│             │   Providers    │
             └───────────────┘             └───────────────┘             └───────────────┘
 ```
 
 ### Sessionshantering
 
--   **Enkeltsessionsmodell**: Endast en webbläsar- ELLER appsession kan vara aktiv åt gången
--   **Sessionstillstånd** upprätthålls globalt över verktygsanrop
--   **Auto-detach**: Sessioner med bevarat tillstånd (`noReset: true`) kopplas automatiskt bort vid stängning
+-   **Enkelsessionsmodell**: Endast en webbläsar- ELLER appsession kan vara aktiv åt gången
+-   **Sessionstillståndet** upprätthålls globalt mellan verktygsanrop
+-   **Automatisk frånkoppling**: Sessioner med bevarat tillstånd (`noReset: true`) kopplas automatiskt från vid stängning
 
 ### Elementdetektering
 
-#### Webbläsare (Web)
+#### Webbläsare (webb)
 
--   Använder ett optimerat webbläsarskript för att hitta alla synliga, interaktiva element
+-   Använder ett optimerat webbläsarskript för att hitta alla synliga, interagerbara element
 -   Returnerar element med CSS-selektorer, ID:n, klasser och ARIA-information
--   Filtrerar som standard till viewport-synliga element
+-   Stöder viewport-filtrering och paginering
 
-#### Mobil (Nativa appar)
+#### Mobil (native-appar)
 
--   Använder effektiv XML-sidkällsparsning (2 HTTP-anrop mot 600+ för traditionella sökningar)
+-   Använder effektiv parsning av XML-sidkällan (2 HTTP-anrop jämfört med 600+ för traditionella förfrågningar)
 -   Plattformsspecifik elementklassificering för Android och iOS
 -   Genererar flera lokaliseringsstrategier per element:
-    -   Accessibility ID (plattformsoberoende, mest stabilt)
+    -   Accessibility ID (plattformsoberoende, mest stabil)
     -   Resource ID / Name-attribut
-    -   Text / Label-matchning
+    -   Matchning av text / etikett
     -   XPath (fullständig och förenklad)
     -   UiAutomator (Android) / Predicates (iOS)
 
@@ -244,7 +256,7 @@ MCP-servern stöder flera selektorstrategier. Se [Selektorer](./mcp/selectors) f
 ### Webb (CSS/XPath)
 
 ```
-# CSS Selektorer
+# CSS-selektorer
 button.my-class
 #element-id
 [data-testid="login"]
@@ -253,12 +265,12 @@ button.my-class
 //button[@class='submit']
 //a[contains(text(), 'Click')]
 
-# Text Selektorer (WebdriverIO-specifika)
+# Textselektorer (WebdriverIO-specifika)
 button=Exact Button Text
 a*=Partial Link Text
 ```
 
-### Mobil (Plattformsoberoende)
+### Mobil (plattformsoberoende)
 
 ```
 # Accessibility ID (rekommenderas - fungerar på iOS & Android)
@@ -280,158 +292,166 @@ android=new UiSelector().text("Login")
 
 ## Tillgängliga verktyg
 
-MCP-servern tillhandahåller 25 verktyg för webbläsar- och mobilautomatisering. Se [Verktyg](./mcp/tools) för fullständig referens.
+MCP-servern tillhandahåller 29 verktyg för automatisering av webbläsare och mobil. Se [Verktyg](./mcp/tools) för den fullständiga referensen.
 
-### Webbläsarverktyg
+| Verktyg | Plattform | Beskrivning |
+|------|----------|-------------|
+| `start_session` | alla | Starta en webbläsar- eller mobilsession (lokal eller molnleverantör) |
+| `close_session` | alla | Stäng eller koppla från den aktuella sessionen |
+| `launch_chrome` | webbläsare | Öppna Chrome med fjärrfelsökning för CDP-anslutning |
+| `navigate` | webbläsare | Ladda en URL i den aktuella fliken |
+| `get_tabs` | webbläsare | Lista alla öppna flikar |
+| `switch_tab` | webbläsare | Fokusera en flik via handle eller index |
+| `switch_frame` | webbläsare | Växla in i en iframe via selektor, eller tillbaka till toppnivån |
+| `click_element` | webbläsare | Klicka på ett element |
+| `set_value` | alla | Skriv text i ett inmatningsfält |
+| `scroll` | webbläsare | Scrolla sidan uppåt eller nedåt |
+| `get_elements` | alla | Hämta interagerbara element (med filtrering + paginering) |
+| `get_accessibility_tree` | webbläsare | Hämta tillgänglighetsträdet (med rollfiltrering) |
+| `get_screenshot` | alla | Ta en skärmdump (automatiskt optimerad) |
+| `get_cookies` | webbläsare | Hämta alla cookies eller en specifik cookie |
+| `set_cookie` | webbläsare | Sätt en webbläsarcookie |
+| `delete_cookies` | webbläsare | Ta bort alla eller en cookie |
+| `emulate_device` | webbläsare | Emulera en mobil-/surfplatte-viewport |
+| `execute_script` | alla | Kör JavaScript (webbläsare) eller Appium-kommandon (mobil) |
+| `tap_element` | mobil | Tryck på ett element eller skärmkoordinater |
+| `swipe` | mobil | Svepgest i en riktning |
+| `drag_and_drop` | mobil | Dra mellan element eller koordinater |
+| `get_contexts` | mobil | Lista tillgängliga native-/webview-kontexter |
+| `switch_context` | mobil | Växla mellan native- och webview-kontexter |
+| `rotate_device` | mobil | Rotera till stående eller liggande läge |
+| `hide_keyboard` | mobil | Dölj programvarutangentbordet |
+| `set_geolocation` | alla | Åsidosätt enhetens GPS-koordinater |
+| `get_app_state` | mobil | Hämta appens livscykeltillstånd |
+| `list_apps` | moln | Lista uppladdade appar (BrowserStack, Sauce Labs, TestMu, TestingBot) |
+| `upload_app` | moln | Ladda upp en `.apk`/`.ipa` till en molnleverantör |
 
-| Verktyg | Beskrivning |
-|------|-------------|
-| `start_browser` | Starta Chrome-webbläsare (med valfri initial URL) |
-| `close_session` | Stäng eller koppla från session |
-| `navigate` | Navigera till en URL |
-| `click_element` | Klicka på ett element |
-| `set_value` | Skriv text i inmatningsfält |
-| `get_visible_elements` | Hämta synliga/interaktiva element (med paginering) |
-| `get_accessibility` | Hämta tillgänglighetsträd (med filtrering) |
-| `take_screenshot` | Ta skärmdump (auto-optimerad) |
-| `scroll` | Scrolla sidan upp eller ner |
-| `get_cookies` / `set_cookie` / `delete_cookies` | Cookie-hantering |
-| `execute_script` | Kör JavaScript i webbläsarkontext |
+## MCP-resurser
 
-### Mobilverktyg
+Utöver verktyg exponerar servern det aktuella sessionstillståndet som MCP-resurser. Se [Resurser](./mcp/resources) för den fullständiga referensen.
 
-| Verktyg | Beskrivning |
-|------|-------------|
-| `start_app_session` | Starta iOS/Android-app |
-| `tap_element` | Tryck på element eller koordinater |
-| `swipe` | Svep i en riktning |
-| `drag_and_drop` | Dra mellan platser |
-| `get_app_state` | Kontrollera om appen körs |
-| `get_contexts` / `switch_context` | Kontextbyte i hybridappar |
-| `rotate_device` | Rotera till porträtt/landskap |
-| `get_geolocation` / `set_geolocation` | Hämta eller ställ in GPS-koordinater |
-| `hide_keyboard` | Göm skärmtangentbord |
-| `execute_script` | Kör Appium mobilkommandon |
+| Resurs-URI | Beskrivning |
+|-------------|-------------|
+| `wdio://sessions` | Index över alla sessioner |
+| `wdio://session/current/elements` | Interagerbara element (föredra framför skärmdump) |
+| `wdio://session/current/screenshot` | Skärmdump som base64 |
+| `wdio://session/current/accessibility` | Tillgänglighetsträd |
+| `wdio://session/current/cookies` | Webbläsarcookies |
+| `wdio://session/current/tabs` | Öppna webbläsarflikar |
+| `wdio://session/current/contexts` | Tillgängliga mobilkontexter |
+| `wdio://session/current/context` | Aktiv mobilkontext |
+| `wdio://session/current/app-state/{bundleId}` | Mobilappens livscykeltillstånd |
+| `wdio://session/current/geolocation` | Aktuell GPS-åsidosättning |
+| `wdio://session/current/logs` | Sessionsloggar (webbläsarkonsol, logcat, kraschlogg) |
+| `wdio://session/current/capabilities` | Råa WebDriver-capabilities |
+| `wdio://session/current/code` | Genererad WebdriverIO JS |
+| `wdio://session/current/steps` | Sessionens steglogg |
+| `wdio://session/{sessionId}/code` | Genererad JS för tidigare session |
+| `wdio://session/{sessionId}/steps` | Steg för tidigare session |
+| `wdio://browserstack/local-binary` | Installationsinstruktioner för BrowserStack Local |
+| `wdio://saucelabs/local-binary` | Installationsinstruktioner för Sauce Connect Proxy |
+| `wdio://testmu/local-binary` | Installationsinstruktioner för TestMu Tunnel |
+| `wdio://testingbot/local-binary` | Installationsinstruktioner för TestingBot Tunnel |
 
 ## Automatisk hantering
 
 ### Behörigheter
 
-Som standard beviljar MCP-servern automatiskt appbehörigheter (`autoGrantPermissions: true`), vilket eliminerar behovet av att manuellt hantera behörighetsdialogrutor under automatisering.
+Som standard beviljar MCP-servern automatiskt appbehörigheter (`autoGrantPermissions: true`), vilket eliminerar behovet av att manuellt hantera behörighetsdialoger under automatiseringen.
 
-### Systemvarningar
+### Systemaviseringar
 
-Systemvarningar (som "Tillåt notiser?") accepteras automatiskt som standard (`autoAcceptAlerts: true`). Detta kan konfigureras för att avvisa istället med `autoDismissAlerts: true`.
+Systemaviseringar (som "Tillåt notiser?") accepteras automatiskt som standard (`autoAcceptAlerts: true`). Detta kan konfigureras att istället avvisa dem med `autoDismissAlerts: true`.
 
-## Konfiguration
+## Transport
 
-### Miljövariabler
+Som standard körs servern över **stdio** (startas som en underprocess av AI-klienten). För klienter som inte stöder underprocessbaserad MCP (llama.cpp, Codex secure mode), använd **HTTP-transport**:
 
-Konfigurera Appium-serveranslutningen:
-
-| Variabel | Standard | Beskrivning |
-|----------|---------|-------------|
-| `APPIUM_URL` | `127.0.0.1` | Appium-server värdnamn |
-| `APPIUM_URL_PORT` | `4723` | Appium-server port |
-| `APPIUM_PATH` | `/` | Appium-server sökväg |
-
-### Exempel med anpassad Appium-server
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"],
-            "env": {
-                "APPIUM_URL": "192.168.1.100",
-                "APPIUM_URL_PORT": "4724"
-            }
-        }
-    }
-}
+```bash
+npx @wdio/mcp --http --port 3000
 ```
+
+Se [Transport](./mcp/transport) för alla alternativ, inklusive `--allowedHosts` och `--allowedOrigins`.
 
 ## Prestandaoptimering
 
-MCP-servern är optimerad för effektiv AI-assistentkommunikation:
+MCP-servern är optimerad för effektiv kommunikation med AI-assistenter:
 
 -   **TOON-format**: Använder Token-Oriented Object Notation för minimal tokenanvändning
--   **XML-parsning**: Mobilelementdetektering använder 2 HTTP-anrop (mot 600+ traditionellt)
--   **Skärmdumpkompression**: Bilder auto-komprimeras till max 1MB med hjälp av Sharp
--   **Viewport-filtrering**: Som standard returneras endast synliga element
--   **Paginering**: Stora elementlistor kan pagineras för att minska svarsstorlek
-
-## TypeScript-stöd
-
-MCP-servern är skriven i TypeScript och inkluderar fullständiga typdefinitioner. Om du utökar eller integrerar med servern programmatiskt kommer du att dra nytta av auto-komplettering och typsäkerhet.
+-   **XML-parsning**: Detektering av mobilelement använder 2 HTTP-anrop (jämfört med 600+ traditionellt)
+-   **Komprimering av skärmdumpar**: Bilder komprimeras automatiskt till max 1 MB
+-   **Viewport-filtrering**: Endast synliga element returneras som standard
+-   **Paginering**: Stora elementlistor kan pagineras för att minska svarsstorleken
 
 ## Felhantering
 
-Alla verktyg är designade med robust felhantering:
+Alla verktyg är utformade med robust felhantering:
 
--   Fel returneras som textinnehåll (aldrig kastade), vilket bibehåller MCP-protokollets stabilitet
+-   Fel returneras som textinnehåll (kastas aldrig), vilket bibehåller MCP-protokollets stabilitet
 -   Beskrivande felmeddelanden hjälper till att diagnostisera problem
 -   Sessionstillståndet bevaras även när enskilda operationer misslyckas
 
-## Användningsfall
+## Användningsområden
 
 ### Kvalitetssäkring
 
--   AI-driven testkörning
+-   AI-driven körning av testfall
 -   Visuell regressionstestning med skärmdumpar
--   Tillgänglighetsgranskningar via analys av tillgänglighetsträd
+-   Tillgänglighetsgranskning via analys av tillgänglighetsträdet
 
-### Webbskrapning & Dataextraktion
+### Webbskrapning och dataextraktion
 
--   Navigera komplexa flersidesflöden
+-   Navigera komplexa flöden över flera sidor
 -   Extrahera strukturerad data från dynamiskt innehåll
 -   Hantera autentisering och sessionshantering
 
-### Mobilapptestning
+### Testning av mobilappar
 
 -   Plattformsoberoende testautomatisering (iOS + Android)
--   Onboardingflödesvalidering
--   Djuplänkning och navigeringstestning
+-   Validering av onboarding-flöden
+-   Testning av djuplänkar och navigering
 
 ### Integrationstestning
 
--   End-to-end-arbetsflödestestning
--   API + UI-integrationsverifiering
--   Multiplattformskonsistenskontroller
+-   End-to-end-testning av arbetsflöden
+-   Verifiering av API- + UI-integration
+-   Konsekvenskontroller över flera plattformar
 
 ## Felsökning
 
 ### Webbläsaren startar inte
 
--   Säkerställ att Chrome är installerat
--   Kontrollera att ingen annan process använder standardfelsökningsporten (9222)
--   Försök med headless-läge om displayproblem uppstår
+-   Se till att målwebbläsaren är installerad
+-   Kontrollera att ingen annan process använder standardporten för felsökning (9222)
+-   Prova headless-läge om problem med skärmen uppstår
 
-### Appium-anslutning misslyckades
+### Anslutningen till Appium misslyckades
 
--   Verifiera att Appium-servern körs (`appium`)
--   Kontrollera Appium URL- och portkonfigurationen
--   Säkerställ att lämplig drivrutin är installerad (`appium driver list`)
+-   Kontrollera att Appium-servern körs (`appium`)
+-   Kontrollera Appium-värd och port i `appiumConfig`
+-   Se till att rätt drivrutin är installerad (`appium driver list`)
 
-### iOS Simulator-problem
+### Problem med iOS-simulatorn
 
--   Säkerställ att Xcode är installerat och uppdaterat
--   Kontrollera att simulatorer är tillgängliga (`xcrun simctl list devices`)
--   För fysiska enheter, verifiera att UDID är korrekt
+-   Se till att Xcode är installerat och uppdaterat
+-   Kontrollera att simulatorer finns tillgängliga (`xcrun simctl list devices`)
+-   För riktiga enheter, kontrollera att UDID är korrekt
 
-### Android Emulator-problem
+### Problem med Android-emulatorn
 
--   Säkerställ att Android SDK är korrekt konfigurerat
--   Verifiera att emulatorn körs (`adb devices`)
--   Kontrollera att miljövariabeln `ANDROID_HOME` är inställd
+-   Se till att Android SDK är korrekt konfigurerat
+-   Kontrollera att emulatorn körs (`adb devices`)
+-   Kontrollera att miljövariabeln `ANDROID_HOME` är satt
 
 ## Resurser
 
--   [Verktygsreferens](./mcp/tools) - Komplett lista över tillgängliga verktyg
--   [Selektorguide](./mcp/selectors) - Dokumentation för selektorsyntax
+-   [Verktygsreferens](./mcp/tools) - Fullständig lista över tillgängliga verktyg
+-   [Resursreferens](./mcp/resources) - MCP-resurser för aktuellt sessionstillstånd
+-   [Selektorguide](./mcp/selectors) - Dokumentation av selektorsyntax
 -   [Konfiguration](./mcp/configuration) - Konfigurationsalternativ
--   [FAQ](./mcp/faq) - Vanliga frågor
--   [GitHub-repository](https://github.com/webdriverio/mcp) - Källkod och problem
--   [NPM-paket](https://www.npmjs.com/package/@wdio/mcp) - Paket på npm
--   [Model Context Protocol](https://modelcontextprotocol.io/) - MCP-specifikation
+-   [Transport](./mcp/transport) - Konfiguration av HTTP-transport
+-   [Molnleverantörer](./mcp/cloud-providers) - Molnintegration med BrowserStack, Sauce Labs, TestMu och TestingBot
+-   [Vanliga frågor](./mcp/faq) - Vanliga frågor och svar
+-   [GitHub-repository](https://github.com/webdriverio/mcp) - Källkod och ärenden
+-   [NPM-paket](https://www.npmjs.com/package/@wdio/mcp) - Paketet på npm
+-   [Model Context Protocol](https://modelcontextprotocol.io/) - MCP-specifikationen

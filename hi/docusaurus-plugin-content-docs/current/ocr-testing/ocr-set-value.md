@@ -1,15 +1,16 @@
 ---
 id: ocr-set-value
 title: ocrSetValue
+description: "ocrSetValue के साथ किसी इनपुट फ़ील्ड में उसके दिखाई देने वाले टेक्स्ट के आधार पर टाइप करें, जो OCR और फ़ज़ी मैचिंग से फ़ील्ड ढूँढता है।"
 ---
 
-किसी तत्व पर कीस्ट्रोक्स की एक श्रृंखला भेजें। यह:
+किसी एलिमेंट को की-स्ट्रोक्स का एक क्रम भेजें। यह:
 
--   स्वचालित रूप से तत्व का पता लगाएगा
--   उस पर क्लिक करके फील्ड पर फोकस लगाएगा
--   फील्ड में मान सेट करेगा
+-   एलिमेंट का स्वचालित रूप से पता लगाएगा
+-   फ़ील्ड पर क्लिक करके उस पर फ़ोकस करेगा
+-   फ़ील्ड में वैल्यू सेट करेगा
 
-यह कमांड प्रदान किए गए टेक्स्ट को खोजेगा और [Fuse.js](https://fusejs.io/) से फजी लॉजिक के आधार पर मिलान की कोशिश करेगा। इसका मतलब है कि अगर आप किसी टाइपो के साथ सेलेक्टर प्रदान करते हैं, या पाया गया टेक्स्ट 100% मिलान नहीं है, तो भी यह आपको एक तत्व वापस देने की कोशिश करेगा। नीचे [लॉग्स](#logs) देखें।
+यह कमांड दिए गए टेक्स्ट को खोजेगी और [Fuse.js](https://fusejs.io/) के फ़ज़ी लॉजिक के आधार पर मैच ढूँढने का प्रयास करेगी। इसका मतलब है कि यदि आप टाइपो वाला सेलेक्टर देते हैं, या मिला हुआ टेक्स्ट 100% मैच नहीं है, तब भी यह आपको एक एलिमेंट वापस देने का प्रयास करेगी। नीचे [लॉग्स](#logs) देखें।
 
 ## उपयोग
 
@@ -34,11 +35,11 @@ await brower.ocrSetValue({
 
 ### `text`
 
--   **प्रकार:** `string`
--   **अनिवार्य:** हां
+<Option type="string" required="yes">
 
 वह टेक्स्ट जिसे आप क्लिक करने के लिए खोजना चाहते हैं।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -50,11 +51,11 @@ await browser.ocrSetValue({
 
 ### `value`
 
--   **प्रकार:** `string`
--   **अनिवार्य:** हां
+<Option type="string" required="yes">
 
-जोड़ा जाने वाला मान।
+जोड़ी जाने वाली वैल्यू।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -66,12 +67,11 @@ await browser.ocrSetValue({
 
 ### `submitValue`
 
--   **प्रकार:** `boolean`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `false`
+<Option type="boolean" default="false" required="no">
 
-यदि मान को इनपुट फ़ील्ड में भी सबमिट करने की आवश्यकता है। इसका मतलब है कि स्ट्रिंग के अंत में "ENTER" भेजा जाएगा।
+यदि वैल्यू को इनपुट फ़ील्ड में सबमिट भी करना है। इसका मतलब है कि स्ट्रिंग के अंत में एक "ENTER" भेजा जाएगा।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -84,30 +84,28 @@ await browser.ocrSetValue({
 
 ### `clickDuration`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `500` मिलीसेकंड
+<Option type="number" default="500 milliseconds" required="no">
 
 यह क्लिक की अवधि है। यदि आप चाहें तो समय बढ़ाकर "लॉन्ग क्लिक" भी बना सकते हैं।
 
+</Option>
 #### उदाहरण
 
 ```js
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // यह 3 सेकंड है
 });
 ```
 
 ### `contrast`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-कंट्रास्ट जितना अधिक होगा, छवि उतनी ही अधिक गहरी होगी और इसके विपरीत। यह छवि में टेक्स्ट खोजने में मदद कर सकता है। यह `-1` और `1` के बीच के मान स्वीकार करता है।
+कंट्रास्ट जितना अधिक होगा, इमेज उतनी ही गहरी होगी और इसके विपरीत भी। यह इमेज में टेक्स्ट ढूँढने में मदद कर सकता है। यह `-1` और `1` के बीच की वैल्यू स्वीकार करता है।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -120,11 +118,11 @@ await browser.ocrSetValue({
 
 ### `haystack`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-यह स्क्रीन में खोज क्षेत्र है जहां OCR को टेक्स्ट की तलाश करने की आवश्यकता है। यह एक तत्व या एक आयत हो सकता है जिसमें `x`, `y`, `width` और `height` शामिल हैं।
+यह स्क्रीन का वह खोज क्षेत्र है जहाँ OCR को टेक्स्ट खोजना है। यह एक एलिमेंट या `x`, `y`, `width` और `height` वाला एक आयत (rectangle) हो सकता है
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -134,14 +132,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// OR
+// या
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// या
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,12 +154,11 @@ await browser.ocrSetValue({
 
 ### `language`
 
--   **प्रकार:** `string`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `eng`
+<Option type="string" default="eng" required="No">
 
-वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहां](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) पाई जा सकती है और समर्थित भाषाएं [यहां](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) पाई जा सकती हैं।
+वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहाँ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएँ [यहाँ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) देखी जा सकती हैं।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -169,40 +166,40 @@ import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // भाषा के रूप में डच का उपयोग करें
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
--   **प्रकार:** `object`
--   **अनिवार्य:** नहीं
+<Option type="object" required="no">
 
-आप मिलान करने वाले तत्व के सापेक्ष स्क्रीन पर क्लिक कर सकते हैं। यह सापेक्ष पिक्सेल `above`, `right`, `below` या `left` के आधार पर मिलान तत्व से किया जा सकता है।
+आप मैच होने वाले एलिमेंट के सापेक्ष स्क्रीन पर क्लिक कर सकते हैं। यह मैच होने वाले एलिमेंट से `above`, `right`, `below` या `left` सापेक्ष पिक्सेल के आधार पर किया जा सकता है
 
 :::note
 
-निम्नलिखित संयोजन अनुमत हैं
+निम्नलिखित संयोजनों की अनुमति है
 
--   एकल गुण
+-   एकल प्रॉपर्टीज़
 -   `above` + `left` या `above` + `right`
 -   `below` + `left` या `below` + `right`
 
-निम्नलिखित संयोजन **अनुमत नहीं** हैं
+निम्नलिखित संयोजनों की अनुमति **नहीं** है
 
--   `above` प्लस `below`
--   `left` प्लस `right`
+-   `above` के साथ `below`
+-   `left` के साथ `right`
 
 :::
 
+</Option>
 #### `relativePosition.above`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
+<Option type="number" required="no">
 
-मिलान तत्व से x पिक्सेल `above` क्लिक करें।
+मैच होने वाले एलिमेंट से x पिक्सेल `above` (ऊपर) क्लिक करें।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -217,11 +214,11 @@ await browser.ocrSetValue({
 
 #### `relativePosition.right`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
+<Option type="number" required="no">
 
-मिलान तत्व से x पिक्सेल `right` क्लिक करें।
+मैच होने वाले एलिमेंट से x पिक्सेल `right` (दाईं ओर) क्लिक करें।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -236,11 +233,11 @@ await browser.ocrSetValue({
 
 #### `relativePosition.below`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
+<Option type="number" required="no">
 
-मिलान तत्व से x पिक्सेल `below` क्लिक करें।
+मैच होने वाले एलिमेंट से x पिक्सेल `below` (नीचे) क्लिक करें।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -255,11 +252,11 @@ await browser.ocrSetValue({
 
 #### `relativePosition.left`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
+<Option type="number" required="no">
 
-मिलान तत्व से x पिक्सेल `left` क्लिक करें।
+मैच होने वाले एलिमेंट से x पिक्सेल `left` (बाईं ओर) क्लिक करें।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -274,16 +271,15 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-आप निम्नलिखित विकल्पों के साथ टेक्स्ट खोजने के लिए फजी लॉजिक को बदल सकते हैं। यह बेहतर मिलान खोजने में मदद कर सकता है।
+आप निम्नलिखित विकल्पों के साथ टेक्स्ट खोजने के फ़ज़ी लॉजिक को बदल सकते हैं। इससे बेहतर मैच ढूँढने में मदद मिल सकती है
 
 #### `fuzzyFindOptions.distance`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 100
+<Option type="number" default="100" required="no">
 
-यह निर्धारित करता है कि मिलान को फजी स्थान (location द्वारा निर्दिष्ट) के कितना करीब होना चाहिए। एक सटीक अक्षर मिलान जो फजी स्थान से distance वर्णों दूर है, वह पूरी तरह से बेमेल के रूप में स्कोर करेगा। 0 की दूरी के लिए मिलान को निर्दिष्ट सटीक स्थान पर होने की आवश्यकता होती है। 1000 की दूरी के लिए 0.8 की थ्रेशोल्ड का उपयोग करते हुए स्थान से 800 वर्णों के भीतर पूर्ण मिलान की आवश्यकता होगी।
+यह निर्धारित करता है कि मैच फ़ज़ी लोकेशन (location द्वारा निर्दिष्ट) के कितना करीब होना चाहिए। एक सटीक अक्षर मैच जो फ़ज़ी लोकेशन से distance अक्षर दूर है, उसे पूर्ण बेमेल (complete mismatch) के रूप में स्कोर किया जाएगा। 0 की distance के लिए आवश्यक है कि मैच ठीक निर्दिष्ट लोकेशन पर हो। 1000 की distance के लिए आवश्यक होगा कि 0.8 के threshold का उपयोग करके पाए जाने के लिए एक पूर्ण मैच लोकेशन के 800 अक्षरों के भीतर हो।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -298,12 +294,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.location`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 0
+<Option type="number" default="0" required="no">
 
-यह निर्धारित करता है कि टेक्स्ट में लगभग कहां पैटर्न मिलने की उम्मीद है।
+यह निर्धारित करता है कि टेक्स्ट में लगभग कहाँ पैटर्न मिलने की उम्मीद है।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -318,12 +313,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.threshold`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 0.6
+<Option type="number" default="0.6" required="no">
 
-किस बिंदु पर मिलान एल्गोरिथ्म हार मान लेता है। 0 की थ्रेशोल्ड के लिए पूर्ण मिलान (अक्षरों और स्थान दोनों का) की आवश्यकता होती है, 1.0 की थ्रेशोल्ड पर कुछ भी मिल जाएगा।
+मैचिंग एल्गोरिदम किस बिंदु पर हार मान लेता है। 0 के threshold के लिए पूर्ण मैच (अक्षरों और लोकेशन दोनों का) आवश्यक है, 1.0 का threshold किसी भी चीज़ से मैच करेगा।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -338,12 +332,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **प्रकार:** `boolean`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** false
+<Option type="boolean" default="false" required="no">
 
-क्या खोज केस संवेदी होनी चाहिए।
+क्या खोज केस सेंसिटिव होनी चाहिए।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -358,12 +351,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 2
+<Option type="number" default="2" required="no">
 
-केवल वे मिलान जिनकी लंबाई इस मान से अधिक है, वापस किए जाएंगे। (उदाहरण के लिए, यदि आप परिणाम में एकल अक्षर मिलान को अनदेखा करना चाहते हैं, तो इसे 2 पर सेट करें)
+केवल वही मैच लौटाए जाएँगे जिनकी लंबाई इस वैल्यू से अधिक है। (उदाहरण के लिए, यदि आप परिणाम में एकल अक्षर वाले मैचों को अनदेखा करना चाहते हैं, तो इसे 2 पर सेट करें)
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -378,12 +370,11 @@ await browser.ocrSetValue({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** false
+<Option type="number" default="false" required="no">
 
-जब `true` होता है, तो मिलान फ़ंक्शन खोज पैटर्न के अंत तक जारी रहेगा, भले ही स्ट्रिंग में पहले से ही एक पूर्ण मिलान मिल गया हो।
+जब `true` हो, तो मैचिंग फ़ंक्शन सर्च पैटर्न के अंत तक जारी रहेगा, भले ही स्ट्रिंग में पहले ही एक पूर्ण मैच मिल चुका हो।
 
+</Option>
 ##### उदाहरण
 
 ```js

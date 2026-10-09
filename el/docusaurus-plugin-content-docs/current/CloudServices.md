@@ -1,11 +1,12 @@
 ---
 id: cloudservices
 title: Χρήση Υπηρεσιών Cloud
+description: "Εκτελέστε δοκιμές WebdriverIO στα Sauce Labs, BrowserStack, TestingBot, TestMu AI (πρώην LambdaTest), Perfecto και σε άλλους παρόχους cloud."
 ---
 
-Using on-demand services like Sauce Labs, Browserstack, TestingBot, TestMu AI (Formerly LambdaTest) or Perfecto with WebdriverIO is pretty simple. All you need to do is to set your service's `user` and `key` in your options.
+Η χρήση υπηρεσιών κατ' απαίτηση όπως τα Sauce Labs, Browserstack, TestingBot, TestMu AI (πρώην LambdaTest) ή Perfecto με το WebdriverIO είναι αρκετά απλή. Το μόνο που χρειάζεται να κάνετε είναι να ορίσετε τα `user` και `key` της υπηρεσίας σας στις επιλογές σας.
 
-Optionally, you can also parametrize your test by setting cloud-specific capabilities like `build`. If you only want to run cloud services in Travis, you can use the `CI` environment variable to check if you are in Travis and modify the config accordingly.
+Προαιρετικά, μπορείτε επίσης να παραμετροποιήσετε τη δοκιμή σας ορίζοντας δυνατότητες (capabilities) ειδικές για το cloud, όπως το `build`. Αν θέλετε να εκτελείτε υπηρεσίες cloud μόνο στο Travis, μπορείτε να χρησιμοποιήσετε τη μεταβλητή περιβάλλοντος `CI` για να ελέγξετε αν βρίσκεστε στο Travis και να τροποποιήσετε τη διαμόρφωση ανάλογα.
 
 ```js
 // wdio.conf.js
@@ -20,27 +21,27 @@ if (process.env.CI) {
 
 Μπορείτε να ρυθμίσετε τις δοκιμές σας ώστε να εκτελούνται απομακρυσμένα στο [Sauce Labs](https://saucelabs.com).
 
-Η μόνη απαίτηση είναι να ορίσετε το `user` και το `key` στις ρυθμίσεις σας (είτε εξάγονται από το `wdio.conf.js` είτε μεταβιβάζονται στο `webdriverio.remote(...)`) στο όνομα χρήστη και το κλειδί πρόσβασης του Sauce Labs.
+Η μόνη απαίτηση είναι να ορίσετε τα `user` και `key` στη διαμόρφωσή σας (είτε εξάγονται από το `wdio.conf.js` είτε περνιούνται στο `webdriverio.remote(...)`) με το όνομα χρήστη και το κλειδί πρόσβασης του Sauce Labs.
 
-Μπορείτε επίσης να περάσετε οποιαδήποτε προαιρετική [επιλογή ρύθμισης δοκιμών](https://docs.saucelabs.com/dev/test-configuration-options/) ως κλειδί/τιμή στις δυνατότητες για οποιοδήποτε πρόγραμμα περιήγησης.
+Μπορείτε επίσης να περάσετε οποιαδήποτε προαιρετική [επιλογή διαμόρφωσης δοκιμής](https://docs.saucelabs.com/dev/test-configuration-options/) ως ζεύγος κλειδιού/τιμής στις capabilities για οποιονδήποτε browser.
 
 ### Sauce Connect
 
-Αν θέλετε να εκτελέσετε δοκιμές σε έναν διακομιστή που δεν είναι προσβάσιμος στο Διαδίκτυο (όπως στο `localhost`), τότε πρέπει να χρησιμοποιήσετε το [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
+Αν θέλετε να εκτελέσετε δοκιμές σε έναν διακομιστή που δεν είναι προσβάσιμος από το Διαδίκτυο (όπως στο `localhost`), τότε πρέπει να χρησιμοποιήσετε το [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
 
-Δεν εμπίπτει στο πεδίο εφαρμογής του WebdriverIO η υποστήριξη αυτού, οπότε θα πρέπει να το ξεκινήσετε μόνοι σας.
+Η υποστήριξη αυτού είναι εκτός του πεδίου του WebdriverIO, επομένως θα πρέπει να το εκκινήσετε μόνοι σας.
 
-Εάν χρησιμοποιείτε το WDIO testrunner, κατεβάστε και ρυθμίστε την [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) στο `wdio.conf.js`. Βοηθά στην εκτέλεση του Sauce Connect και έρχεται με πρόσθετες λειτουργίες που ενσωματώνουν καλύτερα τις δοκιμές σας στην υπηρεσία Sauce.
+Αν χρησιμοποιείτε τον WDIO testrunner, κατεβάστε και διαμορφώστε το [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) στο `wdio.conf.js` σας. Βοηθά στην εκτέλεση του Sauce Connect και διαθέτει επιπλέον λειτουργίες που ενσωματώνουν καλύτερα τις δοκιμές σας στην υπηρεσία Sauce.
 
 ### Με Travis CI
 
-Το Travis CI, ωστόσο, [έχει υποστήριξη](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect) για την έναρξη του Sauce Connect πριν από κάθε δοκιμή, οπότε η ακολούθηση των οδηγιών τους για αυτό είναι μια επιλογή.
+Το Travis CI, ωστόσο, [παρέχει υποστήριξη](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect) για την εκκίνηση του Sauce Connect πριν από κάθε δοκιμή, οπότε η τήρηση των οδηγιών τους γι' αυτό αποτελεί μια επιλογή.
 
-Αν το κάνετε, πρέπει να ορίσετε την επιλογή ρύθμισης δοκιμών `tunnel-identifier` στις `capabilities` κάθε προγράμματος περιήγησης. Το Travis το ορίζει στην περιβαλλοντική μεταβλητή `TRAVIS_JOB_NUMBER` από προεπιλογή.
+Αν το κάνετε αυτό, πρέπει να ορίσετε την επιλογή διαμόρφωσης δοκιμής `tunnel-identifier` στις `capabilities` κάθε browser. Το Travis την ορίζει από προεπιλογή στη μεταβλητή περιβάλλοντος `TRAVIS_JOB_NUMBER`.
 
-Επίσης, αν θέλετε το Sauce Labs να ομαδοποιήσει τις δοκιμές σας ανά αριθμό build, μπορείτε να ορίσετε το `build` στο `TRAVIS_BUILD_NUMBER`.
+Επίσης, αν θέλετε το Sauce Labs να ομαδοποιεί τις δοκιμές σας ανά αριθμό build, μπορείτε να ορίσετε το `build` σε `TRAVIS_BUILD_NUMBER`.
 
-Τέλος, αν ορίσετε το `name`, αυτό αλλάζει το όνομα αυτής της δοκιμής στο Sauce Labs για αυτό το build. Εάν χρησιμοποιείτε το WDIO testrunner σε συνδυασμό με το [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service), το WebdriverIO ορίζει αυτόματα ένα κατάλληλο όνομα για τη δοκιμή.
+Τέλος, αν ορίσετε το `name`, αυτό αλλάζει το όνομα της συγκεκριμένης δοκιμής στο Sauce Labs για αυτό το build. Αν χρησιμοποιείτε τον WDIO testrunner σε συνδυασμό με το [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service), το WebdriverIO ορίζει αυτόματα ένα κατάλληλο όνομα για τη δοκιμή.
 
 Παράδειγμα `capabilities`:
 
@@ -55,33 +56,33 @@ build: process.env.TRAVIS_BUILD_NUMBER
 
 ### Χρονικά όρια
 
-Επειδή εκτελείτε τις δοκιμές σας απομακρυσμένα, μπορεί να είναι απαραίτητο να αυξήσετε ορισμένα χρονικά όρια.
+Εφόσον εκτελείτε τις δοκιμές σας απομακρυσμένα, ίσως χρειαστεί να αυξήσετε ορισμένα χρονικά όρια.
 
-Μπορείτε να αλλάξετε το [χρονικό όριο αδράνειας](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) περνώντας το `idle-timeout` ως επιλογή ρύθμισης δοκιμών. Αυτό ελέγχει πόσο θα περιμένει το Sauce μεταξύ των εντολών πριν κλείσει τη σύνδεση.
+Μπορείτε να αλλάξετε το [χρονικό όριο αδράνειας](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) περνώντας το `idle-timeout` ως επιλογή διαμόρφωσης δοκιμής. Αυτό καθορίζει πόσο θα περιμένει το Sauce μεταξύ εντολών πριν κλείσει τη σύνδεση.
 
 ## BrowserStack
 
-Το WebdriverIO έχει επίσης ενσωματωμένη τη [Browserstack](https://www.browserstack.com) ενσωμάτωση.
+Το WebdriverIO διαθέτει επίσης ενσωματωμένη υποστήριξη για το [Browserstack](https://www.browserstack.com).
 
-Η μόνη απαίτηση είναι να ορίσετε το `user` και το `key` στις ρυθμίσεις σας (είτε εξάγονται από το `wdio.conf.js` είτε μεταβιβάζονται στο `webdriverio.remote(...)`) στο όνομα χρήστη και το κλειδί πρόσβασης του Browserstack automate.
+Η μόνη απαίτηση είναι να ορίσετε τα `user` και `key` στη διαμόρφωσή σας (είτε εξάγονται από το `wdio.conf.js` είτε περνιούνται στο `webdriverio.remote(...)`) με το όνομα χρήστη και το κλειδί πρόσβασης του Browserstack automate.
 
-Μπορείτε επίσης να περάσετε οποιεσδήποτε προαιρετικές [υποστηριζόμενες δυνατότητες](https://www.browserstack.com/automate/capabilities) ως κλειδί/τιμή στις δυνατότητες για οποιοδήποτε πρόγραμμα περιήγησης. Εάν ορίσετε το `browserstack.debug` σε `true`, θα καταγράψει ένα βίντεο της συνεδρίας, που μπορεί να είναι χρήσιμο.
+Μπορείτε επίσης να περάσετε οποιεσδήποτε προαιρετικές [υποστηριζόμενες capabilities](https://www.browserstack.com/automate/capabilities) ως ζεύγος κλειδιού/τιμής στις capabilities για οποιονδήποτε browser. Αν ορίσετε το `browserstack.debug` σε `true`, θα καταγραφεί ένα βίντεο οθόνης της συνεδρίας, κάτι που μπορεί να φανεί χρήσιμο.
 
 ### Τοπικές Δοκιμές
 
-Αν θέλετε να εκτελέσετε δοκιμές σε έναν διακομιστή που δεν είναι προσβάσιμος στο Διαδίκτυο (όπως στο `localhost`), τότε πρέπει να χρησιμοποιήσετε το [Local Testing](https://www.browserstack.com/local-testing#command-line).
+Αν θέλετε να εκτελέσετε δοκιμές σε έναν διακομιστή που δεν είναι προσβάσιμος από το Διαδίκτυο (όπως στο `localhost`), τότε πρέπει να χρησιμοποιήσετε τις [Τοπικές Δοκιμές](https://www.browserstack.com/local-testing#command-line).
 
-Δεν εμπίπτει στο πεδίο εφαρμογής του WebdriverIO η υποστήριξη αυτού, οπότε πρέπει να το ξεκινήσετε μόνοι σας.
+Η υποστήριξη αυτού είναι εκτός του πεδίου του WebdriverIO, επομένως πρέπει να το εκκινήσετε μόνοι σας.
 
-Αν χρησιμοποιείτε τοπική δοκιμή, θα πρέπει να ορίσετε το `browserstack.local` σε `true` στις δυνατότητές σας.
+Αν χρησιμοποιείτε τοπική εκτέλεση, θα πρέπει να ορίσετε το `browserstack.local` σε `true` στις capabilities σας.
 
-Εάν χρησιμοποιείτε το WDIO testrunner, κατεβάστε και ρυθμίστε την [`@wdio/browserstack-service`](https://github.com/webdriverio/webdriverio/tree/master/packages/wdio-browserstack-service) στο `wdio.conf.js`. Βοηθά να ξεκινήσει το BrowserStack και έρχεται με πρόσθετες λειτουργίες που ενσωματώνουν καλύτερα τις δοκιμές σας στην υπηρεσία BrowserStack.
+Αν χρησιμοποιείτε τον WDIO testrunner, κατεβάστε και διαμορφώστε το [`@wdio/browserstack-service`](https://github.com/browserstack/wdio-browserstack-service) στο `wdio.conf.js` σας. Βοηθά στην εκτέλεση του BrowserStack και διαθέτει επιπλέον λειτουργίες που ενσωματώνουν καλύτερα τις δοκιμές σας στην υπηρεσία BrowserStack.
 
 ### Με Travis CI
 
-Αν θέλετε να προσθέσετε Local Testing στο Travis, πρέπει να το ξεκινήσετε μόνοι σας.
+Αν θέλετε να προσθέσετε Τοπικές Δοκιμές στο Travis, πρέπει να το εκκινήσετε μόνοι σας.
 
-Το ακόλουθο σενάριο θα το κατεβάσει και θα το ξεκινήσει στο παρασκήνιο. Θα πρέπει να το εκτελέσετε στο Travis πριν ξεκινήσετε τις δοκιμές.
+Το παρακάτω script θα το κατεβάσει και θα το εκκινήσει στο παρασκήνιο. Θα πρέπει να το εκτελέσετε στο Travis πριν ξεκινήσετε τις δοκιμές.
 
 ```sh
 wget https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip
@@ -105,41 +106,41 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## TestingBot
 
-Η μόνη απαίτηση είναι να ορίσετε το `user` και το `key` στις ρυθμίσεις σας (είτε εξάγονται από το `wdio.conf.js` είτε μεταβιβάζονται στο `webdriverio.remote(...)`) στο όνομα χρήστη και το μυστικό κλειδί του [TestingBot](https://testingbot.com).
+Η μόνη απαίτηση είναι να ορίσετε τα `user` και `key` στη διαμόρφωσή σας (είτε εξάγονται από το `wdio.conf.js` είτε περνιούνται στο `webdriverio.remote(...)`) με το όνομα χρήστη και το μυστικό κλειδί του [TestingBot](https://testingbot.com).
 
-Μπορείτε επίσης να περάσετε οποιεσδήποτε προαιρετικές [υποστηριζόμενες δυνατότητες](https://testingbot.com/support/other/test-options) ως κλειδί/τιμή στις δυνατότητες για οποιοδήποτε πρόγραμμα περιήγησης.
+Μπορείτε επίσης να περάσετε οποιεσδήποτε προαιρετικές [υποστηριζόμενες capabilities](https://testingbot.com/support/other/test-options) ως ζεύγος κλειδιού/τιμής στις capabilities για οποιονδήποτε browser.
 
 ### Τοπικές Δοκιμές
 
-Αν θέλετε να εκτελέσετε δοκιμές σε έναν διακομιστή που δεν είναι προσβάσιμος στο Διαδίκτυο (όπως στο `localhost`), τότε πρέπει να χρησιμοποιήσετε το [Local Testing](https://testingbot.com/support/other/tunnel). Το TestingBot παρέχει ένα τούνελ βασισμένο σε Java για να σας επιτρέψει να δοκιμάσετε ιστοσελίδες που δεν είναι προσβάσιμες από το διαδίκτυο.
+Αν θέλετε να εκτελέσετε δοκιμές σε έναν διακομιστή που δεν είναι προσβάσιμος από το Διαδίκτυο (όπως στο `localhost`), τότε πρέπει να χρησιμοποιήσετε τις [Τοπικές Δοκιμές](https://testingbot.com/support/other/tunnel). Το TestingBot παρέχει ένα tunnel βασισμένο σε Java που σας επιτρέπει να δοκιμάζετε ιστοσελίδες που δεν είναι προσβάσιμες από το διαδίκτυο.
 
-Η σελίδα υποστήριξης του tunnel περιέχει τις απαραίτητες πληροφορίες για να το θέσετε σε λειτουργία.
+Η σελίδα υποστήριξης του tunnel τους περιέχει τις απαραίτητες πληροφορίες για να το θέσετε σε λειτουργία.
 
-Εάν χρησιμοποιείτε το WDIO testrunner, κατεβάστε και ρυθμίστε την [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) στο `wdio.conf.js`. Βοηθά στην εκτέλεση του TestingBot και έρχεται με πρόσθετες λειτουργίες που ενσωματώνουν καλύτερα τις δοκιμές σας στην υπηρεσία TestingBot.
+Αν χρησιμοποιείτε τον WDIO testrunner, κατεβάστε και διαμορφώστε το [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) στο `wdio.conf.js` σας. Βοηθά στην εκτέλεση του TestingBot και διαθέτει επιπλέον λειτουργίες που ενσωματώνουν καλύτερα τις δοκιμές σας στην υπηρεσία TestingBot.
 
-## TestMu AI (Πρώην LambdaTest)
+## TestMu AI (πρώην LambdaTest)
 
-Η ενσωμάτωση [TestMu AI](https://www.testmuai.com/) είναι επίσης ενσωματωμένη.
+Η ενσωμάτωση του [TestMu AI](https://www.testmuai.com/) είναι επίσης ενσωματωμένη.
 
-Η μόνη απαίτηση είναι να ορίσετε το `user` και το `key` στις ρυθμίσεις σας (είτε εξάγονται από το `wdio.conf.js` είτε μεταβιβάζονται στο `webdriverio.remote(...)`) στο όνομα χρήστη του λογαριασμού TestMu AI και το κλειδί πρόσβασης.
+Η μόνη απαίτηση είναι να ορίσετε τα `user` και `key` στη διαμόρφωσή σας (είτε εξάγονται από το `wdio.conf.js` είτε περνιούνται στο `webdriverio.remote(...)`) με το όνομα χρήστη και το κλειδί πρόσβασης του λογαριασμού σας στο TestMu AI.
 
-Μπορείτε επίσης να περάσετε οποιεσδήποτε προαιρετικές [υποστηριζόμενες δυνατότητες](https://www.testmuai.com/capabilities-generator/) ως κλειδί/τιμή στις δυνατότητες για οποιοδήποτε πρόγραμμα περιήγησης. Εάν ορίσετε το `visual` σε `true`, θα καταγράψει ένα βίντεο της συνεδρίας, που μπορεί να είναι χρήσιμο.
+Μπορείτε επίσης να περάσετε οποιεσδήποτε προαιρετικές [υποστηριζόμενες capabilities](https://www.testmuai.com/capabilities-generator/) ως ζεύγος κλειδιού/τιμής στις capabilities για οποιονδήποτε browser. Αν ορίσετε το `visual` σε `true`, θα καταγραφεί ένα βίντεο οθόνης της συνεδρίας, κάτι που μπορεί να φανεί χρήσιμο.
 
 ### Tunnel για τοπικές δοκιμές
 
-Αν θέλετε να εκτελέσετε δοκιμές σε έναν διακομιστή που δεν είναι προσβάσιμος στο Διαδίκτυο (όπως στο `localhost`), τότε πρέπει να χρησιμοποιήσετε το [Local Testing](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/).
+Αν θέλετε να εκτελέσετε δοκιμές σε έναν διακομιστή που δεν είναι προσβάσιμος από το Διαδίκτυο (όπως στο `localhost`), τότε πρέπει να χρησιμοποιήσετε τις [Τοπικές Δοκιμές](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/).
 
-Δεν εμπίπτει στο πεδίο εφαρμογής του WebdriverIO η υποστήριξη αυτού, οπότε πρέπει να το ξεκινήσετε μόνοι σας.
+Η υποστήριξη αυτού είναι εκτός του πεδίου του WebdriverIO, επομένως πρέπει να το εκκινήσετε μόνοι σας.
 
-Αν χρησιμοποιείτε τοπική δοκιμή, θα πρέπει να ορίσετε το `tunnel` σε `true` στις δυνατότητές σας.
+Αν χρησιμοποιείτε τοπική εκτέλεση, θα πρέπει να ορίσετε το `tunnel` σε `true` στις capabilities σας.
 
-Εάν χρησιμοποιείτε το WDIO testrunner, κατεβάστε και ρυθμίστε την [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) στο `wdio.conf.js`. Βοηθά στην εκτέλεση του TestMu AI και έρχεται με πρόσθετες λειτουργίες που ενσωματώνουν καλύτερα τις δοκιμές σας στην υπηρεσία TestMu AI.
+Αν χρησιμοποιείτε τον WDIO testrunner, κατεβάστε και διαμορφώστε το [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) στο `wdio.conf.js` σας. Βοηθά στην εκτέλεση του TestMu AI και διαθέτει επιπλέον λειτουργίες που ενσωματώνουν καλύτερα τις δοκιμές σας στην υπηρεσία TestMu AI.
 
 ### Με Travis CI
 
-Αν θέλετε να προσθέσετε Local Testing στο Travis, πρέπει να το ξεκινήσετε μόνοι σας.
+Αν θέλετε να προσθέσετε Τοπικές Δοκιμές στο Travis, πρέπει να το εκκινήσετε μόνοι σας.
 
-Το ακόλουθο σενάριο θα το κατεβάσει και θα το ξεκινήσει στο παρασκήνιο. Θα πρέπει να το εκτελέσετε στο Travis πριν ξεκινήσετε τις δοκιμές.
+Το παρακάτω script θα το κατεβάσει και θα το εκκινήσει στο παρασκήνιο. Θα πρέπει να το εκτελέσετε στο Travis πριν ξεκινήσετε τις δοκιμές.
 
 ```sh
 wget http://downloads.lambdatest.com/tunnel/linux/64bit/LT_Linux.zip
@@ -163,7 +164,7 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## Perfecto
 
-Όταν χρησιμοποιείτε το wdio με το [`Perfecto`](https://www.perfecto.io), πρέπει να δημιουργήσετε ένα διακριτικό ασφαλείας για κάθε χρήστη και να το προσθέσετε στη δομή δυνατοτήτων (επιπλέον άλλων δυνατοτήτων), ως εξής:
+Όταν χρησιμοποιείτε το wdio με το [`Perfecto`](https://www.perfecto.io), πρέπει να δημιουργήσετε ένα security token για κάθε χρήστη και να το προσθέσετε στη δομή των capabilities (επιπλέον των άλλων capabilities), ως εξής:
 
 ```js
 export const config = {
@@ -173,11 +174,65 @@ export const config = {
   }],
 ```
 
-Επιπλέον, πρέπει να προσθέσετε τη ρύθμιση cloud, ως εξής:
+Επιπλέον, πρέπει να προσθέσετε τη διαμόρφωση cloud, ως εξής:
 
 ```js
   hostname: "your_cloud_name.perfectomobile.com",
   path: "/nexperience/perfectomobile/wd/hub",
   port: 443,
   protocol: "https",
+```
+
+## RobotActions
+
+Το [RobotActions](https://robotactions.com) παρέχει πραγματικές συσκευές Android και iOS μαζί με κόμβους browser πίσω από ένα ενιαίο endpoint. Η πιστοποίηση γίνεται με ένα API token αντί για ζεύγος `user` και `key`. Στείλτε το token ως bearer header:
+
+```js
+export const config = {
+  protocol: 'https',
+  hostname: 'grid.robotactions.com',
+  port: 443,
+  path: '/',
+  headers: {
+    Authorization: `Bearer ${process.env.RA_API_TOKEN}`
+  },
+  capabilities: [{
+    browserName: 'chrome'
+  }]
+}
+```
+
+Εναλλακτικά, περάστε το token ως πρόθεμα διαδρομής, το οποίο το grid αφαιρεί πριν προωθήσει το αίτημα:
+
+```js
+export const config = {
+  protocol: 'https',
+  hostname: 'grid.robotactions.com',
+  port: 443,
+  path: `/t/${process.env.RA_API_TOKEN}/`,
+  capabilities: [{
+    browserName: 'chrome'
+  }]
+}
+```
+
+Το grid δέχεται επιπλέον διαπιστευτήρια ενσωματωμένα στο URL (`https://user:token@host`) για άλλους WebDriver clients, αλλά αυτή η μορφή δεν μπορεί να χρησιμοποιηθεί από το WebdriverIO: βασίζεται στο fetch, και το Node.js απορρίπτει διαπιστευτήρια ενσωματωμένα στο URL.
+
+Για να εκτελέσετε δοκιμές σε πραγματική συσκευή, περάστε τον browser ως Appium capability μαζί με οποιονδήποτε από τους παραπάνω τρόπους σύνδεσης:
+
+```js
+export const config = {
+  protocol: 'https',
+  hostname: 'grid.robotactions.com',
+  port: 443,
+  path: '/',
+  headers: {
+    Authorization: `Bearer ${process.env.RA_API_TOKEN}`
+  },
+  capabilities: [{
+    platformName: 'Android',
+    'appium:browserName': 'chrome',
+    'appium:automationName': 'UiAutomator2'
+  }]
+}
 ```

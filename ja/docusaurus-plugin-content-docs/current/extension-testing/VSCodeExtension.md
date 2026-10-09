@@ -1,30 +1,31 @@
 ---
 id: vscode-extensions
 title: VS Code 拡張機能のテスト
+description: "WebdriverIO と VS Code サービスを使用して、デスクトップ IDE またはウェブ拡張機能として VS Code 拡張機能をエンドツーエンドでテストします。"
 ---
 
-WebdriverIOを使用すると、[VS Code](https://code.visualstudio.com/)拡張機能をVS Codeデスクトップ IDEまたはWeb拡張機能としてシームレスにエンドツーエンドでテストできます。拡張機能へのパスを提供するだけで、フレームワークが残りの処理を行います。[`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service)によって、すべてが処理されるだけでなく、さらに多くの機能があります：
+WebdriverIO を使用すると、[VS Code](https://code.visualstudio.com/) 拡張機能を VS Code デスクトップ IDE またはウェブ拡張機能として、エンドツーエンドでシームレスにテストできます。拡張機能へのパスを指定するだけで、残りはフレームワークが処理します。[`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) を使用すると、以下のようなことがすべて処理されます：
 
-- 🏗️ VSCodeのインストール（安定版、インサイダー版、または指定したバージョン）
-- ⬇️ 特定のVSCodeバージョンに対応するChromedriverのダウンロード
-- 🚀 テストからVSCode APIにアクセスする機能
-- 🖥️ カスタムユーザー設定でのVSCodeの起動（Ubuntu、MacOS、WindowsのVSCodeをサポート）
-- 🌐 またはWeb拡張機能のテスト用にVSCodeをサーバーから提供
-- 📔 VSCodeバージョンに合わせたロケーターを持つページオブジェクトのブートストラップ
+- 🏗️ VSCode のインストール（stable、insiders、または指定したバージョン）
+- ⬇️ 指定した VSCode バージョンに対応する Chromedriver のダウンロード
+- 🚀 テストから VSCode API へのアクセスが可能
+- 🖥️ カスタムユーザー設定での VSCode の起動（Ubuntu、MacOS、Windows 上の VSCode をサポート）
+- 🌐 またはウェブ拡張機能のテストのために、任意のブラウザからアクセスできるようサーバーから VSCode を提供
+- 📔 VSCode のバージョンに合ったロケーターを持つページオブジェクトのブートストラップ
 
-## 始めるには
+## はじめに
 
-新しいWebdriverIOプロジェクトを開始するには、次のコマンドを実行します：
+新しい WebdriverIO プロジェクトを開始するには、次のコマンドを実行します：
 
 ```sh
 npm create wdio@latest ./
 ```
 
-インストールウィザードが手順をガイドします。どのようなテストを行いたいかを尋ねられたら、必ず_「VS Code拡張機能のテスト」_を選択し、その後はデフォルトのままにするか、好みに合わせて変更してください。
+インストールウィザードがプロセスを案内します。どのような種類のテストを行いたいか尋ねられたら、必ず _"VS Code Extension Testing"_ を選択してください。その後はデフォルトのままにするか、好みに応じて変更してください。
 
 ## 設定例
 
-このサービスを使用するには、サービスのリストに`vscode`を追加し、必要に応じて設定オブジェクトを続けます。これによりWebdriverIOは指定されたVSCodeバイナリと適切なChromedriverバージョンをダウンロードします：
+このサービスを使用するには、サービスのリストに `vscode` を追加し、必要に応じて設定オブジェクトを続けて指定します。これにより、WebdriverIO は指定された VSCode バイナリと適切な Chromedriver バージョンをダウンロードします：
 
 ```js
 // wdio.conf.ts
@@ -33,7 +34,7 @@ export const config = {
     // ...
     capabilities: [{
         browserName: 'vscode',
-        browserVersion: '1.71.0', // 最新のVSCodeバージョンには "insiders" または "stable"
+        browserVersion: '1.71.0', // "insiders" or "stable" for latest VSCode version
         'wdio:vscodeOptions': {
             extensionPath: __dirname,
             userSettings: {
@@ -43,15 +44,15 @@ export const config = {
     }],
     services: ['vscode'],
     /**
-     * オプションでWebdriverIOがすべてのVSCodeとChromedriverバイナリを
-     * 保存するパスを定義できます。例：
+     * optionally you can define the path WebdriverIO stores all
+     * VSCode and Chromedriver binaries, e.g.:
      * services: [['vscode', { cachePath: __dirname }]]
      */
     // ...
 };
 ```
 
-`browserName`が`vscode`以外（例えば`chrome`）で`wdio:vscodeOptions`を定義すると、サービスは拡張機能をWeb拡張機能として提供します。Chromeでテストする場合、追加のドライバーサービスは必要ありません：
+`vscode` 以外の `browserName`（例：`chrome`）で `wdio:vscodeOptions` を定義すると、サービスは拡張機能をウェブ拡張機能として提供します。Chrome でテストする場合、追加のドライバーサービスは必要ありません。例：
 
 ```js
 // wdio.conf.ts
@@ -69,11 +70,11 @@ export const config = {
 };
 ```
 
-_注意：_ Web拡張機能をテストする場合、`browserVersion`として`stable`または`insiders`のみを選択できます。
+_注意:_ ウェブ拡張機能をテストする場合、`browserVersion` として選択できるのは `stable` または `insiders` のみです。
 
-### TypeScriptの設定
+### TypeScript のセットアップ
 
-`tsconfig.json`で、`wdio-vscode-service`を型のリストに追加してください：
+`tsconfig.json` で、types のリストに `wdio-vscode-service` を必ず追加してください：
 
 ```json
 {
@@ -93,7 +94,7 @@ _注意：_ Web拡張機能をテストする場合、`browserVersion`として`
 
 ## 使用方法
 
-`getWorkbench`メソッドを使用して、希望するVSCodeバージョンに一致するロケーターのページオブジェクトにアクセスできます：
+その後、`getWorkbench` メソッドを使用して、目的の VSCode バージョンに合ったロケーターを持つページオブジェクトにアクセスできます：
 
 ```ts
 describe('WDIO VSCode Service', () => {
@@ -105,11 +106,11 @@ describe('WDIO VSCode Service', () => {
 })
 ```
 
-そこから適切なページオブジェクトメソッドを使用して、すべてのページオブジェクトにアクセスできます。利用可能なすべてのページオブジェクトとそのメソッドについては、[ページオブジェクトのドキュメント](https://webdriverio-community.github.io/wdio-vscode-service/)で詳細を確認してください。
+そこから、適切なページオブジェクトメソッドを使用してすべてのページオブジェクトにアクセスできます。利用可能なすべてのページオブジェクトとそのメソッドの詳細については、[ページオブジェクトのドキュメント](https://webdriverio-community.github.io/wdio-vscode-service/)を参照してください。
 
-### VSCode APIへのアクセス
+### VSCode API へのアクセス
 
-[VSCode API](https://code.visualstudio.com/api/references/vscode-api)を通じて特定の自動化を実行したい場合は、カスタム`executeWorkbench`コマンドを使用してリモートコマンドを実行できます。このコマンドを使用すると、テストからVSCode環境内でコードをリモート実行し、VSCode APIにアクセスできるようになります。任意のパラメータを関数に渡すことができ、それらは関数内に伝播されます。`vscode`オブジェクトは常に最初の引数として渡され、その後に外部関数のパラメータが続きます。コールバックはリモートで実行されるため、関数スコープ外の変数にはアクセスできないことに注意してください。例：
+[VSCode API](https://code.visualstudio.com/api/references/vscode-api) を通じて特定の自動化を実行したい場合は、カスタムの `executeWorkbench` コマンドでリモートコマンドを実行することで可能です。このコマンドを使用すると、テストから VSCode 環境内でコードをリモート実行でき、VSCode API にアクセスできます。関数には任意のパラメーターを渡すことができ、それらは関数内に伝播されます。`vscode` オブジェクトは常に最初の引数として渡され、その後に外側の関数のパラメーターが続きます。コールバックはリモートで実行されるため、関数スコープ外の変数にはアクセスできないことに注意してください。以下に例を示します：
 
 ```ts
 const workbench = await browser.getWorkbench()
@@ -121,11 +122,11 @@ const notifs = await workbench.getNotifications()
 console.log(await notifs[0].getMessage()) // 出力: "I am an API call!"
 ```
 
-ページオブジェクトの完全なドキュメントについては、[ドキュメント](https://webdriverio-community.github.io/wdio-vscode-service/modules.html)を確認してください。このプロジェクトの[テストスイート](https://github.com/webdriverio-community/wdio-vscode-service/blob/main/test/specs)にさまざまな使用例があります。
+ページオブジェクトの完全なドキュメントについては、[ドキュメント](https://webdriverio-community.github.io/wdio-vscode-service/modules.html)を確認してください。さまざまな使用例は、この[プロジェクトのテストスイート](https://github.com/webdriverio-community/wdio-vscode-service/blob/main/test/specs)で見つけることができます。
 
 ## 詳細情報
 
-[`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service)の設定方法やカスタムページオブジェクトの作成方法については、[サービスドキュメント](/docs/wdio-vscode-service)で詳細を確認できます。また、[Christian Bromann](https://twitter.com/bromann)による[_ウェブ標準の力を使った複雑なVSCode拡張機能のテスト_](https://www.youtube.com/watch?v=PhGNTioBUiU)に関する以下の講演も視聴できます：
+[`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) の設定方法やカスタムページオブジェクトの作成方法については、[サービスのドキュメント](/docs/wdio-vscode-service)で詳しく学ぶことができます。また、[Christian Bromann](https://twitter.com/bromann) による講演 [_Testing Complex VSCode Extensions With the Power of Web Standards_](https://www.youtube.com/watch?v=PhGNTioBUiU) もご覧いただけます：
 
 <LiteYouTubeEmbed
     id="PhGNTioBUiU"

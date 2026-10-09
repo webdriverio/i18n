@@ -1,13 +1,14 @@
 ---
 id: customreporter
-title: Anpassad Reporter
+title: Anpassad rapportör
+description: "Bygg en anpassad rapportör för WDIO-testköraren ovanpå @wdio/reporter, hantera körarhändelser och publicera den på NPM."
 ---
 
-Du kan skriva din egen anpassade reporter för WDIO-testrunner som är skräddarsydd efter dina behov. Och det är enkelt!
+Du kan skriva din egen anpassade rapportör för WDIO-testköraren som är skräddarsydd efter dina behov. Och det är enkelt!
 
-Allt du behöver göra är att skapa en nodmodul som ärver från paketet `@wdio/reporter`, så att den kan ta emot meddelanden från testet.
+Allt du behöver göra är att skapa en node-modul som ärver från paketet `@wdio/reporter`, så att den kan ta emot meddelanden från testet.
 
-Den grundläggande inställningen bör se ut så här:
+Den grundläggande uppsättningen bör se ut så här:
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -15,7 +16,7 @@ import WDIOReporter from '@wdio/reporter'
 export default class CustomReporter extends WDIOReporter {
     constructor(options) {
         /*
-         * make reporter to write to the output stream by default
+         * låt rapportören skriva till utdataströmmen som standard
          */
         options = Object.assign(options, { stdout: true })
         super(options)
@@ -27,7 +28,7 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-För att använda denna reporter behöver du bara tilldela den till egenskapen `reporter` i din konfiguration.
+För att använda denna rapportör behöver du bara tilldela den till egenskapen `reporter` i din konfiguration.
 
 
 Din `wdio.conf.js`-fil bör se ut så här:
@@ -39,13 +40,13 @@ export const config = {
     // ...
     reporters: [
         /**
-         * use imported reporter class
+         * använd importerad rapportörklass
          */
         [CustomReporter, {
             someOption: 'foobar'
         }],
         /**
-         * use absolute path to reporter
+         * använd absolut sökväg till rapportören
          */
         ['/path/to/reporter.js', {
             someOption: 'foobar'
@@ -55,15 +56,15 @@ export const config = {
 }
 ```
 
-Du kan också publicera reportern på NPM så att alla kan använda den. Namnge paketet som andra reporters `wdio-<reportername>-reporter`, och tagga det med nyckelord som `wdio` eller `wdio-reporter`.
+Du kan också publicera rapportören på NPM så att alla kan använda den. Namnge paketet som andra rapportörer, `wdio-<reportername>-reporter`, och tagga det med nyckelord som `wdio` eller `wdio-reporter`.
 
 ## Händelsehanterare
 
-Du kan registrera en händelsehanterare för flera händelser som utlöses under testning. Alla följande hanterare kommer att ta emot nyttolaster med användbar information om aktuellt tillstånd och framsteg.
+Du kan registrera en händelsehanterare för flera händelser som utlöses under testningen. Alla följande hanterare tar emot payloads med användbar information om aktuellt tillstånd och förlopp.
 
-Strukturen för dessa nyttolastobjekt beror på händelsen och är enhetliga över ramverken (Mocha, Jasmine och Cucumber). När du implementerar en anpassad reporter bör den fungera för alla ramverk.
+Strukturen på dessa payload-objekt beror på händelsen och är enhetlig över ramverken (Mocha, Jasmine och Cucumber). När du har implementerat en anpassad rapportör bör den fungera för alla ramverk.
 
-Följande lista innehåller alla möjliga metoder du kan lägga till i din reporter-klass:
+Följande lista innehåller alla möjliga metoder du kan lägga till i din rapportörklass:
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -87,7 +88,7 @@ export default class CustomReporter extends WDIOReporter {
 
 Metodnamnen är ganska självförklarande.
 
-För att skriva ut något vid en viss händelse, använd metoden `this.write(...)`, som tillhandahålls av föräldraklassen `WDIOReporter`. Den strömmar antingen innehållet till `stdout` eller till en loggfil (beroende på reporterns alternativ).
+För att skriva ut något vid en viss händelse, använd metoden `this.write(...)`, som tillhandahålls av föräldraklassen `WDIOReporter`. Den strömmar antingen innehållet till `stdout` eller till en loggfil (beroende på rapportörens alternativ).
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -99,15 +100,15 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-Observera att du inte kan fördröja testutförandet på något sätt.
+Observera att du inte på något sätt kan fördröja testkörningen.
 
-Alla händelsehanterare bör utföra synkrona rutiner (annars kan du hamna i kapplöpningstillstånd).
+Alla händelsehanterare bör köra synkrona rutiner (annars kommer du att stöta på kapplöpningstillstånd).
 
-Se till att kolla in [exempelsektionen](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) där du kan hitta ett exempel på en anpassad reporter som skriver ut händelsenamnet för varje händelse.
+Se till att kolla in [exempelavsnittet](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) där du hittar ett exempel på en anpassad rapportör som skriver ut händelsenamnet för varje händelse.
 
-Om du har implementerat en anpassad reporter som kan vara användbar för gemenskapen, tveka inte att göra en Pull Request så att vi kan göra reportern tillgänglig för allmänheten!
+Om du har implementerat en anpassad rapportör som kan vara användbar för communityn, tveka inte att skapa en Pull Request så att vi kan göra rapportören tillgänglig för allmänheten!
 
-Dessutom, om du kör WDIO-testrunner via `Launcher`-gränssnittet, kan du inte använda en anpassad reporter som funktion enligt följande:
+Om du kör WDIO-testköraren via `Launcher`-gränssnittet kan du inte heller använda en anpassad rapportör som funktion på följande sätt:
 
 ```js
 import Launcher from '@wdio/cli'
@@ -115,14 +116,14 @@ import Launcher from '@wdio/cli'
 import CustomReporter from './reporter/my.custom.reporter'
 
 const launcher = new Launcher('/path/to/config.file.js', {
-    // this will NOT work, because CustomReporter is not serializable
+    // detta fungerar INTE, eftersom CustomReporter inte är serialiserbar
     reporters: ['dot', CustomReporter]
 })
 ```
 
 ## Vänta tills `isSynchronised`
 
-Om din reporter måste utföra asynkrona operationer för att rapportera data (t.ex. uppladdning av loggfiler eller andra tillgångar) kan du skriva över metoden `isSynchronised` i din anpassade reporter för att låta WebdriverIO-runnern vänta tills du har beräknat allt. Ett exempel på detta kan ses i [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
+Om din rapportör måste utföra asynkrona operationer för att rapportera data (t.ex. uppladdning av loggfiler eller andra tillgångar) kan du skriva över metoden `isSynchronised` i din anpassade rapportör för att låta WebdriverIO-köraren vänta tills du har beräknat allt. Ett exempel på detta finns i [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
 
 ```js
 export default class SumoLogicReporter extends WDIOReporter {
@@ -134,14 +135,14 @@ export default class SumoLogicReporter extends WDIOReporter {
     }
 
     /**
-     * overwrite isSynchronised method
+     * skriv över metoden isSynchronised
      */
     get isSynchronised () {
         return this.unsynced.length === 0
     }
 
     /**
-     * sync log files
+     * synkronisera loggfiler
      */
     sync () {
         // ...
@@ -152,7 +153,7 @@ export default class SumoLogicReporter extends WDIOReporter {
         }, (err, resp) => {
             // ...
             /**
-             * remove transferred logs from log bucket
+             * ta bort överförda loggar från logghinken
              */
             this.unsynced.splice(0, MAX_LINES)
             // ...
@@ -161,21 +162,21 @@ export default class SumoLogicReporter extends WDIOReporter {
 }
 ```
 
-På detta sätt kommer runnern att vänta tills all logginformation har laddats upp.
+På så sätt väntar köraren tills all logginformation har laddats upp.
 
-## Publicera Reporter på NPM
+## Publicera rapportör på NPM
 
-För att göra reportern lättare att använda och upptäcka av WebdriverIO-gemenskapen, följ dessa rekommendationer:
+För att göra rapportören enklare att använda och upptäcka för WebdriverIO-communityn, följ dessa rekommendationer:
 
 * Tjänster bör använda denna namnkonvention: `wdio-*-reporter`
 * Använd NPM-nyckelord: `wdio-plugin`, `wdio-reporter`
-* `main`-inmatningen bör `export` en instans av reportern
-* Exempel på reporter: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
+* `main`-posten bör `export` en instans av rapportören
+* Exempel på rapportör: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
-Att följa det rekommenderade namnmönstret gör att tjänster kan läggas till med namn:
+Genom att följa det rekommenderade namnmönstret kan tjänster läggas till med namn:
 
 ```js
-// Add wdio-custom-reporter
+// Lägg till wdio-custom-reporter
 export const config = {
     // ...
     reporter: ['custom'],
@@ -183,11 +184,11 @@ export const config = {
 }
 ```
 
-### Lägg till publicerad tjänst till WDIO CLI och dokumentation
+### Lägg till publicerad tjänst i WDIO CLI och dokumentationen
 
-Vi uppskattar verkligen varje nytt plugin som kan hjälpa andra att köra bättre tester! Om du har skapat ett sådant plugin, överväg att lägga till det i vår CLI och dokumentation för att göra det lättare att hitta.
+Vi uppskattar verkligen varje nytt plugin som kan hjälpa andra att köra bättre tester! Om du har skapat ett sådant plugin, överväg att lägga till det i vårt CLI och vår dokumentation för att göra det lättare att hitta.
 
-Skapa gärna en pull request med följande ändringar:
+Skapa en pull request med följande ändringar:
 
-- lägg till din tjänst i listan över [supporterade reporters](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) i CLI-modulen
-- förbättra [reporter-listan](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/reporters.json) för att lägga till din dokumentation på den officiella Webdriver.io-sidan
+- lägg till din tjänst i listan över [stödda rapportörer](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) i CLI-modulen
+- utöka [rapportörlistan](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json) för att lägga till din dokumentation på den officiella Webdriver.io-sidan

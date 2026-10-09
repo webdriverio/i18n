@@ -1,15 +1,16 @@
 ---
 id: lit
-title: لت
+title: Lit
+description: "قم بإعداد مشغل المتصفح الخاص بـ WebdriverIO لمكونات الويب المبنية باستخدام Lit، واكتب اختبارات تستعلم عن العناصر داخل جذور الظل (shadow roots) المتداخلة."
 ---
 
-Lit هي مكتبة بسيطة لبناء مكونات ويب سريعة وخفيفة الوزن. يُعد اختبار مكونات ويب Lit باستخدام WebdriverIO سهلاً للغاية بفضل [محددات Shadow DOM](/docs/selectors#deep-selectors) الخاصة بـ WebdriverIO التي تمكنك من الاستعلام عن العناصر المتداخلة في جذور الظل بأمر واحد فقط.
+Lit هي مكتبة بسيطة لبناء مكونات ويب سريعة وخفيفة. يعد اختبار مكونات الويب المبنية باستخدام Lit مع WebdriverIO أمرًا سهلاً للغاية بفضل [محددات shadow DOM](/docs/selectors#deep-selectors) الخاصة بـ WebdriverIO، حيث يمكنك الاستعلام عن العناصر المتداخلة داخل جذور الظل (shadow roots) باستخدام أمر واحد فقط.
 
 ## الإعداد
 
-لإعداد WebdriverIO ضمن مشروع Lit الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. بالنسبة لـ Lit، لا تحتاج إلى إعداد مسبق حيث لا تحتاج مكونات ويب Lit إلى المرور عبر مترجم، فهي عبارة عن تحسينات لمكونات الويب النقية.
+لإعداد WebdriverIO داخل مشروع Lit الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. بالنسبة لـ Lit، لا تحتاج إلى إعداد مسبق (preset) لأن مكونات الويب المبنية باستخدام Lit لا تحتاج إلى المرور عبر مترجم (compiler)، فهي مجرد تحسينات خالصة لمكونات الويب.
 
-بمجرد الإعداد، يمكنك بدء الاختبارات عن طريق تشغيل:
+بمجرد الانتهاء من الإعداد، يمكنك بدء الاختبارات عن طريق تشغيل:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -28,20 +29,20 @@ export class SimpleGreeting extends LitElement {
     @property()
     name?: string = 'World'
 
-    // Render the UI as a function of component state
+    // عرض واجهة المستخدم كدالة لحالة المكون
     render() {
         return html`<p>Hello, ${this.name}!</p>`
     }
 }
 ```
 
-لاختبار المكون، عليك عرضه في صفحة الاختبار قبل بدء الاختبار والتأكد من تنظيفه بعد ذلك:
+لاختبار المكون، يجب عليك عرضه في صفحة الاختبار قبل بدء الاختبار والتأكد من تنظيفه بعد ذلك:
 
 ```ts title="lit.test.js"
 import expect from 'expect'
 import { waitFor } from '@testing-library/dom'
 
-// import Lit component
+// استيراد مكون Lit
 import './components/Component.ts'
 
 describe('Lit Component testing', () => {

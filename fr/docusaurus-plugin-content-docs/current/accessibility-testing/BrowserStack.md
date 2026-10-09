@@ -1,22 +1,23 @@
 ---
 id: browserstack
 title: Tests d'accessibilité BrowserStack
+description: "Ajoutez des analyses d'accessibilité automatisées aux tests WebdriverIO exécutés sur BrowserStack Automate et examinez les problèmes détectés dans les rapports BrowserStack."
 ---
 
-# BrowserStack Accessibility Testing
+# Tests d'accessibilité BrowserStack
 
 Vous pouvez facilement intégrer des tests d'accessibilité dans vos suites de tests WebdriverIO en utilisant la [fonctionnalité de tests automatisés de BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
 ## Avantages des tests automatisés dans BrowserStack Accessibility Testing
 
-Pour utiliser les tests automatisés dans BrowserStack Accessibility Testing, vos tests doivent s'exécuter sur BrowserStack Automate.
+Pour utiliser les tests automatisés dans BrowserStack Accessibility Testing, vos tests doivent être exécutés sur BrowserStack Automate.
 
 Voici les avantages des tests automatisés :
 
-* S'intègre parfaitement dans votre suite de tests d'automatisation préexistante.
-* Aucune modification de code n'est requise dans les cas de test.
+* S'intègre parfaitement à votre suite de tests d'automatisation existante.
+* Aucune modification du code n'est requise dans les cas de test.
 * Ne nécessite aucune maintenance supplémentaire pour les tests d'accessibilité.
-* Comprendre les tendances historiques et obtenir des informations sur les cas de test.
+* Permet de comprendre les tendances historiques et d'obtenir des informations sur les cas de test.
 
 ## Démarrer avec BrowserStack Accessibility Testing
 
@@ -44,7 +45,7 @@ exports.config = {
     services: [
       ['browserstack', {
         accessibility: true,
-        // Optional configuration options
+        // Options de configuration facultatives
         accessibilityOptions: {
           'wcagVersion': 'wcag21a',
           'includeIssueType': {
@@ -60,4 +61,4 @@ exports.config = {
   };
 ```
 
-Vous pouvez consulter des instructions détaillées [ici](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Vous pouvez consulter les instructions détaillées [ici](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).

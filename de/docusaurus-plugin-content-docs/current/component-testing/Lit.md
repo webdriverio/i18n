@@ -1,13 +1,14 @@
 ---
 id: lit
 title: Lit
+description: "Richten Sie den WebdriverIO Browser-Runner für Lit-Webkomponenten ein und schreiben Sie Tests, die Elemente innerhalb verschachtelter Shadow Roots abfragen."
 ---
 
-Lit ist eine einfache Bibliothek zum Erstellen schneller, leichtgewichtiger Webkomponenten. Das Testen von Lit-Webkomponenten mit WebdriverIO ist dank WebdriverIOs [Shadow-DOM-Selektoren](/docs/selectors#deep-selectors) sehr einfach. Sie können in verschachtelten Elementen im Shadow-Root mit nur einem einzigen Befehl abfragen.
+Lit ist eine einfache Bibliothek zum Erstellen schneller, leichtgewichtiger Webkomponenten. Das Testen von Lit-Webkomponenten mit WebdriverIO ist dank der [Shadow-DOM-Selektoren](/docs/selectors#deep-selectors) von WebdriverIO sehr einfach: Sie können in Shadow Roots verschachtelte Elemente mit nur einem einzigen Befehl abfragen.
 
-## Setup
+## Einrichtung
 
-Um WebdriverIO in Ihrem Lit-Projekt einzurichten, folgen Sie den [Anweisungen](/docs/component-testing#set-up) in unserer Komponententest-Dokumentation. Für Lit benötigen Sie kein Preset, da Lit-Webkomponenten nicht durch einen Compiler laufen müssen, sie sind reine Webkomponenten-Erweiterungen.
+Um WebdriverIO in Ihrem Lit-Projekt einzurichten, folgen Sie den [Anweisungen](/docs/component-testing#set-up) in unserer Dokumentation zum Komponententesten. Für Lit benötigen Sie kein Preset, da Lit-Webkomponenten nicht durch einen Compiler laufen müssen; sie sind reine Erweiterungen von Webkomponenten.
 
 Nach der Einrichtung können Sie die Tests starten, indem Sie Folgendes ausführen:
 
@@ -28,20 +29,20 @@ export class SimpleGreeting extends LitElement {
     @property()
     name?: string = 'World'
 
-    // Render the UI as a function of component state
+    // Die UI als Funktion des Komponentenzustands rendern
     render() {
         return html`<p>Hello, ${this.name}!</p>`
     }
 }
 ```
 
-Um die Komponente zu testen, müssen Sie sie vor dem Teststart in die Testseite rendern und sicherstellen, dass sie anschließend bereinigt wird:
+Um die Komponente zu testen, müssen Sie sie vor dem Start des Tests in die Testseite rendern und sicherstellen, dass sie anschließend wieder entfernt wird:
 
 ```ts title="lit.test.js"
 import expect from 'expect'
 import { waitFor } from '@testing-library/dom'
 
-// import Lit component
+// Lit-Komponente importieren
 import './components/Component.ts'
 
 describe('Lit Component testing', () => {
@@ -66,4 +67,4 @@ describe('Lit Component testing', () => {
 })
 ```
 
-Ein vollständiges Beispiel einer WebdriverIO-Komponententestsuite für Lit finden Sie in unserem [Beispiel-Repository](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite).
+Ein vollständiges Beispiel einer WebdriverIO-Komponententest-Suite für Lit finden Sie in unserem [Beispiel-Repository](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite).

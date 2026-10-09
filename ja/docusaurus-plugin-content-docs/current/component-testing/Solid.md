@@ -1,13 +1,14 @@
 ---
 id: solid
 title: SolidJS
+description: "solidプリセットを使用してSolidJSプロジェクト用にWebdriverIOのブラウザランナーをセットアップし、ページにレンダリングするコンポーネントテストを作成します。"
 ---
 
-[SolidJS](https://www.solidjs.com/)は、シンプルで高性能な反応性を備えたユーザーインターフェースを構築するためのフレームワークです。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザでSolidJSコンポーネントを直接テストできます。
+[SolidJS](https://www.solidjs.com/)は、シンプルで高性能なリアクティビティを備えたユーザーインターフェースを構築するためのフレームワークです。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用すると、SolidJSコンポーネントを実際のブラウザで直接テストできます。
 
 ## セットアップ
 
-SolidJSプロジェクト内でWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`solid`を選択してください。例：
+SolidJSプロジェクト内でWebdriverIOをセットアップするには、コンポーネントテストのドキュメントにある[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`solid`を選択してください。例：
 
 ```js
 // wdio.conf.js
@@ -22,17 +23,17 @@ export const config = {
 
 :::info
 
-すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、WebdriverIO設定内で`vite.config.ts`の設定を再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
+すでに開発サーバーとして[Vite](https://vitejs.dev/)を使用している場合は、`vite.config.ts`の設定をWebdriverIOの設定内で再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
 
 :::
 
-SolidJSプリセットには`vite-plugin-solid`のインストールが必要です：
+SolidJSプリセットを使用するには、`vite-plugin-solid`をインストールする必要があります：
 
 ```sh npm2yarn
 npm install --save-dev vite-plugin-solid
 ```
 
-その後、以下のコマンドでテストを開始できます：
+その後、次のコマンドを実行してテストを開始できます：
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -40,7 +41,7 @@ npx wdio run ./wdio.conf.js
 
 ## テストの作成
 
-以下のようなSolidJSコンポーネントがあるとします：
+次のようなSolidJSコンポーネントがあるとします：
 
 ```html title="./components/Component.tsx"
 import { createSignal } from 'solid-js'
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-テストでは、`solid-js/web`の`render`メソッドを使用してコンポーネントをテストページに取り付けます。コンポーネントを操作するには、実際のユーザーの操作に近い動作をするWebdriverIOコマンドを使用することをお勧めします：
+テストでは、`solid-js/web`の`render`メソッドを使用して、コンポーネントをテストページにアタッチします。コンポーネントを操作する際は、実際のユーザー操作により近い動作をするWebdriverIOのコマンドを使用することをお勧めします。例：
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -71,8 +72,8 @@ import App from './components/Component.jsx'
 
 describe('Solid Component Testing', () => {
     /**
-     * ensure we render the component for every test in a
-     * new root container
+     * テストごとに新しいルートコンテナで
+     * コンポーネントをレンダリングするようにする
      */
     let root: Element
     beforeEach(() => {
@@ -94,4 +95,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-WebdriverIOコンポーネントテストスイートのSolidJSの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite)で確認できます。
+SolidJS向けのWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite)で確認できます。

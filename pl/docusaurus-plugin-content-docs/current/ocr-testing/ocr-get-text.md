@@ -1,6 +1,7 @@
 ---
 id: ocr-get-text
 title: ocrGetText
+description: "Odczytaj tekst wyświetlany na ekranie lub w określonym obszarze za pomocą ocrGetText z usługi OCR."
 ---
 
 Pobierz tekst z obrazu.
@@ -33,12 +34,11 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 ### `contrast`
 
--   **Typ:** `number`
--   **Obowiązkowe:** nie
--   **Domyślnie:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Przyjmuje wartości między `-1` i `1`.
+Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Akceptuje wartości od `-1` do `1`.
 
+</Option>
 #### Przykład
 
 ```js
@@ -47,11 +47,11 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **Typ:** `number`
--   **Obowiązkowe:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
 Jest to obszar wyszukiwania na ekranie, w którym OCR ma szukać tekstu. Może to być element lub prostokąt zawierający `x`, `y`, `width` i `height`
 
+</Option>
 #### Przykład
 
 ```js
@@ -73,18 +73,17 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **Typ:** `string`
--   **Obowiązkowe:** Nie
--   **Domyślnie:** `eng`
+<Option type="string" default="eng" required="No">
 
-Język, który Tesseract rozpozna. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki można znaleźć [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Język, który Tesseract będzie rozpoznawał. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki można znaleźć [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Przykład
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // Użyj języka holenderskiego
+    // Użyj języka niderlandzkiego
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

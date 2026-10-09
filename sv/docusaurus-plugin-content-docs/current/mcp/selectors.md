@@ -1,56 +1,55 @@
 ---
 id: selectors
 title: Selektorer
+description: "Välj selektorer för att hitta element på webbsidor och i mobilappar vid automatisering med WebdriverIO MCP-servern."
 ---
 
-WebdriverIO MCP-servern stöder flera selektorstrategier för att lokalisera element på webbsidor och mobilappar.
+WebdriverIO MCP-servern stöder flera selektorstrategier för att hitta element på webbsidor och i mobilappar.
 
 :::info
 
-För omfattande selektordokumentation inklusive alla WebdriverIO selektorstrategier, se huvudguiden [Selektorer](/docs/selectors). Denna sida fokuserar på selektorer som vanligtvis används med MCP-servern.
+För fullständig dokumentation om selektorer, inklusive alla WebdriverIOs selektorstrategier, se huvudguiden [Selectors](/docs/selectors). Den här sidan fokuserar på selektorer som ofta används med MCP-servern.
 
 :::
 
 ## Webbselektorer
 
-För webbläsarautomatisering stöder MCP-servern alla standard WebdriverIO-selektorer. De mest använda inkluderar:
+För webbläsarautomatisering stöder MCP-servern alla vanliga WebdriverIO-selektorer. De vanligaste är:
 
-| Selektor | Exempel | Beskrivning |
-|----------|---------|-------------|
-| CSS | `#login-button`, `.submit-btn` | Standard CSS-selektorer |
-| XPath | `//button[@id='submit']` | XPath-uttryck |
-| Text | `button=Submit`, `a*=Click` | WebdriverIO textselektorer |
-| ARIA | `aria/Submit Button` | Tillgänglighetsnamnsselektorer |
-| Test ID | `[data-testid="submit"]` | Rekommenderas för testning |
+| Selektor | Exempel                        | Beskrivning                      |
+| -------- | ------------------------------ | -------------------------------- |
+| CSS      | `#login-button`, `.submit-btn` | Vanliga CSS-selektorer           |
+| XPath    | `//button[@id='submit']`       | XPath-uttryck                    |
+| Text     | `button=Submit`, `a*=Click`    | WebdriverIO-textselektorer       |
+| ARIA     | `aria/Submit Button`           | Selektorer för tillgänglighetsnamn |
+| Test ID  | `[data-testid="submit"]`       | Rekommenderas för testning       |
 
-För detaljerade exempel och bästa praxis, se [Selektorer](/docs/selectors) dokumentationen.
-
----
+För detaljerade exempel och bästa praxis, se dokumentationen för [Selectors](/docs/selectors).
 
 ## Mobilselektorer
 
-Mobilselektorer fungerar med både iOS- och Android-plattformar genom Appium.
+Mobilselektorer fungerar med både iOS- och Android-plattformar via Appium.
 
-### Accessibility ID (Rekommenderas)
+### Accessibility ID (rekommenderas)
 
-Tillgänglighets-ID:n är den **mest pålitliga plattformsoberoende selektorn**. De fungerar på både iOS och Android och är stabila genom appuppdateringar.
+Accessibility ID:n är den **mest pålitliga plattformsoberoende selektorn**. De fungerar på både iOS och Android och är stabila mellan appuppdateringar.
 
-```
+```text
 # Syntax
 ~accessibilityId
 
-# Examples
+# Exempel
 ~loginButton
 ~submitForm
 ~usernameField
 ```
 
 :::tip Bästa praxis
-Prioritera alltid tillgänglighets-ID:n när de är tillgängliga. De ger:
-- Plattformskompatibilitet (iOS + Android)
-- Stabilitet genom UI-förändringar
-- Bättre testunderhåll
-- Förbättrad tillgänglighet för din app
+Föredra alltid accessibility ID:n när de finns tillgängliga. De ger:
+- Plattformsoberoende kompatibilitet (iOS + Android)
+- Stabilitet vid ändringar i användargränssnittet
+- Bättre underhållbarhet av tester
+- Förbättrad tillgänglighet i din app
 :::
 
 ### Android-selektorer
@@ -59,38 +58,38 @@ Prioritera alltid tillgänglighets-ID:n när de är tillgängliga. De ger:
 
 UiAutomator-selektorer är kraftfulla och snabba för Android.
 
-```
-# By Text
+```text
+# Efter text
 android=new UiSelector().text("Login")
 
-# By Partial Text
+# Efter deltext
 android=new UiSelector().textContains("Log")
 
-# By Resource ID
+# Efter resurs-ID
 android=new UiSelector().resourceId("com.example:id/login_button")
 
-# By Class Name
+# Efter klassnamn
 android=new UiSelector().className("android.widget.Button")
 
-# By Description (Accessibility)
+# Efter beskrivning (tillgänglighet)
 android=new UiSelector().description("Login button")
 
-# Combined Conditions
+# Kombinerade villkor
 android=new UiSelector().className("android.widget.Button").text("Login")
 
-# Scrollable Container
+# Skrollbar behållare
 android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text("Item"))
 ```
 
-#### Resource ID
+#### Resurs-ID
 
-Resurs-ID:n ger stabil elementidentifiering på Android.
+Resurs-ID:n ger stabil identifiering av element på Android.
 
-```
-# Full Resource ID
+```text
+# Fullständigt resurs-ID
 id=com.example.app:id/login_button
 
-# Partial ID (app package inferred)
+# Partiellt ID (appens paket härleds)
 id=login_button
 ```
 
@@ -98,17 +97,17 @@ id=login_button
 
 XPath fungerar på Android men är långsammare än UiAutomator.
 
-```
-# By Class and Text
+```text
+# Efter klass och text
 //android.widget.Button[@text='Login']
 
-# By Resource ID
+# Efter resurs-ID
 //android.widget.EditText[@resource-id='com.example:id/username']
 
-# By Content Description
+# Efter innehållsbeskrivning
 //android.widget.ImageButton[@content-desc='Menu']
 
-# Hierarchical
+# Hierarkisk
 //android.widget.LinearLayout/android.widget.Button[1]
 ```
 
@@ -118,67 +117,67 @@ XPath fungerar på Android men är långsammare än UiAutomator.
 
 iOS Predicate Strings är snabba och kraftfulla för iOS-automatisering.
 
-```
-# By Label
+```text
+# Efter etikett
 -ios predicate string:label == "Login"
 
-# By Partial Label
+# Efter deletikett
 -ios predicate string:label CONTAINS "Log"
 
-# By Name
+# Efter namn
 -ios predicate string:name == "loginButton"
 
-# By Type
+# Efter typ
 -ios predicate string:type == "XCUIElementTypeButton"
 
-# By Value
+# Efter värde
 -ios predicate string:value == "ON"
 
-# Combined Conditions
+# Kombinerade villkor
 -ios predicate string:type == "XCUIElementTypeButton" AND label == "Login"
 
-# Visibility
+# Synlighet
 -ios predicate string:label == "Login" AND visible == 1
 
-# Case Insensitive
+# Skiftlägesokänslig
 -ios predicate string:label ==[c] "login"
 ```
 
-**Predicate-operatorer:**
+**Predikatoperatorer:**
 
-| Operator | Beskrivning |
-|----------|-------------|
-| `==` | Lika med |
-| `!=` | Inte lika med |
-| `CONTAINS` | Innehåller delstring |
-| `BEGINSWITH` | Börjar med |
-| `ENDSWITH` | Slutar med |
-| `LIKE` | Wildcard-matchning |
-| `MATCHES` | Regex-matchning |
-| `AND` | Logisk OCH |
-| `OR` | Logisk ELLER |
+| Operator     | Beskrivning             |
+| ------------ | ----------------------- |
+| `==`         | Lika med                |
+| `!=`         | Inte lika med           |
+| `CONTAINS`   | Innehåller delsträng    |
+| `BEGINSWITH` | Börjar med              |
+| `ENDSWITH`   | Slutar med              |
+| `LIKE`       | Jokerteckenmatchning    |
+| `MATCHES`    | Regex-matchning         |
+| `AND`        | Logiskt OCH             |
+| `OR`         | Logiskt ELLER           |
 
 #### Class Chain
 
-iOS Class Chains ger hierarkisk elementlokalisering med bra prestanda.
+iOS Class Chains ger hierarkisk lokalisering av element med god prestanda.
 
-```
-# Direct Child
+```text
+# Direkt barn
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
-# Any Descendant
+# Valfri ättling
 -ios class chain:**/XCUIElementTypeButton
 
-# By Index
+# Efter index
 -ios class chain:**/XCUIElementTypeCell[3]
 
-# Combined with Predicate
+# Kombinerat med predikat
 -ios class chain:**/XCUIElementTypeButton[`name == "submit" AND visible == 1`]
 
-# Hierarchical
+# Hierarkisk
 -ios class chain:**/XCUIElementTypeTable/XCUIElementTypeCell[`label == "Settings"`]
 
-# Last Element
+# Sista elementet
 -ios class chain:**/XCUIElementTypeButton[-1]
 ```
 
@@ -186,183 +185,175 @@ iOS Class Chains ger hierarkisk elementlokalisering med bra prestanda.
 
 XPath fungerar på iOS men är långsammare än predicate strings.
 
-```
-# By Type and Label
+```text
+# Efter typ och etikett
 //XCUIElementTypeButton[@label='Login']
 
-# By Name
+# Efter namn
 //XCUIElementTypeTextField[@name='username']
 
-# By Value
+# Efter värde
 //XCUIElementTypeSwitch[@value='1']
 
-# Hierarchical
+# Hierarkisk
 //XCUIElementTypeTable/XCUIElementTypeCell[1]
 ```
-
----
 
 ## Plattformsoberoende selektorstrategi
 
 När du skriver tester som behöver fungera på både iOS och Android, använd denna prioritetsordning:
 
-### 1. Accessibility ID (Bäst)
+### 1. Accessibility ID (bäst)
 
-```
-# Works on both platforms
+```text
+# Fungerar på båda plattformarna
 ~loginButton
 ```
 
-### 2. Plattformsspecifik med villkorlig logik
+### 2. Plattformsspecifik med villkorslogik
 
-När tillgänglighets-ID:n inte är tillgängliga, använd plattformsspecifika selektorer:
+När accessibility ID:n inte finns tillgängliga, använd plattformsspecifika selektorer:
 
 **Android:**
-```
+```text
 android=new UiSelector().text("Login")
 ```
 
 **iOS:**
-```
+```text
 -ios predicate string:label == "Login"
 ```
 
-### 3. XPath (Sista utvägen)
+### 3. XPath (sista utväg)
 
 XPath fungerar på båda plattformarna men med olika elementtyper:
 
 **Android:**
-```
+```text
 //android.widget.Button[@text='Login']
 ```
 
 **iOS:**
-```
+```text
 //XCUIElementTypeButton[@label='Login']
 ```
 
----
+## Referens för elementtyper
 
-## Elementtyper referens
+### Elementtyper för Android
 
-### Android elementtyper
+| Typ                           | Beskrivning          |
+| ----------------------------- | -------------------- |
+| `android.widget.Button`       | Knapp                |
+| `android.widget.EditText`     | Textinmatning        |
+| `android.widget.TextView`     | Textetikett          |
+| `android.widget.ImageView`    | Bild                 |
+| `android.widget.ImageButton`  | Bildknapp            |
+| `android.widget.CheckBox`     | Kryssruta            |
+| `android.widget.RadioButton`  | Alternativknapp      |
+| `android.widget.Switch`       | Växlingsknapp        |
+| `android.widget.Spinner`      | Rullgardinsmeny      |
+| `android.widget.ListView`     | Listvy               |
+| `android.widget.RecyclerView` | Recycler-vy          |
+| `android.widget.ScrollView`   | Skrollbehållare      |
 
-| Typ | Beskrivning |
-|------|-------------|
-| `android.widget.Button` | Knapp |
-| `android.widget.EditText` | Textinmatning |
-| `android.widget.TextView` | Textetikett |
-| `android.widget.ImageView` | Bild |
-| `android.widget.ImageButton` | Bildknapp |
-| `android.widget.CheckBox` | Kryssruta |
-| `android.widget.RadioButton` | Radioknapp |
-| `android.widget.Switch` | Växlingsknapp |
-| `android.widget.Spinner` | Rullgardinsmeny |
-| `android.widget.ListView` | Listvy |
-| `android.widget.RecyclerView` | Återvinningsvy |
-| `android.widget.ScrollView` | Rullbehållare |
+### Elementtyper för iOS
 
-### iOS elementtyper
-
-| Typ | Beskrivning |
-|------|-------------|
-| `XCUIElementTypeButton` | Knapp |
-| `XCUIElementTypeTextField` | Textinmatning |
-| `XCUIElementTypeSecureTextField` | Lösenordsinmatning |
-| `XCUIElementTypeStaticText` | Textetikett |
-| `XCUIElementTypeImage` | Bild |
-| `XCUIElementTypeSwitch` | Växlingsknapp |
-| `XCUIElementTypeSlider` | Reglage |
-| `XCUIElementTypePicker` | Väljare |
-| `XCUIElementTypeTable` | Tabellvy |
-| `XCUIElementTypeCell` | Tabellcell |
-| `XCUIElementTypeCollectionView` | Samlingsvy |
-| `XCUIElementTypeScrollView` | Rullvy |
-
----
+| Typ                              | Beskrivning         |
+| -------------------------------- | ------------------- |
+| `XCUIElementTypeButton`          | Knapp               |
+| `XCUIElementTypeTextField`       | Textinmatning       |
+| `XCUIElementTypeSecureTextField` | Lösenordsinmatning  |
+| `XCUIElementTypeStaticText`      | Textetikett         |
+| `XCUIElementTypeImage`           | Bild                |
+| `XCUIElementTypeSwitch`          | Växlingsknapp       |
+| `XCUIElementTypeSlider`          | Skjutreglage        |
+| `XCUIElementTypePicker`          | Väljarhjul          |
+| `XCUIElementTypeTable`           | Tabellvy            |
+| `XCUIElementTypeCell`            | Tabellcell          |
+| `XCUIElementTypeCollectionView`  | Samlingsvy          |
+| `XCUIElementTypeScrollView`      | Skrollvy            |
 
 ## Bästa praxis
 
-### Gör så här
+### Gör
 
-- **Använd tillgänglighets-ID:n** för stabila, plattformsoberoende selektorer
-- **Lägg till data-testid-attribut** till webbelement för testning
-- **Använd resurs-ID:n** på Android när tillgänglighets-ID:n inte är tillgängliga
+- **Använd accessibility ID:n** för stabila, plattformsoberoende selektorer
+- **Lägg till data-testid-attribut** på webbelement för testning
+- **Använd resurs-ID:n** på Android när accessibility ID:n inte finns tillgängliga
 - **Föredra predicate strings** framför XPath på iOS
 - **Håll selektorer enkla** och specifika
 
-### Undvik att
+### Gör inte
 
-- **Undvik långa XPath-uttryck** - de är långsamma och ömtåliga
+- **Undvik långa XPath-uttryck** – de är långsamma och sköra
 - **Förlita dig inte på index** för dynamiska listor
 - **Undvik textbaserade selektorer** för lokaliserade appar
-- **Använd inte absolut XPath** (med start från roten)
+- **Använd inte absolut XPath** (som börjar från roten)
 
-### Exempel på bra vs dåliga selektorer
+### Exempel på bra respektive dåliga selektorer
 
-```
-# Bra - Stabilt tillgänglighets-ID
+```text
+# Bra – stabilt accessibility ID
 ~loginButton
 
-# Dåligt - Ömtålig XPath med index
+# Dåligt – skör XPath med index
 //div[3]/form/button[2]
 
-# Bra - Specifik CSS med test-ID
+# Bra – specifik CSS med test-ID
 [data-testid="submit-button"]
 
-# Dåligt - Klass som kan ändras
+# Dåligt – klass som kan ändras
 .btn-primary-lg-v2
 
-# Bra - UiAutomator med resurs-ID
+# Bra – UiAutomator med resurs-ID
 android=new UiSelector().resourceId("com.app:id/submit")
 
-# Dåligt - Text som kan lokaliseras
+# Dåligt – text som kan lokaliseras
 android=new UiSelector().text("Submit")
 ```
 
----
-
-## Felsökning av selektorer
+## Felsöka selektorer
 
 ### Webb (Chrome DevTools)
 
 1. Öppna Chrome DevTools (F12)
-2. Använd Elements-panelen för att inspektera element
-3. Högerklicka på ett element → Kopiera → Kopiera selektor
-4. Testa selektorer i Konsolen: `document.querySelector('your-selector')`
+2. Använd panelen Elements för att inspektera element
+3. Högerklicka på ett element → Copy → Copy selector
+4. Testa selektorer i konsolen: `document.querySelector('your-selector')`
 
 ### Mobil (Appium Inspector)
 
 1. Starta Appium Inspector
-2. Anslut till din körande session
+2. Anslut till din pågående session
 3. Klicka på element för att se alla tillgängliga attribut
 4. Använd funktionen "Search for element" för att testa selektorer
 
-### Använd `get_visible_elements`
+### Använda `get_elements`
 
-MCP-serverns verktyg `get_visible_elements` returnerar flera selektorstrategier för varje element:
+MCP-serverns verktyg `get_elements` returnerar flera selektorstrategier för varje element:
 
-```
-Ask Claude: "Get all visible elements on the screen"
+```text
+Ask: "Get all visible elements on the screen"
 ```
 
 Detta returnerar element med förgenererade selektorer som du kan använda direkt.
 
 #### Avancerade alternativ
 
-För mer kontroll över elementupptäckt:
+För mer kontroll över hur element hittas:
 
-```
-# Get only images and visual elements
+```text
+# Hämta endast bilder och visuella element
 Get visible elements with elementType "visual"
 
-# Get elements with their coordinates for layout debugging
+# Hämta element med deras koordinater för felsökning av layout
 Get visible elements with includeBounds enabled
 
-# Get the next 20 elements (pagination)
+# Hämta nästa 20 element (paginering)
 Get visible elements with limit 20 and offset 20
 
-# Include layout containers for debugging
+# Inkludera layoutbehållare för felsökning
 Get visible elements with includeContainers enabled
 ```
 
@@ -376,19 +367,19 @@ Verktyget returnerar ett paginerat svar:
 }
 ```
 
-### Använd `get_accessibility` (Endast webbläsare)
+### Använda `get_accessibility` (endast webbläsare)
 
-För webbläsarautomatisering ger verktyget `get_accessibility` semantisk information om sidelement:
+För webbläsarautomatisering tillhandahåller verktyget `get_accessibility` semantisk information om sidans element:
 
-```
-# Get all named accessibility nodes
+```text
+# Hämta alla namngivna tillgänglighetsnoder
 Get accessibility tree
 
-# Filter to only buttons and links
+# Filtrera till endast knappar och länkar
 Get accessibility tree filtered to button and link roles
 
-# Get next page of results
+# Hämta nästa sida med resultat
 Get accessibility tree with limit 50 and offset 50
 ```
 
-Detta är användbart när `get_visible_elements` inte returnerar förväntade element, eftersom det frågar webbläsarens inbyggda tillgänglighets-API.
+Detta är användbart när `get_elements` inte returnerar förväntade element, eftersom det frågar webbläsarens inbyggda tillgänglighets-API.

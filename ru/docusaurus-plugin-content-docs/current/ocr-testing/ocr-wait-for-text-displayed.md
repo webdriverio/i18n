@@ -1,9 +1,10 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
+description: "Ожидание, пока определённый текст не отобразится на экране, с помощью ocrWaitForTextDisplayed из OCR-сервиса."
 ---
 
-Ожидание отображения определенного текста на экране.
+Ожидание отображения определённого текста на экране.
 
 ## Использование
 
@@ -20,19 +21,19 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayed использует ocrGetElementPositionByText под капотом, поэтому вы видите команду ocrGetElementPositionByText в логах
+# ocrWaitForTextDisplayed под капотом использует ocrGetElementPositionByText, поэтому в логах вы видите команду ocrGetElementPositionByText
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
-## Опции
+## Параметры
 
 ### `text`
 
--   **Тип:** `string`
--   **Обязательно:** да
+<Option type="string" required="yes">
 
-Текст, который вы хотите найти для клика.
+Текст, который вы хотите найти, чтобы кликнуть по нему.
 
+</Option>
 #### Пример
 
 ```js
@@ -41,29 +42,27 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
--   **Тип:** `number`
--   **Обязательно:** нет
--   **По умолчанию:** 18000 (18 секунд)
+<Option type="number" default="18000 (18 seconds)" required="no">
 
-Время в миллисекундах. Имейте в виду, что процесс OCR может занять некоторое время, поэтому не устанавливайте слишком низкое значение.
+Время в миллисекундах. Имейте в виду, что процесс OCR может занять некоторое время, поэтому не устанавливайте слишком маленькое значение.
 
+</Option>
 #### Пример
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // ожидание 25 секунд
+    timeout: 25000 // ждать 25 секунд
 });
 ```
 
 ### `timeoutMsg`
 
--   **Тип:** `string`
--   **Обязательно:** нет
--   **По умолчанию:** `Could not find the text "{selector}" within the requested time.`
+<Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
-Переопределяет стандартное сообщение об ошибке.
+Переопределяет сообщение об ошибке по умолчанию.
 
+</Option>
 #### Пример
 
 ```js
@@ -75,12 +74,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
--   **Тип:** `number`
--   **Обязательно:** нет
--   **По умолчанию:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Чем выше контраст, тем темнее изображение и наоборот. Это может помочь найти текст на изображении. Принимает значения от `-1` до `1`.
+Чем выше контрастность, тем темнее изображение, и наоборот. Это может помочь найти текст на изображении. Принимает значения от `-1` до `1`.
 
+</Option>
 #### Пример
 
 ```js
@@ -92,11 +90,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
--   **Тип:** `number`
--   **Обязательно:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Это область поиска на экране, где OCR должен искать текст. Это может быть элемент или прямоугольник, содержащий `x`, `y`, `width` и `height`.
+Это область поиска на экране, в которой OCR должен искать текст. Это может быть элемент или прямоугольник, содержащий `x`, `y`, `width` и `height`
 
+</Option>
 #### Пример
 
 ```js
@@ -125,35 +123,33 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
--   **Тип:** `string`
--   **Обязательно:** Нет
--   **По умолчанию:** `eng`
+<Option type="string" default="eng" required="No">
 
-Язык, который будет распознавать Tesseract. Более подробную информацию можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а поддерживаемые языки можно найти [здесь](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Язык, который будет распознавать Tesseract. Дополнительную информацию можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а список поддерживаемых языков — [здесь](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Пример
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Используйте голландский язык
+    // Использовать нидерландский язык
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-Вы можете изменить нечеткую логику для поиска текста с помощью следующих опций. Это может помочь найти лучшее соответствие.
+Вы можете изменить логику нечёткого поиска текста с помощью следующих параметров. Это может помочь найти более точное совпадение
 
 #### `fuzzyFindOptions.distance`
 
--   **Тип:** `number`
--   **Обязательно:** нет
--   **По умолчанию:** 100
+<Option type="number" default="100" required="no">
 
-Определяет, насколько близко соответствие должно быть к нечеткому местоположению (указанному в location). Точное соответствие буквы, которое находится на расстоянии символов от нечеткого местоположения, будет оцениваться как полное несоответствие. Расстояние 0 требует, чтобы соответствие находилось в точно указанном месте. Расстояние 1000 требует идеального соответствия в пределах 800 символов от местоположения, чтобы быть найденным, используя порог 0.8.
+Определяет, насколько близко совпадение должно находиться к нечёткой позиции (заданной параметром location). Точное совпадение букв, находящееся на расстоянии distance символов от нечёткой позиции, будет оценено как полное несовпадение. Значение distance, равное 0, требует, чтобы совпадение находилось точно в указанной позиции. Значение distance, равное 1000, потребует, чтобы идеальное совпадение находилось в пределах 800 символов от позиции, чтобы оно было найдено при пороге (threshold) 0.8.
 
+</Option>
 ##### Пример
 
 ```js
@@ -167,12 +163,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
--   **Тип:** `number`
--   **Обязательно:** нет
--   **По умолчанию:** 0
+<Option type="number" default="0" required="no">
 
-Определяет примерно, где в тексте ожидается найти шаблон.
+Определяет, где примерно в тексте ожидается найти шаблон.
 
+</Option>
 ##### Пример
 
 ```js
@@ -186,12 +181,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Тип:** `number`
--   **Обязательно:** нет
--   **По умолчанию:** 0.6
+<Option type="number" default="0.6" required="no">
 
-В какой момент алгоритм сопоставления сдается. Порог 0 требует идеального соответствия (как букв, так и местоположения), порог 1.0 будет соответствовать чему угодно.
+Момент, в который алгоритм сопоставления прекращает поиск. Порог 0 требует идеального совпадения (как букв, так и позиции), порог 1.0 будет соответствовать чему угодно.
 
+</Option>
 ##### Пример
 
 ```js
@@ -205,12 +199,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Тип:** `boolean`
--   **Обязательно:** нет
--   **По умолчанию:** false
+<Option type="boolean" default="false" required="no">
 
 Должен ли поиск учитывать регистр.
 
+</Option>
 ##### Пример
 
 ```js
@@ -224,12 +217,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Тип:** `number`
--   **Обязательно:** нет
--   **По умолчанию:** 2
+<Option type="number" default="2" required="no">
 
-Будут возвращены только соответствия, длина которых превышает это значение. (Например, если вы хотите игнорировать совпадения одиночных символов в результате, установите значение 2)
+Будут возвращены только те совпадения, длина которых превышает это значение. (Например, если вы хотите игнорировать в результате совпадения из одного символа, установите значение 2)
 
+</Option>
 ##### Пример
 
 ```js
@@ -243,12 +235,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Тип:** `number`
--   **Обязательно:** нет
--   **По умолчанию:** false
+<Option type="number" default="false" required="no">
 
-Когда `true`, функция сопоставления будет продолжаться до конца шаблона поиска, даже если идеальное соответствие уже было найдено в строке.
+Если `true`, функция сопоставления продолжит работу до конца шаблона поиска, даже если идеальное совпадение в строке уже найдено.
 
+</Option>
 ##### Пример
 
 ```js

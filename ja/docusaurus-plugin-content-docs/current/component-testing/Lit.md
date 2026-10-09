@@ -1,13 +1,14 @@
 ---
 id: lit
 title: Lit
+description: "Lit Webコンポーネント向けにWebdriverIOブラウザランナーをセットアップし、ネストされたShadow Root内の要素をクエリするテストを作成します。"
 ---
 
-Litは、高速で軽量なウェブコンポーネントを構築するためのシンプルなライブラリです。WebdriverIOの[シャドウDOMセレクタ](/docs/selectors#deep-selectors)のおかげで、Litウェブコンポーネントのテストは非常に簡単です。シャドウルート内のネストされた要素を1つのコマンドだけで照会できます。
+Litは、高速で軽量なWebコンポーネントを構築するためのシンプルなライブラリです。WebdriverIOの[Shadow DOMセレクター](/docs/selectors#deep-selectors)のおかげで、Shadow Root内にネストされた要素をたった1つのコマンドでクエリできるため、WebdriverIOを使ったLit Webコンポーネントのテストは非常に簡単です。
 
 ## セットアップ
 
-LitプロジェクトでWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。Litの場合、ウェブコンポーネントはコンパイラを通す必要がなく、純粋なウェブコンポーネントの拡張であるため、プリセットは必要ありません。
+LitプロジェクトでWebdriverIOをセットアップするには、コンポーネントテストのドキュメントにある[手順](/docs/component-testing#set-up)に従ってください。Lit Webコンポーネントはコンパイラを通す必要がなく、純粋なWebコンポーネントの拡張であるため、Litではプリセットは必要ありません。
 
 セットアップが完了したら、次のコマンドを実行してテストを開始できます：
 
@@ -28,20 +29,20 @@ export class SimpleGreeting extends LitElement {
     @property()
     name?: string = 'World'
 
-    // Render the UI as a function of component state
+    // コンポーネントの状態に応じてUIをレンダリングする
     render() {
         return html`<p>Hello, ${this.name}!</p>`
     }
 }
 ```
 
-コンポーネントをテストするには、テスト開始前にテストページにコンポーネントをレンダリングし、その後確実にクリーンアップする必要があります：
+コンポーネントをテストするには、テスト開始前にテストページにコンポーネントをレンダリングし、テスト後に確実にクリーンアップされるようにする必要があります：
 
 ```ts title="lit.test.js"
 import expect from 'expect'
 import { waitFor } from '@testing-library/dom'
 
-// import Lit component
+// Litコンポーネントをインポート
 import './components/Component.ts'
 
 describe('Lit Component testing', () => {
@@ -66,4 +67,4 @@ describe('Lit Component testing', () => {
 })
 ```
 
-WebdriverIOコンポーネントテストスイートのLit向け完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite)で見つけることができます。
+Lit向けのWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite)で確認できます。

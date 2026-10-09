@@ -1,9 +1,10 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
+description: "OCR सर्विस के ocrWaitForTextDisplayed के साथ तब तक प्रतीक्षा करें जब तक स्क्रीन पर कोई विशिष्ट टेक्स्ट प्रदर्शित न हो जाए।"
 ---
 
-स्क्रीन पर एक विशिष्ट टेक्स्ट के प्रदर्शित होने का इंतजार करें।
+स्क्रीन पर किसी विशिष्ट टेक्स्ट के प्रदर्शित होने की प्रतीक्षा करें।
 
 ## उपयोग
 
@@ -20,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayed uses ocrGetElementPositionByText under the hood, that is why you see the command ocrGetElementPositionByText in the logs
+# ocrWaitForTextDisplayed आंतरिक रूप से ocrGetElementPositionByText का उपयोग करता है, इसीलिए आपको लॉग्स में ocrGetElementPositionByText कमांड दिखाई देती है
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -28,11 +29,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `text`
 
--   **प्रकार:** `string`
--   **अनिवार्य:** हां
+<Option type="string" required="yes">
 
 वह टेक्स्ट जिसे आप क्लिक करने के लिए खोजना चाहते हैं।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -41,29 +42,27 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 18000 (18 सेकंड)
+<Option type="number" default="18000 (18 seconds)" required="no">
 
-मिलीसेकंड में समय। ध्यान रखें कि OCR प्रक्रिया में कुछ समय लग सकता है, इसलिए इसे बहुत कम न सेट करें।
+मिलीसेकंड में समय। ध्यान रखें कि OCR प्रक्रिया में कुछ समय लग सकता है, इसलिए इसे बहुत कम सेट न करें।
 
+</Option>
 #### उदाहरण
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // 25 सेकंड तक इंतजार करें
+    timeout: 25000 // 25 सेकंड तक प्रतीक्षा करें
 });
 ```
 
 ### `timeoutMsg`
 
--   **प्रकार:** `string`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `Could not find the text "{selector}" within the requested time.`
+<Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
 यह डिफ़ॉल्ट त्रुटि संदेश को ओवरराइड करता है।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -75,12 +74,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-जितना अधिक कंट्रास्ट, उतनी ही गहरी छवि और इसके विपरीत। यह छवि में टेक्स्ट खोजने में मदद कर सकता है। यह `-1` और `1` के बीच मान स्वीकार करता है।
+कंट्रास्ट जितना अधिक होगा, इमेज उतनी ही गहरी होगी और इसके विपरीत भी। यह इमेज में टेक्स्ट खोजने में मदद कर सकता है। यह `-1` और `1` के बीच के मान स्वीकार करता है।
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -92,11 +90,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-यह स्क्रीन का वह खोज क्षेत्र है जहां OCR को टेक्स्ट की तलाश करनी होती है। यह एक एलिमेंट या एक आयत हो सकता है जिसमें `x`, `y`, `width` और `height` शामिल हैं।
+यह स्क्रीन का वह खोज क्षेत्र है जहाँ OCR को टेक्स्ट खोजना होता है। यह एक एलिमेंट हो सकता है या `x`, `y`, `width` और `height` वाला एक आयत (rectangle) हो सकता है
 
+</Option>
 #### उदाहरण
 
 ```js
@@ -125,35 +123,33 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
--   **प्रकार:** `string`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** `eng`
+<Option type="string" default="eng" required="No">
 
-वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहां](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएँ [यहां](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) मिल सकती हैं।
+वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहाँ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएँ [यहाँ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) देखी जा सकती हैं।
 
+</Option>
 #### उदाहरण
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // डच को भाषा के रूप में उपयोग करें
+    // भाषा के रूप में डच का उपयोग करें
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-आप निम्नलिखित विकल्पों के साथ टेक्स्ट खोजने के लिए फज़ी लॉजिक को बदल सकते हैं। यह बेहतर मिलान खोजने में मदद कर सकता है।
+आप निम्नलिखित विकल्पों के साथ टेक्स्ट खोजने के लिए फ़ज़ी लॉजिक को बदल सकते हैं। इससे बेहतर मैच खोजने में मदद मिल सकती है
 
 #### `fuzzyFindOptions.distance`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 100
+<Option type="number" default="100" required="no">
 
-यह निर्धारित करता है कि मिलान को फज़ी स्थान (location द्वारा निर्दिष्ट) के कितना नज़दीक होना चाहिए। एक सटीक अक्षर मिलान जो फज़ी स्थान से distance अक्षर दूर है, पूरी तरह से बेमेल के रूप में स्कोर करेगा। 0 की दूरी के लिए मिलान को निर्दिष्ट सटीक स्थान पर होना आवश्यक है। 0.8 के थ्रेशहोल्ड का उपयोग करते हुए 1000 की दूरी के लिए एक परफेक्ट मिलान को स्थान से 800 अक्षरों के भीतर होना आवश्यक होगा।
+यह निर्धारित करता है कि मैच फ़ज़ी लोकेशन (location द्वारा निर्दिष्ट) के कितना करीब होना चाहिए। फ़ज़ी लोकेशन से distance अक्षर दूर स्थित एक सटीक अक्षर मैच को पूर्ण बेमेल (mismatch) माना जाएगा। 0 की distance के लिए आवश्यक है कि मैच ठीक निर्दिष्ट लोकेशन पर हो। 1000 की distance के लिए आवश्यक होगा कि 0.8 के threshold का उपयोग करके पाए जाने के लिए एक पूर्ण मैच लोकेशन के 800 अक्षरों के भीतर हो।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -167,12 +163,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 0
+<Option type="number" default="0" required="no">
 
-यह लगभग निर्धारित करता है कि टेक्स्ट में कहां पैटर्न मिलने की उम्मीद है।
+यह मोटे तौर पर निर्धारित करता है कि टेक्स्ट में पैटर्न कहाँ मिलने की उम्मीद है।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -186,12 +181,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 0.6
+<Option type="number" default="0.6" required="no">
 
-किस बिंदु पर मिलान एल्गोरिदम हार मान लेता है। 0 का थ्रेशहोल्ड एक परफेक्ट मिलान (अक्षरों और स्थान दोनों का) की आवश्यकता होती है, 1.0 का थ्रेशहोल्ड कुछ भी मिला देगा।
+किस बिंदु पर मैचिंग एल्गोरिदम हार मान लेता है। 0 के threshold के लिए पूर्ण मैच (अक्षरों और लोकेशन दोनों का) आवश्यक है, 1.0 का threshold किसी भी चीज़ से मैच करेगा।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -205,12 +199,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **प्रकार:** `boolean`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** false
+<Option type="boolean" default="false" required="no">
 
-क्या खोज केस संवेदनशील होनी चाहिए।
+क्या खोज केस सेंसिटिव होनी चाहिए।
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -224,12 +217,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** 2
+<Option type="number" default="2" required="no">
 
-केवल वे मिलान जिनकी लंबाई इस मान से अधिक है, वापस किए जाएंगे। (उदाहरण के लिए, यदि आप परिणाम में एकल अक्षर मिलान को अनदेखा करना चाहते हैं, तो इसे 2 पर सेट करें)
+केवल वे मैच लौटाए जाएँगे जिनकी लंबाई इस मान से अधिक है। (उदाहरण के लिए, यदि आप परिणाम में एकल अक्षर वाले मैचों को अनदेखा करना चाहते हैं, तो इसे 2 पर सेट करें)
 
+</Option>
 ##### उदाहरण
 
 ```js
@@ -243,12 +235,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **प्रकार:** `number`
--   **अनिवार्य:** नहीं
--   **डिफ़ॉल्ट:** false
+<Option type="number" default="false" required="no">
 
-जब `true` होता है, तो मिलान फ़ंक्शन खोज पैटर्न के अंत तक जारी रहेगा, भले ही स्ट्रिंग में परफेक्ट मिलान पहले से ही पता चल गया हो।
+जब `true` हो, तो मैचिंग फ़ंक्शन खोज पैटर्न के अंत तक जारी रहेगा, भले ही स्ट्रिंग में पहले से ही एक पूर्ण मैच मिल चुका हो।
 
+</Option>
 ##### उदाहरण
 
 ```js

@@ -1,11 +1,12 @@
 ---
 id: customreporter
-title: Niestandardowy Reporter
+title: Własny reporter
+description: "Zbuduj własny reporter dla test runnera WDIO w oparciu o @wdio/reporter, obsługuj zdarzenia runnera i opublikuj go w NPM."
 ---
 
-Możesz napisać własny niestandardowy reporter dla testera WDIO, który jest dostosowany do Twoich potrzeb. I to jest proste!
+Możesz napisać własny reporter dla test runnera WDIO, dopasowany do Twoich potrzeb. I to jest łatwe!
 
-Wszystko, co musisz zrobić, to utworzyć moduł Node, który dziedziczy z pakietu `@wdio/reporter`, aby mógł otrzymywać wiadomości z testu.
+Wystarczy utworzyć moduł node, który dziedziczy po pakiecie `@wdio/reporter`, dzięki czemu może odbierać komunikaty z testu.
 
 Podstawowa konfiguracja powinna wyglądać tak:
 
@@ -15,7 +16,7 @@ import WDIOReporter from '@wdio/reporter'
 export default class CustomReporter extends WDIOReporter {
     constructor(options) {
         /*
-         * make reporter to write to the output stream by default
+         * spraw, aby reporter domyślnie zapisywał do strumienia wyjściowego
          */
         options = Object.assign(options, { stdout: true })
         super(options)
@@ -27,7 +28,7 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-Aby używać tego reportera, wystarczy przypisać go do właściwości `reporter` w twojej konfiguracji.
+Aby użyć tego reportera, wystarczy przypisać go do właściwości `reporter` w Twojej konfiguracji.
 
 
 Twój plik `wdio.conf.js` powinien wyglądać tak:
@@ -39,13 +40,13 @@ export const config = {
     // ...
     reporters: [
         /**
-         * use imported reporter class
+         * użyj zaimportowanej klasy reportera
          */
         [CustomReporter, {
             someOption: 'foobar'
         }],
         /**
-         * use absolute path to reporter
+         * użyj ścieżki bezwzględnej do reportera
          */
         ['/path/to/reporter.js', {
             someOption: 'foobar'
@@ -55,13 +56,13 @@ export const config = {
 }
 ```
 
-Możesz także opublikować reporter na NPM, aby każdy mógł go używać. Nazwij pakiet jak inne reportery `wdio-<reportername>-reporter` i oznacz go słowami kluczowymi takimi jak `wdio` lub `wdio-reporter`.
+Możesz również opublikować reporter w NPM, aby każdy mógł z niego korzystać. Nazwij pakiet tak jak inne reportery, `wdio-<reportername>-reporter`, i oznacz go słowami kluczowymi takimi jak `wdio` lub `wdio-reporter`.
 
 ## Obsługa zdarzeń
 
-Możesz zarejestrować obsługę zdarzeń dla kilku zdarzeń, które są wyzwalane podczas testowania. Wszystkie z poniższych procedur obsługi otrzymają ładunki z przydatnymi informacjami o bieżącym stanie i postępie.
+Możesz zarejestrować obsługę (event handler) dla kilku zdarzeń, które są wywoływane podczas testowania. Wszystkie poniższe handlery otrzymają dane (payload) z przydatnymi informacjami o bieżącym stanie i postępie.
 
-Struktura tych obiektów ładunku zależy od zdarzenia i jest ujednolicona we wszystkich frameworkach (Mocha, Jasmine i Cucumber). Po zaimplementowaniu niestandardowego reportera powinien on działać dla wszystkich frameworków.
+Struktura tych obiektów zależy od zdarzenia i jest ujednolicona dla wszystkich frameworków (Mocha, Jasmine i Cucumber). Po zaimplementowaniu własnego reportera powinien on działać ze wszystkimi frameworkami.
 
 Poniższa lista zawiera wszystkie możliwe metody, które możesz dodać do swojej klasy reportera:
 
@@ -85,9 +86,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-Nazwy metod są dość jasne.
+Nazwy metod są dość oczywiste.
 
-Aby wydrukować coś przy określonym zdarzeniu, użyj metody `this.write(...)`, która jest dostarczana przez klasę nadrzędną `WDIOReporter`. Albo przesyła zawartość do `stdout`, albo do pliku dziennika (w zależności od opcji reportera).
+Aby wypisać coś przy określonym zdarzeniu, użyj metody `this.write(...)`, którą udostępnia nadrzędna klasa `WDIOReporter`. Przesyła ona treść strumieniowo do `stdout` lub do pliku logu (w zależności od opcji reportera).
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -101,13 +102,13 @@ export default class CustomReporter extends WDIOReporter {
 
 Pamiętaj, że nie możesz w żaden sposób opóźnić wykonania testu.
 
-Wszystkie procedury obsługi zdarzeń powinny wykonywać rutyny synchroniczne (w przeciwnym razie napotkasz warunki wyścigu).
+Wszystkie handlery zdarzeń powinny wykonywać operacje synchroniczne (w przeciwnym razie napotkasz problemy z wyścigami - race conditions).
 
-Sprawdź również [sekcję przykładów](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio), gdzie znajdziesz przykładowy niestandardowy reporter, który drukuje nazwę zdarzenia dla każdego zdarzenia.
+Koniecznie zajrzyj do [sekcji z przykładami](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio), gdzie znajdziesz przykładowy własny reporter, który wypisuje nazwę każdego zdarzenia.
 
-Jeśli zaimplementowałeś niestandardowego reportera, który może być przydatny dla społeczności, nie wahaj się zrobić Pull Request, abyśmy mogli udostępnić reportera publicznie!
+Jeśli zaimplementowałeś własny reporter, który mógłby być przydatny dla społeczności, nie wahaj się utworzyć Pull Requesta, abyśmy mogli udostępnić ten reporter publicznie!
 
-Ponadto, jeśli uruchamiasz tester WDIO za pośrednictwem interfejsu `Launcher`, nie możesz zastosować niestandardowego reportera jako funkcji w następujący sposób:
+Ponadto, jeśli uruchamiasz test runner WDIO za pomocą interfejsu `Launcher`, nie możesz zastosować własnego reportera jako funkcji w następujący sposób:
 
 ```js
 import Launcher from '@wdio/cli'
@@ -115,14 +116,14 @@ import Launcher from '@wdio/cli'
 import CustomReporter from './reporter/my.custom.reporter'
 
 const launcher = new Launcher('/path/to/config.file.js', {
-    // this will NOT work, because CustomReporter is not serializable
+    // to NIE zadziała, ponieważ CustomReporter nie jest serializowalny
     reporters: ['dot', CustomReporter]
 })
 ```
 
-## Czekanie na `isSynchronised`
+## Czekaj, aż `isSynchronised`
 
-Jeśli twój reporter musi wykonywać operacje asynchroniczne w celu raportowania danych (np. przesyłania plików dziennika lub innych zasobów), możesz nadpisać metodę `isSynchronised` w swoim niestandardowym reporterze, aby tester WebdriverIO czekał, aż wszystko zostanie obliczone. Przykład tego można zobaczyć w [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
+Jeśli Twój reporter musi wykonywać operacje asynchroniczne, aby raportować dane (np. przesyłanie plików logów lub innych zasobów), możesz nadpisać metodę `isSynchronised` w swoim własnym reporterze, aby runner WebdriverIO poczekał, aż wszystko zostanie przetworzone. Przykład można zobaczyć w [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
 
 ```js
 export default class SumoLogicReporter extends WDIOReporter {
@@ -134,14 +135,14 @@ export default class SumoLogicReporter extends WDIOReporter {
     }
 
     /**
-     * overwrite isSynchronised method
+     * nadpisz metodę isSynchronised
      */
     get isSynchronised () {
         return this.unsynced.length === 0
     }
 
     /**
-     * sync log files
+     * synchronizuj pliki logów
      */
     sync () {
         // ...
@@ -152,7 +153,7 @@ export default class SumoLogicReporter extends WDIOReporter {
         }, (err, resp) => {
             // ...
             /**
-             * remove transferred logs from log bucket
+             * usuń przesłane logi z bufora logów
              */
             this.unsynced.splice(0, MAX_LINES)
             // ...
@@ -161,21 +162,21 @@ export default class SumoLogicReporter extends WDIOReporter {
 }
 ```
 
-W ten sposób tester będzie czekał, aż wszystkie informacje dziennika zostaną przesłane.
+W ten sposób runner będzie czekał, aż wszystkie informacje z logów zostaną przesłane.
 
-## Publikowanie reportera na NPM
+## Publikowanie reportera w NPM
 
-Aby reporter był łatwiejszy do konsumpcji i odkrycia przez społeczność WebdriverIO, postępuj zgodnie z tymi zaleceniami:
+Aby ułatwić społeczności WebdriverIO korzystanie z reportera i jego odnalezienie, postępuj zgodnie z poniższymi zaleceniami:
 
-* Usługi powinny używać tej konwencji nazewnictwa: `wdio-*-reporter`
+* Usługi powinny stosować następującą konwencję nazewnictwa: `wdio-*-reporter`
 * Używaj słów kluczowych NPM: `wdio-plugin`, `wdio-reporter`
-* Główny wpis powinien `export` zawierać instancję reportera
+* Punkt wejścia `main` powinien eksportować (`export`) instancję reportera
 * Przykładowy reporter: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
-Postępowanie zgodnie z zalecanym wzorcem nazewnictwa pozwala na dodawanie usług według nazwy:
+Stosowanie zalecanego wzorca nazewnictwa pozwala dodawać usługi po nazwie:
 
 ```js
-// Add wdio-custom-reporter
+// Dodaj wdio-custom-reporter
 export const config = {
     // ...
     reporter: ['custom'],
@@ -185,9 +186,9 @@ export const config = {
 
 ### Dodaj opublikowaną usługę do WDIO CLI i dokumentacji
 
-Bardzo doceniamy każdy nowy plugin, który może pomóc innym ludziom przeprowadzać lepsze testy! Jeśli stworzyłeś taki plugin, rozważ dodanie go do naszego CLI i dokumentacji, aby był łatwiejszy do znalezienia.
+Bardzo doceniamy każdą nową wtyczkę, która może pomóc innym w uruchamianiu lepszych testów! Jeśli stworzyłeś taką wtyczkę, rozważ dodanie jej do naszego CLI i dokumentacji, aby łatwiej było ją znaleźć.
 
-Proszę o zgłoszenie pull requesta z następującymi zmianami:
+Utwórz pull request z następującymi zmianami:
 
 - dodaj swoją usługę do listy [obsługiwanych reporterów](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) w module CLI
-- rozszerz [listę reporterów](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/reporters.json) o swoją dokumentację na oficjalnej stronie Webdriver.io
+- rozszerz [listę reporterów](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json), aby dodać swoją dokumentację do oficjalnej strony Webdriver.io

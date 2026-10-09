@@ -1,11 +1,13 @@
 ---
 id: more-test-optimization
-title: Tempo de execução de teste
+title: Tempo de execução dos testes
+description: "Acelere os testes baseados em OCR recortando a área de busca da tela e usando uma instalação local do Tesseract."
 ---
 
-Por padrão, este módulo verificará se você tem uma instalação local do Tesseract em sua máquina/em seu pipeline. Se você não tiver uma instalação local, ele automaticamente usará uma versão [NodeJS](https://github.com/naptha/tesseract.js). Isso pode causar alguma lentidão porque o processamento de imagem será feito pelo Node.js. NodeJS não é o melhor sistema para fazer processamento pesado.
+Por padrão, este módulo verificará se você tem uma instalação local do Tesseract na sua máquina/no seu pipeline. Se você não tiver uma instalação local, ele usará automaticamente uma versão em [NodeJS](https://github.com/naptha/tesseract.js). Isso pode causar alguma lentidão, pois o processamento de imagens será feito pelo Node.js. O NodeJS não é o melhor sistema para fazer
+processamento pesado.
 
-**MAS...**, existem maneiras de otimizar o tempo de execução. Vamos considerar o seguinte script de teste
+**MAS....**, existem maneiras de otimizar o tempo de execução. Vamos considerar o seguinte script de teste
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -27,7 +29,7 @@ describe("Search", () => {
 });
 ```
 
-Quando você executa isso pela primeira vez, você pode ver os seguintes resultados onde levou 5,9 segundos para finalizar o teste.
+Ao executá-lo pela primeira vez, você poderá ver os seguintes resultados, em que o teste levou 5,9 segundos para terminar.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -59,11 +61,11 @@ Execution of 1 workers started at 2024-05-26T04:52:53.405Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-## Cortando a área de busca de uma tela
+## Recortando a área de busca de uma tela
 
-Você pode otimizar o tempo de execução fornecendo uma área recortada para executar o OCR.
+Você pode otimizar o tempo de execução fornecendo uma área recortada na qual executar o OCR.
 
-Se você alterar o script para isso:
+Se você alterar o script para este:
 
 ```ts
 import { browser } from "@wdio/globals";
@@ -120,13 +122,13 @@ Execution of 1 workers started at 2024-05-26T04:56:55.326Z
 Spec Files:      1 passed, 1 total (100% completed) in 00:00:08
 ```
 
-:::tip Cortando imagens
-Isso reduziu o tempo de execução local de **5,9** para **4,8 segundos**. Esta é uma redução de quase **19%**. Imagine o que isso pode fazer por um script maior com mais dados.
+:::tip Recortando imagens
+Isso reduziu o tempo de execução local de **5,9** para **4,8 segundos**. Isso representa uma redução de quase **19%**. Imagine o que isso pode fazer por um script maior, com mais dados.
 :::
 
 ## Usando uma instalação local do Tesseract
 
-Você pode acelerar seu tempo de execução para menos de um minuto se tiver uma instalação local do Tessarect em sua máquina local e/ou em seu pipeline (mais informações sobre como instalar o Tesseract em seu sistema local podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Você pode encontrar o tempo de execução do mesmo script usando uma instalação local do Tesseract abaixo.
+Você pode acelerar ainda mais o seu tempo de execução se tiver uma instalação local do Tesseract na sua máquina local e/ou no seu pipeline (mais informações sobre como instalar o Tesseract no seu sistema local podem ser encontradas [aqui](https://tesseract-ocr.github.io/tessdoc/Installation.html)). Você pode ver abaixo o tempo de execução do mesmo script usando uma instalação local do Tesseract.
 
 ```log
 npm run wdio -- --logLevel=silent
@@ -156,5 +158,5 @@ Spec Files:      1 passed, 1 total (100% completed) in 00:00:06
 ```
 
 :::tip Instalação local
-Isso reduziu o tempo de execução local de **5,9** para **3,9 segundos**. Esta é uma redução de quase **34%**. Imagine o que isso pode fazer por um script maior com mais dados.
+Isso reduziu o tempo de execução local de **5,9** para **3,9 segundos**. Isso representa uma redução de quase **34%**. Imagine o que isso pode fazer por um script maior, com mais dados.
 :::

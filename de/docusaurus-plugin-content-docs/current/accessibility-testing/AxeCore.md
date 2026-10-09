@@ -1,15 +1,16 @@
 ---
 id: axe-core
 title: Axe Core
+description: "Führen Sie automatisierte Barrierefreiheitsprüfungen in Ihren Tests mit dem Open-Source-Axe-Adapter von Deque durch, im Standalone- oder Testrunner-Modus."
 ---
 
-Sie können Barrierefreiheitstests in Ihre WebdriverIO-Testsuite mit den Open-Source-Barrierefreiheitstools [von Deque namens Axe](https://www.deque.com/axe/) einbinden. Die Einrichtung ist sehr einfach, Sie müssen lediglich den WebdriverIO Axe-Adapter installieren über:
+Sie können Barrierefreiheitstests in Ihre WebdriverIO-Testsuite integrieren, indem Sie die Open-Source-Barrierefreiheitstools [von Deque namens Axe](https://www.deque.com/axe/) verwenden. Die Einrichtung ist sehr einfach, Sie müssen lediglich den WebdriverIO-Axe-Adapter installieren über:
 
 ```bash npm2yarn
 npm install -g @axe-core/webdriverio
 ```
 
-Der Axe-Adapter kann entweder im [Standalone- oder Testrunner](/docs/setuptypes)-Modus verwendet werden, indem Sie ihn einfach importieren und mit dem [browser-Objekt](/docs/api/browser) initialisieren, z.B.:
+Der Axe-Adapter kann entweder im [Standalone- oder Testrunner](/docs/setuptypes)-Modus verwendet werden, indem Sie ihn einfach importieren und mit dem [Browser-Objekt](/docs/api/browser) initialisieren, z. B.:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -26,4 +27,4 @@ describe('Accessibility Test', () => {
 })
 ```
 
-Weitere Dokumentation zum Axe WebdriverIO-Adapter finden Sie [auf GitHub](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage).
+Weitere Dokumentation zum Axe-WebdriverIO-Adapter finden Sie [auf GitHub](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage).

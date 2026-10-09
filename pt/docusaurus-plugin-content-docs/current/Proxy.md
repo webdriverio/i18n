@@ -1,33 +1,34 @@
 ---
 id: proxy
 title: Configuração de Proxy
+description: "Encaminhe requisições através de um proxy, seja entre seus testes e o driver ou entre o navegador e a internet."
 ---
 
-Você pode encaminhar dois tipos diferentes de requisições através de um proxy:
+Você pode encaminhar dois tipos diferentes de requisição através de um proxy:
 
 - conexão entre seu script de teste e o driver do navegador (ou endpoint WebDriver)
 - conexão entre o navegador e a internet
 
-## Proxy Entre o Driver e o Teste
+## Proxy Entre Driver E Teste
 
-Se sua empresa tem um proxy corporativo (por exemplo, em `http://my.corp.proxy.com:9090`) para todas as requisições de saída, você tem duas opções para configurar o WebdriverIO para usar o proxy:
+Se sua empresa possui um proxy corporativo (por exemplo, em `http://my.corp.proxy.com:9090`) para todas as requisições de saída, você tem duas opções para configurar o WebdriverIO para usar o proxy:
 
 ### Opção 1: Usando Variáveis de Ambiente (Recomendado)
 
-A partir do WebdriverIO v9.12.0, você pode simplesmente definir as variáveis de ambiente padrão para proxy:
+A partir do WebdriverIO v9.12.0, você pode simplesmente definir as variáveis de ambiente padrão de proxy:
 
 ```bash
 export HTTP_PROXY=http://my.corp.proxy.com:9090
 export HTTPS_PROXY=http://my.corp.proxy.com:9090
-# Opcional: ignorar proxy para certos hosts
+# Opcional: ignorar o proxy para determinados hosts
 export NO_PROXY=localhost,127.0.0.1,.internal.domain
 ```
 
-Depois execute seus testes normalmente. O WebdriverIO usará automaticamente essas variáveis de ambiente para a configuração do proxy.
+Em seguida, execute seus testes normalmente. O WebdriverIO usará automaticamente essas variáveis de ambiente para a configuração do proxy.
 
-### Opção 2: Usando setGlobalDispatcher do undici
+### Opção 2: Usando o setGlobalDispatcher do undici
 
-Para configurações de proxy mais avançadas ou se você precisar de controle programático, pode usar o método `setGlobalDispatcher` do undici:
+Para configurações de proxy mais avançadas ou se você precisar de controle programático, você pode usar o método `setGlobalDispatcher` do undici:
 
 #### Instale o undici
 
@@ -37,7 +38,7 @@ npm install undici --save-dev
 
 #### Adicione o setGlobalDispatcher do undici ao seu arquivo de configuração
 
-Adicione a seguinte declaração de importação no topo do seu arquivo de configuração.
+Adicione a seguinte instrução de importação no topo do seu arquivo de configuração.
 
 ```js title="wdio.conf.js"
 import { setGlobalDispatcher, ProxyAgent } from 'undici';
@@ -54,24 +55,24 @@ Informações adicionais sobre a configuração do proxy podem ser encontradas [
 
 ### Qual Método Devo Usar?
 
-- **Use variáveis de ambiente** se quiser uma abordagem simples e padrão que funcione em diferentes ferramentas e não exija alterações no código.
-- **Use setGlobalDispatcher** se precisar de recursos avançados de proxy como autenticação personalizada, diferentes configurações de proxy por ambiente, ou quiser controlar programaticamente o comportamento do proxy.
+- **Use variáveis de ambiente** se você quiser uma abordagem simples e padrão que funcione em diferentes ferramentas e não exija alterações no código.
+- **Use setGlobalDispatcher** se você precisar de recursos avançados de proxy, como autenticação personalizada, configurações de proxy diferentes por ambiente, ou se quiser controlar programaticamente o comportamento do proxy.
 
-Ambos os métodos são totalmente suportados e o WebdriverIO verificará primeiro um dispatcher global antes de recorrer às variáveis de ambiente.
+Ambos os métodos são totalmente suportados e o WebdriverIO verificará primeiro se existe um dispatcher global antes de recorrer às variáveis de ambiente.
 
 ### Sauce Connect Proxy
 
-Se você usa o [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), inicie-o via:
+Se você usa o [Sauce Connect Proxy](https://docs.saucelabs.com/secure-connections/sauce-connect-5), inicie-o com:
 
 ```sh
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
-## Proxy Entre o Navegador e a Internet
+## Proxy Entre Navegador E Internet
 
-Para encaminhar a conexão entre o navegador e a internet, você pode configurar um proxy, o que pode ser útil para (por exemplo) capturar informações de rede e outros dados com ferramentas como [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+Para encaminhar a conexão entre o navegador e a internet, você pode configurar um proxy, o que pode ser útil para (por exemplo) capturar informações de rede e outros dados com ferramentas como o [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-Os parâmetros de `proxy` podem ser aplicados através das capacidades padrão da seguinte maneira:
+Os parâmetros de `proxy` podem ser aplicados através das capabilities padrão da seguinte forma:
 
 ```js title="wdio.conf.js"
 export const config = {

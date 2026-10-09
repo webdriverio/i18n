@@ -1,17 +1,18 @@
 ---
 id: test-output
 title: Testausgabe
+description: "Verstehen Sie die Ausgabe und die Bilder, die von den save- und check-Methoden des Visual Service erzeugt werden, einschließlich Layout-Tests und Block-Outs."
 ---
 
 :::info
 
-[Diese WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) Demo-Seite wurde für die Beispielbildausgabe verwendet.
+[Diese WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) Demo-Seite wurde für die Beispiel-Bildausgabe verwendet.
 
 :::
 
 ## `enableLayoutTesting`
 
-Dies kann sowohl in den [Service-Optionen](./service-options#enablelayouttesting) als auch auf der [Methoden](./method-options)-Ebene eingestellt werden.
+Dies kann sowohl in den [Service-Optionen](./service-options#enablelayouttesting) als auch auf [Methoden](./method-options)-Ebene festgelegt werden.
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,7 +33,7 @@ export const config = {
 }
 ```
 
-Die Bildausgabe für die [Service-Optionen](./service-options#enablelayouttesting) ist identisch mit der [Methoden](./method-options)-Ebene, siehe unten.
+Die Bildausgabe für die [Service-Optionen](./service-options#enablelayouttesting) entspricht der der [Methode](./method-options), siehe unten.
 
 ### Bildausgabe
 
@@ -97,16 +98,16 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 
 ### Konsolenausgabe
 
-Die `save(Screen/Element/FullPageScreen)`-Methoden liefern die folgenden Informationen, nachdem die Methode ausgeführt wurde:
+Die `save(Screen/Element/FullPageScreen)`-Methoden liefern nach ihrer Ausführung die folgenden Informationen:
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // Das Gerätepixelverhältnis der Instanz, die ausgeführt wurde
+ *   // Das Gerätepixelverhältnis der ausgeführten Instanz
  *   devicePixelRatio: 1,
- *   // Der formatierte Dateiname, abhängig von der Option `formatImageName`
+ *   // Der formatierte Dateiname, dieser hängt von der Option `formatImageName` ab
  *   fileName: "examplePage-chrome-latest-1366x768.png",
  *   // Der Pfad, unter dem die tatsächliche Screenshot-Datei zu finden ist
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
@@ -177,7 +178,7 @@ await browser.saveScreen("example-page-tag")
 <TabItem value="ios">
 
 :::info TIPP
-iOS `saveScreen`-Ausführungen haben standardmäßig keine Geräterahmenecken. Um diese zu haben, fügen Sie bitte die Option `addIOSBezelCorners:true` beim Instanziieren des Dienstes hinzu, siehe [hier](./service-options#addiosbezelcorners)
+iOS-`saveScreen`-Ausführungen erfolgen standardmäßig nicht mit den Ecken des Geräterahmens. Um diese zu erhalten, fügen Sie bitte beim Instanziieren des Service die Option `addIOSBezelCorners:true` hinzu, siehe [hier](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,23 +217,23 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### Konsolenausgabe
 
-Standardmäßig liefern die `check(Screen/Element/FullPageScreen)`-Methoden nur einen Abweichungsprozentsatz wie `1.23`, aber wenn das Plugin die Option `returnAllCompareData: true` hat, werden die folgenden Informationen nach der Ausführung der Methode bereitgestellt:
+Standardmäßig liefern die `check(Screen/Element/FullPageScreen)`-Methoden nur einen Abweichungsprozentsatz wie `1.23`. Wenn das Plugin jedoch die Option `returnAllCompareData: true` hat, werden nach der Ausführung der Methode die folgenden Informationen bereitgestellt:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // Der formatierte Dateiname, abhängig von der Option `formatImageName`
+ *     // Der formatierte Dateiname, dieser hängt von der Option `formatImageName` ab
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // Der tatsächliche Ordner und der Dateiname
+ *         // Der Actual-Ordner und der Dateiname
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *         // Der Baseline-Ordner und der Dateiname
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // Der folgende Ordner ist optional und nur bei einer Abweichung vorhanden
- *         // Der Ordner, der die Unterschiede und den Dateinamen enthält
+ *         // Der folgende Ordner ist optional und nur vorhanden, wenn es eine Abweichung gibt
+ *         // Der Ordner, der die Diffs enthält, und der Dateiname
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
  *     // Der Abweichungsprozentsatz
@@ -244,7 +245,7 @@ console.log(checkResult)
 ### Bildausgabe
 
 :::info
-Die folgenden Bilder zeigen nur Unterschiede als Ergebnis der Ausführung der Prüfbefehle. Es wird nur die Differenz in einem Browser angezeigt, aber die Ausgabe für Android und iOS ist identisch.
+Die folgenden Bilder zeigen nur Unterschiede, die sich aus der Ausführung der check-Befehle ergeben. Es wird nur der Diff in einem Browser gezeigt, die Ausgabe für Android und iOS ist jedoch dieselbe.
 :::
 
 <Tabs
@@ -262,7 +263,7 @@ await browser.checkElement("#__docusaurus_skipToContent_fallback > header > div 
 ```
 
 :::info
-Der Buttontext wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
+Der Button-Text wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
 :::
 
 ![Button Check Result](/img/visual/button-check.png)
@@ -275,7 +276,7 @@ await browser.checkScreen("example-page-tag")
 ```
 
 :::info
-Der Buttontext wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
+Der Button-Text wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
 :::
 
 ![Button Check Result](/img/visual/screen-check.png)
@@ -289,7 +290,7 @@ await browser.checkFullPageScreen("full-page-tag")
 ```
 
 :::info
-Der Buttontext wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
+Der Button-Text wurde von `Get Started` zu `Getting Started!` geändert und als Änderung erkannt.
 :::
 
 ![Button Check Result](/img/visual/fullpage-check.png)
@@ -298,9 +299,9 @@ Der Buttontext wurde von `Get Started` zu `Getting Started!` geändert und als �
 
 </Tabs>
 
-## Ausblendungen
+## Block-Outs
 
-Hier finden Sie ein Beispiel für Ausblendungen in Android NativeWebScreenshot und iOS, bei denen Status+Adresse und Symbolleiste ausgeblendet sind.
+Hier finden Sie eine Beispielausgabe für Block-Outs in Android NativeWebScreenshot und iOS, bei denen die Status- und Adressleiste sowie die Toolbar ausgeblendet sind.
 
 <Tabs
     defaultValue="nativeWebScreenshot"

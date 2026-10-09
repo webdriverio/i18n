@@ -1,9 +1,10 @@
 ---
 id: ocr-get-text
 title: ocrGetText
+description: "Läs texten som visas på skärmen eller i ett specifikt område med ocrGetText från OCR-tjänsten."
 ---
 
-Hämta texten på en bild.
+Hämta texten i en bild.
 
 ### Användning
 
@@ -13,15 +14,15 @@ const result = await browser.ocrGetText();
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## Output
+## Utdata
 
-### Result
+### Resultat
 
 ```logs
 result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube"
 ```
 
-### Logs
+### Loggar
 
 ```log
 [0-0] 2024-05-25T17:38:25.970Z INFO webdriver: COMMAND ocrGetText()
@@ -29,17 +30,16 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 [0-0] 2024-05-25T17:38:26.738Z INFO webdriver: RESULT VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube
 ```
 
-## Options
+## Alternativ
 
 ### `contrast`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Den accepterar värden mellan `-1` och `1`.
+Ju högre kontrast, desto mörkare blir bilden och vice versa. Detta kan hjälpa till att hitta text i en bild. Det accepterar värden mellan `-1` och `1`.
 
-#### Example
+</Option>
+#### Exempel
 
 ```js
 await browser.ocrGetText({ contrast: 0.5 });
@@ -47,20 +47,20 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **Type:** `number`
--   **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Detta är sökområdet på skärmen där OCR behöver leta efter text. Detta kan vara ett element eller en rektangel som innehåller `x`, `y`, `width` och `height`
+Detta är sökområdet på skärmen där OCR ska leta efter text. Detta kan vara ett element eller en rektangel som innehåller `x`, `y`, `width` och `height`
 
-#### Example
+</Option>
+#### Exempel
 
 ```js
 await browser.ocrGetText({ haystack: $("elementSelector") });
 
-// OR
+// ELLER
 await browser.ocrGetText({ haystack: await $("elementSelector") });
 
-// OR
+// ELLER
 await browser.ocrGetText({
     haystack: {
         x: 10,
@@ -73,18 +73,17 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `eng`
+<Option type="string" default="eng" required="No">
 
 Språket som Tesseract kommer att känna igen. Mer information finns [här](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) och de språk som stöds finns [här](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+</Option>
+#### Exempel
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // Use Dutch as a language
+    // Använd nederländska som språk
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

@@ -1,30 +1,31 @@
 ---
 id: vscode-extensions
-title: اختبار امتداد VS Code
+title: اختبار إضافات VS Code
+description: "اختبر إضافات VS Code من البداية إلى النهاية في بيئة التطوير المكتبية أو كإضافات ويب باستخدام WebdriverIO وخدمة VS Code."
 ---
 
-يسمح لك WebdriverIO باختبار امتدادات [VS Code](https://code.visualstudio.com/) بشكل سلس من طرف إلى طرف في بيئة VS Code سطح المكتب أو كامتداد ويب. كل ما تحتاجه هو توفير مسار لامتدادك والإطار يتولى الباقي. مع [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) يتم التعامل مع كل شيء وأكثر:
+يتيح لك WebdriverIO اختبار إضافات [VS Code](https://code.visualstudio.com/) الخاصة بك بسلاسة من البداية إلى النهاية في بيئة التطوير المتكاملة VS Code Desktop أو كإضافة ويب. كل ما عليك هو توفير مسار إضافتك وسيتولى إطار العمل الباقي. مع [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) يتم الاهتمام بكل شيء وأكثر من ذلك بكثير:
 
-- 🏗️ تثبيت VSCode (إما المستقر أو الداخلي أو إصدار محدد)
+- 🏗️ تثبيت VSCode (إما الإصدار المستقر stable أو insiders أو إصدار محدد)
 - ⬇️ تنزيل Chromedriver الخاص بإصدار VSCode المحدد
-- 🚀 يمكّنك من الوصول إلى واجهة برمجة تطبيقات VSCode من اختباراتك
-- 🖥️ بدء تشغيل VSCode بإعدادات مستخدم مخصصة (بما في ذلك دعم VSCode على Ubuntu و MacOS و Windows)
-- 🌐 أو استضافة VSCode من خادم ليتم الوصول إليه من أي متصفح لاختبار امتدادات الويب
-- 📔 إعداد page objects مع محددات المواقع المتوافقة مع إصدار VSCode الخاص بك
+- 🚀 يتيح لك الوصول إلى VSCode API من اختباراتك
+- 🖥️ تشغيل VSCode بإعدادات مستخدم مخصصة (بما في ذلك دعم VSCode على Ubuntu وMacOS وWindows)
+- 🌐 أو تقديم VSCode من خادم ليتم الوصول إليه من أي متصفح لاختبار إضافات الويب
+- 📔 تهيئة كائنات الصفحة (page objects) بمحددات (locators) مطابقة لإصدار VSCode الخاص بك
 
 ## البدء
 
-لبدء مشروع WebdriverIO جديد، قم بتشغيل:
+لإنشاء مشروع WebdriverIO جديد، نفّذ:
 
 ```sh
 npm create wdio@latest ./
 ```
 
-سيرشدك معالج التثبيت خلال العملية. تأكد من اختيار _"VS Code Extension Testing"_ عندما يسألك عن نوع الاختبار الذي ترغب في القيام به، بعد ذلك احتفظ بالإعدادات الافتراضية أو قم بتعديلها حسب تفضيلاتك.
+سيرشدك معالج التثبيت خلال العملية. تأكد من اختيار _"VS Code Extension Testing"_ عندما يسألك عن نوع الاختبار الذي ترغب في إجرائه، وبعد ذلك احتفظ بالإعدادات الافتراضية أو عدّلها حسب تفضيلاتك.
 
-## مثال التكوين
+## مثال على الإعدادات
 
-لاستخدام الخدمة، تحتاج إلى إضافة `vscode` إلى قائمة الخدمات لديك، يتبعها اختيارياً كائن تكوين. هذا سيجعل WebdriverIO يقوم بتنزيل ملفات VSCode الثنائية المحددة وإصدار Chromedriver المناسب:
+لاستخدام الخدمة، تحتاج إلى إضافة `vscode` إلى قائمة الخدمات الخاصة بك، متبوعة اختياريًا بكائن إعدادات. سيجعل هذا WebdriverIO يقوم بتنزيل ملفات VSCode التنفيذية المحددة وإصدار Chromedriver المناسب:
 
 ```js
 // wdio.conf.ts
@@ -33,7 +34,7 @@ export const config = {
     // ...
     capabilities: [{
         browserName: 'vscode',
-        browserVersion: '1.71.0', // "insiders" أو "stable" لأحدث إصدار من VSCode
+        browserVersion: '1.71.0', // "insiders" or "stable" for latest VSCode version
         'wdio:vscodeOptions': {
             extensionPath: __dirname,
             userSettings: {
@@ -43,15 +44,15 @@ export const config = {
     }],
     services: ['vscode'],
     /**
-     * اختيارياً يمكنك تحديد المسار الذي يخزن فيه WebdriverIO جميع
-     * ملفات VSCode و Chromedriver الثنائية، على سبيل المثال:
+     * optionally you can define the path WebdriverIO stores all
+     * VSCode and Chromedriver binaries, e.g.:
      * services: [['vscode', { cachePath: __dirname }]]
      */
     // ...
 };
 ```
 
-إذا قمت بتعريف `wdio:vscodeOptions` مع أي `browserName` آخر غير `vscode`، مثل `chrome`، فستقوم الخدمة بتقديم الامتداد كامتداد ويب. إذا كنت تختبر على Chrome فلا حاجة لخدمة تشغيل إضافية، على سبيل المثال:
+إذا قمت بتعريف `wdio:vscodeOptions` مع أي قيمة لـ `browserName` غير `vscode`، مثل `chrome`، فستقدم الخدمة الإضافة كإضافة ويب. إذا كنت تختبر على Chrome فلا حاجة لخدمة تعريف (driver) إضافية، على سبيل المثال:
 
 ```js
 // wdio.conf.ts
@@ -69,11 +70,11 @@ export const config = {
 };
 ```
 
-_ملاحظة:_ عند اختبار امتدادات الويب يمكنك فقط الاختيار بين `stable` أو `insiders` كـ `browserVersion`.
+_ملاحظة:_ عند اختبار إضافات الويب، يمكنك الاختيار فقط بين `stable` أو `insiders` كقيمة لـ `browserVersion`.
 
 ### إعداد TypeScript
 
-في ملف `tsconfig.json` الخاص بك، تأكد من إضافة `wdio-vscode-service` إلى قائمة الأنواع:
+في ملف `tsconfig.json` الخاص بك، تأكد من إضافة `wdio-vscode-service` إلى قائمة الأنواع (types):
 
 ```json
 {
@@ -93,7 +94,7 @@ _ملاحظة:_ عند اختبار امتدادات الويب يمكنك فق�
 
 ## الاستخدام
 
-يمكنك بعد ذلك استخدام طريقة `getWorkbench` للوصول إلى page objects للمحددات المتطابقة مع إصدار VSCode المطلوب:
+يمكنك بعد ذلك استخدام الدالة `getWorkbench` للوصول إلى كائنات الصفحة الخاصة بالمحددات المطابقة لإصدار VSCode الذي تريده:
 
 ```ts
 describe('WDIO VSCode Service', () => {
@@ -105,11 +106,11 @@ describe('WDIO VSCode Service', () => {
 })
 ```
 
-من هناك يمكنك الوصول إلى جميع page objects باستخدام طرق page object المناسبة. اكتشف المزيد عن جميع page objects المتاحة وطرقها في [وثائق page object](https://webdriverio-community.github.io/wdio-vscode-service/).
+من هناك يمكنك الوصول إلى جميع كائنات الصفحة باستخدام دوال كائنات الصفحة المناسبة. اكتشف المزيد حول جميع كائنات الصفحة المتاحة ودوالها في [توثيق كائنات الصفحة](https://webdriverio-community.github.io/wdio-vscode-service/).
 
-### الوصول إلى واجهات برمجة تطبيقات VSCode
+### الوصول إلى واجهات VSCode البرمجية
 
-إذا كنت ترغب في تنفيذ أتمتة معينة من خلال [واجهة برمجة تطبيقات VSCode](https://code.visualstudio.com/api/references/vscode-api)، يمكنك القيام بذلك عن طريق تشغيل أوامر عن بُعد عبر الأمر المخصص `executeWorkbench`. يتيح لك هذا الأمر تنفيذ رمز عن بُعد من اختبارك داخل بيئة VSCode ويتيح الوصول إلى واجهة برمجة تطبيقات VSCode. يمكنك تمرير معلمات عشوائية إلى الدالة والتي سيتم نقلها بعد ذلك إلى الدالة. سيتم دائمًا تمرير الكائن `vscode` كوسيطة أولى متبوعًا بمعلمات الدالة الخارجية. لاحظ أنه لا يمكنك الوصول إلى المتغيرات خارج نطاق الدالة لأن رد الاتصال يتم تنفيذه عن بُعد. إليك مثال:
+إذا كنت ترغب في تنفيذ عمليات أتمتة معينة من خلال [VSCode API](https://code.visualstudio.com/api/references/vscode-api)، يمكنك القيام بذلك عن طريق تشغيل أوامر عن بُعد عبر الأمر المخصص `executeWorkbench`. يتيح هذا الأمر تنفيذ الكود عن بُعد من اختبارك داخل بيئة VSCode ويمكّنك من الوصول إلى VSCode API. يمكنك تمرير معاملات عشوائية إلى الدالة والتي سيتم تمريرها بعد ذلك إلى داخل الدالة. سيتم دائمًا تمرير الكائن `vscode` كوسيط أول يليه معاملات الدالة الخارجية. لاحظ أنه لا يمكنك الوصول إلى المتغيرات خارج نطاق الدالة لأن دالة رد النداء (callback) تُنفَّذ عن بُعد. إليك مثالًا:
 
 ```ts
 const workbench = await browser.getWorkbench()
@@ -118,14 +119,14 @@ await browser.executeWorkbench((vscode, param1, param2) => {
 }, 'API', 'call')
 
 const notifs = await workbench.getNotifications()
-console.log(await notifs[0].getMessage()) // يخرج: "I am an API call!"
+console.log(await notifs[0].getMessage()) // يطبع: "I am an API call!"
 ```
 
-للحصول على وثائق page object الكاملة، راجع [الوثائق](https://webdriverio-community.github.io/wdio-vscode-service/modules.html). يمكنك العثور على أمثلة استخدام متنوعة في [مجموعة اختبارات هذا المشروع](https://github.com/webdriverio-community/wdio-vscode-service/blob/main/test/specs).
+للاطلاع على التوثيق الكامل لكائنات الصفحة، راجع [التوثيق](https://webdriverio-community.github.io/wdio-vscode-service/modules.html). يمكنك العثور على أمثلة استخدام متنوعة في [مجموعة اختبارات هذا المشروع](https://github.com/webdriverio-community/wdio-vscode-service/blob/main/test/specs).
 
 ## مزيد من المعلومات
 
-يمكنك معرفة المزيد حول كيفية تكوين [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) وكيفية إنشاء page objects مخصصة في [وثائق الخدمة](/docs/wdio-vscode-service). يمكنك أيضًا مشاهدة المحادثة التالية من [Christian Bromann](https://twitter.com/bromann) حول [_اختبار امتدادات VSCode المعقدة بقوة معايير الويب_](https://www.youtube.com/watch?v=PhGNTioBUiU):
+يمكنك معرفة المزيد حول كيفية إعداد [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) وكيفية إنشاء كائنات صفحة مخصصة في [توثيق الخدمة](/docs/wdio-vscode-service). يمكنك أيضًا مشاهدة المحاضرة التالية التي قدمها [Christian Bromann](https://twitter.com/bromann) بعنوان [_Testing Complex VSCode Extensions With the Power of Web Standards_](https://www.youtube.com/watch?v=PhGNTioBUiU):
 
 <LiteYouTubeEmbed
     id="PhGNTioBUiU"

@@ -1,21 +1,22 @@
 ---
 id: pageobjects
 title: Page Object-mönstret
+description: "Strukturera dina tester med page object-mönstret genom att flytta selektorer och sidspecifika åtgärder till återanvändbara sidklasser."
 ---
 
-Version 5 av WebdriverIO designades med stöd för Page Object-mönstret i åtanke. Genom att introducera principen "element som förstaklassobjekt", är det nu möjligt att bygga stora testsviter med detta mönster.
+Version 5 av WebdriverIO designades med stöd för Page Object-mönstret i åtanke. Genom att införa principen "element som förstklassiga medborgare" är det nu möjligt att bygga upp stora testsviter med hjälp av detta mönster.
 
-Inga ytterligare paket krävs för att skapa sidoobjekt. Det visar sig att rena, moderna klasser ger alla nödvändiga funktioner vi behöver:
+Det krävs inga ytterligare paket för att skapa page objects. Det visar sig att rena, moderna klasser tillhandahåller alla nödvändiga funktioner vi behöver:
 
-- arv mellan sidoobjekt
-- lat laddning av element
+- arv mellan page objects
+- lat inläsning (lazy loading) av element
 - inkapsling av metoder och åtgärder
 
-Målet med att använda sidoobjekt är att abstrahera all sidinformation från de faktiska testerna. Idealiskt bör du lagra alla selektorer eller specifika instruktioner som är unika för en viss sida i ett sidoobjekt, så att du fortfarande kan köra ditt test efter att du har helt omdesignat din sida.
+Målet med att använda page objects är att abstrahera bort all sidinformation från själva testerna. Helst bör du lagra alla selektorer eller specifika instruktioner som är unika för en viss sida i ett page object, så att du fortfarande kan köra ditt test efter att du helt har gjort om designen av din sida.
 
-## Skapa ett sidoobjekt
+## Skapa ett Page Object
 
-Först behöver vi ett huvud-sidoobjekt som vi kallar `Page.js`. Det kommer att innehålla allmänna selektorer eller metoder som alla sidoobjekt kommer att ärva från.
+Först och främst behöver vi ett huvudsakligt page object som vi kallar `Page.js`. Det kommer att innehålla allmänna selektorer eller metoder som alla page objects kommer att ärva från.
 
 ```js
 // Page.js
@@ -30,13 +31,13 @@ export default class Page {
 }
 ```
 
-Vi kommer alltid att `export`-era en instans av ett sidoobjekt, och aldrig skapa den instansen i testet. Eftersom vi skriver end-to-end-tester, betraktar vi alltid sidan som en tillståndslös konstruktion&mdash;precis som varje HTTP-förfrågan är en tillståndslös konstruktion.
+Vi kommer alltid att `export`:era en instans av ett page object, och aldrig skapa den instansen i testet. Eftersom vi skriver end-to-end-tester betraktar vi alltid sidan som en tillståndslös konstruktion&mdash;precis som varje HTTP-förfrågan är en tillståndslös konstruktion.
 
-Visst kan webbläsaren bära sessionsinformation och därför visa olika sidor baserat på olika sessioner, men detta bör inte återspeglas inom ett sidoobjekt. Dessa typer av tillståndsändringar bör finnas i dina faktiska tester.
+Visst, webbläsaren kan bära sessionsinformation och kan därför visa olika sidor baserat på olika sessioner, men detta bör inte återspeglas i ett page object. Den här typen av tillståndsförändringar bör finnas i dina faktiska tester.
 
-Låt oss börja testa den första sidan. För demonstrationsändamål använder vi webbplatsen [The Internet](http://the-internet.herokuapp.com) av [Elemental Selenium](http://elementalselenium.com) som försökskanin. Låt oss försöka bygga ett exempel på sidoobjekt för [inloggningssidan](http://the-internet.herokuapp.com/login).
+Låt oss börja testa den första sidan. I demonstrationssyfte använder vi webbplatsen [The Internet](http://the-internet.herokuapp.com) av [Elemental Selenium](http://elementalselenium.com) som försökskanin. Låt oss försöka bygga ett page object-exempel för [inloggningssidan](http://the-internet.herokuapp.com/login).
 
-## `Get` -ting av dina selektorer
+## `Get`-a dina selektorer
 
 Det första steget är att skriva alla viktiga selektorer som krävs i vårt `login.page`-objekt som getter-funktioner:
 
@@ -65,11 +66,11 @@ class LoginPage extends Page {
 export default new LoginPage()
 ```
 
-Att definiera selektorer i getter-funktioner kan se lite konstigt ut, men det är verkligen användbart. Dessa funktioner utvärderas _när du använder egenskapen_, inte när du genererar objektet. Med det begär du alltid elementet innan du utför en åtgärd på det.
+Att definiera selektorer i getter-funktioner kan se lite konstigt ut, men det är verkligen användbart. Dessa funktioner utvärderas _när du kommer åt egenskapen_, inte när du genererar objektet. På så sätt efterfrågar du alltid elementet innan du utför en åtgärd på det.
 
 ## Kedja kommandon
 
-WebdriverIO kommer ihåg det senaste resultatet av ett kommando internt. Om du kedjar ett elementkommando med ett åtgärdskommando, hittar det elementet från föregående kommando och använder resultatet för att utföra åtgärden. Med det kan du ta bort selektorn (första parametern) och kommandot ser så enkelt ut som:
+WebdriverIO kommer internt ihåg det senaste resultatet av ett kommando. Om du kedjar ett elementkommando med ett åtgärdskommando hittar det elementet från föregående kommando och använder resultatet för att utföra åtgärden. Därmed kan du ta bort selektorn (första parametern) och kommandot ser så enkelt ut som:
 
 ```js
 await LoginPage.username.setValue('Max Mustermann')
@@ -88,13 +89,13 @@ eller
 await $('#username').setValue('Max Mustermann')
 ```
 
-## Använda sidoobjekt i dina tester
+## Använda Page Objects i dina tester
 
-Efter att du har definierat de nödvändiga elementen och metoderna för sidan, kan du börja skriva test för den. Allt du behöver göra för att använda sidoobjektet är att `import`-era (eller `require`) det. Det är allt!
+När du har definierat de nödvändiga elementen och metoderna för sidan kan du börja skriva testet för den. Allt du behöver göra för att använda page objectet är att `import`:era (eller `require`:a) det. Det är allt!
 
-Eftersom du exporterade en redan skapad instans av sidoobjektet, kan du börja använda det direkt efter import.
+Eftersom du exporterade en redan skapad instans av page objectet kan du börja använda det direkt när du importerar det.
 
-Om du använder ett påståenderamverk kan dina tester vara ännu mer uttrycksfulla:
+Om du använder ett assertion-ramverk kan dina tester bli ännu mer uttrycksfulla:
 
 ```js
 // login.spec.js
@@ -121,10 +122,10 @@ describe('login form', () => {
 })
 ```
 
-Från den strukturella sidan är det vettigt att separera specifikationsfiler och sidoobjekt i olika kataloger. Dessutom kan du ge varje sidoobjekt ändelsen: `.page.js`. Detta gör det tydligare att du importerar ett sidoobjekt.
+Ur ett strukturellt perspektiv är det vettigt att separera spec-filer och page objects i olika kataloger. Dessutom kan du ge varje page object ändelsen: `.page.js`. Detta gör det tydligare att du importerar ett page object.
 
 ## Gå vidare
 
-Detta är den grundläggande principen för hur man skriver sidoobjekt med WebdriverIO. Men du kan bygga upp mycket mer komplexa sidoobjektstrukturer än detta! Till exempel kan du ha specifika sidoobjekt för modaler, eller dela upp ett stort sidoobjekt i olika klasser (var och en representerar en annan del av den övergripande webbsidan) som ärver från huvudsidoobjektet. Mönstret ger verkligen många möjligheter att separera sidinformation från dina tester, vilket är viktigt för att hålla din testsvit strukturerad och tydlig i tider då projektet och antalet tester växer.
+Detta är grundprincipen för hur man skriver page objects med WebdriverIO. Men du kan bygga upp mycket mer komplexa page object-strukturer än så här! Du kan till exempel ha specifika page objects för modaler, eller dela upp ett enormt page object i olika klasser (där var och en representerar en annan del av hela webbsidan) som ärver från huvud-page objectet. Mönstret ger verkligen många möjligheter att separera sidinformation från dina tester, vilket är viktigt för att hålla din testsvit strukturerad och tydlig i takt med att projektet och antalet tester växer.
 
-Du kan hitta detta exempel (och ännu fler sidoobjekt-exempel) i [`example`-mappen](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) på GitHub.
+Du kan hitta detta exempel (och ännu fler page object-exempel) i [`example`-mappen](https://github.com/webdriverio/webdriverio/tree/main/examples/pageobject) på GitHub.

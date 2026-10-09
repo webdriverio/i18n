@@ -1,17 +1,18 @@
 ---
 id: test-output
 title: مخرجات الاختبار
+description: "افهم المخرجات والصور التي تنتجها دوال الحفظ والتحقق في الخدمة المرئية، بما في ذلك اختبار التخطيط والمناطق المحجوبة."
 ---
 
 :::info
 
-تم استخدام [موقع WebdriverIO التجريبي](https://guinea-pig.webdriver.io/image-compare.html) للحصول على مثال لمخرجات الصور.
+تم استخدام [موقع WebdriverIO](https://guinea-pig.webdriver.io/image-compare.html) التجريبي هذا لمخرجات الصور في الأمثلة.
 
 :::
 
 ## `enableLayoutTesting`
 
-يمكن تعيين هذا في [خيارات الخدمة](./service-options#enablelayouttesting) وكذلك على [مستوى الطريقة](./method-options).
+يمكن تعيين هذا الخيار في [خيارات الخدمة](./service-options#enablelayouttesting) وكذلك على مستوى [الدالة](./method-options).
 
 ```js
 // wdio.conf.(js|ts)
@@ -32,7 +33,7 @@ export const config = {
 }
 ```
 
-مخرجات الصور لـ [خيارات الخدمة](./service-options#enablelayouttesting) متساوية مع [الطريقة](./method-options)، انظر أدناه.
+مخرجات الصور لـ [خيارات الخدمة](./service-options#enablelayouttesting) مماثلة لمخرجات [الدالة](./method-options)، انظر أدناه.
 
 ### مخرجات الصور
 
@@ -49,7 +50,7 @@ export const config = {
 
 ```js
 await browser.saveElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
-// Or
+// أو
 await browser.checkElement(".features_vqN4", "example-element-tag", {enableLayoutTesting: true})
 ```
 
@@ -71,7 +72,7 @@ await browser.saveScreen("example-page-tag")
 
 ```js
 await browser.saveFullPageScreen("full-page-tag")
-// Or
+// أو
 await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -83,7 +84,7 @@ await browser.checkFullPageScreen("full-page-tag", {enableLayoutTesting: true})
 
 ```js
 await browser.saveTabbablePage("tabbable-page-tag")
-// Or
+// أو
 await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true})
 ```
 
@@ -97,18 +98,18 @@ await browser.checkTabbablePage("tabbable-page-tag", {enableLayoutTesting: true}
 
 ### مخرجات وحدة التحكم
 
-ستوفر طرق `save(Screen/Element/FullPageScreen)` المعلومات التالية بعد تنفيذ الطريقة:
+ستوفر دوال `save(Screen/Element/FullPageScreen)` المعلومات التالية بعد تنفيذ الدالة:
 
 ```js
 const saveResult = await browser.saveFullPageScreen({ ... })
 console.log(saveResults)
 /**
  * {
- *   // The device pixel ratio of the instance that has run
+ *   // نسبة البكسل للجهاز الخاصة بالنسخة التي تم تشغيلها
  *   devicePixelRatio: 1,
- *   // The formatted filename, this depends on the options `formatImageName`
+ *   // اسم الملف المنسق، يعتمد هذا على الخيار `formatImageName`
  *   fileName: "examplePage-chrome-latest-1366x768.png",
- *   // The path where the actual screenshot file can be found
+ *   // المسار الذي يمكن العثور فيه على ملف لقطة الشاشة الفعلية
  *   path: "/path/to/project/.tmp/actual/desktop_chrome",
  * };
  */
@@ -176,8 +177,8 @@ await browser.saveScreen("example-page-tag")
 </TabItem>
 <TabItem value="ios">
 
-:::info TIP
-عمليات تنفيذ iOS `saveScreen` لا تحتوي افتراضيًا على زوايا حافة الجهاز. للحصول على ذلك، يرجى إضافة خيار `addIOSBezelCorners:true` عند تهيئة الخدمة، انظر [هذا](./service-options#addiosbezelcorners)
+:::info نصيحة
+عمليات تنفيذ `saveScreen` على iOS لا تتضمن افتراضيًا زوايا إطار الجهاز. للحصول عليها، يرجى إضافة الخيار `addIOSBezelCorners:true` عند إنشاء الخدمة، انظر [هذا](./service-options#addiosbezelcorners)
 :::
 
 ![saveScreen Mobile iOS](/img/visual/screenshot-Iphone12Portrait15-390x844.png)
@@ -216,26 +217,26 @@ await browser.saveFullPageScreen("full-page-tag")
 
 ### مخرجات وحدة التحكم
 
-بشكل افتراضي، ستوفر طرق `check(Screen/Element/FullPageScreen)` فقط نسبة عدم التطابق مثل `1.23`، ولكن عندما يكون للبرنامج المساعد خيار `returnAllCompareData: true`، يتم توفير المعلومات التالية بعد تنفيذ الطريقة:
+افتراضيًا، ستوفر دوال `check(Screen/Element/FullPageScreen)` نسبة عدم التطابق فقط مثل `1.23`، ولكن عندما يحتوي المكون الإضافي على الخيار `returnAllCompareData: true` يتم توفير المعلومات التالية بعد تنفيذ الدالة:
 
 ```js
 const checkResult = await browser.checkFullPageScreen({ ... })
 console.log(checkResult)
 /**
  * {
- *     // The formatted filename, this depends on the options `formatImageName`
+ *     // اسم الملف المنسق، يعتمد هذا على الخيار `formatImageName`
  *     fileName: "examplePage-chrome-headless-latest-1366x768.png",
  *     folders: {
- *         // The actual folder and the file name
+ *         // المجلد الفعلي واسم الملف
  *         actual: "/path/to/project/.tmp/actual/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // The baseline folder and the file name
+ *         // مجلد الصورة المرجعية واسم الملف
  *         baseline:
  *             "/path/to/project/localBaseline/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
- *         // This following folder is optional and only if there is a mismatch
- *         // The folder that holds the diffs and the file name
+ *         // المجلد التالي اختياري ويظهر فقط في حال وجود عدم تطابق
+ *         // المجلد الذي يحتوي على الاختلافات واسم الملف
  *         diff: "/path/to/project/.tmp/diff/desktop_chrome/examplePage-chrome-headless-latest-1366x768.png",
  *     },
- *     // The mismatch percentage
+ *     // نسبة عدم التطابق
  *     misMatchPercentage: 2.34,
  * };
  */
@@ -244,7 +245,7 @@ console.log(checkResult)
 ### مخرجات الصور
 
 :::info
-ستظهر الصور أدناه فقط الاختلافات كنتيجة لتشغيل أوامر الفحص. يتم عرض الاختلافات فقط في متصفح، ولكن المخرجات لنظامي Android و iOS هي نفسها.
+ستعرض الصور أدناه الاختلافات الناتجة عن تشغيل أوامر التحقق فقط. يتم عرض الاختلاف في المتصفح فقط، لكن المخرجات لنظامي Android وiOS هي نفسها.
 :::
 
 <Tabs
@@ -298,9 +299,9 @@ await browser.checkFullPageScreen("full-page-tag")
 
 </Tabs>
 
-## حجب مناطق معينة (Block-Outs)
+## المناطق المحجوبة
 
-ستجد هنا مثالاً على مخرجات حجب مناطق معينة في Android NativeWebScreenshot و iOS حيث تم حجب شريط الحالة+العنوان وشريط الأدوات.
+ستجد هنا مثالًا على مخرجات المناطق المحجوبة في Android NativeWebScreenshot وiOS حيث يتم حجب شريط الحالة والعنوان وشريط الأدوات.
 
 <Tabs
     defaultValue="nativeWebScreenshot"

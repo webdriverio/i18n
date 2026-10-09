@@ -1,13 +1,14 @@
 ---
 id: solid
 title: SolidJS
+description: "Configure o browser runner do WebdriverIO para um projeto SolidJS com o preset solid e escreva testes de componentes que renderizam na página."
 ---
 
-[SolidJS](https://www.solidjs.com/) é um framework para construir interfaces de usuário com reatividade simples e performática. Você pode testar componentes SolidJS diretamente em um navegador real usando WebdriverIO e seu [browser runner](/docs/runner#browser-runner).
+[SolidJS](https://www.solidjs.com/) é um framework para construir interfaces de usuário com reatividade simples e performática. Você pode testar componentes SolidJS diretamente em um navegador real usando o WebdriverIO e seu [browser runner](/docs/runner#browser-runner).
 
 ## Configuração
 
-Para configurar o WebdriverIO em seu projeto SolidJS, siga as [instruções](/docs/component-testing#set-up) em nossa documentação de teste de componentes. Certifique-se de selecionar `solid` como preset dentro das suas opções de runner, por exemplo:
+Para configurar o WebdriverIO em seu projeto SolidJS, siga as [instruções](/docs/component-testing#set-up) em nossa documentação de testes de componentes. Certifique-se de selecionar `solid` como preset nas opções do seu runner, por exemplo:
 
 ```js
 // wdio.conf.js
@@ -22,7 +23,7 @@ export const config = {
 
 :::info
 
-Se você já está usando [Vite](https://vitejs.dev/) como servidor de desenvolvimento, você também pode reutilizar sua configuração em `vite.config.ts` dentro da sua configuração WebdriverIO. Para mais informações, consulte `viteConfig` nas [opções do runner](/docs/runner#runner-options).
+Se você já estiver usando o [Vite](https://vitejs.dev/) como servidor de desenvolvimento, também pode simplesmente reutilizar sua configuração do `vite.config.ts` dentro da sua configuração do WebdriverIO. Para mais informações, consulte `viteConfig` nas [opções do runner](/docs/runner#runner-options).
 
 :::
 
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-No seu teste, use o método `render` de `solid-js/web` para anexar o componente à página de teste. Para interagir com o componente, recomendamos utilizar os comandos do WebdriverIO, pois eles se comportam de forma mais próxima às interações reais do usuário, por exemplo:
+No seu teste, use o método `render` de `solid-js/web` para anexar o componente à página de teste. Para interagir com o componente, recomendamos usar comandos do WebdriverIO, pois eles se comportam de forma mais próxima às interações reais do usuário, por exemplo:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -71,8 +72,8 @@ import App from './components/Component.jsx'
 
 describe('Solid Component Testing', () => {
     /**
-     * ensure we render the component for every test in a
-     * new root container
+     * garante que renderizamos o componente para cada teste em um
+     * novo contêiner raiz
      */
     let root: Element
     beforeEach(() => {
@@ -94,4 +95,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-Você pode encontrar um exemplo completo de uma suíte de testes de componentes WebdriverIO para SolidJS em nosso [repositório de exemplos](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite).
+Você pode encontrar um exemplo completo de uma suíte de testes de componentes do WebdriverIO para SolidJS em nosso [repositório de exemplos](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite).

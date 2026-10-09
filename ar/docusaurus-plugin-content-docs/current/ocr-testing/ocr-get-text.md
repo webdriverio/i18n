@@ -1,6 +1,7 @@
 ---
 id: ocr-get-text
-title: الحصول على النص من الصورة
+title: ocrGetText
+description: "اقرأ النص المعروض على الشاشة أو في منطقة محددة باستخدام ocrGetText من خدمة OCR."
 ---
 
 الحصول على النص الموجود في صورة.
@@ -33,12 +34,11 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 ### `contrast`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-كلما زاد التباين، كلما أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيمًا بين `-1` و `1`.
+كلما زاد التباين، أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيمًا بين `-1` و `1`.
 
+</Option>
 #### مثال
 
 ```js
@@ -47,11 +47,11 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **النوع:** `number`
--   **إلزامي:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-هذه هي منطقة البحث في الشاشة حيث يحتاج OCR إلى البحث عن النص. يمكن أن يكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
+هذه هي منطقة البحث في الشاشة التي يجب أن يبحث فيها OCR عن النص. يمكن أن تكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
 
+</Option>
 #### مثال
 
 ```js
@@ -73,18 +73,17 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **النوع:** `string`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** `eng`
+<Option type="string" default="eng" required="No">
 
 اللغة التي سيتعرف عليها Tesseract. يمكن العثور على مزيد من المعلومات [هنا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) ويمكن العثور على اللغات المدعومة [هنا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // استخدم الهولندية كلغة
+    // استخدام اللغة الهولندية
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

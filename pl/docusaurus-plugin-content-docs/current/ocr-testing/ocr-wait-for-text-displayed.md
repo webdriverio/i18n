@@ -1,9 +1,10 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
+description: "Poczekaj, aż określony tekst zostanie wyświetlony na ekranie, używając ocrWaitForTextDisplayed z usługi OCR."
 ---
 
-Oczekiwanie na wyświetlenie określonego tekstu na ekranie.
+Czeka, aż określony tekst zostanie wyświetlony na ekranie.
 
 ## Użycie
 
@@ -20,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayed uses ocrGetElementPositionByText under the hood, that is why you see the command ocrGetElementPositionByText in the logs
+# ocrWaitForTextDisplayed używa wewnętrznie ocrGetElementPositionByText, dlatego w logach widzisz polecenie ocrGetElementPositionByText
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -28,11 +29,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `text`
 
--   **Typ:** `string`
--   **Obowiązkowe:** tak
+<Option type="string" required="yes">
 
-Tekst, którego szukasz, aby na niego kliknąć.
+Tekst, który chcesz wyszukać, aby go kliknąć.
 
+</Option>
 #### Przykład
 
 ```js
@@ -41,29 +42,27 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
--   **Typ:** `number`
--   **Obowiązkowe:** nie
--   **Domyślnie:** 18000 (18 sekund)
+<Option type="number" default="18000 (18 seconds)" required="no">
 
 Czas w milisekundach. Pamiętaj, że proces OCR może zająć trochę czasu, więc nie ustawiaj zbyt niskiej wartości.
 
+</Option>
 #### Przykład
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // czekaj przez 25 sekund
+    timeout: 25000 // czekaj 25 sekund
 });
 ```
 
 ### `timeoutMsg`
 
--   **Typ:** `string`
--   **Obowiązkowe:** nie
--   **Domyślnie:** `Could not find the text "{selector}" within the requested time.`
+<Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
-Zastępuje domyślny komunikat o błędzie.
+Nadpisuje domyślny komunikat błędu.
 
+</Option>
 #### Przykład
 
 ```js
@@ -75,12 +74,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
--   **Typ:** `number`
--   **Obowiązkowe:** nie
--   **Domyślnie:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Akceptuje wartości między `-1` a `1`.
+Im wyższy kontrast, tym ciemniejszy obraz i odwrotnie. Może to pomóc w znalezieniu tekstu na obrazie. Przyjmuje wartości od `-1` do `1`.
 
+</Option>
 #### Przykład
 
 ```js
@@ -92,11 +90,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
--   **Typ:** `number`
--   **Obowiązkowe:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-To jest obszar wyszukiwania na ekranie, w którym OCR ma szukać tekstu. Może to być element lub prostokąt zawierający `x`, `y`, `width` i `height`
+Jest to obszar wyszukiwania na ekranie, w którym OCR ma szukać tekstu. Może to być element lub prostokąt zawierający `x`, `y`, `width` i `height`
 
+</Option>
 #### Przykład
 
 ```js
@@ -125,35 +123,33 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
--   **Typ:** `string`
--   **Obowiązkowe:** Nie
--   **Domyślnie:** `eng`
+<Option type="string" default="eng" required="No">
 
-Język, który Tesseract będzie rozpoznawać. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki można znaleźć [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Język, który Tesseract będzie rozpoznawał. Więcej informacji można znaleźć [tutaj](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), a obsługiwane języki można znaleźć [tutaj](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Przykład
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Użyj holenderskiego jako języka
+    // Użyj języka niderlandzkiego
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-Możesz zmienić logikę dopasowania rozmytego (fuzzy) do wyszukiwania tekstu za pomocą następujących opcji. Może to pomóc znaleźć lepsze dopasowanie.
+Możesz zmienić logikę wyszukiwania rozmytego (fuzzy) tekstu za pomocą poniższych opcji. Może to pomóc w znalezieniu lepszego dopasowania
 
 #### `fuzzyFindOptions.distance`
 
--   **Typ:** `number`
--   **Obowiązkowe:** nie
--   **Domyślnie:** 100
+<Option type="number" default="100" required="no">
 
-Określa, jak blisko dopasowanie musi być do lokalizacji rozmytej (określonej przez location). Dokładne dopasowanie litery, które jest oddalone o distance znaków od lokalizacji rozmytej, byłoby ocenione jako całkowite niedopasowanie. Odległość 0 wymaga, aby dopasowanie było w dokładnej określonej lokalizacji. Odległość 1000 wymagałaby idealnego dopasowania w obrębie 800 znaków od lokalizacji, aby zostać znalezionym przy progu 0,8.
+Określa, jak blisko lokalizacji rozmytej (określonej przez location) musi znajdować się dopasowanie. Dokładne dopasowanie liter, które znajduje się w odległości distance znaków od lokalizacji rozmytej, zostanie ocenione jako całkowity brak dopasowania. Wartość distance równa 0 wymaga, aby dopasowanie znajdowało się dokładnie we wskazanej lokalizacji. Wartość distance równa 1000 wymagałaby, aby idealne dopasowanie znajdowało się w obrębie 800 znaków od lokalizacji, aby zostało znalezione przy progu (threshold) 0.8.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -167,12 +163,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
--   **Typ:** `number`
--   **Obowiązkowe:** nie
--   **Domyślnie:** 0
+<Option type="number" default="0" required="no">
 
-Określa w przybliżeniu, gdzie w tekście oczekuje się znalezienia wzorca.
+Określa w przybliżeniu, w którym miejscu tekstu oczekuje się znalezienia wzorca.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -186,12 +181,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Typ:** `number`
--   **Obowiązkowe:** nie
--   **Domyślnie:** 0.6
+<Option type="number" default="0.6" required="no">
 
-W którym momencie algorytm dopasowania poddaje się. Próg 0 wymaga idealnego dopasowania (zarówno liter, jak i lokalizacji), próg 1.0 dopasowałby wszystko.
+Określa, w którym momencie algorytm dopasowujący się poddaje. Próg 0 wymaga idealnego dopasowania (zarówno liter, jak i lokalizacji), a próg 1.0 dopasuje wszystko.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -205,12 +199,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Typ:** `boolean`
--   **Obowiązkowe:** nie
--   **Domyślnie:** false
+<Option type="boolean" default="false" required="no">
 
-Czy wyszukiwanie powinno rozróżniać wielkość liter.
+Określa, czy wyszukiwanie ma uwzględniać wielkość liter.
 
+</Option>
 ##### Przykład
 
 ```js
@@ -224,12 +217,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Typ:** `number`
--   **Obowiązkowe:** nie
--   **Domyślnie:** 2
+<Option type="number" default="2" required="no">
 
-Tylko dopasowania, których długość przekracza tę wartość, zostaną zwrócone. (Na przykład, jeśli chcesz zignorować jednoelementowe dopasowania w wyniku, ustaw wartość na 2)
+Zwrócone zostaną tylko dopasowania, których długość przekracza tę wartość. (Na przykład, jeśli chcesz zignorować w wynikach dopasowania jednoznakowe, ustaw tę wartość na 2)
 
+</Option>
 ##### Przykład
 
 ```js
@@ -243,12 +235,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Typ:** `number`
--   **Obowiązkowe:** nie
--   **Domyślnie:** false
+<Option type="number" default="false" required="no">
 
-Gdy `true`, funkcja dopasowywania będzie kontynuować do końca wzorca wyszukiwania, nawet jeśli idealne dopasowanie zostało już zlokalizowane w ciągu.
+Gdy ustawione na `true`, funkcja dopasowująca będzie kontynuować do końca wzorca wyszukiwania, nawet jeśli idealne dopasowanie zostało już znalezione w ciągu znaków.
 
+</Option>
 ##### Przykład
 
 ```js

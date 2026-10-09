@@ -1,37 +1,38 @@
 ---
 id: enterprise
 title: WebdriverIO für Unternehmen
+description: "Erhalten Sie kommerziellen Support und Wartung für WebdriverIO und andere Open-Source-Abhängigkeiten über das Tidelift-Abonnement."
 ---
 
 ## Verfügbar als Teil des Tidelift-Abonnements
 
-Tidelift arbeitet mit den Betreuern von WebdriverIO und Tausenden anderen
-Open-Source-Projekten zusammen, um kommerziellen Support und Wartung für die Open-Source-Abhängigkeiten zu liefern, die Sie zum Erstellen Ihrer Anwendungen verwenden. Sparen Sie Zeit, reduzieren Sie Risiken und verbessern Sie die Code-Qualität, während Sie die Betreuer der von Ihnen genutzten Abhängigkeiten bezahlen.
+Tidelift arbeitet mit den Maintainern von WebdriverIO und Tausenden anderer
+Open-Source-Projekte zusammen, um kommerziellen Support und Wartung für die Open-Source-Abhängigkeiten bereitzustellen, die Sie zum Erstellen Ihrer Anwendungen verwenden. Sparen Sie Zeit, reduzieren Sie Risiken und verbessern Sie die Codequalität, während Sie die Maintainer genau der Abhängigkeiten bezahlen, die Sie verwenden.
 
 #### Unternehmenstaugliche Open-Source-Software – für Sie verwaltet
-Das Tidelift-Abonnement ist ein verwaltetes Open-Source-Abonnement für Anwendungsabhängigkeiten, das Millionen von Open-Source-Projekten in JavaScript, Python, Java, PHP, Ruby, .NET und mehr umfasst.
+Das Tidelift-Abonnement ist ein verwaltetes Open-Source-Abonnement für Anwendungsabhängigkeiten, das Millionen von Open-Source-Projekten in JavaScript, Python, Java, PHP, Ruby, .NET und mehr abdeckt.
 
 #### Ihr Abonnement beinhaltet:
 
 ##### Sicherheitsupdates
-Das Sicherheitsteam von Tidelift koordiniert Patches für neue kritische Sicherheitslücken und informiert sofort über einen privaten Kanal, sodass Ihre Software-Lieferkette immer sicher ist.
+Das Sicherheitsteam von Tidelift koordiniert Patches für neu auftretende Sicherheitslücken und benachrichtigt Sie umgehend über einen privaten Kanal, sodass Ihre Software-Lieferkette stets sicher ist.
 
-##### Lizenzüberprüfung und Freistellung
-Tidelift überprüft Lizenzinformationen, um eine einfache Durchsetzung von Richtlinien zu ermöglichen, und bietet Freistellung von geistigem Eigentum, um Entwickler und Benutzer im Falle von Problemen zu schützen. Sie haben immer eine zu 100% aktuelle Stückliste Ihrer Abhängigkeiten, die Sie mit Ihrem Rechtsteam, Kunden oder Partnern teilen können.
+##### Lizenzprüfung und Freistellung
+Tidelift überprüft Lizenzinformationen, um die einfache Durchsetzung von Richtlinien zu ermöglichen, und bietet eine Freistellung bezüglich geistigen Eigentums, die Entwickler und Nutzer absichert, falls etwas schiefgeht. Sie verfügen stets über eine 100 % aktuelle Stückliste Ihrer Abhängigkeiten, die Sie mit Ihrer Rechtsabteilung, Ihren Kunden oder Partnern teilen können.
 
-##### Wartung und Code-Verbesserung
-Tidelift stellt sicher, dass die Software, auf die Sie sich verlassen, so lange funktioniert, wie Sie sie benötigen. Ihre verwalteten Abhängigkeiten werden aktiv gepflegt, und wir rekrutieren bei Bedarf zusätzliche Betreuer.
+##### Wartung und Codeverbesserung
+Tidelift stellt sicher, dass die Software, auf die Sie sich verlassen, so lange funktioniert, wie Sie sie benötigen. Ihre verwalteten Abhängigkeiten werden aktiv gewartet, und wir gewinnen bei Bedarf zusätzliche Maintainer.
 
-##### Paketauswahl und Versionsleitfaden
-Wir helfen Ihnen, von Anfang an die besten Open-Source-Pakete auszuwählen – und führen Sie dann durch Updates, um bei neuen Problemen auf den besten Versionen zu bleiben.
+##### Paketauswahl und Versionsberatung
+Wir helfen Ihnen, von Anfang an die besten Open-Source-Pakete auszuwählen – und begleiten Sie anschließend bei Updates, damit Sie bei neu auftretenden Problemen stets die besten Releases verwenden.
 
-##### Roadmap-Input
-Nehmen Sie Platz am Tisch mit den Entwicklern hinter der Software, die Sie verwenden. Die teilnehmenden Betreuer von Tidelift verdienen mehr Einkommen, wenn ihre Software von mehr Abonnenten genutzt wird, daher sind sie daran interessiert zu erfahren, was Sie benötigen.
+##### Mitsprache bei der Roadmap
+Nehmen Sie Platz am Tisch mit den Entwicklern der Software, die Sie verwenden. Die teilnehmenden Maintainer von Tidelift verdienen mehr, je mehr Abonnenten ihre Software nutzen, daher sind sie daran interessiert zu erfahren, was Sie benötigen.
 
-##### Tooling und Cloud-Integration
-Tidelift arbeitet mit GitHub, GitLab, BitBucket und mehr. Wir unterstützen jede Cloud-Plattform (und auch andere Bereitstellungsziele).
+##### Tooling- und Cloud-Integration
+Tidelift funktioniert mit GitHub, GitLab, BitBucket und mehr. Wir unterstützen jede Cloud-Plattform (und auch andere Deployment-Ziele).
 
-Das Ergebnis? Alle Funktionen, die Sie von kommerzieller Software erwarten, für die gesamte Breite der von Ihnen verwendeten Open-Source-Software. Das bedeutet weniger Zeit mit esoterischen Open-Source-Details und mehr Zeit für die Entwicklung Ihrer eigenen Anwendungen – und Ihres Unternehmens.
+Das Endergebnis? Alle Fähigkeiten, die Sie von kommerzieller Software erwarten, für die gesamte Bandbreite an Open Source, die Sie verwenden. Das bedeutet weniger Zeit für die Auseinandersetzung mit esoterischen Open-Source-Details und mehr Zeit für die Entwicklung Ihrer eigenen Anwendungen – und Ihres Unternehmens.
 
 <div class="learnmore">
     <a class="button" href="https://tidelift.com/subscription/pkg/npm-webdriverio?utm_source=npm-webdriverio&utm_medium=referral&utm_campaign=enterprise" target="_self">Mehr erfahren</a>

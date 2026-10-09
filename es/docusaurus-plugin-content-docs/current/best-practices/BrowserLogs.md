@@ -1,9 +1,10 @@
 ---
 id: browser-logs
-title: Registros del Navegador
+title: Registros del navegador
+description: "Captura los registros de la consola del navegador durante una prueba con los eventos de registro de WebDriver Bidi y verifica los mensajes recopilados."
 ---
 
-Cuando se ejecutan pruebas, el navegador puede registrar información importante que te interesa o contra la que quieres hacer aserciones.
+Al ejecutar pruebas, el navegador puede registrar información importante que te interese o sobre la que quieras hacer aserciones.
 
 <Tabs
 defaultValue="bidi"
@@ -15,18 +16,18 @@ values={[
 
 <TabItem value='bidi'>
 
-Cuando utilizas WebDriver Bidi, que es la forma predeterminada en que WebdriverIO automatiza el navegador, puedes suscribirte a eventos provenientes del navegador. Para eventos de registro, debes escuchar `log.entryAdded'`, por ejemplo:
+Al usar WebDriver Bidi, que es la forma predeterminada en que WebdriverIO automatiza el navegador, puedes suscribirte a los eventos que provienen del navegador. Para los eventos de registro, debes escuchar `log.entryAdded'`, por ejemplo:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 
 /**
- * returns: {"type":"console","method":"log","realm":null,"args":[{"type":"string","value":"Hello Bidi"}],"level":"info","text":"Hello Bidi","timestamp":1657282076037}
+ * devuelve: {"type":"console","method":"log","realm":null,"args":[{"type":"string","value":"Hello Bidi"}],"level":"info","text":"Hello Bidi","timestamp":1657282076037}
  */
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-En una prueba, puedes simplemente enviar eventos de registro a un array y hacer aserciones sobre ese array una vez que tu acción haya terminado, por ejemplo:
+En una prueba, simplemente puedes agregar los eventos de registro a un array y hacer aserciones sobre ese array una vez que tu acción haya terminado, por ejemplo:
 
 ```ts
 import type { local } from 'webdriver'
@@ -35,7 +36,7 @@ describe('should log when doing a certain action', () => {
     const logs: string[] = []
 
     function logEvents (event: local.LogEntry) {
-        logs.push(event.text) // add log message to the array
+        logs.push(event.text) // agrega el mensaje de registro al array
     }
 
     before(async () => {
@@ -44,14 +45,14 @@ describe('should log when doing a certain action', () => {
     })
 
     it('should trigger the console event', () => {
-        // trigger the browser send a message to the console
+        // hace que el navegador envíe un mensaje a la consola
         ...
 
-        // assert if log was captured
+        // verifica si se capturó el registro
         expect(logs).toContain('Hello Bidi')
     })
 
-    // clean up listener afterwards
+    // limpia el listener después
     after(() => {
         browser.off('log.entryAdded', logEvents)
     })
@@ -62,9 +63,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-Si todavía utilizas WebDriver Classic o has desactivado el uso de Bidi a través de la capacidad `'wdio:enforceWebDriverClassic': true`, puedes usar el comando JSONWire `getLogs` para obtener los registros más recientes. Dado que WebdriverIO ha eliminado estos comandos obsoletos, tendrás que usar el [JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service) para volver a agregar el comando a tu instancia del navegador.
-
-Después de haber agregado o iniciado el servicio, puedes obtener registros mediante:
+Si Bidi está deshabilitado con la capability `'wdio:enforceWebDriverClassic': true`, las sesiones de Chromium aún pueden leer el búfer de registros del navegador con `getLogs`:
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,9 +71,9 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Nota: el comando `getLogs` solo puede obtener los registros más recientes del navegador. Eventualmente puede limpiar los mensajes de registro si se vuelven demasiado antiguos.
+Nota: el comando `getLogs` solo puede obtener los registros más recientes del navegador. Es posible que eventualmente elimine los mensajes de registro si se vuelven demasiado antiguos.
 </TabItem>
 
 </Tabs>
 
-Ten en cuenta que puedes usar este método para recuperar mensajes de error y verificar si tu aplicación ha encontrado algún error.
+Ten en cuenta que puedes usar este método para obtener mensajes de error y verificar si tu aplicación ha encontrado algún error.

@@ -1,15 +1,16 @@
 ---
 id: visual-reporter
-title: Raporter Wizualny
+title: Visual Reporter
+description: "Wygeneruj i przeglądaj Visual Reporter, aby analizować różnice w testach wizualnych na podstawie danych wyjściowych JSON z @wdio/visual-service, lokalnie lub w CI."
 ---
 
-Visual Reporter to nowa funkcja wprowadzona w `@wdio/visual-service`, począwszy od wersji [v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0). Ten reporter pozwala użytkownikom wizualizować raporty różnic JSON generowane przez usługę Visual Testing i przekształcać je w format czytelny dla człowieka. Pomaga zespołom lepiej analizować i zarządzać wynikami testów wizualnych, zapewniając graficzny interfejs do przeglądania wyników.
+Visual Reporter to nowa funkcja wprowadzona w `@wdio/visual-service`, dostępna od wersji [v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0). Ten reporter pozwala użytkownikom wizualizować raporty różnic w formacie JSON generowane przez usługę Visual Testing i przekształcać je w format czytelny dla człowieka. Pomaga zespołom lepiej analizować wyniki testów wizualnych i zarządzać nimi, zapewniając graficzny interfejs do przeglądania danych wyjściowych.
 
-Aby korzystać z tej funkcji, upewnij się, że masz wymaganą konfigurację do generowania niezbędnego pliku `output.json`. Ten dokument przeprowadzi Cię przez proces konfiguracji, uruchamiania i zrozumienia Visual Reportera.
+Aby skorzystać z tej funkcji, upewnij się, że masz wymaganą konfigurację do wygenerowania niezbędnego pliku `output.json`. Ten dokument przeprowadzi Cię przez konfigurację, uruchamianie i interpretację Visual Reportera.
 
 # Wymagania wstępne
 
-Przed użyciem Visual Reportera upewnij się, że skonfigurowałeś usługę Visual Testing do generowania plików raportów JSON:
+Przed użyciem Visual Reportera upewnij się, że skonfigurowałeś usługę Visual Testing tak, aby generowała pliki raportów JSON:
 
 ```ts
 export const config = {
@@ -18,14 +19,14 @@ export const config = {
         [
             "visual",
             {
-                createJsonReportFiles: true, // Generuje plik output.json
+                createJsonReportFiles: true, // Generates the output.json file
             },
         ],
     ],
 };
 ```
 
-Aby uzyskać bardziej szczegółowe instrukcje konfiguracji, zapoznaj się z dokumentacją WebdriverIO [Visual Testing Documentation](./) lub [`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)
+Bardziej szczegółowe instrukcje konfiguracji znajdziesz w [dokumentacji Visual Testing](./) WebdriverIO lub w opisie opcji [`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)
 
 # Instalacja
 
@@ -35,30 +36,30 @@ Aby zainstalować Visual Reporter, dodaj go jako zależność deweloperską do s
 npm install @wdio/visual-reporter --save-dev
 ```
 
-Zapewni to dostępność niezbędnych plików do generowania raportów z testów wizualnych.
+Dzięki temu niezbędne pliki będą dostępne do generowania raportów z Twoich testów wizualnych.
 
 # Użycie
 
-## Tworzenie raportu wizualnego
+## Budowanie raportu wizualnego
 
-Po uruchomieniu testów wizualnych i wygenerowaniu pliku `output.json` możesz zbudować raport wizualny za pomocą wiersza poleceń lub interaktywnych monitów.
+Po uruchomieniu testów wizualnych i wygenerowaniu przez nie pliku `output.json` możesz zbudować raport wizualny za pomocą CLI lub interaktywnych pytań.
 
 ### Użycie CLI
 
-Możesz użyć polecenia CLI do wygenerowania raportu, uruchamiając:
+Możesz wygenerować raport za pomocą polecenia CLI, uruchamiając:
 
 ```bash
-npx wdio-visual-reporter --jsonOutput=<ścieżka-do-output.json> --reportFolder=<ścieżka-do-zapisania-raportu> --logLevel=debug
+npx wdio-visual-reporter --jsonOutput=<path-to-output.json> --reportFolder=<path-to-store-report> --logLevel=debug
 ```
 
 #### Wymagane opcje:
 
--   `--jsonOutput`: Względna ścieżka do pliku `output.json` wygenerowanego przez usługę Visual Testing. Ta ścieżka jest względna do katalogu, z którego wykonujesz polecenie.
--   `--reportFolder`: Względny katalog, w którym zostanie zapisany wygenerowany raport. Ta ścieżka jest również względna do katalogu, z którego wykonujesz polecenie.
+-   `--jsonOutput`: Ścieżka względna do pliku `output.json` wygenerowanego przez usługę Visual Testing. Ścieżka ta jest względna wobec katalogu, z którego wykonujesz polecenie.
+-   `--reportFolder`: Katalog względny, w którym zostanie zapisany wygenerowany raport. Ta ścieżka również jest względna wobec katalogu, z którego wykonujesz polecenie.
 
-#### Opcjonalne opcje:
+#### Opcje opcjonalne:
 
--   `--logLevel`: Ustaw na `debug`, aby uzyskać szczegółowe logowanie, szczególnie przydatne do rozwiązywania problemów.
+-   `--logLevel`: Ustaw na `debug`, aby uzyskać szczegółowe logi, szczególnie przydatne przy rozwiązywaniu problemów.
 
 #### Przykład
 
@@ -66,7 +67,7 @@ npx wdio-visual-reporter --jsonOutput=<ścieżka-do-output.json> --reportFolder=
 npx wdio-visual-reporter --jsonOutput=/path/to/output.json --reportFolder=/path/to/report --logLevel=debug
 ```
 
-Spowoduje to wygenerowanie raportu w określonym folderze i dostarczenie informacji zwrotnej w konsoli. Na przykład:
+Spowoduje to wygenerowanie raportu we wskazanym folderze i wyświetlenie informacji zwrotnych w konsoli. Na przykład:
 
 ```bash
 ✔ Build output copied successfully to "/path/to/report".
@@ -74,10 +75,10 @@ Spowoduje to wygenerowanie raportu w określonym folderze i dostarczenie informa
 ✔ Successfully generated the report assets.
 ```
 
-#### Przeglądanie raportu
+#### Wyświetlanie raportu
 
 :::warning
-Otwieranie `path/to/report/index.html` bezpośrednio w przeglądarce **bez serwowania go z lokalnego serwera** **NIE** zadziała.
+Otwarcie pliku `path/to/report/index.html` bezpośrednio w przeglądarce **bez serwowania go z lokalnego serwera** **NIE** zadziała.
 :::
 
 Aby wyświetlić raport, musisz użyć prostego serwera, takiego jak [sirv-cli](https://www.npmjs.com/package/sirv-cli). Możesz uruchomić serwer za pomocą następującego polecenia:
@@ -86,7 +87,7 @@ Aby wyświetlić raport, musisz użyć prostego serwera, takiego jak [sirv-cli](
 npx sirv-cli /path/to/report --single
 ```
 
-Spowoduje to wyświetlenie logów podobnych do poniższego przykładu. Zauważ, że numer portu może się różnić:
+Spowoduje to wyświetlenie logów podobnych do poniższego przykładu. Pamiętaj, że numer portu może się różnić:
 
 ```logs
   Your application is ready~! 🚀
@@ -97,35 +98,35 @@ Spowoduje to wyświetlenie logów podobnych do poniższego przykładu. Zauważ, 
 ────────────────── LOGS ──────────────────
 ```
 
-Teraz możesz przeglądać raport, otwierając podany adres URL w przeglądarce.
+Możesz teraz wyświetlić raport, otwierając podany adres URL w przeglądarce.
 
-### Korzystanie z interaktywnych monitów
+### Korzystanie z interaktywnych pytań
 
-Alternatywnie możesz uruchomić następujące polecenie i odpowiedzieć na monity, aby wygenerować raport:
+Alternatywnie możesz uruchomić następujące polecenie i odpowiedzieć na pytania, aby wygenerować raport:
 
 ```bash
 npx @wdio/visual-reporter
 ```
 
-Monity przeprowadzą Cię przez podanie wymaganych ścieżek i opcji. Na koniec interaktywny monit zapyta również, czy chcesz uruchomić serwer, aby wyświetlić raport. Jeśli zdecydujesz się uruchomić serwer, narzędzie uruchomi prosty serwer i wyświetli adres URL w logach. Możesz otworzyć ten adres URL w przeglądarce, aby wyświetlić raport.
+Pytania przeprowadzą Cię przez podanie wymaganych ścieżek i opcji. Na koniec interaktywny kreator zapyta również, czy chcesz uruchomić serwer, aby wyświetlić raport. Jeśli zdecydujesz się uruchomić serwer, narzędzie uruchomi prosty serwer i wyświetli adres URL w logach. Możesz otworzyć ten adres URL w przeglądarce, aby wyświetlić raport.
 
 ![Visual Reporter CLI](/img/visual/cli-screen-recording.gif)
 
 ![Visual Reporter](/img/visual/visual-reporter.gif)
 
-#### Przeglądanie raportu
+#### Wyświetlanie raportu
 
 :::warning
-Otwieranie `path/to/report/index.html` bezpośrednio w przeglądarce **bez serwowania go z lokalnego serwera** **NIE** zadziała.
+Otwarcie pliku `path/to/report/index.html` bezpośrednio w przeglądarce **bez serwowania go z lokalnego serwera** **NIE** zadziała.
 :::
 
-Jeśli zdecydowałeś się **nie** uruchamiać serwera za pomocą interaktywnego monitu, nadal możesz wyświetlić raport, uruchamiając ręcznie następujące polecenie:
+Jeśli **nie** zdecydowałeś się uruchomić serwera za pomocą interaktywnego kreatora, nadal możesz wyświetlić raport, uruchamiając ręcznie następujące polecenie:
 
 ```bash
 npx sirv-cli /path/to/report --single
 ```
 
-Spowoduje to wyświetlenie logów podobnych do poniższego przykładu. Zauważ, że numer portu może się różnić:
+Spowoduje to wyświetlenie logów podobnych do poniższego przykładu. Pamiętaj, że numer portu może się różnić:
 
 ```logs
   Your application is ready~! 🚀
@@ -136,22 +137,22 @@ Spowoduje to wyświetlenie logów podobnych do poniższego przykładu. Zauważ, 
 ────────────────── LOGS ──────────────────
 ```
 
-Teraz możesz przeglądać raport, otwierając podany adres URL w przeglądarce.
+Możesz teraz wyświetlić raport, otwierając podany adres URL w przeglądarce.
 
 # Demo raportu
 
-Aby zobaczyć przykład wyglądu raportu, odwiedź nasze [demo na GitHub Pages](https://webdriverio.github.io/visual-testing/).
+Aby zobaczyć przykład, jak wygląda raport, odwiedź nasze [demo na GitHub Pages](https://webdriverio.github.io/visual-testing/).
 
-# Zrozumienie raportu wizualnego
+# Interpretacja raportu wizualnego
 
-Visual Reporter zapewnia uporządkowany widok wyników testów wizualnych. Dla każdego uruchomienia testu będziesz w stanie:
+Visual Reporter zapewnia uporządkowany widok wyników Twoich testów wizualnych. Dla każdego uruchomienia testów będziesz mógł:
 
--   Łatwo nawigować między przypadkami testowymi i oglądać zagregowane wyniki.
--   Przeglądać metadane, takie jak nazwy testów, używane przeglądarki i wyniki porównań.
+-   Łatwo przechodzić między przypadkami testowymi i przeglądać zbiorcze wyniki.
+-   Przeglądać metadane, takie jak nazwy testów, użyte przeglądarki i wyniki porównań.
 -   Wyświetlać obrazy różnic pokazujące, gdzie wykryto różnice wizualne.
 
-Ta wizualna reprezentacja upraszcza analizę wyników testów, ułatwiając identyfikację i rozwiązywanie problemów z regresjami wizualnymi.
+Ta wizualna prezentacja upraszcza analizę wyników testów, ułatwiając identyfikowanie i eliminowanie regresji wizualnych.
 
-# Integracje CI
+# Integracje z CI
 
-Pracujemy nad wsparciem różnych narzędzi CI, takich jak Jenkins, GitHub Actions i tak dalej. Jeśli chcesz nam pomóc, skontaktuj się z nami na [Discord - Visual Testing](https://discord.com/channels/1097401827202445382/1186908940286574642).
+Pracujemy nad obsługą różnych narzędzi CI, takich jak Jenkins, GitHub Actions i inne. Jeśli chcesz nam pomóc, skontaktuj się z nami na [Discord - Visual Testing](https://discord.com/channels/1097401827202445382/1186908940286574642).

@@ -1,19 +1,20 @@
 ---
 id: file-download
-title: Descarga de Archivos
+title: Descarga de archivos
+description: "Configura los directorios de descarga para Chrome, Firefox y Edge, espera a que finalicen las descargas y verifica los archivos descargados en todos los navegadores."
 ---
 
-Al automatizar descargas de archivos en pruebas web, es esencial manejarlas de manera consistente en diferentes navegadores para garantizar una ejecución confiable de las pruebas.
+Al automatizar descargas de archivos en pruebas web, es fundamental gestionarlas de manera coherente en los distintos navegadores para garantizar una ejecución fiable de las pruebas.
 
-Aquí, proporcionamos mejores prácticas para descargas de archivos y demostramos cómo configurar directorios de descarga para **Google Chrome**, **Mozilla Firefox** y **Microsoft Edge**.
+Aquí ofrecemos las mejores prácticas para la descarga de archivos y mostramos cómo configurar los directorios de descarga para **Google Chrome**, **Mozilla Firefox** y **Microsoft Edge**.
 
-## Rutas de Descarga
+## Rutas de descarga
 
-**Codificar de forma rígida** las rutas de descarga en scripts de prueba puede llevar a problemas de mantenimiento y portabilidad. Utiliza **rutas relativas** para directorios de descarga para garantizar la portabilidad y compatibilidad en diferentes entornos.
+**Codificar de forma fija** las rutas de descarga en los scripts de prueba puede provocar problemas de mantenimiento y de portabilidad. Utiliza **rutas relativas** para los directorios de descarga para garantizar la portabilidad y la compatibilidad entre distintos entornos.
 
 ```javascript
 // 👎
-// Ruta de descarga codificada de forma rígida
+// Ruta de descarga codificada de forma fija
 const downloadPath = '/path/to/downloads';
 
 // 👍
@@ -21,9 +22,9 @@ const downloadPath = '/path/to/downloads';
 const downloadPath = path.join(__dirname, 'downloads');
 ```
 
-## Estrategias de Espera
+## Estrategias de espera
 
-No implementar estrategias de espera adecuadas puede llevar a condiciones de carrera o pruebas poco confiables, especialmente para la finalización de descargas. Implementa estrategias de espera **explícitas** para esperar a que se completen las descargas de archivos, asegurando la sincronización entre los pasos de prueba.
+No implementar estrategias de espera adecuadas puede provocar condiciones de carrera o pruebas poco fiables, especialmente en lo que respecta a la finalización de las descargas. Implementa estrategias de espera **explícitas** para esperar a que se completen las descargas de archivos, garantizando la sincronización entre los pasos de la prueba.
 
 ```javascript
 // 👎
@@ -31,13 +32,13 @@ No implementar estrategias de espera adecuadas puede llevar a condiciones de car
 await browser.pause(5000);
 
 // 👍
-// Esperar a que se complete la descarga del archivo
+// Esperar a que finalice la descarga del archivo
 await waitUntil(async ()=> await fs.existsSync(downloadPath), 5000);
 ```
 
-## Configuración de Directorios de Descarga
+## Configuración de directorios de descarga
 
-Para anular el comportamiento de descarga de archivos para **Google Chrome**, **Mozilla Firefox** y **Microsoft Edge**, proporciona el directorio de descarga en las capacidades de WebDriverIO:
+Para sobrescribir el comportamiento de descarga de archivos en **Google Chrome**, **Mozilla Firefox** y **Microsoft Edge**, proporciona el directorio de descarga en las capacidades de WebDriverIO:
 
 <Tabs
 defaultValue="chrome"
@@ -80,11 +81,11 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 </Tabs>
 
-Para un ejemplo de implementación, consulta la [Receta de Comportamiento de Descarga de Prueba de WebdriverIO](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
+Para ver un ejemplo de implementación, consulta la [receta de WebdriverIO sobre el comportamiento de descarga en pruebas](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
 
-## Configuración de Descargas en Navegadores Chromium
+## Configuración de descargas en navegadores Chromium
 
-Para cambiar la ruta de descarga para navegadores __basados en Chromium__ (como Chrome, Edge, Brave, etc.) utilizando el método `getPuppeteer` de WebDriverIO para acceder a Chrome DevTools.
+Para cambiar la ruta de descarga en navegadores __basados en Chromium__ (como Chrome, Edge, Brave, etc.), utiliza el método `getPuppeteer` de WebDriverIO para acceder a Chrome DevTools.
 
 ```javascript
 const page = await browser.getPuppeteer();
@@ -94,18 +95,18 @@ const cdpSession = await page.target().createCDPSession();
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Manejo de Múltiples Descargas de Archivos
+## Gestión de múltiples descargas de archivos
 
-Al tratar con escenarios que involucran múltiples descargas de archivos, es esencial implementar estrategias para gestionar y validar cada descarga de manera efectiva. Considera los siguientes enfoques:
+Al tratar con escenarios que implican múltiples descargas de archivos, es fundamental implementar estrategias para gestionar y validar cada descarga de forma eficaz. Considera los siguientes enfoques:
 
-__Manejo Secuencial de Descargas:__ Descarga archivos uno por uno y verifica cada descarga antes de iniciar la siguiente para garantizar una ejecución ordenada y una validación precisa.
+__Gestión secuencial de descargas:__ Descarga los archivos uno por uno y verifica cada descarga antes de iniciar la siguiente para garantizar una ejecución ordenada y una validación precisa.
 
-__Manejo Paralelo de Descargas:__ Utiliza técnicas de programación asíncrona para iniciar múltiples descargas de archivos simultáneamente, optimizando el tiempo de ejecución de las pruebas. Implementa mecanismos de validación robustos para verificar todas las descargas al finalizar.
+__Gestión paralela de descargas:__ Utiliza técnicas de programación asíncrona para iniciar múltiples descargas de archivos simultáneamente, optimizando el tiempo de ejecución de las pruebas. Implementa mecanismos de validación robustos para verificar todas las descargas una vez completadas.
 
-## Consideraciones de Compatibilidad entre Navegadores
+## Consideraciones de compatibilidad entre navegadores
 
-Aunque WebDriverIO proporciona una interfaz unificada para la automatización de navegadores, es esencial tener en cuenta las variaciones en el comportamiento y las capacidades de los navegadores. Considera probar tu funcionalidad de descarga de archivos en diferentes navegadores para garantizar la compatibilidad y consistencia.
+Aunque WebDriverIO proporciona una interfaz unificada para la automatización de navegadores, es fundamental tener en cuenta las variaciones en el comportamiento y las capacidades de cada navegador. Considera probar la funcionalidad de descarga de archivos en distintos navegadores para garantizar la compatibilidad y la coherencia.
 
-__Configuraciones Específicas del Navegador:__ Ajusta la configuración de la ruta de descarga y las estrategias de espera para adaptarse a las diferencias en el comportamiento y las preferencias del navegador en Chrome, Firefox, Edge y otros navegadores compatibles.
+__Configuraciones específicas del navegador:__ Ajusta la configuración de la ruta de descarga y las estrategias de espera para adaptarte a las diferencias de comportamiento y preferencias entre Chrome, Firefox, Edge y otros navegadores compatibles.
 
-__Compatibilidad de Versiones de Navegador:__ Actualiza regularmente tus versiones de WebDriverIO y navegador para aprovechar las últimas características y mejoras, garantizando la compatibilidad con tu suite de pruebas existente.
+__Compatibilidad de versiones del navegador:__ Actualiza periódicamente tus versiones de WebDriverIO y de los navegadores para aprovechar las funciones y mejoras más recientes, garantizando al mismo tiempo la compatibilidad con tu conjunto de pruebas existente.

@@ -1,31 +1,32 @@
 ---
 id: proxy
-title: Configuration du Proxy
+title: Configuration du proxy
+description: "Faites transiter les requêtes par un proxy, soit entre vos tests et le driver, soit entre le navigateur et Internet."
 ---
 
-Vous pouvez acheminer deux différents types de requêtes à travers un proxy :
+Vous pouvez faire transiter deux types de requêtes différents par un proxy :
 
-- connexion entre votre script de test et le pilote de navigateur (ou point de terminaison WebDriver)
-- connexion entre le navigateur et Internet
+- la connexion entre votre script de test et le driver du navigateur (ou le point de terminaison WebDriver)
+- la connexion entre le navigateur et Internet
 
-## Proxy entre le pilote et le test
+## Proxy entre le driver et le test
 
-Si votre entreprise dispose d'un proxy d'entreprise (par exemple sur `http://my.corp.proxy.com:9090`) pour toutes les requêtes sortantes, vous avez deux options pour configurer WebdriverIO afin d'utiliser le proxy :
+Si votre entreprise dispose d'un proxy d'entreprise (par exemple sur `http://my.corp.proxy.com:9090`) pour toutes les requêtes sortantes, vous avez deux options pour configurer WebdriverIO afin qu'il utilise le proxy :
 
-### Option 1 : Utilisation des variables d'environnement (Recommandé)
+### Option 1 : Utiliser des variables d'environnement (recommandé)
 
-À partir de WebdriverIO v9.12.0, vous pouvez simplement définir les variables d'environnement standard pour le proxy :
+À partir de WebdriverIO v9.12.0, vous pouvez simplement définir les variables d'environnement de proxy standard :
 
 ```bash
 export HTTP_PROXY=http://my.corp.proxy.com:9090
 export HTTPS_PROXY=http://my.corp.proxy.com:9090
-# Optionnel : contourner le proxy pour certains hôtes
+# Facultatif : contourner le proxy pour certains hôtes
 export NO_PROXY=localhost,127.0.0.1,.internal.domain
 ```
 
-Ensuite, exécutez vos tests comme d'habitude. WebdriverIO utilisera automatiquement ces variables d'environnement pour la configuration du proxy.
+Exécutez ensuite vos tests comme d'habitude. WebdriverIO utilisera automatiquement ces variables d'environnement pour la configuration du proxy.
 
-### Option 2 : Utilisation de setGlobalDispatcher d'undici
+### Option 2 : Utiliser setGlobalDispatcher d'undici
 
 Pour des configurations de proxy plus avancées ou si vous avez besoin d'un contrôle programmatique, vous pouvez utiliser la méthode `setGlobalDispatcher` d'undici :
 
@@ -35,7 +36,7 @@ Pour des configurations de proxy plus avancées ou si vous avez besoin d'un cont
 npm install undici --save-dev
 ```
 
-#### Ajouter undici setGlobalDispatcher à votre fichier de configuration
+#### Ajouter setGlobalDispatcher d'undici à votre fichier de configuration
 
 Ajoutez l'instruction require suivante en haut de votre fichier de configuration.
 
@@ -50,14 +51,14 @@ export const config = {
 }
 ```
 
-Des informations supplémentaires sur la configuration du proxy peuvent être trouvées [ici](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
+Des informations supplémentaires sur la configuration du proxy sont disponibles [ici](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md).
 
-### Quelle méthode devrais-je utiliser ?
+### Quelle méthode dois-je utiliser ?
 
-- **Utilisez les variables d'environnement** si vous souhaitez une approche simple et standard qui fonctionne avec différents outils et ne nécessite pas de modifications de code.
-- **Utilisez setGlobalDispatcher** si vous avez besoin de fonctionnalités de proxy avancées comme l'authentification personnalisée, différentes configurations de proxy par environnement, ou si vous souhaitez contrôler programmatiquement le comportement du proxy.
+- **Utilisez les variables d'environnement** si vous souhaitez une approche simple et standard qui fonctionne avec différents outils et ne nécessite aucune modification du code.
+- **Utilisez setGlobalDispatcher** si vous avez besoin de fonctionnalités de proxy avancées comme une authentification personnalisée, des configurations de proxy différentes selon l'environnement, ou si vous souhaitez contrôler le comportement du proxy de manière programmatique.
 
-Les deux méthodes sont entièrement prises en charge et WebdriverIO vérifiera d'abord un dispatcher global avant de se rabattre sur les variables d'environnement.
+Les deux méthodes sont entièrement prises en charge, et WebdriverIO vérifiera d'abord la présence d'un dispatcher global avant de se rabattre sur les variables d'environnement.
 
 ### Sauce Connect Proxy
 
@@ -69,9 +70,9 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 
 ## Proxy entre le navigateur et Internet
 
-Afin d'établir un tunnel pour la connexion entre le navigateur et Internet, vous pouvez configurer un proxy qui peut être utile pour (par exemple) capturer des informations réseau et d'autres données avec des outils comme [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
+Afin de faire transiter la connexion entre le navigateur et Internet, vous pouvez configurer un proxy, ce qui peut être utile (par exemple) pour capturer des informations réseau et d'autres données avec des outils comme [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy).
 
-Les paramètres `proxy` peuvent être appliqués via les capacités standard de la manière suivante :
+Les paramètres `proxy` peuvent être appliqués via les capabilities standard de la manière suivante :
 
 ```js title="wdio.conf.js"
 export const config = {

@@ -1,36 +1,39 @@
 ---
 id: driverbinaries
-title: ثنائيات التشغيل
+title: الملفات التنفيذية للمشغلات
+description: "دع WebdriverIO ينزّل مشغلات المتصفح ويديرها تلقائيًا، أو قم بإعداد Chromedriver وGeckodriver وEdgedriver وSafaridriver يدويًا."
 ---
 
-لتشغيل التشغيل الآلي المعتمد على بروتوكول WebDriver، تحتاج إلى إعداد برامج تشغيل المتصفح التي تترجم أوامر التشغيل الآلي وتكون قادرة على تنفيذها في المتصفح.
+لتشغيل الأتمتة المستندة إلى بروتوكول WebDriver، تحتاج إلى إعداد مشغلات المتصفح التي تترجم أوامر الأتمتة وتكون قادرة على تنفيذها في المتصفح.
 
 ## الإعداد التلقائي
 
-مع WebdriverIO `v8.14` والإصدارات الأحدث، لم تعد هناك حاجة لتنزيل وإعداد أي برامج تشغيل متصفح يدويًا لأن WebdriverIO يتعامل مع هذا الأمر. كل ما عليك فعله هو تحديد المتصفح الذي تريد اختباره وسيقوم WebdriverIO بالباقي.
+مع WebdriverIO `v8.14` والإصدارات الأحدث، لم تعد هناك حاجة لتنزيل وإعداد أي مشغلات متصفح يدويًا، إذ يتولى WebdriverIO ذلك. كل ما عليك فعله هو تحديد المتصفح الذي تريد اختباره وسيتولى WebdriverIO الباقي.
 
-### تخصيص مستوى التشغيل الآلي
+على ARM64، راجع [Chromedriver على ARM64](arm64-chromedriver) لمعرفة كيفية إعداد المشغل على macOS وWindows وLinux، وما يجب فعله عندما يتعذر إعداده تلقائيًا.
 
-لدى WebdriverIO ثلاثة مستويات من التشغيل الآلي:
+### تخصيص مستوى الأتمتة
 
-**1. تنزيل وتثبيت المتصفح باستخدام [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+لدى WebdriverIO ثلاثة مستويات من الأتمتة:
 
-إذا قمت بتحديد مجموعة `browserName`/`browserVersion` في تكوين [capabilities](configuration#capabilities-1)، سيقوم WebdriverIO بتنزيل وتثبيت المجموعة المطلوبة، بغض النظر عما إذا كان هناك تثبيت موجود على الجهاز. إذا حذفت `browserVersion`، سيحاول WebdriverIO أولاً تحديد موقع واستخدام تثبيت موجود باستخدام [locate-app](https://www.npmjs.com/package/locate-app)، وإلا فسيقوم بتنزيل وتثبيت إصدار المتصفح المستقر الحالي. لمزيد من التفاصيل حول `browserVersion`، انظر [هنا](capabilities#automate-different-browser-channels).
+**1. تنزيل المتصفح وتثبيته باستخدام [@puppeteer/browsers](https://www.npmjs.com/package/@puppeteer/browsers).**
+
+إذا حددت تركيبة `browserName`/`browserVersion` في إعدادات [capabilities](configuration#capabilities-1)، فسيقوم WebdriverIO بتنزيل التركيبة المطلوبة وتثبيتها، بغض النظر عن وجود تثبيت سابق على الجهاز. وإذا أغفلت `browserVersion`، فسيحاول WebdriverIO أولًا تحديد موقع تثبيت موجود واستخدامه عبر [locate-app](https://www.npmjs.com/package/locate-app)، وإلا فسيقوم بتنزيل الإصدار المستقر الحالي من المتصفح وتثبيته. لمزيد من التفاصيل حول `browserVersion`، راجع [هنا](capabilities#automate-different-browser-channels).
 
 :::caution
 
-لا يدعم الإعداد التلقائي للمتصفح Microsoft Edge. حاليًا، يتم دعم Chrome وChromium وFirefox فقط.
+لا يدعم الإعداد التلقائي للمتصفح Microsoft Edge. حاليًا، المتصفحات المدعومة هي Chrome وChromium وFirefox فقط.
 
 :::
 
-إذا كان لديك تثبيت متصفح في موقع لا يمكن الكشف عنه تلقائيًا بواسطة WebdriverIO، يمكنك تحديد الملف الثنائي للمتصفح الذي سيعطل التنزيل والتثبيت التلقائي.
+إذا كان لديك متصفح مثبت في موقع لا يستطيع WebdriverIO اكتشافه تلقائيًا، يمكنك تحديد الملف التنفيذي للمتصفح، مما سيعطّل التنزيل والتثبيت التلقائيين.
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox' or 'chromium'
-            'goog:chromeOptions': { // or 'moz:firefoxOptions' or 'wdio:chromedriverOptions'
+            browserName: 'chrome', // أو 'firefox' أو 'chromium'
+            'goog:chromeOptions': { // أو 'moz:firefoxOptions' أو 'wdio:chromedriverOptions'
                 binary: '/path/to/chrome'
             },
         }
@@ -38,62 +41,88 @@ title: ثنائيات التشغيل
 }
 ```
 
-**2. تنزيل وتثبيت برنامج التشغيل باستخدام [Chromedriver](https://www.npmjs.com/package/chromedriver) أو [Edgedriver](https://www.npmjs.com/package/edgedriver) أو [Geckodriver](https://www.npmjs.com/package/geckodriver).**
+**2. تنزيل المشغل وتثبيته: Chromedriver من [Chrome for Testing](https://googlechromelabs.github.io/chrome-for-testing/)، وEdgedriver وGeckodriver باستخدام حزمتي [edgedriver](https://www.npmjs.com/package/edgedriver) و[geckodriver](https://www.npmjs.com/package/geckodriver).**
 
-سيقوم WebdriverIO دائمًا بذلك، ما لم يتم تحديد [binary](capabilities#binary) في التكوين:
+سيقوم WebdriverIO بذلك دائمًا، ما لم يتم تحديد [الملف التنفيذي](capabilities#binary) للمشغل في الإعدادات:
 
 ```ts
 {
     capabilities: [
         {
-            browserName: 'chrome', // or 'firefox', 'msedge', 'safari', 'chromium'
-            'wdio:chromedriverOptions': { // or 'wdio:geckodriverOptions', 'wdio:edgedriverOptions'
-                binary: '/path/to/chromedriver' // or 'geckodriver', 'msedgedriver'
+            browserName: 'chrome', // أو 'firefox' أو 'msedge' أو 'safari' أو 'chromium'
+            'wdio:chromedriverOptions': { // أو 'wdio:geckodriverOptions' أو 'wdio:edgedriverOptions'
+                binary: '/path/to/chromedriver' // أو 'geckodriver' أو 'msedgedriver'
             }
         }
     ]
 }
 ```
 
+يقوم WebdriverIO بتنزيل Chromedriver من Chrome for Testing افتراضيًا، لكنه في حالات معينة سيستخدم [إصدار Electron](https://github.com/electron/electron/releases):
+
+- عند تعيين [`wdio:electronVersion`](capabilities#wdioelectronversion) لتطبيق Electron. يستخدم ذلك الإصدار، ما لم يتم تعيين كل من `browserVersion` و`CHROMEDRIVER_CDNURL`.
+- عندما يكون Chrome أقدم من `153.0.8001.0` على Linux ARM64، حيث لا يوفر Chrome for Testing إصدارات من Chromedriver (راجع [Chromedriver على ARM64](arm64-chromedriver)). يستخدم آخر إصدار بنفس الإصدار الرئيسي من Chromium.
+- عندما يفشل التنزيل من Chrome for Testing، على سبيل المثال أثناء انقطاع الخدمة، ولم يتم تعيين `CHROMEDRIVER_CDNURL`. يستخدم آخر إصدار بنفس الإصدار الرئيسي من Chromium.
+
 :::info
 
-لن يقوم WebdriverIO بتنزيل برنامج تشغيل Safari تلقائيًا لأنه مثبت بالفعل على macOS.
+لن يقوم WebdriverIO بتنزيل مشغل Safari تلقائيًا لأنه مثبت مسبقًا على macOS.
+
+:::
+
+:::info Firefox / Geckodriver
+
+يستخدم Firefox نظام ترقيم إصدارات للمتصفح (مثل `stable_151.0.1`) يختلف عن نظام [Geckodriver](https://github.com/mozilla/geckodriver/releases) (مثل `0.36.0`)، لذلك **لا** يُستخدم `browserVersion` لاختيار إصدار المشغل. افتراضيًا، يقوم WebdriverIO بتنزيل أحدث إصدار من Geckodriver. لتثبيت إصدار محدد من المشغل، قم بتعيين `geckoDriverVersion` في `wdio:geckodriverOptions`:
+
+```ts
+{
+    capabilities: [
+        {
+            browserName: 'firefox',
+            browserVersion: 'stable_151.0.1',
+            'wdio:geckodriverOptions': {
+                geckoDriverVersion: '0.36.0'
+            }
+        }
+    ]
+}
+```
 
 :::
 
 :::caution
 
-تجنب تحديد `binary` للمتصفح وحذف `binary` لبرنامج التشغيل المقابل أو العكس. إذا تم تحديد واحد فقط من قيم `binary`، فسيحاول WebdriverIO استخدام أو تنزيل متصفح/برنامج تشغيل متوافق معه. ومع ذلك، في بعض السيناريوهات، قد يؤدي ذلك إلى مجموعة غير متوافقة. لذلك، يوصى بأن تحدد دائمًا كليهما لتجنب أي مشاكل ناتجة عن عدم توافق الإصدار.
+تجنب تحديد `binary` للمتصفح مع إغفال `binary` المقابل للمشغل أو العكس. إذا تم تحديد قيمة واحدة فقط من قيم `binary`، فسيحاول WebdriverIO استخدام أو تنزيل متصفح/مشغل متوافق معها. ومع ذلك، قد يؤدي ذلك في بعض الحالات إلى تركيبة غير متوافقة. لذلك، يُوصى دائمًا بتحديد كليهما لتجنب أي مشاكل ناتجة عن عدم توافق الإصدارات.
 
 :::
 
-**3. بدء/إيقاف برنامج التشغيل.**
+**3. تشغيل المشغل وإيقافه.**
 
-بشكل افتراضي، سيقوم WebdriverIO تلقائيًا ببدء وإيقاف برنامج التشغيل باستخدام منفذ غير مستخدم عشوائي. تحديد أي من التكوينات التالية سيعطل هذه الميزة مما يعني أنك ستحتاج إلى بدء وإيقاف برنامج التشغيل يدويًا:
+افتراضيًا، سيقوم WebdriverIO تلقائيًا بتشغيل المشغل وإيقافه باستخدام منفذ عشوائي غير مستخدم. سيؤدي تحديد أي من الإعدادات التالية إلى تعطيل هذه الميزة، مما يعني أنك ستحتاج إلى تشغيل المشغل وإيقافه يدويًا:
 
 - أي قيمة لـ [port](configuration#port).
-- أي قيمة مختلفة عن الافتراضي لـ [protocol](configuration#protocol) أو [hostname](configuration#hostname) أو [path](configuration#path).
-- أي قيمة لكل من [user](configuration#user) و [key](configuration#key).
+- أي قيمة مختلفة عن القيمة الافتراضية لـ [protocol](configuration#protocol) و[hostname](configuration#hostname) و[path](configuration#path).
+- أي قيمة لكل من [user](configuration#user) و[key](configuration#key).
 
 ## الإعداد اليدوي
 
-فيما يلي وصف لكيفية إعداد كل برنامج تشغيل بشكل منفصل. يمكنك العثور على قائمة بجميع برامج التشغيل في ملف README الخاص بـ [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
+يصف ما يلي كيف لا يزال بإمكانك إعداد كل مشغل على حدة. يمكنك العثور على قائمة بجميع المشغلات في ملف README الخاص بـ [`awesome-selenium`](https://github.com/christian-bromann/awesome-selenium#driver).
 
 :::tip
 
-إذا كنت تبحث عن إعداد منصات الأجهزة المحمولة ومنصات واجهة المستخدم الأخرى، فألق نظرة على دليل [إعداد Appium](appium) الخاص بنا.
+إذا كنت تبحث عن إعداد منصات الهواتف المحمولة ومنصات واجهة المستخدم الأخرى، فألقِ نظرة على دليل [إعداد Appium](appium) الخاص بنا.
 
 :::
 
 ### Chromedriver
 
-لتشغيل Chrome آليًا، يمكنك تنزيل Chromedriver مباشرة من [موقع المشروع](http://chromedriver.chromium.org/downloads) أو من خلال حزمة NPM:
+لأتمتة Chrome، يمكنك تنزيل Chromedriver مباشرة من [موقع المشروع](http://chromedriver.chromium.org/downloads) أو من خلال حزمة NPM:
 
 ```bash npm2yarn
 npm install -g chromedriver
 ```
 
-يمكنك بعد ذلك بدءه عبر:
+يمكنك بعد ذلك تشغيله عبر:
 
 ```sh
 chromedriver --port=4444 --verbose
@@ -101,7 +130,7 @@ chromedriver --port=4444 --verbose
 
 ### Geckodriver
 
-لتشغيل Firefox آليًا، قم بتنزيل أحدث إصدار من `geckodriver` لبيئتك وقم بفك ضغطه في دليل مشروعك:
+لأتمتة Firefox، قم بتنزيل أحدث إصدار من `geckodriver` المناسب لبيئتك وفك ضغطه في مجلد مشروعك:
 
 <Tabs
   defaultValue="npm"
@@ -128,7 +157,7 @@ Linux:
 curl -L https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz | tar xz
 ```
 
-MacOS (64 bit):
+MacOS (64 بت):
 
 ```sh
 curl -L https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-macos.tar.gz | tar xz
@@ -152,30 +181,30 @@ choco install selenium-gecko-driver
 <TabItem value="powershell">
 
 ```sh
-# Run as privileged session. Right-click and set 'Run as Administrator'
-# Use geckodriver-v0.24.0-win32.zip for 32 bit Windows
+# التشغيل كجلسة ذات صلاحيات. انقر بزر الماوس الأيمن واختر 'Run as Administrator'
+# استخدم geckodriver-v0.24.0-win32.zip لنظام Windows 32 بت
 $url = "https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-win64.zip"
-$output = "geckodriver.zip" # will drop into current directory unless defined otherwise
-$unzipped_file = "geckodriver" # will unzip to this folder name
+$output = "geckodriver.zip" # سيتم حفظه في المجلد الحالي ما لم يُحدد خلاف ذلك
+$unzipped_file = "geckodriver" # سيتم فك الضغط إلى مجلد بهذا الاسم
 
-# By default, Powershell uses TLS 1.0 the site security requires TLS 1.2
+# افتراضيًا، يستخدم Powershell بروتوكول TLS 1.0 بينما يتطلب أمان الموقع TLS 1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Downloads Geckodriver
+# تنزيل Geckodriver
 Invoke-WebRequest -Uri $url -OutFile $output
 
-# Unzip Geckodriver
+# فك ضغط Geckodriver
 Expand-Archive $output -DestinationPath $unzipped_file
 cd $unzipped_file
 
-# Globally Set Geckodriver to PATH
+# إضافة Geckodriver إلى PATH بشكل عام
 [System.Environment]::SetEnvironmentVariable("PATH", "$Env:Path;$pwd\geckodriver.exe", [System.EnvironmentVariableTarget]::Machine)
 ```
 
 </TabItem>
 </Tabs>
 
-**ملاحظة:** تتوفر إصدارات أخرى من `geckodriver` [هنا](https://github.com/mozilla/geckodriver/releases). بعد التنزيل، يمكنك بدء برنامج التشغيل عبر:
+**ملاحظة:** إصدارات `geckodriver` الأخرى متاحة [هنا](https://github.com/mozilla/geckodriver/releases). بعد التنزيل يمكنك تشغيل المشغل عبر:
 
 ```sh
 /path/to/binary/geckodriver --port 4444
@@ -183,16 +212,16 @@ cd $unzipped_file
 
 ### Edgedriver
 
-يمكنك تنزيل برنامج التشغيل لـ Microsoft Edge من [موقع المشروع](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) أو كحزمة NPM عبر:
+يمكنك تنزيل مشغل Microsoft Edge من [موقع المشروع](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) أو كحزمة NPM عبر:
 
 ```sh
 npm install -g edgedriver
-edgedriver --version # prints: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
+edgedriver --version # يطبع: Microsoft Edge WebDriver 115.0.1901.203 (a5a2b1779bcfe71f081bc9104cca968d420a89ac)
 ```
 
 ### Safaridriver
 
-يأتي Safaridriver مثبتًا مسبقًا على نظام MacOS الخاص بك ويمكن بدءه مباشرة عبر:
+يأتي Safaridriver مثبتًا مسبقًا على نظام MacOS الخاص بك ويمكن تشغيله مباشرة عبر:
 
 ```sh
 safaridriver -p 4444

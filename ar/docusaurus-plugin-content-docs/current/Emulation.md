@@ -1,9 +1,10 @@
 ---
 id: emulation
 title: المحاكاة
+description: "حاكِ الموقع الجغرافي وميزات الوسائط ووكيل المستخدم والشبكة والإعدادات المحلية والمنطقة الزمنية والشاشة والأجهزة باستخدام الأمر emulate."
 ---
 
-مع WebdriverIO يمكنك محاكاة واجهات برمجة التطبيقات (APIs) للويب باستخدام أمر [`emulate`](/docs/api/browser/emulate) لإرجاع قيم مخصصة تساعدك في محاكاة سلوكيات معينة للمتصفح. لاحظ أن هذا يتطلب أن يستخدم تطبيقك هذه الواجهات البرمجية بشكل صريح.
+باستخدام WebdriverIO يمكنك محاكاة سلوك المتصفح باستخدام الأمر [`emulate`](/docs/api/browser/emulate). يقود هذا الأمر [وحدة المحاكاة في WebDriver BiDi](https://w3c.github.io/webdriver-bidi/#module-emulation) لسياق التصفح ذي المستوى الأعلى الحالي. يُطبَّق التجاوز فورًا، ولا حاجة إلى إعادة تحميل الصفحة. يُستثنى من ذلك `clock`: إذ لا يحتوي BiDi على أمر للساعة، لذلك لا يزال هذا النطاق يثبّت مؤقتات وهمية.
 
 <LiteYouTubeEmbed
     id="2bQXzIB_97M"
@@ -12,15 +13,19 @@ title: المحاكاة
 
 :::info
 
-تتطلب هذه الميزة دعم WebDriver Bidi للمتصفح. بينما تحتوي الإصدارات الحديثة من Chrome وEdge وFirefox على مثل هذا الدعم، فإن Safari __لا يدعم__ هذه الميزة. للحصول على التحديثات تابع [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/script/add_preload_script/add_preload_script.py?label=experimental&label=master&aligned). علاوة على ذلك، إذا كنت تستخدم مزودًا سحابيًا لتشغيل المتصفحات، فتأكد من أن المزود الخاص بك يدعم أيضًا WebDriver Bidi.
+تتطلب هذه الميزة دعم WebDriver Bidi في المتصفح. في حين أن الإصدارات الحديثة من Chrome وEdge وFirefox تتضمن هذا الدعم، فإن Safari __لا يدعمه__. لمتابعة التحديثات راجع [wpt.fyi](https://wpt.fyi/results/webdriver/tests/bidi/emulation?label=experimental&label=master&aligned). علاوة على ذلك، إذا كنت تستخدم مزوّدًا سحابيًا لتشغيل المتصفحات، فتأكد من أن مزوّدك يدعم WebDriver Bidi أيضًا.
 
-لتمكين WebDriver Bidi لاختبارك، تأكد من ضبط `webSocketUrl: true` في إمكانياتك.
+لتفعيل WebDriver Bidi في اختبارك، تأكد من تعيين `webSocketUrl: true` في الإمكانيات (capabilities) الخاصة بك.
+
+المتصفح الذي لا يطبّق أمرًا ما يرفض الاستدعاء بخطأ خاص به، `unknown command` أو `unsupported operation`. تُعيد WebdriverIO ذلك الخطأ، ولا تلجأ إلى سكربت تحميل مسبق (preload script) أو إلى CDP كبديل.
 
 :::
 
+يُعيد `emulate` دالة تمسح ذلك النطاق. يمسح [`browser.restore()`](/docs/api/browser/restore) جميع النطاقات النشطة، أو النطاقات التي تحددها.
+
 ## الموقع الجغرافي
 
-تغيير الموقع الجغرافي للمتصفح إلى منطقة محددة، على سبيل المثال:
+غيّر الموقع الجغرافي للمتصفح إلى منطقة محددة، على سبيل المثال:
 
 ```ts
 await browser.emulate('geolocation', {
@@ -28,17 +33,24 @@ await browser.emulate('geolocation', {
     longitude: 13.39,
     accuracy: 100
 })
+await browser.setPermissions({ name: 'geolocation' }, 'granted')
 await browser.url('https://www.google.com/maps')
 await browser.$('aria/Show Your Location').click()
 await browser.pause(5000)
 console.log(await browser.getUrl()) // outputs: "https://www.google.com/maps/@52.52,13.39,16z?entry=ttu"
 ```
 
-هذا سيقوم بتعديل كيفية عمل [`navigator.geolocation.getCurrentPosition`](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition) ويعيد الموقع الذي قمت بتوفيره.
+يستخدم هذا مكدّس الموقع الجغرافي الخاص بالمتصفح، بما في ذلك `getCurrentPosition` و`watchPosition`. قد تظل الصفحة بحاجة إلى منح إذن الموقع الجغرافي، كما في المثال. الحقول الاختيارية هي `accuracy` و`altitude` و`altitudeAccuracy` و`heading` و`speed`.
 
-## نظام الألوان
+لجعل الصفحة تفشل في قراءة الموقع:
 
-تغيير إعداد نظام الألوان الافتراضي للمتصفح عبر:
+```ts
+await browser.emulate('geolocation', { error: 'positionUnavailable' })
+```
+
+## نظام الألوان وميزات الوسائط الأخرى
+
+غيّر ميزة الوسائط `prefers-color-scheme`:
 
 ```ts
 await browser.emulate('colorScheme', 'light')
@@ -47,36 +59,70 @@ const backgroundColor = await browser.$('nav').getCSSProperty('background-color'
 console.log(backgroundColor.parsed.hex) // outputs: "#efefef"
 
 await browser.emulate('colorScheme', 'dark')
-await browser.url('https://webdriver.io')
-const backgroundColor = await browser.$('nav').getCSSProperty('background-color')
-console.log(backgroundColor.parsed.hex) // outputs: "#000000"
+const backgroundColorDark = await browser.$('nav').getCSSProperty('background-color')
+console.log(backgroundColorDark.parsed.hex) // outputs: "#000000"
 ```
 
-هذا سيقوم بتعديل كيفية عمل [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) عندما تستعلم عن نظام الألوان عبر `(prefers-color-scheme: dark)`.
+يُحدّث هذا `@media (prefers-color-scheme)` في CSS بالإضافة إلى [`window.matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia). لا يلزم إعادة التحميل.
+
+يعيّن `media` بقية خريطة ميزات الوسائط، على سبيل المثال تقليل الحركة:
+
+```ts
+await browser.emulate('media', { prefersReducedMotion: 'reduce', hover: 'none' })
+```
+
+يتشارك `colorScheme` و`media` خريطة واحدة. يستبدل أمر BiDi الخريطة بأكملها، لذا يسري الاستدعاء الأخير. استعادة أيٍّ من النطاقين تمسح الخريطة.
+
+`forcedColors` أمر مختلف. فهو يعيّن سمة الألوان المفروضة (`'light'` أو `'dark'`)، وليس ميزة الوسائط `forced-colors`. تبقى ميزة الوسائط تلك ضمن `media` بالصيغة `forcedColors: 'none' | 'active'`.
 
 ## وكيل المستخدم
 
-تغيير وكيل المستخدم للمتصفح إلى سلسلة مختلفة عبر:
+غيّر وكيل المستخدم للمتصفح عبر:
 
 ```ts
 await browser.emulate('userAgent', 'Chrome/1.2.3.4 Safari/537.36')
 ```
 
-هذا سيغير قيمة [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent). لاحظ أن مطوري المتصفحات يقومون تدريجياً بإلغاء وكيل المستخدم.
+هذا هو تجاوز وكيل المستخدم الخاص بالمتصفح، وليس تعديلًا لخاصية `navigator.userAgent`. يعمل مطوّرو المتصفحات على إيقاف استخدام وكيل المستخدم تدريجيًا.
 
-## خاصية onLine
+## حالة الاتصال
 
-تغيير حالة الاتصال بالإنترنت للمتصفح عبر:
+اجعل سياق التصفح غير متصل:
 
 ```ts
 await browser.emulate('onLine', false)
 ```
 
-هذا __لن__ يوقف حركة الشبكة بين المتصفح والإنترنت ويغير فقط قيمة الإرجاع من [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). إذا كنت مهتمًا بتعديل قدرات الشبكة للمتصفح، فانظر إلى أمر [`throttleNetwork`](/docs/api/browser/throttleNetwork).
+ترسل القيمة `false` الأمر `emulation.setNetworkConditions` مع `{ type: 'offline' }`. تفشل Fetch وWebSocket وWebTransport، وتتبعها [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine). القيمة `true`، وكذلك استعادة النطاق، تمسح هذا الشرط. يبقى التحكم في سرعة النقل وزمن الاستجابة ضمن [`throttleNetwork`](/docs/api/browser/throttleNetwork). لا تدعم ظروف الشبكة في BiDi سوى وضع عدم الاتصال.
+
+## الإعدادات المحلية والمنطقة الزمنية واللمس
+
+```ts
+await browser.emulate('locale', 'fr-FR')
+await browser.emulate('timezone', 'Pacific/Honolulu')
+await browser.emulate('touch', 1)
+```
+
+`locale` هو وسم BCP 47. `timezone` هو اسم IANA أو إزاحة مثل `+02:00`. `touch` هو `maxTouchPoints` ويجب أن يكون عددًا صحيحًا `>= 1`. استعادة `touch` تمسح التجاوز، ولا يمكنه تعيين القيمة `0`.
+
+## الشاشة والاتجاه والتخطيط
+
+```ts
+await browser.emulate('screen', { width: 390, height: 844 })
+await browser.emulate('orientation', { natural: 'portrait', type: 'portrait-primary' })
+await browser.emulate('viewportMeta', true)
+await browser.emulate('textLayout', 'mobile')
+await browser.emulate('scrollbar', 'overlay')
+await browser.emulate('scripting', false)
+```
+
+`screen` هي مساحة الشاشة المكشوفة للويب، وليست منفذ العرض (viewport). قيمة `orientation.natural` هي `'portrait'` أو `'landscape'`. وقيمة `orientation.type` هي `'portrait-primary'` أو `'portrait-secondary'` أو `'landscape-primary'` أو `'landscape-secondary'`.
+
+لا يقبل `viewportMeta` إلا القيمة `true`. قيمة المواصفة هي `true | null`، لذا لا توجد القيمة `false`. الاستعادة تمسحه. لا يقبل `textLayout` إلا `'mobile'`. لا يمكن سوى تعطيل `scripting`، إذ لا تستطيع المواصفة فرض تفعيل البرمجة النصية. قيمة `scrollbar` هي `'classic'` أو `'overlay'`.
 
 ## الساعة
 
-يمكنك تعديل ساعة نظام المتصفح باستخدام أمر [`emulate`](/docs/emulation). يقوم بتجاوز الدوال العالمية الأصلية المتعلقة بالوقت مما يسمح بالتحكم فيها بشكل متزامن عبر `clock.tick()` أو كائن الساعة الناتج. هذا يشمل التحكم في:
+يمكنك تعديل ساعة نظام المتصفح باستخدام الأمر [`emulate`](/docs/emulation). فهو يتجاوز الدوال العامة الأصلية المتعلقة بالوقت مما يسمح بالتحكم فيها بشكل متزامن عبر `clock.tick()` أو كائن الساعة المُعاد. ويشمل ذلك التحكم في:
 
 - `setTimeout`
 - `clearTimeout`
@@ -84,11 +130,11 @@ await browser.emulate('onLine', false)
 - `clearInterval`
 - `Date Objects`
 
-تبدأ الساعة في بداية عصر يونكس (طابع زمني 0). هذا يعني أنه عندما تقوم بإنشاء كائن Date جديد في تطبيقك، سيكون له وقت 1 يناير 1970 إذا لم تمرر أي خيارات أخرى إلى أمر `emulate`.
+تبدأ الساعة عند حقبة يونكس (الطابع الزمني 0). هذا يعني أنه عند إنشاء كائن Date جديد في تطبيقك، سيكون وقته هو 1 يناير 1970 إذا لم تمرّر أي خيارات أخرى إلى الأمر `emulate`.
 
 ##### مثال
 
-عند استدعاء `browser.emulate('clock', { ... })` سيقوم مباشرة بإعادة كتابة الدوال العالمية للصفحة الحالية وكذلك لجميع الصفحات التالية، على سبيل المثال:
+عند استدعاء `browser.emulate('clock', { ... })` سيستبدل فورًا الدوال العامة للصفحة الحالية وكذلك جميع الصفحات التالية، على سبيل المثال:
 
 ```ts
 const clock = await browser.emulate('clock', { now: new Date(1989, 7, 4) })
@@ -112,37 +158,37 @@ console.log(await browser.execute(() => (new Date()).toString()))
 
 يمكنك تعديل وقت النظام عن طريق استدعاء [`setSystemTime`](/docs/api/clock/setSystemTime) أو [`tick`](/docs/api/clock/tick).
 
-يمكن أن يحتوي كائن `FakeTimerInstallOpts` على الخصائص التالية:
+يمكن أن يحتوي الكائن `FakeTimerInstallOpts` على الخصائص التالية:
 
-```ts
+ ```ts
 interface FakeTimerInstallOpts {
-    // Installs fake timers with the specified unix epoch
+    // يثبّت مؤقتات وهمية بحقبة يونكس المحددة
     // @default: 0
     now?: number | Date | undefined;
 
-    // An array with names of global methods and APIs to fake. By default, WebdriverIO
-    // does not replace `nextTick()` and `queueMicrotask()`. For instance,
-    // `browser.emulate('clock', { toFake: ['setTimeout', 'nextTick'] })` will fake only
-    // `setTimeout()` and `nextTick()`
+    // مصفوفة بأسماء الدوال وواجهات البرمجة العامة المراد تزييفها. افتراضيًا، لا تستبدل WebdriverIO
+    // الدالتين `nextTick()` و`queueMicrotask()`. على سبيل المثال،
+    // `browser.emulate('clock', { toFake: ['setTimeout', 'nextTick'] })` سيزيّف فقط
+    // `setTimeout()` و`nextTick()`
     toFake?: FakeMethod[] | undefined;
 
-    // The maximum number of timers that will be run when calling runAll() (default: 1000)
+    // الحد الأقصى لعدد المؤقتات التي سيتم تشغيلها عند استدعاء runAll() (الافتراضي: 1000)
     loopLimit?: number | undefined;
 
-    // Tells WebdriverIO to increment mocked time automatically based on the real system
-    // time shift (e.g. the mocked time will be incremented by 20ms for every 20ms change
-    // in the real system time)
+    // يطلب من WebdriverIO زيادة الوقت المحاكى تلقائيًا بناءً على تغيّر وقت النظام الحقيقي
+    // (على سبيل المثال، سيُزاد الوقت المحاكى بمقدار 20 مللي ثانية لكل تغيّر بمقدار 20 مللي ثانية
+    // في وقت النظام الحقيقي)
     // @default false
     shouldAdvanceTime?: boolean | undefined;
 
-    // Relevant only when using with shouldAdvanceTime: true. increment mocked time by
-    // advanceTimeDelta ms every advanceTimeDelta ms change in the real system time
+    // ذو صلة فقط عند الاستخدام مع shouldAdvanceTime: true. يزيد الوقت المحاكى بمقدار
+    // advanceTimeDelta مللي ثانية لكل تغيّر بمقدار advanceTimeDelta مللي ثانية في وقت النظام الحقيقي
     // @default: 20
     advanceTimeDelta?: number | undefined;
 
-    // Tells FakeTimers to clear 'native' (i.e. not fake) timers by delegating to their
-    // respective handlers. These are not cleared by default, leading to potentially
-    // unexpected behavior if timers existed prior to installing FakeTimers.
+    // يطلب من FakeTimers مسح المؤقتات "الأصلية" (أي غير الوهمية) عن طريق تفويضها إلى
+    // معالجاتها الخاصة. لا تُمسح هذه افتراضيًا، مما قد يؤدي إلى سلوك غير متوقع
+    // إذا كانت المؤقتات موجودة قبل تثبيت FakeTimers.
     // @default: false
     shouldClearNativeTimers?: boolean | undefined;
 }
@@ -150,16 +196,27 @@ interface FakeTimerInstallOpts {
 
 ## الجهاز
 
-أمر `emulate` يدعم أيضًا محاكاة جهاز محمول أو جهاز سطح مكتب معين من خلال تغيير منفذ العرض، وعامل مقياس الجهاز، ووكيل المستخدم. لا ينبغي، بأي حال من الأحوال، استخدام هذا للاختبار على الهاتف المحمول حيث تختلف محركات متصفح سطح المكتب عن المحمول. يجب استخدام هذا فقط إذا كان تطبيقك يقدم سلوكًا محددًا لأحجام منفذ العرض الأصغر.
+يدعم الأمر `emulate` أيضًا محاكاة جهاز محمول أو مكتبي معيّن. لا ينبغي بأي حال من الأحوال استخدام هذا لاختبار الأجهزة المحمولة، إذ تختلف محركات متصفحات سطح المكتب عن محركات الأجهزة المحمولة. يجب استخدام هذا فقط إذا كان تطبيقك يقدّم سلوكًا محددًا لأحجام منافذ العرض الأصغر.
 
-على سبيل المثال، للتبديل إلى وكيل المستخدم ومنفذ العرض الخاص بجهاز iPhone 15، ما عليك سوى تشغيل:
+بالنسبة للجهاز، تقوم WebdriverIO بما يلي:
+
+- تعيين وكيل المستخدم من الواصف
+- تعيين منفذ العرض ومعامل مقياس الجهاز
+- تعيين `maxTouchPoints` إلى `1` عندما يدعم الواصف اللمس، ومسح اللمس خلاف ذلك
+- تعيين تخطيط النص للأجهزة المحمولة ووسم viewport meta عندما يكون الواصف لجهاز محمول، ومسحهما خلاف ذلك
+
+لا تختلق WebdriverIO حجم شاشة أو اتجاهًا من اسم الجهاز. منفذ العرض ليس `screen.width`. استخدم النطاقين `screen` و`orientation` لذلك.
+
+يُرسَل تغيير منفذ العرض إلى سياق المستوى الأعلى الذي كان حاليًا عند استدعاء `emulate`. استعادة الجهاز تعيد تحجيم ذلك السياق، حتى بعد التبديل إلى نافذة أخرى.
+
+إذا رفض المتصفح أحد تلك الأوامر، تُعاد القيم السابقة لوكيل المستخدم ومنفذ العرض واللمس وتخطيط النص وviewport meta ويُعاد الخطأ. لا يُستبدل وكيل المستخدم المخصص أو حجم `setViewport` بقيمة افتراضية.
 
 ```ts
 const restore = await browser.emulate('device', 'iPhone 15')
-// test your application ...
+// اختبر تطبيقك ...
 
-// reset to original viewport and user agent
+// إعادة تعيين وكيل المستخدم ومنفذ العرض واللمس وتخطيط النص وviewport meta
 await restore()
 ```
 
-يحتفظ WebdriverIO بقائمة ثابتة من [جميع الأجهزة المحددة](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).
+تحتفظ WebdriverIO بقائمة ثابتة من [جميع الأجهزة المعرّفة](https://github.com/webdriverio/webdriverio/blob/main/packages/webdriverio/src/deviceDescriptorsSource.ts).

@@ -1,32 +1,33 @@
 ---
 id: organizingsuites
-title: Organizacja Zestawu Testów
+title: Organizacja zestawu testów
+description: "Organizuj rosnący zestaw testów, współdzieląc pliki konfiguracyjne, grupując specyfikacje w zestawy, uruchamiając specyfikacje sekwencyjnie oraz uwzględniając lub wykluczając testy."
 ---
 
-Wraz z rozwojem projektów, nieuchronnie dodawane jest coraz więcej testów integracyjnych. To zwiększa czas budowania i spowalnia produktywność.
+Wraz z rozwojem projektów nieuchronnie dodawanych jest coraz więcej testów integracyjnych. Wydłuża to czas budowania i obniża produktywność.
 
-Aby temu zapobiec, powinieneś uruchamiać testy równolegle. WebdriverIO już testuje każdą specyfikację (lub _plik feature w Cucumber) równolegle w ramach pojedynczej sesji. Ogólnie rzecz biorąc, staraj się testować tylko jedną funkcję na plik specyfikacji. Staraj się nie mieć zbyt wielu lub zbyt mało testów w jednym pliku. (Jednak nie ma tu złotej reguły.)
+Aby temu zapobiec, należy uruchamiać testy równolegle. WebdriverIO już testuje każdą specyfikację (lub _plik funkcji_ w Cucumber) równolegle w ramach jednej sesji. Ogólnie rzecz biorąc, staraj się testować tylko jedną funkcjonalność na plik specyfikacji. Staraj się nie mieć zbyt wielu ani zbyt małej liczby testów w jednym pliku. (Nie ma tu jednak złotej zasady.)
 
-Kiedy twoje testy składają się z kilku plików specyfikacji, powinieneś zacząć uruchamiać testy równocześnie. Aby to zrobić, dostosuj właściwość `maxInstances` w pliku konfiguracyjnym. WebdriverIO pozwala uruchamiać testy z maksymalną współbieżnością - co oznacza, że bez względu na to, ile masz plików i testów, wszystkie mogą być uruchamiane równolegle. (Podlega to jednak pewnym ograniczeniom, takim jak procesor komputera, ograniczenia współbieżności itp.)
+Gdy Twoje testy obejmują kilka plików specyfikacji, powinieneś zacząć uruchamiać je współbieżnie. Aby to zrobić, dostosuj właściwość `maxInstances` w pliku konfiguracyjnym. WebdriverIO pozwala uruchamiać testy z maksymalną współbieżnością — co oznacza, że bez względu na to, ile masz plików i testów, wszystkie mogą być uruchamiane równolegle. (Nadal podlega to pewnym ograniczeniom, takim jak procesor Twojego komputera, ograniczenia współbieżności itp.)
 
-> Powiedzmy, że masz 3 różne możliwości (Chrome, Firefox i Safari) i ustawiłeś `maxInstances` na `1`. Test runner WDIO utworzy 3 procesy. Dlatego, jeśli masz 10 plików specyfikacji i ustawisz `maxInstances` na `10`, _wszystkie_ pliki specyfikacji będą testowane jednocześnie i zostanie utworzonych 30 procesów.
+> Załóżmy, że masz 3 różne capabilities (Chrome, Firefox i Safari) i ustawiłeś `maxInstances` na `1`. Test runner WDIO uruchomi 3 procesy. Zatem jeśli masz 10 plików specyfikacji i ustawisz `maxInstances` na `10`, _wszystkie_ pliki specyfikacji zostaną przetestowane jednocześnie i zostanie uruchomionych 30 procesów.
 
-Możesz zdefiniować właściwość `maxInstances` globalnie, aby ustawić atrybut dla wszystkich przeglądarek.
+Możesz zdefiniować właściwość `maxInstances` globalnie, aby ustawić ten atrybut dla wszystkich przeglądarek.
 
-Jeśli uruchamiasz własną siatkę WebDriver, możesz (na przykład) mieć więcej możliwości dla jednej przeglądarki niż dla innej. W takim przypadku możesz _ograniczyć_ `maxInstances` w obiekcie capability:
+Jeśli uruchamiasz własny grid WebDriver, możesz (na przykład) mieć większą przepustowość dla jednej przeglądarki niż dla innej. W takim przypadku możesz _ograniczyć_ `maxInstances` w obiekcie capability:
 
 ```js
 // wdio.conf.js
 export const config = {
     // ...
-    // ustawienie maxInstance dla wszystkich przeglądarek
+    // ustaw maxInstance dla wszystkich przeglądarek
     maxInstances: 10,
     // ...
     capabilities: [{
         browserName: 'firefox'
     }, {
-        // maxInstances może zostać nadpisany dla każdej możliwości. Więc jeśli masz wewnętrzną siatkę WebDriver
-        // z tylko 5 dostępnymi instancjami firefox, możesz upewnić się, że nie więcej niż
+        // maxInstances można nadpisać dla każdej capability. Jeśli więc masz wewnętrzny grid
+        // WebDriver z dostępnymi tylko 5 instancjami firefox, możesz upewnić się, że nie więcej niż
         // 5 instancji zostanie uruchomionych jednocześnie.
         browserName: 'chrome'
     }],
@@ -36,21 +37,21 @@ export const config = {
 
 ## Dziedziczenie z głównego pliku konfiguracyjnego
 
-Jeśli uruchamiasz swój zestaw testów w wielu środowiskach (np. dev i integration), może to pomóc w używaniu wielu plików konfiguracyjnych, aby utrzymać rzeczy w sposób zarządzalny.
+Jeśli uruchamiasz zestaw testów w wielu środowiskach (np. dev i integracyjnym), pomocne może być użycie wielu plików konfiguracyjnych, aby zachować porządek.
 
-Podobnie jak w przypadku [koncepcji obiektów strony](pageobjects), pierwszą rzeczą, której potrzebujesz, jest główny plik konfiguracyjny. Zawiera wszystkie konfiguracje wspólne dla wszystkich środowisk.
+Podobnie jak w przypadku [koncepcji page object](pageobjects), pierwszą rzeczą, której potrzebujesz, jest główny plik konfiguracyjny. Zawiera on wszystkie konfiguracje współdzielone między środowiskami.
 
-Następnie utwórz inny plik konfiguracyjny dla każdego środowiska i uzupełnij główną konfigurację o konfiguracje specyficzne dla środowiska:
+Następnie utwórz kolejny plik konfiguracyjny dla każdego środowiska i uzupełnij główną konfigurację o ustawienia specyficzne dla danego środowiska:
 
 ```js
 // wdio.dev.config.js
 import { deepmerge } from 'deepmerge-ts'
 import wdioConf from './wdio.conf.js'
 
-// główny plik konfiguracyjny jako domyślny, ale nadpisz informacje specyficzne dla środowiska
+// użyj głównego pliku konfiguracyjnego jako domyślnego, ale nadpisz informacje specyficzne dla środowiska
 export const config = deepmerge(wdioConf.config, {
     capabilities: [
-        // więcej możliwości zdefiniowanych tutaj
+        // więcej capabilities zdefiniowanych tutaj
         // ...
     ],
 
@@ -64,19 +65,19 @@ export const config = deepmerge(wdioConf.config, {
 config.reporters.push('allure')
 ```
 
-## Grupowanie specyfikacji testowych w zestawy
+## Grupowanie specyfikacji testów w zestawy
 
-Możesz grupować specyfikacje testowe w zestawy i uruchamiać pojedyncze określone zestawy zamiast wszystkich.
+Możesz grupować specyfikacje testów w zestawy (suites) i uruchamiać pojedyncze, konkretne zestawy zamiast wszystkich.
 
-Najpierw zdefiniuj swoje zestawy w konfiguracji WDIO:
+Najpierw zdefiniuj zestawy w konfiguracji WDIO:
 
 ```js
 // wdio.conf.js
 export const config = {
-    // definiowanie wszystkich testów
+    // zdefiniuj wszystkie testy
     specs: ['./test/specs/**/*.spec.js'],
     // ...
-    // definiowanie konkretnych zestawów
+    // zdefiniuj konkretne zestawy
     suites: {
         login: [
             './test/specs/login.success.spec.js',
@@ -102,11 +103,11 @@ Lub uruchomić wiele zestawów jednocześnie:
 wdio wdio.conf.js --suite login --suite otherFeature
 ```
 
-## Grupowanie specyfikacji testowych do uruchomienia sekwencyjnego
+## Grupowanie specyfikacji testów do uruchamiania sekwencyjnego
 
-Jak opisano powyżej, istnieją korzyści z uruchamiania testów równolegle. Jednak istnieją przypadki, w których korzystne byłoby grupowanie testów razem, aby uruchamiać je sekwencyjnie w jednej instancji. Przykłady tego to głównie przypadki, w których istnieje duży koszt konfiguracji, np. transpilacja kodu lub tworzenie instancji w chmurze, ale istnieją również zaawansowane modele użycia, które korzystają z tej możliwości.
+Jak opisano powyżej, uruchamianie testów współbieżnie ma swoje zalety. Istnieją jednak przypadki, w których korzystne byłoby zgrupowanie testów tak, aby były uruchamiane sekwencyjnie w jednej instancji. Przykładami są głównie sytuacje, w których występuje duży koszt przygotowania, np. transpilacja kodu lub przydzielanie instancji w chmurze, ale istnieją również zaawansowane modele użycia, które korzystają z tej możliwości.
 
-Aby zgrupować testy do uruchomienia w jednej instancji, zdefiniuj je jako tablicę w definicji specyfikacji.
+Aby zgrupować testy do uruchomienia w jednej instancji, zdefiniuj je jako tablicę w definicji specs.
 
 ```json
     "specs": [
@@ -118,9 +119,9 @@ Aby zgrupować testy do uruchomienia w jednej instancji, zdefiniuj je jako tabli
         "./test/specs/test_b*.js",
     ],
 ```
-W powyższym przykładzie testy "test_login.js", "test_product_order.js" i "test_checkout.js" będą uruchamiane sekwencyjnie w jednej instancji, a każdy z testów "test_b*" będzie uruchamiany równolegle w indywidualnych instancjach.
+W powyższym przykładzie testy 'test_login.js', 'test_product_order.js' i 'test_checkout.js' zostaną uruchomione sekwencyjnie w jednej instancji, a każdy z testów "test_b*" zostanie uruchomiony współbieżnie w osobnych instancjach.
 
-Możliwe jest również grupowanie specyfikacji zdefiniowanych w zestawach, więc możesz teraz również definiować zestawy w ten sposób:
+Możliwe jest również grupowanie specyfikacji zdefiniowanych w zestawach, więc możesz teraz definiować zestawy również w ten sposób:
 ```json
     "suites": {
         end2end: [
@@ -133,9 +134,9 @@ Możliwe jest również grupowanie specyfikacji zdefiniowanych w zestawach, wię
         allb: ["./test/specs/test_b*.js"]
 },
 ```
-i w tym przypadku wszystkie testy z zestawu "end2end" będą uruchamiane w jednej instancji.
+i w tym przypadku wszystkie testy z zestawu "end2end" zostaną uruchomione w jednej instancji.
 
-Podczas uruchamiania testów sekwencyjnie przy użyciu wzorca, pliki specyfikacji będą uruchamiane w porządku alfabetycznym
+Podczas sekwencyjnego uruchamiania testów z użyciem wzorca pliki specyfikacji będą uruchamiane w kolejności alfabetycznej
 
 ```json
   "suites": {
@@ -143,7 +144,7 @@ Podczas uruchamiania testów sekwencyjnie przy użyciu wzorca, pliki specyfikacj
   },
 ```
 
-To uruchomi pliki pasujące do powyższego wzorca w następującej kolejności:
+Spowoduje to uruchomienie plików pasujących do powyższego wzorca w następującej kolejności:
 
 ```
   [
@@ -155,9 +156,9 @@ To uruchomi pliki pasujące do powyższego wzorca w następującej kolejności:
 
 ## Uruchamianie wybranych testów
 
-W niektórych przypadkach możesz chcieć wykonać tylko jeden test (lub podzbiór testów) z Twoich zestawów.
+W niektórych przypadkach możesz chcieć wykonać tylko jeden test (lub podzbiór testów) ze swoich zestawów.
 
-Za pomocą parametru `--spec` możesz określić, który _zestaw_ (Mocha, Jasmine) lub _feature_ (Cucumber) powinien zostać uruchomiony. Ścieżka jest rozwiązywana względem Twojego bieżącego katalogu roboczego.
+Za pomocą parametru `--spec` możesz określić, który _zestaw_ (Mocha, Jasmine) lub _funkcja_ (Cucumber) ma zostać uruchomiony. Ścieżka jest rozwiązywana względem bieżącego katalogu roboczego.
 
 Na przykład, aby uruchomić tylko test logowania:
 
@@ -165,25 +166,25 @@ Na przykład, aby uruchomić tylko test logowania:
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js
 ```
 
-Lub uruchom wiele specyfikacji jednocześnie:
+Lub uruchomić wiele specyfikacji jednocześnie:
 
 ```sh
 wdio wdio.conf.js --spec ./test/specs/signup.js --spec ./test/specs/forgot-password.js
 ```
 
-Jeśli wartość `--spec` nie wskazuje na konkretny plik specyfikacji, jest ona zamiast tego używana do filtrowania nazw plików specyfikacji zdefiniowanych w Twojej konfiguracji.
+Jeśli wartość `--spec` nie wskazuje na konkretny plik specyfikacji, jest ona używana do filtrowania nazw plików specyfikacji zdefiniowanych w konfiguracji.
 
-Aby uruchomić wszystkie specyfikacje ze słowem "dialog" w nazwach plików specyfikacji, możesz użyć:
+Aby uruchomić wszystkie specyfikacje zawierające słowo „dialog” w nazwach plików, możesz użyć:
 
 ```sh
 wdio wdio.conf.js --spec dialog
 ```
 
-Zauważ, że każdy plik testowy jest uruchamiany w jednym procesie test runnera. Ponieważ nie skanujemy plików z wyprzedzeniem (zobacz następną sekcję, aby uzyskać informacje na temat przekazywania nazw plików do `wdio`), _nie możesz_ użyć (na przykład) `describe.only` na początku pliku specyfikacji, aby poinstruować Mochę, aby uruchomiła tylko tę grupę testów.
+Pamiętaj, że każdy plik testowy jest uruchamiany w osobnym procesie test runnera. Ponieważ nie skanujemy plików z wyprzedzeniem (zobacz następną sekcję, aby uzyskać informacje o przekazywaniu nazw plików do `wdio` przez potok), _nie możesz_ użyć (na przykład) `describe.only` na początku pliku specyfikacji, aby poinstruować Mochę, by uruchomiła tylko ten zestaw.
 
 Ta funkcja pomoże Ci osiągnąć ten sam cel.
 
-Gdy opcja `--spec` jest podana, zastąpi ona wszystkie wzorce zdefiniowane przez parametr `specs` na poziomie konfiguracji lub możliwości.
+Gdy podana jest opcja `--spec`, nadpisuje ona wszelkie wzorce zdefiniowane w konfiguracji `specs` lub w `wdio:specs` danej capability.
 
 ## Wykluczanie wybranych testów
 
@@ -195,21 +196,21 @@ Na przykład, aby wykluczyć test logowania z uruchomienia testów:
 wdio wdio.conf.js --exclude ./test/specs/e2e/login.js
 ```
 
-Lub wyklucz wiele plików specyfikacji:
+Lub wykluczyć wiele plików specyfikacji:
 
  ```sh
 wdio wdio.conf.js --exclude ./test/specs/signup.js --exclude ./test/specs/forgot-password.js
 ```
 
-Lub wyklucz plik specyfikacji podczas filtrowania przy użyciu zestawu:
+Lub wykluczyć plik specyfikacji podczas filtrowania z użyciem zestawu:
 
 ```sh
 wdio wdio.conf.js --suite login --exclude ./test/specs/e2e/login.js
 ```
 
-Jeśli wartość `--exclude` nie wskazuje na konkretny plik specyfikacji, jest ona zamiast tego używana do filtrowania nazw plików specyfikacji zdefiniowanych w Twojej konfiguracji.
+Jeśli wartość `--exclude` nie wskazuje na konkretny plik specyfikacji, jest ona używana do filtrowania nazw plików specyfikacji zdefiniowanych w konfiguracji.
 
-Aby wykluczyć wszystkie specyfikacje ze słowem "dialog" w nazwach plików specyfikacji, możesz użyć:
+Aby wykluczyć wszystkie specyfikacje zawierające słowo „dialog” w nazwach plików, możesz użyć:
 
 ```sh
 wdio wdio.conf.js --exclude dialog
@@ -217,13 +218,13 @@ wdio wdio.conf.js --exclude dialog
 
 ### Wykluczanie całego zestawu
 
-Możesz również wykluczyć cały zestaw według nazwy. Jeśli wartość wykluczenia pasuje do nazwy zestawu zdefiniowanej w konfiguracji i nie wygląda jak ścieżka pliku, cały zestaw zostanie pominięty:
+Możesz również wykluczyć cały zestaw po nazwie. Jeśli wartość wykluczenia pasuje do nazwy zestawu zdefiniowanego w konfiguracji i nie wygląda jak ścieżka do pliku, cały zestaw zostanie pominięty:
 
 ```sh
 wdio wdio.conf.js --suite login --suite checkout --exclude login
 ```
 
-To spowoduje uruchomienie tylko zestawu `checkout`, pomijając zestaw `login` całkowicie.
+Spowoduje to uruchomienie tylko zestawu `checkout`, całkowicie pomijając zestaw `login`.
 
 Mieszane wykluczenia (zestawy i wzorce specyfikacji) działają zgodnie z oczekiwaniami:
 
@@ -231,81 +232,81 @@ Mieszane wykluczenia (zestawy i wzorce specyfikacji) działają zgodnie z oczeki
 wdio wdio.conf.js --suite login --exclude dialog --exclude signup
 ```
 
-W tym przykładzie, jeśli `signup` jest zdefiniowaną nazwą zestawu, ten zestaw zostanie wykluczony. Wzorzec `dialog` odfiltruje wszystkie pliki specyfikacji zawierające "dialog" w nazwie pliku.
+W tym przykładzie, jeśli `signup` jest nazwą zdefiniowanego zestawu, ten zestaw zostanie wykluczony. Wzorzec `dialog` odfiltruje wszystkie pliki specyfikacji zawierające "dialog" w nazwie pliku.
 
 :::note
-Jeśli określisz zarówno `--suite X` jak i `--exclude X`, wykluczenie ma pierwszeństwo i zestaw `X` nie zostanie uruchomiony.
+Jeśli określisz zarówno `--suite X`, jak i `--exclude X`, wykluczenie ma pierwszeństwo i zestaw `X` nie zostanie uruchomiony.
 :::
 
-Gdy opcja `--exclude` jest podana, zastąpi ona wszystkie wzorce zdefiniowane przez parametr `exclude` na poziomie konfiguracji lub możliwości.
+Gdy podana jest opcja `--exclude`, nadpisuje ona wszelkie wzorce zdefiniowane w konfiguracji `exclude` lub w `wdio:exclude` danej capability.
 
-## Uruchamianie zestawów i specyfikacji testowych
+## Uruchamianie zestawów i specyfikacji testów
 
-Uruchom cały zestaw wraz z indywidualnymi specyfikacjami.
+Uruchom cały zestaw wraz z pojedynczymi specyfikacjami.
 
 ```sh
 wdio wdio.conf.js --suite login --spec ./test/specs/signup.js
 ```
 
-## Uruchamianie wielu, określonych specyfikacji testowych
+## Uruchamianie wielu konkretnych specyfikacji testów
 
-Czasami konieczne jest - w kontekście ciągłej integracji i nie tylko - określenie wielu zestawów specyfikacji do uruchomienia. Narzędzie wiersza poleceń `wdio` WebdriverIO akceptuje nazwy plików przekazywane przez potok (z `find`, `grep` lub innych).
+Czasami konieczne jest&mdash;w kontekście ciągłej integracji i nie tylko&mdash;określenie wielu zestawów specyfikacji do uruchomienia. Narzędzie wiersza poleceń `wdio` w WebdriverIO akceptuje nazwy plików przekazywane przez potok (z `find`, `grep` lub innych).
 
-Nazwy plików przekazywane przez potok zastępują listę globów lub nazw plików określonych w liście `spec` konfiguracji.
+Nazwy plików przekazane przez potok nadpisują listę globów lub nazw plików określonych w liście `spec` w konfiguracji.
 
 ```sh
 grep -r -l --include "*.js" "myText" | wdio wdio.conf.js
 ```
 
-_**Uwaga:** To _nie_ nadpisze flagi `--spec` do uruchomienia pojedynczej specyfikacji._
+_**Uwaga:** To_ nie _nadpisze flagi `--spec` służącej do uruchamiania pojedynczej specyfikacji._
 
-## Uruchamianie określonych testów z MochaOpts
+## Uruchamianie konkretnych testów z MochaOpts
 
-Możesz również filtrować, które konkretne `suite|describe` i/lub `it|test` chcesz uruchomić, przekazując argument specyficzny dla mocha: `--mochaOpts.grep` do CLI wdio.
+Możesz także filtrować, które konkretne `suite|describe` i/lub `it|test` chcesz uruchomić, przekazując do CLI wdio argument specyficzny dla mocha: `--mochaOpts.grep`.
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep myText
 wdio wdio.conf.js --mochaOpts.grep "Text with spaces"
 ```
 
-_**Uwaga:** Mocha będzie filtrować testy po tym, jak test runner WDIO utworzy instancje, więc możesz zobaczyć kilka instancji, które są tworzone, ale nie są faktycznie wykonywane._
+_**Uwaga:** Mocha przefiltruje testy po utworzeniu instancji przez test runner WDIO, więc możesz zobaczyć, że uruchamianych jest kilka instancji, które w rzeczywistości nie są wykonywane._
 
-## Wykluczanie określonych testów z MochaOpts
+## Wykluczanie konkretnych testów z MochaOpts
 
-Możesz również filtrować, które konkretne `suite|describe` i/lub `it|test` chcesz wykluczyć, przekazując argument specyficzny dla mocha: `--mochaOpts.invert` do CLI wdio. `--mochaOpts.invert` wykonuje działanie przeciwne do `--mochaOpts.grep`
+Możesz także filtrować, które konkretne `suite|describe` i/lub `it|test` chcesz wykluczyć, przekazując do CLI wdio argument specyficzny dla mocha: `--mochaOpts.invert`. `--mochaOpts.invert` działa odwrotnie do `--mochaOpts.grep`
 
 ```sh
 wdio wdio.conf.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 wdio wdio.conf.js --spec ./test/specs/e2e/login.js --mochaOpts.grep "string|regex" --mochaOpts.invert
 ```
 
-_**Uwaga:** Mocha będzie filtrować testy po tym, jak test runner WDIO utworzy instancje, więc możesz zobaczyć kilka instancji, które są tworzone, ale nie są faktycznie wykonywane._
+_**Uwaga:** Mocha przefiltruje testy po utworzeniu instancji przez test runner WDIO, więc możesz zobaczyć, że uruchamianych jest kilka instancji, które w rzeczywistości nie są wykonywane._
 
-## Zatrzymanie testowania po niepowodzeniu
+## Zatrzymywanie testowania po niepowodzeniu
 
-Za pomocą opcji `bail` możesz powiedzieć WebdriverIO, aby przestało testować po niepowodzeniu jakiegokolwiek testu.
+Za pomocą opcji `bail` możesz nakazać WebdriverIO zatrzymanie testowania po niepowodzeniu dowolnego testu.
 
-Jest to pomocne w przypadku dużych zestawów testów, gdy już wiesz, że twoja kompilacja zakończy się niepowodzeniem, ale chcesz uniknąć długiego oczekiwania na pełne uruchomienie testów.
+Jest to pomocne w przypadku dużych zestawów testów, gdy już wiesz, że Twój build się nie powiedzie, ale chcesz uniknąć długiego oczekiwania na pełne uruchomienie testów.
 
-Opcja `bail` oczekuje liczby, która określa, ile niepowodzeń testów może wystąpić, zanim WebDriver zatrzyma cały proces testowania. Domyślna wartość to `0`, co oznacza, że zawsze uruchamia wszystkie specyfikacje testów, które może znaleźć.
+Opcja `bail` oczekuje liczby, która określa, ile niepowodzeń testów może wystąpić, zanim WebDriver zatrzyma całe uruchomienie testów. Wartość domyślna to `0`, co oznacza, że zawsze uruchamiane są wszystkie specyfikacje testów, jakie można znaleźć.
 
-Proszę zobaczyć [Strona opcji](configuration) w celu uzyskania dodatkowych informacji o konfiguracji bail.
+Zobacz [stronę opcji](configuration), aby uzyskać dodatkowe informacje na temat konfiguracji bail.
 ## Hierarchia opcji uruchamiania
 
-Podczas deklarowania, jakie specyfikacje uruchamiać, istnieje pewna hierarchia określająca, który wzorzec będzie miał pierwszeństwo. Obecnie działa to w następujący sposób, od najwyższego priorytetu do najniższego:
+Przy deklarowaniu, które specyfikacje mają zostać uruchomione, obowiązuje określona hierarchia definiująca, który wzorzec ma pierwszeństwo. Obecnie działa to w następujący sposób, od najwyższego do najniższego priorytetu:
 
-> Argument CLI `--spec` > wzorzec `specs` możliwości > wzorzec `specs` konfiguracji
-> Argument CLI `--exclude` > wzorzec `exclude` konfiguracji > wzorzec `exclude` możliwości
+> argument CLI `--spec` > capability `wdio:specs` > konfiguracja `specs`
+> argument CLI `--exclude` > konfiguracja `exclude` > capability `wdio:exclude`
 
-Jeśli podany jest tylko parametr konfiguracyjny, będzie on używany dla wszystkich możliwości. Jednak definiując wzorzec na poziomie możliwości, będzie on używany zamiast wzorca konfiguracji. Ostatecznie, każdy wzorzec specyfikacji zdefiniowany w wierszu poleceń zastąpi wszystkie inne podane wzorce.
+Jeśli podany jest tylko parametr konfiguracji, będzie on używany dla wszystkich capabilities. Jeśli jednak wzorzec zostanie zdefiniowany na poziomie capability, zostanie on użyty zamiast wzorca z konfiguracji. Wreszcie, każdy wzorzec specyfikacji zdefiniowany w wierszu poleceń nadpisze wszystkie inne podane wzorce.
 
-### Używanie wzorców specyfikacji zdefiniowanych w możliwościach
+### Używanie wzorców specyfikacji zdefiniowanych w capability
 
-Gdy definiujesz wzorzec specyfikacji na poziomie możliwości, zastąpi on wszelkie wzorce zdefiniowane na poziomie konfiguracji. Jest to przydatne, gdy trzeba oddzielić testy na podstawie różnych możliwości urządzeń. W takich przypadkach bardziej przydatne jest użycie ogólnego wzorca specyfikacji na poziomie konfiguracji i bardziej konkretnych wzorców na poziomie możliwości.
+Gdy definiujesz wzorzec specyfikacji na poziomie capability, nadpisze on wszelkie wzorce zdefiniowane na poziomie konfiguracji. Jest to przydatne, gdy trzeba rozdzielić testy na podstawie różnych capabilities urządzeń. W takich przypadkach bardziej przydatne jest użycie ogólnego wzorca specyfikacji na poziomie konfiguracji i bardziej szczegółowych wzorców na poziomie capability.
 
-Na przykład, powiedzmy, że masz dwa katalogi, jeden do testów Androida, a drugi do testów iOS.
+Załóżmy na przykład, że masz dwa katalogi: jeden dla testów Androida i jeden dla testów iOS.
 
-Twój plik konfiguracyjny może definiować wzorzec w następujący sposób, dla testów niespecyficznych dla urządzenia:
+Twój plik konfiguracyjny może definiować wzorzec w ten sposób dla testów niezależnych od urządzenia:
 
 ```js
 {
@@ -313,12 +314,12 @@ Twój plik konfiguracyjny może definiować wzorzec w następujący sposób, dla
 }
 ```
 
-ale potem będziesz miał różne możliwości dla urządzeń Android i iOS, gdzie wzorce mogą wyglądać tak:
+ale następnie będziesz mieć różne capabilities dla urządzeń z Androidem i iOS, gdzie wzorce mogą wyglądać tak:
 
 ```json
 {
   "platformName": "Android",
-  "specs": [
+  "wdio:specs": [
     "tests/android/**/*.js"
   ]
 }
@@ -327,13 +328,13 @@ ale potem będziesz miał różne możliwości dla urządzeń Android i iOS, gdz
 ```json
 {
   "platformName": "iOS",
-  "specs": [
+  "wdio:specs": [
     "tests/ios/**/*.js"
   ]
 }
 ```
 
-Jeśli potrzebujesz obu tych możliwości w pliku konfiguracyjnym, to urządzenie Android będzie uruchamiało tylko testy z przestrzeni nazw "android", a testy iOS będą uruchamiały tylko testy z przestrzeni nazw "ios"!
+Jeśli potrzebujesz obu tych capabilities w swoim pliku konfiguracyjnym, urządzenie z Androidem uruchomi tylko testy z przestrzeni nazw "android", a testy iOS uruchomią tylko testy z przestrzeni nazw "ios"!
 
 ```js
 //wdio.conf.js
@@ -344,17 +345,17 @@ export const config = {
     "capabilities": [
         {
             platformName: "Android",
-            specs: ["tests/android/**/*.js"],
+            "wdio:specs": ["tests/android/**/*.js"],
             //...
         },
         {
             platformName: "iOS",
-            specs: ["tests/ios/**/*.js"],
+            "wdio:specs": ["tests/ios/**/*.js"],
             //...
         },
         {
             platformName: "Chrome",
-            //zostaną użyte specyfikacje na poziomie konfiguracji
+            //zostaną użyte specyfikacje z poziomu konfiguracji
         }
     ]
 }

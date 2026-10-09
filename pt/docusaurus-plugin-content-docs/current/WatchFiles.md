@@ -1,22 +1,23 @@
 ---
 id: watcher
 title: Observar Arquivos de Teste
+description: "Execute novamente os testes automaticamente quando arquivos de spec ou da aplicação forem alterados, executando o testrunner do WDIO com a flag --watch e filesToWatch."
 ---
 
-Com o testrunner WDIO você pode observar arquivos enquanto trabalha neles. Eles são executados novamente automaticamente se você alterar algo em seu aplicativo ou em seus arquivos de teste. Ao adicionar uma flag `--watch` ao chamar o comando `wdio`, o testrunner aguardará por alterações nos arquivos após executar todos os testes, por exemplo:
+Com o testrunner do WDIO, você pode observar arquivos enquanto trabalha neles. Os testes são executados novamente de forma automática se você alterar algo na sua aplicação ou nos seus arquivos de teste. Ao adicionar a flag `--watch` ao chamar o comando `wdio`, o testrunner aguardará alterações nos arquivos depois de executar todos os testes, por exemplo:
 
 ```sh
 wdio wdio.conf.js --watch
 ```
 
-Por padrão, ele observa apenas as alterações em seus arquivos `specs`. No entanto, ao definir uma propriedade `filesToWatch` no seu `wdio.conf.js` que contém uma lista de caminhos de arquivos (com suporte a glob), ele também observará quando esses arquivos forem alterados para executar novamente toda a suíte. Isso é útil se você quiser executar automaticamente todos os seus testes quando alterar o código do seu aplicativo, por exemplo:
+Por padrão, ele observa apenas alterações nos seus arquivos de `specs`. No entanto, ao definir uma propriedade `filesToWatch` no seu `wdio.conf.js` contendo uma lista de caminhos de arquivos (com suporte a globbing), ele também observará alterações nesses arquivos para executar novamente toda a suíte. Isso é útil se você quiser executar novamente todos os seus testes automaticamente quando alterar o código da sua aplicação, por exemplo:
 
 ```js
 // wdio.conf.js
 export const config = {
     // ...
     filesToWatch: [
-        // watch for all JS files in my app
+        // observa todos os arquivos JS na minha aplicação
         './src/app/**/*.js'
     ],
     // ...
@@ -24,5 +25,5 @@ export const config = {
 ```
 
 :::info
-Tente executar testes em paralelo sempre que possível. Testes E2E são, por natureza, lentos. Executar novamente os testes só é útil se você conseguir manter o tempo de execução do teste individual curto. Para economizar tempo, o testrunner mantém as sessões WebDriver ativas enquanto aguarda alterações nos arquivos. Certifique-se de que seu backend WebDriver possa ser modificado para que não feche automaticamente a sessão se nenhum comando for executado após algum período de tempo.
+Tente executar os testes em paralelo o máximo possível. Testes E2E são, por natureza, lentos. Executar os testes novamente só é útil se você conseguir manter curto o tempo de execução de cada teste. Para economizar tempo, o testrunner mantém as sessões do WebDriver ativas enquanto aguarda alterações nos arquivos. Certifique-se de que seu backend do WebDriver possa ser configurado para não encerrar automaticamente a sessão caso nenhum comando seja executado após um determinado período de tempo.
 :::

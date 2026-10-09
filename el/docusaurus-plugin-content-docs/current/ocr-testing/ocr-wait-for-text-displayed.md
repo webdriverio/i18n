@@ -1,9 +1,10 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
+description: "Περιμένετε μέχρι να εμφανιστεί ένα συγκεκριμένο κείμενο στην οθόνη με το ocrWaitForTextDisplayed από την υπηρεσία OCR."
 ---
 
-Αναμονή για την εμφάνιση συγκεκριμένου κειμένου στην οθόνη.
+Περιμένετε μέχρι να εμφανιστεί ένα συγκεκριμένο κείμενο στην οθόνη.
 
 ## Χρήση
 
@@ -20,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayed uses ocrGetElementPositionByText under the hood, that is why you see the command ocrGetElementPositionByText in the logs
+# Το ocrWaitForTextDisplayed χρησιμοποιεί εσωτερικά το ocrGetElementPositionByText, γι' αυτό βλέπετε την εντολή ocrGetElementPositionByText στα αρχεία καταγραφής
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -28,11 +29,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `text`
 
--   **Τύπος:** `string`
--   **Υποχρεωτικό:** ναι
+<Option type="string" required="yes">
 
-Το κείμενο που θέλετε να αναζητήσετε για να κάνετε κλικ.
+Το κείμενο που θέλετε να αναζητήσετε για να κάνετε κλικ σε αυτό.
 
+</Option>
 #### Παράδειγμα
 
 ```js
@@ -41,12 +42,11 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
--   **Τύπος:** `number`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** 18000 (18 δευτερόλεπτα)
+<Option type="number" default="18000 (18 seconds)" required="no">
 
-Χρόνος σε χιλιοστά του δευτερολέπτου. Έχετε υπόψη ότι η διαδικασία OCR μπορεί να διαρκέσει αρκετό χρόνο, οπότε μην το ορίσετε πολύ χαμηλά.
+Χρόνος σε χιλιοστά του δευτερολέπτου. Έχετε υπόψη ότι η διαδικασία OCR μπορεί να διαρκέσει αρκετό χρόνο, οπότε μην τον ορίσετε πολύ χαμηλά.
 
+</Option>
 #### Παράδειγμα
 
 ```js
@@ -58,12 +58,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `timeoutMsg`
 
--   **Τύπος:** `string`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** `Could not find the text "{selector}" within the requested time.`
+<Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
 Αντικαθιστά το προεπιλεγμένο μήνυμα σφάλματος.
 
+</Option>
 #### Παράδειγμα
 
 ```js
@@ -75,12 +74,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
--   **Τύπος:** `number`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Όσο υψηλότερη η αντίθεση, τόσο πιο σκοτεινή η εικόνα και αντίστροφα. Αυτό μπορεί να βοηθήσει στην εύρεση κειμένου σε μια εικόνα. Δέχεται τιμές μεταξύ `-1` και `1`.
+Όσο υψηλότερη είναι η αντίθεση, τόσο πιο σκοτεινή είναι η εικόνα και αντίστροφα. Αυτό μπορεί να βοηθήσει στην εύρεση κειμένου σε μια εικόνα. Δέχεται τιμές μεταξύ `-1` και `1`.
 
+</Option>
 #### Παράδειγμα
 
 ```js
@@ -92,11 +90,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
--   **Τύπος:** `number`
--   **Υποχρεωτικό:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Αυτή είναι η περιοχή αναζήτησης στην οθόνη όπου το OCR πρέπει να αναζητήσει κείμενο. Αυτό μπορεί να είναι ένα στοιχείο ή ένα ορθογώνιο που περιέχει `x`, `y`, `width` και `height`
+Αυτή είναι η περιοχή αναζήτησης στην οθόνη όπου το OCR πρέπει να αναζητήσει κείμενο. Μπορεί να είναι ένα στοιχείο ή ένα ορθογώνιο που περιέχει `x`, `y`, `width` και `height`
 
+</Option>
 #### Παράδειγμα
 
 ```js
@@ -125,35 +123,33 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
--   **Τύπος:** `string`
--   **Υποχρεωτικό:** Όχι
--   **Προεπιλογή:** `eng`
+<Option type="string" default="eng" required="No">
 
-Η γλώσσα που θα αναγνωρίσει το Tesseract. Περισσότερες πληροφορίες μπορείτε να βρείτε [εδώ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) και οι υποστηριζόμενες γλώσσες μπορούν να βρεθούν [εδώ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Η γλώσσα που θα αναγνωρίσει το Tesseract. Περισσότερες πληροφορίες μπορείτε να βρείτε [εδώ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) και τις υποστηριζόμενες γλώσσες μπορείτε να τις βρείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Παράδειγμα
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // Χρήση Ολλανδικών ως γλώσσα
+    // Χρήση των Ολλανδικών ως γλώσσα
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-Μπορείτε να αλλάξετε τη λογική ασαφούς αναζήτησης για την εύρεση κειμένου με τις ακόλουθες επιλογές. Αυτό μπορεί να βοηθήσει στην εύρεση καλύτερης αντιστοιχίας
+Μπορείτε να τροποποιήσετε την ασαφή λογική (fuzzy logic) για την εύρεση κειμένου με τις ακόλουθες επιλογές. Αυτό μπορεί να βοηθήσει στην εύρεση καλύτερης αντιστοίχισης
 
 #### `fuzzyFindOptions.distance`
 
--   **Τύπος:** `number`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** 100
+<Option type="number" default="100" required="no">
 
-Καθορίζει πόσο κοντά πρέπει να είναι η αντιστοιχία στην ασαφή θέση (που καθορίζεται από τη θέση). Μια ακριβής αντιστοιχία γράμματος που απέχει απόσταση χαρακτήρων από την ασαφή θέση θα βαθμολογηθεί ως πλήρης αναντιστοιχία. Μια απόσταση 0 απαιτεί η αντιστοιχία να βρίσκεται στην ακριβή θέση που καθορίζεται. Μια απόσταση 1000 θα απαιτούσε μια τέλεια αντιστοιχία να είναι εντός 800 χαρακτήρων από τη θέση για να βρεθεί χρησιμοποιώντας όριο 0.8.
+Καθορίζει πόσο κοντά πρέπει να είναι η αντιστοίχιση στην ασαφή θέση (που ορίζεται από το location). Μια ακριβής αντιστοίχιση γραμμάτων που απέχει distance χαρακτήρες από την ασαφή θέση θα βαθμολογηθεί ως πλήρης αναντιστοιχία. Μια απόσταση 0 απαιτεί η αντιστοίχιση να βρίσκεται ακριβώς στη θέση που έχει οριστεί. Μια απόσταση 1000 θα απαιτούσε μια τέλεια αντιστοίχιση να βρίσκεται εντός 800 χαρακτήρων από τη θέση για να εντοπιστεί, χρησιμοποιώντας κατώφλι 0.8.
 
+</Option>
 ##### Παράδειγμα
 
 ```js
@@ -167,12 +163,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
--   **Τύπος:** `number`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** 0
+<Option type="number" default="0" required="no">
 
-Καθορίζει περίπου πού στο κείμενο αναμένεται να βρεθεί το μοτίβο.
+Καθορίζει κατά προσέγγιση πού στο κείμενο αναμένεται να βρεθεί το μοτίβο.
 
+</Option>
 ##### Παράδειγμα
 
 ```js
@@ -186,12 +181,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Τύπος:** `number`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** 0.6
+<Option type="number" default="0.6" required="no">
 
-Σε ποιο σημείο εγκαταλείπει ο αλγόριθμος αντιστοίχισης. Ένα όριο 0 απαιτεί τέλεια αντιστοίχιση (τόσο των γραμμάτων όσο και της θέσης), ένα όριο 1.0 θα αντιστοιχούσε με οτιδήποτε.
+Σε ποιο σημείο εγκαταλείπει ο αλγόριθμος αντιστοίχισης. Ένα κατώφλι 0 απαιτεί τέλεια αντιστοίχιση (τόσο των γραμμάτων όσο και της θέσης), ενώ ένα κατώφλι 1.0 θα αντιστοιχούσε σε οτιδήποτε.
 
+</Option>
 ##### Παράδειγμα
 
 ```js
@@ -205,12 +199,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Τύπος:** `boolean`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** false
+<Option type="boolean" default="false" required="no">
 
-Εάν η αναζήτηση πρέπει να είναι ευαίσθητη σε πεζά-κεφαλαία.
+Αν η αναζήτηση θα πρέπει να κάνει διάκριση πεζών-κεφαλαίων.
 
+</Option>
 ##### Παράδειγμα
 
 ```js
@@ -224,12 +217,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Τύπος:** `number`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** 2
+<Option type="number" default="2" required="no">
 
-Μόνο οι αντιστοιχίες των οποίων το μήκος υπερβαίνει αυτήν την τιμή θα επιστραφούν. (Για παράδειγμα, αν θέλετε να αγνοήσετε τις αντιστοιχίες μεμονωμένων χαρακτήρων στο αποτέλεσμα, ορίστε το σε 2)
+Θα επιστρέφονται μόνο οι αντιστοιχίσεις των οποίων το μήκος υπερβαίνει αυτήν την τιμή. (Για παράδειγμα, αν θέλετε να αγνοήσετε αντιστοιχίσεις ενός χαρακτήρα στο αποτέλεσμα, ορίστε την σε 2)
 
+</Option>
 ##### Παράδειγμα
 
 ```js
@@ -243,12 +235,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Τύπος:** `number`
--   **Υποχρεωτικό:** όχι
--   **Προεπιλογή:** false
+<Option type="number" default="false" required="no">
 
-Όταν είναι `true`, η συνάρτηση αντιστοίχισης θα συνεχίσει μέχρι το τέλος ενός μοτίβου αναζήτησης ακόμα και αν έχει ήδη εντοπιστεί μια τέλεια αντιστοίχιση στη συμβολοσειρά.
+Όταν είναι `true`, η συνάρτηση αντιστοίχισης θα συνεχίσει μέχρι το τέλος ενός μοτίβου αναζήτησης ακόμη και αν έχει ήδη εντοπιστεί μια τέλεια αντιστοίχιση στη συμβολοσειρά.
 
+</Option>
 ##### Παράδειγμα
 
 ```js

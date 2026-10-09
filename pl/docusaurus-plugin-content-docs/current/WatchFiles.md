@@ -1,22 +1,23 @@
 ---
 id: watcher
 title: Obserwowanie plików testowych
+description: "Automatycznie uruchamiaj ponownie testy, gdy zmienią się pliki specyfikacji lub aplikacji, uruchamiając testrunner WDIO z flagą --watch i opcją filesToWatch."
 ---
 
-Dzięki WDIO testrunner możesz obserwować pliki podczas pracy nad nimi. Automatycznie uruchamiają się ponownie, jeśli zmienisz coś w swojej aplikacji lub w plikach testowych. Dodając flagę `--watch` podczas wywoływania polecenia `wdio`, testrunner będzie czekał na zmiany plików po uruchomieniu wszystkich testów, np.
+Za pomocą testrunnera WDIO możesz obserwować pliki podczas pracy nad nimi. Testy są automatycznie uruchamiane ponownie, jeśli zmienisz coś w swojej aplikacji lub w plikach testowych. Dodając flagę `--watch` podczas wywoływania polecenia `wdio`, testrunner po wykonaniu wszystkich testów będzie czekał na zmiany w plikach, np.
 
 ```sh
 wdio wdio.conf.js --watch
 ```
 
-Domyślnie obserwuje tylko zmiany w plikach `specs`. Jednak ustawiając właściwość `filesToWatch` w pliku `wdio.conf.js`, która zawiera listę ścieżek plików (obsługiwane jest globbing), będzie również obserwować zmiany w tych plikach, aby ponownie uruchomić cały zestaw testów. Jest to przydatne, jeśli chcesz automatycznie ponownie uruchamiać wszystkie testy, gdy zmieniłeś kod aplikacji, np.
+Domyślnie obserwuje on tylko zmiany w plikach `specs`. Jednak ustawiając w pliku `wdio.conf.js` właściwość `filesToWatch`, zawierającą listę ścieżek do plików (obsługiwane są wzorce glob), będzie on również obserwował zmiany tych plików, aby ponownie uruchomić cały zestaw testów. Jest to przydatne, jeśli chcesz automatycznie uruchamiać ponownie wszystkie testy po zmianie kodu aplikacji, np.
 
 ```js
 // wdio.conf.js
 export const config = {
     // ...
     filesToWatch: [
-        // watch for all JS files in my app
+        // obserwuj wszystkie pliki JS w mojej aplikacji
         './src/app/**/*.js'
     ],
     // ...
@@ -24,5 +25,5 @@ export const config = {
 ```
 
 :::info
-Staraj się uruchamiać testy równolegle jak najczęściej. Testy E2E są z natury wolne. Ponowne uruchamianie testów jest przydatne tylko wtedy, gdy możesz utrzymać krótki czas pojedynczego uruchomienia testu. Aby zaoszczędzić czas, testrunner utrzymuje sesje WebDriver aktywne podczas oczekiwania na zmiany plików. Upewnij się, że Twój backend WebDriver może być zmodyfikowany tak, aby nie zamykał automatycznie sesji, jeśli żadne polecenie nie zostało wykonane przez pewien czas.
+Staraj się w miarę możliwości uruchamiać testy równolegle. Testy E2E są ze swojej natury powolne. Ponowne uruchamianie testów ma sens tylko wtedy, gdy czas wykonania pojedynczego testu jest krótki. Aby zaoszczędzić czas, testrunner utrzymuje sesje WebDriver aktywne podczas oczekiwania na zmiany w plikach. Upewnij się, że twój backend WebDriver można skonfigurować tak, aby nie zamykał automatycznie sesji, jeśli przez pewien czas nie zostało wykonane żadne polecenie.
 :::

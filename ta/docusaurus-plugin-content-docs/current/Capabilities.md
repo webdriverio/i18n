@@ -1,112 +1,169 @@
 ---
 id: capabilities
-title: திறன்கள்
+title: திறன்கள் (Capabilities)
+description: "உங்கள் சோதனைகள் இயங்கும் உலாவி அல்லது மொபைல் சூழலைத் தேர்ந்தெடுக்க, தனிப்பயன் விற்பனையாளர் capabilities மற்றும் சிறப்புப் பயன்பாட்டு நிகழ்வுகள் உட்பட, capabilities-ஐ வரையறுக்கவும்."
 ---
 
-ஒரு திறன் என்பது தொலை இடைமுகத்திற்கான வரையறை ஆகும். இது WebdriverIO-க்கு நீங்கள் எந்த உலாவி அல்லது மொபைல் சூழலில் உங்கள் சோதனைகளை இயக்க விரும்புகிறீர்கள் என்பதைப் புரிந்துகொள்ள உதவுகிறது. உள்ளூரில் சோதனைகளை உருவாக்கும் போது திறன்கள் அதிக முக்கியத்துவம் வாய்ந்ததாக இல்லை, ஏனெனில் நீங்கள் பெரும்பாலும் ஒரு தொலை இடைமுகத்தில் இயக்குகிறீர்கள், ஆனால் CI/CD-இல் பெரிய தொகுப்பு ஒருங்கிணைப்பு சோதனைகளை இயக்கும் போது இது முக்கியமானதாக மாறுகிறது.
+ஒரு capability என்பது ஒரு தொலைநிலை இடைமுகத்திற்கான (remote interface) வரையறையாகும். உங்கள் சோதனைகளை எந்த உலாவி அல்லது மொபைல் சூழலில் இயக்க விரும்புகிறீர்கள் என்பதைப் புரிந்துகொள்ள இது WebdriverIO-க்கு உதவுகிறது. உள்ளூரில் சோதனைகளை உருவாக்கும்போது பெரும்பாலான நேரங்களில் நீங்கள் ஒரே தொலைநிலை இடைமுகத்தில் இயக்குவதால் capabilities அவ்வளவு முக்கியமானவை அல்ல, ஆனால் CI/CD-இல் பெரிய அளவிலான ஒருங்கிணைப்புச் சோதனைகளை இயக்கும்போது அவை மிகவும் முக்கியமானவையாகின்றன.
 
 :::info
 
-திறன் பொருளின் வடிவம் [WebDriver விவரக்குறிப்பால்](https://w3c.github.io/webdriver/#capabilities) நன்கு வரையறுக்கப்பட்டுள்ளது. பயனர் வரையறுக்கப்பட்ட திறன்கள் அந்த விவரக்குறிப்புடன் ஒத்துப்போகவில்லை என்றால் WebdriverIO டெஸ்ட்ரன்னர் முன்கூட்டியே தோல்வியடையும்.
+ஒரு capability object-இன் வடிவம் [WebDriver விவரக்குறிப்பால்](https://w3c.github.io/webdriver/#capabilities) தெளிவாக வரையறுக்கப்பட்டுள்ளது. பயனர் வரையறுத்த capabilities அந்த விவரக்குறிப்பைப் பின்பற்றவில்லை என்றால், WebdriverIO testrunner ஆரம்பத்திலேயே தோல்வியடையும்.
 
 :::
 
-## தனிப்பயன் திறன்கள்
+## தனிப்பயன் Capabilities
 
-நிலையான வரையறுக்கப்பட்ட திறன்களின் எண்ணிக்கை மிகவும் குறைவாக இருக்கும் போது, ஒவ்வொருவரும் தானியங்கி இயக்கி அல்லது தொலை இடைமுகத்திற்கு குறிப்பிட்ட தனிப்பயன் திறன்களை வழங்கலாம் மற்றும் ஏற்கலாம்:
+நிலையாக வரையறுக்கப்பட்ட capabilities-இன் எண்ணிக்கை மிகக் குறைவாக இருந்தாலும், automation driver அல்லது தொலைநிலை இடைமுகத்திற்குக் குறிப்பிட்ட தனிப்பயன் capabilities-ஐ எவரும் வழங்கலாம் மற்றும் ஏற்கலாம்:
 
-### உலாவி குறிப்பிட்ட திறன் நீட்டிப்புகள்
+### உலாவி சார்ந்த Capability நீட்டிப்புகள்
 
 - `goog:chromeOptions`: [Chromedriver](https://chromedriver.chromium.org/capabilities) நீட்டிப்புகள், Chrome-இல் சோதனை செய்வதற்கு மட்டுமே பொருந்தும்
 - `moz:firefoxOptions`: [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) நீட்டிப்புகள், Firefox-இல் சோதனை செய்வதற்கு மட்டுமே பொருந்தும்
-- `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) Chromium Edge-ஐ சோதிப்பதற்கு EdgeDriver பயன்படுத்தும் போது சூழலைக் குறிப்பிட
+- `ms:edgeOptions`: Chromium Edge-ஐச் சோதிக்க EdgeDriver-ஐப் பயன்படுத்தும்போது சூழலைக் குறிப்பிடுவதற்கான [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options)
 
-### கிளவுட் விற்பனையாளர் திறன் நீட்டிப்புகள்
+### Cloud விற்பனையாளர் Capability நீட்டிப்புகள்
 
 - `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
 - `bstack:options`: [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
 - `tb:options`: [TestingBot](https://testingbot.com/support/other/test-options)
 - `LT:Options`: [LambdaTest](https://www.lambdatest.com/support/docs/webdriverio-with-selenium-running-webdriverio-automation-scripts-on-lambdatest-selenium-grid/)
-- மற்றும் பல...
+- மேலும் பல...
 
-### தானியங்கி என்ஜின் திறன் நீட்டிப்புகள்
+### Automation Engine Capability நீட்டிப்புகள்
 
 - `appium:xxx`: [Appium](https://appium.io/docs/en/latest/guides/caps/)
 - `selenoid:xxx`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
-- மற்றும் பல...
+- மேலும் பல...
 
-### உலாவி இயக்கி விருப்பங்களை நிர்வகிக்க WebdriverIO திறன்கள்
+### உலாவி driver விருப்பங்களை நிர்வகிப்பதற்கான WebdriverIO Capabilities
 
-WebdriverIO உங்களுக்காக உலாவி இயக்கியை நிறுவி இயக்குவதை நிர்வகிக்கிறது. WebdriverIO இயக்கிக்கு அளவுருக்களை அனுப்ப அனுமதிக்கும் தனிப்பயன் திறனைப் பயன்படுத்துகிறது.
+WebdriverIO உங்களுக்காக உலாவி driver-ஐ நிறுவுதல் மற்றும் இயக்குதலை நிர்வகிக்கிறது. Driver-க்கு அளவுருக்களை அனுப்ப உங்களை அனுமதிக்கும் ஒரு தனிப்பயன் capability-ஐ WebdriverIO பயன்படுத்துகிறது.
 
 #### `wdio:chromedriverOptions`
 
-Chromedriver தொடங்கும்போது அதற்கு அனுப்பப்படும் குறிப்பிட்ட விருப்பங்கள்.
+Chromedriver-ஐத் தொடங்கும்போது அதற்கு அனுப்பப்படும் குறிப்பிட்ட விருப்பங்கள்.
 
 #### `wdio:geckodriverOptions`
 
-Geckodriver தொடங்கும்போது அதற்கு அனுப்பப்படும் குறிப்பிட்ட விருப்பங்கள்.
+Geckodriver-ஐத் தொடங்கும்போது அதற்கு அனுப்பப்படும் குறிப்பிட்ட விருப்பங்கள்.
 
 #### `wdio:edgedriverOptions`
 
-Edgedriver தொடங்கும்போது அதற்கு அனுப்பப்படும் குறிப்பிட்ட விருப்பங்கள்.
+Edgedriver-ஐத் தொடங்கும்போது அதற்கு அனுப்பப்படும் குறிப்பிட்ட விருப்பங்கள்.
 
 #### `wdio:safaridriverOptions`
 
-Safari தொடங்கும்போது அதற்கு அனுப்பப்படும் குறிப்பிட்ட விருப்பங்கள்.
+Safari-ஐத் தொடங்கும்போது அதற்கு அனுப்பப்படும் குறிப்பிட்ட விருப்பங்கள்.
 
 #### `wdio:maxInstances`
 
-குறிப்பிட்ட உலாவி/திறனுக்கான அதிகபட்ச மொத்த இணை இயங்கும் பணியாளர்களின் எண்ணிக்கை. [maxInstances](#configuration#maxInstances) மற்றும் [maxInstancesPerCapability](configuration/#maxinstancespercapability) ஆகியவற்றை விட முன்னுரிமை பெறுகிறது.
+<Option type="number">
 
-வகை: `number`
+குறிப்பிட்ட உலாவி/capability-க்கான இணையாக இயங்கும் workers-இன் அதிகபட்ச மொத்த எண்ணிக்கை. இது [maxInstances](#configuration#maxInstances) மற்றும் [maxInstancesPerCapability](configuration/#maxinstancespercapability) ஆகியவற்றை விட முன்னுரிமை பெறுகிறது.
+
+</Option>
 
 #### `wdio:specs`
 
-அந்த உலாவி/திறனுக்கான சோதனை செயல்பாட்டிற்கான விவரக்குறிப்புகளை வரையறுக்கவும். [வழக்கமான `specs` கட்டமைப்பு விருப்பத்தைப்](configuration#specs) போலவே, ஆனால் உலாவி/திறனுக்கு குறிப்பிட்டது. `specs` மேல் முன்னுரிமை பெறுகிறது.
+<Option type="(String | String[])[]">
 
-வகை: `(String | String[])[]`
+அந்த உலாவி/capability-க்கான சோதனை இயக்கத்திற்கான specs-ஐ வரையறுக்கவும். இது [வழக்கமான `specs` கட்டமைப்பு விருப்பத்தைப்](configuration#specs) போன்றதே, ஆனால் உலாவி/capability-க்குக் குறிப்பிட்டது. இது `specs`-ஐ விட முன்னுரிமை பெறுகிறது.
+
+</Option>
 
 #### `wdio:exclude`
 
-அந்த உலாவி/திறனுக்கான சோதனை செயல்பாட்டிலிருந்து விவரக்குறிப்புகளை விலக்கவும். [வழக்கமான `exclude` கட்டமைப்பு விருப்பத்தைப்](configuration#exclude) போலவே, ஆனால் உலாவி/திறனுக்கு குறிப்பிட்டது. உலகளாவிய `exclude` கட்டமைப்பு விருப்பம் பயன்படுத்தப்பட்ட பிறகு விலக்குகிறது.
+<Option type="String[]">
 
-வகை: `String[]`
+அந்த உலாவி/capability-க்கான சோதனை இயக்கத்திலிருந்து specs-ஐ விலக்கவும். இது [வழக்கமான `exclude` கட்டமைப்பு விருப்பத்தைப்](configuration#exclude) போன்றதே, ஆனால் உலாவி/capability-க்குக் குறிப்பிட்டது. உலகளாவிய `exclude` கட்டமைப்பு விருப்பம் பயன்படுத்தப்பட்ட பிறகு விலக்குகிறது.
+
+</Option>
 
 #### `wdio:enforceWebDriverClassic`
 
-இயல்பாக, WebdriverIO ஒரு WebDriver Bidi அமர்வை நிறுவ முயற்சிக்கிறது. நீங்கள் அதை விரும்பவில்லை என்றால், இந்த நடத்தையை முடக்க இந்தக் கொடியை அமைக்கலாம்.
+<Option type="boolean">
 
-வகை: `boolean`
+இயல்பாக, WebdriverIO ஒரு WebDriver Bidi அமர்வை (session) நிறுவ முயற்சிக்கிறது. நீங்கள் அதை விரும்பவில்லை என்றால், இந்த நடத்தையை முடக்க இந்தக் கொடியை (flag) அமைக்கலாம்.
 
-#### பொதுவான இயக்கி விருப்பங்கள்
+</Option>
 
-அனைத்து இயக்கிகளும் கட்டமைப்புக்கான வெவ்வேறு அளவுருக்களை வழங்கும் போது, WebdriverIO புரிந்து கொண்டு உங்கள் இயக்கி அல்லது உலாவியை அமைக்கப் பயன்படுத்தும் சில பொதுவானவை உள்ளன:
+#### `wdio:electronVersion`
+
+<Option type="string">
+
+`goog:chromeOptions.binary` ஆக அமைக்கப்பட்ட ஒரு Electron பயன்பாட்டைச் சோதிப்பதற்காக, Chrome for Testing-இலிருந்து வரும் Chromedriver-க்குப் பதிலாக இந்த Electron வெளியீட்டுடன் தொகுக்கப்பட்ட Chromedriver-ஐப் பதிவிறக்குகிறது. `browserVersion`-உம் அமைக்கப்பட்டிருந்தால், Electron வெளியீட்டைப் பதிவிறக்க முடியாதபோது அல்லது `CHROMEDRIVER_CDNURL` அமைக்கப்பட்டிருக்கும்போது, WebdriverIO அதற்குப் பதிலாக அந்தப் பதிப்பிற்கான Chromedriver-ஐப் பயன்படுத்துகிறது. Nightly பதிப்புகள் [electron/nightlies](https://github.com/electron/nightlies/releases)-இலிருந்து வருகின்றன. Electron service இதைப் பயன்பாட்டின் Electron பதிப்பிலிருந்து உங்களுக்காக அமைக்கிறது.
+
+```ts
+{
+    browserName: 'chrome',
+    'wdio:electronVersion': '33.2.1',
+    // ஒரு BiDi அமர்வு பயன்பாட்டின் சாளரத்தை `data:,` கொண்டு மாற்றுகிறது
+    'wdio:enforceWebDriverClassic': true,
+    'goog:chromeOptions': {
+        binary: './out/my-app-darwin-arm64/my-app.app/Contents/MacOS/my-app'
+    }
+}
+```
+
+</Option>
+
+#### பொதுவான Driver விருப்பங்கள்
+
+அனைத்து drivers-உம் கட்டமைப்பிற்கு வெவ்வேறு அளவுருக்களை வழங்கினாலும், உங்கள் driver அல்லது உலாவியை அமைப்பதற்கு WebdriverIO புரிந்துகொண்டு பயன்படுத்தும் சில பொதுவானவை உள்ளன:
 
 ##### `cacheDir`
 
-தற்காலிக நினைவகத்தின் ரூட்டிற்கான பாதை. அமர்வைத் தொடங்க முயற்சிக்கும் போது பதிவிறக்கப்படும் அனைத்து இயக்கிகளையும் சேமிக்க இந்த அடைவு பயன்படுத்தப்படுகிறது.
+<Option type="string" default="process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()">
 
-வகை: `string`<br />
-இயல்புநிலை: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+Cache கோப்பகத்தின் மூலத்திற்கான (root) பாதை. ஒரு அமர்வைத் தொடங்க முயற்சிக்கும்போது பதிவிறக்கப்படும் அனைத்து drivers-ஐயும் சேமிக்க இந்தக் கோப்பகம் பயன்படுத்தப்படுகிறது.
+
+</Option>
 
 ##### `binary`
 
-தனிப்பயன் இயக்கி பைனரிக்கான பாதை. அமைக்கப்பட்டால் WebdriverIO ஒரு இயக்கியை பதிவிறக்க முயற்சிக்காது, ஆனால் இந்த பாதையால் வழங்கப்படும் ஒன்றைப் பயன்படுத்தும். இயக்கி நீங்கள் பயன்படுத்தும் உலாவியுடன் பொருந்துகிறதா என்பதை உறுதிப்படுத்தவும்.
+<Option type="string">
 
-இந்த பாதையை `CHROMEDRIVER_PATH`, `GECKODRIVER_PATH` அல்லது `EDGEDRIVER_PATH` சுற்றுச்சூழல் மாறிகள் மூலம் வழங்கலாம்.
+தனிப்பயன் driver binary-க்கான பாதை. இது அமைக்கப்பட்டால், WebdriverIO ஒரு driver-ஐப் பதிவிறக்க முயற்சிக்காது, மாறாக இந்தப் பாதையால் வழங்கப்படும் driver-ஐப் பயன்படுத்தும். நீங்கள் பயன்படுத்தும் உலாவியுடன் driver இணக்கமாக இருப்பதை உறுதிசெய்யவும்.
 
-வகை: `string`
+இந்தப் பாதையை `CHROMEDRIVER_PATH`, `GECKODRIVER_PATH` அல்லது `EDGEDRIVER_PATH` சூழல் மாறிகள் (environment variables) மூலம் வழங்கலாம்.
 
+</Option>
 :::caution
 
-இயக்கி `binary` அமைக்கப்பட்டிருந்தால், WebdriverIO ஒரு இயக்கியை பதிவிறக்க முயற்சிக்காது, ஆனால் இந்த பாதையால் வழங்கப்படும் ஒன்றைப் பயன்படுத்தும். இயக்கி நீங்கள் பயன்படுத்தும் உலாவியுடன் பொருந்துகிறதா என்பதை உறுதிப்படுத்தவும்.
+Driver `binary` அமைக்கப்பட்டிருந்தால், WebdriverIO ஒரு driver-ஐப் பதிவிறக்க முயற்சிக்காது, மாறாக இந்தப் பாதையால் வழங்கப்படும் driver-ஐப் பயன்படுத்தும். நீங்கள் பயன்படுத்தும் உலாவியுடன் driver இணக்கமாக இருப்பதை உறுதிசெய்யவும்.
 
 :::
 
-#### உலாவி குறிப்பிட்ட இயக்கி விருப்பங்கள்
+#### தனிப்பயன் Driver பதிவிறக்க Host
 
-இயக்கிக்கு விருப்பங்களைப் பரப்புவதற்கு, பின்வரும் தனிப்பயன் திறன்களைப் பயன்படுத்தலாம்:
+பொது driver CDN-களை உங்கள் சூழலிலிருந்து அணுக முடியவில்லை என்றால், எ.கா. நீங்கள் உங்கள் சோதனைகளை ஒரு நிறுவன proxy-க்குப் பின்னால் இயக்குவதால் அல்லது drivers-ஐ ஒரு உள் artifact registry-இல் mirror செய்வதால், பின்வரும் சூழல் மாறிகளைப் பயன்படுத்தி பதிவிறக்கத்தை ஒரு தனிப்பயன் host-க்குத் திருப்பலாம்:
+
+- Chrome: `CHROMEDRIVER_CDNURL`, இயல்புநிலை `https://storage.googleapis.com/chrome-for-testing-public`
+- Microsoft Edge: `EDGEDRIVER_CDNURL`, இயல்புநிலை `https://msedgedriver.microsoft.com`
+
+Mirror ஆனது அசல் CDN-இன் அதே பாதைகளின் கீழ் driver archives-ஐ வழங்கும் என எதிர்பார்க்கப்படுகிறது, எ.கா. Chrome-க்கு:
+
+```sh
+CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio run wdio.conf.js
+```
+
+இது driver-ஐ `https://artifactory.company.com/chrome-for-testing/<buildId>/<platform>/chromedriver-<platform>.zip` எனத் தீர்க்கிறது, இங்கு `<platform>` என்பது `linux64`, `linux-arm64`, `mac-x64`, `mac-arm64`, `win32` அல்லது `win64` ஆகியவற்றில் ஒன்றாகும், எ.கா. `.../140.0.7339.207/mac-arm64/chromedriver-mac-arm64.zip`.
+
+:::info முழுமையாக offline சூழல்கள்
+
+இந்த மாறிகள் driver பதிவிறக்கத்தை மட்டுமே திசைதிருப்புகின்றன. WebdriverIO பொது இணையத்தை அணுகாமல் முற்றிலும் தடுக்க, மேலும் நான்கு நிபந்தனைகள் பூர்த்தி செய்யப்பட வேண்டும்:
+
+- **ஒரு உலாவி உள்ளூரில் கிடைக்க வேண்டும்.** நிறுவப்பட்ட Chrome அல்லது Firefox-ஐ WebdriverIO கண்டுபிடிக்க முடியவில்லை என்றால், அது உலாவியையும் பதிவிறக்குகிறது, அந்தப் பதிவிறக்கம் இந்த மாறிகளைப் பின்பற்றாது. உலாவியை கணினியில் நிறுவவும் அல்லது `goog:chromeOptions.binary` / `moz:firefoxOptions.binary` மூலம் WebdriverIO-ஐ அதற்குச் சுட்டவும்.
+- **முழு பதிப்பு எண்ணைப் பயன்படுத்தவும்.** `browserVersion` தவிர்க்கப்பட்டால், WebdriverIO உள்ளூர் உலாவியிலிருந்து சரியான பதிப்பைப் படிக்கிறது, மேலும் பதிப்புத் தேடல் தேவையில்லை. நீங்கள் அதை அமைத்தால், முழுமையான நான்கு பகுதி பதிப்பைப் பயன்படுத்தவும், எ.கா. `140.0.7339.207`. ஒரு வெளியீட்டு channel (`stable`), ஒரு milestone (`140`) அல்லது ஒரு பகுதி பதிப்பு (`140.0.7339`) ஆகியவற்றுக்கு, திசைதிருப்ப முடியாத ஒரு பொது Google endpoint-இல் பதிப்புத் தேடல் தேவைப்படுகிறது.
+- **Chromedriver ஆனது Chrome for Testing-இலிருந்து வர வேண்டும்.** Linux ARM64-இல் `153.0.8001.0`-ஐ விடப் பழைய Chrome-க்கும், `browserVersion` இல்லாமல் `wdio:electronVersion` பயன்படுத்தும்போதும், Chromedriver ஆனது Electron-இன் GitHub வெளியீடுகளிலிருந்து பதிவிறக்கப்படுகிறது, அதை இந்த மாறிகள் திசைதிருப்புவதில்லை.
+- **உங்களுக்குத் தேவையான பதிப்பு mirror-இல் உண்மையில் இருப்பதை உறுதிசெய்யவும்.** உங்கள் host-இலிருந்து driver-ஐப் பெற முடியவில்லை என்றால் — பதிப்பு mirror செய்யப்படாததால், அல்லது அதே அளவில் url தவறாக இருப்பதால் அல்லது நற்சான்றுகள் (credentials) நிராகரிக்கப்பட்டதால் — WebdriverIO ஒரு எச்சரிக்கையைப் பதிவுசெய்து, பின்னர் அறியப்பட்ட மிக நெருக்கமான நல்ல பதிப்பைத் தேடுகிறது, இது மீண்டும் பொது endpoint-ஐ வினவுகிறது. ஒரு இயக்கம் எதிர்பாராதவிதமாக இணையத்தை அணுகினால் அல்லது நீங்கள் கேட்காத பதிப்பைத் தேர்ந்தெடுத்தால், அது முயற்சித்த host-க்கான எச்சரிக்கையைச் சரிபார்க்கவும்.
+
+:::
+
+#### உலாவி சார்ந்த Driver விருப்பங்கள்
+
+Driver-க்கு விருப்பங்களை அனுப்ப, பின்வரும் தனிப்பயன் capabilities-ஐப் பயன்படுத்தலாம்:
 
 - Chrome அல்லது Chromium: `wdio:chromedriverOptions`
 - Firefox: `wdio:geckodriverOptions`
@@ -125,107 +182,145 @@ Safari தொடங்கும்போது அதற்கு அனுப�
 <TabItem value="chrome">
 
 ##### adbPort
-ADB இயக்கி இயங்க வேண்டிய போர்ட்.
+
+<Option type="number">
+
+ADB driver இயங்க வேண்டிய port.
 
 எடுத்துக்காட்டு: `9515`
 
-வகை: `number`
+</Option>
 
 ##### urlBase
+
+<Option type="string">
+
 கட்டளைகளுக்கான அடிப்படை URL பாதை முன்னொட்டு, எ.கா. `wd/url`.
 
 எடுத்துக்காட்டு: `/`
 
-வகை: `string`
+</Option>
 
 ##### logPath
-சர்வர் பதிவை stderr-க்குப் பதிலாக கோப்பில் எழுதவும், பதிவு நிலையை `INFO`-க்கு அதிகரிக்கிறது
 
-வகை: `string`
+<Option type="string">
+
+Server log-ஐ stderr-க்குப் பதிலாக கோப்பில் எழுதும், log நிலையை `INFO`-க்கு உயர்த்தும்
+
+</Option>
 
 ##### logLevel
-பதிவு நிலையை அமைக்கவும். சாத்தியமான விருப்பங்கள் `ALL`, `DEBUG`, `INFO`, `WARNING`, `SEVERE`, `OFF`.
 
-வகை: `string`
+<Option type="string">
+
+Log நிலையை அமைக்கவும். சாத்தியமான விருப்பங்கள் `ALL`, `DEBUG`, `INFO`, `WARNING`, `SEVERE`, `OFF`.
+
+</Option>
 
 ##### verbose
-விரிவாக பதிவு செய்யவும் (`--log-level=ALL`-க்கு சமமானது)
 
-வகை: `boolean`
+<Option type="boolean">
+
+விரிவாக log செய்யும் (`--log-level=ALL`-க்குச் சமமானது)
+
+</Option>
 
 ##### silent
-எதையும் பதிவு செய்யாதே (`--log-level=OFF`-க்கு சமமானது)
 
-வகை: `boolean`
+<Option type="boolean">
+
+எதையும் log செய்யாது (`--log-level=OFF`-க்குச் சமமானது)
+
+</Option>
 
 ##### appendLog
-பதிவு கோப்பை மறுஎழுதுவதற்குப் பதிலாக சேர்க்கவும்.
 
-வகை: `boolean`
+<Option type="boolean">
+
+Log கோப்பை மீண்டும் எழுதுவதற்குப் பதிலாக அதில் சேர்க்கும்.
+
+</Option>
 
 ##### replayable
-விரிவாக பதிவு செய்யவும் மற்றும் நீண்ட சரங்களை துண்டிக்க வேண்டாம், அதனால் பதிவை மீண்டும் இயக்கலாம் (பரிசோதனை).
 
-வகை: `boolean`
+<Option type="boolean">
+
+Log-ஐ மீண்டும் இயக்க (replay) முடியும் வகையில், விரிவாக log செய்து நீண்ட strings-ஐச் சுருக்காமல் வைக்கும் (சோதனை நிலை).
+
+</Option>
 
 ##### readableTimestamp
-படிக்கக்கூடிய நேர முத்திரைகளை பதிவுக்குச் சேர்க்கவும்.
 
-வகை: `boolean`
+<Option type="boolean">
+
+Log-இல் படிக்கக்கூடிய நேர முத்திரைகளைச் சேர்க்கும்.
+
+</Option>
 
 ##### enableChromeLogs
-உலாவியிலிருந்து பதிவுகளைக் காட்டவும் (மற்ற பதிவு விருப்பங்களை மேலெழுதுகிறது).
 
-வகை: `boolean`
+<Option type="boolean">
+
+உலாவியிலிருந்து வரும் logs-ஐக் காட்டும் (பிற logging விருப்பங்களை மேலெழுதும்).
+
+</Option>
 
 ##### bidiMapperPath
-தனிப்பயன் bidi மேப்பர் பாதை.
 
-வகை: `string`
+<Option type="string">
+
+தனிப்பயன் bidi mapper பாதை.
+
+</Option>
 
 ##### allowedIps
-EdgeDriver-க்கு இணைக்க அனுமதிக்கப்பட்ட தொலை IP முகவரிகளின் காற்புள்ளியால் பிரிக்கப்பட்ட அனுமதிப் பட்டியல்.
 
-வகை: `string[]`<br />
-இயல்புநிலை: `['']`
+<Option type="string[]" default="['']">
+
+EdgeDriver-உடன் இணைக்க அனுமதிக்கப்பட்ட தொலைநிலை IP முகவரிகளின் காற்புள்ளியால் பிரிக்கப்பட்ட அனுமதிப் பட்டியல்.
+
+</Option>
 
 ##### allowedOrigins
-EdgeDriver-க்கு இணைக்க அனுமதிக்கப்பட்ட கோரிக்கை தோற்றங்களின் காற்புள்ளியால் பிரிக்கப்பட்ட அனுமதிப் பட்டியல். எந்த ஹோஸ்ட் தோற்றத்தையும் அனுமதிக்க `*` ஐப் பயன்படுத்துவது ஆபத்தானது!
 
-வகை: `string[]`<br />
-இயல்புநிலை: `['*']`
+<Option type="string[]" default="['*']">
+
+EdgeDriver-உடன் இணைக்க அனுமதிக்கப்பட்ட கோரிக்கை மூலங்களின் (request origins) காற்புள்ளியால் பிரிக்கப்பட்ட அனுமதிப் பட்டியல். எந்த host மூலத்தையும் அனுமதிக்க `*`-ஐப் பயன்படுத்துவது ஆபத்தானது!
+
+</Option>
 
 ##### spawnOpts
-இயக்கி செயல்முறைக்கு அனுப்பப்பட வேண்டிய விருப்பங்கள்.
 
-வகை: `SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>`<br />
-இயல்புநிலை: `undefined`
+<Option type="SpawnOptionsWithoutStdio | SpawnOptionsWithStdioTuple<StdioOption, StdioOption, StdioOption>" default="undefined">
 
+Driver செயல்முறைக்கு (process) அனுப்பப்பட வேண்டிய விருப்பங்கள்.
+
+</Option>
 </TabItem>
 <TabItem value="firefox">
 
-அதிகாரப்பூர்வ [இயக்கி பேக்கேஜில்](https://github.com/webdriverio-community/node-geckodriver#options) அனைத்து Geckodriver விருப்பங்களையும் காணலாம்.
+அனைத்து Geckodriver விருப்பங்களையும் அதிகாரப்பூர்வ [driver package](https://github.com/webdriverio-community/node-geckodriver#options)-இல் பார்க்கவும்.
 
 </TabItem>
 <TabItem value="msedge">
 
-அதிகாரப்பூர்வ [இயக்கி பேக்கேஜில்](https://github.com/webdriverio-community/node-edgedriver#options) அனைத்து Edgedriver விருப்பங்களையும் காணலாம்.
+அனைத்து Edgedriver விருப்பங்களையும் அதிகாரப்பூர்வ [driver package](https://github.com/webdriverio-community/node-edgedriver#options)-இல் பார்க்கவும்.
 
 </TabItem>
 <TabItem value="safari">
 
-அதிகாரப்பூர்வ [இயக்கி பேக்கேஜில்](https://github.com/webdriverio-community/node-safaridriver#options) அனைத்து Safaridriver விருப்பங்களையும் காணலாம்.
+அனைத்து Safaridriver விருப்பங்களையும் அதிகாரப்பூர்வ [driver package](https://github.com/webdriverio-community/node-safaridriver#options)-இல் பார்க்கவும்.
 
 </TabItem>
 </Tabs>
 
-## குறிப்பிட்ட பயன்பாட்டு வழக்குகளுக்கான சிறப்பு திறன்கள்
+## குறிப்பிட்ட பயன்பாட்டு நிகழ்வுகளுக்கான சிறப்பு Capabilities
 
-இது குறிப்பிட்ட பயன்பாட்டு வழக்கை அடைவதற்கு எந்த திறன்களை பயன்படுத்த வேண்டும் என்பதைக் காட்டும் எடுத்துக்காட்டுகளின் பட்டியல்.
+ஒரு குறிப்பிட்ட பயன்பாட்டு நிகழ்வை அடைய எந்த capabilities பயன்படுத்தப்பட வேண்டும் என்பதைக் காட்டும் எடுத்துக்காட்டுகளின் பட்டியல் இது.
 
-### ஹெட்லெஸ் உலாவியை இயக்கவும்
+### உலாவியை Headless ஆக இயக்குதல்
 
-ஹெட்லெஸ் உலாவியை இயக்குவது என்பது சாளரம் அல்லது UI இல்லாமல் உலாவி நிகழ்வை இயக்குவதாகும். இது பெரும்பாலும் காட்சி பயன்படுத்தப்படாத CI/CD சூழல்களில் பயன்படுத்தப்படுகிறது. உலாவியை ஹெட்லெஸ் முறையில் இயக்க, பின்வரும் திறன்களைப் பயன்படுத்தவும்:
+Headless உலாவியை இயக்குவது என்பது சாளரம் அல்லது UI இல்லாமல் ஒரு உலாவி நிகழ்வை இயக்குவதாகும். காட்சித்திரை (display) பயன்படுத்தப்படாத CI/CD சூழல்களில் இது பெரும்பாலும் பயன்படுத்தப்படுகிறது. ஒரு உலாவியை headless பயன்முறையில் இயக்க, பின்வரும் capabilities-ஐப் பயன்படுத்தவும்:
 
 <Tabs
   defaultValue="chrome"
@@ -270,14 +365,14 @@ EdgeDriver-க்கு இணைக்க அனுமதிக்கப்ப�
 </TabItem>
 <TabItem value="safari">
 
-Safari ஹெட்லெஸ் முறையில் இயங்குவதை [ஆதரிப்பதாகத் தெரியவில்லை](https://discussions.apple.com/thread/251837694).
+Safari headless பயன்முறையில் இயங்குவதை [ஆதரிக்கவில்லை](https://discussions.apple.com/thread/251837694) எனத் தெரிகிறது.
 
 </TabItem>
 </Tabs>
 
-### வெவ்வேறு உலாவி சேனல்களை தானியக்கப்படுத்தவும்
+### வெவ்வேறு உலாவி Channels-ஐ தானியக்கமாக்குதல்
 
-நிலையானதாக வெளியிடப்படாத உலாவி பதிப்பை, எ.கா. Chrome Canary, சோதிக்க விரும்பினால், நீங்கள் திறன்களை அமைத்து நீங்கள் தொடங்க விரும்பும் உலாவியைக் குறிக்கலாம், எ.கா.:
+இன்னும் stable ஆக வெளியிடப்படாத ஒரு உலாவி பதிப்பை, எ.கா. Chrome Canary, சோதிக்க விரும்பினால், capabilities-ஐ அமைத்து நீங்கள் தொடங்க விரும்பும் உலாவியைச் சுட்டுவதன் மூலம் அதைச் செய்யலாம், எ.கா.:
 
 <Tabs
   defaultValue="chrome"
@@ -290,16 +385,16 @@ Safari ஹெட்லெஸ் முறையில் இயங்குவ�
 }>
 <TabItem value="chrome">
 
-Chrome-இல் சோதிக்கும் போது, WebdriverIO வரையறுக்கப்பட்ட `browserVersion` அடிப்படையில் விரும்பிய உலாவி பதிப்பு மற்றும் இயக்கியை தானாகவே பதிவிறக்கும், எ.கா.:
+Chrome-இல் சோதிக்கும்போது, வரையறுக்கப்பட்ட `browserVersion`-ஐ அடிப்படையாகக் கொண்டு WebdriverIO விரும்பிய உலாவி பதிப்பையும் driver-ஐயும் உங்களுக்காகத் தானாகவே பதிவிறக்கும், எ.கா.:
 
 ```ts
 {
     browserName: 'chrome', // அல்லது 'chromium'
-    browserVersion: '116' // அல்லது '116.0.5845.96', 'stable', 'dev', 'canary', 'beta' அல்லது 'latest' ('canary' போல)
+    browserVersion: '116' // அல்லது '116.0.5845.96', 'stable', 'dev', 'canary', 'beta' அல்லது 'latest' ('canary'-ஐப் போன்றது)
 }
 ```
 
-கைமுறையாக பதிவிறக்கப்பட்ட உலாவியை சோதிக்க விரும்பினால், உலாவிக்கு பைனரி பாதையை வழங்கலாம்:
+கைமுறையாகப் பதிவிறக்கப்பட்ட உலாவியைச் சோதிக்க விரும்பினால், உலாவிக்கான binary பாதையை இவ்வாறு வழங்கலாம்:
 
 ```ts
 {
@@ -310,7 +405,7 @@ Chrome-இல் சோதிக்கும் போது, WebdriverIO வர
 }
 ```
 
-கூடுதலாக, கைமுறையாக பதிவிறக்கப்பட்ட இயக்கியைப் பயன்படுத்த விரும்பினால், இயக்கிக்கு பைனரி பாதையை வழங்கலாம்:
+கூடுதலாக, கைமுறையாகப் பதிவிறக்கப்பட்ட driver-ஐப் பயன்படுத்த விரும்பினால், driver-க்கான binary பாதையை இவ்வாறு வழங்கலாம்:
 
 ```ts
 {
@@ -324,7 +419,7 @@ Chrome-இல் சோதிக்கும் போது, WebdriverIO வர
 </TabItem>
 <TabItem value="firefox">
 
-Firefox-இல் சோதிக்கும் போது, WebdriverIO வரையறுக்கப்பட்ட `browserVersion` அடிப்படையில் விரும்பிய உலாவி பதிப்பு மற்றும் இயக்கியை தானாகவே பதிவிறக்கும், எ.கா.:
+Firefox-இல் சோதிக்கும்போது, வரையறுக்கப்பட்ட `browserVersion`-ஐ அடிப்படையாகக் கொண்டு WebdriverIO விரும்பிய உலாவி பதிப்பையும் driver-ஐயும் உங்களுக்காகத் தானாகவே பதிவிறக்கும், எ.கா.:
 
 ```ts
 {
@@ -333,7 +428,7 @@ Firefox-இல் சோதிக்கும் போது, WebdriverIO வ�
 }
 ```
 
-கைமுறையாக பதிவிறக்கப்பட்ட பதிப்பை சோதிக்க விரும்பினால், உலாவிக்கு பைனரி பாதையை வழங்கலாம்:
+கைமுறையாகப் பதிவிறக்கப்பட்ட பதிப்பைச் சோதிக்க விரும்பினால், உலாவிக்கான binary பாதையை இவ்வாறு வழங்கலாம்:
 
 ```ts
 {
@@ -344,7 +439,7 @@ Firefox-இல் சோதிக்கும் போது, WebdriverIO வ�
 }
 ```
 
-கூடுதலாக, கைமுறையாக பதிவிறக்கப்பட்ட இயக்கியைப் பயன்படுத்த விரும்பினால், இயக்கிக்கு பைனரி பாதையை வழங்கலாம்:
+கூடுதலாக, கைமுறையாகப் பதிவிறக்கப்பட்ட driver-ஐப் பயன்படுத்த விரும்பினால், driver-க்கான binary பாதையை இவ்வாறு வழங்கலாம்:
 
 ```ts
 {
@@ -358,7 +453,7 @@ Firefox-இல் சோதிக்கும் போது, WebdriverIO வ�
 </TabItem>
 <TabItem value="msedge">
 
-Microsoft Edge-இல் சோதிக்கும் போது, உங்கள் இயந்திரத்தில் விரும்பிய உலாவி பதிப்பு நிறுவப்பட்டுள்ளதா என்பதை உறுதிப்படுத்தவும். உலாவியை இயக்குவதற்கு WebdriverIO-ஐக் குறிக்கலாம்:
+Microsoft Edge-இல் சோதிக்கும்போது, விரும்பிய உலாவி பதிப்பு உங்கள் கணினியில் நிறுவப்பட்டுள்ளதை உறுதிசெய்யவும். இயக்க வேண்டிய உலாவிக்கு WebdriverIO-ஐ இவ்வாறு சுட்டலாம்:
 
 ```ts
 {
@@ -369,7 +464,7 @@ Microsoft Edge-இல் சோதிக்கும் போது, உங்�
 }
 ```
 
-WebdriverIO வரையறுக்கப்பட்ட `browserVersion` அடிப்படையில் விரும்பிய இயக்கி பதிப்பை தானாகவே பதிவிறக்கும், எ.கா.:
+வரையறுக்கப்பட்ட `browserVersion`-ஐ அடிப்படையாகக் கொண்டு WebdriverIO விரும்பிய driver பதிப்பை உங்களுக்காகத் தானாகவே பதிவிறக்கும், எ.கா.:
 
 ```ts
 {
@@ -378,7 +473,7 @@ WebdriverIO வரையறுக்கப்பட்ட `browserVersion` அ�
 }
 ```
 
-கூடுதலாக, கைமுறையாக பதிவிறக்கப்பட்ட இயக்கியைப் பயன்படுத்த விரும்பினால், இயக்கிக்கு பைனரி பாதையை வழங்கலாம்:
+கூடுதலாக, கைமுறையாகப் பதிவிறக்கப்பட்ட driver-ஐப் பயன்படுத்த விரும்பினால், driver-க்கான binary பாதையை இவ்வாறு வழங்கலாம்:
 
 ```ts
 {
@@ -392,7 +487,7 @@ WebdriverIO வரையறுக்கப்பட்ட `browserVersion` அ�
 </TabItem>
 <TabItem value="safari">
 
-Safari-இல் சோதிக்கும் போது, உங்கள் இயந்திரத்தில் [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) நிறுவப்பட்டுள்ளதா என்பதை உறுதிப்படுத்தவும். அந்த பதிப்பை WebdriverIO மூலம் குறிக்கலாம்:
+Safari-இல் சோதிக்கும்போது, [Safari Technology Preview](https://developer.apple.com/safari/technology-preview/) உங்கள் கணினியில் நிறுவப்பட்டுள்ளதை உறுதிசெய்யவும். அந்தப் பதிப்பிற்கு WebdriverIO-ஐ இவ்வாறு சுட்டலாம்:
 
 ```ts
 {
@@ -403,9 +498,9 @@ Safari-இல் சோதிக்கும் போது, உங்கள்
 </TabItem>
 </Tabs>
 
-## தனிப்பயன் திறன்களை நீட்டிக்கவும்
+## தனிப்பயன் Capabilities-ஐ நீட்டித்தல்
 
-உங்கள் சொந்த திறன்களின் தொகுப்பை வரையறுக்க விரும்பினால், எ.கா. அந்த குறிப்பிட்ட திறனுக்கான சோதனைகளுக்குள் பயன்படுத்த தன்னிச்சையான தரவை சேமிக்க, நீங்கள் அமைப்பதன் மூலம் அவ்வாறு செய்யலாம், எ.கா.:
+உதாரணமாக, அந்தக் குறிப்பிட்ட capability-க்கான சோதனைகளுக்குள் பயன்படுத்தப்பட வேண்டிய தன்னிச்சையான தரவைச் சேமிப்பதற்காக, உங்கள் சொந்த capabilities தொகுப்பை வரையறுக்க விரும்பினால், அதை இவ்வாறு அமைப்பதன் மூலம் செய்யலாம்:
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -419,13 +514,13 @@ export const config = {
 }
 ```
 
-திறன் பெயரிடலுக்கு [W3C நெறிமுறையைப்](https://w3c.github.io/webdriver/#dfn-extension-capability) பின்பற்ற அறிவுறுத்தப்படுகிறது, இது அமலாக்க குறிப்பிட்ட பெயர்வெளியைக் குறிக்கும் `:` (காற்புள்ளி) எழுத்தைக் கொண்டிருக்க வேண்டும். உங்கள் சோதனைகளில் உங்கள் தனிப்பயன் திறனை அணுகலாம், எ.கா.:
+Capability பெயரிடுதலைப் பொறுத்தவரை [W3C நெறிமுறையைப்](https://w3c.github.io/webdriver/#dfn-extension-capability) பின்பற்ற அறிவுறுத்தப்படுகிறது, இதற்கு ஒரு செயலாக்கம் சார்ந்த namespace-ஐக் குறிக்கும் `:` (முக்காற்புள்ளி) எழுத்து தேவைப்படுகிறது. உங்கள் சோதனைகளுக்குள் உங்கள் தனிப்பயன் capability-ஐ இவ்வாறு அணுகலாம், எ.கா.:
 
 ```ts
 browser.capabilities['custom:caps']
 ```
 
-வகை பாதுகாப்பை உறுதிப்படுத்த, WebdriverIO-இன் திறன் இடைமுகத்தை நீட்டிக்கலாம்:
+வகைப் பாதுகாப்பை (type safety) உறுதிசெய்ய, WebdriverIO-இன் capability interface-ஐ இவ்வாறு நீட்டிக்கலாம்:
 
 ```ts
 declare global {

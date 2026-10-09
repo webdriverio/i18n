@@ -1,13 +1,14 @@
 ---
 id: solid
-title: سوليد جيه إس
+title: SolidJS
+description: "قم بإعداد مشغّل المتصفح في WebdriverIO لمشروع SolidJS باستخدام الإعداد المسبق solid، واكتب اختبارات مكونات تُعرض داخل الصفحة."
 ---
 
-[SolidJS](https://www.solidjs.com/) هو إطار عمل لبناء واجهات المستخدم بتفاعلية بسيطة وعالية الأداء. يمكنك اختبار مكونات SolidJS مباشرة في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
+[SolidJS](https://www.solidjs.com/) هو إطار عمل لبناء واجهات المستخدم بتفاعلية بسيطة وعالية الأداء. يمكنك اختبار مكونات SolidJS مباشرةً في متصفح حقيقي باستخدام WebdriverIO و[مشغّل المتصفح](/docs/runner#browser-runner) الخاص به.
 
 ## الإعداد
 
-لإعداد WebdriverIO داخل مشروع SolidJS الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) في وثائق اختبار المكونات لدينا. تأكد من اختيار `solid` كإعداد مسبق ضمن خيارات المشغل الخاصة بك، على سبيل المثال:
+لإعداد WebdriverIO ضمن مشروع SolidJS الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في توثيق اختبار المكونات لدينا. تأكد من اختيار `solid` كإعداد مسبق (preset) ضمن خيارات المشغّل، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -22,7 +23,7 @@ export const config = {
 
 :::info
 
-إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا إعادة استخدام التكوين الخاص بك في `vite.config.ts` داخل تكوين WebdriverIO الخاص بك. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
+إذا كنت تستخدم [Vite](https://vitejs.dev/) بالفعل كخادم تطوير، فيمكنك أيضاً إعادة استخدام إعداداتك الموجودة في `vite.config.ts` ضمن إعدادات WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغّل](/docs/runner#runner-options).
 
 :::
 
@@ -40,7 +41,7 @@ npx wdio run ./wdio.conf.js
 
 ## كتابة الاختبارات
 
-بفرض أن لديك مكون SolidJS التالي:
+لنفترض أن لديك مكون SolidJS التالي:
 
 ```html title="./components/Component.tsx"
 import { createSignal } from 'solid-js'
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-في اختبارك استخدم طريقة `render` من `solid-js/web` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
+في اختبارك، استخدم الدالة `render` من `solid-js/web` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -71,8 +72,8 @@ import App from './components/Component.jsx'
 
 describe('Solid Component Testing', () => {
     /**
-     * ensure we render the component for every test in a
-     * new root container
+     * تأكد من عرض المكون لكل اختبار في
+     * حاوية جذر جديدة
      */
     let root: Element
     beforeEach(() => {
@@ -94,4 +95,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-يمكنك العثور على مثال كامل لمجموعة اختبار مكونات WebdriverIO لـ SolidJS في [مستودع الأمثلة](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite) الخاص بنا.
+يمكنك العثور على مثال كامل لمجموعة اختبارات مكونات WebdriverIO لـ SolidJS في [مستودع الأمثلة](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite) الخاص بنا.

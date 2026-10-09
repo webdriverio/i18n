@@ -1,58 +1,59 @@
 ---
 id: timeouts
-title: Limity czasowe
+title: Limity czasu
+description: "Skonfiguruj limity czasu sesji WebDriver, limity czasu waitfor w WebdriverIO oraz limity czasu frameworka testowego, aby zachować niezawodność testów."
 ---
 
-Każde polecenie w WebdriverIO jest operacją asynchroniczną. Żądanie jest wysyłane do serwera Selenium (lub usługi chmurowej takiej jak [Sauce Labs](https://saucelabs.com)), a jego odpowiedź zawiera wynik po zakończeniu lub niepowodzeniu akcji.
+Każde polecenie w WebdriverIO jest operacją asynchroniczną. Żądanie jest wysyłane do serwera Selenium (lub usługi chmurowej, takiej jak [Sauce Labs](https://saucelabs.com)), a jego odpowiedź zawiera wynik po zakończeniu lub niepowodzeniu akcji.
 
-Dlatego czas jest kluczowym elementem w całym procesie testowania. Gdy określona akcja zależy od stanu innej akcji, musisz upewnić się, że zostaną one wykonane we właściwej kolejności. Limity czasowe odgrywają ważną rolę w radzeniu sobie z tymi problemami.
+Dlatego czas jest kluczowym elementem całego procesu testowania. Gdy określona akcja zależy od stanu innej akcji, musisz upewnić się, że są one wykonywane we właściwej kolejności. Limity czasu odgrywają ważną rolę w rozwiązywaniu tych problemów.
 
 <LiteYouTubeEmbed
     id="5oI37h4qxEw"
     title="Timeouts"
 />
 
-## Limity czasowe WebDrivera
+## Limity czasu WebDriver
 
-### Limit czasowy skryptu sesji
+### Limit czasu skryptu sesji
 
-Sesja ma powiązany limit czasowy skryptu sesji, który określa czas oczekiwania na wykonanie skryptów asynchronicznych. O ile nie określono inaczej, wynosi on 30 sekund. Możesz ustawić ten limit czasowy w następujący sposób:
+Sesja ma powiązany limit czasu skryptu sesji, który określa czas oczekiwania na wykonanie skryptów asynchronicznych. O ile nie określono inaczej, wynosi on 30 sekund. Możesz ustawić ten limit czasu w następujący sposób:
 
 ```js
 await browser.setTimeout({ 'script': 60000 })
-await browser.executeAsync((done) => {
+await browser.execute(async () => {
     console.log('this should not fail')
-    setTimeout(done, 59000)
+    await new Promise((resolve) => setTimeout(resolve, 59000))
 })
 ```
 
-### Limit czasowy ładowania strony sesji
+### Limit czasu ładowania strony sesji
 
-Sesja ma powiązany limit czasowy ładowania strony, który określa czas oczekiwania na zakończenie ładowania strony. O ile nie określono inaczej, wynosi on 300 000 milisekund.
+Sesja ma powiązany limit czasu ładowania strony, który określa czas oczekiwania na zakończenie ładowania strony. O ile nie określono inaczej, wynosi on 300 000 milisekund.
 
-Możesz ustawić ten limit czasowy w następujący sposób:
+Możesz ustawić ten limit czasu w następujący sposób:
 
 ```js
 await browser.setTimeout({ 'pageLoad': 10000 })
 ```
 
-> Słowo kluczowe `pageLoad` jest częścią oficjalnej [specyfikacji](https://www.w3.org/TR/webdriver/#set-timeouts) WebDrivera, ale może nie być [obsługiwane](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) dla Twojej przeglądarki (poprzednia nazwa to `page load`).
+> `pageLoad` to nazwa z [limitów czasu](https://www.w3.org/TR/webdriver/#set-timeouts) WebDriver. WebdriverIO v10 akceptuje wyłącznie ten klucz.
 
-### Limit czasowy niejawnego oczekiwania sesji
+### Limit czasu niejawnego oczekiwania sesji
 
-Sesja ma powiązany limit czasowy niejawnego oczekiwania. Określa on czas oczekiwania na niejawną strategię lokalizacji elementów podczas lokalizowania elementów za pomocą poleceń [`findElement`](/docs/api/webdriver#findelement) lub [`findElements`](/docs/api/webdriver#findelements) (odpowiednio [`$`](/docs/api/browser/$) lub [`$$`](/docs/api/browser/$$), podczas uruchamiania WebdriverIO z lub bez testunnera WDIO). O ile nie określono inaczej, wynosi on 0 milisekund.
+Sesja ma powiązany limit czasu niejawnego oczekiwania. Określa on czas oczekiwania dla niejawnej strategii lokalizowania elementów podczas wyszukiwania elementów za pomocą poleceń [`findElement`](/docs/api/webdriver#findelement) lub [`findElements`](/docs/api/webdriver#findelements) (odpowiednio [`$`](/docs/api/browser/$) lub [`$$`](/docs/api/browser/$$) podczas uruchamiania WebdriverIO z testrunnerem WDIO lub bez niego). O ile nie określono inaczej, wynosi on 0 milisekund.
 
-Możesz ustawić ten limit czasowy za pomocą:
+Możesz ustawić ten limit czasu za pomocą:
 
 ```js
 await browser.setTimeout({ 'implicit': 5000 })
 ```
 
-## Limity czasowe związane z WebdriverIO
+## Limity czasu związane z WebdriverIO
 
-### Limit czasowy `WaitFor*`
+### Limit czasu `WaitFor*`
 
-WebdriverIO zapewnia wiele poleceń do oczekiwania, aż element osiągnie określony stan (np. włączony, widoczny, istniejący). Te polecenia przyjmują argument selektora i numer limitu czasowego, który określa, jak długo instancja powinna czekać na osiągnięcie stanu przez ten element. Opcja `waitforTimeout` pozwala ustawić globalny limit czasowy dla wszystkich poleceń `waitFor*`, więc nie musisz ustawiać tego samego limitu czasowego wielokrotnie. _(Uwaga na małą literę `f`!)_
+WebdriverIO udostępnia wiele poleceń do oczekiwania, aż elementy osiągną określony stan (np. włączony, widoczny, istniejący). Polecenia te przyjmują argument selektora oraz liczbę określającą limit czasu, która decyduje, jak długo instancja ma czekać, aż element osiągnie dany stan. Opcja `waitforTimeout` pozwala ustawić globalny limit czasu dla wszystkich poleceń `waitFor*`, dzięki czemu nie musisz wielokrotnie ustawiać tego samego limitu. _(Zwróć uwagę na małą literę `f`!)_
 
 ```js
 // wdio.conf.js
@@ -63,23 +64,23 @@ export const config = {
 }
 ```
 
-W testach możesz teraz zrobić to:
+W swoich testach możesz teraz zrobić tak:
 
 ```js
 const myElem = await $('#myElem')
 await myElem.waitForDisplayed()
 
-// możesz również nadpisać domyślny limit czasowy w razie potrzeby
+// możesz także nadpisać domyślny limit czasu, jeśli to konieczne
 await myElem.waitForDisplayed({ timeout: 10000 })
 ```
 
-## Limity czasowe związane z frameworkiem
+## Limity czasu związane z frameworkiem
 
-Framework testowy, którego używasz z WebdriverIO, musi radzić sobie z limitami czasowymi, szczególnie ponieważ wszystko jest asynchroniczne. Zapewnia to, że proces testowy nie zostanie zablokowany, jeśli coś pójdzie nie tak.
+Framework testowy, którego używasz z WebdriverIO, musi radzić sobie z limitami czasu, zwłaszcza że wszystko jest asynchroniczne. Zapewnia to, że proces testowy nie utknie, jeśli coś pójdzie nie tak.
 
-Domyślnie limit czasowy wynosi 10 sekund, co oznacza, że pojedynczy test nie powinien trwać dłużej.
+Domyślnie limit czasu wynosi 10 sekund, co oznacza, że pojedynczy test nie powinien trwać dłużej.
 
-Pojedynczy test w Mocha wygląda tak:
+Pojedynczy test w Mocha wygląda następująco:
 
 ```js
 it('should login into the application', async () => {
@@ -97,7 +98,7 @@ it('should login into the application', async () => {
 })
 ```
 
-W Cucumber limit czasowy ma zastosowanie do pojedynczej definicji kroku. Jeśli jednak chcesz zwiększyć limit czasowy, ponieważ twój test trwa dłużej niż wartość domyślna, musisz ustawić go w opcjach frameworka.
+W Cucumber limit czasu dotyczy pojedynczej definicji kroku. Jeśli jednak chcesz zwiększyć limit czasu, ponieważ Twój test trwa dłużej niż wartość domyślna, musisz ustawić go w opcjach frameworka.
 
 <Tabs
   defaultValue="mocha"

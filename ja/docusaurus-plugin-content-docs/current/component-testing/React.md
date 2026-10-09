@@ -1,13 +1,14 @@
 ---
 id: react
 title: React
+description: "reactプリセットを使用してReactプロジェクト向けにWebdriverIOブラウザランナーをセットアップし、Testing Libraryでコンポーネントテストを作成します。"
 ---
 
-[React](https://reactjs.org/)はインタラクティブなUIを作成するのを簡単にします。アプリケーションの各状態に対してシンプルなビューを設計すれば、データが変更されたときにReactが効率的に適切なコンポーネントを更新およびレンダリングします。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザでReactコンポーネントを直接テストできます。
+[React](https://reactjs.org/)を使えば、インタラクティブなUIを簡単に作成できます。アプリケーションの各状態に対してシンプルなビューを設計するだけで、データが変更されたときにReactが適切なコンポーネントだけを効率的に更新・レンダリングします。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用すると、Reactコンポーネントを実際のブラウザで直接テストできます。
 
 ## セットアップ
 
-Reactプロジェクト内でWebdriverIOをセットアップするには、コンポーネントテストのドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内で `react` をプリセットとして選択してください：
+ReactプロジェクトにWebdriverIOをセットアップするには、コンポーネントテストのドキュメントにある[手順](/docs/component-testing#set-up)に従ってください。ランナーオプションでプリセットとして`react`を選択してください。例：
 
 ```js
 // wdio.conf.js
@@ -22,17 +23,17 @@ export const config = {
 
 :::info
 
-すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、`vite.config.ts`の設定をWebdriverIO設定内で再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の `viteConfig` を参照してください。
+すでに開発サーバーとして[Vite](https://vitejs.dev/)を使用している場合は、`vite.config.ts`の設定をWebdriverIOの設定内で再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
 
 :::
 
-Reactプリセットには`@vitejs/plugin-react`のインストールが必要です。また、コンポーネントをテストページにレンダリングするために[Testing Library](https://testing-library.com/)の使用をお勧めします。以下の追加依存関係をインストールする必要があります：
+Reactプリセットを使用するには、`@vitejs/plugin-react`がインストールされている必要があります。また、コンポーネントをテストページにレンダリングするために[Testing Library](https://testing-library.com/)の使用をお勧めします。そのため、以下の追加の依存関係をインストールする必要があります：
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/react @vitejs/plugin-react
 ```
 
-その後、以下のコマンドでテストを開始できます：
+その後、次のコマンドを実行してテストを開始できます：
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-テストでは、`@testing-library/react`の`render`メソッドを使用してコンポーネントをテストページに接続します。コンポーネントとのインタラクションには、実際のユーザー操作に近い動作をするWebdriverIOコマンドの使用をお勧めします：
+テストでは、`@testing-library/react`の`render`メソッドを使用してコンポーネントをテストページにアタッチします。コンポーネントを操作する際は、実際のユーザー操作により近い動作をするWebdriverIOコマンドの使用をお勧めします。例：
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -84,4 +85,4 @@ describe('React Component Testing', () => {
 })
 ```
 
-ReactのWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/react-typescript-vite)で確認できます。
+React向けのWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/react-typescript-vite)で確認できます。

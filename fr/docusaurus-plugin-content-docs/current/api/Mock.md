@@ -1,20 +1,26 @@
 ---
 id: mock
-title: L'Objet Mock
+title: L'objet Mock
 ---
 
-L'objet mock est un objet qui représente une simulation réseau et contient des informations sur les requêtes correspondant à une `url` et des `filterOptions` donnés. Il peut être obtenu en utilisant la commande [`mock`](/docs/api/browser/mock).
+L'objet mock est un objet qui représente un mock réseau et contient des informations sur les requêtes qui correspondaient aux `url` et `filterOptions` donnés. Il peut être obtenu à l'aide de la commande [`mock`](/docs/api/browser/mock).
 
 :::info
 
 Notez que l'utilisation de la commande `mock` nécessite la prise en charge du protocole Chrome DevTools.
-Cette prise en charge est disponible si vous exécutez des tests localement dans un navigateur basé sur Chromium ou si
-vous utilisez Selenium Grid v4 ou supérieur. Cette commande __ne peut pas__ être utilisée lors de l'exécution
-de tests automatisés dans le cloud. Pour en savoir plus, consultez la section [Protocoles d'Automatisation](/docs/automationProtocols).
+Cette prise en charge est assurée si vous exécutez des tests localement dans un navigateur basé sur Chromium ou si
+vous utilisez une Selenium Grid v4 ou supérieure. Cette commande ne peut __pas__ être utilisée lors de l'exécution
+de tests automatisés dans le cloud. Pour en savoir plus, consultez la section [Protocoles d'automatisation](/docs/automationProtocols).
 
 :::
 
-Vous pouvez en savoir plus sur la simulation des requêtes et des réponses dans WebdriverIO dans notre guide [Mocks et Spies](/docs/mocksandspies).
+Vous pouvez en savoir plus sur le mock des requêtes et des réponses dans WebdriverIO dans notre guide [Mocks et Spies](/docs/mocksandspies).
+
+## Multi-remote
+
+Sur un navigateur [multi-remote](/docs/multiremote), [`browser.mock()`](/docs/api/browser/mock) renvoie un `MultiRemoteMock` au lieu de cet objet. `instances` liste les noms des navigateurs, et `getInstance(name)` renvoie le `Mock` pour ce navigateur. `respond()`, `restore()` et les autres méthodes ci-dessous s'exécutent sur chaque instance. `calls` reste sur le mock de chaque instance : `mock.getInstance('myChromeBrowser').calls`.
+
+`getInstance` lève l'erreur `Multi-remote object has no instance named "<name>"` lorsque `name` ne fait pas partie de `instances`.
 
 ## Propriétés
 
@@ -22,9 +28,9 @@ Un objet mock contient les propriétés suivantes :
 
 | Nom | Type | Détails |
 | ---- | ---- | ------- |
-| `url` | `String` | L'URL passée à la commande mock |
-| `filterOptions` | `Object` | Les options de filtrage des ressources passées à la commande mock |
-| `browser` | `Object` | L'[Objet Browser](/docs/api/browser) utilisé pour obtenir l'objet mock. |
+| `url` | `String` | L'url passée à la commande mock |
+| `filterOptions` | `Object` | Les options de filtre de ressources passées à la commande mock |
+| `browser` | `Object` | L'[objet Browser](/docs/api/browser) utilisé pour obtenir l'objet mock. |
 | `calls` | `Object[]` | Informations sur les requêtes du navigateur correspondantes, contenant des propriétés telles que `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` et `body` |
 
 ## Méthodes
@@ -43,15 +49,15 @@ Les objets mock fournissent diverses commandes, listées dans la section `mock`,
 
 ## Événements
 
-L'objet mock est un EventEmitter et plusieurs événements sont émis pour vos cas d'utilisation.
+L'objet mock est un EventEmitter et quelques événements sont émis pour vos cas d'utilisation.
 
 Voici une liste des événements.
 
 ### `request`
 
-Cet événement est émis lors du lancement d'une requête réseau qui correspond aux modèles mock. La requête est passée dans le callback de l'événement.
+Cet événement est émis lors du lancement d'une requête réseau qui correspond aux motifs du mock. La requête est passée dans le callback de l'événement.
 
-Interface de requête :
+Interface de la requête :
 ```ts
 interface RequestEvent {
     requestId: number
@@ -63,9 +69,9 @@ interface RequestEvent {
 
 ### `overwrite`
 
-Cet événement est émis lorsque la réponse réseau est remplacée avec [`respond`](/docs/api/mock/respond) ou [`respondOnce`](/docs/api/mock/respondOnce). La réponse est passée dans le callback de l'événement.
+Cet événement est émis lorsque la réponse réseau est écrasée avec [`respond`](/docs/api/mock/respond) ou [`respondOnce`](/docs/api/mock/respondOnce). La réponse est passée dans le callback de l'événement.
 
-Interface de réponse :
+Interface de la réponse :
 ```ts
 interface OverwriteEvent {
     requestId: number
@@ -77,9 +83,9 @@ interface OverwriteEvent {
 
 ### `fail`
 
-Cet événement est émis lorsqu'une requête réseau est interrompue avec [`abort`](/docs/api/mock/abort) ou [`abortOnce`](/docs/api/mock/abortOnce). L'échec est passé dans le callback de l'événement.
+Cet événement est émis lorsque la requête réseau est interrompue avec [`abort`](/docs/api/mock/abort) ou [`abortOnce`](/docs/api/mock/abortOnce). L'échec est passé dans le callback de l'événement.
 
-Interface d'échec :
+Interface de l'échec :
 ```ts
 interface FailEvent {
     requestId: number
@@ -91,29 +97,29 @@ interface FailEvent {
 
 Cet événement est émis lorsqu'une nouvelle correspondance est ajoutée, avant `continue` ou `overwrite`. La correspondance est passée dans le callback de l'événement.
 
-Interface de correspondance :
+Interface de la correspondance :
 ```ts
 interface MatchEvent {
     url: string // URL de la requête (sans fragment).
-    urlFragment?: string // Fragment de l'URL demandée commençant par un hash, si présent.
-    method: string // Méthode de requête HTTP.
-    headers: Record<string, string> // En-têtes de requête HTTP.
-    postData?: string // Données de requête HTTP POST.
-    hasPostData?: boolean // Vrai lorsque la requête a des données POST.
-    mixedContentType?: MixedContentType // Le type d'export de contenu mixte de la requête.
+    urlFragment?: string // Fragment de l'URL demandée commençant par un dièse, s'il est présent.
+    method: string // Méthode de la requête HTTP.
+    headers: Record<string, string> // En-têtes de la requête HTTP.
+    postData?: string // Données de la requête HTTP POST.
+    hasPostData?: boolean // True lorsque la requête contient des données POST.
+    mixedContentType?: MixedContentType // Le type de contenu mixte de la requête.
     initialPriority: ResourcePriority // Priorité de la requête de ressource au moment où la requête est envoyée.
     referrerPolicy: ReferrerPolicy // La politique de référent de la requête, telle que définie dans https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Si elle est chargée via un préchargement de lien.
-    body: string | Buffer | JsonCompatible // Corps de réponse de la ressource réelle.
-    responseHeaders: Record<string, string> // En-têtes de réponse HTTP.
-    statusCode: number // Code d'état de réponse HTTP.
-    mockedResponse?: string | Buffer // Si le mock, émettant l'événement, a également modifié sa réponse.
+    isLinkPreload?: boolean // Indique si la ressource est chargée via un link preload.
+    body: string | Buffer | JsonCompatible // Corps de la réponse de la ressource réelle.
+    responseHeaders: Record<string, string> // En-têtes de la réponse HTTP.
+    statusCode: number // Code de statut de la réponse HTTP.
+    mockedResponse?: string | Buffer // Si le mock qui émet l'événement a également modifié sa réponse.
 }
 ```
 
 ### `continue`
 
-Cet événement est émis lorsque la réponse réseau n'a été ni remplacée ni interrompue, ou si la réponse a déjà été envoyée par un autre mock. `requestId` est passé dans le callback de l'événement.
+Cet événement est émis lorsque la réponse réseau n'a été ni écrasée ni interrompue, ou si la réponse a déjà été envoyée par un autre mock. `requestId` est passé dans le callback de l'événement.
 
 ## Exemples
 
@@ -121,18 +127,18 @@ Obtenir le nombre de requêtes en attente :
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // il est important de correspondre à toutes les requêtes, sinon, la valeur résultante peut être très déroutante.
+const mock = await browser.mock('**') // il est important de faire correspondre toutes les requêtes, sinon la valeur obtenue peut être très déroutante.
 mock.on('request', ({request}) => {
     pendingRequests++
-    console.log(`requête correspondante pour ${request.url}, ${pendingRequests} requêtes en attente`)
+    console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
 })
 mock.on('match', ({url}) => {
     pendingRequests--
-    console.log(`requête résolue pour ${url}, ${pendingRequests} requêtes en attente`)
+    console.log(`resolved request to ${url}, pending ${pendingRequests} requests`)
 })
 ```
 
-Générer une erreur en cas d'échec réseau 404 :
+Lever une erreur en cas d'échec réseau 404 :
 
 ```js
 browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Promise(async (resolve, reject) => {
@@ -140,13 +146,13 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     mock.on('match', ({url, statusCode}) => {
         if (statusCode === 404) {
-            reject(new Error(`la requête vers ${url} a échoué avec "Not Found"`))
+            reject(new Error(`request to ${url} failed with "Not Found"`))
         }
     })
 
     await this.url(url).catch(reject)
 
-    // attente ici, car certaines requêtes peuvent être encore en attente
+    // on attend ici, car certaines requêtes peuvent encore être en attente
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -173,14 +179,14 @@ secondMock.respond({id: 4, title: 'four'})
 firstMock.on('overwrite', () => {
     // se déclenche pour la première requête vers '**/foo/**'
 }).on('continue', () => {
-    // se déclenche pour le reste des requêtes vers '**/foo/**'
+    // se déclenche pour les requêtes suivantes vers '**/foo/**'
 })
 
 secondMock.on('continue', () => {
     // se déclenche pour la première requête vers '**/foo/bar/**'
 }).on('overwrite', () => {
-    // se déclenche pour le reste des requêtes vers '**/foo/bar/**'
+    // se déclenche pour les requêtes suivantes vers '**/foo/bar/**'
 })
 ```
 
-Dans cet exemple, `firstMock` a été défini en premier et possède un appel `respondOnce`, donc la valeur de réponse de `secondMock` ne sera pas utilisée pour la première requête, mais sera utilisée pour les suivantes.
+Dans cet exemple, `firstMock` a été défini en premier et possède un appel `respondOnce`, donc la valeur de réponse de `secondMock` ne sera pas utilisée pour la première requête, mais sera utilisée pour toutes les suivantes.

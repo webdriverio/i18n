@@ -1,19 +1,20 @@
 ---
 id: integrate-with-smartui
-title: स्मार्टयूआई
+title: SmartUI
+description: "TestMu AI (पूर्व में LambdaTest) SmartUI के साथ WebdriverIO टेस्ट में AI-संचालित विज़ुअल रिग्रेशन टेस्टिंग जोड़ें, जिसमें सेटअप और विकल्प शामिल हैं।"
 ---
 
-TestMu AI (पूर्व में LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) आपके WebdriverIO परीक्षणों के लिए AI-संचालित विज़ुअल रिग्रेशन टेस्टिंग प्रदान करता है। यह स्क्रीनशॉट कैप्चर करता है, उन्हें बेसलाइन के साथ तुलना करता है, और बुद्धिमान तुलना एल्गोरिदम के साथ दृश्य अंतर को हाइलाइट करता है।
+TestMu AI (पूर्व में LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) आपके WebdriverIO टेस्ट के लिए AI-संचालित विज़ुअल रिग्रेशन टेस्टिंग प्रदान करता है। यह स्क्रीनशॉट कैप्चर करता है, उनकी तुलना बेसलाइन से करता है, और इंटेलिजेंट तुलना एल्गोरिदम के साथ विज़ुअल अंतरों को हाइलाइट करता है।
 
 ## सेटअप
 
 **SmartUI प्रोजेक्ट बनाएं**
 
-TestMu AI (पूर्व में LambdaTest) पर [साइन इन](https://accounts.lambdatest.com/register) करें और नया प्रोजेक्ट बनाने के लिए [SmartUI Projects](https://smartui.lambdatest.com/) पर नेविगेट करें। प्लेटफॉर्म के रूप में **Web** का चयन करें और अपने प्रोजेक्ट का नाम, अप्रूवर्स और टैग कॉन्फ़िगर करें।
+TestMu AI (पूर्व में LambdaTest) में [साइन इन](https://accounts.lambdatest.com/register) करें और नया प्रोजेक्ट बनाने के लिए [SmartUI Projects](https://smartui.lambdatest.com/) पर जाएं। प्लेटफ़ॉर्म के रूप में **Web** चुनें और अपने प्रोजेक्ट का नाम, अप्रूवर्स और टैग कॉन्फ़िगर करें।
 
-**क्रेडेंशियल्स सेट करें**
+**क्रेडेंशियल सेट करें**
 
-TestMu AI (पूर्व में LambdaTest) डैशबोर्ड से अपना `LT_USERNAME` और `LT_ACCESS_KEY` प्राप्त करें और उन्हें एनवायरनमेंट वेरिएबल्स के रूप में सेट करें:
+TestMu AI (पूर्व में LambdaTest) डैशबोर्ड से अपना `LT_USERNAME` और `LT_ACCESS_KEY` प्राप्त करें और उन्हें एनवायरनमेंट वेरिएबल के रूप में सेट करें:
 
 ```sh
 export LT_USERNAME="<your username>"
@@ -28,7 +29,7 @@ npm install @lambdatest/wdio-driver
 
 **WebdriverIO कॉन्फ़िगर करें**
 
-अपने `wdio.conf.js` को अपडेट करें:
+अपनी `wdio.conf.js` फ़ाइल अपडेट करें:
 
 ```javascript
 exports.config = {
@@ -80,11 +81,11 @@ describe('WebdriverIO SmartUI Test', () => {
 npx wdio wdio.conf.js
 ```
 
-[SmartUI Dashboard](https://smartui.lambdatest.com/) में परिणाम देखें।
+परिणाम [SmartUI Dashboard](https://smartui.lambdatest.com/) में देखें।
 
 ## उन्नत विकल्प
 
-**तत्वों को अनदेखा करें**
+**एलिमेंट्स को अनदेखा करें**
 
 ```javascript
 await browser.execute('smartui.takeScreenshot', {
@@ -97,7 +98,7 @@ await browser.execute('smartui.takeScreenshot', {
 });
 ```
 
-**विशिष्ट क्षेत्रों का चयन करें**
+**विशिष्ट क्षेत्र चुनें**
 
 ```javascript
 await browser.execute('smartui.takeScreenshot', {
@@ -110,9 +111,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## संसाधन
 
-| संसाधन                                                                                           | विवरण                                  |
+| संसाधन                                                                                          | विवरण                              |
 |---------------------------------------------------------------------------------------------------|------------------------------------------|
-| [आधिकारिक दस्तावेज़ीकरण](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | SmartUI दस्तावेज़ीकरण                    |
-| [SmartUI डैशबोर्ड](https://smartui.lambdatest.com/)                                              | अपने SmartUI प्रोजेक्ट और बिल्ड तक पहुंचें  |
+| [आधिकारिक डॉक्यूमेंटेशन](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | SmartUI डॉक्यूमेंटेशन                    |
+| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                              | अपने SmartUI प्रोजेक्ट्स और बिल्ड्स तक पहुंचें  |
 | [उन्नत सेटिंग्स](https://www.testmuai.com/support/docs/test-settings-options/)              | तुलना संवेदनशीलता कॉन्फ़िगर करें         |
 | [बिल्ड विकल्प](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | उन्नत बिल्ड कॉन्फ़िगरेशन             |

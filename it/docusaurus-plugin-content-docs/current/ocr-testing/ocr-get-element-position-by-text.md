@@ -1,9 +1,10 @@
 ---
 id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
+description: "Ottieni la posizione sullo schermo di un testo con ocrGetElementPositionByText, utilizzando l'OCR e la corrispondenza fuzzy per trovarlo."
 ---
 
-Ottieni la posizione di un testo sullo schermo. Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla Logica Fuzzy di [Fuse.js](https://fusejs.io/). Questo significa che se fornisci un selettore con un errore di battitura, o il testo trovato potrebbe non essere una corrispondenza al 100%, tenterà comunque di restituirti un elemento. Vedi i [log](#logs) qui sotto.
+Ottiene la posizione di un testo sullo schermo. Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla Fuzzy Logic di [Fuse.js](https://fusejs.io/). Questo significa che, anche se fornisci un selettore con un errore di battitura o se il testo trovato non corrisponde al 100%, il comando proverà comunque a restituirti un elemento. Vedi i [log](#logs) qui sotto.
 
 ## Utilizzo
 
@@ -41,7 +42,7 @@ result = {
 ### Logs
 
 ```log
-# Still finding a match even though we searched for "Start3d" and the found text was "Started"
+# Trova comunque una corrispondenza anche se abbiamo cercato "Start3d" e il testo trovato era "Started"
 [0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
@@ -51,11 +52,11 @@ result = {
 
 ### `text`
 
--   **Tipo:** `string`
--   **Obbligatorio:** sì
+<Option type="string" required="yes">
 
-Il testo che desideri cercare per cliccarci sopra.
+Il testo che vuoi cercare su cui fare clic.
 
+</Option>
 #### Esempio
 
 ```js
@@ -64,12 +65,11 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
--   **Tipo:** `number`
--   **Obbligatorio:** no
--   **Predefinito:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Più alto è il contrasto, più scura sarà l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
+Più alto è il contrasto, più scura è l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
 
+</Option>
 #### Esempio
 
 ```js
@@ -81,11 +81,11 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
--   **Tipo:** `number`
--   **Obbligatorio:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Questa è l'area di ricerca nello schermo in cui l'OCR deve cercare il testo. Può essere un elemento o un rettangolo contenente `x`, `y`, `width` e `height`
+Questa è l'area di ricerca sullo schermo in cui l'OCR deve cercare il testo. Può essere un elemento o un rettangolo contenente `x`, `y`, `width` e `height`
 
+</Option>
 #### Esempio
 
 ```js
@@ -114,12 +114,11 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
--   **Tipo:** `string`
--   **Obbligatorio:** No
--   **Predefinito:** `eng`
+<Option type="string" default="eng" required="No">
 
-La lingua che Tesseract riconoscerà. Maggiori informazioni possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate possono essere trovate [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+La lingua che Tesseract riconoscerà. Maggiori informazioni sono disponibili [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate sono disponibili [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Esempio
 
 ```js
@@ -133,16 +132,15 @@ await browser.ocrGetElementPositionByText({
 
 ### `fuzzyFindOptions`
 
-Puoi modificare la logica fuzzy per trovare testo con le seguenti opzioni. Questo potrebbe aiutare a trovare una corrispondenza migliore
+Puoi modificare la logica fuzzy per trovare il testo con le seguenti opzioni. Questo potrebbe aiutare a trovare una corrispondenza migliore
 
 #### `fuzzyFindOptions.distance`
 
--   **Tipo:** `number`
--   **Obbligatorio:** no
--   **Predefinito:** 100
+<Option type="number" default="100" required="no">
 
-Determina quanto vicina deve essere la corrispondenza alla posizione fuzzy (specificata da location). Una corrispondenza esatta della lettera che si trova a distanza caratteri dalla posizione fuzzy verrebbe considerata come una completa mancata corrispondenza. Una distanza di 0 richiede che la corrispondenza sia nella posizione esatta specificata. Una distanza di 1000 richiederebbe una corrispondenza perfetta entro 800 caratteri dalla posizione per essere trovata usando una soglia di 0.8.
+Determina quanto la corrispondenza deve essere vicina alla posizione fuzzy (specificata da location). Una corrispondenza esatta di lettere che si trova a distance caratteri di distanza dalla posizione fuzzy verrebbe valutata come una mancata corrispondenza completa. Una distance di 0 richiede che la corrispondenza si trovi esattamente nella posizione specificata. Una distance di 1000 richiederebbe che una corrispondenza perfetta si trovi entro 800 caratteri dalla posizione per essere trovata utilizzando una threshold di 0.8.
 
+</Option>
 ##### Esempio
 
 ```js
@@ -156,12 +154,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
--   **Tipo:** `number`
--   **Obbligatorio:** no
--   **Predefinito:** 0
+<Option type="number" default="0" required="no">
 
-Determina approssimativamente dove nel testo ci si aspetta di trovare il pattern.
+Determina approssimativamente in quale punto del testo ci si aspetta di trovare il pattern.
 
+</Option>
 ##### Esempio
 
 ```js
@@ -175,12 +172,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Tipo:** `number`
--   **Obbligatorio:** no
--   **Predefinito:** 0.6
+<Option type="number" default="0.6" required="no">
 
-A quale punto l'algoritmo di corrispondenza si arrende. Una soglia di 0 richiede una corrispondenza perfetta (sia di lettere che di posizione), una soglia di 1.0 corrisponderebbe a qualsiasi cosa.
+Il punto in cui l'algoritmo di corrispondenza si arrende. Una threshold di 0 richiede una corrispondenza perfetta (sia delle lettere che della posizione), una threshold di 1.0 corrisponderebbe a qualsiasi cosa.
 
+</Option>
 ##### Esempio
 
 ```js
@@ -194,12 +190,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Tipo:** `boolean`
--   **Obbligatorio:** no
--   **Predefinito:** false
+<Option type="boolean" default="false" required="no">
 
-Se la ricerca dovrebbe essere sensibile alle maiuscole/minuscole.
+Indica se la ricerca deve distinguere tra maiuscole e minuscole.
 
+</Option>
 ##### Esempio
 
 ```js
@@ -213,12 +208,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Tipo:** `number`
--   **Obbligatorio:** no
--   **Predefinito:** 2
+<Option type="number" default="2" required="no">
 
-Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di singoli caratteri nel risultato, impostalo a 2)
+Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di un solo carattere nel risultato, impostalo a 2)
 
+</Option>
 ##### Esempio
 
 ```js
@@ -232,12 +226,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Tipo:** `number`
--   **Obbligatorio:** no
--   **Predefinito:** false
+<Option type="number" default="false" required="no">
 
-Quando `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata trovata una corrispondenza perfetta nella stringa.
+Quando è `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
 
+</Option>
 ##### Esempio
 
 ```js

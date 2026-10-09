@@ -1,9 +1,10 @@
 ---
 id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
+description: "احصل على موضع نص على الشاشة باستخدام ocrGetElementPositionByText، بالاعتماد على OCR والمطابقة التقريبية للعثور عليه."
 ---
 
-الحصول على موقع نص على الشاشة. ستقوم الأمر بالبحث عن النص المقدم ومحاولة العثور على تطابق بناءً على المنطق الضبابي من [Fuse.js](https://fusejs.io/). هذا يعني أنه إذا قدمت محدد بأخطاء إملائية، أو كان النص الموجود ليس متطابقًا بنسبة 100%، فإنه سيحاول إعطاءك عنصرًا. انظر [السجلات](#logs) أدناه.
+احصل على موضع نص على الشاشة. سيبحث الأمر عن النص المُقدَّم ويحاول العثور على تطابق بناءً على المنطق التقريبي (Fuzzy Logic) من [Fuse.js](https://fusejs.io/). هذا يعني أنه إذا قدّمت محددًا (selector) يحتوي على خطأ إملائي، أو إذا لم يكن النص الذي تم العثور عليه مطابقًا بنسبة 100%، فسيظل يحاول إرجاع عنصر لك. راجع [السجلات](#logs) أدناه.
 
 ## الاستخدام
 
@@ -41,7 +42,7 @@ result = {
 ### السجلات
 
 ```log
-# Still finding a match even though we searched for "Start3d" and the found text was "Started"
+# لا يزال يعثر على تطابق على الرغم من أننا بحثنا عن "Start3d" وكان النص الذي تم العثور عليه "Started"
 [0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
@@ -51,11 +52,11 @@ result = {
 
 ### `text`
 
--   **النوع:** `string`
--   **إلزامي:** نعم
+<Option type="string" required="yes">
 
 النص الذي تريد البحث عنه للنقر عليه.
 
+</Option>
 #### مثال
 
 ```js
@@ -64,12 +65,11 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-كلما زاد التباين، زادت قتامة الصورة والعكس صحيح. يمكن أن يساعد ذلك في العثور على نص في صورة. يقبل قيمًا بين `-1` و `1`.
+كلما زاد التباين، أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيمًا بين `-1` و `1`.
 
+</Option>
 #### مثال
 
 ```js
@@ -81,11 +81,11 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
--   **النوع:** `number`
--   **إلزامي:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-هذه هي منطقة البحث في الشاشة حيث يحتاج OCR إلى البحث عن النص. يمكن أن يكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
+هذه هي منطقة البحث في الشاشة التي يجب أن يبحث فيها OCR عن النص. يمكن أن تكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
 
+</Option>
 #### مثال
 
 ```js
@@ -114,35 +114,33 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
--   **النوع:** `string`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** `eng`
+<Option type="string" default="eng" required="No">
 
 اللغة التي سيتعرف عليها Tesseract. يمكن العثور على مزيد من المعلومات [هنا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) ويمكن العثور على اللغات المدعومة [هنا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
-    // استخدم الهولندية كلغة
+    // استخدام اللغة الهولندية
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-يمكنك تغيير المنطق الضبابي للعثور على نص بالخيارات التالية. قد يساعد ذلك في العثور على تطابق أفضل
+يمكنك تعديل المنطق التقريبي للعثور على النص باستخدام الخيارات التالية. قد يساعد ذلك في العثور على تطابق أفضل
 
 #### `fuzzyFindOptions.distance`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** 100
+<Option type="number" default="100" required="no">
 
-يحدد مدى قرب التطابق من الموقع الضبابي (المحدد بالموقع). سيتم احتساب تطابق حرف بالضبط على مسافة أحرف بعيدًا عن الموقع الضبابي كعدم تطابق كامل. المسافة 0 تتطلب أن يكون التطابق في الموقع المحدد بالضبط. مسافة 1000 ستتطلب تطابقًا مثاليًا ليكون ضمن 800 حرف من الموقع ليتم العثور عليه باستخدام عتبة 0.8.
+يحدد مدى قرب التطابق من الموقع التقريبي (المحدد بواسطة location). أي تطابق تام للأحرف يبعد بمقدار distance من الأحرف عن الموقع التقريبي سيُحتسب على أنه عدم تطابق كامل. تتطلب قيمة distance تساوي 0 أن يكون التطابق في الموقع المحدد بالضبط. أما قيمة distance تساوي 1000 فتتطلب أن يكون التطابق التام ضمن 800 حرف من الموقع ليتم العثور عليه باستخدام threshold بقيمة 0.8.
 
+</Option>
 ##### مثال
 
 ```js
@@ -156,12 +154,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** 0
+<Option type="number" default="0" required="no">
 
-يحدد تقريبًا أين في النص من المتوقع العثور على النمط.
+يحدد تقريبًا المكان في النص الذي يُتوقع أن يوجد فيه النمط.
 
+</Option>
 ##### مثال
 
 ```js
@@ -175,12 +172,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** 0.6
+<Option type="number" default="0.6" required="no">
 
-عند أي نقطة يستسلم خوارزمية المطابقة. العتبة 0 تتطلب تطابقًا مثاليًا (للأحرف والموقع)، والعتبة 1.0 ستطابق أي شيء.
+عند أي نقطة تتوقف خوارزمية المطابقة. تتطلب قيمة threshold تساوي 0 تطابقًا تامًا (لكل من الأحرف والموقع)، بينما تطابق قيمة threshold تساوي 1.0 أي شيء.
 
+</Option>
 ##### مثال
 
 ```js
@@ -194,12 +190,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **النوع:** `boolean`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** false
+<Option type="boolean" default="false" required="no">
 
-ما إذا كان البحث حساسًا لحالة الأحرف.
+ما إذا كان البحث يجب أن يكون حساسًا لحالة الأحرف.
 
+</Option>
 ##### مثال
 
 ```js
@@ -213,12 +208,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** 2
+<Option type="number" default="2" required="no">
 
-سيتم إرجاع التطابقات التي يتجاوز طولها هذه القيمة فقط. (على سبيل المثال، إذا كنت تريد تجاهل تطابقات الحرف الواحد في النتيجة، قم بتعيينها إلى 2)
+سيتم إرجاع التطابقات التي يتجاوز طولها هذه القيمة فقط. (على سبيل المثال، إذا كنت تريد تجاهل التطابقات المكونة من حرف واحد في النتيجة، فاضبطها على 2)
 
+</Option>
 ##### مثال
 
 ```js
@@ -232,12 +226,11 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** false
+<Option type="number" default="false" required="no">
 
-عندما تكون `true`، ستستمر وظيفة المطابقة حتى نهاية نمط البحث حتى إذا تم بالفعل تحديد تطابق مثالي في السلسلة.
+عند ضبطها على `true`، ستستمر دالة المطابقة حتى نهاية نمط البحث حتى لو تم العثور بالفعل على تطابق تام في السلسلة النصية.
 
+</Option>
 ##### مثال
 
 ```js

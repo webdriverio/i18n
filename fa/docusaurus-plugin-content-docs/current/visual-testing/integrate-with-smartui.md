@@ -1,26 +1,27 @@
 ---
 id: integrate-with-smartui
-title: اسمارت یو آی
+title: SmartUI
+description: "افزودن تست رگرسیون بصری مبتنی بر هوش مصنوعی به تست‌های WebdriverIO با SmartUI از TestMu AI (که قبلاً LambdaTest نام داشت)، شامل راه‌اندازی و گزینه‌ها."
 ---
 
-TestMu AI (سابقاً LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) آزمون رگرسیون بصری مبتنی بر هوش مصنوعی را برای تست‌های WebdriverIO شما فراهم می‌کند. این سرویس از صفحات نمایش عکس می‌گیرد، آنها را با خط پایه مقایسه می‌کند و تفاوت‌های بصری را با الگوریتم‌های هوشمند مقایسه‌ای برجسته می‌کند.
+[SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) از TestMu AI (که قبلاً LambdaTest نام داشت) تست رگرسیون بصری مبتنی بر هوش مصنوعی را برای تست‌های WebdriverIO شما فراهم می‌کند. این ابزار اسکرین‌شات‌ها را ثبت می‌کند، آن‌ها را با خطوط پایه (baselines) مقایسه می‌کند و تفاوت‌های بصری را با الگوریتم‌های مقایسه هوشمند برجسته می‌سازد.
 
 ## راه‌اندازی
 
 **ایجاد یک پروژه SmartUI**
 
-[ثبت نام کنید](https://accounts.lambdatest.com/register) در TestMu AI (سابقاً LambdaTest) و به بخش [پروژه‌های SmartUI](https://smartui.lambdatest.com/) بروید تا یک پروژه جدید ایجاد کنید. پلتفرم **Web** را انتخاب کنید و نام پروژه، تأییدکنندگان و برچسب‌های خود را پیکربندی کنید.
+به TestMu AI (که قبلاً LambdaTest نام داشت) [وارد شوید](https://accounts.lambdatest.com/register) و برای ایجاد یک پروژه جدید به [SmartUI Projects](https://smartui.lambdatest.com/) بروید. **Web** را به‌عنوان پلتفرم انتخاب کنید و نام پروژه، تأییدکنندگان و برچسب‌های آن را پیکربندی کنید.
 
-**تنظیم اعتبارنامه‌ها**
+**تنظیم اطلاعات احراز هویت**
 
-`LT_USERNAME` و `LT_ACCESS_KEY` خود را از داشبورد TestMu AI (سابقاً LambdaTest) دریافت کنید و آنها را به عنوان متغیرهای محیطی تنظیم کنید:
+`LT_USERNAME` و `LT_ACCESS_KEY` خود را از داشبورد TestMu AI (که قبلاً LambdaTest نام داشت) دریافت کرده و آن‌ها را به‌عنوان متغیرهای محیطی تنظیم کنید:
 
 ```sh
 export LT_USERNAME="<your username>"
 export LT_ACCESS_KEY="<your access key>"
 ```
 
-**نصب SDK اسمارت یو آی**
+**نصب SmartUI SDK**
 
 ```sh
 npm install @lambdatest/wdio-driver
@@ -52,7 +53,7 @@ exports.config = {
 
 ## استفاده
 
-از `browser.execute('smartui.takeScreenshot')` برای گرفتن تصاویر استفاده کنید:
+برای ثبت اسکرین‌شات‌ها از `browser.execute('smartui.takeScreenshot')` استفاده کنید:
 
 ```javascript
 describe('WebdriverIO SmartUI Test', () => {
@@ -97,7 +98,7 @@ await browser.execute('smartui.takeScreenshot', {
 });
 ```
 
-**انتخاب مناطق خاص**
+**انتخاب نواحی مشخص**
 
 ```javascript
 await browser.execute('smartui.takeScreenshot', {
@@ -113,6 +114,6 @@ await browser.execute('smartui.takeScreenshot', {
 | منبع                                                                                          | توضیحات                              |
 |---------------------------------------------------------------------------------------------------|------------------------------------------|
 | [مستندات رسمی](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | مستندات SmartUI                    |
-| [داشبورد SmartUI](https://smartui.lambdatest.com/)                                              | دسترسی به پروژه‌ها و ساخت‌های SmartUI  |
+| [داشبورد SmartUI](https://smartui.lambdatest.com/)                                              | دسترسی به پروژه‌ها و بیلدهای SmartUI شما  |
 | [تنظیمات پیشرفته](https://www.testmuai.com/support/docs/test-settings-options/)              | پیکربندی حساسیت مقایسه         |
-| [گزینه‌های ساخت](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | پیکربندی پیشرفته ساخت             |
+| [گزینه‌های بیلد](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | پیکربندی پیشرفته بیلد             |

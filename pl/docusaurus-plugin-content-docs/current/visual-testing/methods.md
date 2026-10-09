@@ -1,14 +1,15 @@
 ---
 id: methods
 title: Metody
+description: "Używaj metod save i check usługi wizualnej, aby przechwytywać zrzuty ekranu oraz porównywać ekrany, elementy i pełne strony z obrazami bazowymi."
 ---
 
 Poniższe metody są dodawane do globalnego obiektu WebdriverIO [`browser`](/docs/api/browser).
 
 ## Metody zapisu
 
-:::info PORADA
-Używaj metod zapisu tylko wtedy, gdy **nie** chcesz porównywać ekranów, a jedynie chcesz mieć zrzut elementu/ekranu.
+:::info WSKAZÓWKA
+Używaj metod zapisu tylko wtedy, gdy **nie** chcesz porównywać ekranów, a jedynie chcesz uzyskać zrzut elementu/ekranu.
 :::
 
 ### `saveElement`
@@ -30,9 +31,9 @@ await browser.saveElement(
 );
 ```
 
-#### Wsparcie
+#### Obsługa
 
-- Przeglądarki stacjonarne
+- Przeglądarki desktopowe
 - Przeglądarki mobilne
 - Mobilne aplikacje hybrydowe
 - Mobilne aplikacje natywne
@@ -40,22 +41,22 @@ await browser.saveElement(
 #### Parametry
 
 -   **`element`:**
-    -   **Obowiązkowy:** Tak
-    -   **Typ:** Element WebdriverIO
+    -   **Wymagany:** Tak
+    -   **Typ:** WebdriverIO Element
 -   **`tag`:**
-    -   **Obowiązkowy:** Tak
+    -   **Wymagany:** Tak
     -   **Typ:** string
 -   **`saveElementOptions`:**
-    -   **Obowiązkowy:** Nie
+    -   **Wymagany:** Nie
     -   **Typ:** obiekt opcji, zobacz [Opcje zapisu](./method-options#save-options)
 
-#### Wyjście:
+#### Wynik:
 
-Zobacz stronę [Test Output](./test-output#savescreenelementfullpagescreen).
+Zobacz stronę [Wynik testu](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
-Zapisuje obraz widoku ekranu.
+Zapisuje obraz obszaru widoku (viewport).
 
 #### Użycie
 
@@ -70,24 +71,24 @@ await browser.saveScreen(
 );
 ```
 
-#### Wsparcie
+#### Obsługa
 
-- Przeglądarki stacjonarne
+- Przeglądarki desktopowe
 - Przeglądarki mobilne
 - Mobilne aplikacje hybrydowe
 - Mobilne aplikacje natywne
 
 #### Parametry
 -   **`tag`:**
-    -   **Obowiązkowy:** Tak
+    -   **Wymagany:** Tak
     -   **Typ:** string
 -   **`saveScreenOptions`:**
-    -   **Obowiązkowy:** Nie
+    -   **Wymagany:** Nie
     -   **Typ:** obiekt opcji, zobacz [Opcje zapisu](./method-options#save-options)
 
-#### Wyjście:
+#### Wynik:
 
-Zobacz stronę [Test Output](./test-output#savescreenelementfullpagescreen).
+Zobacz stronę [Wynik testu](./test-output#savescreenelementfullpagescreen).
 
 ### `saveFullPageScreen`
 
@@ -106,26 +107,26 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### Wsparcie
+#### Obsługa
 
-- Przeglądarki stacjonarne
+- Przeglądarki desktopowe
 - Przeglądarki mobilne
 
 #### Parametry
 -   **`tag`:**
-    -   **Obowiązkowy:** Tak
+    -   **Wymagany:** Tak
     -   **Typ:** string
 -   **`saveFullPageScreenOptions`:**
-    -   **Obowiązkowy:** Nie
+    -   **Wymagany:** Nie
     -   **Typ:** obiekt opcji, zobacz [Opcje zapisu](./method-options#save-options)
 
-#### Wyjście:
+#### Wynik:
 
-Zobacz stronę [Test Output](./test-output#savescreenelementfullpagescreen).
+Zobacz stronę [Wynik testu](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Zapisuje obraz całego ekranu z liniami i kropkami dostępnymi za pomocą klawisza Tab.
+Zapisuje obraz całego ekranu z liniami i punktami oznaczającymi elementy dostępne za pomocą klawisza Tab.
 
 #### Użycie
 
@@ -140,26 +141,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### Wsparcie
+#### Obsługa
 
-- Przeglądarki stacjonarne
+- Przeglądarki desktopowe
 
 #### Parametry
 -   **`tag`:**
-    -   **Obowiązkowy:** Tak
+    -   **Wymagany:** Tak
     -   **Typ:** string
 -   **`saveTabbableOptions`:**
-    -   **Obowiązkowy:** Nie
+    -   **Wymagany:** Nie
     -   **Typ:** obiekt opcji, zobacz [Opcje zapisu](./method-options#save-options)
 
-#### Wyjście:
+#### Wynik:
 
-Zobacz stronę [Test Output](./test-output#savescreenelementfullpagescreen).
+Zobacz stronę [Wynik testu](./test-output#savescreenelementfullpagescreen).
 
 ## Metody sprawdzania
 
-:::info PORADA
-Gdy metody `check` są używane po raz pierwszy, zobaczysz poniższe ostrzeżenie w logach. Oznacza to, że nie musisz łączyć metod `save` i `check`, jeśli chcesz utworzyć bazowy obraz.
+:::info WSKAZÓWKA
+Przy pierwszym użyciu metod `check` w logach pojawi się poniższe ostrzeżenie. Oznacza to, że nie musisz łączyć metod `save` i `check`, jeśli chcesz utworzyć obraz bazowy.
 
 ```shell
 #####################################################################################
@@ -192,31 +193,31 @@ await browser.checkElement(
 );
 ```
 
-#### Wsparcie
+#### Obsługa
 
-- Przeglądarki stacjonarne
+- Przeglądarki desktopowe
 - Przeglądarki mobilne
 - Mobilne aplikacje hybrydowe
 - Mobilne aplikacje natywne
 
 #### Parametry
 -   **`element`:**
-    -   **Obowiązkowy:** Tak
-    -   **Typ:** Element WebdriverIO
+    -   **Wymagany:** Tak
+    -   **Typ:** WebdriverIO Element
 -   **`tag`:**
-    -   **Obowiązkowy:** Tak
+    -   **Wymagany:** Tak
     -   **Typ:** string
 -   **`checkElementOptions`:**
-    -   **Obowiązkowy:** Nie
-    -   **Typ:** obiekt opcji, zobacz [Opcje porównywania/sprawdzania](./method-options#compare-check-options)
+    -   **Wymagany:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje porównania/sprawdzania](./method-options#compare-check-options)
 
-#### Wyjście:
+#### Wynik:
 
-Zobacz stronę [Test Output](./test-output#checkscreenelementfullpagescreen).
+Zobacz stronę [Wynik testu](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkScreen`
 
-Porównuje obraz widoku ekranu z obrazem bazowym.
+Porównuje obraz obszaru widoku (viewport) z obrazem bazowym.
 
 #### Użycie
 
@@ -231,24 +232,24 @@ await browser.checkScreen(
 );
 ```
 
-#### Wsparcie
+#### Obsługa
 
-- Przeglądarki stacjonarne
+- Przeglądarki desktopowe
 - Przeglądarki mobilne
 - Mobilne aplikacje hybrydowe
 - Mobilne aplikacje natywne
 
 #### Parametry
 -   **`tag`:**
-    -   **Obowiązkowy:** Tak
+    -   **Wymagany:** Tak
     -   **Typ:** string
 -   **`checkScreenOptions`:**
-    -   **Obowiązkowy:** Nie
-    -   **Typ:** obiekt opcji, zobacz [Opcje porównywania/sprawdzania](./method-options#compare-check-options)
+    -   **Wymagany:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje porównania/sprawdzania](./method-options#compare-check-options)
 
-#### Wyjście:
+#### Wynik:
 
-Zobacz stronę [Test Output](./test-output#checkscreenelementfullpagescreen).
+Zobacz stronę [Wynik testu](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
@@ -267,26 +268,26 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### Wsparcie
+#### Obsługa
 
-- Przeglądarki stacjonarne
+- Przeglądarki desktopowe
 - Przeglądarki mobilne
 
 #### Parametry
 -   **`tag`:**
-    -   **Obowiązkowy:** Tak
+    -   **Wymagany:** Tak
     -   **Typ:** string
 -   **`checkFullPageOptions`:**
-    -   **Obowiązkowy:** Nie
-    -   **Typ:** obiekt opcji, zobacz [Opcje porównywania/sprawdzania](./method-options#compare-check-options)
+    -   **Wymagany:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje porównania/sprawdzania](./method-options#compare-check-options)
 
-#### Wyjście:
+#### Wynik:
 
-Zobacz stronę [Test Output](./test-output#checkscreenelementfullpagescreen).
+Zobacz stronę [Wynik testu](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Porównuje obraz całego ekranu z liniami i kropkami dostępnymi za pomocą klawisza Tab z obrazem bazowym.
+Porównuje obraz całego ekranu z liniami i punktami oznaczającymi elementy dostępne za pomocą klawisza Tab z obrazem bazowym.
 
 #### Użycie
 
@@ -301,18 +302,18 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### Wsparcie
+#### Obsługa
 
-- Przeglądarki stacjonarne
+- Przeglądarki desktopowe
 
 #### Parametry
 -   **`tag`:**
-    -   **Obowiązkowy:** Tak
+    -   **Wymagany:** Tak
     -   **Typ:** string
 -   **`checkTabbableOptions`:**
-    -   **Obowiązkowy:** Nie
-    -   **Typ:** obiekt opcji, zobacz [Opcje porównywania/sprawdzania](./method-options#compare-check-options)
+    -   **Wymagany:** Nie
+    -   **Typ:** obiekt opcji, zobacz [Opcje porównania/sprawdzania](./method-options#compare-check-options)
 
-#### Wyjście:
+#### Wynik:
 
-Zobacz stronę [Test Output](./test-output#checkscreenelementfullpagescreen).
+Zobacz stronę [Wynik testu](./test-output#checkscreenelementfullpagescreen).

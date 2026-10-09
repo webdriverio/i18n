@@ -1,13 +1,14 @@
 ---
 id: svelte
 title: Svelte
+description: "Ρυθμίστε τον browser runner του WebdriverIO για ένα έργο Svelte με το preset svelte και γράψτε δοκιμές components με το Testing Library."
 ---
 
-Το [Svelte](https://svelte.dev/) είναι μια ριζικά νέα προσέγγιση στην κατασκευή διεπαφών χρήστη. Ενώ τα παραδοσιακά frameworks όπως το React και το Vue κάνουν το μεγαλύτερο μέρος της δουλειάς τους στο πρόγραμμα περιήγησης, το Svelte μεταφέρει αυτή τη δουλειά σε ένα βήμα μεταγλώττισης που συμβαίνει όταν δημιουργείτε την εφαρμογή σας. Μπορείτε να δοκιμάσετε τα components του Svelte απευθείας σε ένα πραγματικό πρόγραμμα περιήγησης χρησιμοποιώντας το WebdriverIO και το [browser runner](/docs/runner#browser-runner) του.
+Το [Svelte](https://svelte.dev/) είναι μια ριζικά νέα προσέγγιση στη δημιουργία διεπαφών χρήστη. Ενώ τα παραδοσιακά frameworks όπως το React και το Vue κάνουν το μεγαλύτερο μέρος της δουλειάς τους στον browser, το Svelte μεταφέρει αυτή τη δουλειά σε ένα βήμα μεταγλώττισης που πραγματοποιείται όταν κάνετε build την εφαρμογή σας. Μπορείτε να δοκιμάσετε τα Svelte components απευθείας σε έναν πραγματικό browser χρησιμοποιώντας το WebdriverIO και τον [browser runner](/docs/runner#browser-runner) του.
 
-## Setup
+## Ρύθμιση
 
-Για να ρυθμίσετε το WebdriverIO μέσα στο project του Svelte σας, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στα έγγραφα για component testing. Βεβαιωθείτε ότι έχετε επιλέξει `svelte` ως preset στις επιλογές του runner σας, π.χ.:
+Για να ρυθμίσετε το WebdriverIO στο έργο Svelte σας, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στην τεκμηρίωση για τις δοκιμές components. Βεβαιωθείτε ότι έχετε επιλέξει `svelte` ως preset στις επιλογές του runner, π.χ.:
 
 ```js
 // wdio.conf.js
@@ -22,11 +23,11 @@ export const config = {
 
 :::info
 
-Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως διακομιστή ανάπτυξης, μπορείτε επίσης να επαναχρησιμοποιήσετε τη διαμόρφωσή σας στο `vite.config.ts` μέσα στη διαμόρφωση του WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές runner](/docs/runner#runner-options).
+Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως development server, μπορείτε επίσης απλώς να επαναχρησιμοποιήσετε τη διαμόρφωσή σας από το `vite.config.ts` μέσα στη διαμόρφωση του WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές του runner](/docs/runner#runner-options).
 
 :::
 
-Το preset του Svelte απαιτεί την εγκατάσταση του `@sveltejs/vite-plugin-svelte`. Επίσης, συνιστούμε τη χρήση του [Testing Library](https://testing-library.com/) για την απεικόνιση του component στη σελίδα δοκιμής. Για αυτό θα χρειαστεί να εγκαταστήσετε τις ακόλουθες πρόσθετες εξαρτήσεις:
+Το preset του Svelte απαιτεί να είναι εγκατεστημένο το `@sveltejs/vite-plugin-svelte`. Επίσης, συνιστούμε τη χρήση του [Testing Library](https://testing-library.com/) για την απόδοση (render) του component στη σελίδα δοκιμής. Επομένως, θα χρειαστεί να εγκαταστήσετε τις ακόλουθες πρόσθετες εξαρτήσεις:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
@@ -38,9 +39,9 @@ npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
 npx wdio run ./wdio.conf.js
 ```
 
-## Writing Tests
+## Συγγραφή Δοκιμών
 
-Δεδομένου ότι έχετε το ακόλουθο component Svelte:
+Δεδομένου ότι έχετε το ακόλουθο Svelte component:
 
 ```html title="./components/Component.svelte"
 <script>
@@ -57,7 +58,7 @@ npx wdio run ./wdio.conf.js
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-Στη δοκιμή σας, χρησιμοποιήστε τη μέθοδο `render` από το `@testing-library/svelte` για να επισυνάψετε το component στη σελίδα δοκιμής. Για να αλληλεπιδράσετε με το component, συνιστούμε να χρησιμοποιήσετε εντολές WebdriverIO καθώς συμπεριφέρονται πιο κοντά στις πραγματικές αλληλεπιδράσεις χρηστών, π.χ.:
+Στη δοκιμή σας χρησιμοποιήστε τη μέθοδο `render` από το `@testing-library/svelte` για να προσαρτήσετε το component στη σελίδα δοκιμής. Για να αλληλεπιδράσετε με το component, συνιστούμε τη χρήση εντολών του WebdriverIO, καθώς συμπεριφέρονται πιο κοντά στις πραγματικές αλληλεπιδράσεις του χρήστη, π.χ.:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'
@@ -78,4 +79,4 @@ describe('Svelte Component Testing', () => {
 })
 ```
 
-Μπορείτε να βρείτε ένα πλήρες παράδειγμα μιας σουίτας δοκιμών component WebdriverIO για το Svelte στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite) μας.
+Μπορείτε να βρείτε ένα πλήρες παράδειγμα σουίτας δοκιμών components του WebdriverIO για το Svelte στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite) μας.

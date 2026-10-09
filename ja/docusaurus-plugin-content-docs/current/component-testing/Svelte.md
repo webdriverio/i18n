@@ -1,13 +1,14 @@
 ---
 id: svelte
 title: Svelte
+description: "svelteプリセットを使用してSvelteプロジェクトにWebdriverIOブラウザランナーをセットアップし、Testing Libraryでコンポーネントテストを作成します。"
 ---
 
-[Svelte](https://svelte.dev/)はユーザーインターフェイスを構築するための革新的な新しいアプローチです。ReactやVueのような従来のフレームワークがブラウザ内で大部分の処理を行うのに対し、Svelteはアプリをビルドする際のコンパイルステップにその処理を移行します。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用して、実際のブラウザで直接Svelteコンポーネントをテストできます。
+[Svelte](https://svelte.dev/)は、ユーザーインターフェースを構築するための革新的な新しいアプローチです。ReactやVueのような従来のフレームワークが処理の大部分をブラウザ内で行うのに対し、Svelteはその処理をアプリのビルド時に行われるコンパイルステップに移行します。WebdriverIOとその[ブラウザランナー](/docs/runner#browser-runner)を使用すると、Svelteコンポーネントを実際のブラウザで直接テストできます。
 
 ## セットアップ
 
-SvelteプロジェクトでWebdriverIOをセットアップするには、コンポーネントテストドキュメントの[手順](/docs/component-testing#set-up)に従ってください。ランナーオプション内でプリセットとして`svelte`を選択してください：
+SvelteプロジェクトでWebdriverIOをセットアップするには、コンポーネントテストのドキュメントにある[手順](/docs/component-testing#set-up)に従ってください。ランナーオプションでプリセットとして`svelte`を選択してください。例:
 
 ```js
 // wdio.conf.js
@@ -22,17 +23,17 @@ export const config = {
 
 :::info
 
-すでに[Vite](https://vitejs.dev/)を開発サーバーとして使用している場合は、WebdriverIO設定内で`vite.config.ts`の設定を再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
+すでに開発サーバーとして[Vite](https://vitejs.dev/)を使用している場合は、`vite.config.ts`の設定をWebdriverIOの設定内で再利用することもできます。詳細については、[ランナーオプション](/docs/runner#runner-options)の`viteConfig`を参照してください。
 
 :::
 
-Svelteプリセットには`@sveltejs/vite-plugin-svelte`のインストールが必要です。また、コンポーネントをテストページにレンダリングするために[Testing Library](https://testing-library.com/)の使用をお勧めします。そのため、以下の追加依存関係をインストールする必要があります：
+Svelteプリセットを使用するには、`@sveltejs/vite-plugin-svelte`がインストールされている必要があります。また、コンポーネントをテストページにレンダリングするために[Testing Library](https://testing-library.com/)の使用を推奨します。そのため、以下の追加の依存関係をインストールする必要があります:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/svelte @sveltejs/vite-plugin-svelte
 ```
 
-その後、以下のコマンドでテストを開始できます：
+その後、次のコマンドを実行してテストを開始できます:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -40,7 +41,7 @@ npx wdio run ./wdio.conf.js
 
 ## テストの作成
 
-以下のようなSvelteコンポーネントがあるとします：
+次のようなSvelteコンポーネントがあるとします:
 
 ```html title="./components/Component.svelte"
 <script>
@@ -57,7 +58,7 @@ npx wdio run ./wdio.conf.js
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-テストでは、`@testing-library/svelte`から`render`メソッドを使用して、コンポーネントをテストページに接続します。コンポーネントとのインタラクションには、実際のユーザーインタラクションに近い動作をするWebdriverIOコマンドの使用をお勧めします：
+テストでは、`@testing-library/svelte`の`render`メソッドを使用してコンポーネントをテストページにアタッチします。コンポーネントを操作する際は、実際のユーザー操作により近い動作をするWebdriverIOのコマンドを使用することを推奨します。例:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'
@@ -78,4 +79,4 @@ describe('Svelte Component Testing', () => {
 })
 ```
 
-WebdriverIOコンポーネントテストスイートのSvelteに関する完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite)で確認できます。
+Svelte向けのWebdriverIOコンポーネントテストスイートの完全な例は、[サンプルリポジトリ](https://github.com/webdriverio/component-testing-examples/tree/main/svelte-typescript-vite)で確認できます。

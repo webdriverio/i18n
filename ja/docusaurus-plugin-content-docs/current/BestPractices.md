@@ -1,24 +1,25 @@
 ---
 id: bestpractices
 title: ベストプラクティス
+description: "安定したセレクターの使用、要素クエリの削減、組み込みアサーションの活用、手動のpauseの排除により、WebdriverIOで高速かつ堅牢なテストを作成しましょう。"
 ---
 
 # ベストプラクティス
 
-このガイドでは、パフォーマンスが高く堅牢なテストを記述するのに役立つベストプラクティスを共有することを目的としています。
+このガイドは、パフォーマンスが高く堅牢なテストを書くのに役立つベストプラクティスを共有することを目的としています。
 
 ## 堅牢なセレクターを使用する
 
-DOMの変更に対して堅牢なセレクターを使用することで、例えば要素からクラスが削除された場合でも、テストの失敗が少なくなるか、まったく失敗しなくなります。
+DOMの変更に強いセレクターを使用することで、例えば要素からクラスが削除された場合でも、失敗するテストが少なくなる、あるいはまったくなくなります。
 
-クラスは複数の要素に適用できるため、そのクラスを持つすべての要素を意図的に取得したい場合を除き、可能であれば避けるべきです。
+クラスは複数の要素に適用される可能性があるため、そのクラスを持つすべての要素を意図的に取得したい場合を除き、可能な限り避けるべきです。
 
 ```js
 // 👎
 await $('.button')
 ```
 
-これらのセレクターはすべて単一の要素を返すべきです。
+以下のセレクターはすべて単一の要素を返すはずです。
 
 ```js
 // 👍
@@ -27,11 +28,11 @@ await $('[test-id="submit-button"]')
 await $('#submit-button')
 ```
 
-__注意:__ WebdriverIOがサポートするすべての可能なセレクターについては、[セレクター](./Selectors.md)ページをご覧ください。
+__注意:__ WebdriverIOがサポートするすべてのセレクターについては、[セレクター](./Selectors.md)ページを確認してください。
 
 ## 要素クエリの数を制限する
 
-[`$`](https://webdriver.io/docs/api/browser/$)または[`$$`](https://webdriver.io/docs/api/browser/$$)コマンドを使用するたび（これらを連鎖させる場合も含む）、WebdriverIOはDOM内の要素を特定しようとします。これらのクエリはコストがかかるため、できるだけ制限するようにしましょう。
+[`$`](https://webdriver.io/docs/api/browser/$)または[`$$`](https://webdriver.io/docs/api/browser/$$)コマンドを使用するたびに（チェーンする場合も含む）、WebdriverIOはDOM内の要素を探そうとします。これらのクエリはコストが高いため、できる限り制限するようにしてください。
 
 3つの要素をクエリします。
 
@@ -40,24 +41,24 @@ __注意:__ WebdriverIOがサポートするすべての可能なセレクター
 await $('table').$('tr').$('td')
 ```
 
-1つの要素だけをクエリします。
+1つの要素のみをクエリします。
 
 ``` js
 // 👍
 await $('table tr td')
 ```
 
-連鎖を使用すべき唯一のケースは、異なる[セレクター戦略](https://webdriver.io/docs/selectors/#custom-selector-strategies)を組み合わせたい場合です。
-この例では、要素のシャドウDOMの中に入るための戦略である[Deep Selectors](https://webdriver.io/docs/selectors#deep-selectors)を使用しています。
+チェーンを使用すべきなのは、異なる[セレクター戦略](https://webdriver.io/docs/selectors/#custom-selector-strategies)を組み合わせたい場合のみです。
+この例では、要素のShadow DOM内部に入るための戦略である[ディープセレクター](https://webdriver.io/docs/selectors#deep-selectors)を使用しています。
 
 ``` js
 // 👍
 await $('custom-datepicker').$('#calendar').$('aria/Select')
 ```
 
-### リストから一つを取るよりも、単一の要素を特定する方法を優先する
+### リストから1つを取り出すのではなく、単一の要素を特定することを優先する
 
-これが常に可能というわけではありませんが、[:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)のようなCSSの疑似クラスを使用することで、親要素の子リスト内のインデックスに基づいて要素を一致させることができます。
+これが常に可能とは限りませんが、[:nth-child](https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child)のようなCSS疑似クラスを使用すると、親の子リスト内での要素のインデックスに基づいて要素をマッチさせることができます。
 
 すべてのテーブル行をクエリします。
 
@@ -73,36 +74,36 @@ await $$('table tr')[15]
 await $('table tr:nth-child(15)')
 ```
 
-## 組み込みのアサーションを使用する
+## 組み込みアサーションを使用する
 
-結果が一致するのを自動的に待機しない手動アサーションを使用しないでください。これは不安定なテストの原因となります。
+結果が一致するまで自動的に待機しない手動のアサーションは、不安定なテスト（flaky test）の原因となるため使用しないでください。
 
 ```js
 // 👎
 expect(await button.isDisplayed()).toBe(true)
 ```
 
-WebdriverIOの組み込みアサーションを使用することで、実際の結果が期待される結果と一致するまで自動的に待機し、堅牢なテストを実現できます。
-これは、アサーションが合格するかタイムアウトするまで自動的に再試行することで実現されます。
+組み込みアサーションを使用することで、WebdriverIOは実際の結果が期待される結果と一致するまで自動的に待機し、堅牢なテストを実現します。
+これは、アサーションが成功するかタイムアウトするまで自動的にリトライすることで実現されています。
 
 ```js
 // 👍
 await expect(button).toBeDisplayed()
 ```
 
-## 遅延ロードとプロミスチェーン
+## 遅延読み込みとPromiseチェーン
 
-WebdriverIOは、クリーンなコードを書く際にいくつかの工夫をしています。要素を遅延ロードし、プロミスをチェーンすることで`await`の数を減らすことができます。これにより、要素をElementではなくChainablePromiseElementとして渡すことができ、ページオブジェクトとの使用も容易になります。
+WebdriverIOには、クリーンなコードを書くための工夫があります。要素を遅延読み込みできるため、Promiseをチェーンでき、`await`の数を減らすことができます。また、要素をElementではなくChainablePromiseElementとして渡すことができ、ページオブジェクトでの使用も容易になります。
 
-では、いつ`await`を使うべきでしょうか？
-`$`と`$$`コマンドを除いて、常に`await`を使用するべきです。
+では、いつ`await`を使う必要があるのでしょうか？
+`$`と`$$`コマンドを除き、常に`await`を使用すべきです。
 
 ```js
 // 👎
 const div = await $('div')
 const button = await div.$('button')
 await button.click()
-// または
+// or
 await (await (await $('div')).$('button')).click()
 ```
 
@@ -110,13 +111,13 @@ await (await (await $('div')).$('button')).click()
 // 👍
 const button = $('div').$('button')
 await button.click()
-// または
+// or
 await $('div').$('button').click()
 ```
 
-## コマンドとアサーションを過剰に使用しない
+## コマンドやアサーションを過剰に使用しない
 
-expect.toBeDisplayedを使用すると、暗黙的に要素が存在するのを待機します。同じことを行うアサーションがすでにある場合、waitForXXXコマンドを使用する必要はありません。
+expect.toBeDisplayedを使用すると、暗黙的に要素の存在も待機します。同じことを行うアサーションがすでにある場合、waitForXXXコマンドを使用する必要はありません。
 
 ```js
 // 👎
@@ -131,7 +132,7 @@ await expect(button).toBeDisplayed()
 await expect(button).toBeDisplayed()
 ```
 
-要素が明示的に非表示（例えばopacity: 0）または明示的に無効（例えばdisabled属性）になる可能性がある場合を除き、要素とのやり取りやテキストなどのアサーションの際に、要素が存在するか表示されるのを待つ必要はありません。そのような場合、要素が表示されるのを待つことは理にかなっています。
+要素を操作する場合や、テキストなどをアサートする場合に、要素の存在や表示を待つ必要はありません。ただし、要素が明示的に非表示になり得る場合（例えばopacity: 0）や、明示的に無効化され得る場合（例えばdisabled属性）は例外で、その場合は要素が表示されるまで待機することが理にかなっています。
 
 ```js
 // 👎
@@ -155,22 +156,22 @@ await button.click()
 await expect(button).toHaveText('Submit')
 ```
 
-## 動的テスト
+## 動的なテスト
 
-秘密の認証情報などの動的なテストデータを環境変数に保存し、テストにハードコードしないようにしましょう。このトピックについての詳細は、[テストのパラメータ化](parameterize-tests)ページをご覧ください。
+秘密の認証情報などの動的なテストデータは、テストにハードコードするのではなく、環境変数を使用して環境内に保存してください。このトピックの詳細については、[テストのパラメータ化](parameterize-tests)ページを参照してください。
 
-## コードをリントする
+## コードをLintする
 
-eslintを使用してコードをリントすることで、潜在的なエラーを早期に発見できます。ベストプラクティスが常に適用されるようにするために、[リンティングルール](https://www.npmjs.com/package/eslint-plugin-wdio)を使用してください。
+eslintを使用してコードをLintすることで、エラーを早期に発見できる可能性があります。私たちの[Lintルール](https://www.npmjs.com/package/eslint-plugin-wdio)を使用して、いくつかのベストプラクティスが常に適用されるようにしましょう。
 
-## 一時停止しない
+## pauseを使わない
 
-pauseコマンドを使用したくなる場合がありますが、これは堅牢ではなく、長期的には不安定なテストの原因となるため悪い考えです。
+pauseコマンドを使いたくなるかもしれませんが、これは堅牢ではなく、長期的には不安定なテストを引き起こすだけなので、使用するのは良くない考えです。
 
 ```js
 // 👎
 await nameInput.setValue('Bob')
-await browser.pause(200) // 送信ボタンが有効になるのを待つ
+await browser.pause(200) // wait for submit button to enable
 await submitFormButton.click()
 
 // 👍
@@ -181,14 +182,14 @@ await submitFormButton.click()
 
 ## 非同期ループ
 
-繰り返したい非同期コードがある場合、すべてのループがこれを行えるわけではないことを知っておくことが重要です。
-例えば、配列のforEachメソッドは非同期コールバックをサポートしていません。これについては[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)で詳しく読むことができます。
+繰り返し実行したい非同期コードがある場合、すべてのループがこれに対応しているわけではないことを知っておくことが重要です。
+例えば、[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)に記載されているように、ArrayのforEach関数は非同期コールバックに対応していません。
 
-__注意:__ この例`console.log(await $$('h1').map((h1) => h1.getText()))`で示されているように、操作が非同期である必要がない場合は、これらを使用することができます。
+__注意:__ この例`console.log(await $$('h1').map((h1) => h1.getText()))`のように、操作を非同期にする必要がない場合は、これらを引き続き使用できます。
 
-以下に、これが何を意味するかの例をいくつか示します。
+以下は、これが何を意味するかの例です。
 
-非同期コールバックがサポートされていないため、次のコードは動作しません。
+以下は、非同期コールバックがサポートされていないため動作しません。
 
 ```js
 // 👎
@@ -198,7 +199,7 @@ characters.forEach(async (character) => {
 })
 ```
 
-次のコードは動作します。
+以下は動作します。
 
 ```js
 // 👍
@@ -210,10 +211,10 @@ for (const character of characters) {
 
 ## シンプルに保つ
 
-時々、テキストや値などのデータをマッピングするユーザーを見かけます。これは多くの場合不要であり、コードの臭いの原因となることがあります。以下の例でなぜそうなのかを確認してください。
+ユーザーがテキストや値などのデータをmapしているのを見かけることがあります。これは多くの場合不要であり、コードの臭い（code smell）であることが多いです。その理由については以下の例を確認してください。
 
 ```js
-// 👎 複雑すぎる、同期的なアサーション、不安定なテストを防ぐために組み込みのアサーションを使用
+// 👎 複雑すぎる、同期的なアサーション。不安定なテストを防ぐために組み込みアサーションを使用する
 const headerText = ['Products', 'Prices']
 const texts = await $$('th').map(e => e.getText());
 expect(texts).toBe(headerText)
@@ -232,13 +233,13 @@ await expect($('th=Prices')).toExist();
 ```
 
 ```js
-// 👍 一意の識別子を使用（カスタム要素でよく使用される）
+// 👍 一意の識別子を使用する（カスタム要素でよく使われる）
 await expect($('[data-testid="Products"]')).toHaveText('Products');
-// 👍 アクセシビリティ名（ネイティブのHTML要素でよく使用される）
+// 👍 アクセシビリティ名（ネイティブHTML要素でよく使われる）
 await expect($('aria/Product Prices')).toHaveText('Prices');
 ```
 
-また、単純なことに過度に複雑な解決策を持つことがあります。
+もう1つよく見かけるのは、単純なことに過度に複雑な解決策が使われていることです。
 
 ```js
 // 👎
@@ -284,11 +285,11 @@ class BetterExample {
 }
 ```
 
-## 並列にコードを実行する
+## コードを並列実行する
 
-一部のコードが実行される順序を気にしない場合は、[`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)を利用して実行速度を上げることができます。
+一部のコードの実行順序を気にしない場合は、[`Promise.all`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all)を活用して実行を高速化できます。
 
-__注意:__ これによりコードが読みづらくなるため、ページオブジェクトや関数を使って抽象化することができますが、パフォーマンスの利点が可読性のコストに見合うかどうかも検討すべきです。
+__注意:__ これによりコードが読みにくくなるため、ページオブジェクトや関数を使って抽象化することもできます。ただし、パフォーマンス上の利点が可読性の犠牲に見合うかどうかも検討すべきです。
 
 ```js
 // 👎
@@ -308,7 +309,7 @@ await submitFormButton.waitForEnabled()
 await submitFormButton.click()
 ```
 
-抽象化すると、以下のようになります。ロジックはsubmitWithDataOfというメソッドに配置され、データはPersonクラスから取得されます。
+抽象化すると、以下のようになります。ロジックはsubmitWithDataOfというメソッドに配置され、データはPersonクラスによって取得されます。
 
 ```js
 // 👍

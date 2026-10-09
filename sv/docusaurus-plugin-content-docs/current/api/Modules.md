@@ -3,7 +3,7 @@ id: modules
 title: Moduler
 ---
 
-WebdriverIO publicerar olika moduler till NPM och andra register som du kan använda för att bygga ditt eget automatiseringsramverk. Se mer dokumentation om WebdriverIO:s installationstyper [här](/docs/setuptypes).
+WebdriverIO publicerar olika moduler till NPM och andra register som du kan använda för att bygga ditt eget automationsramverk. Se mer dokumentation om WebdriverIO-installationstyper [här](/docs/setuptypes).
 
 ## `webdriver` och `devtools`
 
@@ -11,18 +11,18 @@ Protokollpaketen ([`webdriver`](https://www.npmjs.com/package/webdriver) och [`d
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Startar en ny session med specifika funktioner. Baserat på sessionssvaret kommer kommandon från olika protokoll att tillhandahållas.
+Startar en ny session med specifika capabilities. Baserat på sessionssvaret tillhandahålls kommandon från olika protokoll.
 
 ##### Parametrar
 
-- `options`: [WebDriver Options](/docs/configuration#webdriver-options)
-- `modifier`: funktion som tillåter modifiering av klientinstansen innan den returneras
-- `userPrototype`: egenskapsobjekt som låter dig utöka instansprototypen
-- `customCommandWrapper`: funktion som gör det möjligt att paketera funktionalitet runt funktionsanrop
+- `options`: [WebDriver-alternativ](/docs/configuration#webdriver-options)
+- `modifier`: funktion som gör det möjligt att modifiera klientinstansen innan den returneras
+- `userPrototype`: egenskapsobjekt som gör det möjligt att utöka instansens prototyp
+- `customCommandWrapper`: funktion som gör det möjligt att omsluta funktionsanrop med extra funktionalitet
 
 ##### Returnerar
 
-- [Browser](/docs/api/browser) objekt
+- [Browser](/docs/api/browser)-objekt
 
 ##### Exempel
 
@@ -34,18 +34,18 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-Ansluter till en pågående WebDriver eller DevTools-session.
+Ansluter till en pågående WebDriver- eller DevTools-session.
 
 ##### Parametrar
 
-- `attachInstance`: instans att ansluta en session till eller åtminstone ett objekt med en egenskap `sessionId` (t.ex. `{ sessionId: 'xxx' }`)
-- `modifier`: funktion som tillåter modifiering av klientinstansen innan den returneras
-- `userPrototype`: egenskapsobjekt som låter dig utöka instansprototypen
-- `customCommandWrapper`: funktion som gör det möjligt att paketera funktionalitet runt funktionsanrop
+- `attachInstance`: instans att ansluta en session till, eller åtminstone ett objekt med egenskapen `sessionId` (t.ex. `{ sessionId: 'xxx' }`)
+- `modifier`: funktion som gör det möjligt att modifiera klientinstansen innan den returneras
+- `userPrototype`: egenskapsobjekt som gör det möjligt att utöka instansens prototyp
+- `customCommandWrapper`: funktion som gör det möjligt att omsluta funktionsanrop med extra funktionalitet
 
 ##### Returnerar
 
-- [Browser](/docs/api/browser) objekt
+- [Browser](/docs/api/browser)-objekt
 
 ##### Exempel
 
@@ -56,11 +56,11 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-Laddar om en session för en given instans.
+Laddar om en session utifrån den angivna instansen.
 
 ##### Parametrar
 
-- `instance`: paketinstans att ladda om
+- `instance`: paketinstans som ska laddas om
 
 ##### Exempel
 
@@ -71,20 +71,20 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-På samma sätt som protokollpaketen (`webdriver` och `devtools`) kan du även använda WebdriverIO-paketets API:er för att hantera sessioner. API:erna kan importeras med `import { remote, attach, multiremote } from 'webdriverio'` och innehåller följande funktionalitet:
+På liknande sätt som med protokollpaketen (`webdriver` och `devtools`) kan du också använda WebdriverIO-paketets API:er för att hantera sessioner. API:erna kan importeras med `import { remote, attach, multiRemote } from 'webdriverio` och innehåller följande funktionalitet:
 
 #### `remote(options, modifier)`
 
-Startar en WebdriverIO-session. Instansen innehåller alla kommandon som protokollpaketet men med ytterligare funktioner av högre ordning, se [API-docs](/docs/api).
+Startar en WebdriverIO-session. Instansen innehåller alla kommandon som protokollpaketet, men med ytterligare högre ordningens funktioner, se [API-dokumentationen](/docs/api).
 
 ##### Parametrar
 
-- `options`: [WebdriverIO Options](/docs/configuration#webdriverio)
-- `modifier`: funktion som tillåter modifiering av klientinstansen innan den returneras
+- `options`: [WebdriverIO-alternativ](/docs/configuration#webdriverio)
+- `modifier`: funktion som gör det möjligt att modifiera klientinstansen innan den returneras
 
 ##### Returnerar
 
-- [Browser](/docs/api/browser) objekt
+- [Browser](/docs/api/browser)-objekt
 
 ##### Exempel
 
@@ -102,11 +102,11 @@ Ansluter till en pågående WebdriverIO-session.
 
 ##### Parametrar
 
-- `attachOptions`: instans att ansluta en session till eller åtminstone ett objekt med en egenskap `sessionId` (t.ex. `{ sessionId: 'xxx' }`)
+- `attachOptions`: instans att ansluta en session till, eller åtminstone ett objekt med egenskapen `sessionId` (t.ex. `{ sessionId: 'xxx' }`)
 
 ##### Returnerar
 
-- [Browser](/docs/api/browser) objekt
+- [Browser](/docs/api/browser)-objekt
 
 ##### Exempel
 
@@ -117,24 +117,24 @@ const browser = await remote({...})
 const newBrowser = await attach(browser)
 ```
 
-#### `multiremote(multiremoteOptions)`
+#### `multiRemote(multiRemoteOptions)`
 
-Initierar en multiremote-instans som låter dig kontrollera flera sessioner inom en enda instans. Kolla in våra [multiremote exempel](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) för konkreta användningsfall.
+Initierar en multi-remote-instans som låter dig styra flera sessioner inom en enda instans. Kolla in våra [multi-remote-exempel](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) för konkreta användningsfall.
 
 ##### Parametrar
 
-- `multiremoteOptions`: ett objekt med nycklar som representerar webbläsarnamnet och deras [WebdriverIO Options](/docs/configuration#webdriverio).
+- `multiRemoteOptions`: ett objekt med nycklar som representerar webbläsarnamnet och deras [WebdriverIO-alternativ](/docs/configuration#webdriverio).
 
 ##### Returnerar
 
-- [Browser](/docs/api/browser) objekt
+- [Browser](/docs/api/browser)-objekt
 
 ##### Exempel
 
 ```js
-import { multiremote } from 'webdriverio'
+import { multiRemote } from 'webdriverio'
 
-const matrix = await multiremote({
+const matrix = await multiRemote({
     myChromeBrowser: {
         capabilities: { browserName: 'chrome' }
     },
@@ -146,12 +146,108 @@ await matrix.url('http://json.org')
 await matrix.getInstance('browserA').url('https://google.com')
 
 console.log(await matrix.getTitle())
-// returns ['Google', 'JSON']
+// returnerar ['Google', 'JSON']
 ```
+
+#### `Key`
+
+Ett objekt som innehåller konstanter för specialtecken att använda med kommandot [`browser.keys`](/docs/api/browser/keys). Dessa konstanter representerar specialtangenter som kan skickas till webbläsaren, såsom `Enter`, `Tab`, `Escape`, piltangenter, funktionstangenter med mera.
+
+##### Exempel
+
+```js
+import { Key } from 'webdriverio'
+
+// Tryck på Enter-tangenten
+await browser.keys(Key.Enter)
+
+// Använd Ctrl+A för att markera allt (fungerar plattformsoberoende)
+await browser.keys([Key.Ctrl, 'a'])
+
+// Navigera med piltangenter
+await browser.keys([Key.ArrowDown, Key.ArrowDown, Key.Enter])
+```
+
+##### Tillgängliga tangenter
+
+Följande specialtangenter är tillgängliga via `Key`-objektet:
+
+**Modifieringstangenter:**
+
+| Konstant | Beskrivning |
+|----------|-------------|
+| `Key.Ctrl` | Plattformsoberoende kontrolltangent (Command på Mac, Control på Windows/Linux) |
+| `Key.Control` | Control-tangent |
+| `Key.Shift` | Shift-tangent |
+| `Key.Alt` | Alt-tangent |
+| `Key.Command` | Command-tangent (Mac) |
+| `Key.NULL` | Null-/släpptangent — släpper alla modifieringstangenter som för närvarande hålls nere |
+
+**Navigeringstangenter:**
+
+| Konstant | Beskrivning |
+|----------|-------------|
+| `Key.Cancel` | Cancel-tangent |
+| `Key.Help` | Help-tangent |
+| `Key.Backspace` | Backsteg-tangent |
+| `Key.Tab` | Tab-tangent |
+| `Key.Clear` | Clear-tangent |
+| `Key.Return` | Return-tangent |
+| `Key.Enter` | Enter-tangent |
+| `Key.Pause` | Pause-tangent |
+| `Key.Escape` | Escape-tangent |
+| `Key.Space` | Mellanslagstangent |
+| `Key.PageUp` | Page Up-tangent |
+| `Key.PageDown` | Page Down-tangent |
+| `Key.End` | End-tangent |
+| `Key.Home` | Home-tangent |
+| `Key.ArrowLeft` | Vänsterpil |
+| `Key.ArrowUp` | Uppåtpil |
+| `Key.ArrowRight` | Högerpil |
+| `Key.ArrowDown` | Nedåtpil |
+| `Key.Insert` | Insert-tangent |
+| `Key.Delete` | Delete-tangent |
+
+**Teckentangenter:**
+
+| Konstant | Beskrivning |
+|----------|-------------|
+| `Key.Semicolon` | Semikolontangent |
+| `Key.Equals` | Likhetstecken-tangent |
+
+**Numeriska tangenter:**
+
+| Konstant | Beskrivning |
+|----------|-------------|
+| `Key.Numpad0` - `Key.Numpad9` | Numeriskt tangentbord 0-9 |
+| `Key.Multiply` | Numeriskt tangentbord multiplikation |
+| `Key.Add` | Numeriskt tangentbord addition |
+| `Key.Separator` | Numeriskt tangentbord avgränsare |
+| `Key.Subtract` | Numeriskt tangentbord subtraktion |
+| `Key.Decimal` | Numeriskt tangentbord decimal |
+| `Key.Divide` | Numeriskt tangentbord division |
+
+**Funktionstangenter:**
+
+| Konstant | Beskrivning |
+|----------|-------------|
+| `Key.F1` - `Key.F12` | Funktionstangenterna F1 till F12 |
+
+**Övriga tangenter:**
+
+| Konstant | Beskrivning |
+|----------|-------------|
+| `Key.ZenkakuHankaku` | Zenkaku/Hankaku-tangent (japanska) |
+
+:::info Plattformsoberoende modifieringstangenter
+
+Konstanten `Key.Ctrl` erbjuder ett smidigt sätt att använda "control"-modifieraren på olika operativsystem. På macOS mappas den till `Command`-tangenten, medan den på Windows och Linux mappas till `Control`-tangenten. Detta är användbart när du skriver tester som behöver fungera på flera plattformar, t.ex. för att markera allt (`Ctrl+A`), kopiera (`Ctrl+C`) eller klistra in (`Ctrl+V`).
+
+:::
 
 ## `@wdio/cli`
 
-Istället för att anropa kommandot `wdio` kan du också inkludera testkörarmodulen och köra den i en godtycklig miljö. För detta behöver du importera `@wdio/cli`-paketet som en modul, så här:
+Istället för att anropa kommandot `wdio` kan du också inkludera testkörningen som en modul och köra den i en godtycklig miljö. För att göra det behöver du importera paketet `@wdio/cli` som en modul, så här:
 
 <Tabs
   defaultValue="esm"
@@ -176,11 +272,11 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-Därefter skapar du en instans av startaren och kör testet.
+Skapa därefter en instans av launchern och kör testet.
 
 #### `Launcher(configPath, opts)`
 
-Konstruktören för `Launcher`-klassen förväntar sig URL:en till konfigurationsfilen och ett `opts`-objekt med inställningar som kommer att skriva över dem i konfigurationen.
+Konstruktorn för klassen `Launcher` förväntar sig URL:en till konfigurationsfilen och ett `opts`-objekt med inställningar som skriver över de i konfigurationen.
 
 ##### Parametrar
 
@@ -203,11 +299,11 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-Kommandot `run` returnerar ett [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Det löses om testerna kördes framgångsrikt eller misslyckades, och det avvisas om startaren inte kunde starta testen.
+Kommandot `run` returnerar ett [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Det uppfylls (resolved) om testerna kördes, oavsett om de lyckades eller misslyckades, och det avvisas (rejected) om launchern inte kunde starta testerna.
 
 ## `@wdio/browser-runner`
 
-När du kör enhets- eller komponenttester med WebdriverIO:s [webbläsarkörare](/docs/runner#browser-runner) kan du importera mockinverktyg för dina tester, t.ex.:
+När du kör enhets- eller komponenttester med WebdriverIO:s [browser runner](/docs/runner#browser-runner) kan du importera mockningsverktyg för dina tester, t.ex.:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
@@ -217,20 +313,20 @@ Följande namngivna exporter är tillgängliga:
 
 #### `fn`
 
-Mockfunktion, se mer i de officiella [Vitest-dokumenten](https://vitest.dev/api/mock.html#mock-functions).
+Mock-funktion, läs mer i den officiella [Vitest-dokumentationen](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `spyOn`
 
-Spionerfunktion, se mer i de officiella [Vitest-dokumenten](https://vitest.dev/api/mock.html#mock-functions).
+Spionfunktion, läs mer i den officiella [Vitest-dokumentationen](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
-Metod för att mocka fil eller beroendemodulmodul.
+Metod för att mocka en fil eller en beroendemodul.
 
 ##### Parametrar
 
 - `moduleName`: antingen en relativ sökväg till filen som ska mockas eller ett modulnamn.
-- `factory`: funktion för att returnera det mockade värdet (valfritt)
+- `factory`: funktion som returnerar det mockade värdet (valfri)
 
 ##### Exempel
 
@@ -250,11 +346,11 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-Avmocka beroende som definieras inom den manuella mock-katalogen (`__mocks__`).
+Tar bort mockningen av ett beroende som är definierat i katalogen för manuella mockar (`__mocks__`).
 
 ##### Parametrar
 
-- `moduleName`: namnet på modulen som ska avmockas.
+- `moduleName`: namnet på modulen vars mockning ska tas bort.
 
 ##### Exempel
 

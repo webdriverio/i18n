@@ -1,15 +1,16 @@
 ---
 id: visual-reporter
 title: ビジュアルレポーター
+description: "@wdio/visual-serviceのJSON出力からビジュアルレポーターを生成・閲覧し、ローカルまたはCIでビジュアルテストの差分を確認します。"
 ---
 
-ビジュアルレポーターは、`@wdio/visual-service`のバージョン[v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0)から導入された新機能です。このレポーターを使用すると、ビジュアルテスティングサービスによって生成されたJSON差分レポートを視覚化し、人間が読みやすい形式に変換できます。これにより、チームはビジュアルテスト結果の出力を確認するためのグラフィカルインターフェースを提供することで、結果をより適切に分析および管理できるようになります。
+ビジュアルレポーターは、`@wdio/visual-service`のバージョン[v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0)から導入された新機能です。このレポーターを使用すると、Visual Testingサービスによって生成されたJSON差分レポートを可視化し、人間が読みやすい形式に変換することができます。出力を確認するためのグラフィカルインターフェースを提供することで、チームがビジュアルテストの結果をより適切に分析・管理できるようになります。
 
-この機能を利用するには、必要な`output.json`ファイルを生成するための設定が必要です。このドキュメントでは、ビジュアルレポーターの設定、実行、理解方法について説明します。
+この機能を利用するには、必要な`output.json`ファイルを生成するための設定がされていることを確認してください。このドキュメントでは、ビジュアルレポーターのセットアップ、実行、および理解の方法について説明します。
 
 # 前提条件
 
-ビジュアルレポーターを使用する前に、JSONレポートファイルを生成するようにビジュアルテスティングサービスを設定していることを確認してください：
+ビジュアルレポーターを使用する前に、JSONレポートファイルを生成するようにVisual Testingサービスを設定していることを確認してください：
 
 ```ts
 export const config = {
@@ -18,18 +19,18 @@ export const config = {
         [
             "visual",
             {
-                createJsonReportFiles: true, // output.jsonファイルを生成します
+                createJsonReportFiles: true, // Generates the output.json file
             },
         ],
     ],
 };
 ```
 
-より詳細な設定手順については、WebdriverIOの[ビジュアルテスティングドキュメント](./)または[`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)を参照してください。
+より詳細なセットアップ手順については、WebdriverIOの[ビジュアルテストのドキュメント](./)または[`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)を参照してください。
 
 # インストール
 
-ビジュアルレポーターをインストールするには、npmを使用してプロジェクトに開発依存関係として追加します：
+ビジュアルレポーターをインストールするには、npmを使用してプロジェクトの開発依存関係として追加します：
 
 ```bash
 npm install @wdio/visual-reporter --save-dev
@@ -39,26 +40,26 @@ npm install @wdio/visual-reporter --save-dev
 
 # 使用方法
 
-## ビジュアルレポートの作成
+## ビジュアルレポートのビルド
 
-ビジュアルテストを実行して`output.json`ファイルが生成されたら、CLIまたはインタラクティブプロンプトを使用してビジュアルレポートを作成できます。
+ビジュアルテストを実行して`output.json`ファイルが生成されたら、CLIまたは対話型プロンプトのいずれかを使用してビジュアルレポートをビルドできます。
 
-### CLIの使用法
+### CLIの使用
 
-次のCLIコマンドを実行してレポートを生成できます：
+次のコマンドを実行して、CLIでレポートを生成できます：
 
 ```bash
-npx wdio-visual-reporter --jsonOutput=<output.jsonへのパス> --reportFolder=<レポート保存先パス> --logLevel=debug
+npx wdio-visual-reporter --jsonOutput=<path-to-output.json> --reportFolder=<path-to-store-report> --logLevel=debug
 ```
 
 #### 必須オプション：
 
-- `--jsonOutput`：ビジュアルテスティングサービスによって生成された`output.json`ファイルへの相対パス。このパスはコマンドを実行するディレクトリからの相対パスです。
-- `--reportFolder`：生成されたレポートが保存される相対ディレクトリ。このパスもコマンドを実行するディレクトリからの相対パスです。
+-   `--jsonOutput`：Visual Testingサービスによって生成された`output.json`ファイルへの相対パス。このパスは、コマンドを実行するディレクトリからの相対パスです。
+-   `--reportFolder`：生成されたレポートが保存される相対ディレクトリ。このパスも、コマンドを実行するディレクトリからの相対パスです。
 
-#### オプショナルオプション：
+#### オプションのオプション：
 
-- `--logLevel`：トラブルシューティングに役立つ詳細なログを取得するには、`debug`に設定します。
+-   `--logLevel`：`debug`に設定すると詳細なログが出力され、特にトラブルシューティングに役立ちます。
 
 #### 例
 
@@ -66,7 +67,7 @@ npx wdio-visual-reporter --jsonOutput=<output.jsonへのパス> --reportFolder=<
 npx wdio-visual-reporter --jsonOutput=/path/to/output.json --reportFolder=/path/to/report --logLevel=debug
 ```
 
-これにより、指定したフォルダにレポートが生成され、コンソールにフィードバックが表示されます。例えば：
+これにより、指定されたフォルダにレポートが生成され、コンソールにフィードバックが表示されます。例えば：
 
 ```bash
 ✔ Build output copied successfully to "/path/to/report".
@@ -77,16 +78,16 @@ npx wdio-visual-reporter --jsonOutput=/path/to/output.json --reportFolder=/path/
 #### レポートの表示
 
 :::warning
-`path/to/report/index.html`をローカルサーバーから提供**せずに**ブラウザで直接開くと、**動作しません**。
+**ローカルサーバーから配信せずに**`path/to/report/index.html`をブラウザで直接開いても、**動作しません**。
 :::
 
-レポートを表示するには、[sirv-cli](https://www.npmjs.com/package/sirv-cli)のような簡単なサーバーを使用する必要があります。以下のコマンドでサーバーを起動できます：
+レポートを表示するには、[sirv-cli](https://www.npmjs.com/package/sirv-cli)のようなシンプルなサーバーを使用する必要があります。次のコマンドでサーバーを起動できます：
 
 ```bash
 npx sirv-cli /path/to/report --single
 ```
 
-これにより、以下のような例のログが表示されます。ポート番号は異なる場合があります：
+これにより、以下の例のようなログが出力されます。ポート番号は異なる場合があります：
 
 ```logs
   Your application is ready~! 🚀
@@ -97,35 +98,35 @@ npx sirv-cli /path/to/report --single
 ────────────────── LOGS ──────────────────
 ```
 
-これで、提供されたURLをブラウザで開いてレポートを表示できます。
+表示されたURLをブラウザで開くと、レポートを確認できます。
 
-### インタラクティブプロンプトの使用
+### 対話型プロンプトの使用
 
-あるいは、以下のコマンドを実行して、プロンプトに応答することでレポートを生成することもできます：
+あるいは、次のコマンドを実行してプロンプトに回答することで、レポートを生成することもできます：
 
 ```bash
 npx @wdio/visual-reporter
 ```
 
-プロンプトは、必要なパスとオプションの提供をガイドします。最後に、インタラクティブプロンプトはレポートを表示するためのサーバーを起動するかどうかも尋ねます。サーバーを起動することを選択すると、ツールは簡単なサーバーを起動し、ログにURLを表示します。このURLをブラウザで開いてレポートを表示できます。
+プロンプトが、必要なパスとオプションの指定方法を案内します。最後に、対話型プロンプトはレポートを表示するためにサーバーを起動するかどうかも尋ねます。サーバーの起動を選択すると、ツールがシンプルなサーバーを起動し、ログにURLを表示します。このURLをブラウザで開くと、レポートを確認できます。
 
-![ビジュアルレポーターCLI](/img/visual/cli-screen-recording.gif)
+![Visual Reporter CLI](/img/visual/cli-screen-recording.gif)
 
-![ビジュアルレポーター](/img/visual/visual-reporter.gif)
+![Visual Reporter](/img/visual/visual-reporter.gif)
 
 #### レポートの表示
 
 :::warning
-`path/to/report/index.html`をローカルサーバーから提供**せずに**ブラウザで直接開くと、**動作しません**。
+**ローカルサーバーから配信せずに**`path/to/report/index.html`をブラウザで直接開いても、**動作しません**。
 :::
 
-インタラクティブプロンプトでサーバーを起動**しない**ことを選択した場合でも、以下のコマンドを手動で実行してレポートを表示できます：
+対話型プロンプトでサーバーを起動**しない**ことを選択した場合でも、次のコマンドを手動で実行することでレポートを表示できます：
 
 ```bash
 npx sirv-cli /path/to/report --single
 ```
 
-これにより、以下のような例のログが表示されます。ポート番号は異なる場合があります：
+これにより、以下の例のようなログが出力されます。ポート番号は異なる場合があります：
 
 ```logs
   Your application is ready~! 🚀
@@ -136,22 +137,22 @@ npx sirv-cli /path/to/report --single
 ────────────────── LOGS ──────────────────
 ```
 
-これで、提供されたURLをブラウザで開いてレポートを表示できます。
+表示されたURLをブラウザで開くと、レポートを確認できます。
 
-# レポートデモ
+# レポートのデモ
 
-レポートの表示例を見るには、[GitHub Pagesデモ](https://webdriverio.github.io/visual-testing/)をご覧ください。
+レポートの見た目の例については、[GitHub Pagesのデモ](https://webdriverio.github.io/visual-testing/)をご覧ください。
 
 # ビジュアルレポートの理解
 
-ビジュアルレポーターは、ビジュアルテスト結果の整理されたビューを提供します。各テスト実行について、以下のことが可能です：
+ビジュアルレポーターは、ビジュアルテストの結果を整理されたビューで提供します。各テスト実行について、次のことが可能です：
 
-- テストケース間を簡単に移動し、集計結果を確認する。
-- テスト名、使用されたブラウザ、比較結果などのメタデータを確認する。
-- 視覚的な違いが検出された箇所を示す差分画像を表示する。
+-   テストケース間を簡単に移動し、集計結果を確認する。
+-   テスト名、使用したブラウザ、比較結果などのメタデータを確認する。
+-   視覚的な差異が検出された箇所を示す差分画像を表示する。
 
-この視覚的な表現により、テスト結果の分析が簡素化され、視覚的な回帰を特定して対処しやすくなります。
+この視覚的な表現により、テスト結果の分析が簡素化され、ビジュアルリグレッションの特定と対処が容易になります。
 
-# CI統合
+# CI連携
 
-JenkinsやGitHub Actionsなどの異なるCIツールのサポートに取り組んでいます。あなたが私たちを手伝いたい場合は、[Discord - Visual Testing](https://discord.com/channels/1097401827202445382/1186908940286574642)でご連絡ください。
+Jenkins、GitHub Actionsなど、さまざまなCIツールのサポートに取り組んでいます。ご協力いただける場合は、[Discord - Visual Testing](https://discord.com/channels/1097401827202445382/1186908940286574642)までご連絡ください。

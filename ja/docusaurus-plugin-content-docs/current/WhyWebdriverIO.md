@@ -1,33 +1,66 @@
 ---
 id: why-webdriverio
-title: なぜWebdriver.IO？
+title: なぜ WebdriverIO なのか？
+description: WebdriverIO が他のテスト自動化ツールと異なる点 - あらゆるプラットフォームに対応する単一の API、Web 標準、オープンなガバナンス、そしてコーディングエージェントへの最高水準のサポート。
 ---
 
-WebdriverIOは、モダンなウェブおよびモバイルアプリケーションを自動化するために構築された先進的な自動化フレームワークです。アプリケーションとの対話を簡素化し、スケーラブルで堅牢かつ安定したテストスイートを作成するのに役立つプラグインセットを提供します。
+WebdriverIO は Node.js 向けのオープンソースのテスト自動化フレームワークです。1 つのテストランナーと 1 つの API で、Web ブラウザ、ネイティブおよびハイブリッドのモバイルアプリ、デスクトップアプリ、エディタ拡張機能を自動化でき、さらにビジュアルテスト、アクセシビリティテスト、コンポーネントテストを追加することもできます。WebdriverIO は [OpenJS Foundation](https://openjsf.org/) の傘下で、コミュニティによって運営されています。
 
-以下のように設計されています：
+## あらゆるプラットフォームに対応する 1 つのフレームワーク
 
-- __拡張可能__ - ヘルパー関数の追加や、既存のコマンドのより複雑なセットと組み合わせが__シンプル__で__非常に便利__
-- __互換性__ - WebdriverIOは[WebDriverプロトコル](https://w3c.github.io/webdriver/)上で実行して__真のクロスブラウザテスト__を行うことも、[Chrome DevToolsプロトコル](https://chromedevtools.github.io/devtools-protocol/)を使用して[Puppeteer](https://pptr.dev/)によるChromiumベースの自動化を行うこともできます。
-- __機能豊富__ - 多種多様な組み込みおよびコミュニティプラグインにより、あなたの要件を満たすためにセットアップを__簡単に統合__および__拡張__できます。
+ほとんどのチームは Web サイト以外のものもリリースしています。WebdriverIO を使えば、同じセレクタ、アサーション、レポーター、CI 設定でそのすべてをテストできます：
 
-WebdriverIOを使用して以下を自動化できます：
+| プラットフォーム | WebdriverIO による自動化の方法 | ここから始める |
+| --- | --- | --- |
+| Web ブラウザ | Chrome、Firefox、Safari、Edge における WebDriver および WebDriver BiDi | [Web Browsers](/docs/platforms/web) |
+| Web コンポーネント | React、Vue、Svelte、Solid、Preact、Lit、Stencil 向けの実ブラウザでのコンポーネントテスト | [Component Testing](/docs/component-testing) |
+| モバイルアプリ | Appium を介した iOS および Android 上のネイティブ、ハイブリッド、モバイル Web（Flutter を含む） | [Mobile Apps](/docs/platforms/mobile) |
+| デスクトップアプリ | macOS、Windows、Linux 上の Electron、Tauri、Dioxus アプリ、および Appium を介したネイティブ macOS アプリ | [Desktop Apps](/docs/platforms/desktop) |
+| エディタと拡張機能 | VS Code 拡張機能とブラウザ拡張機能 | [Extensions & Editors](/docs/platforms/apps-and-extensions) |
+| ビジュアルリグレッション | Web とモバイル向けの画面、要素、フルページの比較 | [Visual Testing](/docs/visual-testing) |
 
-- 🌐 <span>&nbsp;</span> React、Vue、Angular、Svelte、またはその他のフロントエンドフレームワークで書かれた__モダンなウェブアプリケーション__
-- 📱 <span>&nbsp;</span> エミュレータ/シミュレータまたは実機で実行される__ハイブリッド__または__ネイティブモバイルアプリケーション__
-- 💻 <span>&nbsp;</span> __ネイティブデスクトップアプリケーション__（例：Electron.jsで書かれたもの）
-- 📦 <span>&nbsp;</span> ブラウザでのウェブコンポーネントの__ユニットまたはコンポーネントテスト__
+[multi-remote](/docs/multiremote) を使えば、1 つのテストでこれらの複数を同時に操作することもできます。たとえば、1 つのシナリオでモバイルアプリと Web ダッシュボードを同時に操作できます。
 
-## ウェブ標準に基づく
+## Web 標準に基づいて構築
 
-WebdriverIOは、すべてのブラウザベンダーによって開発・サポートされている[WebDriver](https://w3c.github.io/webdriver/)および[WebDriver-BiDi](https://github.com/w3c/webdriver-bidi)プロトコルの力を活用し、真のクロスブラウザテスト体験を保証します。他の自動化ツールでは、実際のユーザーが使用していない修正されたブラウザエンジンをダウンロードするか、JavaScriptを注入してユーザー行動をエミュレートする必要がありますが、WebdriverIOは[適切にテストされ](https://wpt.fyi/results/webdriver/tests?label=experimental&label=master&aligned)、今後数十年にわたる互換性を確保する自動化のための共通の合意された標準に依存しています。
+WebdriverIO は、すべてのブラウザベンダーが実装し[テスト](https://wpt.fyi/results/webdriver/tests)している W3C 標準である [WebDriver](https://w3c.github.io/webdriver/) と [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/) を通じてブラウザを自動化します。テストはユーザーが使用しているものと同じブラウザビルドに対して実行され、クリックやキー入力などの操作は JavaScript でエミュレートされるのではなく、ブラウザ自体によってディスパッチされます。WebDriver BiDi は、Chromium だけでなくすべてのブラウザで、ネットワークモック、コンソールやログのイベントなどの機能を提供します。
 
-さらに、WebdriverIOはデバッグと内部検査の目的で[Chrome DevTools](https://chromedevtools.github.io/devtools-protocol/)のような代替の独自自動化プロトコルもサポートしています。これにより、ユーザーはWebDriverに基づく従来のコマンドと[Puppeteer](https://pptr.dev/)を介した強力なブラウザインタラクションの間をシームレスに切り替えることができます。
+ブラウザ固有の強力な機能が必要な場合、WebdriverIO は [Puppeteer](/docs/api/browser/getPuppeteer) を通じて Chrome DevTools Protocol へのアクセスを提供します。詳しくは [Automation Protocols](/docs/automationProtocols) をご覧ください。
 
-これらの自動化標準の違いについては、[自動化プロトコル](automationProtocols)のセクションで詳しく説明しています。
+## コミュニティ主導でオープンなガバナンス
 
-## 真のオープンソース
+WebdriverIO はテストツールベンダーの製品ではありません。このプロジェクトは：
 
-エコシステム内の多くの自動化ツールと比較して、WebdriverIOは、オープンガバナンスで運営され、[OpenJS Foundation](https://openjsf.org/)と呼ばれる非営利団体が所有する真のオープンソースプロジェクトです。これにより、プロジェクトは法的にすべての参加者の利益のために成長し、方向付けられることが保証されます。プロジェクトチームはオープン性とコラボレーションを重視し、金銭的な利益によって動かされていません。
+- ベンダー中立の非営利団体である [OpenJS Foundation](https://openjsf.org/) によって所有されており、すべてのユーザーの利益に奉仕することが法的に義務付けられています
+- 公開された[ガバナンスモデル](https://github.com/webdriverio/webdriverio/blob/main/GOVERNANCE.md)に従っています：誰でも貢献でき、コミッターや Technical Steering Committee はコミュニティの中から生まれます
+- 有料プランや機能制限はありません。すべての機能は無料で、ローカルでも任意のクラウドプロバイダーでも、どこでもテストを実行できます
+- [コントリビューター奨励金プログラム](/blog/2024/02/15/new-contributor-stipend-program)を通じて、スポンサーシップをプロジェクトを構築する人々に還元しています
+- [Discord](https://discord.webdriver.io) と [GitHub Discussions](https://github.com/webdriverio/webdriverio/discussions) で無料のコミュニティサポートを提供しています
 
-これにより、プロジェクトの開発方法とその方向性が独立して決定されます。持続可能なコミュニティを構築し、お互いにサポートし学び合う[コミュニティチャンネル](https://discord.webdriver.io)で24時間365日の無料サポートを提供することができます。最後に、[オープンガバナンス](https://github.com/webdriverio/webdriverio/blob/main/GOVERNANCE.md)のおかげで、プロジェクトに貢献し関わる人々に多くの機会を提供します。
+## コーディングエージェントに対応
+
+ドキュメント、ツール、テストの成果物は、コーディングエージェントが自律的に WebdriverIO を扱えるように設計されています：
+
+- **エージェント対応のドキュメント**：すべてのページが Markdown で利用可能で、厳選された [`llms.txt`](https://webdriver.io/llms.txt) と、`https://webdriver.io/mcp` にあるドキュメント MCP サーバーが用意されています。
+- **WebdriverIO MCP**：[`@wdio/mcp`](/docs/mcp) サーバーを使うと、エージェントがブラウザやモバイルアプリを操作して UI を探索し、セレクタを検証できます。
+- **トレース**：[DevTools トレースモード](/docs/devtools/wdio/trace-mode)は、失敗したすべてのテストについて Markdown のトランスクリプト、スクリーンショット、アクセシビリティスナップショットを書き出します。
+
+セットアップについては [WebdriverIO for Coding Agents](/docs/ai-agents) をご覧ください。
+
+## 必要な機能がすべて揃い、拡張も簡単
+
+- Mocha、Jasmine、Cucumber をサポートし、並列実行、[シャーディング](/docs/sharding)、[リトライ](/docs/retry)、[ウォッチモード](/docs/watcher)を備えた[テストランナー](/docs/testrunner)
+- すべての操作に対する[自動待機](/docs/autowait)と組み込みの[アサーションライブラリ](/docs/assertion)
+- [ネットワークモック](/docs/mocksandspies)、[エミュレーション](/docs/emulation)、[スナップショットテスト](/docs/snapshot)
+- [デバッグダッシュボードとトレースビューア](/docs/devtools)
+- クラウド、フレームワーク、CI 向けの [70 以上のサービスとレポーター](/docs/ecosystem)、さらに独自の[コマンド](/docs/customcommands)、[サービス](/docs/customservices)、[レポーター](/docs/customreporter)を作成するためのシンプルな API
+
+## 他のツールを選ぶべき場合
+
+WebdriverIO は、複数のプラットフォームをテストする場合、実際のブラウザやデバイスに対して実行したい場合、または独立したコミュニティ所有のツールを重視する場合に適しています。単一のブラウザで単一の Web アプリしかテストせず、モバイル、デスクトップ、クラウドデバイスが不要な場合は、ブラウザ専用のツールの方が手軽に始められると感じるかもしれません。迷った場合は、`npm init wdio@latest` で[プロジェクトを作成](/docs/gettingstarted)して試してみてください。セットアップは約 1 分で完了します。
+
+## 次のステップ
+
+- [Getting Started](/docs/gettingstarted) - プロジェクトを作成して最初のテストを実行する
+- [Setup Types](/docs/setuptypes) - テストランナーモードまたはスタンドアロンモード
+- [WebdriverIO for Coding Agents](/docs/ai-agents) - エージェントをセットアップする

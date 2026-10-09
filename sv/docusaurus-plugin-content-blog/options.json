@@ -4,11 +4,11 @@
     "description": "The title for the blog used in SEO"
   },
   "description": {
-    "message": "Blogg",
+    "message": "Versionsinformation, guider och projektnyheter från WebdriverIO-teamet",
     "description": "The description for the blog used in SEO"
   },
   "sidebar.title": {
-    "message": "Senaste inlägg",
+    "message": "Senaste inläggen",
     "description": "The label for the left sidebar"
   }
 }

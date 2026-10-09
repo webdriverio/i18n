@@ -1,41 +1,40 @@
 ---
 id: selectors
 title: Селекторы
+description: "Выбор селекторов для поиска элементов на веб-страницах и в мобильных приложениях при автоматизации с помощью MCP-сервера WebdriverIO."
 ---
 
-Сервер WebdriverIO MCP поддерживает множество стратегий селекторов для поиска элементов на веб-страницах и в мобильных приложениях.
+MCP-сервер WebdriverIO поддерживает несколько стратегий селекторов для поиска элементов на веб-страницах и в мобильных приложениях.
 
 :::info
 
-Полную документацию по селекторам, включая все стратегии селекторов WebdriverIO, смотрите в основном руководстве [Selectors](/docs/selectors). Эта страница посвящена селекторам, обычно используемым с сервером MCP.
+Полную документацию по селекторам, включая все стратегии селекторов WebdriverIO, см. в основном руководстве [Селекторы](/docs/selectors). На этой странице рассматриваются селекторы, которые чаще всего используются с MCP-сервером.
 
 :::
 
 ## Веб-селекторы
 
-Для автоматизации браузера сервер MCP поддерживает все стандартные селекторы WebdriverIO. Наиболее часто используемые включают:
+Для автоматизации браузера MCP-сервер поддерживает все стандартные селекторы WebdriverIO. Наиболее часто используемые:
 
-| Селектор | Пример | Описание |
-|----------|---------|-------------|
-| CSS | `#login-button`, `.submit-btn` | Стандартные CSS селекторы |
-| XPath | `//button[@id='submit']` | XPath выражения |
-| Text | `button=Submit`, `a*=Click` | Текстовые селекторы WebdriverIO |
-| ARIA | `aria/Submit Button` | Селекторы по имени доступности |
-| Test ID | `[data-testid="submit"]` | Рекомендуется для тестирования |
+| Селектор | Пример                         | Описание                              |
+| -------- | ------------------------------ | ------------------------------------- |
+| CSS      | `#login-button`, `.submit-btn` | Стандартные CSS-селекторы             |
+| XPath    | `//button[@id='submit']`       | Выражения XPath                       |
+| Text     | `button=Submit`, `a*=Click`    | Текстовые селекторы WebdriverIO       |
+| ARIA     | `aria/Submit Button`           | Селекторы по доступному имени         |
+| Test ID  | `[data-testid="submit"]`       | Рекомендуются для тестирования        |
 
-Подробные примеры и лучшие практики смотрите в документации [Selectors](/docs/selectors).
-
----
+Подробные примеры и лучшие практики см. в документации [Селекторы](/docs/selectors).
 
 ## Мобильные селекторы
 
-Мобильные селекторы работают с платформами iOS и Android через Appium.
+Мобильные селекторы работают на платформах iOS и Android через Appium.
 
-### Accessibility ID (Рекомендуется)
+### Accessibility ID (рекомендуется)
 
-Accessibility ID - это **самый надежный кросс-платформенный селектор**. Они работают как на iOS, так и на Android и стабильны при обновлениях приложения.
+Accessibility ID — это **самый надёжный кроссплатформенный селектор**. Он работает как на iOS, так и на Android и остаётся стабильным при обновлениях приложения.
 
-```
+```text
 # Синтаксис
 ~accessibilityId
 
@@ -46,33 +45,33 @@ Accessibility ID - это **самый надежный кросс-платфо�
 ```
 
 :::tip Лучшая практика
-Всегда предпочитайте accessibility ID, когда они доступны. Они обеспечивают:
-- Кросс-платформенную совместимость (iOS + Android)
+Всегда отдавайте предпочтение accessibility ID, если они доступны. Они обеспечивают:
+- Кроссплатформенную совместимость (iOS + Android)
 - Стабильность при изменениях UI
 - Лучшую поддерживаемость тестов
 - Улучшенную доступность вашего приложения
 :::
 
-### Android селекторы
+### Селекторы Android
 
 #### UiAutomator
 
-UiAutomator селекторы мощные и быстрые для Android.
+Селекторы UiAutomator — мощные и быстрые для Android.
 
-```
+```text
 # По тексту
 android=new UiSelector().text("Login")
 
 # По частичному тексту
 android=new UiSelector().textContains("Log")
 
-# По идентификатору ресурса
+# По Resource ID
 android=new UiSelector().resourceId("com.example:id/login_button")
 
 # По имени класса
 android=new UiSelector().className("android.widget.Button")
 
-# По описанию (доступность)
+# По описанию (Accessibility)
 android=new UiSelector().description("Login button")
 
 # Комбинированные условия
@@ -86,11 +85,11 @@ android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new U
 
 Resource ID обеспечивают стабильную идентификацию элементов на Android.
 
-```
+```text
 # Полный Resource ID
 id=com.example.app:id/login_button
 
-# Частичный ID (пакет приложения подразумевается)
+# Частичный ID (пакет приложения определяется автоматически)
 id=login_button
 ```
 
@@ -98,28 +97,28 @@ id=login_button
 
 XPath работает на Android, но медленнее, чем UiAutomator.
 
-```
+```text
 # По классу и тексту
 //android.widget.Button[@text='Login']
 
 # По Resource ID
 //android.widget.EditText[@resource-id='com.example:id/username']
 
-# По описанию содержимого
+# По Content Description
 //android.widget.ImageButton[@content-desc='Menu']
 
 # Иерархический
 //android.widget.LinearLayout/android.widget.Button[1]
 ```
 
-### iOS селекторы
+### Селекторы iOS
 
 #### Predicate String
 
-iOS Predicate Strings быстрые и мощные для автоматизации iOS.
+iOS Predicate String — быстрый и мощный инструмент для автоматизации iOS.
 
-```
-# По метке
+```text
+# По метке (label)
 -ios predicate string:label == "Login"
 
 # По частичной метке
@@ -140,29 +139,29 @@ iOS Predicate Strings быстрые и мощные для автоматиза
 # Видимость
 -ios predicate string:label == "Login" AND visible == 1
 
-# Без учета регистра
+# Без учёта регистра
 -ios predicate string:label ==[c] "login"
 ```
 
-**Операторы Predicate:**
+**Операторы предикатов:**
 
-| Оператор | Описание |
-|----------|-------------|
-| `==` | Равно |
-| `!=` | Не равно |
-| `CONTAINS` | Содержит подстроку |
-| `BEGINSWITH` | Начинается с |
-| `ENDSWITH` | Заканчивается на |
-| `LIKE` | Соответствие по маске |
-| `MATCHES` | Соответствие регулярному выражению |
-| `AND` | Логическое И |
-| `OR` | Логическое ИЛИ |
+| Оператор     | Описание                       |
+| ------------ | ------------------------------ |
+| `==`         | Равно                          |
+| `!=`         | Не равно                       |
+| `CONTAINS`   | Содержит подстроку             |
+| `BEGINSWITH` | Начинается с                   |
+| `ENDSWITH`   | Заканчивается на               |
+| `LIKE`       | Совпадение по шаблону          |
+| `MATCHES`    | Совпадение по регулярному выражению |
+| `AND`        | Логическое И                   |
+| `OR`         | Логическое ИЛИ                 |
 
 #### Class Chain
 
-iOS Class Chains обеспечивают иерархический поиск элементов с хорошей производительностью.
+iOS Class Chain обеспечивает иерархический поиск элементов с хорошей производительностью.
 
-```
+```text
 # Прямой потомок
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
@@ -172,7 +171,7 @@ iOS Class Chains обеспечивают иерархический поиск 
 # По индексу
 -ios class chain:**/XCUIElementTypeCell[3]
 
-# Комбинированный с Predicate
+# В сочетании с предикатом
 -ios class chain:**/XCUIElementTypeButton[`name == "submit" AND visible == 1`]
 
 # Иерархический
@@ -184,9 +183,9 @@ iOS Class Chains обеспечивают иерархический поиск 
 
 #### XPath (iOS)
 
-XPath работает на iOS, но медленнее, чем predicate strings.
+XPath работает на iOS, но медленнее, чем predicate string.
 
-```
+```text
 # По типу и метке
 //XCUIElementTypeButton[@label='Login']
 
@@ -200,163 +199,155 @@ XPath работает на iOS, но медленнее, чем predicate strin
 //XCUIElementTypeTable/XCUIElementTypeCell[1]
 ```
 
----
+## Кроссплатформенная стратегия селекторов
 
-## Кросс-платформенная стратегия селекторов
+При написании тестов, которые должны работать и на iOS, и на Android, используйте следующий порядок приоритета:
 
-При написании тестов, которые должны работать как на iOS, так и на Android, используйте следующий порядок приоритета:
+### 1. Accessibility ID (лучший вариант)
 
-### 1. Accessibility ID (Лучший вариант)
-
-```
+```text
 # Работает на обеих платформах
 ~loginButton
 ```
 
-### 2. Платформозависимые с условной логикой
+### 2. Платформенно-специфичные селекторы с условной логикой
 
-Когда accessibility ID недоступны, используйте платформозависимые селекторы:
+Если accessibility ID недоступны, используйте селекторы, специфичные для платформы:
 
 **Android:**
-```
+```text
 android=new UiSelector().text("Login")
 ```
 
 **iOS:**
-```
+```text
 -ios predicate string:label == "Login"
 ```
 
-### 3. XPath (Последний вариант)
+### 3. XPath (крайний случай)
 
 XPath работает на обеих платформах, но с разными типами элементов:
 
 **Android:**
-```
+```text
 //android.widget.Button[@text='Login']
 ```
 
 **iOS:**
-```
+```text
 //XCUIElementTypeButton[@label='Login']
 ```
 
----
-
-## Справочник по типам элементов
+## Справочник типов элементов
 
 ### Типы элементов Android
 
-| Тип | Описание |
-|------|-------------|
-| `android.widget.Button` | Кнопка |
-| `android.widget.EditText` | Текстовое поле ввода |
-| `android.widget.TextView` | Текстовая метка |
-| `android.widget.ImageView` | Изображение |
-| `android.widget.ImageButton` | Кнопка-изображение |
-| `android.widget.CheckBox` | Флажок |
-| `android.widget.RadioButton` | Радиокнопка |
-| `android.widget.Switch` | Переключатель |
-| `android.widget.Spinner` | Выпадающий список |
-| `android.widget.ListView` | Представление списка |
-| `android.widget.RecyclerView` | Recycler view |
-| `android.widget.ScrollView` | Прокручиваемый контейнер |
+| Тип                           | Описание                  |
+| ----------------------------- | ------------------------- |
+| `android.widget.Button`       | Кнопка                    |
+| `android.widget.EditText`     | Поле ввода текста         |
+| `android.widget.TextView`     | Текстовая метка           |
+| `android.widget.ImageView`    | Изображение               |
+| `android.widget.ImageButton`  | Кнопка-изображение        |
+| `android.widget.CheckBox`     | Флажок                    |
+| `android.widget.RadioButton`  | Переключатель (radio)     |
+| `android.widget.Switch`       | Тумблер                   |
+| `android.widget.Spinner`      | Выпадающий список         |
+| `android.widget.ListView`     | Список                    |
+| `android.widget.RecyclerView` | Recycler view             |
+| `android.widget.ScrollView`   | Прокручиваемый контейнер  |
 
 ### Типы элементов iOS
 
-| Тип | Описание |
-|------|-------------|
-| `XCUIElementTypeButton` | Кнопка |
-| `XCUIElementTypeTextField` | Текстовое поле ввода |
-| `XCUIElementTypeSecureTextField` | Поле ввода пароля |
-| `XCUIElementTypeStaticText` | Текстовая метка |
-| `XCUIElementTypeImage` | Изображение |
-| `XCUIElementTypeSwitch` | Переключатель |
-| `XCUIElementTypeSlider` | Ползунок |
-| `XCUIElementTypePicker` | Колесо выбора |
-| `XCUIElementTypeTable` | Табличное представление |
-| `XCUIElementTypeCell` | Ячейка таблицы |
-| `XCUIElementTypeCollectionView` | Коллекционное представление |
-| `XCUIElementTypeScrollView` | Прокручиваемое представление |
-
----
+| Тип                              | Описание               |
+| -------------------------------- | ---------------------- |
+| `XCUIElementTypeButton`          | Кнопка                 |
+| `XCUIElementTypeTextField`       | Поле ввода текста      |
+| `XCUIElementTypeSecureTextField` | Поле ввода пароля      |
+| `XCUIElementTypeStaticText`      | Текстовая метка        |
+| `XCUIElementTypeImage`           | Изображение            |
+| `XCUIElementTypeSwitch`          | Тумблер                |
+| `XCUIElementTypeSlider`          | Ползунок               |
+| `XCUIElementTypePicker`          | Колесо выбора          |
+| `XCUIElementTypeTable`           | Таблица                |
+| `XCUIElementTypeCell`            | Ячейка таблицы         |
+| `XCUIElementTypeCollectionView`  | Collection view        |
+| `XCUIElementTypeScrollView`      | Прокручиваемая область |
 
 ## Лучшие практики
 
-### Делайте
+### Рекомендуется
 
-- **Используйте accessibility ID** для стабильных кросс-платформенных селекторов
+- **Используйте accessibility ID** для стабильных кроссплатформенных селекторов
 - **Добавляйте атрибуты data-testid** к веб-элементам для тестирования
-- **Используйте resource ID** на Android, когда accessibility ID недоступны
-- **Предпочитайте predicate strings** вместо XPath на iOS
+- **Используйте resource ID** на Android, если accessibility ID недоступны
+- **Отдавайте предпочтение predicate string** перед XPath на iOS
 - **Делайте селекторы простыми** и конкретными
 
-### Не делайте
+### Не рекомендуется
 
-- **Избегайте длинных XPath выражений** - они медленные и хрупкие
-- **Не полагайтесь на индексы** для динамических списков
-- **Избегайте селекторов на основе текста** для локализованных приложений
-- **Не используйте абсолютный XPath** (начиная от корня)
+- **Избегайте длинных выражений XPath** — они медленные и хрупкие
+- **Не полагайтесь на индексы** в динамических списках
+- **Избегайте текстовых селекторов** в локализованных приложениях
+- **Не используйте абсолютный XPath** (начинающийся от корня)
 
 ### Примеры хороших и плохих селекторов
 
-```
-# Хороший - Стабильный accessibility ID
+```text
+# Хорошо — стабильный accessibility ID
 ~loginButton
 
-# Плохой - Хрупкий XPath с индексами
+# Плохо — хрупкий XPath с индексами
 //div[3]/form/button[2]
 
-# Хороший - Конкретный CSS с test ID
+# Хорошо — конкретный CSS с test ID
 [data-testid="submit-button"]
 
-# Плохой - Класс, который может измениться
+# Плохо — класс, который может измениться
 .btn-primary-lg-v2
 
-# Хороший - UiAutomator с resource ID
+# Хорошо — UiAutomator с resource ID
 android=new UiSelector().resourceId("com.app:id/submit")
 
-# Плохой - Текст, который может быть локализован
+# Плохо — текст, который может быть локализован
 android=new UiSelector().text("Submit")
 ```
-
----
 
 ## Отладка селекторов
 
 ### Веб (Chrome DevTools)
 
 1. Откройте Chrome DevTools (F12)
-2. Используйте панель Elements для проверки элементов
-3. Щелкните правой кнопкой мыши на элементе → Копировать → Копировать селектор
-4. Тестируйте селекторы в консоли: `document.querySelector('your-selector')`
+2. Используйте панель Elements для инспектирования элементов
+3. Щёлкните правой кнопкой мыши по элементу → Copy → Copy selector
+4. Проверьте селекторы в консоли: `document.querySelector('your-selector')`
 
-### Мобильные (Appium Inspector)
+### Мобильные устройства (Appium Inspector)
 
 1. Запустите Appium Inspector
-2. Подключитесь к вашей работающей сессии
+2. Подключитесь к запущенной сессии
 3. Нажимайте на элементы, чтобы увидеть все доступные атрибуты
-4. Используйте функцию "Search for element" для тестирования селекторов
+4. Используйте функцию «Search for element» для проверки селекторов
 
-### Использование `get_visible_elements`
+### Использование `get_elements`
 
-Инструмент `get_visible_elements` сервера MCP возвращает несколько стратегий селекторов для каждого элемента:
+Инструмент `get_elements` MCP-сервера возвращает несколько стратегий селекторов для каждого элемента:
 
+```text
+Ask: "Get all visible elements on the screen"
 ```
-Ask Claude: "Get all visible elements on the screen"
-```
 
-Это возвращает элементы с предварительно сгенерированными селекторами, которые можно использовать напрямую.
+Он возвращает элементы с заранее сгенерированными селекторами, которые можно использовать напрямую.
 
-#### Расширенные опции
+#### Расширенные параметры
 
-Для большего контроля над обнаружением элементов:
+Для более точного управления поиском элементов:
 
-```
+```text
 # Получить только изображения и визуальные элементы
 Get visible elements with elementType "visual"
 
-# Получить элементы с их координатами для отладки макета
+# Получить элементы с координатами для отладки макета
 Get visible elements with includeBounds enabled
 
 # Получить следующие 20 элементов (пагинация)
@@ -376,19 +367,19 @@ Get visible elements with includeContainers enabled
 }
 ```
 
-### Использование `get_accessibility` (Только для браузера)
+### Использование `get_accessibility` (только для браузера)
 
 Для автоматизации браузера инструмент `get_accessibility` предоставляет семантическую информацию об элементах страницы:
 
-```
+```text
 # Получить все именованные узлы доступности
 Get accessibility tree
 
-# Фильтровать только кнопки и ссылки
+# Отфильтровать только кнопки и ссылки
 Get accessibility tree filtered to button and link roles
 
 # Получить следующую страницу результатов
 Get accessibility tree with limit 50 and offset 50
 ```
 
-Это полезно, когда `get_visible_elements` не возвращает ожидаемые элементы, так как он запрашивает нативный API доступности браузера.
+Это полезно, когда `get_elements` не возвращает ожидаемые элементы, поскольку инструмент обращается к нативному API доступности браузера.

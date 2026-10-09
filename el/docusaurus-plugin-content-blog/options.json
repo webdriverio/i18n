@@ -4,7 +4,7 @@
     "description": "The title for the blog used in SEO"
   },
   "description": {
-    "message": "Ιστολόγιο",
+    "message": "Σημειώσεις έκδοσης, οδηγοί και νέα του έργου από την ομάδα του WebdriverIO",
     "description": "The description for the blog used in SEO"
   },
   "sidebar.title": {

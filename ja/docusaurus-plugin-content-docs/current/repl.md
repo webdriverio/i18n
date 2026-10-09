@@ -1,9 +1,10 @@
 ---
 id: repl
 title: REPLインターフェース
+description: "WebdriverIO REPLを使用して、コマンドラインまたは実行中のテスト内から、コマンドを試したりテストを対話的にデバッグしたりできます。"
 ---
 
-WebdriverIOは`v4.5.0`から[REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)インターフェースを導入し、フレームワークAPIの学習だけでなく、テストのデバッグや検査にも役立ちます。これはさまざまな方法で使用できます。
+`v4.5.0`から、WebdriverIOは[REPL](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)インターフェースを導入しました。これはフレームワークのAPIを学ぶだけでなく、テストのデバッグや検査にも役立ちます。REPLはさまざまな方法で使用できます。
 
 まず、`npm install -g @wdio/cli`をインストールしてCLIコマンドとして使用し、コマンドラインからWebDriverセッションを起動できます。例：
 
@@ -11,21 +12,21 @@ WebdriverIOは`v4.5.0`から[REPL](https://en.wikipedia.org/wiki/Read%E2%80%93ev
 wdio repl chrome
 ```
 
-これにより、REPLインターフェースで制御できるChromeブラウザが開きます。セッションを開始するには、ポート`4444`でブラウザドライバーが実行されていることを確認してください。[Sauce Labs](https://saucelabs.com)（または他のクラウドベンダー）アカウントをお持ちの場合は、次のようにコマンドラインで直接クラウド上のブラウザを実行することもできます：
+これにより、REPLインターフェースで操作できるChromeブラウザが開きます。セッションを開始するには、ポート`4444`でブラウザドライバーが実行されていることを確認してください。[Sauce Labs](https://saucelabs.com)（または他のクラウドベンダー）のアカウントをお持ちの場合は、次のようにコマンドラインからクラウド上でブラウザを直接実行することもできます：
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY
 ```
 
-ドライバーが9515などの異なるポートで実行されている場合は、コマンドライン引数--portまたはエイリアス-pで指定できます
+ドライバーが別のポート（例：9515）で実行されている場合は、コマンドライン引数`--port`またはエイリアス`-p`で指定できます。
 
 ```sh
 wdio repl chrome -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY -p 9515
 ```
 
-Replは、webdriverIO設定ファイルの機能を使用して実行することもできます。Wdioはcapabilitiesオブジェクト、またはマルチリモート機能リストやオブジェクトをサポートしています。
+REPLは、WebdriverIOの設定ファイルのcapabilitiesを使用して実行することもできます。WDIOはcapabilitiesオブジェクト、またはcapabilityのリスト、もしくはmulti-remoteのオブジェクトをサポートしています。
 
-設定ファイルがcapabilitiesオブジェクトを使用している場合は、設定ファイルへのパスを渡すだけです。マルチリモート機能の場合は、位置引数を使用してリストまたはマルチリモートからどの機能を使用するかを指定します。注：リストの場合、ゼロベースのインデックスを考慮します。
+設定ファイルがcapabilitiesオブジェクトを使用している場合は、設定ファイルへのパスを渡すだけです。capabilityのリストまたはmulti-remoteの場合は、位置引数を使用して、リストまたはmulti-remoteのどのcapabilityを使用するかを指定します。注：リストの場合、インデックスは0から始まります。
 
 ### 例
 
@@ -36,8 +37,8 @@ export const config = {
     // ...
     capabilities:[{
         browserName: 'chrome', // options: `chrome`, `edge`, `firefox`, `safari`, `chromium`
-        browserVersion: '27.0', // browser version
-        platformName: 'Windows 10' // OS platform
+        browserVersion: '27.0', // ブラウザのバージョン
+        platformName: 'Windows 10' // OSプラットフォーム
     }]
 }
 ```
@@ -46,7 +47,7 @@ export const config = {
 wdio repl "./path/to/wdio.config.js" 0 -p 9515
 ```
 
-[マルチリモート](https://webdriver.io/docs/multiremote/)機能オブジェクトを使用したWebdriverIO：
+[multi-remote](https://webdriver.io/docs/multiremote/)のcapabilityオブジェクトを使用したWebdriverIO：
 
 ```ts title="wdio.conf.ts example"
 export const config = {
@@ -70,7 +71,7 @@ export const config = {
 wdio repl "./path/to/wdio.config.js" "myChromeBrowser" -p 9515
 ```
 
-またはAppiumを使用してローカルモバイルテストを実行する場合：
+また、Appiumを使用してローカルでモバイルテストを実行したい場合：
 
 <Tabs
   defaultValue="android"
@@ -95,21 +96,21 @@ wdio repl ios
 </TabItem>
 </Tabs>
 
-これにより、接続されているデバイス/エミュレータ/シミュレータ上でChrome/Safariセッションが開きます。セッションを開始するには、ポート`4444`でAppiumが実行されていることを確認してください。
+これにより、接続されたデバイス/エミュレーター/シミュレーター上でChrome/Safariセッションが開きます。セッションを開始するには、ポート`4444`でAppiumが実行されていることを確認してください。
 
 ```sh
 wdio repl './path/to/your_app.apk'
 ```
 
-これにより、接続されているデバイス/エミュレータ/シミュレータ上でアプリセッションが開きます。セッションを開始するには、ポート`4444`でAppiumが実行されていることを確認してください。
+これにより、接続されたデバイス/エミュレーター/シミュレーター上でアプリのセッションが開きます。セッションを開始するには、ポート`4444`でAppiumが実行されていることを確認してください。
 
-iOSデバイスの機能は、引数で渡すことができます：
+iOSデバイスのcapabilitiesは引数で渡すことができます：
 
 * `-v`      - `platformVersion`: Android/iOSプラットフォームのバージョン
 * `-d`      - `deviceName`: モバイルデバイスの名前
-* `-u`      - `udid`: 実機用のudid
+* `-u`      - `udid`: 実機のudid
 
-使用法：
+使用方法：
 
 <Tabs
   defaultValue="long"
@@ -134,8 +135,19 @@ wdio repl ios -v 11.3 -d 'iPhone 7' -u 123432abc
 </TabItem>
 </Tabs>
 
-REPLセッションで利用可能なオプション（`wdio repl --help`を参照）を適用できます。
+REPLセッションでは、利用可能な任意のオプション（`wdio repl --help`を参照）を適用できます。
+
+### `wdio session`にアタッチする
+
+`wdio repl --session <name>`（エイリアス`-s`）はブラウザを起動しません。[`wdio session`](/docs/session)ですでに開かれているセッションにREPLをアタッチし、デタッチしてもそのセッションは実行されたままになります。テスト実行の一時停止については、[セッションを使用したテストのデバッグ](/docs/session/debug)で説明しています：
+
+```sh
+npx wdio session open chrome https://webdriver.io
+npx wdio repl --session default
+```
+
+REPLでは、各行が`wdio session exec`として実行されます。`.exit`を実行すると`Detached from "default" (still running)`と表示されます。
 
 ![WebdriverIO REPL](https://webdriver.io/img/repl.gif)
 
-REPLを使用するもう一つの方法は、テスト内で[`debug`](/docs/api/browser/debug)コマンドを使用することです。これにより、呼び出されたときにブラウザが停止し、アプリケーション（開発ツールなど）にジャンプしたり、コマンドラインからブラウザを制御したりできます。これは、一部のコマンドが期待どおりに特定のアクションをトリガーしない場合に役立ちます。REPLを使用すると、最も確実に機能するコマンドを試すことができます。
+REPLのもう1つの使い方は、[`debug`](/docs/api/browser/debug)コマンドを使用してテスト内で利用する方法です。このコマンドが呼び出されるとブラウザが停止し、アプリケーション（例：開発者ツール）に入り込んだり、コマンドラインからブラウザを操作したりできるようになります。これは、一部のコマンドが期待どおりに特定のアクションをトリガーしない場合に役立ちます。REPLを使えば、コマンドを試して、どれが最も確実に動作するかを確認できます。

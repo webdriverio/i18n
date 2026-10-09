@@ -1,6 +1,7 @@
 ---
 id: methods
 title: Métodos
+description: "Use os métodos save e check do serviço visual para capturar screenshots e comparar telas, elementos e páginas inteiras com imagens de referência (baselines)."
 ---
 
 Os seguintes métodos são adicionados ao objeto global [`browser`](/docs/api/browser) do WebdriverIO.
@@ -8,7 +9,7 @@ Os seguintes métodos são adicionados ao objeto global [`browser`](/docs/api/br
 ## Métodos de Salvamento
 
 :::info DICA
-Use os Métodos de Salvamento apenas quando você **não** quiser comparar telas, mas apenas deseja ter uma captura de elemento/tela.
+Use os Métodos de Salvamento apenas quando você **não** quiser comparar telas, mas apenas quiser ter uma captura de elemento/tela.
 :::
 
 ### `saveElement`
@@ -34,8 +35,8 @@ await browser.saveElement(
 
 - Navegadores Desktop
 - Navegadores Mobile
-- Aplicativos Híbridos Mobile
-- Aplicativos Nativos Mobile
+- Aplicativos Mobile Híbridos
+- Aplicativos Mobile Nativos
 
 #### Parâmetros
 
@@ -55,7 +56,7 @@ Veja a página [Saída de Teste](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
-Salva uma imagem da viewport.
+Salva uma imagem de uma viewport.
 
 #### Uso
 
@@ -74,8 +75,8 @@ await browser.saveScreen(
 
 - Navegadores Desktop
 - Navegadores Mobile
-- Aplicativos Híbridos Mobile
-- Aplicativos Nativos Mobile
+- Aplicativos Mobile Híbridos
+- Aplicativos Mobile Nativos
 
 #### Parâmetros
 -   **`tag`:**
@@ -125,7 +126,7 @@ Veja a página [Saída de Teste](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Salva uma imagem da tela completa com as linhas e pontos navegáveis por tab.
+Salva uma imagem da tela completa com as linhas e pontos de tabulação.
 
 #### Uso
 
@@ -159,7 +160,7 @@ Veja a página [Saída de Teste](./test-output#savescreenelementfullpagescreen).
 ## Métodos de Verificação
 
 :::info DICA
-Quando os métodos `check` são usados pela primeira vez, você verá o aviso abaixo nos logs. Isso significa que você não precisa combinar os métodos `save` e `check` se quiser criar sua linha de base.
+Quando os métodos `check` forem usados pela primeira vez, você verá o aviso abaixo nos logs. Isso significa que você não precisa combinar os métodos `save` e `check` se quiser criar sua baseline.
 
 ```shell
 #####################################################################################
@@ -175,7 +176,7 @@ Quando os métodos `check` são usados pela primeira vez, você verá o aviso ab
 
 ### `checkElement`
 
-Compara uma imagem de um elemento com uma imagem de referência.
+Compara uma imagem de um elemento com uma imagem de baseline.
 
 #### Uso
 
@@ -196,8 +197,8 @@ await browser.checkElement(
 
 - Navegadores Desktop
 - Navegadores Mobile
-- Aplicativos Híbridos Mobile
-- Aplicativos Nativos Mobile
+- Aplicativos Mobile Híbridos
+- Aplicativos Mobile Nativos
 
 #### Parâmetros
 -   **`element`:**
@@ -216,7 +217,7 @@ Veja a página [Saída de Teste](./test-output#checkscreenelementfullpagescreen)
 
 ### `checkScreen`
 
-Compara uma imagem da viewport com uma imagem de referência.
+Compara uma imagem de uma viewport com uma imagem de baseline.
 
 #### Uso
 
@@ -235,8 +236,8 @@ await browser.checkScreen(
 
 - Navegadores Desktop
 - Navegadores Mobile
-- Aplicativos Híbridos Mobile
-- Aplicativos Nativos Mobile
+- Aplicativos Mobile Híbridos
+- Aplicativos Mobile Nativos
 
 #### Parâmetros
 -   **`tag`:**
@@ -252,7 +253,7 @@ Veja a página [Saída de Teste](./test-output#checkscreenelementfullpagescreen)
 
 ### `checkFullPageScreen`
 
-Compara uma imagem da tela completa com uma imagem de referência.
+Compara uma imagem da tela completa com uma imagem de baseline.
 
 #### Uso
 
@@ -286,7 +287,7 @@ Veja a página [Saída de Teste](./test-output#checkscreenelementfullpagescreen)
 
 ### `checkTabbablePage`
 
-Compara uma imagem da tela completa com as linhas e pontos navegáveis por tab com uma imagem de referência.
+Compara uma imagem da tela completa com as linhas e pontos de tabulação com uma imagem de baseline.
 
 #### Uso
 

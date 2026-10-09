@@ -1,34 +1,35 @@
 ---
 id: integrate-with-smartui
 title: SmartUI
+description: "TestMu AI（旧 LambdaTest）SmartUI を使用して、WebdriverIO テストに AI を活用したビジュアルリグレッションテストを追加する方法（セットアップとオプションを含む）。"
 ---
 
-TestMu AI（旧LambdaTest）の[SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/)は、WebdriverIOテスト用のAIを活用した視覚的リグレッションテスティングを提供します。スクリーンショットをキャプチャし、ベースラインと比較して、インテリジェントな比較アルゴリズムで視覚的な違いを強調表示します。
+TestMu AI（旧 LambdaTest）の [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) は、WebdriverIO テスト向けに AI を活用したビジュアルリグレッションテストを提供します。スクリーンショットをキャプチャしてベースラインと比較し、インテリジェントな比較アルゴリズムによって視覚的な差異をハイライトします。
 
 ## セットアップ
 
-**SmartUIプロジェクトの作成**
+**SmartUI プロジェクトを作成する**
 
-TestMu AI（旧LambdaTest）に[サインイン](https://accounts.lambdatest.com/register)し、[SmartUIプロジェクト](https://smartui.lambdatest.com/)に移動して新しいプロジェクトを作成します。プラットフォームとして**Web**を選択し、プロジェクト名、承認者、タグを設定します。
+TestMu AI（旧 LambdaTest）に[サインイン](https://accounts.lambdatest.com/register)し、[SmartUI Projects](https://smartui.lambdatest.com/) に移動して新しいプロジェクトを作成します。プラットフォームとして **Web** を選択し、プロジェクト名、承認者、タグを設定します。
 
-**認証情報の設定**
+**認証情報を設定する**
 
-TestMu AI（旧LambdaTest）ダッシュボードから`LT_USERNAME`と`LT_ACCESS_KEY`を取得し、環境変数として設定します：
+TestMu AI（旧 LambdaTest）のダッシュボードから `LT_USERNAME` と `LT_ACCESS_KEY` を取得し、環境変数として設定します：
 
 ```sh
 export LT_USERNAME="<your username>"
 export LT_ACCESS_KEY="<your access key>"
 ```
 
-**SmartUI SDKのインストール**
+**SmartUI SDK をインストールする**
 
 ```sh
 npm install @lambdatest/wdio-driver
 ```
 
-**WebdriverIOの設定**
+**WebdriverIO を設定する**
 
-`wdio.conf.js`を更新します：
+`wdio.conf.js` を更新します：
 
 ```javascript
 exports.config = {
@@ -50,9 +51,9 @@ exports.config = {
 }
 ```
 
-## 使用方法
+## 使い方
 
-`browser.execute('smartui.takeScreenshot')`を使用してスクリーンショットをキャプチャします：
+スクリーンショットをキャプチャするには `browser.execute('smartui.takeScreenshot')` を使用します：
 
 ```javascript
 describe('WebdriverIO SmartUI Test', () => {
@@ -74,13 +75,13 @@ describe('WebdriverIO SmartUI Test', () => {
 });
 ```
 
-**テストの実行**
+**テストを実行する**
 
 ```sh
 npx wdio wdio.conf.js
 ```
 
-結果は[SmartUI Dashboard](https://smartui.lambdatest.com/)で確認できます。
+結果は [SmartUI Dashboard](https://smartui.lambdatest.com/) で確認できます。
 
 ## 高度なオプション
 
@@ -110,9 +111,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## リソース
 
-| リソース                                                                                         | 説明                              |
+| リソース                                                                                          | 説明                              |
 |---------------------------------------------------------------------------------------------------|------------------------------------------|
-| [公式ドキュメント](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | SmartUIドキュメント                    |
-| [SmartUIダッシュボード](https://smartui.lambdatest.com/)                                              | SmartUIプロジェクトとビルドへのアクセス  |
-| [高度な設定](https://www.testmuai.com/support/docs/test-settings-options/)              | 比較感度の設定         |
+| [公式ドキュメント](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | SmartUI ドキュメント                    |
+| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                              | SmartUI のプロジェクトとビルドにアクセス  |
+| [高度な設定](https://www.testmuai.com/support/docs/test-settings-options/)              | 比較の感度を設定         |
 | [ビルドオプション](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | 高度なビルド設定             |

@@ -1,13 +1,14 @@
 ---
 id: react
 title: React
+description: "Configurez le browser runner de WebdriverIO pour un projet React avec le preset react et écrivez des tests de composants avec Testing Library."
 ---
 
-[React](https://reactjs.org/) permet de créer des interfaces utilisateur interactives sans effort. Concevez des vues simples pour chaque état de votre application, et React mettra à jour et rendra efficacement les composants appropriés lorsque vos données changent. Vous pouvez tester les composants React directement dans un navigateur réel en utilisant WebdriverIO et son [exécuteur de navigateur](/docs/runner#browser-runner).
+[React](https://reactjs.org/) facilite la création d'interfaces utilisateur interactives. Concevez des vues simples pour chaque état de votre application, et React mettra à jour et affichera efficacement les bons composants lorsque vos données changeront. Vous pouvez tester les composants React directement dans un vrai navigateur en utilisant WebdriverIO et son [browser runner](/docs/runner#browser-runner).
 
 ## Configuration
 
-Pour configurer WebdriverIO dans votre projet React, suivez les [instructions](/docs/component-testing#set-up) dans notre documentation de test de composants. Assurez-vous de sélectionner `react` comme préréglage dans vos options d'exécution, par exemple :
+Pour configurer WebdriverIO dans votre projet React, suivez les [instructions](/docs/component-testing#set-up) de notre documentation sur les tests de composants. Assurez-vous de sélectionner `react` comme preset dans les options de votre runner, par exemple :
 
 ```js
 // wdio.conf.js
@@ -22,23 +23,23 @@ export const config = {
 
 :::info
 
-Si vous utilisez déjà [Vite](https://vitejs.dev/) comme serveur de développement, vous pouvez également réutiliser votre configuration dans `vite.config.ts` au sein de votre configuration WebdriverIO. Pour plus d'informations, consultez `viteConfig` dans les [options d'exécution](/docs/runner#runner-options).
+Si vous utilisez déjà [Vite](https://vitejs.dev/) comme serveur de développement, vous pouvez également réutiliser votre configuration de `vite.config.ts` dans votre configuration WebdriverIO. Pour plus d'informations, consultez `viteConfig` dans les [options du runner](/docs/runner#runner-options).
 
 :::
 
-Le préréglage React nécessite l'installation de `@vitejs/plugin-react`. Nous recommandons également d'utiliser [Testing Library](https://testing-library.com/) pour rendre le composant dans la page de test. Pour cela, vous devrez installer les dépendances supplémentaires suivantes :
+Le preset React nécessite que `@vitejs/plugin-react` soit installé. Nous recommandons également d'utiliser [Testing Library](https://testing-library.com/) pour afficher le composant dans la page de test. Vous devrez donc installer les dépendances supplémentaires suivantes :
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/react @vitejs/plugin-react
 ```
 
-Vous pouvez ensuite démarrer les tests en exécutant :
+Vous pouvez ensuite lancer les tests en exécutant :
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## Écriture des tests
+## Écrire des tests
 
 Supposons que vous ayez le composant React suivant :
 
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-Dans votre test, utilisez la méthode `render` de `@testing-library/react` pour attacher le composant à la page de test. Pour interagir avec le composant, nous recommandons d'utiliser les commandes WebdriverIO car elles se comportent de manière plus proche des interactions réelles des utilisateurs, par exemple :
+Dans votre test, utilisez la méthode `render` de `@testing-library/react` pour attacher le composant à la page de test. Pour interagir avec le composant, nous recommandons d'utiliser les commandes WebdriverIO, car elles se comportent de manière plus proche des interactions réelles d'un utilisateur, par exemple :
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -84,4 +85,4 @@ describe('React Component Testing', () => {
 })
 ```
 
-Vous pouvez trouver un exemple complet d'une suite de tests de composants WebdriverIO pour React dans notre [dépôt d'exemples](https://github.com/webdriverio/component-testing-examples/tree/main/react-typescript-vite).
+Vous trouverez un exemple complet de suite de tests de composants WebdriverIO pour React dans notre [dépôt d'exemples](https://github.com/webdriverio/component-testing-examples/tree/main/react-typescript-vite).

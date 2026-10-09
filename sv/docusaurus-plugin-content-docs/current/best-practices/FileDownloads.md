@@ -1,11 +1,12 @@
 ---
 id: file-download
 title: Filnedladdning
+description: "Konfigurera nedladdningskataloger för Chrome, Firefox och Edge, vänta på att nedladdningar slutförs och verifiera nedladdade filer i olika webbläsare."
 ---
 
-När man automatiserar filnedladdningar i webbtestning är det viktigt att hantera dem konsekvent över olika webbläsare för att säkerställa pålitlig testexekvering.
+Vid automatisering av filnedladdningar i webbtestning är det viktigt att hantera dem konsekvent i olika webbläsare för att säkerställa tillförlitlig testkörning.
 
-Här tillhandahåller vi bästa praxis för filnedladdningar och visar hur man konfigurerar nedladdningskataloger för **Google Chrome**, **Mozilla Firefox** och **Microsoft Edge**.
+Här presenterar vi bästa praxis för filnedladdningar och visar hur du konfigurerar nedladdningskataloger för **Google Chrome**, **Mozilla Firefox** och **Microsoft Edge**.
 
 ## Nedladdningssökvägar
 
@@ -21,13 +22,13 @@ const downloadPath = '/path/to/downloads';
 const downloadPath = path.join(__dirname, 'downloads');
 ```
 
-## Väntstrategier
+## Väntestrategier
 
-Om man inte implementerar korrekta väntstrategier kan det leda till tävlingsvillkor eller opålitliga tester, särskilt för nedladdningsfullbordande. Implementera **explicita** väntstrategier för att vänta på att filnedladdningar ska slutföras, vilket säkerställer synkronisering mellan teststeg.
+Om du inte implementerar lämpliga väntestrategier kan det leda till kapplöpningstillstånd (race conditions) eller opålitliga tester, särskilt när det gäller att nedladdningar slutförs. Implementera **explicita** väntestrategier för att vänta på att filnedladdningar slutförs, vilket säkerställer synkronisering mellan teststegen.
 
 ```javascript
 // 👎
-// Ingen explicit väntan på nedladdningsfullbordande
+// Ingen explicit väntan på att nedladdningen slutförs
 await browser.pause(5000);
 
 // 👍
@@ -35,9 +36,9 @@ await browser.pause(5000);
 await waitUntil(async ()=> await fs.existsSync(downloadPath), 5000);
 ```
 
-## Konfigurering av nedladdningskataloger
+## Konfigurera nedladdningskataloger
 
-För att åsidosätta filnedladdningsbeteendet för **Google Chrome**, **Mozilla Firefox** och **Microsoft Edge**, ange nedladdningskatalogen i WebDriverIO-kapaciteterna:
+För att åsidosätta beteendet för filnedladdning i **Google Chrome**, **Mozilla Firefox** och **Microsoft Edge** anger du nedladdningskatalogen i WebDriverIO-capabilities:
 
 <Tabs
 defaultValue="chrome"
@@ -80,32 +81,32 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 </Tabs>
 
-För ett exempel på implementering, se [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
+För ett exempel på en implementation, se [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
 
-## Konfigurering av nedladdningar för Chromium-webbläsare
+## Konfigurera nedladdningar i Chromium-webbläsare
 
-För att ändra nedladdningssökvägen för __Chromium-baserade__ webbläsare (som Chrome, Edge, Brave, etc.) med hjälp av WebDriverIOs `getPuppeteer`-metod för åtkomst till Chrome DevTools.
+Så här ändrar du nedladdningssökvägen för __Chromium-baserade__ webbläsare (som Chrome, Edge, Brave m.fl.) med hjälp av WebDriverIOs `getPuppeteer`-metod för att komma åt Chrome DevTools.
 
 ```javascript
 const page = await browser.getPuppeteer();
 // Initiera en CDP-session:
 const cdpSession = await page.target().createCDPSession();
-// Ställ in nedladdningssökvägen:
+// Ange nedladdningssökvägen:
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Hantering av flera filnedladdningar
+## Hantera flera filnedladdningar
 
-När man hanterar scenarier som involverar flera filnedladdningar är det viktigt att implementera strategier för att hantera och validera varje nedladdning effektivt. Överväg följande tillvägagångssätt:
+När du hanterar scenarier som omfattar flera filnedladdningar är det viktigt att implementera strategier för att hantera och validera varje nedladdning på ett effektivt sätt. Överväg följande tillvägagångssätt:
 
-__Sekventiell nedladdningshantering:__ Ladda ner filer en i taget och verifiera varje nedladdning innan du initierar nästa för att säkerställa ordnad exekvering och korrekt validering.
+__Sekventiell nedladdningshantering:__ Ladda ner filer en i taget och verifiera varje nedladdning innan nästa påbörjas för att säkerställa ordnad körning och korrekt validering.
 
-__Parallell nedladdningshantering:__ Använd asynkrona programmeringstekniker för att initiera flera filnedladdningar samtidigt, vilket optimerar testexekveringstiden. Implementera robusta valideringsmekanismer för att verifiera alla nedladdningar vid slutförande.
+__Parallell nedladdningshantering:__ Använd tekniker för asynkron programmering för att starta flera filnedladdningar samtidigt och därmed optimera testkörningstiden. Implementera robusta valideringsmekanismer för att verifiera alla nedladdningar när de är slutförda.
 
-## Överväganden för kompatibilitet mellan webbläsare
+## Att tänka på gällande kompatibilitet mellan webbläsare
 
-Även om WebDriverIO tillhandahåller ett enhetligt gränssnitt för webbläsarautomatisering är det viktigt att ta hänsyn till variationer i webbläsarbeteende och kapacitet. Överväg att testa din filnedladdningsfunktionalitet över olika webbläsare för att säkerställa kompatibilitet och konsekvens.
+Även om WebDriverIO tillhandahåller ett enhetligt gränssnitt för webbläsarautomatisering är det viktigt att ta hänsyn till skillnader i webbläsares beteende och funktioner. Överväg att testa din filnedladdningsfunktionalitet i olika webbläsare för att säkerställa kompatibilitet och konsekvens.
 
-__Webbläsarspecifika konfigurationer:__ Justera inställningar för nedladdningssökväg och väntstrategier för att anpassa sig till skillnader i webbläsarbeteende och preferenser mellan Chrome, Firefox, Edge och andra webbläsare som stöds.
+__Webbläsarspecifika konfigurationer:__ Justera inställningar för nedladdningssökvägar och väntestrategier för att hantera skillnader i beteende och inställningar mellan Chrome, Firefox, Edge och andra webbläsare som stöds.
 
-__Kompatibilitet med webbläsarversion:__ Uppdatera regelbundet dina WebDriverIO- och webbläsarversioner för att utnyttja de senaste funktionerna och förbättringarna samtidigt som du säkerställer kompatibilitet med din befintliga testsvit.
+__Kompatibilitet mellan webbläsarversioner:__ Uppdatera regelbundet dina versioner av WebDriverIO och webbläsare för att dra nytta av de senaste funktionerna och förbättringarna, samtidigt som du säkerställer kompatibilitet med din befintliga testsvit.

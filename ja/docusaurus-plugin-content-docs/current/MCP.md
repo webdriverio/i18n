@@ -1,49 +1,51 @@
 ---
 id: mcp
-title: MCP（モデルコンテキストプロトコル）
+title: MCP (Model Context Protocol)
+description: "WebdriverIO MCPサーバーを通じてAIアシスタントがブラウザやモバイルアプリを自動化できるようにします。インストール方法、Claudeでの使用方法、利用可能なツールについて説明します。"
 ---
 
-## できること
+## 何ができるのか？
 
-WebdriverIO MCPは、**モデルコンテキストプロトコル（MCP）サーバー**であり、Claude DesktopやClaude Codeなどのアシスタントがウェブブラウザやモバイルアプリケーションを自動化して操作できるようにします。
+WebdriverIO MCPは、AIアシスタントがWebブラウザやモバイルアプリケーションを自動化し、操作できるようにする**Model Context Protocol (MCP) サーバー**です。
 
 ### なぜWebdriverIO MCPなのか？
 
--   **モバイルファースト**: ブラウザのみのMCPサーバーとは異なり、WebdriverIO MCPはAppiumを介してiOSとAndroidのネイティブアプリの自動化をサポートしています
--   **クロスプラットフォームセレクタ**: スマートな要素検出により、複数のロケーター戦略（アクセシビリティID、XPath、UiAutomator、iOS predicates）が自動的に生成されます
--   **WebdriverIOエコシステム**: 豊富なサービスとレポーターのエコシステムを持つ実績のあるWebdriverIOフレームワーク上に構築されています
+-   **モバイルファースト**: ブラウザ専用のMCPサーバーとは異なり、WebdriverIO MCPはAppiumを介してiOSおよびAndroidのネイティブアプリの自動化をサポートします
+-   **クロスプラットフォームセレクター**: スマートな要素検出により、複数のロケーター戦略（accessibility ID、XPath、UiAutomator、iOS predicates）を自動的に生成します
+-   **WebdriverIOエコシステム**: サービスやレポーターの豊富なエコシステムを持つ、実績のあるWebdriverIOフレームワーク上に構築されています
 
-以下を統一したインターフェースで提供します：
+以下に対する統一されたインターフェースを提供します：
 
--   🖥️ **デスクトップブラウザ**（Chrome - ヘッドモードまたはヘッドレスモード）
--   📱 **ネイティブモバイルアプリ**（iOSシミュレータ / Androidエミュレータ / Appiumを介した実機）
--   📳 **ハイブリッドモバイルアプリ**（Appiumを介したネイティブ + WebViewコンテキスト切り替え）
+-   🖥️ **デスクトップブラウザ**（Chrome、Firefox、Edge、Safari、ヘッド付きまたはヘッドレス）
+-   📱 **ネイティブモバイルアプリ**（Appium経由のiOSシミュレーター / Androidエミュレーター / 実機）
+-   📳 **ハイブリッドモバイルアプリ**（Appium経由のネイティブ + WebViewコンテキスト切り替え）
+-   ☁️ **クラウドデバイス**（BrowserStack、Sauce Labs、TestMuの実機およびブラウザクラウド）
 
 これらは[`@wdio/mcp`](https://www.npmjs.com/package/@wdio/mcp)パッケージを通じて提供されます。
 
-これによりAIアシスタントは以下のことができます：
+これにより、AIアシスタントは以下のことが可能になります：
 
--   **ブラウザの起動と制御** - 設定可能な寸法、ヘッドレスモード、オプションの初期ナビゲーション
--   **ウェブサイトのナビゲーション** - 要素との対話（クリック、入力、スクロール）
--   **ページコンテンツの分析** - アクセシビリティツリーと可視要素の検出（ページネーションサポート付き）
--   **スクリーンショットの撮影** - 自動最適化（サイズ変更、最大1MBに圧縮）
--   **Cookieの管理** - セッション処理用
--   **モバイルデバイスの制御** - ジェスチャー（タップ、スワイプ、ドラッグアンドドロップ）を含む
--   **コンテキストの切り替え** - ハイブリッドアプリでのネイティブとWebView間の切り替え
--   **スクリプトの実行** - ブラウザでのJavaScript、デバイス上のAppiumモバイルコマンド
--   **デバイス機能の処理** - 回転、キーボード、位置情報など
--   さらに多くの機能については、[ツール](./mcp/tools)と[設定](./mcp/configuration)のオプションを参照してください
+-   **ブラウザの起動と制御**：画面サイズ、ヘッドレスモード、任意の初期ナビゲーションを設定可能
+-   **Webサイトのナビゲーション**と要素の操作（クリック、入力、スクロール）
+-   **ページコンテンツの分析**：アクセシビリティツリーと可視要素の検出（ページネーション対応）
+-   **スクリーンショットの撮影**：自動的に最適化（リサイズ、最大1MBに圧縮）
+-   **Cookieの管理**によるセッション処理
+-   **モバイルデバイスの制御**：ジェスチャー（タップ、スワイプ、ドラッグ＆ドロップ）を含む
+-   **コンテキストの切り替え**：ハイブリッドアプリでネイティブとWebViewを切り替え
+-   **スクリプトの実行** - ブラウザではJavaScript、デバイスではAppiumのモバイルコマンド
+-   **デバイス機能の操作**：回転、キーボード、位置情報など
+-   その他多数。[Tools](./mcp/tools)と[Configuration](./mcp/configuration)のオプションを参照してください
 
 :::info
 
-モバイルアプリの注意事項
-モバイル自動化には、適切なドライバーがインストールされた実行中のAppiumサーバーが必要です。セットアップ手順については[前提条件](#prerequisites)を参照してください。
+モバイルアプリに関する注意
+モバイルの自動化には、適切なドライバーがインストールされた状態でAppiumサーバーが実行されている必要があります。セットアップ手順については[前提条件](#prerequisites)を参照してください。
 
 :::
 
 ## インストール
 
-`@wdio/mcp`を使用する最も簡単な方法は、ローカルインストールなしでnpxを使用することです：
+`@wdio/mcp`を使用する最も簡単な方法は、ローカルにインストールせずにnpxを使用することです：
 
 ```sh
 npx @wdio/mcp
@@ -55,9 +57,9 @@ npx @wdio/mcp
 npm install -g @wdio/mcp
 ```
 
-## Claudeでの使用
+## Claudeでの使用方法
 
-WebdriverIO MCPをClaudeで使用するには、構成ファイルを変更します：
+ClaudeでWebdriverIO MCPを使用するには、設定ファイルを変更します：
 
 ```json
 {
@@ -70,136 +72,146 @@ WebdriverIO MCPをClaudeで使用するには、構成ファイルを変更し�
 }
 ```
 
-設定を追加した後、Claudeを再起動してください。WebdriverIO MCPツールがブラウザとモバイル自動化タスク用に利用可能になります。
+設定を追加した後、ハーネスを再起動してください。ブラウザおよびモバイルの自動化タスクでWebdriverIO MCPツールが利用可能になります。
 
-### Claude Codeでの使用
+### Claude Codeでの使用方法
 
 Claude CodeはMCPサーバーを自動的に検出します。プロジェクトの`.claude/settings.json`または`.mcp.json`で設定できます。
 
-または以下を実行して.claude.jsonにグローバルに追加できます：
+または、以下を実行して.claude.jsonにグローバルに追加します：
 ```bash
 claude mcp add --transport stdio wdio-mcp -- npx -y @wdio/mcp
 ```
-Claude Code内で`/mcp`コマンドを実行して検証します。
+Claude Code内で`/mcp`コマンドを実行して確認してください。
 
-## クイックスタート例
+## クイックスタートの例
 
-### ブラウザ自動化
+### ブラウザの自動化
 
-Claudeにブラウザタスクを自動化するよう依頼します：
-
-```
-"Chromeを開いてhttps://webdriver.ioに移動する"
-"「Get Started」ボタンをクリックする"
-"ページのスクリーンショットを撮る"
-"ページ上の全ての表示されているリンクを見つける"
-```
-
-### モバイルアプリ自動化
-
-Claudeにモバイルアプリを自動化するよう依頼します：
+Claudeにブラウザタスクの自動化を依頼します：
 
 ```
-"iPhone 15シミュレータで私のiOSアプリを起動する"
-"ログインボタンをタップする"
-"上にスワイプして下にスクロールする"
-"現在の画面のスクリーンショットを撮る"
+"Open Chrome and navigate to https://webdriver.io"
+"Click the 'Get Started' button"
+"Take a screenshot of the page"
+"Find all visible links on the page"
+```
+
+### モバイルアプリの自動化
+
+Claudeにモバイルアプリの自動化を依頼します：
+
+```
+"Start my iOS app on the iPhone 15 simulator"
+"Tap the login button"
+"Swipe up to scroll down"
+"Take a screenshot of the current screen"
 ```
 
 ## 機能
 
-### ブラウザ自動化（Chrome）
+### ブラウザの自動化
 
 | 機能 | 説明 |
 |---------|-------------|
-| **セッション管理** | ヘッド/ヘッドレスモードでのChromeの起動（カスタムサイズとオプションのナビゲーションURL付き） |
-| **ナビゲーション** | URLへのナビゲーション |
-| **要素の操作** | 要素のクリック、テキスト入力、様々なセレクタによる要素の検索 |
-| **ページ分析** | 可視要素（ページネーション付き）、アクセシビリティツリー（フィルタリング付き）の取得 |
+| **セッション管理** | Chrome、Firefox、Edge、Safariをヘッド付き/ヘッドレスモードでカスタムサイズで起動。CDP経由で既存のChromeインスタンスにアタッチ |
+| **ナビゲーション** | URLへの移動、複数タブの管理 |
+| **要素の操作** | 要素のクリック、テキスト入力、さまざまなセレクターによる要素の検索 |
+| **ページ分析** | 操作可能な要素の取得（ページネーション付き）、アクセシビリティツリー（ロールによるフィルタリング付き） |
 | **スクリーンショット** | スクリーンショットの撮影（最大1MBに自動最適化） |
-| **スクロール** | 設定可能なピクセル量での上下スクロール |
+| **スクロール** | 設定可能なピクセル量で上下にスクロール |
 | **Cookie管理** | Cookieの取得、設定、削除 |
-| **スクリプト実行** | ブラウザコンテキストでのカスタムJavaScriptの実行 |
+| **デバイスエミュレーション** | ブラウザでモバイル/タブレットのビューポートをエミュレート（BiDiが必要） |
+| **スクリプト実行** | ブラウザコンテキストでカスタムJavaScriptを実行 |
 
-### モバイルアプリ自動化（iOS/Android）
+### モバイルアプリの自動化（iOS/Android）
 
 | 機能 | 説明 |
 |---------|-------------|
-| **セッション管理** | シミュレータ、エミュレータ、実機でのアプリ起動 |
-| **タッチジェスチャー** | タップ、スワイプ、ドラッグアンドドロップ |
-| **要素検出** | 複数のロケーター戦略とページネーションを備えたスマート要素検出 |
-| **アプリライフサイクル** | アプリの状態の取得（アクティベート/終了のための`execute_script`経由） |
-| **コンテキスト切り替え** | ハイブリッドアプリでのネイティブとWebViewコンテキスト間の切り替え |
-| **デバイス制御** | デバイスの回転、キーボード制御 |
-| **位置情報** | デバイスのGPS座標の取得と設定 |
-| **権限** | 自動的な権限とアラート処理 |
-| **スクリプト実行** | Appiumモバイルコマンド（pressKey、deepLink、shell等）の実行 |
+| **セッション管理** | シミュレーター、エミュレーター、または実機でアプリを起動 |
+| **タッチジェスチャー** | タップ（要素または座標）、スワイプ、ドラッグ＆ドロップ |
+| **要素検出** | 複数のロケーター戦略とページネーションによるスマートな要素検出 |
+| **アプリのライフサイクル** | アプリの状態を取得（フォアグラウンド、バックグラウンド、未実行、未インストール） |
+| **コンテキスト切り替え** | ハイブリッドアプリでネイティブとWebViewのコンテキストを切り替え |
+| **デバイス制御** | デバイスの回転、キーボード制御、GPSの上書き |
+| **パーミッション** | パーミッションとアラートの自動処理 |
+| **スクリプト実行** | Appiumのモバイルコマンドを実行（pressKey、deepLink、shellなど） |
+
+### クラウドプロバイダー
+
+| 機能 | 説明 |
+|---------|-------------|
+| **ブラウザセッション** | BrowserStack、Sauce Labs、TestMu、またはTestingBotでブラウザセッションを実行（Windows、macOS、Linux） |
+| **モバイルセッション** | BrowserStack、Sauce Labs、TestMu、またはTestingBot経由で実機上でアプリセッションを実行 |
+| **アプリ管理** | `.apk`/`.ipa`ファイルのアップロード。4つのプロバイダーすべてで以前にアップロードしたアプリを一覧表示 |
+| **ローカルトンネル** | localhostにアクセスするためのプロバイダー固有のトンネルバイナリを自動管理 |
+| **レポート** | プロジェクト/ビルド/セッションのラベルでセッションをタグ付け（すべてのプロバイダーで同じように動作） |
 
 ## 前提条件
 
-### ブラウザ自動化
+### ブラウザの自動化
 
--   **Chrome**がシステムにインストールされている必要があります
--   WebdriverIOは自動ChromeDriver管理を処理します
+-   **Chrome、Firefox、Edge、またはSafari**がインストールされている必要があります
+-   WebdriverIOがドライバーの管理を自動で行います
 
-### モバイル自動化
+### モバイルの自動化
 
 #### iOS
 
-1. **Xcodeをインストール**（Mac App Storeから）
-2. **Xcodeコマンドラインツールをインストール**：
+1. Mac App Storeから**Xcodeをインストール**します
+2. **Xcode Command Line Toolsをインストール**します：
    ```sh
    xcode-select --install
    ```
-3. **Appiumをインストール**：
+3. **Appiumをインストール**します：
    ```sh
    npm install -g appium
    ```
-4. **XCUITestドライバーをインストール**：
+4. **XCUITestドライバーをインストール**します：
    ```sh
    appium driver install xcuitest
    ```
-5. **Appiumサーバーを起動**：
+5. **Appiumサーバーを起動**します：
    ```sh
    appium
    ```
-6. **シミュレータの場合**：Xcode → ウィンドウ → デバイスとシミュレータでシミュレータを作成/管理
+6. **シミュレーターの場合**：Xcode → Window → Devices and Simulatorsを開いてシミュレーターを作成/管理します
 7. **実機の場合**：デバイスのUDID（40文字の一意の識別子）が必要です
 
 #### Android
 
-1. **Android Studioをインストール**してAndroid SDKをセットアップ
-2. **環境変数を設定**：
+1. **Android Studioをインストール**し、Android SDKをセットアップします
+2. **環境変数を設定**します：
    ```sh
    export ANDROID_HOME=$HOME/Library/Android/sdk
    export PATH=$PATH:$ANDROID_HOME/emulator
    export PATH=$PATH:$ANDROID_HOME/platform-tools
    ```
-3. **Appiumをインストール**：
+3. **Appiumをインストール**します：
    ```sh
    npm install -g appium
    ```
-4. **UiAutomator2ドライバーをインストール**：
+4. **UiAutomator2ドライバーをインストール**します：
    ```sh
    appium driver install uiautomator2
    ```
-5. **Appiumサーバーを起動**：
+5. **Appiumサーバーを起動**します：
    ```sh
    appium
    ```
-6. **エミュレータを作成** - Android Studio → Virtual Device Managerから
-7. **テスト実行前にエミュレータを起動**
+6. Android Studio → Virtual Device Managerから**エミュレーターを作成**します
+7. テストを実行する前に**エミュレーターを起動**します
 
 ## アーキテクチャ
 
 ### 仕組み
 
-WebdriverIO MCPはAIアシスタントとブラウザ/モバイル自動化の間のブリッジとして機能します：
+WebdriverIO MCPは、AIアシスタントとブラウザ/モバイル自動化の間の橋渡しとして機能します：
 
 ```
-┌─────────────────┐     MCPプロトコル      ┌─────────────────┐
+┌─────────────────┐     MCP Protocol      ┌─────────────────┐
 │  Claude Desktop │ ◄──────────────────►  │    @wdio/mcp    │
-│  または Claude Code │     (stdio)         │     サーバー     │
+│  or Claude Code │   (stdio or HTTP)     │     Server      │
 └─────────────────┘                       └────────┬────────┘
                                                    │
                                              WebDriverIO API
@@ -207,44 +219,44 @@ WebdriverIO MCPはAIアシスタントとブラウザ/モバイル自動化の�
                     ┌──────────────────────────────┼──────────────────────────────┐
                     │                              │                              │
             ┌───────▼───────┐             ┌───────▼───────┐             ┌───────▼───────┐
-            │    Chrome     │             │    Appium     │             │    Appium     │
-            │   (ブラウザ)   │             │     (iOS)     │             │   (Android)   │
+            │    Browser    │             │    Appium     │             │   Cloud        │
+            │ (local/CDP)   │             │  (iOS/Android)│             │   Providers    │
             └───────────────┘             └───────────────┘             └───────────────┘
 ```
 
 ### セッション管理
 
--   **シングルセッションモデル**：一度に1つのブラウザまたはアプリセッションのみがアクティブになります
--   **セッション状態**はツール呼び出し全体でグローバルに維持されます
--   **自動デタッチ**：保存された状態（`noReset: true`）を持つセッションは閉じる際に自動的にデタッチされます
+-   **シングルセッションモデル**：一度にアクティブにできるのは、ブラウザまたはアプリのいずれか1つのセッションのみです
+-   **セッションの状態**はツール呼び出し間でグローバルに維持されます
+-   **自動デタッチ**：状態が保持されているセッション（`noReset: true`）は、クローズ時に自動的にデタッチされます
 
 ### 要素検出
 
 #### ブラウザ（Web）
 
--   可視でインタラクト可能な全ての要素を見つけるための最適化されたブラウザスクリプトを使用
--   CSSセレクタ、ID、クラス、ARIA情報を含む要素を返します
--   デフォルトでビューポート内の可視要素にフィルタリングします
+-   最適化されたブラウザスクリプトを使用して、表示されている操作可能なすべての要素を検索します
+-   CSSセレクター、ID、クラス、ARIA情報を含む要素を返します
+-   ビューポートによるフィルタリングとページネーションをサポートします
 
 #### モバイル（ネイティブアプリ）
 
--   効率的なXMLページソース解析を使用（従来のクエリの600+に対して2つのHTTPコール）
+-   効率的なXMLページソースの解析を使用します（従来のクエリでは600回以上必要なところを2回のHTTP呼び出しで実現）
 -   AndroidとiOS向けのプラットフォーム固有の要素分類
--   要素ごとに複数のロケーター戦略を生成：
-    -   アクセシビリティID（クロスプラットフォーム、最も安定）
-    -   リソースID / 名前属性
-    -   テキスト / ラベル一致
-    -   XPath（完全および簡略化）
-    -   UiAutomator（Android）/ Predicates（iOS）
+-   要素ごとに複数のロケーター戦略を生成します：
+    -   Accessibility ID（クロスプラットフォーム、最も安定）
+    -   Resource ID / Name属性
+    -   テキスト / ラベルのマッチング
+    -   XPath（完全版と簡略版）
+    -   UiAutomator（Android） / Predicates（iOS）
 
-## セレクタ構文
+## セレクター構文
 
-MCPサーバーは複数のセレクタ戦略をサポートしています。詳細なドキュメントについては[セレクタ](./mcp/selectors)を参照してください。
+MCPサーバーは複数のセレクター戦略をサポートしています。詳細なドキュメントについては[Selectors](./mcp/selectors)を参照してください。
 
 ### Web（CSS/XPath）
 
 ```
-# CSSセレクタ
+# CSS Selectors
 button.my-class
 #element-id
 [data-testid="login"]
@@ -253,15 +265,15 @@ button.my-class
 //button[@class='submit']
 //a[contains(text(), 'Click')]
 
-# テキストセレクタ（WebdriverIO固有）
-button=正確なボタンテキスト
-a*=部分的なリンクテキスト
+# Text Selectors (WebdriverIO specific)
+button=Exact Button Text
+a*=Partial Link Text
 ```
 
 ### モバイル（クロスプラットフォーム）
 
 ```
-# アクセシビリティID（推奨 - iOSとAndroidで動作）
+# Accessibility ID (recommended - works on iOS & Android)
 ~loginButton
 
 # Android UiAutomator
@@ -273,165 +285,173 @@ android=new UiSelector().text("Login")
 # iOS Class Chain
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
-# XPath（両プラットフォームで動作）
+# XPath (works on both platforms)
 //android.widget.Button[@text="Login"]
 //XCUIElementTypeButton[@label="Login"]
 ```
 
 ## 利用可能なツール
 
-MCPサーバーはブラウザとモバイルの自動化のための25のツールを提供しています。完全なリファレンスについては[ツール](./mcp/tools)を参照してください。
+MCPサーバーは、ブラウザおよびモバイルの自動化のための29個のツールを提供します。完全なリファレンスについては[Tools](./mcp/tools)を参照してください。
 
-### ブラウザツール
+| ツール | プラットフォーム | 説明 |
+|------|----------|-------------|
+| `start_session` | all | ブラウザまたはモバイルセッションを開始（ローカルまたはクラウドプロバイダー） |
+| `close_session` | all | 現在のセッションをクローズまたはデタッチ |
+| `launch_chrome` | browser | CDPアタッチ用にリモートデバッグを有効にしてChromeを開く |
+| `navigate` | browser | 現在のタブでURLを読み込む |
+| `get_tabs` | browser | 開いているすべてのタブを一覧表示 |
+| `switch_tab` | browser | ハンドルまたはインデックスでタブにフォーカス |
+| `switch_frame` | browser | セレクターでiframeに切り替え、またはトップレベルに戻る |
+| `click_element` | browser | 要素をクリック |
+| `set_value` | all | 入力欄にテキストを入力 |
+| `scroll` | browser | ページを上下にスクロール |
+| `get_elements` | all | 操作可能な要素を取得（フィルタリング + ページネーション付き） |
+| `get_accessibility_tree` | browser | アクセシビリティツリーを取得（ロールによるフィルタリング付き） |
+| `get_screenshot` | all | スクリーンショットを撮影（自動最適化） |
+| `get_cookies` | browser | すべてのCookieまたは特定のCookieを取得 |
+| `set_cookie` | browser | ブラウザのCookieを設定 |
+| `delete_cookies` | browser | すべてまたは1つのCookieを削除 |
+| `emulate_device` | browser | モバイル/タブレットデバイスのビューポートをエミュレート |
+| `execute_script` | all | JavaScript（ブラウザ）またはAppiumコマンド（モバイル）を実行 |
+| `tap_element` | mobile | 要素または画面座標をタップ |
+| `swipe` | mobile | 指定方向へのスワイプジェスチャー |
+| `drag_and_drop` | mobile | 要素間または座標間でドラッグ |
+| `get_contexts` | mobile | 利用可能なネイティブ/WebViewコンテキストを一覧表示 |
+| `switch_context` | mobile | ネイティブとWebViewのコンテキストを切り替え |
+| `rotate_device` | mobile | 縦向きまたは横向きに回転 |
+| `hide_keyboard` | mobile | ソフトウェアキーボードを閉じる |
+| `set_geolocation` | all | デバイスのGPS座標を上書き |
+| `get_app_state` | mobile | アプリのライフサイクル状態を取得 |
+| `list_apps` | cloud | アップロード済みのアプリを一覧表示（BrowserStack、Sauce Labs、TestMu、TestingBot） |
+| `upload_app` | cloud | `.apk`/`.ipa`をクラウドプロバイダーにアップロード |
 
-| ツール | 説明 |
-|------|-------------|
-| `start_browser` | Chromeブラウザを起動（オプションの初期URL付き） |
-| `close_session` | セッションを閉じるまたはデタッチする |
-| `navigate` | URLに移動する |
-| `click_element` | 要素をクリックする |
-| `set_value` | 入力フィールドにテキストを入力する |
-| `get_visible_elements` | 可視/インタラクト可能な要素を取得（ページネーション付き） |
-| `get_accessibility` | アクセシビリティツリーを取得（フィルタリング付き） |
-| `take_screenshot` | スクリーンショットを撮影（自動最適化） |
-| `scroll` | ページを上下にスクロールする |
-| `get_cookies` / `set_cookie` / `delete_cookies` | Cookie管理 |
-| `execute_script` | ブラウザコンテキストでJavaScriptを実行する |
+## MCPリソース
 
-### モバイルツール
+ツールに加えて、サーバーはライブセッションの状態をMCPリソースとして公開します。完全なリファレンスについては[Resources](./mcp/resources)を参照してください。
 
-| ツール | 説明 |
-|------|-------------|
-| `start_app_session` | iOS/Androidアプリを起動する |
-| `tap_element` | 要素または座標をタップする |
-| `swipe` | 方向にスワイプする |
-| `drag_and_drop` | 場所間でドラッグする |
-| `get_app_state` | アプリが実行中かどうかを確認する |
-| `get_contexts` / `switch_context` | ハイブリッドアプリのコンテキスト切り替え |
-| `rotate_device` | ポートレート/ランドスケープに回転する |
-| `get_geolocation` / `set_geolocation` | GPS座標を取得または設定する |
-| `hide_keyboard` | オンスクリーンキーボードを非表示にする |
-| `execute_script` | Appiumモバイルコマンドを実行する |
+| リソースURI | 説明 |
+|-------------|-------------|
+| `wdio://sessions` | すべてのセッションのインデックス |
+| `wdio://session/current/elements` | 操作可能な要素（スクリーンショットより推奨） |
+| `wdio://session/current/screenshot` | base64形式のスクリーンショット |
+| `wdio://session/current/accessibility` | アクセシビリティツリー |
+| `wdio://session/current/cookies` | ブラウザのCookie |
+| `wdio://session/current/tabs` | 開いているブラウザタブ |
+| `wdio://session/current/contexts` | 利用可能なモバイルコンテキスト |
+| `wdio://session/current/context` | アクティブなモバイルコンテキスト |
+| `wdio://session/current/app-state/{bundleId}` | モバイルアプリのライフサイクル状態 |
+| `wdio://session/current/geolocation` | 現在のGPS上書き設定 |
+| `wdio://session/current/logs` | セッションログ（ブラウザコンソール、logcat、crashlog） |
+| `wdio://session/current/capabilities` | 生のWebDriver capabilities |
+| `wdio://session/current/code` | 生成されたWebdriverIO JS |
+| `wdio://session/current/steps` | セッションのステップログ |
+| `wdio://session/{sessionId}/code` | 過去のセッションの生成されたJS |
+| `wdio://session/{sessionId}/steps` | 過去のセッションのステップ |
+| `wdio://browserstack/local-binary` | BrowserStack Localのセットアップ手順 |
+| `wdio://saucelabs/local-binary` | Sauce Connect Proxyのセットアップ手順 |
+| `wdio://testmu/local-binary` | TestMu Tunnelのセットアップ手順 |
+| `wdio://testingbot/local-binary` | TestingBot Tunnelのセットアップ手順 |
 
 ## 自動処理
 
-### 権限
+### パーミッション
 
-デフォルトでは、MCPサーバーはアプリの権限を自動的に付与し（`autoGrantPermissions: true`）、自動化中に手動で権限ダイアログを処理する必要がなくなります。
+デフォルトでは、MCPサーバーはアプリのパーミッションを自動的に許可する（`autoGrantPermissions: true`）ため、自動化中にパーミッションダイアログを手動で処理する必要がありません。
 
 ### システムアラート
 
-システムアラート（「通知を許可しますか？」など）はデフォルトで自動的に受け入れられます（`autoAcceptAlerts: true`）。これは`autoDismissAlerts: true`で拒否するように設定することもできます。
+システムアラート（「通知を許可しますか？」など）は、デフォルトで自動的に承認されます（`autoAcceptAlerts: true`）。`autoDismissAlerts: true`を設定することで、代わりに拒否するように構成できます。
 
-## 設定
+## トランスポート
 
-### 環境変数
+デフォルトでは、サーバーは**stdio**上で実行されます（AIクライアントによってサブプロセスとして起動されます）。サブプロセスベースのMCPをサポートしていないクライアント（llama.cpp、Codexのセキュアモード）の場合は、**HTTPトランスポート**を使用してください：
 
-Appiumサーバー接続を設定します：
-
-| 変数 | デフォルト | 説明 |
-|----------|---------|-------------|
-| `APPIUM_URL` | `127.0.0.1` | Appiumサーバーのホスト名 |
-| `APPIUM_URL_PORT` | `4723` | Appiumサーバーのポート |
-| `APPIUM_PATH` | `/` | Appiumサーバーのパス |
-
-### カスタムAppiumサーバーの例
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"],
-            "env": {
-                "APPIUM_URL": "192.168.1.100",
-                "APPIUM_URL_PORT": "4724"
-            }
-        }
-    }
-}
+```bash
+npx @wdio/mcp --http --port 3000
 ```
 
-## パフォーマンス最適化
+`--allowedHosts`や`--allowedOrigins`を含むすべてのオプションについては[Transport](./mcp/transport)を参照してください。
 
-MCPサーバーは効率的なAIアシスタント通信のために最適化されています：
+## パフォーマンスの最適化
 
--   **TOONフォーマット**：最小限のトークン使用のためにトークン指向オブジェクト表記法を使用
--   **XML解析**：モバイル要素検出は2つのHTTPコール（従来の600+に対して）を使用
--   **スクリーンショット圧縮**：Sharpを使用して画像を最大1MBに自動圧縮
--   **ビューポートフィルタリング**：デフォルトで可視要素のみを返す
--   **ページネーション**：大きな要素リストはレスポンスサイズを減らすためにページ分割可能
+MCPサーバーは、AIアシスタントとの効率的な通信のために最適化されています：
 
-## TypeScriptサポート
-
-MCPサーバーはTypeScriptで書かれており、完全な型定義を含んでいます。サーバーをプログラムで拡張または統合する場合、自動補完と型安全性の恩恵を受けることができます。
+-   **TOONフォーマット**：トークン使用量を最小限に抑えるためにToken-Oriented Object Notationを使用
+-   **XML解析**：モバイルの要素検出は2回のHTTP呼び出しで実行（従来は600回以上）
+-   **スクリーンショットの圧縮**：画像は最大1MBに自動圧縮
+-   **ビューポートによるフィルタリング**：デフォルトでは表示されている要素のみを返す
+-   **ページネーション**：大きな要素リストをページ分割してレスポンスサイズを削減可能
 
 ## エラー処理
 
-すべてのツールは堅牢なエラー処理で設計されています：
+すべてのツールは堅牢なエラー処理を備えて設計されています：
 
--   エラーはテキストコンテンツとして返され（決して例外をスローしない）、MCPプロトコルの安定性を維持します
--   説明的なエラーメッセージで問題の診断に役立ちます
--   個々の操作が失敗しても、セッション状態は保持されます
+-   エラーはテキストコンテンツとして返され（スローされることはありません）、MCPプロトコルの安定性を維持します
+-   わかりやすいエラーメッセージが問題の診断に役立ちます
+-   個々の操作が失敗しても、セッションの状態は保持されます
 
 ## ユースケース
 
 ### 品質保証
 
--   AI駆動のテストケース実行
--   スクリーンショットによる視覚的リグレッションテスト
+-   AIによるテストケースの実行
+-   スクリーンショットを使用したビジュアルリグレッションテスト
 -   アクセシビリティツリー分析によるアクセシビリティ監査
 
 ### Webスクレイピングとデータ抽出
 
--   複雑なマルチページフローのナビゲーション
+-   複雑な複数ページのフローのナビゲーション
 -   動的コンテンツからの構造化データの抽出
 -   認証とセッション管理の処理
 
-### モバイルアプリテスト
+### モバイルアプリのテスト
 
--   クロスプラットフォームテスト自動化（iOS + Android）
--   オンボーディングフロー検証
--   ディープリンクとナビゲーションテスト
+-   クロスプラットフォームのテスト自動化（iOS + Android）
+-   オンボーディングフローの検証
+-   ディープリンクとナビゲーションのテスト
 
 ### 統合テスト
 
 -   エンドツーエンドのワークフローテスト
--   API + UI統合検証
+-   API + UIの統合検証
 -   マルチプラットフォームの一貫性チェック
 
 ## トラブルシューティング
 
 ### ブラウザが起動しない
 
--   Chromeがインストールされていることを確認
--   デフォルトのデバッグポート（9222）を他のプロセスが使用していないことを確認
--   ディスプレイの問題が発生する場合はヘッドレスモードを試す
+-   対象のブラウザがインストールされていることを確認してください
+-   デフォルトのデバッグポート（9222）を他のプロセスが使用していないか確認してください
+-   表示に問題がある場合はヘッドレスモードを試してください
 
-### Appium接続が失敗する
+### Appiumへの接続に失敗する
 
--   Appiumサーバーが実行中であることを確認（`appium`）
--   AppiumのURLとポート設定を確認
--   適切なドライバーがインストールされていることを確認（`appium driver list`）
+-   Appiumサーバーが実行中であることを確認してください（`appium`）
+-   `appiumConfig`のAppiumのホストとポートを確認してください
+-   適切なドライバーがインストールされていることを確認してください（`appium driver list`）
 
-### iOSシミュレータの問題
+### iOSシミュレーターの問題
 
--   Xcodeがインストールされ最新であることを確認
--   シミュレータが利用可能であることを確認（`xcrun simctl list devices`）
--   実機の場合、UDIDが正しいことを確認
+-   Xcodeがインストールされ、最新であることを確認してください
+-   シミュレーターが利用可能であることを確認してください（`xcrun simctl list devices`）
+-   実機の場合は、UDIDが正しいことを確認してください
 
-### Androidエミュレータの問題
+### Androidエミュレーターの問題
 
--   Android SDKが適切に設定されていることを確認
--   エミュレータが実行中であることを確認（`adb devices`）
--   `ANDROID_HOME`環境変数が設定されていることを確認
+-   Android SDKが正しく構成されていることを確認してください
+-   エミュレーターが実行中であることを確認してください（`adb devices`）
+-   `ANDROID_HOME`環境変数が設定されていることを確認してください
 
 ## リソース
 
--   [ツールリファレンス](./mcp/tools) - 利用可能なツールの完全なリスト
--   [セレクタガイド](./mcp/selectors) - セレクタ構文のドキュメント
--   [設定](./mcp/configuration) - 設定オプション
+-   [Tools Reference](./mcp/tools) - 利用可能なツールの完全なリスト
+-   [Resources Reference](./mcp/resources) - ライブセッション状態のためのMCPリソース
+-   [Selectors Guide](./mcp/selectors) - セレクター構文のドキュメント
+-   [Configuration](./mcp/configuration) - 設定オプション
+-   [Transport](./mcp/transport) - HTTPトランスポートのセットアップ
+-   [Cloud Providers](./mcp/cloud-providers) - BrowserStack、Sauce Labs、TestMu、TestingBotのクラウド統合
 -   [FAQ](./mcp/faq) - よくある質問
--   [GitHubリポジトリ](https://github.com/webdriverio/mcp) - ソースコードと課題
--   [NPMパッケージ](https://www.npmjs.com/package/@wdio/mcp) - npmのパッケージ
--   [モデルコンテキストプロトコル](https://modelcontextprotocol.io/) - MCP仕様
+-   [GitHub Repository](https://github.com/webdriverio/mcp) - ソースコードとIssue
+-   [NPM Package](https://www.npmjs.com/package/@wdio/mcp) - npm上のパッケージ
+-   [Model Context Protocol](https://modelcontextprotocol.io/) - MCP仕様

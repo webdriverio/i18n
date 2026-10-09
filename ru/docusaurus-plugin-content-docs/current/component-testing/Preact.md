@@ -1,13 +1,14 @@
 ---
 id: preact
 title: Preact
+description: "Настройка браузерного раннера WebdriverIO для проекта на Preact с пресетом preact и написание компонентных тестов с помощью Testing Library."
 ---
 
-[Preact](https://preactjs.com/) - это быстрая 3кБ альтернатива React с таким же современным API. Вы можете тестировать компоненты Preact непосредственно в реальном браузере, используя WebdriverIO и его [браузерный запускальщик](/docs/runner#browser-runner).
+[Preact](https://preactjs.com/) — это быстрая альтернатива React размером 3 КБ с тем же современным API. Вы можете тестировать компоненты Preact непосредственно в реальном браузере, используя WebdriverIO и его [браузерный раннер](/docs/runner#browser-runner).
 
 ## Настройка
 
-Чтобы настроить WebdriverIO в вашем проекте Preact, следуйте [инструкциям](/docs/component-testing#set-up) в нашей документации по тестированию компонентов. Убедитесь, что вы выбрали `preact` как пресет в опциях запуска, например:
+Чтобы настроить WebdriverIO в вашем проекте на Preact, следуйте [инструкциям](/docs/component-testing#set-up) в нашей документации по компонентному тестированию. Обязательно выберите `preact` в качестве пресета в параметрах раннера, например:
 
 ```js
 // wdio.conf.js
@@ -22,7 +23,7 @@ export const config = {
 
 :::info
 
-Если вы уже используете [Vite](https://vitejs.dev/) в качестве сервера разработки, вы также можете повторно использовать свою конфигурацию из `vite.config.ts` в конфигурации WebdriverIO. Для получения дополнительной информации см. `viteConfig` в [опциях запуска](/docs/runner#runner-options).
+Если вы уже используете [Vite](https://vitejs.dev/) в качестве сервера разработки, вы также можете просто повторно использовать свою конфигурацию из `vite.config.ts` в конфигурации WebdriverIO. Для получения дополнительной информации см. `viteConfig` в [параметрах раннера](/docs/runner#runner-options).
 
 :::
 
@@ -64,7 +65,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-В вашем тесте используйте метод `render` из `@testing-library/preact` для прикрепления компонента к тестовой странице. Для взаимодействия с компонентом мы рекомендуем использовать команды WebdriverIO, так как они больше соответствуют фактическим пользовательским взаимодействиям, например:
+В своем тесте используйте метод `render` из `@testing-library/preact`, чтобы прикрепить компонент к тестовой странице. Для взаимодействия с компонентом мы рекомендуем использовать команды WebdriverIO, так как они ведут себя ближе к реальным действиям пользователя, например:
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'
@@ -84,4 +85,4 @@ describe('Preact Component Testing', () => {
 })
 ```
 
-Полный пример набора тестов компонентов WebdriverIO для Preact можно найти в нашем [репозитории примеров](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite).
+Полный пример набора компонентных тестов WebdriverIO для Preact вы можете найти в нашем [репозитории с примерами](https://github.com/webdriverio/component-testing-examples/tree/main/preact-typescript-vite).

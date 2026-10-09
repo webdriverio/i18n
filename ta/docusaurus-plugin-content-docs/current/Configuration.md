@@ -1,151 +1,169 @@
 ---
 id: configuration
 title: கட்டமைப்பு
+description: "WebDriver, தனித்த WebdriverIO மற்றும் WDIO testrunner ஆகியவற்றுக்கான அனைத்து கட்டமைப்பு விருப்பங்களையும், அனைத்து testrunner hooks உட்பட, இங்கே காணலாம்."
 ---
 
-[அமைவு வகை](/docs/setuptypes) அடிப்படையில் (எ.கா. raw protocol bindings, WebdriverIO தனிப்பட்ட தொகுப்பு அல்லது WDIO டெஸ்ட்ரன்னர் பயன்படுத்துதல்) சூழலை கட்டுப்படுத்த பல்வேறு விருப்பங்கள் உள்ளன.
+[அமைப்பு வகையைப்](/docs/setuptypes) பொறுத்து (எ.கா. raw protocol bindings, தனித்த தொகுப்பாக WebdriverIO அல்லது WDIO testrunner பயன்படுத்துதல்), சூழலைக் கட்டுப்படுத்த வெவ்வேறு விருப்பங்கள் கிடைக்கின்றன.
 
 ## WebDriver விருப்பங்கள்
 
-[`webdriver`](https://www.npmjs.com/package/webdriver) புரோட்டாகால் தொகுப்பைப் பயன்படுத்தும்போது பின்வரும் விருப்பங்கள் வரையறுக்கப்படுகின்றன:
+[`webdriver`](https://www.npmjs.com/package/webdriver) protocol தொகுப்பைப் பயன்படுத்தும்போது பின்வரும் விருப்பங்கள் வரையறுக்கப்படுகின்றன:
 
 ### protocol
 
-இயக்கி சேவையகத்துடன் தொடர்பு கொள்ள பயன்படுத்தப்படும் புரோட்டாகால்.
+<Option type="String" default="http">
 
-வகை: `String`<br />
-இயல்புநிலை: `http`
+driver server உடன் தொடர்புகொள்ளும்போது பயன்படுத்த வேண்டிய protocol.
+
+</Option>
 
 ### hostname
 
-உங்கள் இயக்கி சேவையகத்தின் ஹோஸ்ட்.
+<Option type="String" default="0.0.0.0">
 
-வகை: `String`<br />
-இயல்புநிலை: `0.0.0.0`
+உங்கள் driver server-இன் host.
+
+</Option>
 
 ### port
 
-உங்கள் இயக்கி சேவையகம் இருக்கும் போர்ட்.
+<Option type="Number" default="undefined">
 
-வகை: `Number`<br />
-இயல்புநிலை: `undefined`
+உங்கள் driver server இயங்கும் port.
+
+</Option>
 
 ### path
 
-இயக்கி சேவையகத்தின் முடிவு புள்ளி பாதை.
+<Option type="String" default="/">
 
-வகை: `String`<br />
-இயல்புநிலை: `/`
+driver server endpoint-க்கான பாதை.
+
+</Option>
 
 ### queryParams
 
-இயக்கி சேவையகத்திற்கு அனுப்பப்படும் வினவல் அளவுருக்கள்.
+<Option type="Object" default="undefined">
 
-வகை: `Object`<br />
-இயல்புநிலை: `undefined`
+driver server-க்கு அனுப்பப்படும் query parameters.
+
+</Option>
 
 ### user
 
-உங்கள் கிளவுட் சேவை பயனர்பெயர் ([Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) அல்லது [TestMu AI](https://www.testmuai.com/) கணக்குகளுக்கு மட்டுமே பயன்படும்). அமைக்கப்பட்டால், WebdriverIO தானாகவே இணைப்பு விருப்பங்களை அமைக்கும். கிளவுட் வழங்குநரைப் பயன்படுத்தவில்லை என்றால், இதை வேறு எந்த WebDriver பின்னணியையும் அங்கீகரிக்கப் பயன்படுத்தலாம்.
+<Option type="String" default="undefined">
 
-வகை: `String`<br />
-இயல்புநிலை: `undefined`
+உங்கள் cloud சேவை பயனர்பெயர் ([Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) அல்லது [TestMu AI](https://www.testmuai.com/) கணக்குகளுக்கு மட்டுமே செயல்படும்). இது அமைக்கப்பட்டால், WebdriverIO தானாகவே உங்களுக்கான இணைப்பு விருப்பங்களை அமைக்கும். நீங்கள் cloud வழங்குநரைப் பயன்படுத்தவில்லை என்றால், வேறு எந்த WebDriver backend-ஐயும் அங்கீகரிக்க இதைப் பயன்படுத்தலாம்.
+
+</Option>
 
 ### key
 
-உங்கள் கிளவுட் சேவை அணுகல் விசை அல்லது ரகசிய விசை ([Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) அல்லது [TestMu AI](https://www.testmuai.com/) கணக்குகளுக்கு மட்டுமே பயன்படும்). அமைக்கப்பட்டால், WebdriverIO தானாகவே இணைப்பு விருப்பங்களை அமைக்கும். கிளவுட் வழங்குநரைப் பயன்படுத்தவில்லை என்றால், இதை வேறு எந்த WebDriver பின்னணியையும் அங்கீகரிக்கப் பயன்படுத்தலாம்.
+<Option type="String" default="undefined">
 
-வகை: `String`<br />
-இயல்புநிலை: `undefined`
+உங்கள் cloud சேவை அணுகல் key அல்லது secret key ([Sauce Labs](https://saucelabs.com), [Browserstack](https://www.browserstack.com), [TestingBot](https://testingbot.com) அல்லது [TestMu AI](https://www.testmuai.com/) கணக்குகளுக்கு மட்டுமே செயல்படும்). இது அமைக்கப்பட்டால், WebdriverIO தானாகவே உங்களுக்கான இணைப்பு விருப்பங்களை அமைக்கும். நீங்கள் cloud வழங்குநரைப் பயன்படுத்தவில்லை என்றால், வேறு எந்த WebDriver backend-ஐயும் அங்கீகரிக்க இதைப் பயன்படுத்தலாம்.
+
+</Option>
 
 ### capabilities
 
-உங்கள் WebDriver அமர்வில் இயக்க விரும்பும் திறன்களை வரையறுக்கிறது. மேலும் விவரங்களுக்கு [WebDriver Protocol](https://w3c.github.io/webdriver/#capabilities) ஐப் பார்க்கவும். WebDriver புரோட்டாகாலை ஆதரிக்காத பழைய இயக்கியை இயக்கினால், ஒரு அமர்வை வெற்றிகரமாக இயக்க [JSONWireProtocol capabilities](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities) ஐப் பயன்படுத்த வேண்டியிருக்கும்.
+<Option type="Object" default="null">
 
-WebDriver அடிப்படையிலான திறன்களுக்கு அடுத்ததாக, தொலை உலாவி அல்லது சாதனத்திற்கு ஆழமான கட்டமைப்பை அனுமதிக்கும் உலாவி மற்றும் விற்பனையாளர் குறிப்பிட்ட விருப்பங்களைப் பயன்படுத்தலாம். இவை தொடர்புடைய விற்பனையாளர் ஆவணங்களில் ஆவணப்படுத்தப்பட்டுள்ளன, எ.கா:
+உங்கள் WebDriver session-இல் இயக்க விரும்பும் capabilities-ஐ வரையறுக்கிறது. மேலும் விவரங்களுக்கு [WebDriver Protocol](https://w3c.github.io/webdriver/#capabilities)-ஐப் பார்க்கவும்.
 
-- `goog:chromeOptions`: [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106) க்கு
-- `moz:firefoxOptions`: [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html) க்கு
-- `ms:edgeOptions`: [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class) க்கு
-- `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional) க்கு
-- `bstack:options`: [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#) க்கு
-- `selenoid:options`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc) க்கு
+WebDriver அடிப்படையிலான capabilities-உடன், remote browser அல்லது சாதனத்தை ஆழமாகக் கட்டமைக்க அனுமதிக்கும் browser மற்றும் vendor சார்ந்த விருப்பங்களையும் நீங்கள் பயன்படுத்தலாம். இவை அந்தந்த vendor ஆவணங்களில் விவரிக்கப்பட்டுள்ளன, எ.கா.:
 
-கூடுதலாக, Sauce Labs [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/) என்பது விரும்பிய திறன்களை கிளிக் செய்வதன் மூலம் இந்த பொருளை உருவாக்க உதவும் பயனுள்ள கருவியாகும்.
+- `goog:chromeOptions`: [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)-க்கு
+- `moz:firefoxOptions`: [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)-க்கு
+- `ms:edgeOptions`: [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)-க்கு
+- `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)-க்கு
+- `bstack:options`: [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)-க்கு
+- `selenoid:options`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)-க்கு
 
-வகை: `Object`<br />
-இயல்புநிலை: `null`
+கூடுதலாக, Sauce Labs [Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/) ஒரு பயனுள்ள கருவியாகும், இது நீங்கள் விரும்பும் capabilities-ஐ கிளிக் செய்து தேர்ந்தெடுப்பதன் மூலம் இந்த object-ஐ உருவாக்க உதவுகிறது.
 
-**உதாரணம்:**
+</Option>
+**எடுத்துக்காட்டு:**
 
 ```js
 {
-    browserName: 'chrome', // options: `chrome`, `edge`, `firefox`, `safari`
-    browserVersion: '27.0', // browser version
-    platformName: 'Windows 10' // OS platform
+    browserName: 'chrome', // விருப்பங்கள்: `chrome`, `edge`, `firefox`, `safari`
+    browserVersion: '27.0', // browser பதிப்பு
+    platformName: 'Windows 10' // OS தளம்
 }
 ```
 
-மொபைல் சாதனங்களில் வலை அல்லது நேட்டிவ் சோதனைகளை இயக்கினால், `capabilities` WebDriver புரோட்டாகாலில் இருந்து வேறுபடுகிறது. மேலும் விவரங்களுக்கு [Appium Docs](https://appium.io/docs/en/latest/guides/caps/) ஐப் பார்க்கவும்.
+நீங்கள் மொபைல் சாதனங்களில் web அல்லது native சோதனைகளை இயக்கினால், `capabilities` WebDriver protocol-இலிருந்து வேறுபடுகிறது. மேலும் விவரங்களுக்கு [Appium Docs](https://appium.io/docs/en/latest/guides/caps/)-ஐப் பார்க்கவும்.
 
 ### logLevel
 
-பதிவு செய்வதின் அளவு.
+<Option type="String" default="info" values="trace | debug | info | warn | error | silent">
 
-வகை: `String`<br />
-இயல்புநிலை: `info`<br />
-விருப்பங்கள்: `trace` | `debug` | `info` | `warn` | `error` | `silent`
+logging விவர அளவின் நிலை.
+
+</Option>
 
 ### outputDir
 
-எல்லா டெஸ்ட்ரன்னர் பதிவு கோப்புகளையும் (அறிக்கையாளர் பதிவுகள் மற்றும் `wdio` பதிவுகள் உட்பட) சேமிக்க அடைவு. அமைக்கப்படவில்லை என்றால், அனைத்து பதிவுகளும் `stdout`க்கு அனுப்பப்படும். பெரும்பாலான அறிக்கையாளர்கள் `stdout`க்கு பதிவு செய்ய உருவாக்கப்பட்டுள்ளதால், அறிக்கையை கோப்புக்கு அனுப்புவது அதிக அர்த்தமுள்ளதாக இருக்கும் குறிப்பிட்ட அறிக்கையாளர்களுக்கு மட்டுமே இந்த விருப்பத்தைப் பயன்படுத்த பரிந்துரைக்கப்படுகிறது (எடுத்துக்காட்டாக `junit` அறிக்கையாளர்).
+<Option type="String" default="null">
 
-தனித்து இயங்கும் பயன்முறையில் இயக்கும்போது, WebdriverIO உருவாக்கும் ஒரே பதிவு `wdio` பதிவு மட்டுமே.
+அனைத்து testrunner log கோப்புகளையும் (reporter logs மற்றும் `wdio` logs உட்பட) சேமிக்கும் கோப்பகம். இது அமைக்கப்படவில்லை என்றால், அனைத்து logs-உம் `stdout`-க்கு stream செய்யப்படும். பெரும்பாலான reporters `stdout`-க்கு log செய்யும்படி உருவாக்கப்பட்டுள்ளதால், அறிக்கையை ஒரு கோப்பில் சேமிப்பது அதிக அர்த்தமுள்ள குறிப்பிட்ட reporters-க்கு மட்டுமே (எடுத்துக்காட்டாக `junit` reporter) இந்த விருப்பத்தைப் பயன்படுத்த பரிந்துரைக்கப்படுகிறது.
 
-வகை: `String`<br />
-இயல்புநிலை: `null`
+standalone முறையில் இயக்கும்போது, WebdriverIO உருவாக்கும் ஒரே log `wdio` log மட்டுமே.
+
+</Option>
 
 ### connectionRetryTimeout
 
-இயக்கி அல்லது கிரிட்டுக்கான எந்த WebDriver கோரிக்கையின் நேரம் முடிதல்.
+<Option type="Number" default="120000">
 
-வகை: `Number`<br />
-இயல்புநிலை: `120000`
+driver அல்லது grid-க்கான எந்த WebDriver கோரிக்கைக்குமான timeout.
+
+</Option>
 
 ### connectionRetryCount
 
-செலினியம் சேவையகத்திற்கான கோரிக்கை மறுமுயற்சிகளின் அதிகபட்ச எண்ணிக்கை.
+<Option type="Number" default="3">
 
-வகை: `Number`<br />
-இயல்புநிலை: `3`
+Selenium server-க்கான கோரிக்கை மறுமுயற்சிகளின் அதிகபட்ச எண்ணிக்கை.
+
+</Option>
+
+### bidiResponseTimeout
+
+<Option type="Number" default="180000">
+
+ஒரு WebDriver Bidi கட்டளை browser-இலிருந்து பதிலைப் பெறுவதற்கான timeout (ms-இல்). இயல்புநிலையை விட முடிவடைய நியாயமாக அதிக நேரம் எடுக்கும் கட்டளைகளை (எ.கா. [`execute`](/docs/api/browser/execute)) நீங்கள் இயக்கினால் இதை அதிகரிக்கவும், இல்லையெனில் browser முடிப்பதற்கு முன்பே WebdriverIO காத்திருப்பதை நிறுத்திவிடும்.
+
+</Option>
 
 ### agent
 
-கோரிக்கைகளை செய்ய தனிப்பயன் `http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent) ஐப் பயன்படுத்த அனுமதிக்கிறது.
-
-வகை: `Object`<br />
-இயல்புநிலை:
-
-```js
-{
+<Option type="Object" default={`{
     http: new http.Agent({ keepAlive: true }),
     https: new https.Agent({ keepAlive: true })
-}
-```
+}`}>
+
+கோரிக்கைகளை அனுப்ப தனிப்பயன்` http`/`https`/`http2` [agent](https://www.npmjs.com/package/got#agent)-ஐப் பயன்படுத்த அனுமதிக்கிறது.
+
+</Option>
 
 ### headers
 
-ஒவ்வொரு WebDriver கோரிக்கைக்கும் அனுப்ப தனிப்பயன் `headers` ஐக் குறிப்பிடவும். உங்கள் செலினியம் கிரிட் அடிப்படை அங்கீகாரம் தேவைப்பட்டால், உங்கள் WebDriver கோரிக்கைகளை அங்கீகரிக்க இந்த விருப்பத்தின் மூலம் ஒரு `Authorization` தலைப்பை அனுப்ப பரிந்துரைக்கிறோம், எ.கா:
+<Option type="Object" default={`{}`}>
+
+ஒவ்வொரு WebDriver கோரிக்கையிலும் அனுப்ப வேண்டிய தனிப்பயன் `headers`-ஐக் குறிப்பிடவும். உங்கள் Selenium Grid-க்கு Basic Authentication தேவைப்பட்டால், உங்கள் WebDriver கோரிக்கைகளை அங்கீகரிக்க இந்த விருப்பத்தின் மூலம் `Authorization` header-ஐ அனுப்ப பரிந்துரைக்கிறோம், எ.கா.:
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
-// Read the username and password from environment variables
+// சூழல் மாறிகளிலிருந்து பயனர்பெயர் மற்றும் கடவுச்சொல்லைப் படிக்கவும்
 const username = process.env.SELENIUM_GRID_USERNAME;
 const password = process.env.SELENIUM_GRID_PASSWORD;
 
-// Combine the username and password with a colon separator
+// பயனர்பெயர் மற்றும் கடவுச்சொல்லை colon பிரிப்பானுடன் இணைக்கவும்
 const credentials = `${username}:${password}`;
-// Encode the credentials using Base64
+// Base64 பயன்படுத்தி credentials-ஐ encode செய்யவும்
 const encodedCredentials = Buffer.from(credentials).toString('base64');
 
 export const config: WebdriverIO.Config = {
@@ -157,56 +175,60 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-வகை: `Object`<br />
-இயல்புநிலை: `{}`
+</Option>
 
 ### transformRequest
 
-WebDriver கோரிக்கை செய்யப்படுவதற்கு முன் [HTTP request options](https://github.com/sindresorhus/got#options) ஐ தடுக்கும் செயல்பாடு
+<Option type="(RequestOptions) => RequestOptions" default="none">
 
-வகை: `(RequestOptions) => RequestOptions`<br />
-இயல்புநிலை: *ஏதுமில்லை*
+ஒரு WebDriver கோரிக்கை அனுப்பப்படுவதற்கு முன் [HTTP request options](https://github.com/sindresorhus/got#options)-ஐ இடைமறிக்கும் function
+
+</Option>
 
 ### transformResponse
 
-WebDriver பதில் வந்த பிறகு HTTP பதில் பொருள்களை தடுக்கும் செயல்பாடு. முதல் அளவுருவாக அசல் பதில் பொருள் மற்றும் இரண்டாவது அளவுருவாக தொடர்புடைய `RequestOptions` செயல்பாட்டிற்கு அனுப்பப்படுகிறது.
+<Option type="(Response, RequestOptions) => Response" default="none">
 
-வகை: `(Response, RequestOptions) => Response`<br />
-இயல்புநிலை: *ஏதுமில்லை*
+ஒரு WebDriver பதில் வந்த பிறகு HTTP response objects-ஐ இடைமறிக்கும் function. இந்த function-க்கு அசல் response object முதல் argument-ஆகவும், அதற்குரிய `RequestOptions` இரண்டாவது argument-ஆகவும் அனுப்பப்படுகின்றன.
+
+</Option>
 
 ### strictSSL
 
-SSL சான்றிதழ் செல்லுபடியாகும் என்பதை தேவைப்படுத்துகிறதா இல்லையா.
-இதை `STRICT_SSL` அல்லது `strict_ssl` என்ற சூழல் மாறிகள் மூலமாக அமைக்கலாம்.
+<Option type="Boolean" default="true">
 
-வகை: `Boolean`<br />
-இயல்புநிலை: `true`
+SSL சான்றிதழ் செல்லுபடியாக இருக்க வேண்டியதில்லையா என்பது.
+இதை `STRICT_SSL` அல்லது `strict_ssl` என்ற சூழல் மாறிகள் மூலம் அமைக்கலாம்.
+
+</Option>
 
 ### enableDirectConnect
 
-[Appium நேரடி இணைப்பு அம்சம்](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments) ஐ இயக்கவா.
-கொடி இயக்கப்பட்டிருக்கும்போது பதிலில் சரியான விசைகள் இல்லாவிட்டால் இது எதையும் செய்யாது.
+<Option type="Boolean" default="true">
 
-வகை: `Boolean`<br />
-இயல்புநிலை: `true`
+[Appium direct connection அம்சத்தை](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments) இயக்க வேண்டுமா என்பது.
+இந்த flag இயக்கப்பட்டிருக்கும்போது பதிலில் சரியான keys இல்லையென்றால் இது எதையும் செய்யாது.
+
+</Option>
 
 ### cacheDir
 
-கேஷ் அடைவின் ரூட் பாதை. அமர்வைத் தொடங்க முயற்சிக்கும்போது பதிவிறக்கப்படும் அனைத்து இயக்கிகளையும் சேமிக்க இந்த அடைவு பயன்படுத்தப்படுகிறது.
+<Option type="String" default="process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()">
 
-வகை: `String`<br />
-இயல்புநிலை: `process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()`
+cache கோப்பகத்தின் root-க்கான பாதை. session-ஐத் தொடங்க முயற்சிக்கும்போது பதிவிறக்கப்படும் அனைத்து drivers-ஐயும் சேமிக்க இந்தக் கோப்பகம் பயன்படுத்தப்படுகிறது.
+
+</Option>
 
 ### maskingPatterns
 
-மேலும் பாதுகாப்பான பதிவுக்கு, `maskingPatterns` உடன் அமைக்கப்பட்ட வழக்கமான வெளிப்பாடுகள் பதிவிலிருந்து உணர்திறன் தகவலை மறைக்க முடியும்.
- - சரம் வடிவம் கொடிகளுடன் அல்லது இல்லாமல் ஒரு வழக்கமான வெளிப்பாடாகும் (எ.கா. `/.../i`) மற்றும் பல வழக்கமான வெளிப்பாடுகளுக்கு காற்புள்ளியால் பிரிக்கப்பட்டுள்ளது.
- - மறைக்கும் பேட்டர்ன்கள் பற்றிய மேலும் விவரங்களுக்கு, [WDIO Logger README-ல் உள்ள Masking Patterns பிரிவைப்](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns) பார்க்கவும்.
+<Option type="String" default="undefined">
 
-வகை: `String`<br />
-இயல்புநிலை: `undefined`
+மேலும் பாதுகாப்பான logging-க்கு, `maskingPatterns` மூலம் அமைக்கப்படும் regular expressions log-இலிருந்து உணர்திறன் வாய்ந்த தகவல்களை மறைக்க முடியும்.
+ - string வடிவம் என்பது flags உடன் அல்லது இல்லாமல் (எ.கா. `/.../i`) உள்ள ஒரு regular expression ஆகும், பல regular expressions-க்கு comma மூலம் பிரிக்கப்படும்.
+ - masking patterns பற்றிய மேலும் விவரங்களுக்கு, [WDIO Logger README-இல் உள்ள Masking Patterns பகுதியைப்](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns) பார்க்கவும்.
 
-**உதாரணம்:**
+</Option>
+**எடுத்துக்காட்டு:**
 
 ```js
 {
@@ -214,17 +236,17 @@ SSL சான்றிதழ் செல்லுபடியாகும் �
 }
 ```
 
----
-
 ## WebdriverIO
 
-பின்வரும் விருப்பங்களை (மேலே பட்டியலிடப்பட்டவற்றுடன் சேர்த்து) WebdriverIO-வை தனித்து இயக்கப் பயன்படுத்தலாம்:
+பின்வரும் விருப்பங்களை (மேலே பட்டியலிடப்பட்டவை உட்பட) standalone முறையில் WebdriverIO உடன் பயன்படுத்தலாம்:
 
 ### automationProtocol
 
-உங்கள் உலாவி தானியங்குமயமாக்கலுக்கு நீங்கள் பயன்படுத்த விரும்பும் புரோட்டாகாலை வரையறுக்கவும். தற்போது [`webdriver`](https://www.npmjs.com/package/webdriver) மட்டுமே ஆதரிக்கப்படுகிறது, ஏனெனில் இது WebdriverIO பயன்படுத்தும் முக்கிய உலாவி தானியங்குமயமாக்கல் தொழில்நுட்பமாகும்.
+<Option type="String" default="webdriver">
 
-வேறு ஒரு தானியங்கு தொழில்நுட்பத்தைப் பயன்படுத்தி உலாவியை தானியக்கமாக்க விரும்பினால், இந்த பண்பு பின்வரும் இடைமுகத்தை ஒட்டிய தொகுதியைத் தீர்க்கும் பாதைக்கு அமைக்கப்படுவதை உறுதி செய்யவும்:
+உங்கள் browser automation-க்குப் பயன்படுத்த விரும்பும் protocol-ஐ வரையறுக்கவும். தற்போது [`webdriver`](https://www.npmjs.com/package/webdriver) மட்டுமே ஆதரிக்கப்படுகிறது, ஏனெனில் இதுவே WebdriverIO பயன்படுத்தும் முக்கிய browser automation தொழில்நுட்பமாகும்.
+
+வேறு automation தொழில்நுட்பத்தைப் பயன்படுத்தி browser-ஐ automate செய்ய விரும்பினால், பின்வரும் interface-ஐப் பின்பற்றும் ஒரு module-க்குத் தீர்க்கப்படும் பாதைக்கு இந்தப் property-ஐ அமைக்கவும்:
 
 ```ts
 import type { Capabilities } from '@wdio/types';
@@ -232,15 +254,15 @@ import type { Client, AttachOptions } from 'webdriver';
 
 export default class YourAutomationLibrary {
     /**
-     * Start a automation session and return a WebdriverIO [monad](https://github.com/webdriverio/webdriverio/blob/940cd30939864bdbdacb2e94ee6e8ada9b1cc74c/packages/wdio-utils/src/monad.ts)
-     * with respective automation commands. See the [webdriver](https://www.npmjs.com/package/webdriver) package
-     * as a reference implementation
+     * ஒரு automation session-ஐத் தொடங்கி, அதற்குரிய automation கட்டளைகளுடன் ஒரு WebdriverIO [monad](https://github.com/webdriverio/webdriverio/blob/940cd30939864bdbdacb2e94ee6e8ada9b1cc74c/packages/wdio-utils/src/monad.ts)-ஐத்
+     * திருப்பி அனுப்பவும். reference implementation-ஆக [webdriver](https://www.npmjs.com/package/webdriver) தொகுப்பைப்
+     * பார்க்கவும்
      *
-     * @param {Capabilities.RemoteConfig} options WebdriverIO options
-     * @param {Function} hook that allows to modify the client before it gets released from the function
-     * @param {PropertyDescriptorMap} userPrototype allows user to add custom protocol commands
-     * @param {Function} customCommandWrapper allows to modify the command execution
-     * @returns a WebdriverIO compatible client instance
+     * @param {Capabilities.RemoteConfig} options WebdriverIO விருப்பங்கள்
+     * @param {Function} hook function-இலிருந்து வெளியிடப்படுவதற்கு முன் client-ஐ மாற்ற அனுமதிக்கிறது
+     * @param {PropertyDescriptorMap} userPrototype பயனர் தனிப்பயன் protocol கட்டளைகளைச் சேர்க்க அனுமதிக்கிறது
+     * @param {Function} customCommandWrapper கட்டளை செயல்படுத்தலை மாற்ற அனுமதிக்கிறது
+     * @returns WebdriverIO உடன் இணக்கமான client instance
      */
     static newSession(
         options: Capabilities.RemoteConfig,
@@ -250,7 +272,7 @@ export default class YourAutomationLibrary {
     ): Promise<Client>;
 
     /**
-     * allows user to attach to existing sessions
+     * ஏற்கனவே உள்ள sessions-உடன் இணைய பயனரை அனுமதிக்கிறது
      * @optional
      */
     static attachToSession(
@@ -260,12 +282,12 @@ export default class YourAutomationLibrary {
     ): Client;
 
     /**
-     * Changes The instance session id and browser capabilities for the new session
-     * directly into the passed in browser object
+     * புதிய session-க்கான instance session id மற்றும் browser capabilities-ஐ
+     * அனுப்பப்பட்ட browser object-இல் நேரடியாக மாற்றுகிறது
      *
      * @optional
-     * @param   {object} instance  the object we get from a new browser session.
-     * @returns {string}           the new session id of the browser
+     * @param   {object} instance  புதிய browser session-இலிருந்து நாம் பெறும் object.
+     * @returns {string}           browser-இன் புதிய session id
      */
     static reloadSession(
         instance: Client,
@@ -274,201 +296,237 @@ export default class YourAutomationLibrary {
 }
 ```
 
-வகை: `String`<br />
-இயல்புநிலை: `webdriver`
+</Option>
 
 ### baseUrl
 
-ஒரு அடிப்படை URL ஐ அமைப்பதன் மூலம் `url` கட்டளை அழைப்புகளைக் குறைக்கவும்.
-- உங்கள் `url` அளவுரு `/` உடன் தொடங்கினால், `baseUrl` முன்னொட்டாக சேர்க்கப்படும் (baseUrl பாதை இருந்தால் அதைத் தவிர).
-- உங்கள் `url` அளவுரு திட்டம் அல்லது `/` இல்லாமல் தொடங்கினால் (எ.கா. `some/path`), முழு `baseUrl` நேரடியாக முன்னொட்டாக சேர்க்கப்படும்.
+<Option type="String" default="null">
 
-வகை: `String`<br />
-இயல்புநிலை: `null`
+ஒரு base URL-ஐ அமைப்பதன் மூலம் `url` கட்டளை அழைப்புகளைச் சுருக்கவும்.
+- உங்கள் `url` parameter `/` உடன் தொடங்கினால், `baseUrl` முன்னால் சேர்க்கப்படும் (`baseUrl`-இல் பாதை இருந்தால் அதைத் தவிர).
+- உங்கள் `url` parameter scheme அல்லது `/` இல்லாமல் தொடங்கினால் (`some/path` போல), முழு `baseUrl` நேரடியாக முன்னால் சேர்க்கப்படும்.
+
+</Option>
 
 ### waitforTimeout
 
-எல்லா `waitFor*` கட்டளைகளுக்கும் இயல்புநிலை காலாவதி. (விருப்ப பெயரில் சிறிய `f` குறிப்பிடப்பட்டுள்ளதைக் கவனிக்கவும்.) இந்த காலாவதி `waitFor*` என தொடங்கும் கட்டளைகளை மட்டுமே பாதிக்கும் மற்றும் அவற்றின் இயல்புநிலை காத்திருப்பு நேரம்.
+<Option type="Number" default="5000">
 
-ஒரு _சோதனை_ க்கான காலாவதியை அதிகரிக்க, கட்டமைப்பு ஆவணங்களைப் பார்க்கவும்.
+அனைத்து `waitFor*` கட்டளைகளுக்குமான இயல்புநிலை timeout. (விருப்பப் பெயரில் சிறிய எழுத்து `f` இருப்பதைக் கவனிக்கவும்.) இந்த timeout `waitFor*` உடன் தொடங்கும் கட்டளைகளையும் அவற்றின் இயல்புநிலை காத்திருப்பு நேரத்தையும் __மட்டுமே__ பாதிக்கிறது.
 
-வகை: `Number`<br />
-இயல்புநிலை: `5000`
+ஒரு _சோதனைக்கான_ timeout-ஐ அதிகரிக்க, framework ஆவணங்களைப் பார்க்கவும்.
+
+</Option>
 
 ### waitforInterval
 
-எதிர்பார்க்கப்படும் நிலை (எ.கா., தெரிவு) மாற்றப்பட்டுள்ளதா என்பதைச் சரிபார்க்க எல்லா `waitFor*` கட்டளைகளுக்கும் இயல்புநிலை இடைவெளி.
+<Option type="Number" default="100">
 
-வகை: `Number`<br />
-இயல்புநிலை: `100`
+எதிர்பார்க்கப்பட்ட நிலை (எ.கா. தெரிவுநிலை) மாறியுள்ளதா என்பதைச் சரிபார்க்க அனைத்து `waitFor*` கட்டளைகளுக்குமான இயல்புநிலை இடைவெளி.
+
+</Option>
+
+### strictSelectors
+
+<Option type="Boolean" default="true">
+
+கொடுக்கப்பட்ட selector ஒன்றுக்கு மேற்பட்ட elements-க்குத் தீர்க்கப்படும்போது, முதல் பொருத்தத்தை அமைதியாகப் பயன்படுத்துவதற்குப் பதிலாக [`$`](/docs/api/browser/$) கட்டளை `StrictSelectorError`-ஐ throw செய்யும்படி செய்கிறது. `$$` பாதிக்கப்படாது.
+
+இரண்டாவது argument-ஆக `{ strict: false }`-ஐ அனுப்புவதன் மூலம் ஒரு தனி query-க்கு இதிலிருந்து விலகலாம், எ.கா. `$('button', { strict: false })`.
+
+விவரங்களுக்கு [Selectors](/docs/selectors#strict-mode) வழிகாட்டியைப் பார்க்கவும்.
+
+</Option>
+
+### maxSpyCollectedBodySize
+
+<Option type="Number" default="10485760 (10MB)">
+
+[`mock`](/docs/api/browser/mock) கட்டளையைப் பயன்படுத்தும்போது திருப்பி அனுப்பக்கூடிய response body-இன் அதிகபட்ச அளவு (bytes-இல்). spy செய்யப்பட்ட payload-இன் தரவு சேகரிப்பை முடக்க `0`-ஐப் பயன்படுத்தவும்.
+
+</Option>
 
 ### region
 
-Sauce Labs இல் இயக்கும்போது, தரவு மையங்களுக்கு இடையே சோதனைகளை இயக்க தேர்வு செய்யலாம்: US அல்லது EU.
-உங்கள் பிராந்தியத்தை EU க்கு மாற்ற, உங்கள் கட்டமைப்பில் `region: 'eu'` சேர்க்கவும்.
+<Option type="String" default="us" values="us | eu | us-west-1 | eu-central-1 | us-east-4 | asia-south-2 | staging">
 
-__குறிப்பு:__ உங்கள் Sauce Labs கணக்குடன் இணைக்கப்பட்ட `user` மற்றும் `key` விருப்பங்களை வழங்கினால் மட்டுமே இது பயனுள்ளதாக இருக்கும்.
+Sauce Labs-இல் இயக்கினால், வெவ்வேறு data centers-இல் சோதனைகளை இயக்கத் தேர்வு செய்யலாம்.
+சுருக்கமான region குறியீடுகளான `us` (இயல்புநிலை, `us-west-1`-க்கு ஒத்துப்போகும்) அல்லது `eu` (`eu-central-1`-க்கு ஒத்துப்போகும்) பயன்படுத்தவும், அல்லது முழு region பெயர்களை நேரடியாகப் பயன்படுத்தவும்.
 
-வகை: `String`<br />
-இயல்புநிலை: `us`
+__குறிப்பு:__ உங்கள் Sauce Labs கணக்குடன் இணைக்கப்பட்ட `user` மற்றும் `key` விருப்பங்களை வழங்கினால் மட்டுமே இது விளைவை ஏற்படுத்தும்.
 
-*(vm மற்றும் அல்லது em/simulators க்கு மட்டும்)*
-
----
+</Option>
+*(vm மற்றும்/அல்லது em/simulators-க்கு மட்டும், உண்மையான சாதனங்களை மட்டுமே host செய்யும் `us-east-4` மற்றும் `asia-south-2` தவிர)*
 
 ## Testrunner விருப்பங்கள்
 
-பின்வரும் விருப்பங்கள் (மேலே பட்டியலிடப்பட்டவற்றுடன் சேர்த்து) WDIO டெஸ்ட்ரன்னருடன் WebdriverIO இயக்குவதற்கு மட்டுமே வரையறுக்கப்பட்டுள்ளன:
+பின்வரும் விருப்பங்கள் (மேலே பட்டியலிடப்பட்டவை உட்பட) WDIO testrunner உடன் WebdriverIO-ஐ இயக்குவதற்கு மட்டுமே வரையறுக்கப்பட்டுள்ளன:
 
 ### specs
 
-சோதனை நிறைவேற்றத்திற்கான சிறப்புத்தன்மைகளை வரையறுக்கவும். ஒரே நேரத்தில் பல கோப்புகளைப் பொருத்த ஒரு glob பேட்டர்னைக் குறிப்பிடலாம் அல்லது ஒரு தனி வேலைநிரல் செயல்முறையில் இயக்க ஒரு glob அல்லது பாதைகளின் தொகுப்பை ஒரு அரேயில் சுற்றலாம். அனைத்து பாதைகளும் கட்டமைப்பு கோப்பு பாதையிலிருந்து தொடர்புடையதாகக் காணப்படுகின்றன.
+<Option type="(String | String[])[]" default="[]">
 
-வகை: `(String | String[])[]`<br />
-இயல்புநிலை: `[]`
+சோதனை செயல்படுத்தலுக்கான specs-ஐ வரையறுக்கவும். பல கோப்புகளை ஒரே நேரத்தில் பொருத்த ஒரு glob pattern-ஐக் குறிப்பிடலாம், அல்லது ஒரு glob அல்லது பாதைகளின் தொகுப்பை ஒரே worker process-இல் இயக்க ஒரு array-இல் வைக்கலாம். அனைத்து பாதைகளும் config கோப்பு பாதையிலிருந்து சார்புடையதாகக் கருதப்படும்.
+
+</Option>
 
 ### exclude
 
-சோதனை நிறைவேற்றத்திலிருந்து சிறப்புத்தன்மைகளை விலக்கவும். அனைத்து பாதைகளும் கட்டமைப்பு கோப்பு பாதையிலிருந்து தொடர்புடையதாகக் காணப்படுகின்றன.
+<Option type="String[]" default="[]">
 
-வகை: `String[]`<br />
-இயல்புநிலை: `[]`
+சோதனை செயல்படுத்தலிலிருந்து specs-ஐ விலக்கவும். அனைத்து பாதைகளும் config கோப்பு பாதையிலிருந்து சார்புடையதாகக் கருதப்படும்.
+
+</Option>
 
 ### suites
 
-`wdio` CLI இல் `--suite` விருப்பத்துடன் குறிப்பிடக்கூடிய பல்வேறு சூட்டுகளை விவரிக்கும் ஒரு பொருள்.
+<Option type="Object" default={`{}`}>
 
-வகை: `Object`<br />
-இயல்புநிலை: `{}`
+பல்வேறு suites-ஐ விவரிக்கும் ஒரு object, அவற்றை `wdio` CLI-இல் `--suite` விருப்பத்துடன் குறிப்பிடலாம்.
+
+</Option>
 
 ### capabilities
 
-மேலே விவரிக்கப்பட்ட `capabilities` பிரிவுக்கு ஒத்ததாக, [`multiremote`](/docs/multiremote) பொருளை அல்லது இணை நிறைவேற்றத்திற்கு ஒரு அரேயில் பல WebDriver அமர்வுகளைக் குறிப்பிடும் விருப்பத்துடன்.
+<Option type="Object|Object[]" default={`[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`}>
 
-[மேலே](/docs/configuration#capabilities) வரையறுக்கப்பட்டுள்ள அதே விற்பனையாளர் மற்றும் உலாவி குறிப்பிட்ட திறன்களைப் பயன்படுத்தலாம்.
+மேலே விவரிக்கப்பட்ட `capabilities` பகுதியைப் போன்றதே, ஆனால் ஒரு [multi-remote](/docs/multiremote) object-ஐ அல்லது இணையான செயல்படுத்தலுக்காக ஒரு array-இல் பல WebDriver sessions-ஐக் குறிப்பிடும் விருப்பத்துடன்.
 
-வகை: `Object`|`Object[]`<br />
-இயல்புநிலை: `[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`
+[மேலே](/docs/configuration#capabilities) வரையறுக்கப்பட்ட அதே vendor மற்றும் browser சார்ந்த capabilities-ஐ நீங்கள் பயன்படுத்தலாம்.
+
+</Option>
 
 ### maxInstances
 
-மொத்த இணையான இயங்கும் பணியாளர்களின் அதிகபட்ச எண்ணிக்கை.
+<Option type="Number" default="100">
 
-__குறிப்பு:__ சோதனைகள் Sauce Labs போன்ற சில வெளிப்புற விற்பனையாளர்களின் இயந்திரங்களில் செய்யப்படும்போது, இது `100` போன்ற அதிக எண்ணிக்கையாக இருக்கலாம். அங்கு, சோதனைகள் ஒரு தனி இயந்திரத்தில் சோதிக்கப்படவில்லை, மாறாக பல VM களில் சோதிக்கப்படுகின்றன. சோதனைகள் உள்ளூர் மேம்பாட்டு இயந்திரத்தில் இயக்கப்பட வேண்டும் என்றால், `3`, `4`, அல்லது `5` போன்ற அதிக நியாயமான எண்ணைப் பயன்படுத்தவும். அடிப்படையில், இது ஒரே நேரத்தில் தொடங்கப்பட்டு உங்கள் சோதனைகளை இயக்கும் உலாவிகளின் எண்ணிக்கையாகும், எனவே உங்கள் இயந்திரத்தில் எவ்வளவு RAM உள்ளது, மற்றும் உங்கள் இயந்திரத்தில் இயங்கும் மற்ற பயன்பாடுகள் எவ்வளவு உள்ளன என்பதைப் பொறுத்தது.
+மொத்தமாக இணையாக இயங்கும் workers-இன் அதிகபட்ச எண்ணிக்கை.
 
-`wdio:maxInstances` திறனைப் பயன்படுத்தி உங்கள் திறன் பொருள்களுக்குள் `maxInstances` ஐப் பயன்படுத்தலாம். இது அந்த குறிப்பிட்ட திறனுக்கான இணை அமர்வுகளின் அளவை வரம்பிடும்.
+__குறிப்பு:__ Sauce Labs இயந்திரங்கள் போன்ற வெளிப்புற vendors-இல் சோதனைகள் செய்யப்படும்போது இது `100` வரை அதிக எண்ணாக இருக்கலாம். அங்கு, சோதனைகள் ஒரே இயந்திரத்தில் அல்லாமல், பல VMs-இல் சோதிக்கப்படுகின்றன. சோதனைகள் உள்ளூர் development இயந்திரத்தில் இயக்கப்பட வேண்டுமென்றால், `3`, `4`, அல்லது `5` போன்ற நியாயமான எண்ணைப் பயன்படுத்தவும். அடிப்படையில், இது ஒரே நேரத்தில் தொடங்கப்பட்டு உங்கள் சோதனைகளை இயக்கும் browsers-இன் எண்ணிக்கையாகும், எனவே இது உங்கள் இயந்திரத்தில் எவ்வளவு RAM உள்ளது, மற்றும் உங்கள் இயந்திரத்தில் வேறு எத்தனை apps இயங்குகின்றன என்பதைப் பொறுத்தது.
 
-வகை: `Number`<br />
-இயல்புநிலை: `100`
+`wdio:maxInstances` capability-ஐப் பயன்படுத்தி உங்கள் capability objects-க்குள்ளும் `maxInstances`-ஐப் பயன்படுத்தலாம். இது அந்தக் குறிப்பிட்ட capability-க்கான இணையான sessions-இன் எண்ணிக்கையைக் கட்டுப்படுத்தும்.
+
+</Option>
 
 ### maxInstancesPerCapability
 
-ஒரு திறனுக்கு அதிகபட்ச இணையான இயங்கும் பணியாளர்களின் எண்ணிக்கை.
+<Option type="Number" default="100">
 
-வகை: `Number`<br />
-இயல்புநிலை: `100`
+ஒவ்வொரு capability-க்கும் மொத்தமாக இணையாக இயங்கும் workers-இன் அதிகபட்ச எண்ணிக்கை.
+
+</Option>
 
 ### injectGlobals
 
-WebdriverIO-வின் உலகளாவியவற்றை (எ.கா. `browser`, `$` மற்றும் `$$`) உலகளாவிய சூழலில் செருகுகிறது.
-நீங்கள் `false` என அமைத்தால், நீங்கள் `@wdio/globals` இலிருந்து இறக்குமதி செய்ய வேண்டும், எ.கா:
+<Option type="Boolean" default="true">
+
+WebdriverIO-இன் globals-ஐ (எ.கா. `browser`, `$` மற்றும் `$$`) global சூழலில் சேர்க்கிறது.
+நீங்கள் `false` என அமைத்தால், `@wdio/globals`-இலிருந்து import செய்ய வேண்டும், எ.கா.:
 
 ```ts
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-குறிப்பு: WebdriverIO சோதனை கட்டமைப்பு குறிப்பிட்ட உலகளாவியவற்றின் செருகலை கையாளவில்லை.
+குறிப்பு: test framework சார்ந்த globals-ஐச் சேர்ப்பதை WebdriverIO கையாளாது.
 
-வகை: `Boolean`<br />
-இயல்புநிலை: `true`
+</Option>
 
 ### bail
 
-ஒரு குறிப்பிட்ட எண்ணிக்கையிலான சோதனை தோல்விகளுக்குப் பிறகு உங்கள் சோதனை ஓட்டத்தை நிறுத்த விரும்பினால், `bail` ஐப் பயன்படுத்தவும்.
-(இது இயல்பாக `0`-ஐ, அதாவது எல்லா சோதனைகளையும் இயக்கும்.) **குறிப்பு:** இந்த சூழலில் ஒரு சோதனை என்பது ஒற்றை spec கோப்புக்குள் உள்ள அனைத்து சோதனைகளும் (Mocha அல்லது Jasmine ஐப் பயன்படுத்தும்போது) அல்லது ஒரு அம்ச கோப்பில் உள்ள அனைத்து படிகளும் (Cucumber ஐப் பயன்படுத்தும்போது). ஒற்றை சோதனை கோப்பின் சோதனைகளில் bail நடத்தையை கட்டுப்படுத்த விரும்பினால், கிடைக்கக்கூடிய [framework](frameworks) விருப்பங்களைப் பார்க்கவும்.
+<Option type="Number" default="0 (don't bail; run all tests)">
 
-வகை: `Number`<br />
-இயல்புநிலை: `0` (bail செய்யாதீர்கள்; எல்லா சோதனைகளையும் இயக்கவும்)
+குறிப்பிட்ட எண்ணிக்கையிலான சோதனை தோல்விகளுக்குப் பிறகு உங்கள் சோதனை ஓட்டம் நிற்க வேண்டுமென்றால், `bail`-ஐப் பயன்படுத்தவும்.
+(இதன் இயல்புநிலை `0`, இது எதுவாக இருந்தாலும் அனைத்து சோதனைகளையும் இயக்கும்.) **குறிப்பு:** இந்தச் சூழலில் ஒரு சோதனை என்பது ஒரு தனி spec கோப்பில் உள்ள அனைத்து சோதனைகள் (Mocha அல்லது Jasmine பயன்படுத்தும்போது) அல்லது ஒரு feature கோப்பில் உள்ள அனைத்து steps (Cucumber பயன்படுத்தும்போது) ஆகும். ஒரு தனி சோதனைக் கோப்பின் சோதனைகளுக்குள் bail நடத்தையைக் கட்டுப்படுத்த விரும்பினால், கிடைக்கும் [framework](frameworks) விருப்பங்களைப் பார்க்கவும்.
+
+</Option>
 
 ### specFileRetries
 
-ஒட்டுமொத்தமாக தோல்வியடையும்போது முழு specfile-ஐ மீண்டும் முயற்சி செய்ய வேண்டிய முறைகளின் எண்ணிக்கை.
+<Option type="Number" default="0">
 
-வகை: `Number`<br />
-இயல்புநிலை: `0`
+ஒரு முழு specfile ஒட்டுமொத்தமாகத் தோல்வியடையும்போது அதை மீண்டும் முயற்சிக்கும் எண்ணிக்கை.
+
+</Option>
 
 ### specFileRetriesDelay
 
-spec கோப்பு மறுமுயற்சிக்கும் இடையிலான தாமதம் (வினாடிகளில்)
+<Option type="Number" default="0">
 
-வகை: `Number`<br />
-இயல்புநிலை: `0`
+spec கோப்பு மறுமுயற்சிகளுக்கு இடையேயான தாமதம் (விநாடிகளில்)
+
+</Option>
 
 ### specFileRetriesDeferred
 
-மறுமுயற்சி செய்யப்பட்ட spec கோப்புகள் உடனடியாக மறுமுயற்சி செய்யப்பட வேண்டுமா அல்லது வரிசையின் இறுதிக்கு ஒத்திவைக்கப்பட வேண்டுமா.
+<Option type="Boolean" default="true">
 
-வகை: `Boolean`<br />
-இயல்புநிலை: `true`
+மறுமுயற்சி செய்யப்படும் spec கோப்புகள் உடனடியாக மீண்டும் முயற்சிக்கப்பட வேண்டுமா அல்லது வரிசையின் இறுதிக்கு ஒத்திவைக்கப்பட வேண்டுமா என்பது.
+
+</Option>
 
 ### groupLogsByTestSpec
 
-பதிவு வெளியீட்டு காட்சியைத் தேர்ந்தெடுக்கவும்.
+<Option type="Boolean" default="false">
 
-`false` என அமைக்கப்பட்டால், வெவ்வேறு சோதனை கோப்புகளிலிருந்து வரும் பதிவுகள் உண்மையான நேரத்தில் அச்சிடப்படும். இணையாக இயக்கும்போது வெவ்வேறு கோப்புகளிலிருந்து வரும் பதிவு வெளியீடுகள் கலக்கலாம் என்பதை கவனத்தில் கொள்ளவும்.
+log வெளியீட்டுக் காட்சியைத் தேர்ந்தெடுக்கவும்.
 
-`true` என அமைக்கப்பட்டால், பதிவு வெளியீடுகள் சோதனை ஸ்பெக் மூலம் குழுப்படுத்தப்பட்டு சோதனை ஸ்பெக் முடிந்தவுடன் மட்டுமே அச்சிடப்படும்.
+`false` என அமைக்கப்பட்டால், வெவ்வேறு சோதனைக் கோப்புகளின் logs நிகழ்நேரத்தில் அச்சிடப்படும். இணையாக இயக்கும்போது இது வெவ்வேறு கோப்புகளின் log வெளியீடுகள் கலப்பதற்கு வழிவகுக்கலாம் என்பதைக் கவனிக்கவும்.
 
-இயல்பாக, இது `false` என அமைக்கப்பட்டுள்ளது, அதனால் பதிவுகள் உண்மையான நேரத்தில் அச்சிடப்படுகின்றன.
+`true` என அமைக்கப்பட்டால், log வெளியீடுகள் Test Spec வாரியாகக் குழுவாக்கப்பட்டு, Test Spec முடிந்தவுடன் மட்டுமே அச்சிடப்படும்.
 
-வகை: `Boolean`<br />
-இயல்புநிலை: `false`
+இயல்பாக, இது `false` என அமைக்கப்பட்டுள்ளதால் logs நிகழ்நேரத்தில் அச்சிடப்படுகின்றன.
+
+</Option>
 
 ### autoAssertOnTestEnd
 
-WebdriverIO ஒவ்வொரு சோதனையின் இறுதியிலும் தானாகவே எல்லா மென்மையான உறுதிப்படுத்தல்களையும் சரிபார்க்கிறதா என்பதைக் கட்டுப்படுத்துகிறது. `true` என அமைக்கப்பட்டால், எந்தவொரு உறுதிப்படுத்தல்கள் தோல்வியடைந்தால், சேர்க்கப்பட்ட மென்மையான உறுதிப்படுத்தல்கள் தானாகவே சரிபார்க்கப்பட்டு சோதனை தோல்வியடையும். `false` என அமைக்கப்பட்டால், மென்மையான உறுதிப்படுத்தல்களைச் சரிபார்க்க நீங்கள் கைமுறையாக assert முறையை அழைக்க வேண்டும்.
+<Option type="Boolean" default="true">
 
-வகை: `Boolean`<br />
-இயல்புநிலை: `true`
+ஒவ்வொரு சோதனையின் முடிவிலும் WebdriverIO அனைத்து soft assertions-ஐயும் தானாக assert செய்ய வேண்டுமா என்பதைக் கட்டுப்படுத்துகிறது. `true` என அமைக்கப்படும்போது, சேகரிக்கப்பட்ட soft assertions தானாகச் சரிபார்க்கப்பட்டு, ஏதேனும் assertion தோல்வியடைந்தால் சோதனை தோல்வியடையும். `false` என அமைக்கப்படும்போது, soft assertions-ஐச் சரிபார்க்க நீங்கள் assert method-ஐ கைமுறையாக அழைக்க வேண்டும்.
+
+</Option>
 
 ### services
 
-சேவைகள் நீங்கள் கவனிக்க விரும்பாத ஒரு குறிப்பிட்ட வேலையை எடுத்துக்கொள்கின்றன. அவை கிட்டத்தட்ட எந்த முயற்சியுமின்றி உங்கள் சோதனை அமைப்பை மேம்படுத்துகின்றன.
+<Option type="String[]|Object[]" default="[]">
 
-வகை: `String[]|Object[]`<br />
-இயல்புநிலை: `[]`
+நீங்கள் கவனிக்க விரும்பாத ஒரு குறிப்பிட்ட வேலையை services எடுத்துக்கொள்கின்றன. அவை கிட்டத்தட்ட எந்த முயற்சியும் இல்லாமல் உங்கள் சோதனை அமைப்பை மேம்படுத்துகின்றன.
+
+</Option>
 
 ### framework
 
-WDIO டெஸ்ட்ரன்னரால் பயன்படுத்தப்பட வேண்டிய சோதனை கட்டமைப்பை வரையறுக்கிறது.
+<Option type="String" default="mocha" values="mocha | jasmine | cucumber">
 
-வகை: `String`<br />
-இயல்புநிலை: `mocha`<br />
-விருப்பங்கள்: `mocha` | `jasmine`
+WDIO testrunner பயன்படுத்த வேண்டிய test framework-ஐ வரையறுக்கிறது.
+
+</Option>
 
 ### mochaOpts, jasmineOpts and cucumberOpts
 
-குறிப்பிட்ட கட்டமைப்பு தொடர்பான விருப்பங்கள். எந்த விருப்பங்கள் உள்ளன என்பதற்கு கட்டமைப்பு அடாப்டர் ஆவணத்தைப் பார்க்கவும். இதைப் பற்றி மேலும் படிக்க [Frameworks](frameworks).
+<Option type="Object" default={`{ timeout: 10000 }`}>
 
-வகை: `Object`<br />
-இயல்புநிலை: `{ timeout: 10000 }`
+குறிப்பிட்ட framework தொடர்பான விருப்பங்கள். எந்த விருப்பங்கள் கிடைக்கின்றன என்பதற்கு framework adapter ஆவணங்களைப் பார்க்கவும். இதைப் பற்றி மேலும் [Frameworks](frameworks)-இல் படிக்கவும்.
+
+</Option>
 
 ### cucumberFeaturesWithLineNumbers
 
-வரி எண்களுடன் கூடிய குக்கம்பர் அம்சங்களின் பட்டியல் ([cucumber framework ஐப் பயன்படுத்தும்போது](./Frameworks.md#using-cucumber)).
+<Option type="String[]" default="[]">
 
-வகை: `String[]`
-இயல்புநிலை: `[]`
+வரி எண்களுடன் கூடிய cucumber features-இன் பட்டியல் ([cucumber framework பயன்படுத்தும்போது](./Frameworks.md#using-cucumber)).
+
+</Option>
 
 ### reporters
 
-பயன்படுத்த வேண்டிய அறிக்கையாளர்களின் பட்டியல். ஒரு அறிக்கையாளர் ஒரு சரமாகவோ அல்லது
-`['reporterName', { /* reporter options */}]` இன் அரேயாகவோ இருக்கலாம், இதில் முதல் கூறு அறிக்கையாளர் பெயருடன் ஒரு சரம் மற்றும் இரண்டாவது கூறு அறிக்கையாளர் விருப்பங்கள் கொண்ட ஒரு பொருள்.
+<Option type="String[]|Object[]" default="[]">
 
-வகை: `String[]|Object[]`<br />
-இயல்புநிலை: `[]`
+பயன்படுத்த வேண்டிய reporters-இன் பட்டியல். ஒரு reporter ஒரு string ஆகவோ, அல்லது
+`['reporterName', { /* reporter options */}]` என்ற array ஆகவோ இருக்கலாம், இதில் முதல் உறுப்பு reporter பெயருடன் கூடிய string மற்றும் இரண்டாவது உறுப்பு reporter விருப்பங்களுடன் கூடிய object ஆகும்.
 
-உதாரணம்:
+</Option>
+எடுத்துக்காட்டு:
 
 ```js
 reporters: [
@@ -483,42 +541,73 @@ reporters: [
 
 ### reporterSyncInterval
 
-அறிக்கையாளர்கள் தங்கள் பதிவுகளை ஒத்திசைக்கப்பட்டுள்ளனவா என்பதை அவர்கள் ஒத்திசைவற்ற முறையில் அறிக்கை செய்தால் சரிபார்க்க வேண்டிய இடைவெளியைத் தீர்மானிக்கிறது (எ.கா. பதிவுகள் 3 ஆம் தரப்பு விற்பனையாளருக்கு ஸ்ட்ரீம் செய்யப்பட்டால்).
+<Option type="Number" default="100 (ms)">
 
-வகை: `Number`<br />
-இயல்புநிலை: `100` (ms)
+reporters தங்கள் logs-ஐ asynchronous-ஆக அறிக்கையிட்டால் (எ.கா. logs மூன்றாம் தரப்பு vendor-க்கு stream செய்யப்பட்டால்), அவை ஒத்திசைக்கப்பட்டுள்ளனவா என்பதை எந்த இடைவெளியில் சரிபார்க்க வேண்டும் என்பதைத் தீர்மானிக்கிறது.
+
+</Option>
 
 ### reporterSyncTimeout
 
-அறிக்கையாளர்கள் டெஸ்ட்ரன்னரால் பிழை ஏற்படும் வரை அவர்களின் அனைத்து பதிவுகளையும் பதிவேற்ற முடிக்க வேண்டிய அதிகபட்ச நேரத்தைத் தீர்மானிக்கிறது.
+<Option type="Number" default="5000 (ms)">
 
-வகை: `Number`<br />
-இயல்புநிலை: `5000` (ms)
+testrunner ஒரு பிழையை throw செய்வதற்கு முன், reporters தங்கள் அனைத்து logs-ஐயும் பதிவேற்றி முடிக்க வேண்டிய அதிகபட்ச நேரத்தைத் தீர்மானிக்கிறது.
+
+</Option>
 
 ### execArgv
 
-சைல்டு புரோசஸ்களைத் துவக்கும்போது குறிப்பிட வேண்டிய Node arguments.
+<Option type="String[]" default="null">
 
-வகை: `String[]`<br />
-இயல்புநிலை: `null`
+child processes-ஐத் தொடங்கும்போது குறிப்பிட வேண்டிய Node arguments.
+
+</Option>
+
+### cpuProf
+
+<Option type="Boolean" default="false">
+
+worker process-க்கு CPU profiling-ஐ இயக்கவும். worker process வெளியேறும்போது profile தானாக உருவாக்கப்படும்.
+
+</Option>
+
+### heapProf
+
+<Option type="Boolean" default="false">
+
+worker process-க்கு Heap profiling-ஐ இயக்கவும். worker process வெளியேறும்போது snapshot தானாக உருவாக்கப்படும் (sampling heap profiler-ஐப் பயன்படுத்துகிறது).
+
+</Option>
+
+### profileOutputDir
+
+<Option type="String" default="./profiles">
+
+CPU profiles (`.cpuprofile`) மற்றும் Heap profiles (`.heapprofile`) சேமிக்கப்படும் கோப்பகம்.
+
+</Option>
 
 ### filesToWatch
 
-டெஸ்ட்ரன்னர் `--watch` கொடியுடன் இயக்கும்போது, கூடுதலாக மற்ற கோப்புகளையும் கவனிக்க சொல்லும் glob ஆதரிக்கும் சர பேட்டர்ன்களின் பட்டியல், எ.கா. பயன்பாட்டு கோப்புகள். இயல்பாக டெஸ்ட்ரன்னர் ஏற்கனவே எல்லா spec கோப்புகளையும் கவனிக்கிறது.
+<Option type="String[]" default="[]">
 
-வகை: `String[]`<br />
-இயல்புநிலை: `[]`
+`--watch` flag உடன் இயக்கும்போது, கூடுதலாக மற்ற கோப்புகளை (எ.கா. application கோப்புகள்) கண்காணிக்கும்படி testrunner-க்குச் சொல்லும் glob ஆதரவு கொண்ட string patterns-இன் பட்டியல். இயல்பாக testrunner ஏற்கனவே அனைத்து spec கோப்புகளையும் கண்காணிக்கிறது.
+
+</Option>
 
 ### updateSnapshots
 
-உங்கள் ஸ்னாப்ஷாட்களை புதுப்பிக்க விரும்பினால் true என அமைக்கவும். ஒரு CLI அளவுருவின் ஒரு பகுதியாக, எ.கா. `wdio run wdio.conf.js --s`
+<Option type="'new' | 'all' | 'none'" default="none if not provided and tests run in CI, new if not provided, otherwise what's been provided">
 
-வகை: `'new' | 'all' | 'none'`<br />
-இயல்புநிலை: வழங்கப்படவில்லை மற்றும் சோதனைகள் CI-ல் இயங்கினால் `none`, வழங்கப்படவில்லை என்றால் `new`, இல்லையெனில் வழங்கப்பட்டது
+உங்கள் snapshots-ஐப் புதுப்பிக்க விரும்பினால் true என அமைக்கவும். ஒரு CLI parameter-இன் பகுதியாகப் பயன்படுத்துவது சிறந்தது, எ.கா. `wdio run wdio.conf.js --s`.
+
+</Option>
 
 ### resolveSnapshotPath
 
-இயல்புநிலை ஸ்னாப்ஷாட் பாதையை மேலெழுதுகிறது. உதாரணமாக, சோதனை கோப்புகளுக்கு அடுத்து ஸ்னாப்ஷாட்களைச் சேமிக்க.
+<Option type="(testPath: string, snapExtension: string) => string" default="stores snapshot files in __snapshots__ directory next to test file">
+
+இயல்புநிலை snapshot பாதையை மேலெழுதுகிறது. எடுத்துக்காட்டாக, சோதனைக் கோப்புகளுக்கு அருகில் snapshots-ஐச் சேமிக்க.
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -526,280 +615,345 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-வகை: `(testPath: string, snapExtension: string) => string`<br />
-இயல்புநிலை: சோதனை கோப்புக்கு அடுத்து `__snapshots__` அடைவில் ஸ்னாப்ஷாட் கோப்புகளைச் சேமிக்கிறது
+</Option>
 
 ### tsConfigPath
 
-WDIO, TypeScript கோப்புகளை தொகுக்க `tsx` ஐப் பயன்படுத்துகிறது. உங்கள் TSConfig தற்போதைய வேலை அடைவிலிருந்து தானாகவே கண்டறியப்படுகிறது, ஆனால் நீங்கள் இங்கு ஒரு தனிப்பயன் பாதையைக் குறிப்பிடலாம் அல்லது TSX_TSCONFIG_PATH சூழல் மாறியை அமைக்கலாம்.
+<Option type="String" default="null">
+
+TypeScript கோப்புகளை compile செய்ய WDIO `tsx`-ஐப் பயன்படுத்துகிறது. உங்கள் TSConfig தற்போதைய working directory-இலிருந்து தானாகக் கண்டறியப்படும், ஆனால் இங்கே அல்லது TSX_TSCONFIG_PATH சூழல் மாறியை அமைப்பதன் மூலம் தனிப்பயன் பாதையைக் குறிப்பிடலாம்.
 
 `tsx` ஆவணங்களைப் பார்க்கவும்: https://tsx.is/dev-api/node-cli#custom-tsconfig-json-path
 
-வகை: `String`<br />
-இயல்புநிலை: `null`<br />
+</Option>
+
+### displayServerEnabled
+
+<Option type="Boolean" default="true">
+
+`DISPLAY` அல்லது `WAYLAND_DISPLAY` எதுவும் அமைக்கப்படாதபோது Linux-இல் ஓட்டத்திற்காக ஒரு virtual display-ஐத் தொடங்கவும். நீங்கள் headless-ஆக அல்லது cloud சேவை அல்லது remote grid-இல் மட்டும் இயக்கும்போது `false` என அமைக்கவும். display server தொடங்க வேண்டுமா என்பதை மட்டுமே இது கட்டுப்படுத்துகிறது: `WAYLAND_DISPLAY` மட்டும் அமைக்கப்பட்டிருந்தால், testrunner அப்போதும் ஓட்டத்திற்காக `XDG_SESSION_TYPE`, `GDK_BACKEND` மற்றும் `ELECTRON_OZONE_PLATFORM_HINT`-ஐ `wayland` என அமைக்கும். [Headless & Display Servers](/docs/headless-and-display-servers)-ஐப் பார்க்கவும்.
+
+</Option>
+
+### displayServer
+
+<Option type="String" default="auto" values="auto | wayland | xvfb">
+
+எந்த display server-ஐத் தொடங்க வேண்டும் என்பது. `auto` Weston-ஐ முயற்சிக்கும், Weston இல்லாதபோது அல்லது தொடங்கத் தவறும்போது Xvfb-க்கு மாறும். `wayland` மற்றும் `xvfb` அந்த server-ஐ மட்டுமே முயற்சிக்கும்.
+
+</Option>
+
+### displayServerAutoInstall
+
+<Option type="Boolean" default="false">
+
+நிறுவப்பட்ட எந்த display server-உம் தொடங்காதபோது, இல்லாத display server-ஐ system package manager மூலம் நிறுவவும்.
+
+</Option>
+
+### displayServerAutoInstallMode
+
+<Option type="String" default="sudo" values="root | sudo">
+
+உள்ளமைக்கப்பட்ட நிறுவல் எவ்வாறு இயங்குகிறது: `root` root-ஆக இயங்கும்போது மட்டுமே நிறுவும், `sudo` root அல்லாதபோது non-interactive `sudo -n`-ஐப் பயன்படுத்தும், அல்லது `sudo` நிறுவப்படாதபோது அது இல்லாமலேயே நிறுவும்.
+
+</Option>
+
+### displayServerAutoInstallCommand
+
+<Option type="String | String[]">
+
+உள்ளமைக்கப்பட்ட நிறுவலுக்குப் பதிலாக, உள்ளது உள்ளபடியே மற்றும் `sudo` இல்லாமல் இயக்க வேண்டிய ஒரு கட்டளை. இது `displayServerAutoInstall: true` உடன் மட்டுமே இயங்கும். ஒரு string shell-இல் இயங்கும், ஒரு array shell இல்லாமல் இயங்கும். `auto` உடன், இது முதலில் Weston-க்காக இயங்கும், Weston இன்னும் கிடைக்கவில்லை அல்லது தொடங்கத் தவறினால் மற்றும் Xvfb இன்னும் இல்லையென்றால் மட்டுமே மீண்டும் Xvfb-க்காக இயங்கும். மற்ற server-இன் முயற்சியைத் தவிர்க்க, இது நிறுவும் server-க்கு `displayServer`-ஐ அமைக்கவும்.
+
+</Option>
+
+### displayServerWidth
+
+<Option type="Number" default="1920">
+
+virtual display-இன் திரை அகலம் (pixels-இல்).
+
+</Option>
+
+### displayServerHeight
+
+<Option type="Number" default="1080">
+
+virtual display-இன் திரை உயரம் (pixels-இல்).
+
+</Option>
+
+### displayServerDepth
+
+<Option type="Number" default="24">
+
+virtual display-இன் வண்ண ஆழம். Xvfb-க்கு மட்டும்.
+
+</Option>
 
 ## Hooks
 
-WDIO டெஸ்ட்ரன்னர் சோதனை வாழ்க்கைச் சுழற்சியின் குறிப்பிட்ட நேரங்களில் தூண்டப்படும் hooks அமைக்க அனுமதிக்கிறது. இது தனிப்பயன் செயல்களை அனுமதிக்கிறது (எ.கா. சோதனை தோல்வியடைந்தால் ஸ்கிரீன்ஷாட் எடுக்கவும்).
+சோதனை வாழ்க்கைச் சுழற்சியின் குறிப்பிட்ட நேரங்களில் தூண்டப்படும் hooks-ஐ அமைக்க WDIO testrunner உங்களை அனுமதிக்கிறது. இது தனிப்பயன் செயல்களை அனுமதிக்கிறது (எ.கா. ஒரு சோதனை தோல்வியடைந்தால் screenshot எடுத்தல்).
 
-ஒவ்வொரு hook க்கும் வாழ்க்கைச் சுழற்சி பற்றிய குறிப்பிட்ட தகவல்கள் அளவுருவாக உள்ளது (எ.கா. சோதனை சூட்டு அல்லது சோதனை பற்றிய தகவல்). அனைத்து hook பண்புகளைப் பற்றிய மேலும் தகவல்களுக்கு [எங்கள் உதாரண கட்டமைப்பில்](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326) படிக்கவும்.
+ஒவ்வொரு hook-உம் வாழ்க்கைச் சுழற்சி பற்றிய குறிப்பிட்ட தகவலை (எ.கா. test suite அல்லது சோதனை பற்றிய தகவல்) parameter-ஆகக் கொண்டுள்ளது. அனைத்து hook properties பற்றியும் [எங்கள் எடுத்துக்காட்டு config](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326)-இல் மேலும் படிக்கவும்.
 
-**குறிப்பு:** சில hooks (`onPrepare`, `onWorkerStart`, `onWorkerEnd` மற்றும் `onComplete`) ஒரு வேறுபட்ட செயல்முறையில் செயல்படுத்தப்படுகின்றன, எனவே வேலைநிரல் செயல்முறையில் வாழும் மற்ற hooks உடன் எந்த உலகளாவிய தரவையும் பகிர முடியாது.
+**குறிப்பு:** சில hooks (`onPrepare`, `onWorkerStart`, `onWorkerEnd` மற்றும் `onComplete`) வேறொரு process-இல் செயல்படுத்தப்படுகின்றன, எனவே worker process-இல் உள்ள மற்ற hooks-உடன் எந்த global தரவையும் பகிர முடியாது.
 
 ### onPrepare
 
-அனைத்து தொழிலாளர்களும் துவங்குவதற்கு முன்பு ஒரு முறை செயல்படுத்தப்படுகிறது.
+அனைத்து workers-உம் தொடங்கப்படுவதற்கு முன் ஒருமுறை செயல்படுத்தப்படும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `config` (`object`): WebdriverIO கட்டமைப்பு பொருள்
-- `param` (`object[]`): திறன்கள் விவரங்களின் பட்டியல்
+- `config` (`object`): WebdriverIO கட்டமைப்பு object
+- `param` (`object[]`): capabilities விவரங்களின் பட்டியல்
 
 ### onWorkerStart
 
-ஒரு பணியாளர் செயல்முறை உருவாக்கப்படுவதற்கு முன் செயல்படுத்தப்படுகிறது மற்றும் அந்த வேலைநிரலுக்கான குறிப்பிட்ட சேவையை துவக்க பயன்படுத்தலாம் மற்றும் ஒத்திசைவற்ற முறையில் ரன்டைம் சூழல்களை மாற்றலாம்.
+ஒரு worker process உருவாக்கப்படுவதற்கு முன் செயல்படுத்தப்படும், மேலும் அந்த worker-க்கான குறிப்பிட்ட service-ஐ initialize செய்யவும், runtime சூழல்களை async முறையில் மாற்றவும் பயன்படுத்தலாம்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `cid` (`string`): திறன் ஐடி (எ.கா 0-0)
-- `caps` (`object`): தொழிலாளியில் உருவாக்கப்படும் அமர்வுக்கான திறன்கள் கொண்டது
-- `specs` (`string[]`): தொழிலாளி செயல்முறையில் இயக்க வேண்டிய specs
-- `args` (`object`): தொழிலாளி துவக்கப்பட்டவுடன் முக்கிய கட்டமைப்புடன் இணைக்கப்படும் பொருள்
-- `execArgv` (`string[]`): தொழிலாளி செயல்முறைக்கு அனுப்பப்படும் சர அளவுருக்களின் பட்டியல்
+- `cid` (`string`): capability id (எ.கா 0-0)
+- `caps` (`object`): worker-இல் உருவாக்கப்படும் session-க்கான capabilities-ஐக் கொண்டுள்ளது
+- `specs` (`string[]`): worker process-இல் இயக்கப்பட வேண்டிய specs
+- `args` (`object`): worker initialize செய்யப்பட்டவுடன் முக்கிய கட்டமைப்புடன் இணைக்கப்படும் object
+- `execArgv` (`string[]`): worker process-க்கு அனுப்பப்படும் string arguments-இன் பட்டியல்
 
 ### onWorkerEnd
 
-ஒரு தொழிலாளி செயல்முறை வெளியேறிய பிறகே செயல்படுத்தப்படுகிறது.
+ஒரு worker process வெளியேறிய உடனேயே செயல்படுத்தப்படும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `cid` (`string`): திறன் ஐடி (எ.கா 0-0)
-- `exitCode` (`number`): 0 - வெற்றி, 1 - தோல்வி
-- `specs` (`string[]`): தொழிலாளி செயல்முறையில் இயக்க வேண்டிய specs
-- `retries` (`number`): [_"Add retries on a per-specfile basis"_](./Retry.md#add-retries-on-a-per-specfile-basis) இல் வரையறுக்கப்பட்டுள்ளபடி பயன்படுத்தப்படும் spec நிலை மறுமுயற்சிகளின் எண்ணிக்கை
+- `cid` (`string`): capability id (எ.கா 0-0)
+- `exitCode` (`number`): 0 - வெற்றி, 1 - தோல்வி. ஒரு signal மூலம் நிறுத்தப்பட்ட worker அதற்குப் பதிலாக `128` + signal எண்ணை அறிக்கையிடும், எ.கா. `SIGSEGV`-க்கு `139`
+- `specs` (`string[]`): worker process-இல் இயக்கப்பட வேண்டிய specs
+- `retries` (`number`): [_"Add retries on a per-specfile basis"_](./Retry.md#add-retries-on-a-per-specfile-basis)-இல் வரையறுக்கப்பட்டபடி பயன்படுத்தப்பட்ட spec நிலை மறுமுயற்சிகளின் எண்ணிக்கை
+- `signal` (`string`): worker-ஐ நிறுத்திய signal, எ.கா. `SIGSEGV`, அல்லது அது தானாக வெளியேறியிருந்தால் `null`
 
 ### beforeSession
 
-WebDriver அமர்வு மற்றும் சோதனை கட்டமைப்பை துவக்குவதற்கு முன்பாகவே செயல்படுத்தப்படுகிறது. இது திறன் அல்லது ஸ்பெக்கைப் பொறுத்து கட்டமைப்புகளை கையாள அனுமதிக்கிறது.
+webdriver session மற்றும் test framework-ஐ initialize செய்வதற்கு சற்று முன் செயல்படுத்தப்படும். capability அல்லது spec-ஐப் பொறுத்து கட்டமைப்புகளை மாற்ற இது உங்களை அனுமதிக்கிறது.
 
-அளவுருக்கள்:
+Parameters:
 
-- `config` (`object`): WebdriverIO கட்டமைப்பு பொருள்
-- `caps` (`object`): தொழிலாளியில் உருவாக்கப்படும் அமர்வுக்கான திறன்கள் கொண்டது
-- `specs` (`string[]`): தொழிலாளி செயல்முறையில் இயக்க வேண்டிய specs
+- `config` (`object`): WebdriverIO கட்டமைப்பு object
+- `caps` (`object`): worker-இல் உருவாக்கப்படும் session-க்கான capabilities-ஐக் கொண்டுள்ளது
+- `specs` (`string[]`): worker process-இல் இயக்கப்பட வேண்டிய specs
 
 ### before
 
-சோதனை நிறைவேற்றம் தொடங்குவதற்கு முன் செயல்படுத்தப்படுகிறது. இந்த புள்ளியில் நீங்கள் `browser` போன்ற அனைத்து உலகளாவிய மாறிகளையும் அணுகலாம். இது தனிப்பயன் கட்டளைகளை வரையறுக்க சரியான இடம்.
+சோதனை செயல்படுத்தல் தொடங்குவதற்கு முன் செயல்படுத்தப்படும். இந்தக் கட்டத்தில் `browser` போன்ற அனைத்து global மாறிகளையும் அணுகலாம். தனிப்பயன் கட்டளைகளை வரையறுக்க இது சரியான இடமாகும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `caps` (`object`): தொழிலாளியில் உருவாக்கப்படும் அமர்வுக்கான திறன்கள் கொண்டது
-- `specs` (`string[]`): தொழிலாளி செயல்முறையில் இயக்க வேண்டிய specs
-- `browser` (`object`): உருவாக்கப்பட்ட உலாவி/சாதன அமர்வு உருப்படி
+- `caps` (`object`): worker-இல் உருவாக்கப்படும் session-க்கான capabilities-ஐக் கொண்டுள்ளது
+- `specs` (`string[]`): worker process-இல் இயக்கப்பட வேண்டிய specs
+- `browser` (`object`): உருவாக்கப்பட்ட browser/device session-இன் instance
 
 ### beforeSuite
 
-சூட் தொடங்குவதற்கு முன் செயல்படுத்தப்படும் ஹூக் (Mocha/Jasmine இல் மட்டும்)
+suite தொடங்குவதற்கு முன் செயல்படுத்தப்படும் hook (Mocha/Jasmine-இல் மட்டும்)
 
-அளவுருக்கள்:
+Parameters:
 
-- `suite` (`object`): சூட் விவரங்கள்
+- `suite` (`object`): suite விவரங்கள்
 
 ### beforeHook
 
-சூட்டுக்குள் ஒரு ஹூக் தொடங்குவதற்கு *முன்* செயல்படுத்தப்படும் ஹூக் (எ.கா. Mocha-வில் beforeEach அழைப்பதற்கு முன் இயங்குகிறது)
+suite-க்குள் ஒரு hook தொடங்குவதற்கு *முன்* செயல்படுத்தப்படும் hook (எ.கா. Mocha-வில் beforeEach அழைக்கப்படுவதற்கு முன் இயங்கும்)
 
-அளவுருக்கள்:
+Parameters:
 
 - `test` (`object`): சோதனை விவரங்கள்
-- `context` (`object`): சோதனை சூழல் (Cucumber இல் World பொருளை குறிக்கிறது)
+- `context` (`object`): சோதனை context (Cucumber-இல் World object-ஐக் குறிக்கிறது)
 
 ### afterHook
 
-சூட்டுக்குள் ஒரு ஹூக் முடிவடைந்த *பின்* செயல்படுத்தப்படும் ஹூக் (எ.கா. Mocha-வில் afterEach அழைப்பதற்குப் பிறகு இயங்குகிறது)
+suite-க்குள் ஒரு hook முடிந்த *பிறகு* செயல்படுத்தப்படும் hook (எ.கா. Mocha-வில் afterEach அழைக்கப்பட்ட பிறகு இயங்கும்)
 
-அளவுருக்கள்:
+Parameters:
 
 - `test` (`object`): சோதனை விவரங்கள்
-- `context` (`object`): சோதனை சூழல் (Cucumber இல் World பொருளை குறிக்கிறது)
-- `result` (`object`): ஹூக் முடிவு (`error`, `result`, `duration`, `passed`, `retries` பண்புகளைக் கொண்டது)
+- `context` (`object`): சோதனை context (Cucumber-இல் World object-ஐக் குறிக்கிறது)
+- `result` (`object`): hook முடிவு (`error`, `result`, `duration`, `passed`, `retries` properties-ஐக் கொண்டுள்ளது)
 
 ### beforeTest
 
-ஒரு சோதனைக்கு முன் செயல்படுத்த வேண்டிய செயல்பாடு (Mocha/Jasmine இல் மட்டும்).
+ஒரு சோதனைக்கு முன் செயல்படுத்தப்பட வேண்டிய function (Mocha/Jasmine-இல் மட்டும்).
 
-அளவுருக்கள்:
+Parameters:
 
 - `test` (`object`): சோதனை விவரங்கள்
-- `context` (`object`): சோதனை செயல்படுத்தப்பட்ட வரம்பு பொருள்
+- `context` (`object`): சோதனை செயல்படுத்தப்பட்ட scope object
 
 ### beforeCommand
 
-ஒரு WebdriverIO கட்டளை செயல்படுத்தப்படுவதற்கு முன் இயங்குகிறது.
+ஒரு WebdriverIO கட்டளை செயல்படுத்தப்படுவதற்கு முன் இயங்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `commandName` (`string`): கட்டளை பெயர்
-- `args` (`*`): கட்டளை பெறும் அளவுருக்கள்
+- `commandName` (`string`): கட்டளைப் பெயர்
+- `args` (`*`): கட்டளை பெறும் arguments
 
 ### afterCommand
 
-ஒரு WebdriverIO கட்டளை செயல்படுத்தப்பட்ட பிறகு இயங்குகிறது.
+ஒரு WebdriverIO கட்டளை செயல்படுத்தப்பட்ட பிறகு இயங்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `commandName` (`string`): கட்டளை பெயர்
-- `args` (`*`): கட்டளை பெறும் அளவுருக்கள்
+- `commandName` (`string`): கட்டளைப் பெயர்
+- `args` (`*`): கட்டளை பெறும் arguments
 - `result` (`*`): கட்டளையின் முடிவு
-- `error` (`Error`): ஏதேனும் பிழை பொருள்
+- `error` (`Error`): ஏதேனும் இருந்தால் error object
 
 ### afterTest
 
-ஒரு சோதனை (Mocha/Jasmine-ல்) முடிந்த பிறகு செயல்படுத்த வேண்டிய செயல்பாடு.
+ஒரு சோதனை (Mocha/Jasmine-இல்) முடிந்த பிறகு செயல்படுத்தப்பட வேண்டிய function.
 
-அளவுருக்கள்:
+Parameters:
 
 - `test` (`object`): சோதனை விவரங்கள்
-- `context` (`object`): சோதனை செயல்படுத்தப்பட்ட வரம்பு பொருள்
-- `result.error` (`Error`): சோதனை தோல்வியடைந்தால் பிழை பொருள், இல்லையெனில் `undefined`
-- `result.result` (`Any`): சோதனை செயல்பாட்டின் return பொருள்
+- `context` (`object`): சோதனை செயல்படுத்தப்பட்ட scope object
+- `result.error` (`Error`): சோதனை தோல்வியடைந்தால் error object, இல்லையெனில் `undefined`
+- `result.result` (`Any`): test function-இன் return object
 - `result.duration` (`Number`): சோதனையின் கால அளவு
-- `result.passed` (`Boolean`): சோதனை வெற்றி பெற்றால் true, இல்லையெனில் false
-- `result.retries` (`Object`): [Mocha மற்றும் Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) க்கு வரையறுக்கப்பட்டுள்ளபடி ஒற்றை சோதனை தொடர்பான மறுமுயற்சிகள் மற்றும் [Cucumber](./Retry.md#rerunning-in-cucumber) பற்றிய தகவல்கள், எ.கா. `{ attempts: 0, limit: 0 }`, பார்க்கவும்
-- `result` (`object`): ஹூக் முடிவு (`error`, `result`, `duration`, `passed`, `retries` பண்புகளைக் கொண்டது)
+- `result.passed` (`Boolean`): சோதனை வெற்றியடைந்தால் true, இல்லையெனில் false
+- `result.retries` (`Object`): [Mocha மற்றும் Jasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) மற்றும் [Cucumber](./Retry.md#rerunning-in-cucumber)-க்கு வரையறுக்கப்பட்டபடி தனி சோதனை தொடர்பான மறுமுயற்சிகள் பற்றிய தகவல், எ.கா. `{ attempts: 0, limit: 0 }`, பார்க்கவும்
+- `result` (`object`): hook முடிவு (`error`, `result`, `duration`, `passed`, `retries` properties-ஐக் கொண்டுள்ளது)
 
 ### afterSuite
 
-சூட் முடிந்த பிறகு செயல்படுத்தப்படும் ஹூக் (Mocha/Jasmine இல் மட்டும்)
+suite முடிந்த பிறகு செயல்படுத்தப்படும் hook (Mocha/Jasmine-இல் மட்டும்)
 
-அளவுருக்கள்:
+Parameters:
 
-- `suite` (`object`): சூட் விவரங்கள்
+- `suite` (`object`): suite விவரங்கள்
 
 ### after
 
-அனைத்து சோதனைகளும் முடிந்த பிறகு செயல்படுத்தப்படுகிறது. உங்களிடம் இன்னும் சோதனையிலிருந்து அனைத்து உலகளாவிய மாறிகளுக்கும் அணுகல் உள்ளது.
+அனைத்து சோதனைகளும் முடிந்த பிறகு செயல்படுத்தப்படும். சோதனையிலிருந்து அனைத்து global மாறிகளையும் நீங்கள் இன்னும் அணுகலாம்.
 
-அளவுருக்கள்:
+Parameters:
 
 - `result` (`number`): 0 - சோதனை வெற்றி, 1 - சோதனை தோல்வி
-- `caps` (`object`): தொழிலாளியில் உருவாக்கப்படும் அமர்வுக்கான திறன்கள் கொண்டது
-- `specs` (`string[]`): தொழிலாளி செயல்முறையில் இயக்க வேண்டிய specs
+- `caps` (`object`): worker-இல் உருவாக்கப்படும் session-க்கான capabilities-ஐக் கொண்டுள்ளது
+- `specs` (`string[]`): worker process-இல் இயக்கப்பட வேண்டிய specs
 
 ### afterSession
 
-WebDriver அமர்வை முடித்த பிறகு செயல்படுத்தப்படுகிறது.
+webdriver session முடிக்கப்பட்ட உடனேயே செயல்படுத்தப்படும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `config` (`object`): WebdriverIO கட்டமைப்பு பொருள்
-- `caps` (`object`): தொழிலாளியில் உருவாக்கப்படும் அமர்வுக்கான திறன்கள் கொண்டது
-- `specs` (`string[]`): தொழிலாளி செயல்முறையில் இயக்க வேண்டிய specs
+- `config` (`object`): WebdriverIO கட்டமைப்பு object
+- `caps` (`object`): worker-இல் உருவாக்கப்படும் session-க்கான capabilities-ஐக் கொண்டுள்ளது
+- `specs` (`string[]`): worker process-இல் இயக்கப்பட வேண்டிய specs
 
 ### onComplete
 
-அனைத்து தொழிலாளர்களும் நிறுத்தப்பட்டு செயல்முறை வெளியேற உள்ளது. onComplete ஹூக்கில் ஒரு பிழை எறியப்பட்டால் சோதனை ஓட்டம் தோல்வியடையும்.
+அனைத்து workers-உம் நிறுத்தப்பட்டு process வெளியேறவிருக்கும்போது செயல்படுத்தப்படும். onComplete hook-இல் throw செய்யப்படும் பிழை சோதனை ஓட்டம் தோல்வியடைய வழிவகுக்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
 - `exitCode` (`number`): 0 - வெற்றி, 1 - தோல்வி
-- `config` (`object`): WebdriverIO கட்டமைப்பு பொருள்
-- `caps` (`object`): தொழிலாளியில் உருவாக்கப்படும் அமர்வுக்கான திறன்கள் கொண்டது
-- `result` (`object`): சோதனை முடிவுகளைக் கொண்ட முடிவுகள் பொருள்
+- `config` (`object`): WebdriverIO கட்டமைப்பு object
+- `caps` (`object`): worker-இல் உருவாக்கப்படும் session-க்கான capabilities-ஐக் கொண்டுள்ளது
+- `result` (`object`): சோதனை முடிவுகளைக் கொண்ட results object
 
 ### onReload
 
-புதுப்பிப்பு நடக்கும்போது செயல்படுத்தப்படுகிறது.
+ஒரு refresh நிகழும்போது செயல்படுத்தப்படும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `oldSessionId` (`string`): பழைய அமர்வின் அமர்வு ஐடி
-- `newSessionId` (`string`): புதிய அமர்வின் அமர்வு ஐடி
+- `oldSessionId` (`string`): பழைய session-இன் session ID
+- `newSessionId` (`string`): புதிய session-இன் session ID
 
 ### beforeFeature
 
-ஒரு Cucumber அம்சத்திற்கு முன் இயங்குகிறது.
+ஒரு Cucumber Feature-க்கு முன் இயங்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `uri` (`string`): அம்ச கோப்பிற்கான பாதை
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber அம்ச பொருள்
+- `uri` (`string`): feature கோப்புக்கான பாதை
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
 
 ### afterFeature
 
-ஒரு Cucumber அம்சத்திற்குப் பிறகு இயங்குகிறது.
+ஒரு Cucumber Feature-க்குப் பிறகு இயங்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `uri` (`string`): அம்ச கோப்பிற்கான பாதை
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber அம்ச பொருள்
+- `uri` (`string`): feature கோப்புக்கான பாதை
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumber feature object
 
 ### beforeScenario
 
-ஒரு Cucumber காட்சிக்கு முன் இயங்குகிறது.
+ஒரு Cucumber Scenario-க்கு முன் இயங்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickle மற்றும் சோதனை படி பற்றிய தகவல்களைக் கொண்ட உலக பொருள்
-- `context` (`object`): Cucumber உலக பொருள்
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickle மற்றும் test step பற்றிய தகவலைக் கொண்ட world object
+- `context` (`object`): Cucumber World object
 
 ### afterScenario
 
-ஒரு Cucumber காட்சிக்குப் பிறகு இயங்குகிறது.
+ஒரு Cucumber Scenario-க்குப் பிறகு இயங்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickle மற்றும் சோதனை படி பற்றிய தகவல்களைக் கொண்ட உலக பொருள்
-- `result` (`object`): காட்சி முடிவுகளைக் கொண்ட முடிவுகள் பொருள்
-- `result.passed` (`boolean`): காட்சி வெற்றி பெற்றால் true
-- `result.error` (`string`): காட்சி தோல்வியடைந்தால் பிழை ஸ்டேக்
-- `result.duration` (`number`): மில்லி செகண்டுகளில் காட்சியின் கால அளவு
-- `context` (`object`): Cucumber உலக பொருள்
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickle மற்றும் test step பற்றிய தகவலைக் கொண்ட world object
+- `result` (`object`): scenario முடிவுகளைக் கொண்ட results object
+- `result.passed` (`boolean`): scenario வெற்றியடைந்தால் true
+- `result.error` (`string`): scenario தோல்வியடைந்தால் error stack
+- `result.duration` (`number`): milliseconds-இல் scenario-வின் கால அளவு
+- `context` (`object`): Cucumber World object
 
 ### beforeStep
 
-ஒரு Cucumber படிக்கு முன் இயங்குகிறது.
+ஒரு Cucumber Step-க்கு முன் இயங்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber படி பொருள்
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber காட்சி பொருள்
-- `context` (`object`): Cucumber உலக பொருள்
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
+- `context` (`object`): Cucumber World object
 
 ### afterStep
 
-ஒரு Cucumber படிக்குப் பிறகு இயங்குகிறது.
+ஒரு Cucumber Step-க்குப் பிறகு இயங்கும்.
 
-அளவுருக்கள்:
+Parameters:
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber படி பொருள்
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber காட்சி பொருள்
-- `result`: (`object`): படி முடிவுகளைக் கொண்ட முடிவுகள் பொருள்
-- `result.passed` (`boolean`): காட்சி வெற்றி பெற்றால் true
-- `result.error` (`string`): காட்சி தோல்வியடைந்தால் பிழை ஸ்டேக்
-- `result.duration` (`number`): மில்லி செகண்டுகளில் காட்சியின் கால அளவு
-- `context` (`object`): Cucumber உலக பொருள்
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumber step object
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumber scenario object
+- `result`: (`object`): step முடிவுகளைக் கொண்ட results object
+- `result.passed` (`boolean`): scenario வெற்றியடைந்தால் true
+- `result.error` (`string`): scenario தோல்வியடைந்தால் error stack
+- `result.duration` (`number`): milliseconds-இல் scenario-வின் கால அளவு
+- `context` (`object`): Cucumber World object
 
 ### beforeAssertion
 
-WebdriverIO உறுதிப்படுத்தல் நடப்பதற்கு முன் செயல்படுத்தப்படும் ஹூக்.
+ஒரு WebdriverIO assertion நிகழ்வதற்கு முன் செயல்படுத்தப்படும் hook.
 
-அளவுருக்கள்:
+Parameters:
 
-- `params`: உறுதிப்படுத்தல் தகவல்
-- `params.matcherName` (`string`): matcher இன் பெயர் (எ.கா. `toHaveTitle`)
-- `params.expectedValue`: matcher இல் அனுப்பப்படும் மதிப்பு
-- `params.options`: உறுதிப்படுத்தல் விருப்பங்கள்
+- `params`: assertion தகவல்
+- `params.matcherName` (`string`): சோதனை அழைத்த matcher-இன் பெயர் (எ.கா. `toHaveTitle`). ஒரு alias-க்கு, இது alias-இன் பெயராகும் (எ.கா. `toBeExisting`, `toExist` அல்ல).
+- `params.expectedValue`: matcher-க்கு அனுப்பப்படும் மதிப்பு
+- `params.options`: assertion விருப்பங்கள்
 
 ### afterAssertion
 
-WebdriverIO உறுதிப்படுத்தல் நடந்த பிறகு செயல்படுத்தப்படும் ஹூக்.
+ஒரு WebdriverIO assertion நிகழ்ந்த பிறகு செயல்படுத்தப்படும் hook.
 
-அளவுருக்கள்:
+Parameters:
 
-- `params`: உறுதிப்படுத்தல் தகவல்
-- `params.matcherName` (`string`): matcher இன் பெயர் (எ.கா. `toHaveTitle`)
-- `params.expectedValue`: matcher இல் அனுப்பப்படும் மதிப்பு
-- `params.options`: உறுதிப்படுத்தல் விருப்பங்கள்
-- `params.result`: உறுதிப்படுத்தல் முடிவுகள்
+- `params`: assertion தகவல்
+- `params.matcherName` (`string`): சோதனை அழைத்த matcher-இன் பெயர் (எ.கா. `toHaveTitle`). ஒரு alias-க்கு, இது alias-இன் பெயராகும் (எ.கா. `toBeExisting`, `toExist` அல்ல).
+- `params.expectedValue`: matcher-க்கு அனுப்பப்படும் மதிப்பு
+- `params.options`: assertion விருப்பங்கள்
+- `params.result` (`object`): `pass` (`boolean`) மற்றும் `message()` உடன் கூடிய matcher-இன் முடிவு. மதிப்பு எதிர்பார்க்கப்பட்ட மதிப்புடன் பொருந்தும்போது `pass` என்பது `true` ஆகும், `.not` உடனும் இதுவே: `.not` உடன், `pass` என்பது `false` ஆக இருக்கும்போது assertion வெற்றியடையும்.

@@ -1,60 +1,60 @@
 {
   "features.realEnvironments": {
-    "message": "実環境でのテスト"
+    "message": "実際の環境でテスト"
   },
   "features.realEnvironments.description": {
-    "message": "WebdriverIOは、実際のユーザーが使用するブラウザやモバイルデバイスでのテストを可能にします。"
+    "message": "WebdriverIOを使えば、ユーザーが実際に使用しているブラウザやモバイルデバイスでテストできます。"
   },
   "features.versatile": {
-    "message": "多目的で機能豊富"
+    "message": "多用途で機能豊富"
   },
   "features.versatile.description": {
-    "message": "WebdriverIOをブラウザでのフルe2eテストやユニットおよびコンポーネントテストに使用してください。"
+    "message": "WebdriverIOは、完全なE2Eテストにも、ブラウザでのユニットテストやコンポーネントテストにも利用できます。"
   },
   "features.autoWait": {
     "message": "自動待機"
   },
   "features.autoWait.description": {
-    "message": "WebdriverIOは要素と対話する前に、自動的に要素の表示を待機します。"
+    "message": "WebdriverIOは、要素を操作する前に、その要素が表示されるまで自動的に待機します。"
   },
   "features.standards": {
-    "message": "Web標準ベース"
+    "message": "Web標準に基づく"
   },
   "homepage.features.crossBrowser": {
-    "message": "{webdriverLink}と{bidiLink}を通じたオートメーションによるクロスブラウザサポート。"
+    "message": "{webdriverLink}と{bidiLink}による自動化で、クロスブラウザに対応しています。"
   },
   "features.mobileSupport": {
-    "message": "ネイティブモバイルサポート"
+    "message": "ネイティブモバイル対応"
   },
   "homepage.features.mobile": {
-    "message": "{appiumLink}を通じて実際のモバイルデバイス、スマートTV、その他のIoTデバイスでWebdriverIOを実行できます。"
+    "message": "{appiumLink}を通じて、実際のモバイルデバイス、スマートTV、その他のIoTデバイスでWebdriverIOを実行できます。"
   },
   "features.community": {
-    "message": "献身的なコミュニティ"
+    "message": "熱心なコミュニティ"
   },
   "homepage.features.support": {
-    "message": "8,000人以上のメンバーを持つ{supportChannelLink}と、コミュニティによって維持される豊富なプラグインエコシステムを運営しています。"
+    "message": "8,000人以上のメンバーを擁する{supportChannelLink}を運営しており、コミュニティによって保守されている豊富なプラグインのエコシステムがあります。"
   },
   "homepage.createBrowserAnimation": {
     "message": "MacOSアプリを自動化するWebdriverIOプロジェクトを作成"
   },
   "homepage.logoCarousel.title": {
-    "message": "WebdriverIOを誰が使用していますか？"
+    "message": "WebdriverIOを使用している企業"
   },
   "sponsors.description.openSource": {
-    "message": "\n                私たちは透明性とコミュニティガバナンスへの強いコミットメントを持つオープンソースプロジェクトです。\n                私たちは{linuxFoundationLink}の一部である{openJsFoundationLink}の一員です。プロジェクト\n                は完全にボランティアによって運営され、プロジェクトの成功を望む投資企業によって資金提供されています。\n                プロジェクトチームはこれらの企業の寛大なスポンサーシップに感謝しています。\n            "
+    "message": "\n                私たちは、透明性とコミュニティによるガバナンスに強くコミットしているオープンソースプロジェクトです。\n                私たちは{linuxFoundationLink}の一部である{openJsFoundationLink}に所属しています。このプロジェクトは\n                すべてボランティアによって運営されており、プロジェクトの成功を願う企業からの資金提供によって支えられています。\n                プロジェクトチームは、これらの企業からの寛大なスポンサーシップに感謝しています。\n            "
   },
   "sponsors.description.support": {
-    "message": "組織内でWebdriverIOを使用している場合は、{becomeASponsor}によるプロジェクトのサポートをご検討ください。それがプロジェクトの維持と発展を助けます。"
+    "message": "組織内でWebdriverIOをご利用の場合は、{becomeASponsor}ことでプロジェクトを支援することをご検討ください。プロジェクトの継続と発展の助けになります。"
   },
   "homepage.tagline": {
-    "message": "Node.js向けの次世代ブラウザおよびモバイル自動化テストフレームワーク"
+    "message": "Web、モバイル、デスクトップアプリのためのオープンソーステスト自動化"
   },
   "homepage.getStarted": {
     "message": "はじめる"
   },
   "homepage.whyWebdriverIO": {
-    "message": "なぜWebdriverIOか？"
+    "message": "なぜWebdriverIOなのか？"
   },
   "homepage.viewOnGitHub": {
     "message": "GitHubで見る"
@@ -65,58 +65,61 @@
   "homepage.sponsorSection.sponsoredBy": {
     "message": "スポンサー"
   },
+  "homepage.sponsorSection.and": {
+    "message": "および"
+  },
   "homepage.componentTesting.heading": {
-    "message": "実際のブラウザでのE2Eおよびユニット/コンポーネントテスト！"
+    "message": "実際のブラウザでE2Eテストとユニット／コンポーネントテスト！"
   },
   "homepage.componentTesting.para1": {
-    "message": "WebdriverIOはWebアプリ開発のための{allInOne}フレームワークです。小さく軽量なコンポーネントテストの実行と、ブラウザやモバイルデバイスでのe2eテストシナリオの実行が可能です。これにより、{usedBy}環境でのテストが保証されます。"
+    "message": "WebdriverIOは、Webアプリ開発のための{allInOne}フレームワークです。小さく軽量なコンポーネントテストの実行から、ブラウザやモバイルデバイス上でのE2Eテストシナリオの実行まで対応しています。これにより、{usedBy}環境でテストを行えることが保証されます。"
   },
   "homepage.componentTesting.allInOne": {
     "message": "オールインワン"
   },
   "homepage.componentTesting.usedBy": {
-    "message": "ユーザーが使用する"
+    "message": "ユーザーが実際に使用している"
   },
   "homepage.componentTesting.para2": {
-    "message": "例えば{reactComponents}との対話を簡素化したり、ネストされたシャドウDOMツリーで深いセレクタクエリを実行したりするためのスマートなセレクタ戦略が付属しています。相互作用は標準化された自動化プロトコルを通じて行われるため、ネイティブな動作が保証され、JavaScriptでエミュレートされるだけではありません。"
+    "message": "{reactComponents}との操作や、ネストされたShadow DOMツリーに対する深いセレクタークエリの実行などを簡単にする、スマートなセレクター戦略を備えています。操作は標準化された自動化プロトコルを通じて行われるため、JavaScriptによる単なるエミュレーションではなく、ネイティブに動作することが保証されます。"
   },
   "homepage.componentTesting.easySetup": {
-    "message": "以下によるウェブコンポーネントテストの簡単なセットアップ："
+    "message": "以下のWebコンポーネントテストを簡単にセットアップ："
   },
   "homepage.hightlight.createProject": {
-    "message": "数秒でWebdriverIOをスタート"
+    "message": "数秒でWebdriverIOを始めよう"
   },
   "homepage.hightlight.createProject.para1": {
-    "message": "WebdriverIOテストランナーには、強力な構成ユーティリティを提供し、1分以内にテスト環境を作成するのに役立つコマンドラインインターフェイスが付属しています。利用可能なテストフレームワーク統合から選択し、サポートされているすべてのレポーターとサービスプラグインを簡単に追加できます！"
+    "message": "WebdriverIOテストランナーには、強力な設定ユーティリティを提供するコマンドラインインターフェースが付属しており、1分もかからずにテスト環境を構築できます。利用可能なテストフレームワークとの統合から選択でき、サポートされているすべてのレポーターおよびサービスプラグインを簡単に追加できます！"
   },
   "homepage.hightlight.createProject.para2": {
-    "message": "たった一つのシンプルなコマンドで完全なテストスイートをセットアップできます："
+    "message": "シンプルなコマンドひとつで、完全なテストスイートをセットアップできます："
   },
   "homepage.highlight.getStartedOnYouTube": {
-    "message": "WebdriverIOについてさらに学び、はじめ方を{youtubeLink}で知ることができます。"
+    "message": "{youtubeLink}でWebdriverIOについてさらに学び、始め方を確認しましょう。"
   },
   "homepage.highlight.getStartedOnYouTube.label;": {
-    "message": "YouTubeで",
+    "message": "YouTube",
     "description": "The label for the link to my YouTube"
   },
   "homepage.hightlight.watch": {
     "message": "WebdriverIOに関する講演を見る"
   },
   "homepage.highlight.conferenceTalk": {
-    "message": "WebdriverIOを取り巻くコミュニティは、WebdriverIOを使用した自動テストに関する特定のトピックについて、さまざまなユーザーグループやカンファレンスで積極的に発言しています。{conferenceLink}での{videoAuthor}による{youtubeLink}のこの講演をチェックしてください。"
+    "message": "WebdriverIOのコミュニティは、さまざまなユーザーグループやカンファレンスで、WebdriverIOを使った自動テストに関する特定のトピックについて積極的に講演しています。{conferenceLink}での{videoAuthor}による講演を{youtubeLink}でご覧ください。"
   },
   "homepage.highlight.conferenceTalk.label": {
-    "message": "WebdriverIOのお気に入り機能",
+    "message": "WebdriverIOのお気に入りの機能",
     "description": "The conference talk title"
   },
   "homepage.highlight.youtubeChannels": {
-    "message": "また、{channelOne}、{channelTwo}、{channelThree}などのコミュニティメンバーによる有用なチュートリアルを含む多くのYouTubeチャンネルもあります。"
+    "message": "また、{channelOne}、{channelTwo}、{channelThree}など、コミュニティメンバーによる役立つチュートリアルを公開しているYouTubeチャンネルも多数あります。"
   },
   "homepage.hightlight.lighthouse": {
-    "message": "Google Lighthouse統合"
+    "message": "Google Lighthouseとの統合"
   },
   "homepage.highlight.devtools": {
-    "message": "WebdriverIOはWebDriverプロトコルに基づく自動化を実行するだけでなく、{devtoolsLink}や{lighthouseLink}などの人気のある開発者ツールへの統合を可能にするネイティブブラウザAPIも活用しています。{devtoolsServiceLink}プラグインを使用すると、アプリが有効なPWAアプリケーションかどうかを検証するコマンドや、`speedIndex`などのフロントエンドパフォーマンスメトリックをキャプチャするためのコマンドにアクセスできます。"
+    "message": "WebdriverIOはWebDriverプロトコルに基づく自動化を実行するだけでなく、ネイティブのブラウザAPIを活用して、{devtoolsLink}や{lighthouseLink}などの人気の開発者ツールとの統合を可能にします。{devtoolsServiceLink}プラグインを使用すると、アプリが有効なPWAアプリケーションであるかを検証するコマンドや、`speedIndex`などのフロントエンドのパフォーマンス指標を取得するコマンドを利用できます。"
   },
   "homepage.hightlight.devtools": {
     "message": "以下のような開発者ツールとの統合："
@@ -137,19 +140,19 @@
     "message": "2019年12月から"
   },
   "versions.description": {
-    "message": "Docusaurus 2のバージョンページにすべての文書化されたサイトバージョンが一覧表示されています"
+    "message": "公開されているWebdriverIOドキュメントのすべてのバージョン"
   },
   "WebdriverIO documentation versions": {
     "message": "WebdriverIOドキュメントのバージョン"
   },
   "The project team releases new major versions roughly on a yearly cadence. LTS release status is \"long-term support\", which typically guarantees that critical bugs will be fixed for a total of 12 months until a new major release is made.": {
-    "message": "プロジェクトチームは、大体年間のペースで新しいメジャーバージョンをリリースしています。LTSリリースステータスは「長期サポート」であり、通常、新しいメジャーリリースが行われるまでの合計12ヶ月間、重大なバグが修正されることを保証します。"
+    "message": "プロジェクトチームは、おおよそ1年ごとに新しいメジャーバージョンをリリースしています。LTSリリースのステータスは「長期サポート（long-term support）」を意味し、通常、新しいメジャーリリースが行われるまでの合計12か月間、重大なバグが修正されることが保証されます。"
   },
   "Current version (Stable)": {
     "message": "現在のバージョン（安定版）"
   },
   "Here you can find the documentation for current released version.": {
-    "message": "ここでは、現在リリースされているバージョンのドキュメントを見つけることができます。"
+    "message": "現在リリースされているバージョンのドキュメントはこちらです。"
   },
   "Documentation": {
     "message": "ドキュメント"
@@ -161,14 +164,14 @@
     "message": "過去のバージョン"
   },
   "Here you can find documentation for previous versions of Docusaurus.": {
-    "message": "ここでは、Docusaurusの以前のバージョンのドキュメントを見つけることができます。"
+    "message": "Docusaurusの過去のバージョンのドキュメントはこちらです。"
   },
   "theme.ErrorPageContent.title": {
     "message": "このページはクラッシュしました。",
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "トップに戻る",
+    "message": "先頭に戻る",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
@@ -180,31 +183,31 @@
     "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.paginator.navAriaLabel": {
-    "message": "ブログリストページのナビゲーション",
+    "message": "ブログ記事一覧のナビゲーション",
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
-    "message": "新しいエントリー",
+    "message": "新しい記事",
     "description": "The label used to navigate to the newer blog posts page (previous page)"
   },
   "theme.blog.paginator.olderEntries": {
-    "message": "古いエントリー",
+    "message": "過去の記事",
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "ブログ投稿ページのナビゲーション",
+    "message": "ブログ記事のナビゲーション",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "新しい投稿",
+    "message": "新しい記事",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "古い投稿",
+    "message": "過去の記事",
     "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.tags.tagsPageLink": {
-    "message": "すべてのタグを表示",
+    "message": "すべてのタグを見る",
     "description": "The label of the link targeting the tag list page"
   },
   "theme.colorToggle.ariaLabel": {
@@ -224,7 +227,7 @@
     "description": "The ARIA label for the breadcrumbs"
   },
   "theme.docs.DocCard.categoryDescription.plurals": {
-    "message": "1アイテム|{count}アイテム",
+    "message": "{count}項目",
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
@@ -243,15 +246,15 @@
     "message": "バージョン: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "これは{siteTitle} {versionLabel}バージョンのリリース前のドキュメントです。",
+    "message": "これは{siteTitle} {versionLabel}の未リリース版のドキュメントです。",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "これは{siteTitle} {versionLabel}のドキュメントであり、現在積極的にメンテナンスされていません。",
+    "message": "これは{siteTitle} {versionLabel}のドキュメントで、現在はアクティブにメンテナンスされていません。",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "最新のドキュメントについては、{latestVersionLink}（{versionLabel}）をご覧ください。",
+    "message": "最新のドキュメントは{latestVersionLink}（{versionLabel}）をご覧ください。",
     "description": "The label used to tell the user to check the latest version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
@@ -259,11 +262,11 @@
     "description": "The label used for the latest version suggestion link label"
   },
   "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "1つのドキュメントがタグ付け|{count}のドキュメントがタグ付け",
+    "message": "{count}件のドキュメントがタグ付けされています",
     "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.docs.tagDocListPageTitle": {
-    "message": "\"{tagName}\"でタグ付けされた{nDocsTagged}",
+    "message": "「{tagName}」タグのついた{nDocsTagged}",
     "description": "The title of the page for a docs tag"
   },
   "theme.common.editThisPage": {
@@ -275,15 +278,15 @@
     "description": "Title for link to heading"
   },
   "theme.lastUpdated.atDate": {
-    "message": " {date}に",
+    "message": "{date}に",
     "description": "The words used to describe on which date a page has been last updated"
   },
   "theme.lastUpdated.byUser": {
-    "message": " {user}によって",
+    "message": "{user}が",
     "description": "The words used to describe by who the page has been last updated"
   },
   "theme.lastUpdated.lastUpdatedAtBy": {
-    "message": "最終更新{atDate}{byUser}",
+    "message": "{atDate}{byUser}最終更新",
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
   "theme.NotFound.title": {
@@ -327,11 +330,11 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "ブログ最近の投稿ナビゲーション",
+    "message": "最近のブログ記事のナビゲーション",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.CodeBlock.wordWrapToggle": {
-    "message": "ワードラップの切り替え",
+    "message": "折り返しの切り替え",
     "description": "The title attribute for toggle word wrapping button of code block lines"
   },
   "theme.CodeBlock.copied": {
@@ -339,7 +342,7 @@
     "description": "The copied button label on code blocks"
   },
   "theme.CodeBlock.copyButtonAriaLabel": {
-    "message": "コードをクリップボードにコピー",
+    "message": "クリップボードにコードをコピー",
     "description": "The ARIA label for copy code blocks button"
   },
   "theme.CodeBlock.copy": {
@@ -347,11 +350,11 @@
     "description": "The copy button label on code blocks"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "サイドバーカテゴリ'{label}'を展開",
+    "message": "サイドバーのカテゴリ「{label}」を展開",
     "description": "The ARIA label to expand the sidebar category"
   },
   "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "サイドバーカテゴリ'{label}'を折りたたむ",
+    "message": "サイドバーのカテゴリ「{label}」を折りたたむ",
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.NavBar.navAriaLabel": {
@@ -359,19 +362,19 @@
     "description": "The ARIA label for the main navigation"
   },
   "theme.NotFound.p1": {
-    "message": "お探しのものが見つかりませんでした。",
+    "message": "お探しのページが見つかりませんでした。",
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "元のURLにリンクしたサイトの所有者に連絡して、リンクが壊れていることを知らせてください。",
+    "message": "このページにリンクしているサイトの所有者に連絡して、リンクが切れていることを伝えてください。",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.TOCCollapsible.toggleButtonLabel": {
-    "message": "このページの目次",
+    "message": "このページの内容",
     "description": "The label used by the button on the collapsible TOC component"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "1分で読める|{readingTime}分で読める",
+    "message": "約{readingTime}分",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.navbar.mobileLanguageDropdown.label": {
@@ -383,7 +386,7 @@
     "description": "The label used in blog post item excerpts to link to full blog posts"
   },
   "theme.blog.post.readMoreLabel": {
-    "message": "{title}についてもっと読む",
+    "message": "{title}の続きを読む",
     "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.docs.breadcrumbs.home": {
@@ -399,7 +402,7 @@
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.navAriaLabel": {
-    "message": "ドキュメントサイドバー",
+    "message": "ドキュメントのサイドバー",
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
@@ -411,7 +414,7 @@
     "description": "The ARIA label for close button of mobile sidebar"
   },
   "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
-    "message": "ナビゲーションバーの切り替え",
+    "message": "ナビゲーションバーを切り替え",
     "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.docs.sidebar.expandButtonTitle": {
@@ -423,10 +426,10 @@
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
-    "message": "すべての{count}件の結果を見る"
+    "message": "{count}件の結果をすべて表示"
   },
   "theme.SearchPage.documentsFound.plurals": {
-    "message": "1件のドキュメントが見つかりました|{count}件のドキュメントが見つかりました",
+    "message": "{count}件のドキュメントが見つかりました",
     "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.SearchPage.existingResultsTitle": {
@@ -438,7 +441,7 @@
     "description": "The search page title for empty query"
   },
   "theme.SearchPage.inputPlaceholder": {
-    "message": "ここに検索語を入力",
+    "message": "ここに検索語を入力してください",
     "description": "The placeholder for search page input"
   },
   "theme.SearchPage.inputLabel": {
@@ -454,7 +457,7 @@
     "description": "The paragraph for empty search result"
   },
   "theme.SearchPage.fetchingNewResults": {
-    "message": "新しい結果を取得中...",
+    "message": "新しい結果を取得しています...",
     "description": "The paragraph for fetching new search results"
   },
   "theme.SearchBar.label": {
@@ -470,7 +473,7 @@
     "description": "The label and ARIA label for search box cancel button"
   },
   "theme.SearchModal.startScreen.recentSearchesTitle": {
-    "message": "最近",
+    "message": "最近の検索",
     "description": "The title for recent searches"
   },
   "theme.SearchModal.startScreen.noRecentSearchesText": {
@@ -494,7 +497,7 @@
     "description": "The label for remove favorite search button"
   },
   "theme.SearchModal.errorScreen.titleText": {
-    "message": "結果を取得できません",
+    "message": "結果を取得できませんでした",
     "description": "The title for error screen of search modal"
   },
   "theme.SearchModal.errorScreen.helpText": {
@@ -502,7 +505,7 @@
     "description": "The help text for error screen of search modal"
   },
   "theme.SearchModal.footer.selectText": {
-    "message": "選択するには",
+    "message": "選択",
     "description": "The explanatory text of the action for the enter key"
   },
   "theme.SearchModal.footer.selectKeyAriaLabel": {
@@ -510,19 +513,19 @@
     "description": "The ARIA label for the Enter key button that makes the selection"
   },
   "theme.SearchModal.footer.navigateText": {
-    "message": "移動するには",
+    "message": "移動",
     "description": "The explanatory text of the action for the Arrow up and Arrow down key"
   },
   "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
-    "message": "上矢印",
+    "message": "上矢印キー",
     "description": "The ARIA label for the Arrow up key button that makes the navigation"
   },
   "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
-    "message": "下矢印",
+    "message": "下矢印キー",
     "description": "The ARIA label for the Arrow down key button that makes the navigation"
   },
   "theme.SearchModal.footer.closeText": {
-    "message": "閉じるには",
+    "message": "閉じる",
     "description": "The explanatory text of the action for Escape key"
   },
   "theme.SearchModal.footer.closeKeyAriaLabel": {
@@ -530,19 +533,19 @@
     "description": "The ARIA label for the Escape key button that close the modal"
   },
   "theme.SearchModal.footer.searchByText": {
-    "message": "検索提供",
+    "message": "検索提供元",
     "description": "The text explain that the search is making by Algolia"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
-    "message": "次の検索結果はありません",
+    "message": "次の検索結果はありません：",
     "description": "The text explains that there are no results for the following search"
   },
   "theme.SearchModal.noResultsScreen.suggestedQueryText": {
-    "message": "次の検索を試してみてください",
+    "message": "次の検索を試してください：",
     "description": "The text for the suggested query when no results are found for the following search"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "このクエリが結果を返すべきだと思いますか？",
+    "message": "この検索で結果が表示されるべきだと思いますか？",
     "description": "The text for the question where the user thinks there are missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
@@ -562,11 +565,11 @@
     "description": "To prompt users to load the full image. sizeMessage is a parenthesized size figure."
   },
   "theme.IdealImageMessage.offline": {
-    "message": "ブラウザがオフラインです。画像が読み込まれていません",
+    "message": "ブラウザがオフラインです。画像は読み込まれていません",
     "description": "When the user is viewing an offline document"
   },
   "theme.IdealImageMessage.404error": {
-    "message": "404。画像が見つかりません",
+    "message": "404. 画像が見つかりません",
     "description": "When the image is not found"
   },
   "theme.IdealImageMessage.error": {
@@ -574,11 +577,11 @@
     "description": "When the image fails to load for unknown error"
   },
   "theme.blog.post.plurals": {
-    "message": "1件の投稿|{count}件の投稿",
+    "message": "{count}件の記事",
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
-    "message": "「{tagName}」でタグ付けされた{nPosts}",
+    "message": "「{tagName}」タグのついた{nPosts}",
     "description": "The title of the page for a blog tag"
   },
   "theme.blog.author.pageTitle": {
@@ -586,7 +589,7 @@
     "description": "The title of the page for a blog author"
   },
   "theme.blog.authorsList.pageTitle": {
-    "message": "著者一覧",
+    "message": "著者",
     "description": "The title of the authors page"
   },
   "theme.blog.authorsList.viewAll": {
@@ -594,7 +597,7 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "この著者はまだ投稿していません。",
+    "message": "この著者はまだ記事を書いていません。",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -602,7 +605,7 @@
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "このページは非公開です。検索エンジンによってインデックスされず、直接リンクを持つユーザーのみがアクセスできます。",
+    "message": "このページは非公開です。検索エンジンにインデックスされず、直接リンクを知っているユーザーのみがアクセスできます。",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
@@ -614,11 +617,11 @@
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
-    "message": "もう一度試す",
+    "message": "再試行",
     "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.common.skipToMainContent": {
-    "message": "メインコンテンツにスキップ",
+    "message": "メインコンテンツまでスキップ",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
   },
   "theme.tags.tagsPageTitle": {
@@ -629,19 +632,19 @@
     "message": "サポートチャンネル"
   },
   "sponsors.title": {
-    "message": "オープンソースとオープンガバナンス"
+    "message": "オープンソースかつオープンなガバナンス"
   },
   "sponsors.premiumSponsors": {
-    "message": "💎 プレミアムスポンサー"
+    "message": "プレミアムスポンサー"
   },
   "sponsors.goldSponsors": {
-    "message": "🥇 ゴールドスポンサー"
+    "message": "ゴールドスポンサー"
   },
   "sponsors.becomeASponsor": {
     "message": "スポンサーになる"
   },
   "contributors.thankYouMessage": {
-    "message": "{toolName}を今日の強力なツールにするのを助けてくれたすべての貢献者に心から感謝します。あなたの献身と努力は本当に感謝されています！",
+    "message": "{toolName}を今日のような強力なツールに育ててくださったすべてのコントリビューターの皆さまに、心より感謝申し上げます。皆さまの献身と努力に深く感謝しています！",
     "description": "Thank you message for contributors"
   }
 }

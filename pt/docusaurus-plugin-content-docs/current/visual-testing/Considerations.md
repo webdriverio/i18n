@@ -2,31 +2,32 @@
 index: 1
 id: considerations
 title: Considerações
+description: "Entenda os limites da comparação de imagens, a consistência entre plataformas, as porcentagens de divergência e os navegadores headless antes de confiar em testes visuais."
 ---
 
-# Considerações Chave para Uso Otimizado
+# Considerações Importantes para o Uso Ideal
 
-Antes de mergulhar nos recursos poderosos do `@wdio/visual-service`, é crucial entender algumas considerações importantes que garantem que você obtenha o máximo dessa ferramenta. Os seguintes pontos foram projetados para guiá-lo através das melhores práticas e armadilhas comuns, ajudando você a alcançar resultados precisos e eficientes em testes visuais. Essas considerações não são apenas recomendações, mas aspectos essenciais a serem lembrados para utilizar efetivamente o serviço em cenários do mundo real.
+Antes de explorar os poderosos recursos do `@wdio/visual-service`, é fundamental entender algumas considerações importantes que garantem que você aproveite ao máximo esta ferramenta. Os pontos a seguir foram elaborados para orientá-lo sobre boas práticas e armadilhas comuns, ajudando você a obter resultados de testes visuais precisos e eficientes. Essas considerações não são apenas recomendações, mas aspectos essenciais a serem lembrados para utilizar o serviço de forma eficaz em cenários do mundo real.
 
 ## Natureza da Comparação
 
--   **Base Pixel-por-Pixel:** O módulo realiza uma comparação pixel por pixel das imagens. Embora certos aspectos possam ser ajustados (veja Opções de Comparação), a abordagem principal continua sendo uma comparação básica de pixels.
--   **Impacto das Atualizações do Navegador:** Esteja ciente de que atualizações de navegadores, como o Chrome, podem afetar a renderização de fontes, potencialmente necessitando de uma atualização em suas imagens de referência.
+-   **Comparação Perceptual:** O módulo realiza uma comparação perceptual de pixels das imagens usando o espaço de cores YIQ, que se aproxima mais da forma como os humanos percebem diferenças de cor. Certos aspectos podem ser ajustados por meio das [Opções de Comparação](./compare-options).
+-   **Impacto das Atualizações de Navegadores:** Esteja ciente de que atualizações de navegadores, como o Chrome, podem afetar a renderização de fontes, possivelmente exigindo a atualização das suas imagens de referência (baseline).
 
-## Consistência nas Plataformas
+## Consistência entre Plataformas
 
--   **Comparando Plataformas Idênticas:** Garanta que as capturas de tela sejam comparadas dentro da mesma plataforma. Por exemplo, uma captura de tela do Chrome em um Mac não deve ser usada para comparar com uma do Chrome no Ubuntu ou Windows.
+-   **Comparando Plataformas Idênticas:** Certifique-se de que as capturas de tela sejam comparadas dentro da mesma plataforma. Por exemplo, uma captura de tela do Chrome em um Mac não deve ser usada para comparação com uma do Chrome no Ubuntu ou no Windows.
 -   **Analogia:** Em termos simples, compare _'Maçãs com Maçãs, não Maçãs com Androids'_.
 
-## Cuidado com a Porcentagem de Incompatibilidade
+## Cuidado com a Porcentagem de Divergência
 
--   **Risco de Aceitar Incompatibilidades:** Tenha cuidado ao aceitar uma porcentagem de incompatibilidade. Isso é especialmente verdadeiro para capturas de tela grandes, onde aceitar uma incompatibilidade pode inadvertidamente ignorar discrepâncias significativas, como botões ou elementos ausentes.
+-   **Risco de Aceitar Divergências:** Tenha cautela ao aceitar uma porcentagem de divergência. Isso é especialmente verdadeiro para capturas de tela grandes, nas quais aceitar uma divergência pode, inadvertidamente, ignorar discrepâncias significativas, como botões ou elementos ausentes.
 
-## Simulação de Tela Móvel
+## Simulação de Telas Móveis
 
--   **Evite Redimensionar o Navegador para Simulação Móvel:** Não tente simular tamanhos de tela móvel redimensionando navegadores de desktop e tratando-os como navegadores móveis. Navegadores de desktop, mesmo quando redimensionados, não replicam com precisão a renderização de navegadores móveis reais.
--   **Autenticidade na Comparação:** Esta ferramenta visa comparar elementos visuais como eles apareceriam para um usuário final. Um navegador de desktop redimensionado não reflete a verdadeira experiência em um dispositivo móvel.
+-   **Evite Redimensionar o Navegador para Simular Dispositivos Móveis:** Não tente simular tamanhos de tela de dispositivos móveis redimensionando navegadores de desktop e tratando-os como navegadores móveis. Navegadores de desktop, mesmo quando redimensionados, não reproduzem com precisão a renderização de navegadores móveis reais.
+-   **Autenticidade na Comparação:** Esta ferramenta tem como objetivo comparar elementos visuais da forma como apareceriam para um usuário final. Um navegador de desktop redimensionado não reflete a experiência real em um dispositivo móvel.
 
-## Posicionamento sobre Navegadores Headless
+## Posição sobre Navegadores Headless
 
--   **Não Recomendado para Navegadores Headless:** O uso deste módulo com navegadores headless não é aconselhável. A lógica é que os usuários finais não interagem com navegadores headless e, portanto, problemas decorrentes desse uso não serão suportados.
+-   **Não Recomendado para Navegadores Headless:** O uso deste módulo com navegadores headless não é aconselhado. O motivo é que os usuários finais não interagem com navegadores headless e, portanto, problemas decorrentes desse uso não serão suportados.

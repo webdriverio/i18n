@@ -1,23 +1,26 @@
 ---
 id: web-extensions
-title: Webエクステンションのテスト
+title: Web拡張機能のテスト
+description: "WebdriverIOセッションでChromeまたはFirefoxにWeb拡張機能を読み込む方法と、セッション中のBiDiによるインストールおよびアンインストールについて説明します。"
 ---
 
-WebdriverIOはブラウザを自動化するための理想的なツールです。Webエクステンションはブラウザの一部であり、同じ方法で自動化することができます。Webエクステンションがウェブサイト上でJavaScriptを実行するためのコンテンツスクリプトを使用したり、ポップアップモーダルを提供したりする場合はいつでも、WebdriverIOを使用してe2eテストを実行できます。
+WebdriverIOはブラウザを自動化するための理想的なツールです。Web拡張機能はブラウザの一部であり、同じ方法で自動化できます。Web拡張機能がコンテンツスクリプトを使用してWebサイト上でJavaScriptを実行したり、ポップアップモーダルを提供したりする場合は、WebdriverIOを使用してe2eテストを実行できます。
 
-## ブラウザにWebエクステンションを読み込む
+以下のcapability設定を使用して、最初のナビゲーションの前に拡張機能を読み込みます。[WebDriver BiDi](https://w3c.github.io/webdriver-bidi/#module-webExtension)セッションの途中で拡張機能をインストールおよび削除するには、[`installExtension`](/docs/api/browser/installExtension)と[`uninstallExtension`](/docs/api/browser/uninstallExtension)を使用します。
 
-最初のステップとして、セッションの一部としてテスト対象のエクステンションをブラウザに読み込む必要があります。これはChromeとFirefoxで異なる方法で動作します。
+## ブラウザへのWeb拡張機能の読み込み
+
+最初のステップとして、テスト対象の拡張機能をセッションの一部としてブラウザに読み込む必要があります。これはChromeとFirefoxで方法が異なります。
 
 :::info
 
-これらのドキュメントではSafariウェブエクステンションについては言及していません。Safariのサポートは大幅に遅れており、ユーザーからの需要も高くないためです。Safariウェブエクステンションを開発している場合は、[イシューを作成](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E)して、ここに含めるための協力をお願いします。
+Safariのサポートは大きく遅れており、ユーザーの需要も高くないため、このドキュメントではSafariのWeb拡張機能を扱いません。また、SafariにはWebDriver BiDiセッションがないため、[`installExtension`](/docs/api/browser/installExtension)はSafariに対応していません。Safari向けのWeb拡張機能を構築している場合は、[issueを作成](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E)し、ここに含めるための協力をお願いします。
 
 :::
 
 ### Chrome
 
-Chromeにウェブエクステンションを読み込むには、`crx`ファイルの`base64`エンコードされた文字列を提供するか、ウェブエクステンションフォルダへのパスを提供します。最も簡単な方法は、Chrome機能を次のように定義して後者を行うことです：
+ChromeでのWeb拡張機能の読み込みは、`crx`ファイルを`base64`エンコードした文字列を指定するか、Web拡張機能フォルダへのパスを指定することで行えます。最も簡単なのは後者で、Chromeのcapabilitiesを次のように定義します：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -31,7 +34,7 @@ export const config = {
         browserName,
         'goog:chromeOptions': {
             // wdio.conf.jsがルートディレクトリにあり、コンパイルされた
-            // ウェブエクステンションファイルが`./dist`フォルダにある場合
+            // Web拡張機能のファイルが`./dist`フォルダにあると仮定します
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
     }]
@@ -40,11 +43,11 @@ export const config = {
 
 :::info
 
-Chrome以外のブラウザ（例：Brave、Edge、Opera）を自動化する場合、ブラウザオプションは上記の例と一致する可能性が高いですが、機能名が異なります（例：`ms:edgeOptions`）。
+Chrome以外のブラウザ（例：Brave、Edge、Opera）を自動化する場合、ブラウザオプションは上記の例と一致する可能性が高く、異なるcapability名（例：`ms:edgeOptions`）を使用するだけです。
 
 :::
 
-[crx](https://www.npmjs.com/package/crx) NPMパッケージなどを使用してエクステンションを`.crx`ファイルとしてコンパイルする場合は、バンドルされたエクステンションを次のように注入することもできます：
+例えば[crx](https://www.npmjs.com/package/crx) NPMパッケージを使用して拡張機能を`.crx`ファイルとしてコンパイルする場合は、次の方法でバンドルされた拡張機能を注入することもできます：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -67,7 +70,7 @@ export const config = {
 
 ### Firefox
 
-エクステンションを含むFirefoxプロファイルを作成するには、[Firefox Profile Service](/docs/firefox-profile-service)を使用してセッションを適切に設定できます。ただし、署名の問題により、ローカルで開発されたエクステンションを読み込めない場合があります。この場合、[`installAddOn`](/docs/api/gecko#installaddon)コマンドを使用して`before`フックでエクステンションを読み込むこともできます：
+拡張機能を含むFirefoxプロファイルを作成するには、[Firefox Profile Service](/docs/firefox-profile-service)を使用してセッションを適切に設定できます。ただし、ローカルで開発した拡張機能が署名の問題により読み込めないという問題が発生する場合があります。その場合は、[`installAddOn`](/docs/api/gecko#installaddon)コマンドを使用して`before`フックで拡張機能を読み込むこともできます。例：
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -88,21 +91,94 @@ export const config = {
 }
 ```
 
-`.xpi`ファイルを生成するには、[`web-ext`](https://www.npmjs.com/package/web-ext) NPMパッケージを使用することをお勧めします。次の例のコマンドを使用してエクステンションをバンドルできます：
+`.xpi`ファイルを生成するには、[`web-ext`](https://www.npmjs.com/package/web-ext) NPMパッケージの使用をお勧めします。次のコマンド例を使用して拡張機能をバンドルできます：
 
 ```sh
 npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 ```
 
+## セッション中に拡張機能をインストールする
+
+v10以降、[`browser.installExtension`](/docs/api/browser/installExtension)と[`browser.uninstallExtension`](/docs/api/browser/uninstallExtension)は、WebDriver BiDiセッションの途中でWeb拡張機能をインストールし、そのIDを返します。起動時に拡張機能が存在してはならない場合や、同じテスト内で拡張機能をインストールし、動作を確認し、削除する場合に使用してください。
+
+最初のナビゲーションの前に拡張機能を読み込む方法としては、引き続き上記のcapability設定と`installAddOn`を使用します。`installExtension`はそれらを置き換えるものではありません。[仕様のペイロード](https://w3c.github.io/webdriver-bidi/#command-webExtension-install)を自分で指定したい場合は、引き続き`browser.webExtensionInstall`と`browser.webExtensionUninstall`を利用できます。
+
+```ts title="test/specs/extension.e2e.ts"
+import path from 'node:path'
+import url from 'node:url'
+import { browser, expect } from '@wdio/globals'
+
+const extensionPath = path.resolve(
+    path.dirname(url.fileURLToPath(import.meta.url)),
+    '../../dist'
+)
+
+describe('web extension', () => {
+    it('installs and removes the extension', async () => {
+        const extensionId = await browser.installExtension(extensionPath)
+        expect(extensionId).not.toEqual('')
+
+        await browser.url('https://webdriver.io')
+        await browser.uninstallExtension(extensionId)
+    })
+})
+```
+
+`installExtension`は3種類の入力を受け付けます：
+
+| 入力 | ブラウザに送信されるペイロード |
+| --- | --- |
+| ディレクトリパス | `path.resolve`後の`{ type: 'path', path }`。ブラウザがそのディレクトリを読み取れる必要があります。 |
+| `.zip`、`.xpi`、または`.crx`のパス | `path.resolve`後の`{ type: 'archivePath', path }`。 |
+| `{ base64: string }` | `{ type: 'base64', value }`。アーカイブのバイト列です。それ以外のオブジェクトは拒否されます。 |
+
+文字列のパスは常にテストランナー上で解決されます。リモートセッション（`localhost`、`127.0.0.1`、`::1`以外のホスト名、またはクラウドの`user`と`key`を使用する場合）では、そのパスはブラウザマシン上のパスではありません。コマンドはアーカイブを読み込むか、ディレクトリをメモリ上でzip圧縮し、`base64`を送信します。ローカルかリモートかによる分岐を自分で行う必要はありません。ローカルセッションでは`path`または`archivePath`を送信し、バイト列は読み込みません。
+
+ディレクトリを指定する場合は、拡張機能のルート、つまり`manifest.json`を含むフォルダを指定してください。
+
+セッションはWebDriver BiDiに対応している必要があります。クラシックセッションでは`installExtension requires a WebDriver BiDi session (webExtension.install)`がスローされます。BiDiを実装していてもこのモジュールを実装していないブラウザでは、コマンドは`unsupported operation`（モジュールが存在しない場合は`unknown command`）で失敗します。不正なアーカイブは`invalid web extension`で失敗します。ブラウザが認識していないIDをアンインストールしようとすると`no such web extension`で失敗します。
+
+`uninstallExtension`は、`installExtension`が返したID文字列を受け取ります。
+
+### Chromium
+
+ChromeとEdgeは`webExtension.install`を実装していますが、`--enable-unsafe-extension-debugging`と`--remote-debugging-pipe`を指定してブラウザを起動するまでは無効になっています。Chrome 136以降では、`--remote-debugging-pipe`を設定する場合は常に`--user-data-dir`も必要です。これらの引数がない場合、コマンドは`unknown error - Method not available`で失敗します。
+
+`--remote-debugging-pipe`はドライバーとブラウザ間のパイプです。BiDiセッションは引き続き`webSocketUrl`を使用します。
+
+```ts title="wdio.conf.ts"
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
+
+const userDataDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wdio-chrome-'))
+
+export const config: WebdriverIO.Config = {
+    // ...
+    capabilities: [{
+        browserName: 'chrome',
+        'goog:chromeOptions': {
+            args: [
+                '--enable-unsafe-extension-debugging',
+                '--remote-debugging-pipe',
+                `--user-data-dir=${userDataDir}`
+            ]
+        }
+    }]
+}
+```
+
+Edgeの場合は`ms:edgeOptions`を使用してください。Firefoxは通常のBiDiセッションで拡張機能を読み込むため、これらの引数は必要ありません。
+
 ## ヒントとコツ
 
-以下のセクションには、Webエクステンションをテストする際に役立つヒントとコツのセットが含まれています。
+以下のセクションには、Web拡張機能をテストする際に役立つヒントとコツをまとめています。
 
-### Chromeでポップアップモーダルをテストする
+### Chromeでのポップアップモーダルのテスト
 
-[エクステンションマニフェスト](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action)で`default_popup`ブラウザアクションエントリを定義している場合、そのHTMLページを直接テストできます。ブラウザ上部バーでエクステンションアイコンをクリックしても機能しないため、ポップアップHTMLファイルを直接開く必要があります。
+[拡張機能のマニフェスト](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action)で`default_popup`ブラウザアクションのエントリを定義している場合、ブラウザ上部バーの拡張機能アイコンをクリックすることはできないため、そのHTMLページを直接テストできます。代わりに、ポップアップのHTMLファイルを直接開く必要があります。
 
-Chromeでは、エクステンションIDを取得し`browser.url('...')`を通じてポップアップページを開くことができます。そのページでの動作はポップアップ内と同じになります。そのために以下のカスタムコマンドを作成することをお勧めします：
+Chromeでは、拡張機能IDを取得し、`browser.url('...')`を通じてポップアップページを開くことで実現できます。そのページでの動作はポップアップ内と同じになります。そのためには、次のカスタムコマンドを作成することをお勧めします：
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -134,7 +210,7 @@ declare global {
 }
 ```
 
-`wdio.conf.js`でこのファイルをインポートし、`before`フックでカスタムコマンドを登録できます：
+`wdio.conf.js`でこのファイルをインポートし、`before`フックでカスタムコマンドを登録できます。例：
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'
@@ -149,7 +225,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-これで、テスト内でポップアップページにアクセスできるようになります：
+これで、テスト内で次のようにポップアップページにアクセスできます：
 
 ```ts
 await browser.openExtensionPopup('My Web Extension')

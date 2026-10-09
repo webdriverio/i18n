@@ -1,14 +1,15 @@
 ---
 id: methods
 title: Metodi
+description: "Usa i metodi save e check del servizio visivo per acquisire screenshot e confrontare schermate, elementi e pagine intere con le baseline."
 ---
 
-I seguenti metodi vengono aggiunti all'oggetto globale [`browser`](/docs/api/browser) di WebdriverIO.
+I seguenti metodi vengono aggiunti all'oggetto globale WebdriverIO [`browser`](/docs/api/browser).
 
 ## Metodi di salvataggio
 
 :::info SUGGERIMENTO
-Utilizza i metodi di salvataggio solo quando **non** vuoi confrontare schermate, ma desideri solo avere uno screenshot di un elemento/schermata.
+Usa i metodi di salvataggio solo quando **non** vuoi confrontare le schermate, ma desideri solo ottenere uno screenshot di un elemento o della schermata.
 :::
 
 ### `saveElement`
@@ -32,16 +33,16 @@ await browser.saveElement(
 
 #### Supporto
 
-- Browser Desktop
-- Browser Mobile
-- App Ibride Mobile
-- App Native Mobile
+- Browser desktop
+- Browser mobile
+- App ibride mobile
+- App native mobile
 
 #### Parametri
 
 -   **`element`:**
     -   **Obbligatorio:** Sì
-    -   **Tipo:** Elemento WebdriverIO
+    -   **Tipo:** WebdriverIO Element
 -   **`tag`:**
     -   **Obbligatorio:** Sì
     -   **Tipo:** string
@@ -51,11 +52,11 @@ await browser.saveElement(
 
 #### Output:
 
-Vedi la pagina [Output di Test](./test-output#savescreenelementfullpagescreen).
+Vedi la pagina [Output dei test](./test-output#savescreenelementfullpagescreen).
 
 ### `saveScreen`
 
-Salva un'immagine di una viewport.
+Salva un'immagine del viewport.
 
 #### Utilizzo
 
@@ -72,10 +73,10 @@ await browser.saveScreen(
 
 #### Supporto
 
-- Browser Desktop
-- Browser Mobile
-- App Ibride Mobile
-- App Native Mobile
+- Browser desktop
+- Browser mobile
+- App ibride mobile
+- App native mobile
 
 #### Parametri
 -   **`tag`:**
@@ -87,7 +88,7 @@ await browser.saveScreen(
 
 #### Output:
 
-Vedi la pagina [Output di Test](./test-output#savescreenelementfullpagescreen).
+Vedi la pagina [Output dei test](./test-output#savescreenelementfullpagescreen).
 
 ### `saveFullPageScreen`
 
@@ -108,8 +109,8 @@ await browser.saveFullPageScreen(
 
 #### Supporto
 
-- Browser Desktop
-- Browser Mobile
+- Browser desktop
+- Browser mobile
 
 #### Parametri
 -   **`tag`:**
@@ -121,11 +122,11 @@ await browser.saveFullPageScreen(
 
 #### Output:
 
-Vedi la pagina [Output di Test](./test-output#savescreenelementfullpagescreen).
+Vedi la pagina [Output dei test](./test-output#savescreenelementfullpagescreen).
 
 ### `saveTabbablePage`
 
-Salva un'immagine della schermata completa con le linee e i punti tabbabili.
+Salva un'immagine della schermata completa con le linee e i punti degli elementi raggiungibili tramite tabulazione.
 
 #### Utilizzo
 
@@ -142,7 +143,7 @@ await browser.saveTabbablePage(
 
 #### Supporto
 
-- Browser Desktop
+- Browser desktop
 
 #### Parametri
 -   **`tag`:**
@@ -154,12 +155,12 @@ await browser.saveTabbablePage(
 
 #### Output:
 
-Vedi la pagina [Output di Test](./test-output#savescreenelementfullpagescreen).
+Vedi la pagina [Output dei test](./test-output#savescreenelementfullpagescreen).
 
-## Metodi di controllo
+## Metodi di verifica
 
 :::info SUGGERIMENTO
-Quando i metodi `check` vengono utilizzati per la prima volta, vedrai l'avviso sottostante nei log. Questo significa che non è necessario combinare i metodi `save` e `check` se vuoi creare la tua baseline.
+Quando i metodi `check` vengono utilizzati per la prima volta, vedrai il seguente avviso nei log. Ciò significa che non è necessario combinare i metodi `save` e `check` se vuoi creare la tua baseline.
 
 ```shell
 #####################################################################################
@@ -175,7 +176,7 @@ Quando i metodi `check` vengono utilizzati per la prima volta, vedrai l'avviso s
 
 ### `checkElement`
 
-Confronta un'immagine di un elemento con un'immagine di riferimento.
+Confronta un'immagine di un elemento con un'immagine baseline.
 
 #### Utilizzo
 
@@ -194,29 +195,29 @@ await browser.checkElement(
 
 #### Supporto
 
-- Browser Desktop
-- Browser Mobile
-- App Ibride Mobile
-- App Native Mobile
+- Browser desktop
+- Browser mobile
+- App ibride mobile
+- App native mobile
 
 #### Parametri
 -   **`element`:**
     -   **Obbligatorio:** Sì
-    -   **Tipo:** Elemento WebdriverIO
+    -   **Tipo:** WebdriverIO Element
 -   **`tag`:**
     -   **Obbligatorio:** Sì
     -   **Tipo:** string
 -   **`checkElementOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/controllo](./method-options#compare-check-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/verifica](./method-options#compare-check-options)
 
 #### Output:
 
-Vedi la pagina [Output di Test](./test-output#checkscreenelementfullpagescreen).
+Vedi la pagina [Output dei test](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkScreen`
 
-Confronta un'immagine di una viewport con un'immagine di riferimento.
+Confronta un'immagine del viewport con un'immagine baseline.
 
 #### Utilizzo
 
@@ -233,10 +234,10 @@ await browser.checkScreen(
 
 #### Supporto
 
-- Browser Desktop
-- Browser Mobile
-- App Ibride Mobile
-- App Native Mobile
+- Browser desktop
+- Browser mobile
+- App ibride mobile
+- App native mobile
 
 #### Parametri
 -   **`tag`:**
@@ -244,15 +245,15 @@ await browser.checkScreen(
     -   **Tipo:** string
 -   **`checkScreenOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/controllo](./method-options#compare-check-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/verifica](./method-options#compare-check-options)
 
 #### Output:
 
-Vedi la pagina [Output di Test](./test-output#checkscreenelementfullpagescreen).
+Vedi la pagina [Output dei test](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkFullPageScreen`
 
-Confronta un'immagine della schermata completa con un'immagine di riferimento.
+Confronta un'immagine della schermata completa con un'immagine baseline.
 
 #### Utilizzo
 
@@ -269,8 +270,8 @@ await browser.checkFullPageScreen(
 
 #### Supporto
 
-- Browser Desktop
-- Browser Mobile
+- Browser desktop
+- Browser mobile
 
 #### Parametri
 -   **`tag`:**
@@ -278,15 +279,15 @@ await browser.checkFullPageScreen(
     -   **Tipo:** string
 -   **`checkFullPageOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/controllo](./method-options#compare-check-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/verifica](./method-options#compare-check-options)
 
 #### Output:
 
-Vedi la pagina [Output di Test](./test-output#checkscreenelementfullpagescreen).
+Vedi la pagina [Output dei test](./test-output#checkscreenelementfullpagescreen).
 
 ### `checkTabbablePage`
 
-Confronta un'immagine della schermata completa con le linee e i punti tabbabili con un'immagine di riferimento.
+Confronta un'immagine della schermata completa, con le linee e i punti degli elementi raggiungibili tramite tabulazione, con un'immagine baseline.
 
 #### Utilizzo
 
@@ -303,7 +304,7 @@ await browser.checkTabbablePage(
 
 #### Supporto
 
-- Browser Desktop
+- Browser desktop
 
 #### Parametri
 -   **`tag`:**
@@ -311,8 +312,8 @@ await browser.checkTabbablePage(
     -   **Tipo:** string
 -   **`checkTabbableOptions`:**
     -   **Obbligatorio:** No
-    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/controllo](./method-options#compare-check-options)
+    -   **Tipo:** un oggetto di opzioni, vedi [Opzioni di confronto/verifica](./method-options#compare-check-options)
 
 #### Output:
 
-Vedi la pagina [Output di Test](./test-output#checkscreenelementfullpagescreen).
+Vedi la pagina [Output dei test](./test-output#checkscreenelementfullpagescreen).

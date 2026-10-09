@@ -1,26 +1,27 @@
 ---
 id: integrate-with-smartui
 title: SmartUI
+description: "Adicione testes de regressão visual com IA aos testes do WebdriverIO com o SmartUI da TestMu AI (anteriormente LambdaTest), incluindo configuração e opções."
 ---
 
-TestMu AI (Anteriormente LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) fornece testes de regressão visual com tecnologia de IA para seus testes WebdriverIO. Ele captura screenshots, compara-os com as linhas de base e destaca diferenças visuais com algoritmos de comparação inteligentes.
+O [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) da TestMu AI (anteriormente LambdaTest) oferece testes de regressão visual com IA para seus testes do WebdriverIO. Ele captura screenshots, compara-as com as baselines e destaca diferenças visuais com algoritmos de comparação inteligentes.
 
 ## Configuração
 
 **Crie um projeto SmartUI**
 
-[Faça login](https://accounts.lambdatest.com/register) no TestMu AI (Anteriormente LambdaTest) e navegue até [Projetos SmartUI](https://smartui.lambdatest.com/) para criar um novo projeto. Selecione **Web** como plataforma e configure o nome do seu projeto, aprovadores e tags.
+[Faça login](https://accounts.lambdatest.com/register) na TestMu AI (anteriormente LambdaTest) e navegue até [SmartUI Projects](https://smartui.lambdatest.com/) para criar um novo projeto. Selecione **Web** como plataforma e configure o nome do projeto, os aprovadores e as tags.
 
-**Configure suas credenciais**
+**Configure as credenciais**
 
-Obtenha seu `LT_USERNAME` e `LT_ACCESS_KEY` do painel do TestMu AI (Anteriormente LambdaTest) e defina-os como variáveis de ambiente:
+Obtenha seu `LT_USERNAME` e `LT_ACCESS_KEY` no painel da TestMu AI (anteriormente LambdaTest) e defina-os como variáveis de ambiente:
 
 ```sh
 export LT_USERNAME="<your username>"
 export LT_ACCESS_KEY="<your access key>"
 ```
 
-**Instale o SDK SmartUI**
+**Instale o SDK do SmartUI**
 
 ```sh
 npm install @lambdatest/wdio-driver
@@ -80,9 +81,9 @@ describe('WebdriverIO SmartUI Test', () => {
 npx wdio wdio.conf.js
 ```
 
-Veja os resultados no [Painel SmartUI](https://smartui.lambdatest.com/).
+Veja os resultados no [SmartUI Dashboard](https://smartui.lambdatest.com/).
 
-## Opções Avançadas
+## Opções avançadas
 
 **Ignorar elementos**
 
@@ -110,9 +111,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## Recursos
 
-| Recurso                                                                                          | Descrição                                |
-|--------------------------------------------------------------------------------------------------|------------------------------------------|
-| [Documentação Oficial](https://www.testmuai.com/support/docs/smart-ui-cypress/)               | Documentação do SmartUI                   |
-| [Painel SmartUI](https://smartui.lambdatest.com/)                                                | Acesse seus projetos e builds do SmartUI  |
-| [Configurações Avançadas](https://www.testmuai.com/support/docs/test-settings-options/)       | Configure a sensibilidade de comparação  |
-| [Opções de Build](https://www.testmuai.com/support/docs/smart-ui-build-options/)              | Configuração avançada de build           |
+| Recurso                                                                                           | Descrição                                     |
+|---------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| [Documentação oficial](https://www.testmuai.com/support/docs/smart-ui-cypress/)                 | Documentação do SmartUI                       |
+| [SmartUI Dashboard](https://smartui.lambdatest.com/)                                              | Acesse seus projetos e builds do SmartUI      |
+| [Configurações avançadas](https://www.testmuai.com/support/docs/test-settings-options/)         | Configure a sensibilidade da comparação       |
+| [Opções de build](https://www.testmuai.com/support/docs/smart-ui-build-options/)                | Configuração avançada de builds               |

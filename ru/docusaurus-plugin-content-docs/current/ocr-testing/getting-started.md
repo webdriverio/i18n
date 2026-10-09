@@ -1,11 +1,12 @@
 ---
 id: getting-started
 title: Начало работы
+description: "Установка и настройка @wdio/ocr-service, настройка поддержки TypeScript и параметров контрастности, папки для изображений и языка."
 ---
 
 ## Установка
 
-Самый простой способ — сохранить `@wdio/ocr-service` как зависимость в вашем файле `package.json`.
+Самый простой способ — добавить `@wdio/ocr-service` в качестве зависимости в ваш `package.json`.
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
@@ -14,15 +15,15 @@ npm install @wdio/ocr-service --save-dev
 Инструкции по установке `WebdriverIO` можно найти [здесь.](../gettingstarted)
 
 :::note
-Этот модуль использует Tesseract в качестве OCR-движка. По умолчанию он проверит, установлен ли Tesseract локально в вашей системе, и если да, то будет использовать его. Если нет, то будет использован модуль [Node.js Tesseract.js](https://github.com/naptha/tesseract.js), который устанавливается автоматически.
+Этот модуль использует Tesseract в качестве OCR-движка. По умолчанию он проверяет, установлен ли Tesseract локально в вашей системе, и если да, то использует его. Если нет, будет использован модуль [Node.js Tesseract.js](https://github.com/naptha/tesseract.js), который устанавливается автоматически.
 
 Если вы хотите ускорить обработку изображений, рекомендуется использовать локально установленную версию Tesseract. См. также [Время выполнения тестов](./more-test-optimization#using-a-local-installation-of-tesseract).
 :::
 
-Инструкции по установке Tesseract как системной зависимости на вашу локальную систему можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+Инструкции по установке Tesseract в качестве системной зависимости в вашей локальной системе можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Installation.html).
 
 :::caution
-По вопросам установки/ошибкам Tesseract обращайтесь к проекту
+С вопросами и ошибками, связанными с установкой Tesseract, обращайтесь к проекту
 [Tesseract](https://github.com/tesseract-ocr/tesseract).
 :::
 
@@ -40,14 +41,14 @@ npm install @wdio/ocr-service --save-dev
 
 ## Конфигурация
 
-Для использования сервиса необходимо добавить `ocr` в массив services в файле `wdio.conf.ts`
+Чтобы использовать сервис, необходимо добавить `ocr` в массив services в `wdio.conf.ts`
 
 ```js
 // wdio.conf.js
 exports.config = {
     //...
     services: [
-        // your other services
+        // ваши другие сервисы
         [
             "ocr",
             {
@@ -64,36 +65,33 @@ exports.config = {
 
 #### `contrast`
 
--   **Тип:** `number`
--   **Обязательный:** Нет
--   **По умолчанию:** `0.25`
+<Option type="number" default="0.25" required="No">
 
-Чем выше контраст, тем темнее изображение и наоборот. Это может помочь найти текст на изображении. Принимает значения от `-1` до `1`.
+Чем выше контрастность, тем темнее изображение, и наоборот. Это может помочь найти текст на изображении. Принимает значения от `-1` до `1`.
 
+</Option>
 #### `imagesFolder`
 
--   **Тип:** `string`
--   **Обязательный:** Нет
--   **По умолчанию:** `{project-root}/.tmp/ocr`
+<Option type="string" default={`{project-root}/.tmp/ocr`} required="No">
 
-Папка, где хранятся результаты OCR.
+Папка, в которой сохраняются результаты OCR.
 
 :::note
-Если вы указываете пользовательскую `imagesFolder`, сервис автоматически добавит к ней подпапку `ocr`.
+Если вы укажете собственную папку `imagesFolder`, сервис автоматически добавит в неё подпапку `ocr`.
 :::
 
+</Option>
 #### `language`
 
--   **Тип:** `string`
--   **Обязательный:** Нет
--   **По умолчанию:** `eng`
+<Option type="string" default="eng" required="No">
 
-Язык, который Tesseract будет распознавать. Дополнительную информацию можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а поддерживаемые языки можно найти [здесь](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Язык, который будет распознавать Tesseract. Дополнительную информацию можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а список поддерживаемых языков — [здесь](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 ## Логи
 
-Этот модуль автоматически добавляет дополнительные логи в логи WebdriverIO. Он записывает в логи `INFO` и `WARN` с именем `@wdio/ocr-service`.
-Примеры можно найти ниже.
+Этот модуль автоматически добавляет дополнительные записи в логи WebdriverIO. Он пишет в логи уровней `INFO` и `WARN` с именем `@wdio/ocr-service`.
+Примеры приведены ниже.
 
 ```log
 ...............

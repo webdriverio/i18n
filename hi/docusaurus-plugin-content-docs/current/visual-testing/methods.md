@@ -1,19 +1,20 @@
 ---
 id: methods
 title: मेथड्स
+description: "स्क्रीनशॉट कैप्चर करने और स्क्रीन, एलिमेंट्स और फुल पेजों की बेसलाइन से तुलना करने के लिए विज़ुअल सर्विस के save और check मेथड्स का उपयोग करें।"
 ---
 
-निम्नलिखित मेथड्स वैश्विक WebdriverIO [`browser`](/docs/api/browser)-ऑब्जेक्ट में जोड़े जाते हैं।
+निम्नलिखित मेथड्स ग्लोबल WebdriverIO [`browser`](/docs/api/browser)-ऑब्जेक्ट में जोड़े जाते हैं।
 
-## सेव मेथड्स
+## Save मेथड्स
 
-:::info टिप
-सेव मेथड्स का उपयोग केवल तभी करें जब आप स्क्रीन की तुलना **नहीं** करना चाहते हैं, बल्कि केवल एलिमेंट-/स्क्रीनशॉट चाहते हैं।
+:::info TIP
+Save मेथड्स का उपयोग केवल तभी करें जब आप स्क्रीन की तुलना **नहीं** करना चाहते, बल्कि केवल एक एलिमेंट-/स्क्रीनशॉट चाहते हैं।
 :::
 
 ### `saveElement`
 
-किसी एलिमेंट की छवि सहेजता है।
+किसी एलिमेंट की इमेज सेव करता है।
 
 #### उपयोग
 
@@ -30,7 +31,7 @@ await browser.saveElement(
 );
 ```
 
-#### समर्थन
+#### सपोर्ट
 
 - डेस्कटॉप ब्राउज़र
 - मोबाइल ब्राउज़र
@@ -41,13 +42,13 @@ await browser.saveElement(
 
 -   **`element`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** WebdriverIO Element
+    -   **टाइप:** WebdriverIO Element
 -   **`tag`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** string
+    -   **टाइप:** string
 -   **`saveElementOptions`:**
     -   **अनिवार्य:** नहीं
-    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
+    -   **टाइप:** ऑप्शन्स का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
 
 #### आउटपुट:
 
@@ -55,7 +56,7 @@ await browser.saveElement(
 
 ### `saveScreen`
 
-व्यूपोर्ट की छवि सहेजता है।
+किसी व्यूपोर्ट की इमेज सेव करता है।
 
 #### उपयोग
 
@@ -70,7 +71,7 @@ await browser.saveScreen(
 );
 ```
 
-#### समर्थन
+#### सपोर्ट
 
 - डेस्कटॉप ब्राउज़र
 - मोबाइल ब्राउज़र
@@ -80,10 +81,10 @@ await browser.saveScreen(
 #### पैरामीटर्स
 -   **`tag`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** string
+    -   **टाइप:** string
 -   **`saveScreenOptions`:**
     -   **अनिवार्य:** नहीं
-    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
+    -   **टाइप:** ऑप्शन्स का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
 
 #### आउटपुट:
 
@@ -93,7 +94,7 @@ await browser.saveScreen(
 
 #### उपयोग
 
-पूरी स्क्रीन की छवि सहेजता है।
+पूरी स्क्रीन की इमेज सेव करता है।
 
 ```ts
 await browser.saveFullPageScreen(
@@ -106,7 +107,7 @@ await browser.saveFullPageScreen(
 );
 ```
 
-#### समर्थन
+#### सपोर्ट
 
 - डेस्कटॉप ब्राउज़र
 - मोबाइल ब्राउज़र
@@ -114,10 +115,10 @@ await browser.saveFullPageScreen(
 #### पैरामीटर्स
 -   **`tag`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** string
+    -   **टाइप:** string
 -   **`saveFullPageScreenOptions`:**
     -   **अनिवार्य:** नहीं
-    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
+    -   **टाइप:** ऑप्शन्स का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
 
 #### आउटपुट:
 
@@ -125,7 +126,7 @@ await browser.saveFullPageScreen(
 
 ### `saveTabbablePage`
 
-टैबेबल लाइनों और डॉट्स के साथ पूरी स्क्रीन की छवि सहेजता है।
+टैब करने योग्य (tabbable) लाइनों और डॉट्स के साथ पूरी स्क्रीन की इमेज सेव करता है।
 
 #### उपयोग
 
@@ -140,26 +141,26 @@ await browser.saveTabbablePage(
 );
 ```
 
-#### समर्थन
+#### सपोर्ट
 
 - डेस्कटॉप ब्राउज़र
 
 #### पैरामीटर्स
 -   **`tag`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** string
+    -   **टाइप:** string
 -   **`saveTabbableOptions`:**
     -   **अनिवार्य:** नहीं
-    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
+    -   **टाइप:** ऑप्शन्स का एक ऑब्जेक्ट, देखें [Save Options](./method-options#save-options)
 
 #### आउटपुट:
 
 [Test Output](./test-output#savescreenelementfullpagescreen) पेज देखें।
 
-## चेक मेथड्स
+## Check मेथड्स
 
-:::info टिप
-जब `check`-मेथड्स पहली बार उपयोग किए जाते हैं तो आपको लॉग में नीचे दिया गया चेतावनी दिखाई देगी। इसका मतलब है कि अगर आप अपना बेसलाइन बनाना चाहते हैं तो आपको `save`- और `check`-मेथड्स को जोड़ने की आवश्यकता नहीं है।
+:::info TIP
+जब `check`-मेथड्स का पहली बार उपयोग किया जाता है, तो आपको लॉग्स में नीचे दी गई चेतावनी दिखाई देगी। इसका मतलब है कि यदि आप अपनी बेसलाइन बनाना चाहते हैं तो आपको `save`- और `check`-मेथड्स को एक साथ उपयोग करने की आवश्यकता नहीं है।
 
 ```shell
 #####################################################################################
@@ -175,7 +176,7 @@ await browser.saveTabbablePage(
 
 ### `checkElement`
 
-किसी एलिमेंट की छवि की तुलना बेसलाइन छवि से करता है।
+किसी एलिमेंट की इमेज की तुलना बेसलाइन इमेज से करता है।
 
 #### उपयोग
 
@@ -192,7 +193,7 @@ await browser.checkElement(
 );
 ```
 
-#### समर्थन
+#### सपोर्ट
 
 - डेस्कटॉप ब्राउज़र
 - मोबाइल ब्राउज़र
@@ -202,13 +203,13 @@ await browser.checkElement(
 #### पैरामीटर्स
 -   **`element`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** WebdriverIO Element
+    -   **टाइप:** WebdriverIO Element
 -   **`tag`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** string
+    -   **टाइप:** string
 -   **`checkElementOptions`:**
     -   **अनिवार्य:** नहीं
-    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
+    -   **टाइप:** ऑप्शन्स का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
 
 #### आउटपुट:
 
@@ -216,7 +217,7 @@ await browser.checkElement(
 
 ### `checkScreen`
 
-व्यूपोर्ट की छवि की तुलना बेसलाइन छवि से करता है।
+किसी व्यूपोर्ट की इमेज की तुलना बेसलाइन इमेज से करता है।
 
 #### उपयोग
 
@@ -231,7 +232,7 @@ await browser.checkScreen(
 );
 ```
 
-#### समर्थन
+#### सपोर्ट
 
 - डेस्कटॉप ब्राउज़र
 - मोबाइल ब्राउज़र
@@ -241,10 +242,10 @@ await browser.checkScreen(
 #### पैरामीटर्स
 -   **`tag`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** string
+    -   **टाइप:** string
 -   **`checkScreenOptions`:**
     -   **अनिवार्य:** नहीं
-    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
+    -   **टाइप:** ऑप्शन्स का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
 
 #### आउटपुट:
 
@@ -252,7 +253,7 @@ await browser.checkScreen(
 
 ### `checkFullPageScreen`
 
-पूरी स्क्रीन की छवि की तुलना बेसलाइन छवि से करता है।
+पूरी स्क्रीन की इमेज की तुलना बेसलाइन इमेज से करता है।
 
 #### उपयोग
 
@@ -267,7 +268,7 @@ await browser.checkFullPageScreen(
 );
 ```
 
-#### समर्थन
+#### सपोर्ट
 
 - डेस्कटॉप ब्राउज़र
 - मोबाइल ब्राउज़र
@@ -275,10 +276,10 @@ await browser.checkFullPageScreen(
 #### पैरामीटर्स
 -   **`tag`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** string
+    -   **टाइप:** string
 -   **`checkFullPageOptions`:**
     -   **अनिवार्य:** नहीं
-    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
+    -   **टाइप:** ऑप्शन्स का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
 
 #### आउटपुट:
 
@@ -286,7 +287,7 @@ await browser.checkFullPageScreen(
 
 ### `checkTabbablePage`
 
-टैबेबल लाइनों और डॉट्स के साथ पूरी स्क्रीन की छवि की तुलना बेसलाइन छवि से करता है।
+टैब करने योग्य (tabbable) लाइनों और डॉट्स के साथ पूरी स्क्रीन की इमेज की तुलना बेसलाइन इमेज से करता है।
 
 #### उपयोग
 
@@ -301,17 +302,17 @@ await browser.checkTabbablePage(
 );
 ```
 
-#### समर्थन
+#### सपोर्ट
 
 - डेस्कटॉप ब्राउज़र
 
 #### पैरामीटर्स
 -   **`tag`:**
     -   **अनिवार्य:** हाँ
-    -   **प्रकार:** string
+    -   **टाइप:** string
 -   **`checkTabbableOptions`:**
     -   **अनिवार्य:** नहीं
-    -   **प्रकार:** विकल्पों का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
+    -   **टाइप:** ऑप्शन्स का एक ऑब्जेक्ट, देखें [Compare/Check Options](./method-options#compare-check-options)
 
 #### आउटपुट:
 

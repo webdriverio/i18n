@@ -3,11 +3,11 @@ id: browser
 title: Το Αντικείμενο Browser
 ---
 
-__Extends:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
+__Επεκτείνει:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-Το αντικείμενο browser είναι η περίπτωση συνεδρίας που χρησιμοποιείτε για να ελέγξετε τον browser ή την κινητή συσκευή. Εάν χρησιμοποιείτε τον δοκιμαστή WDIO, μπορείτε να αποκτήσετε πρόσβαση στο στιγμιότυπο WebDriver μέσω του καθολικού αντικειμένου `browser` ή `driver` ή να το εισάγετε χρησιμοποιώντας το [`@wdio/globals`](/docs/api/globals). Εάν χρησιμοποιείτε το WebdriverIO σε αυτόνομη λειτουργία, το αντικείμενο browser επιστρέφεται από τη μέθοδο [`remote`](/docs/api/modules#remoteoptions-modifier).
+Το αντικείμενο browser είναι η παρουσία συνεδρίας (session instance) που χρησιμοποιείτε για να ελέγχετε το πρόγραμμα περιήγησης ή την κινητή συσκευή. Αν χρησιμοποιείτε τον WDIO test runner, μπορείτε να αποκτήσετε πρόσβαση στην παρουσία WebDriver μέσω του καθολικού αντικειμένου `browser` ή `driver` ή να την εισαγάγετε χρησιμοποιώντας το [`@wdio/globals`](/docs/api/globals). Αν χρησιμοποιείτε το WebdriverIO σε αυτόνομη λειτουργία (standalone mode), το αντικείμενο browser επιστρέφεται από τη μέθοδο [`remote`](/docs/api/modules#remoteoptions-modifier).
 
-Η συνεδρία αρχικοποιείται από τον δοκιμαστή. Το ίδιο ισχύει και για τον τερματισμό της συνεδρίας. Αυτό γίνεται επίσης από τη διαδικασία του δοκιμαστή.
+Η συνεδρία αρχικοποιείται από τον test runner. Το ίδιο ισχύει και για τον τερματισμό της συνεδρίας. Αυτό γίνεται επίσης από τη διεργασία του test runner.
 
 ## Ιδιότητες
 
@@ -15,46 +15,45 @@ __Extends:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitte
 
 | Όνομα | Τύπος | Λεπτομέρειες |
 | ---- | ---- | ------- |
-| `capabilities` | `Object` | Εκχωρημένες δυνατότητες από τον απομακρυσμένο διακομιστή.<br /><b>Παράδειγμα:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
-| `requestedCapabilities` | `Object` | Δυνατότητες που ζητήθηκαν από τον απομακρυσμένο διακομιστή.<br /><b>Παράδειγμα:</b><pre>\{ browserName: 'chrome' \}</pre>
-| `sessionId` | `String` | Αναγνωριστικό συνεδρίας που εκχωρήθηκε από τον απομακρυσμένο διακομιστή. |
-| `options` | `Object` | Επιλογές WebdriverIO [options](/docs/configuration) ανάλογα με το πώς δημιουργήθηκε το αντικείμενο browser. Δείτε περισσότερα [τύπους ρύθμισης](/docs/setuptypes). |
-| `commandList` | `String[]` | Μια λίστα εντολών που έχουν καταχωρηθεί στο στιγμιότυπο του browser |
-| `isW3C` | `Boolean` | Υποδεικνύει αν αυτή είναι μια συνεδρία W3C |
-| `isChrome` | `Boolean` | Υποδεικνύει αν αυτό είναι στιγμιότυπο Chrome |
-| `isFirefox` | `Boolean` | Υποδεικνύει αν αυτό είναι στιγμιότυπο Firefox |
+| `capabilities` | `Object` | Capabilities που έχουν ανατεθεί από τον απομακρυσμένο διακομιστή.<br /><b>Παράδειγμα:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
+| `requestedCapabilities` | `Object` | Capabilities που ζητήθηκαν από τον απομακρυσμένο διακομιστή.<br /><b>Παράδειγμα:</b><pre>\{ browserName: 'chrome' \}</pre>
+| `sessionId` | `String` | Αναγνωριστικό συνεδρίας που ανατέθηκε από τον απομακρυσμένο διακομιστή. |
+| `options` | `Object` | [Επιλογές](/docs/configuration) του WebdriverIO ανάλογα με τον τρόπο δημιουργίας του αντικειμένου browser. Δείτε περισσότερα για τους [τύπους ρύθμισης](/docs/setuptypes). |
+| `commandList` | `String[]` | Μια λίστα εντολών που έχουν καταχωρηθεί στην παρουσία του browser |
+| `isChrome` | `Boolean` | Υποδεικνύει αν πρόκειται για παρουσία Chrome |
+| `isFirefox` | `Boolean` | Υποδεικνύει αν πρόκειται για παρουσία Firefox |
 | `isBidi` | `Boolean` | Υποδεικνύει αν αυτή η συνεδρία χρησιμοποιεί Bidi |
 | `isSauce` | `Boolean` | Υποδεικνύει αν αυτή η συνεδρία εκτελείται στο Sauce Labs |
-| `isMacApp` | `Boolean` | Υποδεικνύει αν αυτή η συνεδρία εκτελείται για μια εφαρμογή Mac |
-| `isWindowsApp` | `Boolean` | Υποδεικνύει αν αυτή η συνεδρία εκτελείται για μια εφαρμογή Windows |
-| `isMobile` | `Boolean` | Υποδεικνύει μια συνεδρία κινητού. Δείτε περισσότερα στις [Σημαίες Κινητών](#mobile-flags). |
-| `isIOS` | `Boolean` | Υποδεικνύει μια συνεδρία iOS. Δείτε περισσότερα στις [Σημαίες Κινητών](#mobile-flags). |
-| `isAndroid` | `Boolean` | Υποδεικνύει μια συνεδρία Android. Δείτε περισσότερα στις [Σημαίες Κινητών](#mobile-flags). |
-| `isNativeContext` | `Boolean`  | Υποδεικνύει εάν το κινητό βρίσκεται στο πλαίσιο `NATIVE_APP`. Δείτε περισσότερα στις [Σημαίες Κινητών](#mobile-flags). |
-| `mobileContext` | `string`  | Αυτό θα παρέχει το **τρέχον** πλαίσιο στο οποίο βρίσκεται ο οδηγός, για παράδειγμα `NATIVE_APP`, `WEBVIEW_<packageName>` για Android ή `WEBVIEW_<pid>` για iOS. Θα αποθηκεύσει ένα επιπλέον WebDriver σε `driver.getContext()`. Δείτε περισσότερα στις [Σημαίες Κινητών](#mobile-flags). |
+| `isMacApp` | `Boolean` | Υποδεικνύει αν αυτή η συνεδρία εκτελείται για μια εγγενή εφαρμογή Mac |
+| `isWindowsApp` | `Boolean` | Υποδεικνύει αν αυτή η συνεδρία εκτελείται για μια εγγενή εφαρμογή Windows |
+| `isMobile` | `Boolean` | Υποδεικνύει μια συνεδρία κινητής συσκευής. Δείτε περισσότερα στην ενότητα [Σημαίες Κινητών](#mobile-flags). |
+| `isIOS` | `Boolean` | Υποδεικνύει μια συνεδρία iOS. Δείτε περισσότερα στην ενότητα [Σημαίες Κινητών](#mobile-flags). |
+| `isAndroid` | `Boolean` | Υποδεικνύει μια συνεδρία Android. Δείτε περισσότερα στην ενότητα [Σημαίες Κινητών](#mobile-flags). |
+| `isNativeContext` | `Boolean`  | Υποδεικνύει αν η κινητή συσκευή βρίσκεται στο context `NATIVE_APP`. Δείτε περισσότερα στην ενότητα [Σημαίες Κινητών](#mobile-flags). |
+| `mobileContext` | `string`  | Παρέχει το **τρέχον** context στο οποίο βρίσκεται ο driver, για παράδειγμα `NATIVE_APP`, `WEBVIEW_<packageName>` για Android ή `WEBVIEW_<pid>` για iOS. Εξοικονομεί μια επιπλέον κλήση WebDriver στο `driver.getContext()`. Δείτε περισσότερα στην ενότητα [Σημαίες Κινητών](#mobile-flags). |
 
 
 ## Μέθοδοι
 
-Με βάση το backend αυτοματισμού που χρησιμοποιείται για τη συνεδρία σας, το WebdriverIO προσδιορίζει ποιες [Εντολές Πρωτοκόλλου](/docs/api/protocols) θα επισυναφθούν στο [αντικείμενο browser](/docs/api/browser). Για παράδειγμα, εάν εκτελέσετε μια αυτοματοποιημένη συνεδρία στο Chrome, θα έχετε πρόσβαση σε συγκεκριμένες εντολές Chromium όπως το [`elementHover`](/docs/api/chromium#elementhover) αλλά όχι σε καμία από τις [εντολές Appium](/docs/api/appium).
+Με βάση το backend αυτοματοποίησης που χρησιμοποιείται για τη συνεδρία σας, το WebdriverIO προσδιορίζει ποιες [Εντολές Πρωτοκόλλου](/docs/api/protocols) θα προσαρτηθούν στο [αντικείμενο browser](/docs/api/browser). Για παράδειγμα, αν εκτελείτε μια αυτοματοποιημένη συνεδρία στο Chrome, θα έχετε πρόσβαση σε εντολές ειδικές για το Chromium, όπως η [`elementHover`](/docs/api/chromium#elementhover), αλλά όχι σε καμία από τις [εντολές Appium](/docs/api/appium).
 
-Επιπλέον, το WebdriverIO παρέχει ένα σύνολο βολικών μεθόδων που συνιστώνται για χρήση, για αλληλεπίδραση με το [browser](/docs/api/browser) ή [στοιχεία](/docs/api/element) στη σελίδα.
+Επιπλέον, το WebdriverIO παρέχει ένα σύνολο βολικών μεθόδων που συνιστάται να χρησιμοποιούνται για την αλληλεπίδραση με τον [browser](/docs/api/browser) ή τα [στοιχεία](/docs/api/element) της σελίδας.
 
-Επιπροσθέτως, οι ακόλουθες εντολές είναι διαθέσιμες:
+Επιπρόσθετα, είναι διαθέσιμες οι ακόλουθες εντολές:
 
 | Όνομα | Παράμετροι | Λεπτομέρειες |
 | ---- | ---------- | ------- |
 | `addCommand` | - `commandName` (Τύπος: `String`)<br />- `fn` (Τύπος: `Function`)<br />- `attachToElement` (Τύπος: `boolean`) | Επιτρέπει τον ορισμό προσαρμοσμένων εντολών που μπορούν να κληθούν από το αντικείμενο browser για σκοπούς σύνθεσης. Διαβάστε περισσότερα στον οδηγό [Προσαρμοσμένες Εντολές](/docs/customcommands). |
-| `overwriteCommand` | - `commandName` (Τύπος: `String`)<br />- `fn` (Τύπος: `Function`)<br />- `attachToElement` (Τύπος: `boolean`) | Επιτρέπει την αντικατάσταση οποιασδήποτε εντολής του browser με προσαρμοσμένη λειτουργικότητα. Χρησιμοποιήστε προσεκτικά καθώς μπορεί να μπερδέψει τους χρήστες του πλαισίου. Διαβάστε περισσότερα στον οδηγό [Προσαρμοσμένες Εντολές](/docs/customcommands#overwriting-native-commands). |
-| `addLocatorStrategy` | - `strategyName` (Τύπος: `String`)<br />- `fn` (Τύπος: `Function`) | Επιτρέπει τον ορισμό μιας προσαρμοσμένης στρατηγικής επιλογέα, διαβάστε περισσότερα στον οδηγό [Επιλογείς](/docs/selectors#custom-selector-strategies). |
+| `overwriteCommand` | - `commandName` (Τύπος: `String`)<br />- `fn` (Τύπος: `Function`)<br />- `attachToElement` (Τύπος: `boolean`) | Επιτρέπει την αντικατάσταση οποιασδήποτε εντολής του browser με προσαρμοσμένη λειτουργικότητα. Χρησιμοποιήστε την με προσοχή, καθώς μπορεί να μπερδέψει τους χρήστες του framework. Διαβάστε περισσότερα στον οδηγό [Προσαρμοσμένες Εντολές](/docs/customcommands#overwriting-native-commands). |
+| `addLocatorStrategy` | - `strategyName` (Τύπος: `String`)<br />- `fn` (Τύπος: `Function`) | Επιτρέπει τον ορισμό μιας προσαρμοσμένης στρατηγικής επιλογέα (selector), διαβάστε περισσότερα στον οδηγό [Επιλογείς](/docs/selectors#custom-selector-strategies). |
 
 ## Παρατηρήσεις
 
 ### Σημαίες Κινητών
 
-Εάν χρειάζεται να τροποποιήσετε τη δοκιμή σας με βάση το αν η συνεδρία σας εκτελείται σε κινητή συσκευή ή όχι, μπορείτε να αποκτήσετε πρόσβαση στις σημαίες κινητών για έλεγχο.
+Αν χρειάζεται να τροποποιήσετε το τεστ σας ανάλογα με το αν η συνεδρία σας εκτελείται σε κινητή συσκευή ή όχι, μπορείτε να ελέγξετε τις σημαίες κινητών.
 
-Για παράδειγμα, δεδομένης αυτής της διαμόρφωσης:
+Για παράδειγμα, με δεδομένη αυτή τη ρύθμιση:
 
 ```js
 // wdio.conf.js
@@ -71,17 +70,17 @@ export const config = {
 }
 ```
 
-Μπορείτε να αποκτήσετε πρόσβαση σε αυτές τις σημαίες στη δοκιμή σας ως εξής:
+Μπορείτε να αποκτήσετε πρόσβαση σε αυτές τις σημαίες στο τεστ σας ως εξής:
 
 ```js
-// Note: `driver` is the equivalent to the `browser` object but semantically more correct
-// you can choose which global variable you want to use
-console.log(driver.isMobile) // outputs: true
-console.log(driver.isIOS) // outputs: true
-console.log(driver.isAndroid) // outputs: false
+// Σημείωση: το `driver` είναι ισοδύναμο με το αντικείμενο `browser` αλλά σημασιολογικά πιο σωστό
+// μπορείτε να επιλέξετε ποια καθολική μεταβλητή θέλετε να χρησιμοποιήσετε
+console.log(driver.isMobile) // εξάγει: true
+console.log(driver.isIOS) // εξάγει: true
+console.log(driver.isAndroid) // εξάγει: false
 ```
 
-Αυτό μπορεί να είναι χρήσιμο εάν, για παράδειγμα, θέλετε να ορίσετε επιλογείς στα [αντικείμενα σελίδας](../pageobjects) σας με βάση τον τύπο της συσκευής, όπως αυτό:
+Αυτό μπορεί να είναι χρήσιμο αν, για παράδειγμα, θέλετε να ορίσετε επιλογείς στα [page objects](../pageobjects) σας με βάση τον τύπο της συσκευής, ως εξής:
 
 ```js
 // mypageobject.page.js
@@ -100,13 +99,13 @@ class LoginPage extends Page {
 }
 ```
 
-Μπορείτε επίσης να χρησιμοποιήσετε αυτές τις σημαίες για να εκτελέσετε μόνο συγκεκριμένες δοκιμές για συγκεκριμένους τύπους συσκευών:
+Μπορείτε επίσης να χρησιμοποιήσετε αυτές τις σημαίες για να εκτελέσετε μόνο ορισμένα τεστ για ορισμένους τύπους συσκευών:
 
 ```js
 // mytest.e2e.js
 describe('my test', () => {
     // ...
-    // only run test with Android devices
+    // εκτέλεση του τεστ μόνο σε συσκευές Android
     if (driver.isAndroid) {
         it('tests something only for Android', () => {
             // ...
@@ -117,51 +116,51 @@ describe('my test', () => {
 ```
 
 ### Συμβάντα
-Το αντικείμενο browser είναι ένας EventEmitter και διάφορα συμβάντα εκπέμπονται για τις περιπτώσεις χρήσης σας.
+Το αντικείμενο browser είναι ένας EventEmitter και εκπέμπονται ορισμένα συμβάντα για τις περιπτώσεις χρήσης σας.
 
-Ακολουθεί μια λίστα συμβάντων. Να έχετε υπόψη ότι αυτή δεν είναι η πλήρης λίστα των διαθέσιμων συμβάντων ακόμα.
-Μη διστάσετε να συνεισφέρετε στην ενημέρωση του εγγράφου προσθέτοντας περιγραφές περισσότερων συμβάντων εδώ.
+Ακολουθεί μια λίστα συμβάντων. Λάβετε υπόψη ότι αυτή δεν είναι ακόμη η πλήρης λίστα των διαθέσιμων συμβάντων.
+Μη διστάσετε να συνεισφέρετε στην ενημέρωση του εγγράφου προσθέτοντας εδώ περιγραφές περισσότερων συμβάντων.
 
 #### `command`
 
 Αυτό το συμβάν εκπέμπεται κάθε φορά που το WebdriverIO στέλνει μια εντολή WebDriver Classic. Περιέχει τις ακόλουθες πληροφορίες:
 
 - `command`: το όνομα της εντολής, π.χ. `navigateTo`
-- `method`: η μέθοδος HTTP που χρησιμοποιείται για την αποστολή του αιτήματος εντολής, π.χ. `POST`
-- `endpoint`: το τελικό σημείο της εντολής, π.χ. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
-- `body`: το ωφέλιμο φορτίο της εντολής, π.χ. `{ url: 'https://webdriver.io' }`
+- `method`: η μέθοδος HTTP που χρησιμοποιείται για την αποστολή του αιτήματος της εντολής, π.χ. `POST`
+- `endpoint`: το endpoint της εντολής, π.χ. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
+- `body`: το payload της εντολής, π.χ. `{ url: 'https://webdriver.io' }`
 
 #### `result`
 
-Αυτό το συμβάν εκπέμπεται κάθε φορά που το WebdriverIO λαμβάνει ένα αποτέλεσμα μιας εντολής WebDriver Classic. Περιέχει τις ίδιες πληροφορίες με το συμβάν `command` με την προσθήκη των ακόλουθων πληροφοριών:
+Αυτό το συμβάν εκπέμπεται κάθε φορά που το WebdriverIO λαμβάνει το αποτέλεσμα μιας εντολής WebDriver Classic. Περιέχει τις ίδιες πληροφορίες με το συμβάν `command`, με την προσθήκη της ακόλουθης πληροφορίας:
 
 - `result`: το αποτέλεσμα της εντολής
 
 #### `bidiCommand`
 
-Αυτό το συμβάν εκπέμπεται κάθε φορά που το WebdriverIO στέλνει μια εντολή WebDriver Bidi στον οδηγό του browser. Περιέχει πληροφορίες σχετικά με:
+Αυτό το συμβάν εκπέμπεται κάθε φορά που το WebdriverIO στέλνει μια εντολή WebDriver Bidi στον driver του προγράμματος περιήγησης. Περιέχει πληροφορίες σχετικά με:
 
-- `method`: Μέθοδος εντολής WebDriver Bidi
-- `params`: σχετική παράμετρος εντολής (βλ. [API](/docs/api/webdriverBidi))
+- `method`: τη μέθοδο της εντολής WebDriver Bidi
+- `params`: τη σχετική παράμετρο της εντολής (δείτε το [API](/docs/api/webdriverBidi))
 
 #### `bidiResult`
 
-Σε περίπτωση επιτυχούς εκτέλεσης εντολής, το ωφέλιμο φορτίο του συμβάντος θα είναι:
+Σε περίπτωση επιτυχούς εκτέλεσης της εντολής, το payload του συμβάντος θα είναι:
 
 - `type`: `success`
 - `id`: το αναγνωριστικό της εντολής
-- `result`: το αποτέλεσμα της εντολής (βλ. [API](/docs/api/webdriverBidi))
+- `result`: το αποτέλεσμα της εντολής (δείτε το [API](/docs/api/webdriverBidi))
 
-Σε περίπτωση σφάλματος εντολής, το ωφέλιμο φορτίο του συμβάντος θα είναι:
+Σε περίπτωση σφάλματος εντολής, το payload του συμβάντος θα είναι:
 
 - `type`: `error`
 - `id`: το αναγνωριστικό της εντολής
 - `error`: ο κωδικός σφάλματος, π.χ. `invalid argument`
 - `message`: λεπτομέρειες σχετικά με το σφάλμα
-- `stacktrace`: ίχνος στοίβας
+- `stacktrace`: ένα stack trace
 
 #### `request.start`
-Αυτό το συμβάν ενεργοποιείται πριν σταλεί ένα αίτημα WebDriver στον οδηγό. Περιέχει πληροφορίες σχετικά με το αίτημα και το ωφέλιμο φορτίο του.
+Αυτό το συμβάν ενεργοποιείται πριν σταλεί ένα αίτημα WebDriver στον driver. Περιέχει πληροφορίες σχετικά με το αίτημα και το payload του.
 
 ```ts
 browser.on('request.start', (ev: RequestInit) => {
@@ -170,7 +169,7 @@ browser.on('request.start', (ev: RequestInit) => {
 ```
 
 #### `request.end`
-Αυτό το συμβάν ενεργοποιείται μόλις το αίτημα προς τον οδηγό λάβει απάντηση. Το αντικείμενο συμβάντος περιέχει είτε το σώμα της απάντησης ως αποτέλεσμα είτε ένα σφάλμα εάν η εντολή WebDriver απέτυχε.
+Αυτό το συμβάν ενεργοποιείται μόλις το αίτημα προς τον driver λάβει απάντηση. Το αντικείμενο του συμβάντος περιέχει είτε το σώμα της απάντησης ως αποτέλεσμα είτε ένα σφάλμα, αν η εντολή WebDriver απέτυχε.
 
 ```ts
 browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
@@ -179,7 +178,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-Το συμβάν επανάληψης μπορεί να σας ειδοποιήσει όταν το WebdriverIO προσπαθεί να επαναλάβει την εκτέλεση της εντολής, π.χ. λόγω προβλήματος δικτύου. Περιέχει πληροφορίες σχετικά με το σφάλμα που προκάλεσε την επανάληψη και τον αριθμό των επαναλήψεων που έχουν ήδη γίνει.
+Το συμβάν επανάληψης μπορεί να σας ειδοποιήσει όταν το WebdriverIO επιχειρεί να επαναλάβει την εκτέλεση της εντολής, π.χ. λόγω προβλήματος δικτύου. Περιέχει πληροφορίες σχετικά με το σφάλμα που προκάλεσε την επανάληψη και τον αριθμό των επαναλήψεων που έχουν ήδη γίνει.
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
@@ -188,13 +187,13 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 ```
 
 #### `request.performance`
-Αυτό είναι ένα συμβάν για τη μέτρηση λειτουργιών επιπέδου WebDriver. Κάθε φορά που το WebdriverIO στέλνει ένα αίτημα στο backend WebDriver, αυτό το συμβάν θα εκπέμπεται με ορισμένες χρήσιμες πληροφορίες:
+Αυτό είναι ένα συμβάν για τη μέτρηση λειτουργιών σε επίπεδο WebDriver. Κάθε φορά που το WebdriverIO στέλνει ένα αίτημα στο backend του WebDriver, αυτό το συμβάν εκπέμπεται με ορισμένες χρήσιμες πληροφορίες:
 
-- `durationMillisecond`: Χρονική διάρκεια του αιτήματος σε χιλιοστά του δευτερολέπτου.
-- `error`: Αντικείμενο σφάλματος εάν το αίτημα απέτυχε.
-- `request`: Αντικείμενο αιτήματος. Μπορείτε να βρείτε url, μέθοδο, κεφαλίδες κλπ.
-- `retryCount`: Εάν είναι `0`, το αίτημα ήταν η πρώτη προσπάθεια. Θα αυξάνεται όταν το WebDriverIO επαναλαμβάνει τη διαδικασία εσωτερικά.
-- `success`: Boolean για να αναπαραστήσει εάν το αίτημα πέτυχε ή όχι. Εάν είναι `false`, η ιδιότητα `error` θα παρέχεται επίσης.
+- `durationMillisecond`: Η χρονική διάρκεια του αιτήματος σε χιλιοστά του δευτερολέπτου.
+- `error`: Αντικείμενο σφάλματος, αν το αίτημα απέτυχε.
+- `request`: Αντικείμενο αιτήματος. Μπορείτε να βρείτε το url, τη μέθοδο, τις κεφαλίδες κ.λπ.
+- `retryCount`: Αν είναι `0`, το αίτημα ήταν η πρώτη προσπάθεια. Θα αυξάνεται όταν το WebDriverIO επαναλαμβάνει την προσπάθεια στο παρασκήνιο.
+- `success`: Boolean που υποδεικνύει αν το αίτημα ήταν επιτυχές ή όχι. Αν είναι `false`, θα παρέχεται επίσης η ιδιότητα `error`.
 
 Ένα παράδειγμα συμβάντος:
 ```js
@@ -209,4 +208,4 @@ Object {
 
 ### Προσαρμοσμένες Εντολές
 
-Μπορείτε να ορίσετε προσαρμοσμένες εντολές στο πεδίο του browser για να αφαιρέσετε τις ροές εργασίας που χρησιμοποιούνται συχνά. Ελέγξτε τον οδηγό μας σχετικά με τις [Προσαρμοσμένες Εντολές](/docs/customcommands#adding-custom-commands) για περισσότερες πληροφορίες.
+Μπορείτε να ορίσετε προσαρμοσμένες εντολές στο εύρος του browser για να αφαιρέσετε την πολυπλοκότητα ροών εργασίας που χρησιμοποιούνται συχνά. Δείτε τον οδηγό μας για τις [Προσαρμοσμένες Εντολές](/docs/customcommands#adding-custom-commands) για περισσότερες πληροφορίες.

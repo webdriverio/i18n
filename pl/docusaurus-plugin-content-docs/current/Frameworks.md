@@ -1,22 +1,23 @@
 ---
 id: frameworks
 title: Frameworki
+description: "Skonfiguruj Mocha, Jasmine lub Cucumber.js jako framework testowy dla WDIO testrunnera albo zintegruj frameworki zewnętrzne, takie jak Serenity/JS."
 ---
 
-WebdriverIO Runner ma wbudowane wsparcie dla [Mocha](http://mochajs.org/), [Jasmine](http://jasmine.github.io/) i [Cucumber.js](https://cucumber.io/). Możesz również zintegrować go z zewnętrznymi frameworkami open-source, takimi jak [Serenity/JS](#using-serenityjs).
+WebdriverIO Runner ma wbudowaną obsługę [Mocha](http://mochajs.org/), [Jasmine](http://jasmine.github.io/) i [Cucumber.js](https://cucumber.io/). Możesz go również zintegrować z zewnętrznymi frameworkami open source, takimi jak [Serenity/JS](#using-serenityjs).
 
 :::tip Integracja WebdriverIO z frameworkami testowymi
-Aby zintegrować WebdriverIO z frameworkiem testowym, potrzebujesz pakietu adaptera dostępnego na NPM.
-Pamiętaj, że pakiet adaptera musi być zainstalowany w tym samym miejscu, gdzie jest zainstalowane WebdriverIO.
-Więc jeśli zainstalowałeś WebdriverIO globalnie, upewnij się, że również zainstalowałeś pakiet adaptera globalnie.
+Aby zintegrować WebdriverIO z frameworkiem testowym, potrzebujesz pakietu adaptera dostępnego w NPM.
+Pamiętaj, że pakiet adaptera musi być zainstalowany w tym samym miejscu, w którym zainstalowano WebdriverIO.
+Jeśli więc zainstalowałeś WebdriverIO globalnie, pamiętaj, aby również pakiet adaptera zainstalować globalnie.
 :::
 
-Integracja WebdriverIO z frameworkiem testowym pozwala na dostęp do instancji WebDrivera przy użyciu globalnej zmiennej `browser`
+Integracja WebdriverIO z frameworkiem testowym pozwala uzyskać dostęp do instancji WebDriver za pomocą globalnej zmiennej `browser`
 w plikach specyfikacji lub definicjach kroków.
-Zauważ, że WebdriverIO zajmie się również tworzeniem i kończeniem sesji Selenium, więc nie musisz tego robić
+Pamiętaj, że WebdriverIO zajmie się również utworzeniem i zakończeniem sesji Selenium, więc nie musisz robić tego
 samodzielnie.
 
-## Używanie Mocha
+## Korzystanie z Mocha
 
 Najpierw zainstaluj pakiet adaptera z NPM:
 
@@ -24,7 +25,7 @@ Najpierw zainstaluj pakiet adaptera z NPM:
 npm install @wdio/mocha-framework --save-dev
 ```
 
-Domyślnie WebdriverIO dostarcza [bibliotekę asercji](assertion), która jest wbudowana i z której możesz korzystać od razu:
+Domyślnie WebdriverIO udostępnia wbudowaną [bibliotekę asercji](assertion), z której możesz od razu zacząć korzystać:
 
 ```js
 describe('my awesome website', () => {
@@ -35,9 +36,9 @@ describe('my awesome website', () => {
 })
 ```
 
-WebdriverIO obsługuje interfejsy Mocha `BDD` (domyślny), `TDD` i `QUnit` [interfaces](https://mochajs.org/#interfaces).
+WebdriverIO v10 zawiera [Mocha 12](https://mochajs.org/) i obsługuje [interfejsy](https://mochajs.org/#interfaces) Mocha: `BDD` (domyślny), `TDD` oraz `QUnit`.
 
-Jeśli chcesz pisać swoje specyfikacje w stylu TDD, ustaw właściwość `ui` w konfiguracji `mochaOpts` na `tdd`. Teraz twoje pliki testowe powinny być napisane w następujący sposób:
+Jeśli chcesz pisać specyfikacje w stylu TDD, ustaw właściwość `ui` w konfiguracji `mochaOpts` na `tdd`. Wtedy pliki testowe powinny wyglądać tak:
 
 ```js
 suite('my awesome website', () => {
@@ -48,25 +49,25 @@ suite('my awesome website', () => {
 })
 ```
 
-Jeśli chcesz zdefiniować inne ustawienia specyficzne dla Mocha, możesz to zrobić za pomocą klucza `mochaOpts` w pliku konfiguracyjnym. Listę wszystkich opcji można znaleźć na [stronie projektu Mocha](https://mochajs.org/api/mocha).
+Jeśli chcesz zdefiniować inne ustawienia specyficzne dla Mocha, możesz to zrobić za pomocą klucza `mochaOpts` w pliku konfiguracyjnym. Listę wszystkich opcji znajdziesz na [stronie projektu Mocha](https://mochajs.org/api/mocha).
 
-__Uwaga:__ WebdriverIO nie wspiera przestarzałego używania callbacków `done` w Mocha:
+__Uwaga:__ WebdriverIO nie obsługuje przestarzałego użycia callbacków `done` w Mocha:
 
 ```js
 it('should test something', (done) => {
-    done() // wyrzuca "done is not a function"
+    done() // rzuca błąd "done is not a function"
 })
 ```
 
 ### Opcje Mocha
 
-Poniższe opcje można zastosować w pliku `wdio.conf.js`, aby skonfigurować środowisko Mocha. __Uwaga:__ nie wszystkie opcje są obsługiwane, np. zastosowanie opcji `parallel` spowoduje błąd, ponieważ testrunner WDIO ma własny sposób uruchamiania testów równolegle. Możesz przekazywać te opcje frameworka jako argumenty, np.:
+Poniższe opcje można zastosować w pliku `wdio.conf.js`, aby skonfigurować środowisko Mocha. __Uwaga:__ nie wszystkie opcje Mocha są obsługiwane. `parallel` nadal należy do własnej puli workerów Mocha i spowoduje tu błąd — WDIO testrunner już równolegle uruchamia specyfikacje w ramach capabilities i workerów. CLI Mocha 12 przeszło także z yargs na `util.parseArgs` z Node; dotyczy to jedynie bezpośredniego wywołania `mocha`, a nie `mochaOpts` przekazywanych przez `wdio`. Możesz przekazać te opcje frameworka jako argumenty, np.:
 
 ```sh
 wdio run wdio.conf.ts --mochaOpts.grep "my test" --mochaOpts.bail --no-mochaOpts.checkLeaks
 ```
 
-To przekaże następujące opcje Mocha:
+Spowoduje to przekazanie następujących opcji Mocha:
 
 ```ts
 {
@@ -79,96 +80,126 @@ To przekaże następujące opcje Mocha:
 Obsługiwane są następujące opcje Mocha:
 
 #### require
-Opcja `require` jest przydatna, gdy chcesz dodać lub rozszerzyć podstawową funkcjonalność (opcja frameworka WebdriverIO).
 
-Type: `string|string[]`<br />
-Default: `[]`
+<Option type="string|string[]" default="[]">
 
-#### compilers
-Używaj podanego modułu (lub modułów) do kompilacji plików. Kompilatory zostaną dołączone przed wymogami (opcja frameworka WebdriverIO).
+Opcja `require` jest przydatna, gdy chcesz dodać lub rozszerzyć jakąś podstawową funkcjonalność (opcja frameworka WebdriverIO).
 
-Type: `string[]`<br />
-Default: `[]`
+</Option>
 
 #### allowUncaught
-Propagowanie nieobsłużonych błędów.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Propaguj nieprzechwycone błędy.
+
+</Option>
 
 #### bail
-Zakończ po pierwszym nieudanym teście.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Przerwij po pierwszym nieudanym teście.
+
+</Option>
 
 #### checkLeaks
-Sprawdź wycieki zmiennych globalnych.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Sprawdzaj wycieki zmiennych globalnych.
+
+</Option>
 
 #### delay
-Opóźnij wykonanie głównego zestawu.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Opóźnij wykonanie głównego zestawu testów (root suite).
+
+</Option>
+
+#### failHookAffectedTests
+
+<Option type="boolean" default="true">
+
+Raportuj każdy test pominięty z powodu nieudanego hooka `before` lub `beforeEach` jako niepowodzenie. WebdriverIO włącza tę opcję, aby uszkodzony hook przygotowujący był widoczny przy każdej pominiętej przez niego specyfikacji. Ustaw ją na `false`, aby raportować tylko hook.
+
+</Option>
 
 #### fgrep
-Filtrowanie testów według danego ciągu znaków.
 
-Type: `string`<br />
-Default: `null`
+<Option type="string" default="null">
+
+Filtr testów na podstawie podanego ciągu znaków.
+
+</Option>
 
 #### forbidOnly
+
+<Option type="boolean" default="false">
+
 Testy oznaczone jako `only` powodują niepowodzenie zestawu.
 
-Type: `boolean`<br />
-Default: `false`
+</Option>
 
 #### forbidPending
-Oczekujące testy powodują niepowodzenie zestawu.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Oczekujące (pending) testy powodują niepowodzenie zestawu.
+
+</Option>
 
 #### fullTrace
-Pełny ślad stosu przy niepowodzeniu.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Pełny stacktrace w razie niepowodzenia.
+
+</Option>
 
 #### global
-Zmienne oczekiwane w globalnym zakresie.
 
-Type: `string[]`<br />
-Default: `[]`
+<Option type="string[]" default="[]">
+
+Zmienne oczekiwane w zasięgu globalnym.
+
+</Option>
 
 #### grep
-Filtrowanie testów za pomocą wyrażenia regularnego.
 
-Type: `RegExp|string`<br />
-Default: `null`
+<Option type="RegExp|string" default="null">
+
+Filtr testów na podstawie podanego wyrażenia regularnego. Mocha 12 akceptuje w tym filtrze nowoczesne flagi RegExp (na przykład `s` lub `d`).
+
+</Option>
 
 #### invert
+
+<Option type="boolean" default="false">
+
 Odwróć dopasowania filtra testów.
 
-Type: `boolean`<br />
-Default: `false`
+</Option>
 
 #### retries
-Liczba powtórzeń nieudanych testów.
 
-Type: `number`<br />
-Default: `0`
+<Option type="number" default="0">
+
+Liczba ponownych prób dla nieudanych testów.
+
+</Option>
 
 #### timeout
+
+<Option type="number" default="30000">
+
 Wartość progu limitu czasu (w ms).
 
-Type: `number`<br />
-Default: `30000`
+</Option>
 
-## Używanie Jasmine
+## Korzystanie z Jasmine
 
 Najpierw zainstaluj pakiet adaptera z NPM:
 
@@ -176,89 +207,164 @@ Najpierw zainstaluj pakiet adaptera z NPM:
 npm install @wdio/jasmine-framework --save-dev
 ```
 
-Następnie możesz skonfigurować swoje środowisko Jasmine, ustawiając właściwość `jasmineOpts` w konfiguracji. Listę wszystkich opcji można znaleźć na [stronie projektu Jasmine](https://jasmine.github.io/api/3.5/Configuration.html).
+Następnie możesz skonfigurować środowisko Jasmine, ustawiając właściwość `jasmineOpts` w konfiguracji. Listę wszystkich opcji znajdziesz na [stronie projektu Jasmine](https://jasmine.github.io/api/edge/Configuration.html).
 
 ### Opcje Jasmine
 
-Poniższe opcje można zastosować w pliku `wdio.conf.js`, aby skonfigurować środowisko Jasmine za pomocą właściwości `jasmineOpts`. Aby uzyskać więcej informacji na temat tych opcji konfiguracyjnych, sprawdź [dokumentację Jasmine](https://jasmine.github.io/api/edge/Configuration). Możesz przekazywać te opcje frameworka jako argumenty, np.:
+Poniższe opcje można zastosować w pliku `wdio.conf.js`, aby skonfigurować środowisko Jasmine za pomocą właściwości `jasmineOpts`. Więcej informacji o tych opcjach konfiguracyjnych znajdziesz w [dokumentacji Jasmine](https://jasmine.github.io/api/edge/Configuration). Możesz przekazać te opcje frameworka jako argumenty, np.:
 
 ```sh
 wdio run wdio.conf.ts --jasmineOpts.grep "my test" --jasmineOpts.failSpecWithNoExpectations --no-jasmineOpts.random
 ```
 
-To przekaże następujące opcje Mocha:
+Spowoduje to przekazanie następujących opcji Jasmine:
 
 ```ts
 {
-    grep: ['my-test'],
-    bail: true
-    checkLeacks: false
+    grep: 'my test',
+    failSpecWithNoExpectations: true,
+    random: false
 }
 ```
 
 Obsługiwane są następujące opcje Jasmine:
 
 #### defaultTimeoutInterval
-Domyślny interwał limitu czasu dla operacji Jasmine.
 
-Type: `number`<br />
-Default: `60000`
+<Option type="number" default="60000">
+
+Domyślny limit czasu dla operacji Jasmine.
+
+</Option>
 
 #### helpers
-Tablica ścieżek plików (i wzorców glob) względem spec_dir do dołączenia przed specyfikacjami jasmine.
 
-Type: `string[]`<br />
-Default: `[]`
+<Option type="string[]" default="[]">
+
+Tablica ścieżek plików (i globów) względnych do spec_dir, które mają zostać dołączone przed specyfikacjami Jasmine.
+
+</Option>
 
 #### requires
-Opcja `requires` jest przydatna, gdy chcesz dodać lub rozszerzyć podstawową funkcjonalność.
 
-Type: `string[]`<br />
-Default: `[]`
+<Option type="string[]" default="[]">
+
+Opcja `requires` jest przydatna, gdy chcesz dodać lub rozszerzyć jakąś podstawową funkcjonalność.
+
+</Option>
 
 #### random
-Czy losować kolejność wykonywania specyfikacji.
 
-Type: `boolean`<br />
-Default: `true`
+<Option type="boolean" default="false">
+
+Czy losować kolejność wykonywania specyfikacji. Domyślną wartością w samym Jasmine jest `true`, ale WebdriverIO uruchamia specyfikacje po kolei, chyba że ustawisz tę opcję.
+
+</Option>
 
 #### seed
-Ziarno do użycia jako podstawa losowości. Null powoduje, że ziarno jest określane losowo na początku wykonania.
 
-Type: `Function`<br />
-Default: `null`
+<Option type="Function" default="null">
+
+Ziarno używane jako podstawa losowania. Wartość null powoduje, że ziarno jest wybierane losowo na początku wykonania.
+
+</Option>
 
 #### failSpecWithNoExpectations
-Czy specyfikacja ma zakończyć się niepowodzeniem, jeśli nie uruchomiła żadnych oczekiwań. Domyślnie specyfikacja, która nie uruchomiła żadnych oczekiwań, jest raportowana jako zaliczona. Ustawienie tego na true spowoduje zgłoszenie takiej specyfikacji jako niepowodzenia.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Czy oznaczać specyfikację jako nieudaną, jeśli nie wykonała żadnych oczekiwań (expectations). Domyślnie specyfikacja, która nie wykonała żadnych oczekiwań, jest raportowana jako zaliczona. Ustawienie tej opcji na true spowoduje raportowanie takiej specyfikacji jako niepowodzenia.
+
+</Option>
 
 #### oneFailurePerSpec
-Czy specyfikacje mają mieć tylko jedno niepowodzenie oczekiwania.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Zatrzymaj specyfikację przy jej pierwszym nieudanym oczekiwaniu. Nieudany synchroniczny matcher zatrzymuje specyfikację natychmiast, a oczekiwany (awaited) asynchroniczny matcher zatrzymuje ją, gdy jego promise zostanie rozstrzygnięty. Pozostałe specyfikacje nadal są uruchamiane.
+
+</Option>
 
 #### specFilter
-Funkcja do filtrowania specyfikacji.
 
-Type: `Function`<br />
-Default: `(spec) => true`
+<Option type="Function" default="(spec) => true">
+
+Funkcja używana do filtrowania specyfikacji.
+
+</Option>
 
 #### grep
-Uruchamiaj tylko testy pasujące do tego ciągu znaków lub wyrażenia regularnego. (Dotyczy tylko przypadków, gdy nie jest ustawiona niestandardowa funkcja `specFilter`)
 
-Type: `string|Regexp`<br />
-Default: `null`
+<Option type="string|Regexp" default="null">
+
+Uruchamiaj tylko testy pasujące do tego ciągu znaków lub wyrażenia regularnego. (Ma zastosowanie tylko wtedy, gdy nie ustawiono własnej funkcji `specFilter`)
+
+</Option>
 
 #### invertGrep
-Jeśli ma wartość true, odwraca dopasowywanie testów i uruchamia tylko testy, które nie pasują do wyrażenia użytego w `grep`. (Dotyczy tylko przypadków, gdy nie jest ustawiona niestandardowa funkcja `specFilter`)
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
 
-## Używanie Cucumber
+Jeśli ma wartość true, odwraca dopasowanie testów i uruchamia tylko te testy, które nie pasują do wyrażenia użytego w `grep`. (Ma zastosowanie tylko wtedy, gdy nie ustawiono własnej funkcji `specFilter`)
+
+</Option>
+
+#### stopOnSpecFailure
+
+<Option type="boolean" default="false">
+
+Zatrzymaj plik specyfikacji przy jego pierwszej nieudanej specyfikacji (`it`): pozostałe specyfikacje z pliku nie zostaną uruchomione, także te w innych blokach `describe`. Inne pliki specyfikacji działają we własnych workerach i są kontynuowane.
+
+</Option>
+
+#### cleanStack
+
+<Option type="boolean" default="true">
+
+Usuwaj linie pakietów z `node_modules` ze stack trace'ów niepowodzeń.
+
+</Option>
+
+#### expectationResultHandler
+
+<Option type="Function" default="null">
+
+Wywoływana z argumentami `(passed, assertion)` dla każdego oczekiwania, na przykład w celu zrobienia zrzutu ekranu, gdy oczekiwanie się nie powiedzie. Jeśli funkcja rzuci błąd dla zaliczonego oczekiwania, oczekiwanie zakończy się niepowodzeniem z tym błędem.
+
+</Option>
+
+### Asercje
+
+W Jasmine globalne `expect` łączy matchery Jasmine i [matchery WebdriverIO](/docs/api/expect-webdriverio):
+
+- Matchery Jasmine (`toBe`, `toEqual`, `toHaveBeenCalled`, …) oraz matchery dodane za pomocą `jasmine.addMatchers` są synchroniczne. Zwracają `undefined`, więc nie potrzebujesz `await`.
+- Matchery WebdriverIO, asynchroniczne matchery Jasmine (`toBeResolved`, `toBeRejectedWith`, …) oraz matchery dodane za pomocą `jasmine.addAsyncMatchers` zwracają promise. Zawsze używaj z nimi `await`.
+
+Używaj `expect()` dla obu rodzajów: kieruje on każdy matcher do `expect` lub `expectAsync` Jasmine za ciebie. `await expectAsync($('#logo')).toBeDisplayed()` również działa. W przypadku TypeScriptu `@wdio/jasmine-framework` w `types` udostępnia matchery WebdriverIO także dla `expectAsync()`.
+
+```js
+it('checks the page', async () => {
+    expect([1, 2]).toHaveSize(2)                                   // Jasmine, synchronicznie
+    await expect($('#logo')).toHaveSize({ width: 32, height: 32 }) // WebdriverIO, asynchronicznie
+    await expect(loadData()).toBeResolved()                        // asynchroniczny matcher Jasmine
+})
+```
+
+`toHaveSize` istnieje w obu bibliotekach. Matcher WebdriverIO działa na wartościach WebdriverIO: elemencie, tablicy elementów lub `Element[]` (na przykład wyniku `$$().filter()`), elemencie multi-remote, przeglądarce, kontekście przeglądania, mocku, wrapperze `some()` lub promise, takim jak łańcuchowe `$()`. Matcher Jasmine działa na wszystkich innych wartościach.
+
+Asymetryczne matchery obu bibliotek działają zarówno w matcherach Jasmine, jak i WebdriverIO: `jasmine.any()`, `jasmine.objectContaining()`, `jasmine.stringMatching()`, … oraz `expect.any()`, `expect.stringContaining()`, `expect.oneOf()`, `expect.multiRemote()`, `expect.not.stringContaining()`, …. Aby użyć `some()`, zaimportuj go:
+
+```js
+import { some } from 'expect-webdriverio/api'
+
+await expect(some($$('li'))).toHaveAttribute('data-state', 'on')
+```
+
+Elementy `expect` pochodzące z Jest nie są dostępne w Jasmine: matchery dostępne tylko w Jest, takie jak `toStrictEqual` lub `toHaveLength`, oraz `expect.soft()`. Aby dodać własny matcher, użyj `expect.extend()` w pliku specyfikacji lub w hooku `before` (zobacz [Własne matchery](/docs/custommatchers)) albo `jasmine.addMatchers` dla matchera synchronicznego i `jasmine.addAsyncMatchers` dla matchera asynchronicznego.
+
+W przypadku TypeScriptu dodaj `jasmine` do `types`, zobacz [Konfiguracja TypeScript](/docs/typescript).
+
+## Korzystanie z Cucumber
 
 Najpierw zainstaluj pakiet adaptera z NPM:
 
@@ -268,41 +374,45 @@ npm install @wdio/cucumber-framework --save-dev
 
 Jeśli chcesz używać Cucumber, ustaw właściwość `framework` na `cucumber`, dodając `framework: 'cucumber'` do [pliku konfiguracyjnego](configurationfile).
 
-Opcje dla Cucumber można podać w pliku konfiguracyjnym za pomocą `cucumberOpts`. Sprawdź pełną listę opcji [tutaj](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options).
+Opcje dla Cucumber można podać w pliku konfiguracyjnym za pomocą `cucumberOpts`. Pełną listę opcji znajdziesz [tutaj](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-cucumber-framework#cucumberopts-options). Adapter używa Cucumber 13. Opcja `tagExpression` została usunięta; do filtrowania używaj `tags`. Zobacz [przewodnik migracji do v10](v10-migration#cucumber).
 
-Aby szybko rozpocząć pracę z Cucumber, zapoznaj się z naszym projektem [`cucumber-boilerplate`](https://github.com/webdriverio/cucumber-boilerplate), który zawiera wszystkie definicje kroków, jakich potrzebujesz na start, i będziesz mógł od razu pisać pliki funkcji.
+Aby szybko zacząć pracę z Cucumber, zapoznaj się z naszym projektem [`cucumber-boilerplate`](https://github.com/webdriverio/cucumber-boilerplate), który zawiera wszystkie definicje kroków potrzebne na start, dzięki czemu od razu zaczniesz pisać pliki feature.
 
 ### Opcje Cucumber
 
 Poniższe opcje można zastosować w pliku `wdio.conf.js`, aby skonfigurować środowisko Cucumber za pomocą właściwości `cucumberOpts`:
 
-:::tip Dostosowywanie opcji przez wiersz poleceń
-Opcje `cucumberOpts`, takie jak niestandardowe `tags` do filtrowania testów, można określić za pomocą wiersza poleceń. Można to osiągnąć, używając formatu `cucumberOpts.{nazwaOpcji}="wartość"`.
+:::tip Dostosowywanie opcji z poziomu wiersza poleceń
+Opcje `cucumberOpts`, takie jak własne `tags` do filtrowania testów, można określić z poziomu wiersza poleceń. Robi się to za pomocą formatu `cucumberOpts.{optionName}="value"`.
 
 Na przykład, jeśli chcesz uruchomić tylko testy oznaczone tagiem `@smoke`, możesz użyć następującego polecenia:
 
 ```sh
-# Gdy chcesz uruchomić tylko testy z tagiem "@smoke"
+# Gdy chcesz uruchomić tylko testy posiadające tag "@smoke"
 npx wdio run ./wdio.conf.js --cucumberOpts.tags="@smoke"
 npx wdio run ./wdio.conf.js --cucumberOpts.name="some scenario name" --cucumberOpts.failFast
 ```
 
-To polecenie ustawia opcję `tags` w `cucumberOpts` na `@smoke`, zapewniając, że tylko testy z tym tagiem są wykonywane.
+To polecenie ustawia opcję `tags` w `cucumberOpts` na `@smoke`, dzięki czemu wykonywane są tylko testy z tym tagiem.
 
 :::
 
 #### backtrace
-Pokaż pełny backtrace dla błędów.
 
-Type: `Boolean`<br />
-Default: `true`
+<Option type="Boolean" default="true">
+
+Pokazuj pełny backtrace dla błędów.
+
+</Option>
 
 #### requireModule
-Wymagaj modułów przed wymaganiem jakichkolwiek plików wsparcia.
 
-Type: `string[]`<br />
-Default: `[]`<br />
-Example:
+<Option type="string[]" default="[]">
+
+Wczytaj moduły przed wczytaniem jakichkolwiek plików wspierających.
+
+</Option>
+Przykład:
 
 ```js
 cucumberOpts: {
@@ -321,23 +431,29 @@ cucumberOpts: {
  ```
 
 #### failFast
-Przerwij wykonywanie po pierwszym niepowodzeniu.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Przerwij uruchomienie przy pierwszym niepowodzeniu.
+
+</Option>
 
 #### name
-Wykonuj tylko scenariusze z nazwą pasującą do wyrażenia (powtarzalne).
 
-Type: `RegExp[]`<br />
-Default: `[]`
+<Option type="RegExp[]" default="[]">
+
+Wykonuj tylko scenariusze, których nazwa pasuje do wyrażenia (opcja powtarzalna).
+
+</Option>
 
 #### require
-Wymagaj plików zawierających definicje kroków przed wykonaniem funkcji. Możesz również określić wzorzec glob dla swoich definicji kroków.
 
-Type: `string[]`<br />
-Default: `[]`
-Example:
+<Option type="string[]" default="[]">
+
+Wczytaj pliki zawierające definicje kroków przed wykonaniem feature'ów. Możesz również podać glob do definicji kroków.
+
+</Option>
+Przykład:
 
 ```js
 cucumberOpts: {
@@ -346,11 +462,13 @@ cucumberOpts: {
 ```
 
 #### import
-Ścieżki do miejsc, gdzie znajduje się twój kod wsparcia, dla ESM.
 
-Type: `String[]`<br />
-Default: `[]`
-Example:
+<Option type="String[]" default="[]">
+
+Ścieżki do kodu wspierającego, dla ESM.
+
+</Option>
+Przykład:
 
 ```js
 cucumberOpts: {
@@ -359,152 +477,168 @@ cucumberOpts: {
 ```
 
 #### strict
-Niepowodzenie, jeśli istnieją niezdefiniowane lub oczekujące kroki.
 
-Type: `boolean`<br />
-Default: `false`
+<Option type="boolean" default="false">
+
+Zakończ niepowodzeniem, jeśli istnieją jakiekolwiek niezdefiniowane lub oczekujące kroki.
+
+</Option>
 
 #### tags
-Wykonuj tylko funkcje lub scenariusze z tagami pasującymi do wyrażenia.
-Więcej informacji znajdziesz w [dokumentacji Cucumber](https://docs.cucumber.io/cucumber/api/#tag-expressions).
 
-Type: `String`<br />
-Default: ``
+<Option type="String" default="">
+
+Wykonuj tylko feature'y lub scenariusze z tagami pasującymi do wyrażenia.
+Więcej szczegółów znajdziesz w [dokumentacji Cucumber](https://docs.cucumber.io/cucumber/api/#tag-expressions).
+
+</Option>
 
 #### timeout
+
+<Option type="Number" default="30000">
+
 Limit czasu w milisekundach dla definicji kroków.
 
-Type: `Number`<br />
-Default: `30000`
+</Option>
 
 #### retry
-Określ liczbę ponownych prób nieudanych przypadków testowych.
 
-Type: `Number`<br />
-Default: `0`
+<Option type="Number" default="0">
+
+Określ liczbę ponownych prób dla nieudanych przypadków testowych.
+
+</Option>
 
 #### retryTagFilter
-Powtarzaj tylko funkcje lub scenariusze z tagami pasującymi do wyrażenia (powtarzalne). Ta opcja wymaga określenia '--retry'.
 
-Type: `RegExp`
+<Option type="RegExp">
+
+Ponawiaj tylko feature'y lub scenariusze z tagami pasującymi do wyrażenia (opcja powtarzalna). Ta opcja wymaga podania '--retry'.
+
+</Option>
 
 #### language
-Domyślny język dla twoich plików funkcji
 
-Type: `String`<br />
-Default: `en`
+<Option type="String" default="en">
+
+Domyślny język plików feature
+
+</Option>
 
 #### order
+
+<Option type="String" default="defined">
+
 Uruchamiaj testy w zdefiniowanej / losowej kolejności
 
-Type: `String`<br />
-Default: `defined`
+</Option>
 
 #### format
-Nazwa i ścieżka pliku wyjściowego formatera do użycia.
-WebdriverIO obsługuje głównie tylko [Formatterów](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md), którzy zapisują dane wyjściowe do pliku.
 
-Type: `string[]`<br />
+<Option type="string[]">
+
+Nazwa i ścieżka pliku wyjściowego formatera do użycia.
+WebdriverIO obsługuje przede wszystkim tylko te [formatery](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md), które zapisują dane wyjściowe do pliku.
+
+</Option>
 
 #### formatOptions
-Opcje do dostarczenia formatterom
 
-Type: `object`<br />
+<Option type="object">
+
+Opcje przekazywane do formaterów
+
+</Option>
 
 #### tagsInTitle
-Dodaj tagi cucumber do nazwy funkcji lub scenariusza
 
-Type: `Boolean`<br />
-Default: `false`
+<Option type="Boolean" default="false">
 
-***Proszę zauważyć, że jest to opcja specyficzna dla @wdio/cucumber-framework i nie jest rozpoznawana przez samego cucumber-js***<br/>
+Dodaj tagi cucumber do nazwy feature'a lub scenariusza
+
+</Option>
+***Pamiętaj, że jest to opcja specyficzna dla @wdio/cucumber-framework i nie jest rozpoznawana przez samo cucumber-js***<br/>
 
 #### ignoreUndefinedDefinitions
+
+<Option type="Boolean" default="false">
+
 Traktuj niezdefiniowane definicje jako ostrzeżenia.
 
-Type: `Boolean`<br />
-Default: `false`
-
-***Proszę zauważyć, że jest to opcja specyficzna dla @wdio/cucumber-framework i nie jest rozpoznawana przez samego cucumber-js***<br/>
+</Option>
+***Pamiętaj, że jest to opcja specyficzna dla @wdio/cucumber-framework i nie jest rozpoznawana przez samo cucumber-js***<br/>
 
 #### failAmbiguousDefinitions
+
+<Option type="Boolean" default="false">
+
 Traktuj niejednoznaczne definicje jako błędy.
 
-Type: `Boolean`<br />
-Default: `false`
-
-***Proszę zauważyć, że jest to opcja specyficzna dla @wdio/cucumber-framework i nie jest rozpoznawana przez samego cucumber-js***<br/>
-
-#### tagExpression
-Wykonuj tylko funkcje lub scenariusze z tagami pasującymi do wyrażenia.
-Więcej informacji znajdziesz w [dokumentacji Cucumber](https://docs.cucumber.io/cucumber/api/#tag-expressions).
-
-Type: `String`<br />
-Default: ``
-
-***Proszę zauważyć, że ta opcja będzie przestarzała w przyszłości. Zamiast tego użyj właściwości konfiguracyjnej [`tags`](#tags)***
+</Option>
+***Pamiętaj, że jest to opcja specyficzna dla @wdio/cucumber-framework i nie jest rozpoznawana przez samo cucumber-js***<br/>
 
 #### profile
+
+<Option type="string[]" default="[]">
+
 Określ profil do użycia.
 
-Type: `string[]`<br />
-Default: `[]`
-
-***Uprzejmie zauważ, że tylko określone wartości (worldParameters, name, retryTagFilter) są obsługiwane w profilach, ponieważ `cucumberOpts` ma pierwszeństwo. Dodatkowo, korzystając z profilu, upewnij się, że wymienione wartości nie są zadeklarowane w ramach `cucumberOpts`.***
+</Option>
+***Pamiętaj, że w profilach obsługiwane są tylko określone wartości (worldParameters, name, retryTagFilter), ponieważ `cucumberOpts` ma pierwszeństwo. Ponadto, korzystając z profilu, upewnij się, że wymienione wartości nie są zadeklarowane w `cucumberOpts`.***
 
 ### Pomijanie testów w cucumber
 
-Zauważ, że jeśli chcesz pominąć test za pomocą zwykłych funkcji filtrowania testów Cucumber dostępnych w `cucumberOpts`, zrobisz to dla wszystkich przeglądarek i urządzeń skonfigurowanych w możliwościach. Aby móc pomijać scenariusze tylko dla określonych kombinacji możliwości bez konieczności rozpoczynania sesji, jeśli nie jest to konieczne, webdriverio zapewnia następującą specyficzną składnię tagów dla cucumber:
+Pamiętaj, że jeśli chcesz pominąć test za pomocą standardowych możliwości filtrowania testów cucumber dostępnych w `cucumberOpts`, zrobisz to dla wszystkich przeglądarek i urządzeń skonfigurowanych w capabilities. Aby móc pomijać scenariusze tylko dla określonych kombinacji capabilities bez niepotrzebnego uruchamiania sesji, webdriverio udostępnia następującą specjalną składnię tagów dla cucumber:
 
 `@skip([condition])`
 
-gdzie condition jest opcjonalną kombinacją właściwości capabilities z ich wartościami, które gdy **wszystkie** zostaną dopasowane, spowodują pominięcie oznaczonego scenariusza lub funkcji. Oczywiście możesz dodać kilka tagów do scenariuszy i funkcji, aby pomijać testy w różnych warunkach.
+gdzie condition to opcjonalna kombinacja właściwości capabilities wraz z ich wartościami, które – gdy **wszystkie** zostaną dopasowane – spowodują pominięcie oznaczonego scenariusza lub feature'a. Oczywiście możesz dodać kilka tagów do scenariuszy i feature'ów, aby pomijać testy w kilku różnych warunkach.
 
-Możesz również użyć adnotacji '@skip' do pomijania testów bez zmiany `tagExpression`. W tym przypadku pominięte testy będą wyświetlane w raporcie testowym.
+Możesz także użyć adnotacji '@skip', aby pominąć testy bez zmieniania `tags`. W takim przypadku pominięte testy zostaną wyświetlone w raporcie z testów.
 
 Oto kilka przykładów tej składni:
 - `@skip` lub `@skip()`: zawsze pominie oznaczony element
-- `@skip(browserName="chrome")`: test nie zostanie wykonany na przeglądarkach chrome.
-- `@skip(browserName="firefox";platformName="linux")`: pominie test w wykonaniach firefox na linuxie.
-- `@skip(browserName=["chrome","firefox"])`: oznaczone elementy zostaną pominięte zarówno dla przeglądarek chrome, jak i firefox.
-- `@skip(browserName=/i.*explorer/)`: możliwości z przeglądarkami pasującymi do wyrażenia regularnego zostaną pominięte (jak `iexplorer`, `internet explorer`, `internet-explorer`, ...).
+- `@skip(browserName="chrome")`: test nie zostanie wykonany w przeglądarkach chrome.
+- `@skip(browserName="firefox";platformName="linux")`: pominie test przy wykonaniach w firefox na linuxie.
+- `@skip(browserName=["chrome","firefox"])`: oznaczone elementy zostaną pominięte zarówno dla przeglądarki chrome, jak i firefox.
+- `@skip(browserName=/i.*explorer/)`: capabilities z przeglądarkami pasującymi do wyrażenia regularnego zostaną pominięte (np. `iexplorer`, `internet explorer`, `internet-explorer`, ...).
 
-### Import pomocnika definicji kroków
+### Importowanie helperów definicji kroków
 
-Aby używać pomocnika definicji kroków, takiego jak `Given`, `When` lub `Then` lub hooki, musisz je zaimportować z `@cucumber/cucumber`, np. w ten sposób:
+Aby używać helperów definicji kroków, takich jak `Given`, `When` lub `Then`, albo hooków, należy zaimportować je z `@cucumber/cucumber`, np. w ten sposób:
 
 ```js
 import { Given, When, Then } from '@cucumber/cucumber'
 ```
 
-Teraz, jeśli używasz już Cucumber do innych rodzajów testów niezwiązanych z WebdriverIO, dla których używasz określonej wersji, musisz importować te pomocniki w swoich testach e2e z pakietu WebdriverIO Cucumber, np.:
+Jeśli jednak używasz już Cucumber do innych rodzajów testów niezwiązanych z WebdriverIO, dla których korzystasz z określonej wersji, musisz importować te helpery w testach e2e z pakietu WebdriverIO Cucumber, np.:
 
 ```js
 import { Given, When, Then, world, context } from '@wdio/cucumber-framework'
 ```
 
-Zapewnia to, że używasz właściwych pomocników w ramach frameworka WebdriverIO i pozwala używać niezależnej wersji Cucumber dla innych rodzajów testów.
+Dzięki temu używasz właściwych helperów w ramach frameworka WebdriverIO i możesz korzystać z niezależnej wersji Cucumber dla innych rodzajów testów.
 
 ### Publikowanie raportu
 
-Cucumber oferuje funkcję publikowania raportów z testów na stronie `https://reports.cucumber.io/`, którą można kontrolować albo przez ustawienie flagi `publish` w `cucumberOpts`, albo przez skonfigurowanie zmiennej środowiskowej `CUCUMBER_PUBLISH_TOKEN`. Jednak gdy używasz `WebdriverIO` do wykonywania testów, istnieje ograniczenie w tym podejściu. Aktualizuje ono raporty osobno dla każdego pliku funkcji, co utrudnia przeglądanie skonsolidowanego raportu.
+Cucumber udostępnia funkcję publikowania raportów z uruchomień testów na `https://reports.cucumber.io/`, którą można kontrolować, ustawiając flagę `publish` w `cucumberOpts` lub konfigurując zmienną środowiskową `CUCUMBER_PUBLISH_TOKEN`. Jednak gdy używasz `WebdriverIO` do wykonywania testów, takie podejście ma ograniczenie. Raporty są aktualizowane osobno dla każdego pliku feature, co utrudnia przeglądanie zbiorczego raportu.
 
-Aby rozwiązać to ograniczenie, wprowadziliśmy metodę opartą na promise o nazwie `publishCucumberReport` w `@wdio/cucumber-framework`. Ta metoda powinna być wywoływana w hooku `onComplete`, który jest optymalnym miejscem do jej wywołania. `publishCucumberReport` wymaga wprowadzenia katalogu raportu, w którym przechowywane są raporty komunikatów cucumber.
+Aby obejść to ograniczenie, wprowadziliśmy opartą na promise metodę `publishCucumberReport` w `@wdio/cucumber-framework`. Metodę tę należy wywołać w hooku `onComplete`, który jest optymalnym miejscem do jej wywołania. `publishCucumberReport` wymaga podania katalogu, w którym przechowywane są raporty cucumber message.
 
-Możesz generować raporty `cucumber message` poprzez skonfigurowanie opcji `format` w `cucumberOpts`. Zdecydowanie zaleca się podanie dynamicznej nazwy pliku w opcji formatu `cucumber message`, aby zapobiec nadpisywaniu raportów i zapewnić dokładne rejestrowanie każdego przebiegu testu.
+Raporty `cucumber message` możesz generować, konfigurując opcję `format` w `cucumberOpts`. Zdecydowanie zaleca się podanie dynamicznej nazwy pliku w opcji formatu `cucumber message`, aby zapobiec nadpisywaniu raportów i zapewnić dokładne zarejestrowanie każdego uruchomienia testów.
 
-Przed użyciem tej funkcji upewnij się, że ustawione są następujące zmienne środowiskowe:
-- CUCUMBER_PUBLISH_REPORT_URL: URL, pod którym chcesz opublikować raport Cucumber. Jeśli nie podano, zostanie użyty domyślny URL 'https://messages.cucumber.io/api/reports'.
-- CUCUMBER_PUBLISH_REPORT_TOKEN: Token autoryzacyjny wymagany do publikacji raportu. Jeśli ten token nie jest ustawiony, funkcja zakończy działanie bez publikowania raportu.
+Przed użyciem tej funkcji upewnij się, że ustawiono następujące zmienne środowiskowe:
+- CUCUMBER_PUBLISH_REPORT_URL: URL, pod którym chcesz opublikować raport Cucumber. Jeśli nie zostanie podany, użyty zostanie domyślny URL 'https://messages.cucumber.io/api/reports'.
+- CUCUMBER_PUBLISH_REPORT_TOKEN: Token autoryzacyjny wymagany do opublikowania raportu. Jeśli ten token nie jest ustawiony, funkcja zakończy działanie bez publikowania raportu.
 
-Oto przykład niezbędnych konfiguracji i przykładów kodu do implementacji:
+Oto przykład niezbędnej konfiguracji i fragmentów kodu do implementacji:
 
 ```javascript
 import { v4 as uuidv4 } from 'uuid'
 import { publishCucumberReport } from '@wdio/cucumber-framework';
 
 export const config = {
-    // ... Inne opcje konfiguracyjne
+    // ... Pozostałe opcje konfiguracji
     cucumberOpts: {
         // ... Konfiguracja opcji Cucumber
         format: [
@@ -518,20 +652,20 @@ export const config = {
 }
 ```
 
-Proszę zauważyć, że `./reports/` to katalog, w którym będą przechowywane raporty `cucumber message`.
+Pamiętaj, że `./reports/` to katalog, w którym będą przechowywane raporty `cucumber message`.
 
-## Używanie Serenity/JS
+## Korzystanie z Serenity/JS
 
-[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io) to framework open-source zaprojektowany, aby uczynić testowanie akceptacyjne i regresyjne złożonych systemów oprogramowania szybszym, bardziej współpracującym i łatwiejszym do skalowania.
+[Serenity/JS](https://serenity-js.org?pk_campaign=wdio8&pk_source=webdriver.io) to framework open source zaprojektowany po to, aby testy akceptacyjne i regresyjne złożonych systemów oprogramowania były szybsze, bardziej oparte na współpracy i łatwiejsze do skalowania.
 
-Dla zestawów testowych WebdriverIO, Serenity/JS oferuje:
+Dla zestawów testów WebdriverIO Serenity/JS oferuje:
 - [Rozszerzone raportowanie](https://serenity-js.org/handbook/reporting/?pk_campaign=wdio8&pk_source=webdriver.io) - Możesz używać Serenity/JS
-  jako zamiennika dla dowolnego wbudowanego frameworka WebdriverIO, aby tworzyć szczegółowe raporty z wykonania testów i żywą dokumentację Twojego projektu.
-- [API wzorców Screenplay](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) - Aby twój kod testowy był przenośny i możliwy do ponownego użycia w różnych projektach i zespołach,
-  Serenity/JS oferuje opcjonalną [warstwę abstrakcji](https://serenity-js.org/api/webdriverio?pk_campaign=wdio8&pk_source=webdriver.io) na natywnych API WebdriverIO.
-- [Biblioteki integracyjne](https://serenity-js.org/api/core/?pk_campaign=wdio8&pk_source=webdriver.io) - Dla zestawów testowych, które podążają za wzorcem Screenplay,
-  Serenity/JS zapewnia również opcjonalne biblioteki integracyjne, aby pomóc Ci pisać [testy API](https://serenity-js.org/api/rest/?pk_campaign=wdio8&pk_source=webdriver.io),
-  [zarządzać lokalnymi serwerami](https://serenity-js.org/api/local-server/?pk_campaign=wdio8&pk_source=webdriver.io), [przeprowadzać asercje](https://serenity-js.org/api/assertions/?pk_campaign=wdio8&pk_source=webdriver.io) i wiele więcej!
+  jako bezpośredniego zamiennika dowolnego wbudowanego frameworka WebdriverIO, aby generować szczegółowe raporty z wykonania testów oraz żywą dokumentację projektu.
+- [API wzorca Screenplay](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) - Aby kod testów był przenośny i wielokrotnego użytku w różnych projektach i zespołach,
+  Serenity/JS udostępnia opcjonalną [warstwę abstrakcji](https://serenity-js.org/api/webdriverio?pk_campaign=wdio8&pk_source=webdriver.io) ponad natywnymi API WebdriverIO.
+- [Biblioteki integracyjne](https://serenity-js.org/api/core/?pk_campaign=wdio8&pk_source=webdriver.io) - Dla zestawów testów stosujących wzorzec Screenplay
+  Serenity/JS udostępnia również opcjonalne biblioteki integracyjne, które pomagają pisać [testy API](https://serenity-js.org/api/rest/?pk_campaign=wdio8&pk_source=webdriver.io),
+  [zarządzać lokalnymi serwerami](https://serenity-js.org/api/local-server/?pk_campaign=wdio8&pk_source=webdriver.io), [wykonywać asercje](https://serenity-js.org/api/assertions/?pk_campaign=wdio8&pk_source=webdriver.io) i wiele więcej!
 
 ![Serenity BDD Report Example](/img/serenity-bdd-reporter.png)
 
@@ -563,49 +697,48 @@ import { WebdriverIOConfig } from '@serenity-js/webdriverio';
 
 export const config: WebdriverIOConfig = {
 
-    // Tell WebdriverIO to use Serenity/JS framework
+    // Poinstruuj WebdriverIO, aby używał frameworka Serenity/JS
     framework: '@serenity-js/webdriverio',
 
-    // Serenity/JS configuration
+    // Konfiguracja Serenity/JS
     serenity: {
-        // Configure Serenity/JS to use the appropriate adapter for your test runner
+        // Skonfiguruj Serenity/JS, aby używał odpowiedniego adaptera dla twojego test runnera
         runner: 'cucumber',
         // runner: 'mocha',
         // runner: 'jasmine',
 
-        // Register Serenity/JS reporting services, a.k.a. the "stage crew"
+        // Zarejestruj usługi raportowania Serenity/JS, tzw. "ekipę techniczną" (stage crew)
         crew: [
-            // Optional, print test execution results to standard output
+            // Opcjonalnie: wypisuj wyniki wykonania testów na standardowe wyjście
             '@serenity-js/console-reporter',
 
-            // Optional, produce Serenity BDD reports and living documentation (HTML)
+            // Opcjonalnie: generuj raporty Serenity BDD i żywą dokumentację (HTML)
             '@serenity-js/serenity-bdd',
             [ '@serenity-js/core:ArtifactArchiver', { outputDirectory: 'target/site/serenity' } ],
 
-            // Optional, automatically capture screenshots upon interaction failure
+            // Opcjonalnie: automatycznie rób zrzuty ekranu w przypadku niepowodzenia interakcji
             [ '@serenity-js/web:Photographer', { strategy: 'TakePhotosOfFailures' } ],
         ]
     },
 
-    // Configure your Cucumber runner
+    // Skonfiguruj runner Cucumber
     cucumberOpts: {
-        // see Cucumber configuration options below
+        // zobacz opcje konfiguracji Cucumber poniżej
     },
 
-
-    // ... or Jasmine runner
+    // ... lub runner Jasmine
     jasmineOpts: {
-        // see Jasmine configuration options below
+        // zobacz opcje konfiguracji Jasmine poniżej
     },
 
-    // ... or Mocha runner
+    // ... lub runner Mocha
     mochaOpts: {
-        // see Mocha configuration options below
+        // zobacz opcje konfiguracji Mocha poniżej
     },
 
     runner: 'local',
 
-    // Any other WebdriverIO configuration
+    // Dowolna inna konfiguracja WebdriverIO
 };
 ```
 
@@ -615,17 +748,17 @@ export const config: WebdriverIOConfig = {
 ```typescript title="wdio.conf.js"
 export const config = {
 
-    // Tell WebdriverIO to use Serenity/JS framework
+    // Poinstruuj WebdriverIO, aby używał frameworka Serenity/JS
     framework: '@serenity-js/webdriverio',
 
-    // Serenity/JS configuration
+    // Konfiguracja Serenity/JS
     serenity: {
-        // Configure Serenity/JS to use the appropriate adapter for your test runner
+        // Skonfiguruj Serenity/JS, aby używał odpowiedniego adaptera dla twojego test runnera
         runner: 'cucumber',
         // runner: 'mocha',
         // runner: 'jasmine',
 
-        // Register Serenity/JS reporting services, a.k.a. the "stage crew"
+        // Zarejestruj usługi raportowania Serenity/JS, tzw. "ekipę techniczną" (stage crew)
         crew: [
             '@serenity-js/console-reporter',
             '@serenity-js/serenity-bdd',
@@ -634,25 +767,24 @@ export const config = {
         ]
     },
 
-    // Configure your Cucumber runner
+    // Skonfiguruj runner Cucumber
     cucumberOpts: {
-        // see Cucumber configuration options below
+        // zobacz opcje konfiguracji Cucumber poniżej
     },
 
-
-    // ... or Jasmine runner
+    // ... lub runner Jasmine
     jasmineOpts: {
-        // see Jasmine configuration options below
+        // zobacz opcje konfiguracji Jasmine poniżej
     },
 
-    // ... or Mocha runner
+    // ... lub runner Mocha
     mochaOpts: {
-        // see Mocha configuration options below
+        // zobacz opcje konfiguracji Mocha poniżej
     },
 
     runner: 'local',
 
-    // Any other WebdriverIO configuration
+    // Dowolna inna konfiguracja WebdriverIO
 };
 ```
 
@@ -660,26 +792,26 @@ export const config = {
 </Tabs>
 
 Dowiedz się więcej o:
-- [Opcjach konfiguracji Serenity/JS Cucumber](https://serenity-js.org/api/cucumber-adapter/interface/CucumberConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [Opcjach konfiguracji Serenity/JS Jasmine](https://serenity-js.org/api/jasmine-adapter/interface/JasmineConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [Opcjach konfiguracji Serenity/JS Mocha](https://serenity-js.org/api/mocha-adapter/interface/MochaConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [Opcjach konfiguracji Cucumber w Serenity/JS](https://serenity-js.org/api/cucumber-adapter/interface/CucumberConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [Opcjach konfiguracji Jasmine w Serenity/JS](https://serenity-js.org/api/jasmine-adapter/interface/JasmineConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [Opcjach konfiguracji Mocha w Serenity/JS](https://serenity-js.org/api/mocha-adapter/interface/MochaConfig/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [Pliku konfiguracyjnym WebdriverIO](configurationfile)
 
-### Tworzenie raportów Serenity BDD i żywej dokumentacji
+### Generowanie raportów Serenity BDD i żywej dokumentacji
 
 [Raporty Serenity BDD i żywa dokumentacja](https://serenity-bdd.github.io/docs/reporting/the_serenity_reports) są generowane przez [Serenity BDD CLI](https://github.com/serenity-bdd/serenity-core/tree/main/serenity-cli),
-program Java pobierany i zarządzany przez moduł [`@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io).
+program w Javie pobierany i zarządzany przez moduł [`@serenity-js/serenity-bdd`](https://serenity-js.org/api/serenity-bdd/?pk_campaign=wdio8&pk_source=webdriver.io).
 
-Aby tworzyć raporty Serenity BDD, twój zestaw testowy musi:
-- pobrać Serenity BDD CLI, wywołując `serenity-bdd update`, co lokalnie buforuje CLI `jar`
-- tworzyć pośrednie raporty Serenity BDD `.json`, rejestrując [`SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io) zgodnie z [instrukcjami konfiguracji](#configuring-serenityjs)
-- wywołać Serenity BDD CLI, gdy chcesz wygenerować raport, wywołując `serenity-bdd run`
+Aby generować raporty Serenity BDD, twój zestaw testów musi:
+- pobrać Serenity BDD CLI, wywołując `serenity-bdd update`, co zapisuje plik `jar` CLI lokalnie w pamięci podręcznej
+- generować pośrednie raporty Serenity BDD w formacie `.json`, rejestrując [`SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io) zgodnie z [instrukcjami konfiguracji](#configuring-serenityjs)
+- wywołać Serenity BDD CLI, gdy chcesz wygenerować raport, za pomocą `serenity-bdd run`
 
-Wzorzec używany przez wszystkie [szablony projektów Serenity/JS](https://serenity-js.org/handbook/project-templates/?pk_campaign=wdio8&pk_source=webdriver.io#webdriverio) opiera się
+Wzorzec stosowany we wszystkich [szablonach projektów Serenity/JS](https://serenity-js.org/handbook/project-templates/?pk_campaign=wdio8&pk_source=webdriver.io#webdriverio) opiera się
 na użyciu:
 - skryptu NPM [`postinstall`](https://docs.npmjs.com/cli/v9/using-npm/scripts#life-cycle-operation-order) do pobrania Serenity BDD CLI
-- [`npm-failsafe`](https://www.npmjs.com/package/npm-failsafe) do uruchamiania procesu raportowania nawet jeśli sam zestaw testowy zakończył się niepowodzeniem (co jest dokładnie tym momentem, kiedy najbardziej potrzebujesz raportów testowych...).
-- [`rimraf`](https://www.npmjs.com/package/rimraf) jako wygodnej metody do usuwania raportów testów pozostałych z poprzedniego uruchomienia
+- [`npm-failsafe`](https://www.npmjs.com/package/npm-failsafe) do uruchomienia procesu raportowania nawet wtedy, gdy sam zestaw testów zakończył się niepowodzeniem (czyli właśnie wtedy, gdy raporty z testów są najbardziej potrzebne...).
+- [`rimraf`](https://www.npmjs.com/package/rimraf) jako wygodnego sposobu na usunięcie raportów z testów pozostałych po poprzednim uruchomieniu
 
 ```json title="package.json"
 {
@@ -698,18 +830,18 @@ Aby dowiedzieć się więcej o `SerenityBDDReporter`, zapoznaj się z:
 - przykładami konfiguracji w [dokumentacji API `SerenityBDDReporter`](https://serenity-js.org/api/serenity-bdd/class/SerenityBDDReporter/?pk_campaign=wdio8&pk_source=webdriver.io),
 - [przykładami Serenity/JS na GitHubie](https://github.com/serenity-js/serenity-js/tree/main/examples).
 
-### Używanie API wzorca Screenplay w Serenity/JS
+### Korzystanie z API wzorca Screenplay w Serenity/JS
 
-[Wzorzec Screenplay](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) to innowacyjne, skoncentrowane na użytkowniku podejście do pisania wysokiej jakości zautomatyzowanych testów akceptacyjnych. Kieruje Cię w kierunku efektywnego wykorzystania warstw abstrakcji,
-pomaga Twoim scenariuszom testowym uchwycić biznesowy żargon Twojej domeny i zachęca do dobrych nawyków w testowaniu i inżynierii oprogramowania w Twoim zespole.
+[Wzorzec Screenplay](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io) to innowacyjne, skoncentrowane na użytkowniku podejście do pisania wysokiej jakości automatycznych testów akceptacyjnych. Kieruje cię ono ku efektywnemu wykorzystaniu warstw abstrakcji,
+pomaga twoim scenariuszom testowym oddać język biznesowy twojej domeny i zachęca do dobrych nawyków w zakresie testowania i inżynierii oprogramowania w twoim zespole.
 
-Domyślnie, gdy rejestrujesz `@serenity-js/webdriverio` jako swój `framework` WebdriverIO,
+Domyślnie, gdy zarejestrujesz `@serenity-js/webdriverio` jako `framework` WebdriverIO,
 Serenity/JS konfiguruje domyślną [obsadę](https://serenity-js.org/api/core/class/Cast/?pk_campaign=wdio8&pk_source=webdriver.io) [aktorów](https://serenity-js.org/api/core/class/Actor/?pk_campaign=wdio8&pk_source=webdriver.io),
-gdzie każdy aktor może:
+w której każdy aktor potrafi:
 - [`BrowseTheWebWithWebdriverIO`](https://serenity-js.org/api/webdriverio/class/BrowseTheWebWithWebdriverIO/?pk_campaign=wdio8&pk_source=webdriver.io)
 - [`TakeNotes.usingAnEmptyNotepad()`](https://serenity-js.org/api/core/class/TakeNotes/?pk_campaign=wdio8&pk_source=webdriver.io)
 
-Powinno to wystarczyć, aby pomóc Ci rozpocząć wprowadzanie scenariuszy testowych, które podążają za wzorcem Screenplay, nawet do istniejącego zestawu testów, na przykład:
+To powinno wystarczyć, aby zacząć wprowadzać scenariusze testowe zgodne ze wzorcem Screenplay nawet do istniejącego zestawu testów, na przykład:
 
 ```typescript title="specs/example.spec.ts"
 import { actorCalled } from '@serenity-js/core'
@@ -735,7 +867,7 @@ describe('My awesome website', () => {
 })
 ```
 
-Aby dowiedzieć się więcej o wzorcu Screenplay, sprawdź:
+Aby dowiedzieć się więcej o wzorcu Screenplay, zapoznaj się z:
 - [Wzorzec Screenplay](https://serenity-js.org/handbook/design/screenplay-pattern/?pk_campaign=wdio8&pk_source=webdriver.io)
-- [Testowanie webowe z Serenity/JS](https://serenity-js.org/handbook/web-testing/?pk_campaign=wdio8&pk_source=webdriver.io)
+- [Testowanie aplikacji webowych z Serenity/JS](https://serenity-js.org/handbook/web-testing/?pk_campaign=wdio8&pk_source=webdriver.io)
 - ["BDD in Action, Second Edition"](https://www.manning.com/books/bdd-in-action-second-edition)

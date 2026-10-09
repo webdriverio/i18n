@@ -1,54 +1,53 @@
 ---
 id: sponsor
 title: WebdriverIO प्रायोजक बनें
+description: "एक व्यवसाय या व्यक्ति के रूप में GitHub Sponsors, Tidelift या OpenCollective के माध्यम से WebdriverIO को वित्तीय रूप से समर्थन दें, और टियर के लाभ देखें।"
 ---
 
-WebdriverIO, MIT लाइसेंस के तहत एक ओपन-सोर्स परियोजना है, जो उपयोग के लिए स्वतंत्र रूप से उपलब्ध है। इस विस्तृत पारिस्थितिकी तंत्र की स्थिरता, नवीन सुविधाओं के विकास के साथ-साथ, हमारे प्रायोजकों के उदार वित्तीय समर्थन के माध्यम से संभव है, जो परियोजना के रखरखाव और निरंतर विकास में महत्वपूर्ण योगदान देते हैं।
+WebdriverIO, MIT लाइसेंस के अंतर्गत एक ओपन-सोर्स प्रोजेक्ट है, जो उपयोग के लिए निःशुल्क उपलब्ध है। इस विस्तृत इकोसिस्टम की स्थिरता और नवीन सुविधाओं का विकास हमारे प्रायोजकों के उदार वित्तीय सहयोग से संभव होता है, जो प्रोजेक्ट के रखरखाव और निरंतर विकास में महत्वपूर्ण योगदान देते हैं।
 
-## कैसे प्रायोजित करें​
-प्रायोजन [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) या [OpenCollective](https://opencollective.com/webdriverio) के माध्यम से किया जा सकता है। इनवॉइस GitHub के भुगतान प्रणाली के माध्यम से प्राप्त किए जा सकते हैं। मासिक आवर्ती प्रायोजन और एक-बारगी दान दोनों स्वीकार किए जाते हैं। आवर्ती प्रायोजन प्रायोजन स्तरों में निर्दिष्ट लोगो प्लेसमेंट के हकदार हैं।
+## प्रायोजन कैसे करें​
+प्रायोजन [GitHub Sponsors](https://github.com/sponsors/webdriverio), [Tidelift](enterprise) या [OpenCollective](https://opencollective.com/webdriverio) के माध्यम से किया जा सकता है। इनवॉइस GitHub की भुगतान प्रणाली के माध्यम से प्राप्त किए जा सकते हैं। मासिक आवर्ती प्रायोजन और एकमुश्त दान दोनों स्वीकार किए जाते हैं। आवर्ती प्रायोजक, प्रायोजन टियर में बताए अनुसार लोगो प्रदर्शन के हकदार होते हैं।
 
-यदि आपके पास स्तरों, भुगतान संबंधी जानकारी, या प्रायोजक एक्सपोज़र डेटा के बारे में कोई प्रश्न हैं, तो कृपया [sponsor@webdriver.io](mailto:sponsor@webdriver.io) पर संपर्क करें।
+यदि आपके पास टियर, भुगतान व्यवस्था, या प्रायोजक एक्सपोज़र डेटा से संबंधित कोई प्रश्न हैं, तो कृपया [sponsor@webdriver.io](mailto:sponsor@webdriver.io) पर संपर्क करें।
 
-आप WebdriverIO [Swag Store](https://shop.webdriver.io/) पर भी जा सकते हैं जहां खरीद पर सभी कमाई परियोजना विकास में वापस जाएगी।
+आप WebdriverIO [Swag Store](https://shop.webdriver.io/) पर भी जा सकते हैं, जहाँ खरीदारी से होने वाली सारी कमाई प्रोजेक्ट के विकास में वापस लगाई जाएगी।
 
-## एक व्यवसाय के रूप में WebdriverIO का प्रायोजन​
-WebdriverIO को प्रायोजित करने से आपको हमारी वेबसाइट (प्रति माह 60k+ पेज व्यू) और GitHub परियोजना README के माध्यम से बेहतरीन एक्सपोज़र मिलता है। इसके अतिरिक्त, OSS का समर्थन करने से आपके ब्रांड की प्रतिष्ठा बढ़ती है, जो किसी भी कंपनी के लिए एक महत्वपूर्ण संपत्ति है जो डेवलपर्स के साथ बातचीत करती है।
+## एक व्यवसाय के रूप में WebdriverIO को प्रायोजित करना​
+WebdriverIO को प्रायोजित करने से आपको हमारी वेबसाइट (प्रति माह 60k+ पेज व्यू) और GitHub प्रोजेक्ट README के माध्यम से बेहतरीन एक्सपोज़र मिलता है। इसके अलावा, OSS का समर्थन करने से आपके ब्रांड की प्रतिष्ठा बढ़ती है, जो डेवलपर्स के साथ जुड़ने वाली किसी भी कंपनी के लिए एक महत्वपूर्ण संपत्ति है।
 
-यदि आप राजस्व उत्पन्न करने वाले उत्पाद का परीक्षण करने के लिए WebdriverIO का उपयोग कर रहे हैं, तो WebdriverIO के विकास को प्रायोजित करना व्यावसायिक रूप से समझदारी है: यह सुनिश्चित करता है कि आपका उत्पाद जिस परियोजना पर निर्भर करता है वह स्वस्थ और सक्रिय रूप से बनाए रखा जाए। WebdriverIO समुदाय में एक्सपोज़र और सकारात्मक ब्रांड छवि से WebdriverIO अनुभव वाले डेवलपर्स और QA इंजीनियरों को आकर्षित करना और भर्ती करना भी आसान हो जाता है।
+यदि आप किसी राजस्व-उत्पादक उत्पाद का परीक्षण करने के लिए WebdriverIO का उपयोग कर रहे हैं, तो WebdriverIO के विकास को प्रायोजित करना व्यावसायिक रूप से समझदारी है: इससे यह सुनिश्चित होता है कि जिस प्रोजेक्ट पर आपका उत्पाद निर्भर है, वह स्वस्थ और सक्रिय रूप से अनुरक्षित बना रहे। WebdriverIO समुदाय में एक्सपोज़र और सकारात्मक ब्रांड छवि से WebdriverIO अनुभव वाले डेवलपर्स और QA इंजीनियरों को आकर्षित करना और भर्ती करना भी आसान हो जाता है।
 
-__नोट:__ हम जुआ साइटों, पेपर राइटिंग सेवाओं, राजनीतिक समूहों, नफरत समूहों, वयस्क मनोरंजन साइटों, या किसी अन्य संगठन से दान स्वीकार नहीं करते हैं जिनके बारे में हमारा मानना है कि वे परियोजना के भले के लिए योगदान नहीं दे रहे हैं। हम विज्ञापन प्रदान नहीं करते हैं, हम अपने उपयोगकर्ताओं से वित्तीय सहायता की तलाश में एक ओपन-सोर्स परियोजना हैं।
+__नोट:__ हम जुआ साइटों, पेपर लेखन सेवाओं, राजनीतिक समूहों, घृणा समूहों, वयस्क मनोरंजन साइटों, या किसी अन्य ऐसे संगठन से दान स्वीकार नहीं करते जिसके बारे में हमें विश्वास नहीं है कि वह प्रोजेक्ट की भलाई में योगदान दे रहा है। हम विज्ञापन की पेशकश नहीं करते, हम एक ओपन-सोर्स प्रोजेक्ट हैं जो अपने उपयोगकर्ताओं से वित्तीय सहायता चाहता है।
 
-## एक व्यक्ति के रूप में WebdriverIO का प्रायोजन​
-यदि आप एक व्यक्तिगत उपयोगकर्ता हैं और WebdriverIO का उपयोग करने की उत्पादकता का आनंद लिया है, तो प्रशंसा के प्रतीक के रूप में दान करने पर विचार करें - जैसे कभी-कभी हमें कॉफी खरीदकर देना। हमारे कई टीम सदस्य GitHub Sponsors के माध्यम से प्रायोजन और दान स्वीकार करते हैं।
+## एक व्यक्ति के रूप में WebdriverIO को प्रायोजित करना​
+यदि आप एक व्यक्तिगत उपयोगकर्ता हैं और आपने WebdriverIO का उपयोग करके उत्पादकता का आनंद लिया है, तो सराहना के प्रतीक के रूप में दान करने पर विचार करें - जैसे कभी-कभार हमें कॉफ़ी पिलाना। हमारी टीम के कई सदस्य GitHub Sponsors के माध्यम से प्रायोजन और दान स्वीकार करते हैं।
 
-आप अपने नियोक्ता को एक व्यवसाय के रूप में WebdriverIO को प्रायोजित करने के लिए समझाने का प्रयास भी कर सकते हैं। यह आसान नहीं हो सकता है, लेकिन व्यावसायिक प्रायोजन आमतौर पर OSS परियोजनाओं की स्थिरता पर व्यक्तिगत दान की तुलना में बहुत अधिक प्रभाव डालते हैं, इसलिए यदि आप सफल होते हैं तो आप हमारी बहुत अधिक मदद करेंगे।
+आप अपने नियोक्ता को एक व्यवसाय के रूप में WebdriverIO को प्रायोजित करने के लिए मनाने का भी प्रयास कर सकते हैं। यह आसान नहीं हो सकता, लेकिन व्यावसायिक प्रायोजन आमतौर पर व्यक्तिगत दान की तुलना में OSS प्रोजेक्ट्स की स्थिरता पर कहीं अधिक प्रभाव डालते हैं, इसलिए यदि आप सफल होते हैं तो आप हमारी बहुत अधिक मदद करेंगे।
 
-## प्रायोजन स्तर के लाभ​
+## टियर के लाभ​
 
-- __💎 प्रीमियम (USD $1000/माह या अधिक):__
-  - वैश्विक स्तर पर केवल दो प्रायोजकों तक सीमित
-  - webdriver.io के फ्रंट पेज पर अनन्य अबव-द-फोल्ड लोगो प्लेसमेंट (~2.8k दैनिक अद्वितीय आगंतुक)।
-  - नीचे के स्तरों से सभी स्थानों में सबसे प्रमुख लोगो प्लेसमेंट।
-  - कम से कम एक वर्ष के लिए गारंटीकृत अनन्यता, जिसके दौरान कोई अन्य इकाई उन्हें "आउटबिड" या प्रतिस्थापित नहीं कर सकती है, जिससे साझेदारी और दृश्यता की एक निश्चित अवधि सुनिश्चित होती है।
-- __🥇 गोल्ड (USD $500 / माह):__
-  - [webdriver.io](https://webdriver.io/) के फ्रंट पेज पर बड़ा लोगो प्लेसमेंट
-  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) रिपॉजिटरी के [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) और [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) में बड़ा लोगो प्लेसमेंट।
-- __🥈 सिल्वर (USD $250 / माह):__
-  - इस प्रायोजक पृष्ठ पर मध्यम लोगो प्लेसमेंट
-  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) रिपॉजिटरी के [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) और [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) में मध्यम लोगो प्लेसमेंट।
-- __🥉 ब्रॉन्ज (USD $100 / माह):__
-  - आपका नाम या कंपनी लोगो (छोटा) [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) और [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) फाइलों में रखा जाएगा।
-- __🍺 उदार समर्थक (USD $50 / माह):__
-  - आपका नाम [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) और [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) फाइलों में "उदार समर्थक" अनुभाग के अंतर्गत सूचीबद्ध किया जाएगा।
-- __☕️ व्यक्तिगत समर्थक (USD $5 / माह):__
-  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) रिपॉजिटरी की [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) फाइल में नाम सूचीबद्ध।
-
----
+- __<TierIcon tier="premium" /> प्रीमियम (USD $1000/माह या अधिक):__
+  - विश्व स्तर पर केवल दो प्रायोजकों तक सीमित
+  - webdriver.io के मुख्य पृष्ठ पर (~2.8k दैनिक अद्वितीय आगंतुक) स्क्रॉल किए बिना दिखाई देने वाले हिस्से में विशेष लोगो प्रदर्शन।
+  - नीचे दिए गए टियर के सभी स्थानों में सबसे प्रमुख लोगो प्रदर्शन।
+  - कम से कम एक वर्ष के लिए गारंटीकृत विशिष्टता, जिसके दौरान कोई अन्य संस्था उनसे "अधिक बोली" लगाकर उन्हें प्रतिस्थापित नहीं कर सकती, जिससे साझेदारी और दृश्यता की एक निश्चित अवधि सुनिश्चित होती है।
+- __<TierIcon tier="gold" /> गोल्ड (USD $500 / माह):__
+  - [webdriver.io](https://webdriver.io/) के मुख्य पृष्ठ पर बड़ा लोगो प्रदर्शन
+  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) रिपॉजिटरी की [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) और [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) में बड़ा लोगो प्रदर्शन।
+- __<TierIcon tier="silver" /> सिल्वर (USD $250 / माह):__
+  - इस प्रायोजक पृष्ठ पर मध्यम आकार का लोगो प्रदर्शन
+  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) रिपॉजिटरी की [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) और [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) में मध्यम आकार का लोगो प्रदर्शन।
+- __<TierIcon tier="bronze" /> ब्रॉन्ज़ (USD $100 / माह):__
+  - आपका नाम या कंपनी लोगो (छोटा) [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) और [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) फ़ाइलों में लगाया जाएगा।
+- __<TierIcon tier="backer" /> उदार समर्थक (USD $50 / माह):__
+  - आपका नाम [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio), [`README.md`](https://github.com/webdriverio/webdriverio/blob/main/README.md) और [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) फ़ाइलों में "Generous Backers" अनुभाग के अंतर्गत सूचीबद्ध किया जाएगा।
+- __<TierIcon tier="individual" /> व्यक्तिगत समर्थक (USD $5 / माह):__
+  - [`webdriverio/webdriverio`](https://github.com/webdriverio/webdriverio) रिपॉजिटरी की [`BACKERS.md`](https://github.com/webdriverio/webdriverio/blob/main/BACKERS.md) फ़ाइल में नाम सूचीबद्ध।
 
 ## वर्तमान प्रायोजक
 
-### 💎 प्रीमियम
+### प्रीमियम <TierIcon tier="premium" /> {#premium}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/browserstack_black.svg"
@@ -58,20 +57,20 @@ __नोट:__ हम जुआ साइटों, पेपर राइटि
     link="https://www.browserstack.com/automation-webdriverio"
 />
 
-<br />
-<br />
-
-### 🥇 गोल्ड
-
 <ImageSwitcher
-    lightImageSrc="/img/sponsors/jetify_black.png"
-    darkImageSrc="/img/sponsors/jetify_white.png"
-    alt="Jetify"
-    link="https://www.jetify.com/"
-    width="250"
+    lightImageSrc="/img/sponsors/momentic_black.svg"
+    darkImageSrc="/img/sponsors/momentic_white.svg"
+    alt="Momentic"
     target="_blank"
-    style={{ marginRight: '20px', position: 'relative', top: '8px' }}
+    link="https://momentic.ai/"
+    width="300"
+    style={{ marginLeft: '30px', position: 'relative', top: '6px' }}
 />
+
+<br />
+<br />
+
+### गोल्ड <TierIcon tier="gold" /> {#gold}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testmu_ai_black.svg"
@@ -82,11 +81,11 @@ __नोट:__ हम जुआ साइटों, पेपर राइटि
     width="250"
 />
 
-[गोल्ड स्पॉन्सर](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me) बनें।
+[गोल्ड प्रायोजक](https://opencollective.com/webdriverio/contribute/gold-sponsor-26921/checkout?interval=month&amount=500&contributeAs=me) बनें।
 
 <br />
 
-### 🥈 सिल्वर
+### सिल्वर <TierIcon tier="silver" /> {#silver}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/testingbot.svg"
@@ -97,11 +96,20 @@ __नोट:__ हम जुआ साइटों, पेपर राइटि
     target="_blank"
 />
 
-[सिल्वर स्पॉन्सर](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me) बनें।
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/sap.png"
+    darkImageSrc="/img/sponsors/sap.png"
+    alt="SAP"
+    link="https://www.sap.com/"
+    width="150"
+    target="_blank"
+/>
+
+[सिल्वर प्रायोजक](https://opencollective.com/webdriverio/contribute/silver-sponsor-69223/checkout?interval=month&amount=250&contributeAs=me) बनें।
 
 <br />
 
-### 🥉 ब्रॉन्ज
+### ब्रॉन्ज़ <TierIcon tier="bronze" /> {#bronze}
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/eslint_black.svg"
@@ -121,14 +129,23 @@ __नोट:__ हम जुआ साइटों, पेपर राइटि
     width="150"
 />
 
-[ब्रॉन्ज स्पॉन्सर](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me) बनें।
+<ImageSwitcher
+    lightImageSrc="/img/sponsors/rapidproxy.png"
+    darkImageSrc="/img/sponsors/rapidproxy.png"
+    alt="Rapidproxy"
+    target="_blank"
+    link="https://www.rapidproxy.io/?ref=webdriverio"
+    width="200"
+/>
+
+[ब्रॉन्ज़ प्रायोजक](https://opencollective.com/webdriverio/contribute/bronze-sponsor-69224/checkout?interval=month&amount=100&contributeAs=me) बनें।
 
 <br />
 <br />
 
-### 🙇 उल्लेखनीय पिछले प्रायोजक
+### उल्लेखनीय पूर्व प्रायोजक <TierIcon tier="past" /> {#past}
 
-हम अपने सभी प्रायोजकों के समर्थन के लिए आभारी हैं! यहां कुछ कंपनियां हैं जिन्होंने अतीत में WebdriverIO का समर्थन किया है।
+हम अपने सभी प्रायोजकों के समर्थन के लिए आभारी हैं! यहाँ कुछ ऐसी कंपनियाँ हैं जिन्होंने अतीत में WebdriverIO का समर्थन किया है।
 
 <ImageSwitcher
     lightImageSrc="/img/sponsors/saucelabs_black.svg"

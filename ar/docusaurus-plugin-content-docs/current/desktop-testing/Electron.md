@@ -1,18 +1,19 @@
 ---
 id: electron
-title: إلكترون
+title: Electron
+description: "اختبر تطبيقات Electron باستخدام خدمة WebdriverIO Electron، التي تُعِدّ Chromedriver، وتكتشف الملف التنفيذي لتطبيقك، وتتيح لك محاكاة واجهات برمجة تطبيقات Electron."
 ---
 
-إلكترون هو إطار عمل لبناء تطبيقات سطح المكتب باستخدام جافا سكريبت وHTML وCSS. من خلال تضمين Chromium وNode.js في الملف الثنائي، يسمح إلكترون بالحفاظ على قاعدة شيفرة جافا سكريبت واحدة وإنشاء تطبيقات متعددة المنصات تعمل على ويندوز وماك ولينكس - لا تتطلب خبرة تطوير أصلية.
+Electron هو إطار عمل لبناء تطبيقات سطح المكتب باستخدام JavaScript وHTML وCSS. من خلال تضمين Chromium وNode.js في ملفه التنفيذي، يتيح لك Electron الحفاظ على قاعدة شيفرة JavaScript واحدة وإنشاء تطبيقات متعددة المنصات تعمل على Windows وmacOS وLinux — دون الحاجة إلى أي خبرة في التطوير الأصلي.
 
-يوفر WebdriverIO خدمة متكاملة تبسط التفاعل مع تطبيق إلكترون الخاص بك وتجعل اختباره بسيطًا للغاية. مزايا استخدام WebdriverIO لاختبار تطبيقات إلكترون هي:
+يوفر WebdriverIO خدمة متكاملة تُبسّط التفاعل مع تطبيق Electron الخاص بك وتجعل اختباره سهلاً للغاية. مزايا استخدام WebdriverIO لاختبار تطبيقات Electron هي:
 
 - 🚗 إعداد تلقائي لـ Chromedriver المطلوب
-- 📦 اكتشاف تلقائي لمسار تطبيق إلكترون الخاص بك - يدعم [Electron Forge](https://www.electronforge.io/) و [Electron Builder](https://www.electron.build/)
-- 🧩 الوصول إلى واجهات برمجة إلكترون داخل اختباراتك
-- 🕵️ محاكاة واجهات برمجة إلكترون عبر واجهة برمجة مشابهة لـ Vitest
+- 📦 اكتشاف تلقائي لمسار تطبيق Electron الخاص بك - يدعم [Electron Forge](https://www.electronforge.io/) و[Electron Builder](https://www.electron.build/)
+- 🧩 الوصول إلى واجهات برمجة تطبيقات Electron داخل اختباراتك
+- 🕵️ محاكاة واجهات برمجة تطبيقات Electron عبر واجهة برمجية مشابهة لـ Vitest
 
-تحتاج فقط إلى بضع خطوات بسيطة للبدء. شاهد فيديو البرنامج التعليمي البسيط خطوة بخطوة للبدء من قناة [WebdriverIO YouTube](https://www.youtube.com/@webdriverio):
+تحتاج فقط إلى بضع خطوات بسيطة للبدء. شاهد هذا الفيديو التعليمي البسيط خطوة بخطوة للبدء من قناة [WebdriverIO على YouTube](https://www.youtube.com/@webdriverio):
 
 <LiteYouTubeEmbed
     id="iQNxTdWedk0"
@@ -23,25 +24,25 @@ title: إلكترون
 
 ## البدء
 
-لبدء مشروع WebdriverIO جديد، قم بتشغيل:
+لإنشاء مشروع WebdriverIO جديد، شغّل:
 
 ```sh
 npm create wdio@latest ./
 ```
 
-سيرشدك معالج التثبيت خلال العملية. تأكد من اختيار _"Desktop Testing - of Electron Applications"_ عندما يسألك عن نوع الاختبار الذي ترغب في القيام به. بعد ذلك، قدم المسار إلى تطبيق إلكترون المُجمّع الخاص بك، مثل `./dist`، ثم احتفظ بالإعدادات الافتراضية أو قم بتعديلها حسب تفضيلاتك.
+سيرشدك معالج التثبيت خلال العملية. عندما يُطلب منك تحديد نوع الاختبار الذي ترغب في إجرائه، اختر _"Desktop Testing - of Electron, Tauri, or macOS Applications"_، ثم اختر _Electron_ عند سؤالك عن إطار العمل. بعد ذلك قدّم مسار تطبيق Electron المُجمّع الخاص بك، مثل `./dist`، ثم أبقِ على الإعدادات الافتراضية أو عدّلها حسب تفضيلاتك.
 
-سيقوم معالج التكوين بتثبيت جميع الحزم المطلوبة وإنشاء `wdio.conf.js` أو `wdio.conf.ts` مع التكوين الضروري لاختبار تطبيقك. إذا وافقت على إنشاء بعض ملفات الاختبار تلقائيًا، يمكنك تشغيل أول اختبار لك عبر `npm run wdio`.
+سيقوم معالج الإعداد بتثبيت جميع الحزم المطلوبة وإنشاء ملف `wdio.conf.js` أو `wdio.conf.ts` يحتوي على الإعدادات اللازمة لاختبار تطبيقك. إذا وافقت على إنشاء بعض ملفات الاختبار تلقائيًا، يمكنك تشغيل اختبارك الأول عبر `npm run wdio`.
 
 ## الإعداد اليدوي
 
-إذا كنت تستخدم بالفعل WebdriverIO في مشروعك، يمكنك تخطي معالج التثبيت وإضافة التبعيات التالية فقط:
+إذا كنت تستخدم WebdriverIO بالفعل في مشروعك، يمكنك تخطي معالج التثبيت وإضافة الاعتماديات التالية فقط:
 
 ```sh
-npm install --save-dev wdio-electron-service
+npm install --save-dev @wdio/electron-service
 ```
 
-ثم يمكنك استخدام التكوين التالي:
+ثم يمكنك استخدام الإعدادات التالية:
 
 ```ts
 // wdio.conf.ts
@@ -56,4 +57,4 @@ export const config: WebdriverIO.Config = {
 
 هذا كل شيء 🎉
 
-تعرف على المزيد حول [كيفية تكوين خدمة إلكترون](/docs/desktop-testing/electron/configuration)، [كيفية محاكاة واجهات برمجة إلكترون](/docs/desktop-testing/electron/mocking) و [كيفية الوصول إلى واجهات برمجة إلكترون](/docs/desktop-testing/electron/api).
+تعرّف على المزيد حول [كيفية إعداد خدمة Electron](/docs/desktop-testing/electron/configuration)، و[كيفية محاكاة واجهات برمجة تطبيقات Electron](/docs/desktop-testing/electron/api-reference)، و[كيفية الوصول إلى واجهات برمجة تطبيقات Electron](/docs/desktop-testing/electron/api).

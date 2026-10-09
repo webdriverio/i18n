@@ -1,11 +1,12 @@
 ---
 id: getting-started
 title: البدء
+description: "قم بتثبيت @wdio/ocr-service وتهيئته، وإعداد دعم TypeScript، وضبط خيارات التباين ومجلد الصور واللغة."
 ---
 
 ## التثبيت
 
-أسهل طريقة هي الحفاظ على `@wdio/ocr-service` كتبعية في ملف `package.json` الخاص بك.
+أسهل طريقة هي إضافة `@wdio/ocr-service` كاعتمادية في ملف `package.json` الخاص بك عبر الأمر التالي.
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
@@ -14,20 +15,21 @@ npm install @wdio/ocr-service --save-dev
 يمكن العثور على تعليمات حول كيفية تثبيت `WebdriverIO` [هنا.](../gettingstarted)
 
 :::note
-تستخدم هذه الوحدة Tesseract كمحرك للتعرف البصري على النصوص (OCR). بشكل افتراضي، ستتحقق مما إذا كان لديك تثبيت محلي لـ Tesseract على نظامك، وإذا كان الأمر كذلك، فستستخدمه. إذا لم يكن كذلك، فستستخدم وحدة [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) التي يتم تثبيتها تلقائيًا لك.
+تستخدم هذه الوحدة Tesseract كمحرك OCR. بشكل افتراضي، ستتحقق مما إذا كان Tesseract مثبتًا محليًا على نظامك، وإذا كان كذلك، فستستخدمه. وإن لم يكن، فستستخدم وحدة [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) التي يتم تثبيتها تلقائيًا من أجلك.
 
-إذا كنت ترغب في تسريع معالجة الصور، فالنصيحة هي استخدام إصدار مثبت محليًا من Tesseract. انظر أيضًا [وقت تنفيذ الاختبار](./more-test-optimization#using-a-local-installation-of-tesseract).
+إذا كنت ترغب في تسريع معالجة الصور، فننصحك باستخدام نسخة مثبتة محليًا من Tesseract. راجع أيضًا [وقت تنفيذ الاختبار](./more-test-optimization#using-a-local-installation-of-tesseract).
 :::
 
-يمكن العثور على تعليمات حول كيفية تثبيت Tesseract كتبعية للنظام على نظامك المحلي [هنا](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+يمكن العثور على تعليمات حول كيفية تثبيت Tesseract كاعتمادية نظام على نظامك المحلي [هنا](https://tesseract-ocr.github.io/tessdoc/Installation.html).
 
 :::caution
-للأسئلة/الأخطاء المتعلقة بتثبيت Tesseract، يرجى الرجوع إلى مشروع [Tesseract](https://github.com/tesseract-ocr/tesseract).
+للأسئلة أو الأخطاء المتعلقة بتثبيت Tesseract، يرجى الرجوع إلى مشروع
+[Tesseract](https://github.com/tesseract-ocr/tesseract).
 :::
 
 ## دعم Typescript
 
-تأكد من إضافة `@wdio/ocr-service` إلى ملف تكوين `tsconfig.json` الخاص بك.
+تأكد من إضافة `@wdio/ocr-service` إلى ملف التهيئة `tsconfig.json` الخاص بك.
 
 ```json title="tsconfig.json"
 {
@@ -37,7 +39,7 @@ npm install @wdio/ocr-service --save-dev
 }
 ```
 
-## التكوين
+## التهيئة
 
 لاستخدام الخدمة، تحتاج إلى إضافة `ocr` إلى مصفوفة الخدمات في `wdio.conf.ts`
 
@@ -59,21 +61,18 @@ exports.config = {
 };
 ```
 
-### خيارات التكوين
+### خيارات التهيئة
 
 #### `contrast`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** `0.25`
+<Option type="number" default="0.25" required="No">
 
-كلما ارتفع التباين، كلما أصبحت الصورة أغمق والعكس صحيح. هذا يمكن أن يساعد في العثور على النص في الصورة. يقبل قيم بين `-1` و `1`.
+كلما زاد التباين، أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيمًا بين `-1` و `1`.
 
+</Option>
 #### `imagesFolder`
 
--   **النوع:** `string`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** `{project-root}/.tmp/ocr`
+<Option type="string" default={`{project-root}/.tmp/ocr`} required="No">
 
 المجلد الذي يتم فيه تخزين نتائج OCR.
 
@@ -81,17 +80,17 @@ exports.config = {
 إذا قمت بتوفير `imagesFolder` مخصص، فستضيف الخدمة تلقائيًا المجلد الفرعي `ocr` إليه.
 :::
 
+</Option>
 #### `language`
 
--   **النوع:** `string`
--   **إلزامي:** لا
--   **القيمة الافتراضية:** `eng`
+<Option type="string" default="eng" required="No">
 
 اللغة التي سيتعرف عليها Tesseract. يمكن العثور على مزيد من المعلومات [هنا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) ويمكن العثور على اللغات المدعومة [هنا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 ## السجلات
 
-ستضيف هذه الوحدة تلقائيًا سجلات إضافية إلى سجلات WebdriverIO. تكتب إلى سجلات `INFO` و `WARN` باسم `@wdio/ocr-service`.
+ستضيف هذه الوحدة تلقائيًا سجلات إضافية إلى سجلات WebdriverIO. وهي تكتب في سجلات `INFO` و `WARN` باسم `@wdio/ocr-service`.
 يمكن العثور على أمثلة أدناه.
 
 ```log

@@ -1,22 +1,23 @@
 ---
 id: service-options
 title: Επιλογές Υπηρεσίας
+description: "Ρυθμίστε τις προεπιλεγμένες επιλογές της υπηρεσίας visual, συμπεριλαμβανομένων της λήψης στιγμιότυπων οθόνης, των στιγμιότυπων πλήρους σελίδας, των baselines, των φακέλων και των αναφορών."
 ---
 
-Οι επιλογές υπηρεσίας είναι οι επιλογές που μπορούν να οριστούν κατά την αρχικοποίηση της υπηρεσίας και θα χρησιμοποιούνται για κάθε κλήση μεθόδου.
+Οι επιλογές υπηρεσίας είναι οι επιλογές που μπορούν να οριστούν κατά τη δημιουργία της υπηρεσίας και θα χρησιμοποιούνται σε κάθε κλήση μεθόδου.
 
 ```js
 // wdio.conf.(js|ts)
 export const config = {
     // ...
     // =====
-    // Setup
+    // Ρύθμιση
     // =====
     services: [
         [
             "visual",
             {
-                // The options
+                // Οι επιλογές
             },
         ],
     ],
@@ -24,37 +25,108 @@ export const config = {
 };
 ```
 
-## Default Options
+# Προεπιλεγμένες Επιλογές
 
-### `addressBarShadowPadding`
+## Λήψη στιγμιότυπων οθόνης
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `6`
--   **Supported Application Contexts:** Web
+---
 
-Η αναπλήρωση που πρέπει να προστεθεί στη γραμμή διευθύνσεων στο iOS και Android για να γίνει σωστή περικοπή του προβαλλόμενου τμήματος.
+### `hideScrollBars`
 
-### `autoElementScroll`
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+Απόκρυψη των γραμμών κύλισης στην εφαρμογή. Αν οριστεί σε true, όλες οι γραμμές κύλισης θα απενεργοποιηθούν πριν από τη λήψη ενός στιγμιότυπου οθόνης. Είναι ορισμένο από προεπιλογή σε `true` για την αποφυγή επιπλέον προβλημάτων.
 
-Αυτή η επιλογή σάς επιτρέπει να απενεργοποιήσετε την αυτόματη κύλιση του στοιχείου στην προβολή όταν δημιουργείται ένα στιγμιότυπο οθόνης στοιχείου.
+</Option>
+### `disableBlinkingCursor`
 
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview)">
+
+Ενεργοποίηση/Απενεργοποίηση του "αναβοσβήματος" του κέρσορα σε όλα τα `input`, `textarea`, `[contenteditable]` της εφαρμογής. Αν οριστεί σε `true`, ο κέρσορας θα οριστεί σε `transparent` πριν από τη λήψη ενός στιγμιότυπου οθόνης
+και θα επαναφερθεί όταν ολοκληρωθεί
+
+</Option>
+### `disableCSSAnimation`
+
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview)">
+
+Ενεργοποίηση/Απενεργοποίηση όλων των CSS animations στην εφαρμογή. Αν οριστεί σε `true`, όλα τα animations θα απενεργοποιηθούν πριν από τη λήψη ενός στιγμιότυπου οθόνης
+και θα επαναφερθούν όταν ολοκληρωθεί
+
+</Option>
+### `enableLayoutTesting`
+
+<Option type="boolean" default="false" required="No" contexts="Web">
+
+Αυτό θα αποκρύψει όλο το κείμενο σε μια σελίδα, ώστε να χρησιμοποιηθεί μόνο η διάταξη (layout) για τη σύγκριση. Η απόκρυψη θα γίνει προσθέτοντας το στυλ `'color': 'transparent !important'` σε **κάθε** στοιχείο.
+
+Για την έξοδο δείτε το [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
+
+:::info
+Χρησιμοποιώντας αυτή τη σημαία, κάθε στοιχείο που περιέχει κείμενο (άρα όχι μόνο `p, h1, h2, h3, h4, h5, h6, span, a, li`, αλλά και `div|button|..`) θα λάβει αυτή την ιδιότητα. **Δεν** υπάρχει επιλογή προσαρμογής αυτού.
+:::
+
+</Option>
+### `ignoreRegionPadding`
+
+<Option type="number" default="1" required="No" contexts="Web, Hybrid App (Webview)">
+
+Περιθώριο (padding) σε pixels συσκευής που προστίθεται σε κάθε πλευρά των περιοχών που αγνοούνται, κάνοντας κάθε περιοχή 2× αυτής της τιμής πλατύτερη και ψηλότερη. Αυτό βοηθά στην αποφυγή διαφορών 1 px στα όρια, οι οποίες μπορεί να εμφανιστούν σε οθόνες υψηλού DPR ή με το πρωτόκολλο στιγμιότυπων οθόνης BiDi. Ορίστε σε `0` για απενεργοποίηση.
+
+</Option>
+### `waitForFontsLoaded`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
+
+Οι γραμματοσειρές, συμπεριλαμβανομένων των γραμματοσειρών τρίτων, μπορούν να φορτωθούν συγχρονισμένα ή ασύγχρονα. Η ασύγχρονη φόρτωση σημαίνει ότι οι γραμματοσειρές ενδέχεται να φορτωθούν αφού το WebdriverIO κρίνει ότι μια σελίδα έχει φορτωθεί πλήρως. Για την αποφυγή προβλημάτων απόδοσης γραμματοσειρών, αυτό το module, από προεπιλογή, θα περιμένει να φορτωθούν όλες οι γραμματοσειρές πριν από τη λήψη ενός στιγμιότυπου οθόνης.
+
+</Option>
+## Στιγμιότυπα πλήρους σελίδας
+
+---
+
+### `userBasedFullPageScreenshot`
+
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview) **Introduced in visual-service@7.0.0">
+
+Από προεπιλογή, τα στιγμιότυπα πλήρους σελίδας στο desktop web λαμβάνονται με χρήση του πρωτοκόλλου WebDriver BiDi, το οποίο επιτρέπει γρήγορα, σταθερά και συνεπή στιγμιότυπα οθόνης χωρίς κύλιση.
+Όταν το userBasedFullPageScreenshot οριστεί σε true, η διαδικασία λήψης στιγμιότυπου προσομοιώνει έναν πραγματικό χρήστη: κάνει κύλιση στη σελίδα, λαμβάνει στιγμιότυπα μεγέθους viewport και τα συρράπτει. Αυτή η μέθοδος είναι χρήσιμη για σελίδες με περιεχόμενο lazy-loaded ή δυναμική απόδοση που εξαρτάται από τη θέση κύλισης.
+
+Χρησιμοποιήστε αυτή την επιλογή αν η σελίδα σας βασίζεται σε περιεχόμενο που φορτώνεται κατά την κύλιση ή αν θέλετε να διατηρήσετε τη συμπεριφορά παλαιότερων μεθόδων λήψης στιγμιότυπων.
+
+</Option>
+### `fullPageScrollTimeout`
+
+<Option type="number" default="1500" required="No" contexts="Web">
+
+Το χρονικό όριο σε χιλιοστά του δευτερολέπτου αναμονής μετά από μια κύλιση. Αυτό μπορεί να βοηθήσει στον εντοπισμό σελίδων με lazy loading.
+
+:::info
+
+Αυτό θα λειτουργήσει μόνο όταν η επιλογή υπηρεσίας/μεθόδου `userBasedFullPageScreenshot` έχει οριστεί σε `true`, δείτε επίσης [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedfullpagescreenshot)
+
+:::
+
+</Option>
+## Κινητά & συσκευές
+
+---
+
+### `isHybridApp`
+
+<Option type="boolean" default="false" required="No" contexts="Hybrid App (Webview)">
+
+Ορίστε το σε `true` όταν δοκιμάζετε μια υβριδική εφαρμογή (ένα native κέλυφος με ένα ή περισσότερα ενσωματωμένα webviews). Αυτό προσαρμόζει τον τρόπο με τον οποίο το module χειρίζεται τις αποκοπές της γραμμής κατάστασης και της γραμμής διευθύνσεων για οθόνες βασισμένες σε webview, επιστρέφοντας σε ασφαλείς προεπιλογές όταν τα δεδομένα native ορθογωνίων της συσκευής δεν είναι διαθέσιμα.
+
+</Option>
 ### `addIOSBezelCorners`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-Προσθέστε γωνίες πλαισίου και notch/dynamic island στο στιγμιότυπο οθόνης για συσκευές iOS.
+Προσθήκη γωνιών πλαισίου (bezel) και notch/dynamic island στο στιγμιότυπο οθόνης για συσκευές iOS.
 
-:::info NOTE
-Αυτό μπορεί να γίνει μόνο όταν το όνομα της συσκευής **ΜΠΟΡΕΙ** να προσδιοριστεί αυτόματα και αντιστοιχεί στην ακόλουθη λίστα κανονικοποιημένων ονομάτων συσκευών. Η κανονικοποίηση θα γίνει από αυτή τη μονάδα.
+:::info ΣΗΜΕΙΩΣΗ
+Αυτό μπορεί να γίνει μόνο όταν το όνομα της συσκευής **ΜΠΟΡΕΙ** να προσδιοριστεί αυτόματα και αντιστοιχεί στην ακόλουθη λίστα κανονικοποιημένων ονομάτων συσκευών. Η κανονικοποίηση θα γίνει από αυτό το module.
 **iPhone:**
 
 -   iPhone X: `iphonex`
@@ -77,82 +149,170 @@ export const config = {
 -   iPhone 14 Pro: `iphone14pro`
 -   iPhone 14 Pro Max: `iphone14promax`
     **iPads:**
--   iPad Mini 6th Generation: `ipadmini`
--   iPad Air 4th Generation: `ipadair`
--   iPad Air 5th Generation: `ipadair`
--   iPad Pro (11-inch) 1st Generation: `ipadpro11`
--   iPad Pro (11-inch) 2nd Generation: `ipadpro11`
--   iPad Pro (11-inch) 3rd Generation: `ipadpro11`
--   iPad Pro (12.9-inch) 3rd Generation: `ipadpro129`
--   iPad Pro (12.9-inch) 4th Generation: `ipadpro129`
--   iPad Pro (12.9-inch) 5th Generation: `ipadpro129`
+-   iPad Mini 6ης Γενιάς: `ipadmini`
+-   iPad Air 4ης Γενιάς: `ipadair`
+-   iPad Air 5ης Γενιάς: `ipadair`
+-   iPad Pro (11 ιντσών) 1ης Γενιάς: `ipadpro11`
+-   iPad Pro (11 ιντσών) 2ης Γενιάς: `ipadpro11`
+-   iPad Pro (11 ιντσών) 3ης Γενιάς: `ipadpro11`
+-   iPad Pro (12.9 ιντσών) 3ης Γενιάς: `ipadpro129`
+-   iPad Pro (12.9 ιντσών) 4ης Γενιάς: `ipadpro129`
+-   iPad Pro (12.9 ιντσών) 5ης Γενιάς: `ipadpro129`
 :::
 
-### `autoSaveBaseline`
+</Option>
+### `addressBarShadowPadding`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="number" default="6" required="No" contexts="Web">
 
-Εάν δεν βρεθεί εικόνα αναφοράς κατά τη σύγκριση, η εικόνα αντιγράφεται αυτόματα στον φάκελο αναφοράς.
+Το περιθώριο (padding) που πρέπει να προστεθεί στη γραμμή διευθύνσεων σε iOS και Android για σωστή αποκοπή του viewport.
 
-### `alwaysSaveActualImage`
+</Option>
+### `toolBarShadowPadding`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** All
+<Option type="number" default={`6 for Android and \`15\` for iOS (\`6\` by default and \`9\` will be added automatically for the possible home bar on iPhones with a notch or iPads that have a home bar)`} required="No" contexts="Web">
 
-Όταν ορίζετε αυτήν την επιλογή σε `false`, θα:
+Το περιθώριο (padding) που πρέπει να προστεθεί στη γραμμή εργαλείων σε iOS και Android για σωστή αποκοπή του viewport.
 
-- μην αποθηκεύσει την πραγματική εικόνα όταν δεν υπάρχει διαφορά
-- μην αποθηκεύσει το αρχείο jsonreport όταν το `createJsonReportFiles` έχει οριστεί σε `true`. Θα εμφανίσει επίσης μια προειδοποίηση στα αρχεία καταγραφής ότι το `createJsonReportFiles` είναι απενεργοποιημένο
+</Option>
+## Διαχείριση αρχείων & φακέλων
 
-Αυτό θα πρέπει να δημιουργήσει καλύτερη απόδοση επειδή δεν γράφονται αρχεία στο σύστημα και θα πρέπει να εξασφαλίσει ότι δεν υπάρχει πολύς θόρυβος στο φάκελο `actual`.
+---
 
 ### `baselineFolder`
 
--   **Type:** `string|()=> string`
--   **Mandatory:** No
--   **Default:** `.path/to/testfile/__snapshots__/`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="string|()=> string" default=".path/to/testfile/__snapshots__/" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-Ο κατάλογος που θα περιέχει όλες τις εικόνες αναφοράς που χρησιμοποιούνται κατά τη σύγκριση. Εάν δεν οριστεί, θα χρησιμοποιηθεί η προεπιλεγμένη τιμή που θα αποθηκεύσει τα αρχεία σε έναν φάκελο `__snapshots__/` δίπλα στο spec που εκτελεί τις οπτικές δοκιμές. Μια συνάρτηση που επιστρέφει ένα `string` μπορεί επίσης να χρησιμοποιηθεί για να ορίσει την τιμή `baselineFolder`:
+Ο κατάλογος που θα περιέχει όλες τις εικόνες baseline που χρησιμοποιούνται κατά τη σύγκριση. Αν δεν οριστεί, θα χρησιμοποιηθεί η προεπιλεγμένη τιμή, η οποία θα αποθηκεύει τα αρχεία σε έναν φάκελο `__snapshots__/` δίπλα στο spec που εκτελεί τα visual tests. Μπορεί επίσης να χρησιμοποιηθεί μια συνάρτηση που επιστρέφει ένα `string` για τον ορισμό της τιμής `baselineFolder`:
 
 ```js
 {
     baselineFolder: path.join(process.cwd(), 'foo', 'bar', 'baseline')
 },
-// OR
+// Ή
 {
     baselineFolder: () => {
-        // Do some magic here
+        // Κάντε λίγη μαγεία εδώ
         return path.join(process.cwd(), 'foo', 'bar', 'baseline');
     }
 }
 ```
 
+</Option>
+### `screenshotPath`
+
+<Option type="string | () => string" default=".tmp/" required="no" contexts="Web, Hybrid App (Webview), Native App">
+
+Ο κατάλογος που θα περιέχει όλα τα πραγματικά (actual)/διαφορετικά (diff) στιγμιότυπα οθόνης. Αν δεν οριστεί, θα χρησιμοποιηθεί η προεπιλεγμένη τιμή. Μπορεί επίσης να χρησιμοποιηθεί μια συνάρτηση που
+επιστρέφει ένα string για τον ορισμό της τιμής screenshotPath:
+
+```js
+{
+    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
+},
+// Ή
+{
+    screenshotPath: () => {
+        // Κάντε λίγη μαγεία εδώ
+        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
+    }
+}
+```
+
+</Option>
 ### `clearRuntimeFolder`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="boolean" default="false" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-Διαγραφή φακέλου χρόνου εκτέλεσης (`actual` & `diff`) κατά την αρχικοποίηση
+Διαγραφή του φακέλου χρόνου εκτέλεσης (`actual` & `diff) κατά την αρχικοποίηση
 
-:::info NOTE
-Αυτό θα λειτουργήσει μόνο όταν το [`screenshotPath`](#screenshotpath) έχει οριστεί μέσω των επιλογών του πρόσθετου, και **ΔΕΝ ΘΑ ΛΕΙΤΟΥΡΓΗΣΕΙ** όταν ορίζετε τους φακέλους στις μεθόδους
+:::info ΣΗΜΕΙΩΣΗ
+Αυτό θα λειτουργήσει μόνο όταν το [`screenshotPath`](#screenshotpath) έχει οριστεί μέσω των επιλογών του plugin, και **ΔΕΝ ΘΑ ΛΕΙΤΟΥΡΓΗΣΕΙ** όταν ορίζετε τους φακέλους στις μεθόδους
 :::
 
-### `createJsonReportFiles` **(NEW)**
+</Option>
+### `savePerInstance`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
+<Option type="boolean" default="false" required="no" contexts="Web, Hybrid App (Webview), Native App">
 
-Τώρα έχετε τη δυνατότητα να εξάγετε τα αποτελέσματα σύγκρισης σε ένα αρχείο αναφοράς JSON. Παρέχοντας την επιλογή `createJsonReportFiles: true`, κάθε εικόνα που συγκρίνεται θα δημιουργήσει μια αναφορά που αποθηκεύεται στον φάκελο `actual`, δίπλα σε κάθε αποτέλεσμα εικόνας `actual`. Το αποτέλεσμα θα μοιάζει με αυτό:
+Αποθήκευση των εικόνων ανά instance σε ξεχωριστό φάκελο, ώστε για παράδειγμα όλα τα στιγμιότυπα του Chrome να αποθηκεύονται σε έναν φάκελο Chrome όπως `desktop_chrome`.
+
+</Option>
+### `formatImageName`
+
+<Option type="string" default={`{tag}-{browserName}-{width}x{height}-dpr-{dpr}`} required="No" contexts="Web, Hybrid App (Webview), Native App">
+
+Το όνομα των αποθηκευμένων εικόνων μπορεί να προσαρμοστεί περνώντας την παράμετρο `formatImageName` με ένα string μορφοποίησης όπως:
+
+```sh
+{tag}-{browserName}-{width}x{height}-dpr-{dpr}
+```
+
+Οι ακόλουθες μεταβλητές μπορούν να χρησιμοποιηθούν για τη μορφοποίηση του string και θα διαβαστούν αυτόματα από τα capabilities του instance.
+Αν δεν μπορούν να προσδιοριστούν, θα χρησιμοποιηθούν οι προεπιλογές.
+
+-   `browserName`: Το όνομα του browser στα παρεχόμενα capabilities
+-   `browserVersion`: Η έκδοση του browser που παρέχεται στα capabilities
+-   `deviceName`: Το όνομα της συσκευής από τα capabilities
+-   `dpr`: Ο λόγος pixel της συσκευής (device pixel ratio)
+-   `height`: Το ύψος της οθόνης
+-   `logName`: Το logName από τα capabilities
+-   `mobile`: Αυτό θα προσθέσει `_app`, ή το όνομα του browser μετά το `deviceName` για τη διάκριση των στιγμιότυπων εφαρμογών από τα στιγμιότυπα browser
+-   `platformName`: Το όνομα της πλατφόρμας στα παρεχόμενα capabilities
+-   `platformVersion`: Η έκδοση της πλατφόρμας που παρέχεται στα capabilities
+-   `tag`: Το tag που παρέχεται στις μεθόδους που καλούνται
+-   `width`: Το πλάτος της οθόνης
+
+:::info
+
+Δεν μπορείτε να παρέχετε προσαρμοσμένες διαδρομές/φακέλους στο `formatImageName`. Αν θέλετε να αλλάξετε τη διαδρομή, ελέγξτε την αλλαγή των ακόλουθων επιλογών:
+
+- [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
+- [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
+- [`folderOptions`](/docs/visual-testing/method-options#folder-options) ανά μέθοδο
+
+:::
+
+</Option>
+## Συμπεριφορά baseline & αποθήκευσης
+
+---
+
+### `autoSaveBaseline`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview), Native App">
+
+Αν δεν βρεθεί εικόνα baseline κατά τη σύγκριση, η εικόνα αντιγράφεται αυτόματα στον φάκελο baseline.
+
+</Option>
+### `autoElementScroll`
+
+<Option type="boolean" default="true" required="No" contexts="Web, Hybrid App (Webview)">
+
+Αυτή η επιλογή σας επιτρέπει να απενεργοποιήσετε την αυτόματη κύλιση του στοιχείου ώστε να γίνει ορατό όταν δημιουργείται ένα στιγμιότυπο στοιχείου.
+
+</Option>
+### `alwaysSaveActualImage`
+
+<Option type="boolean" default="true" required="No" contexts="All">
+
+Όταν αυτή η επιλογή οριστεί σε `false`:
+
+- δεν θα αποθηκεύεται η πραγματική εικόνα όταν **δεν** υπάρχει διαφορά
+- δεν θα αποθηκεύεται το αρχείο jsonreport όταν το `createJsonReportFiles` έχει οριστεί σε `true`. Θα εμφανίζεται επίσης μια προειδοποίηση στα logs ότι το `createJsonReportFiles` είναι απενεργοποιημένο
+
+Αυτό θα πρέπει να βελτιώσει την απόδοση, επειδή δεν γράφονται αρχεία στο σύστημα, και θα πρέπει να διασφαλίσει ότι δεν υπάρχει πολύς "θόρυβος" στον φάκελο `actual`.
+
+</Option>
+## Αναφορές
+
+---
+
+### `createJsonReportFiles` **(ΝΕΟ)**
+
+<Option type="boolean" default="false" required="No">
+
+Έχετε πλέον την επιλογή να εξάγετε τα αποτελέσματα σύγκρισης σε ένα αρχείο αναφοράς JSON. Παρέχοντας την επιλογή `createJsonReportFiles: true`, κάθε εικόνα που συγκρίνεται θα δημιουργεί μια αναφορά αποθηκευμένη στον φάκελο `actual`, δίπλα σε κάθε αποτέλεσμα εικόνας `actual`. Η έξοδος θα μοιάζει ως εξής:
 
 ```json
 {
@@ -215,14 +375,14 @@ export const config = {
 }
 ```
 
-Όταν εκτελεστούν όλες οι δοκιμές, θα δημιουργηθεί ένα νέο αρχείο JSON με τη συλλογή των συγκρίσεων που μπορεί να βρεθεί στη ρίζα του φακέλου σας `actual`. Τα δεδομένα ομαδοποιούνται κατά:
+Όταν εκτελεστούν όλα τα tests, θα δημιουργηθεί ένα νέο αρχείο JSON με τη συλλογή των συγκρίσεων, το οποίο μπορεί να βρεθεί στη ρίζα του φακέλου `actual`. Τα δεδομένα ομαδοποιούνται κατά:
 
 -   `describe` για Jasmine/Mocha ή `Feature` για CucumberJS
 -   `it` για Jasmine/Mocha ή `Scenario` για CucumberJS
     και στη συνέχεια ταξινομούνται κατά:
 -   `commandName`, που είναι τα ονόματα των μεθόδων σύγκρισης που χρησιμοποιούνται για τη σύγκριση των εικόνων
--   `instanceData`, πρώτα ο περιηγητής, μετά η συσκευή, μετά η πλατφόρμα
-    θα μοιάζει με αυτό
+-   `instanceData`, πρώτα browser, μετά συσκευή, μετά πλατφόρμα
+    και θα μοιάζει ως εξής
 
 ```json
 [
@@ -265,315 +425,142 @@ export const config = {
 ]
 ```
 
-Τα δεδομένα της αναφοράς θα σας δώσουν την ευκαιρία να δημιουργήσετε τη δική σας οπτική αναφορά χωρίς να κάνετε όλη τη μαγεία και τη συλλογή δεδομένων μόνοι σας.
+Τα δεδομένα της αναφοράς σάς δίνουν τη δυνατότητα να δημιουργήσετε τη δική σας οπτική αναφορά χωρίς να κάνετε μόνοι σας όλη τη "μαγεία" και τη συλλογή δεδομένων.
 
-:::info NOTE
-Πρέπει να χρησιμοποιήσετε την έκδοση `@wdio/visual-testing` 5.2.0 ή νεότερη
+:::info ΣΗΜΕΙΩΣΗ
+Πρέπει να χρησιμοποιείτε το `@wdio/visual-testing` έκδοση `5.2.0` ή νεότερη
 :::
 
-### `disableBlinkingCursor`
+</Option>
+### `diffPixelBoundingBoxProximity`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
+<Option type="number" default="5" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-Ενεργοποίηση/Απενεργοποίηση του "αναβοσβησίματος" του δρομέα σε όλα τα `input`, `textarea`, `[contenteditable]` στην εφαρμογή. Εάν οριστεί σε `true`, ο δρομέας θα οριστεί σε `transparent` πριν τη λήψη ενός στιγμιότυπου οθόνης και θα επαναφερθεί όταν ολοκληρωθεί
+Η εγγύτητα σε pixels που χρησιμοποιείται για την ομαδοποίηση των διαφορετικών pixels στην αναφορά JSON που δημιουργείται από το [`createJsonReportFiles`](#createjsonreportfiles). Υψηλότερες τιμές ομαδοποιούν περισσότερα pixels σε λιγότερα bounding boxes· χαμηλότερες τιμές παράγουν πιο ακριβή αλλά περισσότερα boxes.
 
-### `disableCSSAnimation`
+</Option>
+## Γενικά
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
-
-Ενεργοποίηση/Απενεργοποίηση όλων των CSS animations στην εφαρμογή. Εάν οριστεί σε `true`, όλα τα animations θα απενεργοποιηθούν πριν τη λήψη ενός στιγμιότυπου οθόνης και θα επαναφερθούν όταν ολοκληρωθεί
-
-### `enableLayoutTesting`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web
-
-Αυτό θα αποκρύψει όλο το κείμενο σε μια σελίδα ώστε μόνο η διάταξη θα χρησιμοποιηθεί για σύγκριση. Η απόκρυψη θα γίνει προσθέτοντας το στυλ `'color': 'transparent !important'` σε **κάθε** στοιχείο.
-
-Για το αποτέλεσμα δείτε [Test Output](/docs/visual-testing/test-output#enablelayouttesting)
-
-:::info
-Χρησιμοποιώντας αυτή τη σημαία κάθε στοιχείο που περιέχει κείμενο (όχι μόνο `p, h1, h2, h3, h4, h5, h6, span, a, li`, αλλά και `div|button|..`) θα πάρει αυτήν την ιδιότητα. Δεν υπάρχει **καμία** επιλογή για προσαρμογή αυτού.
-:::
-
-### `formatImageName`
-
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `{tag}-{browserName}-{width}x{height}-dpr-{dpr}`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
-
-Το όνομα των αποθηκευμένων εικόνων μπορεί να προσαρμοστεί περνώντας την παράμετρο `formatImageName` με μια συμβολοσειρά μορφής όπως:
-
-```sh
-{tag}-{browserName}-{width}x{height}-dpr-{dpr}
-```
-
-Οι ακόλουθες μεταβλητές μπορούν να περαστούν για τη μορφοποίηση της συμβολοσειράς και θα διαβαστούν αυτόματα από τις δυνατότητες του στιγμιότυπου.
-Εάν δεν μπορούν να προσδιοριστούν, θα χρησιμοποιηθούν οι προεπιλογές.
-
--   `browserName`: Το όνομα του προγράμματος περιήγησης στις παρεχόμενες δυνατότητες
--   `browserVersion`: Η έκδοση του προγράμματος περιήγησης που παρέχεται στις δυνατότητες
--   `deviceName`: Το όνομα της συσκευής από τις δυνατότητες
--   `dpr`: Η αναλογία pixel της συσκευής
--   `height`: Το ύψος της οθόνης
--   `logName`: Το logName από τις δυνατότητες
--   `mobile`: Αυτό θα προσθέσει `_app`, ή το όνομα του προγράμματος περιήγησης μετά το `deviceName` για να διακρίνει τα στιγμιότυπα οθόνης της εφαρμογής από τα στιγμιότυπα οθόνης του προγράμματος περιήγησης
--   `platformName`: Το όνομα της πλατφόρμας στις παρεχόμενες δυνατότητες
--   `platformVersion`: Η έκδοση της πλατφόρμας που παρέχεται στις δυνατότητες
--   `tag`: Η ετικέτα που παρέχεται στις μεθόδους που καλούνται
--   `width`: Το πλάτος της οθόνης
-
-:::info
-
-Δεν μπορείτε να παρέχετε προσαρμοσμένες διαδρομές/φακέλους στο `formatImageName`. Εάν θέλετε να αλλάξετε τη διαδρομή, τότε ελέγξτε την αλλαγή των ακόλουθων επιλογών:
-
-- [`baselineFolder`](/docs/visual-testing/service-options#baselinefolder)
-- [`screenshotPath`](/docs/visual-testing/service-options#screenshotpath)
-- [`folderOptions`](/docs/visual-testing/method-options#folder-options) ανά μέθοδο
-
-:::
-
-### `fullPageScrollTimeout`
-
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `1500`
--   **Supported Application Contexts:** Web
-
-Το χρονικό όριο σε milliseconds για αναμονή μετά από μια κύλιση. Αυτό μπορεί να βοηθήσει στον εντοπισμό σελίδων με lazy loading.
-
-:::info
-
-Αυτό θα λειτουργήσει μόνο όταν η επιλογή υπηρεσίας/μεθόδου `userBasedFullPageScreenshot` έχει οριστεί σε `true`, δείτε επίσης [`userBasedFullPageScreenshot`](/docs/visual-testing/service-options#userbasedbullpagescreenshot)
-
-:::
-
-### `hideScrollBars`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
-
-Απόκρυψη γραμμών κύλισης στην εφαρμογή. Εάν οριστεί σε true, όλες οι γραμμές κύλισης θα απενεργοποιηθούν πριν τη λήψη ενός στιγμιότυπου οθόνης. Αυτό ορίζεται σε προεπιλεγμένο `true` για την αποφυγή πρόσθετων προβλημάτων.
+---
 
 ### `logLevel`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `info`
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+<Option type="string" default="info" required="No" contexts="Web, Hybrid App (Webview), Native App">
 
-Προσθέτει επιπλέον αρχεία καταγραφής, οι επιλογές είναι `debug | info | warn | silent`
+Προσθέτει επιπλέον logs, οι επιλογές είναι `debug | info | warn | silent`
 
 Τα σφάλματα καταγράφονται πάντα στην κονσόλα.
 
-### `savePerInstance`
+</Option>
+## Επιλογές Tabbable
 
--   **Type:** `boolean`
--   **Default:** `false`
--   **Mandatory:** no
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
+:::info ΣΗΜΕΙΩΣΗ
 
-Αποθηκεύστε τις εικόνες ανά στιγμιότυπο σε ξεχωριστό φάκελο, έτσι για παράδειγμα όλα τα στιγμιότυπα οθόνης Chrome θα αποθηκευτούν σε έναν φάκελο Chrome όπως `desktop_chrome`.
-
-### `screenshotPath`
-
--   **Type:** `string | () => string`
--   **Default:** `.tmp/`
--   **Mandatory:** no
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App
-
-Ο κατάλογος που θα περιέχει όλα τα πραγματικά/διαφορετικά στιγμιότυπα οθόνης. Εάν δεν οριστεί, θα χρησιμοποιηθεί η προεπιλεγμένη τιμή. Μια συνάρτηση που επιστρέφει μια συμβολοσειρά μπορεί επίσης να χρησιμοποιηθεί για να ορίσει την τιμή screenshotPath:
-
-```js
-{
-    screenshotPath: path.join(process.cwd(), 'foo', 'bar', 'screenshotPath')
-},
-// OR
-{
-    screenshotPath: () => {
-        // Do some magic here
-        return path.join(process.cwd(), 'foo', 'bar', 'screenshotPath');
-    }
-}
-```
-
-### `toolBarShadowPadding`
-
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `6` για Android και `15` για iOS (`6` ως προεπιλογή και `9` θα προστεθούν αυτόματα για την πιθανή γραμμή αρχικής σελίδας στα iPhones με notch ή iPads που έχουν γραμμή αρχικής σελίδας)
--   **Supported Application Contexts:** Web
-
-Το padding που πρέπει να προστεθεί στη γραμμή εργαλείων στο iOS και Android για να γίνει σωστή περικοπή του προβαλλόμενου τμήματος.
-
-### `userBasedFullPageScreenshot`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
--   **Supported Application Contexts:** Web, Hybrid App (Webview) **Introduced in visual-service@7.0.0**
-
-Από προεπιλογή, τα στιγμιότυπα οθόνης πλήρους σελίδας στο επιτραπέζιο web λαμβάνονται χρησιμοποιώντας το πρωτόκολλο WebDriver BiDi, το οποίο επιτρέπει γρήγορα, σταθερά και συνεπή στιγμιότυπα οθόνης χωρίς κύλιση.
-Όταν το userBasedFullPageScreenshot είναι ορισμένο σε true, η διαδικασία λήψης στιγμιότυπου οθόνης προσομοιώνει έναν πραγματικό χρήστη: κυλίοντας μέσα από τη σελίδα, λαμβάνοντας στιγμιότυπα οθόνης μεγέθους προβολής και συρράπτοντάς τα. Αυτή η μέθοδος είναι χρήσιμη για σελίδες με περιεχόμενο που φορτώνεται με καθυστέρηση ή δυναμική απόδοση που εξαρτάται από τη θέση κύλισης.
-
-Χρησιμοποιήστε αυτήν την επιλογή εάν η σελίδα σας βασίζεται στο περιεχόμενο που φορτώνεται κατά την κύλιση ή εάν θέλετε να διατηρήσετε τη συμπεριφορά των παλαιότερων μεθόδων λήψης στιγμιότυπων οθόνης.
-
-### `waitForFontsLoaded`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
--   **Supported Application Contexts:** Web, Hybrid App (Webview)
-
-Οι γραμματοσειρές, συμπεριλαμβανομένων των γραμματοσειρών τρίτων, μπορούν να φορτωθούν συγχρονισμένα ή ασύγχρονα. Η ασύγχρονη φόρτωση σημαίνει ότι οι γραμματοσειρές μπορεί να φορτωθούν αφού το WebdriverIO καθορίσει ότι μια σελίδα έχει φορτωθεί πλήρως. Για να αποτρέψετε προβλήματα απόδοσης γραμματοσειρών, αυτή η μονάδα, από προεπιλογή, θα περιμένει να φορτωθούν όλες οι γραμματοσειρές πριν τη λήψη ενός στιγμιότυπου οθόνης.
-
-## Tabbable Options
-
-:::info NOTE
-
-Αυτή η ενότητα υποστηρίζει επίσης τη σχεδίαση του τρόπου με τον οποίο ένας χρήστης θα χρησιμοποιούσε το πληκτρολόγιό του για να περιηγηθεί μέσω του ιστότοπου σχεδιάζοντας γραμμές και κουκκίδες από στοιχείο σε στοιχείο που μπορεί να έχει εστίαση με το tab.<br/>
-Η εργασία είναι εμπνευσμένη από το άρθρο του [Viv Richards](https://github.com/vivrichards600) στο blog του σχετικά με ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
-Ο τρόπος που επιλέγονται τα στοιχεία που μπορούν να έχουν εστίαση με το tab βασίζεται στη μονάδα [tabbable](https://github.com/davidtheclark/tabbable). Εάν υπάρχουν προβλήματα σχετικά με την περιήγηση με tab, ελέγξτε το [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) και ειδικά την ενότητα [More details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
+Αυτό το module υποστηρίζει επίσης τη σχεδίαση του τρόπου με τον οποίο ένας χρήστης θα χρησιμοποιούσε το πληκτρολόγιό του για να μετακινηθεί με _tab_ στον ιστότοπο, σχεδιάζοντας γραμμές και κουκκίδες από στοιχείο σε στοιχείο που μπορεί να λάβει εστίαση με tab.<br/>
+Η εργασία είναι εμπνευσμένη από την ανάρτηση ιστολογίου του [Viv Richards](https://github.com/vivrichards600) σχετικά με το ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).<br/>
+Ο τρόπος επιλογής των tabbable στοιχείων βασίζεται στο module [tabbable](https://github.com/davidtheclark/tabbable). Αν υπάρχουν προβλήματα σχετικά με το tabbing, ελέγξτε το [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) και ειδικά την [ενότητα More details](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details).
 
 :::
 
 ### `tabbableOptions`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 Οι επιλογές που μπορούν να αλλάξουν για τις γραμμές και τις κουκκίδες αν χρησιμοποιείτε τις μεθόδους `{save|check}Tabbable`. Οι επιλογές εξηγούνται παρακάτω.
 
+</Option>
 #### `tabbableOptions.circle`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-Οι επιλογές για να αλλάξετε τον κύκλο.
+Οι επιλογές για την αλλαγή του κύκλου.
 
+</Option>
 ##### `tabbableOptions.circle.backgroundColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 Το χρώμα φόντου του κύκλου.
 
+</Option>
 ##### `tabbableOptions.circle.borderColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 Το χρώμα περιγράμματος του κύκλου.
 
+</Option>
 ##### `tabbableOptions.circle.borderWidth`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-Το πλάτος του περιγράμματος του κύκλου.
+Το πάχος περιγράμματος του κύκλου.
 
+</Option>
 ##### `tabbableOptions.circle.fontColor`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-Το χρώμα της γραμματοσειράς του κειμένου στον κύκλο. Αυτό θα εμφανίζεται μόνο εάν το [`showNumber`](./#tabbableoptionscircleshownumber) έχει οριστεί σε `true`.
+Το χρώμα της γραμματοσειράς του κειμένου μέσα στον κύκλο. Αυτό θα εμφανίζεται μόνο αν το [`showNumber`](./#tabbableoptionscircleshownumber) έχει οριστεί σε `true`.
 
+</Option>
 ##### `tabbableOptions.circle.fontFamily`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-Η οικογένεια της γραμματοσειράς του κειμένου στον κύκλο. Αυτό θα εμφανίζεται μόνο εάν το [`showNumber`](./#tabbableoptionscircleshownumber) έχει οριστεί σε `true`.
+Η οικογένεια της γραμματοσειράς του κειμένου μέσα στον κύκλο. Αυτό θα εμφανίζεται μόνο αν το [`showNumber`](./#tabbableoptionscircleshownumber) έχει οριστεί σε `true`.
 
-Βεβαιωθείτε ότι έχετε ορίσει γραμματοσειρές που υποστηρίζονται από τους περιηγητές.
+Βεβαιωθείτε ότι ορίζετε γραμματοσειρές που υποστηρίζονται από τους browsers.
 
+</Option>
 ##### `tabbableOptions.circle.fontSize`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-Το μέγεθος της γραμματοσειράς του κειμένου στον κύκλο. Αυτό θα εμφανίζεται μόνο εάν το [`showNumber`](./#tabbableoptionscircleshownumber) έχει οριστεί σε `true`.
+Το μέγεθος της γραμματοσειράς του κειμένου μέσα στον κύκλο. Αυτό θα εμφανίζεται μόνο αν το [`showNumber`](./#tabbableoptionscircleshownumber) έχει οριστεί σε `true`.
 
+</Option>
 ##### `tabbableOptions.circle.size`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 Το μέγεθος του κύκλου.
 
+</Option>
 ##### `tabbableOptions.circle.showNumber`
 
--   **Type:** `showNumber`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="showNumber" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-Εμφάνιση του αριθμού ακολουθίας tab στον κύκλο.
+Εμφάνιση του αριθμού της σειράς tab μέσα στον κύκλο.
 
+</Option>
 #### `tabbableOptions.line`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-Οι επιλογές για να αλλάξετε τη γραμμή.
+Οι επιλογές για την αλλαγή της γραμμής.
 
+</Option>
 ##### `tabbableOptions.line.color`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="string" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
 Το χρώμα της γραμμής.
 
+</Option>
 ##### `tabbableOptions.line.width`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%401.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web
+<Option type="number" default="See [here](https://github.com/webdriverio/visual-testing/blob/%40wdio/image-comparison-core%402.0.0/packages/image-comparison-core/src/helpers/options.ts#L27-L86) for all default values" required="No" contexts="Web">
 
-Το πλάτος της γραμμής.
+Το πάχος της γραμμής.
 
-## Compare options
+</Option>
+## Επιλογές σύγκρισης
 
 ### `compareOptions`
 
--   **Type:** `object`
--   **Mandatory:** No
--   **Default:** Δείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) για όλες τις προεπιλεγμένες τιμές
--   **Supported Application Contexts:** Web, Hybrid App (Webview), Native App (Δείτε [Method Compare options](./method-options#compare-check-options) για περισσότερες πληροφορίες)
+<Option type="object" default="See [here](https://github.com/webdriverio/visual-testing/blob/6a988808c9adc58f58c5a66cd74296ae5c1ad6dc/packages/webdriver-image-comparison/src/helpers/options.ts#L46-L60) for all default values" required="No" contexts="Web, Hybrid App (Webview), Native App (See [Method Compare options](./method-options#compare-check-options) for more information)">
 
-Οι επιλογές σύγκρισης μπορούν επίσης να οριστούν ως επιλογές υπηρεσίας, περιγράφονται στις [Method Compare options](/docs/visual-testing/method-options#compare-check-options)
+Οι επιλογές σύγκρισης μπορούν επίσης να οριστούν ως επιλογές υπηρεσίας· περιγράφονται στις [Επιλογές σύγκρισης μεθόδων](/docs/visual-testing/method-options#compare-check-options)
+
+</Option>

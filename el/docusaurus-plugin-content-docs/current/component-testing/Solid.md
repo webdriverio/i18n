@@ -1,13 +1,14 @@
 ---
 id: solid
 title: SolidJS
+description: "Ρυθμίστε τον browser runner του WebdriverIO για ένα έργο SolidJS με το preset solid και γράψτε δοκιμές components που αποδίδονται στη σελίδα."
 ---
 
-[SolidJS](https://www.solidjs.com/) είναι ένα πλαίσιο για τη δημιουργία διεπαφών χρήστη με απλή και αποδοτική αντιδραστικότητα. Μπορείτε να δοκιμάσετε τα συστατικά SolidJS απευθείας σε ένα πραγματικό πρόγραμμα περιήγησης χρησιμοποιώντας το WebdriverIO και το [browser runner](/docs/runner#browser-runner).
+Το [SolidJS](https://www.solidjs.com/) είναι ένα framework για τη δημιουργία διεπαφών χρήστη με απλή και αποδοτική αντιδραστικότητα. Μπορείτε να δοκιμάσετε components του SolidJS απευθείας σε έναν πραγματικό browser χρησιμοποιώντας το WebdriverIO και τον [browser runner](/docs/runner#browser-runner) του.
 
-## Εγκατάσταση
+## Ρύθμιση
 
-Για να ρυθμίσετε το WebdriverIO στο έργο σας SolidJS, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στα έγγραφα δοκιμών συστατικών μας. Βεβαιωθείτε ότι έχετε επιλέξει `solid` ως προεπιλογή στις επιλογές του runner σας, π.χ.:
+Για να ρυθμίσετε το WebdriverIO στο έργο SolidJS σας, ακολουθήστε τις [οδηγίες](/docs/component-testing#set-up) στην τεκμηρίωση για τις δοκιμές components. Βεβαιωθείτε ότι έχετε επιλέξει το `solid` ως preset στις επιλογές του runner σας, π.χ.:
 
 ```js
 // wdio.conf.js
@@ -22,25 +23,25 @@ export const config = {
 
 :::info
 
-Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως διακομιστή ανάπτυξης, μπορείτε επίσης απλά να επαναχρησιμοποιήσετε τη διαμόρφωσή σας στο `vite.config.ts` μέσα στη διαμόρφωση του WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές runner](/docs/runner#runner-options).
+Αν χρησιμοποιείτε ήδη το [Vite](https://vitejs.dev/) ως development server, μπορείτε επίσης απλώς να επαναχρησιμοποιήσετε τη διαμόρφωσή σας από το `vite.config.ts` μέσα στη διαμόρφωση του WebdriverIO. Για περισσότερες πληροφορίες, δείτε το `viteConfig` στις [επιλογές του runner](/docs/runner#runner-options).
 
 :::
 
-Η προεπιλογή SolidJS απαιτεί την εγκατάσταση του `vite-plugin-solid`:
+Το preset του SolidJS απαιτεί την εγκατάσταση του `vite-plugin-solid`:
 
 ```sh npm2yarn
 npm install --save-dev vite-plugin-solid
 ```
 
-Μπορείτε στη συνέχεια να ξεκινήσετε τις δοκιμές εκτελώντας:
+Στη συνέχεια, μπορείτε να ξεκινήσετε τις δοκιμές εκτελώντας:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## Γράφοντας δοκιμές
+## Συγγραφή Δοκιμών
 
-Δεδομένου ότι έχετε το ακόλουθο συστατικό SolidJS:
+Δεδομένου ότι έχετε το ακόλουθο component του SolidJS:
 
 ```html title="./components/Component.tsx"
 import { createSignal } from 'solid-js'
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-Στη δοκιμή σας, χρησιμοποιήστε τη μέθοδο `render` από το `solid-js/web` για να συνδέσετε το συστατικό στη σελίδα δοκιμής. Για να αλληλεπιδράσετε με το συστατικό, προτείνουμε να χρησιμοποιήσετε εντολές WebdriverIO καθώς συμπεριφέρονται πιο κοντά στις πραγματικές αλληλεπιδράσεις χρήστη, π.χ.:
+Στη δοκιμή σας, χρησιμοποιήστε τη μέθοδο `render` από το `solid-js/web` για να προσαρτήσετε το component στη σελίδα δοκιμής. Για να αλληλεπιδράσετε με το component, συνιστούμε να χρησιμοποιείτε εντολές του WebdriverIO, καθώς συμπεριφέρονται πιο κοντά σε πραγματικές αλληλεπιδράσεις χρηστών, π.χ.:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -71,8 +72,8 @@ import App from './components/Component.jsx'
 
 describe('Solid Component Testing', () => {
     /**
-     * ensure we render the component for every test in a
-     * new root container
+     * διασφαλίζουμε ότι αποδίδουμε το component για κάθε δοκιμή σε έναν
+     * νέο root container
      */
     let root: Element
     beforeEach(() => {
@@ -94,4 +95,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-Μπορείτε να βρείτε ένα πλήρες παράδειγμα μιας σουίτας δοκιμών συστατικών WebdriverIO για το SolidJS στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite) μας.
+Μπορείτε να βρείτε ένα πλήρες παράδειγμα σουίτας δοκιμών components του WebdriverIO για το SolidJS στο [αποθετήριο παραδειγμάτων](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite) μας.

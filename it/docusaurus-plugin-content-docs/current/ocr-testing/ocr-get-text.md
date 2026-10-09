@@ -1,9 +1,10 @@
 ---
 id: ocr-get-text
 title: ocrGetText
+description: "Leggi il testo mostrato sullo schermo o in un'area specifica con ocrGetText del servizio OCR."
 ---
 
-Ottieni il testo su un'immagine.
+Ottieni il testo presente in un'immagine.
 
 ### Utilizzo
 
@@ -33,12 +34,11 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 ### `contrast`
 
--   **Tipo:** `number`
--   **Obbligatorio:** no
--   **Predefinito:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Maggiore è il contrasto, più scura è l'immagine e viceversa. Questo può aiutare a trovare testo in un'immagine. Accetta valori tra `-1` e `1`.
+Più alto è il contrasto, più scura sarà l'immagine e viceversa. Questo può aiutare a trovare il testo in un'immagine. Accetta valori compresi tra `-1` e `1`.
 
+</Option>
 #### Esempio
 
 ```js
@@ -47,11 +47,11 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **Tipo:** `number`
--   **Obbligatorio:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Questa è l'area di ricerca nello schermo dove l'OCR deve cercare il testo. Può essere un elemento o un rettangolo contenente `x`, `y`, `width` e `height`
+Questa è l'area di ricerca sullo schermo in cui l'OCR deve cercare il testo. Può essere un elemento o un rettangolo contenente `x`, `y`, `width` e `height`
 
+</Option>
 #### Esempio
 
 ```js
@@ -73,12 +73,11 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **Tipo:** `string`
--   **Obbligatorio:** No
--   **Predefinito:** `eng`
+<Option type="string" default="eng" required="No">
 
-La lingua che Tesseract riconoscerà. Maggiori informazioni possono essere trovate [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate possono essere trovate [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+La lingua che Tesseract riconoscerà. Maggiori informazioni sono disponibili [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate sono disponibili [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Esempio
 
 ```js

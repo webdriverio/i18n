@@ -1,13 +1,14 @@
 ---
 id: solid
 title: SolidJS
+description: "Richten Sie den WebdriverIO Browser-Runner für ein SolidJS-Projekt mit dem solid-Preset ein und schreiben Sie Komponententests, die in die Seite gerendert werden."
 ---
 
-[SolidJS](https://www.solidjs.com/) ist ein Framework zum Erstellen von Benutzeroberflächen mit einfacher und leistungsstarker Reaktivität. Sie können SolidJS-Komponenten direkt in einem echten Browser mit WebdriverIO und seinem [Browser-Runner](/docs/runner#browser-runner) testen.
+[SolidJS](https://www.solidjs.com/) ist ein Framework zum Erstellen von Benutzeroberflächen mit einfacher und performanter Reaktivität. Sie können SolidJS-Komponenten direkt in einem echten Browser mit WebdriverIO und dessen [Browser-Runner](/docs/runner#browser-runner) testen.
 
-## Setup
+## Einrichtung
 
-Um WebdriverIO in Ihrem SolidJS-Projekt einzurichten, folgen Sie den [Anweisungen](/docs/component-testing#set-up) in unserer Komponententest-Dokumentation. Stellen Sie sicher, dass Sie `solid` als Preset in Ihren Runner-Optionen auswählen, z.B.:
+Um WebdriverIO in Ihrem SolidJS-Projekt einzurichten, folgen Sie den [Anweisungen](/docs/component-testing#set-up) in unserer Dokumentation zum Komponententesten. Stellen Sie sicher, dass Sie `solid` als Preset in Ihren Runner-Optionen auswählen, z. B.:
 
 ```js
 // wdio.conf.js
@@ -22,7 +23,7 @@ export const config = {
 
 :::info
 
-Wenn Sie bereits [Vite](https://vitejs.dev/) als Entwicklungsserver verwenden, können Sie Ihre Konfiguration in `vite.config.ts` auch innerhalb Ihrer WebdriverIO-Konfiguration wiederverwenden. Weitere Informationen finden Sie unter `viteConfig` in den [Runner-Optionen](/docs/runner#runner-options).
+Wenn Sie bereits [Vite](https://vitejs.dev/) als Entwicklungsserver verwenden, können Sie auch einfach Ihre Konfiguration aus `vite.config.ts` in Ihrer WebdriverIO-Konfiguration wiederverwenden. Weitere Informationen finden Sie unter `viteConfig` in den [Runner-Optionen](/docs/runner#runner-options).
 
 :::
 
@@ -32,7 +33,7 @@ Das SolidJS-Preset erfordert, dass `vite-plugin-solid` installiert ist:
 npm install --save-dev vite-plugin-solid
 ```
 
-Sie können dann die Tests starten, indem Sie Folgendes ausführen:
+Anschließend können Sie die Tests starten, indem Sie Folgendes ausführen:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-Verwenden Sie in Ihrem Test die `render`-Methode von `solid-js/web`, um die Komponente an die Testseite anzuhängen. Um mit der Komponente zu interagieren, empfehlen wir die Verwendung von WebdriverIO-Befehlen, da diese den tatsächlichen Benutzerinteraktionen näher kommen, z.B.:
+Verwenden Sie in Ihrem Test die `render`-Methode aus `solid-js/web`, um die Komponente an die Testseite anzuhängen. Für die Interaktion mit der Komponente empfehlen wir die Verwendung von WebdriverIO-Befehlen, da diese sich näher an echten Benutzerinteraktionen verhalten, z. B.:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -71,8 +72,8 @@ import App from './components/Component.jsx'
 
 describe('Solid Component Testing', () => {
     /**
-     * ensure we render the component for every test in a
-     * new root container
+     * stellt sicher, dass wir die Komponente für jeden Test in einem
+     * neuen Root-Container rendern
      */
     let root: Element
     beforeEach(() => {
@@ -94,4 +95,4 @@ describe('Solid Component Testing', () => {
 })
 ```
 
-Ein vollständiges Beispiel einer WebdriverIO-Komponententestsuite für SolidJS finden Sie in unserem [Beispiel-Repository](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite).
+Ein vollständiges Beispiel einer WebdriverIO-Komponententest-Suite für SolidJS finden Sie in unserem [Beispiel-Repository](https://github.com/webdriverio/component-testing-examples/tree/main/solidjs-typescript-vite).

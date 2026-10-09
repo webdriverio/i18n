@@ -1,11 +1,12 @@
 ---
 id: ocr-click-on-text
-title: ocrClickOnText (کلیک بر روی متن با OCR)
+title: ocrClickOnText
+description: "با ocrClickOnText بر اساس متن قابل مشاهده روی یک عنصر کلیک کنید؛ این دستور متن را با استفاده از OCR و تطبیق فازی روی صفحه پیدا می‌کند."
 ---
 
-کلیک بر روی یک عنصر بر اساس متن‌های ارائه شده. این دستور متن ارائه شده را جستجو کرده و تلاش می‌کند مطابقتی را براساس منطق فازی از [Fuse.js](https://fusejs.io/) پیدا کند. این بدان معنی است که اگر یک انتخابگر با اشتباه تایپی ارائه دهید، یا متن یافت شده مطابقت ۱۰۰٪ نباشد، همچنان سعی می‌کند عنصری را به شما برگرداند. لاگ‌های زیر را ببینید.
+بر اساس متن‌های ارائه‌شده روی یک عنصر کلیک کنید. این دستور متن ارائه‌شده را جستجو می‌کند و تلاش می‌کند بر اساس منطق فازی (Fuzzy Logic) از [Fuse.js](https://fusejs.io/) یک تطابق پیدا کند. این بدان معناست که اگر سلکتوری با غلط املایی ارائه دهید، یا متن یافت‌شده صددرصد مطابق نباشد، باز هم تلاش می‌کند یک عنصر به شما برگرداند. [لاگ‌ها](#logs) را در ادامه ببینید.
 
-## استفاده
+## نحوه استفاده
 
 ```js
 await browser.ocrClickOnText({ text: "Start3d" });
@@ -24,7 +25,7 @@ await browser.ocrClickOnText({ text: "Start3d" });
 
 ### تصویر
 
-یک تصویر در (پیش‌فرض) [`imagesFolder`](./getting-started#imagesfolder) خود پیدا خواهید کرد که هدفی را نشان می‌دهد که ماژول روی آن کلیک کرده است.
+در [`imagesFolder`](./getting-started#imagesfolder) (پیش‌فرض) خود تصویری با یک نشانگر هدف خواهید یافت که به شما نشان می‌دهد ماژول کجا کلیک کرده است.
 
 ![Process steps](/img/ocr/ocr-click-on-text-target.jpg)
 
@@ -32,11 +33,11 @@ await browser.ocrClickOnText({ text: "Start3d" });
 
 ### `text`
 
--   **نوع:** `string`
--   **اجباری:** بله
+<Option type="string" required="yes">
 
-متنی که می‌خواهید برای کلیک کردن جستجو کنید.
+متنی که می‌خواهید برای کلیک کردن روی آن جستجو کنید.
 
+</Option>
 #### مثال
 
 ```js
@@ -45,29 +46,27 @@ await browser.ocrClickOnText({ text: "WebdriverIO" });
 
 ### `clickDuration`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** `500` میلی‌ثانیه
+<Option type="number" default="500 milliseconds" required="no">
 
-این مدت زمان کلیک است. اگر بخواهید می‌توانید با افزایش زمان، یک "کلیک طولانی" هم ایجاد کنید.
+این مدت زمان کلیک است. در صورت تمایل می‌توانید با افزایش این زمان یک «کلیک طولانی» نیز ایجاد کنید.
 
+</Option>
 #### مثال
 
 ```js
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    clickDuration: 3000, // این ۳ ثانیه است
+    clickDuration: 3000, // This is 3 seconds
 });
 ```
 
 ### `contrast`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-هرچه کنتراست بالاتر باشد، تصویر تاریک‌تر می‌شود و برعکس. این می‌تواند به پیدا کردن متن در تصویر کمک کند. مقادیر بین `-1` و `1` را می‌پذیرد.
+هرچه کنتراست بیشتر باشد، تصویر تیره‌تر می‌شود و برعکس. این می‌تواند به یافتن متن در تصویر کمک کند. این گزینه مقادیری بین `-1` و `1` را می‌پذیرد.
 
+</Option>
 #### مثال
 
 ```js
@@ -79,11 +78,11 @@ await browser.ocrClickOnText({
 
 ### `haystack`
 
--   **نوع:** `number`
--   **اجباری:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-این منطقه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک عنصر یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
+این ناحیه‌ای از صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک عنصر یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
 
+</Option>
 #### مثال
 
 ```js
@@ -92,13 +91,13 @@ await browser.ocrClickOnText({
     haystack: $("elementSelector"),
 });
 
-// یا
+// OR
 await browser.ocrClickOnText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// یا
+// OR
 await browser.ocrClickOnText({
     text: "WebdriverIO",
     haystack: {
@@ -112,29 +111,27 @@ await browser.ocrClickOnText({
 
 ### `language`
 
--   **نوع:** `string`
--   **اجباری:** خیر
--   **پیش‌فرض:** `eng`
+<Option type="string" default="eng" required="No">
 
-زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توان [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) یافت و زبان‌های پشتیبانی شده را می‌توان [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) مشاهده کرد.
+زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) بیابید و زبان‌های پشتیبانی‌شده را می‌توانید [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) پیدا کنید.
 
+</Option>
 #### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    // استفاده از هلندی به عنوان زبان
+    // Use Dutch as a language
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
--   **نوع:** `object`
--   **اجباری:** خیر
+<Option type="object" required="no">
 
-شما می‌توانید نسبت به عنصر مطابق، در صفحه کلیک کنید. این کار می‌تواند بر اساس پیکسل‌های نسبی `above` (بالا)، `right` (راست)، `below` (پایین) یا `left` (چپ) از عنصر مطابق انجام شود.
+می‌توانید نسبت به عنصر منطبق روی صفحه کلیک کنید. این کار بر اساس پیکسل‌های نسبی `above`، `right`، `below` یا `left` از عنصر منطبق انجام می‌شود.
 
 :::note
 
@@ -144,20 +141,21 @@ await browser.ocrClickOnText({
 -   `above` + `left` یا `above` + `right`
 -   `below` + `left` یا `below` + `right`
 
-ترکیب‌های زیر مجاز **نیستند**
+ترکیب‌های زیر **مجاز نیستند**
 
--   `above` به علاوه `below`
--   `left` به علاوه `right`
+-   `above` به همراه `below`
+-   `left` به همراه `right`
 
 :::
 
+</Option>
 #### `relativePosition.above`
 
--   **نوع:** `number`
--   **اجباری:** خیر
+<Option type="number" required="no">
 
-x پیکسل `بالای` عنصر مطابق کلیک کنید.
+به اندازه x پیکسل `above` (بالای) عنصر منطبق کلیک می‌کند.
 
+</Option>
 ##### مثال
 
 ```js
@@ -171,11 +169,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.right`
 
--   **نوع:** `number`
--   **اجباری:** خیر
+<Option type="number" required="no">
 
-x پیکسل `راست` از عنصر مطابق کلیک کنید.
+به اندازه x پیکسل در سمت `right` (راست) عنصر منطبق کلیک می‌کند.
 
+</Option>
 ##### مثال
 
 ```js
@@ -189,11 +187,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.below`
 
--   **نوع:** `number`
--   **اجباری:** خیر
+<Option type="number" required="no">
 
-x پیکسل `پایین` عنصر مطابق کلیک کنید.
+به اندازه x پیکسل `below` (پایین) عنصر منطبق کلیک می‌کند.
 
+</Option>
 ##### مثال
 
 ```js
@@ -207,11 +205,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.left`
 
--   **نوع:** `number`
--   **اجباری:** خیر
+<Option type="number" required="no">
 
-x پیکسل `چپ` از عنصر مطابق کلیک کنید.
+به اندازه x پیکسل در سمت `left` (چپ) عنصر منطبق کلیک می‌کند.
 
+</Option>
 ##### مثال
 
 ```js
@@ -225,16 +223,15 @@ await browser.ocrClickOnText({
 
 ### `fuzzyFindOptions`
 
-شما می‌توانید منطق فازی برای یافتن متن را با گزینه‌های زیر تغییر دهید. این ممکن است به یافتن تطبیق بهتر کمک کند.
+با گزینه‌های زیر می‌توانید منطق فازی برای یافتن متن را تغییر دهید. این ممکن است به یافتن تطابق بهتری کمک کند.
 
 #### `fuzzyFindOptions.distance`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** 100
+<Option type="number" default="100" required="no">
 
-تعیین می‌کند که مطابقت باید چقدر به مکان فازی (مشخص شده توسط location) نزدیک باشد. یک تطابق دقیق حرف که به اندازه مشخص شده کاراکتر از مکان فازی دور باشد، به عنوان عدم مطابقت کامل امتیاز می‌گیرد. فاصله 0 نیاز به تطابق در مکان دقیق مشخص شده دارد. فاصله 1000 نیاز به تطابق کامل در محدوده 800 کاراکتر از مکان با آستانه 0.8 دارد.
+تعیین می‌کند که تطابق چقدر باید به موقعیت فازی (که توسط location مشخص می‌شود) نزدیک باشد. یک تطابق دقیق حرف که به اندازه distance کاراکتر از موقعیت فازی فاصله داشته باشد، به‌عنوان عدم تطابق کامل امتیاز می‌گیرد. مقدار distance برابر با 0 مستلزم آن است که تطابق دقیقاً در موقعیت مشخص‌شده باشد. مقدار distance برابر با 1000 مستلزم آن است که با استفاده از threshold برابر با 0.8، یک تطابق کامل در فاصله 800 کاراکتری از موقعیت قرار داشته باشد تا یافت شود.
 
+</Option>
 ##### مثال
 
 ```js
@@ -248,12 +245,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.location`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** 0
+<Option type="number" default="0" required="no">
 
-تعیین می‌کند که الگو تقریباً کجا در متن باید یافت شود.
+تعیین می‌کند که الگو تقریباً در کجای متن انتظار می‌رود یافت شود.
 
+</Option>
 ##### مثال
 
 ```js
@@ -267,12 +263,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.threshold`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** 0.6
+<Option type="number" default="0.6" required="no">
 
-در چه نقطه‌ای الگوریتم تطبیق تسلیم می‌شود. آستانه 0 به تطابق کامل (هم از نظر حروف و هم مکان) نیاز دارد، آستانه 1.0 با هر چیزی مطابقت خواهد داشت.
+الگوریتم تطابق در چه نقطه‌ای دست از تلاش می‌کشد. threshold برابر با 0 مستلزم تطابق کامل (هم از نظر حروف و هم موقعیت) است، و threshold برابر با 1.0 با هر چیزی تطابق خواهد داشت.
 
+</Option>
 ##### مثال
 
 ```js
@@ -286,12 +281,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **نوع:** `boolean`
--   **اجباری:** خیر
--   **پیش‌فرض:** false
+<Option type="boolean" default="false" required="no">
 
-آیا جستجو باید به بزرگی و کوچکی حروف حساس باشد.
+اینکه آیا جستجو باید به بزرگی و کوچکی حروف حساس باشد یا خیر.
 
+</Option>
 ##### مثال
 
 ```js
@@ -305,12 +299,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** 2
+<Option type="number" default="2" required="no">
 
-فقط تطابق‌هایی که طول آنها از این مقدار بیشتر باشد برگردانده می‌شوند. (به عنوان مثال، اگر می‌خواهید تطابق‌های تک کاراکتری را در نتیجه نادیده بگیرید، آن را روی 2 تنظیم کنید)
+فقط تطابق‌هایی که طول آن‌ها از این مقدار بیشتر باشد برگردانده می‌شوند. (برای مثال، اگر می‌خواهید تطابق‌های تک‌کاراکتری را در نتیجه نادیده بگیرید، آن را روی 2 تنظیم کنید)
 
+</Option>
 ##### مثال
 
 ```js
@@ -324,12 +317,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **نوع:** `number`
--   **اجباری:** خیر
--   **پیش‌فرض:** false
+<Option type="number" default="false" required="no">
 
-وقتی `true` است، تابع تطبیق حتی اگر یک تطابق کامل قبلاً در رشته پیدا شده باشد، تا انتهای الگوی جستجو ادامه می‌دهد.
+وقتی `true` باشد، تابع تطابق حتی اگر یک تطابق کامل قبلاً در رشته پیدا شده باشد، تا انتهای الگوی جستجو ادامه می‌دهد.
 
+</Option>
 ##### مثال
 
 ```js

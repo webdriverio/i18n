@@ -1,11 +1,12 @@
 ---
 id: customreporter
 title: カスタムレポーター
+description: "@wdio/reporter をベースに WDIO テストランナー用のカスタムレポーターを構築し、ランナーイベントを処理して NPM で公開します。"
 ---
 
-WDIOテストランナー用に、あなたのニーズに合わせたカスタムレポーターを作成することができます。そして、それは簡単です！
+WDIO テストランナー用に、ニーズに合わせたカスタムレポーターを独自に作成できます。しかも簡単です！
 
-必要なのは、`@wdio/reporter`パッケージを継承するノードモジュールを作成して、テストからメッセージを受け取れるようにすることだけです。
+必要なのは、`@wdio/reporter` パッケージを継承する node モジュールを作成することだけです。これにより、テストからメッセージを受け取れるようになります。
 
 基本的なセットアップは次のようになります：
 
@@ -15,7 +16,7 @@ import WDIOReporter from '@wdio/reporter'
 export default class CustomReporter extends WDIOReporter {
     constructor(options) {
         /*
-         * デフォルトで出力ストリームに書き込むようにレポーターを設定する
+         * デフォルトでレポーターが出力ストリームに書き込むようにする
          */
         options = Object.assign(options, { stdout: true })
         super(options)
@@ -27,9 +28,10 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-このレポーターを使用するには、設定の`reporter`プロパティに割り当てるだけです。
+このレポーターを使用するには、設定の `reporter` プロパティに割り当てるだけです。
 
-あなたの`wdio.conf.js`ファイルは次のようになるはずです：
+
+`wdio.conf.js` ファイルは次のようになります：
 
 ```js
 import CustomReporter from './reporter/my.custom.reporter'
@@ -38,13 +40,13 @@ export const config = {
     // ...
     reporters: [
         /**
-         * インポートしたレポータークラスを使用
+         * インポートしたレポータークラスを使用する
          */
         [CustomReporter, {
             someOption: 'foobar'
         }],
         /**
-         * レポーターへの絶対パスを使用
+         * レポーターへの絶対パスを使用する
          */
         ['/path/to/reporter.js', {
             someOption: 'foobar'
@@ -54,13 +56,13 @@ export const config = {
 }
 ```
 
-レポーターをNPMに公開して、誰もが使えるようにすることもできます。パッケージ名は他のレポーターと同様に`wdio-<reportername>-reporter`のようにし、`wdio`や`wdio-reporter`などのキーワードでタグ付けしてください。
+レポーターを NPM で公開して、誰でも使えるようにすることもできます。パッケージ名は他のレポーターと同様に `wdio-<reportername>-reporter` とし、`wdio` や `wdio-reporter` などのキーワードでタグ付けしてください。
 
-## イベントハンドラー
+## Event Handler
 
-テスト中に発生するいくつかのイベントに対してイベントハンドラーを登録できます。以下のすべてのハンドラーは、現在の状態と進行状況に関する有用な情報を含むペイロードを受け取ります。
+テスト中にトリガーされるさまざまなイベントに対して、イベントハンドラーを登録できます。以下のすべてのハンドラーは、現在の状態や進行状況に関する有用な情報を含むペイロードを受け取ります。
 
-これらのペイロードオブジェクトの構造はイベントによって異なりますが、フレームワーク（Mocha、Jasmine、Cucumber）間で統一されています。カスタムレポーターを実装すると、すべてのフレームワークで動作するはずです。
+これらのペイロードオブジェクトの構造はイベントによって異なりますが、フレームワーク（Mocha、Jasmine、Cucumber）間で統一されています。カスタムレポーターを一度実装すれば、すべてのフレームワークで動作するはずです。
 
 以下のリストには、レポータークラスに追加できるすべてのメソッドが含まれています：
 
@@ -84,9 +86,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-メソッド名はかなり自明です。
+メソッド名を見れば、その役割はほぼ明らかです。
 
-特定のイベントで何かを出力するには、親クラス`WDIOReporter`によって提供される`this.write(...)`メソッドを使用してください。これは内容を`stdout`またはログファイル（レポーターのオプションによる）にストリーミングします。
+特定のイベントで何かを出力するには、親クラスである `WDIOReporter` が提供する `this.write(...)` メソッドを使用します。このメソッドは、（レポーターのオプションに応じて）コンテンツを `stdout` またはログファイルにストリームします。
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -98,15 +100,15 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-テスト実行を遅らせることはできないことに注意してください。
+テストの実行をいかなる方法でも遅延させることはできない点に注意してください。
 
-すべてのイベントハンドラは同期的なルーチンを実行する必要があります（そうしないと競合状態に陥る可能性があります）。
+すべてのイベントハンドラーは同期的な処理を実行する必要があります（そうしないと競合状態が発生します）。
 
-[サンプルセクション](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio)をぜひ確認してください。そこには各イベントのイベント名を出力するカスタムレポーターの例があります。
+各イベントでイベント名を出力するカスタムレポーターの例が掲載されている[サンプルセクション](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio)もぜひご確認ください。
 
-コミュニティにとって有用なカスタムレポーターを実装した場合は、ぜひプルリクエストを送ってください。そうすれば、そのレポーターを一般に公開することができます！
+コミュニティにとって役立つカスタムレポーターを実装した場合は、遠慮なくプルリクエストを作成してください。そのレポーターを一般公開できるようにします！
 
-また、`Launcher`インターフェースを介してWDIO testrunnerを実行する場合、次のようにカスタムレポーターを関数として適用することはできません：
+また、`Launcher` インターフェースを介して WDIO テストランナーを実行する場合、次のようにカスタムレポーターを関数として適用することはできません：
 
 ```js
 import Launcher from '@wdio/cli'
@@ -114,14 +116,14 @@ import Launcher from '@wdio/cli'
 import CustomReporter from './reporter/my.custom.reporter'
 
 const launcher = new Launcher('/path/to/config.file.js', {
-    // これは動作しません、CustomReporterはシリアライズできないため
+    // CustomReporter はシリアライズできないため、これは動作しません
     reporters: ['dot', CustomReporter]
 })
 ```
 
-## `isSynchronised`までの待機
+## `isSynchronised` まで待機する
 
-レポーターがデータを報告するために非同期操作を実行する必要がある場合（例：ログファイルやその他のアセットのアップロード）、カスタムレポーターの`isSynchronised`メソッドをオーバーライドして、すべての処理が完了するまでWebdriverIOランナーを待機させることができます。この例は[`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts)で見ることができます：
+レポーターがデータを報告するために非同期処理（例：ログファイルやその他のアセットのアップロード）を実行する必要がある場合、カスタムレポーターで `isSynchronised` メソッドをオーバーライドすることで、すべての処理が完了するまで WebdriverIO ランナーを待機させることができます。この例は [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts) で確認できます：
 
 ```js
 export default class SumoLogicReporter extends WDIOReporter {
@@ -133,14 +135,14 @@ export default class SumoLogicReporter extends WDIOReporter {
     }
 
     /**
-     * isSynchronisedメソッドをオーバーライド
+     * isSynchronised メソッドをオーバーライドする
      */
     get isSynchronised () {
         return this.unsynced.length === 0
     }
 
     /**
-     * ログファイルを同期
+     * ログファイルを同期する
      */
     sync () {
         // ...
@@ -151,7 +153,7 @@ export default class SumoLogicReporter extends WDIOReporter {
         }, (err, resp) => {
             // ...
             /**
-             * 転送されたログをログバケットから削除
+             * 転送済みのログをログバケットから削除する
              */
             this.unsynced.splice(0, MAX_LINES)
             // ...
@@ -162,19 +164,19 @@ export default class SumoLogicReporter extends WDIOReporter {
 
 これにより、ランナーはすべてのログ情報がアップロードされるまで待機します。
 
-## レポーターをNPMで公開する
+## NPM でレポーターを公開する
 
-WebdriverIOコミュニティがレポーターを簡単に利用して発見できるようにするために、以下の推奨事項に従ってください：
+WebdriverIO コミュニティがレポーターを利用・発見しやすくするために、以下の推奨事項に従ってください：
 
-* サービスは次の命名規則を使用する必要があります：`wdio-*-reporter`
-* NPMキーワードを使用する：`wdio-plugin`、`wdio-reporter`
-* `main`エントリはレポーターのインスタンスを`export`する必要があります
+* サービスは次の命名規則を使用してください：`wdio-*-reporter`
+* NPM キーワードを使用してください：`wdio-plugin`、`wdio-reporter`
+* `main` エントリーはレポーターのインスタンスを `export` する必要があります
 * レポーターの例：[`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
-推奨される命名パターンに従うことで、名前でサービスを追加できます：
+推奨される命名パターンに従うことで、名前でサービスを追加できるようになります：
 
 ```js
-// wdio-custom-reporterを追加
+// wdio-custom-reporter を追加
 export const config = {
     // ...
     reporter: ['custom'],
@@ -182,11 +184,11 @@ export const config = {
 }
 ```
 
-### 公開されたサービスをWDIO CLIとドキュメントに追加する
+### 公開したサービスを WDIO CLI とドキュメントに追加する
 
-他の人がより良いテストを実行するのに役立つ新しいプラグインを高く評価しています！そのようなプラグインを作成した場合は、見つけやすくするために、CLIとドキュメントに追加することを検討してください。
+他の人がより良いテストを実行するのに役立つ新しいプラグインはどれも大歓迎です！そのようなプラグインを作成した場合は、見つけやすくするために CLI とドキュメントへの追加をご検討ください。
 
 以下の変更を含むプルリクエストを作成してください：
 
-- CLIモジュールの[サポートされているレポーターのリスト](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)にサービスを追加する
-- 公式Webdriver.ioページにドキュメントを追加するために[レポーターリスト](https://github.com/webdriverio/webdriverio/blob/main/scripts/docs-generation/3rd-party/reporters.json)を拡張する
+- CLI モジュールの[サポートされているレポーター](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91))のリストにサービスを追加する
+- 公式の Webdriver.io ページにドキュメントを追加するために、[レポーターリスト](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json)を拡張する

@@ -1,9 +1,10 @@
 ---
 id: ocr-get-text
 title: ocrGetText
+description: "Считывайте текст, отображаемый на экране или в определённой области, с помощью ocrGetText из OCR-сервиса."
 ---
 
-Получить текст с изображения.
+Получение текста с изображения.
 
 ### Использование
 
@@ -29,16 +30,15 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 [0-0] 2024-05-25T17:38:26.738Z INFO webdriver: RESULT VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube
 ```
 
-## Опции
+## Параметры
 
 ### `contrast`
 
--   **Тип:** `number`
--   **Обязательный:** нет
--   **По умолчанию:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-Чем выше контраст, тем темнее изображение и наоборот. Это может помочь найти текст на изображении. Принимает значения от `-1` до `1`.
+Чем выше контрастность, тем темнее изображение, и наоборот. Это может помочь найти текст на изображении. Принимает значения от `-1` до `1`.
 
+</Option>
 #### Пример
 
 ```js
@@ -47,11 +47,11 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 ### `haystack`
 
--   **Тип:** `number`
--   **Обязательный:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Это область поиска на экране, где OCR должен искать текст. Это может быть элемент или прямоугольник, содержащий `x`, `y`, `width` и `height`
+Это область поиска на экране, в которой OCR должен искать текст. Это может быть элемент или прямоугольник, содержащий `x`, `y`, `width` и `height`
 
+</Option>
 #### Пример
 
 ```js
@@ -73,18 +73,17 @@ await browser.ocrGetText({
 
 ### `language`
 
--   **Тип:** `string`
--   **Обязательный:** Нет
--   **По умолчанию:** `eng`
+<Option type="string" default="eng" required="No">
 
-Язык, который Tesseract будет распознавать. Дополнительную информацию можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а поддерживаемые языки можно найти [здесь](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Язык, который будет распознавать Tesseract. Дополнительную информацию можно найти [здесь](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions), а список поддерживаемых языков — [здесь](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### Пример
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // Использовать голландский язык
+    // Использовать нидерландский язык
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```

@@ -1,9 +1,10 @@
 ---
 id: ocr-click-on-text
 title: ocrClickOnText
+description: "انقر على عنصر من خلال نصه المرئي باستخدام ocrClickOnText، الذي يعثر على النص على الشاشة باستخدام OCR والمطابقة التقريبية."
 ---
 
-انقر على عنصر بناءً على النصوص المقدمة. سيبحث الأمر عن النص المقدم ويحاول العثور على تطابق بناءً على المنطق الضبابي من [Fuse.js](https://fusejs.io/). هذا يعني أنه إذا قدمت محدد به خطأ مطبعي، أو كان النص الموجود لا يتطابق بنسبة 100%، فسيحاول مع ذلك إرجاع عنصر. انظر [السجلات](#logs) أدناه.
+انقر على عنصر بناءً على النصوص المقدمة. سيبحث الأمر عن النص المقدم ويحاول العثور على تطابق بناءً على المنطق التقريبي (Fuzzy Logic) من [Fuse.js](https://fusejs.io/). هذا يعني أنه إذا قدمت محددًا يحتوي على خطأ إملائي، أو إذا لم يكن النص الذي تم العثور عليه مطابقًا بنسبة 100%، فسيظل يحاول إرجاع عنصر لك. راجع [السجلات](#logs) أدناه.
 
 ## الاستخدام
 
@@ -24,19 +25,19 @@ await browser.ocrClickOnText({ text: "Start3d" });
 
 ### الصورة
 
-ستجد صورة في (مجلد الصور الافتراضي) [`imagesFolder`](./getting-started#imagesfolder) مع هدف يوضح لك أين نقرت الوحدة.
+ستجد صورة في مجلد (الافتراضي)[`imagesFolder`](./getting-started#imagesfolder) تحتوي على علامة هدف توضح لك المكان الذي نقرت عليه الوحدة.
 
-![خطوات العملية](/img/ocr/ocr-click-on-text-target.jpg)
+![Process steps](/img/ocr/ocr-click-on-text-target.jpg)
 
 ## الخيارات
 
 ### `text`
 
--   **النوع:** `string`
--   **إلزامي:** نعم
+<Option type="string" required="yes">
 
 النص الذي تريد البحث عنه للنقر عليه.
 
+</Option>
 #### مثال
 
 ```js
@@ -45,29 +46,27 @@ await browser.ocrClickOnText({ text: "WebdriverIO" });
 
 ### `clickDuration`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **الافتراضي:** `500` مللي ثانية
+<Option type="number" default="500 milliseconds" required="no">
 
-هذه هي مدة النقر. إذا أردت يمكنك أيضًا إنشاء "نقرة طويلة" عن طريق زيادة الوقت.
+هذه هي مدة النقرة. يمكنك أيضًا إنشاء "نقرة طويلة" عن طريق زيادة الوقت إذا أردت.
 
+</Option>
 #### مثال
 
 ```js
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    clickDuration: 3000, // هذا 3 ثوانٍ
+    clickDuration: 3000, // This is 3 seconds
 });
 ```
 
 ### `contrast`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **الافتراضي:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-كلما زاد التباين، كلما أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على نص في صورة. يقبل قيمًا بين `-1` و `1`.
+كلما زاد التباين، أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيمًا بين `-1` و `1`.
 
+</Option>
 #### مثال
 
 ```js
@@ -79,11 +78,11 @@ await browser.ocrClickOnText({
 
 ### `haystack`
 
--   **النوع:** `number`
--   **إلزامي:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-هذه هي منطقة البحث في الشاشة حيث يحتاج OCR للبحث عن النص. يمكن أن يكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
+هذه هي منطقة البحث في الشاشة التي يحتاج OCR إلى البحث فيها عن النص. يمكن أن تكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
 
+</Option>
 #### مثال
 
 ```js
@@ -92,13 +91,13 @@ await browser.ocrClickOnText({
     haystack: $("elementSelector"),
 });
 
-// أو
+// OR
 await browser.ocrClickOnText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// أو
+// OR
 await browser.ocrClickOnText({
     text: "WebdriverIO",
     haystack: {
@@ -112,35 +111,33 @@ await browser.ocrClickOnText({
 
 ### `language`
 
--   **النوع:** `string`
--   **إلزامي:** لا
--   **الافتراضي:** `eng`
+<Option type="string" default="eng" required="No">
 
 اللغة التي سيتعرف عليها Tesseract. يمكن العثور على مزيد من المعلومات [هنا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) ويمكن العثور على اللغات المدعومة [هنا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
+</Option>
 #### مثال
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrClickOnText({
     text: "WebdriverIO",
-    // استخدم الهولندية كلغة
+    // Use Dutch as a language
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `relativePosition`
 
--   **النوع:** `object`
--   **إلزامي:** لا
+<Option type="object" required="no">
 
-يمكنك النقر على الشاشة بالنسبة إلى العنصر المطابق. يمكن أن يتم ذلك بناءً على البكسل النسبي `above` أو `right` أو `below` أو `left` من العنصر المطابق
+يمكنك النقر على الشاشة بالنسبة إلى العنصر المطابق. يمكن القيام بذلك بناءً على عدد البكسلات النسبية `above` (أعلى) أو `right` (يمين) أو `below` (أسفل) أو `left` (يسار) من العنصر المطابق
 
 :::note
 
 التركيبات التالية مسموح بها
 
--   خصائص فردية
+-   خصائص منفردة
 -   `above` + `left` أو `above` + `right`
 -   `below` + `left` أو `below` + `right`
 
@@ -151,13 +148,14 @@ await browser.ocrClickOnText({
 
 :::
 
+</Option>
 #### `relativePosition.above`
 
--   **النوع:** `number`
--   **إلزامي:** لا
+<Option type="number" required="no">
 
-انقر على بُعد x بكسل `فوق` العنصر المطابق.
+انقر على بُعد x بكسل `above` (أعلى) العنصر المطابق.
 
+</Option>
 ##### مثال
 
 ```js
@@ -171,11 +169,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.right`
 
--   **النوع:** `number`
--   **إلزامي:** لا
+<Option type="number" required="no">
 
-انقر على بُعد x بكسل `إلى اليمين` من العنصر المطابق.
+انقر على بُعد x بكسل `right` (يمين) العنصر المطابق.
 
+</Option>
 ##### مثال
 
 ```js
@@ -189,11 +187,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.below`
 
--   **النوع:** `number`
--   **إلزامي:** لا
+<Option type="number" required="no">
 
-انقر على بُعد x بكسل `أدناه` العنصر المطابق.
+انقر على بُعد x بكسل `below` (أسفل) العنصر المطابق.
 
+</Option>
 ##### مثال
 
 ```js
@@ -207,11 +205,11 @@ await browser.ocrClickOnText({
 
 #### `relativePosition.left`
 
--   **النوع:** `number`
--   **إلزامي:** لا
+<Option type="number" required="no">
 
-انقر على بُعد x بكسل `إلى اليسار` من العنصر المطابق.
+انقر على بُعد x بكسل `left` (يسار) العنصر المطابق.
 
+</Option>
 ##### مثال
 
 ```js
@@ -225,16 +223,15 @@ await browser.ocrClickOnText({
 
 ### `fuzzyFindOptions`
 
-يمكنك تغيير المنطق الضبابي للعثور على نص باستخدام الخيارات التالية. قد يساعد ذلك في العثور على تطابق أفضل
+يمكنك تعديل المنطق التقريبي للعثور على النص باستخدام الخيارات التالية. قد يساعد ذلك في العثور على تطابق أفضل
 
 #### `fuzzyFindOptions.distance`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **الافتراضي:** 100
+<Option type="number" default="100" required="no">
 
-يحدد مدى قرب المطابقة من موقع البحث الضبابي (المحدد بواسطة location). المطابقة الحرفية الدقيقة التي تبعد مسافة أحرف عن موقع البحث الضبابي ستسجل كعدم تطابق كامل. مسافة 0 تتطلب أن تكون المطابقة في الموقع المحدد بالضبط. مسافة 1000 ستتطلب تطابقًا مثاليًا ليكون ضمن 800 حرف من الموقع ليتم العثور عليه باستخدام عتبة 0.8.
+يحدد مدى قرب التطابق المطلوب من الموقع التقريبي (المحدد بواسطة location). أي تطابق تام للأحرف يبعد بمقدار distance حرفًا عن الموقع التقريبي سيُحتسب على أنه عدم تطابق كامل. تتطلب المسافة 0 أن يكون التطابق في الموقع المحدد بالضبط. وتتطلب المسافة 1000 أن يكون التطابق التام ضمن 800 حرف من الموقع ليتم العثور عليه باستخدام عتبة 0.8.
 
+</Option>
 ##### مثال
 
 ```js
@@ -248,12 +245,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.location`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **الافتراضي:** 0
+<Option type="number" default="0" required="no">
 
-يحدد تقريبًا أين في النص من المتوقع أن يُعثر على النمط.
+يحدد تقريبًا المكان في النص الذي يُتوقع العثور على النمط فيه.
 
+</Option>
 ##### مثال
 
 ```js
@@ -267,12 +263,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.threshold`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **الافتراضي:** 0.6
+<Option type="number" default="0.6" required="no">
 
-عند أي نقطة يستسلم خوارزمية المطابقة. عتبة 0 تتطلب تطابقًا مثاليًا (للأحرف والموقع)، وعتبة 1.0 ستتطابق مع أي شيء.
+النقطة التي تتوقف عندها خوارزمية المطابقة. تتطلب العتبة 0 تطابقًا تامًا (لكل من الأحرف والموقع)، بينما تطابق العتبة 1.0 أي شيء.
 
+</Option>
 ##### مثال
 
 ```js
@@ -286,12 +281,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **النوع:** `boolean`
--   **إلزامي:** لا
--   **الافتراضي:** false
+<Option type="boolean" default="false" required="no">
 
 ما إذا كان البحث يجب أن يكون حساسًا لحالة الأحرف.
 
+</Option>
 ##### مثال
 
 ```js
@@ -305,12 +299,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **الافتراضي:** 2
+<Option type="number" default="2" required="no">
 
-فقط المطابقات التي يتجاوز طولها هذه القيمة سيتم إرجاعها. (على سبيل المثال، إذا كنت تريد تجاهل مطابقات الحرف الواحد في النتيجة، اضبطها على 2)
+سيتم إرجاع التطابقات التي يتجاوز طولها هذه القيمة فقط. (على سبيل المثال، إذا كنت تريد تجاهل التطابقات المكونة من حرف واحد في النتيجة، فاضبطها على 2)
 
+</Option>
 ##### مثال
 
 ```js
@@ -324,12 +317,11 @@ await browser.ocrClickOnText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **النوع:** `number`
--   **إلزامي:** لا
--   **الافتراضي:** false
+<Option type="number" default="false" required="no">
 
-عندما تكون `true`، ستستمر وظيفة المطابقة حتى نهاية نمط البحث حتى إذا تم تحديد مطابقة مثالية بالفعل في السلسلة.
+عند ضبطها على `true`، ستستمر دالة المطابقة حتى نهاية نمط البحث حتى لو تم العثور بالفعل على تطابق تام في السلسلة النصية.
 
+</Option>
 ##### مثال
 
 ```js

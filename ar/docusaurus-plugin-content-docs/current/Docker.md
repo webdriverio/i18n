@@ -1,12 +1,13 @@
 ---
 id: docker
-title: دوكر
+title: Docker
+description: "شغّل مجموعة اختبارات WebdriverIO الخاصة بك داخل حاوية Docker مع متصفح مثبت مسبقًا للحصول على نتائج متسقة عبر الأجهزة المختلفة."
 ---
 
-دوكر هو تقنية حاويات قوية تسمح بتغليف مجموعة اختباراتك في حاوية تعمل بنفس الطريقة على كل نظام. يمكن أن يساعد ذلك في تجنب المشكلات بسبب اختلاف إصدارات المتصفح أو المنصة. لتشغيل اختباراتك داخل حاوية، قم بإنشاء ملف `Dockerfile` في دليل مشروعك، على سبيل المثال:
+Docker هي تقنية حاويات قوية تتيح لك تغليف مجموعة اختباراتك داخل حاوية تتصرف بالطريقة نفسها على كل نظام. يمكن لذلك أن يجنّبك عدم استقرار الاختبارات الناتج عن اختلاف إصدارات المتصفح أو المنصة. لتشغيل اختباراتك داخل حاوية، أنشئ ملف `Dockerfile` في مجلد مشروعك، على سبيل المثال:
 
 ```Dockerfile
-FROM selenium/standalone-chrome:134.0-20250323 # Change the browser and version according to your needs
+FROM selenium/standalone-chrome:134.0-20250323 # غيّر المتصفح والإصدار حسب احتياجاتك
 WORKDIR /app
 ADD . /app
 
@@ -15,17 +16,17 @@ RUN npm install
 CMD npx wdio
 ```
 
-تأكد من عدم تضمين `node_modules` في صورة دوكر الخاصة بك وقم بتثبيتها عند بناء الصورة. لذلك أضف ملف `.dockerignore` بالمحتوى التالي:
+تأكد من عدم تضمين مجلد `node_modules` في صورة Docker الخاصة بك، وأن يتم تثبيت الحزم أثناء بناء الصورة. لتحقيق ذلك، أضف ملف `.dockerignore` بالمحتوى التالي:
 
 ```
 node_modules
 ```
 
 :::info
-نحن نستخدم هنا صورة دوكر تأتي مع Selenium و Google Chrome مثبتين مسبقًا. هناك العديد من الصور المتاحة مع إعدادات متصفح مختلفة وإصدارات متصفح. تحقق من الصور التي يديرها مشروع Selenium [على Docker Hub](https://hub.docker.com/u/selenium).
+نستخدم هنا صورة Docker تأتي مع Selenium وGoogle Chrome مثبتين مسبقًا. تتوفر صور متنوعة بإعدادات متصفحات وإصدارات مختلفة. اطّلع على الصور التي يديرها مشروع Selenium [على Docker Hub](https://hub.docker.com/u/selenium).
 :::
 
-نظرًا لأننا يمكننا تشغيل Google Chrome فقط في وضع بدون رأس في حاوية دوكر، يجب علينا تعديل ملف `wdio.conf.js` للتأكد من القيام بذلك:
+بما أنه لا يمكننا تشغيل Google Chrome إلا في الوضع الخفي (headless) داخل حاوية Docker، يجب علينا تعديل ملف `wdio.conf.js` لضمان ذلك:
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -47,18 +48,18 @@ export const config = {
 }
 ```
 
-كما ذكرنا في [بروتوكولات الأتمتة](/docs/automationProtocols) يمكنك تشغيل WebdriverIO باستخدام بروتوكول WebDriver أو بروتوكول WebDriver BiDi. تأكد من أن إصدار Chrome المثبت على صورتك يتطابق مع إصدار [Chromedriver](https://www.npmjs.com/package/chromedriver) الذي حددته في ملف `package.json`.
+كما ذُكر في [بروتوكولات الأتمتة](/docs/automationProtocols)، يمكنك تشغيل WebdriverIO باستخدام بروتوكول WebDriver أو بروتوكول WebDriver BiDi. تأكد من أن إصدار Chrome المثبت على صورتك يطابق إصدار [Chromedriver](https://www.npmjs.com/package/chromedriver) الذي حددته في ملف `package.json`.
 
-لبناء حاوية دوكر يمكنك تشغيل:
+لبناء حاوية Docker، يمكنك تشغيل:
 
 ```sh
 docker build -t mytest -f Dockerfile .
 ```
 
-ثم لتشغيل الاختبارات، قم بتنفيذ:
+ثم لتشغيل الاختبارات، نفّذ:
 
 ```sh
 docker run -it mytest
 ```
 
-لمزيد من المعلومات حول كيفية تكوين صورة دوكر، راجع [وثائق دوكر](https://docs.docker.com/).
+لمزيد من المعلومات حول كيفية تكوين صورة Docker، راجع [وثائق Docker](https://docs.docker.com/).

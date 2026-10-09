@@ -1,13 +1,14 @@
 ---
 id: sharding
 title: シャーディング
+description: "--shard オプションを使用してテストスイートを複数のマシンに分割し、GitHub Actions などでテストをより高速に実行します。"
 ---
 
-WebdriverIOはデフォルトでテストを並行して実行し、マシンのCPUコアを最適に活用することを目指しています。さらに並列化を高めるために、複数のマシンで同時にテストを実行することでWebdriverIOのテスト実行をスケールすることができます。この操作モードを「シャーディング」と呼んでいます。
+デフォルトでは、WebdriverIO はテストを並列に実行し、マシンの CPU コアを最適に活用するよう努めます。さらに高い並列化を実現するために、複数のマシンで同時にテストを実行することで、WebdriverIO のテスト実行をさらにスケールさせることができます。この動作モードを「シャーディング」と呼びます。
 
 ## 複数のマシン間でテストをシャーディングする
 
-テストスイートをシャーディングするには、コマンドラインに`--shard=x/y`を渡します。例えば、テストスイートを4つのシャードに分割し、それぞれが4分の1のテストを実行する場合：
+テストスイートをシャーディングするには、コマンドラインに `--shard=x/y` を渡します。例えば、スイートを 4 つのシャードに分割し、それぞれがテストの 4 分の 1 を実行するには次のようにします:
 
 ```sh
 npx wdio run wdio.conf.js --shard=1/4
@@ -16,19 +17,19 @@ npx wdio run wdio.conf.js --shard=3/4
 npx wdio run wdio.conf.js --shard=4/4
 ```
 
-これらのシャードを異なるコンピューター上で並行して実行すると、テストスイートの完了が4倍速くなります。
+これらのシャードを異なるコンピューター上で並列に実行すれば、テストスイートは 4 倍速く完了します。
 
-## GitHub Actionsの例
+## GitHub Actions の例
 
-GitHub Actionsは[`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix)オプションを使用して[複数のジョブ間でテストをシャーディング](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs)することをサポートしています。matrixオプションは、提供されたオプションのすべての可能な組み合わせに対して個別のジョブを実行します。
+GitHub Actions は、[`jobs.<job_id>.strategy.matrix`](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstrategymatrix) オプションを使用して[複数のジョブ間でテストをシャーディングする](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs)ことをサポートしています。matrix オプションは、指定されたオプションのすべての可能な組み合わせごとに個別のジョブを実行します。
 
-以下の例では、4台のマシンで並行してテストを実行するようにジョブを設定する方法を示しています。パイプライン全体のセットアップは[Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml)プロジェクトで確認できます。
+次の例では、4 台のマシンで並列にテストを実行するようにジョブを設定する方法を示します。パイプライン全体の設定は [Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate/blob/main/.github/workflows/test.yaml) プロジェクトで確認できます。
 
-- まず、作成したいシャードの数を含むシャードオプションを持つmatrixオプションをジョブ設定に追加します。`shard: [1, 2, 3, 4]`は4つのシャードを作成し、それぞれ異なるシャード番号を持ちます。
-- 次に、`--shard ${{ matrix.shard }}/${{ strategy.job-total }}`オプションでWebdriverIOテストを実行します。これが各シャードのテストコマンドになります。
-- 最後に、wdioログレポートをGitHub Actions Artifactsにアップロードします。これにより、シャードが失敗した場合にログが利用可能になります。
+-   まず、作成したいシャード数を含む shard オプションを持つ matrix オプションをジョブ設定に追加します。`shard: [1, 2, 3, 4]` は、それぞれ異なるシャード番号を持つ 4 つのシャードを作成します。
+-   次に、`--shard ${{ matrix.shard }}/${{ strategy.job-total }}` オプションを付けて WebdriverIO テストを実行します。これが各シャードのテストコマンドになります。
+-   最後に、wdio のログレポートを GitHub Actions Artifacts にアップロードします。これにより、シャードが失敗した場合にログを参照できるようになります。
 
-テストパイプラインは次のように定義されています：
+テストパイプラインは次のように定義されます:
 
 ```yaml title=.github/workflows/test.yaml
 name: Test
@@ -59,8 +60,8 @@ jobs:
                   path: logs
 ```
 
-これによりすべてのシャードが並行して実行され、テストの実行時間が4分の1に短縮されます：
+これにより、すべてのシャードが並列に実行され、テストの実行時間が 4 分の 1 に短縮されます:
 
 ![GitHub Actions example](/img/sharding.png "GitHub Actions example")
 
-[Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate)プロジェクトのコミット[`96d444e`](https://github.com/webdriverio/cucumber-boilerplate/commit/96d444ea23919389682b9b1c9408ed91c452c7f8)でシャーディングをテストパイプラインに導入したことで、全体の実行時間が`2:23分`から`1:30分`に短縮され、__37%__の削減を達成しました 🎉。
+[Cucumber Boilerplate](https://github.com/webdriverio/cucumber-boilerplate) プロジェクトのコミット [`96d444e`](https://github.com/webdriverio/cucumber-boilerplate/commit/96d444ea23919389682b9b1c9408ed91c452c7f8) を参照してください。このコミットではテストパイプラインにシャーディングを導入し、全体の実行時間を `2:23 min` から `1:30 min` に短縮しました。これは __37%__ の削減です 🎉。

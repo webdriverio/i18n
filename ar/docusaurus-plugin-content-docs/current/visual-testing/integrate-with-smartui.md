@@ -1,19 +1,20 @@
 ---
 id: integrate-with-smartui
 title: SmartUI
+description: "أضف اختبار الانحدار البصري المدعوم بالذكاء الاصطناعي إلى اختبارات WebdriverIO باستخدام SmartUI من TestMu AI (المعروفة سابقًا باسم LambdaTest)، بما في ذلك الإعداد والخيارات."
 ---
 
-توفر TestMu AI (سابقاً LambdaTest) [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) اختبارات انحدار بصري مدعومة بالذكاء الاصطناعي لاختبارات WebdriverIO الخاصة بك. تقوم بالتقاط لقطات شاشة، ومقارنتها بالخطوط الأساسية، وتسليط الضوء على الاختلافات البصرية باستخدام خوارزميات مقارنة ذكية.
+توفر [SmartUI](https://www.testmuai.com/support/docs/smart-visual-testing/) من TestMu AI (المعروفة سابقًا باسم LambdaTest) اختبار انحدار بصري مدعومًا بالذكاء الاصطناعي لاختبارات WebdriverIO الخاصة بك. فهي تلتقط لقطات الشاشة، وتقارنها بالصور المرجعية (baselines)، وتُبرز الاختلافات البصرية باستخدام خوارزميات مقارنة ذكية.
 
 ## الإعداد
 
 **إنشاء مشروع SmartUI**
 
-[قم بتسجيل الدخول](https://accounts.lambdatest.com/register) إلى TestMu AI (سابقاً LambdaTest) وانتقل إلى [مشاريع SmartUI](https://smartui.lambdatest.com/) لإنشاء مشروع جديد. حدد **Web** كمنصة وقم بتكوين اسم مشروعك والموافقين والعلامات.
+[سجّل الدخول](https://accounts.lambdatest.com/register) إلى TestMu AI (المعروفة سابقًا باسم LambdaTest) وانتقل إلى [مشاريع SmartUI](https://smartui.lambdatest.com/) لإنشاء مشروع جديد. اختر **Web** كمنصة، ثم قم بتهيئة اسم مشروعك والمعتمِدين (approvers) والوسوم (tags).
 
 **إعداد بيانات الاعتماد**
 
-احصل على `LT_USERNAME` و `LT_ACCESS_KEY` من لوحة تحكم TestMu AI (سابقاً LambdaTest) وقم بتعيينهما كمتغيرات بيئية:
+احصل على `LT_USERNAME` و`LT_ACCESS_KEY` من لوحة تحكم TestMu AI (المعروفة سابقًا باسم LambdaTest) وعيّنهما كمتغيرات بيئة:
 
 ```sh
 export LT_USERNAME="<your username>"
@@ -26,9 +27,9 @@ export LT_ACCESS_KEY="<your access key>"
 npm install @lambdatest/wdio-driver
 ```
 
-**تكوين WebdriverIO**
+**تهيئة WebdriverIO**
 
-قم بتحديث ملف `wdio.conf.js` الخاص بك:
+حدّث ملف `wdio.conf.js` الخاص بك:
 
 ```javascript
 exports.config = {
@@ -80,9 +81,9 @@ describe('WebdriverIO SmartUI Test', () => {
 npx wdio wdio.conf.js
 ```
 
-عرض النتائج في [لوحة تحكم SmartUI](https://smartui.lambdatest.com/).
+اعرض النتائج في [لوحة تحكم SmartUI](https://smartui.lambdatest.com/).
 
-## خيارات متقدمة
+## الخيارات المتقدمة
 
 **تجاهل العناصر**
 
@@ -110,9 +111,9 @@ await browser.execute('smartui.takeScreenshot', {
 
 ## الموارد
 
-| المورد                                                                                            | الوصف                                   |
+| المورد                                                                                          | الوصف                              |
 |---------------------------------------------------------------------------------------------------|------------------------------------------|
-| [الوثائق الرسمية](https://www.testmuai.com/support/docs/smart-ui-cypress/)                     | وثائق SmartUI                            |
-| [لوحة تحكم SmartUI](https://smartui.lambdatest.com/)                                              | الوصول إلى مشاريع وإصدارات SmartUI الخاصة بك |
-| [الإعدادات المتقدمة](https://www.testmuai.com/support/docs/test-settings-options/)             | تكوين حساسية المقارنة                    |
-| [خيارات البناء](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | تكوين البناء المتقدم                     |
+| [التوثيق الرسمي](https://www.testmuai.com/support/docs/smart-ui-cypress/)              | توثيق SmartUI                    |
+| [لوحة تحكم SmartUI](https://smartui.lambdatest.com/)                                              | الوصول إلى مشاريع SmartUI وعمليات البناء الخاصة بك  |
+| [الإعدادات المتقدمة](https://www.testmuai.com/support/docs/test-settings-options/)              | تهيئة حساسية المقارنة         |
+| [خيارات البناء](https://www.testmuai.com/support/docs/smart-ui-build-options/)                 | تهيئة متقدمة لعمليات البناء             |

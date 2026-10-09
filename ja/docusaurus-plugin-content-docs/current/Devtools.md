@@ -1,78 +1,31 @@
 ---
 id: devtools
 title: DevTools
+description: "WebdriverIO、Nightwatch.js、Selenium WebDriverで動作するブラウザベースのデバッグUIで、テスト実行を可視化、制御、検査できます。"
 ---
 
-DevToolsサービスは、WebdriverIOテスト実行のための強力なブラウザベースのデバッグインターフェースを提供します。対話式のウェブアプリケーションを通じて、リアルタイムでテストを視覚化し、デバッグし、制御することができます。
+DevToolsは、テスト実行をリアルタイムで可視化、制御、検査するための強力なブラウザベースのデバッグインターフェースです。**WebdriverIO**、**Nightwatch.js**、**Selenium WebDriver**（任意のランナー）で動作し、同じバックエンド、同じUI、同じキャプチャ基盤を共有しています。
 
-## 概要
+## 提供される機能
 
-このサービスを使用することで以下が可能になります：
+- **テストの選択的な再実行** - 任意のテストケースやスイートをクリックすると、即座に再実行できます（[詳細](/docs/devtools/wdio/interactive-test-rerunning)）
+- **保存と再実行（比較）** - 失敗したテストのスナップショットを取得して再実行し、2つの実行結果をコマンドごとに揃えて並べて差分を比較できます（[詳細](/docs/devtools/wdio/preserve-and-rerun)）
+- **視覚的なデバッグ** - 各コマンドの後に自動で撮影されるスクリーンショットにより、ブラウザのライブプレビューを確認できます
+- **実行の追跡** - タイムスタンプと結果を含む詳細なコマンドログを表示できます
+- **ネットワークとコンソールの監視** - API呼び出しとJavaScriptログを検査できます（[ネットワーク](/docs/devtools/wdio/network-logs) · [コンソール](/docs/devtools/wdio/console-logs)）
+- **コードへの移動** - TestLensを使ってテストのソースファイルに直接ジャンプできます（[詳細](/docs/devtools/wdio/testlens)）
+- **セッションの録画** - セッションごとにブラウザの連続した `.webm` 動画を記録します（[詳細](/docs/devtools/wdio/screencast)）
+- **トレースモード** - オフラインでの再生やエージェントによる利用のために、ポータブルな `trace.zip` アーティファクトを生成するヘッドレスキャプチャ方式です（[詳細](/docs/devtools/wdio/trace-mode)）
 
-- **テストを選択的に再実行する** - テストケースまたはスイートをクリックして即座に再実行
-- **視覚的にデバッグする** - 自動スクリーンショット付きのライブブラウザプレビューを表示
-- **実行を追跡する** - タイムスタンプと結果を含む詳細なコマンドログを表示
-- **ネットワークとコンソールを監視する** - APIコールとJavaScriptログを検査
-- **コードにナビゲートする** - テストのソースファイルに直接ジャンプ
+## 仕組み
 
-## インストール
+1. 通常どおりテストを開始します
+2. DevToolsが自動的に `http://localhost:3000` でブラウザウィンドウを開きます
+3. UIにテスト階層、ブラウザプレビュー、コマンドタイムライン、ログがリアルタイムで表示されます
+4. テスト完了後、任意のテストをクリックすると、同じブラウザセッション内でそのテストを個別に再実行できます
 
-サービスを開発依存関係としてインストールします：
+## フレームワークを選択
 
-```sh
-npm install --save-dev @wdio/devtools-service
-```
-
-## 設定
-
-WebDriverIO設定にサービスを追加します：
-
-```js
-// wdio.conf.js
-export const config = {
-    // ...
-    services: ['devtools'],
-    // ...
-};
-```
-
-### サービスオプション
-
-DevToolsサービスを以下のオプションで設定します：
-
-```js
-// wdio.conf.js
-export const config = {
-    // ...
-    services: [
-        ['devtools', {
-            port: 3000,      // DevTools UIのポート (デフォルト: 3000)
-        }]
-    ],
-    // ...
-};
-```
-
-#### オプション
-
-- **port** (数値, デフォルト: `3000`) - DevTools UIサーバーのポート番号
-
-## 動作の仕組み
-
-DevToolsサービスを有効にしてWebdriverIOテストを実行すると：
-
-1. サービスが`http://localhost:3000`（設定可能）でブラウザウィンドウを開きます
-2. テストは通常通り実行される間、DevTools UIがリアルタイムの更新を表示します
-3. UIにはテスト階層、ブラウザプレビュー、コマンドタイムライン、ログが表示されます
-4. テスト完了後、任意のテストをクリックして個別に再実行できます
-5. テストは高速なデバッグのために同じブラウザセッションで再実行されます
-
-## 機能
-
-DevToolsの機能を詳しく見てみましょう：
-
-- **[対話型テスト再実行と視覚化](devtools/interactive-test-rerunning)** - テスト再実行機能付きのリアルタイムブラウザプレビュー
-- **[マルチフレームワークサポート](devtools/multi-framework-support)** - Mocha、Jasmine、Cucumberで動作
-- **[コンソールログ](devtools/console-logs)** - ブラウザのコンソール出力を取得して検査
-- **[ネットワークログ](devtools/network-logs)** - APIコールとネットワークアクティビティを監視
-- **[TestLens](devtools/testlens)** - インテリジェントなコードナビゲーションでソースコードに移動
+- **[WebDriverIO](/docs/devtools/wdio)** - Mocha、Jasmine、またはCucumberで `@wdio/devtools-service` を使用します
+- **[Nightwatch](/docs/devtools/nightwatch)** - テストコードを一切変更せずに `@wdio/nightwatch-devtools` を使用します
+- **[Selenium](/docs/devtools/selenium)** - Mocha、Jest、Cucumber、またはプレーンなNodeスクリプトで `@wdio/selenium-devtools` を使用します

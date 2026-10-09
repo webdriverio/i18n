@@ -1,13 +1,14 @@
 ---
 id: lit
 title: Lit
+description: "Настройте браузерный раннер WebdriverIO для веб-компонентов Lit и пишите тесты, которые находят элементы внутри вложенных shadow root."
 ---
 
-Lit - это простая библиотека для создания быстрых, легких веб-компонентов. Тестирование веб-компонентов Lit с помощью WebdriverIO очень просто благодаря [селекторам теневого DOM](/docs/selectors#deep-selectors) в WebdriverIO, которые позволяют искать вложенные элементы в теневых корнях с помощью всего одной команды.
+Lit — это простая библиотека для создания быстрых и легковесных веб-компонентов. Тестировать веб-компоненты Lit с помощью WebdriverIO очень просто благодаря [селекторам shadow DOM](/docs/selectors#deep-selectors) WebdriverIO: вы можете находить элементы, вложенные в shadow root, всего одной командой.
 
 ## Настройка
 
-Чтобы настроить WebdriverIO в вашем проекте Lit, следуйте [инструкциям](/docs/component-testing#set-up) в нашей документации по тестированию компонентов. Для Lit вам не нужны пресеты, так как веб-компоненты Lit не требуют компиляции - они являются чистыми расширениями веб-компонентов.
+Чтобы настроить WebdriverIO в вашем проекте Lit, следуйте [инструкциям](/docs/component-testing#set-up) в нашей документации по тестированию компонентов. Для Lit не нужен пресет, поскольку веб-компоненты Lit не требуют обработки компилятором — они представляют собой чистые расширения веб-компонентов.
 
 После настройки вы можете запустить тесты, выполнив:
 
@@ -28,20 +29,20 @@ export class SimpleGreeting extends LitElement {
     @property()
     name?: string = 'World'
 
-    // Render the UI as a function of component state
+    // Отрисовка UI как функции от состояния компонента
     render() {
         return html`<p>Hello, ${this.name}!</p>`
     }
 }
 ```
 
-Чтобы протестировать компонент, вы должны отрендерить его на тестовой странице перед началом теста и убедиться, что он удаляется после:
+Чтобы протестировать компонент, необходимо отрисовать его на тестовой странице перед началом теста и убедиться, что после теста он будет удалён:
 
 ```ts title="lit.test.js"
 import expect from 'expect'
 import { waitFor } from '@testing-library/dom'
 
-// import Lit component
+// импорт компонента Lit
 import './components/Component.ts'
 
 describe('Lit Component testing', () => {
@@ -66,4 +67,4 @@ describe('Lit Component testing', () => {
 })
 ```
 
-Полный пример набора тестов компонентов WebdriverIO для Lit вы можете найти в нашем [репозитории примеров](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite).
+Полный пример набора тестов компонентов WebdriverIO для Lit можно найти в нашем [репозитории с примерами](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite).

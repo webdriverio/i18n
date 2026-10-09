@@ -1,26 +1,27 @@
 ---
 id: browserstack
-title: Testes de Acessibilidade BrowserStack
+title: Testes de Acessibilidade do BrowserStack
+description: "Adicione verificações automatizadas de acessibilidade aos testes WebdriverIO executados no BrowserStack Automate e revise os problemas encontrados nos relatórios do BrowserStack."
 ---
 
-# BrowserStack Accessibility Testing
+# Testes de Acessibilidade do BrowserStack
 
-Você pode facilmente integrar testes de acessibilidade em suas suítes de teste WebdriverIO usando o [recurso de testes automatizados do BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Você pode integrar facilmente testes de acessibilidade em suas suítes de teste WebdriverIO usando o [recurso de testes automatizados do BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
 ## Vantagens dos Testes Automatizados no BrowserStack Accessibility Testing
 
-Para usar testes automatizados no BrowserStack Accessibility Testing, seus testes devem estar rodando no BrowserStack Automate.
+Para usar testes automatizados no BrowserStack Accessibility Testing, seus testes devem estar sendo executados no BrowserStack Automate.
 
-As seguintes vantagens dos testes automatizados são:
+A seguir estão as vantagens dos testes automatizados:
 
-* Integra-se perfeitamente à sua suíte de testes de automação pré-existente.
-* Não são necessárias alterações de código nos casos de teste.
-* Requer zero manutenção adicional para testes de acessibilidade.
-* Entenda tendências históricas e obtenha insights dos casos de teste.
+* Integra-se perfeitamente à sua suíte de testes de automação já existente.
+* Nenhuma alteração de código é necessária nos casos de teste.
+* Não requer nenhuma manutenção adicional para testes de acessibilidade.
+* Compreenda tendências históricas e obtenha insights sobre os casos de teste.
 
-## Comece com o BrowserStack Accessibility Testing
+## Comece a usar o BrowserStack Accessibility Testing
 
-Siga estes passos para integrar suas suítes de teste WebdriverIO com o Accessibility Testing do BrowserStack:
+Siga estas etapas para integrar suas suítes de teste WebdriverIO com o Accessibility Testing do BrowserStack:
 
 1. Instale o pacote npm `@wdio/browserstack-service`.
 
@@ -44,7 +45,7 @@ exports.config = {
     services: [
       ['browserstack', {
         accessibility: true,
-        // Optional configuration options
+        // Opções de configuração opcionais
         accessibilityOptions: {
           'wcagVersion': 'wcag21a',
           'includeIssueType': {

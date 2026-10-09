@@ -1,19 +1,18 @@
 ---
 id: configuration
-title: Παραμετροποίηση
+title: Διαμόρφωση
+description: "Διαμορφώστε τον διακομιστή WebdriverIO MCP, συμπεριλαμβανομένων των επιλογών συνεδρίας, προγράμματος περιήγησης, κινητών συσκευών, παρόχων cloud, ανίχνευσης στοιχείων και Appium."
 ---
 
-This page documents all configuration options for the WebdriverIO MCP server.
+Αυτή η σελίδα τεκμηριώνει όλες τις επιλογές διαμόρφωσης για τον διακομιστή WebdriverIO MCP.
 
-## MCP Server Configuration
+## Διαμόρφωση Διακομιστή MCP
 
-The MCP server is configured through the Claude Desktop or Claude Code configuration files.
+Ο διακομιστής MCP διαμορφώνεται μέσω των αρχείων διαμόρφωσης ή εντολών.
 
-### Basic Configuration
+### Βασική Διαμόρφωση
 
-#### macOS
-
-Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
+Επεξεργαστείτε το αρχείο διαμόρφωσης MCP (π.χ. `./.mcp.json`) και προσθέστε τα εξής:
 
 ```json
 {
@@ -26,584 +25,513 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json`:
 }
 ```
 
-#### Windows
+## Επιλογές Συνεδρίας
 
-Edit `%APPDATA%\Claude\claude_desktop_config.json`:
+Όλες οι επιλογές συνεδρίας μεταβιβάζονται στο εργαλείο `start_session`. Υπάρχει ένα ενιαίο εργαλείο για συνεδρίες προγράμματος περιήγησης και κινητών συσκευών· η παράμετρος `platform` καθορίζει τον τύπο της συνεδρίας.
 
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"]
-        }
-    }
-}
-```
-
-#### Claude Code
-
-Edit your project's `.claude/settings.json`:
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"]
-        }
-    }
-}
-```
-
----
-
-## Environment Variables
-
-Configure the Appium server connection and other settings via environment variables.
-
-### Appium Connection
-
-| Variable | Type | Default | Description |
-|----------|------|---------|-------------|
-| `APPIUM_URL` | string | `127.0.0.1` | Appium server hostname |
-| `APPIUM_URL_PORT` | number | `4723` | Appium server port |
-| `APPIUM_PATH` | string | `/` | Appium server path |
-
-### Example with Environment Variables
-
-```json
-{
-    "mcpServers": {
-        "wdio-mcp": {
-            "command": "npx",
-            "args": ["-y", "@wdio/mcp"],
-            "env": {
-                "APPIUM_URL": "192.168.1.100",
-                "APPIUM_URL_PORT": "4724",
-                "APPIUM_PATH": "/wd/hub"
-            }
-        }
-    }
-}
-```
-
----
-
-## Browser Session Options
-
-Options available when starting a browser session via the `start_browser` tool.
-
-### `headless`
-
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
-
-Run Chrome in headless mode (no visible browser window). Useful for CI/CD environments or when you don't need to see the browser.
-
-### `windowWidth`
-
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `1920`
--   **Range:** `400` - `3840`
-
-Initial browser window width in pixels.
-
-### `windowHeight`
-
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `1080`
--   **Range:** `400` - `2160`
-
-Initial browser window height in pixels.
-
-### `navigationUrl`
-
--   **Type:** `string`
--   **Mandatory:** No
-
-URL to navigate to immediately after starting the browser. This is more efficient than calling `start_browser` followed by `navigate` separately.
-
-**Example:** Start browser and navigate in one call:
-```
-Start Chrome and navigate to https://webdriver.io
-```
-
----
-
-## Mobile Session Options
-
-Options available when starting a mobile app session via the `start_app_session` tool.
-
-### Platform Options
+### Κοινές Επιλογές
 
 #### `platform`
 
--   **Type:** `string`
--   **Mandatory:** Yes
--   **Values:** `iOS` | `Android`
+<Option type={`"browser" | "ios" | "android"`} required="Yes">
 
-The mobile platform to automate.
+Η πλατφόρμα προς αυτοματοποίηση.
 
-#### `platformVersion`
+</Option>
+#### `provider`
 
--   **Type:** `string`
--   **Mandatory:** No
+<Option type={`"local" | "browserstack" | "saucelabs" | "testmu" | "testingbot"`} default={`"local"`} required="No">
 
-The OS version of the device/simulator/emulator (e.g., `17.0` for iOS, `14` for Android).
+Πού εκτελείται η συνεδρία. Χρησιμοποιήστε το όνομα ενός παρόχου cloud για απομακρυσμένες συσκευές· ο καθένας απαιτεί τις δικές του μεταβλητές περιβάλλοντος. Δείτε τους [Παρόχους Cloud](./cloud-providers) για λεπτομέρειες.
 
-#### `automationName`
+</Option>
+## Επιλογές Συνεδρίας Προγράμματος Περιήγησης
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Values:** `XCUITest` (iOS), `UiAutomator2` | `Espresso` (Android)
+Επιλογές για συνεδρίες `platform: "browser"`.
 
-The automation driver to use. Defaults to `XCUITest` for iOS and `UiAutomator2` for Android.
+### `browser`
 
-### Device Options
+<Option type={`"chrome" | "firefox" | "edge" | "safari"`} required="Yes (for browser platform)">
 
-#### `deviceName`
+Πρόγραμμα περιήγησης προς εκκίνηση.
 
--   **Type:** `string`
--   **Mandatory:** Yes
+</Option>
+### `browserVersion`
 
-Name of the device, simulator, or emulator to use.
+<Option type="string" default={`"latest"`} required="No">
 
-**Examples:**
--   iOS Simulator: `iPhone 15 Pro`, `iPad Air (5th generation)`
--   Android Emulator: `Pixel 7`, `Nexus 5X`
--   Real Device: The device name as shown in your system
+Έκδοση προγράμματος περιήγησης. Μόνο για παρόχους cloud (προεπιλογή: latest).
 
-#### `udid`
+</Option>
+### `os` / `osVersion`
 
--   **Type:** `string`
--   **Mandatory:** No (Required for real iOS devices)
+<Option type="string" required="No">
 
-Unique Device Identifier. Required for real iOS devices (40-character identifier) and recommended for Android real devices.
+Λειτουργικό σύστημα για συνεδρίες προγράμματος περιήγησης σε παρόχους cloud. Παραδείγματα: `os: "Windows"`, `osVersion: "11"` ή `os: "OS X"`, `osVersion: "Sequoia"`.
 
-**Finding UDID:**
--   **iOS:** Connect device, open Finder/iTunes, click on device → Serial Number (click to reveal UDID)
--   **Android:** Run `adb devices` in terminal
+</Option>
+### `headless`
 
-### App Options
+<Option type="boolean" default="true" required="No">
 
-#### `appPath`
+Εκτέλεση του προγράμματος περιήγησης σε λειτουργία headless (χωρίς ορατό παράθυρο). Ορίστε σε `false` για να βλέπετε το πρόγραμμα περιήγησης.
 
--   **Type:** `string`
--   **Mandatory:** No*
+</Option>
+### `windowWidth`
 
-Path to the application file to install and launch.
+<Option type="number" default="1920" required="No">
 
-**Supported formats:**
--   iOS Simulator: `.app` directory
--   iOS Real Device: `.ipa` file
--   Android: `.apk` file
+-   **Εύρος:** `400` - `3840`
 
-*Either `appPath` must be provided, or `noReset: true` to connect to an already-running app.
+Αρχικό πλάτος παραθύρου του προγράμματος περιήγησης σε pixel.
 
-#### `appWaitActivity`
+</Option>
+### `windowHeight`
 
--   **Type:** `string`
--   **Mandatory:** No (Android only)
+<Option type="number" default="1080" required="No">
 
-Activity to wait for on app launch. If not specified, the app's main/launcher activity is used.
+-   **Εύρος:** `400` - `2160`
 
-**Example:** `com.example.app.MainActivity`
+Αρχικό ύψος παραθύρου του προγράμματος περιήγησης σε pixel.
 
-### Session State Options
+</Option>
+### `navigationUrl`
+
+<Option type="string" required="No">
+
+URL στο οποίο θα γίνει πλοήγηση αμέσως μετά την εκκίνηση του προγράμματος περιήγησης. Πιο αποδοτικό από την κλήση του `start_session` και στη συνέχεια του `navigate` ξεχωριστά.
+
+</Option>
+### `attach`
+
+<Option type="boolean" default="false" required="No">
+
+Σύνδεση σε υπάρχουσα παρουσία του Chrome αντί για εκκίνηση νέας. Χρησιμοποιήστε το μετά το `launch_chrome` για σύνδεση μέσω CDP.
+
+</Option>
+### `attachConfig`
+
+<Option type={`{ port?: number; host?: string }`} default={`{ port: 9222, host: "localhost" }`} required="No">
+
+Διαμόρφωση σύνδεσης απομακρυσμένου εντοπισμού σφαλμάτων του Chrome. Ισχύει μόνο όταν `attach: true`.
+
+</Option>
+## Επιλογές Συνεδρίας Κινητών Συσκευών
+
+Επιλογές για συνεδρίες `platform: "ios"` ή `platform: "android"`.
+
+### `deviceName`
+
+<Option type="string" required="Yes (for mobile platforms)">
+
+Όνομα της συσκευής, του προσομοιωτή ή του εξομοιωτή.
+
+**Παραδείγματα:**
+-   Προσομοιωτής iOS: `"iPhone 16"`, `"iPad Air (5th generation)"`
+-   Εξομοιωτής Android: `"Pixel 7"`, `"Nexus 5X"`
+-   Πραγματική συσκευή: Το όνομα της συσκευής όπως εμφανίζεται στο σύστημά σας
+
+</Option>
+### `platformVersion`
+
+<Option type="string" required="No">
+
+Έκδοση λειτουργικού συστήματος της συσκευής/προσομοιωτή/εξομοιωτή (π.χ. `"18.0"` για iOS, `"14"` για Android).
+
+</Option>
+### `automationName`
+
+<Option type={`"XCUITest" | "UiAutomator2"`} required="No">
+
+Πρόγραμμα οδήγησης αυτοματοποίησης. Προεπιλογή είναι το `XCUITest` για iOS και το `UiAutomator2` για Android.
+
+</Option>
+### `udid`
+
+<Option type="string" required="No (Required for real iOS devices)">
+
+Μοναδικό αναγνωριστικό συσκευής (Unique Device Identifier). Απαιτείται για πραγματικές συσκευές iOS (αναγνωριστικό 40 χαρακτήρων).
+
+**Εύρεση UDID:**
+-   **iOS:** Συνδέστε τη συσκευή, ανοίξτε το Finder, κάντε κλικ στη συσκευή → Serial Number (κάντε κλικ για να εμφανιστεί το UDID)
+-   **Android:** Εκτελέστε `adb devices` στο τερματικό
+
+</Option>
+### `appPath`
+
+<Option type="string" required="No">
+
+Διαδρομή προς το αρχείο της εφαρμογής προς εγκατάσταση και εκκίνηση.
+
+**Υποστηριζόμενες μορφές:**
+-   Προσομοιωτής iOS: κατάλογος `.app`
+-   Πραγματική συσκευή iOS: αρχείο `.ipa`
+-   Android: αρχείο `.apk`
+
+Πρέπει είτε να παρέχεται το `appPath`, είτε το `noReset: true` για σύνδεση σε εφαρμογή που ήδη εκτελείται.
+
+</Option>
+### `app`
+
+<Option type="string" required="No">
+
+URL εφαρμογής παρόχου cloud (`bs://...` για BrowserStack, `storage:filename=` για Sauce Labs, `lt://...` για TestMu, app_url για TestingBot) ή `customId`. Χρησιμοποιείται αντί του `appPath` για συνεδρίες κινητών συσκευών στο cloud.
+
+</Option>
+### `appWaitActivity`
+
+<Option type="string" required="No (Android only)">
+
+Activity που αναμένεται κατά την εκκίνηση της εφαρμογής. Αν δεν οριστεί, χρησιμοποιείται η κύρια activity/activity εκκίνησης της εφαρμογής.
+
+**Παράδειγμα:** `"com.example.app.MainActivity"`
+
+</Option>
+### Επιλογές Κατάστασης Συνεδρίας
 
 #### `noReset`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
+<Option type="boolean" required="No">
 
-Preserve the app state between sessions. When `true`:
--   App data is preserved (login state, preferences, etc.)
--   Session will **detach** instead of close (keeps app running)
--   Useful for testing user journeys across multiple sessions
--   Can be used without `appPath` to connect to an already-running app
+Διατήρηση της κατάστασης της εφαρμογής μεταξύ συνεδριών. Όταν είναι `true`:
+-   Τα δεδομένα της εφαρμογής διατηρούνται (κατάσταση σύνδεσης, προτιμήσεις κ.λπ.)
+-   Η συνεδρία θα **αποσυνδεθεί** αντί να κλείσει (η εφαρμογή συνεχίζει να εκτελείται)
+-   Μπορεί να χρησιμοποιηθεί χωρίς `appPath` για σύνδεση σε εφαρμογή που ήδη εκτελείται
 
+</Option>
 #### `fullReset`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
+<Option type="boolean" required="No">
 
-Completely reset the app before the session. When `true`:
--   iOS: Uninstalls and reinstalls the app
--   Android: Clears app data and cache
--   Useful for starting with a clean state
+Πλήρης επαναφορά της εφαρμογής πριν από τη συνεδρία:
+-   iOS: Απεγκαθιστά και επανεγκαθιστά την εφαρμογή
+-   Android: Διαγράφει τα δεδομένα και την προσωρινή μνήμη της εφαρμογής
 
-Set `fullReset: false` with `noReset: true` to preserve app state completely.
+Ορίστε `fullReset: false` μαζί με `noReset: true` για πλήρη διατήρηση της κατάστασης της εφαρμογής.
 
-### Session Timeout
+</Option>
+### Χρονικό Όριο Συνεδρίας
 
 #### `newCommandTimeout`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `60`
+<Option type="number" default="300" required="No">
 
-How long (in seconds) Appium will wait for a new command before assuming the client has quit and ending the session. Increase this value for longer debugging sessions.
+Πόσο χρόνο (σε δευτερόλεπτα) θα περιμένει το Appium για νέα εντολή πριν τερματίσει τη συνεδρία. Αυξήστε το για μεγαλύτερες συνεδρίες εντοπισμού σφαλμάτων.
 
-**Examples:**
--   `60` - Default, suitable for most automation
--   `300` - 5 minutes, for debugging or slower operations
--   `600` - 10 minutes, for very long-running tests
-
-### Automatic Handling Options
+</Option>
+### Αυτόματος Χειρισμός
 
 #### `autoGrantPermissions`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
+<Option type="boolean" default="true" required="No">
 
-Automatically grant app permissions on install/launch. When `true`:
--   Camera, microphone, location, etc. permissions are auto-granted
--   No manual permission dialog handling needed
--   Streamlines automation by avoiding permission popups
+Αυτόματη παραχώρηση δικαιωμάτων εφαρμογής κατά την εγκατάσταση/εκκίνηση (κάμερα, μικρόφωνο, τοποθεσία κ.λπ.).
 
-:::note Android Only
-This option primarily affects Android. iOS permissions must be handled differently due to system restrictions.
+:::note Μόνο Android
+Αυτή η επιλογή επηρεάζει κυρίως το Android. Τα δικαιώματα του iOS πρέπει να αντιμετωπίζονται διαφορετικά λόγω περιορισμών του συστήματος.
 :::
 
+</Option>
 #### `autoAcceptAlerts`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
+<Option type="boolean" default="true" required="No">
 
-Automatically accept system alerts (dialogs) that appear during automation.
+Αυτόματη αποδοχή ειδοποιήσεων συστήματος (διαλόγων) κατά την αυτοματοποίηση ("Allow notifications?", κ.λπ.).
 
-**Examples of auto-accepted alerts:**
--   "Allow notifications?"
--   "App would like to access your location"
--   "Allow app to access photos?"
-
+</Option>
 #### `autoDismissAlerts`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
+<Option type="boolean" default="false" required="No">
 
-Dismiss (cancel) system alerts instead of accepting them. Takes precedence over `autoAcceptAlerts` when set to `true`.
+Απόρριψη ειδοποιήσεων συστήματος αντί για αποδοχή τους. Υπερισχύει του `autoAcceptAlerts` όταν είναι `true`.
 
-### Appium Server Override
+</Option>
+### Σύνδεση με Διακομιστή Appium
 
-You can override the Appium server connection on a per-session basis:
+Παρακάμψτε τη σύνδεση με τον διακομιστή Appium ανά συνεδρία χρησιμοποιώντας το `appiumConfig`:
 
-#### `appiumHost`
+```js
+start_session({
+  platform: "ios",
+  deviceName: "iPhone 16",
+  appPath: "/path/to/app.app",
+  appiumConfig: { host: "192.168.1.100", port: 4724, path: "/wd/hub" }
+})
+```
 
--   **Type:** `string`
--   **Mandatory:** No
+#### `appiumConfig`
 
-Appium server hostname. Overrides `APPIUM_URL` environment variable.
+<Option type={`{ host?: string; port?: number; path?: string }`} required="No">
 
-#### `appiumPort`
+Σύνδεση με διακομιστή Appium. Προεπιλογή: `{ host: "127.0.0.1", port: 4723, path: "/" }`.
 
--   **Type:** `number`
--   **Mandatory:** No
+</Option>
+## Επιλογές Παρόχων Cloud
 
-Appium server port. Overrides `APPIUM_URL_PORT` environment variable.
+### Διαπιστευτήρια
 
-#### `appiumPath`
+Κάθε πάροχος cloud απαιτεί τις δικές του μεταβλητές περιβάλλοντος:
 
--   **Type:** `string`
--   **Mandatory:** No
+| Πάροχος      | Μεταβλητή Ονόματος Χρήστη | Μεταβλητή Κλειδιού Πρόσβασης |
+| ------------ | ------------------------- | ---------------------------- |
+| BrowserStack | `BROWSERSTACK_USERNAME`   | `BROWSERSTACK_ACCESS_KEY`    |
+| Sauce Labs   | `SAUCE_USERNAME`          | `SAUCE_ACCESS_KEY`           |
+| TestMu       | `TESTMU_USERNAME`         | `TESTMU_ACCESS_KEY`          |
+| TestingBot   | `TESTINGBOT_KEY`          | `TESTINGBOT_SECRET`          |
 
-Appium server path. Overrides `APPIUM_PATH` environment variable.
+Ορίστε τις πριν από την εκκίνηση του διακομιστή MCP.
 
----
+### `region`
 
-## Element Detection Options
+<Option type={`"us-west-1" | "eu-central-1" | "apac-southeast-1"`} default={`"eu-central-1"`} required="No">
 
-Options for the `get_visible_elements` tool.
+Περιοχή κέντρου δεδομένων της Sauce Labs. Αγνοείται για άλλους παρόχους.
 
-### `elementType`
+</Option>
+### `tunnel`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `interactable`
--   **Values:** `interactable` | `visual` | `all`
+<Option type={`boolean | "external"`} default="false" required="No">
 
-Type of elements to return:
--   `interactable`: Buttons, links, inputs, and other clickable elements
--   `visual`: Images, SVGs, and visual elements
--   `all`: Both interactable and visual elements
+Ενεργοποίηση δρομολόγησης μέσω τοπικού tunnel για συνεδρίες παρόχων cloud (πρόσβαση σε localhost, περιβάλλοντα staging, εσωτερικές υπηρεσίες).
+
+-   `true` — Αυτόματη εκκίνηση του tunnel πριν από τη συνεδρία και διακοπή του κατά το κλείσιμο
+-   `"external"` — Το tunnel εκτελείται ήδη εξωτερικά· ορίζει μόνο τις κατάλληλες σημαίες για τον πάροχο
+
+Πριν χρησιμοποιήσετε το `true`, διαβάστε τον πόρο local-binary του παρόχου (`wdio://browserstack/local-binary`, `wdio://saucelabs/local-binary`, `wdio://testmu/local-binary` ή `wdio://testingbot/local-binary`) για οδηγίες εγκατάστασης ειδικές για το λειτουργικό σύστημα και την αρχιτεκτονική σας.
+
+</Option>
+### `tunnelName`
+
+<Option type="string" required="No">
+
+Όνομα αναγνωριστικού του tunnel. Απαιτείται όταν `tunnel: "external"` ώστε να αντιστοιχεί στο tunnel που εκτελείται. Όταν `tunnel: true`, δημιουργείται αυτόματα ένα μοναδικό όνομα αν δεν παρέχεται.
+
+</Option>
+### `reporting`
+
+<Option type={`{ project?: string; build?: string; session?: string }`} required="No">
+
+Ετικέτες συνεδρίας παρόχου cloud που εμφανίζονται στον πίνακα ελέγχου του παρόχου. Λειτουργεί με τον ίδιο τρόπο σε BrowserStack, Sauce Labs, TestMu και TestingBot.
+
+</Option>
+### `trace`
+
+<Option type="boolean" default="false" required="No">
+
+Ενεργοποίηση καταγραφής trace. Παράγει ένα συμπιεσμένο αρχείο `.trace` συμβατό με το Playwright, το οποίο αποθηκεύεται στο `.trace/` κατά το `close_session`. Δείτε τα traces στο [player.vibium.dev](https://player.vibium.dev).
+
+</Option>
+## Επιλογές Ανίχνευσης Στοιχείων
+
+Επιλογές για το εργαλείο `get_elements`.
 
 ### `inViewportOnly`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
+<Option type="boolean" default="false" required="No">
 
-Only return elements that are visible within the current viewport. When `false`, returns all elements in the view hierarchy (useful for finding off-screen elements).
+Επιστροφή μόνο των στοιχείων που είναι ορατά στην τρέχουσα περιοχή προβολής. Ορίστε σε `true` για μείωση των αποτελεσμάτων σε μεγάλες σελίδες.
 
+</Option>
 ### `includeContainers`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
+<Option type="boolean" default="false" required="No">
 
-Include container/layout elements in the results. When `true`:
+Συμπερίληψη στοιχείων container/διάταξης στα αποτελέσματα:
 
-**Android containers included:**
--   `ViewGroup`, `FrameLayout`, `LinearLayout`
--   `RelativeLayout`, `ConstraintLayout`
--   `ScrollView`, `RecyclerView`
+**Containers Android:** `ViewGroup`, `FrameLayout`, `LinearLayout`, `RelativeLayout`, `ConstraintLayout`, `ScrollView`, `RecyclerView`
 
-**iOS containers included:**
--   `View`, `StackView`, `CollectionView`
--   `ScrollView`, `TableView`
+**Containers iOS:** `View`, `StackView`, `CollectionView`, `ScrollView`, `TableView`
 
-Useful for debugging layout issues or understanding the view hierarchy.
-
+</Option>
 ### `includeBounds`
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `false`
+<Option type="boolean" default="false" required="No">
 
-Include element bounds/coordinates (x, y, width, height) in the response. Set to `true` for:
--   Coordinate-based interactions
--   Layout debugging
--   Visual element positioning
+Συμπερίληψη των συντεταγμένων του πλαισίου οριοθέτησης του στοιχείου (x, y, πλάτος, ύψος) στην απόκριση.
 
-### Pagination Options
-
-For large pages with many elements, use pagination to reduce token usage:
+</Option>
+### Σελιδοποίηση
 
 #### `limit`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `0` (unlimited)
+<Option type="number" default="0 (unlimited)" required="No">
 
-Maximum number of elements to return.
+Μέγιστος αριθμός στοιχείων προς επιστροφή.
 
+</Option>
 #### `offset`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `0`
+<Option type="number" default="0" required="No">
 
-Number of elements to skip before returning results.
+Αριθμός στοιχείων που παραλείπονται πριν από την επιστροφή αποτελεσμάτων.
 
-**Example:** Get elements 21-40:
-```
-Get visible elements with limit 20 and offset 20
+**Παράδειγμα:** Λήψη των στοιχείων 21–40:
+```text
+Get elements with limit 20 and offset 20
 ```
 
----
+</Option>
+## Επιλογές Δέντρου Προσβασιμότητας
 
-## Accessibility Tree Options
-
-Options for the `get_accessibility` tool (browser-only).
+Επιλογές για το εργαλείο `get_accessibility_tree` (μόνο για πρόγραμμα περιήγησης).
 
 ### `limit`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `100`
+<Option type="number" default="0 (unlimited)" required="No">
 
-Maximum number of nodes to return. Use `0` for unlimited (not recommended for large pages).
+Μέγιστος αριθμός κόμβων προς επιστροφή.
 
+</Option>
 ### `offset`
 
--   **Type:** `number`
--   **Mandatory:** No
--   **Default:** `0`
+<Option type="number" default="0" required="No">
 
-Number of nodes to skip for pagination.
+Αριθμός κόμβων που παραλείπονται για σελιδοποίηση.
 
+</Option>
 ### `roles`
 
--   **Type:** `string[]`
--   **Mandatory:** No
--   **Default:** All roles
+<Option type="string[]" default="All roles" required="No">
 
-Filter to specific accessibility roles.
+Φιλτράρισμα σε συγκεκριμένους ρόλους προσβασιμότητας.
 
-**Common roles:** `button`, `link`, `textbox`, `checkbox`, `radio`, `heading`, `img`, `listitem`
+**Συνήθεις ρόλοι:** `button`, `link`, `textbox`, `checkbox`, `radio`, `heading`, `img`, `listitem`
 
-**Example:** Get only buttons and links:
-```
+**Παράδειγμα:** Λήψη μόνο κουμπιών και συνδέσμων:
+```text
 Get accessibility tree filtered to button and link roles
 ```
 
-### `namedOnly`
+</Option>
+## Στιγμιότυπο Οθόνης
 
--   **Type:** `boolean`
--   **Mandatory:** No
--   **Default:** `true`
+Το εργαλείο `get_screenshot` δεν δέχεται παραμέτρους. Τα στιγμιότυπα οθόνης επεξεργάζονται αυτόματα:
 
-Only return nodes that have a name/label. Filters out anonymous containers and reduces noise in the results.
+| Βελτιστοποίηση     | Τιμή     | Περιγραφή                                                     |
+| ------------------ | -------- | ------------------------------------------------------------- |
+| Μέγιστη διάσταση   | 2000px   | Οι εικόνες μεγαλύτερες από 2000px σμικρύνονται                |
+| Μέγιστο μέγεθος    | 1MB      | Οι εικόνες συμπιέζονται ώστε να παραμένουν κάτω από 1MB       |
+| Μορφή              | PNG/JPEG | PNG με μέγιστη συμπίεση· JPEG αν χρειάζεται λόγω μεγέθους     |
 
----
+## Συμπεριφορά Συνεδρίας
 
-## Screenshot Options
+### Τύποι Συνεδρίας
 
-Options for the `take_screenshot` tool.
+| Τύπος     | Περιγραφή                          | Αυτόματη Αποσύνδεση                       |
+| --------- | ---------------------------------- | ----------------------------------------- |
+| `browser` | Συνεδρία προγράμματος περιήγησης   | Όχι                                       |
+| `ios`     | Συνεδρία εφαρμογής iOS             | Ναι (αν `noReset: true` ή χωρίς `appPath`) |
+| `android` | Συνεδρία εφαρμογής Android         | Ναι (αν `noReset: true` ή χωρίς `appPath`) |
 
-### `outputPath`
+### Μοντέλο Μίας Συνεδρίας
 
--   **Type:** `string`
--   **Mandatory:** No
+Ο διακομιστής MCP λειτουργεί με **μοντέλο μίας συνεδρίας**:
 
-Path where to save the screenshot file. If not provided, returns base64-encoded image data.
+-   Μόνο μία συνεδρία προγράμματος περιήγησης Ή εφαρμογής μπορεί να είναι ενεργή κάθε φορά
+-   Η εκκίνηση νέας συνεδρίας θα κλείσει/αποσυνδέσει την τρέχουσα συνεδρία
+-   Η κατάσταση της συνεδρίας διατηρείται καθολικά σε όλες τις κλήσεις εργαλείων
 
-### Automatic Optimization
+### Αποσύνδεση έναντι Κλεισίματος
 
-Screenshots are automatically processed to optimize for LLM consumption:
+| Ενέργεια            | `detach: false` (Κλείσιμο)                 | `detach: true` (Αποσύνδεση)                                        |
+| ------------------- | ------------------------------------------ | ------------------------------------------------------------------ |
+| Πρόγραμμα περιήγησης | Κλείνει πλήρως το πρόγραμμα περιήγησης     | Διατηρεί το πρόγραμμα περιήγησης σε λειτουργία, αποσυνδέει το WebDriver |
+| Εφαρμογή κινητού    | Τερματίζει την εφαρμογή                    | Διατηρεί την εφαρμογή σε λειτουργία στην τρέχουσα κατάσταση         |
+| Περίπτωση χρήσης    | Καθαρή αρχή για την επόμενη συνεδρία       | Διατήρηση κατάστασης, χειροκίνητος έλεγχος                         |
 
-| Optimization | Value | Description |
-|--------------|-------|-------------|
-| Max dimension | 2000px | Images larger than 2000px are scaled down |
-| Max file size | 1MB | Images are compressed to stay under 1MB |
-| Format | PNG/JPEG | PNG with max compression; JPEG if needed for size |
+## Ζητήματα Απόδοσης
 
-This optimization ensures screenshots can be efficiently processed without exceeding token limits.
+### Αυτοματοποίηση Προγράμματος Περιήγησης
 
----
+-   Η **λειτουργία headless** είναι ταχύτερη αλλά δεν αποδίδει οπτικά στοιχεία
+-   Τα **μικρότερα μεγέθη παραθύρου** μειώνουν τον χρόνο λήψης στιγμιότυπων οθόνης
+-   Η **ανίχνευση στοιχείων** είναι βελτιστοποιημένη με μία μόνο εκτέλεση script
+-   Η **βελτιστοποίηση στιγμιότυπων οθόνης** διατηρεί τις εικόνες κάτω από 1MB για αποδοτική επεξεργασία
 
-## Session Behavior
+### Αυτοματοποίηση Κινητών Συσκευών
 
-### Session Types
+-   Η **ανάλυση του XML page source** χρησιμοποιεί μόνο 2 κλήσεις HTTP (έναντι 600+ για παραδοσιακά ερωτήματα στοιχείων)
+-   Οι **επιλογείς Accessibility ID** είναι οι ταχύτεροι και πιο αξιόπιστοι
+-   Οι **επιλογείς XPath** είναι οι πιο αργοί· χρησιμοποιήστε τους μόνο ως έσχατη λύση
+-   Η **σελιδοποίηση** (`limit` και `offset`) μειώνει τη χρήση tokens σε οθόνες με πολλά στοιχεία
 
-The MCP server tracks session types to provide appropriate tools and behavior:
+### Συμβουλές για τη Χρήση Tokens
 
-| Type | Description | Auto-Detach |
-|------|-------------|-------------|
-| `browser` | Chrome browser session | No |
-| `ios` | iOS app session | Yes (if `noReset: true` or no `appPath`) |
-| `android` | Android app session | Yes (if `noReset: true` or no `appPath`) |
+| Ρύθμιση                    | Επίδραση                                                          |
+| -------------------------- | ----------------------------------------------------------------- |
+| `inViewportOnly: true`     | Φιλτράρει στοιχεία εκτός οθόνης, μειώνοντας το μέγεθος απόκρισης  |
+| `includeContainers: false` | Εξαιρεί στοιχεία διάταξης (ViewGroup κ.λπ.)                       |
+| `includeBounds: false`     | Παραλείπει τα δεδομένα x/y/πλάτους/ύψους                          |
+| `limit` με σελιδοποίηση    | Επεξεργασία στοιχείων σε παρτίδες αντί για όλα μαζί               |
 
-### Single-Session Model
+## Ρύθμιση Διακομιστή Appium
 
-The MCP server operates with a **single-session model**:
+Πριν χρησιμοποιήσετε την αυτοματοποίηση κινητών συσκευών, βεβαιωθείτε ότι το Appium είναι σωστά διαμορφωμένο.
 
--   Only one browser OR app session can be active at a time
--   Starting a new session will close/detach the current session
--   Session state is maintained globally across tool calls
-
-### Detach vs Close
-
-| Action | `detach: false` (Close) | `detach: true` (Detach) |
-|--------|-------------------------|-------------------------|
-| Browser | Closes Chrome completely | Keeps Chrome running, disconnects WebDriver |
-| Mobile App | Terminates app | Keeps app running in current state |
-| Use Case | Clean slate for next session | Preserve state, manual inspection |
-
----
-
-## Performance Considerations
-
-The MCP server is optimized for efficient LLM communication using **TOON (Token-Oriented Object Notation)** format, which minimizes token usage when sending data to Claude.
-
-### Browser Automation
-
--   **Headless mode** is faster but doesn't render visual elements
--   **Smaller window sizes** reduce screenshot capture time
--   **Element detection** is optimized with a single script execution
--   **Screenshot optimization** keeps images under 1MB for efficient processing
--   **`inViewportOnly: true`** (default) filters to only visible elements
-
-### Mobile Automation
-
--   **XML page source parsing** uses only 2 HTTP calls (vs 600+ for traditional element queries)
--   **Accessibility ID selectors** are fastest and most reliable
--   **XPath selectors** are slowest - use only as a last resort
--   **`inViewportOnly: true`** (default) significantly reduces element count
--   **Pagination** (`limit` and `offset`) reduces token usage for screens with many elements
--   **`includeBounds: false`** (default) omits coordinate data unless needed
-
-### Token Usage Tips
-
-| Setting | Impact |
-|---------|--------|
-| `inViewportOnly: true` | Filters off-screen elements, reducing response size |
-| `includeContainers: false` | Excludes layout elements (ViewGroup, etc.) |
-| `includeBounds: false` | Omits x/y/width/height data |
-| `limit` with pagination | Process elements in batches instead of all at once |
-| `namedOnly: true` (accessibility) | Filters anonymous nodes |
-
----
-
-## Appium Server Setup
-
-Before using mobile automation, ensure Appium is properly configured.
-
-### Basic Setup
+### Βασική Ρύθμιση
 
 ```sh
-# Install Appium globally
+# Εγκατάσταση του Appium καθολικά
 npm install -g appium
 
-# Install drivers
+# Εγκατάσταση προγραμμάτων οδήγησης
 appium driver install xcuitest    # iOS
 appium driver install uiautomator2  # Android
 
-# Start the server
+# Εκκίνηση του διακομιστή
 appium
 ```
 
-### Custom Server Configuration
+### Προσαρμοσμένη Διαμόρφωση Διακομιστή
 
 ```sh
-# Start with custom host and port
+# Εκκίνηση με προσαρμοσμένο host και port
 appium --address 0.0.0.0 --port 4724
 
-# Start with logging
+# Εκκίνηση με καταγραφή
 appium --log-level debug
 
-# Start with specific base path
+# Εκκίνηση με συγκεκριμένη βασική διαδρομή
 appium --base-path /wd/hub
 ```
 
-### Verify Installation
+### Επαλήθευση Εγκατάστασης
 
 ```sh
-# Check installed drivers
+# Έλεγχος εγκατεστημένων προγραμμάτων οδήγησης
 appium driver list --installed
 
-# Check Appium version
+# Έλεγχος έκδοσης Appium
 appium --version
 
-# Test connection
+# Δοκιμή σύνδεσης
 curl http://localhost:4723/status
 ```
 
----
+## Αντιμετώπιση Προβλημάτων Διαμόρφωσης
 
-## Troubleshooting Configuration
+### Ο Διακομιστής MCP Δεν Ξεκινά
 
-### MCP Server Not Starting
+1. Επαληθεύστε ότι το npm/npx είναι εγκατεστημένο: `npm --version`
+2. Δοκιμάστε χειροκίνητη εκτέλεση: `npx @wdio/mcp`
+3. Ελέγξτε τα αρχεία καταγραφής του harness σας για σφάλματα
 
-1. Verify npm/npx is installed: `npm --version`
-2. Try running manually: `npx @wdio/mcp`
-3. Check Claude Desktop logs for errors
+### Προβλήματα Σύνδεσης με το Appium
 
-### Appium Connection Issues
+1. Επαληθεύστε ότι το Appium εκτελείται: `curl http://localhost:4723/status`
+2. Ελέγξτε ότι το `appiumConfig` στο `start_session` αντιστοιχεί στις ρυθμίσεις του διακομιστή Appium
+3. Βεβαιωθείτε ότι το τείχος προστασίας επιτρέπει συνδέσεις στη θύρα του Appium
 
-1. Verify Appium is running: `curl http://localhost:4723/status`
-2. Check environment variables match Appium server settings
-3. Ensure firewall allows connections on the Appium port
+### Η Συνεδρία Δεν Ξεκινά
 
-### Session Won't Start
+1. **Πρόγραμμα περιήγησης:** Βεβαιωθείτε ότι το επιθυμητό πρόγραμμα περιήγησης είναι εγκατεστημένο
+2. **iOS:** Επαληθεύστε ότι το Xcode και οι προσομοιωτές είναι διαθέσιμοι
+3. **Android:** Ελέγξτε το `ANDROID_HOME` και ότι ο εξομοιωτής εκτελείται
+4. Εξετάστε τα αρχεία καταγραφής του διακομιστή Appium για λεπτομερή μηνύματα σφάλματος
 
-1. **Browser:** Ensure Chrome is installed
-2. **iOS:** Verify Xcode and simulators are available
-3. **Android:** Check `ANDROID_HOME` and emulator is running
-4. Review Appium server logs for detailed error messages
+### Λήξη Χρονικού Ορίου Συνεδριών
 
-### Session Timeouts
-
-If sessions are timing out during debugging:
-1. Increase `newCommandTimeout` when starting the session
-2. Use `noReset: true` to preserve state between sessions
-3. Use `detach: true` when closing to keep the app running
+Αν οι συνεδρίες λήγουν κατά τον εντοπισμό σφαλμάτων:
+1. Αυξήστε το `newCommandTimeout` κατά την εκκίνηση της συνεδρίας
+2. Χρησιμοποιήστε `noReset: true` για διατήρηση της κατάστασης μεταξύ συνεδριών
+3. Χρησιμοποιήστε `detach: true` κατά το κλείσιμο για να συνεχίσει να εκτελείται η εφαρμογή

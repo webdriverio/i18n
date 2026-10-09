@@ -1,11 +1,12 @@
 ---
 id: macos
 title: MacOS
+description: "Automatizza le applicazioni native macOS con WebdriverIO utilizzando Appium e il driver Mac2, partendo dalla procedura guidata di configurazione del progetto."
 ---
 
-WebdriverIO può automatizzare qualsiasi applicazione MacOS utilizzando [Appium](https://appium.io/). Tutto ciò di cui hai bisogno è [XCode](https://developer.apple.com/xcode/) installato sul tuo sistema, Appium e il [Mac2 Driver](https://github.com/appium/appium-mac2-driver) installati come dipendenze e le capabilities impostate correttamente.
+WebdriverIO può automatizzare qualsiasi applicazione MacOS utilizzando [Appium](https://appium.io/). Tutto ciò di cui hai bisogno è [XCode](https://developer.apple.com/xcode/) installato sul tuo sistema, Appium e il [Mac2 Driver](https://github.com/appium/appium-mac2-driver) installati come dipendenze e le capabilities corrette impostate.
 
-## Per iniziare
+## Per Iniziare
 
 Per avviare un nuovo progetto WebdriverIO, esegui:
 
@@ -13,9 +14,9 @@ Per avviare un nuovo progetto WebdriverIO, esegui:
 npm create wdio@latest ./
 ```
 
-Una procedura guidata di installazione ti accompagnerà nel processo. Assicurati di selezionare _"Desktop Testing - of MacOS Applications"_ quando ti viene chiesto che tipo di test vorresti fare. Successivamente, mantieni le impostazioni predefinite o modificale in base alle tue preferenze.
+Una procedura guidata di installazione ti accompagnerà attraverso il processo. Assicurati di selezionare _"Desktop Testing - of MacOS Applications"_ quando ti viene chiesto quale tipo di test desideri eseguire. Successivamente mantieni le impostazioni predefinite o modificale in base alle tue preferenze.
 
-La procedura guidata di configurazione installerà tutti i pacchetti Appium necessari e creerà un file `wdio.conf.js` o `wdio.conf.ts` con la configurazione necessaria per eseguire test su MacOS. Se hai accettato di generare automaticamente alcuni file di test, puoi eseguire il tuo primo test tramite `npm run wdio`.
+La procedura guidata di configurazione installerà tutti i pacchetti Appium necessari e creerà un file `wdio.conf.js` o `wdio.conf.ts` con la configurazione necessaria per testare su MacOS. Se hai accettato di generare automaticamente alcuni file di test, puoi eseguire il tuo primo test tramite `npm run wdio`.
 
 <CreateMacOSProjectAnimation />
 
@@ -23,7 +24,7 @@ Ecco fatto 🎉
 
 ## Esempio
 
-Ecco come può apparire un semplice test che apre l'applicazione Calcolatrice, esegue un calcolo e verifica il risultato:
+Ecco come può apparire un semplice test che apre l'applicazione Calcolatrice, esegue un calcolo e ne verifica il risultato:
 
 ```js
 describe('My Login application', () => {
@@ -39,6 +40,6 @@ describe('My Login application', () => {
 
 __Nota:__ l'app calcolatrice è stata aperta automaticamente all'inizio della sessione perché `'appium:bundleId': 'com.apple.calculator'` è stato definito come opzione delle capabilities. Puoi cambiare app durante la sessione in qualsiasi momento.
 
-## Ulteriori informazioni
+## Ulteriori Informazioni
 
-Per informazioni specifiche sui test su MacOS, ti consigliamo di consultare il progetto [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver).
+Per informazioni sui dettagli specifici dei test su MacOS, ti consigliamo di consultare il progetto [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver).

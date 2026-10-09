@@ -1,11 +1,12 @@
 ---
 id: getting-started
-title: Primeros Pasos
+title: Primeros pasos
+description: "Instala y configura @wdio/ocr-service, configura el soporte para TypeScript y ajusta las opciones de contraste, carpeta de imágenes e idioma."
 ---
 
 ## Instalación
 
-La forma más fácil es mantener `@wdio/ocr-service` como una dependencia en tu `package.json` a través de.
+La forma más sencilla es mantener `@wdio/ocr-service` como dependencia en tu `package.json` mediante:
 
 ```bash npm2yarn
 npm install @wdio/ocr-service --save-dev
@@ -14,15 +15,15 @@ npm install @wdio/ocr-service --save-dev
 Las instrucciones sobre cómo instalar `WebdriverIO` se pueden encontrar [aquí.](../gettingstarted)
 
 :::note
-Este módulo utiliza Tesseract como motor OCR. Por defecto, verificará si tienes una instalación local de Tesseract en tu sistema, si es así, la utilizará. Si no, utilizará el módulo [Node.js Tesseract.js](https://github.com/naptha/tesseract.js) que se instala automáticamente para ti.
+Este módulo utiliza Tesseract como motor de OCR. Por defecto, verificará si tienes una instalación local de Tesseract en tu sistema y, si es así, la utilizará. Si no, utilizará el módulo [Node.js Tesseract.js](https://github.com/naptha/tesseract.js), que se instala automáticamente.
 
-Si quieres acelerar el procesamiento de imágenes, se recomienda usar una versión de Tesseract instalada localmente. Consulta también [Tiempo de ejecución de pruebas](./more-test-optimization#using-a-local-installation-of-tesseract).
+Si quieres acelerar el procesamiento de imágenes, se recomienda utilizar una versión de Tesseract instalada localmente. Consulta también [Tiempo de ejecución de las pruebas](./more-test-optimization#using-a-local-installation-of-tesseract).
 :::
 
-Las instrucciones sobre cómo instalar Tesseract como dependencia del sistema en tu sistema local se pueden encontrar [aquí](https://tesseract-ocr.github.io/tessdoc/Installation.html).
+Las instrucciones sobre cómo instalar Tesseract como dependencia del sistema en tu equipo local se pueden encontrar [aquí](https://tesseract-ocr.github.io/tessdoc/Installation.html).
 
 :::caution
-Para preguntas/errores de instalación con Tesseract, consulta el proyecto
+Para preguntas o errores de instalación con Tesseract, consulta el proyecto
 [Tesseract](https://github.com/tesseract-ocr/tesseract).
 :::
 
@@ -60,39 +61,36 @@ exports.config = {
 };
 ```
 
-### Opciones de Configuración
+### Opciones de configuración
 
 #### `contrast`
 
--   **Tipo:** `number`
--   **Obligatorio:** No
--   **Valor predeterminado:** `0.25`
+<Option type="number" default="0.25" required="No">
 
 Cuanto mayor sea el contraste, más oscura será la imagen y viceversa. Esto puede ayudar a encontrar texto en una imagen. Acepta valores entre `-1` y `1`.
 
+</Option>
 #### `imagesFolder`
 
--   **Tipo:** `string`
--   **Obligatorio:** No
--   **Valor predeterminado:** `{project-root}/.tmp/ocr`
+<Option type="string" default={`{project-root}/.tmp/ocr`} required="No">
 
 La carpeta donde se almacenan los resultados del OCR.
 
 :::note
-Si proporcionas una `imagesFolder` personalizada, el servicio añadirá automáticamente la subcarpeta `ocr` a ella.
+Si proporcionas un `imagesFolder` personalizado, el servicio le añadirá automáticamente la subcarpeta `ocr`.
 :::
 
+</Option>
 #### `language`
 
--   **Tipo:** `string`
--   **Obligatorio:** No
--   **Valor predeterminado:** `eng`
+<Option type="string" default="eng" required="No">
 
-El idioma que Tesseract reconocerá. Más información se puede encontrar [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas soportados se pueden encontrar [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+El idioma que Tesseract reconocerá. Puedes encontrar más información [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas compatibles se pueden encontrar [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-## Registros
+</Option>
+## Logs
 
-Este módulo añadirá automáticamente registros adicionales a los registros de WebdriverIO. Escribe en los registros `INFO` y `WARN` con el nombre `@wdio/ocr-service`.
+Este módulo añadirá automáticamente logs adicionales a los logs de WebdriverIO. Escribe en los logs `INFO` y `WARN` con el nombre `@wdio/ocr-service`.
 A continuación se muestran algunos ejemplos.
 
 ```log

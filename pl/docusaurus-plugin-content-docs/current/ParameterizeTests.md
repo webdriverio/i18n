@@ -1,9 +1,10 @@
 ---
 id: parameterize-tests
-title: Parametryzacja Testów
+title: Parametryzacja testów
+description: "Parametryzuj testy za pomocą pętli i funkcji dynamicznych, zmiennych środowiskowych, plików .env lub danych z pliku CSV."
 ---
 
-Możesz łatwo parametryzować testy na poziomie testu, za pomocą prostych pętli `for`, np.:
+Możesz w prosty sposób parametryzować testy na poziomie testu, za pomocą zwykłych pętli `for`, np.:
 
 ```ts title=example.spec.js
 const people = ['Alice', 'Bob']
@@ -16,7 +17,7 @@ describe('my tests', () => {
 })
 ```
 
-lub przez wyodrębnienie testów do dynamicznych funkcji, np.:
+lub wydzielając testy do funkcji dynamicznych, np.:
 
 ```js title=dynamic.spec.js
 import { browser } from '@wdio/globals'
@@ -36,9 +37,9 @@ describe('page components', () => {
 
 ## Przekazywanie zmiennych środowiskowych
 
-Możesz używać zmiennych środowiskowych do konfigurowania testów z wiersza poleceń.
+Możesz używać zmiennych środowiskowych, aby konfigurować testy z poziomu wiersza poleceń.
 
-Na przykład, rozważ następujący plik testowy, który wymaga nazwy użytkownika i hasła. Zwykle dobrym pomysłem jest nieprzetrzymywanie tajnych danych w kodzie źródłowym, więc będziemy potrzebować sposobu na przekazanie tych danych z zewnątrz.
+Na przykład rozważ poniższy plik testowy, który wymaga nazwy użytkownika i hasła. Zazwyczaj dobrym pomysłem jest nieprzechowywanie sekretów w kodzie źródłowym, więc potrzebujemy sposobu na przekazanie ich z zewnątrz.
 
 ```ts title=example.spec.ts
 it(`example test`, async () => {
@@ -48,7 +49,7 @@ it(`example test`, async () => {
 })
 ```
 
-Możesz uruchomić ten test z tajną nazwą użytkownika i hasłem ustawionymi w wierszu poleceń.
+Możesz uruchomić ten test, ustawiając swoją tajną nazwę użytkownika i hasło w wierszu poleceń.
 
 <Tabs
   defaultValue="bash"
@@ -85,7 +86,7 @@ npx wdio run wdio.conf.js
 </TabItem>
 </Tabs>
 
-Podobnie, plik konfiguracyjny może również odczytywać zmienne środowiskowe przekazane przez wiersz poleceń.
+Podobnie plik konfiguracyjny może odczytywać zmienne środowiskowe przekazane przez wiersz poleceń.
 
 ```ts title=wdio.config.js
 export const config = {
@@ -97,7 +98,7 @@ export const config = {
 }
 ```
 
-Teraz możesz uruchomić testy w środowisku testowym lub produkcyjnym:
+Teraz możesz uruchamiać testy w środowisku testowym (staging) lub produkcyjnym:
 
 <Tabs
   defaultValue="bash"
@@ -134,26 +135,26 @@ npx wdio run wdio.conf.js
 
 ## Pliki `.env`
 
-Aby ułatwić zarządzanie zmiennymi środowiskowymi, rozważ wykorzystanie plików `.env`. WebdriverIO automatycznie ładuje pliki `.env` do twojego środowiska. Zamiast definiować zmienną środowiskową jako część wywołania polecenia, możesz zdefiniować następujący plik `.env`:
+Aby ułatwić zarządzanie zmiennymi środowiskowymi, rozważ użycie plików `.env`. WebdriverIO automatycznie ładuje pliki `.env` do Twojego środowiska. Zamiast definiować zmienną środowiskową jako część wywołania polecenia, możesz zdefiniować następujący plik `.env`:
 
 ```bash title=".env"
-# .env file
+# plik .env
 STAGING=0
 USERNAME=me
 PASSWORD=secret
 ```
 
-Uruchom testy jak zwykle, twoje zmienne środowiskowe powinny zostać wykryte.
+Uruchom testy jak zwykle, a Twoje zmienne środowiskowe powinny zostać wczytane.
 
 ```sh
 npx wdio run wdio.conf.js
 ```
 
-## Tworzenie testów za pomocą pliku CSV
+## Tworzenie testów na podstawie pliku CSV
 
-Test-runner WebdriverIO działa w środowisku Node.js, co oznacza, że możesz bezpośrednio odczytywać pliki z systemu plików i analizować je za pomocą preferowanej biblioteki CSV.
+Test runner WebdriverIO działa w Node.js, co oznacza, że możesz bezpośrednio odczytywać pliki z systemu plików i parsować je za pomocą preferowanej biblioteki CSV.
 
-Zobacz na przykład ten plik CSV, w naszym przykładzie input.csv:
+Spójrz na przykład na ten plik CSV, w naszym przykładzie input.csv:
 
 ```csv
 "test_case","some_value","some_other_value"
@@ -163,7 +164,7 @@ Zobacz na przykład ten plik CSV, w naszym przykładzie input.csv:
 "value 4","value 44","foobar4321"
 ```
 
-Na tej podstawie wygenerujemy kilka testów, używając biblioteki csv-parse z NPM:
+Na jego podstawie wygenerujemy kilka testów, korzystając z biblioteki csv-parse z NPM:
 
 ```js title=test.spec.ts
 import fs from 'node:fs'

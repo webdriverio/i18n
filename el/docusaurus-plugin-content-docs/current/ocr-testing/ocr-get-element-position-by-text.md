@@ -1,11 +1,12 @@
 ---
 id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
+description: "Λάβετε τη θέση ενός κειμένου στην οθόνη με το ocrGetElementPositionByText, χρησιμοποιώντας OCR και ασαφή αντιστοίχιση (fuzzy matching) για να το εντοπίσετε."
 ---
 
-Λάβετε τη θέση ενός κειμένου στην οθόνη. Η εντολή θα αναζητήσει το παρεχόμενο κείμενο και θα προσπαθήσει να βρει μια αντιστοιχία βάσει της Ασαφούς Λογικής (Fuzzy Logic) από το [Fuse.js](https://fusejs.io/). Αυτό σημαίνει ότι αν παρέχετε έναν επιλογέα με τυπογραφικό λάθος, ή το κείμενο που βρέθηκε μπορεί να μην ταιριάζει 100%, θα προσπαθήσει να σας επιστρέψει ένα στοιχείο. Δείτε τα [αρχεία καταγραφής](#logs) παρακάτω.
+Λάβετε τη θέση ενός κειμένου στην οθόνη. Η εντολή θα αναζητήσει το παρεχόμενο κείμενο και θα προσπαθήσει να βρει μια αντιστοιχία με βάση την Ασαφή Λογική (Fuzzy Logic) από το [Fuse.js](https://fusejs.io/). Αυτό σημαίνει ότι ακόμη κι αν δώσετε έναν selector με τυπογραφικό λάθος, ή το κείμενο που βρέθηκε δεν αντιστοιχεί 100%, θα προσπαθήσει παρ' όλα αυτά να σας επιστρέψει ένα στοιχείο. Δείτε τα [logs](#logs) παρακάτω.
 
-## Usage
+## Χρήση
 
 ```js
 const result = await browser.ocrGetElementPositionByText("Username");
@@ -13,9 +14,9 @@ const result = await browser.ocrGetElementPositionByText("Username");
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## Output
+## Έξοδος
 
-### Result
+### Αποτέλεσμα
 
 ```logs
 result = {
@@ -41,22 +42,22 @@ result = {
 ### Logs
 
 ```log
-# Still finding a match even though we searched for "Start3d" and the found text was "Started"
+# Εξακολουθεί να βρίσκει αντιστοιχία παρόλο που αναζητήσαμε "Start3d" και το κείμενο που βρέθηκε ήταν "Started"
 [0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-## Options
+## Επιλογές
 
 ### `text`
 
--   **Type:** `string`
--   **Mandatory:** yes
+<Option type="string" required="yes">
 
-Το κείμενο που θέλετε να αναζητήσετε για να κάνετε κλικ.
+Το κείμενο που θέλετε να αναζητήσετε για να κάνετε κλικ σε αυτό.
 
-#### Example
+</Option>
+#### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
@@ -64,13 +65,12 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 
 ### `contrast`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** `0.25`
+<Option type="number" default="0.25" required="no">
 
 Όσο υψηλότερη είναι η αντίθεση, τόσο πιο σκοτεινή είναι η εικόνα και αντίστροφα. Αυτό μπορεί να βοηθήσει στην εύρεση κειμένου σε μια εικόνα. Δέχεται τιμές μεταξύ `-1` και `1`.
 
-#### Example
+</Option>
+#### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -81,12 +81,12 @@ await browser.ocrGetElementPositionByText({
 
 ### `haystack`
 
--   **Type:** `number`
--   **Mandatory:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Αυτή είναι η περιοχή αναζήτησης στην οθόνη όπου το OCR πρέπει να αναζητήσει κείμενο. Αυτό μπορεί να είναι ένα στοιχείο ή ένα ορθογώνιο που περιέχει `x`, `y`, `width` και `height`
+Αυτή είναι η περιοχή αναζήτησης στην οθόνη όπου το OCR πρέπει να αναζητήσει κείμενο. Μπορεί να είναι ένα στοιχείο ή ένα ορθογώνιο που περιέχει `x`, `y`, `width` και `height`
 
-#### Example
+</Option>
+#### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -114,36 +114,34 @@ await browser.ocrGetElementPositionByText({
 
 ### `language`
 
--   **Type:** `string`
--   **Mandatory:** No
--   **Default:** `eng`
+<Option type="string" default="eng" required="No">
 
-Η γλώσσα που το Tesseract θα αναγνωρίσει. Περισσότερες πληροφορίες μπορείτε να βρείτε [εδώ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) και οι υποστηριζόμενες γλώσσες μπορούν να βρεθούν [εδώ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Η γλώσσα που θα αναγνωρίσει το Tesseract. Περισσότερες πληροφορίες μπορείτε να βρείτε [εδώ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) και τις υποστηριζόμενες γλώσσες μπορείτε να τις βρείτε [εδώ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
-#### Example
+</Option>
+#### Παράδειγμα
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
-    // Use Dutch as a language
+    // Χρήση των Ολλανδικών ως γλώσσα
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-Μπορείτε να αλλάξετε τη λογική ασαφούς αναζήτησης για να βρείτε κείμενο με τις ακόλουθες επιλογές. Αυτό μπορεί να βοηθήσει στην εύρεση καλύτερης αντιστοιχίας
+Μπορείτε να τροποποιήσετε την ασαφή λογική για την εύρεση κειμένου με τις ακόλουθες επιλογές. Αυτό μπορεί να βοηθήσει στην εύρεση καλύτερης αντιστοιχίας
 
 #### `fuzzyFindOptions.distance`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** 100
+<Option type="number" default="100" required="no">
 
-Καθορίζει πόσο κοντά πρέπει να είναι η αντιστοιχία στην ασαφή τοποθεσία (που καθορίζεται από την τοποθεσία). Μια ακριβής αντιστοιχία γράμματος που απέχει απόσταση χαρακτήρων από την ασαφή τοποθεσία θα βαθμολογηθεί ως πλήρης αναντιστοιχία. Μια απόσταση 0 απαιτεί η αντιστοιχία να βρίσκεται στην ακριβή τοποθεσία που καθορίζεται. Μια απόσταση 1000 θα απαιτούσε μια τέλεια αντιστοιχία να βρίσκεται εντός 800 χαρακτήρων από την τοποθεσία για να βρεθεί χρησιμοποιώντας ένα κατώφλι 0,8.
+Καθορίζει πόσο κοντά πρέπει να είναι η αντιστοιχία στην ασαφή θέση (που καθορίζεται από το location). Μια ακριβής αντιστοιχία γράμματος που απέχει distance χαρακτήρες από την ασαφή θέση θα βαθμολογηθεί ως πλήρης αναντιστοιχία. Μια απόσταση 0 απαιτεί η αντιστοιχία να βρίσκεται ακριβώς στη θέση που καθορίστηκε. Μια απόσταση 1000 θα απαιτούσε μια τέλεια αντιστοιχία να βρίσκεται εντός 800 χαρακτήρων από τη θέση για να εντοπιστεί, χρησιμοποιώντας κατώφλι 0.8.
 
-##### Example
+</Option>
+##### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -156,13 +154,12 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.location`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** 0
+<Option type="number" default="0" required="no">
 
-Καθορίζει περίπου πού στο κείμενο αναμένεται να βρεθεί το μοτίβο.
+Καθορίζει κατά προσέγγιση πού στο κείμενο αναμένεται να βρεθεί το μοτίβο.
 
-##### Example
+</Option>
+##### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -175,13 +172,12 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.threshold`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** 0.6
+<Option type="number" default="0.6" required="no">
 
-Σε ποιο σημείο ο αλγόριθμος αντιστοίχισης εγκαταλείπει. Ένα κατώφλι 0 απαιτεί τέλεια αντιστοιχία (τόσο γραμμάτων όσο και τοποθεσίας), ένα κατώφλι 1.0 θα ταίριαζε με οτιδήποτε.
+Σε ποιο σημείο ο αλγόριθμος αντιστοίχισης εγκαταλείπει. Ένα κατώφλι 0 απαιτεί τέλεια αντιστοιχία (τόσο γραμμάτων όσο και θέσης), ενώ ένα κατώφλι 1.0 θα αντιστοιχούσε σε οτιδήποτε.
 
-##### Example
+</Option>
+##### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -194,13 +190,12 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
--   **Type:** `boolean`
--   **Mandatory:** no
--   **Default:** false
+<Option type="boolean" default="false" required="no">
 
-Εάν η αναζήτηση πρέπει να διακρίνει πεζά-κεφαλαία.
+Αν η αναζήτηση πρέπει να κάνει διάκριση πεζών-κεφαλαίων.
 
-##### Example
+</Option>
+##### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -213,13 +208,12 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** 2
+<Option type="number" default="2" required="no">
 
-Μόνο οι αντιστοιχίες των οποίων το μήκος υπερβαίνει αυτήν την τιμή θα επιστραφούν. (Για παράδειγμα, αν θέλετε να αγνοήσετε τις αντιστοιχίες μεμονωμένων χαρακτήρων στο αποτέλεσμα, ορίστε το σε 2)
+Θα επιστρέφονται μόνο οι αντιστοιχίες των οποίων το μήκος υπερβαίνει αυτή την τιμή. (Για παράδειγμα, αν θέλετε να αγνοήσετε αντιστοιχίες ενός χαρακτήρα στο αποτέλεσμα, ορίστε την σε 2)
 
-##### Example
+</Option>
+##### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -232,13 +226,12 @@ await browser.ocrGetElementPositionByText({
 
 #### `fuzzyFindOptions.findAllMatches`
 
--   **Type:** `number`
--   **Mandatory:** no
--   **Default:** false
+<Option type="number" default="false" required="no">
 
-Όταν είναι `true`, η συνάρτηση αντιστοίχισης θα συνεχίσει μέχρι το τέλος ενός μοτίβου αναζήτησης ακόμα και αν έχει ήδη εντοπιστεί μια τέλεια αντιστοιχία στη συμβολοσειρά.
+Όταν είναι `true`, η συνάρτηση αντιστοίχισης θα συνεχίσει μέχρι το τέλος ενός μοτίβου αναζήτησης ακόμη κι αν έχει ήδη εντοπιστεί μια τέλεια αντιστοιχία στη συμβολοσειρά.
 
-##### Example
+</Option>
+##### Παράδειγμα
 
 ```js
 await browser.ocrGetElementPositionByText({

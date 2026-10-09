@@ -1,681 +1,466 @@
 ---
 id: tools
 title: Verktyg
+description: "Slå upp de verktyg som WebdriverIO MCP-servern exponerar för sessioner, navigering, elementinteraktion, skärmbilder, gester och appens livscykel."
 ---
 
-Följande verktyg är tillgängliga via WebdriverIO MCP-servern. Dessa verktyg gör det möjligt för AI-assistenter att automatisera webbläsare och mobilapplikationer.
+WebdriverIO MCP-servern exponerar 29 verktyg, ordnade efter funktion. Verktyg markerade med **endast webbläsare** kräver en session med `platform: "browser"`. Verktyg markerade med **endast mobil** kräver `platform: "ios"` eller `platform: "android"`.
 
-## Session Management
+## Sessionshantering
 
-### `start_browser`
+### `start_session`
 
-Startar en Chrome-webbläsarsession.
+Startar en ny automatiseringssession för webbläsare eller mobil. Endast en session kan vara aktiv åt gången; om du startar en ny stängs den befintliga.
 
-#### Parameters
+| Parameter              | Typ                                                                    | Obligatorisk     | Standard         | Beskrivning                                                                                                                       |
+| ---------------------- | ---------------------------------------------------------------------- | ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `platform`             | `"browser" \| "ios" \| "android"`                                      | ✓                | —                | Sessionens plattform                                                                                                              |
+| `provider`             | `"local" \| "browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | —                | `"local"`        | Sessionsleverantör                                                                                                                |
+| `browser`              | `"chrome" \| "firefox" \| "edge" \| "safari"`                          | endast webbläsare | —               | Webbläsare som ska startas                                                                                                        |
+| `browserVersion`       | string                                                                 | —                | senaste          | Webbläsarversion (endast molnleverantörer, standard: senaste)                                                                     |
+| `os`                   | string                                                                 | —                | —                | Operativsystem (endast molnleverantörer, t.ex. `"Windows"`, `"OS X"`)                                                             |
+| `osVersion`            | string                                                                 | —                | —                | OS-version (endast molnleverantörer, t.ex. `"11"`, `"Sequoia"`)                                                                   |
+| `headless`             | boolean                                                                | —                | `true`           | Kör webbläsaren headless                                                                                                          |
+| `windowWidth`          | number                                                                 | —                | `1920`           | Webbläsarfönstrets bredd (400–3840)                                                                                               |
+| `windowHeight`         | number                                                                 | —                | `1080`           | Webbläsarfönstrets höjd (400–2160)                                                                                                |
+| `navigationUrl`        | string                                                                 | —                | —                | URL att navigera till efter start                                                                                                 |
+| `deviceName`           | string                                                                 | endast mobil     | —                | Namn på enhet/emulator/simulator                                                                                                  |
+| `platformVersion`      | string                                                                 | —                | —                | OS-version (t.ex. `"17.0"`, `"14"`)                                                                                               |
+| `appPath`              | string                                                                 | —                | —                | Sökväg till `.app` / `.apk` / `.ipa`                                                                                              |
+| `app`                  | string                                                                 | —                | —                | App-URL (`bs://...` för BrowserStack, `storage:filename=` för Sauce Labs, `lt://...` för TestMu, TestingBot app_url) eller custom_id |
+| `automationName`       | `"XCUITest" \| "UiAutomator2"`                                         | —                | auto             | Automatiseringsdrivrutin                                                                                                          |
+| `autoGrantPermissions` | boolean                                                                | —                | `true`           | Bevilja appbehörigheter automatiskt                                                                                               |
+| `autoAcceptAlerts`     | boolean                                                                | —                | `true`           | Acceptera aviseringar automatiskt                                                                                                 |
+| `autoDismissAlerts`    | boolean                                                                | —                | `false`          | Avfärda aviseringar automatiskt                                                                                                   |
+| `appWaitActivity`      | string                                                                 | —                | —                | Android-aktivitet att vänta på vid start                                                                                          |
+| `udid`                 | string                                                                 | —                | —                | UDID för fysisk iOS-enhet                                                                                                         |
+| `noReset`              | boolean                                                                | —                | —                | Bevara appdata mellan sessioner                                                                                                   |
+| `fullReset`            | boolean                                                                | —                | —                | Avinstallera appen före/efter sessionen                                                                                           |
+| `newCommandTimeout`    | number                                                                 | —                | `300`            | Timeout för Appium-kommandon (sekunder)                                                                                           |
+| `attach`               | boolean                                                                | —                | `false`          | Anslut till befintlig Chrome via CDP                                                                                              |
+| `attachConfig`         | object                                                                 | —                | —                | CDP-anslutning: `{ port: 9222, host: "localhost" }`                                                                               |
+| `appiumConfig`         | object                                                                 | —                | —                | Appium-server: `{ host, port, path }`                                                                                             |
+| `tunnel`               | `boolean \| "external"`                                                | —                | `false`          | Routning via lokal tunnel (molnleverantörer). `true` = starta automatiskt, `"external"` = tunneln körs redan externt              |
+| `reporting`            | object                                                                 | —                | —                | Rapporteringsetiketter för molnleverantör: `{ project, build, session }`                                                          |
+| `trace`                | boolean                                                                | —                | `false`          | Aktivera spårningsinspelning — skapar en Playwright-kompatibel `.trace`-zip                                                       |
+| `region`               | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`                  | —                | `"eu-central-1"` | Region för Sauce Labs datacenter                                                                                                  |
+| `tunnelName`           | string                                                                 | —                | —                | Tunnelns identifierande namn (krävs för `tunnel: "external"`)                                                                     |
+| `capabilities`         | object                                                                 | —                | —                | Ytterligare råa capabilities att slå samman                                                                                       |
 
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `headless` | boolean | No | `false` | Run Chrome in headless mode |
-| `windowWidth` | number | No | `1920` | Browser window width (400-3840) |
-| `windowHeight` | number | No | `1080` | Browser window height (400-2160) |
-| `navigationUrl` | string | No | - | URL to navigate to after starting the browser |
+```js
+// Lokal Chrome-webbläsare
+start_session({ platform: "browser", browser: "chrome" })
 
-#### Example
+// iOS-simulator
+start_session({ platform: "ios", deviceName: "iPhone 16", platformVersion: "18.0", appPath: "/path/to/app.app" })
 
+// BrowserStack Android
+start_session({ platform: "android", provider: "browserstack", deviceName: "Samsung Galaxy S24", app: "bs://abc123" })
+
+// Sauce Labs iOS
+start_session({ platform: "ios", provider: "saucelabs", deviceName: "iPhone 15", platformVersion: "17.0", app: "storage:filename=MyApp.ipa" })
+
+// TestMu-webbläsare
+start_session({ platform: "browser", provider: "testmu", browser: "chrome", os: "Windows", osVersion: "11" })
+
+// TestingBot-webbläsare
+start_session({ platform: "browser", provider: "testingbot", browser: "chrome", os: "Windows", osVersion: "11" })
+
+// Molnleverantör med tunnel
+start_session({ platform: "browser", provider: "browserstack", browser: "chrome", tunnel: true })
+
+// Anslut till befintlig Chrome (efter launch_chrome)
+start_session({ platform: "browser", browser: "chrome", attach: true })
 ```
-Start a browser with 1920x1080 resolution and navigate to webdriver.io
-```
-
-#### Support
-
-- Desktop Browsers
-
----
-
-### `start_app_session`
-
-Startar en mobilappsession på iOS eller Android via Appium.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `platform` | string | Yes | - | Platform to automate: `iOS` or `Android` |
-| `deviceName` | string | Yes | - | Name of the device or simulator/emulator |
-| `appPath` | string | No* | - | Path to the app file (.app, .ipa, or .apk) |
-| `platformVersion` | string | No | - | OS version (e.g., `17.0`, `14`) |
-| `automationName` | string | No | Auto | `XCUITest` (iOS), `UiAutomator2` or `Espresso` (Android) |
-| `udid` | string | No | - | Unique device identifier (required for real iOS devices) |
-| `noReset` | boolean | No | `false` | Preserve app state between sessions |
-| `fullReset` | boolean | No | `true` | Uninstall and reinstall app before session |
-| `autoGrantPermissions` | boolean | No | `true` | Automatically grant app permissions |
-| `autoAcceptAlerts` | boolean | No | `true` | Automatically accept system alerts |
-| `autoDismissAlerts` | boolean | No | `false` | Dismiss (instead of accept) alerts |
-| `appWaitActivity` | string | No | - | Activity to wait for on launch (Android only) |
-| `newCommandTimeout` | number | No | `60` | Seconds before session times out due to inactivity |
-| `appiumHost` | string | No | `127.0.0.1` | Appium server hostname |
-| `appiumPort` | number | No | `4723` | Appium server port |
-| `appiumPath` | string | No | `/` | Appium server path |
-
-*Either `appPath` must be provided, or `noReset: true` to connect to an already-running app.
-
-#### Example
-
-```
-Start an iOS app session on iPhone 15 simulator with my app at /path/to/app.app
-```
-
-#### Support
-
-- iOS Simulators
-- iOS Real Devices
-- Android Emulators
-- Android Real Devices
 
 ---
 
 ### `close_session`
 
-Stänger den aktuella webbläsar- eller appsessionen.
+Stänger eller kopplar från den aktuella sessionen.
 
-#### Parameters
+| Parameter | Typ     | Obligatorisk | Standard | Beskrivning                                                       |
+| --------- | ------- | ------------ | -------- | ----------------------------------------------------------------- |
+| `detach`  | boolean | —            | `false`  | Koppla från utan att avsluta (bevarar apptillståndet i Appium)    |
 
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `detach` | boolean | No | `false` | Detach from session instead of closing (keeps browser/app running) |
-
-#### Notes
-
-Sessions with `noReset: true` or without `appPath` automatically detach on close to preserve state.
-
-#### Support
-
-- Desktop Browsers
-- Mobile Apps
+Sessioner som startats med `noReset: true` kopplas som standard från automatiskt.
 
 ---
 
-## Navigation
+### `launch_chrome`
+
+Förbereder en Chrome-instans med fjärrfelsökning aktiverad så att `start_session({ attach: true })` kan ansluta. Två lägen:
+
+- `newInstance` (standard): öppnar Chrome bredvid din befintliga instans med en separat profilkatalog; din nuvarande session påverkas inte.
+- `freshSession`: startar Chrome med en tom profil (inga cookies, inga inloggningar). Använd `copyProfileFiles: true` för att föra över cookies och inloggningar.
+
+| Parameter          | Typ                               | Obligatorisk | Standard        | Beskrivning                                                               |
+| ------------------ | --------------------------------- | ------------ | --------------- | ------------------------------------------------------------------------- |
+| `port`             | number                            | —            | `9222`          | Port för fjärrfelsökning                                                  |
+| `mode`             | `"newInstance" \| "freshSession"` | —            | `"newInstance"` | Startläge                                                                 |
+| `copyProfileFiles` | boolean                           | —            | `false`         | Kopiera Chromes standardprofil (cookies, inloggningar) till felsökningssessionen |
+
+När detta verktyg har lyckats anropar du `start_session({ platform: "browser", browser: "chrome", attach: true })`.
+
+## Navigering och flikar
 
 ### `navigate`
 
-Navigerar till en URL.
+Laddar en URL i den aktuella fliken och väntar på sidans load-händelse. Återställer sidans tillstånd (DOM, JS-körmiljö). **Endast webbläsare.**
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `url` | string | Yes | The URL to navigate to |
-
-#### Example
-
-```
-Navigate to https://webdriver.io
-```
-
-#### Support
-
-- Desktop Browsers
+| Parameter | Typ    | Obligatorisk | Beskrivning              |
+| --------- | ------ | ------------ | ------------------------ |
+| `url`     | string | ✓            | URL att navigera till    |
 
 ---
 
-## Element Interaction
+### `get_tabs`
+
+Listar alla webbläsarflikar med handle, titel, URL och vilken som är aktiv. Använd före `switch_tab` för att hitta målets handle. **Endast webbläsare.**
+
+Inga parametrar.
+
+---
+
+### `switch_tab`
+
+Fokuserar en webbläsarflik via window handle eller 0-baserat index. Alla efterföljande verktygsanrop körs mot den nyligen aktiva fliken. **Endast webbläsare.**
+
+| Parameter | Typ    | Obligatorisk | Beskrivning                       |
+| --------- | ------ | ------------ | --------------------------------- |
+| `handle`  | string | —            | Window handle att växla till      |
+| `index`   | number | —            | 0-baserat flikindex (≥ 0)         |
+
+Ange antingen `handle` eller `index`. Hämta handles från `get_tabs` eller `wdio://session/current/tabs`.
+
+---
+
+### `switch_frame`
+
+Växlar WebDrivers ramkontext till en iframe via CSS/XPath-selektor, eller tillbaka till toppnivån om selektorn utelämnas. Ändringarna kvarstår; alla efterföljande anrop till `click_element`, `set_value` och `get_elements` körs inom den valda ramen tills du växlar tillbaka. Väntar upp till 5 s på iframen. **Endast webbläsare.**
+
+| Parameter  | Typ    | Obligatorisk | Beskrivning                                                                                   |
+| ---------- | ------ | ------------ | --------------------------------------------------------------------------------------------- |
+| `selector` | string | —            | CSS/XPath-selektor för iframe-elementet. Utelämna för att växla tillbaka till toppnivåramen.  |
+
+```js
+// Växla in i en iframe
+switch_frame({ selector: "#my-iframe" })
+
+// Interagera med element inuti iframen
+click_element({ selector: "button.submit" })
+
+// Växla tillbaka till toppnivån
+switch_frame()
+```
+
+## Elementinteraktion
 
 ### `click_element`
 
-Klickar på ett element identifierat av en selektor.
+Väntar på att ett element ska finnas, scrollar det till synligt läge och klickar på det. Fungerar i webbläsare och på mobil. På iOS bör du föredra `tap_element`; `click_element` ignoreras ibland av det native lagret.
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `selector` | string | Yes | - | CSS selector, XPath, or mobile selector |
-| `scrollToView` | boolean | No | `true` | Scroll element into view before clicking |
-| `timeout` | number | No | `3000` | Max time to wait for element (ms) |
-
-#### Notes
-
-- Supports WebdriverIO text selectors: `button=Exact text` or `a*=Contains text`
-- Uses center alignment for scroll positioning
-
-#### Example
-
-```
-Click the element with selector "#submit-button"
-```
-
-#### Support
-
-- Desktop Browsers
-- Mobile Native Apps
+| Parameter      | Typ     | Obligatorisk | Standard | Beskrivning                                      |
+| -------------- | ------- | ------------ | -------- | ------------------------------------------------ |
+| `selector`     | string  | ✓            | —        | CSS-, XPath- eller textselektor                  |
+| `scrollToView` | boolean | —            | `true`   | Scrolla elementet till synligt läge före klick   |
+| `timeout`      | number  | —            | —        | Maximal väntetid (ms)                            |
 
 ---
 
 ### `set_value`
 
-Skriver text i ett inmatningsfält.
+Rensar ett input- eller textarea-fält och skriver den angivna texten. Ersätter alltid befintligt innehåll.
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `selector` | string | Yes | - | Selector for the input element |
-| `value` | string | Yes | - | Text to type |
-| `scrollToView` | boolean | No | `true` | Scroll element into view before typing |
-| `timeout` | number | No | `3000` | Max time to wait for element (ms) |
-
-#### Notes
-
-Clears existing value before typing new text.
-
-#### Example
-
-```
-Set the value "john@example.com" in the element with selector "#email"
-```
-
-#### Support
-
-- Desktop Browsers
-- Mobile Native Apps
+| Parameter      | Typ     | Obligatorisk | Standard | Beskrivning                                          |
+| -------------- | ------- | ------------ | -------- | ---------------------------------------------------- |
+| `selector`     | string  | ✓            | —        | CSS-, XPath- eller textselektor                      |
+| `value`        | string  | ✓            | —        | Text att skriva                                      |
+| `scrollToView` | boolean | —            | `true`   | Scrolla elementet till synligt läge före inmatning   |
+| `timeout`      | number  | —            | —        | Maximal väntetid (ms)                                |
 
 ---
-
-## Page Analysis
-
-### `get_visible_elements`
-
-Hämtar synliga och interaktiva element på aktuell sida eller skärm. Detta är det primära verktyget för att upptäcka vilka element som är tillgängliga för interaktion.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `elementType` | string | No | `interactable` | Type of elements: `interactable` (buttons/links/inputs), `visual` (images/SVGs), or `all` |
-| `inViewportOnly` | boolean | No | `true` | Only return elements visible in the viewport |
-| `includeContainers` | boolean | No | `false` | Include layout containers (ViewGroup, ScrollView, etc.) |
-| `includeBounds` | boolean | No | `false` | Include element coordinates (x, y, width, height) |
-| `limit` | number | No | `0` | Maximum elements to return (0 = unlimited) |
-| `offset` | number | No | `0` | Number of elements to skip (for pagination) |
-
-#### Returns
-
-```json
-{
-  "total": 42,
-  "showing": 20,
-  "hasMore": true,
-  "elements": [...]
-}
-```
-
-**Web elements include:** tagName, type, id, className, textContent, value, placeholder, href, ariaLabel, role, cssSelector, isInViewport
-
-**Mobile elements include:** Multiple locator strategies (accessibility ID, resource ID, XPath, UiAutomator/predicates), element type, text, and optionally bounds
-
-#### Notes
-
-- **Web**: Uses an optimized browser script for fast element detection
-- **Mobile**: Uses efficient XML page source parsing (2 HTTP calls vs 600+ for element queries)
-- Use pagination (`limit` and `offset`) for large pages to reduce token usage
-
-#### Example
-
-```
-Get all visible elements on the page with their coordinates
-```
-
-#### Support
-
-- Desktop Browsers
-- Mobile Apps
-
----
-
-### `get_accessibility`
-
-Hämtar tillgänglighetsträdet för aktuell sida med semantisk information om roller, namn och tillstånd.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `limit` | number | No | `100` | Maximum nodes to return (0 = unlimited) |
-| `offset` | number | No | `0` | Number of nodes to skip (for pagination) |
-| `roles` | string[] | No | All | Filter to specific roles (e.g., `["button", "link", "textbox"]`) |
-| `namedOnly` | boolean | No | `true` | Only return nodes with a name/label |
-
-#### Returns
-
-```json
-{
-  "total": 85,
-  "showing": 100,
-  "hasMore": false,
-  "nodes": [
-    { "role": "button", "name": "Submit" },
-    { "role": "link", "name": "Home" }
-  ]
-}
-```
-
-#### Notes
-
-- Browser-only. For mobile apps, use `get_visible_elements` instead
-- Useful when `get_visible_elements` doesn't return expected elements
-- `namedOnly: true` filters out anonymous containers and reduces noise
-
-#### Support
-
-- Desktop Browsers
-
----
-
-## Screenshots
-
-### `take_screenshot`
-
-Tar en skärmdump av aktuell vy.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `outputPath` | string | No | Path to save screenshot file. If omitted, returns base64 data |
-
-#### Returns
-
-Base64-encoded image data (PNG or JPEG) with size information.
-
-#### Notes
-
-Screenshots are automatically optimized:
-- Maximum dimension: 2000px (scaled down if larger)
-- Maximum file size: 1MB
-- Format: PNG with max compression, or JPEG if needed to meet size limit
-
-#### Support
-
-- Desktop Browsers
-- Mobile Apps
-
----
-
-## Scrolling
 
 ### `scroll`
 
-Rullar sidan upp eller ner med ett angivet antal pixlar.
+Scrollar sidan ett visst antal pixlar. **Endast webbläsare.** För mobil, använd `swipe`.
 
-#### Parameters
+| Parameter   | Typ              | Obligatorisk | Standard | Beskrivning               |
+| ----------- | ---------------- | ------------ | -------- | ------------------------- |
+| `direction` | `"up" \| "down"` | ✓            | —        | Scrollriktning            |
+| `pixels`    | number           | —            | `500`    | Antal pixlar att scrolla  |
 
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `direction` | string | Yes | - | Scroll direction: `up` or `down` |
-| `pixels` | number | No | `500` | Number of pixels to scroll |
+## Elementanalys
 
-#### Notes
+### `get_elements`
 
-Browser-only. For mobile scrolling, use the `swipe` tool instead.
+Returnerar interaktiva element på den aktuella sidan med färdiga selektorer. Föredra resursen `wdio://session/current/elements` för löpande överblick; använd detta verktyg när du behöver filtrering eller paginering.
 
-#### Support
-
-- Desktop Browsers
+| Parameter           | Typ     | Obligatorisk | Standard | Beskrivning                                         |
+| ------------------- | ------- | ------------ | -------- | --------------------------------------------------- |
+| `inViewportOnly`    | boolean | —            | `false`  | Returnera endast element som syns i viewporten      |
+| `includeContainers` | boolean | —            | `false`  | Inkludera containerelement (divs, sections)         |
+| `includeBounds`     | boolean | —            | `false`  | Inkludera koordinater för omslutande ruta           |
+| `limit`             | number  | —            | `0`      | Max antal element att returnera (0 = obegränsat)    |
+| `offset`            | number  | —            | `0`      | Antal element att hoppa över (paginering)           |
 
 ---
 
-## Cookie Management
+### `get_accessibility_tree`
+
+Returnerar sidans tillgänglighetsträd med roller, namn och selektorer. Stöder filtrering och paginering. **Endast webbläsare.**
+
+| Parameter | Typ      | Obligatorisk | Standard | Beskrivning                                                    |
+| --------- | -------- | ------------ | -------- | -------------------------------------------------------------- |
+| `limit`   | number   | —            | `0`      | Max antal noder att returnera (0 = obegränsat)                 |
+| `offset`  | number   | —            | `0`      | Antal noder att hoppa över (paginering)                        |
+| `roles`   | string[] | —            | —        | Filtrera efter ARIA-roller, t.ex. `["button", "link", "heading"]` |
+
+## Skärmbilder
+
+### `get_screenshot`
+
+Tar en skärmbild av den aktuella sidan eller skärmen. Returnerar en base64-kodad bild som automatiskt skalas om och komprimeras för att hålla sig inom modellens kontextgränser (max 1 MB, max 2000 px).
+
+Inga parametrar. Föredra `wdio://session/current/elements` framför skärmbilder för att hitta element; det går snabbare och använder betydligt färre tokens. Använd skärmbilder för visuell verifiering eller felsökning av layout.
+
+## Cookiehantering
 
 ### `get_cookies`
 
-Hämtar cookies från aktuell session.
+Returnerar alla cookies för den aktuella sessionen, eller en enskild cookie via namn. **Endast webbläsare.**
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `name` | string | No | Specific cookie name to retrieve (omit for all cookies) |
-
-#### Returns
-
-Cookie objects with name, value, domain, path, expiry, secure, and httpOnly properties.
-
-#### Support
-
-- Desktop Browsers
+| Parameter | Typ    | Obligatorisk | Beskrivning                                         |
+| --------- | ------ | ------------ | --------------------------------------------------- |
+| `name`    | string | —            | Cookiens namn. Utelämna för att returnera alla cookies. |
 
 ---
 
 ### `set_cookie`
 
-Sätter en cookie i aktuell session.
+Sätter en webbläsarcookie. Webbläsaren måste redan befinna sig på måldomänen — cookies kan inte sättas mellan domäner. Använd för att injicera sessionstokens eller funktionsflaggor utan att gå igenom inloggningsflöden. **Endast webbläsare.**
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `name` | string | Yes | - | Cookie name |
-| `value` | string | Yes | - | Cookie value |
-| `domain` | string | No | Current | Cookie domain |
-| `path` | string | No | `/` | Cookie path |
-| `expiry` | number | No | - | Expiration as Unix timestamp (seconds) |
-| `secure` | boolean | No | - | Secure flag |
-| `httpOnly` | boolean | No | - | HttpOnly flag |
-| `sameSite` | string | No | - | SameSite attribute: `strict`, `lax`, or `none` |
-
-#### Support
-
-- Desktop Browsers
+| Parameter  | Typ                           | Obligatorisk | Beskrivning                                       |
+| ---------- | ----------------------------- | ------------ | ------------------------------------------------- |
+| `name`     | string                        | ✓            | Cookiens namn                                     |
+| `value`    | string                        | ✓            | Cookiens värde                                    |
+| `domain`   | string                        | —            | Cookiens domän (standard är aktuell domän)        |
+| `path`     | string                        | —            | Cookiens sökväg (standard är `/`)                 |
+| `expiry`   | number                        | —            | Utgångstid som Unix-tidsstämpel (sekunder)        |
+| `httpOnly` | boolean                       | —            | HttpOnly-flagga                                   |
+| `secure`   | boolean                       | —            | Secure-flagga                                     |
+| `sameSite` | `"strict" \| "lax" \| "none"` | —            | SameSite-attribut                                 |
 
 ---
 
 ### `delete_cookies`
 
-Raderar cookies från aktuell session.
+Raderar alla cookies eller en specifik cookie via namn. **Endast webbläsare.**
 
-#### Parameters
+| Parameter | Typ    | Obligatorisk | Beskrivning                                                       |
+| --------- | ------ | ------------ | ----------------------------------------------------------------- |
+| `name`    | string | —            | Namn på cookien som ska raderas. Utelämna för att radera alla cookies. |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `name` | string | No | Specific cookie name to delete (omit to delete all) |
-
-#### Support
-
-- Desktop Browsers
-
----
-
-## Touch Gestures (Mobile)
+## Pekgester (mobil)
 
 ### `tap_element`
 
-Trycker på ett element eller skärmkoordinater.
+Anropar `element.tap()` på ett matchat element eller trycker på absoluta skärmkoordinater. Använd på iOS när `click_element` ignoreras; tryck är den native gest som iOS reagerar på. **Endast mobil.**
 
-#### Parameters
+| Parameter  | Typ    | Obligatorisk | Beskrivning                                           |
+| ---------- | ------ | ------------ | ----------------------------------------------------- |
+| `selector` | string | —            | Elementselektor                                       |
+| `x`        | number | —            | X-koordinat för skärmtryck (om ingen selektor anges)  |
+| `y`        | number | —            | Y-koordinat för skärmtryck (om ingen selektor anges)  |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `selector` | string | No* | Selector for the element to tap |
-| `x` | number | No* | X coordinate for tap |
-| `y` | number | No* | Y coordinate for tap |
-
-*Either `selector` or both `x` and `y` are required.
-
-#### Support
-
-- Mobile Apps
+Ange antingen `selector` eller `x`/`y`-koordinater.
 
 ---
 
 ### `swipe`
 
-Utför en svepgest i angiven riktning.
+Utför en svepgest över hela skärmen. Riktningen är innehållets rörelseriktning (t.ex. `"up"` scrollar en lista uppåt). Använd för att scrolla bortom det synliga området. För att flytta ett specifikt element, använd `drag_and_drop`. **Endast mobil.** För webbläsare, använd `scroll`.
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Default | Description |
-|-----------|------|-----------|---------|-------------|
-| `direction` | string | Yes | - | Swipe direction: `up`, `down`, `left`, `right` |
-| `duration` | number | No | `500` | Swipe duration in milliseconds (100-5000) |
-| `percent` | number | No | 0.5/0.95 | Percentage of screen to swipe (0-1) |
-
-#### Notes
-
-- Default percent: 0.5 for vertical swipes, 0.95 for horizontal swipes
-- Direction indicates content movement: "swipe up" scrolls content up
-
-#### Example
-
-```
-Swipe up to scroll down the screen
-```
-
-#### Support
-
-- Mobile Apps
+| Parameter   | Typ                                   | Obligatorisk | Standard       | Beskrivning                              |
+| ----------- | ------------------------------------- | ------------ | -------------- | ---------------------------------------- |
+| `direction` | `"up" \| "down" \| "left" \| "right"` | ✓            | —              | Svepriktning                             |
+| `duration`  | number                                | —            | `500`          | Svepets varaktighet (ms, 100–5000)       |
+| `percent`   | number                                | —            | `0.5` / `0.95` | Andel av skärmen att svepa (0–1)         |
 
 ---
 
 ### `drag_and_drop`
 
-Drar ett element till ett annat element eller koordinater.
+Drar ett element till ett annat element eller till koordinater. **Endast mobil.**
 
-#### Parameters
+| Parameter        | Typ    | Obligatorisk | Standard | Beskrivning                                      |
+| ---------------- | ------ | ------------ | -------- | ------------------------------------------------ |
+| `sourceSelector` | string | ✓            | —        | Källelement att dra                              |
+| `targetSelector` | string | —            | —        | Målelement att släppa på                         |
+| `x`              | number | —            | —        | Mål-X-förskjutning (om ingen targetSelector)     |
+| `y`              | number | —            | —        | Mål-Y-förskjutning (om ingen targetSelector)     |
+| `duration`       | number | —            | —        | Dragets varaktighet (ms, 100–5000)               |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `sourceSelector` | string | Yes | Source element selector to drag |
-| `targetSelector` | string | No* | Target element selector to drop onto |
-| `x` | number | No* | Target X offset (if no targetSelector) |
-| `y` | number | No* | Target Y offset (if no targetSelector) |
-| `duration` | number | No | Default | Drag duration in milliseconds (100-5000) |
-
-*Either `targetSelector` or both `x` and `y` are required.
-
-#### Support
-
-- Mobile Apps
-
----
-
-## App Lifecycle (Mobile)
-
-### `get_app_state`
-
-Hämtar appens aktuella tillstånd.
-
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `bundleId` | string | Yes | App identifier (bundle ID for iOS, package name for Android) |
-
-#### Returns
-
-App state: `not installed`, `not running`, `running in background (suspended)`, `running in background`, or `running in foreground`.
-
-#### Support
-
-- Mobile Apps
-
----
-
-## Context Switching (Hybrid Apps)
+## Kontextväxling (mobil)
 
 ### `get_contexts`
 
-Listar alla tillgängliga kontexter (native och webview).
+Returnerar tillgängliga automatiseringskontexter och den som för närvarande är aktiv. Använd före `switch_context` för att upptäcka `NATIVE_APP`- och `WEBVIEW_*`-mål. **Endast mobil.**
 
-#### Parameters
-
-None
-
-#### Returns
-
-Array of context names (e.g., `["NATIVE_APP", "WEBVIEW_com.example.app"]`).
-
-#### Support
-
-- Mobile Hybrid Apps
-
----
-
-### `get_current_context`
-
-Hämtar aktuell aktiv kontext.
-
-#### Parameters
-
-None
-
-#### Returns
-
-Current context name (e.g., `NATIVE_APP` or `WEBVIEW_*`).
-
-#### Support
-
-- Mobile Hybrid Apps
+Inga parametrar.
 
 ---
 
 ### `switch_context`
 
-Växlar mellan native- och webview-kontexter.
+Växlar mellan native- och webview-automatiseringskontexter i en hybrid mobilapp. Krävs innan CSS/XPath-selektorer används inuti en inbäddad webview. **Endast mobil.**
 
-#### Parameters
+| Parameter | Typ    | Obligatorisk | Beskrivning                                                        |
+| --------- | ------ | ------------ | ------------------------------------------------------------------ |
+| `context` | string | ✓            | Kontextnamn, t.ex. `"NATIVE_APP"`, `"WEBVIEW_com.example.app"`     |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `context` | string | Yes | Context name or index (1-based) from `get_contexts` |
+Hämta tillgängliga kontextnamn från `get_contexts` eller `wdio://session/current/contexts`.
 
-#### Example
+```js
+// 1. Kontrollera vad som är tillgängligt
+get_contexts()
+// → { contexts: ["NATIVE_APP", "WEBVIEW_com.example.app"], currentContext: "NATIVE_APP" }
 
+// 2. Växla in i webviewen för CSS/XPath
+switch_context({ context: "WEBVIEW_com.example.app" })
+
+// 3. Interagera med webview-element med CSS-selektorer
+click_element({ selector: "#login-button" })
+
+// 4. Växla tillbaka till native för native UI
+switch_context({ context: "NATIVE_APP" })
 ```
-Switch to the WEBVIEW_com.example.app context
-```
 
-#### Support
-
-- Mobile Hybrid Apps
-
----
-
-## Device Control (Mobile)
+## Enhetskontroll (mobil)
 
 ### `rotate_device`
 
-Roterar enheten till en specifik orientering.
+Roterar enheten till stående eller liggande läge och väntar tills operativsystemets rotation är klar. Använd för att testa orienteringsberoende layouter. **Endast mobil.**
 
-#### Parameters
-
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `orientation` | string | Yes | `PORTRAIT` or `LANDSCAPE` |
-
-#### Support
-
-- Mobile Apps
+| Parameter     | Typ                         | Obligatorisk | Beskrivning         |
+| ------------- | --------------------------- | ------------ | ------------------- |
+| `orientation` | `"PORTRAIT" \| "LANDSCAPE"` | ✓            | Målorientering      |
 
 ---
 
 ### `hide_keyboard`
 
-Döljer skärmtangentbordet.
+Döljer det virtuella tangentbordet. Anropa efter textinmatning när tangentbordet skymmer element du behöver härnäst. Gör ingenting om det redan är dolt. **Endast mobil.**
 
-#### Parameters
-
-None
-
-#### Support
-
-- Mobile Apps
-
----
-
-### `get_geolocation`
-
-Hämtar aktuella GPS-koordinater.
-
-#### Parameters
-
-None
-
-#### Returns
-
-Object with `latitude`, `longitude`, and `altitude`.
-
-#### Support
-
-- Mobile Apps
+Inga parametrar.
 
 ---
 
 ### `set_geolocation`
 
-Ställer in enhetens GPS-koordinater.
+Åsidosätter enhetens GPS-koordinater för sessionen. Påverkar `navigator.geolocation` på webben och platstjänster på mobil. Platsbehörigheter måste ha beviljats appen i förväg.
 
-#### Parameters
+| Parameter   | Typ    | Obligatorisk | Beskrivning                  |
+| ----------- | ------ | ------------ | ---------------------------- |
+| `latitude`  | number | ✓            | Latitud (−90 till 90)        |
+| `longitude` | number | ✓            | Longitud (−180 till 180)     |
+| `altitude`  | number | —            | Höjd över havet i meter      |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `latitude` | number | Yes | Latitude coordinate (-90 to 90) |
-| `longitude` | number | Yes | Longitude coordinate (-180 to 180) |
-| `altitude` | number | No | Altitude in meters |
+## Appens livscykel (mobil)
 
-#### Example
+### `get_app_state`
 
-```
-Set geolocation to San Francisco (37.7749, -122.4194)
-```
+Returnerar det aktuella livscykeltillståndet för en mobilapp. **Endast mobil.**
 
-#### Support
+| Parameter  | Typ    | Obligatorisk | Beskrivning                                                          |
+| ---------- | ------ | ------------ | -------------------------------------------------------------------- |
+| `bundleId` | string | ✓            | iOS-bundle-ID eller Android-paketnamn, t.ex. `"com.example.app"`     |
 
-- Mobile Apps
+Returnerar ett av: `not installed`, `not running`, `background (suspended)`, `background`, `foreground`.
+
+## Webbläsarverktyg
+
+### `emulate_device`
+
+Emulerar en mobil- eller surfplatteenhet i den aktuella webbläsarsessionen (ställer in viewport, DPR, user-agent och touch-händelser). Kräver en BiDi-aktiverad session: `start_session({ capabilities: { webSocketUrl: true } })`. **Endast webbläsare.**
+
+| Parameter | Typ    | Obligatorisk | Beskrivning                                                                                                                       |
+| --------- | ------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| `device`  | string | —            | Namn på enhetsförinställning (t.ex. `"iPhone 15"`, `"Pixel 7"`). Utelämna för att lista förinställningar. Ange `"reset"` för att återställa skrivbordsstandard. |
 
 ---
-
-## Script Execution
 
 ### `execute_script`
 
 Kör JavaScript i webbläsaren eller mobilkommandon via Appium.
 
-#### Parameters
+| Parameter | Typ    | Obligatorisk | Beskrivning                                                          |
+| --------- | ------ | ------------ | -------------------------------------------------------------------- |
+| `script`  | string | ✓            | JS-kod (webbläsare) eller Appium-kommando som `"mobile: pressKey"`   |
+| `args`    | any[]  | —            | Argument som skickas till skriptet eller kommandot                   |
 
-| Parameter | Type | Mandatory | Description |
-|-----------|------|-----------|-------------|
-| `script` | string | Yes | JavaScript code (browser) or mobile command (e.g., `mobile: pressKey`) |
-| `args` | array | No | Arguments for the script |
-
-#### Browser Examples
+**Webbläsare:** använd `return` för att få tillbaka värden.
 
 ```javascript
-// Get page title
+// Hämta sidans titel
 execute_script({ script: "return document.title" })
 
-// Get scroll position
-execute_script({ script: "return window.scrollY" })
-
-// Click element by selector
-execute_script({ script: "arguments[0].click()", args: ["#myButton"] })
+// Scrolla elementet till synligt läge
+execute_script({ script: "arguments[0].scrollIntoView()", args: ["#my-element"] })
 ```
 
-#### Mobile (Appium) Examples
+**Mobil (Appium):** använder syntaxen `mobile: <command>`.
 
 ```javascript
-// Press back key (Android)
+// Tryck på Androids bakåtknapp
 execute_script({ script: "mobile: pressKey", args: [{ keycode: 4 }] })
 
-// Activate app
-execute_script({ script: "mobile: activateApp", args: [{ appId: "com.example" }] })
+// Aktivera app (iOS/Android)
+execute_script({ script: "mobile: activateApp", args: [{ bundleId: "com.example.app" }] })
 
-// Terminate app
-execute_script({ script: "mobile: terminateApp", args: [{ appId: "com.example" }] })
-
-// Deep link
-execute_script({ script: "mobile: deepLink", args: [{ url: "myapp://screen", package: "com.example" }] })
-
-// Shell command (Android)
-execute_script({ script: "mobile: shell", args: [{ command: "dumpsys", args: ["battery"] }] })
+// Djuplänk (iOS)
+execute_script({ script: "mobile: deepLink", args: [{ url: "myapp://route", bundleId: "com.example.app" }] })
 ```
 
-#### Common Android Key Codes
+## Molnleverantörer
 
-| Key | Code |
-|-----|------|
-| BACK | 4 |
-| HOME | 3 |
-| ENTER | 66 |
-| MENU | 82 |
-| SEARCH | 84 |
+### `list_apps`
 
-#### More Mobile Commands
+Listar appar som laddats upp till en molnleverantör (BrowserStack App Automate, Sauce Labs App Storage, TestMu eller TestingBot Storage). Läser leverantörsspecifika autentiseringsuppgifter från miljön.
 
-For a complete list of available Appium mobile commands, see:
-- [XCUITest Mobile Commands](https://appium.github.io/appium-xcuitest-driver/latest/reference/execute-methods/) (iOS)
-- [UiAutomator2 Mobile Commands](https://github.com/appium/appium-uiautomator2-driver#mobile-commands) (Android)
+| Parameter          | Typ                                                         | Obligatorisk | Standard         | Beskrivning                                          |
+| ------------------ | ----------------------------------------------------------- | ------------ | ---------------- | ---------------------------------------------------- |
+| `provider`         | `"browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | ✓            | —                | Molnleverantör                                       |
+| `sortBy`           | `"app_name" \| "uploaded_at"`                               | —            | `"uploaded_at"`  | Sorteringsordning                                    |
+| `organizationWide` | boolean                                                     | —            | `false`          | (Endast BrowserStack) Lista organisationens alla uppladdningar |
+| `limit`            | number                                                      | —            | `20`             | Max antal resultat                                   |
+| `region`           | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`       | —            | `"eu-central-1"` | Sauce Labs-region                                    |
 
-#### Support
+```js
+// Lista för alla fyra leverantörer
+list_apps({ provider: "browserstack" })
+list_apps({ provider: "saucelabs", region: "us-west-1" })
+list_apps({ provider: "testmu" })
+list_apps({ provider: "testingbot" })
+```
 
-- Desktop Browsers
-- Mobile Apps (via Appium mobile commands)
+---
+
+### `upload_app`
+
+Laddar upp en lokal `.apk` eller `.ipa` till en molnleverantör (BrowserStack, Sauce Labs, TestMu eller TestingBot). Returnerar app-URL:en för användning i `start_session`.
+
+| Parameter  | Typ                                                         | Obligatorisk | Standard         | Beskrivning                                                  |
+| ---------- | ----------------------------------------------------------- | ------------ | ---------------- | ------------------------------------------------------------ |
+| `provider` | `"browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | ✓            | —                | Molnleverantör                                               |
+| `path`     | string                                                      | ✓            | —                | Absolut sökväg till `.apk`- eller `.ipa`-filen               |
+| `customId` | string                                                      | —            | —                | Valfritt anpassat ID för att referera till appen senare      |
+| `region`   | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`       | —            | `"eu-central-1"` | Sauce Labs-region                                            |
+
+```js
+// Ladda upp till varje leverantör
+upload_app({ provider: "browserstack", path: "/path/to/app.apk" })
+upload_app({ provider: "saucelabs", path: "/path/to/app.ipa", region: "us-west-1" })
+upload_app({ provider: "testmu", path: "/path/to/app.apk" })
+upload_app({ provider: "testingbot", path: "/path/to/app.apk" })
+```

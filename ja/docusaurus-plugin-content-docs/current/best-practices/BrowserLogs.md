@@ -1,9 +1,10 @@
 ---
 id: browser-logs
 title: ブラウザログ
+description: "WebDriver Bidi のログイベントを使用してテスト中にブラウザのコンソールログを取得し、収集したメッセージに対してアサーションを行います。"
 ---
 
-テストを実行する際、ブラウザは関心のある重要な情報をログに記録したり、アサーションの対象としたい情報を出力したりすることがあります。
+テストを実行する際、ブラウザは関心のある重要な情報やアサーションを行いたい情報をログに出力することがあります。
 
 <Tabs
 defaultValue="bidi"
@@ -15,7 +16,7 @@ values={[
 
 <TabItem value='bidi'>
 
-WebDriver Bidiを使用する場合（WebdriverIOがブラウザを自動化するデフォルトの方法）、ブラウザから送信されるイベントを購読できます。ログイベントの場合は、`log.entryAdded'`をリッスンします。例：
+WebdriverIO がブラウザを自動化するデフォルトの方法である WebDriver Bidi を使用する場合、ブラウザから送られてくるイベントをサブスクライブできます。ログイベントの場合は `log.entryAdded'` をリッスンします。例:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -26,7 +27,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-テストでは、ログイベントを配列にプッシュして、アクションが完了したらその配列に対してアサーションを行うことができます：
+テストでは、ログイベントを配列に追加し、アクションが完了した後にその配列に対してアサーションを行うだけです。例:
 
 ```ts
 import type { local } from 'webdriver'
@@ -35,7 +36,7 @@ describe('should log when doing a certain action', () => {
     const logs: string[] = []
 
     function logEvents (event: local.LogEntry) {
-        logs.push(event.text) // add log message to the array
+        logs.push(event.text) // ログメッセージを配列に追加
     }
 
     before(async () => {
@@ -44,14 +45,14 @@ describe('should log when doing a certain action', () => {
     })
 
     it('should trigger the console event', () => {
-        // trigger the browser send a message to the console
+        // ブラウザがコンソールにメッセージを送信するようトリガーする
         ...
 
-        // assert if log was captured
+        // ログが取得されたかアサートする
         expect(logs).toContain('Hello Bidi')
     })
 
-    // clean up listener afterwards
+    // 後でリスナーをクリーンアップする
     after(() => {
         browser.off('log.entryAdded', logEvents)
     })
@@ -62,9 +63,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-WebDriver Classicを使用している場合や、`'wdio:enforceWebDriverClassic': true`機能によってBidiの使用を無効にしている場合は、JSONWireの`getLogs`コマンドを使用して最新のログを取得できます。WebdriverIOはこれらの非推奨コマンドを削除しているため、[JSONWP Service](https://github.com/webdriverio-community/wdio-jsonwp-service)を使用してコマンドをブラウザインスタンスに追加する必要があります。
-
-サービスを追加または初期化した後、以下のようにログを取得できます：
+`'wdio:enforceWebDriverClassic': true` ケーパビリティで Bidi が無効になっている場合でも、Chromium セッションでは `getLogs` を使用してブラウザのログバッファを読み取ることができます:
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -72,9 +71,9 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-注意：`getLogs`コマンドはブラウザから最新のログのみを取得できます。古くなりすぎるとログメッセージは最終的にクリーンアップされる可能性があります。
+注意: `getLogs` コマンドはブラウザから最新のログのみを取得できます。古くなったログメッセージは最終的に削除される場合があります。
 </TabItem>
 
 </Tabs>
 
-この方法を使用して、エラーメッセージを取得し、アプリケーションにエラーが発生したかどうかを確認できることに注意してください。
+この方法を使用してエラーメッセージを取得し、アプリケーションでエラーが発生していないかを検証することもできます。

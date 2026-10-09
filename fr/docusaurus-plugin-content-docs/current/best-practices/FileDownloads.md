@@ -1,15 +1,16 @@
 ---
 id: file-download
 title: Téléchargement de fichiers
+description: "Configurez les répertoires de téléchargement pour Chrome, Firefox et Edge, attendez la fin des téléchargements et vérifiez les fichiers téléchargés sur différents navigateurs."
 ---
 
-Lors de l'automatisation des téléchargements de fichiers dans les tests web, il est essentiel de les gérer de manière cohérente sur différents navigateurs pour assurer une exécution fiable des tests.
+Lors de l'automatisation des téléchargements de fichiers dans les tests web, il est essentiel de les gérer de manière cohérente sur les différents navigateurs afin de garantir une exécution fiable des tests.
 
-Nous fournissons ici les meilleures pratiques pour les téléchargements de fichiers et montrons comment configurer les répertoires de téléchargement pour **Google Chrome**, **Mozilla Firefox** et **Microsoft Edge**.
+Nous présentons ici les bonnes pratiques pour les téléchargements de fichiers et montrons comment configurer les répertoires de téléchargement pour **Google Chrome**, **Mozilla Firefox** et **Microsoft Edge**.
 
 ## Chemins de téléchargement
 
-**Coder en dur** les chemins de téléchargement dans les scripts de test peut entraîner des problèmes de maintenance et de portabilité. Utilisez des **chemins relatifs** pour les répertoires de téléchargement afin d'assurer la portabilité et la compatibilité entre différents environnements.
+**Coder en dur** les chemins de téléchargement dans les scripts de test peut entraîner des problèmes de maintenance et de portabilité. Utilisez des **chemins relatifs** pour les répertoires de téléchargement afin de garantir la portabilité et la compatibilité entre différents environnements.
 
 ```javascript
 // 👎
@@ -23,21 +24,21 @@ const downloadPath = path.join(__dirname, 'downloads');
 
 ## Stratégies d'attente
 
-Ne pas implémenter de stratégies d'attente appropriées peut entraîner des conditions de course ou des tests peu fiables, en particulier pour l'achèvement des téléchargements. Implémentez des stratégies d'attente **explicites** pour attendre que les téléchargements de fichiers soient terminés, assurant ainsi la synchronisation entre les étapes de test.
+L'absence de stratégies d'attente appropriées peut entraîner des situations de concurrence (race conditions) ou des tests peu fiables, en particulier pour la fin des téléchargements. Mettez en œuvre des stratégies d'attente **explicites** pour attendre la fin des téléchargements de fichiers, garantissant ainsi la synchronisation entre les étapes de test.
 
 ```javascript
 // 👎
-// Pas d'attente explicite pour l'achèvement du téléchargement
+// Pas d'attente explicite de la fin du téléchargement
 await browser.pause(5000);
 
 // 👍
-// Attendre l'achèvement du téléchargement de fichier
+// Attendre la fin du téléchargement du fichier
 await waitUntil(async ()=> await fs.existsSync(downloadPath), 5000);
 ```
 
 ## Configuration des répertoires de téléchargement
 
-Pour remplacer le comportement de téléchargement de fichiers pour **Google Chrome**, **Mozilla Firefox** et **Microsoft Edge**, fournissez le répertoire de téléchargement dans les capacités WebDriverIO :
+Pour modifier le comportement de téléchargement de fichiers pour **Google Chrome**, **Mozilla Firefox** et **Microsoft Edge**, indiquez le répertoire de téléchargement dans les capabilities de WebDriverIO :
 
 <Tabs
 defaultValue="chrome"
@@ -80,11 +81,11 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 </Tabs>
 
-Pour un exemple d'implémentation, consultez la [Recette de comportement de téléchargement de test WebdriverIO](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
+Pour un exemple d'implémentation, consultez la [recette WebdriverIO Test Download Behavior](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
 
 ## Configuration des téléchargements pour les navigateurs Chromium
 
-Pour changer le chemin de téléchargement pour les navigateurs __basés sur Chromium__ (comme Chrome, Edge, Brave, etc.) en utilisant la méthode `getPuppeteer` de WebDriverIO pour accéder à Chrome DevTools.
+Pour modifier le chemin de téléchargement des navigateurs __basés sur Chromium__ (tels que Chrome, Edge, Brave, etc.), utilisez la méthode `getPuppeteer` de WebDriverIO pour accéder aux Chrome DevTools.
 
 ```javascript
 const page = await browser.getPuppeteer();
@@ -94,18 +95,18 @@ const cdpSession = await page.target().createCDPSession();
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Gestion de téléchargements multiples
+## Gestion de plusieurs téléchargements de fichiers
 
-Lorsqu'il s'agit de scénarios impliquant plusieurs téléchargements de fichiers, il est essentiel de mettre en œuvre des stratégies pour gérer et valider efficacement chaque téléchargement. Considérez les approches suivantes :
+Dans les scénarios impliquant plusieurs téléchargements de fichiers, il est essentiel de mettre en œuvre des stratégies pour gérer et valider efficacement chaque téléchargement. Envisagez les approches suivantes :
 
-__Gestion séquentielle des téléchargements :__ Téléchargez les fichiers un par un et vérifiez chaque téléchargement avant d'en lancer un autre pour assurer une exécution ordonnée et une validation précise.
+__Gestion séquentielle des téléchargements :__ Téléchargez les fichiers un par un et vérifiez chaque téléchargement avant de lancer le suivant afin de garantir une exécution ordonnée et une validation précise.
 
-__Gestion parallèle des téléchargements :__ Utilisez des techniques de programmation asynchrone pour lancer plusieurs téléchargements de fichiers simultanément, optimisant ainsi le temps d'exécution des tests. Implémentez des mécanismes de validation robustes pour vérifier tous les téléchargements une fois terminés.
+__Gestion parallèle des téléchargements :__ Utilisez des techniques de programmation asynchrone pour lancer plusieurs téléchargements de fichiers simultanément, optimisant ainsi le temps d'exécution des tests. Mettez en place des mécanismes de validation robustes pour vérifier tous les téléchargements une fois terminés.
 
-## Considérations de compatibilité multi-navigateurs
+## Considérations sur la compatibilité multi-navigateurs
 
-Bien que WebDriverIO fournisse une interface unifiée pour l'automatisation des navigateurs, il est essentiel de tenir compte des variations dans le comportement et les capacités des navigateurs. Envisagez de tester votre fonctionnalité de téléchargement de fichiers sur différents navigateurs pour assurer la compatibilité et la cohérence.
+Bien que WebDriverIO fournisse une interface unifiée pour l'automatisation des navigateurs, il est essentiel de tenir compte des variations de comportement et de capacités entre les navigateurs. Pensez à tester votre fonctionnalité de téléchargement de fichiers sur différents navigateurs afin de garantir la compatibilité et la cohérence.
 
-__Configurations spécifiques aux navigateurs :__ Ajustez les paramètres de chemin de téléchargement et les stratégies d'attente pour tenir compte des différences de comportement et de préférences des navigateurs entre Chrome, Firefox, Edge et autres navigateurs pris en charge.
+__Configurations spécifiques aux navigateurs :__ Ajustez les paramètres de chemin de téléchargement et les stratégies d'attente pour tenir compte des différences de comportement et de préférences entre Chrome, Firefox, Edge et les autres navigateurs pris en charge.
 
-__Compatibilité des versions de navigateur :__ Mettez régulièrement à jour vos versions de WebDriverIO et de navigateur pour tirer parti des dernières fonctionnalités et améliorations tout en assurant la compatibilité avec votre suite de tests existante.
+__Compatibilité des versions de navigateurs :__ Mettez régulièrement à jour vos versions de WebDriverIO et des navigateurs afin de profiter des dernières fonctionnalités et améliorations, tout en garantissant la compatibilité avec votre suite de tests existante.

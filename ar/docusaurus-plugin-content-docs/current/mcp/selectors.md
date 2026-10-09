@@ -1,41 +1,40 @@
 ---
 id: selectors
 title: المحددات
+description: "اختر المحددات لتحديد موقع العناصر في صفحات الويب وتطبيقات الهاتف المحمول عند الأتمتة باستخدام خادم WebdriverIO MCP."
 ---
 
-يدعم خادم WebdriverIO MCP استراتيجيات متعددة للمحددات لتحديد مواقع العناصر على صفحات الويب وتطبيقات الجوال.
+يدعم خادم WebdriverIO MCP استراتيجيات محددات متعددة لتحديد موقع العناصر في صفحات الويب وتطبيقات الهاتف المحمول.
 
 :::info
 
-للحصول على وثائق شاملة للمحددات بما في ذلك جميع استراتيجيات محددات WebdriverIO، راجع دليل [المحددات](/docs/selectors) الرئيسي. تركز هذه الصفحة على المحددات المستخدمة بشكل شائع مع خادم MCP.
+للاطلاع على توثيق شامل للمحددات يتضمن جميع استراتيجيات محددات WebdriverIO، راجع دليل [المحددات](/docs/selectors) الرئيسي. تركز هذه الصفحة على المحددات الشائعة الاستخدام مع خادم MCP.
 
 :::
 
 ## محددات الويب
 
-بالنسبة لأتمتة المتصفح، يدعم خادم MCP جميع محددات WebdriverIO القياسية. من بين أكثر المحددات استخداماً:
+لأتمتة المتصفح، يدعم خادم MCP جميع محددات WebdriverIO القياسية. وتشمل الأكثر استخدامًا:
 
-| المحدد | مثال | الوصف |
-|----------|---------|-------------|
-| CSS | `#login-button`, `.submit-btn` | محددات CSS القياسية |
-| XPath | `//button[@id='submit']` | تعبيرات XPath |
-| النص | `button=Submit`, `a*=Click` | محددات نصية لـ WebdriverIO |
-| ARIA | `aria/Submit Button` | محددات اسم إمكانية الوصول |
-| معرّف الاختبار | `[data-testid="submit"]` | موصى به للاختبار |
+| المحدد | مثال                        | الوصف                  |
+| -------- | ------------------------------ | ---------------------------- |
+| CSS      | `#login-button`, `.submit-btn` | محددات CSS القياسية       |
+| XPath    | `//button[@id='submit']`       | تعبيرات XPath            |
+| Text     | `button=Submit`, `a*=Click`    | محددات النص في WebdriverIO   |
+| ARIA     | `aria/Submit Button`           | محددات الاسم الخاص بإمكانية الوصول |
+| Test ID  | `[data-testid="submit"]`       | موصى به للاختبار      |
 
-للحصول على أمثلة مفصلة وأفضل الممارسات، راجع وثائق [المحددات](/docs/selectors).
+للاطلاع على أمثلة تفصيلية وأفضل الممارسات، راجع توثيق [المحددات](/docs/selectors).
 
----
+## محددات الهاتف المحمول
 
-## محددات الجوال
+تعمل محددات الهاتف المحمول مع منصتي iOS وAndroid من خلال Appium.
 
-تعمل محددات الجوال مع منصات iOS و Android من خلال Appium.
+### Accessibility ID (موصى به)
 
-### معرّف إمكانية الوصول (موصى به)
+تُعد معرّفات إمكانية الوصول (Accessibility IDs) **المحدد الأكثر موثوقية عبر المنصات**. فهي تعمل على كل من iOS وAndroid وتظل مستقرة عبر تحديثات التطبيق.
 
-معرّفات إمكانية الوصول هي **المحدد الأكثر موثوقية عبر المنصات**. تعمل على كل من iOS و Android وتظل مستقرة عبر تحديثات التطبيق.
-
-```
+```text
 # الصيغة
 ~accessibilityId
 
@@ -45,170 +44,168 @@ title: المحددات
 ~usernameField
 ```
 
-:::tip أفضل الممارسات
-فضّل دائماً معرّفات إمكانية الوصول عندما تكون متاحة. فهي توفر:
-- توافق عبر المنصات (iOS + Android)
-- استقرار عبر تغييرات واجهة المستخدم
-- صيانة أفضل للاختبار
-- تحسين إمكانية الوصول للتطبيق
+:::tip أفضل ممارسة
+فضّل دائمًا معرّفات إمكانية الوصول عند توفرها. فهي توفر:
+- التوافق عبر المنصات (iOS + Android)
+- الاستقرار عبر تغييرات واجهة المستخدم
+- سهولة أفضل في صيانة الاختبارات
+- تحسين إمكانية الوصول في تطبيقك
 :::
 
 ### محددات Android
 
 #### UiAutomator
 
-محددات UiAutomator قوية وسريعة لنظام Android.
+محددات UiAutomator قوية وسريعة على Android.
 
-```
-# بواسطة النص
+```text
+# حسب النص
 android=new UiSelector().text("Login")
 
-# بواسطة جزء من النص
+# حسب جزء من النص
 android=new UiSelector().textContains("Log")
 
-# بواسطة معرّف الموارد
+# حسب معرّف المورد
 android=new UiSelector().resourceId("com.example:id/login_button")
 
-# بواسطة اسم الفئة
+# حسب اسم الفئة
 android=new UiSelector().className("android.widget.Button")
 
-# بواسطة الوصف (إمكانية الوصول)
+# حسب الوصف (إمكانية الوصول)
 android=new UiSelector().description("Login button")
 
-# شروط مجمعة
+# شروط مجمّعة
 android=new UiSelector().className("android.widget.Button").text("Login")
 
 # حاوية قابلة للتمرير
 android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text("Item"))
 ```
 
-#### معرّف الموارد
+#### Resource ID
 
-توفر معرّفات الموارد تعريفاً مستقراً للعناصر على Android.
+توفر معرّفات الموارد (Resource IDs) تعريفًا مستقرًا للعناصر على Android.
 
-```
-# معرّف الموارد الكامل
+```text
+# معرّف المورد الكامل
 id=com.example.app:id/login_button
 
-# معرّف جزئي (حزمة التطبيق مستنتجة)
+# معرّف جزئي (يُستنتج اسم حزمة التطبيق)
 id=login_button
 ```
 
 #### XPath (Android)
 
-يعمل XPath على Android ولكنه أبطأ من UiAutomator.
+يعمل XPath على Android لكنه أبطأ من UiAutomator.
 
-```
-# بواسطة الفئة والنص
+```text
+# حسب الفئة والنص
 //android.widget.Button[@text='Login']
 
-# بواسطة معرّف الموارد
+# حسب معرّف المورد
 //android.widget.EditText[@resource-id='com.example:id/username']
 
-# بواسطة وصف المحتوى
+# حسب وصف المحتوى
 //android.widget.ImageButton[@content-desc='Menu']
 
-# هرمياً
+# هرمي
 //android.widget.LinearLayout/android.widget.Button[1]
 ```
 
 ### محددات iOS
 
-#### سلسلة التنبؤ (Predicate String)
+#### Predicate String
 
-سلاسل التنبؤ في iOS سريعة وقوية لأتمتة iOS.
+تُعد سلاسل Predicate في iOS سريعة وقوية لأتمتة iOS.
 
-```
-# بواسطة التسمية
+```text
+# حسب التسمية
 -ios predicate string:label == "Login"
 
-# بواسطة تسمية جزئية
+# حسب جزء من التسمية
 -ios predicate string:label CONTAINS "Log"
 
-# بواسطة الاسم
+# حسب الاسم
 -ios predicate string:name == "loginButton"
 
-# بواسطة النوع
+# حسب النوع
 -ios predicate string:type == "XCUIElementTypeButton"
 
-# بواسطة القيمة
+# حسب القيمة
 -ios predicate string:value == "ON"
 
-# شروط مجمعة
+# شروط مجمّعة
 -ios predicate string:type == "XCUIElementTypeButton" AND label == "Login"
 
-# الرؤية
+# الظهور
 -ios predicate string:label == "Login" AND visible == 1
 
-# عدم حساسية حالة الأحرف
+# غير حساس لحالة الأحرف
 -ios predicate string:label ==[c] "login"
 ```
 
-**عوامل التنبؤ:**
+**عوامل Predicate:**
 
-| العامل | الوصف |
-|----------|-------------|
-| `==` | يساوي |
-| `!=` | لا يساوي |
-| `CONTAINS` | يحتوي على سلسلة فرعية |
-| `BEGINSWITH` | يبدأ بـ |
-| `ENDSWITH` | ينتهي بـ |
-| `LIKE` | تطابق باستخدام أحرف البدل |
-| `MATCHES` | تطابق بواسطة التعبير العادي |
-| `AND` | AND المنطقي |
-| `OR` | OR المنطقي |
+| العامل     | الوصف        |
+| ------------ | ------------------ |
+| `==`         | يساوي             |
+| `!=`         | لا يساوي         |
+| `CONTAINS`   | يحتوي على سلسلة فرعية |
+| `BEGINSWITH` | يبدأ بـ        |
+| `ENDSWITH`   | ينتهي بـ          |
+| `LIKE`       | مطابقة بأحرف البدل     |
+| `MATCHES`    | مطابقة بالتعبير النمطي        |
+| `AND`        | AND المنطقي        |
+| `OR`         | OR المنطقي         |
 
-#### سلسلة الفئة (Class Chain)
+#### Class Chain
 
-توفر سلاسل فئات iOS تحديد موقع العنصر الهرمي مع أداء جيد.
+توفر سلاسل الفئات (Class Chains) في iOS تحديدًا هرميًا لموقع العناصر بأداء جيد.
 
-```
+```text
 # ابن مباشر
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
-# أي نسل
+# أي سليل
 -ios class chain:**/XCUIElementTypeButton
 
-# بواسطة الفهرس
+# حسب الفهرس
 -ios class chain:**/XCUIElementTypeCell[3]
 
-# مجمع مع التنبؤ
+# مجمّع مع Predicate
 -ios class chain:**/XCUIElementTypeButton[`name == "submit" AND visible == 1`]
 
-# هرمياً
+# هرمي
 -ios class chain:**/XCUIElementTypeTable/XCUIElementTypeCell[`label == "Settings"`]
 
-# آخر عنصر
+# العنصر الأخير
 -ios class chain:**/XCUIElementTypeButton[-1]
 ```
 
 #### XPath (iOS)
 
-يعمل XPath على iOS ولكنه أبطأ من سلاسل التنبؤ.
+يعمل XPath على iOS لكنه أبطأ من سلاسل Predicate.
 
-```
-# بواسطة النوع والتسمية
+```text
+# حسب النوع والتسمية
 //XCUIElementTypeButton[@label='Login']
 
-# بواسطة الاسم
+# حسب الاسم
 //XCUIElementTypeTextField[@name='username']
 
-# بواسطة القيمة
+# حسب القيمة
 //XCUIElementTypeSwitch[@value='1']
 
-# هرمياً
+# هرمي
 //XCUIElementTypeTable/XCUIElementTypeCell[1]
 ```
 
----
+## استراتيجية المحددات عبر المنصات
 
-## استراتيجية المحدد عبر المنصات
+عند كتابة اختبارات يجب أن تعمل على كل من iOS وAndroid، استخدم ترتيب الأولوية التالي:
 
-عند كتابة اختبارات تحتاج إلى العمل على كل من iOS و Android، استخدم ترتيب الأولوية هذا:
+### 1. Accessibility ID (الأفضل)
 
-### 1. معرّف إمكانية الوصول (الأفضل)
-
-```
+```text
 # يعمل على كلتا المنصتين
 ~loginButton
 ```
@@ -218,155 +215,149 @@ id=login_button
 عندما لا تتوفر معرّفات إمكانية الوصول، استخدم محددات خاصة بالمنصة:
 
 **Android:**
-```
+```text
 android=new UiSelector().text("Login")
 ```
 
 **iOS:**
-```
+```text
 -ios predicate string:label == "Login"
 ```
 
 ### 3. XPath (الملاذ الأخير)
 
-يعمل XPath على كلتا المنصتين ولكن بأنواع عناصر مختلفة:
+يعمل XPath على كلتا المنصتين ولكن مع أنواع عناصر مختلفة:
 
 **Android:**
-```
+```text
 //android.widget.Button[@text='Login']
 ```
 
 **iOS:**
-```
+```text
 //XCUIElementTypeButton[@label='Login']
 ```
-
----
 
 ## مرجع أنواع العناصر
 
 ### أنواع عناصر Android
 
-| النوع | الوصف |
-|------|-------------|
-| `android.widget.Button` | زر |
-| `android.widget.EditText` | إدخال نصي |
-| `android.widget.TextView` | تسمية نصية |
-| `android.widget.ImageView` | صورة |
-| `android.widget.ImageButton` | زر صورة |
-| `android.widget.CheckBox` | خانة اختيار |
-| `android.widget.RadioButton` | زر اختيار |
-| `android.widget.Switch` | مفتاح تبديل |
-| `android.widget.Spinner` | قائمة منسدلة |
-| `android.widget.ListView` | عرض قائمة |
-| `android.widget.RecyclerView` | عرض دوار |
-| `android.widget.ScrollView` | حاوية تمرير |
+| النوع                          | الوصف      |
+| ----------------------------- | ---------------- |
+| `android.widget.Button`       | زر           |
+| `android.widget.EditText`     | حقل إدخال نص       |
+| `android.widget.TextView`     | تسمية نصية       |
+| `android.widget.ImageView`    | صورة            |
+| `android.widget.ImageButton`  | زر صورة     |
+| `android.widget.CheckBox`     | مربع اختيار         |
+| `android.widget.RadioButton`  | زر اختيار     |
+| `android.widget.Switch`       | مفتاح تبديل    |
+| `android.widget.Spinner`      | قائمة منسدلة         |
+| `android.widget.ListView`     | عرض قائمة        |
+| `android.widget.RecyclerView` | عرض Recycler    |
+| `android.widget.ScrollView`   | حاوية تمرير |
 
 ### أنواع عناصر iOS
 
-| النوع | الوصف |
-|------|-------------|
-| `XCUIElementTypeButton` | زر |
-| `XCUIElementTypeTextField` | إدخال نصي |
-| `XCUIElementTypeSecureTextField` | إدخال كلمة المرور |
-| `XCUIElementTypeStaticText` | تسمية نصية |
-| `XCUIElementTypeImage` | صورة |
-| `XCUIElementTypeSwitch` | مفتاح تبديل |
-| `XCUIElementTypeSlider` | شريط تمرير |
-| `XCUIElementTypePicker` | عجلة اختيار |
-| `XCUIElementTypeTable` | عرض جدول |
-| `XCUIElementTypeCell` | خلية جدول |
-| `XCUIElementTypeCollectionView` | عرض مجموعة |
-| `XCUIElementTypeScrollView` | عرض تمرير |
-
----
+| النوع                             | الوصف     |
+| -------------------------------- | --------------- |
+| `XCUIElementTypeButton`          | زر          |
+| `XCUIElementTypeTextField`       | حقل إدخال نص      |
+| `XCUIElementTypeSecureTextField` | حقل إدخال كلمة المرور  |
+| `XCUIElementTypeStaticText`      | تسمية نصية      |
+| `XCUIElementTypeImage`           | صورة           |
+| `XCUIElementTypeSwitch`          | مفتاح تبديل   |
+| `XCUIElementTypeSlider`          | شريط تمرير          |
+| `XCUIElementTypePicker`          | عجلة اختيار    |
+| `XCUIElementTypeTable`           | عرض جدول      |
+| `XCUIElementTypeCell`            | خلية جدول      |
+| `XCUIElementTypeCollectionView`  | عرض مجموعة |
+| `XCUIElementTypeScrollView`      | عرض تمرير     |
 
 ## أفضل الممارسات
 
 ### افعل
 
-- **استخدم معرّفات إمكانية الوصول** للمحددات المستقرة عبر المنصات
-- **أضف سمات data-testid** إلى عناصر الويب للاختبار
+- **استخدم معرّفات إمكانية الوصول** للحصول على محددات مستقرة وتعمل عبر المنصات
+- **أضف سمات data-testid** إلى عناصر الويب لأغراض الاختبار
 - **استخدم معرّفات الموارد** على Android عندما لا تتوفر معرّفات إمكانية الوصول
-- **فضّل سلاسل التنبؤ** على XPath في iOS
+- **فضّل سلاسل Predicate** على XPath في iOS
 - **اجعل المحددات بسيطة** ومحددة
 
 ### لا تفعل
 
 - **تجنب تعبيرات XPath الطويلة** - فهي بطيئة وهشة
-- **لا تعتمد على الفهارس** للقوائم الديناميكية
-- **تجنب المحددات المعتمدة على النص** للتطبيقات المترجمة
-- **لا تستخدم XPath المطلق** (بدءًا من الجذر)
+- **لا تعتمد على الفهارس** في القوائم الديناميكية
+- **تجنب المحددات المعتمدة على النص** في التطبيقات المترجمة
+- **لا تستخدم XPath المطلق** (الذي يبدأ من الجذر)
 
 ### أمثلة على المحددات الجيدة مقابل السيئة
 
-```
+```text
 # جيد - معرّف إمكانية وصول مستقر
 ~loginButton
 
-# سيء - XPath هش بالفهارس
+# سيئ - XPath هش مع فهارس
 //div[3]/form/button[2]
 
 # جيد - CSS محدد مع معرّف اختبار
 [data-testid="submit-button"]
 
-# سيء - فئة قد تتغير
+# سيئ - فئة قد تتغير
 .btn-primary-lg-v2
 
-# جيد - UiAutomator مع معرّف الموارد
+# جيد - UiAutomator مع معرّف المورد
 android=new UiSelector().resourceId("com.app:id/submit")
 
-# سيء - نص قد تتم ترجمته
+# سيئ - نص قد تتم ترجمته
 android=new UiSelector().text("Submit")
 ```
 
----
+## تصحيح أخطاء المحددات
 
-## تصحيح المحددات
+### الويب (Chrome DevTools)
 
-### الويب (أدوات مطور Chrome)
+1. افتح Chrome DevTools (F12)
+2. استخدم لوحة Elements لفحص العناصر
+3. انقر بزر الماوس الأيمن على عنصر ← Copy ← Copy selector
+4. اختبر المحددات في Console: `document.querySelector('your-selector')`
 
-1. افتح أدوات مطور Chrome (F12)
-2. استخدم لوحة العناصر لفحص العناصر
-3. انقر بزر الماوس الأيمن على عنصر → نسخ → نسخ المحدد
-4. اختبر المحددات في وحدة التحكم: `document.querySelector('your-selector')`
+### الهاتف المحمول (Appium Inspector)
 
-### الجوال (Appium Inspector)
-
-1. ابدأ Appium Inspector
-2. اتصل بجلستك الجارية
+1. شغّل Appium Inspector
+2. اتصل بجلستك قيد التشغيل
 3. انقر على العناصر لرؤية جميع السمات المتاحة
-4. استخدم ميزة "البحث عن عنصر" لاختبار المحددات
+4. استخدم ميزة "Search for element" لاختبار المحددات
 
-### استخدام `get_visible_elements`
+### استخدام `get_elements`
 
-تعيد أداة `get_visible_elements` في خادم MCP استراتيجيات محدد متعددة لكل عنصر:
+تُرجع أداة `get_elements` في خادم MCP استراتيجيات محددات متعددة لكل عنصر:
 
+```text
+Ask: "Get all visible elements on the screen"
 ```
-اسأل كلود: "احصل على جميع العناصر المرئية على الشاشة"
-```
 
-هذا يعيد العناصر مع محددات مولدة مسبقًا يمكنك استخدامها مباشرة.
+يُرجع هذا العناصر مع محددات مُولّدة مسبقًا يمكنك استخدامها مباشرة.
 
 #### خيارات متقدمة
 
-للمزيد من التحكم في اكتشاف العناصر:
+لمزيد من التحكم في اكتشاف العناصر:
 
-```
+```text
 # الحصول على الصور والعناصر المرئية فقط
-احصل على العناصر المرئية بنوع العنصر "visual"
+Get visible elements with elementType "visual"
 
-# احصل على العناصر مع إحداثياتها لتصحيح التخطيط
-احصل على العناصر المرئية مع تفعيل includeBounds
+# الحصول على العناصر مع إحداثياتها لتصحيح أخطاء التخطيط
+Get visible elements with includeBounds enabled
 
-# احصل على العناصر الـ 20 التالية (الترقيم)
-احصل على العناصر المرئية مع الحد 20 والإزاحة 20
+# الحصول على العناصر العشرين التالية (ترقيم الصفحات)
+Get visible elements with limit 20 and offset 20
 
-# تضمين حاويات التخطيط للتصحيح
-احصل على العناصر المرئية مع تفعيل includeContainers
+# تضمين حاويات التخطيط لتصحيح الأخطاء
+Get visible elements with includeContainers enabled
 ```
 
-تعيد الأداة استجابة مرقمة:
+تُرجع الأداة استجابة مقسّمة إلى صفحات:
 ```json
 {
   "total": 42,
@@ -376,19 +367,19 @@ android=new UiSelector().text("Submit")
 }
 ```
 
-### استخدام `get_accessibility` (المتصفح فقط)
+### استخدام `get_accessibility` (للمتصفح فقط)
 
-بالنسبة لأتمتة المتصفح، توفر أداة `get_accessibility` معلومات دلالية حول عناصر الصفحة:
+لأتمتة المتصفح، توفر أداة `get_accessibility` معلومات دلالية حول عناصر الصفحة:
 
+```text
+# الحصول على جميع عقد إمكانية الوصول المسماة
+Get accessibility tree
+
+# التصفية للأزرار والروابط فقط
+Get accessibility tree filtered to button and link roles
+
+# الحصول على الصفحة التالية من النتائج
+Get accessibility tree with limit 50 and offset 50
 ```
-# احصل على جميع عقد إمكانية الوصول المسماة
-احصل على شجرة إمكانية الوصول
 
-# تصفية إلى الأزرار والروابط فقط
-احصل على شجرة إمكانية الوصول مصفاة إلى أدوار الزر والرابط
-
-# احصل على الصفحة التالية من النتائج
-احصل على شجرة إمكانية الوصول مع الحد 50 والإزاحة 50
-```
-
-هذا مفيد عندما لا تعيد `get_visible_elements` العناصر المتوقعة، لأنها تستعلم عن واجهة برمجة تطبيقات إمكانية الوصول الأصلية للمتصفح.
+يكون هذا مفيدًا عندما لا تُرجع `get_elements` العناصر المتوقعة، إذ إنها تستعلم من واجهة برمجة تطبيقات إمكانية الوصول الأصلية في المتصفح.

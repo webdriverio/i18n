@@ -1,11 +1,12 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
+description: "OCRサービスのocrWaitForTextDisplayedを使用して、特定のテキストが画面に表示されるまで待機します。"
 ---
 
-画面上に特定のテキストが表示されるのを待ちます。
+特定のテキストが画面に表示されるまで待機します。
 
-## 使用法
+## 使用方法
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -20,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayedは内部的にocrGetElementPositionByTextを使用しているため、ログにocrGetElementPositionByTextコマンドが表示されます
+# ocrWaitForTextDisplayedは内部でocrGetElementPositionByTextを使用しているため、ログにocrGetElementPositionByTextコマンドが表示されます
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -28,11 +29,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `text`
 
-- **型:** `string`
-- **必須:** はい
+<Option type="string" required="yes">
 
-クリックするために検索したいテキスト。
+クリックするために検索したいテキストです。
 
+</Option>
 #### 例
 
 ```js
@@ -41,29 +42,27 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 ### `timeout`
 
-- **型:** `number`
-- **必須:** いいえ
-- **デフォルト:** 18000 (18秒)
+<Option type="number" default="18000 (18 seconds)" required="no">
 
-ミリ秒単位の時間。OCRプロセスには時間がかかる場合があるため、あまり短く設定しないでください。
+ミリ秒単位の時間です。OCR処理には時間がかかる場合があるため、低すぎる値を設定しないように注意してください。
 
+</Option>
 #### 例
 
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // 25秒待機
+    timeout: 25000 // 25秒間待機
 });
 ```
 
 ### `timeoutMsg`
 
-- **型:** `string`
-- **必須:** いいえ
-- **デフォルト:** `Could not find the text "{selector}" within the requested time.`
+<Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
 デフォルトのエラーメッセージを上書きします。
 
+</Option>
 #### 例
 
 ```js
@@ -75,12 +74,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `contrast`
 
-- **型:** `number`
-- **必須:** いいえ
-- **デフォルト:** `0.25`
+<Option type="number" default="0.25" required="no">
 
-コントラストが高いほど画像は暗くなり、その逆も同様です。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`までの値を受け付けます。
+コントラストが高いほど画像は暗くなり、低いほど明るくなります。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`の間の値を受け付けます。
 
+</Option>
 #### 例
 
 ```js
@@ -92,11 +90,11 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `haystack`
 
-- **型:** `number`
-- **必須:** `WebdriverIO.Element | ChainablePromiseElement | Rectangle`
+<Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-これは画面上でOCRがテキストを探す検索領域です。要素または`x`、`y`、`width`、`height`を含む矩形を指定できます。
+OCRがテキストを探す画面内の検索領域です。要素、または`x`、`y`、`width`、`height`を含む矩形を指定できます。
 
+</Option>
 #### 例
 
 ```js
@@ -125,35 +123,33 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `language`
 
-- **型:** `string`
-- **必須:** いいえ
-- **デフォルト:** `eng`
+<Option type="string" default="eng" required="No">
 
-Tesseractが認識する言語。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
+Tesseractが認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
 
+</Option>
 #### 例
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // オランダ語を使用
+    // 言語としてオランダ語を使用
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-以下のオプションでファジー検索のロジックを変更できます。より良いマッチを見つけるのに役立つかもしれません。
+以下のオプションを使用して、テキストを検索するためのファジーロジックを変更できます。これにより、より適切な一致が見つかる場合があります。
 
 #### `fuzzyFindOptions.distance`
 
-- **型:** `number`
-- **必須:** いいえ
-- **デフォルト:** 100
+<Option type="number" default="100" required="no">
 
-マッチがファジー位置（locationで指定）にどれだけ近くなければならないかを決定します。ファジー位置から「distance」文字離れた位置にある完全一致の文字は、完全に不一致としてスコア付けされます。距離0は、指定された正確な位置でのマッチを要求します。距離1000は、閾値0.8を使用した場合、完全一致が位置から800文字以内にある必要があることを意味します。
+一致がファジー位置（locationで指定）にどれだけ近くなければならないかを決定します。ファジー位置からdistance文字離れた位置にある完全な文字一致は、完全な不一致としてスコア付けされます。distanceが0の場合、指定された正確な位置で一致する必要があります。distanceが1000の場合、threshold 0.8を使用して検出されるには、完全一致が位置から800文字以内にある必要があります。
 
+</Option>
 ##### 例
 
 ```js
@@ -167,12 +163,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.location`
 
-- **型:** `number`
-- **必須:** いいえ
-- **デフォルト:** 0
+<Option type="number" default="0" required="no">
 
-テキスト内のどこにパターンが見つかると予想されるかをおおよそ決定します。
+テキスト内のどのあたりでパターンが見つかると予想されるかを決定します。
 
+</Option>
 ##### 例
 
 ```js
@@ -186,12 +181,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.threshold`
 
-- **型:** `number`
-- **必須:** いいえ
-- **デフォルト:** 0.6
+<Option type="number" default="0.6" required="no">
 
-マッチングアルゴリズムがどの時点であきらめるかを決定します。閾値0は完全一致（文字と位置の両方）を要求し、閾値1.0は何でもマッチさせます。
+マッチングアルゴリズムがどの時点で諦めるかを指定します。thresholdが0の場合は（文字と位置の両方の）完全一致が必要で、thresholdが1.0の場合は何にでも一致します。
 
+</Option>
 ##### 例
 
 ```js
@@ -205,12 +199,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.isCaseSensitive`
 
-- **型:** `boolean`
-- **必須:** いいえ
-- **デフォルト:** false
+<Option type="boolean" default="false" required="no">
 
-検索で大文字と小文字を区別するかどうか。
+検索で大文字と小文字を区別するかどうかを指定します。
 
+</Option>
 ##### 例
 
 ```js
@@ -224,12 +217,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.minMatchCharLength`
 
-- **型:** `number`
-- **必須:** いいえ
-- **デフォルト:** 2
+<Option type="number" default="2" required="no">
 
-この値を超える長さのマッチのみが返されます。（例えば、結果で1文字のマッチを無視したい場合は、2に設定します）
+長さがこの値を超える一致のみが返されます。（例えば、結果から1文字の一致を除外したい場合は、2に設定します）
 
+</Option>
 ##### 例
 
 ```js
@@ -243,12 +235,11 @@ await browser.ocrWaitForTextDisplayed({
 
 #### `fuzzyFindOptions.findAllMatches`
 
-- **型:** `number`
-- **必須:** いいえ
-- **デフォルト:** false
+<Option type="number" default="false" required="no">
 
-`true`の場合、完全一致が既に文字列内で見つかっていても、マッチング関数は検索パターンの最後まで続行します。
+`true`の場合、文字列内で既に完全一致が見つかっていても、マッチング関数は検索パターンの最後まで処理を続けます。
 
+</Option>
 ##### 例
 
 ```js

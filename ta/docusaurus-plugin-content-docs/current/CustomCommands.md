@@ -1,51 +1,62 @@
 ---
 id: customcommands
 title: தனிப்பயன் கட்டளைகள்
+description: "addCommand மூலம் உங்கள் சொந்த browser மற்றும் element கட்டளைகளைச் சேர்க்கவும், ஏற்கனவே உள்ள கட்டளைகளை மேலெழுதவும், TypeScript வகை வரையறைகளை நீட்டிக்கவும்."
 ---
 
-நீங்கள் உங்களது சொந்த கட்டளைகளுடன் `browser` நிகழ்வை விரிவுபடுத்த விரும்பினால், உலாவி முறை `addCommand` உங்களுக்காக இங்கே உள்ளது. உங்கள் ஸ்பெக்களில் உள்ளதைப் போலவே, நீங்கள் உங்கள் கட்டளையை ஒரு ஒத்திசைவற்ற (asynchronous) வழியில் எழுதலாம்.
+`browser` instance-ஐ உங்கள் சொந்த கட்டளைகளுடன் நீட்டிக்க விரும்பினால், `addCommand` என்ற browser method அதற்கு உதவும். உங்கள் specs-இல் எழுதுவது போலவே, உங்கள் கட்டளையையும் asynchronous முறையில் எழுதலாம்.
 
 ## அளவுருக்கள்
 
-### கட்டளை பெயர்
+### கட்டளையின் பெயர்
 
-கட்டளையை வரையறுக்கும் மற்றும் உலாவி அல்லது கூறு நோக்கத்துடன் இணைக்கப்படும் ஒரு பெயர்.
+<Option type="String">
 
-வகை: `String`
+கட்டளையை வரையறுக்கும் பெயர். இது browser அல்லது element scope-உடன் இணைக்கப்படும்.
+
+</Option>
 
 ### தனிப்பயன் செயல்பாடு
 
-கட்டளை அழைக்கப்படும்போது செயல்படுத்தப்படும் ஒரு செயல்பாடு. `this` நோக்கம் [`WebdriverIO.Browser`](/docs/api/browser) அல்லது [`WebdriverIO.Element`](/docs/api/element) ஆகும், கட்டளை உலாவி அல்லது கூறு நோக்கத்துடன் இணைக்கப்பட்டுள்ளதா என்பதைப் பொறுத்து.
+<Option type="Function">
 
-வகை: `Function`
+கட்டளை அழைக்கப்படும்போது இயக்கப்படும் செயல்பாடு. கட்டளை browser-உடனா, elements-உடனா அல்லது browsing contexts-உடனா இணைக்கப்படுகிறது என்பதைப் பொறுத்து, `this` scope ஆனது [`WebdriverIO.Browser`](/docs/api/browser), [`WebdriverIO.Element`](/docs/api/element) அல்லது `WebdriverIO.BrowsingContext` ஆக இருக்கும்.
+
+</Option>
 
 ### விருப்பங்கள்
 
-தனிப்பயன் கட்டளை நடத்தையை மாற்றியமைக்கும் உள்ளமைவு விருப்பங்களுடன் கூடிய பொருள்
+தனிப்பயன் கட்டளையின் நடத்தையை மாற்றும் உள்ளமைவு விருப்பங்களைக் கொண்ட object
 
-#### இலக்கு நோக்கம்
+#### இலக்கு Scope
 
-கட்டளையை உலாவி அல்லது கூறு நோக்கத்துடன் இணைக்க வேண்டுமா என்பதைத் தீர்மானிக்கும் கொடி. `true` என அமைக்கப்பட்டால் கட்டளை ஒரு கூறு கட்டளையாக இருக்கும்.
+<Option type="Boolean" default="false" name="attachToElement">
 
-விருப்ப பெயர்: `attachToElement`
-வகை: `Boolean`<br />
-இயல்புநிலை: `false`
+கட்டளையை browser scope-உடனா அல்லது element scope-உடனா இணைப்பது என்பதைத் தீர்மானிக்கும் flag. `true` என அமைக்கப்பட்டால், அந்தக் கட்டளை ஒரு element கட்டளையாக இருக்கும்.
 
-#### implicitWait ஐ முடக்கு
+</Option>
 
-தனிப்பயன் கட்டளையை அழைப்பதற்கு முன் கூறு இருப்பதற்காக மறைமுகமாக காத்திருக்க வேண்டுமா என்பதைத் தீர்மானிக்கும் கொடி.
+<Option type="Boolean" default="false" name="attachToBrowsingContext">
 
-விருப்ப பெயர்: `disableElementImplicitWait`
-வகை: `Boolean`<br />
-இயல்புநிலை: `false`
+ஒரு WebDriver BiDi session-இல் `browser.url()`, `browser.newWindow()`, `browser.browsingContexts()` மற்றும் `context.frame()` திருப்பி அனுப்பும் tabs, windows மற்றும் frames ஆகிய ஒவ்வொரு browsing context-உடனும் கட்டளையை இணைப்பதற்கான flag. இதை `attachToElement` உடன் சேர்த்துப் பயன்படுத்த முடியாது. [உலாவல் சூழல்கள்](#browsing-contexts) பகுதியைப் பார்க்கவும்.
 
-## உதாரணங்கள்
+</Option>
 
-இந்த உதாரணம் தற்போதைய URL மற்றும் தலைப்பை ஒரே முடிவாக திருப்பும் ஒரு புதிய கட்டளையை எவ்வாறு சேர்ப்பது என்பதைக் காட்டுகிறது. நோக்கம் (`this`) ஒரு [`WebdriverIO.Browser`](/docs/api/browser) பொருளாகும்.
+#### implicitWait-ஐ முடக்குதல்
+
+<Option type="Boolean" default="false" name="disableElementImplicitWait">
+
+தனிப்பயன் கட்டளையை அழைப்பதற்கு முன், element இருப்பதற்காக மறைமுகமாகக் காத்திருக்க வேண்டுமா என்பதைத் தீர்மானிக்கும் flag.
+
+</Option>
+
+## எடுத்துக்காட்டுகள்
+
+தற்போதைய URL மற்றும் title-ஐ ஒரே முடிவாகத் திருப்பி அனுப்பும் புதிய கட்டளையை எவ்வாறு சேர்ப்பது என்பதை இந்த எடுத்துக்காட்டு காட்டுகிறது. இதில் scope (`this`) ஒரு [`WebdriverIO.Browser`](/docs/api/browser) object ஆகும்.
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
-    // `this` refers to the `browser` scope
+    // `this` என்பது `browser` scope-ஐக் குறிக்கிறது
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -54,30 +65,29 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-கூடுதலாக, இறுதி அளவுருவாக `true` ஐ அனுப்புவதன் மூலம், உங்கள் சொந்த கட்டளைகளுடன் கூறு நிகழ்வை நீங்கள் விரிவுபடுத்தலாம். இந்த சந்தர்ப்பத்தில் நோக்கம் (`this`) ஒரு [`WebdriverIO.Element`](/docs/api/element) பொருளாகும்.
+மேலும், `attachToElement`-ஐ `true` என அமைப்பதன் மூலம் element instance-ஐயும் உங்கள் சொந்த கட்டளைகளுடன் நீட்டிக்கலாம். இந்நிலையில் scope (`this`) ஒரு [`WebdriverIO.Element`](/docs/api/element) object ஆகும்.
 
 ```js
 browser.addCommand("waitAndClick", async function () {
-    // `this` is return value of $(selector)
+    // `this` என்பது $(selector)-இன் return value ஆகும்
     await this.waitForDisplayed()
     await this.click()
 }, { attachToElement: true })
 ```
 
-இயல்பாக, கூறு தனிப்பயன் கட்டளைகள் தனிப்பயன் கட்டளையை அழைப்பதற்கு முன் கூறு இருப்பதற்காக காத்திருக்கும். பெரும்பாலான நேரங்களில் இது விரும்பப்படுகிறது, ஆனால் தேவையில்லை என்றால், `disableImplicitWait` மூலம் முடக்கலாம்:
+இயல்பாக, element தனிப்பயன் கட்டளைகள், தனிப்பயன் கட்டளையை அழைப்பதற்கு முன் element இருப்பதற்காகக் காத்திருக்கும். பெரும்பாலான நேரங்களில் இது விரும்பத்தக்கதுதான் என்றாலும், தேவையில்லையெனில் `disableImplicitWait` மூலம் இதை முடக்கலாம்:
 
 ```js
 browser.addCommand("waitAndClick", async function () {
-    // `this` is return value of $(selector)
+    // `this` என்பது $(selector)-இன் return value ஆகும்
     await this.waitForExists()
     await this.click()
 }, { attachToElement: true, disableElementImplicitWait: true })
 ```
 
+நீங்கள் அடிக்கடி பயன்படுத்தும் ஒரு குறிப்பிட்ட கட்டளைத் தொடரை ஒரே அழைப்பாகத் தொகுக்க தனிப்பயன் கட்டளைகள் வாய்ப்பளிக்கின்றன. உங்கள் test suite-இல் எந்த இடத்திலும் தனிப்பயன் கட்டளைகளை வரையறுக்கலாம்; கட்டளை அதன் முதல் பயன்பாட்டுக்கு *முன்பே* வரையறுக்கப்பட்டுள்ளதா என்பதை மட்டும் உறுதிசெய்யுங்கள். (உங்கள் `wdio.conf.js`-இல் உள்ள `before` hook அவற்றை உருவாக்க ஒரு நல்ல இடமாகும்.)
 
-தனிப்பயன் கட்டளைகள் உங்களுக்கு அடிக்கடி பயன்படுத்தும் ஒரு குறிப்பிட்ட கட்டளை வரிசையை ஒற்றை அழைப்பாக கட்டமைக்க வாய்ப்பளிக்கிறது. உங்கள் சோதனை தொகுப்பில் எந்த நேரத்திலும் நீங்கள் தனிப்பயன் கட்டளைகளை வரையறுக்கலாம்; கட்டளை முதல் முறை பயன்படுத்தப்படுவதற்கு *முன்* வரையறுக்கப்பட்டுள்ளது என்பதை உறுதிப்படுத்தவும். (உங்கள் `wdio.conf.js` இல் `before` ஹுக் அவற்றை உருவாக்க ஒரு நல்ல இடம்.)
-
-வரையறுக்கப்பட்ட பின்னர், நீங்கள் அவற்றைப் பின்வருமாறு பயன்படுத்தலாம்:
+வரையறுக்கப்பட்டதும், அவற்றை இவ்வாறு பயன்படுத்தலாம்:
 
 ```js
 it('should use my custom command', async () => {
@@ -90,26 +100,26 @@ it('should use my custom command', async () => {
 })
 ```
 
-__குறிப்பு:__ நீங்கள் `browser` நோக்கத்திற்கு ஒரு தனிப்பயன் கட்டளையைப் பதிவு செய்தால், கட்டளை கூறுகளுக்கு அணுகக்கூடியதாக இருக்காது. அதேபோல், நீங்கள் கூறு நோக்கத்திற்கு ஒரு கட்டளையைப் பதிவு செய்தால், அது `browser` நோக்கத்தில் அணுகக்கூடியதாக இருக்காது:
+__குறிப்பு:__ ஒரு தனிப்பயன் கட்டளையை `browser` scope-இல் பதிவுசெய்தால், அந்தக் கட்டளை elements-க்குக் கிடைக்காது. அதேபோல், ஒரு கட்டளையை element scope-இல் பதிவுசெய்தால், அது `browser` scope-இல் கிடைக்காது:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
 const elem = await $('body')
-console.log(typeof browser.myCustomBrowserCommand) // outputs "function"
-console.log(typeof elem.myCustomBrowserCommand()) // outputs "undefined"
+console.log(typeof browser.myCustomBrowserCommand) // "function" என வெளியிடும்
+console.log(typeof elem.myCustomBrowserCommand()) // "undefined" என வெளியிடும்
 
 browser.addCommand("myCustomElementCommand", () => { return 1 }, { attachToElement: true })
 const elem2 = await $('body')
-console.log(typeof browser.myCustomElementCommand) // outputs "undefined"
-console.log(await elem2.myCustomElementCommand('foobar')) // outputs "1"
+console.log(typeof browser.myCustomElementCommand) // "undefined" என வெளியிடும்
+console.log(await elem2.myCustomElementCommand('foobar')) // "1" என வெளியிடும்
 
 const elem3 = await $('body')
 elem3.addCommand("myCustomElementCommand2", () => { return 2 })
-console.log(typeof browser.myCustomElementCommand2) // outputs "undefined"
-console.log(await elem3.myCustomElementCommand2('foobar')) // outputs "2"
+console.log(typeof browser.myCustomElementCommand2) // "undefined" என வெளியிடும்
+console.log(await elem3.myCustomElementCommand2('foobar')) // "2" என வெளியிடும்
 ```
 
-__குறிப்பு:__ நீங்கள் ஒரு தனிப்பயன் கட்டளையை சங்கிலியாக்க வேண்டியிருந்தால், கட்டளை `$` உடன் முடிய வேண்டும்,
+__குறிப்பு:__ ஒரு தனிப்பயன் கட்டளையை chain செய்ய வேண்டுமெனில், அந்தக் கட்டளை `$` உடன் முடிய வேண்டும்,
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -117,23 +127,44 @@ browser.addCommand("user$", (locator) => { return ele }, { attachToElement: true
 await browser.user$('foo').user$('bar').click()
 ```
 
-மிக அதிகமான தனிப்பயன் கட்டளைகளால் `browser` நோக்கத்தை அதிகப்படுத்துவதைத் தவிர்க்க கவனமாக இருங்கள்.
+`browser` scope-ஐ அதிகப்படியான தனிப்பயன் கட்டளைகளால் நிரப்பாமல் கவனமாக இருங்கள்.
 
-தனிப்பயன் தர்க்கத்தை [பக்க பொருள்களில்](pageobjects) வரையறுப்பதை நாங்கள் பரிந்துரைக்கிறோம், இதனால் அவை ஒரு குறிப்பிட்ட பக்கத்துடன் பிணைக்கப்பட்டுள்ளன.
+தனிப்பயன் தர்க்கத்தை [page objects](pageobjects)-இல் வரையறுக்குமாறு பரிந்துரைக்கிறோம், அப்போது அவை ஒரு குறிப்பிட்ட பக்கத்துடன் இணைக்கப்பட்டிருக்கும்.
 
-### மல்டிரிமோட்
+### உலாவல் சூழல்கள் {#browsing-contexts}
 
-`addCommand` மல்டிரிமோட்டிற்கும் ஒரே மாதிரியான வழியில் வேலை செய்கிறது, புதிய கட்டளை குழந்தை நிகழ்வுகளுக்கு பரவும் தவிர. மல்டிரிமோட் `browser` மற்றும் அதன் குழந்தை நிகழ்வுகள் வேறுபட்ட `this` கொண்டிருப்பதால் நீங்கள் `this` பொருளைப் பயன்படுத்தும்போது கவனமாக இருக்க வேண்டும்.
+ஒரு WebDriver BiDi session-இல், tab, window மற்றும் frame ஒவ்வொன்றும் ஒரு `WebdriverIO.BrowsingContext` ஆகும். அவை அனைத்திலும் ஒரு கட்டளையைச் சேர்க்க `attachToBrowsingContext`-ஐ `true` என அமைக்கவும். Scope (`this`) என்பது கட்டளை அழைக்கப்பட்ட context ஆகும், மேலும் `this.browser` என்பது அது சார்ந்த browser ஆகும்:
 
-இந்த உதாரணம் மல்டிரிமோட்டிற்கான ஒரு புதிய கட்டளையை எவ்வாறு சேர்ப்பது என்பதைக் காட்டுகிறது.
+```js
+browser.addCommand('heading', async function () {
+    // `this` என்பது tab, window அல்லது frame ஆகும்
+    return this.$('h1').getText()
+}, { attachToBrowsingContext: true })
+
+const page = await browser.url('https://webdriver.io')
+console.log(await page.heading())
+
+const frame = await page.frame('iframe')
+console.log(await frame.heading())
+```
+
+இந்தக் கட்டளை ஏற்கனவே உள்ள contexts-இலும், பின்னர் உருவாக்கப்படும் ஒவ்வொரு context-இலும், வேறு origin-இலிருந்து வரும் frames உட்பட, கிடைக்கும். tab அல்லது window-க்கு மட்டுமே பொருந்தும் ஒரு கட்டளை `this.isFrame`-ஐச் சரிபார்க்கலாம்.
+
+ஒரு browsing context-இலேயே `addCommand` மற்றும் `overwriteCommand`-ஐ அழைத்தால் பிழை ஏற்படும். கட்டளையை browser-இல் பதிவுசெய்யவும்.
+
+### Multi-remote
+
+Multi-remote-க்கும் `addCommand` இதே போன்று செயல்படுகிறது, ஆனால் புதிய கட்டளை child instances-க்கும் பரவும். Multi-remote `browser` மற்றும் அதன் child instances வெவ்வேறு `this`-ஐக் கொண்டிருப்பதால், `this` object-ஐப் பயன்படுத்தும்போது கவனமாக இருக்க வேண்டும்.
+
+Multi-remote-க்கு புதிய கட்டளையை எவ்வாறு சேர்ப்பது என்பதை இந்த எடுத்துக்காட்டு காட்டுகிறது.
 
 ```js
 import { multiRemoteBrowser } from '@wdio/globals'
 
 multiRemoteBrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
-    // `this` refers to:
-    //      - MultiRemoteBrowser scope for browser
-    //      - Browser scope for instances
+    // `this` குறிப்பது:
+    //      - browser-க்கு MultiRemoteBrowser scope
+    //      - instances-க்கு Browser scope
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -163,14 +194,14 @@ multiRemoteBrowser.getInstance('browserA').getUrlAndTitle()
 */
 ```
 
-## வகை வரைவிலக்கணங்களை விரிவாக்குதல்
+## வகை வரையறைகளை நீட்டித்தல்
 
-TypeScript உடன், WebdriverIO இடைமுகங்களை விரிவுபடுத்துவது எளிது. உங்கள் தனிப்பயன் கட்டளைகளுக்கு வகைகளைப் பின்வருமாறு சேர்க்கவும்:
+TypeScript மூலம் WebdriverIO interfaces-ஐ எளிதாக நீட்டிக்கலாம். உங்கள் தனிப்பயன் கட்டளைகளுக்கு இவ்வாறு வகைகளைச் சேர்க்கவும்:
 
-1. ஒரு வகை வரைவிலக்கண கோப்பை உருவாக்கவும் (எ.கா., `./src/types/wdio.d.ts`)
-2. அ. தொகுதி-பாணி வகை வரைவிலக்கண கோப்பைப் பயன்படுத்தினால் (வகை வரைவிலக்கண கோப்பில் import/export மற்றும் `declare global WebdriverIO` ஐப் பயன்படுத்தி), கோப்பு பாதையை `tsconfig.json` `include` பண்புகளில் சேர்க்க உறுதிப்படுத்தவும்.
+1. ஒரு வகை வரையறை கோப்பை உருவாக்கவும் (எ.கா., `./src/types/wdio.d.ts`)
+2. a. Module-style வகை வரையறை கோப்பைப் பயன்படுத்தினால் (வகை வரையறை கோப்பில் import/export மற்றும் `declare global WebdriverIO` பயன்படுத்துதல்), `tsconfig.json`-இன் `include` property-இல் கோப்பின் பாதையைச் சேர்த்துள்ளதை உறுதிசெய்யவும்.
 
-   ஆ. சுற்றுச்சூழல்-பாணி வகை வரைவிலக்கண கோப்புகளைப் பயன்படுத்தினால் (வகை வரைவிலக்கண கோப்புகளில் import/export இல்லை மற்றும் தனிப்பயன் கட்டளைகளுக்கான `declare namespace WebdriverIO`), `tsconfig.json` எந்த `include` பிரிவையும் கொண்டிருக்க*வில்லை* என்பதை உறுதிப்படுத்தவும், ஏனெனில் இது `include` பிரிவில் பட்டியலிடப்படாத அனைத்து வகை வரைவிலக்கண கோப்புகளையும் TypeScript அங்கீகரிக்காமல் போக வழிவகுக்கும்.
+   b. Ambient-style வகை வரையறை கோப்புகளைப் பயன்படுத்தினால் (வகை வரையறை கோப்புகளில் import/export இல்லாமல், தனிப்பயன் கட்டளைகளுக்கு `declare namespace WebdriverIO` பயன்படுத்துதல்), `tsconfig.json`-இல் எந்த `include` பகுதியும் *இல்லை* என்பதை உறுதிசெய்யவும், ஏனெனில் அவ்வாறு இருந்தால் `include` பகுதியில் பட்டியலிடப்படாத அனைத்து வகை வரையறை கோப்புகளையும் TypeScript அங்கீகரிக்காது.
 
 <Tabs
   defaultValue="modules"
@@ -203,7 +234,7 @@ TypeScript உடன், WebdriverIO இடைமுகங்களை விர
 </TabItem>
 </Tabs>
 
-3. உங்கள் செயல்படுத்தல் முறைக்கு ஏற்ப உங்கள் கட்டளைகளுக்கான வரைவிலக்கணங்களைச் சேர்க்கவும்.
+3. உங்கள் execution mode-க்கு ஏற்ப உங்கள் கட்டளைகளுக்கான வரையறைகளைச் சேர்க்கவும்.
 
 <Tabs
   defaultValue="modules"
@@ -228,6 +259,10 @@ declare global {
         interface Element {
             elementCustomCommand: (arg: any) => Promise<number>
         }
+
+        interface BrowsingContext {
+            contextCustomCommand: (arg: any) => Promise<string>
+        }
     }
 }
 ```
@@ -248,6 +283,10 @@ declare namespace WebdriverIO {
     interface Element {
         elementCustomCommand: (arg: any) => Promise<number>
     }
+
+    interface BrowsingContext {
+        contextCustomCommand: (arg: any) => Promise<string>
+    }
 }
 ```
 
@@ -256,9 +295,9 @@ declare namespace WebdriverIO {
 
 ## மூன்றாம் தரப்பு நூலகங்களை ஒருங்கிணைத்தல்
 
-நீங்கள் வாக்குறுதிகளை ஆதரிக்கும் வெளிப்புற நூலகங்களைப் பயன்படுத்தினால் (எ.கா., தரவுத்தள அழைப்புகளைச் செய்ய), அவற்றை ஒருங்கிணைப்பதற்கான ஒரு சிறந்த அணுகுமுறை சில API முறைகளை ஒரு தனிப்பயன் கட்டளையுடன் மூடுவதாகும்.
+Promises-ஐ ஆதரிக்கும் வெளிப்புற நூலகங்களை (எ.கா., database அழைப்புகளைச் செய்ய) நீங்கள் பயன்படுத்தினால், அவற்றை ஒருங்கிணைப்பதற்கான ஒரு நல்ல அணுகுமுறை, குறிப்பிட்ட API methods-ஐ ஒரு தனிப்பயன் கட்டளையில் wrap செய்வதாகும்.
 
-வாக்குறுதியைத் திருப்பும்போது, வாக்குறுதி தீர்க்கப்படும் வரை அடுத்த கட்டளையுடன் தொடராமல் WebdriverIO உறுதிசெய்கிறது. வாக்குறுதி நிராகரிக்கப்பட்டால், கட்டளை ஒரு பிழையை எழுப்பும்.
+Promise-ஐத் திருப்பி அனுப்பும்போது, அந்த promise resolve ஆகும் வரை WebdriverIO அடுத்த கட்டளைக்குச் செல்லாது என்பதை உறுதிசெய்கிறது. Promise reject செய்யப்பட்டால், கட்டளை ஒரு பிழையை எழுப்பும்.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -267,36 +306,36 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-பின்னர், அதை உங்கள் WDIO சோதனை ஸ்பெக்களில் பயன்படுத்தவும்:
+பின்னர், அதை உங்கள் WDIO test specs-இல் பயன்படுத்தவும்:
 
 ```js
 it('execute external library in a sync way', async () => {
     await browser.url('...')
     const body = await browser.makeRequest('http://...')
-    console.log(body) // returns response body
+    console.log(body) // response body-ஐத் திருப்பி அனுப்பும்
 })
 ```
 
-**குறிப்பு:** உங்கள் தனிப்பயன் கட்டளையின் முடிவு நீங்கள் திரும்பும் வாக்குறுதியின் முடிவாகும்.
+**குறிப்பு:** உங்கள் தனிப்பயன் கட்டளையின் முடிவு, நீங்கள் திருப்பி அனுப்பும் promise-இன் முடிவாகும்.
 
 ## கட்டளைகளை மேலெழுதுதல்
 
-நீங்கள் `overwriteCommand` மூலம் உள்ளமைந்த கட்டளைகளையும் மேலெழுதலாம்.
+`overwriteCommand` மூலம் native கட்டளைகளையும் மேலெழுதலாம்.
 
-இது கட்டமைப்பின் முன்கணிக்க முடியாத நடத்தைக்கு வழிவகுக்கும் என்பதால் இதைச் செய்ய பரிந்துரைக்கப்படவில்லை!
+இவ்வாறு செய்வது பரிந்துரைக்கப்படவில்லை, ஏனெனில் இது framework-இன் கணிக்க முடியாத நடத்தைக்கு வழிவகுக்கலாம்!
 
-ஒட்டுமொத்த அணுகுமுறை `addCommand` ஐப் போன்றதாகும், ஒரே வித்தியாசம் என்னவென்றால், கட்டளை செயல்பாட்டில் முதல் அளவுரு நீங்கள் மேலெழுத உள்ள அசல் செயல்பாடாகும். கீழே சில உதாரணங்களைப் பார்க்கவும்.
+ஒட்டுமொத்த அணுகுமுறை `addCommand`-ஐப் போன்றதே, ஒரே வித்தியாசம் என்னவென்றால், கட்டளை செயல்பாட்டின் முதல் argument நீங்கள் மேலெழுதப் போகும் அசல் செயல்பாடாகும். கீழே உள்ள சில எடுத்துக்காட்டுகளைப் பார்க்கவும்.
 
-### உலாவி கட்டளைகளை மேலெழுதுதல்
+### Browser கட்டளைகளை மேலெழுதுதல்
 
 ```js
 /**
- * Print milliseconds before pause and return its value.
+ * pause-க்கு முன் milliseconds-ஐ அச்சிட்டு, அதன் மதிப்பைத் திருப்பி அனுப்பும்.
  *
- * @param pause - name of command to be overwritten
- * @param this of func - the original browser instance on which the function was called
- * @param originalPauseFunction of func - the original pause function
- * @param ms of func - the actual parameters passed
+ * @param pause - மேலெழுதப்பட வேண்டிய கட்டளையின் பெயர்
+ * @param this of func - செயல்பாடு அழைக்கப்பட்ட அசல் browser instance
+ * @param originalPauseFunction of func - அசல் pause செயல்பாடு
+ * @param ms of func - அனுப்பப்பட்ட உண்மையான அளவுருக்கள்
   */
 browser.overwriteCommand('pause', async function (this, originalPauseFunction, ms) {
     console.log(`sleeping for ${ms}`)
@@ -304,23 +343,23 @@ browser.overwriteCommand('pause', async function (this, originalPauseFunction, m
     return ms
 })
 
-// then use it as before
+// பின்னர் முன்பு போலவே பயன்படுத்தவும்
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
-### கூறு கட்டளைகளை மேலெழுதுதல்
+### Element கட்டளைகளை மேலெழுதுதல்
 
-கூறு நிலையில் கட்டளைகளை மேலெழுதுவது கிட்டத்தட்ட ஒரே மாதிரியானது. `overwriteCommand`க்கு மூன்றாவது அளவுருவாக `true` ஐ அனுப்பவும்:
+Element மட்டத்தில் கட்டளைகளை மேலெழுதுவதும் கிட்டத்தட்ட இதே போன்றதுதான். `attachToElement`-ஐ `true` என அமைக்கவும்:
 
 ```js
 /**
- * Attempt to scroll to element if it is not clickable.
- * Pass { force: true } to click with JS even if element is not visible or clickable.
- * Show that the original function argument type can be kept with `options?: ClickOptions`
+ * Element கிளிக் செய்யக்கூடியதாக இல்லையெனில், அதற்கு scroll செய்ய முயற்சிக்கும்.
+ * Element தெரியவில்லை அல்லது கிளிக் செய்யக்கூடியதாக இல்லையென்றாலும் JS மூலம் கிளிக் செய்ய { force: true } அனுப்பவும்.
+ * `options?: ClickOptions` மூலம் அசல் செயல்பாட்டின் argument வகையைத் தக்கவைக்கலாம் என்பதைக் காட்டுகிறது
  *
- * @param this of func - the element on which the original function was called
- * @param originalClickFunction of func - the original pause function
- * @param options of func - the actual parameters passed
+ * @param this of func - அசல் செயல்பாடு அழைக்கப்பட்ட element
+ * @param originalClickFunction of func - அசல் pause செயல்பாடு
+ * @param options of func - அனுப்பப்பட்ட உண்மையான அளவுருக்கள்
  */
 browser.overwriteCommand(
     'click',
@@ -328,14 +367,14 @@ browser.overwriteCommand(
         const { force, ...restOptions } = options || {}
         if (!force) {
             try {
-                // attempt to click
+                // கிளிக் செய்ய முயற்சிக்கவும்
                 await originalClickFunction(options)
                 return
             } catch (err) {
                 if ((err as Error).message.includes('not clickable at point')) {
                     console.warn('WARN: Element', this.selector, 'is not clickable.', 'Scrolling to it before clicking again.')
 
-                    // scroll to element and click again
+                    // element-க்கு scroll செய்து மீண்டும் கிளிக் செய்யவும்
                     await this.scrollIntoView()
                     return originalClickFunction(options)
                 }
@@ -343,26 +382,41 @@ browser.overwriteCommand(
             }
         }
 
-        // clicking with js
+        // js மூலம் கிளிக் செய்தல்
         console.warn('WARN: Using force click for', this.selector)
         await browser.execute((el) => {
             el.click()
         }, this)
     },
-    { attachToElement: true }, // Don't forget to attach it to the element
+    { attachToElement: true }, // இதை element-உடன் இணைக்க மறக்காதீர்கள்
 )
 
-// then use it as before
+// பின்னர் முன்பு போலவே பயன்படுத்தவும்
 const elem = await $('body')
 await elem.click()
 
-// or pass params
+// அல்லது params-ஐ அனுப்பவும்
 await elem.click({ force: true })
 ```
 
-## மேலும் WebDriver கட்டளைகளைச் சேர்க்கவும்
+### Browsing Context கட்டளைகளை மேலெழுதுதல்
 
-நீங்கள் WebDriver நெறிமுறையைப் பயன்படுத்துகிறீர்கள் மற்றும் [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) இல் எந்த நெறிமுறை வரைவிலக்கணங்களாலும் வரையறுக்கப்படாத கூடுதல் கட்டளைகளை ஆதரிக்கும் தளத்தில் சோதனைகளை இயக்குகிறீர்கள் என்றால், நீங்கள் `addCommand` இடைமுகத்தின் மூலம் அவற்றை கைமுறையாகச் சேர்க்கலாம். `webdriver` தொகுப்பு ஒரு கட்டளை ரேப்பரை வழங்குகிறது, இது இந்த புதிய முனைப்புகளை மற்ற கட்டளைகள் போலவே பதிவு செய்ய அனுமதிக்கிறது, அதே அளவுரு சரிபார்ப்புகள் மற்றும் பிழை கையாளுதலை வழங்குகிறது. இந்த புதிய முனைப்பைப் பதிவு செய்ய கட்டளை ரேப்பரை இறக்குமதி செய்து பின்வருமாறு ஒரு புதிய கட்டளையைப் பதிவு செய்யவும்:
+ஒவ்வொரு tab, window மற்றும் frame-இன் உள்ளமைந்த அல்லது தனிப்பயன் கட்டளையை மேலெழுத `attachToBrowsingContext`-ஐ `true` என அமைக்கவும். அசல் கட்டளை, அது அழைக்கப்பட்ட context-உடன் பிணைக்கப்பட்டிருக்கும்:
+
+```js
+browser.overwriteCommand('getTitle', async function (this, originalGetTitle) {
+    const title = await originalGetTitle()
+    return this.isFrame ? `frame: ${title}` : title
+}, { attachToBrowsingContext: true })
+
+const page = await browser.url('https://webdriver.io')
+const frame = await page.frame('iframe')
+console.log(await frame.getTitle()) // "frame: ..."
+```
+
+## மேலும் WebDriver கட்டளைகளைச் சேர்த்தல்
+
+நீங்கள் WebDriver protocol-ஐப் பயன்படுத்தி, [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols)-இல் உள்ள எந்த protocol வரையறைகளிலும் வரையறுக்கப்படாத கூடுதல் கட்டளைகளை ஆதரிக்கும் ஒரு platform-இல் tests-ஐ இயக்கினால், அவற்றை `addCommand` interface மூலம் கைமுறையாகச் சேர்க்கலாம். `webdriver` package ஒரு command wrapper-ஐ வழங்குகிறது, இது இந்தப் புதிய endpoints-ஐ மற்ற கட்டளைகளைப் போலவே பதிவுசெய்ய அனுமதிக்கிறது, மேலும் அதே அளவுரு சரிபார்ப்புகளையும் பிழை கையாளுதலையும் வழங்குகிறது. இந்தப் புதிய endpoint-ஐப் பதிவுசெய்ய, command wrapper-ஐ import செய்து, அதன் மூலம் ஒரு புதிய கட்டளையை பின்வருமாறு பதிவுசெய்யவும்:
 
 ```js
 import { command } from 'webdriver'
@@ -384,14 +438,14 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-இந்த கட்டளையை தவறான அளவுருக்களுடன் அழைப்பது முன்வரையறுக்கப்பட்ட நெறிமுறை கட்டளைகளைப் போலவே அதே பிழை கையாளுதலை ஏற்படுத்தும், எ.கா.:
+தவறான அளவுருக்களுடன் இந்தக் கட்டளையை அழைத்தால், முன்வரையறுக்கப்பட்ட protocol கட்டளைகளைப் போலவே பிழை கையாளப்படும், எ.கா.:
 
 ```js
-// call command without required url parameter and payload
+// தேவையான url அளவுரு மற்றும் payload இல்லாமல் கட்டளையை அழைத்தல்
 await browser.myNewCommand()
 
 /**
- * results in the following error:
+ * பின்வரும் பிழை ஏற்படும்:
  * Error: Wrong parameters applied for myNewCommand
  * Usage: myNewCommand(someId, foo)
  *
@@ -405,10 +459,10 @@ await browser.myNewCommand()
  */
 ```
 
-கட்டளையை சரியாக அழைக்கும் போது, எ.கா. `browser.myNewCommand('foo', 'bar')`, சரியாக `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` என்ற முகவரிக்கு ஒரு WebDriver கோரிக்கையை `{ foo: 'bar' }` போன்ற பேலோடுடன் அனுப்புகிறது.
+கட்டளையைச் சரியாக அழைத்தால், எ.கா. `browser.myNewCommand('foo', 'bar')`, அது `{ foo: 'bar' }` போன்ற payload உடன், எ.கா. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` என்ற முகவரிக்கு ஒரு WebDriver கோரிக்கையைச் சரியாக அனுப்பும்.
 
 :::note
-`:sessionId` url அளவுரு WebDriver அமர்வின் அமர்வு id உடன் தானாகவே மாற்றப்படும். மற்ற url அளவுருக்களும் பயன்படுத்தப்படலாம் ஆனால் `variables` இல் வரையறுக்கப்பட வேண்டும்.
+`:sessionId` url அளவுரு, WebDriver session-இன் session id-ஆல் தானாகவே மாற்றப்படும். மற்ற url அளவுருக்களையும் பயன்படுத்தலாம், ஆனால் அவை `variables`-க்குள் வரையறுக்கப்பட வேண்டும்.
 :::
 
-நெறிமுறை கட்டளைகளை எவ்வாறு வரையறுக்கலாம் என்பதற்கான உதாரணங்களை [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) தொகுப்பில் காணலாம்.
+Protocol கட்டளைகளை எவ்வாறு வரையறுக்கலாம் என்பதற்கான எடுத்துக்காட்டுகளை [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) package-இல் பார்க்கவும்.

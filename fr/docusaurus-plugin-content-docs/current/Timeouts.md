@@ -1,58 +1,59 @@
 ---
 id: timeouts
-title: Délais d'attente
+title: Délais d'expiration
+description: "Configurez les délais d'expiration de session WebDriver, les délais d'expiration waitfor de WebdriverIO et les délais d'expiration du framework de test pour garantir la fiabilité de vos tests."
 ---
 
-Chaque commande dans WebdriverIO est une opération asynchrone. Une requête est envoyée au serveur Selenium (ou à un service cloud comme [Sauce Labs](https://saucelabs.com)), et sa réponse contient le résultat une fois que l'action est terminée ou a échoué.
+Chaque commande dans WebdriverIO est une opération asynchrone. Une requête est envoyée au serveur Selenium (ou à un service cloud comme [Sauce Labs](https://saucelabs.com)), et sa réponse contient le résultat une fois que l'action a réussi ou échoué.
 
-Par conséquent, le temps est un composant crucial dans l'ensemble du processus de test. Lorsqu'une certaine action dépend de l'état d'une autre action, vous devez vous assurer qu'elles sont exécutées dans le bon ordre. Les délais d'attente jouent un rôle important pour gérer ces problèmes.
+Par conséquent, le temps est un élément crucial dans l'ensemble du processus de test. Lorsqu'une action dépend de l'état d'une autre action, vous devez vous assurer qu'elles sont exécutées dans le bon ordre. Les délais d'expiration jouent un rôle important pour gérer ces problèmes.
 
 <LiteYouTubeEmbed
     id="5oI37h4qxEw"
     title="Timeouts"
 />
 
-## Délais d'attente WebDriver
+## Délais d'expiration WebDriver
 
-### Délai d'attente de script de session
+### Délai d'expiration des scripts de session
 
-Une session possède un délai d'attente de script associé qui spécifie un temps d'attente pour l'exécution des scripts asynchrones. Sauf indication contraire, il est de 30 secondes. Vous pouvez définir ce délai comme suit :
+Une session possède un délai d'expiration des scripts de session associé, qui spécifie le temps d'attente pour l'exécution des scripts asynchrones. Sauf indication contraire, il est de 30 secondes. Vous pouvez définir ce délai d'expiration comme suit :
 
 ```js
 await browser.setTimeout({ 'script': 60000 })
-await browser.executeAsync((done) => {
+await browser.execute(async () => {
     console.log('this should not fail')
-    setTimeout(done, 59000)
+    await new Promise((resolve) => setTimeout(resolve, 59000))
 })
 ```
 
-### Délai d'attente de chargement de page de session
+### Délai d'expiration du chargement de page de session
 
-Une session possède un délai d'attente de chargement de page associé qui spécifie un temps d'attente pour que le chargement de la page soit terminé. Sauf indication contraire, il est de 300 000 millisecondes.
+Une session possède un délai d'expiration du chargement de page associé, qui spécifie le temps d'attente pour que le chargement de la page soit terminé. Sauf indication contraire, il est de 300 000 millisecondes.
 
-Vous pouvez définir ce délai comme suit :
+Vous pouvez définir ce délai d'expiration comme suit :
 
 ```js
 await browser.setTimeout({ 'pageLoad': 10000 })
 ```
 
-> Le mot-clé `pageLoad` fait partie de la [spécification](https://www.w3.org/TR/webdriver/#set-timeouts) officielle WebDriver, mais pourrait ne pas être [pris en charge](https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/687) pour votre navigateur (le nom précédent est `page load`).
+> `pageLoad` est le nom défini par les [timeouts](https://www.w3.org/TR/webdriver/#set-timeouts) WebDriver. WebdriverIO v10 accepte uniquement cette clé.
 
-### Délai d'attente implicite de session
+### Délai d'expiration de l'attente implicite de session
 
-Une session possède un délai d'attente implicite associé. Cela spécifie le temps d'attente pour la stratégie de localisation implicite des éléments lors de la recherche d'éléments à l'aide des commandes [`findElement`](/docs/api/webdriver#findelement) ou [`findElements`](/docs/api/webdriver#findelements) ([`$`](/docs/api/browser/$) ou [`$$`](/docs/api/browser/$$), respectivement, lors de l'exécution de WebdriverIO avec ou sans le testrunner WDIO). Sauf indication contraire, il est de 0 milliseconde.
+Une session possède un délai d'expiration de l'attente implicite associé. Celui-ci spécifie le temps d'attente pour la stratégie de localisation implicite des éléments lors de la recherche d'éléments à l'aide des commandes [`findElement`](/docs/api/webdriver#findelement) ou [`findElements`](/docs/api/webdriver#findelements) ([`$`](/docs/api/browser/$) ou [`$$`](/docs/api/browser/$$), respectivement, lors de l'exécution de WebdriverIO avec ou sans le testrunner WDIO). Sauf indication contraire, il est de 0 millisecondes.
 
-Vous pouvez définir ce délai via :
+Vous pouvez définir ce délai d'expiration via :
 
 ```js
 await browser.setTimeout({ 'implicit': 5000 })
 ```
 
-## Délais d'attente liés à WebdriverIO
+## Délais d'expiration liés à WebdriverIO
 
-### Délai d'attente `WaitFor*`
+### Délai d'expiration `WaitFor*`
 
-WebdriverIO fournit plusieurs commandes pour attendre que les éléments atteignent un certain état (par exemple, activé, visible, existant). Ces commandes prennent un argument de sélecteur et un nombre de délai d'attente, qui détermine combien de temps l'instance doit attendre que cet élément atteigne l'état. L'option `waitforTimeout` vous permet de définir le délai global pour toutes les commandes `waitFor*`, afin que vous n'ayez pas à définir le même délai encore et encore. _(Notez le 'f' minuscule !)_
+WebdriverIO fournit plusieurs commandes pour attendre que des éléments atteignent un certain état (par exemple activé, visible, existant). Ces commandes prennent un argument de sélecteur et un nombre pour le délai d'expiration, qui détermine combien de temps l'instance doit attendre que cet élément atteigne l'état. L'option `waitforTimeout` vous permet de définir le délai d'expiration global pour toutes les commandes `waitFor*`, afin de ne pas avoir à définir le même délai encore et encore. _(Notez le `f` minuscule !)_
 
 ```js
 // wdio.conf.js
@@ -69,17 +70,17 @@ Dans vos tests, vous pouvez maintenant faire ceci :
 const myElem = await $('#myElem')
 await myElem.waitForDisplayed()
 
-// vous pouvez également remplacer le délai par défaut si nécessaire
+// vous pouvez également remplacer le délai d'expiration par défaut si nécessaire
 await myElem.waitForDisplayed({ timeout: 10000 })
 ```
 
-## Délais d'attente liés au framework
+## Délais d'expiration liés au framework
 
-Le framework de test que vous utilisez avec WebdriverIO doit gérer les délais d'attente, d'autant plus que tout est asynchrone. Il garantit que le processus de test ne se bloque pas si quelque chose ne va pas.
+Le framework de test que vous utilisez avec WebdriverIO doit gérer les délais d'expiration, d'autant plus que tout est asynchrone. Cela garantit que le processus de test ne reste pas bloqué si quelque chose se passe mal.
 
-Par défaut, le délai est de 10 secondes, ce qui signifie qu'un seul test ne devrait pas prendre plus de temps.
+Par défaut, le délai d'expiration est de 10 secondes, ce qui signifie qu'un seul test ne doit pas durer plus longtemps.
 
-Un test unique dans Mocha ressemble à :
+Un test unique dans Mocha ressemble à ceci :
 
 ```js
 it('should login into the application', async () => {
@@ -97,7 +98,7 @@ it('should login into the application', async () => {
 })
 ```
 
-Dans Cucumber, le délai s'applique à une seule définition d'étape. Cependant, si vous souhaitez augmenter le délai parce que votre test prend plus de temps que la valeur par défaut, vous devez le définir dans les options du framework.
+Dans Cucumber, le délai d'expiration s'applique à une seule définition d'étape. Cependant, si vous souhaitez augmenter le délai d'expiration parce que votre test dure plus longtemps que la valeur par défaut, vous devez le définir dans les options du framework.
 
 <Tabs
   defaultValue="mocha"

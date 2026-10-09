@@ -1,34 +1,35 @@
 ---
 id: testmuai
-title: TestMu AI (Tidigare LambdaTest) Tillgänglighetstestning
+title: Tillgänglighetstestning med TestMu AI (tidigare LambdaTest)
+description: "Aktivera tillgänglighetstestning med TestMu AI (tidigare LambdaTest) i din WebdriverIO-svit, konfigurera skanningsalternativ och visa tillgänglighetsrapporterna."
 ---
 
-# TestMu AI Accessibility Testing
+# Tillgänglighetstestning med TestMu AI
 
-You can easily integrate accessibility tests in your WebdriverIO test suites using [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
+Du kan enkelt integrera tillgänglighetstester i dina WebdriverIO-testsviter med hjälp av [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
 
-## Advantages of TestMu AI Accessibility Testing
+## Fördelar med tillgänglighetstestning i TestMu AI
 
-TestMu AI Accessibility Testing helps you identify and fix accessibility issues in your web applications. The following are the key advantages:
+Tillgänglighetstestning i TestMu AI hjälper dig att identifiera och åtgärda tillgänglighetsproblem i dina webbapplikationer. Följande är de viktigaste fördelarna:
 
-* Seamlessly integrates with your existing WebdriverIO test automation.
-* Automated accessibility scanning during test execution.
-* Comprehensive WCAG compliance reporting.
-* Detailed issue tracking with remediation guidance.
-* Support for multiple WCAG standards (WCAG 2.0, WCAG 2.1, WCAG 2.2).
-* Real-time accessibility insights in the TestMu AI dashboard.
+* Integreras sömlöst med din befintliga testautomatisering i WebdriverIO.
+* Automatiserad tillgänglighetsskanning under testkörningen.
+* Omfattande rapportering av WCAG-efterlevnad.
+* Detaljerad spårning av problem med vägledning för åtgärder.
+* Stöd för flera WCAG-standarder (WCAG 2.0, WCAG 2.1, WCAG 2.2).
+* Tillgänglighetsinsikter i realtid i TestMu AI-instrumentpanelen.
 
-## Get Started with TestMu AI Accessibility Testing
+## Kom igång med tillgänglighetstestning i TestMu AI
 
-Follow these steps to integrate your WebdriverIO test suites with TestMu AI's Accessibility Testing:
+Följ dessa steg för att integrera dina WebdriverIO-testsviter med tillgänglighetstestningen i TestMu AI:
 
-1. Install the TestMu AI WebdriverIO service package.
+1. Installera TestMu AI:s WebdriverIO-tjänstpaket.
 
 ```bash npm2yarn
 npm install --save-dev @lambdatest/wdio-lambdatest-service
 ```
 
-2. Update your `wdio.conf.js` configuration file.
+2. Uppdatera din konfigurationsfil `wdio.conf.js`.
 
 ```javascript
 exports.config = {
@@ -41,9 +42,9 @@ exports.config = {
         'LT:Options': {
             platform: 'Windows 10',
             version: 'latest',
-            accessibility: true, // Enable accessibility testing
+            accessibility: true, // Aktivera tillgänglighetstestning
             accessibilityOptions: {
-                wcagVersion: 'wcag21a', // WCAG version (wcag20, wcag21a, wcag21aa, wcag22aa)
+                wcagVersion: 'wcag21a', // WCAG-version (wcag20, wcag21a, wcag21aa, wcag22aa)
                 bestPractice: false,
                 needsReview: true
             }
@@ -59,33 +60,33 @@ exports.config = {
 };
 ```
 
-3. Run your tests as usual. TestMu AI will automatically scan for accessibility issues during test execution.
+3. Kör dina tester som vanligt. TestMu AI skannar automatiskt efter tillgänglighetsproblem under testkörningen.
 
 ```bash
 npx wdio run wdio.conf.js
 ```
 
-## Configuration Options
+## Konfigurationsalternativ
 
-The `accessibilityOptions` object supports the following parameters:
+Objektet `accessibilityOptions` stöder följande parametrar:
 
-* **wcagVersion**: Specify the WCAG standard version to test against
-  - `wcag20` - WCAG 2.0 Level A
-  - `wcag21a` - WCAG 2.1 Level A
-  - `wcag21aa` - WCAG 2.1 Level AA (default)
-  - `wcag22aa` - WCAG 2.2 Level AA
+* **wcagVersion**: Ange vilken version av WCAG-standarden som ska testas mot
+  - `wcag20` - WCAG 2.0 nivå A
+  - `wcag21a` - WCAG 2.1 nivå A
+  - `wcag21aa` - WCAG 2.1 nivå AA (standard)
+  - `wcag22aa` - WCAG 2.2 nivå AA
 
-* **bestPractice**: Include best practice recommendations (default: `false`)
+* **bestPractice**: Inkludera rekommendationer för bästa praxis (standard: `false`)
 
-* **needsReview**: Include issues that need manual review (default: `true`)
+* **needsReview**: Inkludera problem som kräver manuell granskning (standard: `true`)
 
-## Viewing Accessibility Reports
+## Visa tillgänglighetsrapporter
 
-After your tests complete, you can view detailed accessibility reports in the [TestMu AI Dashboard](https://automation.lambdatest.com/):
+När dina tester är klara kan du visa detaljerade tillgänglighetsrapporter i [TestMu AI-instrumentpanelen](https://automation.lambdatest.com/):
 
-1. Navigate to your test execution
-2. Click on the "Accessibility" tab
-3. Review identified issues with severity levels
-4. Get remediation guidance for each issue
+1. Navigera till din testkörning
+2. Klicka på fliken "Accessibility"
+3. Granska identifierade problem med allvarlighetsgrader
+4. Få vägledning för åtgärd av varje problem
 
-For more detailed information, visit the [TestMu AI Accessibility Automation documentation](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
+För mer detaljerad information, besök [dokumentationen för TestMu AI Accessibility Automation](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
