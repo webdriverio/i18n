@@ -16,9 +16,7 @@ dotenv.config();
 
 // Cache file path
 const model = 'claude-opus-5-5'
-/**
- * `I18N_CACHE_FILE` lets a test use another file than the cache of the repository
- */
+// I18N_CACHE_FILE: another cache file, for tests
 const CACHE_FILE_PATH = process.env.I18N_CACHE_FILE ?? path.join(ROOT_DIR, 'src', 'cache.json');
 const CONTENT_SEPARATOR = '---'
 const MAX_TOKENS = 128 * 1000
@@ -52,17 +50,11 @@ const client = new Anthropic({
  * @param language - the language to translate to
  */
 async function writeCacheEntry(cacheKey: string, contentShasum: string, language: string) {
-    /**
-     * read the file again, with the entries of the earlier updates. `updateCache` runs the updates
-     * of this process one at a time; it does not protect against another process that writes the
-     * file at the same time
-     */
+    // read again for the earlier updates (queued in this process only)
     const cacheFile = await fs.readFile(CACHE_FILE_PATH, 'utf-8');
     const cache = JSON.parse(cacheFile) as unknown as Map<string, CacheEntry>;
     const entry = cache[cacheKey] as CacheEntry | undefined;
-    /**
-     * the languages of an older version of the page still have its old translation
-     */
+    // a new version of the page needs new translations
     const languages = entry?.hash === contentShasum ? entry.languages : [];
     cache[cacheKey] = {
         hash: contentShasum,
@@ -71,17 +63,11 @@ async function writeCacheEntry(cacheKey: string, contentShasum: string, language
     await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(cache, null, 2), 'utf-8');
 }
 
-/**
- * The cache updates run one at a time. `translateFile` runs for many files at the same time:
- * parallel updates read the file while another one wrote it, lost entries, and left a broken
- * file (an extra `}` at its end stopped every later run).
- */
+// one update at a time: parallel updates lost entries and broke the file
 let cacheUpdates: Promise<void> = Promise.resolve()
 export function updateCache(cacheKey: string, contentShasum: string, language: string) {
     const update = cacheUpdates.then(() => writeCacheEntry(cacheKey, contentShasum, language))
-    /**
-     * a failed update does not stop the next ones
-     */
+    // a failed update does not stop the next ones
     cacheUpdates = update.catch(() => {})
     return update
 }

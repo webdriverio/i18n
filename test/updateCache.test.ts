@@ -4,15 +4,11 @@ import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 
-/**
- * the test writes a temporary cache file, never the cache of the repository
- */
+// a temporary cache, never src/cache.json
 const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'i18n-cache-'))
 const CACHE_FILE = path.join(tmpDir, 'cache.json')
 process.env.I18N_CACHE_FILE = CACHE_FILE
-/**
- * src/translate.ts creates its Anthropic client when it loads: the test sends no request
- */
+// translate.ts needs a key to load; no request is sent
 process.env.ANTHROPIC_API_KEY ??= 'test'
 
 const { updateCache } = await import('../src/translate.js')
@@ -23,18 +19,11 @@ after(async () => {
 
 const readCache = async () => JSON.parse(await fs.readFile(CACHE_FILE, 'utf-8'))
 
-/**
- * `translateFile` runs for up to 25 files at the same time, and each one updates the cache when
- * its translation is done. Parallel read-modify-write of the file lost entries, failed on a file
- * that another update was writing, and left an extra `}` (two overlapping writes of different
- * lengths), which stopped every later run.
- */
+// up to 25 translateFile() calls update the cache at the same time
 test('parallel cache updates keep every entry and a valid file', async () => {
     for (let round = 0; round < 20; round++) {
         await fs.writeFile(CACHE_FILE, JSON.stringify({}, null, 2))
-        /**
-         * keys of different lengths give writes of different lengths
-         */
+        // different key lengths give overlapping writes of different lengths
         const keys = Array.from({ length: 25 }, (_, i) => `docs/page-${round}-${i}${'x'.repeat(i % 3)}.md`)
         await Promise.all(keys.map((key) => updateCache(key, 'hash', 'de')))
 
@@ -42,11 +31,7 @@ test('parallel cache updates keep every entry and a valid file', async () => {
     }
 })
 
-/**
- * The languages of an older version of a page still have its old translation. When a translation
- * failed in a run, the next run saw the new hash with the old list and did not translate the page
- * again for that language.
- */
+// a failed translation must not look up to date in the next run
 test('a new version of a page keeps only the languages translated from it', async () => {
     await fs.writeFile(CACHE_FILE, JSON.stringify({ page: { hash: 'old', languages: ['ar', 'de'] } }))
     await updateCache('page', 'new', 'ar')
