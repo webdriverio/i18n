@@ -50,8 +50,9 @@ const client = new Anthropic({
  */
 async function writeCacheEntry(cacheKey: string, contentShasum: string, language: string) {
     /**
-     * re-import the cache file to ensure we're working with the latest data
-     * as there could be other processes writing to the cache file
+     * read the file again, with the entries of the earlier updates. `updateCache` runs the updates
+     * of this process one at a time; it does not protect against another process that writes the
+     * file at the same time
      */
     const cacheFile = await fs.readFile(CACHE_FILE_PATH, 'utf-8');
     const cache = JSON.parse(cacheFile) as unknown as Map<string, CacheEntry>;
