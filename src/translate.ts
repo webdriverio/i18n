@@ -16,7 +16,10 @@ dotenv.config();
 
 // Cache file path
 const model = 'claude-opus-5-5'
-const CACHE_FILE_PATH = path.join(ROOT_DIR, 'src', 'cache.json');
+/**
+ * `I18N_CACHE_FILE` lets a test use another file than the cache of the repository
+ */
+const CACHE_FILE_PATH = process.env.I18N_CACHE_FILE ?? path.join(ROOT_DIR, 'src', 'cache.json');
 const CONTENT_SEPARATOR = '---'
 const MAX_TOKENS = 128 * 1000
 const BATCH_CHECK_INTERVAL = 5000 // 5 seconds

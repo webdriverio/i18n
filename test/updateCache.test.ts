@@ -1,26 +1,27 @@
-import { after, before, test } from 'node:test'
+import { after, test } from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
+import os from 'node:os'
 import path from 'node:path'
-import url from 'node:url'
 
+/**
+ * the test writes a temporary cache file, never the cache of the repository
+ */
+const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'i18n-cache-'))
+const CACHE_FILE = path.join(tmpDir, 'cache.json')
+process.env.I18N_CACHE_FILE = CACHE_FILE
 /**
  * src/translate.ts creates its Anthropic client when it loads: the test sends no request
  */
 process.env.ANTHROPIC_API_KEY ??= 'test'
 
-const CACHE_FILE = path.resolve(path.dirname(url.fileURLToPath(import.meta.url)), '..', 'src', 'cache.json')
-let saved: string
+const { updateCache } = await import('../src/translate.js')
 
-/**
- * the test writes the real cache file: keep its content and put it back
- */
-before(async () => {
-    saved = await fs.readFile(CACHE_FILE, 'utf-8')
-})
 after(async () => {
-    await fs.writeFile(CACHE_FILE, saved)
+    await fs.rm(tmpDir, { recursive: true, force: true })
 })
+
+const readCache = async () => JSON.parse(await fs.readFile(CACHE_FILE, 'utf-8'))
 
 /**
  * `translateFile` runs for up to 25 files at the same time, and each one updates the cache when
@@ -29,7 +30,6 @@ after(async () => {
  * lengths), which stopped every later run.
  */
 test('parallel cache updates keep every entry and a valid file', async () => {
-    const { updateCache } = await import('../src/translate.js')
     for (let round = 0; round < 20; round++) {
         await fs.writeFile(CACHE_FILE, JSON.stringify({}, null, 2))
         /**
@@ -38,7 +38,6 @@ test('parallel cache updates keep every entry and a valid file', async () => {
         const keys = Array.from({ length: 25 }, (_, i) => `docs/page-${round}-${i}${'x'.repeat(i % 3)}.md`)
         await Promise.all(keys.map((key) => updateCache(key, 'hash', 'de')))
 
-        const cache = JSON.parse(await fs.readFile(CACHE_FILE, 'utf-8'))
-        assert.deepEqual(Object.keys(cache).sort(), [...keys].sort())
+        assert.deepEqual(Object.keys(await readCache()).sort(), [...keys].sort())
     }
 })
