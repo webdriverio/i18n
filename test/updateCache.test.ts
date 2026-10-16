@@ -41,3 +41,20 @@ test('parallel cache updates keep every entry and a valid file', async () => {
         assert.deepEqual(Object.keys(await readCache()).sort(), [...keys].sort())
     }
 })
+
+/**
+ * The languages of an older version of a page still have its old translation. When a translation
+ * failed in a run, the next run saw the new hash with the old list and did not translate the page
+ * again for that language.
+ */
+test('a new version of a page keeps only the languages translated from it', async () => {
+    await fs.writeFile(CACHE_FILE, JSON.stringify({ page: { hash: 'old', languages: ['ar', 'de'] } }))
+    await updateCache('page', 'new', 'ar')
+    assert.deepEqual((await readCache()).page, { hash: 'new', languages: ['ar'] })
+})
+
+test('the same version of a page adds the language', async () => {
+    await fs.writeFile(CACHE_FILE, JSON.stringify({ page: { hash: 'same', languages: ['ar'] } }))
+    await updateCache('page', 'same', 'de')
+    assert.deepEqual((await readCache()).page, { hash: 'same', languages: ['ar', 'de'] })
+})
