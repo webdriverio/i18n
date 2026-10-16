@@ -48,7 +48,7 @@ const client = new Anthropic({
  * @param contentShasum - the shasum of the content
  * @param language - the language to translate to
  */
-async function updateCache(cacheKey: string, contentShasum: string, language: string) {
+async function writeCacheEntry(cacheKey: string, contentShasum: string, language: string) {
     /**
      * re-import the cache file to ensure we're working with the latest data
      * as there could be other processes writing to the cache file
@@ -61,6 +61,21 @@ async function updateCache(cacheKey: string, contentShasum: string, language: st
         languages: Array.from(new Set([...languages, language]))
     } as CacheEntry;
     await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(cache, null, 2), 'utf-8');
+}
+
+/**
+ * The cache updates run one at a time. `translateFile` runs for many files at the same time:
+ * parallel updates read the file while another one wrote it, lost entries, and left a broken
+ * file (an extra `}` at its end stopped every later run).
+ */
+let cacheUpdates: Promise<void> = Promise.resolve()
+export function updateCache(cacheKey: string, contentShasum: string, language: string) {
+    const update = cacheUpdates.then(() => writeCacheEntry(cacheKey, contentShasum, language))
+    /**
+     * a failed update does not stop the next ones
+     */
+    cacheUpdates = update.catch(() => {})
+    return update
 }
 
 // Calculate SHA-256 hash of content
