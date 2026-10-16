@@ -5,6 +5,7 @@
     "main": "translate.ts",
     "scripts": {
         "start": "tsx src/index.ts",
+        "test": "tsx --test test/*.test.ts",
         "cancel-all-batches": "tsx src/cancelAllBatches.ts"
     },
     "type": "module",
