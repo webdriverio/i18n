@@ -2,6 +2,12 @@
 
 Translation files for the WebdriverIO documentation, including a script that pulls the latest docs from the main repository and runs through a Large Language Model (LLM) to translate them.
 
+> [!NOTE]
+> This is the `v9` branch: it translates the docs of the `v9` branch of [webdriverio/webdriverio](https://github.com/webdriverio/webdriverio), for the v9 website. The default branch translates `main` (v10).
+>
+> - The nightly "Translation Process" runs only on the default branch. To update the v9 translations, run it by hand on this branch: Actions → Translation Process → Run workflow → `v9`.
+> - When you run it locally with `WEBDRIVERIO_DOCS`, it must point to a checkout of the `v9` branch of webdriverio/webdriverio.
+
 ## Usage
 
 After cloning this repository, create a `.env` file with the following secret keys required for pulling the source translation and translating them:
