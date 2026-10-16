@@ -59,7 +59,11 @@ async function writeCacheEntry(cacheKey: string, contentShasum: string, language
      */
     const cacheFile = await fs.readFile(CACHE_FILE_PATH, 'utf-8');
     const cache = JSON.parse(cacheFile) as unknown as Map<string, CacheEntry>;
-    const { languages } = cache[cacheKey] || { languages: [] };
+    const entry = cache[cacheKey] as CacheEntry | undefined;
+    /**
+     * the languages of an older version of the page still have its old translation
+     */
+    const languages = entry?.hash === contentShasum ? entry.languages : [];
     cache[cacheKey] = {
         hash: contentShasum,
         languages: Array.from(new Set([...languages, language]))
