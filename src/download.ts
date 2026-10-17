@@ -124,6 +124,18 @@ async function processRepoItem(octokit: Octokit, item: any, outputDir: string, r
     }
 }
 
+// a WEBDRIVERIO_DOCS checkout of another major version would add its API pages to this branch
+export async function checkGeneratedDocsVersion (sourceBranch: string) {
+    if (!process.env.WEBDRIVERIO_DOCS) {
+        return
+    }
+    const lerna = path.resolve(ROOT_DIR, process.env.WEBDRIVERIO_DOCS, 'lerna.json')
+    const { version } = JSON.parse(await fs.readFile(lerna, 'utf-8'))
+    if (`v${String(version).split('.')[0]}` !== sourceBranch) {
+        throw new Error(`WEBDRIVERIO_DOCS is webdriverio ${version}: use a checkout of its ${sourceBranch} branch`)
+    }
+}
+
 /**
  * Fetch generated docs from existing WebdriverIO project. This is required because
  * the WebdriverIO project generates a lot of documentation based on various parts

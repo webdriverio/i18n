@@ -16,7 +16,8 @@ dotenv.config();
 
 // Cache file path
 const model = 'claude-opus-5-5'
-const CACHE_FILE_PATH = path.join(ROOT_DIR, 'src', 'cache.json');
+// I18N_CACHE_FILE: another cache file, for tests
+const CACHE_FILE_PATH = process.env.I18N_CACHE_FILE ?? path.join(ROOT_DIR, 'src', 'cache.json');
 const CONTENT_SEPARATOR = '---'
 const MAX_TOKENS = 128 * 1000
 const BATCH_CHECK_INTERVAL = 5000 // 5 seconds
@@ -48,19 +49,27 @@ const client = new Anthropic({
  * @param contentShasum - the shasum of the content
  * @param language - the language to translate to
  */
-async function updateCache(cacheKey: string, contentShasum: string, language: string) {
-    /**
-     * re-import the cache file to ensure we're working with the latest data
-     * as there could be other processes writing to the cache file
-     */
+async function writeCacheEntry(cacheKey: string, contentShasum: string, language: string) {
+    // read again for the earlier updates (queued in this process only)
     const cacheFile = await fs.readFile(CACHE_FILE_PATH, 'utf-8');
     const cache = JSON.parse(cacheFile) as unknown as Map<string, CacheEntry>;
-    const { languages } = cache[cacheKey] || { languages: [] };
+    const entry = cache[cacheKey] as CacheEntry | undefined;
+    // a new version of the page needs new translations
+    const languages = entry?.hash === contentShasum ? entry.languages : [];
     cache[cacheKey] = {
         hash: contentShasum,
         languages: Array.from(new Set([...languages, language]))
     } as CacheEntry;
     await fs.writeFile(CACHE_FILE_PATH, JSON.stringify(cache, null, 2), 'utf-8');
+}
+
+// one update at a time: parallel updates lost entries and broke the file
+let cacheUpdates: Promise<void> = Promise.resolve()
+export function updateCache(cacheKey: string, contentShasum: string, language: string) {
+    const update = cacheUpdates.then(() => writeCacheEntry(cacheKey, contentShasum, language))
+    // a failed update does not stop the next ones
+    cacheUpdates = update.catch(() => {})
+    return update
 }
 
 // Calculate SHA-256 hash of content
