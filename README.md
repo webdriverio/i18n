@@ -3,7 +3,7 @@
 Translation files for the WebdriverIO documentation, including a script that pulls the latest docs from the main repository and runs through a Large Language Model (LLM) to translate them.
 
 > [!NOTE]
-> The `v9` branch translates the `v9` docs of webdriverio/webdriverio (v9.webdriver.io). The nightly run updates only the default branch: run "Translation Process" on `v9` by hand. The workflow does not update the generated API pages: run it locally with `WEBDRIVERIO_DOCS` on a `v9` checkout (the script checks the version).
+> The `v9` branch translates the `v9` docs of webdriverio/webdriverio (v9.webdriver.io). The nightly run updates only the default branch: run "Translation Process" on `v9` by hand. The workflow does not update the generated API pages: run it locally with `WEBDRIVERIO_DOCS` on a `v9` checkout (the script checks the version), after `pnpm run docs:generate` in that checkout.
 
 ## Usage
 
